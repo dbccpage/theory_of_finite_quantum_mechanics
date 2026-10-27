@@ -9,7 +9,7 @@ target:
   declared_assumptions:
   - lattice SU(2) gauge theory with adjoint Dirac fermions (standard)
   source_bottleneck: For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change;
-    reality is not positivity. CampaignFspSu2AdjointRealDet.lean establishes the 3x3 SO(3) adjoint representation
+    reality is not positivity. FermionSignSu2AdjointRealDet.lean establishes the 3x3 SO(3) adjoint representation
     of unit quaternions, Z_2 center blindness R(-q) = R(q), the antiunitary intertwiner reality identity
     C conj(D) = D C -> Im(det D) = 0, reality of the 4D lattice adjoint Wilson-Dirac determinant wilsonDiracAdjoint4_det_im_zero,
     a negative-determinant witness (det = -1 < 0), and the 2x2 and 4x4 skew-symmetric Majorana Pfaffian
@@ -41,7 +41,7 @@ operation_candidates:
   name: su2AdjointMatrix
   line: 51
   signature_excerpt: 'def su2AdjointMatrix (a b c d : ℝ) : Matrix (Fin 3) (Fin 3) ℝ'
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -49,7 +49,7 @@ operation_candidates:
   name: matConj
   line: 125
   signature_excerpt: 'def matConj {m n : Type*} (M : Matrix m n ℂ) : Matrix m n ℂ'
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -57,7 +57,7 @@ operation_candidates:
   name: chargeConj4
   line: 227
   signature_excerpt: 'def chargeConj4 : Matrix Spin4 Spin4 ℂ'
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -73,7 +73,7 @@ operation_candidates:
 
     /-- 4D chirality matrix `γ_5 = diag(I_2, -I_2)`. -/
     def gamma5Four : Matrix Spin4 Spin4 ℂ
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -81,7 +81,7 @@ operation_candidates:
   name: Spin4
   line: 196
   signature_excerpt: abbrev Spin4
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -89,7 +89,7 @@ operation_candidates:
   name: eps2
   line: 203
   signature_excerpt: 'def eps2 : Matrix (Fin 2) (Fin 2) ℂ'
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -97,7 +97,7 @@ operation_candidates:
   name: offDirac
   line: 212
   signature_excerpt: 'def offDirac (B C : Matrix (Fin 2) (Fin 2) ℂ) : Matrix Spin4 Spin4 ℂ'
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -105,7 +105,7 @@ operation_candidates:
   name: pauli1
   line: 198
   signature_excerpt: 'def pauli1 : Matrix (Fin 2) (Fin 2) ℂ'
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -113,7 +113,7 @@ operation_candidates:
   name: pauli2
   line: 199
   signature_excerpt: 'def pauli2 : Matrix (Fin 2) (Fin 2) ℂ'
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -121,7 +121,7 @@ operation_candidates:
   name: pauli3
   line: 200
   signature_excerpt: 'def pauli3 : Matrix (Fin 2) (Fin 2) ℂ'
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -131,7 +131,7 @@ operation_candidates:
   signature_excerpt: |-
     def fullIntertwiner4 (SiteColor : Type*) [DecidableEq SiteColor] :
         Matrix (Spin4 × SiteColor) (Spin4 × SiteColor) ℂ
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -142,7 +142,7 @@ operation_candidates:
     def wilsonDiracAdjoint4 {Site : Type*} [Fintype Site] [DecidableEq Site]
         (m0 r : ℝ) (Upos Uneg : Fin 4 → Matrix (Site × Fin 3) (Site × Fin 3) ℝ) :
         Matrix (Spin4 × (Site × Fin 3)) (Spin4 × (Site × Fin 3)) ℂ
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -153,7 +153,7 @@ operation_candidates:
     def tensorSpinReal {Spin SiteColor : Type*}
         (S : Matrix Spin Spin ℂ) (K : Matrix SiteColor SiteColor ℝ) :
         Matrix (Spin × SiteColor) (Spin × SiteColor) ℂ
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -161,7 +161,7 @@ operation_candidates:
   name: skew2
   line: 495
   signature_excerpt: 'def skew2 {R : Type*} [CommRing R] (p : R) : Matrix (Fin 2) (Fin 2) R'
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -169,7 +169,7 @@ operation_candidates:
   name: pfaffian2
   line: 499
   signature_excerpt: 'def pfaffian2 {R : Type*} (A : Matrix (Fin 2) (Fin 2) R) : R'
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -177,7 +177,7 @@ operation_candidates:
   name: skew4
   line: 524
   signature_excerpt: 'def skew4 {R : Type*} [CommRing R] (a b c d e f : R) : Matrix (Fin 4) (Fin 4) R'
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -188,7 +188,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem su2AdjointMatrix_center_blind (a b c d : ℝ) :
         su2AdjointMatrix (-a) (-b) (-c) (-d) = su2AdjointMatrix a b c d
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -201,7 +201,7 @@ relation_candidates:
     theorem su2AdjointMatrix_transpose_mul_self {a b c d : ℝ}
         (h : a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 = 1) :
         (su2AdjointMatrix a b c d).transpose * su2AdjointMatrix a b c d = 1
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -213,7 +213,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem su2AdjointMatrix_det_eq_norm_cube (a b c d : ℝ) :
         (su2AdjointMatrix a b c d).det = (a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2) ^ 3
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -226,7 +226,7 @@ relation_candidates:
     theorem su2AdjointMatrix_det_one {a b c d : ℝ}
         (h : a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 = 1) :
         (su2AdjointMatrix a b c d).det = 1
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -239,7 +239,7 @@ relation_candidates:
     theorem antiunitary_intertwiner_det_conj {n : Type*} [Fintype n] [DecidableEq n]
         (D C : Matrix n n ℂ) (hC : C.det ≠ 0) (h_int : C * matConj D = D * C) :
         star D.det = D.det
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -252,7 +252,7 @@ relation_candidates:
     theorem antiunitary_intertwiner_det_im_zero {n : Type*} [Fintype n] [DecidableEq n]
         (D C : Matrix n n ℂ) (hC : C.det ≠ 0) (h_int : C * matConj D = D * C) :
         (D.det).im = 0
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -265,7 +265,7 @@ relation_candidates:
     theorem antiunitary_intertwiner_two_flavor_nonneg {n : Type*} [Fintype n] [DecidableEq n]
         (D C : Matrix n n ℂ) (hC : C.det ≠ 0) (h_int : C * matConj D = D * C) :
         ((fromBlocks D 0 0 D).det).im = 0 ∧ 0 ≤ ((fromBlocks D 0 0 D).det).re
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -277,7 +277,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem chargeConj4_intertwines_gamma4d (μ : Fin 4) :
         chargeConj4 * matConj (gamma4d μ) = gamma4d μ * chargeConj4
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -293,7 +293,7 @@ relation_candidates:
         (m0 r : ℝ) (Upos Uneg : Fin 4 → Matrix (Site × Fin 3) (Site × Fin 3) ℝ) :
         fullIntertwiner4 (Site × Fin 3) * matConj (wilsonDiracAdjoint4 m0 r Upos Uneg) =
           wilsonDiracAdjoint4 m0 r Upos Uneg * fullIntertwiner4 (Site × Fin 3)
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -309,7 +309,7 @@ relation_candidates:
         (m0 r : ℝ) (Upos Uneg : Fin 4 → Matrix (Site × Fin 3) (Site × Fin 3) ℝ) :
         star (wilsonDiracAdjoint4 m0 r Upos Uneg).det =
           (wilsonDiracAdjoint4 m0 r Upos Uneg).det
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -324,7 +324,7 @@ relation_candidates:
     theorem wilsonDiracAdjoint4_det_im_zero {Site : Type*} [Fintype Site] [DecidableEq Site]
         (m0 r : ℝ) (Upos Uneg : Fin 4 → Matrix (Site × Fin 3) (Site × Fin 3) ℝ) :
         ((wilsonDiracAdjoint4 m0 r Upos Uneg).det).im = 0
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -338,7 +338,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem skew2_det_eq_pfaffian2_sq {R : Type*} [CommRing R] (p : R) :
         (skew2 p).det = (pfaffian2 (skew2 p)) ^ 2
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -353,7 +353,7 @@ relation_candidates:
         pfaffian2 (skew2 (-1 : ℝ)) = -1 ∧
         (skew2 (1 : ℝ)).det = (skew2 (-1 : ℝ)).det ∧
         (skew2 (1 : ℝ)).det = 1
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -365,7 +365,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem skew4_det_eq_pfaffian4_sq {R : Type*} [CommRing R] (a b c d e f : R) :
         (skew4 a b c d e f).det = (pfaffian4 (skew4 a b c d e f)) ^ 2
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
@@ -380,152 +380,152 @@ relation_candidates:
         pfaffian4 (skew4 (1 : ℝ) 0 0 0 0 (-1)) = -1 ∧
         (skew4 (1 : ℝ) 0 0 0 0 1).det = (skew4 (1 : ℝ) 0 0 0 0 (-1)).det ∧
         (skew4 (1 : ℝ) 0 0 0 0 1).det = 1
-  source: lean4/CampaignFspSu2AdjointRealDet.lean
+  source: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   source_sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_center_blind
+- original_ref: lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.su2AdjointMatrix_center_blind
   availability: local
-  symbol: CampaignFspSu2AdjointRealDet.su2AdjointMatrix_center_blind
-  path: lean4/CampaignFspSu2AdjointRealDet.lean
+  symbol: FermionSignSu2AdjointRealDet.su2AdjointMatrix_center_blind
+  path: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   declaration_status: declaration_found_not_proof_checked
   line: 63
   role: source_lead_only
-- original_ref: lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_transpose_mul_self
+- original_ref: lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.su2AdjointMatrix_transpose_mul_self
   availability: local
-  symbol: CampaignFspSu2AdjointRealDet.su2AdjointMatrix_transpose_mul_self
-  path: lean4/CampaignFspSu2AdjointRealDet.lean
+  symbol: FermionSignSu2AdjointRealDet.su2AdjointMatrix_transpose_mul_self
+  path: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   declaration_status: declaration_found_not_proof_checked
   line: 75
   role: source_lead_only
-- original_ref: lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_eq_norm_cube
+- original_ref: lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.su2AdjointMatrix_det_eq_norm_cube
   availability: local
-  symbol: CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_eq_norm_cube
-  path: lean4/CampaignFspSu2AdjointRealDet.lean
+  symbol: FermionSignSu2AdjointRealDet.su2AdjointMatrix_det_eq_norm_cube
+  path: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   declaration_status: declaration_found_not_proof_checked
   line: 110
   role: source_lead_only
-- original_ref: lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_one
+- original_ref: lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.su2AdjointMatrix_det_one
   availability: local
-  symbol: CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_one
-  path: lean4/CampaignFspSu2AdjointRealDet.lean
+  symbol: FermionSignSu2AdjointRealDet.su2AdjointMatrix_det_one
+  path: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   declaration_status: declaration_found_not_proof_checked
   line: 117
   role: source_lead_only
-- original_ref: lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_conj
+- original_ref: lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.antiunitary_intertwiner_det_conj
   availability: local
-  symbol: CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_conj
-  path: lean4/CampaignFspSu2AdjointRealDet.lean
+  symbol: FermionSignSu2AdjointRealDet.antiunitary_intertwiner_det_conj
+  path: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   declaration_status: declaration_found_not_proof_checked
   line: 160
   role: source_lead_only
-- original_ref: lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_im_zero
+- original_ref: lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.antiunitary_intertwiner_det_im_zero
   availability: local
-  symbol: CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_im_zero
-  path: lean4/CampaignFspSu2AdjointRealDet.lean
+  symbol: FermionSignSu2AdjointRealDet.antiunitary_intertwiner_det_im_zero
+  path: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   declaration_status: declaration_found_not_proof_checked
   line: 169
   role: source_lead_only
-- original_ref: lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_two_flavor_nonneg
+- original_ref: lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.antiunitary_intertwiner_two_flavor_nonneg
   availability: local
-  symbol: CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_two_flavor_nonneg
-  path: lean4/CampaignFspSu2AdjointRealDet.lean
+  symbol: FermionSignSu2AdjointRealDet.antiunitary_intertwiner_two_flavor_nonneg
+  path: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   declaration_status: declaration_found_not_proof_checked
   line: 178
   role: source_lead_only
-- original_ref: lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.chargeConj4_intertwines_gamma4d
+- original_ref: lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.chargeConj4_intertwines_gamma4d
   availability: local
-  symbol: CampaignFspSu2AdjointRealDet.chargeConj4_intertwines_gamma4d
-  path: lean4/CampaignFspSu2AdjointRealDet.lean
+  symbol: FermionSignSu2AdjointRealDet.chargeConj4_intertwines_gamma4d
+  path: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   declaration_status: declaration_found_not_proof_checked
   line: 300
   role: source_lead_only
-- original_ref: lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined
+- original_ref: lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined
   availability: local
-  symbol: CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined
-  path: lean4/CampaignFspSu2AdjointRealDet.lean
+  symbol: FermionSignSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined
+  path: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   declaration_status: declaration_found_not_proof_checked
   line: 437
   role: source_lead_only
-- original_ref: lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj
+- original_ref: lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj
   availability: local
-  symbol: CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj
-  path: lean4/CampaignFspSu2AdjointRealDet.lean
+  symbol: FermionSignSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj
+  path: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   declaration_status: declaration_found_not_proof_checked
   line: 455
   role: source_lead_only
-- original_ref: lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero
+- original_ref: lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero
   availability: local
-  symbol: CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero
-  path: lean4/CampaignFspSu2AdjointRealDet.lean
+  symbol: FermionSignSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero
+  path: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   declaration_status: declaration_found_not_proof_checked
   line: 468
   role: source_lead_only
-- original_ref: lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.reality_not_positivity_witness
+- original_ref: lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.reality_not_positivity_witness
   availability: local
-  symbol: CampaignFspSu2AdjointRealDet.reality_not_positivity_witness
-  path: lean4/CampaignFspSu2AdjointRealDet.lean
+  symbol: FermionSignSu2AdjointRealDet.reality_not_positivity_witness
+  path: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   declaration_status: declaration_found_not_proof_checked
   line: 482
   role: source_lead_only
-- original_ref: lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.skew2_det_eq_pfaffian2_sq
+- original_ref: lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.skew2_det_eq_pfaffian2_sq
   availability: local
-  symbol: CampaignFspSu2AdjointRealDet.skew2_det_eq_pfaffian2_sq
-  path: lean4/CampaignFspSu2AdjointRealDet.lean
+  symbol: FermionSignSu2AdjointRealDet.skew2_det_eq_pfaffian2_sq
+  path: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   declaration_status: declaration_found_not_proof_checked
   line: 507
   role: source_lead_only
-- original_ref: lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.majorana_pfaffian2_sign_flip
+- original_ref: lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.majorana_pfaffian2_sign_flip
   availability: local
-  symbol: CampaignFspSu2AdjointRealDet.majorana_pfaffian2_sign_flip
-  path: lean4/CampaignFspSu2AdjointRealDet.lean
+  symbol: FermionSignSu2AdjointRealDet.majorana_pfaffian2_sign_flip
+  path: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   declaration_status: declaration_found_not_proof_checked
   line: 514
   role: source_lead_only
-- original_ref: lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.skew4_det_eq_pfaffian4_sq
+- original_ref: lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.skew4_det_eq_pfaffian4_sq
   availability: local
-  symbol: CampaignFspSu2AdjointRealDet.skew4_det_eq_pfaffian4_sq
-  path: lean4/CampaignFspSu2AdjointRealDet.lean
+  symbol: FermionSignSu2AdjointRealDet.skew4_det_eq_pfaffian4_sq
+  path: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   declaration_status: declaration_found_not_proof_checked
   line: 542
   role: source_lead_only
-- original_ref: lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.majorana_pfaffian4_sign_flip
+- original_ref: lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.majorana_pfaffian4_sign_flip
   availability: local
-  symbol: CampaignFspSu2AdjointRealDet.majorana_pfaffian4_sign_flip
-  path: lean4/CampaignFspSu2AdjointRealDet.lean
+  symbol: FermionSignSu2AdjointRealDet.majorana_pfaffian4_sign_flip
+  path: lean4/FermionSignSu2AdjointRealDet.lean
   repository: this_repository
   sha256: fd053c6d6ae3d9b6ea607650b6c98ac1861eb3160ea49bd5941bbbaff2a6bb15
   declaration_status: declaration_found_not_proof_checked
@@ -575,6 +575,6 @@ open_obligations:
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
 - Bind independent certificate predicates and real checker anchors before P1.
 excluded_relation_leads:
-- source: lean4/CampaignFspSu2AdjointRealDet.lean
+- source: lean4/FermionSignSu2AdjointRealDet.lean
   name: reality_not_positivity_witness
   reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation

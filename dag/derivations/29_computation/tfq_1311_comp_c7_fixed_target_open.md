@@ -17,7 +17,7 @@ Adding erasing rules so that every halting word reduces to one fixed word should
 Still open: Reach of the extended rule set R0 prime from startWord x to one fixed target word exactly when univFun x is defined.
 
 ### Witness Audit
-CampaignCompC7FixedTargetOpen records two erasures, of [1, 0] and of [2, 0], to the fixed word [0]. It does not treat the extended rule set R0 prime.
+ComputationC7FixedTargetOpen records two erasures, of [1, 0] and of [2, 0], to the fixed word [0]. It does not treat the extended rule set R0 prime.
 
 ---
 
@@ -31,8 +31,8 @@ CampaignCompC7FixedTargetOpen records two erasures, of [1, 0] and of [2, 0], to 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignCompC7FixedTargetOpen.lean::eraseOneToFixed`
-- `lean4/CampaignCompC7FixedTargetOpen.lean::eraseTwoToFixed`
+- `lean4/ComputationC7FixedTargetOpen.lean::eraseOneToFixed`
+- `lean4/ComputationC7FixedTargetOpen.lean::eraseTwoToFixed`
 
 ### Rust Certifiers
 - *none*

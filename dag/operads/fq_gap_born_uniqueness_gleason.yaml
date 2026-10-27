@@ -42,7 +42,7 @@ operation_candidates:
   name: GleasonDimAtLeastThree
   line: 21
   signature_excerpt: 'def GleasonDimAtLeastThree {Q : Type} (E : Enum Q) : Prop'
-  source: lean4/H017Gleason.lean
+  source: lean4/HilbertWalkGleason.lean
   repository: this_repository
   source_sha256: ceef94bcf70d76a392949b8a9f07a8be3de52fd51f86960f494c3c58bcc95837
   status: source_candidate_requires_semantic_review
@@ -50,7 +50,7 @@ operation_candidates:
   name: normSq
   line: 12
   signature_excerpt: 'def normSq (u : Vec2) : Int'
-  source: lean4/H013QuarticRivalSeparation.lean
+  source: lean4/QuarticRivalSeparation.lean
   repository: this_repository
   source_sha256: 249249d7a40e4f9e93ae816e9190e2ce3506ba883f8c95f134f6b9419c329bd5
   status: source_candidate_requires_semantic_review
@@ -58,7 +58,7 @@ operation_candidates:
   name: dot
   line: 9
   signature_excerpt: 'def dot (u v : Vec2) : Int'
-  source: lean4/H013QuarticRivalSeparation.lean
+  source: lean4/QuarticRivalSeparation.lean
   repository: this_repository
   source_sha256: 249249d7a40e4f9e93ae816e9190e2ce3506ba883f8c95f134f6b9419c329bd5
   status: source_candidate_requires_semantic_review
@@ -66,7 +66,7 @@ operation_candidates:
   name: Vec2
   line: 5
   signature_excerpt: structure Vec2
-  source: lean4/H013QuarticRivalSeparation.lean
+  source: lean4/QuarticRivalSeparation.lean
   repository: this_repository
   source_sha256: 249249d7a40e4f9e93ae816e9190e2ce3506ba883f8c95f134f6b9419c329bd5
   status: source_candidate_requires_semantic_review
@@ -74,7 +74,7 @@ operation_candidates:
   name: e2
   line: 22
   signature_excerpt: 'def e2 : Vec2'
-  source: lean4/H013QuarticRivalSeparation.lean
+  source: lean4/QuarticRivalSeparation.lean
   repository: this_repository
   source_sha256: 249249d7a40e4f9e93ae816e9190e2ce3506ba883f8c95f134f6b9419c329bd5
   status: source_candidate_requires_semantic_review
@@ -82,7 +82,7 @@ operation_candidates:
   name: p2
   line: 25
   signature_excerpt: 'def p2 : Vec2'
-  source: lean4/H013QuarticRivalSeparation.lean
+  source: lean4/QuarticRivalSeparation.lean
   repository: this_repository
   source_sha256: 249249d7a40e4f9e93ae816e9190e2ce3506ba883f8c95f134f6b9419c329bd5
   status: source_candidate_requires_semantic_review
@@ -90,7 +90,7 @@ operation_candidates:
   name: p1
   line: 24
   signature_excerpt: 'def p1 : Vec2'
-  source: lean4/H013QuarticRivalSeparation.lean
+  source: lean4/QuarticRivalSeparation.lean
   repository: this_repository
   source_sha256: 249249d7a40e4f9e93ae816e9190e2ce3506ba883f8c95f134f6b9419c329bd5
   status: source_candidate_requires_semantic_review
@@ -98,7 +98,7 @@ operation_candidates:
   name: e1
   line: 21
   signature_excerpt: 'def e1 : Vec2'
-  source: lean4/H013QuarticRivalSeparation.lean
+  source: lean4/QuarticRivalSeparation.lean
   repository: this_repository
   source_sha256: 249249d7a40e4f9e93ae816e9190e2ce3506ba883f8c95f134f6b9419c329bd5
   status: source_candidate_requires_semantic_review
@@ -134,7 +134,7 @@ relation_candidates:
     \ ∧\n      hostSupplies.dimension_ge_three = false ∧\n      hostSupplies.noncontextuality = false\
     \ ∧\n      hostSupplies.sigma_additivity = false ∧\n      hostSupplies.continuity_of_measure = false\
     \ ∧\n      UniquenessDischarged hostSupplies = false"
-  source: lean4/H017Gleason.lean
+  source: lean4/HilbertWalkGleason.lean
   repository: this_repository
   source_sha256: ceef94bcf70d76a392949b8a9f07a8be3de52fd51f86960f494c3c58bcc95837
   status: source_candidate_requires_semantic_review
@@ -145,7 +145,7 @@ relation_candidates:
   line: 29
   signature_excerpt: "theorem frames_equinorm :\n    normSq e1 = 25 ∧ normSq e2 = 25 ∧\n    normSq p1\
     \ = 25 ∧ normSq p2 = 25"
-  source: lean4/H013QuarticRivalSeparation.lean
+  source: lean4/QuarticRivalSeparation.lean
   repository: this_repository
   source_sha256: 249249d7a40e4f9e93ae816e9190e2ce3506ba883f8c95f134f6b9419c329bd5
   status: source_candidate_requires_semantic_review
@@ -194,7 +194,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H017Gleason.lean::gleason_pack_uniqueness_still_imported
   availability: local
   symbol: gleason_pack_uniqueness_still_imported
-  path: lean4/H017Gleason.lean
+  path: lean4/HilbertWalkGleason.lean
   repository: this_repository
   sha256: ceef94bcf70d76a392949b8a9f07a8be3de52fd51f86960f494c3c58bcc95837
   declaration_status: declaration_found_not_proof_checked
@@ -203,7 +203,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H013QuarticRivalSeparation.lean::frames_equinorm
   availability: local
   symbol: frames_equinorm
-  path: lean4/H013QuarticRivalSeparation.lean
+  path: lean4/QuarticRivalSeparation.lean
   repository: this_repository
   sha256: 249249d7a40e4f9e93ae816e9190e2ce3506ba883f8c95f134f6b9419c329bd5
   declaration_status: declaration_found_not_proof_checked
@@ -955,8 +955,8 @@ operad_slots:
       only over orthogonal frames of specific finite ray sets. The three-label cardinality surrogate (3
       <= |Q|) is false on Bool; the unit-effect contract already has two disagreeing pairings.
     source_scope_review: H017 proves an actual two-label dimension refusal, but its host-supplied false
-      flags are metadata rather than proofs that no stronger host can exist. H013SameContract proves two
-      positive unit-total rules on the same effects disagree. H013QuarticRivalSeparation has an actual
+      flags are metadata rather than proofs that no stronger host can exist. HilbertWalkSameContract proves two
+      positive unit-total rules on the same effects disagree. QuarticRivalSeparation has an actual
       fixed integer two-frame counterexample; this run normalizes its probabilities and embeds the same
       actual frame plane into dimension3 with a complete third axis. No finite counterexample is treated
       as full Born uniqueness.
@@ -1216,13 +1216,13 @@ operad_slots:
     - code/python/src/qm/pfp_exact.py
     - code/rust/src/finite_probability/pfp_exact.rs
     - lean4/HWKernel.lean
-    - lean4/H004FreeLinearization.lean
-    - lean4/H005InnerProductAdmission.lean
-    - lean4/H008PhaseBlindPresentation.lean
-    - lean4/H013BornPairingBoundary.lean
-    - lean4/H013SameContract.lean
-    - lean4/H017Gleason.lean
-    - lean4/H013QuarticRivalSeparation.lean
+    - lean4/FreeLinearization.lean
+    - lean4/InnerProductAdmission.lean
+    - lean4/HilbertWalkPhaseBlindPresentation.lean
+    - lean4/BornPairingBoundary.lean
+    - lean4/HilbertWalkSameContract.lean
+    - lean4/HilbertWalkGleason.lean
+    - lean4/QuarticRivalSeparation.lean
     - QuantumMechanics.PromptBornGap.two_label_dimension_refusal
     - QuantumMechanics.PromptBornGap.no_three_distinct_bool_labels
     - QuantumMechanics.PromptBornGap.actual_weak_source_disagreement
@@ -1299,23 +1299,23 @@ stage_history:
   operad_namespace: EV-EFFECT-VALUATION
   claim_status: dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T205000Z_effect_valuation_lean/claim_status.json
   operad_records:
-  - {"id": "EV-01", "name": "Order helpers of an ordered rational unit", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.OrderedQUnit.le_iff_sub_nonneg", "BornFable.OrderedQUnit.add_nonneg", "BornFable.OrderedQUnit.smul_le_smul", "BornFable.OrderedQUnit.neg_le_neg"]}
-  - {"id": "EV-02", "name": "Elementary laws of an effect valuation", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.val_zero", "BornFable.effect_sub", "BornFable.val_mono", "BornFable.val_le_one", "BornFable.effect_smul"]}
-  - {"id": "EV-03", "name": "Rational homogeneity on effects (the first missing lemma of run 20261020T004525Z_fable51_born)", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.val_nsmul", "BornFable.val_rat_smul"]}
-  - {"id": "EV-04", "name": "Quantitative comparison", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.val_sub_le_of_le", "BornFable.val_sandwich"]}
-  - {"id": "EV-05", "name": "Bounded elements and the midpoint effect", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.OrderedQUnit.bounded_mono", "BornFable.OrderedQUnit.bounded_add", "BornFable.OrderedQUnit.bounded_of_effect", "BornFable.OrderedQUnit.midpoint_effect"]}
-  - {"id": "EV-06", "name": "Extension value independent of the admissible bound", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.OrderedQUnit.extAt_add", "BornFable.OrderedQUnit.extAt_mono", "BornFable.OrderedQUnit.extAt_eq"]}
-  - {"id": "EV-07", "name": "Unique positive unital ℚ-linear extension", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.OrderedQUnit.bound_pos", "BornFable.OrderedQUnit.bounded_bound", "BornFable.OrderedQUnit.extend_eq_extAt", "BornFable.OrderedQUnit.extend_add", "BornFable.OrderedQUnit.extend_effect", "BornFable.OrderedQUnit.extend_nonneg", "BornFable.OrderedQUnit.extend_u", "BornFable.OrderedQUnit.extendₗ_apply", "BornFable.OrderedQUnit.extendₗ_effect", "BornFable.OrderedQUnit.extendₗ_nonneg", "BornFable.OrderedQUnit.extendₗ_u", "BornFable.OrderedQUnit.extend_unique", "BornFable.OrderedQUnit.linear_extension"]}
-  - {"id": "EV-08", "name": "Rational matrix carrier with the quadratic-form preorder", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.MatrixCarrier.qf", "BornFable.MatrixCarrier.qf_add", "BornFable.MatrixCarrier.qf_sub", "BornFable.MatrixCarrier.qf_neg", "BornFable.MatrixCarrier.qf_smul", "BornFable.MatrixCarrier.qf_zero", "BornFable.MatrixCarrier.qf_one", "BornFable.MatrixCarrier.qf_eq_sum_sum", "BornFable.MatrixCarrier.dot_self_nonneg", "BornFable.MatrixCarrier.dot_self_pos", "BornFable.MatrixCarrier.dot_self_eq_sum_sq", "BornFable.MatrixCarrier.PsdQ", "BornFable.MatrixCarrier.space", "BornFable.MatrixCarrier.space_le", "BornFable.MatrixCarrier.space_u", "BornFable.MatrixCarrier.effect_iff", "BornFable.MatrixCarrier.effect_iff'"]}
-  - {"id": "EV-09", "name": "Order-unit bound on rational matrices", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.MatrixCarrier.sq_le_dot", "BornFable.MatrixCarrier.abs_mul_le_dot", "BornFable.MatrixCarrier.abs_qf_le", "BornFable.MatrixCarrier.order_unit"]}
-  - {"id": "EV-10", "name": "Rank-one effects", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.MatrixCarrier.cauchy_schwarz", "BornFable.MatrixCarrier.P", "BornFable.MatrixCarrier.qf_vecMulVec", "BornFable.MatrixCarrier.qf_rankOne", "BornFable.MatrixCarrier.rankOne_effect"]}
-  - {"id": "EV-11", "name": "Trace representation of ℚ-linear functionals on matrices", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.MatrixCarrier.repMatrix", "BornFable.MatrixCarrier.repMatrix_apply", "BornFable.MatrixCarrier.trace_mul_eq_sum", "BornFable.MatrixCarrier.trace_rep", "BornFable.MatrixCarrier.rep_unique", "BornFable.MatrixCarrier.qf_eq_trace", "BornFable.MatrixCarrier.qf_eq_trace'", "BornFable.MatrixCarrier.qf_eq_zero_of_skew", "BornFable.MatrixCarrier.skew_le_zero_and_ge"]}
-  - {"id": "EV-12", "name": "Born representation theorem", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.MatrixCarrier.space_isOrderUnit", "BornFable.MatrixCarrier.ext_effect", "BornFable.MatrixCarrier.ext_one", "BornFable.MatrixCarrier.ext_nonneg", "BornFable.MatrixCarrier.ext_eq_trace", "BornFable.MatrixCarrier.density_effect", "BornFable.MatrixCarrier.density_trace", "BornFable.MatrixCarrier.density_psd", "BornFable.MatrixCarrier.single_transpose_eq", "BornFable.MatrixCarrier.ext_skew_zero", "BornFable.MatrixCarrier.density_symm", "BornFable.MatrixCarrier.traceWith_apply", "BornFable.MatrixCarrier.density_unique", "BornFable.MatrixCarrier.born_representation", "BornFable.MatrixCarrier.density_is_state", "BornFable.MatrixCarrier.born_rule"]}
-  - {"id": "EV-13", "name": "Converse and nonvacuity", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.MatrixCarrier.ofState_density", "BornFable.MatrixCarrier.trace_single_zero_mul", "BornFable.MatrixCarrier.apply_zero_zero_eq_qf", "BornFable.MatrixCarrier.pureZero_apply", "BornFable.MatrixCarrier.pureZero_density"]}
-  - {"id": "EV-14", "name": "Parity frame function on rational rays of S²", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.RationalSphere.sq_emod_eight", "BornFable.RationalSphere.ray_exactly_one_odd", "BornFable.RationalSphere.mul_emod_two_eq_one", "BornFable.RationalSphere.orthogonal_rays_odd_positions_differ", "BornFable.RationalSphere.parity_frame_function", "BornFable.RationalSphere.parity_two_valued", "BornFable.RationalSphere.parity_odd_smul", "BornFable.RationalSphere.ray_e1", "BornFable.RationalSphere.ray_e2", "BornFable.RationalSphere.ray_e3", "BornFable.RationalSphere.ray_340", "BornFable.RationalSphere.ray_034", "BornFable.RationalSphere.ray_043"]}
-  - {"id": "EV-15", "name": "No quadratic form reproduces the parity frame function", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.RationalSphere.parity_not_quadratic"]}
-  - {"id": "EV-16", "name": "Rational Gram decomposition and trace positivity", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.PsdDecomposition.qf_add", "BornFable.PsdDecomposition.mulVec_apply'", "BornFable.PsdDecomposition.mulVec_single_one'", "BornFable.PsdDecomposition.dotProduct_mulVec_single", "BornFable.PsdDecomposition.single_dotProduct_mulVec", "BornFable.PsdDecomposition.qf_single", "BornFable.PsdDecomposition.qf_add_single", "BornFable.PsdDecomposition.symm_apply", "BornFable.PsdDecomposition.qf_add_single_of_symm", "BornFable.PsdDecomposition.psd_zero", "BornFable.PsdDecomposition.psd_add", "BornFable.PsdDecomposition.psd_smul", "BornFable.PsdDecomposition.psd_vecMulVec", "BornFable.PsdDecomposition.diag_nonneg", "BornFable.PsdDecomposition.trace_mul_nonneg_of_gram", "BornFable.PsdDecomposition.psd_of_gram", "BornFable.PsdDecomposition.hasGram_zero", "BornFable.PsdDecomposition.hasGram_add_smul_vecMulVec", "BornFable.PsdDecomposition.row_eq_zero_of_diag_eq_zero", "BornFable.PsdDecomposition.hasGram_of_support", "BornFable.PsdDecomposition.gram_of_psd", "BornFable.PsdDecomposition.psd_iff_hasGram", "BornFable.PsdDecomposition.trace_mul_nonneg"]}
-  - {"id": "EV-17", "name": "Converse for every state and the state/valuation correspondence", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.MatrixCarrier.qf_transpose", "BornFable.MatrixCarrier.trace_mul_transpose_of_symm", "BornFable.MatrixCarrier.trace_mul_nonneg_of_effect", "BornFable.MatrixCarrier.bornValuation_apply", "BornFable.MatrixCarrier.bornValuation_density", "BornFable.MatrixCarrier.state_valuation_correspondence", "BornFable.MatrixCarrier.density_hasGram"]}
+  - {"id": "EV-01", "name": "Order helpers of an ordered rational unit", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.OrderedQUnit.le_iff_sub_nonneg", "BornFinite.OrderedQUnit.add_nonneg", "BornFinite.OrderedQUnit.smul_le_smul", "BornFinite.OrderedQUnit.neg_le_neg"]}
+  - {"id": "EV-02", "name": "Elementary laws of an effect valuation", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.val_zero", "BornFinite.effect_sub", "BornFinite.val_mono", "BornFinite.val_le_one", "BornFinite.effect_smul"]}
+  - {"id": "EV-03", "name": "Rational homogeneity on effects (the first missing lemma of run 20261020T004525Z_fable51_born)", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.val_nsmul", "BornFinite.val_rat_smul"]}
+  - {"id": "EV-04", "name": "Quantitative comparison", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.val_sub_le_of_le", "BornFinite.val_sandwich"]}
+  - {"id": "EV-05", "name": "Bounded elements and the midpoint effect", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.OrderedQUnit.bounded_mono", "BornFinite.OrderedQUnit.bounded_add", "BornFinite.OrderedQUnit.bounded_of_effect", "BornFinite.OrderedQUnit.midpoint_effect"]}
+  - {"id": "EV-06", "name": "Extension value independent of the admissible bound", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.OrderedQUnit.extAt_add", "BornFinite.OrderedQUnit.extAt_mono", "BornFinite.OrderedQUnit.extAt_eq"]}
+  - {"id": "EV-07", "name": "Unique positive unital ℚ-linear extension", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.OrderedQUnit.bound_pos", "BornFinite.OrderedQUnit.bounded_bound", "BornFinite.OrderedQUnit.extend_eq_extAt", "BornFinite.OrderedQUnit.extend_add", "BornFinite.OrderedQUnit.extend_effect", "BornFinite.OrderedQUnit.extend_nonneg", "BornFinite.OrderedQUnit.extend_u", "BornFinite.OrderedQUnit.extendₗ_apply", "BornFinite.OrderedQUnit.extendₗ_effect", "BornFinite.OrderedQUnit.extendₗ_nonneg", "BornFinite.OrderedQUnit.extendₗ_u", "BornFinite.OrderedQUnit.extend_unique", "BornFinite.OrderedQUnit.linear_extension"]}
+  - {"id": "EV-08", "name": "Rational matrix carrier with the quadratic-form preorder", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.MatrixCarrier.qf", "BornFinite.MatrixCarrier.qf_add", "BornFinite.MatrixCarrier.qf_sub", "BornFinite.MatrixCarrier.qf_neg", "BornFinite.MatrixCarrier.qf_smul", "BornFinite.MatrixCarrier.qf_zero", "BornFinite.MatrixCarrier.qf_one", "BornFinite.MatrixCarrier.qf_eq_sum_sum", "BornFinite.MatrixCarrier.dot_self_nonneg", "BornFinite.MatrixCarrier.dot_self_pos", "BornFinite.MatrixCarrier.dot_self_eq_sum_sq", "BornFinite.MatrixCarrier.PsdQ", "BornFinite.MatrixCarrier.space", "BornFinite.MatrixCarrier.space_le", "BornFinite.MatrixCarrier.space_u", "BornFinite.MatrixCarrier.effect_iff", "BornFinite.MatrixCarrier.effect_iff'"]}
+  - {"id": "EV-09", "name": "Order-unit bound on rational matrices", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.MatrixCarrier.sq_le_dot", "BornFinite.MatrixCarrier.abs_mul_le_dot", "BornFinite.MatrixCarrier.abs_qf_le", "BornFinite.MatrixCarrier.order_unit"]}
+  - {"id": "EV-10", "name": "Rank-one effects", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.MatrixCarrier.cauchy_schwarz", "BornFinite.MatrixCarrier.P", "BornFinite.MatrixCarrier.qf_vecMulVec", "BornFinite.MatrixCarrier.qf_rankOne", "BornFinite.MatrixCarrier.rankOne_effect"]}
+  - {"id": "EV-11", "name": "Trace representation of ℚ-linear functionals on matrices", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.MatrixCarrier.repMatrix", "BornFinite.MatrixCarrier.repMatrix_apply", "BornFinite.MatrixCarrier.trace_mul_eq_sum", "BornFinite.MatrixCarrier.trace_rep", "BornFinite.MatrixCarrier.rep_unique", "BornFinite.MatrixCarrier.qf_eq_trace", "BornFinite.MatrixCarrier.qf_eq_trace'", "BornFinite.MatrixCarrier.qf_eq_zero_of_skew", "BornFinite.MatrixCarrier.skew_le_zero_and_ge"]}
+  - {"id": "EV-12", "name": "Born representation theorem", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.MatrixCarrier.space_isOrderUnit", "BornFinite.MatrixCarrier.ext_effect", "BornFinite.MatrixCarrier.ext_one", "BornFinite.MatrixCarrier.ext_nonneg", "BornFinite.MatrixCarrier.ext_eq_trace", "BornFinite.MatrixCarrier.density_effect", "BornFinite.MatrixCarrier.density_trace", "BornFinite.MatrixCarrier.density_psd", "BornFinite.MatrixCarrier.single_transpose_eq", "BornFinite.MatrixCarrier.ext_skew_zero", "BornFinite.MatrixCarrier.density_symm", "BornFinite.MatrixCarrier.traceWith_apply", "BornFinite.MatrixCarrier.density_unique", "BornFinite.MatrixCarrier.born_representation", "BornFinite.MatrixCarrier.density_is_state", "BornFinite.MatrixCarrier.born_rule"]}
+  - {"id": "EV-13", "name": "Converse and nonvacuity", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.MatrixCarrier.ofState_density", "BornFinite.MatrixCarrier.trace_single_zero_mul", "BornFinite.MatrixCarrier.apply_zero_zero_eq_qf", "BornFinite.MatrixCarrier.pureZero_apply", "BornFinite.MatrixCarrier.pureZero_density"]}
+  - {"id": "EV-14", "name": "Parity frame function on rational rays of S²", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.RationalSphere.sq_emod_eight", "BornFinite.RationalSphere.ray_exactly_one_odd", "BornFinite.RationalSphere.mul_emod_two_eq_one", "BornFinite.RationalSphere.orthogonal_rays_odd_positions_differ", "BornFinite.RationalSphere.parity_frame_function", "BornFinite.RationalSphere.parity_two_valued", "BornFinite.RationalSphere.parity_odd_smul", "BornFinite.RationalSphere.ray_e1", "BornFinite.RationalSphere.ray_e2", "BornFinite.RationalSphere.ray_e3", "BornFinite.RationalSphere.ray_340", "BornFinite.RationalSphere.ray_034", "BornFinite.RationalSphere.ray_043"]}
+  - {"id": "EV-15", "name": "No quadratic form reproduces the parity frame function", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.RationalSphere.parity_not_quadratic"]}
+  - {"id": "EV-16", "name": "Rational Gram decomposition and trace positivity", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.PsdDecomposition.qf_add", "BornFinite.PsdDecomposition.mulVec_apply'", "BornFinite.PsdDecomposition.mulVec_single_one'", "BornFinite.PsdDecomposition.dotProduct_mulVec_single", "BornFinite.PsdDecomposition.single_dotProduct_mulVec", "BornFinite.PsdDecomposition.qf_single", "BornFinite.PsdDecomposition.qf_add_single", "BornFinite.PsdDecomposition.symm_apply", "BornFinite.PsdDecomposition.qf_add_single_of_symm", "BornFinite.PsdDecomposition.psd_zero", "BornFinite.PsdDecomposition.psd_add", "BornFinite.PsdDecomposition.psd_smul", "BornFinite.PsdDecomposition.psd_vecMulVec", "BornFinite.PsdDecomposition.diag_nonneg", "BornFinite.PsdDecomposition.trace_mul_nonneg_of_gram", "BornFinite.PsdDecomposition.psd_of_gram", "BornFinite.PsdDecomposition.hasGram_zero", "BornFinite.PsdDecomposition.hasGram_add_smul_vecMulVec", "BornFinite.PsdDecomposition.row_eq_zero_of_diag_eq_zero", "BornFinite.PsdDecomposition.hasGram_of_support", "BornFinite.PsdDecomposition.gram_of_psd", "BornFinite.PsdDecomposition.psd_iff_hasGram", "BornFinite.PsdDecomposition.trace_mul_nonneg"]}
+  - {"id": "EV-17", "name": "Converse for every state and the state/valuation correspondence", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.MatrixCarrier.qf_transpose", "BornFinite.MatrixCarrier.trace_mul_transpose_of_symm", "BornFinite.MatrixCarrier.trace_mul_nonneg_of_effect", "BornFinite.MatrixCarrier.bornValuation_apply", "BornFinite.MatrixCarrier.bornValuation_density", "BornFinite.MatrixCarrier.state_valuation_correspondence", "BornFinite.MatrixCarrier.density_hasGram"]}
 - stage: POST_REVIEW_LEAN_RUN
   attempt: 20261020T224000Z_gaussian_hermitian_carrier
   run: dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T224000Z_gaussian_hermitian_carrier
@@ -1324,17 +1324,17 @@ stage_history:
   operad_namespace: GH-GAUSSIAN-HERMITIAN
   claim_status: dag/results/FQ-GAP-BORN-UNIQUENESS-GLEASON/runs/20261020T224000Z_gaussian_hermitian_carrier/claim_status.json
   operad_records:
-  - {"id": "GH-01", "name": "Gaussian rationals as a concrete ring with star, Q-algebra and field structure", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.GaussRat.instCommRing", "BornFable.GaussRat.instStarRing", "BornFable.GaussRat.instAlgebra", "BornFable.GaussRat.instField", "BornFable.GaussRat.instNontrivial", "BornFable.GaussRat.instCharZero", "BornFable.GaussRat.re_zero", "BornFable.GaussRat.im_zero", "BornFable.GaussRat.re_one", "BornFable.GaussRat.im_one", "BornFable.GaussRat.re_add", "BornFable.GaussRat.im_add", "BornFable.GaussRat.re_neg", "BornFable.GaussRat.im_neg", "BornFable.GaussRat.re_sub", "BornFable.GaussRat.im_sub", "BornFable.GaussRat.re_mul", "BornFable.GaussRat.im_mul", "BornFable.GaussRat.re_smul", "BornFable.GaussRat.im_smul", "BornFable.GaussRat.re_nsmul", "BornFable.GaussRat.im_nsmul", "BornFable.GaussRat.re_zsmul", "BornFable.GaussRat.im_zsmul", "BornFable.GaussRat.re_star", "BornFable.GaussRat.im_star", "BornFable.GaussRat.re_I", "BornFable.GaussRat.im_I", "BornFable.GaussRat.re_natCast", "BornFable.GaussRat.im_natCast", "BornFable.GaussRat.re_intCast", "BornFable.GaussRat.im_intCast", "BornFable.GaussRat.re_ratCast", "BornFable.GaussRat.im_ratCast", "BornFable.GaussRat.re_ofNat", "BornFable.GaussRat.im_ofNat", "BornFable.GaussRat.re_ofRat", "BornFable.GaussRat.im_ofRat", "BornFable.GaussRat.re_algebraMap", "BornFable.GaussRat.im_algebraMap", "BornFable.GaussRat.re_inv", "BornFable.GaussRat.im_inv", "BornFable.GaussRat.smul_mk", "BornFable.GaussRat.mk_eq_add_mul_I", "BornFable.GaussRat.I_mul_I", "BornFable.GaussRat.star_I", "BornFable.GaussRat.algebraMap_eq_ratCast", "BornFable.GaussRat.reAddMonoidHom_apply", "BornFable.GaussRat.imAddMonoidHom_apply", "BornFable.GaussRat.re_sum", "BornFable.GaussRat.im_sum", "BornFable.GaussRat.inv_zero", "BornFable.GaussRat.mul_inv_cancel"]}
-  - {"id": "GH-02", "name": "Norm and conjugation positivity on Q(i)", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.GaussRat.normSq_nonneg", "BornFable.GaussRat.normSq_eq_zero_iff", "BornFable.GaussRat.normSq_mul", "BornFable.GaussRat.normSq_natCast", "BornFable.GaussRat.star_mul_self", "BornFable.GaussRat.re_star_mul_self", "BornFable.GaussRat.im_star_mul_self", "BornFable.GaussRat.re_star_mul", "BornFable.GaussRat.im_star_mul", "BornFable.GaussRat.re_star_mul_comm", "BornFable.GaussRat.im_star_mul_comm", "BornFable.GaussRat.re_smul_rat", "BornFable.GaussRat.re_algebraMap_mul"]}
-  - {"id": "GH-03", "name": "Hermitian form and vector norm", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.HermitianCarrier.vnorm", "BornFable.HermitianCarrier.vnorm_nonneg", "BornFable.HermitianCarrier.vnorm_eq_zero_iff", "BornFable.HermitianCarrier.vnorm_zero", "BornFable.HermitianCarrier.vnorm_pos", "BornFable.HermitianCarrier.normSq_le_vnorm", "BornFable.HermitianCarrier.hf", "BornFable.HermitianCarrier.hf_add", "BornFable.HermitianCarrier.hf_sub", "BornFable.HermitianCarrier.hf_neg", "BornFable.HermitianCarrier.hf_smul", "BornFable.HermitianCarrier.hf_zero", "BornFable.HermitianCarrier.hf_one", "BornFable.HermitianCarrier.hf_eq_sum_sum"]}
-  - {"id": "GH-04", "name": "Carrier preorder and effects over Q(i)", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.HermitianCarrier.PsdH", "BornFable.HermitianCarrier.space", "BornFable.HermitianCarrier.space_le", "BornFable.HermitianCarrier.space_u", "BornFable.HermitianCarrier.effect_iff", "BornFable.HermitianCarrier.effect_iff'"]}
-  - {"id": "GH-05", "name": "Order-unit bound on Gaussian-rational matrices", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.HermitianCarrier.re_star_mul_mul_le", "BornFable.HermitianCarrier.abs_hf_le", "BornFable.HermitianCarrier.order_unit"]}
-  - {"id": "GH-06", "name": "Rank-one effects by complex Cauchy-Schwarz", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.HermitianCarrier.star_dot_eq_sum", "BornFable.HermitianCarrier.dot_vecMulVec_star", "BornFable.HermitianCarrier.hf_vecMulVec_star", "BornFable.HermitianCarrier.normSq_dot_le", "BornFable.HermitianCarrier.P", "BornFable.HermitianCarrier.hf_rankOne", "BornFable.HermitianCarrier.rankOne_effect"]}
-  - {"id": "GH-07", "name": "Real-part trace representation of Q-linear functionals", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.HermitianCarrier.repMatrix", "BornFable.HermitianCarrier.repMatrix_apply", "BornFable.HermitianCarrier.repMatrix_re", "BornFable.HermitianCarrier.repMatrix_im", "BornFable.HermitianCarrier.trace_mul_eq_sum", "BornFable.HermitianCarrier.re_trace_mul", "BornFable.HermitianCarrier.single_eq_smul_add_smul", "BornFable.HermitianCarrier.trace_rep", "BornFable.HermitianCarrier.re_trace_mul_single_one", "BornFable.HermitianCarrier.re_trace_mul_single_I", "BornFable.HermitianCarrier.rep_unique", "BornFable.HermitianCarrier.dot_eq_trace", "BornFable.HermitianCarrier.hf_eq_re_trace"]}
-  - {"id": "GH-08", "name": "Hermitian part and skew-Hermitian null elements", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.HermitianCarrier.star_dot_mulVec", "BornFable.HermitianCarrier.hf_conjTranspose", "BornFable.HermitianCarrier.re_trace_mul_conjTranspose", "BornFable.HermitianCarrier.hf_eq_zero_of_skew", "BornFable.HermitianCarrier.skew_le_zero_and_ge"]}
-  - {"id": "GH-09", "name": "Hermitian Gram decomposition and trace positivity over Q(i)", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.HermitianPsd.HasGramH", "BornFable.HermitianPsd.normSq_one", "BornFable.HermitianPsd.re_mul_star", "BornFable.HermitianPsd.mulVec_apply_dot", "BornFable.HermitianPsd.mulVec_single'", "BornFable.HermitianPsd.hf_add_vec", "BornFable.HermitianPsd.hf_single", "BornFable.HermitianPsd.hf_add_single", "BornFable.HermitianPsd.hermitian_apply", "BornFable.HermitianPsd.transpose_row_of_hermitian", "BornFable.HermitianPsd.star_transpose_row_of_hermitian", "BornFable.HermitianPsd.diag_real_of_hermitian", "BornFable.HermitianPsd.hf_add_single_of_hermitian", "BornFable.HermitianPsd.psd_zero", "BornFable.HermitianPsd.psd_add", "BornFable.HermitianPsd.psd_smul", "BornFable.HermitianPsd.psd_vecMulVec_star", "BornFable.HermitianPsd.psd_of_gram", "BornFable.HermitianPsd.diag_nonneg", "BornFable.HermitianPsd.trace_mul_nonneg_of_gram", "BornFable.HermitianPsd.hasGram_zero", "BornFable.HermitianPsd.hasGram_add_smul_vecMulVec", "BornFable.HermitianPsd.row_eq_zero_of_diag_eq_zero", "BornFable.HermitianPsd.hasGram_of_support", "BornFable.HermitianPsd.gram_of_psd", "BornFable.HermitianPsd.psd_iff_hasGram", "BornFable.HermitianPsd.trace_mul_nonneg"]}
-  - {"id": "GH-10", "name": "Born representation over Q(i)", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.HermitianCarrier.space_isOrderUnit", "BornFable.HermitianCarrier.ext_effect", "BornFable.HermitianCarrier.ext_one", "BornFable.HermitianCarrier.ext_nonneg", "BornFable.HermitianCarrier.ext_eq_re_trace", "BornFable.HermitianCarrier.density_effect", "BornFable.HermitianCarrier.density_re_trace", "BornFable.HermitianCarrier.density_psd", "BornFable.HermitianCarrier.ext_skew_zero", "BornFable.HermitianCarrier.single_conjTranspose", "BornFable.HermitianCarrier.single_neg_eq", "BornFable.HermitianCarrier.skew_single_sub", "BornFable.HermitianCarrier.skew_single_I_add", "BornFable.HermitianCarrier.density_hermitian", "BornFable.HermitianCarrier.density_trace", "BornFable.HermitianCarrier.traceWith_apply", "BornFable.HermitianCarrier.density_unique", "BornFable.HermitianCarrier.born_representation", "BornFable.HermitianCarrier.density_is_state", "BornFable.HermitianCarrier.born_rule"]}
-  - {"id": "GH-11", "name": "Converse for every state and nonvacuity over Q(i)", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFable.HermitianCarrier.ofState_density", "BornFable.HermitianCarrier.re_trace_mul_nonneg_of_effect", "BornFable.HermitianCarrier.bornValuation_apply", "BornFable.HermitianCarrier.bornValuation_density", "BornFable.HermitianCarrier.state_valuation_correspondence", "BornFable.HermitianCarrier.density_hasGram", "BornFable.HermitianCarrier.re_trace_single_zero_mul", "BornFable.HermitianCarrier.re_apply_zero_zero_eq_hf", "BornFable.HermitianCarrier.pureZero_apply", "BornFable.HermitianCarrier.pureZero_density"]}
+  - {"id": "GH-01", "name": "Gaussian rationals as a concrete ring with star, Q-algebra and field structure", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.GaussRat.instCommRing", "BornFinite.GaussRat.instStarRing", "BornFinite.GaussRat.instAlgebra", "BornFinite.GaussRat.instField", "BornFinite.GaussRat.instNontrivial", "BornFinite.GaussRat.instCharZero", "BornFinite.GaussRat.re_zero", "BornFinite.GaussRat.im_zero", "BornFinite.GaussRat.re_one", "BornFinite.GaussRat.im_one", "BornFinite.GaussRat.re_add", "BornFinite.GaussRat.im_add", "BornFinite.GaussRat.re_neg", "BornFinite.GaussRat.im_neg", "BornFinite.GaussRat.re_sub", "BornFinite.GaussRat.im_sub", "BornFinite.GaussRat.re_mul", "BornFinite.GaussRat.im_mul", "BornFinite.GaussRat.re_smul", "BornFinite.GaussRat.im_smul", "BornFinite.GaussRat.re_nsmul", "BornFinite.GaussRat.im_nsmul", "BornFinite.GaussRat.re_zsmul", "BornFinite.GaussRat.im_zsmul", "BornFinite.GaussRat.re_star", "BornFinite.GaussRat.im_star", "BornFinite.GaussRat.re_I", "BornFinite.GaussRat.im_I", "BornFinite.GaussRat.re_natCast", "BornFinite.GaussRat.im_natCast", "BornFinite.GaussRat.re_intCast", "BornFinite.GaussRat.im_intCast", "BornFinite.GaussRat.re_ratCast", "BornFinite.GaussRat.im_ratCast", "BornFinite.GaussRat.re_ofNat", "BornFinite.GaussRat.im_ofNat", "BornFinite.GaussRat.re_ofRat", "BornFinite.GaussRat.im_ofRat", "BornFinite.GaussRat.re_algebraMap", "BornFinite.GaussRat.im_algebraMap", "BornFinite.GaussRat.re_inv", "BornFinite.GaussRat.im_inv", "BornFinite.GaussRat.smul_mk", "BornFinite.GaussRat.mk_eq_add_mul_I", "BornFinite.GaussRat.I_mul_I", "BornFinite.GaussRat.star_I", "BornFinite.GaussRat.algebraMap_eq_ratCast", "BornFinite.GaussRat.reAddMonoidHom_apply", "BornFinite.GaussRat.imAddMonoidHom_apply", "BornFinite.GaussRat.re_sum", "BornFinite.GaussRat.im_sum", "BornFinite.GaussRat.inv_zero", "BornFinite.GaussRat.mul_inv_cancel"]}
+  - {"id": "GH-02", "name": "Norm and conjugation positivity on Q(i)", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.GaussRat.normSq_nonneg", "BornFinite.GaussRat.normSq_eq_zero_iff", "BornFinite.GaussRat.normSq_mul", "BornFinite.GaussRat.normSq_natCast", "BornFinite.GaussRat.star_mul_self", "BornFinite.GaussRat.re_star_mul_self", "BornFinite.GaussRat.im_star_mul_self", "BornFinite.GaussRat.re_star_mul", "BornFinite.GaussRat.im_star_mul", "BornFinite.GaussRat.re_star_mul_comm", "BornFinite.GaussRat.im_star_mul_comm", "BornFinite.GaussRat.re_smul_rat", "BornFinite.GaussRat.re_algebraMap_mul"]}
+  - {"id": "GH-03", "name": "Hermitian form and vector norm", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.HermitianCarrier.vnorm", "BornFinite.HermitianCarrier.vnorm_nonneg", "BornFinite.HermitianCarrier.vnorm_eq_zero_iff", "BornFinite.HermitianCarrier.vnorm_zero", "BornFinite.HermitianCarrier.vnorm_pos", "BornFinite.HermitianCarrier.normSq_le_vnorm", "BornFinite.HermitianCarrier.hf", "BornFinite.HermitianCarrier.hf_add", "BornFinite.HermitianCarrier.hf_sub", "BornFinite.HermitianCarrier.hf_neg", "BornFinite.HermitianCarrier.hf_smul", "BornFinite.HermitianCarrier.hf_zero", "BornFinite.HermitianCarrier.hf_one", "BornFinite.HermitianCarrier.hf_eq_sum_sum"]}
+  - {"id": "GH-04", "name": "Carrier preorder and effects over Q(i)", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.HermitianCarrier.PsdH", "BornFinite.HermitianCarrier.space", "BornFinite.HermitianCarrier.space_le", "BornFinite.HermitianCarrier.space_u", "BornFinite.HermitianCarrier.effect_iff", "BornFinite.HermitianCarrier.effect_iff'"]}
+  - {"id": "GH-05", "name": "Order-unit bound on Gaussian-rational matrices", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.HermitianCarrier.re_star_mul_mul_le", "BornFinite.HermitianCarrier.abs_hf_le", "BornFinite.HermitianCarrier.order_unit"]}
+  - {"id": "GH-06", "name": "Rank-one effects by complex Cauchy-Schwarz", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.HermitianCarrier.star_dot_eq_sum", "BornFinite.HermitianCarrier.dot_vecMulVec_star", "BornFinite.HermitianCarrier.hf_vecMulVec_star", "BornFinite.HermitianCarrier.normSq_dot_le", "BornFinite.HermitianCarrier.P", "BornFinite.HermitianCarrier.hf_rankOne", "BornFinite.HermitianCarrier.rankOne_effect"]}
+  - {"id": "GH-07", "name": "Real-part trace representation of Q-linear functionals", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.HermitianCarrier.repMatrix", "BornFinite.HermitianCarrier.repMatrix_apply", "BornFinite.HermitianCarrier.repMatrix_re", "BornFinite.HermitianCarrier.repMatrix_im", "BornFinite.HermitianCarrier.trace_mul_eq_sum", "BornFinite.HermitianCarrier.re_trace_mul", "BornFinite.HermitianCarrier.single_eq_smul_add_smul", "BornFinite.HermitianCarrier.trace_rep", "BornFinite.HermitianCarrier.re_trace_mul_single_one", "BornFinite.HermitianCarrier.re_trace_mul_single_I", "BornFinite.HermitianCarrier.rep_unique", "BornFinite.HermitianCarrier.dot_eq_trace", "BornFinite.HermitianCarrier.hf_eq_re_trace"]}
+  - {"id": "GH-08", "name": "Hermitian part and skew-Hermitian null elements", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.HermitianCarrier.star_dot_mulVec", "BornFinite.HermitianCarrier.hf_conjTranspose", "BornFinite.HermitianCarrier.re_trace_mul_conjTranspose", "BornFinite.HermitianCarrier.hf_eq_zero_of_skew", "BornFinite.HermitianCarrier.skew_le_zero_and_ge"]}
+  - {"id": "GH-09", "name": "Hermitian Gram decomposition and trace positivity over Q(i)", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.HermitianPsd.HasGramH", "BornFinite.HermitianPsd.normSq_one", "BornFinite.HermitianPsd.re_mul_star", "BornFinite.HermitianPsd.mulVec_apply_dot", "BornFinite.HermitianPsd.mulVec_single'", "BornFinite.HermitianPsd.hf_add_vec", "BornFinite.HermitianPsd.hf_single", "BornFinite.HermitianPsd.hf_add_single", "BornFinite.HermitianPsd.hermitian_apply", "BornFinite.HermitianPsd.transpose_row_of_hermitian", "BornFinite.HermitianPsd.star_transpose_row_of_hermitian", "BornFinite.HermitianPsd.diag_real_of_hermitian", "BornFinite.HermitianPsd.hf_add_single_of_hermitian", "BornFinite.HermitianPsd.psd_zero", "BornFinite.HermitianPsd.psd_add", "BornFinite.HermitianPsd.psd_smul", "BornFinite.HermitianPsd.psd_vecMulVec_star", "BornFinite.HermitianPsd.psd_of_gram", "BornFinite.HermitianPsd.diag_nonneg", "BornFinite.HermitianPsd.trace_mul_nonneg_of_gram", "BornFinite.HermitianPsd.hasGram_zero", "BornFinite.HermitianPsd.hasGram_add_smul_vecMulVec", "BornFinite.HermitianPsd.row_eq_zero_of_diag_eq_zero", "BornFinite.HermitianPsd.hasGram_of_support", "BornFinite.HermitianPsd.gram_of_psd", "BornFinite.HermitianPsd.psd_iff_hasGram", "BornFinite.HermitianPsd.trace_mul_nonneg"]}
+  - {"id": "GH-10", "name": "Born representation over Q(i)", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.HermitianCarrier.space_isOrderUnit", "BornFinite.HermitianCarrier.ext_effect", "BornFinite.HermitianCarrier.ext_one", "BornFinite.HermitianCarrier.ext_nonneg", "BornFinite.HermitianCarrier.ext_eq_re_trace", "BornFinite.HermitianCarrier.density_effect", "BornFinite.HermitianCarrier.density_re_trace", "BornFinite.HermitianCarrier.density_psd", "BornFinite.HermitianCarrier.ext_skew_zero", "BornFinite.HermitianCarrier.single_conjTranspose", "BornFinite.HermitianCarrier.single_neg_eq", "BornFinite.HermitianCarrier.skew_single_sub", "BornFinite.HermitianCarrier.skew_single_I_add", "BornFinite.HermitianCarrier.density_hermitian", "BornFinite.HermitianCarrier.density_trace", "BornFinite.HermitianCarrier.traceWith_apply", "BornFinite.HermitianCarrier.density_unique", "BornFinite.HermitianCarrier.born_representation", "BornFinite.HermitianCarrier.density_is_state", "BornFinite.HermitianCarrier.born_rule"]}
+  - {"id": "GH-11", "name": "Converse for every state and nonvacuity over Q(i)", "status": "KERNEL_CHECKED_TYPED_OPERATION", "proofs": ["BornFinite.HermitianCarrier.ofState_density", "BornFinite.HermitianCarrier.re_trace_mul_nonneg_of_effect", "BornFinite.HermitianCarrier.bornValuation_apply", "BornFinite.HermitianCarrier.bornValuation_density", "BornFinite.HermitianCarrier.state_valuation_correspondence", "BornFinite.HermitianCarrier.density_hasGram", "BornFinite.HermitianCarrier.re_trace_single_zero_mul", "BornFinite.HermitianCarrier.re_apply_zero_zero_eq_hf", "BornFinite.HermitianCarrier.pureZero_apply", "BornFinite.HermitianCarrier.pureZero_density"]}
 open_obligations:
 - Full Gleason/Born uniqueness remains imported, with its exact domain, dimension, noncontextuality and
   additivity/regularity assumptions.
@@ -1354,8 +1354,8 @@ latest_run:
   status: kernel_checked_run_sealed_stopped_for_review
 scope_notes:
 - H017 proves an actual two-label dimension refusal, but its host-supplied false flags are metadata rather
-  than proofs that no stronger host can exist. H013SameContract proves two positive unit-total rules on
-  the same effects disagree. H013QuarticRivalSeparation has an actual fixed integer two-frame counterexample;
+  than proofs that no stronger host can exist. HilbertWalkSameContract proves two positive unit-total rules on
+  the same effects disagree. QuarticRivalSeparation has an actual fixed integer two-frame counterexample;
   this run normalizes its probabilities and embeds the same actual frame plane into dimension3 with a
   complete third axis. No finite counterexample is treated as full Born uniqueness.
 latest_review:

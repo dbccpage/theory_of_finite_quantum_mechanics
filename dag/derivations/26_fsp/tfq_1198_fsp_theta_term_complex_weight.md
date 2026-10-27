@@ -17,7 +17,7 @@ Adding S_theta = i theta Q_top with real lattice charge Q_top multiplies the Bol
 The record is this four-index Gaussian-integer table. It does not introduce an exponential, a real angle, a plaquette sum, or a Monte Carlo sampler. The source sentence that an added term i theta Q_top multiplies a Boltzmann weight by a complex phase, and that a positive-weight sampler fails for a nonzero angle outside a discrete set, stays an imported reading. AuthorityEffect is None.
 
 ### Witness Audit
-Cited NonAbelianGaugeSigns.lean::topological_theta_sign_defect does not exist. The local evaluate_topological_charge symbol is absent from cdt_topological_charge_evaluator.py. CampaignFspThetaTermComplexWeight.lean states only the four-index Gaussian-integer table in the statement. It does not state an exponential or a lattice topological charge.
+Cited NonAbelianGaugeSigns.lean::topological_theta_sign_defect does not exist. The local evaluate_topological_charge symbol is absent from cdt_topological_charge_evaluator.py. FermionSignThetaTermComplexWeight.lean states only the four-index Gaussian-integer table in the statement. It does not state an exponential or a lattice topological charge.
 
 ---
 
@@ -31,31 +31,31 @@ Cited NonAbelianGaugeSigns.lean::topological_theta_sign_defect does not exist. T
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter0`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter1`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter2`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter3`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.quarter4`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.mulNegI_eq_gMul`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.phaseProduct`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight00`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight10`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight20`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight30`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight01`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight11`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight21`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.weight31`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im01`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im11`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im21`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im31`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im11_ne`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.im31_ne`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.re21`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.notPositive21`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.positive01`
-- `lean4/CampaignFspThetaTermComplexWeight.lean::CampaignFspThetaTermComplexWeight.charge1PositiveOnlyAtZero`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.quarter0`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.quarter1`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.quarter2`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.quarter3`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.quarter4`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.mulNegI_eq_gMul`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.phaseProduct`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.weight00`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.weight10`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.weight20`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.weight30`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.weight01`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.weight11`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.weight21`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.weight31`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.im01`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.im11`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.im21`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.im31`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.im11_ne`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.im31_ne`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.re21`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.notPositive21`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.positive01`
+- `lean4/FermionSignThetaTermComplexWeight.lean::FermionSignThetaTermComplexWeight.charge1PositiveOnlyAtZero`
 
 ### Rust Certifiers
 - *none*

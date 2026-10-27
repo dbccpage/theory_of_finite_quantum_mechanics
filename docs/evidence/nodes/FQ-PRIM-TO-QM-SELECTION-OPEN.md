@@ -45,25 +45,6 @@ Selection of a declared quantum model or readout from primitive difference stays
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignFqPrimToQmSelection.lean`
-
-- file: [lean4/CampaignFqPrimToQmSelection.lean](../../../lean4/CampaignFqPrimToQmSelection.lean)
-- sha256 (`bytes`): `df3bc709da599a889424f62769a2524e54753a69bfa0e5214319542215dcb1a4`
-- cited in: node.lean, receipt dag/research/campaign_fq-prim-to-qm-selection-open_lean_replay.json (CampaignFqPrimToQmSelection), receipt dag/research/pr_365_review_replay.json (CampaignFqPrimToQmSelection), record TFQ-1010
-- replay: `verified`
-  - receipt [dag/research/campaign_fq-prim-to-qm-selection-open_lean_replay.json](../../../dag/research/campaign_fq-prim-to-qm-selection-open_lean_replay.json) (module `CampaignFqPrimToQmSelection`): recorded sha256 `df3bc709da599a889424f62769a2524e54753a69bfa0e5214319542215dcb1a4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_365_review_replay.json](../../../dag/research/pr_365_review_replay.json) (module `CampaignFqPrimToQmSelection`): recorded sha256 `df3bc709da599a889424f62769a2524e54753a69bfa0e5214319542215dcb1a4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignFqPrimToQmSelection`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `normalized_first_weights_differ` | yes | yes | yes | none | `#print axioms normalized_first_weights_differ` |
-| `quad_weights` | yes | yes | yes | none | `#print axioms quad_weights` |
-| `quart_weights` | yes | yes | yes | none | `#print axioms quart_weights` |
-| `symmetric_agreement` | yes | yes | yes | none | `#print axioms symmetric_agreement` |
-
-- counts toward the grade: yes
-
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
@@ -76,6 +57,25 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.fq_prim_to_qm_selection_finite_quotient_vs_continuum_gap` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_prim_to_qm_selection_finite_quotient_vs_continuum_gap` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/PrimToQmSelection.lean`
+
+- file: [lean4/PrimToQmSelection.lean](../../../lean4/PrimToQmSelection.lean)
+- sha256 (`bytes`): `d82e237575aa64b9e2816bab66d47842137f13faaca2adb13ba259e6bf452371`
+- cited in: node.lean, receipt dag/research/campaign_fq-prim-to-qm-selection-open_lean_replay.json (PrimToQmSelection), receipt dag/research/pr_365_review_replay.json (PrimToQmSelection), record TFQ-1010
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-prim-to-qm-selection-open_lean_replay.json](../../../dag/research/campaign_fq-prim-to-qm-selection-open_lean_replay.json) (module `PrimToQmSelection`): recorded sha256 `d82e237575aa64b9e2816bab66d47842137f13faaca2adb13ba259e6bf452371` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_365_review_replay.json](../../../dag/research/pr_365_review_replay.json) (module `PrimToQmSelection`): recorded sha256 `d82e237575aa64b9e2816bab66d47842137f13faaca2adb13ba259e6bf452371` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build PrimToQmSelection`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `normalized_first_weights_differ` | yes | yes | yes | none | `#print axioms normalized_first_weights_differ` |
+| `quad_weights` | yes | yes | yes | none | `#print axioms quad_weights` |
+| `quart_weights` | yes | yes | yes | none | `#print axioms quart_weights` |
+| `symmetric_agreement` | yes | yes | yes | none | `#print axioms symmetric_agreement` |
 
 - counts toward the grade: yes
 
@@ -117,7 +117,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md](../../../dag/derivations/10_finite_qm_core/tfq_1010_fq_prim_to_qm_selection_open.md)
-- sha256 (`lf-normalised`): `3ad368064d38d9f624e7cd0f1e313f8e53c164e214d45cc56109de54205d5b2d`
+- sha256 (`lf-normalised`): `950ebc69856a485ac0d7edd5ae7a48b069e660a955068a9955c7f59266435b45`
 - generated view: listed, not counted
 - cited in: record TFQ-1010
 - counts toward the grade: no

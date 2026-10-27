@@ -42,32 +42,32 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignAdsHappyToyNotDualityGap.lean`
+### Lean: `lean4/AdsHappyToyNotDualityGap.lean`
 
-- file: [lean4/CampaignAdsHappyToyNotDualityGap.lean](../../../lean4/CampaignAdsHappyToyNotDualityGap.lean)
-- sha256 (`bytes`): `366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff`
-- cited in: node.lean, receipt dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json (CampaignAdsHappyToyNotDualityGap), record TFQ-2212
+- file: [lean4/AdsHappyToyNotDualityGap.lean](../../../lean4/AdsHappyToyNotDualityGap.lean)
+- sha256 (`bytes`): `8ae260255f3f65384458080171a83122187b121c24058ea128a30e5d6e9ef5c0`
+- cited in: node.lean, receipt dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json (AdsHappyToyNotDualityGap), record TFQ-2212
 - replay: `verified`
-  - receipt [dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json](../../../dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json) (module `CampaignAdsHappyToyNotDualityGap`): recorded sha256 `366442e8e299e822f7543f6353e7ebf7330540782de8b234c9534d6524154bff` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignAdsHappyToyNotDualityGap`
+  - receipt [dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json](../../../dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json) (module `AdsHappyToyNotDualityGap`): recorded sha256 `8ae260255f3f65384458080171a83122187b121c24058ea128a30e5d6e9ef5c0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build AdsHappyToyNotDualityGap`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_one` |
-| `CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_strict_anti` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_strict_anti` |
-| `CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_sub_half` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_sub_half` |
-| `CampaignAdsHappyToyNotDualityGap.cft_ne_stabilizer_renyi_of_gt_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsHappyToyNotDualityGap.cft_ne_stabilizer_renyi_of_gt_one` |
-| `CampaignAdsHappyToyNotDualityGap.code_subspace_strict_codimension` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsHappyToyNotDualityGap.code_subspace_strict_codimension` |
-| `CampaignAdsHappyToyNotDualityGap.happy_deficit_distribution_by_length` | yes | yes | yes | propext | `#print axioms CampaignAdsHappyToyNotDualityGap.happy_deficit_distribution_by_length` |
-| `CampaignAdsHappyToyNotDualityGap.happy_disconnected_mutual_information_witnesses` | yes | yes | yes | propext | `#print axioms CampaignAdsHappyToyNotDualityGap.happy_disconnected_mutual_information_witnesses` |
-| `CampaignAdsHappyToyNotDualityGap.happy_fivefold_rotational_deficit_orbit` | yes | yes | yes | propext | `#print axioms CampaignAdsHappyToyNotDualityGap.happy_fivefold_rotational_deficit_orbit` |
-| `CampaignAdsHappyToyNotDualityGap.happy_short_and_long_intervals_exact_mincut` | yes | yes | yes | propext | `#print axioms CampaignAdsHappyToyNotDualityGap.happy_short_and_long_intervals_exact_mincut` |
-| `CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len12_deficit` | yes | yes | yes | propext | `#print axioms CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len12_deficit` |
-| `CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len8_deficit` | yes | yes | yes | propext | `#print axioms CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len8_deficit` |
-| `CampaignAdsHappyToyNotDualityGap.recorded_cft_vs_stabilizer_renyi_factors` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsHappyToyNotDualityGap.recorded_cft_vs_stabilizer_renyi_factors` |
-| `CampaignAdsHappyToyNotDualityGap.recorded_happy_tiling_hilbert_codimensions` | yes | yes | yes | propext | `#print axioms CampaignAdsHappyToyNotDualityGap.recorded_happy_tiling_hilbert_codimensions` |
-| `CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_formula` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_formula` |
-| `CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_pos_of_gt_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_pos_of_gt_one` |
+| `AdsHappyToyNotDualityGap.cftRenyiFactor_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsHappyToyNotDualityGap.cftRenyiFactor_one` |
+| `AdsHappyToyNotDualityGap.cftRenyiFactor_strict_anti` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsHappyToyNotDualityGap.cftRenyiFactor_strict_anti` |
+| `AdsHappyToyNotDualityGap.cftRenyiFactor_sub_half` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsHappyToyNotDualityGap.cftRenyiFactor_sub_half` |
+| `AdsHappyToyNotDualityGap.cft_ne_stabilizer_renyi_of_gt_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsHappyToyNotDualityGap.cft_ne_stabilizer_renyi_of_gt_one` |
+| `AdsHappyToyNotDualityGap.code_subspace_strict_codimension` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsHappyToyNotDualityGap.code_subspace_strict_codimension` |
+| `AdsHappyToyNotDualityGap.happy_deficit_distribution_by_length` | yes | yes | yes | propext | `#print axioms AdsHappyToyNotDualityGap.happy_deficit_distribution_by_length` |
+| `AdsHappyToyNotDualityGap.happy_disconnected_mutual_information_witnesses` | yes | yes | yes | propext | `#print axioms AdsHappyToyNotDualityGap.happy_disconnected_mutual_information_witnesses` |
+| `AdsHappyToyNotDualityGap.happy_fivefold_rotational_deficit_orbit` | yes | yes | yes | propext | `#print axioms AdsHappyToyNotDualityGap.happy_fivefold_rotational_deficit_orbit` |
+| `AdsHappyToyNotDualityGap.happy_short_and_long_intervals_exact_mincut` | yes | yes | yes | propext | `#print axioms AdsHappyToyNotDualityGap.happy_short_and_long_intervals_exact_mincut` |
+| `AdsHappyToyNotDualityGap.happy_witness_start2_len12_deficit` | yes | yes | yes | propext | `#print axioms AdsHappyToyNotDualityGap.happy_witness_start2_len12_deficit` |
+| `AdsHappyToyNotDualityGap.happy_witness_start2_len8_deficit` | yes | yes | yes | propext | `#print axioms AdsHappyToyNotDualityGap.happy_witness_start2_len8_deficit` |
+| `AdsHappyToyNotDualityGap.recorded_cft_vs_stabilizer_renyi_factors` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsHappyToyNotDualityGap.recorded_cft_vs_stabilizer_renyi_factors` |
+| `AdsHappyToyNotDualityGap.recorded_happy_tiling_hilbert_codimensions` | yes | yes | yes | propext | `#print axioms AdsHappyToyNotDualityGap.recorded_happy_tiling_hilbert_codimensions` |
+| `AdsHappyToyNotDualityGap.renyiSpectrumDefect_formula` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsHappyToyNotDualityGap.renyiSpectrumDefect_formula` |
+| `AdsHappyToyNotDualityGap.renyiSpectrumDefect_pos_of_gt_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsHappyToyNotDualityGap.renyiSpectrumDefect_pos_of_gt_one` |
 
 - counts toward the grade: yes
 
@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md](../../../dag/derivations/32_ads_cft/tfq_2212_ads_happy_toy_not_duality_gap.md)
-- sha256 (`lf-normalised`): `0d11da6c2b9ba79e59d4aa0bd2546eed745c6f9a0733c5664f267d348742c947`
+- sha256 (`lf-normalised`): `8d54e170116d2a0fe10feee741c11feaacd6537c6881b47dd7aa9a9a1e6e7ed4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2212
 - counts toward the grade: no
@@ -89,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/ads-happy-toy-not-duality-gap.md`
 
 - file: [dag/derivations/independent/ads-happy-toy-not-duality-gap.md](../../../dag/derivations/independent/ads-happy-toy-not-duality-gap.md)
-- sha256 (`lf-normalised`): `a10e6f9630c2c5f30031aa3022cb711fca3c83a6c5d7be7c1b87a820e3f5192a`
+- sha256 (`lf-normalised`): `19a0c52cc4b59b8741ff423950d447437e4d0164d4b25cfd4bac20472e60cafb`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -103,14 +103,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json`
 
 - file: [dag/research/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json](../../../dag/research/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json)
-- sha256 (`lf-normalised`): `d77c8a5d087f2acbf73987e030a2988d105a51bd9167d9d1c8eca3e0bcabbc2d`
+- sha256 (`lf-normalised`): `074bb64c52037a51cb624c6f4d2beb3bfec219ecd2f0ad248d3d0e76821e4a46`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json`
 
 - file: [dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json](../../../dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json)
-- sha256 (`lf-normalised`): `4f58c41eaa3f0a007e55530168bbf29b61cb42158ebd25ccf49b07f3bfe43424`
+- sha256 (`lf-normalised`): `0f099654cc9e5fef3c5bc33085926ec0348391d2860bcfce409d2ac63a880faf`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -44,7 +44,7 @@ operation_candidates:
   name: action
   line: 11
   signature_excerpt: 'def action (hinges : Finset ι) (area deficit : ι → R) : R'
-  source: lean4/CampaignReggeFiniteAction.lean
+  source: lean4/ReggeFiniteAction.lean
   repository: this_repository
   source_sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
   status: source_candidate_requires_semantic_review
@@ -58,7 +58,7 @@ relation_candidates:
         action hinges area (fun h => fullTurn - ∑ j ∈ around h, angle h j) =
           fullTurn * (∑ h ∈ hinges, area h) -
             ∑ h ∈ hinges, area h * (∑ j ∈ around h, angle h j)
-  source: lean4/CampaignReggeFiniteAction.lean
+  source: lean4/ReggeFiniteAction.lean
   repository: this_repository
   source_sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
   status: source_candidate_requires_semantic_review
@@ -71,7 +71,7 @@ relation_candidates:
     theorem area_linearity (hinges : Finset ι) (area other deficit : ι → R) (a b : R) :
         action hinges (fun h => a * area h + b * other h) deficit =
           a * action hinges area deficit + b * action hinges other deficit
-  source: lean4/CampaignReggeFiniteAction.lean
+  source: lean4/ReggeFiniteAction.lean
   repository: this_repository
   source_sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
   status: source_candidate_requires_semantic_review
@@ -83,7 +83,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem flat_deficits_give_zero (hinges : Finset ι) (area deficit : ι → R)
         (flat : ∀ h ∈ hinges, deficit h = 0) : action hinges area deficit = 0
-  source: lean4/CampaignReggeFiniteAction.lean
+  source: lean4/ReggeFiniteAction.lean
   repository: this_repository
   source_sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
   status: source_candidate_requires_semantic_review
@@ -95,7 +95,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem same_deficit_area_split (area₁ area₂ deficit : R) :
         area₁ * deficit + area₂ * deficit = (area₁ + area₂) * deficit
-  source: lean4/CampaignReggeFiniteAction.lean
+  source: lean4/ReggeFiniteAction.lean
   repository: this_repository
   source_sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
   status: source_candidate_requires_semantic_review
@@ -108,7 +108,7 @@ relation_candidates:
     theorem zero_action_does_not_imply_flat :
         action ({0, 1} : Finset Nat) (fun _ => (1 : Int))
           (fun h => if h = 0 then 1 else -1) = 0 ∧ (1 : Int) ≠ 0
-  source: lean4/CampaignReggeFiniteAction.lean
+  source: lean4/ReggeFiniteAction.lean
   repository: this_repository
   source_sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
   status: source_candidate_requires_semantic_review
@@ -122,62 +122,62 @@ relation_candidates:
         action ({0} : Finset Nat) (fun _ => (1 : Int)) (fun _ => 1) = 1 ∧
         action ({0} : Finset Nat) (fun _ => (2 : Int)) (fun _ => 1) = 2 ∧
         (1 : Int) ≠ 2
-  source: lean4/CampaignReggeFiniteAction.lean
+  source: lean4/ReggeFiniteAction.lean
   repository: this_repository
   source_sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.deficit_expansion
+- original_ref: lean4/ReggeFiniteAction.lean::ReggeFiniteAction.deficit_expansion
   availability: local
-  symbol: CampaignReggeFiniteAction.deficit_expansion
-  path: lean4/CampaignReggeFiniteAction.lean
+  symbol: ReggeFiniteAction.deficit_expansion
+  path: lean4/ReggeFiniteAction.lean
   repository: this_repository
   sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
   declaration_status: declaration_found_not_proof_checked
   line: 14
   role: source_lead_only
-- original_ref: lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.area_linearity
+- original_ref: lean4/ReggeFiniteAction.lean::ReggeFiniteAction.area_linearity
   availability: local
-  symbol: CampaignReggeFiniteAction.area_linearity
-  path: lean4/CampaignReggeFiniteAction.lean
+  symbol: ReggeFiniteAction.area_linearity
+  path: lean4/ReggeFiniteAction.lean
   repository: this_repository
   sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
   declaration_status: declaration_found_not_proof_checked
   line: 25
   role: source_lead_only
-- original_ref: lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.flat_deficits_give_zero
+- original_ref: lean4/ReggeFiniteAction.lean::ReggeFiniteAction.flat_deficits_give_zero
   availability: local
-  symbol: CampaignReggeFiniteAction.flat_deficits_give_zero
-  path: lean4/CampaignReggeFiniteAction.lean
+  symbol: ReggeFiniteAction.flat_deficits_give_zero
+  path: lean4/ReggeFiniteAction.lean
   repository: this_repository
   sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
   declaration_status: declaration_found_not_proof_checked
   line: 30
   role: source_lead_only
-- original_ref: lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.same_deficit_area_split
+- original_ref: lean4/ReggeFiniteAction.lean::ReggeFiniteAction.same_deficit_area_split
   availability: local
-  symbol: CampaignReggeFiniteAction.same_deficit_area_split
-  path: lean4/CampaignReggeFiniteAction.lean
+  symbol: ReggeFiniteAction.same_deficit_area_split
+  path: lean4/ReggeFiniteAction.lean
   repository: this_repository
   sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
   declaration_status: declaration_found_not_proof_checked
   line: 36
   role: source_lead_only
-- original_ref: lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.zero_action_does_not_imply_flat
+- original_ref: lean4/ReggeFiniteAction.lean::ReggeFiniteAction.zero_action_does_not_imply_flat
   availability: local
-  symbol: CampaignReggeFiniteAction.zero_action_does_not_imply_flat
-  path: lean4/CampaignReggeFiniteAction.lean
+  symbol: ReggeFiniteAction.zero_action_does_not_imply_flat
+  path: lean4/ReggeFiniteAction.lean
   repository: this_repository
   sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
   declaration_status: declaration_found_not_proof_checked
   line: 39
   role: source_lead_only
-- original_ref: lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.declared_areas_change_action
+- original_ref: lean4/ReggeFiniteAction.lean::ReggeFiniteAction.declared_areas_change_action
   availability: local
-  symbol: CampaignReggeFiniteAction.declared_areas_change_action
-  path: lean4/CampaignReggeFiniteAction.lean
+  symbol: ReggeFiniteAction.declared_areas_change_action
+  path: lean4/ReggeFiniteAction.lean
   repository: this_repository
   sha256: dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089
   declaration_status: declaration_found_not_proof_checked

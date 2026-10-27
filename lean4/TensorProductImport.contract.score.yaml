@@ -1,0 +1,306 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/TensorProductImport.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/TensorProductImport.lean",
+      "sha256": "ea58fdf4e63eb852f70a055f047a8ba8712236346847b1fa45582e5879731246"
+    },
+    "boundaries": [
+      "The Hilbert-space tensor product is not derived as the unique way to combine systems. The agreement above uses additivity, integer homogeneity and the identity tag (i, j) on one Bool-by-Bool host. The dump-right map is a same-host rival whose tag collapses the second Boolean factor, so a weaker tag does not select the pointwise product. A second presented carrier and a physical composition rule stay imported (QM_122 7.1 item 1).",
+      "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+    ],
+    "contract_urn": "urn:tfqm:review:20261026:TensorProductImport",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_gp-import-tensor-product_lean_replay.json",
+        "sha256": "623dfca5332f7f916145f17e960eceac25495934ee050aec4297a2afecb10c06"
+      },
+      {
+        "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+        "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+      }
+    ],
+    "owned_invariants": [
+      "For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1."
+    ],
+    "purpose": "For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "delta",
+      "tensor",
+      "dumpRight",
+      "BilinearKroneckerEmbed",
+      "tensor_pointwise",
+      "bool_expand",
+      "tensor_on_deltas",
+      "tensor_add_left",
+      "tensor_add_right",
+      "tensor_smul_left",
+      "tensor_smul_right",
+      "tensorEmbed",
+      "embed_eq_tensor",
+      "dumpRight_false_coord",
+      "dumpRight_true_coord",
+      "dumpRight_add_left",
+      "dumpRight_add_right",
+      "dumpRight_smul_left",
+      "dumpRight_smul_right",
+      "dumpRight_collapsed_tag",
+      "witness_tensor_one",
+      "witness_dump_zero",
+      "dumpRight_ne_tensor",
+      "dumpRight_not_always_tensor"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 3145,
+      "original_paths": [
+        "lean4/CampaignGpImportTensorProduct.contract.score.yaml#qm-open-pr-review-20261026-5d83a84e8099"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignGpImportTensorProduct.lean\",\n    \"sha256\": \"5d83a84e8099d4d38e989378b276244c701c6bbfe31aab4c78171d09e5277a42\"\n  },\n  \"boundaries\": [\n    \"The Hilbert-space tensor product is not derived as the unique way to combine systems. The agreement above uses additivity, integer homogeneity and the identity tag (i, j) on one Bool-by-Bool host. The dump-right map is a same-host rival whose tag collapses the second Boolean factor, so a weaker tag does not select the pointwise product. A second presented carrier and a physical composition rule stay imported (QM_122 7.1 item 1).\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review:20261026:CampaignGpImportTensorProduct\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_gp-import-tensor-product_lean_replay.json\",\n      \"sha256\": \"d5f7bad5ab60b8b89043bd401387e10db97fe0c5d6d85b7df4291e963aef51e6\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_lower_campaign_review_20261026.md\",\n      \"sha256\": \"690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.\"\n  ],\n  \"purpose\": \"For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"delta\",\n    \"tensor\",\n    \"dumpRight\",\n    \"BilinearKroneckerEmbed\",\n    \"tensor_pointwise\",\n    \"bool_expand\",\n    \"tensor_on_deltas\",\n    \"tensor_add_left\",\n    \"tensor_add_right\",\n    \"tensor_smul_left\",\n    \"tensor_smul_right\",\n    \"tensorEmbed\",\n    \"embed_eq_tensor\",\n    \"dumpRight_false_coord\",\n    \"dumpRight_true_coord\",\n    \"dumpRight_add_left\",\n    \"dumpRight_add_right\",\n    \"dumpRight_smul_left\",\n    \"dumpRight_smul_right\",\n    \"dumpRight_collapsed_tag\",\n    \"witness_tensor_one\",\n    \"witness_dump_zero\",\n    \"dumpRight_ne_tensor\",\n    \"dumpRight_not_always_tensor\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignGpImportTensorProduct.lean",
+          "sha256": "5d83a84e8099d4d38e989378b276244c701c6bbfe31aab4c78171d09e5277a42"
+        },
+        "boundaries": [
+          "The Hilbert-space tensor product is not derived as the unique way to combine systems. The agreement above uses additivity, integer homogeneity and the identity tag (i, j) on one Bool-by-Bool host. The dump-right map is a same-host rival whose tag collapses the second Boolean factor, so a weaker tag does not select the pointwise product. A second presented carrier and a physical composition rule stay imported (QM_122 7.1 item 1).",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "contract_urn": "urn:tfqm:review:20261026:CampaignGpImportTensorProduct",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_gp-import-tensor-product_lean_replay.json",
+            "sha256": "d5f7bad5ab60b8b89043bd401387e10db97fe0c5d6d85b7df4291e963aef51e6"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+            "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+          }
+        ],
+        "owned_invariants": [
+          "For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1."
+        ],
+        "purpose": "For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "delta",
+          "tensor",
+          "dumpRight",
+          "BilinearKroneckerEmbed",
+          "tensor_pointwise",
+          "bool_expand",
+          "tensor_on_deltas",
+          "tensor_add_left",
+          "tensor_add_right",
+          "tensor_smul_left",
+          "tensor_smul_right",
+          "tensorEmbed",
+          "embed_eq_tensor",
+          "dumpRight_false_coord",
+          "dumpRight_true_coord",
+          "dumpRight_add_left",
+          "dumpRight_add_right",
+          "dumpRight_smul_left",
+          "dumpRight_smul_right",
+          "dumpRight_collapsed_tag",
+          "witness_tensor_one",
+          "witness_dump_zero",
+          "dumpRight_ne_tensor",
+          "dumpRight_not_always_tensor"
+        ]
+      },
+      "sha256": "4b0b6dd210c3d3a008546cc4d0fc6dc3e1356908c5c5f53d855a89c49b1bdaf2"
+    },
+    {
+      "bytes": 3125,
+      "original_paths": [
+        "lean4/TensorProductImport.contract.score.yaml#qm-open-pr-review-20261026-5d83a84e8099"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/TensorProductImport.lean\",\n    \"sha256\": \"ea58fdf4e63eb852f70a055f047a8ba8712236346847b1fa45582e5879731246\"\n  },\n  \"boundaries\": [\n    \"The Hilbert-space tensor product is not derived as the unique way to combine systems. The agreement above uses additivity, integer homogeneity and the identity tag (i, j) on one Bool-by-Bool host. The dump-right map is a same-host rival whose tag collapses the second Boolean factor, so a weaker tag does not select the pointwise product. A second presented carrier and a physical composition rule stay imported (QM_122 7.1 item 1).\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review:20261026:TensorProductImport\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_gp-import-tensor-product_lean_replay.json\",\n      \"sha256\": \"623dfca5332f7f916145f17e960eceac25495934ee050aec4297a2afecb10c06\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_lower_campaign_review_20261026.md\",\n      \"sha256\": \"690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.\"\n  ],\n  \"purpose\": \"For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"delta\",\n    \"tensor\",\n    \"dumpRight\",\n    \"BilinearKroneckerEmbed\",\n    \"tensor_pointwise\",\n    \"bool_expand\",\n    \"tensor_on_deltas\",\n    \"tensor_add_left\",\n    \"tensor_add_right\",\n    \"tensor_smul_left\",\n    \"tensor_smul_right\",\n    \"tensorEmbed\",\n    \"embed_eq_tensor\",\n    \"dumpRight_false_coord\",\n    \"dumpRight_true_coord\",\n    \"dumpRight_add_left\",\n    \"dumpRight_add_right\",\n    \"dumpRight_smul_left\",\n    \"dumpRight_smul_right\",\n    \"dumpRight_collapsed_tag\",\n    \"witness_tensor_one\",\n    \"witness_dump_zero\",\n    \"dumpRight_ne_tensor\",\n    \"dumpRight_not_always_tensor\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/TensorProductImport.lean",
+          "sha256": "ea58fdf4e63eb852f70a055f047a8ba8712236346847b1fa45582e5879731246"
+        },
+        "boundaries": [
+          "The Hilbert-space tensor product is not derived as the unique way to combine systems. The agreement above uses additivity, integer homogeneity and the identity tag (i, j) on one Bool-by-Bool host. The dump-right map is a same-host rival whose tag collapses the second Boolean factor, so a weaker tag does not select the pointwise product. A second presented carrier and a physical composition rule stay imported (QM_122 7.1 item 1).",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "contract_urn": "urn:tfqm:review:20261026:TensorProductImport",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_gp-import-tensor-product_lean_replay.json",
+            "sha256": "623dfca5332f7f916145f17e960eceac25495934ee050aec4297a2afecb10c06"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+            "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+          }
+        ],
+        "owned_invariants": [
+          "For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1."
+        ],
+        "purpose": "For maps u and v from Bool to the integers, the pointwise product sends (a, b) to u(a) * v(b). Every map that is additive and integer-homogeneous in each argument, and that sends each Boolean delta pair (delta i, delta j) to delta (i, j), agrees with that product at every point. The dump-right map sends (a, false) to u(a) * (v(false) + v(true)) and sends (a, true) to 0. It is additive and integer-homogeneous in each argument, and it sends (delta i, delta j) to delta (i, false). At u = delta false, v = delta true and the point (false, true), the dump-right value is 0 and the pointwise product is 1.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "delta",
+          "tensor",
+          "dumpRight",
+          "BilinearKroneckerEmbed",
+          "tensor_pointwise",
+          "bool_expand",
+          "tensor_on_deltas",
+          "tensor_add_left",
+          "tensor_add_right",
+          "tensor_smul_left",
+          "tensor_smul_right",
+          "tensorEmbed",
+          "embed_eq_tensor",
+          "dumpRight_false_coord",
+          "dumpRight_true_coord",
+          "dumpRight_add_left",
+          "dumpRight_add_right",
+          "dumpRight_smul_left",
+          "dumpRight_smul_right",
+          "dumpRight_collapsed_tag",
+          "witness_tensor_one",
+          "witness_dump_zero",
+          "dumpRight_ne_tensor",
+          "dumpRight_not_always_tensor"
+        ]
+      },
+      "sha256": "31f53b4c8e9889d35086c870dd6d9a57d942d9d86e88426efa2617490cfaa61f"
+    }
+  ],
+  "current_contract": "31f53b4c8e9889d35086c870dd6d9a57d942d9d86e88426efa2617490cfaa61f",
+  "current_scoring": "9b8a673c5a192a07fcb2926d9e4f6ba750375d029370818cce0a0757abd0c3cf",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2620,
+      "original_paths": [
+        "lean4/CampaignGpImportTensorProduct.contract.score.yaml#qm-open-pr-review-20261026-5d83a84e8099"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignGpImportTensorProduct.lean\",\n    \"sha256\": \"5d83a84e8099d4d38e989378b276244c701c6bbfe31aab4c78171d09e5277a42\"\n  },\n  \"assessment_id\": \"qm-open-pr-review-20261026-5d83a84e8099\",\n  \"basis\": {\n    \"G1\": \"Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.\",\n    \"G2\": \"Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.\",\n    \"G3\": \"Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.\",\n    \"G4\": \"Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.\",\n    \"G5\": \"Inspected 210 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T15:28:11.734863+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_gp-import-tensor-product_lean_replay.json\",\n      \"sha256\": \"d5f7bad5ab60b8b89043bd401387e10db97fe0c5d6d85b7df4291e963aef51e6\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_lower_campaign_review_20261026.md\",\n      \"sha256\": \"690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.\",\n  \"open_higher_grade_findings\": [\n    \"The Hilbert-space tensor product is not derived as the unique way to combine systems. The agreement above uses additivity, integer homogeneity and the identity tag (i, j) on one Bool-by-Bool host. The dump-right map is a same-host rival whose tag collapses the second Boolean factor, so a weaker tag does not select the pointwise product. A second presented carrier and a physical composition rule stay imported (QM_122 7.1 item 1).\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignGpImportTensorProduct.lean",
+          "sha256": "5d83a84e8099d4d38e989378b276244c701c6bbfe31aab4c78171d09e5277a42"
+        },
+        "assessment_id": "qm-open-pr-review-20261026-5d83a84e8099",
+        "basis": {
+          "G1": "Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.",
+          "G2": "Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.",
+          "G3": "Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.",
+          "G4": "Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.",
+          "G5": "Inspected 210 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T15:28:11.734863+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_gp-import-tensor-product_lean_replay.json",
+            "sha256": "d5f7bad5ab60b8b89043bd401387e10db97fe0c5d6d85b7df4291e963aef51e6"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+            "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.",
+        "open_higher_grade_findings": [
+          "The Hilbert-space tensor product is not derived as the unique way to combine systems. The agreement above uses additivity, integer homogeneity and the identity tag (i, j) on one Bool-by-Bool host. The dump-right map is a same-host rival whose tag collapses the second Boolean factor, so a weaker tag does not select the pointwise product. A second presented carrier and a physical composition rule stay imported (QM_122 7.1 item 1).",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "2c02a1c136004d04421ca3cb8d5036d2ea7dd6bad03e8df548bce387ab2158f0"
+    },
+    {
+      "bytes": 3052,
+      "original_paths": [
+        "lean4/TensorProductImport.contract.score.yaml#qm-open-pr-review-20261026-5d83a84e8099"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/TensorProductImport.lean\",\n    \"sha256\": \"ea58fdf4e63eb852f70a055f047a8ba8712236346847b1fa45582e5879731246\"\n  },\n  \"assessment_id\": \"qm-open-pr-review-20261026-5d83a84e8099\",\n  \"basis\": {\n    \"G1\": \"Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.\",\n    \"G2\": \"Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.\",\n    \"G3\": \"Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.\",\n    \"G4\": \"Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.\",\n    \"G5\": \"Inspected 210 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T15:28:11.734863+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_gp-import-tensor-product_lean_replay.json\",\n      \"sha256\": \"623dfca5332f7f916145f17e960eceac25495934ee050aec4297a2afecb10c06\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_lower_campaign_review_20261026.md\",\n      \"sha256\": \"690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.\",\n  \"open_higher_grade_findings\": [\n    \"The Hilbert-space tensor product is not derived as the unique way to combine systems. The agreement above uses additivity, integer homogeneity and the identity tag (i, j) on one Bool-by-Bool host. The dump-right map is a same-host rival whose tag collapses the second Boolean factor, so a weaker tag does not select the pointwise product. A second presented carrier and a physical composition rule stay imported (QM_122 7.1 item 1).\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"profile\": \"Exact\",\n  \"rebound\": {\n    \"date\": \"2026-10-27\",\n    \"from_path\": \"lean4/CampaignGpImportTensorProduct.lean\",\n    \"from_sha256\": \"5d83a84e8099d4d38e989378b276244c701c6bbfe31aab4c78171d09e5277a42\",\n    \"note\": \"Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived.\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/TensorProductImport.lean",
+          "sha256": "ea58fdf4e63eb852f70a055f047a8ba8712236346847b1fa45582e5879731246"
+        },
+        "assessment_id": "qm-open-pr-review-20261026-5d83a84e8099",
+        "basis": {
+          "G1": "Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.",
+          "G2": "Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.",
+          "G3": "Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.",
+          "G4": "Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.",
+          "G5": "Inspected 210 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T15:28:11.734863+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_gp-import-tensor-product_lean_replay.json",
+            "sha256": "623dfca5332f7f916145f17e960eceac25495934ee050aec4297a2afecb10c06"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+            "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.",
+        "open_higher_grade_findings": [
+          "The Hilbert-space tensor product is not derived as the unique way to combine systems. The agreement above uses additivity, integer homogeneity and the identity tag (i, j) on one Bool-by-Bool host. The dump-right map is a same-host rival whose tag collapses the second Boolean factor, so a weaker tag does not select the pointwise product. A second presented carrier and a physical composition rule stay imported (QM_122 7.1 item 1).",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "profile": "Exact",
+        "rebound": {
+          "date": "2026-10-27",
+          "from_path": "lean4/CampaignGpImportTensorProduct.lean",
+          "from_sha256": "5d83a84e8099d4d38e989378b276244c701c6bbfe31aab4c78171d09e5277a42",
+          "note": "Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived."
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "9b8a673c5a192a07fcb2926d9e4f6ba750375d029370818cce0a0757abd0c3cf"
+    }
+  ]
+}

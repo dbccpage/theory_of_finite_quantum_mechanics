@@ -51,32 +51,32 @@ See also: `TFQ-0104`, `TFQ-0105`, `TFQ-0085`.
 
 ## Sources
 
-- Repository: `lean4/CampaignLqgContinuumLimitGap.lean`
+- Repository: `lean4/LqgContinuumLimitGap.lean`
 - Repository: `dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json`
 - Repository: `dag/derivations/independent/lqg-continuum-limit-gap.md`
 - Repository: `checks/independent/lqg-continuum-limit-gap.py`
 - Repository: `code/rust/src/general_relativity/spin_foam.rs`
-- Repository: `lean4/CampaignLqgProjectiveLimit.lean`
+- Repository: `lean4/LqgProjectiveLimit.lean`
 - Repository: `checks/independent/lqg-projective-limit.py`
 - Repository: `dag/derivations/independent/lqg-projective-limit.md`
 - Repository: `dag/research/campaign_lqg-projective-limit_lean_replay.json`
 
 ## Lean 4 declarations read
-- `lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_admissible_count`
-- `lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_tuple_census`
-- `lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_dimension_truncation`
-- `lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_counts_do_not_select_a_scale`
-- `lean4/CampaignLqgContinuumLimitGap.lean::CampaignLqgContinuumLimitGap.level2_free_positive_scale`
-- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.spin_constraints_ae`
-- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.spin_labels_extension`
-- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.countable_constraints`
-- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.constraints_have_configuration`
-- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.projective_of_limit`
-- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.exists_limit_iff_projective`
-- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.empty_stage`
-- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.content_sigma_subadditive`
-- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.limit_marginals`
-- `lean4/CampaignLqgProjectiveLimit.lean::CampaignLqgProjectiveLimit.limit_unique`
+- `lean4/LqgContinuumLimitGap.lean::LqgContinuumLimitGap.level2_admissible_count`
+- `lean4/LqgContinuumLimitGap.lean::LqgContinuumLimitGap.level2_tuple_census`
+- `lean4/LqgContinuumLimitGap.lean::LqgContinuumLimitGap.level2_dimension_truncation`
+- `lean4/LqgContinuumLimitGap.lean::LqgContinuumLimitGap.level2_counts_do_not_select_a_scale`
+- `lean4/LqgContinuumLimitGap.lean::LqgContinuumLimitGap.level2_free_positive_scale`
+- `lean4/LqgProjectiveLimit.lean::LqgProjectiveLimit.spin_constraints_ae`
+- `lean4/LqgProjectiveLimit.lean::LqgProjectiveLimit.spin_labels_extension`
+- `lean4/LqgProjectiveLimit.lean::LqgProjectiveLimit.countable_constraints`
+- `lean4/LqgProjectiveLimit.lean::LqgProjectiveLimit.constraints_have_configuration`
+- `lean4/LqgProjectiveLimit.lean::LqgProjectiveLimit.projective_of_limit`
+- `lean4/LqgProjectiveLimit.lean::LqgProjectiveLimit.exists_limit_iff_projective`
+- `lean4/LqgProjectiveLimit.lean::LqgProjectiveLimit.empty_stage`
+- `lean4/LqgProjectiveLimit.lean::LqgProjectiveLimit.content_sigma_subadditive`
+- `lean4/LqgProjectiveLimit.lean::LqgProjectiveLimit.limit_marginals`
+- `lean4/LqgProjectiveLimit.lean::LqgProjectiveLimit.limit_unique`
 
 ## Downstream derivations
 

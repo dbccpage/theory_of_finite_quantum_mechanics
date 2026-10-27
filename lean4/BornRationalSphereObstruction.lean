@@ -26,7 +26,7 @@ Import note.  Only the integer parity lemmas, the ordered field `ℚ`, and the t
 `norm_num`, `linarith` are used; `import Mathlib` is deliberately avoided.
 -/
 
-namespace BornFable.RationalSphere
+namespace BornFinite.RationalSphere
 
 /-- An integer vector `(a, b, c) ∈ ℤ³`. -/
 structure Vec3 where
@@ -149,19 +149,19 @@ theorem parity_not_quadratic :
   norm_num [parity, Int.odd_iff] at h1 h2 h3 h4 h5 h6
   linarith
 
-end BornFable.RationalSphere
+end BornFinite.RationalSphere
 
-#print axioms BornFable.RationalSphere.sq_emod_eight
-#print axioms BornFable.RationalSphere.ray_exactly_one_odd
-#print axioms BornFable.RationalSphere.mul_emod_two_eq_one
-#print axioms BornFable.RationalSphere.orthogonal_rays_odd_positions_differ
-#print axioms BornFable.RationalSphere.parity_frame_function
-#print axioms BornFable.RationalSphere.parity_two_valued
-#print axioms BornFable.RationalSphere.parity_odd_smul
-#print axioms BornFable.RationalSphere.ray_e1
-#print axioms BornFable.RationalSphere.ray_e2
-#print axioms BornFable.RationalSphere.ray_e3
-#print axioms BornFable.RationalSphere.ray_340
-#print axioms BornFable.RationalSphere.ray_034
-#print axioms BornFable.RationalSphere.ray_043
-#print axioms BornFable.RationalSphere.parity_not_quadratic
+#print axioms BornFinite.RationalSphere.sq_emod_eight
+#print axioms BornFinite.RationalSphere.ray_exactly_one_odd
+#print axioms BornFinite.RationalSphere.mul_emod_two_eq_one
+#print axioms BornFinite.RationalSphere.orthogonal_rays_odd_positions_differ
+#print axioms BornFinite.RationalSphere.parity_frame_function
+#print axioms BornFinite.RationalSphere.parity_two_valued
+#print axioms BornFinite.RationalSphere.parity_odd_smul
+#print axioms BornFinite.RationalSphere.ray_e1
+#print axioms BornFinite.RationalSphere.ray_e2
+#print axioms BornFinite.RationalSphere.ray_e3
+#print axioms BornFinite.RationalSphere.ray_340
+#print axioms BornFinite.RationalSphere.ray_034
+#print axioms BornFinite.RationalSphere.ray_043
+#print axioms BornFinite.RationalSphere.parity_not_quadratic

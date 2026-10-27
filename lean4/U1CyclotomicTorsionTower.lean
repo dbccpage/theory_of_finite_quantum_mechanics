@@ -28,7 +28,7 @@ sums on $N$-th roots of unity $\mu_N$:
    4th-root Gaussian unit cancellation in $\mathbb{Z} \times \mathbb{Z}$.
 -/
 
-namespace U1Fable.CyclotomicTorsionTower
+namespace U1Finite.CyclotomicTorsionTower
 
 /-! ## 1. Finite $N$-Torsion Phase Tower & Directed Refinement Embeddings -/
 
@@ -311,42 +311,42 @@ theorem gauss_fourth_roots_haar_sum_zero :
       ((0 : ℤ), (0 : ℤ)) := by
   ext <;> simp
 
-end U1Fable.CyclotomicTorsionTower
+end U1Finite.CyclotomicTorsionTower
 
-#print axioms U1Fable.CyclotomicTorsionTower.torsionPhase
-#print axioms U1Fable.CyclotomicTorsionTower.refineIndex
-#print axioms U1Fable.CyclotomicTorsionTower.refineIndex_one
-#print axioms U1Fable.CyclotomicTorsionTower.refineIndex_comp
-#print axioms U1Fable.CyclotomicTorsionTower.refineIndex_add
-#print axioms U1Fable.CyclotomicTorsionTower.refineIndex_zero
-#print axioms U1Fable.CyclotomicTorsionTower.refineIndex_neg
-#print axioms U1Fable.CyclotomicTorsionTower.refineIndex_sub
-#print axioms U1Fable.CyclotomicTorsionTower.torsionPhase_refine_eq
-#print axioms U1Fable.CyclotomicTorsionTower.torsionPhase_add
-#print axioms U1Fable.CyclotomicTorsionTower.torsionPhase_zero
-#print axioms U1Fable.CyclotomicTorsionTower.torsionPhase_neg
-#print axioms U1Fable.CyclotomicTorsionTower.torsionPhase_sub
-#print axioms U1Fable.CyclotomicTorsionTower.phaseEquiv
-#print axioms U1Fable.CyclotomicTorsionTower.phaseEquiv_refl
-#print axioms U1Fable.CyclotomicTorsionTower.phaseEquiv_symm
-#print axioms U1Fable.CyclotomicTorsionTower.phaseEquiv_trans
-#print axioms U1Fable.CyclotomicTorsionTower.phaseEquiv_setoid
-#print axioms U1Fable.CyclotomicTorsionTower.phaseEquiv_add
-#print axioms U1Fable.CyclotomicTorsionTower.phaseEquiv_neg
-#print axioms U1Fable.CyclotomicTorsionTower.phaseEquiv_sub
-#print axioms U1Fable.CyclotomicTorsionTower.torsionPhase_period
-#print axioms U1Fable.CyclotomicTorsionTower.torsionPhase_multi_period
-#print axioms U1Fable.CyclotomicTorsionTower.rat_phase_divisible
-#print axioms U1Fable.CyclotomicTorsionTower.rat_phase_divisible_mod_one
-#print axioms U1Fable.CyclotomicTorsionTower.rat_in_torsion_tower
-#print axioms U1Fable.CyclotomicTorsionTower.rat_phase_every_element_torsion
-#print axioms U1Fable.CyclotomicTorsionTower.geomSum
-#print axioms U1Fable.CyclotomicTorsionTower.geomSum_zero
-#print axioms U1Fable.CyclotomicTorsionTower.geomSum_succ
-#print axioms U1Fable.CyclotomicTorsionTower.geomSum_one
-#print axioms U1Fable.CyclotomicTorsionTower.one_sub_mul_geomSum
-#print axioms U1Fable.CyclotomicTorsionTower.geomSum_mul_one_sub
-#print axioms U1Fable.CyclotomicTorsionTower.haar_sum_root_of_unity
-#print axioms U1Fable.CyclotomicTorsionTower.haar_sum_trivial
-#print axioms U1Fable.CyclotomicTorsionTower.haar_avg_trivial
-#print axioms U1Fable.CyclotomicTorsionTower.gauss_fourth_roots_haar_sum_zero
+#print axioms U1Finite.CyclotomicTorsionTower.torsionPhase
+#print axioms U1Finite.CyclotomicTorsionTower.refineIndex
+#print axioms U1Finite.CyclotomicTorsionTower.refineIndex_one
+#print axioms U1Finite.CyclotomicTorsionTower.refineIndex_comp
+#print axioms U1Finite.CyclotomicTorsionTower.refineIndex_add
+#print axioms U1Finite.CyclotomicTorsionTower.refineIndex_zero
+#print axioms U1Finite.CyclotomicTorsionTower.refineIndex_neg
+#print axioms U1Finite.CyclotomicTorsionTower.refineIndex_sub
+#print axioms U1Finite.CyclotomicTorsionTower.torsionPhase_refine_eq
+#print axioms U1Finite.CyclotomicTorsionTower.torsionPhase_add
+#print axioms U1Finite.CyclotomicTorsionTower.torsionPhase_zero
+#print axioms U1Finite.CyclotomicTorsionTower.torsionPhase_neg
+#print axioms U1Finite.CyclotomicTorsionTower.torsionPhase_sub
+#print axioms U1Finite.CyclotomicTorsionTower.phaseEquiv
+#print axioms U1Finite.CyclotomicTorsionTower.phaseEquiv_refl
+#print axioms U1Finite.CyclotomicTorsionTower.phaseEquiv_symm
+#print axioms U1Finite.CyclotomicTorsionTower.phaseEquiv_trans
+#print axioms U1Finite.CyclotomicTorsionTower.phaseEquiv_setoid
+#print axioms U1Finite.CyclotomicTorsionTower.phaseEquiv_add
+#print axioms U1Finite.CyclotomicTorsionTower.phaseEquiv_neg
+#print axioms U1Finite.CyclotomicTorsionTower.phaseEquiv_sub
+#print axioms U1Finite.CyclotomicTorsionTower.torsionPhase_period
+#print axioms U1Finite.CyclotomicTorsionTower.torsionPhase_multi_period
+#print axioms U1Finite.CyclotomicTorsionTower.rat_phase_divisible
+#print axioms U1Finite.CyclotomicTorsionTower.rat_phase_divisible_mod_one
+#print axioms U1Finite.CyclotomicTorsionTower.rat_in_torsion_tower
+#print axioms U1Finite.CyclotomicTorsionTower.rat_phase_every_element_torsion
+#print axioms U1Finite.CyclotomicTorsionTower.geomSum
+#print axioms U1Finite.CyclotomicTorsionTower.geomSum_zero
+#print axioms U1Finite.CyclotomicTorsionTower.geomSum_succ
+#print axioms U1Finite.CyclotomicTorsionTower.geomSum_one
+#print axioms U1Finite.CyclotomicTorsionTower.one_sub_mul_geomSum
+#print axioms U1Finite.CyclotomicTorsionTower.geomSum_mul_one_sub
+#print axioms U1Finite.CyclotomicTorsionTower.haar_sum_root_of_unity
+#print axioms U1Finite.CyclotomicTorsionTower.haar_sum_trivial
+#print axioms U1Finite.CyclotomicTorsionTower.haar_avg_trivial
+#print axioms U1Finite.CyclotomicTorsionTower.gauss_fourth_roots_haar_sum_zero

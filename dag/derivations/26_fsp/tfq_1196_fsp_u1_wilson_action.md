@@ -14,10 +14,10 @@
 With link phases U_ij = exp(i A_ij) on ordered vertex pairs and oriented closed-path products U_p over a finite plaquette family, the Wilson action S = beta_g sum_p (1 - Re U_p) is invariant under local U(1) gauge transformations and is nonnegative for beta_g >= 0.
 
 ### Governing Obligation
-Lean: CampaignFspU1WilsonAction.fsp_u1_wilson_action states gauge invariance (for every g: V -> U(1) and for every angle shift A_ij -> A_ij + theta_i - theta_j) and nonnegativity for beta_g >= 0, for any vertex type and any finite family of closed paths; the periodic hypercubic lattice (ZMod L)^d is one instance. beta_g >= 0 is required: one self-link plaquette with phase -1 and beta_g = -1 gives S = -2. Links are functions of ordered vertex pairs, so for L <= 2 the two parallel links between neighbours are identified. No fermion-sign consequence, continuum limit, reflection positivity, transfer matrix or non-abelian action is claimed. Audited PROVED_LEAN applies only to the narrowed DAG statement; the source record FSP-DERIV-032 claims strict positivity and a Haar-measure bound, neither established here.
+Lean: FermionSignU1WilsonAction.fsp_u1_wilson_action states gauge invariance (for every g: V -> U(1) and for every angle shift A_ij -> A_ij + theta_i - theta_j) and nonnegativity for beta_g >= 0, for any vertex type and any finite family of closed paths; the periodic hypercubic lattice (ZMod L)^d is one instance. beta_g >= 0 is required: one self-link plaquette with phase -1 and beta_g = -1 gives S = -2. Links are functions of ordered vertex pairs, so for L <= 2 the two parallel links between neighbours are identified. No fermion-sign consequence, continuum limit, reflection positivity, transfer matrix or non-abelian action is claimed. Audited PROVED_LEAN applies only to the narrowed DAG statement; the source record FSP-DERIV-032 claims strict positivity and a Haar-measure bound, neither established here.
 
 ### Witness Audit
-Cited NonAbelianGaugeSigns.lean::u1_plaquette_gauge_invariance does not exist. regge_wdw_core.lean::simplicial_u1_gauge_transformation_invariant states integer telescoping of gauge shifts around one triangle, but regge_wdw_core.lean is not a lakefile root and is not imported, so lake build never elaborates it. CampaignFspU1WilsonAction.lean (lean_lib CampaignFspU1WilsonAction) states the full claim as fsp_u1_wilson_action, with beta_g >= 0 explicit and its necessity shown by wilsonAction_nonneg_needs_beta. Audited PROVED_LEAN applies only to the narrowed DAG statement; the source record FSP-DERIV-032 claims strict positivity and a Haar-measure bound, neither established here.
+Cited NonAbelianGaugeSigns.lean::u1_plaquette_gauge_invariance does not exist. regge_wdw_core.lean::simplicial_u1_gauge_transformation_invariant states integer telescoping of gauge shifts around one triangle, but regge_wdw_core.lean is not a lakefile root and is not imported, so lake build never elaborates it. FermionSignU1WilsonAction.lean (lean_lib FermionSignU1WilsonAction) states the full claim as fsp_u1_wilson_action, with beta_g >= 0 explicit and its necessity shown by wilsonAction_nonneg_needs_beta. Audited PROVED_LEAN applies only to the narrowed DAG statement; the source record FSP-DERIV-032 claims strict positivity and a Haar-measure bound, neither established here.
 
 ---
 
@@ -35,17 +35,17 @@ Cited NonAbelianGaugeSigns.lean::u1_plaquette_gauge_invariance does not exist. r
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.fsp_u1_wilson_action`
-- `lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_gauge_invariant`
-- `lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_nonneg`
-- `lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.loopHolonomy_gaugeAct`
-- `lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.holonomy_gaugeAct`
-- `lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.linkOfAngle_gaugeAngle`
-- `lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_linkOfAngle`
-- `lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_eq_zero_iff`
-- `lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_nonneg_needs_beta`
-- `lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.hypercubicWilson_gauge_invariant`
-- `lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.hypercubicWilson_nonneg`
+- `lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.fsp_u1_wilson_action`
+- `lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.wilsonAction_gauge_invariant`
+- `lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.wilsonAction_nonneg`
+- `lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.loopHolonomy_gaugeAct`
+- `lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.holonomy_gaugeAct`
+- `lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.linkOfAngle_gaugeAngle`
+- `lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.wilsonAction_linkOfAngle`
+- `lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.wilsonAction_eq_zero_iff`
+- `lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.wilsonAction_nonneg_needs_beta`
+- `lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.hypercubicWilson_gauge_invariant`
+- `lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.hypercubicWilson_nonneg`
 
 ### Rust Certifiers
 - *none*

@@ -40,15 +40,15 @@ Unifies the seven kernel-checked modules of run `20261020T223000Z_u1_phase_compl
 AuthorityEffect: None.
 -/
 
-namespace U1Fable.PhaseSynthesis
+namespace U1Finite.PhaseSynthesis
 
-open U1Fable.PythagoreanObstruction
-open U1Fable.PowerMapInjectivity
-open U1Fable.CayleyProjective
-open U1Fable.CyclotomicTorsionTower
-open U1Fable.CauchyCircleCompletion
-open U1Fable.ChebyshevCauchyBridge
-open U1Fable.QuadraticTowerAndCayleyStone
+open U1Finite.PythagoreanObstruction
+open U1Finite.PowerMapInjectivity
+open U1Finite.CayleyProjective
+open U1Finite.CyclotomicTorsionTower
+open U1Finite.CauchyCircleCompletion
+open U1Finite.ChebyshevCauchyBridge
+open U1Finite.QuadraticTowerAndCayleyStone
 
 /-- The discrete sign carrier `{+1, -1}` has exponent 2 (`s * s = 1`), so it contains no element
 of order greater than 2 and fails the connectedness shadow. -/
@@ -249,14 +249,14 @@ theorem u1_phase_structure_master_synthesis :
    wHalf_sq_eq_u345,
    finite_torsion_grid_covers_unit_interval⟩
 
-end U1Fable.PhaseSynthesis
+end U1Finite.PhaseSynthesis
 
-#print axioms U1Fable.PhaseSynthesis.sign_carrier_exponent_two
-#print axioms U1Fable.PhaseSynthesis.split_complex_vs_elliptic_anisotropy
-#print axioms U1Fable.PhaseSynthesis.affine_cayley_puncture_and_projective_closure
-#print axioms U1Fable.PhaseSynthesis.pythagorean_circle_divisibility_and_hom_obstruction
-#print axioms U1Fable.PhaseSynthesis.torsion_tower_vs_pythagorean_circle_duality
-#print axioms U1Fable.PhaseSynthesis.algebraic_half_angle_and_precompact_cauchy_bridge
-#print axioms U1Fable.PhaseSynthesis.chebyshev_taylor_and_hermitian_qi_bridge
-#print axioms U1Fable.PhaseSynthesis.iterated_quadratic_tower_and_cayley_stone_bridge
-#print axioms U1Fable.PhaseSynthesis.u1_phase_structure_master_synthesis
+#print axioms U1Finite.PhaseSynthesis.sign_carrier_exponent_two
+#print axioms U1Finite.PhaseSynthesis.split_complex_vs_elliptic_anisotropy
+#print axioms U1Finite.PhaseSynthesis.affine_cayley_puncture_and_projective_closure
+#print axioms U1Finite.PhaseSynthesis.pythagorean_circle_divisibility_and_hom_obstruction
+#print axioms U1Finite.PhaseSynthesis.torsion_tower_vs_pythagorean_circle_duality
+#print axioms U1Finite.PhaseSynthesis.algebraic_half_angle_and_precompact_cauchy_bridge
+#print axioms U1Finite.PhaseSynthesis.chebyshev_taylor_and_hermitian_qi_bridge
+#print axioms U1Finite.PhaseSynthesis.iterated_quadratic_tower_and_cayley_stone_bridge
+#print axioms U1Finite.PhaseSynthesis.u1_phase_structure_master_synthesis

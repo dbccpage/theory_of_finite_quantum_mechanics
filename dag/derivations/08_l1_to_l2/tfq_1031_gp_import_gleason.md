@@ -35,12 +35,12 @@ imported (OracleNeeded firewall, GTOC-8)
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignGpImportGleason.lean::twoLabelsBelowThree`
-- `lean4/CampaignGpImportGleason.lean::dimensionExtraFails`
-- `lean4/CampaignGpImportGleason.lean::noThreeDistinctLabels`
-- `lean4/CampaignGpImportGleason.lean::squaredWeights`
-- `lean4/CampaignGpImportGleason.lean::unitPairingsAgree`
-- `lean4/CampaignGpImportGleason.lean::falseIndicatorDisagrees`
+- `lean4/GleasonImport.lean::twoLabelsBelowThree`
+- `lean4/GleasonImport.lean::dimensionExtraFails`
+- `lean4/GleasonImport.lean::noThreeDistinctLabels`
+- `lean4/GleasonImport.lean::squaredWeights`
+- `lean4/GleasonImport.lean::unitPairingsAgree`
+- `lean4/GleasonImport.lean::falseIndicatorDisagrees`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

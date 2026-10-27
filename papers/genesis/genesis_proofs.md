@@ -395,9 +395,9 @@ Reading L (the inscription $\langle\rangle$ supplied but not admitted) and readi
 Lean: `lean4/Imported/Genesis19l57g1/Derivation/Inertia.lean::supply_no_op`,
 `lean4/Imported/OeGenPrimitives/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_filter_supply`,
 `lean4/Imported/OeGenPrimitives/SupplyErasure.lean::GenesisPrimitives.SupplyErasure.replayE_supply_only`.
-The array and source representations of `lean4/CampaignGenesisReplayRefinement.lean` restate
+The array and source representations of `lean4/GenesisReplayRefinement.lean` restate
 these for the engine's five-field encoding (for example
-`lean4/CampaignGenesisReplayRefinement.lean::CampaignGenesisReplayRefinement.array_supply_erasure`);
+`lean4/GenesisReplayRefinement.lean::GenesisReplayRefinement.array_supply_erasure`);
 refinement of the Python and Rust programs is not claimed.
 
 ### 3.2 Collapse without instances
@@ -872,8 +872,8 @@ that alters the names, and it maps equal names to equal names. $\square$
 Lean: `lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean::fewest_changes_A`,
 `lean4/Imported/GenesisOngoing/H3V7N5QF/Paths.lean::reach_by_edits`,
 `lean4/Imported/GenesisOngoing/H3V7N5QF/Cost.lean::Reach.names_stay_merged`. The wire and source
-refinements of `lean4/CampaignGenesisOngoingRefinement.lean` (for example
-`lean4/CampaignGenesisOngoingRefinement.lean::CampaignGenesisOngoingRefinement.costA_exact`)
+refinements of `lean4/GenesisOngoingRefinement.lean` (for example
+`lean4/GenesisOngoingRefinement.lean::GenesisOngoingRefinement.costA_exact`)
 restate the bounds for the engine encoding.
 
 ### 4.3 Every finite legal state is reachable
@@ -1242,15 +1242,15 @@ So an $\ell^1$ minimizer need not be unique and need not be the harmonic residua
 also defines a categorical adjunction; the pair $d_0,d_0^{\mathsf T}$ is not one, and nothing here
 is claimed about adjunctions.
 
-Lean: `lean4/CampaignSnE08WeightedL1Duality.lean::weighted_l1_strong_duality`,
-`lean4/CampaignSnE08WeightedL1Duality.lean::e08_rational`,
-`lean4/CampaignSnE08WeightedL1Duality.lean::lp_strong_duality`,
-`lean4/CampaignSnE08WeightedL1Duality.lean::farkas`,
-`lean4/CampaignSnE08WeightedL1Duality.lean::certificate_optimal`,
-`lean4/CampaignSnE08WeightedL1Duality.lean::cyc_optimum`,
-`lean4/CampaignSnE08WeightedL1Duality.lean::cyc_residuals_differ`,
-`lean4/CampaignSnE08WeightedL1Duality.lean::cyc_harmonic`,
-`lean4/CampaignSnE08WeightedL1Duality.lean::adjunctionCochain_not_cycD_transpose`.
+Lean: `lean4/WeightedL1Duality.lean::weighted_l1_strong_duality`,
+`lean4/WeightedL1Duality.lean::e08_rational`,
+`lean4/WeightedL1Duality.lean::lp_strong_duality`,
+`lean4/WeightedL1Duality.lean::farkas`,
+`lean4/WeightedL1Duality.lean::certificate_optimal`,
+`lean4/WeightedL1Duality.lean::cyc_optimum`,
+`lean4/WeightedL1Duality.lean::cyc_residuals_differ`,
+`lean4/WeightedL1Duality.lean::cyc_harmonic`,
+`lean4/WeightedL1Duality.lean::adjunctionCochain_not_cycD_transpose`.
 `lean4/Imported/L1ObstructionFramework/lp_general_certificate.lean::general_finite_certificate_optimality`
 states the certificate over integer lists, with an arbitrary coboundary map in place of $d_0$.
 

@@ -1,6 +1,6 @@
 import PromptStructure
-import H061DynamicsDichotomy
-import H059RationalSector
+import DynamicsDichotomy
+import RationalSector
 import Mathlib.LinearAlgebra.Matrix.Trace
 import Mathlib.Tactic.NormNum.IsSquare
 import Mathlib.Data.Rat.Lemmas
@@ -81,26 +81,26 @@ theorem finite_ccr (n : ℕ) (hn : 0<n)
   exact (mul_eq_zero.mp ht.symm).resolve_right hnq
 
 theorem dichotomy_integer_numerator (n : ℕ) :
-    (FableHilbertWalk20260819.H061.pythPower n).2≠0 :=
-  FableHilbertWalk20260819.H061.pythPower_im_ne_zero n
+    (HilbertWalk.DynamicsDichotomy.pythPower n).2≠0 :=
+  HilbertWalk.DynamicsDichotomy.pythPower_im_ne_zero n
 
 theorem stone_no_report_root : ¬ ∃ f : Bool → Bool,
-    ∀ b, f (f b)=FableHilbertWalk20260819.H055.toggle b :=
-  FableHilbertWalk20260819.H055.no_bool_half_step
+    ∀ b, f (f b)=HilbertWalk.DiscreteDynamicsStone.toggle b :=
+  HilbertWalk.DiscreteDynamicsStone.no_bool_half_step
 
 theorem stone_two_scaled_roots :
-    FableHilbertWalk20260819.H055.mat2g_mul
-      FableHilbertWalk20260819.H055.neg_M_scaled
-      FableHilbertWalk20260819.H055.neg_M_scaled =
-      FableHilbertWalk20260819.H055.four_X ∧
-    FableHilbertWalk20260819.H055.neg_M_scaled≠
-      FableHilbertWalk20260819.H055.M_scaled :=
-  FableHilbertWalk20260819.H055.interpolant_not_unique
+    HilbertWalk.DiscreteDynamicsStone.mat2g_mul
+      HilbertWalk.DiscreteDynamicsStone.neg_M_scaled
+      HilbertWalk.DiscreteDynamicsStone.neg_M_scaled =
+      HilbertWalk.DiscreteDynamicsStone.four_X ∧
+    HilbertWalk.DiscreteDynamicsStone.neg_M_scaled≠
+      HilbertWalk.DiscreteDynamicsStone.M_scaled :=
+  HilbertWalk.DiscreteDynamicsStone.interpolant_not_unique
 
 theorem everett_finegraining (p0 p1 D : ℕ) (hD : D>0) (hs : p0+p1=D) :
-    ∃ fg : FableHilbertWalk20260819.H059.FineGraining2,
-      FableHilbertWalk20260819.H059.ReproducesPair fg p0 p1 D :=
-  FableHilbertWalk20260819.H059.rational_finegraining_exists p0 p1 D hD hs
+    ∃ fg : HilbertWalk.RationalSector.FineGraining2,
+      HilbertWalk.RationalSector.ReproducesPair fg p0 p1 D :=
+  HilbertWalk.RationalSector.rational_finegraining_exists p0 p1 D hD hs
 
 -- Full rational domain, not four hand-picked rational candidates.
 theorem everett_no_rational_root (x : ℚ) : 5*x^2-5*x+1≠0 := by

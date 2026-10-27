@@ -3,7 +3,7 @@
 # proof_status vocabulary: proposed | defined | computed | proved |
 #   proved_conditional | refuted | quarantined
 # Every lean_theorems entry names a declaration compiled by
-#   `lake build FableHilbertWalk20260819` at the revision in
+#   `lake build HilbertWalk` at the revision in
 #   build_receipt.md. HWKernel is an implicit input_module of
 #   every rung (all campaign files import it); it is not repeated
 #   in each input_modules list.
@@ -11,7 +11,7 @@
 - id: H000
   name: finite_presented_carrier
   input_claims: [J011-mini-spine]
-  input_modules: [Core, E003_projection_fiber_primitive_difference, E005_fiber_quotient_equivalence]
+  input_modules: [Core, ProjectionFiberPrimitiveDifference, FiberQuotientEquivalence]
   added_structure: [presentation_map, finite_enumeration_Enum]
   construction: "PresentedCarrier pack; same-report relation as trunk fiberPD zero-relation"
   preserved_invariants: [report_equality]
@@ -45,7 +45,7 @@
 - id: H002
   name: report_dynamics
   input_claims: [HW-H001]
-  input_modules: [Core, E011_fiber_dynamics_congruence, E012_unique_descended_dynamics, E018_descent_failure_without_escape]
+  input_modules: [Core, FiberDynamicsCongruence, UniqueDescendedDynamics, DescentFailureWithoutEscape]
   added_structure: [report_map_tau]
   construction: "fiberwise pushforward of weights along tau"
   preserved_invariants: [total_mass_under_any_tau]

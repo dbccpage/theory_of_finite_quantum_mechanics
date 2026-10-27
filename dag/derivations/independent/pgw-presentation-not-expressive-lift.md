@@ -109,7 +109,7 @@ holds for the two definitions above, and that is all it says: it unfolds the def
 
 ## 4. Connection to Genesis Regime Replay
 
-In `lean4/CampaignPgwPresentationLift.lean` (a self-contained copy of a minimal regime record, not an import of `lean4/GenesisComputation.lean`), a regime with 2 data marks and no forms ($r = \langle 2, [], [], [], [] \rangle$) is defined. It is a separate model from the one in Sections 2 and 3: no Lean declaration links $q$ to $\mathrm{UnarySep}$.
+In `lean4/PregenesisPresentationLift.lean` (a self-contained copy of a minimal regime record, not an import of `lean4/GenesisComputation.lean`), a regime with 2 data marks and no forms ($r = \langle 2, [], [], [], [] \rangle$) is defined. It is a separate model from the one in Sections 2 and 3: no Lean declaration links $q$ to $\mathrm{UnarySep}$.
 A unary separation between data $i$ and $j$ requires the existence of a form index $f < \mathrm{length}(r.\mathrm{forms}) = 0$. Since no natural number is strictly less than 0, no separating form exists:
 $$\forall i, j, \; \neg \mathrm{UnarySep}(r, i, j)$$
 Thus, both $\mathrm{UnarySep}(r, 0, 1)$ and $\mathrm{UnarySep}(r, 1, 0)$ are false, which proves:
@@ -130,7 +130,7 @@ This constructively confirms the unformed mark collapse theorem (`two_marks_in_u
 6. **Exact Non-Collapse**: Under `exactInscription`, $x \sim y \implies x = y$, so $[x_0] \neq [x_1]$ and $|N_{\text{exact}}| = 2$.
 7. **Convention Characterization**: Distinct presentations share an internal class if and only if the identity convention is `opaqueConv`.
 8. **Genesis Unformed Regime**: Two marks in an unformed regime ($0$ forms) are constructively proven collapsed.
-9. **Lean 4 module**: The model-level facts above are declarations in `lean4/CampaignPgwPresentationLift.lean`, rebuilt under Lean 4.35.0 in the PR 185 review with no `sorry`, `admit`, custom `axiom`, `native_decide` or `unsafe`, and axioms within $\{propext, Classical.choice, Quot.sound\}$.
+9. **Lean 4 module**: The model-level facts above are declarations in `lean4/PregenesisPresentationLift.lean`, rebuilt under Lean 4.35.0 in the PR 185 review with no `sorry`, `admit`, custom `axiom`, `native_decide` or `unsafe`, and axioms within $\{propext, Classical.choice, Quot.sound\}$.
 10. **Model re-encoding**: `checks/independent/pgw-presentation-not-expressive-lift.py` re-encodes the same two-inscription model in plain Python with no repository imports and recomputes the cardinalities 1, 2, 1 and 2. It checks the model, not the statement: it is the same model in a second language, not a second route to the claim.
 
 ---

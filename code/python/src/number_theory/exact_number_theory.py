@@ -1,6 +1,6 @@
 """Exact Q[x] arithmetic, cyclotomic polynomials, and the conductor 120.
 
-Origin: lean4/H052CyclotomicTowerDirected.lean theorem cyclotomic_tower_is_directed,
+Origin: lean4/CyclotomicTowerDirected.lean theorem cyclotomic_tower_is_directed,
 theorem subfield_inclusion_trans, and theorem all_targets_embed_in_lcm_conductor.
 targetConductors is 1, 2, 3, 4, 5, 8, 12 and targetLcmConductor is 120.
 Claim: urn:omega:fqm:number:conductor-120-divisibility:v1

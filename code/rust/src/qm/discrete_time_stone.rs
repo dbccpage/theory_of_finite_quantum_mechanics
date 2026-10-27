@@ -3,7 +3,7 @@
 //!
 //! Replays in exact rational arithmetic the Lean specification
 //! `dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec/DiscreteTimeStoneSpec.lean`
-//! (namespace `BornFable.DiscreteTime`) for node FQ-GAP-STONE-CONTINUOUS-TIME and mirrors,
+//! (namespace `BornFinite.DiscreteTime`) for node FQ-GAP-STONE-CONTINUOUS-TIME and mirrors,
 //! function for function, the Python twin `code/python/src/qm/discrete_time_stone.py`.
 //! Specified there: the ℚ-parameter group `QParamGroup` (`U 0 = 1`, `U (s + t) = U s * U t`),
 //! the discrete evolution `discreteEvolution u k = u ^ k` with `discreteEvolution_add`,
@@ -53,7 +53,7 @@ pub const AUTHORITY_FENCE: &str = "AuthorityEffect None; not PROVED; no continuo
 
 pub const PROVENANCE: &str = "Replays the Lean specification \
      dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec/DiscreteTimeStoneSpec.lean \
-     (node FQ-GAP-STONE-CONTINUOUS-TIME, namespace BornFable.DiscreteTime: QParamGroup, \
+     (node FQ-GAP-STONE-CONTINUOUS-TIME, namespace BornFinite.DiscreteTime: QParamGroup, \
      discreteEvolution, U_int, U_eq_discreteEvolution, U_inv_nat, roots_of_all_orders, sq_root_neg, \
      neg_ne_self_of_ne_zero, half_step_not_unique, matrix_half_step_not_unique, R345_orthogonal, \
      R345_det, R345_pow_orthogonal, four_fifths_not_rat_square, no_rational_half_step, \
@@ -893,7 +893,7 @@ mod tests {
         assert!(PROVENANCE.contains("fq_gap_stone_rational_rotation_infinite_order_and_zi_non_field_obstruction"));
         assert!(PROVENANCE.contains("code/python/src/qm/discrete_time_stone.py"));
         for theorem in [
-            "BornFable.DiscreteTime",
+            "BornFinite.DiscreteTime",
             "QParamGroup",
             "discreteEvolution",
             "U_eq_discreteEvolution",

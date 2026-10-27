@@ -43,22 +43,22 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignDfmGribovContinuumFence.lean`
+### Lean: `lean4/DressingFieldGribovContinuumFence.lean`
 
-- file: [lean4/CampaignDfmGribovContinuumFence.lean](../../../lean4/CampaignDfmGribovContinuumFence.lean)
-- sha256 (`bytes`): `705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6`
-- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-gribov-continuum-fence_lean_replay.json (CampaignDfmGribovContinuumFence), record TFQ-1132
+- file: [lean4/DressingFieldGribovContinuumFence.lean](../../../lean4/DressingFieldGribovContinuumFence.lean)
+- sha256 (`bytes`): `5fc39e796df35b9b985b8b6371a866c117a3c61f9671ee8a25f98b60a04b12b7`
+- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-gribov-continuum-fence_lean_replay.json (DressingFieldGribovContinuumFence), record TFQ-1132
 - replay: `verified`
-  - receipt [dag/research/campaign_dfm-gribov-continuum-fence_lean_replay.json](../../../dag/research/campaign_dfm-gribov-continuum-fence_lean_replay.json) (module `CampaignDfmGribovContinuumFence`): recorded sha256 `705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignDfmGribovContinuumFence`
+  - receipt [dag/research/campaign_dfm-gribov-continuum-fence_lean_replay.json](../../../dag/research/campaign_dfm-gribov-continuum-fence_lean_replay.json) (module `DressingFieldGribovContinuumFence`): recorded sha256 `5fc39e796df35b9b985b8b6371a866c117a3c61f9671ee8a25f98b60a04b12b7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build DressingFieldGribovContinuumFence`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignDfmGribovContinuumFence.forms_differ` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmGribovContinuumFence.forms_differ` |
-| `CampaignDfmGribovContinuumFence.h12_square` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmGribovContinuumFence.h12_square` |
-| `CampaignDfmGribovContinuumFence.h23_square` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmGribovContinuumFence.h23_square` |
-| `CampaignDfmGribovContinuumFence.omega1_square_and_det` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmGribovContinuumFence.omega1_square_and_det` |
-| `CampaignDfmGribovContinuumFence.trace_pair` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmGribovContinuumFence.trace_pair` |
+| `DressingFieldGribovContinuumFence.forms_differ` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldGribovContinuumFence.forms_differ` |
+| `DressingFieldGribovContinuumFence.h12_square` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldGribovContinuumFence.h12_square` |
+| `DressingFieldGribovContinuumFence.h23_square` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldGribovContinuumFence.h23_square` |
+| `DressingFieldGribovContinuumFence.omega1_square_and_det` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldGribovContinuumFence.omega1_square_and_det` |
+| `DressingFieldGribovContinuumFence.trace_pair` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldGribovContinuumFence.trace_pair` |
 | `forms_differ` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms forms_differ` |
 | `h12_square` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms h12_square` |
 | `h23_square` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms h23_square` |
@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md](../../../dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md)
-- sha256 (`lf-normalised`): `b1e7979bddfb2132be45d23ef4881d9f680d5603ffd1c269a843503c9767cf0b`
+- sha256 (`lf-normalised`): `4ecb1e1b5da9862860ee66b51f45865f5c81232cfdfe38ff83e531ad37f22a39`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1132
 - counts toward the grade: no
@@ -85,7 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/dfm-gribov-continuum-fence.md`
 
 - file: [dag/derivations/independent/dfm-gribov-continuum-fence.md](../../../dag/derivations/independent/dfm-gribov-continuum-fence.md)
-- sha256 (`lf-normalised`): `30efabc8fefb717e838a46d81cda47c89f27a736091363d49e8ed36675fac79e`
+- sha256 (`lf-normalised`): `19149f01a88b5d6441c19665a2d0e2e91ea0a1c4185edd2294ca8f8b6be544e6`
 - cited in: node.source
 - counts toward the grade: yes
 

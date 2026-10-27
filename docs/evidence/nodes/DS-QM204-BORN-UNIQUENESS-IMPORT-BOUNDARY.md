@@ -45,30 +45,30 @@ QM_204 ledger: stub "Band slot reserved" (QM_204-C0); content carried by QM-210-
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignDsQm204BornUniqueness.lean`
+### Lean: `lean4/BornUniquenessIntegerSlice.lean`
 
-- file: [lean4/CampaignDsQm204BornUniqueness.lean](../../../lean4/CampaignDsQm204BornUniqueness.lean)
-- sha256 (`bytes`): `bdd2ceee31b1ef7921444cb238d9ef940b188d5fafaad510e27cc70fa6ecfe53`
-- cited in: node.lean, receipt dag/research/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json (CampaignDsQm204BornUniqueness), record TFQ-1043
+- file: [lean4/BornUniquenessIntegerSlice.lean](../../../lean4/BornUniquenessIntegerSlice.lean)
+- sha256 (`bytes`): `b864a81a1b53f2fbd8c94d77ee31217f7b487fec0470f158d1c79c9388422b14`
+- cited in: node.lean, receipt dag/research/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json (BornUniquenessIntegerSlice), record TFQ-1043
 - replay: `verified`
-  - receipt [dag/research/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json](../../../dag/research/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json) (module `CampaignDsQm204BornUniqueness`): recorded sha256 `bdd2ceee31b1ef7921444cb238d9ef940b188d5fafaad510e27cc70fa6ecfe53` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignDsQm204BornUniqueness`
+  - receipt [dag/research/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json](../../../dag/research/campaign_ds-qm204-born-uniqueness-import-boundary_lean_replay.json) (module `BornUniquenessIntegerSlice`): recorded sha256 `b864a81a1b53f2fbd8c94d77ee31217f7b487fec0470f158d1c79c9388422b14` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build BornUniquenessIntegerSlice`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignDsQm204BornUniqueness.addSq` | yes | yes | yes | propext | `#print axioms CampaignDsQm204BornUniqueness.addSq` |
-| `CampaignDsQm204BornUniqueness.cross` | yes | yes | yes | propext | `#print axioms CampaignDsQm204BornUniqueness.cross` |
-| `CampaignDsQm204BornUniqueness.denom34` | yes | yes | yes | none | `#print axioms CampaignDsQm204BornUniqueness.denom34` |
-| `CampaignDsQm204BornUniqueness.expandRight` | yes | yes | yes | propext | `#print axioms CampaignDsQm204BornUniqueness.expandRight` |
-| `CampaignDsQm204BornUniqueness.fourths34` | yes | yes | yes | none | `#print axioms CampaignDsQm204BornUniqueness.fourths34` |
-| `CampaignDsQm204BornUniqueness.linearSeparates` | yes | yes | yes | none | `#print axioms CampaignDsQm204BornUniqueness.linearSeparates` |
-| `CampaignDsQm204BornUniqueness.pairNorm` | yes | yes | yes | propext | `#print axioms CampaignDsQm204BornUniqueness.pairNorm` |
-| `CampaignDsQm204BornUniqueness.quarticSeparates` | yes | yes | yes | none | `#print axioms CampaignDsQm204BornUniqueness.quarticSeparates` |
-| `CampaignDsQm204BornUniqueness.rot` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsQm204BornUniqueness.rot` |
-| `CampaignDsQm204BornUniqueness.rotWitness` | yes | yes | yes | none | `#print axioms CampaignDsQm204BornUniqueness.rotWitness` |
-| `CampaignDsQm204BornUniqueness.sqPair` | yes | yes | yes | propext | `#print axioms CampaignDsQm204BornUniqueness.sqPair` |
-| `CampaignDsQm204BornUniqueness.squares34` | yes | yes | yes | none | `#print axioms CampaignDsQm204BornUniqueness.squares34` |
-| `CampaignDsQm204BornUniqueness.subSq` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsQm204BornUniqueness.subSq` |
+| `BornUniquenessIntegerSlice.addSq` | yes | yes | yes | propext | `#print axioms BornUniquenessIntegerSlice.addSq` |
+| `BornUniquenessIntegerSlice.cross` | yes | yes | yes | propext | `#print axioms BornUniquenessIntegerSlice.cross` |
+| `BornUniquenessIntegerSlice.denom34` | yes | yes | yes | none | `#print axioms BornUniquenessIntegerSlice.denom34` |
+| `BornUniquenessIntegerSlice.expandRight` | yes | yes | yes | propext | `#print axioms BornUniquenessIntegerSlice.expandRight` |
+| `BornUniquenessIntegerSlice.fourths34` | yes | yes | yes | none | `#print axioms BornUniquenessIntegerSlice.fourths34` |
+| `BornUniquenessIntegerSlice.linearSeparates` | yes | yes | yes | none | `#print axioms BornUniquenessIntegerSlice.linearSeparates` |
+| `BornUniquenessIntegerSlice.pairNorm` | yes | yes | yes | propext | `#print axioms BornUniquenessIntegerSlice.pairNorm` |
+| `BornUniquenessIntegerSlice.quarticSeparates` | yes | yes | yes | none | `#print axioms BornUniquenessIntegerSlice.quarticSeparates` |
+| `BornUniquenessIntegerSlice.rot` | yes | yes | yes | Quot.sound, propext | `#print axioms BornUniquenessIntegerSlice.rot` |
+| `BornUniquenessIntegerSlice.rotWitness` | yes | yes | yes | none | `#print axioms BornUniquenessIntegerSlice.rotWitness` |
+| `BornUniquenessIntegerSlice.sqPair` | yes | yes | yes | propext | `#print axioms BornUniquenessIntegerSlice.sqPair` |
+| `BornUniquenessIntegerSlice.squares34` | yes | yes | yes | none | `#print axioms BornUniquenessIntegerSlice.squares34` |
+| `BornUniquenessIntegerSlice.subSq` | yes | yes | yes | Quot.sound, propext | `#print axioms BornUniquenessIntegerSlice.subSq` |
 
 - counts toward the grade: yes
 
@@ -112,7 +112,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1043_ds_qm204_born_uniqueness_import_boundary.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1043_ds_qm204_born_uniqueness_import_boundary.md](../../../dag/derivations/12_finite_qm_structure/tfq_1043_ds_qm204_born_uniqueness_import_boundary.md)
-- sha256 (`lf-normalised`): `7d26895dad68025ab0e087835b36987ed690e332058c5a89cad070de0d7f70b7`
+- sha256 (`lf-normalised`): `ac2fe1044c679d5e0c78eebe2b93102937c810d0e011bdc30d4106c636751a23`
 - generated view: listed, not counted
 - cited in: record TFQ-1043
 - counts toward the grade: no

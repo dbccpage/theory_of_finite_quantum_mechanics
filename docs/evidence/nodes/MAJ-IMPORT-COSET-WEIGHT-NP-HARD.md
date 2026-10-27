@@ -42,26 +42,26 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignMajImportCosetWeight.lean`
+### Lean: `lean4/MajoranaCosetWeightImport.lean`
 
-- file: [lean4/CampaignMajImportCosetWeight.lean](../../../lean4/CampaignMajImportCosetWeight.lean)
-- sha256 (`bytes`): `29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008`
-- cited in: node.lean, receipt dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json (CampaignMajImportCosetWeight), record TFQ-1157
+- file: [lean4/MajoranaCosetWeightImport.lean](../../../lean4/MajoranaCosetWeightImport.lean)
+- sha256 (`bytes`): `4e3261fbe2ccdee609984f50074beb6d596465041a272c528ae4c7d3640918b8`
+- cited in: node.lean, receipt dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json (MajoranaCosetWeightImport), record TFQ-1157
 - replay: `verified`
-  - receipt [dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json](../../../dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json) (module `CampaignMajImportCosetWeight`): recorded sha256 `29b2497864b3b9c7e9b9500c6c90cbb902df4b81029253c70acc2923d1971008` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignMajImportCosetWeight`
+  - receipt [dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json](../../../dag/research/campaign_maj-import-coset-weight-np-hard_lean_replay.json) (module `MajoranaCosetWeightImport`): recorded sha256 `4e3261fbe2ccdee609984f50074beb6d596465041a272c528ae4c7d3640918b8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build MajoranaCosetWeightImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignMajImportCosetWeight.coset_is` | yes | yes | yes | none | `#print axioms CampaignMajImportCosetWeight.coset_is` |
-| `CampaignMajImportCosetWeight.coset_weights` | yes | yes | yes | none | `#print axioms CampaignMajImportCosetWeight.coset_weights` |
-| `CampaignMajImportCosetWeight.kernel_is` | yes | yes | yes | none | `#print axioms CampaignMajImportCosetWeight.kernel_is` |
-| `CampaignMajImportCosetWeight.label_one_coordinates` | yes | yes | yes | none | `#print axioms CampaignMajImportCosetWeight.label_one_coordinates` |
-| `CampaignMajImportCosetWeight.length_sixteen` | yes | yes | yes | none | `#print axioms CampaignMajImportCosetWeight.length_sixteen` |
-| `CampaignMajImportCosetWeight.min_weight_one` | yes | yes | yes | none | `#print axioms CampaignMajImportCosetWeight.min_weight_one` |
-| `CampaignMajImportCosetWeight.row1_matches` | yes | yes | yes | none | `#print axioms CampaignMajImportCosetWeight.row1_matches` |
-| `CampaignMajImportCosetWeight.row2_matches` | yes | yes | yes | none | `#print axioms CampaignMajImportCosetWeight.row2_matches` |
-| `CampaignMajImportCosetWeight.weight_one_labels` | yes | yes | yes | none | `#print axioms CampaignMajImportCosetWeight.weight_one_labels` |
+| `MajoranaCosetWeightImport.coset_is` | yes | yes | yes | none | `#print axioms MajoranaCosetWeightImport.coset_is` |
+| `MajoranaCosetWeightImport.coset_weights` | yes | yes | yes | none | `#print axioms MajoranaCosetWeightImport.coset_weights` |
+| `MajoranaCosetWeightImport.kernel_is` | yes | yes | yes | none | `#print axioms MajoranaCosetWeightImport.kernel_is` |
+| `MajoranaCosetWeightImport.label_one_coordinates` | yes | yes | yes | none | `#print axioms MajoranaCosetWeightImport.label_one_coordinates` |
+| `MajoranaCosetWeightImport.length_sixteen` | yes | yes | yes | none | `#print axioms MajoranaCosetWeightImport.length_sixteen` |
+| `MajoranaCosetWeightImport.min_weight_one` | yes | yes | yes | none | `#print axioms MajoranaCosetWeightImport.min_weight_one` |
+| `MajoranaCosetWeightImport.row1_matches` | yes | yes | yes | none | `#print axioms MajoranaCosetWeightImport.row1_matches` |
+| `MajoranaCosetWeightImport.row2_matches` | yes | yes | yes | none | `#print axioms MajoranaCosetWeightImport.row2_matches` |
+| `MajoranaCosetWeightImport.weight_one_labels` | yes | yes | yes | none | `#print axioms MajoranaCosetWeightImport.weight_one_labels` |
 | `coset_is` | yes | yes | yes | none | `#print axioms coset_is` |
 | `coset_weights` | yes | yes | yes | none | `#print axioms coset_weights` |
 | `kernel_is` | yes | yes | yes | none | `#print axioms kernel_is` |
@@ -89,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md`
 
 - file: [dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md](../../../dag/derivations/28_majorana/tfq_1157_maj_import_coset_weight_np_hard.md)
-- sha256 (`lf-normalised`): `176c50469ad99b8712bfde39890c6f141f7d4f42ab337c65d6c361132ba52218`
+- sha256 (`lf-normalised`): `1d3837d997309cbd919cd4d870f1ed915b7307a9befed59b4d74a0f66aaac2c3`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1157
 - counts toward the grade: no

@@ -24,7 +24,7 @@ function is checked on a common bound, and additivity on a ℚ-module already gi
 (`AddMonoidHom.toRatLinearMap`).  No continuity, real scalars, or matrix structure is used.
 -/
 
-namespace BornFable
+namespace BornFinite
 
 variable {V : Type*} [AddCommGroup V] [Module ℚ V]
 
@@ -306,25 +306,25 @@ theorem linear_extension (hU : S.IsOrderUnit) (W : EffectValuation S) :
 
 end OrderedQUnit
 
-end BornFable
+end BornFinite
 
-#print axioms BornFable.OrderedQUnit.bounded_mono
-#print axioms BornFable.OrderedQUnit.bounded_add
-#print axioms BornFable.OrderedQUnit.bounded_of_effect
-#print axioms BornFable.OrderedQUnit.midpoint_effect
-#print axioms BornFable.OrderedQUnit.extAt_add
-#print axioms BornFable.OrderedQUnit.extAt_mono
-#print axioms BornFable.OrderedQUnit.extAt_eq
-#print axioms BornFable.OrderedQUnit.bound_pos
-#print axioms BornFable.OrderedQUnit.bounded_bound
-#print axioms BornFable.OrderedQUnit.extend_eq_extAt
-#print axioms BornFable.OrderedQUnit.extend_add
-#print axioms BornFable.OrderedQUnit.extend_effect
-#print axioms BornFable.OrderedQUnit.extend_nonneg
-#print axioms BornFable.OrderedQUnit.extend_u
-#print axioms BornFable.OrderedQUnit.extendₗ_apply
-#print axioms BornFable.OrderedQUnit.extendₗ_effect
-#print axioms BornFable.OrderedQUnit.extendₗ_nonneg
-#print axioms BornFable.OrderedQUnit.extendₗ_u
-#print axioms BornFable.OrderedQUnit.extend_unique
-#print axioms BornFable.OrderedQUnit.linear_extension
+#print axioms BornFinite.OrderedQUnit.bounded_mono
+#print axioms BornFinite.OrderedQUnit.bounded_add
+#print axioms BornFinite.OrderedQUnit.bounded_of_effect
+#print axioms BornFinite.OrderedQUnit.midpoint_effect
+#print axioms BornFinite.OrderedQUnit.extAt_add
+#print axioms BornFinite.OrderedQUnit.extAt_mono
+#print axioms BornFinite.OrderedQUnit.extAt_eq
+#print axioms BornFinite.OrderedQUnit.bound_pos
+#print axioms BornFinite.OrderedQUnit.bounded_bound
+#print axioms BornFinite.OrderedQUnit.extend_eq_extAt
+#print axioms BornFinite.OrderedQUnit.extend_add
+#print axioms BornFinite.OrderedQUnit.extend_effect
+#print axioms BornFinite.OrderedQUnit.extend_nonneg
+#print axioms BornFinite.OrderedQUnit.extend_u
+#print axioms BornFinite.OrderedQUnit.extendₗ_apply
+#print axioms BornFinite.OrderedQUnit.extendₗ_effect
+#print axioms BornFinite.OrderedQUnit.extendₗ_nonneg
+#print axioms BornFinite.OrderedQUnit.extendₗ_u
+#print axioms BornFinite.OrderedQUnit.extend_unique
+#print axioms BornFinite.OrderedQUnit.linear_extension

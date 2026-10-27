@@ -22,7 +22,7 @@ The intended adjoint identity is `γ5 D γ5 = D†`. The bookkeeping that would 
 
 ## What is proved
 
-In `lean4/CampaignFspWilsonDiracGamma5.lean`, with axioms `propext`, `Classical.choice`, and `Quot.sound`:
+In `lean4/FermionSignWilsonDiracGamma5.lean`, with axioms `propext`, `Classical.choice`, and `Quot.sound`:
 
 - `euclideanClifford2` is a Euclidean Clifford representation in dimension 2 on spin space `Fin 2`. The matrices are `γ0 = [[0, 1], [1, 0]]`, `γ1 = [[1, 0], [0, -1]]`, and `γ5 = [[0, I], [-I, 0]]`.
 - `euclideanClifford4` is a Euclidean Clifford representation in dimension 4 on spin space `Fin 2 ⊕ Fin 2`, with the chiral block form `γ_k = off( (-I) σ_k , I σ_k )` for `k = 0, 1, 2`, `γ3 = off(1, 1)`, and `γ5 = diag(1, -1)`.

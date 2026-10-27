@@ -5,7 +5,7 @@
 
 
 
-namespace FableHilbertWalk20260819.HWKernel
+namespace HilbertWalk.HWKernel
 
 
 structure StarRingPack (K : Type) where
@@ -626,7 +626,7 @@ theorem f2_one_plus_one :
 #print axioms Rat.mul_add
 #print axioms Rat.mul_zero
 
-end FableHilbertWalk20260819.HWKernel
+end HilbertWalk.HWKernel
 
 private def l5aProvenance : String :=
   "Origin: lean4/HWKernel.lean Claim: add_zero AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

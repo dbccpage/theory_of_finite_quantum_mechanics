@@ -61,14 +61,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H053EverettForkingTree.lean`
+### Lean: `lean4/EverettForkingTree.lean`
 
-- file: [lean4/H053EverettForkingTree.lean](../../../lean4/H053EverettForkingTree.lean)
-- sha256 (`bytes`): `8730f0cdd32665b8aa902d31fe2bc2b99a5dcde35cf3ccb8f99019c952698b59`
+- file: [lean4/EverettForkingTree.lean](../../../lean4/EverettForkingTree.lean)
+- sha256 (`bytes`): `1dc256ecbad36c8d1a3cb128ba67fab5efc37880d9a58d58698dfc4765646b0e`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H053EverettForkingTree`): recorded sha256 `8730f0cdd32665b8aa902d31fe2bc2b99a5dcde35cf3ccb8f99019c952698b59` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H053EverettForkingTree`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `EverettForkingTree`): recorded sha256 `1dc256ecbad36c8d1a3cb128ba67fab5efc37880d9a58d58698dfc4765646b0e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build EverettForkingTree`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|

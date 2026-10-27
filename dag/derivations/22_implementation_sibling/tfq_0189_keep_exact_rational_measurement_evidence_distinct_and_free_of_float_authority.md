@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Exact measurement evidence is the ExactRational and Integer arms of MeasurementValue, and it stays distinct from the other arms. src/measurement_kernel.rs documents that no governance-critical decision may depend on raw f64, and GovernanceScalar accepts Exact of BigRational, Integer, and Boolean only. H058EffectFrameBusch.lean, AuthorityEffect None, works in Rat and says its squeeze lemma is not a density or completion theorem. The obligation is to let an exact rational measurement authorize a finite comparison only as that rational, not by passing through a display float.
+Exact measurement evidence is the ExactRational and Integer arms of MeasurementValue, and it stays distinct from the other arms. src/measurement_kernel.rs documents that no governance-critical decision may depend on raw f64, and GovernanceScalar accepts Exact of BigRational, Integer, and Boolean only. EffectFrameBusch.lean, AuthorityEffect None, works in Rat and says its squeeze lemma is not a density or completion theorem. The obligation is to let an exact rational measurement authorize a finite comparison only as that rational, not by passing through a display float.
 
 ### Governing Obligation
 Keep exact rational measurement evidence distinct and free of float authority.
@@ -26,7 +26,7 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/H058EffectFrameBusch.lean`](../../lean4/)
+- [`lean4/EffectFrameBusch.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)

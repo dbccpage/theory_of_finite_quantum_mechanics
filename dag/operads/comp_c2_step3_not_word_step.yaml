@@ -36,7 +36,7 @@ operation_candidates:
   name: applies
   line: 9
   signature_excerpt: 'def applies (rule : HoleRule) (left right word result : List Nat) : Prop'
-  source: lean4/CampaignCompC2Step3NotWordStep.lean
+  source: lean4/ComputationC2Step3NotWordStep.lean
   repository: this_repository
   source_sha256: 78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c
   status: source_candidate_requires_semantic_review
@@ -44,7 +44,7 @@ operation_candidates:
   name: HoleRule
   line: 5
   signature_excerpt: structure HoleRule
-  source: lean4/CampaignCompC2Step3NotWordStep.lean
+  source: lean4/ComputationC2Step3NotWordStep.lean
   repository: this_repository
   source_sha256: 78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c
   status: source_candidate_requires_semantic_review
@@ -52,7 +52,7 @@ operation_candidates:
   name: merge01
   line: 24
   signature_excerpt: 'def merge01 (t : Nat) : Nat'
-  source: lean4/CampaignCompC2Step3NotWordStep.lean
+  source: lean4/ComputationC2Step3NotWordStep.lean
   repository: this_repository
   source_sha256: 78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c
   status: source_candidate_requires_semantic_review
@@ -63,7 +63,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem addTermWordStep :
         applies (HoleRule.mk [] [1]) [0] [] [0] [0, 1]
-  source: lean4/CampaignCompC2Step3NotWordStep.lean
+  source: lean4/ComputationC2Step3NotWordStep.lean
   repository: this_repository
   source_sha256: 78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c
   status: source_candidate_requires_semantic_review
@@ -75,7 +75,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem addAssertionWordStep :
         applies (HoleRule.mk [] [0, 1]) [0, 1] [] [0, 1] [0, 1, 0, 1]
-  source: lean4/CampaignCompC2Step3NotWordStep.lean
+  source: lean4/ComputationC2Step3NotWordStep.lean
   repository: this_repository
   source_sha256: 78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c
   status: source_candidate_requires_semantic_review
@@ -87,7 +87,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem identifyWordStep :
         applies (HoleRule.mk [1] []) [0] [] [0, 1] [0]
-  source: lean4/CampaignCompC2Step3NotWordStep.lean
+  source: lean4/ComputationC2Step3NotWordStep.lean
   repository: this_repository
   source_sha256: 78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c
   status: source_candidate_requires_semantic_review
@@ -97,7 +97,7 @@ relation_candidates:
   name: merge01SendsBothToZero
   line: 27
   signature_excerpt: 'theorem merge01SendsBothToZero : merge01 0 = 0 ∧ merge01 1 = 0 ∧ 0 ≠ 1'
-  source: lean4/CampaignCompC2Step3NotWordStep.lean
+  source: lean4/ComputationC2Step3NotWordStep.lean
   repository: this_repository
   source_sha256: 78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c
   status: source_candidate_requires_semantic_review
@@ -107,53 +107,53 @@ relation_candidates:
   name: merge01FixesOther
   line: 30
   signature_excerpt: 'theorem merge01FixesOther (t : Nat) (h : t ≠ 1) : merge01 t = t'
-  source: lean4/CampaignCompC2Step3NotWordStep.lean
+  source: lean4/ComputationC2Step3NotWordStep.lean
   repository: this_repository
   source_sha256: 78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignCompC2Step3NotWordStep.lean::addTermWordStep
+- original_ref: lean4/ComputationC2Step3NotWordStep.lean::addTermWordStep
   availability: local
   symbol: addTermWordStep
-  path: lean4/CampaignCompC2Step3NotWordStep.lean
+  path: lean4/ComputationC2Step3NotWordStep.lean
   repository: this_repository
   sha256: 78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c
   declaration_status: declaration_found_not_proof_checked
   line: 12
   role: source_lead_only
-- original_ref: lean4/CampaignCompC2Step3NotWordStep.lean::addAssertionWordStep
+- original_ref: lean4/ComputationC2Step3NotWordStep.lean::addAssertionWordStep
   availability: local
   symbol: addAssertionWordStep
-  path: lean4/CampaignCompC2Step3NotWordStep.lean
+  path: lean4/ComputationC2Step3NotWordStep.lean
   repository: this_repository
   sha256: 78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c
   declaration_status: declaration_found_not_proof_checked
   line: 16
   role: source_lead_only
-- original_ref: lean4/CampaignCompC2Step3NotWordStep.lean::identifyWordStep
+- original_ref: lean4/ComputationC2Step3NotWordStep.lean::identifyWordStep
   availability: local
   symbol: identifyWordStep
-  path: lean4/CampaignCompC2Step3NotWordStep.lean
+  path: lean4/ComputationC2Step3NotWordStep.lean
   repository: this_repository
   sha256: 78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c
   declaration_status: declaration_found_not_proof_checked
   line: 20
   role: source_lead_only
-- original_ref: lean4/CampaignCompC2Step3NotWordStep.lean::merge01SendsBothToZero
+- original_ref: lean4/ComputationC2Step3NotWordStep.lean::merge01SendsBothToZero
   availability: local
   symbol: merge01SendsBothToZero
-  path: lean4/CampaignCompC2Step3NotWordStep.lean
+  path: lean4/ComputationC2Step3NotWordStep.lean
   repository: this_repository
   sha256: 78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c
   declaration_status: declaration_found_not_proof_checked
   line: 27
   role: source_lead_only
-- original_ref: lean4/CampaignCompC2Step3NotWordStep.lean::merge01FixesOther
+- original_ref: lean4/ComputationC2Step3NotWordStep.lean::merge01FixesOther
   availability: local
   symbol: merge01FixesOther
-  path: lean4/CampaignCompC2Step3NotWordStep.lean
+  path: lean4/ComputationC2Step3NotWordStep.lean
   repository: this_repository
   sha256: 78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c
   declaration_status: declaration_found_not_proof_checked

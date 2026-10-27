@@ -17,7 +17,7 @@ The residual U(1)_Y covariance u(e^{i alpha/2} Phi) = u(Phi) diag(e^{-i alpha/2}
 The normalized residual law is recorded when z lies in Q(i), the squared modulus of z is 1, and a rational s with s*s equal to the doublet squared norm is supplied. Continuum gauge fields W_mu, derivatives, phases outside Q(i), and the Elitzur or symmetry-breaking reading stay open.
 
 ### Witness Audit
-CampaignDfmElectroweakContinuumFence records the four-entry residual identity over Q(i), the unit-modulus shared denominator, the witness 3/5+(4/5)i, and the z=2 comparison U(2 Phi)/2 versus (U(Phi)/1) diag(2,2), whose (1,2) entries are 1 and 2. Status stays OPEN. Continuum gauge fields and phases outside Q(i) stay imported.
+DressingFieldElectroweakContinuumFence records the four-entry residual identity over Q(i), the unit-modulus shared denominator, the witness 3/5+(4/5)i, and the z=2 comparison U(2 Phi)/2 versus (U(Phi)/1) diag(2,2), whose (1,2) entries are 1 and 2. Status stays OPEN. Continuum gauge fields and phases outside Q(i) stay imported.
 
 ---
 
@@ -44,16 +44,16 @@ CampaignDfmElectroweakContinuumFence records the four-entry residual identity ov
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignDfmElectroweakContinuumFence.lean::unnormalized_covariance`
-- `lean4/CampaignDfmElectroweakContinuumFence.lean::unit_normalized_covariance`
-- `lean4/CampaignDfmElectroweakContinuumFence.lean::witness_three_fifths`
-- `lean4/CampaignDfmElectroweakContinuumFence.lean::nonunit_normalized_entries_differ`
-- `lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.check_success_iff`
-- `lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.check_preserves`
-- `lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.Input.normalize`
-- `lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.action_composes`
-- `lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.normalize_covariant`
-- `lean4/CampaignDfmElectroweakContinuumFence.lean::CampaignDfmElectroweakContinuumFence.Normalization.matrix_covariant`
+- `lean4/DressingFieldElectroweakContinuumFence.lean::unnormalized_covariance`
+- `lean4/DressingFieldElectroweakContinuumFence.lean::unit_normalized_covariance`
+- `lean4/DressingFieldElectroweakContinuumFence.lean::witness_three_fifths`
+- `lean4/DressingFieldElectroweakContinuumFence.lean::nonunit_normalized_entries_differ`
+- `lean4/DressingFieldElectroweakContinuumFence.lean::DressingFieldElectroweakContinuumFence.Normalization.check_success_iff`
+- `lean4/DressingFieldElectroweakContinuumFence.lean::DressingFieldElectroweakContinuumFence.Normalization.check_preserves`
+- `lean4/DressingFieldElectroweakContinuumFence.lean::DressingFieldElectroweakContinuumFence.Normalization.Input.normalize`
+- `lean4/DressingFieldElectroweakContinuumFence.lean::DressingFieldElectroweakContinuumFence.Normalization.action_composes`
+- `lean4/DressingFieldElectroweakContinuumFence.lean::DressingFieldElectroweakContinuumFence.Normalization.normalize_covariant`
+- `lean4/DressingFieldElectroweakContinuumFence.lean::DressingFieldElectroweakContinuumFence.Normalization.matrix_covariant`
 
 ### Rust Certifiers
 - *none*
@@ -77,6 +77,6 @@ CampaignDfmElectroweakContinuumFence records the four-entry residual identity ov
 - **Cited Sources**:
   - `papers/ravera_dfm_dossier.md:166`
   - `papers/ravera_dfm_dossier.md:173-174`
-  - `lean4/CampaignDfmElectroweakContinuumFence.lean`
+  - `lean4/DressingFieldElectroweakContinuumFence.lean`
   - `dag/derivations/independent/dfm-electroweak-continuum-fence.md`
   - `checks/independent/dfm-electroweak-continuum-fence.py`

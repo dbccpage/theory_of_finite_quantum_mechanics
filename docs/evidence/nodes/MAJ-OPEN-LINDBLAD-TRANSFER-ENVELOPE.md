@@ -42,15 +42,15 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignMajOpenLindbladTransferEnvelope.lean`
+### Lean: `lean4/MajoranaOpenLindbladTransferEnvelope.lean`
 
-- file: [lean4/CampaignMajOpenLindbladTransferEnvelope.lean](../../../lean4/CampaignMajOpenLindbladTransferEnvelope.lean)
-- sha256 (`bytes`): `0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e`
-- cited in: node.lean, receipt dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json (CampaignMajOpenLindbladTransferEnvelope), receipt dag/research/pr_360_review_replay.json (CampaignMajOpenLindbladTransferEnvelope), record TFQ-1177
+- file: [lean4/MajoranaOpenLindbladTransferEnvelope.lean](../../../lean4/MajoranaOpenLindbladTransferEnvelope.lean)
+- sha256 (`bytes`): `155e98450ce628f679f85c171e9bc0f323c8199e695b94085d32a4ba9c8af079`
+- cited in: node.lean, receipt dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json (MajoranaOpenLindbladTransferEnvelope), receipt dag/research/pr_360_review_replay.json (MajoranaOpenLindbladTransferEnvelope), record TFQ-1177
 - replay: `verified`
-  - receipt [dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json](../../../dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json) (module `CampaignMajOpenLindbladTransferEnvelope`): recorded sha256 `0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_360_review_replay.json](../../../dag/research/pr_360_review_replay.json) (module `CampaignMajOpenLindbladTransferEnvelope`): recorded sha256 `0f2c5315fbd195a186e8f03a1336639adf6d2d5aed2709fb2756ac2fd5af5c2e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignMajOpenLindbladTransferEnvelope`
+  - receipt [dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json](../../../dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json) (module `MajoranaOpenLindbladTransferEnvelope`): recorded sha256 `155e98450ce628f679f85c171e9bc0f323c8199e695b94085d32a4ba9c8af079` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_360_review_replay.json](../../../dag/research/pr_360_review_replay.json) (module `MajoranaOpenLindbladTransferEnvelope`): recorded sha256 `155e98450ce628f679f85c171e9bc0f323c8199e695b94085d32a4ba9c8af079` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build MajoranaOpenLindbladTransferEnvelope`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md`
 
 - file: [dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md](../../../dag/derivations/28_majorana/tfq_1177_maj_open_lindblad_transfer_envelope.md)
-- sha256 (`lf-normalised`): `1e1772868d9a5b576692d328a393f8247df33d0054417b045b09de35d61a2e2e`
+- sha256 (`lf-normalised`): `c572f6ec9d7f6f31c18249f961648ab0d61a0df08442f366a8b4a5cbaa113cec`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1177
 - counts toward the grade: no
@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json`
 
 - file: [dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json](../../../dag/research/campaign_maj-open-lindblad-transfer-envelope_lean_replay.json)
-- sha256 (`lf-normalised`): `887d95db7653b850296d2d03322ad2de6ffd4327b6a9197ea3a23ea9352f6c21`
+- sha256 (`lf-normalised`): `81862bd19af6b166d221adc65dcaa408176237798809de1857f7239e995dca92`
 - cited in: node.source
 - counts toward the grade: yes
 

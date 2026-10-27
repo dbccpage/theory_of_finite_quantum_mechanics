@@ -1,7 +1,7 @@
 {
   "schema_version": "campaign_lean_mutation.v1",
   "node_id": "TFQ-0118",
-  "lean_file": "lean4/CampaignTfq0118ContinuumInterface.lean",
+  "lean_file": "lean4/CyclicInclusionCharacterSums.lean",
   "sha256": "8622ebd711c25f7a2c7f27f2c7031bcd9e59455036728d01588e778738f372de",
   "lean_mutation": {
     "total": 6,
@@ -14,14 +14,14 @@
         "description": "Mutate dyadicInclude from 2 * x.val to 0, falsifying dyadicInclude_injective and dyadicInclude_add_mod_hom.",
         "killed": true,
         "exit_code": 1,
-        "error_excerpt": "tmpi7giq2k8.lean:61:20: error: omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d \u2265 0\n  c \u2265 0\n  c - d \u2264 -1\n  b \u2265 0\n  b - c \u2265 1\n  b - d \u2265 1\n  a \u2265 0\n  a - 2*b \u2264 -1\nwhere\n a := \u2191\u2191(dyadicInclude N y)\n b := \u2191N\n c := \u2191\u2191x\n d := \u2191\u2191y\n'CampaignTfq0118ContinuumInterface.dyadicInclude_injective' depends on axioms: [propext, sorryAx, Quot.sound]\n'CampaignTfq0118ContinuumI"
+        "error_excerpt": "tmpi7giq2k8.lean:61:20: error: omega could not prove the goal:\na possible counterexample may satisfy the constraints\n  d \u2265 0\n  c \u2265 0\n  c - d \u2264 -1\n  b \u2265 0\n  b - c \u2265 1\n  b - d \u2265 1\n  a \u2265 0\n  a - 2*b \u2264 -1\nwhere\n a := \u2191\u2191(dyadicInclude N y)\n b := \u2191N\n c := \u2191\u2191x\n d := \u2191\u2191y\n'CyclicInclusionCharacterSums.dyadicInclude_injective' depends on axioms: [propext, sorryAx, Quot.sound]\n'CampaignTfq0118ContinuumI"
       },
       {
         "id": "M2_gauss_conj_drop_negation",
         "description": "Mutate gaussConj from \u27e8z.re, -z.im\u27e9 to \u27e8z.re, z.im\u27e9, falsifying z4_character_point_projector_exact.",
         "killed": true,
         "exit_code": 1,
-        "error_excerpt": "tmpjqg6v_ex.lean:125:2: error: Tactic `decide` proved that the proposition\n  \u2200 (x y : Fin 4), charPointProjector4 x y = if x = y then { re := 4, im := 0 } else gaussZero\nis false\n'CampaignTfq0118ContinuumInterface.dyadicInclude_injective' depends on axioms: [propext, Quot.sound]\n'CampaignTfq0118ContinuumInterface.dyadicInclude_add_mod_hom' depends on axioms: [propext]\n'CampaignTfq0118ContinuumInte"
+        "error_excerpt": "tmpjqg6v_ex.lean:125:2: error: Tactic `decide` proved that the proposition\n  \u2200 (x y : Fin 4), charPointProjector4 x y = if x = y then { re := 4, im := 0 } else gaussZero\nis false\n'CyclicInclusionCharacterSums.dyadicInclude_injective' depends on axioms: [propext, Quot.sound]\n'CyclicInclusionCharacterSums.dyadicInclude_add_mod_hom' depends on axioms: [propext]\n'CampaignTfq0118ContinuumInte"
       },
       {
         "id": "M3_left_riemann_quadratic_wrong_denominator",
@@ -49,7 +49,7 @@
         "description": "Mutate discretization_defect_dyadic_budget_table to claim quadraticDiscretizationDefect 8 = 0 instead of 23 / 384.",
         "killed": true,
         "exit_code": 1,
-        "error_excerpt": "tmpp4qabuqb.lean:180:73: error: unsolved goals\n\u22a2 False\n'CampaignTfq0118ContinuumInterface.dyadicInclude_injective' depends on axioms: [propext, Quot.sound]\n'CampaignTfq0118ContinuumInterface.dyadicInclude_add_mod_hom' depends on axioms: [propext]\n'CampaignTfq0118ContinuumInterface.dyadicInclude_misses_odd_residue' depends on axioms: [propext, Quot.sound]\n'CampaignTfq0118ContinuumInterface.z4_chara"
+        "error_excerpt": "tmpp4qabuqb.lean:180:73: error: unsolved goals\n\u22a2 False\n'CyclicInclusionCharacterSums.dyadicInclude_injective' depends on axioms: [propext, Quot.sound]\n'CyclicInclusionCharacterSums.dyadicInclude_add_mod_hom' depends on axioms: [propext]\n'CyclicInclusionCharacterSums.dyadicInclude_misses_odd_residue' depends on axioms: [propext, Quot.sound]\n'CyclicInclusionCharacterSums.z4_chara"
       }
     ]
   }

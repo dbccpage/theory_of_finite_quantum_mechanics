@@ -69,7 +69,7 @@ proved in this module.  It needs unique factorisation in `ℤ[i]` (divisibility 
 order forces each entry to be a unit) and is recorded as an open obligation for the node.
 -/
 
-namespace BornFable.DiscreteTime
+namespace BornFinite.DiscreteTime
 
 open scoped Matrix
 
@@ -268,31 +268,31 @@ theorem no_qparam_group_through_R345 :
 
 end Obstruction
 
-end BornFable.DiscreteTime
+end BornFinite.DiscreteTime
 
-#print axioms BornFable.DiscreteTime.QParamGroup
-#print axioms BornFable.DiscreteTime.discreteEvolution
-#print axioms BornFable.DiscreteTime.discreteEvolution_add
-#print axioms BornFable.DiscreteTime.discreteEvolution_zero
-#print axioms BornFable.DiscreteTime.discreteEvolution_one
-#print axioms BornFable.DiscreteTime.discreteEvolution_neg
-#print axioms BornFable.DiscreteTime.QParamGroup.U_natMul
-#print axioms BornFable.DiscreteTime.QParamGroup.U_neg
-#print axioms BornFable.DiscreteTime.QParamGroup.U_int
-#print axioms BornFable.DiscreteTime.QParamGroup.U_eq_discreteEvolution
-#print axioms BornFable.DiscreteTime.QParamGroup.U_inv_nat
-#print axioms BornFable.DiscreteTime.QParamGroup.roots_of_all_orders
-#print axioms BornFable.DiscreteTime.sq_root_neg
-#print axioms BornFable.DiscreteTime.neg_ne_self_of_ne_zero
-#print axioms BornFable.DiscreteTime.half_step_not_unique
-#print axioms BornFable.DiscreteTime.matrix_half_step_not_unique
-#print axioms BornFable.DiscreteTime.R345
-#print axioms BornFable.DiscreteTime.R345_transpose
-#print axioms BornFable.DiscreteTime.R345_orthogonal
-#print axioms BornFable.DiscreteTime.R345_det
-#print axioms BornFable.DiscreteTime.R345_pow_orthogonal
-#print axioms BornFable.DiscreteTime.four_fifths_den
-#print axioms BornFable.DiscreteTime.nat_mul_self_ne_five
-#print axioms BornFable.DiscreteTime.four_fifths_not_rat_square
-#print axioms BornFable.DiscreteTime.no_rational_half_step
-#print axioms BornFable.DiscreteTime.no_qparam_group_through_R345
+#print axioms BornFinite.DiscreteTime.QParamGroup
+#print axioms BornFinite.DiscreteTime.discreteEvolution
+#print axioms BornFinite.DiscreteTime.discreteEvolution_add
+#print axioms BornFinite.DiscreteTime.discreteEvolution_zero
+#print axioms BornFinite.DiscreteTime.discreteEvolution_one
+#print axioms BornFinite.DiscreteTime.discreteEvolution_neg
+#print axioms BornFinite.DiscreteTime.QParamGroup.U_natMul
+#print axioms BornFinite.DiscreteTime.QParamGroup.U_neg
+#print axioms BornFinite.DiscreteTime.QParamGroup.U_int
+#print axioms BornFinite.DiscreteTime.QParamGroup.U_eq_discreteEvolution
+#print axioms BornFinite.DiscreteTime.QParamGroup.U_inv_nat
+#print axioms BornFinite.DiscreteTime.QParamGroup.roots_of_all_orders
+#print axioms BornFinite.DiscreteTime.sq_root_neg
+#print axioms BornFinite.DiscreteTime.neg_ne_self_of_ne_zero
+#print axioms BornFinite.DiscreteTime.half_step_not_unique
+#print axioms BornFinite.DiscreteTime.matrix_half_step_not_unique
+#print axioms BornFinite.DiscreteTime.R345
+#print axioms BornFinite.DiscreteTime.R345_transpose
+#print axioms BornFinite.DiscreteTime.R345_orthogonal
+#print axioms BornFinite.DiscreteTime.R345_det
+#print axioms BornFinite.DiscreteTime.R345_pow_orthogonal
+#print axioms BornFinite.DiscreteTime.four_fifths_den
+#print axioms BornFinite.DiscreteTime.nat_mul_self_ne_five
+#print axioms BornFinite.DiscreteTime.four_fifths_not_rat_square
+#print axioms BornFinite.DiscreteTime.no_rational_half_step
+#print axioms BornFinite.DiscreteTime.no_qparam_group_through_R345

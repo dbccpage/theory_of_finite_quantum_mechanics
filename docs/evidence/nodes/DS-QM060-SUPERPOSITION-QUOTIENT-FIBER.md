@@ -61,14 +61,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H009PhaseFiber.lean`
+### Lean: `lean4/PhaseFiber.lean`
 
-- file: [lean4/H009PhaseFiber.lean](../../../lean4/H009PhaseFiber.lean)
-- sha256 (`bytes`): `0a41e5169888c39cab352ab7b0889bb01fdf0e1ab7410d7386d999c0958fa4b3`
+- file: [lean4/PhaseFiber.lean](../../../lean4/PhaseFiber.lean)
+- sha256 (`bytes`): `ee7078faf56d9ea2aa0702383cefe2e9fbe1bf90097f60ecfaeb79a3170c6300`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H009PhaseFiber`): recorded sha256 `0a41e5169888c39cab352ab7b0889bb01fdf0e1ab7410d7386d999c0958fa4b3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H009PhaseFiber`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `PhaseFiber`): recorded sha256 `ee7078faf56d9ea2aa0702383cefe2e9fbe1bf90097f60ecfaeb79a3170c6300` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build PhaseFiber`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|

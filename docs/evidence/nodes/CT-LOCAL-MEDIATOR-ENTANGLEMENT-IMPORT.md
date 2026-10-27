@@ -29,7 +29,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-The inference (arXiv:1707.06036 pp. 2-3; arXiv:1707.06050 pp. 1-2) remains an assumption of this branch. CampaignCtMediatorEntanglement.lean states only a finite shadow: a single linear local map A (x) B applied to one pure bipartite state does not raise the rank of its coefficient matrix (any finite dimension over any field), and for two qubits over Q(i) it does not carry the product state (1,1,1,1)/2 to (1,1,1,u)/2 with u=(3+4i)/5, whose squared concurrence is 1/5. Not stated: mixed states, local channels with ancillas, mixtures of branches, classical communication (LOCC), a mediating system M, the definition of a classical medium, or any gravity model.
+The inference (arXiv:1707.06036 pp. 2-3; arXiv:1707.06050 pp. 1-2) remains an assumption of this branch. ConstructorTheoryMediatorEntanglement.lean states only a finite shadow: a single linear local map A (x) B applied to one pure bipartite state does not raise the rank of its coefficient matrix (any finite dimension over any field), and for two qubits over Q(i) it does not carry the product state (1,1,1,1)/2 to (1,1,1,u)/2 with u=(3+4i)/5, whose squared concurrence is 1/5. Not stated: mixed states, local channels with ancillas, mixtures of branches, classical communication (LOCC), a mediating system M, the definition of a classical medium, or any gravity model.
 
 ## Source status
 
@@ -43,41 +43,41 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignCtMediatorEntanglement.lean`
+### Lean: `lean4/ConstructorTheoryMediatorEntanglement.lean`
 
-- file: [lean4/CampaignCtMediatorEntanglement.lean](../../../lean4/CampaignCtMediatorEntanglement.lean)
-- sha256 (`bytes`): `e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79`
-- cited in: node.lean, receipt dag/research/campaign_ct-local-mediator-entanglement-import_lean_replay.json (CampaignCtMediatorEntanglement)
+- file: [lean4/ConstructorTheoryMediatorEntanglement.lean](../../../lean4/ConstructorTheoryMediatorEntanglement.lean)
+- sha256 (`bytes`): `370825e363db8a2687c082c86b7038f8acb8a672ba9f367528f5d2eb5768d468`
+- cited in: node.lean, receipt dag/research/campaign_ct-local-mediator-entanglement-import_lean_replay.json (ConstructorTheoryMediatorEntanglement)
 - replay: `verified`
-  - receipt [dag/research/campaign_ct-local-mediator-entanglement-import_lean_replay.json](../../../dag/research/campaign_ct-local-mediator-entanglement-import_lean_replay.json) (module `CampaignCtMediatorEntanglement`): recorded sha256 `e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignCtMediatorEntanglement`
+  - receipt [dag/research/campaign_ct-local-mediator-entanglement-import_lean_replay.json](../../../dag/research/campaign_ct-local-mediator-entanglement-import_lean_replay.json) (module `ConstructorTheoryMediatorEntanglement`): recorded sha256 `370825e363db8a2687c082c86b7038f8acb8a672ba9f367528f5d2eb5768d468` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build ConstructorTheoryMediatorEntanglement`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignCtMediatorEntanglement.M_entangled_concurrence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.M_entangled_concurrence` |
-| `CampaignCtMediatorEntanglement.M_entangled_det_nonzero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.M_entangled_det_nonzero` |
-| `CampaignCtMediatorEntanglement.M_entangled_not_product` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.M_entangled_not_product` |
-| `CampaignCtMediatorEntanglement.M_separable_concurrence_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.M_separable_concurrence_zero` |
-| `CampaignCtMediatorEntanglement.M_separable_det_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.M_separable_det_zero` |
-| `CampaignCtMediatorEntanglement.M_separable_is_product` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.M_separable_is_product` |
-| `CampaignCtMediatorEntanglement.applyLocalOp_det` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.applyLocalOp_det` |
-| `CampaignCtMediatorEntanglement.classical_mediator_cannot_produce_entangled_state` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.classical_mediator_cannot_produce_entangled_state` |
-| `CampaignCtMediatorEntanglement.concurrence_gap_under_local_op` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.concurrence_gap_under_local_op` |
-| `CampaignCtMediatorEntanglement.local_op_concurrence_zero_of_separable` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.local_op_concurrence_zero_of_separable` |
-| `CampaignCtMediatorEntanglement.local_op_preserves_product_det` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.local_op_preserves_product_det` |
-| `CampaignCtMediatorEntanglement.no_local_op_produces_entangled_state` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.no_local_op_produces_entangled_state` |
-| `CampaignCtMediatorEntanglement.no_local_op_produces_phase_entangled_state` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.no_local_op_produces_phase_entangled_state` |
-| `CampaignCtMediatorEntanglement.reduction_of_mediated_entanglement_inference` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.reduction_of_mediated_entanglement_inference` |
-| `CampaignCtMediatorEntanglement.schmidtRank_le_one_preserved` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.schmidtRank_le_one_preserved` |
-| `CampaignCtMediatorEntanglement.schmidtRank_local_le` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.schmidtRank_local_le` |
-| `CampaignCtMediatorEntanglement.schmidtRank_not_reachable` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCtMediatorEntanglement.schmidtRank_not_reachable` |
+| `ConstructorTheoryMediatorEntanglement.M_entangled_concurrence` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.M_entangled_concurrence` |
+| `ConstructorTheoryMediatorEntanglement.M_entangled_det_nonzero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.M_entangled_det_nonzero` |
+| `ConstructorTheoryMediatorEntanglement.M_entangled_not_product` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.M_entangled_not_product` |
+| `ConstructorTheoryMediatorEntanglement.M_separable_concurrence_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.M_separable_concurrence_zero` |
+| `ConstructorTheoryMediatorEntanglement.M_separable_det_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.M_separable_det_zero` |
+| `ConstructorTheoryMediatorEntanglement.M_separable_is_product` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.M_separable_is_product` |
+| `ConstructorTheoryMediatorEntanglement.applyLocalOp_det` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.applyLocalOp_det` |
+| `ConstructorTheoryMediatorEntanglement.classical_mediator_cannot_produce_entangled_state` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.classical_mediator_cannot_produce_entangled_state` |
+| `ConstructorTheoryMediatorEntanglement.concurrence_gap_under_local_op` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.concurrence_gap_under_local_op` |
+| `ConstructorTheoryMediatorEntanglement.local_op_concurrence_zero_of_separable` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.local_op_concurrence_zero_of_separable` |
+| `ConstructorTheoryMediatorEntanglement.local_op_preserves_product_det` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.local_op_preserves_product_det` |
+| `ConstructorTheoryMediatorEntanglement.no_local_op_produces_entangled_state` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.no_local_op_produces_entangled_state` |
+| `ConstructorTheoryMediatorEntanglement.no_local_op_produces_phase_entangled_state` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.no_local_op_produces_phase_entangled_state` |
+| `ConstructorTheoryMediatorEntanglement.reduction_of_mediated_entanglement_inference` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.reduction_of_mediated_entanglement_inference` |
+| `ConstructorTheoryMediatorEntanglement.schmidtRank_le_one_preserved` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.schmidtRank_le_one_preserved` |
+| `ConstructorTheoryMediatorEntanglement.schmidtRank_local_le` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.schmidtRank_local_le` |
+| `ConstructorTheoryMediatorEntanglement.schmidtRank_not_reachable` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstructorTheoryMediatorEntanglement.schmidtRank_not_reachable` |
 
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2013_ct_local_mediator_entanglement_import.md`
 
 - file: [dag/derivations/30_constructor_theory/tfq_2013_ct_local_mediator_entanglement_import.md](../../../dag/derivations/30_constructor_theory/tfq_2013_ct_local_mediator_entanglement_import.md)
-- sha256 (`lf-normalised`): `88d3f2e641f0ab786b7af031bc59bba0e286c858e8ba7c6b2243e94f72b3911b`
+- sha256 (`lf-normalised`): `cb05b1452d07f20c26223ab373376944689b1c7280e857a2ebe77c892b3e0c57`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2013
 - counts toward the grade: no
@@ -85,7 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/ct-local-mediator-entanglement-import.md`
 
 - file: [dag/derivations/independent/ct-local-mediator-entanglement-import.md](../../../dag/derivations/independent/ct-local-mediator-entanglement-import.md)
-- sha256 (`lf-normalised`): `3d4655398ffaa1a4c41c4255b2fb0a28a166412327d4a63d943cefd9ff541337`
+- sha256 (`lf-normalised`): `5ed6b88d65928fa8dc2aa8febc81936fd5925ed6b5e9c9010096ca80e32920a3`
 - cited in: node.source
 - counts toward the grade: yes
 

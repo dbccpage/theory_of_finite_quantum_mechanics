@@ -87,7 +87,7 @@ def test_negative_shape_failures() -> None:
 
 def test_integration_matches_ordered_compare() -> None:
     root = Path(__file__).resolve().parents[3]
-    source = (root / "lean4" / "H001ProbabilitySimplex.lean").read_text(encoding="utf-8")
+    source = (root / "lean4" / "ProbabilitySimplex.lean").read_text(encoding="utf-8")
     assert "theorem probability_simplex" in source
     assert "theorem signed_mass_one" in source
     assert "theorem double_mass_two" in source
@@ -107,7 +107,7 @@ def test_end_to_end_cli_prints_one() -> None:
 
 def test_origin_resolves_in_repo() -> None:
     source = _MODULE_PATH.read_text(encoding="utf-8")
-    assert "Origin: lean4/H001ProbabilitySimplex.lean theorem probability_simplex" in source
+    assert "Origin: lean4/ProbabilitySimplex.lean theorem probability_simplex" in source
     assert "Claim: urn:omega:fqm:simplex:scaled-integer-separator:v1" in source
     assert "AuthorityEffect: None" in source
     assert "Scope Fence:" in source

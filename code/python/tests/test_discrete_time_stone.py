@@ -60,5 +60,5 @@ class SpecificationTests(unittest.TestCase):
         self.assertEqual(s['open'],'the general triviality of Q-parameter groups over Q(i) is not proved (needs unique factorisation in Z[i])')
         self.assertIn('4/5',s['derived']);self.assertIn('Z-action',s['specified'])
     def test_lean_theorem_names_are_cited(self):
-        for name in ('DiscreteTimeStoneSpec.lean','BornFable.DiscreteTime','QParamGroup','discreteEvolution','U_eq_discreteEvolution','roots_of_all_orders','sq_root_neg','half_step_not_unique','R345_pow_orthogonal','four_fifths_not_rat_square','no_rational_half_step','no_qparam_group_through_R345','AuthorityEffect: None'):self.assertIn(name,m.__doc__)
+        for name in ('DiscreteTimeStoneSpec.lean','BornFinite.DiscreteTime','QParamGroup','discreteEvolution','U_eq_discreteEvolution','roots_of_all_orders','sq_root_neg','half_step_not_unique','R345_pow_orthogonal','four_fifths_not_rat_square','no_rational_half_step','no_qparam_group_through_R345','AuthorityEffect: None'):self.assertIn(name,m.__doc__)
 if __name__=='__main__':unittest.main()

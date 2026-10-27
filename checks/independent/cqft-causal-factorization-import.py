@@ -3,7 +3,7 @@
 
 AuthorityEffect: None.
 Verifies all three finite/algebraic components and non-equivalence fences in
-lean4/CampaignCqftCausalFactorizationImport.lean from first principles:
+lean4/CausalFactorizationImport.lean from first principles:
 1. Abstract Bogoliubov relative S-matrix algebra V(g, h) = S(g)^{-1} S(g + h) over GL(2, Z)
    and SL(2, Z) matrix models, telescoping cocycle identity V(g, h1) V(g + h1, h2) = V(g, h1 + h2),
    equivalence between causal factorization V(g, h1 + h2) = V(g, h1) V(g, h2) and background-shift

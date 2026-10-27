@@ -25,17 +25,17 @@ In accordance with strict constructive principles:
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
-### Lean 4 Theorems (`lean4/CampaignTfq0039FiniteQcd.lean`)
-- `CampaignTfq0039FiniteQcd.finite_qcd_control_exact_rational_summary`: Proves `qcdBeta0Times16Pi2 3 6 = 7`, `strongCouplingTension 1 3 = 17/18`, `freeTorusDoublerCount 4 = 16`, and `wilsonLiftedDoublerCount 4 = 15`.
-- `CampaignTfq0039FiniteQcd.finite_cyclic_dual_order_equals_lattice_period`: Proves `finiteCyclicCharacterCount L = L` and `(finiteCyclicCharacterCount L)^d = L^d`.
-- `CampaignTfq0039FiniteQcd.f002_s001_empty_book_list_and_open_bridge_gap`: Proves `f002S001BridgeShelf.bookCount = 0`, `hasOpenBridgeGap001 = true`, and `admitsPontryaginDualBridgeTheorem = false`.
-- `CampaignTfq0039FiniteQcd.pontryagin_dual_of_free_z_requires_unpaid_continuum_circle_fence`: Proves `finiteCyclicCharacterCount N < finiteCyclicCharacterCount (N + 1)` and `admitsPontryaginDualBridgeTheorem = false`.
-- `CampaignTfq0039FiniteQcd.finite_qcd_controls_do_not_discharge_continuum_qcd_exit_fence`: Proves `continuumQcdDerived s = false` whenever `s.f002S001BridgeClosed = false`.
-- `CampaignTfq0039FiniteQcd.one_loop_beta0_polynomial_not_nonperturbative_continuum_mass_gap_fence`: Proves `qcdBeta0Times16Pi2 3 N_f = 11 - (2/3) N_f` and sign reversal between `N_f = 6` and `N_f = 17`.
-- `CampaignTfq0039FiniteQcd.strong_coupling_plaquette_ratio_breaks_down_in_weak_coupling_continuum_limit_fence`: Proves `strongCouplingTension 18 3 = 0` and `strongCouplingTension 20 3 = -1/9 < 0`.
-- `CampaignTfq0039FiniteQcd.wilson_torus_doubler_count_not_continuum_chiral_fermion_measure_fence`: Proves `1 + 4 + 6 + 4 + 1 = 16` and `f002S001BridgeShelf.bookCount = 0`.
-- `CampaignTfq0039FiniteQcd.topological_anyon_catalog_not_continuum_su3_confining_vacuum_fence`: Proves `k + 1 ≤ 7` and `f002S001BridgeShelf.bookCount = 0` for `k = 1..6`.
-- `CampaignTfq0039FiniteQcd.tfq0039_f002_s001_open_bridge_scope_ledger_fence`: Audits `Tfq0039ScopeLedger`.
+### Lean 4 Theorems (`lean4/ContinuumVolumeInterfaceInventory.lean`)
+- `ContinuumVolumeInterfaceInventory.finite_qcd_control_exact_rational_summary`: Proves `qcdBeta0Times16Pi2 3 6 = 7`, `strongCouplingTension 1 3 = 17/18`, `freeTorusDoublerCount 4 = 16`, and `wilsonLiftedDoublerCount 4 = 15`.
+- `ContinuumVolumeInterfaceInventory.finite_cyclic_dual_order_equals_lattice_period`: Proves `finiteCyclicCharacterCount L = L` and `(finiteCyclicCharacterCount L)^d = L^d`.
+- `ContinuumVolumeInterfaceInventory.f002_s001_empty_book_list_and_open_bridge_gap`: Proves `f002S001BridgeShelf.bookCount = 0`, `hasOpenBridgeGap001 = true`, and `admitsPontryaginDualBridgeTheorem = false`.
+- `ContinuumVolumeInterfaceInventory.pontryagin_dual_of_free_z_requires_unpaid_continuum_circle_fence`: Proves `finiteCyclicCharacterCount N < finiteCyclicCharacterCount (N + 1)` and `admitsPontryaginDualBridgeTheorem = false`.
+- `ContinuumVolumeInterfaceInventory.finite_qcd_controls_do_not_discharge_continuum_qcd_exit_fence`: Proves `continuumQcdDerived s = false` whenever `s.f002S001BridgeClosed = false`.
+- `ContinuumVolumeInterfaceInventory.one_loop_beta0_polynomial_not_nonperturbative_continuum_mass_gap_fence`: Proves `qcdBeta0Times16Pi2 3 N_f = 11 - (2/3) N_f` and sign reversal between `N_f = 6` and `N_f = 17`.
+- `ContinuumVolumeInterfaceInventory.strong_coupling_plaquette_ratio_breaks_down_in_weak_coupling_continuum_limit_fence`: Proves `strongCouplingTension 18 3 = 0` and `strongCouplingTension 20 3 = -1/9 < 0`.
+- `ContinuumVolumeInterfaceInventory.wilson_torus_doubler_count_not_continuum_chiral_fermion_measure_fence`: Proves `1 + 4 + 6 + 4 + 1 = 16` and `f002S001BridgeShelf.bookCount = 0`.
+- `ContinuumVolumeInterfaceInventory.topological_anyon_catalog_not_continuum_su3_confining_vacuum_fence`: Proves `k + 1 ≤ 7` and `f002S001BridgeShelf.bookCount = 0` for `k = 1..6`.
+- `ContinuumVolumeInterfaceInventory.tfq0039_f002_s001_open_bridge_scope_ledger_fence`: Audits `Tfq0039ScopeLedger`.
 
 ### Sovereign Rust Certifiers (`code/rust/src/qm/qcd_beta0_wilson_confinement_control.rs`)
 - `code/rust/src/qm/qcd_beta0_wilson_confinement_control.rs::verify_qcd_beta0_wilson_confinement_control`

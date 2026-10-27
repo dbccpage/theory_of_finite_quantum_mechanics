@@ -30,8 +30,8 @@ AuthorityEffect: None.
 
 namespace AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge
 
-open GrokPdNight20260814.Core
-open GrokPdNight20260814.J011
+open ProjectionFiber.Core
+open ProjectionFiber.J011
 
 /-- A report-only decision is totally correct when validity factors
     through the declared report. -/

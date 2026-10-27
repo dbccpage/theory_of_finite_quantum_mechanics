@@ -34,8 +34,8 @@ The campaign module records mark A as 1, mark B as 2, the blank as 0, the one wo
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignCompC8MinimalityFence.lean::oneWordThenBlank`
-- `lean4/CampaignCompC8MinimalityFence.lean::blankDiffersFromMarks`
+- `lean4/ComputationC8MinimalityFence.lean::oneWordThenBlank`
+- `lean4/ComputationC8MinimalityFence.lean::blankDiffersFromMarks`
 
 ### Rust Certifiers
 - *none*

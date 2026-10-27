@@ -32,9 +32,9 @@ What is not claimed: the carrier, the scalar field ℚ(i) and the quadratic shap
 supplied; the two laws are hypotheses; the scale is a unit choice.  Exact arithmetic throughout.
 -/
 
-namespace InnerProductFable.HermitianSectorForm
+namespace InnerProductFinite.HermitianSectorForm
 
-open Matrix BornFable BornFable.HermitianCarrier BornFable.HermitianPsd
+open Matrix BornFinite BornFinite.HermitianCarrier BornFinite.HermitianPsd
 
 variable {n : ℕ}
 
@@ -313,52 +313,52 @@ theorem imagLeak12_not_sectorAdditive : ¬ SectorAdditive imagLeak12 := by
   exact imagLeak12_imag_direction_not_additive
     (h _ _ (disjoint_single_single (show (0 : Fin 2) ≠ 1 by decide) 1 GaussRat.I))
 
-end InnerProductFable.HermitianSectorForm
+end InnerProductFinite.HermitianSectorForm
 
-#print axioms InnerProductFable.HermitianSectorForm.DisjointSupport
-#print axioms InnerProductFable.HermitianSectorForm.SectorAdditive
-#print axioms InnerProductFable.HermitianSectorForm.disjoint_single_single
-#print axioms InnerProductFable.HermitianSectorForm.cross_single
-#print axioms InnerProductFable.HermitianSectorForm.hf_single_add_single
-#print axioms InnerProductFable.HermitianSectorForm.offdiag_re_add_re
-#print axioms InnerProductFable.HermitianSectorForm.offdiag_im_sub_im
-#print axioms InnerProductFable.HermitianSectorForm.offdiag_eq_zero
-#print axioms InnerProductFable.HermitianSectorForm.permute
-#print axioms InnerProductFable.HermitianSectorForm.permute_single
-#print axioms InnerProductFable.HermitianSectorForm.Invariant
-#print axioms InnerProductFable.HermitianSectorForm.TransitiveOn
-#print axioms InnerProductFable.HermitianSectorForm.hf_single_one
-#print axioms InnerProductFable.HermitianSectorForm.diag_re_eq_of_invariant
-#print axioms InnerProductFable.HermitianSectorForm.diag_re_const_of_transitive
-#print axioms InnerProductFable.HermitianSectorForm.Generated
-#print axioms InnerProductFable.HermitianSectorForm.permute_one
-#print axioms InnerProductFable.HermitianSectorForm.permute_mul
-#print axioms InnerProductFable.HermitianSectorForm.permute_inv_left
-#print axioms InnerProductFable.HermitianSectorForm.permute_inv_right
-#print axioms InnerProductFable.HermitianSectorForm.invariant_one
-#print axioms InnerProductFable.HermitianSectorForm.invariant_mul
-#print axioms InnerProductFable.HermitianSectorForm.invariant_inv
-#print axioms InnerProductFable.HermitianSectorForm.invariant_of_generated
-#print axioms InnerProductFable.HermitianSectorForm.diag_eq_of_hermitian_transitive
-#print axioms InnerProductFable.HermitianSectorForm.eq_smul_one
-#print axioms InnerProductFable.HermitianSectorForm.eq_smul_one_generated
-#print axioms InnerProductFable.HermitianSectorForm.hf_eq_scale_vnorm
-#print axioms InnerProductFable.HermitianSectorForm.single_ne_zero
-#print axioms InnerProductFable.HermitianSectorForm.scale_pos
-#print axioms InnerProductFable.HermitianSectorForm.unique_of_normalized
-#print axioms InnerProductFable.HermitianSectorForm.eq_one_of_normalized
-#print axioms InnerProductFable.HermitianSectorForm.normSq_add_of_disjoint
-#print axioms InnerProductFable.HermitianSectorForm.vnorm_add_of_disjoint
-#print axioms InnerProductFable.HermitianSectorForm.one_sectorAdditive
-#print axioms InnerProductFable.HermitianSectorForm.vnorm_permute
-#print axioms InnerProductFable.HermitianSectorForm.one_invariant
-#print axioms InnerProductFable.HermitianSectorForm.one_posdef
-#print axioms InnerProductFable.HermitianSectorForm.imagLeak12
-#print axioms InnerProductFable.HermitianSectorForm.imagLeak12_apply_00
-#print axioms InnerProductFable.HermitianSectorForm.imagLeak12_apply_01
-#print axioms InnerProductFable.HermitianSectorForm.imagLeak12_apply_10
-#print axioms InnerProductFable.HermitianSectorForm.imagLeak12_apply_11
-#print axioms InnerProductFable.HermitianSectorForm.imagLeak12_hermitian
-#print axioms InnerProductFable.HermitianSectorForm.imagLeak12_real_direction_additive
-#print axioms InnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive
-#print axioms InnerProductFable.HermitianSectorForm.imagLeak12_not_sectorAdditive
+#print axioms InnerProductFinite.HermitianSectorForm.DisjointSupport
+#print axioms InnerProductFinite.HermitianSectorForm.SectorAdditive
+#print axioms InnerProductFinite.HermitianSectorForm.disjoint_single_single
+#print axioms InnerProductFinite.HermitianSectorForm.cross_single
+#print axioms InnerProductFinite.HermitianSectorForm.hf_single_add_single
+#print axioms InnerProductFinite.HermitianSectorForm.offdiag_re_add_re
+#print axioms InnerProductFinite.HermitianSectorForm.offdiag_im_sub_im
+#print axioms InnerProductFinite.HermitianSectorForm.offdiag_eq_zero
+#print axioms InnerProductFinite.HermitianSectorForm.permute
+#print axioms InnerProductFinite.HermitianSectorForm.permute_single
+#print axioms InnerProductFinite.HermitianSectorForm.Invariant
+#print axioms InnerProductFinite.HermitianSectorForm.TransitiveOn
+#print axioms InnerProductFinite.HermitianSectorForm.hf_single_one
+#print axioms InnerProductFinite.HermitianSectorForm.diag_re_eq_of_invariant
+#print axioms InnerProductFinite.HermitianSectorForm.diag_re_const_of_transitive
+#print axioms InnerProductFinite.HermitianSectorForm.Generated
+#print axioms InnerProductFinite.HermitianSectorForm.permute_one
+#print axioms InnerProductFinite.HermitianSectorForm.permute_mul
+#print axioms InnerProductFinite.HermitianSectorForm.permute_inv_left
+#print axioms InnerProductFinite.HermitianSectorForm.permute_inv_right
+#print axioms InnerProductFinite.HermitianSectorForm.invariant_one
+#print axioms InnerProductFinite.HermitianSectorForm.invariant_mul
+#print axioms InnerProductFinite.HermitianSectorForm.invariant_inv
+#print axioms InnerProductFinite.HermitianSectorForm.invariant_of_generated
+#print axioms InnerProductFinite.HermitianSectorForm.diag_eq_of_hermitian_transitive
+#print axioms InnerProductFinite.HermitianSectorForm.eq_smul_one
+#print axioms InnerProductFinite.HermitianSectorForm.eq_smul_one_generated
+#print axioms InnerProductFinite.HermitianSectorForm.hf_eq_scale_vnorm
+#print axioms InnerProductFinite.HermitianSectorForm.single_ne_zero
+#print axioms InnerProductFinite.HermitianSectorForm.scale_pos
+#print axioms InnerProductFinite.HermitianSectorForm.unique_of_normalized
+#print axioms InnerProductFinite.HermitianSectorForm.eq_one_of_normalized
+#print axioms InnerProductFinite.HermitianSectorForm.normSq_add_of_disjoint
+#print axioms InnerProductFinite.HermitianSectorForm.vnorm_add_of_disjoint
+#print axioms InnerProductFinite.HermitianSectorForm.one_sectorAdditive
+#print axioms InnerProductFinite.HermitianSectorForm.vnorm_permute
+#print axioms InnerProductFinite.HermitianSectorForm.one_invariant
+#print axioms InnerProductFinite.HermitianSectorForm.one_posdef
+#print axioms InnerProductFinite.HermitianSectorForm.imagLeak12
+#print axioms InnerProductFinite.HermitianSectorForm.imagLeak12_apply_00
+#print axioms InnerProductFinite.HermitianSectorForm.imagLeak12_apply_01
+#print axioms InnerProductFinite.HermitianSectorForm.imagLeak12_apply_10
+#print axioms InnerProductFinite.HermitianSectorForm.imagLeak12_apply_11
+#print axioms InnerProductFinite.HermitianSectorForm.imagLeak12_hermitian
+#print axioms InnerProductFinite.HermitianSectorForm.imagLeak12_real_direction_additive
+#print axioms InnerProductFinite.HermitianSectorForm.imagLeak12_imag_direction_not_additive
+#print axioms InnerProductFinite.HermitianSectorForm.imagLeak12_not_sectorAdditive

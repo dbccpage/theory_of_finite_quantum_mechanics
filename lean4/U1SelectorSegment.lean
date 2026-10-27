@@ -39,7 +39,7 @@ cyclotomic extensions of `Q(i)` contain larger finite phase groups; neither is t
 
 Not claimed: any construction of the circle or the complex field from finite carriers, completion or continuity of
 phases, the compact group U(1), the rival split-complex hyperbola, or any physical reading.  The Lean `selector_not_free`
-in `H011U1SelectorBoundary` is `rfl` on a Boolean record whose `rival_excluded` field is set to `false` by hand; it
+in `U1SelectorBoundary` is `rfl` on a Boolean record whose `rival_excluded` field is set to `false` by hand; it
 records a bookkeeping flag, not a derivation.
 -/
 

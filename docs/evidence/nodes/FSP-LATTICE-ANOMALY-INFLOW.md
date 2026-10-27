@@ -42,35 +42,35 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignFspLatticeAnomalyInflow.lean`
+### Lean: `lean4/FermionSignLatticeAnomalyInflow.lean`
 
-- file: [lean4/CampaignFspLatticeAnomalyInflow.lean](../../../lean4/CampaignFspLatticeAnomalyInflow.lean)
-- sha256 (`bytes`): `608565f816ae84218d3f193f21e7f98e45c0479092d42c1dbe079908c625cc9c`
-- cited in: node.lean, receipt dag/research/campaign_fsp-lattice-anomaly-inflow_lean_replay.json (CampaignFspLatticeAnomalyInflow), record TFQ-1199
+- file: [lean4/FermionSignLatticeAnomalyInflow.lean](../../../lean4/FermionSignLatticeAnomalyInflow.lean)
+- sha256 (`bytes`): `cc2e2d8e2b63de8c4fe5f349ba20e6a3bf75a48be27f1f81957668c4f48da1a1`
+- cited in: node.lean, receipt dag/research/campaign_fsp-lattice-anomaly-inflow_lean_replay.json (FermionSignLatticeAnomalyInflow), record TFQ-1199
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-lattice-anomaly-inflow_lean_replay.json](../../../dag/research/campaign_fsp-lattice-anomaly-inflow_lean_replay.json) (module `CampaignFspLatticeAnomalyInflow`): recorded sha256 `608565f816ae84218d3f193f21e7f98e45c0479092d42c1dbe079908c625cc9c` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignFspLatticeAnomalyInflow`
+  - receipt [dag/research/campaign_fsp-lattice-anomaly-inflow_lean_replay.json](../../../dag/research/campaign_fsp-lattice-anomaly-inflow_lean_replay.json) (module `FermionSignLatticeAnomalyInflow`): recorded sha256 `cc2e2d8e2b63de8c4fe5f349ba20e6a3bf75a48be27f1f81957668c4f48da1a1` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build FermionSignLatticeAnomalyInflow`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignFspLatticeAnomalyInflow.bianchi` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.bianchi` |
-| `CampaignFspLatticeAnomalyInflow.chiral_fixed_basis_det` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.chiral_fixed_basis_det` |
-| `CampaignFspLatticeAnomalyInflow.cs_cell_variation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.cs_cell_variation` |
-| `CampaignFspLatticeAnomalyInflow.cs_chain_variation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.cs_chain_variation` |
-| `CampaignFspLatticeAnomalyInflow.curvature_gauge` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.curvature_gauge` |
-| `CampaignFspLatticeAnomalyInflow.det_transport` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.det_transport` |
-| `CampaignFspLatticeAnomalyInflow.finite_variation_nonzero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.finite_variation_nonzero` |
-| `CampaignFspLatticeAnomalyInflow.hopping_covariant` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.hopping_covariant` |
-| `CampaignFspLatticeAnomalyInflow.phase_obstruction` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.phase_obstruction` |
-| `CampaignFspLatticeAnomalyInflow.phase_times_det_ne` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.phase_times_det_ne` |
-| `CampaignFspLatticeAnomalyInflow.schur_covariant` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.schur_covariant` |
-| `CampaignFspLatticeAnomalyInflow.slab_four_cs` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.slab_four_cs` |
-| `CampaignFspLatticeAnomalyInflow.slab_three_cs` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.slab_three_cs` |
-| `CampaignFspLatticeAnomalyInflow.transport_eq_conjugate` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.transport_eq_conjugate` |
-| `CampaignFspLatticeAnomalyInflow.transport_inverse` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.transport_inverse` |
-| `CampaignFspLatticeAnomalyInflow.transport_mul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.transport_mul` |
-| `CampaignFspLatticeAnomalyInflow.transport_one` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.transport_one` |
-| `CampaignFspLatticeAnomalyInflow.transport_sub` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFspLatticeAnomalyInflow.transport_sub` |
+| `FermionSignLatticeAnomalyInflow.bianchi` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.bianchi` |
+| `FermionSignLatticeAnomalyInflow.chiral_fixed_basis_det` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.chiral_fixed_basis_det` |
+| `FermionSignLatticeAnomalyInflow.cs_cell_variation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.cs_cell_variation` |
+| `FermionSignLatticeAnomalyInflow.cs_chain_variation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.cs_chain_variation` |
+| `FermionSignLatticeAnomalyInflow.curvature_gauge` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.curvature_gauge` |
+| `FermionSignLatticeAnomalyInflow.det_transport` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.det_transport` |
+| `FermionSignLatticeAnomalyInflow.finite_variation_nonzero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.finite_variation_nonzero` |
+| `FermionSignLatticeAnomalyInflow.hopping_covariant` | yes | yes | yes | Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.hopping_covariant` |
+| `FermionSignLatticeAnomalyInflow.phase_obstruction` | yes | yes | yes | Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.phase_obstruction` |
+| `FermionSignLatticeAnomalyInflow.phase_times_det_ne` | yes | yes | yes | Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.phase_times_det_ne` |
+| `FermionSignLatticeAnomalyInflow.schur_covariant` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.schur_covariant` |
+| `FermionSignLatticeAnomalyInflow.slab_four_cs` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.slab_four_cs` |
+| `FermionSignLatticeAnomalyInflow.slab_three_cs` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.slab_three_cs` |
+| `FermionSignLatticeAnomalyInflow.transport_eq_conjugate` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.transport_eq_conjugate` |
+| `FermionSignLatticeAnomalyInflow.transport_inverse` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.transport_inverse` |
+| `FermionSignLatticeAnomalyInflow.transport_mul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.transport_mul` |
+| `FermionSignLatticeAnomalyInflow.transport_one` | yes | yes | yes | Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.transport_one` |
+| `FermionSignLatticeAnomalyInflow.transport_sub` | yes | yes | yes | Quot.sound, propext | `#print axioms FermionSignLatticeAnomalyInflow.transport_sub` |
 
 - counts toward the grade: yes
 
@@ -89,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md`
 
 - file: [dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md](../../../dag/derivations/26_fsp/tfq_1199_fsp_lattice_anomaly_inflow.md)
-- sha256 (`lf-normalised`): `ce13f6741aa45a7665f9504a2a56783c0997bd6131ca43beac06b114a5c1e5af`
+- sha256 (`lf-normalised`): `0bbd8d529e39fcd81dc8ecd3fdc6462911b048e57bd27409e3775ac38169b311`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1199
 - counts toward the grade: no

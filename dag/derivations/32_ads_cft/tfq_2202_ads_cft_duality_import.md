@@ -35,7 +35,7 @@ Declared imported structure:
 
 ## Finite target (precise statement)
 
-lean4/CampaignAdsCftDualityImport.lean + checks/independent/ads-cft-duality-import.py (GKPW rational mass-dimension quadratic and Breitenlohner-Freedman bound, t Hooft ribbon-graph genus scaling, and finite isometric bulk-to-boundary dictionary + non-surjectivity witness).
+lean4/AdsCftDualityImport.lean + checks/independent/ads-cft-duality-import.py (GKPW rational mass-dimension quadratic and Breitenlohner-Freedman bound, t Hooft ribbon-graph genus scaling, and finite isometric bulk-to-boundary dictionary + non-surjectivity witness).
 
 No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
 
@@ -65,27 +65,27 @@ See also: `FQ-GAP-CONTINUUM-HILBERT-LIFT`, `TFQ-0085`.
 - Repository: `dag/research/campaign_ads-cft-duality-import_independent.json`
 
 ## Lean 4 declarations read
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.shadowDimension_involutive`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.shadowDimension_sum`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpwMassSq_shadow_eq`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_vieta_product`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_completed_square`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpw_roots_from_square_discriminant`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.bf_bound_iff_discriminant_nonneg`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.bf_saturation_double_root`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.gkpwMassSq_ge_bfBound`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.no_rational_root_below_bf_bound`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.recorded_ads5_and_ads3_gkpw_points`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.thooft_factorization`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.thooft_planar_vs_torus_suppression`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.recorded_thooft_and_gauge_counts`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.pullback_pushforward_id`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.pushforward_mul_of_isometry`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.correlator_dictionary_pullback`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.correlator_dictionary_match`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.codeIsometry12_is_isometry`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.codeIsometry12_projector_ne_one`
-- `lean4/CampaignAdsCftDualityImport.lean::CampaignAdsCftDualityImport.boundary_annihilator_obstruction`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.shadowDimension_involutive`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.shadowDimension_sum`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.gkpwMassSq_shadow_eq`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.gkpw_vieta_product`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.gkpw_completed_square`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.gkpw_roots_from_square_discriminant`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.bf_bound_iff_discriminant_nonneg`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.bf_saturation_double_root`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.gkpwMassSq_ge_bfBound`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.no_rational_root_below_bf_bound`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.recorded_ads5_and_ads3_gkpw_points`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.thooft_factorization`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.thooft_planar_vs_torus_suppression`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.recorded_thooft_and_gauge_counts`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.pullback_pushforward_id`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.pushforward_mul_of_isometry`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.correlator_dictionary_pullback`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.correlator_dictionary_match`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.codeIsometry12_is_isometry`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.codeIsometry12_projector_ne_one`
+- `lean4/AdsCftDualityImport.lean::AdsCftDualityImport.boundary_annihilator_obstruction`
 
 ## Downstream derivations
 

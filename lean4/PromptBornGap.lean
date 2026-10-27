@@ -1,5 +1,5 @@
-import H017Gleason
-import H013QuarticRivalSeparation
+import HilbertWalkGleason
+import QuarticRivalSeparation
 import Mathlib.Tactic.NormNum
 
 /- Finite contract insufficiency and a fixed three-dimensional quartic rival.
@@ -7,34 +7,34 @@ import Mathlib.Tactic.NormNum
    AuthorityEffect: None. -/
 namespace QuantumMechanics.PromptBornGap
 theorem two_label_dimension_refusal :
-    ¬ FableHilbertWalk20260819.H017Gleason.GleasonDimAtLeastThree
-      FableHilbertWalk20260819.HWKernel.enumBool :=
-  FableHilbertWalk20260819.H017Gleason.two_label_host_not_gleason_dimension
+    ¬ HilbertWalk.Gleason.GleasonDimAtLeastThree
+      HilbertWalk.HWKernel.enumBool :=
+  HilbertWalk.Gleason.two_label_host_not_gleason_dimension
 theorem no_three_distinct_bool_labels :
     ¬ ∃ a b c : Bool, a ≠ b ∧ a ≠ c ∧ b ≠ c :=
-  FableHilbertWalk20260819.H017Gleason.no_three_pairwise_distinct_reports
+  HilbertWalk.Gleason.no_three_pairwise_distinct_reports
 theorem actual_weak_source_disagreement :
-    FableHilbertWalk20260819.H013Contract.bornRule
-      FableHilbertWalk20260819.H013.psi21
-      (FableHilbertWalk20260819.H013.indicator false) = 4 ∧
-    FableHilbertWalk20260819.H013Contract.swappedRule
-      FableHilbertWalk20260819.H013.psi21
-      (FableHilbertWalk20260819.H013.indicator false) = 1 :=
-  FableHilbertWalk20260819.H013Contract.disagree_on_false_indicator
+    HilbertWalk.SameContract.bornRule
+      HilbertWalk.BornPairingBoundary.psi21
+      (HilbertWalk.BornPairingBoundary.indicator false) = 4 ∧
+    HilbertWalk.SameContract.swappedRule
+      HilbertWalk.BornPairingBoundary.psi21
+      (HilbertWalk.BornPairingBoundary.indicator false) = 1 :=
+  HilbertWalk.SameContract.disagree_on_false_indicator
 theorem source_quartic_deficit :
-    (FableHilbertWalk20260819.H013QuarticSeparation.quartReadout
-      FableHilbertWalk20260819.H013QuarticSeparation.e1
-      FableHilbertWalk20260819.H013QuarticSeparation.psi +
-     FableHilbertWalk20260819.H013QuarticSeparation.quartReadout
-      FableHilbertWalk20260819.H013QuarticSeparation.e2
-      FableHilbertWalk20260819.H013QuarticSeparation.psi) -
-    (FableHilbertWalk20260819.H013QuarticSeparation.quartReadout
-      FableHilbertWalk20260819.H013QuarticSeparation.p1
-      FableHilbertWalk20260819.H013QuarticSeparation.psi +
-     FableHilbertWalk20260819.H013QuarticSeparation.quartReadout
-      FableHilbertWalk20260819.H013QuarticSeparation.p2
-      FableHilbertWalk20260819.H013QuarticSeparation.psi) = 180000 :=
-  FableHilbertWalk20260819.H013QuarticSeparation.quartic_frame_deficit
+    (HilbertWalk.QuarticRivalSeparation.quartReadout
+      HilbertWalk.QuarticRivalSeparation.e1
+      HilbertWalk.QuarticRivalSeparation.psi +
+     HilbertWalk.QuarticRivalSeparation.quartReadout
+      HilbertWalk.QuarticRivalSeparation.e2
+      HilbertWalk.QuarticRivalSeparation.psi) -
+    (HilbertWalk.QuarticRivalSeparation.quartReadout
+      HilbertWalk.QuarticRivalSeparation.p1
+      HilbertWalk.QuarticRivalSeparation.psi +
+     HilbertWalk.QuarticRivalSeparation.quartReadout
+      HilbertWalk.QuarticRivalSeparation.p2
+      HilbertWalk.QuarticRivalSeparation.psi) = 180000 :=
+  HilbertWalk.QuarticRivalSeparation.quartic_frame_deficit
 theorem normalized_three_coordinate_counterexample :
     (9/25 : ℚ)+(16/25)+0=1 ∧
     (9/25 : ℚ)^2+(16/25)^2+0=337/625 ∧

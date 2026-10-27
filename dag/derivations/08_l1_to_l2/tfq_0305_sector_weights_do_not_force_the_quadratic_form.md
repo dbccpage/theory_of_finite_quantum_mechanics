@@ -23,7 +23,7 @@ In accordance with strict constructive principles:
 
 ### Epistemic Bottlenecks & Falsification Fences
 > [!WARNING]
-> The Lean declaration originally cited was a True stub per the audit. H013BornPairingBoundary.lean is a candidate (header: Candidate only. Not PROVEN. Kind: IMPORT BOUNDARY), not a mechanization of this Part 1.
+> The Lean declaration originally cited was a True stub per the audit. BornPairingBoundary.lean is a candidate (header: Candidate only. Not PROVEN. Kind: IMPORT BOUNDARY), not a mechanization of this Part 1.
 
 ---
 

@@ -1,6 +1,6 @@
 """Package seal for the Cayley certificate.
 
-Origin: lean4/H019RationalLieSpan.lean theorem cayley_isometry_matrix2x2_rat.
+Origin: lean4/RationalLieSpan.lean theorem cayley_isometry_matrix2x2_rat.
 Claim: urn:omega:fqm:lie:package-cayley-seal:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/lie_theory/test_cayley_control.py.

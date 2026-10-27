@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Chapter 05 separates fiber preservation from a selected representative map, with formal Lean and executable control. The mirror lists E012_unique_descended_dynamics.lean, E013_selected_projected_map.lean, and E014_descent_agreement.lean, together with E016_semigroup_defect.lean and E017_escape_with_exact_descent.lean. test_descent.py sits in the same Python tests_unit tree. The candidate README says these modules retain a candidate-only scope marker. Descent agreement in a file name is not a discharge of the Genesis map in S000-GAP-GENESIS-TO-PD. AuthorityEffect is None.
+Chapter 05 separates fiber preservation from a selected representative map, with formal Lean and executable control. The mirror lists UniqueDescendedDynamics.lean, SelectedProjectedMap.lean, and E014_descent_agreement.lean, together with E016_semigroup_defect.lean and E017_escape_with_exact_descent.lean. test_descent.py sits in the same Python tests_unit tree. The candidate README says these modules retain a candidate-only scope marker. Descent agreement in a file name is not a discharge of the Genesis map in S000-GAP-GENESIS-TO-PD. AuthorityEffect is None.
 
 ### Governing Obligation
 Distinguish a fiber-preserving descended map from a selected representative, and retain the semigroup defect when they disagree.
@@ -26,8 +26,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/E012_unique_descended_dynamics.lean`](../../lean4/)
-- [`lean4/E013_selected_projected_map.lean`](../../lean4/)
+- [`lean4/UniqueDescendedDynamics.lean`](../../lean4/)
+- [`lean4/SelectedProjectedMap.lean`](../../lean4/)
 - [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/E014_descent_agreement.lean`](../../lean4/)
 - [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/E016_semigroup_defect.lean`](../../lean4/)
 

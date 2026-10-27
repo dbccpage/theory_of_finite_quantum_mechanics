@@ -1,6 +1,6 @@
 """Rational probability simplex and the Bool half-weight witness.
 
-Origin: lean4/H001Rats.lean theorem fractional_half_simplex
+Origin: lean4/HilbertWalkRationals.lean theorem fractional_half_simplex
 (uniformHalf on Bool sums to one, half ≠ 0, half ≠ 1, and the half
 numerator is nonnegative) and theorem half_add_half (half + half = 1).
 Claim: urn:omega:fqm:simplex:fractional-half:v1
@@ -11,7 +11,7 @@ measurements from older revisions do not certify this revision.
 Scope Fence: half_simplex_mass checks those conjuncts on uniform(2) and
 returns 1. ProbabilitySimplex, total variation, mixture, expectation, and
 StochasticMap are exact rational operations and are not ScaledProb and not
-the cited half theorem. This file does not prove H001Rats.lean.
+the cited half theorem. This file does not prove HilbertWalkRationals.lean.
 """
 
 from __future__ import annotations

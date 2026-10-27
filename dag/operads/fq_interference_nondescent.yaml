@@ -37,7 +37,7 @@ operation_candidates:
   name: readout
   line: 25
   signature_excerpt: 'def readout (v : Vec GaussInt Bool) : Bool → Int'
-  source: lean4/H010InterferenceNonDescent.lean
+  source: lean4/InterferenceNonDescent.lean
   repository: this_repository
   source_sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
   status: source_candidate_requires_semantic_review
@@ -45,7 +45,7 @@ operation_candidates:
   name: mix
   line: 20
   signature_excerpt: 'def mix (v : Vec GaussInt Bool) : Vec GaussInt Bool'
-  source: lean4/H010InterferenceNonDescent.lean
+  source: lean4/InterferenceNonDescent.lean
   repository: this_repository
   source_sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
   status: source_candidate_requires_semantic_review
@@ -55,7 +55,7 @@ relation_candidates:
   line: 48
   signature_excerpt: "theorem no_descent_through_fiber :\n    ¬ ∃ f : (Bool → Int) → (Bool → Int),\n \
     \     ∀ v : Vec GaussInt Bool, readout v = f (phaseBlind v)"
-  source: lean4/H010InterferenceNonDescent.lean
+  source: lean4/InterferenceNonDescent.lean
   repository: this_repository
   source_sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
   status: source_candidate_requires_semantic_review
@@ -65,7 +65,7 @@ relation_candidates:
   name: mix_separates
   line: 35
   signature_excerpt: 'theorem mix_separates : ¬(∀ q : Bool, readout psi1 q = readout psi2 q)'
-  source: lean4/H010InterferenceNonDescent.lean
+  source: lean4/InterferenceNonDescent.lean
   repository: this_repository
   source_sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
   status: source_candidate_requires_semantic_review
@@ -75,7 +75,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H010InterferenceNonDescent.lean::no_descent_through_fiber
   availability: local
   symbol: no_descent_through_fiber
-  path: lean4/H010InterferenceNonDescent.lean
+  path: lean4/InterferenceNonDescent.lean
   repository: this_repository
   sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
   declaration_status: declaration_found_not_proof_checked
@@ -84,7 +84,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H010InterferenceNonDescent.lean::mix_separates
   availability: local
   symbol: mix_separates
-  path: lean4/H010InterferenceNonDescent.lean
+  path: lean4/InterferenceNonDescent.lean
   repository: this_repository
   sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
   declaration_status: declaration_found_not_proof_checked
@@ -649,12 +649,12 @@ operad_slots:
     - dag/pfp/review_exact_json.py
     - dag/pfp/exact_json.py
     - lean4/HWKernel.lean
-    - lean4/H004FreeLinearization.lean
-    - lean4/H005InnerProductAdmission.lean
-    - lean4/H008PhaseBlindPresentation.lean
+    - lean4/FreeLinearization.lean
+    - lean4/InnerProductAdmission.lean
+    - lean4/HilbertWalkPhaseBlindPresentation.lean
     - lean4/Core.lean
-    - lean4/H009PhaseFiber.lean
-    - lean4/H010InterferenceNonDescent.lean
+    - lean4/PhaseFiber.lean
+    - lean4/InterferenceNonDescent.lean
     - lean4/BornRedundancy.lean
     - lean4/GleasonRationalPlane.lean
     - QuantumMechanics.PromptPhaseScope.interference_no_descent

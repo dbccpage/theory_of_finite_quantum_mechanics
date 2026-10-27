@@ -44,7 +44,7 @@ See also: `PGW-GO-ADMISSION-GATE`, `PG-GEN-REGIME-EVENTS`.
 - Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md#L035-C1`
 - Repository: `sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md#3.1`
 - Repository: `dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md`
-- Repository: `lean4/CampaignOpsAxis1WellfoundedAdmission.lean`
+- Repository: `lean4/ObserverPresheafAxis1WellfoundedAdmission.lean`
 - Repository: `checks/independent/ops-axis1-wellfounded-admission.py`
 - Repository: `dag/derivations/independent/ops-axis1-wellfounded-admission.md`
 - Repository: `dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json`

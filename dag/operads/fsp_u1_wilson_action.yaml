@@ -8,7 +8,7 @@ target:
     under local U(1) gauge transformations and is nonnegative for beta_g >= 0.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: 'Lean: CampaignFspU1WilsonAction.fsp_u1_wilson_action states gauge invariance (for
+  source_bottleneck: 'Lean: FermionSignU1WilsonAction.fsp_u1_wilson_action states gauge invariance (for
     every g: V -> U(1) and for every angle shift A_ij -> A_ij + theta_i - theta_j) and nonnegativity for
     beta_g >= 0, for any vertex type and any finite family of closed paths; the periodic hypercubic lattice
     (ZMod L)^d is one instance. beta_g >= 0 is required: one self-link plaquette with phase -1 and beta_g
@@ -42,7 +42,7 @@ operation_candidates:
   name: ClosedPath
   line: 102
   signature_excerpt: 'structure ClosedPath (V : Type*)'
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -50,7 +50,7 @@ operation_candidates:
   name: wilsonAction
   line: 139
   signature_excerpt: 'def wilsonAction (plaq : ι → ClosedPath V) (β : ℝ) (U : V → V → Circle) : ℝ'
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -58,7 +58,7 @@ operation_candidates:
   name: gaugeAct
   line: 47
   signature_excerpt: 'def gaugeAct (g : V → G) (U : V → V → G) : V → V → G'
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -66,7 +66,7 @@ operation_candidates:
   name: linkOfAngle
   line: 214
   signature_excerpt: 'def linkOfAngle (A : V → V → ℝ) : V → V → Circle'
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -74,7 +74,7 @@ operation_candidates:
   name: gaugeAngle
   line: 218
   signature_excerpt: 'def gaugeAngle (θ : V → ℝ) (A : V → V → ℝ) : V → V → ℝ'
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -87,7 +87,7 @@ operation_candidates:
       | _, b :: rest => endpoint b rest
 
     @[simp] theorem holonomy_nil (U : V → V → G) (a : V) : holonomy U a [] = 1
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -95,7 +95,7 @@ operation_candidates:
   name: loopHolonomy
   line: 108
   signature_excerpt: 'def loopHolonomy (U : V → V → G) (p : ClosedPath V) : G'
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -113,7 +113,7 @@ operation_candidates:
       | _, b :: rest => endpoint b rest
 
     @[simp] theorem holonomy_nil (U : V → V → G) (a : V) : holonomy U a [] = 1
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -128,7 +128,7 @@ operation_candidates:
     /-- The holonomy of angle links is the exponential of the summed angle. -/
     theorem holonomy_linkOfAngle (A : V → V → ℝ) (a : V) (l : List V) :
         holonomy (linkOfAngle A) a l = Circle.exp (pathAngle A a l)
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -136,7 +136,7 @@ operation_candidates:
   name: selfLoop
   line: 187
   signature_excerpt: 'def selfLoop : ClosedPath Unit'
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -144,7 +144,7 @@ operation_candidates:
   name: Site
   line: 274
   signature_excerpt: abbrev Site
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -152,7 +152,7 @@ operation_candidates:
   name: hypercubicWilson
   line: 291
   signature_excerpt: 'def hypercubicWilson (β : ℝ) (U : Site d L → Site d L → Circle) : ℝ'
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -160,7 +160,7 @@ operation_candidates:
   name: plaquette
   line: 284
   signature_excerpt: 'def plaquette (i : PlaqIndex d L) : ClosedPath (Site d L)'
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -168,7 +168,7 @@ operation_candidates:
   name: PlaqIndex
   line: 280
   signature_excerpt: abbrev PlaqIndex
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -176,7 +176,7 @@ operation_candidates:
   name: unitVec
   line: 277
   signature_excerpt: 'def unitVec (μ : Fin d) : Site d L'
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -192,7 +192,7 @@ relation_candidates:
         (∀ θ : V → ℝ,
             wilsonAction plaq β (linkOfAngle (gaugeAngle θ A)) = wilsonAction plaq β (linkOfAngle A)) ∧
         (0 ≤ β → 0 ≤ wilsonAction plaq β (linkOfAngle A))
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -205,7 +205,7 @@ relation_candidates:
     theorem wilsonAction_gauge_invariant (plaq : ι → ClosedPath V) (β : ℝ)
         (g : V → Circle) (U : V → V → Circle) :
         wilsonAction plaq β (gaugeAct g U) = wilsonAction plaq β U
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -217,7 +217,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem wilsonAction_nonneg (plaq : ι → ClosedPath V) {β : ℝ} (hβ : 0 ≤ β)
         (U : V → V → Circle) : 0 ≤ wilsonAction plaq β U
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -229,7 +229,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem loopHolonomy_gaugeAct (g : V → G) (U : V → V → G) (p : ClosedPath V) :
         loopHolonomy (gaugeAct g U) p = loopHolonomy U p
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -241,7 +241,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem holonomy_gaugeAct (g : V → G) (U : V → V → G) (a : V) (l : List V) :
         holonomy (gaugeAct g U) a l = g a * holonomy U a l * (g (endpoint a l))⁻¹
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -253,7 +253,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem linkOfAngle_gaugeAngle (θ : V → ℝ) (A : V → V → ℝ) :
         linkOfAngle (gaugeAngle θ A) = gaugeAct (fun v => Circle.exp (θ v)) (linkOfAngle A)
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -267,7 +267,7 @@ relation_candidates:
         (β : ℝ) (A : V → V → ℝ) :
         wilsonAction plaq β (linkOfAngle A)
           = β * ∑ p, (1 - Real.cos (pathAngle A (plaq p).base (plaq p).path))
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -280,7 +280,7 @@ relation_candidates:
     theorem wilsonAction_eq_zero_iff (plaq : ι → ClosedPath V) {β : ℝ} (hβ : 0 < β)
         (U : V → V → Circle) :
         wilsonAction plaq β U = 0 ↔ ∀ p, loopHolonomy U (plaq p) = 1
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -293,7 +293,7 @@ relation_candidates:
     theorem wilsonAction_nonneg_needs_beta :
         ¬ ∀ (β : ℝ) (U : Unit → Unit → Circle),
           0 ≤ wilsonAction (fun _ : Unit => selfLoop) β U
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -306,7 +306,7 @@ relation_candidates:
     theorem hypercubicWilson_gauge_invariant (β : ℝ) (g : Site d L → Circle)
         (U : Site d L → Site d L → Circle) :
         hypercubicWilson d L β (gaugeAct g U) = hypercubicWilson d L β U
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
@@ -318,107 +318,107 @@ relation_candidates:
   signature_excerpt: |-
     theorem hypercubicWilson_nonneg {β : ℝ} (hβ : 0 ≤ β) (U : Site d L → Site d L → Circle) :
         0 ≤ hypercubicWilson d L β U
-  source: lean4/CampaignFspU1WilsonAction.lean
+  source: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   source_sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.fsp_u1_wilson_action
+- original_ref: lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.fsp_u1_wilson_action
   availability: local
-  symbol: CampaignFspU1WilsonAction.fsp_u1_wilson_action
-  path: lean4/CampaignFspU1WilsonAction.lean
+  symbol: FermionSignU1WilsonAction.fsp_u1_wilson_action
+  path: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   declaration_status: declaration_found_not_proof_checked
   line: 254
   role: source_lead_only
-- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_gauge_invariant
+- original_ref: lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.wilsonAction_gauge_invariant
   availability: local
-  symbol: CampaignFspU1WilsonAction.wilsonAction_gauge_invariant
-  path: lean4/CampaignFspU1WilsonAction.lean
+  symbol: FermionSignU1WilsonAction.wilsonAction_gauge_invariant
+  path: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   declaration_status: declaration_found_not_proof_checked
   line: 143
   role: source_lead_only
-- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_nonneg
+- original_ref: lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.wilsonAction_nonneg
   availability: local
-  symbol: CampaignFspU1WilsonAction.wilsonAction_nonneg
-  path: lean4/CampaignFspU1WilsonAction.lean
+  symbol: FermionSignU1WilsonAction.wilsonAction_nonneg
+  path: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   declaration_status: declaration_found_not_proof_checked
   line: 168
   role: source_lead_only
-- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.loopHolonomy_gaugeAct
+- original_ref: lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.loopHolonomy_gaugeAct
   availability: local
-  symbol: CampaignFspU1WilsonAction.loopHolonomy_gaugeAct
-  path: lean4/CampaignFspU1WilsonAction.lean
+  symbol: FermionSignU1WilsonAction.loopHolonomy_gaugeAct
+  path: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   declaration_status: declaration_found_not_proof_checked
   line: 125
   role: source_lead_only
-- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.holonomy_gaugeAct
+- original_ref: lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.holonomy_gaugeAct
   availability: local
-  symbol: CampaignFspU1WilsonAction.holonomy_gaugeAct
-  path: lean4/CampaignFspU1WilsonAction.lean
+  symbol: FermionSignU1WilsonAction.holonomy_gaugeAct
+  path: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   declaration_status: declaration_found_not_proof_checked
   line: 93
   role: source_lead_only
-- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.linkOfAngle_gaugeAngle
+- original_ref: lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.linkOfAngle_gaugeAngle
   availability: local
-  symbol: CampaignFspU1WilsonAction.linkOfAngle_gaugeAngle
-  path: lean4/CampaignFspU1WilsonAction.lean
+  symbol: FermionSignU1WilsonAction.linkOfAngle_gaugeAngle
+  path: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   declaration_status: declaration_found_not_proof_checked
   line: 222
   role: source_lead_only
-- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_linkOfAngle
+- original_ref: lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.wilsonAction_linkOfAngle
   availability: local
-  symbol: CampaignFspU1WilsonAction.wilsonAction_linkOfAngle
-  path: lean4/CampaignFspU1WilsonAction.lean
+  symbol: FermionSignU1WilsonAction.wilsonAction_linkOfAngle
+  path: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   declaration_status: declaration_found_not_proof_checked
   line: 242
   role: source_lead_only
-- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_eq_zero_iff
+- original_ref: lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.wilsonAction_eq_zero_iff
   availability: local
-  symbol: CampaignFspU1WilsonAction.wilsonAction_eq_zero_iff
-  path: lean4/CampaignFspU1WilsonAction.lean
+  symbol: FermionSignU1WilsonAction.wilsonAction_eq_zero_iff
+  path: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   declaration_status: declaration_found_not_proof_checked
   line: 173
   role: source_lead_only
-- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_nonneg_needs_beta
+- original_ref: lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.wilsonAction_nonneg_needs_beta
   availability: local
-  symbol: CampaignFspU1WilsonAction.wilsonAction_nonneg_needs_beta
-  path: lean4/CampaignFspU1WilsonAction.lean
+  symbol: FermionSignU1WilsonAction.wilsonAction_nonneg_needs_beta
+  path: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   declaration_status: declaration_found_not_proof_checked
   line: 197
   role: source_lead_only
-- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.hypercubicWilson_gauge_invariant
+- original_ref: lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.hypercubicWilson_gauge_invariant
   availability: local
-  symbol: CampaignFspU1WilsonAction.hypercubicWilson_gauge_invariant
-  path: lean4/CampaignFspU1WilsonAction.lean
+  symbol: FermionSignU1WilsonAction.hypercubicWilson_gauge_invariant
+  path: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   declaration_status: declaration_found_not_proof_checked
   line: 295
   role: source_lead_only
-- original_ref: lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.hypercubicWilson_nonneg
+- original_ref: lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.hypercubicWilson_nonneg
   availability: local
-  symbol: CampaignFspU1WilsonAction.hypercubicWilson_nonneg
-  path: lean4/CampaignFspU1WilsonAction.lean
+  symbol: FermionSignU1WilsonAction.hypercubicWilson_nonneg
+  path: lean4/FermionSignU1WilsonAction.lean
   repository: this_repository
   sha256: 5f78709a5e554f44dc52e0fe3bf79e80f34985c8c970e5128284ab7f53c3ecb0
   declaration_status: declaration_found_not_proof_checked

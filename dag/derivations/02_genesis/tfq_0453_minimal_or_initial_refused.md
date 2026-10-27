@@ -30,14 +30,14 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.all_words_agree`](../../../lean4/CampaignGenesisProcessComparison.lean)
-- [`lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.all_words_minimum_size`](../../../lean4/CampaignGenesisProcessComparison.lean)
-- [`lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.no_clock_hom_of_self_loop`](../../../lean4/CampaignGenesisProcessComparison.lean)
-- [`lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.no_initial_in_clock_closed_class`](../../../lean4/CampaignGenesisProcessComparison.lean)
-- [`lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class`](../../../lean4/CampaignGenesisProcessComparison.lean)
-- [`lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.nonminimal_adequate_process`](../../../lean4/CampaignGenesisProcessComparison.lean)
-- [`lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.source_run_matches`](../../../lean4/CampaignGenesisProcessComparison.lean)
-- [`lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.source_supply_self_loop`](../../../lean4/CampaignGenesisProcessComparison.lean)
+- [`lean4/GenesisProcessComparison.lean::GenesisProcessComparison.all_words_agree`](../../../lean4/GenesisProcessComparison.lean)
+- [`lean4/GenesisProcessComparison.lean::GenesisProcessComparison.all_words_minimum_size`](../../../lean4/GenesisProcessComparison.lean)
+- [`lean4/GenesisProcessComparison.lean::GenesisProcessComparison.no_clock_hom_of_self_loop`](../../../lean4/GenesisProcessComparison.lean)
+- [`lean4/GenesisProcessComparison.lean::GenesisProcessComparison.no_initial_in_clock_closed_class`](../../../lean4/GenesisProcessComparison.lean)
+- [`lean4/GenesisProcessComparison.lean::GenesisProcessComparison.no_source_initial_in_clock_closed_class`](../../../lean4/GenesisProcessComparison.lean)
+- [`lean4/GenesisProcessComparison.lean::GenesisProcessComparison.nonminimal_adequate_process`](../../../lean4/GenesisProcessComparison.lean)
+- [`lean4/GenesisProcessComparison.lean::GenesisProcessComparison.source_run_matches`](../../../lean4/GenesisProcessComparison.lean)
+- [`lean4/GenesisProcessComparison.lean::GenesisProcessComparison.source_supply_self_loop`](../../../lean4/GenesisProcessComparison.lean)
 - `missing obligation: no Lean statement of minimality or initiality among finite processes satisfying the sealed challenges`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)

@@ -1,6 +1,6 @@
 """Exact cochains, their evaluation pairing, and the triangle coboundary square.
 
-Origin: lean4/H021TriangleNetworkComplexCarrier.lean theorems
+Origin: lean4/TriangleNetworkComplexCarrier.lean theorems
 eval_pairing_left_additive and eval_pairing_right_additive. The evaluation
 pairing is additive in the chain and in the cochain.
 Claim: urn:omega:fqm:homology:triangle-cochain-pairing:v1

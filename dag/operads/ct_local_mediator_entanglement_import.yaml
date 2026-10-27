@@ -16,7 +16,7 @@ target:
   - locality of the mediated interaction (assumption)
   - information-theoretic definition of a classical mediator (assumption)
   source_bottleneck: 'The inference (arXiv:1707.06036 pp. 2-3; arXiv:1707.06050 pp. 1-2) remains an assumption
-    of this branch. CampaignCtMediatorEntanglement.lean states only a finite shadow: a single linear local
+    of this branch. ConstructorTheoryMediatorEntanglement.lean states only a finite shadow: a single linear local
     map A (x) B applied to one pure bipartite state does not raise the rank of its coefficient matrix
     (any finite dimension over any field), and for two qubits over Q(i) it does not carry the product
     state (1,1,1,1)/2 to (1,1,1,u)/2 with u=(3+4i)/5, whose squared concurrence is 1/5. Not stated: mixed
@@ -48,7 +48,7 @@ operation_candidates:
   name: applyLocalOp
   line: 41
   signature_excerpt: 'def applyLocalOp (A B M : Mat2) : Mat2'
-  source: lean4/CampaignCtMediatorEntanglement.lean
+  source: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
@@ -56,7 +56,7 @@ operation_candidates:
   name: M_entangled
   line: 102
   signature_excerpt: 'def M_entangled : Mat2'
-  source: lean4/CampaignCtMediatorEntanglement.lean
+  source: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
@@ -64,7 +64,7 @@ operation_candidates:
   name: M_separable
   line: 99
   signature_excerpt: 'def M_separable : Mat2'
-  source: lean4/CampaignCtMediatorEntanglement.lean
+  source: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
@@ -72,7 +72,7 @@ operation_candidates:
   name: ClassicalMediatorBranch
   line: 45
   signature_excerpt: structure ClassicalMediatorBranch
-  source: lean4/CampaignCtMediatorEntanglement.lean
+  source: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
@@ -80,7 +80,7 @@ operation_candidates:
   name: applyMediatorBranch
   line: 51
   signature_excerpt: 'def applyMediatorBranch (branch : ClassicalMediatorBranch) (M : Mat2) : Mat2'
-  source: lean4/CampaignCtMediatorEntanglement.lean
+  source: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
@@ -88,7 +88,7 @@ operation_candidates:
   name: LoccMediatorModel
   line: 191
   signature_excerpt: structure LoccMediatorModel
-  source: lean4/CampaignCtMediatorEntanglement.lean
+  source: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
@@ -101,7 +101,7 @@ relation_candidates:
         [Fintype m] [Fintype n] [Fintype p] [Fintype q]
         (A : Matrix m p K) (M : Matrix p q K) (B : Matrix n q K) :
         (A * M * B.transpose).rank ≤ M.rank
-  source: lean4/CampaignCtMediatorEntanglement.lean
+  source: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
@@ -115,7 +115,7 @@ relation_candidates:
         [Fintype m] [Fintype n] [Fintype p] [Fintype q]
         (A : Matrix m p K) (M : Matrix p q K) (B : Matrix n q K) (T : Matrix m n K)
         (h : M.rank < T.rank) : A * M * B.transpose ≠ T
-  source: lean4/CampaignCtMediatorEntanglement.lean
+  source: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
@@ -127,7 +127,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem applyLocalOp_det (A B M : Mat2) :
         det2 (applyLocalOp A B M) = det2 A * det2 M * det2 B
-  source: lean4/CampaignCtMediatorEntanglement.lean
+  source: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
@@ -139,7 +139,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem local_op_preserves_product_det (A B M : Mat2) (h : det2 M = 0) :
         det2 (applyLocalOp A B M) = 0
-  source: lean4/CampaignCtMediatorEntanglement.lean
+  source: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
@@ -151,7 +151,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem local_op_concurrence_zero_of_separable (A B M : Mat2) (h : det2 M = 0) :
         concurrenceSq (applyLocalOp A B M) = 0
-  source: lean4/CampaignCtMediatorEntanglement.lean
+  source: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
@@ -163,7 +163,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem M_entangled_concurrence :
         concurrenceSq M_entangled = 1 / 5
-  source: lean4/CampaignCtMediatorEntanglement.lean
+  source: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
@@ -175,7 +175,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem no_local_op_produces_entangled_state (A B : Mat2) :
         applyLocalOp A B M_separable ≠ M_entangled
-  source: lean4/CampaignCtMediatorEntanglement.lean
+  source: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
@@ -187,7 +187,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem classical_mediator_cannot_produce_entangled_state (branch : ClassicalMediatorBranch) :
         applyMediatorBranch branch M_separable ≠ M_entangled
-  source: lean4/CampaignCtMediatorEntanglement.lean
+  source: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
@@ -203,89 +203,89 @@ relation_candidates:
         (hin : det2 M_in = 0)
         (hout : det2 M_out ≠ 0) :
         model.action M_in ≠ M_out
-  source: lean4/CampaignCtMediatorEntanglement.lean
+  source: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   source_sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.schmidtRank_local_le
+- original_ref: lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.schmidtRank_local_le
   availability: local
-  symbol: CampaignCtMediatorEntanglement.schmidtRank_local_le
-  path: lean4/CampaignCtMediatorEntanglement.lean
+  symbol: ConstructorTheoryMediatorEntanglement.schmidtRank_local_le
+  path: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   declaration_status: declaration_found_not_proof_checked
   line: 57
   role: source_lead_only
-- original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.schmidtRank_not_reachable
+- original_ref: lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.schmidtRank_not_reachable
   availability: local
-  symbol: CampaignCtMediatorEntanglement.schmidtRank_not_reachable
-  path: lean4/CampaignCtMediatorEntanglement.lean
+  symbol: ConstructorTheoryMediatorEntanglement.schmidtRank_not_reachable
+  path: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   declaration_status: declaration_found_not_proof_checked
   line: 71
   role: source_lead_only
-- original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.applyLocalOp_det
+- original_ref: lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.applyLocalOp_det
   availability: local
-  symbol: CampaignCtMediatorEntanglement.applyLocalOp_det
-  path: lean4/CampaignCtMediatorEntanglement.lean
+  symbol: ConstructorTheoryMediatorEntanglement.applyLocalOp_det
+  path: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   declaration_status: declaration_found_not_proof_checked
   line: 81
   role: source_lead_only
-- original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.local_op_preserves_product_det
+- original_ref: lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.local_op_preserves_product_det
   availability: local
-  symbol: CampaignCtMediatorEntanglement.local_op_preserves_product_det
-  path: lean4/CampaignCtMediatorEntanglement.lean
+  symbol: ConstructorTheoryMediatorEntanglement.local_op_preserves_product_det
+  path: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   declaration_status: declaration_found_not_proof_checked
   line: 86
   role: source_lead_only
-- original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.local_op_concurrence_zero_of_separable
+- original_ref: lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.local_op_concurrence_zero_of_separable
   availability: local
-  symbol: CampaignCtMediatorEntanglement.local_op_concurrence_zero_of_separable
-  path: lean4/CampaignCtMediatorEntanglement.lean
+  symbol: ConstructorTheoryMediatorEntanglement.local_op_concurrence_zero_of_separable
+  path: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   declaration_status: declaration_found_not_proof_checked
   line: 91
   role: source_lead_only
-- original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.M_entangled_concurrence
+- original_ref: lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.M_entangled_concurrence
   availability: local
-  symbol: CampaignCtMediatorEntanglement.M_entangled_concurrence
-  path: lean4/CampaignCtMediatorEntanglement.lean
+  symbol: ConstructorTheoryMediatorEntanglement.M_entangled_concurrence
+  path: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   declaration_status: declaration_found_not_proof_checked
   line: 126
   role: source_lead_only
-- original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.no_local_op_produces_entangled_state
+- original_ref: lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.no_local_op_produces_entangled_state
   availability: local
-  symbol: CampaignCtMediatorEntanglement.no_local_op_produces_entangled_state
-  path: lean4/CampaignCtMediatorEntanglement.lean
+  symbol: ConstructorTheoryMediatorEntanglement.no_local_op_produces_entangled_state
+  path: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   declaration_status: declaration_found_not_proof_checked
   line: 151
   role: source_lead_only
-- original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.classical_mediator_cannot_produce_entangled_state
+- original_ref: lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.classical_mediator_cannot_produce_entangled_state
   availability: local
-  symbol: CampaignCtMediatorEntanglement.classical_mediator_cannot_produce_entangled_state
-  path: lean4/CampaignCtMediatorEntanglement.lean
+  symbol: ConstructorTheoryMediatorEntanglement.classical_mediator_cannot_produce_entangled_state
+  path: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   declaration_status: declaration_found_not_proof_checked
   line: 161
   role: source_lead_only
-- original_ref: lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.reduction_of_mediated_entanglement_inference
+- original_ref: lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.reduction_of_mediated_entanglement_inference
   availability: local
-  symbol: CampaignCtMediatorEntanglement.reduction_of_mediated_entanglement_inference
-  path: lean4/CampaignCtMediatorEntanglement.lean
+  symbol: ConstructorTheoryMediatorEntanglement.reduction_of_mediated_entanglement_inference
+  path: lean4/ConstructorTheoryMediatorEntanglement.lean
   repository: this_repository
   sha256: e826163d25ff42613d1dab19bdef18c00b56f15e495d4520a3f552aa2285ec79
   declaration_status: declaration_found_not_proof_checked

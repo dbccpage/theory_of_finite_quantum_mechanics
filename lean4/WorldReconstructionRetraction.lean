@@ -6,7 +6,7 @@ import WorldFiniteReconstruction
 
 
 
-namespace OmegaWorld
+namespace ObserverWorld
 namespace ReconstructionQ12
 
 abbrev Matrix2 := Basis2 -> Basis2 -> Int
@@ -342,7 +342,7 @@ def diagonalReconstructionRetraction : DiagonalReconstructionRetraction where
 #print axioms diagonalReconstructionRetraction
 
 end ReconstructionQ12
-end OmegaWorld
+end ObserverWorld
 
 private def l5aProvenance : String :=
   "Origin: lean4/WorldReconstructionRetraction.lean Claim: decode_encode AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

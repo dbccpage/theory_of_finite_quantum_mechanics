@@ -31,7 +31,7 @@ $S^1(\mathbb{Q}) = \{(x, y) \in \mathbb{Q}^2 \mid x^2 + y^2 = 1\}$:
    contrast to the hyperbolic split-complex form $u^2 - v^2$ which has non-trivial null vectors $(1, 1)$.
 -/
 
-namespace U1Fable.CayleyProjective
+namespace U1Finite.CayleyProjective
 
 /-! ## Section 1: Elliptic Norm Anisotropy & Affine Cayley Parameterization -/
 
@@ -314,38 +314,38 @@ theorem homCayley_projMul (p q : ProjRatLine) :
   dsimp at hpq ⊢
   ext <;> dsimp <;> field_simp [hp, hq, hpq] <;> ring
 
-end U1Fable.CayleyProjective
+end U1Finite.CayleyProjective
 
-#print axioms U1Fable.CayleyProjective.elliptic_norm_anisotropic
-#print axioms U1Fable.CayleyProjective.hyperbolic_split_zero_divisor
-#print axioms U1Fable.CayleyProjective.cayleyDenom_pos
-#print axioms U1Fable.CayleyProjective.cayleyDenom_ne_zero
-#print axioms U1Fable.CayleyProjective.cayley
-#print axioms U1Fable.CayleyProjective.cayley_cleared_identity
-#print axioms U1Fable.CayleyProjective.cayley_unit_norm
-#print axioms U1Fable.CayleyProjective.cayley_re_add_one
-#print axioms U1Fable.CayleyProjective.cayley_re_ne_neg_one
-#print axioms U1Fable.CayleyProjective.cayley_misses_south_pole
-#print axioms U1Fable.CayleyProjective.inverseCayley
-#print axioms U1Fable.CayleyProjective.inverseCayley_cayley
-#print axioms U1Fable.CayleyProjective.cayley_inverseCayley
-#print axioms U1Fable.CayleyProjective.circleMul
-#print axioms U1Fable.CayleyProjective.cayley_mul_regular
-#print axioms U1Fable.CayleyProjective.cayley_mul_pole_collision
-#print axioms U1Fable.CayleyProjective.ProjRatLine
-#print axioms U1Fable.CayleyProjective.projDenom_ne_zero
-#print axioms U1Fable.CayleyProjective.projDenom_pos
-#print axioms U1Fable.CayleyProjective.homCayley
-#print axioms U1Fable.CayleyProjective.homCayley_unit_norm
-#print axioms U1Fable.CayleyProjective.ofAffine
-#print axioms U1Fable.CayleyProjective.infinityPt
-#print axioms U1Fable.CayleyProjective.homCayley_ofAffine
-#print axioms U1Fable.CayleyProjective.homCayley_infinity
-#print axioms U1Fable.CayleyProjective.scale_not_both_zero
-#print axioms U1Fable.CayleyProjective.scaleProj
-#print axioms U1Fable.CayleyProjective.homCayley_scale
-#print axioms U1Fable.CayleyProjective.homCayley_surjective
-#print axioms U1Fable.CayleyProjective.brahmagupta_fibonacci
-#print axioms U1Fable.CayleyProjective.projMul_not_both_zero
-#print axioms U1Fable.CayleyProjective.projMul
-#print axioms U1Fable.CayleyProjective.homCayley_projMul
+#print axioms U1Finite.CayleyProjective.elliptic_norm_anisotropic
+#print axioms U1Finite.CayleyProjective.hyperbolic_split_zero_divisor
+#print axioms U1Finite.CayleyProjective.cayleyDenom_pos
+#print axioms U1Finite.CayleyProjective.cayleyDenom_ne_zero
+#print axioms U1Finite.CayleyProjective.cayley
+#print axioms U1Finite.CayleyProjective.cayley_cleared_identity
+#print axioms U1Finite.CayleyProjective.cayley_unit_norm
+#print axioms U1Finite.CayleyProjective.cayley_re_add_one
+#print axioms U1Finite.CayleyProjective.cayley_re_ne_neg_one
+#print axioms U1Finite.CayleyProjective.cayley_misses_south_pole
+#print axioms U1Finite.CayleyProjective.inverseCayley
+#print axioms U1Finite.CayleyProjective.inverseCayley_cayley
+#print axioms U1Finite.CayleyProjective.cayley_inverseCayley
+#print axioms U1Finite.CayleyProjective.circleMul
+#print axioms U1Finite.CayleyProjective.cayley_mul_regular
+#print axioms U1Finite.CayleyProjective.cayley_mul_pole_collision
+#print axioms U1Finite.CayleyProjective.ProjRatLine
+#print axioms U1Finite.CayleyProjective.projDenom_ne_zero
+#print axioms U1Finite.CayleyProjective.projDenom_pos
+#print axioms U1Finite.CayleyProjective.homCayley
+#print axioms U1Finite.CayleyProjective.homCayley_unit_norm
+#print axioms U1Finite.CayleyProjective.ofAffine
+#print axioms U1Finite.CayleyProjective.infinityPt
+#print axioms U1Finite.CayleyProjective.homCayley_ofAffine
+#print axioms U1Finite.CayleyProjective.homCayley_infinity
+#print axioms U1Finite.CayleyProjective.scale_not_both_zero
+#print axioms U1Finite.CayleyProjective.scaleProj
+#print axioms U1Finite.CayleyProjective.homCayley_scale
+#print axioms U1Finite.CayleyProjective.homCayley_surjective
+#print axioms U1Finite.CayleyProjective.brahmagupta_fibonacci
+#print axioms U1Finite.CayleyProjective.projMul_not_both_zero
+#print axioms U1Finite.CayleyProjective.projMul
+#print axioms U1Finite.CayleyProjective.homCayley_projMul

@@ -43,52 +43,52 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignAdsCftDualityImport.lean`
+### Lean: `lean4/AdsCftDualityImport.lean`
 
-- file: [lean4/CampaignAdsCftDualityImport.lean](../../../lean4/CampaignAdsCftDualityImport.lean)
-- sha256 (`bytes`): `08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf`
-- cited in: node.lean, receipt dag/research/campaign_ads-cft-duality-import_lean_replay.json (CampaignAdsCftDualityImport), record TFQ-2202
+- file: [lean4/AdsCftDualityImport.lean](../../../lean4/AdsCftDualityImport.lean)
+- sha256 (`bytes`): `19365b284177fa7eb6fbe532f016248ea5143a1a8ead08e77d772539ac89f61b`
+- cited in: node.lean, receipt dag/research/campaign_ads-cft-duality-import_lean_replay.json (AdsCftDualityImport), record TFQ-2202
 - replay: `verified`
-  - receipt [dag/research/campaign_ads-cft-duality-import_lean_replay.json](../../../dag/research/campaign_ads-cft-duality-import_lean_replay.json) (module `CampaignAdsCftDualityImport`): recorded sha256 `08d4d2c19e1c449cd58b3a84679125397bd9be7ce8f78e568112d2079e2913bf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignAdsCftDualityImport`
+  - receipt [dag/research/campaign_ads-cft-duality-import_lean_replay.json](../../../dag/research/campaign_ads-cft-duality-import_lean_replay.json) (module `AdsCftDualityImport`): recorded sha256 `19365b284177fa7eb6fbe532f016248ea5143a1a8ead08e77d772539ac89f61b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build AdsCftDualityImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignAdsCftDualityImport.bf_bound_iff_discriminant_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.bf_bound_iff_discriminant_nonneg` |
-| `CampaignAdsCftDualityImport.bf_saturation_double_root` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.bf_saturation_double_root` |
-| `CampaignAdsCftDualityImport.boundary_annihilator_obstruction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.boundary_annihilator_obstruction` |
-| `CampaignAdsCftDualityImport.codeIsometry12_is_isometry` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.codeIsometry12_is_isometry` |
-| `CampaignAdsCftDualityImport.codeIsometry12_projector_ne_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.codeIsometry12_projector_ne_one` |
-| `CampaignAdsCftDualityImport.correlator_dictionary_match` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.correlator_dictionary_match` |
-| `CampaignAdsCftDualityImport.correlator_dictionary_pullback` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.correlator_dictionary_pullback` |
-| `CampaignAdsCftDualityImport.gkpwMassSq_ge_bfBound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.gkpwMassSq_ge_bfBound` |
-| `CampaignAdsCftDualityImport.gkpwMassSq_shadow_eq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.gkpwMassSq_shadow_eq` |
-| `CampaignAdsCftDualityImport.gkpw_completed_square` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.gkpw_completed_square` |
-| `CampaignAdsCftDualityImport.gkpw_roots_from_square_discriminant` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.gkpw_roots_from_square_discriminant` |
-| `CampaignAdsCftDualityImport.gkpw_vieta_product` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.gkpw_vieta_product` |
-| `CampaignAdsCftDualityImport.no_rational_root_below_bf_bound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.no_rational_root_below_bf_bound` |
-| `CampaignAdsCftDualityImport.pullback_pushforward_id` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.pullback_pushforward_id` |
-| `CampaignAdsCftDualityImport.pushforward_mul_of_isometry` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.pushforward_mul_of_isometry` |
-| `CampaignAdsCftDualityImport.recorded_ads5_and_ads3_gkpw_points` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.recorded_ads5_and_ads3_gkpw_points` |
-| `CampaignAdsCftDualityImport.recorded_thooft_and_gauge_counts` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.recorded_thooft_and_gauge_counts` |
-| `CampaignAdsCftDualityImport.shadowDimension_involutive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.shadowDimension_involutive` |
-| `CampaignAdsCftDualityImport.shadowDimension_sum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.shadowDimension_sum` |
-| `CampaignAdsCftDualityImport.thooft_factorization` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.thooft_factorization` |
-| `CampaignAdsCftDualityImport.thooft_planar_vs_torus_suppression` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsCftDualityImport.thooft_planar_vs_torus_suppression` |
+| `AdsCftDualityImport.bf_bound_iff_discriminant_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.bf_bound_iff_discriminant_nonneg` |
+| `AdsCftDualityImport.bf_saturation_double_root` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.bf_saturation_double_root` |
+| `AdsCftDualityImport.boundary_annihilator_obstruction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.boundary_annihilator_obstruction` |
+| `AdsCftDualityImport.codeIsometry12_is_isometry` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.codeIsometry12_is_isometry` |
+| `AdsCftDualityImport.codeIsometry12_projector_ne_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.codeIsometry12_projector_ne_one` |
+| `AdsCftDualityImport.correlator_dictionary_match` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.correlator_dictionary_match` |
+| `AdsCftDualityImport.correlator_dictionary_pullback` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.correlator_dictionary_pullback` |
+| `AdsCftDualityImport.gkpwMassSq_ge_bfBound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.gkpwMassSq_ge_bfBound` |
+| `AdsCftDualityImport.gkpwMassSq_shadow_eq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.gkpwMassSq_shadow_eq` |
+| `AdsCftDualityImport.gkpw_completed_square` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.gkpw_completed_square` |
+| `AdsCftDualityImport.gkpw_roots_from_square_discriminant` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.gkpw_roots_from_square_discriminant` |
+| `AdsCftDualityImport.gkpw_vieta_product` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.gkpw_vieta_product` |
+| `AdsCftDualityImport.no_rational_root_below_bf_bound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.no_rational_root_below_bf_bound` |
+| `AdsCftDualityImport.pullback_pushforward_id` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.pullback_pushforward_id` |
+| `AdsCftDualityImport.pushforward_mul_of_isometry` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.pushforward_mul_of_isometry` |
+| `AdsCftDualityImport.recorded_ads5_and_ads3_gkpw_points` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.recorded_ads5_and_ads3_gkpw_points` |
+| `AdsCftDualityImport.recorded_thooft_and_gauge_counts` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.recorded_thooft_and_gauge_counts` |
+| `AdsCftDualityImport.shadowDimension_involutive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.shadowDimension_involutive` |
+| `AdsCftDualityImport.shadowDimension_sum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.shadowDimension_sum` |
+| `AdsCftDualityImport.thooft_factorization` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.thooft_factorization` |
+| `AdsCftDualityImport.thooft_planar_vs_torus_suppression` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsCftDualityImport.thooft_planar_vs_torus_suppression` |
 
 - counts toward the grade: yes
 
 ### Python: `checks/independent/ads-cft-duality-import.py`
 
 - file: [checks/independent/ads-cft-duality-import.py](../../../checks/independent/ads-cft-duality-import.py)
-- sha256 (`bytes`): `68c5c189ee9f2dbeb1b203e3a97cbb6c177ca84c7036ba3dae80369a08b81eda`
+- sha256 (`bytes`): `33a8f4e4f820bf0c0f84f21af5602d80b0f89877e880abc0d8220f1d3db40ef7`
 - cited in: node.source, record TFQ-2202
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md](../../../dag/derivations/32_ads_cft/tfq_2202_ads_cft_duality_import.md)
-- sha256 (`lf-normalised`): `8c014880ca544727f90d1272026752c4cbf0ff9c11ed1f7cc552d33db648636f`
+- sha256 (`lf-normalised`): `ba4dcbaa0e64e9b209f3cf641d762c5f9555a47446767191bbf9f4eaee39f116`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2202
 - counts toward the grade: no
@@ -96,7 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/ads-cft-duality-import.md`
 
 - file: [dag/derivations/independent/ads-cft-duality-import.md](../../../dag/derivations/independent/ads-cft-duality-import.md)
-- sha256 (`lf-normalised`): `56f7340138ff5098ba69c7437866ec263d5cda70833bc5bb7f10b7773c4d2021`
+- sha256 (`lf-normalised`): `01b23af1ec664eb54ad3bb3f9f16e401b4193fdbdee4710e6c95f9d5eaeab03b`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -110,14 +110,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_ads-cft-duality-import_lean_mutation.json`
 
 - file: [dag/research/campaign_ads-cft-duality-import_lean_mutation.json](../../../dag/research/campaign_ads-cft-duality-import_lean_mutation.json)
-- sha256 (`lf-normalised`): `a752600f604970910eb2c8429a1e86caa146cd3b1bb84d2dba6b3e1bf1485014`
+- sha256 (`lf-normalised`): `53c66627619609fb2558eb4383856ad4fd82e7238d33b2b9a2028b034a17b3be`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_ads-cft-duality-import_lean_replay.json`
 
 - file: [dag/research/campaign_ads-cft-duality-import_lean_replay.json](../../../dag/research/campaign_ads-cft-duality-import_lean_replay.json)
-- sha256 (`lf-normalised`): `3157ebe67622099618fc61ab436b7823b556de12534642d80e9446d76f8b6415`
+- sha256 (`lf-normalised`): `9b3bc6f924420c2ca467bd0d423a3693770d9ab376a5cb4c97aed67cc03255df`
 - cited in: node.source
 - counts toward the grade: yes
 

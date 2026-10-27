@@ -31,7 +31,7 @@ target:
   - dag/derivations/17_finite_qcd/tfq_0027_do_not_cite_the_three_cycle_charge_doubling_file_as_the_lattice_dirac_obstruction.md
   - dag/derivations/independent/tfq-0027.md
   - checks/independent/tfq-0027.py
-  - lean4/CampaignTfq0027FiniteQcd.lean
+  - lean4/WilsonSpeciesCount.lean
   - lean4/IntegralRefinementC3C6.lean
   - dag/research/campaign_tfq-0027_lean_replay.json
   - dag/research/campaign_tfq-0027_lean_mutation.json
@@ -73,16 +73,16 @@ relation_candidates:
 - max_carrier_dimension_128_dense_operator_fence
 - tfq0027_scope_and_citation_fence
 source_bindings:
-- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.wilson_species_count_shell_selection
-- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.wilson_term_vanishes_only_at_origin_corner
-- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.wilson_scalar_term_anticommutes_with_no_gamma_generator
-- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.zero_mode_count_rank_nullity_formula
-- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.antiperiodic_twist_excludes_zero_and_pi_corners
-- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.even_n_periodic_vs_antiperiodic_species_contrast
-- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.c3_to_c6_naive_duplication_vs_block_last_refinement
-- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.c3_c6_charge_refinement_not_lattice_dirac_obstruction_fence
-- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.max_carrier_dimension_128_dense_operator_fence
-- lean4/CampaignTfq0027FiniteQcd.lean::CampaignTfq0027FiniteQcd.tfq0027_scope_and_citation_fence
+- lean4/WilsonSpeciesCount.lean::WilsonSpeciesCount.wilson_species_count_shell_selection
+- lean4/WilsonSpeciesCount.lean::WilsonSpeciesCount.wilson_term_vanishes_only_at_origin_corner
+- lean4/WilsonSpeciesCount.lean::WilsonSpeciesCount.wilson_scalar_term_anticommutes_with_no_gamma_generator
+- lean4/WilsonSpeciesCount.lean::WilsonSpeciesCount.zero_mode_count_rank_nullity_formula
+- lean4/WilsonSpeciesCount.lean::WilsonSpeciesCount.antiperiodic_twist_excludes_zero_and_pi_corners
+- lean4/WilsonSpeciesCount.lean::WilsonSpeciesCount.even_n_periodic_vs_antiperiodic_species_contrast
+- lean4/WilsonSpeciesCount.lean::WilsonSpeciesCount.c3_to_c6_naive_duplication_vs_block_last_refinement
+- lean4/WilsonSpeciesCount.lean::WilsonSpeciesCount.c3_c6_charge_refinement_not_lattice_dirac_obstruction_fence
+- lean4/WilsonSpeciesCount.lean::WilsonSpeciesCount.max_carrier_dimension_128_dense_operator_fence
+- lean4/WilsonSpeciesCount.lean::WilsonSpeciesCount.tfq0027_scope_and_citation_fence
 presentation:
   colours:
   - Mat2GI
@@ -118,7 +118,7 @@ operad_slots:
     assumptions:
     - IntegralRefinementC3C6 is a 1D C3->C6 scalar charge refinement and not a stand-in for lattice Dirac doubling
     source_pins:
-    - lean4/CampaignTfq0027FiniteQcd.lean
+    - lean4/WilsonSpeciesCount.lean
     - lean4/IntegralRefinementC3C6.lean
     public_input: {}
   slot_m2_layer1_forward_morphisms:
@@ -155,7 +155,7 @@ operad_slots:
     - c3_c6_charge_refinement_not_lattice_dirac_obstruction_fence
     - tfq0027_scope_and_citation_fence
     anchors:
-    - lean4/CampaignTfq0027FiniteQcd.lean
+    - lean4/WilsonSpeciesCount.lean
     - checks/independent/tfq-0027.py
     - dag/derivations/independent/tfq-0027.md
     unpaid_imports:

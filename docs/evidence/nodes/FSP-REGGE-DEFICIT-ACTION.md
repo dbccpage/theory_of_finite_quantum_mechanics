@@ -42,24 +42,24 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignReggeFiniteAction.lean`
+### Lean: `lean4/ReggeFiniteAction.lean`
 
-- file: [lean4/CampaignReggeFiniteAction.lean](../../../lean4/CampaignReggeFiniteAction.lean)
-- sha256 (`bytes`): `dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089`
-- cited in: node.lean, receipt dag/research/campaign_fsp-regge-deficit-action_lean_replay.json (CampaignReggeFiniteAction), record TFQ-1212
+- file: [lean4/ReggeFiniteAction.lean](../../../lean4/ReggeFiniteAction.lean)
+- sha256 (`bytes`): `86b051674e156ec6e9e1fb03030dde563663d336259e385aabe485661d9442fc`
+- cited in: node.lean, receipt dag/research/campaign_fsp-regge-deficit-action_lean_replay.json (ReggeFiniteAction), record TFQ-1212
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-regge-deficit-action_lean_replay.json](../../../dag/research/campaign_fsp-regge-deficit-action_lean_replay.json) (module `CampaignReggeFiniteAction`): recorded sha256 `dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignReggeFiniteAction`
+  - receipt [dag/research/campaign_fsp-regge-deficit-action_lean_replay.json](../../../dag/research/campaign_fsp-regge-deficit-action_lean_replay.json) (module `ReggeFiniteAction`): recorded sha256 `86b051674e156ec6e9e1fb03030dde563663d336259e385aabe485661d9442fc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build ReggeFiniteAction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignReggeFiniteAction.action` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignReggeFiniteAction.action` |
-| `CampaignReggeFiniteAction.area_linearity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignReggeFiniteAction.area_linearity` |
-| `CampaignReggeFiniteAction.declared_areas_change_action` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignReggeFiniteAction.declared_areas_change_action` |
-| `CampaignReggeFiniteAction.deficit_expansion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignReggeFiniteAction.deficit_expansion` |
-| `CampaignReggeFiniteAction.flat_deficits_give_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignReggeFiniteAction.flat_deficits_give_zero` |
-| `CampaignReggeFiniteAction.same_deficit_area_split` | yes | yes | yes | propext | `#print axioms CampaignReggeFiniteAction.same_deficit_area_split` |
-| `CampaignReggeFiniteAction.zero_action_does_not_imply_flat` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignReggeFiniteAction.zero_action_does_not_imply_flat` |
+| `ReggeFiniteAction.action` | yes | yes | yes | Quot.sound, propext | `#print axioms ReggeFiniteAction.action` |
+| `ReggeFiniteAction.area_linearity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ReggeFiniteAction.area_linearity` |
+| `ReggeFiniteAction.declared_areas_change_action` | yes | yes | yes | Quot.sound, propext | `#print axioms ReggeFiniteAction.declared_areas_change_action` |
+| `ReggeFiniteAction.deficit_expansion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ReggeFiniteAction.deficit_expansion` |
+| `ReggeFiniteAction.flat_deficits_give_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ReggeFiniteAction.flat_deficits_give_zero` |
+| `ReggeFiniteAction.same_deficit_area_split` | yes | yes | yes | propext | `#print axioms ReggeFiniteAction.same_deficit_area_split` |
+| `ReggeFiniteAction.zero_action_does_not_imply_flat` | yes | yes | yes | Quot.sound, propext | `#print axioms ReggeFiniteAction.zero_action_does_not_imply_flat` |
 
 - counts toward the grade: yes
 
@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md`
 
 - file: [dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md](../../../dag/derivations/26_fsp/tfq_1212_fsp_regge_deficit_action.md)
-- sha256 (`lf-normalised`): `11cd763976e4bad44d70e1256fbfefa45867dcea3ebca28336e2d2625291f4e4`
+- sha256 (`lf-normalised`): `95b99937d03d0b34bcb39b39e772bf540ee0b8b755159fd46982a44c6b2398a1`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1212
 - counts toward the grade: no
@@ -81,14 +81,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-regge-deficit-action.md`
 
 - file: [dag/derivations/independent/fsp-regge-deficit-action.md](../../../dag/derivations/independent/fsp-regge-deficit-action.md)
-- sha256 (`lf-normalised`): `94a6ab93c604d14ff24bbd79f2cd05a00d441b3f7a94c1e7a87815ea25d7b674`
+- sha256 (`lf-normalised`): `f5d3b55bcb2acea1d442af4b1a1abecd13a8314a1e7e942acaf4756acb86c84d`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_fsp-regge-deficit-action_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-regge-deficit-action_lean_replay.json](../../../dag/research/campaign_fsp-regge-deficit-action_lean_replay.json)
-- sha256 (`lf-normalised`): `3605da9669819fb75a49cbd397107abc04be9f5bb4b8fce04b8c306a4a99903e`
+- sha256 (`lf-normalised`): `fdfc1d5bea996047431b34b41d5185ca6ed250b3d6758a2b75778ebbbe96ac71`
 - cited in: node.source
 - counts toward the grade: yes
 

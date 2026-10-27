@@ -18,7 +18,7 @@ Scope.  All matrices are `Matrix (Fin n) (Fin n) GaussRat` for an arbitrary `n :
 `GaussRat = ℚ(i)` is the concrete pair type of `BornGaussRat`.  The Hermitian form
 `hf A x := (star x ⬝ᵥ (A *ᵥ x)).re` (the real part of `x* A x`, `star` taken componentwise) and
 "positive semidefinite" (`PsdH A := ∀ x, 0 ≤ hf A x`) are those of the Hermitian carrier
-`BornFable.HermitianCarrier` (imported from `BornHermitianCarrier`), so a single PSD notion is used
+`BornFinite.HermitianCarrier` (imported from `BornHermitianCarrier`), so a single PSD notion is used
 across the run: rational-PSD tested on Gaussian-rational vectors only, the exact finite notion.  No
 real or complex closure, no eigenvalues, no square roots and no spectral theorem are used anywhere.
 
@@ -39,10 +39,10 @@ and reuses its `hf`, `PsdH`, `hf_add`, `hf_sub`, `hf_smul`, `hf_zero`, `hf_vecMu
 `hf_eq_re_trace`; nothing from the carrier is redefined here.
 -/
 
-namespace BornFable.HermitianPsd
+namespace BornFinite.HermitianPsd
 
-open Matrix BornFable BornFable.HermitianCarrier
-open BornFable.GaussRat (normSq)
+open Matrix BornFinite BornFinite.HermitianCarrier
+open BornFinite.GaussRat (normSq)
 
 variable {n : ℕ}
 
@@ -275,32 +275,32 @@ theorem trace_mul_nonneg (ρ E : Matrix (Fin n) (Fin n) GaussRat) (hρ : PsdH ρ
   rw [hEeq]
   exact trace_mul_nonneg_of_gram ρ d w hd hρ
 
-end BornFable.HermitianPsd
+end BornFinite.HermitianPsd
 
-#print axioms BornFable.HermitianPsd.HasGramH
-#print axioms BornFable.HermitianPsd.normSq_one
-#print axioms BornFable.HermitianPsd.re_mul_star
-#print axioms BornFable.HermitianPsd.mulVec_apply_dot
-#print axioms BornFable.HermitianPsd.mulVec_single'
-#print axioms BornFable.HermitianPsd.hf_add_vec
-#print axioms BornFable.HermitianPsd.hf_single
-#print axioms BornFable.HermitianPsd.hf_add_single
-#print axioms BornFable.HermitianPsd.hermitian_apply
-#print axioms BornFable.HermitianPsd.transpose_row_of_hermitian
-#print axioms BornFable.HermitianPsd.star_transpose_row_of_hermitian
-#print axioms BornFable.HermitianPsd.diag_real_of_hermitian
-#print axioms BornFable.HermitianPsd.hf_add_single_of_hermitian
-#print axioms BornFable.HermitianPsd.psd_zero
-#print axioms BornFable.HermitianPsd.psd_add
-#print axioms BornFable.HermitianPsd.psd_smul
-#print axioms BornFable.HermitianPsd.psd_vecMulVec_star
-#print axioms BornFable.HermitianPsd.psd_of_gram
-#print axioms BornFable.HermitianPsd.diag_nonneg
-#print axioms BornFable.HermitianPsd.trace_mul_nonneg_of_gram
-#print axioms BornFable.HermitianPsd.hasGram_zero
-#print axioms BornFable.HermitianPsd.hasGram_add_smul_vecMulVec
-#print axioms BornFable.HermitianPsd.row_eq_zero_of_diag_eq_zero
-#print axioms BornFable.HermitianPsd.hasGram_of_support
-#print axioms BornFable.HermitianPsd.gram_of_psd
-#print axioms BornFable.HermitianPsd.psd_iff_hasGram
-#print axioms BornFable.HermitianPsd.trace_mul_nonneg
+#print axioms BornFinite.HermitianPsd.HasGramH
+#print axioms BornFinite.HermitianPsd.normSq_one
+#print axioms BornFinite.HermitianPsd.re_mul_star
+#print axioms BornFinite.HermitianPsd.mulVec_apply_dot
+#print axioms BornFinite.HermitianPsd.mulVec_single'
+#print axioms BornFinite.HermitianPsd.hf_add_vec
+#print axioms BornFinite.HermitianPsd.hf_single
+#print axioms BornFinite.HermitianPsd.hf_add_single
+#print axioms BornFinite.HermitianPsd.hermitian_apply
+#print axioms BornFinite.HermitianPsd.transpose_row_of_hermitian
+#print axioms BornFinite.HermitianPsd.star_transpose_row_of_hermitian
+#print axioms BornFinite.HermitianPsd.diag_real_of_hermitian
+#print axioms BornFinite.HermitianPsd.hf_add_single_of_hermitian
+#print axioms BornFinite.HermitianPsd.psd_zero
+#print axioms BornFinite.HermitianPsd.psd_add
+#print axioms BornFinite.HermitianPsd.psd_smul
+#print axioms BornFinite.HermitianPsd.psd_vecMulVec_star
+#print axioms BornFinite.HermitianPsd.psd_of_gram
+#print axioms BornFinite.HermitianPsd.diag_nonneg
+#print axioms BornFinite.HermitianPsd.trace_mul_nonneg_of_gram
+#print axioms BornFinite.HermitianPsd.hasGram_zero
+#print axioms BornFinite.HermitianPsd.hasGram_add_smul_vecMulVec
+#print axioms BornFinite.HermitianPsd.row_eq_zero_of_diag_eq_zero
+#print axioms BornFinite.HermitianPsd.hasGram_of_support
+#print axioms BornFinite.HermitianPsd.gram_of_psd
+#print axioms BornFinite.HermitianPsd.psd_iff_hasGram
+#print axioms BornFinite.HermitianPsd.trace_mul_nonneg

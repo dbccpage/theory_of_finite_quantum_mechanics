@@ -1,6 +1,6 @@
 """Euler characteristic of a labeled tetrahedron boundary.
 
-Origin: lean4/H029Simplicial3complexCayleyEvolution.lean theorem
+Origin: lean4/Simplicial3complexCayleyEvolution.lean theorem
 tetrahedron_euler_characteristic ((4 : Int) - 6 + 4 = 2).
 Claim: urn:omega:fqm:spinfoam:tetrahedron-euler:v1
 AuthorityEffect: None

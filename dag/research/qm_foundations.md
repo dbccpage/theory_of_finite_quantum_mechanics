@@ -26,7 +26,7 @@ The foundational architecture investigates how quantum mechanics can be construc
    - Two-state normalization verified in `BornNormalization.lean`.
    - Dimension $d = 2$ non-Bornian obstruction proved in `GleasonTheorem.lean` (`d2_binary_non_bornian_obstruction`), demonstrating that binary valuations on $S^1$ cannot be represented by density operators.
    - Dimension $d \ge 3$ Gleason uniqueness: Open question on dense cyclotomic sub-spheres $\mathcal{S}(\mathbb{Q}(\zeta_n)^d)$ (`GAP-F001-S000-004`, `010`).
-   - Generalized POVM measurements: Additive effect-frame representations over number fields established in `H058EffectFrameBusch.lean` and `use_cases/busch_effects.py`.
+   - Generalized POVM measurements: Additive effect-frame representations over number fields established in `EffectFrameBusch.lean` and `use_cases/busch_effects.py`.
 
 4. **Phase, Superposition, and Interference (Rung 4):**  
    - Superposition non-descent verified in `MixingObstruction.no_descent_through_quotient`.
@@ -36,12 +36,12 @@ The foundational architecture investigates how quantum mechanics can be construc
 5. **Entanglement and Tensor Composition (Rung 5):**  
    - Integer Bell state $|\Phi^+\rangle$ Schmidt rank and minor non-vanishing verified in `Entanglement.lean`.
    - Bilinear tensor composition: Formulated under four operational axioms (bilinearity, local unitary covariance, product-state marginals, no-signalling) in `GAP-F001-S000-006`.
-   - CHSH Bell inequalities: Classical bound $|S| \le 2$ and Pythagorean rational point $S = 14/5$ verified in `H032DiscretePythagoreanBellChsh.lean`; Tsirelson bound $2\sqrt{2}$ attained over $\mathbb{Q}(\zeta_8)$.
+   - CHSH Bell inequalities: Classical bound $|S| \le 2$ and Pythagorean rational point $S = 14/5$ verified in `DiscretePythagoreanBellChsh.lean`; Tsirelson bound $2\sqrt{2}$ attained over $\mathbb{Q}(\zeta_8)$.
 
 6. **Measurement Updates and Quantum Channels (Rungs 6–7):**  
    - CPTP maps: Choi-Jamiolkowski isomorphism defined over cyclotomic matrix algebras $M_d(\mathbb{Q}(\zeta_n))$ with positivity checked under declared real embeddings (`GAP-F001-S000-007`).
    - Stinespring dilations: Require algebraic field extensions for purification eigenvalues.
-   - Time evolution: Discrete unitary steps $U^n$ and periodic/aperiodic orbit dichotomy proved in `H061DynamicsDichotomy.lean`, interfacing with continuous time $U(t) = \exp(-iHt)$ via Stone's theorem (`GAP-F001-S000-008`).
+   - Time evolution: Discrete unitary steps $U^n$ and periodic/aperiodic orbit dichotomy proved in `DynamicsDichotomy.lean`, interfacing with continuous time $U(t) = \exp(-iHt)$ via Stone's theorem (`GAP-F001-S000-008`).
 
 ---
 
@@ -53,7 +53,7 @@ The foundational architecture investigates how quantum mechanics can be construc
 | :--- | :--- | :--- | :--- |
 | `GAP-F001-S000-004` | Gleason ($d \ge 3$) | Uniqueness of quadratic Born measures on dense cyclotomic spheres $\mathcal{S}(\mathbb{Q}(\zeta_n)^d)$. | Open. $d=2$ obstruction verified in Lean 4; finite Cabello/Peres configurations checked numerically. |
 | `GAP-F001-S000-010` | Gleason dimension separation | Formal separation of the $d=2$ non-Bornian obstruction from $d \ge 3$ frame additivity. | Formulated. Frame additivity verified on finite triad systems. |
-| `NEW-H058-BUSCH` | Busch POVM effect frames | Full algebraic representation of additive effect frame functions on $d=2, 3$ cyclotomic carriers. | In progress. Coordinate-conditional uniqueness proved in `H058EffectFrameBusch.lean`; numerical recovery verified. |
+| `NEW-H058-BUSCH` | Busch POVM effect frames | Full algebraic representation of additive effect frame functions on $d=2, 3$ cyclotomic carriers. | In progress. Coordinate-conditional uniqueness proved in `EffectFrameBusch.lean`; numerical recovery verified. |
 | `GAP-F001-S000-012` | Mixed-state spectral positivity | Declared real embedding $\iota: \mathbb{Q}(\zeta_n)^+ \hookrightarrow \mathbb{R}$ for mixed-state PSD verification. | Standard algebraic number theory; embedding parameter formalized across tests. |
 | `NEW-DENSITY-COHERENCE` | Off-diagonal density coherence | Exact algebraic conditions forcing off-diagonal density entries from generalized cochain statistics. | Formulated over cyclotomic matrices $M_d(\mathbb{Q}(\zeta_n))$. |
 | `NEW-LUDERS-COHERENCE` | Operator Lüders rule | Exact rational Lüders update $\rho \mapsto P\rho P / \operatorname{Tr}(P\rho)$ preserving within-sector coherence. | Implemented in symbolic kernels; formalization in progress. |
@@ -70,7 +70,7 @@ The foundational architecture investigates how quantum mechanics can be construc
 
 | ID | Domain | Technical Question | Current Status & Mechanization |
 | :--- | :--- | :--- | :--- |
-| `GAP-F001-S000-006` | Tensor product uniqueness | Uniqueness of the Kronecker tensor product among bilinear maps under operational axioms. | Axiomatic characterization formulated (`H062CompositionTensorMub.lean`). |
+| `GAP-F001-S000-006` | Tensor product uniqueness | Uniqueness of the Kronecker tensor product among bilinear maps under operational axioms. | Axiomatic characterization formulated (`CompositionTensorMub.lean`). |
 | `GAP-C1000-006` | CHSH cyclotomic supremum | Exact supremum of CHSH correlation over unit vectors in cyclotomic fields $\mathbb{Q}(\zeta_n)^2$. | At height $H=5$, max is $14/5$ on $\mathbb{Q}, \mathbb{Q}(i)$; Tsirelson bound $2\sqrt{2}$ attained over $\mathbb{Q}(\zeta_8)$. |
 | `GAP-F001-S000-001` | Duality gap certificates | Exact primal/dual linear programming certificates for cochain boundary operators $\Phi_1$. | Implemented in exact rational solvers; formal pairing bounds in `DualWitness.lean`. |
 | `NEW-MUB-D6-FOURTH` | Mutually Unbiased Bases ($d=6$) | Existence of a fourth MUB in dimension $d=6$. | Open mathematical research problem across quantum information theory. |
@@ -93,7 +93,7 @@ The foundational architecture investigates how quantum mechanics can be construc
    Focus analytical effort on establishing whether dense algebraic subsets $\mathcal{S}(\mathbb{Q}(\zeta_n)^d)$ enforce quadratic Born measures under noncontextual frame additivity, or whether number-theoretic colorings (analogous to Meyer's rational sphere theorem) can be constructed.
 
 2. **Busch POVM Effect Frame Formalization:**  
-   Extend `H058EffectFrameBusch.lean` to provide general homogeneity constructors for all effects in $\operatorname{Eff}_d$, completing the algebraic recovery of density operators from POVM measurements.
+   Extend `EffectFrameBusch.lean` to provide general homogeneity constructors for all effects in $\operatorname{Eff}_d$, completing the algebraic recovery of density operators from POVM measurements.
 
 3. **Certified Rational Interval Numerics:**  
    Maintain verified interval algorithms for transcendental spectral quantities ($S(\rho)$, relative entropy, quantum capacity), decoupling algebraic carrier purity from external continuum thermodynamic calculations.

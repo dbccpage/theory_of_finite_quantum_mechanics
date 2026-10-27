@@ -23,7 +23,7 @@ A hole rule is a pair of lists `(lhs, rhs)`. It applies to a word when the word 
 - The three list moves above are one-hole replacements.
 - `merge01` sends both `0` and `1` to `0`.
 
-The Lean declarations are `addTermWordStep`, `addAssertionWordStep`, `identifyWordStep`, `merge01SendsBothToZero`, and `merge01FixesOther` in `lean4/CampaignCompC2Step3NotWordStep.lean`. `merge01FixesOther` states that a natural number other than 1 is fixed.
+The Lean declarations are `addTermWordStep`, `addAssertionWordStep`, `identifyWordStep`, `merge01SendsBothToZero`, and `merge01FixesOther` in `lean4/ComputationC2Step3NotWordStep.lean`. `merge01FixesOther` states that a natural number other than 1 is fixed.
 
 ## What is assumed
 

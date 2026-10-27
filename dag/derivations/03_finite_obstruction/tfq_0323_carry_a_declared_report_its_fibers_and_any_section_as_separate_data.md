@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Chapter 04 extracts a declared zero relation, a report, and a section, with formal Lean as the evidence class. The candidate mirror lists E003_projection_fiber_primitive_difference.lean, E004_split_retraction.lean, E005_fiber_quotient_equivalence.lean, and E006_induced_idempotent.lean. The package README limits a Lake build to typechecking under the pinned toolchain and denies a bridge into finite obstruction calculus. Python tests_unit contains test_projection.py beside test_primitive_difference.py. AuthorityEffect is None.
+Chapter 04 extracts a declared zero relation, a report, and a section, with formal Lean as the evidence class. The candidate mirror lists ProjectionFiberPrimitiveDifference.lean, E004_split_retraction.lean, FiberQuotientEquivalence.lean, and E006_induced_idempotent.lean. The package README limits a Lake build to typechecking under the pinned toolchain and denies a bridge into finite obstruction calculus. Python tests_unit contains test_projection.py beside test_primitive_difference.py. AuthorityEffect is None.
 
 ### Governing Obligation
 Carry a declared report, its fibers, and any section as separate data from the quotient presentation.
@@ -26,8 +26,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/E003_projection_fiber_primitive_difference.lean`](../../lean4/)
-- [`lean4/E005_fiber_quotient_equivalence.lean`](../../lean4/)
+- [`lean4/ProjectionFiberPrimitiveDifference.lean`](../../lean4/)
+- [`lean4/FiberQuotientEquivalence.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers
 *Computational witness tracked under `theory_of_finite_qm` crate.*

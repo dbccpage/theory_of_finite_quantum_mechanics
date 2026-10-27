@@ -4,7 +4,7 @@ Status: AI-drafted, awaiting human review.
 
 AuthorityEffect: None.
 
-The node `FSP-QCD-CHEMICAL-POTENTIAL-DET` (`TFQ-1201`) remains `IMPORTED_ASSUMPTION` (`Narrowed`), while its finite algebraic core—the general $\gamma_5$-chemical-potential intertwining identity $\Gamma_5 D(\mu) \Gamma_5 = D(-\mu^*)^\dagger$ and determinant conjugation law $(\det D(\mu))^* = \det D(-\mu^*)$, its specialization to real chemical potential $\mu \in \mathbb{R}$, $\mu = 0$, and purely imaginary $\mu = i \mu_I$, the Hasenfratz–Karsch and Kogut–Susskind staggered operator identities, the explicit $SU(3)$ clock link $U = \operatorname{diag}(i, i, -1) \in SU(3)$ with $\operatorname{Im}\operatorname{Tr}(U) = 2 \neq 0$, the exact $6 \times 6$ chiral $SU(3)$ Dirac determinant witness $\det D_{\text{SU3}}(2) = \frac{63}{8} - 27 i \notin \mathbb{R}$ and $\det D_{\text{SU3}}(1/2) = \frac{63}{8} + 27 i$, and the diagonal $SU(2)$ reality contrast—is formalized in `lean4/CampaignFspQcdChemicalPotentialDet.lean` and checked in `checks/independent/fsp-qcd-chemical-potential-det.py`.
+The node `FSP-QCD-CHEMICAL-POTENTIAL-DET` (`TFQ-1201`) remains `IMPORTED_ASSUMPTION` (`Narrowed`), while its finite algebraic core—the general $\gamma_5$-chemical-potential intertwining identity $\Gamma_5 D(\mu) \Gamma_5 = D(-\mu^*)^\dagger$ and determinant conjugation law $(\det D(\mu))^* = \det D(-\mu^*)$, its specialization to real chemical potential $\mu \in \mathbb{R}$, $\mu = 0$, and purely imaginary $\mu = i \mu_I$, the Hasenfratz–Karsch and Kogut–Susskind staggered operator identities, the explicit $SU(3)$ clock link $U = \operatorname{diag}(i, i, -1) \in SU(3)$ with $\operatorname{Im}\operatorname{Tr}(U) = 2 \neq 0$, the exact $6 \times 6$ chiral $SU(3)$ Dirac determinant witness $\det D_{\text{SU3}}(2) = \frac{63}{8} - 27 i \notin \mathbb{R}$ and $\det D_{\text{SU3}}(1/2) = \frac{63}{8} + 27 i$, and the diagonal $SU(2)$ reality contrast—is formalized in `lean4/FermionSignQcdChemicalPotentialDet.lean` and checked in `checks/independent/fsp-qcd-chemical-potential-det.py`.
 
 ## Setting
 
@@ -24,26 +24,26 @@ The node `FSP-QCD-CHEMICAL-POTENTIAL-DET` (`TFQ-1201`) remains `IMPORTED_ASSUMPT
      so $\operatorname{Im}\det D_{\text{SU3}}(2) = -27 \neq 0$ and $\det D_{\text{SU3}}(2) \neq \det D_{\text{SU3}}(1/2)$.
    - By contrast, for any diagonal $SU(2)$ link $\operatorname{diag}(u, u^*)$ with $u u^* = 1$ and any real fugacity $r \in \mathbb{R}$, $\det(I_2 - r\,\operatorname{diag}(u, u^*)) = 1 - r(u + u^*) + r^2$ has zero imaginary part.
 
-## Lean 4 Declarations (`lean4/CampaignFspQcdChemicalPotentialDet.lean`)
+## Lean 4 Declarations (`lean4/FermionSignQcdChemicalPotentialDet.lean`)
 
-Built via `cd lean4 && lake build CampaignFspQcdChemicalPotentialDet` using only standard axioms (`propext`, `Classical.choice`, `Quot.sound`):
-- `CampaignFspQcdChemicalPotentialDet.det_conj_by_involution`
-- `CampaignFspQcdChemicalPotentialDet.gamma5_mu_intertwine_det_conj`
-- `CampaignFspQcdChemicalPotentialDet.gamma5_real_mu_det_conj`
-- `CampaignFspQcdChemicalPotentialDet.gamma5_zero_mu_det_im_zero`
-- `CampaignFspQcdChemicalPotentialDet.gamma5_imag_mu_det_im_zero`
-- `CampaignFspQcdChemicalPotentialDet.diracMu_gamma5_adjoint`
-- `CampaignFspQcdChemicalPotentialDet.diracMu_det_conj`
-- `CampaignFspQcdChemicalPotentialDet.staggeredDiracMu_gamma5_adjoint`
-- `CampaignFspQcdChemicalPotentialDet.staggeredDiracMu_det_conj`
-- `CampaignFspQcdChemicalPotentialDet.su3ClockLink_unitary`
-- `CampaignFspQcdChemicalPotentialDet.su3ClockLink_det`
-- `CampaignFspQcdChemicalPotentialDet.su3ClockLink_trace_im_ne_zero`
-- `CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_gamma5_intertwine`
-- `CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_two`
-- `CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_half`
-- `CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness`
-- `CampaignFspQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero`
+Built via `cd lean4 && lake build FermionSignQcdChemicalPotentialDet` using only standard axioms (`propext`, `Classical.choice`, `Quot.sound`):
+- `FermionSignQcdChemicalPotentialDet.det_conj_by_involution`
+- `FermionSignQcdChemicalPotentialDet.gamma5_mu_intertwine_det_conj`
+- `FermionSignQcdChemicalPotentialDet.gamma5_real_mu_det_conj`
+- `FermionSignQcdChemicalPotentialDet.gamma5_zero_mu_det_im_zero`
+- `FermionSignQcdChemicalPotentialDet.gamma5_imag_mu_det_im_zero`
+- `FermionSignQcdChemicalPotentialDet.diracMu_gamma5_adjoint`
+- `FermionSignQcdChemicalPotentialDet.diracMu_det_conj`
+- `FermionSignQcdChemicalPotentialDet.staggeredDiracMu_gamma5_adjoint`
+- `FermionSignQcdChemicalPotentialDet.staggeredDiracMu_det_conj`
+- `FermionSignQcdChemicalPotentialDet.su3ClockLink_unitary`
+- `FermionSignQcdChemicalPotentialDet.su3ClockLink_det`
+- `FermionSignQcdChemicalPotentialDet.su3ClockLink_trace_im_ne_zero`
+- `FermionSignQcdChemicalPotentialDet.su3FugacityDirac_gamma5_intertwine`
+- `FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_two`
+- `FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_half`
+- `FermionSignQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness`
+- `FermionSignQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero`
 
 ## Independent Check (`checks/independent/fsp-qcd-chemical-potential-det.py`)
 
@@ -56,4 +56,4 @@ Imports no repository code. Uses Python `fractions.Fraction` and SymPy to check:
 
 1. **What it supports**: The exact finite-dimensional $\gamma_5$-chemical-potential intertwining identity $\Gamma_5 D(\mu) \Gamma_5 = D(-\mu^*)^\dagger$ and determinant conjugation law $(\det D(\mu))^* = \det D(-\mu^*)$, reality at $\mu = 0$ and purely imaginary $\mu = i \mu_I$, the Hasenfratz–Karsch and Kogut–Susskind staggered operator identities, and explicit finite $SU(3)$ link witnesses where $\operatorname{Im}\det D(\mu) \neq 0$ at real $\mu \neq 0$.
 2. **What it does not support**: Full continuum or thermodynamic-limit 4D QCD path-integral construction, silver-blaze phase-transition dynamics, or severity bounds for the finite-volume QCD phase-quenched reweighting factor $\langle e^{i N_f \theta} \rangle_{\text{pq}} \sim e^{-V \Delta f}$.
-3. **Narrowest defensible claim**: In Lean 4 (`CampaignFspQcdChemicalPotentialDet`), any matrix family $D(\mu)$ intertwined by an involution $\Gamma_5$ with $D(-\mu^*)^\dagger$ satisfies $(\det D(\mu))^* = \det D(-\mu^*)$ (with $\operatorname{Im}\det D(\mu) = 0$ at $\mu = 0$ and $\mu = i\mu_I$), the Hasenfratz–Karsch and Kogut–Susskind staggered operators satisfy this intertwining, and the explicit $SU(3)$ clock link $U = \operatorname{diag}(i,i,-1)$ gives $\det D_{\text{SU3}}(2) = \frac{63}{8} - 27 i$ and $\det D_{\text{SU3}}(1/2) = \frac{63}{8} + 27 i$ with $\operatorname{Im}\det D_{\text{SU3}}(2) = -27 \neq 0$.
+3. **Narrowest defensible claim**: In Lean 4 (`FermionSignQcdChemicalPotentialDet`), any matrix family $D(\mu)$ intertwined by an involution $\Gamma_5$ with $D(-\mu^*)^\dagger$ satisfies $(\det D(\mu))^* = \det D(-\mu^*)$ (with $\operatorname{Im}\det D(\mu) = 0$ at $\mu = 0$ and $\mu = i\mu_I$), the Hasenfratz–Karsch and Kogut–Susskind staggered operators satisfy this intertwining, and the explicit $SU(3)$ clock link $U = \operatorname{diag}(i,i,-1)$ gives $\det D_{\text{SU3}}(2) = \frac{63}{8} - 27 i$ and $\det D_{\text{SU3}}(1/2) = \frac{63}{8} + 27 i$ with $\operatorname{Im}\det D_{\text{SU3}}(2) = -27 \neq 0$.

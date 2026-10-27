@@ -44,7 +44,7 @@ With the field-dependent prefactor $C(s) = h^{-\sum_{i,t} s_{i,t}} > 0$, the tot
 $$W(s) = C(s) \, [d(s)]^2 \ge 0.$$
 This nonnegativity holds for any lattice graph $G$ (including frustrated or non-bipartite graphs such as triangles) and at any chemical potential $\mu$ / fugacity $z$.
 
-In Lean 4 (`lean4/CampaignFspHubbardProtected.lean`), this is formalized as `attractive_pairing_sq_nonneg` and `attractive_weight_nonneg`.
+In Lean 4 (`lean4/FermionSignHubbardProtected.lean`), this is formalized as `attractive_pairing_sq_nonneg` and `attractive_weight_nonneg`.
 
 ### 2.2 Half-Filled Bipartite Hypothesis (Repulsive Particle-Hole Protection)
 In the repulsive Hubbard model ($U > 0$) at half filling ($\mu = 0$, so $z = 1$) on a bipartite graph $G$ (with bipartition $V = A \cup B$):
@@ -95,7 +95,7 @@ Two concrete rational witnesses from `papers/core/fsp/docs/sql_meron_hubbard.md`
 - **Product Weight:**
   $$W(1281) = d_\uparrow \, d_\downarrow = \frac{-862091447562875338563475227905478168562109375}{324518553658426726783156020576256} < 0.$$
 
-The determinants and products above are recomputed exactly by the standalone check script `checks/independent/fsp-hubbard-protected-representations.py`, and independently by a second exact-`Fraction` script written for the review (bonds applied in lexicographic order, then reversed: the ring is $(0,1),(0,3),(1,2),(2,3)$; with the listed order $(0,1),(1,2),(2,3),(0,3)$ the numbers differ). The denominators are $2^{61}, 2^{67}, 2^{128}$ (ring) and $2^{63}, 2^{45}, 2^{108}$ (triangle). Lean 4 (`CampaignFspHubbardProtected.lean`, `witness_doped_ring_weight_neg`, `witness_triangle_weight_neg`) states only that the stored rational pairs have a negative product. It does not derive those pairs from the matrices.
+The determinants and products above are recomputed exactly by the standalone check script `checks/independent/fsp-hubbard-protected-representations.py`, and independently by a second exact-`Fraction` script written for the review (bonds applied in lexicographic order, then reversed: the ring is $(0,1),(0,3),(1,2),(2,3)$; with the listed order $(0,1),(1,2),(2,3),(0,3)$ the numbers differ). The denominators are $2^{61}, 2^{67}, 2^{128}$ (ring) and $2^{63}, 2^{45}, 2^{108}$ (triangle). Lean 4 (`FermionSignHubbardProtected.lean`, `witness_doped_ring_weight_neg`, `witness_triangle_weight_neg`) states only that the stored rational pairs have a negative product. It does not derive those pairs from the matrices.
 
 The same field mask 15721 on the ring at $z = 1$ satisfies $d_\downarrow = d_\uparrow/\det P_\uparrow$ and has $W \ge 0$, so the sign change at $z = 2$ is due to leaving half filling. On the triangle at $z=1$ and mask 1281 the pairing relation fails (odd cycle).
 

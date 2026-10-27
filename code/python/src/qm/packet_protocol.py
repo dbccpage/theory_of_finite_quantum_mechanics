@@ -1,6 +1,6 @@
 """Checksum of a positive rational packet payload.
 
-Origin: lean4/H001Rats.lean theorem padd_assoc
+Origin: lean4/HilbertWalkRationals.lean theorem padd_assoc
 (padd (padd a b) c = padd a (padd b c)) and theorem fadd_assoc
 (fadd (fadd x y) z = fadd x (fadd y z)).
 Claim: urn:omega:fqm:packet:payload-checksum:v1

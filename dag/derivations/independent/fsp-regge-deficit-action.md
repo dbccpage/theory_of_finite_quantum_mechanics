@@ -22,7 +22,7 @@ For any commutative ring and finite hinge set, the action S=sum_h A_h*(tau-sum_j
 
 ## What is assumed
 
-The mathematical structures and operations are exactly those declared in `lean4/CampaignReggeFiniteAction.lean`. Areas, angles and the full-turn parameter are declared algebraic data. Geometric realizability, actual triangulation moves, Lorentzian signature, convergence to the Einstein-Hilbert action, and fermion-sign consequences are not established.
+The mathematical structures and operations are exactly those declared in `lean4/ReggeFiniteAction.lean`. Areas, angles and the full-turn parameter are declared algebraic data. Geometric realizability, actual triangulation moves, Lorentzian signature, convergence to the Einstein-Hilbert action, and fermion-sign consequences are not established.
 
 ## What is open
 

@@ -1,6 +1,6 @@
 """A refinement tower whose indices multiply to the number of atoms.
 
-Origin: lean4/H052CyclotomicTowerDirected.lean theorem subfield_inclusion_trans.
+Origin: lean4/CyclotomicTowerDirected.lean theorem subfield_inclusion_trans.
 The checked instance is 1 ∣ 2, 2 ∣ 4, hence 1 ∣ 4, matching the partition indices.
 Claim: urn:omega:fqm:qm:tower-degree:v1
 AuthorityEffect: None

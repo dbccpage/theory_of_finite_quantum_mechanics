@@ -22,7 +22,7 @@ For every assignment of Boolean edge signs to a triangle and every Boolean verte
 
 ## What is assumed
 
-The mathematical structures and operations are exactly those declared in `lean4/CampaignSignedTriangleSwitching.lean`. Only diagonal vertex-sign switching on one three-cycle is classified. No spin bordism group, eta invariant, fermion representation, bulk cancellation or obstruction over all representations is computed. The original cobordism-based intrinsic-sign claim remains open.
+The mathematical structures and operations are exactly those declared in `lean4/SignedTriangleSwitching.lean`. Only diagonal vertex-sign switching on one three-cycle is classified. No spin bordism group, eta invariant, fermion representation, bulk cancellation or obstruction over all representations is computed. The original cobordism-based intrinsic-sign claim remains open.
 
 ## What is open
 

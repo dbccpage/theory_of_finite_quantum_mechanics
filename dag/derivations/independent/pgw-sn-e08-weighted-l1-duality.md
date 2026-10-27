@@ -7,7 +7,7 @@ Status: AI-drafted, awaiting human review.
 **DAG status:** `CONDITIONAL` $\to$ `PROVED_LEAN` (discharging the external LP strong-duality assumption over $\mathbb{Q}$ via Fourier–Motzkin elimination)  
 **Campaign outcome class:** Discharged LP strong-duality import (`imports: []`); source-record fence on `AdjunctionCochain` preserved  
 **AuthorityEffect:** None.  
-**Lean module:** `lean4/CampaignSnE08WeightedL1Duality.lean`  
+**Lean module:** `lean4/WeightedL1Duality.lean`  
 **Independent check:** `checks/independent/pgw-sn-e08-weighted-l1-duality.py`
 
 ---
@@ -67,7 +67,7 @@ On the oriented 3-cycle (`cycD`) with unit weights `cycW = (1, 1, 1)` and measur
 
 ## 3. What is proved
 
-All Lean declarations in `lean4/CampaignSnE08WeightedL1Duality.lean` compile under Lean 4.35.0 using only standard axioms (`propext`, `Classical.choice`, `Quot.sound`):
+All Lean declarations in `lean4/WeightedL1Duality.lean` compile under Lean 4.35.0 using only standard axioms (`propext`, `Classical.choice`, `Quot.sound`):
 
 1. `weak_duality` and `certificate_optimal`: weak duality for weighted $\ell^1$ cochain approximation and mutual global optimality of zero-gap primal-dual pairs over any linearly ordered field $K$.
 2. `farkas` and `farkas_fintype`: Farkas' lemma over any linearly ordered field $K$, proved by induction on the variable dimension via Fourier–Motzkin elimination.

@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Finite spin-foam recoupling is a shadow amplitude, not continuum gravity. src/spin_foam.rs computes SU(2)_2 tetrahedral recoupling at q = exp(i pi/4) with labels 0, 1, 2 in Q(sqrt(2)), and its fence says no continuum admission. H023DiscreteSpinfoamAmplitudes.lean states tetrahedral amplitudes in Z[zeta_12] and excludes a continuous SU(2) or SL(2, C) and a continuous Haar measure. H024FourSimplexSpinfoamS4.lean stays in Z[zeta_12] for a 10j vertex. The obligation is to keep these cyclotomic amplitudes from being cited as a triangulation-invariant continuum spin foam.
+Finite spin-foam recoupling is a shadow amplitude, not continuum gravity. src/spin_foam.rs computes SU(2)_2 tetrahedral recoupling at q = exp(i pi/4) with labels 0, 1, 2 in Q(sqrt(2)), and its fence says no continuum admission. DiscreteSpinfoamAmplitudes.lean states tetrahedral amplitudes in Z[zeta_12] and excludes a continuous SU(2) or SL(2, C) and a continuous Haar measure. FourSimplexSpinfoamS4.lean stays in Z[zeta_12] for a 10j vertex. The obligation is to keep these cyclotomic amplitudes from being cited as a triangulation-invariant continuum spin foam.
 
 ### Governing Obligation
 Keep discrete spin-foam amplitudes cyclotomic and refuse a continuum or triangulation-invariance admission.
@@ -26,8 +26,8 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/H023DiscreteSpinfoamAmplitudes.lean`](../../lean4/)
-- [`lean4/H024FourSimplexSpinfoamS4.lean`](../../lean4/)
+- [`lean4/DiscreteSpinfoamAmplitudes.lean`](../../lean4/)
+- [`lean4/FourSimplexSpinfoamS4.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`code/rust/src/general_relativity/spin_foam.rs`](../../code/rust/src/)

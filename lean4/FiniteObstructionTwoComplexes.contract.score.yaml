@@ -1,0 +1,590 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/FiniteObstructionTwoComplexes.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/FiniteObstructionTwoComplexes.lean",
+      "sha256": "fab5ba8bcf2f450486ea9412108f9ff6c6fa9d0960d9358ead3d266f0cce8ff3"
+    },
+    "boundaries": [
+      "Original broad target remains open or conditional.",
+      "Substantive proof remains below the repository L4 capability floor."
+    ],
+    "contract_urn": "urn:tfqm:pr-review:345:FiniteObstructionTwoComplexes",
+    "evidence": [
+      {
+        "path": "dag/research/pr_345_review_replay.json",
+        "sha256": "8cc2b3886252efaf5ab5f41cb9388f85a859f329d6d848c7839405ad93071588"
+      },
+      {
+        "path": "docs/overclaim/reviews/2026-10-25_pr-345-repair.md",
+        "sha256": "17dcaea237d261e32a3a88400cb2e8413fa06733cbd3b73e288851c7bc8e2324"
+      }
+    ],
+    "owned_invariants": [
+      "Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them"
+    ],
+    "purpose": "Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "V3",
+      "E3",
+      "d0",
+      "d1",
+      "l1",
+      "phi1",
+      "gamma2",
+      "gamma2_eq_phi1",
+      "d1_d0",
+      "natAbs_sum3",
+      "clear01",
+      "clear01_e01",
+      "clear01_e12",
+      "clear01_e02",
+      "residual_supported_on_e02",
+      "phi1_attained",
+      "phi1_lower",
+      "equiv",
+      "equiv_of_d1",
+      "d1_of_equiv",
+      "equiv_iff_d1",
+      "rcl",
+      "rcl_refuses_zero_over_one",
+      "triangle_rcl_defined",
+      "sample",
+      "recordedRepair",
+      "sample_d1",
+      "sample_phi1",
+      "sample_gamma2",
+      "sample_rcl",
+      "sample_ratio_one",
+      "recorded_residual_values",
+      "recorded_residual_l1",
+      "zeroCochain",
+      "zero_signature",
+      "edge02",
+      "vertex_comparison",
+      "edge02_not_exact",
+      "comparison_is_not_the_quotient",
+      "V4",
+      "E4",
+      "d0Cycle",
+      "holonomy",
+      "l1Cycle",
+      "gamma2Cycle",
+      "phi1Cycle",
+      "holonomy_d0",
+      "natAbs_sum4",
+      "concentrate",
+      "phi1Cycle_attained",
+      "phi1Cycle_lower",
+      "equivCycle",
+      "cycleSample",
+      "zeroCycle",
+      "cycle_not_exact",
+      "cycle_rcl_defined",
+      "cycle_signature",
+      "triangleVertices",
+      "triangleEdges",
+      "cycleEdges",
+      "vertex_count",
+      "edge_count_triangle",
+      "edge_count_cycle",
+      "triangle_vertices_complete",
+      "triangle_edges_complete",
+      "cycle_edges_complete"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 2439,
+      "original_paths": [
+        "lean4/CampaignTfq0003FiniteObstruction.contract.score.yaml#pr-345-review-CampaignTfq0003FiniteObstruction"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignTfq0003FiniteObstruction.lean\",\n    \"sha256\": \"5deda50b13b9e7a728e07ac22be6618696bab8a7af87236d98d5d64466c9f1e0\"\n  },\n  \"boundaries\": [\n    \"Original broad target remains open or conditional.\",\n    \"Substantive proof remains below the repository L4 capability floor.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:pr-review:345:CampaignTfq0003FiniteObstruction\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr_345_review_replay.json\",\n      \"sha256\": \"67d2e95d1abb2952b60bc6895a03e6f361a08d664df542d6ba6d3e70762cf5a4\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-25_pr-345-repair.md\",\n      \"sha256\": \"17dcaea237d261e32a3a88400cb2e8413fa06733cbd3b73e288851c7bc8e2324\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them\"\n  ],\n  \"purpose\": \"Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"V3\",\n    \"E3\",\n    \"d0\",\n    \"d1\",\n    \"l1\",\n    \"phi1\",\n    \"gamma2\",\n    \"gamma2_eq_phi1\",\n    \"d1_d0\",\n    \"natAbs_sum3\",\n    \"clear01\",\n    \"clear01_e01\",\n    \"clear01_e12\",\n    \"clear01_e02\",\n    \"residual_supported_on_e02\",\n    \"phi1_attained\",\n    \"phi1_lower\",\n    \"equiv\",\n    \"equiv_of_d1\",\n    \"d1_of_equiv\",\n    \"equiv_iff_d1\",\n    \"rcl\",\n    \"rcl_refuses_zero_over_one\",\n    \"triangle_rcl_defined\",\n    \"sample\",\n    \"recordedRepair\",\n    \"sample_d1\",\n    \"sample_phi1\",\n    \"sample_gamma2\",\n    \"sample_rcl\",\n    \"sample_ratio_one\",\n    \"recorded_residual_values\",\n    \"recorded_residual_l1\",\n    \"zeroCochain\",\n    \"zero_signature\",\n    \"edge02\",\n    \"vertex_comparison\",\n    \"edge02_not_exact\",\n    \"comparison_is_not_the_quotient\",\n    \"V4\",\n    \"E4\",\n    \"d0Cycle\",\n    \"holonomy\",\n    \"l1Cycle\",\n    \"gamma2Cycle\",\n    \"phi1Cycle\",\n    \"holonomy_d0\",\n    \"natAbs_sum4\",\n    \"concentrate\",\n    \"phi1Cycle_attained\",\n    \"phi1Cycle_lower\",\n    \"equivCycle\",\n    \"cycleSample\",\n    \"zeroCycle\",\n    \"cycle_not_exact\",\n    \"cycle_rcl_defined\",\n    \"cycle_signature\",\n    \"triangleVertices\",\n    \"triangleEdges\",\n    \"cycleEdges\",\n    \"vertex_count\",\n    \"edge_count_triangle\",\n    \"edge_count_cycle\",\n    \"triangle_vertices_complete\",\n    \"triangle_edges_complete\",\n    \"cycle_edges_complete\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignTfq0003FiniteObstruction.lean",
+          "sha256": "5deda50b13b9e7a728e07ac22be6618696bab8a7af87236d98d5d64466c9f1e0"
+        },
+        "boundaries": [
+          "Original broad target remains open or conditional.",
+          "Substantive proof remains below the repository L4 capability floor."
+        ],
+        "contract_urn": "urn:tfqm:pr-review:345:CampaignTfq0003FiniteObstruction",
+        "evidence": [
+          {
+            "path": "dag/research/pr_345_review_replay.json",
+            "sha256": "67d2e95d1abb2952b60bc6895a03e6f361a08d664df542d6ba6d3e70762cf5a4"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-25_pr-345-repair.md",
+            "sha256": "17dcaea237d261e32a3a88400cb2e8413fa06733cbd3b73e288851c7bc8e2324"
+          }
+        ],
+        "owned_invariants": [
+          "Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them"
+        ],
+        "purpose": "Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "V3",
+          "E3",
+          "d0",
+          "d1",
+          "l1",
+          "phi1",
+          "gamma2",
+          "gamma2_eq_phi1",
+          "d1_d0",
+          "natAbs_sum3",
+          "clear01",
+          "clear01_e01",
+          "clear01_e12",
+          "clear01_e02",
+          "residual_supported_on_e02",
+          "phi1_attained",
+          "phi1_lower",
+          "equiv",
+          "equiv_of_d1",
+          "d1_of_equiv",
+          "equiv_iff_d1",
+          "rcl",
+          "rcl_refuses_zero_over_one",
+          "triangle_rcl_defined",
+          "sample",
+          "recordedRepair",
+          "sample_d1",
+          "sample_phi1",
+          "sample_gamma2",
+          "sample_rcl",
+          "sample_ratio_one",
+          "recorded_residual_values",
+          "recorded_residual_l1",
+          "zeroCochain",
+          "zero_signature",
+          "edge02",
+          "vertex_comparison",
+          "edge02_not_exact",
+          "comparison_is_not_the_quotient",
+          "V4",
+          "E4",
+          "d0Cycle",
+          "holonomy",
+          "l1Cycle",
+          "gamma2Cycle",
+          "phi1Cycle",
+          "holonomy_d0",
+          "natAbs_sum4",
+          "concentrate",
+          "phi1Cycle_attained",
+          "phi1Cycle_lower",
+          "equivCycle",
+          "cycleSample",
+          "zeroCycle",
+          "cycle_not_exact",
+          "cycle_rcl_defined",
+          "cycle_signature",
+          "triangleVertices",
+          "triangleEdges",
+          "cycleEdges",
+          "vertex_count",
+          "edge_count_triangle",
+          "edge_count_cycle",
+          "triangle_vertices_complete",
+          "triangle_edges_complete",
+          "cycle_edges_complete"
+        ]
+      },
+      "sha256": "7d2f69700b162a947e98ccb49c866216952473e81d0b1c4712957dd98caef5a1"
+    },
+    {
+      "bytes": 2439,
+      "original_paths": [
+        "lean4/CampaignTfq0003FiniteObstruction.contract.score.yaml#pr-345-review-CampaignTfq0003FiniteObstruction"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignTfq0003FiniteObstruction.lean\",\n    \"sha256\": \"5deda50b13b9e7a728e07ac22be6618696bab8a7af87236d98d5d64466c9f1e0\"\n  },\n  \"boundaries\": [\n    \"Original broad target remains open or conditional.\",\n    \"Substantive proof remains below the repository L4 capability floor.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:pr-review:345:CampaignTfq0003FiniteObstruction\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr_345_review_replay.json\",\n      \"sha256\": \"daa56299f59ce0737001be7d974d3ae87aeb7ccf635f641b602e24bc999188f1\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-25_pr-345-repair.md\",\n      \"sha256\": \"17dcaea237d261e32a3a88400cb2e8413fa06733cbd3b73e288851c7bc8e2324\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them\"\n  ],\n  \"purpose\": \"Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"V3\",\n    \"E3\",\n    \"d0\",\n    \"d1\",\n    \"l1\",\n    \"phi1\",\n    \"gamma2\",\n    \"gamma2_eq_phi1\",\n    \"d1_d0\",\n    \"natAbs_sum3\",\n    \"clear01\",\n    \"clear01_e01\",\n    \"clear01_e12\",\n    \"clear01_e02\",\n    \"residual_supported_on_e02\",\n    \"phi1_attained\",\n    \"phi1_lower\",\n    \"equiv\",\n    \"equiv_of_d1\",\n    \"d1_of_equiv\",\n    \"equiv_iff_d1\",\n    \"rcl\",\n    \"rcl_refuses_zero_over_one\",\n    \"triangle_rcl_defined\",\n    \"sample\",\n    \"recordedRepair\",\n    \"sample_d1\",\n    \"sample_phi1\",\n    \"sample_gamma2\",\n    \"sample_rcl\",\n    \"sample_ratio_one\",\n    \"recorded_residual_values\",\n    \"recorded_residual_l1\",\n    \"zeroCochain\",\n    \"zero_signature\",\n    \"edge02\",\n    \"vertex_comparison\",\n    \"edge02_not_exact\",\n    \"comparison_is_not_the_quotient\",\n    \"V4\",\n    \"E4\",\n    \"d0Cycle\",\n    \"holonomy\",\n    \"l1Cycle\",\n    \"gamma2Cycle\",\n    \"phi1Cycle\",\n    \"holonomy_d0\",\n    \"natAbs_sum4\",\n    \"concentrate\",\n    \"phi1Cycle_attained\",\n    \"phi1Cycle_lower\",\n    \"equivCycle\",\n    \"cycleSample\",\n    \"zeroCycle\",\n    \"cycle_not_exact\",\n    \"cycle_rcl_defined\",\n    \"cycle_signature\",\n    \"triangleVertices\",\n    \"triangleEdges\",\n    \"cycleEdges\",\n    \"vertex_count\",\n    \"edge_count_triangle\",\n    \"edge_count_cycle\",\n    \"triangle_vertices_complete\",\n    \"triangle_edges_complete\",\n    \"cycle_edges_complete\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignTfq0003FiniteObstruction.lean",
+          "sha256": "5deda50b13b9e7a728e07ac22be6618696bab8a7af87236d98d5d64466c9f1e0"
+        },
+        "boundaries": [
+          "Original broad target remains open or conditional.",
+          "Substantive proof remains below the repository L4 capability floor."
+        ],
+        "contract_urn": "urn:tfqm:pr-review:345:CampaignTfq0003FiniteObstruction",
+        "evidence": [
+          {
+            "path": "dag/research/pr_345_review_replay.json",
+            "sha256": "daa56299f59ce0737001be7d974d3ae87aeb7ccf635f641b602e24bc999188f1"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-25_pr-345-repair.md",
+            "sha256": "17dcaea237d261e32a3a88400cb2e8413fa06733cbd3b73e288851c7bc8e2324"
+          }
+        ],
+        "owned_invariants": [
+          "Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them"
+        ],
+        "purpose": "Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "V3",
+          "E3",
+          "d0",
+          "d1",
+          "l1",
+          "phi1",
+          "gamma2",
+          "gamma2_eq_phi1",
+          "d1_d0",
+          "natAbs_sum3",
+          "clear01",
+          "clear01_e01",
+          "clear01_e12",
+          "clear01_e02",
+          "residual_supported_on_e02",
+          "phi1_attained",
+          "phi1_lower",
+          "equiv",
+          "equiv_of_d1",
+          "d1_of_equiv",
+          "equiv_iff_d1",
+          "rcl",
+          "rcl_refuses_zero_over_one",
+          "triangle_rcl_defined",
+          "sample",
+          "recordedRepair",
+          "sample_d1",
+          "sample_phi1",
+          "sample_gamma2",
+          "sample_rcl",
+          "sample_ratio_one",
+          "recorded_residual_values",
+          "recorded_residual_l1",
+          "zeroCochain",
+          "zero_signature",
+          "edge02",
+          "vertex_comparison",
+          "edge02_not_exact",
+          "comparison_is_not_the_quotient",
+          "V4",
+          "E4",
+          "d0Cycle",
+          "holonomy",
+          "l1Cycle",
+          "gamma2Cycle",
+          "phi1Cycle",
+          "holonomy_d0",
+          "natAbs_sum4",
+          "concentrate",
+          "phi1Cycle_attained",
+          "phi1Cycle_lower",
+          "equivCycle",
+          "cycleSample",
+          "zeroCycle",
+          "cycle_not_exact",
+          "cycle_rcl_defined",
+          "cycle_signature",
+          "triangleVertices",
+          "triangleEdges",
+          "cycleEdges",
+          "vertex_count",
+          "edge_count_triangle",
+          "edge_count_cycle",
+          "triangle_vertices_complete",
+          "triangle_edges_complete",
+          "cycle_edges_complete"
+        ]
+      },
+      "sha256": "e272e2432ed76230fa91f76faff1099040403f18c130e0771f40b168824459d0"
+    },
+    {
+      "bytes": 2433,
+      "original_paths": [
+        "lean4/FiniteObstructionTwoComplexes.contract.score.yaml#pr-345-review-FiniteObstructionTwoComplexes"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/FiniteObstructionTwoComplexes.lean\",\n    \"sha256\": \"fab5ba8bcf2f450486ea9412108f9ff6c6fa9d0960d9358ead3d266f0cce8ff3\"\n  },\n  \"boundaries\": [\n    \"Original broad target remains open or conditional.\",\n    \"Substantive proof remains below the repository L4 capability floor.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:pr-review:345:FiniteObstructionTwoComplexes\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr_345_review_replay.json\",\n      \"sha256\": \"8cc2b3886252efaf5ab5f41cb9388f85a859f329d6d848c7839405ad93071588\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-25_pr-345-repair.md\",\n      \"sha256\": \"17dcaea237d261e32a3a88400cb2e8413fa06733cbd3b73e288851c7bc8e2324\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them\"\n  ],\n  \"purpose\": \"Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"V3\",\n    \"E3\",\n    \"d0\",\n    \"d1\",\n    \"l1\",\n    \"phi1\",\n    \"gamma2\",\n    \"gamma2_eq_phi1\",\n    \"d1_d0\",\n    \"natAbs_sum3\",\n    \"clear01\",\n    \"clear01_e01\",\n    \"clear01_e12\",\n    \"clear01_e02\",\n    \"residual_supported_on_e02\",\n    \"phi1_attained\",\n    \"phi1_lower\",\n    \"equiv\",\n    \"equiv_of_d1\",\n    \"d1_of_equiv\",\n    \"equiv_iff_d1\",\n    \"rcl\",\n    \"rcl_refuses_zero_over_one\",\n    \"triangle_rcl_defined\",\n    \"sample\",\n    \"recordedRepair\",\n    \"sample_d1\",\n    \"sample_phi1\",\n    \"sample_gamma2\",\n    \"sample_rcl\",\n    \"sample_ratio_one\",\n    \"recorded_residual_values\",\n    \"recorded_residual_l1\",\n    \"zeroCochain\",\n    \"zero_signature\",\n    \"edge02\",\n    \"vertex_comparison\",\n    \"edge02_not_exact\",\n    \"comparison_is_not_the_quotient\",\n    \"V4\",\n    \"E4\",\n    \"d0Cycle\",\n    \"holonomy\",\n    \"l1Cycle\",\n    \"gamma2Cycle\",\n    \"phi1Cycle\",\n    \"holonomy_d0\",\n    \"natAbs_sum4\",\n    \"concentrate\",\n    \"phi1Cycle_attained\",\n    \"phi1Cycle_lower\",\n    \"equivCycle\",\n    \"cycleSample\",\n    \"zeroCycle\",\n    \"cycle_not_exact\",\n    \"cycle_rcl_defined\",\n    \"cycle_signature\",\n    \"triangleVertices\",\n    \"triangleEdges\",\n    \"cycleEdges\",\n    \"vertex_count\",\n    \"edge_count_triangle\",\n    \"edge_count_cycle\",\n    \"triangle_vertices_complete\",\n    \"triangle_edges_complete\",\n    \"cycle_edges_complete\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/FiniteObstructionTwoComplexes.lean",
+          "sha256": "fab5ba8bcf2f450486ea9412108f9ff6c6fa9d0960d9358ead3d266f0cce8ff3"
+        },
+        "boundaries": [
+          "Original broad target remains open or conditional.",
+          "Substantive proof remains below the repository L4 capability floor."
+        ],
+        "contract_urn": "urn:tfqm:pr-review:345:FiniteObstructionTwoComplexes",
+        "evidence": [
+          {
+            "path": "dag/research/pr_345_review_replay.json",
+            "sha256": "8cc2b3886252efaf5ab5f41cb9388f85a859f329d6d848c7839405ad93071588"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-25_pr-345-repair.md",
+            "sha256": "17dcaea237d261e32a3a88400cb2e8413fa06733cbd3b73e288851c7bc8e2324"
+          }
+        ],
+        "owned_invariants": [
+          "Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them"
+        ],
+        "purpose": "Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "V3",
+          "E3",
+          "d0",
+          "d1",
+          "l1",
+          "phi1",
+          "gamma2",
+          "gamma2_eq_phi1",
+          "d1_d0",
+          "natAbs_sum3",
+          "clear01",
+          "clear01_e01",
+          "clear01_e12",
+          "clear01_e02",
+          "residual_supported_on_e02",
+          "phi1_attained",
+          "phi1_lower",
+          "equiv",
+          "equiv_of_d1",
+          "d1_of_equiv",
+          "equiv_iff_d1",
+          "rcl",
+          "rcl_refuses_zero_over_one",
+          "triangle_rcl_defined",
+          "sample",
+          "recordedRepair",
+          "sample_d1",
+          "sample_phi1",
+          "sample_gamma2",
+          "sample_rcl",
+          "sample_ratio_one",
+          "recorded_residual_values",
+          "recorded_residual_l1",
+          "zeroCochain",
+          "zero_signature",
+          "edge02",
+          "vertex_comparison",
+          "edge02_not_exact",
+          "comparison_is_not_the_quotient",
+          "V4",
+          "E4",
+          "d0Cycle",
+          "holonomy",
+          "l1Cycle",
+          "gamma2Cycle",
+          "phi1Cycle",
+          "holonomy_d0",
+          "natAbs_sum4",
+          "concentrate",
+          "phi1Cycle_attained",
+          "phi1Cycle_lower",
+          "equivCycle",
+          "cycleSample",
+          "zeroCycle",
+          "cycle_not_exact",
+          "cycle_rcl_defined",
+          "cycle_signature",
+          "triangleVertices",
+          "triangleEdges",
+          "cycleEdges",
+          "vertex_count",
+          "edge_count_triangle",
+          "edge_count_cycle",
+          "triangle_vertices_complete",
+          "triangle_edges_complete",
+          "cycle_edges_complete"
+        ]
+      },
+      "sha256": "89ca7f04ac1a17eb1050a886a7acf5a2c74ba4fa8e46f7629a799f6d5922ad1b"
+    }
+  ],
+  "current_contract": "89ca7f04ac1a17eb1050a886a7acf5a2c74ba4fa8e46f7629a799f6d5922ad1b",
+  "current_scoring": "478577e9e1aaa7fa068a7c754eb321607c1d6a6bcb84a823da11eafa0ecef83c",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2131,
+      "original_paths": [
+        "lean4/CampaignTfq0003FiniteObstruction.contract.score.yaml#pr-345-review-CampaignTfq0003FiniteObstruction"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignTfq0003FiniteObstruction.lean\",\n    \"sha256\": \"5deda50b13b9e7a728e07ac22be6618696bab8a7af87236d98d5d64466c9f1e0\"\n  },\n  \"assessment_id\": \"pr-345-review-CampaignTfq0003FiniteObstruction\",\n  \"basis\": {\n    \"G1\": \"Inspected source and exported statements against the narrowed node, with content hashes and scope recorded in the review evidence.\",\n    \"G2\": \"Exact integer/finite arithmetic for the declared examples; the independent check and Lean kernel replay passed. No continuum or original broad target is inferred.\",\n    \"G3\": \"Declared local verification path; Lean axiom output is checked against propext, Classical.choice and Quot.sound. No external model or production authority is exercised.\",\n    \"G4\": \"Kernel replay and independent recomputation are recorded. Production-scale verification, exhaustive mutation accounting, and broader target coverage are not established.\",\n    \"G5\": \"Small local definitions and bounded validation; no production lifecycle or whole-workspace performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-25T17:04:31.326758+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr_345_review_replay.json\",\n      \"sha256\": \"67d2e95d1abb2952b60bc6895a03e6f361a08d664df542d6ba6d3e70762cf5a4\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-25_pr-345-repair.md\",\n      \"sha256\": \"17dcaea237d261e32a3a88400cb2e8413fa06733cbd3b73e288851c7bc8e2324\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them This assessment does not claim L4 production architecture.\",\n  \"open_higher_grade_findings\": [\n    \"Original broad target remains open or conditional.\",\n    \"Substantive proof remains below the repository L4 capability floor.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignTfq0003FiniteObstruction.lean",
+          "sha256": "5deda50b13b9e7a728e07ac22be6618696bab8a7af87236d98d5d64466c9f1e0"
+        },
+        "assessment_id": "pr-345-review-CampaignTfq0003FiniteObstruction",
+        "basis": {
+          "G1": "Inspected source and exported statements against the narrowed node, with content hashes and scope recorded in the review evidence.",
+          "G2": "Exact integer/finite arithmetic for the declared examples; the independent check and Lean kernel replay passed. No continuum or original broad target is inferred.",
+          "G3": "Declared local verification path; Lean axiom output is checked against propext, Classical.choice and Quot.sound. No external model or production authority is exercised.",
+          "G4": "Kernel replay and independent recomputation are recorded. Production-scale verification, exhaustive mutation accounting, and broader target coverage are not established.",
+          "G5": "Small local definitions and bounded validation; no production lifecycle or whole-workspace performance claim."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-25T17:04:31.326758+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/pr_345_review_replay.json",
+            "sha256": "67d2e95d1abb2952b60bc6895a03e6f361a08d664df542d6ba6d3e70762cf5a4"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-25_pr-345-repair.md",
+            "sha256": "17dcaea237d261e32a3a88400cb2e8413fa06733cbd3b73e288851c7bc8e2324"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them This assessment does not claim L4 production architecture.",
+        "open_higher_grade_findings": [
+          "Original broad target remains open or conditional.",
+          "Substantive proof remains below the repository L4 capability floor."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L3D"
+      },
+      "sha256": "4cf3ba8eb8d328aa22aa7f607302d4d972c8510b08f8ae70703e85700e408713"
+    },
+    {
+      "bytes": 2131,
+      "original_paths": [
+        "lean4/CampaignTfq0003FiniteObstruction.contract.score.yaml#pr-345-review-CampaignTfq0003FiniteObstruction"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignTfq0003FiniteObstruction.lean\",\n    \"sha256\": \"5deda50b13b9e7a728e07ac22be6618696bab8a7af87236d98d5d64466c9f1e0\"\n  },\n  \"assessment_id\": \"pr-345-review-CampaignTfq0003FiniteObstruction\",\n  \"basis\": {\n    \"G1\": \"Inspected source and exported statements against the narrowed node, with content hashes and scope recorded in the review evidence.\",\n    \"G2\": \"Exact integer/finite arithmetic for the declared examples; the independent check and Lean kernel replay passed. No continuum or original broad target is inferred.\",\n    \"G3\": \"Declared local verification path; Lean axiom output is checked against propext, Classical.choice and Quot.sound. No external model or production authority is exercised.\",\n    \"G4\": \"Kernel replay and independent recomputation are recorded. Production-scale verification, exhaustive mutation accounting, and broader target coverage are not established.\",\n    \"G5\": \"Small local definitions and bounded validation; no production lifecycle or whole-workspace performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-25T17:06:55.022649+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr_345_review_replay.json\",\n      \"sha256\": \"daa56299f59ce0737001be7d974d3ae87aeb7ccf635f641b602e24bc999188f1\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-25_pr-345-repair.md\",\n      \"sha256\": \"17dcaea237d261e32a3a88400cb2e8413fa06733cbd3b73e288851c7bc8e2324\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them This assessment does not claim L4 production architecture.\",\n  \"open_higher_grade_findings\": [\n    \"Original broad target remains open or conditional.\",\n    \"Substantive proof remains below the repository L4 capability floor.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignTfq0003FiniteObstruction.lean",
+          "sha256": "5deda50b13b9e7a728e07ac22be6618696bab8a7af87236d98d5d64466c9f1e0"
+        },
+        "assessment_id": "pr-345-review-CampaignTfq0003FiniteObstruction",
+        "basis": {
+          "G1": "Inspected source and exported statements against the narrowed node, with content hashes and scope recorded in the review evidence.",
+          "G2": "Exact integer/finite arithmetic for the declared examples; the independent check and Lean kernel replay passed. No continuum or original broad target is inferred.",
+          "G3": "Declared local verification path; Lean axiom output is checked against propext, Classical.choice and Quot.sound. No external model or production authority is exercised.",
+          "G4": "Kernel replay and independent recomputation are recorded. Production-scale verification, exhaustive mutation accounting, and broader target coverage are not established.",
+          "G5": "Small local definitions and bounded validation; no production lifecycle or whole-workspace performance claim."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-25T17:06:55.022649+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/pr_345_review_replay.json",
+            "sha256": "daa56299f59ce0737001be7d974d3ae87aeb7ccf635f641b602e24bc999188f1"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-25_pr-345-repair.md",
+            "sha256": "17dcaea237d261e32a3a88400cb2e8413fa06733cbd3b73e288851c7bc8e2324"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them This assessment does not claim L4 production architecture.",
+        "open_higher_grade_findings": [
+          "Original broad target remains open or conditional.",
+          "Substantive proof remains below the repository L4 capability floor."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L3D"
+      },
+      "sha256": "61f41d68f4c98f66040d4213d88293da21ed13d11daa2f87daa82e199de5e4ec"
+    },
+    {
+      "bytes": 2570,
+      "original_paths": [
+        "lean4/FiniteObstructionTwoComplexes.contract.score.yaml#pr-345-review-FiniteObstructionTwoComplexes"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/FiniteObstructionTwoComplexes.lean\",\n    \"sha256\": \"fab5ba8bcf2f450486ea9412108f9ff6c6fa9d0960d9358ead3d266f0cce8ff3\"\n  },\n  \"assessment_id\": \"pr-345-review-FiniteObstructionTwoComplexes\",\n  \"basis\": {\n    \"G1\": \"Inspected source and exported statements against the narrowed node, with content hashes and scope recorded in the review evidence.\",\n    \"G2\": \"Exact integer/finite arithmetic for the declared examples; the independent check and Lean kernel replay passed. No continuum or original broad target is inferred.\",\n    \"G3\": \"Declared local verification path; Lean axiom output is checked against propext, Classical.choice and Quot.sound. No external model or production authority is exercised.\",\n    \"G4\": \"Kernel replay and independent recomputation are recorded. Production-scale verification, exhaustive mutation accounting, and broader target coverage are not established.\",\n    \"G5\": \"Small local definitions and bounded validation; no production lifecycle or whole-workspace performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-25T17:06:55.022649+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr_345_review_replay.json\",\n      \"sha256\": \"8cc2b3886252efaf5ab5f41cb9388f85a859f329d6d848c7839405ad93071588\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-25_pr-345-repair.md\",\n      \"sha256\": \"17dcaea237d261e32a3a88400cb2e8413fa06733cbd3b73e288851c7bc8e2324\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them This assessment does not claim L4 production architecture.\",\n  \"open_higher_grade_findings\": [\n    \"Original broad target remains open or conditional.\",\n    \"Substantive proof remains below the repository L4 capability floor.\"\n  ],\n  \"profile\": \"Exact\",\n  \"rebound\": {\n    \"date\": \"2026-10-27\",\n    \"from_path\": \"lean4/CampaignTfq0003FiniteObstruction.lean\",\n    \"from_sha256\": \"5deda50b13b9e7a728e07ac22be6618696bab8a7af87236d98d5d64466c9f1e0\",\n    \"note\": \"Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived.\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/FiniteObstructionTwoComplexes.lean",
+          "sha256": "fab5ba8bcf2f450486ea9412108f9ff6c6fa9d0960d9358ead3d266f0cce8ff3"
+        },
+        "assessment_id": "pr-345-review-FiniteObstructionTwoComplexes",
+        "basis": {
+          "G1": "Inspected source and exported statements against the narrowed node, with content hashes and scope recorded in the review evidence.",
+          "G2": "Exact integer/finite arithmetic for the declared examples; the independent check and Lean kernel replay passed. No continuum or original broad target is inferred.",
+          "G3": "Declared local verification path; Lean axiom output is checked against propext, Classical.choice and Quot.sound. No external model or production authority is exercised.",
+          "G4": "Kernel replay and independent recomputation are recorded. Production-scale verification, exhaustive mutation accounting, and broader target coverage are not established.",
+          "G5": "Small local definitions and bounded validation; no production lifecycle or whole-workspace performance claim."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-25T17:06:55.022649+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/pr_345_review_replay.json",
+            "sha256": "8cc2b3886252efaf5ab5f41cb9388f85a859f329d6d848c7839405ad93071588"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-25_pr-345-repair.md",
+            "sha256": "17dcaea237d261e32a3a88400cb2e8413fa06733cbd3b73e288851c7bc8e2324"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Narrowed finite proof: Campaign: TFQ-0003 — Narrowed: triangle Phi1 equals Gamma2 and a 4-cycle separates them This assessment does not claim L4 production architecture.",
+        "open_higher_grade_findings": [
+          "Original broad target remains open or conditional.",
+          "Substantive proof remains below the repository L4 capability floor."
+        ],
+        "profile": "Exact",
+        "rebound": {
+          "date": "2026-10-27",
+          "from_path": "lean4/CampaignTfq0003FiniteObstruction.lean",
+          "from_sha256": "5deda50b13b9e7a728e07ac22be6618696bab8a7af87236d98d5d64466c9f1e0",
+          "note": "Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived."
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D"
+      },
+      "sha256": "478577e9e1aaa7fa068a7c754eb321607c1d6a6bcb84a823da11eafa0ecef83c"
+    }
+  ]
+}

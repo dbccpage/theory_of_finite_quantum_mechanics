@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `papers/foundations/authorization_incompleteness/FORMAL_RECOVERY_NOTES.md`
 
 - file: [papers/foundations/authorization_incompleteness/FORMAL_RECOVERY_NOTES.md](../../../papers/foundations/authorization_incompleteness/FORMAL_RECOVERY_NOTES.md)
-- sha256 (`lf-normalised`): `8b88ca59c0e6400660aea8712963d6beff9ec458036b5211ca6677f1e094dee5`
+- sha256 (`lf-normalised`): `39aecc461bf3d3eff9648ed7b2b403aa2176f51eeed229af309e70c09ad58e31`
 - cited in: node.source
 - counts toward the grade: yes
 

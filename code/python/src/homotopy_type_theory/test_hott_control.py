@@ -1,6 +1,6 @@
 """Unit, negative, integration, end-to-end, and mutation tests.
 
-Origin: lean4/H011Circle.lean theorem cyc3_one_double_ne_zero.
+Origin: lean4/HilbertWalkCircle.lean theorem cyc3_one_double_ne_zero.
 Claim: urn:omega:fqm:hott:circle-step-witness:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/homotopy_type_theory/test_hott_control.py.
@@ -274,7 +274,7 @@ _PACKAGE_PATH = Path(__file__).resolve().with_name("__init__.py")
 
 
 PRINT_TEXT = '1\n'
-ORIGIN_REL = 'lean4/H011Circle.lean'
+ORIGIN_REL = 'lean4/HilbertWalkCircle.lean'
 ORIGIN_MARKER = 'theorem cyc3_one_double_ne_zero'
 CLAIM = 'urn:omega:fqm:hott:circle-step-witness:v1'
 EXPECTED = 1

@@ -31,15 +31,15 @@ Lean length_sixteen, row1_matches, row2_matches, coset_is, coset_weights, min_we
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignMajImportCosetWeight.lean::length_sixteen`
-- `lean4/CampaignMajImportCosetWeight.lean::row1_matches`
-- `lean4/CampaignMajImportCosetWeight.lean::row2_matches`
-- `lean4/CampaignMajImportCosetWeight.lean::coset_is`
-- `lean4/CampaignMajImportCosetWeight.lean::coset_weights`
-- `lean4/CampaignMajImportCosetWeight.lean::min_weight_one`
-- `lean4/CampaignMajImportCosetWeight.lean::weight_one_labels`
-- `lean4/CampaignMajImportCosetWeight.lean::label_one_coordinates`
-- `lean4/CampaignMajImportCosetWeight.lean::kernel_is`
+- `lean4/MajoranaCosetWeightImport.lean::length_sixteen`
+- `lean4/MajoranaCosetWeightImport.lean::row1_matches`
+- `lean4/MajoranaCosetWeightImport.lean::row2_matches`
+- `lean4/MajoranaCosetWeightImport.lean::coset_is`
+- `lean4/MajoranaCosetWeightImport.lean::coset_weights`
+- `lean4/MajoranaCosetWeightImport.lean::min_weight_one`
+- `lean4/MajoranaCosetWeightImport.lean::weight_one_labels`
+- `lean4/MajoranaCosetWeightImport.lean::label_one_coordinates`
+- `lean4/MajoranaCosetWeightImport.lean::kernel_is`
 
 ### Rust Certifiers
 - *none*

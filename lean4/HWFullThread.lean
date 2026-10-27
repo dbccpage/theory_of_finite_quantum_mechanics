@@ -5,38 +5,38 @@
 
 
 import HWKernel
-import H000FinitePresentedCarrier
-import H001ProbabilitySimplex
-import H002ReportDynamics
-import H003ReversibilityGate
-import H004FreeLinearization
-import H005InnerProductAdmission
-import H006PermutationUnitary
-import H008PhaseBlindPresentation
-import H010InterferenceNonDescent
-import H012OperatorAlgebraShadow
-import H013BornPairingBoundary
-import H014TensorCompositionBoundary
-import H015IrreversibleFork
-import H016ContinuousDynamicsFork
+import FinitePresentedCarrier
+import ProbabilitySimplex
+import ReportDynamics
+import ReversibilityGate
+import FreeLinearization
+import InnerProductAdmission
+import PermutationUnitary
+import HilbertWalkPhaseBlindPresentation
+import InterferenceNonDescent
+import OperatorAlgebraShadow
+import BornPairingBoundary
+import TensorCompositionBoundary
+import IrreversibleFork
+import ContinuousDynamicsFork
 import HWThread
 import HWCarrierThread
 
-namespace FableHilbertWalk20260819.HWFullThread
+namespace HilbertWalk.HWFullThread
 
-open FableHilbertWalk20260819.HWKernel
-open FableHilbertWalk20260819.H000
+open HilbertWalk.HWKernel
+open HilbertWalk.FinitePresentedCarrier
   (PresentedCarrier boolFixture sameReport sameReport_iff
     presented_carrier_replays presented_carrier_separates)
-open FableHilbertWalk20260819.H001 (ScaledProb)
-open FableHilbertWalk20260819.H002 (pushforward pushforward_mass)
-open FableHilbertWalk20260819.H003 (Reversible)
-open FableHilbertWalk20260819.H004 (Vec delta basis_expansion)
-open FableHilbertWalk20260819.H005 (sesq delta_orthonormal)
-open FableHilbertWalk20260819.H006 (permU permutation_isometry)
-open FableHilbertWalk20260819.H008 (phaseBlind psi1 psi2 equal_weights)
-open FableHilbertWalk20260819.H010 (readout mix_separates no_descent_through_fiber)
-open FableHilbertWalk20260819.HWCarrierThread
+open HilbertWalk.ProbabilitySimplex (ScaledProb)
+open HilbertWalk.ReportDynamics (pushforward pushforward_mass)
+open HilbertWalk.ReversibilityGate (Reversible)
+open HilbertWalk.FreeLinearization (Vec delta basis_expansion)
+open HilbertWalk.InnerProductAdmission (sesq delta_orthonormal)
+open HilbertWalk.PermutationUnitary (permU permutation_isometry)
+open HilbertWalk.PhaseBlindPresentation (phaseBlind psi1 psi2 equal_weights)
+open HilbertWalk.InterferenceNonDescent (readout mix_separates no_descent_through_fiber)
+open HilbertWalk.HWCarrierThread
   (alongPres same_report_same_amplitude)
 
 
@@ -64,7 +64,7 @@ theorem parametric_thread {X Q : Type} [DecidableEq Q]
     fun a b => delta_orthonormal intPack C.enumQ a b,
     fun u v => permutation_isometry intPack C.enumQ R u v,
     fun v q =>
-      FableHilbertWalk20260819.HWThread.phaseBlind_intertwines C.enumQ R v q,
+      HilbertWalk.HWThread.phaseBlind_intertwines C.enumQ R v q,
     fun v _ _ h => same_report_same_amplitude C v h⟩
 
 #print axioms parametric_thread
@@ -96,17 +96,17 @@ theorem not_along_if_fiber_splits {X Q : Type}
 
 theorem bell_splits_a_fiber :
     sameReport boolFixture (false, false) (false, true) ∧
-      FableHilbertWalk20260819.H014.bell (false, false) ≠
-        FableHilbertWalk20260819.H014.bell (false, true) :=
+      HilbertWalk.TensorCompositionBoundary.bell (false, false) ≠
+        HilbertWalk.TensorCompositionBoundary.bell (false, true) :=
   ⟨presented_carrier_replays, by decide⟩
 
 #print axioms bell_splits_a_fiber
 
 theorem bell_not_along_presentation :
     ¬ ∃ v : Bool → Int, ∀ p : Bool × Bool,
-      v (boolFixture.pres p) = FableHilbertWalk20260819.H014.bell p :=
+      v (boolFixture.pres p) = HilbertWalk.TensorCompositionBoundary.bell p :=
   not_along_if_fiber_splits boolFixture
-    FableHilbertWalk20260819.H014.bell
+    HilbertWalk.TensorCompositionBoundary.bell
     presented_carrier_replays (by decide)
 
 #print axioms bell_not_along_presentation
@@ -135,17 +135,17 @@ def productHost : PresentedCarrier (Bool × Bool) (Bool × Bool) where
   enumQ := enumBoolProd
 
 theorem bell_is_a_report_of_the_product_host (p : Bool × Bool) :
-    FableHilbertWalk20260819.H014.bell (productHost.pres p) =
-      FableHilbertWalk20260819.H014.bell p :=
+    HilbertWalk.TensorCompositionBoundary.bell (productHost.pres p) =
+      HilbertWalk.TensorCompositionBoundary.bell p :=
   rfl
 
 #print axioms bell_is_a_report_of_the_product_host
 
 
 theorem dilations_preserve_this_presentation (x : Bool × Bool) :
-    boolFixture.pres (FableHilbertWalk20260819.H015.dil1 x) =
+    boolFixture.pres (HilbertWalk.IrreversibleFork.dil1 x) =
       boolFixture.pres x ∧
-    boolFixture.pres (FableHilbertWalk20260819.H015.dil2 x) =
+    boolFixture.pres (HilbertWalk.IrreversibleFork.dil2 x) =
       boolFixture.pres x :=
   ⟨rfl, rfl⟩
 
@@ -161,7 +161,7 @@ theorem from_one_presented_carrier
     (∀ w : Bool × Bool → Int,
       rsum intPack (C.enumQ.elems.map (pushforward C.enumX C.pres w)) =
         rsum intPack (C.enumX.elems.map w)) ∧
-    ¬ Nonempty (Reversible FableHilbertWalk20260819.H003.collapse) ∧
+    ¬ Nonempty (Reversible HilbertWalk.ReversibilityGate.collapse) ∧
     (∀ (v : Vec Int Bool) (x : Bool),
       rsum intPack (C.enumQ.elems.map
         (fun q => intPack.mul (v q) (delta intPack q x))) = v x) ∧
@@ -170,8 +170,8 @@ theorem from_one_presented_carrier
         if (a == b) = true then intPack.one else intPack.zero) ∧
     (∀ u v : Vec Int Bool,
       sesq intPack C.enumQ
-        (permU intPack FableHilbertWalk20260819.H003.toggleRev u)
-        (permU intPack FableHilbertWalk20260819.H003.toggleRev v) =
+        (permU intPack HilbertWalk.ReversibilityGate.toggleRev u)
+        (permU intPack HilbertWalk.ReversibilityGate.toggleRev v) =
       sesq intPack C.enumQ u v) ∧
     (∀ {τ : Bool → Bool} (R : Reversible τ)
       (v : Vec GaussInt Bool) (q : Bool),
@@ -184,16 +184,16 @@ theorem from_one_presented_carrier
     (¬ ∃ f : (Bool → Int) → (Bool → Int),
       ∀ v : Vec GaussInt Bool, readout v = f (phaseBlind v)) ∧
     (¬ ∀ i j : Bool,
-      FableHilbertWalk20260819.H012.mmul
-        FableHilbertWalk20260819.H012.nMat
-        FableHilbertWalk20260819.H012.nMat' i j =
-      FableHilbertWalk20260819.H012.mmul
-        FableHilbertWalk20260819.H012.nMat'
-        FableHilbertWalk20260819.H012.nMat i j) ∧
-    (FableHilbertWalk20260819.H013.pair C.enumQ (phaseBlind psi1)
-      (FableHilbertWalk20260819.H013.indicator false) = 1) ∧
+      HilbertWalk.OperatorAlgebraShadow.mmul
+        HilbertWalk.OperatorAlgebraShadow.nMat
+        HilbertWalk.OperatorAlgebraShadow.nMat' i j =
+      HilbertWalk.OperatorAlgebraShadow.mmul
+        HilbertWalk.OperatorAlgebraShadow.nMat'
+        HilbertWalk.OperatorAlgebraShadow.nMat i j) ∧
+    (HilbertWalk.BornPairingBoundary.pair C.enumQ (phaseBlind psi1)
+      (HilbertWalk.BornPairingBoundary.indicator false) = 1) ∧
     (¬ ∃ v : Bool → Int, ∀ p : Bool × Bool,
-      v (C.pres p) = FableHilbertWalk20260819.H014.bell p) ∧
+      v (C.pres p) = HilbertWalk.TensorCompositionBoundary.bell p) ∧
     (C.enumQ.elems.length ≠ enumBoolProd.elems.length) ∧
     (¬ ∃ U : Vec Int Bool → Vec Int Bool,
       (∀ u v : Vec Int Bool,
@@ -202,36 +202,36 @@ theorem from_one_presented_carrier
       U (delta intPack false) = delta intPack false ∧
       U (delta intPack true) = delta intPack false) ∧
     (∀ x : Bool × Bool,
-      C.pres (FableHilbertWalk20260819.H015.dil1 x) = C.pres x ∧
-      C.pres (FableHilbertWalk20260819.H015.dil2 x) = C.pres x) ∧
+      C.pres (HilbertWalk.IrreversibleFork.dil1 x) = C.pres x ∧
+      C.pres (HilbertWalk.IrreversibleFork.dil2 x) = C.pres x) ∧
     (¬ ∃ σ : Bool → Bool, ∀ q : Bool,
-      σ (σ q) = FableHilbertWalk20260819.H003.toggle q) ∧
+      σ (σ q) = HilbertWalk.ReversibilityGate.toggle q) ∧
     ¬(∀ v : Vec GaussInt Bool, ∀ q : Bool,
-      FableHilbertWalk20260819.H016.sqrtSwap v q =
-        FableHilbertWalk20260819.H016.sqrtSwapNeg v q) := by
+      HilbertWalk.ContinuousDynamicsFork.sqrtSwap v q =
+        HilbertWalk.ContinuousDynamicsFork.sqrtSwapNeg v q) := by
   subst hC
   refine ⟨presented_carrier_replays, presented_carrier_separates,
-    ⟨FableHilbertWalk20260819.H001.pointMass⟩,
+    ⟨HilbertWalk.ProbabilitySimplex.pointMass⟩,
     fun w => pushforward_mass boolFixture.enumX boolFixture.enumQ
       boolFixture.pres w,
-    FableHilbertWalk20260819.H003.collapse_not_reversible,
+    HilbertWalk.ReversibilityGate.collapse_not_reversible,
     fun v x => basis_expansion intPack boolFixture.enumQ v x,
     fun a b => delta_orthonormal intPack boolFixture.enumQ a b,
     fun u v => permutation_isometry intPack boolFixture.enumQ
-      FableHilbertWalk20260819.H003.toggleRev u v,
+      HilbertWalk.ReversibilityGate.toggleRev u v,
     fun R v q =>
-      FableHilbertWalk20260819.HWThread.phaseBlind_intertwines
+      HilbertWalk.HWThread.phaseBlind_intertwines
         boolFixture.enumQ R v q,
     fun v _ _ h => same_report_same_amplitude boolFixture v h,
     equal_weights, mix_separates, no_descent_through_fiber,
-    FableHilbertWalk20260819.H012.noncomm_witness,
-    FableHilbertWalk20260819.H013.pairing_exists.1,
+    HilbertWalk.OperatorAlgebraShadow.noncomm_witness,
+    HilbertWalk.BornPairingBoundary.pairing_exists.1,
     bell_not_along_presentation,
     this_report_end_is_not_the_tensor_host,
-    FableHilbertWalk20260819.H015.collapse_no_isometry,
+    HilbertWalk.IrreversibleFork.collapse_no_isometry,
     dilations_preserve_this_presentation,
-    FableHilbertWalk20260819.H016.no_report_half_step,
-    FableHilbertWalk20260819.H016.interpolant_not_unique⟩
+    HilbertWalk.ContinuousDynamicsFork.no_report_half_step,
+    HilbertWalk.ContinuousDynamicsFork.interpolant_not_unique⟩
 
 #print axioms from_one_presented_carrier
 
@@ -239,16 +239,16 @@ theorem one_carrier_through_H000_H016 :
     sameReport boolFixture (false, false) (false, true) ∧
       (¬ ∃ v : Bool → Int, ∀ p : Bool × Bool,
         v (boolFixture.pres p) =
-          FableHilbertWalk20260819.H014.bell p) ∧
+          HilbertWalk.TensorCompositionBoundary.bell p) ∧
       ¬ ∃ σ : Bool → Bool, ∀ q : Bool,
-        σ (σ q) = FableHilbertWalk20260819.H003.toggle q :=
+        σ (σ q) = HilbertWalk.ReversibilityGate.toggle q :=
   ⟨(from_one_presented_carrier boolFixture rfl).1,
     bell_not_along_presentation,
-    FableHilbertWalk20260819.H016.no_report_half_step⟩
+    HilbertWalk.ContinuousDynamicsFork.no_report_half_step⟩
 
 #print axioms one_carrier_through_H000_H016
 
-end FableHilbertWalk20260819.HWFullThread
+end HilbertWalk.HWFullThread
 
 private def l5aProvenance : String :=
   "Origin: lean4/HWFullThread.lean Claim: parametric_thread AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

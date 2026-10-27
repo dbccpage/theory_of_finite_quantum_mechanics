@@ -42,31 +42,31 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignIdentityConvention.lean`
+### Lean: `lean4/IdentityConvention.lean`
 
-- file: [lean4/CampaignIdentityConvention.lean](../../../lean4/CampaignIdentityConvention.lean)
-- sha256 (`bytes`): `fa42557ad55d2b9150bea0a4c9d38a205d41e2d688115bb71091d0b96c6f8ff6`
-- cited in: node.lean, receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (CampaignIdentityConvention), record TFQ-0423
+- file: [lean4/IdentityConvention.lean](../../../lean4/IdentityConvention.lean)
+- sha256 (`bytes`): `3a3d58657a3f1ce6a385da5e3afe1e74bbce3eb37257582f8359e197e9388fda`
+- cited in: node.lean, receipt dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json (IdentityConvention), record TFQ-0423
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json](../../../dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json) (module `CampaignIdentityConvention`): recorded sha256 `fa42557ad55d2b9150bea0a4c9d38a205d41e2d688115bb71091d0b96c6f8ff6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignIdentityConvention`
+  - receipt [dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json](../../../dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json) (module `IdentityConvention`): recorded sha256 `3a3d58657a3f1ce6a385da5e3afe1e74bbce3eb37257582f8359e197e9388fda` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build IdentityConvention`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignIdentityConvention.Indistinguishable` | yes | yes | yes | none | `#print axioms CampaignIdentityConvention.Indistinguishable` |
-| `CampaignIdentityConvention.IsNew` | yes | yes | yes | none | `#print axioms CampaignIdentityConvention.IsNew` |
-| `CampaignIdentityConvention.adding_identity_separates` | yes | yes | yes | none | `#print axioms CampaignIdentityConvention.adding_identity_separates` |
-| `CampaignIdentityConvention.empty_family_identifies_all` | yes | yes | yes | none | `#print axioms CampaignIdentityConvention.empty_family_identifies_all` |
-| `CampaignIdentityConvention.exactObserver` | yes | yes | yes | none | `#print axioms CampaignIdentityConvention.exactObserver` |
-| `CampaignIdentityConvention.exact_inscription_is_new` | yes | yes | yes | none | `#print axioms CampaignIdentityConvention.exact_inscription_is_new` |
-| `CampaignIdentityConvention.exact_observer_sees_new` | yes | yes | yes | none | `#print axioms CampaignIdentityConvention.exact_observer_sees_new` |
-| `CampaignIdentityConvention.forgetting_preserves_indistinguishability` | yes | yes | yes | none | `#print axioms CampaignIdentityConvention.forgetting_preserves_indistinguishability` |
-| `CampaignIdentityConvention.no_convention_independent_answer` | yes | yes | yes | none | `#print axioms CampaignIdentityConvention.no_convention_independent_answer` |
-| `CampaignIdentityConvention.observational_equivalence` | yes | yes | yes | none | `#print axioms CampaignIdentityConvention.observational_equivalence` |
-| `CampaignIdentityConvention.opaqueObserver` | yes | yes | yes | none | `#print axioms CampaignIdentityConvention.opaqueObserver` |
-| `CampaignIdentityConvention.opaque_inscription_is_not_new` | yes | yes | yes | none | `#print axioms CampaignIdentityConvention.opaque_inscription_is_not_new` |
-| `CampaignIdentityConvention.opaque_observer_sees_no_new` | yes | yes | yes | none | `#print axioms CampaignIdentityConvention.opaque_observer_sees_no_new` |
-| `CampaignIdentityConvention.withIdentity` | yes | yes | yes | none | `#print axioms CampaignIdentityConvention.withIdentity` |
+| `IdentityConvention.Indistinguishable` | yes | yes | yes | none | `#print axioms IdentityConvention.Indistinguishable` |
+| `IdentityConvention.IsNew` | yes | yes | yes | none | `#print axioms IdentityConvention.IsNew` |
+| `IdentityConvention.adding_identity_separates` | yes | yes | yes | none | `#print axioms IdentityConvention.adding_identity_separates` |
+| `IdentityConvention.empty_family_identifies_all` | yes | yes | yes | none | `#print axioms IdentityConvention.empty_family_identifies_all` |
+| `IdentityConvention.exactObserver` | yes | yes | yes | none | `#print axioms IdentityConvention.exactObserver` |
+| `IdentityConvention.exact_inscription_is_new` | yes | yes | yes | none | `#print axioms IdentityConvention.exact_inscription_is_new` |
+| `IdentityConvention.exact_observer_sees_new` | yes | yes | yes | none | `#print axioms IdentityConvention.exact_observer_sees_new` |
+| `IdentityConvention.forgetting_preserves_indistinguishability` | yes | yes | yes | none | `#print axioms IdentityConvention.forgetting_preserves_indistinguishability` |
+| `IdentityConvention.no_convention_independent_answer` | yes | yes | yes | none | `#print axioms IdentityConvention.no_convention_independent_answer` |
+| `IdentityConvention.observational_equivalence` | yes | yes | yes | none | `#print axioms IdentityConvention.observational_equivalence` |
+| `IdentityConvention.opaqueObserver` | yes | yes | yes | none | `#print axioms IdentityConvention.opaqueObserver` |
+| `IdentityConvention.opaque_inscription_is_not_new` | yes | yes | yes | none | `#print axioms IdentityConvention.opaque_inscription_is_not_new` |
+| `IdentityConvention.opaque_observer_sees_no_new` | yes | yes | yes | none | `#print axioms IdentityConvention.opaque_observer_sees_no_new` |
+| `IdentityConvention.withIdentity` | yes | yes | yes | none | `#print axioms IdentityConvention.withIdentity` |
 
 - counts toward the grade: yes
 
@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md](../../../dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md)
-- sha256 (`lf-normalised`): `8f4757a6b4462dd8ffc9648aaa0141d7303a8801ac9697b9a9694f32afee2e0b`
+- sha256 (`lf-normalised`): `c2d1520b6c280c4e4c5c9e4ddf98c8713b74a0c83c3da4b85308700b6f22010d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0423
 - counts toward the grade: no
@@ -88,14 +88,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pgw-identity-convention-undecidable.md`
 
 - file: [dag/derivations/independent/pgw-identity-convention-undecidable.md](../../../dag/derivations/independent/pgw-identity-convention-undecidable.md)
-- sha256 (`lf-normalised`): `f87209a164e7f316d94f594c94d2bc044d6db08e596368db6475bb9cf5514b27`
+- sha256 (`lf-normalised`): `14a06da7dc857a3d8ae74f3096c4dd3773285bcefcfb31dcf01b69f065a2c88a`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json`
 
 - file: [dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json](../../../dag/research/campaign_pgw-identity-convention-undecidable_lean_replay.json)
-- sha256 (`lf-normalised`): `efda3ed2fccff1da587fae1da7078f45fa5afe4ec13f9ee9403bb5d5c70e433f`
+- sha256 (`lf-normalised`): `37e83844e20d3c63f8b4613e0c2b5c86437d46829d65190f001798adf17089d3`
 - cited in: node.source
 - counts toward the grade: yes
 

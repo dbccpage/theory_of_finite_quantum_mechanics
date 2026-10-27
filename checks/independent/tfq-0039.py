@@ -11,7 +11,7 @@ Verifies:
    Pontryagin dual of free Z parked without a bridge theorem) and non-closure by
    finite QCD controls, Dirac doubling counts, or topological anyon models.
 4. In-repo source audit of qcd_beta0_wilson_confinement_control.rs and
-   CampaignTfq0039FiniteQcd.lean.
+   ContinuumVolumeInterfaceInventory.lean.
 """
 
 from __future__ import annotations
@@ -139,12 +139,12 @@ def run_all_checks() -> dict[str, Any]:
     fqm_lean = repo_root / "lean4/FiniteQM.lean"
     cat_rs = repo_root / "code/rust/src/fusion_categories/catalog.rs"
     su2_rs = repo_root / "code/rust/src/fusion_categories/su2_level.rs"
-    lean_file = repo_root / "lean4/CampaignTfq0039FiniteQcd.lean"
+    lean_file = repo_root / "lean4/ContinuumVolumeInterfaceInventory.lean"
 
     record(fqm_lean.exists(), "lean4/FiniteQM.lean exists in repo")
     record(cat_rs.exists(), "code/rust/src/fusion_categories/catalog.rs exists in repo")
     record(su2_rs.exists(), "code/rust/src/fusion_categories/su2_level.rs exists in repo")
-    record(lean_file.exists(), "CampaignTfq0039FiniteQcd.lean exists in repo")
+    record(lean_file.exists(), "ContinuumVolumeInterfaceInventory.lean exists in repo")
 
     cat_src = cat_rs.read_text(encoding="utf-8")
     for token in [

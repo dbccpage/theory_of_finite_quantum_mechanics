@@ -47,6 +47,21 @@ paper s13.8.2: exact SOS certificates -2sqrt2 I \<= B_CHSH \<= 2sqrt2 I and atta
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/ContextualityThresholds.lean`
+
+- file: [lean4/ContextualityThresholds.lean](../../../lean4/ContextualityThresholds.lean)
+- sha256 (`bytes`): `e8f6f7311d3fb90296efcc4afec8a8e46f05a4f5ea6ebf2d08f1c53767d03a3d`
+- cited in: node.lean
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `ContextualityThresholds`): recorded sha256 `e8f6f7311d3fb90296efcc4afec8a8e46f05a4f5ea6ebf2d08f1c53767d03a3d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build ContextualityThresholds`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `conductor_24_contains_sqrt2` | yes | yes | yes | none | `#print axioms conductor_24_contains_sqrt2` |
+
+- counts toward the grade: yes
+
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
@@ -56,21 +71,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
   - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 - counts toward the grade: no
-
-### Lean: `lean4/H064ContextualityThresholds.lean`
-
-- file: [lean4/H064ContextualityThresholds.lean](../../../lean4/H064ContextualityThresholds.lean)
-- sha256 (`bytes`): `bb791f1af6f867df9e849e5b969cdd4b6931ed06ad22c5a51ee25a57eacf345a`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H064ContextualityThresholds`): recorded sha256 `bb791f1af6f867df9e849e5b969cdd4b6931ed06ad22c5a51ee25a57eacf345a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build H064ContextualityThresholds`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `conductor_24_contains_sqrt2` | yes | yes | yes | none | `#print axioms conductor_24_contains_sqrt2` |
-
-- counts toward the grade: yes
 
 ### Lean: `lean4/QuantumCorrelation.lean`
 

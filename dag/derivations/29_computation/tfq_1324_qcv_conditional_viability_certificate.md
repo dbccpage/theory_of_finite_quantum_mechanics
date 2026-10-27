@@ -46,8 +46,8 @@ viability_nonneg_initial is conditional_viability with nonnegative initial backl
 - `lean4/QcSelfObstruction.lean::conditional_viability_instance`
 - `lean4/QcSelfObstruction.lean::level_error_le`
 - `lean4/QcSelfObstruction.lean::explicit_level`
-- `lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_nonneg_initial`
-- `lean4/CampaignQcvConditionalViabilityCertificate.lean::CampaignQcvConditionalViabilityCertificate.viability_explicit_level`
+- `lean4/NoisyComputationViabilityCertificate.lean::NoisyComputationViabilityCertificate.viability_nonneg_initial`
+- `lean4/NoisyComputationViabilityCertificate.lean::NoisyComputationViabilityCertificate.viability_explicit_level`
 
 ### Rust Certifiers
 - `code/rust/src/qm/campaigns/qc_self_obstruction.rs::viability_report`
@@ -74,4 +74,4 @@ viability_nonneg_initial is conditional_viability with nonnegative initial backl
 - **Cited Sources**:
   - `dag/research/quantum_computation_self_obstruction.md:123-136`
   - `dag/research/quantum_computation_self_obstruction_axioms.txt:51-55`
-  - `lean4/CampaignQcvConditionalViabilityCertificate.lean:9-35`
+  - `lean4/NoisyComputationViabilityCertificate.lean:9-35`

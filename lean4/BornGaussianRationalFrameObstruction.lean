@@ -8,7 +8,7 @@ import Mathlib.Tactic.Ring
 
 AuthorityEffect: None.
 
-Setting.  `GVec` is `K³` for `K = ℚ(i)` (`BornFable.GaussRat`), with the Hermitian form
+Setting.  `GVec` is `K³` for `K = ℚ(i)` (`BornFinite.GaussRat`), with the Hermitian form
 `inner u v = Σ conj(uₖ) vₖ`.  A frame is a triple of nonzero pairwise orthogonal vectors; a frame
 function is `f : GVec → ℚ` summing to `1` on every frame.  (`BornGaussianFrameRays` shows such an
 `f` is automatically constant on rays.)
@@ -32,9 +32,9 @@ This file does **not** decide whether every frame function on `ℚ(i)³` rays is
 Nothing here is a statement about physics.
 -/
 
-namespace BornFable.GaussianFrames
+namespace BornFinite.GaussianFrames
 
-open BornFable
+open BornFinite
 
 /-- A vector in `K³`, `K = ℚ(i)`. -/
 structure GVec where
@@ -188,14 +188,14 @@ theorem parity_class_function_is_third (f : GVec → ℚ) (col : ℤ → ℤ →
     | exact absurd (And.intro ha (And.intro hc he)) hne
     | (have key := class_value hP a b c d e g _ _ _ hne ha hc he; linarith)
 
-end BornFable.GaussianFrames
+end BornFinite.GaussianFrames
 
-#print axioms BornFable.GaussianFrames.frame_e3_110
-#print axioms BornFable.GaussianFrames.frame_e1_011
-#print axioms BornFable.GaussianFrames.frame_e2_101
-#print axioms BornFable.GaussianFrames.frame_111_110
-#print axioms BornFable.GaussianFrames.frame_tri_110
-#print axioms BornFable.GaussianFrames.frame_tri_101
-#print axioms BornFable.GaussianFrames.frame_tri_011
-#print axioms BornFable.GaussianFrames.class_value
-#print axioms BornFable.GaussianFrames.parity_class_function_is_third
+#print axioms BornFinite.GaussianFrames.frame_e3_110
+#print axioms BornFinite.GaussianFrames.frame_e1_011
+#print axioms BornFinite.GaussianFrames.frame_e2_101
+#print axioms BornFinite.GaussianFrames.frame_111_110
+#print axioms BornFinite.GaussianFrames.frame_tri_110
+#print axioms BornFinite.GaussianFrames.frame_tri_101
+#print axioms BornFinite.GaussianFrames.frame_tri_011
+#print axioms BornFinite.GaussianFrames.class_value
+#print axioms BornFinite.GaussianFrames.parity_class_function_is_third

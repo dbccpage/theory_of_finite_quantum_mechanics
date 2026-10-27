@@ -26,7 +26,7 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignTfq0374ThreeRecoveryContracts.lean`](../../../lean4/CampaignTfq0374ThreeRecoveryContracts.lean) records one old letter, one new letter, and the three results of restriction, recovery, and erasure on the word [a, fresh]. The node stays OPEN.
+- [`lean4/FreshLetterRecoveryContracts.lean`](../../../lean4/FreshLetterRecoveryContracts.lean) records one old letter, one new letter, and the three results of restriction, recovery, and erasure on the word [a, fresh]. The node stays OPEN.
 - No local twin of `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/WordRecovery.lean` is in this checkout.
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)

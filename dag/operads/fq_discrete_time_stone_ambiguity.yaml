@@ -37,7 +37,7 @@ operation_candidates:
   name: toggle
   line: 6
   signature_excerpt: 'def toggle : Bool → Bool'
-  source: lean4/H055DiscreteDynamicsStone.lean
+  source: lean4/DiscreteDynamicsStone.lean
   repository: this_repository
   source_sha256: 1b56478a77b4ba84c72494821dcdd0ad7b47228d94bc114fbded0adea7a018c0
   status: source_candidate_requires_semantic_review
@@ -45,7 +45,7 @@ operation_candidates:
   name: generator_energy_branch
   line: 112
   signature_excerpt: 'def generator_energy_branch (k : Int) : Int'
-  source: lean4/H055DiscreteDynamicsStone.lean
+  source: lean4/DiscreteDynamicsStone.lean
   repository: this_repository
   source_sha256: 1b56478a77b4ba84c72494821dcdd0ad7b47228d94bc114fbded0adea7a018c0
   status: source_candidate_requires_semantic_review
@@ -53,7 +53,7 @@ operation_candidates:
   name: resolution_gap_008
   line: 130
   signature_excerpt: 'def resolution_gap_008 : StoneCosting'
-  source: lean4/H055DiscreteDynamicsStone.lean
+  source: lean4/DiscreteDynamicsStone.lean
   repository: this_repository
   source_sha256: 1b56478a77b4ba84c72494821dcdd0ad7b47228d94bc114fbded0adea7a018c0
   status: source_candidate_requires_semantic_review
@@ -61,7 +61,7 @@ operation_candidates:
   name: StoneCosting
   line: 126
   signature_excerpt: inductive StoneCosting
-  source: lean4/H055DiscreteDynamicsStone.lean
+  source: lean4/DiscreteDynamicsStone.lean
   repository: this_repository
   source_sha256: 1b56478a77b4ba84c72494821dcdd0ad7b47228d94bc114fbded0adea7a018c0
   status: source_candidate_requires_semantic_review
@@ -71,7 +71,7 @@ relation_candidates:
   line: 8
   signature_excerpt: "theorem no_bool_half_step :\n    ¬ ∃ σ : Bool → Bool, ∀ b : Bool, σ (σ b) = toggle\
     \ b"
-  source: lean4/H055DiscreteDynamicsStone.lean
+  source: lean4/DiscreteDynamicsStone.lean
   repository: this_repository
   source_sha256: 1b56478a77b4ba84c72494821dcdd0ad7b47228d94bc114fbded0adea7a018c0
   status: source_candidate_requires_semantic_review
@@ -82,7 +82,7 @@ relation_candidates:
   line: 120
   signature_excerpt: "theorem stone_discrete_generator_ambiguity (k1 k2 : Int) (h : k1 ≠ k2) :\n    GeneratorBranch.mk\
     \ (generator_energy_branch k1) ≠ GeneratorBranch.mk (generator_energy_branch k2)"
-  source: lean4/H055DiscreteDynamicsStone.lean
+  source: lean4/DiscreteDynamicsStone.lean
   repository: this_repository
   source_sha256: 1b56478a77b4ba84c72494821dcdd0ad7b47228d94bc114fbded0adea7a018c0
   status: source_candidate_requires_semantic_review
@@ -93,7 +93,7 @@ relation_candidates:
   line: 143
   signature_excerpt: "theorem stone_continuum_interface_priced :\n    stone_interface_receipt.resolution\
     \ = resolution_gap_008 ∧\n    generator_energy_branch 0 ≠ generator_energy_branch 1"
-  source: lean4/H055DiscreteDynamicsStone.lean
+  source: lean4/DiscreteDynamicsStone.lean
   repository: this_repository
   source_sha256: 1b56478a77b4ba84c72494821dcdd0ad7b47228d94bc114fbded0adea7a018c0
   status: source_candidate_requires_semantic_review
@@ -118,7 +118,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H055DiscreteDynamicsStone.lean::no_bool_half_step
   availability: local
   symbol: no_bool_half_step
-  path: lean4/H055DiscreteDynamicsStone.lean
+  path: lean4/DiscreteDynamicsStone.lean
   repository: this_repository
   sha256: 1b56478a77b4ba84c72494821dcdd0ad7b47228d94bc114fbded0adea7a018c0
   declaration_status: declaration_found_not_proof_checked
@@ -127,7 +127,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H055DiscreteDynamicsStone.lean::stone_discrete_generator_ambiguity
   availability: local
   symbol: stone_discrete_generator_ambiguity
-  path: lean4/H055DiscreteDynamicsStone.lean
+  path: lean4/DiscreteDynamicsStone.lean
   repository: this_repository
   sha256: 1b56478a77b4ba84c72494821dcdd0ad7b47228d94bc114fbded0adea7a018c0
   declaration_status: declaration_found_not_proof_checked
@@ -136,7 +136,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H055DiscreteDynamicsStone.lean::stone_continuum_interface_priced
   availability: local
   symbol: stone_continuum_interface_priced
-  path: lean4/H055DiscreteDynamicsStone.lean
+  path: lean4/DiscreteDynamicsStone.lean
   repository: this_repository
   sha256: 1b56478a77b4ba84c72494821dcdd0ad7b47228d94bc114fbded0adea7a018c0
   declaration_status: declaration_found_not_proof_checked
@@ -724,36 +724,36 @@ operad_slots:
     - dag/pfp/review_exact_json.py
     - lean4/PrimitiveDifference.lean
     - lean4/HWKernel.lean
-    - lean4/H004FreeLinearization.lean
-    - lean4/H005InnerProductAdmission.lean
-    - lean4/H003ReversibilityGate.lean
-    - lean4/H006PermutationUnitary.lean
-    - lean4/H007Complexification.lean
-    - lean4/H017MatrixFiniteRecovery.lean
-    - lean4/H017Fin.lean
-    - lean4/H016ContinuousDynamicsFork.lean
-    - lean4/H008PhaseBlindPresentation.lean
+    - lean4/FreeLinearization.lean
+    - lean4/InnerProductAdmission.lean
+    - lean4/ReversibilityGate.lean
+    - lean4/PermutationUnitary.lean
+    - lean4/Complexification.lean
+    - lean4/MatrixFiniteRecovery.lean
+    - lean4/HilbertWalkGleasonFin.lean
+    - lean4/ContinuousDynamicsFork.lean
+    - lean4/HilbertWalkPhaseBlindPresentation.lean
     - lean4/Core.lean
-    - lean4/H009PhaseFiber.lean
-    - lean4/H010InterferenceNonDescent.lean
-    - lean4/H011U1SelectorBoundary.lean
-    - lean4/H011Circle.lean
-    - lean4/H014TensorCompositionBoundary.lean
-    - lean4/H014BilinearProduct.lean
-    - lean4/H014Interface.lean
-    - lean4/H015IrreversibleFork.lean
-    - lean4/H013BornPairingBoundary.lean
-    - lean4/H013SameContract.lean
-    - lean4/H017Gleason.lean
-    - lean4/H017Extras.lean
-    - lean4/H017ExtrasDropone.lean
-    - lean4/E003_projection_fiber_primitive_difference.lean
-    - lean4/E005_fiber_quotient_equivalence.lean
-    - lean4/H000FinitePresentedCarrier.lean
-    - lean4/H055DiscreteDynamicsStone.lean
+    - lean4/PhaseFiber.lean
+    - lean4/InterferenceNonDescent.lean
+    - lean4/U1SelectorBoundary.lean
+    - lean4/HilbertWalkCircle.lean
+    - lean4/TensorCompositionBoundary.lean
+    - lean4/BilinearProduct.lean
+    - lean4/HilbertWalkInterface.lean
+    - lean4/IrreversibleFork.lean
+    - lean4/BornPairingBoundary.lean
+    - lean4/HilbertWalkSameContract.lean
+    - lean4/HilbertWalkGleason.lean
+    - lean4/HilbertWalkGleasonExtras.lean
+    - lean4/HilbertWalkGleasonExtrasDropOne.lean
+    - lean4/ProjectionFiberPrimitiveDifference.lean
+    - lean4/FiberQuotientEquivalence.lean
+    - lean4/FinitePresentedCarrier.lean
+    - lean4/DiscreteDynamicsStone.lean
     - lean4/PromptStructure.lean
-    - lean4/H061DynamicsDichotomy.lean
-    - lean4/H059RationalSector.lean
+    - lean4/DynamicsDichotomy.lean
+    - lean4/RationalSector.lean
     - lean4/PromptDynamics.lean
     - dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
     - code/python/src/qm/structure_exact.py

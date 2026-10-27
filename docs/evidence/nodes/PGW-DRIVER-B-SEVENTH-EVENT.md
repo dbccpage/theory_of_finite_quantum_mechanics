@@ -42,15 +42,15 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignPgwDriverBSeventhEvent.lean`
+### Lean: `lean4/PregenesisDriverBSeventhEvent.lean`
 
-- file: [lean4/CampaignPgwDriverBSeventhEvent.lean](../../../lean4/CampaignPgwDriverBSeventhEvent.lean)
+- file: [lean4/PregenesisDriverBSeventhEvent.lean](../../../lean4/PregenesisDriverBSeventhEvent.lean)
 - sha256 (`bytes`): `a092f60ccc0db4a1a779de44480c0613c5573c749e3ddd49e393b48d21a5b222`
-- cited in: node.lean, receipt dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json (CampaignPgwDriverBSeventhEvent), receipt dag/research/pr_355_review_replay.json (CampaignPgwDriverBSeventhEvent), record TFQ-0503
+- cited in: node.lean, receipt dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json (PregenesisDriverBSeventhEvent), receipt dag/research/pr_355_review_replay.json (PregenesisDriverBSeventhEvent), record TFQ-0503
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json](../../../dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json) (module `CampaignPgwDriverBSeventhEvent`): recorded sha256 `a092f60ccc0db4a1a779de44480c0613c5573c749e3ddd49e393b48d21a5b222` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_355_review_replay.json](../../../dag/research/pr_355_review_replay.json) (module `CampaignPgwDriverBSeventhEvent`): recorded sha256 `a092f60ccc0db4a1a779de44480c0613c5573c749e3ddd49e393b48d21a5b222` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignPgwDriverBSeventhEvent`
+  - receipt [dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json](../../../dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json) (module `PregenesisDriverBSeventhEvent`): recorded sha256 `a092f60ccc0db4a1a779de44480c0613c5573c749e3ddd49e393b48d21a5b222` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_355_review_replay.json](../../../dag/research/pr_355_review_replay.json) (module `PregenesisDriverBSeventhEvent`): recorded sha256 `a092f60ccc0db4a1a779de44480c0613c5573c749e3ddd49e393b48d21a5b222` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build PregenesisDriverBSeventhEvent`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -103,7 +103,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0503_driver_b_seventh_event.md`
 
 - file: [dag/derivations/02_genesis/tfq_0503_driver_b_seventh_event.md](../../../dag/derivations/02_genesis/tfq_0503_driver_b_seventh_event.md)
-- sha256 (`lf-normalised`): `cb52f42203db9d30ddad7dcf1ce79535e76567fdc66e1646df0ba3702aca516a`
+- sha256 (`lf-normalised`): `310724742d033e6c0fa78598f1955b03984892679598ff3f2acc0d53c53c7514`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0503
 - counts toward the grade: no
@@ -118,7 +118,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json`
 
 - file: [dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json](../../../dag/research/campaign_pgw-driver-b-seventh-event_lean_replay.json)
-- sha256 (`lf-normalised`): `dfdb26bcdae26d1eb72174ff1f364b40056576ab5c051856c267b323e3a69f5d`
+- sha256 (`lf-normalised`): `6ba7957262de988043708aa1ddff5fe330edfa09ccc2ae875e04f7ae73860b65`
 - cited in: node.source
 - counts toward the grade: yes
 

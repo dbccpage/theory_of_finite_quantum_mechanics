@@ -30,15 +30,15 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.classCount_eq_quotient_card`](../../../lean4/CampaignGenesisContextDecision.lean)
-- [`lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct`](../../../lean4/CampaignGenesisContextDecision.lean)
-- [`lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.exhaustionTest_correct`](../../../lean4/CampaignGenesisContextDecision.lean)
-- [`lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.holdsTwo_iff_classCount`](../../../lean4/CampaignGenesisContextDecision.lean)
-- [`lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.mem_contexts`](../../../lean4/CampaignGenesisContextDecision.lean)
-- [`lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.profile_eq_iff`](../../../lean4/CampaignGenesisContextDecision.lean)
-- [`lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.uniform_rule_exhausted`](../../../lean4/CampaignGenesisContextDecision.lean)
-- [`lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.witness_none_iff`](../../../lean4/CampaignGenesisContextDecision.lean)
-- [`lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.witness_sound`](../../../lean4/CampaignGenesisContextDecision.lean)
+- [`lean4/GenesisContextDecision.lean::GenesisContextDecision.classCount_eq_quotient_card`](../../../lean4/GenesisContextDecision.lean)
+- [`lean4/GenesisContextDecision.lean::GenesisContextDecision.collapseTest_correct`](../../../lean4/GenesisContextDecision.lean)
+- [`lean4/GenesisContextDecision.lean::GenesisContextDecision.exhaustionTest_correct`](../../../lean4/GenesisContextDecision.lean)
+- [`lean4/GenesisContextDecision.lean::GenesisContextDecision.holdsTwo_iff_classCount`](../../../lean4/GenesisContextDecision.lean)
+- [`lean4/GenesisContextDecision.lean::GenesisContextDecision.mem_contexts`](../../../lean4/GenesisContextDecision.lean)
+- [`lean4/GenesisContextDecision.lean::GenesisContextDecision.profile_eq_iff`](../../../lean4/GenesisContextDecision.lean)
+- [`lean4/GenesisContextDecision.lean::GenesisContextDecision.uniform_rule_exhausted`](../../../lean4/GenesisContextDecision.lean)
+- [`lean4/GenesisContextDecision.lean::GenesisContextDecision.witness_none_iff`](../../../lean4/GenesisContextDecision.lean)
+- [`lean4/GenesisContextDecision.lean::GenesisContextDecision.witness_sound`](../../../lean4/GenesisContextDecision.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs::contexts`](../../../atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/context.rs)

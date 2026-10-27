@@ -35,18 +35,18 @@ Closed Fin equalities beh00 through beh21 depend on propext. The Bool bits id0, 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignAuthRiceTheoremImport.lean::beh00`
-- `lean4/CampaignAuthRiceTheoremImport.lean::beh01`
-- `lean4/CampaignAuthRiceTheoremImport.lean::beh10`
-- `lean4/CampaignAuthRiceTheoremImport.lean::beh11`
-- `lean4/CampaignAuthRiceTheoremImport.lean::beh20`
-- `lean4/CampaignAuthRiceTheoremImport.lean::beh21`
-- `lean4/CampaignAuthRiceTheoremImport.lean::id0`
-- `lean4/CampaignAuthRiceTheoremImport.lean::id1`
-- `lean4/CampaignAuthRiceTheoremImport.lean::id2`
-- `lean4/CampaignAuthRiceTheoremImport.lean::z0`
-- `lean4/CampaignAuthRiceTheoremImport.lean::z1`
-- `lean4/CampaignAuthRiceTheoremImport.lean::z2`
+- `lean4/ComputabilityRiceTheoremImport.lean::beh00`
+- `lean4/ComputabilityRiceTheoremImport.lean::beh01`
+- `lean4/ComputabilityRiceTheoremImport.lean::beh10`
+- `lean4/ComputabilityRiceTheoremImport.lean::beh11`
+- `lean4/ComputabilityRiceTheoremImport.lean::beh20`
+- `lean4/ComputabilityRiceTheoremImport.lean::beh21`
+- `lean4/ComputabilityRiceTheoremImport.lean::id0`
+- `lean4/ComputabilityRiceTheoremImport.lean::id1`
+- `lean4/ComputabilityRiceTheoremImport.lean::id2`
+- `lean4/ComputabilityRiceTheoremImport.lean::z0`
+- `lean4/ComputabilityRiceTheoremImport.lean::z1`
+- `lean4/ComputabilityRiceTheoremImport.lean::z2`
 
 ### Rust Certifiers
 - *none*

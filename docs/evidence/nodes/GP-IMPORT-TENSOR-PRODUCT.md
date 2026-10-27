@@ -45,41 +45,18 @@ imported; unique only on the named bilinear Kronecker interface
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGpImportTensorProduct.lean`
+### Lean: `lean4/BilinearProduct.lean`
 
-- file: [lean4/CampaignGpImportTensorProduct.lean](../../../lean4/CampaignGpImportTensorProduct.lean)
-- sha256 (`bytes`): `5d83a84e8099d4d38e989378b276244c701c6bbfe31aab4c78171d09e5277a42`
-- cited in: node.lean, receipt dag/research/campaign_gp-import-tensor-product_lean_replay.json (CampaignGpImportTensorProduct), record TFQ-1032
+- file: [lean4/BilinearProduct.lean](../../../lean4/BilinearProduct.lean)
+- sha256 (`bytes`): `4f8a0b0fa545b236994c9500ea184e2e9dc5b23432a2052bc55af8fa1313e194`
+- cited in: node.lean, record TFQ-1032
 - replay: `verified`
-  - receipt [dag/research/campaign_gp-import-tensor-product_lean_replay.json](../../../dag/research/campaign_gp-import-tensor-product_lean_replay.json) (module `CampaignGpImportTensorProduct`): recorded sha256 `5d83a84e8099d4d38e989378b276244c701c6bbfe31aab4c78171d09e5277a42` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGpImportTensorProduct`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `BilinearProduct`): recorded sha256 `4f8a0b0fa545b236994c9500ea184e2e9dc5b23432a2052bc55af8fa1313e194` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build BilinearProduct`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignGpImportTensorProduct.dumpRight_add_left` | yes | yes | yes | propext | `#print axioms CampaignGpImportTensorProduct.dumpRight_add_left` |
-| `CampaignGpImportTensorProduct.dumpRight_add_right` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGpImportTensorProduct.dumpRight_add_right` |
-| `CampaignGpImportTensorProduct.dumpRight_collapsed_tag` | yes | yes | yes | propext | `#print axioms CampaignGpImportTensorProduct.dumpRight_collapsed_tag` |
-| `CampaignGpImportTensorProduct.dumpRight_false_coord` | yes | yes | yes | none | `#print axioms CampaignGpImportTensorProduct.dumpRight_false_coord` |
-| `CampaignGpImportTensorProduct.dumpRight_ne_tensor` | yes | yes | yes | propext | `#print axioms CampaignGpImportTensorProduct.dumpRight_ne_tensor` |
-| `CampaignGpImportTensorProduct.dumpRight_smul_left` | yes | yes | yes | propext | `#print axioms CampaignGpImportTensorProduct.dumpRight_smul_left` |
-| `CampaignGpImportTensorProduct.dumpRight_smul_right` | yes | yes | yes | propext | `#print axioms CampaignGpImportTensorProduct.dumpRight_smul_right` |
-| `CampaignGpImportTensorProduct.dumpRight_true_coord` | yes | yes | yes | none | `#print axioms CampaignGpImportTensorProduct.dumpRight_true_coord` |
-| `CampaignGpImportTensorProduct.embed_eq_tensor` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGpImportTensorProduct.embed_eq_tensor` |
-| `CampaignGpImportTensorProduct.tensor_pointwise` | yes | yes | yes | none | `#print axioms CampaignGpImportTensorProduct.tensor_pointwise` |
-| `CampaignGpImportTensorProduct.witness_dump_zero` | yes | yes | yes | none | `#print axioms CampaignGpImportTensorProduct.witness_dump_zero` |
-| `CampaignGpImportTensorProduct.witness_tensor_one` | yes | yes | yes | propext | `#print axioms CampaignGpImportTensorProduct.witness_tensor_one` |
-| `dumpRight_add_left` | yes | yes | yes | propext | `#print axioms dumpRight_add_left` |
-| `dumpRight_add_right` | yes | yes | yes | Quot.sound, propext | `#print axioms dumpRight_add_right` |
-| `dumpRight_collapsed_tag` | yes | yes | yes | propext | `#print axioms dumpRight_collapsed_tag` |
-| `dumpRight_false_coord` | yes | yes | yes | none | `#print axioms dumpRight_false_coord` |
-| `dumpRight_ne_tensor` | yes | yes | yes | propext | `#print axioms dumpRight_ne_tensor` |
-| `dumpRight_smul_left` | yes | yes | yes | propext | `#print axioms dumpRight_smul_left` |
-| `dumpRight_smul_right` | yes | yes | yes | propext | `#print axioms dumpRight_smul_right` |
-| `dumpRight_true_coord` | yes | yes | yes | none | `#print axioms dumpRight_true_coord` |
-| `embed_eq_tensor` | yes | yes | yes | Quot.sound, propext | `#print axioms embed_eq_tensor` |
-| `tensor_pointwise` | yes | yes | yes | none | `#print axioms tensor_pointwise` |
-| `witness_dump_zero` | yes | yes | yes | none | `#print axioms witness_dump_zero` |
-| `witness_tensor_one` | yes | yes | yes | propext | `#print axioms witness_tensor_one` |
+| `embed_eq_tensor` | yes | yes | yes | module-level | `#print axioms embed_eq_tensor` |
 
 - counts toward the grade: yes
 
@@ -98,33 +75,56 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H014BilinearProduct.lean`
+### Lean: `lean4/HilbertWalkInterface.lean`
 
-- file: [lean4/H014BilinearProduct.lean](../../../lean4/H014BilinearProduct.lean)
-- sha256 (`bytes`): `fabd54a913240848de949fb629a744d82f0485b3a40aeba32fc1c39e55353cde`
+- file: [lean4/HilbertWalkInterface.lean](../../../lean4/HilbertWalkInterface.lean)
+- sha256 (`bytes`): `7c3e814fb15d303798bd5e66baddec08ede2033a7471e83f03bb178e7a2eb9c5`
 - cited in: node.lean, record TFQ-1032
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H014BilinearProduct`): recorded sha256 `fabd54a913240848de949fb629a744d82f0485b3a40aeba32fc1c39e55353cde` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H014BilinearProduct`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `embed_eq_tensor` | yes | yes | yes | module-level | `#print axioms embed_eq_tensor` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/H014Interface.lean`
-
-- file: [lean4/H014Interface.lean](../../../lean4/H014Interface.lean)
-- sha256 (`bytes`): `320a143feb167f7665d81508f191954b270d47bfc9a14fab1d51fe6428e0fba0`
-- cited in: node.lean, record TFQ-1032
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H014Interface`): recorded sha256 `320a143feb167f7665d81508f191954b270d47bfc9a14fab1d51fe6428e0fba0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H014Interface`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `HilbertWalkInterface`): recorded sha256 `7c3e814fb15d303798bd5e66baddec08ede2033a7471e83f03bb178e7a2eb9c5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build HilbertWalkInterface`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `two_combinings_share_interface_and_disagree` | yes | yes | yes | module-level | `#print axioms two_combinings_share_interface_and_disagree` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/TensorProductImport.lean`
+
+- file: [lean4/TensorProductImport.lean](../../../lean4/TensorProductImport.lean)
+- sha256 (`bytes`): `ea58fdf4e63eb852f70a055f047a8ba8712236346847b1fa45582e5879731246`
+- cited in: node.lean, receipt dag/research/campaign_gp-import-tensor-product_lean_replay.json (TensorProductImport), record TFQ-1032
+- replay: `verified`
+  - receipt [dag/research/campaign_gp-import-tensor-product_lean_replay.json](../../../dag/research/campaign_gp-import-tensor-product_lean_replay.json) (module `TensorProductImport`): recorded sha256 `ea58fdf4e63eb852f70a055f047a8ba8712236346847b1fa45582e5879731246` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build TensorProductImport`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `TensorProductImport.dumpRight_add_left` | yes | yes | yes | propext | `#print axioms TensorProductImport.dumpRight_add_left` |
+| `TensorProductImport.dumpRight_add_right` | yes | yes | yes | Quot.sound, propext | `#print axioms TensorProductImport.dumpRight_add_right` |
+| `TensorProductImport.dumpRight_collapsed_tag` | yes | yes | yes | propext | `#print axioms TensorProductImport.dumpRight_collapsed_tag` |
+| `TensorProductImport.dumpRight_false_coord` | yes | yes | yes | none | `#print axioms TensorProductImport.dumpRight_false_coord` |
+| `TensorProductImport.dumpRight_ne_tensor` | yes | yes | yes | propext | `#print axioms TensorProductImport.dumpRight_ne_tensor` |
+| `TensorProductImport.dumpRight_smul_left` | yes | yes | yes | propext | `#print axioms TensorProductImport.dumpRight_smul_left` |
+| `TensorProductImport.dumpRight_smul_right` | yes | yes | yes | propext | `#print axioms TensorProductImport.dumpRight_smul_right` |
+| `TensorProductImport.dumpRight_true_coord` | yes | yes | yes | none | `#print axioms TensorProductImport.dumpRight_true_coord` |
+| `TensorProductImport.embed_eq_tensor` | yes | yes | yes | Quot.sound, propext | `#print axioms TensorProductImport.embed_eq_tensor` |
+| `TensorProductImport.tensor_pointwise` | yes | yes | yes | none | `#print axioms TensorProductImport.tensor_pointwise` |
+| `TensorProductImport.witness_dump_zero` | yes | yes | yes | none | `#print axioms TensorProductImport.witness_dump_zero` |
+| `TensorProductImport.witness_tensor_one` | yes | yes | yes | propext | `#print axioms TensorProductImport.witness_tensor_one` |
+| `dumpRight_add_left` | yes | yes | yes | propext | `#print axioms dumpRight_add_left` |
+| `dumpRight_add_right` | yes | yes | yes | Quot.sound, propext | `#print axioms dumpRight_add_right` |
+| `dumpRight_collapsed_tag` | yes | yes | yes | propext | `#print axioms dumpRight_collapsed_tag` |
+| `dumpRight_false_coord` | yes | yes | yes | none | `#print axioms dumpRight_false_coord` |
+| `dumpRight_ne_tensor` | yes | yes | yes | propext | `#print axioms dumpRight_ne_tensor` |
+| `dumpRight_smul_left` | yes | yes | yes | propext | `#print axioms dumpRight_smul_left` |
+| `dumpRight_smul_right` | yes | yes | yes | propext | `#print axioms dumpRight_smul_right` |
+| `dumpRight_true_coord` | yes | yes | yes | none | `#print axioms dumpRight_true_coord` |
+| `embed_eq_tensor` | yes | yes | yes | Quot.sound, propext | `#print axioms embed_eq_tensor` |
+| `tensor_pointwise` | yes | yes | yes | none | `#print axioms tensor_pointwise` |
+| `witness_dump_zero` | yes | yes | yes | none | `#print axioms witness_dump_zero` |
+| `witness_tensor_one` | yes | yes | yes | propext | `#print axioms witness_tensor_one` |
 
 - counts toward the grade: yes
 
@@ -138,7 +138,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1032_gp_import_tensor_product.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1032_gp_import_tensor_product.md](../../../dag/derivations/08_l1_to_l2/tfq_1032_gp_import_tensor_product.md)
-- sha256 (`lf-normalised`): `7a1296cbee4c1b34682a2c622c1755ef43090c266c63aa03a27e80eb6610fa2f`
+- sha256 (`lf-normalised`): `f80b444e3e5a7d5a23870ff15dc21c0ce8d861b4408538757d61e091adfdd005`
 - generated view: listed, not counted
 - cited in: record TFQ-1032
 - counts toward the grade: no

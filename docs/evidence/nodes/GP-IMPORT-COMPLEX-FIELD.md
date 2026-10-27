@@ -45,51 +45,51 @@ imported / lost on this host (GaussInt is not a field); conditional selection of
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGpImportComplexField.lean`
+### Lean: `lean4/ComplexFieldImport.lean`
 
-- file: [lean4/CampaignGpImportComplexField.lean](../../../lean4/CampaignGpImportComplexField.lean)
-- sha256 (`bytes`): `c090c3aa370fd870e88362aa4cd9f27302b427773acf8bf97c2a2f936929c5a6`
-- cited in: node.lean, receipt dag/research/campaign_gp-import-complex-field_lean_replay.json (CampaignGpImportComplexField), receipt dag/research/pr_390_round2_replay.json (CampaignGpImportComplexField), record TFQ-1029
+- file: [lean4/ComplexFieldImport.lean](../../../lean4/ComplexFieldImport.lean)
+- sha256 (`bytes`): `52a15ed0308e195b78b3d7659c1cea35fc148dfef6c5557c99be30d545d29559`
+- cited in: node.lean, receipt dag/research/campaign_gp-import-complex-field_lean_replay.json (ComplexFieldImport), receipt dag/research/pr_390_round2_replay.json (ComplexFieldImport), record TFQ-1029
 - replay: `verified`
-  - receipt [dag/research/campaign_gp-import-complex-field_lean_replay.json](../../../dag/research/campaign_gp-import-complex-field_lean_replay.json) (module `CampaignGpImportComplexField`): recorded sha256 `c090c3aa370fd870e88362aa4cd9f27302b427773acf8bf97c2a2f936929c5a6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_390_round2_replay.json](../../../dag/research/pr_390_round2_replay.json) (module `CampaignGpImportComplexField`): recorded sha256 `c090c3aa370fd870e88362aa4cd9f27302b427773acf8bf97c2a2f936929c5a6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGpImportComplexField`
+  - receipt [dag/research/campaign_gp-import-complex-field_lean_replay.json](../../../dag/research/campaign_gp-import-complex-field_lean_replay.json) (module `ComplexFieldImport`): recorded sha256 `52a15ed0308e195b78b3d7659c1cea35fc148dfef6c5557c99be30d545d29559` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_390_round2_replay.json](../../../dag/research/pr_390_round2_replay.json) (module `ComplexFieldImport`): recorded sha256 `52a15ed0308e195b78b3d7659c1cea35fc148dfef6c5557c99be30d545d29559` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build ComplexFieldImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignGpImportComplexField.fib` | yes | yes | yes | none | `#print axioms CampaignGpImportComplexField.fib` |
-| `CampaignGpImportComplexField.fib_conjugate_transpose` | yes | yes | yes | none | `#print axioms CampaignGpImportComplexField.fib_conjugate_transpose` |
-| `CampaignGpImportComplexField.fib_mulVec` | yes | yes | yes | propext | `#print axioms CampaignGpImportComplexField.fib_mulVec` |
-| `CampaignGpImportComplexField.fib_no_gauss_eigenpair` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.fib_no_gauss_eigenpair` |
-| `CampaignGpImportComplexField.gAdd` | yes | yes | yes | none | `#print axioms CampaignGpImportComplexField.gAdd` |
-| `CampaignGpImportComplexField.gAdd_zero_left` | yes | yes | yes | propext | `#print axioms CampaignGpImportComplexField.gAdd_zero_left` |
-| `CampaignGpImportComplexField.gConj` | yes | yes | yes | none | `#print axioms CampaignGpImportComplexField.gConj` |
-| `CampaignGpImportComplexField.gMul` | yes | yes | yes | none | `#print axioms CampaignGpImportComplexField.gMul` |
-| `CampaignGpImportComplexField.gMul_add_left` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.gMul_add_left` |
-| `CampaignGpImportComplexField.gMul_assoc` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.gMul_assoc` |
-| `CampaignGpImportComplexField.gMul_comm` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.gMul_comm` |
-| `CampaignGpImportComplexField.gMul_eq_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.gMul_eq_zero` |
-| `CampaignGpImportComplexField.gMul_one_left` | yes | yes | yes | propext | `#print axioms CampaignGpImportComplexField.gMul_one_left` |
-| `CampaignGpImportComplexField.gMul_sub_left` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.gMul_sub_left` |
-| `CampaignGpImportComplexField.gMul_zero_left` | yes | yes | yes | propext | `#print axioms CampaignGpImportComplexField.gMul_zero_left` |
-| `CampaignGpImportComplexField.gMul_zero_right` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.gMul_zero_right` |
-| `CampaignGpImportComplexField.gNorm` | yes | yes | yes | none | `#print axioms CampaignGpImportComplexField.gNorm` |
-| `CampaignGpImportComplexField.gNorm_eq_zero_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.gNorm_eq_zero_iff` |
-| `CampaignGpImportComplexField.gNorm_mul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.gNorm_mul` |
-| `CampaignGpImportComplexField.gOne` | yes | yes | yes | none | `#print axioms CampaignGpImportComplexField.gOne` |
-| `CampaignGpImportComplexField.gSq` | yes | yes | yes | none | `#print axioms CampaignGpImportComplexField.gSq` |
-| `CampaignGpImportComplexField.gSub` | yes | yes | yes | none | `#print axioms CampaignGpImportComplexField.gSub` |
-| `CampaignGpImportComplexField.gSub_eq_zero_iff` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGpImportComplexField.gSub_eq_zero_iff` |
-| `CampaignGpImportComplexField.gZero` | yes | yes | yes | none | `#print axioms CampaignGpImportComplexField.gZero` |
-| `CampaignGpImportComplexField.gauss_sq_ne_succ` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.gauss_sq_ne_succ` |
-| `CampaignGpImportComplexField.intSqNeFive` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGpImportComplexField.intSqNeFive` |
-| `CampaignGpImportComplexField.int_sq_nonneg` | yes | yes | yes | propext | `#print axioms CampaignGpImportComplexField.int_sq_nonneg` |
-| `CampaignGpImportComplexField.mulVec` | yes | yes | yes | none | `#print axioms CampaignGpImportComplexField.mulVec` |
-| `CampaignGpImportComplexField.onePlusI_mul_coords` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.onePlusI_mul_coords` |
-| `CampaignGpImportComplexField.onePlusI_mul_ne_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.onePlusI_mul_ne_one` |
-| `CampaignGpImportComplexField.onePlusI_not_unit` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.onePlusI_not_unit` |
-| `CampaignGpImportComplexField.scaleVec` | yes | yes | yes | none | `#print axioms CampaignGpImportComplexField.scaleVec` |
-| `CampaignGpImportComplexField.twice_sub_one_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGpImportComplexField.twice_sub_one_sq` |
+| `ComplexFieldImport.fib` | yes | yes | yes | none | `#print axioms ComplexFieldImport.fib` |
+| `ComplexFieldImport.fib_conjugate_transpose` | yes | yes | yes | none | `#print axioms ComplexFieldImport.fib_conjugate_transpose` |
+| `ComplexFieldImport.fib_mulVec` | yes | yes | yes | propext | `#print axioms ComplexFieldImport.fib_mulVec` |
+| `ComplexFieldImport.fib_no_gauss_eigenpair` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldImport.fib_no_gauss_eigenpair` |
+| `ComplexFieldImport.gAdd` | yes | yes | yes | none | `#print axioms ComplexFieldImport.gAdd` |
+| `ComplexFieldImport.gAdd_zero_left` | yes | yes | yes | propext | `#print axioms ComplexFieldImport.gAdd_zero_left` |
+| `ComplexFieldImport.gConj` | yes | yes | yes | none | `#print axioms ComplexFieldImport.gConj` |
+| `ComplexFieldImport.gMul` | yes | yes | yes | none | `#print axioms ComplexFieldImport.gMul` |
+| `ComplexFieldImport.gMul_add_left` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldImport.gMul_add_left` |
+| `ComplexFieldImport.gMul_assoc` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldImport.gMul_assoc` |
+| `ComplexFieldImport.gMul_comm` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldImport.gMul_comm` |
+| `ComplexFieldImport.gMul_eq_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldImport.gMul_eq_zero` |
+| `ComplexFieldImport.gMul_one_left` | yes | yes | yes | propext | `#print axioms ComplexFieldImport.gMul_one_left` |
+| `ComplexFieldImport.gMul_sub_left` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldImport.gMul_sub_left` |
+| `ComplexFieldImport.gMul_zero_left` | yes | yes | yes | propext | `#print axioms ComplexFieldImport.gMul_zero_left` |
+| `ComplexFieldImport.gMul_zero_right` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldImport.gMul_zero_right` |
+| `ComplexFieldImport.gNorm` | yes | yes | yes | none | `#print axioms ComplexFieldImport.gNorm` |
+| `ComplexFieldImport.gNorm_eq_zero_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldImport.gNorm_eq_zero_iff` |
+| `ComplexFieldImport.gNorm_mul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldImport.gNorm_mul` |
+| `ComplexFieldImport.gOne` | yes | yes | yes | none | `#print axioms ComplexFieldImport.gOne` |
+| `ComplexFieldImport.gSq` | yes | yes | yes | none | `#print axioms ComplexFieldImport.gSq` |
+| `ComplexFieldImport.gSub` | yes | yes | yes | none | `#print axioms ComplexFieldImport.gSub` |
+| `ComplexFieldImport.gSub_eq_zero_iff` | yes | yes | yes | Quot.sound, propext | `#print axioms ComplexFieldImport.gSub_eq_zero_iff` |
+| `ComplexFieldImport.gZero` | yes | yes | yes | none | `#print axioms ComplexFieldImport.gZero` |
+| `ComplexFieldImport.gauss_sq_ne_succ` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldImport.gauss_sq_ne_succ` |
+| `ComplexFieldImport.intSqNeFive` | yes | yes | yes | Quot.sound, propext | `#print axioms ComplexFieldImport.intSqNeFive` |
+| `ComplexFieldImport.int_sq_nonneg` | yes | yes | yes | propext | `#print axioms ComplexFieldImport.int_sq_nonneg` |
+| `ComplexFieldImport.mulVec` | yes | yes | yes | none | `#print axioms ComplexFieldImport.mulVec` |
+| `ComplexFieldImport.onePlusI_mul_coords` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldImport.onePlusI_mul_coords` |
+| `ComplexFieldImport.onePlusI_mul_ne_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldImport.onePlusI_mul_ne_one` |
+| `ComplexFieldImport.onePlusI_not_unit` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldImport.onePlusI_not_unit` |
+| `ComplexFieldImport.scaleVec` | yes | yes | yes | none | `#print axioms ComplexFieldImport.scaleVec` |
+| `ComplexFieldImport.twice_sub_one_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldImport.twice_sub_one_sq` |
 | `fib_conjugate_transpose` | yes | yes | yes | none | `#print axioms fib_conjugate_transpose` |
 | `fib_mulVec` | yes | yes | yes | propext | `#print axioms fib_mulVec` |
 | `fib_no_gauss_eigenpair` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms fib_no_gauss_eigenpair` |
@@ -108,7 +108,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1029_gp_import_complex_field.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1029_gp_import_complex_field.md](../../../dag/derivations/08_l1_to_l2/tfq_1029_gp_import_complex_field.md)
-- sha256 (`lf-normalised`): `67585207e087cf0bbce831d28fbb75cebb94018c1205c5c7384c7932e0095821`
+- sha256 (`lf-normalised`): `7829cd284078452674019598aa3ee6e1643c76f8e158915db61f9b0231597af3`
 - generated view: listed, not counted
 - cited in: record TFQ-1029
 - counts toward the grade: no

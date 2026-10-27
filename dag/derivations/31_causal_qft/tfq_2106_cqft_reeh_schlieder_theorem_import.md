@@ -51,24 +51,24 @@ See also: `FQ-GAP-STONE-CONTINUOUS-TIME`, `FQ-GAP-CONTINUUM-HILBERT-LIFT`.
 - `external:doi:10.1063/1.1704187`: R. Haag and D. Kastler, "An Algebraic Approach to Quantum Field Theory", J. Math. Phys. 5 (1964) 848-861, doi:10.1063/1.1704187. No arXiv record (1964).
 - Repository: `dag/derivations/independent/cqft-reeh-schlieder-theorem-import.md`
 - Repository: `checks/independent/cqft-reeh-schlieder-theorem-import.py`
-- Repository: `lean4/CampaignCqftReehSchliederTheoremImport.lean`
+- Repository: `lean4/ReehSchliederImport.lean`
 - Repository: `dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json`
 - Repository: `dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json`
 - Repository: `dag/research/campaign_cqft-reeh-schlieder-theorem-import_independent.json`
 
 ## Lean 4 declarations read
-- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.cyclic_implies_separating`
-- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.not_cyclic_of_right_kernel`
-- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.no_left_inverse_of_zero_column`
-- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.not_cyclic_of_zero_column`
-- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.single_site_not_cyclic_all_three_states`
-- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.prod3_pair_not_cyclic_and_no_left_inverse`
-- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.ghz3_and_w3_pair_cyclic_and_separating`
-- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.full_three_site_cyclic_all_three_states`
-- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.four_qubit_half_system_cyclicity_dichotomy`
-- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.cyclicShift_periodic_aliasing`
-- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.translation_invariant_zero_momentum_diff`
-- `lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.translation_invariant_product_vacuum_not_cyclic_for_proper_subsystems`
+- `lean4/ReehSchliederImport.lean::ReehSchliederImport.cyclic_implies_separating`
+- `lean4/ReehSchliederImport.lean::ReehSchliederImport.not_cyclic_of_right_kernel`
+- `lean4/ReehSchliederImport.lean::ReehSchliederImport.no_left_inverse_of_zero_column`
+- `lean4/ReehSchliederImport.lean::ReehSchliederImport.not_cyclic_of_zero_column`
+- `lean4/ReehSchliederImport.lean::ReehSchliederImport.single_site_not_cyclic_all_three_states`
+- `lean4/ReehSchliederImport.lean::ReehSchliederImport.prod3_pair_not_cyclic_and_no_left_inverse`
+- `lean4/ReehSchliederImport.lean::ReehSchliederImport.ghz3_and_w3_pair_cyclic_and_separating`
+- `lean4/ReehSchliederImport.lean::ReehSchliederImport.full_three_site_cyclic_all_three_states`
+- `lean4/ReehSchliederImport.lean::ReehSchliederImport.four_qubit_half_system_cyclicity_dichotomy`
+- `lean4/ReehSchliederImport.lean::ReehSchliederImport.cyclicShift_periodic_aliasing`
+- `lean4/ReehSchliederImport.lean::ReehSchliederImport.translation_invariant_zero_momentum_diff`
+- `lean4/ReehSchliederImport.lean::ReehSchliederImport.translation_invariant_product_vacuum_not_cyclic_for_proper_subsystems`
 
 ## Downstream derivations
 

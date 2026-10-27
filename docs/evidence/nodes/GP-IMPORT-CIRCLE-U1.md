@@ -46,30 +46,30 @@ Lean-checked finite sign, pair and cycle examples; U(1), continuity and the circ
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGpImportCircleU1.lean`
+### Lean: `lean4/CircleU1Import.lean`
 
-- file: [lean4/CampaignGpImportCircleU1.lean](../../../lean4/CampaignGpImportCircleU1.lean)
-- sha256 (`bytes`): `ee2379460eece0f18f28d6603f4e411a008537cb7983e39e3b40d0a3061adbd7`
-- cited in: node.lean, receipt dag/research/campaign_gp-import-circle-u1_lean_replay.json (CampaignGpImportCircleU1), receipt dag/research/pr_391_round2_replay.json (CampaignGpImportCircleU1), record TFQ-1030
+- file: [lean4/CircleU1Import.lean](../../../lean4/CircleU1Import.lean)
+- sha256 (`bytes`): `aa70a67a514c00e935ad1faa56f34039b1a0c558d3751afbca0507e9fcd64c92`
+- cited in: node.lean, receipt dag/research/campaign_gp-import-circle-u1_lean_replay.json (CircleU1Import), receipt dag/research/pr_391_round2_replay.json (CircleU1Import), record TFQ-1030
 - replay: `verified`
-  - receipt [dag/research/campaign_gp-import-circle-u1_lean_replay.json](../../../dag/research/campaign_gp-import-circle-u1_lean_replay.json) (module `CampaignGpImportCircleU1`): recorded sha256 `ee2379460eece0f18f28d6603f4e411a008537cb7983e39e3b40d0a3061adbd7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_391_round2_replay.json](../../../dag/research/pr_391_round2_replay.json) (module `CampaignGpImportCircleU1`): recorded sha256 `ee2379460eece0f18f28d6603f4e411a008537cb7983e39e3b40d0a3061adbd7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGpImportCircleU1`
+  - receipt [dag/research/campaign_gp-import-circle-u1_lean_replay.json](../../../dag/research/campaign_gp-import-circle-u1_lean_replay.json) (module `CircleU1Import`): recorded sha256 `aa70a67a514c00e935ad1faa56f34039b1a0c558d3751afbca0507e9fcd64c92` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_391_round2_replay.json](../../../dag/research/pr_391_round2_replay.json) (module `CircleU1Import`): recorded sha256 `aa70a67a514c00e935ad1faa56f34039b1a0c558d3751afbca0507e9fcd64c92` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build CircleU1Import`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignGpImportCircleU1.cyc` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.cyc` |
-| `CampaignGpImportCircleU1.cycThrice` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.cycThrice` |
-| `CampaignGpImportCircleU1.cycTwice` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.cycTwice` |
-| `CampaignGpImportCircleU1.gMul` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.gMul` |
-| `CampaignGpImportCircleU1.gNorm` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.gNorm` |
-| `CampaignGpImportCircleU1.iNorm` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.iNorm` |
-| `CampaignGpImportCircleU1.iSquare` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.iSquare` |
-| `CampaignGpImportCircleU1.iSquareNeOne` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.iSquareNeOne` |
-| `CampaignGpImportCircleU1.isSign` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.isSign` |
-| `CampaignGpImportCircleU1.pairCoordsAreSigns` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.pairCoordsAreSigns` |
-| `CampaignGpImportCircleU1.pairsDiffer` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.pairsDiffer` |
-| `CampaignGpImportCircleU1.signSquare` | yes | yes | yes | none | `#print axioms CampaignGpImportCircleU1.signSquare` |
+| `CircleU1Import.cyc` | yes | yes | yes | none | `#print axioms CircleU1Import.cyc` |
+| `CircleU1Import.cycThrice` | yes | yes | yes | none | `#print axioms CircleU1Import.cycThrice` |
+| `CircleU1Import.cycTwice` | yes | yes | yes | none | `#print axioms CircleU1Import.cycTwice` |
+| `CircleU1Import.gMul` | yes | yes | yes | none | `#print axioms CircleU1Import.gMul` |
+| `CircleU1Import.gNorm` | yes | yes | yes | none | `#print axioms CircleU1Import.gNorm` |
+| `CircleU1Import.iNorm` | yes | yes | yes | none | `#print axioms CircleU1Import.iNorm` |
+| `CircleU1Import.iSquare` | yes | yes | yes | none | `#print axioms CircleU1Import.iSquare` |
+| `CircleU1Import.iSquareNeOne` | yes | yes | yes | none | `#print axioms CircleU1Import.iSquareNeOne` |
+| `CircleU1Import.isSign` | yes | yes | yes | none | `#print axioms CircleU1Import.isSign` |
+| `CircleU1Import.pairCoordsAreSigns` | yes | yes | yes | none | `#print axioms CircleU1Import.pairCoordsAreSigns` |
+| `CircleU1Import.pairsDiffer` | yes | yes | yes | none | `#print axioms CircleU1Import.pairsDiffer` |
+| `CircleU1Import.signSquare` | yes | yes | yes | none | `#print axioms CircleU1Import.signSquare` |
 | `cycThrice` | yes | yes | yes | none | `#print axioms cycThrice` |
 | `cycTwice` | yes | yes | yes | none | `#print axioms cycTwice` |
 | `iNorm` | yes | yes | yes | none | `#print axioms iNorm` |
@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1030_gp_import_circle_u1.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1030_gp_import_circle_u1.md](../../../dag/derivations/08_l1_to_l2/tfq_1030_gp_import_circle_u1.md)
-- sha256 (`lf-normalised`): `29b2b9ca72c8ef56436e6bf76c79c9d848b9109c7a152ce06d604f4cb3ed633e`
+- sha256 (`lf-normalised`): `45e660ee40e0f52675c6b7da3e1dcec9436ac51b12f5b173e6f6c5d895af6701`
 - generated view: listed, not counted
 - cited in: record TFQ-1030
 - counts toward the grade: no

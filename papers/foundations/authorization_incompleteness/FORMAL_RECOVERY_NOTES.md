@@ -71,7 +71,7 @@ Searched `lean4/`, `papers/`, `code/`, `dag/` (tracked files) for every declarat
   `write_and_halt_transition_reaches_declared_halt`; `propext` for the other six. `TokenCode`: none for the two tag round
   trips, `propext` for the other six. `Terminal`: none for `closed_two_sided_terminalization_is_acceptance_complete`,
   `propext` for the other four. No `Classical.choice`, no `Quot.sound` in any built module.
-* **Not portable.** `PDBridge.lean` imports `J011_minimal_publication` (namespace `GrokPdNight20260814`). Its source is not
+* **Not portable.** `PDBridge.lean` imports `J011_minimal_publication` (namespace `ProjectionFiber`). Its source is not
   in this repository or the recovered folder (the neighbouring `coda_research/_support` tree holds only `J011_minimal_publication.md`, which cites it). The file is
   kept with its import verbatim and a header saying NOT BUILT, and is excluded from the lakefile roots. The source records
   `propext` and `Quot.sound` for its negative theorems; that cannot be reproduced. The staged `PrimitiveDifference.lean` copies

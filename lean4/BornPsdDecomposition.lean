@@ -13,7 +13,7 @@ decomposition.  AuthorityEffect: None.  No physical claim.
 
 Scope.  All matrices are `Matrix (Fin n) (Fin n) ℚ` for an arbitrary `n : ℕ`.  The quadratic
 form `qf A x := x ⬝ᵥ (A *ᵥ x)` and "positive semidefinite" (`PsdQ A := ∀ x, 0 ≤ qf A x`) are the
-ones of the matrix carrier `BornFable.MatrixCarrier` (imported from `BornMatrixCarrier`), so a
+ones of the matrix carrier `BornFinite.MatrixCarrier` (imported from `BornMatrixCarrier`), so a
 single PSD notion is used across the run: nonnegativity on every *rational* vector `x`, the exact
 finite notion, tested on rational vectors only.  No real closure, no eigenvalues, no square roots
 and no spectral theorem are used anywhere.
@@ -33,10 +33,10 @@ Dependencies.  This module imports `BornMatrixCarrier` (hence, transitively,
 import the other modules of this run.
 -/
 
-namespace BornFable.PsdDecomposition
+namespace BornFinite.PsdDecomposition
 
 open Matrix
-open BornFable.MatrixCarrier (qf PsdQ)
+open BornFinite.MatrixCarrier (qf PsdQ)
 
 variable {n : ℕ}
 
@@ -238,28 +238,28 @@ theorem trace_mul_nonneg (ρ E : Matrix (Fin n) (Fin n) ℚ) (hρ : PsdQ ρ) (hE
   rw [hEeq]
   exact trace_mul_nonneg_of_gram ρ d w hd hρ
 
-end BornFable.PsdDecomposition
+end BornFinite.PsdDecomposition
 
-#print axioms BornFable.PsdDecomposition.qf_add
-#print axioms BornFable.PsdDecomposition.mulVec_apply'
-#print axioms BornFable.PsdDecomposition.mulVec_single_one'
-#print axioms BornFable.PsdDecomposition.dotProduct_mulVec_single
-#print axioms BornFable.PsdDecomposition.single_dotProduct_mulVec
-#print axioms BornFable.PsdDecomposition.symm_apply
-#print axioms BornFable.PsdDecomposition.qf_single
-#print axioms BornFable.PsdDecomposition.qf_add_single
-#print axioms BornFable.PsdDecomposition.qf_add_single_of_symm
-#print axioms BornFable.PsdDecomposition.psd_zero
-#print axioms BornFable.PsdDecomposition.psd_add
-#print axioms BornFable.PsdDecomposition.psd_smul
-#print axioms BornFable.PsdDecomposition.psd_vecMulVec
-#print axioms BornFable.PsdDecomposition.psd_of_gram
-#print axioms BornFable.PsdDecomposition.diag_nonneg
-#print axioms BornFable.PsdDecomposition.trace_mul_nonneg_of_gram
-#print axioms BornFable.PsdDecomposition.hasGram_zero
-#print axioms BornFable.PsdDecomposition.hasGram_add_smul_vecMulVec
-#print axioms BornFable.PsdDecomposition.row_eq_zero_of_diag_eq_zero
-#print axioms BornFable.PsdDecomposition.hasGram_of_support
-#print axioms BornFable.PsdDecomposition.gram_of_psd
-#print axioms BornFable.PsdDecomposition.psd_iff_hasGram
-#print axioms BornFable.PsdDecomposition.trace_mul_nonneg
+#print axioms BornFinite.PsdDecomposition.qf_add
+#print axioms BornFinite.PsdDecomposition.mulVec_apply'
+#print axioms BornFinite.PsdDecomposition.mulVec_single_one'
+#print axioms BornFinite.PsdDecomposition.dotProduct_mulVec_single
+#print axioms BornFinite.PsdDecomposition.single_dotProduct_mulVec
+#print axioms BornFinite.PsdDecomposition.symm_apply
+#print axioms BornFinite.PsdDecomposition.qf_single
+#print axioms BornFinite.PsdDecomposition.qf_add_single
+#print axioms BornFinite.PsdDecomposition.qf_add_single_of_symm
+#print axioms BornFinite.PsdDecomposition.psd_zero
+#print axioms BornFinite.PsdDecomposition.psd_add
+#print axioms BornFinite.PsdDecomposition.psd_smul
+#print axioms BornFinite.PsdDecomposition.psd_vecMulVec
+#print axioms BornFinite.PsdDecomposition.psd_of_gram
+#print axioms BornFinite.PsdDecomposition.diag_nonneg
+#print axioms BornFinite.PsdDecomposition.trace_mul_nonneg_of_gram
+#print axioms BornFinite.PsdDecomposition.hasGram_zero
+#print axioms BornFinite.PsdDecomposition.hasGram_add_smul_vecMulVec
+#print axioms BornFinite.PsdDecomposition.row_eq_zero_of_diag_eq_zero
+#print axioms BornFinite.PsdDecomposition.hasGram_of_support
+#print axioms BornFinite.PsdDecomposition.gram_of_psd
+#print axioms BornFinite.PsdDecomposition.psd_iff_hasGram
+#print axioms BornFinite.PsdDecomposition.trace_mul_nonneg

@@ -44,13 +44,33 @@ Quantum Biedenharn-Elliott pentagon identity at level 2 (q = exp(i pi/4), twice-
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/DiscreteSpinfoamAmplitudes.lean`
+
+- file: [lean4/DiscreteSpinfoamAmplitudes.lean](../../../lean4/DiscreteSpinfoamAmplitudes.lean)
+- sha256 (`bytes`): `b91f33b05cf90bd65fc8e51d6929ad5e1a5da57a6a6c908ad83bdf81e45db866`
+- cited in: node.source
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_loop_quantum_gravity.json](../../../dag/research/lean_replay_campaign_loop_quantum_gravity.json) (module `DiscreteSpinfoamAmplitudes`): recorded sha256 `b91f33b05cf90bd65fc8e51d6929ad5e1a5da57a6a6c908ad83bdf81e45db866` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build DiscreteSpinfoamAmplitudes`
+- counts toward the grade: yes
+
+### Lean: `lean4/FourSimplexSpinfoamS4.lean`
+
+- file: [lean4/FourSimplexSpinfoamS4.lean](../../../lean4/FourSimplexSpinfoamS4.lean)
+- sha256 (`bytes`): `e06939b3eb2914c80c0d62ccd771b0121231d65a3323481cc9edc59554722695`
+- cited in: node.source
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_implementation_sibling.json](../../../dag/research/lean_replay_campaign_implementation_sibling.json) (module `FourSimplexSpinfoamS4`): recorded sha256 `e06939b3eb2914c80c0d62ccd771b0121231d65a3323481cc9edc59554722695` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build FourSimplexSpinfoamS4`
+- counts toward the grade: yes
+
 ### Lean: `lean4/FrontierTvLevel2Pentagon.lean`
 
 - file: [lean4/FrontierTvLevel2Pentagon.lean](../../../lean4/FrontierTvLevel2Pentagon.lean)
-- sha256 (`bytes`): `a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156`
+- sha256 (`bytes`): `b1295e80e928d638db8fa5ddb3fedf981381983866c7addd76a96e20e9ebd841`
 - cited in: node.lean, node.source, receipt dag/research/frontier_targets_lean_replay.json (FrontierTvLevel2Pentagon)
 - replay: `verified`
-  - receipt [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) (module `FrontierTvLevel2Pentagon`): recorded sha256 `a8dde43d898ca0b396ad02a1602cde8992439fa1a9648f8703c0615f689bf156` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json) (module `FrontierTvLevel2Pentagon`): recorded sha256 `b1295e80e928d638db8fa5ddb3fedf981381983866c7addd76a96e20e9ebd841` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FrontierTvLevel2Pentagon`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -60,26 +80,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `FrontierTvLevel2Pentagon.level2_quantum_dimensions_and_truncation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FrontierTvLevel2Pentagon.level2_quantum_dimensions_and_truncation` |
 | `FrontierTvLevel2Pentagon.level2_quantum_pentagon_identity_all_19683` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FrontierTvLevel2Pentagon.level2_quantum_pentagon_identity_all_19683` |
 
-- counts toward the grade: yes
-
-### Lean: `lean4/H023DiscreteSpinfoamAmplitudes.lean`
-
-- file: [lean4/H023DiscreteSpinfoamAmplitudes.lean](../../../lean4/H023DiscreteSpinfoamAmplitudes.lean)
-- sha256 (`bytes`): `926c526a9087b9648e1fc3107ae89d4d16f0525234d8901e916a29a516d70457`
-- cited in: node.source
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_loop_quantum_gravity.json](../../../dag/research/lean_replay_campaign_loop_quantum_gravity.json) (module `H023DiscreteSpinfoamAmplitudes`): recorded sha256 `926c526a9087b9648e1fc3107ae89d4d16f0525234d8901e916a29a516d70457` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build H023DiscreteSpinfoamAmplitudes`
-- counts toward the grade: yes
-
-### Lean: `lean4/H024FourSimplexSpinfoamS4.lean`
-
-- file: [lean4/H024FourSimplexSpinfoamS4.lean](../../../lean4/H024FourSimplexSpinfoamS4.lean)
-- sha256 (`bytes`): `9b21fcb33cd1df8845fe967e9c66f74ab642df8a8982d0d3303df7ee95e88c8d`
-- cited in: node.source
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_implementation_sibling.json](../../../dag/research/lean_replay_campaign_implementation_sibling.json) (module `H024FourSimplexSpinfoamS4`): recorded sha256 `9b21fcb33cd1df8845fe967e9c66f74ab642df8a8982d0d3303df7ee95e88c8d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build H024FourSimplexSpinfoamS4`
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/general_relativity/spin_foam.rs`
@@ -101,7 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/33_loop_quantum_gravity/tfq_2311_lqg_tv_level2_pentagon_target.md`
 
 - file: [dag/derivations/33_loop_quantum_gravity/tfq_2311_lqg_tv_level2_pentagon_target.md](../../../dag/derivations/33_loop_quantum_gravity/tfq_2311_lqg_tv_level2_pentagon_target.md)
-- sha256 (`lf-normalised`): `939ee83bf8ced1d552b69c4183840f285c12f49048b2923cdd70fff9ac3015b5`
+- sha256 (`lf-normalised`): `09ef75c49a88dcf563d8af53b6c672ad10e22d150d651ebcf2f66d8799f3395e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2311
 - counts toward the grade: no
@@ -109,7 +109,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/frontier_targets_lean_replay.json`
 
 - file: [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json)
-- sha256 (`lf-normalised`): `1c66aabd3bb726fafcd0238c259644d6f79dd304178d171a75ea36d6522bd2cc`
+- sha256 (`lf-normalised`): `f34cd1ed156fa81d00adb9c939a21d262964134472af8231083525a54cc7abce`
 - cited in: node.source
 - counts toward the grade: yes
 

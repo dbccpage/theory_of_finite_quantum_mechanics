@@ -32,14 +32,14 @@ QM_204 ledger: stub "Band slot reserved" (QM_204-C0); content carried by QM-210-
 ### Lean 4 Theorems
 - `lean4/GleasonTheorem.lean::d2_binary_non_bornian_obstruction`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall`
-- `lean4/CampaignDsQm204BornUniqueness.lean::CampaignDsQm204BornUniqueness.pairNorm`
-- `lean4/CampaignDsQm204BornUniqueness.lean::CampaignDsQm204BornUniqueness.denom34`
-- `lean4/CampaignDsQm204BornUniqueness.lean::CampaignDsQm204BornUniqueness.squares34`
-- `lean4/CampaignDsQm204BornUniqueness.lean::CampaignDsQm204BornUniqueness.fourths34`
-- `lean4/CampaignDsQm204BornUniqueness.lean::CampaignDsQm204BornUniqueness.quarticSeparates`
-- `lean4/CampaignDsQm204BornUniqueness.lean::CampaignDsQm204BornUniqueness.linearSeparates`
-- `lean4/CampaignDsQm204BornUniqueness.lean::CampaignDsQm204BornUniqueness.rot`
-- `lean4/CampaignDsQm204BornUniqueness.lean::CampaignDsQm204BornUniqueness.rotWitness`
+- `lean4/BornUniquenessIntegerSlice.lean::BornUniquenessIntegerSlice.pairNorm`
+- `lean4/BornUniquenessIntegerSlice.lean::BornUniquenessIntegerSlice.denom34`
+- `lean4/BornUniquenessIntegerSlice.lean::BornUniquenessIntegerSlice.squares34`
+- `lean4/BornUniquenessIntegerSlice.lean::BornUniquenessIntegerSlice.fourths34`
+- `lean4/BornUniquenessIntegerSlice.lean::BornUniquenessIntegerSlice.quarticSeparates`
+- `lean4/BornUniquenessIntegerSlice.lean::BornUniquenessIntegerSlice.linearSeparates`
+- `lean4/BornUniquenessIntegerSlice.lean::BornUniquenessIntegerSlice.rot`
+- `lean4/BornUniquenessIntegerSlice.lean::BornUniquenessIntegerSlice.rotWitness`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

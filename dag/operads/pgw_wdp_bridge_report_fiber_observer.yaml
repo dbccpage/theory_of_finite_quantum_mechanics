@@ -93,7 +93,7 @@ operation_candidates:
   name: Image
   line: 4
   signature_excerpt: 'abbrev Image {X : Type u} {R : Type v} (report : X → R)'
-  source: lean4/CampaignReportFiberDescent.lean
+  source: lean4/ReportFiberDescent.lean
   repository: this_repository
   source_sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
   status: source_candidate_requires_semantic_review
@@ -101,7 +101,7 @@ operation_candidates:
   name: lifted
   line: 5
   signature_excerpt: 'def lifted {X : Type u} {R : Type v} (report : X → R) (x : X) : Image report'
-  source: lean4/CampaignReportFiberDescent.lean
+  source: lean4/ReportFiberDescent.lean
   repository: this_repository
   source_sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
   status: source_candidate_requires_semantic_review
@@ -110,7 +110,7 @@ operation_candidates:
   line: 6
   signature_excerpt: 'def ConstantOnFibers {X : Type u} {R : Type v} {D : Type w} (r : X → R) (d : X →
     D)'
-  source: lean4/CampaignReportFiberDescent.lean
+  source: lean4/ReportFiberDescent.lean
   repository: this_repository
   source_sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
   status: source_candidate_requires_semantic_review
@@ -137,7 +137,7 @@ relation_candidates:
         (∃ decoder : Image report → D, (∀ x, decoder (lifted report x) = decision x) ∧
           ∀ other : Image report → D, (∀ x, other (lifted report x) = decision x) → other = decoder) ↔
         ConstantOnFibers report decision
-  source: lean4/CampaignReportFiberDescent.lean
+  source: lean4/ReportFiberDescent.lean
   repository: this_repository
   source_sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
   status: source_candidate_requires_semantic_review
@@ -151,7 +151,7 @@ relation_candidates:
         (r : X → R) (p : R → S) (d : X → D) (x y : X)
         (same : r x = r y) (different : d x ≠ d y) :
         ¬ ConstantOnFibers (p ∘ r) d
-  source: lean4/CampaignReportFiberDescent.lean
+  source: lean4/ReportFiberDescent.lean
   repository: this_repository
   source_sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
   status: source_candidate_requires_semantic_review
@@ -163,7 +163,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem joint_report_sufficient {X : Type u} {R : Type v} {D : Type w}
         (r : X → R) (d : X → D) : ConstantOnFibers (fun x => (r x, d x)) d
-  source: lean4/CampaignReportFiberDescent.lean
+  source: lean4/ReportFiberDescent.lean
   repository: this_repository
   source_sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
   status: source_candidate_requires_semantic_review
@@ -174,7 +174,7 @@ relation_candidates:
   line: 39
   signature_excerpt: 'theorem lost_bit_obstruction : ¬ ConstantOnFibers (fun _ : Bool => ()) (fun b :
     Bool => b)'
-  source: lean4/CampaignReportFiberDescent.lean
+  source: lean4/ReportFiberDescent.lean
   repository: this_repository
   source_sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
   status: source_candidate_requires_semantic_review
@@ -190,37 +190,37 @@ source_bindings:
   declaration_status: declaration_found_not_proof_checked
   line: 36
   role: source_lead_only
-- original_ref: lean4/CampaignReportFiberDescent.lean::CampaignReportFiberDescent.unique_decoder_iff
+- original_ref: lean4/ReportFiberDescent.lean::ReportFiberDescent.unique_decoder_iff
   availability: local
-  symbol: CampaignReportFiberDescent.unique_decoder_iff
-  path: lean4/CampaignReportFiberDescent.lean
+  symbol: ReportFiberDescent.unique_decoder_iff
+  path: lean4/ReportFiberDescent.lean
   repository: this_repository
   sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
   declaration_status: declaration_found_not_proof_checked
   line: 9
   role: source_lead_only
-- original_ref: lean4/CampaignReportFiberDescent.lean::CampaignReportFiberDescent.postprocess_obstruction
+- original_ref: lean4/ReportFiberDescent.lean::ReportFiberDescent.postprocess_obstruction
   availability: local
-  symbol: CampaignReportFiberDescent.postprocess_obstruction
-  path: lean4/CampaignReportFiberDescent.lean
+  symbol: ReportFiberDescent.postprocess_obstruction
+  path: lean4/ReportFiberDescent.lean
   repository: this_repository
   sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
   declaration_status: declaration_found_not_proof_checked
   line: 29
   role: source_lead_only
-- original_ref: lean4/CampaignReportFiberDescent.lean::CampaignReportFiberDescent.joint_report_sufficient
+- original_ref: lean4/ReportFiberDescent.lean::ReportFiberDescent.joint_report_sufficient
   availability: local
-  symbol: CampaignReportFiberDescent.joint_report_sufficient
-  path: lean4/CampaignReportFiberDescent.lean
+  symbol: ReportFiberDescent.joint_report_sufficient
+  path: lean4/ReportFiberDescent.lean
   repository: this_repository
   sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
   declaration_status: declaration_found_not_proof_checked
   line: 35
   role: source_lead_only
-- original_ref: lean4/CampaignReportFiberDescent.lean::CampaignReportFiberDescent.lost_bit_obstruction
+- original_ref: lean4/ReportFiberDescent.lean::ReportFiberDescent.lost_bit_obstruction
   availability: local
-  symbol: CampaignReportFiberDescent.lost_bit_obstruction
-  path: lean4/CampaignReportFiberDescent.lean
+  symbol: ReportFiberDescent.lost_bit_obstruction
+  path: lean4/ReportFiberDescent.lean
   repository: this_repository
   sha256: 135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56
   declaration_status: declaration_found_not_proof_checked

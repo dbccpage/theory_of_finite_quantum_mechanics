@@ -53,8 +53,8 @@ The content is the quotient construction only: $Z$ and $\pi$ are inputs, and no 
 inner product is produced.
 
 Lean: `lean4/PrimitiveDifference.lean::zeroRel_equivalence`,
-`lean4/H000FinitePresentedCarrier.lean::sameReport_iff`,
-`lean4/H000FinitePresentedCarrier.lean::presented_carrier_separates`.
+`lean4/FinitePresentedCarrier.lean::sameReport_iff`,
+`lean4/FinitePresentedCarrier.lean::presented_carrier_separates`.
 
 ### 1.2 The phase-blind fibre
 
@@ -76,9 +76,9 @@ So the phase-blind fibre contains relative phases, not only global ones. Enumera
 a declared finite unit group; describing the fibre as an orbit of a group action on several
 reports is not part of this result.
 
-Lean: `lean4/H009PhaseFiber.lean::phasePD_zeroRel_iff`,
-`lean4/H009PhaseFiber.lean::relative_phase_in_fiber`,
-`lean4/H008PhaseBlindPresentation.lean::weight_nonneg`.
+Lean: `lean4/PhaseFiber.lean::phasePD_zeroRel_iff`,
+`lean4/PhaseFiber.lean::relative_phase_in_fiber`,
+`lean4/HilbertWalkPhaseBlindPresentation.lean::weight_nonneg`.
 
 ### 1.3 Interference does not descend to the phase-blind quotient
 
@@ -104,8 +104,8 @@ With $\psi_1=(1,1)$ and $\psi_2=(1,-1)$ from §1.2, $r(\psi_1)=(4,0)\neq(0,4)=r(
 Relative phase is thus invisible to $w$ and visible after a non-diagonal operation. The second
 context $H$ is supplied, not derived.
 
-Lean: `lean4/H010InterferenceNonDescent.lean::no_descent_through_fiber`,
-`lean4/H010InterferenceNonDescent.lean::mix_separates` (the witnesses $\psi_1,\psi_2$);
+Lean: `lean4/InterferenceNonDescent.lean::no_descent_through_fiber`,
+`lean4/InterferenceNonDescent.lean::mix_separates` (the witnesses $\psi_1,\psi_2$);
 `lean4/PhaseBlindFiber.lean::PhaseBlindFiber.readout_total`,
 `lean4/PhaseBlindFiber.lean::PhaseBlindFiber.readout_interference`,
 `lean4/PhaseBlindFiber.lean::PhaseBlindFiber.fiber_changes_readout`,
@@ -202,7 +202,7 @@ $\langle Au,v\rangle=\sum_{i,j}\overline{A_{ij}u_j}\,v_i=\sum_j\overline{u_j}\su
 This is $M_n(\mathbb Z[i])$, not $M_n(\mathbb C)$: there are no inverses of non-units and, as §7
 shows, Hermitian matrices need not have eigenvalues in $\mathbb Z[i]$.
 
-Lean: `lean4/H017Fin.lean::finite_gauss_matrix_algebra`.
+Lean: `lean4/HilbertWalkGleasonFin.lean::finite_gauss_matrix_algebra`.
 
 ---
 
@@ -295,7 +295,7 @@ Lean: `lean4/GleasonRationalPlane.lean::no_quadratic_representation`,
 DAG node: `FQ-CABELLO-NO-INTEGER-FRAME`
 
 Let $v_0,\dots,v_{17}\in\mathbb Z^4$ be the 18 Cabello rays and $C_1,\dots,C_9$ the nine
-orthogonal tetrads (listed in `lean4/H054GleasonCyclotomicObstruction.lean`). Each ray lies in
+orthogonal tetrads (listed in `lean4/GleasonCyclotomicObstruction.lean`). Each ray lies in
 exactly two tetrads.
 
 **Proposition.** (i) There is no $f\colon\{v_0,\dots,v_{17}\}\to\mathbb Z$ with
@@ -315,9 +315,9 @@ Part (ii) shows that frame additivity with nonnegativity on a finite set of rays
 positive semidefinite representative. The scope is this real system, not complex Hermitian
 matrices in general.
 
-Lean: `lean4/H054GleasonCyclotomicObstruction.lean::cabello_no_integer_frame_assignment`,
-`lean4/H054GleasonCyclotomicObstruction.lean::frame_additivity_not_force_psd`,
-`lean4/H053EverettForkingTree.lean::cabello_parity_obstruction`.
+Lean: `lean4/GleasonCyclotomicObstruction.lean::cabello_no_integer_frame_assignment`,
+`lean4/GleasonCyclotomicObstruction.lean::frame_additivity_not_force_psd`,
+`lean4/EverettForkingTree.lean::cabello_parity_obstruction`.
 
 ### 2.5 The trace norm on trace-zero differences
 
@@ -373,7 +373,7 @@ CHSH inequalities hold, Fine's theorem) is not proved here over the rationals. A
 conclusion needs locality and setting independence in addition.
 
 Lean: `lean4/QuantumCorrelation.lean::classical_chsh_bound`,
-`lean4/H053EverettForkingTree.lean::chsh_classical_bound`,
+`lean4/EverettForkingTree.lean::chsh_classical_bound`,
 `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_bell_classical_joint_extension_convex_bound`.
 
 ### 3.2 A rational quantum model with $S=14/5$
@@ -396,7 +396,7 @@ All entries are rational; $14/5<2\sqrt2$, so this is not the Tsirelson value. Th
 tensor product and the Born pairing are supplied.
 
 Lean: `lean4/QuantumCorrelation.lean::q1_violates_classical_bound` checks the scaled value
-$70>50$ for the vectors scaled by 5. `lean4/H053EverettForkingTree.lean::chsh_pythagorean_quantum_value`
+$70>50$ for the vectors scaled by 5. `lean4/EverettForkingTree.lean::chsh_pythagorean_quantum_value`
 checks the same value for a second presentation.
 `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_bell_rational_violation_14_5_no_joint_law`
 checks that no natural-weighted list of deterministic values with total weight 25 sums to 70.
@@ -429,7 +429,7 @@ derived.
 
 Lean: `lean4/QuantumCorrelation.lean::q2_tsirelson_attainment` checks (ii) in
 $\mathbb Z[\sqrt2]$ (the scaled sum is $0+8\sqrt2$).
-`lean4/H064ContextualityThresholds.lean::conductor_24_contains_sqrt2` records that the conductor of
+`lean4/ContextualityThresholds.lean::conductor_24_contains_sqrt2` records that the conductor of
 $\mathbb Q(\sqrt2)$ divides 24. The operator identity (i) is the computation above; the DAG
 records the explicit $\mathbb Q(\sqrt2)$ matrix certificates as checked by exact computation.
 
@@ -480,8 +480,8 @@ characteristic $p$ with $p\mid n$ the relation can hold: on $\mathbb F_p[x]/(x^p
 $p$, differentiation $D$ and multiplication by $x$ satisfy $[D,x]=I$. That is why the hypothesis on
 $K$ is needed.
 
-Lean: `lean4/H056ContinuumLiftBoundary.lean::wintner_wielandt_dim2_obstruction` proves the
-proposition for $2\times2$ integer matrices; `lean4/H068WeylCcrResidual.lean::tr_comm2_vanishes` and
+Lean: `lean4/ContinuumLiftBoundary.lean::wintner_wielandt_dim2_obstruction` proves the
+proposition for $2\times2$ integer matrices; `lean4/WeylCcrResidual.lean::tr_comm2_vanishes` and
 `lean4/FiniteQM.lean::weyl_heisenberg_finite_trace_obstruction` check the trace identity for
 $2\times2$ matrices. The general $n$ is the argument above.
 
@@ -500,9 +500,9 @@ So a normalized rational unitary need not be periodic, while a periodic sector (
 has to be declared. The DAG statement records only this half; a dichotomy for all finite
 unitaries, and any closure or topology on the orbit, are not claimed.
 
-Lean: `lean4/H061DynamicsDichotomy.lean::pythagorean_rotation_order_infinite` proves that the
+Lean: `lean4/DynamicsDichotomy.lean::pythagorean_rotation_order_infinite` proves that the
 imaginary part of $(3+4i)^{n+1}$ is never zero, by the residue argument above;
-`lean4/H061DynamicsDichotomy.lean::periodic_sector_requires_declaration` records the declared
+`lean4/DynamicsDichotomy.lean::periodic_sector_requires_declaration` records the declared
 periodic sector.
 
 ### 4.3 Discrete time does not determine a generator
@@ -528,9 +528,9 @@ A unitary step on a finite carrier admits square roots and logarithms over a sui
 not uniquely; the report-level toggle in (i) has no square root. Selecting a continuous one-parameter group
 requires a branch choice that the discrete data do not supply.
 
-Lean: `lean4/H055DiscreteDynamicsStone.lean::no_bool_half_step` proves (i);
-`lean4/H055DiscreteDynamicsStone.lean::interpolant_not_unique` checks (ii) as
-$M^2=4X$; `lean4/H055DiscreteDynamicsStone.lean::stone_discrete_generator_ambiguity` records that
+Lean: `lean4/DiscreteDynamicsStone.lean::no_bool_half_step` proves (i);
+`lean4/DiscreteDynamicsStone.lean::interpolant_not_unique` checks (ii) as
+$M^2=4X$; `lean4/DiscreteDynamicsStone.lean::stone_discrete_generator_ambiguity` records that
 the odd branches $2k'+1$ are pairwise distinct.
 
 ### 4.4 The off-diagonal term of a global weight
@@ -566,9 +566,9 @@ $\frac1D\mathbb Z$. $\square$
 Counting branches therefore reproduces the Born rule exactly on rational-weight sectors and fails
 on sectors with irrational weights such as these. Reading branch counts as probabilities is an interpretive input.
 
-Lean: `lean4/H059RationalSector.lean::rational_finegraining_exists`,
-`lean4/H059RationalSector.lean::conductors_with_real_q_yield_rational_finegraining`,
-`lean4/H059RationalSector.lean::witness_poly_has_no_candidate_rational_root` (the four candidate
+Lean: `lean4/RationalSector.lean::rational_finegraining_exists`,
+`lean4/RationalSector.lean::conductors_with_real_q_yield_rational_finegraining`,
+`lean4/RationalSector.lean::witness_poly_has_no_candidate_rational_root` (the four candidate
 values, cleared of denominators).
 
 ---
@@ -723,8 +723,8 @@ whose roots $\pm\sqrt2$ are not in $\mathbb Q(i)$. (iii) was proved in §4.3. $\
 This is a census of eight items with three verdicts, not a necessity theorem for the remaining
 five.
 
-Lean: `lean4/H017ExtrasDropone.lean::drop_one_count`,
-`lean4/H017Finish.lean::remaining_import_list`.
+Lean: `lean4/HilbertWalkGleasonExtrasDropOne.lean::drop_one_count`,
+`lean4/HilbertWalkGleasonFinish.lean::remaining_import_list`.
 
 ---
 
@@ -792,8 +792,8 @@ $\mu_3$ can.
 
 Lean: `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_transport_n_torsion_and_sign_separation`
 (gauge invariance of triangle holonomy modulo $N$, written additively),
-`lean4/H011Circle.lean::sign_fails_connectedness_shadow` (iii),
-`lean4/H011U1SelectorBoundary.lean::u1_selector_boundary` (the selector is not derived, and the
+`lean4/HilbertWalkCircle.lean::sign_fails_connectedness_shadow` (iii),
+`lean4/U1SelectorBoundary.lean::u1_selector_boundary` (the selector is not derived, and the
 integer realization of §1.3 separates two points of one fibre). The count $N^{\beta_1}$ is the
 argument above; the DAG records it as an exact enumeration on small graphs.
 
@@ -814,9 +814,9 @@ $e_0\boxtimes'Ze_1=e_0\boxtimes'(-e_1)=-e_0$ while $W(e_0\boxtimes'e_1)=We_0=e_0
 
 The normalization or a covariance requirement is what excludes the rival; neither is derived here.
 
-Lean: `lean4/H014BilinearProduct.lean::bilinear_product_unique_on_bool_prod` (i),
-`lean4/H014Interface.lean::dumpRight_not_tensor` (the rival into $\mathbb Z^{2\times2}$ differs from
-$\otimes$), `lean4/H062CompositionTensorMub.lean::rival_fails_local_unitary_covariance` (the two
+Lean: `lean4/BilinearProduct.lean::bilinear_product_unique_on_bool_prod` (i),
+`lean4/HilbertWalkInterface.lean::dumpRight_not_tensor` (the rival into $\mathbb Z^{2\times2}$ differs from
+$\otimes$), `lean4/CompositionTensorMub.lean::rival_fails_local_unitary_covariance` (the two
 values $e_0$ and $-e_0$ in (ii)).
 
 ### 8.4 An informationally complete four-outcome POVM, and positivity at real places
@@ -845,7 +845,7 @@ Frame additivity on finitely many rays also does not give positivity (§2.4 (ii)
 Lean: `lean4/FiniteQM.lean::busch_ic_povm_vs_polyhedral_frame_cone` (traces, determinants, Bloch
 sums and the reconstruction determinant),
 `lean4/FiniteQM.lean::galois_conjugate_negativity_vs_sos_total_positivity` (ii),
-`lean4/H058EffectFrameBusch.lean::two_mul_half`.
+`lean4/EffectFrameBusch.lean::two_mul_half`.
 
 ### 8.5 The helium variational bound
 

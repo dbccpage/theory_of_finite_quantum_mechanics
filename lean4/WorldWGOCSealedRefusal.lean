@@ -6,7 +6,7 @@ import WorldReconstructionRetraction
 
 
 
-namespace OmegaWorld
+namespace ObserverWorld
 namespace WGOCSealedRefusal
 
 open ReconstructionQ12
@@ -204,7 +204,7 @@ def finiteWGOCSealedRefusal : FiniteWGOCSealedRefusal where
 #print axioms finiteWGOCSealedRefusal
 
 end WGOCSealedRefusal
-end OmegaWorld
+end ObserverWorld
 
 private def l5aProvenance : String :=
   "Origin: lean4/WorldWGOCSealedRefusal.lean Claim: dependency_id_injective AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

@@ -15,7 +15,7 @@ Imported inference, audited against Marletto-Vedral (2017, arXiv:1707.06036, pp.
 
 ## Governing obligation
 
-The inference (arXiv:1707.06036 pp. 2-3; arXiv:1707.06050 pp. 1-2) remains an assumption of this branch. CampaignCtMediatorEntanglement.lean states only a finite shadow: a single linear local map A (x) B applied to one pure bipartite state does not raise the rank of its coefficient matrix (any finite dimension over any field), and for two qubits over Q(i) it does not carry the product state (1,1,1,1)/2 to (1,1,1,u)/2 with u=(3+4i)/5, whose squared concurrence is 1/5. Not stated: mixed states, local channels with ancillas, mixtures of branches, classical communication (LOCC), a mediating system M, the definition of a classical medium, or any gravity model.
+The inference (arXiv:1707.06036 pp. 2-3; arXiv:1707.06050 pp. 1-2) remains an assumption of this branch. ConstructorTheoryMediatorEntanglement.lean states only a finite shadow: a single linear local map A (x) B applied to one pure bipartite state does not raise the rank of its coefficient matrix (any finite dimension over any field), and for two qubits over Q(i) it does not carry the product state (1,1,1,1)/2 to (1,1,1,u)/2 with u=(3+4i)/5, whose squared concurrence is 1/5. Not stated: mixed states, local channels with ancillas, mixtures of branches, classical communication (LOCC), a mediating system M, the definition of a classical medium, or any gravity model.
 
 ## Source status
 
@@ -45,7 +45,7 @@ No check of this target is recorded in the repository. A run that mines or check
 
 - Route `FRO-R-CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT` (`CONDITIONAL_ON_IMPORT`) from `CT-MARLETTO-VEDRAL-2017-SOURCE`: The inference is the import; the link is reading order.
 - Route `FRO-R-BACK-CT-MEDIATOR-TO-TFQ0084` (`GAP_NO_DERIVATION`) from this node into `TFQ-0084`: The finite gravity shadow TFQ-0084 contains no mediator model and no entanglement statement. No source relates the imported inference to the Regge, spin-foam or relational certificates of that node.
-- Finite shadow in CampaignCtMediatorEntanglement.lean: one linear local map does not raise Schmidt rank (schmidtRank_local_le, any finite dimension) and does not map (1,1,1,1)/2 to the Pythagorean phase state of squared concurrence 1/5 (two qubits over Q(i)); independent check: checks/independent/ct-local-mediator-entanglement-import.py. The statement of this node is not proved.
+- Finite shadow in ConstructorTheoryMediatorEntanglement.lean: one linear local map does not raise Schmidt rank (schmidtRank_local_le, any finite dimension) and does not map (1,1,1,1)/2 to the Pythagorean phase state of squared concurrence 1/5 (two qubits over Q(i)); independent check: checks/independent/ct-local-mediator-entanglement-import.py. The statement of this node is not proved.
 
 See also: `TFQ-0084`, `DS-QM074-NO-SIGNALING-MARGINAL`.
 
@@ -60,15 +60,15 @@ See also: `TFQ-0084`, `DS-QM074-NO-SIGNALING-MARGINAL`.
 - Repository: `dag/derivations/independent/ct-local-mediator-entanglement-import.md`
 
 ## Lean 4 declarations read
-- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.schmidtRank_local_le`
-- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.schmidtRank_not_reachable`
-- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.applyLocalOp_det`
-- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.local_op_preserves_product_det`
-- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.local_op_concurrence_zero_of_separable`
-- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.M_entangled_concurrence`
-- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.no_local_op_produces_entangled_state`
-- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.classical_mediator_cannot_produce_entangled_state`
-- `lean4/CampaignCtMediatorEntanglement.lean::CampaignCtMediatorEntanglement.reduction_of_mediated_entanglement_inference`
+- `lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.schmidtRank_local_le`
+- `lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.schmidtRank_not_reachable`
+- `lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.applyLocalOp_det`
+- `lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.local_op_preserves_product_det`
+- `lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.local_op_concurrence_zero_of_separable`
+- `lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.M_entangled_concurrence`
+- `lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.no_local_op_produces_entangled_state`
+- `lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.classical_mediator_cannot_produce_entangled_state`
+- `lean4/ConstructorTheoryMediatorEntanglement.lean::ConstructorTheoryMediatorEntanglement.reduction_of_mediated_entanglement_inference`
 
 ## Downstream derivations
 

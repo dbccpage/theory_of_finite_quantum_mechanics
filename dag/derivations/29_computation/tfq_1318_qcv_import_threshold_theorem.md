@@ -35,15 +35,15 @@ Closed integer equalities t_spec, step_zero, step_one, step_two, step_eight, orb
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignQcvImportThresholdTheorem.lean::t_spec`
-- `lean4/CampaignQcvImportThresholdTheorem.lean::step_zero`
-- `lean4/CampaignQcvImportThresholdTheorem.lean::step_one`
-- `lean4/CampaignQcvImportThresholdTheorem.lean::step_two`
-- `lean4/CampaignQcvImportThresholdTheorem.lean::step_eight`
-- `lean4/CampaignQcvImportThresholdTheorem.lean::orbit_three`
-- `lean4/CampaignQcvImportThresholdTheorem.lean::mul_eight`
-- `lean4/CampaignQcvImportThresholdTheorem.lean::scale_zero`
-- `lean4/CampaignQcvImportThresholdTheorem.lean::scale_one`
+- `lean4/ThresholdTheoremImport.lean::t_spec`
+- `lean4/ThresholdTheoremImport.lean::step_zero`
+- `lean4/ThresholdTheoremImport.lean::step_one`
+- `lean4/ThresholdTheoremImport.lean::step_two`
+- `lean4/ThresholdTheoremImport.lean::step_eight`
+- `lean4/ThresholdTheoremImport.lean::orbit_three`
+- `lean4/ThresholdTheoremImport.lean::mul_eight`
+- `lean4/ThresholdTheoremImport.lean::scale_zero`
+- `lean4/ThresholdTheoremImport.lean::scale_one`
 
 ### Rust Certifiers
 - *none*

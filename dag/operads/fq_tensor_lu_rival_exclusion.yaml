@@ -38,7 +38,7 @@ operation_candidates:
   name: BilinearKroneckerEmbed
   line: 14
   signature_excerpt: structure BilinearKroneckerEmbed
-  source: lean4/H014BilinearProduct.lean
+  source: lean4/BilinearProduct.lean
   repository: this_repository
   source_sha256: fabd54a913240848de949fb629a744d82f0485b3a40aeba32fc1c39e55353cde
   status: source_candidate_requires_semantic_review
@@ -46,7 +46,7 @@ operation_candidates:
   name: dumpRight
   line: 56
   signature_excerpt: 'def dumpRight (u v : Bool → Int) : Bool × Bool → Int'
-  source: lean4/H014Interface.lean
+  source: lean4/HilbertWalkInterface.lean
   repository: this_repository
   source_sha256: 320a143feb167f7665d81508f191954b270d47bfc9a14fab1d51fe6428e0fba0
   status: source_candidate_requires_semantic_review
@@ -54,7 +54,7 @@ operation_candidates:
   name: pauliZ
   line: 51
   signature_excerpt: 'def pauliZ (v : Vec2) : Vec2'
-  source: lean4/H062CompositionTensorMub.lean
+  source: lean4/CompositionTensorMub.lean
   repository: this_repository
   source_sha256: b82630181e53bc72b003962d4b426d98c1967ba32127587195654231074d1cd2
   status: source_candidate_requires_semantic_review
@@ -62,7 +62,7 @@ operation_candidates:
   name: Vec2
   line: 22
   signature_excerpt: structure Vec2
-  source: lean4/H062CompositionTensorMub.lean
+  source: lean4/CompositionTensorMub.lean
   repository: this_repository
   source_sha256: b82630181e53bc72b003962d4b426d98c1967ba32127587195654231074d1cd2
   status: source_candidate_requires_semantic_review
@@ -70,7 +70,7 @@ operation_candidates:
   name: projDump
   line: 33
   signature_excerpt: 'def projDump (u v : Vec2) : Vec2'
-  source: lean4/H062CompositionTensorMub.lean
+  source: lean4/CompositionTensorMub.lean
   repository: this_repository
   source_sha256: b82630181e53bc72b003962d4b426d98c1967ba32127587195654231074d1cd2
   status: source_candidate_requires_semantic_review
@@ -78,7 +78,7 @@ operation_candidates:
   name: e1
   line: 49
   signature_excerpt: 'def e1 : Vec2'
-  source: lean4/H062CompositionTensorMub.lean
+  source: lean4/CompositionTensorMub.lean
   repository: this_repository
   source_sha256: b82630181e53bc72b003962d4b426d98c1967ba32127587195654231074d1cd2
   status: source_candidate_requires_semantic_review
@@ -86,7 +86,7 @@ operation_candidates:
   name: e0
   line: 48
   signature_excerpt: 'def e0 : Vec2'
-  source: lean4/H062CompositionTensorMub.lean
+  source: lean4/CompositionTensorMub.lean
   repository: this_repository
   source_sha256: b82630181e53bc72b003962d4b426d98c1967ba32127587195654231074d1cd2
   status: source_candidate_requires_semantic_review
@@ -97,7 +97,7 @@ relation_candidates:
   signature_excerpt: "theorem bilinear_product_unique_on_bool_prod\n    (E : BilinearKroneckerEmbed) :\n\
     \    (∀ u v p, E.embed u v p = tensor u v p) ∧\n      (∀ u v p, tensorEmbed.embed u v p = tensor u\
     \ v p)"
-  source: lean4/H014BilinearProduct.lean
+  source: lean4/BilinearProduct.lean
   repository: this_repository
   source_sha256: fabd54a913240848de949fb629a744d82f0485b3a40aeba32fc1c39e55353cde
   status: source_candidate_requires_semantic_review
@@ -107,7 +107,7 @@ relation_candidates:
   name: dumpRight_not_tensor
   line: 148
   signature_excerpt: "theorem dumpRight_not_tensor :\n    ¬ ∀ u v p, dumpRight u v p = tensor u v p"
-  source: lean4/H014Interface.lean
+  source: lean4/HilbertWalkInterface.lean
   repository: this_repository
   source_sha256: 320a143feb167f7665d81508f191954b270d47bfc9a14fab1d51fe6428e0fba0
   status: source_candidate_requires_semantic_review
@@ -118,7 +118,7 @@ relation_candidates:
   line: 62
   signature_excerpt: "theorem rival_fails_local_unitary_covariance :\n    (projDump e0 (pauliZ e0)).x0\
     \ ≠ (projDump e0 (pauliZ e1)).x0"
-  source: lean4/H062CompositionTensorMub.lean
+  source: lean4/CompositionTensorMub.lean
   repository: this_repository
   source_sha256: b82630181e53bc72b003962d4b426d98c1967ba32127587195654231074d1cd2
   status: source_candidate_requires_semantic_review
@@ -128,7 +128,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H014BilinearProduct.lean::bilinear_product_unique_on_bool_prod
   availability: local
   symbol: bilinear_product_unique_on_bool_prod
-  path: lean4/H014BilinearProduct.lean
+  path: lean4/BilinearProduct.lean
   repository: this_repository
   sha256: fabd54a913240848de949fb629a744d82f0485b3a40aeba32fc1c39e55353cde
   declaration_status: declaration_found_not_proof_checked
@@ -137,7 +137,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H014Interface.lean::dumpRight_not_tensor
   availability: local
   symbol: dumpRight_not_tensor
-  path: lean4/H014Interface.lean
+  path: lean4/HilbertWalkInterface.lean
   repository: this_repository
   sha256: 320a143feb167f7665d81508f191954b270d47bfc9a14fab1d51fe6428e0fba0
   declaration_status: declaration_found_not_proof_checked
@@ -146,7 +146,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H062CompositionTensorMub.lean::rival_fails_local_unitary_covariance
   availability: local
   symbol: rival_fails_local_unitary_covariance
-  path: lean4/H062CompositionTensorMub.lean
+  path: lean4/CompositionTensorMub.lean
   repository: this_repository
   sha256: b82630181e53bc72b003962d4b426d98c1967ba32127587195654231074d1cd2
   declaration_status: declaration_found_not_proof_checked

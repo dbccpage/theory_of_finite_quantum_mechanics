@@ -232,7 +232,7 @@ def check_dimension_and_source() -> None:
     matrix_dimension: int = 2
     comparison_dimension: int = 3
     require(matrix_dimension != comparison_dimension, 'independent equality failed at original line 210')
-    source = pathlib.Path(__file__).resolve().parents[2] / "lean4" / "CampaignDfmHierarchicalBorel.lean"
+    source = pathlib.Path(__file__).resolve().parents[2] / "lean4" / "DressingFieldHierarchicalBorel.lean"
     text = source.read_text(encoding="utf-8")
     for banned in ("sorry", "admit", "native_decide", "unsafe", "axiom "):
         require(banned not in text, banned)

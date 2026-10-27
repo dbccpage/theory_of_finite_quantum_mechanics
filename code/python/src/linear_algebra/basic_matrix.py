@@ -1,7 +1,7 @@
 """Diagonal sum of a rational identity, checked against two Lean traces.
 
-Origin: lean4/H056ContinuumLiftBoundary.lean theorem trace_scalar_identity
-(Tr(k * I_2) = 2 * k) and lean4/H047StoneVonNeumannObstruction.lean theorem
+Origin: lean4/ContinuumLiftBoundary.lean theorem trace_scalar_identity
+(Tr(k * I_2) = 2 * k) and lean4/StoneVonNeumannObstruction.lean theorem
 tr_eye3_nonzero (tr3 eye3 = 3).
 Claim: urn:omega:fqm:linear-algebra:identity-trace:v1
 AuthorityEffect: None

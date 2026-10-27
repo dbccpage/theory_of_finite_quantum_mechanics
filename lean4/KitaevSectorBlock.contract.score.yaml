@@ -1,0 +1,402 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/KitaevSectorBlock.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/KitaevSectorBlock.lean",
+      "sha256": "5de45b17a7ae6cf93a2455172086d10e846b1f2ea0ed9d69ea973f79daa6abcf"
+    },
+    "boundaries": [
+      "This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.",
+      "L3D scoped proof; exact-source exception explicitly approved by the user."
+    ],
+    "contract_urn": "urn:tfqm:pr-review:fsp-kitaev-honeycomb-solution:KitaevSectorBlock",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json",
+        "sha256": "ede952607daf57ff1891a402fcdb893fc8c306a96f70cc2be4ad113ae1b5a267"
+      },
+      {
+        "path": "dag/derivations/independent/fsp-kitaev-honeycomb-solution.md",
+        "sha256": "7afef1c8863452e4a33ff959edf51fb2a4adcbaf6f5b67b18bd1d2c697bf1d23"
+      },
+      {
+        "path": "dag/research/approved_fsp-kitaev-honeycomb-solution_exception_2026_10_25.json",
+        "sha256": "7f718755593cd483939cf3dff8223af59b3e65f8ac0d4c60ed3b8e3047e18ffe"
+      }
+    ],
+    "owned_invariants": [
+      "On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X."
+    ],
+    "purpose": "On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "State",
+      "sign",
+      "flux",
+      "hopping",
+      "project",
+      "flux_involution",
+      "hopping_involution",
+      "flux_commutes_hopping",
+      "project_commutes_hopping",
+      "sector_decomposition",
+      "restricted_hopping",
+      "sectors_distinct"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 2117,
+      "original_paths": [
+        "lean4/CampaignKitaevSectorBlock.contract.score.yaml#pr-fsp-kitaev-honeycomb-solution-review-CampaignKitaevSectorBlock"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignKitaevSectorBlock.lean\",\n    \"sha256\": \"d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329\"\n  },\n  \"boundaries\": [\n    \"This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.\",\n    \"L3D scoped proof; exact-source exception explicitly approved by the user.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:pr-review:fsp-kitaev-honeycomb-solution:CampaignKitaevSectorBlock\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json\",\n      \"sha256\": \"655df7572ed4374be5df3fd3361c8586aea73e31a2d68921942e40fccb206610\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fsp-kitaev-honeycomb-solution.md\",\n      \"sha256\": \"38570e731c7997870f4858a3c19756ea0b904daf886d144c65d0075dca3f2689\"\n    },\n    {\n      \"path\": \"dag/research/approved_fsp-kitaev-honeycomb-solution_exception_2026_10_25.json\",\n      \"sha256\": \"48b81497bd8cd6336934500cc38e425c3fc7c52d8de0deb09bb331c34c41f4e3\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.\"\n  ],\n  \"purpose\": \"On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"State\",\n    \"sign\",\n    \"flux\",\n    \"hopping\",\n    \"project\",\n    \"flux_involution\",\n    \"hopping_involution\",\n    \"flux_commutes_hopping\",\n    \"project_commutes_hopping\",\n    \"sector_decomposition\",\n    \"restricted_hopping\",\n    \"sectors_distinct\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignKitaevSectorBlock.lean",
+          "sha256": "d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329"
+        },
+        "boundaries": [
+          "This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.",
+          "L3D scoped proof; exact-source exception explicitly approved by the user."
+        ],
+        "contract_urn": "urn:tfqm:pr-review:fsp-kitaev-honeycomb-solution:CampaignKitaevSectorBlock",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json",
+            "sha256": "655df7572ed4374be5df3fd3361c8586aea73e31a2d68921942e40fccb206610"
+          },
+          {
+            "path": "dag/derivations/independent/fsp-kitaev-honeycomb-solution.md",
+            "sha256": "38570e731c7997870f4858a3c19756ea0b904daf886d144c65d0075dca3f2689"
+          },
+          {
+            "path": "dag/research/approved_fsp-kitaev-honeycomb-solution_exception_2026_10_25.json",
+            "sha256": "48b81497bd8cd6336934500cc38e425c3fc7c52d8de0deb09bb331c34c41f4e3"
+          }
+        ],
+        "owned_invariants": [
+          "On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X."
+        ],
+        "purpose": "On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "State",
+          "sign",
+          "flux",
+          "hopping",
+          "project",
+          "flux_involution",
+          "hopping_involution",
+          "flux_commutes_hopping",
+          "project_commutes_hopping",
+          "sector_decomposition",
+          "restricted_hopping",
+          "sectors_distinct"
+        ]
+      },
+      "sha256": "83c7a7ef535306e8e5679deaee3e2aa4fef7e0c3a871f478a065675cf62ebb09"
+    },
+    {
+      "bytes": 2117,
+      "original_paths": [
+        "lean4/CampaignKitaevSectorBlock.contract.score.yaml#pr-fsp-kitaev-honeycomb-solution-review-CampaignKitaevSectorBlock"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignKitaevSectorBlock.lean\",\n    \"sha256\": \"d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329\"\n  },\n  \"boundaries\": [\n    \"This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.\",\n    \"L3D scoped proof; exact-source exception explicitly approved by the user.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:pr-review:fsp-kitaev-honeycomb-solution:CampaignKitaevSectorBlock\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json\",\n      \"sha256\": \"c317032459f2e9c3331e7f3e1feb6abd5b4882810c8f4ee18bcf79d2f5e629f5\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fsp-kitaev-honeycomb-solution.md\",\n      \"sha256\": \"7afef1c8863452e4a33ff959edf51fb2a4adcbaf6f5b67b18bd1d2c697bf1d23\"\n    },\n    {\n      \"path\": \"dag/research/approved_fsp-kitaev-honeycomb-solution_exception_2026_10_25.json\",\n      \"sha256\": \"48b81497bd8cd6336934500cc38e425c3fc7c52d8de0deb09bb331c34c41f4e3\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.\"\n  ],\n  \"purpose\": \"On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"State\",\n    \"sign\",\n    \"flux\",\n    \"hopping\",\n    \"project\",\n    \"flux_involution\",\n    \"hopping_involution\",\n    \"flux_commutes_hopping\",\n    \"project_commutes_hopping\",\n    \"sector_decomposition\",\n    \"restricted_hopping\",\n    \"sectors_distinct\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignKitaevSectorBlock.lean",
+          "sha256": "d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329"
+        },
+        "boundaries": [
+          "This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.",
+          "L3D scoped proof; exact-source exception explicitly approved by the user."
+        ],
+        "contract_urn": "urn:tfqm:pr-review:fsp-kitaev-honeycomb-solution:CampaignKitaevSectorBlock",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json",
+            "sha256": "c317032459f2e9c3331e7f3e1feb6abd5b4882810c8f4ee18bcf79d2f5e629f5"
+          },
+          {
+            "path": "dag/derivations/independent/fsp-kitaev-honeycomb-solution.md",
+            "sha256": "7afef1c8863452e4a33ff959edf51fb2a4adcbaf6f5b67b18bd1d2c697bf1d23"
+          },
+          {
+            "path": "dag/research/approved_fsp-kitaev-honeycomb-solution_exception_2026_10_25.json",
+            "sha256": "48b81497bd8cd6336934500cc38e425c3fc7c52d8de0deb09bb331c34c41f4e3"
+          }
+        ],
+        "owned_invariants": [
+          "On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X."
+        ],
+        "purpose": "On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "State",
+          "sign",
+          "flux",
+          "hopping",
+          "project",
+          "flux_involution",
+          "hopping_involution",
+          "flux_commutes_hopping",
+          "project_commutes_hopping",
+          "sector_decomposition",
+          "restricted_hopping",
+          "sectors_distinct"
+        ]
+      },
+      "sha256": "4c6776a2c8af8a71979cd345bce92ba9d8be24ec578f78d63c19ceaea78dc646"
+    },
+    {
+      "bytes": 2101,
+      "original_paths": [
+        "lean4/KitaevSectorBlock.contract.score.yaml#pr-fsp-kitaev-honeycomb-solution-review-KitaevSectorBlock"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/KitaevSectorBlock.lean\",\n    \"sha256\": \"5de45b17a7ae6cf93a2455172086d10e846b1f2ea0ed9d69ea973f79daa6abcf\"\n  },\n  \"boundaries\": [\n    \"This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.\",\n    \"L3D scoped proof; exact-source exception explicitly approved by the user.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:pr-review:fsp-kitaev-honeycomb-solution:KitaevSectorBlock\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json\",\n      \"sha256\": \"ede952607daf57ff1891a402fcdb893fc8c306a96f70cc2be4ad113ae1b5a267\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fsp-kitaev-honeycomb-solution.md\",\n      \"sha256\": \"7afef1c8863452e4a33ff959edf51fb2a4adcbaf6f5b67b18bd1d2c697bf1d23\"\n    },\n    {\n      \"path\": \"dag/research/approved_fsp-kitaev-honeycomb-solution_exception_2026_10_25.json\",\n      \"sha256\": \"7f718755593cd483939cf3dff8223af59b3e65f8ac0d4c60ed3b8e3047e18ffe\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.\"\n  ],\n  \"purpose\": \"On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"State\",\n    \"sign\",\n    \"flux\",\n    \"hopping\",\n    \"project\",\n    \"flux_involution\",\n    \"hopping_involution\",\n    \"flux_commutes_hopping\",\n    \"project_commutes_hopping\",\n    \"sector_decomposition\",\n    \"restricted_hopping\",\n    \"sectors_distinct\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/KitaevSectorBlock.lean",
+          "sha256": "5de45b17a7ae6cf93a2455172086d10e846b1f2ea0ed9d69ea973f79daa6abcf"
+        },
+        "boundaries": [
+          "This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.",
+          "L3D scoped proof; exact-source exception explicitly approved by the user."
+        ],
+        "contract_urn": "urn:tfqm:pr-review:fsp-kitaev-honeycomb-solution:KitaevSectorBlock",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json",
+            "sha256": "ede952607daf57ff1891a402fcdb893fc8c306a96f70cc2be4ad113ae1b5a267"
+          },
+          {
+            "path": "dag/derivations/independent/fsp-kitaev-honeycomb-solution.md",
+            "sha256": "7afef1c8863452e4a33ff959edf51fb2a4adcbaf6f5b67b18bd1d2c697bf1d23"
+          },
+          {
+            "path": "dag/research/approved_fsp-kitaev-honeycomb-solution_exception_2026_10_25.json",
+            "sha256": "7f718755593cd483939cf3dff8223af59b3e65f8ac0d4c60ed3b8e3047e18ffe"
+          }
+        ],
+        "owned_invariants": [
+          "On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X."
+        ],
+        "purpose": "On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "State",
+          "sign",
+          "flux",
+          "hopping",
+          "project",
+          "flux_involution",
+          "hopping_involution",
+          "flux_commutes_hopping",
+          "project_commutes_hopping",
+          "sector_decomposition",
+          "restricted_hopping",
+          "sectors_distinct"
+        ]
+      },
+      "sha256": "66cf7c4debea23573259460aa8e5270b970d20b0ecb2417df492e54f6ced3b10"
+    }
+  ],
+  "current_contract": "66cf7c4debea23573259460aa8e5270b970d20b0ecb2417df492e54f6ced3b10",
+  "current_scoring": "2367bb7346c0ca75e072ab13e673aa75f8bde34348280db81e6e1cadbc4e9eaf",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2695,
+      "original_paths": [
+        "lean4/CampaignKitaevSectorBlock.contract.score.yaml#pr-fsp-kitaev-honeycomb-solution-review-CampaignKitaevSectorBlock"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignKitaevSectorBlock.lean\",\n    \"sha256\": \"d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329\"\n  },\n  \"assessment_id\": \"pr-fsp-kitaev-honeycomb-solution-review-CampaignKitaevSectorBlock\",\n  \"basis\": {\n    \"G1\": \"Inspected source and exported statements against the narrowed node, with content hashes and scope recorded in the review evidence.\",\n    \"G2\": \"Exact integer/finite arithmetic for the declared examples; the independent check and Lean kernel replay passed. No continuum or original broad target is inferred.\",\n    \"G3\": \"Declared local verification path; Lean axiom output is checked against propext, Classical.choice and Quot.sound. No external model or production authority is exercised.\",\n    \"G4\": \"Kernel replay and independent recomputation are recorded. Production-scale verification, exhaustive mutation accounting, and broader target coverage are not established.\",\n    \"G5\": \"Small local definitions and bounded validation; no production lifecycle or whole-workspace performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-25T18:59:04.978981+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json\",\n      \"sha256\": \"655df7572ed4374be5df3fd3361c8586aea73e31a2d68921942e40fccb206610\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fsp-kitaev-honeycomb-solution.md\",\n      \"sha256\": \"38570e731c7997870f4858a3c19756ea0b904daf886d144c65d0075dca3f2689\"\n    },\n    {\n      \"path\": \"dag/research/approved_fsp-kitaev-honeycomb-solution_exception_2026_10_25.json\",\n      \"sha256\": \"48b81497bd8cd6336934500cc38e425c3fc7c52d8de0deb09bb331c34c41f4e3\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X. This assessment does not claim L4 production architecture.\",\n  \"open_higher_grade_findings\": [\n    \"This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.\",\n    \"L3D scoped proof; exact-source exception explicitly approved by the user.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignKitaevSectorBlock.lean",
+          "sha256": "d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329"
+        },
+        "assessment_id": "pr-fsp-kitaev-honeycomb-solution-review-CampaignKitaevSectorBlock",
+        "basis": {
+          "G1": "Inspected source and exported statements against the narrowed node, with content hashes and scope recorded in the review evidence.",
+          "G2": "Exact integer/finite arithmetic for the declared examples; the independent check and Lean kernel replay passed. No continuum or original broad target is inferred.",
+          "G3": "Declared local verification path; Lean axiom output is checked against propext, Classical.choice and Quot.sound. No external model or production authority is exercised.",
+          "G4": "Kernel replay and independent recomputation are recorded. Production-scale verification, exhaustive mutation accounting, and broader target coverage are not established.",
+          "G5": "Small local definitions and bounded validation; no production lifecycle or whole-workspace performance claim."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-25T18:59:04.978981+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json",
+            "sha256": "655df7572ed4374be5df3fd3361c8586aea73e31a2d68921942e40fccb206610"
+          },
+          {
+            "path": "dag/derivations/independent/fsp-kitaev-honeycomb-solution.md",
+            "sha256": "38570e731c7997870f4858a3c19756ea0b904daf886d144c65d0075dca3f2689"
+          },
+          {
+            "path": "dag/research/approved_fsp-kitaev-honeycomb-solution_exception_2026_10_25.json",
+            "sha256": "48b81497bd8cd6336934500cc38e425c3fc7c52d8de0deb09bb331c34c41f4e3"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X. This assessment does not claim L4 production architecture.",
+        "open_higher_grade_findings": [
+          "This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.",
+          "L3D scoped proof; exact-source exception explicitly approved by the user."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L3D"
+      },
+      "sha256": "db77eede283eb94367f8796cf5c04ac88e126d235be76d17363f1ce523c5a4a7"
+    },
+    {
+      "bytes": 2695,
+      "original_paths": [
+        "lean4/CampaignKitaevSectorBlock.contract.score.yaml#pr-fsp-kitaev-honeycomb-solution-review-CampaignKitaevSectorBlock"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignKitaevSectorBlock.lean\",\n    \"sha256\": \"d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329\"\n  },\n  \"assessment_id\": \"pr-fsp-kitaev-honeycomb-solution-review-CampaignKitaevSectorBlock\",\n  \"basis\": {\n    \"G1\": \"Inspected source and exported statements against the narrowed node, with content hashes and scope recorded in the review evidence.\",\n    \"G2\": \"Exact integer/finite arithmetic for the declared examples; the independent check and Lean kernel replay passed. No continuum or original broad target is inferred.\",\n    \"G3\": \"Declared local verification path; Lean axiom output is checked against propext, Classical.choice and Quot.sound. No external model or production authority is exercised.\",\n    \"G4\": \"Kernel replay and independent recomputation are recorded. Production-scale verification, exhaustive mutation accounting, and broader target coverage are not established.\",\n    \"G5\": \"Small local definitions and bounded validation; no production lifecycle or whole-workspace performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-25T19:12:55.230598+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json\",\n      \"sha256\": \"c317032459f2e9c3331e7f3e1feb6abd5b4882810c8f4ee18bcf79d2f5e629f5\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fsp-kitaev-honeycomb-solution.md\",\n      \"sha256\": \"7afef1c8863452e4a33ff959edf51fb2a4adcbaf6f5b67b18bd1d2c697bf1d23\"\n    },\n    {\n      \"path\": \"dag/research/approved_fsp-kitaev-honeycomb-solution_exception_2026_10_25.json\",\n      \"sha256\": \"48b81497bd8cd6336934500cc38e425c3fc7c52d8de0deb09bb331c34c41f4e3\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X. This assessment does not claim L4 production architecture.\",\n  \"open_higher_grade_findings\": [\n    \"This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.\",\n    \"L3D scoped proof; exact-source exception explicitly approved by the user.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignKitaevSectorBlock.lean",
+          "sha256": "d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329"
+        },
+        "assessment_id": "pr-fsp-kitaev-honeycomb-solution-review-CampaignKitaevSectorBlock",
+        "basis": {
+          "G1": "Inspected source and exported statements against the narrowed node, with content hashes and scope recorded in the review evidence.",
+          "G2": "Exact integer/finite arithmetic for the declared examples; the independent check and Lean kernel replay passed. No continuum or original broad target is inferred.",
+          "G3": "Declared local verification path; Lean axiom output is checked against propext, Classical.choice and Quot.sound. No external model or production authority is exercised.",
+          "G4": "Kernel replay and independent recomputation are recorded. Production-scale verification, exhaustive mutation accounting, and broader target coverage are not established.",
+          "G5": "Small local definitions and bounded validation; no production lifecycle or whole-workspace performance claim."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-25T19:12:55.230598+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json",
+            "sha256": "c317032459f2e9c3331e7f3e1feb6abd5b4882810c8f4ee18bcf79d2f5e629f5"
+          },
+          {
+            "path": "dag/derivations/independent/fsp-kitaev-honeycomb-solution.md",
+            "sha256": "7afef1c8863452e4a33ff959edf51fb2a4adcbaf6f5b67b18bd1d2c697bf1d23"
+          },
+          {
+            "path": "dag/research/approved_fsp-kitaev-honeycomb-solution_exception_2026_10_25.json",
+            "sha256": "48b81497bd8cd6336934500cc38e425c3fc7c52d8de0deb09bb331c34c41f4e3"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X. This assessment does not claim L4 production architecture.",
+        "open_higher_grade_findings": [
+          "This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.",
+          "L3D scoped proof; exact-source exception explicitly approved by the user."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L3D"
+      },
+      "sha256": "5066caed127f205eaa9b5c85a93417e4c4b12ed1e05f0f9405ea88ede129198c"
+    },
+    {
+      "bytes": 3117,
+      "original_paths": [
+        "lean4/KitaevSectorBlock.contract.score.yaml#pr-fsp-kitaev-honeycomb-solution-review-KitaevSectorBlock"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/KitaevSectorBlock.lean\",\n    \"sha256\": \"5de45b17a7ae6cf93a2455172086d10e846b1f2ea0ed9d69ea973f79daa6abcf\"\n  },\n  \"assessment_id\": \"pr-fsp-kitaev-honeycomb-solution-review-KitaevSectorBlock\",\n  \"basis\": {\n    \"G1\": \"Inspected source and exported statements against the narrowed node, with content hashes and scope recorded in the review evidence.\",\n    \"G2\": \"Exact integer/finite arithmetic for the declared examples; the independent check and Lean kernel replay passed. No continuum or original broad target is inferred.\",\n    \"G3\": \"Declared local verification path; Lean axiom output is checked against propext, Classical.choice and Quot.sound. No external model or production authority is exercised.\",\n    \"G4\": \"Kernel replay and independent recomputation are recorded. Production-scale verification, exhaustive mutation accounting, and broader target coverage are not established.\",\n    \"G5\": \"Small local definitions and bounded validation; no production lifecycle or whole-workspace performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-25T19:12:55.230598+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json\",\n      \"sha256\": \"ede952607daf57ff1891a402fcdb893fc8c306a96f70cc2be4ad113ae1b5a267\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fsp-kitaev-honeycomb-solution.md\",\n      \"sha256\": \"7afef1c8863452e4a33ff959edf51fb2a4adcbaf6f5b67b18bd1d2c697bf1d23\"\n    },\n    {\n      \"path\": \"dag/research/approved_fsp-kitaev-honeycomb-solution_exception_2026_10_25.json\",\n      \"sha256\": \"7f718755593cd483939cf3dff8223af59b3e65f8ac0d4c60ed3b8e3047e18ffe\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X. This assessment does not claim L4 production architecture.\",\n  \"open_higher_grade_findings\": [\n    \"This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.\",\n    \"L3D scoped proof; exact-source exception explicitly approved by the user.\"\n  ],\n  \"profile\": \"Exact\",\n  \"rebound\": {\n    \"date\": \"2026-10-27\",\n    \"from_path\": \"lean4/CampaignKitaevSectorBlock.lean\",\n    \"from_sha256\": \"d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329\",\n    \"note\": \"Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived.\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/KitaevSectorBlock.lean",
+          "sha256": "5de45b17a7ae6cf93a2455172086d10e846b1f2ea0ed9d69ea973f79daa6abcf"
+        },
+        "assessment_id": "pr-fsp-kitaev-honeycomb-solution-review-KitaevSectorBlock",
+        "basis": {
+          "G1": "Inspected source and exported statements against the narrowed node, with content hashes and scope recorded in the review evidence.",
+          "G2": "Exact integer/finite arithmetic for the declared examples; the independent check and Lean kernel replay passed. No continuum or original broad target is inferred.",
+          "G3": "Declared local verification path; Lean axiom output is checked against propext, Classical.choice and Quot.sound. No external model or production authority is exercised.",
+          "G4": "Kernel replay and independent recomputation are recorded. Production-scale verification, exhaustive mutation accounting, and broader target coverage are not established.",
+          "G5": "Small local definitions and bounded validation; no production lifecycle or whole-workspace performance claim."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-25T19:12:55.230598+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json",
+            "sha256": "ede952607daf57ff1891a402fcdb893fc8c306a96f70cc2be4ad113ae1b5a267"
+          },
+          {
+            "path": "dag/derivations/independent/fsp-kitaev-honeycomb-solution.md",
+            "sha256": "7afef1c8863452e4a33ff959edf51fb2a4adcbaf6f5b67b18bd1d2c697bf1d23"
+          },
+          {
+            "path": "dag/research/approved_fsp-kitaev-honeycomb-solution_exception_2026_10_25.json",
+            "sha256": "7f718755593cd483939cf3dff8223af59b3e65f8ac0d4c60ed3b8e3047e18ffe"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "On integer amplitudes indexed by a gauge bit and a matter bit, define W(v)(g,b)=sign(g)*v(g,b) and H(v)(g,b)=sign(g)*v(g,not b). Both square to the identity and commute. The two gauge-sector projectors commute with H and sum to the identity; the restricted hopping blocks are X and -X. This assessment does not claim L4 production architecture.",
+        "open_higher_grade_findings": [
+          "This is one exact gauge-controlled hopping block. No honeycomb lattice, all plaquette operators, physical gauge projection, global flux-sector sum or sign-free sampling theorem is constructed.",
+          "L3D scoped proof; exact-source exception explicitly approved by the user."
+        ],
+        "profile": "Exact",
+        "rebound": {
+          "date": "2026-10-27",
+          "from_path": "lean4/CampaignKitaevSectorBlock.lean",
+          "from_sha256": "d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329",
+          "note": "Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived."
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D"
+      },
+      "sha256": "2367bb7346c0ca75e072ab13e673aa75f8bde34348280db81e6e1cadbc4e9eaf"
+    }
+  ]
+}

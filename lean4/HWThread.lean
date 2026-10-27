@@ -8,20 +8,20 @@
 
 
 import HWKernel
-import H000FinitePresentedCarrier
-import H002ReportDynamics
-import H003ReversibilityGate
-import H006PermutationUnitary
-import H008PhaseBlindPresentation
+import FinitePresentedCarrier
+import ReportDynamics
+import ReversibilityGate
+import PermutationUnitary
+import HilbertWalkPhaseBlindPresentation
 
-namespace FableHilbertWalk20260819.HWThread
+namespace HilbertWalk.HWThread
 
-open FableHilbertWalk20260819.HWKernel
-open FableHilbertWalk20260819.H004 (Vec)
-open FableHilbertWalk20260819.H002 (pushforward)
-open FableHilbertWalk20260819.H003 (Reversible pushforward_reversible)
-open FableHilbertWalk20260819.H006 (permU)
-open FableHilbertWalk20260819.H008 (phaseBlind)
+open HilbertWalk.HWKernel
+open HilbertWalk.FreeLinearization (Vec)
+open HilbertWalk.ReportDynamics (pushforward)
+open HilbertWalk.ReversibilityGate (Reversible pushforward_reversible)
+open HilbertWalk.PermutationUnitary (permU)
+open HilbertWalk.PhaseBlindPresentation (phaseBlind)
 
 theorem phaseBlind_intertwines {Q : Type} [DecidableEq Q] (EQ : Enum Q)
     {τ : Q → Q} (R : Reversible τ) (v : Vec GaussInt Q) (q : Q) :
@@ -38,14 +38,14 @@ theorem thread_over_boolFixture
     {τ : Bool → Bool} (R : Reversible τ) (v : Vec GaussInt Bool)
     (q : Bool) :
     phaseBlind (permU gaussPack R v) q =
-      pushforward FableHilbertWalk20260819.H000.boolFixture.enumQ τ
+      pushforward HilbertWalk.FinitePresentedCarrier.boolFixture.enumQ τ
         (phaseBlind v) q :=
   phaseBlind_intertwines
-    FableHilbertWalk20260819.H000.boolFixture.enumQ R v q
+    HilbertWalk.FinitePresentedCarrier.boolFixture.enumQ R v q
 
 #print axioms thread_over_boolFixture
 
-end FableHilbertWalk20260819.HWThread
+end HilbertWalk.HWThread
 
 private def l5aProvenance : String :=
   "Origin: lean4/HWThread.lean Claim: phaseBlind_intertwines AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

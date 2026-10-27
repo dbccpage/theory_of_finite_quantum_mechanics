@@ -29,7 +29,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Stated in H014BilinearProduct.lean, H014Interface.lean and H062CompositionTensorMub.lean. The setting is two Boolean factors; larger factor sets are not covered.
+Stated in BilinearProduct.lean, HilbertWalkInterface.lean and CompositionTensorMub.lean. The setting is two Boolean factors; larger factor sets are not covered.
 
 ## Source status
 
@@ -46,14 +46,14 @@ H062 / campaign C250 Block 05; ledger LEAN PROVED (RECEIPTED)
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/H014BilinearProduct.lean`
+### Lean: `lean4/BilinearProduct.lean`
 
-- file: [lean4/H014BilinearProduct.lean](../../../lean4/H014BilinearProduct.lean)
-- sha256 (`bytes`): `fabd54a913240848de949fb629a744d82f0485b3a40aeba32fc1c39e55353cde`
+- file: [lean4/BilinearProduct.lean](../../../lean4/BilinearProduct.lean)
+- sha256 (`bytes`): `4f8a0b0fa545b236994c9500ea184e2e9dc5b23432a2052bc55af8fa1313e194`
 - cited in: node.lean, record TFQ-1018
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H014BilinearProduct`): recorded sha256 `fabd54a913240848de949fb629a744d82f0485b3a40aeba32fc1c39e55353cde` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H014BilinearProduct`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `BilinearProduct`): recorded sha256 `4f8a0b0fa545b236994c9500ea184e2e9dc5b23432a2052bc55af8fa1313e194` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build BilinearProduct`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -61,33 +61,33 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H014Interface.lean`
+### Lean: `lean4/CompositionTensorMub.lean`
 
-- file: [lean4/H014Interface.lean](../../../lean4/H014Interface.lean)
-- sha256 (`bytes`): `320a143feb167f7665d81508f191954b270d47bfc9a14fab1d51fe6428e0fba0`
+- file: [lean4/CompositionTensorMub.lean](../../../lean4/CompositionTensorMub.lean)
+- sha256 (`bytes`): `eb8f9a7cb10a07586df55ac8f5ca3eb8fda3f059dcff1bef1e80de645542dd42`
 - cited in: node.lean, record TFQ-1018
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H014Interface`): recorded sha256 `320a143feb167f7665d81508f191954b270d47bfc9a14fab1d51fe6428e0fba0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H014Interface`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `dumpRight_not_tensor` | yes | yes | yes | Quot.sound, propext | `#print axioms dumpRight_not_tensor` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/H062CompositionTensorMub.lean`
-
-- file: [lean4/H062CompositionTensorMub.lean](../../../lean4/H062CompositionTensorMub.lean)
-- sha256 (`bytes`): `b82630181e53bc72b003962d4b426d98c1967ba32127587195654231074d1cd2`
-- cited in: node.lean, record TFQ-1018
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H062CompositionTensorMub`): recorded sha256 `b82630181e53bc72b003962d4b426d98c1967ba32127587195654231074d1cd2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build H062CompositionTensorMub`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `CompositionTensorMub`): recorded sha256 `eb8f9a7cb10a07586df55ac8f5ca3eb8fda3f059dcff1bef1e80de645542dd42` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build CompositionTensorMub`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `rival_fails_local_unitary_covariance` | yes | yes | yes | none | `#print axioms rival_fails_local_unitary_covariance` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/HilbertWalkInterface.lean`
+
+- file: [lean4/HilbertWalkInterface.lean](../../../lean4/HilbertWalkInterface.lean)
+- sha256 (`bytes`): `7c3e814fb15d303798bd5e66baddec08ede2033a7471e83f03bb178e7a2eb9c5`
+- cited in: node.lean, record TFQ-1018
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `HilbertWalkInterface`): recorded sha256 `7c3e814fb15d303798bd5e66baddec08ede2033a7471e83f03bb178e7a2eb9c5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build HilbertWalkInterface`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `dumpRight_not_tensor` | yes | yes | yes | Quot.sound, propext | `#print axioms dumpRight_not_tensor` |
 
 - counts toward the grade: yes
 
@@ -108,7 +108,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md](../../../dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md)
-- sha256 (`lf-normalised`): `edff851d27aa98dda7fc68dcc182de93909c2d72d366e4c77c92eac69629f764`
+- sha256 (`lf-normalised`): `41c856043726ec5c04ba347ed6b73f06998a7790b897f9d2d13e54ed62a73d2e`
 - generated view: listed, not counted
 - cited in: record TFQ-1018
 - counts toward the grade: no

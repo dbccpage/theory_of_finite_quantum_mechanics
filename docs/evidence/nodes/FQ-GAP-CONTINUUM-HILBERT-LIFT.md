@@ -47,24 +47,24 @@ Split on 2026-10-21: the construction (completion, embeddings, l2 model, intrins
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignFqGapContinuumHilbertLift.lean`
+### Lean: `lean4/ContinuumHilbertLiftIntegerSlice.lean`
 
-- file: [lean4/CampaignFqGapContinuumHilbertLift.lean](../../../lean4/CampaignFqGapContinuumHilbertLift.lean)
-- sha256 (`bytes`): `553d4dbe9de7fe4be1fd0c58d4ac71ff381ec730f55b8339a7811c68bc290894`
-- cited in: node.lean, receipt dag/research/campaign_fq-gap-continuum-hilbert-lift_lean_replay.json (CampaignFqGapContinuumHilbertLift), receipt dag/research/pr_374_round2_replay.json (CampaignFqGapContinuumHilbertLift)
+- file: [lean4/ContinuumHilbertLiftIntegerSlice.lean](../../../lean4/ContinuumHilbertLiftIntegerSlice.lean)
+- sha256 (`bytes`): `60e69b20a0335e3481c297d6a5b6e898678d9e3d06b2fa2463c2e33ab704b177`
+- cited in: node.lean, receipt dag/research/campaign_fq-gap-continuum-hilbert-lift_lean_replay.json (ContinuumHilbertLiftIntegerSlice), receipt dag/research/pr_374_round2_replay.json (ContinuumHilbertLiftIntegerSlice)
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gap-continuum-hilbert-lift_lean_replay.json](../../../dag/research/campaign_fq-gap-continuum-hilbert-lift_lean_replay.json) (module `CampaignFqGapContinuumHilbertLift`): recorded sha256 `553d4dbe9de7fe4be1fd0c58d4ac71ff381ec730f55b8339a7811c68bc290894` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_374_round2_replay.json](../../../dag/research/pr_374_round2_replay.json) (module `CampaignFqGapContinuumHilbertLift`): recorded sha256 `553d4dbe9de7fe4be1fd0c58d4ac71ff381ec730f55b8339a7811c68bc290894` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignFqGapContinuumHilbertLift`
+  - receipt [dag/research/campaign_fq-gap-continuum-hilbert-lift_lean_replay.json](../../../dag/research/campaign_fq-gap-continuum-hilbert-lift_lean_replay.json) (module `ContinuumHilbertLiftIntegerSlice`): recorded sha256 `60e69b20a0335e3481c297d6a5b6e898678d9e3d06b2fa2463c2e33ab704b177` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_374_round2_replay.json](../../../dag/research/pr_374_round2_replay.json) (module `ContinuumHilbertLiftIntegerSlice`): recorded sha256 `60e69b20a0335e3481c297d6a5b6e898678d9e3d06b2fa2463c2e33ab704b177` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build ContinuumHilbertLiftIntegerSlice`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignFqGapContinuumHilbertLift.discIdentity` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFqGapContinuumHilbertLift.discIdentity` |
-| `CampaignFqGapContinuumHilbertLift.fourMulSquare` | yes | yes | yes | propext | `#print axioms CampaignFqGapContinuumHilbertLift.fourMulSquare` |
-| `CampaignFqGapContinuumHilbertLift.intPolyNeZero` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFqGapContinuumHilbertLift.intPolyNeZero` |
-| `CampaignFqGapContinuumHilbertLift.intSqNeFive` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFqGapContinuumHilbertLift.intSqNeFive` |
-| `CampaignFqGapContinuumHilbertLift.natSqNeFive` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFqGapContinuumHilbertLift.natSqNeFive` |
-| `CampaignFqGapContinuumHilbertLift.twoMulNeOne` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFqGapContinuumHilbertLift.twoMulNeOne` |
+| `ContinuumHilbertLiftIntegerSlice.discIdentity` | yes | yes | yes | Quot.sound, propext | `#print axioms ContinuumHilbertLiftIntegerSlice.discIdentity` |
+| `ContinuumHilbertLiftIntegerSlice.fourMulSquare` | yes | yes | yes | propext | `#print axioms ContinuumHilbertLiftIntegerSlice.fourMulSquare` |
+| `ContinuumHilbertLiftIntegerSlice.intPolyNeZero` | yes | yes | yes | Quot.sound, propext | `#print axioms ContinuumHilbertLiftIntegerSlice.intPolyNeZero` |
+| `ContinuumHilbertLiftIntegerSlice.intSqNeFive` | yes | yes | yes | Quot.sound, propext | `#print axioms ContinuumHilbertLiftIntegerSlice.intSqNeFive` |
+| `ContinuumHilbertLiftIntegerSlice.natSqNeFive` | yes | yes | yes | Quot.sound, propext | `#print axioms ContinuumHilbertLiftIntegerSlice.natSqNeFive` |
+| `ContinuumHilbertLiftIntegerSlice.twoMulNeOne` | yes | yes | yes | Quot.sound, propext | `#print axioms ContinuumHilbertLiftIntegerSlice.twoMulNeOne` |
 
 - counts toward the grade: yes
 

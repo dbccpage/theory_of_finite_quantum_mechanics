@@ -13,7 +13,7 @@
 On Bool x Bool a bilinear, integer-homogeneous, Kronecker-normalized combining rule equals the pointwise product (bilinear_product_unique_on_bool_prod); the weaker interface has a dump-the-right-report rival u boxtimes v = (<0|v>+<1|v>) u, which fails local-unitary covariance (rival_fails_local_unitary_covariance).
 
 ### Governing Obligation
-Stated in H014BilinearProduct.lean, H014Interface.lean and H062CompositionTensorMub.lean. The setting is two Boolean factors; larger factor sets are not covered.
+Stated in BilinearProduct.lean, HilbertWalkInterface.lean and CompositionTensorMub.lean. The setting is two Boolean factors; larger factor sets are not covered.
 
 ### Source Status
 H062 / campaign C250 Block 05; ledger LEAN PROVED (RECEIPTED)
@@ -31,9 +31,9 @@ H062 / campaign C250 Block 05; ledger LEAN PROVED (RECEIPTED)
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/H014BilinearProduct.lean::bilinear_product_unique_on_bool_prod`
-- `lean4/H014Interface.lean::dumpRight_not_tensor`
-- `lean4/H062CompositionTensorMub.lean::rival_fails_local_unitary_covariance`
+- `lean4/BilinearProduct.lean::bilinear_product_unique_on_bool_prod`
+- `lean4/HilbertWalkInterface.lean::dumpRight_not_tensor`
+- `lean4/CompositionTensorMub.lean::rival_fails_local_unitary_covariance`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_quantum_physics/src/composition_tensor_mub.rs::compose_density`

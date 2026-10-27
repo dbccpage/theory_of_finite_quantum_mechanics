@@ -12,7 +12,7 @@ target:
   - fermion parity superselection (physical postulate)
   source_bottleneck: Standard algebra imported, not derived here; the trunk mechanizes only the two-generator
     case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence
-    of the algebra. CampaignMajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators,
+    of the algebra. MajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators,
     equality of generated complex subalgebras, occupation projections, the signed local parity identity
     and ordered parity action on supplied common occupation eigenvectors. A formal one-mode positive trace-one
     density matrix need not commute with parity. The all-mode abstract Clifford identification, source
@@ -42,7 +42,7 @@ operation_candidates:
   name: ac
   line: 27
   signature_excerpt: 'def ac (x y : A) : A'
-  source: lean4/CampaignMajoranaCliffordParity.lean
+  source: lean4/MajoranaCliffordParity.lean
   repository: this_repository
   source_sha256: 8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e
   status: source_candidate_requires_semantic_review
@@ -50,7 +50,7 @@ operation_candidates:
   name: oneRho
   line: 228
   signature_excerpt: 'def oneRho : Matrix (Fin 2) (Fin 2) ℂ'
-  source: lean4/CampaignMajoranaCliffordParity.lean
+  source: lean4/MajoranaCliffordParity.lean
   repository: this_repository
   source_sha256: 8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e
   status: source_candidate_requires_semantic_review
@@ -59,7 +59,7 @@ relation_candidates:
   name: gamma_star
   line: 70
   signature_excerpt: 'theorem gamma_star (a : K × Bool) : star (F.gamma a) = F.gamma a'
-  source: lean4/CampaignMajoranaCliffordParity.lean
+  source: lean4/MajoranaCliffordParity.lean
   repository: this_repository
   source_sha256: 8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e
   status: source_candidate_requires_semantic_review
@@ -71,7 +71,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem gamma_ac (a b : K × Bool) :
         ac (F.gamma a) (F.gamma b) = if a = b then 2 else 0
-  source: lean4/CampaignMajoranaCliffordParity.lean
+  source: lean4/MajoranaCliffordParity.lean
   repository: this_repository
   source_sha256: 8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e
   status: source_candidate_requires_semantic_review
@@ -84,7 +84,7 @@ relation_candidates:
     theorem generated_algebra :
         Algebra.adjoin ℂ (Set.range F.c ∪ Set.range (fun i => star (F.c i))) =
           Algebra.adjoin ℂ (Set.range F.gamma)
-  source: lean4/CampaignMajoranaCliffordParity.lean
+  source: lean4/MajoranaCliffordParity.lean
   repository: this_repository
   source_sha256: 8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e
   status: source_candidate_requires_semantic_review
@@ -94,7 +94,7 @@ relation_candidates:
   name: occupation_sq
   line: 137
   signature_excerpt: 'theorem occupation_sq (i : K) : F.occupation i * F.occupation i = F.occupation i'
-  source: lean4/CampaignMajoranaCliffordParity.lean
+  source: lean4/MajoranaCliffordParity.lean
   repository: this_repository
   source_sha256: 8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e
   status: source_candidate_requires_semantic_review
@@ -106,7 +106,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem localParity_pair (i : K) :
         (-I) • (F.gamma (i, false) * F.gamma (i, true)) = F.localParity i
-  source: lean4/CampaignMajoranaCliffordParity.lean
+  source: lean4/MajoranaCliffordParity.lean
   repository: this_repository
   source_sha256: 8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e
   status: source_candidate_requires_semantic_review
@@ -120,7 +120,7 @@ relation_candidates:
         (v : V) (bits : K → Bool)
         (hv : ∀ i, F.occupation i • v = if bits i then v else 0) (modes : List K) :
         (modes.map F.localParity).prod • v = ((-1 : ℤ) ^ modes.countP bits) • v
-  source: lean4/CampaignMajoranaCliffordParity.lean
+  source: lean4/MajoranaCliffordParity.lean
   repository: this_repository
   source_sha256: 8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e
   status: source_candidate_requires_semantic_review
@@ -132,71 +132,71 @@ relation_candidates:
   signature_excerpt: |-
     theorem parity_superselection_not_forced :
         oneCAR.localParity 0 * oneRho ≠ oneRho * oneCAR.localParity 0
-  source: lean4/CampaignMajoranaCliffordParity.lean
+  source: lean4/MajoranaCliffordParity.lean
   repository: this_repository
   source_sha256: 8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.gamma_star
+- original_ref: lean4/MajoranaCliffordParity.lean::MajoranaCliffordParity.CARFamily.gamma_star
   availability: local
-  symbol: CampaignMajoranaCliffordParity.CARFamily.gamma_star
-  path: lean4/CampaignMajoranaCliffordParity.lean
+  symbol: MajoranaCliffordParity.CARFamily.gamma_star
+  path: lean4/MajoranaCliffordParity.lean
   repository: this_repository
   sha256: 8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e
   declaration_status: declaration_found_not_proof_checked
   line: 70
   role: source_lead_only
-- original_ref: lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.gamma_ac
+- original_ref: lean4/MajoranaCliffordParity.lean::MajoranaCliffordParity.CARFamily.gamma_ac
   availability: local
-  symbol: CampaignMajoranaCliffordParity.CARFamily.gamma_ac
-  path: lean4/CampaignMajoranaCliffordParity.lean
+  symbol: MajoranaCliffordParity.CARFamily.gamma_ac
+  path: lean4/MajoranaCliffordParity.lean
   repository: this_repository
   sha256: 8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e
   declaration_status: declaration_found_not_proof_checked
   line: 74
   role: source_lead_only
-- original_ref: lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.generated_algebra
+- original_ref: lean4/MajoranaCliffordParity.lean::MajoranaCliffordParity.CARFamily.generated_algebra
   availability: local
-  symbol: CampaignMajoranaCliffordParity.CARFamily.generated_algebra
-  path: lean4/CampaignMajoranaCliffordParity.lean
+  symbol: MajoranaCliffordParity.CARFamily.generated_algebra
+  path: lean4/MajoranaCliffordParity.lean
   repository: this_repository
   sha256: 8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e
   declaration_status: declaration_found_not_proof_checked
   line: 98
   role: source_lead_only
-- original_ref: lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.occupation_sq
+- original_ref: lean4/MajoranaCliffordParity.lean::MajoranaCliffordParity.CARFamily.occupation_sq
   availability: local
-  symbol: CampaignMajoranaCliffordParity.CARFamily.occupation_sq
-  path: lean4/CampaignMajoranaCliffordParity.lean
+  symbol: MajoranaCliffordParity.CARFamily.occupation_sq
+  path: lean4/MajoranaCliffordParity.lean
   repository: this_repository
   sha256: 8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e
   declaration_status: declaration_found_not_proof_checked
   line: 137
   role: source_lead_only
-- original_ref: lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.localParity_pair
+- original_ref: lean4/MajoranaCliffordParity.lean::MajoranaCliffordParity.CARFamily.localParity_pair
   availability: local
-  symbol: CampaignMajoranaCliffordParity.CARFamily.localParity_pair
-  path: lean4/CampaignMajoranaCliffordParity.lean
+  symbol: MajoranaCliffordParity.CARFamily.localParity_pair
+  path: lean4/MajoranaCliffordParity.lean
   repository: this_repository
   sha256: 8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e
   declaration_status: declaration_found_not_proof_checked
   line: 150
   role: source_lead_only
-- original_ref: lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.CARFamily.parity_action
+- original_ref: lean4/MajoranaCliffordParity.lean::MajoranaCliffordParity.CARFamily.parity_action
   availability: local
-  symbol: CampaignMajoranaCliffordParity.CARFamily.parity_action
-  path: lean4/CampaignMajoranaCliffordParity.lean
+  symbol: MajoranaCliffordParity.CARFamily.parity_action
+  path: lean4/MajoranaCliffordParity.lean
   repository: this_repository
   sha256: 8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e
   declaration_status: declaration_found_not_proof_checked
   line: 191
   role: source_lead_only
-- original_ref: lean4/CampaignMajoranaCliffordParity.lean::CampaignMajoranaCliffordParity.parity_superselection_not_forced
+- original_ref: lean4/MajoranaCliffordParity.lean::MajoranaCliffordParity.parity_superselection_not_forced
   availability: local
-  symbol: CampaignMajoranaCliffordParity.parity_superselection_not_forced
-  path: lean4/CampaignMajoranaCliffordParity.lean
+  symbol: MajoranaCliffordParity.parity_superselection_not_forced
+  path: lean4/MajoranaCliffordParity.lean
   repository: this_repository
   sha256: 8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e
   declaration_status: declaration_found_not_proof_checked

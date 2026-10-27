@@ -72,7 +72,7 @@ date: 2026-09-05
 
 ## 2026-10-20 — Effect-additive Born representation (#113) and its review repairs (#120)
 
-- #113 (merged 2026-10-20): six Lean modules (`BornEffectValuation`, `BornLinearExtension`, `BornMatrixCarrier`, `BornPsdDecomposition`, `BornTraceRepresentation`, `BornRationalSphereObstruction`; also under `lean4/`) prove that an effect-additive, positive, normalized valuation on the $n\times n$ rational matrices is $E\mapsto\operatorname{tr}(\rho E)$ for a unique symmetric, positive semidefinite, trace-one $\rho$ (`BornFable.MatrixCarrier.born_representation`), and that a parity function on the rational rays of $S^2$ is a frame function that is not quadratic. Exact Python and Rust twins: `code/python/src/qm/born_effect_valuation.py`, `code/rust/src/qm/born_effect_valuation.rs`. The merge also carried the carrier-level Stone specification (`lean4/DiscreteTimeStoneSpec.lean`, run `20261020T225000Z_discrete_time_spec`) and the Gaussian-rational Hermitian carrier (`BornGaussRat`, `BornHermitianCarrier`, `BornHermitianPsdDecomposition`, `BornHermitianTraceRepresentation`, run `20261020T224000Z_gaussian_hermitian_carrier`).
+- #113 (merged 2026-10-20): six Lean modules (`BornEffectValuation`, `BornLinearExtension`, `BornMatrixCarrier`, `BornPsdDecomposition`, `BornTraceRepresentation`, `BornRationalSphereObstruction`; also under `lean4/`) prove that an effect-additive, positive, normalized valuation on the $n\times n$ rational matrices is $E\mapsto\operatorname{tr}(\rho E)$ for a unique symmetric, positive semidefinite, trace-one $\rho$ (`BornFinite.MatrixCarrier.born_representation`), and that a parity function on the rational rays of $S^2$ is a frame function that is not quadratic. Exact Python and Rust twins: `code/python/src/qm/born_effect_valuation.py`, `code/rust/src/qm/born_effect_valuation.rs`. The merge also carried the carrier-level Stone specification (`lean4/DiscreteTimeStoneSpec.lean`, run `20261020T225000Z_discrete_time_spec`) and the Gaussian-rational Hermitian carrier (`BornGaussRat`, `BornHermitianCarrier`, `BornHermitianPsdDecomposition`, `BornHermitianTraceRepresentation`, run `20261020T224000Z_gaussian_hermitian_carrier`).
 - #120 (merged 2026-10-20): second code-review repairs (Hermitian twins, discrete-time records).
 - Paper: section 13.8.13 items 1 and 2 of edition 0.56.0. Effect additivity, positivity, normalization and the matrix carrier are hypotheses; Born uniqueness and Stone's theorem stay `CONDITIONAL`.
 
@@ -474,7 +474,7 @@ v0.60.0 (2026-09-06) -- Campaign C250 Block 10: The Price List and the Terminal 
    - Formally entered 3 explicit mathematical refusals (`refusal_count == 3`): irrational sector branch counting refusal, unconditioned d=2 projective frame function refusal, and single finite conductor carrier refusal.
    - Formulated the terminal claim: "algebra is derived, the Born form is forced on effects and declared on projections, dynamics is periodic on integers and dense on rationals, the continuum enters via dense orbit closure plus declared embedding, and the reals are a declaration."
 
-5. Lean 4 Formalization (`lean4/H067TerminalPriceList.lean`):
+5. Lean 4 Formalization (`lean4/TerminalPriceList.lean`):
    - Formalized declaration enumeration, proof of declaration_count = 6, born_rule_absent, born_status, dynamics_status, continuum_status, refusal_count = 3, and terminal claim verification.
    - All theorems verified axiom-free (0 axioms, 0 sorry, 0 admit). Lake build passes across 134/134 jobs.
 
@@ -501,7 +501,7 @@ v0.59.0 (2026-09-06) -- Campaign C250 Block 09: Growth Against Refinement -- Con
    - Recorded growth and refinement costs in orthogonal ledger structures that are never collapsed into a single scalar price (`growth_and_refinement_priced_differently == true`).
    - Identified the inductive limit object as Q^ab, the directed colimit of Q(zeta_n) over inclusion (`limit_object == "Q^ab"`).
 
-5. Lean 4 Formalization (`lean4/H066GrowthRefinement.lean`):
+5. Lean 4 Formalization (`lean4/GrowthRefinement.lean`):
    - Formalized `growth_unbounded_verified`, `prime_qudit_escalation_sample`, `refinement_rational_sector_bounded`, `refinement_irrational_sector_obstructed`.
    - Formalized `cglmp_smallest_conductor_is_3360`, `cglmp_factors_verified`, `w_states_smallest_conductor_is_9240`, `w_state_factors_verified`, and `limit_object_is_q_ab`.
    - Lake build passes cleanly across 133/133 jobs with 0 sorry, 0 admit, and axioms strictly in {propext, Quot.sound}.
@@ -528,7 +528,7 @@ v0.58.0 (2026-09-06) -- Campaign C250 Block 08: Cancellation Certificates -- Dis
 4. Estate SignRepair Correspondence:
    - Linked pairable phase cancellations to order-2 domination in the estate's `SignRepair.certificate_iff_dominated` theorem, and odd-prime cyclic vortices to certificate refusal at odd part counts (`estate_certificate_link_recorded == true`).
 
-5. Lean 4 Formalization (`lean4/H065CancellationCertificates.lean`):
+5. Lean 4 Formalization (`lean4/CancellationCertificates.lean`):
    - Formalized `two_power_minimal_length_is_two`, `two_power_length_is_pairable`, `conductor_3_minimal_length_is_three`, `length_3_not_pairable`, `conductor_5_minimal_length_is_five`, `length_5_not_pairable`.
    - Formalized `unpairable_count_is_four`, `unpairable_count_in_bounds`, `first_unpairable_length_is_three`, `sorkin_cancellation_is_prime`, `sorkin_cancellation_length_is_three`, and `estate_link_confirmed`.
    - Lake build passes cleanly across 132/132 jobs with 0 sorry, 0 admit, and axioms strictly in {propext, Quot.sound}.
@@ -557,7 +557,7 @@ v0.57.0 (2026-09-06) -- Campaign C250 Block 07: Contextuality -- Meyer's Theorem
    - Demonstrated uncolorability via parity contradiction: 9 contexts force sum_C sum_{r in C} v(r) = 9, while degree 2 forces this sum to equal 2k for integer k = sum_r v(r), yielding 9 = 2k, which has no integer solution in Z.
    - Solved with exact KS SAT solver, confirming is_colorable == false, solutions_count == 0, and smallest found uncolorable ray set in d=4 at conductor 1 is 18.
 
-4. Lean 4 Formalization (`lean4/H064ContextualityThresholds.lean`):
+4. Lean 4 Formalization (`lean4/ContextualityThresholds.lean`):
    - Formalized `sqrt2_conductor_is_eight`, `conductor_12_lacks_sqrt2`, `conductor_24_contains_sqrt2`, and `conductor_24_contains_sqrt3`.
    - Formalized `peres_invariants_verified`, `threshold_d3_is_eight`, `cabello_incidence_balance`, and `threshold_d4_is_one`.
    - Proved `parity_contradiction_9_not_even` and `cabello_uncolorability_by_parity` using integer parity arithmetic in core Lean 4.
@@ -585,7 +585,7 @@ v0.56.0 (2026-09-06) -- Campaign C250 Block 06: Channels -- CPTP Channel Class, 
    - Evaluated an operational census of 8 distinct open-system channels across the 22 repository targets (identity, bit-flip, phase-flip, bit-phase flip, depolarizing p=1/3, depolarizing p=1/7, single-qubit projective measurement, and two-qubit CSS syndrome extraction).
    - Identified exactly 1 channel (depolarizing p=1/7) escalating beyond conductor 120 for Stinespring purification.
 
-4. Lean 4 Formalization (`lean4/H063CptpChannelsStinespring.lean`):
+4. Lean 4 Formalization (`lean4/CptpChannelsStinespring.lean`):
    - Formalized `choi_dimension_is_four`, `kraus_rank_bound_is_four`, `depol_choi_1_3_psd`, and `depol_choi_1_7_psd`.
    - Formalized `depol_1_3_conductor_is_twelve`, `depol_1_3_divides_120`, `depol_1_7_conductor_is_twenty_eight`, and `depol_1_7_not_divides_120`.
    - Formalized `stinespring_requires_extension_verified`, `depol_1_7_escalates_beyond_120_verified`, and `channels_censused_count_is_eight`.
@@ -611,7 +611,7 @@ v0.55.0 (2026-09-06) -- Campaign C250 Block 05: Composition -- Tensor Product Ax
    - Evaluated GKP phase-space grid translation roots of unity across grid moduli N = 2..20.
    - Established the conductor lower bound n(N) >= N/2, confirming unbounded conductor escalation as discretization approaches the continuum (gkp_conductor_unbounded == true).
 
-4. Lean 4 Formalization (`lean4/H062CompositionTensorMub.lean`):
+4. Lean 4 Formalization (`lean4/CompositionTensorMub.lean`):
    - Formalized `TensorAxiom` enumeration and `tensor_axiom_count_is_four`.
    - Formalized bilinearity (`projDump_linear_left`, `projDump_linear_right`) and covariance failure (`projDump_collision`, `rival_fails_local_unitary_covariance`).
    - Formalized dimension 6 overlap denomination (`composite_d6_overlap_is_one_sixth`), product MUB count (`product_mub_count_is_three`), and unbounded GKP conductor growth (`gkp_conductor_unbounded`).
@@ -637,7 +637,7 @@ v0.54.0 (2026-09-06) -- Campaign C250 Block 04: The Dynamics Dichotomy -- Period
 3. Target Census Across All 23 Foundational Targets:
    - Evaluated all 23 targets: identified exactly 2 aperiodic targets (Target 4 Cayley transform over so(8, Q) and Target 8 Pythagorean CHSH rotation) and 21 periodic targets (stabilizers, Cliffords, permutations, Householder reflections, and Weyl displacements).
 
-4. Lean 4 Formalization (`lean4/H061DynamicsDichotomy.lean`):
+4. Lean 4 Formalization (`lean4/DynamicsDichotomy.lean`):
    - Formalized Pythagorean power recurrence in Z[i], modulo 5 residue invariance (`pythPower_has_residue`), imaginary coordinate non-vanishing (`pythPower_im_ne_zero`), and infinite cyclic order (`pythagorean_rotation_order_infinite`).
    - Formalized branch cut declaration price of 1 for periodic sector continuous-time flow versus 0 for aperiodic sector orbit closure (`periodic_sector_requires_declaration`, `aperiodic_sector_closure_no_declaration`).
    - Elaboration passes with 0 sorry and 0 admit across 128/128 jobs in Lake, depending strictly on {propext, Quot.sound} with 0 Classical.choice.
@@ -663,7 +663,7 @@ v0.53.0 (2026-09-06) -- Campaign C250 Block 03: Which Reals -- Real Embeddings, 
 3. Census Over All 23 Foundational Targets:
    - Evaluated all prepared states, effects, and channel representations across the 23 targets: verified 23 targets with 0 embedding-relative objects, as all targets utilize rational subfields (conductors 1, 2, 3, 4) or totally positive pure states.
 
-4. Lean 4 Formalization (`lean4/H060EmbeddingRelativity.lean`):
+4. Lean 4 Formalization (`lean4/EmbeddingRelativity.lean`):
    - Formalized exact quadratic ring QSqrt5, pure state Gram matrix total positivity (`pure_state_totally_positive_2d`), conductor 5 mixed witness divergence (`witnessW5_embedding_relative`), and Galois selection refusal (`selection_refusal`).
    - Elaboration passes with 0 sorry and 0 admit across 127/127 jobs in Lake, depending strictly on {propext} with 0 Classical.choice.
 
@@ -689,7 +689,7 @@ v0.52.0 (2026-09-06) -- Campaign C250 Block 02: Everett Branch Fine-Graining, Ra
    - Classified prepared states across all 23 targets: 23 targets reside in the rational sector; 0 targets reside in the irrational sector.
    - Recorded Everett counting status as REFUSED_BEYOND_RATIONAL_SECTOR.
 
-4. Lean 4 Formalization (`lean4/H059RationalSector.lean`):
+4. Lean 4 Formalization (`lean4/RationalSector.lean`):
    - Formalized 2-branch fine-graining structures, sub-branch bounds, and integer cross-relations.
    - Mechanized Target 8 minimal multiplicity `N*` = 25 via integer Presburger arithmetic (`chsh_multiplicity_minimal`).
    - Mechanized conductor 5 witness root absence across all candidate rational roots (+-1, +-1/5) in cleared integer form.
@@ -709,7 +709,7 @@ v0.51.0 (2026-09-06) -- Campaign C250 Block 01: Busch-Gleason Effect Frame Algeb
    - Executed exact trace-form dual density matrix recovery rho with 0 algebraic error across all 10 conductor x dimension configurations (30 test runs covering maximally mixed, pure computational, and mixed cyclotomic states).
    - Achieved 100% Rust cross-language parity (136/136 cargo tests passing, 42 cross-parity tests, 0 clippy warnings).
 
-2. Lean 4 Formalization (`lean4/H058EffectFrameBusch.lean`):
+2. Lean 4 Formalization (`lean4/EffectFrameBusch.lean`):
    - Formalized exact rational Herm2/Herm3 spaces, effect algebras Eff2/Eff3, and additive frame functions.
    - Mechanized sorry-free proofs of monotonicity (`monotonicity2`, `monotonicity3`), rational homogeneity (`rational_homogeneity2`), and density squeeze interval convergence (`density_squeeze_bracket`, `density_squeeze_forces_equality`).
    - Mechanized unique trace representation theorems (`state_representation_unique2`, `state_representation_unique3`) and unit trace recovery (`recover_rho2_unit_trace`, `recover_rho3_unit_trace`).
@@ -786,32 +786,32 @@ Completed the 50-step formal mathematical, computational, and proof derivation a
 Bands A through F under the sealed-bet protocol and Claim Discipline Ladder.
 
 1. Band A (Steps 1–8: Cyclotomic Carrier & Directed Tower):
-   - BET-A sealed and resolved as RESOLVED_HIT (carrier_inventory.json, H052CyclotomicTowerDirected.lean).
+   - BET-A sealed and resolved as RESOLVED_HIT (carrier_inventory.json, CyclotomicTowerDirected.lean).
    - Minimal conductor across all 22 targets is n* = 120 = lcm(1,2,3,4,5,8,12) dividing 240.
    - Directed tower colimit Q^ab = colim_n Q(zeta_n) proved directed under integer divisibility.
    - Born weights land in real subfield Q(zeta_n)^+.
 
 2. Band B (Steps 9–18: Everett as Finite Forking & Measure Decoupling):
-   - BET-B sealed and resolved as RESOLVED_HIT (everett_tree.py, everett.rs, H053EverettForkingTree.lean).
+   - BET-B sealed and resolved as RESOLVED_HIT (everett_tree.py, everett.rs, EverettForkingTree.lean).
    - Forking tree mechanized as coproduct decomposition of quotient fibers.
    - Measure Decoupling Theorem proved: mu_count != mu_Born for non-uniform branches.
    - Sorkin I_3 = 0 exact; CHSH S = 14/5 exact; non-contextual branch counting refuted by Cabello parity (9 != 2k).
 
 3. Band C (Steps 19–30: Gleason Over Cyclotomic Fields):
-   - BET-C sealed and resolved as RESOLVED_HIT (gleason_cyclotomic.py, gleason.rs, H054GleasonCyclotomicObstruction.lean).
+   - BET-C sealed and resolved as RESOLVED_HIT (gleason_cyclotomic.py, gleason.rs, GleasonCyclotomicObstruction.lean).
    - Proved frame additivity on finite rays does not force PSD: non-PSD matrix M on Cabello 18 rays has lambda_min = -1/2.
    - Proved S(Q(zeta_n)^3) is totally disconnected in R^3; Gleason great-circle continuity fails.
    - GAP-F001-S000-004 and GAP-F001-S000-010 resolved as REFUSED-DERIVABLE (CONTINUUM IMPORT REQUIRED): Born rule is declared, not derived.
 
 4. Band D (Steps 31–38: Dynamics, Generator Ambiguity, and Stone's Theorem):
-   - BET-D sealed and resolved as RESOLVED_HIT (discrete_dynamics.py, dynamics.rs, H055DiscreteDynamicsStone.lean).
+   - BET-D sealed and resolved as RESOLVED_HIT (discrete_dynamics.py, dynamics.rs, DiscreteDynamicsStone.lean).
    - Step interpolation obstruction: toggle X in End(Bool) has no half-step; in M_2(Q) det(M)^2 = -1 has no solution; resolved over Q(i) at scale 4.
    - Multivalued matrix logarithm yields infinite branches H_k = (pi/2)(2k+1)(I-X) diverging at fractional times.
    - Cayley rational dynamics cay_tau(H) provide exact unitary transitions over Q(i) with abelian composition.
    - GAP-F001-S000-008 resolved as PRICED_CONTINUUM_INTERFACE.
 
 5. Band E (Steps 39–46: Continuum Lift & Boundary Classification):
-   - BET-E sealed and resolved as RESOLVED_HIT (continuum_lift.py, continuum.rs, H056ContinuumLiftBoundary.lean).
+   - BET-E sealed and resolved as RESOLVED_HIT (continuum_lift.py, continuum.rs, ContinuumLiftBoundary.lean).
    - Topological completion of Q^ab is C. Gained Cauchy completeness and continuous Lie groups; lost countability, decidable equality, and Galois symmetry.
    - Continuous CCR [X, P] = i*hbar*I has no finite-dimensional representation by Wintner-Wielandt trace obstruction.
    - 19 targets are internal to finite QM; 3 targets define the external continuum interface.
@@ -936,7 +936,7 @@ Implemented and verified the extension of discrete Mutually Unbiased Bases from 
 3. Code and Verification Suite:
    - Python: Added `build_d4_mub_projectors`, `reconstruct_d4_state_from_mub_probabilities`, `simulate_d4_mub_tomography`, and `evaluate_d4_clifton_kent_deficit` to `advanced_targets.py` (re-exported in `foundations.py`). Added 4 unit tests in `test_targets_13_to_22.py`.
    - Rust: Added `MubD4System` in `apps/finite_qm/code_rs/src/mub.rs` over `Cyc24` with 2-qubit Pauli Kronecker products, verifying orthonormality, mutual unbiasedness, and purity obstruction. Added unit and integration tests.
-   - Lean 4: Created `lean4/H051Mub4GaloisFieldContextuality.lean` (10 theorems, 0 sorry, 0 external axioms) verifying MUB overlap, trace preservation, and the Clifton-Kent purity obstruction in $d=4$.
+   - Lean 4: Created `lean4/Mub4GaloisFieldContextuality.lean` (10 theorems, 0 sorry, 0 external axioms) verifying MUB overlap, trace preservation, and the Clifton-Kent purity obstruction in $d=4$.
    - Pytest: 336/336 tests pass across 8 workers.
    - Cargo: 39/39 tests pass.
    - Lake: 80/80 jobs build cleanly with 0 errors and 0 warnings.
@@ -1944,7 +1944,7 @@ from 21 to **67**. Still copied, never moved; no source was modified or deleted.
 `122_finite_hilbert_boundary_from_primitive_difference` is not scaffolding. It
 carries its **own** `lean4/` — 8,664 lines across 42 files, **430 declarations,
 zero `sorry`, zero `True` stubs** — under `evidence/axiom_report.txt`, which names
-the build commands (`lake build FableHilbertWalk20260819`), the toolchain
+the build commands (`lake build HilbertWalk`), the toolchain
 (`v4.32.2`), a source-manifest hash, and an axiom policy of
 `{propext, Quot.sound}` with disclosed rational-pack exceptions. Its 48 Python
 tests pass, including an end-to-end one.

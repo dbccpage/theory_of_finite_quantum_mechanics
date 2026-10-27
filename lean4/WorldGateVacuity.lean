@@ -8,7 +8,7 @@ import PrimitiveDifference
 
 
 
-namespace OmegaWorld
+namespace ObserverWorld
 namespace GateVacuityW810
 
 open OmegaCore
@@ -688,7 +688,7 @@ def finiteGateVacuitySurface : FiniteGateVacuitySurface where
 #print axioms finiteGateVacuitySurface
 
 end GateVacuityW810
-end OmegaWorld
+end ObserverWorld
 
 private def l5aProvenance : String :=
   "Origin: lean4/WorldGateVacuity.lean Claim: all_true_iff_false_not_mem AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

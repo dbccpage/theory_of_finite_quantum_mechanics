@@ -1,10 +1,10 @@
-import H054GleasonCyclotomicObstruction
+import GleasonCyclotomicObstruction
 
 /- Literal universal integer parity and the measured-ray/non-PSD countermodel.
    Normalized rational arrays are checked separately by native exact predicates.
    Origin: FQ-CABELLO-NO-INTEGER-FRAME. AuthorityEffect: None. -/
 namespace QuantumMechanics.PromptCabelloParity
-open FableHilbertWalk20260819.H054
+open HilbertWalk.GleasonCyclotomicObstruction
 
 theorem odd_context_total_not_twice_integer (k : Int) : (9 : Int) ≠ 2*k := by omega
 

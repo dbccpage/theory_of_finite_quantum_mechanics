@@ -28,17 +28,17 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Formalization
-- `lean4/CampaignTfq0010FiniteQed.lean`:
-  - `CampaignTfq0010FiniteQed.discrete_ward_identity_and_coboundary_gauge_coupling_invariance`
-  - `CampaignTfq0010FiniteQed.charged_gaussian_rational_link_transport_and_vertex_covariant_difference`
-  - `CampaignTfq0010FiniteQed.finite_clifford_car_nilpotency_and_occupation_number_projector`
-  - `CampaignTfq0010FiniteQed.dirac_coulomb_n2_fine_structure_darwin_and_spin_orbit_degeneracy`
-  - `CampaignTfq0010FiniteQed.qed_one_loop_vacuum_polarization_and_lamb_shift_contact_datum`
-  - `CampaignTfq0010FiniteQed.weinberg_electroweak_projectors_and_custodial_rho_identity`
-  - `CampaignTfq0010FiniteQed.gell_mann_nishijima_and_anomaly_cancellation_at_nc3_vs_nc1`
-  - `CampaignTfq0010FiniteQed.f002_interface_inventory_does_not_derive_continuum_qed_fence`
-  - `CampaignTfq0010FiniteQed.finite_qed_computational_controls_scope_separation_fence`
-  - `CampaignTfq0010FiniteQed.tfq0010_finite_qed_and_electroweak_shadow_ledger_fence`
+- `lean4/FiniteQedElectroweakShadow.lean`:
+  - `FiniteQedElectroweakShadow.discrete_ward_identity_and_coboundary_gauge_coupling_invariance`
+  - `FiniteQedElectroweakShadow.charged_gaussian_rational_link_transport_and_vertex_covariant_difference`
+  - `FiniteQedElectroweakShadow.finite_clifford_car_nilpotency_and_occupation_number_projector`
+  - `FiniteQedElectroweakShadow.dirac_coulomb_n2_fine_structure_darwin_and_spin_orbit_degeneracy`
+  - `FiniteQedElectroweakShadow.qed_one_loop_vacuum_polarization_and_lamb_shift_contact_datum`
+  - `FiniteQedElectroweakShadow.weinberg_electroweak_projectors_and_custodial_rho_identity`
+  - `FiniteQedElectroweakShadow.gell_mann_nishijima_and_anomaly_cancellation_at_nc3_vs_nc1`
+  - `FiniteQedElectroweakShadow.f002_interface_inventory_does_not_derive_continuum_qed_fence`
+  - `FiniteQedElectroweakShadow.finite_qed_computational_controls_scope_separation_fence`
+  - `FiniteQedElectroweakShadow.tfq0010_finite_qed_and_electroweak_shadow_ledger_fence`
 - `lean4/FiniteQM.lean`:
   - `FiniteQM.weinberg_projectors_complete_orthogonal_idempotent`
   - `FiniteQM.ew_custodial_rho_eq_one`
@@ -65,5 +65,5 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F001.S000`, `F002.S001`
 - **Primary Source Paths**:
   - `lean4/FiniteQM.lean`
-  - `lean4/CampaignTfq0010FiniteQed.lean`
+  - `lean4/FiniteQedElectroweakShadow.lean`
   - `checks/independent/tfq-0010.py`

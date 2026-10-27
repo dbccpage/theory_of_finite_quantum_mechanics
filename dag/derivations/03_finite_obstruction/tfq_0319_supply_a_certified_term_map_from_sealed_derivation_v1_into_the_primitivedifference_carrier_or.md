@@ -26,7 +26,7 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignTfq0319UnjoinedReceipt.lean`](../../../lean4/CampaignTfq0319UnjoinedReceipt.lean) records four functions on a two-mark carrier, self-coboundary 0, edge coboundaries 0, 1, 1, 0, and four pairings of one seven-nibble receipt. The node stays OPEN.
+- [`lean4/TwoMarkCoboundary.lean`](../../../lean4/TwoMarkCoboundary.lean) records four functions on a two-mark carrier, self-coboundary 0, edge coboundaries 0, 1, 1, 0, and four pairings of one seven-nibble receipt. The node stays OPEN.
 - No local twin of `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B001_raw_distinction.lean` is in this checkout.
 
 ### Sovereign Rust Certifiers

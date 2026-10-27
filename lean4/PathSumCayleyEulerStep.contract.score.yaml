@@ -1,0 +1,331 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/PathSumCayleyEulerStep.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/PathSumCayleyEulerStep.lean",
+      "sha256": "7e56a98ebabae29b358a662e21787924d8e9474a1788bf724804fe535c64575d"
+    },
+    "boundaries": [
+      "No general path-sum theorem, normalized instrument, CPTP lift, exact channel or continuum generator is constructed.",
+      "The independent Python ranges are bounded tests; universal integer statements are supported by the Lean declarations and their existing replay receipt.",
+      "This companion adds no theorem or derivation-status promotion. The L4 acceptance floor is not met or waived."
+    ],
+    "contract_urn": "urn:tfqm:campaign:tfq-0008:finite-integer-shadow",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_tfq-0008_lean_replay.json",
+        "sha256": "224d62359c6ae0c4171c9f2922b430870d2390d4a16875b5381c9afbc64da68b"
+      },
+      {
+        "path": "checks/independent/tfq-0008.py",
+        "sha256": "bed995f2908f9dd44123904086226b92646ddb89e10c6bf63404b7313480620c"
+      },
+      {
+        "path": "dag/derivations/independent/tfq-0008.md",
+        "sha256": "13a3502eaeede8aa0a90363fd568b677b5462db137d49a6acc54966a20d8fa25"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+      }
+    ],
+    "owned_invariants": [
+      "For the two-edge path 0 -> 1 -> 2 with arbitrary integer weights a,b, the length-1 sum 0 -> 2 is zero and the length-2 sum is a*b.",
+      "The unnormalized mask (w0,w1) -> (0,w1) preserves its second coordinate, is idempotent and maps zero sector mass to (0,0).",
+      "For every integer t, the Cayley column squared length is (1+t*t)^2 and the Euler column has unit squared length exactly when t=0.",
+      "The explicit Cayley values are 4 at t=1 and 25 at t=2; the Euler value at t=2 is 5 with inflation 4.",
+      "The two explicit integer matrices have entrywise distance 1 and row sums (2,2) versus (2,3), witnessing failure of exact equal row sums.",
+      "Only the standard foundational axioms propext, Classical.choice and Quot.sound occur in the recorded theorem audit."
+    ],
+    "profile": "Symbolic/Formal",
+    "purpose": "Standalone exact integer examples for TFQ-0008; the full finite-dynamics node remains OPEN.",
+    "schema_version": "2.0.0",
+    "symbols": [
+      "PathSumCayleyEulerStep.path_len1_zero",
+      "PathSumCayleyEulerStep.path_len2_product",
+      "PathSumCayleyEulerStep.mask_support",
+      "PathSumCayleyEulerStep.mask_keeps_sector",
+      "PathSumCayleyEulerStep.mask_idempotent",
+      "PathSumCayleyEulerStep.mask_zero_mass",
+      "PathSumCayleyEulerStep.cayley_norm",
+      "PathSumCayleyEulerStep.euler_unit_iff",
+      "PathSumCayleyEulerStep.cayley_at_1",
+      "PathSumCayleyEulerStep.euler_inflation_at_2",
+      "PathSumCayleyEulerStep.cayley_at_2",
+      "PathSumCayleyEulerStep.tolerance_not_exact"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 2935,
+      "original_paths": [
+        "lean4/CampaignTfq0008FiniteDynamics.contract.score.yaml#pr259-governance-companion-repair"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignTfq0008FiniteDynamics.lean\",\n    \"sha256\": \"2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c\"\n  },\n  \"boundaries\": [\n    \"No general path-sum theorem, normalized instrument, CPTP lift, exact channel or continuum generator is constructed.\",\n    \"The independent Python ranges are bounded tests; universal integer statements are supported by the Lean declarations and their existing replay receipt.\",\n    \"This companion adds no theorem or derivation-status promotion. The L4 acceptance floor is not met or waived.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:campaign:tfq-0008:finite-integer-shadow\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_tfq-0008_lean_replay.json\",\n      \"sha256\": \"05796202ef874d7e5890dd92626b1e8a67a3466e75782d6c75f58f045fd29c2a\"\n    },\n    {\n      \"path\": \"checks/independent/tfq-0008.py\",\n      \"sha256\": \"bed995f2908f9dd44123904086226b92646ddb89e10c6bf63404b7313480620c\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/tfq-0008.md\",\n      \"sha256\": \"e113c9c28a75902d5ed6450bbd3d6a9f240e78b72fde2c37f9bc2cc9bcff9903\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"For the two-edge path 0 -> 1 -> 2 with arbitrary integer weights a,b, the length-1 sum 0 -> 2 is zero and the length-2 sum is a*b.\",\n    \"The unnormalized mask (w0,w1) -> (0,w1) preserves its second coordinate, is idempotent and maps zero sector mass to (0,0).\",\n    \"For every integer t, the Cayley column squared length is (1+t*t)^2 and the Euler column has unit squared length exactly when t=0.\",\n    \"The explicit Cayley values are 4 at t=1 and 25 at t=2; the Euler value at t=2 is 5 with inflation 4.\",\n    \"The two explicit integer matrices have entrywise distance 1 and row sums (2,2) versus (2,3), witnessing failure of exact equal row sums.\",\n    \"Only the standard foundational axioms propext, Classical.choice and Quot.sound occur in the recorded theorem audit.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"purpose\": \"Standalone exact integer examples for TFQ-0008; the full finite-dynamics node remains OPEN.\",\n  \"schema_version\": \"2.0.0\",\n  \"symbols\": [\n    \"CampaignTfq0008FiniteDynamics.path_len1_zero\",\n    \"CampaignTfq0008FiniteDynamics.path_len2_product\",\n    \"CampaignTfq0008FiniteDynamics.mask_support\",\n    \"CampaignTfq0008FiniteDynamics.mask_keeps_sector\",\n    \"CampaignTfq0008FiniteDynamics.mask_idempotent\",\n    \"CampaignTfq0008FiniteDynamics.mask_zero_mass\",\n    \"CampaignTfq0008FiniteDynamics.cayley_norm\",\n    \"CampaignTfq0008FiniteDynamics.euler_unit_iff\",\n    \"CampaignTfq0008FiniteDynamics.cayley_at_1\",\n    \"CampaignTfq0008FiniteDynamics.euler_inflation_at_2\",\n    \"CampaignTfq0008FiniteDynamics.cayley_at_2\",\n    \"CampaignTfq0008FiniteDynamics.tolerance_not_exact\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignTfq0008FiniteDynamics.lean",
+          "sha256": "2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c"
+        },
+        "boundaries": [
+          "No general path-sum theorem, normalized instrument, CPTP lift, exact channel or continuum generator is constructed.",
+          "The independent Python ranges are bounded tests; universal integer statements are supported by the Lean declarations and their existing replay receipt.",
+          "This companion adds no theorem or derivation-status promotion. The L4 acceptance floor is not met or waived."
+        ],
+        "contract_urn": "urn:tfqm:campaign:tfq-0008:finite-integer-shadow",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_tfq-0008_lean_replay.json",
+            "sha256": "05796202ef874d7e5890dd92626b1e8a67a3466e75782d6c75f58f045fd29c2a"
+          },
+          {
+            "path": "checks/independent/tfq-0008.py",
+            "sha256": "bed995f2908f9dd44123904086226b92646ddb89e10c6bf63404b7313480620c"
+          },
+          {
+            "path": "dag/derivations/independent/tfq-0008.md",
+            "sha256": "e113c9c28a75902d5ed6450bbd3d6a9f240e78b72fde2c37f9bc2cc9bcff9903"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "owned_invariants": [
+          "For the two-edge path 0 -> 1 -> 2 with arbitrary integer weights a,b, the length-1 sum 0 -> 2 is zero and the length-2 sum is a*b.",
+          "The unnormalized mask (w0,w1) -> (0,w1) preserves its second coordinate, is idempotent and maps zero sector mass to (0,0).",
+          "For every integer t, the Cayley column squared length is (1+t*t)^2 and the Euler column has unit squared length exactly when t=0.",
+          "The explicit Cayley values are 4 at t=1 and 25 at t=2; the Euler value at t=2 is 5 with inflation 4.",
+          "The two explicit integer matrices have entrywise distance 1 and row sums (2,2) versus (2,3), witnessing failure of exact equal row sums.",
+          "Only the standard foundational axioms propext, Classical.choice and Quot.sound occur in the recorded theorem audit."
+        ],
+        "profile": "Symbolic/Formal",
+        "purpose": "Standalone exact integer examples for TFQ-0008; the full finite-dynamics node remains OPEN.",
+        "schema_version": "2.0.0",
+        "symbols": [
+          "CampaignTfq0008FiniteDynamics.path_len1_zero",
+          "CampaignTfq0008FiniteDynamics.path_len2_product",
+          "CampaignTfq0008FiniteDynamics.mask_support",
+          "CampaignTfq0008FiniteDynamics.mask_keeps_sector",
+          "CampaignTfq0008FiniteDynamics.mask_idempotent",
+          "CampaignTfq0008FiniteDynamics.mask_zero_mass",
+          "CampaignTfq0008FiniteDynamics.cayley_norm",
+          "CampaignTfq0008FiniteDynamics.euler_unit_iff",
+          "CampaignTfq0008FiniteDynamics.cayley_at_1",
+          "CampaignTfq0008FiniteDynamics.euler_inflation_at_2",
+          "CampaignTfq0008FiniteDynamics.cayley_at_2",
+          "CampaignTfq0008FiniteDynamics.tolerance_not_exact"
+        ]
+      },
+      "sha256": "64fab5d0caa34b118509d8e46c97c4c17754406492bdecb55b5babf8910cc541"
+    },
+    {
+      "bytes": 2844,
+      "original_paths": [
+        "lean4/PathSumCayleyEulerStep.contract.score.yaml#pr259-governance-companion-repair"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/PathSumCayleyEulerStep.lean\",\n    \"sha256\": \"7e56a98ebabae29b358a662e21787924d8e9474a1788bf724804fe535c64575d\"\n  },\n  \"boundaries\": [\n    \"No general path-sum theorem, normalized instrument, CPTP lift, exact channel or continuum generator is constructed.\",\n    \"The independent Python ranges are bounded tests; universal integer statements are supported by the Lean declarations and their existing replay receipt.\",\n    \"This companion adds no theorem or derivation-status promotion. The L4 acceptance floor is not met or waived.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:campaign:tfq-0008:finite-integer-shadow\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_tfq-0008_lean_replay.json\",\n      \"sha256\": \"224d62359c6ae0c4171c9f2922b430870d2390d4a16875b5381c9afbc64da68b\"\n    },\n    {\n      \"path\": \"checks/independent/tfq-0008.py\",\n      \"sha256\": \"bed995f2908f9dd44123904086226b92646ddb89e10c6bf63404b7313480620c\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/tfq-0008.md\",\n      \"sha256\": \"13a3502eaeede8aa0a90363fd568b677b5462db137d49a6acc54966a20d8fa25\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"For the two-edge path 0 -> 1 -> 2 with arbitrary integer weights a,b, the length-1 sum 0 -> 2 is zero and the length-2 sum is a*b.\",\n    \"The unnormalized mask (w0,w1) -> (0,w1) preserves its second coordinate, is idempotent and maps zero sector mass to (0,0).\",\n    \"For every integer t, the Cayley column squared length is (1+t*t)^2 and the Euler column has unit squared length exactly when t=0.\",\n    \"The explicit Cayley values are 4 at t=1 and 25 at t=2; the Euler value at t=2 is 5 with inflation 4.\",\n    \"The two explicit integer matrices have entrywise distance 1 and row sums (2,2) versus (2,3), witnessing failure of exact equal row sums.\",\n    \"Only the standard foundational axioms propext, Classical.choice and Quot.sound occur in the recorded theorem audit.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"purpose\": \"Standalone exact integer examples for TFQ-0008; the full finite-dynamics node remains OPEN.\",\n  \"schema_version\": \"2.0.0\",\n  \"symbols\": [\n    \"PathSumCayleyEulerStep.path_len1_zero\",\n    \"PathSumCayleyEulerStep.path_len2_product\",\n    \"PathSumCayleyEulerStep.mask_support\",\n    \"PathSumCayleyEulerStep.mask_keeps_sector\",\n    \"PathSumCayleyEulerStep.mask_idempotent\",\n    \"PathSumCayleyEulerStep.mask_zero_mass\",\n    \"PathSumCayleyEulerStep.cayley_norm\",\n    \"PathSumCayleyEulerStep.euler_unit_iff\",\n    \"PathSumCayleyEulerStep.cayley_at_1\",\n    \"PathSumCayleyEulerStep.euler_inflation_at_2\",\n    \"PathSumCayleyEulerStep.cayley_at_2\",\n    \"PathSumCayleyEulerStep.tolerance_not_exact\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/PathSumCayleyEulerStep.lean",
+          "sha256": "7e56a98ebabae29b358a662e21787924d8e9474a1788bf724804fe535c64575d"
+        },
+        "boundaries": [
+          "No general path-sum theorem, normalized instrument, CPTP lift, exact channel or continuum generator is constructed.",
+          "The independent Python ranges are bounded tests; universal integer statements are supported by the Lean declarations and their existing replay receipt.",
+          "This companion adds no theorem or derivation-status promotion. The L4 acceptance floor is not met or waived."
+        ],
+        "contract_urn": "urn:tfqm:campaign:tfq-0008:finite-integer-shadow",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_tfq-0008_lean_replay.json",
+            "sha256": "224d62359c6ae0c4171c9f2922b430870d2390d4a16875b5381c9afbc64da68b"
+          },
+          {
+            "path": "checks/independent/tfq-0008.py",
+            "sha256": "bed995f2908f9dd44123904086226b92646ddb89e10c6bf63404b7313480620c"
+          },
+          {
+            "path": "dag/derivations/independent/tfq-0008.md",
+            "sha256": "13a3502eaeede8aa0a90363fd568b677b5462db137d49a6acc54966a20d8fa25"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "owned_invariants": [
+          "For the two-edge path 0 -> 1 -> 2 with arbitrary integer weights a,b, the length-1 sum 0 -> 2 is zero and the length-2 sum is a*b.",
+          "The unnormalized mask (w0,w1) -> (0,w1) preserves its second coordinate, is idempotent and maps zero sector mass to (0,0).",
+          "For every integer t, the Cayley column squared length is (1+t*t)^2 and the Euler column has unit squared length exactly when t=0.",
+          "The explicit Cayley values are 4 at t=1 and 25 at t=2; the Euler value at t=2 is 5 with inflation 4.",
+          "The two explicit integer matrices have entrywise distance 1 and row sums (2,2) versus (2,3), witnessing failure of exact equal row sums.",
+          "Only the standard foundational axioms propext, Classical.choice and Quot.sound occur in the recorded theorem audit."
+        ],
+        "profile": "Symbolic/Formal",
+        "purpose": "Standalone exact integer examples for TFQ-0008; the full finite-dynamics node remains OPEN.",
+        "schema_version": "2.0.0",
+        "symbols": [
+          "PathSumCayleyEulerStep.path_len1_zero",
+          "PathSumCayleyEulerStep.path_len2_product",
+          "PathSumCayleyEulerStep.mask_support",
+          "PathSumCayleyEulerStep.mask_keeps_sector",
+          "PathSumCayleyEulerStep.mask_idempotent",
+          "PathSumCayleyEulerStep.mask_zero_mass",
+          "PathSumCayleyEulerStep.cayley_norm",
+          "PathSumCayleyEulerStep.euler_unit_iff",
+          "PathSumCayleyEulerStep.cayley_at_1",
+          "PathSumCayleyEulerStep.euler_inflation_at_2",
+          "PathSumCayleyEulerStep.cayley_at_2",
+          "PathSumCayleyEulerStep.tolerance_not_exact"
+        ]
+      },
+      "sha256": "74b982e559150b86f019a284e6722d6ff279e0bf70e66a032f9d3ef2e056eb96"
+    }
+  ],
+  "current_contract": "74b982e559150b86f019a284e6722d6ff279e0bf70e66a032f9d3ef2e056eb96",
+  "current_scoring": "a82d633b60cd73ef54bc0a7844111a802d9d53dbecba28ca410b196b572f46a7",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2972,
+      "original_paths": [
+        "lean4/CampaignTfq0008FiniteDynamics.contract.score.yaml#pr259-governance-companion-repair"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignTfq0008FiniteDynamics.lean\",\n    \"sha256\": \"2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c\"\n  },\n  \"assessment_id\": \"pr259-governance-companion-repair\",\n  \"basis\": {\n    \"G1\": \"Reviewed all twelve exported theorems against the narrow contract and derivation note. The full node remains OPEN; no general instrument, exact channel or continuum claim is made.\",\n    \"G2\": \"List sums, masks, integer polynomial identities and matrix row sums use exact Int/Nat arithmetic. Existing source-bound Lean replay covers every theorem; the independent integer checker passed during this repair.\",\n    \"G3\": \"The module imports no external library, uses structural recursion over lists, and has no admission or custom axiom declarations. The existing replay lists only the three permitted foundational axioms or none for each exported theorem.\",\n    \"G4\": \"Reused the existing successful Lean 4.35.0 receipt after matching the exact module and Lake SHA-256 values. The independent checker was run afresh for its documented finite ranges. No fresh Lean build, mutation coverage, alternate prover or general-dynamics validation is claimed.\",\n    \"G5\": \"The 132-line module factors list summation, masking, polynomial expressions and matrix observations into short definitions. List recursion decreases structurally; the pair sum visits each ordered edge pair. No formal cost or heartbeat bound is claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T03:01:45.764682+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_tfq-0008_lean_replay.json\",\n      \"sha256\": \"05796202ef874d7e5890dd92626b1e8a67a3466e75782d6c75f58f045fd29c2a\"\n    },\n    {\n      \"path\": \"checks/independent/tfq-0008.py\",\n      \"sha256\": \"bed995f2908f9dd44123904086226b92646ddb89e10c6bf63404b7313480620c\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/tfq-0008.md\",\n      \"sha256\": \"e113c9c28a75902d5ed6450bbd3d6a9f240e78b72fde2c37f9bc2cc9bcff9903\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Straightforward list sums, a coordinate mask, elementary integer identities and one explicit matrix counterexample. These are standard definitions and standalone lemmas under SCORING.md section 2; no production architecture is delivered.\",\n  \"open_higher_grade_findings\": [\n    \"The small example module is below the L4 acceptance floor; no maintainer exception is authorized for these proof bytes.\",\n    \"The existing Lean receipt is reused; only the independent Python checker was freshly executed.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignTfq0008FiniteDynamics.lean",
+          "sha256": "2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c"
+        },
+        "assessment_id": "pr259-governance-companion-repair",
+        "basis": {
+          "G1": "Reviewed all twelve exported theorems against the narrow contract and derivation note. The full node remains OPEN; no general instrument, exact channel or continuum claim is made.",
+          "G2": "List sums, masks, integer polynomial identities and matrix row sums use exact Int/Nat arithmetic. Existing source-bound Lean replay covers every theorem; the independent integer checker passed during this repair.",
+          "G3": "The module imports no external library, uses structural recursion over lists, and has no admission or custom axiom declarations. The existing replay lists only the three permitted foundational axioms or none for each exported theorem.",
+          "G4": "Reused the existing successful Lean 4.35.0 receipt after matching the exact module and Lake SHA-256 values. The independent checker was run afresh for its documented finite ranges. No fresh Lean build, mutation coverage, alternate prover or general-dynamics validation is claimed.",
+          "G5": "The 132-line module factors list summation, masking, polynomial expressions and matrix observations into short definitions. List recursion decreases structurally; the pair sum visits each ordered edge pair. No formal cost or heartbeat bound is claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-24T03:01:45.764682+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_tfq-0008_lean_replay.json",
+            "sha256": "05796202ef874d7e5890dd92626b1e8a67a3466e75782d6c75f58f045fd29c2a"
+          },
+          {
+            "path": "checks/independent/tfq-0008.py",
+            "sha256": "bed995f2908f9dd44123904086226b92646ddb89e10c6bf63404b7313480620c"
+          },
+          {
+            "path": "dag/derivations/independent/tfq-0008.md",
+            "sha256": "e113c9c28a75902d5ed6450bbd3d6a9f240e78b72fde2c37f9bc2cc9bcff9903"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Straightforward list sums, a coordinate mask, elementary integer identities and one explicit matrix counterexample. These are standard definitions and standalone lemmas under SCORING.md section 2; no production architecture is delivered.",
+        "open_higher_grade_findings": [
+          "The small example module is below the L4 acceptance floor; no maintainer exception is authorized for these proof bytes.",
+          "The existing Lean receipt is reused; only the independent Python checker was freshly executed."
+        ],
+        "profile": "Symbolic/Formal",
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "11e2c4d2c51e7e0065fcba1aef733ee9fc28a20f0bdf29750c3d256e282ec801"
+    },
+    {
+      "bytes": 3407,
+      "original_paths": [
+        "lean4/PathSumCayleyEulerStep.contract.score.yaml#pr259-governance-companion-repair"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/PathSumCayleyEulerStep.lean\",\n    \"sha256\": \"7e56a98ebabae29b358a662e21787924d8e9474a1788bf724804fe535c64575d\"\n  },\n  \"assessment_id\": \"pr259-governance-companion-repair\",\n  \"basis\": {\n    \"G1\": \"Reviewed all twelve exported theorems against the narrow contract and derivation note. The full node remains OPEN; no general instrument, exact channel or continuum claim is made.\",\n    \"G2\": \"List sums, masks, integer polynomial identities and matrix row sums use exact Int/Nat arithmetic. Existing source-bound Lean replay covers every theorem; the independent integer checker passed during this repair.\",\n    \"G3\": \"The module imports no external library, uses structural recursion over lists, and has no admission or custom axiom declarations. The existing replay lists only the three permitted foundational axioms or none for each exported theorem.\",\n    \"G4\": \"Reused the existing successful Lean 4.35.0 receipt after matching the exact module and Lake SHA-256 values. The independent checker was run afresh for its documented finite ranges. No fresh Lean build, mutation coverage, alternate prover or general-dynamics validation is claimed.\",\n    \"G5\": \"The 132-line module factors list summation, masking, polynomial expressions and matrix observations into short definitions. List recursion decreases structurally; the pair sum visits each ordered edge pair. No formal cost or heartbeat bound is claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-24T03:01:45.764682+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_tfq-0008_lean_replay.json\",\n      \"sha256\": \"224d62359c6ae0c4171c9f2922b430870d2390d4a16875b5381c9afbc64da68b\"\n    },\n    {\n      \"path\": \"checks/independent/tfq-0008.py\",\n      \"sha256\": \"bed995f2908f9dd44123904086226b92646ddb89e10c6bf63404b7313480620c\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/tfq-0008.md\",\n      \"sha256\": \"13a3502eaeede8aa0a90363fd568b677b5462db137d49a6acc54966a20d8fa25\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Straightforward list sums, a coordinate mask, elementary integer identities and one explicit matrix counterexample. These are standard definitions and standalone lemmas under SCORING.md section 2; no production architecture is delivered.\",\n  \"open_higher_grade_findings\": [\n    \"The small example module is below the L4 acceptance floor; no maintainer exception is authorized for these proof bytes.\",\n    \"The existing Lean receipt is reused; only the independent Python checker was freshly executed.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rebound\": {\n    \"date\": \"2026-10-27\",\n    \"from_path\": \"lean4/CampaignTfq0008FiniteDynamics.lean\",\n    \"from_sha256\": \"2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c\",\n    \"note\": \"Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived.\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/PathSumCayleyEulerStep.lean",
+          "sha256": "7e56a98ebabae29b358a662e21787924d8e9474a1788bf724804fe535c64575d"
+        },
+        "assessment_id": "pr259-governance-companion-repair",
+        "basis": {
+          "G1": "Reviewed all twelve exported theorems against the narrow contract and derivation note. The full node remains OPEN; no general instrument, exact channel or continuum claim is made.",
+          "G2": "List sums, masks, integer polynomial identities and matrix row sums use exact Int/Nat arithmetic. Existing source-bound Lean replay covers every theorem; the independent integer checker passed during this repair.",
+          "G3": "The module imports no external library, uses structural recursion over lists, and has no admission or custom axiom declarations. The existing replay lists only the three permitted foundational axioms or none for each exported theorem.",
+          "G4": "Reused the existing successful Lean 4.35.0 receipt after matching the exact module and Lake SHA-256 values. The independent checker was run afresh for its documented finite ranges. No fresh Lean build, mutation coverage, alternate prover or general-dynamics validation is claimed.",
+          "G5": "The 132-line module factors list summation, masking, polynomial expressions and matrix observations into short definitions. List recursion decreases structurally; the pair sum visits each ordered edge pair. No formal cost or heartbeat bound is claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-24T03:01:45.764682+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_tfq-0008_lean_replay.json",
+            "sha256": "224d62359c6ae0c4171c9f2922b430870d2390d4a16875b5381c9afbc64da68b"
+          },
+          {
+            "path": "checks/independent/tfq-0008.py",
+            "sha256": "bed995f2908f9dd44123904086226b92646ddb89e10c6bf63404b7313480620c"
+          },
+          {
+            "path": "dag/derivations/independent/tfq-0008.md",
+            "sha256": "13a3502eaeede8aa0a90363fd568b677b5462db137d49a6acc54966a20d8fa25"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Straightforward list sums, a coordinate mask, elementary integer identities and one explicit matrix counterexample. These are standard definitions and standalone lemmas under SCORING.md section 2; no production architecture is delivered.",
+        "open_higher_grade_findings": [
+          "The small example module is below the L4 acceptance floor; no maintainer exception is authorized for these proof bytes.",
+          "The existing Lean receipt is reused; only the independent Python checker was freshly executed."
+        ],
+        "profile": "Symbolic/Formal",
+        "rebound": {
+          "date": "2026-10-27",
+          "from_path": "lean4/CampaignTfq0008FiniteDynamics.lean",
+          "from_sha256": "2830d039183600c619583a0cddbce97dd29ee926a6d64e9592488e9dc36c5c3c",
+          "note": "Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived."
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "a82d633b60cd73ef54bc0a7844111a802d9d53dbecba28ca410b196b572f46a7"
+    }
+  ]
+}

@@ -126,7 +126,7 @@ argument with an actual frame-function construction on the declared domain.
 The existing `GleasonTheorem.lean` names are retained with accurate comments;
 its oddness proof alone never ruled out b=1/2.
 
-`H054GleasonCyclotomicObstruction.lean` now proves that no integer assignment
+`GleasonCyclotomicObstruction.lean` now proves that no integer assignment
 has sum one on each of the nine Cabello contexts: every one of the 18 rays
 occurs twice, whereas the total demanded by the contexts is nine. This rules
 out binary noncontextual assignments on that finite projective configuration.
@@ -135,7 +135,7 @@ The same file now bundles every sampled bound and frame sum for M_bad/2 with
 its negative witness. The witness's Rayleigh quotient is -1/2, which is not
 an assertion that the least eigenvalue equals -1/2.
 
-`H058EffectFrameBusch.lean` proves the four probes D0,D1,P_plus,P_R are
+`EffectFrameBusch.lean` proves the four probes D0,D1,P_plus,P_R are
 actual effects, that their trace readouts determine a Hermitian qubit matrix,
 and that the tomographic candidate reproduces those readouts. Positivity on
 all effects and representation of the entire function remain separate.

@@ -43,43 +43,6 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean`
-
-- file: [lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean](../../../lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean)
-- sha256 (`bytes`): `e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094`
-- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-phi-well-defined-l1-duality_lean_replay.json (CampaignPgwWdpPhiWellDefinedL1Duality), receipt dag/research/pr_377_round2_replay.json (CampaignPgwWdpPhiWellDefinedL1Duality), record TFQ-0544
-- replay: `verified`
-  - receipt [dag/research/campaign_pgw-wdp-phi-well-defined-l1-duality_lean_replay.json](../../../dag/research/campaign_pgw-wdp-phi-well-defined-l1-duality_lean_replay.json) (module `CampaignPgwWdpPhiWellDefinedL1Duality`): recorded sha256 `e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_377_round2_replay.json](../../../dag/research/pr_377_round2_replay.json) (module `CampaignPgwWdpPhiWellDefinedL1Duality`): recorded sha256 `e0b6759ce98df8fef7b96d569b6f5ca36c73d45b7f938670127412180eb6f094` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignPgwWdpPhiWellDefinedL1Duality`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `CampaignPgwWdpPhiWellDefinedL1Duality.absSum` | yes | yes | yes | none | `#print axioms CampaignPgwWdpPhiWellDefinedL1Duality.absSum` |
-| `CampaignPgwWdpPhiWellDefinedL1Duality.absSum_attained` | yes | yes | yes | propext | `#print axioms CampaignPgwWdpPhiWellDefinedL1Duality.absSum_attained` |
-| `CampaignPgwWdpPhiWellDefinedL1Duality.absSum_ge_two` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwWdpPhiWellDefinedL1Duality.absSum_ge_two` |
-| `CampaignPgwWdpPhiWellDefinedL1Duality.absSum_shift` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwWdpPhiWellDefinedL1Duality.absSum_shift` |
-| `CampaignPgwWdpPhiWellDefinedL1Duality.add3` | yes | yes | yes | none | `#print axioms CampaignPgwWdpPhiWellDefinedL1Duality.add3` |
-| `CampaignPgwWdpPhiWellDefinedL1Duality.d0` | yes | yes | yes | none | `#print axioms CampaignPgwWdpPhiWellDefinedL1Duality.d0` |
-| `CampaignPgwWdpPhiWellDefinedL1Duality.d0_linear` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwWdpPhiWellDefinedL1Duality.d0_linear` |
-| `CampaignPgwWdpPhiWellDefinedL1Duality.natAbs_pair_le_absSum` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwWdpPhiWellDefinedL1Duality.natAbs_pair_le_absSum` |
-| `CampaignPgwWdpPhiWellDefinedL1Duality.pair110` | yes | yes | yes | none | `#print axioms CampaignPgwWdpPhiWellDefinedL1Duality.pair110` |
-| `CampaignPgwWdpPhiWellDefinedL1Duality.pair_d0_zero` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwWdpPhiWellDefinedL1Duality.pair_d0_zero` |
-| `CampaignPgwWdpPhiWellDefinedL1Duality.pair_residual` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwWdpPhiWellDefinedL1Duality.pair_residual` |
-| `CampaignPgwWdpPhiWellDefinedL1Duality.residual_shift` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwWdpPhiWellDefinedL1Duality.residual_shift` |
-| `CampaignPgwWdpPhiWellDefinedL1Duality.shifted_attained` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwWdpPhiWellDefinedL1Duality.shifted_attained` |
-| `CampaignPgwWdpPhiWellDefinedL1Duality.shifted_ge` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwWdpPhiWellDefinedL1Duality.shifted_ge` |
-| `CampaignPgwWdpPhiWellDefinedL1Duality.sub3` | yes | yes | yes | none | `#print axioms CampaignPgwWdpPhiWellDefinedL1Duality.sub3` |
-| `absSum_attained` | yes | yes | yes | propext | `#print axioms absSum_attained` |
-| `absSum_ge_two` | yes | yes | yes | Quot.sound, propext | `#print axioms absSum_ge_two` |
-| `absSum_shift` | yes | yes | yes | Quot.sound, propext | `#print axioms absSum_shift` |
-| `d0_linear` | yes | yes | yes | Quot.sound, propext | `#print axioms d0_linear` |
-| `residual_shift` | yes | yes | yes | Quot.sound, propext | `#print axioms residual_shift` |
-| `shifted_attained` | yes | yes | yes | Quot.sound, propext | `#print axioms shifted_attained` |
-| `shifted_ge` | yes | yes | yes | Quot.sound, propext | `#print axioms shifted_ge` |
-
-- counts toward the grade: yes
-
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean`
 
 - file: [lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean)
@@ -92,6 +55,43 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `dual_certificate_lower_bound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms dual_certificate_lower_bound` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/PregenesisWdpPhiWellDefinedL1Duality.lean`
+
+- file: [lean4/PregenesisWdpPhiWellDefinedL1Duality.lean](../../../lean4/PregenesisWdpPhiWellDefinedL1Duality.lean)
+- sha256 (`bytes`): `cd7f4e4e6124de5b4cbf24d392371e953ca23b74d7b28d877e14df0559d06a17`
+- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-phi-well-defined-l1-duality_lean_replay.json (PregenesisWdpPhiWellDefinedL1Duality), receipt dag/research/pr_377_round2_replay.json (PregenesisWdpPhiWellDefinedL1Duality), record TFQ-0544
+- replay: `verified`
+  - receipt [dag/research/campaign_pgw-wdp-phi-well-defined-l1-duality_lean_replay.json](../../../dag/research/campaign_pgw-wdp-phi-well-defined-l1-duality_lean_replay.json) (module `PregenesisWdpPhiWellDefinedL1Duality`): recorded sha256 `cd7f4e4e6124de5b4cbf24d392371e953ca23b74d7b28d877e14df0559d06a17` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_377_round2_replay.json](../../../dag/research/pr_377_round2_replay.json) (module `PregenesisWdpPhiWellDefinedL1Duality`): recorded sha256 `cd7f4e4e6124de5b4cbf24d392371e953ca23b74d7b28d877e14df0559d06a17` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build PregenesisWdpPhiWellDefinedL1Duality`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `PregenesisWdpPhiWellDefinedL1Duality.absSum` | yes | yes | yes | none | `#print axioms PregenesisWdpPhiWellDefinedL1Duality.absSum` |
+| `PregenesisWdpPhiWellDefinedL1Duality.absSum_attained` | yes | yes | yes | propext | `#print axioms PregenesisWdpPhiWellDefinedL1Duality.absSum_attained` |
+| `PregenesisWdpPhiWellDefinedL1Duality.absSum_ge_two` | yes | yes | yes | Quot.sound, propext | `#print axioms PregenesisWdpPhiWellDefinedL1Duality.absSum_ge_two` |
+| `PregenesisWdpPhiWellDefinedL1Duality.absSum_shift` | yes | yes | yes | Quot.sound, propext | `#print axioms PregenesisWdpPhiWellDefinedL1Duality.absSum_shift` |
+| `PregenesisWdpPhiWellDefinedL1Duality.add3` | yes | yes | yes | none | `#print axioms PregenesisWdpPhiWellDefinedL1Duality.add3` |
+| `PregenesisWdpPhiWellDefinedL1Duality.d0` | yes | yes | yes | none | `#print axioms PregenesisWdpPhiWellDefinedL1Duality.d0` |
+| `PregenesisWdpPhiWellDefinedL1Duality.d0_linear` | yes | yes | yes | Quot.sound, propext | `#print axioms PregenesisWdpPhiWellDefinedL1Duality.d0_linear` |
+| `PregenesisWdpPhiWellDefinedL1Duality.natAbs_pair_le_absSum` | yes | yes | yes | Quot.sound, propext | `#print axioms PregenesisWdpPhiWellDefinedL1Duality.natAbs_pair_le_absSum` |
+| `PregenesisWdpPhiWellDefinedL1Duality.pair110` | yes | yes | yes | none | `#print axioms PregenesisWdpPhiWellDefinedL1Duality.pair110` |
+| `PregenesisWdpPhiWellDefinedL1Duality.pair_d0_zero` | yes | yes | yes | Quot.sound, propext | `#print axioms PregenesisWdpPhiWellDefinedL1Duality.pair_d0_zero` |
+| `PregenesisWdpPhiWellDefinedL1Duality.pair_residual` | yes | yes | yes | Quot.sound, propext | `#print axioms PregenesisWdpPhiWellDefinedL1Duality.pair_residual` |
+| `PregenesisWdpPhiWellDefinedL1Duality.residual_shift` | yes | yes | yes | Quot.sound, propext | `#print axioms PregenesisWdpPhiWellDefinedL1Duality.residual_shift` |
+| `PregenesisWdpPhiWellDefinedL1Duality.shifted_attained` | yes | yes | yes | Quot.sound, propext | `#print axioms PregenesisWdpPhiWellDefinedL1Duality.shifted_attained` |
+| `PregenesisWdpPhiWellDefinedL1Duality.shifted_ge` | yes | yes | yes | Quot.sound, propext | `#print axioms PregenesisWdpPhiWellDefinedL1Duality.shifted_ge` |
+| `PregenesisWdpPhiWellDefinedL1Duality.sub3` | yes | yes | yes | none | `#print axioms PregenesisWdpPhiWellDefinedL1Duality.sub3` |
+| `absSum_attained` | yes | yes | yes | propext | `#print axioms absSum_attained` |
+| `absSum_ge_two` | yes | yes | yes | Quot.sound, propext | `#print axioms absSum_ge_two` |
+| `absSum_shift` | yes | yes | yes | Quot.sound, propext | `#print axioms absSum_shift` |
+| `d0_linear` | yes | yes | yes | Quot.sound, propext | `#print axioms d0_linear` |
+| `residual_shift` | yes | yes | yes | Quot.sound, propext | `#print axioms residual_shift` |
+| `shifted_attained` | yes | yes | yes | Quot.sound, propext | `#print axioms shifted_attained` |
+| `shifted_ge` | yes | yes | yes | Quot.sound, propext | `#print axioms shifted_ge` |
 
 - counts toward the grade: yes
 
@@ -136,7 +136,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md`
 
 - file: [dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md](../../../dag/derivations/06_wdp/tfq_0544_wdp_phi_well_defined_l1_duality.md)
-- sha256 (`lf-normalised`): `7d35a6c7e8073702864f11c818e1716e4867a7b9592e282fadb554557586417b`
+- sha256 (`lf-normalised`): `945bd4d50244a339ed7887828d5b92ed7f61224cfd47f7611d32b6b560912b7d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0544
 - counts toward the grade: no

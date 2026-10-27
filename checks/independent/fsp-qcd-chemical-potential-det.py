@@ -9,7 +9,7 @@ Verifies with zero repository imports (using fractions.Fraction and SymPy):
    across real, purely imaginary, and general complex chemical potentials mu
    (or fugacities z = exp(mu)).
 2. Exact confirmation of the 6x6 chiral SU(3) clock-link witness from
-   lean4/CampaignFspQcdChemicalPotentialDet.lean:
+   lean4/FermionSignQcdChemicalPotentialDet.lean:
        U = diag(i, i, -1) in SU(3),
        D_SU3(z) = diag(I_3 - z U, I_3 - z^{-1} U^dagger),
        det D_SU3(2)   = 63/8 - 27 i,

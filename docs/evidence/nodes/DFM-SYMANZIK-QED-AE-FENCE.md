@@ -43,20 +43,20 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignDfmSymanzikQedAeFence.lean`
+### Lean: `lean4/DressingFieldSymanzikQedAeFence.lean`
 
-- file: [lean4/CampaignDfmSymanzikQedAeFence.lean](../../../lean4/CampaignDfmSymanzikQedAeFence.lean)
-- sha256 (`bytes`): `d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab`
-- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-symanzik-qed-ae-fence_lean_replay.json (CampaignDfmSymanzikQedAeFence), record TFQ-1104
+- file: [lean4/DressingFieldSymanzikQedAeFence.lean](../../../lean4/DressingFieldSymanzikQedAeFence.lean)
+- sha256 (`bytes`): `dc8005487bfbfa82b21ba0f01478fdff811ee8b8ccf418763fc6b57ec9c2d516`
+- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-symanzik-qed-ae-fence_lean_replay.json (DressingFieldSymanzikQedAeFence), record TFQ-1104
 - replay: `verified`
-  - receipt [dag/research/campaign_dfm-symanzik-qed-ae-fence_lean_replay.json](../../../dag/research/campaign_dfm-symanzik-qed-ae-fence_lean_replay.json) (module `CampaignDfmSymanzikQedAeFence`): recorded sha256 `d86b09de161d6e3b06396266d1b34e2e0d40192273d5ee97366bba4e680e03ab` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignDfmSymanzikQedAeFence`
+  - receipt [dag/research/campaign_dfm-symanzik-qed-ae-fence_lean_replay.json](../../../dag/research/campaign_dfm-symanzik-qed-ae-fence_lean_replay.json) (module `DressingFieldSymanzikQedAeFence`): recorded sha256 `dc8005487bfbfa82b21ba0f01478fdff811ee8b8ccf418763fc6b57ec9c2d516` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build DressingFieldSymanzikQedAeFence`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignDfmSymanzikQedAeFence.component_counts` | yes | yes | yes | propext | `#print axioms CampaignDfmSymanzikQedAeFence.component_counts` |
-| `CampaignDfmSymanzikQedAeFence.cotree_sums` | yes | yes | yes | propext | `#print axioms CampaignDfmSymanzikQedAeFence.cotree_sums` |
-| `CampaignDfmSymanzikQedAeFence.three_bit_masks_are_listed` | yes | yes | yes | propext | `#print axioms CampaignDfmSymanzikQedAeFence.three_bit_masks_are_listed` |
+| `DressingFieldSymanzikQedAeFence.component_counts` | yes | yes | yes | propext | `#print axioms DressingFieldSymanzikQedAeFence.component_counts` |
+| `DressingFieldSymanzikQedAeFence.cotree_sums` | yes | yes | yes | propext | `#print axioms DressingFieldSymanzikQedAeFence.cotree_sums` |
+| `DressingFieldSymanzikQedAeFence.three_bit_masks_are_listed` | yes | yes | yes | propext | `#print axioms DressingFieldSymanzikQedAeFence.three_bit_masks_are_listed` |
 | `component_counts` | yes | yes | yes | propext | `#print axioms component_counts` |
 | `cotree_sums` | yes | yes | yes | propext | `#print axioms cotree_sums` |
 | `three_bit_masks_are_listed` | yes | yes | yes | propext | `#print axioms three_bit_masks_are_listed` |
@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1104_dfm_symanzik_qed_ae_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1104_dfm_symanzik_qed_ae_fence.md](../../../dag/derivations/24_dressing_field/tfq_1104_dfm_symanzik_qed_ae_fence.md)
-- sha256 (`lf-normalised`): `008175f49e76b5053b2d3467e0c43a028601b227c35d9a14a42451f0f76a862b`
+- sha256 (`lf-normalised`): `337e33bb0319af9e389cf1c0f60feac62d3efb8799f46dcb090a773f5236a1f0`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1104
 - counts toward the grade: no
@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/dfm-symanzik-qed-ae-fence.md`
 
 - file: [dag/derivations/independent/dfm-symanzik-qed-ae-fence.md](../../../dag/derivations/independent/dfm-symanzik-qed-ae-fence.md)
-- sha256 (`lf-normalised`): `2727b639719b9f8d44baaddaee909cb9927cacf3b2ad4749e1fc4f7516fdddf7`
+- sha256 (`lf-normalised`): `81875fb7e53ea099f1baf726cb475ff734eced9bf6e2ecc78c9d3c52341be5bc`
 - cited in: node.source
 - counts toward the grade: yes
 

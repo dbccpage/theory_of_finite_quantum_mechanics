@@ -30,15 +30,15 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignSnE08WeightedL1Duality.lean::adjunctionCochain_not_cycD_transpose`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
-- [`lean4/CampaignSnE08WeightedL1Duality.lean::certificate_optimal`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
-- [`lean4/CampaignSnE08WeightedL1Duality.lean::cyc_harmonic`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
-- [`lean4/CampaignSnE08WeightedL1Duality.lean::cyc_optimum`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
-- [`lean4/CampaignSnE08WeightedL1Duality.lean::cyc_residuals_differ`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
-- [`lean4/CampaignSnE08WeightedL1Duality.lean::e08_rational`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
-- [`lean4/CampaignSnE08WeightedL1Duality.lean::farkas`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
-- [`lean4/CampaignSnE08WeightedL1Duality.lean::lp_strong_duality`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
-- [`lean4/CampaignSnE08WeightedL1Duality.lean::weighted_l1_strong_duality`](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
+- [`lean4/WeightedL1Duality.lean::adjunctionCochain_not_cycD_transpose`](../../../lean4/WeightedL1Duality.lean)
+- [`lean4/WeightedL1Duality.lean::certificate_optimal`](../../../lean4/WeightedL1Duality.lean)
+- [`lean4/WeightedL1Duality.lean::cyc_harmonic`](../../../lean4/WeightedL1Duality.lean)
+- [`lean4/WeightedL1Duality.lean::cyc_optimum`](../../../lean4/WeightedL1Duality.lean)
+- [`lean4/WeightedL1Duality.lean::cyc_residuals_differ`](../../../lean4/WeightedL1Duality.lean)
+- [`lean4/WeightedL1Duality.lean::e08_rational`](../../../lean4/WeightedL1Duality.lean)
+- [`lean4/WeightedL1Duality.lean::farkas`](../../../lean4/WeightedL1Duality.lean)
+- [`lean4/WeightedL1Duality.lean::lp_strong_duality`](../../../lean4/WeightedL1Duality.lean)
+- [`lean4/WeightedL1Duality.lean::weighted_l1_strong_duality`](../../../lean4/WeightedL1Duality.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust LP solver in the S(n) strand; the page assigns evaluation to existing mathematics owners`

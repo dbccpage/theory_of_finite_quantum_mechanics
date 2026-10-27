@@ -232,11 +232,11 @@ def run_all_checks() -> dict[str, Any]:
     repo_root = Path(__file__).resolve().parents[2]
     su2_rs = repo_root / "code/rust/src/fusion_categories/su2_level.rs"
     su3_rs = repo_root / "code/rust/src/fusion_categories/su3_level.rs"
-    lean_file = repo_root / "lean4/CampaignTfq0044FiniteTopological.lean"
+    lean_file = repo_root / "lean4/AnyonRibbonRacahGauge.lean"
 
     record(su2_rs.exists(), "su2_level.rs exists in repo")
     record(not su3_rs.exists(), "su3_level.rs is absent beside su2_level.rs")
-    record(lean_file.exists(), "CampaignTfq0044FiniteTopological.lean exists in repo")
+    record(lean_file.exists(), "AnyonRibbonRacahGauge.lean exists in repo")
 
     su2_src = su2_rs.read_text(encoding="utf-8")
     for token in [

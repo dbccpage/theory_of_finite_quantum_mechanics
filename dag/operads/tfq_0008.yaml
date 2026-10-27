@@ -29,7 +29,7 @@ target:
   - dag/derivations/11_finite_qm_dynamics/tfq_0008_finite_dynamics_instruments_and_channels.md
   - dag/derivations/independent/tfq-0008.md
   - checks/independent/tfq-0008.py
-  - lean4/CampaignTfq0008FiniteQmDynamics.lean
+  - lean4/FiniteDynamicsInstrumentsPathSums.lean
   - dag/research/campaign_tfq-0008_lean_replay.json
   - dag/research/campaign_tfq-0008_lean_mutation.json
   - dag/research/campaign_tfq-0008_independent.json
@@ -73,16 +73,16 @@ relation_candidates:
 - numerical_cptp_tolerance_false_green_negative_choi_eigenvalue_fence
 - exact_kraus_bit_flip_channel_trace_identity
 source_bindings:
-- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.finite_instrument_trace_preservation_and_idempotence
-- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.diamond_path_sum_interference_identities
-- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.cayley_unitary_norm_conservation_exact
-- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.euler_first_order_generator_norm_inflation_fence
-- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.fq_dynamics_cochain_syndromes_and_shadow_replay
-- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.transpose_map_preserves_trace_det_and_diagonal_states
-- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.stochastic_to_cp_gap_partial_transpose_bell_witness
-- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.numerical_cptp_tolerance_false_green_trace_drift_fence
-- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.numerical_cptp_tolerance_false_green_negative_choi_eigenvalue_fence
-- lean4/CampaignTfq0008FiniteQmDynamics.lean::CampaignTfq0008FiniteQmDynamics.exact_kraus_bit_flip_channel_trace_identity
+- lean4/FiniteDynamicsInstrumentsPathSums.lean::FiniteDynamicsInstrumentsPathSums.finite_instrument_trace_preservation_and_idempotence
+- lean4/FiniteDynamicsInstrumentsPathSums.lean::FiniteDynamicsInstrumentsPathSums.diamond_path_sum_interference_identities
+- lean4/FiniteDynamicsInstrumentsPathSums.lean::FiniteDynamicsInstrumentsPathSums.cayley_unitary_norm_conservation_exact
+- lean4/FiniteDynamicsInstrumentsPathSums.lean::FiniteDynamicsInstrumentsPathSums.euler_first_order_generator_norm_inflation_fence
+- lean4/FiniteDynamicsInstrumentsPathSums.lean::FiniteDynamicsInstrumentsPathSums.fq_dynamics_cochain_syndromes_and_shadow_replay
+- lean4/FiniteDynamicsInstrumentsPathSums.lean::FiniteDynamicsInstrumentsPathSums.transpose_map_preserves_trace_det_and_diagonal_states
+- lean4/FiniteDynamicsInstrumentsPathSums.lean::FiniteDynamicsInstrumentsPathSums.stochastic_to_cp_gap_partial_transpose_bell_witness
+- lean4/FiniteDynamicsInstrumentsPathSums.lean::FiniteDynamicsInstrumentsPathSums.numerical_cptp_tolerance_false_green_trace_drift_fence
+- lean4/FiniteDynamicsInstrumentsPathSums.lean::FiniteDynamicsInstrumentsPathSums.numerical_cptp_tolerance_false_green_negative_choi_eigenvalue_fence
+- lean4/FiniteDynamicsInstrumentsPathSums.lean::FiniteDynamicsInstrumentsPathSums.exact_kraus_bit_flip_channel_trace_identity
 presentation:
   colours:
   - Mat2Q
@@ -117,7 +117,7 @@ operad_slots:
     assumptions:
     - step from stochastic kernels to completely positive maps remains open
     source_pins:
-    - lean4/CampaignTfq0008FiniteQmDynamics.lean
+    - lean4/FiniteDynamicsInstrumentsPathSums.lean
     public_input: {}
   slot_m2_layer1_forward_morphisms:
     mining_status: VERIFIED
@@ -150,7 +150,7 @@ operad_slots:
     - stochastic_to_cp_gap_partial_transpose_bell_witness
     - numerical_cptp_tolerance_false_green_trace_drift_fence
     anchors:
-    - lean4/CampaignTfq0008FiniteQmDynamics.lean
+    - lean4/FiniteDynamicsInstrumentsPathSums.lean
     - checks/independent/tfq-0008.py
     - dag/derivations/independent/tfq-0008.md
     unpaid_imports:

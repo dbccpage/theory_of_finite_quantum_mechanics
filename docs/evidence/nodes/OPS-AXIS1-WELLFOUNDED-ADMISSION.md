@@ -42,32 +42,32 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignOpsAxis1WellfoundedAdmission.lean`
+### Lean: `lean4/ObserverPresheafAxis1WellfoundedAdmission.lean`
 
-- file: [lean4/CampaignOpsAxis1WellfoundedAdmission.lean](../../../lean4/CampaignOpsAxis1WellfoundedAdmission.lean)
-- sha256 (`bytes`): `48ae845d90038e03dbf566d022128a9d2a282563a0beacd84c587f5e7faa1b4d`
-- cited in: node.source, receipt dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json (CampaignOpsAxis1WellfoundedAdmission), record TFQ-2524
+- file: [lean4/ObserverPresheafAxis1WellfoundedAdmission.lean](../../../lean4/ObserverPresheafAxis1WellfoundedAdmission.lean)
+- sha256 (`bytes`): `8fb9fa4432cc9e8b8255d3b6d5c7fb67ef18630b4fa9dc5c6626526a621e6056`
+- cited in: node.source, receipt dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json (ObserverPresheafAxis1WellfoundedAdmission), record TFQ-2524
 - replay: `verified`
-  - receipt [dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json](../../../dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json) (module `CampaignOpsAxis1WellfoundedAdmission`): recorded sha256 `48ae845d90038e03dbf566d022128a9d2a282563a0beacd84c587f5e7faa1b4d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignOpsAxis1WellfoundedAdmission`
+  - receipt [dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json](../../../dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json) (module `ObserverPresheafAxis1WellfoundedAdmission`): recorded sha256 `8fb9fa4432cc9e8b8255d3b6d5c7fb67ef18630b4fa9dc5c6626526a621e6056` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build ObserverPresheafAxis1WellfoundedAdmission`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignOpsAxis1WellfoundedAdmission.adm0` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis1WellfoundedAdmission.adm0` |
-| `CampaignOpsAxis1WellfoundedAdmission.adm1` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis1WellfoundedAdmission.adm1` |
-| `CampaignOpsAxis1WellfoundedAdmission.adm2` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis1WellfoundedAdmission.adm2` |
-| `CampaignOpsAxis1WellfoundedAdmission.none0` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis1WellfoundedAdmission.none0` |
-| `CampaignOpsAxis1WellfoundedAdmission.none1` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis1WellfoundedAdmission.none1` |
-| `CampaignOpsAxis1WellfoundedAdmission.none2` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis1WellfoundedAdmission.none2` |
-| `CampaignOpsAxis1WellfoundedAdmission.pred0` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis1WellfoundedAdmission.pred0` |
-| `CampaignOpsAxis1WellfoundedAdmission.pred1` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis1WellfoundedAdmission.pred1` |
-| `CampaignOpsAxis1WellfoundedAdmission.pred2` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis1WellfoundedAdmission.pred2` |
-| `CampaignOpsAxis1WellfoundedAdmission.zb0` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis1WellfoundedAdmission.zb0` |
-| `CampaignOpsAxis1WellfoundedAdmission.zb1` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis1WellfoundedAdmission.zb1` |
-| `CampaignOpsAxis1WellfoundedAdmission.zb2` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis1WellfoundedAdmission.zb2` |
-| `CampaignOpsAxis1WellfoundedAdmission.zero0` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis1WellfoundedAdmission.zero0` |
-| `CampaignOpsAxis1WellfoundedAdmission.zero1` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis1WellfoundedAdmission.zero1` |
-| `CampaignOpsAxis1WellfoundedAdmission.zero2` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis1WellfoundedAdmission.zero2` |
+| `ObserverPresheafAxis1WellfoundedAdmission.adm0` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis1WellfoundedAdmission.adm0` |
+| `ObserverPresheafAxis1WellfoundedAdmission.adm1` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis1WellfoundedAdmission.adm1` |
+| `ObserverPresheafAxis1WellfoundedAdmission.adm2` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis1WellfoundedAdmission.adm2` |
+| `ObserverPresheafAxis1WellfoundedAdmission.none0` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis1WellfoundedAdmission.none0` |
+| `ObserverPresheafAxis1WellfoundedAdmission.none1` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis1WellfoundedAdmission.none1` |
+| `ObserverPresheafAxis1WellfoundedAdmission.none2` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis1WellfoundedAdmission.none2` |
+| `ObserverPresheafAxis1WellfoundedAdmission.pred0` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis1WellfoundedAdmission.pred0` |
+| `ObserverPresheafAxis1WellfoundedAdmission.pred1` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis1WellfoundedAdmission.pred1` |
+| `ObserverPresheafAxis1WellfoundedAdmission.pred2` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis1WellfoundedAdmission.pred2` |
+| `ObserverPresheafAxis1WellfoundedAdmission.zb0` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis1WellfoundedAdmission.zb0` |
+| `ObserverPresheafAxis1WellfoundedAdmission.zb1` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis1WellfoundedAdmission.zb1` |
+| `ObserverPresheafAxis1WellfoundedAdmission.zb2` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis1WellfoundedAdmission.zb2` |
+| `ObserverPresheafAxis1WellfoundedAdmission.zero0` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis1WellfoundedAdmission.zero0` |
+| `ObserverPresheafAxis1WellfoundedAdmission.zero1` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis1WellfoundedAdmission.zero1` |
+| `ObserverPresheafAxis1WellfoundedAdmission.zero2` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis1WellfoundedAdmission.zero2` |
 
 - counts toward the grade: yes
 
@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md)
-- sha256 (`lf-normalised`): `1135ae00e108f5fb8fe7e232c79e0ef61bbd1adc30c8228691ee9bbcf391ea61`
+- sha256 (`lf-normalised`): `804ec8a0415a21ba89b81fb7801c1148e1d7d5ba497ecf157bf8412050c5982b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2524
 - counts toward the grade: no
@@ -89,14 +89,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/ops-axis1-wellfounded-admission.md`
 
 - file: [dag/derivations/independent/ops-axis1-wellfounded-admission.md](../../../dag/derivations/independent/ops-axis1-wellfounded-admission.md)
-- sha256 (`lf-normalised`): `6de34af34cafa774d1d0c2df22e7bd7fd4a70a5a522c588b7a215bcf925f7568`
+- sha256 (`lf-normalised`): `d69ed749cf9299c23fbb9f02ec9ba4b85bc5db864b9738c145b96aad71334edc`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json`
 
 - file: [dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json](../../../dag/research/campaign_ops-axis1-wellfounded-admission_lean_replay.json)
-- sha256 (`lf-normalised`): `da57f0471f372f7a85e819a45ad616c703e7a225d0e6dd6b151eb0bcb79bdcb3`
+- sha256 (`lf-normalised`): `bd39fd2bef4e8282dcee1f886e78ec978dcb25760c9a566f4b26c77c98dff91f`
 - cited in: node.source
 - counts toward the grade: yes
 

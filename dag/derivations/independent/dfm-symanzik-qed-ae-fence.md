@@ -35,7 +35,7 @@ product is the product of the weights on the bits that are off. At weights
 
 ## What is proved
 
-In `lean4/CampaignDfmSymanzikQedAeFence.lean`:
+In `lean4/DressingFieldSymanzikQedAeFence.lean`:
 
 - `component_counts` records one component on the eight masks and two
   components on 19 and 28.

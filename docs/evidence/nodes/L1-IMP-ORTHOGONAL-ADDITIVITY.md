@@ -46,24 +46,18 @@ Sector additivity over disjoint supports gives off-diagonal pair-sum cancellatio
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignL1OrthogonalAdditivity.lean`
+### Lean: `lean4/BornPairingBoundary.lean`
 
-- file: [lean4/CampaignL1OrthogonalAdditivity.lean](../../../lean4/CampaignL1OrthogonalAdditivity.lean)
-- sha256 (`bytes`): `50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2`
-- cited in: node.lean, node.source, receipt dag/research/campaign_l1-imp-orthogonal-additivity_lean_replay.json (CampaignL1OrthogonalAdditivity), receipt dag/research/pr440_review_lean_replay.json (CampaignL1OrthogonalAdditivity)
+- file: [lean4/BornPairingBoundary.lean](../../../lean4/BornPairingBoundary.lean)
+- sha256 (`bytes`): `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29`
+- cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/campaign_l1-imp-orthogonal-additivity_lean_replay.json](../../../dag/research/campaign_l1-imp-orthogonal-additivity_lean_replay.json) (module `CampaignL1OrthogonalAdditivity`): recorded sha256 `50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-  - receipt [dag/research/pr440_review_lean_replay.json](../../../dag/research/pr440_review_lean_replay.json) (module `CampaignL1OrthogonalAdditivity`): recorded sha256 `50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignL1OrthogonalAdditivity`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `BornPairingBoundary`): recorded sha256 `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build BornPairingBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignL1OrthogonalAdditivity.axisSum` | yes | yes | yes | propext | `#print axioms CampaignL1OrthogonalAdditivity.axisSum` |
-| `CampaignL1OrthogonalAdditivity.entriesNotZero` | yes | yes | yes | none | `#print axioms CampaignL1OrthogonalAdditivity.entriesNotZero` |
-| `CampaignL1OrthogonalAdditivity.negCross` | yes | yes | yes | propext | `#print axioms CampaignL1OrthogonalAdditivity.negCross` |
-| `CampaignL1OrthogonalAdditivity.pairSum` | yes | yes | yes | none | `#print axioms CampaignL1OrthogonalAdditivity.pairSum` |
-| `CampaignL1OrthogonalAdditivity.qf` | yes | yes | yes | none | `#print axioms CampaignL1OrthogonalAdditivity.qf` |
-| `CampaignL1OrthogonalAdditivity.readout` | yes | yes | yes | propext | `#print axioms CampaignL1OrthogonalAdditivity.readout` |
+| `quartic_rival` | yes | yes | yes | propext | `#print axioms quartic_rival` |
 
 - counts toward the grade: yes
 
@@ -92,39 +86,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build FiniteQM`
 - counts toward the grade: yes
 
-### Lean: `lean4/H013BornPairingBoundary.lean`
+### Lean: `lean4/FrameAdditivity.lean`
 
-- file: [lean4/H013BornPairingBoundary.lean](../../../lean4/H013BornPairingBoundary.lean)
-- sha256 (`bytes`): `debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642`
+- file: [lean4/FrameAdditivity.lean](../../../lean4/FrameAdditivity.lean)
+- sha256 (`bytes`): `206d6e450b91e9ae9c16b0e2ab305b735b5691215fe4ee185c111535f0fd89c3`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H013BornPairingBoundary`): recorded sha256 `debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H013BornPairingBoundary`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `quartic_rival` | yes | yes | yes | propext | `#print axioms quartic_rival` |
-
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FrameAdditivity`): recorded sha256 `206d6e450b91e9ae9c16b0e2ab305b735b5691215fe4ee185c111535f0fd89c3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build FrameAdditivity`
 - counts toward the grade: yes
 
-### Lean: `lean4/H013FrameAdditivity.lean`
+### Lean: `lean4/HilbertWalkSameContract.lean`
 
-- file: [lean4/H013FrameAdditivity.lean](../../../lean4/H013FrameAdditivity.lean)
-- sha256 (`bytes`): `626dd1c874e5a1add3f02cb81f5f535c17637c2f55fdffa12a094b1c34f928a8`
+- file: [lean4/HilbertWalkSameContract.lean](../../../lean4/HilbertWalkSameContract.lean)
+- sha256 (`bytes`): `2eb51f295c76c23187d8f9edb6f0282199b1d867abe698b1cae2fe5a5d519d09`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H013FrameAdditivity`): recorded sha256 `626dd1c874e5a1add3f02cb81f5f535c17637c2f55fdffa12a094b1c34f928a8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build H013FrameAdditivity`
-- counts toward the grade: yes
-
-### Lean: `lean4/H013SameContract.lean`
-
-- file: [lean4/H013SameContract.lean](../../../lean4/H013SameContract.lean)
-- sha256 (`bytes`): `47568af5eaa40e031525b641574866c3044176756fb245b6084c96711e8bcca8`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H013SameContract`): recorded sha256 `47568af5eaa40e031525b641574866c3044176756fb245b6084c96711e8bcca8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H013SameContract`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `HilbertWalkSameContract`): recorded sha256 `2eb51f295c76c23187d8f9edb6f0282199b1d867abe698b1cae2fe5a5d519d09` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build HilbertWalkSameContract`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -132,38 +111,59 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Lean: `lean4/L1OrthogonalAdditivity.lean`
+
+- file: [lean4/L1OrthogonalAdditivity.lean](../../../lean4/L1OrthogonalAdditivity.lean)
+- sha256 (`bytes`): `d1efcb6a16253d9069632c564b0c5afdb7490adb5f5d6262a80653394e1f7555`
+- cited in: node.lean, node.source, receipt dag/research/campaign_l1-imp-orthogonal-additivity_lean_replay.json (L1OrthogonalAdditivity), receipt dag/research/pr440_review_lean_replay.json (L1OrthogonalAdditivity)
+- replay: `verified`
+  - receipt [dag/research/campaign_l1-imp-orthogonal-additivity_lean_replay.json](../../../dag/research/campaign_l1-imp-orthogonal-additivity_lean_replay.json) (module `L1OrthogonalAdditivity`): recorded sha256 `d1efcb6a16253d9069632c564b0c5afdb7490adb5f5d6262a80653394e1f7555` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/pr440_review_lean_replay.json](../../../dag/research/pr440_review_lean_replay.json) (module `L1OrthogonalAdditivity`): recorded sha256 `d1efcb6a16253d9069632c564b0c5afdb7490adb5f5d6262a80653394e1f7555` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build L1OrthogonalAdditivity`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `L1OrthogonalAdditivity.axisSum` | yes | yes | yes | propext | `#print axioms L1OrthogonalAdditivity.axisSum` |
+| `L1OrthogonalAdditivity.entriesNotZero` | yes | yes | yes | none | `#print axioms L1OrthogonalAdditivity.entriesNotZero` |
+| `L1OrthogonalAdditivity.negCross` | yes | yes | yes | propext | `#print axioms L1OrthogonalAdditivity.negCross` |
+| `L1OrthogonalAdditivity.pairSum` | yes | yes | yes | none | `#print axioms L1OrthogonalAdditivity.pairSum` |
+| `L1OrthogonalAdditivity.qf` | yes | yes | yes | none | `#print axioms L1OrthogonalAdditivity.qf` |
+| `L1OrthogonalAdditivity.readout` | yes | yes | yes | propext | `#print axioms L1OrthogonalAdditivity.readout` |
+
+- counts toward the grade: yes
+
 ### Lean: `lean4/SectorFormHermitian.lean`
 
 - file: [lean4/SectorFormHermitian.lean](../../../lean4/SectorFormHermitian.lean)
-- sha256 (`bytes`): `78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc`
+- sha256 (`bytes`): `0aa46359b858583bc44444f0db0c56937ea1da8b464ee517a5b4ab1134abfce1`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `SectorFormHermitian`): recorded sha256 `78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `SectorFormHermitian`): recorded sha256 `0aa46359b858583bc44444f0db0c56937ea1da8b464ee517a5b4ab1134abfce1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SectorFormHermitian`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `InnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.HermitianSectorForm.imagLeak12_imag_direction_not_additive` |
-| `InnerProductFable.HermitianSectorForm.offdiag_eq_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.HermitianSectorForm.offdiag_eq_zero` |
+| `InnerProductFinite.HermitianSectorForm.imagLeak12_imag_direction_not_additive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.HermitianSectorForm.imagLeak12_imag_direction_not_additive` |
+| `InnerProductFinite.HermitianSectorForm.offdiag_eq_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.HermitianSectorForm.offdiag_eq_zero` |
 
 - counts toward the grade: yes
 
 ### Lean: `lean4/SectorFormUniqueness.lean`
 
 - file: [lean4/SectorFormUniqueness.lean](../../../lean4/SectorFormUniqueness.lean)
-- sha256 (`bytes`): `2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be`
+- sha256 (`bytes`): `f8cf9b4ea79966f80a4d30fc5d4975aaf00b6ae6e282a8e58f5adf77185a8dde`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `SectorFormUniqueness`): recorded sha256 `2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `SectorFormUniqueness`): recorded sha256 `f8cf9b4ea79966f80a4d30fc5d4975aaf00b6ae6e282a8e58f5adf77185a8dde` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SectorFormUniqueness`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `InnerProductFable.SectorForm.eq_diagonal_of_sectorAdditive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.SectorForm.eq_diagonal_of_sectorAdditive` |
-| `InnerProductFable.SectorForm.l1_disjoint_additive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.SectorForm.l1_disjoint_additive` |
-| `InnerProductFable.SectorForm.offdiag_eq_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.SectorForm.offdiag_eq_zero` |
-| `InnerProductFable.SectorForm.offdiag_pair_sum_eq_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.SectorForm.offdiag_pair_sum_eq_zero` |
-| `InnerProductFable.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive` |
+| `InnerProductFinite.SectorForm.eq_diagonal_of_sectorAdditive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.SectorForm.eq_diagonal_of_sectorAdditive` |
+| `InnerProductFinite.SectorForm.l1_disjoint_additive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.SectorForm.l1_disjoint_additive` |
+| `InnerProductFinite.SectorForm.offdiag_eq_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.SectorForm.offdiag_eq_zero` |
+| `InnerProductFinite.SectorForm.offdiag_pair_sum_eq_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.SectorForm.offdiag_pair_sum_eq_zero` |
+| `InnerProductFinite.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive` |
 
 - counts toward the grade: yes
 
@@ -219,14 +219,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/pr440_review_lean_replay.json`
 
 - file: [dag/research/pr440_review_lean_replay.json](../../../dag/research/pr440_review_lean_replay.json)
-- sha256 (`lf-normalised`): `c5b218a1d2887c2727b8dfa0bfee8843dccfbaefe3ef0ba2107a595e2e72793d`
+- sha256 (`lf-normalised`): `fbb77d98ed0c77c95ad0cca6e195494783ca4bfb25cc3749e970870988241a53`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/pr440_statement_review_20261026.json`
 
 - file: [dag/research/pr440_statement_review_20261026.json](../../../dag/research/pr440_statement_review_20261026.json)
-- sha256 (`lf-normalised`): `4f5a86e040e2b2505abe883699560466c5dca6810408ee462b0de026486aedc8`
+- sha256 (`lf-normalised`): `e536b9d41007d760488136eeb876eb840cdb5a14c3ee845e56c856ae3dd01e4f`
 - cited in: node.source
 - counts toward the grade: yes
 

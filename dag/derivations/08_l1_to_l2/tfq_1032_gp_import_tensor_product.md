@@ -33,21 +33,21 @@ imported; unique only on the named bilinear Kronecker interface
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/H014BilinearProduct.lean::embed_eq_tensor`
-- `lean4/H014Interface.lean::two_combinings_share_interface_and_disagree`
+- `lean4/BilinearProduct.lean::embed_eq_tensor`
+- `lean4/HilbertWalkInterface.lean::two_combinings_share_interface_and_disagree`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
-- `lean4/CampaignGpImportTensorProduct.lean::tensor_pointwise`
-- `lean4/CampaignGpImportTensorProduct.lean::embed_eq_tensor`
-- `lean4/CampaignGpImportTensorProduct.lean::dumpRight_false_coord`
-- `lean4/CampaignGpImportTensorProduct.lean::dumpRight_true_coord`
-- `lean4/CampaignGpImportTensorProduct.lean::dumpRight_add_left`
-- `lean4/CampaignGpImportTensorProduct.lean::dumpRight_add_right`
-- `lean4/CampaignGpImportTensorProduct.lean::dumpRight_smul_left`
-- `lean4/CampaignGpImportTensorProduct.lean::dumpRight_smul_right`
-- `lean4/CampaignGpImportTensorProduct.lean::dumpRight_collapsed_tag`
-- `lean4/CampaignGpImportTensorProduct.lean::witness_tensor_one`
-- `lean4/CampaignGpImportTensorProduct.lean::witness_dump_zero`
-- `lean4/CampaignGpImportTensorProduct.lean::dumpRight_ne_tensor`
+- `lean4/TensorProductImport.lean::tensor_pointwise`
+- `lean4/TensorProductImport.lean::embed_eq_tensor`
+- `lean4/TensorProductImport.lean::dumpRight_false_coord`
+- `lean4/TensorProductImport.lean::dumpRight_true_coord`
+- `lean4/TensorProductImport.lean::dumpRight_add_left`
+- `lean4/TensorProductImport.lean::dumpRight_add_right`
+- `lean4/TensorProductImport.lean::dumpRight_smul_left`
+- `lean4/TensorProductImport.lean::dumpRight_smul_right`
+- `lean4/TensorProductImport.lean::dumpRight_collapsed_tag`
+- `lean4/TensorProductImport.lean::witness_tensor_one`
+- `lean4/TensorProductImport.lean::witness_dump_zero`
+- `lean4/TensorProductImport.lean::dumpRight_ne_tensor`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

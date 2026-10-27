@@ -7,7 +7,7 @@ Verifies the carrier and normalization separation between:
   and admissibility of the empty carrier (size = 0).
 - ProbabilitySimplex (code/rust/src/finite_probability/simplex.rs):
   non-empty finite rational distributions summing to 1.
-- ScaledProb (lean4/H001ProbabilitySimplex.lean):
+- ScaledProb (lean4/ProbabilitySimplex.lean):
   scaled integer weights summing to M > 0 on a finite enumeration.
 - SignedValuation (code/rust/src/finite_probability/signed_representation.rs),
   LocalVertexLimits (code/rust/src/finite_probability/local_deterministic.rs),
@@ -154,7 +154,7 @@ def run_all_checks() -> dict[str, Any]:
     }
 
     # -------------------------------------------------------------------------
-    # Family 2: H001ProbabilitySimplex scaled integer grid vs rational simplex
+    # Family 2: ProbabilitySimplex scaled integer grid vs rational simplex
     # -------------------------------------------------------------------------
     point_w = (1, 0)
     signed_w = (-1, 2)

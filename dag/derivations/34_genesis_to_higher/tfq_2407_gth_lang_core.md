@@ -19,7 +19,7 @@ No syntax, typing judgement or deep embedding of a priced admission language is 
 
 ## Source status
 
-Open. One integer regime carrier is recorded in CampaignGthLangCore. The priced admission language still has no syntax. The node lean list stays empty.
+Open. One integer regime carrier is recorded in GenesisToHigherLangCore. The priced admission language still has no syntax. The node lean list stays empty.
 
 ## Routes
 
@@ -39,6 +39,6 @@ See also: `PGW-MSSN-SYNTAX-NOT-DECODING`.
 - Repository: `dag/derivations/independent/gth_lang_core.md`
 - Repository: `dag/derivations/independent/gth-lang-core.md`
 - Repository: `dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md`
-- Repository: `lean4/CampaignGthLangCore.lean`
+- Repository: `lean4/GenesisToHigherLangCore.lean`
 - Repository: `checks/independent/gth-lang-core.py`
 - Repository: `dag/research/campaign_gth-lang-core_lean_replay.json`

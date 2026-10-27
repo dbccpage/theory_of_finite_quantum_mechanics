@@ -3,7 +3,7 @@ import WorldPresentation
 
 
 
-namespace OmegaWorld
+namespace ObserverWorld
 
 structure CHSHSquareCertificate where
   chshSquare : Nat
@@ -24,7 +24,7 @@ theorem chsh_square_le_eight (certificate : CHSHSquareCertificate) :
 
 #print axioms chsh_square_le_eight
 
-end OmegaWorld
+end ObserverWorld
 
 private def l5aProvenance : String :=
   "Origin: lean4/WorldCHSH.lean Claim: chsh_square_le_eight AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

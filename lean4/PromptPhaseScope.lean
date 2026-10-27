@@ -1,6 +1,6 @@
 import GleasonRationalPlane
 import BornRedundancy
-import H010InterferenceNonDescent
+import InterferenceNonDescent
 import Mathlib.Tactic.Ring
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.NormNum
@@ -8,12 +8,12 @@ import Mathlib.Tactic.NormNum
 /- Scope-specific statements. Native output tables are not kernel theorems.
    Text inventories are not proof audits. AuthorityEffect: None. -/
 namespace QuantumMechanics.PromptPhaseScope
-open FableHilbertWalk20260819.HWKernel
-open FableHilbertWalk20260819.H004
-open FableHilbertWalk20260819.H008
-open FableHilbertWalk20260819.H009
-open FableHilbertWalk20260819.H010
-open GrokPdNight20260814.Core
+open HilbertWalk.HWKernel
+open HilbertWalk.FreeLinearization
+open HilbertWalk.PhaseBlindPresentation
+open HilbertWalk.PhaseFiber
+open HilbertWalk.InterferenceNonDescent
+open ProjectionFiber.Core
 open FiniteQm.GleasonRationalPlane
 
 theorem continuum_two_not_unit (a : Int) : 2*a ≠ 1 := by omega

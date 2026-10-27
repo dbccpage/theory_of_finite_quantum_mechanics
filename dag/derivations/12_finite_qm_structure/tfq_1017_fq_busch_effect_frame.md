@@ -33,7 +33,7 @@ H058 theorem family (38 theorems); Rust exact effects at declared cyclotomic rea
 ### Lean 4 Theorems
 - `lean4/FiniteQM.lean::busch_ic_povm_vs_polyhedral_frame_cone`
 - `lean4/FiniteQM.lean::galois_conjugate_negativity_vs_sos_total_positivity`
-- `lean4/H058EffectFrameBusch.lean::two_mul_half`
+- `lean4/EffectFrameBusch.lean::two_mul_half`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_quantum_physics/src/busch_effects.rs::EffectAlgebra`

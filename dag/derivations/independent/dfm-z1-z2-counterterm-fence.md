@@ -56,7 +56,7 @@ matrix is 0.
 
 ## What is proved
 
-In `lean4/CampaignDfmZ1Z2CountertermFence.lean`:
+In `lean4/DressingFieldZ1Z2CountertermFence.lean`:
 
 - `inverse_difference` is the inverse-propagator identity for every integer
   momentum pair and every integer mass.

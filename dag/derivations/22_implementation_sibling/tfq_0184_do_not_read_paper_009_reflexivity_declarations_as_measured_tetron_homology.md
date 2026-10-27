@@ -10,7 +10,7 @@
 
 Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap.
 
-The paragraph above stays the open reading. A later Nat module, `lean4/CampaignTfq0184CubicCount.lean`, checks a narrower count and does not discharge that reading. For every natural number n, n * n * n is at most n * n * n. For every natural number n at least 1, twice the cube equals (n - 1) * n * (2 * n - 1) plus n * (3 * n - 1), that first product is strictly below twice the cube, and the gap n * (3 * n - 1) is at least 2. At n = 4 the cube is 64, the sum 1 * 1 + 2 * 2 + 3 * 3 is 14, the quotient (3 * 4 * (2 * 4 - 1)) / 6 is 14, and 14 is strictly below 64. Status stays OPEN.
+The paragraph above stays the open reading. A later Nat module, `lean4/CubicReflexivityCount.lean`, checks a narrower count and does not discharge that reading. For every natural number n, n * n * n is at most n * n * n. For every natural number n at least 1, twice the cube equals (n - 1) * n * (2 * n - 1) plus n * (3 * n - 1), that first product is strictly below twice the cube, and the gap n * (3 * n - 1) is at least 2. At n = 4 the cube is 64, the sum 1 * 1 + 2 * 2 + 3 * 3 is 14, the quotient (3 * 4 * (2 * 4 - 1)) / 6 is 14, and 14 is strictly below 64. Status stays OPEN.
 
 ### Governing Obligation
 Do not read paper 009 reflexivity declarations as measured tetron homology.
@@ -28,26 +28,26 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignTfq0184ImplementationSibling.lean`:
-  - `CampaignTfq0184ImplementationSibling.gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound`
-  - `CampaignTfq0184ImplementationSibling.tetron_gf2_homology_requires_boundary_rank_difference_not_enum_rfl`
-  - `CampaignTfq0184ImplementationSibling.kitaev_sweet_spot_boundary_isolation_and_ising_quantum_dimensions`
-  - `CampaignTfq0184ImplementationSibling.fermion_parity_involutive_sector_splitting`
-  - `CampaignTfq0184ImplementationSibling.binary_carrier_lp_norm_equals_hamming_weight`
-  - `CampaignTfq0184ImplementationSibling.reflexivity_declaration_is_not_measured_tetron_homology_fence`
-  - `CampaignTfq0184ImplementationSibling.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence`
-  - `CampaignTfq0184ImplementationSibling.majorana_evaluator_is_companion_control_not_gap_closure_fence`
-  - `CampaignTfq0184ImplementationSibling.wdp_carrier_manifest_homology_conversion_fence`
-  - `CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence`
-- `lean4/CampaignTfq0184CubicCount.lean` (narrower Nat count; does not discharge the open reading above):
-  - `CampaignTfq0184CubicCount.cubicReflexivity`
-  - `CampaignTfq0184CubicCount.eliminationSplit`
-  - `CampaignTfq0184CubicCount.gapAtLeastTwo`
-  - `CampaignTfq0184CubicCount.eliminationBelowTwiceCube`
-  - `CampaignTfq0184CubicCount.fourCube`
-  - `CampaignTfq0184CubicCount.fourSumOfSquares`
-  - `CampaignTfq0184CubicCount.fourClosedForm`
-  - `CampaignTfq0184CubicCount.fourCountBelowCube`
+- `lean4/MajoranaEvaluatorControls.lean`:
+  - `MajoranaEvaluatorControls.gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound`
+  - `MajoranaEvaluatorControls.tetron_gf2_homology_requires_boundary_rank_difference_not_enum_rfl`
+  - `MajoranaEvaluatorControls.kitaev_sweet_spot_boundary_isolation_and_ising_quantum_dimensions`
+  - `MajoranaEvaluatorControls.fermion_parity_involutive_sector_splitting`
+  - `MajoranaEvaluatorControls.binary_carrier_lp_norm_equals_hamming_weight`
+  - `MajoranaEvaluatorControls.reflexivity_declaration_is_not_measured_tetron_homology_fence`
+  - `MajoranaEvaluatorControls.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence`
+  - `MajoranaEvaluatorControls.majorana_evaluator_is_companion_control_not_gap_closure_fence`
+  - `MajoranaEvaluatorControls.wdp_carrier_manifest_homology_conversion_fence`
+  - `MajoranaEvaluatorControls.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence`
+- `lean4/CubicReflexivityCount.lean` (narrower Nat count; does not discharge the open reading above):
+  - `CubicReflexivityCount.cubicReflexivity`
+  - `CubicReflexivityCount.eliminationSplit`
+  - `CubicReflexivityCount.gapAtLeastTwo`
+  - `CubicReflexivityCount.eliminationBelowTwiceCube`
+  - `CubicReflexivityCount.fourCube`
+  - `CubicReflexivityCount.fourSumOfSquares`
+  - `CubicReflexivityCount.fourClosedForm`
+  - `CubicReflexivityCount.fourCountBelowCube`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `code/rust/src/wdp/lib.rs`:
@@ -73,7 +73,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `lean4/CampaignTfq0184ImplementationSibling.lean`
+  - `lean4/MajoranaEvaluatorControls.lean`
   - `code/rust/src/wdp/lib.rs`
   - `code/python/src/majorana/majorana_evaluator.py`
   - `checks/independent/tfq-0184.py`

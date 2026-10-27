@@ -42,36 +42,36 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignQcvImportNoisyReversibleLimits.lean`
+### Lean: `lean4/NoisyReversibleLimitsImport.lean`
 
-- file: [lean4/CampaignQcvImportNoisyReversibleLimits.lean](../../../lean4/CampaignQcvImportNoisyReversibleLimits.lean)
-- sha256 (`bytes`): `08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655`
-- cited in: node.lean, receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (CampaignQcvImportNoisyReversibleLimits), record TFQ-1321
+- file: [lean4/NoisyReversibleLimitsImport.lean](../../../lean4/NoisyReversibleLimitsImport.lean)
+- sha256 (`bytes`): `69c64b7f9f295d3ac3d68ed779b807f6fb393afeab4370b1d385e2b83b73024e`
+- cited in: node.lean, receipt dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json (NoisyReversibleLimitsImport), record TFQ-1321
 - replay: `verified`
-  - receipt [dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json](../../../dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json) (module `CampaignQcvImportNoisyReversibleLimits`): recorded sha256 `08091e40b7fedc147410a5eeec1679ecc54f446914ae58ba88129ae9b711f655` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignQcvImportNoisyReversibleLimits`
+  - receipt [dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json](../../../dag/research/campaign_qcv-import-noisy-reversible-limits_lean_replay.json) (module `NoisyReversibleLimitsImport`): recorded sha256 `69c64b7f9f295d3ac3d68ed779b807f6fb393afeab4370b1d385e2b83b73024e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build NoisyReversibleLimitsImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignQcvImportNoisyReversibleLimits.below1` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.below1` |
-| `CampaignQcvImportNoisyReversibleLimits.below2` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.below2` |
-| `CampaignQcvImportNoisyReversibleLimits.below3` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.below3` |
-| `CampaignQcvImportNoisyReversibleLimits.u1` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.u1` |
-| `CampaignQcvImportNoisyReversibleLimits.u2` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.u2` |
-| `CampaignQcvImportNoisyReversibleLimits.u3` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.u3` |
-| `CampaignQcvImportNoisyReversibleLimits.u_step` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.u_step` |
-| `CampaignQcvImportNoisyReversibleLimits.u_zero` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.u_zero` |
-| `CampaignQcvImportNoisyReversibleLimits.v1` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.v1` |
-| `CampaignQcvImportNoisyReversibleLimits.v2` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.v2` |
-| `CampaignQcvImportNoisyReversibleLimits.v3` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.v3` |
-| `CampaignQcvImportNoisyReversibleLimits.v_step` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.v_step` |
-| `CampaignQcvImportNoisyReversibleLimits.v_zero` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.v_zero` |
-| `CampaignQcvImportNoisyReversibleLimits.w0_u` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.w0_u` |
-| `CampaignQcvImportNoisyReversibleLimits.w1` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.w1` |
-| `CampaignQcvImportNoisyReversibleLimits.w2` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.w2` |
-| `CampaignQcvImportNoisyReversibleLimits.w3` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.w3` |
-| `CampaignQcvImportNoisyReversibleLimits.w_step` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.w_step` |
-| `CampaignQcvImportNoisyReversibleLimits.w_zero` | yes | yes | yes | none | `#print axioms CampaignQcvImportNoisyReversibleLimits.w_zero` |
+| `NoisyReversibleLimitsImport.below1` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.below1` |
+| `NoisyReversibleLimitsImport.below2` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.below2` |
+| `NoisyReversibleLimitsImport.below3` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.below3` |
+| `NoisyReversibleLimitsImport.u1` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.u1` |
+| `NoisyReversibleLimitsImport.u2` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.u2` |
+| `NoisyReversibleLimitsImport.u3` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.u3` |
+| `NoisyReversibleLimitsImport.u_step` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.u_step` |
+| `NoisyReversibleLimitsImport.u_zero` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.u_zero` |
+| `NoisyReversibleLimitsImport.v1` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.v1` |
+| `NoisyReversibleLimitsImport.v2` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.v2` |
+| `NoisyReversibleLimitsImport.v3` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.v3` |
+| `NoisyReversibleLimitsImport.v_step` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.v_step` |
+| `NoisyReversibleLimitsImport.v_zero` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.v_zero` |
+| `NoisyReversibleLimitsImport.w0_u` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.w0_u` |
+| `NoisyReversibleLimitsImport.w1` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.w1` |
+| `NoisyReversibleLimitsImport.w2` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.w2` |
+| `NoisyReversibleLimitsImport.w3` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.w3` |
+| `NoisyReversibleLimitsImport.w_step` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.w_step` |
+| `NoisyReversibleLimitsImport.w_zero` | yes | yes | yes | none | `#print axioms NoisyReversibleLimitsImport.w_zero` |
 | `below1` | yes | yes | yes | none | `#print axioms below1` |
 | `below2` | yes | yes | yes | none | `#print axioms below2` |
 | `below3` | yes | yes | yes | none | `#print axioms below3` |
@@ -109,7 +109,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md`
 
 - file: [dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md](../../../dag/derivations/29_computation/tfq_1321_qcv_import_noisy_reversible_limits.md)
-- sha256 (`lf-normalised`): `19c903e2ef2b313f21b60fa35b5ba8b4bf433301f86b7ac6dce771fa2d509ef1`
+- sha256 (`lf-normalised`): `fa7190ec8fc18e04731dec996295edf8f6b8755d383aa507382c81c91bd6b5ed`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1321
 - counts toward the grade: no

@@ -6,8 +6,8 @@ The request is for exactly the two source paths and SHA-256 hashes below under t
 
 | PR | Source | SHA-256 | Score | Original node status |
 |---|---|---|---|---|
-| [433](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/433) | `lean4/CampaignDfmRefinementLimit.lean` | `b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb` | L3D | OPEN |
-| [434](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/434) | `lean4/CampaignLqgProjectiveLimit.lean` | `44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5` | L3D | OPEN |
+| [433](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/433) | `lean4/DressingFieldRefinementLimit.lean` | `b56f742d6f4d0cbd6c71cc7fe5d9e08fc3660a543e5cf1e34072588009c252fb` | L3D | OPEN |
+| [434](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/434) | `lean4/LqgProjectiveLimit.lean` | `44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5` | L3D | OPEN |
 
 The first theorem supplies quantitative binary transport convergence, exact limiting composition, endpoint gauge covariance and continuous parameter dependence, with an explicit critical-decay counterexample. It assumes a complete metric topological group and geometric refinement-error control.
 

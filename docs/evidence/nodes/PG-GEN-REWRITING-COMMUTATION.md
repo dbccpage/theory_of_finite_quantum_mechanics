@@ -45,36 +45,51 @@ O3 and O6 MECHANIZED in Second/Rename.lean and DerivationDagQMClosure.lean (pg_g
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGenesisOngoingRefinement.lean`
+### Lean: `lean4/DerivationDagQMClosure.lean`
 
-- file: [lean4/CampaignGenesisOngoingRefinement.lean](../../../lean4/CampaignGenesisOngoingRefinement.lean)
-- sha256 (`bytes`): `ab9d805468e84391bbc0ee142bec028d1ac27b0a5d16e159eda3196b6b50f8ac`
-- cited in: node.lean
+- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
+- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
+- cited in: node.lean, node.source
 - replay: `verified`
-  - receipt [dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json](../../../dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json) (module `CampaignGenesisOngoingRefinement`): recorded sha256 `ab9d805468e84391bbc0ee142bec028d1ac27b0a5d16e159eda3196b6b50f8ac` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/genesis_merged_20261023_lean_replay.json](../../../dag/research/genesis_merged_20261023_lean_replay.json) (module `CampaignGenesisOngoingRefinement`): recorded sha256 `ab9d805468e84391bbc0ee142bec028d1ac27b0a5d16e159eda3196b6b50f8ac` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGenesisOngoingRefinement`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build DerivationDagQMClosure`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignGenesisOngoingRefinement.decode_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.decode_rename` |
-| `CampaignGenesisOngoingRefinement.renaming_costs` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.renaming_costs` |
-| `CampaignGenesisOngoingRefinement.source_reach_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.source_reach_rename` |
-| `CampaignGenesisOngoingRefinement.source_step_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.source_step_rename` |
-| `CampaignGenesisOngoingRefinement.tracked_obstruction_persists` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.tracked_obstruction_persists` |
-| `CampaignGenesisOngoingRefinement.wire_reach_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.wire_reach_rename` |
+| `QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence` |
 
 - counts toward the grade: yes
 
-### Lean: `lean4/CampaignGenesisOngoingRename.lean`
+### Lean: `lean4/GenesisOngoingRefinement.lean`
 
-- file: [lean4/CampaignGenesisOngoingRename.lean](../../../lean4/CampaignGenesisOngoingRename.lean)
-- sha256 (`bytes`): `971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2`
-- cited in: node.lean, receipt dag/research/genesis_merged_20261023_lean_replay.json (CampaignGenesisOngoingRename)
+- file: [lean4/GenesisOngoingRefinement.lean](../../../lean4/GenesisOngoingRefinement.lean)
+- sha256 (`bytes`): `8efdfb4d1fc45ff8803ba9e76d2f6d66d4213e4e82de5a0c9a8fdf906829ae76`
+- cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json](../../../dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json) (module `CampaignGenesisOngoingRename`): recorded sha256 `971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/genesis_merged_20261023_lean_replay.json](../../../dag/research/genesis_merged_20261023_lean_replay.json) (module `CampaignGenesisOngoingRename`): recorded sha256 `971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGenesisOngoingRename`
+  - receipt [dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json](../../../dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json) (module `GenesisOngoingRefinement`): recorded sha256 `8efdfb4d1fc45ff8803ba9e76d2f6d66d4213e4e82de5a0c9a8fdf906829ae76` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/genesis_merged_20261023_lean_replay.json](../../../dag/research/genesis_merged_20261023_lean_replay.json) (module `GenesisOngoingRefinement`): recorded sha256 `8efdfb4d1fc45ff8803ba9e76d2f6d66d4213e4e82de5a0c9a8fdf906829ae76` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build GenesisOngoingRefinement`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `GenesisOngoingRefinement.decode_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.decode_rename` |
+| `GenesisOngoingRefinement.renaming_costs` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.renaming_costs` |
+| `GenesisOngoingRefinement.source_reach_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.source_reach_rename` |
+| `GenesisOngoingRefinement.source_step_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.source_step_rename` |
+| `GenesisOngoingRefinement.tracked_obstruction_persists` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.tracked_obstruction_persists` |
+| `GenesisOngoingRefinement.wire_reach_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.wire_reach_rename` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/GenesisOngoingRename.lean`
+
+- file: [lean4/GenesisOngoingRename.lean](../../../lean4/GenesisOngoingRename.lean)
+- sha256 (`bytes`): `971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2`
+- cited in: node.lean, receipt dag/research/genesis_merged_20261023_lean_replay.json (GenesisOngoingRename)
+- replay: `verified`
+  - receipt [dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json](../../../dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json) (module `GenesisOngoingRename`): recorded sha256 `971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/genesis_merged_20261023_lean_replay.json](../../../dag/research/genesis_merged_20261023_lean_replay.json) (module `GenesisOngoingRename`): recorded sha256 `971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build GenesisOngoingRename`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -94,21 +109,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `Seed.Second.obstruction_persists_reach` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.obstruction_persists_reach` |
 | `Seed.Second.rename_identify` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.rename_identify` |
 | `Seed.Second.size_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms Seed.Second.size_rename` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/DerivationDagQMClosure.lean`
-
-- file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
-- sha256 (`bytes`): `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154`
-- cited in: node.lean, node.source
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build DerivationDagQMClosure`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence` |
 
 - counts toward the grade: yes
 
@@ -171,7 +171,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pg-gen-ongoing-fewest-changes.md`
 
 - file: [dag/derivations/independent/pg-gen-ongoing-fewest-changes.md](../../../dag/derivations/independent/pg-gen-ongoing-fewest-changes.md)
-- sha256 (`lf-normalised`): `264aa3c3529be579b7ad1ad06c76d916ca59ad832c0507d4be41d216640bcbcc`
+- sha256 (`lf-normalised`): `7a3c0b747d97291cf969cdae28b57cb9324ba1ae7a99cfcf6eced5a9c9cbd8f8`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -17,19 +17,19 @@ The 1-by-1 disk cell arithmetic above is the narrowed statement. A superconducti
 
 ## 2. Derivation Context & Mathematical Grounding
 
-The standing claim is integer arithmetic on the count triple 4, 4, 1. It does not build a device. An earlier module, `CampaignTfq0183ImplementationSibling`, is not the standing statement. The independent checker also rebuilds one 1-by-1 disk and reports matrix ranks 3 and 1 and first Betti number 0; those ranks are not theorems of `CampaignTfq0183FourModeDisk`.
+The standing claim is integer arithmetic on the count triple 4, 4, 1. It does not build a device. An earlier module, `TetronGf2Homology`, is not the standing statement. The independent checker also rebuilds one 1-by-1 disk and reports matrix ranks 3 and 1 and first Betti number 0; those ranks are not theorems of `TetronFourModeCounts`.
 
 ---
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignTfq0183FourModeDisk.lean`:
-  - `CampaignTfq0183FourModeDisk.counts`
-  - `CampaignTfq0183FourModeDisk.eulerChar`
-  - `CampaignTfq0183FourModeDisk.bettiArithmetic`
-  - `CampaignTfq0183FourModeDisk.cornerParity`
-  - `CampaignTfq0183FourModeDisk.fourNeTwo`
+- `lean4/TetronFourModeCounts.lean`:
+  - `TetronFourModeCounts.counts`
+  - `TetronFourModeCounts.eulerChar`
+  - `TetronFourModeCounts.bettiArithmetic`
+  - `TetronFourModeCounts.cornerParity`
+  - `TetronFourModeCounts.fourNeTwo`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `code/rust/src/majorana/tetron.rs`:
@@ -59,7 +59,7 @@ The standing claim is integer arithmetic on the count triple 4, 4, 1. It does no
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `lean4/CampaignTfq0183FourModeDisk.lean`
+  - `lean4/TetronFourModeCounts.lean`
   - `code/rust/src/majorana/tetron.rs`
   - `code/rust/src/majorana/pauli_noise.rs`
   - `code/rust/src/majorana/noise_mc.rs`

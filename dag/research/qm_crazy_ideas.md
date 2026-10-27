@@ -39,11 +39,11 @@ In-tree authority shadows used below (not as 19L57G1 text, which was not fetched
 | ID | Title | Honest remainder |
 | --- | --- | --- |
 | GAP-F001-S000-004 | Born uniqueness (Gleason) on projection lattices / dense cyclotomic spheres | `OPEN (CONDITIONAL)`. Finite Cabello/Peres/triad checks and `GleasonTheorem.lean` d=2 obstruction are not a topology or a non-Bornian frame function on `S(Q(ζ_n)³)`. |
-| GAP-F001-S000-010 | Gleason dimension extra at n≥3 | `OPEN (CONDITIONAL)`. PR #205 withdrew historical `REFUSED-DERIVABLE`. H017Gleason falsifies a Bool cardinality surrogate, not uniqueness. |
-| GAP-F001-S000-005 | U(1) circle construction | `open_bridge`, no status. H011Circle: Gaussian units and Fin 3 meet the named extra; continuity remains imported. |
+| GAP-F001-S000-010 | Gleason dimension extra at n≥3 | `OPEN (CONDITIONAL)`. PR #205 withdrew historical `REFUSED-DERIVABLE`. HilbertWalkGleason falsifies a Bool cardinality surrogate, not uniqueness. |
+| GAP-F001-S000-005 | U(1) circle construction | `open_bridge`, no status. HilbertWalkCircle: Gaussian units and Fin 3 meet the named extra; continuity remains imported. |
 | GAP-F001-S000-001 | Exact duality gap certificate | DualWitness is a 2-integer pairing bound plus Mermin–Peres sign parity; not QM_080 Thm 5–6. |
 | GAP-F001-S000-006 | Hilbert tensor uniqueness | `CONDITIONAL_AXIOMATIC_CLOSURE` on four declared axioms; H062 does not prove necessity among bilinear maps. |
-| GAP-F001-S000-007 | CPTP class | `DEFINED` via Choi PSD under a declared embedding; Stinespring still escalates conductor; H017Finish still has `finish_cptp_imported`. |
+| GAP-F001-S000-007 | CPTP class | `DEFINED` via Choi PSD under a declared embedding; Stinespring still escalates conductor; HilbertWalkGleasonFinish still has `finish_cptp_imported`. |
 | GAP-F001-S000-012 | Ordered real embedding | `DECLARED_EXTERNAL_ASSUMPTION` (count=1), not a continuum-unclosable verdict. Mixed-state PSD is embedding-relative (n=5 witness). |
 | GAP-FQM-003 | Named algorithms unimplemented | Register still asks for V_Q, four-way classifier including Refusal, descent audit, cofiber–Banach bridge. `cochain.py` is a 3-way numerical LP (`TOL=1e-9`). |
 | GAP-FQM-019 | Unreplayed Mathlib snapshot | `lean4/original_lean_20260809` is absent. Replay or re-state; do not cite a dead path as proof. |
@@ -180,7 +180,7 @@ These are falsifiers for the **speculations**, not for quantum mechanics.
 1. **19L57G1 becomes public** and states a different law (e.g. representation-layer minting, or a sealed derivation that this app is supposed to rebuild). Then this reconstruction is withdrawn, not “interpreted.”
 2. **The machine emits `AuthorityEffect ≠ None`**, HIT-as-mathematics, or a campaign CLOSED while live tests assert OPEN. Then kill the machine; it has become the defect `check_result_schema.py` was written to catch.
 3. **A file-backed dense-sphere Gleason theorem or counterexample** on a declared `Q(ζ_n)^d` lands in the application lake. Then 004/010 leave the speculative queue and become ordinary register work. Finite Cabello/Peres counts would **not** suffice.
-4. **A finite construction of continuous U(1) or Stone’s theorem** without a branch-cut / completeness import. Then 005/008 pricing is wrong. H011Circle currently says the circle is not constructed; H055 currently says no Hamiltonian/log/exp/Stone.
+4. **A finite construction of continuous U(1) or Stone’s theorem** without a branch-cut / completeness import. Then 005/008 pricing is wrong. HilbertWalkCircle currently says the circle is not constructed; H055 currently says no Hamiltonian/log/exp/Stone.
 5. **A proof that continuum completion is necessary for Born uniqueness**, or the opposite. Paper §9 explicitly says neither “probability wall is absolute” nor “completion is necessary” survives PR #205. Either theorem would change the 004/010 routing (still not by appearing in this file).
 6. **Exact Φ₁ dual + Refusal classifier exist in-tree** with lake/pytest receipts. Then GAP-FQM-003’s “none of it exists as code” sentence is false (it is already stale about “five kernel routines” relative to 42 crate use-cases). That still would not close Hilbert lift.
 7. **C500 live tests stop asserting 250 OPEN** under a new freeze, or the original contract is formally withdrawn as the test oracle. Until then, campaign-as-solver may not report FQMC-1 closed.
@@ -205,7 +205,7 @@ These are falsifiers for the **speculations**, not for quantum mechanics.
 - `omega_engine/code/` (C750/C1000 Python, tests)
 - `omega_engine/code_rs/` (remaining PyO3/C750/C1000 Rust)
 - `omega_engine/crates_rs/` (including `omega_finite_qm`, `omega_quantum_physics`, `omega_engines`, `omega_solvers`, `omega_certifiers`, `omega_atlas_reconciliation`)
-- `lean4/quantum_mechanics/` listing plus opened: `OntologyBasic.lean`, `OntologyPrimitiveBridge.lean`, `SolverFrontier.lean`, `PointedObstructionClassifier.lean`, `H074OperationalAxiomSelection.lean`, `WorldWGOCSealedRefusal.lean`, `WorldObserverDirectedColimitNoGo.lean`, `PrimitiveDifference.lean`, `FiniteCochain.lean`, `lakefile.lean`
+- `lean4/quantum_mechanics/` listing plus opened: `OntologyBasic.lean`, `OntologyPrimitiveBridge.lean`, `SolverFrontier.lean`, `PointedObstructionClassifier.lean`, `OperationalAxiomSelection.lean`, `WorldWGOCSealedRefusal.lean`, `WorldObserverDirectedColimitNoGo.lean`, `PrimitiveDifference.lean`, `FiniteCochain.lean`, `lakefile.lean`
 - `campaigns/` listing; `c750/README.md`; `c500_execution/WITHDRAWAL.md`; `check_result_schema.py`
 - `omega_engine/crates_rs/omega_atlas_reconciliation/reconciliation_architecture_summary.md`; `…/src/governance.rs`
 - `omega_engine/crates_rs/omega_engines/src/lib.rs`; `…/obstruction_branch_search.rs`

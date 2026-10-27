@@ -61,13 +61,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H001ProbabilitySimplex.lean`
+### Lean: `lean4/ProbabilitySimplex.lean`
 
-- file: [lean4/H001ProbabilitySimplex.lean](../../../lean4/H001ProbabilitySimplex.lean)
-- sha256 (`bytes`): `a466cf99bcf45d5ba786f52361702a2988400bd210a234cf5f783366a8a47228`
+- file: [lean4/ProbabilitySimplex.lean](../../../lean4/ProbabilitySimplex.lean)
+- sha256 (`bytes`): `94547b50c80b02dfef733d5adb798e338d8a6feeebe02e82dade7f5ebe9f7f8a`
 - cited in: record TFQ-0167 (shared)
 - replay: `none`
-- check: `cd lean4 && lake build H001ProbabilitySimplex`
+- check: `cd lean4 && lake build ProbabilitySimplex`
 - counts toward the grade: no
 
 ### Rust: `code/rust/src/category_theory/foundations/finite_set.rs`
@@ -133,7 +133,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0167_admit_only_exact_nonnegative_rational_masses_that_sum_to_one_with_no.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0167_admit_only_exact_nonnegative_rational_masses_that_sum_to_one_with_no.md](../../../dag/derivations/22_implementation_sibling/tfq_0167_admit_only_exact_nonnegative_rational_masses_that_sum_to_one_with_no.md)
-- sha256 (`lf-normalised`): `1b9b4d68b36532db18e1b689ae85fc7d4cdb38c1031f1712b8b8f64fb01530e6`
+- sha256 (`lf-normalised`): `f76075556be2935a7fa3b215d691a46daef041554f57a0c3c42faba6c6368459`
 - generated view: listed, not counted
 - cited in: record TFQ-0167 (shared)
 - counts toward the grade: no

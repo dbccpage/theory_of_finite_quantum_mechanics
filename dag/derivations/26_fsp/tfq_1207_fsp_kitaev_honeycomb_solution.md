@@ -37,13 +37,13 @@ Cited KitaevHoneycombCore.lean::kitaev_honeycomb_exact_majorana_solution does no
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.flux_involution`
-- `lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.hopping_involution`
-- `lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.flux_commutes_hopping`
-- `lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.project_commutes_hopping`
-- `lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.sector_decomposition`
-- `lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.restricted_hopping`
-- `lean4/CampaignKitaevSectorBlock.lean::CampaignKitaevSectorBlock.sectors_distinct`
+- `lean4/KitaevSectorBlock.lean::KitaevSectorBlock.flux_involution`
+- `lean4/KitaevSectorBlock.lean::KitaevSectorBlock.hopping_involution`
+- `lean4/KitaevSectorBlock.lean::KitaevSectorBlock.flux_commutes_hopping`
+- `lean4/KitaevSectorBlock.lean::KitaevSectorBlock.project_commutes_hopping`
+- `lean4/KitaevSectorBlock.lean::KitaevSectorBlock.sector_decomposition`
+- `lean4/KitaevSectorBlock.lean::KitaevSectorBlock.restricted_hopping`
+- `lean4/KitaevSectorBlock.lean::KitaevSectorBlock.sectors_distinct`
 
 ### Rust Certifiers
 - *none*

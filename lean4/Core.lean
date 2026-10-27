@@ -1,6 +1,6 @@
 
 
-namespace GrokPdNight20260814.Core
+namespace ProjectionFiber.Core
 
 structure Realization (X : Type) (D : Type) where
   δ : X → X → D
@@ -88,7 +88,7 @@ theorem classOf_eq_iff {X : Type} (S : Setoid X) (x y : X) :
 
 #print axioms classOf_eq_iff
 
-end GrokPdNight20260814.Core
+end ProjectionFiber.Core
 
 private def l5aProvenance : String :=
   "Origin: lean4/Core.lean Claim: classOf_eq_iff AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

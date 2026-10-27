@@ -43,24 +43,24 @@ See also: `TFQ-0084`, `TFQ-0100`.
 
 - Repository: `dag/derivations/independent/ads-regge-area-rt-gap.md`
 - Repository: `checks/independent/ads-regge-area-rt-gap.py`
-- Repository: `lean4/CampaignAdsReggeAreaRtGap.lean`
+- Repository: `lean4/AdsReggeAreaRtGap.lean`
 - Repository: `dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json`
 - Repository: `dag/research/campaign_ads-regge-area-rt-gap_lean_mutation.json`
 - Repository: `dag/research/campaign_ads-regge-area-rt-gap_independent.json`
 
 ## Lean 4 declarations read
-- `lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.simplicial_regge_vs_happy_network_carrier_counts`
-- `lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.happy_mincut_value_distribution_380`
-- `lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.no_uniform_hinge_to_bond_unit_dictionary`
-- `lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.linear_area_subdivision_invariant`
-- `lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.sq_area_subdivision_scales_inv_m`
-- `lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_formula`
-- `lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_pos`
-- `lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.midpoint_and_barycentric_subdivision_witnesses`
-- `lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.regge_wdw_flat_vs_curved_dichotomy`
-- `lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.regge_action_linear_in_holonomy_defect`
-- `lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.regge_curvature_variation_vs_happy_subregion_variation`
-- `lean4/CampaignAdsReggeAreaRtGap.lean::CampaignAdsReggeAreaRtGap.no_fixed_background_regge_function_matches_all_subregion_cuts`
+- `lean4/AdsReggeAreaRtGap.lean::AdsReggeAreaRtGap.simplicial_regge_vs_happy_network_carrier_counts`
+- `lean4/AdsReggeAreaRtGap.lean::AdsReggeAreaRtGap.happy_mincut_value_distribution_380`
+- `lean4/AdsReggeAreaRtGap.lean::AdsReggeAreaRtGap.no_uniform_hinge_to_bond_unit_dictionary`
+- `lean4/AdsReggeAreaRtGap.lean::AdsReggeAreaRtGap.linear_area_subdivision_invariant`
+- `lean4/AdsReggeAreaRtGap.lean::AdsReggeAreaRtGap.sq_area_subdivision_scales_inv_m`
+- `lean4/AdsReggeAreaRtGap.lean::AdsReggeAreaRtGap.sq_area_subdivision_defect_formula`
+- `lean4/AdsReggeAreaRtGap.lean::AdsReggeAreaRtGap.sq_area_subdivision_defect_pos`
+- `lean4/AdsReggeAreaRtGap.lean::AdsReggeAreaRtGap.midpoint_and_barycentric_subdivision_witnesses`
+- `lean4/AdsReggeAreaRtGap.lean::AdsReggeAreaRtGap.regge_wdw_flat_vs_curved_dichotomy`
+- `lean4/AdsReggeAreaRtGap.lean::AdsReggeAreaRtGap.regge_action_linear_in_holonomy_defect`
+- `lean4/AdsReggeAreaRtGap.lean::AdsReggeAreaRtGap.regge_curvature_variation_vs_happy_subregion_variation`
+- `lean4/AdsReggeAreaRtGap.lean::AdsReggeAreaRtGap.no_fixed_background_regge_function_matches_all_subregion_cuts`
 
 ## Downstream derivations
 

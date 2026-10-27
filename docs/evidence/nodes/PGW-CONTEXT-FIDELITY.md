@@ -42,32 +42,32 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignPgwContextFidelity.lean`
+### Lean: `lean4/PregenesisContextFidelity.lean`
 
-- file: [lean4/CampaignPgwContextFidelity.lean](../../../lean4/CampaignPgwContextFidelity.lean)
-- sha256 (`bytes`): `a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643`
-- cited in: node.lean, receipt dag/research/campaign_pgw-context-fidelity_lean_replay.json (CampaignPgwContextFidelity), receipt dag/research/pr_344_review_replay.json (CampaignPgwContextFidelity), record TFQ-0427
+- file: [lean4/PregenesisContextFidelity.lean](../../../lean4/PregenesisContextFidelity.lean)
+- sha256 (`bytes`): `1014a0c4622f95bfac19d876c5f31a22e13f26868d3763867d8a429a29d6afac`
+- cited in: node.lean, receipt dag/research/campaign_pgw-context-fidelity_lean_replay.json (PregenesisContextFidelity), receipt dag/research/pr_344_review_replay.json (PregenesisContextFidelity), record TFQ-0427
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-context-fidelity_lean_replay.json](../../../dag/research/campaign_pgw-context-fidelity_lean_replay.json) (module `CampaignPgwContextFidelity`): recorded sha256 `a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_344_review_replay.json](../../../dag/research/pr_344_review_replay.json) (module `CampaignPgwContextFidelity`): recorded sha256 `a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignPgwContextFidelity`
+  - receipt [dag/research/campaign_pgw-context-fidelity_lean_replay.json](../../../dag/research/campaign_pgw-context-fidelity_lean_replay.json) (module `PregenesisContextFidelity`): recorded sha256 `1014a0c4622f95bfac19d876c5f31a22e13f26868d3763867d8a429a29d6afac` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_344_review_replay.json](../../../dag/research/pr_344_review_replay.json) (module `PregenesisContextFidelity`): recorded sha256 `1014a0c4622f95bfac19d876c5f31a22e13f26868d3763867d8a429a29d6afac` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build PregenesisContextFidelity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignPgwContextFidelity.acceptEqual_sound` | yes | yes | yes | none | `#print axioms CampaignPgwContextFidelity.acceptEqual_sound` |
-| `CampaignPgwContextFidelity.answers_follow_received_history` | yes | yes | yes | propext | `#print axioms CampaignPgwContextFidelity.answers_follow_received_history` |
-| `CampaignPgwContextFidelity.equal_implies_sound` | yes | yes | yes | none | `#print axioms CampaignPgwContextFidelity.equal_implies_sound` |
-| `CampaignPgwContextFidelity.full_retracted` | yes | yes | yes | propext | `#print axioms CampaignPgwContextFidelity.full_retracted` |
-| `CampaignPgwContextFidelity.history_count` | yes | yes | yes | none | `#print axioms CampaignPgwContextFidelity.history_count` |
-| `CampaignPgwContextFidelity.replay_full` | yes | yes | yes | none | `#print axioms CampaignPgwContextFidelity.replay_full` |
-| `CampaignPgwContextFidelity.replay_supply` | yes | yes | yes | none | `#print axioms CampaignPgwContextFidelity.replay_supply` |
-| `CampaignPgwContextFidelity.separatingStep_invalid` | yes | yes | yes | propext | `#print axioms CampaignPgwContextFidelity.separatingStep_invalid` |
-| `CampaignPgwContextFidelity.separatingStep_valid` | yes | yes | yes | propext | `#print axioms CampaignPgwContextFidelity.separatingStep_valid` |
-| `CampaignPgwContextFidelity.sound_iff_only_replay` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwContextFidelity.sound_iff_only_replay` |
-| `CampaignPgwContextFidelity.sound_implies_equal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignPgwContextFidelity.sound_implies_equal` |
-| `CampaignPgwContextFidelity.stale_not_transferred` | yes | yes | yes | propext | `#print axioms CampaignPgwContextFidelity.stale_not_transferred` |
-| `CampaignPgwContextFidelity.truncated_verified` | yes | yes | yes | propext | `#print axioms CampaignPgwContextFidelity.truncated_verified` |
-| `CampaignPgwContextFidelity.unequal_pair_count` | yes | yes | yes | none | `#print axioms CampaignPgwContextFidelity.unequal_pair_count` |
+| `PregenesisContextFidelity.acceptEqual_sound` | yes | yes | yes | none | `#print axioms PregenesisContextFidelity.acceptEqual_sound` |
+| `PregenesisContextFidelity.answers_follow_received_history` | yes | yes | yes | propext | `#print axioms PregenesisContextFidelity.answers_follow_received_history` |
+| `PregenesisContextFidelity.equal_implies_sound` | yes | yes | yes | none | `#print axioms PregenesisContextFidelity.equal_implies_sound` |
+| `PregenesisContextFidelity.full_retracted` | yes | yes | yes | propext | `#print axioms PregenesisContextFidelity.full_retracted` |
+| `PregenesisContextFidelity.history_count` | yes | yes | yes | none | `#print axioms PregenesisContextFidelity.history_count` |
+| `PregenesisContextFidelity.replay_full` | yes | yes | yes | none | `#print axioms PregenesisContextFidelity.replay_full` |
+| `PregenesisContextFidelity.replay_supply` | yes | yes | yes | none | `#print axioms PregenesisContextFidelity.replay_supply` |
+| `PregenesisContextFidelity.separatingStep_invalid` | yes | yes | yes | propext | `#print axioms PregenesisContextFidelity.separatingStep_invalid` |
+| `PregenesisContextFidelity.separatingStep_valid` | yes | yes | yes | propext | `#print axioms PregenesisContextFidelity.separatingStep_valid` |
+| `PregenesisContextFidelity.sound_iff_only_replay` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms PregenesisContextFidelity.sound_iff_only_replay` |
+| `PregenesisContextFidelity.sound_implies_equal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms PregenesisContextFidelity.sound_implies_equal` |
+| `PregenesisContextFidelity.stale_not_transferred` | yes | yes | yes | propext | `#print axioms PregenesisContextFidelity.stale_not_transferred` |
+| `PregenesisContextFidelity.truncated_verified` | yes | yes | yes | propext | `#print axioms PregenesisContextFidelity.truncated_verified` |
+| `PregenesisContextFidelity.unequal_pair_count` | yes | yes | yes | none | `#print axioms PregenesisContextFidelity.unequal_pair_count` |
 | `answers_follow_received_history` | yes | yes | yes | propext | `#print axioms answers_follow_received_history` |
 | `sound_iff_only_replay` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms sound_iff_only_replay` |
 | `stale_not_transferred` | yes | yes | yes | propext | `#print axioms stale_not_transferred` |
@@ -113,7 +113,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md](../../../dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md)
-- sha256 (`lf-normalised`): `00c0240fbe653cd36a7b59295f2d7f36e6ff8796a1fb3b3b40224b93bcd25ef1`
+- sha256 (`lf-normalised`): `dc1892741490011c6eeddc11922d8e437a69a5c8f656fa2f6366bd6148cac2cb`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0427
 - counts toward the grade: no

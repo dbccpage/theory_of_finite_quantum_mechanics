@@ -42,42 +42,42 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignFspThetaTermComplexWeight.lean`
+### Lean: `lean4/FermionSignThetaTermComplexWeight.lean`
 
-- file: [lean4/CampaignFspThetaTermComplexWeight.lean](../../../lean4/CampaignFspThetaTermComplexWeight.lean)
-- sha256 (`bytes`): `7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e`
-- cited in: node.lean, receipt dag/research/campaign_fsp-theta-term-complex-weight_lean_replay.json (CampaignFspThetaTermComplexWeight), record TFQ-1198
+- file: [lean4/FermionSignThetaTermComplexWeight.lean](../../../lean4/FermionSignThetaTermComplexWeight.lean)
+- sha256 (`bytes`): `8aad90bf52adf206cc224ef107e0e3cea21a8427773c3dd0816e2d2e20b370bb`
+- cited in: node.lean, receipt dag/research/campaign_fsp-theta-term-complex-weight_lean_replay.json (FermionSignThetaTermComplexWeight), record TFQ-1198
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-theta-term-complex-weight_lean_replay.json](../../../dag/research/campaign_fsp-theta-term-complex-weight_lean_replay.json) (module `CampaignFspThetaTermComplexWeight`): recorded sha256 `7077123bd408a147d59803e312add757b2361f554b0e037a1d1afce4423bc11e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignFspThetaTermComplexWeight`
+  - receipt [dag/research/campaign_fsp-theta-term-complex-weight_lean_replay.json](../../../dag/research/campaign_fsp-theta-term-complex-weight_lean_replay.json) (module `FermionSignThetaTermComplexWeight`): recorded sha256 `8aad90bf52adf206cc224ef107e0e3cea21a8427773c3dd0816e2d2e20b370bb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build FermionSignThetaTermComplexWeight`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignFspThetaTermComplexWeight.charge1PositiveOnlyAtZero` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.charge1PositiveOnlyAtZero` |
-| `CampaignFspThetaTermComplexWeight.im01` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.im01` |
-| `CampaignFspThetaTermComplexWeight.im11` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.im11` |
-| `CampaignFspThetaTermComplexWeight.im11_ne` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.im11_ne` |
-| `CampaignFspThetaTermComplexWeight.im21` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.im21` |
-| `CampaignFspThetaTermComplexWeight.im31` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.im31` |
-| `CampaignFspThetaTermComplexWeight.im31_ne` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.im31_ne` |
-| `CampaignFspThetaTermComplexWeight.mulNegI_eq_gMul` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFspThetaTermComplexWeight.mulNegI_eq_gMul` |
-| `CampaignFspThetaTermComplexWeight.notPositive21` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.notPositive21` |
-| `CampaignFspThetaTermComplexWeight.phaseProduct` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.phaseProduct` |
-| `CampaignFspThetaTermComplexWeight.positive01` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.positive01` |
-| `CampaignFspThetaTermComplexWeight.quarter0` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.quarter0` |
-| `CampaignFspThetaTermComplexWeight.quarter1` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.quarter1` |
-| `CampaignFspThetaTermComplexWeight.quarter2` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.quarter2` |
-| `CampaignFspThetaTermComplexWeight.quarter3` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.quarter3` |
-| `CampaignFspThetaTermComplexWeight.quarter4` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.quarter4` |
-| `CampaignFspThetaTermComplexWeight.re21` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.re21` |
-| `CampaignFspThetaTermComplexWeight.weight00` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.weight00` |
-| `CampaignFspThetaTermComplexWeight.weight01` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.weight01` |
-| `CampaignFspThetaTermComplexWeight.weight10` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.weight10` |
-| `CampaignFspThetaTermComplexWeight.weight11` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.weight11` |
-| `CampaignFspThetaTermComplexWeight.weight20` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.weight20` |
-| `CampaignFspThetaTermComplexWeight.weight21` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.weight21` |
-| `CampaignFspThetaTermComplexWeight.weight30` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.weight30` |
-| `CampaignFspThetaTermComplexWeight.weight31` | yes | yes | yes | none | `#print axioms CampaignFspThetaTermComplexWeight.weight31` |
+| `FermionSignThetaTermComplexWeight.charge1PositiveOnlyAtZero` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.charge1PositiveOnlyAtZero` |
+| `FermionSignThetaTermComplexWeight.im01` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.im01` |
+| `FermionSignThetaTermComplexWeight.im11` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.im11` |
+| `FermionSignThetaTermComplexWeight.im11_ne` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.im11_ne` |
+| `FermionSignThetaTermComplexWeight.im21` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.im21` |
+| `FermionSignThetaTermComplexWeight.im31` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.im31` |
+| `FermionSignThetaTermComplexWeight.im31_ne` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.im31_ne` |
+| `FermionSignThetaTermComplexWeight.mulNegI_eq_gMul` | yes | yes | yes | Quot.sound, propext | `#print axioms FermionSignThetaTermComplexWeight.mulNegI_eq_gMul` |
+| `FermionSignThetaTermComplexWeight.notPositive21` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.notPositive21` |
+| `FermionSignThetaTermComplexWeight.phaseProduct` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.phaseProduct` |
+| `FermionSignThetaTermComplexWeight.positive01` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.positive01` |
+| `FermionSignThetaTermComplexWeight.quarter0` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.quarter0` |
+| `FermionSignThetaTermComplexWeight.quarter1` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.quarter1` |
+| `FermionSignThetaTermComplexWeight.quarter2` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.quarter2` |
+| `FermionSignThetaTermComplexWeight.quarter3` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.quarter3` |
+| `FermionSignThetaTermComplexWeight.quarter4` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.quarter4` |
+| `FermionSignThetaTermComplexWeight.re21` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.re21` |
+| `FermionSignThetaTermComplexWeight.weight00` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.weight00` |
+| `FermionSignThetaTermComplexWeight.weight01` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.weight01` |
+| `FermionSignThetaTermComplexWeight.weight10` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.weight10` |
+| `FermionSignThetaTermComplexWeight.weight11` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.weight11` |
+| `FermionSignThetaTermComplexWeight.weight20` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.weight20` |
+| `FermionSignThetaTermComplexWeight.weight21` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.weight21` |
+| `FermionSignThetaTermComplexWeight.weight30` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.weight30` |
+| `FermionSignThetaTermComplexWeight.weight31` | yes | yes | yes | none | `#print axioms FermionSignThetaTermComplexWeight.weight31` |
 
 - counts toward the grade: yes
 
@@ -96,7 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md`
 
 - file: [dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md](../../../dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md)
-- sha256 (`lf-normalised`): `62cbe6f9d7fcbafbac10425deff9700d43b72a7c611acc130b6cc7af58258286`
+- sha256 (`lf-normalised`): `fa9ce4c57abd25d255a0f04f0dac3d7ee7cb94cc362a6e2225ff988952f31507`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1198
 - counts toward the grade: no

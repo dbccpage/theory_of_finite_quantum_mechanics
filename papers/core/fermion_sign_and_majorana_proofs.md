@@ -140,13 +140,13 @@ Because links are functions of ordered vertex pairs, for $L\le2$ the two paralle
 neighbours coincide. Nothing is claimed about a fermion sign, a continuum limit, reflection
 positivity, a transfer matrix or a non-abelian action.
 
-Lean: `lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.fsp_u1_wilson_action`
+Lean: `lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.fsp_u1_wilson_action`
 states (i) and the first part of (ii) for any vertex type and finite path family;
-`lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.loopHolonomy_gaugeAct`,
-`lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_eq_zero_iff`,
-`lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.wilsonAction_nonneg_needs_beta`,
-`lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.hypercubicWilson_gauge_invariant`,
-`lean4/CampaignFspU1WilsonAction.lean::CampaignFspU1WilsonAction.hypercubicWilson_nonneg`.
+`lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.loopHolonomy_gaugeAct`,
+`lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.wilsonAction_eq_zero_iff`,
+`lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.wilsonAction_nonneg_needs_beta`,
+`lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.hypercubicWilson_gauge_invariant`,
+`lean4/FermionSignU1WilsonAction.lean::FermionSignU1WilsonAction.hypercubicWilson_nonneg`.
 
 ### 1.5 Flat-connection counts under the 4D Pachner moves
 
@@ -184,15 +184,15 @@ and $|G|$. The raw counts agree only when $G$ is trivial, which is why the norma
 needed. Summing over a finite family of exterior configurations, with the same number of outside
 vertices on both sides, preserves the equality term by term.
 
-Lean: `lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.pachner_one_five`,
-`lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.pachner_two_four`,
-`lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.pachner_three_three`,
-`lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.nonflat_boundary_has_no_extension`,
-`lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.oneFillingEquiv`,
-`lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.unnormalized_one_five_iff`,
-`lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.glued_one_five`,
-`lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.glued_two_four`,
-`lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.glued_three_three`.
+Lean: `lean4/FiniteGroupPachner.lean::FiniteGroupPachner.pachner_one_five`,
+`lean4/FiniteGroupPachner.lean::FiniteGroupPachner.pachner_two_four`,
+`lean4/FiniteGroupPachner.lean::FiniteGroupPachner.pachner_three_three`,
+`lean4/FiniteGroupPachner.lean::FiniteGroupPachner.nonflat_boundary_has_no_extension`,
+`lean4/FiniteGroupPachner.lean::FiniteGroupPachner.oneFillingEquiv`,
+`lean4/FiniteGroupPachner.lean::FiniteGroupPachner.unnormalized_one_five_iff`,
+`lean4/FiniteGroupPachner.lean::FiniteGroupPachner.glued_one_five`,
+`lean4/FiniteGroupPachner.lean::FiniteGroupPachner.glued_two_four`,
+`lean4/FiniteGroupPachner.lean::FiniteGroupPachner.glued_three_three`.
 Lean checks the three canonical local complexes directly, by constructing the fillings and counting
 them. It does not contain the general ball argument above, a gluing or PL-homeomorphism library, or
 twisted (Dijkgraaf–Witten, Crane–Yetter) weights.

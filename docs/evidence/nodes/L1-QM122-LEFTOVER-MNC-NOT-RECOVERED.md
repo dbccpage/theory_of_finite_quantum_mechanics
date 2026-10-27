@@ -4,7 +4,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `OPEN`. Evidence grade: **E3**
 
 ## Statement
 
-> The finite Hilbert boundary from primitive difference does not recover ordinary M_n(C). Open: Gleason at n \>= 3, CPTP, tensor uniqueness, circle, Python dual. Imports listed in section 7: complex scalars as a field, circle phases, Born uniqueness (Gleason), Hilbert tensor, CPTP, continuous time. H017Finish gives a declared finish table, not a derivation.
+> The finite Hilbert boundary from primitive difference does not recover ordinary M_n(C). Open: Gleason at n \>= 3, CPTP, tensor uniqueness, circle, Python dual. Imports listed in section 7: complex scalars as a field, circle phases, Born uniqueness (Gleason), Hilbert tensor, CPTP, continuous time. HilbertWalkGleasonFinish gives a declared finish table, not a derivation.
 
 ## Grade
 
@@ -72,24 +72,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build FiniteQM`
 - counts toward the grade: yes
 
-### Lean: `lean4/H017Fin.lean`
+### Lean: `lean4/HilbertWalkGleasonFin.lean`
 
-- file: [lean4/H017Fin.lean](../../../lean4/H017Fin.lean)
-- sha256 (`bytes`): `2294ae2512eac4a7c5167954b86118c7f02638dafbdb42b4b894fc1fbdc4dea2`
+- file: [lean4/HilbertWalkGleasonFin.lean](../../../lean4/HilbertWalkGleasonFin.lean)
+- sha256 (`bytes`): `a33c2aa3109d5a5c9cf79e8e032720afc39d76841c9ee781eedaddb13c98b0d9`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H017Fin`): recorded sha256 `2294ae2512eac4a7c5167954b86118c7f02638dafbdb42b4b894fc1fbdc4dea2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H017Fin`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertWalkGleasonFin`): recorded sha256 `a33c2aa3109d5a5c9cf79e8e032720afc39d76841c9ee781eedaddb13c98b0d9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build HilbertWalkGleasonFin`
 - counts toward the grade: yes
 
-### Lean: `lean4/H017Finish.lean`
+### Lean: `lean4/HilbertWalkGleasonFinish.lean`
 
-- file: [lean4/H017Finish.lean](../../../lean4/H017Finish.lean)
-- sha256 (`bytes`): `61014dcb93865ef22001d7dc004f853beaa32c16e6a0f62d04fe02c19a69190a`
+- file: [lean4/HilbertWalkGleasonFinish.lean](../../../lean4/HilbertWalkGleasonFinish.lean)
+- sha256 (`bytes`): `d17eada69f37e9abb28ebc93122facd32716683618eed2c8e19e2b952b84daeb`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H017Finish`): recorded sha256 `61014dcb93865ef22001d7dc004f853beaa32c16e6a0f62d04fe02c19a69190a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H017Finish`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertWalkGleasonFinish`): recorded sha256 `d17eada69f37e9abb28ebc93122facd32716683618eed2c8e19e2b952b84daeb` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build HilbertWalkGleasonFinish`
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs`

@@ -1,0 +1,273 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/ContinuumHilbertImport.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/ContinuumHilbertImport.lean",
+      "sha256": "9e7afdeacea7f90b7280915b655a20aff4e66ea6ef902a2f8f91b66f883c1989"
+    },
+    "boundaries": [
+      "The transition from a finite presented carrier, with integer weights and finite report labels, to a continuous infinite-dimensional Hilbert space stays imported. Scalar-field selection, l2 uniformity, a verified topology, a Cauchy completion and the lift of bounded exact operators stay imported. The completion record sits at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). QM_122 section 6 refuses that transition, and the QM_020 demotion box fences it. The length-4 window and the finite power-of-four identity are one finite case.",
+      "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+    ],
+    "contract_urn": "urn:tfqm:review:20261026:ContinuumHilbertImport",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json",
+        "sha256": "9210029be37c2accb661eae9f621453b3fb7d7d54b24010a04db99b08dd73a17"
+      },
+      {
+        "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+        "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+      }
+    ],
+    "owned_invariants": [
+      "Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1."
+    ],
+    "purpose": "Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1.",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "pow4",
+      "sumPow4",
+      "closedTail",
+      "scaledTailIsOne",
+      "sumDiff",
+      "halves",
+      "windowSquares",
+      "windowSum",
+      "windowScaled",
+      "pow4Four",
+      "windowIsSum",
+      "squareDiffs",
+      "noPositiveDoubleOfOne"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 3087,
+      "original_paths": [
+        "lean4/CampaignGpImportContinuumHilbert.contract.score.yaml#qm-open-pr-review-20261026-c295d54bb448"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignGpImportContinuumHilbert.lean\",\n    \"sha256\": \"c295d54bb448053163b2de830650a5724201901cb8b4f00e1a3c70418524e965\"\n  },\n  \"boundaries\": [\n    \"The transition from a finite presented carrier, with integer weights and finite report labels, to a continuous infinite-dimensional Hilbert space stays imported. Scalar-field selection, l2 uniformity, a verified topology, a Cauchy completion and the lift of bounded exact operators stay imported. The completion record sits at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). QM_122 section 6 refuses that transition, and the QM_020 demotion box fences it. The length-4 window and the finite power-of-four identity are one finite case.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review:20261026:CampaignGpImportContinuumHilbert\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json\",\n      \"sha256\": \"084e13cf2c77a49267bfa70c7a53385d29f3b0b396dcd3cfb82050aba02ff2c7\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_lower_campaign_review_20261026.md\",\n      \"sha256\": \"690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1.\"\n  ],\n  \"purpose\": \"Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"pow4\",\n    \"sumPow4\",\n    \"closedTail\",\n    \"scaledTailIsOne\",\n    \"sumDiff\",\n    \"halves\",\n    \"windowSquares\",\n    \"windowSum\",\n    \"windowScaled\",\n    \"pow4Four\",\n    \"windowIsSum\",\n    \"squareDiffs\",\n    \"noPositiveDoubleOfOne\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignGpImportContinuumHilbert.lean",
+          "sha256": "c295d54bb448053163b2de830650a5724201901cb8b4f00e1a3c70418524e965"
+        },
+        "boundaries": [
+          "The transition from a finite presented carrier, with integer weights and finite report labels, to a continuous infinite-dimensional Hilbert space stays imported. Scalar-field selection, l2 uniformity, a verified topology, a Cauchy completion and the lift of bounded exact operators stay imported. The completion record sits at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). QM_122 section 6 refuses that transition, and the QM_020 demotion box fences it. The length-4 window and the finite power-of-four identity are one finite case.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "contract_urn": "urn:tfqm:review:20261026:CampaignGpImportContinuumHilbert",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json",
+            "sha256": "084e13cf2c77a49267bfa70c7a53385d29f3b0b396dcd3cfb82050aba02ff2c7"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+            "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+          }
+        ],
+        "owned_invariants": [
+          "Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1."
+        ],
+        "purpose": "Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "pow4",
+          "sumPow4",
+          "closedTail",
+          "scaledTailIsOne",
+          "sumDiff",
+          "halves",
+          "windowSquares",
+          "windowSum",
+          "windowScaled",
+          "pow4Four",
+          "windowIsSum",
+          "squareDiffs",
+          "noPositiveDoubleOfOne"
+        ]
+      },
+      "sha256": "ed3d21945b76a45e23327088179b346a45564382f5d556ff15a492cf3e4d1929"
+    },
+    {
+      "bytes": 3067,
+      "original_paths": [
+        "lean4/ContinuumHilbertImport.contract.score.yaml#qm-open-pr-review-20261026-c295d54bb448"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/ContinuumHilbertImport.lean\",\n    \"sha256\": \"9e7afdeacea7f90b7280915b655a20aff4e66ea6ef902a2f8f91b66f883c1989\"\n  },\n  \"boundaries\": [\n    \"The transition from a finite presented carrier, with integer weights and finite report labels, to a continuous infinite-dimensional Hilbert space stays imported. Scalar-field selection, l2 uniformity, a verified topology, a Cauchy completion and the lift of bounded exact operators stay imported. The completion record sits at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). QM_122 section 6 refuses that transition, and the QM_020 demotion box fences it. The length-4 window and the finite power-of-four identity are one finite case.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review:20261026:ContinuumHilbertImport\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json\",\n      \"sha256\": \"9210029be37c2accb661eae9f621453b3fb7d7d54b24010a04db99b08dd73a17\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_lower_campaign_review_20261026.md\",\n      \"sha256\": \"690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1.\"\n  ],\n  \"purpose\": \"Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"pow4\",\n    \"sumPow4\",\n    \"closedTail\",\n    \"scaledTailIsOne\",\n    \"sumDiff\",\n    \"halves\",\n    \"windowSquares\",\n    \"windowSum\",\n    \"windowScaled\",\n    \"pow4Four\",\n    \"windowIsSum\",\n    \"squareDiffs\",\n    \"noPositiveDoubleOfOne\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/ContinuumHilbertImport.lean",
+          "sha256": "9e7afdeacea7f90b7280915b655a20aff4e66ea6ef902a2f8f91b66f883c1989"
+        },
+        "boundaries": [
+          "The transition from a finite presented carrier, with integer weights and finite report labels, to a continuous infinite-dimensional Hilbert space stays imported. Scalar-field selection, l2 uniformity, a verified topology, a Cauchy completion and the lift of bounded exact operators stay imported. The completion record sits at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). QM_122 section 6 refuses that transition, and the QM_020 demotion box fences it. The length-4 window and the finite power-of-four identity are one finite case.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "contract_urn": "urn:tfqm:review:20261026:ContinuumHilbertImport",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json",
+            "sha256": "9210029be37c2accb661eae9f621453b3fb7d7d54b24010a04db99b08dd73a17"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+            "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+          }
+        ],
+        "owned_invariants": [
+          "Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1."
+        ],
+        "purpose": "Define pow4 by pow4 0 = 1 and pow4 (k + 1) = pow4 k * 4. Define sumPow4 by sumPow4 0 = 0 and sumPow4 (k + 1) = sumPow4 k + pow4 k. The length-4 window (8, 4, 2, 1) satisfies 8 = 4 + 4, 4 = 2 + 2 and 2 = 1 + 1. The products 8 * 8, 4 * 4, 2 * 2 and 1 * 1 equal 64, 16, 4 and 1, and their sum equals 85, which equals sumPow4 4. Three times 85, plus 1, equals 256, and pow4 4 equals 256. The differences 64 - 16, 16 - 4 and 4 - 1 equal 48, 12 and 3, and those equal 3 * 16, 3 * 4 and 3 * 1. For each natural number n, 3 * sumPow4 n + 1 = pow4 n, and pow4 n - 3 * sumPow4 n = 1, and sumPow4 (n + 1) - sumPow4 n = pow4 n. No positive natural number z satisfies z + z = 1.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "pow4",
+          "sumPow4",
+          "closedTail",
+          "scaledTailIsOne",
+          "sumDiff",
+          "halves",
+          "windowSquares",
+          "windowSum",
+          "windowScaled",
+          "pow4Four",
+          "windowIsSum",
+          "squareDiffs",
+          "noPositiveDoubleOfOne"
+        ]
+      },
+      "sha256": "a1b86fc044411483f42b28fce569fc93a124eeb74a0fa34ef1d23f4babf11bd9"
+    }
+  ],
+  "current_contract": "a1b86fc044411483f42b28fce569fc93a124eeb74a0fa34ef1d23f4babf11bd9",
+  "current_scoring": "5a8fb3f0bafbab7e3e6fa51207bca47586ac88b66319cab7d39259a03de0a751",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2786,
+      "original_paths": [
+        "lean4/CampaignGpImportContinuumHilbert.contract.score.yaml#qm-open-pr-review-20261026-c295d54bb448"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignGpImportContinuumHilbert.lean\",\n    \"sha256\": \"c295d54bb448053163b2de830650a5724201901cb8b4f00e1a3c70418524e965\"\n  },\n  \"assessment_id\": \"qm-open-pr-review-20261026-c295d54bb448\",\n  \"basis\": {\n    \"G1\": \"Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.\",\n    \"G2\": \"Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.\",\n    \"G3\": \"Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.\",\n    \"G4\": \"Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.\",\n    \"G5\": \"Inspected 72 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T15:28:12.345384+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json\",\n      \"sha256\": \"084e13cf2c77a49267bfa70c7a53385d29f3b0b396dcd3cfb82050aba02ff2c7\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_lower_campaign_review_20261026.md\",\n      \"sha256\": \"690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.\",\n  \"open_higher_grade_findings\": [\n    \"The transition from a finite presented carrier, with integer weights and finite report labels, to a continuous infinite-dimensional Hilbert space stays imported. Scalar-field selection, l2 uniformity, a verified topology, a Cauchy completion and the lift of bounded exact operators stay imported. The completion record sits at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). QM_122 section 6 refuses that transition, and the QM_020 demotion box fences it. The length-4 window and the finite power-of-four identity are one finite case.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignGpImportContinuumHilbert.lean",
+          "sha256": "c295d54bb448053163b2de830650a5724201901cb8b4f00e1a3c70418524e965"
+        },
+        "assessment_id": "qm-open-pr-review-20261026-c295d54bb448",
+        "basis": {
+          "G1": "Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.",
+          "G2": "Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.",
+          "G3": "Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.",
+          "G4": "Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.",
+          "G5": "Inspected 72 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T15:28:12.345384+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json",
+            "sha256": "084e13cf2c77a49267bfa70c7a53385d29f3b0b396dcd3cfb82050aba02ff2c7"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+            "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.",
+        "open_higher_grade_findings": [
+          "The transition from a finite presented carrier, with integer weights and finite report labels, to a continuous infinite-dimensional Hilbert space stays imported. Scalar-field selection, l2 uniformity, a verified topology, a Cauchy completion and the lift of bounded exact operators stay imported. The completion record sits at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). QM_122 section 6 refuses that transition, and the QM_020 demotion box fences it. The length-4 window and the finite power-of-four identity are one finite case.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "dc2628feb7fe66a1aab4210b935ab7ea60e6d53fac7856cb0466630774814440"
+    },
+    {
+      "bytes": 3221,
+      "original_paths": [
+        "lean4/ContinuumHilbertImport.contract.score.yaml#qm-open-pr-review-20261026-c295d54bb448"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/ContinuumHilbertImport.lean\",\n    \"sha256\": \"9e7afdeacea7f90b7280915b655a20aff4e66ea6ef902a2f8f91b66f883c1989\"\n  },\n  \"assessment_id\": \"qm-open-pr-review-20261026-c295d54bb448\",\n  \"basis\": {\n    \"G1\": \"Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.\",\n    \"G2\": \"Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.\",\n    \"G3\": \"Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.\",\n    \"G4\": \"Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.\",\n    \"G5\": \"Inspected 72 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T15:28:12.345384+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json\",\n      \"sha256\": \"9210029be37c2accb661eae9f621453b3fb7d7d54b24010a04db99b08dd73a17\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_lower_campaign_review_20261026.md\",\n      \"sha256\": \"690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.\",\n  \"open_higher_grade_findings\": [\n    \"The transition from a finite presented carrier, with integer weights and finite report labels, to a continuous infinite-dimensional Hilbert space stays imported. Scalar-field selection, l2 uniformity, a verified topology, a Cauchy completion and the lift of bounded exact operators stay imported. The completion record sits at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). QM_122 section 6 refuses that transition, and the QM_020 demotion box fences it. The length-4 window and the finite power-of-four identity are one finite case.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"profile\": \"Exact\",\n  \"rebound\": {\n    \"date\": \"2026-10-27\",\n    \"from_path\": \"lean4/CampaignGpImportContinuumHilbert.lean\",\n    \"from_sha256\": \"c295d54bb448053163b2de830650a5724201901cb8b4f00e1a3c70418524e965\",\n    \"note\": \"Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived.\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/ContinuumHilbertImport.lean",
+          "sha256": "9e7afdeacea7f90b7280915b655a20aff4e66ea6ef902a2f8f91b66f883c1989"
+        },
+        "assessment_id": "qm-open-pr-review-20261026-c295d54bb448",
+        "basis": {
+          "G1": "Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.",
+          "G2": "Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.",
+          "G3": "Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.",
+          "G4": "Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.",
+          "G5": "Inspected 72 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T15:28:12.345384+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json",
+            "sha256": "9210029be37c2accb661eae9f621453b3fb7d7d54b24010a04db99b08dd73a17"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+            "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.",
+        "open_higher_grade_findings": [
+          "The transition from a finite presented carrier, with integer weights and finite report labels, to a continuous infinite-dimensional Hilbert space stays imported. Scalar-field selection, l2 uniformity, a verified topology, a Cauchy completion and the lift of bounded exact operators stay imported. The completion record sits at FQ-CONTINUUM-HILBERT-LIFT-CONSTRUCTION (runs 20261020T230000Z_completion and 20261021T003000Z_lift_steps). QM_122 section 6 refuses that transition, and the QM_020 demotion box fences it. The length-4 window and the finite power-of-four identity are one finite case.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "profile": "Exact",
+        "rebound": {
+          "date": "2026-10-27",
+          "from_path": "lean4/CampaignGpImportContinuumHilbert.lean",
+          "from_sha256": "c295d54bb448053163b2de830650a5724201901cb8b4f00e1a3c70418524e965",
+          "note": "Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived."
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "5a8fb3f0bafbab7e3e6fa51207bca47586ac88b66319cab7d39259a03de0a751"
+    }
+  ]
+}

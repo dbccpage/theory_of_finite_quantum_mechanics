@@ -45,20 +45,20 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignQcvConditionalViabilityCertificate.lean`
+### Lean: `lean4/NoisyComputationViabilityCertificate.lean`
 
-- file: [lean4/CampaignQcvConditionalViabilityCertificate.lean](../../../lean4/CampaignQcvConditionalViabilityCertificate.lean)
-- sha256 (`bytes`): `06c68a7ea5e207d83a2211bb0c7960efb974cffc68ec30ea3c94042d8e903b0e`
-- cited in: node.lean, node.source, receipt dag/research/campaign_qcv-conditional-viability-certificate_lean_replay.json (CampaignQcvConditionalViabilityCertificate), receipt dag/research/pr_385_round2_replay.json (CampaignQcvConditionalViabilityCertificate), record TFQ-1324
+- file: [lean4/NoisyComputationViabilityCertificate.lean](../../../lean4/NoisyComputationViabilityCertificate.lean)
+- sha256 (`bytes`): `c0f47e8463293305237215d3e00fd785fdc1f2716cad5fe43e636f01ee67398e`
+- cited in: node.lean, node.source, receipt dag/research/campaign_qcv-conditional-viability-certificate_lean_replay.json (NoisyComputationViabilityCertificate), receipt dag/research/pr_385_round2_replay.json (NoisyComputationViabilityCertificate), record TFQ-1324
 - replay: `verified`
-  - receipt [dag/research/campaign_qcv-conditional-viability-certificate_lean_replay.json](../../../dag/research/campaign_qcv-conditional-viability-certificate_lean_replay.json) (module `CampaignQcvConditionalViabilityCertificate`): recorded sha256 `06c68a7ea5e207d83a2211bb0c7960efb974cffc68ec30ea3c94042d8e903b0e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_385_round2_replay.json](../../../dag/research/pr_385_round2_replay.json) (module `CampaignQcvConditionalViabilityCertificate`): recorded sha256 `06c68a7ea5e207d83a2211bb0c7960efb974cffc68ec30ea3c94042d8e903b0e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignQcvConditionalViabilityCertificate`
+  - receipt [dag/research/campaign_qcv-conditional-viability-certificate_lean_replay.json](../../../dag/research/campaign_qcv-conditional-viability-certificate_lean_replay.json) (module `NoisyComputationViabilityCertificate`): recorded sha256 `c0f47e8463293305237215d3e00fd785fdc1f2716cad5fe43e636f01ee67398e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_385_round2_replay.json](../../../dag/research/pr_385_round2_replay.json) (module `NoisyComputationViabilityCertificate`): recorded sha256 `c0f47e8463293305237215d3e00fd785fdc1f2716cad5fe43e636f01ee67398e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build NoisyComputationViabilityCertificate`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignQcvConditionalViabilityCertificate.viability_explicit_level` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignQcvConditionalViabilityCertificate.viability_explicit_level` |
-| `CampaignQcvConditionalViabilityCertificate.viability_nonneg_initial` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignQcvConditionalViabilityCertificate.viability_nonneg_initial` |
+| `NoisyComputationViabilityCertificate.viability_explicit_level` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms NoisyComputationViabilityCertificate.viability_explicit_level` |
+| `NoisyComputationViabilityCertificate.viability_nonneg_initial` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms NoisyComputationViabilityCertificate.viability_nonneg_initial` |
 
 - counts toward the grade: yes
 
@@ -110,7 +110,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md`
 
 - file: [dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md](../../../dag/derivations/29_computation/tfq_1324_qcv_conditional_viability_certificate.md)
-- sha256 (`lf-normalised`): `5c83b6b28624433002b23704ee04152fdc087c6eec8b5890a3f5c5c7be436959`
+- sha256 (`lf-normalised`): `82dc2c7bc90f7c7ed5f51f5b57ff808bafbcc0fbb407b2d48337d78809794f01`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1324
 - counts toward the grade: no

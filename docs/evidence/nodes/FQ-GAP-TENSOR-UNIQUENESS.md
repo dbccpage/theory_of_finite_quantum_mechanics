@@ -50,26 +50,6 @@ The 20261019 scope audit remains a determinant obstruction on a supplied rationa
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignFqGapTensorUniqueness.lean`
-
-- file: [lean4/CampaignFqGapTensorUniqueness.lean](../../../lean4/CampaignFqGapTensorUniqueness.lean)
-- sha256 (`bytes`): `e49a61cbcdcbd8f885d757b2cb03962e3db9ec07a5dcb1573308d0ebd2f3a971`
-- cited in: node.lean, node.source, receipt dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json (CampaignFqGapTensorUniqueness), receipt dag/research/pr442_review_lean_replay.json (CampaignFqGapTensorUniqueness), record TFQ-1019
-- replay: `verified`
-  - receipt [dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json](../../../dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json) (module `CampaignFqGapTensorUniqueness`): recorded sha256 `e49a61cbcdcbd8f885d757b2cb03962e3db9ec07a5dcb1573308d0ebd2f3a971` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-  - receipt [dag/research/pr442_review_lean_replay.json](../../../dag/research/pr442_review_lean_replay.json) (module `CampaignFqGapTensorUniqueness`): recorded sha256 `e49a61cbcdcbd8f885d757b2cb03962e3db9ec07a5dcb1573308d0ebd2f3a971` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignFqGapTensorUniqueness`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `CampaignFqGapTensorUniqueness.det` | yes | yes | yes | none | `#print axioms CampaignFqGapTensorUniqueness.det` |
-| `CampaignFqGapTensorUniqueness.identityDet` | yes | yes | yes | propext | `#print axioms CampaignFqGapTensorUniqueness.identityDet` |
-| `CampaignFqGapTensorUniqueness.identityNotOuter` | yes | yes | yes | propext | `#print axioms CampaignFqGapTensorUniqueness.identityNotOuter` |
-| `CampaignFqGapTensorUniqueness.outerDet` | yes | yes | yes | propext | `#print axioms CampaignFqGapTensorUniqueness.outerDet` |
-| `CampaignFqGapTensorUniqueness.productsEq` | yes | yes | yes | propext | `#print axioms CampaignFqGapTensorUniqueness.productsEq` |
-
-- counts toward the grade: yes
-
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
@@ -83,6 +63,26 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness` |
 | `QuantumMechanics.DerivationDagQMClosure.fq_gap_tensor_uniqueness_min_vs_max_tensor_and_covariance` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.fq_gap_tensor_uniqueness_min_vs_max_tensor_and_covariance` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/TensorUniquenessOuterProducts.lean`
+
+- file: [lean4/TensorUniquenessOuterProducts.lean](../../../lean4/TensorUniquenessOuterProducts.lean)
+- sha256 (`bytes`): `704f7257117a184fde850bb9fe6ff1c9d642db392ff75379b2b0f50806b0e43c`
+- cited in: node.lean, node.source, receipt dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json (TensorUniquenessOuterProducts), receipt dag/research/pr442_review_lean_replay.json (TensorUniquenessOuterProducts), record TFQ-1019
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json](../../../dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json) (module `TensorUniquenessOuterProducts`): recorded sha256 `704f7257117a184fde850bb9fe6ff1c9d642db392ff75379b2b0f50806b0e43c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/pr442_review_lean_replay.json](../../../dag/research/pr442_review_lean_replay.json) (module `TensorUniquenessOuterProducts`): recorded sha256 `704f7257117a184fde850bb9fe6ff1c9d642db392ff75379b2b0f50806b0e43c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build TensorUniquenessOuterProducts`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `TensorUniquenessOuterProducts.det` | yes | yes | yes | none | `#print axioms TensorUniquenessOuterProducts.det` |
+| `TensorUniquenessOuterProducts.identityDet` | yes | yes | yes | propext | `#print axioms TensorUniquenessOuterProducts.identityDet` |
+| `TensorUniquenessOuterProducts.identityNotOuter` | yes | yes | yes | propext | `#print axioms TensorUniquenessOuterProducts.identityNotOuter` |
+| `TensorUniquenessOuterProducts.outerDet` | yes | yes | yes | propext | `#print axioms TensorUniquenessOuterProducts.outerDet` |
+| `TensorUniquenessOuterProducts.productsEq` | yes | yes | yes | propext | `#print axioms TensorUniquenessOuterProducts.productsEq` |
 
 - counts toward the grade: yes
 
@@ -110,7 +110,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md](../../../dag/derivations/10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md)
-- sha256 (`lf-normalised`): `634df6f37794b30fa436087d6e6398609ecd51210552103763219127e6f02ff4`
+- sha256 (`lf-normalised`): `c3b05daf0b848473309b77b636f4bbb46e65d811ed2667dc319cb3a8cb236235`
 - generated view: listed, not counted
 - cited in: record TFQ-1019
 - counts toward the grade: no
@@ -165,21 +165,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json`
 
 - file: [dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json](../../../dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json)
-- sha256 (`lf-normalised`): `e45f650411be10a953621bcfeed7c11f1b18959e5932238e21193cd227ddfc50`
+- sha256 (`lf-normalised`): `d96ab7a985deaf93c28d73c0aae5ca1c5e174a12877bfb5d60b0541197127e18`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/pr442_review_lean_replay.json`
 
 - file: [dag/research/pr442_review_lean_replay.json](../../../dag/research/pr442_review_lean_replay.json)
-- sha256 (`lf-normalised`): `a190b5a1585e68d7f7e96bc2d588edf982baf6ef6a5bbf11e585f944a774a04c`
+- sha256 (`lf-normalised`): `c63a6d23a78dbb859f2f832ad7b299d933dff0295bf52b376cf5c1cf66ea6a8d`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/pr442_statement_review_20261026.json`
 
 - file: [dag/research/pr442_statement_review_20261026.json](../../../dag/research/pr442_statement_review_20261026.json)
-- sha256 (`lf-normalised`): `1949b49b9f993f18b02381ada3d14e4b79324089d25bac9994d37580b1e28ab0`
+- sha256 (`lf-normalised`): `d51b5f63eb5406f70a7bf87f880fd5cf0ccdd505bc219db36a8b62f11f493299`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -193,7 +193,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/tensor_countermodel_validation.json`
 
 - file: [dag/research/tensor_countermodel_validation.json](../../../dag/research/tensor_countermodel_validation.json)
-- sha256 (`lf-normalised`): `1ac42d9a0d6903dce72f4a2a53c12ad5d9dbc9a35a4cb260fb3e0de98dad9092`
+- sha256 (`lf-normalised`): `e35424a9476545aa2e50f799756f7f59878baf1552ee08d8d088c93f10d212e0`
 - cited in: node.source
 - counts toward the grade: yes
 

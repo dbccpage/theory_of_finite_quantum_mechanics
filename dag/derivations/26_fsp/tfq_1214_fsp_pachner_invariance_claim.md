@@ -36,21 +36,21 @@ Cited ReggePachnerWdw.lean::pachner_move_topological_invariance does not exist; 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.face_is_in_a_facet`
-- `lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.local_facets_have_five_vertices`
-- `lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.facet_counts`
-- `lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.one_boundary_skeleton`
-- `lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.two_boundary_skeleton`
-- `lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.three_boundary_skeleton`
-- `lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.nonflat_boundary_has_no_extension`
-- `lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.oneFillingEquiv`
-- `lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.pachner_one_five`
-- `lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.pachner_two_four`
-- `lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.pachner_three_three`
-- `lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.glued_one_five`
-- `lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.glued_two_four`
-- `lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.glued_three_three`
-- `lean4/CampaignFiniteGroupPachner.lean::CampaignFiniteGroupPachner.unnormalized_one_five_iff`
+- `lean4/FiniteGroupPachner.lean::FiniteGroupPachner.face_is_in_a_facet`
+- `lean4/FiniteGroupPachner.lean::FiniteGroupPachner.local_facets_have_five_vertices`
+- `lean4/FiniteGroupPachner.lean::FiniteGroupPachner.facet_counts`
+- `lean4/FiniteGroupPachner.lean::FiniteGroupPachner.one_boundary_skeleton`
+- `lean4/FiniteGroupPachner.lean::FiniteGroupPachner.two_boundary_skeleton`
+- `lean4/FiniteGroupPachner.lean::FiniteGroupPachner.three_boundary_skeleton`
+- `lean4/FiniteGroupPachner.lean::FiniteGroupPachner.nonflat_boundary_has_no_extension`
+- `lean4/FiniteGroupPachner.lean::FiniteGroupPachner.oneFillingEquiv`
+- `lean4/FiniteGroupPachner.lean::FiniteGroupPachner.pachner_one_five`
+- `lean4/FiniteGroupPachner.lean::FiniteGroupPachner.pachner_two_four`
+- `lean4/FiniteGroupPachner.lean::FiniteGroupPachner.pachner_three_three`
+- `lean4/FiniteGroupPachner.lean::FiniteGroupPachner.glued_one_five`
+- `lean4/FiniteGroupPachner.lean::FiniteGroupPachner.glued_two_four`
+- `lean4/FiniteGroupPachner.lean::FiniteGroupPachner.glued_three_three`
+- `lean4/FiniteGroupPachner.lean::FiniteGroupPachner.unnormalized_one_five_iff`
 
 ### Rust Certifiers
 - *none*

@@ -17,7 +17,7 @@ On C^6 with shift X|j> = |j+1 mod 6> and clock Z|j> = w^j |j>, w = exp(2 pi i/6)
 This record is the 6 by 6 integer-pair table above. It does not construct a complex exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases. The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.
 
 ### Witness Audit
-CampaignMub6WeylHeisenbergD6.lean checks the integer-pair shift, clock, commutation and trace pairing at d = 6. The complex exponential, the identification of w inside the complex numbers, and any count of mutually unbiased bases stay outside the module. The trunk Weyl formalization covers odd prime dimension only.
+Mub6WeylHeisenbergD6.lean checks the integer-pair shift, clock, commutation and trace pairing at d = 6. The complex exponential, the identification of w inside the complex numbers, and any count of mutually unbiased bases stay outside the module. The trunk Weyl formalization covers odd prime dimension only.
 
 ---
 
@@ -35,15 +35,15 @@ CampaignMub6WeylHeisenbergD6.lean checks the integer-pair shift, clock, commutat
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignMub6WeylHeisenbergD6.lean::w_sq`
-- `lean4/CampaignMub6WeylHeisenbergD6.lean::w_cube`
-- `lean4/CampaignMub6WeylHeisenbergD6.lean::w_six`
-- `lean4/CampaignMub6WeylHeisenbergD6.lean::conj_pair`
-- `lean4/CampaignMub6WeylHeisenbergD6.lean::shift_entry`
-- `lean4/CampaignMub6WeylHeisenbergD6.lean::clock_entry`
-- `lean4/CampaignMub6WeylHeisenbergD6.lean::zx_eq`
-- `lean4/CampaignMub6WeylHeisenbergD6.lean::xz_ne`
-- `lean4/CampaignMub6WeylHeisenbergD6.lean::hs_orth`
+- `lean4/Mub6WeylHeisenbergD6.lean::w_sq`
+- `lean4/Mub6WeylHeisenbergD6.lean::w_cube`
+- `lean4/Mub6WeylHeisenbergD6.lean::w_six`
+- `lean4/Mub6WeylHeisenbergD6.lean::conj_pair`
+- `lean4/Mub6WeylHeisenbergD6.lean::shift_entry`
+- `lean4/Mub6WeylHeisenbergD6.lean::clock_entry`
+- `lean4/Mub6WeylHeisenbergD6.lean::zx_eq`
+- `lean4/Mub6WeylHeisenbergD6.lean::xz_ne`
+- `lean4/Mub6WeylHeisenbergD6.lean::hs_orth`
 
 ### Rust Certifiers
 - *none*

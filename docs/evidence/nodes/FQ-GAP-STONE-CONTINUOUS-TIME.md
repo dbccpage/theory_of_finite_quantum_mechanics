@@ -52,23 +52,6 @@ Carrier-level specification kernel-checked in dag/results/FQ-GAP-STONE-CONTINUOU
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignFqGapStoneContinuousTime.lean`
-
-- file: [lean4/CampaignFqGapStoneContinuousTime.lean](../../../lean4/CampaignFqGapStoneContinuousTime.lean)
-- sha256 (`bytes`): `7cd94d6cedb9da82eb4ac3682fbb8e097e6d1f5758c9f6e0dadbe1fd21d3f5a9`
-- cited in: node.lean, receipt dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json (CampaignFqGapStoneContinuousTime), receipt dag/research/pr_373_review_replay.json (CampaignFqGapStoneContinuousTime)
-- replay: `verified`
-  - receipt [dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json](../../../dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json) (module `CampaignFqGapStoneContinuousTime`): recorded sha256 `7cd94d6cedb9da82eb4ac3682fbb8e097e6d1f5758c9f6e0dadbe1fd21d3f5a9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_373_review_replay.json](../../../dag/research/pr_373_review_replay.json) (module `CampaignFqGapStoneContinuousTime`): recorded sha256 `7cd94d6cedb9da82eb4ac3682fbb8e097e6d1f5758c9f6e0dadbe1fd21d3f5a9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignFqGapStoneContinuousTime`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `CampaignFqGapStoneContinuousTime.fiveMulSqEqFourMulSq` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFqGapStoneContinuousTime.fiveMulSqEqFourMulSq` |
-| `CampaignFqGapStoneContinuousTime.pythagorean345` | yes | yes | yes | none | `#print axioms CampaignFqGapStoneContinuousTime.pythagorean345` |
-
-- counts toward the grade: yes
-
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
@@ -88,55 +71,72 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/DiscreteTimeStoneSpec.lean`
 
 - file: [lean4/DiscreteTimeStoneSpec.lean](../../../lean4/DiscreteTimeStoneSpec.lean)
-- sha256 (`bytes`): `78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda`
+- sha256 (`bytes`): `f93836d6e4d23d84f1ef8859d0b27fc1dad268491062abbac01830e5bb25e225`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `DiscreteTimeStoneSpec`): recorded sha256 `78e72d0c08b7980ee60a6c6370e3a7c65d43bd6befcf0b816d89c22048a77eda` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `DiscreteTimeStoneSpec`): recorded sha256 `f93836d6e4d23d84f1ef8859d0b27fc1dad268491062abbac01830e5bb25e225` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DiscreteTimeStoneSpec`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `BornFable.DiscreteTime.QParamGroup` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.QParamGroup` |
-| `BornFable.DiscreteTime.QParamGroup.U_eq_discreteEvolution` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.QParamGroup.U_eq_discreteEvolution` |
-| `BornFable.DiscreteTime.QParamGroup.roots_of_all_orders` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.QParamGroup.roots_of_all_orders` |
-| `BornFable.DiscreteTime.R345_pow_orthogonal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.R345_pow_orthogonal` |
-| `BornFable.DiscreteTime.matrix_half_step_not_unique` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.matrix_half_step_not_unique` |
-| `BornFable.DiscreteTime.no_qparam_group_through_R345` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.no_qparam_group_through_R345` |
-| `BornFable.DiscreteTime.no_rational_half_step` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFable.DiscreteTime.no_rational_half_step` |
+| `BornFinite.DiscreteTime.QParamGroup` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.DiscreteTime.QParamGroup` |
+| `BornFinite.DiscreteTime.QParamGroup.U_eq_discreteEvolution` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.DiscreteTime.QParamGroup.U_eq_discreteEvolution` |
+| `BornFinite.DiscreteTime.QParamGroup.roots_of_all_orders` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.DiscreteTime.QParamGroup.roots_of_all_orders` |
+| `BornFinite.DiscreteTime.R345_pow_orthogonal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.DiscreteTime.R345_pow_orthogonal` |
+| `BornFinite.DiscreteTime.matrix_half_step_not_unique` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.DiscreteTime.matrix_half_step_not_unique` |
+| `BornFinite.DiscreteTime.no_qparam_group_through_R345` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.DiscreteTime.no_qparam_group_through_R345` |
+| `BornFinite.DiscreteTime.no_rational_half_step` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.DiscreteTime.no_rational_half_step` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/StoneContinuousTimeIntegerSlice.lean`
+
+- file: [lean4/StoneContinuousTimeIntegerSlice.lean](../../../lean4/StoneContinuousTimeIntegerSlice.lean)
+- sha256 (`bytes`): `515389319bd41d8a4ed33375efafc1e42654552641b45a82430d30614b9bde4c`
+- cited in: node.lean, receipt dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json (StoneContinuousTimeIntegerSlice), receipt dag/research/pr_373_review_replay.json (StoneContinuousTimeIntegerSlice)
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json](../../../dag/research/campaign_fq-gap-stone-continuous-time_lean_replay.json) (module `StoneContinuousTimeIntegerSlice`): recorded sha256 `515389319bd41d8a4ed33375efafc1e42654552641b45a82430d30614b9bde4c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_373_review_replay.json](../../../dag/research/pr_373_review_replay.json) (module `StoneContinuousTimeIntegerSlice`): recorded sha256 `515389319bd41d8a4ed33375efafc1e42654552641b45a82430d30614b9bde4c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build StoneContinuousTimeIntegerSlice`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `StoneContinuousTimeIntegerSlice.fiveMulSqEqFourMulSq` | yes | yes | yes | Quot.sound, propext | `#print axioms StoneContinuousTimeIntegerSlice.fiveMulSqEqFourMulSq` |
+| `StoneContinuousTimeIntegerSlice.pythagorean345` | yes | yes | yes | none | `#print axioms StoneContinuousTimeIntegerSlice.pythagorean345` |
 
 - counts toward the grade: yes
 
 ### Lean: `lean4/U1PhaseSynthesis.lean`
 
 - file: [lean4/U1PhaseSynthesis.lean](../../../lean4/U1PhaseSynthesis.lean)
-- sha256 (`bytes`): `6b9c6fae68d1695cb84ce8ae4622f357af51d8c5fa1a8747f11aaaf45a4afd2c`
+- sha256 (`bytes`): `5e386655bfce8c9cfbe9a515fd9946f2bac8ce38a8d49f47f4a9c9e6de56c38a`
 - cited in: node.lean
 - replay: `failed`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1PhaseSynthesis`): recorded sha256 `6b9c6fae68d1695cb84ce8ae4622f357af51d8c5fa1a8747f11aaaf45a4afd2c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1PhaseSynthesis`): recorded sha256 `5e386655bfce8c9cfbe9a515fd9946f2bac8ce38a8d49f47f4a9c9e6de56c38a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build U1PhaseSynthesis`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `U1Fable.PhaseSynthesis.iterated_quadratic_tower_and_cayley_stone_bridge` | yes | yes | yes | - | `#print axioms U1Fable.PhaseSynthesis.iterated_quadratic_tower_and_cayley_stone_bridge` |
+| `U1Finite.PhaseSynthesis.iterated_quadratic_tower_and_cayley_stone_bridge` | yes | yes | yes | - | `#print axioms U1Finite.PhaseSynthesis.iterated_quadratic_tower_and_cayley_stone_bridge` |
 
 - counts toward the grade: yes
 
 ### Lean: `lean4/U1QuadraticTowerAndCayleyStone.lean`
 
 - file: [lean4/U1QuadraticTowerAndCayleyStone.lean](../../../lean4/U1QuadraticTowerAndCayleyStone.lean)
-- sha256 (`bytes`): `660009a462e0569e2e02c8e8c61826b502394dc86b88faa566864052bdcf5c35`
+- sha256 (`bytes`): `e89dc4485bffa69d0d7718ed3367b7a4bca45f4e0c4447cdd20fd352d1505a55`
 - cited in: node.lean
 - replay: `failed`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1QuadraticTowerAndCayleyStone`): recorded sha256 `660009a462e0569e2e02c8e8c61826b502394dc86b88faa566864052bdcf5c35` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `U1QuadraticTowerAndCayleyStone`): recorded sha256 `e89dc4485bffa69d0d7718ed3367b7a4bca45f4e0c4447cdd20fd352d1505a55` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: no; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build U1QuadraticTowerAndCayleyStone`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comp_pole` | yes | yes | yes | - | `#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comp_pole` |
-| `U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comp_regular` | yes | yes | yes | - | `#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comp_regular` |
-| `U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_preserves_born_trace` | yes | yes | yes | - | `#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_preserves_born_trace` |
-| `U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_resolvent_right` | yes | yes | yes | - | `#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_resolvent_right` |
-| `U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_unitary_left` | yes | yes | yes | - | `#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_unitary_left` |
+| `U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comp_pole` | yes | yes | yes | - | `#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comp_pole` |
+| `U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comp_regular` | yes | yes | yes | - | `#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comp_regular` |
+| `U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_preserves_born_trace` | yes | yes | yes | - | `#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_preserves_born_trace` |
+| `U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_resolvent_right` | yes | yes | yes | - | `#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_resolvent_right` |
+| `U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_unitary_left` | yes | yes | yes | - | `#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_unitary_left` |
 
 - counts toward the grade: yes
 

@@ -226,7 +226,7 @@ The status column below is quoted from §18.3; the locator is condensed.
 | P9 Non-contextuality (KS) | REFUTED (classical); OBSTRUCTED | Cabello 18-ray parity contradiction (§2.6 below) |
 | P10 Reversible dilation | DERIVED (census) | with a one-bit prepared ancilla, exactly $2\cdot2=4$ reversible permutations dilate collapse: the two prepared states go to the two states with system value $0$, the other two to the rest; quantum dilation needs imported CPTP structure |
 | P11 Continuous dynamics | REFUTED (host); REFUSED | the toggle on $\mathrm{Bool}$ has no report square root (`import7_unforced`); that half-step is missing only among report permutations, since the unitary $M$ of `WDP-CH18-P05` squares to the toggle |
-| P12 Finite matrix recovery | DERIVED ($\mathbb Z[i]$) | $\operatorname{End}(Q\to\mathbb Z[i])\cong M_n(\mathbb Z[i])$, a standard fact that the fixture `H017Fin` records as a constant; $M_n(\mathbb C)$ is not recovered |
+| P12 Finite matrix recovery | DERIVED ($\mathbb Z[i]$) | $\operatorname{End}(Q\to\mathbb Z[i])\cong M_n(\mathbb Z[i])$, a standard fact that the fixture `HilbertWalkGleasonFin` records as a constant; $M_n(\mathbb C)$ is not recovered |
 
 **v0.4.0 corrections.** P3 used to read DERIVED. Its mixer is the unnormalized
 Hadamard matrix, which W4 does not admit, so it now reads DERIVED (only with $H$
@@ -383,8 +383,8 @@ separate statement mentioned in the prose. The older
   (declared $U(1)$ calculation, classical shadow, finite contextuality witness).
   The module also holds the §18.3 fixtures. Some compute a small instance
   (`InterferenceObstruction.demonstrates_non_descent` checks $H(1,1)=(2,0)$ and
-  $H(1,-1)=(0,2)$); `H015_collapse_no_isometry`, `H015CollapseDilations`,
-  `H016_no_report_half_step`, and `H017Fin` return recorded constants, as
+  $H(1,-1)=(0,2)$); `H015_collapse_no_isometry`, `CollapseDilations`,
+  `H016_no_report_half_step`, and `HilbertWalkGleasonFin` return recorded constants, as
   Appendix D.2 states.
 - `claims.py` (`WDP-CH18-D01`): `load_claim_map` and `validate_claim_map` check
   that the claim-to-code manifest names existing modules and tests. The

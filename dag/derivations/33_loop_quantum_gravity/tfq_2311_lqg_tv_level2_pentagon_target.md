@@ -51,8 +51,8 @@ See also: `TFQ-0105`, `TFQ-0198`, `TFQ-0104`.
 - `external:doi:10.1016/0040-9383(92)90015-A`: V. G. Turaev and O. Ya. Viro, "State sum invariants of 3-manifolds and quantum 6j-symbols", Topology 31 (1992) 865-902, doi:10.1016/0040-9383(92)90015-A. No arXiv record (1992).
 - Repository: `code/rust/src/general_relativity/spin_foam.rs`
 - Repository: `code/rust/src/qm/finite_spinfoam.rs`
-- Repository: `lean4/H023DiscreteSpinfoamAmplitudes.lean`
-- Repository: `lean4/H024FourSimplexSpinfoamS4.lean`
+- Repository: `lean4/DiscreteSpinfoamAmplitudes.lean`
+- Repository: `lean4/FourSimplexSpinfoamS4.lean`
 - Repository: `lean4/FrontierTvLevel2Pentagon.lean`
 - Repository: `dag/research/frontier_targets_lean_replay.json`
 

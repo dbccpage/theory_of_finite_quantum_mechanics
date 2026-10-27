@@ -45,6 +45,21 @@ paper s11/13; Wintner-Wielandt style; H056, H068
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/ContinuumLiftBoundary.lean`
+
+- file: [lean4/ContinuumLiftBoundary.lean](../../../lean4/ContinuumLiftBoundary.lean)
+- sha256 (`bytes`): `2ae7ab1be60f262dea685b1ad0d16f3330cf1dec8e9babba145c17c94932a50d`
+- cited in: node.lean
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `ContinuumLiftBoundary`): recorded sha256 `2ae7ab1be60f262dea685b1ad0d16f3330cf1dec8e9babba145c17c94932a50d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build ContinuumLiftBoundary`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `wintner_wielandt_dim2_obstruction` | yes | yes | yes | Quot.sound, propext | `#print axioms wintner_wielandt_dim2_obstruction` |
+
+- counts toward the grade: yes
+
 ### Lean: `lean4/FiniteQM.lean`
 
 - file: [lean4/FiniteQM.lean](../../../lean4/FiniteQM.lean)
@@ -60,29 +75,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H056ContinuumLiftBoundary.lean`
+### Lean: `lean4/WeylCcrResidual.lean`
 
-- file: [lean4/H056ContinuumLiftBoundary.lean](../../../lean4/H056ContinuumLiftBoundary.lean)
-- sha256 (`bytes`): `a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1`
+- file: [lean4/WeylCcrResidual.lean](../../../lean4/WeylCcrResidual.lean)
+- sha256 (`bytes`): `4ac0f1692a22ed74c01c270a089198330c610829be9f20f9d4280eb97122db07`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `H056ContinuumLiftBoundary`): recorded sha256 `a8d242b75d4eed947a529ffde1af7d22c90db879d3acfcd452bf4f53794990e1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H056ContinuumLiftBoundary`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `wintner_wielandt_dim2_obstruction` | yes | yes | yes | Quot.sound, propext | `#print axioms wintner_wielandt_dim2_obstruction` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/H068WeylCcrResidual.lean`
-
-- file: [lean4/H068WeylCcrResidual.lean](../../../lean4/H068WeylCcrResidual.lean)
-- sha256 (`bytes`): `1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `H068WeylCcrResidual`): recorded sha256 `1bd6a7c35371c625f88f9600cc1f7e9b76c0ffcaf5089bc24d5eee4014e416d9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H068WeylCcrResidual`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `WeylCcrResidual`): recorded sha256 `4ac0f1692a22ed74c01c270a089198330c610829be9f20f9d4280eb97122db07` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build WeylCcrResidual`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|

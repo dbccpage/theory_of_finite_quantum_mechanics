@@ -3,7 +3,7 @@ import WorldPresentation
 
 
 
-namespace OmegaWorld
+namespace ObserverWorld
 
 def Exhausted {State Move : Type} (score : State -> Nat)
     (applyMove : Move -> State -> State) (moves : List Move) (state : State) : Prop :=
@@ -123,7 +123,7 @@ theorem preserves_zero_rel
   exact lift.preservesZero (source.primitive.δ x y)
 
 end VerifiedOneGeneratorLift
-end OmegaWorld
+end ObserverWorld
 
 private def l5aProvenance : String :=
   "Origin: lean4/WorldLiftExhaustion.lean Claim: not_exhausted_of_improving AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

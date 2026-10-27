@@ -95,7 +95,7 @@ def test_negative_shape_failures() -> None:
 
 def test_integration_matches_associated_sum() -> None:
     root = Path(__file__).resolve().parents[3]
-    source = (root / "lean4" / "H001Rats.lean").read_text(encoding="utf-8")
+    source = (root / "lean4" / "HilbertWalkRationals.lean").read_text(encoding="utf-8")
     assert "theorem padd_assoc" in source
     assert "theorem fadd_assoc" in source
     left = (Fraction(1, 2) + Fraction(1, 3)) + Fraction(1, 7)
@@ -119,7 +119,7 @@ def test_end_to_end_cli_prints_checksum() -> None:
 
 def test_origin_resolves_in_repo() -> None:
     root = Path(__file__).resolve().parents[3]
-    source = (root / "lean4" / "H001Rats.lean").read_text(encoding="utf-8")
+    source = (root / "lean4" / "HilbertWalkRationals.lean").read_text(encoding="utf-8")
     assert "theorem padd_assoc" in source
     assert "theorem fadd_assoc" in source
     text = _MODULE_PATH.read_text(encoding="utf-8")

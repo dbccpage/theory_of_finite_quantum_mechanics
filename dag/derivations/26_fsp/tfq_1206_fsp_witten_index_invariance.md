@@ -31,8 +31,8 @@ Cited NonAbelianGaugeSigns.lean::witten_index_beta_independence does not exist. 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignWittenPairing.lean::CampaignWittenPairing.paired_trace`
-- `lean4/CampaignWittenPairing.lean::CampaignWittenPairing.weight_independent`
+- `lean4/WittenPairing.lean::WittenPairing.paired_trace`
+- `lean4/WittenPairing.lean::WittenPairing.weight_independent`
 
 ### Rust Certifiers
 - *none*

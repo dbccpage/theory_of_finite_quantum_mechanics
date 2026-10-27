@@ -42,15 +42,15 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignPgwWdpHandoffToL1.lean`
+### Lean: `lean4/PregenesisWdpHandoffToL1.lean`
 
-- file: [lean4/CampaignPgwWdpHandoffToL1.lean](../../../lean4/CampaignPgwWdpHandoffToL1.lean)
+- file: [lean4/PregenesisWdpHandoffToL1.lean](../../../lean4/PregenesisWdpHandoffToL1.lean)
 - sha256 (`bytes`): `76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85`
-- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json (CampaignPgwWdpHandoffToL1), receipt dag/research/pr_358_review_replay.json (CampaignPgwWdpHandoffToL1), record TFQ-0558
+- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json (PregenesisWdpHandoffToL1), receipt dag/research/pr_358_review_replay.json (PregenesisWdpHandoffToL1), record TFQ-0558
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json](../../../dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json) (module `CampaignPgwWdpHandoffToL1`): recorded sha256 `76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_358_review_replay.json](../../../dag/research/pr_358_review_replay.json) (module `CampaignPgwWdpHandoffToL1`): recorded sha256 `76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignPgwWdpHandoffToL1`
+  - receipt [dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json](../../../dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json) (module `PregenesisWdpHandoffToL1`): recorded sha256 `76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_358_review_replay.json](../../../dag/research/pr_358_review_replay.json) (module `PregenesisWdpHandoffToL1`): recorded sha256 `76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build PregenesisWdpHandoffToL1`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -118,7 +118,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md`
 
 - file: [dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md](../../../dag/derivations/06_wdp/tfq_0558_wdp_handoff_to_l1.md)
-- sha256 (`lf-normalised`): `1274b1cbd19efef0473fb28c2e1f182fff23d36c17e154161b17d3eae7b69bf9`
+- sha256 (`lf-normalised`): `17eb61871f6ea02fa53ad6dc071f0efaffac1affcdf1d092916d1857e2b7fa32`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0558
 - counts toward the grade: no
@@ -133,7 +133,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json`
 
 - file: [dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json](../../../dag/research/campaign_pgw-wdp-handoff-to-l1_lean_replay.json)
-- sha256 (`lf-normalised`): `fca23581df4e7ac69a1504f254d424f9a0b73f1e1514f2e4d2d3e8e6931bd826`
+- sha256 (`lf-normalised`): `915672e215c1ad2ae717bc76bebf43702805c3bc0f0deb886bc03f02f3e0d5c0`
 - cited in: node.source
 - counts toward the grade: yes
 

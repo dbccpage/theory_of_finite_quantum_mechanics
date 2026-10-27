@@ -32,7 +32,7 @@ Audited against the full texts of arXiv:1503.06237 (Section 2 Def. 2 p. 5, Secti
 ## Connections to this repository
 
 - Route `FRO-R-ADS-HAPPY-2015-SOURCE` (`RECORD_PARENT`) from `ADS-ADH-2015-SOURCE`, `TFQ-0048`: Reading-order link. TFQ-0048 (the toric-code stabilizer computation) is the closest repository stabilizer-code node; the Lean files H036, H037, H042 and H044 check small stabilizer codes. No derivation is asserted.
-- Repository stabilizer-code material: TFQ-0048 (Rust toric code), lean4/H036ThreeQubitCodeSyndromeRecovery.lean, lean4/H037FourQubitCssSurfaceCode.lean, lean4/H042ShorNineQubitCode.lean, lean4/H044SurfaceCodeToricTopology.lean. None of them contains the five-qubit code or a perfect tensor.
+- Repository stabilizer-code material: TFQ-0048 (Rust toric code), lean4/ThreeQubitCodeSyndromeRecovery.lean, lean4/FourQubitCssSurfaceCode.lean, lean4/ShorNineQubitCode.lean, lean4/SurfaceCodeToricTopology.lean. None of them contains the five-qubit code or a perfect tensor.
 
 See also: `DS-QM102-SYNDROME-CAPACITY-BOUND`.
 
@@ -44,10 +44,10 @@ See also: `DS-QM102-SYNDROME-CAPACITY-BOUND`.
 
 - `external:arXiv:1503.06237`: F. Pastawski, B. Yoshida, D. Harlow and J. Preskill, "Holographic quantum error-correcting codes: Toy models for the bulk/boundary correspondence", arXiv:1503.06237 (2015); JHEP 06 (2015) 149.
 - `external:arXiv:quant-ph/9602019`: R. Laflamme, C. Miquel, J. P. Paz and W. H. Zurek, "Perfect Quantum Error Correction Code", arXiv:quant-ph/9602019 (1996).
-- Repository: `lean4/H036ThreeQubitCodeSyndromeRecovery.lean`
-- Repository: `lean4/H037FourQubitCssSurfaceCode.lean`
-- Repository: `lean4/H042ShorNineQubitCode.lean`
-- Repository: `lean4/H044SurfaceCodeToricTopology.lean`
+- Repository: `lean4/ThreeQubitCodeSyndromeRecovery.lean`
+- Repository: `lean4/FourQubitCssSurfaceCode.lean`
+- Repository: `lean4/ShorNineQubitCode.lean`
+- Repository: `lean4/SurfaceCodeToricTopology.lean`
 
 ## Downstream derivations
 

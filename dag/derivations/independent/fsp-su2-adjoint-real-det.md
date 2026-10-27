@@ -4,7 +4,7 @@ Status: AI-drafted, awaiting human review.
 
 AuthorityEffect: None.
 
-The node `FSP-SU2-ADJOINT-REAL-DET` (`TFQ-1200`) remains `IMPORTED_ASSUMPTION` (`Narrowed`), while its finite algebraic core—the explicit $3 \times 3$ real adjoint representation $R(a,b,c,d)$ of $SU(2)$ parameters, $\mathbb{Z}_2$ center blindness $R(-q) = R(q)$, the general antiunitary intertwiner determinant reality theorem, the 4D Euclidean charge-conjugation intertwiner $C_4$ and 4D lattice adjoint Wilson–Dirac reality theorem, reality-without-positivity witnesses ($\det < 0$), and the $2 \times 2$ and $4 \times 4$ skew-symmetric Majorana Pfaffian square identities and sign-flip pairs—is formalized in `lean4/CampaignFspSu2AdjointRealDet.lean` and checked in `checks/independent/fsp-su2-adjoint-real-det.py`.
+The node `FSP-SU2-ADJOINT-REAL-DET` (`TFQ-1200`) remains `IMPORTED_ASSUMPTION` (`Narrowed`), while its finite algebraic core—the explicit $3 \times 3$ real adjoint representation $R(a,b,c,d)$ of $SU(2)$ parameters, $\mathbb{Z}_2$ center blindness $R(-q) = R(q)$, the general antiunitary intertwiner determinant reality theorem, the 4D Euclidean charge-conjugation intertwiner $C_4$ and 4D lattice adjoint Wilson–Dirac reality theorem, reality-without-positivity witnesses ($\det < 0$), and the $2 \times 2$ and $4 \times 4$ skew-symmetric Majorana Pfaffian square identities and sign-flip pairs—is formalized in `lean4/FermionSignSu2AdjointRealDet.lean` and checked in `checks/independent/fsp-su2-adjoint-real-det.py`.
 
 ## Setting
 
@@ -25,36 +25,36 @@ The node `FSP-SU2-ADJOINT-REAL-DET` (`TFQ-1200`) remains `IMPORTED_ASSUMPTION` (
    - Reality of $\det D$ does not force $\det D \ge 0$: on $\text{Fin } 3$, $D = -I_3$ intertwined by $C = I_3$ has $\text{Im}(\det D) = 0$ and $\text{Re}(\det D) = -1 < 0$ (`reality_not_positivity_witness`).
    - For $2 \times 2$ and $4 \times 4$ skew-symmetric Majorana matrices $\text{skew2}(p)$ and $\text{skew4}(a,b,c,d,e,f)$, $\det M = (\text{Pf } M)^2$ (`skew2_det_eq_pfaffian2_sq`, `skew4_det_eq_pfaffian4_sq`), while explicit configuration pairs have $\text{Pf}(M_+) = +1$ and $\text{Pf}(M_-) = -1$ at identical positive determinant $\det M_+ = \det M_- = 1$ (`majorana_pfaffian2_sign_flip`, `majorana_pfaffian4_sign_flip`).
 
-## Lean 4 Declarations (`lean4/CampaignFspSu2AdjointRealDet.lean`)
+## Lean 4 Declarations (`lean4/FermionSignSu2AdjointRealDet.lean`)
 
-Built via `cd lean4 && lake build CampaignFspSu2AdjointRealDet` using only standard axioms (`propext`, `Classical.choice`, `Quot.sound`):
-- `CampaignFspSu2AdjointRealDet.su2AdjointMatrix_one`
-- `CampaignFspSu2AdjointRealDet.su2AdjointMatrix_center_blind`
-- `CampaignFspSu2AdjointRealDet.su2AdjointMatrix_conj_eq_transpose`
-- `CampaignFspSu2AdjointRealDet.su2AdjointMatrix_transpose_mul_self`
-- `CampaignFspSu2AdjointRealDet.su2AdjointMatrix_mul_transpose_self`
-- `CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_eq_norm_cube`
-- `CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_one`
-- `CampaignFspSu2AdjointRealDet.matConj_realToComplexMat`
-- `CampaignFspSu2AdjointRealDet.matConj_su2AdjointMatrix`
-- `CampaignFspSu2AdjointRealDet.matConj_det`
-- `CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_conj`
-- `CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_im_zero`
-- `CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_two_flavor_nonneg`
-- `CampaignFspSu2AdjointRealDet.chargeConj4_sq`
-- `CampaignFspSu2AdjointRealDet.chargeConj4_det`
-- `CampaignFspSu2AdjointRealDet.chargeConj4_intertwines_gamma4d`
-- `CampaignFspSu2AdjointRealDet.chargeConj4_intertwines_gamma5Four`
-- `CampaignFspSu2AdjointRealDet.fullIntertwiner4_sq`
-- `CampaignFspSu2AdjointRealDet.fullIntertwiner4_det_ne_zero`
-- `CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined`
-- `CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj`
-- `CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero`
-- `CampaignFspSu2AdjointRealDet.reality_not_positivity_witness`
-- `CampaignFspSu2AdjointRealDet.skew2_det_eq_pfaffian2_sq`
-- `CampaignFspSu2AdjointRealDet.majorana_pfaffian2_sign_flip`
-- `CampaignFspSu2AdjointRealDet.skew4_det_eq_pfaffian4_sq`
-- `CampaignFspSu2AdjointRealDet.majorana_pfaffian4_sign_flip`
+Built via `cd lean4 && lake build FermionSignSu2AdjointRealDet` using only standard axioms (`propext`, `Classical.choice`, `Quot.sound`):
+- `FermionSignSu2AdjointRealDet.su2AdjointMatrix_one`
+- `FermionSignSu2AdjointRealDet.su2AdjointMatrix_center_blind`
+- `FermionSignSu2AdjointRealDet.su2AdjointMatrix_conj_eq_transpose`
+- `FermionSignSu2AdjointRealDet.su2AdjointMatrix_transpose_mul_self`
+- `FermionSignSu2AdjointRealDet.su2AdjointMatrix_mul_transpose_self`
+- `FermionSignSu2AdjointRealDet.su2AdjointMatrix_det_eq_norm_cube`
+- `FermionSignSu2AdjointRealDet.su2AdjointMatrix_det_one`
+- `FermionSignSu2AdjointRealDet.matConj_realToComplexMat`
+- `FermionSignSu2AdjointRealDet.matConj_su2AdjointMatrix`
+- `FermionSignSu2AdjointRealDet.matConj_det`
+- `FermionSignSu2AdjointRealDet.antiunitary_intertwiner_det_conj`
+- `FermionSignSu2AdjointRealDet.antiunitary_intertwiner_det_im_zero`
+- `FermionSignSu2AdjointRealDet.antiunitary_intertwiner_two_flavor_nonneg`
+- `FermionSignSu2AdjointRealDet.chargeConj4_sq`
+- `FermionSignSu2AdjointRealDet.chargeConj4_det`
+- `FermionSignSu2AdjointRealDet.chargeConj4_intertwines_gamma4d`
+- `FermionSignSu2AdjointRealDet.chargeConj4_intertwines_gamma5Four`
+- `FermionSignSu2AdjointRealDet.fullIntertwiner4_sq`
+- `FermionSignSu2AdjointRealDet.fullIntertwiner4_det_ne_zero`
+- `FermionSignSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined`
+- `FermionSignSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj`
+- `FermionSignSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero`
+- `FermionSignSu2AdjointRealDet.reality_not_positivity_witness`
+- `FermionSignSu2AdjointRealDet.skew2_det_eq_pfaffian2_sq`
+- `FermionSignSu2AdjointRealDet.majorana_pfaffian2_sign_flip`
+- `FermionSignSu2AdjointRealDet.skew4_det_eq_pfaffian4_sq`
+- `FermionSignSu2AdjointRealDet.majorana_pfaffian4_sign_flip`
 
 ## Independent Check (`checks/independent/fsp-su2-adjoint-real-det.py`)
 
@@ -68,4 +68,4 @@ Imports no repository code. Uses Python `fractions.Fraction` and SymPy to check:
 
 1. **What it supports**: The explicit $3 \times 3$ real adjoint representation of $SU(2)$ parameters, $\mathbb{Z}_2$ center blindness $R(-q) = R(q)$, determinant reality $\text{Im}(\det D) = 0$ for any complex matrix intertwined with its complex conjugate by an invertible matrix $C$, reality of $\det D_{\text{adj}}$ for the 4D lattice Wilson–Dirac operator coupled to real adjoint link kernels, negative-determinant witnesses showing reality is not positivity, and the $2 \times 2$ and $4 \times 4$ Majorana Pfaffian square identities and sign-flip witnesses.
 2. **What it does not support**: Full continuum or thermodynamic-limit 4D $SU(2)$ Yang–Mills path-integral construction, general $2n \times 2n$ Grassmann Berezin-integral derivations of the Pfaffian measure for arbitrary lattice volumes, or absence of a sign problem for a single Majorana adjoint flavor.
-3. **Narrowest defensible claim**: In Lean 4 (`CampaignFspSu2AdjointRealDet`), every unit quadruple $(a,b,c,d)$ defines an $SO(3)$ matrix $R(a,b,c,d)$ invariant under $(a,b,c,d) \mapsto (-a,-b,-c,-d)$; every 4D lattice Wilson–Dirac operator `wilsonDiracAdjoint4` coupled to real adjoint link kernels is intertwined by `fullIntertwiner4` with its entrywise complex conjugate and has $\text{Im}(\det D_{\text{adj}}) = 0$; and explicit finite witnesses show $\det D < 0$ is compatible with antiunitary reality while $2 \times 2$ and $4 \times 4$ skew-symmetric Majorana matrices satisfy $\det M = (\text{Pf } M)^2$ with opposite-sign Pfaffians at $\det M = 1$.
+3. **Narrowest defensible claim**: In Lean 4 (`FermionSignSu2AdjointRealDet`), every unit quadruple $(a,b,c,d)$ defines an $SO(3)$ matrix $R(a,b,c,d)$ invariant under $(a,b,c,d) \mapsto (-a,-b,-c,-d)$; every 4D lattice Wilson–Dirac operator `wilsonDiracAdjoint4` coupled to real adjoint link kernels is intertwined by `fullIntertwiner4` with its entrywise complex conjugate and has $\text{Im}(\det D_{\text{adj}}) = 0$; and explicit finite witnesses show $\det D < 0$ is compatible with antiunitary reality while $2 \times 2$ and $4 \times 4$ skew-symmetric Majorana matrices satisfy $\det M = (\text{Pf } M)^2$ with opposite-sign Pfaffians at $\det M = 1$.

@@ -42,15 +42,15 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignCompC7FixedTargetOpen.lean`
+### Lean: `lean4/ComputationC7FixedTargetOpen.lean`
 
-- file: [lean4/CampaignCompC7FixedTargetOpen.lean](../../../lean4/CampaignCompC7FixedTargetOpen.lean)
-- sha256 (`bytes`): `fdf8c22aad238c9fc90ae8988290b8d214e29ceaf050e6246f5c8f49265a5347`
-- cited in: node.lean, receipt dag/research/campaign_comp-c7-fixed-target-open_lean_replay.json (CampaignCompC7FixedTargetOpen), receipt dag/research/pr_369_review_replay.json (CampaignCompC7FixedTargetOpen), record TFQ-1311
+- file: [lean4/ComputationC7FixedTargetOpen.lean](../../../lean4/ComputationC7FixedTargetOpen.lean)
+- sha256 (`bytes`): `35f492eef55f3248c60df305f6ce55e0803625af848fc4a4caa196a667e2afe0`
+- cited in: node.lean, receipt dag/research/campaign_comp-c7-fixed-target-open_lean_replay.json (ComputationC7FixedTargetOpen), receipt dag/research/pr_369_review_replay.json (ComputationC7FixedTargetOpen), record TFQ-1311
 - replay: `verified`
-  - receipt [dag/research/campaign_comp-c7-fixed-target-open_lean_replay.json](../../../dag/research/campaign_comp-c7-fixed-target-open_lean_replay.json) (module `CampaignCompC7FixedTargetOpen`): recorded sha256 `fdf8c22aad238c9fc90ae8988290b8d214e29ceaf050e6246f5c8f49265a5347` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_369_review_replay.json](../../../dag/research/pr_369_review_replay.json) (module `CampaignCompC7FixedTargetOpen`): recorded sha256 `fdf8c22aad238c9fc90ae8988290b8d214e29ceaf050e6246f5c8f49265a5347` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignCompC7FixedTargetOpen`
+  - receipt [dag/research/campaign_comp-c7-fixed-target-open_lean_replay.json](../../../dag/research/campaign_comp-c7-fixed-target-open_lean_replay.json) (module `ComputationC7FixedTargetOpen`): recorded sha256 `35f492eef55f3248c60df305f6ce55e0803625af848fc4a4caa196a667e2afe0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_369_review_replay.json](../../../dag/research/pr_369_review_replay.json) (module `ComputationC7FixedTargetOpen`): recorded sha256 `35f492eef55f3248c60df305f6ce55e0803625af848fc4a4caa196a667e2afe0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build ComputationC7FixedTargetOpen`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -62,7 +62,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md`
 
 - file: [dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md](../../../dag/derivations/29_computation/tfq_1311_comp_c7_fixed_target_open.md)
-- sha256 (`lf-normalised`): `877ac54aeb7b92ec57b919e55dde2099352e89f402fe0a473e4e02a302318c13`
+- sha256 (`lf-normalised`): `887c03176837575bfe37aa138eb0c312f2907b75954b7023ca07649422c4b9e5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1311
 - counts toward the grade: no

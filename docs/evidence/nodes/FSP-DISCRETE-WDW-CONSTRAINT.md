@@ -42,32 +42,32 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignConstraintKernelProjector.lean`
+### Lean: `lean4/ConstraintKernelProjector.lean`
 
-- file: [lean4/CampaignConstraintKernelProjector.lean](../../../lean4/CampaignConstraintKernelProjector.lean)
-- sha256 (`bytes`): `4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6`
-- cited in: node.lean, receipt dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json (CampaignConstraintKernelProjector), record TFQ-1213
+- file: [lean4/ConstraintKernelProjector.lean](../../../lean4/ConstraintKernelProjector.lean)
+- sha256 (`bytes`): `daaa910962480e0e1fd97c617f31826c9994bda13618c6e195abee5b7ad3c31f`
+- cited in: node.lean, receipt dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json (ConstraintKernelProjector), record TFQ-1213
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json](../../../dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json) (module `CampaignConstraintKernelProjector`): recorded sha256 `4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignConstraintKernelProjector`
+  - receipt [dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json](../../../dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json) (module `ConstraintKernelProjector`): recorded sha256 `daaa910962480e0e1fd97c617f31826c9994bda13618c6e195abee5b7ad3c31f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build ConstraintKernelProjector`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignConstraintKernelProjector.Vec` | yes | yes | yes | none | `#print axioms CampaignConstraintKernelProjector.Vec` |
-| `CampaignConstraintKernelProjector.constraint` | yes | yes | yes | none | `#print axioms CampaignConstraintKernelProjector.constraint` |
-| `CampaignConstraintKernelProjector.constraint_is_indefinite` | yes | yes | yes | none | `#print axioms CampaignConstraintKernelProjector.constraint_is_indefinite` |
-| `CampaignConstraintKernelProjector.constraint_is_not_projector` | yes | yes | yes | none | `#print axioms CampaignConstraintKernelProjector.constraint_is_not_projector` |
-| `CampaignConstraintKernelProjector.constraint_symmetric` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignConstraintKernelProjector.constraint_symmetric` |
-| `CampaignConstraintKernelProjector.dot` | yes | yes | yes | none | `#print axioms CampaignConstraintKernelProjector.dot` |
-| `CampaignConstraintKernelProjector.kernel_characterization` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignConstraintKernelProjector.kernel_characterization` |
-| `CampaignConstraintKernelProjector.nontrivial_kernel` | yes | yes | yes | none | `#print axioms CampaignConstraintKernelProjector.nontrivial_kernel` |
-| `CampaignConstraintKernelProjector.project` | yes | yes | yes | none | `#print axioms CampaignConstraintKernelProjector.project` |
-| `CampaignConstraintKernelProjector.projected_vector_satisfies_constraint` | yes | yes | yes | propext | `#print axioms CampaignConstraintKernelProjector.projected_vector_satisfies_constraint` |
-| `CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel` |
-| `CampaignConstraintKernelProjector.projector_fixes_exactly_kernel` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignConstraintKernelProjector.projector_fixes_exactly_kernel` |
-| `CampaignConstraintKernelProjector.projector_idempotent` | yes | yes | yes | none | `#print axioms CampaignConstraintKernelProjector.projector_idempotent` |
-| `CampaignConstraintKernelProjector.subtract` | yes | yes | yes | none | `#print axioms CampaignConstraintKernelProjector.subtract` |
-| `CampaignConstraintKernelProjector.zero` | yes | yes | yes | none | `#print axioms CampaignConstraintKernelProjector.zero` |
+| `ConstraintKernelProjector.Vec` | yes | yes | yes | none | `#print axioms ConstraintKernelProjector.Vec` |
+| `ConstraintKernelProjector.constraint` | yes | yes | yes | none | `#print axioms ConstraintKernelProjector.constraint` |
+| `ConstraintKernelProjector.constraint_is_indefinite` | yes | yes | yes | none | `#print axioms ConstraintKernelProjector.constraint_is_indefinite` |
+| `ConstraintKernelProjector.constraint_is_not_projector` | yes | yes | yes | none | `#print axioms ConstraintKernelProjector.constraint_is_not_projector` |
+| `ConstraintKernelProjector.constraint_symmetric` | yes | yes | yes | Quot.sound, propext | `#print axioms ConstraintKernelProjector.constraint_symmetric` |
+| `ConstraintKernelProjector.dot` | yes | yes | yes | none | `#print axioms ConstraintKernelProjector.dot` |
+| `ConstraintKernelProjector.kernel_characterization` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstraintKernelProjector.kernel_characterization` |
+| `ConstraintKernelProjector.nontrivial_kernel` | yes | yes | yes | none | `#print axioms ConstraintKernelProjector.nontrivial_kernel` |
+| `ConstraintKernelProjector.project` | yes | yes | yes | none | `#print axioms ConstraintKernelProjector.project` |
+| `ConstraintKernelProjector.projected_vector_satisfies_constraint` | yes | yes | yes | propext | `#print axioms ConstraintKernelProjector.projected_vector_satisfies_constraint` |
+| `ConstraintKernelProjector.projection_residual_orthogonal_to_kernel` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstraintKernelProjector.projection_residual_orthogonal_to_kernel` |
+| `ConstraintKernelProjector.projector_fixes_exactly_kernel` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ConstraintKernelProjector.projector_fixes_exactly_kernel` |
+| `ConstraintKernelProjector.projector_idempotent` | yes | yes | yes | none | `#print axioms ConstraintKernelProjector.projector_idempotent` |
+| `ConstraintKernelProjector.subtract` | yes | yes | yes | none | `#print axioms ConstraintKernelProjector.subtract` |
+| `ConstraintKernelProjector.zero` | yes | yes | yes | none | `#print axioms ConstraintKernelProjector.zero` |
 
 - counts toward the grade: yes
 
@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md`
 
 - file: [dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md](../../../dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md)
-- sha256 (`lf-normalised`): `10bd8dd266745158896eb4090925b2e6183b1ff622f713c1f7ab9ad86401b9a4`
+- sha256 (`lf-normalised`): `a86eaa84acad592fbc51583418d7dad4805710e7866c1391c789b8675b67038f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1213
 - counts toward the grade: no
@@ -89,14 +89,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-discrete-wdw-constraint.md`
 
 - file: [dag/derivations/independent/fsp-discrete-wdw-constraint.md](../../../dag/derivations/independent/fsp-discrete-wdw-constraint.md)
-- sha256 (`lf-normalised`): `9009d23304505e8486c5423f1d9dc88d99036f17379f457fae9e8e9e6129c153`
+- sha256 (`lf-normalised`): `18c25ad45f8db091cb4b1e00c5488225d2c7fcb1d98d7c579ff61e916bdf5e31`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json](../../../dag/research/campaign_fsp-discrete-wdw-constraint_lean_replay.json)
-- sha256 (`lf-normalised`): `039fd027ed60fb98aa3d5adcf76c6328fc8982740f3cd34ad3d9166881ab7156`
+- sha256 (`lf-normalised`): `43e65d97929a195375db01b327681beafd07b6e466261ac2d8fb59233be7ea4b`
 - cited in: node.source
 - counts toward the grade: yes
 

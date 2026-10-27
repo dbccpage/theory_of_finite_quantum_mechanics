@@ -33,15 +33,15 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignIdentityConvention.lean::CampaignIdentityConvention.adding_identity_separates`](../../../lean4/CampaignIdentityConvention.lean)
-- [`lean4/CampaignIdentityConvention.lean::CampaignIdentityConvention.empty_family_identifies_all`](../../../lean4/CampaignIdentityConvention.lean)
-- [`lean4/CampaignIdentityConvention.lean::CampaignIdentityConvention.exact_inscription_is_new`](../../../lean4/CampaignIdentityConvention.lean)
-- [`lean4/CampaignIdentityConvention.lean::CampaignIdentityConvention.exact_observer_sees_new`](../../../lean4/CampaignIdentityConvention.lean)
-- [`lean4/CampaignIdentityConvention.lean::CampaignIdentityConvention.forgetting_preserves_indistinguishability`](../../../lean4/CampaignIdentityConvention.lean)
-- [`lean4/CampaignIdentityConvention.lean::CampaignIdentityConvention.no_convention_independent_answer`](../../../lean4/CampaignIdentityConvention.lean)
-- [`lean4/CampaignIdentityConvention.lean::CampaignIdentityConvention.observational_equivalence`](../../../lean4/CampaignIdentityConvention.lean)
-- [`lean4/CampaignIdentityConvention.lean::CampaignIdentityConvention.opaque_inscription_is_not_new`](../../../lean4/CampaignIdentityConvention.lean)
-- [`lean4/CampaignIdentityConvention.lean::CampaignIdentityConvention.opaque_observer_sees_no_new`](../../../lean4/CampaignIdentityConvention.lean)
+- [`lean4/IdentityConvention.lean::IdentityConvention.adding_identity_separates`](../../../lean4/IdentityConvention.lean)
+- [`lean4/IdentityConvention.lean::IdentityConvention.empty_family_identifies_all`](../../../lean4/IdentityConvention.lean)
+- [`lean4/IdentityConvention.lean::IdentityConvention.exact_inscription_is_new`](../../../lean4/IdentityConvention.lean)
+- [`lean4/IdentityConvention.lean::IdentityConvention.exact_observer_sees_new`](../../../lean4/IdentityConvention.lean)
+- [`lean4/IdentityConvention.lean::IdentityConvention.forgetting_preserves_indistinguishability`](../../../lean4/IdentityConvention.lean)
+- [`lean4/IdentityConvention.lean::IdentityConvention.no_convention_independent_answer`](../../../lean4/IdentityConvention.lean)
+- [`lean4/IdentityConvention.lean::IdentityConvention.observational_equivalence`](../../../lean4/IdentityConvention.lean)
+- [`lean4/IdentityConvention.lean::IdentityConvention.opaque_inscription_is_not_new`](../../../lean4/IdentityConvention.lean)
+- [`lean4/IdentityConvention.lean::IdentityConvention.opaque_observer_sees_no_new`](../../../lean4/IdentityConvention.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust switch between identity conventions`

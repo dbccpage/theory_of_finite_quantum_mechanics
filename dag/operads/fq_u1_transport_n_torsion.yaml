@@ -39,7 +39,7 @@ operation_candidates:
   name: signCarrier
   line: 44
   signature_excerpt: 'def signCarrier : PhaseCarrier Int'
-  source: lean4/H011Circle.lean
+  source: lean4/HilbertWalkCircle.lean
   repository: this_repository
   source_sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
   status: source_candidate_requires_semantic_review
@@ -47,7 +47,7 @@ operation_candidates:
   name: isSign
   line: 25
   signature_excerpt: 'def isSign (a : Int) : Prop'
-  source: lean4/H011Circle.lean
+  source: lean4/HilbertWalkCircle.lean
   repository: this_repository
   source_sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
   status: source_candidate_requires_semantic_review
@@ -55,7 +55,7 @@ operation_candidates:
   name: PhaseCarrier
   line: 14
   signature_excerpt: 'structure PhaseCarrier (G : Type)'
-  source: lean4/H011Circle.lean
+  source: lean4/HilbertWalkCircle.lean
   repository: this_repository
   source_sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
   status: source_candidate_requires_semantic_review
@@ -63,7 +63,7 @@ operation_candidates:
   name: ConnectednessShadow
   line: 21
   signature_excerpt: 'def ConnectednessShadow {G : Type} (P : PhaseCarrier G) : Prop'
-  source: lean4/H011Circle.lean
+  source: lean4/HilbertWalkCircle.lean
   repository: this_repository
   source_sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
   status: source_candidate_requires_semantic_review
@@ -71,7 +71,7 @@ operation_candidates:
   name: SelectorDischarged
   line: 22
   signature_excerpt: 'def SelectorDischarged (S : SelectorPack) : Bool'
-  source: lean4/H011U1SelectorBoundary.lean
+  source: lean4/U1SelectorBoundary.lean
   repository: this_repository
   source_sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
   status: source_candidate_requires_semantic_review
@@ -79,7 +79,7 @@ operation_candidates:
   name: SelectorPack
   line: 16
   signature_excerpt: structure SelectorPack
-  source: lean4/H011U1SelectorBoundary.lean
+  source: lean4/U1SelectorBoundary.lean
   repository: this_repository
   source_sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
   status: source_candidate_requires_semantic_review
@@ -87,7 +87,7 @@ operation_candidates:
   name: qm062Route
   line: 26
   signature_excerpt: 'def qm062Route : SelectorPack'
-  source: lean4/H011U1SelectorBoundary.lean
+  source: lean4/U1SelectorBoundary.lean
   repository: this_repository
   source_sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
   status: source_candidate_requires_semantic_review
@@ -96,7 +96,7 @@ relation_candidates:
   name: sign_fails_connectedness_shadow
   line: 51
   signature_excerpt: "theorem sign_fails_connectedness_shadow :\n    ¬ ConnectednessShadow signCarrier"
-  source: lean4/H011Circle.lean
+  source: lean4/HilbertWalkCircle.lean
   repository: this_repository
   source_sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
   status: source_candidate_requires_semantic_review
@@ -107,7 +107,7 @@ relation_candidates:
   line: 47
   signature_excerpt: "theorem u1_selector_boundary :\n    SelectorDischarged qm062Route = false ∧\n  \
     \    ¬(∀ q : Bool, iReadout iPsi1 q = iReadout iPsi2 q)"
-  source: lean4/H011U1SelectorBoundary.lean
+  source: lean4/U1SelectorBoundary.lean
   repository: this_repository
   source_sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
   status: source_candidate_requires_semantic_review
@@ -132,7 +132,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H011Circle.lean::sign_fails_connectedness_shadow
   availability: local
   symbol: sign_fails_connectedness_shadow
-  path: lean4/H011Circle.lean
+  path: lean4/HilbertWalkCircle.lean
   repository: this_repository
   sha256: 6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b
   declaration_status: declaration_found_not_proof_checked
@@ -141,7 +141,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H011U1SelectorBoundary.lean::u1_selector_boundary
   availability: local
   symbol: u1_selector_boundary
-  path: lean4/H011U1SelectorBoundary.lean
+  path: lean4/U1SelectorBoundary.lean
   repository: this_repository
   sha256: 214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912
   declaration_status: declaration_found_not_proof_checked

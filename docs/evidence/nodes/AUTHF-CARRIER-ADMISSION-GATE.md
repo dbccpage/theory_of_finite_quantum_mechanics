@@ -42,20 +42,20 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignAuthfCarrierAdmissionGate.lean`
+### Lean: `lean4/CarrierAdmissionGate.lean`
 
-- file: [lean4/CampaignAuthfCarrierAdmissionGate.lean](../../../lean4/CampaignAuthfCarrierAdmissionGate.lean)
-- sha256 (`bytes`): `4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23`
-- cited in: node.lean, receipt dag/research/campaign_authf-carrier-admission-gate_lean_replay.json (CampaignAuthfCarrierAdmissionGate), receipt dag/research/pr_372_review_replay.json (CampaignAuthfCarrierAdmissionGate), record TFQ-1362
+- file: [lean4/CarrierAdmissionGate.lean](../../../lean4/CarrierAdmissionGate.lean)
+- sha256 (`bytes`): `b46343a865ba097ebb45a6bbfe291846b510a69259bd4d98a5c5e64e39cc59be`
+- cited in: node.lean, receipt dag/research/campaign_authf-carrier-admission-gate_lean_replay.json (CarrierAdmissionGate), receipt dag/research/pr_372_review_replay.json (CarrierAdmissionGate), record TFQ-1362
 - replay: `verified`
-  - receipt [dag/research/campaign_authf-carrier-admission-gate_lean_replay.json](../../../dag/research/campaign_authf-carrier-admission-gate_lean_replay.json) (module `CampaignAuthfCarrierAdmissionGate`): recorded sha256 `4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_372_review_replay.json](../../../dag/research/pr_372_review_replay.json) (module `CampaignAuthfCarrierAdmissionGate`): recorded sha256 `4d9d32925fcb9b6f7ad1ae2c386d7057081e6effd49c6a52c8656b6059172c23` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignAuthfCarrierAdmissionGate`
+  - receipt [dag/research/campaign_authf-carrier-admission-gate_lean_replay.json](../../../dag/research/campaign_authf-carrier-admission-gate_lean_replay.json) (module `CarrierAdmissionGate`): recorded sha256 `b46343a865ba097ebb45a6bbfe291846b510a69259bd4d98a5c5e64e39cc59be` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_372_review_replay.json](../../../dag/research/pr_372_review_replay.json) (module `CarrierAdmissionGate`): recorded sha256 `b46343a865ba097ebb45a6bbfe291846b510a69259bd4d98a5c5e64e39cc59be` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build CarrierAdmissionGate`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignAuthfCarrierAdmissionGate.directCeilings` | yes | yes | yes | none | `#print axioms CampaignAuthfCarrierAdmissionGate.directCeilings` |
-| `CampaignAuthfCarrierAdmissionGate.directNotSelected` | yes | yes | yes | none | `#print axioms CampaignAuthfCarrierAdmissionGate.directNotSelected` |
+| `CarrierAdmissionGate.directCeilings` | yes | yes | yes | none | `#print axioms CarrierAdmissionGate.directCeilings` |
+| `CarrierAdmissionGate.directNotSelected` | yes | yes | yes | none | `#print axioms CarrierAdmissionGate.directNotSelected` |
 | `directCeilings` | yes | yes | yes | none | `#print axioms directCeilings` |
 | `directNotSelected` | yes | yes | yes | none | `#print axioms directNotSelected` |
 
@@ -90,7 +90,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md`
 
 - file: [dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md](../../../dag/derivations/29_computation/tfq_1362_authf_carrier_admission_gate.md)
-- sha256 (`lf-normalised`): `f9deda59a120e2a25711eb02562378ad37a6a14621903fc4364f62167c7592a8`
+- sha256 (`lf-normalised`): `b1094cc7caa725abb00aa32377c414367e219395237880ebb5311bda6884672d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1362
 - counts toward the grade: no

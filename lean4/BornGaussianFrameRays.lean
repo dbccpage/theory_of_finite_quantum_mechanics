@@ -11,9 +11,9 @@ on rescaling `v` (`exists_frame_completion`).  Hence any frame function on vecto
 `IsFrameFunction` in `BornGaussianRationalFrameObstruction` is a function on rays.
 -/
 
-namespace BornFable.GaussianFrames
+namespace BornFinite.GaussianFrames
 
-open BornFable
+open BornFinite
 
 theorem inner_smul_left (l : GaussRat) (u v : GVec) :
     (GVec.smul l u).inner v = star l * u.inner v := by
@@ -91,9 +91,9 @@ theorem frameFunction_smul {f : GVec → ℚ} (hF : IsFrameFunction f) {v : GVec
   have e2 := hF _ _ _ (h2 l hl)
   linarith
 
-end BornFable.GaussianFrames
+end BornFinite.GaussianFrames
 
-#print axioms BornFable.GaussianFrames.inner_smul_left
-#print axioms BornFable.GaussianFrames.nonZero_smul
-#print axioms BornFable.GaussianFrames.exists_frame_completion
-#print axioms BornFable.GaussianFrames.frameFunction_smul
+#print axioms BornFinite.GaussianFrames.inner_smul_left
+#print axioms BornFinite.GaussianFrames.nonZero_smul
+#print axioms BornFinite.GaussianFrames.exists_frame_completion
+#print axioms BornFinite.GaussianFrames.frameFunction_smul

@@ -1,6 +1,6 @@
 """2 by 2 toric-code dimension from even star-plaquette overlaps.
 
-Origin: lean4/H044SurfaceCodeToricTopology.lean theorem homology_dimension_k2
+Origin: lean4/SurfaceCodeToricTopology.lean theorem homology_dimension_k2
 ((8 : Int) - (4 - 1) - (4 - 1) = 2).
 Claim: urn:omega:fqm:qm:toric-dimension:v1
 AuthorityEffect: None

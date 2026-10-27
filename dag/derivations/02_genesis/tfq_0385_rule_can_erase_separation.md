@@ -26,7 +26,7 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignTfq0385RuleErasesSeparation.lean`](../../../lean4/CampaignTfq0385RuleErasesSeparation.lean) records two data, one unary instance on datum 0, and the class count falling from 2 to 1 when the uniform rule on form 0 is added. The node stays OPEN.
+- [`lean4/UniformRuleErasesSeparation.lean`](../../../lean4/UniformRuleErasesSeparation.lean) records two data, one unary instance on datum 0, and the class count falling from 2 to 1 when the uniform rule on form 0 is added. The node stays OPEN.
 - The opened fragments Inertia.lean and Run.lean are not cited for this counterexample.
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)

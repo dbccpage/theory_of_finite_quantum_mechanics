@@ -1,0 +1,548 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/FiniteGroupPachner.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/FiniteGroupPachner.lean",
+      "sha256": "2f4916b1ac6b688304948b5ad00aa570a0a2cae0770ab80587307f6acffda82e"
+    },
+    "boundaries": [
+      "The supplied finite group, untwisted flat-connection model, canonical local complexes and compatible finite exterior interface are explicit. No general triangulation/gluing-equivalence or PL-homeomorphism library is formalized; no Regge, twisted/Crane-Yetter, fermion-sign or continuum conclusion follows. Human review remains pending."
+    ],
+    "contract_urn": "urn:tfqm:pachner-derivation:fsp-pachner-invariance-claim:FiniteGroupPachner",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json",
+        "sha256": "14f5f9aefd737f4f8c4b771d115c3c6692d1db00e25fa2dfb9d6c136103af597"
+      },
+      {
+        "path": "dag/derivations/independent/fsp-pachner-invariance-claim.md",
+        "sha256": "ab24522dc1d8226870cf4b2800274ad6ac1bb7c352583ab8bff8c408126c9154"
+      },
+      {
+        "path": "docs/overclaim/reviews/2026-10-26_fsp-pachner-invariance-claim.md",
+        "sha256": "8283d56a43f655593571d0765c5ea425d544ca3cd8c379ab60af0173f838c998"
+      }
+    ],
+    "owned_invariants": [
+      "For every finite group G, the untwisted flat-connection count on the canonical 4D 1-5, 2-4 and 3-3 Pachner pairs, divided by |G| to the number of interior vertices, agrees for every fixed flat common boundary. The normalized total counts also agree for every finite compatible exterior family represented by dependent pairs, with the same outside-vertex count."
+    ],
+    "purpose": "For every finite group G, the untwisted flat-connection count on the canonical 4D 1-5, 2-4 and 3-3 Pachner pairs, divided by |G| to the number of interior vertices, agrees for every fixed flat common boundary. The normalized total counts also agree for every finite compatible exterior family represented by dependent pairs, with the same outside-vertex count.",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "Vertex",
+      "edgeOne",
+      "triangleOne",
+      "edgeTwo",
+      "triangleTwo",
+      "triangleLeft",
+      "triangleRight",
+      "triangleBoundary",
+      "facetFace",
+      "facetFaceDecidable",
+      "one_facet_edges",
+      "one_facet_triangles",
+      "five_facet_edges",
+      "five_facet_triangles",
+      "two_facet_edges",
+      "two_facet_triangles",
+      "four_facet_edges",
+      "four_facet_triangles",
+      "three_facet_edges",
+      "three_facet_triangles",
+      "one_boundary_skeleton",
+      "two_boundary_skeleton",
+      "three_boundary_skeleton",
+      "one_root_triangle",
+      "two_root_edges",
+      "two_root_triangle",
+      "boundary_has_triangle_cone",
+      "Connection",
+      "FlatOn",
+      "Coloring",
+      "Complete",
+      "BoundaryOne",
+      "BoundaryTwo",
+      "BoundaryThree",
+      "ThreeLeft",
+      "ThreeRight",
+      "pureConnection",
+      "pureColoring",
+      "edge_from_root",
+      "complete_from_row",
+      "triangle_from_cone",
+      "boundary_three_flat",
+      "flat_boundary_of_matching",
+      "nonflat_boundary_has_no_extension",
+      "connectionFintype",
+      "coloringFintype",
+      "Matches",
+      "SelfFillings",
+      "OneNew",
+      "TwoNew",
+      "ThreeOld",
+      "ThreeNew",
+      "selfFillingsFintype",
+      "oneNewFintype",
+      "twoNewFintype",
+      "threeOldFintype",
+      "threeNewFintype",
+      "selfFilling",
+      "self_filling_unique",
+      "complete_eq_of_row",
+      "onePotential",
+      "fillOne",
+      "oneParameter",
+      "one_parameter_fill",
+      "fill_one_parameter",
+      "oneFillingEquiv",
+      "fillTwo",
+      "two_filling_unique",
+      "fillThreeOld",
+      "fillThreeNew",
+      "three_old_unique",
+      "three_new_unique",
+      "card_of_unique_witness",
+      "self_filling_count",
+      "one_filling_count",
+      "two_filling_count",
+      "three_old_count",
+      "three_new_count",
+      "unnormalized_one_five_iff",
+      "interiorVertices",
+      "localFacets",
+      "face_is_in_a_facet",
+      "local_facets_have_five_vertices",
+      "facet_counts",
+      "one_old_interior",
+      "one_new_interior",
+      "two_old_interior",
+      "two_new_interior",
+      "three_old_interior",
+      "three_new_interior",
+      "localAmplitude",
+      "group_order_ne_zero",
+      "pachner_one_five",
+      "pachner_two_four",
+      "pachner_three_three",
+      "stateSum",
+      "glued_one_five",
+      "glued_two_four",
+      "glued_three_three"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 4346,
+      "original_paths": [
+        "lean4/CampaignFiniteGroupPachner.contract.score.yaml#pachner-derivation-CampaignFiniteGroupPachner"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFiniteGroupPachner.lean\",\n    \"sha256\": \"e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca\"\n  },\n  \"boundaries\": [\n    \"The supplied finite group, untwisted flat-connection model, canonical local complexes and compatible finite exterior interface are explicit. No general triangulation/gluing-equivalence or PL-homeomorphism library is formalized; no Regge, twisted/Crane-Yetter, fermion-sign or continuum conclusion follows. Human review remains pending.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:pachner-derivation:fsp-pachner-invariance-claim:CampaignFiniteGroupPachner\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json\",\n      \"sha256\": \"cea239c2894d9939b604a3859a3028ce92e70c901db51d7a1a778150da74a1af\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fsp-pachner-invariance-claim.md\",\n      \"sha256\": \"59b067444ededaf7a754e33e1487c7b14c0ffe6e447ccb3b4b16073f09bc6a04\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-26_fsp-pachner-invariance-claim.md\",\n      \"sha256\": \"8283d56a43f655593571d0765c5ea425d544ca3cd8c379ab60af0173f838c998\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"For every finite group G, the untwisted flat-connection count on the canonical 4D 1-5, 2-4 and 3-3 Pachner pairs, divided by |G| to the number of interior vertices, agrees for every fixed flat common boundary. The normalized total counts also agree for every finite compatible exterior family represented by dependent pairs, with the same outside-vertex count.\"\n  ],\n  \"purpose\": \"For every finite group G, the untwisted flat-connection count on the canonical 4D 1-5, 2-4 and 3-3 Pachner pairs, divided by |G| to the number of interior vertices, agrees for every fixed flat common boundary. The normalized total counts also agree for every finite compatible exterior family represented by dependent pairs, with the same outside-vertex count.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"Vertex\",\n    \"edgeOne\",\n    \"triangleOne\",\n    \"edgeTwo\",\n    \"triangleTwo\",\n    \"triangleLeft\",\n    \"triangleRight\",\n    \"triangleBoundary\",\n    \"facetFace\",\n    \"facetFaceDecidable\",\n    \"one_facet_edges\",\n    \"one_facet_triangles\",\n    \"five_facet_edges\",\n    \"five_facet_triangles\",\n    \"two_facet_edges\",\n    \"two_facet_triangles\",\n    \"four_facet_edges\",\n    \"four_facet_triangles\",\n    \"three_facet_edges\",\n    \"three_facet_triangles\",\n    \"one_boundary_skeleton\",\n    \"two_boundary_skeleton\",\n    \"three_boundary_skeleton\",\n    \"one_root_triangle\",\n    \"two_root_edges\",\n    \"two_root_triangle\",\n    \"boundary_has_triangle_cone\",\n    \"Connection\",\n    \"FlatOn\",\n    \"Coloring\",\n    \"Complete\",\n    \"BoundaryOne\",\n    \"BoundaryTwo\",\n    \"BoundaryThree\",\n    \"ThreeLeft\",\n    \"ThreeRight\",\n    \"pureConnection\",\n    \"pureColoring\",\n    \"edge_from_root\",\n    \"complete_from_row\",\n    \"triangle_from_cone\",\n    \"boundary_three_flat\",\n    \"flat_boundary_of_matching\",\n    \"nonflat_boundary_has_no_extension\",\n    \"connectionFintype\",\n    \"coloringFintype\",\n    \"Matches\",\n    \"SelfFillings\",\n    \"OneNew\",\n    \"TwoNew\",\n    \"ThreeOld\",\n    \"ThreeNew\",\n    \"selfFillingsFintype\",\n    \"oneNewFintype\",\n    \"twoNewFintype\",\n    \"threeOldFintype\",\n    \"threeNewFintype\",\n    \"selfFilling\",\n    \"self_filling_unique\",\n    \"complete_eq_of_row\",\n    \"onePotential\",\n    \"fillOne\",\n    \"oneParameter\",\n    \"one_parameter_fill\",\n    \"fill_one_parameter\",\n    \"oneFillingEquiv\",\n    \"fillTwo\",\n    \"two_filling_unique\",\n    \"fillThreeOld\",\n    \"fillThreeNew\",\n    \"three_old_unique\",\n    \"three_new_unique\",\n    \"card_of_unique_witness\",\n    \"self_filling_count\",\n    \"one_filling_count\",\n    \"two_filling_count\",\n    \"three_old_count\",\n    \"three_new_count\",\n    \"unnormalized_one_five_iff\",\n    \"interiorVertices\",\n    \"localFacets\",\n    \"face_is_in_a_facet\",\n    \"local_facets_have_five_vertices\",\n    \"facet_counts\",\n    \"one_old_interior\",\n    \"one_new_interior\",\n    \"two_old_interior\",\n    \"two_new_interior\",\n    \"three_old_interior\",\n    \"three_new_interior\",\n    \"localAmplitude\",\n    \"group_order_ne_zero\",\n    \"pachner_one_five\",\n    \"pachner_two_four\",\n    \"pachner_three_three\",\n    \"stateSum\",\n    \"glued_one_five\",\n    \"glued_two_four\",\n    \"glued_three_three\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignFiniteGroupPachner.lean",
+          "sha256": "e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca"
+        },
+        "boundaries": [
+          "The supplied finite group, untwisted flat-connection model, canonical local complexes and compatible finite exterior interface are explicit. No general triangulation/gluing-equivalence or PL-homeomorphism library is formalized; no Regge, twisted/Crane-Yetter, fermion-sign or continuum conclusion follows. Human review remains pending."
+        ],
+        "contract_urn": "urn:tfqm:pachner-derivation:fsp-pachner-invariance-claim:CampaignFiniteGroupPachner",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json",
+            "sha256": "cea239c2894d9939b604a3859a3028ce92e70c901db51d7a1a778150da74a1af"
+          },
+          {
+            "path": "dag/derivations/independent/fsp-pachner-invariance-claim.md",
+            "sha256": "59b067444ededaf7a754e33e1487c7b14c0ffe6e447ccb3b4b16073f09bc6a04"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-26_fsp-pachner-invariance-claim.md",
+            "sha256": "8283d56a43f655593571d0765c5ea425d544ca3cd8c379ab60af0173f838c998"
+          }
+        ],
+        "owned_invariants": [
+          "For every finite group G, the untwisted flat-connection count on the canonical 4D 1-5, 2-4 and 3-3 Pachner pairs, divided by |G| to the number of interior vertices, agrees for every fixed flat common boundary. The normalized total counts also agree for every finite compatible exterior family represented by dependent pairs, with the same outside-vertex count."
+        ],
+        "purpose": "For every finite group G, the untwisted flat-connection count on the canonical 4D 1-5, 2-4 and 3-3 Pachner pairs, divided by |G| to the number of interior vertices, agrees for every fixed flat common boundary. The normalized total counts also agree for every finite compatible exterior family represented by dependent pairs, with the same outside-vertex count.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "Vertex",
+          "edgeOne",
+          "triangleOne",
+          "edgeTwo",
+          "triangleTwo",
+          "triangleLeft",
+          "triangleRight",
+          "triangleBoundary",
+          "facetFace",
+          "facetFaceDecidable",
+          "one_facet_edges",
+          "one_facet_triangles",
+          "five_facet_edges",
+          "five_facet_triangles",
+          "two_facet_edges",
+          "two_facet_triangles",
+          "four_facet_edges",
+          "four_facet_triangles",
+          "three_facet_edges",
+          "three_facet_triangles",
+          "one_boundary_skeleton",
+          "two_boundary_skeleton",
+          "three_boundary_skeleton",
+          "one_root_triangle",
+          "two_root_edges",
+          "two_root_triangle",
+          "boundary_has_triangle_cone",
+          "Connection",
+          "FlatOn",
+          "Coloring",
+          "Complete",
+          "BoundaryOne",
+          "BoundaryTwo",
+          "BoundaryThree",
+          "ThreeLeft",
+          "ThreeRight",
+          "pureConnection",
+          "pureColoring",
+          "edge_from_root",
+          "complete_from_row",
+          "triangle_from_cone",
+          "boundary_three_flat",
+          "flat_boundary_of_matching",
+          "nonflat_boundary_has_no_extension",
+          "connectionFintype",
+          "coloringFintype",
+          "Matches",
+          "SelfFillings",
+          "OneNew",
+          "TwoNew",
+          "ThreeOld",
+          "ThreeNew",
+          "selfFillingsFintype",
+          "oneNewFintype",
+          "twoNewFintype",
+          "threeOldFintype",
+          "threeNewFintype",
+          "selfFilling",
+          "self_filling_unique",
+          "complete_eq_of_row",
+          "onePotential",
+          "fillOne",
+          "oneParameter",
+          "one_parameter_fill",
+          "fill_one_parameter",
+          "oneFillingEquiv",
+          "fillTwo",
+          "two_filling_unique",
+          "fillThreeOld",
+          "fillThreeNew",
+          "three_old_unique",
+          "three_new_unique",
+          "card_of_unique_witness",
+          "self_filling_count",
+          "one_filling_count",
+          "two_filling_count",
+          "three_old_count",
+          "three_new_count",
+          "unnormalized_one_five_iff",
+          "interiorVertices",
+          "localFacets",
+          "face_is_in_a_facet",
+          "local_facets_have_five_vertices",
+          "facet_counts",
+          "one_old_interior",
+          "one_new_interior",
+          "two_old_interior",
+          "two_new_interior",
+          "three_old_interior",
+          "three_new_interior",
+          "localAmplitude",
+          "group_order_ne_zero",
+          "pachner_one_five",
+          "pachner_two_four",
+          "pachner_three_three",
+          "stateSum",
+          "glued_one_five",
+          "glued_two_four",
+          "glued_three_three"
+        ]
+      },
+      "sha256": "352e9cb93e3d8399321c258230f44c4ba40afca40f4bc9926362a639f89ad2c1"
+    },
+    {
+      "bytes": 4330,
+      "original_paths": [
+        "lean4/FiniteGroupPachner.contract.score.yaml#pachner-derivation-FiniteGroupPachner"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/FiniteGroupPachner.lean\",\n    \"sha256\": \"2f4916b1ac6b688304948b5ad00aa570a0a2cae0770ab80587307f6acffda82e\"\n  },\n  \"boundaries\": [\n    \"The supplied finite group, untwisted flat-connection model, canonical local complexes and compatible finite exterior interface are explicit. No general triangulation/gluing-equivalence or PL-homeomorphism library is formalized; no Regge, twisted/Crane-Yetter, fermion-sign or continuum conclusion follows. Human review remains pending.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:pachner-derivation:fsp-pachner-invariance-claim:FiniteGroupPachner\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json\",\n      \"sha256\": \"14f5f9aefd737f4f8c4b771d115c3c6692d1db00e25fa2dfb9d6c136103af597\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fsp-pachner-invariance-claim.md\",\n      \"sha256\": \"ab24522dc1d8226870cf4b2800274ad6ac1bb7c352583ab8bff8c408126c9154\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-26_fsp-pachner-invariance-claim.md\",\n      \"sha256\": \"8283d56a43f655593571d0765c5ea425d544ca3cd8c379ab60af0173f838c998\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"For every finite group G, the untwisted flat-connection count on the canonical 4D 1-5, 2-4 and 3-3 Pachner pairs, divided by |G| to the number of interior vertices, agrees for every fixed flat common boundary. The normalized total counts also agree for every finite compatible exterior family represented by dependent pairs, with the same outside-vertex count.\"\n  ],\n  \"purpose\": \"For every finite group G, the untwisted flat-connection count on the canonical 4D 1-5, 2-4 and 3-3 Pachner pairs, divided by |G| to the number of interior vertices, agrees for every fixed flat common boundary. The normalized total counts also agree for every finite compatible exterior family represented by dependent pairs, with the same outside-vertex count.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"Vertex\",\n    \"edgeOne\",\n    \"triangleOne\",\n    \"edgeTwo\",\n    \"triangleTwo\",\n    \"triangleLeft\",\n    \"triangleRight\",\n    \"triangleBoundary\",\n    \"facetFace\",\n    \"facetFaceDecidable\",\n    \"one_facet_edges\",\n    \"one_facet_triangles\",\n    \"five_facet_edges\",\n    \"five_facet_triangles\",\n    \"two_facet_edges\",\n    \"two_facet_triangles\",\n    \"four_facet_edges\",\n    \"four_facet_triangles\",\n    \"three_facet_edges\",\n    \"three_facet_triangles\",\n    \"one_boundary_skeleton\",\n    \"two_boundary_skeleton\",\n    \"three_boundary_skeleton\",\n    \"one_root_triangle\",\n    \"two_root_edges\",\n    \"two_root_triangle\",\n    \"boundary_has_triangle_cone\",\n    \"Connection\",\n    \"FlatOn\",\n    \"Coloring\",\n    \"Complete\",\n    \"BoundaryOne\",\n    \"BoundaryTwo\",\n    \"BoundaryThree\",\n    \"ThreeLeft\",\n    \"ThreeRight\",\n    \"pureConnection\",\n    \"pureColoring\",\n    \"edge_from_root\",\n    \"complete_from_row\",\n    \"triangle_from_cone\",\n    \"boundary_three_flat\",\n    \"flat_boundary_of_matching\",\n    \"nonflat_boundary_has_no_extension\",\n    \"connectionFintype\",\n    \"coloringFintype\",\n    \"Matches\",\n    \"SelfFillings\",\n    \"OneNew\",\n    \"TwoNew\",\n    \"ThreeOld\",\n    \"ThreeNew\",\n    \"selfFillingsFintype\",\n    \"oneNewFintype\",\n    \"twoNewFintype\",\n    \"threeOldFintype\",\n    \"threeNewFintype\",\n    \"selfFilling\",\n    \"self_filling_unique\",\n    \"complete_eq_of_row\",\n    \"onePotential\",\n    \"fillOne\",\n    \"oneParameter\",\n    \"one_parameter_fill\",\n    \"fill_one_parameter\",\n    \"oneFillingEquiv\",\n    \"fillTwo\",\n    \"two_filling_unique\",\n    \"fillThreeOld\",\n    \"fillThreeNew\",\n    \"three_old_unique\",\n    \"three_new_unique\",\n    \"card_of_unique_witness\",\n    \"self_filling_count\",\n    \"one_filling_count\",\n    \"two_filling_count\",\n    \"three_old_count\",\n    \"three_new_count\",\n    \"unnormalized_one_five_iff\",\n    \"interiorVertices\",\n    \"localFacets\",\n    \"face_is_in_a_facet\",\n    \"local_facets_have_five_vertices\",\n    \"facet_counts\",\n    \"one_old_interior\",\n    \"one_new_interior\",\n    \"two_old_interior\",\n    \"two_new_interior\",\n    \"three_old_interior\",\n    \"three_new_interior\",\n    \"localAmplitude\",\n    \"group_order_ne_zero\",\n    \"pachner_one_five\",\n    \"pachner_two_four\",\n    \"pachner_three_three\",\n    \"stateSum\",\n    \"glued_one_five\",\n    \"glued_two_four\",\n    \"glued_three_three\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/FiniteGroupPachner.lean",
+          "sha256": "2f4916b1ac6b688304948b5ad00aa570a0a2cae0770ab80587307f6acffda82e"
+        },
+        "boundaries": [
+          "The supplied finite group, untwisted flat-connection model, canonical local complexes and compatible finite exterior interface are explicit. No general triangulation/gluing-equivalence or PL-homeomorphism library is formalized; no Regge, twisted/Crane-Yetter, fermion-sign or continuum conclusion follows. Human review remains pending."
+        ],
+        "contract_urn": "urn:tfqm:pachner-derivation:fsp-pachner-invariance-claim:FiniteGroupPachner",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json",
+            "sha256": "14f5f9aefd737f4f8c4b771d115c3c6692d1db00e25fa2dfb9d6c136103af597"
+          },
+          {
+            "path": "dag/derivations/independent/fsp-pachner-invariance-claim.md",
+            "sha256": "ab24522dc1d8226870cf4b2800274ad6ac1bb7c352583ab8bff8c408126c9154"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-26_fsp-pachner-invariance-claim.md",
+            "sha256": "8283d56a43f655593571d0765c5ea425d544ca3cd8c379ab60af0173f838c998"
+          }
+        ],
+        "owned_invariants": [
+          "For every finite group G, the untwisted flat-connection count on the canonical 4D 1-5, 2-4 and 3-3 Pachner pairs, divided by |G| to the number of interior vertices, agrees for every fixed flat common boundary. The normalized total counts also agree for every finite compatible exterior family represented by dependent pairs, with the same outside-vertex count."
+        ],
+        "purpose": "For every finite group G, the untwisted flat-connection count on the canonical 4D 1-5, 2-4 and 3-3 Pachner pairs, divided by |G| to the number of interior vertices, agrees for every fixed flat common boundary. The normalized total counts also agree for every finite compatible exterior family represented by dependent pairs, with the same outside-vertex count.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "Vertex",
+          "edgeOne",
+          "triangleOne",
+          "edgeTwo",
+          "triangleTwo",
+          "triangleLeft",
+          "triangleRight",
+          "triangleBoundary",
+          "facetFace",
+          "facetFaceDecidable",
+          "one_facet_edges",
+          "one_facet_triangles",
+          "five_facet_edges",
+          "five_facet_triangles",
+          "two_facet_edges",
+          "two_facet_triangles",
+          "four_facet_edges",
+          "four_facet_triangles",
+          "three_facet_edges",
+          "three_facet_triangles",
+          "one_boundary_skeleton",
+          "two_boundary_skeleton",
+          "three_boundary_skeleton",
+          "one_root_triangle",
+          "two_root_edges",
+          "two_root_triangle",
+          "boundary_has_triangle_cone",
+          "Connection",
+          "FlatOn",
+          "Coloring",
+          "Complete",
+          "BoundaryOne",
+          "BoundaryTwo",
+          "BoundaryThree",
+          "ThreeLeft",
+          "ThreeRight",
+          "pureConnection",
+          "pureColoring",
+          "edge_from_root",
+          "complete_from_row",
+          "triangle_from_cone",
+          "boundary_three_flat",
+          "flat_boundary_of_matching",
+          "nonflat_boundary_has_no_extension",
+          "connectionFintype",
+          "coloringFintype",
+          "Matches",
+          "SelfFillings",
+          "OneNew",
+          "TwoNew",
+          "ThreeOld",
+          "ThreeNew",
+          "selfFillingsFintype",
+          "oneNewFintype",
+          "twoNewFintype",
+          "threeOldFintype",
+          "threeNewFintype",
+          "selfFilling",
+          "self_filling_unique",
+          "complete_eq_of_row",
+          "onePotential",
+          "fillOne",
+          "oneParameter",
+          "one_parameter_fill",
+          "fill_one_parameter",
+          "oneFillingEquiv",
+          "fillTwo",
+          "two_filling_unique",
+          "fillThreeOld",
+          "fillThreeNew",
+          "three_old_unique",
+          "three_new_unique",
+          "card_of_unique_witness",
+          "self_filling_count",
+          "one_filling_count",
+          "two_filling_count",
+          "three_old_count",
+          "three_new_count",
+          "unnormalized_one_five_iff",
+          "interiorVertices",
+          "localFacets",
+          "face_is_in_a_facet",
+          "local_facets_have_five_vertices",
+          "facet_counts",
+          "one_old_interior",
+          "one_new_interior",
+          "two_old_interior",
+          "two_new_interior",
+          "three_old_interior",
+          "three_new_interior",
+          "localAmplitude",
+          "group_order_ne_zero",
+          "pachner_one_five",
+          "pachner_two_four",
+          "pachner_three_three",
+          "stateSum",
+          "glued_one_five",
+          "glued_two_four",
+          "glued_three_three"
+        ]
+      },
+      "sha256": "ae0f0a4570f9cc627c02f18f3781785993a78d30d388fc3492d9ada891e1041f"
+    }
+  ],
+  "current_contract": "ae0f0a4570f9cc627c02f18f3781785993a78d30d388fc3492d9ada891e1041f",
+  "current_scoring": "97f3bc5d6d650e0241a60f04db68e7e205119e2cbbfb08dfbad88d3dacc08f9d",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2799,
+      "original_paths": [
+        "lean4/CampaignFiniteGroupPachner.contract.score.yaml#pachner-derivation-CampaignFiniteGroupPachner"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignFiniteGroupPachner.lean\",\n    \"sha256\": \"e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca\"\n  },\n  \"assessment_id\": \"pachner-derivation-CampaignFiniteGroupPachner\",\n  \"basis\": {\n    \"G1\": \"Every advertised model-specific claim is mapped to the current source and replay; the revised node statement is fully covered; broader historical obligations remain explicit. Human review remains pending.\",\n    \"G2\": \"The Lean kernel checks the declared symbolic/finite structures; independent computations use exact integer, symbolic or finite data without floating-point certificates.\",\n    \"G3\": \"All explicit proof declarations are audited against the three standard allowed axioms; no admissions or custom axioms. Independent scripts fail explicitly on a mismatch and make no remote calls.\",\n    \"G4\": \"Exact-source compilation, full explicit declaration audits and independent checks are recorded. Exhaustive mutation coverage and a full repository workspace build are not established.\",\n    \"G5\": \"Small namespaced modules and bounded audit scripts with declared imports. No production lifetime, global performance or physical-model claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T14:28:51.154035+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json\",\n      \"sha256\": \"cea239c2894d9939b604a3859a3028ce92e70c901db51d7a1a778150da74a1af\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fsp-pachner-invariance-claim.md\",\n      \"sha256\": \"59b067444ededaf7a754e33e1487c7b14c0ffe6e447ccb3b4b16073f09bc6a04\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-26_fsp-pachner-invariance-claim.md\",\n      \"sha256\": \"8283d56a43f655593571d0765c5ea425d544ca3cd8c379ab60af0173f838c998\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"Research-domain finite-group algebra and normalized state sums, universally quantified over groups and compatible boundary/exterior families.\",\n  \"open_higher_grade_findings\": [\n    \"The supplied finite group, untwisted flat-connection model, canonical local complexes and compatible finite exterior interface are explicit. No general triangulation/gluing-equivalence or PL-homeomorphism library is formalized; no Regge, twisted/Crane-Yetter, fermion-sign or continuum conclusion follows. Human review remains pending.\",\n    \"The scoped proof remains below the repository L4 floor and requires its own explicit exact-source exception.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignFiniteGroupPachner.lean",
+          "sha256": "e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca"
+        },
+        "assessment_id": "pachner-derivation-CampaignFiniteGroupPachner",
+        "basis": {
+          "G1": "Every advertised model-specific claim is mapped to the current source and replay; the revised node statement is fully covered; broader historical obligations remain explicit. Human review remains pending.",
+          "G2": "The Lean kernel checks the declared symbolic/finite structures; independent computations use exact integer, symbolic or finite data without floating-point certificates.",
+          "G3": "All explicit proof declarations are audited against the three standard allowed axioms; no admissions or custom axioms. Independent scripts fail explicitly on a mismatch and make no remote calls.",
+          "G4": "Exact-source compilation, full explicit declaration audits and independent checks are recorded. Exhaustive mutation coverage and a full repository workspace build are not established.",
+          "G5": "Small namespaced modules and bounded audit scripts with declared imports. No production lifetime, global performance or physical-model claim."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T14:28:51.154035+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json",
+            "sha256": "cea239c2894d9939b604a3859a3028ce92e70c901db51d7a1a778150da74a1af"
+          },
+          {
+            "path": "dag/derivations/independent/fsp-pachner-invariance-claim.md",
+            "sha256": "59b067444ededaf7a754e33e1487c7b14c0ffe6e447ccb3b4b16073f09bc6a04"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-26_fsp-pachner-invariance-claim.md",
+            "sha256": "8283d56a43f655593571d0765c5ea425d544ca3cd8c379ab60af0173f838c998"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Research-domain finite-group algebra and normalized state sums, universally quantified over groups and compatible boundary/exterior families.",
+        "open_higher_grade_findings": [
+          "The supplied finite group, untwisted flat-connection model, canonical local complexes and compatible finite exterior interface are explicit. No general triangulation/gluing-equivalence or PL-homeomorphism library is formalized; no Regge, twisted/Crane-Yetter, fermion-sign or continuum conclusion follows. Human review remains pending.",
+          "The scoped proof remains below the repository L4 floor and requires its own explicit exact-source exception."
+        ],
+        "profile": "Symbolic/Formal",
+        "schema_version": "2.0.0",
+        "score_token": "L3D"
+      },
+      "sha256": "586cb843693aba957829865fa79427ec9edae3882556a38b15c687cf40ee67b0"
+    },
+    {
+      "bytes": 3222,
+      "original_paths": [
+        "lean4/FiniteGroupPachner.contract.score.yaml#pachner-derivation-FiniteGroupPachner"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/FiniteGroupPachner.lean\",\n    \"sha256\": \"2f4916b1ac6b688304948b5ad00aa570a0a2cae0770ab80587307f6acffda82e\"\n  },\n  \"assessment_id\": \"pachner-derivation-FiniteGroupPachner\",\n  \"basis\": {\n    \"G1\": \"Every advertised model-specific claim is mapped to the current source and replay; the revised node statement is fully covered; broader historical obligations remain explicit. Human review remains pending.\",\n    \"G2\": \"The Lean kernel checks the declared symbolic/finite structures; independent computations use exact integer, symbolic or finite data without floating-point certificates.\",\n    \"G3\": \"All explicit proof declarations are audited against the three standard allowed axioms; no admissions or custom axioms. Independent scripts fail explicitly on a mismatch and make no remote calls.\",\n    \"G4\": \"Exact-source compilation, full explicit declaration audits and independent checks are recorded. Exhaustive mutation coverage and a full repository workspace build are not established.\",\n    \"G5\": \"Small namespaced modules and bounded audit scripts with declared imports. No production lifetime, global performance or physical-model claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T14:28:51.154035+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json\",\n      \"sha256\": \"14f5f9aefd737f4f8c4b771d115c3c6692d1db00e25fa2dfb9d6c136103af597\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fsp-pachner-invariance-claim.md\",\n      \"sha256\": \"ab24522dc1d8226870cf4b2800274ad6ac1bb7c352583ab8bff8c408126c9154\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-26_fsp-pachner-invariance-claim.md\",\n      \"sha256\": \"8283d56a43f655593571d0765c5ea425d544ca3cd8c379ab60af0173f838c998\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_basis\": \"Research-domain finite-group algebra and normalized state sums, universally quantified over groups and compatible boundary/exterior families.\",\n  \"open_higher_grade_findings\": [\n    \"The supplied finite group, untwisted flat-connection model, canonical local complexes and compatible finite exterior interface are explicit. No general triangulation/gluing-equivalence or PL-homeomorphism library is formalized; no Regge, twisted/Crane-Yetter, fermion-sign or continuum conclusion follows. Human review remains pending.\",\n    \"The scoped proof remains below the repository L4 floor and requires its own explicit exact-source exception.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rebound\": {\n    \"date\": \"2026-10-27\",\n    \"from_path\": \"lean4/CampaignFiniteGroupPachner.lean\",\n    \"from_sha256\": \"e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca\",\n    \"note\": \"Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived.\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/FiniteGroupPachner.lean",
+          "sha256": "2f4916b1ac6b688304948b5ad00aa570a0a2cae0770ab80587307f6acffda82e"
+        },
+        "assessment_id": "pachner-derivation-FiniteGroupPachner",
+        "basis": {
+          "G1": "Every advertised model-specific claim is mapped to the current source and replay; the revised node statement is fully covered; broader historical obligations remain explicit. Human review remains pending.",
+          "G2": "The Lean kernel checks the declared symbolic/finite structures; independent computations use exact integer, symbolic or finite data without floating-point certificates.",
+          "G3": "All explicit proof declarations are audited against the three standard allowed axioms; no admissions or custom axioms. Independent scripts fail explicitly on a mismatch and make no remote calls.",
+          "G4": "Exact-source compilation, full explicit declaration audits and independent checks are recorded. Exhaustive mutation coverage and a full repository workspace build are not established.",
+          "G5": "Small namespaced modules and bounded audit scripts with declared imports. No production lifetime, global performance or physical-model claim."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T14:28:51.154035+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json",
+            "sha256": "14f5f9aefd737f4f8c4b771d115c3c6692d1db00e25fa2dfb9d6c136103af597"
+          },
+          {
+            "path": "dag/derivations/independent/fsp-pachner-invariance-claim.md",
+            "sha256": "ab24522dc1d8226870cf4b2800274ad6ac1bb7c352583ab8bff8c408126c9154"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-26_fsp-pachner-invariance-claim.md",
+            "sha256": "8283d56a43f655593571d0765c5ea425d544ca3cd8c379ab60af0173f838c998"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Research-domain finite-group algebra and normalized state sums, universally quantified over groups and compatible boundary/exterior families.",
+        "open_higher_grade_findings": [
+          "The supplied finite group, untwisted flat-connection model, canonical local complexes and compatible finite exterior interface are explicit. No general triangulation/gluing-equivalence or PL-homeomorphism library is formalized; no Regge, twisted/Crane-Yetter, fermion-sign or continuum conclusion follows. Human review remains pending.",
+          "The scoped proof remains below the repository L4 floor and requires its own explicit exact-source exception."
+        ],
+        "profile": "Symbolic/Formal",
+        "rebound": {
+          "date": "2026-10-27",
+          "from_path": "lean4/CampaignFiniteGroupPachner.lean",
+          "from_sha256": "e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca",
+          "note": "Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived."
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D"
+      },
+      "sha256": "97f3bc5d6d650e0241a60f04db68e7e205119e2cbbfb08dfbad88d3dacc08f9d"
+    }
+  ]
+}

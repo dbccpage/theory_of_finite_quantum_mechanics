@@ -18,7 +18,7 @@ the ℚ-linearity of the real part over finite sums (`re_sum`, `im_sum`).  Every
 arithmetic over ℚ; nothing here is a physical statement.
 -/
 
-namespace BornFable
+namespace BornFinite
 
 /-- The Gaussian rationals ℚ(i), stored as a real and an imaginary rational part. -/
 @[ext]
@@ -308,71 +308,71 @@ example : normSq ⟨3, 4⟩ = 25 := by norm_num [normSq]
 
 end GaussRat
 
-end BornFable
+end BornFinite
 
-#print axioms BornFable.GaussRat.instCommRing
-#print axioms BornFable.GaussRat.instStarRing
-#print axioms BornFable.GaussRat.instAlgebra
-#print axioms BornFable.GaussRat.instField
-#print axioms BornFable.GaussRat.instNontrivial
-#print axioms BornFable.GaussRat.instCharZero
-#print axioms BornFable.GaussRat.re_zero
-#print axioms BornFable.GaussRat.im_zero
-#print axioms BornFable.GaussRat.re_one
-#print axioms BornFable.GaussRat.im_one
-#print axioms BornFable.GaussRat.re_add
-#print axioms BornFable.GaussRat.im_add
-#print axioms BornFable.GaussRat.re_neg
-#print axioms BornFable.GaussRat.im_neg
-#print axioms BornFable.GaussRat.re_sub
-#print axioms BornFable.GaussRat.im_sub
-#print axioms BornFable.GaussRat.re_mul
-#print axioms BornFable.GaussRat.im_mul
-#print axioms BornFable.GaussRat.re_smul
-#print axioms BornFable.GaussRat.im_smul
-#print axioms BornFable.GaussRat.re_star
-#print axioms BornFable.GaussRat.im_star
-#print axioms BornFable.GaussRat.re_I
-#print axioms BornFable.GaussRat.im_I
-#print axioms BornFable.GaussRat.re_natCast
-#print axioms BornFable.GaussRat.im_natCast
-#print axioms BornFable.GaussRat.re_intCast
-#print axioms BornFable.GaussRat.im_intCast
-#print axioms BornFable.GaussRat.re_ratCast
-#print axioms BornFable.GaussRat.im_ratCast
-#print axioms BornFable.GaussRat.smul_mk
-#print axioms BornFable.GaussRat.re_nsmul
-#print axioms BornFable.GaussRat.im_nsmul
-#print axioms BornFable.GaussRat.re_zsmul
-#print axioms BornFable.GaussRat.im_zsmul
-#print axioms BornFable.GaussRat.re_ofNat
-#print axioms BornFable.GaussRat.im_ofNat
-#print axioms BornFable.GaussRat.star_I
-#print axioms BornFable.GaussRat.re_ofRat
-#print axioms BornFable.GaussRat.im_ofRat
-#print axioms BornFable.GaussRat.re_algebraMap
-#print axioms BornFable.GaussRat.im_algebraMap
-#print axioms BornFable.GaussRat.algebraMap_eq_ratCast
-#print axioms BornFable.GaussRat.I_mul_I
-#print axioms BornFable.GaussRat.mk_eq_add_mul_I
-#print axioms BornFable.GaussRat.normSq_nonneg
-#print axioms BornFable.GaussRat.normSq_eq_zero_iff
-#print axioms BornFable.GaussRat.normSq_mul
-#print axioms BornFable.GaussRat.normSq_natCast
-#print axioms BornFable.GaussRat.star_mul_self
-#print axioms BornFable.GaussRat.re_star_mul_self
-#print axioms BornFable.GaussRat.im_star_mul_self
-#print axioms BornFable.GaussRat.re_star_mul
-#print axioms BornFable.GaussRat.im_star_mul
-#print axioms BornFable.GaussRat.re_star_mul_comm
-#print axioms BornFable.GaussRat.im_star_mul_comm
-#print axioms BornFable.GaussRat.re_smul_rat
-#print axioms BornFable.GaussRat.re_algebraMap_mul
-#print axioms BornFable.GaussRat.reAddMonoidHom_apply
-#print axioms BornFable.GaussRat.imAddMonoidHom_apply
-#print axioms BornFable.GaussRat.re_sum
-#print axioms BornFable.GaussRat.im_sum
-#print axioms BornFable.GaussRat.re_inv
-#print axioms BornFable.GaussRat.im_inv
-#print axioms BornFable.GaussRat.inv_zero
-#print axioms BornFable.GaussRat.mul_inv_cancel
+#print axioms BornFinite.GaussRat.instCommRing
+#print axioms BornFinite.GaussRat.instStarRing
+#print axioms BornFinite.GaussRat.instAlgebra
+#print axioms BornFinite.GaussRat.instField
+#print axioms BornFinite.GaussRat.instNontrivial
+#print axioms BornFinite.GaussRat.instCharZero
+#print axioms BornFinite.GaussRat.re_zero
+#print axioms BornFinite.GaussRat.im_zero
+#print axioms BornFinite.GaussRat.re_one
+#print axioms BornFinite.GaussRat.im_one
+#print axioms BornFinite.GaussRat.re_add
+#print axioms BornFinite.GaussRat.im_add
+#print axioms BornFinite.GaussRat.re_neg
+#print axioms BornFinite.GaussRat.im_neg
+#print axioms BornFinite.GaussRat.re_sub
+#print axioms BornFinite.GaussRat.im_sub
+#print axioms BornFinite.GaussRat.re_mul
+#print axioms BornFinite.GaussRat.im_mul
+#print axioms BornFinite.GaussRat.re_smul
+#print axioms BornFinite.GaussRat.im_smul
+#print axioms BornFinite.GaussRat.re_star
+#print axioms BornFinite.GaussRat.im_star
+#print axioms BornFinite.GaussRat.re_I
+#print axioms BornFinite.GaussRat.im_I
+#print axioms BornFinite.GaussRat.re_natCast
+#print axioms BornFinite.GaussRat.im_natCast
+#print axioms BornFinite.GaussRat.re_intCast
+#print axioms BornFinite.GaussRat.im_intCast
+#print axioms BornFinite.GaussRat.re_ratCast
+#print axioms BornFinite.GaussRat.im_ratCast
+#print axioms BornFinite.GaussRat.smul_mk
+#print axioms BornFinite.GaussRat.re_nsmul
+#print axioms BornFinite.GaussRat.im_nsmul
+#print axioms BornFinite.GaussRat.re_zsmul
+#print axioms BornFinite.GaussRat.im_zsmul
+#print axioms BornFinite.GaussRat.re_ofNat
+#print axioms BornFinite.GaussRat.im_ofNat
+#print axioms BornFinite.GaussRat.star_I
+#print axioms BornFinite.GaussRat.re_ofRat
+#print axioms BornFinite.GaussRat.im_ofRat
+#print axioms BornFinite.GaussRat.re_algebraMap
+#print axioms BornFinite.GaussRat.im_algebraMap
+#print axioms BornFinite.GaussRat.algebraMap_eq_ratCast
+#print axioms BornFinite.GaussRat.I_mul_I
+#print axioms BornFinite.GaussRat.mk_eq_add_mul_I
+#print axioms BornFinite.GaussRat.normSq_nonneg
+#print axioms BornFinite.GaussRat.normSq_eq_zero_iff
+#print axioms BornFinite.GaussRat.normSq_mul
+#print axioms BornFinite.GaussRat.normSq_natCast
+#print axioms BornFinite.GaussRat.star_mul_self
+#print axioms BornFinite.GaussRat.re_star_mul_self
+#print axioms BornFinite.GaussRat.im_star_mul_self
+#print axioms BornFinite.GaussRat.re_star_mul
+#print axioms BornFinite.GaussRat.im_star_mul
+#print axioms BornFinite.GaussRat.re_star_mul_comm
+#print axioms BornFinite.GaussRat.im_star_mul_comm
+#print axioms BornFinite.GaussRat.re_smul_rat
+#print axioms BornFinite.GaussRat.re_algebraMap_mul
+#print axioms BornFinite.GaussRat.reAddMonoidHom_apply
+#print axioms BornFinite.GaussRat.imAddMonoidHom_apply
+#print axioms BornFinite.GaussRat.re_sum
+#print axioms BornFinite.GaussRat.im_sum
+#print axioms BornFinite.GaussRat.re_inv
+#print axioms BornFinite.GaussRat.im_inv
+#print axioms BornFinite.GaussRat.inv_zero
+#print axioms BornFinite.GaussRat.mul_inv_cancel

@@ -1,6 +1,6 @@
 """Simplex identifiers: dimension plus one distinct integer vertices.
 
-Origin: lean4/H024FourSimplexSpinfoamS4.lean, which states that a 4-simplex
+Origin: lean4/FourSimplexSpinfoamS4.lean, which states that a 4-simplex
 has 5 vertices. That is the dim + 1 vertex count for an abstract simplex.
 Claim: urn:omega:fqm:homology:simplex-vertex-count:v1
 AuthorityEffect: None

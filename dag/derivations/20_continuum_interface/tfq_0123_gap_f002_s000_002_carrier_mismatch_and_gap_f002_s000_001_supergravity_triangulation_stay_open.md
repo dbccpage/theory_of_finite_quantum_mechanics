@@ -4,7 +4,7 @@
 - **Stage**: `CONTINUUM_INTERFACE`
 - **Status**: `OPEN`
 - **Claim Class**: `L4D`
-- **Lean 4 Module**: `lean4/CampaignTfq0123ContinuumInterface.lean`
+- **Lean 4 Module**: `lean4/LossLedgerAssociativity.lean`
 - **Independent Checker**: `checks/independent/tfq-0123.py`
 - **AuthorityEffect**: `None`
 
@@ -12,7 +12,7 @@
 
 > `TransportCell.lean` adds loss ledgers valued in the natural numbers and checks associativity of that addition. The atlas Python twin uses floating values and tests one exactly representable triple. `GAP-F002-S000-002` says the two arms are different carriers and that neither witnesses the other. `GAP-F002-S000-001` leaves an 11-dimensional supergravity triangulation unbuilt. What is finite is either the natural-number sum or the float instance, not both as one object. What is not discharged is transport into a smooth frame and the continuum limit. The ledger is not the Einstein equation.
 
-## 2. Formalized Finite Surface & Scope Fences (`lean4/CampaignTfq0123ContinuumInterface.lean`)
+## 2. Formalized Finite Surface & Scope Fences (`lean4/LossLedgerAssociativity.lean`)
 
 1. **Natural-Number Transport Loss Ledger Monoid (`NatTransportCell`, `TransportCell.lean` Replay)**:
    - `nat_transport_cell_assoc`: proves `composeNatCell (composeNatCell c1 c2) c3 = composeNatCell c1 (composeNatCell c2 c3)`.

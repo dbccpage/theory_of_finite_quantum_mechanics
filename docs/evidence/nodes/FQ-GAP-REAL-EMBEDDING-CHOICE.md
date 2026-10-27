@@ -32,7 +32,7 @@ Unmet after the PFP review: Formalize the coefficient-to-real embedding homomorp
 
 ## Source status
 
-H060 2D pure-state Gram total positivity under every real embedding vs conductor-5 mixed witness W5 = diag(-2+sqrt(5), 3-sqrt(5)) Galois conjugate sign flip (evalAtS(9)=(1,3) \> 0 vs evalAtS(-9)=(-17,21)) and phi(120)/2 = 16 real embeddings mechanized in DerivationDagQMClosure.lean, H060EmbeddingRelativity.lean, and finite_quantum_mechanics
+H060 2D pure-state Gram total positivity under every real embedding vs conductor-5 mixed witness W5 = diag(-2+sqrt(5), 3-sqrt(5)) Galois conjugate sign flip (evalAtS(9)=(1,3) \> 0 vs evalAtS(-9)=(-17,21)) and phi(120)/2 = 16 real embeddings mechanized in DerivationDagQMClosure.lean, EmbeddingRelativity.lean, and finite_quantum_mechanics
 
 ## Review
 
@@ -62,6 +62,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Lean: `lean4/EmbeddingRelativity.lean`
+
+- file: [lean4/EmbeddingRelativity.lean](../../../lean4/EmbeddingRelativity.lean)
+- sha256 (`bytes`): `7300b62b15980587002de0348770331063e914efea609e982e9e58f98333841f`
+- cited in: node.lean, record TFQ-1022
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `EmbeddingRelativity`): recorded sha256 `7300b62b15980587002de0348770331063e914efea609e982e9e58f98333841f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build EmbeddingRelativity`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `pure_state_totally_positive_2d` | yes | yes | yes | propext | `#print axioms pure_state_totally_positive_2d` |
+
+- counts toward the grade: yes
+
 ### Lean: `lean4/FiniteQM.lean`
 
 - file: [lean4/FiniteQM.lean](../../../lean4/FiniteQM.lean)
@@ -74,21 +89,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `galois_conjugate_negativity_vs_sos_total_positivity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms galois_conjugate_negativity_vs_sos_total_positivity` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/H060EmbeddingRelativity.lean`
-
-- file: [lean4/H060EmbeddingRelativity.lean](../../../lean4/H060EmbeddingRelativity.lean)
-- sha256 (`bytes`): `007106d36a4b1e5ff395a6c23d3c7eb970c5f74e0c884361c4655b7b4ffbd666`
-- cited in: node.lean, record TFQ-1022
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `H060EmbeddingRelativity`): recorded sha256 `007106d36a4b1e5ff395a6c23d3c7eb970c5f74e0c884361c4655b7b4ffbd666` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build H060EmbeddingRelativity`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `pure_state_totally_positive_2d` | yes | yes | yes | propext | `#print axioms pure_state_totally_positive_2d` |
 
 - counts toward the grade: yes
 
@@ -128,7 +128,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_1022_fq_gap_real_embedding_choice.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_1022_fq_gap_real_embedding_choice.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_1022_fq_gap_real_embedding_choice.md)
-- sha256 (`lf-normalised`): `769d836661e9d21547966e4f30e95da3a8bf31a7cc20f1b0b3c4e34b2df29193`
+- sha256 (`lf-normalised`): `a25b8eaa58b7f9e40c64d2c6c6de0a70582376e801d35deaad7ecfdc97c4884f`
 - generated view: listed, not counted
 - cited in: record TFQ-1022
 - counts toward the grade: no

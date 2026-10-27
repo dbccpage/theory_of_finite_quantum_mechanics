@@ -142,7 +142,7 @@ enumeration and uses immutable tuple/frozenset fields.
 
 ## Replay and claim boundary
 
-Build `lake build CampaignGenesisContextDecision` in its non-default library.
+Build `lake build GenesisContextDecision` in its non-default library.
 It imports the unchanged legacy `GenesisComputation` module; the replay records
 which modules compiled and retains the existing dependency warnings. The new
 module uses the compatible legacy import mode. Every terminal theorem audit

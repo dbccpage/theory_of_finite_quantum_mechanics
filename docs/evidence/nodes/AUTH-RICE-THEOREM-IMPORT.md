@@ -43,29 +43,29 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignAuthRiceTheoremImport.lean`
+### Lean: `lean4/ComputabilityRiceTheoremImport.lean`
 
-- file: [lean4/CampaignAuthRiceTheoremImport.lean](../../../lean4/CampaignAuthRiceTheoremImport.lean)
-- sha256 (`bytes`): `fa852f8f903aa8188f83b6d870d6b5ac32386698e7fe4b310936dda28697fd2f`
-- cited in: node.lean, receipt dag/research/campaign_auth-rice-theorem-import_lean_replay.json (CampaignAuthRiceTheoremImport), record TFQ-1337
+- file: [lean4/ComputabilityRiceTheoremImport.lean](../../../lean4/ComputabilityRiceTheoremImport.lean)
+- sha256 (`bytes`): `1a62e79193d0b262983cb9daaa13817efd88b55827f6d174da820f42c06ad117`
+- cited in: node.lean, receipt dag/research/campaign_auth-rice-theorem-import_lean_replay.json (ComputabilityRiceTheoremImport), record TFQ-1337
 - replay: `verified`
-  - receipt [dag/research/campaign_auth-rice-theorem-import_lean_replay.json](../../../dag/research/campaign_auth-rice-theorem-import_lean_replay.json) (module `CampaignAuthRiceTheoremImport`): recorded sha256 `fa852f8f903aa8188f83b6d870d6b5ac32386698e7fe4b310936dda28697fd2f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignAuthRiceTheoremImport`
+  - receipt [dag/research/campaign_auth-rice-theorem-import_lean_replay.json](../../../dag/research/campaign_auth-rice-theorem-import_lean_replay.json) (module `ComputabilityRiceTheoremImport`): recorded sha256 `1a62e79193d0b262983cb9daaa13817efd88b55827f6d174da820f42c06ad117` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build ComputabilityRiceTheoremImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignAuthRiceTheoremImport.beh00` | yes | yes | yes | propext | `#print axioms CampaignAuthRiceTheoremImport.beh00` |
-| `CampaignAuthRiceTheoremImport.beh01` | yes | yes | yes | propext | `#print axioms CampaignAuthRiceTheoremImport.beh01` |
-| `CampaignAuthRiceTheoremImport.beh10` | yes | yes | yes | propext | `#print axioms CampaignAuthRiceTheoremImport.beh10` |
-| `CampaignAuthRiceTheoremImport.beh11` | yes | yes | yes | propext | `#print axioms CampaignAuthRiceTheoremImport.beh11` |
-| `CampaignAuthRiceTheoremImport.beh20` | yes | yes | yes | propext | `#print axioms CampaignAuthRiceTheoremImport.beh20` |
-| `CampaignAuthRiceTheoremImport.beh21` | yes | yes | yes | propext | `#print axioms CampaignAuthRiceTheoremImport.beh21` |
-| `CampaignAuthRiceTheoremImport.id0` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAuthRiceTheoremImport.id0` |
-| `CampaignAuthRiceTheoremImport.id1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAuthRiceTheoremImport.id1` |
-| `CampaignAuthRiceTheoremImport.id2` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAuthRiceTheoremImport.id2` |
-| `CampaignAuthRiceTheoremImport.z0` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAuthRiceTheoremImport.z0` |
-| `CampaignAuthRiceTheoremImport.z1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAuthRiceTheoremImport.z1` |
-| `CampaignAuthRiceTheoremImport.z2` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAuthRiceTheoremImport.z2` |
+| `ComputabilityRiceTheoremImport.beh00` | yes | yes | yes | propext | `#print axioms ComputabilityRiceTheoremImport.beh00` |
+| `ComputabilityRiceTheoremImport.beh01` | yes | yes | yes | propext | `#print axioms ComputabilityRiceTheoremImport.beh01` |
+| `ComputabilityRiceTheoremImport.beh10` | yes | yes | yes | propext | `#print axioms ComputabilityRiceTheoremImport.beh10` |
+| `ComputabilityRiceTheoremImport.beh11` | yes | yes | yes | propext | `#print axioms ComputabilityRiceTheoremImport.beh11` |
+| `ComputabilityRiceTheoremImport.beh20` | yes | yes | yes | propext | `#print axioms ComputabilityRiceTheoremImport.beh20` |
+| `ComputabilityRiceTheoremImport.beh21` | yes | yes | yes | propext | `#print axioms ComputabilityRiceTheoremImport.beh21` |
+| `ComputabilityRiceTheoremImport.id0` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComputabilityRiceTheoremImport.id0` |
+| `ComputabilityRiceTheoremImport.id1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComputabilityRiceTheoremImport.id1` |
+| `ComputabilityRiceTheoremImport.id2` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComputabilityRiceTheoremImport.id2` |
+| `ComputabilityRiceTheoremImport.z0` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComputabilityRiceTheoremImport.z0` |
+| `ComputabilityRiceTheoremImport.z1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComputabilityRiceTheoremImport.z1` |
+| `ComputabilityRiceTheoremImport.z2` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComputabilityRiceTheoremImport.z2` |
 | `beh00` | yes | yes | yes | propext | `#print axioms beh00` |
 | `beh01` | yes | yes | yes | propext | `#print axioms beh01` |
 | `beh10` | yes | yes | yes | propext | `#print axioms beh10` |
@@ -96,7 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md`
 
 - file: [dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md](../../../dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md)
-- sha256 (`lf-normalised`): `f8e394f304eaf4f851d437f4270e8037798d833b7748aba67cb9b3a17c0ecb22`
+- sha256 (`lf-normalised`): `2d64d0965a04e8a48e2552757dd4448e63a4b9e87dafa45c310470049c517366`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1337
 - counts toward the grade: no

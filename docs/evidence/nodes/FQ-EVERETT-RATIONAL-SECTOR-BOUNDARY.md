@@ -55,14 +55,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 - counts toward the grade: no
 
-### Lean: `lean4/H059RationalSector.lean`
+### Lean: `lean4/RationalSector.lean`
 
-- file: [lean4/H059RationalSector.lean](../../../lean4/H059RationalSector.lean)
-- sha256 (`bytes`): `791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90`
+- file: [lean4/RationalSector.lean](../../../lean4/RationalSector.lean)
+- sha256 (`bytes`): `60a60ca5bb7130f1e6f972532eeadb7f0ccb0dd4dac17b307c32201c566d8d6b`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `H059RationalSector`): recorded sha256 `791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build H059RationalSector`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `RationalSector`): recorded sha256 `60a60ca5bb7130f1e6f972532eeadb7f0ccb0dd4dac17b307c32201c566d8d6b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build RationalSector`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|

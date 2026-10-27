@@ -24,7 +24,7 @@ From a blank cell the result is `(true, v)`.
 - For every natural number `n`, `evalConst v n` equals `v`.
 - The value in that written cell equals `evalConst v n`.
 
-The Lean declarations are `writeHaltFromBlank`, `evalConstReturns`, and `constAgrees` in `lean4/CampaignCompC6Tm0OutputFormOpen.lean`.
+The Lean declarations are `writeHaltFromBlank`, `evalConstReturns`, and `constAgrees` in `lean4/ComputationC6Tm0OutputFormOpen.lean`.
 
 ## What is assumed
 

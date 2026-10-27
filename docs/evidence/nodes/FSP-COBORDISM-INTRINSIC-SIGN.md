@@ -42,29 +42,29 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignSignedTriangleSwitching.lean`
+### Lean: `lean4/SignedTriangleSwitching.lean`
 
-- file: [lean4/CampaignSignedTriangleSwitching.lean](../../../lean4/CampaignSignedTriangleSwitching.lean)
-- sha256 (`bytes`): `dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1`
-- cited in: node.lean, receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (CampaignSignedTriangleSwitching), record TFQ-1211
+- file: [lean4/SignedTriangleSwitching.lean](../../../lean4/SignedTriangleSwitching.lean)
+- sha256 (`bytes`): `4ffc345ebf79bff4b3ad6ecc5ecbcecf84681f0373a6a95d8a86f1e81381beb8`
+- cited in: node.lean, receipt dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json (SignedTriangleSwitching), record TFQ-1211
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json](../../../dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json) (module `CampaignSignedTriangleSwitching`): recorded sha256 `dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignSignedTriangleSwitching`
+  - receipt [dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json](../../../dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json) (module `SignedTriangleSwitching`): recorded sha256 `4ffc345ebf79bff4b3ad6ecc5ecbcecf84681f0373a6a95d8a86f1e81381beb8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build SignedTriangleSwitching`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignSignedTriangleSwitching.Signs` | yes | yes | yes | none | `#print axioms CampaignSignedTriangleSwitching.Signs` |
-| `CampaignSignedTriangleSwitching.balanced_negative_edges_are_removable` | yes | yes | yes | none | `#print axioms CampaignSignedTriangleSwitching.balanced_negative_edges_are_removable` |
-| `CampaignSignedTriangleSwitching.edge_product_is_cycle_sign` | yes | yes | yes | none | `#print axioms CampaignSignedTriangleSwitching.edge_product_is_cycle_sign` |
-| `CampaignSignedTriangleSwitching.explicit_negative_cycle` | yes | yes | yes | none | `#print axioms CampaignSignedTriangleSwitching.explicit_negative_cycle` |
-| `CampaignSignedTriangleSwitching.negative_cycle_obstruction` | yes | yes | yes | none | `#print axioms CampaignSignedTriangleSwitching.negative_cycle_obstruction` |
-| `CampaignSignedTriangleSwitching.parity` | yes | yes | yes | none | `#print axioms CampaignSignedTriangleSwitching.parity` |
-| `CampaignSignedTriangleSwitching.parity_invariant` | yes | yes | yes | none | `#print axioms CampaignSignedTriangleSwitching.parity_invariant` |
-| `CampaignSignedTriangleSwitching.positive` | yes | yes | yes | none | `#print axioms CampaignSignedTriangleSwitching.positive` |
-| `CampaignSignedTriangleSwitching.positive_switching_iff` | yes | yes | yes | none | `#print axioms CampaignSignedTriangleSwitching.positive_switching_iff` |
-| `CampaignSignedTriangleSwitching.sign` | yes | yes | yes | none | `#print axioms CampaignSignedTriangleSwitching.sign` |
-| `CampaignSignedTriangleSwitching.switched` | yes | yes | yes | none | `#print axioms CampaignSignedTriangleSwitching.switched` |
-| `CampaignSignedTriangleSwitching.switching_normal_form` | yes | yes | yes | none | `#print axioms CampaignSignedTriangleSwitching.switching_normal_form` |
+| `SignedTriangleSwitching.Signs` | yes | yes | yes | none | `#print axioms SignedTriangleSwitching.Signs` |
+| `SignedTriangleSwitching.balanced_negative_edges_are_removable` | yes | yes | yes | none | `#print axioms SignedTriangleSwitching.balanced_negative_edges_are_removable` |
+| `SignedTriangleSwitching.edge_product_is_cycle_sign` | yes | yes | yes | none | `#print axioms SignedTriangleSwitching.edge_product_is_cycle_sign` |
+| `SignedTriangleSwitching.explicit_negative_cycle` | yes | yes | yes | none | `#print axioms SignedTriangleSwitching.explicit_negative_cycle` |
+| `SignedTriangleSwitching.negative_cycle_obstruction` | yes | yes | yes | none | `#print axioms SignedTriangleSwitching.negative_cycle_obstruction` |
+| `SignedTriangleSwitching.parity` | yes | yes | yes | none | `#print axioms SignedTriangleSwitching.parity` |
+| `SignedTriangleSwitching.parity_invariant` | yes | yes | yes | none | `#print axioms SignedTriangleSwitching.parity_invariant` |
+| `SignedTriangleSwitching.positive` | yes | yes | yes | none | `#print axioms SignedTriangleSwitching.positive` |
+| `SignedTriangleSwitching.positive_switching_iff` | yes | yes | yes | none | `#print axioms SignedTriangleSwitching.positive_switching_iff` |
+| `SignedTriangleSwitching.sign` | yes | yes | yes | none | `#print axioms SignedTriangleSwitching.sign` |
+| `SignedTriangleSwitching.switched` | yes | yes | yes | none | `#print axioms SignedTriangleSwitching.switched` |
+| `SignedTriangleSwitching.switching_normal_form` | yes | yes | yes | none | `#print axioms SignedTriangleSwitching.switching_normal_form` |
 
 - counts toward the grade: yes
 
@@ -78,7 +78,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md`
 
 - file: [dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md](../../../dag/derivations/26_fsp/tfq_1211_fsp_cobordism_intrinsic_sign.md)
-- sha256 (`lf-normalised`): `c4bb45ce23c8068d40e78750ef7ff5ef2e5d07d7433b73d5b4f4f78dfc081371`
+- sha256 (`lf-normalised`): `c67f409e7b932ea150a3562d4f45bdcbbaeade03b254edb5e87489fb49f1f3fd`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1211
 - counts toward the grade: no
@@ -86,14 +86,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-cobordism-intrinsic-sign.md`
 
 - file: [dag/derivations/independent/fsp-cobordism-intrinsic-sign.md](../../../dag/derivations/independent/fsp-cobordism-intrinsic-sign.md)
-- sha256 (`lf-normalised`): `768e44a827dd6b8baa016d96bf0a57ac0bbb0e04c421608cadfec664397cd236`
+- sha256 (`lf-normalised`): `4663accaae381d3f99c27d47e1e28b7bc02bbcc037b53148e58598fcbb562303`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json](../../../dag/research/campaign_fsp-cobordism-intrinsic-sign_lean_replay.json)
-- sha256 (`lf-normalised`): `b1188edbf5ceb3ed8b2778e25a3b454a1b8782633884ccec804ff3ec5da3f1b8`
+- sha256 (`lf-normalised`): `7e1a5f8db3cca1ab668bb4c88914d71f2f199cbf35be269cde266f749ee12fff`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -41,7 +41,7 @@ from 4 and from `7/5`.
 
 ## What is proved
 
-In `lean4/CampaignDfmReggeGravityFence.lean`:
+In `lean4/DressingFieldReggeGravityFence.lean`:
 
 - `numerator_sum` is the numerator identity for every rational triple.
 - `lengths_345` records the numerators 0, 32, and 18, the total 50, the

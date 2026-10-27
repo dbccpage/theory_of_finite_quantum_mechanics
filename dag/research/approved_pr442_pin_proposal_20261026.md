@@ -2,7 +2,7 @@
 
 Status: awaiting explicit user authorization. AuthorityEffect: None until approved.
 
-Source: `lean4/CampaignFqGapTensorUniqueness.lean`
+Source: `lean4/TensorUniquenessOuterProducts.lean`
 
 SHA-256: `e49a61cbcdcbd8f885d757b2cb03962e3db9ec07a5dcb1573308d0ebd2f3a971`
 

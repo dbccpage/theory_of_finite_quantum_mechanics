@@ -36,11 +36,11 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignReportFiberDescent.lean::CampaignReportFiberDescent.joint_report_sufficient`](../../../lean4/CampaignReportFiberDescent.lean)
-- [`lean4/CampaignReportFiberDescent.lean::CampaignReportFiberDescent.lost_bit_obstruction`](../../../lean4/CampaignReportFiberDescent.lean)
-- [`lean4/CampaignReportFiberDescent.lean::CampaignReportFiberDescent.postprocess_obstruction`](../../../lean4/CampaignReportFiberDescent.lean)
-- [`lean4/CampaignReportFiberDescent.lean::CampaignReportFiberDescent.unique_decoder_iff`](../../../lean4/CampaignReportFiberDescent.lean)
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean::factorization_iff_fiber_constancy`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean)
+- [`lean4/ReportFiberDescent.lean::ReportFiberDescent.joint_report_sufficient`](../../../lean4/ReportFiberDescent.lean)
+- [`lean4/ReportFiberDescent.lean::ReportFiberDescent.lost_bit_obstruction`](../../../lean4/ReportFiberDescent.lean)
+- [`lean4/ReportFiberDescent.lean::ReportFiberDescent.postprocess_obstruction`](../../../lean4/ReportFiberDescent.lean)
+- [`lean4/ReportFiberDescent.lean::ReportFiberDescent.unique_decoder_iff`](../../../lean4/ReportFiberDescent.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `omega_engine/crates_rs/omega_wdp/src/proposal_admission_bridge.rs::ProposalAdmissionModel` (private upstream source, not in this repository)

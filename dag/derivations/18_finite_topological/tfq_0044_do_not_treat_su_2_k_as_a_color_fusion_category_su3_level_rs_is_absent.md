@@ -25,17 +25,17 @@ In accordance with strict constructive principles:
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
-### Lean 4 Theorems (`lean4/CampaignTfq0044FiniteTopological.lean`)
-- `CampaignTfq0044FiniteTopological.su2_level_rank_and_root_order_bounds`: Proves `su2LevelRank k = k + 1` and `su2RootOrder k = 8 * (k + 2)` for `k = 1..6`.
-- `CampaignTfq0044FiniteTopological.su2_level_central_charge_and_level3_fibonacci_subring`: Proves `su2CentralCharge k = (3 * k) / (k + 2)` for `k = 1..6` and level-3 Fibonacci fusion `2 ⊗ 2 = 0 ⊕ 2`.
-- `CampaignTfq0044FiniteTopological.qphi_golden_ratio_identities`: Proves `φ^2 = 1 + φ` and `φ * (φ - 1) = 1` in `QPhi`.
-- `CampaignTfq0044FiniteTopological.racah_level3_fibonacci_f_matrix_not_euclidean_orthonormal`: Proves `(F^T F)_{00} ≠ 1`, `(F^T F)_{02} ≠ 0`, and `F_{02} ≠ F_{20}` in the Euclidean inner product.
-- `CampaignTfq0044FiniteTopological.racah_level3_fibonacci_f_matrix_weighted_metric_unitarity`: Proves exact weighted metric unitarity `F^T G F = G` and `det(F) = -1` in `QPhi`.
-- `CampaignTfq0044FiniteTopological.su2_level_quantum_dimensions_not_su3_casimirs_fence`: Proves `C_F = 4/3` and `C_A = 3` are not `SU(2)_k` quantum dimensions.
-- `CampaignTfq0044FiniteTopological.su2_weight_lattice_rank1_not_su3_rank2_color_fusion_fence`: Proves `SU(2)_k` labels are rank-1 self-dual whereas `SU(3)_k` weights are rank-2 non-self-dual.
-- `CampaignTfq0044FiniteTopological.su2_vs_su3_level_simple_object_count_separation`: Proves `k + 1 < (k + 1)(k + 2)/2` for `k = 1..6`.
-- `CampaignTfq0044FiniteTopological.su2_level_budget_and_field_refusal_predicates`: Proves budget and cyclotomic field refusal predicates.
-- `CampaignTfq0044FiniteTopological.tfq0044_su2_level_scope_ledger_fence`: Audits `Tfq0044ScopeLedger`.
+### Lean 4 Theorems (`lean4/AnyonRibbonRacahGauge.lean`)
+- `AnyonRibbonRacahGauge.su2_level_rank_and_root_order_bounds`: Proves `su2LevelRank k = k + 1` and `su2RootOrder k = 8 * (k + 2)` for `k = 1..6`.
+- `AnyonRibbonRacahGauge.su2_level_central_charge_and_level3_fibonacci_subring`: Proves `su2CentralCharge k = (3 * k) / (k + 2)` for `k = 1..6` and level-3 Fibonacci fusion `2 ⊗ 2 = 0 ⊕ 2`.
+- `AnyonRibbonRacahGauge.qphi_golden_ratio_identities`: Proves `φ^2 = 1 + φ` and `φ * (φ - 1) = 1` in `QPhi`.
+- `AnyonRibbonRacahGauge.racah_level3_fibonacci_f_matrix_not_euclidean_orthonormal`: Proves `(F^T F)_{00} ≠ 1`, `(F^T F)_{02} ≠ 0`, and `F_{02} ≠ F_{20}` in the Euclidean inner product.
+- `AnyonRibbonRacahGauge.racah_level3_fibonacci_f_matrix_weighted_metric_unitarity`: Proves exact weighted metric unitarity `F^T G F = G` and `det(F) = -1` in `QPhi`.
+- `AnyonRibbonRacahGauge.su2_level_quantum_dimensions_not_su3_casimirs_fence`: Proves `C_F = 4/3` and `C_A = 3` are not `SU(2)_k` quantum dimensions.
+- `AnyonRibbonRacahGauge.su2_weight_lattice_rank1_not_su3_rank2_color_fusion_fence`: Proves `SU(2)_k` labels are rank-1 self-dual whereas `SU(3)_k` weights are rank-2 non-self-dual.
+- `AnyonRibbonRacahGauge.su2_vs_su3_level_simple_object_count_separation`: Proves `k + 1 < (k + 1)(k + 2)/2` for `k = 1..6`.
+- `AnyonRibbonRacahGauge.su2_level_budget_and_field_refusal_predicates`: Proves budget and cyclotomic field refusal predicates.
+- `AnyonRibbonRacahGauge.tfq0044_su2_level_scope_ledger_fence`: Audits `Tfq0044ScopeLedger`.
 
 ### Sovereign Rust Certifiers (`code/rust/src/fusion_categories/su2_level.rs`)
 - `code/rust/src/fusion_categories/su2_level.rs::su2_level`

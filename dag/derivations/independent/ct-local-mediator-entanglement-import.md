@@ -6,7 +6,7 @@ Status: AI-drafted, awaiting human review.
 **Prior and current status:** `IMPORTED_ASSUMPTION` (unchanged)  
 **Campaign outcome class:** Narrowed (a finite shadow is stated in Lean; the imported inference is not reduced to it and is not proved)  
 **AuthorityEffect:** None.  
-**Lean module:** `lean4/CampaignCtMediatorEntanglement.lean`  
+**Lean module:** `lean4/ConstructorTheoryMediatorEntanglement.lean`  
 **Independent check:** `checks/independent/ct-local-mediator-entanglement-import.py`
 
 ---

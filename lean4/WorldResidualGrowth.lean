@@ -3,7 +3,7 @@ import WorldPresentation
 
 
 
-namespace OmegaWorld
+namespace ObserverWorld
 
 def normalSpeedZero : Nat := 1
 def accelerationL1 : Nat := 10
@@ -44,7 +44,7 @@ theorem affine_speed_from_parameters :
 #print axioms exact_normal_sandwich
 #print axioms affine_speed_from_parameters
 
-end OmegaWorld
+end ObserverWorld
 
 private def l5aProvenance : String :=
   "Origin: lean4/WorldResidualGrowth.lean Claim: threshold_is_one_tenth AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

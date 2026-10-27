@@ -4,7 +4,7 @@ import Mathlib.Tactic.NormNum
 import Mathlib.Algebra.Group.Defs
 import Mathlib.Data.Rat.Lemmas
 
-namespace U1Fable.PythagoreanObstruction
+namespace U1Finite.PythagoreanObstruction
 
 /-!
 # Rational Unit Circle and the Half-Angle Pythagorean Obstruction
@@ -324,51 +324,51 @@ theorem no_rat_add_to_rat_circle_hom_u345 :
       _ = u345 := h1
   exact u345_no_rat_circle_sqrt ⟨φ (1 / 2), hhalf⟩
 
-end U1Fable.PythagoreanObstruction
+end U1Finite.PythagoreanObstruction
 
-#print axioms U1Fable.PythagoreanObstruction.RatCircle
-#print axioms U1Fable.PythagoreanObstruction.one
-#print axioms U1Fable.PythagoreanObstruction.negOne
-#print axioms U1Fable.PythagoreanObstruction.iUnit
-#print axioms U1Fable.PythagoreanObstruction.negIUnit
-#print axioms U1Fable.PythagoreanObstruction.u345
-#print axioms U1Fable.PythagoreanObstruction.brahmagupta_fibonacci
-#print axioms U1Fable.PythagoreanObstruction.mul_norm_eq_one
-#print axioms U1Fable.PythagoreanObstruction.mul
-#print axioms U1Fable.PythagoreanObstruction.inv_norm_eq_one
-#print axioms U1Fable.PythagoreanObstruction.inv
-#print axioms U1Fable.PythagoreanObstruction.instOneRatCircle
-#print axioms U1Fable.PythagoreanObstruction.instMulRatCircle
-#print axioms U1Fable.PythagoreanObstruction.instInvRatCircle
-#print axioms U1Fable.PythagoreanObstruction.one_re
-#print axioms U1Fable.PythagoreanObstruction.one_im
-#print axioms U1Fable.PythagoreanObstruction.mul_re
-#print axioms U1Fable.PythagoreanObstruction.mul_im
-#print axioms U1Fable.PythagoreanObstruction.inv_re
-#print axioms U1Fable.PythagoreanObstruction.inv_im
-#print axioms U1Fable.PythagoreanObstruction.mul_assoc
-#print axioms U1Fable.PythagoreanObstruction.mul_comm
-#print axioms U1Fable.PythagoreanObstruction.one_mul
-#print axioms U1Fable.PythagoreanObstruction.mul_one
-#print axioms U1Fable.PythagoreanObstruction.mul_left_inv
-#print axioms U1Fable.PythagoreanObstruction.mul_right_inv
-#print axioms U1Fable.PythagoreanObstruction.instCommGroupRatCircle
-#print axioms U1Fable.PythagoreanObstruction.sq_re
-#print axioms U1Fable.PythagoreanObstruction.sq_im
-#print axioms U1Fable.PythagoreanObstruction.u345_sqrt_re_sq
-#print axioms U1Fable.PythagoreanObstruction.u345_sqrt_im_sq
-#print axioms U1Fable.PythagoreanObstruction.nat_sq_mod_five_eq_zero
-#print axioms U1Fable.PythagoreanObstruction.nat_four_mul_sq_mod_five_eq_zero
-#print axioms U1Fable.PythagoreanObstruction.nat_five_mul_sq_eq_four_mul_sq
-#print axioms U1Fable.PythagoreanObstruction.nat_five_mul_sq_eq_sq
-#print axioms U1Fable.PythagoreanObstruction.int_natAbs_sq
-#print axioms U1Fable.PythagoreanObstruction.int_five_mul_sq_eq_four_mul_sq
-#print axioms U1Fable.PythagoreanObstruction.int_five_mul_sq_eq_sq
-#print axioms U1Fable.PythagoreanObstruction.four_fifths_not_rat_square
-#print axioms U1Fable.PythagoreanObstruction.one_fifth_not_rat_square
-#print axioms U1Fable.PythagoreanObstruction.u345_no_rat_circle_sqrt
-#print axioms U1Fable.PythagoreanObstruction.rat_circle_not_two_divisible
-#print axioms U1Fable.PythagoreanObstruction.no_rat_add_to_rat_circle_hom_u345
+#print axioms U1Finite.PythagoreanObstruction.RatCircle
+#print axioms U1Finite.PythagoreanObstruction.one
+#print axioms U1Finite.PythagoreanObstruction.negOne
+#print axioms U1Finite.PythagoreanObstruction.iUnit
+#print axioms U1Finite.PythagoreanObstruction.negIUnit
+#print axioms U1Finite.PythagoreanObstruction.u345
+#print axioms U1Finite.PythagoreanObstruction.brahmagupta_fibonacci
+#print axioms U1Finite.PythagoreanObstruction.mul_norm_eq_one
+#print axioms U1Finite.PythagoreanObstruction.mul
+#print axioms U1Finite.PythagoreanObstruction.inv_norm_eq_one
+#print axioms U1Finite.PythagoreanObstruction.inv
+#print axioms U1Finite.PythagoreanObstruction.instOneRatCircle
+#print axioms U1Finite.PythagoreanObstruction.instMulRatCircle
+#print axioms U1Finite.PythagoreanObstruction.instInvRatCircle
+#print axioms U1Finite.PythagoreanObstruction.one_re
+#print axioms U1Finite.PythagoreanObstruction.one_im
+#print axioms U1Finite.PythagoreanObstruction.mul_re
+#print axioms U1Finite.PythagoreanObstruction.mul_im
+#print axioms U1Finite.PythagoreanObstruction.inv_re
+#print axioms U1Finite.PythagoreanObstruction.inv_im
+#print axioms U1Finite.PythagoreanObstruction.mul_assoc
+#print axioms U1Finite.PythagoreanObstruction.mul_comm
+#print axioms U1Finite.PythagoreanObstruction.one_mul
+#print axioms U1Finite.PythagoreanObstruction.mul_one
+#print axioms U1Finite.PythagoreanObstruction.mul_left_inv
+#print axioms U1Finite.PythagoreanObstruction.mul_right_inv
+#print axioms U1Finite.PythagoreanObstruction.instCommGroupRatCircle
+#print axioms U1Finite.PythagoreanObstruction.sq_re
+#print axioms U1Finite.PythagoreanObstruction.sq_im
+#print axioms U1Finite.PythagoreanObstruction.u345_sqrt_re_sq
+#print axioms U1Finite.PythagoreanObstruction.u345_sqrt_im_sq
+#print axioms U1Finite.PythagoreanObstruction.nat_sq_mod_five_eq_zero
+#print axioms U1Finite.PythagoreanObstruction.nat_four_mul_sq_mod_five_eq_zero
+#print axioms U1Finite.PythagoreanObstruction.nat_five_mul_sq_eq_four_mul_sq
+#print axioms U1Finite.PythagoreanObstruction.nat_five_mul_sq_eq_sq
+#print axioms U1Finite.PythagoreanObstruction.int_natAbs_sq
+#print axioms U1Finite.PythagoreanObstruction.int_five_mul_sq_eq_four_mul_sq
+#print axioms U1Finite.PythagoreanObstruction.int_five_mul_sq_eq_sq
+#print axioms U1Finite.PythagoreanObstruction.four_fifths_not_rat_square
+#print axioms U1Finite.PythagoreanObstruction.one_fifth_not_rat_square
+#print axioms U1Finite.PythagoreanObstruction.u345_no_rat_circle_sqrt
+#print axioms U1Finite.PythagoreanObstruction.rat_circle_not_two_divisible
+#print axioms U1Finite.PythagoreanObstruction.no_rat_add_to_rat_circle_hom_u345
 
 private def l5aProvenance : String :=
   "Origin: lean4/U1PythagoreanObstruction.lean Claim: u345_no_rat_circle_sqrt AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

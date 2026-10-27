@@ -31,14 +31,14 @@ The campaign module checks the single-letter words [], [0] and [0,0], length bou
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.reach_eq`
-- `lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.reaches_self`
-- `lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.start_in`
-- `lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.empty_in`
-- `lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.long_len`
-- `lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.long_out`
-- `lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.not_long`
-- `lean4/CampaignCompC3NoFixedBound.lean::CampaignCompC3NoFixedBound.not_empty`
+- `lean4/ComputationC3NoFixedBound.lean::ComputationC3NoFixedBound.reach_eq`
+- `lean4/ComputationC3NoFixedBound.lean::ComputationC3NoFixedBound.reaches_self`
+- `lean4/ComputationC3NoFixedBound.lean::ComputationC3NoFixedBound.start_in`
+- `lean4/ComputationC3NoFixedBound.lean::ComputationC3NoFixedBound.empty_in`
+- `lean4/ComputationC3NoFixedBound.lean::ComputationC3NoFixedBound.long_len`
+- `lean4/ComputationC3NoFixedBound.lean::ComputationC3NoFixedBound.long_out`
+- `lean4/ComputationC3NoFixedBound.lean::ComputationC3NoFixedBound.not_long`
+- `lean4/ComputationC3NoFixedBound.lean::ComputationC3NoFixedBound.not_empty`
 
 ### Rust Certifiers
 - *none*

@@ -45,39 +45,6 @@ Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, s
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignL1U1SelectorOtherSegment.lean`
-
-- file: [lean4/CampaignL1U1SelectorOtherSegment.lean](../../../lean4/CampaignL1U1SelectorOtherSegment.lean)
-- sha256 (`bytes`): `2e1bf569100aacfe8ddc51540eafa0d198880599a0893ab62a8cc552f2fb815d`
-- cited in: node.lean, node.source, receipt dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json (CampaignL1U1SelectorOtherSegment), receipt dag/research/pr435_review_lean_replay.json (CampaignL1U1SelectorOtherSegment), record TFQ-1003
-- replay: `verified`
-  - receipt [dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json](../../../dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json) (module `CampaignL1U1SelectorOtherSegment`): recorded sha256 `2e1bf569100aacfe8ddc51540eafa0d198880599a0893ab62a8cc552f2fb815d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr435_review_lean_replay.json](../../../dag/research/pr435_review_lean_replay.json) (module `CampaignL1U1SelectorOtherSegment`): recorded sha256 `2e1bf569100aacfe8ddc51540eafa0d198880599a0893ab62a8cc552f2fb815d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignL1U1SelectorOtherSegment`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `CampaignL1U1SelectorOtherSegment.allDistinct` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.allDistinct` |
-| `CampaignL1U1SelectorOtherSegment.earlier_ne_one` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.earlier_ne_one` |
-| `CampaignL1U1SelectorOtherSegment.eight` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.eight` |
-| `CampaignL1U1SelectorOtherSegment.eight_distinct` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.eight_distinct` |
-| `CampaignL1U1SelectorOtherSegment.g` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.g` |
-| `CampaignL1U1SelectorOtherSegment.isPower` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.isPower` |
-| `CampaignL1U1SelectorOtherSegment.mul` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.mul` |
-| `CampaignL1U1SelectorOtherSegment.norms` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.norms` |
-| `CampaignL1U1SelectorOtherSegment.not_axis` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.not_axis` |
-| `CampaignL1U1SelectorOtherSegment.solutions_iff` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.solutions_iff` |
-| `CampaignL1U1SelectorOtherSegment.step1` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step1` |
-| `CampaignL1U1SelectorOtherSegment.step2` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step2` |
-| `CampaignL1U1SelectorOtherSegment.step3` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step3` |
-| `CampaignL1U1SelectorOtherSegment.step4` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step4` |
-| `CampaignL1U1SelectorOtherSegment.step5` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step5` |
-| `CampaignL1U1SelectorOtherSegment.step6` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step6` |
-| `CampaignL1U1SelectorOtherSegment.step7` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step7` |
-| `CampaignL1U1SelectorOtherSegment.step8` | yes | yes | yes | none | `#print axioms CampaignL1U1SelectorOtherSegment.step8` |
-
-- counts toward the grade: yes
-
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
@@ -95,14 +62,47 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H011U1SelectorBoundary.lean`
+### Lean: `lean4/L1U1SelectorOtherSegment.lean`
 
-- file: [lean4/H011U1SelectorBoundary.lean](../../../lean4/H011U1SelectorBoundary.lean)
-- sha256 (`bytes`): `214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912`
+- file: [lean4/L1U1SelectorOtherSegment.lean](../../../lean4/L1U1SelectorOtherSegment.lean)
+- sha256 (`bytes`): `e9c220887eccbca20473d823ab81b5b7d329c5439e190a65b43723e902f9a430`
+- cited in: node.lean, node.source, receipt dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json (L1U1SelectorOtherSegment), receipt dag/research/pr435_review_lean_replay.json (L1U1SelectorOtherSegment), record TFQ-1003
+- replay: `verified`
+  - receipt [dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json](../../../dag/research/campaign_l1-u1-selector-other-segment_lean_replay.json) (module `L1U1SelectorOtherSegment`): recorded sha256 `e9c220887eccbca20473d823ab81b5b7d329c5439e190a65b43723e902f9a430` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr435_review_lean_replay.json](../../../dag/research/pr435_review_lean_replay.json) (module `L1U1SelectorOtherSegment`): recorded sha256 `e9c220887eccbca20473d823ab81b5b7d329c5439e190a65b43723e902f9a430` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build L1U1SelectorOtherSegment`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `L1U1SelectorOtherSegment.allDistinct` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.allDistinct` |
+| `L1U1SelectorOtherSegment.earlier_ne_one` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.earlier_ne_one` |
+| `L1U1SelectorOtherSegment.eight` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.eight` |
+| `L1U1SelectorOtherSegment.eight_distinct` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.eight_distinct` |
+| `L1U1SelectorOtherSegment.g` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.g` |
+| `L1U1SelectorOtherSegment.isPower` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.isPower` |
+| `L1U1SelectorOtherSegment.mul` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.mul` |
+| `L1U1SelectorOtherSegment.norms` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.norms` |
+| `L1U1SelectorOtherSegment.not_axis` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.not_axis` |
+| `L1U1SelectorOtherSegment.solutions_iff` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.solutions_iff` |
+| `L1U1SelectorOtherSegment.step1` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.step1` |
+| `L1U1SelectorOtherSegment.step2` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.step2` |
+| `L1U1SelectorOtherSegment.step3` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.step3` |
+| `L1U1SelectorOtherSegment.step4` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.step4` |
+| `L1U1SelectorOtherSegment.step5` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.step5` |
+| `L1U1SelectorOtherSegment.step6` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.step6` |
+| `L1U1SelectorOtherSegment.step7` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.step7` |
+| `L1U1SelectorOtherSegment.step8` | yes | yes | yes | none | `#print axioms L1U1SelectorOtherSegment.step8` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/U1SelectorBoundary.lean`
+
+- file: [lean4/U1SelectorBoundary.lean](../../../lean4/U1SelectorBoundary.lean)
+- sha256 (`bytes`): `003d1730941ba102f39cdd82a0f647131050d93ef99d3e532c49e2a873a2376a`
 - cited in: node.lean, record TFQ-1003
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H011U1SelectorBoundary`): recorded sha256 `214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build H011U1SelectorBoundary`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `U1SelectorBoundary`): recorded sha256 `003d1730941ba102f39cdd82a0f647131050d93ef99d3e532c49e2a873a2376a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build U1SelectorBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -113,10 +113,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/U1SelectorSegment.lean`
 
 - file: [lean4/U1SelectorSegment.lean](../../../lean4/U1SelectorSegment.lean)
-- sha256 (`bytes`): `49c0f0ad772ea4cf19e56b26c1e16629428ef7676d275bfa89f91315b0d86b4c`
+- sha256 (`bytes`): `beeffb4aefa76d734dc8999173366a040106dce3cf867c3778a0791c1cc044b2`
 - cited in: receipt dag/research/pfp_batch01_lean_replay.json (U1SelectorSegment)
 - replay: `verified`
-  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `U1SelectorSegment`): recorded sha256 `49c0f0ad772ea4cf19e56b26c1e16629428ef7676d275bfa89f91315b0d86b4c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pfp_batch01_lean_replay.json](../../../dag/research/pfp_batch01_lean_replay.json) (module `U1SelectorSegment`): recorded sha256 `beeffb4aefa76d734dc8999173366a040106dce3cf867c3778a0791c1cc044b2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build U1SelectorSegment`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -181,7 +181,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md](../../../dag/derivations/08_l1_to_l2/tfq_1003_l1_u1_selector_other_segment.md)
-- sha256 (`lf-normalised`): `09b0f20d3cd3e6fa3fd854340c23669ef2b0863406a62ba1eb86ccc9b2d24191`
+- sha256 (`lf-normalised`): `bd50c46e7eece2b8494acd044911798c3e2ba3654c621b497e5de69abd0c5eaf`
 - generated view: listed, not counted
 - cited in: record TFQ-1003
 - counts toward the grade: no
@@ -196,7 +196,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/pr435_review_lean_replay.json`
 
 - file: [dag/research/pr435_review_lean_replay.json](../../../dag/research/pr435_review_lean_replay.json)
-- sha256 (`lf-normalised`): `06c11e32a7356a9ff0ac2158377110ba9947f5660f7ebcd8a86a93c5571e2b41`
+- sha256 (`lf-normalised`): `a8a049ea96a6695af07f308de08728c612dda2990f635b30b83aec9a505e0ad5`
 - cited in: node.source
 - counts toward the grade: yes
 

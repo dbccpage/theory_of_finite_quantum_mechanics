@@ -34,7 +34,7 @@ Lean-compiled; axioms propext, Quot.sound
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/H017Fin.lean::finite_gauss_matrix_algebra`
+- `lean4/HilbertWalkGleasonFin.lean::finite_gauss_matrix_algebra`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra`
 
 ### Rust Certifiers

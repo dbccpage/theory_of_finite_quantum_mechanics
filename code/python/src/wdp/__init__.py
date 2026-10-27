@@ -1,6 +1,6 @@
 """Package seal for the amplitude certificate.
 
-Origin: lean4/H010Scale.lean theorem nsq_parallelogram.
+Origin: lean4/HilbertWalkScale.lean theorem nsq_parallelogram.
 Claim: urn:omega:fqm:amplitude:package-parallelogram-seal:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/wdp/test_amplitude_control.py.

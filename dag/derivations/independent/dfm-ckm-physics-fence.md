@@ -83,7 +83,7 @@ detected; this is scoped regression evidence, not exhaustive mutation coverage.
 
 ## What is proved
 
-In `lean4/CampaignDfmCkmPhysicsFence.lean`:
+In `lean4/DressingFieldCkmPhysicsFence.lean`:
 
 - `cpCount_from_difference` and `constraintCount_sum` are the two rational
   identities for every `n`.

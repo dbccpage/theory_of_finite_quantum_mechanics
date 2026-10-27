@@ -4,7 +4,7 @@ Status: AI-drafted, awaiting human review.
 
 Node status stays CONDITIONAL. This note records two kernel-checked results on the projection-only (frame-function) route and states precisely what remains open.
 
-Lean: `lean4/CampaignBornRationalRayObstruction.lean`, `lean4/CampaignBornGaussianMod2ClassRigidity.lean` (library `CampaignFqGapBornGleasonRays`). Receipt: `dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json`. Independent checks: `checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py`, `checks/independent/fq-gap-born-uniqueness-gleason-mod2.py`.
+Lean: `lean4/BornRationalRayObstruction.lean`, `lean4/BornGaussianMod2ClassRigidity.lean` (library `BornGleasonRays`). Receipt: `dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json`. Independent checks: `checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py`, `checks/independent/fq-gap-born-uniqueness-gleason-mod2.py`.
 
 ## 1. Setting
 

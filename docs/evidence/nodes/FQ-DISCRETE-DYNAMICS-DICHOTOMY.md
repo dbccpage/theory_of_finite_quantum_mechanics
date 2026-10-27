@@ -56,14 +56,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 - counts toward the grade: no
 
-### Lean: `lean4/H061DynamicsDichotomy.lean`
+### Lean: `lean4/DynamicsDichotomy.lean`
 
-- file: [lean4/H061DynamicsDichotomy.lean](../../../lean4/H061DynamicsDichotomy.lean)
-- sha256 (`bytes`): `6b4893a0aecdad09e886450c1533fdaf15dc292abfea80da96d2989fe9703c17`
+- file: [lean4/DynamicsDichotomy.lean](../../../lean4/DynamicsDichotomy.lean)
+- sha256 (`bytes`): `05fb05316c51102e92e1d613434e93b41e84b96b51308a1e34a5fb60f3318c9a`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `H061DynamicsDichotomy`): recorded sha256 `6b4893a0aecdad09e886450c1533fdaf15dc292abfea80da96d2989fe9703c17` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H061DynamicsDichotomy`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `DynamicsDichotomy`): recorded sha256 `05fb05316c51102e92e1d613434e93b41e84b96b51308a1e34a5fb60f3318c9a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build DynamicsDichotomy`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|

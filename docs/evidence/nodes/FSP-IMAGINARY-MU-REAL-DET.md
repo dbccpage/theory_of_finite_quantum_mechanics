@@ -28,7 +28,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Analytic continuation from imaginary to real mu is an extrapolation, not a sign-free route to real mu; not established in this checkout. CampaignFspImaginaryMuRealDet covers arbitrary finite bipartite transport blocks at unit fugacity: staggered adjoint symmetry, determinant reality, two-flavor nonnegativity and positive-mass staggered positivity. Its centerSum_periodic concerns a declared finite center-orbit sum only; it supplies no QCD measure, spin-taste reconstruction, phase transition or analytic-continuation theorem. The full node remains imported.
+Analytic continuation from imaginary to real mu is an extrapolation, not a sign-free route to real mu; not established in this checkout. FermionSignImaginaryMuRealDet covers arbitrary finite bipartite transport blocks at unit fugacity: staggered adjoint symmetry, determinant reality, two-flavor nonnegativity and positive-mass staggered positivity. Its centerSum_periodic concerns a declared finite center-orbit sum only; it supplies no QCD measure, spin-taste reconstruction, phase transition or analytic-continuation theorem. The full node remains imported.
 
 ## Source status
 
@@ -42,33 +42,33 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignFspImaginaryMuRealDet.lean`
+### Lean: `lean4/FermionSignImaginaryMuRealDet.lean`
 
-- file: [lean4/CampaignFspImaginaryMuRealDet.lean](../../../lean4/CampaignFspImaginaryMuRealDet.lean)
-- sha256 (`bytes`): `6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2`
-- cited in: node.lean, receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (CampaignFspImaginaryMuRealDet), record TFQ-1203
+- file: [lean4/FermionSignImaginaryMuRealDet.lean](../../../lean4/FermionSignImaginaryMuRealDet.lean)
+- sha256 (`bytes`): `fa5f4b2f76560be37d6fccff11842fa7edf1504c4488dd8b1bb2b7d09267504c`
+- cited in: node.lean, receipt dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json (FermionSignImaginaryMuRealDet), record TFQ-1203
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json](../../../dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json) (module `CampaignFspImaginaryMuRealDet`): recorded sha256 `6505e6a3aecb3897878da1944e0abfdfe2b1caeb6960995417e5ce09a49201e2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignFspImaginaryMuRealDet`
+  - receipt [dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json](../../../dag/research/campaign_fsp-imaginary-mu-real-det_lean_replay.json) (module `FermionSignImaginaryMuRealDet`): recorded sha256 `fa5f4b2f76560be37d6fccff11842fa7edf1504c4488dd8b1bb2b7d09267504c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build FermionSignImaginaryMuRealDet`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignFspImaginaryMuRealDet.bipartite_adjoint` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspImaginaryMuRealDet.bipartite_adjoint` |
-| `CampaignFspImaginaryMuRealDet.bipartite_det_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspImaginaryMuRealDet.bipartite_det_pos` |
-| `CampaignFspImaginaryMuRealDet.bipartite_one_det` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspImaginaryMuRealDet.bipartite_one_det` |
-| `CampaignFspImaginaryMuRealDet.bipartite_one_det_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspImaginaryMuRealDet.bipartite_one_det_pos` |
-| `CampaignFspImaginaryMuRealDet.bipartite_scale` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspImaginaryMuRealDet.bipartite_scale` |
-| `CampaignFspImaginaryMuRealDet.centerSum_periodic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspImaginaryMuRealDet.centerSum_periodic` |
-| `CampaignFspImaginaryMuRealDet.det_real_of_involution` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspImaginaryMuRealDet.det_real_of_involution` |
-| `CampaignFspImaginaryMuRealDet.gamma_hermitian_negative` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspImaginaryMuRealDet.gamma_hermitian_negative` |
-| `CampaignFspImaginaryMuRealDet.inverse_eq_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspImaginaryMuRealDet.inverse_eq_star` |
-| `CampaignFspImaginaryMuRealDet.parity_hermitian` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspImaginaryMuRealDet.parity_hermitian` |
-| `CampaignFspImaginaryMuRealDet.parity_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspImaginaryMuRealDet.parity_sq` |
-| `CampaignFspImaginaryMuRealDet.staggered_adjoint` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspImaginaryMuRealDet.staggered_adjoint` |
-| `CampaignFspImaginaryMuRealDet.staggered_det_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspImaginaryMuRealDet.staggered_det_pos` |
-| `CampaignFspImaginaryMuRealDet.staggered_det_real` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspImaginaryMuRealDet.staggered_det_real` |
-| `CampaignFspImaginaryMuRealDet.staggered_unit` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspImaginaryMuRealDet.staggered_unit` |
-| `CampaignFspImaginaryMuRealDet.two_flavor_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspImaginaryMuRealDet.two_flavor_nonneg` |
+| `FermionSignImaginaryMuRealDet.bipartite_adjoint` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignImaginaryMuRealDet.bipartite_adjoint` |
+| `FermionSignImaginaryMuRealDet.bipartite_det_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignImaginaryMuRealDet.bipartite_det_pos` |
+| `FermionSignImaginaryMuRealDet.bipartite_one_det` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignImaginaryMuRealDet.bipartite_one_det` |
+| `FermionSignImaginaryMuRealDet.bipartite_one_det_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignImaginaryMuRealDet.bipartite_one_det_pos` |
+| `FermionSignImaginaryMuRealDet.bipartite_scale` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignImaginaryMuRealDet.bipartite_scale` |
+| `FermionSignImaginaryMuRealDet.centerSum_periodic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignImaginaryMuRealDet.centerSum_periodic` |
+| `FermionSignImaginaryMuRealDet.det_real_of_involution` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignImaginaryMuRealDet.det_real_of_involution` |
+| `FermionSignImaginaryMuRealDet.gamma_hermitian_negative` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignImaginaryMuRealDet.gamma_hermitian_negative` |
+| `FermionSignImaginaryMuRealDet.inverse_eq_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignImaginaryMuRealDet.inverse_eq_star` |
+| `FermionSignImaginaryMuRealDet.parity_hermitian` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignImaginaryMuRealDet.parity_hermitian` |
+| `FermionSignImaginaryMuRealDet.parity_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignImaginaryMuRealDet.parity_sq` |
+| `FermionSignImaginaryMuRealDet.staggered_adjoint` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignImaginaryMuRealDet.staggered_adjoint` |
+| `FermionSignImaginaryMuRealDet.staggered_det_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignImaginaryMuRealDet.staggered_det_pos` |
+| `FermionSignImaginaryMuRealDet.staggered_det_real` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignImaginaryMuRealDet.staggered_det_real` |
+| `FermionSignImaginaryMuRealDet.staggered_unit` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignImaginaryMuRealDet.staggered_unit` |
+| `FermionSignImaginaryMuRealDet.two_flavor_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignImaginaryMuRealDet.two_flavor_nonneg` |
 | `centerSum_periodic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms centerSum_periodic` |
 | `det_real_of_involution` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms det_real_of_involution` |
 | `gamma_hermitian_negative` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms gamma_hermitian_negative` |
@@ -88,7 +88,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1203_fsp_imaginary_mu_real_det.md`
 
 - file: [dag/derivations/26_fsp/tfq_1203_fsp_imaginary_mu_real_det.md](../../../dag/derivations/26_fsp/tfq_1203_fsp_imaginary_mu_real_det.md)
-- sha256 (`lf-normalised`): `5a8903f86de0e771db4da99d212016b3b8d780605f2a93ff3542d3966177eaac`
+- sha256 (`lf-normalised`): `eb5a39d5e6ccd0f37ba0bd0890c44556a64180b962d30ac093303f02251e8e76`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1203
 - counts toward the grade: no

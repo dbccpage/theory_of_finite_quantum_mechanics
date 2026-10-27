@@ -3,7 +3,7 @@ import WorldPresentation
 
 
 
-namespace OmegaWorld
+namespace ObserverWorld
 
 inductive Basis2 where
   | zero
@@ -123,7 +123,7 @@ def smallestReconstruction : FiniteReconstruction where
 
 #print axioms smallestReconstruction
 
-end OmegaWorld
+end ObserverWorld
 
 
 theorem carrier_non_degenerate_invariant : (1 : Nat) + 1 = 2 := by

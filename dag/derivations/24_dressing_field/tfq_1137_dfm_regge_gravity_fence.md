@@ -42,10 +42,10 @@ numerator_sum is the numerator identity for every rational triple. lengths_345 r
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignDfmReggeGravityFence.lean::numerator_sum`
-- `lean4/CampaignDfmReggeGravityFence.lean::lengths_345`
-- `lean4/CampaignDfmReggeGravityFence.lean::block_trace_half`
-- `lean4/CampaignDfmReggeGravityFence.lean::cosine_sum_ne_block_trace`
+- `lean4/DressingFieldReggeGravityFence.lean::numerator_sum`
+- `lean4/DressingFieldReggeGravityFence.lean::lengths_345`
+- `lean4/DressingFieldReggeGravityFence.lean::block_trace_half`
+- `lean4/DressingFieldReggeGravityFence.lean::cosine_sum_ne_block_trace`
 
 ### Rust Certifiers
 - *none*
@@ -69,6 +69,6 @@ numerator_sum is the numerator identity for every rational triple. lengths_345 r
 - **Cited Sources**:
   - `papers/ravera_dfm_dossier.md:288`
   - `papers/ravera_dfm_dossier.md:292-293`
-  - `lean4/CampaignDfmReggeGravityFence.lean`
+  - `lean4/DressingFieldReggeGravityFence.lean`
   - `dag/derivations/independent/dfm-regge-gravity-fence.md`
   - `checks/independent/dfm-regge-gravity-fence.py`

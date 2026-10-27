@@ -42,24 +42,24 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignWittenPairing.lean`
+### Lean: `lean4/WittenPairing.lean`
 
-- file: [lean4/CampaignWittenPairing.lean](../../../lean4/CampaignWittenPairing.lean)
-- sha256 (`bytes`): `daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1`
-- cited in: node.lean, receipt dag/research/campaign_fsp-witten-index-invariance_lean_replay.json (CampaignWittenPairing), receipt dag/research/pr_376_round2_replay.json (CampaignWittenPairing), record TFQ-1206
+- file: [lean4/WittenPairing.lean](../../../lean4/WittenPairing.lean)
+- sha256 (`bytes`): `8aecc85288c5e6f0822b0d7c6afbf2c4f796b380868005dc362a2ef8ee7e9d7d`
+- cited in: node.lean, receipt dag/research/campaign_fsp-witten-index-invariance_lean_replay.json (WittenPairing), receipt dag/research/pr_376_round2_replay.json (WittenPairing), record TFQ-1206
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-witten-index-invariance_lean_replay.json](../../../dag/research/campaign_fsp-witten-index-invariance_lean_replay.json) (module `CampaignWittenPairing`): recorded sha256 `daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_376_round2_replay.json](../../../dag/research/pr_376_round2_replay.json) (module `CampaignWittenPairing`): recorded sha256 `daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignWittenPairing`
+  - receipt [dag/research/campaign_fsp-witten-index-invariance_lean_replay.json](../../../dag/research/campaign_fsp-witten-index-invariance_lean_replay.json) (module `WittenPairing`): recorded sha256 `8aecc85288c5e6f0822b0d7c6afbf2c4f796b380868005dc362a2ef8ee7e9d7d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_376_round2_replay.json](../../../dag/research/pr_376_round2_replay.json) (module `WittenPairing`): recorded sha256 `8aecc85288c5e6f0822b0d7c6afbf2c4f796b380868005dc362a2ef8ee7e9d7d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build WittenPairing`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignWittenPairing.paired_trace` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignWittenPairing.paired_trace` |
-| `CampaignWittenPairing.traceWeight` | yes | yes | yes | none | `#print axioms CampaignWittenPairing.traceWeight` |
-| `CampaignWittenPairing.trace_append` | yes | yes | yes | propext | `#print axioms CampaignWittenPairing.trace_append` |
-| `CampaignWittenPairing.trace_zero_modes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignWittenPairing.trace_zero_modes` |
-| `CampaignWittenPairing.weight_independent` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignWittenPairing.weight_independent` |
-| `CampaignWittenPairing.zero_index_with_ground_modes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignWittenPairing.zero_index_with_ground_modes` |
+| `WittenPairing.paired_trace` | yes | yes | yes | Quot.sound, propext | `#print axioms WittenPairing.paired_trace` |
+| `WittenPairing.traceWeight` | yes | yes | yes | none | `#print axioms WittenPairing.traceWeight` |
+| `WittenPairing.trace_append` | yes | yes | yes | propext | `#print axioms WittenPairing.trace_append` |
+| `WittenPairing.trace_zero_modes` | yes | yes | yes | Quot.sound, propext | `#print axioms WittenPairing.trace_zero_modes` |
+| `WittenPairing.weight_independent` | yes | yes | yes | Quot.sound, propext | `#print axioms WittenPairing.weight_independent` |
+| `WittenPairing.zero_index_with_ground_modes` | yes | yes | yes | Quot.sound, propext | `#print axioms WittenPairing.zero_index_with_ground_modes` |
 
 - counts toward the grade: yes
 
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md`
 
 - file: [dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md](../../../dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md)
-- sha256 (`lf-normalised`): `68cd6183c980a084269aea85084073decd3b7f6c3b09a402b7162c43b2542a84`
+- sha256 (`lf-normalised`): `fe3ef626a44a2dd92a949d3450aa63724b00d156345eafdcba3d09f15646ae95`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1206
 - counts toward the grade: no
@@ -97,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fsp-witten-index-invariance_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-witten-index-invariance_lean_replay.json](../../../dag/research/campaign_fsp-witten-index-invariance_lean_replay.json)
-- sha256 (`lf-normalised`): `c18f5022854d4da4dea1081c2563bc97fbce4e28b7fb77c4b57e06348a77c4ca`
+- sha256 (`lf-normalised`): `a18f4e7c32191e37dff194780fdf991cb7c94a92c7c91eaee8bea38964854fec`
 - cited in: node.source
 - counts toward the grade: yes
 

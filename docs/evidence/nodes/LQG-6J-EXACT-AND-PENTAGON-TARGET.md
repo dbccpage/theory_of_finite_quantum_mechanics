@@ -44,6 +44,16 @@ Racah single-sum rational squares and values for 2j \<= 2 recomputed with Python
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/DiscreteSpinfoamAmplitudes.lean`
+
+- file: [lean4/DiscreteSpinfoamAmplitudes.lean](../../../lean4/DiscreteSpinfoamAmplitudes.lean)
+- sha256 (`bytes`): `b91f33b05cf90bd65fc8e51d6929ad5e1a5da57a6a6c908ad83bdf81e45db866`
+- cited in: node.source
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_loop_quantum_gravity.json](../../../dag/research/lean_replay_campaign_loop_quantum_gravity.json) (module `DiscreteSpinfoamAmplitudes`): recorded sha256 `b91f33b05cf90bd65fc8e51d6929ad5e1a5da57a6a6c908ad83bdf81e45db866` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build DiscreteSpinfoamAmplitudes`
+- counts toward the grade: yes
+
 ### Lean: `lean4/FrontierClassical6j.lean`
 
 - file: [lean4/FrontierClassical6j.lean](../../../lean4/FrontierClassical6j.lean)
@@ -61,16 +71,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H023DiscreteSpinfoamAmplitudes.lean`
-
-- file: [lean4/H023DiscreteSpinfoamAmplitudes.lean](../../../lean4/H023DiscreteSpinfoamAmplitudes.lean)
-- sha256 (`bytes`): `926c526a9087b9648e1fc3107ae89d4d16f0525234d8901e916a29a516d70457`
-- cited in: node.source
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_loop_quantum_gravity.json](../../../dag/research/lean_replay_campaign_loop_quantum_gravity.json) (module `H023DiscreteSpinfoamAmplitudes`): recorded sha256 `926c526a9087b9648e1fc3107ae89d4d16f0525234d8901e916a29a516d70457` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build H023DiscreteSpinfoamAmplitudes`
-- counts toward the grade: yes
-
 ### Rust: `code/rust/src/general_relativity/spin_foam.rs`
 
 - file: [code/rust/src/general_relativity/spin_foam.rs](../../../code/rust/src/general_relativity/spin_foam.rs)
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md`
 
 - file: [dag/derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md](../../../dag/derivations/33_loop_quantum_gravity/tfq_2308_lqg_6j_exact_and_pentagon_target.md)
-- sha256 (`lf-normalised`): `78840b6c1ca1892f3022f3721f07b93590c456759f2114d072e772bed6e854b5`
+- sha256 (`lf-normalised`): `2b746909f20e94937d8aa77145c12b2ac116ae69c47c4be1e3c4883b366b0221`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2308
 - counts toward the grade: no
@@ -90,7 +90,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/frontier_targets_lean_replay.json`
 
 - file: [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json)
-- sha256 (`lf-normalised`): `1c66aabd3bb726fafcd0238c259644d6f79dd304178d171a75ea36d6522bd2cc`
+- sha256 (`lf-normalised`): `f34cd1ed156fa81d00adb9c939a21d262964134472af8231083525a54cc7abce`
 - cited in: node.source
 - counts toward the grade: yes
 

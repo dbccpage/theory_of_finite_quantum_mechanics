@@ -34,7 +34,7 @@ Do not treat the GR holonomy scaffold or the 2D Regge sum as the exact rational 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignTfq0199ImplementationSibling.lean`](../../../lean4/CampaignTfq0199ImplementationSibling.lean) (`CampaignTfq0199ImplementationSibling.tfq0199_gr_holonomy_regge_not_4d_gravity_shadow_scope_certificate`)
+- [`lean4/GravityProxyVsReggeSum.lean`](../../../lean4/GravityProxyVsReggeSum.lean) (`GravityProxyVsReggeSum.tfq0199_gr_holonomy_regge_not_4d_gravity_shadow_scope_certificate`)
 - [`lean4/FiniteQFTAndGravity.lean`](../../../lean4/FiniteQFTAndGravity.lean) (`FiniteQFTAndGravity.gr_deflection_twice_newton`)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)

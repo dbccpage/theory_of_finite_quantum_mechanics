@@ -37,20 +37,20 @@ imported / refused on this host
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/H016ContinuousDynamicsFork.lean::FableHilbertWalk20260819.H016.no_report_half_step`
-- `lean4/H016ContinuousDynamicsFork.lean::FableHilbertWalk20260819.H016.continuous_dynamics_fork`
+- `lean4/ContinuousDynamicsFork.lean::HilbertWalk.ContinuousDynamicsFork.no_report_half_step`
+- `lean4/ContinuousDynamicsFork.lean::HilbertWalk.ContinuousDynamicsFork.continuous_dynamics_fork`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries`
-- `lean4/CampaignGpImportContinuousTime.lean::toggle_images`
-- `lean4/CampaignGpImportContinuousTime.lean::no_toggle_square_root`
-- `lean4/CampaignGpImportContinuousTime.lean::gAdd_coords`
-- `lean4/CampaignGpImportContinuousTime.lean::gMul_coords`
-- `lean4/CampaignGpImportContinuousTime.lean::swap_exchanges`
-- `lean4/CampaignGpImportContinuousTime.lean::scale4_swap`
-- `lean4/CampaignGpImportContinuousTime.lean::interp_twice_is_scaled_swap`
-- `lean4/CampaignGpImportContinuousTime.lean::interpNeg_twice_is_scaled_swap`
-- `lean4/CampaignGpImportContinuousTime.lean::witness_interp`
-- `lean4/CampaignGpImportContinuousTime.lean::witness_neg`
-- `lean4/CampaignGpImportContinuousTime.lean::interpolants_differ`
+- `lean4/ContinuousTimeImport.lean::toggle_images`
+- `lean4/ContinuousTimeImport.lean::no_toggle_square_root`
+- `lean4/ContinuousTimeImport.lean::gAdd_coords`
+- `lean4/ContinuousTimeImport.lean::gMul_coords`
+- `lean4/ContinuousTimeImport.lean::swap_exchanges`
+- `lean4/ContinuousTimeImport.lean::scale4_swap`
+- `lean4/ContinuousTimeImport.lean::interp_twice_is_scaled_swap`
+- `lean4/ContinuousTimeImport.lean::interpNeg_twice_is_scaled_swap`
+- `lean4/ContinuousTimeImport.lean::witness_interp`
+- `lean4/ContinuousTimeImport.lean::witness_neg`
+- `lean4/ContinuousTimeImport.lean::interpolants_differ`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

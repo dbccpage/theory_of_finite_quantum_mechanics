@@ -70,21 +70,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build FiniteQM`
 - counts toward the grade: no
 
-### Lean: `lean4/H010InterferenceNonDescent.lean`
-
-- file: [lean4/H010InterferenceNonDescent.lean](../../../lean4/H010InterferenceNonDescent.lean)
-- sha256 (`bytes`): `e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H010InterferenceNonDescent`): recorded sha256 `e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound; only standard axioms: yes
-- check: `cd lean4 && lake build H010InterferenceNonDescent`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `interference_non_descent` | yes | yes | yes | Quot.sound | `#print axioms interference_non_descent` |
-
-- counts toward the grade: yes
-
 ### Lean: `lean4/InterferenceDeficit.lean`
 
 - file: [lean4/InterferenceDeficit.lean](../../../lean4/InterferenceDeficit.lean)
@@ -98,6 +83,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `L1_cannot_compute_interference` | yes | yes | yes | none | `#print axioms L1_cannot_compute_interference` |
 | `deficit_eq_cross_term` | yes | yes | yes | Quot.sound, propext | `#print axioms deficit_eq_cross_term` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/InterferenceNonDescent.lean`
+
+- file: [lean4/InterferenceNonDescent.lean](../../../lean4/InterferenceNonDescent.lean)
+- sha256 (`bytes`): `a7247e052643452607f54ef0efa5ea98df3dc763e0620558ca81080fa73eca94`
+- cited in: node.lean
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `InterferenceNonDescent`): recorded sha256 `a7247e052643452607f54ef0efa5ea98df3dc763e0620558ca81080fa73eca94` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound; only standard axioms: yes
+- check: `cd lean4 && lake build InterferenceNonDescent`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `interference_non_descent` | yes | yes | yes | Quot.sound | `#print axioms interference_non_descent` |
 
 - counts toward the grade: yes
 

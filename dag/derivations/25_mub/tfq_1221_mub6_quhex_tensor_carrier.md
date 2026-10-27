@@ -17,7 +17,7 @@ Fix the identification C^6 = C^2 tensor C^3 with product basis |j,k> = |j> tenso
 The source statement that every 6x6 operator decomposes into Pauli and Gell-Mann tensor products, and its SU(2)/SU(3) reading, are not checked here; the factorization selects no MUB structure.
 
 ### Witness Audit
-No local declaration states this factorization; lean4/H062CompositionTensorMub.lean::composite_d6_overlap_is_one_sixth is rfl on the Nat product 2*3 = 6.
+No local declaration states this factorization; lean4/CompositionTensorMub.lean::composite_d6_overlap_is_one_sixth is rfl on the Nat product 2*3 = 6.
 
 ---
 

@@ -24,7 +24,7 @@ Label two edges 0 and 1. The source map sends both to 0. The target map sends bo
 
 ## What is proved
 
-The three face identities, the two reach values, the inequality of (0, 0) with (0, 1), and the agreement of the two source values and of the two target values. The campaign module CampaignGthShadow decides those evaluations. This node's lean list stays empty, because this stage rejects a Lean citation on the node.
+The three face identities, the two reach values, the inequality of (0, 0) with (0, 1), and the agreement of the two source values and of the two target values. The campaign module GenesisToHigherShadow decides those evaluations. This node's lean list stays empty, because this stage rejects a Lean citation on the node.
 
 ## What is assumed
 

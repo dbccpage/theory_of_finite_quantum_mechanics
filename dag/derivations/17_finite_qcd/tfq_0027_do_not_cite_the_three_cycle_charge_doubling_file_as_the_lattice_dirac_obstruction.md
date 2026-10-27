@@ -25,17 +25,17 @@ In accordance with strict constructive principles:
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
-### Lean 4 Theorems (`lean4/CampaignTfq0027FiniteQcd.lean`)
-- `CampaignTfq0027FiniteQcd.wilson_species_count_shell_selection`: Proves exact rational 4D `wilsonSpeciesCount4D` selects binomial shells `1, 4, 6, 4, 1` at critical masses `m = 0, -1, -2, -3, -4` for `r = 1/2`.
-- `CampaignTfq0027FiniteQcd.wilson_term_vanishes_only_at_origin_corner`: Proves `2 * r * c = 0 ↔ c = 0` for `r > 0`.
-- `CampaignTfq0027FiniteQcd.wilson_scalar_term_anticommutes_with_no_gamma_generator`: Proves `{w I₂, γ_a} ≠ 0` for `a ∈ {1, 2, 5}` and `w ≠ 0`.
-- `CampaignTfq0027FiniteQcd.zero_mode_count_rank_nullity_formula`: Proves `zeroModeCount s N d rank + rank = s * N^d` and 1D `N = 4` kernel transitions (`4 → 2 → 0`).
-- `CampaignTfq0027FiniteQcd.antiperiodic_twist_excludes_zero_and_pi_corners`: Proves `(2 * n + 1) % 2 = 1`, `2 * n + 1 ≠ 0`, and `2 * n + 1 ≠ 2 * m`.
-- `CampaignTfq0027FiniteQcd.even_n_periodic_vs_antiperiodic_species_contrast`: Proves `16` vs. `0` in `4D` and `8` vs. `0` in `3D`.
-- `CampaignTfq0027FiniteQcd.c3_to_c6_naive_duplication_vs_block_last_refinement`: Imports `IntegralRefinementC3C6` and proves `charge6 (naiveDuplicate v) = 2 * charge3 v` and `charge6 (blockLastRefine v) = charge3 v`.
-- `CampaignTfq0027FiniteQcd.c3_c6_charge_refinement_not_lattice_dirac_obstruction_fence`: Proves `2 ≠ 16` (`C₃ → C₆` scalar duplication factor vs. `4D` Dirac corner count).
-- `CampaignTfq0027FiniteQcd.max_carrier_dimension_128_dense_operator_fence`: Proves `MAX_CARRIER_DIMENSION = 128` admission/refusal.
-- `CampaignTfq0027FiniteQcd.tfq0027_scope_and_citation_fence`: Audits `Tfq0027ScopeLedger`.
+### Lean 4 Theorems (`lean4/WilsonSpeciesCount.lean`)
+- `WilsonSpeciesCount.wilson_species_count_shell_selection`: Proves exact rational 4D `wilsonSpeciesCount4D` selects binomial shells `1, 4, 6, 4, 1` at critical masses `m = 0, -1, -2, -3, -4` for `r = 1/2`.
+- `WilsonSpeciesCount.wilson_term_vanishes_only_at_origin_corner`: Proves `2 * r * c = 0 ↔ c = 0` for `r > 0`.
+- `WilsonSpeciesCount.wilson_scalar_term_anticommutes_with_no_gamma_generator`: Proves `{w I₂, γ_a} ≠ 0` for `a ∈ {1, 2, 5}` and `w ≠ 0`.
+- `WilsonSpeciesCount.zero_mode_count_rank_nullity_formula`: Proves `zeroModeCount s N d rank + rank = s * N^d` and 1D `N = 4` kernel transitions (`4 → 2 → 0`).
+- `WilsonSpeciesCount.antiperiodic_twist_excludes_zero_and_pi_corners`: Proves `(2 * n + 1) % 2 = 1`, `2 * n + 1 ≠ 0`, and `2 * n + 1 ≠ 2 * m`.
+- `WilsonSpeciesCount.even_n_periodic_vs_antiperiodic_species_contrast`: Proves `16` vs. `0` in `4D` and `8` vs. `0` in `3D`.
+- `WilsonSpeciesCount.c3_to_c6_naive_duplication_vs_block_last_refinement`: Imports `IntegralRefinementC3C6` and proves `charge6 (naiveDuplicate v) = 2 * charge3 v` and `charge6 (blockLastRefine v) = charge3 v`.
+- `WilsonSpeciesCount.c3_c6_charge_refinement_not_lattice_dirac_obstruction_fence`: Proves `2 ≠ 16` (`C₃ → C₆` scalar duplication factor vs. `4D` Dirac corner count).
+- `WilsonSpeciesCount.max_carrier_dimension_128_dense_operator_fence`: Proves `MAX_CARRIER_DIMENSION = 128` admission/refusal.
+- `WilsonSpeciesCount.tfq0027_scope_and_citation_fence`: Audits `Tfq0027ScopeLedger`.
 
 ### Independent Python Verification (`checks/independent/tfq-0027.py`)
 - Executes `3404` exact rational (`fractions.Fraction`), Gaussian-integer, and row-echelon matrix rank checks across `wilson_species_count`, non-anticommutation with `γ_*`, periodic vs. antiperiodic `zero_mode_count`, `C₃ → C₆` non-equivalence, Hypothesis property tests, and 6 negative-control mutation kills (`0` failures).

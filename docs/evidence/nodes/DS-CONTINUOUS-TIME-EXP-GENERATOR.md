@@ -47,30 +47,44 @@ The one-parameter family T(t) = exp(tH), the generator H = log T, and a continuu
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignDsContinuousTimeExpGenerator.lean`
+### Lean: `lean4/ContinuousDynamicsFork.lean`
 
-- file: [lean4/CampaignDsContinuousTimeExpGenerator.lean](../../../lean4/CampaignDsContinuousTimeExpGenerator.lean)
-- sha256 (`bytes`): `3b6fd4eac6d42eb9763210eb4e611c778b87fea4c1f6cac841bcab28da8f1339`
-- cited in: node.lean, receipt dag/research/campaign_ds-continuous-time-exp-generator_lean_replay.json (CampaignDsContinuousTimeExpGenerator), record TFQ-1040
-- replay: `verified`
-  - receipt [dag/research/campaign_ds-continuous-time-exp-generator_lean_replay.json](../../../dag/research/campaign_ds-continuous-time-exp-generator_lean_replay.json) (module `CampaignDsContinuousTimeExpGenerator`): recorded sha256 `3b6fd4eac6d42eb9763210eb4e611c778b87fea4c1f6cac841bcab28da8f1339` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignDsContinuousTimeExpGenerator`
+- file: [lean4/ContinuousDynamicsFork.lean](../../../lean4/ContinuousDynamicsFork.lean)
+- sha256 (`bytes`): `135a00f4b383fbdc849d9acd1cd61ee738bfd656be50fe2b490db89041c8e36b`
+- cited in: node.lean, record TFQ-1040
+- replay: `none`
+- check: `cd lean4 && lake build ContinuousDynamicsFork`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignDsContinuousTimeExpGenerator.candidateCorner` | yes | yes | yes | none | `#print axioms CampaignDsContinuousTimeExpGenerator.candidateCorner` |
-| `CampaignDsContinuousTimeExpGenerator.cayleyNorm` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsContinuousTimeExpGenerator.cayleyNorm` |
-| `CampaignDsContinuousTimeExpGenerator.energyDistinct` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsContinuousTimeExpGenerator.energyDistinct` |
-| `CampaignDsContinuousTimeExpGenerator.energyOne` | yes | yes | yes | none | `#print axioms CampaignDsContinuousTimeExpGenerator.energyOne` |
-| `CampaignDsContinuousTimeExpGenerator.energyZero` | yes | yes | yes | none | `#print axioms CampaignDsContinuousTimeExpGenerator.energyZero` |
-| `CampaignDsContinuousTimeExpGenerator.gAddCoords` | yes | yes | yes | none | `#print axioms CampaignDsContinuousTimeExpGenerator.gAddCoords` |
-| `CampaignDsContinuousTimeExpGenerator.gMulCoords` | yes | yes | yes | none | `#print axioms CampaignDsContinuousTimeExpGenerator.gMulCoords` |
-| `CampaignDsContinuousTimeExpGenerator.negSquare` | yes | yes | yes | none | `#print axioms CampaignDsContinuousTimeExpGenerator.negSquare` |
-| `CampaignDsContinuousTimeExpGenerator.noNilpotentIntegerLog` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsContinuousTimeExpGenerator.noNilpotentIntegerLog` |
-| `CampaignDsContinuousTimeExpGenerator.noToggleSquare` | yes | yes | yes | none | `#print axioms CampaignDsContinuousTimeExpGenerator.noToggleSquare` |
-| `CampaignDsContinuousTimeExpGenerator.scaledDiffer` | yes | yes | yes | none | `#print axioms CampaignDsContinuousTimeExpGenerator.scaledDiffer` |
-| `CampaignDsContinuousTimeExpGenerator.scaledSquare` | yes | yes | yes | none | `#print axioms CampaignDsContinuousTimeExpGenerator.scaledSquare` |
-| `CampaignDsContinuousTimeExpGenerator.toggleImages` | yes | yes | yes | none | `#print axioms CampaignDsContinuousTimeExpGenerator.toggleImages` |
+| `continuous_dynamics_fork` | yes | yes | yes | - | `#print axioms continuous_dynamics_fork` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/ContinuousTimeExpGenerator.lean`
+
+- file: [lean4/ContinuousTimeExpGenerator.lean](../../../lean4/ContinuousTimeExpGenerator.lean)
+- sha256 (`bytes`): `03d58f4e60ab3368f101da133736a9ee3355d00973ffe3b90ca99bc1908f2da6`
+- cited in: node.lean, receipt dag/research/campaign_ds-continuous-time-exp-generator_lean_replay.json (ContinuousTimeExpGenerator), record TFQ-1040
+- replay: `verified`
+  - receipt [dag/research/campaign_ds-continuous-time-exp-generator_lean_replay.json](../../../dag/research/campaign_ds-continuous-time-exp-generator_lean_replay.json) (module `ContinuousTimeExpGenerator`): recorded sha256 `03d58f4e60ab3368f101da133736a9ee3355d00973ffe3b90ca99bc1908f2da6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build ContinuousTimeExpGenerator`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `ContinuousTimeExpGenerator.candidateCorner` | yes | yes | yes | none | `#print axioms ContinuousTimeExpGenerator.candidateCorner` |
+| `ContinuousTimeExpGenerator.cayleyNorm` | yes | yes | yes | Quot.sound, propext | `#print axioms ContinuousTimeExpGenerator.cayleyNorm` |
+| `ContinuousTimeExpGenerator.energyDistinct` | yes | yes | yes | Quot.sound, propext | `#print axioms ContinuousTimeExpGenerator.energyDistinct` |
+| `ContinuousTimeExpGenerator.energyOne` | yes | yes | yes | none | `#print axioms ContinuousTimeExpGenerator.energyOne` |
+| `ContinuousTimeExpGenerator.energyZero` | yes | yes | yes | none | `#print axioms ContinuousTimeExpGenerator.energyZero` |
+| `ContinuousTimeExpGenerator.gAddCoords` | yes | yes | yes | none | `#print axioms ContinuousTimeExpGenerator.gAddCoords` |
+| `ContinuousTimeExpGenerator.gMulCoords` | yes | yes | yes | none | `#print axioms ContinuousTimeExpGenerator.gMulCoords` |
+| `ContinuousTimeExpGenerator.negSquare` | yes | yes | yes | none | `#print axioms ContinuousTimeExpGenerator.negSquare` |
+| `ContinuousTimeExpGenerator.noNilpotentIntegerLog` | yes | yes | yes | Quot.sound, propext | `#print axioms ContinuousTimeExpGenerator.noNilpotentIntegerLog` |
+| `ContinuousTimeExpGenerator.noToggleSquare` | yes | yes | yes | none | `#print axioms ContinuousTimeExpGenerator.noToggleSquare` |
+| `ContinuousTimeExpGenerator.scaledDiffer` | yes | yes | yes | none | `#print axioms ContinuousTimeExpGenerator.scaledDiffer` |
+| `ContinuousTimeExpGenerator.scaledSquare` | yes | yes | yes | none | `#print axioms ContinuousTimeExpGenerator.scaledSquare` |
+| `ContinuousTimeExpGenerator.toggleImages` | yes | yes | yes | none | `#print axioms ContinuousTimeExpGenerator.toggleImages` |
 
 - counts toward the grade: yes
 
@@ -89,28 +103,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H016ContinuousDynamicsFork.lean`
+### Lean: `lean4/DiscreteDynamicsStone.lean`
 
-- file: [lean4/H016ContinuousDynamicsFork.lean](../../../lean4/H016ContinuousDynamicsFork.lean)
-- sha256 (`bytes`): `906b145d8626c1887b1075e9b900858ca3f0c16df6fa65a2d8a87aa68b06de85`
-- cited in: node.lean, record TFQ-1040
-- replay: `none`
-- check: `cd lean4 && lake build H016ContinuousDynamicsFork`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `continuous_dynamics_fork` | yes | yes | yes | - | `#print axioms continuous_dynamics_fork` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/H055DiscreteDynamicsStone.lean`
-
-- file: [lean4/H055DiscreteDynamicsStone.lean](../../../lean4/H055DiscreteDynamicsStone.lean)
-- sha256 (`bytes`): `1b56478a77b4ba84c72494821dcdd0ad7b47228d94bc114fbded0adea7a018c0`
+- file: [lean4/DiscreteDynamicsStone.lean](../../../lean4/DiscreteDynamicsStone.lean)
+- sha256 (`bytes`): `02c2108be73f205cca1ec29fbbd5c897ff957547991f7371c12b53ff1dbab102`
 - cited in: node.lean, record TFQ-1040
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `H055DiscreteDynamicsStone`): recorded sha256 `1b56478a77b4ba84c72494821dcdd0ad7b47228d94bc114fbded0adea7a018c0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H055DiscreteDynamicsStone`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_dynamics.json](../../../dag/research/lean_replay_campaign_finite_qm_dynamics.json) (module `DiscreteDynamicsStone`): recorded sha256 `02c2108be73f205cca1ec29fbbd5c897ff957547991f7371c12b53ff1dbab102` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build DiscreteDynamicsStone`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -128,7 +128,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_1040_ds_continuous_time_exp_generator.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_1040_ds_continuous_time_exp_generator.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_1040_ds_continuous_time_exp_generator.md)
-- sha256 (`lf-normalised`): `700e0ebe9bef80269b5ff4fa8559721887d31de325234fca221cd919de853b3b`
+- sha256 (`lf-normalised`): `60b619b748a2fc7dc1d62d7236e318b5be1c8a70acef69dfd92a827fa4a3b430`
 - generated view: listed, not counted
 - cited in: record TFQ-1040
 - counts toward the grade: no

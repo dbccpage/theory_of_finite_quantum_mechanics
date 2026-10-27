@@ -1,0 +1,246 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/KitaevChainImport.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/KitaevChainImport.lean",
+      "sha256": "1a3b19e68a5eabbcc2e289a60aaa9f0ca22d0bf5ce93d4800d69a5813998b36f"
+    },
+    "boundaries": [
+      "The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.",
+      "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+    ],
+    "contract_urn": "urn:tfqm:review:20261026:KitaevChainImport",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_maj-import-kitaev-chain_lean_replay.json",
+        "sha256": "54e3bbc935426d49b1489fae4aa19d96609ec295d61cd9bf6327a38964f7c84b"
+      },
+      {
+        "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+        "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+      }
+    ],
+    "owned_invariants": [
+      "For every natural number L with 2 <= L and every natural number j with 1 <= j and j <= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu < (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu < (2 * t) * (2 * t), and delta differs from 0."
+    ],
+    "purpose": "For every natural number L with 2 <= L and every natural number j with 1 <= j and j <= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu < (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu < (2 * t) * (2 * t), and delta differs from 0.",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "edgeAbsent",
+      "edgeWitness",
+      "insidePoint",
+      "outsidePoint"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 2348,
+      "original_paths": [
+        "lean4/CampaignMajImportKitaevChain.contract.score.yaml#qm-open-pr-review-20261026-4be2d26217c4"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignMajImportKitaevChain.lean\",\n    \"sha256\": \"4be2d26217c40beea3ab808e5140bd95ff3aef37867556343ea2d9c18b582585\"\n  },\n  \"boundaries\": [\n    \"The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review:20261026:CampaignMajImportKitaevChain\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_maj-import-kitaev-chain_lean_replay.json\",\n      \"sha256\": \"6bae9e30d704dd1307a0d07bea5c53fe35e5375f70defee1698374e21aa487d3\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_upper_campaign_review_20261026.md\",\n      \"sha256\": \"0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"For every natural number L with 2 <= L and every natural number j with 1 <= j and j <= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu < (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu < (2 * t) * (2 * t), and delta differs from 0.\"\n  ],\n  \"purpose\": \"For every natural number L with 2 <= L and every natural number j with 1 <= j and j <= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu < (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu < (2 * t) * (2 * t), and delta differs from 0.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"edgeAbsent\",\n    \"edgeWitness\",\n    \"insidePoint\",\n    \"outsidePoint\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignMajImportKitaevChain.lean",
+          "sha256": "4be2d26217c40beea3ab808e5140bd95ff3aef37867556343ea2d9c18b582585"
+        },
+        "boundaries": [
+          "The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "contract_urn": "urn:tfqm:review:20261026:CampaignMajImportKitaevChain",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_maj-import-kitaev-chain_lean_replay.json",
+            "sha256": "6bae9e30d704dd1307a0d07bea5c53fe35e5375f70defee1698374e21aa487d3"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+            "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+          }
+        ],
+        "owned_invariants": [
+          "For every natural number L with 2 <= L and every natural number j with 1 <= j and j <= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu < (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu < (2 * t) * (2 * t), and delta differs from 0."
+        ],
+        "purpose": "For every natural number L with 2 <= L and every natural number j with 1 <= j and j <= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu < (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu < (2 * t) * (2 * t), and delta differs from 0.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "edgeAbsent",
+          "edgeWitness",
+          "insidePoint",
+          "outsidePoint"
+        ]
+      },
+      "sha256": "02d079ba08b7735a195c5479704eb874be17ae6d3b692159d3d19ca116c65a04"
+    },
+    {
+      "bytes": 2326,
+      "original_paths": [
+        "lean4/KitaevChainImport.contract.score.yaml#qm-open-pr-review-20261026-4be2d26217c4"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/KitaevChainImport.lean\",\n    \"sha256\": \"1a3b19e68a5eabbcc2e289a60aaa9f0ca22d0bf5ce93d4800d69a5813998b36f\"\n  },\n  \"boundaries\": [\n    \"The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review:20261026:KitaevChainImport\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_maj-import-kitaev-chain_lean_replay.json\",\n      \"sha256\": \"54e3bbc935426d49b1489fae4aa19d96609ec295d61cd9bf6327a38964f7c84b\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_upper_campaign_review_20261026.md\",\n      \"sha256\": \"0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"For every natural number L with 2 <= L and every natural number j with 1 <= j and j <= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu < (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu < (2 * t) * (2 * t), and delta differs from 0.\"\n  ],\n  \"purpose\": \"For every natural number L with 2 <= L and every natural number j with 1 <= j and j <= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu < (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu < (2 * t) * (2 * t), and delta differs from 0.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"edgeAbsent\",\n    \"edgeWitness\",\n    \"insidePoint\",\n    \"outsidePoint\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/KitaevChainImport.lean",
+          "sha256": "1a3b19e68a5eabbcc2e289a60aaa9f0ca22d0bf5ce93d4800d69a5813998b36f"
+        },
+        "boundaries": [
+          "The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "contract_urn": "urn:tfqm:review:20261026:KitaevChainImport",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_maj-import-kitaev-chain_lean_replay.json",
+            "sha256": "54e3bbc935426d49b1489fae4aa19d96609ec295d61cd9bf6327a38964f7c84b"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+            "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+          }
+        ],
+        "owned_invariants": [
+          "For every natural number L with 2 <= L and every natural number j with 1 <= j and j <= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu < (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu < (2 * t) * (2 * t), and delta differs from 0."
+        ],
+        "purpose": "For every natural number L with 2 <= L and every natural number j with 1 <= j and j <= L - 1, the index 2 * j differs from 1 and from 2 * L, and the index 2 * j + 1 differs from 1 and from 2 * L. At L = 2 and j = 1, 2 * 1 = 2, 2 * 1 + 1 = 3, and 2 * 2 = 4, and 2 differs from 1 and from 4, and 3 differs from 1 and from 4. The integers t = 1, mu = 1 and delta = 1 satisfy mu * mu < (2 * t) * (2 * t) and delta differs from 0. The integers t = 1, mu = 3 and delta = 1 fail mu * mu < (2 * t) * (2 * t), and delta differs from 0.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "edgeAbsent",
+          "edgeWitness",
+          "insidePoint",
+          "outsidePoint"
+        ]
+      },
+      "sha256": "12c2fe8e0312d0ac7aa08df72797faf0a3625e089140896d62fbc1bf2f993897"
+    }
+  ],
+  "current_contract": "12c2fe8e0312d0ac7aa08df72797faf0a3625e089140896d62fbc1bf2f993897",
+  "current_scoring": "08bff8061d462174d26e1b88957614ccefea4f72549efe70938702f137da2736",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2491,
+      "original_paths": [
+        "lean4/CampaignMajImportKitaevChain.contract.score.yaml#qm-open-pr-review-20261026-4be2d26217c4"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignMajImportKitaevChain.lean\",\n    \"sha256\": \"4be2d26217c40beea3ab808e5140bd95ff3aef37867556343ea2d9c18b582585\"\n  },\n  \"assessment_id\": \"qm-open-pr-review-20261026-4be2d26217c4\",\n  \"basis\": {\n    \"G1\": \"Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.\",\n    \"G2\": \"Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.\",\n    \"G3\": \"Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.\",\n    \"G4\": \"Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.\",\n    \"G5\": \"Inspected 29 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T15:48:22.302190+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_maj-import-kitaev-chain_lean_replay.json\",\n      \"sha256\": \"6bae9e30d704dd1307a0d07bea5c53fe35e5375f70defee1698374e21aa487d3\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_upper_campaign_review_20261026.md\",\n      \"sha256\": \"0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.\",\n  \"open_higher_grade_findings\": [\n    \"The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignMajImportKitaevChain.lean",
+          "sha256": "4be2d26217c40beea3ab808e5140bd95ff3aef37867556343ea2d9c18b582585"
+        },
+        "assessment_id": "qm-open-pr-review-20261026-4be2d26217c4",
+        "basis": {
+          "G1": "Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.",
+          "G2": "Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.",
+          "G3": "Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.",
+          "G4": "Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.",
+          "G5": "Inspected 29 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T15:48:22.302190+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_maj-import-kitaev-chain_lean_replay.json",
+            "sha256": "6bae9e30d704dd1307a0d07bea5c53fe35e5375f70defee1698374e21aa487d3"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+            "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.",
+        "open_higher_grade_findings": [
+          "The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "5e1200c50ab7558c4c09622a996a604cf7ba7923d376d4728929777cc3bcec4b"
+    },
+    {
+      "bytes": 2921,
+      "original_paths": [
+        "lean4/KitaevChainImport.contract.score.yaml#qm-open-pr-review-20261026-4be2d26217c4"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/KitaevChainImport.lean\",\n    \"sha256\": \"1a3b19e68a5eabbcc2e289a60aaa9f0ca22d0bf5ce93d4800d69a5813998b36f\"\n  },\n  \"assessment_id\": \"qm-open-pr-review-20261026-4be2d26217c4\",\n  \"basis\": {\n    \"G1\": \"Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.\",\n    \"G2\": \"Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.\",\n    \"G3\": \"Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.\",\n    \"G4\": \"Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.\",\n    \"G5\": \"Inspected 29 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T15:48:22.302190+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_maj-import-kitaev-chain_lean_replay.json\",\n      \"sha256\": \"54e3bbc935426d49b1489fae4aa19d96609ec295d61cd9bf6327a38964f7c84b\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_upper_campaign_review_20261026.md\",\n      \"sha256\": \"0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.\",\n  \"open_higher_grade_findings\": [\n    \"The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"profile\": \"Exact\",\n  \"rebound\": {\n    \"date\": \"2026-10-27\",\n    \"from_path\": \"lean4/CampaignMajImportKitaevChain.lean\",\n    \"from_sha256\": \"4be2d26217c40beea3ab808e5140bd95ff3aef37867556343ea2d9c18b582585\",\n    \"note\": \"Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived.\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/KitaevChainImport.lean",
+          "sha256": "1a3b19e68a5eabbcc2e289a60aaa9f0ca22d0bf5ce93d4800d69a5813998b36f"
+        },
+        "assessment_id": "qm-open-pr-review-20261026-4be2d26217c4",
+        "basis": {
+          "G1": "Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.",
+          "G2": "Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.",
+          "G3": "Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.",
+          "G4": "Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.",
+          "G5": "Inspected 29 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T15:48:22.302190+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_maj-import-kitaev-chain_lean_replay.json",
+            "sha256": "54e3bbc935426d49b1489fae4aa19d96609ec295d61cd9bf6327a38964f7c84b"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+            "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.",
+        "open_higher_grade_findings": [
+          "The fermion Hamiltonian, the BdG spectrum, the phase region as a physical claim, and a wire without disorder or trivial subgap states stay imported. The index split and the two integer comparisons are one finite reading of the sweet-spot labels and the stated bound. They do not select a topological phase.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "profile": "Exact",
+        "rebound": {
+          "date": "2026-10-27",
+          "from_path": "lean4/CampaignMajImportKitaevChain.lean",
+          "from_sha256": "4be2d26217c40beea3ab808e5140bd95ff3aef37867556343ea2d9c18b582585",
+          "note": "Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived."
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "08bff8061d462174d26e1b88957614ccefea4f72549efe70938702f137da2736"
+    }
+  ]
+}

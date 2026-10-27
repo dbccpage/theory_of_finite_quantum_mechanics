@@ -62,7 +62,7 @@ def test_statuses_follow_the_evidence():
                        for report in entry['axiom_reports'])
         elif nid == 'OPS-RUST-RECEIPTS-AND-LIMITS':
             assert node['lean'] and all(
-                x.startswith('lean4/CampaignOpsRustReceiptsAndLimits.lean::') for x in node['lean'])
+                x.startswith('lean4/ObserverPresheafReceiptLimits.lean::') for x in node['lean'])
             receipt_path = 'dag/research/campaign_ops-rust-receipts-and-limits_lean_replay.json'
             assert receipt_path in node['source']
             receipt = json.loads((ROOT / receipt_path).read_text(encoding='utf-8'))
@@ -70,8 +70,8 @@ def test_statuses_follow_the_evidence():
             assert entry['dag_node'] == nid
             assert entry['source'] == sync.CAMPAIGN_CEILING
             expected_audit = set(entry['anchors']) | {
-                'CampaignOpsRustReceiptsAndLimits.maxGlobal',
-                'CampaignOpsRustReceiptsAndLimits.maxLp',
+                'ObserverPresheafReceiptLimits.maxGlobal',
+                'ObserverPresheafReceiptLimits.maxLp',
             }
             assert set(entry['axioms']) == expected_audit
             assert entry['sha256'] == hashlib.sha256((ROOT / entry['source']).read_bytes()).hexdigest()

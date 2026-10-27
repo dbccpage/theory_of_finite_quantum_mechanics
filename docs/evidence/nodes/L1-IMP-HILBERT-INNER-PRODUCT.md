@@ -63,14 +63,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H005InnerProductAdmission.lean`
+### Lean: `lean4/InnerProductAdmission.lean`
 
-- file: [lean4/H005InnerProductAdmission.lean](../../../lean4/H005InnerProductAdmission.lean)
-- sha256 (`bytes`): `25072066552c061b7ce2206ed10846ef1fe954edbb7dc5056a34de573929e55c`
+- file: [lean4/InnerProductAdmission.lean](../../../lean4/InnerProductAdmission.lean)
+- sha256 (`bytes`): `8c8cf8f0e0067b4933719447884b819996c739cca782fca7dce5db2ea880930e`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H005InnerProductAdmission`): recorded sha256 `25072066552c061b7ce2206ed10846ef1fe954edbb7dc5056a34de573929e55c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H005InnerProductAdmission`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `InnerProductAdmission`): recorded sha256 `8c8cf8f0e0067b4933719447884b819996c739cca782fca7dce5db2ea880930e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build InnerProductAdmission`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -82,40 +82,40 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/SectorFormHermitian.lean`
 
 - file: [lean4/SectorFormHermitian.lean](../../../lean4/SectorFormHermitian.lean)
-- sha256 (`bytes`): `78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc`
+- sha256 (`bytes`): `0aa46359b858583bc44444f0db0c56937ea1da8b464ee517a5b4ab1134abfce1`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `SectorFormHermitian`): recorded sha256 `78ea0b521e573c51d4a1ced879454648a6ba2ca37d87f54f5383eaaccd551efc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `SectorFormHermitian`): recorded sha256 `0aa46359b858583bc44444f0db0c56937ea1da8b464ee517a5b4ab1134abfce1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SectorFormHermitian`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `InnerProductFable.HermitianSectorForm.eq_smul_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.HermitianSectorForm.eq_smul_one` |
-| `InnerProductFable.HermitianSectorForm.eq_smul_one_generated` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.HermitianSectorForm.eq_smul_one_generated` |
-| `InnerProductFable.HermitianSectorForm.hf_eq_scale_vnorm` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.HermitianSectorForm.hf_eq_scale_vnorm` |
-| `InnerProductFable.HermitianSectorForm.imagLeak12_not_sectorAdditive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.HermitianSectorForm.imagLeak12_not_sectorAdditive` |
+| `InnerProductFinite.HermitianSectorForm.eq_smul_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.HermitianSectorForm.eq_smul_one` |
+| `InnerProductFinite.HermitianSectorForm.eq_smul_one_generated` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.HermitianSectorForm.eq_smul_one_generated` |
+| `InnerProductFinite.HermitianSectorForm.hf_eq_scale_vnorm` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.HermitianSectorForm.hf_eq_scale_vnorm` |
+| `InnerProductFinite.HermitianSectorForm.imagLeak12_not_sectorAdditive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.HermitianSectorForm.imagLeak12_not_sectorAdditive` |
 
 - counts toward the grade: yes
 
 ### Lean: `lean4/SectorFormUniqueness.lean`
 
 - file: [lean4/SectorFormUniqueness.lean](../../../lean4/SectorFormUniqueness.lean)
-- sha256 (`bytes`): `2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be`
+- sha256 (`bytes`): `f8cf9b4ea79966f80a4d30fc5d4975aaf00b6ae6e282a8e58f5adf77185a8dde`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `SectorFormUniqueness`): recorded sha256 `2a08c38a779ba3b7cba8520f9134cfe8e9c8a5020d063c8d316c37e78aef79be` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `SectorFormUniqueness`): recorded sha256 `f8cf9b4ea79966f80a4d30fc5d4975aaf00b6ae6e282a8e58f5adf77185a8dde` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build SectorFormUniqueness`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `InnerProductFable.SectorForm.diag12_not_invariant_swap` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.SectorForm.diag12_not_invariant_swap` |
-| `InnerProductFable.SectorForm.eq_one_of_normalized` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.SectorForm.eq_one_of_normalized` |
-| `InnerProductFable.SectorForm.eq_smul_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.SectorForm.eq_smul_one` |
-| `InnerProductFable.SectorForm.eq_smul_one_generated` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.SectorForm.eq_smul_one_generated` |
-| `InnerProductFable.SectorForm.qf_eq_scale_dot` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.SectorForm.qf_eq_scale_dot` |
-| `InnerProductFable.SectorForm.scale_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.SectorForm.scale_pos` |
-| `InnerProductFable.SectorForm.unif12_not_sectorAdditive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.SectorForm.unif12_not_sectorAdditive` |
-| `InnerProductFable.SectorForm.unique_up_to_scale` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFable.SectorForm.unique_up_to_scale` |
+| `InnerProductFinite.SectorForm.diag12_not_invariant_swap` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.SectorForm.diag12_not_invariant_swap` |
+| `InnerProductFinite.SectorForm.eq_one_of_normalized` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.SectorForm.eq_one_of_normalized` |
+| `InnerProductFinite.SectorForm.eq_smul_one` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.SectorForm.eq_smul_one` |
+| `InnerProductFinite.SectorForm.eq_smul_one_generated` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.SectorForm.eq_smul_one_generated` |
+| `InnerProductFinite.SectorForm.qf_eq_scale_dot` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.SectorForm.qf_eq_scale_dot` |
+| `InnerProductFinite.SectorForm.scale_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.SectorForm.scale_pos` |
+| `InnerProductFinite.SectorForm.unif12_not_sectorAdditive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.SectorForm.unif12_not_sectorAdditive` |
+| `InnerProductFinite.SectorForm.unique_up_to_scale` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms InnerProductFinite.SectorForm.unique_up_to_scale` |
 
 - counts toward the grade: yes
 

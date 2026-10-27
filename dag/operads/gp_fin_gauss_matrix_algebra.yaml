@@ -40,7 +40,7 @@ operation_candidates:
   line: 96
   signature_excerpt: "def endOfMat {K Q : Type} (P : StarRingPack K) (E : Enum Q)\n    (A : Mat K Q) :\
     \ LinearEnd Q P"
-  source: lean4/H017Fin.lean
+  source: lean4/HilbertWalkGleasonFin.lean
   repository: this_repository
   source_sha256: 2294ae2512eac4a7c5167954b86118c7f02638dafbdb42b4b894fc1fbdc4dea2
   status: source_candidate_requires_semantic_review
@@ -48,7 +48,7 @@ operation_candidates:
   name: LinearEnd
   line: 34
   signature_excerpt: 'structure LinearEnd {K : Type} (Q : Type) (P : StarRingPack K)'
-  source: lean4/H017Fin.lean
+  source: lean4/HilbertWalkGleasonFin.lean
   repository: this_repository
   source_sha256: 2294ae2512eac4a7c5167954b86118c7f02638dafbdb42b4b894fc1fbdc4dea2
   status: source_candidate_requires_semantic_review
@@ -56,7 +56,7 @@ operation_candidates:
   name: Mat
   line: 18
   signature_excerpt: 'def Mat (K Q : Type) : Type'
-  source: lean4/H017Fin.lean
+  source: lean4/HilbertWalkGleasonFin.lean
   repository: this_repository
   source_sha256: 2294ae2512eac4a7c5167954b86118c7f02638dafbdb42b4b894fc1fbdc4dea2
   status: source_candidate_requires_semantic_review
@@ -65,7 +65,7 @@ operation_candidates:
   line: 20
   signature_excerpt: "def applyMat {K Q : Type} (P : StarRingPack K) (E : Enum Q)\n    (A : Mat K Q) (v\
     \ : Vec K Q) : Vec K Q"
-  source: lean4/H017Fin.lean
+  source: lean4/HilbertWalkGleasonFin.lean
   repository: this_repository
   source_sha256: 2294ae2512eac4a7c5167954b86118c7f02638dafbdb42b4b894fc1fbdc4dea2
   status: source_candidate_requires_semantic_review
@@ -73,7 +73,7 @@ operation_candidates:
   name: adj
   line: 31
   signature_excerpt: 'def adj {K Q : Type} (P : StarRingPack K) (A : Mat K Q) : Mat K Q'
-  source: lean4/H017Fin.lean
+  source: lean4/HilbertWalkGleasonFin.lean
   repository: this_repository
   source_sha256: 2294ae2512eac4a7c5167954b86118c7f02638dafbdb42b4b894fc1fbdc4dea2
   status: source_candidate_requires_semantic_review
@@ -82,7 +82,7 @@ operation_candidates:
   line: 43
   signature_excerpt: "def matOf {K Q : Type} [DecidableEq Q] {P : StarRingPack K}\n    (T : LinearEnd\
     \ Q P) : Mat K Q"
-  source: lean4/H017Fin.lean
+  source: lean4/HilbertWalkGleasonFin.lean
   repository: this_repository
   source_sha256: 2294ae2512eac4a7c5167954b86118c7f02638dafbdb42b4b894fc1fbdc4dea2
   status: source_candidate_requires_semantic_review
@@ -91,7 +91,7 @@ operation_candidates:
   line: 24
   signature_excerpt: "def mmul {K Q : Type} (P : StarRingPack K) (E : Enum Q)\n    (A B : Mat K Q) : Mat\
     \ K Q"
-  source: lean4/H017Fin.lean
+  source: lean4/HilbertWalkGleasonFin.lean
   repository: this_repository
   source_sha256: 2294ae2512eac4a7c5167954b86118c7f02638dafbdb42b4b894fc1fbdc4dea2
   status: source_candidate_requires_semantic_review
@@ -108,7 +108,7 @@ relation_candidates:
     \ E (applyMat gaussPack E A u) v =\n          sesq gaussPack E u\n            (applyMat gaussPack\
     \ E (adj gaussPack A) v)) ∧\n      (∀ (T : LinearEnd Q gaussPack) (A : Mat GaussInt Q),\n        (∀\
     \ v x, T.map v x = applyMat gaussPack E A v x) →\n          ∀ i j, matOf T i j = A i j)"
-  source: lean4/H017Fin.lean
+  source: lean4/HilbertWalkGleasonFin.lean
   repository: this_repository
   source_sha256: 2294ae2512eac4a7c5167954b86118c7f02638dafbdb42b4b894fc1fbdc4dea2
   status: source_candidate_requires_semantic_review
@@ -131,7 +131,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H017Fin.lean::finite_gauss_matrix_algebra
   availability: local
   symbol: finite_gauss_matrix_algebra
-  path: lean4/H017Fin.lean
+  path: lean4/HilbertWalkGleasonFin.lean
   repository: this_repository
   sha256: 2294ae2512eac4a7c5167954b86118c7f02638dafbdb42b4b894fc1fbdc4dea2
   declaration_status: declaration_found_not_proof_checked
@@ -650,7 +650,7 @@ operad_slots:
       additive homogeneous endomorphism is left multiplication by a unique n x n Gauss-integer matrix;
       product is composition and conjugate transpose is the adjoint of the admitted pairing. This is M_n(Z[i]),
       not M_n(C).
-    source_scope_review: 'Fresh H017Fin source proofs cover arbitrary supplied finite Enum Q and Gauss-integer
+    source_scope_review: 'Fresh HilbertWalkGleasonFin source proofs cover arbitrary supplied finite Enum Q and Gauss-integer
       linear endomorphisms: basis recovery, uniqueness, composition and the admitted sesquilinear adjoint.
       Native 2x2 Gaussian examples retain genuinely imaginary coefficients, all product/action entries,
       conjugate transpose and both pairings. No conversion from Z[i] to a complex field or spectral theorem
@@ -756,33 +756,33 @@ operad_slots:
     - dag/pfp/review_exact_json.py
     - lean4/PrimitiveDifference.lean
     - lean4/HWKernel.lean
-    - lean4/H004FreeLinearization.lean
-    - lean4/H005InnerProductAdmission.lean
-    - lean4/H003ReversibilityGate.lean
-    - lean4/H006PermutationUnitary.lean
-    - lean4/H007Complexification.lean
-    - lean4/H017MatrixFiniteRecovery.lean
-    - lean4/H017Fin.lean
-    - lean4/H016ContinuousDynamicsFork.lean
-    - lean4/H008PhaseBlindPresentation.lean
+    - lean4/FreeLinearization.lean
+    - lean4/InnerProductAdmission.lean
+    - lean4/ReversibilityGate.lean
+    - lean4/PermutationUnitary.lean
+    - lean4/Complexification.lean
+    - lean4/MatrixFiniteRecovery.lean
+    - lean4/HilbertWalkGleasonFin.lean
+    - lean4/ContinuousDynamicsFork.lean
+    - lean4/HilbertWalkPhaseBlindPresentation.lean
     - lean4/Core.lean
-    - lean4/H009PhaseFiber.lean
-    - lean4/H010InterferenceNonDescent.lean
-    - lean4/H011U1SelectorBoundary.lean
-    - lean4/H011Circle.lean
-    - lean4/H014TensorCompositionBoundary.lean
-    - lean4/H014BilinearProduct.lean
-    - lean4/H014Interface.lean
-    - lean4/H015IrreversibleFork.lean
-    - lean4/H013BornPairingBoundary.lean
-    - lean4/H013SameContract.lean
-    - lean4/H017Gleason.lean
-    - lean4/H017Extras.lean
-    - lean4/H017ExtrasDropone.lean
-    - lean4/E003_projection_fiber_primitive_difference.lean
-    - lean4/E005_fiber_quotient_equivalence.lean
-    - lean4/H000FinitePresentedCarrier.lean
-    - lean4/H055DiscreteDynamicsStone.lean
+    - lean4/PhaseFiber.lean
+    - lean4/InterferenceNonDescent.lean
+    - lean4/U1SelectorBoundary.lean
+    - lean4/HilbertWalkCircle.lean
+    - lean4/TensorCompositionBoundary.lean
+    - lean4/BilinearProduct.lean
+    - lean4/HilbertWalkInterface.lean
+    - lean4/IrreversibleFork.lean
+    - lean4/BornPairingBoundary.lean
+    - lean4/HilbertWalkSameContract.lean
+    - lean4/HilbertWalkGleason.lean
+    - lean4/HilbertWalkGleasonExtras.lean
+    - lean4/HilbertWalkGleasonExtrasDropOne.lean
+    - lean4/ProjectionFiberPrimitiveDifference.lean
+    - lean4/FiberQuotientEquivalence.lean
+    - lean4/FinitePresentedCarrier.lean
+    - lean4/DiscreteDynamicsStone.lean
     - lean4/PromptStructure.lean
     - dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
     - QuantumMechanics.PromptStructure.gauss_recovery
@@ -834,7 +834,7 @@ latest_run:
   stage: P5_RECORD
   status: scoped_result_or_obstruction_reviewed
 scope_notes:
-- 'Fresh H017Fin source proofs cover arbitrary supplied finite Enum Q and Gauss-integer linear endomorphisms:
+- 'Fresh HilbertWalkGleasonFin source proofs cover arbitrary supplied finite Enum Q and Gauss-integer linear endomorphisms:
   basis recovery, uniqueness, composition and the admitted sesquilinear adjoint. Native 2x2 Gaussian examples
   retain genuinely imaginary coefficients, all product/action entries, conjugate transpose and both pairings.
   No conversion from Z[i] to a complex field or spectral theorem is supplied.'

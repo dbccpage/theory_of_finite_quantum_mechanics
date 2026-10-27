@@ -50,7 +50,7 @@ See also: `DS-QM102-SYNDROME-CAPACITY-BOUND`.
 
 - `external:arXiv:1411.7041`: A. Almheiri, X. Dong and D. Harlow, "Bulk Locality and Quantum Error Correction in AdS/CFT", arXiv:1411.7041 (2014); JHEP 04 (2015) 163, doi:10.1007/JHEP04(2015)163.
 - `external:arXiv:quant-ph/9602019`: R. Laflamme, C. Miquel, J. P. Paz and W. H. Zurek, "Perfect Quantum Error Correction Code", arXiv:quant-ph/9602019 (1996).
-- Repository: `lean4/H036ThreeQubitCodeSyndromeRecovery.lean`
+- Repository: `lean4/ThreeQubitCodeSyndromeRecovery.lean`
 - Repository: `lean4/FrontierLogicalReconstruction.lean`
 - Repository: `dag/research/frontier_targets_lean_replay.json`
 

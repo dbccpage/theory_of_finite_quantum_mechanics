@@ -15,7 +15,7 @@ target:
     quotient by ≈ₙ (assumption)'
   source_bottleneck: 'Under the exact-inscription convention <a> is a new state; the statement concerns
     discriminating power, not meaning, since a regime can gain a syntactic distinction such as empty versus
-    nonempty payload without assigning a a referent. Reviewed in PR 185: lean4/CampaignPgwPresentationLift.lean
+    nonempty payload without assigning a a referent. Reviewed in PR 185: lean4/PregenesisPresentationLift.lean
     checks a two-inscription model (Inscription = {nil, markA}, convention comparison, P0 = {nil} against
     P1 = {nil, markA}) in which the distinction map q is the constant empty map by definition and the
     exact-inscription convention is defined as equality, so O_0 = O_1 = empty, the non-injectivity of
@@ -94,7 +94,7 @@ operation_candidates:
 
     /-- Equivalence relation on presentations under a given identity convention and observation map. -/
     def ConvEquiv (c : IdentityConvention) (obs : Inscription → Distinctions) (x y : Inscription) : Prop
-  source: lean4/CampaignPgwPresentationLift.lean
+  source: lean4/PregenesisPresentationLift.lean
   repository: this_repository
   source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
   status: source_candidate_requires_semantic_review
@@ -103,7 +103,7 @@ operation_candidates:
   line: 227
   signature_excerpt: 'def HasCollapsingPresentations (c : IdentityConvention) (obs : Inscription → Distinctions)
     : Prop'
-  source: lean4/CampaignPgwPresentationLift.lean
+  source: lean4/PregenesisPresentationLift.lean
   repository: this_repository
   source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
   status: source_candidate_requires_semantic_review
@@ -111,7 +111,7 @@ operation_candidates:
   name: emptyDistinctions
   line: 112
   signature_excerpt: 'def emptyDistinctions (_ : Inscription) : Distinctions'
-  source: lean4/CampaignPgwPresentationLift.lean
+  source: lean4/PregenesisPresentationLift.lean
   repository: this_repository
   source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
   status: source_candidate_requires_semantic_review
@@ -125,7 +125,7 @@ operation_candidates:
       deriving DecidableEq, Repr
 
     instance : Fintype Inscription
-  source: lean4/CampaignPgwPresentationLift.lean
+  source: lean4/PregenesisPresentationLift.lean
   repository: this_repository
   source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
   status: source_candidate_requires_semantic_review
@@ -133,7 +133,7 @@ operation_candidates:
   name: Distinctions
   line: 108
   signature_excerpt: abbrev Distinctions
-  source: lean4/CampaignPgwPresentationLift.lean
+  source: lean4/PregenesisPresentationLift.lean
   repository: this_repository
   source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
   status: source_candidate_requires_semantic_review
@@ -142,7 +142,7 @@ operation_candidates:
   line: 177
   signature_excerpt: 'def ConvEquiv (c : IdentityConvention) (obs : Inscription → Distinctions) (x y :
     Inscription) : Prop'
-  source: lean4/CampaignPgwPresentationLift.lean
+  source: lean4/PregenesisPresentationLift.lean
   repository: this_repository
   source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
   status: source_candidate_requires_semantic_review
@@ -166,7 +166,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem statement_holds_under_opaque_only (c : IdentityConvention) :
         HasCollapsingPresentations c emptyDistinctions ↔ c = IdentityConvention.opaqueConv
-  source: lean4/CampaignPgwPresentationLift.lean
+  source: lean4/PregenesisPresentationLift.lean
   repository: this_repository
   source_sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
   status: source_candidate_requires_semantic_review
@@ -182,10 +182,10 @@ source_bindings:
   declaration_status: declaration_found_not_proof_checked
   line: 40
   role: source_lead_only
-- original_ref: lean4/CampaignPgwPresentationLift.lean::CampaignPgwPresentationLift.statement_holds_under_opaque_only
+- original_ref: lean4/PregenesisPresentationLift.lean::PregenesisPresentationLift.statement_holds_under_opaque_only
   availability: local
-  symbol: CampaignPgwPresentationLift.statement_holds_under_opaque_only
-  path: lean4/CampaignPgwPresentationLift.lean
+  symbol: PregenesisPresentationLift.statement_holds_under_opaque_only
+  path: lean4/PregenesisPresentationLift.lean
   repository: this_repository
   sha256: 034e6e77d6f565c29510188be6f55bcb1e816b6cbc84f9f84a12a2ad4cacd074
   declaration_status: declaration_found_not_proof_checked

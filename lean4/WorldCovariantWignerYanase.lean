@@ -4,7 +4,7 @@
 
 
 
-namespace OmegaWorld
+namespace ObserverWorld
 namespace WignerYanaseQ10
 
 inductive Q10AuthorityEffect where
@@ -341,7 +341,7 @@ def scopedCovariantWignerYanaseWitness : ScopedCovariantWignerYanaseWitness wher
 #print axioms scopedCovariantWignerYanaseWitness
 
 end WignerYanaseQ10
-end OmegaWorld
+end ObserverWorld
 
 private def l5aProvenance : String :=
   "Origin: lean4/WorldCovariantWignerYanase.lean Claim: dephaseZ_two_kraus_action AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

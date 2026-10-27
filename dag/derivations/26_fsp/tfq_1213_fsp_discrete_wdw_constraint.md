@@ -28,15 +28,15 @@ Cited ReggePachnerWdw.lean::wheeler_dewitt_constraint_null_kernel does not exist
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_symmetric`
-- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.kernel_characterization`
-- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projector_idempotent`
-- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projected_vector_satisfies_constraint`
-- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projector_fixes_exactly_kernel`
-- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel`
-- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.nontrivial_kernel`
-- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_is_indefinite`
-- `lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_is_not_projector`
+- `lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.constraint_symmetric`
+- `lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.kernel_characterization`
+- `lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.projector_idempotent`
+- `lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.projected_vector_satisfies_constraint`
+- `lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.projector_fixes_exactly_kernel`
+- `lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.projection_residual_orthogonal_to_kernel`
+- `lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.nontrivial_kernel`
+- `lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.constraint_is_indefinite`
+- `lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.constraint_is_not_projector`
 
 ### Rust Certifiers
 - *none*

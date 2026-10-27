@@ -46,6 +46,21 @@ Overlaps L1_TO_L2 Born nodes (QM_020, other fragment).
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/BornPairingBoundary.lean`
+
+- file: [lean4/BornPairingBoundary.lean](../../../lean4/BornPairingBoundary.lean)
+- sha256 (`bytes`): `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29`
+- cited in: node.lean
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `BornPairingBoundary`): recorded sha256 `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build BornPairingBoundary`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `born_pairing_boundary` | yes | yes | yes | module-level | `#print axioms born_pairing_boundary` |
+
+- counts toward the grade: yes
+
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
@@ -73,21 +88,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `d2_binary_non_bornian_obstruction` | yes | yes | yes | Quot.sound, propext | `#print axioms d2_binary_non_bornian_obstruction` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/H013BornPairingBoundary.lean`
-
-- file: [lean4/H013BornPairingBoundary.lean](../../../lean4/H013BornPairingBoundary.lean)
-- sha256 (`bytes`): `debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H013BornPairingBoundary`): recorded sha256 `debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H013BornPairingBoundary`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `born_pairing_boundary` | yes | yes | yes | module-level | `#print axioms born_pairing_boundary` |
 
 - counts toward the grade: yes
 

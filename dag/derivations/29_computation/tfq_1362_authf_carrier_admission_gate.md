@@ -31,8 +31,8 @@ The campaign module records the record status open, the direct candidate id AIT-
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignAuthfCarrierAdmissionGate.lean::directCeilings`
-- `lean4/CampaignAuthfCarrierAdmissionGate.lean::directNotSelected`
+- `lean4/CarrierAdmissionGate.lean::directCeilings`
+- `lean4/CarrierAdmissionGate.lean::directNotSelected`
 
 ### Rust Certifiers
 - *none*

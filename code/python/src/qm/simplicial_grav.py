@@ -1,6 +1,6 @@
 """Even boundary area of a glued simplicial 3-complex.
 
-Origin: lean4/H022SimplicialAreaLawPageCurve.lean theorem boundary_area_even
+Origin: lean4/SimplicialAreaLawPageCurve.lean theorem boundary_area_even
 ((boundary_area N M_int) % 2 = 0) and theorem gluing_reduces_boundary
 (M_int > 0 implies boundary_area N M_int < 4 * N), where
 boundary_area N M_int = 4 * N - 2 * M_int.

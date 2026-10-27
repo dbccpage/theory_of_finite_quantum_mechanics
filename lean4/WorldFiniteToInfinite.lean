@@ -3,7 +3,7 @@
 
 
 
-namespace OmegaWorld
+namespace ObserverWorld
 namespace FiniteToInfiniteQ11
 
 inductive Q11AuthorityEffect where
@@ -376,7 +376,7 @@ def finiteToInfiniteSlice : FiniteToInfiniteSlice where
 #print axioms finiteToInfiniteSlice
 
 end FiniteToInfiniteQ11
-end OmegaWorld
+end ObserverWorld
 
 private def l5aProvenance : String :=
   "Origin: lean4/WorldFiniteToInfinite.lean Claim: prefix_cardinality AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

@@ -32,7 +32,7 @@ No syntax, typing judgement or deep embedding of a priced admission language is 
 
 ## Source status
 
-Open. One integer regime carrier is recorded in CampaignGthLangCore. The priced admission language still has no syntax. The node lean list stays empty.
+Open. One integer regime carrier is recorded in GenesisToHigherLangCore. The priced admission language still has no syntax. The node lean list stays empty.
 
 ## Review
 
@@ -42,15 +42,15 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGthLangCore.lean`
+### Lean: `lean4/GenesisToHigherLangCore.lean`
 
-- file: [lean4/CampaignGthLangCore.lean](../../../lean4/CampaignGthLangCore.lean)
-- sha256 (`bytes`): `57cb0bcf3599400870ca47f0e0f11c87f3dabe90f04752f964f0ee0f591eef5f`
-- cited in: node.source, receipt dag/research/campaign_gth-lang-core_lean_replay.json (CampaignGthLangCore), receipt dag/research/pr_363_review_replay.json (CampaignGthLangCore)
+- file: [lean4/GenesisToHigherLangCore.lean](../../../lean4/GenesisToHigherLangCore.lean)
+- sha256 (`bytes`): `636989310f31a266c5c3b1e067e35c9a4adf712214beb041c93a61dab52c9dfa`
+- cited in: node.source, receipt dag/research/campaign_gth-lang-core_lean_replay.json (GenesisToHigherLangCore), receipt dag/research/pr_363_review_replay.json (GenesisToHigherLangCore)
 - replay: `verified`
-  - receipt [dag/research/campaign_gth-lang-core_lean_replay.json](../../../dag/research/campaign_gth-lang-core_lean_replay.json) (module `CampaignGthLangCore`): recorded sha256 `57cb0bcf3599400870ca47f0e0f11c87f3dabe90f04752f964f0ee0f591eef5f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_363_review_replay.json](../../../dag/research/pr_363_review_replay.json) (module `CampaignGthLangCore`): recorded sha256 `57cb0bcf3599400870ca47f0e0f11c87f3dabe90f04752f964f0ee0f591eef5f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGthLangCore`
+  - receipt [dag/research/campaign_gth-lang-core_lean_replay.json](../../../dag/research/campaign_gth-lang-core_lean_replay.json) (module `GenesisToHigherLangCore`): recorded sha256 `636989310f31a266c5c3b1e067e35c9a4adf712214beb041c93a61dab52c9dfa` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_363_review_replay.json](../../../dag/research/pr_363_review_replay.json) (module `GenesisToHigherLangCore`): recorded sha256 `636989310f31a266c5c3b1e067e35c9a4adf712214beb041c93a61dab52c9dfa` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build GenesisToHigherLangCore`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md`
 
 - file: [dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md](../../../dag/derivations/34_genesis_to_higher/tfq_2407_gth_lang_core.md)
-- sha256 (`lf-normalised`): `69a8304450b5e09e013efa53d27c0ef7b35adac9f9f12f1e9143cab25fce4354`
+- sha256 (`lf-normalised`): `23f1f23ccf793e6c80ae712590714647785ddf5ba7832463ba0832948cd643e5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2407
 - counts toward the grade: no
@@ -80,21 +80,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/gth-lang-core.md`
 
 - file: [dag/derivations/independent/gth-lang-core.md](../../../dag/derivations/independent/gth-lang-core.md)
-- sha256 (`lf-normalised`): `6ce894d42d022e47de467153129bbe72db4f40d5153ee0947186f6ba22f4d7a0`
+- sha256 (`lf-normalised`): `d47156399185fb078d795b94db5e7afc0e850aa247356b4f81b023351405b28c`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/independent/gth_lang_core.md`
 
 - file: [dag/derivations/independent/gth_lang_core.md](../../../dag/derivations/independent/gth_lang_core.md)
-- sha256 (`lf-normalised`): `6ce894d42d022e47de467153129bbe72db4f40d5153ee0947186f6ba22f4d7a0`
+- sha256 (`lf-normalised`): `d47156399185fb078d795b94db5e7afc0e850aa247356b4f81b023351405b28c`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_gth-lang-core_lean_replay.json`
 
 - file: [dag/research/campaign_gth-lang-core_lean_replay.json](../../../dag/research/campaign_gth-lang-core_lean_replay.json)
-- sha256 (`lf-normalised`): `de3044a046db59586dc0e9e7120ba3d3a2e29c5ec02e79e2ec650a0f5f7e6457`
+- sha256 (`lf-normalised`): `0e65892a723d0fb6f0e997e3eaed835602a641b8a930d8f65cd3e07c8368bf6e`
 - cited in: node.source
 - counts toward the grade: yes
 

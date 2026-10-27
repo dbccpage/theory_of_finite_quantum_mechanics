@@ -37,12 +37,12 @@ Cited ReggePachnerWdw.lean::regge_deficit_angle_action_identity does not exist; 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.deficit_expansion`
-- `lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.area_linearity`
-- `lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.flat_deficits_give_zero`
-- `lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.same_deficit_area_split`
-- `lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.zero_action_does_not_imply_flat`
-- `lean4/CampaignReggeFiniteAction.lean::CampaignReggeFiniteAction.declared_areas_change_action`
+- `lean4/ReggeFiniteAction.lean::ReggeFiniteAction.deficit_expansion`
+- `lean4/ReggeFiniteAction.lean::ReggeFiniteAction.area_linearity`
+- `lean4/ReggeFiniteAction.lean::ReggeFiniteAction.flat_deficits_give_zero`
+- `lean4/ReggeFiniteAction.lean::ReggeFiniteAction.same_deficit_area_split`
+- `lean4/ReggeFiniteAction.lean::ReggeFiniteAction.zero_action_does_not_imply_flat`
+- `lean4/ReggeFiniteAction.lean::ReggeFiniteAction.declared_areas_change_action`
 
 ### Rust Certifiers
 - *none*

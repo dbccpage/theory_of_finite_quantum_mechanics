@@ -47,7 +47,7 @@ operation_candidates:
   name: iabs
   line: 9
   signature_excerpt: 'def iabs (n : Int) : Int'
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -55,7 +55,7 @@ operation_candidates:
   name: face
   line: 82
   signature_excerpt: 'def face (x01 x12 x02 : Int) : Int'
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -63,7 +63,7 @@ operation_candidates:
   name: l1
   line: 85
   signature_excerpt: 'def l1 (x01 x12 x02 : Int) : Int'
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -71,7 +71,7 @@ operation_candidates:
   name: d0
   line: 72
   signature_excerpt: 'def d0 (f0 f1 f2 : Int) : Int × Int × Int'
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -79,7 +79,7 @@ operation_candidates:
   name: leakage
   line: 88
   signature_excerpt: 'def leakage (f0 f1 f2 : Int) : Int'
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -87,7 +87,7 @@ operation_candidates:
   name: verdict
   line: 96
   signature_excerpt: 'def verdict (phi gamma : Int) : Int'
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -95,7 +95,7 @@ operation_candidates:
   name: fibreConstant
   line: 206
   signature_excerpt: 'def fibreConstant (a0 a1 : Int) : Prop'
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -107,7 +107,7 @@ relation_candidates:
     theorem distance_at_least (h01 h12 h02 f0 f1 f2 : Int) :
         iabs (face h01 h12 h02) ≤
           l1 (h01 - (f1 - f0)) (h12 - (f2 - f1)) (h02 - (f2 - f0))
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -121,7 +121,7 @@ relation_candidates:
         h01 - (d0 0 h01 (h01 + h12)).1 = 0 ∧
           h12 - (d0 0 h01 (h01 + h12)).2.1 = 0 ∧
             h02 - (d0 0 h01 (h01 + h12)).2.2 = -(face h01 h12 h02)
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -135,7 +135,7 @@ relation_candidates:
         h01 - (d0 0 (h01 - face h01 h12 h02) h02).1 = face h01 h12 h02 ∧
           h12 - (d0 0 (h01 - face h01 h12 h02) h02).2.1 = 0 ∧
             h02 - (d0 0 (h01 - face h01 h12 h02) h02).2.2 = 0
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -147,7 +147,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem meet_neg (h01 h12 h02 : Int) (_hs : face h01 h12 h02 < 0) :
         l1 0 0 (-(face h01 h12 h02)) = iabs (face h01 h12 h02)
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -159,7 +159,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem meet_nonneg (h01 h12 h02 : Int) (hs : ¬ face h01 h12 h02 < 0) :
         l1 (face h01 h12 h02) 0 0 = iabs (face h01 h12 h02)
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -173,7 +173,7 @@ relation_candidates:
         h01 = (d0 0 (h01 - face h01 h12 h02) h02).1 ∧
           h12 = (d0 0 (h01 - face h01 h12 h02) h02).2.1 ∧
             h02 = (d0 0 (h01 - face h01 h12 h02) h02).2.2
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -183,7 +183,7 @@ relation_candidates:
   name: leakage_is_not_quotient
   line: 181
   signature_excerpt: 'theorem leakage_is_not_quotient : leakage 0 1 0 ≠ l1 (1 - 1) (-1 - -1) (0 - 0)'
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -193,7 +193,7 @@ relation_candidates:
   name: face_of_obstruction
   line: 185
   signature_excerpt: 'theorem face_of_obstruction : face 1 0 0 = 1'
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -203,7 +203,7 @@ relation_candidates:
   name: obstructed_verdict
   line: 188
   signature_excerpt: 'theorem obstructed_verdict : verdict 1 1 = 0'
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -213,7 +213,7 @@ relation_candidates:
   name: closed_verdict
   line: 192
   signature_excerpt: 'theorem closed_verdict : verdict 0 0 = 1'
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -223,7 +223,7 @@ relation_candidates:
   name: equal_report_passes
   line: 209
   signature_excerpt: 'theorem equal_report_passes : fibreConstant 1 1'
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
@@ -233,116 +233,116 @@ relation_candidates:
   name: unequal_report_fails
   line: 213
   signature_excerpt: 'theorem unequal_report_fails : ¬ fibreConstant 0 1'
-  source: lean4/CampaignPgwWdpHandoffToL1.lean
+  source: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   source_sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::distance_at_least
+- original_ref: lean4/PregenesisWdpHandoffToL1.lean::distance_at_least
   availability: local
   symbol: distance_at_least
-  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  path: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   declaration_status: declaration_found_not_proof_checked
   line: 115
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::repair_residual_neg
+- original_ref: lean4/PregenesisWdpHandoffToL1.lean::repair_residual_neg
   availability: local
   symbol: repair_residual_neg
-  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  path: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   declaration_status: declaration_found_not_proof_checked
   line: 127
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::repair_residual_nonneg
+- original_ref: lean4/PregenesisWdpHandoffToL1.lean::repair_residual_nonneg
   availability: local
   symbol: repair_residual_nonneg
-  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  path: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   declaration_status: declaration_found_not_proof_checked
   line: 136
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::meet_neg
+- original_ref: lean4/PregenesisWdpHandoffToL1.lean::meet_neg
   availability: local
   symbol: meet_neg
-  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  path: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   declaration_status: declaration_found_not_proof_checked
   line: 145
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::meet_nonneg
+- original_ref: lean4/PregenesisWdpHandoffToL1.lean::meet_nonneg
   availability: local
   symbol: meet_nonneg
-  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  path: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   declaration_status: declaration_found_not_proof_checked
   line: 155
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::face_zero_is_coboundary
+- original_ref: lean4/PregenesisWdpHandoffToL1.lean::face_zero_is_coboundary
   availability: local
   symbol: face_zero_is_coboundary
-  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  path: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   declaration_status: declaration_found_not_proof_checked
   line: 196
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::leakage_is_not_quotient
+- original_ref: lean4/PregenesisWdpHandoffToL1.lean::leakage_is_not_quotient
   availability: local
   symbol: leakage_is_not_quotient
-  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  path: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   declaration_status: declaration_found_not_proof_checked
   line: 181
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::face_of_obstruction
+- original_ref: lean4/PregenesisWdpHandoffToL1.lean::face_of_obstruction
   availability: local
   symbol: face_of_obstruction
-  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  path: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   declaration_status: declaration_found_not_proof_checked
   line: 185
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::obstructed_verdict
+- original_ref: lean4/PregenesisWdpHandoffToL1.lean::obstructed_verdict
   availability: local
   symbol: obstructed_verdict
-  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  path: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   declaration_status: declaration_found_not_proof_checked
   line: 188
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::closed_verdict
+- original_ref: lean4/PregenesisWdpHandoffToL1.lean::closed_verdict
   availability: local
   symbol: closed_verdict
-  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  path: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   declaration_status: declaration_found_not_proof_checked
   line: 192
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::equal_report_passes
+- original_ref: lean4/PregenesisWdpHandoffToL1.lean::equal_report_passes
   availability: local
   symbol: equal_report_passes
-  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  path: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   declaration_status: declaration_found_not_proof_checked
   line: 209
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpHandoffToL1.lean::unequal_report_fails
+- original_ref: lean4/PregenesisWdpHandoffToL1.lean::unequal_report_fails
   availability: local
   symbol: unequal_report_fails
-  path: lean4/CampaignPgwWdpHandoffToL1.lean
+  path: lean4/PregenesisWdpHandoffToL1.lean
   repository: this_repository
   sha256: 76c53d24a47e5ccda8f2c96488dabea2430d984caf7221e2beb3a69dcc221c85
   declaration_status: declaration_found_not_proof_checked

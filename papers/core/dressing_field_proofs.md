@@ -146,26 +146,26 @@ $T(t(e))^{-1}U_eT(s(e))$ on all five edges. That is (iv) for this graph. Neither
 the triple model with the map of record QM-213, and neither contains a colour-transport
 statement.
 
-Lean: `lean4/CampaignDfmHierarchicalBorel.lean::b2_semidirect_factorization`,
-`lean4/CampaignDfmHierarchicalBorel.lean::b2_factorization_unique`,
-`lean4/CampaignDfmHierarchicalBorel.lean::unipotent_subgroup_normal`,
-`lean4/CampaignDfmHierarchicalBorel.lean::torusProj_mul`,
-`lean4/CampaignDfmHierarchicalBorel.lean::u_N_eq_conjugate`,
-`lean4/CampaignDfmHierarchicalBorel.lean::stage1_tree_edge`,
-`lean4/CampaignDfmHierarchicalBorel.lean::stage1_preserves_quotient`,
-`lean4/CampaignDfmHierarchicalBorel.lean::two_stage_factorization`,
-`lean4/CampaignDfmHierarchicalBorel.lean::stage2_reproduces`,
-`lean4/CampaignDfmHierarchicalBorel.lean::dressed_one_iff`,
-`lean4/CampaignDfmHierarchicalBorel.lean::anchored_transport_unique`,
-`lean4/CampaignDfmHierarchicalBorel.lean::factorization_fails_if_singular`,
-`lean4/CampaignDfmHierarchicalBorel.lean::badProj_not_homomorphism`;
-for TFQ-0016, `lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_semidirect_factorization`,
-`lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.b2_factorization_unique`,
-`lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.UpperTri2.unipotent_subgroup_normal`,
-`lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage1_tree_edges_diagonal`,
-`lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage1_preserves_quotient_projection`,
-`lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.stage2_reproduces_residual`,
-`lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.two_stage_factorization`.
+Lean: `lean4/DressingFieldHierarchicalBorel.lean::b2_semidirect_factorization`,
+`lean4/DressingFieldHierarchicalBorel.lean::b2_factorization_unique`,
+`lean4/DressingFieldHierarchicalBorel.lean::unipotent_subgroup_normal`,
+`lean4/DressingFieldHierarchicalBorel.lean::torusProj_mul`,
+`lean4/DressingFieldHierarchicalBorel.lean::u_N_eq_conjugate`,
+`lean4/DressingFieldHierarchicalBorel.lean::stage1_tree_edge`,
+`lean4/DressingFieldHierarchicalBorel.lean::stage1_preserves_quotient`,
+`lean4/DressingFieldHierarchicalBorel.lean::two_stage_factorization`,
+`lean4/DressingFieldHierarchicalBorel.lean::stage2_reproduces`,
+`lean4/DressingFieldHierarchicalBorel.lean::dressed_one_iff`,
+`lean4/DressingFieldHierarchicalBorel.lean::anchored_transport_unique`,
+`lean4/DressingFieldHierarchicalBorel.lean::factorization_fails_if_singular`,
+`lean4/DressingFieldHierarchicalBorel.lean::badProj_not_homomorphism`;
+for TFQ-0016, `lean4/B2SemidirectDressing.lean::B2SemidirectDressing.UpperTri2.b2_semidirect_factorization`,
+`lean4/B2SemidirectDressing.lean::B2SemidirectDressing.UpperTri2.b2_factorization_unique`,
+`lean4/B2SemidirectDressing.lean::B2SemidirectDressing.UpperTri2.unipotent_subgroup_normal`,
+`lean4/B2SemidirectDressing.lean::B2SemidirectDressing.stage1_tree_edges_diagonal`,
+`lean4/B2SemidirectDressing.lean::B2SemidirectDressing.stage1_preserves_quotient_projection`,
+`lean4/B2SemidirectDressing.lean::B2SemidirectDressing.stage2_reproduces_residual`,
+`lean4/B2SemidirectDressing.lean::B2SemidirectDressing.two_stage_factorization`.
 
 ### 2.2 Discrete curvature and the Bianchi identity
 
@@ -193,14 +193,14 @@ end does not give covariance: with $A_{01}=A_{12}=1$, $A_{02}=0$, $g(0)=1$ and $
 source-dressed curvature is $1\cdot2-0=2$, while $g(0)K(0,1,2)=1$. With the same values, dressing
 at both ends, with $g(2)=1$ and $\bar g(1)=1/2$, satisfies (iii).
 
-Lean: `lean4/CampaignDfmHierarchicalBorel.lean::b_squared_zero`,
-`lean4/CampaignDfmHierarchicalBorel.lean::discrete_bianchi_identity`,
-`lean4/CampaignDfmHierarchicalBorel.lean::curvature_gauge_covariance`,
-`lean4/CampaignDfmHierarchicalBorel.lean::source_only_dressing_breaks_curvature`,
-`lean4/CampaignDfmHierarchicalBorel.lean::endpoint_dressing_matches_curvature`;
-`lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.b_squared_zero`,
-`lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.discrete_bianchi_identity`,
-`lean4/CampaignTfq0016B2Dressing.lean::CampaignTfq0016.curvature_gauge_covariance`.
+Lean: `lean4/DressingFieldHierarchicalBorel.lean::b_squared_zero`,
+`lean4/DressingFieldHierarchicalBorel.lean::discrete_bianchi_identity`,
+`lean4/DressingFieldHierarchicalBorel.lean::curvature_gauge_covariance`,
+`lean4/DressingFieldHierarchicalBorel.lean::source_only_dressing_breaks_curvature`,
+`lean4/DressingFieldHierarchicalBorel.lean::endpoint_dressing_matches_curvature`;
+`lean4/B2SemidirectDressing.lean::B2SemidirectDressing.b_squared_zero`,
+`lean4/B2SemidirectDressing.lean::B2SemidirectDressing.discrete_bianchi_identity`,
+`lean4/B2SemidirectDressing.lean::B2SemidirectDressing.curvature_gauge_covariance`.
 
 ---
 

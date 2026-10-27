@@ -29,7 +29,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra. CampaignMajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators, equality of generated complex subalgebras, occupation projections, the signed local parity identity and ordered parity action on supplied common occupation eigenvectors. A formal one-mode positive trace-one density matrix need not commute with parity. The all-mode abstract Clifford identification, source CAR/Fock refinement and occupation-basis completeness remain outside these witnesses; no physical superselection law is inferred.
+Standard algebra imported, not derived here; the trunk mechanizes only the two-generator case (DS-QM212-MAJORANA-PROBLEM). Parity superselection is a physical postulate, not a consequence of the algebra. MajoranaCliffordParity supplies CAR-conditional self-adjointness, anticommutators, equality of generated complex subalgebras, occupation projections, the signed local parity identity and ordered parity action on supplied common occupation eigenvectors. A formal one-mode positive trace-one density matrix need not commute with parity. The all-mode abstract Clifford identification, source CAR/Fock refinement and occupation-basis completeness remain outside these witnesses; no physical superselection law is inferred.
 
 ## Source status
 
@@ -43,49 +43,49 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignMajoranaCliffordParity.lean`
+### Lean: `lean4/MajoranaCliffordParity.lean`
 
-- file: [lean4/CampaignMajoranaCliffordParity.lean](../../../lean4/CampaignMajoranaCliffordParity.lean)
-- sha256 (`bytes`): `8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e`
-- cited in: node.lean, receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (CampaignMajoranaCliffordParity), record TFQ-1186
+- file: [lean4/MajoranaCliffordParity.lean](../../../lean4/MajoranaCliffordParity.lean)
+- sha256 (`bytes`): `fc18f654b974824154b0f93102d48073b0c6a2b2e2141b94280a4b05b0a69f04`
+- cited in: node.lean, receipt dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json (MajoranaCliffordParity), record TFQ-1186
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json](../../../dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json) (module `CampaignMajoranaCliffordParity`): recorded sha256 `8cfb139d896964ec36adc500b6d2f37fa9894785fb0f85af99333ff745e6028e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity`
+  - receipt [dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json](../../../dag/research/campaign_fsp-majorana-clifford-parity_lean_replay.json) (module `MajoranaCliffordParity`): recorded sha256 `fc18f654b974824154b0f93102d48073b0c6a2b2e2141b94280a4b05b0a69f04` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build MajoranaCliffordParity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignMajoranaCliffordParity.CARFamily.annihilate_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.CARFamily.annihilate_sq` |
-| `CampaignMajoranaCliffordParity.CARFamily.dd` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.CARFamily.dd` |
-| `CampaignMajoranaCliffordParity.CARFamily.gamma_ac` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.CARFamily.gamma_ac` |
-| `CampaignMajoranaCliffordParity.CARFamily.gamma_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.CARFamily.gamma_star` |
-| `CampaignMajoranaCliffordParity.CARFamily.generated_algebra` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.CARFamily.generated_algebra` |
-| `CampaignMajoranaCliffordParity.CARFamily.localParity_action` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.CARFamily.localParity_action` |
-| `CampaignMajoranaCliffordParity.CARFamily.localParity_pair` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.CARFamily.localParity_pair` |
-| `CampaignMajoranaCliffordParity.CARFamily.localParity_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.CARFamily.localParity_sq` |
-| `CampaignMajoranaCliffordParity.CARFamily.localParity_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.CARFamily.localParity_star` |
-| `CampaignMajoranaCliffordParity.CARFamily.mixed_rev` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.CARFamily.mixed_rev` |
-| `CampaignMajoranaCliffordParity.CARFamily.occupation_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.CARFamily.occupation_sq` |
-| `CampaignMajoranaCliffordParity.CARFamily.occupation_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.CARFamily.occupation_star` |
-| `CampaignMajoranaCliffordParity.CARFamily.parity_action` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.CARFamily.parity_action` |
-| `CampaignMajoranaCliffordParity.CARFamily.parity_product` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.CARFamily.parity_product` |
-| `CampaignMajoranaCliffordParity.CARFamily.recover_c` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.CARFamily.recover_c` |
-| `CampaignMajoranaCliffordParity.CARFamily.recover_star_c` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.CARFamily.recover_star_c` |
-| `CampaignMajoranaCliffordParity.ac_add_left` | yes | yes | yes | propext | `#print axioms CampaignMajoranaCliffordParity.ac_add_left` |
-| `CampaignMajoranaCliffordParity.ac_add_right` | yes | yes | yes | propext | `#print axioms CampaignMajoranaCliffordParity.ac_add_right` |
-| `CampaignMajoranaCliffordParity.ac_comm` | yes | yes | yes | none | `#print axioms CampaignMajoranaCliffordParity.ac_comm` |
-| `CampaignMajoranaCliffordParity.ac_smul_left` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.ac_smul_left` |
-| `CampaignMajoranaCliffordParity.ac_smul_right` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.ac_smul_right` |
-| `CampaignMajoranaCliffordParity.ac_sub_left` | yes | yes | yes | propext | `#print axioms CampaignMajoranaCliffordParity.ac_sub_left` |
-| `CampaignMajoranaCliffordParity.ac_sub_right` | yes | yes | yes | propext | `#print axioms CampaignMajoranaCliffordParity.ac_sub_right` |
-| `CampaignMajoranaCliffordParity.gamma_index_count` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.gamma_index_count` |
-| `CampaignMajoranaCliffordParity.oneCAR` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.oneCAR` |
-| `CampaignMajoranaCliffordParity.oneRho_gram` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.oneRho_gram` |
-| `CampaignMajoranaCliffordParity.oneRho_idempotent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.oneRho_idempotent` |
-| `CampaignMajoranaCliffordParity.oneRho_posSemidef` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.oneRho_posSemidef` |
-| `CampaignMajoranaCliffordParity.oneRho_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.oneRho_star` |
-| `CampaignMajoranaCliffordParity.oneRho_trace` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.oneRho_trace` |
-| `CampaignMajoranaCliffordParity.one_parity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.one_parity` |
-| `CampaignMajoranaCliffordParity.parity_superselection_not_forced` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajoranaCliffordParity.parity_superselection_not_forced` |
+| `MajoranaCliffordParity.CARFamily.annihilate_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.CARFamily.annihilate_sq` |
+| `MajoranaCliffordParity.CARFamily.dd` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.CARFamily.dd` |
+| `MajoranaCliffordParity.CARFamily.gamma_ac` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.CARFamily.gamma_ac` |
+| `MajoranaCliffordParity.CARFamily.gamma_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.CARFamily.gamma_star` |
+| `MajoranaCliffordParity.CARFamily.generated_algebra` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.CARFamily.generated_algebra` |
+| `MajoranaCliffordParity.CARFamily.localParity_action` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.CARFamily.localParity_action` |
+| `MajoranaCliffordParity.CARFamily.localParity_pair` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.CARFamily.localParity_pair` |
+| `MajoranaCliffordParity.CARFamily.localParity_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.CARFamily.localParity_sq` |
+| `MajoranaCliffordParity.CARFamily.localParity_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.CARFamily.localParity_star` |
+| `MajoranaCliffordParity.CARFamily.mixed_rev` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.CARFamily.mixed_rev` |
+| `MajoranaCliffordParity.CARFamily.occupation_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.CARFamily.occupation_sq` |
+| `MajoranaCliffordParity.CARFamily.occupation_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.CARFamily.occupation_star` |
+| `MajoranaCliffordParity.CARFamily.parity_action` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.CARFamily.parity_action` |
+| `MajoranaCliffordParity.CARFamily.parity_product` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.CARFamily.parity_product` |
+| `MajoranaCliffordParity.CARFamily.recover_c` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.CARFamily.recover_c` |
+| `MajoranaCliffordParity.CARFamily.recover_star_c` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.CARFamily.recover_star_c` |
+| `MajoranaCliffordParity.ac_add_left` | yes | yes | yes | propext | `#print axioms MajoranaCliffordParity.ac_add_left` |
+| `MajoranaCliffordParity.ac_add_right` | yes | yes | yes | propext | `#print axioms MajoranaCliffordParity.ac_add_right` |
+| `MajoranaCliffordParity.ac_comm` | yes | yes | yes | none | `#print axioms MajoranaCliffordParity.ac_comm` |
+| `MajoranaCliffordParity.ac_smul_left` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.ac_smul_left` |
+| `MajoranaCliffordParity.ac_smul_right` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.ac_smul_right` |
+| `MajoranaCliffordParity.ac_sub_left` | yes | yes | yes | propext | `#print axioms MajoranaCliffordParity.ac_sub_left` |
+| `MajoranaCliffordParity.ac_sub_right` | yes | yes | yes | propext | `#print axioms MajoranaCliffordParity.ac_sub_right` |
+| `MajoranaCliffordParity.gamma_index_count` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.gamma_index_count` |
+| `MajoranaCliffordParity.oneCAR` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.oneCAR` |
+| `MajoranaCliffordParity.oneRho_gram` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.oneRho_gram` |
+| `MajoranaCliffordParity.oneRho_idempotent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.oneRho_idempotent` |
+| `MajoranaCliffordParity.oneRho_posSemidef` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.oneRho_posSemidef` |
+| `MajoranaCliffordParity.oneRho_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.oneRho_star` |
+| `MajoranaCliffordParity.oneRho_trace` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.oneRho_trace` |
+| `MajoranaCliffordParity.one_parity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.one_parity` |
+| `MajoranaCliffordParity.parity_superselection_not_forced` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MajoranaCliffordParity.parity_superselection_not_forced` |
 
 - counts toward the grade: yes
 
@@ -99,7 +99,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md`
 
 - file: [dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md](../../../dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md)
-- sha256 (`lf-normalised`): `0007fcd26833e9455633c64c0e92b302a4fb4bfde9ad67587281eb98f76a1872`
+- sha256 (`lf-normalised`): `ba788966796f33334eea2fc8f0de4cb20e187eb3a71d5800b1d3a253402e3135`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1186
 - counts toward the grade: no

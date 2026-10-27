@@ -94,91 +94,91 @@ lean_lib «FiniteQuantum» where
     `FiniteWignerSimilarity,
     `GaussRatAutomorphisms,
     `WeylCommutant,
-    `H001ProbabilitySimplex,
-    `H001Rats,
-    `H003ReversibilityGate,
-    `H004FreeLinearization,
-    `H005InnerProductAdmission,
-    `H006Envelope,
-    `H006PermutationUnitary,
-    `H007Complexification,
-    `H008PhaseBlindPresentation,
-    `H009PhaseFiber,
-    `H010Hadamard,
-    `H010InterferenceNonDescent,
-    `H010Scale,
-    `H011Circle,
-    `H011U1SelectorBoundary,
-    `H012OperatorAlgebraShadow,
-    `H013BornPairingBoundary,
-    `H013FrameAdditivity,
-    `H013QuarticRivalSeparation,
-    `H013SameContract,
-    `H014BilinearProduct,
-    `H014Interface,
-    `H014TensorCompositionBoundary,
-    `H015CollapseDilations,
-    `H015DilationCount,
-    `H015IrreversibleFork,
-    `H016ContinuousDynamicsFork,
-    `H017Extras,
-    `H017FiniteHilbertBoundary,
-    `H017ExtrasDropone,
-    `H017Fin,
-    `H017Finish,
-    `H017Gleason,
-    `H017MatrixFiniteRecovery,
-    `H018Channel,
-    `H018Density,
-    `H019RationalLieSpan,
-    `H020CabelloSignPolytope,
-    `H021TriangleNetworkComplexCarrier,
-    `H022SimplicialAreaLawPageCurve,
-    `H023DiscreteSpinfoamAmplitudes,
-    `H024FourSimplexSpinfoamS4,
-    `H025SpinfoamBoundaryUnitarity,
-    `H026MasterConstraintSpinfoamKernel,
-    `H027PachnerMasterConstraintFiniteness,
-    `H028ArbitraryDegreePolynomialReduction,
-    `H029Simplicial3complexCayleyEvolution,
-    `H030OctahedralMubCliftonKent,
-    `H031OctahedralDepolarizingThreshold,
-    `H032DiscretePythagoreanBellChsh,
-    `H033PythagoreanPellTsirelsonConvergence,
-    `H034CliffordPauliConjugationAndTGateOrbit,
-    `H035DiscreteWignerNegativityResource,
-    `H036ThreeQubitCodeSyndromeRecovery,
-    `H037FourQubitCssSurfaceCode,
-    `H038SteaneFanoCodeTransversalGates,
-    `H039DiscreteQuantumTeleportation,
-    `H040DiscreteSuperdenseCoding,
-    `H041PrimePWignerPhaseSpace,
-    `H042ShorNineQubitCode,
-    `H043DiscretePhaseEstimation,
-    `H044SurfaceCodeToricTopology,
-    `H045DiscreteGroverSearch,
-    `H046DiscreteCliffordSymplectic,
-    `H047StoneVonNeumannObstruction,
-    `H048RichardsonErrorMitigation,
-    `H049QuantumWalkSymmetricCayley,
-    `H050MubTomographyInversion,
-    `H051Mub4GaloisFieldContextuality,
-    `H052CyclotomicTowerDirected,
-    `H053EverettForkingTree,
-    `H054GleasonCyclotomicObstruction,
-    `H055DiscreteDynamicsStone,
-    `H056ContinuumLiftBoundary,
-    `H057HigherDimConductorBounds,
-    `H058EffectFrameBusch,
-    `H059RationalSector,
-    `H060EmbeddingRelativity,
-    `H061DynamicsDichotomy,
-    `H062CompositionTensorMub,
-    `H063CptpChannelsStinespring,
-    `H064ContextualityThresholds,
-    `H065CancellationCertificates,
-    `H066GrowthRefinement,
-    `H067TerminalPriceList,
+    `ProbabilitySimplex,
+    `HilbertWalkRationals,
+    `ReversibilityGate,
+    `FreeLinearization,
+    `InnerProductAdmission,
+    `HilbertWalkEnvelope,
+    `PermutationUnitary,
+    `Complexification,
+    `HilbertWalkPhaseBlindPresentation,
+    `PhaseFiber,
+    `HilbertWalkHadamard,
+    `InterferenceNonDescent,
+    `HilbertWalkScale,
+    `HilbertWalkCircle,
+    `U1SelectorBoundary,
+    `OperatorAlgebraShadow,
+    `BornPairingBoundary,
+    `FrameAdditivity,
+    `QuarticRivalSeparation,
+    `HilbertWalkSameContract,
+    `BilinearProduct,
+    `HilbertWalkInterface,
+    `TensorCompositionBoundary,
+    `CollapseDilations,
+    `DilationCount,
+    `IrreversibleFork,
+    `ContinuousDynamicsFork,
+    `HilbertWalkGleasonExtras,
+    `FiniteHilbertBoundary,
+    `HilbertWalkGleasonExtrasDropOne,
+    `HilbertWalkGleasonFin,
+    `HilbertWalkGleasonFinish,
+    `HilbertWalkGleason,
+    `MatrixFiniteRecovery,
+    `HilbertWalkChannel,
+    `HilbertWalkDensity,
+    `RationalLieSpan,
+    `CabelloSignPolytope,
+    `TriangleNetworkComplexCarrier,
+    `SimplicialAreaLawPageCurve,
+    `DiscreteSpinfoamAmplitudes,
+    `FourSimplexSpinfoamS4,
+    `SpinfoamBoundaryUnitarity,
+    `MasterConstraintSpinfoamKernel,
+    `PachnerMasterConstraintFiniteness,
+    `ArbitraryDegreePolynomialReduction,
+    `Simplicial3complexCayleyEvolution,
+    `OctahedralMubCliftonKent,
+    `OctahedralDepolarizingThreshold,
+    `DiscretePythagoreanBellChsh,
+    `PythagoreanPellTsirelsonConvergence,
+    `CliffordPauliConjugationAndTGateOrbit,
+    `DiscreteWignerNegativityResource,
+    `ThreeQubitCodeSyndromeRecovery,
+    `FourQubitCssSurfaceCode,
+    `SteaneFanoCodeTransversalGates,
+    `DiscreteQuantumTeleportation,
+    `DiscreteSuperdenseCoding,
+    `PrimePWignerPhaseSpace,
+    `ShorNineQubitCode,
+    `DiscretePhaseEstimation,
+    `SurfaceCodeToricTopology,
+    `DiscreteGroverSearch,
+    `DiscreteCliffordSymplectic,
+    `StoneVonNeumannObstruction,
+    `RichardsonErrorMitigation,
+    `QuantumWalkSymmetricCayley,
+    `MubTomographyInversion,
+    `Mub4GaloisFieldContextuality,
+    `CyclotomicTowerDirected,
+    `EverettForkingTree,
+    `GleasonCyclotomicObstruction,
+    `DiscreteDynamicsStone,
+    `ContinuumLiftBoundary,
+    `HigherDimConductorBounds,
+    `EffectFrameBusch,
+    `RationalSector,
+    `EmbeddingRelativity,
+    `DynamicsDichotomy,
+    `CompositionTensorMub,
+    `CptpChannelsStinespring,
+    `ContextualityThresholds,
+    `CancellationCertificates,
+    `GrowthRefinement,
+    `TerminalPriceList,
     `HWKernel,
     `IntegralRefinementC3C6,
     `OntologyBasic,
@@ -214,16 +214,16 @@ lean_lib «FiniteQuantum» where
     `WorldReconstructionRetraction,
     `WorldResidualGrowth,
     `WorldWGOCSealedRefusal,
-    `H068WeylCcrResidual,
-    `H069NormApproximationFrontier,
-    `H070HeisenbergRepresentationUniqueness,
-    `H071RefinementSubsystemTower,
-    `H072TowerTopologicalCompletion,
-    `H073ContinuousTimeLocalityLimit,
-    `H074OperationalAxiomSelection,
-    `H075TensorCommutingCorrelationFrontier,
-    `H076LatticeGaugeManybodyBenchmark,
-    `H077FiniteOperationalClosureContract,
+    `WeylCcrResidual,
+    `NormApproximationFrontier,
+    `HeisenbergRepresentationUniqueness,
+    `RefinementSubsystemTower,
+    `TowerTopologicalCompletion,
+    `ContinuousTimeLocalityLimit,
+    `OperationalAxiomSelection,
+    `TensorCommutingCorrelationFrontier,
+    `LatticeGaugeManybodyBenchmark,
+    `FiniteOperationalClosureContract,
     `GaussIntKernel,
     `PhaseBlindPresentation,
     `QuotientFiber,
@@ -235,8 +235,8 @@ lean_lib «FiniteQuantum» where
     `BornRedundancyAxioms,
     `TraceZeroDuality,
     `TraceZeroDualityAxioms,
-    `H000FinitePresentedCarrier,
-    `H002ReportDynamics,
+    `FinitePresentedCarrier,
+    `ReportDynamics,
     `HWCarrierThread,
     `HWFullThread,
     `HWThread,
@@ -278,14 +278,14 @@ lean_lib «FiniteQuantum» where
     `HilbertLiftL2Model,
     `HilbertLiftOperators,
     -- Primitive difference foundation modules
-    `E003_projection_fiber_primitive_difference,
-    `E005_fiber_quotient_equivalence,
-    `E008_projection_escape_residual,
-    `E009_literal_invariance,
-    `E011_fiber_dynamics_congruence,
-    `E012_unique_descended_dynamics,
-    `E013_selected_projected_map,
-    `E018_descent_failure_without_escape,
+    `ProjectionFiberPrimitiveDifference,
+    `FiberQuotientEquivalence,
+    `ProjectionEscapeResidual,
+    `LiteralInvariance,
+    `FiberDynamicsCongruence,
+    `UniqueDescendedDynamics,
+    `SelectedProjectedMap,
+    `DescentFailureWithoutEscape,
     -- Pre-existing foundational modules
     `EntropyAxioms,
     `EntropyDefs,
@@ -902,45 +902,45 @@ lean_lib ImportedAtlas where
     `Imported.WdpReasoning.WitnessedReasoning
   ]
 
--- Campaign target: FSP-HUBBARD-PROTECTED-REPRESENTATIONS.
--- Not a default target: build with `lake build CampaignFspHubbardProtected`.
-lean_lib CampaignFspHubbardProtected where
-  roots := #[`CampaignFspHubbardProtected]
+-- Target: FSP-HUBBARD-PROTECTED-REPRESENTATIONS.
+-- Not a default target: build with `lake build FermionSignHubbardProtected`.
+lean_lib FermionSignHubbardProtected where
+  roots := #[`FermionSignHubbardProtected]
 
--- Campaign target 1: L1-IMP-SECTOR-SYMMETRY-LAW
--- Not a default target: build with `lake build CampaignL1SectorSymmetry`
-lean_lib CampaignL1SectorSymmetry where
+-- Target: L1-IMP-SECTOR-SYMMETRY-LAW
+-- Not a default target: build with `lake build L1SectorSymmetry`
+lean_lib L1SectorSymmetry where
   roots := #[
-    `CampaignL1SectorSymmetry
+    `L1SectorSymmetry
   ]
 
 lean_lib FableGleasonRun2 where
   roots := #[`BornGaussianRationalFrameObstruction, `BornGaussianFrameRays]
 
--- Campaign: FQ-GAP-BORN-UNIQUENESS-GLEASON (frame functions on all rational rays of Q^3 and the
+-- FQ-GAP-BORN-UNIQUENESS-GLEASON (frame functions on all rational rays of Q^3 and the
 -- residue-mod-2 class ansatz on Q(i)^3). Not a default target:
--- build with `lake build CampaignFqGapBornGleasonRays`.
-lean_lib CampaignFqGapBornGleasonRays where
-  roots := #[`CampaignBornRationalRayObstruction, `CampaignBornGaussianMod2ClassRigidity]
+-- build with `lake build BornGleasonRays`.
+lean_lib BornGleasonRays where
+  roots := #[`BornRationalRayObstruction, `BornGaussianMod2ClassRigidity]
 
--- Derivation Campaign: PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT
-lean_lib CampaignPgwPresentationLift where
-  roots := #[`CampaignPgwPresentationLift]
+-- PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT
+lean_lib PregenesisPresentationLift where
+  roots := #[`PregenesisPresentationLift]
 
--- Campaign Target 3: CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT
--- Not a default target: build with `lake build CampaignCtMediatorEntanglement`.
-lean_lib CampaignCtMediatorEntanglement where
+-- Target: CT-LOCAL-MEDIATOR-ENTANGLEMENT-IMPORT
+-- Not a default target: build with `lake build ConstructorTheoryMediatorEntanglement`.
+lean_lib ConstructorTheoryMediatorEntanglement where
   roots := #[
-    `CampaignCtMediatorEntanglement
+    `ConstructorTheoryMediatorEntanglement
   ]
 
--- Derivation Campaign Target 5 (TFQ-0016): B2(Q) Semidirect Factorization, Two-Stage Dressing, Discrete Poset Curvature
-lean_lib CampaignTfq0016B2Dressing where
-  roots := #[`CampaignTfq0016B2Dressing]
+-- (TFQ-0016): B2(Q) Semidirect Factorization, Two-Stage Dressing, Discrete Poset Curvature
+lean_lib B2SemidirectDressing where
+  roots := #[`B2SemidirectDressing]
 
--- Campaign: FSP-WILSON-DIRAC-GAMMA5. Not a default target.
-lean_lib CampaignFspWilsonDiracGamma5 where
-  roots := #[`CampaignFspWilsonDiracGamma5]
+-- FSP-WILSON-DIRAC-GAMMA5. Not a default target.
+lean_lib FermionSignWilsonDiracGamma5 where
+  roots := #[`FermionSignWilsonDiracGamma5]
 
 -- Finite combinatorial shadow of Genesis admission. Not a default target.
 lean_lib GenesisHottShadow where
@@ -956,585 +956,589 @@ lean_lib AdmitLang where
   roots := #[`AdmitCore, `AdmitReflect, `AdmitInterpret, `AdmitImport]
 
 -- All finite Genesis slot contexts, beyond the unary-only mirror. Non-default.
-lean_lib CampaignGenesisContextDecision where
-  roots := #[`CampaignGenesisContextDecision]
+lean_lib GenesisContextDecision where
+  roots := #[`GenesisContextDecision]
 
 -- Finite regulator obstruction; not a default target.
-lean_lib CampaignFspLatticeAnomalyInflow where
-  roots := #[`CampaignFspLatticeAnomalyInflow]
+lean_lib FermionSignLatticeAnomalyInflow where
+  roots := #[`FermionSignLatticeAnomalyInflow]
 
 -- Operational hypotheses and exact countermodels. Not a default build target.
-lean_lib CampaignTransitionProbability where
-  roots := #[`CampaignTransitionProbability]
+lean_lib TransitionProbability where
+  roots := #[`TransitionProbability]
 
--- Campaign: DFM-BPHZ-CONTINUUM-FENCE. Not a default target.
-lean_lib CampaignDfmBphzContinuumFence where
-  roots := #[`CampaignDfmBphzContinuumFence]
+-- DFM-BPHZ-CONTINUUM-FENCE. Not a default target.
+lean_lib DressingFieldBphzContinuumFence where
+  roots := #[`DressingFieldBphzContinuumFence]
 
 -- Compile the immutable, provenance-bound Genesis source through the shared cache.
-lean_lib CampaignGenesisSealedSource where
-  srcDir := "../atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4"
+lean_lib GenesisSealedSource where
+  srcDir := "../atlas/papers/finite_obstruction_calculus/genesis/lean4"
   roots := #[`Derivation.Basic, `Derivation.Erasure, `Derivation.Inertia, `SecondRun.Run]
   globs := #[.submodules `Derivation, .submodules `SecondRun]
 
 -- Exact array/copy/source partial replay transport. Non-default.
-lean_lib CampaignGenesisReplayRefinement where
-  roots := #[`CampaignGenesisReplayRefinement]
+lean_lib GenesisReplayRefinement where
+  roots := #[`GenesisReplayRefinement]
 
 -- Certified carrier bridge reuses the sealed Genesis source library above.
-lean_lib CampaignGenesisCarrierBridge where
-  roots := #[`CampaignGenesisCarrierBridge]
+lean_lib GenesisCarrierBridge where
+  roots := #[`GenesisCarrierBridge]
 
 -- Declared demand-policy extension. Non-default.
-lean_lib CampaignGenesisDemandPolicy where
-  roots := #[`CampaignGenesisDemandPolicy]
+lean_lib GenesisDemandPolicy where
+  roots := #[`GenesisDemandPolicy]
 
 -- Supplied rooted-tree Borel dressing. Non-default.
-lean_lib CampaignDfmHierarchicalBorel where
-  roots := #[`CampaignDfmHierarchicalBorel]
+lean_lib DressingFieldHierarchicalBorel where
+  roots := #[`DressingFieldHierarchicalBorel]
 
--- Campaign: DFM-ELECTROWEAK-CONTINUUM-FENCE. Not a default target.
-lean_lib CampaignDfmElectroweakContinuumFence where
-  roots := #[`CampaignDfmElectroweakContinuumFence]
+-- DFM-ELECTROWEAK-CONTINUUM-FENCE. Not a default target.
+lean_lib DressingFieldElectroweakContinuumFence where
+  roots := #[`DressingFieldElectroweakContinuumFence]
 
 -- Exact no-return engine replay, reusing the sealed source library.
-lean_lib CampaignGenesisNoReturn where
-  roots := #[`CampaignGenesisNoReturn]
+lean_lib GenesisNoReturn where
+  roots := #[`GenesisNoReturn]
 
 -- Immutable Genesis-Ongoing dependencies; non-default source and proof targets.
-lean_lib CampaignGenesisOngoingSource where
-  srcDir := "../atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4"
+lean_lib GenesisOngoingSource where
+  srcDir := "../atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4"
   roots := #[`H3V7N5QF.Answers, `Second.Cost]
   globs := #[.submodules `H3V7N5QF, .submodules `Second]
 
-lean_lib CampaignGenesisOngoingRename where
-  roots := #[`CampaignGenesisOngoingRename]
+lean_lib GenesisOngoingRename where
+  roots := #[`GenesisOngoingRename]
 
-lean_lib CampaignGenesisOngoingRefinement where
-  roots := #[`CampaignGenesisOngoingRefinement]
+lean_lib GenesisOngoingRefinement where
+  roots := #[`GenesisOngoingRefinement]
 
 -- Explicit comparison classes, reusing the sealed source library above.
-lean_lib CampaignGenesisProcessComparison where
-  roots := #[`CampaignGenesisProcessComparison]
+lean_lib GenesisProcessComparison where
+  roots := #[`GenesisProcessComparison]
 
--- Campaign: DFM-CKM-PHYSICS-FENCE. Not a default target.
-lean_lib CampaignDfmCkmPhysicsFence where
-  roots := #[`CampaignDfmCkmPhysicsFence]
+-- DFM-CKM-PHYSICS-FENCE. Not a default target.
+lean_lib DressingFieldCkmPhysicsFence where
+  roots := #[`DressingFieldCkmPhysicsFence]
 
--- Campaign target: DFM-CONTINUUM-INTERFACE.
--- Not a default target: build with `lake build CampaignDfmContinuumInterface`.
-lean_lib CampaignDfmContinuumInterface where
-  roots := #[`CampaignDfmContinuumInterface]
+-- Target: DFM-CONTINUUM-INTERFACE.
+-- Not a default target: build with `lake build DressingFieldContinuumInterface`.
+lean_lib DressingFieldContinuumInterface where
+  roots := #[`DressingFieldContinuumInterface]
 
--- Campaign: FSP-U1-WILSON-ACTION. Not a default target.
-lean_lib CampaignFspU1WilsonAction where
-  roots := #[`CampaignFspU1WilsonAction]
+-- FSP-U1-WILSON-ACTION. Not a default target.
+lean_lib FermionSignU1WilsonAction where
+  roots := #[`FermionSignU1WilsonAction]
 
 
--- Campaign: DFM-GRIBOV-CONTINUUM-FENCE. Not a default target.
-lean_lib CampaignDfmGribovContinuumFence where
-  roots := #[`CampaignDfmGribovContinuumFence]
+-- DFM-GRIBOV-CONTINUUM-FENCE. Not a default target.
+lean_lib DressingFieldGribovContinuumFence where
+  roots := #[`DressingFieldGribovContinuumFence]
 
--- Campaign: DFM-SYMANZIK-QED-AE-FENCE. Not a default target.
-lean_lib CampaignDfmSymanzikQedAeFence where
-  roots := #[`CampaignDfmSymanzikQedAeFence]
+-- DFM-SYMANZIK-QED-AE-FENCE. Not a default target.
+lean_lib DressingFieldSymanzikQedAeFence where
+  roots := #[`DressingFieldSymanzikQedAeFence]
 
--- Campaign: DFM-REGGE-GRAVITY-FENCE. Not a default target.
-lean_lib CampaignDfmReggeGravityFence where
-  roots := #[`CampaignDfmReggeGravityFence]
+-- DFM-REGGE-GRAVITY-FENCE. Not a default target.
+lean_lib DressingFieldReggeGravityFence where
+  roots := #[`DressingFieldReggeGravityFence]
 
-lean_lib CampaignDfmRelationalTimeFence where
-  roots := #[`CampaignDfmRelationalTimeFence]
+lean_lib DressingFieldRelationalTimeFence where
+  roots := #[`DressingFieldRelationalTimeFence]
 
--- Campaign: DFM-Z1-Z2-COUNTERTERM-FENCE. Not a default target.
-lean_lib CampaignDfmZ1Z2CountertermFence where
-  roots := #[`CampaignDfmZ1Z2CountertermFence]
+-- DFM-Z1-Z2-COUNTERTERM-FENCE. Not a default target.
+lean_lib DressingFieldZ1Z2CountertermFence where
+  roots := #[`DressingFieldZ1Z2CountertermFence]
 
--- Campaign: PGW-SN-E08-WEIGHTED-L1-DUALITY. Not a default target.
-lean_lib CampaignSnE08WeightedL1Duality where
-  roots := #[`CampaignSnE08WeightedL1Duality]
+-- PGW-SN-E08-WEIGHTED-L1-DUALITY. Not a default target.
+lean_lib WeightedL1Duality where
+  roots := #[`WeightedL1Duality]
 
--- Campaign: PGW-SN-PROTECTED-ANSWER-TRANSPORT. Not a default target.
-lean_lib CampaignSnProtectedAnswerTransport where
-  roots := #[`CampaignSnProtectedAnswerTransport]
+-- PGW-SN-PROTECTED-ANSWER-TRANSPORT. Not a default target.
+lean_lib ProtectedAnswerTransport where
+  roots := #[`ProtectedAnswerTransport]
 
--- Campaign: FSP-SU2-ADJOINT-REAL-DET. Not a default target.
-lean_lib CampaignFspSu2AdjointRealDet where
-  roots := #[`CampaignFspSu2AdjointRealDet]
+-- FSP-SU2-ADJOINT-REAL-DET. Not a default target.
+lean_lib FermionSignSu2AdjointRealDet where
+  roots := #[`FermionSignSu2AdjointRealDet]
 
--- Campaign: FSP-QCD-CHEMICAL-POTENTIAL-DET. Not a default target.
-lean_lib CampaignFspQcdChemicalPotentialDet where
-  roots := #[`CampaignFspQcdChemicalPotentialDet]
+-- FSP-QCD-CHEMICAL-POTENTIAL-DET. Not a default target.
+lean_lib FermionSignQcdChemicalPotentialDet where
+  roots := #[`FermionSignQcdChemicalPotentialDet]
 
--- Campaign: FSP-LATTICE-WESS-ZUMINO-SUSY. Not a default target.
-lean_lib CampaignFspLatticeWessZuminoSusy where
-  roots := #[`CampaignFspLatticeWessZuminoSusy]
+-- FSP-LATTICE-WESS-ZUMINO-SUSY. Not a default target.
+lean_lib FermionSignLatticeWessZuminoSusy where
+  roots := #[`FermionSignLatticeWessZuminoSusy]
 
--- Campaign: ADS-CFT-DUALITY-IMPORT. Not a default target.
-lean_lib CampaignAdsCftDualityImport where
-  roots := #[`CampaignAdsCftDualityImport]
+-- ADS-CFT-DUALITY-IMPORT. Not a default target.
+lean_lib AdsCftDualityImport where
+  roots := #[`AdsCftDualityImport]
 
--- Campaign: ADS-HAPPY-TOY-NOT-DUALITY-GAP. Not a default target.
-lean_lib CampaignAdsHappyToyNotDualityGap where
-  roots := #[`CampaignAdsHappyToyNotDualityGap]
+-- ADS-HAPPY-TOY-NOT-DUALITY-GAP. Not a default target.
+lean_lib AdsHappyToyNotDualityGap where
+  roots := #[`AdsHappyToyNotDualityGap]
 
--- Campaign: FSP-IMAGINARY-MU-REAL-DET. Non-default.
-lean_lib CampaignFspImaginaryMuRealDet where
-  roots := #[`CampaignFspImaginaryMuRealDet]
+-- FSP-IMAGINARY-MU-REAL-DET. Non-default.
+lean_lib FermionSignImaginaryMuRealDet where
+  roots := #[`FermionSignImaginaryMuRealDet]
 
--- Campaign: TFQ-0008. Not a default target.
-lean_lib CampaignTfq0008FiniteDynamics where
-  roots := #[`CampaignTfq0008FiniteDynamics]
+-- TFQ-0008. Not a default target.
+lean_lib PathSumCayleyEulerStep where
+  roots := #[`PathSumCayleyEulerStep]
 
--- Campaign: CQFT-LOCAL-NET-AXIOMS-IMPORT. Not a default target.
-lean_lib CampaignCqftLocalNetAxiomsImport where
-  roots := #[`CampaignCqftLocalNetAxiomsImport]
+-- CQFT-LOCAL-NET-AXIOMS-IMPORT. Not a default target.
+lean_lib LocalNetAxiomsImport where
+  roots := #[`LocalNetAxiomsImport]
 
--- Campaign: LQG-EPRL-VERTEX-IMPORT. Not a default target.
-lean_lib CampaignLqgEprlVertexImport where
-  roots := #[`CampaignLqgEprlVertexImport]
+-- LQG-EPRL-VERTEX-IMPORT. Not a default target.
+lean_lib LqgEprlVertexImport where
+  roots := #[`LqgEprlVertexImport]
 
--- Campaign: LQG-CONTINUUM-LIMIT-GAP. Not a default target.
-lean_lib CampaignLqgContinuumLimitGap where
-  roots := #[`CampaignLqgContinuumLimitGap]
+-- LQG-CONTINUUM-LIMIT-GAP. Not a default target.
+lean_lib LqgContinuumLimitGap where
+  roots := #[`LqgContinuumLimitGap]
 
--- Campaign: ADS-RT-FORMULA-IMPORT. Not a default target.
-lean_lib CampaignAdsRtFormulaImport where
-  roots := #[`CampaignAdsRtFormulaImport]
+-- ADS-RT-FORMULA-IMPORT. Not a default target.
+lean_lib AdsRtFormulaImport where
+  roots := #[`AdsRtFormulaImport]
 
--- Campaign: ADS-REGGE-AREA-RT-GAP. Not a default target.
-lean_lib CampaignAdsReggeAreaRtGap where
-  roots := #[`CampaignAdsReggeAreaRtGap]
+-- ADS-REGGE-AREA-RT-GAP. Not a default target.
+lean_lib AdsReggeAreaRtGap where
+  roots := #[`AdsReggeAreaRtGap]
 
--- Campaign: CQFT-CAUSAL-FACTORIZATION-IMPORT. Not a default target.
-lean_lib CampaignCqftCausalFactorizationImport where
-  roots := #[`CampaignCqftCausalFactorizationImport]
+-- CQFT-CAUSAL-FACTORIZATION-IMPORT. Not a default target.
+lean_lib CausalFactorizationImport where
+  roots := #[`CausalFactorizationImport]
 
--- Campaign: CQFT-REEH-SCHLIEDER-THEOREM-IMPORT. Not a default target.
-lean_lib CampaignCqftReehSchliederTheoremImport where
-  roots := #[`CampaignCqftReehSchliederTheoremImport]
+-- CQFT-REEH-SCHLIEDER-THEOREM-IMPORT. Not a default target.
+lean_lib ReehSchliederImport where
+  roots := #[`ReehSchliederImport]
 
--- Campaign: TFQ-0106. Not a default target.
-lean_lib CampaignTfq0106FiniteQg where
-  roots := #[`CampaignTfq0106FiniteQg]
+-- TFQ-0106. Not a default target.
+lean_lib CosmologicalCouplingReplay where
+  roots := #[`CosmologicalCouplingReplay]
 
--- Campaign: TFQ-0090. Not a default target.
-lean_lib CampaignTfq0090FiniteQg where
-  roots := #[`CampaignTfq0090FiniteQg]
+-- TFQ-0090. Not a default target.
+lean_lib CochainCurvatureReggeDeficit where
+  roots := #[`CochainCurvatureReggeDeficit]
 
--- Campaign: TFQ-0107. Not a default target.
-lean_lib CampaignTfq0107FiniteQg where
-  roots := #[`CampaignTfq0107FiniteQg]
+-- TFQ-0107. Not a default target.
+lean_lib FieldEquationConstraintReplay where
+  roots := #[`FieldEquationConstraintReplay]
 
--- Campaign: TFQ-0118. Not a default target.
-lean_lib CampaignTfq0118ContinuumInterface where
-  roots := #[`CampaignTfq0118ContinuumInterface]
+-- TFQ-0118. Not a default target.
+lean_lib CyclicInclusionCharacterSums where
+  roots := #[`CyclicInclusionCharacterSums]
 
--- Campaign: TFQ-0119. Not a default target.
-lean_lib CampaignTfq0119ContinuumInterface where
-  roots := #[`CampaignTfq0119ContinuumInterface]
+-- TFQ-0119. Not a default target.
+lean_lib DyadicDirectLimitCircle where
+  roots := #[`DyadicDirectLimitCircle]
 
--- Campaign: TFQ-0123. Not a default target.
-lean_lib CampaignTfq0123ContinuumInterface where
-  roots := #[`CampaignTfq0123ContinuumInterface]
+-- TFQ-0123. Not a default target.
+lean_lib LossLedgerAssociativity where
+  roots := #[`LossLedgerAssociativity]
 
--- Campaign: PG-WDP-GENESIS-BRIDGE-OBLIGATIONS. Not a default target.
-lean_lib CampaignPgwWdpBridgeObligations where
-  roots := #[`CampaignPgwWdpBridgeObligations]
+-- PG-WDP-GENESIS-BRIDGE-OBLIGATIONS. Not a default target.
+lean_lib PregenesisWdpBridgeObligations where
+  roots := #[`PregenesisWdpBridgeObligations]
 
-lean_lib CampaignTfq0006L1ToL2 where
-  roots := #[`CampaignTfq0006L1ToL2]
+lean_lib GaussianMatrixRecoveryLift where
+  roots := #[`GaussianMatrixRecoveryLift]
 
-lean_lib CampaignTfq0008FiniteQmDynamics where
-  roots := #[`CampaignTfq0008FiniteQmDynamics]
+lean_lib FiniteDynamicsInstrumentsPathSums where
+  roots := #[`FiniteDynamicsInstrumentsPathSums]
 
-lean_lib CampaignTfq0009FiniteGauge where
-  roots := #[`CampaignTfq0009FiniteGauge]
+lean_lib FiniteGaugeCochainHolonomy where
+  roots := #[`FiniteGaugeCochainHolonomy]
 
-lean_lib CampaignTfq0010FiniteQed where
-  roots := #[`CampaignTfq0010FiniteQed]
+lean_lib FiniteQedElectroweakShadow where
+  roots := #[`FiniteQedElectroweakShadow]
 
-lean_lib CampaignTfq0011FiniteQcd where
-  roots := #[`CampaignTfq0011FiniteQcd]
+lean_lib FiniteQcdColorWilsonLoops where
+  roots := #[`FiniteQcdColorWilsonLoops]
 
-lean_lib CampaignTfq0012FiniteQcd where
-  roots := #[`CampaignTfq0012FiniteQcd]
+lean_lib QuaternionQ8GaugeShadow where
+  roots := #[`QuaternionQ8GaugeShadow]
 
-lean_lib CampaignTfq0014FiniteQcd where
-  roots := #[`CampaignTfq0014FiniteQcd]
+lean_lib FiniteGroupoidConvolutionAlgebra where
+  roots := #[`FiniteGroupoidConvolutionAlgebra]
 
-lean_lib CampaignTfq0017FiniteQcd where
-  roots := #[`CampaignTfq0017FiniteQcd]
+lean_lib QuaternionQ8InSU2 where
+  roots := #[`QuaternionQ8InSU2]
 
-lean_lib CampaignTfq0026FiniteQcd where
-  roots := #[`CampaignTfq0026FiniteQcd]
+lean_lib LatticeDiracDoubling where
+  roots := #[`LatticeDiracDoubling]
 
-lean_lib CampaignTfq0027FiniteQcd where
-  roots := #[`CampaignTfq0027FiniteQcd]
+lean_lib WilsonSpeciesCount where
+  roots := #[`WilsonSpeciesCount]
 
-lean_lib CampaignTfq0032FiniteQcd where
-  roots := #[`CampaignTfq0032FiniteQcd]
+lean_lib MesonColorChannels where
+  roots := #[`MesonColorChannels]
 
-lean_lib CampaignTfq0033FiniteQcd where
-  roots := #[`CampaignTfq0033FiniteQcd]
+lean_lib DiquarkAntitripletChannel where
+  roots := #[`DiquarkAntitripletChannel]
 
-lean_lib CampaignTfq0038FiniteQcd where
-  roots := #[`CampaignTfq0038FiniteQcd]
+lean_lib ConfK5TorsionReadings where
+  roots := #[`ConfK5TorsionReadings]
 
-lean_lib CampaignTfq0039FiniteQcd where
-  roots := #[`CampaignTfq0039FiniteQcd]
+lean_lib ContinuumVolumeInterfaceInventory where
+  roots := #[`ContinuumVolumeInterfaceInventory]
 
-lean_lib CampaignTfq0040FiniteQcd where
-  roots := #[`CampaignTfq0040FiniteQcd]
+lean_lib ColorTwinCoverage where
+  roots := #[`ColorTwinCoverage]
 
-lean_lib CampaignTfq0042FiniteQcd where
-  roots := #[`CampaignTfq0042FiniteQcd]
+lean_lib Su3GribovDiamond where
+  roots := #[`Su3GribovDiamond]
 
-lean_lib CampaignTfq0044FiniteTopological where
-  roots := #[`CampaignTfq0044FiniteTopological]
+lean_lib AnyonRibbonRacahGauge where
+  roots := #[`AnyonRibbonRacahGauge]
 
-lean_lib CampaignTfq0050FiniteTopological where
-  roots := #[`CampaignTfq0050FiniteTopological]
+lean_lib RibbonCategoryCatalog where
+  roots := #[`RibbonCategoryCatalog]
 
-lean_lib CampaignTfq0171ImplementationSibling where
-  roots := #[`CampaignTfq0171ImplementationSibling]
+lean_lib BooleanValuationVsSimplex where
+  roots := #[`BooleanValuationVsSimplex]
 
-lean_lib CampaignTfq0183ImplementationSibling where
-  roots := #[`CampaignTfq0183ImplementationSibling]
+lean_lib TetronGf2Homology where
+  roots := #[`TetronGf2Homology]
 
-lean_lib CampaignTfq0184ImplementationSibling where
-  roots := #[`CampaignTfq0184ImplementationSibling]
+lean_lib MajoranaEvaluatorControls where
+  roots := #[`MajoranaEvaluatorControls]
 
-lean_lib CampaignTfq0191ImplementationSibling where
-  roots := #[`CampaignTfq0191ImplementationSibling]
+lean_lib IntervalMeasurementEvidence where
+  roots := #[`IntervalMeasurementEvidence]
 
-lean_lib CampaignTfq0199ImplementationSibling where
-  roots := #[`CampaignTfq0199ImplementationSibling]
+lean_lib GravityProxyVsReggeSum where
+  roots := #[`GravityProxyVsReggeSum]
 
-lean_lib CampaignTfq0376Pregenesis where
-  roots := #[`CampaignTfq0376Pregenesis]
+lean_lib PregenesisLiftChecklist where
+  roots := #[`PregenesisLiftChecklist]
 
--- Campaign: PGW-PYTHON-LEAN-CARRIER-BRIDGE. Not a default target.
-lean_lib CampaignPgwPythonLeanCarrierBridge where
-  roots := #[`CampaignPgwPythonLeanCarrierBridge]
+-- PGW-PYTHON-LEAN-CARRIER-BRIDGE. Not a default target.
+lean_lib PregenesisPythonLeanCarrierBridge where
+  roots := #[`PregenesisPythonLeanCarrierBridge]
 
--- Campaign: L1-QM020-THM2B-MINKOWSKI. Not a default target.
-lean_lib CampaignL1Qm020Thm2bMinkowski where
-  roots := #[`CampaignL1Qm020Thm2bMinkowski]
+-- L1-QM020-THM2B-MINKOWSKI. Not a default target.
+lean_lib L1MinkowskiSquareExpansion where
+  roots := #[`L1MinkowskiSquareExpansion]
 
--- Campaign: PGW-CONTEXT-FIDELITY. Not a default target.
-lean_lib CampaignPgwContextFidelity where
-  roots := #[`CampaignPgwContextFidelity]
+-- PGW-CONTEXT-FIDELITY. Not a default target.
+lean_lib PregenesisContextFidelity where
+  roots := #[`PregenesisContextFidelity]
 
--- Campaign: TFQ-0003. Not a default target.
-lean_lib CampaignTfq0003FiniteObstruction where
-  roots := #[`CampaignTfq0003FiniteObstruction]
+-- TFQ-0003. Not a default target.
+lean_lib FiniteObstructionTwoComplexes where
+  roots := #[`FiniteObstructionTwoComplexes]
 
--- Campaign: TFQ-0313. Not a default target.
-lean_lib CampaignTfq0313OperatorAlgebraShadow where
-  roots := #[`CampaignTfq0313OperatorAlgebraShadow]
+-- TFQ-0313. Not a default target.
+lean_lib Z4ModuleOperatorAlgebra where
+  roots := #[`Z4ModuleOperatorAlgebra]
 
--- Campaign: TFQ-0319. Not a default target.
-lean_lib CampaignTfq0319UnjoinedReceipt where
-  roots := #[`CampaignTfq0319UnjoinedReceipt]
+-- TFQ-0319. Not a default target.
+lean_lib TwoMarkCoboundary where
+  roots := #[`TwoMarkCoboundary]
 
--- Campaign: OPS-RUST-RECEIPTS-AND-LIMITS. Not a default target.
-lean_lib CampaignOpsRustReceiptsAndLimits where
-  roots := #[`CampaignOpsRustReceiptsAndLimits]
+-- OPS-RUST-RECEIPTS-AND-LIMITS. Not a default target.
+lean_lib ObserverPresheafReceiptLimits where
+  roots := #[`ObserverPresheafReceiptLimits]
 
--- Campaign: TFQ-0374. Not a default target.
-lean_lib CampaignTfq0374ThreeRecoveryContracts where
-  roots := #[`CampaignTfq0374ThreeRecoveryContracts]
+-- TFQ-0374. Not a default target.
+lean_lib FreshLetterRecoveryContracts where
+  roots := #[`FreshLetterRecoveryContracts]
 
--- Campaign: TFQ-0385. Not a default target.
-lean_lib CampaignTfq0385RuleErasesSeparation where
-  roots := #[`CampaignTfq0385RuleErasesSeparation]
+-- TFQ-0385. Not a default target.
+lean_lib UniformRuleErasesSeparation where
+  roots := #[`UniformRuleErasesSeparation]
 
--- Campaign: PGW-K-ITEM-DELTA-GRAMMAR. Not a default target.
-lean_lib CampaignPgwKItemDeltaGrammar where
-  roots := #[`CampaignPgwKItemDeltaGrammar]
+-- PGW-K-ITEM-DELTA-GRAMMAR. Not a default target.
+lean_lib PregenesisKItemDeltaGrammar where
+  roots := #[`PregenesisKItemDeltaGrammar]
 
--- Campaign: PGW-DECLARED-INPUT-FLOOR. Not a default target.
-lean_lib CampaignPgwDeclaredInputFloor where
-  roots := #[`CampaignPgwDeclaredInputFloor]
+-- PGW-DECLARED-INPUT-FLOOR. Not a default target.
+lean_lib PregenesisDeclaredInputFloor where
+  roots := #[`PregenesisDeclaredInputFloor]
 
--- Campaign: PGW-ISOMORPHISM-SOUNDNESS-IN-LEAN. Not a default target.
-lean_lib CampaignPgwIsomorphismSoundnessInLean where
-  roots := #[`CampaignPgwIsomorphismSoundnessInLean]
+-- PGW-ISOMORPHISM-SOUNDNESS-IN-LEAN. Not a default target.
+lean_lib PregenesisIsomorphismSoundness where
+  roots := #[`PregenesisIsomorphismSoundness]
 
--- Campaign: PGW-RUNS-PAST-DECLARED-BOUNDS. Not a default target.
-lean_lib CampaignPgwRunsPastDeclaredBounds where
-  roots := #[`CampaignPgwRunsPastDeclaredBounds]
+-- PGW-RUNS-PAST-DECLARED-BOUNDS. Not a default target.
+lean_lib PregenesisRunsPastDeclaredBounds where
+  roots := #[`PregenesisRunsPastDeclaredBounds]
 
--- Campaign: PGW-STREAM-AT-FOUR-ITEMS. Not a default target.
-lean_lib CampaignPgwStreamAtFourItems where
-  roots := #[`CampaignPgwStreamAtFourItems]
+-- PGW-STREAM-AT-FOUR-ITEMS. Not a default target.
+lean_lib PregenesisStreamAtFourItems where
+  roots := #[`PregenesisStreamAtFourItems]
 
--- Campaign: PGW-DRIVER-B-SEVENTH-EVENT. Not a default target.
-lean_lib CampaignPgwDriverBSeventhEvent where
-  roots := #[`CampaignPgwDriverBSeventhEvent]
+-- PGW-DRIVER-B-SEVENTH-EVENT. Not a default target.
+lean_lib PregenesisDriverBSeventhEvent where
+  roots := #[`PregenesisDriverBSeventhEvent]
 
--- Campaign: PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT. Not a default target.
-lean_lib CampaignPgwWdpIncidenceTransport where
-  roots := #[`CampaignPgwWdpIncidenceTransport]
+-- PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT. Not a default target.
+lean_lib PregenesisWdpIncidenceTransport where
+  roots := #[`PregenesisWdpIncidenceTransport]
 
--- Campaign: PGW-WDP-BRIDGE-ONGOING-TO-WINDOW. Not a default target.
-lean_lib CampaignPgwWdpBridgeOngoing where
-  roots := #[`CampaignPgwWdpBridgeOngoing]
+-- PGW-WDP-BRIDGE-ONGOING-TO-WINDOW. Not a default target.
+lean_lib PregenesisWdpBridgeOngoing where
+  roots := #[`PregenesisWdpBridgeOngoing]
 
--- Campaign: PGW-WDP-HANDOFF-TO-L1. Not a default target.
-lean_lib CampaignPgwWdpHandoffToL1 where
-  roots := #[`CampaignPgwWdpHandoffToL1]
+-- PGW-WDP-HANDOFF-TO-L1. Not a default target.
+lean_lib PregenesisWdpHandoffToL1 where
+  roots := #[`PregenesisWdpHandoffToL1]
 
--- Campaign: MUB-PRIME-POWER-CONSTRUCTION. Not a default target.
-lean_lib CampaignMubPrimePowerConstruction where
-  roots := #[`CampaignMubPrimePowerConstruction]
+-- MUB-PRIME-POWER-CONSTRUCTION. Not a default target.
+lean_lib MubPrimePowerConstruction where
+  roots := #[`MubPrimePowerConstruction]
 
 
--- Campaign: MUB-PRIME-POWER-CONSTRUCTION (odd characteristic). Not a default target:
--- build with `lake build CampaignMubPrimePowerOdd`.
-lean_lib CampaignMubPrimePowerOdd where
-  roots := #[`CampaignMubPrimePowerOddCharacteristic]
+-- MUB-PRIME-POWER-CONSTRUCTION (odd characteristic). Not a default target:
+-- build with `lake build MubPrimePowerOdd`.
+lean_lib MubPrimePowerOdd where
+  roots := #[`MubPrimePowerOddCharacteristic]
 
--- Campaign: MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE. Not a default target.
-lean_lib CampaignMajOpenLindbladTransferEnvelope where
-  roots := #[`CampaignMajOpenLindbladTransferEnvelope]
+-- MAJ-OPEN-LINDBLAD-TRANSFER-ENVELOPE. Not a default target.
+lean_lib MajoranaOpenLindbladTransferEnvelope where
+  roots := #[`MajoranaOpenLindbladTransferEnvelope]
 
--- Campaign: MAJ-OPEN-EVIDENCE-ADEQUACY. Not a default target.
-lean_lib CampaignMajOpenEvidenceAdequacy where
-  roots := #[`CampaignMajOpenEvidenceAdequacy]
+-- MAJ-OPEN-EVIDENCE-ADEQUACY. Not a default target.
+lean_lib MajoranaOpenEvidenceAdequacy where
+  roots := #[`MajoranaOpenEvidenceAdequacy]
 
--- Campaign: GTH-SHADOW. Not a default target.
-lean_lib CampaignGthShadow where
-  roots := #[`CampaignGthShadow]
+-- GTH-SHADOW. Not a default target.
+lean_lib GenesisToHigherShadow where
+  roots := #[`GenesisToHigherShadow]
 
--- Campaign: GTH-LANG-CORE. Not a default target.
-lean_lib CampaignGthLangCore where
-  roots := #[`CampaignGthLangCore]
+-- GTH-LANG-CORE. Not a default target.
+lean_lib GenesisToHigherLangCore where
+  roots := #[`GenesisToHigherLangCore]
 
--- Campaign: L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED. Not a default target.
-lean_lib CampaignL1ResidualSectorWeights where
-  roots := #[`CampaignL1ResidualSectorWeights]
+-- L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED. Not a default target.
+lean_lib L1ResidualSectorWeights where
+  roots := #[`L1ResidualSectorWeights]
 
--- Campaign: FQ-PRIM-TO-QM-SELECTION-OPEN. Not a default target.
-lean_lib CampaignFqPrimToQmSelection where
-  roots := #[`CampaignFqPrimToQmSelection]
+-- FQ-PRIM-TO-QM-SELECTION-OPEN. Not a default target.
+lean_lib PrimToQmSelection where
+  roots := #[`PrimToQmSelection]
 
--- Campaign: FQ-GAP-U1-CIRCLE. Not a default target.
-lean_lib CampaignFqGapU1Circle where
-  roots := #[`CampaignFqGapU1Circle]
+-- FQ-GAP-U1-CIRCLE. Not a default target.
+lean_lib U1CircleIntegerWitness where
+  roots := #[`U1CircleIntegerWitness]
 
--- Campaign: COMP-C2-STEP3-NOT-WORD-STEP. Not a default target.
-lean_lib CampaignCompC2Step3NotWordStep where
-  roots := #[`CampaignCompC2Step3NotWordStep]
+-- COMP-C2-STEP3-NOT-WORD-STEP. Not a default target.
+lean_lib ComputationC2Step3NotWordStep where
+  roots := #[`ComputationC2Step3NotWordStep]
 
--- Campaign: COMP-C6-TM0-OUTPUT-FORM-OPEN. Not a default target.
-lean_lib CampaignCompC6Tm0OutputFormOpen where
-  roots := #[`CampaignCompC6Tm0OutputFormOpen]
+-- COMP-C6-TM0-OUTPUT-FORM-OPEN. Not a default target.
+lean_lib ComputationC6Tm0OutputFormOpen where
+  roots := #[`ComputationC6Tm0OutputFormOpen]
 
--- Campaign: COMP-C7-FIXED-TARGET-OPEN. Not a default target.
-lean_lib CampaignCompC7FixedTargetOpen where
-  roots := #[`CampaignCompC7FixedTargetOpen]
+-- COMP-C7-FIXED-TARGET-OPEN. Not a default target.
+lean_lib ComputationC7FixedTargetOpen where
+  roots := #[`ComputationC7FixedTargetOpen]
 
--- Campaign: COMP-C8-MINIMALITY-FENCE. Not a default target.
-lean_lib CampaignCompC8MinimalityFence where
-  roots := #[`CampaignCompC8MinimalityFence]
+-- COMP-C8-MINIMALITY-FENCE. Not a default target.
+lean_lib ComputationC8MinimalityFence where
+  roots := #[`ComputationC8MinimalityFence]
 
--- Campaign: AUTH-DTM2-INPUT-REQUEST-PLANNED. Not a default target.
-lean_lib CampaignAuthDtm2InputRequestPlanned where
-  roots := #[`CampaignAuthDtm2InputRequestPlanned]
+-- AUTH-DTM2-INPUT-REQUEST-PLANNED. Not a default target.
+lean_lib ComputabilityDtm2InputRequestPlanned where
+  roots := #[`ComputabilityDtm2InputRequestPlanned]
 
--- Campaign: AUTHF-CARRIER-ADMISSION-GATE. Not a default target.
-lean_lib CampaignAuthfCarrierAdmissionGate where
-  roots := #[`CampaignAuthfCarrierAdmissionGate]
+-- AUTHF-CARRIER-ADMISSION-GATE. Not a default target.
+lean_lib CarrierAdmissionGate where
+  roots := #[`CarrierAdmissionGate]
 
--- Campaign: FQ-GAP-STONE-CONTINUOUS-TIME. Not a default target.
-lean_lib CampaignFqGapStoneContinuousTime where
-  roots := #[`CampaignFqGapStoneContinuousTime]
+-- FQ-GAP-STONE-CONTINUOUS-TIME. Not a default target.
+lean_lib StoneContinuousTimeIntegerSlice where
+  roots := #[`StoneContinuousTimeIntegerSlice]
 
--- Campaign: FQ-GAP-CONTINUUM-HILBERT-LIFT. Not a default target.
-lean_lib CampaignFqGapContinuumHilbertLift where
-  roots := #[`CampaignFqGapContinuumHilbertLift]
+-- FQ-GAP-CONTINUUM-HILBERT-LIFT. Not a default target.
+lean_lib ContinuumHilbertLiftIntegerSlice where
+  roots := #[`ContinuumHilbertLiftIntegerSlice]
 
--- Campaign: FSP-WITTEN-INDEX-INVARIANCE. Not a default target.
-lean_lib CampaignWittenPairing where
-  roots := #[`CampaignWittenPairing]
+-- FSP-WITTEN-INDEX-INVARIANCE. Not a default target.
+lean_lib WittenPairing where
+  roots := #[`WittenPairing]
 
--- Campaign: PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY. Not a default target.
-lean_lib CampaignPgwWdpPhiWellDefinedL1Duality where
-  roots := #[`CampaignPgwWdpPhiWellDefinedL1Duality]
+-- PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY. Not a default target.
+lean_lib PregenesisWdpPhiWellDefinedL1Duality where
+  roots := #[`PregenesisWdpPhiWellDefinedL1Duality]
 
--- Campaign: FSP-KITAEV-HONEYCOMB-SOLUTION. Not a default target.
-lean_lib CampaignKitaevSectorBlock where
-  roots := #[`CampaignKitaevSectorBlock]
+-- FSP-KITAEV-HONEYCOMB-SOLUTION. Not a default target.
+lean_lib KitaevSectorBlock where
+  roots := #[`KitaevSectorBlock]
 
--- Campaign: FSP-LAUGHLIN-EXCHANGE-PHASE. Not a default target.
-lean_lib CampaignLaughlinRootAmbiguity where
-  roots := #[`CampaignLaughlinRootAmbiguity]
+-- FSP-LAUGHLIN-EXCHANGE-PHASE. Not a default target.
+lean_lib LaughlinRootAmbiguity where
+  roots := #[`LaughlinRootAmbiguity]
 
--- Campaign: PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER. Not a default target.
-lean_lib CampaignReportFiberDescent where
-  roots := #[`CampaignReportFiberDescent]
+-- PGW-WDP-BRIDGE-REPORT-FIBER-OBSERVER. Not a default target.
+lean_lib ReportFiberDescent where
+  roots := #[`ReportFiberDescent]
 
--- Campaign: CT-INFORMATION-MEDIA-INTEROPERABILITY. Not a default target.
-lean_lib CampaignInformationProductBoundary where
-  roots := #[`CampaignInformationProductBoundary]
+-- CT-INFORMATION-MEDIA-INTEROPERABILITY. Not a default target.
+lean_lib InformationProductBoundary where
+  roots := #[`InformationProductBoundary]
 
--- Campaign: MAJ-LEGACY-CARRIER-RETRACTION. Not a default target.
-lean_lib CampaignMajLegacyCarrierRetraction where
-  roots := #[`CampaignMajLegacyCarrierRetraction]
+-- MAJ-LEGACY-CARRIER-RETRACTION. Not a default target.
+lean_lib MajoranaLegacyCarrierRetraction where
+  roots := #[`MajoranaLegacyCarrierRetraction]
 
--- Campaign: COMP-C3-NO-FIXED-BOUND. Not a default target.
-lean_lib CampaignCompC3NoFixedBound where
-  roots := #[`CampaignCompC3NoFixedBound]
+-- COMP-C3-NO-FIXED-BOUND. Not a default target.
+lean_lib ComputationC3NoFixedBound where
+  roots := #[`ComputationC3NoFixedBound]
 
--- Campaign: COMP-C7-ENCODED-INSTANCE-REDUCTION. Not a default target.
-lean_lib CampaignCompC7EncodedInstanceReduction where
-  roots := #[`CampaignCompC7EncodedInstanceReduction]
+-- COMP-C7-ENCODED-INSTANCE-REDUCTION. Not a default target.
+lean_lib ComputationC7EncodedInstanceReduction where
+  roots := #[`ComputationC7EncodedInstanceReduction]
 
--- Campaign: QCV-CONDITIONAL-VIABILITY-CERTIFICATE. Not a default target.
-lean_lib CampaignQcvConditionalViabilityCertificate where
-  roots := #[`CampaignQcvConditionalViabilityCertificate]
+-- QCV-CONDITIONAL-VIABILITY-CERTIFICATE. Not a default target.
+lean_lib NoisyComputationViabilityCertificate where
+  roots := #[`NoisyComputationViabilityCertificate]
 
--- Campaign: OPS-OBSERVER-DECLARATION-REFUSAL. Not a default target.
-lean_lib CampaignOpsObserverDeclarationRefusal where
-  roots := #[`CampaignOpsObserverDeclarationRefusal]
+-- OPS-OBSERVER-DECLARATION-REFUSAL. Not a default target.
+lean_lib ObserverDeclarationRefusal where
+  roots := #[`ObserverDeclarationRefusal]
 
--- Campaign: OPS-AXIS3-RELABELING. Not a default target.
-lean_lib CampaignOpsAxis3Relabeling where
-  roots := #[`CampaignOpsAxis3Relabeling]
+-- OPS-AXIS3-RELABELING. Not a default target.
+lean_lib ObserverPresheafAxis3Relabeling where
+  roots := #[`ObserverPresheafAxis3Relabeling]
 
--- Campaign: GP-IMPORT-COMPLEX-FIELD. Not a default target.
-lean_lib CampaignGpImportComplexField where
-  roots := #[`CampaignGpImportComplexField]
+-- GP-IMPORT-COMPLEX-FIELD. Not a default target.
+lean_lib ComplexFieldImport where
+  roots := #[`ComplexFieldImport]
 
--- Campaign: GP-IMPORT-CIRCLE-U1. Not a default target.
-lean_lib CampaignGpImportCircleU1 where
-  roots := #[`CampaignGpImportCircleU1]
+-- GP-IMPORT-CIRCLE-U1. Not a default target.
+lean_lib CircleU1Import where
+  roots := #[`CircleU1Import]
 
--- Campaign: FQ-GAP-CUSTODY-AND-RECEIPTS. Not a default target.
-lean_lib CampaignFqGapCustodyAndReceipts where
-  roots := #[`CampaignFqGapCustodyAndReceipts]
+-- FQ-GAP-CUSTODY-AND-RECEIPTS. Not a default target.
+lean_lib CustodyReceiptNumerals where
+  roots := #[`CustodyReceiptNumerals]
 
-lean_lib CampaignFqGapC500OriginalTargets where
-  roots := #[`CampaignFqGapC500OriginalTargets]
+lean_lib OriginalTargetNumerals where
+  roots := #[`OriginalTargetNumerals]
 
-lean_lib CampaignGpImportGleason where
-  roots := #[`CampaignGpImportGleason]
+lean_lib GleasonImport where
+  roots := #[`GleasonImport]
 
-lean_lib CampaignBfCocycleObstruction where
-  roots := #[`CampaignBfCocycleObstruction]
+lean_lib BfCocycleObstruction where
+  roots := #[`BfCocycleObstruction]
 
-lean_lib CampaignSignedTriangleSwitching where
-  roots := #[`CampaignSignedTriangleSwitching]
+lean_lib SignedTriangleSwitching where
+  roots := #[`SignedTriangleSwitching]
 
-lean_lib CampaignIdentityConvention where
-  roots := #[`CampaignIdentityConvention]
+lean_lib IdentityConvention where
+  roots := #[`IdentityConvention]
 
-lean_lib CampaignReggeFiniteAction where
-  roots := #[`CampaignReggeFiniteAction]
+lean_lib ReggeFiniteAction where
+  roots := #[`ReggeFiniteAction]
 
-lean_lib CampaignConstraintKernelProjector where
-  roots := #[`CampaignConstraintKernelProjector]
+lean_lib ConstraintKernelProjector where
+  roots := #[`ConstraintKernelProjector]
 
-lean_lib CampaignMajImportCosetWeight where
-  roots := #[`CampaignMajImportCosetWeight]
+lean_lib MajoranaCosetWeightImport where
+  roots := #[`MajoranaCosetWeightImport]
 
-lean_lib CampaignGpImportTensorProduct where
-  roots := #[`CampaignGpImportTensorProduct]
+lean_lib TensorProductImport where
+  roots := #[`TensorProductImport]
 
-lean_lib CampaignGpImportCptpClass where
-  roots := #[`CampaignGpImportCptpClass]
+lean_lib CptpClassImport where
+  roots := #[`CptpClassImport]
 
-lean_lib CampaignGpImportContinuousTime where
-  roots := #[`CampaignGpImportContinuousTime]
+lean_lib ContinuousTimeImport where
+  roots := #[`ContinuousTimeImport]
 
-lean_lib CampaignGpImportContinuumHilbert where
-  roots := #[`CampaignGpImportContinuumHilbert]
+lean_lib ContinuumHilbertImport where
+  roots := #[`ContinuumHilbertImport]
 
-lean_lib CampaignDsContinuousTimeExpGenerator where
-  roots := #[`CampaignDsContinuousTimeExpGenerator]
+lean_lib ContinuousTimeExpGenerator where
+  roots := #[`ContinuousTimeExpGenerator]
 
-lean_lib CampaignDsQm043DecoherenceFunctional where
-  roots := #[`CampaignDsQm043DecoherenceFunctional]
+lean_lib DecoherenceFunctionalGram where
+  roots := #[`DecoherenceFunctionalGram]
 
-lean_lib CampaignDsQm062U1Residues where
-  roots := #[`CampaignDsQm062U1Residues]
+lean_lib U1ResiduesOrderFour where
+  roots := #[`U1ResiduesOrderFour]
 
-lean_lib CampaignDsCptpCompletePositivity where
-  roots := #[`CampaignDsCptpCompletePositivity]
+lean_lib CptpCompletePositivity where
+  roots := #[`CptpCompletePositivity]
 
-lean_lib CampaignDsQm204BornUniqueness where
-  roots := #[`CampaignDsQm204BornUniqueness]
+lean_lib BornUniquenessIntegerSlice where
+  roots := #[`BornUniquenessIntegerSlice]
 
-lean_lib CampaignMajImportKitaevChain where
-  roots := #[`CampaignMajImportKitaevChain]
+lean_lib KitaevChainImport where
+  roots := #[`KitaevChainImport]
 
-lean_lib CampaignFspThetaTermComplexWeight where
-  roots := #[`CampaignFspThetaTermComplexWeight]
+lean_lib FermionSignThetaTermComplexWeight where
+  roots := #[`FermionSignThetaTermComplexWeight]
 
-lean_lib CampaignMub6WeylHeisenbergD6 where
-  roots := #[`CampaignMub6WeylHeisenbergD6]
+lean_lib Mub6WeylHeisenbergD6 where
+  roots := #[`Mub6WeylHeisenbergD6]
 
-lean_lib CampaignMub6FiniteCornerReduction where
-  roots := #[`CampaignMub6FiniteCornerReduction]
+lean_lib Mub6FiniteCornerReduction where
+  roots := #[`Mub6FiniteCornerReduction]
 
-lean_lib CampaignQcvImportThresholdTheorem where
-  roots := #[`CampaignQcvImportThresholdTheorem]
+lean_lib ThresholdTheoremImport where
+  roots := #[`ThresholdTheoremImport]
 
-lean_lib CampaignQcvImportNoisyReversibleLimits where
-  roots := #[`CampaignQcvImportNoisyReversibleLimits]
+lean_lib NoisyReversibleLimitsImport where
+  roots := #[`NoisyReversibleLimitsImport]
 
-lean_lib CampaignAuthRiceTheoremImport where
-  roots := #[`CampaignAuthRiceTheoremImport]
+lean_lib ComputabilityRiceTheoremImport where
+  roots := #[`ComputabilityRiceTheoremImport]
 
-lean_lib CampaignOpsAxis1WellfoundedAdmission where
-  roots := #[`CampaignOpsAxis1WellfoundedAdmission]
+lean_lib ObserverPresheafAxis1WellfoundedAdmission where
+  roots := #[`ObserverPresheafAxis1WellfoundedAdmission]
 
-lean_lib CampaignTfq0183FourModeDisk where
-  roots := #[`CampaignTfq0183FourModeDisk]
+lean_lib TetronFourModeCounts where
+  roots := #[`TetronFourModeCounts]
 
 /-- Untwisted finite-group 4D Pachner invariance; independent non-default target. -/
-lean_lib «CampaignFiniteGroupPachner» where
+lean_lib «FiniteGroupPachner» where
   srcDir := "."
-  roots := #[`CampaignFiniteGroupPachner]
+  roots := #[`FiniteGroupPachner]
 
--- Conditional continuum campaign: DFM-CONTINUUM-INTERFACE. Non-default target.
-lean_lib CampaignDfmRefinementLimit where
-  roots := #[`CampaignDfmRefinementLimit]
+-- Conditional continuum interface: DFM-CONTINUUM-INTERFACE. Non-default target.
+lean_lib DressingFieldRefinementLimit where
+  roots := #[`DressingFieldRefinementLimit]
 
--- Reviewed campaign module; non-default target.
-lean_lib CampaignLqgProjectiveLimit where
-  roots := #[`CampaignLqgProjectiveLimit]
+-- Reviewed module; non-default target.
+lean_lib LqgProjectiveLimit where
+  roots := #[`LqgProjectiveLimit]
 
--- Reviewed campaign module; non-default target.
-lean_lib CampaignL1U1SelectorOtherSegment where
-  roots := #[`CampaignL1U1SelectorOtherSegment]
+-- Reviewed module; non-default target.
+lean_lib L1U1SelectorOtherSegment where
+  roots := #[`L1U1SelectorOtherSegment]
 
--- Reviewed campaign module; non-default target.
-lean_lib CampaignOpsLeanGap where
-  roots := #[`CampaignOpsLeanGap]
+-- Reviewed module; non-default target.
+lean_lib ObserverPresheafLeanGap where
+  roots := #[`ObserverPresheafLeanGap]
 
--- Reviewed campaign module; non-default target.
-lean_lib CampaignL1OrthogonalAdditivity where
-  roots := #[`CampaignL1OrthogonalAdditivity]
+-- Reviewed module; non-default target.
+lean_lib L1OrthogonalAdditivity where
+  roots := #[`L1OrthogonalAdditivity]
 
--- Reviewed campaign module; non-default target.
-lean_lib CampaignFqGapTensorUniqueness where
-  roots := #[`CampaignFqGapTensorUniqueness]
+-- Reviewed module; non-default target.
+lean_lib TensorUniquenessOuterProducts where
+  roots := #[`TensorUniquenessOuterProducts]
 
 -- TFQ-0171 finite positive-mass separation. Not a default target.
-lean_lib CampaignTfq0171PositiveMass where
-  roots := #[`CampaignTfq0171PositiveMass]
+lean_lib PositivePairMass where
+  roots := #[`PositivePairMass]
 
 -- TFQ-0184 cubic count. Non-default target.
-lean_lib CampaignTfq0184CubicCount where
-  roots := #[`CampaignTfq0184CubicCount]
+lean_lib CubicReflexivityCount where
+  roots := #[`CubicReflexivityCount]
 
--- Campaign: L1-GS001-GAUGE-L1. Not a default target.
-lean_lib CampaignL1Gs001GaugeL1 where
-  roots := #[`CampaignL1Gs001GaugeL1]
+-- L1-GS001-GAUGE-L1. Not a default target.
+lean_lib L1SignedPermutationGauge where
+  roots := #[`L1SignedPermutationGauge]
 
 -- L1-WDP-CH08-C01-REPLICA-L1 scale count. Non-default target.
-lean_lib CampaignL1ReplicaScale where
-  roots := #[`CampaignL1ReplicaScale]
+lean_lib L1ReplicaScale where
+  roots := #[`L1ReplicaScale]
+
+-- FSP-MAJORANA-CLIFFORD-PARITY. Not a default target.
+lean_lib MajoranaCliffordParity where
+  roots := #[`MajoranaCliffordParity]

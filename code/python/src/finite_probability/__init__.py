@@ -1,6 +1,6 @@
 """Scaled integer simplex separators on a two-point report.
 
-Origin: lean4/H001ProbabilitySimplex.lean theorem probability_simplex,
+Origin: lean4/ProbabilitySimplex.lean theorem probability_simplex,
 theorem signed_mass_one, theorem signed_not_nonneg, theorem double_mass_two,
 theorem double_not_normalized, and theorem l1dist_self. pointW is 1 at
 false and 0 at true. signedW is -1 at false and 2 at true. doubleW is 1

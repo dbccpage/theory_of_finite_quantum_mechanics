@@ -12,7 +12,7 @@ target:
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
   source_bottleneck: 'Do not read paper 009 reflexivity declarations as measured tetron homology. Checked
-    slice (CampaignTfq0184CubicCount and checks/independent/tfq-0184.py), Nat arithmetic only, with no
+    slice (CubicReflexivityCount and checks/independent/tfq-0184.py), Nat arithmetic only, with no
     status change: For every natural number n, the product n * n * n is at most n * n * n. For every natural
     number n at least 1, twice that cube equals (n - 1) * n * (2 * n - 1) plus n * (3 * n - 1), the product
     (n - 1) * n * (2 * n - 1) is strictly below twice the cube, and n * (3 * n - 1) is at least 2. At
@@ -28,8 +28,8 @@ target:
   - dag/research/campaign_tfq-0184_independent.json
   - docs/overclaim/reviews/2026-10-24_campaign-tfq-0184-precommit.md
   - checks/independent/tfq-0184.py
-  - lean4/CampaignTfq0184ImplementationSibling.lean
-  - lean4/CampaignTfq0184CubicCount.lean
+  - lean4/MajoranaEvaluatorControls.lean
+  - lean4/CubicReflexivityCount.lean
   - dag/research/campaign_tfq-0184_cubic_count_lean_replay.json
   - docs/overclaim/reviews/2026-10-26_campaign-tfq-0184-cubic-count.md
   paper_refs:
@@ -53,7 +53,7 @@ operation_candidates:
   name: computeDimH1
   line: 64
   signature_excerpt: 'def computeDimH1 (numEdges rankD0 rankD1 : Int) : Int'
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -67,7 +67,7 @@ operation_candidates:
     \ evaluate to\n`SyntacticReflexivityNotHomology`, and none of the three declaration kinds evaluates\
     \ to\n`MeasuredTetronHomology`. -/\ntheorem reflexivity_declaration_is_not_measured_tetron_homology_fence\
     \ :\n  "
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -90,7 +90,7 @@ operation_candidates:
     def classifyPaper009Declaration : DeclarationKind → HomologyEvidenceClass
       | .NatLeReflCubicBound => .SyntacticReflexivityNotHomology
       | .EnumTagReflDeclaration => .SyntacticReflexivityNotHomology
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -112,7 +112,7 @@ operation_candidates:
     /-- Theorem 6 (Reflexivity Declaration Is Not Measured Tetron Homology Fence):
     Both `NatLeReflCubicBound` and `EnumTagReflDeclaration` evaluate to
     `SyntacticReflexivityNotHomology`,
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -120,7 +120,7 @@ operation_candidates:
   name: f004MajoranaStatus
   line: 159
   signature_excerpt: 'def f004MajoranaStatus : F004MajoranaProgramStatus'
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -128,7 +128,7 @@ operation_candidates:
   name: noiseSweepRelation
   line: 162
   signature_excerpt: 'def noiseSweepRelation : NoiseSweepProgramRelation'
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -147,7 +147,7 @@ operation_candidates:
       deriving DecidableEq, Repr
 
     def f004MajoranaStatus : F004MajoranaProgramStatus
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -161,7 +161,7 @@ operation_candidates:
       deriving DecidableEq, Repr
 
     def f004MajoranaStatus : F004MajoranaProgramStatus
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -169,7 +169,7 @@ operation_candidates:
   name: majoranaEvaluatorRole
   line: 180
   signature_excerpt: 'def majoranaEvaluatorRole : CompanionControlRole'
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -183,7 +183,7 @@ operation_candidates:
       deriving DecidableEq, Repr
 
     def majoranaEvaluatorRole : CompanionControlRole
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -197,7 +197,7 @@ relation_candidates:
         ((4 - 1) * 4 * (2 * 4 - 1) / 6 : Int) = 14 ∧
         (4 * 4 * 4 : Int) = 64 ∧
         (14 : Int) < 64
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -212,7 +212,7 @@ relation_candidates:
         computeDimH1 10 5 4 = 1 ∧
         computeDimH1 8 3 3 = 2 ∧
         computeDimH1 8 3 3 ≠ computeDimH1 8 3 4
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -227,7 +227,7 @@ relation_candidates:
         (1 : ℚ) + 1 = 2 ∧
         (1 : ℚ) + 1 + 2 = 4 ∧
         (2 * 4 - 1 : Int) = 7
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -242,7 +242,7 @@ relation_candidates:
         (-1 : Int) ^ 2 = 1 ∧
         (4 + 4 : Int) = 8 ∧
         (4 * 1 + 4 * (-1) : Int) = 0
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -257,7 +257,7 @@ relation_candidates:
         (1 : Nat) ^ (p + 1) = 1 ∧
         (1 ^ 3 + 0 ^ 3 + 1 ^ 3 + 1 ^ 3 + 0 ^ 3 : Nat) = 1 + 0 + 1 + 1 + 0 ∧
         (1 + 0 + 1 + 1 + 0 : Nat) = 3
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -277,7 +277,7 @@ relation_candidates:
         classifyPaper009Declaration DeclarationKind.NatLeReflCubicBound ≠
           HomologyEvidenceClass.MeasuredTetronHomology ∧
         c
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -292,7 +292,7 @@ relation_candidates:
         f004MajoranaStatus ≠ F004MajoranaProgramStatus.RealizationPacketClosed ∧
         noiseSweepRelation = NoiseSweepProgramRelation.SeparateDiagnosticProgram ∧
         noiseSweepRelation ≠ NoiseSweepProgramRelation.ClosesRealizationPacketGap
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -305,7 +305,7 @@ relation_candidates:
     theorem majorana_evaluator_is_companion_control_not_gap_closure_fence :
         majoranaEvaluatorRole = CompanionControlRole.AlgebraicCompanionControlOnly ∧
         majoranaEvaluatorRole ≠ CompanionControlRole.ClosesRealizationPacketGap
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -318,7 +318,7 @@ relation_candidates:
     theorem wdp_carrier_manifest_homology_conversion_fence :
         wdpCarrierScope.convertsFiniteChainComplex = true ∧
         wdpCarrierScope.claimsMeasuredDeviceHomology = false
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -335,7 +335,7 @@ relation_candidates:
         tfq0184RepoLedger.scopesMajoranaEvaluatorAsCompanionControl = true ∧
         tfq0184RepoLedger.readsRflAsMeasuredTetronHomology = false ∧
         tfq0184RepoLedger.treatsEvaluatorAsGapClosure = false
-  source: lean4/CampaignTfq0184ImplementationSibling.lean
+  source: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   source_sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   status: source_candidate_requires_semantic_review
@@ -345,7 +345,7 @@ relation_candidates:
   name: cubicReflexivity
   line: 9
   signature_excerpt: 'theorem cubicReflexivity (n : Nat) : n * n * n ≤ n * n * n'
-  source: lean4/CampaignTfq0184CubicCount.lean
+  source: lean4/CubicReflexivityCount.lean
   repository: this_repository
   source_sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
   status: source_candidate_requires_semantic_review
@@ -357,7 +357,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem eliminationSplit (n : Nat) (hn : 1 ≤ n) :
         2 * (n * n * n) = (n - 1) * n * (2 * n - 1) + n * (3 * n - 1)
-  source: lean4/CampaignTfq0184CubicCount.lean
+  source: lean4/CubicReflexivityCount.lean
   repository: this_repository
   source_sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
   status: source_candidate_requires_semantic_review
@@ -367,7 +367,7 @@ relation_candidates:
   name: gapAtLeastTwo
   line: 99
   signature_excerpt: 'theorem gapAtLeastTwo (n : Nat) (hn : 1 ≤ n) : 2 ≤ n * (3 * n - 1)'
-  source: lean4/CampaignTfq0184CubicCount.lean
+  source: lean4/CubicReflexivityCount.lean
   repository: this_repository
   source_sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
   status: source_candidate_requires_semantic_review
@@ -379,7 +379,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem eliminationBelowTwiceCube (n : Nat) (hn : 1 ≤ n) :
         (n - 1) * n * (2 * n - 1) < 2 * (n * n * n)
-  source: lean4/CampaignTfq0184CubicCount.lean
+  source: lean4/CubicReflexivityCount.lean
   repository: this_repository
   source_sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
   status: source_candidate_requires_semantic_review
@@ -389,7 +389,7 @@ relation_candidates:
   name: fourCube
   line: 115
   signature_excerpt: 'theorem fourCube : (4 : Nat) * 4 * 4 = 64'
-  source: lean4/CampaignTfq0184CubicCount.lean
+  source: lean4/CubicReflexivityCount.lean
   repository: this_repository
   source_sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
   status: source_candidate_requires_semantic_review
@@ -399,7 +399,7 @@ relation_candidates:
   name: fourSumOfSquares
   line: 118
   signature_excerpt: 'theorem fourSumOfSquares : (1 * 1 + 2 * 2 + 3 * 3 : Nat) = 14'
-  source: lean4/CampaignTfq0184CubicCount.lean
+  source: lean4/CubicReflexivityCount.lean
   repository: this_repository
   source_sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
   status: source_candidate_requires_semantic_review
@@ -409,7 +409,7 @@ relation_candidates:
   name: fourClosedForm
   line: 121
   signature_excerpt: 'theorem fourClosedForm : (3 * 4 * (2 * 4 - 1)) / 6 = 14'
-  source: lean4/CampaignTfq0184CubicCount.lean
+  source: lean4/CubicReflexivityCount.lean
   repository: this_repository
   source_sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
   status: source_candidate_requires_semantic_review
@@ -419,170 +419,170 @@ relation_candidates:
   name: fourCountBelowCube
   line: 124
   signature_excerpt: 'theorem fourCountBelowCube : (14 : Nat) < 64'
-  source: lean4/CampaignTfq0184CubicCount.lean
+  source: lean4/CubicReflexivityCount.lean
   repository: this_repository
   source_sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound
+- original_ref: lean4/MajoranaEvaluatorControls.lean::MajoranaEvaluatorControls.gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound
   availability: local
-  symbol: CampaignTfq0184ImplementationSibling.gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound
-  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  symbol: MajoranaEvaluatorControls.gaussian_elimination_exact_flop_count_vs_cubic_reflexivity_bound
+  path: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   declaration_status: declaration_found_not_proof_checked
   line: 56
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tetron_gf2_homology_requires_boundary_rank_difference_not_enum_rfl
+- original_ref: lean4/MajoranaEvaluatorControls.lean::MajoranaEvaluatorControls.tetron_gf2_homology_requires_boundary_rank_difference_not_enum_rfl
   availability: local
-  symbol: CampaignTfq0184ImplementationSibling.tetron_gf2_homology_requires_boundary_rank_difference_not_enum_rfl
-  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  symbol: MajoranaEvaluatorControls.tetron_gf2_homology_requires_boundary_rank_difference_not_enum_rfl
+  path: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   declaration_status: declaration_found_not_proof_checked
   line: 73
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.kitaev_sweet_spot_boundary_isolation_and_ising_quantum_dimensions
+- original_ref: lean4/MajoranaEvaluatorControls.lean::MajoranaEvaluatorControls.kitaev_sweet_spot_boundary_isolation_and_ising_quantum_dimensions
   availability: local
-  symbol: CampaignTfq0184ImplementationSibling.kitaev_sweet_spot_boundary_isolation_and_ising_quantum_dimensions
-  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  symbol: MajoranaEvaluatorControls.kitaev_sweet_spot_boundary_isolation_and_ising_quantum_dimensions
+  path: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   declaration_status: declaration_found_not_proof_checked
   line: 85
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.fermion_parity_involutive_sector_splitting
+- original_ref: lean4/MajoranaEvaluatorControls.lean::MajoranaEvaluatorControls.fermion_parity_involutive_sector_splitting
   availability: local
-  symbol: CampaignTfq0184ImplementationSibling.fermion_parity_involutive_sector_splitting
-  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  symbol: MajoranaEvaluatorControls.fermion_parity_involutive_sector_splitting
+  path: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   declaration_status: declaration_found_not_proof_checked
   line: 96
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.binary_carrier_lp_norm_equals_hamming_weight
+- original_ref: lean4/MajoranaEvaluatorControls.lean::MajoranaEvaluatorControls.binary_carrier_lp_norm_equals_hamming_weight
   availability: local
-  symbol: CampaignTfq0184ImplementationSibling.binary_carrier_lp_norm_equals_hamming_weight
-  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  symbol: MajoranaEvaluatorControls.binary_carrier_lp_norm_equals_hamming_weight
+  path: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   declaration_status: declaration_found_not_proof_checked
   line: 106
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.reflexivity_declaration_is_not_measured_tetron_homology_fence
+- original_ref: lean4/MajoranaEvaluatorControls.lean::MajoranaEvaluatorControls.reflexivity_declaration_is_not_measured_tetron_homology_fence
   availability: local
-  symbol: CampaignTfq0184ImplementationSibling.reflexivity_declaration_is_not_measured_tetron_homology_fence
-  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  symbol: MajoranaEvaluatorControls.reflexivity_declaration_is_not_measured_tetron_homology_fence
+  path: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   declaration_status: declaration_found_not_proof_checked
   line: 135
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence
+- original_ref: lean4/MajoranaEvaluatorControls.lean::MajoranaEvaluatorControls.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence
   availability: local
-  symbol: CampaignTfq0184ImplementationSibling.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence
-  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  symbol: MajoranaEvaluatorControls.f004_realization_packet_gap_remains_open_and_separate_from_noise_sweeps_fence
+  path: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   declaration_status: declaration_found_not_proof_checked
   line: 167
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.majorana_evaluator_is_companion_control_not_gap_closure_fence
+- original_ref: lean4/MajoranaEvaluatorControls.lean::MajoranaEvaluatorControls.majorana_evaluator_is_companion_control_not_gap_closure_fence
   availability: local
-  symbol: CampaignTfq0184ImplementationSibling.majorana_evaluator_is_companion_control_not_gap_closure_fence
-  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  symbol: MajoranaEvaluatorControls.majorana_evaluator_is_companion_control_not_gap_closure_fence
+  path: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   declaration_status: declaration_found_not_proof_checked
   line: 185
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.wdp_carrier_manifest_homology_conversion_fence
+- original_ref: lean4/MajoranaEvaluatorControls.lean::MajoranaEvaluatorControls.wdp_carrier_manifest_homology_conversion_fence
   availability: local
-  symbol: CampaignTfq0184ImplementationSibling.wdp_carrier_manifest_homology_conversion_fence
-  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  symbol: MajoranaEvaluatorControls.wdp_carrier_manifest_homology_conversion_fence
+  path: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   declaration_status: declaration_found_not_proof_checked
   line: 201
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184ImplementationSibling.lean::CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence
+- original_ref: lean4/MajoranaEvaluatorControls.lean::MajoranaEvaluatorControls.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence
   availability: local
-  symbol: CampaignTfq0184ImplementationSibling.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence
-  path: lean4/CampaignTfq0184ImplementationSibling.lean
+  symbol: MajoranaEvaluatorControls.tfq0184_paper009_reflexivity_and_evaluator_scope_ledger_fence
+  path: lean4/MajoranaEvaluatorControls.lean
   repository: this_repository
   sha256: b9f249022cef6dcc96a2071a07f990767d4aac2f590b9f6ebd7d9e3934afe02c
   declaration_status: declaration_found_not_proof_checked
   line: 222
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.cubicReflexivity
+- original_ref: lean4/CubicReflexivityCount.lean::CubicReflexivityCount.cubicReflexivity
   availability: local
-  symbol: CampaignTfq0184CubicCount.cubicReflexivity
-  path: lean4/CampaignTfq0184CubicCount.lean
+  symbol: CubicReflexivityCount.cubicReflexivity
+  path: lean4/CubicReflexivityCount.lean
   repository: this_repository
   sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
   declaration_status: declaration_found_not_proof_checked
   line: 9
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.eliminationSplit
+- original_ref: lean4/CubicReflexivityCount.lean::CubicReflexivityCount.eliminationSplit
   availability: local
-  symbol: CampaignTfq0184CubicCount.eliminationSplit
-  path: lean4/CampaignTfq0184CubicCount.lean
+  symbol: CubicReflexivityCount.eliminationSplit
+  path: lean4/CubicReflexivityCount.lean
   repository: this_repository
   sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
   declaration_status: declaration_found_not_proof_checked
   line: 90
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.gapAtLeastTwo
+- original_ref: lean4/CubicReflexivityCount.lean::CubicReflexivityCount.gapAtLeastTwo
   availability: local
-  symbol: CampaignTfq0184CubicCount.gapAtLeastTwo
-  path: lean4/CampaignTfq0184CubicCount.lean
+  symbol: CubicReflexivityCount.gapAtLeastTwo
+  path: lean4/CubicReflexivityCount.lean
   repository: this_repository
   sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
   declaration_status: declaration_found_not_proof_checked
   line: 99
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.eliminationBelowTwiceCube
+- original_ref: lean4/CubicReflexivityCount.lean::CubicReflexivityCount.eliminationBelowTwiceCube
   availability: local
-  symbol: CampaignTfq0184CubicCount.eliminationBelowTwiceCube
-  path: lean4/CampaignTfq0184CubicCount.lean
+  symbol: CubicReflexivityCount.eliminationBelowTwiceCube
+  path: lean4/CubicReflexivityCount.lean
   repository: this_repository
   sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
   declaration_status: declaration_found_not_proof_checked
   line: 103
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourCube
+- original_ref: lean4/CubicReflexivityCount.lean::CubicReflexivityCount.fourCube
   availability: local
-  symbol: CampaignTfq0184CubicCount.fourCube
-  path: lean4/CampaignTfq0184CubicCount.lean
+  symbol: CubicReflexivityCount.fourCube
+  path: lean4/CubicReflexivityCount.lean
   repository: this_repository
   sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
   declaration_status: declaration_found_not_proof_checked
   line: 115
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourSumOfSquares
+- original_ref: lean4/CubicReflexivityCount.lean::CubicReflexivityCount.fourSumOfSquares
   availability: local
-  symbol: CampaignTfq0184CubicCount.fourSumOfSquares
-  path: lean4/CampaignTfq0184CubicCount.lean
+  symbol: CubicReflexivityCount.fourSumOfSquares
+  path: lean4/CubicReflexivityCount.lean
   repository: this_repository
   sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
   declaration_status: declaration_found_not_proof_checked
   line: 118
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourClosedForm
+- original_ref: lean4/CubicReflexivityCount.lean::CubicReflexivityCount.fourClosedForm
   availability: local
-  symbol: CampaignTfq0184CubicCount.fourClosedForm
-  path: lean4/CampaignTfq0184CubicCount.lean
+  symbol: CubicReflexivityCount.fourClosedForm
+  path: lean4/CubicReflexivityCount.lean
   repository: this_repository
   sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
   declaration_status: declaration_found_not_proof_checked
   line: 121
   role: source_lead_only
-- original_ref: lean4/CampaignTfq0184CubicCount.lean::CampaignTfq0184CubicCount.fourCountBelowCube
+- original_ref: lean4/CubicReflexivityCount.lean::CubicReflexivityCount.fourCountBelowCube
   availability: local
-  symbol: CampaignTfq0184CubicCount.fourCountBelowCube
-  path: lean4/CampaignTfq0184CubicCount.lean
+  symbol: CubicReflexivityCount.fourCountBelowCube
+  path: lean4/CubicReflexivityCount.lean
   repository: this_repository
   sha256: 6362ce8c60cd98d6b71ea07f5fdb4e00110ba9ccf2eb849f6bae48a94beb4575
   declaration_status: declaration_found_not_proof_checked

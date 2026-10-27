@@ -38,7 +38,7 @@ operation_candidates:
   name: Datum
   line: 13
   signature_excerpt: 'abbrev Datum (r : Derivation.Regime)'
-  source: lean4/CampaignGenesisCarrierBridge.lean
+  source: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   status: source_candidate_requires_semantic_review
@@ -47,8 +47,8 @@ operation_candidates:
   line: 29
   signature_excerpt: |-
     def certifiedDifference (r : Derivation.Regime) :
-        GrokPdNight20260814.Core.PrimitiveDifference (Datum r) Prop
-  source: lean4/CampaignGenesisCarrierBridge.lean
+        ProjectionFiber.Core.PrimitiveDifference (Datum r) Prop
+  source: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   status: source_candidate_requires_semantic_review
@@ -56,7 +56,7 @@ operation_candidates:
   name: sourceRelation
   line: 15
   signature_excerpt: 'def sourceRelation (r : Derivation.Regime) (i j : Datum r) : Prop'
-  source: lean4/CampaignGenesisCarrierBridge.lean
+  source: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   status: source_candidate_requires_semantic_review
@@ -64,7 +64,7 @@ operation_candidates:
   name: termMap
   line: 43
   signature_excerpt: 'def termMap (r : Derivation.Regime) (d : Datum r) : CertifiedCarrier r'
-  source: lean4/CampaignGenesisCarrierBridge.lean
+  source: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   status: source_candidate_requires_semantic_review
@@ -72,7 +72,7 @@ operation_candidates:
   name: CertifiedCarrier
   line: 41
   signature_excerpt: 'abbrev CertifiedCarrier (r : Derivation.Regime)'
-  source: lean4/CampaignGenesisCarrierBridge.lean
+  source: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   status: source_candidate_requires_semantic_review
@@ -80,7 +80,7 @@ operation_candidates:
   name: certifiedSetoid
   line: 37
   signature_excerpt: 'def certifiedSetoid (r : Derivation.Regime) : Setoid (Datum r)'
-  source: lean4/CampaignGenesisCarrierBridge.lean
+  source: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   status: source_candidate_requires_semantic_review
@@ -88,7 +88,7 @@ operation_candidates:
   name: separated
   line: 80
   signature_excerpt: 'def separated : Derivation.Regime'
-  source: lean4/CampaignGenesisCarrierBridge.lean
+  source: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   status: source_candidate_requires_semantic_review
@@ -96,7 +96,7 @@ operation_candidates:
   name: empty
   line: 82
   signature_excerpt: 'def empty : Derivation.Regime'
-  source: lean4/CampaignGenesisCarrierBridge.lean
+  source: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   status: source_candidate_requires_semantic_review
@@ -106,9 +106,9 @@ relation_candidates:
   line: 46
   signature_excerpt: |-
     theorem certified_zero_iff (r : Derivation.Regime) (i j : Datum r) :
-        GrokPdNight20260814.Core.ZeroRel (certifiedDifference r) i j ↔
+        ProjectionFiber.Core.ZeroRel (certifiedDifference r) i j ↔
           Derivation.collapsed r i.val j.val
-  source: lean4/CampaignGenesisCarrierBridge.lean
+  source: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   status: source_candidate_requires_semantic_review
@@ -120,7 +120,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem termMap_eq_iff (r : Derivation.Regime) (i j : Datum r) :
         termMap r i = termMap r j ↔ Derivation.collapsed r i.val j.val
-  source: lean4/CampaignGenesisCarrierBridge.lean
+  source: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   status: source_candidate_requires_semantic_review
@@ -131,7 +131,7 @@ relation_candidates:
   line: 54
   signature_excerpt: 'theorem termMap_surjective (r : Derivation.Regime) : Function.Surjective (termMap
     r)'
-  source: lean4/CampaignGenesisCarrierBridge.lean
+  source: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   status: source_candidate_requires_semantic_review
@@ -146,7 +146,7 @@ relation_candidates:
           ∀ d, F (termMap r d) = termMap s (f d)) ↔
         (∀ i j, Derivation.collapsed r i.val j.val →
           Derivation.collapsed s (f i).val (f j).val)
-  source: lean4/CampaignGenesisCarrierBridge.lean
+  source: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   status: source_candidate_requires_semantic_review
@@ -158,7 +158,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem sealed_response_reaches_separated :
         Derivation.applyDelta Derivation.R2L [.newForm 1, .newInst 0 [0]] = some separated
-  source: lean4/CampaignGenesisCarrierBridge.lean
+  source: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   status: source_candidate_requires_semantic_review
@@ -170,7 +170,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem sealed_image_has_raw_distinction :
         ∃ x y : CertifiedCarrier separated, x ≠ y
-  source: lean4/CampaignGenesisCarrierBridge.lean
+  source: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   status: source_candidate_requires_semantic_review
@@ -182,7 +182,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem undeclared_marks_collapse (i j : Datum Derivation.R2L) :
         termMap Derivation.R2L i = termMap Derivation.R2L j
-  source: lean4/CampaignGenesisCarrierBridge.lean
+  source: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   status: source_candidate_requires_semantic_review
@@ -194,80 +194,80 @@ relation_candidates:
   signature_excerpt: |-
     theorem inert_inscription_has_no_distinction :
         ¬ ∃ x y : CertifiedCarrier empty, x ≠ y
-  source: lean4/CampaignGenesisCarrierBridge.lean
+  source: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   source_sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.certified_zero_iff
+- original_ref: lean4/GenesisCarrierBridge.lean::GenesisCarrierBridge.certified_zero_iff
   availability: local
-  symbol: CampaignGenesisCarrierBridge.certified_zero_iff
-  path: lean4/CampaignGenesisCarrierBridge.lean
+  symbol: GenesisCarrierBridge.certified_zero_iff
+  path: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   declaration_status: declaration_found_not_proof_checked
   line: 46
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.termMap_eq_iff
+- original_ref: lean4/GenesisCarrierBridge.lean::GenesisCarrierBridge.termMap_eq_iff
   availability: local
-  symbol: CampaignGenesisCarrierBridge.termMap_eq_iff
-  path: lean4/CampaignGenesisCarrierBridge.lean
+  symbol: GenesisCarrierBridge.termMap_eq_iff
+  path: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   declaration_status: declaration_found_not_proof_checked
   line: 50
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.termMap_surjective
+- original_ref: lean4/GenesisCarrierBridge.lean::GenesisCarrierBridge.termMap_surjective
   availability: local
-  symbol: CampaignGenesisCarrierBridge.termMap_surjective
-  path: lean4/CampaignGenesisCarrierBridge.lean
+  symbol: GenesisCarrierBridge.termMap_surjective
+  path: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   declaration_status: declaration_found_not_proof_checked
   line: 54
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.factorization_iff
+- original_ref: lean4/GenesisCarrierBridge.lean::GenesisCarrierBridge.factorization_iff
   availability: local
-  symbol: CampaignGenesisCarrierBridge.factorization_iff
-  path: lean4/CampaignGenesisCarrierBridge.lean
+  symbol: GenesisCarrierBridge.factorization_iff
+  path: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   declaration_status: declaration_found_not_proof_checked
   line: 65
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.sealed_response_reaches_separated
+- original_ref: lean4/GenesisCarrierBridge.lean::GenesisCarrierBridge.sealed_response_reaches_separated
   availability: local
-  symbol: CampaignGenesisCarrierBridge.sealed_response_reaches_separated
-  path: lean4/CampaignGenesisCarrierBridge.lean
+  symbol: GenesisCarrierBridge.sealed_response_reaches_separated
+  path: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   declaration_status: declaration_found_not_proof_checked
   line: 84
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.sealed_image_has_raw_distinction
+- original_ref: lean4/GenesisCarrierBridge.lean::GenesisCarrierBridge.sealed_image_has_raw_distinction
   availability: local
-  symbol: CampaignGenesisCarrierBridge.sealed_image_has_raw_distinction
-  path: lean4/CampaignGenesisCarrierBridge.lean
+  symbol: GenesisCarrierBridge.sealed_image_has_raw_distinction
+  path: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   declaration_status: declaration_found_not_proof_checked
   line: 93
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.undeclared_marks_collapse
+- original_ref: lean4/GenesisCarrierBridge.lean::GenesisCarrierBridge.undeclared_marks_collapse
   availability: local
-  symbol: CampaignGenesisCarrierBridge.undeclared_marks_collapse
-  path: lean4/CampaignGenesisCarrierBridge.lean
+  symbol: GenesisCarrierBridge.undeclared_marks_collapse
+  path: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   declaration_status: declaration_found_not_proof_checked
   line: 98
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisCarrierBridge.lean::CampaignGenesisCarrierBridge.inert_inscription_has_no_distinction
+- original_ref: lean4/GenesisCarrierBridge.lean::GenesisCarrierBridge.inert_inscription_has_no_distinction
   availability: local
-  symbol: CampaignGenesisCarrierBridge.inert_inscription_has_no_distinction
-  path: lean4/CampaignGenesisCarrierBridge.lean
+  symbol: GenesisCarrierBridge.inert_inscription_has_no_distinction
+  path: lean4/GenesisCarrierBridge.lean
   repository: this_repository
   sha256: 730467e16e7c72584e5a13abe6a1eee9a218ad866560d1f31ca2338171553e8e
   declaration_status: declaration_found_not_proof_checked

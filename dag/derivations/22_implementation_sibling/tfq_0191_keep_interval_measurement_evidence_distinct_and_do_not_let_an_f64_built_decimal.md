@@ -27,19 +27,19 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignTfq0191ImplementationSibling.lean`:
-  - `CampaignTfq0191ImplementationSibling.interval_order_straddling_indeterminacy_vs_strict_comparison`
-  - `CampaignTfq0191ImplementationSibling.decimal_fixed_scale_cannot_represent_one_third_exactly`
-  - `CampaignTfq0191ImplementationSibling.ieee754_f64_tenth_binary_approximation_differs_from_exact_tenth`
-  - `CampaignTfq0191ImplementationSibling.affine_interval_calibration_and_finite_chain_clock_propagation`
-  - `CampaignTfq0191ImplementationSibling.measurement_value_arms_vs_governance_scalar_admission_fence`
-  - `CampaignTfq0191ImplementationSibling.interval_requires_policy_refusal_fence`
-  - `CampaignTfq0191ImplementationSibling.f64_unchecked_decimal_cannot_authorize_exact_bound_fence`
-  - `CampaignTfq0191ImplementationSibling.missing_local_omega_measurement_crate_recorded_fence`
-  - `CampaignTfq0191ImplementationSibling.interval_clock_and_calibration_remain_pending_policy_fence`
-  - `CampaignTfq0191ImplementationSibling.tfq0191_interval_evidence_and_f64_decimal_scope_ledger_fence`
-- `lean4/H058EffectFrameBusch.lean`:
-  - `FableHilbertWalk20260819.H058.rat_add_le_add`
+- `lean4/IntervalMeasurementEvidence.lean`:
+  - `IntervalMeasurementEvidence.interval_order_straddling_indeterminacy_vs_strict_comparison`
+  - `IntervalMeasurementEvidence.decimal_fixed_scale_cannot_represent_one_third_exactly`
+  - `IntervalMeasurementEvidence.ieee754_f64_tenth_binary_approximation_differs_from_exact_tenth`
+  - `IntervalMeasurementEvidence.affine_interval_calibration_and_finite_chain_clock_propagation`
+  - `IntervalMeasurementEvidence.measurement_value_arms_vs_governance_scalar_admission_fence`
+  - `IntervalMeasurementEvidence.interval_requires_policy_refusal_fence`
+  - `IntervalMeasurementEvidence.f64_unchecked_decimal_cannot_authorize_exact_bound_fence`
+  - `IntervalMeasurementEvidence.missing_local_omega_measurement_crate_recorded_fence`
+  - `IntervalMeasurementEvidence.interval_clock_and_calibration_remain_pending_policy_fence`
+  - `IntervalMeasurementEvidence.tfq0191_interval_evidence_and_f64_decimal_scope_ledger_fence`
+- `lean4/EffectFrameBusch.lean`:
+  - `HilbertWalk.EffectFrameBusch.rat_add_le_add`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `code/rust/src/wdp/lib.rs`:
@@ -61,7 +61,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `lean4/CampaignTfq0191ImplementationSibling.lean`
-  - `lean4/H058EffectFrameBusch.lean`
+  - `lean4/IntervalMeasurementEvidence.lean`
+  - `lean4/EffectFrameBusch.lean`
   - `code/rust/src/wdp/lib.rs`
   - `checks/independent/tfq-0191.py`

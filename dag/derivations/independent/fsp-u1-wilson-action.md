@@ -4,7 +4,7 @@ Status: AI-drafted, awaiting human review.
 
 AuthorityEffect: None.
 
-The node statement is narrowed in two places: the coupling condition `beta_g >= 0` is written explicitly, and links are taken to be functions of ordered vertex pairs on a finite family of closed oriented paths. The Lean module `lean4/CampaignFspU1WilsonAction.lean` states the narrowed claim as `fsp_u1_wilson_action`.
+The node statement is narrowed in two places: the coupling condition `beta_g >= 0` is written explicitly, and links are taken to be functions of ordered vertex pairs on a finite family of closed oriented paths. The Lean module `lean4/FermionSignU1WilsonAction.lean` states the narrowed claim as `fsp_u1_wilson_action`.
 
 ## Setting
 
@@ -51,7 +51,7 @@ The inner factors `g(v_k)^{-1} g(v_k)` cancel. The argument is induction on the 
 
 ## Lean evidence
 
-Module `CampaignFspU1WilsonAction`, built with `lake build CampaignFspU1WilsonAction` (Lean 4.35.0, Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`). The twelve `#print axioms` lines at the end of the file report only `propext`, `Classical.choice` and `Quot.sound`. The receipt is `dag/research/campaign_fsp-u1-wilson-action_lean_replay.json`. A mutation run (`dag/research/campaign_fsp-u1-wilson-action_lean_mutation.json`) changes one ingredient at a time (the inverse in the gauge rule, the sign of `Re U_p`, the hypothesis `β ≥ 0`, the closing vertex of the plaquette, the sign of `θ(b)`, the link factor in the holonomy) and records whether Lean rejects each mutant.
+Module `FermionSignU1WilsonAction`, built with `lake build FermionSignU1WilsonAction` (Lean 4.35.0, Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`). The twelve `#print axioms` lines at the end of the file report only `propext`, `Classical.choice` and `Quot.sound`. The receipt is `dag/research/campaign_fsp-u1-wilson-action_lean_replay.json`. A mutation run (`dag/research/campaign_fsp-u1-wilson-action_lean_mutation.json`) changes one ingredient at a time (the inverse in the gauge rule, the sign of `Re U_p`, the hypothesis `β ≥ 0`, the closing vertex of the plaquette, the sign of `θ(b)`, the link factor in the holonomy) and records whether Lean rejects each mutant.
 
 ## Independent check
 

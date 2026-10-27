@@ -28,7 +28,7 @@ effect, positivity on effects, and normalisation of the unit are used.  The resu
 over ℚ.  They do not by themselves give a trace representation or any Born/Gleason uniqueness.
 -/
 
-namespace BornFable
+namespace BornFinite
 
 structure OrderedQUnit (V : Type*) [AddCommGroup V] [Module ℚ V] where
   le : V → V → Prop
@@ -272,18 +272,18 @@ theorem val_sandwich (S : OrderedQUnit V) (W : EffectValuation S) {a b : V} (ha 
   have := val_sub_le_of_le S W hb ha hε0 hlo'
   linarith
 
-end BornFable
+end BornFinite
 
-#print axioms BornFable.OrderedQUnit.le_iff_sub_nonneg
-#print axioms BornFable.OrderedQUnit.add_nonneg
-#print axioms BornFable.OrderedQUnit.smul_le_smul
-#print axioms BornFable.OrderedQUnit.neg_le_neg
-#print axioms BornFable.val_zero
-#print axioms BornFable.effect_sub
-#print axioms BornFable.val_mono
-#print axioms BornFable.val_le_one
-#print axioms BornFable.effect_smul
-#print axioms BornFable.val_nsmul
-#print axioms BornFable.val_rat_smul
-#print axioms BornFable.val_sub_le_of_le
-#print axioms BornFable.val_sandwich
+#print axioms BornFinite.OrderedQUnit.le_iff_sub_nonneg
+#print axioms BornFinite.OrderedQUnit.add_nonneg
+#print axioms BornFinite.OrderedQUnit.smul_le_smul
+#print axioms BornFinite.OrderedQUnit.neg_le_neg
+#print axioms BornFinite.val_zero
+#print axioms BornFinite.effect_sub
+#print axioms BornFinite.val_mono
+#print axioms BornFinite.val_le_one
+#print axioms BornFinite.effect_smul
+#print axioms BornFinite.val_nsmul
+#print axioms BornFinite.val_rat_smul
+#print axioms BornFinite.val_sub_le_of_le
+#print axioms BornFinite.val_sandwich

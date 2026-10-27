@@ -44,7 +44,7 @@ operation_candidates:
   name: Signs
   line: 7
   signature_excerpt: structure Signs
-  source: lean4/CampaignSignedTriangleSwitching.lean
+  source: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   status: source_candidate_requires_semantic_review
@@ -52,7 +52,7 @@ operation_candidates:
   name: parity
   line: 13
   signature_excerpt: 'def parity (s : Signs) : Bool'
-  source: lean4/CampaignSignedTriangleSwitching.lean
+  source: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   status: source_candidate_requires_semantic_review
@@ -60,7 +60,7 @@ operation_candidates:
   name: switched
   line: 15
   signature_excerpt: 'def switched (g0 g1 g2 : Bool) (s : Signs) : Signs'
-  source: lean4/CampaignSignedTriangleSwitching.lean
+  source: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   status: source_candidate_requires_semantic_review
@@ -68,7 +68,7 @@ operation_candidates:
   name: positive
   line: 20
   signature_excerpt: 'def positive : Signs'
-  source: lean4/CampaignSignedTriangleSwitching.lean
+  source: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   status: source_candidate_requires_semantic_review
@@ -76,7 +76,7 @@ operation_candidates:
   name: sign
   line: 22
   signature_excerpt: 'def sign (b : Bool) : Int'
-  source: lean4/CampaignSignedTriangleSwitching.lean
+  source: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   status: source_candidate_requires_semantic_review
@@ -87,7 +87,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem parity_invariant (g0 g1 g2 : Bool) (s : Signs) :
         parity (switched g0 g1 g2 s) = parity s
-  source: lean4/CampaignSignedTriangleSwitching.lean
+  source: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   status: source_candidate_requires_semantic_review
@@ -100,7 +100,7 @@ relation_candidates:
     theorem switching_normal_form (s : Signs) :
         switched false s.edge01 (Bool.xor s.edge01 s.edge12) s =
           ⟨false, false, parity s⟩
-  source: lean4/CampaignSignedTriangleSwitching.lean
+  source: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   status: source_candidate_requires_semantic_review
@@ -112,7 +112,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem positive_switching_iff (s : Signs) :
         (∃ g0 g1 g2, switched g0 g1 g2 s = positive) ↔ parity s = false
-  source: lean4/CampaignSignedTriangleSwitching.lean
+  source: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   status: source_candidate_requires_semantic_review
@@ -124,7 +124,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem negative_cycle_obstruction (s : Signs) (h : parity s = true) :
         ¬ ∃ g0 g1 g2, switched g0 g1 g2 s = positive
-  source: lean4/CampaignSignedTriangleSwitching.lean
+  source: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   status: source_candidate_requires_semantic_review
@@ -136,7 +136,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem edge_product_is_cycle_sign (s : Signs) :
         sign s.edge01 * sign s.edge12 * sign s.edge20 = sign (parity s)
-  source: lean4/CampaignSignedTriangleSwitching.lean
+  source: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   status: source_candidate_requires_semantic_review
@@ -148,7 +148,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem explicit_negative_cycle :
         ¬ ∃ g0 g1 g2, switched g0 g1 g2 ⟨true, false, false⟩ = positive
-  source: lean4/CampaignSignedTriangleSwitching.lean
+  source: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   status: source_candidate_requires_semantic_review
@@ -160,71 +160,71 @@ relation_candidates:
   signature_excerpt: |-
     theorem balanced_negative_edges_are_removable :
         switched false true false ⟨true, true, false⟩ = positive
-  source: lean4/CampaignSignedTriangleSwitching.lean
+  source: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   source_sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.parity_invariant
+- original_ref: lean4/SignedTriangleSwitching.lean::SignedTriangleSwitching.parity_invariant
   availability: local
-  symbol: CampaignSignedTriangleSwitching.parity_invariant
-  path: lean4/CampaignSignedTriangleSwitching.lean
+  symbol: SignedTriangleSwitching.parity_invariant
+  path: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   declaration_status: declaration_found_not_proof_checked
   line: 24
   role: source_lead_only
-- original_ref: lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.switching_normal_form
+- original_ref: lean4/SignedTriangleSwitching.lean::SignedTriangleSwitching.switching_normal_form
   availability: local
-  symbol: CampaignSignedTriangleSwitching.switching_normal_form
-  path: lean4/CampaignSignedTriangleSwitching.lean
+  symbol: SignedTriangleSwitching.switching_normal_form
+  path: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   declaration_status: declaration_found_not_proof_checked
   line: 29
   role: source_lead_only
-- original_ref: lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.positive_switching_iff
+- original_ref: lean4/SignedTriangleSwitching.lean::SignedTriangleSwitching.positive_switching_iff
   availability: local
-  symbol: CampaignSignedTriangleSwitching.positive_switching_iff
-  path: lean4/CampaignSignedTriangleSwitching.lean
+  symbol: SignedTriangleSwitching.positive_switching_iff
+  path: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   declaration_status: declaration_found_not_proof_checked
   line: 35
   role: source_lead_only
-- original_ref: lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.negative_cycle_obstruction
+- original_ref: lean4/SignedTriangleSwitching.lean::SignedTriangleSwitching.negative_cycle_obstruction
   availability: local
-  symbol: CampaignSignedTriangleSwitching.negative_cycle_obstruction
-  path: lean4/CampaignSignedTriangleSwitching.lean
+  symbol: SignedTriangleSwitching.negative_cycle_obstruction
+  path: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   declaration_status: declaration_found_not_proof_checked
   line: 47
   role: source_lead_only
-- original_ref: lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.edge_product_is_cycle_sign
+- original_ref: lean4/SignedTriangleSwitching.lean::SignedTriangleSwitching.edge_product_is_cycle_sign
   availability: local
-  symbol: CampaignSignedTriangleSwitching.edge_product_is_cycle_sign
-  path: lean4/CampaignSignedTriangleSwitching.lean
+  symbol: SignedTriangleSwitching.edge_product_is_cycle_sign
+  path: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   declaration_status: declaration_found_not_proof_checked
   line: 54
   role: source_lead_only
-- original_ref: lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.explicit_negative_cycle
+- original_ref: lean4/SignedTriangleSwitching.lean::SignedTriangleSwitching.explicit_negative_cycle
   availability: local
-  symbol: CampaignSignedTriangleSwitching.explicit_negative_cycle
-  path: lean4/CampaignSignedTriangleSwitching.lean
+  symbol: SignedTriangleSwitching.explicit_negative_cycle
+  path: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   declaration_status: declaration_found_not_proof_checked
   line: 59
   role: source_lead_only
-- original_ref: lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.balanced_negative_edges_are_removable
+- original_ref: lean4/SignedTriangleSwitching.lean::SignedTriangleSwitching.balanced_negative_edges_are_removable
   availability: local
-  symbol: CampaignSignedTriangleSwitching.balanced_negative_edges_are_removable
-  path: lean4/CampaignSignedTriangleSwitching.lean
+  symbol: SignedTriangleSwitching.balanced_negative_edges_are_removable
+  path: lean4/SignedTriangleSwitching.lean
   repository: this_repository
   sha256: dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1
   declaration_status: declaration_found_not_proof_checked

@@ -84,8 +84,8 @@ def test_negative_boundary_failures() -> None:
 
 def test_integration_matches_cited_lean_traces() -> None:
     root = Path(__file__).resolve().parents[3]
-    scaled = (root / "lean4" / "H056ContinuumLiftBoundary.lean").read_text(encoding="utf-8")
-    eye = (root / "lean4" / "H047StoneVonNeumannObstruction.lean").read_text(encoding="utf-8")
+    scaled = (root / "lean4" / "ContinuumLiftBoundary.lean").read_text(encoding="utf-8")
+    eye = (root / "lean4" / "StoneVonNeumannObstruction.lean").read_text(encoding="utf-8")
     assert "theorem trace_scalar_identity" in scaled
     assert "theorem tr_eye3_nonzero" in eye
     assert exported_identity_trace(2) == Fraction(2 * 1)
@@ -102,8 +102,8 @@ def test_end_to_end_unproven_sizes_stay_exact() -> None:
 
 def test_origin_resolves_in_repo() -> None:
     root = Path(__file__).resolve().parents[3]
-    scaled = (root / "lean4" / "H056ContinuumLiftBoundary.lean").read_text(encoding="utf-8")
-    eye = (root / "lean4" / "H047StoneVonNeumannObstruction.lean").read_text(encoding="utf-8")
+    scaled = (root / "lean4" / "ContinuumLiftBoundary.lean").read_text(encoding="utf-8")
+    eye = (root / "lean4" / "StoneVonNeumannObstruction.lean").read_text(encoding="utf-8")
     assert "theorem trace_scalar_identity" in scaled
     assert "theorem tr_eye3_nonzero" in eye
     source = _MODULE_PATH.read_text(encoding="utf-8")

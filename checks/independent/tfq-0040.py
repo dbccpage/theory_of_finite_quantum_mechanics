@@ -16,7 +16,7 @@ Checks:
 5. Tri-language twin coverage audit across QM-221, QM-213, Lattice Dirac doubling, Gribov diamond,
    and Hopf/su3_level.rs, plus F002.S001 open-bridge and float-print rejection fences.
 6. Repository source and Lean 4 theorem anchors in `lean4/FiniteQM.lean`,
-   `lean4/FiniteQFTAndGravity.lean`, and `lean4/CampaignTfq0040FiniteQcd.lean`.
+   `lean4/FiniteQFTAndGravity.lean`, and `lean4/ColorTwinCoverage.lean`.
 """
 
 from __future__ import annotations
@@ -159,11 +159,11 @@ def run_all_checks() -> dict[str, Any]:
     repo_root = Path(__file__).resolve().parents[2]
     fqm = repo_root / "lean4/FiniteQM.lean"
     fqft = repo_root / "lean4/FiniteQFTAndGravity.lean"
-    lean_file = repo_root / "lean4/CampaignTfq0040FiniteQcd.lean"
+    lean_file = repo_root / "lean4/ColorTwinCoverage.lean"
 
     record(fqm.exists(), "lean4/FiniteQM.lean exists")
     record(fqft.exists(), "lean4/FiniteQFTAndGravity.lean exists")
-    record(lean_file.exists(), "lean4/CampaignTfq0040FiniteQcd.lean exists")
+    record(lean_file.exists(), "lean4/ColorTwinCoverage.lean exists")
 
     fqm_src = fqm.read_text(encoding="utf-8")
     for sym in [
@@ -201,8 +201,8 @@ def run_all_checks() -> dict[str, Any]:
         "theorem tfq0040_tri_language_audit_and_f002_s001_scope_ledger_fence",
     ]
     for thm in required_theorems:
-        record(thm in lean_src, f"CampaignTfq0040FiniteQcd.lean contains {thm}")
-    record("sorry" not in lean_src, "CampaignTfq0040FiniteQcd.lean is sorry-free")
+        record(thm in lean_src, f"ColorTwinCoverage.lean contains {thm}")
+    record("sorry" not in lean_src, "ColorTwinCoverage.lean is sorry-free")
 
     return {
         "node_id": "TFQ-0040",

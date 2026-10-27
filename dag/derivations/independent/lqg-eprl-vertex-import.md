@@ -53,7 +53,7 @@ The number of unordered pairs among five indices is `5 * 4 / 2 = 10`. That is th
 
 ## What is proved
 
-In `lean4/CampaignLqgEprlVertexImport.lean`:
+In `lean4/LqgEprlVertexImport.lean`:
 
 - `euclidean_below` is the signed form, the sum `k`, and the difference `gamma * k` for every rational `k` when `0 < gamma < 1`.
 - `euclidean_above` is the signed form, the difference `k`, and the sum `gamma * k` for every rational `k` when `gamma > 1`.
