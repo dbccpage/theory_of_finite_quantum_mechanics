@@ -1,0 +1,50 @@
+import «gs001_core»
+import «gs001_l002_01_direction_independence»
+import «gs001_l002_02_gauge_proportional»
+import «gs001_l002_03_weighted_edge_sum»
+import «gs001_l002_04_uniform_weights»
+import «gs001_l002_05_counterexamples»
+import «gs001_l002_06_maximal_symmetry»
+import «gs001_l002_07_norming_functional_core»
+import «gs001_l002_08_weighted_to_unweighted_transition»
+import «gs001_l002_09_hahn_banach_discharge»
+
+#print axioms direction_independence_tier1
+#print axioms gauge_proportional_tier1
+#print axioms LocalScalarGauges.weighted_ell1
+#print axioms LocalScalarGauges.uniform_weights
+#print axioms uniform_weights_on_single_orbit
+
+#print axioms Enc0523.maxDiagnostic_faithful
+#print axioms Enc0523.maxDiagnostic_contracts
+#print axioms Enc0523.max_not_additive
+#print axioms Enc0523.zeroDiagnostic_additive
+#print axioms Enc0523.zeroDiagnostic_functorial
+#print axioms Enc0523.leftUnit_ne_zero
+#print axioms Enc0523.zero_not_faithful
+#print axioms Enc0523.leftUnit_sqEuclideanNorm
+#print axioms Enc0523.rightUnit_sqEuclideanNorm
+#print axioms Enc0523.anisotropic_leftUnit
+#print axioms Enc0523.anisotropic_rightUnit
+#print axioms Enc0523.anisotropic_not_p3
+#print axioms Enc0523.unequalWeights_positive
+#print axioms Enc0523.unequalWeights_not_uniform
+#print axioms Enc0523.weighted_not_uniform
+#print axioms Enc0523.maxDiagnostic_homog
+#print axioms Enc0523.maxDiagnostic_subadditive
+#print axioms Enc0523.anisotropicGauge_faithful
+#print axioms Enc0523.anisotropicGauge_homog
+#print axioms Enc0523.anisotropicGauge_subadditive
+#print axioms Enc0523.unequalWeightedDiagnostic_faithful
+#print axioms Enc0523.unequalWeightedDiagnostic_homog
+#print axioms Enc0523.unequalWeightedDiagnostic_subadditive
+
+#print axioms MaximalGauge.direction_independence_tier1
+#print axioms MaximalGauge.gauge_proportional_tier1
+#print axioms PaperGS001.NormingFunctionalCore.MaximalGauge.direction_independence_tier1
+#print axioms PaperGS001.NormingFunctionalCore.MaximalGauge.gauge_proportional_tier1
+#print axioms PaperGS001.weighted_sum_eq_scalar_l1_of_uniform_weights
+#print axioms PaperGS001.weighted_sum_eq_scalar_l1_of_single_orbit_weights
+#print axioms PaperGS001.norming_functional_from_hahn_banach
+#print axioms PaperGS001.direction_independence_hahn_banach
+#print axioms PaperGS001.gauge_proportional_hahn_banach
