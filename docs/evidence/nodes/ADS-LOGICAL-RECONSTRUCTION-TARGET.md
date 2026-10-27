@@ -61,20 +61,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H036ThreeQubitCodeSyndromeRecovery.lean`
+### Lean: `lean4/ThreeQubitCodeSyndromeRecovery.lean`
 
-- file: [lean4/H036ThreeQubitCodeSyndromeRecovery.lean](../../../lean4/H036ThreeQubitCodeSyndromeRecovery.lean)
-- sha256 (`bytes`): `b15c930d114e54c9c99010142e46019afa0af0d2cfa4507c9634cc5d00a81ca7`
+- file: [lean4/ThreeQubitCodeSyndromeRecovery.lean](../../../lean4/ThreeQubitCodeSyndromeRecovery.lean)
+- sha256 (`bytes`): `17e20208c6d3151fb1c4bc6bf716059cdc227944fc828b86d2437a61724c71b6`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_ads_cft.json](../../../dag/research/lean_replay_campaign_ads_cft.json) (module `H036ThreeQubitCodeSyndromeRecovery`): recorded sha256 `b15c930d114e54c9c99010142e46019afa0af0d2cfa4507c9634cc5d00a81ca7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build H036ThreeQubitCodeSyndromeRecovery`
+  - receipt [dag/research/lean_replay_campaign_ads_cft.json](../../../dag/research/lean_replay_campaign_ads_cft.json) (module `ThreeQubitCodeSyndromeRecovery`): recorded sha256 `17e20208c6d3151fb1c4bc6bf716059cdc227944fc828b86d2437a61724c71b6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build ThreeQubitCodeSyndromeRecovery`
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2210_ads_logical_reconstruction_target.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2210_ads_logical_reconstruction_target.md](../../../dag/derivations/32_ads_cft/tfq_2210_ads_logical_reconstruction_target.md)
-- sha256 (`lf-normalised`): `e9c33cc4815e3b03edd53b36665b9df35041c470bd468d51d7513bfb683cfa5f`
+- sha256 (`lf-normalised`): `d8e098a19ac884307f1317ee16299f55f96269ad4c3d41d398ce89fb3699971d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2210
 - counts toward the grade: no
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/frontier_targets_lean_replay.json`
 
 - file: [dag/research/frontier_targets_lean_replay.json](../../../dag/research/frontier_targets_lean_replay.json)
-- sha256 (`lf-normalised`): `1c66aabd3bb726fafcd0238c259644d6f79dd304178d171a75ea36d6522bd2cc`
+- sha256 (`lf-normalised`): `f34cd1ed156fa81d00adb9c939a21d262964134472af8231083525a54cc7abce`
 - cited in: node.source
 - counts toward the grade: yes
 

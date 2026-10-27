@@ -31,7 +31,7 @@ Explicit non-claim node; audited against arXiv:1503.06237 Abstract p. 1, Section
 
 ## Finite target (precise statement)
 
-lean4/CampaignAdsHappyToyNotDualityGap.lean + checks/independent/ads-happy-toy-not-duality-gap.py (flat stabilizer vs CFT Renyi defect, length-8..12 minimal-cut deficit census (5,10,10,10,5) and witnesses (2,8)/(2,12) on the 6-pentagon HaPPY patch, disconnected mutual information jumps, and bulk-to-boundary Hilbert codimension).
+lean4/AdsHappyToyNotDualityGap.lean + checks/independent/ads-happy-toy-not-duality-gap.py (flat stabilizer vs CFT Renyi defect, length-8..12 minimal-cut deficit census (5,10,10,10,5) and witnesses (2,8)/(2,12) on the 6-pentagon HaPPY patch, disconnected mutual information jumps, and bulk-to-boundary Hilbert codimension).
 
 No check of this target is recorded in the repository. A run that mines or checks it must keep the statement as written or narrow it.
 
@@ -58,21 +58,21 @@ See also: `ADS-FIVE-QUBIT-PERFECT-TENSOR-TARGET`.
 - Repository: `dag/research/campaign_ads-happy-toy-not-duality-gap_independent.json`
 
 ## Lean 4 declarations read
-- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_one`
-- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.recorded_cft_vs_stabilizer_renyi_factors`
-- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_sub_half`
-- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_formula`
-- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.renyiSpectrumDefect_pos_of_gt_one`
-- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cft_ne_stabilizer_renyi_of_gt_one`
-- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.cftRenyiFactor_strict_anti`
-- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len8_deficit`
-- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_witness_start2_len12_deficit`
-- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_fivefold_rotational_deficit_orbit`
-- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_short_and_long_intervals_exact_mincut`
-- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_deficit_distribution_by_length`
-- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.happy_disconnected_mutual_information_witnesses`
-- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.code_subspace_strict_codimension`
-- `lean4/CampaignAdsHappyToyNotDualityGap.lean::CampaignAdsHappyToyNotDualityGap.recorded_happy_tiling_hilbert_codimensions`
+- `lean4/AdsHappyToyNotDualityGap.lean::AdsHappyToyNotDualityGap.cftRenyiFactor_one`
+- `lean4/AdsHappyToyNotDualityGap.lean::AdsHappyToyNotDualityGap.recorded_cft_vs_stabilizer_renyi_factors`
+- `lean4/AdsHappyToyNotDualityGap.lean::AdsHappyToyNotDualityGap.cftRenyiFactor_sub_half`
+- `lean4/AdsHappyToyNotDualityGap.lean::AdsHappyToyNotDualityGap.renyiSpectrumDefect_formula`
+- `lean4/AdsHappyToyNotDualityGap.lean::AdsHappyToyNotDualityGap.renyiSpectrumDefect_pos_of_gt_one`
+- `lean4/AdsHappyToyNotDualityGap.lean::AdsHappyToyNotDualityGap.cft_ne_stabilizer_renyi_of_gt_one`
+- `lean4/AdsHappyToyNotDualityGap.lean::AdsHappyToyNotDualityGap.cftRenyiFactor_strict_anti`
+- `lean4/AdsHappyToyNotDualityGap.lean::AdsHappyToyNotDualityGap.happy_witness_start2_len8_deficit`
+- `lean4/AdsHappyToyNotDualityGap.lean::AdsHappyToyNotDualityGap.happy_witness_start2_len12_deficit`
+- `lean4/AdsHappyToyNotDualityGap.lean::AdsHappyToyNotDualityGap.happy_fivefold_rotational_deficit_orbit`
+- `lean4/AdsHappyToyNotDualityGap.lean::AdsHappyToyNotDualityGap.happy_short_and_long_intervals_exact_mincut`
+- `lean4/AdsHappyToyNotDualityGap.lean::AdsHappyToyNotDualityGap.happy_deficit_distribution_by_length`
+- `lean4/AdsHappyToyNotDualityGap.lean::AdsHappyToyNotDualityGap.happy_disconnected_mutual_information_witnesses`
+- `lean4/AdsHappyToyNotDualityGap.lean::AdsHappyToyNotDualityGap.code_subspace_strict_codimension`
+- `lean4/AdsHappyToyNotDualityGap.lean::AdsHappyToyNotDualityGap.recorded_happy_tiling_hilbert_codimensions`
 
 ## Downstream derivations
 

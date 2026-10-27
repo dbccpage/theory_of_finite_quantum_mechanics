@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/foc035_observer_presheaf_lean_replay.json`
 
 - file: [dag/research/foc035_observer_presheaf_lean_replay.json](../../../dag/research/foc035_observer_presheaf_lean_replay.json)
-- sha256 (`lf-normalised`): `5810e04e569b5ed7611d007c1497d7d4ee0dac3acec079a3509e4f1d2ad8944d`
+- sha256 (`lf-normalised`): `aa747939246b57696033aba8ac40835f9c0b8958a9d5b431634b1fc4c6952329`
 - cited in: node.source
 - counts toward the grade: yes
 

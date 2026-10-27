@@ -4,7 +4,7 @@
 - **Stage**: `CONTINUUM_INTERFACE`
 - **Status**: `OPEN`
 - **Claim Class**: `L4D`
-- **Lean 4 Module**: `lean4/CampaignTfq0119ContinuumInterface.lean`
+- **Lean 4 Module**: `lean4/DyadicDirectLimitCircle.lean`
 - **Independent Checker**: `checks/independent/tfq-0119.py`
 - **AuthorityEffect**: `None`
 
@@ -12,7 +12,7 @@
 
 > `circle_haar.lean` imports a normalized Haar measure and states an injective cyclic inclusion. Its header says the dyadic direct limit is not asserted to equal the completed circle. The package README treats those as different objects. What is finite is the cyclic inclusion and the character identity the ledger can mark mechanized. What is not discharged is metric completion for every continuous observable, Pontryagin completion classification, and the continuum limit. A circle integral is not the Einstein equation and not quantum gravity.
 
-## 2. Formalized Finite Surface & Non-Equivalence Fences (`lean4/CampaignTfq0119ContinuumInterface.lean`)
+## 2. Formalized Finite Surface & Non-Equivalence Fences (`lean4/DyadicDirectLimitCircle.lean`)
 
 1. **Dyadic Direct-System Compatibility & Finite Haar Partition (`dyadicRatVal`)**:
    - `dyadic_direct_limit_step_invariant`: proves single-step compatibility `dyadicRatVal (k + 1) (2 * m) = dyadicRatVal k m` for `dyadicRatVal k m = m / 2^k`.

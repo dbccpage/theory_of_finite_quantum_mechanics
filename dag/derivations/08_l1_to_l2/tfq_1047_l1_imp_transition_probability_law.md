@@ -32,21 +32,21 @@ Supplied law of the ray dynamics in dag/results/L1-IMP-LINEAR-ISOMETRIC-DYNAMICS
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.TpPreserving`
-- `lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp`
-- `lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp_eq_born`
-- `lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.tpPreserving_iff_born`
-- `lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.tpPreserving_of_similarity`
-- `lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.linear_calibration_tpPreserving`
-- `lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.linear_calibration_wigner`
-- `lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.tomography_tpPreserving`
-- `lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.tomography_sameRay`
-- `lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.insufficient_operational_package`
-- `lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.countermodelRayEquiv`
-- `lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.conditionalConjugation_realProbes`
-- `lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.insufficient_lattice_package`
-- `lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.stretchRayEquiv`
-- `lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.oneSector_tpPreserving`
+- `lean4/FiniteWignerTheorem.lean::WignerFinite.Theorem.TpPreserving`
+- `lean4/FiniteWignerKernel.lean::WignerFinite.Kernel.tp`
+- `lean4/FiniteWignerKernel.lean::WignerFinite.Kernel.tp_eq_born`
+- `lean4/FiniteWignerSimilarity.lean::WignerFinite.Similarity.tpPreserving_iff_born`
+- `lean4/FiniteWignerTheorem.lean::WignerFinite.Theorem.tpPreserving_of_similarity`
+- `lean4/TransitionProbability.lean::TransitionProbability.linear_calibration_tpPreserving`
+- `lean4/TransitionProbability.lean::TransitionProbability.linear_calibration_wigner`
+- `lean4/TransitionProbability.lean::TransitionProbability.tomography_tpPreserving`
+- `lean4/TransitionProbability.lean::TransitionProbability.tomography_sameRay`
+- `lean4/TransitionProbability.lean::TransitionProbability.insufficient_operational_package`
+- `lean4/TransitionProbability.lean::TransitionProbability.countermodelRayEquiv`
+- `lean4/TransitionProbability.lean::TransitionProbability.conditionalConjugation_realProbes`
+- `lean4/TransitionProbability.lean::TransitionProbability.insufficient_lattice_package`
+- `lean4/TransitionProbability.lean::TransitionProbability.stretchRayEquiv`
+- `lean4/TransitionProbability.lean::TransitionProbability.oneSector_tpPreserving`
 
 ### Rust Certifiers
 - `code/rust/src/qm/finite_wigner.rs::transition_probability`

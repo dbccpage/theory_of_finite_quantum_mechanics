@@ -1,4 +1,4 @@
-import H052CyclotomicTowerDirected
+import CyclotomicTowerDirected
 import Mathlib.Algebra.Star.Basic
 
 /- Declared field/tower inputs versus actual arithmetic and star-ring identities.
@@ -8,7 +8,7 @@ namespace QuantumMechanics.PromptCarrierContract
 
 theorem positive_label_diagram_is_directed (m n : Nat) (hm : 1 ≤ m) (hn : 1 ≤ n) :
     ∃ k : Nat, 1 ≤ k ∧ m ∣ k ∧ n ∣ k :=
-  FableHilbertWalk20260819.H052.cyclotomic_tower_is_directed m n hm hn
+  HilbertWalk.CyclotomicTowerDirected.cyclotomic_tower_is_directed m n hm hn
 
 theorem declared_distinct_label_lcm :
     ([1,2,3,4,5,8,12] : List Nat).foldl Nat.lcm 1 = 120 ∧

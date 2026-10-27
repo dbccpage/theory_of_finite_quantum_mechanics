@@ -48,9 +48,9 @@ So the phase-blind map forgets exactly the phases, a global phase is invisible e
 sum, and the relative phase reappears in the cross term once two amplitudes are added. The
 amplitude lift $c=\sqrt w\,e^{i\theta}$ is supplied.
 
-Lean: `lean4/H009PhaseFiber.lean::phase_fiber` (global and relative phases lie in the fibre, and
+Lean: `lean4/PhaseFiber.lean::phase_fiber` (global and relative phases lie in the fibre, and
 $(1,-1)$ is not a unit multiple of $(1,1)$),
-`lean4/H009PhaseFiber.lean::global_phase_in_fiber`,
+`lean4/PhaseFiber.lean::global_phase_in_fiber`,
 `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm060_061_phase_fiber_and_interference_non_descent`
 (the sums $4$ and $0$ on one fibre point).
 
@@ -67,7 +67,7 @@ $(1,1)$, hence the same $L=2$, but $I=4$ and $I=0$. $\square$
 
 Lean: `lean4/InterferenceDeficit.lean::deficit_eq_cross_term`,
 `lean4/InterferenceDeficit.lean::L1_cannot_compute_interference`,
-`lean4/H010InterferenceNonDescent.lean::interference_non_descent`.
+`lean4/InterferenceNonDescent.lean::interference_non_descent`.
 
 ### 1.3 Holonomy and two-path intensity
 
@@ -165,7 +165,7 @@ table in the computational basis.
 
 Lean: `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness`
 (the determinant of $(a_ib_j)$ vanishes for all integers; the identity table is not of that form),
-`lean4/H014TensorCompositionBoundary.lean::tensor_not_forced_open` (records that tensor
+`lean4/TensorCompositionBoundary.lean::tensor_not_forced_open` (records that tensor
 composition is not derived).
 
 ### 2.2 Entanglement witnesses are sound
@@ -338,7 +338,7 @@ $\square$
 
 The kernel depends on the basis chosen for the diagonal read.
 
-Lean: `lean4/H018Channel.lean::diagonal_shadow_does_not_fix_channel` (with the unnormalized
+Lean: `lean4/HilbertWalkChannel.lean::diagonal_shadow_does_not_fix_channel` (with the unnormalized
 $H$: the image of $|0\rangle\langle0|$ dephases to the identity but has a nonzero off-diagonal
 entry), `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm081_082_090_093_stochastic_contraction_channel_shadow_firewall_and_cochain`.
 

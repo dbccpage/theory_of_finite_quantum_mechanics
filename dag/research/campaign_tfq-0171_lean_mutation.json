@@ -1,7 +1,7 @@
 {
   "schema_version": "campaign_lean_mutation.v1",
   "node_id": "TFQ-0171",
-  "lean_file": "lean4/CampaignTfq0171ImplementationSibling.lean",
+  "lean_file": "lean4/BooleanValuationVsSimplex.lean",
   "sha256": "b7782bcde310b14188af65ec129e83a2be95de6acc2c21619913c242bcee8e36",
   "lean_mutation": {
     "total": 6,
@@ -14,7 +14,7 @@
         "description": "Mutate singletonExtLast to equal singletonExtFirst, falsifying boolean_valuation_disjoint_additivity_and_atom_reconstruction.",
         "killed": true,
         "exit_code": 1,
-        "error_excerpt": "tmp3ip5pc6d.lean:82:4: error: Type mismatch\n  congrArg (fun p => p.2.1) h\nhas type\n  (singletonExtFirst (2 / 3) (4 / 3)).2.1 = (singletonExtLast (2 / 3) (4 / 3)).2.1\nbut is expected to have type\n  (2 / 3, 4 / 3, 0).2.1 = (2 / 3, 0, 4 / 3).2.1\n'CampaignTfq0171ImplementationSibling.boolean_valuation_empty_carrier_and_unnormalized_mass' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Ca"
+        "error_excerpt": "tmp3ip5pc6d.lean:82:4: error: Type mismatch\n  congrArg (fun p => p.2.1) h\nhas type\n  (singletonExtFirst (2 / 3) (4 / 3)).2.1 = (singletonExtLast (2 / 3) (4 / 3)).2.1\nbut is expected to have type\n  (2 / 3, 4 / 3, 0).2.1 = (2 / 3, 0, 4 / 3).2.1\n'BooleanValuationVsSimplex.boolean_valuation_empty_carrier_and_unnormalized_mass' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Ca"
       },
       {
         "id": "M2_unnormalized_valuation_claim_simplex_substitution",
@@ -28,21 +28,21 @@
         "description": "Mutate admittedByFinNSimplex to always return true, falsifying empty_carrier_valuation_rejected_by_fin_n_and_simplex_fence.",
         "killed": true,
         "exit_code": 1,
-        "error_excerpt": "tmpq86swfbn.lean:162:2: error: Tactic `decide` proved that the proposition\n  admittedByBooleanValuation 0 = true \u2227\n    admittedByFinNSimplex 0 = false \u2227\n      admittedByFinNSimplex 1 = true \u2227 admittedByBooleanValuation 0 \u2260 admittedByFinNSimplex 0\nis false\n'CampaignTfq0171ImplementationSibling.boolean_valuation_empty_carrier_and_unnormalized_mass' depends on axioms: [propext,\n Classical.choice,\n Qu"
+        "error_excerpt": "tmpq86swfbn.lean:162:2: error: Tactic `decide` proved that the proposition\n  admittedByBooleanValuation 0 = true \u2227\n    admittedByFinNSimplex 0 = false \u2227\n      admittedByFinNSimplex 1 = true \u2227 admittedByBooleanValuation 0 \u2260 admittedByFinNSimplex 0\nis false\n'BooleanValuationVsSimplex.boolean_valuation_empty_carrier_and_unnormalized_mass' depends on axioms: [propext,\n Classical.choice,\n Qu"
       },
       {
         "id": "M4_scaled_integer_grid_conflate_with_rational_simplex",
         "description": "Mutate isOrdinaryRationalSimplex ScaledIntegerGrid from false to true, falsifying scaled_integer_grid_not_ordinary_rational_simplex_fence.",
         "killed": true,
         "exit_code": 1,
-        "error_excerpt": "tmpjnsznj39.lean:179:10: error: Application type mismatch: The argument\n  rfl\nhas type\n  ?m.7 = ?m.7\nbut is expected to have type\n  isOrdinaryRationalSimplex (SimplexCarrierModel.ScaledIntegerGrid m) = false\nin the application\n  And.intro rfl\n'CampaignTfq0171ImplementationSibling.boolean_valuation_empty_carrier_and_unnormalized_mass' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Ca"
+        "error_excerpt": "tmpjnsznj39.lean:179:10: error: Application type mismatch: The argument\n  rfl\nhas type\n  ?m.7 = ?m.7\nbut is expected to have type\n  isOrdinaryRationalSimplex (SimplexCarrierModel.ScaledIntegerGrid m) = false\nin the application\n  And.intro rfl\n'BooleanValuationVsSimplex.boolean_valuation_empty_carrier_and_unnormalized_mass' depends on axioms: [propext,\n Classical.choice,\n Quot.sound]\n'Ca"
       },
       {
         "id": "M5_finite_valuation_contract_conflate_with_simplex",
         "description": "Mutate finiteValuationContract from <false, true, false> to <true, true, true>, falsifying sibling_modules_distinct_carrier_contracts_fence.",
         "killed": true,
         "exit_code": 1,
-        "error_excerpt": "tmpllvabtte.lean:202:2: error: Tactic `decide` proved that the proposition\n  finiteValuationContract \u2260 probabilitySimplexContract \u2227\n    signedRepresentationContract \u2260 probabilitySimplexContract \u2227\n      finiteValuationContract \u2260 signedRepresentationContract \u2227\n        marginalCompatibilityContract = probabilitySimplexContract\nis false\n'CampaignTfq0171ImplementationSibling.boolean_valuation_empty_car"
+        "error_excerpt": "tmpllvabtte.lean:202:2: error: Tactic `decide` proved that the proposition\n  finiteValuationContract \u2260 probabilitySimplexContract \u2227\n    signedRepresentationContract \u2260 probabilitySimplexContract \u2227\n      finiteValuationContract \u2260 signedRepresentationContract \u2227\n        marginalCompatibilityContract = probabilitySimplexContract\nis false\n'BooleanValuationVsSimplex.boolean_valuation_empty_car"
       },
       {
         "id": "M6_repo_ledger_claim_collapse_allowed",

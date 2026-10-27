@@ -188,7 +188,7 @@ reverse-link, orientation and zero-variation semantic mutations. Replay
 both normally and with Python optimization enabled. Strict mypy checks the
 local API; SymPy's untyped symbolic API is explicitly outside static typing.
 
-Build only `lake build CampaignFspLatticeAnomalyInflow` under the pinned
+Build only `lake build FermionSignLatticeAnomalyInflow` under the pinned
 toolchain. The replay receipt records committed LF source blobs, output,
 and every printed axiom set. The default Lean library and historical
 `ChiralAnomalyInflow.lean` are not rebuilt by this campaign.

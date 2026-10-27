@@ -60,14 +60,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H014TensorCompositionBoundary.lean`
+### Lean: `lean4/TensorCompositionBoundary.lean`
 
-- file: [lean4/H014TensorCompositionBoundary.lean](../../../lean4/H014TensorCompositionBoundary.lean)
-- sha256 (`bytes`): `0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a`
+- file: [lean4/TensorCompositionBoundary.lean](../../../lean4/TensorCompositionBoundary.lean)
+- sha256 (`bytes`): `b2b24902375274d46ea58020d2f83ffad245f5b3eefa5a152d1366ac9f47b9e4`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H014TensorCompositionBoundary`): recorded sha256 `0754fd419711de9caf9e47d901c467db8f95dd38bfd570fefb305d0e9ad9386a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build H014TensorCompositionBoundary`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `TensorCompositionBoundary`): recorded sha256 `b2b24902375274d46ea58020d2f83ffad245f5b3eefa5a152d1366ac9f47b9e4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build TensorCompositionBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|

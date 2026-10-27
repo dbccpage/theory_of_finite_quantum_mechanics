@@ -69,7 +69,7 @@ operation_candidates:
   name: countermodelRayEquiv
   line: 268
   signature_excerpt: 'def countermodelRayEquiv : Ray 2 ≃ Ray 2'
-  source: lean4/CampaignTransitionProbability.lean
+  source: lean4/TransitionProbability.lean
   repository: this_repository
   source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
@@ -77,7 +77,7 @@ operation_candidates:
   name: stretchRayEquiv
   line: 427
   signature_excerpt: 'def stretchRayEquiv : Ray 2 ≃ Ray 2'
-  source: lean4/CampaignTransitionProbability.lean
+  source: lean4/TransitionProbability.lean
   repository: this_repository
   source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
@@ -133,7 +133,7 @@ operation_candidates:
   name: Vec
   line: 14
   signature_excerpt: 'abbrev Vec (n : ℕ)'
-  source: lean4/CampaignTransitionProbability.lean
+  source: lean4/TransitionProbability.lean
   repository: this_repository
   source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
@@ -141,7 +141,7 @@ operation_candidates:
   name: LinearLift
   line: 31
   signature_excerpt: 'def LinearLift (T : Vec n → Vec n) : Prop'
-  source: lean4/CampaignTransitionProbability.lean
+  source: lean4/TransitionProbability.lean
   repository: this_repository
   source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
@@ -149,7 +149,7 @@ operation_candidates:
   name: OrthogonalCalibration
   line: 34
   signature_excerpt: 'structure OrthogonalCalibration (T : Vec n → Vec n) : Prop'
-  source: lean4/CampaignTransitionProbability.lean
+  source: lean4/TransitionProbability.lean
   repository: this_repository
   source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
@@ -157,7 +157,7 @@ operation_candidates:
   name: NonzeroAnchor
   line: 38
   signature_excerpt: 'def NonzeroAnchor (T : Vec n → Vec n) (i : Fin n) : Prop'
-  source: lean4/CampaignTransitionProbability.lean
+  source: lean4/TransitionProbability.lean
   repository: this_repository
   source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
@@ -165,7 +165,7 @@ operation_candidates:
   name: Nonvanishing
   line: 23
   signature_excerpt: 'def Nonvanishing (T : Vec n → Vec n) : Prop'
-  source: lean4/CampaignTransitionProbability.lean
+  source: lean4/TransitionProbability.lean
   repository: this_repository
   source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
@@ -173,7 +173,7 @@ operation_candidates:
   name: TomographicStatistics
   line: 310
   signature_excerpt: 'def TomographicStatistics (T : Vec n → Vec n) : Prop'
-  source: lean4/CampaignTransitionProbability.lean
+  source: lean4/TransitionProbability.lean
   repository: this_repository
   source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
@@ -221,7 +221,7 @@ relation_candidates:
     theorem linear_calibration_tpPreserving {T : Vec n → Vec n} (i₀ : Fin n)
         (hl : LinearLift T) (hc : OrthogonalCalibration T) (ha : NonzeroAnchor T i₀) :
         TpPreserving T
-  source: lean4/CampaignTransitionProbability.lean
+  source: lean4/TransitionProbability.lean
   repository: this_repository
   source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
@@ -236,7 +236,7 @@ relation_candidates:
         ∃ (F : Matrix (Fin n) (Fin n) GaussRat) (d ε : ℚ), 0 < d ∧
           Similarity F d ∧ (ε = 1 ∨ ε = -1) ∧
           ∀ x, x ≠ 0 → ∃ μ : GaussRat, μ ≠ 0 ∧ T x = μ • (F *ᵥ twist ε x)
-  source: lean4/CampaignTransitionProbability.lean
+  source: lean4/TransitionProbability.lean
   repository: this_repository
   source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
@@ -248,7 +248,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem tomography_tpPreserving {T : Vec n → Vec n} (hn : Nonvanishing T)
         (ht : TomographicStatistics T) : TpPreserving T
-  source: lean4/CampaignTransitionProbability.lean
+  source: lean4/TransitionProbability.lean
   repository: this_repository
   source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
@@ -260,7 +260,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem tomography_sameRay {x y : Vec n} (hx : x ≠ 0) (hy : y ≠ 0)
         (h : ProbeStatistics x y) : SameRay x y
-  source: lean4/CampaignTransitionProbability.lean
+  source: lean4/TransitionProbability.lean
   repository: this_repository
   source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
@@ -272,7 +272,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem insufficient_operational_package :
         BornRule (tp (n
-  source: lean4/CampaignTransitionProbability.lean
+  source: lean4/TransitionProbability.lean
   repository: this_repository
   source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
@@ -282,7 +282,7 @@ relation_candidates:
   name: conditionalConjugation_realProbes
   line: 450
   signature_excerpt: 'theorem conditionalConjugation_realProbes : RealProbeStatistics conditionalConjugation'
-  source: lean4/CampaignTransitionProbability.lean
+  source: lean4/TransitionProbability.lean
   repository: this_repository
   source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
@@ -294,7 +294,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem insufficient_lattice_package :
         BornRule (tp (n
-  source: lean4/CampaignTransitionProbability.lean
+  source: lean4/TransitionProbability.lean
   repository: this_repository
   source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
@@ -306,143 +306,143 @@ relation_candidates:
   signature_excerpt: |-
     theorem oneSector_tpPreserving {T : Vec 1 → Vec 1} (hn : Nonvanishing T) :
         TpPreserving T
-  source: lean4/CampaignTransitionProbability.lean
+  source: lean4/TransitionProbability.lean
   repository: this_repository
   source_sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.TpPreserving
+- original_ref: lean4/FiniteWignerTheorem.lean::WignerFinite.Theorem.TpPreserving
   availability: local
-  symbol: WignerFable.Theorem.TpPreserving
+  symbol: WignerFinite.Theorem.TpPreserving
   path: lean4/FiniteWignerTheorem.lean
   repository: this_repository
   sha256: b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292
   declaration_status: declaration_found_not_proof_checked
   line: 36
   role: source_lead_only
-- original_ref: lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp
+- original_ref: lean4/FiniteWignerKernel.lean::WignerFinite.Kernel.tp
   availability: local
-  symbol: WignerFable.Kernel.tp
+  symbol: WignerFinite.Kernel.tp
   path: lean4/FiniteWignerKernel.lean
   repository: this_repository
   sha256: 29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab
   declaration_status: declaration_found_not_proof_checked
   line: 204
   role: source_lead_only
-- original_ref: lean4/FiniteWignerKernel.lean::WignerFable.Kernel.tp_eq_born
+- original_ref: lean4/FiniteWignerKernel.lean::WignerFinite.Kernel.tp_eq_born
   availability: local
-  symbol: WignerFable.Kernel.tp_eq_born
+  symbol: WignerFinite.Kernel.tp_eq_born
   path: lean4/FiniteWignerKernel.lean
   repository: this_repository
   sha256: 29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab
   declaration_status: declaration_found_not_proof_checked
   line: 318
   role: source_lead_only
-- original_ref: lean4/FiniteWignerSimilarity.lean::WignerFable.Similarity.tpPreserving_iff_born
+- original_ref: lean4/FiniteWignerSimilarity.lean::WignerFinite.Similarity.tpPreserving_iff_born
   availability: local
-  symbol: WignerFable.Similarity.tpPreserving_iff_born
+  symbol: WignerFinite.Similarity.tpPreserving_iff_born
   path: lean4/FiniteWignerSimilarity.lean
   repository: this_repository
   sha256: d4244d574e5710133144d985426b646c1f7ed4d18ffc489d6f1605be5483cb37
   declaration_status: declaration_found_not_proof_checked
   line: 414
   role: source_lead_only
-- original_ref: lean4/FiniteWignerTheorem.lean::WignerFable.Theorem.tpPreserving_of_similarity
+- original_ref: lean4/FiniteWignerTheorem.lean::WignerFinite.Theorem.tpPreserving_of_similarity
   availability: local
-  symbol: WignerFable.Theorem.tpPreserving_of_similarity
+  symbol: WignerFinite.Theorem.tpPreserving_of_similarity
   path: lean4/FiniteWignerTheorem.lean
   repository: this_repository
   sha256: b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292
   declaration_status: declaration_found_not_proof_checked
   line: 812
   role: source_lead_only
-- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.linear_calibration_tpPreserving
+- original_ref: lean4/TransitionProbability.lean::TransitionProbability.linear_calibration_tpPreserving
   availability: local
-  symbol: CampaignTransitionProbability.linear_calibration_tpPreserving
-  path: lean4/CampaignTransitionProbability.lean
+  symbol: TransitionProbability.linear_calibration_tpPreserving
+  path: lean4/TransitionProbability.lean
   repository: this_repository
   sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   declaration_status: declaration_found_not_proof_checked
   line: 71
   role: source_lead_only
-- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.linear_calibration_wigner
+- original_ref: lean4/TransitionProbability.lean::TransitionProbability.linear_calibration_wigner
   availability: local
-  symbol: CampaignTransitionProbability.linear_calibration_wigner
-  path: lean4/CampaignTransitionProbability.lean
+  symbol: TransitionProbability.linear_calibration_wigner
+  path: lean4/TransitionProbability.lean
   repository: this_repository
   sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   declaration_status: declaration_found_not_proof_checked
   line: 90
   role: source_lead_only
-- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.tomography_tpPreserving
+- original_ref: lean4/TransitionProbability.lean::TransitionProbability.tomography_tpPreserving
   availability: local
-  symbol: CampaignTransitionProbability.tomography_tpPreserving
-  path: lean4/CampaignTransitionProbability.lean
+  symbol: TransitionProbability.tomography_tpPreserving
+  path: lean4/TransitionProbability.lean
   repository: this_repository
   sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   declaration_status: declaration_found_not_proof_checked
   line: 365
   role: source_lead_only
-- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.tomography_sameRay
+- original_ref: lean4/TransitionProbability.lean::TransitionProbability.tomography_sameRay
   availability: local
-  symbol: CampaignTransitionProbability.tomography_sameRay
-  path: lean4/CampaignTransitionProbability.lean
+  symbol: TransitionProbability.tomography_sameRay
+  path: lean4/TransitionProbability.lean
   repository: this_repository
   sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   declaration_status: declaration_found_not_proof_checked
   line: 314
   role: source_lead_only
-- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.insufficient_operational_package
+- original_ref: lean4/TransitionProbability.lean::TransitionProbability.insufficient_operational_package
   availability: local
-  symbol: CampaignTransitionProbability.insufficient_operational_package
-  path: lean4/CampaignTransitionProbability.lean
+  symbol: TransitionProbability.insufficient_operational_package
+  path: lean4/TransitionProbability.lean
   repository: this_repository
   sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   declaration_status: declaration_found_not_proof_checked
   line: 290
   role: source_lead_only
-- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.countermodelRayEquiv
+- original_ref: lean4/TransitionProbability.lean::TransitionProbability.countermodelRayEquiv
   availability: local
-  symbol: CampaignTransitionProbability.countermodelRayEquiv
-  path: lean4/CampaignTransitionProbability.lean
+  symbol: TransitionProbability.countermodelRayEquiv
+  path: lean4/TransitionProbability.lean
   repository: this_repository
   sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   declaration_status: declaration_found_not_proof_checked
   line: 268
   role: source_lead_only
-- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.conditionalConjugation_realProbes
+- original_ref: lean4/TransitionProbability.lean::TransitionProbability.conditionalConjugation_realProbes
   availability: local
-  symbol: CampaignTransitionProbability.conditionalConjugation_realProbes
-  path: lean4/CampaignTransitionProbability.lean
+  symbol: TransitionProbability.conditionalConjugation_realProbes
+  path: lean4/TransitionProbability.lean
   repository: this_repository
   sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   declaration_status: declaration_found_not_proof_checked
   line: 450
   role: source_lead_only
-- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.insufficient_lattice_package
+- original_ref: lean4/TransitionProbability.lean::TransitionProbability.insufficient_lattice_package
   availability: local
-  symbol: CampaignTransitionProbability.insufficient_lattice_package
-  path: lean4/CampaignTransitionProbability.lean
+  symbol: TransitionProbability.insufficient_lattice_package
+  path: lean4/TransitionProbability.lean
   repository: this_repository
   sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   declaration_status: declaration_found_not_proof_checked
   line: 488
   role: source_lead_only
-- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.stretchRayEquiv
+- original_ref: lean4/TransitionProbability.lean::TransitionProbability.stretchRayEquiv
   availability: local
-  symbol: CampaignTransitionProbability.stretchRayEquiv
-  path: lean4/CampaignTransitionProbability.lean
+  symbol: TransitionProbability.stretchRayEquiv
+  path: lean4/TransitionProbability.lean
   repository: this_repository
   sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   declaration_status: declaration_found_not_proof_checked
   line: 427
   role: source_lead_only
-- original_ref: lean4/CampaignTransitionProbability.lean::CampaignTransitionProbability.oneSector_tpPreserving
+- original_ref: lean4/TransitionProbability.lean::TransitionProbability.oneSector_tpPreserving
   availability: local
-  symbol: CampaignTransitionProbability.oneSector_tpPreserving
-  path: lean4/CampaignTransitionProbability.lean
+  symbol: TransitionProbability.oneSector_tpPreserving
+  path: lean4/TransitionProbability.lean
   repository: this_repository
   sha256: c1049f591250df2dfcb3f87f2f7a8c4e2b3ba51949d08f86a3d53d23fcf82b42
   declaration_status: declaration_found_not_proof_checked

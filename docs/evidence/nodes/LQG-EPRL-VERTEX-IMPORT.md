@@ -43,23 +43,23 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignLqgEprlVertexImport.lean`
+### Lean: `lean4/LqgEprlVertexImport.lean`
 
-- file: [lean4/CampaignLqgEprlVertexImport.lean](../../../lean4/CampaignLqgEprlVertexImport.lean)
-- sha256 (`bytes`): `da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f`
-- cited in: node.lean, node.source, receipt dag/research/campaign_lqg-eprl-vertex-import_lean_replay.json (CampaignLqgEprlVertexImport), record TFQ-2314
+- file: [lean4/LqgEprlVertexImport.lean](../../../lean4/LqgEprlVertexImport.lean)
+- sha256 (`bytes`): `c06cffbac440dd638a872a3f301278a854a804f22aaf922b4933be64f7dcfffa`
+- cited in: node.lean, node.source, receipt dag/research/campaign_lqg-eprl-vertex-import_lean_replay.json (LqgEprlVertexImport), record TFQ-2314
 - replay: `verified`
-  - receipt [dag/research/campaign_lqg-eprl-vertex-import_lean_replay.json](../../../dag/research/campaign_lqg-eprl-vertex-import_lean_replay.json) (module `CampaignLqgEprlVertexImport`): recorded sha256 `da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignLqgEprlVertexImport`
+  - receipt [dag/research/campaign_lqg-eprl-vertex-import_lean_replay.json](../../../dag/research/campaign_lqg-eprl-vertex-import_lean_replay.json) (module `LqgEprlVertexImport`): recorded sha256 `c06cffbac440dd638a872a3f301278a854a804f22aaf922b4933be64f7dcfffa` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build LqgEprlVertexImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignLqgEprlVertexImport.euclidean_above` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgEprlVertexImport.euclidean_above` |
-| `CampaignLqgEprlVertexImport.euclidean_below` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgEprlVertexImport.euclidean_below` |
-| `CampaignLqgEprlVertexImport.five_tetrahedron_pairs` | yes | yes | yes | none | `#print axioms CampaignLqgEprlVertexImport.five_tetrahedron_pairs` |
-| `CampaignLqgEprlVertexImport.lorentzian_embedding` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgEprlVertexImport.lorentzian_embedding` |
-| `CampaignLqgEprlVertexImport.lorentzian_half_two` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgEprlVertexImport.lorentzian_half_two` |
-| `CampaignLqgEprlVertexImport.recorded_euclidean_points` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgEprlVertexImport.recorded_euclidean_points` |
+| `LqgEprlVertexImport.euclidean_above` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgEprlVertexImport.euclidean_above` |
+| `LqgEprlVertexImport.euclidean_below` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgEprlVertexImport.euclidean_below` |
+| `LqgEprlVertexImport.five_tetrahedron_pairs` | yes | yes | yes | none | `#print axioms LqgEprlVertexImport.five_tetrahedron_pairs` |
+| `LqgEprlVertexImport.lorentzian_embedding` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgEprlVertexImport.lorentzian_embedding` |
+| `LqgEprlVertexImport.lorentzian_half_two` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgEprlVertexImport.lorentzian_half_two` |
+| `LqgEprlVertexImport.recorded_euclidean_points` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgEprlVertexImport.recorded_euclidean_points` |
 | `euclidean_above` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms euclidean_above` |
 | `euclidean_below` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms euclidean_below` |
 | `five_tetrahedron_pairs` | yes | yes | yes | none | `#print axioms five_tetrahedron_pairs` |
@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md`
 
 - file: [dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md](../../../dag/derivations/33_loop_quantum_gravity/tfq_2314_lqg_eprl_vertex_import.md)
-- sha256 (`lf-normalised`): `ec35f9d1661d84919f86c6919d8c8d5fbda220ec5090deceacfd74ca1033fdca`
+- sha256 (`lf-normalised`): `e5a6f3dc334843473f4ed5759bae6838dc7660be88bc8be29643761b43163437`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2314
 - counts toward the grade: no
@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/lqg-eprl-vertex-import.md`
 
 - file: [dag/derivations/independent/lqg-eprl-vertex-import.md](../../../dag/derivations/independent/lqg-eprl-vertex-import.md)
-- sha256 (`lf-normalised`): `667eb098e1c1905b22a1e1fbc017915311f20dedfee97d03ae14cb407aa44fcb`
+- sha256 (`lf-normalised`): `a63d69ff5fa85f83747a259c7ce3e712edc0a8623c67ec5100293db334bee54d`
 - cited in: node.source
 - counts toward the grade: yes
 

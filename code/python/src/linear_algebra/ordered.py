@@ -1,6 +1,6 @@
 """Cross-multiplication order certificate on exact rationals.
 
-Origin: lean4/H001Rats.lean definition qrel (integer pairs modulo
+Origin: lean4/HilbertWalkRationals.lean definition qrel (integer pairs modulo
 cross-multiplication) and theorem qrel_equivalence.
 Claim: urn:omega:fqm:h001:cross-sign-certificate:v1
 AuthorityEffect: None

@@ -42,39 +42,39 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignCompC3NoFixedBound.lean`
+### Lean: `lean4/ComputationC3NoFixedBound.lean`
 
-- file: [lean4/CampaignCompC3NoFixedBound.lean](../../../lean4/CampaignCompC3NoFixedBound.lean)
-- sha256 (`bytes`): `6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae`
-- cited in: node.lean, receipt dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json (CampaignCompC3NoFixedBound), receipt dag/research/pr_383_round2_replay.json (CampaignCompC3NoFixedBound), record TFQ-1295
+- file: [lean4/ComputationC3NoFixedBound.lean](../../../lean4/ComputationC3NoFixedBound.lean)
+- sha256 (`bytes`): `3976a6960ee7650cdbb431214f8b8585dbdc9443bc924c7f2d6e4a2d6b78be12`
+- cited in: node.lean, receipt dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json (ComputationC3NoFixedBound), receipt dag/research/pr_383_round2_replay.json (ComputationC3NoFixedBound), record TFQ-1295
 - replay: `verified`
-  - receipt [dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json](../../../dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json) (module `CampaignCompC3NoFixedBound`): recorded sha256 `6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_383_round2_replay.json](../../../dag/research/pr_383_round2_replay.json) (module `CampaignCompC3NoFixedBound`): recorded sha256 `6bad30bdc8fa92b5b8f9aa946324f5c44438c77c6c3c5083628727aab22a7aae` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignCompC3NoFixedBound`
+  - receipt [dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json](../../../dag/research/campaign_comp-c3-no-fixed-bound_lean_replay.json) (module `ComputationC3NoFixedBound`): recorded sha256 `3976a6960ee7650cdbb431214f8b8585dbdc9443bc924c7f2d6e4a2d6b78be12` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_383_round2_replay.json](../../../dag/research/pr_383_round2_replay.json) (module `ComputationC3NoFixedBound`): recorded sha256 `3976a6960ee7650cdbb431214f8b8585dbdc9443bc924c7f2d6e4a2d6b78be12` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build ComputationC3NoFixedBound`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignCompC3NoFixedBound.Word` | yes | yes | yes | none | `#print axioms CampaignCompC3NoFixedBound.Word` |
-| `CampaignCompC3NoFixedBound.bound` | yes | yes | yes | none | `#print axioms CampaignCompC3NoFixedBound.bound` |
-| `CampaignCompC3NoFixedBound.emptyW` | yes | yes | yes | none | `#print axioms CampaignCompC3NoFixedBound.emptyW` |
-| `CampaignCompC3NoFixedBound.empty_in` | yes | yes | yes | propext | `#print axioms CampaignCompC3NoFixedBound.empty_in` |
-| `CampaignCompC3NoFixedBound.inBound` | yes | yes | yes | none | `#print axioms CampaignCompC3NoFixedBound.inBound` |
-| `CampaignCompC3NoFixedBound.long` | yes | yes | yes | propext | `#print axioms CampaignCompC3NoFixedBound.long` |
-| `CampaignCompC3NoFixedBound.long_len` | yes | yes | yes | propext | `#print axioms CampaignCompC3NoFixedBound.long_len` |
-| `CampaignCompC3NoFixedBound.long_out` | yes | yes | yes | propext | `#print axioms CampaignCompC3NoFixedBound.long_out` |
-| `CampaignCompC3NoFixedBound.not_empty` | yes | yes | yes | propext | `#print axioms CampaignCompC3NoFixedBound.not_empty` |
-| `CampaignCompC3NoFixedBound.not_long` | yes | yes | yes | propext | `#print axioms CampaignCompC3NoFixedBound.not_long` |
-| `CampaignCompC3NoFixedBound.reach_eq` | yes | yes | yes | none | `#print axioms CampaignCompC3NoFixedBound.reach_eq` |
-| `CampaignCompC3NoFixedBound.reaches_self` | yes | yes | yes | propext | `#print axioms CampaignCompC3NoFixedBound.reaches_self` |
-| `CampaignCompC3NoFixedBound.start` | yes | yes | yes | propext | `#print axioms CampaignCompC3NoFixedBound.start` |
-| `CampaignCompC3NoFixedBound.start_in` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignCompC3NoFixedBound.start_in` |
+| `ComputationC3NoFixedBound.Word` | yes | yes | yes | none | `#print axioms ComputationC3NoFixedBound.Word` |
+| `ComputationC3NoFixedBound.bound` | yes | yes | yes | none | `#print axioms ComputationC3NoFixedBound.bound` |
+| `ComputationC3NoFixedBound.emptyW` | yes | yes | yes | none | `#print axioms ComputationC3NoFixedBound.emptyW` |
+| `ComputationC3NoFixedBound.empty_in` | yes | yes | yes | propext | `#print axioms ComputationC3NoFixedBound.empty_in` |
+| `ComputationC3NoFixedBound.inBound` | yes | yes | yes | none | `#print axioms ComputationC3NoFixedBound.inBound` |
+| `ComputationC3NoFixedBound.long` | yes | yes | yes | propext | `#print axioms ComputationC3NoFixedBound.long` |
+| `ComputationC3NoFixedBound.long_len` | yes | yes | yes | propext | `#print axioms ComputationC3NoFixedBound.long_len` |
+| `ComputationC3NoFixedBound.long_out` | yes | yes | yes | propext | `#print axioms ComputationC3NoFixedBound.long_out` |
+| `ComputationC3NoFixedBound.not_empty` | yes | yes | yes | propext | `#print axioms ComputationC3NoFixedBound.not_empty` |
+| `ComputationC3NoFixedBound.not_long` | yes | yes | yes | propext | `#print axioms ComputationC3NoFixedBound.not_long` |
+| `ComputationC3NoFixedBound.reach_eq` | yes | yes | yes | none | `#print axioms ComputationC3NoFixedBound.reach_eq` |
+| `ComputationC3NoFixedBound.reaches_self` | yes | yes | yes | propext | `#print axioms ComputationC3NoFixedBound.reaches_self` |
+| `ComputationC3NoFixedBound.start` | yes | yes | yes | propext | `#print axioms ComputationC3NoFixedBound.start` |
+| `ComputationC3NoFixedBound.start_in` | yes | yes | yes | Quot.sound, propext | `#print axioms ComputationC3NoFixedBound.start_in` |
 
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md`
 
 - file: [dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md](../../../dag/derivations/29_computation/tfq_1295_comp_c3_no_fixed_bound.md)
-- sha256 (`lf-normalised`): `801fbd4fd5f2f3e24c58ed77f2a48c2b5051018751ce1276c9600db77be0fc85`
+- sha256 (`lf-normalised`): `e9ef54e7ceea34e4649fb13e24629c49e11875201eae6445826573914e9a7169`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1295
 - counts toward the grade: no

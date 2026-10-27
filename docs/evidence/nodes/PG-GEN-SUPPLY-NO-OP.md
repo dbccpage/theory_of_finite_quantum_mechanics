@@ -45,21 +45,21 @@ supply_no_op (Genesis inertia); Reading L vs Reading F
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGenesisReplayRefinement.lean`
+### Lean: `lean4/GenesisReplayRefinement.lean`
 
-- file: [lean4/CampaignGenesisReplayRefinement.lean](../../../lean4/CampaignGenesisReplayRefinement.lean)
-- sha256 (`bytes`): `d32660cc6a9710571cf7bb9a85403ed58889ae2a6a89c6e4a61689b519e3fa8e`
+- file: [lean4/GenesisReplayRefinement.lean](../../../lean4/GenesisReplayRefinement.lean)
+- sha256 (`bytes`): `1fd113d89dc5cb36bf2638cd761c5fb02043d1f4f5476a0f6ffc5b6cc6f24c2c`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/campaign_pg-gen-supply-erasure_lean_replay.json](../../../dag/research/campaign_pg-gen-supply-erasure_lean_replay.json) (module `CampaignGenesisReplayRefinement`): recorded sha256 `d32660cc6a9710571cf7bb9a85403ed58889ae2a6a89c6e4a61689b519e3fa8e` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGenesisReplayRefinement`
+  - receipt [dag/research/campaign_pg-gen-supply-erasure_lean_replay.json](../../../dag/research/campaign_pg-gen-supply-erasure_lean_replay.json) (module `GenesisReplayRefinement`): recorded sha256 `1fd113d89dc5cb36bf2638cd761c5fb02043d1f4f5476a0f6ffc5b6cc6f24c2c` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build GenesisReplayRefinement`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignGenesisReplayRefinement.array_supply_no_op` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.array_supply_no_op` |
-| `CampaignGenesisReplayRefinement.copy_step_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.copy_step_commutes` |
-| `CampaignGenesisReplayRefinement.reading_arrays` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisReplayRefinement.reading_arrays` |
-| `CampaignGenesisReplayRefinement.source_supply_no_op` | yes | yes | yes | propext | `#print axioms CampaignGenesisReplayRefinement.source_supply_no_op` |
+| `GenesisReplayRefinement.array_supply_no_op` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisReplayRefinement.array_supply_no_op` |
+| `GenesisReplayRefinement.copy_step_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisReplayRefinement.copy_step_commutes` |
+| `GenesisReplayRefinement.reading_arrays` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisReplayRefinement.reading_arrays` |
+| `GenesisReplayRefinement.source_supply_no_op` | yes | yes | yes | propext | `#print axioms GenesisReplayRefinement.source_supply_no_op` |
 
 - counts toward the grade: yes
 

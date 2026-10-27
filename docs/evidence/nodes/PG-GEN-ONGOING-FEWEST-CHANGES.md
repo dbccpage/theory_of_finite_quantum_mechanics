@@ -45,59 +45,59 @@ Fewest-changes formula (D8-D10)
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGenesisOngoingRefinement.lean`
+### Lean: `lean4/GenesisOngoingRefinement.lean`
 
-- file: [lean4/CampaignGenesisOngoingRefinement.lean](../../../lean4/CampaignGenesisOngoingRefinement.lean)
-- sha256 (`bytes`): `ab9d805468e84391bbc0ee142bec028d1ac27b0a5d16e159eda3196b6b50f8ac`
-- cited in: node.lean, receipt dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json (CampaignGenesisOngoingRefinement), receipt dag/research/genesis_merged_20261023_lean_replay.json (CampaignGenesisOngoingRefinement)
+- file: [lean4/GenesisOngoingRefinement.lean](../../../lean4/GenesisOngoingRefinement.lean)
+- sha256 (`bytes`): `8efdfb4d1fc45ff8803ba9e76d2f6d66d4213e4e82de5a0c9a8fdf906829ae76`
+- cited in: node.lean, receipt dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json (GenesisOngoingRefinement), receipt dag/research/genesis_merged_20261023_lean_replay.json (GenesisOngoingRefinement)
 - replay: `verified`
-  - receipt [dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json](../../../dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json) (module `CampaignGenesisOngoingRefinement`): recorded sha256 `ab9d805468e84391bbc0ee142bec028d1ac27b0a5d16e159eda3196b6b50f8ac` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/genesis_merged_20261023_lean_replay.json](../../../dag/research/genesis_merged_20261023_lean_replay.json) (module `CampaignGenesisOngoingRefinement`): recorded sha256 `ab9d805468e84391bbc0ee142bec028d1ac27b0a5d16e159eda3196b6b50f8ac` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGenesisOngoingRefinement`
+  - receipt [dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json](../../../dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json) (module `GenesisOngoingRefinement`): recorded sha256 `8efdfb4d1fc45ff8803ba9e76d2f6d66d4213e4e82de5a0c9a8fdf906829ae76` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/genesis_merged_20261023_lean_replay.json](../../../dag/research/genesis_merged_20261023_lean_replay.json) (module `GenesisOngoingRefinement`): recorded sha256 `8efdfb4d1fc45ff8803ba9e76d2f6d66d4213e4e82de5a0c9a8fdf906829ae76` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build GenesisOngoingRefinement`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignGenesisOngoingRefinement.assertion_obstruction_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.assertion_obstruction_iff` |
-| `CampaignGenesisOngoingRefinement.build_lower_bound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.build_lower_bound` |
-| `CampaignGenesisOngoingRefinement.build_two_steps` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.build_two_steps` |
-| `CampaignGenesisOngoingRefinement.costA_exact` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.costA_exact` |
-| `CampaignGenesisOngoingRefinement.costB_exact` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.costB_exact` |
-| `CampaignGenesisOngoingRefinement.decode_addAssertion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.decode_addAssertion` |
-| `CampaignGenesisOngoingRefinement.decode_addTerm` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.decode_addTerm` |
-| `CampaignGenesisOngoingRefinement.decode_encode` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.decode_encode` |
-| `CampaignGenesisOngoingRefinement.decode_identify` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.decode_identify` |
-| `CampaignGenesisOngoingRefinement.decode_remove` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.decode_remove` |
-| `CampaignGenesisOngoingRefinement.decode_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.decode_rename` |
-| `CampaignGenesisOngoingRefinement.exact_transition_representation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.exact_transition_representation` |
-| `CampaignGenesisOngoingRefinement.full_fewest_A` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.full_fewest_A` |
-| `CampaignGenesisOngoingRefinement.full_fewest_B` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.full_fewest_B` |
-| `CampaignGenesisOngoingRefinement.identify_obstruction_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.identify_obstruction_iff` |
-| `CampaignGenesisOngoingRefinement.legal_iff_source` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.legal_iff_source` |
-| `CampaignGenesisOngoingRefinement.legal_wf_preserved` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.legal_wf_preserved` |
-| `CampaignGenesisOngoingRefinement.one_step_new_assertion_old_endpoints` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.one_step_new_assertion_old_endpoints` |
-| `CampaignGenesisOngoingRefinement.reach_complete` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.reach_complete` |
-| `CampaignGenesisOngoingRefinement.reach_sound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.reach_sound` |
-| `CampaignGenesisOngoingRefinement.renaming_costs` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.renaming_costs` |
-| `CampaignGenesisOngoingRefinement.source_reach_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.source_reach_rename` |
-| `CampaignGenesisOngoingRefinement.source_step_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.source_step_rename` |
-| `CampaignGenesisOngoingRefinement.step_complete` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.step_complete` |
-| `CampaignGenesisOngoingRefinement.step_sound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.step_sound` |
-| `CampaignGenesisOngoingRefinement.tracked_obstruction_persists` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.tracked_obstruction_persists` |
-| `CampaignGenesisOngoingRefinement.wf_iff_source` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.wf_iff_source` |
-| `CampaignGenesisOngoingRefinement.wire_build_lower_bound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.wire_build_lower_bound` |
-| `CampaignGenesisOngoingRefinement.wire_reach_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisOngoingRefinement.wire_reach_rename` |
+| `GenesisOngoingRefinement.assertion_obstruction_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.assertion_obstruction_iff` |
+| `GenesisOngoingRefinement.build_lower_bound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.build_lower_bound` |
+| `GenesisOngoingRefinement.build_two_steps` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.build_two_steps` |
+| `GenesisOngoingRefinement.costA_exact` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.costA_exact` |
+| `GenesisOngoingRefinement.costB_exact` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.costB_exact` |
+| `GenesisOngoingRefinement.decode_addAssertion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.decode_addAssertion` |
+| `GenesisOngoingRefinement.decode_addTerm` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.decode_addTerm` |
+| `GenesisOngoingRefinement.decode_encode` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.decode_encode` |
+| `GenesisOngoingRefinement.decode_identify` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.decode_identify` |
+| `GenesisOngoingRefinement.decode_remove` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.decode_remove` |
+| `GenesisOngoingRefinement.decode_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.decode_rename` |
+| `GenesisOngoingRefinement.exact_transition_representation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.exact_transition_representation` |
+| `GenesisOngoingRefinement.full_fewest_A` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.full_fewest_A` |
+| `GenesisOngoingRefinement.full_fewest_B` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.full_fewest_B` |
+| `GenesisOngoingRefinement.identify_obstruction_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.identify_obstruction_iff` |
+| `GenesisOngoingRefinement.legal_iff_source` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.legal_iff_source` |
+| `GenesisOngoingRefinement.legal_wf_preserved` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.legal_wf_preserved` |
+| `GenesisOngoingRefinement.one_step_new_assertion_old_endpoints` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.one_step_new_assertion_old_endpoints` |
+| `GenesisOngoingRefinement.reach_complete` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.reach_complete` |
+| `GenesisOngoingRefinement.reach_sound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.reach_sound` |
+| `GenesisOngoingRefinement.renaming_costs` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.renaming_costs` |
+| `GenesisOngoingRefinement.source_reach_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.source_reach_rename` |
+| `GenesisOngoingRefinement.source_step_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.source_step_rename` |
+| `GenesisOngoingRefinement.step_complete` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.step_complete` |
+| `GenesisOngoingRefinement.step_sound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.step_sound` |
+| `GenesisOngoingRefinement.tracked_obstruction_persists` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.tracked_obstruction_persists` |
+| `GenesisOngoingRefinement.wf_iff_source` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.wf_iff_source` |
+| `GenesisOngoingRefinement.wire_build_lower_bound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.wire_build_lower_bound` |
+| `GenesisOngoingRefinement.wire_reach_rename` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisOngoingRefinement.wire_reach_rename` |
 
 - counts toward the grade: yes
 
-### Lean: `lean4/CampaignGenesisOngoingRename.lean`
+### Lean: `lean4/GenesisOngoingRename.lean`
 
-- file: [lean4/CampaignGenesisOngoingRename.lean](../../../lean4/CampaignGenesisOngoingRename.lean)
+- file: [lean4/GenesisOngoingRename.lean](../../../lean4/GenesisOngoingRename.lean)
 - sha256 (`bytes`): `971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2`
-- cited in: node.lean, receipt dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json (CampaignGenesisOngoingRename)
+- cited in: node.lean, receipt dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json (GenesisOngoingRename)
 - replay: `verified`
-  - receipt [dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json](../../../dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json) (module `CampaignGenesisOngoingRename`): recorded sha256 `971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/genesis_merged_20261023_lean_replay.json](../../../dag/research/genesis_merged_20261023_lean_replay.json) (module `CampaignGenesisOngoingRename`): recorded sha256 `971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGenesisOngoingRename`
+  - receipt [dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json](../../../dag/research/campaign_pg-gen-ongoing-fewest-changes_lean_replay.json) (module `GenesisOngoingRename`): recorded sha256 `971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/genesis_merged_20261023_lean_replay.json](../../../dag/research/genesis_merged_20261023_lean_replay.json) (module `GenesisOngoingRename`): recorded sha256 `971377d196cba3ab5b36d0dad1ff0f2ba9c951634c944f6607f6c344aeac5cc2` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build GenesisOngoingRename`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -176,7 +176,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pg-gen-ongoing-fewest-changes.md`
 
 - file: [dag/derivations/independent/pg-gen-ongoing-fewest-changes.md](../../../dag/derivations/independent/pg-gen-ongoing-fewest-changes.md)
-- sha256 (`lf-normalised`): `264aa3c3529be579b7ad1ad06c76d916ca59ad832c0507d4be41d216640bcbcc`
+- sha256 (`lf-normalised`): `7a3c0b747d97291cf969cdae28b57cb9324ba1ae7a99cfcf6eced5a9c9cbd8f8`
 - cited in: node.source
 - counts toward the grade: yes
 

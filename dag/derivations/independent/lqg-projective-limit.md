@@ -126,7 +126,7 @@ The script imports no repository module. These are finite controls; the
 infinite extension and uniqueness are proved in Lean, not inferred by
 extrapolation from the four-block enumeration.
 
-`lean4/CampaignLqgProjectiveLimit.lean` and its source-bound replay receipt
+`lean4/LqgProjectiveLimit.lean` and its source-bound replay receipt
 record the build and axiom audit. The Mathlib source and dependency pins
 are preserved; missing generated probability-library artifacts were
 obtained in a private cache, with shared source trees read through links.

@@ -43,36 +43,36 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignDfmCkmPhysicsFence.lean`
+### Lean: `lean4/DressingFieldCkmPhysicsFence.lean`
 
-- file: [lean4/CampaignDfmCkmPhysicsFence.lean](../../../lean4/CampaignDfmCkmPhysicsFence.lean)
-- sha256 (`bytes`): `48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963`
-- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json (CampaignDfmCkmPhysicsFence), record TFQ-1128
+- file: [lean4/DressingFieldCkmPhysicsFence.lean](../../../lean4/DressingFieldCkmPhysicsFence.lean)
+- sha256 (`bytes`): `8366d62e75f6c93527df44a35fa92ae53754237c9a7602f205b5279360f9acdf`
+- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json (DressingFieldCkmPhysicsFence), record TFQ-1128
 - replay: `verified`
-  - receipt [dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json](../../../dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json) (module `CampaignDfmCkmPhysicsFence`): recorded sha256 `48b09120433b79ced896d35224010a77af3d755517b0e2177662be0c86d78963` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignDfmCkmPhysicsFence`
+  - receipt [dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json](../../../dag/research/campaign_dfm-ckm-physics-fence_lean_replay.json) (module `DressingFieldCkmPhysicsFence`): recorded sha256 `8366d62e75f6c93527df44a35fa92ae53754237c9a7602f205b5279360f9acdf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build DressingFieldCkmPhysicsFence`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignDfmCkmPhysicsFence.Rephasing.act_compose` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.act_compose` |
-| `CampaignDfmCkmPhysicsFence.Rephasing.act_inverse` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.act_inverse` |
-| `CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_none_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_none_iff` |
-| `CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_value` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_value` |
-| `CampaignDfmCkmPhysicsFence.Rephasing.coordinatesEquiv` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.coordinatesEquiv` |
-| `CampaignDfmCkmPhysicsFence.Rephasing.decideRelated_correct` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.decideRelated_correct` |
-| `CampaignDfmCkmPhysicsFence.Rephasing.free_coordinate_count` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.free_coordinate_count` |
-| `CampaignDfmCkmPhysicsFence.Rephasing.normalize_boundary` | yes | yes | yes | propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.normalize_boundary` |
-| `CampaignDfmCkmPhysicsFence.Rephasing.normalize_idempotent` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.normalize_idempotent` |
-| `CampaignDfmCkmPhysicsFence.Rephasing.normalize_invariant` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.normalize_invariant` |
-| `CampaignDfmCkmPhysicsFence.Rephasing.related_iff_normalize` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.Rephasing.related_iff_normalize` |
-| `CampaignDfmCkmPhysicsFence.constraintCount_sum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.constraintCount_sum` |
-| `CampaignDfmCkmPhysicsFence.count_misses_one_quartet` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.count_misses_one_quartet` |
-| `CampaignDfmCkmPhysicsFence.count_table` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.count_table` |
-| `CampaignDfmCkmPhysicsFence.cpCount_from_difference` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.cpCount_from_difference` |
-| `CampaignDfmCkmPhysicsFence.quartet_imag_value` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.quartet_imag_value` |
-| `CampaignDfmCkmPhysicsFence.quartet_real_value` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.quartet_real_value` |
-| `CampaignDfmCkmPhysicsFence.quartets_differ` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.quartets_differ` |
-| `CampaignDfmCkmPhysicsFence.three_generation_split` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmCkmPhysicsFence.three_generation_split` |
+| `DressingFieldCkmPhysicsFence.Rephasing.act_compose` | yes | yes | yes | Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.Rephasing.act_compose` |
+| `DressingFieldCkmPhysicsFence.Rephasing.act_inverse` | yes | yes | yes | Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.Rephasing.act_inverse` |
+| `DressingFieldCkmPhysicsFence.Rephasing.checkedLabel_none_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.Rephasing.checkedLabel_none_iff` |
+| `DressingFieldCkmPhysicsFence.Rephasing.checkedLabel_value` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.Rephasing.checkedLabel_value` |
+| `DressingFieldCkmPhysicsFence.Rephasing.coordinatesEquiv` | yes | yes | yes | Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.Rephasing.coordinatesEquiv` |
+| `DressingFieldCkmPhysicsFence.Rephasing.decideRelated_correct` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.Rephasing.decideRelated_correct` |
+| `DressingFieldCkmPhysicsFence.Rephasing.free_coordinate_count` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.Rephasing.free_coordinate_count` |
+| `DressingFieldCkmPhysicsFence.Rephasing.normalize_boundary` | yes | yes | yes | propext | `#print axioms DressingFieldCkmPhysicsFence.Rephasing.normalize_boundary` |
+| `DressingFieldCkmPhysicsFence.Rephasing.normalize_idempotent` | yes | yes | yes | Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.Rephasing.normalize_idempotent` |
+| `DressingFieldCkmPhysicsFence.Rephasing.normalize_invariant` | yes | yes | yes | Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.Rephasing.normalize_invariant` |
+| `DressingFieldCkmPhysicsFence.Rephasing.related_iff_normalize` | yes | yes | yes | Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.Rephasing.related_iff_normalize` |
+| `DressingFieldCkmPhysicsFence.constraintCount_sum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.constraintCount_sum` |
+| `DressingFieldCkmPhysicsFence.count_misses_one_quartet` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.count_misses_one_quartet` |
+| `DressingFieldCkmPhysicsFence.count_table` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.count_table` |
+| `DressingFieldCkmPhysicsFence.cpCount_from_difference` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.cpCount_from_difference` |
+| `DressingFieldCkmPhysicsFence.quartet_imag_value` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.quartet_imag_value` |
+| `DressingFieldCkmPhysicsFence.quartet_real_value` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.quartet_real_value` |
+| `DressingFieldCkmPhysicsFence.quartets_differ` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.quartets_differ` |
+| `DressingFieldCkmPhysicsFence.three_generation_split` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldCkmPhysicsFence.three_generation_split` |
 | `constraintCount_sum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms constraintCount_sum` |
 | `count_misses_one_quartet` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms count_misses_one_quartet` |
 | `count_table` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms count_table` |
@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md](../../../dag/derivations/24_dressing_field/tfq_1128_dfm_ckm_physics_fence.md)
-- sha256 (`lf-normalised`): `fae3b1017c4790f75d4ea37ba6e8d1abcf2455d7902a0fe2e6158fc4ee641fef`
+- sha256 (`lf-normalised`): `f8ae32b6e385b2d4e241afa3928ad5c0ac16ddd21578b33a6ff1855303c4bfb5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1128
 - counts toward the grade: no
@@ -99,7 +99,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/dfm-ckm-physics-fence.md`
 
 - file: [dag/derivations/independent/dfm-ckm-physics-fence.md](../../../dag/derivations/independent/dfm-ckm-physics-fence.md)
-- sha256 (`lf-normalised`): `d6ff942e33e8ff1b0477bc606a4ffe76e3bd6adabd1cdb604a08f3bb80057769`
+- sha256 (`lf-normalised`): `927aefc8724d93d13ed00782056ecff6219edb2c153138d0be1cfe0de513e0d4`
 - cited in: node.source
 - counts toward the grade: yes
 

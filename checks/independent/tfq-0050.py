@@ -13,7 +13,7 @@ Verifies:
    involution (l1, l2) -> (l2, l1), and SU(3)_2 golden-ratio quantum dimensions in
    Q(phi)) contrasted with D(Z_n) (rank n^2) and SU(2)_k (rank k+1).
 4. In-repo source audit of catalog.rs, su2_level.rs, absence of su3_level.rs, and
-   CampaignTfq0050FiniteTopological.lean.
+   RibbonCategoryCatalog.lean.
 """
 
 from __future__ import annotations
@@ -197,12 +197,12 @@ def run_all_checks() -> dict[str, Any]:
     cat_rs = repo_root / "code/rust/src/fusion_categories/catalog.rs"
     su2_rs = repo_root / "code/rust/src/fusion_categories/su2_level.rs"
     su3_rs = repo_root / "code/rust/src/fusion_categories/su3_level.rs"
-    lean_file = repo_root / "lean4/CampaignTfq0050FiniteTopological.lean"
+    lean_file = repo_root / "lean4/RibbonCategoryCatalog.lean"
 
     record(cat_rs.exists(), "catalog.rs exists in repo")
     record(su2_rs.exists(), "su2_level.rs exists in repo")
     record(not su3_rs.exists(), "su3_level.rs is absent from fusion_categories")
-    record(lean_file.exists(), "CampaignTfq0050FiniteTopological.lean exists in repo")
+    record(lean_file.exists(), "RibbonCategoryCatalog.lean exists in repo")
 
     cat_src = cat_rs.read_text(encoding="utf-8")
     for token in [

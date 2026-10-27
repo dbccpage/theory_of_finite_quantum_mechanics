@@ -1,0 +1,578 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/WeightedL1Duality.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/WeightedL1Duality.lean",
+      "sha256": "d817dcb21291f1ca63d5f7b3761c9921506a029105073a4202af19026ea794bd"
+    },
+    "boundaries": [
+      "Finite index sets [Fintype V] [Fintype E] and nonnegative edge weights 0 <= w e.",
+      "AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.",
+      "No polynomial-time simplex or interior-point complexity bound claimed."
+    ],
+    "contract_id": "campaign-pgw-sn-e08-weighted-l1-duality",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json",
+        "sha256": "f5c0468be3440606ddce139f1a0e8eb928ce43ac0dfd23484043ed9a91599925"
+      },
+      {
+        "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json",
+        "sha256": "1aba8bd86f2c19c711367beeb575ff8e300cf72468daf264e5e233c14b811d23"
+      },
+      {
+        "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json",
+        "sha256": "cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370"
+      },
+      {
+        "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md",
+        "sha256": "e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+      },
+      {
+        "path": "dag/research/weighted_l1_comment_binding_review.json",
+        "sha256": "93314285fa10963174c3d63dc577786a5adddbd32dcb97519c1bbe83af19b81c"
+      }
+    ],
+    "owned_invariants": [
+      "Farkas lemma (farkas, farkas_fintype) and LP strong duality (lp_strong_duality) proved over any linearly ordered field without external LP imports.",
+      "Weighted l1 strong duality (weighted_l1_strong_duality, e08_rational) and certificate optimality (certificate_optimal) proved for nonnegative edge weights.",
+      "Oriented 3-cycle witnesses (cyc_optimum, cyc_residuals_differ, cyc_harmonic) and AdjunctionCochain separation (adjunctionCochain_not_cycD_transpose) proved with standard axioms only."
+    ],
+    "purpose": "Finite-dimensional weighted l1 cochain approximation and LP strong duality over linearly ordered fields (including Q) via Fourier-Motzkin elimination, 3-cycle witnesses, and AdjunctionCochain separation.",
+    "schema_id": "tfqm.source-contract.v1"
+  },
+  "contract_history": [
+    {
+      "bytes": 2271,
+      "original_paths": [
+        "lean4/CampaignSnE08WeightedL1Duality.contract.score.yaml#contract"
+      ],
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"contract_id\": \"campaign-pgw-sn-e08-weighted-l1-duality\",\n  \"artifact\": {\n    \"path\": \"lean4/CampaignSnE08WeightedL1Duality.lean\",\n    \"sha256\": \"2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff\",\n    \"language\": \"Lean 4\"\n  },\n  \"AuthorityEffect\": \"None\",\n  \"purpose\": \"Finite-dimensional weighted l1 cochain approximation and LP strong duality over linearly ordered fields (including Q) via Fourier-Motzkin elimination, 3-cycle witnesses, and AdjunctionCochain separation.\",\n  \"owned_invariants\": [\n    \"Farkas lemma (farkas, farkas_fintype) and LP strong duality (lp_strong_duality) proved over any linearly ordered field without external LP imports.\",\n    \"Weighted l1 strong duality (weighted_l1_strong_duality, e08_rational) and certificate optimality (certificate_optimal) proved for nonnegative edge weights.\",\n    \"Oriented 3-cycle witnesses (cyc_optimum, cyc_residuals_differ, cyc_harmonic) and AdjunctionCochain separation (adjunctionCochain_not_cycD_transpose) proved with standard axioms only.\"\n  ],\n  \"boundaries\": [\n    \"Finite index sets [Fintype V] [Fintype E] and nonnegative edge weights 0 <= w e.\",\n    \"AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.\",\n    \"No polynomial-time simplex or interior-point complexity bound claimed.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json\",\n      \"sha256\": \"641e69ba4387227335e8fc202adc7dc240b67c021c8eeaf041e417a3bc1f651d\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json\",\n      \"sha256\": \"d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json\",\n      \"sha256\": \"cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md\",\n      \"sha256\": \"e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignSnE08WeightedL1Duality.lean",
+          "sha256": "2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff"
+        },
+        "boundaries": [
+          "Finite index sets [Fintype V] [Fintype E] and nonnegative edge weights 0 <= w e.",
+          "AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.",
+          "No polynomial-time simplex or interior-point complexity bound claimed."
+        ],
+        "contract_id": "campaign-pgw-sn-e08-weighted-l1-duality",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json",
+            "sha256": "641e69ba4387227335e8fc202adc7dc240b67c021c8eeaf041e417a3bc1f651d"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json",
+            "sha256": "d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json",
+            "sha256": "cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md",
+            "sha256": "e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "owned_invariants": [
+          "Farkas lemma (farkas, farkas_fintype) and LP strong duality (lp_strong_duality) proved over any linearly ordered field without external LP imports.",
+          "Weighted l1 strong duality (weighted_l1_strong_duality, e08_rational) and certificate optimality (certificate_optimal) proved for nonnegative edge weights.",
+          "Oriented 3-cycle witnesses (cyc_optimum, cyc_residuals_differ, cyc_harmonic) and AdjunctionCochain separation (adjunctionCochain_not_cycD_transpose) proved with standard axioms only."
+        ],
+        "purpose": "Finite-dimensional weighted l1 cochain approximation and LP strong duality over linearly ordered fields (including Q) via Fourier-Motzkin elimination, 3-cycle witnesses, and AdjunctionCochain separation.",
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "sha256": "9649dd47774ff9940168d4cc206c02519badc80caeec4f843260472ddf478ae9"
+    },
+    {
+      "bytes": 2271,
+      "original_paths": [
+        "lean4/CampaignSnE08WeightedL1Duality.contract.score.yaml#campaign-pgw-sn-e08-weighted-l1-duality"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignSnE08WeightedL1Duality.lean\",\n    \"sha256\": \"2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff\"\n  },\n  \"boundaries\": [\n    \"Finite index sets [Fintype V] [Fintype E] and nonnegative edge weights 0 <= w e.\",\n    \"AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.\",\n    \"No polynomial-time simplex or interior-point complexity bound claimed.\"\n  ],\n  \"contract_id\": \"campaign-pgw-sn-e08-weighted-l1-duality\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json\",\n      \"sha256\": \"f14f62274d15c907e18b3c6d656247813c0a747f305d37b24c88af89fea61e29\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json\",\n      \"sha256\": \"d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json\",\n      \"sha256\": \"cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md\",\n      \"sha256\": \"e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Farkas lemma (farkas, farkas_fintype) and LP strong duality (lp_strong_duality) proved over any linearly ordered field without external LP imports.\",\n    \"Weighted l1 strong duality (weighted_l1_strong_duality, e08_rational) and certificate optimality (certificate_optimal) proved for nonnegative edge weights.\",\n    \"Oriented 3-cycle witnesses (cyc_optimum, cyc_residuals_differ, cyc_harmonic) and AdjunctionCochain separation (adjunctionCochain_not_cycD_transpose) proved with standard axioms only.\"\n  ],\n  \"purpose\": \"Finite-dimensional weighted l1 cochain approximation and LP strong duality over linearly ordered fields (including Q) via Fourier-Motzkin elimination, 3-cycle witnesses, and AdjunctionCochain separation.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignSnE08WeightedL1Duality.lean",
+          "sha256": "2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff"
+        },
+        "boundaries": [
+          "Finite index sets [Fintype V] [Fintype E] and nonnegative edge weights 0 <= w e.",
+          "AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.",
+          "No polynomial-time simplex or interior-point complexity bound claimed."
+        ],
+        "contract_id": "campaign-pgw-sn-e08-weighted-l1-duality",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json",
+            "sha256": "f14f62274d15c907e18b3c6d656247813c0a747f305d37b24c88af89fea61e29"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json",
+            "sha256": "d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json",
+            "sha256": "cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md",
+            "sha256": "e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "owned_invariants": [
+          "Farkas lemma (farkas, farkas_fintype) and LP strong duality (lp_strong_duality) proved over any linearly ordered field without external LP imports.",
+          "Weighted l1 strong duality (weighted_l1_strong_duality, e08_rational) and certificate optimality (certificate_optimal) proved for nonnegative edge weights.",
+          "Oriented 3-cycle witnesses (cyc_optimum, cyc_residuals_differ, cyc_harmonic) and AdjunctionCochain separation (adjunctionCochain_not_cycD_transpose) proved with standard axioms only."
+        ],
+        "purpose": "Finite-dimensional weighted l1 cochain approximation and LP strong duality over linearly ordered fields (including Q) via Fourier-Motzkin elimination, 3-cycle witnesses, and AdjunctionCochain separation.",
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "sha256": "54afdffe704202a9905dadcde5b24a7eacd2fd2adb203a8688f9d8f03fad33f7"
+    },
+    {
+      "bytes": 2437,
+      "original_paths": [
+        "lean4/CampaignSnE08WeightedL1Duality.contract.score.yaml#weighted-l1-comment-binding-review-2026-10-25"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignSnE08WeightedL1Duality.lean\",\n    \"sha256\": \"f35d7b06b68886a27305b2120f72b1336115f3bcdb587ce5ba50827131e8c687\"\n  },\n  \"boundaries\": [\n    \"Finite index sets [Fintype V] [Fintype E] and nonnegative edge weights 0 <= w e.\",\n    \"AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.\",\n    \"No polynomial-time simplex or interior-point complexity bound claimed.\"\n  ],\n  \"contract_id\": \"campaign-pgw-sn-e08-weighted-l1-duality\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json\",\n      \"sha256\": \"f14f62274d15c907e18b3c6d656247813c0a747f305d37b24c88af89fea61e29\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json\",\n      \"sha256\": \"d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json\",\n      \"sha256\": \"cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md\",\n      \"sha256\": \"e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"dag/research/weighted_l1_comment_binding_review.json\",\n      \"sha256\": \"e19ac3ee6467cafa416510390c0befbfa5c1ed4c8cf961f9f5a73715675edf2c\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Farkas lemma (farkas, farkas_fintype) and LP strong duality (lp_strong_duality) proved over any linearly ordered field without external LP imports.\",\n    \"Weighted l1 strong duality (weighted_l1_strong_duality, e08_rational) and certificate optimality (certificate_optimal) proved for nonnegative edge weights.\",\n    \"Oriented 3-cycle witnesses (cyc_optimum, cyc_residuals_differ, cyc_harmonic) and AdjunctionCochain separation (adjunctionCochain_not_cycD_transpose) proved with standard axioms only.\"\n  ],\n  \"purpose\": \"Finite-dimensional weighted l1 cochain approximation and LP strong duality over linearly ordered fields (including Q) via Fourier-Motzkin elimination, 3-cycle witnesses, and AdjunctionCochain separation.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignSnE08WeightedL1Duality.lean",
+          "sha256": "f35d7b06b68886a27305b2120f72b1336115f3bcdb587ce5ba50827131e8c687"
+        },
+        "boundaries": [
+          "Finite index sets [Fintype V] [Fintype E] and nonnegative edge weights 0 <= w e.",
+          "AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.",
+          "No polynomial-time simplex or interior-point complexity bound claimed."
+        ],
+        "contract_id": "campaign-pgw-sn-e08-weighted-l1-duality",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json",
+            "sha256": "f14f62274d15c907e18b3c6d656247813c0a747f305d37b24c88af89fea61e29"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json",
+            "sha256": "d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json",
+            "sha256": "cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md",
+            "sha256": "e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "dag/research/weighted_l1_comment_binding_review.json",
+            "sha256": "e19ac3ee6467cafa416510390c0befbfa5c1ed4c8cf961f9f5a73715675edf2c"
+          }
+        ],
+        "owned_invariants": [
+          "Farkas lemma (farkas, farkas_fintype) and LP strong duality (lp_strong_duality) proved over any linearly ordered field without external LP imports.",
+          "Weighted l1 strong duality (weighted_l1_strong_duality, e08_rational) and certificate optimality (certificate_optimal) proved for nonnegative edge weights.",
+          "Oriented 3-cycle witnesses (cyc_optimum, cyc_residuals_differ, cyc_harmonic) and AdjunctionCochain separation (adjunctionCochain_not_cycD_transpose) proved with standard axioms only."
+        ],
+        "purpose": "Finite-dimensional weighted l1 cochain approximation and LP strong duality over linearly ordered fields (including Q) via Fourier-Motzkin elimination, 3-cycle witnesses, and AdjunctionCochain separation.",
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "sha256": "6cca6606cd1c8c51bb61e1c9f080977406677c44e3945d143df908b7726b153e"
+    },
+    {
+      "bytes": 2424,
+      "original_paths": [
+        "lean4/WeightedL1Duality.contract.score.yaml#weighted-l1-comment-binding-review-2026-10-25"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/WeightedL1Duality.lean\",\n    \"sha256\": \"d817dcb21291f1ca63d5f7b3761c9921506a029105073a4202af19026ea794bd\"\n  },\n  \"boundaries\": [\n    \"Finite index sets [Fintype V] [Fintype E] and nonnegative edge weights 0 <= w e.\",\n    \"AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.\",\n    \"No polynomial-time simplex or interior-point complexity bound claimed.\"\n  ],\n  \"contract_id\": \"campaign-pgw-sn-e08-weighted-l1-duality\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json\",\n      \"sha256\": \"f5c0468be3440606ddce139f1a0e8eb928ce43ac0dfd23484043ed9a91599925\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json\",\n      \"sha256\": \"1aba8bd86f2c19c711367beeb575ff8e300cf72468daf264e5e233c14b811d23\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json\",\n      \"sha256\": \"cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md\",\n      \"sha256\": \"e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"dag/research/weighted_l1_comment_binding_review.json\",\n      \"sha256\": \"93314285fa10963174c3d63dc577786a5adddbd32dcb97519c1bbe83af19b81c\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Farkas lemma (farkas, farkas_fintype) and LP strong duality (lp_strong_duality) proved over any linearly ordered field without external LP imports.\",\n    \"Weighted l1 strong duality (weighted_l1_strong_duality, e08_rational) and certificate optimality (certificate_optimal) proved for nonnegative edge weights.\",\n    \"Oriented 3-cycle witnesses (cyc_optimum, cyc_residuals_differ, cyc_harmonic) and AdjunctionCochain separation (adjunctionCochain_not_cycD_transpose) proved with standard axioms only.\"\n  ],\n  \"purpose\": \"Finite-dimensional weighted l1 cochain approximation and LP strong duality over linearly ordered fields (including Q) via Fourier-Motzkin elimination, 3-cycle witnesses, and AdjunctionCochain separation.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/WeightedL1Duality.lean",
+          "sha256": "d817dcb21291f1ca63d5f7b3761c9921506a029105073a4202af19026ea794bd"
+        },
+        "boundaries": [
+          "Finite index sets [Fintype V] [Fintype E] and nonnegative edge weights 0 <= w e.",
+          "AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.",
+          "No polynomial-time simplex or interior-point complexity bound claimed."
+        ],
+        "contract_id": "campaign-pgw-sn-e08-weighted-l1-duality",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json",
+            "sha256": "f5c0468be3440606ddce139f1a0e8eb928ce43ac0dfd23484043ed9a91599925"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json",
+            "sha256": "1aba8bd86f2c19c711367beeb575ff8e300cf72468daf264e5e233c14b811d23"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json",
+            "sha256": "cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md",
+            "sha256": "e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "dag/research/weighted_l1_comment_binding_review.json",
+            "sha256": "93314285fa10963174c3d63dc577786a5adddbd32dcb97519c1bbe83af19b81c"
+          }
+        ],
+        "owned_invariants": [
+          "Farkas lemma (farkas, farkas_fintype) and LP strong duality (lp_strong_duality) proved over any linearly ordered field without external LP imports.",
+          "Weighted l1 strong duality (weighted_l1_strong_duality, e08_rational) and certificate optimality (certificate_optimal) proved for nonnegative edge weights.",
+          "Oriented 3-cycle witnesses (cyc_optimum, cyc_residuals_differ, cyc_harmonic) and AdjunctionCochain separation (adjunctionCochain_not_cycD_transpose) proved with standard axioms only."
+        ],
+        "purpose": "Finite-dimensional weighted l1 cochain approximation and LP strong duality over linearly ordered fields (including Q) via Fourier-Motzkin elimination, 3-cycle witnesses, and AdjunctionCochain separation.",
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "sha256": "8948a6f8f210b62893b2220b5a4ffceba04a91178413725cd449117a7175c66f"
+    }
+  ],
+  "current_contract": "8948a6f8f210b62893b2220b5a4ffceba04a91178413725cd449117a7175c66f",
+  "current_scoring": "24363bf68666dd1c9e7dce5eb3d3bca5684d01bb7c3427f77cbd8887eed8a6ea",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "lean4/CampaignSnE08WeightedL1Duality.contract.score.yaml#contract": "9649dd47774ff9940168d4cc206c02519badc80caeec4f843260472ddf478ae9",
+    "lean4/CampaignSnE08WeightedL1Duality.contract.score.yaml#scoring": "42ec5021d4aee9aa78b06ff2fd5e68e9b1ed2b30b34fb9756025a6f42c77c3ac"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2899,
+      "original_paths": [
+        "lean4/CampaignSnE08WeightedL1Duality.contract.score.yaml#scoring"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"assessment_id\": \"campaign-pgw-sn-e08-weighted-l1-duality\",\n  \"assessment_status\": \"complete\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"lean4/CampaignSnE08WeightedL1Duality.lean\",\n    \"sha256\": \"2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff\",\n    \"language\": \"Lean 4\"\n  },\n  \"profile\": \"Symbolic/Formal\",\n  \"level\": \"L4\",\n  \"level_basis\": \"Complete Lean 4 proof of Farkas lemma via Fourier-Motzkin elimination, strong LP duality, and weighted l1 cochain approximation strong duality over any linearly ordered field K and Q, with 3-cycle witnesses and AdjunctionCochain separation.\",\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T22:12:49.502054+00:00\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json\",\n      \"sha256\": \"641e69ba4387227335e8fc202adc7dc240b67c021c8eeaf041e417a3bc1f651d\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json\",\n      \"sha256\": \"d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json\",\n      \"sha256\": \"cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md\",\n      \"sha256\": \"e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"basis\": {\n    \"G1\": \"Explicit statement-to-theorem mapping in pre-commit review covering every clause of TFQ-0522.\",\n    \"G2\": \"Scoped Lake build passes under Lean 4.35.0 with only propext, Classical.choice, and Quot.sound.\",\n    \"G3\": \"Typed hypotheses ([Fintype V], [Fintype E], [Field K], [LinearOrder K], [IsStrictOrderedRing K], 0 <= w e); boundaries explicitly documented.\",\n    \"G4\": \"6 of 6 one-ingredient Lean mutations killed; independent SymPy simplex check passes 970 checks across 60 random instances and 2 negative controls.\",\n    \"G5\": \"Modular sections (WeakDuality, Farkas, StrongLPDuality, StrongWeightedL1Duality, ThreeCycleWitness, AdjunctionSeparation) with zero warnings.\"\n  },\n  \"open_higher_grade_findings\": [\n    \"AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.\",\n    \"Independent regression is bounded; no polynomial-time LP complexity bound claimed.\"\n  ],\n  \"support_exception\": false\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignSnE08WeightedL1Duality.lean",
+          "sha256": "2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff"
+        },
+        "assessment_id": "campaign-pgw-sn-e08-weighted-l1-duality",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Explicit statement-to-theorem mapping in pre-commit review covering every clause of TFQ-0522.",
+          "G2": "Scoped Lake build passes under Lean 4.35.0 with only propext, Classical.choice, and Quot.sound.",
+          "G3": "Typed hypotheses ([Fintype V], [Fintype E], [Field K], [LinearOrder K], [IsStrictOrderedRing K], 0 <= w e); boundaries explicitly documented.",
+          "G4": "6 of 6 one-ingredient Lean mutations killed; independent SymPy simplex check passes 970 checks across 60 random instances and 2 negative controls.",
+          "G5": "Modular sections (WeakDuality, Farkas, StrongLPDuality, StrongWeightedL1Duality, ThreeCycleWitness, AdjunctionSeparation) with zero warnings."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T22:12:49.502054+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json",
+            "sha256": "641e69ba4387227335e8fc202adc7dc240b67c021c8eeaf041e417a3bc1f651d"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json",
+            "sha256": "d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json",
+            "sha256": "cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md",
+            "sha256": "e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Complete Lean 4 proof of Farkas lemma via Fourier-Motzkin elimination, strong LP duality, and weighted l1 cochain approximation strong duality over any linearly ordered field K and Q, with 3-cycle witnesses and AdjunctionCochain separation.",
+        "open_higher_grade_findings": [
+          "AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.",
+          "Independent regression is bounded; no polynomial-time LP complexity bound claimed."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D",
+        "support_exception": false
+      },
+      "sha256": "42ec5021d4aee9aa78b06ff2fd5e68e9b1ed2b30b34fb9756025a6f42c77c3ac"
+    },
+    {
+      "bytes": 2892,
+      "original_paths": [
+        "lean4/CampaignSnE08WeightedL1Duality.contract.score.yaml#campaign-pgw-sn-e08-weighted-l1-duality"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignSnE08WeightedL1Duality.lean\",\n    \"sha256\": \"2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff\"\n  },\n  \"assessment_id\": \"campaign-pgw-sn-e08-weighted-l1-duality\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Explicit statement-to-theorem mapping in pre-commit review covering every clause of TFQ-0522.\",\n    \"G2\": \"Scoped Lake build passes under Lean 4.35.0 with only propext, Classical.choice, and Quot.sound.\",\n    \"G3\": \"Typed hypotheses ([Fintype V], [Fintype E], [Field K], [LinearOrder K], [IsStrictOrderedRing K], 0 <= w e); boundaries explicitly documented.\",\n    \"G4\": \"6 of 6 one-ingredient Lean mutations killed; independent SymPy simplex check passes 970 checks across 60 random instances and 2 negative controls.\",\n    \"G5\": \"Modular sections (WeakDuality, Farkas, StrongLPDuality, StrongWeightedL1Duality, ThreeCycleWitness, AdjunctionSeparation) with zero warnings.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T22:48:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json\",\n      \"sha256\": \"f14f62274d15c907e18b3c6d656247813c0a747f305d37b24c88af89fea61e29\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json\",\n      \"sha256\": \"d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json\",\n      \"sha256\": \"cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md\",\n      \"sha256\": \"e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Complete Lean 4 proof of Farkas lemma via Fourier-Motzkin elimination, strong LP duality, and weighted l1 cochain approximation strong duality over any linearly ordered field K and Q, with 3-cycle witnesses and AdjunctionCochain separation.\",\n  \"open_higher_grade_findings\": [\n    \"AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.\",\n    \"Independent regression is bounded; no polynomial-time LP complexity bound claimed.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignSnE08WeightedL1Duality.lean",
+          "sha256": "2627f12d8eaa545ba5bf63ee9d792eda2f0c8c262db6906523b1aedd4fc6e1ff"
+        },
+        "assessment_id": "campaign-pgw-sn-e08-weighted-l1-duality",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Explicit statement-to-theorem mapping in pre-commit review covering every clause of TFQ-0522.",
+          "G2": "Scoped Lake build passes under Lean 4.35.0 with only propext, Classical.choice, and Quot.sound.",
+          "G3": "Typed hypotheses ([Fintype V], [Fintype E], [Field K], [LinearOrder K], [IsStrictOrderedRing K], 0 <= w e); boundaries explicitly documented.",
+          "G4": "6 of 6 one-ingredient Lean mutations killed; independent SymPy simplex check passes 970 checks across 60 random instances and 2 negative controls.",
+          "G5": "Modular sections (WeakDuality, Farkas, StrongLPDuality, StrongWeightedL1Duality, ThreeCycleWitness, AdjunctionSeparation) with zero warnings."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T22:48:00+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json",
+            "sha256": "f14f62274d15c907e18b3c6d656247813c0a747f305d37b24c88af89fea61e29"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json",
+            "sha256": "d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json",
+            "sha256": "cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md",
+            "sha256": "e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Complete Lean 4 proof of Farkas lemma via Fourier-Motzkin elimination, strong LP duality, and weighted l1 cochain approximation strong duality over any linearly ordered field K and Q, with 3-cycle witnesses and AdjunctionCochain separation.",
+        "open_higher_grade_findings": [
+          "AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.",
+          "Independent regression is bounded; no polynomial-time LP complexity bound claimed."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D",
+        "support_exception": false
+      },
+      "sha256": "6fbf6e5557e4116f69ed6b824bac669b316ec75f32390ca6a0c2dcc54094bebe"
+    },
+    {
+      "bytes": 3229,
+      "original_paths": [
+        "lean4/CampaignSnE08WeightedL1Duality.contract.score.yaml#weighted-l1-comment-binding-review-2026-10-25"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignSnE08WeightedL1Duality.lean\",\n    \"sha256\": \"f35d7b06b68886a27305b2120f72b1336115f3bcdb587ce5ba50827131e8c687\"\n  },\n  \"assessment_id\": \"weighted-l1-comment-binding-review-2026-10-25\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Explicit statement-to-theorem mapping in pre-commit review covering every clause of TFQ-0522. Current binding refreshed after inspecting the doc-comment-only change; executable Lean is identical to the prior assessed source. No fresh proof replay is claimed.\",\n    \"G2\": \"Scoped Lake build passes under Lean 4.35.0 with only propext, Classical.choice, and Quot.sound.\",\n    \"G3\": \"Typed hypotheses ([Fintype V], [Fintype E], [Field K], [LinearOrder K], [IsStrictOrderedRing K], 0 <= w e); boundaries explicitly documented.\",\n    \"G4\": \"6 of 6 one-ingredient Lean mutations killed; independent SymPy simplex check passes 970 checks across 60 random instances and 2 negative controls.\",\n    \"G5\": \"Modular sections (WeakDuality, Farkas, StrongLPDuality, StrongWeightedL1Duality, ThreeCycleWitness, AdjunctionSeparation) with zero warnings.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-25T17:02:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json\",\n      \"sha256\": \"f14f62274d15c907e18b3c6d656247813c0a747f305d37b24c88af89fea61e29\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json\",\n      \"sha256\": \"d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json\",\n      \"sha256\": \"cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md\",\n      \"sha256\": \"e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"dag/research/weighted_l1_comment_binding_review.json\",\n      \"sha256\": \"e19ac3ee6467cafa416510390c0befbfa5c1ed4c8cf961f9f5a73715675edf2c\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Complete Lean 4 proof of Farkas lemma via Fourier-Motzkin elimination, strong LP duality, and weighted l1 cochain approximation strong duality over any linearly ordered field K and Q, with 3-cycle witnesses and AdjunctionCochain separation.\",\n  \"open_higher_grade_findings\": [\n    \"AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.\",\n    \"Independent regression is bounded; no polynomial-time LP complexity bound claimed.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignSnE08WeightedL1Duality.lean",
+          "sha256": "f35d7b06b68886a27305b2120f72b1336115f3bcdb587ce5ba50827131e8c687"
+        },
+        "assessment_id": "weighted-l1-comment-binding-review-2026-10-25",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Explicit statement-to-theorem mapping in pre-commit review covering every clause of TFQ-0522. Current binding refreshed after inspecting the doc-comment-only change; executable Lean is identical to the prior assessed source. No fresh proof replay is claimed.",
+          "G2": "Scoped Lake build passes under Lean 4.35.0 with only propext, Classical.choice, and Quot.sound.",
+          "G3": "Typed hypotheses ([Fintype V], [Fintype E], [Field K], [LinearOrder K], [IsStrictOrderedRing K], 0 <= w e); boundaries explicitly documented.",
+          "G4": "6 of 6 one-ingredient Lean mutations killed; independent SymPy simplex check passes 970 checks across 60 random instances and 2 negative controls.",
+          "G5": "Modular sections (WeakDuality, Farkas, StrongLPDuality, StrongWeightedL1Duality, ThreeCycleWitness, AdjunctionSeparation) with zero warnings."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-25T17:02:00+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json",
+            "sha256": "f14f62274d15c907e18b3c6d656247813c0a747f305d37b24c88af89fea61e29"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json",
+            "sha256": "d31d390a5839a7044ac5af3a3e0cc31b13344114c684d9046b1923e4727effba"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json",
+            "sha256": "cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md",
+            "sha256": "e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "dag/research/weighted_l1_comment_binding_review.json",
+            "sha256": "e19ac3ee6467cafa416510390c0befbfa5c1ed4c8cf961f9f5a73715675edf2c"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Complete Lean 4 proof of Farkas lemma via Fourier-Motzkin elimination, strong LP duality, and weighted l1 cochain approximation strong duality over any linearly ordered field K and Q, with 3-cycle witnesses and AdjunctionCochain separation.",
+        "open_higher_grade_findings": [
+          "AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.",
+          "Independent regression is bounded; no polynomial-time LP complexity bound claimed."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D",
+        "support_exception": false
+      },
+      "sha256": "3f80f563747fddb8c510e53d9a43a70b63cd40d0e72564405dda7db76eb22084"
+    },
+    {
+      "bytes": 3659,
+      "original_paths": [
+        "lean4/WeightedL1Duality.contract.score.yaml#weighted-l1-comment-binding-review-2026-10-25"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/WeightedL1Duality.lean\",\n    \"sha256\": \"d817dcb21291f1ca63d5f7b3761c9921506a029105073a4202af19026ea794bd\"\n  },\n  \"assessment_id\": \"weighted-l1-comment-binding-review-2026-10-25\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Explicit statement-to-theorem mapping in pre-commit review covering every clause of TFQ-0522. Current binding refreshed after inspecting the doc-comment-only change; executable Lean is identical to the prior assessed source. No fresh proof replay is claimed.\",\n    \"G2\": \"Scoped Lake build passes under Lean 4.35.0 with only propext, Classical.choice, and Quot.sound.\",\n    \"G3\": \"Typed hypotheses ([Fintype V], [Fintype E], [Field K], [LinearOrder K], [IsStrictOrderedRing K], 0 <= w e); boundaries explicitly documented.\",\n    \"G4\": \"6 of 6 one-ingredient Lean mutations killed; independent SymPy simplex check passes 970 checks across 60 random instances and 2 negative controls.\",\n    \"G5\": \"Modular sections (WeakDuality, Farkas, StrongLPDuality, StrongWeightedL1Duality, ThreeCycleWitness, AdjunctionSeparation) with zero warnings.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-25T17:02:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json\",\n      \"sha256\": \"f5c0468be3440606ddce139f1a0e8eb928ce43ac0dfd23484043ed9a91599925\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json\",\n      \"sha256\": \"1aba8bd86f2c19c711367beeb575ff8e300cf72468daf264e5e233c14b811d23\"\n    },\n    {\n      \"path\": \"dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json\",\n      \"sha256\": \"cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md\",\n      \"sha256\": \"e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    },\n    {\n      \"path\": \"dag/research/weighted_l1_comment_binding_review.json\",\n      \"sha256\": \"93314285fa10963174c3d63dc577786a5adddbd32dcb97519c1bbe83af19b81c\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Complete Lean 4 proof of Farkas lemma via Fourier-Motzkin elimination, strong LP duality, and weighted l1 cochain approximation strong duality over any linearly ordered field K and Q, with 3-cycle witnesses and AdjunctionCochain separation.\",\n  \"open_higher_grade_findings\": [\n    \"AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.\",\n    \"Independent regression is bounded; no polynomial-time LP complexity bound claimed.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rebound\": {\n    \"date\": \"2026-10-27\",\n    \"from_path\": \"lean4/CampaignSnE08WeightedL1Duality.lean\",\n    \"from_sha256\": \"f35d7b06b68886a27305b2120f72b1336115f3bcdb587ce5ba50827131e8c687\",\n    \"note\": \"Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived.\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/WeightedL1Duality.lean",
+          "sha256": "d817dcb21291f1ca63d5f7b3761c9921506a029105073a4202af19026ea794bd"
+        },
+        "assessment_id": "weighted-l1-comment-binding-review-2026-10-25",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Explicit statement-to-theorem mapping in pre-commit review covering every clause of TFQ-0522. Current binding refreshed after inspecting the doc-comment-only change; executable Lean is identical to the prior assessed source. No fresh proof replay is claimed.",
+          "G2": "Scoped Lake build passes under Lean 4.35.0 with only propext, Classical.choice, and Quot.sound.",
+          "G3": "Typed hypotheses ([Fintype V], [Fintype E], [Field K], [LinearOrder K], [IsStrictOrderedRing K], 0 <= w e); boundaries explicitly documented.",
+          "G4": "6 of 6 one-ingredient Lean mutations killed; independent SymPy simplex check passes 970 checks across 60 random instances and 2 negative controls.",
+          "G5": "Modular sections (WeakDuality, Farkas, StrongLPDuality, StrongWeightedL1Duality, ThreeCycleWitness, AdjunctionSeparation) with zero warnings."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-25T17:02:00+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json",
+            "sha256": "f5c0468be3440606ddce139f1a0e8eb928ce43ac0dfd23484043ed9a91599925"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_mutation.json",
+            "sha256": "1aba8bd86f2c19c711367beeb575ff8e300cf72468daf264e5e233c14b811d23"
+          },
+          {
+            "path": "dag/research/campaign_pgw-sn-e08-weighted-l1-duality_independent.json",
+            "sha256": "cca621b66c48787eaf7f137a886cf199aeaa7f4f7de81d43508a97992b37d370"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_campaign-pgw-sn-e08-weighted-l1-duality-precommit.md",
+            "sha256": "e20df6b563d353808e3a93c9447929d1b0a67487fbb5690ab50b338d28cf00d2"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          },
+          {
+            "path": "dag/research/weighted_l1_comment_binding_review.json",
+            "sha256": "93314285fa10963174c3d63dc577786a5adddbd32dcb97519c1bbe83af19b81c"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Complete Lean 4 proof of Farkas lemma via Fourier-Motzkin elimination, strong LP duality, and weighted l1 cochain approximation strong duality over any linearly ordered field K and Q, with 3-cycle witnesses and AdjunctionCochain separation.",
+        "open_higher_grade_findings": [
+          "AdjunctionCochain in sn_realizations.py remains a product section/projection in the external S(n) strand.",
+          "Independent regression is bounded; no polynomial-time LP complexity bound claimed."
+        ],
+        "profile": "Symbolic/Formal",
+        "rebound": {
+          "date": "2026-10-27",
+          "from_path": "lean4/CampaignSnE08WeightedL1Duality.lean",
+          "from_sha256": "f35d7b06b68886a27305b2120f72b1336115f3bcdb587ce5ba50827131e8c687",
+          "note": "Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived."
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D",
+        "support_exception": false
+      },
+      "sha256": "24363bf68666dd1c9e7dce5eb3d3bca5684d01bb7c3427f77cbd8887eed8a6ea"
+    }
+  ]
+}

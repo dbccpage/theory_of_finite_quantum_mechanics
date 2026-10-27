@@ -16,7 +16,7 @@ Checks:
    `Pi_gamma + Pi_Z = 1`, `Pi_gamma Pi_Z = 0`, custodial `rho = 1`),
    Gell-Mann--Nishijima charge identities, and anomaly cancellation at `N_c = 3` vs failure at `N_c != 3`.
 6. Repository source and Lean 4 theorem anchors in `lean4/FiniteQM.lean` and
-   `lean4/CampaignTfq0010FiniteQed.lean`.
+   `lean4/FiniteQedElectroweakShadow.lean`.
 """
 
 from __future__ import annotations
@@ -218,10 +218,10 @@ def run_all_checks() -> dict[str, Any]:
     # -------------------------------------------------------------------------
     repo_root = Path(__file__).resolve().parents[2]
     fqm = repo_root / "lean4/FiniteQM.lean"
-    lean_file = repo_root / "lean4/CampaignTfq0010FiniteQed.lean"
+    lean_file = repo_root / "lean4/FiniteQedElectroweakShadow.lean"
 
     record(fqm.exists(), "lean4/FiniteQM.lean exists")
-    record(lean_file.exists(), "lean4/CampaignTfq0010FiniteQed.lean exists")
+    record(lean_file.exists(), "lean4/FiniteQedElectroweakShadow.lean exists")
 
     fqm_src = fqm.read_text(encoding="utf-8")
     for sym in [
@@ -249,8 +249,8 @@ def run_all_checks() -> dict[str, Any]:
         "theorem tfq0010_finite_qed_and_electroweak_shadow_ledger_fence",
     ]
     for thm in required_theorems:
-        record(thm in lean_src, f"CampaignTfq0010FiniteQed.lean contains {thm}")
-    record("sorry" not in lean_src, "CampaignTfq0010FiniteQed.lean is sorry-free")
+        record(thm in lean_src, f"FiniteQedElectroweakShadow.lean contains {thm}")
+    record("sorry" not in lean_src, "FiniteQedElectroweakShadow.lean is sorry-free")
 
     return {
         "node_id": "TFQ-0010",

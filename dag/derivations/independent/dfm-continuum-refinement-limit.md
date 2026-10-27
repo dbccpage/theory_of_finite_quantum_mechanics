@@ -126,7 +126,7 @@ zero. All displayed values are recomputed using exact fractions.
 
 These bounded computations are controls, not a computational proof of
 completeness, convergence or continuity. Those statements are kernel-checked
-in `lean4/CampaignDfmRefinementLimit.lean`. The source-bound replay receipt
+in `lean4/DressingFieldRefinementLimit.lean`. The source-bound replay receipt
 records the exact build, all explicit declarations' axiom reports and
 independent output. Only the standard axioms propext, Classical.choice and
 Quot.sound are admitted. The full repository Lean workspace is not built.

@@ -48,10 +48,10 @@ The 20261019 scope audit remains a determinant obstruction on a supplied rationa
 ### Lean 4 Theorems
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_tensor_uniqueness_min_vs_max_tensor_and_covariance`
-- `lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.outerDet`
-- `lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityDet`
-- `lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.identityNotOuter`
-- `lean4/CampaignFqGapTensorUniqueness.lean::CampaignFqGapTensorUniqueness.productsEq`
+- `lean4/TensorUniquenessOuterProducts.lean::TensorUniquenessOuterProducts.outerDet`
+- `lean4/TensorUniquenessOuterProducts.lean::TensorUniquenessOuterProducts.identityDet`
+- `lean4/TensorUniquenessOuterProducts.lean::TensorUniquenessOuterProducts.identityNotOuter`
+- `lean4/TensorUniquenessOuterProducts.lean::TensorUniquenessOuterProducts.productsEq`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/coupled_relational_operad.rs::evaluate_coupled_relational_operad`
@@ -81,7 +81,7 @@ The 20261019 scope audit remains a determinant obstruction on a supplied rationa
   - `dag/derivations/27_tensor_composition/tfq_0415_tensor_binary_effect_interval.md`
   - `dag/derivations/27_tensor_composition/tfq_0416_tensor_finite_povm_availability.md`
   - `dag/research/tensor_countermodel_validation.json`
-  - `lean4/CampaignFqGapTensorUniqueness.lean`
+  - `lean4/TensorUniquenessOuterProducts.lean`
   - `dag/derivations/independent/fq-gap-tensor-uniqueness.md`
   - `dag/research/campaign_fq-gap-tensor-uniqueness_lean_replay.json`
   - `checks/independent/fq-gap-tensor-uniqueness.py`

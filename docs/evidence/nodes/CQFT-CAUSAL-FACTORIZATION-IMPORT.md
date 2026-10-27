@@ -43,43 +43,43 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignCqftCausalFactorizationImport.lean`
+### Lean: `lean4/CausalFactorizationImport.lean`
 
-- file: [lean4/CampaignCqftCausalFactorizationImport.lean](../../../lean4/CampaignCqftCausalFactorizationImport.lean)
-- sha256 (`bytes`): `5dd49f73d783b5d3b3f732ac46e4431428eb7054132e27bd37e111901cb0549f`
-- cited in: node.lean, node.source, receipt dag/research/campaign_cqft-causal-factorization-import_lean_replay.json (CampaignCqftCausalFactorizationImport), record TFQ-2109
+- file: [lean4/CausalFactorizationImport.lean](../../../lean4/CausalFactorizationImport.lean)
+- sha256 (`bytes`): `2fed601873ae5ac48008d255f5e1e4c3d0273b5c4cfa82e4aed6bc059b994efc`
+- cited in: node.lean, node.source, receipt dag/research/campaign_cqft-causal-factorization-import_lean_replay.json (CausalFactorizationImport), record TFQ-2109
 - replay: `verified`
-  - receipt [dag/research/campaign_cqft-causal-factorization-import_lean_replay.json](../../../dag/research/campaign_cqft-causal-factorization-import_lean_replay.json) (module `CampaignCqftCausalFactorizationImport`): recorded sha256 `5dd49f73d783b5d3b3f732ac46e4431428eb7054132e27bd37e111901cb0549f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignCqftCausalFactorizationImport`
+  - receipt [dag/research/campaign_cqft-causal-factorization-import_lean_replay.json](../../../dag/research/campaign_cqft-causal-factorization-import_lean_replay.json) (module `CausalFactorizationImport`): recorded sha256 `2fed601873ae5ac48008d255f5e1e4c3d0273b5c4cfa82e4aed6bc059b994efc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CausalFactorizationImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignCqftCausalFactorizationImport.bogoliubovV_causal_factorization_at_zero_iff` | yes | yes | yes | none | `#print axioms CampaignCqftCausalFactorizationImport.bogoliubovV_causal_factorization_at_zero_iff` |
-| `CampaignCqftCausalFactorizationImport.bogoliubovV_cocycle_telescoping` | yes | yes | yes | none | `#print axioms CampaignCqftCausalFactorizationImport.bogoliubovV_cocycle_telescoping` |
-| `CampaignCqftCausalFactorizationImport.bogoliubovV_factorization_iff_background_shift_invariance` | yes | yes | yes | none | `#print axioms CampaignCqftCausalFactorizationImport.bogoliubovV_factorization_iff_background_shift_invariance` |
-| `CampaignCqftCausalFactorizationImport.bogoliubovV_zero` | yes | yes | yes | none | `#print axioms CampaignCqftCausalFactorizationImport.bogoliubovV_zero` |
-| `CampaignCqftCausalFactorizationImport.c2_epstein_glaser_separation_asymmetry` | yes | yes | yes | none | `#print axioms CampaignCqftCausalFactorizationImport.c2_epstein_glaser_separation_asymmetry` |
-| `CampaignCqftCausalFactorizationImport.coincident_diagonal_not_spacelike_and_counterterm_dim` | yes | yes | yes | none | `#print axioms CampaignCqftCausalFactorizationImport.coincident_diagonal_not_spacelike_and_counterterm_dim` |
-| `CampaignCqftCausalFactorizationImport.diagonal_counterterm_preserves_off_diagonal_factorization` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignCqftCausalFactorizationImport.diagonal_counterterm_preserves_off_diagonal_factorization` |
-| `CampaignCqftCausalFactorizationImport.posetN_all_five_extensions_swap_connected` | yes | yes | yes | none | `#print axioms CampaignCqftCausalFactorizationImport.posetN_all_five_extensions_swap_connected` |
-| `CampaignCqftCausalFactorizationImport.posetN_all_five_ordered_products_eq` | yes | yes | yes | propext | `#print axioms CampaignCqftCausalFactorizationImport.posetN_all_five_ordered_products_eq` |
-| `CampaignCqftCausalFactorizationImport.posetN_all_spacelike_pairs` | yes | yes | yes | none | `#print axioms CampaignCqftCausalFactorizationImport.posetN_all_spacelike_pairs` |
-| `CampaignCqftCausalFactorizationImport.posetN_exact_five_linear_extensions` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCqftCausalFactorizationImport.posetN_exact_five_linear_extensions` |
-| `CampaignCqftCausalFactorizationImport.posetN_pauli_commuting_vs_anticommuting_witness` | yes | yes | yes | propext | `#print axioms CampaignCqftCausalFactorizationImport.posetN_pauli_commuting_vs_anticommuting_witness` |
+| `CausalFactorizationImport.bogoliubovV_causal_factorization_at_zero_iff` | yes | yes | yes | none | `#print axioms CausalFactorizationImport.bogoliubovV_causal_factorization_at_zero_iff` |
+| `CausalFactorizationImport.bogoliubovV_cocycle_telescoping` | yes | yes | yes | none | `#print axioms CausalFactorizationImport.bogoliubovV_cocycle_telescoping` |
+| `CausalFactorizationImport.bogoliubovV_factorization_iff_background_shift_invariance` | yes | yes | yes | none | `#print axioms CausalFactorizationImport.bogoliubovV_factorization_iff_background_shift_invariance` |
+| `CausalFactorizationImport.bogoliubovV_zero` | yes | yes | yes | none | `#print axioms CausalFactorizationImport.bogoliubovV_zero` |
+| `CausalFactorizationImport.c2_epstein_glaser_separation_asymmetry` | yes | yes | yes | none | `#print axioms CausalFactorizationImport.c2_epstein_glaser_separation_asymmetry` |
+| `CausalFactorizationImport.coincident_diagonal_not_spacelike_and_counterterm_dim` | yes | yes | yes | none | `#print axioms CausalFactorizationImport.coincident_diagonal_not_spacelike_and_counterterm_dim` |
+| `CausalFactorizationImport.diagonal_counterterm_preserves_off_diagonal_factorization` | yes | yes | yes | Quot.sound, propext | `#print axioms CausalFactorizationImport.diagonal_counterterm_preserves_off_diagonal_factorization` |
+| `CausalFactorizationImport.posetN_all_five_extensions_swap_connected` | yes | yes | yes | none | `#print axioms CausalFactorizationImport.posetN_all_five_extensions_swap_connected` |
+| `CausalFactorizationImport.posetN_all_five_ordered_products_eq` | yes | yes | yes | propext | `#print axioms CausalFactorizationImport.posetN_all_five_ordered_products_eq` |
+| `CausalFactorizationImport.posetN_all_spacelike_pairs` | yes | yes | yes | none | `#print axioms CausalFactorizationImport.posetN_all_spacelike_pairs` |
+| `CausalFactorizationImport.posetN_exact_five_linear_extensions` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CausalFactorizationImport.posetN_exact_five_linear_extensions` |
+| `CausalFactorizationImport.posetN_pauli_commuting_vs_anticommuting_witness` | yes | yes | yes | propext | `#print axioms CausalFactorizationImport.posetN_pauli_commuting_vs_anticommuting_witness` |
 
 - counts toward the grade: yes
 
 ### Python: `checks/independent/cqft-causal-factorization-import.py`
 
 - file: [checks/independent/cqft-causal-factorization-import.py](../../../checks/independent/cqft-causal-factorization-import.py)
-- sha256 (`bytes`): `2d3005b22a2c61edb854c646a946300fa29958352f49a7e8ce194a15a3899083`
+- sha256 (`bytes`): `2fe15214807bfaa155a3d0fc71d60e5f126c836010c680f841bb7ab960f84f6e`
 - cited in: node.source, record TFQ-2109
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2109_cqft_causal_factorization_import.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2109_cqft_causal_factorization_import.md](../../../dag/derivations/31_causal_qft/tfq_2109_cqft_causal_factorization_import.md)
-- sha256 (`lf-normalised`): `bf9bdadd868a735b776390a759d967a929b280028305a44c6f934e1aa2e25c5b`
+- sha256 (`lf-normalised`): `a9715b1e35eff39d89f7ac0ebd74486d4216ed57ab23c307fe80547eb73cb858`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2109
 - counts toward the grade: no
@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/cqft-causal-factorization-import.md`
 
 - file: [dag/derivations/independent/cqft-causal-factorization-import.md](../../../dag/derivations/independent/cqft-causal-factorization-import.md)
-- sha256 (`lf-normalised`): `3907ce5b0ae7dedc3a9ec8d38c697fc9e2a9dd0152cef05132b97a685faba446`
+- sha256 (`lf-normalised`): `974823cce62b50e4f40c4fd8ad9a62195885c4e531b1e2045b27802813dc6a6d`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -101,14 +101,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_cqft-causal-factorization-import_lean_mutation.json`
 
 - file: [dag/research/campaign_cqft-causal-factorization-import_lean_mutation.json](../../../dag/research/campaign_cqft-causal-factorization-import_lean_mutation.json)
-- sha256 (`lf-normalised`): `8d2fc00b5589ba48628691887e7eb27cf5143aa81e72141443ff459ae2c48e07`
+- sha256 (`lf-normalised`): `4c1c1c650edbfdeef43192ad27bc790f6f2e74dbc4ba7ba8beaaa04b91ea106d`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_cqft-causal-factorization-import_lean_replay.json`
 
 - file: [dag/research/campaign_cqft-causal-factorization-import_lean_replay.json](../../../dag/research/campaign_cqft-causal-factorization-import_lean_replay.json)
-- sha256 (`lf-normalised`): `33151041a91b005377ae8d776dda04de4f52afabc9a8cb3d84fcf3a082e826c0`
+- sha256 (`lf-normalised`): `a55585b8e48413f82354c4b16fe3ba3a8d593ec713cd61a136fad45db2d4f0ff`
 - cited in: node.source
 - counts toward the grade: yes
 

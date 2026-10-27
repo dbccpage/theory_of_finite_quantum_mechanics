@@ -31,7 +31,7 @@ target:
   - dag/derivations/19_finite_qg/tfq_0090_gap_obl_r03_leaves_regge_deficit_uncoupled_from_cochain_curvature_obl_r01_leaves_the.md
   - dag/derivations/independent/tfq-0090.md
   - checks/independent/tfq-0090.py
-  - lean4/CampaignTfq0090FiniteQg.lean
+  - lean4/CochainCurvatureReggeDeficit.lean
   - dag/research/campaign_tfq-0090_lean_replay.json
   - dag/research/campaign_tfq-0090_lean_mutation.json
   - dag/research/campaign_tfq-0090_independent.json
@@ -75,18 +75,18 @@ relation_candidates:
 - obl_r01_causal_character_depends_on_uncalibrated_spacing
 - obl_r01_manhattan_vs_euclidean_light_cone_anisotropy
 source_bindings:
-- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.cochain_curvature_of_coboundary_zero
-- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.cochain_curvature_gauge_invariant
-- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.cochain_curvature_linear_scaling
-- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.tetrahedral_bianchi_identity
-- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.obl_r03_scaling_dichotomy_cochain_vs_regge
-- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.obl_r03_flat_hinge_with_arbitrary_cochain_curvature
-- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.obl_r03_zero_cochain_curvature_with_positive_regge_deficit
-- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.obl_r03_gauss_bonnet_vs_bianchi_sum_contrast
-- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.obl_r01_any_light_cone_slope_by_spacing_calibration
-- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.obl_r01_spacing_calibration_injective
-- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.obl_r01_causal_character_depends_on_uncalibrated_spacing
-- lean4/CampaignTfq0090FiniteQg.lean::CampaignTfq0090FiniteQg.obl_r01_manhattan_vs_euclidean_light_cone_anisotropy
+- lean4/CochainCurvatureReggeDeficit.lean::CochainCurvatureReggeDeficit.cochain_curvature_of_coboundary_zero
+- lean4/CochainCurvatureReggeDeficit.lean::CochainCurvatureReggeDeficit.cochain_curvature_gauge_invariant
+- lean4/CochainCurvatureReggeDeficit.lean::CochainCurvatureReggeDeficit.cochain_curvature_linear_scaling
+- lean4/CochainCurvatureReggeDeficit.lean::CochainCurvatureReggeDeficit.tetrahedral_bianchi_identity
+- lean4/CochainCurvatureReggeDeficit.lean::CochainCurvatureReggeDeficit.obl_r03_scaling_dichotomy_cochain_vs_regge
+- lean4/CochainCurvatureReggeDeficit.lean::CochainCurvatureReggeDeficit.obl_r03_flat_hinge_with_arbitrary_cochain_curvature
+- lean4/CochainCurvatureReggeDeficit.lean::CochainCurvatureReggeDeficit.obl_r03_zero_cochain_curvature_with_positive_regge_deficit
+- lean4/CochainCurvatureReggeDeficit.lean::CochainCurvatureReggeDeficit.obl_r03_gauss_bonnet_vs_bianchi_sum_contrast
+- lean4/CochainCurvatureReggeDeficit.lean::CochainCurvatureReggeDeficit.obl_r01_any_light_cone_slope_by_spacing_calibration
+- lean4/CochainCurvatureReggeDeficit.lean::CochainCurvatureReggeDeficit.obl_r01_spacing_calibration_injective
+- lean4/CochainCurvatureReggeDeficit.lean::CochainCurvatureReggeDeficit.obl_r01_causal_character_depends_on_uncalibrated_spacing
+- lean4/CochainCurvatureReggeDeficit.lean::CochainCurvatureReggeDeficit.obl_r01_manhattan_vs_euclidean_light_cone_anisotropy
 presentation:
   colours:
   - TetrahedralCochainComplex
@@ -122,7 +122,7 @@ operad_slots:
     - coupling of Regge metric deficit to cochain curvature OBL-R03 (open)
     - continuum light-cone lattice-spacing scaling law OBL-R01 (open)
     source_pins:
-    - lean4/CampaignTfq0090FiniteQg.lean
+    - lean4/CochainCurvatureReggeDeficit.lean
     public_input: {}
   slot_m2_layer1_forward_morphisms:
     mining_status: VERIFIED
@@ -159,7 +159,7 @@ operad_slots:
     - obl_r01_causal_character_depends_on_uncalibrated_spacing
     - obl_r01_manhattan_vs_euclidean_light_cone_anisotropy
     anchors:
-    - lean4/CampaignTfq0090FiniteQg.lean
+    - lean4/CochainCurvatureReggeDeficit.lean
     - checks/independent/tfq-0090.py
     - dag/derivations/independent/tfq-0090.md
     unpaid_imports:

@@ -28,9 +28,9 @@ Decided integer facts on readings (1, 0) and (1, 1): the difference is (0, -1); 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignMajOpenEvidenceAdequacy.lean::diff_is_zero_neg_one`
-- `lean4/CampaignMajOpenEvidenceAdequacy.lean::first_coord_kernel`
-- `lean4/CampaignMajOpenEvidenceAdequacy.lean::second_coord_separates`
+- `lean4/MajoranaOpenEvidenceAdequacy.lean::diff_is_zero_neg_one`
+- `lean4/MajoranaOpenEvidenceAdequacy.lean::first_coord_kernel`
+- `lean4/MajoranaOpenEvidenceAdequacy.lean::second_coord_separates`
 
 ### Rust Certifiers
 - *none*

@@ -5,7 +5,7 @@ import PrimitiveDifference
 
 
 
-namespace OmegaWorld
+namespace ObserverWorld
 namespace LGGRWitness
 
 open OmegaCore
@@ -261,7 +261,7 @@ theorem scope_boundary_snapshot :
 #print axioms scope_boundary_snapshot
 
 end LGGRWitness
-end OmegaWorld
+end ObserverWorld
 
 private def l5aProvenance : String :=
   "Origin: lean4/WorldLGGRWitness.lean Claim: exactPairFactorOrLGGRWitness AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

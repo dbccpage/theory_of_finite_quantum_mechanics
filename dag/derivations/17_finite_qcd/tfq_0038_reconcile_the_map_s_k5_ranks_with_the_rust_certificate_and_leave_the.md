@@ -26,17 +26,17 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignTfq0038FiniteQcd.lean`:
-  - `CampaignTfq0038FiniteQcd.conf2_graph_1skeleton_betti_numbers_p3_y_c4_k4_k5`
-  - `CampaignTfq0038FiniteQcd.conf2_c4_and_k4_2complex_rational_betti_numbers`
-  - `CampaignTfq0038FiniteQcd.k5_map_prose_reading_rank7_betti14_vs_certificate_reading_rank15_betti6`
-  - `CampaignTfq0038FiniteQcd.universal_coefficient_torsion_rank_identity`
-  - `CampaignTfq0038FiniteQcd.abelian_1d_character_collapse_boson_fermion`
-  - `CampaignTfq0038FiniteQcd.non_zero_torsion_rank_does_not_identify_specific_loop_representative`
-  - `CampaignTfq0038FiniteQcd.exchange_loop_representative_question_remains_open_fence`
-  - `CampaignTfq0038FiniteQcd.python_comment_order_two_claim_exceeds_certificate_fence`
-  - `CampaignTfq0038FiniteQcd.k5_rank_mismatch_recorded_beside_certificate_fence`
-  - `CampaignTfq0038FiniteQcd.tfq0038_k5_torsion_and_exchange_loop_scope_ledger_fence`
+- `lean4/ConfK5TorsionReadings.lean`:
+  - `ConfK5TorsionReadings.conf2_graph_1skeleton_betti_numbers_p3_y_c4_k4_k5`
+  - `ConfK5TorsionReadings.conf2_c4_and_k4_2complex_rational_betti_numbers`
+  - `ConfK5TorsionReadings.k5_map_prose_reading_rank7_betti14_vs_certificate_reading_rank15_betti6`
+  - `ConfK5TorsionReadings.universal_coefficient_torsion_rank_identity`
+  - `ConfK5TorsionReadings.abelian_1d_character_collapse_boson_fermion`
+  - `ConfK5TorsionReadings.non_zero_torsion_rank_does_not_identify_specific_loop_representative`
+  - `ConfK5TorsionReadings.exchange_loop_representative_question_remains_open_fence`
+  - `ConfK5TorsionReadings.python_comment_order_two_claim_exceeds_certificate_fence`
+  - `ConfK5TorsionReadings.k5_rank_mismatch_recorded_beside_certificate_fence`
+  - `ConfK5TorsionReadings.tfq0038_k5_torsion_and_exchange_loop_scope_ledger_fence`
 - `lean4/FiniteQM.lean`:
   - `FiniteQM.graph_conf2_exchange_betti_and_character_collapse`
 
@@ -57,5 +57,5 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
   - `lean4/FiniteQM.lean`
-  - `lean4/CampaignTfq0038FiniteQcd.lean`
+  - `lean4/ConfK5TorsionReadings.lean`
   - `checks/independent/tfq-0038.py`

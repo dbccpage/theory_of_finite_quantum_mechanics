@@ -46,6 +46,21 @@ H058 theorem family (38 theorems); Rust exact effects at declared cyclotomic rea
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/EffectFrameBusch.lean`
+
+- file: [lean4/EffectFrameBusch.lean](../../../lean4/EffectFrameBusch.lean)
+- sha256 (`bytes`): `c748ec2f46ff05066ded95e704b5a80c72309d2332a31930601e54561f921c90`
+- cited in: node.lean, record TFQ-1017
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `EffectFrameBusch`): recorded sha256 `c748ec2f46ff05066ded95e704b5a80c72309d2332a31930601e54561f921c90` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build EffectFrameBusch`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `two_mul_half` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms two_mul_half` |
+
+- counts toward the grade: yes
+
 ### Lean: `lean4/FiniteQM.lean`
 
 - file: [lean4/FiniteQM.lean](../../../lean4/FiniteQM.lean)
@@ -59,21 +74,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `busch_ic_povm_vs_polyhedral_frame_cone` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms busch_ic_povm_vs_polyhedral_frame_cone` |
 | `galois_conjugate_negativity_vs_sos_total_positivity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms galois_conjugate_negativity_vs_sos_total_positivity` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/H058EffectFrameBusch.lean`
-
-- file: [lean4/H058EffectFrameBusch.lean](../../../lean4/H058EffectFrameBusch.lean)
-- sha256 (`bytes`): `84caf3702b68295713e3dcdcbd92860b9fceb21999b6c3059a8685645afbd698`
-- cited in: node.lean, record TFQ-1017
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H058EffectFrameBusch`): recorded sha256 `84caf3702b68295713e3dcdcbd92860b9fceb21999b6c3059a8685645afbd698` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H058EffectFrameBusch`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `two_mul_half` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms two_mul_half` |
 
 - counts toward the grade: yes
 
@@ -94,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1017_fq_busch_effect_frame.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1017_fq_busch_effect_frame.md](../../../dag/derivations/12_finite_qm_structure/tfq_1017_fq_busch_effect_frame.md)
-- sha256 (`lf-normalised`): `db2204499d6e0f35c6b2d40ddb8cf06bc1116f7898f34221a65a86fd87f4fba5`
+- sha256 (`lf-normalised`): `ab3a631d10dd83e85cb68593fd888e9e5e7b8e514d0334ebfa3b54df2534e2bf`
 - generated view: listed, not counted
 - cited in: record TFQ-1017
 - counts toward the grade: no

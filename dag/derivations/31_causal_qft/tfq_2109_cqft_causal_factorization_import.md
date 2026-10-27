@@ -51,24 +51,24 @@ See also: `CQFT-FINITE-STRICT-POSET-SPACELIKE`.
 - `external:arXiv:math-ph/9903028`: R. Brunetti and K. Fredenhagen, "Microlocal Analysis and Interacting Quantum Field Theories: Renormalization on Physical Backgrounds", arXiv:math-ph/9903028 (1999); Commun. Math. Phys. 208 (2000) 623-661, doi:10.1007/s002200050004.
 - Repository: `dag/derivations/independent/cqft-causal-factorization-import.md`
 - Repository: `checks/independent/cqft-causal-factorization-import.py`
-- Repository: `lean4/CampaignCqftCausalFactorizationImport.lean`
+- Repository: `lean4/CausalFactorizationImport.lean`
 - Repository: `dag/research/campaign_cqft-causal-factorization-import_lean_replay.json`
 - Repository: `dag/research/campaign_cqft-causal-factorization-import_lean_mutation.json`
 - Repository: `dag/research/campaign_cqft-causal-factorization-import_independent.json`
 
 ## Lean 4 declarations read
-- `lean4/CampaignCqftCausalFactorizationImport.lean::CampaignCqftCausalFactorizationImport.bogoliubovV_zero`
-- `lean4/CampaignCqftCausalFactorizationImport.lean::CampaignCqftCausalFactorizationImport.bogoliubovV_cocycle_telescoping`
-- `lean4/CampaignCqftCausalFactorizationImport.lean::CampaignCqftCausalFactorizationImport.bogoliubovV_factorization_iff_background_shift_invariance`
-- `lean4/CampaignCqftCausalFactorizationImport.lean::CampaignCqftCausalFactorizationImport.bogoliubovV_causal_factorization_at_zero_iff`
-- `lean4/CampaignCqftCausalFactorizationImport.lean::CampaignCqftCausalFactorizationImport.c2_epstein_glaser_separation_asymmetry`
-- `lean4/CampaignCqftCausalFactorizationImport.lean::CampaignCqftCausalFactorizationImport.posetN_all_spacelike_pairs`
-- `lean4/CampaignCqftCausalFactorizationImport.lean::CampaignCqftCausalFactorizationImport.posetN_exact_five_linear_extensions`
-- `lean4/CampaignCqftCausalFactorizationImport.lean::CampaignCqftCausalFactorizationImport.posetN_all_five_extensions_swap_connected`
-- `lean4/CampaignCqftCausalFactorizationImport.lean::CampaignCqftCausalFactorizationImport.posetN_all_five_ordered_products_eq`
-- `lean4/CampaignCqftCausalFactorizationImport.lean::CampaignCqftCausalFactorizationImport.posetN_pauli_commuting_vs_anticommuting_witness`
-- `lean4/CampaignCqftCausalFactorizationImport.lean::CampaignCqftCausalFactorizationImport.coincident_diagonal_not_spacelike_and_counterterm_dim`
-- `lean4/CampaignCqftCausalFactorizationImport.lean::CampaignCqftCausalFactorizationImport.diagonal_counterterm_preserves_off_diagonal_factorization`
+- `lean4/CausalFactorizationImport.lean::CausalFactorizationImport.bogoliubovV_zero`
+- `lean4/CausalFactorizationImport.lean::CausalFactorizationImport.bogoliubovV_cocycle_telescoping`
+- `lean4/CausalFactorizationImport.lean::CausalFactorizationImport.bogoliubovV_factorization_iff_background_shift_invariance`
+- `lean4/CausalFactorizationImport.lean::CausalFactorizationImport.bogoliubovV_causal_factorization_at_zero_iff`
+- `lean4/CausalFactorizationImport.lean::CausalFactorizationImport.c2_epstein_glaser_separation_asymmetry`
+- `lean4/CausalFactorizationImport.lean::CausalFactorizationImport.posetN_all_spacelike_pairs`
+- `lean4/CausalFactorizationImport.lean::CausalFactorizationImport.posetN_exact_five_linear_extensions`
+- `lean4/CausalFactorizationImport.lean::CausalFactorizationImport.posetN_all_five_extensions_swap_connected`
+- `lean4/CausalFactorizationImport.lean::CausalFactorizationImport.posetN_all_five_ordered_products_eq`
+- `lean4/CausalFactorizationImport.lean::CausalFactorizationImport.posetN_pauli_commuting_vs_anticommuting_witness`
+- `lean4/CausalFactorizationImport.lean::CausalFactorizationImport.coincident_diagonal_not_spacelike_and_counterterm_dim`
+- `lean4/CausalFactorizationImport.lean::CausalFactorizationImport.diagonal_counterterm_preserves_off_diagonal_factorization`
 
 ## Downstream derivations
 

@@ -42,35 +42,35 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGenesisDemandPolicy.lean`
+### Lean: `lean4/GenesisDemandPolicy.lean`
 
-- file: [lean4/CampaignGenesisDemandPolicy.lean](../../../lean4/CampaignGenesisDemandPolicy.lean)
-- sha256 (`bytes`): `782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940`
-- cited in: node.lean, receipt dag/research/campaign_pgw-endogenous-demand-ob1_lean_replay.json (CampaignGenesisDemandPolicy), receipt dag/research/genesis_merged_20261023_lean_replay.json (CampaignGenesisDemandPolicy), record TFQ-0504
+- file: [lean4/GenesisDemandPolicy.lean](../../../lean4/GenesisDemandPolicy.lean)
+- sha256 (`bytes`): `9c62ca49ae596150d8b615697097cf2d579ae172ac3f342063dc8ae63d82f603`
+- cited in: node.lean, receipt dag/research/campaign_pgw-endogenous-demand-ob1_lean_replay.json (GenesisDemandPolicy), receipt dag/research/genesis_merged_20261023_lean_replay.json (GenesisDemandPolicy), record TFQ-0504
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-endogenous-demand-ob1_lean_replay.json](../../../dag/research/campaign_pgw-endogenous-demand-ob1_lean_replay.json) (module `CampaignGenesisDemandPolicy`): recorded sha256 `782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/genesis_merged_20261023_lean_replay.json](../../../dag/research/genesis_merged_20261023_lean_replay.json) (module `CampaignGenesisDemandPolicy`): recorded sha256 `782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGenesisDemandPolicy`
+  - receipt [dag/research/campaign_pgw-endogenous-demand-ob1_lean_replay.json](../../../dag/research/campaign_pgw-endogenous-demand-ob1_lean_replay.json) (module `GenesisDemandPolicy`): recorded sha256 `9c62ca49ae596150d8b615697097cf2d579ae172ac3f342063dc8ae63d82f603` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/genesis_merged_20261023_lean_replay.json](../../../dag/research/genesis_merged_20261023_lean_replay.json) (module `GenesisDemandPolicy`): recorded sha256 `9c62ca49ae596150d8b615697097cf2d579ae172ac3f342063dc8ae63d82f603` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build GenesisDemandPolicy`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignGenesisDemandPolicy.collapseTest_correct` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.collapseTest_correct` |
-| `CampaignGenesisDemandPolicy.fixed_data_saturates` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.fixed_data_saturates` |
-| `CampaignGenesisDemandPolicy.instruction_records_demand` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.instruction_records_demand` |
-| `CampaignGenesisDemandPolicy.mem_agenda` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.mem_agenda` |
-| `CampaignGenesisDemandPolicy.mem_candidates` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.mem_candidates` |
-| `CampaignGenesisDemandPolicy.mem_contexts` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.mem_contexts` |
-| `CampaignGenesisDemandPolicy.mem_options` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.mem_options` |
-| `CampaignGenesisDemandPolicy.mem_tuples` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.mem_tuples` |
-| `CampaignGenesisDemandPolicy.next_none_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.next_none_iff` |
-| `CampaignGenesisDemandPolicy.next_sound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.next_sound` |
-| `CampaignGenesisDemandPolicy.no_host_target_in_program` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.no_host_target_in_program` |
-| `CampaignGenesisDemandPolicy.no_immediate_repeat` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.no_immediate_repeat` |
-| `CampaignGenesisDemandPolicy.policy_is_not_forced` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.policy_is_not_forced` |
-| `CampaignGenesisDemandPolicy.seek_grows_one` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.seek_grows_one` |
-| `CampaignGenesisDemandPolicy.seek_is_recorded_source_step` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.seek_is_recorded_source_step` |
-| `CampaignGenesisDemandPolicy.seek_preserves_observations` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.seek_preserves_observations` |
-| `CampaignGenesisDemandPolicy.seek_preserves_policy` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisDemandPolicy.seek_preserves_policy` |
+| `GenesisDemandPolicy.collapseTest_correct` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisDemandPolicy.collapseTest_correct` |
+| `GenesisDemandPolicy.fixed_data_saturates` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisDemandPolicy.fixed_data_saturates` |
+| `GenesisDemandPolicy.instruction_records_demand` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisDemandPolicy.instruction_records_demand` |
+| `GenesisDemandPolicy.mem_agenda` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisDemandPolicy.mem_agenda` |
+| `GenesisDemandPolicy.mem_candidates` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisDemandPolicy.mem_candidates` |
+| `GenesisDemandPolicy.mem_contexts` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisDemandPolicy.mem_contexts` |
+| `GenesisDemandPolicy.mem_options` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisDemandPolicy.mem_options` |
+| `GenesisDemandPolicy.mem_tuples` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisDemandPolicy.mem_tuples` |
+| `GenesisDemandPolicy.next_none_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisDemandPolicy.next_none_iff` |
+| `GenesisDemandPolicy.next_sound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisDemandPolicy.next_sound` |
+| `GenesisDemandPolicy.no_host_target_in_program` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisDemandPolicy.no_host_target_in_program` |
+| `GenesisDemandPolicy.no_immediate_repeat` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisDemandPolicy.no_immediate_repeat` |
+| `GenesisDemandPolicy.policy_is_not_forced` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisDemandPolicy.policy_is_not_forced` |
+| `GenesisDemandPolicy.seek_grows_one` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisDemandPolicy.seek_grows_one` |
+| `GenesisDemandPolicy.seek_is_recorded_source_step` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisDemandPolicy.seek_is_recorded_source_step` |
+| `GenesisDemandPolicy.seek_preserves_observations` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisDemandPolicy.seek_preserves_observations` |
+| `GenesisDemandPolicy.seek_preserves_policy` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisDemandPolicy.seek_preserves_policy` |
 
 - counts toward the grade: yes
 
@@ -110,7 +110,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md`
 
 - file: [dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md](../../../dag/derivations/02_genesis/tfq_0504_endogenous_demand_ob1.md)
-- sha256 (`lf-normalised`): `0cc86928d62c2b343b5caec930c8b78701d906d216b39ae3775066a5f3b9a217`
+- sha256 (`lf-normalised`): `2c5f3208be1b7f22459a041382207742503c59e33c55be8697783adf19420244`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0504
 - counts toward the grade: no

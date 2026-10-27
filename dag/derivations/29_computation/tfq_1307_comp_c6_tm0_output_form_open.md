@@ -17,7 +17,7 @@ The tape of the halting TM0 configuration of M0 from initCfg0 should read the va
 Still open: a natural number v lies in Code.eval c n exactly when M0 halts from initCfg0 with the encoded v on its output tape.
 
 ### Witness Audit
-CampaignCompC6Tm0OutputFormOpen records one blank-cell writer and the constant evaluator evalConst. It does not compose Mathlib TM2to1.tr_eval with M0.
+ComputationC6Tm0OutputFormOpen records one blank-cell writer and the constant evaluator evalConst. It does not compose Mathlib TM2to1.tr_eval with M0.
 
 ---
 
@@ -32,9 +32,9 @@ CampaignCompC6Tm0OutputFormOpen records one blank-cell writer and the constant e
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignCompC6Tm0OutputFormOpen.lean::writeHaltFromBlank`
-- `lean4/CampaignCompC6Tm0OutputFormOpen.lean::evalConstReturns`
-- `lean4/CampaignCompC6Tm0OutputFormOpen.lean::constAgrees`
+- `lean4/ComputationC6Tm0OutputFormOpen.lean::writeHaltFromBlank`
+- `lean4/ComputationC6Tm0OutputFormOpen.lean::evalConstReturns`
+- `lean4/ComputationC6Tm0OutputFormOpen.lean::constAgrees`
 
 ### Rust Certifiers
 - *none*

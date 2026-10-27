@@ -4,7 +4,7 @@ Stage: [L1_TO_L2](../stages/L1_TO_L2.md). Status: `COMPUTATIONALLY_CHECKED`. Evi
 
 ## Statement
 
-> A pairing exists (pairing_exists), a quartic rival to the quadratic pairing exists (quartic_rival), and uniqueness is not discharged (uniqueness_not_discharged, born_nonuniqueness_open). Under frame additivity the fourth power is excluded. Ordinary Gleason dimension is not matched by the two-label host (H017Gleason).
+> A pairing exists (pairing_exists), a quartic rival to the quadratic pairing exists (quartic_rival), and uniqueness is not discharged (uniqueness_not_discharged, born_nonuniqueness_open). Under frame additivity the fourth power is excluded. Ordinary Gleason dimension is not matched by the two-label host (HilbertWalkGleason).
 
 ## Grade
 
@@ -32,7 +32,7 @@ Lean exhibits the pairing on one state and an explicit quartic rival on one stat
 
 ## Source status
 
-H013BornPairingBoundary: Candidate only. Not PROVEN. Kind: IMPORT BOUNDARY (file header)
+BornPairingBoundary: Candidate only. Not PROVEN. Kind: IMPORT BOUNDARY (file header)
 
 ## Review
 
@@ -45,24 +45,14 @@ H013BornPairingBoundary: Candidate only. Not PROVEN. Kind: IMPORT BOUNDARY (file
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/FiniteQM.lean`
+### Lean: `lean4/BornPairingBoundary.lean`
 
-- file: [lean4/FiniteQM.lean](../../../lean4/FiniteQM.lean)
-- sha256 (`bytes`): `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759`
-- cited in: record TFQ-0306
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qcd.json](../../../dag/research/lean_replay_campaign_finite_qcd.json) (module `FiniteQM`): recorded sha256 `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build FiniteQM`
-- counts toward the grade: yes
-
-### Lean: `lean4/H013BornPairingBoundary.lean`
-
-- file: [lean4/H013BornPairingBoundary.lean](../../../lean4/H013BornPairingBoundary.lean)
-- sha256 (`bytes`): `debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642`
+- file: [lean4/BornPairingBoundary.lean](../../../lean4/BornPairingBoundary.lean)
+- sha256 (`bytes`): `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H013BornPairingBoundary`): recorded sha256 `debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H013BornPairingBoundary`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `BornPairingBoundary`): recorded sha256 `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build BornPairingBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -73,14 +63,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H017Gleason.lean`
+### Lean: `lean4/FiniteQM.lean`
 
-- file: [lean4/H017Gleason.lean](../../../lean4/H017Gleason.lean)
-- sha256 (`bytes`): `ceef94bcf70d76a392949b8a9f07a8be3de52fd51f86960f494c3c58bcc95837`
+- file: [lean4/FiniteQM.lean](../../../lean4/FiniteQM.lean)
+- sha256 (`bytes`): `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759`
+- cited in: record TFQ-0306
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qcd.json](../../../dag/research/lean_replay_campaign_finite_qcd.json) (module `FiniteQM`): recorded sha256 `94cde0a3e760e5f17f309b950f2a02cfa40c895c8523a3986ab93123d7bd2759` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build FiniteQM`
+- counts toward the grade: yes
+
+### Lean: `lean4/HilbertWalkGleason.lean`
+
+- file: [lean4/HilbertWalkGleason.lean](../../../lean4/HilbertWalkGleason.lean)
+- sha256 (`bytes`): `42c9d771c0f1c717bcf7673918fe0ee69046418ca70c1f6fd8ee9972977f9d30`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H017Gleason`): recorded sha256 `ceef94bcf70d76a392949b8a9f07a8be3de52fd51f86960f494c3c58bcc95837` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build H017Gleason`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertWalkGleason`): recorded sha256 `42c9d771c0f1c717bcf7673918fe0ee69046418ca70c1f6fd8ee9972977f9d30` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build HilbertWalkGleason`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|

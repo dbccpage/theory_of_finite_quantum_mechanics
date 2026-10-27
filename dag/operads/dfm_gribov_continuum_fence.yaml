@@ -16,7 +16,7 @@ target:
   source_refs:
   - dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md
   - papers/ravera_dfm_dossier.md
-  - lean4/CampaignDfmGribovContinuumFence.lean
+  - lean4/DressingFieldGribovContinuumFence.lean
   - dag/derivations/independent/dfm-gribov-continuum-fence.md
   - checks/independent/dfm-gribov-continuum-fence.py
   paper_refs:
@@ -40,7 +40,7 @@ operation_candidates:
   name: mul
   line: 25
   signature_excerpt: 'def mul (A B : M3) : M3'
-  source: lean4/CampaignDfmGribovContinuumFence.lean
+  source: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   status: source_candidate_requires_semantic_review
@@ -48,7 +48,7 @@ operation_candidates:
   name: h23
   line: 51
   signature_excerpt: 'def h23 : M3'
-  source: lean4/CampaignDfmGribovContinuumFence.lean
+  source: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   status: source_candidate_requires_semantic_review
@@ -56,7 +56,7 @@ operation_candidates:
   name: diag
   line: 38
   signature_excerpt: 'def diag (x y z : Rat) : M3'
-  source: lean4/CampaignDfmGribovContinuumFence.lean
+  source: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   status: source_candidate_requires_semantic_review
@@ -64,7 +64,7 @@ operation_candidates:
   name: M3
   line: 14
   signature_excerpt: structure M3
-  source: lean4/CampaignDfmGribovContinuumFence.lean
+  source: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   status: source_candidate_requires_semantic_review
@@ -72,7 +72,7 @@ operation_candidates:
   name: h12
   line: 61
   signature_excerpt: 'def h12 : M3'
-  source: lean4/CampaignDfmGribovContinuumFence.lean
+  source: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   status: source_candidate_requires_semantic_review
@@ -80,7 +80,7 @@ operation_candidates:
   name: omega1
   line: 50
   signature_excerpt: 'def omega1 : M3'
-  source: lean4/CampaignDfmGribovContinuumFence.lean
+  source: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   status: source_candidate_requires_semantic_review
@@ -88,7 +88,7 @@ operation_candidates:
   name: eye
   line: 49
   signature_excerpt: 'def eye : M3'
-  source: lean4/CampaignDfmGribovContinuumFence.lean
+  source: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   status: source_candidate_requires_semantic_review
@@ -96,7 +96,7 @@ operation_candidates:
   name: trace
   line: 36
   signature_excerpt: 'def trace (A : M3) : Rat'
-  source: lean4/CampaignDfmGribovContinuumFence.lean
+  source: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   status: source_candidate_requires_semantic_review
@@ -105,7 +105,7 @@ relation_candidates:
   name: h23_square
   line: 72
   signature_excerpt: 'theorem h23_square : mul h23 h23 = diag 0 1 1'
-  source: lean4/CampaignDfmGribovContinuumFence.lean
+  source: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   status: source_candidate_requires_semantic_review
@@ -115,7 +115,7 @@ relation_candidates:
   name: h12_square
   line: 77
   signature_excerpt: 'theorem h12_square : mul h12 h12 = diag 1 1 0'
-  source: lean4/CampaignDfmGribovContinuumFence.lean
+  source: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   status: source_candidate_requires_semantic_review
@@ -130,7 +130,7 @@ relation_candidates:
         omega1.a00 * omega1.a11 * omega1.a22 = 1 ∧
         trace eye = 3 ∧
         trace omega1 = -1
-  source: lean4/CampaignDfmGribovContinuumFence.lean
+  source: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   status: source_candidate_requires_semantic_review
@@ -144,7 +144,7 @@ relation_candidates:
         trace (mul eye (mul h23 h23)) = 2 ∧
         trace (mul omega1 (mul h23 h23)) = -2 ∧
         trace (mul omega1 (mul h12 h12)) = 0
-  source: lean4/CampaignDfmGribovContinuumFence.lean
+  source: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   status: source_candidate_requires_semantic_review
@@ -156,53 +156,53 @@ relation_candidates:
   signature_excerpt: |-
     theorem forms_differ :
         trace (mul omega1 (mul h23 h23)) ≠ trace (mul omega1 (mul h12 h12))
-  source: lean4/CampaignDfmGribovContinuumFence.lean
+  source: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   source_sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignDfmGribovContinuumFence.lean::h23_square
+- original_ref: lean4/DressingFieldGribovContinuumFence.lean::h23_square
   availability: local
   symbol: h23_square
-  path: lean4/CampaignDfmGribovContinuumFence.lean
+  path: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   declaration_status: declaration_found_not_proof_checked
   line: 72
   role: source_lead_only
-- original_ref: lean4/CampaignDfmGribovContinuumFence.lean::h12_square
+- original_ref: lean4/DressingFieldGribovContinuumFence.lean::h12_square
   availability: local
   symbol: h12_square
-  path: lean4/CampaignDfmGribovContinuumFence.lean
+  path: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   declaration_status: declaration_found_not_proof_checked
   line: 77
   role: source_lead_only
-- original_ref: lean4/CampaignDfmGribovContinuumFence.lean::omega1_square_and_det
+- original_ref: lean4/DressingFieldGribovContinuumFence.lean::omega1_square_and_det
   availability: local
   symbol: omega1_square_and_det
-  path: lean4/CampaignDfmGribovContinuumFence.lean
+  path: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   declaration_status: declaration_found_not_proof_checked
   line: 82
   role: source_lead_only
-- original_ref: lean4/CampaignDfmGribovContinuumFence.lean::trace_pair
+- original_ref: lean4/DressingFieldGribovContinuumFence.lean::trace_pair
   availability: local
   symbol: trace_pair
-  path: lean4/CampaignDfmGribovContinuumFence.lean
+  path: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   declaration_status: declaration_found_not_proof_checked
   line: 95
   role: source_lead_only
-- original_ref: lean4/CampaignDfmGribovContinuumFence.lean::forms_differ
+- original_ref: lean4/DressingFieldGribovContinuumFence.lean::forms_differ
   availability: local
   symbol: forms_differ
-  path: lean4/CampaignDfmGribovContinuumFence.lean
+  path: lean4/DressingFieldGribovContinuumFence.lean
   repository: this_repository
   sha256: 705525af66b273006ad1d0cd2418242640d8ffd5102be3169e74e6688e12d8a6
   declaration_status: declaration_found_not_proof_checked

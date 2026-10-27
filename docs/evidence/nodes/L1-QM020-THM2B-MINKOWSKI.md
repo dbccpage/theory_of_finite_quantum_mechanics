@@ -55,27 +55,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build BornRedundancy`
 - counts toward the grade: no
 
-### Lean: `lean4/CampaignL1Qm020Thm2bMinkowski.lean`
+### Lean: `lean4/L1MinkowskiSquareExpansion.lean`
 
-- file: [lean4/CampaignL1Qm020Thm2bMinkowski.lean](../../../lean4/CampaignL1Qm020Thm2bMinkowski.lean)
-- sha256 (`bytes`): `bea59885861b46f4bda69ec0df555c595cb37122cad18fb207c2a4baec6c71fd`
-- cited in: node.lean, receipt dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json (CampaignL1Qm020Thm2bMinkowski), receipt dag/research/pr_388_round2_replay.json (CampaignL1Qm020Thm2bMinkowski)
+- file: [lean4/L1MinkowskiSquareExpansion.lean](../../../lean4/L1MinkowskiSquareExpansion.lean)
+- sha256 (`bytes`): `b273845ba9ac549d0874c53cf6cf526446cebbd24624f6bba6a37d98697e65ed`
+- cited in: node.lean, receipt dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json (L1MinkowskiSquareExpansion), receipt dag/research/pr_388_round2_replay.json (L1MinkowskiSquareExpansion)
 - replay: `verified`
-  - receipt [dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json](../../../dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json) (module `CampaignL1Qm020Thm2bMinkowski`): recorded sha256 `bea59885861b46f4bda69ec0df555c595cb37122cad18fb207c2a4baec6c71fd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_388_round2_replay.json](../../../dag/research/pr_388_round2_replay.json) (module `CampaignL1Qm020Thm2bMinkowski`): recorded sha256 `bea59885861b46f4bda69ec0df555c595cb37122cad18fb207c2a4baec6c71fd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignL1Qm020Thm2bMinkowski`
+  - receipt [dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json](../../../dag/research/campaign_l1-qm020-thm2b-minkowski_lean_replay.json) (module `L1MinkowskiSquareExpansion`): recorded sha256 `b273845ba9ac549d0874c53cf6cf526446cebbd24624f6bba6a37d98697e65ed` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_388_round2_replay.json](../../../dag/research/pr_388_round2_replay.json) (module `L1MinkowskiSquareExpansion`): recorded sha256 `b273845ba9ac549d0874c53cf6cf526446cebbd24624f6bba6a37d98697e65ed` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build L1MinkowskiSquareExpansion`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignL1Qm020Thm2bMinkowski.cross_positive` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Qm020Thm2bMinkowski.cross_positive` |
-| `CampaignL1Qm020Thm2bMinkowski.cross_zero_left` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Qm020Thm2bMinkowski.cross_zero_left` |
-| `CampaignL1Qm020Thm2bMinkowski.cross_zero_right` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Qm020Thm2bMinkowski.cross_zero_right` |
-| `CampaignL1Qm020Thm2bMinkowski.cubic_sum` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Qm020Thm2bMinkowski.cubic_sum` |
-| `CampaignL1Qm020Thm2bMinkowski.disjoint_pair_squares` | yes | yes | yes | none | `#print axioms CampaignL1Qm020Thm2bMinkowski.disjoint_pair_squares` |
-| `CampaignL1Qm020Thm2bMinkowski.square_eq_left_zero` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Qm020Thm2bMinkowski.square_eq_left_zero` |
-| `CampaignL1Qm020Thm2bMinkowski.square_eq_right_zero` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Qm020Thm2bMinkowski.square_eq_right_zero` |
-| `CampaignL1Qm020Thm2bMinkowski.square_expansion` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Qm020Thm2bMinkowski.square_expansion` |
-| `CampaignL1Qm020Thm2bMinkowski.square_strict` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignL1Qm020Thm2bMinkowski.square_strict` |
+| `L1MinkowskiSquareExpansion.cross_positive` | yes | yes | yes | Quot.sound, propext | `#print axioms L1MinkowskiSquareExpansion.cross_positive` |
+| `L1MinkowskiSquareExpansion.cross_zero_left` | yes | yes | yes | Quot.sound, propext | `#print axioms L1MinkowskiSquareExpansion.cross_zero_left` |
+| `L1MinkowskiSquareExpansion.cross_zero_right` | yes | yes | yes | Quot.sound, propext | `#print axioms L1MinkowskiSquareExpansion.cross_zero_right` |
+| `L1MinkowskiSquareExpansion.cubic_sum` | yes | yes | yes | Quot.sound, propext | `#print axioms L1MinkowskiSquareExpansion.cubic_sum` |
+| `L1MinkowskiSquareExpansion.disjoint_pair_squares` | yes | yes | yes | none | `#print axioms L1MinkowskiSquareExpansion.disjoint_pair_squares` |
+| `L1MinkowskiSquareExpansion.square_eq_left_zero` | yes | yes | yes | Quot.sound, propext | `#print axioms L1MinkowskiSquareExpansion.square_eq_left_zero` |
+| `L1MinkowskiSquareExpansion.square_eq_right_zero` | yes | yes | yes | Quot.sound, propext | `#print axioms L1MinkowskiSquareExpansion.square_eq_right_zero` |
+| `L1MinkowskiSquareExpansion.square_expansion` | yes | yes | yes | Quot.sound, propext | `#print axioms L1MinkowskiSquareExpansion.square_expansion` |
+| `L1MinkowskiSquareExpansion.square_strict` | yes | yes | yes | Quot.sound, propext | `#print axioms L1MinkowskiSquareExpansion.square_strict` |
 
 - counts toward the grade: yes
 

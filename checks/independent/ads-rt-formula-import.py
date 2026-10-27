@@ -4,7 +4,7 @@
 AuthorityEffect: None.
 
 Independently checks the three exact finite/rational algebraic shadows and scope fences
-formalized in lean4/CampaignAdsRtFormulaImport.lean:
+formalized in lean4/AdsRtFormulaImport.lean:
 1. Ryu-Takayanagi / Brown-Henneaux coupling elimination (c = 3R / (2G_N^(3)), S_A = L_gamma / (4G_N^(3))
    = (c / 3) * logFactor), cut-pasting Strong Subadditivity inequality, and complement symmetry
    (A <-> A^c) of mincut and boundaryEntropy across all 380 proper contiguous boundary intervals

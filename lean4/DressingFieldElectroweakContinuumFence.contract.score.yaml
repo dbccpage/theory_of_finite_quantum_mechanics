@@ -1,0 +1,973 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/DressingFieldElectroweakContinuumFence.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/DressingFieldElectroweakContinuumFence.lean",
+      "sha256": "e41bab58fa9c70e42c75c4a1536a733ec301adbccfa7673e33b6282c13a19a89"
+    },
+    "boundaries": [
+      "Positive rational root is supplied and validated; arbitrary rational-root existence is not claimed.",
+      "Low-level total division remains separate from checked normalization.",
+      "No determinant/unitarity, continuum derivatives, gauge fields or physical electroweak derivation."
+    ],
+    "contract_id": "pr230-l4-repair",
+    "evidence": [
+      {
+        "path": "dag/research/dfm_electroweak_l4_replay.json",
+        "sha256": "60734bf9aa9497175d325bb8b8f4fff22e47e76c61ccca2d8247a831c0768064"
+      },
+      {
+        "path": "dag/research/dfm_electroweak_l4_independent.json",
+        "sha256": "a71aa1a3d670bd4d71a2d5becc124dd6d1b9a2633da5161c78b9865806ed56a3"
+      },
+      {
+        "path": "dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json",
+        "sha256": "46fce349ed1f484b66fea107dd56eefb52145dedd0e7969e3a61b412d9027f01"
+      }
+    ],
+    "owned_invariants": [
+      "Success exactly characterizes a valid positive normalization scale.",
+      "Successful conversion preserves input data and produces unit norm.",
+      "Unit-phase action composes and normalization/matrix covariance hold."
+    ],
+    "purpose": "Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.",
+    "schema_id": "tfqm.source-contract.v1"
+  },
+  "contract_history": [
+    {
+      "bytes": 1560,
+      "original_paths": [
+        "lean4/CampaignDfmElectroweakContinuumFence.contract.score.yaml#independent-review"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n    \"sha256\": \"d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"Substantive proof L3D is below the required L4D floor.\",\n    \"Focused validation only; no complete campaign pipeline certification.\",\n    \"One source fault probe does not establish broad mutation coverage.\"\n  ],\n  \"contract_id\": \"pr230-independent-review\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-electroweak-continuum-fence_review_validation.json\",\n      \"sha256\": \"28d8638a3476e77b6a3d9c66da50b8213da1819d96678e1123b8c3753fd6ec51\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_pr-230-batch-review.md\",\n      \"sha256\": \"7029d2f74be465bcdfd152f2b60e497cd10a93439b5824398683b6e1b5a6e88b\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Exact rational inputs and explicit supplied normalization premises.\",\n    \"No continuum or nonzero-unitarity conclusion.\",\n    \"No custom axioms or status promotion.\"\n  ],\n  \"purpose\": \"Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.\",\n  \"role\": \"Lean 4 formal source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034\",\n  \"subject\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "Substantive proof L3D is below the required L4D floor.",
+          "Focused validation only; no complete campaign pipeline certification.",
+          "One source fault probe does not establish broad mutation coverage."
+        ],
+        "contract_id": "pr230-independent-review",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_dfm-electroweak-continuum-fence_review_validation.json",
+            "sha256": "28d8638a3476e77b6a3d9c66da50b8213da1819d96678e1123b8c3753fd6ec51"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_pr-230-batch-review.md",
+            "sha256": "7029d2f74be465bcdfd152f2b60e497cd10a93439b5824398683b6e1b5a6e88b"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "owned_invariants": [
+          "Exact rational inputs and explicit supplied normalization premises.",
+          "No continuum or nonzero-unitarity conclusion.",
+          "No custom axioms or status promotion."
+        ],
+        "purpose": "Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.",
+        "role": "Lean 4 formal source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034",
+        "subject": "lean4/CampaignDfmElectroweakContinuumFence.lean"
+      },
+      "sha256": "e328acfd904b3354ce5418ddf37d81ea23f4b7c953ed975951d2539287c870d8"
+    },
+    {
+      "bytes": 1560,
+      "original_paths": [
+        "lean4/CampaignDfmElectroweakContinuumFence.contract.score.yaml#independent-review"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n    \"sha256\": \"d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034\"\n  },\n  \"authority_effect\": \"None\",\n  \"boundaries\": [\n    \"Substantive proof L3D is below the required L4D floor.\",\n    \"Focused validation only; no complete campaign pipeline certification.\",\n    \"One source fault probe does not establish broad mutation coverage.\"\n  ],\n  \"contract_id\": \"pr230-independent-review\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-electroweak-continuum-fence_review_validation.json\",\n      \"sha256\": \"28d8638a3476e77b6a3d9c66da50b8213da1819d96678e1123b8c3753fd6ec51\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_pr-230-batch-review.md\",\n      \"sha256\": \"ccff7d5452475417cfae1be23343a53984f36109fed228dde926b6048ff50d63\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Exact rational inputs and explicit supplied normalization premises.\",\n    \"No continuum or nonzero-unitarity conclusion.\",\n    \"No custom axioms or status promotion.\"\n  ],\n  \"purpose\": \"Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.\",\n  \"role\": \"Lean 4 formal source module\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034\",\n  \"subject\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\"\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "Substantive proof L3D is below the required L4D floor.",
+          "Focused validation only; no complete campaign pipeline certification.",
+          "One source fault probe does not establish broad mutation coverage."
+        ],
+        "contract_id": "pr230-independent-review",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_dfm-electroweak-continuum-fence_review_validation.json",
+            "sha256": "28d8638a3476e77b6a3d9c66da50b8213da1819d96678e1123b8c3753fd6ec51"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_pr-230-batch-review.md",
+            "sha256": "ccff7d5452475417cfae1be23343a53984f36109fed228dde926b6048ff50d63"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "owned_invariants": [
+          "Exact rational inputs and explicit supplied normalization premises.",
+          "No continuum or nonzero-unitarity conclusion.",
+          "No custom axioms or status promotion."
+        ],
+        "purpose": "Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.",
+        "role": "Lean 4 formal source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034",
+        "subject": "lean4/CampaignDfmElectroweakContinuumFence.lean"
+      },
+      "sha256": "5c1448fbe115a5881bda407f80b45c72114b2a5f010b1e6fcc467bc2d52caf3c"
+    },
+    {
+      "bytes": 1587,
+      "original_paths": [
+        "lean4/CampaignDfmElectroweakContinuumFence.contract.score.yaml#pr230-l4-repair"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n    \"sha256\": \"4e50c53a72e2404c2985a6af0b8c71b7a7a061e3f510e72ae3aad4c41f2d4ed2\"\n  },\n  \"boundaries\": [\n    \"Positive rational root is supplied and validated; arbitrary rational-root existence is not claimed.\",\n    \"Low-level total division remains separate from checked normalization.\",\n    \"No determinant/unitarity, continuum derivatives, gauge fields or physical electroweak derivation.\"\n  ],\n  \"contract_id\": \"pr230-l4-repair\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/dfm_electroweak_l4_replay.json\",\n      \"sha256\": \"277f14d9be92f6f57011808c5ff12ac3b280a30a86fdeff2702a5ec20b179533\"\n    },\n    {\n      \"path\": \"dag/research/dfm_electroweak_l4_independent.json\",\n      \"sha256\": \"c7b6150ef1e0956c1b95e762ef3b4338283e59d02a6a6103e0bf45931f07c1b2\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json\",\n      \"sha256\": \"4c50ca0e3ffa2e9379318fa3ed0041fc7b129c857bcdfe9433007e385818ed77\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Success exactly characterizes a valid positive normalization scale.\",\n    \"Successful conversion preserves input data and produces unit norm.\",\n    \"Unit-phase action composes and normalization/matrix covariance hold.\"\n  ],\n  \"purpose\": \"Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "sha256": "4e50c53a72e2404c2985a6af0b8c71b7a7a061e3f510e72ae3aad4c41f2d4ed2"
+        },
+        "boundaries": [
+          "Positive rational root is supplied and validated; arbitrary rational-root existence is not claimed.",
+          "Low-level total division remains separate from checked normalization.",
+          "No determinant/unitarity, continuum derivatives, gauge fields or physical electroweak derivation."
+        ],
+        "contract_id": "pr230-l4-repair",
+        "evidence": [
+          {
+            "path": "dag/research/dfm_electroweak_l4_replay.json",
+            "sha256": "277f14d9be92f6f57011808c5ff12ac3b280a30a86fdeff2702a5ec20b179533"
+          },
+          {
+            "path": "dag/research/dfm_electroweak_l4_independent.json",
+            "sha256": "c7b6150ef1e0956c1b95e762ef3b4338283e59d02a6a6103e0bf45931f07c1b2"
+          },
+          {
+            "path": "dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json",
+            "sha256": "4c50ca0e3ffa2e9379318fa3ed0041fc7b129c857bcdfe9433007e385818ed77"
+          }
+        ],
+        "owned_invariants": [
+          "Success exactly characterizes a valid positive normalization scale.",
+          "Successful conversion preserves input data and produces unit norm.",
+          "Unit-phase action composes and normalization/matrix covariance hold."
+        ],
+        "purpose": "Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.",
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "sha256": "01b406feadf714b538447378458d262fc35012cd5cb06fcc0d1f141b6efba76e"
+    },
+    {
+      "bytes": 1389,
+      "original_paths": [
+        "lean4/CampaignDfmElectroweakContinuumFence.contract.score.yaml#pr230-repair-contract"
+      ],
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"contract_id\": \"pr230-repair-current\",\n  \"subject\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n  \"source_sha256\": \"d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034\",\n  \"artifact\": {\n    \"path\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n    \"sha256\": \"d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034\",\n    \"language\": \"Lean 4\"\n  },\n  \"authority_effect\": \"None\",\n  \"role\": \"Lean 4 formal source module\",\n  \"purpose\": \"Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.\",\n  \"owned_invariants\": [\n    \"Exact rational inputs and explicit supplied normalization premises.\",\n    \"No continuum or nonzero-unitarity conclusion.\",\n    \"No custom axioms or status promotion.\"\n  ],\n  \"boundaries\": [\n    \"Scoped user-authorized L4/D floor waiver; score levels are not inflated.\",\n    \"Continuum target remains OPEN; all normalization and imported-structure fences remain.\",\n    \"Two designated mutants only; no comprehensive mutation claim.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr230_repair_focused_validation.json\",\n      \"sha256\": \"ef2728db8245ca612ba5e66229c227b06541c907a22a18f4c891a3fa66b8a1c4\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ]\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "Scoped user-authorized L4/D floor waiver; score levels are not inflated.",
+          "Continuum target remains OPEN; all normalization and imported-structure fences remain.",
+          "Two designated mutants only; no comprehensive mutation claim."
+        ],
+        "contract_id": "pr230-repair-current",
+        "evidence": [
+          {
+            "path": "dag/research/pr230_repair_focused_validation.json",
+            "sha256": "ef2728db8245ca612ba5e66229c227b06541c907a22a18f4c891a3fa66b8a1c4"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "owned_invariants": [
+          "Exact rational inputs and explicit supplied normalization premises.",
+          "No continuum or nonzero-unitarity conclusion.",
+          "No custom axioms or status promotion."
+        ],
+        "purpose": "Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.",
+        "role": "Lean 4 formal source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034",
+        "subject": "lean4/CampaignDfmElectroweakContinuumFence.lean"
+      },
+      "sha256": "4a1381c39b0d077e427f5b3d01a67c0a50b901774e692747733af9ed6bbb84d2"
+    },
+    {
+      "bytes": 1388,
+      "original_paths": [
+        "lean4/CampaignDfmElectroweakContinuumFence.contract.score.yaml#pr230-final-contract"
+      ],
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"contract_id\": \"pr230-final-repair\",\n  \"subject\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n  \"source_sha256\": \"d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034\",\n  \"artifact\": {\n    \"path\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n    \"sha256\": \"d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034\",\n    \"language\": \"Lean 4\"\n  },\n  \"authority_effect\": \"None\",\n  \"role\": \"Lean 4 formal source module\",\n  \"purpose\": \"Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.\",\n  \"owned_invariants\": [\n    \"Exact rational inputs and explicit supplied normalization premises.\",\n    \"No continuum or nonzero-unitarity conclusion.\",\n    \"No custom axioms or status promotion.\"\n  ],\n  \"boundaries\": [\n    \"Scoped user-authorized L4/D floor waiver; score levels are not inflated.\",\n    \"Continuum target remains OPEN; all normalization and imported-structure fences remain.\",\n    \"Two designated mutants only; no comprehensive mutation claim.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr230_repair_campaign_validation.json\",\n      \"sha256\": \"da508d46958217cbcf35499878ff9bd3bc175154cde76acd0d2854855469b5fb\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ]\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "Scoped user-authorized L4/D floor waiver; score levels are not inflated.",
+          "Continuum target remains OPEN; all normalization and imported-structure fences remain.",
+          "Two designated mutants only; no comprehensive mutation claim."
+        ],
+        "contract_id": "pr230-final-repair",
+        "evidence": [
+          {
+            "path": "dag/research/pr230_repair_campaign_validation.json",
+            "sha256": "da508d46958217cbcf35499878ff9bd3bc175154cde76acd0d2854855469b5fb"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "owned_invariants": [
+          "Exact rational inputs and explicit supplied normalization premises.",
+          "No continuum or nonzero-unitarity conclusion.",
+          "No custom axioms or status promotion."
+        ],
+        "purpose": "Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.",
+        "role": "Lean 4 formal source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034",
+        "subject": "lean4/CampaignDfmElectroweakContinuumFence.lean"
+      },
+      "sha256": "dc70ffdad49da4301838a9247485d9c92a43dc7c44af687e2c8f1ab6b959cbc5"
+    },
+    {
+      "bytes": 1399,
+      "original_paths": [
+        "lean4/CampaignDfmElectroweakContinuumFence.contract.score.yaml#pr230-integrated-final-contract"
+      ],
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"contract_id\": \"pr230-integrated-validation\",\n  \"subject\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n  \"source_sha256\": \"d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034\",\n  \"artifact\": {\n    \"path\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n    \"sha256\": \"d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034\",\n    \"language\": \"Lean 4\"\n  },\n  \"authority_effect\": \"None\",\n  \"role\": \"Lean 4 formal source module\",\n  \"purpose\": \"Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.\",\n  \"owned_invariants\": [\n    \"Exact rational inputs and explicit supplied normalization premises.\",\n    \"No continuum or nonzero-unitarity conclusion.\",\n    \"No custom axioms or status promotion.\"\n  ],\n  \"boundaries\": [\n    \"Scoped user-authorized L4/D floor waiver; score levels are not inflated.\",\n    \"Continuum target remains OPEN; all normalization and imported-structure fences remain.\",\n    \"Two designated mutants only; no comprehensive mutation claim.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr230_repair_integrated_validation.json\",\n      \"sha256\": \"d43f660ec57b2c6d4b52e3d8f9f7bad34812b147a96d1c5c128b34a25d174cc7\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ]\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034"
+        },
+        "authority_effect": "None",
+        "boundaries": [
+          "Scoped user-authorized L4/D floor waiver; score levels are not inflated.",
+          "Continuum target remains OPEN; all normalization and imported-structure fences remain.",
+          "Two designated mutants only; no comprehensive mutation claim."
+        ],
+        "contract_id": "pr230-integrated-validation",
+        "evidence": [
+          {
+            "path": "dag/research/pr230_repair_integrated_validation.json",
+            "sha256": "d43f660ec57b2c6d4b52e3d8f9f7bad34812b147a96d1c5c128b34a25d174cc7"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "owned_invariants": [
+          "Exact rational inputs and explicit supplied normalization premises.",
+          "No continuum or nonzero-unitarity conclusion.",
+          "No custom axioms or status promotion."
+        ],
+        "purpose": "Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.",
+        "role": "Lean 4 formal source module",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034",
+        "subject": "lean4/CampaignDfmElectroweakContinuumFence.lean"
+      },
+      "sha256": "26d2b4d2c99255308bee24d29c5801a53366db4dbe058dd5a6a4cc004d40f0a2"
+    },
+    {
+      "bytes": 1587,
+      "original_paths": [
+        "lean4/CampaignDfmElectroweakContinuumFence.contract.score.yaml#immutable-exact-components-replay"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n    \"sha256\": \"4e50c53a72e2404c2985a6af0b8c71b7a7a061e3f510e72ae3aad4c41f2d4ed2\"\n  },\n  \"boundaries\": [\n    \"Positive rational root is supplied and validated; arbitrary rational-root existence is not claimed.\",\n    \"Low-level total division remains separate from checked normalization.\",\n    \"No determinant/unitarity, continuum derivatives, gauge fields or physical electroweak derivation.\"\n  ],\n  \"contract_id\": \"pr230-l4-repair\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/dfm_electroweak_l4_replay.json\",\n      \"sha256\": \"277f14d9be92f6f57011808c5ff12ac3b280a30a86fdeff2702a5ec20b179533\"\n    },\n    {\n      \"path\": \"dag/research/dfm_electroweak_l4_independent.json\",\n      \"sha256\": \"a71aa1a3d670bd4d71a2d5becc124dd6d1b9a2633da5161c78b9865806ed56a3\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json\",\n      \"sha256\": \"4c50ca0e3ffa2e9379318fa3ed0041fc7b129c857bcdfe9433007e385818ed77\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Success exactly characterizes a valid positive normalization scale.\",\n    \"Successful conversion preserves input data and produces unit norm.\",\n    \"Unit-phase action composes and normalization/matrix covariance hold.\"\n  ],\n  \"purpose\": \"Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "sha256": "4e50c53a72e2404c2985a6af0b8c71b7a7a061e3f510e72ae3aad4c41f2d4ed2"
+        },
+        "boundaries": [
+          "Positive rational root is supplied and validated; arbitrary rational-root existence is not claimed.",
+          "Low-level total division remains separate from checked normalization.",
+          "No determinant/unitarity, continuum derivatives, gauge fields or physical electroweak derivation."
+        ],
+        "contract_id": "pr230-l4-repair",
+        "evidence": [
+          {
+            "path": "dag/research/dfm_electroweak_l4_replay.json",
+            "sha256": "277f14d9be92f6f57011808c5ff12ac3b280a30a86fdeff2702a5ec20b179533"
+          },
+          {
+            "path": "dag/research/dfm_electroweak_l4_independent.json",
+            "sha256": "a71aa1a3d670bd4d71a2d5becc124dd6d1b9a2633da5161c78b9865806ed56a3"
+          },
+          {
+            "path": "dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json",
+            "sha256": "4c50ca0e3ffa2e9379318fa3ed0041fc7b129c857bcdfe9433007e385818ed77"
+          }
+        ],
+        "owned_invariants": [
+          "Success exactly characterizes a valid positive normalization scale.",
+          "Successful conversion preserves input data and produces unit norm.",
+          "Unit-phase action composes and normalization/matrix covariance hold."
+        ],
+        "purpose": "Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.",
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "sha256": "25b1b9b423730632e18560f299891bfa9152b7cdf818088b85ecf96ba7131bc7"
+    },
+    {
+      "bytes": 1589,
+      "original_paths": [
+        "lean4/DressingFieldElectroweakContinuumFence.contract.score.yaml#pr230-l4-repair"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/DressingFieldElectroweakContinuumFence.lean\",\n    \"sha256\": \"e41bab58fa9c70e42c75c4a1536a733ec301adbccfa7673e33b6282c13a19a89\"\n  },\n  \"boundaries\": [\n    \"Positive rational root is supplied and validated; arbitrary rational-root existence is not claimed.\",\n    \"Low-level total division remains separate from checked normalization.\",\n    \"No determinant/unitarity, continuum derivatives, gauge fields or physical electroweak derivation.\"\n  ],\n  \"contract_id\": \"pr230-l4-repair\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/dfm_electroweak_l4_replay.json\",\n      \"sha256\": \"60734bf9aa9497175d325bb8b8f4fff22e47e76c61ccca2d8247a831c0768064\"\n    },\n    {\n      \"path\": \"dag/research/dfm_electroweak_l4_independent.json\",\n      \"sha256\": \"a71aa1a3d670bd4d71a2d5becc124dd6d1b9a2633da5161c78b9865806ed56a3\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json\",\n      \"sha256\": \"46fce349ed1f484b66fea107dd56eefb52145dedd0e7969e3a61b412d9027f01\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Success exactly characterizes a valid positive normalization scale.\",\n    \"Successful conversion preserves input data and produces unit norm.\",\n    \"Unit-phase action composes and normalization/matrix covariance hold.\"\n  ],\n  \"purpose\": \"Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.\",\n  \"schema_id\": \"tfqm.source-contract.v1\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/DressingFieldElectroweakContinuumFence.lean",
+          "sha256": "e41bab58fa9c70e42c75c4a1536a733ec301adbccfa7673e33b6282c13a19a89"
+        },
+        "boundaries": [
+          "Positive rational root is supplied and validated; arbitrary rational-root existence is not claimed.",
+          "Low-level total division remains separate from checked normalization.",
+          "No determinant/unitarity, continuum derivatives, gauge fields or physical electroweak derivation."
+        ],
+        "contract_id": "pr230-l4-repair",
+        "evidence": [
+          {
+            "path": "dag/research/dfm_electroweak_l4_replay.json",
+            "sha256": "60734bf9aa9497175d325bb8b8f4fff22e47e76c61ccca2d8247a831c0768064"
+          },
+          {
+            "path": "dag/research/dfm_electroweak_l4_independent.json",
+            "sha256": "a71aa1a3d670bd4d71a2d5becc124dd6d1b9a2633da5161c78b9865806ed56a3"
+          },
+          {
+            "path": "dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json",
+            "sha256": "46fce349ed1f484b66fea107dd56eefb52145dedd0e7969e3a61b412d9027f01"
+          }
+        ],
+        "owned_invariants": [
+          "Success exactly characterizes a valid positive normalization scale.",
+          "Successful conversion preserves input data and produces unit norm.",
+          "Unit-phase action composes and normalization/matrix covariance hold."
+        ],
+        "purpose": "Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.",
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "sha256": "ab96ac60aae108c3312b48a019fb160d5ba92d55fa43be81ae42f168cb2edb2b"
+    }
+  ],
+  "current_contract": "ab96ac60aae108c3312b48a019fb160d5ba92d55fa43be81ae42f168cb2edb2b",
+  "current_scoring": "ab5f2d8c85074a083224e06776aaccc2e7b179efb2feb1863a57d17b2e66602a",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2198,
+      "original_paths": [
+        "lean4/CampaignDfmElectroweakContinuumFence.contract.score.yaml#independent-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n    \"sha256\": \"d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034\"\n  },\n  \"assessment_id\": \"pr230-independent-review\",\n  \"assessment_status\": \"complete_scoped_independent_review\",\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T09:29:01.068888+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-electroweak-continuum-fence_review_validation.json\",\n      \"sha256\": \"28d8638a3476e77b6a3d9c66da50b8213da1819d96678e1123b8c3753fd6ec51\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_pr-230-batch-review.md\",\n      \"sha256\": \"7029d2f74be465bcdfd152f2b60e497cd10a93439b5824398683b6e1b5a6e88b\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"gate_evidence\": {\n    \"G1\": \"Full claim/declaration review; explicit total-division and continuum boundaries.\",\n    \"G2\": \"Exact arithmetic witness and permitted-axiom Lean replay.\",\n    \"G3\": \"Seven invalid-input refusals and safe unrelated-object equality.\",\n    \"G4\": \"Fresh build, direct Lean, strict mypy, two Python modes and actual conjugation mutation.\",\n    \"G5\": \"Bounded component formulas; checker maximum CCN 15 and cognitive 14.\"\n  },\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_assessment\": \"Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.\",\n  \"limiting_reason\": \"Substantive proof L3D is below the required L4D floor.; Focused validation only; no complete campaign pipeline certification.; One source fault probe does not establish broad mutation coverage.\",\n  \"profile\": \"Symbolic/Formal\",\n  \"profile_status\": \"Reviewed declared profile\",\n  \"required_for_completion\": [],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\",\n  \"support_exception\": false\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034"
+        },
+        "assessment_id": "pr230-independent-review",
+        "assessment_status": "complete_scoped_independent_review",
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T09:29:01.068888+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_dfm-electroweak-continuum-fence_review_validation.json",
+            "sha256": "28d8638a3476e77b6a3d9c66da50b8213da1819d96678e1123b8c3753fd6ec51"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_pr-230-batch-review.md",
+            "sha256": "7029d2f74be465bcdfd152f2b60e497cd10a93439b5824398683b6e1b5a6e88b"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "gate_evidence": {
+          "G1": "Full claim/declaration review; explicit total-division and continuum boundaries.",
+          "G2": "Exact arithmetic witness and permitted-axiom Lean replay.",
+          "G3": "Seven invalid-input refusals and safe unrelated-object equality.",
+          "G4": "Fresh build, direct Lean, strict mypy, two Python modes and actual conjugation mutation.",
+          "G5": "Bounded component formulas; checker maximum CCN 15 and cognitive 14."
+        },
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_assessment": "Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.",
+        "limiting_reason": "Substantive proof L3D is below the required L4D floor.; Focused validation only; no complete campaign pipeline certification.; One source fault probe does not establish broad mutation coverage.",
+        "profile": "Symbolic/Formal",
+        "profile_status": "Reviewed declared profile",
+        "required_for_completion": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D",
+        "support_exception": false
+      },
+      "sha256": "c6b430a3ae5d03164cbceac4f7d1a1622318756171b47c046f3139a26cb35e84"
+    },
+    {
+      "bytes": 2198,
+      "original_paths": [
+        "lean4/CampaignDfmElectroweakContinuumFence.contract.score.yaml#independent-review"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n    \"sha256\": \"d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034\"\n  },\n  \"assessment_id\": \"pr230-independent-review\",\n  \"assessment_status\": \"complete_scoped_independent_review\",\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T09:30:32.740900+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_dfm-electroweak-continuum-fence_review_validation.json\",\n      \"sha256\": \"28d8638a3476e77b6a3d9c66da50b8213da1819d96678e1123b8c3753fd6ec51\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-23_pr-230-batch-review.md\",\n      \"sha256\": \"ccff7d5452475417cfae1be23343a53984f36109fed228dde926b6048ff50d63\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n    }\n  ],\n  \"gate_evidence\": {\n    \"G1\": \"Full claim/declaration review; explicit total-division and continuum boundaries.\",\n    \"G2\": \"Exact arithmetic witness and permitted-axiom Lean replay.\",\n    \"G3\": \"Seven invalid-input refusals and safe unrelated-object equality.\",\n    \"G4\": \"Fresh build, direct Lean, strict mypy, two Python modes and actual conjugation mutation.\",\n    \"G5\": \"Bounded component formulas; checker maximum CCN 15 and cognitive 14.\"\n  },\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L3\",\n  \"level_assessment\": \"Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.\",\n  \"limiting_reason\": \"Substantive proof L3D is below the required L4D floor.; Focused validation only; no complete campaign pipeline certification.; One source fault probe does not establish broad mutation coverage.\",\n  \"profile\": \"Symbolic/Formal\",\n  \"profile_status\": \"Reviewed declared profile\",\n  \"required_for_completion\": [],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L3D\",\n  \"support_exception\": false\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034"
+        },
+        "assessment_id": "pr230-independent-review",
+        "assessment_status": "complete_scoped_independent_review",
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T09:30:32.740900+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_dfm-electroweak-continuum-fence_review_validation.json",
+            "sha256": "28d8638a3476e77b6a3d9c66da50b8213da1819d96678e1123b8c3753fd6ec51"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-23_pr-230-batch-review.md",
+            "sha256": "ccff7d5452475417cfae1be23343a53984f36109fed228dde926b6048ff50d63"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+          }
+        ],
+        "gate_evidence": {
+          "G1": "Full claim/declaration review; explicit total-division and continuum boundaries.",
+          "G2": "Exact arithmetic witness and permitted-axiom Lean replay.",
+          "G3": "Seven invalid-input refusals and safe unrelated-object equality.",
+          "G4": "Fresh build, direct Lean, strict mypy, two Python modes and actual conjugation mutation.",
+          "G5": "Bounded component formulas; checker maximum CCN 15 and cognitive 14."
+        },
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_assessment": "Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.",
+        "limiting_reason": "Substantive proof L3D is below the required L4D floor.; Focused validation only; no complete campaign pipeline certification.; One source fault probe does not establish broad mutation coverage.",
+        "profile": "Symbolic/Formal",
+        "profile_status": "Reviewed declared profile",
+        "required_for_completion": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D",
+        "support_exception": false
+      },
+      "sha256": "ae32623e1db05799f75756b97d40f1073206b63b73fcdda077c7e2162f8bc07f"
+    },
+    {
+      "bytes": 2656,
+      "original_paths": [
+        "lean4/CampaignDfmElectroweakContinuumFence.contract.score.yaml#pr230-l4-repair"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n    \"sha256\": \"4e50c53a72e2404c2985a6af0b8c71b7a7a061e3f510e72ae3aad4c41f2d4ed2\"\n  },\n  \"assessment_id\": \"pr230-l4-repair\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.\",\n    \"G2\": \"Scoped Lake build, 22 allowed axiom reports; exact independent covariance and composition checks.\",\n    \"G3\": \"Except distinguishes zero norm, nonpositive scale and mismatched square; success iff is proved. Ten invalid normalization/action cases refused.\",\n    \"G4\": \"Nine doublets, eight phases, 72 covariance and 576 composition cases; normal/optimized execution and strict mypy; four selected faults killed.\",\n    \"G5\": \"Separated raw algebra, checked input, unit output and action layers; checker max CCN15 and cognitive14.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T17:48:16.524846+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/dfm_electroweak_l4_replay.json\",\n      \"sha256\": \"277f14d9be92f6f57011808c5ff12ac3b280a30a86fdeff2702a5ec20b179533\"\n    },\n    {\n      \"path\": \"dag/research/dfm_electroweak_l4_independent.json\",\n      \"sha256\": \"c7b6150ef1e0956c1b95e762ef3b4338283e59d02a6a6103e0bf45931f07c1b2\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json\",\n      \"sha256\": \"4c50ca0e3ffa2e9379318fa3ed0041fc7b129c857bcdfe9433007e385818ed77\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.\",\n  \"open_higher_grade_findings\": [\n    \"Positive rational root is supplied and validated; arbitrary rational-root existence is not claimed.\",\n    \"Low-level total division remains separate from checked normalization.\",\n    \"No determinant/unitarity, continuum derivatives, gauge fields or physical electroweak derivation.\",\n    \"Selected mutation coverage only; no broad performance claim.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "sha256": "4e50c53a72e2404c2985a6af0b8c71b7a7a061e3f510e72ae3aad4c41f2d4ed2"
+        },
+        "assessment_id": "pr230-l4-repair",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.",
+          "G2": "Scoped Lake build, 22 allowed axiom reports; exact independent covariance and composition checks.",
+          "G3": "Except distinguishes zero norm, nonpositive scale and mismatched square; success iff is proved. Ten invalid normalization/action cases refused.",
+          "G4": "Nine doublets, eight phases, 72 covariance and 576 composition cases; normal/optimized execution and strict mypy; four selected faults killed.",
+          "G5": "Separated raw algebra, checked input, unit output and action layers; checker max CCN15 and cognitive14."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T17:48:16.524846+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/dfm_electroweak_l4_replay.json",
+            "sha256": "277f14d9be92f6f57011808c5ff12ac3b280a30a86fdeff2702a5ec20b179533"
+          },
+          {
+            "path": "dag/research/dfm_electroweak_l4_independent.json",
+            "sha256": "c7b6150ef1e0956c1b95e762ef3b4338283e59d02a6a6103e0bf45931f07c1b2"
+          },
+          {
+            "path": "dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json",
+            "sha256": "4c50ca0e3ffa2e9379318fa3ed0041fc7b129c857bcdfe9433007e385818ed77"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.",
+        "open_higher_grade_findings": [
+          "Positive rational root is supplied and validated; arbitrary rational-root existence is not claimed.",
+          "Low-level total division remains separate from checked normalization.",
+          "No determinant/unitarity, continuum derivatives, gauge fields or physical electroweak derivation.",
+          "Selected mutation coverage only; no broad performance claim."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D",
+        "support_exception": false
+      },
+      "sha256": "d6025b32885c4bd7c6e60f5f8575c1a16084e8a2c4726132ba7711af6b4a40ed"
+    },
+    {
+      "bytes": 2656,
+      "original_paths": [
+        "lean4/CampaignDfmElectroweakContinuumFence.contract.score.yaml#pr230-integration"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n    \"sha256\": \"4e50c53a72e2404c2985a6af0b8c71b7a7a061e3f510e72ae3aad4c41f2d4ed2\"\n  },\n  \"assessment_id\": \"pr230-l4-repair\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.\",\n    \"G2\": \"Scoped Lake build, 22 allowed axiom reports; exact independent covariance and composition checks.\",\n    \"G3\": \"Except distinguishes zero norm, nonpositive scale and mismatched square; success iff is proved. Ten invalid normalization/action cases refused.\",\n    \"G4\": \"Nine doublets, eight phases, 72 covariance and 576 composition cases; normal/optimized execution and strict mypy; four selected faults killed.\",\n    \"G5\": \"Separated raw algebra, checked input, unit output and action layers; checker max CCN15 and cognitive14.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T17:48:16.524846+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/dfm_electroweak_l4_replay.json\",\n      \"sha256\": \"277f14d9be92f6f57011808c5ff12ac3b280a30a86fdeff2702a5ec20b179533\"\n    },\n    {\n      \"path\": \"dag/research/dfm_electroweak_l4_independent.json\",\n      \"sha256\": \"c7b6150ef1e0956c1b95e762ef3b4338283e59d02a6a6103e0bf45931f07c1b2\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json\",\n      \"sha256\": \"4c50ca0e3ffa2e9379318fa3ed0041fc7b129c857bcdfe9433007e385818ed77\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.\",\n  \"open_higher_grade_findings\": [\n    \"Positive rational root is supplied and validated; arbitrary rational-root existence is not claimed.\",\n    \"Low-level total division remains separate from checked normalization.\",\n    \"No determinant/unitarity, continuum derivatives, gauge fields or physical electroweak derivation.\",\n    \"Selected mutation coverage only; no broad performance claim.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "sha256": "4e50c53a72e2404c2985a6af0b8c71b7a7a061e3f510e72ae3aad4c41f2d4ed2"
+        },
+        "assessment_id": "pr230-l4-repair",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.",
+          "G2": "Scoped Lake build, 22 allowed axiom reports; exact independent covariance and composition checks.",
+          "G3": "Except distinguishes zero norm, nonpositive scale and mismatched square; success iff is proved. Ten invalid normalization/action cases refused.",
+          "G4": "Nine doublets, eight phases, 72 covariance and 576 composition cases; normal/optimized execution and strict mypy; four selected faults killed.",
+          "G5": "Separated raw algebra, checked input, unit output and action layers; checker max CCN15 and cognitive14."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T17:48:16.524846+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/dfm_electroweak_l4_replay.json",
+            "sha256": "277f14d9be92f6f57011808c5ff12ac3b280a30a86fdeff2702a5ec20b179533"
+          },
+          {
+            "path": "dag/research/dfm_electroweak_l4_independent.json",
+            "sha256": "c7b6150ef1e0956c1b95e762ef3b4338283e59d02a6a6103e0bf45931f07c1b2"
+          },
+          {
+            "path": "dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json",
+            "sha256": "4c50ca0e3ffa2e9379318fa3ed0041fc7b129c857bcdfe9433007e385818ed77"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.",
+        "open_higher_grade_findings": [
+          "Positive rational root is supplied and validated; arbitrary rational-root existence is not claimed.",
+          "Low-level total division remains separate from checked normalization.",
+          "No determinant/unitarity, continuum derivatives, gauge fields or physical electroweak derivation.",
+          "Selected mutation coverage only; no broad performance claim."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D",
+        "support_exception": false
+      },
+      "sha256": "dca61ea3f0723615f6a099cbed173ece50fe1ef52399f46568860f23a9df2898"
+    },
+    {
+      "bytes": 2104,
+      "original_paths": [
+        "lean4/CampaignDfmElectroweakContinuumFence.contract.score.yaml#pr230-repair-score"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"assessment_id\": \"pr230-repair-byte-bound-assessment\",\n  \"assessment_status\": \"complete_scoped_independent_review\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n    \"sha256\": \"d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034\",\n    \"language\": \"Lean 4\"\n  },\n  \"profile\": \"Symbolic/Formal\",\n  \"profile_status\": \"Reviewed declared profile\",\n  \"level\": \"L3\",\n  \"level_assessment\": \"Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.\",\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L3D\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"D\",\n  \"limiting_reason\": \"Accurate bounded/source-registry assessment retained under explicit user waiver; no L4 claim or mathematical status promotion.\",\n  \"required_for_completion\": [],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"evaluation_timestamp\": \"2026-10-23T17:47:25.496590+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr230_repair_focused_validation.json\",\n      \"sha256\": \"ef2728db8245ca612ba5e66229c227b06541c907a22a18f4c891a3fa66b8a1c4\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gate_evidence\": {\n    \"G1\": \"Full claim/declaration review; explicit total-division and continuum boundaries.\",\n    \"G2\": \"Exact arithmetic witness and permitted-axiom Lean replay.\",\n    \"G3\": \"Seven invalid-input refusals and safe unrelated-object equality.\",\n    \"G4\": \"Fresh build, direct Lean, strict mypy, two Python modes and actual conjugation mutation.\",\n    \"G5\": \"Bounded component formulas; checker maximum CCN 15 and cognitive 14.\"\n  },\n  \"support_exception\": false,\n  \"source_sha256\": null,\n  \"acceptance_exception\": \"Hash-bound governance baseline entries for the proof and Lake registry only; user-authorized L4/D waiver.\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "acceptance_exception": "Hash-bound governance baseline entries for the proof and Lake registry only; user-authorized L4/D waiver.",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034"
+        },
+        "assessment_id": "pr230-repair-byte-bound-assessment",
+        "assessment_status": "complete_scoped_independent_review",
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T17:47:25.496590+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/pr230_repair_focused_validation.json",
+            "sha256": "ef2728db8245ca612ba5e66229c227b06541c907a22a18f4c891a3fa66b8a1c4"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gate_evidence": {
+          "G1": "Full claim/declaration review; explicit total-division and continuum boundaries.",
+          "G2": "Exact arithmetic witness and permitted-axiom Lean replay.",
+          "G3": "Seven invalid-input refusals and safe unrelated-object equality.",
+          "G4": "Fresh build, direct Lean, strict mypy, two Python modes and actual conjugation mutation.",
+          "G5": "Bounded component formulas; checker maximum CCN 15 and cognitive 14."
+        },
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_assessment": "Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.",
+        "limiting_reason": "Accurate bounded/source-registry assessment retained under explicit user waiver; no L4 claim or mathematical status promotion.",
+        "profile": "Symbolic/Formal",
+        "profile_status": "Reviewed declared profile",
+        "required_for_completion": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D",
+        "source_sha256": null,
+        "support_exception": false
+      },
+      "sha256": "ab26ba8a4b1e0853d87550f01e6565fa875722e095889161c909785f5e718b70"
+    },
+    {
+      "bytes": 2084,
+      "original_paths": [
+        "lean4/CampaignDfmElectroweakContinuumFence.contract.score.yaml#pr230-final-score"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"assessment_id\": \"pr230-final-repair\",\n  \"assessment_status\": \"complete_scoped_independent_review\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n    \"sha256\": \"d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034\",\n    \"language\": \"Lean 4\"\n  },\n  \"profile\": \"Symbolic/Formal\",\n  \"profile_status\": \"Reviewed declared profile\",\n  \"level\": \"L3\",\n  \"level_assessment\": \"Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.\",\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L3D\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"D\",\n  \"limiting_reason\": \"Accurate bounded/source-registry assessment retained under explicit user waiver; no L4 claim or mathematical status promotion.\",\n  \"required_for_completion\": [],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"evaluation_timestamp\": \"2026-10-23T18:11:59.054463+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr230_repair_campaign_validation.json\",\n      \"sha256\": \"da508d46958217cbcf35499878ff9bd3bc175154cde76acd0d2854855469b5fb\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gate_evidence\": {\n    \"G1\": \"Full claim/declaration review; explicit total-division and continuum boundaries.\",\n    \"G2\": \"Exact arithmetic witness and permitted-axiom Lean replay.\",\n    \"G3\": \"Seven invalid-input refusals and safe unrelated-object equality.\",\n    \"G4\": \"Fresh build, direct Lean, strict mypy, two Python modes and actual conjugation mutation.\",\n    \"G5\": \"Bounded component formulas; checker maximum CCN 15 and cognitive 14.\"\n  },\n  \"support_exception\": false,\n  \"acceptance_exception\": \"User-authorized, exact-hash proof waiver; existing exact-hash registry support exception. No global floor or score inflation.\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "acceptance_exception": "User-authorized, exact-hash proof waiver; existing exact-hash registry support exception. No global floor or score inflation.",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034"
+        },
+        "assessment_id": "pr230-final-repair",
+        "assessment_status": "complete_scoped_independent_review",
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T18:11:59.054463+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/pr230_repair_campaign_validation.json",
+            "sha256": "da508d46958217cbcf35499878ff9bd3bc175154cde76acd0d2854855469b5fb"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gate_evidence": {
+          "G1": "Full claim/declaration review; explicit total-division and continuum boundaries.",
+          "G2": "Exact arithmetic witness and permitted-axiom Lean replay.",
+          "G3": "Seven invalid-input refusals and safe unrelated-object equality.",
+          "G4": "Fresh build, direct Lean, strict mypy, two Python modes and actual conjugation mutation.",
+          "G5": "Bounded component formulas; checker maximum CCN 15 and cognitive 14."
+        },
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_assessment": "Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.",
+        "limiting_reason": "Accurate bounded/source-registry assessment retained under explicit user waiver; no L4 claim or mathematical status promotion.",
+        "profile": "Symbolic/Formal",
+        "profile_status": "Reviewed declared profile",
+        "required_for_completion": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D",
+        "support_exception": false
+      },
+      "sha256": "baebfe8c875d6fb0bd462391d9fd21a609bbb6da3fb41ec705a8b6951fc28802"
+    },
+    {
+      "bytes": 2095,
+      "original_paths": [
+        "lean4/CampaignDfmElectroweakContinuumFence.contract.score.yaml#pr230-integrated-final-scoring"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"assessment_id\": \"pr230-integrated-validation\",\n  \"assessment_status\": \"complete_scoped_independent_review\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n    \"sha256\": \"d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034\",\n    \"language\": \"Lean 4\"\n  },\n  \"profile\": \"Symbolic/Formal\",\n  \"profile_status\": \"Reviewed declared profile\",\n  \"level\": \"L3\",\n  \"level_assessment\": \"Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.\",\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L3D\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"D\",\n  \"limiting_reason\": \"Accurate bounded/source-registry assessment retained under explicit user waiver; no L4 claim or mathematical status promotion.\",\n  \"required_for_completion\": [],\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"evaluation_timestamp\": \"2026-10-23T18:11:59.054463+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr230_repair_integrated_validation.json\",\n      \"sha256\": \"d43f660ec57b2c6d4b52e3d8f9f7bad34812b147a96d1c5c128b34a25d174cc7\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n    }\n  ],\n  \"gate_evidence\": {\n    \"G1\": \"Full claim/declaration review; explicit total-division and continuum boundaries.\",\n    \"G2\": \"Exact arithmetic witness and permitted-axiom Lean replay.\",\n    \"G3\": \"Seven invalid-input refusals and safe unrelated-object equality.\",\n    \"G4\": \"Fresh build, direct Lean, strict mypy, two Python modes and actual conjugation mutation.\",\n    \"G5\": \"Bounded component formulas; checker maximum CCN 15 and cognitive 14.\"\n  },\n  \"support_exception\": false,\n  \"acceptance_exception\": \"User-authorized, exact-hash proof waiver; existing exact-hash registry support exception. No global floor or score inflation.\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "acceptance_exception": "User-authorized, exact-hash proof waiver; existing exact-hash registry support exception. No global floor or score inflation.",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "sha256": "d774d31b1966ef59e1c5043a48ed692f6b9ba84dbe438350661ac1b5ce326034"
+        },
+        "assessment_id": "pr230-integrated-validation",
+        "assessment_status": "complete_scoped_independent_review",
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T18:11:59.054463+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/pr230_repair_integrated_validation.json",
+            "sha256": "d43f660ec57b2c6d4b52e3d8f9f7bad34812b147a96d1c5c128b34a25d174cc7"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+          }
+        ],
+        "gate_evidence": {
+          "G1": "Full claim/declaration review; explicit total-division and continuum boundaries.",
+          "G2": "Exact arithmetic witness and permitted-axiom Lean replay.",
+          "G3": "Seven invalid-input refusals and safe unrelated-object equality.",
+          "G4": "Fresh build, direct Lean, strict mypy, two Python modes and actual conjugation mutation.",
+          "G5": "Bounded component formulas; checker maximum CCN 15 and cognitive 14."
+        },
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_assessment": "Bounded Gaussian-rational component algebra with supplied-root covariance and fixed nonunit witness.",
+        "limiting_reason": "Accurate bounded/source-registry assessment retained under explicit user waiver; no L4 claim or mathematical status promotion.",
+        "profile": "Symbolic/Formal",
+        "profile_status": "Reviewed declared profile",
+        "required_for_completion": [],
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D",
+        "support_exception": false
+      },
+      "sha256": "076532de2f921afcbb9637ad561922352ddd6859915dd6ec1735812b942308b3"
+    },
+    {
+      "bytes": 2656,
+      "original_paths": [
+        "lean4/CampaignDfmElectroweakContinuumFence.contract.score.yaml#immutable-exact-components-replay"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n    \"sha256\": \"4e50c53a72e2404c2985a6af0b8c71b7a7a061e3f510e72ae3aad4c41f2d4ed2\"\n  },\n  \"assessment_id\": \"pr230-l4-repair\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.\",\n    \"G2\": \"Scoped Lake build, 22 allowed axiom reports; exact independent covariance and composition checks.\",\n    \"G3\": \"Except distinguishes zero norm, nonpositive scale and mismatched square; success iff is proved. Ten invalid normalization/action cases refused.\",\n    \"G4\": \"Nine doublets, eight phases, 72 covariance and 576 composition cases; normal/optimized execution and strict mypy; four selected faults killed.\",\n    \"G5\": \"Separated raw algebra, checked input, unit output and action layers; checker max CCN15 and cognitive14.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T17:48:16.524846+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/dfm_electroweak_l4_replay.json\",\n      \"sha256\": \"277f14d9be92f6f57011808c5ff12ac3b280a30a86fdeff2702a5ec20b179533\"\n    },\n    {\n      \"path\": \"dag/research/dfm_electroweak_l4_independent.json\",\n      \"sha256\": \"a71aa1a3d670bd4d71a2d5becc124dd6d1b9a2633da5161c78b9865806ed56a3\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json\",\n      \"sha256\": \"4c50ca0e3ffa2e9379318fa3ed0041fc7b129c857bcdfe9433007e385818ed77\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.\",\n  \"open_higher_grade_findings\": [\n    \"Positive rational root is supplied and validated; arbitrary rational-root existence is not claimed.\",\n    \"Low-level total division remains separate from checked normalization.\",\n    \"No determinant/unitarity, continuum derivatives, gauge fields or physical electroweak derivation.\",\n    \"Selected mutation coverage only; no broad performance claim.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "sha256": "4e50c53a72e2404c2985a6af0b8c71b7a7a061e3f510e72ae3aad4c41f2d4ed2"
+        },
+        "assessment_id": "pr230-l4-repair",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.",
+          "G2": "Scoped Lake build, 22 allowed axiom reports; exact independent covariance and composition checks.",
+          "G3": "Except distinguishes zero norm, nonpositive scale and mismatched square; success iff is proved. Ten invalid normalization/action cases refused.",
+          "G4": "Nine doublets, eight phases, 72 covariance and 576 composition cases; normal/optimized execution and strict mypy; four selected faults killed.",
+          "G5": "Separated raw algebra, checked input, unit output and action layers; checker max CCN15 and cognitive14."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T17:48:16.524846+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/dfm_electroweak_l4_replay.json",
+            "sha256": "277f14d9be92f6f57011808c5ff12ac3b280a30a86fdeff2702a5ec20b179533"
+          },
+          {
+            "path": "dag/research/dfm_electroweak_l4_independent.json",
+            "sha256": "a71aa1a3d670bd4d71a2d5becc124dd6d1b9a2633da5161c78b9865806ed56a3"
+          },
+          {
+            "path": "dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json",
+            "sha256": "4c50ca0e3ffa2e9379318fa3ed0041fc7b129c857bcdfe9433007e385818ed77"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.",
+        "open_higher_grade_findings": [
+          "Positive rational root is supplied and validated; arbitrary rational-root existence is not claimed.",
+          "Low-level total division remains separate from checked normalization.",
+          "No determinant/unitarity, continuum derivatives, gauge fields or physical electroweak derivation.",
+          "Selected mutation coverage only; no broad performance claim."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D",
+        "support_exception": false
+      },
+      "sha256": "1a44f2b08192c1be8f26f66f9c7efaef8f93f19cdeb6d1fdddb202960eac8c2a"
+    },
+    {
+      "bytes": 3107,
+      "original_paths": [
+        "lean4/DressingFieldElectroweakContinuumFence.contract.score.yaml#pr230-l4-repair"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/DressingFieldElectroweakContinuumFence.lean\",\n    \"sha256\": \"e41bab58fa9c70e42c75c4a1536a733ec301adbccfa7673e33b6282c13a19a89\"\n  },\n  \"assessment_id\": \"pr230-l4-repair\",\n  \"assessment_status\": \"complete\",\n  \"basis\": {\n    \"G1\": \"Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.\",\n    \"G2\": \"Scoped Lake build, 22 allowed axiom reports; exact independent covariance and composition checks.\",\n    \"G3\": \"Except distinguishes zero norm, nonpositive scale and mismatched square; success iff is proved. Ten invalid normalization/action cases refused.\",\n    \"G4\": \"Nine doublets, eight phases, 72 covariance and 576 composition cases; normal/optimized execution and strict mypy; four selected faults killed.\",\n    \"G5\": \"Separated raw algebra, checked input, unit output and action layers; checker max CCN15 and cognitive14.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T17:48:16.524846+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/dfm_electroweak_l4_replay.json\",\n      \"sha256\": \"60734bf9aa9497175d325bb8b8f4fff22e47e76c61ccca2d8247a831c0768064\"\n    },\n    {\n      \"path\": \"dag/research/dfm_electroweak_l4_independent.json\",\n      \"sha256\": \"a71aa1a3d670bd4d71a2d5becc124dd6d1b9a2633da5161c78b9865806ed56a3\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json\",\n      \"sha256\": \"46fce349ed1f484b66fea107dd56eefb52145dedd0e7969e3a61b412d9027f01\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.\",\n  \"open_higher_grade_findings\": [\n    \"Positive rational root is supplied and validated; arbitrary rational-root existence is not claimed.\",\n    \"Low-level total division remains separate from checked normalization.\",\n    \"No determinant/unitarity, continuum derivatives, gauge fields or physical electroweak derivation.\",\n    \"Selected mutation coverage only; no broad performance claim.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rebound\": {\n    \"date\": \"2026-10-27\",\n    \"from_path\": \"lean4/CampaignDfmElectroweakContinuumFence.lean\",\n    \"from_sha256\": \"4e50c53a72e2404c2985a6af0b8c71b7a7a061e3f510e72ae3aad4c41f2d4ed2\",\n    \"note\": \"Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived.\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\",\n  \"support_exception\": false\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/DressingFieldElectroweakContinuumFence.lean",
+          "sha256": "e41bab58fa9c70e42c75c4a1536a733ec301adbccfa7673e33b6282c13a19a89"
+        },
+        "assessment_id": "pr230-l4-repair",
+        "assessment_status": "complete",
+        "basis": {
+          "G1": "Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.",
+          "G2": "Scoped Lake build, 22 allowed axiom reports; exact independent covariance and composition checks.",
+          "G3": "Except distinguishes zero norm, nonpositive scale and mismatched square; success iff is proved. Ten invalid normalization/action cases refused.",
+          "G4": "Nine doublets, eight phases, 72 covariance and 576 composition cases; normal/optimized execution and strict mypy; four selected faults killed.",
+          "G5": "Separated raw algebra, checked input, unit output and action layers; checker max CCN15 and cognitive14."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T17:48:16.524846+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/dfm_electroweak_l4_replay.json",
+            "sha256": "60734bf9aa9497175d325bb8b8f4fff22e47e76c61ccca2d8247a831c0768064"
+          },
+          {
+            "path": "dag/research/dfm_electroweak_l4_independent.json",
+            "sha256": "a71aa1a3d670bd4d71a2d5becc124dd6d1b9a2633da5161c78b9865806ed56a3"
+          },
+          {
+            "path": "dag/research/campaign_dfm-electroweak-continuum-fence_lean_replay.json",
+            "sha256": "46fce349ed1f484b66fea107dd56eefb52145dedd0e7969e3a61b412d9027f01"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Typed checked-normalization API with distinct failures, success iff valid positive supplied scale, preserved inputs, unit-norm outputs and compositional unit-phase action/covariance.",
+        "open_higher_grade_findings": [
+          "Positive rational root is supplied and validated; arbitrary rational-root existence is not claimed.",
+          "Low-level total division remains separate from checked normalization.",
+          "No determinant/unitarity, continuum derivatives, gauge fields or physical electroweak derivation.",
+          "Selected mutation coverage only; no broad performance claim."
+        ],
+        "profile": "Symbolic/Formal",
+        "rebound": {
+          "date": "2026-10-27",
+          "from_path": "lean4/CampaignDfmElectroweakContinuumFence.lean",
+          "from_sha256": "4e50c53a72e2404c2985a6af0b8c71b7a7a061e3f510e72ae3aad4c41f2d4ed2",
+          "note": "Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived."
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "41f114724413adcc3c1dea465e027531a5665bbf65e748bc02f4005d2e90660f"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D",
+        "support_exception": false
+      },
+      "sha256": "ab5f2d8c85074a083224e06776aaccc2e7b179efb2feb1863a57d17b2e66602a"
+    }
+  ]
+}

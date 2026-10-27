@@ -28,13 +28,13 @@ Cited Cobordism5dAnomaly.lean::cobordism_5d_anomaly_sign_classification does not
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.parity_invariant`
-- `lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.switching_normal_form`
-- `lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.positive_switching_iff`
-- `lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.negative_cycle_obstruction`
-- `lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.edge_product_is_cycle_sign`
-- `lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.explicit_negative_cycle`
-- `lean4/CampaignSignedTriangleSwitching.lean::CampaignSignedTriangleSwitching.balanced_negative_edges_are_removable`
+- `lean4/SignedTriangleSwitching.lean::SignedTriangleSwitching.parity_invariant`
+- `lean4/SignedTriangleSwitching.lean::SignedTriangleSwitching.switching_normal_form`
+- `lean4/SignedTriangleSwitching.lean::SignedTriangleSwitching.positive_switching_iff`
+- `lean4/SignedTriangleSwitching.lean::SignedTriangleSwitching.negative_cycle_obstruction`
+- `lean4/SignedTriangleSwitching.lean::SignedTriangleSwitching.edge_product_is_cycle_sign`
+- `lean4/SignedTriangleSwitching.lean::SignedTriangleSwitching.explicit_negative_cycle`
+- `lean4/SignedTriangleSwitching.lean::SignedTriangleSwitching.balanced_negative_edges_are_removable`
 
 ### Rust Certifiers
 - *none*

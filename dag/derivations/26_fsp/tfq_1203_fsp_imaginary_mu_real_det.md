@@ -14,7 +14,7 @@
 At mu = i mu_I with real mu_I, gamma5 D(i mu_I) gamma5 = D(i mu_I)^dagger, so det D(i mu_I) is real; nonnegativity needs two degenerate flavors (or a staggered operator m + K with K anti-Hermitian, m > 0), and Z(mu_I) has Roberge-Weiss periodicity 2 pi T / 3.
 
 ### Governing Obligation
-Analytic continuation from imaginary to real mu is an extrapolation, not a sign-free route to real mu; not established in this checkout. CampaignFspImaginaryMuRealDet covers arbitrary finite bipartite transport blocks at unit fugacity: staggered adjoint symmetry, determinant reality, two-flavor nonnegativity and positive-mass staggered positivity. Its centerSum_periodic concerns a declared finite center-orbit sum only; it supplies no QCD measure, spin-taste reconstruction, phase transition or analytic-continuation theorem. The full node remains imported.
+Analytic continuation from imaginary to real mu is an extrapolation, not a sign-free route to real mu; not established in this checkout. FermionSignImaginaryMuRealDet covers arbitrary finite bipartite transport blocks at unit fugacity: staggered adjoint symmetry, determinant reality, two-flavor nonnegativity and positive-mass staggered positivity. Its centerSum_periodic concerns a declared finite center-orbit sum only; it supplies no QCD measure, spin-taste reconstruction, phase transition or analytic-continuation theorem. The full node remains imported.
 
 ### Witness Audit
 Cited NonAbelianGaugeSigns.lean::imaginary_chemical_potential_positivity does not exist; the JSONL claim det D(i mu_I) >= 0 for a single Wilson flavor is not implied by gamma5-hermiticity. roberge_weiss_analytic_continuation is absent from su3_polyakov_loop.py.
@@ -34,12 +34,12 @@ Cited NonAbelianGaugeSigns.lean::imaginary_chemical_potential_positivity does no
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignFspImaginaryMuRealDet.lean::staggered_adjoint`
-- `lean4/CampaignFspImaginaryMuRealDet.lean::det_real_of_involution`
-- `lean4/CampaignFspImaginaryMuRealDet.lean::two_flavor_nonneg`
-- `lean4/CampaignFspImaginaryMuRealDet.lean::staggered_det_pos`
-- `lean4/CampaignFspImaginaryMuRealDet.lean::gamma_hermitian_negative`
-- `lean4/CampaignFspImaginaryMuRealDet.lean::centerSum_periodic`
+- `lean4/FermionSignImaginaryMuRealDet.lean::staggered_adjoint`
+- `lean4/FermionSignImaginaryMuRealDet.lean::det_real_of_involution`
+- `lean4/FermionSignImaginaryMuRealDet.lean::two_flavor_nonneg`
+- `lean4/FermionSignImaginaryMuRealDet.lean::staggered_det_pos`
+- `lean4/FermionSignImaginaryMuRealDet.lean::gamma_hermitian_negative`
+- `lean4/FermionSignImaginaryMuRealDet.lean::centerSum_periodic`
 
 ### Rust Certifiers
 - *none*

@@ -31,7 +31,7 @@ target:
   - dag/derivations/31_causal_qft/tfq_2106_cqft_reeh_schlieder_theorem_import.md
   - dag/derivations/independent/cqft-reeh-schlieder-theorem-import.md
   - checks/independent/cqft-reeh-schlieder-theorem-import.py
-  - lean4/CampaignCqftReehSchliederTheoremImport.lean
+  - lean4/ReehSchliederImport.lean
   - dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json
   - dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json
   - dag/research/campaign_cqft-reeh-schlieder-theorem-import_independent.json
@@ -70,18 +70,18 @@ relation_candidates:
 - ghz3_and_w3_pair_cyclic_and_separating
 - four_qubit_half_system_cyclicity_dichotomy
 source_bindings:
-- lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.cyclic_implies_separating
-- lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.not_cyclic_of_right_kernel
-- lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.no_left_inverse_of_zero_column
-- lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.not_cyclic_of_zero_column
-- lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.single_site_not_cyclic_all_three_states
-- lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.prod3_pair_not_cyclic_and_no_left_inverse
-- lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.ghz3_and_w3_pair_cyclic_and_separating
-- lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.full_three_site_cyclic_all_three_states
-- lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.four_qubit_half_system_cyclicity_dichotomy
-- lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.cyclicShift_periodic_aliasing
-- lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.translation_invariant_zero_momentum_diff
-- lean4/CampaignCqftReehSchliederTheoremImport.lean::CampaignCqftReehSchliederTheoremImport.translation_invariant_product_vacuum_not_cyclic_for_proper_subsystems
+- lean4/ReehSchliederImport.lean::ReehSchliederImport.cyclic_implies_separating
+- lean4/ReehSchliederImport.lean::ReehSchliederImport.not_cyclic_of_right_kernel
+- lean4/ReehSchliederImport.lean::ReehSchliederImport.no_left_inverse_of_zero_column
+- lean4/ReehSchliederImport.lean::ReehSchliederImport.not_cyclic_of_zero_column
+- lean4/ReehSchliederImport.lean::ReehSchliederImport.single_site_not_cyclic_all_three_states
+- lean4/ReehSchliederImport.lean::ReehSchliederImport.prod3_pair_not_cyclic_and_no_left_inverse
+- lean4/ReehSchliederImport.lean::ReehSchliederImport.ghz3_and_w3_pair_cyclic_and_separating
+- lean4/ReehSchliederImport.lean::ReehSchliederImport.full_three_site_cyclic_all_three_states
+- lean4/ReehSchliederImport.lean::ReehSchliederImport.four_qubit_half_system_cyclicity_dichotomy
+- lean4/ReehSchliederImport.lean::ReehSchliederImport.cyclicShift_periodic_aliasing
+- lean4/ReehSchliederImport.lean::ReehSchliederImport.translation_invariant_zero_momentum_diff
+- lean4/ReehSchliederImport.lean::ReehSchliederImport.translation_invariant_product_vacuum_not_cyclic_for_proper_subsystems
 presentation:
   colours:
   - BipartiteAmplitudeMatrix
@@ -115,7 +115,7 @@ operad_slots:
     - spectrum condition and continuous translation group (assumption)
     - vacuum vector (assumption)
     source_pins:
-    - lean4/CampaignCqftReehSchliederTheoremImport.lean
+    - lean4/ReehSchliederImport.lean
     - lean4/FrontierRsCyclicity.lean
     - lean4/FrontierPosetNet.lean
     - lean4/CausalOrder.lean
@@ -155,7 +155,7 @@ operad_slots:
     - four_qubit_half_system_cyclicity_dichotomy
     - translation_invariant_product_vacuum_not_cyclic_for_proper_subsystems
     anchors:
-    - lean4/CampaignCqftReehSchliederTheoremImport.lean
+    - lean4/ReehSchliederImport.lean
     - checks/independent/cqft-reeh-schlieder-theorem-import.py
     - dag/derivations/independent/cqft-reeh-schlieder-theorem-import.md
     unpaid_imports:

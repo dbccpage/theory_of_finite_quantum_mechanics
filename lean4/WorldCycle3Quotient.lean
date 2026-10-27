@@ -4,7 +4,7 @@ import WorldPresentation
 
 
 
-namespace OmegaWorld
+namespace ObserverWorld
 namespace Cycle3Quotient
 
 structure Cochain where
@@ -271,7 +271,7 @@ theorem laws : Laws where
 #print axioms laws
 
 end Cycle3Quotient
-end OmegaWorld
+end ObserverWorld
 
 private def l5aProvenance : String :=
   "Origin: lean4/WorldCycle3Quotient.lean Claim: cochain_ext AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

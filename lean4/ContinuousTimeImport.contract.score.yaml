@@ -1,0 +1,297 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/ContinuousTimeImport.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/ContinuousTimeImport.lean",
+      "sha256": "0e012ae91f849150a046474fd241229c1fa78fc5dec8d71bfc000944fe90b68d"
+    },
+    "boundaries": [
+      "Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.",
+      "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+    ],
+    "contract_urn": "urn:tfqm:review:20261026:ContinuousTimeImport",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_gp-import-continuous-time_lean_replay.json",
+        "sha256": "bbbe28834f2fbdbf004065be0f8205d87bf15b4d84c8a1998fb058ee67770a23"
+      },
+      {
+        "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+        "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+      }
+    ],
+    "owned_invariants": [
+      "On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1))."
+    ],
+    "purpose": "On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "toggle",
+      "toggle_images",
+      "no_toggle_square_root",
+      "G",
+      "gAdd",
+      "gMul",
+      "gNeg",
+      "gAdd_coords",
+      "gMul_coords",
+      "Amp",
+      "swapAmp",
+      "swap_exchanges",
+      "scale4",
+      "interp",
+      "interpNeg",
+      "scale4_swap",
+      "interp_twice_is_scaled_swap",
+      "interpNeg_twice_is_scaled_swap",
+      "witness_interp",
+      "witness_neg",
+      "interpolants_differ"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 2986,
+      "original_paths": [
+        "lean4/CampaignGpImportContinuousTime.contract.score.yaml#qm-open-pr-review-20261026-efc118c4a3ef"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignGpImportContinuousTime.lean\",\n    \"sha256\": \"efc118c4a3ef4ec32ac5fdad45c4b4db15e393cc2298e84156076b31eeaaf7b1\"\n  },\n  \"boundaries\": [\n    \"Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review:20261026:CampaignGpImportContinuousTime\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_gp-import-continuous-time_lean_replay.json\",\n      \"sha256\": \"c74436aa320b6ff7c98d3c1ca87b27c9d0ee3c9416581085ee0aa22c20396e80\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_lower_campaign_review_20261026.md\",\n      \"sha256\": \"690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).\"\n  ],\n  \"purpose\": \"On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"toggle\",\n    \"toggle_images\",\n    \"no_toggle_square_root\",\n    \"G\",\n    \"gAdd\",\n    \"gMul\",\n    \"gNeg\",\n    \"gAdd_coords\",\n    \"gMul_coords\",\n    \"Amp\",\n    \"swapAmp\",\n    \"swap_exchanges\",\n    \"scale4\",\n    \"interp\",\n    \"interpNeg\",\n    \"scale4_swap\",\n    \"interp_twice_is_scaled_swap\",\n    \"interpNeg_twice_is_scaled_swap\",\n    \"witness_interp\",\n    \"witness_neg\",\n    \"interpolants_differ\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignGpImportContinuousTime.lean",
+          "sha256": "efc118c4a3ef4ec32ac5fdad45c4b4db15e393cc2298e84156076b31eeaaf7b1"
+        },
+        "boundaries": [
+          "Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "contract_urn": "urn:tfqm:review:20261026:CampaignGpImportContinuousTime",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_gp-import-continuous-time_lean_replay.json",
+            "sha256": "c74436aa320b6ff7c98d3c1ca87b27c9d0ee3c9416581085ee0aa22c20396e80"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+            "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+          }
+        ],
+        "owned_invariants": [
+          "On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1))."
+        ],
+        "purpose": "On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "toggle",
+          "toggle_images",
+          "no_toggle_square_root",
+          "G",
+          "gAdd",
+          "gMul",
+          "gNeg",
+          "gAdd_coords",
+          "gMul_coords",
+          "Amp",
+          "swapAmp",
+          "swap_exchanges",
+          "scale4",
+          "interp",
+          "interpNeg",
+          "scale4_swap",
+          "interp_twice_is_scaled_swap",
+          "interpNeg_twice_is_scaled_swap",
+          "witness_interp",
+          "witness_neg",
+          "interpolants_differ"
+        ]
+      },
+      "sha256": "4ddca4c342e9f5884889eda34d5d7a5487b5926675c45bf5415011bdaac4fb22"
+    },
+    {
+      "bytes": 2966,
+      "original_paths": [
+        "lean4/ContinuousTimeImport.contract.score.yaml#qm-open-pr-review-20261026-efc118c4a3ef"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/ContinuousTimeImport.lean\",\n    \"sha256\": \"0e012ae91f849150a046474fd241229c1fa78fc5dec8d71bfc000944fe90b68d\"\n  },\n  \"boundaries\": [\n    \"Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review:20261026:ContinuousTimeImport\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_gp-import-continuous-time_lean_replay.json\",\n      \"sha256\": \"bbbe28834f2fbdbf004065be0f8205d87bf15b4d84c8a1998fb058ee67770a23\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_lower_campaign_review_20261026.md\",\n      \"sha256\": \"690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).\"\n  ],\n  \"purpose\": \"On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"toggle\",\n    \"toggle_images\",\n    \"no_toggle_square_root\",\n    \"G\",\n    \"gAdd\",\n    \"gMul\",\n    \"gNeg\",\n    \"gAdd_coords\",\n    \"gMul_coords\",\n    \"Amp\",\n    \"swapAmp\",\n    \"swap_exchanges\",\n    \"scale4\",\n    \"interp\",\n    \"interpNeg\",\n    \"scale4_swap\",\n    \"interp_twice_is_scaled_swap\",\n    \"interpNeg_twice_is_scaled_swap\",\n    \"witness_interp\",\n    \"witness_neg\",\n    \"interpolants_differ\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/ContinuousTimeImport.lean",
+          "sha256": "0e012ae91f849150a046474fd241229c1fa78fc5dec8d71bfc000944fe90b68d"
+        },
+        "boundaries": [
+          "Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "contract_urn": "urn:tfqm:review:20261026:ContinuousTimeImport",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_gp-import-continuous-time_lean_replay.json",
+            "sha256": "bbbe28834f2fbdbf004065be0f8205d87bf15b4d84c8a1998fb058ee67770a23"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+            "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+          }
+        ],
+        "owned_invariants": [
+          "On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1))."
+        ],
+        "purpose": "On the labels false and true, toggle sends false to true and true to false. No map on those labels squares to toggle. For integers a, b, c and d, the pair sum (a, b) + (c, d) is (a + c, b + d), and the pair product (a, b) * (c, d) is (a*c - b*d, a*d + b*c). Swap on a pair of such pairs exchanges the two coordinates. The interpolant sends (x, y) to ((1, 1) * x + (1, -1) * y, (1, -1) * x + (1, 1) * y). Applying the interpolant twice returns the swap of the pair whose coordinates are (4, 0) * x and (4, 0) * y. The coordinatewise negation of the interpolant has that same square. At the pair ((1, 0), (0, 0)), the interpolant returns ((1, 1), (1, -1)) and the negation returns ((-1, -1), (-1, 1)).",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "toggle",
+          "toggle_images",
+          "no_toggle_square_root",
+          "G",
+          "gAdd",
+          "gMul",
+          "gNeg",
+          "gAdd_coords",
+          "gMul_coords",
+          "Amp",
+          "swapAmp",
+          "swap_exchanges",
+          "scale4",
+          "interp",
+          "interpNeg",
+          "scale4_swap",
+          "interp_twice_is_scaled_swap",
+          "interpNeg_twice_is_scaled_swap",
+          "witness_interp",
+          "witness_neg",
+          "interpolants_differ"
+        ]
+      },
+      "sha256": "b7d6ea9f200d0fe0633270217039626743212162c405bf46a49150ca78940391"
+    }
+  ],
+  "current_contract": "b7d6ea9f200d0fe0633270217039626743212162c405bf46a49150ca78940391",
+  "current_scoring": "41945a9cbfd92950d274f94bcc6ce2a74b4979f3a509cd19cd4e2598b2833310",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2458,
+      "original_paths": [
+        "lean4/CampaignGpImportContinuousTime.contract.score.yaml#qm-open-pr-review-20261026-efc118c4a3ef"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignGpImportContinuousTime.lean\",\n    \"sha256\": \"efc118c4a3ef4ec32ac5fdad45c4b4db15e393cc2298e84156076b31eeaaf7b1\"\n  },\n  \"assessment_id\": \"qm-open-pr-review-20261026-efc118c4a3ef\",\n  \"basis\": {\n    \"G1\": \"Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.\",\n    \"G2\": \"Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.\",\n    \"G3\": \"Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.\",\n    \"G4\": \"Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.\",\n    \"G5\": \"Inspected 102 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T15:28:12.141875+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_gp-import-continuous-time_lean_replay.json\",\n      \"sha256\": \"c74436aa320b6ff7c98d3c1ca87b27c9d0ee3c9416581085ee0aa22c20396e80\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_lower_campaign_review_20261026.md\",\n      \"sha256\": \"690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.\",\n  \"open_higher_grade_findings\": [\n    \"Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignGpImportContinuousTime.lean",
+          "sha256": "efc118c4a3ef4ec32ac5fdad45c4b4db15e393cc2298e84156076b31eeaaf7b1"
+        },
+        "assessment_id": "qm-open-pr-review-20261026-efc118c4a3ef",
+        "basis": {
+          "G1": "Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.",
+          "G2": "Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.",
+          "G3": "Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.",
+          "G4": "Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.",
+          "G5": "Inspected 102 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T15:28:12.141875+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_gp-import-continuous-time_lean_replay.json",
+            "sha256": "c74436aa320b6ff7c98d3c1ca87b27c9d0ee3c9416581085ee0aa22c20396e80"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+            "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.",
+        "open_higher_grade_findings": [
+          "Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "95b1159b19cd0f720e74c4781472f26c17eb279e8a263270f1dc4b2b31d3ca08"
+    },
+    {
+      "bytes": 2891,
+      "original_paths": [
+        "lean4/ContinuousTimeImport.contract.score.yaml#qm-open-pr-review-20261026-efc118c4a3ef"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/ContinuousTimeImport.lean\",\n    \"sha256\": \"0e012ae91f849150a046474fd241229c1fa78fc5dec8d71bfc000944fe90b68d\"\n  },\n  \"assessment_id\": \"qm-open-pr-review-20261026-efc118c4a3ef\",\n  \"basis\": {\n    \"G1\": \"Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.\",\n    \"G2\": \"Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.\",\n    \"G3\": \"Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.\",\n    \"G4\": \"Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.\",\n    \"G5\": \"Inspected 102 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T15:28:12.141875+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_gp-import-continuous-time_lean_replay.json\",\n      \"sha256\": \"bbbe28834f2fbdbf004065be0f8205d87bf15b4d84c8a1998fb058ee67770a23\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_lower_campaign_review_20261026.md\",\n      \"sha256\": \"690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.\",\n  \"open_higher_grade_findings\": [\n    \"Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"profile\": \"Exact\",\n  \"rebound\": {\n    \"date\": \"2026-10-27\",\n    \"from_path\": \"lean4/CampaignGpImportContinuousTime.lean\",\n    \"from_sha256\": \"efc118c4a3ef4ec32ac5fdad45c4b4db15e393cc2298e84156076b31eeaaf7b1\",\n    \"note\": \"Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived.\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/ContinuousTimeImport.lean",
+          "sha256": "0e012ae91f849150a046474fd241229c1fa78fc5dec8d71bfc000944fe90b68d"
+        },
+        "assessment_id": "qm-open-pr-review-20261026-efc118c4a3ef",
+        "basis": {
+          "G1": "Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.",
+          "G2": "Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.",
+          "G3": "Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.",
+          "G4": "Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.",
+          "G5": "Inspected 102 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T15:28:12.141875+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_gp-import-continuous-time_lean_replay.json",
+            "sha256": "bbbe28834f2fbdbf004065be0f8205d87bf15b4d84c8a1998fb058ee67770a23"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+            "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.",
+        "open_higher_grade_findings": [
+          "Continuous time, a topology, a one-parameter unitary group and Stone's theorem stay imported. The Boolean toggle and the two Gaussian-integer interpolants at scale 4 are one finite case. A rational Cayley transform and a hyperoctahedral residue stay outside this case.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "profile": "Exact",
+        "rebound": {
+          "date": "2026-10-27",
+          "from_path": "lean4/CampaignGpImportContinuousTime.lean",
+          "from_sha256": "efc118c4a3ef4ec32ac5fdad45c4b4db15e393cc2298e84156076b31eeaaf7b1",
+          "note": "Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived."
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "41945a9cbfd92950d274f94bcc6ce2a74b4979f3a509cd19cd4e2598b2833310"
+    }
+  ]
+}

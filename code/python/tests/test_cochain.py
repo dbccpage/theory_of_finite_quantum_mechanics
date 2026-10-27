@@ -114,7 +114,7 @@ def test_end_to_end_public_contract() -> None:
 
 def test_origin_resolves_in_repo() -> None:
     root = Path(__file__).resolve().parents[3]
-    lean = (root / "lean4" / "H021TriangleNetworkComplexCarrier.lean").read_text(encoding="utf-8")
+    lean = (root / "lean4" / "TriangleNetworkComplexCarrier.lean").read_text(encoding="utf-8")
     assert "theorem eval_pairing_left_additive" in lean
     assert "theorem eval_pairing_right_additive" in lean
     source = _MODULE_PATH.read_text(encoding="utf-8")

@@ -32,7 +32,7 @@ The general n-cycle, the weighted L1 form with declared masses, the sum-of-squar
 
 ## Source status
 
-Conditional. CampaignL1ResidualSectorWeights records the pairs (2, 0) and (0, 2) at coordinate sum 2, and the two length-4 holonomy checks. The weighted form and the general n-cycle stay open.
+Conditional. L1ResidualSectorWeights records the pairs (2, 0) and (0, 2) at coordinate sum 2, and the two length-4 holonomy checks. The weighted form and the general n-cycle stay open.
 
 ## Review
 
@@ -60,25 +60,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/CampaignL1ResidualSectorWeights.lean`
-
-- file: [lean4/CampaignL1ResidualSectorWeights.lean](../../../lean4/CampaignL1ResidualSectorWeights.lean)
-- sha256 (`bytes`): `f8b91f84cece66dcdc6e9423159d31ec17230dbf931a7117e2cb31c073b5275e`
-- cited in: node.lean, node.source, receipt dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json (CampaignL1ResidualSectorWeights), receipt dag/research/pr_364_review_replay.json (CampaignL1ResidualSectorWeights)
-- replay: `verified`
-  - receipt [dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json](../../../dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json) (module `CampaignL1ResidualSectorWeights`): recorded sha256 `f8b91f84cece66dcdc6e9423159d31ec17230dbf931a7117e2cb31c073b5275e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_364_review_replay.json](../../../dag/research/pr_364_review_replay.json) (module `CampaignL1ResidualSectorWeights`): recorded sha256 `f8b91f84cece66dcdc6e9423159d31ec17230dbf931a7117e2cb31c073b5275e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignL1ResidualSectorWeights`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `holonomy_four_divisible` | yes | yes | yes | none | `#print axioms holonomy_four_divisible` |
-| `holonomy_two_not_divisible` | yes | yes | yes | Quot.sound, propext | `#print axioms holonomy_two_not_divisible` |
-| `same_phi1` | yes | yes | yes | none | `#print axioms same_phi1` |
-| `weights_differ` | yes | yes | yes | none | `#print axioms weights_differ` |
-
-- counts toward the grade: yes
-
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
@@ -98,13 +79,32 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H001ProbabilitySimplex.lean`
+### Lean: `lean4/L1ResidualSectorWeights.lean`
 
-- file: [lean4/H001ProbabilitySimplex.lean](../../../lean4/H001ProbabilitySimplex.lean)
-- sha256 (`bytes`): `a466cf99bcf45d5ba786f52361702a2988400bd210a234cf5f783366a8a47228`
+- file: [lean4/L1ResidualSectorWeights.lean](../../../lean4/L1ResidualSectorWeights.lean)
+- sha256 (`bytes`): `0ff32175a547b3980ee5e681ad23ee54264be5fcab12be66cab8e95d8b757e40`
+- cited in: node.lean, node.source, receipt dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json (L1ResidualSectorWeights), receipt dag/research/pr_364_review_replay.json (L1ResidualSectorWeights)
+- replay: `verified`
+  - receipt [dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json](../../../dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json) (module `L1ResidualSectorWeights`): recorded sha256 `0ff32175a547b3980ee5e681ad23ee54264be5fcab12be66cab8e95d8b757e40` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_364_review_replay.json](../../../dag/research/pr_364_review_replay.json) (module `L1ResidualSectorWeights`): recorded sha256 `0ff32175a547b3980ee5e681ad23ee54264be5fcab12be66cab8e95d8b757e40` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build L1ResidualSectorWeights`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `holonomy_four_divisible` | yes | yes | yes | none | `#print axioms holonomy_four_divisible` |
+| `holonomy_two_not_divisible` | yes | yes | yes | Quot.sound, propext | `#print axioms holonomy_two_not_divisible` |
+| `same_phi1` | yes | yes | yes | none | `#print axioms same_phi1` |
+| `weights_differ` | yes | yes | yes | none | `#print axioms weights_differ` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/ProbabilitySimplex.lean`
+
+- file: [lean4/ProbabilitySimplex.lean](../../../lean4/ProbabilitySimplex.lean)
+- sha256 (`bytes`): `94547b50c80b02dfef733d5adb798e338d8a6feeebe02e82dade7f5ebe9f7f8a`
 - cited in: record TFQ-0167 (shared)
 - replay: `none`
-- check: `cd lean4 && lake build H001ProbabilitySimplex`
+- check: `cd lean4 && lake build ProbabilitySimplex`
 - counts toward the grade: no
 
 ### Lean: `lean4/ResidualSectorWeights.lean`
@@ -234,7 +234,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0167_admit_only_exact_nonnegative_rational_masses_that_sum_to_one_with_no.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0167_admit_only_exact_nonnegative_rational_masses_that_sum_to_one_with_no.md](../../../dag/derivations/22_implementation_sibling/tfq_0167_admit_only_exact_nonnegative_rational_masses_that_sum_to_one_with_no.md)
-- sha256 (`lf-normalised`): `1b9b4d68b36532db18e1b689ae85fc7d4cdb38c1031f1712b8b8f64fb01530e6`
+- sha256 (`lf-normalised`): `f76075556be2935a7fa3b215d691a46daef041554f57a0c3c42faba6c6368459`
 - generated view: listed, not counted
 - cited in: record TFQ-0167 (shared)
 - counts toward the grade: no
@@ -242,14 +242,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/l1-residual-sector-weights-declared.md`
 
 - file: [dag/derivations/independent/l1-residual-sector-weights-declared.md](../../../dag/derivations/independent/l1-residual-sector-weights-declared.md)
-- sha256 (`lf-normalised`): `9fc6212bbcd925157cfec1b4ddbcbe51f47a16d6abdb01e925f0879f0403f752`
+- sha256 (`lf-normalised`): `827599c17b41765fa96d5cedc22708c9255ba217d4afd3eab6130b5416e2cdd1`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json`
 
 - file: [dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json](../../../dag/research/campaign_l1-residual-sector-weights-declared_lean_replay.json)
-- sha256 (`lf-normalised`): `68502bdec2e87341d7851db7c9352a73cd4d71d7ac7abcebe4b105a0a6062dc8`
+- sha256 (`lf-normalised`): `82c34c8dfe215f0d8d7ed5280d9e06fa16a567267ff62bf35e1aba4a2988b357`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -46,14 +46,14 @@ LEAN PROVED (RECEIPTED) per ledger; Lean header for the H000..H018 family says C
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/H000FinitePresentedCarrier.lean`
+### Lean: `lean4/FinitePresentedCarrier.lean`
 
-- file: [lean4/H000FinitePresentedCarrier.lean](../../../lean4/H000FinitePresentedCarrier.lean)
-- sha256 (`bytes`): `789978ed31d30571cffbfe7efa8e8f46f6340649ab09e876289896eb5ca1a5ce`
+- file: [lean4/FinitePresentedCarrier.lean](../../../lean4/FinitePresentedCarrier.lean)
+- sha256 (`bytes`): `46dfe8222b1ac7917a4176730bfbf73908bf4a26a99e7c19b613a48f78ced9c6`
 - cited in: node.lean, record TFQ-1007
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H000FinitePresentedCarrier`): recorded sha256 `789978ed31d30571cffbfe7efa8e8f46f6340649ab09e876289896eb5ca1a5ce` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build H000FinitePresentedCarrier`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `FinitePresentedCarrier`): recorded sha256 `46dfe8222b1ac7917a4176730bfbf73908bf4a26a99e7c19b613a48f78ced9c6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build FinitePresentedCarrier`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1007_fq_primdiff_quotient_kernel.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1007_fq_primdiff_quotient_kernel.md](../../../dag/derivations/10_finite_qm_core/tfq_1007_fq_primdiff_quotient_kernel.md)
-- sha256 (`lf-normalised`): `b61e8dc286ec0642dfd429621f9dfd0b6a9b7af3ff537967bdcc83039301e1f9`
+- sha256 (`lf-normalised`): `8d718b8919bb2d023880ed33ebd47f5ef85cc1d1d28bac12d8e0005bdf869b6d`
 - generated view: listed, not counted
 - cited in: record TFQ-1007
 - counts toward the grade: no

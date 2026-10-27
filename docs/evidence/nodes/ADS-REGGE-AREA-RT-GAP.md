@@ -42,43 +42,43 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignAdsReggeAreaRtGap.lean`
+### Lean: `lean4/AdsReggeAreaRtGap.lean`
 
-- file: [lean4/CampaignAdsReggeAreaRtGap.lean](../../../lean4/CampaignAdsReggeAreaRtGap.lean)
-- sha256 (`bytes`): `a5343383ce44ed90c546ccb73781e709cfd8e74086b6cdc699d63238d048876f`
-- cited in: node.lean, node.source, receipt dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json (CampaignAdsReggeAreaRtGap), record TFQ-2211
+- file: [lean4/AdsReggeAreaRtGap.lean](../../../lean4/AdsReggeAreaRtGap.lean)
+- sha256 (`bytes`): `378777ffedad3a7fa58ad034b1ee51c55cb0551bb1b3bdde5de9b684328dd4d3`
+- cited in: node.lean, node.source, receipt dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json (AdsReggeAreaRtGap), record TFQ-2211
 - replay: `verified`
-  - receipt [dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json](../../../dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json) (module `CampaignAdsReggeAreaRtGap`): recorded sha256 `a5343383ce44ed90c546ccb73781e709cfd8e74086b6cdc699d63238d048876f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignAdsReggeAreaRtGap`
+  - receipt [dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json](../../../dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json) (module `AdsReggeAreaRtGap`): recorded sha256 `378777ffedad3a7fa58ad034b1ee51c55cb0551bb1b3bdde5de9b684328dd4d3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build AdsReggeAreaRtGap`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignAdsReggeAreaRtGap.happy_mincut_value_distribution_380` | yes | yes | yes | propext | `#print axioms CampaignAdsReggeAreaRtGap.happy_mincut_value_distribution_380` |
-| `CampaignAdsReggeAreaRtGap.linear_area_subdivision_invariant` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsReggeAreaRtGap.linear_area_subdivision_invariant` |
-| `CampaignAdsReggeAreaRtGap.midpoint_and_barycentric_subdivision_witnesses` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsReggeAreaRtGap.midpoint_and_barycentric_subdivision_witnesses` |
-| `CampaignAdsReggeAreaRtGap.no_fixed_background_regge_function_matches_all_subregion_cuts` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsReggeAreaRtGap.no_fixed_background_regge_function_matches_all_subregion_cuts` |
-| `CampaignAdsReggeAreaRtGap.no_uniform_hinge_to_bond_unit_dictionary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsReggeAreaRtGap.no_uniform_hinge_to_bond_unit_dictionary` |
-| `CampaignAdsReggeAreaRtGap.regge_action_linear_in_holonomy_defect` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsReggeAreaRtGap.regge_action_linear_in_holonomy_defect` |
-| `CampaignAdsReggeAreaRtGap.regge_curvature_variation_vs_happy_subregion_variation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsReggeAreaRtGap.regge_curvature_variation_vs_happy_subregion_variation` |
-| `CampaignAdsReggeAreaRtGap.regge_wdw_flat_vs_curved_dichotomy` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignAdsReggeAreaRtGap.regge_wdw_flat_vs_curved_dichotomy` |
-| `CampaignAdsReggeAreaRtGap.simplicial_regge_vs_happy_network_carrier_counts` | yes | yes | yes | none | `#print axioms CampaignAdsReggeAreaRtGap.simplicial_regge_vs_happy_network_carrier_counts` |
-| `CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_formula` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_formula` |
-| `CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsReggeAreaRtGap.sq_area_subdivision_defect_pos` |
-| `CampaignAdsReggeAreaRtGap.sq_area_subdivision_scales_inv_m` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsReggeAreaRtGap.sq_area_subdivision_scales_inv_m` |
+| `AdsReggeAreaRtGap.happy_mincut_value_distribution_380` | yes | yes | yes | propext | `#print axioms AdsReggeAreaRtGap.happy_mincut_value_distribution_380` |
+| `AdsReggeAreaRtGap.linear_area_subdivision_invariant` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsReggeAreaRtGap.linear_area_subdivision_invariant` |
+| `AdsReggeAreaRtGap.midpoint_and_barycentric_subdivision_witnesses` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsReggeAreaRtGap.midpoint_and_barycentric_subdivision_witnesses` |
+| `AdsReggeAreaRtGap.no_fixed_background_regge_function_matches_all_subregion_cuts` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsReggeAreaRtGap.no_fixed_background_regge_function_matches_all_subregion_cuts` |
+| `AdsReggeAreaRtGap.no_uniform_hinge_to_bond_unit_dictionary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsReggeAreaRtGap.no_uniform_hinge_to_bond_unit_dictionary` |
+| `AdsReggeAreaRtGap.regge_action_linear_in_holonomy_defect` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsReggeAreaRtGap.regge_action_linear_in_holonomy_defect` |
+| `AdsReggeAreaRtGap.regge_curvature_variation_vs_happy_subregion_variation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsReggeAreaRtGap.regge_curvature_variation_vs_happy_subregion_variation` |
+| `AdsReggeAreaRtGap.regge_wdw_flat_vs_curved_dichotomy` | yes | yes | yes | Quot.sound, propext | `#print axioms AdsReggeAreaRtGap.regge_wdw_flat_vs_curved_dichotomy` |
+| `AdsReggeAreaRtGap.simplicial_regge_vs_happy_network_carrier_counts` | yes | yes | yes | none | `#print axioms AdsReggeAreaRtGap.simplicial_regge_vs_happy_network_carrier_counts` |
+| `AdsReggeAreaRtGap.sq_area_subdivision_defect_formula` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsReggeAreaRtGap.sq_area_subdivision_defect_formula` |
+| `AdsReggeAreaRtGap.sq_area_subdivision_defect_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsReggeAreaRtGap.sq_area_subdivision_defect_pos` |
+| `AdsReggeAreaRtGap.sq_area_subdivision_scales_inv_m` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsReggeAreaRtGap.sq_area_subdivision_scales_inv_m` |
 
 - counts toward the grade: yes
 
 ### Python: `checks/independent/ads-regge-area-rt-gap.py`
 
 - file: [checks/independent/ads-regge-area-rt-gap.py](../../../checks/independent/ads-regge-area-rt-gap.py)
-- sha256 (`bytes`): `bc37f3b8b2c19f13eabd786630d6875b4a5c12aa515269c11e22696b7e973d53`
+- sha256 (`bytes`): `30504d898a8d40d9825d3c6cd38bd99248db18ef9f4b29e970e11a725d93e5b1`
 - cited in: node.source, record TFQ-2211
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2211_ads_regge_area_rt_gap.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2211_ads_regge_area_rt_gap.md](../../../dag/derivations/32_ads_cft/tfq_2211_ads_regge_area_rt_gap.md)
-- sha256 (`lf-normalised`): `72de87581492a00032de7b9362b3c2b70c3f68040971b5667dceba9bf63a4d86`
+- sha256 (`lf-normalised`): `f108042097aa9a33821b75d8ca5030c4521db07b25360483d50b8774497fe0d7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2211
 - counts toward the grade: no
@@ -86,7 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/ads-regge-area-rt-gap.md`
 
 - file: [dag/derivations/independent/ads-regge-area-rt-gap.md](../../../dag/derivations/independent/ads-regge-area-rt-gap.md)
-- sha256 (`lf-normalised`): `31660c9b0025af8516900b6e8256d948909cf16ff1dde7da7c22e4353497769d`
+- sha256 (`lf-normalised`): `19ceff37b4bf875a65213b9f9bb56beab86a588d3d2d7ee3529dfc65bab33b64`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -100,14 +100,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_ads-regge-area-rt-gap_lean_mutation.json`
 
 - file: [dag/research/campaign_ads-regge-area-rt-gap_lean_mutation.json](../../../dag/research/campaign_ads-regge-area-rt-gap_lean_mutation.json)
-- sha256 (`lf-normalised`): `f4e0eb0fd26e8d3b8b4a5055a345e247eeb00cd7d3df327ad144c238e2af43c8`
+- sha256 (`lf-normalised`): `8b998339effbc691c15d89a8dfde9555afc133b1a542f7313d6c16f822e15cd9`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json`
 
 - file: [dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json](../../../dag/research/campaign_ads-regge-area-rt-gap_lean_replay.json)
-- sha256 (`lf-normalised`): `1659d320e537302d71b8b38f3c8a36d46777f0d8d130d8d7c110a7a2a16dd5ca`
+- sha256 (`lf-normalised`): `d74751c4a97a5902295650d700eaa072a4209695db1284955fceace6d41af3ab`
 - cited in: node.source
 - counts toward the grade: yes
 

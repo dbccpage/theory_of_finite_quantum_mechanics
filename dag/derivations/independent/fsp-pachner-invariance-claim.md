@@ -142,7 +142,7 @@ here. None is part of the revised node statement.
 
 ## Replay and independent computation
 
-`lean4/CampaignFiniteGroupPachner.lean` is a non-default Lake target. The
+`lean4/FiniteGroupPachner.lean` is a non-default Lake target. The
 replay receipt is
 `dag/research/campaign_fsp-pachner-invariance-claim_lean_replay.json`.
 It records Lean 4.35.0, the pinned Mathlib source, source digests before and

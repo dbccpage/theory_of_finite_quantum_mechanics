@@ -44,7 +44,7 @@ operation_candidates:
   name: Vec
   line: 7
   signature_excerpt: abbrev Vec
-  source: lean4/CampaignConstraintKernelProjector.lean
+  source: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   status: source_candidate_requires_semantic_review
@@ -52,7 +52,7 @@ operation_candidates:
   name: dot
   line: 15
   signature_excerpt: 'def dot (v w : Vec) : Int'
-  source: lean4/CampaignConstraintKernelProjector.lean
+  source: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   status: source_candidate_requires_semantic_review
@@ -60,7 +60,7 @@ operation_candidates:
   name: constraint
   line: 11
   signature_excerpt: 'def constraint (v : Vec) : Vec'
-  source: lean4/CampaignConstraintKernelProjector.lean
+  source: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   status: source_candidate_requires_semantic_review
@@ -68,7 +68,7 @@ operation_candidates:
   name: zero
   line: 9
   signature_excerpt: 'def zero : Vec'
-  source: lean4/CampaignConstraintKernelProjector.lean
+  source: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   status: source_candidate_requires_semantic_review
@@ -76,7 +76,7 @@ operation_candidates:
   name: project
   line: 13
   signature_excerpt: 'def project (v : Vec) : Vec'
-  source: lean4/CampaignConstraintKernelProjector.lean
+  source: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   status: source_candidate_requires_semantic_review
@@ -84,7 +84,7 @@ operation_candidates:
   name: subtract
   line: 17
   signature_excerpt: 'def subtract (v w : Vec) : Vec'
-  source: lean4/CampaignConstraintKernelProjector.lean
+  source: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   status: source_candidate_requires_semantic_review
@@ -95,7 +95,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem constraint_symmetric (v w : Vec) :
         dot (constraint v) w = dot v (constraint w)
-  source: lean4/CampaignConstraintKernelProjector.lean
+  source: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   status: source_candidate_requires_semantic_review
@@ -107,7 +107,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem kernel_characterization (v : Vec) :
         constraint v = zero ↔ v.2.1 = 0 ∧ v.2.2 = 0
-  source: lean4/CampaignConstraintKernelProjector.lean
+  source: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   status: source_candidate_requires_semantic_review
@@ -117,7 +117,7 @@ relation_candidates:
   name: projector_idempotent
   line: 35
   signature_excerpt: 'theorem projector_idempotent (v : Vec) : project (project v) = project v'
-  source: lean4/CampaignConstraintKernelProjector.lean
+  source: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   status: source_candidate_requires_semantic_review
@@ -129,7 +129,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem projected_vector_satisfies_constraint (v : Vec) :
         constraint (project v) = zero
-  source: lean4/CampaignConstraintKernelProjector.lean
+  source: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   status: source_candidate_requires_semantic_review
@@ -141,7 +141,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem projector_fixes_exactly_kernel (v : Vec) :
         project v = v ↔ constraint v = zero
-  source: lean4/CampaignConstraintKernelProjector.lean
+  source: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   status: source_candidate_requires_semantic_review
@@ -153,7 +153,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem projection_residual_orthogonal_to_kernel (v w : Vec)
         (hw : constraint w = zero) : dot (subtract v (project v)) w = 0
-  source: lean4/CampaignConstraintKernelProjector.lean
+  source: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   status: source_candidate_requires_semantic_review
@@ -163,7 +163,7 @@ relation_candidates:
   name: nontrivial_kernel
   line: 57
   signature_excerpt: 'theorem nontrivial_kernel : constraint (1, 0, 0) = zero ∧ (1, 0, 0) ≠ zero'
-  source: lean4/CampaignConstraintKernelProjector.lean
+  source: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   status: source_candidate_requires_semantic_review
@@ -176,7 +176,7 @@ relation_candidates:
     theorem constraint_is_indefinite :
         dot (0, 1, 0) (constraint (0, 1, 0)) > 0 ∧
         dot (0, 0, 1) (constraint (0, 0, 1)) < 0
-  source: lean4/CampaignConstraintKernelProjector.lean
+  source: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   status: source_candidate_requires_semantic_review
@@ -188,89 +188,89 @@ relation_candidates:
   signature_excerpt: |-
     theorem constraint_is_not_projector :
         constraint (constraint (0, 1, 0)) ≠ constraint (0, 1, 0)
-  source: lean4/CampaignConstraintKernelProjector.lean
+  source: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   source_sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_symmetric
+- original_ref: lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.constraint_symmetric
   availability: local
-  symbol: CampaignConstraintKernelProjector.constraint_symmetric
-  path: lean4/CampaignConstraintKernelProjector.lean
+  symbol: ConstraintKernelProjector.constraint_symmetric
+  path: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   declaration_status: declaration_found_not_proof_checked
   line: 19
   role: source_lead_only
-- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.kernel_characterization
+- original_ref: lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.kernel_characterization
   availability: local
-  symbol: CampaignConstraintKernelProjector.kernel_characterization
-  path: lean4/CampaignConstraintKernelProjector.lean
+  symbol: ConstraintKernelProjector.kernel_characterization
+  path: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   declaration_status: declaration_found_not_proof_checked
   line: 24
   role: source_lead_only
-- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projector_idempotent
+- original_ref: lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.projector_idempotent
   availability: local
-  symbol: CampaignConstraintKernelProjector.projector_idempotent
-  path: lean4/CampaignConstraintKernelProjector.lean
+  symbol: ConstraintKernelProjector.projector_idempotent
+  path: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   declaration_status: declaration_found_not_proof_checked
   line: 35
   role: source_lead_only
-- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projected_vector_satisfies_constraint
+- original_ref: lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.projected_vector_satisfies_constraint
   availability: local
-  symbol: CampaignConstraintKernelProjector.projected_vector_satisfies_constraint
-  path: lean4/CampaignConstraintKernelProjector.lean
+  symbol: ConstraintKernelProjector.projected_vector_satisfies_constraint
+  path: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   declaration_status: declaration_found_not_proof_checked
   line: 37
   role: source_lead_only
-- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projector_fixes_exactly_kernel
+- original_ref: lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.projector_fixes_exactly_kernel
   availability: local
-  symbol: CampaignConstraintKernelProjector.projector_fixes_exactly_kernel
-  path: lean4/CampaignConstraintKernelProjector.lean
+  symbol: ConstraintKernelProjector.projector_fixes_exactly_kernel
+  path: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   declaration_status: declaration_found_not_proof_checked
   line: 40
   role: source_lead_only
-- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel
+- original_ref: lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.projection_residual_orthogonal_to_kernel
   availability: local
-  symbol: CampaignConstraintKernelProjector.projection_residual_orthogonal_to_kernel
-  path: lean4/CampaignConstraintKernelProjector.lean
+  symbol: ConstraintKernelProjector.projection_residual_orthogonal_to_kernel
+  path: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   declaration_status: declaration_found_not_proof_checked
   line: 52
   role: source_lead_only
-- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.nontrivial_kernel
+- original_ref: lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.nontrivial_kernel
   availability: local
-  symbol: CampaignConstraintKernelProjector.nontrivial_kernel
-  path: lean4/CampaignConstraintKernelProjector.lean
+  symbol: ConstraintKernelProjector.nontrivial_kernel
+  path: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   declaration_status: declaration_found_not_proof_checked
   line: 57
   role: source_lead_only
-- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_is_indefinite
+- original_ref: lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.constraint_is_indefinite
   availability: local
-  symbol: CampaignConstraintKernelProjector.constraint_is_indefinite
-  path: lean4/CampaignConstraintKernelProjector.lean
+  symbol: ConstraintKernelProjector.constraint_is_indefinite
+  path: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   declaration_status: declaration_found_not_proof_checked
   line: 60
   role: source_lead_only
-- original_ref: lean4/CampaignConstraintKernelProjector.lean::CampaignConstraintKernelProjector.constraint_is_not_projector
+- original_ref: lean4/ConstraintKernelProjector.lean::ConstraintKernelProjector.constraint_is_not_projector
   availability: local
-  symbol: CampaignConstraintKernelProjector.constraint_is_not_projector
-  path: lean4/CampaignConstraintKernelProjector.lean
+  symbol: ConstraintKernelProjector.constraint_is_not_projector
+  path: lean4/ConstraintKernelProjector.lean
   repository: this_repository
   sha256: 4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6
   declaration_status: declaration_found_not_proof_checked

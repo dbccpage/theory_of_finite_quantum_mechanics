@@ -17,9 +17,9 @@ Gaussian-rational matrix algebra and its order.  Derived structure: the trace fo
 no real or complex numbers, no projection-lattice Gleason theorem.
 -/
 
-namespace BornFable.HermitianCarrier
+namespace BornFinite.HermitianCarrier
 
-open Matrix BornFable
+open Matrix BornFinite
 
 variable {n : ℕ}
 
@@ -280,35 +280,35 @@ theorem pureZero_apply (E : Matrix (Fin (n + 1)) (Fin (n + 1)) GaussRat) :
 theorem pureZero_density : density (pureZero (n := n)) = single 0 0 1 :=
   ofState_density _ _ _
 
-end BornFable.HermitianCarrier
+end BornFinite.HermitianCarrier
 
-#print axioms BornFable.HermitianCarrier.space_isOrderUnit
-#print axioms BornFable.HermitianCarrier.ext_effect
-#print axioms BornFable.HermitianCarrier.ext_one
-#print axioms BornFable.HermitianCarrier.ext_nonneg
-#print axioms BornFable.HermitianCarrier.ext_eq_re_trace
-#print axioms BornFable.HermitianCarrier.density_effect
-#print axioms BornFable.HermitianCarrier.density_re_trace
-#print axioms BornFable.HermitianCarrier.density_psd
-#print axioms BornFable.HermitianCarrier.ext_skew_zero
-#print axioms BornFable.HermitianCarrier.single_conjTranspose
-#print axioms BornFable.HermitianCarrier.single_neg_eq
-#print axioms BornFable.HermitianCarrier.skew_single_sub
-#print axioms BornFable.HermitianCarrier.skew_single_I_add
-#print axioms BornFable.HermitianCarrier.density_hermitian
-#print axioms BornFable.HermitianCarrier.density_trace
-#print axioms BornFable.HermitianCarrier.traceWith_apply
-#print axioms BornFable.HermitianCarrier.density_unique
-#print axioms BornFable.HermitianCarrier.born_representation
-#print axioms BornFable.HermitianCarrier.density_is_state
-#print axioms BornFable.HermitianCarrier.born_rule
-#print axioms BornFable.HermitianCarrier.ofState_density
-#print axioms BornFable.HermitianCarrier.re_trace_mul_nonneg_of_effect
-#print axioms BornFable.HermitianCarrier.bornValuation_apply
-#print axioms BornFable.HermitianCarrier.bornValuation_density
-#print axioms BornFable.HermitianCarrier.state_valuation_correspondence
-#print axioms BornFable.HermitianCarrier.density_hasGram
-#print axioms BornFable.HermitianCarrier.re_trace_single_zero_mul
-#print axioms BornFable.HermitianCarrier.re_apply_zero_zero_eq_hf
-#print axioms BornFable.HermitianCarrier.pureZero_apply
-#print axioms BornFable.HermitianCarrier.pureZero_density
+#print axioms BornFinite.HermitianCarrier.space_isOrderUnit
+#print axioms BornFinite.HermitianCarrier.ext_effect
+#print axioms BornFinite.HermitianCarrier.ext_one
+#print axioms BornFinite.HermitianCarrier.ext_nonneg
+#print axioms BornFinite.HermitianCarrier.ext_eq_re_trace
+#print axioms BornFinite.HermitianCarrier.density_effect
+#print axioms BornFinite.HermitianCarrier.density_re_trace
+#print axioms BornFinite.HermitianCarrier.density_psd
+#print axioms BornFinite.HermitianCarrier.ext_skew_zero
+#print axioms BornFinite.HermitianCarrier.single_conjTranspose
+#print axioms BornFinite.HermitianCarrier.single_neg_eq
+#print axioms BornFinite.HermitianCarrier.skew_single_sub
+#print axioms BornFinite.HermitianCarrier.skew_single_I_add
+#print axioms BornFinite.HermitianCarrier.density_hermitian
+#print axioms BornFinite.HermitianCarrier.density_trace
+#print axioms BornFinite.HermitianCarrier.traceWith_apply
+#print axioms BornFinite.HermitianCarrier.density_unique
+#print axioms BornFinite.HermitianCarrier.born_representation
+#print axioms BornFinite.HermitianCarrier.density_is_state
+#print axioms BornFinite.HermitianCarrier.born_rule
+#print axioms BornFinite.HermitianCarrier.ofState_density
+#print axioms BornFinite.HermitianCarrier.re_trace_mul_nonneg_of_effect
+#print axioms BornFinite.HermitianCarrier.bornValuation_apply
+#print axioms BornFinite.HermitianCarrier.bornValuation_density
+#print axioms BornFinite.HermitianCarrier.state_valuation_correspondence
+#print axioms BornFinite.HermitianCarrier.density_hasGram
+#print axioms BornFinite.HermitianCarrier.re_trace_single_zero_mul
+#print axioms BornFinite.HermitianCarrier.re_apply_zero_zero_eq_hf
+#print axioms BornFinite.HermitianCarrier.pureZero_apply
+#print axioms BornFinite.HermitianCarrier.pureZero_density

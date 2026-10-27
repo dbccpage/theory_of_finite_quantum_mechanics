@@ -61,14 +61,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H018Channel.lean`
+### Lean: `lean4/HilbertWalkChannel.lean`
 
-- file: [lean4/H018Channel.lean](../../../lean4/H018Channel.lean)
-- sha256 (`bytes`): `159240e630391d183b9a471093131aaf5eeb4b58c1632b19b0d2bb80d78927e3`
+- file: [lean4/HilbertWalkChannel.lean](../../../lean4/HilbertWalkChannel.lean)
+- sha256 (`bytes`): `1ccdeea9abc91a85575d6d3f775cd685d795aea2ea081a24bc6251a6958f88d6`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H018Channel`): recorded sha256 `159240e630391d183b9a471093131aaf5eeb4b58c1632b19b0d2bb80d78927e3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H018Channel`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `HilbertWalkChannel`): recorded sha256 `1ccdeea9abc91a85575d6d3f775cd685d795aea2ea081a24bc6251a6958f88d6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build HilbertWalkChannel`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|

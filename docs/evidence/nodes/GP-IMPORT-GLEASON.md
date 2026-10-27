@@ -46,23 +46,23 @@ imported (OracleNeeded firewall, GTOC-8)
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGpImportGleason.lean`
+### Lean: `lean4/GleasonImport.lean`
 
-- file: [lean4/CampaignGpImportGleason.lean](../../../lean4/CampaignGpImportGleason.lean)
-- sha256 (`bytes`): `13a68c5bb1a92476960aa77de7ef1dd8dfe1a912ebc9ebb325fab5c1bbffa06a`
-- cited in: node.lean, receipt dag/research/campaign_gp-import-gleason_lean_replay.json (CampaignGpImportGleason), record TFQ-1031
+- file: [lean4/GleasonImport.lean](../../../lean4/GleasonImport.lean)
+- sha256 (`bytes`): `1780f3c3039fcf145a0e05c4521be94eca2db8f76c4f0f588507efd776a9655a`
+- cited in: node.lean, receipt dag/research/campaign_gp-import-gleason_lean_replay.json (GleasonImport), record TFQ-1031
 - replay: `verified`
-  - receipt [dag/research/campaign_gp-import-gleason_lean_replay.json](../../../dag/research/campaign_gp-import-gleason_lean_replay.json) (module `CampaignGpImportGleason`): recorded sha256 `13a68c5bb1a92476960aa77de7ef1dd8dfe1a912ebc9ebb325fab5c1bbffa06a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGpImportGleason`
+  - receipt [dag/research/campaign_gp-import-gleason_lean_replay.json](../../../dag/research/campaign_gp-import-gleason_lean_replay.json) (module `GleasonImport`): recorded sha256 `1780f3c3039fcf145a0e05c4521be94eca2db8f76c4f0f588507efd776a9655a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build GleasonImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignGpImportGleason.dimensionExtraFails` | yes | yes | yes | none | `#print axioms CampaignGpImportGleason.dimensionExtraFails` |
-| `CampaignGpImportGleason.falseIndicatorDisagrees` | yes | yes | yes | none | `#print axioms CampaignGpImportGleason.falseIndicatorDisagrees` |
-| `CampaignGpImportGleason.noThreeDistinctLabels` | yes | yes | yes | none | `#print axioms CampaignGpImportGleason.noThreeDistinctLabels` |
-| `CampaignGpImportGleason.squaredWeights` | yes | yes | yes | none | `#print axioms CampaignGpImportGleason.squaredWeights` |
-| `CampaignGpImportGleason.twoLabelsBelowThree` | yes | yes | yes | none | `#print axioms CampaignGpImportGleason.twoLabelsBelowThree` |
-| `CampaignGpImportGleason.unitPairingsAgree` | yes | yes | yes | none | `#print axioms CampaignGpImportGleason.unitPairingsAgree` |
+| `GleasonImport.dimensionExtraFails` | yes | yes | yes | none | `#print axioms GleasonImport.dimensionExtraFails` |
+| `GleasonImport.falseIndicatorDisagrees` | yes | yes | yes | none | `#print axioms GleasonImport.falseIndicatorDisagrees` |
+| `GleasonImport.noThreeDistinctLabels` | yes | yes | yes | none | `#print axioms GleasonImport.noThreeDistinctLabels` |
+| `GleasonImport.squaredWeights` | yes | yes | yes | none | `#print axioms GleasonImport.squaredWeights` |
+| `GleasonImport.twoLabelsBelowThree` | yes | yes | yes | none | `#print axioms GleasonImport.twoLabelsBelowThree` |
+| `GleasonImport.unitPairingsAgree` | yes | yes | yes | none | `#print axioms GleasonImport.unitPairingsAgree` |
 | `dimensionExtraFails` | yes | yes | yes | none | `#print axioms dimensionExtraFails` |
 | `falseIndicatorDisagrees` | yes | yes | yes | none | `#print axioms falseIndicatorDisagrees` |
 | `noThreeDistinctLabels` | yes | yes | yes | none | `#print axioms noThreeDistinctLabels` |
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1031_gp_import_gleason.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1031_gp_import_gleason.md](../../../dag/derivations/08_l1_to_l2/tfq_1031_gp_import_gleason.md)
-- sha256 (`lf-normalised`): `9e40dbf9a233ec56ad0b6a7b3a30b1986aca27ff47c768f220e3eae9dcf5a7da`
+- sha256 (`lf-normalised`): `124d026e745bc7b05c2b3d2c00382c1069dedd4205e2803304699be8a601542b`
 - generated view: listed, not counted
 - cited in: record TFQ-1031
 - counts toward the grade: no

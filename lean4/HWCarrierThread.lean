@@ -2,24 +2,24 @@
 
 
 import HWKernel
-import H000FinitePresentedCarrier
-import H002ReportDynamics
-import H004FreeLinearization
-import H008PhaseBlindPresentation
-import H009PhaseFiber
-import H010InterferenceNonDescent
-import H014TensorCompositionBoundary
+import FinitePresentedCarrier
+import ReportDynamics
+import FreeLinearization
+import HilbertWalkPhaseBlindPresentation
+import PhaseFiber
+import InterferenceNonDescent
+import TensorCompositionBoundary
 
-namespace FableHilbertWalk20260819.HWCarrierThread
+namespace HilbertWalk.HWCarrierThread
 
-open FableHilbertWalk20260819.HWKernel
-open FableHilbertWalk20260819.H000
+open HilbertWalk.HWKernel
+open HilbertWalk.FinitePresentedCarrier
   (boolFixture PresentedCarrier sameReport sameReport_iff)
-open FableHilbertWalk20260819.H002 (pushforward)
-open FableHilbertWalk20260819.H004 (Vec)
-open FableHilbertWalk20260819.H008 (psi1 psi2 phaseBlind equal_weights)
-open FableHilbertWalk20260819.H009 (relative_phase_in_fiber phasePD)
-open FableHilbertWalk20260819.H010 (mix_separates no_descent_through_fiber readout)
+open HilbertWalk.ReportDynamics (pushforward)
+open HilbertWalk.FreeLinearization (Vec)
+open HilbertWalk.PhaseBlindPresentation (psi1 psi2 phaseBlind equal_weights)
+open HilbertWalk.PhaseFiber (relative_phase_in_fiber phasePD)
+open HilbertWalk.InterferenceNonDescent (mix_separates no_descent_through_fiber readout)
 
 def reports : PresentedCarrier (Bool × Bool) Bool :=
   boolFixture
@@ -31,7 +31,7 @@ theorem reports_are_the_bool_labels :
 #print axioms reports_are_the_bool_labels
 
 theorem superposition_is_the_phase_blind_fiber :
-    GrokPdNight20260814.Core.ZeroRel (phasePD Bool) psi1 psi2 ∧
+    ProjectionFiber.Core.ZeroRel (phasePD Bool) psi1 psi2 ∧
       psi1 ≠ psi2 :=
   relative_phase_in_fiber
 
@@ -48,9 +48,9 @@ theorem mixing_leftover_on_these_reports :
 theorem entanglement_needs_a_tensor_host :
     ¬ ∃ u v : Bool → Int,
       ∀ p : Bool × Bool,
-        FableHilbertWalk20260819.H014.bell p =
-          FableHilbertWalk20260819.H014.tensor u v p :=
-  FableHilbertWalk20260819.H014.bell_not_product
+        HilbertWalk.TensorCompositionBoundary.bell p =
+          HilbertWalk.TensorCompositionBoundary.tensor u v p :=
+  HilbertWalk.TensorCompositionBoundary.bell_not_product
 
 #print axioms entanglement_needs_a_tensor_host
 
@@ -154,7 +154,7 @@ theorem one_carrier_through_mixing_leftover :
 
 #print axioms one_carrier_through_mixing_leftover
 
-end FableHilbertWalk20260819.HWCarrierThread
+end HilbertWalk.HWCarrierThread
 
 private def l5aProvenance : String :=
   "Origin: lean4/HWCarrierThread.lean Claim: reports_are_the_bool_labels AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

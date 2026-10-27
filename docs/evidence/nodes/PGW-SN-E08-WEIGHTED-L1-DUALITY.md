@@ -32,7 +32,7 @@ E08 is a declared mathematical construction that grammar cases do not verify; Ad
 
 ## Source status
 
-002_oesn levels/level_08 (declared construction); Lean CampaignSnE08WeightedL1Duality (Fourier-Motzkin LP strong duality over Q)
+002_oesn levels/level_08 (declared construction); Lean WeightedL1Duality (Fourier-Motzkin LP strong duality over Q)
 
 ## Review
 
@@ -42,31 +42,31 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignSnE08WeightedL1Duality.lean`
+### Lean: `lean4/WeightedL1Duality.lean`
 
-- file: [lean4/CampaignSnE08WeightedL1Duality.lean](../../../lean4/CampaignSnE08WeightedL1Duality.lean)
-- sha256 (`bytes`): `f35d7b06b68886a27305b2120f72b1336115f3bcdb587ce5ba50827131e8c687`
-- cited in: node.lean, receipt dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json (CampaignSnE08WeightedL1Duality), record TFQ-0522
+- file: [lean4/WeightedL1Duality.lean](../../../lean4/WeightedL1Duality.lean)
+- sha256 (`bytes`): `d817dcb21291f1ca63d5f7b3761c9921506a029105073a4202af19026ea794bd`
+- cited in: node.lean, receipt dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json (WeightedL1Duality), record TFQ-0522
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json](../../../dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json) (module `CampaignSnE08WeightedL1Duality`): recorded sha256 `f35d7b06b68886a27305b2120f72b1336115f3bcdb587ce5ba50827131e8c687` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignSnE08WeightedL1Duality`
+  - receipt [dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json](../../../dag/research/campaign_pgw-sn-e08-weighted-l1-duality_lean_replay.json) (module `WeightedL1Duality`): recorded sha256 `d817dcb21291f1ca63d5f7b3761c9921506a029105073a4202af19026ea794bd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build WeightedL1Duality`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignSnE08WeightedL1Duality.adjunctionCochain_not_cycD_transpose` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignSnE08WeightedL1Duality.adjunctionCochain_not_cycD_transpose` |
-| `CampaignSnE08WeightedL1Duality.adjunctionCochain_section_retraction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignSnE08WeightedL1Duality.adjunctionCochain_section_retraction` |
-| `CampaignSnE08WeightedL1Duality.certificate_optimal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignSnE08WeightedL1Duality.certificate_optimal` |
-| `CampaignSnE08WeightedL1Duality.cyc_dual_feasible` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignSnE08WeightedL1Duality.cyc_dual_feasible` |
-| `CampaignSnE08WeightedL1Duality.cyc_harmonic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignSnE08WeightedL1Duality.cyc_harmonic` |
-| `CampaignSnE08WeightedL1Duality.cyc_optimum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignSnE08WeightedL1Duality.cyc_optimum` |
-| `CampaignSnE08WeightedL1Duality.cyc_residuals_differ` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignSnE08WeightedL1Duality.cyc_residuals_differ` |
-| `CampaignSnE08WeightedL1Duality.e08_rational` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignSnE08WeightedL1Duality.e08_rational` |
-| `CampaignSnE08WeightedL1Duality.farkas` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignSnE08WeightedL1Duality.farkas` |
-| `CampaignSnE08WeightedL1Duality.farkas_fintype` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignSnE08WeightedL1Duality.farkas_fintype` |
-| `CampaignSnE08WeightedL1Duality.lp_strong_duality` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignSnE08WeightedL1Duality.lp_strong_duality` |
-| `CampaignSnE08WeightedL1Duality.lp_weak_duality` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignSnE08WeightedL1Duality.lp_weak_duality` |
-| `CampaignSnE08WeightedL1Duality.weak_duality` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignSnE08WeightedL1Duality.weak_duality` |
-| `CampaignSnE08WeightedL1Duality.weighted_l1_strong_duality` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignSnE08WeightedL1Duality.weighted_l1_strong_duality` |
+| `WeightedL1Duality.adjunctionCochain_not_cycD_transpose` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WeightedL1Duality.adjunctionCochain_not_cycD_transpose` |
+| `WeightedL1Duality.adjunctionCochain_section_retraction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WeightedL1Duality.adjunctionCochain_section_retraction` |
+| `WeightedL1Duality.certificate_optimal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WeightedL1Duality.certificate_optimal` |
+| `WeightedL1Duality.cyc_dual_feasible` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WeightedL1Duality.cyc_dual_feasible` |
+| `WeightedL1Duality.cyc_harmonic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WeightedL1Duality.cyc_harmonic` |
+| `WeightedL1Duality.cyc_optimum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WeightedL1Duality.cyc_optimum` |
+| `WeightedL1Duality.cyc_residuals_differ` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WeightedL1Duality.cyc_residuals_differ` |
+| `WeightedL1Duality.e08_rational` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WeightedL1Duality.e08_rational` |
+| `WeightedL1Duality.farkas` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WeightedL1Duality.farkas` |
+| `WeightedL1Duality.farkas_fintype` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WeightedL1Duality.farkas_fintype` |
+| `WeightedL1Duality.lp_strong_duality` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WeightedL1Duality.lp_strong_duality` |
+| `WeightedL1Duality.lp_weak_duality` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WeightedL1Duality.lp_weak_duality` |
+| `WeightedL1Duality.weak_duality` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WeightedL1Duality.weak_duality` |
+| `WeightedL1Duality.weighted_l1_strong_duality` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WeightedL1Duality.weighted_l1_strong_duality` |
 | `adjunctionCochain_not_cycD_transpose` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms adjunctionCochain_not_cycD_transpose` |
 | `certificate_optimal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms certificate_optimal` |
 | `cyc_harmonic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms cyc_harmonic` |
@@ -95,7 +95,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md](../../../dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md)
-- sha256 (`lf-normalised`): `d019f1a9fbcf147c29064ef17e6dd5572aa0b0716aaf297bc657275f8c133cc5`
+- sha256 (`lf-normalised`): `f704453398b9e328b1a39135e3b884fba20dff9d49f68d39e5cb29a2abbcf4b8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0522
 - counts toward the grade: no
@@ -103,7 +103,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pgw-sn-e08-weighted-l1-duality.md`
 
 - file: [dag/derivations/independent/pgw-sn-e08-weighted-l1-duality.md](../../../dag/derivations/independent/pgw-sn-e08-weighted-l1-duality.md)
-- sha256 (`lf-normalised`): `588891092b44fc6a7f39f2c8b131d0c3c81caca960ecf8a3b513e70e0f41192d`
+- sha256 (`lf-normalised`): `fa27c797d38f309352500d78747f9cd2e588a18dbcc1f6a80221d424315938d7`
 - cited in: node.source
 - counts toward the grade: yes
 

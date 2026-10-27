@@ -5,7 +5,7 @@ Provenance (recovery, 2026-10-21)
   status    : ported to Lean 4.35.0; statements unchanged
   module    : AuthIncompleteness.PDBridge
   NOT BUILT / NOT IN LAKEFILE ROOTS: imports J011's candidate
-  `J011_minimal_publication` (namespace `GrokPdNight20260814`), whose source is
+  `J011_minimal_publication` (namespace `ProjectionFiber`), whose source is
   not present in this repository or in the recovered folder. Statements are
   unchanged; the import is kept verbatim so the file elaborates unchanged once
   J011 is supplied.
@@ -42,8 +42,8 @@ AuthorityEffect: None.
 
 namespace AuthorizationIncompleteness.PrimitiveDifferenceP0Bridge
 
-open GrokPdNight20260814.Core
-open GrokPdNight20260814.J011
+open ProjectionFiber.Core
+open ProjectionFiber.J011
 
 /-- A report-only decision is totally correct when validity factors
     through the declared report. -/

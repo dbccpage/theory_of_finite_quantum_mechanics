@@ -42,15 +42,29 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignPgwWdpBridgeOngoing.lean`
+### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean`
 
-- file: [lean4/CampaignPgwWdpBridgeOngoing.lean](../../../lean4/CampaignPgwWdpBridgeOngoing.lean)
+- file: [lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean)
+- sha256 (`bytes`): `f5903c5710b93073138dc258841b75247dfb4f9a4d9b8cba8975934d000f44a3`
+- cited in: node.lean, record TFQ-0555
+- replay: `none`
+- check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `normal_preserves_round_sums` | yes | yes | yes | - | `#print axioms normal_preserves_round_sums` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/PregenesisWdpBridgeOngoing.lean`
+
+- file: [lean4/PregenesisWdpBridgeOngoing.lean](../../../lean4/PregenesisWdpBridgeOngoing.lean)
 - sha256 (`bytes`): `70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a`
-- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json (CampaignPgwWdpBridgeOngoing), receipt dag/research/pr_357_review_replay.json (CampaignPgwWdpBridgeOngoing), record TFQ-0555
+- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json (PregenesisWdpBridgeOngoing), receipt dag/research/pr_357_review_replay.json (PregenesisWdpBridgeOngoing), record TFQ-0555
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json](../../../dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json) (module `CampaignPgwWdpBridgeOngoing`): recorded sha256 `70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_357_review_replay.json](../../../dag/research/pr_357_review_replay.json) (module `CampaignPgwWdpBridgeOngoing`): recorded sha256 `70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignPgwWdpBridgeOngoing`
+  - receipt [dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json](../../../dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json) (module `PregenesisWdpBridgeOngoing`): recorded sha256 `70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_357_review_replay.json](../../../dag/research/pr_357_review_replay.json) (module `PregenesisWdpBridgeOngoing`): recorded sha256 `70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build PregenesisWdpBridgeOngoing`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -65,20 +79,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `silent_loop_not_coboundary` | yes | yes | yes | Quot.sound, propext | `#print axioms silent_loop_not_coboundary` |
 | `two_way_difference` | yes | yes | yes | none | `#print axioms two_way_difference` |
 | `two_way_sum` | yes | yes | yes | none | `#print axioms two_way_sum` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean`
-
-- file: [lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean)
-- sha256 (`bytes`): `f5903c5710b93073138dc258841b75247dfb4f9a4d9b8cba8975934d000f44a3`
-- cited in: node.lean, record TFQ-0555
-- replay: `none`
-- check: `cd lean4 && lake build   # the library that contains lean4/Imported/WitnessedDifference/WitnessedDifference/RootGaugeNormalization.lean`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `normal_preserves_round_sums` | yes | yes | yes | - | `#print axioms normal_preserves_round_sums` |
 
 - counts toward the grade: yes
 
@@ -118,7 +118,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md`
 
 - file: [dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md](../../../dag/derivations/06_wdp/tfq_0555_wdp_bridge_ongoing_to_window.md)
-- sha256 (`lf-normalised`): `75a85f63ce69b1f12513af679eeabcd0823922bb136570af63c3c61cfe365dd8`
+- sha256 (`lf-normalised`): `07b9f8b84458b5fce48ee325454528eeb2673f5d82535477052da2535f649701`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0555
 - counts toward the grade: no
@@ -133,7 +133,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json`
 
 - file: [dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json](../../../dag/research/campaign_pgw-wdp-bridge-ongoing-to-window_lean_replay.json)
-- sha256 (`lf-normalised`): `41e1e2fc219982a3db616fd8080b0b9ede517c31e7fb877c476edc895bdb208c`
+- sha256 (`lf-normalised`): `b76132c50ae7b593cba4a85ecc8a0b97ab0256cd706e1632bf63705de9c8a65d`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -2,7 +2,7 @@ use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::One;
 
-pub const PROVENANCE: &str = "Origin: lean4/H021TriangleNetworkComplexCarrier.lean\nClaim: urn:tfqm:H021:one-plus-zeta3-plus-zeta3-squared-is-zero\nAuthorityEffect: None";
+pub const PROVENANCE: &str = "Origin: lean4/TriangleNetworkComplexCarrier.lean\nClaim: urn:tfqm:H021:one-plus-zeta3-plus-zeta3-squared-is-zero\nAuthorityEffect: None";
 
 pub const MUTATION_KILL_RECORD: &str = "killed=3";
 

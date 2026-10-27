@@ -27,15 +27,15 @@ GAP-C500-B01..B10 RESOLVED_WITH_SCOPED_EVIDENCE: "original target contract remai
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignFqGapC500OriginalTargets.lean::spanLen`
-- `lean4/CampaignFqGapC500OriginalTargets.lean::abut`
-- `lean4/CampaignFqGapC500OriginalTargets.lean::tenRunEndpoints`
-- `lean4/CampaignFqGapC500OriginalTargets.lean::tenRunCover`
-- `lean4/CampaignFqGapC500OriginalTargets.lean::clauseCountsLength`
-- `lean4/CampaignFqGapC500OriginalTargets.lean::clauseCountSum`
-- `lean4/CampaignFqGapC500OriginalTargets.lean::lastClauseCountStrict`
-- `lean4/CampaignFqGapC500OriginalTargets.lean::block10ClauseCount`
-- `lean4/CampaignFqGapC500OriginalTargets.lean::block10ClausesNodup`
+- `lean4/OriginalTargetNumerals.lean::spanLen`
+- `lean4/OriginalTargetNumerals.lean::abut`
+- `lean4/OriginalTargetNumerals.lean::tenRunEndpoints`
+- `lean4/OriginalTargetNumerals.lean::tenRunCover`
+- `lean4/OriginalTargetNumerals.lean::clauseCountsLength`
+- `lean4/OriginalTargetNumerals.lean::clauseCountSum`
+- `lean4/OriginalTargetNumerals.lean::lastClauseCountStrict`
+- `lean4/OriginalTargetNumerals.lean::block10ClauseCount`
+- `lean4/OriginalTargetNumerals.lean::block10ClausesNodup`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

@@ -32,7 +32,7 @@ encoded_instance_reduction has the same type as reach_problem_not_computable. Ea
 
 ### Lean 4 Theorems
 - `lean4/GenesisCompUniv.lean::reach_problem_not_computable`
-- `lean4/CampaignCompC7EncodedInstanceReduction.lean::CampaignCompC7EncodedInstanceReduction.encoded_instance_reduction`
+- `lean4/ComputationC7EncodedInstanceReduction.lean::ComputationC7EncodedInstanceReduction.encoded_instance_reduction`
 
 ### Rust Certifiers
 - *none*
@@ -56,4 +56,4 @@ encoded_instance_reduction has the same type as reach_problem_not_computable. Ea
 - **Cited Sources**:
   - `dag/research/genesis_to_universal_computation.md:129-134`
   - `lean4/GenesisCompUniv.lean:329-339`
-  - `lean4/CampaignCompC7EncodedInstanceReduction.lean:13-17`
+  - `lean4/ComputationC7EncodedInstanceReduction.lean:13-17`

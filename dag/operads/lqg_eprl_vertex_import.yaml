@@ -30,7 +30,7 @@ target:
   - external:arXiv:0711.0146
   - external:arXiv:0708.1595
   - external:arXiv:1205.2019
-  - lean4/CampaignLqgEprlVertexImport.lean
+  - lean4/LqgEprlVertexImport.lean
   - dag/derivations/independent/lqg-eprl-vertex-import.md
   - checks/independent/lqg-eprl-vertex-import.py
   paper_refs:
@@ -54,7 +54,7 @@ operation_candidates:
   name: jPlus
   line: 17
   signature_excerpt: 'def jPlus (gamma k : Rat) : Rat'
-  source: lean4/CampaignLqgEprlVertexImport.lean
+  source: lean4/LqgEprlVertexImport.lean
   repository: this_repository
   source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
   status: source_candidate_requires_semantic_review
@@ -62,7 +62,7 @@ operation_candidates:
   name: jMinus
   line: 19
   signature_excerpt: 'def jMinus (gamma k : Rat) : Rat'
-  source: lean4/CampaignLqgEprlVertexImport.lean
+  source: lean4/LqgEprlVertexImport.lean
   repository: this_repository
   source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
   status: source_candidate_requires_semantic_review
@@ -70,7 +70,7 @@ operation_candidates:
   name: nLorentz
   line: 21
   signature_excerpt: 'def nLorentz (k : Rat) : Rat'
-  source: lean4/CampaignLqgEprlVertexImport.lean
+  source: lean4/LqgEprlVertexImport.lean
   repository: this_repository
   source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
   status: source_candidate_requires_semantic_review
@@ -78,7 +78,7 @@ operation_candidates:
   name: rhoLorentz
   line: 23
   signature_excerpt: 'def rhoLorentz (gamma k : Rat) : Rat'
-  source: lean4/CampaignLqgEprlVertexImport.lean
+  source: lean4/LqgEprlVertexImport.lean
   repository: this_repository
   source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
   status: source_candidate_requires_semantic_review
@@ -92,7 +92,7 @@ relation_candidates:
           jMinus gamma k = (1 - gamma) * k / 2 ∧
             jPlus gamma k + jMinus gamma k = k ∧
               jPlus gamma k - jMinus gamma k = gamma * k
-  source: lean4/CampaignLqgEprlVertexImport.lean
+  source: lean4/LqgEprlVertexImport.lean
   repository: this_repository
   source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
   status: source_candidate_requires_semantic_review
@@ -107,7 +107,7 @@ relation_candidates:
           jMinus gamma k = (gamma - 1) * k / 2 ∧
             jPlus gamma k - jMinus gamma k = k ∧
               jPlus gamma k + jMinus gamma k = gamma * k
-  source: lean4/CampaignLqgEprlVertexImport.lean
+  source: lean4/LqgEprlVertexImport.lean
   repository: this_repository
   source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
   status: source_candidate_requires_semantic_review
@@ -123,7 +123,7 @@ relation_candidates:
     \ (3 : Rat) 2 - jMinus (3 : Rat) 2 = 2 ∧\n                    jPlus (3 : Rat) 2 + jMinus (3 : Rat)\
     \ 2 = 6 ∧\n                      jPlus (3 : Rat) 2 + jMinus (3 : Rat) 2 ≠ (2 : Rat) ∧\n          \
     \              jPlus 1 2 = 2 ∧\n                  "
-  source: lean4/CampaignLqgEprlVertexImport.lean
+  source: lean4/LqgEprlVertexImport.lean
   repository: this_repository
   source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
   status: source_candidate_requires_semantic_review
@@ -139,7 +139,7 @@ relation_candidates:
             nLorentz k / 2 = k ∧
               rhoLorentz gamma k = gamma * nLorentz k ∧
                 rhoLorentz gamma k = 2 * gamma * (nLorentz k / 2)
-  source: lean4/CampaignLqgEprlVertexImport.lean
+  source: lean4/LqgEprlVertexImport.lean
   repository: this_repository
   source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
   status: source_candidate_requires_semantic_review
@@ -155,7 +155,7 @@ relation_candidates:
             nLorentz 2 / 2 = 2 ∧
               (1 / 2 : Rat) * (nLorentz 2 / 2) = 1 ∧
                 rhoLorentz (1 / 2) 2 = 2 * ((1 / 2 : Rat) * (nLorentz 2 / 2))
-  source: lean4/CampaignLqgEprlVertexImport.lean
+  source: lean4/LqgEprlVertexImport.lean
   repository: this_repository
   source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
   status: source_candidate_requires_semantic_review
@@ -165,62 +165,62 @@ relation_candidates:
   name: five_tetrahedron_pairs
   line: 139
   signature_excerpt: 'theorem five_tetrahedron_pairs : 5 * (5 - 1) / 2 = 10'
-  source: lean4/CampaignLqgEprlVertexImport.lean
+  source: lean4/LqgEprlVertexImport.lean
   repository: this_repository
   source_sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignLqgEprlVertexImport.lean::euclidean_below
+- original_ref: lean4/LqgEprlVertexImport.lean::euclidean_below
   availability: local
   symbol: euclidean_below
-  path: lean4/CampaignLqgEprlVertexImport.lean
+  path: lean4/LqgEprlVertexImport.lean
   repository: this_repository
   sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
   declaration_status: declaration_found_not_proof_checked
   line: 25
   role: source_lead_only
-- original_ref: lean4/CampaignLqgEprlVertexImport.lean::euclidean_above
+- original_ref: lean4/LqgEprlVertexImport.lean::euclidean_above
   availability: local
   symbol: euclidean_above
-  path: lean4/CampaignLqgEprlVertexImport.lean
+  path: lean4/LqgEprlVertexImport.lean
   repository: this_repository
   sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
   declaration_status: declaration_found_not_proof_checked
   line: 39
   role: source_lead_only
-- original_ref: lean4/CampaignLqgEprlVertexImport.lean::recorded_euclidean_points
+- original_ref: lean4/LqgEprlVertexImport.lean::recorded_euclidean_points
   availability: local
   symbol: recorded_euclidean_points
-  path: lean4/CampaignLqgEprlVertexImport.lean
+  path: lean4/LqgEprlVertexImport.lean
   repository: this_repository
   sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
   declaration_status: declaration_found_not_proof_checked
   line: 55
   role: source_lead_only
-- original_ref: lean4/CampaignLqgEprlVertexImport.lean::lorentzian_embedding
+- original_ref: lean4/LqgEprlVertexImport.lean::lorentzian_embedding
   availability: local
   symbol: lorentzian_embedding
-  path: lean4/CampaignLqgEprlVertexImport.lean
+  path: lean4/LqgEprlVertexImport.lean
   repository: this_repository
   sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
   declaration_status: declaration_found_not_proof_checked
   line: 118
   role: source_lead_only
-- original_ref: lean4/CampaignLqgEprlVertexImport.lean::lorentzian_half_two
+- original_ref: lean4/LqgEprlVertexImport.lean::lorentzian_half_two
   availability: local
   symbol: lorentzian_half_two
-  path: lean4/CampaignLqgEprlVertexImport.lean
+  path: lean4/LqgEprlVertexImport.lean
   repository: this_repository
   sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
   declaration_status: declaration_found_not_proof_checked
   line: 130
   role: source_lead_only
-- original_ref: lean4/CampaignLqgEprlVertexImport.lean::five_tetrahedron_pairs
+- original_ref: lean4/LqgEprlVertexImport.lean::five_tetrahedron_pairs
   availability: local
   symbol: five_tetrahedron_pairs
-  path: lean4/CampaignLqgEprlVertexImport.lean
+  path: lean4/LqgEprlVertexImport.lean
   repository: this_repository
   sha256: da05f4cd6010a04604e4e8d51775bf0ae08dc1a13065978e038e819ddc41833f
   declaration_status: declaration_found_not_proof_checked

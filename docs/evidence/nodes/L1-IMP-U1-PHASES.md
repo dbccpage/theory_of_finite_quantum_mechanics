@@ -60,14 +60,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H011Circle.lean`
+### Lean: `lean4/HilbertWalkCircle.lean`
 
-- file: [lean4/H011Circle.lean](../../../lean4/H011Circle.lean)
-- sha256 (`bytes`): `6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b`
+- file: [lean4/HilbertWalkCircle.lean](../../../lean4/HilbertWalkCircle.lean)
+- sha256 (`bytes`): `c3326f87aa656cbec551fc23ecf89675379ae738888b497b8ecc3c748093acfa`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H011Circle`): recorded sha256 `6934713287756fd23f2f44a6bab2ed6ee50fbb128f99db492f926c839ff86d9b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build H011Circle`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `HilbertWalkCircle`): recorded sha256 `c3326f87aa656cbec551fc23ecf89675379ae738888b497b8ecc3c748093acfa` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build HilbertWalkCircle`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -75,14 +75,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H011U1SelectorBoundary.lean`
+### Lean: `lean4/U1SelectorBoundary.lean`
 
-- file: [lean4/H011U1SelectorBoundary.lean](../../../lean4/H011U1SelectorBoundary.lean)
-- sha256 (`bytes`): `214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912`
+- file: [lean4/U1SelectorBoundary.lean](../../../lean4/U1SelectorBoundary.lean)
+- sha256 (`bytes`): `003d1730941ba102f39cdd82a0f647131050d93ef99d3e532c49e2a873a2376a`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H011U1SelectorBoundary`): recorded sha256 `214f187afdfc0ee196021aa3ce2ab96875b1c13de9b3a560ef1eaf0359622912` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build H011U1SelectorBoundary`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `U1SelectorBoundary`): recorded sha256 `003d1730941ba102f39cdd82a0f647131050d93ef99d3e532c49e2a873a2376a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build U1SelectorBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|

@@ -44,17 +44,17 @@ step_square_and_order records U^2 = -I, U^4 = I, and U^T U = I. four_blocks reco
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignDfmRelationalTimeFence.lean::step_square_and_order`
-- `lean4/CampaignDfmRelationalTimeFence.lean::four_blocks`
-- `lean4/CampaignDfmRelationalTimeFence.lean::psi_recover`
-- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.frame_dress`
-- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.periodic_trivialization_iff`
-- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.cycleBlock_normal_form`
-- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.validate_success_iff`
-- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.validate_period`
-- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.evolves_iff`
-- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.Clock.stationary_iff`
-- `lean4/CampaignDfmRelationalTimeFence.lean::CampaignDfmRelationalTimeFence.rationalClock_blocks`
+- `lean4/DressingFieldRelationalTimeFence.lean::step_square_and_order`
+- `lean4/DressingFieldRelationalTimeFence.lean::four_blocks`
+- `lean4/DressingFieldRelationalTimeFence.lean::psi_recover`
+- `lean4/DressingFieldRelationalTimeFence.lean::DressingFieldRelationalTimeFence.Clock.frame_dress`
+- `lean4/DressingFieldRelationalTimeFence.lean::DressingFieldRelationalTimeFence.Clock.periodic_trivialization_iff`
+- `lean4/DressingFieldRelationalTimeFence.lean::DressingFieldRelationalTimeFence.Clock.cycleBlock_normal_form`
+- `lean4/DressingFieldRelationalTimeFence.lean::DressingFieldRelationalTimeFence.Clock.validate_success_iff`
+- `lean4/DressingFieldRelationalTimeFence.lean::DressingFieldRelationalTimeFence.Clock.validate_period`
+- `lean4/DressingFieldRelationalTimeFence.lean::DressingFieldRelationalTimeFence.Clock.evolves_iff`
+- `lean4/DressingFieldRelationalTimeFence.lean::DressingFieldRelationalTimeFence.Clock.stationary_iff`
+- `lean4/DressingFieldRelationalTimeFence.lean::DressingFieldRelationalTimeFence.rationalClock_blocks`
 
 ### Rust Certifiers
 - *none*
@@ -78,6 +78,6 @@ step_square_and_order records U^2 = -I, U^4 = I, and U^T U = I. four_blocks reco
 - **Cited Sources**:
   - `papers/ravera_dfm_dossier.md:147`
   - `papers/ravera_dfm_dossier.md:158`
-  - `lean4/CampaignDfmRelationalTimeFence.lean`
+  - `lean4/DressingFieldRelationalTimeFence.lean`
   - `dag/derivations/independent/dfm-relational-time-fence.md`
   - `checks/independent/dfm-relational-time-fence.py`

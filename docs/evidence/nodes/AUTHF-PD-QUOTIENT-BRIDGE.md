@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/AuthIncompleteness/PDBridge.lean`
 
 - file: [lean4/AuthIncompleteness/PDBridge.lean](../../../lean4/AuthIncompleteness/PDBridge.lean)
-- sha256 (`bytes`): `660b990da5b35b9d764737e6b2f0effd5db1751fa4fd8783697c83508923ca2f`
+- sha256 (`bytes`): `1d30032e0760c8d9cfa296660574e8d937328944a0df16230d3d48e2b363c794`
 - cited in: node.lean, node.source, record TFQ-1360
 - replay: `none`
 - check: `cd lean4 && lake build   # the library that contains lean4/AuthIncompleteness/PDBridge.lean`

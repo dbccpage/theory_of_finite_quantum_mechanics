@@ -4,7 +4,7 @@
 AuthorityEffect: None.
 
 Recomputes all concrete numbers, algebraic identities, and finite-matrix
-witnesses in lean4/CampaignAdsCftDualityImport.lean using Python's exact
+witnesses in lean4/AdsCftDualityImport.lean using Python's exact
 fractions.Fraction and SymPy, without importing any repository code:
 
 1. GKPW scalar mass-dimension quadratic (m R)^2 = Delta (Delta - d),

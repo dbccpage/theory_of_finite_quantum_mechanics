@@ -743,7 +743,7 @@ def generate_block_02_receipts(base_dir: Optional[str] = None) -> Tuple[str, str
             "clippy_warnings": 0
         },
         "lean4_formalization": {
-            "files": ["lean4/H059RationalSector.lean"],
+            "files": ["lean4/RationalSector.lean"],
             "total_jobs": 126,
             "sorry_count": 0,
             "admit_count": 0,
@@ -782,14 +782,14 @@ def generate_block_02_receipts(base_dir: Optional[str] = None) -> Tuple[str, str
                 "id": "FQM-C250-B02-002",
                 "statement": "Lean 4 sorry-free formalization of branch fine-graining, sub-branch bounds, CHSH minimal multiplicity N=25, and conductor 5 irrational witness root absence in {propext, Quot.sound}",
                 "type": "LEAN SOURCE (UNREPLAYED)",
-                "evidence": "lean4/H059RationalSector.lean, evidence/branch_finegraining.json",
+                "evidence": "lean4/RationalSector.lean, evidence/branch_finegraining.json",
                 "source": "060_superposition_as_the_quotient_fiber"
             },
             {
                 "id": "FQM-C250-B02-003",
                 "statement": "Conductor n=5 is the uniquely minimal conductor admitting an irrational Born weight ratio in Q(zeta_n)^+ \\ Q, witnessed by state (1, zeta_5 + zeta_5^4)^T with weight (5 - sqrt(5))/10 and minimal polynomial 5x^2 - 5x + 1 = 0",
                 "type": "EXACT FINITE ALGEBRA",
-                "evidence": "code/branch_finegraining.py, code_rs/src/branch_finegraining.rs, lean4/H059RationalSector.lean, evidence/branch_finegraining.json",
+                "evidence": "code/branch_finegraining.py, code_rs/src/branch_finegraining.rs, lean4/RationalSector.lean, evidence/branch_finegraining.json",
                 "source": "060_superposition_as_the_quotient_fiber"
             },
             {

@@ -43,20 +43,20 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignCqftLocalNetAxiomsImport.lean`
+### Lean: `lean4/LocalNetAxiomsImport.lean`
 
-- file: [lean4/CampaignCqftLocalNetAxiomsImport.lean](../../../lean4/CampaignCqftLocalNetAxiomsImport.lean)
-- sha256 (`bytes`): `3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645`
-- cited in: node.lean, node.source, receipt dag/research/campaign_cqft-local-net-axioms-import_lean_replay.json (CampaignCqftLocalNetAxiomsImport), record TFQ-2103
+- file: [lean4/LocalNetAxiomsImport.lean](../../../lean4/LocalNetAxiomsImport.lean)
+- sha256 (`bytes`): `cade284a0f39f47108de8560e72198cf3dec3fcf6836f065c64d54b53ef99645`
+- cited in: node.lean, node.source, receipt dag/research/campaign_cqft-local-net-axioms-import_lean_replay.json (LocalNetAxiomsImport), record TFQ-2103
 - replay: `verified`
-  - receipt [dag/research/campaign_cqft-local-net-axioms-import_lean_replay.json](../../../dag/research/campaign_cqft-local-net-axioms-import_lean_replay.json) (module `CampaignCqftLocalNetAxiomsImport`): recorded sha256 `3cd6c4e177ca23ac28ede54d6d85e7ab415c519b5f5fedf4e0f2af81708e1645` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignCqftLocalNetAxiomsImport`
+  - receipt [dag/research/campaign_cqft-local-net-axioms-import_lean_replay.json](../../../dag/research/campaign_cqft-local-net-axioms-import_lean_replay.json) (module `LocalNetAxiomsImport`): recorded sha256 `cade284a0f39f47108de8560e72198cf3dec3fcf6836f065c64d54b53ef99645` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build LocalNetAxiomsImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignCqftLocalNetAxiomsImport.disjoint_site_products` | yes | yes | yes | none | `#print axioms CampaignCqftLocalNetAxiomsImport.disjoint_site_products` |
-| `CampaignCqftLocalNetAxiomsImport.n_poset_pair_counts` | yes | yes | yes | none | `#print axioms CampaignCqftLocalNetAxiomsImport.n_poset_pair_counts` |
-| `CampaignCqftLocalNetAxiomsImport.same_site_and_star` | yes | yes | yes | none | `#print axioms CampaignCqftLocalNetAxiomsImport.same_site_and_star` |
+| `LocalNetAxiomsImport.disjoint_site_products` | yes | yes | yes | none | `#print axioms LocalNetAxiomsImport.disjoint_site_products` |
+| `LocalNetAxiomsImport.n_poset_pair_counts` | yes | yes | yes | none | `#print axioms LocalNetAxiomsImport.n_poset_pair_counts` |
+| `LocalNetAxiomsImport.same_site_and_star` | yes | yes | yes | none | `#print axioms LocalNetAxiomsImport.same_site_and_star` |
 | `disjoint_site_products` | yes | yes | yes | none | `#print axioms disjoint_site_products` |
 | `n_poset_pair_counts` | yes | yes | yes | none | `#print axioms n_poset_pair_counts` |
 | `same_site_and_star` | yes | yes | yes | none | `#print axioms same_site_and_star` |
@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md](../../../dag/derivations/31_causal_qft/tfq_2103_cqft_local_net_axioms_import.md)
-- sha256 (`lf-normalised`): `b8e523ee7931c9d4ef552d69c2129a7ff8eab7313a73fd593e45868a2943f045`
+- sha256 (`lf-normalised`): `5d4dc0488e7b0f3cc9ea11344775b2e5957b6a14758c512529d9478ac9980ac7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2103
 - counts toward the grade: no
@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/cqft-local-net-axioms-import.md`
 
 - file: [dag/derivations/independent/cqft-local-net-axioms-import.md](../../../dag/derivations/independent/cqft-local-net-axioms-import.md)
-- sha256 (`lf-normalised`): `cdbd16a64ec875133bc176326d8fd70c16ccd8183e0102114fd0bd84d2ef4e24`
+- sha256 (`lf-normalised`): `e056ab0ac93ff856ebb71263c2239e33c12f4d67c49f3507c1df71e3653e3ea8`
 - cited in: node.source
 - counts toward the grade: yes
 

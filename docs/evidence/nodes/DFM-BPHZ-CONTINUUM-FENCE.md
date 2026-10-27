@@ -42,45 +42,45 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignDfmBphzContinuumFence.lean`
+### Lean: `lean4/DressingFieldBphzContinuumFence.lean`
 
-- file: [lean4/CampaignDfmBphzContinuumFence.lean](../../../lean4/CampaignDfmBphzContinuumFence.lean)
-- sha256 (`bytes`): `93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8`
-- cited in: node.lean, receipt dag/research/campaign_dfm-bphz-continuum-fence_lean_replay.json (CampaignDfmBphzContinuumFence), record TFQ-1110
+- file: [lean4/DressingFieldBphzContinuumFence.lean](../../../lean4/DressingFieldBphzContinuumFence.lean)
+- sha256 (`bytes`): `878e25acc8ba9a63eec10dd9d436f8cb5b578fde0e0faca4e6d736b681a0fcaf`
+- cited in: node.lean, receipt dag/research/campaign_dfm-bphz-continuum-fence_lean_replay.json (DressingFieldBphzContinuumFence), record TFQ-1110
 - replay: `verified`
-  - receipt [dag/research/campaign_dfm-bphz-continuum-fence_lean_replay.json](../../../dag/research/campaign_dfm-bphz-continuum-fence_lean_replay.json) (module `CampaignDfmBphzContinuumFence`): recorded sha256 `93f4dc537b1704ec64857cc57bd5fd43f764acac574cf8bd25509ea4ba3939d8` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignDfmBphzContinuumFence`
+  - receipt [dag/research/campaign_dfm-bphz-continuum-fence_lean_replay.json](../../../dag/research/campaign_dfm-bphz-continuum-fence_lean_replay.json) (module `DressingFieldBphzContinuumFence`): recorded sha256 `878e25acc8ba9a63eec10dd9d436f8cb5b578fde0e0faca4e6d736b681a0fcaf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build DressingFieldBphzContinuumFence`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignDfmBphzContinuumFence.Subtraction.Projector.kills_remainder` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.Projector.kills_remainder` |
-| `CampaignDfmBphzContinuumFence.Subtraction.kernelProjector` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.kernelProjector` |
-| `CampaignDfmBphzContinuumFence.Subtraction.map_remainder` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.map_remainder` |
-| `CampaignDfmBphzContinuumFence.Subtraction.reduce_absorbs` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.reduce_absorbs` |
-| `CampaignDfmBphzContinuumFence.Subtraction.reduce_append` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.reduce_append` |
-| `CampaignDfmBphzContinuumFence.Subtraction.reduce_fixed` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.reduce_fixed` |
-| `CampaignDfmBphzContinuumFence.Subtraction.reduce_fixed_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.reduce_fixed_iff` |
-| `CampaignDfmBphzContinuumFence.Subtraction.reduce_idempotent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.reduce_idempotent` |
-| `CampaignDfmBphzContinuumFence.Subtraction.reduce_killed` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.Subtraction.reduce_killed` |
-| `CampaignDfmBphzContinuumFence.compatible_LG` | yes | yes | yes | none | `#print axioms CampaignDfmBphzContinuumFence.compatible_LG` |
-| `CampaignDfmBphzContinuumFence.compatible_RG` | yes | yes | yes | none | `#print axioms CampaignDfmBphzContinuumFence.compatible_RG` |
-| `CampaignDfmBphzContinuumFence.evaluations_compatible` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.evaluations_compatible` |
-| `CampaignDfmBphzContinuumFence.nested_all_compatible` | yes | yes | yes | none | `#print axioms CampaignDfmBphzContinuumFence.nested_all_compatible` |
-| `CampaignDfmBphzContinuumFence.nested_forest_count` | yes | yes | yes | none | `#print axioms CampaignDfmBphzContinuumFence.nested_forest_count` |
-| `CampaignDfmBphzContinuumFence.not_compatible_LR` | yes | yes | yes | none | `#print axioms CampaignDfmBphzContinuumFence.not_compatible_LR` |
-| `CampaignDfmBphzContinuumFence.numerator_is_7xy` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.numerator_is_7xy` |
-| `CampaignDfmBphzContinuumFence.omitted_graph_remainder` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.omitted_graph_remainder` |
-| `CampaignDfmBphzContinuumFence.overlapping_excluded_iff` | yes | yes | yes | none | `#print axioms CampaignDfmBphzContinuumFence.overlapping_excluded_iff` |
-| `CampaignDfmBphzContinuumFence.overlapping_forest_count` | yes | yes | yes | none | `#print axioms CampaignDfmBphzContinuumFence.overlapping_forest_count` |
-| `CampaignDfmBphzContinuumFence.quotient_is_seven` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.quotient_is_seven` |
-| `CampaignDfmBphzContinuumFence.sector_formal_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.sector_formal_zero` |
-| `CampaignDfmBphzContinuumFence.sector_ne_seven` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.sector_ne_seven` |
-| `CampaignDfmBphzContinuumFence.sector_value` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.sector_value` |
-| `CampaignDfmBphzContinuumFence.share_edge_two` | yes | yes | yes | propext | `#print axioms CampaignDfmBphzContinuumFence.share_edge_two` |
-| `CampaignDfmBphzContinuumFence.sixSum_eq_inclusion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.sixSum_eq_inclusion` |
-| `CampaignDfmBphzContinuumFence.sixSum_is_reduction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.sixSum_is_reduction` |
-| `CampaignDfmBphzContinuumFence.threeSum_eq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.threeSum_eq` |
-| `CampaignDfmBphzContinuumFence.witness_half_third` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmBphzContinuumFence.witness_half_third` |
+| `DressingFieldBphzContinuumFence.Subtraction.Projector.kills_remainder` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.Subtraction.Projector.kills_remainder` |
+| `DressingFieldBphzContinuumFence.Subtraction.kernelProjector` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.Subtraction.kernelProjector` |
+| `DressingFieldBphzContinuumFence.Subtraction.map_remainder` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.Subtraction.map_remainder` |
+| `DressingFieldBphzContinuumFence.Subtraction.reduce_absorbs` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.Subtraction.reduce_absorbs` |
+| `DressingFieldBphzContinuumFence.Subtraction.reduce_append` | yes | yes | yes | Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.Subtraction.reduce_append` |
+| `DressingFieldBphzContinuumFence.Subtraction.reduce_fixed` | yes | yes | yes | Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.Subtraction.reduce_fixed` |
+| `DressingFieldBphzContinuumFence.Subtraction.reduce_fixed_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.Subtraction.reduce_fixed_iff` |
+| `DressingFieldBphzContinuumFence.Subtraction.reduce_idempotent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.Subtraction.reduce_idempotent` |
+| `DressingFieldBphzContinuumFence.Subtraction.reduce_killed` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.Subtraction.reduce_killed` |
+| `DressingFieldBphzContinuumFence.compatible_LG` | yes | yes | yes | none | `#print axioms DressingFieldBphzContinuumFence.compatible_LG` |
+| `DressingFieldBphzContinuumFence.compatible_RG` | yes | yes | yes | none | `#print axioms DressingFieldBphzContinuumFence.compatible_RG` |
+| `DressingFieldBphzContinuumFence.evaluations_compatible` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.evaluations_compatible` |
+| `DressingFieldBphzContinuumFence.nested_all_compatible` | yes | yes | yes | none | `#print axioms DressingFieldBphzContinuumFence.nested_all_compatible` |
+| `DressingFieldBphzContinuumFence.nested_forest_count` | yes | yes | yes | none | `#print axioms DressingFieldBphzContinuumFence.nested_forest_count` |
+| `DressingFieldBphzContinuumFence.not_compatible_LR` | yes | yes | yes | none | `#print axioms DressingFieldBphzContinuumFence.not_compatible_LR` |
+| `DressingFieldBphzContinuumFence.numerator_is_7xy` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.numerator_is_7xy` |
+| `DressingFieldBphzContinuumFence.omitted_graph_remainder` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.omitted_graph_remainder` |
+| `DressingFieldBphzContinuumFence.overlapping_excluded_iff` | yes | yes | yes | none | `#print axioms DressingFieldBphzContinuumFence.overlapping_excluded_iff` |
+| `DressingFieldBphzContinuumFence.overlapping_forest_count` | yes | yes | yes | none | `#print axioms DressingFieldBphzContinuumFence.overlapping_forest_count` |
+| `DressingFieldBphzContinuumFence.quotient_is_seven` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.quotient_is_seven` |
+| `DressingFieldBphzContinuumFence.sector_formal_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.sector_formal_zero` |
+| `DressingFieldBphzContinuumFence.sector_ne_seven` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.sector_ne_seven` |
+| `DressingFieldBphzContinuumFence.sector_value` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.sector_value` |
+| `DressingFieldBphzContinuumFence.share_edge_two` | yes | yes | yes | propext | `#print axioms DressingFieldBphzContinuumFence.share_edge_two` |
+| `DressingFieldBphzContinuumFence.sixSum_eq_inclusion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.sixSum_eq_inclusion` |
+| `DressingFieldBphzContinuumFence.sixSum_is_reduction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.sixSum_is_reduction` |
+| `DressingFieldBphzContinuumFence.threeSum_eq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.threeSum_eq` |
+| `DressingFieldBphzContinuumFence.witness_half_third` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldBphzContinuumFence.witness_half_third` |
 
 - counts toward the grade: yes
 
@@ -94,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md](../../../dag/derivations/24_dressing_field/tfq_1110_dfm_bphz_continuum_fence.md)
-- sha256 (`lf-normalised`): `7936742514544a1fce6afc8155ea966ee0a4e796159e11fcb167b0d6df8f94a6`
+- sha256 (`lf-normalised`): `bc83ac990db5aa4d394e5a3ff90a86140075d5f9de9e79e98e4834a3b398d737`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1110
 - counts toward the grade: no

@@ -42,15 +42,15 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGthShadow.lean`
+### Lean: `lean4/GenesisToHigherShadow.lean`
 
-- file: [lean4/CampaignGthShadow.lean](../../../lean4/CampaignGthShadow.lean)
-- sha256 (`bytes`): `be8ca950fdb9a59cdef48afeecf2caa751ce2959f8a09d0d757bc63098093d74`
-- cited in: node.source, receipt dag/research/campaign_gth-shadow_lean_replay.json (CampaignGthShadow), receipt dag/research/pr_362_review_replay.json (CampaignGthShadow)
+- file: [lean4/GenesisToHigherShadow.lean](../../../lean4/GenesisToHigherShadow.lean)
+- sha256 (`bytes`): `cbad9678093f3a25d85cd823e16b4aa521350e1a61c798ada1aa3628f8c884a7`
+- cited in: node.source, receipt dag/research/campaign_gth-shadow_lean_replay.json (GenesisToHigherShadow), receipt dag/research/pr_362_review_replay.json (GenesisToHigherShadow)
 - replay: `verified`
-  - receipt [dag/research/campaign_gth-shadow_lean_replay.json](../../../dag/research/campaign_gth-shadow_lean_replay.json) (module `CampaignGthShadow`): recorded sha256 `be8ca950fdb9a59cdef48afeecf2caa751ce2959f8a09d0d757bc63098093d74` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_362_review_replay.json](../../../dag/research/pr_362_review_replay.json) (module `CampaignGthShadow`): recorded sha256 `be8ca950fdb9a59cdef48afeecf2caa751ce2959f8a09d0d757bc63098093d74` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGthShadow`
+  - receipt [dag/research/campaign_gth-shadow_lean_replay.json](../../../dag/research/campaign_gth-shadow_lean_replay.json) (module `GenesisToHigherShadow`): recorded sha256 `cbad9678093f3a25d85cd823e16b4aa521350e1a61c798ada1aa3628f8c884a7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_362_review_replay.json](../../../dag/research/pr_362_review_replay.json) (module `GenesisToHigherShadow`): recorded sha256 `cbad9678093f3a25d85cd823e16b4aa521350e1a61c798ada1aa3628f8c884a7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build GenesisToHigherShadow`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/34_genesis_to_higher/tfq_2400_gth_shadow.md`
 
 - file: [dag/derivations/34_genesis_to_higher/tfq_2400_gth_shadow.md](../../../dag/derivations/34_genesis_to_higher/tfq_2400_gth_shadow.md)
-- sha256 (`lf-normalised`): `c79368ac1ee13fe598f30bd079ef772999a30b7c678f799ab9a06fa58365f13e`
+- sha256 (`lf-normalised`): `2e53daa908c8c8441472e14ce9d22ff5b212ab177ec8f72be73730d8975c8597`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2400
 - counts toward the grade: no
@@ -81,21 +81,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/gth-shadow.md`
 
 - file: [dag/derivations/independent/gth-shadow.md](../../../dag/derivations/independent/gth-shadow.md)
-- sha256 (`lf-normalised`): `875617f82a6960da3db791f8922bd9c1a1c610e75550c7eb68c63456f2f00854`
+- sha256 (`lf-normalised`): `ac1b8ece8aa1b54e55b006c2aef4cd51534f873573bf76dabe429f788f162165`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/independent/gth_shadow.md`
 
 - file: [dag/derivations/independent/gth_shadow.md](../../../dag/derivations/independent/gth_shadow.md)
-- sha256 (`lf-normalised`): `875617f82a6960da3db791f8922bd9c1a1c610e75550c7eb68c63456f2f00854`
+- sha256 (`lf-normalised`): `ac1b8ece8aa1b54e55b006c2aef4cd51534f873573bf76dabe429f788f162165`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_gth-shadow_lean_replay.json`
 
 - file: [dag/research/campaign_gth-shadow_lean_replay.json](../../../dag/research/campaign_gth-shadow_lean_replay.json)
-- sha256 (`lf-normalised`): `59bb9f976ba8f1c8e0f486d0fb312a0c2c55b890fe5ded74819ae253013bc3c8`
+- sha256 (`lf-normalised`): `1c0bb185dbd079697ab4e89c49409fde1b3d3f5bc3cb6cbed0deacdadbf36c78`
 - cited in: node.source
 - counts toward the grade: yes
 

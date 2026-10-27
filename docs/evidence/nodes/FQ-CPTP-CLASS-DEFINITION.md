@@ -45,6 +45,22 @@ GAP-F001-S000-007 status DEFINED
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/CptpChannelsStinespring.lean`
+
+- file: [lean4/CptpChannelsStinespring.lean](../../../lean4/CptpChannelsStinespring.lean)
+- sha256 (`bytes`): `a2cc913c5c8c2bcdf1fc029625b52cebeb2ee1c19913e1f886f287bbcddde62a`
+- cited in: node.lean
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `CptpChannelsStinespring`): recorded sha256 `a2cc913c5c8c2bcdf1fc029625b52cebeb2ee1c19913e1f886f287bbcddde62a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build CptpChannelsStinespring`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `choi_dimension_is_four` | yes | yes | yes | none | `#print axioms choi_dimension_is_four` |
+| `depol_choi_1_3_psd` | yes | yes | yes | none | `#print axioms depol_choi_1_3_psd` |
+
+- counts toward the grade: yes
+
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
@@ -53,22 +69,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - replay: `verified`
   - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `DerivationDagQMClosure`): recorded sha256 `c9ad9c23a460d7a791d7a22180c2b552f066d11150b391e5241ef20687bd8154` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build DerivationDagQMClosure`
-- counts toward the grade: yes
-
-### Lean: `lean4/H063CptpChannelsStinespring.lean`
-
-- file: [lean4/H063CptpChannelsStinespring.lean](../../../lean4/H063CptpChannelsStinespring.lean)
-- sha256 (`bytes`): `b10a105b3d5810e558e75b3f8504b61433032d6aaff821da3b832baf06e890a7`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H063CptpChannelsStinespring`): recorded sha256 `b10a105b3d5810e558e75b3f8504b61433032d6aaff821da3b832baf06e890a7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build H063CptpChannelsStinespring`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `choi_dimension_is_four` | yes | yes | yes | none | `#print axioms choi_dimension_is_four` |
-| `depol_choi_1_3_psd` | yes | yes | yes | none | `#print axioms depol_choi_1_3_psd` |
-
 - counts toward the grade: yes
 
 ### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/cptp_channels_stinespring.rs`

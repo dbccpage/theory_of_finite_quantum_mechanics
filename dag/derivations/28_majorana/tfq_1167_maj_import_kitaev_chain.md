@@ -40,10 +40,10 @@ edgeAbsent states the index split for every natural L at least 2 and every bulk 
 - `papers/core/majorana/lean4/MajoranaCore.lean::KitaevSweetSpotChain`
 - `papers/core/majorana/lean4/MajoranaCore.lean::mzm_boundary_decoupling`
 - `papers/core/majorana/lean4/MajoranaCore.lean::disjoint_majorana_pair_commute`
-- `lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.edgeAbsent`
-- `lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.edgeWitness`
-- `lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.insidePoint`
-- `lean4/CampaignMajImportKitaevChain.lean::CampaignMajImportKitaevChain.outsidePoint`
+- `lean4/KitaevChainImport.lean::KitaevChainImport.edgeAbsent`
+- `lean4/KitaevChainImport.lean::KitaevChainImport.edgeWitness`
+- `lean4/KitaevChainImport.lean::KitaevChainImport.insidePoint`
+- `lean4/KitaevChainImport.lean::KitaevChainImport.outsidePoint`
 
 ### Rust Certifiers
 - *none*

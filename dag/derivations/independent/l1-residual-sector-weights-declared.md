@@ -8,7 +8,7 @@ Length `4` and holonomy `2`: the products `4 * 0` and `4 * 1` are not `2`, and `
 
 Length `4` and holonomy `4`: `4 * 1 = 4`.
 
-These integers are checked in `CampaignL1ResidualSectorWeights` and again in `checks/independent/l1-residual-sector-weights-declared.py`.
+These integers are checked in `L1ResidualSectorWeights` and again in `checks/independent/l1-residual-sector-weights-declared.py`.
 
 ## What is proved
 

@@ -42,34 +42,34 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGenesisProcessComparison.lean`
+### Lean: `lean4/GenesisProcessComparison.lean`
 
-- file: [lean4/CampaignGenesisProcessComparison.lean](../../../lean4/CampaignGenesisProcessComparison.lean)
-- sha256 (`bytes`): `3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2`
-- cited in: node.lean, receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (CampaignGenesisProcessComparison), receipt dag/research/genesis_merged_20261023_lean_replay.json (CampaignGenesisProcessComparison), record TFQ-0453
+- file: [lean4/GenesisProcessComparison.lean](../../../lean4/GenesisProcessComparison.lean)
+- sha256 (`bytes`): `ca09cff33f2c586039c2a25c839fe93f32e9f1b68de4e4ef23076ea050288b96`
+- cited in: node.lean, receipt dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json (GenesisProcessComparison), receipt dag/research/genesis_merged_20261023_lean_replay.json (GenesisProcessComparison), record TFQ-0453
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json](../../../dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json) (module `CampaignGenesisProcessComparison`): recorded sha256 `3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/genesis_merged_20261023_lean_replay.json](../../../dag/research/genesis_merged_20261023_lean_replay.json) (module `CampaignGenesisProcessComparison`): recorded sha256 `3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGenesisProcessComparison`
+  - receipt [dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json](../../../dag/research/campaign_pgw-minimal-or-initial-refused_lean_replay.json) (module `GenesisProcessComparison`): recorded sha256 `ca09cff33f2c586039c2a25c839fe93f32e9f1b68de4e4ef23076ea050288b96` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/genesis_merged_20261023_lean_replay.json](../../../dag/research/genesis_merged_20261023_lean_replay.json) (module `GenesisProcessComparison`): recorded sha256 `ca09cff33f2c586039c2a25c839fe93f32e9f1b68de4e4ef23076ea050288b96` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build GenesisProcessComparison`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignGenesisProcessComparison.all_words_agree` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisProcessComparison.all_words_agree` |
-| `CampaignGenesisProcessComparison.all_words_minimum_size` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisProcessComparison.all_words_minimum_size` |
-| `CampaignGenesisProcessComparison.every_challenge_answer_agrees` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisProcessComparison.every_challenge_answer_agrees` |
-| `CampaignGenesisProcessComparison.hom_run` | yes | yes | yes | propext | `#print axioms CampaignGenesisProcessComparison.hom_run` |
-| `CampaignGenesisProcessComparison.labelled_append` | yes | yes | yes | none | `#print axioms CampaignGenesisProcessComparison.labelled_append` |
-| `CampaignGenesisProcessComparison.no_clock_hom_of_self_loop` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisProcessComparison.no_clock_hom_of_self_loop` |
-| `CampaignGenesisProcessComparison.no_initial_in_clock_closed_class` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisProcessComparison.no_initial_in_clock_closed_class` |
-| `CampaignGenesisProcessComparison.no_map_to_clock_lift` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisProcessComparison.no_map_to_clock_lift` |
-| `CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class` |
-| `CampaignGenesisProcessComparison.nonminimal_adequate_process` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisProcessComparison.nonminimal_adequate_process` |
-| `CampaignGenesisProcessComparison.oneState_is_reduced_reachable` | yes | yes | yes | none | `#print axioms CampaignGenesisProcessComparison.oneState_is_reduced_reachable` |
-| `CampaignGenesisProcessComparison.reduced_reachable_is_minimal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisProcessComparison.reduced_reachable_is_minimal` |
-| `CampaignGenesisProcessComparison.run_add` | yes | yes | yes | none | `#print axioms CampaignGenesisProcessComparison.run_add` |
-| `CampaignGenesisProcessComparison.source_advance_matches` | yes | yes | yes | propext | `#print axioms CampaignGenesisProcessComparison.source_advance_matches` |
-| `CampaignGenesisProcessComparison.source_run_matches` | yes | yes | yes | propext | `#print axioms CampaignGenesisProcessComparison.source_run_matches` |
-| `CampaignGenesisProcessComparison.source_supply_self_loop` | yes | yes | yes | propext | `#print axioms CampaignGenesisProcessComparison.source_supply_self_loop` |
+| `GenesisProcessComparison.all_words_agree` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisProcessComparison.all_words_agree` |
+| `GenesisProcessComparison.all_words_minimum_size` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisProcessComparison.all_words_minimum_size` |
+| `GenesisProcessComparison.every_challenge_answer_agrees` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisProcessComparison.every_challenge_answer_agrees` |
+| `GenesisProcessComparison.hom_run` | yes | yes | yes | propext | `#print axioms GenesisProcessComparison.hom_run` |
+| `GenesisProcessComparison.labelled_append` | yes | yes | yes | none | `#print axioms GenesisProcessComparison.labelled_append` |
+| `GenesisProcessComparison.no_clock_hom_of_self_loop` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisProcessComparison.no_clock_hom_of_self_loop` |
+| `GenesisProcessComparison.no_initial_in_clock_closed_class` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisProcessComparison.no_initial_in_clock_closed_class` |
+| `GenesisProcessComparison.no_map_to_clock_lift` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisProcessComparison.no_map_to_clock_lift` |
+| `GenesisProcessComparison.no_source_initial_in_clock_closed_class` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisProcessComparison.no_source_initial_in_clock_closed_class` |
+| `GenesisProcessComparison.nonminimal_adequate_process` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisProcessComparison.nonminimal_adequate_process` |
+| `GenesisProcessComparison.oneState_is_reduced_reachable` | yes | yes | yes | none | `#print axioms GenesisProcessComparison.oneState_is_reduced_reachable` |
+| `GenesisProcessComparison.reduced_reachable_is_minimal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisProcessComparison.reduced_reachable_is_minimal` |
+| `GenesisProcessComparison.run_add` | yes | yes | yes | none | `#print axioms GenesisProcessComparison.run_add` |
+| `GenesisProcessComparison.source_advance_matches` | yes | yes | yes | propext | `#print axioms GenesisProcessComparison.source_advance_matches` |
+| `GenesisProcessComparison.source_run_matches` | yes | yes | yes | propext | `#print axioms GenesisProcessComparison.source_run_matches` |
+| `GenesisProcessComparison.source_supply_self_loop` | yes | yes | yes | propext | `#print axioms GenesisProcessComparison.source_supply_self_loop` |
 
 - counts toward the grade: yes
 
@@ -99,7 +99,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md`
 
 - file: [dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md](../../../dag/derivations/02_genesis/tfq_0453_minimal_or_initial_refused.md)
-- sha256 (`lf-normalised`): `2898392be06e9e1584fc41755cd1c1d4edb9dcba9c57a19ab00ba87485756776`
+- sha256 (`lf-normalised`): `bb5e13eeeedc75ca3f7eee378fbb5622c4c56c66898cff332099fd16b665eec4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0453
 - counts toward the grade: no

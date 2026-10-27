@@ -42,22 +42,22 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignOpsAxis3Relabeling.lean`
+### Lean: `lean4/ObserverPresheafAxis3Relabeling.lean`
 
-- file: [lean4/CampaignOpsAxis3Relabeling.lean](../../../lean4/CampaignOpsAxis3Relabeling.lean)
-- sha256 (`bytes`): `8f6cc92938943a0dd559263f075aa7496c2bb25fab1db596f18a5fc078c01150`
-- cited in: node.source, receipt dag/research/campaign_ops-axis3-relabeling_lean_replay.json (CampaignOpsAxis3Relabeling), receipt dag/research/pr_387_round2_replay.json (CampaignOpsAxis3Relabeling), record TFQ-2526
+- file: [lean4/ObserverPresheafAxis3Relabeling.lean](../../../lean4/ObserverPresheafAxis3Relabeling.lean)
+- sha256 (`bytes`): `99444c08ffc63267c995294241821245327485cbc0334f463d340b4a864ab24e`
+- cited in: node.source, receipt dag/research/campaign_ops-axis3-relabeling_lean_replay.json (ObserverPresheafAxis3Relabeling), receipt dag/research/pr_387_round2_replay.json (ObserverPresheafAxis3Relabeling), record TFQ-2526
 - replay: `verified`
-  - receipt [dag/research/campaign_ops-axis3-relabeling_lean_replay.json](../../../dag/research/campaign_ops-axis3-relabeling_lean_replay.json) (module `CampaignOpsAxis3Relabeling`): recorded sha256 `8f6cc92938943a0dd559263f075aa7496c2bb25fab1db596f18a5fc078c01150` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-  - receipt [dag/research/pr_387_round2_replay.json](../../../dag/research/pr_387_round2_replay.json) (module `CampaignOpsAxis3Relabeling`): recorded sha256 `8f6cc92938943a0dd559263f075aa7496c2bb25fab1db596f18a5fc078c01150` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignOpsAxis3Relabeling`
+  - receipt [dag/research/campaign_ops-axis3-relabeling_lean_replay.json](../../../dag/research/campaign_ops-axis3-relabeling_lean_replay.json) (module `ObserverPresheafAxis3Relabeling`): recorded sha256 `99444c08ffc63267c995294241821245327485cbc0334f463d340b4a864ab24e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/pr_387_round2_replay.json](../../../dag/research/pr_387_round2_replay.json) (module `ObserverPresheafAxis3Relabeling`): recorded sha256 `99444c08ffc63267c995294241821245327485cbc0334f463d340b4a864ab24e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build ObserverPresheafAxis3Relabeling`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignOpsAxis3Relabeling.exportVerdictRelabel` | yes | yes | yes | none | `#print axioms CampaignOpsAxis3Relabeling.exportVerdictRelabel` |
-| `CampaignOpsAxis3Relabeling.lengthMapInvariant` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis3Relabeling.lengthMapInvariant` |
-| `CampaignOpsAxis3Relabeling.lengthVerdictRelabel` | yes | yes | yes | propext | `#print axioms CampaignOpsAxis3Relabeling.lengthVerdictRelabel` |
-| `CampaignOpsAxis3Relabeling.swap01` | yes | yes | yes | none | `#print axioms CampaignOpsAxis3Relabeling.swap01` |
+| `ObserverPresheafAxis3Relabeling.exportVerdictRelabel` | yes | yes | yes | none | `#print axioms ObserverPresheafAxis3Relabeling.exportVerdictRelabel` |
+| `ObserverPresheafAxis3Relabeling.lengthMapInvariant` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis3Relabeling.lengthMapInvariant` |
+| `ObserverPresheafAxis3Relabeling.lengthVerdictRelabel` | yes | yes | yes | propext | `#print axioms ObserverPresheafAxis3Relabeling.lengthVerdictRelabel` |
+| `ObserverPresheafAxis3Relabeling.swap01` | yes | yes | yes | none | `#print axioms ObserverPresheafAxis3Relabeling.swap01` |
 
 - counts toward the grade: yes
 
@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md)
-- sha256 (`lf-normalised`): `67e9f323eb2c84560de77449748efe628ee329a1a2df3b6904bc66395f01678a`
+- sha256 (`lf-normalised`): `eb65609d758831aa4f4248de96a7670bd8ada4de92e933112879a68ef59d8943`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2526
 - counts toward the grade: no
@@ -79,14 +79,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/ops-axis3-relabeling.md`
 
 - file: [dag/derivations/independent/ops-axis3-relabeling.md](../../../dag/derivations/independent/ops-axis3-relabeling.md)
-- sha256 (`lf-normalised`): `1d83b99807ba29206c0565c6041fb5b88ec1c3592fb9ec810d42859f0c725090`
+- sha256 (`lf-normalised`): `a488ee18ad4fbcd7398f11448b34e2ca64474b956c332a3e55a52dfd1661a043`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_ops-axis3-relabeling_lean_replay.json`
 
 - file: [dag/research/campaign_ops-axis3-relabeling_lean_replay.json](../../../dag/research/campaign_ops-axis3-relabeling_lean_replay.json)
-- sha256 (`lf-normalised`): `2877fc98daf3fe82d9b2668fb541b5b959c9cd8e4728726e7a05549db486927a`
+- sha256 (`lf-normalised`): `cc2040fdd3cda6b0e5f46d5be31d5977d84035173b01d118c841dcf88feff0c6`
 - cited in: node.source
 - counts toward the grade: yes
 

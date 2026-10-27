@@ -28,17 +28,17 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Formalization
-- `lean4/CampaignTfq0011FiniteQcd.lean`:
-  - `CampaignTfq0011FiniteQcd.su3_color_casimir_and_fierz_channel_identities`
-  - `CampaignTfq0011FiniteQcd.wilson_plaquette_creutz_ratio_area_vs_perimeter_and_3x3_betti`
-  - `CampaignTfq0011FiniteQcd.qcd_beta0_asymptotic_freedom_window_and_beta1_banks_zaks`
-  - `CampaignTfq0011FiniteQcd.naive_lattice_dirac_doubling_obstruction_and_wilson_lift`
-  - `CampaignTfq0011FiniteQcd.nonabelian_su3_klein_four_gribov_copies_and_spanning_tree_gauge`
-  - `CampaignTfq0011FiniteQcd.exact_rational_certificate_vs_float_benchmark_epistemic_separation_fence`
-  - `CampaignTfq0011FiniteQcd.finite_wilson_beta0_control_not_continuum_confinement_fence`
-  - `CampaignTfq0011FiniteQcd.lattice_dirac_doubling_recorded_as_explicit_obstruction_fence`
-  - `CampaignTfq0011FiniteQcd.f002_continuum_qcd_remains_open_interface_fence`
-  - `CampaignTfq0011FiniteQcd.tfq0011_finite_qcd_shadow_scope_ledger_fence`
+- `lean4/FiniteQcdColorWilsonLoops.lean`:
+  - `FiniteQcdColorWilsonLoops.su3_color_casimir_and_fierz_channel_identities`
+  - `FiniteQcdColorWilsonLoops.wilson_plaquette_creutz_ratio_area_vs_perimeter_and_3x3_betti`
+  - `FiniteQcdColorWilsonLoops.qcd_beta0_asymptotic_freedom_window_and_beta1_banks_zaks`
+  - `FiniteQcdColorWilsonLoops.naive_lattice_dirac_doubling_obstruction_and_wilson_lift`
+  - `FiniteQcdColorWilsonLoops.nonabelian_su3_klein_four_gribov_copies_and_spanning_tree_gauge`
+  - `FiniteQcdColorWilsonLoops.exact_rational_certificate_vs_float_benchmark_epistemic_separation_fence`
+  - `FiniteQcdColorWilsonLoops.finite_wilson_beta0_control_not_continuum_confinement_fence`
+  - `FiniteQcdColorWilsonLoops.lattice_dirac_doubling_recorded_as_explicit_obstruction_fence`
+  - `FiniteQcdColorWilsonLoops.f002_continuum_qcd_remains_open_interface_fence`
+  - `FiniteQcdColorWilsonLoops.tfq0011_finite_qcd_shadow_scope_ledger_fence`
 - `lean4/FiniteQM.lean`:
   - `FiniteQM.su3_casimir_and_channel_identities`
   - `FiniteQM.su3_fierz_diagonal_and_offdiagonal_identities`
@@ -66,5 +66,5 @@ In accordance with strict constructive principles:
 - **Atlas Lineage**: `F001.S000`, `F002`
 - **Primary Source Paths**:
   - `lean4/FiniteQM.lean`
-  - `lean4/CampaignTfq0011FiniteQcd.lean`
+  - `lean4/FiniteQcdColorWilsonLoops.lean`
   - `checks/independent/tfq-0011.py`

@@ -1,8 +1,8 @@
 import PrimitiveDifference
-import H017Fin
-import H017ExtrasDropone
-import H000FinitePresentedCarrier
-import H055DiscreteDynamicsStone
+import HilbertWalkGleasonFin
+import HilbertWalkGleasonExtrasDropOne
+import FinitePresentedCarrier
+import DiscreteDynamicsStone
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Ring
@@ -39,9 +39,9 @@ theorem quotient_equivalence {A B : Type} (P : OmegaCore.PrimitiveDifference A B
     Equivalence P.ZeroRel := P.zeroRel_equivalence
 theorem quotient_classes {A B : Type} (P : OmegaCore.PrimitiveDifference A B) (x y : A) :
     P.classOf x=P.classOf y ↔ P.ZeroRel x y := P.classOf_eq_iff_zeroRel
-theorem report_kernel {X Q : Type} (C : FableHilbertWalk20260819.H000.PresentedCarrier X Q) (x y : X) :
-    FableHilbertWalk20260819.H000.sameReport C x y ↔ C.pres x=C.pres y :=
-  FableHilbertWalk20260819.H000.sameReport_iff C x y
+theorem report_kernel {X Q : Type} (C : HilbertWalk.FinitePresentedCarrier.PresentedCarrier X Q) (x y : X) :
+    HilbertWalk.FinitePresentedCarrier.sameReport C x y ↔ C.pres x=C.pres y :=
+  HilbertWalk.FinitePresentedCarrier.sameReport_iff C x y
 
 theorem sorkin_polynomial (alpha beta a b c : Rat) :
     i3 (fun t => alpha*t^2+beta*t^4) a b c=12*beta*a*b*c*(a+b+c) := by unfold i3; ring
@@ -76,15 +76,15 @@ theorem tsirelson_fixed_bound (a b c d : Rat) :
   constructor <;> nlinarith [sq_nonneg (a-d),sq_nonneg (b-c),sq_nonneg (a+d),sq_nonneg (b+c),sq_nonneg a,sq_nonneg b,sq_nonneg c,sq_nonneg d]
 theorem tsirelson_scaled_attainment : pquad 1 0 0 1=4 ∧ (1:Rat)^2+0^2+0^2+1^2=2 := by norm_num [pquad]
 
-open FableHilbertWalk20260819.H017ExtrasDropone
+open HilbertWalk.GleasonExtrasDropOne
 theorem census_nodup : allExtras.Nodup := extras_nodup
 theorem census_partition : allExtras.length=8 ∧ lostExtras.length=3 ∧ openExtras.length=5 :=
   ⟨extra_list_length,lost_length,open_length⟩
 -- These counts concern the declared list; rfl verdicts do not prove necessity.
 
-open FableHilbertWalk20260819.HWKernel
-open FableHilbertWalk20260819.H004
-open FableHilbertWalk20260819.H017Fin
+open HilbertWalk.HWKernel
+open HilbertWalk.FreeLinearization
+open HilbertWalk.GleasonFin
 theorem gauss_recovery {Q : Type} [DecidableEq Q] (E : Enum Q)
     (T : LinearEnd Q gaussPack) (v : Vec GaussInt Q) (x : Q) :
     T.map v x=applyMat gaussPack E (matOf T) v x := apply_eq_matOf E T v x
@@ -96,15 +96,15 @@ theorem gauss_composition {Q : Type} (E : Enum Q) (A B : Mat GaussInt Q)
     (v : Vec GaussInt Q) (i : Q) :
     applyMat gaussPack E (mmul gaussPack E A B) v i=applyMat gaussPack E A (applyMat gaussPack E B v) i := mmul_as_composition gaussPack E A B v i
 theorem gauss_adjoint {Q : Type} (E : Enum Q) (A : Mat GaussInt Q) (u v : Vec GaussInt Q) :
-    FableHilbertWalk20260819.H005.sesq gaussPack E (applyMat gaussPack E A u) v=
-    FableHilbertWalk20260819.H005.sesq gaussPack E u (applyMat gaussPack E (adj gaussPack A) v) := sesq_conj_transpose gaussPack E A u v
+    HilbertWalk.InnerProductAdmission.sesq gaussPack E (applyMat gaussPack E A u) v=
+    HilbertWalk.InnerProductAdmission.sesq gaussPack E u (applyMat gaussPack E (adj gaussPack A) v) := sesq_conj_transpose gaussPack E A u v
 
-theorem time_no_bool_root : ¬ ∃ f : Bool → Bool, ∀ b, f (f b)=FableHilbertWalk20260819.H055.toggle b :=
-  FableHilbertWalk20260819.H055.no_bool_half_step
+theorem time_no_bool_root : ¬ ∃ f : Bool → Bool, ∀ b, f (f b)=HilbertWalk.DiscreteDynamicsStone.toggle b :=
+  HilbertWalk.DiscreteDynamicsStone.no_bool_half_step
 theorem time_two_scaled_roots :
-    FableHilbertWalk20260819.H055.mat2g_mul FableHilbertWalk20260819.H055.neg_M_scaled FableHilbertWalk20260819.H055.neg_M_scaled=FableHilbertWalk20260819.H055.four_X ∧
-    FableHilbertWalk20260819.H055.neg_M_scaled≠FableHilbertWalk20260819.H055.M_scaled :=
-  FableHilbertWalk20260819.H055.interpolant_not_unique
+    HilbertWalk.DiscreteDynamicsStone.mat2g_mul HilbertWalk.DiscreteDynamicsStone.neg_M_scaled HilbertWalk.DiscreteDynamicsStone.neg_M_scaled=HilbertWalk.DiscreteDynamicsStone.four_X ∧
+    HilbertWalk.DiscreteDynamicsStone.neg_M_scaled≠HilbertWalk.DiscreteDynamicsStone.M_scaled :=
+  HilbertWalk.DiscreteDynamicsStone.interpolant_not_unique
 
 #print axioms power_real_unique
 #print axioms power_one_sign_control

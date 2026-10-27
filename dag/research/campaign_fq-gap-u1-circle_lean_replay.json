@@ -3,17 +3,17 @@
   "authority_effect": "None",
   "checked_at": "2026-10-25",
   "source_base": "7fa69d621c27bed7045d0b7fe34bbb1d34b27248",
-  "result": "Narrowed to an integer witness. 5*(a*a)=4*(b*b) forces b=0 for natural numbers, and the cleared pair 5*(a*a-b*b)=3*(d*d) with a*a+b*b=d*d holds only at 0,0,0. The identity 3*3+4*4=5*5 holds. The 2026-10-25 lake build of CampaignFqGapU1Circle exited 0. Printed axioms are propext, Quot.sound, or empty, inside propext, Classical.choice, and Quot.sound. The node stays CONDITIONAL.",
-  "proof_boundary": "This receipt records that lean4/CampaignFqGapU1Circle.lean type-checks against the sealed kernel. The recorded arithmetic is the mod-5 square descent, the identity 3*3+4*4=5*5, and the two integer equations. No circle group, continuity hypothesis, power map, or homomorphism is in the theorem statements. The node stays CONDITIONAL.",
+  "result": "Narrowed to an integer witness. 5*(a*a)=4*(b*b) forces b=0 for natural numbers, and the cleared pair 5*(a*a-b*b)=3*(d*d) with a*a+b*b=d*d holds only at 0,0,0. The identity 3*3+4*4=5*5 holds. The 2026-10-25 lake build of U1CircleIntegerWitness exited 0. Printed axioms are propext, Quot.sound, or empty, inside propext, Classical.choice, and Quot.sound. The node stays CONDITIONAL.",
+  "proof_boundary": "This receipt records that lean4/U1CircleIntegerWitness.lean type-checks against the sealed kernel. The recorded arithmetic is the mod-5 square descent, the identity 3*3+4*4=5*5, and the two integer equations. No circle group, continuity hypothesis, power map, or homomorphism is in the theorem statements. The node stays CONDITIONAL.",
   "lean_replay": {
     "lean_version": "Lean (version 4.35.0, x86_64-w64-windows-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
     "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
     "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
     "lakefile_sha256": "c61bfca6d4d022a255880d3657921dbff74ce85e0b6ff5dabfd42ae787e1f45e",
-    "library": "CampaignFqGapU1Circle (lean_lib in lean4/lakefile.lean; not a default target)",
+    "library": "U1CircleIntegerWitness (lean_lib in lean4/lakefile.lean; not a default target)",
     "build_directory": "lean4/b (lakefile buildDir; removed with the worktree)",
     "dependency_packages": "read-only junction lean4/.lake/packages to the shared Mathlib v4.35.0 cache (removed after the run). The module imports no package.",
-    "command": "cd lean4 && lake build CampaignFqGapU1Circle",
+    "command": "cd lean4 && lake build U1CircleIntegerWitness",
     "allowed_axioms": [
       "propext",
       "Classical.choice",
@@ -23,11 +23,11 @@
     "module_job_ms": 938,
     "results": [
       {
-        "module": "CampaignFqGapU1Circle",
+        "module": "U1CircleIntegerWitness",
         "dag_node": "FQ-GAP-U1-CIRCLE",
-        "source": "lean4/CampaignFqGapU1Circle.lean",
-        "sha256": "8595672b1aa07fe052c2628b43f99b608d4534ec41541e16f49cc6a128af8ebb",
-        "sha256_after_build": "8595672b1aa07fe052c2628b43f99b608d4534ec41541e16f49cc6a128af8ebb",
+        "source": "lean4/U1CircleIntegerWitness.lean",
+        "sha256": "3e245462359a9d35ed183b5d58ea6ff325d026c371f64d545a9c08d3e3243dcd",
+        "sha256_after_build": "3e245462359a9d35ed183b5d58ea6ff325d026c371f64d545a9c08d3e3243dcd",
         "source_unchanged_during_build": true,
         "exit_code": 0,
         "axiom_audit_passed": true,
@@ -45,8 +45,16 @@
           "clearedDenominatorForcesFourFifths": ["propext", "Quot.sound"],
           "noNonzeroClearedSquareRoot": ["propext", "Quot.sound"]
         },
-        "output": "info: CampaignFqGapU1Circle.lean:207:0: 'fiveFourSquareForcesZero' depends on axioms: [propext, Quot.sound]\ninfo: CampaignFqGapU1Circle.lean:208:0: 'pythagorean345' does not depend on any axioms\ninfo: CampaignFqGapU1Circle.lean:209:0: 'clearedDenominatorForcesFourFifths' depends on axioms: [propext, Quot.sound]\ninfo: CampaignFqGapU1Circle.lean:210:0: 'noNonzeroClearedSquareRoot' depends on axioms: [propext, Quot.sound]\n"
+        "output": "info: U1CircleIntegerWitness.lean:207:0: 'fiveFourSquareForcesZero' depends on axioms: [propext, Quot.sound]\ninfo: U1CircleIntegerWitness.lean:208:0: 'pythagorean345' does not depend on any axioms\ninfo: U1CircleIntegerWitness.lean:209:0: 'clearedDenominatorForcesFourFifths' depends on axioms: [propext, Quot.sound]\ninfo: U1CircleIntegerWitness.lean:210:0: 'noNonzeroClearedSquareRoot' depends on axioms: [propext, Quot.sound]\n"
       }
     ]
+  },
+  "refreshed_after_rename": {
+    "date": "2026-10-27",
+    "entries_refreshed": 1,
+    "note": "Lean modules renamed on 2026-10-27 (old to new names in lean4/RENAMES.json). The refreshed entries were rebuilt with lake and re-audited with Lean.collectAxioms in a scratch file; sha256, exit code, admission scan and axioms are from that run. Other fields keep their original values.",
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "lakefile_sha256": "a386806c2b4adfac3369fb3cd78644bb2659f63c9d51e7b2028b0b5d17863b94"
   }
 }

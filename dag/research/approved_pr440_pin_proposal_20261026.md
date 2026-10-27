@@ -2,7 +2,7 @@
 
 Status: awaiting explicit user authorization. AuthorityEffect: None until approved.
 
-Source: `lean4/CampaignL1OrthogonalAdditivity.lean`
+Source: `lean4/L1OrthogonalAdditivity.lean`
 
 SHA-256: `50db47282d0bc3fedfe87161c63890be81b0c21a5708f1fc9f2514e6fa6370d2`
 

@@ -1,0 +1,342 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/CptpClassImport.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/CptpClassImport.lean",
+      "sha256": "41e95e8f13e33696903397f4e7c50947122e33119eb7aa0a56189f4273cba409"
+    },
+    "boundaries": [
+      "The class of completely positive trace-preserving maps on a Hilbert space is not derived. Choi positivity, Kraus form and a Stinespring realization of that class stay imported. The Boolean collapse, the integer mass image and the four ancilla-false reversible dilations are one finite case. This mass image is a stochastic-kernel population shadow in the sense of QM_082, and it is not that channel class.",
+      "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+    ],
+    "contract_urn": "urn:tfqm:review:20261026:CptpClassImport",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_gp-import-cptp-class_lean_replay.json",
+        "sha256": "3bc5133e93586feffd81c0debcf1c66a70974dd74df0102ee84367579213c4a3"
+      },
+      {
+        "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+        "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+      }
+    ],
+    "owned_invariants": [
+      "On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair."
+    ],
+    "purpose": "On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "collapse",
+      "TwoSided",
+      "collapse_both_false",
+      "collapse_labels_agree",
+      "collapse_no_two_sided_inverse",
+      "collapseMass",
+      "collapseMass_coords",
+      "collapseMass_preserves_sum",
+      "collapseMass_nonneg",
+      "collapseMass_two_three",
+      "prepared",
+      "prepared_is_false",
+      "CollapseDilation",
+      "colOf",
+      "colInv",
+      "colOf_left",
+      "colOf_right",
+      "colOf_reduces",
+      "ofSwaps",
+      "dFF",
+      "dFT",
+      "dTF",
+      "dTT",
+      "four_maps_pairwise_unequal",
+      "four_named_are_dilations",
+      "prepared_pair_injective",
+      "prepared_seconds_differ",
+      "prepared_false_false",
+      "prepared_true_false",
+      "unprepared_pair_injective",
+      "collide_prepared",
+      "unprepared_not_in_false_fiber",
+      "unprepared_report_true",
+      "unprepared_seconds_differ",
+      "map_eq_colOf",
+      "every_dilation_agrees"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 4043,
+      "original_paths": [
+        "lean4/CampaignGpImportCptpClass.contract.score.yaml#qm-open-pr-review-20261026-5667a581f964"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignGpImportCptpClass.lean\",\n    \"sha256\": \"5667a581f964eb7babec906cc92c49ea4dd4c859a71a49fdc4327c812fcf54b7\"\n  },\n  \"boundaries\": [\n    \"The class of completely positive trace-preserving maps on a Hilbert space is not derived. Choi positivity, Kraus form and a Stinespring realization of that class stay imported. The Boolean collapse, the integer mass image and the four ancilla-false reversible dilations are one finite case. This mass image is a stochastic-kernel population shadow in the sense of QM_082, and it is not that channel class.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review:20261026:CampaignGpImportCptpClass\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_gp-import-cptp-class_lean_replay.json\",\n      \"sha256\": \"b9dcbe8d819ec466a9f1426ff97aa0bca3d3254717ff74251471ed75c05ddb35\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_lower_campaign_review_20261026.md\",\n      \"sha256\": \"690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.\"\n  ],\n  \"purpose\": \"On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"collapse\",\n    \"TwoSided\",\n    \"collapse_both_false\",\n    \"collapse_labels_agree\",\n    \"collapse_no_two_sided_inverse\",\n    \"collapseMass\",\n    \"collapseMass_coords\",\n    \"collapseMass_preserves_sum\",\n    \"collapseMass_nonneg\",\n    \"collapseMass_two_three\",\n    \"prepared\",\n    \"prepared_is_false\",\n    \"CollapseDilation\",\n    \"colOf\",\n    \"colInv\",\n    \"colOf_left\",\n    \"colOf_right\",\n    \"colOf_reduces\",\n    \"ofSwaps\",\n    \"dFF\",\n    \"dFT\",\n    \"dTF\",\n    \"dTT\",\n    \"four_maps_pairwise_unequal\",\n    \"four_named_are_dilations\",\n    \"prepared_pair_injective\",\n    \"prepared_seconds_differ\",\n    \"prepared_false_false\",\n    \"prepared_true_false\",\n    \"unprepared_pair_injective\",\n    \"collide_prepared\",\n    \"unprepared_not_in_false_fiber\",\n    \"unprepared_report_true\",\n    \"unprepared_seconds_differ\",\n    \"map_eq_colOf\",\n    \"every_dilation_agrees\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignGpImportCptpClass.lean",
+          "sha256": "5667a581f964eb7babec906cc92c49ea4dd4c859a71a49fdc4327c812fcf54b7"
+        },
+        "boundaries": [
+          "The class of completely positive trace-preserving maps on a Hilbert space is not derived. Choi positivity, Kraus form and a Stinespring realization of that class stay imported. The Boolean collapse, the integer mass image and the four ancilla-false reversible dilations are one finite case. This mass image is a stochastic-kernel population shadow in the sense of QM_082, and it is not that channel class.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "contract_urn": "urn:tfqm:review:20261026:CampaignGpImportCptpClass",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_gp-import-cptp-class_lean_replay.json",
+            "sha256": "b9dcbe8d819ec466a9f1426ff97aa0bca3d3254717ff74251471ed75c05ddb35"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+            "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+          }
+        ],
+        "owned_invariants": [
+          "On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair."
+        ],
+        "purpose": "On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "collapse",
+          "TwoSided",
+          "collapse_both_false",
+          "collapse_labels_agree",
+          "collapse_no_two_sided_inverse",
+          "collapseMass",
+          "collapseMass_coords",
+          "collapseMass_preserves_sum",
+          "collapseMass_nonneg",
+          "collapseMass_two_three",
+          "prepared",
+          "prepared_is_false",
+          "CollapseDilation",
+          "colOf",
+          "colInv",
+          "colOf_left",
+          "colOf_right",
+          "colOf_reduces",
+          "ofSwaps",
+          "dFF",
+          "dFT",
+          "dTF",
+          "dTT",
+          "four_maps_pairwise_unequal",
+          "four_named_are_dilations",
+          "prepared_pair_injective",
+          "prepared_seconds_differ",
+          "prepared_false_false",
+          "prepared_true_false",
+          "unprepared_pair_injective",
+          "collide_prepared",
+          "unprepared_not_in_false_fiber",
+          "unprepared_report_true",
+          "unprepared_seconds_differ",
+          "map_eq_colOf",
+          "every_dilation_agrees"
+        ]
+      },
+      "sha256": "114e14e31e552cd73274a67aee97729a46e030ea73d76c0e5c8f59d5b53f041e"
+    },
+    {
+      "bytes": 4023,
+      "original_paths": [
+        "lean4/CptpClassImport.contract.score.yaml#qm-open-pr-review-20261026-5667a581f964"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CptpClassImport.lean\",\n    \"sha256\": \"41e95e8f13e33696903397f4e7c50947122e33119eb7aa0a56189f4273cba409\"\n  },\n  \"boundaries\": [\n    \"The class of completely positive trace-preserving maps on a Hilbert space is not derived. Choi positivity, Kraus form and a Stinespring realization of that class stay imported. The Boolean collapse, the integer mass image and the four ancilla-false reversible dilations are one finite case. This mass image is a stochastic-kernel population shadow in the sense of QM_082, and it is not that channel class.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review:20261026:CptpClassImport\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_gp-import-cptp-class_lean_replay.json\",\n      \"sha256\": \"3bc5133e93586feffd81c0debcf1c66a70974dd74df0102ee84367579213c4a3\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_lower_campaign_review_20261026.md\",\n      \"sha256\": \"690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.\"\n  ],\n  \"purpose\": \"On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"collapse\",\n    \"TwoSided\",\n    \"collapse_both_false\",\n    \"collapse_labels_agree\",\n    \"collapse_no_two_sided_inverse\",\n    \"collapseMass\",\n    \"collapseMass_coords\",\n    \"collapseMass_preserves_sum\",\n    \"collapseMass_nonneg\",\n    \"collapseMass_two_three\",\n    \"prepared\",\n    \"prepared_is_false\",\n    \"CollapseDilation\",\n    \"colOf\",\n    \"colInv\",\n    \"colOf_left\",\n    \"colOf_right\",\n    \"colOf_reduces\",\n    \"ofSwaps\",\n    \"dFF\",\n    \"dFT\",\n    \"dTF\",\n    \"dTT\",\n    \"four_maps_pairwise_unequal\",\n    \"four_named_are_dilations\",\n    \"prepared_pair_injective\",\n    \"prepared_seconds_differ\",\n    \"prepared_false_false\",\n    \"prepared_true_false\",\n    \"unprepared_pair_injective\",\n    \"collide_prepared\",\n    \"unprepared_not_in_false_fiber\",\n    \"unprepared_report_true\",\n    \"unprepared_seconds_differ\",\n    \"map_eq_colOf\",\n    \"every_dilation_agrees\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CptpClassImport.lean",
+          "sha256": "41e95e8f13e33696903397f4e7c50947122e33119eb7aa0a56189f4273cba409"
+        },
+        "boundaries": [
+          "The class of completely positive trace-preserving maps on a Hilbert space is not derived. Choi positivity, Kraus form and a Stinespring realization of that class stay imported. The Boolean collapse, the integer mass image and the four ancilla-false reversible dilations are one finite case. This mass image is a stochastic-kernel population shadow in the sense of QM_082, and it is not that channel class.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "contract_urn": "urn:tfqm:review:20261026:CptpClassImport",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_gp-import-cptp-class_lean_replay.json",
+            "sha256": "3bc5133e93586feffd81c0debcf1c66a70974dd74df0102ee84367579213c4a3"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+            "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+          }
+        ],
+        "owned_invariants": [
+          "On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair."
+        ],
+        "purpose": "On the labels false and true, collapse sends false to false and true to false, so those two labels have the same image. For every map inv on those labels, inv is not a two-sided inverse of collapse. For integers wF and wT, the mass image has first coordinate wF + wT and second coordinate 0, and those coordinates sum to wF + wT. If wF and wT are nonnegative, both image coordinates are nonnegative. The weights 2 and 3 have mass image (5, 0). The ancilla label is prepared at false. A reversible dilation is a pair of maps on label pairs that are mutual inverses and whose system coordinate on each prepared pair equals collapse of the system label. The four maps named by the Boolean swap pairs (false, false), (false, true), (true, false) and (true, true) are pairwise distinct. Each of those four maps is the forward map of a reversible dilation, and every reversible dilation agrees with one of those four maps at every label pair.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "collapse",
+          "TwoSided",
+          "collapse_both_false",
+          "collapse_labels_agree",
+          "collapse_no_two_sided_inverse",
+          "collapseMass",
+          "collapseMass_coords",
+          "collapseMass_preserves_sum",
+          "collapseMass_nonneg",
+          "collapseMass_two_three",
+          "prepared",
+          "prepared_is_false",
+          "CollapseDilation",
+          "colOf",
+          "colInv",
+          "colOf_left",
+          "colOf_right",
+          "colOf_reduces",
+          "ofSwaps",
+          "dFF",
+          "dFT",
+          "dTF",
+          "dTT",
+          "four_maps_pairwise_unequal",
+          "four_named_are_dilations",
+          "prepared_pair_injective",
+          "prepared_seconds_differ",
+          "prepared_false_false",
+          "prepared_true_false",
+          "unprepared_pair_injective",
+          "collide_prepared",
+          "unprepared_not_in_false_fiber",
+          "unprepared_report_true",
+          "unprepared_seconds_differ",
+          "map_eq_colOf",
+          "every_dilation_agrees"
+        ]
+      },
+      "sha256": "a5d4fdfabc478804efb8195972a813bb129d0b8b558c82496e16d265e4bd4aa9"
+    }
+  ],
+  "current_contract": "a5d4fdfabc478804efb8195972a813bb129d0b8b558c82496e16d265e4bd4aa9",
+  "current_scoring": "3677fbe47a6b3ab56eecb62d3c8120c1530f00ecffb37c4d1085389f7853ee8c",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2585,
+      "original_paths": [
+        "lean4/CampaignGpImportCptpClass.contract.score.yaml#qm-open-pr-review-20261026-5667a581f964"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignGpImportCptpClass.lean\",\n    \"sha256\": \"5667a581f964eb7babec906cc92c49ea4dd4c859a71a49fdc4327c812fcf54b7\"\n  },\n  \"assessment_id\": \"qm-open-pr-review-20261026-5667a581f964\",\n  \"basis\": {\n    \"G1\": \"Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.\",\n    \"G2\": \"Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.\",\n    \"G3\": \"Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.\",\n    \"G4\": \"Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.\",\n    \"G5\": \"Inspected 251 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T15:28:11.942491+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_gp-import-cptp-class_lean_replay.json\",\n      \"sha256\": \"b9dcbe8d819ec466a9f1426ff97aa0bca3d3254717ff74251471ed75c05ddb35\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_lower_campaign_review_20261026.md\",\n      \"sha256\": \"690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.\",\n  \"open_higher_grade_findings\": [\n    \"The class of completely positive trace-preserving maps on a Hilbert space is not derived. Choi positivity, Kraus form and a Stinespring realization of that class stay imported. The Boolean collapse, the integer mass image and the four ancilla-false reversible dilations are one finite case. This mass image is a stochastic-kernel population shadow in the sense of QM_082, and it is not that channel class.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignGpImportCptpClass.lean",
+          "sha256": "5667a581f964eb7babec906cc92c49ea4dd4c859a71a49fdc4327c812fcf54b7"
+        },
+        "assessment_id": "qm-open-pr-review-20261026-5667a581f964",
+        "basis": {
+          "G1": "Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.",
+          "G2": "Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.",
+          "G3": "Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.",
+          "G4": "Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.",
+          "G5": "Inspected 251 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T15:28:11.942491+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_gp-import-cptp-class_lean_replay.json",
+            "sha256": "b9dcbe8d819ec466a9f1426ff97aa0bca3d3254717ff74251471ed75c05ddb35"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+            "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.",
+        "open_higher_grade_findings": [
+          "The class of completely positive trace-preserving maps on a Hilbert space is not derived. Choi positivity, Kraus form and a Stinespring realization of that class stay imported. The Boolean collapse, the integer mass image and the four ancilla-false reversible dilations are one finite case. This mass image is a stochastic-kernel population shadow in the sense of QM_082, and it is not that channel class.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "3e8e8c33e7453ae624065c6759a798f4c65a9b0314412edd287ebddaed69789c"
+    },
+    {
+      "bytes": 3013,
+      "original_paths": [
+        "lean4/CptpClassImport.contract.score.yaml#qm-open-pr-review-20261026-5667a581f964"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CptpClassImport.lean\",\n    \"sha256\": \"41e95e8f13e33696903397f4e7c50947122e33119eb7aa0a56189f4273cba409\"\n  },\n  \"assessment_id\": \"qm-open-pr-review-20261026-5667a581f964\",\n  \"basis\": {\n    \"G1\": \"Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.\",\n    \"G2\": \"Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.\",\n    \"G3\": \"Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.\",\n    \"G4\": \"Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.\",\n    \"G5\": \"Inspected 251 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T15:28:11.942491+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_gp-import-cptp-class_lean_replay.json\",\n      \"sha256\": \"3bc5133e93586feffd81c0debcf1c66a70974dd74df0102ee84367579213c4a3\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_lower_campaign_review_20261026.md\",\n      \"sha256\": \"690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.\",\n  \"open_higher_grade_findings\": [\n    \"The class of completely positive trace-preserving maps on a Hilbert space is not derived. Choi positivity, Kraus form and a Stinespring realization of that class stay imported. The Boolean collapse, the integer mass image and the four ancilla-false reversible dilations are one finite case. This mass image is a stochastic-kernel population shadow in the sense of QM_082, and it is not that channel class.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"profile\": \"Exact\",\n  \"rebound\": {\n    \"date\": \"2026-10-27\",\n    \"from_path\": \"lean4/CampaignGpImportCptpClass.lean\",\n    \"from_sha256\": \"5667a581f964eb7babec906cc92c49ea4dd4c859a71a49fdc4327c812fcf54b7\",\n    \"note\": \"Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived.\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CptpClassImport.lean",
+          "sha256": "41e95e8f13e33696903397f4e7c50947122e33119eb7aa0a56189f4273cba409"
+        },
+        "assessment_id": "qm-open-pr-review-20261026-5667a581f964",
+        "basis": {
+          "G1": "Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.",
+          "G2": "Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.",
+          "G3": "Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.",
+          "G4": "Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.",
+          "G5": "Inspected 251 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T15:28:11.942491+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_gp-import-cptp-class_lean_replay.json",
+            "sha256": "3bc5133e93586feffd81c0debcf1c66a70974dd74df0102ee84367579213c4a3"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_lower_campaign_review_20261026.md",
+            "sha256": "690c6915f5bd4a5da84acf184205c21c54067c731ef8255637920dcf36322290"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.",
+        "open_higher_grade_findings": [
+          "The class of completely positive trace-preserving maps on a Hilbert space is not derived. Choi positivity, Kraus form and a Stinespring realization of that class stay imported. The Boolean collapse, the integer mass image and the four ancilla-false reversible dilations are one finite case. This mass image is a stochastic-kernel population shadow in the sense of QM_082, and it is not that channel class.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "profile": "Exact",
+        "rebound": {
+          "date": "2026-10-27",
+          "from_path": "lean4/CampaignGpImportCptpClass.lean",
+          "from_sha256": "5667a581f964eb7babec906cc92c49ea4dd4c859a71a49fdc4327c812fcf54b7",
+          "note": "Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived."
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "3677fbe47a6b3ab56eecb62d3c8120c1530f00ecffb37c4d1085389f7853ee8c"
+    }
+  ]
+}

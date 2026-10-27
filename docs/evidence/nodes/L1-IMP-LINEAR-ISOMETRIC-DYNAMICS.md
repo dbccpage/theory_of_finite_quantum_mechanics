@@ -65,98 +65,98 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/FiniteWignerKernel.lean`
 
 - file: [lean4/FiniteWignerKernel.lean](../../../lean4/FiniteWignerKernel.lean)
-- sha256 (`bytes`): `29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab`
+- sha256 (`bytes`): `4a8cb01b2b211c84c8f0630d0a7716e75740731887e2ca9f8c400f3deb361814`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerKernel`): recorded sha256 `29346e2ba6220f3d2587a609c93d77d6d06a87a48d8297cb3a80c1f3231660ab` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerKernel`): recorded sha256 `4a8cb01b2b211c84c8f0630d0a7716e75740731887e2ca9f8c400f3deb361814` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteWignerKernel`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `WignerFable.Kernel.Similarity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.Similarity` |
-| `WignerFable.Kernel.eq_smul_of_normSq_ip_eq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.eq_smul_of_normSq_ip_eq` |
-| `WignerFable.Kernel.expansion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.expansion` |
-| `WignerFable.Kernel.tp` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.tp` |
-| `WignerFable.Kernel.tp_eq_born` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Kernel.tp_eq_born` |
+| `WignerFinite.Kernel.Similarity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Kernel.Similarity` |
+| `WignerFinite.Kernel.eq_smul_of_normSq_ip_eq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Kernel.eq_smul_of_normSq_ip_eq` |
+| `WignerFinite.Kernel.expansion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Kernel.expansion` |
+| `WignerFinite.Kernel.tp` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Kernel.tp` |
+| `WignerFinite.Kernel.tp_eq_born` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Kernel.tp_eq_born` |
 
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteWignerSimilarity.lean`
 
 - file: [lean4/FiniteWignerSimilarity.lean](../../../lean4/FiniteWignerSimilarity.lean)
-- sha256 (`bytes`): `d4244d574e5710133144d985426b646c1f7ed4d18ffc489d6f1605be5483cb37`
+- sha256 (`bytes`): `1358d7bfd2451add737744d0fc685cd5454dbb78f821b2261d14e8161be65a1e`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerSimilarity`): recorded sha256 `d4244d574e5710133144d985426b646c1f7ed4d18ffc489d6f1605be5483cb37` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerSimilarity`): recorded sha256 `1358d7bfd2451add737744d0fc685cd5454dbb78f821b2261d14e8161be65a1e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteWignerSimilarity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `WignerFable.Similarity.F3_not_induced_by_antiunitary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.F3_not_induced_by_antiunitary` |
-| `WignerFable.Similarity.F3_not_induced_by_unitary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.F3_not_induced_by_unitary` |
-| `WignerFable.Similarity.F3_similarity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.F3_similarity` |
-| `WignerFable.Similarity.F3_tpPreserving` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.F3_tpPreserving` |
-| `WignerFable.Similarity.exists_unitary_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.exists_unitary_iff` |
-| `WignerFable.Similarity.permMatrix_unitary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.permMatrix_unitary` |
-| `WignerFable.Similarity.three_not_sum_two_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.three_not_sum_two_sq` |
-| `WignerFable.Similarity.tpPreserving_iff_born` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Similarity.tpPreserving_iff_born` |
+| `WignerFinite.Similarity.F3_not_induced_by_antiunitary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Similarity.F3_not_induced_by_antiunitary` |
+| `WignerFinite.Similarity.F3_not_induced_by_unitary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Similarity.F3_not_induced_by_unitary` |
+| `WignerFinite.Similarity.F3_similarity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Similarity.F3_similarity` |
+| `WignerFinite.Similarity.F3_tpPreserving` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Similarity.F3_tpPreserving` |
+| `WignerFinite.Similarity.exists_unitary_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Similarity.exists_unitary_iff` |
+| `WignerFinite.Similarity.permMatrix_unitary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Similarity.permMatrix_unitary` |
+| `WignerFinite.Similarity.three_not_sum_two_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Similarity.three_not_sum_two_sq` |
+| `WignerFinite.Similarity.tpPreserving_iff_born` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Similarity.tpPreserving_iff_born` |
 
 - counts toward the grade: yes
 
 ### Lean: `lean4/FiniteWignerTheorem.lean`
 
 - file: [lean4/FiniteWignerTheorem.lean](../../../lean4/FiniteWignerTheorem.lean)
-- sha256 (`bytes`): `b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292`
+- sha256 (`bytes`): `77ae8e0eb904a0c1fa22dbbfdfd12e3504ab7424424c10beecd6a8173da63527`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerTheorem`): recorded sha256 `b2474d25f679caeb99da3348c7bed0b5f0fe408d9b93667016fc8da9ebeb8292` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `FiniteWignerTheorem`): recorded sha256 `77ae8e0eb904a0c1fa22dbbfdfd12e3504ab7424424c10beecd6a8173da63527` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build FiniteWignerTheorem`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `WignerFable.Theorem.TpPreserving` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.TpPreserving` |
-| `WignerFable.Theorem.coord_rigidity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.coord_rigidity` |
-| `WignerFable.Theorem.finite_wigner` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.finite_wigner` |
-| `WignerFable.Theorem.finite_wigner_cases` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.finite_wigner_cases` |
-| `WignerFable.Theorem.sgn_consistent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.sgn_consistent` |
-| `WignerFable.Theorem.similarity_bijective` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.similarity_bijective` |
-| `WignerFable.Theorem.tpPreserving_of_similarity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.Theorem.tpPreserving_of_similarity` |
+| `WignerFinite.Theorem.TpPreserving` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Theorem.TpPreserving` |
+| `WignerFinite.Theorem.coord_rigidity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Theorem.coord_rigidity` |
+| `WignerFinite.Theorem.finite_wigner` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Theorem.finite_wigner` |
+| `WignerFinite.Theorem.finite_wigner_cases` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Theorem.finite_wigner_cases` |
+| `WignerFinite.Theorem.sgn_consistent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Theorem.sgn_consistent` |
+| `WignerFinite.Theorem.similarity_bijective` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Theorem.similarity_bijective` |
+| `WignerFinite.Theorem.tpPreserving_of_similarity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.Theorem.tpPreserving_of_similarity` |
 
 - counts toward the grade: yes
 
 ### Lean: `lean4/GaussRatAutomorphisms.lean`
 
 - file: [lean4/GaussRatAutomorphisms.lean](../../../lean4/GaussRatAutomorphisms.lean)
-- sha256 (`bytes`): `714abb8b88f233d38c3046cead72d58bbf770c1b6902a27323d4e47a58de93e5`
+- sha256 (`bytes`): `9d44ef37e63ef81c2c065116f1355ff405b8d62345314d23702fc937c84c2d3c`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `GaussRatAutomorphisms`): recorded sha256 `714abb8b88f233d38c3046cead72d58bbf770c1b6902a27323d4e47a58de93e5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `GaussRatAutomorphisms`): recorded sha256 `9d44ef37e63ef81c2c065116f1355ff405b8d62345314d23702fc937c84c2d3c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build GaussRatAutomorphisms`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `WignerFable.GaussRatAut.ringHom_eq_id_or_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFable.GaussRatAut.ringHom_eq_id_or_star` |
+| `WignerFinite.GaussRatAut.ringHom_eq_id_or_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms WignerFinite.GaussRatAut.ringHom_eq_id_or_star` |
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H003ReversibilityGate.lean`
+### Lean: `lean4/PermutationUnitary.lean`
 
-- file: [lean4/H003ReversibilityGate.lean](../../../lean4/H003ReversibilityGate.lean)
-- sha256 (`bytes`): `d308e3e3f99b14b807f03d3f762cf91a928a78f3c3fa21cef224717ce0b415f2`
+- file: [lean4/PermutationUnitary.lean](../../../lean4/PermutationUnitary.lean)
+- sha256 (`bytes`): `7c4292b84dd988a7f220c8910579a0d6e4f8bf47fd2baf5ed66a49edf632c263`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H003ReversibilityGate`): recorded sha256 `d308e3e3f99b14b807f03d3f762cf91a928a78f3c3fa21cef224717ce0b415f2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build H003ReversibilityGate`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `PermutationUnitary`): recorded sha256 `7c4292b84dd988a7f220c8910579a0d6e4f8bf47fd2baf5ed66a49edf632c263` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build PermutationUnitary`
 - counts toward the grade: yes
 
-### Lean: `lean4/H006PermutationUnitary.lean`
+### Lean: `lean4/ReversibilityGate.lean`
 
-- file: [lean4/H006PermutationUnitary.lean](../../../lean4/H006PermutationUnitary.lean)
-- sha256 (`bytes`): `84c8c1b6a38f31091aeb711de1f63307e482cf77086ab2f0d23f2b9359519b6f`
+- file: [lean4/ReversibilityGate.lean](../../../lean4/ReversibilityGate.lean)
+- sha256 (`bytes`): `2bfb9adde035f1c6480b5561afd988cfc9e3c60eed5ba3ae09c27f3d0a4aa677`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H006PermutationUnitary`): recorded sha256 `84c8c1b6a38f31091aeb711de1f63307e482cf77086ab2f0d23f2b9359519b6f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H006PermutationUnitary`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `ReversibilityGate`): recorded sha256 `2bfb9adde035f1c6480b5561afd988cfc9e3c60eed5ba3ae09c27f3d0a4aa677` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build ReversibilityGate`
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/qm/finite_wigner.rs`

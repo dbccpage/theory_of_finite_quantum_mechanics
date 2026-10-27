@@ -47,37 +47,37 @@ The formula D_jk = Tr(C_j rho C_k^dagger), a density operator, class operators, 
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignDsQm043DecoherenceFunctional.lean`
+### Lean: `lean4/DecoherenceFunctionalGram.lean`
 
-- file: [lean4/CampaignDsQm043DecoherenceFunctional.lean](../../../lean4/CampaignDsQm043DecoherenceFunctional.lean)
-- sha256 (`bytes`): `77246f908d3a9d244469f1b66b37372e97ca22707aee46f851507e27bee2e373`
-- cited in: node.lean, receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (CampaignDsQm043DecoherenceFunctional)
+- file: [lean4/DecoherenceFunctionalGram.lean](../../../lean4/DecoherenceFunctionalGram.lean)
+- sha256 (`bytes`): `456535c1ea379be8081e785984de7183d3890d78c3e000ce5843f9144c6e2a86`
+- cited in: node.lean, receipt dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json (DecoherenceFunctionalGram)
 - replay: `verified`
-  - receipt [dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json](../../../dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json) (module `CampaignDsQm043DecoherenceFunctional`): recorded sha256 `77246f908d3a9d244469f1b66b37372e97ca22707aee46f851507e27bee2e373` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignDsQm043DecoherenceFunctional`
+  - receipt [dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json](../../../dag/research/campaign_ds-qm043-decoherence-functional-import_lean_replay.json) (module `DecoherenceFunctionalGram`): recorded sha256 `456535c1ea379be8081e785984de7183d3890d78c3e000ce5843f9144c6e2a86` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build DecoherenceFunctionalGram`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignDsQm043DecoherenceFunctional.classSeparates` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.classSeparates` |
-| `CampaignDsQm043DecoherenceFunctional.classSum` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.classSum` |
-| `CampaignDsQm043DecoherenceFunctional.diagNonneg` | yes | yes | yes | propext | `#print axioms CampaignDsQm043DecoherenceFunctional.diagNonneg` |
-| `CampaignDsQm043DecoherenceFunctional.fiveSquare` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.fiveSquare` |
-| `CampaignDsQm043DecoherenceFunctional.gramAtOnes` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.gramAtOnes` |
-| `CampaignDsQm043DecoherenceFunctional.gramDet` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsQm043DecoherenceFunctional.gramDet` |
-| `CampaignDsQm043DecoherenceFunctional.gramProd` | yes | yes | yes | propext | `#print axioms CampaignDsQm043DecoherenceFunctional.gramProd` |
-| `CampaignDsQm043DecoherenceFunctional.gramValueNonneg` | yes | yes | yes | propext | `#print axioms CampaignDsQm043DecoherenceFunctional.gramValueNonneg` |
-| `CampaignDsQm043DecoherenceFunctional.halfClass` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.halfClass` |
-| `CampaignDsQm043DecoherenceFunctional.halfDenom` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.halfDenom` |
-| `CampaignDsQm043DecoherenceFunctional.halfGlobal` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.halfGlobal` |
-| `CampaignDsQm043DecoherenceFunctional.halfGlobalOne` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.halfGlobalOne` |
-| `CampaignDsQm043DecoherenceFunctional.halfSeparates` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.halfSeparates` |
-| `CampaignDsQm043DecoherenceFunctional.halfSquares` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.halfSquares` |
-| `CampaignDsQm043DecoherenceFunctional.krausHolds` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.krausHolds` |
-| `CampaignDsQm043DecoherenceFunctional.krausSquares` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.krausSquares` |
-| `CampaignDsQm043DecoherenceFunctional.negMulNeg` | yes | yes | yes | propext | `#print axioms CampaignDsQm043DecoherenceFunctional.negMulNeg` |
-| `CampaignDsQm043DecoherenceFunctional.sevenSquare` | yes | yes | yes | none | `#print axioms CampaignDsQm043DecoherenceFunctional.sevenSquare` |
-| `CampaignDsQm043DecoherenceFunctional.squareNonneg` | yes | yes | yes | propext | `#print axioms CampaignDsQm043DecoherenceFunctional.squareNonneg` |
-| `CampaignDsQm043DecoherenceFunctional.traceSquaresNonneg` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsQm043DecoherenceFunctional.traceSquaresNonneg` |
+| `DecoherenceFunctionalGram.classSeparates` | yes | yes | yes | none | `#print axioms DecoherenceFunctionalGram.classSeparates` |
+| `DecoherenceFunctionalGram.classSum` | yes | yes | yes | none | `#print axioms DecoherenceFunctionalGram.classSum` |
+| `DecoherenceFunctionalGram.diagNonneg` | yes | yes | yes | propext | `#print axioms DecoherenceFunctionalGram.diagNonneg` |
+| `DecoherenceFunctionalGram.fiveSquare` | yes | yes | yes | none | `#print axioms DecoherenceFunctionalGram.fiveSquare` |
+| `DecoherenceFunctionalGram.gramAtOnes` | yes | yes | yes | none | `#print axioms DecoherenceFunctionalGram.gramAtOnes` |
+| `DecoherenceFunctionalGram.gramDet` | yes | yes | yes | Quot.sound, propext | `#print axioms DecoherenceFunctionalGram.gramDet` |
+| `DecoherenceFunctionalGram.gramProd` | yes | yes | yes | propext | `#print axioms DecoherenceFunctionalGram.gramProd` |
+| `DecoherenceFunctionalGram.gramValueNonneg` | yes | yes | yes | propext | `#print axioms DecoherenceFunctionalGram.gramValueNonneg` |
+| `DecoherenceFunctionalGram.halfClass` | yes | yes | yes | none | `#print axioms DecoherenceFunctionalGram.halfClass` |
+| `DecoherenceFunctionalGram.halfDenom` | yes | yes | yes | none | `#print axioms DecoherenceFunctionalGram.halfDenom` |
+| `DecoherenceFunctionalGram.halfGlobal` | yes | yes | yes | none | `#print axioms DecoherenceFunctionalGram.halfGlobal` |
+| `DecoherenceFunctionalGram.halfGlobalOne` | yes | yes | yes | none | `#print axioms DecoherenceFunctionalGram.halfGlobalOne` |
+| `DecoherenceFunctionalGram.halfSeparates` | yes | yes | yes | none | `#print axioms DecoherenceFunctionalGram.halfSeparates` |
+| `DecoherenceFunctionalGram.halfSquares` | yes | yes | yes | none | `#print axioms DecoherenceFunctionalGram.halfSquares` |
+| `DecoherenceFunctionalGram.krausHolds` | yes | yes | yes | none | `#print axioms DecoherenceFunctionalGram.krausHolds` |
+| `DecoherenceFunctionalGram.krausSquares` | yes | yes | yes | none | `#print axioms DecoherenceFunctionalGram.krausSquares` |
+| `DecoherenceFunctionalGram.negMulNeg` | yes | yes | yes | propext | `#print axioms DecoherenceFunctionalGram.negMulNeg` |
+| `DecoherenceFunctionalGram.sevenSquare` | yes | yes | yes | none | `#print axioms DecoherenceFunctionalGram.sevenSquare` |
+| `DecoherenceFunctionalGram.squareNonneg` | yes | yes | yes | propext | `#print axioms DecoherenceFunctionalGram.squareNonneg` |
+| `DecoherenceFunctionalGram.traceSquaresNonneg` | yes | yes | yes | Quot.sound, propext | `#print axioms DecoherenceFunctionalGram.traceSquaresNonneg` |
 
 - counts toward the grade: yes
 

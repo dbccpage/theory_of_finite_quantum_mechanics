@@ -1,6 +1,6 @@
 """Unit, negative, integration, end-to-end, and mutation tests.
 
-Origin: lean4/H019RationalLieSpan.lean theorem cayley_isometry_matrix2x2_rat.
+Origin: lean4/RationalLieSpan.lean theorem cayley_isometry_matrix2x2_rat.
 Claim: urn:omega:fqm:lie:cayley-mat2-isometry:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/lie_theory/test_cayley_control.py.
@@ -274,7 +274,7 @@ _PACKAGE_PATH = Path(__file__).resolve().with_name("__init__.py")
 
 
 PRINT_TEXT = '0\n'
-ORIGIN_REL = 'lean4/H019RationalLieSpan.lean'
+ORIGIN_REL = 'lean4/RationalLieSpan.lean'
 ORIGIN_MARKER = 'theorem cayley_isometry_matrix2x2_rat'
 CLAIM = 'urn:omega:fqm:lie:cayley-mat2-isometry:v1'
 EXPECTED = 0

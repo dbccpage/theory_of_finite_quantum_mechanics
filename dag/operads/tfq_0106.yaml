@@ -26,7 +26,7 @@ target:
   - dag/derivations/19_finite_qg/tfq_0106_gap_the_physical_cosmological_constant_is_not_discharged_the_rust_carrier_is.md
   - dag/derivations/independent/tfq-0106.md
   - checks/independent/tfq-0106.py
-  - lean4/CampaignTfq0106FiniteQg.lean
+  - lean4/CosmologicalCouplingReplay.lean
   - code/rust/src/general_relativity/cosmological_constant.rs
   - dag/research/campaign_tfq-0106_lean_replay.json
   - dag/research/campaign_tfq-0106_lean_mutation.json
@@ -71,18 +71,18 @@ relation_candidates:
 - anisotropic_profile_violates_tensorial_einstein
 - diagonal_einstein_iff_sq_residual_zero
 source_bindings:
-- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.rust_cosmological_action_unit_test_replay
-- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.cosmological_action_zero_iff_curvature_balance
-- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.cosmological_action_scaling_and_invariance
-- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.cell_volume_4d_length_rescaling
-- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.any_target_lambda_achievable_by_cell_volume_calibration
-- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.cell_volume_calibration_injective
-- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.immirzi_and_cell_volume_scale_degeneracy
-- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.default_valency_scaffold_calibration_spread
-- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.four_dim_symmetric_tensor_component_counts
-- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.anisotropic_curvature_vanishing_scalar_mean_fence
-- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.anisotropic_profile_violates_tensorial_einstein
-- lean4/CampaignTfq0106FiniteQg.lean::CampaignTfq0106FiniteQg.diagonal_einstein_iff_sq_residual_zero
+- lean4/CosmologicalCouplingReplay.lean::CosmologicalCouplingReplay.rust_cosmological_action_unit_test_replay
+- lean4/CosmologicalCouplingReplay.lean::CosmologicalCouplingReplay.cosmological_action_zero_iff_curvature_balance
+- lean4/CosmologicalCouplingReplay.lean::CosmologicalCouplingReplay.cosmological_action_scaling_and_invariance
+- lean4/CosmologicalCouplingReplay.lean::CosmologicalCouplingReplay.cell_volume_4d_length_rescaling
+- lean4/CosmologicalCouplingReplay.lean::CosmologicalCouplingReplay.any_target_lambda_achievable_by_cell_volume_calibration
+- lean4/CosmologicalCouplingReplay.lean::CosmologicalCouplingReplay.cell_volume_calibration_injective
+- lean4/CosmologicalCouplingReplay.lean::CosmologicalCouplingReplay.immirzi_and_cell_volume_scale_degeneracy
+- lean4/CosmologicalCouplingReplay.lean::CosmologicalCouplingReplay.default_valency_scaffold_calibration_spread
+- lean4/CosmologicalCouplingReplay.lean::CosmologicalCouplingReplay.four_dim_symmetric_tensor_component_counts
+- lean4/CosmologicalCouplingReplay.lean::CosmologicalCouplingReplay.anisotropic_curvature_vanishing_scalar_mean_fence
+- lean4/CosmologicalCouplingReplay.lean::CosmologicalCouplingReplay.anisotropic_profile_violates_tensorial_einstein
+- lean4/CosmologicalCouplingReplay.lean::CosmologicalCouplingReplay.diagonal_einstein_iff_sq_residual_zero
 presentation:
   colours:
   - RationalCosmologicalCoupling
@@ -118,7 +118,7 @@ operad_slots:
     - external lattice cell-volume calibration V_cell (assumption)
     - continuum 4D Einstein tensor limit G_munu + Lambda g_munu = 0 (open)
     source_pins:
-    - lean4/CampaignTfq0106FiniteQg.lean
+    - lean4/CosmologicalCouplingReplay.lean
     - code/rust/src/general_relativity/cosmological_constant.rs
     public_input: {}
   slot_m2_layer1_forward_morphisms:
@@ -156,7 +156,7 @@ operad_slots:
     - four_dim_symmetric_tensor_component_counts
     - diagonal_einstein_iff_sq_residual_zero
     anchors:
-    - lean4/CampaignTfq0106FiniteQg.lean
+    - lean4/CosmologicalCouplingReplay.lean
     - checks/independent/tfq-0106.py
     - dag/derivations/independent/tfq-0106.md
     unpaid_imports:

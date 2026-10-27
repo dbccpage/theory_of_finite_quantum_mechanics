@@ -12,7 +12,7 @@ The supply hypothesis is the fresh-supply threshold for a nonnegative initial ba
 
 If also `max(C, 1) * p(0) <= 1/2`, the same hypotheses give an explicit level: every natural number `k` with `L <= epsilon * max(C, 1) * 2^(2^k)` satisfies `L * p(k) <= epsilon`.
 
-`viability_nonneg_initial` in `lean4/CampaignQcvConditionalViabilityCertificate.lean` has the first conclusion as its type. `viability_explicit_level` has the explicit level bound as its type. Both use `conditional_viability` and `conditional_viability_explicit` in `lean4/QcSelfObstruction.lean`. The printed axiom list of each is `propext`, `Classical.choice`, and `Quot.sound`.
+`viability_nonneg_initial` in `lean4/NoisyComputationViabilityCertificate.lean` has the first conclusion as its type. `viability_explicit_level` has the explicit level bound as its type. Both use `conditional_viability` and `conditional_viability_explicit` in `lean4/QcSelfObstruction.lean`. The printed axiom list of each is `propext`, `Classical.choice`, and `Quot.sound`.
 
 The Python script checks one rational instance: threshold `2`, `D * p0 = 2/5 <= 1/2`, `p1 = 1/25`, and `16 * p1 = 16/25 <= 1`. That instance is not the general implication.
 

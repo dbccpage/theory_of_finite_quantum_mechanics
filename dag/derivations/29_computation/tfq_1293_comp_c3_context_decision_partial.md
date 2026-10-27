@@ -11,7 +11,7 @@
 
 ## 1. Abstract & Formal Statement
 
-The earlier GenesisComputation module decides only unary hole-only separability, collapse and pairwise separation on a finite regime. CampaignGenesisContextDecision now supplies complete finite slot-context decisions with multiple holes, arbitrary finite admitted arities and uniform-rule coverage in the existing Regime. TFQ-0497 remains open for first-count existence, Y-2 history-level necessity and external implementation refinement.
+The earlier GenesisComputation module decides only unary hole-only separability, collapse and pairwise separation on a finite regime. GenesisContextDecision now supplies complete finite slot-context decisions with multiple holes, arbitrary finite admitted arities and uniform-rule coverage in the existing Regime. TFQ-0497 remains open for first-count existence, Y-2 history-level necessity and external implementation refinement.
 
 ### Governing Obligation
 Use the general finite context procedure for the remaining TFQ-0497 history claims under their declared predicates; keep operational refinement separate.
@@ -37,7 +37,7 @@ The original unary instances remain scoped to unary forms. The campaign module s
 - `lean4/GenesisComputation.lean::unarySep_iff`
 - `lean4/GenesisComputation.lean::pairwiseSeparated_iff`
 - `lean4/GenesisComputation.lean::two_marks_without_forms_collapsed`
-- `lean4/CampaignGenesisContextDecision.lean::CampaignGenesisContextDecision.collapseTest_correct`
+- `lean4/GenesisContextDecision.lean::GenesisContextDecision.collapseTest_correct`
 
 ### Rust Certifiers
 - `code/rust/src/wdp/genesis_tm.rs::unary_sep`

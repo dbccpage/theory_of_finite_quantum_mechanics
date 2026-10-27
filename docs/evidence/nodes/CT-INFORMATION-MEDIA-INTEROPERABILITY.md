@@ -42,24 +42,24 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignInformationProductBoundary.lean`
+### Lean: `lean4/InformationProductBoundary.lean`
 
-- file: [lean4/CampaignInformationProductBoundary.lean](../../../lean4/CampaignInformationProductBoundary.lean)
-- sha256 (`bytes`): `1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d`
-- cited in: node.lean, receipt dag/research/campaign_ct-information-media-interoperability_lean_replay.json (CampaignInformationProductBoundary), receipt dag/research/pr_381_round2_replay.json (CampaignInformationProductBoundary), record TFQ-2006
+- file: [lean4/InformationProductBoundary.lean](../../../lean4/InformationProductBoundary.lean)
+- sha256 (`bytes`): `b9fb0fc2e132c89a49c4068013d2e5e36de23d25b366bf9c6ea9e8f400780687`
+- cited in: node.lean, receipt dag/research/campaign_ct-information-media-interoperability_lean_replay.json (InformationProductBoundary), receipt dag/research/pr_381_round2_replay.json (InformationProductBoundary), record TFQ-2006
 - replay: `verified`
-  - receipt [dag/research/campaign_ct-information-media-interoperability_lean_replay.json](../../../dag/research/campaign_ct-information-media-interoperability_lean_replay.json) (module `CampaignInformationProductBoundary`): recorded sha256 `1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-  - receipt [dag/research/pr_381_round2_replay.json](../../../dag/research/pr_381_round2_replay.json) (module `CampaignInformationProductBoundary`): recorded sha256 `1c3190280e57ed7d47279e0f4d002fc780d999a332b7022254946260df32130d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignInformationProductBoundary`
+  - receipt [dag/research/campaign_ct-information-media-interoperability_lean_replay.json](../../../dag/research/campaign_ct-information-media-interoperability_lean_replay.json) (module `InformationProductBoundary`): recorded sha256 `b9fb0fc2e132c89a49c4068013d2e5e36de23d25b366bf9c6ea9e8f400780687` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/pr_381_round2_replay.json](../../../dag/research/pr_381_round2_replay.json) (module `InformationProductBoundary`): recorded sha256 `b9fb0fc2e132c89a49c4068013d2e5e36de23d25b366bf9c6ea9e8f400780687` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build InformationProductBoundary`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignInformationProductBoundary.Clones` | yes | yes | yes | none | `#print axioms CampaignInformationProductBoundary.Clones` |
-| `CampaignInformationProductBoundary.clones_product` | yes | yes | yes | propext | `#print axioms CampaignInformationProductBoundary.clones_product` |
-| `CampaignInformationProductBoundary.controlledFlip` | yes | yes | yes | none | `#print axioms CampaignInformationProductBoundary.controlledFlip` |
-| `CampaignInformationProductBoundary.controlledFlip_involution` | yes | yes | yes | none | `#print axioms CampaignInformationProductBoundary.controlledFlip_involution` |
-| `CampaignInformationProductBoundary.controlledFlip_not_product` | yes | yes | yes | propext | `#print axioms CampaignInformationProductBoundary.controlledFlip_not_product` |
-| `CampaignInformationProductBoundary.productCloner` | yes | yes | yes | none | `#print axioms CampaignInformationProductBoundary.productCloner` |
+| `InformationProductBoundary.Clones` | yes | yes | yes | none | `#print axioms InformationProductBoundary.Clones` |
+| `InformationProductBoundary.clones_product` | yes | yes | yes | propext | `#print axioms InformationProductBoundary.clones_product` |
+| `InformationProductBoundary.controlledFlip` | yes | yes | yes | none | `#print axioms InformationProductBoundary.controlledFlip` |
+| `InformationProductBoundary.controlledFlip_involution` | yes | yes | yes | none | `#print axioms InformationProductBoundary.controlledFlip_involution` |
+| `InformationProductBoundary.controlledFlip_not_product` | yes | yes | yes | propext | `#print axioms InformationProductBoundary.controlledFlip_not_product` |
+| `InformationProductBoundary.productCloner` | yes | yes | yes | none | `#print axioms InformationProductBoundary.productCloner` |
 
 - counts toward the grade: yes
 
@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md`
 
 - file: [dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md](../../../dag/derivations/30_constructor_theory/tfq_2006_ct_information_media_interoperability.md)
-- sha256 (`lf-normalised`): `20fa784ab65ab323bb0c9e37ac3a4f477d358f15b584da7fbe12349fe37c61d8`
+- sha256 (`lf-normalised`): `81f9d87587f4294c426d59421df0173e09fdb9255e7d338791dad2ddf30c117f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2006
 - counts toward the grade: no
@@ -88,7 +88,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_ct-information-media-interoperability_lean_replay.json`
 
 - file: [dag/research/campaign_ct-information-media-interoperability_lean_replay.json](../../../dag/research/campaign_ct-information-media-interoperability_lean_replay.json)
-- sha256 (`lf-normalised`): `2485a455edd9d21c23571b4e5d7b615bd4b0222d253292e79de2530fc86138cf`
+- sha256 (`lf-normalised`): `f06441262630cd2f64087940c11d19dd79698ea74d508356bc0999856385c336`
 - cited in: node.source
 - counts toward the grade: yes
 

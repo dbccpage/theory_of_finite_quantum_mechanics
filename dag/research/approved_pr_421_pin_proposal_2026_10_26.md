@@ -6,7 +6,7 @@ The mathematical implementation and independent checks are complete. This propos
 
 | Source | Exact SHA-256 | Assessed score | Category |
 |---|---|---|---|
-| `lean4/CampaignFiniteGroupPachner.lean` | `e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca` | L3D | `finite_proof_example` |
+| `lean4/FiniteGroupPachner.lean` | `e8b2c28cf6e0a0536ba15941742f07d59dc2adcbae86bdfa7311678f6c00cdca` | L3D | `finite_proof_example` |
 
 The proof covers every finite group, every flat boundary of the canonical 4D Pachner pairs, and every finite compatible exterior family represented by dependent pairs. Only that revised node statement changes OPEN to PROVED_LEAN. The historical unnamed state sum, Regge action, general PL topology and fermion-sign claims are not established. Human review remains pending.
 

@@ -1,7 +1,7 @@
 
 
 
-namespace OmegaWorld
+namespace ObserverWorld
 namespace RebitQ9
 
 inductive Q9AuthorityEffect where
@@ -251,7 +251,7 @@ def rhoPairWitness : RhoPairWitness where
 #print axioms rho_pPlus_scaled_separator
 
 end RebitQ9
-end OmegaWorld
+end ObserverWorld
 
 private def l5aProvenance : String :=
   "Origin: lean4/WorldRebitHiddenDirection.lean Claim: delta_symmetric AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

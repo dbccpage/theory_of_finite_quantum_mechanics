@@ -26,12 +26,12 @@ Connects the additive rational phase tower $\mathbb{Q}/\mathbb{Z}$ and `RegPhase
 AuthorityEffect: None.
 -/
 
-namespace U1Fable.ChebyshevCauchyBridge
+namespace U1Finite.ChebyshevCauchyBridge
 
-open U1Fable.PythagoreanObstruction
-open U1Fable.CayleyProjective
-open U1Fable.CyclotomicTorsionTower
-open U1Fable.CauchyCircleCompletion
+open U1Finite.PythagoreanObstruction
+open U1Finite.CayleyProjective
+open U1Finite.CyclotomicTorsionTower
+open U1Finite.CauchyCircleCompletion
 
 /-! ## Section 1: Chebyshev Multiple-Angle Polynomials on $S^1(\mathbb{Q})$ -/
 
@@ -307,8 +307,8 @@ theorem cayleyDyadicPoint_on_circle (θ : ℚ) (k : ℕ) :
   (cayleyDyadicPoint θ k).norm_eq_one
 
 /-- At $\theta = 0$, the Cayley circle point is the identity $(1, 0) \in S^1(\mathbb{Q})$. -/
-theorem cayleyCirclePoint_zero : cayleyCirclePoint 0 = U1Fable.PythagoreanObstruction.one := by
-  ext <;> simp [cayleyCirclePoint, U1Fable.PythagoreanObstruction.one]
+theorem cayleyCirclePoint_zero : cayleyCirclePoint 0 = U1Finite.PythagoreanObstruction.one := by
+  ext <;> simp [cayleyCirclePoint, U1Finite.PythagoreanObstruction.one]
 
 /-- Regular Cauchy phase sequence for the Taylor cosine approximant over `RegPhaseSeq`, with
 contracting remainder perturbations bounded by $\frac{1}{2(n+1)}$. -/
@@ -508,36 +508,36 @@ theorem frobeniusTrace_weight_unique (W1 W2 : HermitianMat2Qi)
 
 end HermitianMat2Qi
 
-end U1Fable.ChebyshevCauchyBridge
+end U1Finite.ChebyshevCauchyBridge
 
-#print axioms U1Fable.ChebyshevCauchyBridge.chebyshevT_two
-#print axioms U1Fable.ChebyshevCauchyBridge.chebyshevT_three
-#print axioms U1Fable.ChebyshevCauchyBridge.chebyshevT_four
-#print axioms U1Fable.ChebyshevCauchyBridge.chebyshevU_two
-#print axioms U1Fable.ChebyshevCauchyBridge.chebyshevU_three
-#print axioms U1Fable.ChebyshevCauchyBridge.chebyshev_pell_two
-#print axioms U1Fable.ChebyshevCauchyBridge.chebyshev_pell_three
-#print axioms U1Fable.ChebyshevCauchyBridge.chebyshev_pell_four
-#print axioms U1Fable.ChebyshevCauchyBridge.chebyshev_double_eq_ratCircle_sq
-#print axioms U1Fable.ChebyshevCauchyBridge.chebyshev_triple_eq_ratCircle_cube
-#print axioms U1Fable.ChebyshevCauchyBridge.chebyshevIter_add
-#print axioms U1Fable.ChebyshevCauchyBridge.taylorCos_nested_enclosure
-#print axioms U1Fable.ChebyshevCauchyBridge.taylorCos_width_bound
-#print axioms U1Fable.ChebyshevCauchyBridge.taylorSin_nested_enclosure
-#print axioms U1Fable.ChebyshevCauchyBridge.taylorSin_width_bound
-#print axioms U1Fable.ChebyshevCauchyBridge.taylor_pythagorean_defect_identity
-#print axioms U1Fable.ChebyshevCauchyBridge.taylor_pythagorean_defect_bound
-#print axioms U1Fable.ChebyshevCauchyBridge.cayleyDyadicPoint_on_circle
-#print axioms U1Fable.ChebyshevCauchyBridge.cayleyCirclePoint_zero
-#print axioms U1Fable.ChebyshevCauchyBridge.regTaylorCosSeq_approx_limit
-#print axioms U1Fable.ChebyshevCauchyBridge.regTaylorSinSeq_approx_limit
-#print axioms U1Fable.ChebyshevCauchyBridge.HermitianMat2Qi.basis_decomposition
-#print axioms U1Fable.ChebyshevCauchyBridge.HermitianMat2Qi.frobeniusTrace_comm
-#print axioms U1Fable.ChebyshevCauchyBridge.HermitianMat2Qi.frobeniusTrace_add_right
-#print axioms U1Fable.ChebyshevCauchyBridge.HermitianMat2Qi.frobeniusTrace_smul_right
-#print axioms U1Fable.ChebyshevCauchyBridge.HermitianMat2Qi.sigmaY_orthogonal_to_realSym
-#print axioms U1Fable.ChebyshevCauchyBridge.HermitianMat2Qi.rankOneKet_det_zero
-#print axioms U1Fable.ChebyshevCauchyBridge.HermitianMat2Qi.rankOneKet_trace
-#print axioms U1Fable.ChebyshevCauchyBridge.HermitianMat2Qi.frobeniusTrace_rankOneKet_eq_inner_mod_sq
-#print axioms U1Fable.ChebyshevCauchyBridge.HermitianMat2Qi.linear_functional_is_frobeniusTrace
-#print axioms U1Fable.ChebyshevCauchyBridge.HermitianMat2Qi.frobeniusTrace_weight_unique
+#print axioms U1Finite.ChebyshevCauchyBridge.chebyshevT_two
+#print axioms U1Finite.ChebyshevCauchyBridge.chebyshevT_three
+#print axioms U1Finite.ChebyshevCauchyBridge.chebyshevT_four
+#print axioms U1Finite.ChebyshevCauchyBridge.chebyshevU_two
+#print axioms U1Finite.ChebyshevCauchyBridge.chebyshevU_three
+#print axioms U1Finite.ChebyshevCauchyBridge.chebyshev_pell_two
+#print axioms U1Finite.ChebyshevCauchyBridge.chebyshev_pell_three
+#print axioms U1Finite.ChebyshevCauchyBridge.chebyshev_pell_four
+#print axioms U1Finite.ChebyshevCauchyBridge.chebyshev_double_eq_ratCircle_sq
+#print axioms U1Finite.ChebyshevCauchyBridge.chebyshev_triple_eq_ratCircle_cube
+#print axioms U1Finite.ChebyshevCauchyBridge.chebyshevIter_add
+#print axioms U1Finite.ChebyshevCauchyBridge.taylorCos_nested_enclosure
+#print axioms U1Finite.ChebyshevCauchyBridge.taylorCos_width_bound
+#print axioms U1Finite.ChebyshevCauchyBridge.taylorSin_nested_enclosure
+#print axioms U1Finite.ChebyshevCauchyBridge.taylorSin_width_bound
+#print axioms U1Finite.ChebyshevCauchyBridge.taylor_pythagorean_defect_identity
+#print axioms U1Finite.ChebyshevCauchyBridge.taylor_pythagorean_defect_bound
+#print axioms U1Finite.ChebyshevCauchyBridge.cayleyDyadicPoint_on_circle
+#print axioms U1Finite.ChebyshevCauchyBridge.cayleyCirclePoint_zero
+#print axioms U1Finite.ChebyshevCauchyBridge.regTaylorCosSeq_approx_limit
+#print axioms U1Finite.ChebyshevCauchyBridge.regTaylorSinSeq_approx_limit
+#print axioms U1Finite.ChebyshevCauchyBridge.HermitianMat2Qi.basis_decomposition
+#print axioms U1Finite.ChebyshevCauchyBridge.HermitianMat2Qi.frobeniusTrace_comm
+#print axioms U1Finite.ChebyshevCauchyBridge.HermitianMat2Qi.frobeniusTrace_add_right
+#print axioms U1Finite.ChebyshevCauchyBridge.HermitianMat2Qi.frobeniusTrace_smul_right
+#print axioms U1Finite.ChebyshevCauchyBridge.HermitianMat2Qi.sigmaY_orthogonal_to_realSym
+#print axioms U1Finite.ChebyshevCauchyBridge.HermitianMat2Qi.rankOneKet_det_zero
+#print axioms U1Finite.ChebyshevCauchyBridge.HermitianMat2Qi.rankOneKet_trace
+#print axioms U1Finite.ChebyshevCauchyBridge.HermitianMat2Qi.frobeniusTrace_rankOneKet_eq_inner_mod_sq
+#print axioms U1Finite.ChebyshevCauchyBridge.HermitianMat2Qi.linear_functional_is_frobeniusTrace
+#print axioms U1Finite.ChebyshevCauchyBridge.HermitianMat2Qi.frobeniusTrace_weight_unique

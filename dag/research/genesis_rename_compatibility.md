@@ -31,7 +31,7 @@ The archived file under
 `atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean`
 remains immutable. Its recorded direct-build failure remains historical evidence;
 that file is not the maintained compatibility entry point. The campaign's separate
-`CampaignGenesisOngoingRename` port and its existing receipts are also retained.
+`GenesisOngoingRename` port and its existing receipts are also retained.
 The two ports use distinct dependency module paths and must be audited in separate
 Lean environments rather than imported together.
 

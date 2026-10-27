@@ -44,11 +44,11 @@ inverse_difference is the inverse-propagator identity for every integer momentum
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignDfmZ1Z2CountertermFence.lean::inverse_difference`
-- `lean4/CampaignDfmZ1Z2CountertermFence.lean::propagator_values`
-- `lean4/CampaignDfmZ1Z2CountertermFence.lean::sandwich`
-- `lean4/CampaignDfmZ1Z2CountertermFence.lean::contraction`
-- `lean4/CampaignDfmZ1Z2CountertermFence.lean::contraction_entries`
+- `lean4/DressingFieldZ1Z2CountertermFence.lean::inverse_difference`
+- `lean4/DressingFieldZ1Z2CountertermFence.lean::propagator_values`
+- `lean4/DressingFieldZ1Z2CountertermFence.lean::sandwich`
+- `lean4/DressingFieldZ1Z2CountertermFence.lean::contraction`
+- `lean4/DressingFieldZ1Z2CountertermFence.lean::contraction_entries`
 
 ### Rust Certifiers
 - *none*
@@ -72,6 +72,6 @@ inverse_difference is the inverse-propagator identity for every integer momentum
 - **Cited Sources**:
   - `papers/ravera_dfm_dossier.md:139-141`
   - `code/python/src/qm/ravera_dfm.py:565-571`
-  - `lean4/CampaignDfmZ1Z2CountertermFence.lean`
+  - `lean4/DressingFieldZ1Z2CountertermFence.lean`
   - `dag/derivations/independent/dfm-z1-z2-counterterm-fence.md`
   - `checks/independent/dfm-z1-z2-counterterm-fence.py`

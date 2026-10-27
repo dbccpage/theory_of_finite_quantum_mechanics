@@ -14,10 +14,10 @@
 For lattice Dirac operators with chemical potential, gamma5 D(mu) gamma5 = D(-mu*)^dagger, hence det D(mu)^* = det D(-mu*); for real mu != 0 this relates D(mu) to D(-mu) only and det D(mu) is in general complex.
 
 ### Governing Obligation
-Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/CampaignFspQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.
+Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.
 
 ### Witness Audit
-Replaced missing NonAbelianGaugeSigns.lean::su3_chemical_potential_complex_determinant reference with lean4/CampaignFspQcdChemicalPotentialDet.lean and checks/independent/fsp-qcd-chemical-potential-det.py.
+Replaced missing NonAbelianGaugeSigns.lean::su3_chemical_potential_complex_determinant reference with lean4/FermionSignQcdChemicalPotentialDet.lean and checks/independent/fsp-qcd-chemical-potential-det.py.
 
 ---
 
@@ -31,23 +31,23 @@ Replaced missing NonAbelianGaugeSigns.lean::su3_chemical_potential_complex_deter
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.det_conj_by_involution`
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_mu_intertwine_det_conj`
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_real_mu_det_conj`
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_zero_mu_det_im_zero`
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_imag_mu_det_im_zero`
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.diracMu_gamma5_adjoint`
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.diracMu_det_conj`
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.staggeredDiracMu_gamma5_adjoint`
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.staggeredDiracMu_det_conj`
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_unitary`
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_det`
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_trace_im_ne_zero`
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_gamma5_intertwine`
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_two`
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_half`
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness`
-- `lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.det_conj_by_involution`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.gamma5_mu_intertwine_det_conj`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.gamma5_real_mu_det_conj`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.gamma5_zero_mu_det_im_zero`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.gamma5_imag_mu_det_im_zero`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.diracMu_gamma5_adjoint`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.diracMu_det_conj`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.staggeredDiracMu_gamma5_adjoint`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.staggeredDiracMu_det_conj`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3ClockLink_unitary`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3ClockLink_det`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3ClockLink_trace_im_ne_zero`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_gamma5_intertwine`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_two`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_half`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness`
+- `lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero`
 
 ### Rust Certifiers
 - *none*

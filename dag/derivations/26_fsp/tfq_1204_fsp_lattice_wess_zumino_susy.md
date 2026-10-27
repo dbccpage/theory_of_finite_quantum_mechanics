@@ -14,10 +14,10 @@
 Claimed: a finite-lattice 2D N=1 Wess-Zumino model with supercharges obeying {Q_a, Q_b} = 2 delta_ab H, H >= 0 and exact boson-fermion pairing of nonzero levels; no such lattice construction exists in this checkout, and lattice discretizations generally keep at most a subalgebra exact.
 
 ### Governing Obligation
-Full interacting 2D continuum/lattice super-Poincare restoration remains open; lean4/CampaignFspLatticeWessZuminoSusy.lean establishes the exact Z_2-graded block supercharge algebra (Q(A)^2 = 0, {Q_a, Q_b} = 2 delta_ab H(A, A^dagger), [Gamma_F, H] = 0, [Q, H] = 0), quadratic-form nonnegativity of A^T A and A A^T, supertrace vanishing Tr(Gamma_F H) = 0, exact nonzero-energy boson-fermion eigenstate pairing, the explicit 2-site lattice Wess-Zumino block wz2SiteBlock, and the 3-site discrete cubic Leibniz defect witness (-2 != 0), while checks/independent/fsp-lattice-wess-zumino-susy.py checks 1D and rectangular lattice Wess-Zumino models.
+Full interacting 2D continuum/lattice super-Poincare restoration remains open; lean4/FermionSignLatticeWessZuminoSusy.lean establishes the exact Z_2-graded block supercharge algebra (Q(A)^2 = 0, {Q_a, Q_b} = 2 delta_ab H(A, A^dagger), [Gamma_F, H] = 0, [Q, H] = 0), quadratic-form nonnegativity of A^T A and A A^T, supertrace vanishing Tr(Gamma_F H) = 0, exact nonzero-energy boson-fermion eigenstate pairing, the explicit 2-site lattice Wess-Zumino block wz2SiteBlock, and the 3-site discrete cubic Leibniz defect witness (-2 != 0), while checks/independent/fsp-lattice-wess-zumino-susy.py checks 1D and rectangular lattice Wess-Zumino models.
 
 ### Witness Audit
-Replaced missing NonAbelianGaugeSigns.lean::susy_supercharge_positive_hamiltonian and trivial regge_wdw_core.lean placeholders with lean4/CampaignFspLatticeWessZuminoSusy.lean and checks/independent/fsp-lattice-wess-zumino-susy.py.
+Replaced missing NonAbelianGaugeSigns.lean::susy_supercharge_positive_hamiltonian and trivial regge_wdw_core.lean placeholders with lean4/FermionSignLatticeWessZuminoSusy.lean and checks/independent/fsp-lattice-wess-zumino-susy.py.
 
 ---
 
@@ -31,32 +31,32 @@ Replaced missing NonAbelianGaugeSigns.lean::susy_supercharge_positive_hamiltonia
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.fermionParity_sq`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supercharge_sq_zero`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.superchargeAdj_sq_zero`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supercharge_anticommutes_parity`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.superchargeAdj_anticommutes_parity`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.susyHamiltonian_eq_fromBlocks`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.susyHamiltonian_commutes_parity`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supercharge_commutes_susyHamiltonian`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.superchargeAdj_commutes_susyHamiltonian`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge1_hermitian`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge2_hermitian`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge1_sq`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge2_sq`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.hermSupercharge_anticomm`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.bosonBlock_quadForm_eq_sum_sq`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.bosonBlock_quadForm_nonneg`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.fermionBlock_quadForm_nonneg`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.boson_eq_fermion_trace`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.supertrace_susyHamiltonian_eq_zero`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.boson_to_fermion_eigenstate`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.fermion_to_boson_eigenstate`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.boson_partner_ne_zero`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.wz2SiteBlock_boson_eq_fermion`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.wz2SiteBlock_det`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.leibnizCubicDefect3_witness`
-- `lean4/CampaignFspLatticeWessZuminoSusy.lean::CampaignFspLatticeWessZuminoSusy.brokenSupercharge_sq_ne_zero`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.fermionParity_sq`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.supercharge_sq_zero`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.superchargeAdj_sq_zero`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.supercharge_anticommutes_parity`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.superchargeAdj_anticommutes_parity`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.susyHamiltonian_eq_fromBlocks`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.susyHamiltonian_commutes_parity`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.supercharge_commutes_susyHamiltonian`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.superchargeAdj_commutes_susyHamiltonian`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.hermSupercharge1_hermitian`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.hermSupercharge2_hermitian`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.hermSupercharge1_sq`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.hermSupercharge2_sq`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.hermSupercharge_anticomm`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.bosonBlock_quadForm_eq_sum_sq`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.bosonBlock_quadForm_nonneg`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.fermionBlock_quadForm_nonneg`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.boson_eq_fermion_trace`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.supertrace_susyHamiltonian_eq_zero`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.boson_to_fermion_eigenstate`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.fermion_to_boson_eigenstate`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.boson_partner_ne_zero`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.wz2SiteBlock_boson_eq_fermion`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.wz2SiteBlock_det`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.leibnizCubicDefect3_witness`
+- `lean4/FermionSignLatticeWessZuminoSusy.lean::FermionSignLatticeWessZuminoSusy.brokenSupercharge_sq_ne_zero`
 
 ### Rust Certifiers
 - *none*

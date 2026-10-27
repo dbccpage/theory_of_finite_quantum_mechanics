@@ -42,30 +42,30 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignKitaevSectorBlock.lean`
+### Lean: `lean4/KitaevSectorBlock.lean`
 
-- file: [lean4/CampaignKitaevSectorBlock.lean](../../../lean4/CampaignKitaevSectorBlock.lean)
-- sha256 (`bytes`): `d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329`
-- cited in: node.lean, receipt dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json (CampaignKitaevSectorBlock), receipt dag/research/pr_378_round2_replay.json (CampaignKitaevSectorBlock), record TFQ-1207
+- file: [lean4/KitaevSectorBlock.lean](../../../lean4/KitaevSectorBlock.lean)
+- sha256 (`bytes`): `5de45b17a7ae6cf93a2455172086d10e846b1f2ea0ed9d69ea973f79daa6abcf`
+- cited in: node.lean, receipt dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json (KitaevSectorBlock), receipt dag/research/pr_378_round2_replay.json (KitaevSectorBlock), record TFQ-1207
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json](../../../dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json) (module `CampaignKitaevSectorBlock`): recorded sha256 `d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_378_round2_replay.json](../../../dag/research/pr_378_round2_replay.json) (module `CampaignKitaevSectorBlock`): recorded sha256 `d9bd9073f6b684cfddfae8bc545d3002950a50d7bf1165a8e30091ed89503329` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignKitaevSectorBlock`
+  - receipt [dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json](../../../dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json) (module `KitaevSectorBlock`): recorded sha256 `5de45b17a7ae6cf93a2455172086d10e846b1f2ea0ed9d69ea973f79daa6abcf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_378_round2_replay.json](../../../dag/research/pr_378_round2_replay.json) (module `KitaevSectorBlock`): recorded sha256 `5de45b17a7ae6cf93a2455172086d10e846b1f2ea0ed9d69ea973f79daa6abcf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build KitaevSectorBlock`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignKitaevSectorBlock.State` | yes | yes | yes | none | `#print axioms CampaignKitaevSectorBlock.State` |
-| `CampaignKitaevSectorBlock.flux` | yes | yes | yes | none | `#print axioms CampaignKitaevSectorBlock.flux` |
-| `CampaignKitaevSectorBlock.flux_commutes_hopping` | yes | yes | yes | none | `#print axioms CampaignKitaevSectorBlock.flux_commutes_hopping` |
-| `CampaignKitaevSectorBlock.flux_involution` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignKitaevSectorBlock.flux_involution` |
-| `CampaignKitaevSectorBlock.hopping` | yes | yes | yes | none | `#print axioms CampaignKitaevSectorBlock.hopping` |
-| `CampaignKitaevSectorBlock.hopping_involution` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignKitaevSectorBlock.hopping_involution` |
-| `CampaignKitaevSectorBlock.project` | yes | yes | yes | none | `#print axioms CampaignKitaevSectorBlock.project` |
-| `CampaignKitaevSectorBlock.project_commutes_hopping` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignKitaevSectorBlock.project_commutes_hopping` |
-| `CampaignKitaevSectorBlock.restricted_hopping` | yes | yes | yes | none | `#print axioms CampaignKitaevSectorBlock.restricted_hopping` |
-| `CampaignKitaevSectorBlock.sector_decomposition` | yes | yes | yes | propext | `#print axioms CampaignKitaevSectorBlock.sector_decomposition` |
-| `CampaignKitaevSectorBlock.sectors_distinct` | yes | yes | yes | none | `#print axioms CampaignKitaevSectorBlock.sectors_distinct` |
-| `CampaignKitaevSectorBlock.sign` | yes | yes | yes | none | `#print axioms CampaignKitaevSectorBlock.sign` |
+| `KitaevSectorBlock.State` | yes | yes | yes | none | `#print axioms KitaevSectorBlock.State` |
+| `KitaevSectorBlock.flux` | yes | yes | yes | none | `#print axioms KitaevSectorBlock.flux` |
+| `KitaevSectorBlock.flux_commutes_hopping` | yes | yes | yes | none | `#print axioms KitaevSectorBlock.flux_commutes_hopping` |
+| `KitaevSectorBlock.flux_involution` | yes | yes | yes | Quot.sound, propext | `#print axioms KitaevSectorBlock.flux_involution` |
+| `KitaevSectorBlock.hopping` | yes | yes | yes | none | `#print axioms KitaevSectorBlock.hopping` |
+| `KitaevSectorBlock.hopping_involution` | yes | yes | yes | Quot.sound, propext | `#print axioms KitaevSectorBlock.hopping_involution` |
+| `KitaevSectorBlock.project` | yes | yes | yes | none | `#print axioms KitaevSectorBlock.project` |
+| `KitaevSectorBlock.project_commutes_hopping` | yes | yes | yes | Quot.sound, propext | `#print axioms KitaevSectorBlock.project_commutes_hopping` |
+| `KitaevSectorBlock.restricted_hopping` | yes | yes | yes | none | `#print axioms KitaevSectorBlock.restricted_hopping` |
+| `KitaevSectorBlock.sector_decomposition` | yes | yes | yes | propext | `#print axioms KitaevSectorBlock.sector_decomposition` |
+| `KitaevSectorBlock.sectors_distinct` | yes | yes | yes | none | `#print axioms KitaevSectorBlock.sectors_distinct` |
+| `KitaevSectorBlock.sign` | yes | yes | yes | none | `#print axioms KitaevSectorBlock.sign` |
 
 - counts toward the grade: yes
 
@@ -99,7 +99,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md`
 
 - file: [dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md](../../../dag/derivations/26_fsp/tfq_1207_fsp_kitaev_honeycomb_solution.md)
-- sha256 (`lf-normalised`): `e68ad1c409c91c238b6b6a3646df7c2dbdd5ba374273f89da2ac46124e55f2a6`
+- sha256 (`lf-normalised`): `24a5518699346f6640b1f8fea9cd383a672fe8651c50dc4c04a2364ec7e31004`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1207
 - counts toward the grade: no
@@ -114,7 +114,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json](../../../dag/research/campaign_fsp-kitaev-honeycomb-solution_lean_replay.json)
-- sha256 (`lf-normalised`): `c317032459f2e9c3331e7f3e1feb6abd5b4882810c8f4ee18bcf79d2f5e629f5`
+- sha256 (`lf-normalised`): `ede952607daf57ff1891a402fcdb893fc8c306a96f70cc2be4ad113ae1b5a267`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -34,9 +34,9 @@ Cited FqhLaughlinBraiding.lean::laughlin_fractional_exchange_phase does not exis
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignLaughlinRootAmbiguity.lean::CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots`
-- `lean4/CampaignLaughlinRootAmbiguity.lean::CampaignLaughlinRootAmbiguity.monodromy_not_injective`
-- `lean4/CampaignLaughlinRootAmbiguity.lean::CampaignLaughlinRootAmbiguity.roots_at_third_filling`
+- `lean4/LaughlinRootAmbiguity.lean::LaughlinRootAmbiguity.two_distinct_exchange_roots`
+- `lean4/LaughlinRootAmbiguity.lean::LaughlinRootAmbiguity.monodromy_not_injective`
+- `lean4/LaughlinRootAmbiguity.lean::LaughlinRootAmbiguity.roots_at_third_filling`
 
 ### Rust Certifiers
 - *none*

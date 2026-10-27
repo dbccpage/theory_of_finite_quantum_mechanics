@@ -22,7 +22,7 @@ For the additive group Z2 with trivial Z2 coefficient action, the Boolean 3-coch
 
 ## What is assumed
 
-The mathematical structures and operations are exactly those declared in `lean4/CampaignBfCocycleObstruction.lean`. The result concerns the explicitly defined Z2 cochain model and normalized rephasings. It constructs no BF state sum, 2-group gauge dynamics, knotted-worldsheet amplitude or three-loop braiding observable. No general cancellation or sign-free theorem follows.
+The mathematical structures and operations are exactly those declared in `lean4/BfCocycleObstruction.lean`. The result concerns the explicitly defined Z2 cochain model and normalized rephasings. It constructs no BF state sum, 2-group gauge dynamics, knotted-worldsheet amplitude or three-loop braiding observable. No general cancellation or sign-free theorem follows.
 
 ## What is open
 

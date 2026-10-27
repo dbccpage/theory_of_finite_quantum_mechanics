@@ -121,7 +121,7 @@ def main() -> None:
     check("histories_differ", HISTORY_L != HISTORY_F)
 
     root = Path(__file__).resolve().parents[2]
-    lean = (root / "lean4" / "CampaignPgwPythonLeanCarrierBridge.lean").read_text(encoding="utf-8")
+    lean = (root / "lean4" / "PregenesisPythonLeanCarrierBridge.lean").read_text(encoding="utf-8")
     check("lean_history_l", ".supply 0, .supply 1, .supply 1, .supply 2" in lean and ".impose 0 1" in lean)
     check("lean_history_f", ".impose 1 2" in lean and lean.count(".admitDatum") == 5)
     for name in THEOREM_NAMES:

@@ -33,11 +33,11 @@ imported / lost on this host (GaussInt is not a field); conditional selection of
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignGpImportComplexField.lean::onePlusI_mul_coords`
-- `lean4/CampaignGpImportComplexField.lean::onePlusI_not_unit`
-- `lean4/CampaignGpImportComplexField.lean::fib_conjugate_transpose`
-- `lean4/CampaignGpImportComplexField.lean::fib_mulVec`
-- `lean4/CampaignGpImportComplexField.lean::fib_no_gauss_eigenpair`
+- `lean4/ComplexFieldImport.lean::onePlusI_mul_coords`
+- `lean4/ComplexFieldImport.lean::onePlusI_not_unit`
+- `lean4/ComplexFieldImport.lean::fib_conjugate_transpose`
+- `lean4/ComplexFieldImport.lean::fib_mulVec`
+- `lean4/ComplexFieldImport.lean::fib_no_gauss_eigenpair`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

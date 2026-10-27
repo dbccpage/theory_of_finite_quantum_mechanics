@@ -17,7 +17,7 @@ import Mathlib.Tactic.Ring
 import Mathlib.Tactic.Abel
 
 /-
-Gaussian-rational Hermitian carrier for the effect-valuation interface `BornFable.OrderedQUnit`.
+Gaussian-rational Hermitian carrier for the effect-valuation interface `BornFinite.OrderedQUnit`.
 AuthorityEffect: None.
 
 Carrier.  V := Matrix (Fin n) (Fin n) GaussRat, all n×n matrices over ℚ(i) (Hermitianity is NOT
@@ -39,9 +39,9 @@ rule and no Gleason-type uniqueness is proved here.  Everything is exact over �
 complex numbers, limits, or continuity.
 -/
 
-namespace BornFable.HermitianCarrier
+namespace BornFinite.HermitianCarrier
 
-open Matrix BornFable
+open Matrix BornFinite
 
 variable {n : ℕ}
 
@@ -456,53 +456,53 @@ theorem skew_le_zero_and_ge {A : Matrix (Fin n) (Fin n) GaussRat} (hA : Aᴴ = -
   · intro x
     rw [sub_zero, hf_eq_zero_of_skew hA]
 
-end BornFable.HermitianCarrier
+end BornFinite.HermitianCarrier
 
-#print axioms BornFable.HermitianCarrier.vnorm
-#print axioms BornFable.HermitianCarrier.vnorm_nonneg
-#print axioms BornFable.HermitianCarrier.vnorm_eq_zero_iff
-#print axioms BornFable.HermitianCarrier.vnorm_zero
-#print axioms BornFable.HermitianCarrier.vnorm_pos
-#print axioms BornFable.HermitianCarrier.normSq_le_vnorm
-#print axioms BornFable.HermitianCarrier.hf
-#print axioms BornFable.HermitianCarrier.hf_add
-#print axioms BornFable.HermitianCarrier.hf_sub
-#print axioms BornFable.HermitianCarrier.hf_neg
-#print axioms BornFable.HermitianCarrier.hf_smul
-#print axioms BornFable.HermitianCarrier.hf_zero
-#print axioms BornFable.HermitianCarrier.hf_one
-#print axioms BornFable.HermitianCarrier.hf_eq_sum_sum
-#print axioms BornFable.HermitianCarrier.PsdH
-#print axioms BornFable.HermitianCarrier.space
-#print axioms BornFable.HermitianCarrier.space_le
-#print axioms BornFable.HermitianCarrier.space_u
-#print axioms BornFable.HermitianCarrier.effect_iff
-#print axioms BornFable.HermitianCarrier.effect_iff'
-#print axioms BornFable.HermitianCarrier.re_star_mul_mul_le
-#print axioms BornFable.HermitianCarrier.abs_hf_le
-#print axioms BornFable.HermitianCarrier.order_unit
-#print axioms BornFable.HermitianCarrier.star_dot_eq_sum
-#print axioms BornFable.HermitianCarrier.dot_vecMulVec_star
-#print axioms BornFable.HermitianCarrier.hf_vecMulVec_star
-#print axioms BornFable.HermitianCarrier.normSq_dot_le
-#print axioms BornFable.HermitianCarrier.P
-#print axioms BornFable.HermitianCarrier.hf_rankOne
-#print axioms BornFable.HermitianCarrier.rankOne_effect
-#print axioms BornFable.HermitianCarrier.repMatrix
-#print axioms BornFable.HermitianCarrier.repMatrix_apply
-#print axioms BornFable.HermitianCarrier.repMatrix_re
-#print axioms BornFable.HermitianCarrier.repMatrix_im
-#print axioms BornFable.HermitianCarrier.trace_mul_eq_sum
-#print axioms BornFable.HermitianCarrier.re_trace_mul
-#print axioms BornFable.HermitianCarrier.single_eq_smul_add_smul
-#print axioms BornFable.HermitianCarrier.trace_rep
-#print axioms BornFable.HermitianCarrier.re_trace_mul_single_one
-#print axioms BornFable.HermitianCarrier.re_trace_mul_single_I
-#print axioms BornFable.HermitianCarrier.rep_unique
-#print axioms BornFable.HermitianCarrier.dot_eq_trace
-#print axioms BornFable.HermitianCarrier.hf_eq_re_trace
-#print axioms BornFable.HermitianCarrier.star_dot_mulVec
-#print axioms BornFable.HermitianCarrier.hf_conjTranspose
-#print axioms BornFable.HermitianCarrier.re_trace_mul_conjTranspose
-#print axioms BornFable.HermitianCarrier.hf_eq_zero_of_skew
-#print axioms BornFable.HermitianCarrier.skew_le_zero_and_ge
+#print axioms BornFinite.HermitianCarrier.vnorm
+#print axioms BornFinite.HermitianCarrier.vnorm_nonneg
+#print axioms BornFinite.HermitianCarrier.vnorm_eq_zero_iff
+#print axioms BornFinite.HermitianCarrier.vnorm_zero
+#print axioms BornFinite.HermitianCarrier.vnorm_pos
+#print axioms BornFinite.HermitianCarrier.normSq_le_vnorm
+#print axioms BornFinite.HermitianCarrier.hf
+#print axioms BornFinite.HermitianCarrier.hf_add
+#print axioms BornFinite.HermitianCarrier.hf_sub
+#print axioms BornFinite.HermitianCarrier.hf_neg
+#print axioms BornFinite.HermitianCarrier.hf_smul
+#print axioms BornFinite.HermitianCarrier.hf_zero
+#print axioms BornFinite.HermitianCarrier.hf_one
+#print axioms BornFinite.HermitianCarrier.hf_eq_sum_sum
+#print axioms BornFinite.HermitianCarrier.PsdH
+#print axioms BornFinite.HermitianCarrier.space
+#print axioms BornFinite.HermitianCarrier.space_le
+#print axioms BornFinite.HermitianCarrier.space_u
+#print axioms BornFinite.HermitianCarrier.effect_iff
+#print axioms BornFinite.HermitianCarrier.effect_iff'
+#print axioms BornFinite.HermitianCarrier.re_star_mul_mul_le
+#print axioms BornFinite.HermitianCarrier.abs_hf_le
+#print axioms BornFinite.HermitianCarrier.order_unit
+#print axioms BornFinite.HermitianCarrier.star_dot_eq_sum
+#print axioms BornFinite.HermitianCarrier.dot_vecMulVec_star
+#print axioms BornFinite.HermitianCarrier.hf_vecMulVec_star
+#print axioms BornFinite.HermitianCarrier.normSq_dot_le
+#print axioms BornFinite.HermitianCarrier.P
+#print axioms BornFinite.HermitianCarrier.hf_rankOne
+#print axioms BornFinite.HermitianCarrier.rankOne_effect
+#print axioms BornFinite.HermitianCarrier.repMatrix
+#print axioms BornFinite.HermitianCarrier.repMatrix_apply
+#print axioms BornFinite.HermitianCarrier.repMatrix_re
+#print axioms BornFinite.HermitianCarrier.repMatrix_im
+#print axioms BornFinite.HermitianCarrier.trace_mul_eq_sum
+#print axioms BornFinite.HermitianCarrier.re_trace_mul
+#print axioms BornFinite.HermitianCarrier.single_eq_smul_add_smul
+#print axioms BornFinite.HermitianCarrier.trace_rep
+#print axioms BornFinite.HermitianCarrier.re_trace_mul_single_one
+#print axioms BornFinite.HermitianCarrier.re_trace_mul_single_I
+#print axioms BornFinite.HermitianCarrier.rep_unique
+#print axioms BornFinite.HermitianCarrier.dot_eq_trace
+#print axioms BornFinite.HermitianCarrier.hf_eq_re_trace
+#print axioms BornFinite.HermitianCarrier.star_dot_mulVec
+#print axioms BornFinite.HermitianCarrier.hf_conjTranspose
+#print axioms BornFinite.HermitianCarrier.re_trace_mul_conjTranspose
+#print axioms BornFinite.HermitianCarrier.hf_eq_zero_of_skew
+#print axioms BornFinite.HermitianCarrier.skew_le_zero_and_ge

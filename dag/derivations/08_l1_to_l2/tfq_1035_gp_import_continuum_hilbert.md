@@ -36,17 +36,17 @@ OPEN gap GAP-F001-S000-002 (continuum interface)
 ### Lean 4 Theorems
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm072_073_090_and_fq_import_boundary_certificates`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates`
-- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.closedTail`
-- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.scaledTailIsOne`
-- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.sumDiff`
-- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.halves`
-- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.windowSquares`
-- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.windowSum`
-- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.windowScaled`
-- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.pow4Four`
-- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.windowIsSum`
-- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.squareDiffs`
-- `lean4/CampaignGpImportContinuumHilbert.lean::CampaignGpImportContinuumHilbert.noPositiveDoubleOfOne`
+- `lean4/ContinuumHilbertImport.lean::ContinuumHilbertImport.closedTail`
+- `lean4/ContinuumHilbertImport.lean::ContinuumHilbertImport.scaledTailIsOne`
+- `lean4/ContinuumHilbertImport.lean::ContinuumHilbertImport.sumDiff`
+- `lean4/ContinuumHilbertImport.lean::ContinuumHilbertImport.halves`
+- `lean4/ContinuumHilbertImport.lean::ContinuumHilbertImport.windowSquares`
+- `lean4/ContinuumHilbertImport.lean::ContinuumHilbertImport.windowSum`
+- `lean4/ContinuumHilbertImport.lean::ContinuumHilbertImport.windowScaled`
+- `lean4/ContinuumHilbertImport.lean::ContinuumHilbertImport.pow4Four`
+- `lean4/ContinuumHilbertImport.lean::ContinuumHilbertImport.windowIsSum`
+- `lean4/ContinuumHilbertImport.lean::ContinuumHilbertImport.squareDiffs`
+- `lean4/ContinuumHilbertImport.lean::ContinuumHilbertImport.noPositiveDoubleOfOne`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

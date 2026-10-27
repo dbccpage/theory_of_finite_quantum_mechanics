@@ -55,9 +55,9 @@ See also: `FQ-GAP-TENSOR-UNIQUENESS`, `GP-IMPORT-TENSOR-PRODUCT`.
 - Repository: `dag/research/campaign_ct-information-media-interoperability_lean_replay.json`
 
 ## Lean 4 declarations read
-- `lean4/CampaignInformationProductBoundary.lean::CampaignInformationProductBoundary.clones_product`
-- `lean4/CampaignInformationProductBoundary.lean::CampaignInformationProductBoundary.controlledFlip_involution`
-- `lean4/CampaignInformationProductBoundary.lean::CampaignInformationProductBoundary.controlledFlip_not_product`
+- `lean4/InformationProductBoundary.lean::InformationProductBoundary.clones_product`
+- `lean4/InformationProductBoundary.lean::InformationProductBoundary.controlledFlip_involution`
+- `lean4/InformationProductBoundary.lean::InformationProductBoundary.controlledFlip_not_product`
 
 ## Downstream derivations
 

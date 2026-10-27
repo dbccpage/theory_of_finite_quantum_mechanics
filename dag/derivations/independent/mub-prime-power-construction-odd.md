@@ -4,7 +4,7 @@ Status: AI-drafted, awaiting human review.
 
 Node status stays OPEN. This note records the odd-characteristic construction, kernel-checked for an arbitrary finite field of odd characteristic, and states what is not covered (characteristic two beyond dimension 2, and the construction of the complex character inside Lean).
 
-Lean: `lean4/CampaignMubPrimePowerOddCharacteristic.lean` (library `CampaignMubPrimePowerOdd`). Receipt: `dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json`. Independent check: `checks/independent/mub-prime-power-construction-odd.py`.
+Lean: `lean4/MubPrimePowerOddCharacteristic.lean` (library `MubPrimePowerOdd`). Receipt: `dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json`. Independent check: `checks/independent/mub-prime-power-construction-odd.py`.
 
 ## 1. Setting
 

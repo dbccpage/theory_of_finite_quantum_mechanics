@@ -135,11 +135,11 @@ theory that separately restricts observables or states by parity.
 Use Lean 4.35.0 and Mathlib commit
 `56a005855ea17e0b0958f73ec801ae140b0a1679`. From `lean4` run:
 
-    lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity
+    lake build MajoranaCliffordParity
 
-The new configuration declares its own non-default library. This is a
-documented deviation from the campaign's root-lakefile registration rule,
-required to preserve the user's existing exact-source registry exception.
+The library is registered in `lean4/lakefile.lean` as a non-default target.
+Until 2026-10-27 it lived in a separate `lean4/lakefile.campaignMajorana.lean`;
+the replay receipt records that original configuration.
 The root `lakefile.lean`, its contract, and its exception pin are unchanged.
 
 The prescribed `C:\lq\l4\.lake\packages` cache is absent on this host.

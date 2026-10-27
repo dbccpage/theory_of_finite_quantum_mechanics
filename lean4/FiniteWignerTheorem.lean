@@ -26,9 +26,9 @@ Not claimed: that the scale `d` is a norm from ℚ(i) (so that `F` rescales to a
 scalar field and the transition probability (the Born readout of rank-one effects) are supplied.
 -/
 
-namespace WignerFable.Theorem
+namespace WignerFinite.Theorem
 
-open Matrix BornFable BornFable.HermitianCarrier BornFable.HermitianPsd WignerFable.Kernel
+open Matrix BornFinite BornFinite.HermitianCarrier BornFinite.HermitianPsd WignerFinite.Kernel
 
 variable {n : ℕ}
 
@@ -831,84 +831,84 @@ theorem similarity_bijective {F : Matrix (Fin n) (Fin n) GaussRat} {d : ℚ} (hF
   · show F *ᵥ twist ε (twist ε (((1 / d) • Fᴴ) *ᵥ y)) = y
     rw [twist_twist hε, mulVec_mulVec, hF.right_inverse hd, one_mulVec]
 
-end WignerFable.Theorem
+end WignerFinite.Theorem
 
-#print axioms WignerFable.Theorem.TpPreserving
-#print axioms WignerFable.Theorem.p
-#print axioms WignerFable.Theorem.qs
-#print axioms WignerFable.Theorem.star_smul_I
-#print axioms WignerFable.Theorem.normSq_smul_I
-#print axioms WignerFable.Theorem.ip_p_left
-#print axioms WignerFable.Theorem.ip_qs_left
-#print axioms WignerFable.Theorem.p_apply
-#print axioms WignerFable.Theorem.qs_apply
-#print axioms WignerFable.Theorem.vnorm_p
-#print axioms WignerFable.Theorem.vnorm_qs
-#print axioms WignerFable.Theorem.p_ne_zero
-#print axioms WignerFable.Theorem.qs_ne_zero
-#print axioms WignerFable.Theorem.p_apply_i₀
-#print axioms WignerFable.Theorem.p_apply_j
-#print axioms WignerFable.Theorem.p_apply_other
-#print axioms WignerFable.Theorem.qs_apply_i₀
-#print axioms WignerFable.Theorem.qs_apply_j
-#print axioms WignerFable.Theorem.qs_apply_other
-#print axioms WignerFable.Theorem.tp_e_left
-#print axioms WignerFable.Theorem.smul_inv_apply_self
-#print axioms WignerFable.Theorem.normSq_inv
-#print axioms WignerFable.Theorem.normSq_div
-#print axioms WignerFable.Theorem.vnorm_add_of_ip_zero
-#print axioms WignerFable.Theorem.tp_e_qs
-#print axioms WignerFable.Theorem.tp_ej_qs
-#print axioms WignerFable.Theorem.tp_p_qs
-#print axioms WignerFable.Theorem.eq_smul_I_of_normSq
-#print axioms WignerFable.Theorem.normSq_ip_qs
-#print axioms WignerFable.Theorem.normSq_ip_p
-#print axioms WignerFable.Theorem.coord_rigidity
-#print axioms WignerFable.Theorem.coord_zero
-#print axioms WignerFable.Theorem.g
-#print axioms WignerFable.Theorem.align
-#print axioms WignerFable.Theorem.f
-#print axioms WignerFable.Theorem.F
-#print axioms WignerFable.Theorem.d
-#print axioms WignerFable.Theorem.sgn
-#print axioms WignerFable.Theorem.align_i₀
-#print axioms WignerFable.Theorem.align_of_ne
-#print axioms WignerFable.Theorem.f_i₀
-#print axioms WignerFable.Theorem.F_mulVec_e
-#print axioms WignerFable.Theorem.g_ne_zero
-#print axioms WignerFable.Theorem.ip_g_g
-#print axioms WignerFable.Theorem.d_pos
-#print axioms WignerFable.Theorem.d_ne_zero
-#print axioms WignerFable.Theorem.expansion_g
-#print axioms WignerFable.Theorem.ip_g_eq
-#print axioms WignerFable.Theorem.tp_g_T
-#print axioms WignerFable.Theorem.coords_g_eq_zero
-#print axioms WignerFable.Theorem.p_coord_eq
-#print axioms WignerFable.Theorem.p_coord_ne_zero
-#print axioms WignerFable.Theorem.align_ne_zero
-#print axioms WignerFable.Theorem.f_ne_zero
-#print axioms WignerFable.Theorem.ip_f_f
-#print axioms WignerFable.Theorem.vnorm_f
-#print axioms WignerFable.Theorem.similarity_F
-#print axioms WignerFable.Theorem.expansion_f
-#print axioms WignerFable.Theorem.T_e_eq
-#print axioms WignerFable.Theorem.T_p_eq
-#print axioms WignerFable.Theorem.tp_transport
-#print axioms WignerFable.Theorem.tp_e_transport
-#print axioms WignerFable.Theorem.tp_p_transport
-#print axioms WignerFable.Theorem.vnorm_coords_eq
-#print axioms WignerFable.Theorem.coords_f_eq_zero
-#print axioms WignerFable.Theorem.coords_f_ne_zero
-#print axioms WignerFable.Theorem.sgn_spec
-#print axioms WignerFable.Theorem.tp_qs_transport
-#print axioms WignerFable.Theorem.normalised_data
-#print axioms WignerFable.Theorem.stage1
-#print axioms WignerFable.Theorem.T_r_eq
-#print axioms WignerFable.Theorem.sgn_consistent
-#print axioms WignerFable.Theorem.stage2
-#print axioms WignerFable.Theorem.induced_of_sign
-#print axioms WignerFable.Theorem.exists_sign
-#print axioms WignerFable.Theorem.finite_wigner
-#print axioms WignerFable.Theorem.finite_wigner_cases
-#print axioms WignerFable.Theorem.tpPreserving_of_similarity
-#print axioms WignerFable.Theorem.similarity_bijective
+#print axioms WignerFinite.Theorem.TpPreserving
+#print axioms WignerFinite.Theorem.p
+#print axioms WignerFinite.Theorem.qs
+#print axioms WignerFinite.Theorem.star_smul_I
+#print axioms WignerFinite.Theorem.normSq_smul_I
+#print axioms WignerFinite.Theorem.ip_p_left
+#print axioms WignerFinite.Theorem.ip_qs_left
+#print axioms WignerFinite.Theorem.p_apply
+#print axioms WignerFinite.Theorem.qs_apply
+#print axioms WignerFinite.Theorem.vnorm_p
+#print axioms WignerFinite.Theorem.vnorm_qs
+#print axioms WignerFinite.Theorem.p_ne_zero
+#print axioms WignerFinite.Theorem.qs_ne_zero
+#print axioms WignerFinite.Theorem.p_apply_i₀
+#print axioms WignerFinite.Theorem.p_apply_j
+#print axioms WignerFinite.Theorem.p_apply_other
+#print axioms WignerFinite.Theorem.qs_apply_i₀
+#print axioms WignerFinite.Theorem.qs_apply_j
+#print axioms WignerFinite.Theorem.qs_apply_other
+#print axioms WignerFinite.Theorem.tp_e_left
+#print axioms WignerFinite.Theorem.smul_inv_apply_self
+#print axioms WignerFinite.Theorem.normSq_inv
+#print axioms WignerFinite.Theorem.normSq_div
+#print axioms WignerFinite.Theorem.vnorm_add_of_ip_zero
+#print axioms WignerFinite.Theorem.tp_e_qs
+#print axioms WignerFinite.Theorem.tp_ej_qs
+#print axioms WignerFinite.Theorem.tp_p_qs
+#print axioms WignerFinite.Theorem.eq_smul_I_of_normSq
+#print axioms WignerFinite.Theorem.normSq_ip_qs
+#print axioms WignerFinite.Theorem.normSq_ip_p
+#print axioms WignerFinite.Theorem.coord_rigidity
+#print axioms WignerFinite.Theorem.coord_zero
+#print axioms WignerFinite.Theorem.g
+#print axioms WignerFinite.Theorem.align
+#print axioms WignerFinite.Theorem.f
+#print axioms WignerFinite.Theorem.F
+#print axioms WignerFinite.Theorem.d
+#print axioms WignerFinite.Theorem.sgn
+#print axioms WignerFinite.Theorem.align_i₀
+#print axioms WignerFinite.Theorem.align_of_ne
+#print axioms WignerFinite.Theorem.f_i₀
+#print axioms WignerFinite.Theorem.F_mulVec_e
+#print axioms WignerFinite.Theorem.g_ne_zero
+#print axioms WignerFinite.Theorem.ip_g_g
+#print axioms WignerFinite.Theorem.d_pos
+#print axioms WignerFinite.Theorem.d_ne_zero
+#print axioms WignerFinite.Theorem.expansion_g
+#print axioms WignerFinite.Theorem.ip_g_eq
+#print axioms WignerFinite.Theorem.tp_g_T
+#print axioms WignerFinite.Theorem.coords_g_eq_zero
+#print axioms WignerFinite.Theorem.p_coord_eq
+#print axioms WignerFinite.Theorem.p_coord_ne_zero
+#print axioms WignerFinite.Theorem.align_ne_zero
+#print axioms WignerFinite.Theorem.f_ne_zero
+#print axioms WignerFinite.Theorem.ip_f_f
+#print axioms WignerFinite.Theorem.vnorm_f
+#print axioms WignerFinite.Theorem.similarity_F
+#print axioms WignerFinite.Theorem.expansion_f
+#print axioms WignerFinite.Theorem.T_e_eq
+#print axioms WignerFinite.Theorem.T_p_eq
+#print axioms WignerFinite.Theorem.tp_transport
+#print axioms WignerFinite.Theorem.tp_e_transport
+#print axioms WignerFinite.Theorem.tp_p_transport
+#print axioms WignerFinite.Theorem.vnorm_coords_eq
+#print axioms WignerFinite.Theorem.coords_f_eq_zero
+#print axioms WignerFinite.Theorem.coords_f_ne_zero
+#print axioms WignerFinite.Theorem.sgn_spec
+#print axioms WignerFinite.Theorem.tp_qs_transport
+#print axioms WignerFinite.Theorem.normalised_data
+#print axioms WignerFinite.Theorem.stage1
+#print axioms WignerFinite.Theorem.T_r_eq
+#print axioms WignerFinite.Theorem.sgn_consistent
+#print axioms WignerFinite.Theorem.stage2
+#print axioms WignerFinite.Theorem.induced_of_sign
+#print axioms WignerFinite.Theorem.exists_sign
+#print axioms WignerFinite.Theorem.finite_wigner
+#print axioms WignerFinite.Theorem.finite_wigner_cases
+#print axioms WignerFinite.Theorem.tpPreserving_of_similarity
+#print axioms WignerFinite.Theorem.similarity_bijective

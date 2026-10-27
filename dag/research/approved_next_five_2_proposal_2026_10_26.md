@@ -20,7 +20,7 @@ The identity PR has one existing external-citation test skipped because `the_sym
 
 ### PR #396: FSP-BF-2GROUP-SIGN-CLAIM
 
-- Path: `lean4/CampaignBfCocycleObstruction.lean`
+- Path: `lean4/BfCocycleObstruction.lean`
 - SHA-256: `882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc`
 - Assessed score: **L3D**; retained node status: `OPEN`.
 - Proposed category: `finite_proof_example`.
@@ -29,7 +29,7 @@ The identity PR has one existing external-citation test skipped because `the_sym
 
 ### PR #397: FSP-COBORDISM-INTRINSIC-SIGN
 
-- Path: `lean4/CampaignSignedTriangleSwitching.lean`
+- Path: `lean4/SignedTriangleSwitching.lean`
 - SHA-256: `dee0cbf7bf415fd8202e0668f45757288dbf4bbce05aba16e8aaffd080ab57c1`
 - Assessed score: **L2D**; retained node status: `OPEN`.
 - Proposed category: `finite_proof_example`.
@@ -38,7 +38,7 @@ The identity PR has one existing external-citation test skipped because `the_sym
 
 ### PR #398: PGW-IDENTITY-CONVENTION-UNDECIDABLE
 
-- Path: `lean4/CampaignIdentityConvention.lean`
+- Path: `lean4/IdentityConvention.lean`
 - SHA-256: `fa42557ad55d2b9150bea0a4c9d38a205d41e2d688115bb71091d0b96c6f8ff6`
 - Assessed score: **L2D**; retained node status: `CONDITIONAL`.
 - Proposed category: `finite_proof_example`.
@@ -47,7 +47,7 @@ The identity PR has one existing external-citation test skipped because `the_sym
 
 ### PR #399: FSP-REGGE-DEFICIT-ACTION
 
-- Path: `lean4/CampaignReggeFiniteAction.lean`
+- Path: `lean4/ReggeFiniteAction.lean`
 - SHA-256: `dd1ccb8b8bc8e402055f561c46b161f41d2c3b007203e9716c5f067c4e131089`
 - Assessed score: **L2D**; retained node status: `IMPORTED_ASSUMPTION`.
 - Proposed category: `finite_proof_example`.
@@ -56,7 +56,7 @@ The identity PR has one existing external-citation test skipped because `the_sym
 
 ### PR #400: FSP-DISCRETE-WDW-CONSTRAINT
 
-- Path: `lean4/CampaignConstraintKernelProjector.lean`
+- Path: `lean4/ConstraintKernelProjector.lean`
 - SHA-256: `4a01928ee24ba7b0f5432ede8b95a1c974f09ba942a596f849a6df520946b0d6`
 - Assessed score: **L2D**; retained node status: `OPEN`.
 - Proposed category: `finite_proof_example`.

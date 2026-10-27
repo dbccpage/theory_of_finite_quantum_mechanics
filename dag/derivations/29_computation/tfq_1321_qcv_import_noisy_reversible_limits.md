@@ -31,25 +31,25 @@ Closed integer equalities for the recurrences, the pairs at steps 0 through 3, t
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::u_zero`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::v_zero`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::w_zero`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::u_step`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::v_step`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::w_step`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::u1`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::v1`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::u2`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::v2`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::u3`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::v3`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::below1`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::below2`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::below3`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::w0_u`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::w1`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::w2`
-- `lean4/CampaignQcvImportNoisyReversibleLimits.lean::w3`
+- `lean4/NoisyReversibleLimitsImport.lean::u_zero`
+- `lean4/NoisyReversibleLimitsImport.lean::v_zero`
+- `lean4/NoisyReversibleLimitsImport.lean::w_zero`
+- `lean4/NoisyReversibleLimitsImport.lean::u_step`
+- `lean4/NoisyReversibleLimitsImport.lean::v_step`
+- `lean4/NoisyReversibleLimitsImport.lean::w_step`
+- `lean4/NoisyReversibleLimitsImport.lean::u1`
+- `lean4/NoisyReversibleLimitsImport.lean::v1`
+- `lean4/NoisyReversibleLimitsImport.lean::u2`
+- `lean4/NoisyReversibleLimitsImport.lean::v2`
+- `lean4/NoisyReversibleLimitsImport.lean::u3`
+- `lean4/NoisyReversibleLimitsImport.lean::v3`
+- `lean4/NoisyReversibleLimitsImport.lean::below1`
+- `lean4/NoisyReversibleLimitsImport.lean::below2`
+- `lean4/NoisyReversibleLimitsImport.lean::below3`
+- `lean4/NoisyReversibleLimitsImport.lean::w0_u`
+- `lean4/NoisyReversibleLimitsImport.lean::w1`
+- `lean4/NoisyReversibleLimitsImport.lean::w2`
+- `lean4/NoisyReversibleLimitsImport.lean::w3`
 
 ### Rust Certifiers
 - *none*

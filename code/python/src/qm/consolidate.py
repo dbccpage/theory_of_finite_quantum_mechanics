@@ -79,7 +79,7 @@ def _path_key(p: pathlib.Path) -> str:
 
     `sorted()` on Path objects is NOT portable: PurePath ordering compares
     case-insensitively on Windows and case-sensitively on POSIX, so
-    `H001Rats.lean` and `H001_probability_simplex.lean` swap places between a
+    `HilbertWalkRationals.lean` and `H001_probability_simplex.lean` swap places between a
     developer's machine and CI ('R' is 0x52, '_' is 0x5F). That made the
     generated inventory differ by platform, so `--check` passed locally and
     reported STALE on Linux for the same tree. Sort the string instead.

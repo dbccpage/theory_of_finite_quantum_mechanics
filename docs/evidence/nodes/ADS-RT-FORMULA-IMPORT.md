@@ -43,47 +43,47 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignAdsRtFormulaImport.lean`
+### Lean: `lean4/AdsRtFormulaImport.lean`
 
-- file: [lean4/CampaignAdsRtFormulaImport.lean](../../../lean4/CampaignAdsRtFormulaImport.lean)
-- sha256 (`bytes`): `748e566374c61a2d8204736a7b4623e2e47431ade57911e783c3081448fb90ec`
-- cited in: node.lean, receipt dag/research/campaign_ads-rt-formula-import_lean_replay.json (CampaignAdsRtFormulaImport), record TFQ-2204
+- file: [lean4/AdsRtFormulaImport.lean](../../../lean4/AdsRtFormulaImport.lean)
+- sha256 (`bytes`): `3c2f558eef58018b8667ea9933648b6caa70ace6f6e37388cd7dc2edfe32c29c`
+- cited in: node.lean, receipt dag/research/campaign_ads-rt-formula-import_lean_replay.json (AdsRtFormulaImport), record TFQ-2204
 - replay: `verified`
-  - receipt [dag/research/campaign_ads-rt-formula-import_lean_replay.json](../../../dag/research/campaign_ads-rt-formula-import_lean_replay.json) (module `CampaignAdsRtFormulaImport`): recorded sha256 `748e566374c61a2d8204736a7b4623e2e47431ade57911e783c3081448fb90ec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignAdsRtFormulaImport`
+  - receipt [dag/research/campaign_ads-rt-formula-import_lean_replay.json](../../../dag/research/campaign_ads-rt-formula-import_lean_replay.json) (module `AdsRtFormulaImport`): recorded sha256 `3c2f558eef58018b8667ea9933648b6caa70ace6f6e37388cd7dc2edfe32c29c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build AdsRtFormulaImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignAdsRtFormulaImport.cayleyMengerTriangleAreaSq_homogeneous_deg4_in_length` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.cayleyMengerTriangleAreaSq_homogeneous_deg4_in_length` |
-| `CampaignAdsRtFormulaImport.cut_pasting_strong_subadditivity_from_submodularity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.cut_pasting_strong_subadditivity_from_submodularity` |
-| `CampaignAdsRtFormulaImport.happy_all_380_intervals_pos_entropy_and_mincut` | yes | yes | yes | propext | `#print axioms CampaignAdsRtFormulaImport.happy_all_380_intervals_pos_entropy_and_mincut` |
-| `CampaignAdsRtFormulaImport.happy_mincut_and_entropy_complement_symmetry_all_380` | yes | yes | yes | propext | `#print axioms CampaignAdsRtFormulaImport.happy_mincut_and_entropy_complement_symmetry_all_380` |
-| `CampaignAdsRtFormulaImport.nat_dvd_three_of_sq_mul_four_eq_three_mul_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.nat_dvd_three_of_sq_mul_four_eq_three_mul_sq` |
-| `CampaignAdsRtFormulaImport.no_rational_linear_area_for_equilateral_pentatope_hinge` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.no_rational_linear_area_for_equilateral_pentatope_hinge` |
-| `CampaignAdsRtFormulaImport.no_rational_rt_area_for_mixed_algebraic_spectrum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.no_rational_rt_area_for_mixed_algebraic_spectrum` |
-| `CampaignAdsRtFormulaImport.no_scale_invariant_regge_to_rt_dictionary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.no_scale_invariant_regge_to_rt_dictionary` |
-| `CampaignAdsRtFormulaImport.orthogonal_pentatope_hinge_areas_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.orthogonal_pentatope_hinge_areas_sq` |
-| `CampaignAdsRtFormulaImport.rational_rt_match_iff_pure_and_zero_area` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.rational_rt_match_iff_pure_and_zero_area` |
-| `CampaignAdsRtFormulaImport.reggeProxy_zero_on_flat_chart` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.reggeProxy_zero_on_flat_chart` |
-| `CampaignAdsRtFormulaImport.rtLeadingEntropy_linear_in_area` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.rtLeadingEntropy_linear_in_area` |
-| `CampaignAdsRtFormulaImport.rtLeadingEntropy_realCast_isAlgebraic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.rtLeadingEntropy_realCast_isAlgebraic` |
-| `CampaignAdsRtFormulaImport.rt_ads3_reproduces_calabrese_cardy` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.rt_ads3_reproduces_calabrese_cardy` |
-| `CampaignAdsRtFormulaImport.rt_over_brown_henneaux_eliminates_couplings` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.rt_over_brown_henneaux_eliminates_couplings` |
-| `CampaignAdsRtFormulaImport.stabilizer_bits_to_nats_transcendental_conversion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignAdsRtFormulaImport.stabilizer_bits_to_nats_transcendental_conversion` |
+| `AdsRtFormulaImport.cayleyMengerTriangleAreaSq_homogeneous_deg4_in_length` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsRtFormulaImport.cayleyMengerTriangleAreaSq_homogeneous_deg4_in_length` |
+| `AdsRtFormulaImport.cut_pasting_strong_subadditivity_from_submodularity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsRtFormulaImport.cut_pasting_strong_subadditivity_from_submodularity` |
+| `AdsRtFormulaImport.happy_all_380_intervals_pos_entropy_and_mincut` | yes | yes | yes | propext | `#print axioms AdsRtFormulaImport.happy_all_380_intervals_pos_entropy_and_mincut` |
+| `AdsRtFormulaImport.happy_mincut_and_entropy_complement_symmetry_all_380` | yes | yes | yes | propext | `#print axioms AdsRtFormulaImport.happy_mincut_and_entropy_complement_symmetry_all_380` |
+| `AdsRtFormulaImport.nat_dvd_three_of_sq_mul_four_eq_three_mul_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsRtFormulaImport.nat_dvd_three_of_sq_mul_four_eq_three_mul_sq` |
+| `AdsRtFormulaImport.no_rational_linear_area_for_equilateral_pentatope_hinge` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsRtFormulaImport.no_rational_linear_area_for_equilateral_pentatope_hinge` |
+| `AdsRtFormulaImport.no_rational_rt_area_for_mixed_algebraic_spectrum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsRtFormulaImport.no_rational_rt_area_for_mixed_algebraic_spectrum` |
+| `AdsRtFormulaImport.no_scale_invariant_regge_to_rt_dictionary` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsRtFormulaImport.no_scale_invariant_regge_to_rt_dictionary` |
+| `AdsRtFormulaImport.orthogonal_pentatope_hinge_areas_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsRtFormulaImport.orthogonal_pentatope_hinge_areas_sq` |
+| `AdsRtFormulaImport.rational_rt_match_iff_pure_and_zero_area` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsRtFormulaImport.rational_rt_match_iff_pure_and_zero_area` |
+| `AdsRtFormulaImport.reggeProxy_zero_on_flat_chart` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsRtFormulaImport.reggeProxy_zero_on_flat_chart` |
+| `AdsRtFormulaImport.rtLeadingEntropy_linear_in_area` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsRtFormulaImport.rtLeadingEntropy_linear_in_area` |
+| `AdsRtFormulaImport.rtLeadingEntropy_realCast_isAlgebraic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsRtFormulaImport.rtLeadingEntropy_realCast_isAlgebraic` |
+| `AdsRtFormulaImport.rt_ads3_reproduces_calabrese_cardy` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsRtFormulaImport.rt_ads3_reproduces_calabrese_cardy` |
+| `AdsRtFormulaImport.rt_over_brown_henneaux_eliminates_couplings` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsRtFormulaImport.rt_over_brown_henneaux_eliminates_couplings` |
+| `AdsRtFormulaImport.stabilizer_bits_to_nats_transcendental_conversion` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms AdsRtFormulaImport.stabilizer_bits_to_nats_transcendental_conversion` |
 
 - counts toward the grade: yes
 
 ### Python: `checks/independent/ads-rt-formula-import.py`
 
 - file: [checks/independent/ads-rt-formula-import.py](../../../checks/independent/ads-rt-formula-import.py)
-- sha256 (`bytes`): `cb22ab062bdb54c3ee0d7a217fda9bdf6663e815837346524d98e569826da256`
+- sha256 (`bytes`): `62970038b1b56f5446d2a78bbba6b70812b51065abeb02bacaee6a211f323015`
 - cited in: node.source, record TFQ-2204
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2204_ads_rt_formula_import.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2204_ads_rt_formula_import.md](../../../dag/derivations/32_ads_cft/tfq_2204_ads_rt_formula_import.md)
-- sha256 (`lf-normalised`): `0b30ee6e7b51eb7bed0218e07c399e6e73fdc62887c12d5c6a747c9edfb9439d`
+- sha256 (`lf-normalised`): `1825b86ad4c4ba5a82bb139987ed096d2c18ebf72c4bec64d1af183550465d4c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2204
 - counts toward the grade: no
@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/ads-rt-formula-import.md`
 
 - file: [dag/derivations/independent/ads-rt-formula-import.md](../../../dag/derivations/independent/ads-rt-formula-import.md)
-- sha256 (`lf-normalised`): `e1ea19f89a8343c680617cdeafb54c0bc23c48b478173d15f5d0fa52348d6e88`
+- sha256 (`lf-normalised`): `e73bb79d99a937a0fe62ee13d268eaf9871127f11e481ae90ed022823a1a7ce4`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -105,14 +105,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_ads-rt-formula-import_lean_mutation.json`
 
 - file: [dag/research/campaign_ads-rt-formula-import_lean_mutation.json](../../../dag/research/campaign_ads-rt-formula-import_lean_mutation.json)
-- sha256 (`lf-normalised`): `0462e238a597b85a0ac23e60c477e2a7a29318cdd8b52b75440f44aaa0a13a38`
+- sha256 (`lf-normalised`): `2e8bbf419d4dbcc0fd74d2306dfd2ed6212b49a968dbe06d8dce76fbc9013ed7`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_ads-rt-formula-import_lean_replay.json`
 
 - file: [dag/research/campaign_ads-rt-formula-import_lean_replay.json](../../../dag/research/campaign_ads-rt-formula-import_lean_replay.json)
-- sha256 (`lf-normalised`): `5d9a232287e3ea308a91b4a7fd55d6ee18da6f90b696895c4d2e05faf2124330`
+- sha256 (`lf-normalised`): `a41c6aea86f266e385b6df4c6625dff49ec4ffc7f6fd0c07d5bd582ca013b02d`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -1,6 +1,6 @@
 """Dyadic cover degrees and the two-factor multiplicity law.
 
-Origin: lean4/H071RefinementSubsystemTower.lean theorem
+Origin: lean4/RefinementSubsystemTower.lean theorem
 multiplicity_composition (d3 = (k12 * k23) * d1 when d2 = k12 * d1 and
 d3 = k23 * d2).
 Claim: urn:omega:fqm:tower:multiplicity-composition:v1

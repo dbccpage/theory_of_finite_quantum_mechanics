@@ -4,7 +4,7 @@
 AuthorityEffect: None.
 
 Independently checks the three exact finite/rational non-equivalence fences formalized in
-lean4/CampaignAdsReggeAreaRtGap.lean:
+lean4/AdsReggeAreaRtGap.lean:
 1. Simplicial Regge hinge carrier (10 hinges = 6 right + 4 equilateral on orthogonal_pentatope,
    240 Kuhn pentatopes on closed_s4_cube_boundary) vs. 6-pentagon HaPPY {5,4} network (6 tensors,
    5 internal bonds, 20 boundary legs, 380 proper contiguous boundary intervals with mincut

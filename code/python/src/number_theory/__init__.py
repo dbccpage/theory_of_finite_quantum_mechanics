@@ -1,6 +1,6 @@
 """Package seal for the conductor certificate.
 
-Origin: lean4/H052CyclotomicTowerDirected.lean theorem cyclotomic_tower_is_directed.
+Origin: lean4/CyclotomicTowerDirected.lean theorem cyclotomic_tower_is_directed.
 Claim: urn:omega:fqm:number:package-conductor-seal:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/number_theory/test_number_control.py.

@@ -47,14 +47,14 @@ REVIEWED_DECLARATIONS (carrier_contract.yaml); minimality_proved: false; all_tar
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/H052CyclotomicTowerDirected.lean`
+### Lean: `lean4/CyclotomicTowerDirected.lean`
 
-- file: [lean4/H052CyclotomicTowerDirected.lean](../../../lean4/H052CyclotomicTowerDirected.lean)
-- sha256 (`bytes`): `c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43`
+- file: [lean4/CyclotomicTowerDirected.lean](../../../lean4/CyclotomicTowerDirected.lean)
+- sha256 (`bytes`): `9cd7c2e1e7fee5a2878cdf6cbf1603b4cef4b3e0654b9261f2c087e36b027695`
 - cited in: node.lean, record TFQ-1006
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H052CyclotomicTowerDirected`): recorded sha256 `c7e8d3e1e36a80bf4e60d9da3bae5cafef90a386f410fc244ea616e33a45fc43` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build H052CyclotomicTowerDirected`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `CyclotomicTowerDirected`): recorded sha256 `9cd7c2e1e7fee5a2878cdf6cbf1603b4cef4b3e0654b9261f2c087e36b027695` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build CyclotomicTowerDirected`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -62,14 +62,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H057HigherDimConductorBounds.lean`
+### Lean: `lean4/HigherDimConductorBounds.lean`
 
-- file: [lean4/H057HigherDimConductorBounds.lean](../../../lean4/H057HigherDimConductorBounds.lean)
-- sha256 (`bytes`): `490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253`
+- file: [lean4/HigherDimConductorBounds.lean](../../../lean4/HigherDimConductorBounds.lean)
+- sha256 (`bytes`): `584e51cd0f1ed41d0f3b7fad0b4d235a6ce77e0d1ff41040379d1de748d124bc`
 - cited in: node.lean, record TFQ-1006
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H057HigherDimConductorBounds`): recorded sha256 `490d743d8b1395d21bed1914a4a7050117ea25b9cde576a42e1293c472a47253` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build H057HigherDimConductorBounds`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HigherDimConductorBounds`): recorded sha256 `584e51cd0f1ed41d0f3b7fad0b4d235a6ce77e0d1ff41040379d1de748d124bc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build HigherDimConductorBounds`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -94,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md](../../../dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md)
-- sha256 (`lf-normalised`): `d8fabbd2b237af7de2f61810adcac844ae0a2f515a12ff4c64a9c14deddfb0e7`
+- sha256 (`lf-normalised`): `59a4a7105abe197c5da551731e1681c8b889cc4bef705ba49bb9c80eec50f518`
 - generated view: listed, not counted
 - cited in: record TFQ-1006
 - counts toward the grade: no

@@ -40,7 +40,7 @@ operation_candidates:
   name: IsFieldPack
   line: 27
   signature_excerpt: 'def IsFieldPack {K : Type} (P : StarRingPack K) : Prop'
-  source: lean4/H017Extras.lean
+  source: lean4/HilbertWalkGleasonExtras.lean
   repository: this_repository
   source_sha256: 5ca59147d0613750ef3870907d1b4ac0318c22cf6b85f608a2a09fbfb62637bf
   status: source_candidate_requires_semantic_review
@@ -48,7 +48,7 @@ operation_candidates:
   name: SpectralEigenvalueExtra
   line: 280
   signature_excerpt: "def SpectralEigenvalueExtra {Q : Type} [DecidableEq Q]\n    (E : Enum Q) : Prop"
-  source: lean4/H017Extras.lean
+  source: lean4/HilbertWalkGleasonExtras.lean
   repository: this_repository
   source_sha256: 5ca59147d0613750ef3870907d1b4ac0318c22cf6b85f608a2a09fbfb62637bf
   status: source_candidate_requires_semantic_review
@@ -56,7 +56,7 @@ operation_candidates:
   name: allExtras
   line: 44
   signature_excerpt: 'def allExtras : List FrozenExtra'
-  source: lean4/H017ExtrasDropone.lean
+  source: lean4/HilbertWalkGleasonExtrasDropOne.lean
   repository: this_repository
   source_sha256: 919ca08a830f788648e81faf36c5008a51b7a027cd84edd3b2cfca3b63dace7e
   status: source_candidate_requires_semantic_review
@@ -64,7 +64,7 @@ operation_candidates:
   name: FrozenExtra
   line: 18
   signature_excerpt: inductive FrozenExtra
-  source: lean4/H017ExtrasDropone.lean
+  source: lean4/HilbertWalkGleasonExtrasDropOne.lean
   repository: this_repository
   source_sha256: 919ca08a830f788648e81faf36c5008a51b7a027cd84edd3b2cfca3b63dace7e
   status: source_candidate_requires_semantic_review
@@ -72,7 +72,7 @@ operation_candidates:
   name: lostExtras
   line: 50
   signature_excerpt: 'def lostExtras : List FrozenExtra'
-  source: lean4/H017ExtrasDropone.lean
+  source: lean4/HilbertWalkGleasonExtrasDropOne.lean
   repository: this_repository
   source_sha256: 919ca08a830f788648e81faf36c5008a51b7a027cd84edd3b2cfca3b63dace7e
   status: source_candidate_requires_semantic_review
@@ -80,7 +80,7 @@ operation_candidates:
   name: dropVerdict
   line: 34
   signature_excerpt: 'def dropVerdict : FrozenExtra → DropVerdict'
-  source: lean4/H017ExtrasDropone.lean
+  source: lean4/HilbertWalkGleasonExtrasDropOne.lean
   repository: this_repository
   source_sha256: 919ca08a830f788648e81faf36c5008a51b7a027cd84edd3b2cfca3b63dace7e
   status: source_candidate_requires_semantic_review
@@ -88,7 +88,7 @@ operation_candidates:
   name: DropVerdict
   line: 29
   signature_excerpt: inductive DropVerdict
-  source: lean4/H017ExtrasDropone.lean
+  source: lean4/HilbertWalkGleasonExtrasDropOne.lean
   repository: this_repository
   source_sha256: 919ca08a830f788648e81faf36c5008a51b7a027cd84edd3b2cfca3b63dace7e
   status: source_candidate_requires_semantic_review
@@ -96,7 +96,7 @@ operation_candidates:
   name: openExtras
   line: 54
   signature_excerpt: 'def openExtras : List FrozenExtra'
-  source: lean4/H017ExtrasDropone.lean
+  source: lean4/HilbertWalkGleasonExtrasDropOne.lean
   repository: this_repository
   source_sha256: 919ca08a830f788648e81faf36c5008a51b7a027cd84edd3b2cfca3b63dace7e
   status: source_candidate_requires_semantic_review
@@ -105,15 +105,15 @@ relation_candidates:
   name: remaining_extras_for_ordinary_mnC
   line: 397
   signature_excerpt: "theorem remaining_extras_for_ordinary_mnC :\n    ¬ IsFieldPack gaussPack ∧\n   \
-    \   ¬ SpectralEigenvalueExtra enumBool ∧\n      ¬ FableHilbertWalk20260819.H017Gleason.GleasonDimAtLeastThree\n\
-    \          enumBool ∧\n      (¬ ∃ σ : Bool → Bool,\n        ∀ q : Bool, σ (σ q) = FableHilbertWalk20260819.H003.toggle\
-    \ q) ∧\n      FableHilbertWalk20260819.H011Circle.ConnectednessShadow\n        FableHilbertWalk20260819.H011Circle.gaussUnitCarrier\
-    \ ∧\n      FableHilbertWalk20260819.H011Circle.ConnectednessShadow\n        FableHilbertWalk20260819.H011Circle.cyc3Carrier\
-    \ ∧\n      (¬ ∀ u v p,\n        FableHilbertWalk20260819.H014Interface.dumpRight u v p =\n       \
-    \   FableHilbertWalk20260819.H014.tensor u v p) ∧\n      (¬ ∃ A : Bool → Bool → Int,\n        ∀ i\
-    \ j : Bool,\n          FableHilbertWalk20260819.H017Matrix.pauliY i j =\n            FableHilbertWalk20260819.H007.embed\
+    \   ¬ SpectralEigenvalueExtra enumBool ∧\n      ¬ HilbertWalk.Gleason.GleasonDimAtLeastThree\n\
+    \          enumBool ∧\n      (¬ ∃ σ : Bool → Bool,\n        ∀ q : Bool, σ (σ q) = HilbertWalk.ReversibilityGate.toggle\
+    \ q) ∧\n      HilbertWalk.Circle.ConnectednessShadow\n        HilbertWalk.Circle.gaussUnitCarrier\
+    \ ∧\n      HilbertWalk.Circle.ConnectednessShadow\n        HilbertWalk.Circle.cyc3Carrier\
+    \ ∧\n      (¬ ∀ u v p,\n        HilbertWalk.Interface.dumpRight u v p =\n       \
+    \   HilbertWalk.TensorCompositionBoundary.tensor u v p) ∧\n      (¬ ∃ A : Bool → Bool → Int,\n        ∀ i\
+    \ j : Bool,\n          HilbertWalk.MatrixFiniteRecovery.pauliY i j =\n            HilbertWalk.Complexification.embed\
     \ (A i j))"
-  source: lean4/H017Extras.lean
+  source: lean4/HilbertWalkGleasonExtras.lean
   repository: this_repository
   source_sha256: 5ca59147d0613750ef3870907d1b4ac0318c22cf6b85f608a2a09fbfb62637bf
   status: source_candidate_requires_semantic_review
@@ -129,11 +129,11 @@ relation_candidates:
     \ FrozenExtra.fieldC = DropVerdict.lost ∧\n        ¬ IsFieldPack gaussPack) ∧\n      (dropVerdict\
     \ FrozenExtra.spectral = DropVerdict.lost ∧\n        ¬ SpectralEigenvalueExtra enumBool) ∧\n     \
     \ (dropVerdict FrozenExtra.continuousTime = DropVerdict.lost ∧\n        (¬ ∃ σ : Bool → Bool,\n  \
-    \        ∀ q : Bool,\n            σ (σ q) = FableHilbertWalk20260819.H003.toggle q)) ∧\n      dropVerdict\
+    \        ∀ q : Bool,\n            σ (σ q) = HilbertWalk.ReversibilityGate.toggle q)) ∧\n      dropVerdict\
     \ FrozenExtra.gleasonUniqueness = DropVerdict.open ∧\n      dropVerdict FrozenExtra.cptp = DropVerdict.open\
     \ ∧\n      dropVerdict FrozenExtra.uniqueTensor = DropVerdict.open ∧\n      dropVerdict FrozenExtra.circle\
     \ = DropVerdict.open ∧\n      dropVerdict FrozenExtra.pythonDual = DropVerdict.open"
-  source: lean4/H017ExtrasDropone.lean
+  source: lean4/HilbertWalkGleasonExtrasDropOne.lean
   repository: this_repository
   source_sha256: 919ca08a830f788648e81faf36c5008a51b7a027cd84edd3b2cfca3b63dace7e
   status: source_candidate_requires_semantic_review
@@ -156,7 +156,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H017Extras.lean::remaining_extras_for_ordinary_mnC
   availability: local
   symbol: remaining_extras_for_ordinary_mnC
-  path: lean4/H017Extras.lean
+  path: lean4/HilbertWalkGleasonExtras.lean
   repository: this_repository
   sha256: 5ca59147d0613750ef3870907d1b4ac0318c22cf6b85f608a2a09fbfb62637bf
   declaration_status: declaration_found_not_proof_checked
@@ -165,7 +165,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H017ExtrasDropone.lean::drop_one_count
   availability: local
   symbol: drop_one_count
-  path: lean4/H017ExtrasDropone.lean
+  path: lean4/HilbertWalkGleasonExtrasDropOne.lean
   repository: this_repository
   sha256: 919ca08a830f788648e81faf36c5008a51b7a027cd84edd3b2cfca3b63dace7e
   declaration_status: declaration_found_not_proof_checked

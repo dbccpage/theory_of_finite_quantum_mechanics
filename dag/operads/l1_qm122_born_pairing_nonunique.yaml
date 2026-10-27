@@ -6,7 +6,7 @@ target:
   source_statement: A pairing exists (pairing_exists), a quartic rival to the quadratic pairing exists
     (quartic_rival), and uniqueness is not discharged (uniqueness_not_discharged, born_nonuniqueness_open).
     Under frame additivity the fourth power is excluded. Ordinary Gleason dimension is not matched by
-    the two-label host (H017Gleason).
+    the two-label host (HilbertWalkGleason).
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions:
   - 'Gleason: assumption'
@@ -38,7 +38,7 @@ operation_candidates:
   name: indicator
   line: 20
   signature_excerpt: 'def indicator (b : Bool) : Bool → Int'
-  source: lean4/H013BornPairingBoundary.lean
+  source: lean4/BornPairingBoundary.lean
   repository: this_repository
   source_sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   status: source_candidate_requires_semantic_review
@@ -46,7 +46,7 @@ operation_candidates:
   name: pair
   line: 17
   signature_excerpt: 'def pair {Q : Type} (E : Enum Q) (w e : Q → Int) : Int'
-  source: lean4/H013BornPairingBoundary.lean
+  source: lean4/BornPairingBoundary.lean
   repository: this_repository
   source_sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   status: source_candidate_requires_semantic_review
@@ -54,7 +54,7 @@ operation_candidates:
   name: psi21
   line: 38
   signature_excerpt: 'def psi21 : Bool → GaussInt'
-  source: lean4/H013BornPairingBoundary.lean
+  source: lean4/BornPairingBoundary.lean
   repository: this_repository
   source_sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   status: source_candidate_requires_semantic_review
@@ -62,7 +62,7 @@ operation_candidates:
   name: quartic
   line: 31
   signature_excerpt: 'def quartic {Q : Type} (v : Q → GaussInt) : Q → Int'
-  source: lean4/H013BornPairingBoundary.lean
+  source: lean4/BornPairingBoundary.lean
   repository: this_repository
   source_sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   status: source_candidate_requires_semantic_review
@@ -70,7 +70,7 @@ operation_candidates:
   name: hostSupplies
   line: 103
   signature_excerpt: 'def hostSupplies : GleasonPack'
-  source: lean4/H013BornPairingBoundary.lean
+  source: lean4/BornPairingBoundary.lean
   repository: this_repository
   source_sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   status: source_candidate_requires_semantic_review
@@ -78,7 +78,7 @@ operation_candidates:
   name: GleasonPack
   line: 93
   signature_excerpt: structure GleasonPack
-  source: lean4/H013BornPairingBoundary.lean
+  source: lean4/BornPairingBoundary.lean
   repository: this_repository
   source_sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   status: source_candidate_requires_semantic_review
@@ -86,7 +86,7 @@ operation_candidates:
   name: UniquenessDischarged
   line: 99
   signature_excerpt: 'def UniquenessDischarged (G : GleasonPack) : Bool'
-  source: lean4/H013BornPairingBoundary.lean
+  source: lean4/BornPairingBoundary.lean
   repository: this_repository
   source_sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   status: source_candidate_requires_semantic_review
@@ -94,7 +94,7 @@ operation_candidates:
   name: bornNonUniquenessHost
   line: 120
   signature_excerpt: 'def bornNonUniquenessHost : BornNonUniquenessPack'
-  source: lean4/H013BornPairingBoundary.lean
+  source: lean4/BornPairingBoundary.lean
   repository: this_repository
   source_sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   status: source_candidate_requires_semantic_review
@@ -102,7 +102,7 @@ operation_candidates:
   name: BornNonUniquenessPack
   line: 115
   signature_excerpt: structure BornNonUniquenessPack
-  source: lean4/H013BornPairingBoundary.lean
+  source: lean4/BornPairingBoundary.lean
   repository: this_repository
   source_sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   status: source_candidate_requires_semantic_review
@@ -110,7 +110,7 @@ operation_candidates:
   name: BornNonUniquenessDischarged
   line: 125
   signature_excerpt: 'def BornNonUniquenessDischarged (P : BornNonUniquenessPack) : Bool'
-  source: lean4/H013BornPairingBoundary.lean
+  source: lean4/BornPairingBoundary.lean
   repository: this_repository
   source_sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   status: source_candidate_requires_semantic_review
@@ -120,7 +120,7 @@ relation_candidates:
   line: 23
   signature_excerpt: "theorem pairing_exists :\n    pair enumBool (phaseBlind psi1) (indicator false)\
     \ = 1 ∧\n      pair enumBool (phaseBlind psi1) (fun _ => 1) = 2"
-  source: lean4/H013BornPairingBoundary.lean
+  source: lean4/BornPairingBoundary.lean
   repository: this_repository
   source_sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   status: source_candidate_requires_semantic_review
@@ -132,7 +132,7 @@ relation_candidates:
   signature_excerpt: "theorem quartic_rival :\n    (∀ q : Bool, 0 ≤ quartic psi21 q) ∧\n      totalWeight\
     \ enumBool psi21 = 5 ∧\n      rsum intPack (enumBool.elems.map (quartic psi21)) = 17 ∧\n      ¬(∀\
     \ q : Bool, phaseBlind psi21 q = quartic psi21 q)"
-  source: lean4/H013BornPairingBoundary.lean
+  source: lean4/BornPairingBoundary.lean
   repository: this_repository
   source_sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   status: source_candidate_requires_semantic_review
@@ -142,7 +142,7 @@ relation_candidates:
   name: uniqueness_not_discharged
   line: 109
   signature_excerpt: "theorem uniqueness_not_discharged :\n    UniquenessDischarged hostSupplies = false"
-  source: lean4/H013BornPairingBoundary.lean
+  source: lean4/BornPairingBoundary.lean
   repository: this_repository
   source_sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   status: source_candidate_requires_semantic_review
@@ -153,7 +153,7 @@ relation_candidates:
   line: 129
   signature_excerpt: "theorem born_nonuniqueness_open :\n    BornNonUniquenessDischarged bornNonUniquenessHost\
     \ = false"
-  source: lean4/H013BornPairingBoundary.lean
+  source: lean4/BornPairingBoundary.lean
   repository: this_repository
   source_sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   status: source_candidate_requires_semantic_review
@@ -178,7 +178,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H013BornPairingBoundary.lean::pairing_exists
   availability: local
   symbol: pairing_exists
-  path: lean4/H013BornPairingBoundary.lean
+  path: lean4/BornPairingBoundary.lean
   repository: this_repository
   sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   declaration_status: declaration_found_not_proof_checked
@@ -187,7 +187,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H013BornPairingBoundary.lean::quartic_rival
   availability: local
   symbol: quartic_rival
-  path: lean4/H013BornPairingBoundary.lean
+  path: lean4/BornPairingBoundary.lean
   repository: this_repository
   sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   declaration_status: declaration_found_not_proof_checked
@@ -196,7 +196,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H013BornPairingBoundary.lean::uniqueness_not_discharged
   availability: local
   symbol: uniqueness_not_discharged
-  path: lean4/H013BornPairingBoundary.lean
+  path: lean4/BornPairingBoundary.lean
   repository: this_repository
   sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   declaration_status: declaration_found_not_proof_checked
@@ -205,7 +205,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H013BornPairingBoundary.lean::born_nonuniqueness_open
   availability: local
   symbol: born_nonuniqueness_open
-  path: lean4/H013BornPairingBoundary.lean
+  path: lean4/BornPairingBoundary.lean
   repository: this_repository
   sha256: debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642
   declaration_status: declaration_found_not_proof_checked
@@ -214,7 +214,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H017Finish.lean::two_label_host_not_gleason_dimension
   availability: local
   symbol: two_label_host_not_gleason_dimension
-  path: lean4/H017Finish.lean
+  path: lean4/HilbertWalkGleasonFinish.lean
   repository: this_repository
   sha256: 61014dcb93865ef22001d7dc004f853beaa32c16e6a0f62d04fe02c19a69190a
   declaration_status: symbol_not_found
@@ -748,7 +748,7 @@ operad_slots:
     original_target: A pairing exists (pairing_exists), a quartic rival to the quadratic pairing exists
       (quartic_rival), and uniqueness is not discharged (uniqueness_not_discharged, born_nonuniqueness_open).
       Under frame additivity the fourth power is excluded. Ordinary Gleason dimension is not matched by
-      the two-label host (H017Gleason).
+      the two-label host (HilbertWalkGleason).
     source_scope_review: 'Distinguish raw quartic from the same-unit-total swapped-effect rival: raw quartic
       generally changes unit total, while normalized quartic has its own unit1 contract. Compute complete
       Gaussian-state frame readouts and their quartic disagreement. No source candidate/status is accepted

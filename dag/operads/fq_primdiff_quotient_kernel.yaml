@@ -48,7 +48,7 @@ operation_candidates:
   name: sameReport
   line: 25
   signature_excerpt: 'def sameReport {X Q : Type} (C : PresentedCarrier X Q) (x y : X) : Prop'
-  source: lean4/H000FinitePresentedCarrier.lean
+  source: lean4/FinitePresentedCarrier.lean
   repository: this_repository
   source_sha256: 789978ed31d30571cffbfe7efa8e8f46f6340649ab09e876289896eb5ca1a5ce
   status: source_candidate_requires_semantic_review
@@ -56,7 +56,7 @@ operation_candidates:
   name: PresentedCarrier
   line: 20
   signature_excerpt: 'structure PresentedCarrier (X Q : Type)'
-  source: lean4/H000FinitePresentedCarrier.lean
+  source: lean4/FinitePresentedCarrier.lean
   repository: this_repository
   source_sha256: 789978ed31d30571cffbfe7efa8e8f46f6340649ab09e876289896eb5ca1a5ce
   status: source_candidate_requires_semantic_review
@@ -64,7 +64,7 @@ operation_candidates:
   name: boolFixture
   line: 36
   signature_excerpt: 'def boolFixture : PresentedCarrier (Bool × Bool) Bool'
-  source: lean4/H000FinitePresentedCarrier.lean
+  source: lean4/FinitePresentedCarrier.lean
   repository: this_repository
   source_sha256: 789978ed31d30571cffbfe7efa8e8f46f6340649ab09e876289896eb5ca1a5ce
   status: source_candidate_requires_semantic_review
@@ -84,7 +84,7 @@ relation_candidates:
   line: 28
   signature_excerpt: "theorem sameReport_iff {X Q : Type} (C : PresentedCarrier X Q) (x y : X) :\n   \
     \ sameReport C x y ↔ C.pres x = C.pres y"
-  source: lean4/H000FinitePresentedCarrier.lean
+  source: lean4/FinitePresentedCarrier.lean
   repository: this_repository
   source_sha256: 789978ed31d30571cffbfe7efa8e8f46f6340649ab09e876289896eb5ca1a5ce
   status: source_candidate_requires_semantic_review
@@ -95,7 +95,7 @@ relation_candidates:
   line: 47
   signature_excerpt: "theorem presented_carrier_separates :\n    ¬ sameReport boolFixture (false, false)\
     \ (true, false)"
-  source: lean4/H000FinitePresentedCarrier.lean
+  source: lean4/FinitePresentedCarrier.lean
   repository: this_repository
   source_sha256: 789978ed31d30571cffbfe7efa8e8f46f6340649ab09e876289896eb5ca1a5ce
   status: source_candidate_requires_semantic_review
@@ -129,7 +129,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H000FinitePresentedCarrier.lean::sameReport_iff
   availability: local
   symbol: sameReport_iff
-  path: lean4/H000FinitePresentedCarrier.lean
+  path: lean4/FinitePresentedCarrier.lean
   repository: this_repository
   sha256: 789978ed31d30571cffbfe7efa8e8f46f6340649ab09e876289896eb5ca1a5ce
   declaration_status: declaration_found_not_proof_checked
@@ -138,7 +138,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H000FinitePresentedCarrier.lean::presented_carrier_separates
   availability: local
   symbol: presented_carrier_separates
-  path: lean4/H000FinitePresentedCarrier.lean
+  path: lean4/FinitePresentedCarrier.lean
   repository: this_repository
   sha256: 789978ed31d30571cffbfe7efa8e8f46f6340649ab09e876289896eb5ca1a5ce
   declaration_status: declaration_found_not_proof_checked
@@ -684,33 +684,33 @@ operad_slots:
     - dag/pfp/review_exact_json.py
     - lean4/PrimitiveDifference.lean
     - lean4/HWKernel.lean
-    - lean4/H004FreeLinearization.lean
-    - lean4/H005InnerProductAdmission.lean
-    - lean4/H003ReversibilityGate.lean
-    - lean4/H006PermutationUnitary.lean
-    - lean4/H007Complexification.lean
-    - lean4/H017MatrixFiniteRecovery.lean
-    - lean4/H017Fin.lean
-    - lean4/H016ContinuousDynamicsFork.lean
-    - lean4/H008PhaseBlindPresentation.lean
+    - lean4/FreeLinearization.lean
+    - lean4/InnerProductAdmission.lean
+    - lean4/ReversibilityGate.lean
+    - lean4/PermutationUnitary.lean
+    - lean4/Complexification.lean
+    - lean4/MatrixFiniteRecovery.lean
+    - lean4/HilbertWalkGleasonFin.lean
+    - lean4/ContinuousDynamicsFork.lean
+    - lean4/HilbertWalkPhaseBlindPresentation.lean
     - lean4/Core.lean
-    - lean4/H009PhaseFiber.lean
-    - lean4/H010InterferenceNonDescent.lean
-    - lean4/H011U1SelectorBoundary.lean
-    - lean4/H011Circle.lean
-    - lean4/H014TensorCompositionBoundary.lean
-    - lean4/H014BilinearProduct.lean
-    - lean4/H014Interface.lean
-    - lean4/H015IrreversibleFork.lean
-    - lean4/H013BornPairingBoundary.lean
-    - lean4/H013SameContract.lean
-    - lean4/H017Gleason.lean
-    - lean4/H017Extras.lean
-    - lean4/H017ExtrasDropone.lean
-    - lean4/E003_projection_fiber_primitive_difference.lean
-    - lean4/E005_fiber_quotient_equivalence.lean
-    - lean4/H000FinitePresentedCarrier.lean
-    - lean4/H055DiscreteDynamicsStone.lean
+    - lean4/PhaseFiber.lean
+    - lean4/InterferenceNonDescent.lean
+    - lean4/U1SelectorBoundary.lean
+    - lean4/HilbertWalkCircle.lean
+    - lean4/TensorCompositionBoundary.lean
+    - lean4/BilinearProduct.lean
+    - lean4/HilbertWalkInterface.lean
+    - lean4/IrreversibleFork.lean
+    - lean4/BornPairingBoundary.lean
+    - lean4/HilbertWalkSameContract.lean
+    - lean4/HilbertWalkGleason.lean
+    - lean4/HilbertWalkGleasonExtras.lean
+    - lean4/HilbertWalkGleasonExtrasDropOne.lean
+    - lean4/ProjectionFiberPrimitiveDifference.lean
+    - lean4/FiberQuotientEquivalence.lean
+    - lean4/FinitePresentedCarrier.lean
+    - lean4/DiscreteDynamicsStone.lean
     - lean4/PromptStructure.lean
     - dag/results/batches/20261019T160201Z_prompts_22_31/tools/prepare.py
     - QuantumMechanics.PromptStructure.quotient_equivalence

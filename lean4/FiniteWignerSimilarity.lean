@@ -22,7 +22,7 @@ the scale can be removed:
   the exact carrier, "unitary or antiunitary" is strictly stronger than what transition-probability
   preservation gives; the correct finite statement is "linear or conjugate-linear similarity".
 * `eq_smul_one_of_rays`: a matrix fixing every ray is a scalar (used for the countermodel).
-* `permMatrix`: the H006 permutation envelope `permute σ` of `SectorFormHermitian` is the unitary
+* `permMatrix`: the PermutationUnitary permutation envelope `permute σ` of `SectorFormHermitian` is the unitary
   `permMatrix σ` (`permMatrix_mulVec`, `permMatrix_unitary`), hence a special case of the derived
   class.
 * `tpPreserving_iff_born`: transition-probability preservation is the preservation of the Born
@@ -31,10 +31,10 @@ the scale can be removed:
 Nothing physical is claimed; the carrier, the scalar field and the readout are supplied.
 -/
 
-namespace WignerFable.Similarity
+namespace WignerFinite.Similarity
 
-open Matrix BornFable BornFable.HermitianCarrier BornFable.HermitianPsd WignerFable.Kernel
-  WignerFable.Theorem
+open Matrix BornFinite BornFinite.HermitianCarrier BornFinite.HermitianPsd WignerFinite.Kernel
+  WignerFinite.Theorem
 
 variable {n : ℕ}
 
@@ -371,15 +371,15 @@ def permMatrix (σ : Equiv.Perm (Fin n)) : Matrix (Fin n) (Fin n) GaussRat :=
 theorem permMatrix_apply (σ : Equiv.Perm (Fin n)) (i j : Fin n) :
     permMatrix σ i j = if σ j = i then 1 else 0 := rfl
 
-/-- The H006 coordinate action `permute σ x = x ∘ σ.symm` of `SectorFormHermitian` is
+/-- The PermutationUnitary coordinate action `permute σ x = x ∘ σ.symm` of `SectorFormHermitian` is
 `permMatrix σ *ᵥ x`. -/
 theorem permMatrix_mulVec (σ : Equiv.Perm (Fin n)) (x : Fin n → GaussRat) :
-    permMatrix σ *ᵥ x = InnerProductFable.HermitianSectorForm.permute σ x := by
+    permMatrix σ *ᵥ x = InnerProductFinite.HermitianSectorForm.permute σ x := by
   funext i
   rw [mulVec_apply_eq_sum]
   simp only [permMatrix_apply, ite_mul, one_mul, zero_mul]
   rw [Finset.sum_eq_single (σ.symm i)]
-  · simp [InnerProductFable.HermitianSectorForm.permute]
+  · simp [InnerProductFinite.HermitianSectorForm.permute]
   · intro j _ hj
     have hσ : σ j ≠ i := fun hσ => hj (by rw [← hσ, Equiv.symm_apply_apply])
     simp [hσ]
@@ -434,41 +434,41 @@ theorem similarity_hf_one_mulVec {F : Matrix (Fin n) (Fin n) GaussRat} {d : ℚ}
     (x : Fin n → GaussRat) : hf 1 (F *ᵥ x) = d * hf 1 x := by
   rw [hf_one, hf_one, hF.vnorm_mulVec]
 
-end WignerFable.Similarity
+end WignerFinite.Similarity
 
-#print axioms WignerFable.Similarity.Unitary
-#print axioms WignerFable.Similarity.unitary_iff_similarity_one
-#print axioms WignerFable.Similarity.Unitary.ip_mulVec
-#print axioms WignerFable.Similarity.Unitary.mul_conjTranspose
-#print axioms WignerFable.Similarity.qsmul_eq_smul
-#print axioms WignerFable.Similarity.conjTranspose_gsmul
-#print axioms WignerFable.Similarity.similarity_of_unitary
-#print axioms WignerFable.Similarity.unitary_of_norm
-#print axioms WignerFable.Similarity.exists_unitary_iff
-#print axioms WignerFable.Similarity.norm_iff_sum_two_sq
-#print axioms WignerFable.Similarity.three_dvd_of_sq_add_sq
-#print axioms WignerFable.Similarity.descent_three
-#print axioms WignerFable.Similarity.int_sq_add_sq_eq_three_mul_sq
-#print axioms WignerFable.Similarity.three_not_sum_two_sq
-#print axioms WignerFable.Similarity.three_not_norm
-#print axioms WignerFable.Similarity.mulVec_e_apply
-#print axioms WignerFable.Similarity.eq_smul_one_of_rays
-#print axioms WignerFable.Similarity.mulVec_e_eq_zero_of_antilinear_rays
-#print axioms WignerFable.Similarity.F3
-#print axioms WignerFable.Similarity.F3_apply_00
-#print axioms WignerFable.Similarity.F3_apply_01
-#print axioms WignerFable.Similarity.F3_apply_10
-#print axioms WignerFable.Similarity.F3_apply_11
-#print axioms WignerFable.Similarity.F3_similarity
-#print axioms WignerFable.Similarity.F3_tpPreserving
-#print axioms WignerFable.Similarity.F3_mulVec_e_ne_zero
-#print axioms WignerFable.Similarity.F3_not_induced_by_unitary
-#print axioms WignerFable.Similarity.F3_not_induced_by_antiunitary
-#print axioms WignerFable.Similarity.permMatrix
-#print axioms WignerFable.Similarity.permMatrix_apply
-#print axioms WignerFable.Similarity.permMatrix_mulVec
-#print axioms WignerFable.Similarity.permMatrix_unitary
-#print axioms WignerFable.Similarity.permMatrix_ip
-#print axioms WignerFable.Similarity.tpPreserving_iff_born
-#print axioms WignerFable.Similarity.Unitary.vnorm_mulVec
-#print axioms WignerFable.Similarity.similarity_hf_one_mulVec
+#print axioms WignerFinite.Similarity.Unitary
+#print axioms WignerFinite.Similarity.unitary_iff_similarity_one
+#print axioms WignerFinite.Similarity.Unitary.ip_mulVec
+#print axioms WignerFinite.Similarity.Unitary.mul_conjTranspose
+#print axioms WignerFinite.Similarity.qsmul_eq_smul
+#print axioms WignerFinite.Similarity.conjTranspose_gsmul
+#print axioms WignerFinite.Similarity.similarity_of_unitary
+#print axioms WignerFinite.Similarity.unitary_of_norm
+#print axioms WignerFinite.Similarity.exists_unitary_iff
+#print axioms WignerFinite.Similarity.norm_iff_sum_two_sq
+#print axioms WignerFinite.Similarity.three_dvd_of_sq_add_sq
+#print axioms WignerFinite.Similarity.descent_three
+#print axioms WignerFinite.Similarity.int_sq_add_sq_eq_three_mul_sq
+#print axioms WignerFinite.Similarity.three_not_sum_two_sq
+#print axioms WignerFinite.Similarity.three_not_norm
+#print axioms WignerFinite.Similarity.mulVec_e_apply
+#print axioms WignerFinite.Similarity.eq_smul_one_of_rays
+#print axioms WignerFinite.Similarity.mulVec_e_eq_zero_of_antilinear_rays
+#print axioms WignerFinite.Similarity.F3
+#print axioms WignerFinite.Similarity.F3_apply_00
+#print axioms WignerFinite.Similarity.F3_apply_01
+#print axioms WignerFinite.Similarity.F3_apply_10
+#print axioms WignerFinite.Similarity.F3_apply_11
+#print axioms WignerFinite.Similarity.F3_similarity
+#print axioms WignerFinite.Similarity.F3_tpPreserving
+#print axioms WignerFinite.Similarity.F3_mulVec_e_ne_zero
+#print axioms WignerFinite.Similarity.F3_not_induced_by_unitary
+#print axioms WignerFinite.Similarity.F3_not_induced_by_antiunitary
+#print axioms WignerFinite.Similarity.permMatrix
+#print axioms WignerFinite.Similarity.permMatrix_apply
+#print axioms WignerFinite.Similarity.permMatrix_mulVec
+#print axioms WignerFinite.Similarity.permMatrix_unitary
+#print axioms WignerFinite.Similarity.permMatrix_ip
+#print axioms WignerFinite.Similarity.tpPreserving_iff_born
+#print axioms WignerFinite.Similarity.Unitary.vnorm_mulVec
+#print axioms WignerFinite.Similarity.similarity_hf_one_mulVec

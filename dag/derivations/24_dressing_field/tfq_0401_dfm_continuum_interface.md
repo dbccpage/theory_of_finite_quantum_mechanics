@@ -38,7 +38,7 @@ not supply a refinement family, a topology, or a convergence theorem.
 
 - [dag/research/electroweak_dfm_weinberg_finite_map.md](../../../dag/research/electroweak_dfm_weinberg_finite_map.md)
 - [papers/ravera_dfm_dossier.md](../../../papers/ravera_dfm_dossier.md)
-- [lean4/CampaignDfmContinuumInterface.lean](../../../lean4/CampaignDfmContinuumInterface.lean)
+- [lean4/DressingFieldContinuumInterface.lean](../../../lean4/DressingFieldContinuumInterface.lean)
 - [checks/independent/dfm-continuum-interface.py](../../../checks/independent/dfm-continuum-interface.py)
 
 The finite witness is proved. A refinement family, compatibility maps and a convergence theorem are still required before transporting finite identities to smooth gauge theory.

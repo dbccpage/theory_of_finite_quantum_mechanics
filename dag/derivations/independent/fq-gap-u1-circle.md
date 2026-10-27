@@ -42,7 +42,7 @@ The zero triple satisfies both equations. The triple `(3, 4, 5)` satisfies the n
 - For every natural number `a` and `b`, `5*a*a = 4*b*b` holds only when `b = 0`.
 - For every integer `a`, `b`, and `d`, the two equations `5*(a*a - b*b) = 3*(d*d)` and `a*a + b*b = d*d` hold together only when `a = 0`, `b = 0`, and `d = 0`.
 
-The Lean declarations are `pythagorean345`, `fiveFourSquareForcesZero`, `clearedDenominatorForcesFourFifths`, and `noNonzeroClearedSquareRoot` in `lean4/CampaignFqGapU1Circle.lean`.
+The Lean declarations are `pythagorean345`, `fiveFourSquareForcesZero`, `clearedDenominatorForcesFourFifths`, and `noNonzeroClearedSquareRoot` in `lean4/U1CircleIntegerWitness.lean`.
 
 ## What is assumed
 

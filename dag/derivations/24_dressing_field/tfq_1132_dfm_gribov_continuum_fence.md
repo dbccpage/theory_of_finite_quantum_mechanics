@@ -43,11 +43,11 @@ h23_square and h12_square are the generator squares. omega1_square_and_det recor
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignDfmGribovContinuumFence.lean::h23_square`
-- `lean4/CampaignDfmGribovContinuumFence.lean::h12_square`
-- `lean4/CampaignDfmGribovContinuumFence.lean::omega1_square_and_det`
-- `lean4/CampaignDfmGribovContinuumFence.lean::trace_pair`
-- `lean4/CampaignDfmGribovContinuumFence.lean::forms_differ`
+- `lean4/DressingFieldGribovContinuumFence.lean::h23_square`
+- `lean4/DressingFieldGribovContinuumFence.lean::h12_square`
+- `lean4/DressingFieldGribovContinuumFence.lean::omega1_square_and_det`
+- `lean4/DressingFieldGribovContinuumFence.lean::trace_pair`
+- `lean4/DressingFieldGribovContinuumFence.lean::forms_differ`
 
 ### Rust Certifiers
 - *none*
@@ -71,6 +71,6 @@ h23_square and h12_square are the generator squares. omega1_square_and_det recor
 - **Cited Sources**:
   - `papers/ravera_dfm_dossier.md:32`
   - `papers/ravera_dfm_dossier.md:288`
-  - `lean4/CampaignDfmGribovContinuumFence.lean`
+  - `lean4/DressingFieldGribovContinuumFence.lean`
   - `dag/derivations/independent/dfm-gribov-continuum-fence.md`
   - `checks/independent/dfm-gribov-continuum-fence.py`

@@ -10,7 +10,7 @@ Assume a `Primcodable` structure on that mark type, and assume `startWord` is a 
 
 Suppose a decider for `P` exists. Composing that decider with `startWord` yields a decider for the predicate on natural numbers that asks whether the start word of the input reaches an irreducible word. That predicate is `NFReach`. A decider for `NFReach` is already ruled out by `nfReach_not_computable`. Therefore no decider for `P` exists under the two assumptions.
 
-`encoded_instance_reduction` in `lean4/CampaignCompC7EncodedInstanceReduction.lean` is the same implication as `reach_problem_not_computable` in `lean4/GenesisCompUniv.lean`. Both printed axiom lists are `propext`, `Classical.choice`, and `Quot.sound`.
+`encoded_instance_reduction` in `lean4/ComputationC7EncodedInstanceReduction.lean` is the same implication as `reach_problem_not_computable` in `lean4/GenesisCompUniv.lean`. Both printed axiom lists are `propext`, `Classical.choice`, and `Quot.sound`.
 
 The Python script checks only the shape of a start map followed by a word predicate on two codes. Non-computability is the Lean implication, not that script.
 

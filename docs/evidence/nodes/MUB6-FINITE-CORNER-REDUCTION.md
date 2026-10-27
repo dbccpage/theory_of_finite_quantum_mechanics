@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignMub6FiniteCornerReduction.lean`
+### Lean: `lean4/Mub6FiniteCornerReduction.lean`
 
-- file: [lean4/CampaignMub6FiniteCornerReduction.lean](../../../lean4/CampaignMub6FiniteCornerReduction.lean)
-- sha256 (`bytes`): `79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401`
-- cited in: node.lean, receipt dag/research/campaign_mub6-finite-corner-reduction_lean_replay.json (CampaignMub6FiniteCornerReduction), record TFQ-1261
+- file: [lean4/Mub6FiniteCornerReduction.lean](../../../lean4/Mub6FiniteCornerReduction.lean)
+- sha256 (`bytes`): `da0dd58b707e3ad0db825db42f1c1ccc92fbe7ee699cd14f74ebe2a800722ad4`
+- cited in: node.lean, receipt dag/research/campaign_mub6-finite-corner-reduction_lean_replay.json (Mub6FiniteCornerReduction), record TFQ-1261
 - replay: `verified`
-  - receipt [dag/research/campaign_mub6-finite-corner-reduction_lean_replay.json](../../../dag/research/campaign_mub6-finite-corner-reduction_lean_replay.json) (module `CampaignMub6FiniteCornerReduction`): recorded sha256 `79d7009cc56587e368459720d501a80ae327f07cd87206aeb526161856964401` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignMub6FiniteCornerReduction`
+  - receipt [dag/research/campaign_mub6-finite-corner-reduction_lean_replay.json](../../../dag/research/campaign_mub6-finite-corner-reduction_lean_replay.json) (module `Mub6FiniteCornerReduction`): recorded sha256 `da0dd58b707e3ad0db825db42f1c1ccc92fbe7ee699cd14f74ebe2a800722ad4` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build Mub6FiniteCornerReduction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md`
 
 - file: [dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md](../../../dag/derivations/25_mub/tfq_1261_mub6_finite_corner_reduction.md)
-- sha256 (`lf-normalised`): `0c24a970b0b32ff5761cfc2d085886f309ffc7c9646de253ca766f0f0ea4539d`
+- sha256 (`lf-normalised`): `af5b0757884692264ef90193d94fd19fe1b0bc2e04189acf40f223f613ce0471`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1261
 - counts toward the grade: no

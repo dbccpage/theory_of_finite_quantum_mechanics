@@ -1,6 +1,6 @@
 """Exact Cayley charts over Q(i) and the integer 2x2 Cayley isometry.
 
-Origin: lean4/H019RationalLieSpan.lean theorem cayley_isometry_matrix2x2_rat
+Origin: lean4/RationalLieSpan.lean theorem cayley_isometry_matrix2x2_rat
 and theorem cayley_mat2_off_diagonal_zero. cayleyMat2(p, q) is the integer
 matrix with diagonal q^2 - p^2 and off-diagonal entries ∓2pq.
 Claim: urn:omega:fqm:lie:cayley-mat2-isometry:v1

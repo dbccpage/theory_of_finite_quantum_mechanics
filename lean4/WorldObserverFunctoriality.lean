@@ -6,7 +6,7 @@ import PrimitiveDifference
 
 
 
-namespace OmegaWorld
+namespace ObserverWorld
 namespace ObserverFunctorialityW35
 
 open OmegaCore
@@ -420,7 +420,7 @@ theorem authority_effect_none : scopeFence.authorityEffect = .none :=
 #print axioms authority_effect_none
 
 end ObserverFunctorialityW35
-end OmegaWorld
+end ObserverWorld
 
 private def l5aProvenance : String :=
   "Origin: lean4/WorldObserverFunctoriality.lean Claim: ext AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

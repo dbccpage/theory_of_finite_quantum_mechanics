@@ -51,15 +51,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build   # the library that contains dag/results/PG-GEN-REWRITING-COMMUTATION/runs/20261019T215447Z_staged/inputs/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean`
 - counts toward the grade: yes
 
-### Lean: `lean4/CampaignCompC2Step3NotWordStep.lean`
+### Lean: `lean4/ComputationC2Step3NotWordStep.lean`
 
-- file: [lean4/CampaignCompC2Step3NotWordStep.lean](../../../lean4/CampaignCompC2Step3NotWordStep.lean)
-- sha256 (`bytes`): `78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c`
-- cited in: node.lean, receipt dag/research/campaign_comp-c2-step3-not-word-step_lean_replay.json (CampaignCompC2Step3NotWordStep), receipt dag/research/pr_367_review_replay.json (CampaignCompC2Step3NotWordStep), record TFQ-1290
+- file: [lean4/ComputationC2Step3NotWordStep.lean](../../../lean4/ComputationC2Step3NotWordStep.lean)
+- sha256 (`bytes`): `5e2c7f853af31126192456d4a3105df7e19805dcef3eae4394e58507fcf48560`
+- cited in: node.lean, receipt dag/research/campaign_comp-c2-step3-not-word-step_lean_replay.json (ComputationC2Step3NotWordStep), receipt dag/research/pr_367_review_replay.json (ComputationC2Step3NotWordStep), record TFQ-1290
 - replay: `verified`
-  - receipt [dag/research/campaign_comp-c2-step3-not-word-step_lean_replay.json](../../../dag/research/campaign_comp-c2-step3-not-word-step_lean_replay.json) (module `CampaignCompC2Step3NotWordStep`): recorded sha256 `78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-  - receipt [dag/research/pr_367_review_replay.json](../../../dag/research/pr_367_review_replay.json) (module `CampaignCompC2Step3NotWordStep`): recorded sha256 `78a438a504c33f16b0e5507aea5bf721cdc16f24ecb5ecadfabf61352d63976c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignCompC2Step3NotWordStep`
+  - receipt [dag/research/campaign_comp-c2-step3-not-word-step_lean_replay.json](../../../dag/research/campaign_comp-c2-step3-not-word-step_lean_replay.json) (module `ComputationC2Step3NotWordStep`): recorded sha256 `5e2c7f853af31126192456d4a3105df7e19805dcef3eae4394e58507fcf48560` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/pr_367_review_replay.json](../../../dag/research/pr_367_review_replay.json) (module `ComputationC2Step3NotWordStep`): recorded sha256 `5e2c7f853af31126192456d4a3105df7e19805dcef3eae4394e58507fcf48560` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build ComputationC2Step3NotWordStep`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -74,7 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1290_comp_c2_step3_not_word_step.md`
 
 - file: [dag/derivations/29_computation/tfq_1290_comp_c2_step3_not_word_step.md](../../../dag/derivations/29_computation/tfq_1290_comp_c2_step3_not_word_step.md)
-- sha256 (`lf-normalised`): `e518f3cd2ae192457cb8dbbc3b11c5310316593626bb06b8934698dd6a99a4c8`
+- sha256 (`lf-normalised`): `9a6146506373e12b12d80ac405bc158a66f2560a60209b831f062b57a1b65473`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1290
 - counts toward the grade: no

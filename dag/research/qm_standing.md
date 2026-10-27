@@ -46,10 +46,10 @@ Active formalization is located in `lean4/quantum_mechanics/` (toolchain `leanpr
   - `BornNormalization.lean`: Proves unit-sum normalization for finite POVMs.
   - `GleasonTheorem.lean`: Verifies the $d = 2$ non-Bornian obstruction (`d2_binary_non_bornian_obstruction`), demonstrating that binary valuations on $S^1$ cannot be represented by density operators.
   - `Entanglement.lean`: Verifies non-zero Schmidt rank and minors for integer Bell states $|\Phi^+\rangle$.
-  - `H032DiscretePythagoreanBellChsh.lean`: Proves classical CHSH bound $|S| \le 2$ and establishes the exact rational Pythagorean point $S = 14/5$ at height $H = 5$.
-  - `H058EffectFrameBusch.lean`: Establishes Busch effect-frame uniqueness under coordinate-matching conditions for POVMs.
-  - `H059RationalSector.lean`: Analyzes rational-sector Born weight representations and verifies algebraic irreducibility of conductor-5 polynomials ($5x^2 - 5x + 1$).
-  - `H061DynamicsDichotomy.lean`: Proves the periodic vs aperiodic dynamics dichotomy for discrete unitary operators.
+  - `DiscretePythagoreanBellChsh.lean`: Proves classical CHSH bound $|S| \le 2$ and establishes the exact rational Pythagorean point $S = 14/5$ at height $H = 5$.
+  - `EffectFrameBusch.lean`: Establishes Busch effect-frame uniqueness under coordinate-matching conditions for POVMs.
+  - `RationalSector.lean`: Analyzes rational-sector Born weight representations and verifies algebraic irreducibility of conductor-5 polynomials ($5x^2 - 5x + 1$).
+  - `DynamicsDichotomy.lean`: Proves the periodic vs aperiodic dynamics dichotomy for discrete unitary operators.
 
 ### 3.2 Computational Kernels (Python & Rust)
 - **Rust Crates:** Canonical high-performance and exact rational implementations reside in `omega_engine/crates_rs/omega_quantum_physics/src/finite_qm/`:

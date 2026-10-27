@@ -25,17 +25,17 @@ In accordance with strict constructive principles:
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
-### Lean 4 Theorems (`lean4/CampaignTfq0014FiniteQcd.lean`)
-- `CampaignTfq0014FiniteQcd.pair_groupoid_convolution_associative`: Proves associativity of convolution multiplication on the 2-object pair groupoid over `ℤ[i]`.
-- `CampaignTfq0014FiniteQcd.pair_groupoid_unit_and_orthogonal_object_idempotents`: Proves that `e₀₀ + e₁₁` is the two-sided convolution unit and `e₀₀ * e₁₁ = 0`.
-- `CampaignTfq0014FiniteQcd.groupoid_cstar_norm_requires_sqrt_extension_fence`: Proves the `(2p + 1)² ≠ 2q²` parity obstruction showing that the `C*`-norm `√2` of `e₀₀ + e₀₁` is an analytic extension outside `ℚ`.
-- `CampaignTfq0014FiniteQcd.packet_d0_commutator_trace_zero`: Proves that the `M_2(ℤ[i])` packet commutator differential `packetD0 Ω X = [Ω, X]` has zero trace.
-- `CampaignTfq0014FiniteQcd.packet_d0_scalar_kernel_and_leibniz_derivation`: Proves that scalar matrices lie in `ker(packetD0 Ω)` and that `packetD0 Ω` satisfies the Leibniz derivation rule.
-- `CampaignTfq0014FiniteQcd.packet_d0_jacobi_identity`: Proves the Jacobi identity for `packetD0` on `M_2(ℤ[i])`.
-- `CampaignTfq0014FiniteQcd.groupoid_convolution_vs_packet_d0_distinct_objects_fence`: Proves that `groupoidId` is idempotent under convolution (`I₂ * I₂ = I₂`) and annihilated by `packetD0` (`[I₂, I₂] = 0`).
-- `CampaignTfq0014FiniteQcd.m2_packet_vs_su3_color_dimension_and_casimir_fence`: Proves the matrix entry (`4 ≠ 9`), Lie generator dimension (`3 ≠ 8`), and fundamental Casimir (`3/4 ≠ 4/3`) fences separating `M_2` packets from `SU(3)` color links.
-- `CampaignTfq0014FiniteQcd.neither_module_is_hopf_or_su3_scope_ledger_fence`: Audits `tfq0014RepoLedger` (`hasGroupoidConvolution = true`, `hasM2PacketComplex = true`, `isCStarCompletionNative = false`, `hasHopfGaugeTheory = false`, `hasSu3ColorLinks = false`).
-- `CampaignTfq0014FiniteQcd.commutator_derivation_breaks_grouplike_multiplicativity_fence`: Proves that `packetD0` is a Lie derivation (`d₀(σ_z)(σ_x²) = 0`) and not a multiplicative link homomorphism (`(d₀(σ_z)(σ_x))² ≠ 0`).
+### Lean 4 Theorems (`lean4/FiniteGroupoidConvolutionAlgebra.lean`)
+- `FiniteGroupoidConvolutionAlgebra.pair_groupoid_convolution_associative`: Proves associativity of convolution multiplication on the 2-object pair groupoid over `ℤ[i]`.
+- `FiniteGroupoidConvolutionAlgebra.pair_groupoid_unit_and_orthogonal_object_idempotents`: Proves that `e₀₀ + e₁₁` is the two-sided convolution unit and `e₀₀ * e₁₁ = 0`.
+- `FiniteGroupoidConvolutionAlgebra.groupoid_cstar_norm_requires_sqrt_extension_fence`: Proves the `(2p + 1)² ≠ 2q²` parity obstruction showing that the `C*`-norm `√2` of `e₀₀ + e₀₁` is an analytic extension outside `ℚ`.
+- `FiniteGroupoidConvolutionAlgebra.packet_d0_commutator_trace_zero`: Proves that the `M_2(ℤ[i])` packet commutator differential `packetD0 Ω X = [Ω, X]` has zero trace.
+- `FiniteGroupoidConvolutionAlgebra.packet_d0_scalar_kernel_and_leibniz_derivation`: Proves that scalar matrices lie in `ker(packetD0 Ω)` and that `packetD0 Ω` satisfies the Leibniz derivation rule.
+- `FiniteGroupoidConvolutionAlgebra.packet_d0_jacobi_identity`: Proves the Jacobi identity for `packetD0` on `M_2(ℤ[i])`.
+- `FiniteGroupoidConvolutionAlgebra.groupoid_convolution_vs_packet_d0_distinct_objects_fence`: Proves that `groupoidId` is idempotent under convolution (`I₂ * I₂ = I₂`) and annihilated by `packetD0` (`[I₂, I₂] = 0`).
+- `FiniteGroupoidConvolutionAlgebra.m2_packet_vs_su3_color_dimension_and_casimir_fence`: Proves the matrix entry (`4 ≠ 9`), Lie generator dimension (`3 ≠ 8`), and fundamental Casimir (`3/4 ≠ 4/3`) fences separating `M_2` packets from `SU(3)` color links.
+- `FiniteGroupoidConvolutionAlgebra.neither_module_is_hopf_or_su3_scope_ledger_fence`: Audits `tfq0014RepoLedger` (`hasGroupoidConvolution = true`, `hasM2PacketComplex = true`, `isCStarCompletionNative = false`, `hasHopfGaugeTheory = false`, `hasSu3ColorLinks = false`).
+- `FiniteGroupoidConvolutionAlgebra.commutator_derivation_breaks_grouplike_multiplicativity_fence`: Proves that `packetD0` is a Lie derivation (`d₀(σ_z)(σ_x²) = 0`) and not a multiplicative link homomorphism (`(d₀(σ_z)(σ_x))² ≠ 0`).
 
 ### Independent Python Verification (`checks/independent/tfq-0014.py`)
 - Executes `1185` exact Gaussian-integer and rational checks across 2-object groupoid convolution, `M_2(ℤ[i])` packet commutator derivations, and `SU(3)` / Hopf non-equivalence fences (`0` failures).

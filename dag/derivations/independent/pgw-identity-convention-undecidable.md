@@ -22,7 +22,7 @@ For arbitrary observer families, equality of all observations is an equivalence 
 
 ## What is assumed
 
-The mathematical structures and operations are exactly those declared in `lean4/CampaignIdentityConvention.lean`. The observer family and interpretation of identity are declared. This is logical dependence on a convention, not a computability undecidability theorem, a preferred identity convention, or a replay of the historical model responses. It grants no operational or physical authority.
+The mathematical structures and operations are exactly those declared in `lean4/IdentityConvention.lean`. The observer family and interpretation of identity are declared. This is logical dependence on a convention, not a computability undecidability theorem, a preferred identity convention, or a replay of the historical model responses. It grants no operational or physical authority.
 
 ## What is open
 

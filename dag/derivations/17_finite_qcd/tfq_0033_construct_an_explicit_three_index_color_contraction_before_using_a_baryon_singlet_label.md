@@ -25,17 +25,17 @@ In accordance with strict constructive principles:
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
-### Lean 4 Theorems (`lean4/CampaignTfq0033FiniteQcd.lean`)
-- `CampaignTfq0033FiniteQcd.su3_qq_diquark_casimir_channels`: Proves `antitripletDiquarkCasimir = -2/3`, `sextetDiquarkCasimir = 1/3`, `3 * 3 = 3 + 6`, and `3 * (-2/3) + 6 * (1/3) = 0`.
-- `CampaignTfq0033FiniteQcd.diquark_to_qqbar_singlet_half_strength_rule`: Proves `-2/3 = (1/2) * (-4/3)` and `c2Antitriplet ≠ 0 ∧ c2Sextet ≠ 0`.
-- `CampaignTfq0033FiniteQcd.su3_three_quark_dimension_decomposition`: Proves `3 * 3 * 3 = 27 = 1 + 8 + 8 + 10`.
-- `CampaignTfq0033FiniteQcd.levi_civita_3d_antisymmetry_and_six_nonzero_permutations`: Proves total antisymmetry and diagonal vanishing of `eps3`.
-- `CampaignTfq0033FiniteQcd.levi_civita_contracted_square_and_norm_six`: Proves `eps3NormSq = 6` and `eps3Contract2 i i' = 2 δ_{ii'}`.
-- `CampaignTfq0033FiniteQcd.three_index_epsilon_contraction_equals_det3`: Proves `baryonEpsilonContract u v w = det3Color u v w` and `baryonEpsilonContract R G B = 1`.
-- `CampaignTfq0033FiniteQcd.baryon_contraction_vanishes_on_identical_color_states`: Proves Pauli exclusion and pairwise swap antisymmetry.
-- `CampaignTfq0033FiniteQcd.baryon_singlet_total_pairwise_casimir_equals_minus_two`: Proves `3 * (-2/3) = -2 = (0 - 3 * C_2(3))/2`.
-- `CampaignTfq0033FiniteQcd.two_index_diquark_not_three_index_baryon_singlet_fence`: Proves `C(3, 2) = 3 ≠ 1 = C(3, 3)` and `c2Antitriplet ≠ 0`.
-- `CampaignTfq0033FiniteQcd.tfq0033_baryon_contraction_scope_ledger_fence`: Audits `Tfq0033ScopeLedger`.
+### Lean 4 Theorems (`lean4/DiquarkAntitripletChannel.lean`)
+- `DiquarkAntitripletChannel.su3_qq_diquark_casimir_channels`: Proves `antitripletDiquarkCasimir = -2/3`, `sextetDiquarkCasimir = 1/3`, `3 * 3 = 3 + 6`, and `3 * (-2/3) + 6 * (1/3) = 0`.
+- `DiquarkAntitripletChannel.diquark_to_qqbar_singlet_half_strength_rule`: Proves `-2/3 = (1/2) * (-4/3)` and `c2Antitriplet ≠ 0 ∧ c2Sextet ≠ 0`.
+- `DiquarkAntitripletChannel.su3_three_quark_dimension_decomposition`: Proves `3 * 3 * 3 = 27 = 1 + 8 + 8 + 10`.
+- `DiquarkAntitripletChannel.levi_civita_3d_antisymmetry_and_six_nonzero_permutations`: Proves total antisymmetry and diagonal vanishing of `eps3`.
+- `DiquarkAntitripletChannel.levi_civita_contracted_square_and_norm_six`: Proves `eps3NormSq = 6` and `eps3Contract2 i i' = 2 δ_{ii'}`.
+- `DiquarkAntitripletChannel.three_index_epsilon_contraction_equals_det3`: Proves `baryonEpsilonContract u v w = det3Color u v w` and `baryonEpsilonContract R G B = 1`.
+- `DiquarkAntitripletChannel.baryon_contraction_vanishes_on_identical_color_states`: Proves Pauli exclusion and pairwise swap antisymmetry.
+- `DiquarkAntitripletChannel.baryon_singlet_total_pairwise_casimir_equals_minus_two`: Proves `3 * (-2/3) = -2 = (0 - 3 * C_2(3))/2`.
+- `DiquarkAntitripletChannel.two_index_diquark_not_three_index_baryon_singlet_fence`: Proves `C(3, 2) = 3 ≠ 1 = C(3, 3)` and `c2Antitriplet ≠ 0`.
+- `DiquarkAntitripletChannel.tfq0033_baryon_contraction_scope_ledger_fence`: Audits `Tfq0033ScopeLedger`.
 
 ### Independent Python Verification (`checks/independent/tfq-0033.py`)
 - Executes `839` exact rational (`fractions.Fraction`) and combinatorial checks across `SU(3)` diquark Casimir channels, 3-index Levi-Civita `ε_{ijk}` antisymmetry and contractions, `baryon_epsilon_contract == det3_color`, Pauli exclusion, Hypothesis property tests, and 6 negative-control mutation kills (`0` failures).

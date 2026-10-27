@@ -33,7 +33,7 @@ The finite case checked here starts from the draft of the five accepted texts an
 - The draft of the five accepted texts is the accepted class.
 - The authority text of that class is "None".
 
-The Lean declarations are `blank_on_accepted`, `mismatch_on_accepted`, `accepted_draft_class`, and `accepted_authority` in `lean4/CampaignOpsObserverDeclarationRefusal.lean`.
+The Lean declarations are `blank_on_accepted`, `mismatch_on_accepted`, `accepted_draft_class`, and `accepted_authority` in `lean4/ObserverDeclarationRefusal.lean`.
 
 ## What is assumed
 

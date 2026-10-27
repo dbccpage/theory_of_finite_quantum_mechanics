@@ -50,9 +50,9 @@ See also: `TFQ-0048`, `DS-QM102-SYNDROME-CAPACITY-BOUND`.
 
 - `external:arXiv:quant-ph/9602019`: R. Laflamme, C. Miquel, J. P. Paz and W. H. Zurek, "Perfect Quantum Error Correction Code", arXiv:quant-ph/9602019 (1996).
 - `external:arXiv:1503.06237`: F. Pastawski, B. Yoshida, D. Harlow and J. Preskill, "Holographic quantum error-correcting codes: Toy models for the bulk/boundary correspondence", arXiv:1503.06237 (2015); JHEP 06 (2015) 149.
-- Repository: `lean4/H036ThreeQubitCodeSyndromeRecovery.lean`
-- Repository: `lean4/H042ShorNineQubitCode.lean`
-- Repository: `lean4/H044SurfaceCodeToricTopology.lean`
+- Repository: `lean4/ThreeQubitCodeSyndromeRecovery.lean`
+- Repository: `lean4/ShorNineQubitCode.lean`
+- Repository: `lean4/SurfaceCodeToricTopology.lean`
 - Repository: `lean4/FrontierFiveQubitPerfectTensor.lean`
 - Repository: `dag/research/frontier_targets_lean_replay.json`
 

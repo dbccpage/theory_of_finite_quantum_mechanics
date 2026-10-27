@@ -8,7 +8,7 @@ The cross products are `1 * 17 = 17` and `1 * 5 = 5`. These are different, so `1
 
 For the equal amplitudes `1` and `1`, the quadratic numerators are `1` and `1` and sum to `2`, and the quartic numerators are `1` and `1` and sum to `2`. Both rules assign weight `1/2` to each label.
 
-These integers are checked in `CampaignFqPrimToQmSelection` and again in `checks/independent/fq-prim-to-qm-selection-open.py`.
+These integers are checked in `PrimToQmSelection` and again in `checks/independent/fq-prim-to-qm-selection-open.py`.
 
 ## What is proved
 

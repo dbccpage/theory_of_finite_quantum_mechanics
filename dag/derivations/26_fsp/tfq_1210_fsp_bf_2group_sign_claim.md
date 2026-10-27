@@ -28,12 +28,12 @@ Cited Higher2GroupBraiding.lean::higher_2group_anomaly_cancellation does not exi
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_cocycle`
-- `lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.cocycle_identity`
-- `lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_coboundary_at_generator`
-- `lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.not_a_normalized_coboundary`
-- `lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.generator_sign_survives_rephasing`
-- `lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive`
+- `lean4/BfCocycleObstruction.lean::BfCocycleObstruction.normalized_cocycle`
+- `lean4/BfCocycleObstruction.lean::BfCocycleObstruction.cocycle_identity`
+- `lean4/BfCocycleObstruction.lean::BfCocycleObstruction.normalized_coboundary_at_generator`
+- `lean4/BfCocycleObstruction.lean::BfCocycleObstruction.not_a_normalized_coboundary`
+- `lean4/BfCocycleObstruction.lean::BfCocycleObstruction.generator_sign_survives_rephasing`
+- `lean4/BfCocycleObstruction.lean::BfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive`
 
 ### Rust Certifiers
 - *none*

@@ -45,6 +45,21 @@ QM207-C1 phase-blindness of L1 weights, QM208-C3 quadratic cross-term interferen
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
+### Lean: `lean4/BornPairingBoundary.lean`
+
+- file: [lean4/BornPairingBoundary.lean](../../../lean4/BornPairingBoundary.lean)
+- sha256 (`bytes`): `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29`
+- cited in: node.lean, record TFQ-1042
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `BornPairingBoundary`): recorded sha256 `1a25c045a339b3b72e372dec8ea59683a40558820e302ab6f44bd0d8b518ee29` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build BornPairingBoundary`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `quartic_not_proportional` | yes | yes | yes | Quot.sound, propext | `#print axioms quartic_not_proportional` |
+
+- counts toward the grade: yes
+
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
@@ -62,33 +77,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H012OperatorAlgebraShadow.lean`
+### Lean: `lean4/OperatorAlgebraShadow.lean`
 
-- file: [lean4/H012OperatorAlgebraShadow.lean](../../../lean4/H012OperatorAlgebraShadow.lean)
-- sha256 (`bytes`): `bee179ccd42c430d04f382bcf88c73976797d938a5162bda1e8c8a24bebba3a3`
+- file: [lean4/OperatorAlgebraShadow.lean](../../../lean4/OperatorAlgebraShadow.lean)
+- sha256 (`bytes`): `de5afdd4f30362f888b675aec2108d2c5829d3b672f9cf16ead20ee3ace415cc`
 - cited in: node.lean, record TFQ-1042
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H012OperatorAlgebraShadow`): recorded sha256 `bee179ccd42c430d04f382bcf88c73976797d938a5162bda1e8c8a24bebba3a3` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H012OperatorAlgebraShadow`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `OperatorAlgebraShadow`): recorded sha256 `de5afdd4f30362f888b675aec2108d2c5829d3b672f9cf16ead20ee3ace415cc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build OperatorAlgebraShadow`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `operator_algebra_shadow` | yes | yes | yes | Quot.sound, propext | `#print axioms operator_algebra_shadow` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/H013BornPairingBoundary.lean`
-
-- file: [lean4/H013BornPairingBoundary.lean](../../../lean4/H013BornPairingBoundary.lean)
-- sha256 (`bytes`): `debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642`
-- cited in: node.lean, record TFQ-1042
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H013BornPairingBoundary`): recorded sha256 `debafe0eefb016e289a18fb9a308224f73464282e15c17eef143e5ea5342b642` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H013BornPairingBoundary`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `quartic_not_proportional` | yes | yes | yes | Quot.sound, propext | `#print axioms quartic_not_proportional` |
 
 - counts toward the grade: yes
 
@@ -121,7 +121,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md](../../../dag/derivations/12_finite_qm_structure/tfq_1042_ds_qm207_211_five_import_cascade.md)
-- sha256 (`lf-normalised`): `4c238c212d2758a4096f93e1aea7f04f82e1eab7fa3abc887ed143830819934b`
+- sha256 (`lf-normalised`): `b46166fdeba87bea34220e93b05932d4efe2fa4b7affeac326ed44eba37ec6ef`
 - generated view: listed, not counted
 - cited in: record TFQ-1042
 - counts toward the grade: no

@@ -41,7 +41,7 @@ operation_candidates:
   name: LabelledProcess
   line: 132
   signature_excerpt: 'structure LabelledProcess (A S O : Type)'
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -51,7 +51,7 @@ operation_candidates:
   signature_excerpt: |-
     def labelledClockLift {A S O : Type} (p : LabelledProcess A S O) (n : Nat) :
         LabelledProcess A (S × Fin (n+1)) O
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -59,7 +59,7 @@ operation_candidates:
   name: labelledRun
   line: 141
   signature_excerpt: 'def labelledRun {A S O : Type} (p : LabelledProcess A S O) (h : List A) : S'
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -67,7 +67,7 @@ operation_candidates:
   name: clockStep
   line: 43
   signature_excerpt: 'def clockStep (n : Nat) (x : Fin (n+1)) : Fin (n+1)'
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -80,7 +80,7 @@ operation_candidates:
       | a :: h, x => labelledAdvance p h (p.step a x)
 
     def labelledRun {A S O : Type} (p : LabelledProcess A S O) (h : List A) : S
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -90,7 +90,7 @@ operation_candidates:
   signature_excerpt: |-
     structure LabelledHom {A S T O : Type} (p : LabelledProcess A S O)
         (q : LabelledProcess A T O)
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -100,7 +100,7 @@ operation_candidates:
   signature_excerpt: |-
     def sourceModel : LabelledProcess Derivation.Event (Option Derivation.Regime)
         (Option Derivation.Regime)
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -108,7 +108,7 @@ operation_candidates:
   name: SameChallenges
   line: 93
   signature_excerpt: 'def SameChallenges {S T O : Type} (p : Process S O) (q : Process T O) : Prop'
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -116,7 +116,7 @@ operation_candidates:
   name: hiddenState
   line: 118
   signature_excerpt: 'def hiddenState : Process Bool Unit'
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -124,7 +124,7 @@ operation_candidates:
   name: oneState
   line: 117
   signature_excerpt: 'def oneState : Process Unit Unit'
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -132,7 +132,7 @@ operation_candidates:
   name: Process
   line: 12
   signature_excerpt: 'structure Process (S O : Type)'
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -150,7 +150,7 @@ operation_candidates:
 
     theorem run_add {S O : Type} (p : Process S O) (n k : Nat) :
         run p (n+k) = advance p k (run p n)
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -163,7 +163,7 @@ relation_candidates:
         (n : Nat) (h : List A) :
         (labelledClockLift p n).read (labelledRun (labelledClockLift p n) h) =
           p.read (labelledRun p h)
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -176,7 +176,7 @@ relation_candidates:
     theorem no_initial_in_clock_closed_class {A S O : Type} [Fintype S]
         (p : LabelledProcess A S O) (a : A) :
         ¬ Nonempty (LabelledHom p (labelledClockLift p (Fintype.card S)))
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -189,7 +189,7 @@ relation_candidates:
     theorem no_clock_hom_of_self_loop {A S O : Type} (p : LabelledProcess A S O)
         (a : A) (x : S) (hx : p.step a x = x) :
         ¬ Nonempty (LabelledHom p (labelledClockLift p 1))
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -201,7 +201,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem source_run_matches (h : List Derivation.Event) :
         labelledRun sourceModel h = Derivation.replayE h Derivation.R2L
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -213,7 +213,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem source_supply_self_loop :
         sourceModel.step (.supply 0) sourceModel.root = sourceModel.root
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -225,7 +225,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem no_source_initial_in_clock_closed_class :
         ¬ Nonempty (LabelledHom sourceModel (labelledClockLift sourceModel 1))
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -242,7 +242,7 @@ relation_candidates:
           p.read (labelledAdvance p h y)) → x = y)
         (hc : ∀ h, p.read (labelledRun p h) = q.read (labelledRun q h)) :
         Fintype.card S ≤ Fintype.card T
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
@@ -254,80 +254,80 @@ relation_candidates:
   signature_excerpt: |-
     theorem nonminimal_adequate_process :
         SameChallenges hiddenState oneState ∧ Fintype.card Unit < Fintype.card Bool
-  source: lean4/CampaignGenesisProcessComparison.lean
+  source: lean4/GenesisProcessComparison.lean
   repository: this_repository
   source_sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.all_words_agree
+- original_ref: lean4/GenesisProcessComparison.lean::GenesisProcessComparison.all_words_agree
   availability: local
-  symbol: CampaignGenesisProcessComparison.all_words_agree
-  path: lean4/CampaignGenesisProcessComparison.lean
+  symbol: GenesisProcessComparison.all_words_agree
+  path: lean4/GenesisProcessComparison.lean
   repository: this_repository
   sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   declaration_status: declaration_found_not_proof_checked
   line: 164
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.no_initial_in_clock_closed_class
+- original_ref: lean4/GenesisProcessComparison.lean::GenesisProcessComparison.no_initial_in_clock_closed_class
   availability: local
-  symbol: CampaignGenesisProcessComparison.no_initial_in_clock_closed_class
-  path: lean4/CampaignGenesisProcessComparison.lean
+  symbol: GenesisProcessComparison.no_initial_in_clock_closed_class
+  path: lean4/GenesisProcessComparison.lean
   repository: this_repository
   sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   declaration_status: declaration_found_not_proof_checked
   line: 175
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.no_clock_hom_of_self_loop
+- original_ref: lean4/GenesisProcessComparison.lean::GenesisProcessComparison.no_clock_hom_of_self_loop
   availability: local
-  symbol: CampaignGenesisProcessComparison.no_clock_hom_of_self_loop
-  path: lean4/CampaignGenesisProcessComparison.lean
+  symbol: GenesisProcessComparison.no_clock_hom_of_self_loop
+  path: lean4/GenesisProcessComparison.lean
   repository: this_repository
   sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   declaration_status: declaration_found_not_proof_checked
   line: 210
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.source_run_matches
+- original_ref: lean4/GenesisProcessComparison.lean::GenesisProcessComparison.source_run_matches
   availability: local
-  symbol: CampaignGenesisProcessComparison.source_run_matches
-  path: lean4/CampaignGenesisProcessComparison.lean
+  symbol: GenesisProcessComparison.source_run_matches
+  path: lean4/GenesisProcessComparison.lean
   repository: this_repository
   sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   declaration_status: declaration_found_not_proof_checked
   line: 243
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.source_supply_self_loop
+- original_ref: lean4/GenesisProcessComparison.lean::GenesisProcessComparison.source_supply_self_loop
   availability: local
-  symbol: CampaignGenesisProcessComparison.source_supply_self_loop
-  path: lean4/CampaignGenesisProcessComparison.lean
+  symbol: GenesisProcessComparison.source_supply_self_loop
+  path: lean4/GenesisProcessComparison.lean
   repository: this_repository
   sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   declaration_status: declaration_found_not_proof_checked
   line: 248
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class
+- original_ref: lean4/GenesisProcessComparison.lean::GenesisProcessComparison.no_source_initial_in_clock_closed_class
   availability: local
-  symbol: CampaignGenesisProcessComparison.no_source_initial_in_clock_closed_class
-  path: lean4/CampaignGenesisProcessComparison.lean
+  symbol: GenesisProcessComparison.no_source_initial_in_clock_closed_class
+  path: lean4/GenesisProcessComparison.lean
   repository: this_repository
   sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   declaration_status: declaration_found_not_proof_checked
   line: 251
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.all_words_minimum_size
+- original_ref: lean4/GenesisProcessComparison.lean::GenesisProcessComparison.all_words_minimum_size
   availability: local
-  symbol: CampaignGenesisProcessComparison.all_words_minimum_size
-  path: lean4/CampaignGenesisProcessComparison.lean
+  symbol: GenesisProcessComparison.all_words_minimum_size
+  path: lean4/GenesisProcessComparison.lean
   repository: this_repository
   sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   declaration_status: declaration_found_not_proof_checked
   line: 183
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisProcessComparison.lean::CampaignGenesisProcessComparison.nonminimal_adequate_process
+- original_ref: lean4/GenesisProcessComparison.lean::GenesisProcessComparison.nonminimal_adequate_process
   availability: local
-  symbol: CampaignGenesisProcessComparison.nonminimal_adequate_process
-  path: lean4/CampaignGenesisProcessComparison.lean
+  symbol: GenesisProcessComparison.nonminimal_adequate_process
+  path: lean4/GenesisProcessComparison.lean
   repository: this_repository
   sha256: 3b442ffdc373160bf87b8e9d6dfe5076b0ba240d6df3c885c31a2385e3b10bc2
   declaration_status: declaration_found_not_proof_checked

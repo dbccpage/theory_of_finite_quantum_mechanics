@@ -1,6 +1,6 @@
 """Gaussian-rational amplitude bridge and the parallelogram identity.
 
-Origin: lean4/H010Scale.lean theorem nsq_parallelogram
+Origin: lean4/HilbertWalkScale.lean theorem nsq_parallelogram
 (N(z+w) + N(z-w) = 2 (N(z) + N(w)) for Gaussian integers).
 Claim: urn:omega:fqm:amplitude:parallelogram-bridge:v1
 AuthorityEffect: None
@@ -10,7 +10,7 @@ Scope Fence: parallelogram_defect checks the identity on Q(i), which
 specializes the cited Gaussian-integer theorem. The unit u = (3+4i)/5 and
 the gauge-invariant cycle holonomy are exact powers in Q(i). This file does
 not prove that every power of u is nontrivial for a reason beyond direct
-evaluation of the requested exponent, and it does not prove H010Scale.lean.
+evaluation of the requested exponent, and it does not prove HilbertWalkScale.lean.
 """
 
 from __future__ import annotations

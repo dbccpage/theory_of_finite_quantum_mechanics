@@ -30,13 +30,13 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignPgwStreamAtFourItems.lean::pgwStreamAtThree`](../../../lean4/CampaignPgwStreamAtFourItems.lean)
-- [`lean4/CampaignPgwStreamAtFourItems.lean::pgwStreamFourAccepts`](../../../lean4/CampaignPgwStreamAtFourItems.lean)
-- [`lean4/CampaignPgwStreamAtFourItems.lean::pgwStreamFourRefuses`](../../../lean4/CampaignPgwStreamAtFourItems.lean)
-- [`lean4/CampaignPgwStreamAtFourItems.lean::pgwStreamOpenSearchReachesFour`](../../../lean4/CampaignPgwStreamAtFourItems.lean)
-- [`lean4/CampaignPgwStreamAtFourItems.lean::pgwStreamShortCircuitKeepsThree`](../../../lean4/CampaignPgwStreamAtFourItems.lean)
-- [`lean4/CampaignPgwStreamAtFourItems.lean::pgwStreamShortCircuitSkipsFour`](../../../lean4/CampaignPgwStreamAtFourItems.lean)
-- [`lean4/CampaignPgwStreamAtFourItems.lean::pgwStreamThreeNotFour`](../../../lean4/CampaignPgwStreamAtFourItems.lean)
+- [`lean4/PregenesisStreamAtFourItems.lean::pgwStreamAtThree`](../../../lean4/PregenesisStreamAtFourItems.lean)
+- [`lean4/PregenesisStreamAtFourItems.lean::pgwStreamFourAccepts`](../../../lean4/PregenesisStreamAtFourItems.lean)
+- [`lean4/PregenesisStreamAtFourItems.lean::pgwStreamFourRefuses`](../../../lean4/PregenesisStreamAtFourItems.lean)
+- [`lean4/PregenesisStreamAtFourItems.lean::pgwStreamOpenSearchReachesFour`](../../../lean4/PregenesisStreamAtFourItems.lean)
+- [`lean4/PregenesisStreamAtFourItems.lean::pgwStreamShortCircuitKeepsThree`](../../../lean4/PregenesisStreamAtFourItems.lean)
+- [`lean4/PregenesisStreamAtFourItems.lean::pgwStreamShortCircuitSkipsFour`](../../../lean4/PregenesisStreamAtFourItems.lean)
+- [`lean4/PregenesisStreamAtFourItems.lean::pgwStreamThreeNotFour`](../../../lean4/PregenesisStreamAtFourItems.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust port of the stream tree`

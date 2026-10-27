@@ -1,6 +1,6 @@
 """Finite trace obstruction to a continuum commutator.
 
-Origin: lean4/H056ContinuumLiftBoundary.lean theorem commutator_trace_zero.
+Origin: lean4/ContinuumLiftBoundary.lean theorem commutator_trace_zero.
 The trace of AB − BA is 0 for every 2 by 2 integer matrix pair, so it cannot
 equal a nonzero scalar trace.
 Claim: urn:omega:fqm:qm:commutator-trace-obstruction:v1

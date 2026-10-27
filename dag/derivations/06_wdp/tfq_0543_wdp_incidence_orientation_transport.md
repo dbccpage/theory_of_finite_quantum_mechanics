@@ -33,16 +33,16 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignPgwWdpIncidenceTransport.lean::defect_charge`](../../../lean4/CampaignPgwWdpIncidenceTransport.lean)
-- [`lean4/CampaignPgwWdpIncidenceTransport.lean::face_reorders`](../../../lean4/CampaignPgwWdpIncidenceTransport.lean)
-- [`lean4/CampaignPgwWdpIncidenceTransport.lean::incidence_face_boundary_zero`](../../../lean4/CampaignPgwWdpIncidenceTransport.lean)
-- [`lean4/CampaignPgwWdpIncidenceTransport.lean::residual_at_least_two`](../../../lean4/CampaignPgwWdpIncidenceTransport.lean)
-- [`lean4/CampaignPgwWdpIncidenceTransport.lean::residual_at_repair`](../../../lean4/CampaignPgwWdpIncidenceTransport.lean)
-- [`lean4/CampaignPgwWdpIncidenceTransport.lean::reverse_edge_20`](../../../lean4/CampaignPgwWdpIncidenceTransport.lean)
-- [`lean4/CampaignPgwWdpIncidenceTransport.lean::transport_matches_transpose`](../../../lean4/CampaignPgwWdpIncidenceTransport.lean)
-- [`lean4/CampaignPgwWdpIncidenceTransport.lean::wdp_d1_d0`](../../../lean4/CampaignPgwWdpIncidenceTransport.lean)
 - [`lean4/Imported/OeWdp/GenesisIncidence.lean::boundary_boundary_filled`](../../../lean4/Imported/OeWdp/GenesisIncidence.lean)
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::triD1`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean)
+- [`lean4/PregenesisWdpIncidenceTransport.lean::defect_charge`](../../../lean4/PregenesisWdpIncidenceTransport.lean)
+- [`lean4/PregenesisWdpIncidenceTransport.lean::face_reorders`](../../../lean4/PregenesisWdpIncidenceTransport.lean)
+- [`lean4/PregenesisWdpIncidenceTransport.lean::incidence_face_boundary_zero`](../../../lean4/PregenesisWdpIncidenceTransport.lean)
+- [`lean4/PregenesisWdpIncidenceTransport.lean::residual_at_least_two`](../../../lean4/PregenesisWdpIncidenceTransport.lean)
+- [`lean4/PregenesisWdpIncidenceTransport.lean::residual_at_repair`](../../../lean4/PregenesisWdpIncidenceTransport.lean)
+- [`lean4/PregenesisWdpIncidenceTransport.lean::reverse_edge_20`](../../../lean4/PregenesisWdpIncidenceTransport.lean)
+- [`lean4/PregenesisWdpIncidenceTransport.lean::transport_matches_transpose`](../../../lean4/PregenesisWdpIncidenceTransport.lean)
+- [`lean4/PregenesisWdpIncidenceTransport.lean::wdp_d1_d0`](../../../lean4/PregenesisWdpIncidenceTransport.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust transport between the GenesisIncidence boundary convention and the WDP coboundary window`

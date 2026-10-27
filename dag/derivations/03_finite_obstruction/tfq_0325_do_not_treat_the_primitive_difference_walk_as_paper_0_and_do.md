@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Chapter 06 names leftover predicates and the report-erasure boundary. S000-GAP-PD-TO-P0-NOT-IMPORTED remains proposed: there is no theorem in this file that the Primitive Difference walk is Paper 0, and no Lake import of AuthorizationBoundary into the S000 candidate mirror. The gap cites the projection-obstruction authorization-boundary Lean path and this book's lakefile. It does not claim the walk is complete and does not rewrite Paper 0. E008_projection_escape_residual.lean is present in the mirror. test_authorization_boundary.py is present under tests_unit. AuthorityEffect is None.
+Chapter 06 names leftover predicates and the report-erasure boundary. S000-GAP-PD-TO-P0-NOT-IMPORTED remains proposed: there is no theorem in this file that the Primitive Difference walk is Paper 0, and no Lake import of AuthorizationBoundary into the S000 candidate mirror. The gap cites the projection-obstruction authorization-boundary Lean path and this book's lakefile. It does not claim the walk is complete and does not rewrite Paper 0. ProjectionEscapeResidual.lean is present in the mirror. test_authorization_boundary.py is present under tests_unit. AuthorityEffect is None.
 
 ### Governing Obligation
 Do not treat the Primitive Difference walk as Paper 0, and do not import AuthorizationBoundary into the S000 mirror in this pass.
@@ -26,7 +26,7 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/E008_projection_escape_residual.lean`](../../lean4/)
+- [`lean4/ProjectionEscapeResidual.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers
 *Computational witness tracked under `theory_of_finite_qm` crate.*

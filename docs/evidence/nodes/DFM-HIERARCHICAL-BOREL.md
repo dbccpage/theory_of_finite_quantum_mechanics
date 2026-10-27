@@ -33,7 +33,7 @@ The rooted tree, given by a parent function and a strictly decreasing depth, and
 
 ## Source status
 
-Lean 4.35.0 module CampaignDfmHierarchicalBorel; the printed axioms are propext, Classical.choice and Quot.sound.
+Lean 4.35.0 module DressingFieldHierarchicalBorel; the printed axioms are propext, Classical.choice and Quot.sound.
 
 ## Review
 
@@ -43,38 +43,38 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignDfmHierarchicalBorel.lean`
+### Lean: `lean4/DressingFieldHierarchicalBorel.lean`
 
-- file: [lean4/CampaignDfmHierarchicalBorel.lean](../../../lean4/CampaignDfmHierarchicalBorel.lean)
-- sha256 (`bytes`): `7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917`
-- cited in: node.lean, receipt dag/research/campaign_dfm-hierarchical-borel_lean_replay.json (CampaignDfmHierarchicalBorel), record TFQ-0400
+- file: [lean4/DressingFieldHierarchicalBorel.lean](../../../lean4/DressingFieldHierarchicalBorel.lean)
+- sha256 (`bytes`): `d5366519d454b57ed1a436eb257ff615fd94998cdc4fdf9cd7e15ec355ef117e`
+- cited in: node.lean, receipt dag/research/campaign_dfm-hierarchical-borel_lean_replay.json (DressingFieldHierarchicalBorel), record TFQ-0400
 - replay: `verified`
-  - receipt [dag/research/campaign_dfm-hierarchical-borel_lean_replay.json](../../../dag/research/campaign_dfm-hierarchical-borel_lean_replay.json) (module `CampaignDfmHierarchicalBorel`): recorded sha256 `7e681c520eb13661351850b332c9820eae5d6750bfb433896e0f123ef82d7917` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignDfmHierarchicalBorel`
+  - receipt [dag/research/campaign_dfm-hierarchical-borel_lean_replay.json](../../../dag/research/campaign_dfm-hierarchical-borel_lean_replay.json) (module `DressingFieldHierarchicalBorel`): recorded sha256 `d5366519d454b57ed1a436eb257ff615fd94998cdc4fdf9cd7e15ec355ef117e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build DressingFieldHierarchicalBorel`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignDfmHierarchicalBorel.UpperTri2.b2_factorization_unique` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.UpperTri2.b2_factorization_unique` |
-| `CampaignDfmHierarchicalBorel.UpperTri2.b2_semidirect_factorization` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.UpperTri2.b2_semidirect_factorization` |
-| `CampaignDfmHierarchicalBorel.UpperTri2.badProj_not_homomorphism` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.UpperTri2.badProj_not_homomorphism` |
-| `CampaignDfmHierarchicalBorel.UpperTri2.factorization_fails_if_singular` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.UpperTri2.factorization_fails_if_singular` |
-| `CampaignDfmHierarchicalBorel.UpperTri2.torusProj_mul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.UpperTri2.torusProj_mul` |
-| `CampaignDfmHierarchicalBorel.UpperTri2.unipotent_subgroup_normal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.UpperTri2.unipotent_subgroup_normal` |
-| `CampaignDfmHierarchicalBorel.anchored_transport_unique` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.anchored_transport_unique` |
-| `CampaignDfmHierarchicalBorel.b_squared_zero` | yes | yes | yes | propext | `#print axioms CampaignDfmHierarchicalBorel.b_squared_zero` |
-| `CampaignDfmHierarchicalBorel.carrier_dimension_two_ne_three` | yes | yes | yes | none | `#print axioms CampaignDfmHierarchicalBorel.carrier_dimension_two_ne_three` |
-| `CampaignDfmHierarchicalBorel.curvature_gauge_covariance` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.curvature_gauge_covariance` |
-| `CampaignDfmHierarchicalBorel.diamond_transport_three` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.diamond_transport_three` |
-| `CampaignDfmHierarchicalBorel.discrete_bianchi_identity` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.discrete_bianchi_identity` |
-| `CampaignDfmHierarchicalBorel.dressed_one_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.dressed_one_iff` |
-| `CampaignDfmHierarchicalBorel.endpoint_dressing_matches_curvature` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.endpoint_dressing_matches_curvature` |
-| `CampaignDfmHierarchicalBorel.source_only_dressing_breaks_curvature` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.source_only_dressing_breaks_curvature` |
-| `CampaignDfmHierarchicalBorel.stage1_preserves_quotient` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.stage1_preserves_quotient` |
-| `CampaignDfmHierarchicalBorel.stage1_residual_torus` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.stage1_residual_torus` |
-| `CampaignDfmHierarchicalBorel.stage1_tree_edge` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.stage1_tree_edge` |
-| `CampaignDfmHierarchicalBorel.stage2_reproduces` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.stage2_reproduces` |
-| `CampaignDfmHierarchicalBorel.two_stage_factorization` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.two_stage_factorization` |
-| `CampaignDfmHierarchicalBorel.u_N_eq_conjugate` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmHierarchicalBorel.u_N_eq_conjugate` |
+| `DressingFieldHierarchicalBorel.UpperTri2.b2_factorization_unique` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.UpperTri2.b2_factorization_unique` |
+| `DressingFieldHierarchicalBorel.UpperTri2.b2_semidirect_factorization` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.UpperTri2.b2_semidirect_factorization` |
+| `DressingFieldHierarchicalBorel.UpperTri2.badProj_not_homomorphism` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.UpperTri2.badProj_not_homomorphism` |
+| `DressingFieldHierarchicalBorel.UpperTri2.factorization_fails_if_singular` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.UpperTri2.factorization_fails_if_singular` |
+| `DressingFieldHierarchicalBorel.UpperTri2.torusProj_mul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.UpperTri2.torusProj_mul` |
+| `DressingFieldHierarchicalBorel.UpperTri2.unipotent_subgroup_normal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.UpperTri2.unipotent_subgroup_normal` |
+| `DressingFieldHierarchicalBorel.anchored_transport_unique` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.anchored_transport_unique` |
+| `DressingFieldHierarchicalBorel.b_squared_zero` | yes | yes | yes | propext | `#print axioms DressingFieldHierarchicalBorel.b_squared_zero` |
+| `DressingFieldHierarchicalBorel.carrier_dimension_two_ne_three` | yes | yes | yes | none | `#print axioms DressingFieldHierarchicalBorel.carrier_dimension_two_ne_three` |
+| `DressingFieldHierarchicalBorel.curvature_gauge_covariance` | yes | yes | yes | Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.curvature_gauge_covariance` |
+| `DressingFieldHierarchicalBorel.diamond_transport_three` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.diamond_transport_three` |
+| `DressingFieldHierarchicalBorel.discrete_bianchi_identity` | yes | yes | yes | Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.discrete_bianchi_identity` |
+| `DressingFieldHierarchicalBorel.dressed_one_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.dressed_one_iff` |
+| `DressingFieldHierarchicalBorel.endpoint_dressing_matches_curvature` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.endpoint_dressing_matches_curvature` |
+| `DressingFieldHierarchicalBorel.source_only_dressing_breaks_curvature` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.source_only_dressing_breaks_curvature` |
+| `DressingFieldHierarchicalBorel.stage1_preserves_quotient` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.stage1_preserves_quotient` |
+| `DressingFieldHierarchicalBorel.stage1_residual_torus` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.stage1_residual_torus` |
+| `DressingFieldHierarchicalBorel.stage1_tree_edge` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.stage1_tree_edge` |
+| `DressingFieldHierarchicalBorel.stage2_reproduces` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.stage2_reproduces` |
+| `DressingFieldHierarchicalBorel.two_stage_factorization` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.two_stage_factorization` |
+| `DressingFieldHierarchicalBorel.u_N_eq_conjugate` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldHierarchicalBorel.u_N_eq_conjugate` |
 | `anchored_transport_unique` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms anchored_transport_unique` |
 | `b2_factorization_unique` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms b2_factorization_unique` |
 | `b2_semidirect_factorization` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms b2_semidirect_factorization` |
@@ -102,14 +102,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/dfm-hierarchical-borel.py`
 
 - file: [checks/independent/dfm-hierarchical-borel.py](../../../checks/independent/dfm-hierarchical-borel.py)
-- sha256 (`bytes`): `88b18f3a0516909a4fe94dc76773d91970b2639b4de01b877fb3f3a6914f6d5e`
+- sha256 (`bytes`): `0fadffb5b1cff5acd5e6433bacc93e69fa1c04183f97b891eadef46ab8b4557a`
 - cited in: node.source, record TFQ-0400
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md](../../../dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md)
-- sha256 (`lf-normalised`): `313f6612e01407a51ab0c214ce51825dbb6fe68ad1060d3634fb5180943a1786`
+- sha256 (`lf-normalised`): `97cce5adfa884fce52e55214ad462ce5e0e74d7f905cf186a5ab8d0a34884cb7`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0400
 - counts toward the grade: no
@@ -124,7 +124,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_dfm-hierarchical-borel_lean_replay.json`
 
 - file: [dag/research/campaign_dfm-hierarchical-borel_lean_replay.json](../../../dag/research/campaign_dfm-hierarchical-borel_lean_replay.json)
-- sha256 (`lf-normalised`): `c20ab61a952bd0349803333b07355aaf50264ce716b46cd3ace112f2778f4b8e`
+- sha256 (`lf-normalised`): `bbfd0f641dd80bf8f67117ab0e155822dc0f25da129188eeb987ba047121da52`
 - cited in: node.source
 - counts toward the grade: yes
 

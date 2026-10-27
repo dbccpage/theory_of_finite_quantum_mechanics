@@ -25,17 +25,17 @@ In accordance with strict constructive principles:
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
-### Lean 4 Theorems (`lean4/CampaignTfq0026FiniteQcd.lean`)
-- `CampaignTfq0026FiniteQcd.euclidean_clifford_anticommutator_relations`: Proves `γ_a² = I₂` and `{γ_a, γ_b} = 0` (`a ≠ b`) over `ℤ[i]`.
-- `CampaignTfq0026FiniteQcd.naive_symmetric_difference_vanishes_at_zero_and_pi_modes`: Proves the 1D symmetric difference stencil vanishes on both `k = 0` and `k = π` modes.
-- `CampaignTfq0026FiniteQcd.even_vs_odd_period_pi_mode_periodicity`: Proves `axisPeriodicZeroModes (2 * m) = 2` and `axisPeriodicZeroModes (2 * m + 1) = 1`.
-- `CampaignTfq0026FiniteQcd.naive_species_count_values_1d_to_4d`: Proves `naiveSpeciesCount d = 2, 4, 8, 16` for `d = 1, 2, 3, 4` and doubler excess `15` in `4D`.
-- `CampaignTfq0026FiniteQcd.wilson_term_lifts_nonzero_pi_corners`: Proves `wilsonCornerMass 0 r 0 = 0` and `0 < wilsonCornerMass 0 r c` for `r > 0, c ≥ 1`.
-- `CampaignTfq0026FiniteQcd.wilson_critical_mass_selects_corner_shell`: Proves `wilsonCornerMass (-2 * r * c0) r c = 0 ↔ c = c0` for `r ≠ 0`.
-- `CampaignTfq0026FiniteQcd.carrier_dimension_admission_guard_128`: Proves admission for `(2,4,2)` (`32 ≤ 128`) and `(2,4,3)` (`128 ≤ 128`) and refusal for `(4,4,3)` (`256 > 128`) and `(2,2,2)` (`N = 2 < 3`).
-- `CampaignTfq0026FiniteQcd.wilson_scalar_mass_breaks_gamma5_anticommutativity_fence`: Proves `{w I₂, γ₅} ≠ 0` for `w ≠ 0`.
-- `CampaignTfq0026FiniteQcd.finite_brillouin_grid_cardinality_fence`: Proves `3^4 = 81`, `4^3 = 64`, and `2^3 < 4^3`.
-- `CampaignTfq0026FiniteQcd.tfq0026_tri_language_replay_scope_ledger_fence`: Audits the tri-language replay and no-continuum-limit ledger.
+### Lean 4 Theorems (`lean4/LatticeDiracDoubling.lean`)
+- `LatticeDiracDoubling.euclidean_clifford_anticommutator_relations`: Proves `γ_a² = I₂` and `{γ_a, γ_b} = 0` (`a ≠ b`) over `ℤ[i]`.
+- `LatticeDiracDoubling.naive_symmetric_difference_vanishes_at_zero_and_pi_modes`: Proves the 1D symmetric difference stencil vanishes on both `k = 0` and `k = π` modes.
+- `LatticeDiracDoubling.even_vs_odd_period_pi_mode_periodicity`: Proves `axisPeriodicZeroModes (2 * m) = 2` and `axisPeriodicZeroModes (2 * m + 1) = 1`.
+- `LatticeDiracDoubling.naive_species_count_values_1d_to_4d`: Proves `naiveSpeciesCount d = 2, 4, 8, 16` for `d = 1, 2, 3, 4` and doubler excess `15` in `4D`.
+- `LatticeDiracDoubling.wilson_term_lifts_nonzero_pi_corners`: Proves `wilsonCornerMass 0 r 0 = 0` and `0 < wilsonCornerMass 0 r c` for `r > 0, c ≥ 1`.
+- `LatticeDiracDoubling.wilson_critical_mass_selects_corner_shell`: Proves `wilsonCornerMass (-2 * r * c0) r c = 0 ↔ c = c0` for `r ≠ 0`.
+- `LatticeDiracDoubling.carrier_dimension_admission_guard_128`: Proves admission for `(2,4,2)` (`32 ≤ 128`) and `(2,4,3)` (`128 ≤ 128`) and refusal for `(4,4,3)` (`256 > 128`) and `(2,2,2)` (`N = 2 < 3`).
+- `LatticeDiracDoubling.wilson_scalar_mass_breaks_gamma5_anticommutativity_fence`: Proves `{w I₂, γ₅} ≠ 0` for `w ≠ 0`.
+- `LatticeDiracDoubling.finite_brillouin_grid_cardinality_fence`: Proves `3^4 = 81`, `4^3 = 64`, and `2^3 < 4^3`.
+- `LatticeDiracDoubling.tfq0026_tri_language_replay_scope_ledger_fence`: Audits the tri-language replay and no-continuum-limit ledger.
 
 ### Independent Python Verification (`checks/independent/tfq-0026.py`)
 - Executes `3075` exact Gaussian-integer, combinatorial, and rational (`fractions.Fraction`) checks across Euclidean Clifford anticommutators, `2^d` species counts, Wilson corner mass lifting, `MAX_CARRIER_DIMENSION = 128` admission guards, Hypothesis property tests, and 6 negative-control mutation kills (`0` failures).

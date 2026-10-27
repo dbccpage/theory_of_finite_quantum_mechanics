@@ -38,14 +38,14 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::absSum_attained`](../../../lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean)
-- [`lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::absSum_ge_two`](../../../lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean)
-- [`lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::absSum_shift`](../../../lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean)
-- [`lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::d0_linear`](../../../lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean)
-- [`lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::residual_shift`](../../../lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean)
-- [`lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::shifted_attained`](../../../lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean)
-- [`lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean::shifted_ge`](../../../lean4/CampaignPgwWdpPhiWellDefinedL1Duality.lean)
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::dual_certificate_lower_bound`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean)
+- [`lean4/PregenesisWdpPhiWellDefinedL1Duality.lean::absSum_attained`](../../../lean4/PregenesisWdpPhiWellDefinedL1Duality.lean)
+- [`lean4/PregenesisWdpPhiWellDefinedL1Duality.lean::absSum_ge_two`](../../../lean4/PregenesisWdpPhiWellDefinedL1Duality.lean)
+- [`lean4/PregenesisWdpPhiWellDefinedL1Duality.lean::absSum_shift`](../../../lean4/PregenesisWdpPhiWellDefinedL1Duality.lean)
+- [`lean4/PregenesisWdpPhiWellDefinedL1Duality.lean::d0_linear`](../../../lean4/PregenesisWdpPhiWellDefinedL1Duality.lean)
+- [`lean4/PregenesisWdpPhiWellDefinedL1Duality.lean::residual_shift`](../../../lean4/PregenesisWdpPhiWellDefinedL1Duality.lean)
+- [`lean4/PregenesisWdpPhiWellDefinedL1Duality.lean::shifted_attained`](../../../lean4/PregenesisWdpPhiWellDefinedL1Duality.lean)
+- [`lean4/PregenesisWdpPhiWellDefinedL1Duality.lean::shifted_ge`](../../../lean4/PregenesisWdpPhiWellDefinedL1Duality.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs::FenchelDualityReceipt` (private upstream source, not in this repository)

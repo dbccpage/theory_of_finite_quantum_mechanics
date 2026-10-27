@@ -45,20 +45,20 @@ gap_register GAP-FQM-002/003/004/006..010/012/014/017/019/020/022 (statuses abse
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignFqGapCustodyAndReceipts.lean`
+### Lean: `lean4/CustodyReceiptNumerals.lean`
 
-- file: [lean4/CampaignFqGapCustodyAndReceipts.lean](../../../lean4/CampaignFqGapCustodyAndReceipts.lean)
-- sha256 (`bytes`): `c33d992442c75c81cad274e786a8f34ae95fb666ba10298e89f5a2332011e012`
-- cited in: node.lean, receipt dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json (CampaignFqGapCustodyAndReceipts), record TFQ-1023
+- file: [lean4/CustodyReceiptNumerals.lean](../../../lean4/CustodyReceiptNumerals.lean)
+- sha256 (`bytes`): `c339d7f806140b1b2e9a957e4b7b03067ce6371df0bb9a34603bb5df43562502`
+- cited in: node.lean, receipt dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json (CustodyReceiptNumerals), record TFQ-1023
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json](../../../dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json) (module `CampaignFqGapCustodyAndReceipts`): recorded sha256 `c33d992442c75c81cad274e786a8f34ae95fb666ba10298e89f5a2332011e012` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignFqGapCustodyAndReceipts`
+  - receipt [dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json](../../../dag/research/campaign_fq-gap-custody-and-receipts_lean_replay.json) (module `CustodyReceiptNumerals`): recorded sha256 `c339d7f806140b1b2e9a957e4b7b03067ce6371df0bb9a34603bb5df43562502` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build CustodyReceiptNumerals`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignFqGapCustodyAndReceipts.coverageIsProper` | yes | yes | yes | none | `#print axioms CampaignFqGapCustodyAndReceipts.coverageIsProper` |
-| `CampaignFqGapCustodyAndReceipts.coverageNumeralRemainder` | yes | yes | yes | none | `#print axioms CampaignFqGapCustodyAndReceipts.coverageNumeralRemainder` |
-| `CampaignFqGapCustodyAndReceipts.untypedRowNumeralGap` | yes | yes | yes | none | `#print axioms CampaignFqGapCustodyAndReceipts.untypedRowNumeralGap` |
+| `CustodyReceiptNumerals.coverageIsProper` | yes | yes | yes | none | `#print axioms CustodyReceiptNumerals.coverageIsProper` |
+| `CustodyReceiptNumerals.coverageNumeralRemainder` | yes | yes | yes | none | `#print axioms CustodyReceiptNumerals.coverageNumeralRemainder` |
+| `CustodyReceiptNumerals.untypedRowNumeralGap` | yes | yes | yes | none | `#print axioms CustodyReceiptNumerals.untypedRowNumeralGap` |
 | `coverageIsProper` | yes | yes | yes | none | `#print axioms coverageIsProper` |
 | `coverageNumeralRemainder` | yes | yes | yes | none | `#print axioms coverageNumeralRemainder` |
 | `untypedRowNumeralGap` | yes | yes | yes | none | `#print axioms untypedRowNumeralGap` |
@@ -75,7 +75,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md](../../../dag/derivations/10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md)
-- sha256 (`lf-normalised`): `cc52a522c071a7b1b9b24b32c5309354b331b12658fc78b8c7b1562839007fb5`
+- sha256 (`lf-normalised`): `dbe2498467865efe0c56f04b7d0a2e910e09ecf4e2272802ac96a9995619b0ec`
 - generated view: listed, not counted
 - cited in: record TFQ-1023
 - counts toward the grade: no

@@ -31,14 +31,14 @@ Cited ChiralAnomalyInflow.lean::chiral_anomaly_inflow_cancellation does not exis
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.hopping_covariant`
-- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.det_transport`
-- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.chiral_fixed_basis_det`
-- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.schur_covariant`
-- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.cs_chain_variation`
-- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_three_cs`
-- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.slab_four_cs`
-- `lean4/CampaignFspLatticeAnomalyInflow.lean::CampaignFspLatticeAnomalyInflow.phase_times_det_ne`
+- `lean4/FermionSignLatticeAnomalyInflow.lean::FermionSignLatticeAnomalyInflow.hopping_covariant`
+- `lean4/FermionSignLatticeAnomalyInflow.lean::FermionSignLatticeAnomalyInflow.det_transport`
+- `lean4/FermionSignLatticeAnomalyInflow.lean::FermionSignLatticeAnomalyInflow.chiral_fixed_basis_det`
+- `lean4/FermionSignLatticeAnomalyInflow.lean::FermionSignLatticeAnomalyInflow.schur_covariant`
+- `lean4/FermionSignLatticeAnomalyInflow.lean::FermionSignLatticeAnomalyInflow.cs_chain_variation`
+- `lean4/FermionSignLatticeAnomalyInflow.lean::FermionSignLatticeAnomalyInflow.slab_three_cs`
+- `lean4/FermionSignLatticeAnomalyInflow.lean::FermionSignLatticeAnomalyInflow.slab_four_cs`
+- `lean4/FermionSignLatticeAnomalyInflow.lean::FermionSignLatticeAnomalyInflow.phase_times_det_ne`
 
 ### Rust Certifiers
 - *none*

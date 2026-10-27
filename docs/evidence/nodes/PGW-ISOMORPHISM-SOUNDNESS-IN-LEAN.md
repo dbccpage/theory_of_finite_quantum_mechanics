@@ -42,15 +42,15 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignPgwIsomorphismSoundnessInLean.lean`
+### Lean: `lean4/PregenesisIsomorphismSoundness.lean`
 
-- file: [lean4/CampaignPgwIsomorphismSoundnessInLean.lean](../../../lean4/CampaignPgwIsomorphismSoundnessInLean.lean)
+- file: [lean4/PregenesisIsomorphismSoundness.lean](../../../lean4/PregenesisIsomorphismSoundness.lean)
 - sha256 (`bytes`): `0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0`
-- cited in: node.lean, receipt dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json (CampaignPgwIsomorphismSoundnessInLean), receipt dag/research/pr_352_review_replay.json (CampaignPgwIsomorphismSoundnessInLean), record TFQ-0500
+- cited in: node.lean, receipt dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json (PregenesisIsomorphismSoundness), receipt dag/research/pr_352_review_replay.json (PregenesisIsomorphismSoundness), record TFQ-0500
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json](../../../dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json) (module `CampaignPgwIsomorphismSoundnessInLean`): recorded sha256 `0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_352_review_replay.json](../../../dag/research/pr_352_review_replay.json) (module `CampaignPgwIsomorphismSoundnessInLean`): recorded sha256 `0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignPgwIsomorphismSoundnessInLean`
+  - receipt [dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json](../../../dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json) (module `PregenesisIsomorphismSoundness`): recorded sha256 `0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_352_review_replay.json](../../../dag/research/pr_352_review_replay.json) (module `PregenesisIsomorphismSoundness`): recorded sha256 `0a7746fe915e4c36af9af95683c1155804f19a4287682731f226aac7b794e2d0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build PregenesisIsomorphismSoundness`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -117,7 +117,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0500_isomorphism_soundness_in_lean.md`
 
 - file: [dag/derivations/02_genesis/tfq_0500_isomorphism_soundness_in_lean.md](../../../dag/derivations/02_genesis/tfq_0500_isomorphism_soundness_in_lean.md)
-- sha256 (`lf-normalised`): `717e7b4e414259cf35700a9e520fcd17d7651e9841a9423573dfc8b321dd263c`
+- sha256 (`lf-normalised`): `bab5014a670aff68e6ff6c5036bc70ab78443ee3c1caa9be5d7fad0f56f936c0`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0500
 - counts toward the grade: no
@@ -132,7 +132,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json`
 
 - file: [dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json](../../../dag/research/campaign_pgw-isomorphism-soundness-in-lean_lean_replay.json)
-- sha256 (`lf-normalised`): `dbfb0a49f4acb2876d1793dcb187c44353678e785409c3d15beca10ea6a89ab2`
+- sha256 (`lf-normalised`): `c9b03c277045c95d1dc054e62cfd9b1e1da0c3a9972832d83311fb9efb6e0e1d`
 - cited in: node.source
 - counts toward the grade: yes
 

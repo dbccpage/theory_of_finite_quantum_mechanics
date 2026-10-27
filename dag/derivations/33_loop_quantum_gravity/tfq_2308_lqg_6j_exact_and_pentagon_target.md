@@ -48,7 +48,7 @@ See also: `TFQ-0105`, `TFQ-0198`.
 ## Sources
 
 - Repository: `code/rust/src/general_relativity/spin_foam.rs`
-- Repository: `lean4/H023DiscreteSpinfoamAmplitudes.lean`
+- Repository: `lean4/DiscreteSpinfoamAmplitudes.lean`
 - Repository: `lean4/FrontierClassical6j.lean`
 - Repository: `dag/research/frontier_targets_lean_replay.json`
 

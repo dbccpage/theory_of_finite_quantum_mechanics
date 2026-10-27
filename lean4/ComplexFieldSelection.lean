@@ -170,7 +170,7 @@ theorem rho_same_product_statistics (A B : R2) (hA : Symmetric A) (hB : Symmetri
 
 /- The existing TensorTomography.product_span is over C/R. This exact analogue
 uses the already constructed Gaussian-rational field, with Q-linear span. -/
-open BornFable
+open BornFinite
 abbrev GMat (n : Type*) := Matrix n n GaussRat
 
 def symPart {n : Type*} (A : GMat n) : GMat n := (1/2 : ℚ) • (A + Aᴴ)

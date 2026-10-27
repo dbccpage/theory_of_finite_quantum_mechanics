@@ -41,7 +41,7 @@ operation_candidates:
   name: pgwHistoryL
   line: 12
   signature_excerpt: 'def pgwHistoryL : List Event'
-  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  source: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   status: source_candidate_requires_semantic_review
@@ -49,7 +49,7 @@ operation_candidates:
   name: pgwHistoryF
   line: 16
   signature_excerpt: 'def pgwHistoryF : List Event'
-  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  source: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   status: source_candidate_requires_semantic_review
@@ -60,7 +60,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem pgwHistoryL_replays :
         replayE pgwHistoryL genesis = some R2L
-  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  source: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   status: source_candidate_requires_semantic_review
@@ -72,7 +72,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem pgwHistoryF_replays :
         replayE pgwHistoryF genesis = some R2F
-  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  source: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   status: source_candidate_requires_semantic_review
@@ -82,7 +82,7 @@ relation_candidates:
   name: pgwR2L_ne_R2F
   line: 28
   signature_excerpt: 'theorem pgwR2L_ne_R2F : R2L ≠ R2F'
-  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  source: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   status: source_candidate_requires_semantic_review
@@ -94,7 +94,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem pgwReplay_ne :
         replayE pgwHistoryL genesis ≠ replayE pgwHistoryF genesis
-  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  source: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   status: source_candidate_requires_semantic_review
@@ -104,7 +104,7 @@ relation_candidates:
   name: pgwData_counts
   line: 35
   signature_excerpt: 'theorem pgwData_counts : R2L.data = 2 ∧ R2F.data = 3'
-  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  source: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   status: source_candidate_requires_semantic_review
@@ -114,7 +114,7 @@ relation_candidates:
   name: pgwReqs
   line: 38
   signature_excerpt: 'theorem pgwReqs : R2L.reqs = [(0, 1)] ∧ R2F.reqs = [(1, 2)]'
-  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  source: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   status: source_candidate_requires_semantic_review
@@ -127,7 +127,7 @@ relation_candidates:
     theorem pgwEmpty_carriers :
         R2L.forms = [] ∧ R2L.insts = [] ∧ R2L.rules = [] ∧
           R2F.forms = [] ∧ R2F.insts = [] ∧ R2F.rules = []
-  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  source: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   status: source_candidate_requires_semantic_review
@@ -139,80 +139,80 @@ relation_candidates:
   signature_excerpt: |-
     theorem pgwHistory_lengths :
         pgwHistoryL.length = 7 ∧ pgwHistoryF.length = 8
-  source: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  source: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   source_sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwHistoryL_replays
+- original_ref: lean4/PregenesisPythonLeanCarrierBridge.lean::pgwHistoryL_replays
   availability: local
   symbol: pgwHistoryL_replays
-  path: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  path: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   declaration_status: declaration_found_not_proof_checked
   line: 20
   role: source_lead_only
-- original_ref: lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwHistoryF_replays
+- original_ref: lean4/PregenesisPythonLeanCarrierBridge.lean::pgwHistoryF_replays
   availability: local
   symbol: pgwHistoryF_replays
-  path: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  path: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   declaration_status: declaration_found_not_proof_checked
   line: 24
   role: source_lead_only
-- original_ref: lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwR2L_ne_R2F
+- original_ref: lean4/PregenesisPythonLeanCarrierBridge.lean::pgwR2L_ne_R2F
   availability: local
   symbol: pgwR2L_ne_R2F
-  path: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  path: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   declaration_status: declaration_found_not_proof_checked
   line: 28
   role: source_lead_only
-- original_ref: lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwReplay_ne
+- original_ref: lean4/PregenesisPythonLeanCarrierBridge.lean::pgwReplay_ne
   availability: local
   symbol: pgwReplay_ne
-  path: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  path: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   declaration_status: declaration_found_not_proof_checked
   line: 31
   role: source_lead_only
-- original_ref: lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwData_counts
+- original_ref: lean4/PregenesisPythonLeanCarrierBridge.lean::pgwData_counts
   availability: local
   symbol: pgwData_counts
-  path: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  path: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   declaration_status: declaration_found_not_proof_checked
   line: 35
   role: source_lead_only
-- original_ref: lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwReqs
+- original_ref: lean4/PregenesisPythonLeanCarrierBridge.lean::pgwReqs
   availability: local
   symbol: pgwReqs
-  path: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  path: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   declaration_status: declaration_found_not_proof_checked
   line: 38
   role: source_lead_only
-- original_ref: lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwEmpty_carriers
+- original_ref: lean4/PregenesisPythonLeanCarrierBridge.lean::pgwEmpty_carriers
   availability: local
   symbol: pgwEmpty_carriers
-  path: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  path: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   declaration_status: declaration_found_not_proof_checked
   line: 41
   role: source_lead_only
-- original_ref: lean4/CampaignPgwPythonLeanCarrierBridge.lean::pgwHistory_lengths
+- original_ref: lean4/PregenesisPythonLeanCarrierBridge.lean::pgwHistory_lengths
   availability: local
   symbol: pgwHistory_lengths
-  path: lean4/CampaignPgwPythonLeanCarrierBridge.lean
+  path: lean4/PregenesisPythonLeanCarrierBridge.lean
   repository: this_repository
   sha256: 096d8f363f7190fcf8f5d9cb4058b440307229794ae2507c1d7bf87d827740f3
   declaration_status: declaration_found_not_proof_checked

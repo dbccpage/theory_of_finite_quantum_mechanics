@@ -30,8 +30,8 @@ declared census at merge dba1434b; later finish table
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/H017ExtrasDropone.lean::drop_one_count`
-- `lean4/H017Finish.lean::remaining_import_list`
+- `lean4/HilbertWalkGleasonExtrasDropOne.lean::drop_one_count`
+- `lean4/HilbertWalkGleasonFinish.lean::remaining_import_list`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

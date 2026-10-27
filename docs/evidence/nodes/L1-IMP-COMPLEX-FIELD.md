@@ -52,10 +52,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/ComplexFieldSelection.lean`
 
 - file: [lean4/ComplexFieldSelection.lean](../../../lean4/ComplexFieldSelection.lean)
-- sha256 (`bytes`): `134ba342a742720a19d59d6ebfc9bf197a85d99a4c9fc08b0be7e4f77b3654f1`
+- sha256 (`bytes`): `9fa0607d7e51940ea4e8822333df3f3dbe7f5c9332eec5c01a281c75261a0535`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `ComplexFieldSelection`): recorded sha256 `134ba342a742720a19d59d6ebfc9bf197a85d99a4c9fc08b0be7e4f77b3654f1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `ComplexFieldSelection`): recorded sha256 `9fa0607d7e51940ea4e8822333df3f3dbe7f5c9332eec5c01a281c75261a0535` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build ComplexFieldSelection`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -66,6 +66,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `ComplexFieldSelection.quaternion_refuted` | yes | yes | yes | Quot.sound, propext | `#print axioms ComplexFieldSelection.quaternion_refuted` |
 | `ComplexFieldSelection.rho_same_product_statistics` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldSelection.rho_same_product_statistics` |
 | `ComplexFieldSelection.rho_states` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ComplexFieldSelection.rho_states` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/Complexification.lean`
+
+- file: [lean4/Complexification.lean](../../../lean4/Complexification.lean)
+- sha256 (`bytes`): `c975faaac47ea63dbbbfb40959b5af8c0cee04edb5a5c91f39f912fae741f6cf`
+- cited in: node.lean
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `Complexification`): recorded sha256 `c975faaac47ea63dbbbfb40959b5af8c0cee04edb5a5c91f39f912fae741f6cf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build Complexification`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `gi_not_embedded` | yes | yes | yes | propext | `#print axioms gi_not_embedded` |
 
 - counts toward the grade: yes
 
@@ -82,21 +97,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries` |
 | `QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/H007Complexification.lean`
-
-- file: [lean4/H007Complexification.lean](../../../lean4/H007Complexification.lean)
-- sha256 (`bytes`): `5a26837c8e57820953fe5e97f790b4ba6d04a8b0b6edc4ac5fcb84b0ba2e5242`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_l1_to_l2.json](../../../dag/research/lean_replay_campaign_l1_to_l2.json) (module `H007Complexification`): recorded sha256 `5a26837c8e57820953fe5e97f790b4ba6d04a8b0b6edc4ac5fcb84b0ba2e5242` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build H007Complexification`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `gi_not_embedded` | yes | yes | yes | propext | `#print axioms gi_not_embedded` |
 
 - counts toward the grade: yes
 

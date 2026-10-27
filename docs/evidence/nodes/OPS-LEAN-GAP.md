@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Missing: Lean proofs of the unresolved global-section/NCF, strong-contextuality, Vorobev, no-signalling, rational-normalization and Rust-refinement items listed first in the statement. The separate four-variable parity obstruction and arithmetic product are already proved in CampaignOpsLeanGap. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows. This one parity box does not establish the listed global-section/NCF equivalences, strong-contextuality criterion, Vorobev theorem, no-signalling coboundary equivalence, rational normalization or Rust Scenario refinement. The Lean sixteen lemma is arithmetic, not a type-cardinality theorem. The original OPS obligation remains OPEN.
+Missing: Lean proofs of the unresolved global-section/NCF, strong-contextuality, Vorobev, no-signalling, rational-normalization and Rust-refinement items listed first in the statement. The separate four-variable parity obstruction and arithmetic product are already proved in ObserverPresheafLeanGap. The Lean file lean4/LggrFiniteResults.lean covers only the statements of nodes OPS-PUSHFORWARD-FUNCTOR-LEAN and OPS-PARITY-HOLONOMY-LEAN among these rows. This one parity box does not establish the listed global-section/NCF equivalences, strong-contextuality criterion, Vorobev theorem, no-signalling coboundary equivalence, rational normalization or Rust Scenario refinement. The Lean sixteen lemma is arithmetic, not a type-cardinality theorem. The original OPS obligation remains OPEN.
 
 ## Source status
 
@@ -42,22 +42,22 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignOpsLeanGap.lean`
+### Lean: `lean4/ObserverPresheafLeanGap.lean`
 
-- file: [lean4/CampaignOpsLeanGap.lean](../../../lean4/CampaignOpsLeanGap.lean)
-- sha256 (`bytes`): `28ba5a6e40e191c1060bd6bf67d33c795a5fdf937e95ed18b894e67649306414`
-- cited in: node.source, receipt dag/research/campaign_ops-lean-gap_lean_replay.json (CampaignOpsLeanGap), receipt dag/research/pr439_review_lean_replay.json (CampaignOpsLeanGap), record TFQ-2520
+- file: [lean4/ObserverPresheafLeanGap.lean](../../../lean4/ObserverPresheafLeanGap.lean)
+- sha256 (`bytes`): `13ecb8c5157328f1c4ab916d0ad64e2d8a8830c238262aa9d119e267c1948d0a`
+- cited in: node.source, receipt dag/research/campaign_ops-lean-gap_lean_replay.json (ObserverPresheafLeanGap), receipt dag/research/pr439_review_lean_replay.json (ObserverPresheafLeanGap), record TFQ-2520
 - replay: `verified`
-  - receipt [dag/research/campaign_ops-lean-gap_lean_replay.json](../../../dag/research/campaign_ops-lean-gap_lean_replay.json) (module `CampaignOpsLeanGap`): recorded sha256 `28ba5a6e40e191c1060bd6bf67d33c795a5fdf937e95ed18b894e67649306414` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr439_review_lean_replay.json](../../../dag/research/pr439_review_lean_replay.json) (module `CampaignOpsLeanGap`): recorded sha256 `28ba5a6e40e191c1060bd6bf67d33c795a5fdf937e95ed18b894e67649306414` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignOpsLeanGap`
+  - receipt [dag/research/campaign_ops-lean-gap_lean_replay.json](../../../dag/research/campaign_ops-lean-gap_lean_replay.json) (module `ObserverPresheafLeanGap`): recorded sha256 `13ecb8c5157328f1c4ab916d0ad64e2d8a8830c238262aa9d119e267c1948d0a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr439_review_lean_replay.json](../../../dag/research/pr439_review_lean_replay.json) (module `ObserverPresheafLeanGap`): recorded sha256 `13ecb8c5157328f1c4ab916d0ad64e2d8a8830c238262aa9d119e267c1948d0a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build ObserverPresheafLeanGap`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignOpsLeanGap.lhsSum` | yes | yes | yes | none | `#print axioms CampaignOpsLeanGap.lhsSum` |
-| `CampaignOpsLeanGap.noAssignment` | yes | yes | yes | none | `#print axioms CampaignOpsLeanGap.noAssignment` |
-| `CampaignOpsLeanGap.rhsSum` | yes | yes | yes | none | `#print axioms CampaignOpsLeanGap.rhsSum` |
-| `CampaignOpsLeanGap.sixteen` | yes | yes | yes | none | `#print axioms CampaignOpsLeanGap.sixteen` |
+| `ObserverPresheafLeanGap.lhsSum` | yes | yes | yes | none | `#print axioms ObserverPresheafLeanGap.lhsSum` |
+| `ObserverPresheafLeanGap.noAssignment` | yes | yes | yes | none | `#print axioms ObserverPresheafLeanGap.noAssignment` |
+| `ObserverPresheafLeanGap.rhsSum` | yes | yes | yes | none | `#print axioms ObserverPresheafLeanGap.rhsSum` |
+| `ObserverPresheafLeanGap.sixteen` | yes | yes | yes | none | `#print axioms ObserverPresheafLeanGap.sixteen` |
 
 - counts toward the grade: yes
 
@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md)
-- sha256 (`lf-normalised`): `e208104399fa73ba1b948f9039b0d5d81c6d3a1213d8d32c42e1091a2cb50021`
+- sha256 (`lf-normalised`): `6005932cabeaa8c8474dbf0420275faca9f403077a018be31015045df5527dc6`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2520
 - counts toward the grade: no
@@ -86,7 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/pr439_review_lean_replay.json`
 
 - file: [dag/research/pr439_review_lean_replay.json](../../../dag/research/pr439_review_lean_replay.json)
-- sha256 (`lf-normalised`): `6e23a872fd26fa8c214157f92ac97d73c6f510d1b181408c3e520dbccdd2a9f5`
+- sha256 (`lf-normalised`): `4cf70f37274615805cac75e0d15b05635bd0f9108cad24f84c958e81c752f818`
 - cited in: node.source
 - counts toward the grade: yes
 

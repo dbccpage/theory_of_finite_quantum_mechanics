@@ -1,6 +1,6 @@
 """Unit, negative, integration, end-to-end, and mutation tests.
 
-Origin: lean4/H052CyclotomicTowerDirected.lean theorem cyclotomic_tower_is_directed.
+Origin: lean4/CyclotomicTowerDirected.lean theorem cyclotomic_tower_is_directed.
 Claim: urn:omega:fqm:number:conductor-120-divisibility:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/number_theory/test_number_control.py.
@@ -274,7 +274,7 @@ _PACKAGE_PATH = Path(__file__).resolve().with_name("__init__.py")
 
 
 PRINT_TEXT = '120\n'
-ORIGIN_REL = 'lean4/H052CyclotomicTowerDirected.lean'
+ORIGIN_REL = 'lean4/CyclotomicTowerDirected.lean'
 ORIGIN_MARKER = 'theorem cyclotomic_tower_is_directed'
 CLAIM = 'urn:omega:fqm:number:conductor-120-divisibility:v1'
 EXPECTED = 120

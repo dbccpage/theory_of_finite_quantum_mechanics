@@ -1,0 +1,420 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/Mub6WeylHeisenbergD6.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/Mub6WeylHeisenbergD6.lean",
+      "sha256": "564ce28dadfd8bf892353d8c1b2dd302e67af184f69c8a42d9140909f4fb4279"
+    },
+    "boundaries": [
+      "This record is the 6 by 6 integer-pair table above. It does not construct a complex exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases. The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.",
+      "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+    ],
+    "contract_urn": "urn:tfqm:review:20261026:Mub6WeylHeisenbergD6",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json",
+        "sha256": "f14705cb5aa7f1c8bb0927b231a587cc84341dc987580e0cd4317be197644971"
+      },
+      {
+        "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+        "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+      }
+    ],
+    "owned_invariants": [
+      "In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d + b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod 6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p, q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0) when (p, q) = (r, s) and (0, 0) otherwise."
+    ],
+    "purpose": "In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d + b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod 6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p, q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0) when (p, q) = (r, s) and (0, 0) otherwise.",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "R",
+      "rAdd",
+      "rSub",
+      "rMul",
+      "rConj",
+      "rZero",
+      "rOne",
+      "rNegOne",
+      "rSix",
+      "w",
+      "wpow",
+      "w_sq",
+      "w_cube",
+      "w_six",
+      "conj_pair",
+      "Mat",
+      "mAt",
+      "dot6",
+      "mAdj",
+      "mMul",
+      "mScale",
+      "mTr",
+      "mHs",
+      "eye",
+      "shiftX",
+      "clockZ",
+      "mPow",
+      "dispEntry",
+      "op",
+      "raw",
+      "shift_entry",
+      "clock_entry",
+      "zx_eq",
+      "xz_ne",
+      "mul_at",
+      "adj_at",
+      "trace_eq_hs",
+      "rConj_zero",
+      "rMul_assoc",
+      "wpow_add",
+      "rMul_bits",
+      "dot6_zero",
+      "dot6_pick",
+      "eye_entry",
+      "pred6",
+      "add_mod_right",
+      "shift_step_fin",
+      "shift_step_n",
+      "shift_pow_entry",
+      "clock_pow_entry",
+      "pow_entry",
+      "slot",
+      "slot_eq_iff",
+      "term_off",
+      "term_on",
+      "inner_at",
+      "sum_phase_diag",
+      "sum_phase_off",
+      "mHs_raw",
+      "raw_eval",
+      "trace_raw",
+      "hs_orth"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 3152,
+      "original_paths": [
+        "lean4/CampaignMub6WeylHeisenbergD6.contract.score.yaml#qm-open-pr-review-20261026-7c3db8185497"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignMub6WeylHeisenbergD6.lean\",\n    \"sha256\": \"7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe\"\n  },\n  \"boundaries\": [\n    \"This record is the 6 by 6 integer-pair table above. It does not construct a complex exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases. The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review:20261026:CampaignMub6WeylHeisenbergD6\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json\",\n      \"sha256\": \"39e40ec7db00f36df244e8ac75d5190128b6b6b99eb7c1407942db03236c35c3\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_upper_campaign_review_20261026.md\",\n      \"sha256\": \"0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d + b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod 6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p, q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0) when (p, q) = (r, s) and (0, 0) otherwise.\"\n  ],\n  \"purpose\": \"In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d + b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod 6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p, q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0) when (p, q) = (r, s) and (0, 0) otherwise.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"R\",\n    \"rAdd\",\n    \"rSub\",\n    \"rMul\",\n    \"rConj\",\n    \"rZero\",\n    \"rOne\",\n    \"rNegOne\",\n    \"rSix\",\n    \"w\",\n    \"wpow\",\n    \"w_sq\",\n    \"w_cube\",\n    \"w_six\",\n    \"conj_pair\",\n    \"Mat\",\n    \"mAt\",\n    \"dot6\",\n    \"mAdj\",\n    \"mMul\",\n    \"mScale\",\n    \"mTr\",\n    \"mHs\",\n    \"eye\",\n    \"shiftX\",\n    \"clockZ\",\n    \"mPow\",\n    \"dispEntry\",\n    \"op\",\n    \"raw\",\n    \"shift_entry\",\n    \"clock_entry\",\n    \"zx_eq\",\n    \"xz_ne\",\n    \"mul_at\",\n    \"adj_at\",\n    \"trace_eq_hs\",\n    \"rConj_zero\",\n    \"rMul_assoc\",\n    \"wpow_add\",\n    \"rMul_bits\",\n    \"dot6_zero\",\n    \"dot6_pick\",\n    \"eye_entry\",\n    \"pred6\",\n    \"add_mod_right\",\n    \"shift_step_fin\",\n    \"shift_step_n\",\n    \"shift_pow_entry\",\n    \"clock_pow_entry\",\n    \"pow_entry\",\n    \"slot\",\n    \"slot_eq_iff\",\n    \"term_off\",\n    \"term_on\",\n    \"inner_at\",\n    \"sum_phase_diag\",\n    \"sum_phase_off\",\n    \"mHs_raw\",\n    \"raw_eval\",\n    \"trace_raw\",\n    \"hs_orth\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignMub6WeylHeisenbergD6.lean",
+          "sha256": "7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe"
+        },
+        "boundaries": [
+          "This record is the 6 by 6 integer-pair table above. It does not construct a complex exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases. The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "contract_urn": "urn:tfqm:review:20261026:CampaignMub6WeylHeisenbergD6",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json",
+            "sha256": "39e40ec7db00f36df244e8ac75d5190128b6b6b99eb7c1407942db03236c35c3"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+            "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+          }
+        ],
+        "owned_invariants": [
+          "In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d + b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod 6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p, q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0) when (p, q) = (r, s) and (0, 0) otherwise."
+        ],
+        "purpose": "In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d + b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod 6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p, q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0) when (p, q) = (r, s) and (0, 0) otherwise.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "R",
+          "rAdd",
+          "rSub",
+          "rMul",
+          "rConj",
+          "rZero",
+          "rOne",
+          "rNegOne",
+          "rSix",
+          "w",
+          "wpow",
+          "w_sq",
+          "w_cube",
+          "w_six",
+          "conj_pair",
+          "Mat",
+          "mAt",
+          "dot6",
+          "mAdj",
+          "mMul",
+          "mScale",
+          "mTr",
+          "mHs",
+          "eye",
+          "shiftX",
+          "clockZ",
+          "mPow",
+          "dispEntry",
+          "op",
+          "raw",
+          "shift_entry",
+          "clock_entry",
+          "zx_eq",
+          "xz_ne",
+          "mul_at",
+          "adj_at",
+          "trace_eq_hs",
+          "rConj_zero",
+          "rMul_assoc",
+          "wpow_add",
+          "rMul_bits",
+          "dot6_zero",
+          "dot6_pick",
+          "eye_entry",
+          "pred6",
+          "add_mod_right",
+          "shift_step_fin",
+          "shift_step_n",
+          "shift_pow_entry",
+          "clock_pow_entry",
+          "pow_entry",
+          "slot",
+          "slot_eq_iff",
+          "term_off",
+          "term_on",
+          "inner_at",
+          "sum_phase_diag",
+          "sum_phase_off",
+          "mHs_raw",
+          "raw_eval",
+          "trace_raw",
+          "hs_orth"
+        ]
+      },
+      "sha256": "233b569bb6aad79c300036c11fcb4240739e2935b3a08237a35cd3683de4b7f1"
+    },
+    {
+      "bytes": 3136,
+      "original_paths": [
+        "lean4/Mub6WeylHeisenbergD6.contract.score.yaml#qm-open-pr-review-20261026-7c3db8185497"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/Mub6WeylHeisenbergD6.lean\",\n    \"sha256\": \"564ce28dadfd8bf892353d8c1b2dd302e67af184f69c8a42d9140909f4fb4279\"\n  },\n  \"boundaries\": [\n    \"This record is the 6 by 6 integer-pair table above. It does not construct a complex exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases. The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review:20261026:Mub6WeylHeisenbergD6\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json\",\n      \"sha256\": \"f14705cb5aa7f1c8bb0927b231a587cc84341dc987580e0cd4317be197644971\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_upper_campaign_review_20261026.md\",\n      \"sha256\": \"0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d + b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod 6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p, q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0) when (p, q) = (r, s) and (0, 0) otherwise.\"\n  ],\n  \"purpose\": \"In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d + b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod 6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p, q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0) when (p, q) = (r, s) and (0, 0) otherwise.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"R\",\n    \"rAdd\",\n    \"rSub\",\n    \"rMul\",\n    \"rConj\",\n    \"rZero\",\n    \"rOne\",\n    \"rNegOne\",\n    \"rSix\",\n    \"w\",\n    \"wpow\",\n    \"w_sq\",\n    \"w_cube\",\n    \"w_six\",\n    \"conj_pair\",\n    \"Mat\",\n    \"mAt\",\n    \"dot6\",\n    \"mAdj\",\n    \"mMul\",\n    \"mScale\",\n    \"mTr\",\n    \"mHs\",\n    \"eye\",\n    \"shiftX\",\n    \"clockZ\",\n    \"mPow\",\n    \"dispEntry\",\n    \"op\",\n    \"raw\",\n    \"shift_entry\",\n    \"clock_entry\",\n    \"zx_eq\",\n    \"xz_ne\",\n    \"mul_at\",\n    \"adj_at\",\n    \"trace_eq_hs\",\n    \"rConj_zero\",\n    \"rMul_assoc\",\n    \"wpow_add\",\n    \"rMul_bits\",\n    \"dot6_zero\",\n    \"dot6_pick\",\n    \"eye_entry\",\n    \"pred6\",\n    \"add_mod_right\",\n    \"shift_step_fin\",\n    \"shift_step_n\",\n    \"shift_pow_entry\",\n    \"clock_pow_entry\",\n    \"pow_entry\",\n    \"slot\",\n    \"slot_eq_iff\",\n    \"term_off\",\n    \"term_on\",\n    \"inner_at\",\n    \"sum_phase_diag\",\n    \"sum_phase_off\",\n    \"mHs_raw\",\n    \"raw_eval\",\n    \"trace_raw\",\n    \"hs_orth\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/Mub6WeylHeisenbergD6.lean",
+          "sha256": "564ce28dadfd8bf892353d8c1b2dd302e67af184f69c8a42d9140909f4fb4279"
+        },
+        "boundaries": [
+          "This record is the 6 by 6 integer-pair table above. It does not construct a complex exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases. The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "contract_urn": "urn:tfqm:review:20261026:Mub6WeylHeisenbergD6",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json",
+            "sha256": "f14705cb5aa7f1c8bb0927b231a587cc84341dc987580e0cd4317be197644971"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+            "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+          }
+        ],
+        "owned_invariants": [
+          "In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d + b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod 6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p, q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0) when (p, q) = (r, s) and (0, 0) otherwise."
+        ],
+        "purpose": "In the set of integer pairs (a, b) with product (a, b)*(c, d) = (a*c - b*d, a*d + b*c + b*d) and conjugate (a + b, -b), w = (0, 1) satisfies w*w = w - (1, 0), w*w*w = (-1, 0) and the sixth power of w is (1, 0). On 6 by 6 matrices over those pairs, shift X has a 1 at each (j+1 mod 6, j) and clock Z is diagonal with entry w^j. Then Z X = w X Z, while X Z and w Z X differ. For p, q, r, s from 0 through 5, the trace of the conjugate-transpose of X^p Z^q times X^r Z^s is (6, 0) when (p, q) = (r, s) and (0, 0) otherwise.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "R",
+          "rAdd",
+          "rSub",
+          "rMul",
+          "rConj",
+          "rZero",
+          "rOne",
+          "rNegOne",
+          "rSix",
+          "w",
+          "wpow",
+          "w_sq",
+          "w_cube",
+          "w_six",
+          "conj_pair",
+          "Mat",
+          "mAt",
+          "dot6",
+          "mAdj",
+          "mMul",
+          "mScale",
+          "mTr",
+          "mHs",
+          "eye",
+          "shiftX",
+          "clockZ",
+          "mPow",
+          "dispEntry",
+          "op",
+          "raw",
+          "shift_entry",
+          "clock_entry",
+          "zx_eq",
+          "xz_ne",
+          "mul_at",
+          "adj_at",
+          "trace_eq_hs",
+          "rConj_zero",
+          "rMul_assoc",
+          "wpow_add",
+          "rMul_bits",
+          "dot6_zero",
+          "dot6_pick",
+          "eye_entry",
+          "pred6",
+          "add_mod_right",
+          "shift_step_fin",
+          "shift_step_n",
+          "shift_pow_entry",
+          "clock_pow_entry",
+          "pow_entry",
+          "slot",
+          "slot_eq_iff",
+          "term_off",
+          "term_on",
+          "inner_at",
+          "sum_phase_diag",
+          "sum_phase_off",
+          "mHs_raw",
+          "raw_eval",
+          "trace_raw",
+          "hs_orth"
+        ]
+      },
+      "sha256": "5359ca61b4d3ad4a1ba566b5c23a67fa7665b2e33ec462327df52fa503447d36"
+    }
+  ],
+  "current_contract": "5359ca61b4d3ad4a1ba566b5c23a67fa7665b2e33ec462327df52fa503447d36",
+  "current_scoring": "0eb1a1706f289b9118006dc65af8883349ad0d25190b2fbba0127fd34dd1e9c5",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2460,
+      "original_paths": [
+        "lean4/CampaignMub6WeylHeisenbergD6.contract.score.yaml#qm-open-pr-review-20261026-7c3db8185497"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/CampaignMub6WeylHeisenbergD6.lean\",\n    \"sha256\": \"7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe\"\n  },\n  \"assessment_id\": \"qm-open-pr-review-20261026-7c3db8185497\",\n  \"basis\": {\n    \"G1\": \"Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.\",\n    \"G2\": \"Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.\",\n    \"G3\": \"Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.\",\n    \"G4\": \"Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.\",\n    \"G5\": \"Inspected 872 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T15:48:22.839504+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json\",\n      \"sha256\": \"39e40ec7db00f36df244e8ac75d5190128b6b6b99eb7c1407942db03236c35c3\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_upper_campaign_review_20261026.md\",\n      \"sha256\": \"0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.\",\n  \"open_higher_grade_findings\": [\n    \"This record is the 6 by 6 integer-pair table above. It does not construct a complex exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases. The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/CampaignMub6WeylHeisenbergD6.lean",
+          "sha256": "7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe"
+        },
+        "assessment_id": "qm-open-pr-review-20261026-7c3db8185497",
+        "basis": {
+          "G1": "Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.",
+          "G2": "Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.",
+          "G3": "Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.",
+          "G4": "Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.",
+          "G5": "Inspected 872 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T15:48:22.839504+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json",
+            "sha256": "39e40ec7db00f36df244e8ac75d5190128b6b6b99eb7c1407942db03236c35c3"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+            "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.",
+        "open_higher_grade_findings": [
+          "This record is the 6 by 6 integer-pair table above. It does not construct a complex exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases. The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "787ce5db92ef9dae72f61cf3c8484603cccb1f11098aebe9b77c8653124d6a26"
+    },
+    {
+      "bytes": 2893,
+      "original_paths": [
+        "lean4/Mub6WeylHeisenbergD6.contract.score.yaml#qm-open-pr-review-20261026-7c3db8185497"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/Mub6WeylHeisenbergD6.lean\",\n    \"sha256\": \"564ce28dadfd8bf892353d8c1b2dd302e67af184f69c8a42d9140909f4fb4279\"\n  },\n  \"assessment_id\": \"qm-open-pr-review-20261026-7c3db8185497\",\n  \"basis\": {\n    \"G1\": \"Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.\",\n    \"G2\": \"Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.\",\n    \"G3\": \"Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.\",\n    \"G4\": \"Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.\",\n    \"G5\": \"Inspected 872 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-26T15:48:22.839504+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json\",\n      \"sha256\": \"f14705cb5aa7f1c8bb0927b231a587cc84341dc987580e0cd4317be197644971\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/qm_upper_campaign_review_20261026.md\",\n      \"sha256\": \"0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": \"D\",\n    \"G5\": \"C\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L2\",\n  \"level_basis\": \"Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.\",\n  \"open_higher_grade_findings\": [\n    \"This record is the 6 by 6 integer-pair table above. It does not construct a complex exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases. The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.\",\n    \"Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed.\"\n  ],\n  \"profile\": \"Exact\",\n  \"rebound\": {\n    \"date\": \"2026-10-27\",\n    \"from_path\": \"lean4/CampaignMub6WeylHeisenbergD6.lean\",\n    \"from_sha256\": \"7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe\",\n    \"note\": \"Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived.\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L2D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/Mub6WeylHeisenbergD6.lean",
+          "sha256": "564ce28dadfd8bf892353d8c1b2dd302e67af184f69c8a42d9140909f4fb4279"
+        },
+        "assessment_id": "qm-open-pr-review-20261026-7c3db8185497",
+        "basis": {
+          "G1": "Independent source review maps the exact scoped node statement to declaration types; source and evidence hashes are bound. No node status is raised.",
+          "G2": "Exact integer, Boolean or declared-ring operations and finite constants inspected against the independent arithmetic review; no numerical approximation or original broad physical conclusion inferred.",
+          "G3": "Retained source-matched Lean replay and permitted-axiom outputs inspected, with no admissions in added source. Not a fresh Lean or combined-registry build.",
+          "G4": "Retained proof-build receipt plus independent statement review and exact arithmetic checks. No new kernel replay or complete mutation campaign; those higher-grade mechanisms remain absent.",
+          "G5": "Inspected 872 source lines; local definitions/declarations factored and dependencies explicit. No production scalability or heartbeat benchmark claimed."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-26T15:48:22.839504+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json",
+            "sha256": "f14705cb5aa7f1c8bb0927b231a587cc84341dc987580e0cd4317be197644971"
+          },
+          {
+            "path": "docs/overclaim/reviews/qm_upper_campaign_review_20261026.md",
+            "sha256": "0b40aa30cc5e37dc7bc20a66f43ef1e0aee01087d9b3633bd8d010c4c5152b2d"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": "D",
+          "G5": "C"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L2",
+        "level_basis": "Self-contained numeral/finite or explicitly parameterized proof example. No L4 production architecture is claimed.",
+        "open_higher_grade_findings": [
+          "This record is the 6 by 6 integer-pair table above. It does not construct a complex exponential, does not identify w with exp(2 pi i / 6), and does not count mutually unbiased bases. The source commutation X Z = w Z X is the opposite clock convention. AuthorityEffect: None.",
+          "Lean was not rebuilt during this review; retained replay bytes were rebound and independently reviewed."
+        ],
+        "profile": "Exact",
+        "rebound": {
+          "date": "2026-10-27",
+          "from_path": "lean4/CampaignMub6WeylHeisenbergD6.lean",
+          "from_sha256": "7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe",
+          "note": "Rename-only rebind on 2026-10-27, authorized by the maintainer: module and namespace names changed (lean4/RENAMES.json); the grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived."
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L2D"
+      },
+      "sha256": "0eb1a1706f289b9118006dc65af8883349ad0d25190b2fbba0127fd34dd1e9c5"
+    }
+  ]
+}

@@ -193,12 +193,12 @@ def test_declaration_names_match_in_one_direction_and_ambiguity_is_recorded():
 
 def test_scratch_commands_use_the_unique_current_receipt_namespace():
     builder = be.Builder()
-    prefix = "lean4/CampaignAuthfCarrierAdmissionGate.lean::"
+    prefix = "lean4/CarrierAdmissionGate.lean::"
     bare = builder.make_item(prefix + "directCeilings", "test", True)
-    qualified = builder.make_item(prefix + "CampaignAuthfCarrierAdmissionGate.directCeilings", "test", True)
-    assert bare["canonical_symbol"] == qualified["canonical_symbol"] == "CampaignAuthfCarrierAdmissionGate.directCeilings"
+    qualified = builder.make_item(prefix + "CarrierAdmissionGate.directCeilings", "test", True)
+    assert bare["canonical_symbol"] == qualified["canonical_symbol"] == "CarrierAdmissionGate.directCeilings"
     assert bare["command_note"] == qualified["command_note"]
-    assert "#print axioms CampaignAuthfCarrierAdmissionGate.directCeilings" in bare["command_note"]
+    assert "#print axioms CarrierAdmissionGate.directCeilings" in bare["command_note"]
     ambiguous = builder.make_item("lean4/ChainRetraction.lean::cls_ne_zero", "test", True)
     assert ambiguous["canonical_symbol"] is None
 
@@ -308,13 +308,13 @@ def test_scoped_root_discovery_ignores_comments_and_unsafe_config_names(tmp_path
 def test_majorana_citations_are_qualified_unique_and_reproduce_the_scoped_build():
     """TFQ-1186 must not double-count bare aliases of the audited declarations."""
     row = rows()["FSP-MAJORANA-CLIFFORD-PARITY"]
-    entries = [i for i in row["items"] if i["path"] == "lean4/CampaignMajoranaCliffordParity.lean"
+    entries = [i for i in row["items"] if i["path"] == "lean4/MajoranaCliffordParity.lean"
                and i["symbol"] is not None]
     names = receipt_names("campaign_fsp-majorana-clifford-parity_lean_replay.json")
     assert len(entries) == len(set(names)) == 32
     assert {i["symbol"] for i in entries} == set(names)
     assert {i["command"] for i in entries} == {
-        "cd lean4 && lake --file=lakefile.campaignMajorana.lean build CampaignMajoranaCliffordParity"}
+        "cd lean4 && lake build MajoranaCliffordParity"}
 
 
 # ------------------------------------------------------------------ chosen nodes, checked independently
@@ -359,13 +359,13 @@ def test_pgw_campaign_receipt_without_a_lean_replay_object_is_indexed():
     assert "lean_replay" not in data
     receipts = [r for r in document()["receipts"] if r["receipt_file"] == rel]
     assert len(receipts) == 1
-    assert receipts[0]["module"] == "CampaignPgwPresentationLift"
+    assert receipts[0]["module"] == "PregenesisPresentationLift"
     assert receipts[0]["dag_node"] == "PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT"
     assert receipts[0]["exit_code"] == 0
     assert receipts[0]["lean_version"]
     row = rows()["PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT"]
     assert row["status"] == "CONDITIONAL"
-    current = hashlib.sha256((ROOT / "lean4/CampaignPgwPresentationLift.lean").read_bytes()).hexdigest()
+    current = hashlib.sha256((ROOT / "lean4/PregenesisPresentationLift.lean").read_bytes()).hexdigest()
     assert current == data["sha256"]
     assert at_least(row["grade"], "E3")
     skipped = {item["file"] for item in document()["receipts_not_indexed"]}

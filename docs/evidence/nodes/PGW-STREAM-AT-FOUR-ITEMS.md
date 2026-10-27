@@ -42,15 +42,15 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignPgwStreamAtFourItems.lean`
+### Lean: `lean4/PregenesisStreamAtFourItems.lean`
 
-- file: [lean4/CampaignPgwStreamAtFourItems.lean](../../../lean4/CampaignPgwStreamAtFourItems.lean)
+- file: [lean4/PregenesisStreamAtFourItems.lean](../../../lean4/PregenesisStreamAtFourItems.lean)
 - sha256 (`bytes`): `8f9250d6b36cbf05890fd86f04f44b36a16c9dd83ee67161bd88f63aa2d88de5`
-- cited in: node.lean, receipt dag/research/campaign_pgw-stream-at-four-items_lean_replay.json (CampaignPgwStreamAtFourItems), receipt dag/research/pr_354_review_replay.json (CampaignPgwStreamAtFourItems), record TFQ-0502
+- cited in: node.lean, receipt dag/research/campaign_pgw-stream-at-four-items_lean_replay.json (PregenesisStreamAtFourItems), receipt dag/research/pr_354_review_replay.json (PregenesisStreamAtFourItems), record TFQ-0502
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-stream-at-four-items_lean_replay.json](../../../dag/research/campaign_pgw-stream-at-four-items_lean_replay.json) (module `CampaignPgwStreamAtFourItems`): recorded sha256 `8f9250d6b36cbf05890fd86f04f44b36a16c9dd83ee67161bd88f63aa2d88de5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_354_review_replay.json](../../../dag/research/pr_354_review_replay.json) (module `CampaignPgwStreamAtFourItems`): recorded sha256 `8f9250d6b36cbf05890fd86f04f44b36a16c9dd83ee67161bd88f63aa2d88de5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignPgwStreamAtFourItems`
+  - receipt [dag/research/campaign_pgw-stream-at-four-items_lean_replay.json](../../../dag/research/campaign_pgw-stream-at-four-items_lean_replay.json) (module `PregenesisStreamAtFourItems`): recorded sha256 `8f9250d6b36cbf05890fd86f04f44b36a16c9dd83ee67161bd88f63aa2d88de5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_354_review_replay.json](../../../dag/research/pr_354_review_replay.json) (module `PregenesisStreamAtFourItems`): recorded sha256 `8f9250d6b36cbf05890fd86f04f44b36a16c9dd83ee67161bd88f63aa2d88de5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build PregenesisStreamAtFourItems`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -86,7 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0502_stream_at_four_items.md`
 
 - file: [dag/derivations/02_genesis/tfq_0502_stream_at_four_items.md](../../../dag/derivations/02_genesis/tfq_0502_stream_at_four_items.md)
-- sha256 (`lf-normalised`): `da5be7d8d51ba2423da7297b6fbbee16f09a316fc7f1634d5187e16eea89c30f`
+- sha256 (`lf-normalised`): `ad6e5a2d4950d46ba07d0d2dbf6d849818b1c1bf860374262aedeb2a3d178ad3`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0502
 - counts toward the grade: no
@@ -101,7 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_pgw-stream-at-four-items_lean_replay.json`
 
 - file: [dag/research/campaign_pgw-stream-at-four-items_lean_replay.json](../../../dag/research/campaign_pgw-stream-at-four-items_lean_replay.json)
-- sha256 (`lf-normalised`): `ffe53dba59438bacc9ada9367b76c4a7cd4266c08f5cfee36fd917fb7732847a`
+- sha256 (`lf-normalised`): `ce14cf80d98a2bfb565fd0cce2b8d27759f1259d7dba28a636ad51544619ac30`
 - cited in: node.source
 - counts toward the grade: yes
 

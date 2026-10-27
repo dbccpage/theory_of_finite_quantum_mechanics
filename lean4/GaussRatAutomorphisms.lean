@@ -17,9 +17,9 @@ this result; its coordinate dichotomy is forced directly by modulus equations.)
 Nothing physical is claimed; exact arithmetic over ℚ throughout.
 -/
 
-namespace WignerFable.GaussRatAut
+namespace WignerFinite.GaussRatAut
 
-open BornFable
+open BornFinite
 
 theorem mul_self_eq_neg_one_iff (z : GaussRat) :
     z * z = -1 ↔ z = GaussRat.I ∨ z = -GaussRat.I := by
@@ -88,13 +88,13 @@ theorem star_ne_id : ∃ z : GaussRat, star z ≠ z :=
     have := congrArg GaussRat.im h
     norm_num at this⟩
 
-end WignerFable.GaussRatAut
+end WignerFinite.GaussRatAut
 
-#print axioms WignerFable.GaussRatAut.mul_self_eq_neg_one_iff
-#print axioms WignerFable.GaussRatAut.ringHom_apply_I
-#print axioms WignerFable.GaussRatAut.ringHom_apply
-#print axioms WignerFable.GaussRatAut.ringHom_eq_id_or_star
-#print axioms WignerFable.GaussRatAut.id_ringHom_apply
-#print axioms WignerFable.GaussRatAut.star_ringHom_apply
-#print axioms WignerFable.GaussRatAut.id_and_star_are_ringHoms
-#print axioms WignerFable.GaussRatAut.star_ne_id
+#print axioms WignerFinite.GaussRatAut.mul_self_eq_neg_one_iff
+#print axioms WignerFinite.GaussRatAut.ringHom_apply_I
+#print axioms WignerFinite.GaussRatAut.ringHom_apply
+#print axioms WignerFinite.GaussRatAut.ringHom_eq_id_or_star
+#print axioms WignerFinite.GaussRatAut.id_ringHom_apply
+#print axioms WignerFinite.GaussRatAut.star_ringHom_apply
+#print axioms WignerFinite.GaussRatAut.id_and_star_are_ringHoms
+#print axioms WignerFinite.GaussRatAut.star_ne_id

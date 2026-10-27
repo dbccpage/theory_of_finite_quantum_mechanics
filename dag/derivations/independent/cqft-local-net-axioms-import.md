@@ -69,7 +69,7 @@ is `-1`, and the `(0, 2)` entry of `(Z ⊗ I)(X ⊗ I)` is `1`.
 
 ## What is proved
 
-In `lean4/CampaignCqftLocalNetAxiomsImport.lean`:
+In `lean4/LocalNetAxiomsImport.lean`:
 
 - `n_poset_pair_counts` records irreflexivity, the 64-triple scan, exactly
   three relations, exactly three spacelike unordered pairs, and the flags

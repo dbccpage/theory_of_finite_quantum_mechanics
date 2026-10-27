@@ -42,47 +42,6 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignPgwKItemDeltaGrammar.lean`
-
-- file: [lean4/CampaignPgwKItemDeltaGrammar.lean](../../../lean4/CampaignPgwKItemDeltaGrammar.lean)
-- sha256 (`bytes`): `9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670`
-- cited in: node.lean, receipt dag/research/campaign_pgw-k-item-delta-grammar_lean_replay.json (CampaignPgwKItemDeltaGrammar), receipt dag/research/pr_350_review_replay.json (CampaignPgwKItemDeltaGrammar), record TFQ-0490
-- replay: `verified`
-  - receipt [dag/research/campaign_pgw-k-item-delta-grammar_lean_replay.json](../../../dag/research/campaign_pgw-k-item-delta-grammar_lean_replay.json) (module `CampaignPgwKItemDeltaGrammar`): recorded sha256 `9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-  - receipt [dag/research/pr_350_review_replay.json](../../../dag/research/pr_350_review_replay.json) (module `CampaignPgwKItemDeltaGrammar`): recorded sha256 `9c9138a0fe4c8f8481789c6560ebf5a4c301a440ebf76bd0658c80be07f05670` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignPgwKItemDeltaGrammar`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `CampaignPgwKItemDeltaGrammar.form_rule_both_true` | yes | yes | yes | none | `#print axioms CampaignPgwKItemDeltaGrammar.form_rule_both_true` |
-| `CampaignPgwKItemDeltaGrammar.fresh_datum_pairs_do_not_separate` | yes | yes | yes | none | `#print axioms CampaignPgwKItemDeltaGrammar.fresh_datum_pairs_do_not_separate` |
-| `CampaignPgwKItemDeltaGrammar.nine_well_formed` | yes | yes | yes | none | `#print axioms CampaignPgwKItemDeltaGrammar.nine_well_formed` |
-| `CampaignPgwKItemDeltaGrammar.no_single_item_separates` | yes | yes | yes | none | `#print axioms CampaignPgwKItemDeltaGrammar.no_single_item_separates` |
-| `CampaignPgwKItemDeltaGrammar.off_target_instance_keeps_bits` | yes | yes | yes | none | `#print axioms CampaignPgwKItemDeltaGrammar.off_target_instance_keeps_bits` |
-| `CampaignPgwKItemDeltaGrammar.one_hundred_pairs` | yes | yes | yes | none | `#print axioms CampaignPgwKItemDeltaGrammar.one_hundred_pairs` |
-| `CampaignPgwKItemDeltaGrammar.rule_extension_equalizes` | yes | yes | yes | propext | `#print axioms CampaignPgwKItemDeltaGrammar.rule_extension_equalizes` |
-| `CampaignPgwKItemDeltaGrammar.rule_extension_is_longer` | yes | yes | yes | none | `#print axioms CampaignPgwKItemDeltaGrammar.rule_extension_is_longer` |
-| `CampaignPgwKItemDeltaGrammar.separating_pairs_are_two` | yes | yes | yes | none | `#print axioms CampaignPgwKItemDeltaGrammar.separating_pairs_are_two` |
-| `CampaignPgwKItemDeltaGrammar.seven_leave_bits_equal` | yes | yes | yes | none | `#print axioms CampaignPgwKItemDeltaGrammar.seven_leave_bits_equal` |
-| `CampaignPgwKItemDeltaGrammar.ten_atoms` | yes | yes | yes | none | `#print axioms CampaignPgwKItemDeltaGrammar.ten_atoms` |
-| `CampaignPgwKItemDeltaGrammar.well_formed_pairs_are` | yes | yes | yes | none | `#print axioms CampaignPgwKItemDeltaGrammar.well_formed_pairs_are` |
-| `CampaignPgwKItemDeltaGrammar.well_formed_singles_are` | yes | yes | yes | none | `#print axioms CampaignPgwKItemDeltaGrammar.well_formed_singles_are` |
-| `form_rule_both_true` | yes | yes | yes | none | `#print axioms form_rule_both_true` |
-| `fresh_datum_pairs_do_not_separate` | yes | yes | yes | none | `#print axioms fresh_datum_pairs_do_not_separate` |
-| `nine_well_formed` | yes | yes | yes | none | `#print axioms nine_well_formed` |
-| `no_single_item_separates` | yes | yes | yes | none | `#print axioms no_single_item_separates` |
-| `off_target_instance_keeps_bits` | yes | yes | yes | none | `#print axioms off_target_instance_keeps_bits` |
-| `one_hundred_pairs` | yes | yes | yes | none | `#print axioms one_hundred_pairs` |
-| `rule_extension_equalizes` | yes | yes | yes | propext | `#print axioms rule_extension_equalizes` |
-| `rule_extension_is_longer` | yes | yes | yes | none | `#print axioms rule_extension_is_longer` |
-| `separating_pairs_are_two` | yes | yes | yes | none | `#print axioms separating_pairs_are_two` |
-| `seven_leave_bits_equal` | yes | yes | yes | none | `#print axioms seven_leave_bits_equal` |
-| `ten_atoms` | yes | yes | yes | none | `#print axioms ten_atoms` |
-| `well_formed_pairs_are` | yes | yes | yes | none | `#print axioms well_formed_pairs_are` |
-| `well_formed_singles_are` | yes | yes | yes | none | `#print axioms well_formed_singles_are` |
-
-- counts toward the grade: yes
-
 ### Lean: `lean4/Imported/Genesis19l57g1/Derivation/Mention.lean`
 
 - file: [lean4/Imported/Genesis19l57g1/Derivation/Mention.lean](../../../lean4/Imported/Genesis19l57g1/Derivation/Mention.lean)
@@ -110,6 +69,47 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `rule_item_never_minimal` | yes | yes | yes | propext | `#print axioms rule_item_never_minimal` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/PregenesisKItemDeltaGrammar.lean`
+
+- file: [lean4/PregenesisKItemDeltaGrammar.lean](../../../lean4/PregenesisKItemDeltaGrammar.lean)
+- sha256 (`bytes`): `52b73aa3de75fa53ed068550450f0c7b6cbceb0646de2a6b9633ae16914f996b`
+- cited in: node.lean, receipt dag/research/campaign_pgw-k-item-delta-grammar_lean_replay.json (PregenesisKItemDeltaGrammar), receipt dag/research/pr_350_review_replay.json (PregenesisKItemDeltaGrammar), record TFQ-0490
+- replay: `verified`
+  - receipt [dag/research/campaign_pgw-k-item-delta-grammar_lean_replay.json](../../../dag/research/campaign_pgw-k-item-delta-grammar_lean_replay.json) (module `PregenesisKItemDeltaGrammar`): recorded sha256 `52b73aa3de75fa53ed068550450f0c7b6cbceb0646de2a6b9633ae16914f996b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+  - receipt [dag/research/pr_350_review_replay.json](../../../dag/research/pr_350_review_replay.json) (module `PregenesisKItemDeltaGrammar`): recorded sha256 `52b73aa3de75fa53ed068550450f0c7b6cbceb0646de2a6b9633ae16914f996b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build PregenesisKItemDeltaGrammar`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `PregenesisKItemDeltaGrammar.form_rule_both_true` | yes | yes | yes | none | `#print axioms PregenesisKItemDeltaGrammar.form_rule_both_true` |
+| `PregenesisKItemDeltaGrammar.fresh_datum_pairs_do_not_separate` | yes | yes | yes | none | `#print axioms PregenesisKItemDeltaGrammar.fresh_datum_pairs_do_not_separate` |
+| `PregenesisKItemDeltaGrammar.nine_well_formed` | yes | yes | yes | none | `#print axioms PregenesisKItemDeltaGrammar.nine_well_formed` |
+| `PregenesisKItemDeltaGrammar.no_single_item_separates` | yes | yes | yes | none | `#print axioms PregenesisKItemDeltaGrammar.no_single_item_separates` |
+| `PregenesisKItemDeltaGrammar.off_target_instance_keeps_bits` | yes | yes | yes | none | `#print axioms PregenesisKItemDeltaGrammar.off_target_instance_keeps_bits` |
+| `PregenesisKItemDeltaGrammar.one_hundred_pairs` | yes | yes | yes | none | `#print axioms PregenesisKItemDeltaGrammar.one_hundred_pairs` |
+| `PregenesisKItemDeltaGrammar.rule_extension_equalizes` | yes | yes | yes | propext | `#print axioms PregenesisKItemDeltaGrammar.rule_extension_equalizes` |
+| `PregenesisKItemDeltaGrammar.rule_extension_is_longer` | yes | yes | yes | none | `#print axioms PregenesisKItemDeltaGrammar.rule_extension_is_longer` |
+| `PregenesisKItemDeltaGrammar.separating_pairs_are_two` | yes | yes | yes | none | `#print axioms PregenesisKItemDeltaGrammar.separating_pairs_are_two` |
+| `PregenesisKItemDeltaGrammar.seven_leave_bits_equal` | yes | yes | yes | none | `#print axioms PregenesisKItemDeltaGrammar.seven_leave_bits_equal` |
+| `PregenesisKItemDeltaGrammar.ten_atoms` | yes | yes | yes | none | `#print axioms PregenesisKItemDeltaGrammar.ten_atoms` |
+| `PregenesisKItemDeltaGrammar.well_formed_pairs_are` | yes | yes | yes | none | `#print axioms PregenesisKItemDeltaGrammar.well_formed_pairs_are` |
+| `PregenesisKItemDeltaGrammar.well_formed_singles_are` | yes | yes | yes | none | `#print axioms PregenesisKItemDeltaGrammar.well_formed_singles_are` |
+| `form_rule_both_true` | yes | yes | yes | none | `#print axioms form_rule_both_true` |
+| `fresh_datum_pairs_do_not_separate` | yes | yes | yes | none | `#print axioms fresh_datum_pairs_do_not_separate` |
+| `nine_well_formed` | yes | yes | yes | none | `#print axioms nine_well_formed` |
+| `no_single_item_separates` | yes | yes | yes | none | `#print axioms no_single_item_separates` |
+| `off_target_instance_keeps_bits` | yes | yes | yes | none | `#print axioms off_target_instance_keeps_bits` |
+| `one_hundred_pairs` | yes | yes | yes | none | `#print axioms one_hundred_pairs` |
+| `rule_extension_equalizes` | yes | yes | yes | propext | `#print axioms rule_extension_equalizes` |
+| `rule_extension_is_longer` | yes | yes | yes | none | `#print axioms rule_extension_is_longer` |
+| `separating_pairs_are_two` | yes | yes | yes | none | `#print axioms separating_pairs_are_two` |
+| `seven_leave_bits_equal` | yes | yes | yes | none | `#print axioms seven_leave_bits_equal` |
+| `ten_atoms` | yes | yes | yes | none | `#print axioms ten_atoms` |
+| `well_formed_pairs_are` | yes | yes | yes | none | `#print axioms well_formed_pairs_are` |
+| `well_formed_singles_are` | yes | yes | yes | none | `#print axioms well_formed_singles_are` |
 
 - counts toward the grade: yes
 
@@ -161,7 +161,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0490_k_item_delta_grammar.md`
 
 - file: [dag/derivations/02_genesis/tfq_0490_k_item_delta_grammar.md](../../../dag/derivations/02_genesis/tfq_0490_k_item_delta_grammar.md)
-- sha256 (`lf-normalised`): `6a24c9fcf33eeea3b8a5baae2400c424f4abed5e5d66beee007fcd7554116e60`
+- sha256 (`lf-normalised`): `64e4774a0913c6c8287c37b6e2d801af16d9c5a98cdabd053e99e2f0b35fbcf9`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0490
 - counts toward the grade: no

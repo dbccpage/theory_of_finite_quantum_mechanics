@@ -78,14 +78,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build GleasonTheorem`
 - counts toward the grade: yes
 
-### Lean: `lean4/H017Gleason.lean`
+### Lean: `lean4/HilbertWalkGleason.lean`
 
-- file: [lean4/H017Gleason.lean](../../../lean4/H017Gleason.lean)
-- sha256 (`bytes`): `ceef94bcf70d76a392949b8a9f07a8be3de52fd51f86960f494c3c58bcc95837`
+- file: [lean4/HilbertWalkGleason.lean](../../../lean4/HilbertWalkGleason.lean)
+- sha256 (`bytes`): `42c9d771c0f1c717bcf7673918fe0ee69046418ca70c1f6fd8ee9972977f9d30`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H017Gleason`): recorded sha256 `ceef94bcf70d76a392949b8a9f07a8be3de52fd51f86960f494c3c58bcc95837` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build H017Gleason`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertWalkGleason`): recorded sha256 `42c9d771c0f1c717bcf7673918fe0ee69046418ca70c1f6fd8ee9972977f9d30` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build HilbertWalkGleason`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|

@@ -3,7 +3,7 @@
 - **AuthorityEffect**: `None`
 - **Target**: `PGW-SN-PROTECTED-ANSWER-TRANSPORT` (`TFQ-0519`, stage `MSSN_SN`, group `S(n)`)
 - **Outcome**: `Narrowed` (`record_status: "OPEN_OBLIGATION"`, `dag.status: "OPEN"` retained for the external `S6Descent` Python code in `002_oesn/code/sn_core.py`, case-by-case user-supplied target transitions, and the exercise obligation $s_6 = 1$)
-- **Lean 4 Module**: `lean4/CampaignSnProtectedAnswerTransport.lean`
+- **Lean 4 Module**: `lean4/ProtectedAnswerTransport.lean`
 - **Independent Check**: `checks/independent/pgw-sn-protected-answer-transport.py`
 
 ## 1. Mathematical Summary

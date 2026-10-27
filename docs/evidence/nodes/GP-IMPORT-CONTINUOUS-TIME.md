@@ -48,28 +48,43 @@ imported / refused on this host
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGpImportContinuousTime.lean`
+### Lean: `lean4/ContinuousDynamicsFork.lean`
 
-- file: [lean4/CampaignGpImportContinuousTime.lean](../../../lean4/CampaignGpImportContinuousTime.lean)
-- sha256 (`bytes`): `efc118c4a3ef4ec32ac5fdad45c4b4db15e393cc2298e84156076b31eeaaf7b1`
-- cited in: node.lean, receipt dag/research/campaign_gp-import-continuous-time_lean_replay.json (CampaignGpImportContinuousTime), record TFQ-1034
-- replay: `verified`
-  - receipt [dag/research/campaign_gp-import-continuous-time_lean_replay.json](../../../dag/research/campaign_gp-import-continuous-time_lean_replay.json) (module `CampaignGpImportContinuousTime`): recorded sha256 `efc118c4a3ef4ec32ac5fdad45c4b4db15e393cc2298e84156076b31eeaaf7b1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGpImportContinuousTime`
+- file: [lean4/ContinuousDynamicsFork.lean](../../../lean4/ContinuousDynamicsFork.lean)
+- sha256 (`bytes`): `135a00f4b383fbdc849d9acd1cd61ee738bfd656be50fe2b490db89041c8e36b`
+- cited in: node.lean, record TFQ-1034
+- replay: `none`
+- check: `cd lean4 && lake build ContinuousDynamicsFork`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignGpImportContinuousTime.gAdd_coords` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.gAdd_coords` |
-| `CampaignGpImportContinuousTime.gMul_coords` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.gMul_coords` |
-| `CampaignGpImportContinuousTime.interpNeg_twice_is_scaled_swap` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGpImportContinuousTime.interpNeg_twice_is_scaled_swap` |
-| `CampaignGpImportContinuousTime.interp_twice_is_scaled_swap` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGpImportContinuousTime.interp_twice_is_scaled_swap` |
-| `CampaignGpImportContinuousTime.interpolants_differ` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.interpolants_differ` |
-| `CampaignGpImportContinuousTime.no_toggle_square_root` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.no_toggle_square_root` |
-| `CampaignGpImportContinuousTime.scale4_swap` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.scale4_swap` |
-| `CampaignGpImportContinuousTime.swap_exchanges` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.swap_exchanges` |
-| `CampaignGpImportContinuousTime.toggle_images` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.toggle_images` |
-| `CampaignGpImportContinuousTime.witness_interp` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.witness_interp` |
-| `CampaignGpImportContinuousTime.witness_neg` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuousTime.witness_neg` |
+| `HilbertWalk.ContinuousDynamicsFork.continuous_dynamics_fork` | yes | yes | yes | - | `#print axioms HilbertWalk.ContinuousDynamicsFork.continuous_dynamics_fork` |
+| `HilbertWalk.ContinuousDynamicsFork.no_report_half_step` | yes | yes | yes | - | `#print axioms HilbertWalk.ContinuousDynamicsFork.no_report_half_step` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/ContinuousTimeImport.lean`
+
+- file: [lean4/ContinuousTimeImport.lean](../../../lean4/ContinuousTimeImport.lean)
+- sha256 (`bytes`): `0e012ae91f849150a046474fd241229c1fa78fc5dec8d71bfc000944fe90b68d`
+- cited in: node.lean, receipt dag/research/campaign_gp-import-continuous-time_lean_replay.json (ContinuousTimeImport), record TFQ-1034
+- replay: `verified`
+  - receipt [dag/research/campaign_gp-import-continuous-time_lean_replay.json](../../../dag/research/campaign_gp-import-continuous-time_lean_replay.json) (module `ContinuousTimeImport`): recorded sha256 `0e012ae91f849150a046474fd241229c1fa78fc5dec8d71bfc000944fe90b68d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build ContinuousTimeImport`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `ContinuousTimeImport.gAdd_coords` | yes | yes | yes | none | `#print axioms ContinuousTimeImport.gAdd_coords` |
+| `ContinuousTimeImport.gMul_coords` | yes | yes | yes | none | `#print axioms ContinuousTimeImport.gMul_coords` |
+| `ContinuousTimeImport.interpNeg_twice_is_scaled_swap` | yes | yes | yes | Quot.sound, propext | `#print axioms ContinuousTimeImport.interpNeg_twice_is_scaled_swap` |
+| `ContinuousTimeImport.interp_twice_is_scaled_swap` | yes | yes | yes | Quot.sound, propext | `#print axioms ContinuousTimeImport.interp_twice_is_scaled_swap` |
+| `ContinuousTimeImport.interpolants_differ` | yes | yes | yes | none | `#print axioms ContinuousTimeImport.interpolants_differ` |
+| `ContinuousTimeImport.no_toggle_square_root` | yes | yes | yes | none | `#print axioms ContinuousTimeImport.no_toggle_square_root` |
+| `ContinuousTimeImport.scale4_swap` | yes | yes | yes | none | `#print axioms ContinuousTimeImport.scale4_swap` |
+| `ContinuousTimeImport.swap_exchanges` | yes | yes | yes | none | `#print axioms ContinuousTimeImport.swap_exchanges` |
+| `ContinuousTimeImport.toggle_images` | yes | yes | yes | none | `#print axioms ContinuousTimeImport.toggle_images` |
+| `ContinuousTimeImport.witness_interp` | yes | yes | yes | none | `#print axioms ContinuousTimeImport.witness_interp` |
+| `ContinuousTimeImport.witness_neg` | yes | yes | yes | none | `#print axioms ContinuousTimeImport.witness_neg` |
 | `gAdd_coords` | yes | yes | yes | none | `#print axioms gAdd_coords` |
 | `gMul_coords` | yes | yes | yes | none | `#print axioms gMul_coords` |
 | `interpNeg_twice_is_scaled_swap` | yes | yes | yes | Quot.sound, propext | `#print axioms interpNeg_twice_is_scaled_swap` |
@@ -99,21 +114,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H016ContinuousDynamicsFork.lean`
-
-- file: [lean4/H016ContinuousDynamicsFork.lean](../../../lean4/H016ContinuousDynamicsFork.lean)
-- sha256 (`bytes`): `906b145d8626c1887b1075e9b900858ca3f0c16df6fa65a2d8a87aa68b06de85`
-- cited in: node.lean, record TFQ-1034
-- replay: `none`
-- check: `cd lean4 && lake build H016ContinuousDynamicsFork`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `FableHilbertWalk20260819.H016.continuous_dynamics_fork` | yes | yes | yes | - | `#print axioms FableHilbertWalk20260819.H016.continuous_dynamics_fork` |
-| `FableHilbertWalk20260819.H016.no_report_half_step` | yes | yes | yes | - | `#print axioms FableHilbertWalk20260819.H016.no_report_half_step` |
-
-- counts toward the grade: yes
-
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
 
 - file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
@@ -124,7 +124,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1034_gp_import_continuous_time.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1034_gp_import_continuous_time.md](../../../dag/derivations/08_l1_to_l2/tfq_1034_gp_import_continuous_time.md)
-- sha256 (`lf-normalised`): `09d4a0c0c06397a15b50afc482ab0e1ec742c0dfb174ddcbc2e3534ea721bab6`
+- sha256 (`lf-normalised`): `4ac974369715654de3b46c4becde3129224c25c453e7473d7104da6548586ce2`
 - generated view: listed, not counted
 - cited in: record TFQ-1034
 - counts toward the grade: no

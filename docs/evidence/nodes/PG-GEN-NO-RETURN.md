@@ -45,38 +45,38 @@ Rounds / no-return / cumulative element count (Genesis §8-§9)
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGenesisNoReturn.lean`
+### Lean: `lean4/GenesisNoReturn.lean`
 
-- file: [lean4/CampaignGenesisNoReturn.lean](../../../lean4/CampaignGenesisNoReturn.lean)
-- sha256 (`bytes`): `348bd7e00a4f19a9631e67d6ed1e52539517e74b743f7dba91f7b27786870a79`
-- cited in: node.lean, receipt dag/research/campaign_pg-gen-no-return_lean_replay.json (CampaignGenesisNoReturn)
+- file: [lean4/GenesisNoReturn.lean](../../../lean4/GenesisNoReturn.lean)
+- sha256 (`bytes`): `81b3ae2cc8bc285ce3ff5f1342edbb4a983f4af56d68c3758f4cdd4dd32c3a7b`
+- cited in: node.lean, receipt dag/research/campaign_pg-gen-no-return_lean_replay.json (GenesisNoReturn)
 - replay: `verified`
-  - receipt [dag/research/campaign_pg-gen-no-return_lean_replay.json](../../../dag/research/campaign_pg-gen-no-return_lean_replay.json) (module `CampaignGenesisNoReturn`): recorded sha256 `348bd7e00a4f19a9631e67d6ed1e52539517e74b743f7dba91f7b27786870a79` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGenesisNoReturn`
+  - receipt [dag/research/campaign_pg-gen-no-return_lean_replay.json](../../../dag/research/campaign_pg-gen-no-return_lean_replay.json) (module `GenesisNoReturn`): recorded sha256 `81b3ae2cc8bc285ce3ff5f1342edbb4a983f4af56d68c3758f4cdd4dd32c3a7b` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build GenesisNoReturn`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignGenesisNoReturn.arrayEvent_sourceEvent` | yes | yes | yes | none | `#print axioms CampaignGenesisNoReturn.arrayEvent_sourceEvent` |
-| `CampaignGenesisNoReturn.array_failure_exact` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.array_failure_exact` |
-| `CampaignGenesisNoReturn.array_replay_exact` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.array_replay_exact` |
-| `CampaignGenesisNoReturn.array_source` | yes | yes | yes | propext | `#print axioms CampaignGenesisNoReturn.array_source` |
-| `CampaignGenesisNoReturn.array_step_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.array_step_commutes` |
-| `CampaignGenesisNoReturn.cumulative_potential` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.cumulative_potential` |
-| `CampaignGenesisNoReturn.cycle_regime_const` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.cycle_regime_const` |
-| `CampaignGenesisNoReturn.decode_encode` | yes | yes | yes | propext | `#print axioms CampaignGenesisNoReturn.decode_encode` |
-| `CampaignGenesisNoReturn.encode_decode` | yes | yes | yes | propext | `#print axioms CampaignGenesisNoReturn.encode_decode` |
-| `CampaignGenesisNoReturn.engine_replay_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.engine_replay_commutes` |
-| `CampaignGenesisNoReturn.engine_replay_exact` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.engine_replay_exact` |
-| `CampaignGenesisNoReturn.engine_replay_failure_exact` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.engine_replay_failure_exact` |
-| `CampaignGenesisNoReturn.engine_replay_source` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.engine_replay_source` |
-| `CampaignGenesisNoReturn.engine_step_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.engine_step_commutes` |
-| `CampaignGenesisNoReturn.no_return` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.no_return` |
-| `CampaignGenesisNoReturn.second_step_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.second_step_commutes` |
-| `CampaignGenesisNoReturn.sourceEvent_arrayEvent` | yes | yes | yes | none | `#print axioms CampaignGenesisNoReturn.sourceEvent_arrayEvent` |
-| `CampaignGenesisNoReturn.sourceState_injective` | yes | yes | yes | propext | `#print axioms CampaignGenesisNoReturn.sourceState_injective` |
-| `CampaignGenesisNoReturn.source_array` | yes | yes | yes | propext | `#print axioms CampaignGenesisNoReturn.source_array` |
-| `CampaignGenesisNoReturn.strict_potential` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.strict_potential` |
-| `CampaignGenesisNoReturn.two_switches_return` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisNoReturn.two_switches_return` |
+| `GenesisNoReturn.arrayEvent_sourceEvent` | yes | yes | yes | none | `#print axioms GenesisNoReturn.arrayEvent_sourceEvent` |
+| `GenesisNoReturn.array_failure_exact` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisNoReturn.array_failure_exact` |
+| `GenesisNoReturn.array_replay_exact` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisNoReturn.array_replay_exact` |
+| `GenesisNoReturn.array_source` | yes | yes | yes | propext | `#print axioms GenesisNoReturn.array_source` |
+| `GenesisNoReturn.array_step_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisNoReturn.array_step_commutes` |
+| `GenesisNoReturn.cumulative_potential` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisNoReturn.cumulative_potential` |
+| `GenesisNoReturn.cycle_regime_const` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisNoReturn.cycle_regime_const` |
+| `GenesisNoReturn.decode_encode` | yes | yes | yes | propext | `#print axioms GenesisNoReturn.decode_encode` |
+| `GenesisNoReturn.encode_decode` | yes | yes | yes | propext | `#print axioms GenesisNoReturn.encode_decode` |
+| `GenesisNoReturn.engine_replay_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisNoReturn.engine_replay_commutes` |
+| `GenesisNoReturn.engine_replay_exact` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisNoReturn.engine_replay_exact` |
+| `GenesisNoReturn.engine_replay_failure_exact` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisNoReturn.engine_replay_failure_exact` |
+| `GenesisNoReturn.engine_replay_source` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisNoReturn.engine_replay_source` |
+| `GenesisNoReturn.engine_step_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisNoReturn.engine_step_commutes` |
+| `GenesisNoReturn.no_return` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisNoReturn.no_return` |
+| `GenesisNoReturn.second_step_commutes` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisNoReturn.second_step_commutes` |
+| `GenesisNoReturn.sourceEvent_arrayEvent` | yes | yes | yes | none | `#print axioms GenesisNoReturn.sourceEvent_arrayEvent` |
+| `GenesisNoReturn.sourceState_injective` | yes | yes | yes | propext | `#print axioms GenesisNoReturn.sourceState_injective` |
+| `GenesisNoReturn.source_array` | yes | yes | yes | propext | `#print axioms GenesisNoReturn.source_array` |
+| `GenesisNoReturn.strict_potential` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisNoReturn.strict_potential` |
+| `GenesisNoReturn.two_switches_return` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisNoReturn.two_switches_return` |
 
 - counts toward the grade: yes
 

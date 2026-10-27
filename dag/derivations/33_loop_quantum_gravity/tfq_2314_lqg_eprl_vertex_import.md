@@ -53,17 +53,17 @@ See also: `TFQ-0198`, `TFQ-0105`.
 - `external:arXiv:0711.0146`: J. Engle, E. Livine, R. Pereira and C. Rovelli, "LQG vertex with finite Immirzi parameter", arXiv:0711.0146 (2007); Nucl. Phys. B 799 (2008) 136-149.
 - `external:arXiv:0708.1595`: L. Freidel and K. Krasnov, "A New Spin Foam Model for 4d Gravity", arXiv:0708.1595 (2007); Class. Quantum Grav. 25 (2008) 125018.
 - `external:arXiv:1205.2019`: A. Perez, "The Spin Foam Approach to Quantum Gravity", arXiv:1205.2019 (2012); Living Rev. Relativity 16 (2013) 3, doi:10.12942/lrr-2013-3.
-- Repository: `lean4/CampaignLqgEprlVertexImport.lean`
+- Repository: `lean4/LqgEprlVertexImport.lean`
 - Repository: `dag/derivations/independent/lqg-eprl-vertex-import.md`
 - Repository: `checks/independent/lqg-eprl-vertex-import.py`
 
 ## Lean 4 declarations read
-- `lean4/CampaignLqgEprlVertexImport.lean::euclidean_below`
-- `lean4/CampaignLqgEprlVertexImport.lean::euclidean_above`
-- `lean4/CampaignLqgEprlVertexImport.lean::recorded_euclidean_points`
-- `lean4/CampaignLqgEprlVertexImport.lean::lorentzian_embedding`
-- `lean4/CampaignLqgEprlVertexImport.lean::lorentzian_half_two`
-- `lean4/CampaignLqgEprlVertexImport.lean::five_tetrahedron_pairs`
+- `lean4/LqgEprlVertexImport.lean::euclidean_below`
+- `lean4/LqgEprlVertexImport.lean::euclidean_above`
+- `lean4/LqgEprlVertexImport.lean::recorded_euclidean_points`
+- `lean4/LqgEprlVertexImport.lean::lorentzian_embedding`
+- `lean4/LqgEprlVertexImport.lean::lorentzian_half_two`
+- `lean4/LqgEprlVertexImport.lean::five_tetrahedron_pairs`
 
 ## Downstream derivations
 

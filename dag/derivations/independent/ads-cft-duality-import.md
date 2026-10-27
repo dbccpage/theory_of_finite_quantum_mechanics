@@ -15,7 +15,7 @@ AuthorityEffect: None.
   - P. Breitenlohner and D. Z. Freedman, *Stability in Gauged Extended Supergravity*, Annals Phys. **144**, 249–281 (1982)
   - G. 't Hooft, *A Planar Diagram Theory for Strong Interactions*, Nucl. Phys. B **72**, 461–473 (1974)
 - **Verification Artifacts**:
-  - Lean 4 module: `lean4/CampaignAdsCftDualityImport.lean`
+  - Lean 4 module: `lean4/AdsCftDualityImport.lean`
   - Standalone zero-import Python checker: `checks/independent/ads-cft-duality-import.py`
   - Receipts: `dag/research/campaign_ads-cft-duality-import_lean_replay.json`, `dag/research/campaign_ads-cft-duality-import_lean_mutation.json`, `dag/research/campaign_ads-cft-duality-import_independent.json`
 
@@ -28,7 +28,7 @@ $$
 \operatorname{gkpwMassSq}(d, \Delta) := \Delta(\Delta - d) = m_{\mathrm{sq}}.
 $$
 
-Over $\mathbb{Q}$, `lean4/CampaignAdsCftDualityImport.lean` establishes:
+Over $\mathbb{Q}$, `lean4/AdsCftDualityImport.lean` establishes:
 1. **Shadow Involution and Vieta Relations**:
    Defining $\operatorname{shadowDimension}(d, \Delta) := d - \Delta$,
    - `shadowDimension_involutive`: $\operatorname{shadowDimension}(d, \operatorname{shadowDimension}(d, \Delta)) = \Delta$.
@@ -62,7 +62,7 @@ $$
 \operatorname{ribbonDoubleLineWeight}(g_{\mathrm{YM}}^2, N, V, E, F) := (g_{\mathrm{YM}}^2)^{E - V} N^F.
 $$
 
-`lean4/CampaignAdsCftDualityImport.lean` establishes:
+`lean4/AdsCftDualityImport.lean` establishes:
 - `thooft_factorization`:
   $$
   (g_{\mathrm{YM}}^2)^{E - V} N^F \cdot N^{E - V} = (g_{\mathrm{YM}}^2 N)^{E - V} N^F = \lambda^{E - V} N^F.
@@ -79,7 +79,7 @@ When a finite bulk code space $\mathbb{Q}^b$ is embedded into a boundary state s
 - Boundary operator pullback: $\pi_V(O_{\mathrm{bdry}}) := V^T O_{\mathrm{bdry}} V \in \mathrm{Matrix}\,b\,b\,\mathbb{Q}$.
 - Quadratic state expectation: $\operatorname{quadExpectation}(O, \psi) := \langle \psi, O \psi \rangle$.
 
-`lean4/CampaignAdsCftDualityImport.lean` establishes:
+`lean4/AdsCftDualityImport.lean` establishes:
 1. `pullback_pushforward_id`: $\pi_V(\iota_V(O_{\mathrm{bulk}})) = O_{\mathrm{bulk}}$ whenever $V^T V = I_b$.
 2. `pushforward_mul_of_isometry`: $\iota_V(A) \iota_V(C) = \iota_V(AC)$ whenever $V^T V = I_b$.
 3. `correlator_dictionary_pullback`: For every matrix $V$, boundary observable $O_{\mathrm{bdry}}$, and bulk vector $\psi$,
@@ -98,9 +98,9 @@ When a finite bulk code space $\mathbb{Q}^b$ is embedded into a boundary state s
 
 ## What is proved
 
-- **GKPW Scalar Mass-Dimension Algebra & BF Bound over $\mathbb{Q}$**: `shadowDimension_involutive`, `shadowDimension_sum`, `gkpwMassSq_shadow_eq`, `gkpw_vieta_product`, `gkpw_completed_square`, `gkpw_roots_from_square_discriminant`, `bf_bound_iff_discriminant_nonneg`, `bf_saturation_double_root`, `gkpwMassSq_ge_bfBound`, `no_rational_root_below_bf_bound`, and `recorded_ads5_and_ads3_gkpw_points` in `lean4/CampaignAdsCftDualityImport.lean`.
-- **'t Hooft Ribbon-Graph Genus Scaling & $U(N)/SU(N)$ Split**: `thooft_factorization`, `thooft_planar_vs_torus_suppression`, and `recorded_thooft_and_gauge_counts` in `lean4/CampaignAdsCftDualityImport.lean`.
-- **Finite Isometric Bulk-to-Boundary Dictionary & Non-Surjectivity Fence**: `pullback_pushforward_id`, `pushforward_mul_of_isometry`, `correlator_dictionary_pullback`, `correlator_dictionary_match`, `codeIsometry12_is_isometry`, `codeIsometry12_projector_ne_one`, and `boundary_annihilator_obstruction` in `lean4/CampaignAdsCftDualityImport.lean`.
+- **GKPW Scalar Mass-Dimension Algebra & BF Bound over $\mathbb{Q}$**: `shadowDimension_involutive`, `shadowDimension_sum`, `gkpwMassSq_shadow_eq`, `gkpw_vieta_product`, `gkpw_completed_square`, `gkpw_roots_from_square_discriminant`, `bf_bound_iff_discriminant_nonneg`, `bf_saturation_double_root`, `gkpwMassSq_ge_bfBound`, `no_rational_root_below_bf_bound`, and `recorded_ads5_and_ads3_gkpw_points` in `lean4/AdsCftDualityImport.lean`.
+- **'t Hooft Ribbon-Graph Genus Scaling & $U(N)/SU(N)$ Split**: `thooft_factorization`, `thooft_planar_vs_torus_suppression`, and `recorded_thooft_and_gauge_counts` in `lean4/AdsCftDualityImport.lean`.
+- **Finite Isometric Bulk-to-Boundary Dictionary & Non-Surjectivity Fence**: `pullback_pushforward_id`, `pushforward_mul_of_isometry`, `correlator_dictionary_pullback`, `correlator_dictionary_match`, `codeIsometry12_is_isometry`, `codeIsometry12_projector_ne_one`, and `boundary_annihilator_obstruction` in `lean4/AdsCftDualityImport.lean`.
 - **Independent Verification & Mutation Killing**: 963 exact rational and matrix checks with 0 failures in `checks/independent/ads-cft-duality-import.py`, and 6 of 6 semantic Lean mutations killed in `dag/research/campaign_ads-cft-duality-import_lean_mutation.json`.
 
 ## What is assumed

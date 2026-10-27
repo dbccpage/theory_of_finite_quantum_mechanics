@@ -37,14 +37,14 @@ Lean-checked finite sign, pair and cycle examples; U(1), continuity and the circ
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignGpImportCircleU1.lean::signSquare`
-- `lean4/CampaignGpImportCircleU1.lean::pairsDiffer`
-- `lean4/CampaignGpImportCircleU1.lean::pairCoordsAreSigns`
-- `lean4/CampaignGpImportCircleU1.lean::iNorm`
-- `lean4/CampaignGpImportCircleU1.lean::iSquare`
-- `lean4/CampaignGpImportCircleU1.lean::iSquareNeOne`
-- `lean4/CampaignGpImportCircleU1.lean::cycTwice`
-- `lean4/CampaignGpImportCircleU1.lean::cycThrice`
+- `lean4/CircleU1Import.lean::signSquare`
+- `lean4/CircleU1Import.lean::pairsDiffer`
+- `lean4/CircleU1Import.lean::pairCoordsAreSigns`
+- `lean4/CircleU1Import.lean::iNorm`
+- `lean4/CircleU1Import.lean::iSquare`
+- `lean4/CircleU1Import.lean::iSquareNeOne`
+- `lean4/CircleU1Import.lean::cycTwice`
+- `lean4/CircleU1Import.lean::cycThrice`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

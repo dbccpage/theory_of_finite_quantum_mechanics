@@ -50,7 +50,7 @@ operation_candidates:
 
     theorem trace_append (w : Nat → Int) (xs ys : List Nat) :
         traceWeight w (xs ++ ys) = traceWeight w xs + traceWeight w ys
-  source: lean4/CampaignWittenPairing.lean
+  source: lean4/WittenPairing.lean
   repository: this_repository
   source_sha256: daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1
   status: source_candidate_requires_semantic_review
@@ -64,7 +64,7 @@ relation_candidates:
         traceWeight w (List.replicate bosonicZero 0 ++ paired) -
           traceWeight w (List.replicate fermionicZero 0 ++ paired) =
             (bosonicZero : Int) - (fermionicZero : Int)
-  source: lean4/CampaignWittenPairing.lean
+  source: lean4/WittenPairing.lean
   repository: this_repository
   source_sha256: daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1
   status: source_candidate_requires_semantic_review
@@ -78,26 +78,26 @@ relation_candidates:
         (paired : List Nat) (b f : Nat) :
         traceWeight w (List.replicate b 0 ++ paired) - traceWeight w (List.replicate f 0 ++ paired) =
         traceWeight v (List.replicate b 0 ++ paired) - traceWeight v (List.replicate f 0 ++ paired)
-  source: lean4/CampaignWittenPairing.lean
+  source: lean4/WittenPairing.lean
   repository: this_repository
   source_sha256: daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignWittenPairing.lean::CampaignWittenPairing.paired_trace
+- original_ref: lean4/WittenPairing.lean::WittenPairing.paired_trace
   availability: local
-  symbol: CampaignWittenPairing.paired_trace
-  path: lean4/CampaignWittenPairing.lean
+  symbol: WittenPairing.paired_trace
+  path: lean4/WittenPairing.lean
   repository: this_repository
   sha256: daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1
   declaration_status: declaration_found_not_proof_checked
   line: 21
   role: source_lead_only
-- original_ref: lean4/CampaignWittenPairing.lean::CampaignWittenPairing.weight_independent
+- original_ref: lean4/WittenPairing.lean::WittenPairing.weight_independent
   availability: local
-  symbol: CampaignWittenPairing.weight_independent
-  path: lean4/CampaignWittenPairing.lean
+  symbol: WittenPairing.weight_independent
+  path: lean4/WittenPairing.lean
   repository: this_repository
   sha256: daf7755630c62ceac5984345d2d6cece20a53ffe21fa3d217eebf6e0179fdab1
   declaration_status: declaration_found_not_proof_checked

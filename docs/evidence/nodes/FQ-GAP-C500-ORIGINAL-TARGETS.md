@@ -45,26 +45,26 @@ GAP-C500-B01..B10 RESOLVED_WITH_SCOPED_EVIDENCE: "original target contract remai
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignFqGapC500OriginalTargets.lean`
+### Lean: `lean4/OriginalTargetNumerals.lean`
 
-- file: [lean4/CampaignFqGapC500OriginalTargets.lean](../../../lean4/CampaignFqGapC500OriginalTargets.lean)
-- sha256 (`bytes`): `b0b2c3723f85472fd6099601c25bdd6c8650302e4c8047ab11aa89e705630090`
-- cited in: node.lean, receipt dag/research/campaign_fq-gap-c500-original-targets_lean_replay.json (CampaignFqGapC500OriginalTargets), record TFQ-1025
+- file: [lean4/OriginalTargetNumerals.lean](../../../lean4/OriginalTargetNumerals.lean)
+- sha256 (`bytes`): `c7b1a08231d1dc7417cf9b12e6f76b13f24c5dfb0e6e0aa0126e3f27d2bf8be6`
+- cited in: node.lean, receipt dag/research/campaign_fq-gap-c500-original-targets_lean_replay.json (OriginalTargetNumerals), record TFQ-1025
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gap-c500-original-targets_lean_replay.json](../../../dag/research/campaign_fq-gap-c500-original-targets_lean_replay.json) (module `CampaignFqGapC500OriginalTargets`): recorded sha256 `b0b2c3723f85472fd6099601c25bdd6c8650302e4c8047ab11aa89e705630090` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignFqGapC500OriginalTargets`
+  - receipt [dag/research/campaign_fq-gap-c500-original-targets_lean_replay.json](../../../dag/research/campaign_fq-gap-c500-original-targets_lean_replay.json) (module `OriginalTargetNumerals`): recorded sha256 `c7b1a08231d1dc7417cf9b12e6f76b13f24c5dfb0e6e0aa0126e3f27d2bf8be6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build OriginalTargetNumerals`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignFqGapC500OriginalTargets.abut` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFqGapC500OriginalTargets.abut` |
-| `CampaignFqGapC500OriginalTargets.block10ClauseCount` | yes | yes | yes | none | `#print axioms CampaignFqGapC500OriginalTargets.block10ClauseCount` |
-| `CampaignFqGapC500OriginalTargets.block10ClausesNodup` | yes | yes | yes | none | `#print axioms CampaignFqGapC500OriginalTargets.block10ClausesNodup` |
-| `CampaignFqGapC500OriginalTargets.clauseCountSum` | yes | yes | yes | none | `#print axioms CampaignFqGapC500OriginalTargets.clauseCountSum` |
-| `CampaignFqGapC500OriginalTargets.clauseCountsLength` | yes | yes | yes | none | `#print axioms CampaignFqGapC500OriginalTargets.clauseCountsLength` |
-| `CampaignFqGapC500OriginalTargets.lastClauseCountStrict` | yes | yes | yes | none | `#print axioms CampaignFqGapC500OriginalTargets.lastClauseCountStrict` |
-| `CampaignFqGapC500OriginalTargets.spanLen` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignFqGapC500OriginalTargets.spanLen` |
-| `CampaignFqGapC500OriginalTargets.tenRunCover` | yes | yes | yes | none | `#print axioms CampaignFqGapC500OriginalTargets.tenRunCover` |
-| `CampaignFqGapC500OriginalTargets.tenRunEndpoints` | yes | yes | yes | none | `#print axioms CampaignFqGapC500OriginalTargets.tenRunEndpoints` |
+| `OriginalTargetNumerals.abut` | yes | yes | yes | Quot.sound, propext | `#print axioms OriginalTargetNumerals.abut` |
+| `OriginalTargetNumerals.block10ClauseCount` | yes | yes | yes | none | `#print axioms OriginalTargetNumerals.block10ClauseCount` |
+| `OriginalTargetNumerals.block10ClausesNodup` | yes | yes | yes | none | `#print axioms OriginalTargetNumerals.block10ClausesNodup` |
+| `OriginalTargetNumerals.clauseCountSum` | yes | yes | yes | none | `#print axioms OriginalTargetNumerals.clauseCountSum` |
+| `OriginalTargetNumerals.clauseCountsLength` | yes | yes | yes | none | `#print axioms OriginalTargetNumerals.clauseCountsLength` |
+| `OriginalTargetNumerals.lastClauseCountStrict` | yes | yes | yes | none | `#print axioms OriginalTargetNumerals.lastClauseCountStrict` |
+| `OriginalTargetNumerals.spanLen` | yes | yes | yes | Quot.sound, propext | `#print axioms OriginalTargetNumerals.spanLen` |
+| `OriginalTargetNumerals.tenRunCover` | yes | yes | yes | none | `#print axioms OriginalTargetNumerals.tenRunCover` |
+| `OriginalTargetNumerals.tenRunEndpoints` | yes | yes | yes | none | `#print axioms OriginalTargetNumerals.tenRunEndpoints` |
 | `abut` | yes | yes | yes | Quot.sound, propext | `#print axioms abut` |
 | `block10ClauseCount` | yes | yes | yes | none | `#print axioms block10ClauseCount` |
 | `block10ClausesNodup` | yes | yes | yes | none | `#print axioms block10ClausesNodup` |
@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md](../../../dag/derivations/10_finite_qm_core/tfq_1025_fq_gap_c500_original_targets.md)
-- sha256 (`lf-normalised`): `ba574c57a5920f7d309e85d02a31e664bf72343df3e420e1f1a9a9cbe20b61d4`
+- sha256 (`lf-normalised`): `4b837687f9e034395315ae416e8b28207b674104ab8535315a7b4b13ae81fcbc`
 - generated view: listed, not counted
 - cited in: record TFQ-1025
 - counts toward the grade: no

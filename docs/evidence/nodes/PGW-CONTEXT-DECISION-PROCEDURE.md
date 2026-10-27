@@ -42,37 +42,37 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGenesisContextDecision.lean`
+### Lean: `lean4/GenesisContextDecision.lean`
 
-- file: [lean4/CampaignGenesisContextDecision.lean](../../../lean4/CampaignGenesisContextDecision.lean)
-- sha256 (`bytes`): `621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6`
-- cited in: node.lean, receipt dag/research/campaign_pgw-context-decision-procedure_lean_replay.json (CampaignGenesisContextDecision), record TFQ-0497
+- file: [lean4/GenesisContextDecision.lean](../../../lean4/GenesisContextDecision.lean)
+- sha256 (`bytes`): `b7d4a08565d18dacd9f3d4f82aa953360601a80ed7ede33392b9d477622f81ed`
+- cited in: node.lean, receipt dag/research/campaign_pgw-context-decision-procedure_lean_replay.json (GenesisContextDecision), record TFQ-0497
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-context-decision-procedure_lean_replay.json](../../../dag/research/campaign_pgw-context-decision-procedure_lean_replay.json) (module `CampaignGenesisContextDecision`): recorded sha256 `621d2d700649c84f955bd44669cd180b35fa86e3d78ccc3ea12b71e5d5dc43f6` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGenesisContextDecision`
+  - receipt [dag/research/campaign_pgw-context-decision-procedure_lean_replay.json](../../../dag/research/campaign_pgw-context-decision-procedure_lean_replay.json) (module `GenesisContextDecision`): recorded sha256 `b7d4a08565d18dacd9f3d4f82aa953360601a80ed7ede33392b9d477622f81ed` matches the current file; exit code 0; Lean Lean 4.35.0 (eb6cafb7290e8bd5f2937522d8d804f58f02bafc); Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build GenesisContextDecision`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignGenesisContextDecision.binary_separation` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.binary_separation` |
-| `CampaignGenesisContextDecision.classCount_eq_quotient_card` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.classCount_eq_quotient_card` |
-| `CampaignGenesisContextDecision.collapseTest_correct` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.collapseTest_correct` |
-| `CampaignGenesisContextDecision.exhaustionTest_correct` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.exhaustionTest_correct` |
-| `CampaignGenesisContextDecision.explicit_class_counts` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.explicit_class_counts` |
-| `CampaignGenesisContextDecision.full_context_decides_holding` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.full_context_decides_holding` |
-| `CampaignGenesisContextDecision.holdsTwo_iff_classCount` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.holdsTwo_iff_classCount` |
-| `CampaignGenesisContextDecision.mem_classes` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.mem_classes` |
-| `CampaignGenesisContextDecision.mem_contexts` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.mem_contexts` |
-| `CampaignGenesisContextDecision.mem_options` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.mem_options` |
-| `CampaignGenesisContextDecision.mem_profile` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.mem_profile` |
-| `CampaignGenesisContextDecision.mem_slotTuples` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.mem_slotTuples` |
-| `CampaignGenesisContextDecision.multi_hole_witness` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.multi_hole_witness` |
-| `CampaignGenesisContextDecision.profile_eq_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.profile_eq_iff` |
-| `CampaignGenesisContextDecision.quotientProfile_injective` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.quotientProfile_injective` |
-| `CampaignGenesisContextDecision.separable_iff_not_collapsed` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.separable_iff_not_collapsed` |
-| `CampaignGenesisContextDecision.uniform_rule_exhausted` | yes | yes | yes | propext | `#print axioms CampaignGenesisContextDecision.uniform_rule_exhausted` |
-| `CampaignGenesisContextDecision.uniform_rule_merges` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.uniform_rule_merges` |
-| `CampaignGenesisContextDecision.witness_none_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.witness_none_iff` |
-| `CampaignGenesisContextDecision.witness_sound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignGenesisContextDecision.witness_sound` |
+| `GenesisContextDecision.binary_separation` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisContextDecision.binary_separation` |
+| `GenesisContextDecision.classCount_eq_quotient_card` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisContextDecision.classCount_eq_quotient_card` |
+| `GenesisContextDecision.collapseTest_correct` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisContextDecision.collapseTest_correct` |
+| `GenesisContextDecision.exhaustionTest_correct` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisContextDecision.exhaustionTest_correct` |
+| `GenesisContextDecision.explicit_class_counts` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisContextDecision.explicit_class_counts` |
+| `GenesisContextDecision.full_context_decides_holding` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisContextDecision.full_context_decides_holding` |
+| `GenesisContextDecision.holdsTwo_iff_classCount` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisContextDecision.holdsTwo_iff_classCount` |
+| `GenesisContextDecision.mem_classes` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisContextDecision.mem_classes` |
+| `GenesisContextDecision.mem_contexts` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisContextDecision.mem_contexts` |
+| `GenesisContextDecision.mem_options` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisContextDecision.mem_options` |
+| `GenesisContextDecision.mem_profile` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisContextDecision.mem_profile` |
+| `GenesisContextDecision.mem_slotTuples` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisContextDecision.mem_slotTuples` |
+| `GenesisContextDecision.multi_hole_witness` | yes | yes | yes | Quot.sound, propext | `#print axioms GenesisContextDecision.multi_hole_witness` |
+| `GenesisContextDecision.profile_eq_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisContextDecision.profile_eq_iff` |
+| `GenesisContextDecision.quotientProfile_injective` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisContextDecision.quotientProfile_injective` |
+| `GenesisContextDecision.separable_iff_not_collapsed` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisContextDecision.separable_iff_not_collapsed` |
+| `GenesisContextDecision.uniform_rule_exhausted` | yes | yes | yes | propext | `#print axioms GenesisContextDecision.uniform_rule_exhausted` |
+| `GenesisContextDecision.uniform_rule_merges` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisContextDecision.uniform_rule_merges` |
+| `GenesisContextDecision.witness_none_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisContextDecision.witness_none_iff` |
+| `GenesisContextDecision.witness_sound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms GenesisContextDecision.witness_sound` |
 
 - counts toward the grade: yes
 
@@ -122,7 +122,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0497_context_decision_procedure.md`
 
 - file: [dag/derivations/02_genesis/tfq_0497_context_decision_procedure.md](../../../dag/derivations/02_genesis/tfq_0497_context_decision_procedure.md)
-- sha256 (`lf-normalised`): `1cb7ae2ad3b79091afe32e598a5b2c0a29bb3bd1f407a86bcb7c196990d97aeb`
+- sha256 (`lf-normalised`): `54bdf76bda2f1126b1961c3c546c3297a11333f878fa37c0b25002ef1ac91bd4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0497
 - counts toward the grade: no
@@ -130,7 +130,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pgw-context-decision-procedure.md`
 
 - file: [dag/derivations/independent/pgw-context-decision-procedure.md](../../../dag/derivations/independent/pgw-context-decision-procedure.md)
-- sha256 (`lf-normalised`): `36b426be2b4a346e353993091ed47d351606bfebd15f58877e9f13e14f424224`
+- sha256 (`lf-normalised`): `ac5d9323f037ea3d8fc9250f3458ecd6f7ab53d7d804f75993998cfd8a430940`
 - cited in: node.source
 - counts toward the grade: yes
 

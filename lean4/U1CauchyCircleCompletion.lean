@@ -32,7 +32,7 @@ and the precompactness / Cauchy completion of the circle group:
    (`RegPhaseSeq`), total boundedness yields the compact circle group $\mathbb{R}/\mathbb{Z} \cong U(1)$.
 -/
 
-namespace U1Fable.CauchyCircleCompletion
+namespace U1Finite.CauchyCircleCompletion
 
 /-! ## Section 1: Algebraic Half-Angle Restoration in $\mathbb{Q}(\sqrt{5})(i)$ -/
 
@@ -398,61 +398,61 @@ theorem regPhaseSeq_precompact_approx (x : RegPhaseSeq)
   rw [abs_le]
   constructor <;> linarith
 
-end U1Fable.CauchyCircleCompletion
+end U1Finite.CauchyCircleCompletion
 
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.zero
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.one
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.ofRat
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.sqrt5
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.add
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.sub
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.neg
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.mul
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.zero_a
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.zero_b
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.one_a
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.one_b
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.add_a
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.add_b
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.sub_a
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.sub_b
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.neg_a
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.neg_b
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.mul_a
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.mul_b
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.add_assoc
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.add_comm
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.zero_add
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.add_zero
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.neg_add_cancel
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.mul_assoc
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.mul_comm
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.one_mul
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.mul_one
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.left_distrib
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.right_distrib
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.sqrt5_sq
-#print axioms U1Fable.CauchyCircleCompletion.QuadSqrt5.norm_sq_mul
-#print axioms U1Fable.CauchyCircleCompletion.CircleQuadSqrt5.mul
-#print axioms U1Fable.CauchyCircleCompletion.CircleQuadSqrt5.one
-#print axioms U1Fable.CauchyCircleCompletion.CircleQuadSqrt5.inv
-#print axioms U1Fable.CauchyCircleCompletion.u345Quad
-#print axioms U1Fable.CauchyCircleCompletion.wHalf
-#print axioms U1Fable.CauchyCircleCompletion.wHalf_sq_eq_u345
-#print axioms U1Fable.CauchyCircleCompletion.wHalf_not_rational
-#print axioms U1Fable.CauchyCircleCompletion.nested_lo_mono_add
-#print axioms U1Fable.CauchyCircleCompletion.nested_hi_anti_add
-#print axioms U1Fable.CauchyCircleCompletion.nested_lo_le_hi_of_le
-#print axioms U1Fable.CauchyCircleCompletion.nested_cross_le
-#print axioms U1Fable.CauchyCircleCompletion.nested_dyadic_cauchy
-#print axioms U1Fable.CauchyCircleCompletion.unit_frac_nonneg
-#print axioms U1Fable.CauchyCircleCompletion.ofRatSeq
-#print axioms U1Fable.CauchyCircleCompletion.ofRatSeq_approx
-#print axioms U1Fable.CauchyCircleCompletion.negSeq
-#print axioms U1Fable.CauchyCircleCompletion.avgSeq
-#print axioms U1Fable.CauchyCircleCompletion.cauchyEquiv
-#print axioms U1Fable.CauchyCircleCompletion.cauchyEquiv_refl
-#print axioms U1Fable.CauchyCircleCompletion.cauchyEquiv_symm
-#print axioms U1Fable.CauchyCircleCompletion.cauchyEquiv_trans
-#print axioms U1Fable.CauchyCircleCompletion.finite_torsion_grid_covers_unit_interval
-#print axioms U1Fable.CauchyCircleCompletion.regPhaseSeq_precompact_approx
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.zero
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.one
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.ofRat
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.sqrt5
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.add
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.sub
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.neg
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.mul
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.zero_a
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.zero_b
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.one_a
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.one_b
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.add_a
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.add_b
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.sub_a
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.sub_b
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.neg_a
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.neg_b
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.mul_a
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.mul_b
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.add_assoc
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.add_comm
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.zero_add
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.add_zero
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.neg_add_cancel
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.mul_assoc
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.mul_comm
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.one_mul
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.mul_one
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.left_distrib
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.right_distrib
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.sqrt5_sq
+#print axioms U1Finite.CauchyCircleCompletion.QuadSqrt5.norm_sq_mul
+#print axioms U1Finite.CauchyCircleCompletion.CircleQuadSqrt5.mul
+#print axioms U1Finite.CauchyCircleCompletion.CircleQuadSqrt5.one
+#print axioms U1Finite.CauchyCircleCompletion.CircleQuadSqrt5.inv
+#print axioms U1Finite.CauchyCircleCompletion.u345Quad
+#print axioms U1Finite.CauchyCircleCompletion.wHalf
+#print axioms U1Finite.CauchyCircleCompletion.wHalf_sq_eq_u345
+#print axioms U1Finite.CauchyCircleCompletion.wHalf_not_rational
+#print axioms U1Finite.CauchyCircleCompletion.nested_lo_mono_add
+#print axioms U1Finite.CauchyCircleCompletion.nested_hi_anti_add
+#print axioms U1Finite.CauchyCircleCompletion.nested_lo_le_hi_of_le
+#print axioms U1Finite.CauchyCircleCompletion.nested_cross_le
+#print axioms U1Finite.CauchyCircleCompletion.nested_dyadic_cauchy
+#print axioms U1Finite.CauchyCircleCompletion.unit_frac_nonneg
+#print axioms U1Finite.CauchyCircleCompletion.ofRatSeq
+#print axioms U1Finite.CauchyCircleCompletion.ofRatSeq_approx
+#print axioms U1Finite.CauchyCircleCompletion.negSeq
+#print axioms U1Finite.CauchyCircleCompletion.avgSeq
+#print axioms U1Finite.CauchyCircleCompletion.cauchyEquiv
+#print axioms U1Finite.CauchyCircleCompletion.cauchyEquiv_refl
+#print axioms U1Finite.CauchyCircleCompletion.cauchyEquiv_symm
+#print axioms U1Finite.CauchyCircleCompletion.cauchyEquiv_trans
+#print axioms U1Finite.CauchyCircleCompletion.finite_torsion_grid_covers_unit_interval
+#print axioms U1Finite.CauchyCircleCompletion.regPhaseSeq_precompact_approx

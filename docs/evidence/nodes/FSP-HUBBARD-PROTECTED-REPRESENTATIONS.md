@@ -42,32 +42,32 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignFspHubbardProtected.lean`
+### Lean: `lean4/FermionSignHubbardProtected.lean`
 
-- file: [lean4/CampaignFspHubbardProtected.lean](../../../lean4/CampaignFspHubbardProtected.lean)
-- sha256 (`bytes`): `69e8f526b33c0cf12ca315c6a419d69e6d8d96f83bae550b9e94e7af8b36c074`
-- cited in: node.lean, receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (CampaignFspHubbardProtected)
+- file: [lean4/FermionSignHubbardProtected.lean](../../../lean4/FermionSignHubbardProtected.lean)
+- sha256 (`bytes`): `365483617d0e2261ff3450ab9e5a891e0c51a8bc2ee69bfecbb702d00544f2e9`
+- cited in: node.lean, receipt dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json (FermionSignHubbardProtected)
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json](../../../dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json) (module `CampaignFspHubbardProtected`): recorded sha256 `69e8f526b33c0cf12ca315c6a419d69e6d8d96f83bae550b9e94e7af8b36c074` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignFspHubbardProtected`
+  - receipt [dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json](../../../dag/research/campaign_fsp-hubbard-protected-representations_lean_replay.json) (module `FermionSignHubbardProtected`): recorded sha256 `365483617d0e2261ff3450ab9e5a891e0c51a8bc2ee69bfecbb702d00544f2e9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build FermionSignHubbardProtected`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignFspHubbardProtected.attractive_pairing_sq_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.attractive_pairing_sq_nonneg` |
-| `CampaignFspHubbardProtected.attractive_weight_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.attractive_weight_nonneg` |
-| `CampaignFspHubbardProtected.attractive_weight_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.attractive_weight_pos` |
-| `CampaignFspHubbardProtected.half_filled_bipartite_weight_eq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.half_filled_bipartite_weight_eq` |
-| `CampaignFspHubbardProtected.half_filled_bipartite_weight_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.half_filled_bipartite_weight_nonneg` |
-| `CampaignFspHubbardProtected.half_filled_bipartite_weight_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.half_filled_bipartite_weight_pos` |
-| `CampaignFspHubbardProtected.hubbard_determinant_positivity_is_restricted` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.hubbard_determinant_positivity_is_restricted` |
-| `CampaignFspHubbardProtected.not_unconditional_positivity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.not_unconditional_positivity` |
-| `CampaignFspHubbardProtected.opposite_signs_weight_neg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.opposite_signs_weight_neg` |
-| `CampaignFspHubbardProtected.witness_doped_ring_d_down_neg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.witness_doped_ring_d_down_neg` |
-| `CampaignFspHubbardProtected.witness_doped_ring_d_up_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.witness_doped_ring_d_up_pos` |
-| `CampaignFspHubbardProtected.witness_doped_ring_weight_neg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.witness_doped_ring_weight_neg` |
-| `CampaignFspHubbardProtected.witness_triangle_d_down_neg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.witness_triangle_d_down_neg` |
-| `CampaignFspHubbardProtected.witness_triangle_d_up_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.witness_triangle_d_up_pos` |
-| `CampaignFspHubbardProtected.witness_triangle_weight_neg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspHubbardProtected.witness_triangle_weight_neg` |
+| `FermionSignHubbardProtected.attractive_pairing_sq_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignHubbardProtected.attractive_pairing_sq_nonneg` |
+| `FermionSignHubbardProtected.attractive_weight_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignHubbardProtected.attractive_weight_nonneg` |
+| `FermionSignHubbardProtected.attractive_weight_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignHubbardProtected.attractive_weight_pos` |
+| `FermionSignHubbardProtected.half_filled_bipartite_weight_eq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignHubbardProtected.half_filled_bipartite_weight_eq` |
+| `FermionSignHubbardProtected.half_filled_bipartite_weight_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignHubbardProtected.half_filled_bipartite_weight_nonneg` |
+| `FermionSignHubbardProtected.half_filled_bipartite_weight_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignHubbardProtected.half_filled_bipartite_weight_pos` |
+| `FermionSignHubbardProtected.hubbard_determinant_positivity_is_restricted` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignHubbardProtected.hubbard_determinant_positivity_is_restricted` |
+| `FermionSignHubbardProtected.not_unconditional_positivity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignHubbardProtected.not_unconditional_positivity` |
+| `FermionSignHubbardProtected.opposite_signs_weight_neg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignHubbardProtected.opposite_signs_weight_neg` |
+| `FermionSignHubbardProtected.witness_doped_ring_d_down_neg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignHubbardProtected.witness_doped_ring_d_down_neg` |
+| `FermionSignHubbardProtected.witness_doped_ring_d_up_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignHubbardProtected.witness_doped_ring_d_up_pos` |
+| `FermionSignHubbardProtected.witness_doped_ring_weight_neg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignHubbardProtected.witness_doped_ring_weight_neg` |
+| `FermionSignHubbardProtected.witness_triangle_d_down_neg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignHubbardProtected.witness_triangle_d_down_neg` |
+| `FermionSignHubbardProtected.witness_triangle_d_up_pos` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignHubbardProtected.witness_triangle_d_up_pos` |
+| `FermionSignHubbardProtected.witness_triangle_weight_neg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignHubbardProtected.witness_triangle_weight_neg` |
 
 - counts toward the grade: yes
 
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-hubbard-protected-representations.md`
 
 - file: [dag/derivations/independent/fsp-hubbard-protected-representations.md](../../../dag/derivations/independent/fsp-hubbard-protected-representations.md)
-- sha256 (`lf-normalised`): `cbc138ed8d9302fac11dc94b96435772faf042807c3289d2dd28fbf288636575`
+- sha256 (`lf-normalised`): `063cc88f2b49307f6e58edd7951eaffb0018b811f334c3b4ee113d6ccf5ae969`
 - cited in: node.source
 - counts toward the grade: yes
 

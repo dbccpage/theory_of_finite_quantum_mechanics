@@ -1,6 +1,6 @@
 """Finite circle step and higher-inductive shape records.
 
-Origin: lean4/H011Circle.lean theorem cyc3_one_double_ne_zero
+Origin: lean4/HilbertWalkCircle.lean theorem cyc3_one_double_ne_zero
 ((1 : Fin 3) + 1 ≠ 0) and theorem cyc3_meets_connectedness_shadow.
 Claim: urn:omega:fqm:hott:circle-step-witness:v1
 AuthorityEffect: None

@@ -16,7 +16,7 @@ Checks:
    the 3x3 Q(i) matrix link evaluation, plus module-title fence (`ravera_dfm_finite_to_continuum.rs`
    is not a bridge theorem).
 4. Repository source and Lean 4 theorem anchors in `lean4/FiniteQM.lean` and
-   `lean4/CampaignTfq0042FiniteQcd.lean`.
+   `lean4/Su3GribovDiamond.lean`.
 """
 
 from __future__ import annotations
@@ -207,10 +207,10 @@ def run_all_checks() -> dict[str, Any]:
     # -------------------------------------------------------------------------
     repo_root = Path(__file__).resolve().parents[2]
     fqm = repo_root / "lean4/FiniteQM.lean"
-    lean_file = repo_root / "lean4/CampaignTfq0042FiniteQcd.lean"
+    lean_file = repo_root / "lean4/Su3GribovDiamond.lean"
 
     record(fqm.exists(), "lean4/FiniteQM.lean exists")
-    record(lean_file.exists(), "lean4/CampaignTfq0042FiniteQcd.lean exists")
+    record(lean_file.exists(), "lean4/Su3GribovDiamond.lean exists")
 
     fqm_src = fqm.read_text(encoding="utf-8")
     for sym in [
@@ -233,8 +233,8 @@ def run_all_checks() -> dict[str, Any]:
         "theorem tfq0042_gribov_diamond_and_title_scope_ledger_fence",
     ]
     for thm in required_theorems:
-        record(thm in lean_src, f"CampaignTfq0042FiniteQcd.lean contains {thm}")
-    record("sorry" not in lean_src, "CampaignTfq0042FiniteQcd.lean is sorry-free")
+        record(thm in lean_src, f"Su3GribovDiamond.lean contains {thm}")
+    record("sorry" not in lean_src, "Su3GribovDiamond.lean is sorry-free")
 
     return {
         "node_id": "TFQ-0042",

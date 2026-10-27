@@ -32,8 +32,8 @@ REVIEWED_DECLARATIONS (carrier_contract.yaml); minimality_proved: false; all_tar
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/H052CyclotomicTowerDirected.lean::cyclotomic_tower_is_directed`
-- `lean4/H057HigherDimConductorBounds.lean::css_horodecki_conductor_1_div_120`
+- `lean4/CyclotomicTowerDirected.lean::cyclotomic_tower_is_directed`
+- `lean4/HigherDimConductorBounds.lean::css_horodecki_conductor_1_div_120`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_quantum_physics/src/tower.rs::CyclotomicTower`

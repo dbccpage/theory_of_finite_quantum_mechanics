@@ -17,7 +17,7 @@ Using the external finite-corner classification of single 6x6 complex Hadamard m
 This record is that one integer block identity. It does not classify complex Hadamard matrices, does not list retained finite corners, and does not equate quartet existence with completion of an external reconstruction. The complex adjoint is not identified with this integer transpose. Exclusion over every retained reconstruction stays open. AuthorityEffect: None.
 
 ### Witness Audit
-CampaignMub6FiniteCornerReduction.lean checks one integer 3 by 3 inverse and the forced block identity for that triple. The external finite-corner classification and any quartet equivalence stay outside the module.
+Mub6FiniteCornerReduction.lean checks one integer 3 by 3 inverse and the forced block identity for that triple. The external finite-corner classification and any quartet equivalence stay outside the module.
 
 ---
 
@@ -31,11 +31,11 @@ CampaignMub6FiniteCornerReduction.lean checks one integer 3 by 3 inverse and the
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_left`
-- `lean4/CampaignMub6FiniteCornerReduction.lean::b_inv_right`
-- `lean4/CampaignMub6FiniteCornerReduction.lean::d_formula`
-- `lean4/CampaignMub6FiniteCornerReduction.lean::cross_zero`
-- `lean4/CampaignMub6FiniteCornerReduction.lean::zero_cross_ne`
+- `lean4/Mub6FiniteCornerReduction.lean::b_inv_left`
+- `lean4/Mub6FiniteCornerReduction.lean::b_inv_right`
+- `lean4/Mub6FiniteCornerReduction.lean::d_formula`
+- `lean4/Mub6FiniteCornerReduction.lean::cross_zero`
+- `lean4/Mub6FiniteCornerReduction.lean::zero_cross_ne`
 
 ### Rust Certifiers
 - *none*

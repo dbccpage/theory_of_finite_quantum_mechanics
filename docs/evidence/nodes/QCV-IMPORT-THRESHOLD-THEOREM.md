@@ -42,26 +42,26 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignQcvImportThresholdTheorem.lean`
+### Lean: `lean4/ThresholdTheoremImport.lean`
 
-- file: [lean4/CampaignQcvImportThresholdTheorem.lean](../../../lean4/CampaignQcvImportThresholdTheorem.lean)
-- sha256 (`bytes`): `e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d`
-- cited in: node.lean, receipt dag/research/campaign_qcv-import-threshold-theorem_lean_replay.json (CampaignQcvImportThresholdTheorem), record TFQ-1318
+- file: [lean4/ThresholdTheoremImport.lean](../../../lean4/ThresholdTheoremImport.lean)
+- sha256 (`bytes`): `b16952fa7f055afcb4f8ec5be0274cae786415c914beb9191640686be1567f0c`
+- cited in: node.lean, receipt dag/research/campaign_qcv-import-threshold-theorem_lean_replay.json (ThresholdTheoremImport), record TFQ-1318
 - replay: `verified`
-  - receipt [dag/research/campaign_qcv-import-threshold-theorem_lean_replay.json](../../../dag/research/campaign_qcv-import-threshold-theorem_lean_replay.json) (module `CampaignQcvImportThresholdTheorem`): recorded sha256 `e790a5b785381c49a7e2bb81aa2cd251c2809b2f4c1656a0ac2e9f6997e93f7d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignQcvImportThresholdTheorem`
+  - receipt [dag/research/campaign_qcv-import-threshold-theorem_lean_replay.json](../../../dag/research/campaign_qcv-import-threshold-theorem_lean_replay.json) (module `ThresholdTheoremImport`): recorded sha256 `b16952fa7f055afcb4f8ec5be0274cae786415c914beb9191640686be1567f0c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build ThresholdTheoremImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignQcvImportThresholdTheorem.mul_eight` | yes | yes | yes | none | `#print axioms CampaignQcvImportThresholdTheorem.mul_eight` |
-| `CampaignQcvImportThresholdTheorem.orbit_three` | yes | yes | yes | none | `#print axioms CampaignQcvImportThresholdTheorem.orbit_three` |
-| `CampaignQcvImportThresholdTheorem.scale_one` | yes | yes | yes | none | `#print axioms CampaignQcvImportThresholdTheorem.scale_one` |
-| `CampaignQcvImportThresholdTheorem.scale_zero` | yes | yes | yes | none | `#print axioms CampaignQcvImportThresholdTheorem.scale_zero` |
-| `CampaignQcvImportThresholdTheorem.step_eight` | yes | yes | yes | none | `#print axioms CampaignQcvImportThresholdTheorem.step_eight` |
-| `CampaignQcvImportThresholdTheorem.step_one` | yes | yes | yes | none | `#print axioms CampaignQcvImportThresholdTheorem.step_one` |
-| `CampaignQcvImportThresholdTheorem.step_two` | yes | yes | yes | none | `#print axioms CampaignQcvImportThresholdTheorem.step_two` |
-| `CampaignQcvImportThresholdTheorem.step_zero` | yes | yes | yes | none | `#print axioms CampaignQcvImportThresholdTheorem.step_zero` |
-| `CampaignQcvImportThresholdTheorem.t_spec` | yes | yes | yes | none | `#print axioms CampaignQcvImportThresholdTheorem.t_spec` |
+| `ThresholdTheoremImport.mul_eight` | yes | yes | yes | none | `#print axioms ThresholdTheoremImport.mul_eight` |
+| `ThresholdTheoremImport.orbit_three` | yes | yes | yes | none | `#print axioms ThresholdTheoremImport.orbit_three` |
+| `ThresholdTheoremImport.scale_one` | yes | yes | yes | none | `#print axioms ThresholdTheoremImport.scale_one` |
+| `ThresholdTheoremImport.scale_zero` | yes | yes | yes | none | `#print axioms ThresholdTheoremImport.scale_zero` |
+| `ThresholdTheoremImport.step_eight` | yes | yes | yes | none | `#print axioms ThresholdTheoremImport.step_eight` |
+| `ThresholdTheoremImport.step_one` | yes | yes | yes | none | `#print axioms ThresholdTheoremImport.step_one` |
+| `ThresholdTheoremImport.step_two` | yes | yes | yes | none | `#print axioms ThresholdTheoremImport.step_two` |
+| `ThresholdTheoremImport.step_zero` | yes | yes | yes | none | `#print axioms ThresholdTheoremImport.step_zero` |
+| `ThresholdTheoremImport.t_spec` | yes | yes | yes | none | `#print axioms ThresholdTheoremImport.t_spec` |
 | `mul_eight` | yes | yes | yes | none | `#print axioms mul_eight` |
 | `orbit_three` | yes | yes | yes | none | `#print axioms orbit_three` |
 | `scale_one` | yes | yes | yes | none | `#print axioms scale_one` |
@@ -89,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md`
 
 - file: [dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md](../../../dag/derivations/29_computation/tfq_1318_qcv_import_threshold_theorem.md)
-- sha256 (`lf-normalised`): `96e34a1970f3efff9dd255e815ee8c694f5c9c39206594fb45837ec142ba4d49`
+- sha256 (`lf-normalised`): `b7bbbb4250baa2235a08164fd2a04c87e7f2dede5771adedad8ad79e550ced24`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1318
 - counts toward the grade: no

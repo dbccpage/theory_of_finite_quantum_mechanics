@@ -13,8 +13,8 @@ rank-one effect \(P_x\) in state \(y\). Rays identify nonzero scalar multiples.
 These spaces are finite dimensional; their ray sets are not finite.
 
 All new declarations are in
-[CampaignTransitionProbability.lean](../../../lean4/CampaignTransitionProbability.lean),
-namespace CampaignTransitionProbability. Every hypothesis below is explicitly
+[TransitionProbability.lean](../../../lean4/TransitionProbability.lean),
+namespace TransitionProbability. Every hypothesis below is explicitly
 defined there. No sufficient theorem takes TpPreserving as an input.
 
 ## Hypothesis map

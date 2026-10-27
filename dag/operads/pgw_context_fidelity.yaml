@@ -39,7 +39,7 @@ operation_candidates:
   name: State
   line: 12
   signature_excerpt: abbrev State
-  source: lean4/CampaignPgwContextFidelity.lean
+  source: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   source_sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   status: source_candidate_requires_semantic_review
@@ -47,7 +47,7 @@ operation_candidates:
   name: validTrace
   line: 40
   signature_excerpt: 'def validTrace (s : State) (τ : List Step) : Prop'
-  source: lean4/CampaignPgwContextFidelity.lean
+  source: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   source_sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   status: source_candidate_requires_semantic_review
@@ -55,7 +55,7 @@ operation_candidates:
   name: separatingTrace
   line: 46
   signature_excerpt: 'def separatingTrace (s'' : State) : List Step'
-  source: lean4/CampaignPgwContextFidelity.lean
+  source: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   source_sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   status: source_candidate_requires_semantic_review
@@ -63,7 +63,7 @@ operation_candidates:
   name: Step
   line: 19
   signature_excerpt: inductive Step
-  source: lean4/CampaignPgwContextFidelity.lean
+  source: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   source_sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   status: source_candidate_requires_semantic_review
@@ -76,7 +76,7 @@ operation_candidates:
       | .assertHasA => s = true
 
     def validTrace (s : State) (τ : List Step) : Prop
-  source: lean4/CampaignPgwContextFidelity.lean
+  source: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   source_sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   status: source_candidate_requires_semantic_review
@@ -84,7 +84,7 @@ operation_candidates:
   name: separatingStep
   line: 43
   signature_excerpt: 'def separatingStep (s'' : State) : Step'
-  source: lean4/CampaignPgwContextFidelity.lean
+  source: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   source_sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   status: source_candidate_requires_semantic_review
@@ -92,7 +92,7 @@ operation_candidates:
   name: Event
   line: 14
   signature_excerpt: inductive Event
-  source: lean4/CampaignPgwContextFidelity.lean
+  source: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   source_sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   status: source_candidate_requires_semantic_review
@@ -100,7 +100,7 @@ operation_candidates:
   name: ContractSound
   line: 69
   signature_excerpt: 'def ContractSound (accept : State → List Event → Prop) : Prop'
-  source: lean4/CampaignPgwContextFidelity.lean
+  source: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   source_sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   status: source_candidate_requires_semantic_review
@@ -108,7 +108,7 @@ operation_candidates:
   name: replay
   line: 33
   signature_excerpt: 'def replay (h : List Event) : State'
-  source: lean4/CampaignPgwContextFidelity.lean
+  source: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   source_sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   status: source_candidate_requires_semantic_review
@@ -121,7 +121,7 @@ operation_candidates:
       | .designateA => true
 
     def replay (h : List Event) : State
-  source: lean4/CampaignPgwContextFidelity.lean
+  source: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   source_sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   status: source_candidate_requires_semantic_review
@@ -129,7 +129,7 @@ operation_candidates:
   name: answerOnlyDiamond
   line: 92
   signature_excerpt: 'def answerOnlyDiamond (h : List Event) : Answer'
-  source: lean4/CampaignPgwContextFidelity.lean
+  source: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   source_sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   status: source_candidate_requires_semantic_review
@@ -137,7 +137,7 @@ operation_candidates:
   name: Answer
   line: 24
   signature_excerpt: inductive Answer
-  source: lean4/CampaignPgwContextFidelity.lean
+  source: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   source_sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   status: source_candidate_requires_semantic_review
@@ -148,7 +148,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem stale_not_transferred (s s' : State) (hne : s ≠ s') :
         validTrace s' (separatingTrace s') ∧ ¬ validTrace s (separatingTrace s')
-  source: lean4/CampaignPgwContextFidelity.lean
+  source: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   source_sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   status: source_candidate_requires_semantic_review
@@ -160,7 +160,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem sound_iff_only_replay (accept : State → List Event → Prop) :
         ContractSound accept ↔ ∀ c h, accept c h → c = replay h
-  source: lean4/CampaignPgwContextFidelity.lean
+  source: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   source_sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   status: source_candidate_requires_semantic_review
@@ -175,35 +175,35 @@ relation_candidates:
           answerOnlyDiamond [Event.supplyDiamond, Event.designateA] = Answer.retracted ∧
           replay [Event.supplyDiamond] = false ∧
           replay [Event.supplyDiamond, Event.designateA] = true
-  source: lean4/CampaignPgwContextFidelity.lean
+  source: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   source_sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignPgwContextFidelity.lean::stale_not_transferred
+- original_ref: lean4/PregenesisContextFidelity.lean::stale_not_transferred
   availability: local
   symbol: stale_not_transferred
-  path: lean4/CampaignPgwContextFidelity.lean
+  path: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   declaration_status: declaration_found_not_proof_checked
   line: 56
   role: source_lead_only
-- original_ref: lean4/CampaignPgwContextFidelity.lean::sound_iff_only_replay
+- original_ref: lean4/PregenesisContextFidelity.lean::sound_iff_only_replay
   availability: local
   symbol: sound_iff_only_replay
-  path: lean4/CampaignPgwContextFidelity.lean
+  path: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   declaration_status: declaration_found_not_proof_checked
   line: 88
   role: source_lead_only
-- original_ref: lean4/CampaignPgwContextFidelity.lean::answers_follow_received_history
+- original_ref: lean4/PregenesisContextFidelity.lean::answers_follow_received_history
   availability: local
   symbol: answers_follow_received_history
-  path: lean4/CampaignPgwContextFidelity.lean
+  path: lean4/PregenesisContextFidelity.lean
   repository: this_repository
   sha256: a22e35ccba964cdeded2bc33513c6004ae25755c44b61791a6e784da56307643
   declaration_status: declaration_found_not_proof_checked

@@ -13,7 +13,7 @@ AuthorityEffect: None.
   - P. Calabrese and J. Cardy, *Entanglement entropy and quantum field theory*, J. Stat. Mech. **0406** (2004) P06002 [arXiv:hep-th/0405152]
   - S. Ryu and T. Takayanagi, *Holographic Derivation of Entanglement Entropy from AdS/CFT*, Phys. Rev. Lett. **96** (2006) 181602 [arXiv:hep-th/0603001]
 - **Verification Artifacts**:
-  - Lean 4 module: `lean4/CampaignAdsHappyToyNotDualityGap.lean`
+  - Lean 4 module: `lean4/AdsHappyToyNotDualityGap.lean`
   - Standalone zero-import Python checker: `checks/independent/ads-happy-toy-not-duality-gap.py`
   - Receipts: `dag/research/campaign_ads-happy-toy-not-duality-gap_lean_replay.json`, `dag/research/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json`, `dag/research/campaign_ads-happy-toy-not-duality-gap_independent.json`
 
@@ -30,7 +30,7 @@ $$
 S_n^{\mathrm{CFT}}(A) = \frac{1 + 1/n}{2}\,S_1 = \operatorname{cftRenyiFactor}(n)\cdot S_1.
 $$
 
-Over $\mathbb{Q}$, `lean4/CampaignAdsHappyToyNotDualityGap.lean` establishes:
+Over $\mathbb{Q}$, `lean4/AdsHappyToyNotDualityGap.lean` establishes:
 - `cftRenyiFactor_one`: $\operatorname{cftRenyiFactor}(1) = \operatorname{stabilizerRenyiFactor}(1) = 1$.
 - `recorded_cft_vs_stabilizer_renyi_factors`: $\operatorname{cftRenyiFactor}(2) = 3/4$, $\operatorname{cftRenyiFactor}(3) = 2/3$, $\operatorname{cftRenyiFactor}(4) = 5/8$, with unit-entropy defects $1/4, 1/3, 3/8$.
 - `cftRenyiFactor_sub_half`: $\operatorname{cftRenyiFactor}(n) - 1/2 = 1/(2n)$.
@@ -42,7 +42,7 @@ Over $\mathbb{Q}$, `lean4/CampaignAdsHappyToyNotDualityGap.lean` establishes:
 
 ## 2. Explicit Ryu-Takayanagi Minimal-Cut Deficit Witnesses & Complete Length Census on the HaPPY `{5,4}` Patch
 
-Building on `FrontierHappyMincut` (the 20-qubit boundary state of the 6-pentagon `{5,4}` HaPPY star patch with all 6 bulk logical legs fixed in $|0_L\rangle$), `lean4/CampaignAdsHappyToyNotDualityGap.lean` resolves the exact structure of the 40 intervals where the naive Ryu-Takayanagi minimal-cut equality $S(A) = \operatorname{mincut}(A)$ fails:
+Building on `FrontierHappyMincut` (the 20-qubit boundary state of the 6-pentagon `{5,4}` HaPPY star patch with all 6 bulk logical legs fixed in $|0_L\rangle$), `lean4/AdsHappyToyNotDualityGap.lean` resolves the exact structure of the 40 intervals where the naive Ryu-Takayanagi minimal-cut equality $S(A) = \operatorname{mincut}(A)$ fails:
 - `happy_witness_start2_len8_deficit`: For the explicit 8-qubit contiguous interval `(start = 2, len = 8)` (qubits `2..9`, splitting outer pentagons `0` and `2` each `2|2` across outer pentagon `1`), `intervalEntropy 2 8 = 4 < 5 = intervalMincut 2 8`.
 - `happy_witness_start2_len12_deficit`: For the complementary 12-qubit interval `(start = 2, len = 12)`, `intervalEntropy 2 12 = 4 < 5 = intervalMincut 2 12`.
 - `happy_fivefold_rotational_deficit_orbit`: Across all five outer pentagons $k \in \{0, 1, 2, 3, 4\}$, the rotated 8-qubit interval `(4 * k + 2, 8)` satisfies `intervalEntropy (4 * k + 2) 8 = 4` and `intervalMincut (4 * k + 2) 8 = 5`.
@@ -64,9 +64,9 @@ Building on `FrontierHappyMincut` (the 20-qubit boundary state of the 6-pentagon
 
 ## What is proved
 
-- **Rényi Spectrum Non-Equivalence**: `cftRenyiFactor_one`, `recorded_cft_vs_stabilizer_renyi_factors`, `cftRenyiFactor_sub_half`, `renyiSpectrumDefect_formula`, `renyiSpectrumDefect_pos_of_gt_one`, `cft_ne_stabilizer_renyi_of_gt_one`, and `cftRenyiFactor_strict_anti` in `lean4/CampaignAdsHappyToyNotDualityGap.lean`.
-- **Explicit Ryu-Takayanagi Deficit Witnesses & Length Census on the HaPPY `{5,4}` Patch**: `happy_witness_start2_len8_deficit`, `happy_witness_start2_len12_deficit`, `happy_fivefold_rotational_deficit_orbit`, `happy_short_and_long_intervals_exact_mincut`, and `happy_deficit_distribution_by_length` in `lean4/CampaignAdsHappyToyNotDualityGap.lean`.
-- **Disconnected Mutual Information Witnesses & Hilbert Codimension Fence**: `happy_disconnected_mutual_information_witnesses`, `code_subspace_strict_codimension`, and `recorded_happy_tiling_hilbert_codimensions` in `lean4/CampaignAdsHappyToyNotDualityGap.lean`.
+- **Rényi Spectrum Non-Equivalence**: `cftRenyiFactor_one`, `recorded_cft_vs_stabilizer_renyi_factors`, `cftRenyiFactor_sub_half`, `renyiSpectrumDefect_formula`, `renyiSpectrumDefect_pos_of_gt_one`, `cft_ne_stabilizer_renyi_of_gt_one`, and `cftRenyiFactor_strict_anti` in `lean4/AdsHappyToyNotDualityGap.lean`.
+- **Explicit Ryu-Takayanagi Deficit Witnesses & Length Census on the HaPPY `{5,4}` Patch**: `happy_witness_start2_len8_deficit`, `happy_witness_start2_len12_deficit`, `happy_fivefold_rotational_deficit_orbit`, `happy_short_and_long_intervals_exact_mincut`, and `happy_deficit_distribution_by_length` in `lean4/AdsHappyToyNotDualityGap.lean`.
+- **Disconnected Mutual Information Witnesses & Hilbert Codimension Fence**: `happy_disconnected_mutual_information_witnesses`, `code_subspace_strict_codimension`, and `recorded_happy_tiling_hilbert_codimensions` in `lean4/AdsHappyToyNotDualityGap.lean`.
 - **Independent Verification & Mutation Killing**: 499 exact rational and GF(2) symplectic checks with 0 failures in `checks/independent/ads-happy-toy-not-duality-gap.py`, and 6 of 6 semantic Lean mutations killed in `dag/research/campaign_ads-happy-toy-not-duality-gap_lean_mutation.json`.
 
 ## What is assumed

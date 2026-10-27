@@ -53,14 +53,14 @@ See also: `DS-QM033-064-074-083-QHELD-CONTINUUM`, `L1-OBSERVER-AXIOMS-H1-H5`.
 ## Sources
 
 - `external:doi:10.1063/1.1704187`: R. Haag and D. Kastler, "An Algebraic Approach to Quantum Field Theory", J. Math. Phys. 5 (1964) 848-861, doi:10.1063/1.1704187. No arXiv record (1964).
-- Repository: `lean4/CampaignCqftLocalNetAxiomsImport.lean`
+- Repository: `lean4/LocalNetAxiomsImport.lean`
 - Repository: `dag/derivations/independent/cqft-local-net-axioms-import.md`
 - Repository: `checks/independent/cqft-local-net-axioms-import.py`
 
 ## Lean 4 declarations read
-- `lean4/CampaignCqftLocalNetAxiomsImport.lean::n_poset_pair_counts`
-- `lean4/CampaignCqftLocalNetAxiomsImport.lean::disjoint_site_products`
-- `lean4/CampaignCqftLocalNetAxiomsImport.lean::same_site_and_star`
+- `lean4/LocalNetAxiomsImport.lean::n_poset_pair_counts`
+- `lean4/LocalNetAxiomsImport.lean::disjoint_site_products`
+- `lean4/LocalNetAxiomsImport.lean::same_site_and_star`
 
 ## Downstream derivations
 

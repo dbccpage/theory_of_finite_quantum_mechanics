@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Lean MUB files in quantum_mechanics reconstruct small dimensions and do not close dimension 6. H050MubTomographyInversion.lean states four mutually unbiased bases in dimension 3 under exact rational inversion. H051Mub4GaloisFieldContextuality.lean states five in dimension 4 over GF(4). H030OctahedralMubCliftonKent.lean is an integer octahedron frame, not a d=6 census. H062CompositionTensorMub.lean says product-MUB counts are recorded inputs and an exhaustive d=6 MUB theorem is not established. The obligation is to leave that d=6 question on the open node.
+Lean MUB files in quantum_mechanics reconstruct small dimensions and do not close dimension 6. MubTomographyInversion.lean states four mutually unbiased bases in dimension 3 under exact rational inversion. Mub4GaloisFieldContextuality.lean states five in dimension 4 over GF(4). OctahedralMubCliftonKent.lean is an integer octahedron frame, not a d=6 census. CompositionTensorMub.lean says product-MUB counts are recorded inputs and an exhaustive d=6 MUB theorem is not established. The obligation is to leave that d=6 question on the open node.
 
 ### Governing Obligation
 Keep Lean MUB reconstructions in dimensions 3 and 4 from being cited as a dimension-6 existence result.
@@ -26,10 +26,10 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/H050MubTomographyInversion.lean`](../../lean4/)
-- [`lean4/H051Mub4GaloisFieldContextuality.lean`](../../lean4/)
-- [`lean4/H030OctahedralMubCliftonKent.lean`](../../lean4/)
-- [`lean4/H062CompositionTensorMub.lean`](../../lean4/)
+- [`lean4/MubTomographyInversion.lean`](../../lean4/)
+- [`lean4/Mub4GaloisFieldContextuality.lean`](../../lean4/)
+- [`lean4/OctahedralMubCliftonKent.lean`](../../lean4/)
+- [`lean4/CompositionTensorMub.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)

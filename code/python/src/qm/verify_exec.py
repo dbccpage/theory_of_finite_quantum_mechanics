@@ -25,16 +25,16 @@ EVIDENCE_ROOTS = {
 }
 PUBLICATION_SOURCE_COMMIT = "b1b749a9c8fb1e61492673c251deb791ff2501a9"
 BLOCK_MODULES = (
-    ("weyl_ccr_residual", "H068WeylCcrResidual"),
-    ("norm_approximation_frontier", "H069NormApproximationFrontier"),
-    ("heisenberg_representation_uniqueness", "H070HeisenbergRepresentationUniqueness"),
-    ("refinement_subsystem_tower", "H071RefinementSubsystemTower"),
-    ("tower_topological_completion", "H072TowerTopologicalCompletion"),
-    ("continuous_time_locality_limit", "H073ContinuousTimeLocalityLimit"),
-    ("operational_axiom_selection", "H074OperationalAxiomSelection"),
-    ("tensor_commuting_correlation_frontier", "H075TensorCommutingCorrelationFrontier"),
-    ("lattice_gauge_manybody_benchmark", "H076LatticeGaugeManybodyBenchmark"),
-    ("finite_operational_closure_contract", "H077FiniteOperationalClosureContract"),
+    ("weyl_ccr_residual", "WeylCcrResidual"),
+    ("norm_approximation_frontier", "NormApproximationFrontier"),
+    ("heisenberg_representation_uniqueness", "HeisenbergRepresentationUniqueness"),
+    ("refinement_subsystem_tower", "RefinementSubsystemTower"),
+    ("tower_topological_completion", "TowerTopologicalCompletion"),
+    ("continuous_time_locality_limit", "ContinuousTimeLocalityLimit"),
+    ("operational_axiom_selection", "OperationalAxiomSelection"),
+    ("tensor_commuting_correlation_frontier", "TensorCommutingCorrelationFrontier"),
+    ("lattice_gauge_manybody_benchmark", "LatticeGaugeManybodyBenchmark"),
+    ("finite_operational_closure_contract", "FiniteOperationalClosureContract"),
 )
 DIGEST_RULE = "sha256(utf8_text_with_LF_line_endings)"
 REVIEW_STATUS = "SCOPED_COMPUTATIONS_WITH_OPEN_TARGETS"

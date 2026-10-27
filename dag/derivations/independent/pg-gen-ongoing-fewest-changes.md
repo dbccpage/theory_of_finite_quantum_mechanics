@@ -66,10 +66,10 @@ Mathlib. The original Second/Rename.lean DID NOT compile unchanged: its inverse
 rewrites in the two all-writing bounds and its indexed induction proofs fail.
 That failed output remains in the replay receipt. The archive is not edited.
 
-CampaignGenesisOngoingRename.lean is a separate compatibility proof port. It
+GenesisOngoingRename.lean is a separate compatibility proof port. It
 retains the source definitions and theorem statements, repairs the inverse
 rewrites and indexed cases, and proves tracked pair membership directly before
-the obstruction conclusion. CampaignGenesisOngoingRefinement imports this port
+the obstruction conclusion. GenesisOngoingRefinement imports this port
 and the actual unchanged source game types. Successful replay and every audited
 axiom belong to these delivered modules, not to the failed original file.
 

@@ -280,7 +280,7 @@ class EverettForkingTree:
     def cabello_contextuality_test() -> Dict[str, Any]:
         """Evaluates Cabello 18-ray parity obstruction (Target 6 / H020).
 
-        Matches H020CabelloSignPolytope.lean:
+        Matches CabelloSignPolytope.lean:
         18 rays in {-1, 0, 1}^4 forming 9 mutually orthogonal tetrads.
         Each ray appears in exactly 2 tetrads (degree 2).
         Total incidence = 9 * 4 = 36 = 18 * 2.

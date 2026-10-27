@@ -42,22 +42,22 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignLaughlinRootAmbiguity.lean`
+### Lean: `lean4/LaughlinRootAmbiguity.lean`
 
-- file: [lean4/CampaignLaughlinRootAmbiguity.lean](../../../lean4/CampaignLaughlinRootAmbiguity.lean)
-- sha256 (`bytes`): `c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314`
-- cited in: node.lean, receipt dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json (CampaignLaughlinRootAmbiguity), receipt dag/research/pr_379_round2_replay.json (CampaignLaughlinRootAmbiguity), record TFQ-1208
+- file: [lean4/LaughlinRootAmbiguity.lean](../../../lean4/LaughlinRootAmbiguity.lean)
+- sha256 (`bytes`): `aa33ac45abf225b5178f5b7e3be26f25f8bafeaf937acef4f06d88e493552fe9`
+- cited in: node.lean, receipt dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json (LaughlinRootAmbiguity), receipt dag/research/pr_379_round2_replay.json (LaughlinRootAmbiguity), record TFQ-1208
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json](../../../dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json) (module `CampaignLaughlinRootAmbiguity`): recorded sha256 `c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_379_round2_replay.json](../../../dag/research/pr_379_round2_replay.json) (module `CampaignLaughlinRootAmbiguity`): recorded sha256 `c9e55336640123ef8a0d3d2abe8cfc5c0cac5f6fab6400bfee83c5a6025ae314` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignLaughlinRootAmbiguity`
+  - receipt [dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json](../../../dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json) (module `LaughlinRootAmbiguity`): recorded sha256 `aa33ac45abf225b5178f5b7e3be26f25f8bafeaf937acef4f06d88e493552fe9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_379_round2_replay.json](../../../dag/research/pr_379_round2_replay.json) (module `LaughlinRootAmbiguity`): recorded sha256 `aa33ac45abf225b5178f5b7e3be26f25f8bafeaf937acef4f06d88e493552fe9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build LaughlinRootAmbiguity`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignLaughlinRootAmbiguity.monodromy` | yes | yes | yes | none | `#print axioms CampaignLaughlinRootAmbiguity.monodromy` |
-| `CampaignLaughlinRootAmbiguity.monodromy_not_injective` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignLaughlinRootAmbiguity.monodromy_not_injective` |
-| `CampaignLaughlinRootAmbiguity.roots_at_third_filling` | yes | yes | yes | none | `#print axioms CampaignLaughlinRootAmbiguity.roots_at_third_filling` |
-| `CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignLaughlinRootAmbiguity.two_distinct_exchange_roots` |
+| `LaughlinRootAmbiguity.monodromy` | yes | yes | yes | none | `#print axioms LaughlinRootAmbiguity.monodromy` |
+| `LaughlinRootAmbiguity.monodromy_not_injective` | yes | yes | yes | Quot.sound, propext | `#print axioms LaughlinRootAmbiguity.monodromy_not_injective` |
+| `LaughlinRootAmbiguity.roots_at_third_filling` | yes | yes | yes | none | `#print axioms LaughlinRootAmbiguity.roots_at_third_filling` |
+| `LaughlinRootAmbiguity.two_distinct_exchange_roots` | yes | yes | yes | Quot.sound, propext | `#print axioms LaughlinRootAmbiguity.two_distinct_exchange_roots` |
 
 - counts toward the grade: yes
 
@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md`
 
 - file: [dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md](../../../dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md)
-- sha256 (`lf-normalised`): `e6a151bb3050790f1b44b5a880bba69e9d35402ab2475be18f00d4d1c0df2653`
+- sha256 (`lf-normalised`): `ecae176aa524aebbf3475709a0d8b48db3f68724a8ccf4407c295cd45de6691b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1208
 - counts toward the grade: no
@@ -86,7 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json](../../../dag/research/campaign_fsp-laughlin-exchange-phase_lean_replay.json)
-- sha256 (`lf-normalised`): `2f01ae58807dee6deabfc323533448ae97c649de25ce65fc9b8e8dbd70d947ee`
+- sha256 (`lf-normalised`): `8a35b9c722ae1321bf954b346d9c55b07b75e3a0688d038c25968976594bace4`
 - cited in: node.source
 - counts toward the grade: yes
 

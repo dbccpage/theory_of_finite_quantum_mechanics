@@ -102,7 +102,7 @@ def test_end_to_end_public_contract() -> None:
 
 def test_origin_resolves_in_repo() -> None:
     root = Path(__file__).resolve().parents[3]
-    lean = (root / "lean4" / "H024FourSimplexSpinfoamS4.lean").read_text(encoding="utf-8")
+    lean = (root / "lean4" / "FourSimplexSpinfoamS4.lean").read_text(encoding="utf-8")
     assert 'simplex4_vacuum_admissible' in lean
     source = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in source

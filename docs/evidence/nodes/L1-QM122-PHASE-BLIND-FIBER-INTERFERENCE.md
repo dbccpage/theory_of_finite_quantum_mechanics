@@ -45,14 +45,14 @@ QM_122 ledger LEAN4_PROOF; file headers: 'Candidate only. Not PROVEN' (H013 head
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/H008PhaseBlindPresentation.lean`
+### Lean: `lean4/HilbertWalkPhaseBlindPresentation.lean`
 
-- file: [lean4/H008PhaseBlindPresentation.lean](../../../lean4/H008PhaseBlindPresentation.lean)
-- sha256 (`bytes`): `2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e`
+- file: [lean4/HilbertWalkPhaseBlindPresentation.lean](../../../lean4/HilbertWalkPhaseBlindPresentation.lean)
+- sha256 (`bytes`): `e7ca49b4ca6cd26239b024ee0f171bba8b978d4d0b3eebb8ab99f9068b8cee04`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H008PhaseBlindPresentation`): recorded sha256 `2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H008PhaseBlindPresentation`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertWalkPhaseBlindPresentation`): recorded sha256 `e7ca49b4ca6cd26239b024ee0f171bba8b978d4d0b3eebb8ab99f9068b8cee04` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build HilbertWalkPhaseBlindPresentation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -60,14 +60,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H010InterferenceNonDescent.lean`
+### Lean: `lean4/InterferenceNonDescent.lean`
 
-- file: [lean4/H010InterferenceNonDescent.lean](../../../lean4/H010InterferenceNonDescent.lean)
-- sha256 (`bytes`): `e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703`
+- file: [lean4/InterferenceNonDescent.lean](../../../lean4/InterferenceNonDescent.lean)
+- sha256 (`bytes`): `a7247e052643452607f54ef0efa5ea98df3dc763e0620558ca81080fa73eca94`
 - cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H010InterferenceNonDescent`): recorded sha256 `e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound; only standard axioms: yes
-- check: `cd lean4 && lake build H010InterferenceNonDescent`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `InterferenceNonDescent`): recorded sha256 `a7247e052643452607f54ef0efa5ea98df3dc763e0620558ca81080fa73eca94` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound; only standard axioms: yes
+- check: `cd lean4 && lake build InterferenceNonDescent`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|

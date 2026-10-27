@@ -47,11 +47,11 @@ This module mechanizes the two structural bridges listed in the `FQ-GAP-U1-CIRCL
 AuthorityEffect: None.
 -/
 
-namespace U1Fable.QuadraticTowerAndCayleyStone
+namespace U1Finite.QuadraticTowerAndCayleyStone
 
-open U1Fable.PythagoreanObstruction
-open U1Fable.CauchyCircleCompletion
-open U1Fable.ChebyshevCauchyBridge
+open U1Finite.PythagoreanObstruction
+open U1Finite.CauchyCircleCompletion
+open U1Finite.ChebyshevCauchyBridge
 
 /-! ## Section 1: Parametric Quadratic Extension Ring `QuadExt R d` and Universal Half-Angle Step -/
 
@@ -868,42 +868,42 @@ theorem cayleyStep_pauliY_half :
 
 end TracelessHerm2Qi
 
-end U1Fable.QuadraticTowerAndCayleyStone
+end U1Finite.QuadraticTowerAndCayleyStone
 
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.QuadExt.instCommRing
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.QuadExt.radGen_sq
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.QuadExt.mul_conj_eq_norm
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.HalfAngleState.next_on_circle
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.HalfAngleState.next_double_re
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.HalfAngleState.next_double_im
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.HalfAngleState.next_w_inv
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.HalfAngleState.next_v_inv
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.HalfAngleState.next_half_inv
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.HalfAngleState.next_radical_components
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.towerState_on_circle
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.towerCirclePoint_sq_eq_prev
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.towerState_pow_two_pow_eq_u345
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.tower_level_one_explicit
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.tower_level_two_radicand_and_sine
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.Mat2Qi.ofHermitian_dagger
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.Mat2Qi.mul_assoc
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.Mat2Qi.tr_mul_comm
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyDenom_ge_one
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyDenom_ne_zero
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.linComb_mul
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.minusItH_dagger
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.plusItH_mul_minusItH
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_resolvent_right
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_resolvent_left
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_unitary_left
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_unitary_right
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_dagger_eq_neg
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_zero
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_det_eq_one
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comm
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comp_regular
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comp_pole
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_preserves_born_trace
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_pauliZ_half
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_pauliX_half
-#print axioms U1Fable.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_pauliY_half
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.QuadExt.instCommRing
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.QuadExt.radGen_sq
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.QuadExt.mul_conj_eq_norm
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.HalfAngleState.next_on_circle
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.HalfAngleState.next_double_re
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.HalfAngleState.next_double_im
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.HalfAngleState.next_w_inv
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.HalfAngleState.next_v_inv
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.HalfAngleState.next_half_inv
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.HalfAngleState.next_radical_components
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.towerState_on_circle
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.towerCirclePoint_sq_eq_prev
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.towerState_pow_two_pow_eq_u345
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.tower_level_one_explicit
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.tower_level_two_radicand_and_sine
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.Mat2Qi.ofHermitian_dagger
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.Mat2Qi.mul_assoc
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.Mat2Qi.tr_mul_comm
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyDenom_ge_one
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyDenom_ne_zero
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.linComb_mul
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.minusItH_dagger
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.plusItH_mul_minusItH
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_resolvent_right
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_resolvent_left
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_unitary_left
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_unitary_right
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_dagger_eq_neg
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_zero
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_det_eq_one
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comm
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comp_regular
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_comp_pole
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_preserves_born_trace
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_pauliZ_half
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_pauliX_half
+#print axioms U1Finite.QuadraticTowerAndCayleyStone.TracelessHerm2Qi.cayleyStep_pauliY_half

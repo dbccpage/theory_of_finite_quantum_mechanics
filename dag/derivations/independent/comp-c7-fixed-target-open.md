@@ -20,7 +20,7 @@ Both results are the list `[0]`.
 - Erasing the block `[1]` from `[1, 0]` yields `[0]`.
 - Erasing the block `[2]` from `[2, 0]` yields `[0]`.
 
-The Lean declarations are `eraseOneToFixed` and `eraseTwoToFixed` in `lean4/CampaignCompC7FixedTargetOpen.lean`.
+The Lean declarations are `eraseOneToFixed` and `eraseTwoToFixed` in `lean4/ComputationC7FixedTargetOpen.lean`.
 
 ## What is assumed
 

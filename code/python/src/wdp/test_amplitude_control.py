@@ -1,6 +1,6 @@
 """Unit, negative, integration, end-to-end, and mutation tests.
 
-Origin: lean4/H010Scale.lean theorem nsq_parallelogram.
+Origin: lean4/HilbertWalkScale.lean theorem nsq_parallelogram.
 Claim: urn:omega:fqm:amplitude:parallelogram-bridge:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/wdp/test_amplitude_control.py.
@@ -274,7 +274,7 @@ _PACKAGE_PATH = Path(__file__).resolve().with_name("__init__.py")
 
 
 PRINT_TEXT = '0\n'
-ORIGIN_REL = 'lean4/H010Scale.lean'
+ORIGIN_REL = 'lean4/HilbertWalkScale.lean'
 ORIGIN_MARKER = 'theorem nsq_parallelogram'
 CLAIM = 'urn:omega:fqm:amplitude:parallelogram-bridge:v1'
 EXPECTED = 0

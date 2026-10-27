@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-No classification is formalised. Checked slice (CampaignL1ReplicaScale), Nat arithmetic only: For all natural numbers c, a, and b, c * a + c * b equals c * (a + b), and (c * a) * (c * a) + (c * b) * (c * b) equals (c * c) * (a * a + b * b). On a = 3 and b = 4, a + b = 7, a * a + b * b = 25, 5 * 5 = 25, (a + b) * (a + b) = 49, and 25 is not 49. On c = 2, c * (a + b) = 14, (c * a) * (c * a) + (c * b) * (c * b) = 100, c * (a * a + b * b) = 50, and 100 is not 50. Deriving l1 from replica extensivity, and a reading that l2 is excluded, stay outside this slice. The older citation wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation records finite-sum additivity and the closed facts (2*3)^2+(2*4)^2=100 and 3^2+4^2=5^2, and does not discharge the open reading.
+No classification is formalised. Checked slice (L1ReplicaScale), Nat arithmetic only: For all natural numbers c, a, and b, c * a + c * b equals c * (a + b), and (c * a) * (c * a) + (c * b) * (c * b) equals (c * c) * (a * a + b * b). On a = 3 and b = 4, a + b = 7, a * a + b * b = 25, 5 * 5 = 25, (a + b) * (a + b) = 49, and 25 is not 49. On c = 2, c * (a + b) = 14, (c * a) * (c * a) + (c * b) * (c * b) = 100, c * (a * a + b * b) = 50, and 100 is not 50. Deriving l1 from replica extensivity, and a reading that l2 is excluded, stay outside this slice. The older citation wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation records finite-sum additivity and the closed facts (2*3)^2+(2*4)^2=100 and 3^2+4^2=5^2, and does not discharge the open reading.
 
 ## Source status
 
@@ -45,42 +45,6 @@ Replica extensivity of L1 and L2^2 (WDP 8.5 non-exclusion by extensivity alone),
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignL1ReplicaScale.lean`
-
-- file: [lean4/CampaignL1ReplicaScale.lean](../../../lean4/CampaignL1ReplicaScale.lean)
-- sha256 (`bytes`): `4fa2bc91c3dbd7cacf9a30d4442be33b24b887fc94bfeaf2e5186e56c3590a6c`
-- cited in: node.lean, receipt dag/research/campaign_l1-wdp-ch08-c01-replica-l1_lean_replay.json (CampaignL1ReplicaScale)
-- replay: `verified`
-  - receipt [dag/research/campaign_l1-wdp-ch08-c01-replica-l1_lean_replay.json](../../../dag/research/campaign_l1-wdp-ch08-c01-replica-l1_lean_replay.json) (module `CampaignL1ReplicaScale`): recorded sha256 `4fa2bc91c3dbd7cacf9a30d4442be33b24b887fc94bfeaf2e5186e56c3590a6c` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignL1ReplicaScale`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `CampaignL1ReplicaScale.sampleFive` | yes | yes | yes | module-level | `#print axioms CampaignL1ReplicaScale.sampleFive` |
-| `CampaignL1ReplicaScale.sampleLinearScale` | yes | yes | yes | module-level | `#print axioms CampaignL1ReplicaScale.sampleLinearScale` |
-| `CampaignL1ReplicaScale.sampleScaledNeLinear` | yes | yes | yes | module-level | `#print axioms CampaignL1ReplicaScale.sampleScaledNeLinear` |
-| `CampaignL1ReplicaScale.sampleScaledSquares` | yes | yes | yes | module-level | `#print axioms CampaignL1ReplicaScale.sampleScaledSquares` |
-| `CampaignL1ReplicaScale.sampleScaledSum` | yes | yes | yes | module-level | `#print axioms CampaignL1ReplicaScale.sampleScaledSum` |
-| `CampaignL1ReplicaScale.sampleSquares` | yes | yes | yes | module-level | `#print axioms CampaignL1ReplicaScale.sampleSquares` |
-| `CampaignL1ReplicaScale.sampleSquaresNeSumSquare` | yes | yes | yes | module-level | `#print axioms CampaignL1ReplicaScale.sampleSquaresNeSumSquare` |
-| `CampaignL1ReplicaScale.sampleSum` | yes | yes | yes | module-level | `#print axioms CampaignL1ReplicaScale.sampleSum` |
-| `CampaignL1ReplicaScale.sampleSumSquare` | yes | yes | yes | module-level | `#print axioms CampaignL1ReplicaScale.sampleSumSquare` |
-| `CampaignL1ReplicaScale.scaleSquares` | yes | yes | yes | module-level | `#print axioms CampaignL1ReplicaScale.scaleSquares` |
-| `CampaignL1ReplicaScale.scaleSum` | yes | yes | yes | module-level | `#print axioms CampaignL1ReplicaScale.scaleSum` |
-| `sampleFive` | yes | yes | yes | none | `#print axioms sampleFive` |
-| `sampleLinearScale` | yes | yes | yes | none | `#print axioms sampleLinearScale` |
-| `sampleScaledNeLinear` | yes | yes | yes | none | `#print axioms sampleScaledNeLinear` |
-| `sampleScaledSquares` | yes | yes | yes | none | `#print axioms sampleScaledSquares` |
-| `sampleScaledSum` | yes | yes | yes | none | `#print axioms sampleScaledSum` |
-| `sampleSquares` | yes | yes | yes | none | `#print axioms sampleSquares` |
-| `sampleSquaresNeSumSquare` | yes | yes | yes | none | `#print axioms sampleSquaresNeSumSquare` |
-| `sampleSum` | yes | yes | yes | none | `#print axioms sampleSum` |
-| `sampleSumSquare` | yes | yes | yes | none | `#print axioms sampleSumSquare` |
-| `scaleSquares` | yes | yes | yes | propext | `#print axioms scaleSquares` |
-| `scaleSum` | yes | yes | yes | none | `#print axioms scaleSum` |
-
-- counts toward the grade: yes
-
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
@@ -95,6 +59,42 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `QuantumMechanics.DerivationDagQMClosure.l1_gs001_and_wdp_ch08_replica_extensivity_vs_homogeneity` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gs001_and_wdp_ch08_replica_extensivity_vs_homogeneity` |
 | `QuantumMechanics.DerivationDagQMClosure.l1_gs001_replica_and_phi1_quotient_invariance` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.l1_gs001_replica_and_phi1_quotient_invariance` |
 | `QuantumMechanics.DerivationDagQMClosure.wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation` | yes | yes | yes | Quot.sound, propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/L1ReplicaScale.lean`
+
+- file: [lean4/L1ReplicaScale.lean](../../../lean4/L1ReplicaScale.lean)
+- sha256 (`bytes`): `1fc7062da653143a4f5b81116a49b532bcf8ee20efd72950f74bd5bdf0d79b82`
+- cited in: node.lean, receipt dag/research/campaign_l1-wdp-ch08-c01-replica-l1_lean_replay.json (L1ReplicaScale)
+- replay: `verified`
+  - receipt [dag/research/campaign_l1-wdp-ch08-c01-replica-l1_lean_replay.json](../../../dag/research/campaign_l1-wdp-ch08-c01-replica-l1_lean_replay.json) (module `L1ReplicaScale`): recorded sha256 `1fc7062da653143a4f5b81116a49b532bcf8ee20efd72950f74bd5bdf0d79b82` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build L1ReplicaScale`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `L1ReplicaScale.sampleFive` | yes | yes | yes | module-level | `#print axioms L1ReplicaScale.sampleFive` |
+| `L1ReplicaScale.sampleLinearScale` | yes | yes | yes | module-level | `#print axioms L1ReplicaScale.sampleLinearScale` |
+| `L1ReplicaScale.sampleScaledNeLinear` | yes | yes | yes | module-level | `#print axioms L1ReplicaScale.sampleScaledNeLinear` |
+| `L1ReplicaScale.sampleScaledSquares` | yes | yes | yes | module-level | `#print axioms L1ReplicaScale.sampleScaledSquares` |
+| `L1ReplicaScale.sampleScaledSum` | yes | yes | yes | module-level | `#print axioms L1ReplicaScale.sampleScaledSum` |
+| `L1ReplicaScale.sampleSquares` | yes | yes | yes | module-level | `#print axioms L1ReplicaScale.sampleSquares` |
+| `L1ReplicaScale.sampleSquaresNeSumSquare` | yes | yes | yes | module-level | `#print axioms L1ReplicaScale.sampleSquaresNeSumSquare` |
+| `L1ReplicaScale.sampleSum` | yes | yes | yes | module-level | `#print axioms L1ReplicaScale.sampleSum` |
+| `L1ReplicaScale.sampleSumSquare` | yes | yes | yes | module-level | `#print axioms L1ReplicaScale.sampleSumSquare` |
+| `L1ReplicaScale.scaleSquares` | yes | yes | yes | module-level | `#print axioms L1ReplicaScale.scaleSquares` |
+| `L1ReplicaScale.scaleSum` | yes | yes | yes | module-level | `#print axioms L1ReplicaScale.scaleSum` |
+| `sampleFive` | yes | yes | yes | none | `#print axioms sampleFive` |
+| `sampleLinearScale` | yes | yes | yes | none | `#print axioms sampleLinearScale` |
+| `sampleScaledNeLinear` | yes | yes | yes | none | `#print axioms sampleScaledNeLinear` |
+| `sampleScaledSquares` | yes | yes | yes | none | `#print axioms sampleScaledSquares` |
+| `sampleScaledSum` | yes | yes | yes | none | `#print axioms sampleScaledSum` |
+| `sampleSquares` | yes | yes | yes | none | `#print axioms sampleSquares` |
+| `sampleSquaresNeSumSquare` | yes | yes | yes | none | `#print axioms sampleSquaresNeSumSquare` |
+| `sampleSum` | yes | yes | yes | none | `#print axioms sampleSum` |
+| `sampleSumSquare` | yes | yes | yes | none | `#print axioms sampleSumSquare` |
+| `scaleSquares` | yes | yes | yes | propext | `#print axioms scaleSquares` |
+| `scaleSum` | yes | yes | yes | none | `#print axioms scaleSum` |
 
 - counts toward the grade: yes
 

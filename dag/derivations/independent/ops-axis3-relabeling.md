@@ -24,7 +24,7 @@ Mapping a list does not change its length. A verdict of that length is therefore
 - List length is unchanged by any token map, including the map that swaps 0 with 1.
 - A verdict of that length is unchanged by the same map.
 
-The Lean declarations are `exportVerdictRelabel`, `lengthMapInvariant`, and `lengthVerdictRelabel` in `lean4/CampaignOpsAxis3Relabeling.lean`.
+The Lean declarations are `exportVerdictRelabel`, `lengthMapInvariant`, and `lengthVerdictRelabel` in `lean4/ObserverPresheafAxis3Relabeling.lean`.
 
 ## What is assumed
 

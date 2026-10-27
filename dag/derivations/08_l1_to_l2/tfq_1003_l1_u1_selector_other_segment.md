@@ -33,24 +33,24 @@ Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, s
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/H011U1SelectorBoundary.lean::selector_not_free`
+- `lean4/U1SelectorBoundary.lean::selector_not_free`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_u1_selector_layers_and_ring_iso`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_u1_selector_split_real_zero_divisors_and_cayley_unit_circle`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm062_and_l1_u1_selector_frob_exclusions_and_gaussian_ring_injectivity`
-- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step1`
-- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step2`
-- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step3`
-- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step4`
-- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step5`
-- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step6`
-- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step7`
-- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.step8`
-- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.norms`
-- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.solutions_iff`
-- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.eight_distinct`
-- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.eight`
-- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.earlier_ne_one`
-- `lean4/CampaignL1U1SelectorOtherSegment.lean::CampaignL1U1SelectorOtherSegment.not_axis`
+- `lean4/L1U1SelectorOtherSegment.lean::L1U1SelectorOtherSegment.step1`
+- `lean4/L1U1SelectorOtherSegment.lean::L1U1SelectorOtherSegment.step2`
+- `lean4/L1U1SelectorOtherSegment.lean::L1U1SelectorOtherSegment.step3`
+- `lean4/L1U1SelectorOtherSegment.lean::L1U1SelectorOtherSegment.step4`
+- `lean4/L1U1SelectorOtherSegment.lean::L1U1SelectorOtherSegment.step5`
+- `lean4/L1U1SelectorOtherSegment.lean::L1U1SelectorOtherSegment.step6`
+- `lean4/L1U1SelectorOtherSegment.lean::L1U1SelectorOtherSegment.step7`
+- `lean4/L1U1SelectorOtherSegment.lean::L1U1SelectorOtherSegment.step8`
+- `lean4/L1U1SelectorOtherSegment.lean::L1U1SelectorOtherSegment.norms`
+- `lean4/L1U1SelectorOtherSegment.lean::L1U1SelectorOtherSegment.solutions_iff`
+- `lean4/L1U1SelectorOtherSegment.lean::L1U1SelectorOtherSegment.eight_distinct`
+- `lean4/L1U1SelectorOtherSegment.lean::L1U1SelectorOtherSegment.eight`
+- `lean4/L1U1SelectorOtherSegment.lean::L1U1SelectorOtherSegment.earlier_ne_one`
+- `lean4/L1U1SelectorOtherSegment.lean::L1U1SelectorOtherSegment.not_axis`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs`
@@ -73,7 +73,7 @@ Cross-segment U(1) selector Layers 1-3 finite algebra (conjugation involution, s
 
 - **Cited Sources**:
   - `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/121_the_finite_qm_ingredient_ladder/qm_121_the_finite_qm_ingredient_ladder_claim_ledger.md#C10`
-  - `lean4/CampaignL1U1SelectorOtherSegment.lean`
+  - `lean4/L1U1SelectorOtherSegment.lean`
   - `checks/independent/l1-u1-selector-other-segment.py`
   - `dag/derivations/independent/l1-u1-selector-other-segment.md`
   - `dag/research/pr435_review_lean_replay.json`

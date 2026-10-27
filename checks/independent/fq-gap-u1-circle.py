@@ -4,7 +4,7 @@ Recomputes the 3-4-5 identity, the mod-5 square residues, a finite scan of
 5*a*a = 4*b*b, and a finite scan of the cleared pair
 5*(a*a - b*b) = 3*(d*d) together with a*a + b*b = d*d.
 Does not import repository code. The scan is finite. The all-integer
-descent is the Lean module CampaignFqGapU1Circle.
+descent is the Lean module U1CircleIntegerWitness.
 """
 from __future__ import annotations
 

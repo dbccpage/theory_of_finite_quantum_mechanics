@@ -34,7 +34,7 @@ and `Tr(Ω1) = -1`.
 
 ## What is proved
 
-In `lean4/CampaignDfmGribovContinuumFence.lean`:
+In `lean4/DressingFieldGribovContinuumFence.lean`:
 
 - `h23_square` and `h12_square` are the two squares.
 - `omega1_square_and_det` records `Ω1^2 = I`, the diagonal product `1`, and

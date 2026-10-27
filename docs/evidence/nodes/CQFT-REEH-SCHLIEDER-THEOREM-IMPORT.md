@@ -43,43 +43,43 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignCqftReehSchliederTheoremImport.lean`
+### Lean: `lean4/ReehSchliederImport.lean`
 
-- file: [lean4/CampaignCqftReehSchliederTheoremImport.lean](../../../lean4/CampaignCqftReehSchliederTheoremImport.lean)
-- sha256 (`bytes`): `3025afddf5bbc9feb77c54f947568330fa8fe0f4d8f575a96c560d9422c126f6`
-- cited in: node.lean, node.source, receipt dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (CampaignCqftReehSchliederTheoremImport), record TFQ-2106
+- file: [lean4/ReehSchliederImport.lean](../../../lean4/ReehSchliederImport.lean)
+- sha256 (`bytes`): `34c147dbf411a7fdd93b93047c5cd71071211a6b60abc2420fe3c530225dd88f`
+- cited in: node.lean, node.source, receipt dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json (ReehSchliederImport), record TFQ-2106
 - replay: `verified`
-  - receipt [dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json](../../../dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json) (module `CampaignCqftReehSchliederTheoremImport`): recorded sha256 `3025afddf5bbc9feb77c54f947568330fa8fe0f4d8f575a96c560d9422c126f6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignCqftReehSchliederTheoremImport`
+  - receipt [dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json](../../../dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json) (module `ReehSchliederImport`): recorded sha256 `34c147dbf411a7fdd93b93047c5cd71071211a6b60abc2420fe3c530225dd88f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build ReehSchliederImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignCqftReehSchliederTheoremImport.cyclicShift_periodic_aliasing` | yes | yes | yes | propext | `#print axioms CampaignCqftReehSchliederTheoremImport.cyclicShift_periodic_aliasing` |
-| `CampaignCqftReehSchliederTheoremImport.cyclic_implies_separating` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCqftReehSchliederTheoremImport.cyclic_implies_separating` |
-| `CampaignCqftReehSchliederTheoremImport.four_qubit_half_system_cyclicity_dichotomy` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCqftReehSchliederTheoremImport.four_qubit_half_system_cyclicity_dichotomy` |
-| `CampaignCqftReehSchliederTheoremImport.full_three_site_cyclic_all_three_states` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCqftReehSchliederTheoremImport.full_three_site_cyclic_all_three_states` |
-| `CampaignCqftReehSchliederTheoremImport.ghz3_and_w3_pair_cyclic_and_separating` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCqftReehSchliederTheoremImport.ghz3_and_w3_pair_cyclic_and_separating` |
-| `CampaignCqftReehSchliederTheoremImport.no_left_inverse_of_zero_column` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCqftReehSchliederTheoremImport.no_left_inverse_of_zero_column` |
-| `CampaignCqftReehSchliederTheoremImport.not_cyclic_of_right_kernel` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCqftReehSchliederTheoremImport.not_cyclic_of_right_kernel` |
-| `CampaignCqftReehSchliederTheoremImport.not_cyclic_of_zero_column` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCqftReehSchliederTheoremImport.not_cyclic_of_zero_column` |
-| `CampaignCqftReehSchliederTheoremImport.prod3_pair_not_cyclic_and_no_left_inverse` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCqftReehSchliederTheoremImport.prod3_pair_not_cyclic_and_no_left_inverse` |
-| `CampaignCqftReehSchliederTheoremImport.single_site_not_cyclic_all_three_states` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCqftReehSchliederTheoremImport.single_site_not_cyclic_all_three_states` |
-| `CampaignCqftReehSchliederTheoremImport.translation_invariant_product_vacuum_not_cyclic_for_proper_subsystems` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignCqftReehSchliederTheoremImport.translation_invariant_product_vacuum_not_cyclic_for_proper_subsystems` |
-| `CampaignCqftReehSchliederTheoremImport.translation_invariant_zero_momentum_diff` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignCqftReehSchliederTheoremImport.translation_invariant_zero_momentum_diff` |
+| `ReehSchliederImport.cyclicShift_periodic_aliasing` | yes | yes | yes | propext | `#print axioms ReehSchliederImport.cyclicShift_periodic_aliasing` |
+| `ReehSchliederImport.cyclic_implies_separating` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ReehSchliederImport.cyclic_implies_separating` |
+| `ReehSchliederImport.four_qubit_half_system_cyclicity_dichotomy` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ReehSchliederImport.four_qubit_half_system_cyclicity_dichotomy` |
+| `ReehSchliederImport.full_three_site_cyclic_all_three_states` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ReehSchliederImport.full_three_site_cyclic_all_three_states` |
+| `ReehSchliederImport.ghz3_and_w3_pair_cyclic_and_separating` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ReehSchliederImport.ghz3_and_w3_pair_cyclic_and_separating` |
+| `ReehSchliederImport.no_left_inverse_of_zero_column` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ReehSchliederImport.no_left_inverse_of_zero_column` |
+| `ReehSchliederImport.not_cyclic_of_right_kernel` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ReehSchliederImport.not_cyclic_of_right_kernel` |
+| `ReehSchliederImport.not_cyclic_of_zero_column` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ReehSchliederImport.not_cyclic_of_zero_column` |
+| `ReehSchliederImport.prod3_pair_not_cyclic_and_no_left_inverse` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ReehSchliederImport.prod3_pair_not_cyclic_and_no_left_inverse` |
+| `ReehSchliederImport.single_site_not_cyclic_all_three_states` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ReehSchliederImport.single_site_not_cyclic_all_three_states` |
+| `ReehSchliederImport.translation_invariant_product_vacuum_not_cyclic_for_proper_subsystems` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ReehSchliederImport.translation_invariant_product_vacuum_not_cyclic_for_proper_subsystems` |
+| `ReehSchliederImport.translation_invariant_zero_momentum_diff` | yes | yes | yes | Quot.sound, propext | `#print axioms ReehSchliederImport.translation_invariant_zero_momentum_diff` |
 
 - counts toward the grade: yes
 
 ### Python: `checks/independent/cqft-reeh-schlieder-theorem-import.py`
 
 - file: [checks/independent/cqft-reeh-schlieder-theorem-import.py](../../../checks/independent/cqft-reeh-schlieder-theorem-import.py)
-- sha256 (`bytes`): `eb5a18aa575be09bca67c2f39ef055f8193e27449d520ba9c7ed8d811c1c377d`
+- sha256 (`bytes`): `817557dd378e4df7b3e2c47be62d16b2e6380b04bef27ce317c3d2800b494088`
 - cited in: node.source, record TFQ-2106
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/31_causal_qft/tfq_2106_cqft_reeh_schlieder_theorem_import.md`
 
 - file: [dag/derivations/31_causal_qft/tfq_2106_cqft_reeh_schlieder_theorem_import.md](../../../dag/derivations/31_causal_qft/tfq_2106_cqft_reeh_schlieder_theorem_import.md)
-- sha256 (`lf-normalised`): `bf593a7c7aa27b7049de2c2fac693446fcc56d5948c1abe50fedfe3e324ef525`
+- sha256 (`lf-normalised`): `df7638df283e1eaa5547c41981e19599a2d58c1d4b4291dc5cd4b2eeb666f1b6`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2106
 - counts toward the grade: no
@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/cqft-reeh-schlieder-theorem-import.md`
 
 - file: [dag/derivations/independent/cqft-reeh-schlieder-theorem-import.md](../../../dag/derivations/independent/cqft-reeh-schlieder-theorem-import.md)
-- sha256 (`lf-normalised`): `8a4b43ee3e838b80c12d847ec935ab92d9eff0a73c77d0696735805b0b4d4dc3`
+- sha256 (`lf-normalised`): `1ebb16f910a83489c43ce6324ed272d35c0d80ecd5272ed1ec0af494fd2cf2a5`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -101,14 +101,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json`
 
 - file: [dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json](../../../dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_mutation.json)
-- sha256 (`lf-normalised`): `ae36299f26c989729dde20b5a13d1528a9c31e4e5ba8bf09b3ac20278043de53`
+- sha256 (`lf-normalised`): `fc9d28ae684cdb451a94d82aaccfb298f1befe01fb6f1ecdd169bdf692376b82`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json`
 
 - file: [dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json](../../../dag/research/campaign_cqft-reeh-schlieder-theorem-import_lean_replay.json)
-- sha256 (`lf-normalised`): `91af759fbb224faa31e908367286486568713868f77e1aa81791d8e6af4cddc0`
+- sha256 (`lf-normalised`): `430c102bde184d5dc036c96df5b61bf7a7b02ad832aff51e17d9784a7f7c29fa`
 - cited in: node.source
 - counts toward the grade: yes
 

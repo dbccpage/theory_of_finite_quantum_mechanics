@@ -37,7 +37,7 @@ operation_candidates:
   name: ReproducesPair
   line: 13
   signature_excerpt: 'def ReproducesPair (fg : FineGraining2) (p0 p1 D : Nat) : Prop'
-  source: lean4/H059RationalSector.lean
+  source: lean4/RationalSector.lean
   repository: this_repository
   source_sha256: 791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90
   status: source_candidate_requires_semantic_review
@@ -45,7 +45,7 @@ operation_candidates:
   name: FineGraining2
   line: 5
   signature_excerpt: structure FineGraining2
-  source: lean4/H059RationalSector.lean
+  source: lean4/RationalSector.lean
   repository: this_repository
   source_sha256: 791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90
   status: source_candidate_requires_semantic_review
@@ -55,7 +55,7 @@ relation_candidates:
   line: 26
   signature_excerpt: "theorem rational_finegraining_exists (p0 p1 D : Nat) (hD : D > 0) (hSum : p0 + p1\
     \ = D) :\n    ∃ fg : FineGraining2, ReproducesPair fg p0 p1 D"
-  source: lean4/H059RationalSector.lean
+  source: lean4/RationalSector.lean
   repository: this_repository
   source_sha256: 791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90
   status: source_candidate_requires_semantic_review
@@ -67,7 +67,7 @@ relation_candidates:
   signature_excerpt: "theorem witness_poly_has_no_candidate_rational_root :\n    (5 * (1 : Int) * 1 -\
     \ 5 * 1 * 1 + 1 * 1 ≠ 0) ∧\n    (5 * (-1 : Int) * (-1) - 5 * (-1) * 1 + 1 * 1 ≠ 0) ∧\n    (5 * (1\
     \ : Int) * 1 - 5 * 1 * 5 + 5 * 5 ≠ 0) ∧\n    (5 * (-1 : Int) * (-1) - 5 * (-1) * 5 + 5 * 5 ≠ 0)"
-  source: lean4/H059RationalSector.lean
+  source: lean4/RationalSector.lean
   repository: this_repository
   source_sha256: 791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90
   status: source_candidate_requires_semantic_review
@@ -78,7 +78,7 @@ relation_candidates:
   line: 82
   signature_excerpt: "theorem conductors_with_real_q_yield_rational_finegraining (b0 b1 : Nat) (hb : b0\
     \ + b1 > 0) :\n    ∃ fg : FineGraining2, ReproducesPair fg b0 b1 (b0 + b1)"
-  source: lean4/H059RationalSector.lean
+  source: lean4/RationalSector.lean
   repository: this_repository
   source_sha256: 791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90
   status: source_candidate_requires_semantic_review
@@ -103,7 +103,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H059RationalSector.lean::rational_finegraining_exists
   availability: local
   symbol: rational_finegraining_exists
-  path: lean4/H059RationalSector.lean
+  path: lean4/RationalSector.lean
   repository: this_repository
   sha256: 791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90
   declaration_status: declaration_found_not_proof_checked
@@ -112,7 +112,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H059RationalSector.lean::witness_poly_has_no_candidate_rational_root
   availability: local
   symbol: witness_poly_has_no_candidate_rational_root
-  path: lean4/H059RationalSector.lean
+  path: lean4/RationalSector.lean
   repository: this_repository
   sha256: 791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90
   declaration_status: declaration_found_not_proof_checked
@@ -121,7 +121,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H059RationalSector.lean::conductors_with_real_q_yield_rational_finegraining
   availability: local
   symbol: conductors_with_real_q_yield_rational_finegraining
-  path: lean4/H059RationalSector.lean
+  path: lean4/RationalSector.lean
   repository: this_repository
   sha256: 791eb21024574a4781c85ff937f9807656bbe45386d2b08b384ea9f79fe42f90
   declaration_status: declaration_found_not_proof_checked
@@ -698,36 +698,36 @@ operad_slots:
     - dag/pfp/review_exact_json.py
     - lean4/PrimitiveDifference.lean
     - lean4/HWKernel.lean
-    - lean4/H004FreeLinearization.lean
-    - lean4/H005InnerProductAdmission.lean
-    - lean4/H003ReversibilityGate.lean
-    - lean4/H006PermutationUnitary.lean
-    - lean4/H007Complexification.lean
-    - lean4/H017MatrixFiniteRecovery.lean
-    - lean4/H017Fin.lean
-    - lean4/H016ContinuousDynamicsFork.lean
-    - lean4/H008PhaseBlindPresentation.lean
+    - lean4/FreeLinearization.lean
+    - lean4/InnerProductAdmission.lean
+    - lean4/ReversibilityGate.lean
+    - lean4/PermutationUnitary.lean
+    - lean4/Complexification.lean
+    - lean4/MatrixFiniteRecovery.lean
+    - lean4/HilbertWalkGleasonFin.lean
+    - lean4/ContinuousDynamicsFork.lean
+    - lean4/HilbertWalkPhaseBlindPresentation.lean
     - lean4/Core.lean
-    - lean4/H009PhaseFiber.lean
-    - lean4/H010InterferenceNonDescent.lean
-    - lean4/H011U1SelectorBoundary.lean
-    - lean4/H011Circle.lean
-    - lean4/H014TensorCompositionBoundary.lean
-    - lean4/H014BilinearProduct.lean
-    - lean4/H014Interface.lean
-    - lean4/H015IrreversibleFork.lean
-    - lean4/H013BornPairingBoundary.lean
-    - lean4/H013SameContract.lean
-    - lean4/H017Gleason.lean
-    - lean4/H017Extras.lean
-    - lean4/H017ExtrasDropone.lean
-    - lean4/E003_projection_fiber_primitive_difference.lean
-    - lean4/E005_fiber_quotient_equivalence.lean
-    - lean4/H000FinitePresentedCarrier.lean
-    - lean4/H055DiscreteDynamicsStone.lean
+    - lean4/PhaseFiber.lean
+    - lean4/InterferenceNonDescent.lean
+    - lean4/U1SelectorBoundary.lean
+    - lean4/HilbertWalkCircle.lean
+    - lean4/TensorCompositionBoundary.lean
+    - lean4/BilinearProduct.lean
+    - lean4/HilbertWalkInterface.lean
+    - lean4/IrreversibleFork.lean
+    - lean4/BornPairingBoundary.lean
+    - lean4/HilbertWalkSameContract.lean
+    - lean4/HilbertWalkGleason.lean
+    - lean4/HilbertWalkGleasonExtras.lean
+    - lean4/HilbertWalkGleasonExtrasDropOne.lean
+    - lean4/ProjectionFiberPrimitiveDifference.lean
+    - lean4/FiberQuotientEquivalence.lean
+    - lean4/FinitePresentedCarrier.lean
+    - lean4/DiscreteDynamicsStone.lean
     - lean4/PromptStructure.lean
-    - lean4/H061DynamicsDichotomy.lean
-    - lean4/H059RationalSector.lean
+    - lean4/DynamicsDichotomy.lean
+    - lean4/RationalSector.lean
     - lean4/PromptDynamics.lean
     - dag/results/batches/20261019T164251Z_prompts_32_51/tools/prepare.py
     - code/python/src/qm/structure_exact.py

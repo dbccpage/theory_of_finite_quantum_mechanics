@@ -42,33 +42,6 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignPgwWdpIncidenceTransport.lean`
-
-- file: [lean4/CampaignPgwWdpIncidenceTransport.lean](../../../lean4/CampaignPgwWdpIncidenceTransport.lean)
-- sha256 (`bytes`): `d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf`
-- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json (CampaignPgwWdpIncidenceTransport), receipt dag/research/pr_356_review_replay.json (CampaignPgwWdpIncidenceTransport), record TFQ-0543
-- replay: `verified`
-  - receipt [dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json](../../../dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json) (module `CampaignPgwWdpIncidenceTransport`): recorded sha256 `d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/pr_356_review_replay.json](../../../dag/research/pr_356_review_replay.json) (module `CampaignPgwWdpIncidenceTransport`): recorded sha256 `d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignPgwWdpIncidenceTransport`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `column_01` | yes | yes | yes | none | `#print axioms column_01` |
-| `column_02` | yes | yes | yes | none | `#print axioms column_02` |
-| `column_12` | yes | yes | yes | none | `#print axioms column_12` |
-| `defect_charge` | yes | yes | yes | none | `#print axioms defect_charge` |
-| `face_reorders` | yes | yes | yes | none | `#print axioms face_reorders` |
-| `incidence_face_boundary_zero` | yes | yes | yes | none | `#print axioms incidence_face_boundary_zero` |
-| `pairing_is_two` | yes | yes | yes | Quot.sound, propext | `#print axioms pairing_is_two` |
-| `residual_at_least_two` | yes | yes | yes | Quot.sound, propext | `#print axioms residual_at_least_two` |
-| `residual_at_repair` | yes | yes | yes | none | `#print axioms residual_at_repair` |
-| `reverse_edge_20` | yes | yes | yes | Quot.sound, propext | `#print axioms reverse_edge_20` |
-| `transport_matches_transpose` | yes | yes | yes | Quot.sound, propext | `#print axioms transport_matches_transpose` |
-| `wdp_d1_d0` | yes | yes | yes | Quot.sound, propext | `#print axioms wdp_d1_d0` |
-
-- counts toward the grade: yes
-
 ### Lean: `lean4/Imported/OeWdp/GenesisIncidence.lean`
 
 - file: [lean4/Imported/OeWdp/GenesisIncidence.lean](../../../lean4/Imported/OeWdp/GenesisIncidence.lean)
@@ -96,6 +69,33 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `triD1` | yes | yes | yes | module-level | `#print axioms triD1` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/PregenesisWdpIncidenceTransport.lean`
+
+- file: [lean4/PregenesisWdpIncidenceTransport.lean](../../../lean4/PregenesisWdpIncidenceTransport.lean)
+- sha256 (`bytes`): `d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf`
+- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json (PregenesisWdpIncidenceTransport), receipt dag/research/pr_356_review_replay.json (PregenesisWdpIncidenceTransport), record TFQ-0543
+- replay: `verified`
+  - receipt [dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json](../../../dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json) (module `PregenesisWdpIncidenceTransport`): recorded sha256 `d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/pr_356_review_replay.json](../../../dag/research/pr_356_review_replay.json) (module `PregenesisWdpIncidenceTransport`): recorded sha256 `d1671fb7df23ee9b65b0032c9bab2f4875067f141e045a8da64e107ffea5fbcf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build PregenesisWdpIncidenceTransport`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `column_01` | yes | yes | yes | none | `#print axioms column_01` |
+| `column_02` | yes | yes | yes | none | `#print axioms column_02` |
+| `column_12` | yes | yes | yes | none | `#print axioms column_12` |
+| `defect_charge` | yes | yes | yes | none | `#print axioms defect_charge` |
+| `face_reorders` | yes | yes | yes | none | `#print axioms face_reorders` |
+| `incidence_face_boundary_zero` | yes | yes | yes | none | `#print axioms incidence_face_boundary_zero` |
+| `pairing_is_two` | yes | yes | yes | Quot.sound, propext | `#print axioms pairing_is_two` |
+| `residual_at_least_two` | yes | yes | yes | Quot.sound, propext | `#print axioms residual_at_least_two` |
+| `residual_at_repair` | yes | yes | yes | none | `#print axioms residual_at_repair` |
+| `reverse_edge_20` | yes | yes | yes | Quot.sound, propext | `#print axioms reverse_edge_20` |
+| `transport_matches_transpose` | yes | yes | yes | Quot.sound, propext | `#print axioms transport_matches_transpose` |
+| `wdp_d1_d0` | yes | yes | yes | Quot.sound, propext | `#print axioms wdp_d1_d0` |
 
 - counts toward the grade: yes
 
@@ -134,7 +134,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0543_wdp_incidence_orientation_transport.md`
 
 - file: [dag/derivations/06_wdp/tfq_0543_wdp_incidence_orientation_transport.md](../../../dag/derivations/06_wdp/tfq_0543_wdp_incidence_orientation_transport.md)
-- sha256 (`lf-normalised`): `891ca0f0a1b28a93b60b9356cfe76c03993c4958c8e32faab9718dd93e9d9a42`
+- sha256 (`lf-normalised`): `11345ce2abe36b28dd6bfcb43963d2a2d509b72855510d024262449c0b91edb4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0543
 - counts toward the grade: no
@@ -149,7 +149,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json`
 
 - file: [dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json](../../../dag/research/campaign_pgw-wdp-incidence-orientation-transport_lean_replay.json)
-- sha256 (`lf-normalised`): `d52e0a8f4c348430c609286da45fc2ea355d468a0a06b5d211081f18dc4b88b2`
+- sha256 (`lf-normalised`): `54eeb8427dab32c55b302aa0307ab1fbf2de9bf45e6fbc1c437fc209ad0153a0`
 - cited in: node.source
 - counts toward the grade: yes
 

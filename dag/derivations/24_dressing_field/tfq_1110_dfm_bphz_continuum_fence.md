@@ -17,7 +17,7 @@ Algebraic cancellation of nested and overlapping UV boundary poles for actual Fe
 The six-forest count, the order-0 collapse, and the quotient 7 are recorded only for these three edge sets and this numerator. A forest formula on actual Feynman-parametric integrands, a subtraction operator of positive degree, and a convergence statement before continuum integration remain open. The nested sector kernel at z = 3/5 gives 9/50, which is a different identity.
 
 ### Witness Audit
-CampaignDfmBphzContinuumFence records the six forests, the signed-sum collapse, the numerator identity 7xy, the quotients 7 and 7 - 2/(xy), and the witness values 7 and -5. No Feynman integrand and no continuum integral is evaluated.
+DressingFieldBphzContinuumFence records the six forests, the signed-sum collapse, the numerator identity 7xy, the quotients 7 and 7 - 2/(xy), and the witness values 7 and -5. No Feynman integrand and no continuum integral is evaluated.
 
 ---
 
@@ -42,22 +42,22 @@ CampaignDfmBphzContinuumFence records the six forests, the signed-sum collapse, 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.overlapping_excluded_iff`
-- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.overlapping_forest_count`
-- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.nested_forest_count`
-- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sixSum_eq_inclusion`
-- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.numerator_is_7xy`
-- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.quotient_is_seven`
-- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.omitted_graph_remainder`
-- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.witness_half_third`
-- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sector_ne_seven`
-- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_killed`
-- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_fixed_iff`
-- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_idempotent`
-- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_append`
-- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.Subtraction.reduce_absorbs`
-- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.evaluations_compatible`
-- `lean4/CampaignDfmBphzContinuumFence.lean::CampaignDfmBphzContinuumFence.sixSum_is_reduction`
+- `lean4/DressingFieldBphzContinuumFence.lean::DressingFieldBphzContinuumFence.overlapping_excluded_iff`
+- `lean4/DressingFieldBphzContinuumFence.lean::DressingFieldBphzContinuumFence.overlapping_forest_count`
+- `lean4/DressingFieldBphzContinuumFence.lean::DressingFieldBphzContinuumFence.nested_forest_count`
+- `lean4/DressingFieldBphzContinuumFence.lean::DressingFieldBphzContinuumFence.sixSum_eq_inclusion`
+- `lean4/DressingFieldBphzContinuumFence.lean::DressingFieldBphzContinuumFence.numerator_is_7xy`
+- `lean4/DressingFieldBphzContinuumFence.lean::DressingFieldBphzContinuumFence.quotient_is_seven`
+- `lean4/DressingFieldBphzContinuumFence.lean::DressingFieldBphzContinuumFence.omitted_graph_remainder`
+- `lean4/DressingFieldBphzContinuumFence.lean::DressingFieldBphzContinuumFence.witness_half_third`
+- `lean4/DressingFieldBphzContinuumFence.lean::DressingFieldBphzContinuumFence.sector_ne_seven`
+- `lean4/DressingFieldBphzContinuumFence.lean::DressingFieldBphzContinuumFence.Subtraction.reduce_killed`
+- `lean4/DressingFieldBphzContinuumFence.lean::DressingFieldBphzContinuumFence.Subtraction.reduce_fixed_iff`
+- `lean4/DressingFieldBphzContinuumFence.lean::DressingFieldBphzContinuumFence.Subtraction.reduce_idempotent`
+- `lean4/DressingFieldBphzContinuumFence.lean::DressingFieldBphzContinuumFence.Subtraction.reduce_append`
+- `lean4/DressingFieldBphzContinuumFence.lean::DressingFieldBphzContinuumFence.Subtraction.reduce_absorbs`
+- `lean4/DressingFieldBphzContinuumFence.lean::DressingFieldBphzContinuumFence.evaluations_compatible`
+- `lean4/DressingFieldBphzContinuumFence.lean::DressingFieldBphzContinuumFence.sixSum_is_reduction`
 
 ### Rust Certifiers
 - *none*

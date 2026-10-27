@@ -1,6 +1,6 @@
 """Canonical digest of reduced rational matrix entries.
 
-Origin: lean4/H001Rats.lean definition qrel, equality of integer pairs by
+Origin: lean4/HilbertWalkRationals.lean definition qrel, equality of integer pairs by
 cross-multiplication. Fraction reduction makes 1/2 and 2/4 the same entry.
 Claim: urn:omega:fqm:homology:reduced-entry-digest:v1
 AuthorityEffect: None

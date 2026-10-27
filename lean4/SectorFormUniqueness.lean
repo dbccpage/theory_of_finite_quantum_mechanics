@@ -6,7 +6,7 @@ import Mathlib.Tactic.FinCases
 /-
 Uniqueness of the inner product on the sector carrier (rational case).  AuthorityEffect: None.
 
-Carrier.  V := Fin n → ℚ, the free ℚ-linearization of n report sectors (H004); a candidate inner
+Carrier.  V := Fin n → ℚ, the free ℚ-linearization of n report sectors (FreeLinearization); a candidate inner
 product is a symmetric Gram matrix G with pairing `pair G x y = x ⬝ᵥ (G *ᵥ y)` and quadratic readout
 `qf G x = x ⬝ᵥ (G *ᵥ x)` — the same `qf` that `BornMatrixCarrier` uses to order effects, imported
 unchanged.
@@ -19,7 +19,7 @@ Two hypotheses are put on the readout, and nothing else:
   and the D1 additivity defect of QM_020 Thm 2a).
 * `Invariant G σ` for every sector permutation σ in a set S whose generated group acts
   transitively on sectors (`Generated`, `invariant_of_generated`): the readout does not see a
-  relabelling of sectors (the permutation isometry envelope of H006).
+  relabelling of sectors (the permutation isometry envelope of PermutationUnitary).
 
 Results.
 1. `offdiag_eq_zero` / `eq_diagonal_of_sectorAdditive`: sector additivity forces every off-diagonal
@@ -35,7 +35,7 @@ Results.
    matched; in general they are proportional.  `one_sectorAdditive`, `one_invariant` show that the
    standard dot product (the `qf 1` of the Born carrier) satisfies the hypotheses, so the selection is
    consistent and nonvacuous.
-4. Countermodels, each hypothesis used: `diag12 = diag(1, 2)` (the H005 `gram_not_unique` form) is
+4. Countermodels, each hypothesis used: `diag12 = diag(1, 2)` (the InnerProductAdmission `gram_not_unique` form) is
    symmetric, positive definite and sector additive but not invariant under the sector swap and not a
    scalar multiple of 1; `unif12 = 1 + (all ones)` is symmetric, positive definite and invariant under
    every permutation of two sectors but not sector additive and not a scalar multiple of 1.
@@ -45,9 +45,9 @@ the readout from primitives; the two laws above are hypotheses, and the scale c 
 Everything is exact over ℚ; no real numbers, limits or continuity.
 -/
 
-namespace InnerProductFable.SectorForm
+namespace InnerProductFinite.SectorForm
 
-open Matrix BornFable.MatrixCarrier
+open Matrix BornFinite.MatrixCarrier
 
 variable {n : ℕ}
 
@@ -179,7 +179,7 @@ theorem qf_eq_sum_diag_sq_of_sectorAdditive {G : Matrix (Fin n) (Fin n) ℚ} (hG
 /-! ### 2. Transitive sector symmetry collapses the diagonal -/
 
 /-- Coordinate action of a sector permutation, `(permute σ x) i = x (σ.symm i)` (the convention of
-H006 `permU`), so that `permute σ (Pi.single j 1) = Pi.single (σ j) 1`. -/
+PermutationUnitary `permU`), so that `permute σ (Pi.single j 1) = Pi.single (σ j) 1`. -/
 def permute (σ : Equiv.Perm (Fin n)) (x : Fin n → ℚ) : Fin n → ℚ := fun i => x (σ.symm i)
 
 theorem permute_single (σ : Equiv.Perm (Fin n)) (j : Fin n) :
@@ -364,7 +364,7 @@ theorem eq_one_of_normalized {G : Matrix (Fin n) (Fin n) ℚ} {S : Set (Equiv.Pe
 
 /-! ### 4. Countermodels: each hypothesis is used -/
 
-/-- The H005 form `diag(1, 2)`. -/
+/-- The InnerProductAdmission form `diag(1, 2)`. -/
 def diag12 : Matrix (Fin 2) (Fin 2) ℚ := Matrix.diagonal ![1, 2]
 
 theorem diag12_transpose : diag12ᵀ = diag12 := Matrix.diagonal_transpose _
@@ -482,77 +482,77 @@ theorem unif12_not_scalar (c : ℚ) : unif12 ≠ c • (1 : Matrix (Fin 2) (Fin 
   have h01 := congrFun (congrFun h 0) 1
   simp [unif12_apply] at h01
 
-end InnerProductFable.SectorForm
+end InnerProductFinite.SectorForm
 
-#print axioms InnerProductFable.SectorForm.pair
-#print axioms InnerProductFable.SectorForm.pair_self
-#print axioms InnerProductFable.SectorForm.DisjointSupport
-#print axioms InnerProductFable.SectorForm.SectorAdditive
-#print axioms InnerProductFable.SectorForm.l1_disjoint_additive
-#print axioms InnerProductFable.SectorForm.qf_add_vec
-#print axioms InnerProductFable.SectorForm.mulVec_single_one'
-#print axioms InnerProductFable.SectorForm.pair_single_single
-#print axioms InnerProductFable.SectorForm.qf_single
-#print axioms InnerProductFable.SectorForm.disjoint_single_single
-#print axioms InnerProductFable.SectorForm.single_ne_zero
-#print axioms InnerProductFable.SectorForm.offdiag_pair_sum_eq_zero
-#print axioms InnerProductFable.SectorForm.transpose_entry
-#print axioms InnerProductFable.SectorForm.offdiag_eq_zero
-#print axioms InnerProductFable.SectorForm.eq_diagonal_of_sectorAdditive
-#print axioms InnerProductFable.SectorForm.qf_diagonal
-#print axioms InnerProductFable.SectorForm.qf_transpose
-#print axioms InnerProductFable.SectorForm.symmPart
-#print axioms InnerProductFable.SectorForm.symmPart_transpose
-#print axioms InnerProductFable.SectorForm.symmPart_apply
-#print axioms InnerProductFable.SectorForm.qf_symmPart
-#print axioms InnerProductFable.SectorForm.sectorAdditive_symmPart
-#print axioms InnerProductFable.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive
-#print axioms InnerProductFable.SectorForm.permute
-#print axioms InnerProductFable.SectorForm.permute_single
-#print axioms InnerProductFable.SectorForm.Invariant
-#print axioms InnerProductFable.SectorForm.TransitiveOn
-#print axioms InnerProductFable.SectorForm.diag_eq_of_invariant
-#print axioms InnerProductFable.SectorForm.diag_const_of_transitive
-#print axioms InnerProductFable.SectorForm.Generated
-#print axioms InnerProductFable.SectorForm.permute_one
-#print axioms InnerProductFable.SectorForm.permute_mul
-#print axioms InnerProductFable.SectorForm.permute_inv_left
-#print axioms InnerProductFable.SectorForm.permute_inv_right
-#print axioms InnerProductFable.SectorForm.invariant_one
-#print axioms InnerProductFable.SectorForm.invariant_mul
-#print axioms InnerProductFable.SectorForm.invariant_inv
-#print axioms InnerProductFable.SectorForm.invariant_of_generated
-#print axioms InnerProductFable.SectorForm.eq_smul_one
-#print axioms InnerProductFable.SectorForm.eq_smul_one_generated
-#print axioms InnerProductFable.SectorForm.qf_eq_scale_dot
-#print axioms InnerProductFable.SectorForm.pair_smul_one
-#print axioms InnerProductFable.SectorForm.pair_eq_scale_dot
-#print axioms InnerProductFable.SectorForm.scale_pos
-#print axioms InnerProductFable.SectorForm.unique_of_normalized
-#print axioms InnerProductFable.SectorForm.unique_up_to_scale
-#print axioms InnerProductFable.SectorForm.pair_diagonal_eq_zero_of_disjoint
-#print axioms InnerProductFable.SectorForm.diagonal_sectorAdditive
-#print axioms InnerProductFable.SectorForm.one_sectorAdditive
-#print axioms InnerProductFable.SectorForm.dot_permute
-#print axioms InnerProductFable.SectorForm.one_invariant
-#print axioms InnerProductFable.SectorForm.one_posdef
-#print axioms InnerProductFable.SectorForm.eq_one_of_normalized
-#print axioms InnerProductFable.SectorForm.diag12
-#print axioms InnerProductFable.SectorForm.diag12_transpose
-#print axioms InnerProductFable.SectorForm.diag12_sectorAdditive
-#print axioms InnerProductFable.SectorForm.diag12_qf
-#print axioms InnerProductFable.SectorForm.diag12_posdef
-#print axioms InnerProductFable.SectorForm.diag12_not_invariant_swap
-#print axioms InnerProductFable.SectorForm.diag12_not_scalar
-#print axioms InnerProductFable.SectorForm.unif12
-#print axioms InnerProductFable.SectorForm.unif12_apply
-#print axioms InnerProductFable.SectorForm.unif12_transpose
-#print axioms InnerProductFable.SectorForm.unif12_qf
-#print axioms InnerProductFable.SectorForm.unif12_posdef
-#print axioms InnerProductFable.SectorForm.permute_swap_zero
-#print axioms InnerProductFable.SectorForm.permute_swap_one
-#print axioms InnerProductFable.SectorForm.S₂
-#print axioms InnerProductFable.SectorForm.S₂_transitive
-#print axioms InnerProductFable.SectorForm.unif12_invariant
-#print axioms InnerProductFable.SectorForm.unif12_not_sectorAdditive
-#print axioms InnerProductFable.SectorForm.unif12_not_scalar
+#print axioms InnerProductFinite.SectorForm.pair
+#print axioms InnerProductFinite.SectorForm.pair_self
+#print axioms InnerProductFinite.SectorForm.DisjointSupport
+#print axioms InnerProductFinite.SectorForm.SectorAdditive
+#print axioms InnerProductFinite.SectorForm.l1_disjoint_additive
+#print axioms InnerProductFinite.SectorForm.qf_add_vec
+#print axioms InnerProductFinite.SectorForm.mulVec_single_one'
+#print axioms InnerProductFinite.SectorForm.pair_single_single
+#print axioms InnerProductFinite.SectorForm.qf_single
+#print axioms InnerProductFinite.SectorForm.disjoint_single_single
+#print axioms InnerProductFinite.SectorForm.single_ne_zero
+#print axioms InnerProductFinite.SectorForm.offdiag_pair_sum_eq_zero
+#print axioms InnerProductFinite.SectorForm.transpose_entry
+#print axioms InnerProductFinite.SectorForm.offdiag_eq_zero
+#print axioms InnerProductFinite.SectorForm.eq_diagonal_of_sectorAdditive
+#print axioms InnerProductFinite.SectorForm.qf_diagonal
+#print axioms InnerProductFinite.SectorForm.qf_transpose
+#print axioms InnerProductFinite.SectorForm.symmPart
+#print axioms InnerProductFinite.SectorForm.symmPart_transpose
+#print axioms InnerProductFinite.SectorForm.symmPart_apply
+#print axioms InnerProductFinite.SectorForm.qf_symmPart
+#print axioms InnerProductFinite.SectorForm.sectorAdditive_symmPart
+#print axioms InnerProductFinite.SectorForm.qf_eq_sum_diag_sq_of_sectorAdditive
+#print axioms InnerProductFinite.SectorForm.permute
+#print axioms InnerProductFinite.SectorForm.permute_single
+#print axioms InnerProductFinite.SectorForm.Invariant
+#print axioms InnerProductFinite.SectorForm.TransitiveOn
+#print axioms InnerProductFinite.SectorForm.diag_eq_of_invariant
+#print axioms InnerProductFinite.SectorForm.diag_const_of_transitive
+#print axioms InnerProductFinite.SectorForm.Generated
+#print axioms InnerProductFinite.SectorForm.permute_one
+#print axioms InnerProductFinite.SectorForm.permute_mul
+#print axioms InnerProductFinite.SectorForm.permute_inv_left
+#print axioms InnerProductFinite.SectorForm.permute_inv_right
+#print axioms InnerProductFinite.SectorForm.invariant_one
+#print axioms InnerProductFinite.SectorForm.invariant_mul
+#print axioms InnerProductFinite.SectorForm.invariant_inv
+#print axioms InnerProductFinite.SectorForm.invariant_of_generated
+#print axioms InnerProductFinite.SectorForm.eq_smul_one
+#print axioms InnerProductFinite.SectorForm.eq_smul_one_generated
+#print axioms InnerProductFinite.SectorForm.qf_eq_scale_dot
+#print axioms InnerProductFinite.SectorForm.pair_smul_one
+#print axioms InnerProductFinite.SectorForm.pair_eq_scale_dot
+#print axioms InnerProductFinite.SectorForm.scale_pos
+#print axioms InnerProductFinite.SectorForm.unique_of_normalized
+#print axioms InnerProductFinite.SectorForm.unique_up_to_scale
+#print axioms InnerProductFinite.SectorForm.pair_diagonal_eq_zero_of_disjoint
+#print axioms InnerProductFinite.SectorForm.diagonal_sectorAdditive
+#print axioms InnerProductFinite.SectorForm.one_sectorAdditive
+#print axioms InnerProductFinite.SectorForm.dot_permute
+#print axioms InnerProductFinite.SectorForm.one_invariant
+#print axioms InnerProductFinite.SectorForm.one_posdef
+#print axioms InnerProductFinite.SectorForm.eq_one_of_normalized
+#print axioms InnerProductFinite.SectorForm.diag12
+#print axioms InnerProductFinite.SectorForm.diag12_transpose
+#print axioms InnerProductFinite.SectorForm.diag12_sectorAdditive
+#print axioms InnerProductFinite.SectorForm.diag12_qf
+#print axioms InnerProductFinite.SectorForm.diag12_posdef
+#print axioms InnerProductFinite.SectorForm.diag12_not_invariant_swap
+#print axioms InnerProductFinite.SectorForm.diag12_not_scalar
+#print axioms InnerProductFinite.SectorForm.unif12
+#print axioms InnerProductFinite.SectorForm.unif12_apply
+#print axioms InnerProductFinite.SectorForm.unif12_transpose
+#print axioms InnerProductFinite.SectorForm.unif12_qf
+#print axioms InnerProductFinite.SectorForm.unif12_posdef
+#print axioms InnerProductFinite.SectorForm.permute_swap_zero
+#print axioms InnerProductFinite.SectorForm.permute_swap_one
+#print axioms InnerProductFinite.SectorForm.S₂
+#print axioms InnerProductFinite.SectorForm.S₂_transitive
+#print axioms InnerProductFinite.SectorForm.unif12_invariant
+#print axioms InnerProductFinite.SectorForm.unif12_not_sectorAdditive
+#print axioms InnerProductFinite.SectorForm.unif12_not_scalar

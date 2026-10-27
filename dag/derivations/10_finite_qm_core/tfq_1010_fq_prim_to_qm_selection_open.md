@@ -31,10 +31,10 @@ Selection of a declared quantum model or readout from primitive difference stays
 
 ### Lean 4 Theorems
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_prim_to_qm_selection_finite_quotient_vs_continuum_gap`
-- `lean4/CampaignFqPrimToQmSelection.lean::quad_weights`
-- `lean4/CampaignFqPrimToQmSelection.lean::quart_weights`
-- `lean4/CampaignFqPrimToQmSelection.lean::normalized_first_weights_differ`
-- `lean4/CampaignFqPrimToQmSelection.lean::symmetric_agreement`
+- `lean4/PrimToQmSelection.lean::quad_weights`
+- `lean4/PrimToQmSelection.lean::quart_weights`
+- `lean4/PrimToQmSelection.lean::normalized_first_weights_differ`
+- `lean4/PrimToQmSelection.lean::symmetric_agreement`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::readout_quadratic`

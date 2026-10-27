@@ -34,19 +34,19 @@ imported; no channel class defined on the finite host
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/H015CollapseDilations.lean::four_reversible_dilations_of_collapse`
+- `lean4/CollapseDilations.lean::four_reversible_dilations_of_collapse`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.gp_and_l1_imported_field_circle_dilation_and_time_interpolation_boundaries`
-- `lean4/CampaignGpImportCptpClass.lean::collapse_both_false`
-- `lean4/CampaignGpImportCptpClass.lean::collapse_labels_agree`
-- `lean4/CampaignGpImportCptpClass.lean::collapse_no_two_sided_inverse`
-- `lean4/CampaignGpImportCptpClass.lean::collapseMass_coords`
-- `lean4/CampaignGpImportCptpClass.lean::collapseMass_preserves_sum`
-- `lean4/CampaignGpImportCptpClass.lean::collapseMass_nonneg`
-- `lean4/CampaignGpImportCptpClass.lean::collapseMass_two_three`
-- `lean4/CampaignGpImportCptpClass.lean::prepared_is_false`
-- `lean4/CampaignGpImportCptpClass.lean::four_maps_pairwise_unequal`
-- `lean4/CampaignGpImportCptpClass.lean::four_named_are_dilations`
-- `lean4/CampaignGpImportCptpClass.lean::every_dilation_agrees`
+- `lean4/CptpClassImport.lean::collapse_both_false`
+- `lean4/CptpClassImport.lean::collapse_labels_agree`
+- `lean4/CptpClassImport.lean::collapse_no_two_sided_inverse`
+- `lean4/CptpClassImport.lean::collapseMass_coords`
+- `lean4/CptpClassImport.lean::collapseMass_preserves_sum`
+- `lean4/CptpClassImport.lean::collapseMass_nonneg`
+- `lean4/CptpClassImport.lean::collapseMass_two_three`
+- `lean4/CptpClassImport.lean::prepared_is_false`
+- `lean4/CptpClassImport.lean::four_maps_pairwise_unequal`
+- `lean4/CptpClassImport.lean::four_named_are_dilations`
+- `lean4/CptpClassImport.lean::every_dilation_agrees`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

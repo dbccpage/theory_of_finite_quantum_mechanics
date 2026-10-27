@@ -9,7 +9,7 @@ This module provides exact and computational verification of:
    (b) local unitary covariance
    (c) product-state marginal consistency
    (d) no-signaling
-2. The locality-dropping rival combining operation (projection / report dump) on Bool x Bool from QM_122 H014Interface.
+2. The locality-dropping rival combining operation (projection / report dump) on Bool x Bool from QM_122 HilbertWalkInterface.
 3. Dimension d=6 composite MUB verification: construction of 3 product bases at conductor 24 with exact mutual unbiasedness 1/6.
 4. Bounded algebraic search for a fourth MUB in dimension 6 over conductor 24 with declared budget (status OPEN).
 5. Gottesman-Kitaev-Preskill (GKP) grid state cyclotomic conductor scaling, showing unbounded escalation n(N) >= N.

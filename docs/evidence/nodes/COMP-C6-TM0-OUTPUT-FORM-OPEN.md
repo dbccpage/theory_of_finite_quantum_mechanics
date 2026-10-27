@@ -42,15 +42,15 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignCompC6Tm0OutputFormOpen.lean`
+### Lean: `lean4/ComputationC6Tm0OutputFormOpen.lean`
 
-- file: [lean4/CampaignCompC6Tm0OutputFormOpen.lean](../../../lean4/CampaignCompC6Tm0OutputFormOpen.lean)
-- sha256 (`bytes`): `a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1`
-- cited in: node.lean, receipt dag/research/campaign_comp-c6-tm0-output-form-open_lean_replay.json (CampaignCompC6Tm0OutputFormOpen), receipt dag/research/pr_368_review_replay.json (CampaignCompC6Tm0OutputFormOpen), record TFQ-1307
+- file: [lean4/ComputationC6Tm0OutputFormOpen.lean](../../../lean4/ComputationC6Tm0OutputFormOpen.lean)
+- sha256 (`bytes`): `df403415af32c9a579466ea33a6aa790896381efbbe521322eb020f74e0d3fc5`
+- cited in: node.lean, receipt dag/research/campaign_comp-c6-tm0-output-form-open_lean_replay.json (ComputationC6Tm0OutputFormOpen), receipt dag/research/pr_368_review_replay.json (ComputationC6Tm0OutputFormOpen), record TFQ-1307
 - replay: `verified`
-  - receipt [dag/research/campaign_comp-c6-tm0-output-form-open_lean_replay.json](../../../dag/research/campaign_comp-c6-tm0-output-form-open_lean_replay.json) (module `CampaignCompC6Tm0OutputFormOpen`): recorded sha256 `a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_368_review_replay.json](../../../dag/research/pr_368_review_replay.json) (module `CampaignCompC6Tm0OutputFormOpen`): recorded sha256 `a2129cab209b8623760a2be48745566d6dcce90ce40dbf2d3857c998451dc8e1` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignCompC6Tm0OutputFormOpen`
+  - receipt [dag/research/campaign_comp-c6-tm0-output-form-open_lean_replay.json](../../../dag/research/campaign_comp-c6-tm0-output-form-open_lean_replay.json) (module `ComputationC6Tm0OutputFormOpen`): recorded sha256 `df403415af32c9a579466ea33a6aa790896381efbbe521322eb020f74e0d3fc5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_368_review_replay.json](../../../dag/research/pr_368_review_replay.json) (module `ComputationC6Tm0OutputFormOpen`): recorded sha256 `df403415af32c9a579466ea33a6aa790896381efbbe521322eb020f74e0d3fc5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build ComputationC6Tm0OutputFormOpen`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -63,7 +63,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/29_computation/tfq_1307_comp_c6_tm0_output_form_open.md`
 
 - file: [dag/derivations/29_computation/tfq_1307_comp_c6_tm0_output_form_open.md](../../../dag/derivations/29_computation/tfq_1307_comp_c6_tm0_output_form_open.md)
-- sha256 (`lf-normalised`): `a1683fe17347fbb864ebc6e071c15b5a97c70ff265cc74354908b71239175e0d`
+- sha256 (`lf-normalised`): `f08ab0bb36ddeb4c956fdb67a44fb4f3b763b3c19fb62c7cc8dad8556a21a487`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1307
 - counts toward the grade: no

@@ -43,9 +43,9 @@ Replay edge order is (0,1), (0,2), (1,3), (2,3), (1,2). Eight masks 7, 11, 13, 1
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignDfmSymanzikQedAeFence.lean::component_counts`
-- `lean4/CampaignDfmSymanzikQedAeFence.lean::three_bit_masks_are_listed`
-- `lean4/CampaignDfmSymanzikQedAeFence.lean::cotree_sums`
+- `lean4/DressingFieldSymanzikQedAeFence.lean::component_counts`
+- `lean4/DressingFieldSymanzikQedAeFence.lean::three_bit_masks_are_listed`
+- `lean4/DressingFieldSymanzikQedAeFence.lean::cotree_sums`
 
 ### Rust Certifiers
 - *none*
@@ -69,6 +69,6 @@ Replay edge order is (0,1), (0,2), (1,3), (2,3), (1,2). Eight masks 7, 11, 13, 1
 - **Cited Sources**:
   - `papers/ravera_dfm_dossier.md:96`
   - `papers/ravera_dfm_dossier.md:48`
-  - `lean4/CampaignDfmSymanzikQedAeFence.lean`
+  - `lean4/DressingFieldSymanzikQedAeFence.lean`
   - `dag/derivations/independent/dfm-symanzik-qed-ae-fence.md`
   - `checks/independent/dfm-symanzik-qed-ae-fence.py`

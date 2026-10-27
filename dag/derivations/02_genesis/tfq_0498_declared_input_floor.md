@@ -30,14 +30,14 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignPgwDeclaredInputFloor.lean::declared_bounds`](../../../lean4/CampaignPgwDeclaredInputFloor.lean)
-- [`lean4/CampaignPgwDeclaredInputFloor.lean::each_count_is_one`](../../../lean4/CampaignPgwDeclaredInputFloor.lean)
-- [`lean4/CampaignPgwDeclaredInputFloor.lean::each_declares_stake_not_stream`](../../../lean4/CampaignPgwDeclaredInputFloor.lean)
-- [`lean4/CampaignPgwDeclaredInputFloor.lean::empty_carrier_is_not_among_the_four`](../../../lean4/CampaignPgwDeclaredInputFloor.lean)
-- [`lean4/CampaignPgwDeclaredInputFloor.lean::four_engines`](../../../lean4/CampaignPgwDeclaredInputFloor.lean)
-- [`lean4/CampaignPgwDeclaredInputFloor.lean::one_below_two`](../../../lean4/CampaignPgwDeclaredInputFloor.lean)
-- [`lean4/CampaignPgwDeclaredInputFloor.lean::readings_disagree`](../../../lean4/CampaignPgwDeclaredInputFloor.lean)
-- [`lean4/CampaignPgwDeclaredInputFloor.lean::vocabulary_is_two`](../../../lean4/CampaignPgwDeclaredInputFloor.lean)
+- [`lean4/PregenesisDeclaredInputFloor.lean::declared_bounds`](../../../lean4/PregenesisDeclaredInputFloor.lean)
+- [`lean4/PregenesisDeclaredInputFloor.lean::each_count_is_one`](../../../lean4/PregenesisDeclaredInputFloor.lean)
+- [`lean4/PregenesisDeclaredInputFloor.lean::each_declares_stake_not_stream`](../../../lean4/PregenesisDeclaredInputFloor.lean)
+- [`lean4/PregenesisDeclaredInputFloor.lean::empty_carrier_is_not_among_the_four`](../../../lean4/PregenesisDeclaredInputFloor.lean)
+- [`lean4/PregenesisDeclaredInputFloor.lean::four_engines`](../../../lean4/PregenesisDeclaredInputFloor.lean)
+- [`lean4/PregenesisDeclaredInputFloor.lean::one_below_two`](../../../lean4/PregenesisDeclaredInputFloor.lean)
+- [`lean4/PregenesisDeclaredInputFloor.lean::readings_disagree`](../../../lean4/PregenesisDeclaredInputFloor.lean)
+- [`lean4/PregenesisDeclaredInputFloor.lean::vocabulary_is_two`](../../../lean4/PregenesisDeclaredInputFloor.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust check of the input count`

@@ -17,7 +17,7 @@ Genesis Step3 acts on states of a finite term set, a finite assertion set and tw
 Still open: an encoding of every Genesis Step3 state, with a finite term set, a finite assertion set and two named terms, under which add-term, add-assertion and identify are word steps, or a demonstration that none exists.
 
 ### Witness Audit
-CampaignCompC2Step3NotWordStep records three concrete one-hole list moves and the map merge01. It does not encode the staged Step3 relation on term sets, assertion sets and two named terms.
+ComputationC2Step3NotWordStep records three concrete one-hole list moves and the map merge01. It does not encode the staged Step3 relation on term sets, assertion sets and two named terms.
 
 ---
 
@@ -34,11 +34,11 @@ CampaignCompC2Step3NotWordStep records three concrete one-hole list moves and th
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignCompC2Step3NotWordStep.lean::addTermWordStep`
-- `lean4/CampaignCompC2Step3NotWordStep.lean::addAssertionWordStep`
-- `lean4/CampaignCompC2Step3NotWordStep.lean::identifyWordStep`
-- `lean4/CampaignCompC2Step3NotWordStep.lean::merge01SendsBothToZero`
-- `lean4/CampaignCompC2Step3NotWordStep.lean::merge01FixesOther`
+- `lean4/ComputationC2Step3NotWordStep.lean::addTermWordStep`
+- `lean4/ComputationC2Step3NotWordStep.lean::addAssertionWordStep`
+- `lean4/ComputationC2Step3NotWordStep.lean::identifyWordStep`
+- `lean4/ComputationC2Step3NotWordStep.lean::merge01SendsBothToZero`
+- `lean4/ComputationC2Step3NotWordStep.lean::merge01FixesOther`
 
 ### Rust Certifiers
 - *none*

@@ -22,7 +22,7 @@ Paper §1 states the shared spine is a **plan, not a proof**. The intended found
 - Dual pairing bound plus Mermin–Peres sign parity: `DualWitness.lean` `dual_witness_certifies_trace_distance` (`|w·d| <= |d0|+|d1|` for coefficients in `{-1,0,1}`) and `mermin_peres_parity_obstruction`. Register: candidate mirror for QM-120, not QM_080 Theorems 5–6, not an Atlas admission.
 - Admitted window, not a derived complex: `CochainWindow.lean` takes the chain law as a **structure field** and proves a 3-way `sector_trichotomy` (Exact / ActiveClosureFailure / ClosedResidual). `CellGrammar.lean` derives d1 d0 = 0 only after declared `boundarySquare` and dual pairings. General complexes do **not** inherit a proved coboundary law from primitive difference alone.
 - Classifier without Refusal: `PointedObstructionClassifier.lean` is a Nat-valued 3-way split assuming Phi and Gamma as fields. No IllFormed / Refusal class.
-- Adjacent, not admission: `H020CabelloSignPolytope.lean` is Z^4 parity uncolorability (header nonclaim: finite KS does not force Born). `H044SurfaceCodeToricTopology.lean` `homology_dimension_k2` is the integer identity `8-(4-1)-(4-1)=2`. That is not a group isomorphism or a computed homology of the 2×2 torus (`lean4/H044SurfaceCodeToricTopology.lean`). Keep the non-admission fence; drop the iso wording.
+- Adjacent, not admission: `CabelloSignPolytope.lean` is Z^4 parity uncolorability (header nonclaim: finite KS does not force Born). `SurfaceCodeToricTopology.lean` `homology_dimension_k2` is the integer identity `8-(4-1)-(4-1)=2`. That is not a group isomorphism or a computed homology of the 2×2 torus (`lean4/SurfaceCodeToricTopology.lean`). Keep the non-admission fence; drop the iso wording.
 
 **What is numerically checked, not exact:**
 
@@ -65,7 +65,7 @@ This gap has two distinct mathematical objects that the register currently confl
 
 ### GAP-F001-S000-002 — Continuum Hilbert lift (`continuum_interface`; PRICED_CONTINUUM_INTERFACE)
 
-**Why open.** No source constructs a map from finite graph cochains (integer/rational weights, finite labels) to infinite-dimensional Hilbert space. QM_122 §6 refuses the lift; QM_010 forbids continuum physics from finite cochains. Canonical [X,P]=i hbar I has no finite-dimensional representation (Wintner–Wielandt). Cited `code/continuum_lift.py` and `code_rs/src/continuum.rs` do not exist at those paths; live kernels are `omega_engine/crates/finite_qm/use_cases/continuum_lift.py` (numpy floats) and `omega_engine/crates_rs/omega_quantum_physics/src/finite_qm/continuum.rs` (exact rationals). `H056ContinuumLiftBoundary.lean` is 2x2 Int, not a completion functor.
+**Why open.** No source constructs a map from finite graph cochains (integer/rational weights, finite labels) to infinite-dimensional Hilbert space. QM_122 §6 refuses the lift; QM_010 forbids continuum physics from finite cochains. Canonical [X,P]=i hbar I has no finite-dimensional representation (Wintner–Wielandt). Cited `code/continuum_lift.py` and `code_rs/src/continuum.rs` do not exist at those paths; live kernels are `omega_engine/crates/finite_qm/use_cases/continuum_lift.py` (numpy floats) and `omega_engine/crates_rs/omega_quantum_physics/src/finite_qm/continuum.rs` (exact rationals). `ContinuumLiftBoundary.lean` is 2x2 Int, not a completion functor.
 
 **Closable inside the finite programme:** no. Marked **priced-continuum**. Infinite-dimensional Hilbert cochain cohomology C^*(X;H) for complete H is the same priced interface, not a finite-carrier task.
 
@@ -155,5 +155,5 @@ Until those admission items exist as named files, the finite presentation **does
 - `omega_engine/crates/finite_qm/` listing; `use_cases/cochain.py`; `use_cases/rungs.py`
 - `omega_engine/code/` listing; `contextuality_obstruction.py`; `tests/unit/test_cochain.py`
 - `omega_engine/code_rs/` listing (no `src/continuum.rs`)
-- `lean4/quantum_mechanics/`: `PrimitiveDifference.lean`, `FiniteCochain.lean`, `CochainWindow.lean`, `CellGrammar.lean`, `ContextualityObstruction.lean`, `WorldCycle3Quotient.lean`, `FiniteN3ResidualDual.lean`, `DualWitness.lean`, `PointedObstructionClassifier.lean`, `WorldLGGRWitness.lean`, `H020CabelloSignPolytope.lean`, `H044SurfaceCodeToricTopology.lean`, `H064ContextualityThresholds.lean`; confirmed `lean4/quantum_mechanics/original_lean_20260809` **absent**; no `GOMC_*.lean`
+- `lean4/quantum_mechanics/`: `PrimitiveDifference.lean`, `FiniteCochain.lean`, `CochainWindow.lean`, `CellGrammar.lean`, `ContextualityObstruction.lean`, `WorldCycle3Quotient.lean`, `FiniteN3ResidualDual.lean`, `DualWitness.lean`, `PointedObstructionClassifier.lean`, `WorldLGGRWitness.lean`, `CabelloSignPolytope.lean`, `SurfaceCodeToricTopology.lean`, `ContextualityThresholds.lean`; confirmed `lean4/quantum_mechanics/original_lean_20260809` **absent**; no `GOMC_*.lean`
 - `campaigns/c1000/block_07/RESULT.md`; `result.json`; `evidence/contextuality_obstruction_receipt.json`

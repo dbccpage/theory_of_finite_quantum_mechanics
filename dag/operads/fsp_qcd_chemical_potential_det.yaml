@@ -10,7 +10,7 @@ target:
   declared_assumptions:
   - lattice QCD with staggered quarks at chemical potential (standard)
   source_bottleneck: Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported;
-    lean4/CampaignFspQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant
+    lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant
     conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I,
     the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link
     U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8
@@ -42,7 +42,7 @@ operation_candidates:
   line: 137
   signature_excerpt: 'def diracMu {n : Type*} (expMap : ℂ → ℂ) (M0 Kpos Kneg : Matrix n n ℂ) (μ : ℂ) :
     Matrix n n ℂ'
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -52,7 +52,7 @@ operation_candidates:
   signature_excerpt: |-
     def staggeredDiracMu {n : Type*} [DecidableEq n]
         (expMap : ℂ → ℂ) (m : ℝ) (Tpos : Matrix n n ℂ) (μ : ℂ) : Matrix n n ℂ
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -60,7 +60,7 @@ operation_candidates:
   name: su3ClockLink
   line: 232
   signature_excerpt: 'def su3ClockLink : Matrix (Fin 3) (Fin 3) ℂ'
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -68,7 +68,7 @@ operation_candidates:
   name: gamma5Chiral3
   line: 261
   signature_excerpt: 'def gamma5Chiral3 : Matrix (Fin 3 ⊕ Fin 3) (Fin 3 ⊕ Fin 3) ℂ'
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -76,7 +76,7 @@ operation_candidates:
   name: su3FugacityDirac
   line: 257
   signature_excerpt: 'def su3FugacityDirac (z : ℂ) : Matrix (Fin 3 ⊕ Fin 3) (Fin 3 ⊕ Fin 3) ℂ'
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -84,7 +84,7 @@ operation_candidates:
   name: su2DiagLink
   line: 311
   signature_excerpt: 'def su2DiagLink (u : ℂ) : Matrix (Fin 2) (Fin 2) ℂ'
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -96,7 +96,7 @@ relation_candidates:
     theorem det_conj_by_involution {n : Type*} [Fintype n] [DecidableEq n]
         {R : Type*} [CommRing R] (Γ5 M : Matrix n n R) (hΓ : Γ5 * Γ5 = 1) :
         (Γ5 * M * Γ5).det = M.det
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -111,7 +111,7 @@ relation_candidates:
         (hΓ : Γ5 * Γ5 = 1)
         (h_int : Γ5 * D μ * Γ5 = (D (-star μ))ᴴ) :
         star (D μ).det = (D (-star μ)).det
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -126,7 +126,7 @@ relation_candidates:
         (hΓ : Γ5 * Γ5 = 1)
         (h_int : ∀ z : ℂ, Γ5 * D z * Γ5 = (D (-star z))ᴴ) :
         star (D (μ : ℂ)).det = (D (-(μ : ℂ))).det
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -141,7 +141,7 @@ relation_candidates:
         (hΓ : Γ5 * Γ5 = 1)
         (h_int : ∀ z : ℂ, Γ5 * D z * Γ5 = (D (-star z))ᴴ) :
         ((D 0).det).im = 0
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -156,7 +156,7 @@ relation_candidates:
         (hΓ : Γ5 * Γ5 = 1)
         (h_int : ∀ z : ℂ, Γ5 * D z * Γ5 = (D (-star z))ᴴ) :
         ((D (I * (μI : ℂ))).det).im = 0
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -175,7 +175,7 @@ relation_candidates:
         (μ : ℂ) :
         Γ5 * diracMu expMap M0 Kpos Kneg μ * Γ5 =
           (diracMu expMap M0 Kpos Kneg (-star μ))ᴴ
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -195,7 +195,7 @@ relation_candidates:
         (μ : ℂ) :
         star (diracMu expMap M0 Kpos Kneg μ).det =
           (diracMu expMap M0 Kpos Kneg (-star μ)).det
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -214,7 +214,7 @@ relation_candidates:
         (μ : ℂ) :
         Γ5 * staggeredDiracMu expMap m Tpos μ * Γ5 =
           (staggeredDiracMu expMap m Tpos (-star μ))ᴴ
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -233,7 +233,7 @@ relation_candidates:
         (μ : ℂ) :
         star (staggeredDiracMu expMap m Tpos μ).det =
           (staggeredDiracMu expMap m Tpos (-star μ)).det
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -243,7 +243,7 @@ relation_candidates:
   name: su3ClockLink_unitary
   line: 238
   signature_excerpt: 'theorem su3ClockLink_unitary : su3ClockLink * su3ClockLinkᴴ = 1'
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -253,7 +253,7 @@ relation_candidates:
   name: su3ClockLink_det
   line: 243
   signature_excerpt: 'theorem su3ClockLink_det : su3ClockLink.det = 1'
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -265,7 +265,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem su3ClockLink_trace_im_ne_zero :
         (su3ClockLink.trace).im = 2 ∧ (su3ClockLink.trace).im ≠ 0
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -278,7 +278,7 @@ relation_candidates:
     theorem su3FugacityDirac_gamma5_intertwine (z : ℂ) :
         gamma5Chiral3 * su3FugacityDirac z * gamma5Chiral3 =
           (su3FugacityDirac (star z)⁻¹)ᴴ
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -290,7 +290,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem su3FugacityDirac_det_at_two :
         (su3FugacityDirac 2).det = (63 / 8 : ℂ) - 27 * I
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -302,7 +302,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem su3FugacityDirac_det_at_half :
         (su3FugacityDirac (1 / 2 : ℂ)).det = (63 / 8 : ℂ) + 27 * I
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -314,7 +314,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem su2DiagLink_block_det_im_zero (u : ℂ) (hu : u * star u = 1) (r : ℝ) :
         (((1 : Matrix (Fin 2) (Fin 2) ℂ) - (r : ℂ) • su2DiagLink u).det).im = 0
-  source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  source: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   source_sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   status: source_candidate_requires_semantic_review
@@ -323,154 +323,154 @@ relation_candidates:
   bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
     follows automatically.
 source_bindings:
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.det_conj_by_involution
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.det_conj_by_involution
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.det_conj_by_involution
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.det_conj_by_involution
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
   line: 74
   role: source_lead_only
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_mu_intertwine_det_conj
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.gamma5_mu_intertwine_det_conj
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.gamma5_mu_intertwine_det_conj
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.gamma5_mu_intertwine_det_conj
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
   line: 87
   role: source_lead_only
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_real_mu_det_conj
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.gamma5_real_mu_det_conj
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.gamma5_real_mu_det_conj
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.gamma5_real_mu_det_conj
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
   line: 99
   role: source_lead_only
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_zero_mu_det_im_zero
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.gamma5_zero_mu_det_im_zero
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.gamma5_zero_mu_det_im_zero
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.gamma5_zero_mu_det_im_zero
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
   line: 109
   role: source_lead_only
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.gamma5_imag_mu_det_im_zero
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.gamma5_imag_mu_det_im_zero
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.gamma5_imag_mu_det_im_zero
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.gamma5_imag_mu_det_im_zero
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
   line: 120
   role: source_lead_only
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.diracMu_gamma5_adjoint
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.diracMu_gamma5_adjoint
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.diracMu_gamma5_adjoint
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.diracMu_gamma5_adjoint
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
   line: 153
   role: source_lead_only
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.diracMu_det_conj
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.diracMu_det_conj
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.diracMu_det_conj
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.diracMu_det_conj
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
   line: 173
   role: source_lead_only
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.staggeredDiracMu_gamma5_adjoint
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.staggeredDiracMu_gamma5_adjoint
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.staggeredDiracMu_gamma5_adjoint
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.staggeredDiracMu_gamma5_adjoint
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
   line: 195
   role: source_lead_only
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.staggeredDiracMu_det_conj
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.staggeredDiracMu_det_conj
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.staggeredDiracMu_det_conj
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.staggeredDiracMu_det_conj
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
   line: 216
   role: source_lead_only
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_unitary
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3ClockLink_unitary
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.su3ClockLink_unitary
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.su3ClockLink_unitary
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
   line: 238
   role: source_lead_only
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_det
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3ClockLink_det
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.su3ClockLink_det
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.su3ClockLink_det
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
   line: 243
   role: source_lead_only
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3ClockLink_trace_im_ne_zero
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3ClockLink_trace_im_ne_zero
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.su3ClockLink_trace_im_ne_zero
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.su3ClockLink_trace_im_ne_zero
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
   line: 248
   role: source_lead_only
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_gamma5_intertwine
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_gamma5_intertwine
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_gamma5_intertwine
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.su3FugacityDirac_gamma5_intertwine
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
   line: 268
   role: source_lead_only
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_two
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_two
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_two
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_two
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
   line: 276
   role: source_lead_only
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_half
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_half
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_det_at_half
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_half
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
   line: 284
   role: source_lead_only
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
   line: 294
   role: source_lead_only
-- original_ref: lean4/CampaignFspQcdChemicalPotentialDet.lean::CampaignFspQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero
+- original_ref: lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero
   availability: local
-  symbol: CampaignFspQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero
-  path: lean4/CampaignFspQcdChemicalPotentialDet.lean
+  symbol: FermionSignQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero
+  path: lean4/FermionSignQcdChemicalPotentialDet.lean
   repository: this_repository
   sha256: cc12ac8e2f4a2fca8a4f408053d346ed18306fcd015ca1d44d023025468237eb
   declaration_status: declaration_found_not_proof_checked
@@ -520,6 +520,6 @@ open_obligations:
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
 - Bind independent certificate predicates and real checker anchors before P1.
 excluded_relation_leads:
-- source: lean4/CampaignFspQcdChemicalPotentialDet.lean
+- source: lean4/FermionSignQcdChemicalPotentialDet.lean
   name: su3FugacityDirac_complex_det_witness
   reason: aggregate_or_proxy_scope_requires_projection_not_a_task_relation

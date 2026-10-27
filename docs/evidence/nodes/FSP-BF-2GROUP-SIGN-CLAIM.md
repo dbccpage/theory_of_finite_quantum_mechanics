@@ -42,28 +42,28 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignBfCocycleObstruction.lean`
+### Lean: `lean4/BfCocycleObstruction.lean`
 
-- file: [lean4/CampaignBfCocycleObstruction.lean](../../../lean4/CampaignBfCocycleObstruction.lean)
-- sha256 (`bytes`): `882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc`
-- cited in: node.lean, receipt dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json (CampaignBfCocycleObstruction), record TFQ-1210
+- file: [lean4/BfCocycleObstruction.lean](../../../lean4/BfCocycleObstruction.lean)
+- sha256 (`bytes`): `0712dd42cc8b6cb9a67184f6759604bc93eed8d5d46a50a725cdb87a2a5e15b0`
+- cited in: node.lean, receipt dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json (BfCocycleObstruction), record TFQ-1210
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json](../../../dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json) (module `CampaignBfCocycleObstruction`): recorded sha256 `882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignBfCocycleObstruction`
+  - receipt [dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json](../../../dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json) (module `BfCocycleObstruction`): recorded sha256 `0712dd42cc8b6cb9a67184f6759604bc93eed8d5d46a50a725cdb87a2a5e15b0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build BfCocycleObstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignBfCocycleObstruction.Normalized` | yes | yes | yes | none | `#print axioms CampaignBfCocycleObstruction.Normalized` |
-| `CampaignBfCocycleObstruction.coboundary` | yes | yes | yes | none | `#print axioms CampaignBfCocycleObstruction.coboundary` |
-| `CampaignBfCocycleObstruction.cocycle` | yes | yes | yes | none | `#print axioms CampaignBfCocycleObstruction.cocycle` |
-| `CampaignBfCocycleObstruction.cocycle_identity` | yes | yes | yes | none | `#print axioms CampaignBfCocycleObstruction.cocycle_identity` |
-| `CampaignBfCocycleObstruction.generator_sign_survives_rephasing` | yes | yes | yes | propext | `#print axioms CampaignBfCocycleObstruction.generator_sign_survives_rephasing` |
-| `CampaignBfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive` | yes | yes | yes | propext | `#print axioms CampaignBfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive` |
-| `CampaignBfCocycleObstruction.normalized_coboundary_at_generator` | yes | yes | yes | propext | `#print axioms CampaignBfCocycleObstruction.normalized_coboundary_at_generator` |
-| `CampaignBfCocycleObstruction.normalized_cocycle` | yes | yes | yes | none | `#print axioms CampaignBfCocycleObstruction.normalized_cocycle` |
-| `CampaignBfCocycleObstruction.not_a_normalized_coboundary` | yes | yes | yes | propext | `#print axioms CampaignBfCocycleObstruction.not_a_normalized_coboundary` |
-| `CampaignBfCocycleObstruction.rephase` | yes | yes | yes | none | `#print axioms CampaignBfCocycleObstruction.rephase` |
-| `CampaignBfCocycleObstruction.sign` | yes | yes | yes | none | `#print axioms CampaignBfCocycleObstruction.sign` |
+| `BfCocycleObstruction.Normalized` | yes | yes | yes | none | `#print axioms BfCocycleObstruction.Normalized` |
+| `BfCocycleObstruction.coboundary` | yes | yes | yes | none | `#print axioms BfCocycleObstruction.coboundary` |
+| `BfCocycleObstruction.cocycle` | yes | yes | yes | none | `#print axioms BfCocycleObstruction.cocycle` |
+| `BfCocycleObstruction.cocycle_identity` | yes | yes | yes | none | `#print axioms BfCocycleObstruction.cocycle_identity` |
+| `BfCocycleObstruction.generator_sign_survives_rephasing` | yes | yes | yes | propext | `#print axioms BfCocycleObstruction.generator_sign_survives_rephasing` |
+| `BfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive` | yes | yes | yes | propext | `#print axioms BfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive` |
+| `BfCocycleObstruction.normalized_coboundary_at_generator` | yes | yes | yes | propext | `#print axioms BfCocycleObstruction.normalized_coboundary_at_generator` |
+| `BfCocycleObstruction.normalized_cocycle` | yes | yes | yes | none | `#print axioms BfCocycleObstruction.normalized_cocycle` |
+| `BfCocycleObstruction.not_a_normalized_coboundary` | yes | yes | yes | propext | `#print axioms BfCocycleObstruction.not_a_normalized_coboundary` |
+| `BfCocycleObstruction.rephase` | yes | yes | yes | none | `#print axioms BfCocycleObstruction.rephase` |
+| `BfCocycleObstruction.sign` | yes | yes | yes | none | `#print axioms BfCocycleObstruction.sign` |
 
 - counts toward the grade: yes
 
@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md`
 
 - file: [dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md](../../../dag/derivations/26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md)
-- sha256 (`lf-normalised`): `0c807dcd6c58902afd7202e7d1105255616a76fe8a5fb2bf13599338fd4a9b66`
+- sha256 (`lf-normalised`): `2a843280864d6c2684f5285d1e050c2e2f2a6cc0ad330f7505f8992ecca3988c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1210
 - counts toward the grade: no
@@ -85,14 +85,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-bf-2group-sign-claim.md`
 
 - file: [dag/derivations/independent/fsp-bf-2group-sign-claim.md](../../../dag/derivations/independent/fsp-bf-2group-sign-claim.md)
-- sha256 (`lf-normalised`): `83f3aa9c7567ceab60d50adec7af32f9fdbb0dc6b69afebb759bbfe4ea0827fe`
+- sha256 (`lf-normalised`): `a9965286126ad0ebb367fd9fa5cfad0ffdeca345c810c1ed38f4341b98caf880`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json`
 
 - file: [dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json](../../../dag/research/campaign_fsp-bf-2group-sign-claim_lean_replay.json)
-- sha256 (`lf-normalised`): `32863477287110540a374428dee4ee40cd271e0bfb3d087180df26adc18931c1`
+- sha256 (`lf-normalised`): `558f9650d8a80f2000e5bf6f26e9b5e63072b48f4f8d049b3a828b629d197ec2`
 - cited in: node.source
 - counts toward the grade: yes
 

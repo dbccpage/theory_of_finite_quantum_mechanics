@@ -46,28 +46,42 @@ imported; no channel class defined on the finite host
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGpImportCptpClass.lean`
+### Lean: `lean4/CollapseDilations.lean`
 
-- file: [lean4/CampaignGpImportCptpClass.lean](../../../lean4/CampaignGpImportCptpClass.lean)
-- sha256 (`bytes`): `5667a581f964eb7babec906cc92c49ea4dd4c859a71a49fdc4327c812fcf54b7`
-- cited in: node.lean, receipt dag/research/campaign_gp-import-cptp-class_lean_replay.json (CampaignGpImportCptpClass), record TFQ-1033
-- replay: `verified`
-  - receipt [dag/research/campaign_gp-import-cptp-class_lean_replay.json](../../../dag/research/campaign_gp-import-cptp-class_lean_replay.json) (module `CampaignGpImportCptpClass`): recorded sha256 `5667a581f964eb7babec906cc92c49ea4dd4c859a71a49fdc4327c812fcf54b7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGpImportCptpClass`
+- file: [lean4/CollapseDilations.lean](../../../lean4/CollapseDilations.lean)
+- sha256 (`bytes`): `5e215575a05df32a74179ff48601a40c0f1d186b2dfbe27898f65427da720bae`
+- cited in: node.lean, record TFQ-1033
+- replay: `none`
+- check: `cd lean4 && lake build CollapseDilations`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignGpImportCptpClass.collapseMass_coords` | yes | yes | yes | none | `#print axioms CampaignGpImportCptpClass.collapseMass_coords` |
-| `CampaignGpImportCptpClass.collapseMass_nonneg` | yes | yes | yes | propext | `#print axioms CampaignGpImportCptpClass.collapseMass_nonneg` |
-| `CampaignGpImportCptpClass.collapseMass_preserves_sum` | yes | yes | yes | none | `#print axioms CampaignGpImportCptpClass.collapseMass_preserves_sum` |
-| `CampaignGpImportCptpClass.collapseMass_two_three` | yes | yes | yes | none | `#print axioms CampaignGpImportCptpClass.collapseMass_two_three` |
-| `CampaignGpImportCptpClass.collapse_both_false` | yes | yes | yes | none | `#print axioms CampaignGpImportCptpClass.collapse_both_false` |
-| `CampaignGpImportCptpClass.collapse_labels_agree` | yes | yes | yes | none | `#print axioms CampaignGpImportCptpClass.collapse_labels_agree` |
-| `CampaignGpImportCptpClass.collapse_no_two_sided_inverse` | yes | yes | yes | none | `#print axioms CampaignGpImportCptpClass.collapse_no_two_sided_inverse` |
-| `CampaignGpImportCptpClass.every_dilation_agrees` | yes | yes | yes | propext | `#print axioms CampaignGpImportCptpClass.every_dilation_agrees` |
-| `CampaignGpImportCptpClass.four_maps_pairwise_unequal` | yes | yes | yes | none | `#print axioms CampaignGpImportCptpClass.four_maps_pairwise_unequal` |
-| `CampaignGpImportCptpClass.four_named_are_dilations` | yes | yes | yes | none | `#print axioms CampaignGpImportCptpClass.four_named_are_dilations` |
-| `CampaignGpImportCptpClass.prepared_is_false` | yes | yes | yes | none | `#print axioms CampaignGpImportCptpClass.prepared_is_false` |
+| `four_reversible_dilations_of_collapse` | yes | yes | yes | - | `#print axioms four_reversible_dilations_of_collapse` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/CptpClassImport.lean`
+
+- file: [lean4/CptpClassImport.lean](../../../lean4/CptpClassImport.lean)
+- sha256 (`bytes`): `41e95e8f13e33696903397f4e7c50947122e33119eb7aa0a56189f4273cba409`
+- cited in: node.lean, receipt dag/research/campaign_gp-import-cptp-class_lean_replay.json (CptpClassImport), record TFQ-1033
+- replay: `verified`
+  - receipt [dag/research/campaign_gp-import-cptp-class_lean_replay.json](../../../dag/research/campaign_gp-import-cptp-class_lean_replay.json) (module `CptpClassImport`): recorded sha256 `41e95e8f13e33696903397f4e7c50947122e33119eb7aa0a56189f4273cba409` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build CptpClassImport`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CptpClassImport.collapseMass_coords` | yes | yes | yes | none | `#print axioms CptpClassImport.collapseMass_coords` |
+| `CptpClassImport.collapseMass_nonneg` | yes | yes | yes | propext | `#print axioms CptpClassImport.collapseMass_nonneg` |
+| `CptpClassImport.collapseMass_preserves_sum` | yes | yes | yes | none | `#print axioms CptpClassImport.collapseMass_preserves_sum` |
+| `CptpClassImport.collapseMass_two_three` | yes | yes | yes | none | `#print axioms CptpClassImport.collapseMass_two_three` |
+| `CptpClassImport.collapse_both_false` | yes | yes | yes | none | `#print axioms CptpClassImport.collapse_both_false` |
+| `CptpClassImport.collapse_labels_agree` | yes | yes | yes | none | `#print axioms CptpClassImport.collapse_labels_agree` |
+| `CptpClassImport.collapse_no_two_sided_inverse` | yes | yes | yes | none | `#print axioms CptpClassImport.collapse_no_two_sided_inverse` |
+| `CptpClassImport.every_dilation_agrees` | yes | yes | yes | propext | `#print axioms CptpClassImport.every_dilation_agrees` |
+| `CptpClassImport.four_maps_pairwise_unequal` | yes | yes | yes | none | `#print axioms CptpClassImport.four_maps_pairwise_unequal` |
+| `CptpClassImport.four_named_are_dilations` | yes | yes | yes | none | `#print axioms CptpClassImport.four_named_are_dilations` |
+| `CptpClassImport.prepared_is_false` | yes | yes | yes | none | `#print axioms CptpClassImport.prepared_is_false` |
 | `collapseMass_coords` | yes | yes | yes | none | `#print axioms collapseMass_coords` |
 | `collapseMass_nonneg` | yes | yes | yes | propext | `#print axioms collapseMass_nonneg` |
 | `collapseMass_preserves_sum` | yes | yes | yes | none | `#print axioms collapseMass_preserves_sum` |
@@ -97,20 +111,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H015CollapseDilations.lean`
-
-- file: [lean4/H015CollapseDilations.lean](../../../lean4/H015CollapseDilations.lean)
-- sha256 (`bytes`): `689bfa7562cf0a0205c346d902c8c2879b3ca0eaaee263a4fd4b4a3714f56bde`
-- cited in: node.lean, record TFQ-1033
-- replay: `none`
-- check: `cd lean4 && lake build H015CollapseDilations`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `four_reversible_dilations_of_collapse` | yes | yes | yes | - | `#print axioms four_reversible_dilations_of_collapse` |
-
-- counts toward the grade: yes
-
 ### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
 
 - file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
@@ -121,7 +121,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1033_gp_import_cptp_class.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1033_gp_import_cptp_class.md](../../../dag/derivations/08_l1_to_l2/tfq_1033_gp_import_cptp_class.md)
-- sha256 (`lf-normalised`): `e41431b3d5c5fc0973ad431cf5041411a0895230ffe9c668b9d0e77ffb954248`
+- sha256 (`lf-normalised`): `73afa2d3061a7e065b3f86f3c006a776c795f9a210397db4d2e7b45bb9cf2dc6`
 - generated view: listed, not counted
 - cited in: record TFQ-1033
 - counts toward the grade: no

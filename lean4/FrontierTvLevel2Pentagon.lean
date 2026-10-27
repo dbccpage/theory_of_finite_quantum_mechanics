@@ -1,5 +1,5 @@
-import H023DiscreteSpinfoamAmplitudes
-import H024FourSimplexSpinfoamS4
+import DiscreteSpinfoamAmplitudes
+import FourSimplexSpinfoamS4
 
 /-!
 # Quantum 6j orthogonality and Biedenharn-Elliott pentagon identity at level 2
@@ -9,7 +9,7 @@ AuthorityEffect: None.
 Scope: Exact arithmetic in `Q(√2)` (scaled by 2 as `Z[√2]` / `Rat(√2)`) for the `SU(2)_2`
 (`q = exp(i π / 4)`) quantum recoupling symbols (`ising_f` and `ising_six_j_radical` of
 `code/rust/src/general_relativity/spin_foam.rs`) on twice-spin labels `{0, 1, 2}`
-(spins `0, 1/2, 1`), together with the `Z[ζ_{12}]` tetrahedral phase cocycle of `H023` and `H024`.
+(spins `0, 1/2, 1`), together with the `Z[ζ_{12}]` tetrahedral phase cocycle of `DiscreteSpinfoamAmplitudes` and `FourSimplexSpinfoamS4`.
 Proves:
 1. Quantum dimensions at `q = exp(i π / 4)`: `d_0 = 1`, `d_1 = √2`, `d_2 = 1`, and `d_3 = [4]_q = 0`
    (the level-2 truncation boundary).

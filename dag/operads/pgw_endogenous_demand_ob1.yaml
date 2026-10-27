@@ -39,7 +39,7 @@ operation_candidates:
   name: contexts
   line: 28
   signature_excerpt: 'def contexts (r : Derivation.Regime) : List Derivation.Ctx'
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -53,7 +53,7 @@ operation_candidates:
 
     theorem mem_options (n : Nat) (s : Option Nat) :
         s ∈ options n ↔ Derivation.slotOk n s
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -61,7 +61,7 @@ operation_candidates:
   name: options
   line: 9
   signature_excerpt: 'def options (n : Nat) : List (Option Nat)'
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -69,7 +69,7 @@ operation_candidates:
   name: collapseTest
   line: 38
   signature_excerpt: 'def collapseTest (r : Derivation.Regime) (i j : Nat) : Bool'
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -77,7 +77,7 @@ operation_candidates:
   name: agenda
   line: 56
   signature_excerpt: 'def agenda (r : Derivation.Regime) : List (Nat × Nat)'
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -85,7 +85,7 @@ operation_candidates:
   name: candidates
   line: 46
   signature_excerpt: 'def candidates (r : Derivation.Regime) : List (Nat × Nat)'
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -93,7 +93,7 @@ operation_candidates:
   name: Controller
   line: 66
   signature_excerpt: structure Controller
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -101,7 +101,7 @@ operation_candidates:
   name: next
   line: 71
   signature_excerpt: 'def next (s : Controller) : Option (Nat × Nat)'
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -109,7 +109,7 @@ operation_candidates:
   name: Policy
   line: 64
   signature_excerpt: inductive Policy
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -117,7 +117,7 @@ operation_candidates:
   name: seek
   line: 100
   signature_excerpt: 'def seek (s : Controller) : Controller'
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -128,7 +128,7 @@ operation_candidates:
     def execute (s : Controller) : Instruction → Option Controller
       | .seek => some (seek s)
       | .source e => (Derivation.stepE s.regime e).map (fun r => {s with regime
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -136,7 +136,7 @@ operation_candidates:
   name: Instruction
   line: 137
   signature_excerpt: inductive Instruction
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -149,7 +149,7 @@ operation_candidates:
       | e::h,s => (execute s e).bind (program h)
 
     theorem seek_preserves_policy (s : Controller) : (seek s).policy = s.policy
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -160,7 +160,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem mem_contexts (r : Derivation.Regime) (c : Derivation.Ctx) :
         c ∈ contexts r ↔ Derivation.wfCtx r c
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -172,7 +172,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem collapseTest_correct (r : Derivation.Regime) (i j : Nat) :
         collapseTest r i j = true ↔ Derivation.collapsed r i j
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -185,7 +185,7 @@ relation_candidates:
     theorem mem_agenda (r : Derivation.Regime) (q : Nat × Nat) :
         q ∈ agenda r ↔ q.1 < q.2 ∧ q.2 < r.data ∧
           Derivation.collapsed r q.1 q.2 ∧ q ∉ r.reqs
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -198,7 +198,7 @@ relation_candidates:
     theorem next_sound {s : Controller} {q : Nat × Nat} (h : next s = some q) :
         q.1 < q.2 ∧ q.2 < s.regime.data ∧
           Derivation.collapsed s.regime q.1 q.2 ∧ q ∉ s.regime.reqs
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -211,7 +211,7 @@ relation_candidates:
     theorem next_none_iff (r : Derivation.Regime) :
         next ⟨r, .separateAll⟩ = none ↔
           ∀ i j, i < j → j < r.data → Derivation.collapsed r i j → (i,j) ∈ r.reqs
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -224,7 +224,7 @@ relation_candidates:
     theorem seek_is_recorded_source_step {s : Controller} {q : Nat × Nat}
         (h : next s = some q) :
         Derivation.stepE s.regime (.impose q.1 q.2) = some (seek s).regime
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -237,7 +237,7 @@ relation_candidates:
     theorem instruction_records_demand {s : Controller} {q : Nat × Nat}
         (h : next s = some q) :
         execute s .seek = execute s (.source (.impose q.1 q.2))
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -250,7 +250,7 @@ relation_candidates:
     theorem no_host_target_in_program :
         program [.setPolicy .separateAll,.seek] ⟨⟨2,[],[],[],[]⟩,.halt⟩ =
           some ⟨⟨2,[],[],[],[(0,1)]⟩,.separateAll⟩
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -263,7 +263,7 @@ relation_candidates:
     theorem policy_is_not_forced :
         next ⟨⟨2,[],[],[],[]⟩, .halt⟩ = none ∧
         next ⟨⟨2,[],[],[],[]⟩, .separateAll⟩ = some (0,1)
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
@@ -275,98 +275,98 @@ relation_candidates:
   signature_excerpt: |-
     theorem fixed_data_saturates :
         next (seek ⟨⟨2,[],[],[],[]⟩, .separateAll⟩) = none
-  source: lean4/CampaignGenesisDemandPolicy.lean
+  source: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   source_sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_contexts
+- original_ref: lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.mem_contexts
   availability: local
-  symbol: CampaignGenesisDemandPolicy.mem_contexts
-  path: lean4/CampaignGenesisDemandPolicy.lean
+  symbol: GenesisDemandPolicy.mem_contexts
+  path: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   declaration_status: declaration_found_not_proof_checked
   line: 32
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.collapseTest_correct
+- original_ref: lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.collapseTest_correct
   availability: local
-  symbol: CampaignGenesisDemandPolicy.collapseTest_correct
-  path: lean4/CampaignGenesisDemandPolicy.lean
+  symbol: GenesisDemandPolicy.collapseTest_correct
+  path: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   declaration_status: declaration_found_not_proof_checked
   line: 42
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_agenda
+- original_ref: lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.mem_agenda
   availability: local
-  symbol: CampaignGenesisDemandPolicy.mem_agenda
-  path: lean4/CampaignGenesisDemandPolicy.lean
+  symbol: GenesisDemandPolicy.mem_agenda
+  path: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   declaration_status: declaration_found_not_proof_checked
   line: 59
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_sound
+- original_ref: lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.next_sound
   availability: local
-  symbol: CampaignGenesisDemandPolicy.next_sound
-  path: lean4/CampaignGenesisDemandPolicy.lean
+  symbol: GenesisDemandPolicy.next_sound
+  path: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   declaration_status: declaration_found_not_proof_checked
   line: 76
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_none_iff
+- original_ref: lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.next_none_iff
   availability: local
-  symbol: CampaignGenesisDemandPolicy.next_none_iff
-  path: lean4/CampaignGenesisDemandPolicy.lean
+  symbol: GenesisDemandPolicy.next_none_iff
+  path: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   declaration_status: declaration_found_not_proof_checked
   line: 85
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.seek_is_recorded_source_step
+- original_ref: lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.seek_is_recorded_source_step
   availability: local
-  symbol: CampaignGenesisDemandPolicy.seek_is_recorded_source_step
-  path: lean4/CampaignGenesisDemandPolicy.lean
+  symbol: GenesisDemandPolicy.seek_is_recorded_source_step
+  path: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   declaration_status: declaration_found_not_proof_checked
   line: 105
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.instruction_records_demand
+- original_ref: lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.instruction_records_demand
   availability: local
-  symbol: CampaignGenesisDemandPolicy.instruction_records_demand
-  path: lean4/CampaignGenesisDemandPolicy.lean
+  symbol: GenesisDemandPolicy.instruction_records_demand
+  path: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   declaration_status: declaration_found_not_proof_checked
   line: 157
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.no_host_target_in_program
+- original_ref: lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.no_host_target_in_program
   availability: local
-  symbol: CampaignGenesisDemandPolicy.no_host_target_in_program
-  path: lean4/CampaignGenesisDemandPolicy.lean
+  symbol: GenesisDemandPolicy.no_host_target_in_program
+  path: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   declaration_status: declaration_found_not_proof_checked
   line: 164
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.policy_is_not_forced
+- original_ref: lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.policy_is_not_forced
   availability: local
-  symbol: CampaignGenesisDemandPolicy.policy_is_not_forced
-  path: lean4/CampaignGenesisDemandPolicy.lean
+  symbol: GenesisDemandPolicy.policy_is_not_forced
+  path: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   declaration_status: declaration_found_not_proof_checked
   line: 130
   role: source_lead_only
-- original_ref: lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.fixed_data_saturates
+- original_ref: lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.fixed_data_saturates
   availability: local
-  symbol: CampaignGenesisDemandPolicy.fixed_data_saturates
-  path: lean4/CampaignGenesisDemandPolicy.lean
+  symbol: GenesisDemandPolicy.fixed_data_saturates
+  path: lean4/GenesisDemandPolicy.lean
   repository: this_repository
   sha256: 782d4427b8b6d8e73cb566047cac96f6798c6507a46b7811d7e0ca839e2db940
   declaration_status: declaration_found_not_proof_checked

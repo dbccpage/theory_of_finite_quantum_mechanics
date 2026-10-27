@@ -2,7 +2,7 @@ use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::One;
 
-pub const PROVENANCE: &str = "Origin: lean4/H053EverettForkingTree.lean\nClaim: urn:tfqm:H053:branch-weights-conserve-the-parent\nAuthorityEffect: None";
+pub const PROVENANCE: &str = "Origin: lean4/EverettForkingTree.lean\nClaim: urn:tfqm:H053:branch-weights-conserve-the-parent\nAuthorityEffect: None";
 
 pub const MUTATION_KILL_RECORD: &str = "killed=3";
 

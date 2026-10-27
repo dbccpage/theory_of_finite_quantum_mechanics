@@ -2,7 +2,7 @@
 
 Replays in exact rational arithmetic the Lean specification
 dag/results/FQ-GAP-STONE-CONTINUOUS-TIME/runs/20261020T225000Z_discrete_time_spec/DiscreteTimeStoneSpec.lean
-(namespace BornFable.DiscreteTime) for node FQ-GAP-STONE-CONTINUOUS-TIME. Specified there: the Q-parameter group
+(namespace BornFinite.DiscreteTime) for node FQ-GAP-STONE-CONTINUOUS-TIME. Specified there: the Q-parameter group
 QParamGroup (U(0) = 1, U(s+t) = U(s)U(t)), the discrete evolution discreteEvolution u k = u^k with
 discreteEvolution_add / discreteEvolution_zero / discreteEvolution_neg, its restriction U_int /
 U_eq_discreteEvolution, the necessity U_inv_nat / roots_of_all_orders (U(1/m)^m = U(1)), and generator

@@ -17,7 +17,7 @@ The bases U_r = A_r tensor C_r (r = 0, 1, 2) of C^6, with A_r = I, F_2, [[1,1],[
 This fixed triple is not the source triad {I_6, F_6, B_3} with a dephased circulant B_3, which is not checked; a fourth basis for any triple remains open (MUB6-GLOBAL-OBLIGATIONS).
 
 ### Witness Audit
-Exact SymPy check replayed PASS in this draft (scope: three explicit bases). lean4/H062CompositionTensorMub.lean::product_mub_count_is_three is rfl on a Nat constant and supports nothing.
+Exact SymPy check replayed PASS in this draft (scope: three explicit bases). lean4/CompositionTensorMub.lean::product_mub_count_is_three is rfl on a Nat constant and supports nothing.
 
 ---
 

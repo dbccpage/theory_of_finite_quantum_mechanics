@@ -95,7 +95,7 @@ def test_negative_shape_failures() -> None:
 
 def test_integration_matches_binomial_atom_count() -> None:
     root = Path(__file__).resolve().parents[3]
-    source = (root / "lean4" / "H071RefinementSubsystemTower.lean").read_text(encoding="utf-8")
+    source = (root / "lean4" / "RefinementSubsystemTower.lean").read_text(encoding="utf-8")
     assert "theorem multiplicity_composition" in source
     paired = multiplicity_composition(1, 2, 2)
     reached = multiplicity_composition(paired, 2, 1)
@@ -116,7 +116,7 @@ def test_end_to_end_cli_prints_eight() -> None:
 
 def test_origin_resolves_in_repo() -> None:
     root = Path(__file__).resolve().parents[3]
-    source = (root / "lean4" / "H071RefinementSubsystemTower.lean").read_text(encoding="utf-8")
+    source = (root / "lean4" / "RefinementSubsystemTower.lean").read_text(encoding="utf-8")
     assert "theorem multiplicity_composition" in source
     text = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in text

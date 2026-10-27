@@ -92,7 +92,7 @@ These are finite regression checks alongside the general Lean statements.
 
 ## What is proved
 
-In `lean4/CampaignDfmElectroweakContinuumFence.lean`:
+In `lean4/DressingFieldElectroweakContinuumFence.lean`:
 
 - `unnormalized_covariance` states `U(zΦ) = U(Φ) diag(conj z, z)` for every
   Gaussian rational `z` and every doublet `Φ`.

@@ -42,49 +42,49 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/H036ThreeQubitCodeSyndromeRecovery.lean`
+### Lean: `lean4/FourQubitCssSurfaceCode.lean`
 
-- file: [lean4/H036ThreeQubitCodeSyndromeRecovery.lean](../../../lean4/H036ThreeQubitCodeSyndromeRecovery.lean)
-- sha256 (`bytes`): `b15c930d114e54c9c99010142e46019afa0af0d2cfa4507c9634cc5d00a81ca7`
-- cited in: node.source
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_ads_cft.json](../../../dag/research/lean_replay_campaign_ads_cft.json) (module `H036ThreeQubitCodeSyndromeRecovery`): recorded sha256 `b15c930d114e54c9c99010142e46019afa0af0d2cfa4507c9634cc5d00a81ca7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build H036ThreeQubitCodeSyndromeRecovery`
-- counts toward the grade: yes
-
-### Lean: `lean4/H037FourQubitCssSurfaceCode.lean`
-
-- file: [lean4/H037FourQubitCssSurfaceCode.lean](../../../lean4/H037FourQubitCssSurfaceCode.lean)
-- sha256 (`bytes`): `4158b6fcea88a91421d0cc9d5a4f17fd8e3bab9454d6c9ed2775afbafaba0d71`
+- file: [lean4/FourQubitCssSurfaceCode.lean](../../../lean4/FourQubitCssSurfaceCode.lean)
+- sha256 (`bytes`): `8ea5b9d490842b2225295ae868fa35c079845eb37f939a56aed7c8e476c78c95`
 - cited in: node.source
 - replay: `none`
-- check: `cd lean4 && lake build H037FourQubitCssSurfaceCode`
+- check: `cd lean4 && lake build FourQubitCssSurfaceCode`
 - counts toward the grade: yes
 
-### Lean: `lean4/H042ShorNineQubitCode.lean`
+### Lean: `lean4/ShorNineQubitCode.lean`
 
-- file: [lean4/H042ShorNineQubitCode.lean](../../../lean4/H042ShorNineQubitCode.lean)
-- sha256 (`bytes`): `6bb233631905c18bbef63f8fa4a9b3b012a65d33d14c187e3e7f8b9fe2df82c9`
+- file: [lean4/ShorNineQubitCode.lean](../../../lean4/ShorNineQubitCode.lean)
+- sha256 (`bytes`): `f2d5f59e9a13738b15701e86732ca60e0ede0bfa144fca654ae8a777d2d44a67`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_ads_cft.json](../../../dag/research/lean_replay_campaign_ads_cft.json) (module `H042ShorNineQubitCode`): recorded sha256 `6bb233631905c18bbef63f8fa4a9b3b012a65d33d14c187e3e7f8b9fe2df82c9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
-- check: `cd lean4 && lake build H042ShorNineQubitCode`
+  - receipt [dag/research/lean_replay_campaign_ads_cft.json](../../../dag/research/lean_replay_campaign_ads_cft.json) (module `ShorNineQubitCode`): recorded sha256 `f2d5f59e9a13738b15701e86732ca60e0ede0bfa144fca654ae8a777d2d44a67` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build ShorNineQubitCode`
 - counts toward the grade: yes
 
-### Lean: `lean4/H044SurfaceCodeToricTopology.lean`
+### Lean: `lean4/SurfaceCodeToricTopology.lean`
 
-- file: [lean4/H044SurfaceCodeToricTopology.lean](../../../lean4/H044SurfaceCodeToricTopology.lean)
-- sha256 (`bytes`): `fb7dabdab6050799ef04a17f7ca0892c4cab39b4781db08d9445a9496915e15b`
+- file: [lean4/SurfaceCodeToricTopology.lean](../../../lean4/SurfaceCodeToricTopology.lean)
+- sha256 (`bytes`): `adc52228e292fc35de42d6f1ffda4123fac838d50b0b173e4b30bf1caad19bec`
 - cited in: node.source
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_ads_cft.json](../../../dag/research/lean_replay_campaign_ads_cft.json) (module `H044SurfaceCodeToricTopology`): recorded sha256 `fb7dabdab6050799ef04a17f7ca0892c4cab39b4781db08d9445a9496915e15b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build H044SurfaceCodeToricTopology`
+  - receipt [dag/research/lean_replay_campaign_ads_cft.json](../../../dag/research/lean_replay_campaign_ads_cft.json) (module `SurfaceCodeToricTopology`): recorded sha256 `adc52228e292fc35de42d6f1ffda4123fac838d50b0b173e4b30bf1caad19bec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build SurfaceCodeToricTopology`
+- counts toward the grade: yes
+
+### Lean: `lean4/ThreeQubitCodeSyndromeRecovery.lean`
+
+- file: [lean4/ThreeQubitCodeSyndromeRecovery.lean](../../../lean4/ThreeQubitCodeSyndromeRecovery.lean)
+- sha256 (`bytes`): `17e20208c6d3151fb1c4bc6bf716059cdc227944fc828b86d2437a61724c71b6`
+- cited in: node.source
+- replay: `verified`
+  - receipt [dag/research/lean_replay_campaign_ads_cft.json](../../../dag/research/lean_replay_campaign_ads_cft.json) (module `ThreeQubitCodeSyndromeRecovery`): recorded sha256 `17e20208c6d3151fb1c4bc6bf716059cdc227944fc828b86d2437a61724c71b6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: propext; only standard axioms: yes
+- check: `cd lean4 && lake build ThreeQubitCodeSyndromeRecovery`
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/32_ads_cft/tfq_2207_ads_happy_2015_source.md`
 
 - file: [dag/derivations/32_ads_cft/tfq_2207_ads_happy_2015_source.md](../../../dag/derivations/32_ads_cft/tfq_2207_ads_happy_2015_source.md)
-- sha256 (`lf-normalised`): `63cecb5b096077a909f2d0c2f5c2ed391863650ce68b9ca7ee2a0f162b5a9666`
+- sha256 (`lf-normalised`): `a787595470fbacfe0c8c554b561c014e87092457c7245cf5203b5a10f249fd2b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2207
 - counts toward the grade: no

@@ -84,7 +84,7 @@ def test_negative_shape_failures() -> None:
 
 def test_integration_matches_simplex_vertex_count() -> None:
     root = Path(__file__).resolve().parents[3]
-    source = (root / "lean4" / "H022SimplicialAreaLawPageCurve.lean").read_text(encoding="utf-8")
+    source = (root / "lean4" / "SimplicialAreaLawPageCurve.lean").read_text(encoding="utf-8")
     assert "theorem boundary_area_even" in source
     assert "theorem gluing_reduces_boundary" in source
     face = SimplexId(2, (0, 1, 2))
@@ -105,7 +105,7 @@ def test_end_to_end_cli_prints_twelve() -> None:
 
 def test_origin_resolves_in_repo() -> None:
     source = _MODULE_PATH.read_text(encoding="utf-8")
-    assert "Origin: lean4/H022SimplicialAreaLawPageCurve.lean theorem boundary_area_even" in source
+    assert "Origin: lean4/SimplicialAreaLawPageCurve.lean theorem boundary_area_even" in source
     assert "Claim: urn:omega:fqm:grav:boundary-area-even:v1" in source
     assert "AuthorityEffect: None" in source
     assert "Scope Fence:" in source

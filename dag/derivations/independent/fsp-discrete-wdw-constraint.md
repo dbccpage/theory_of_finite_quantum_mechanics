@@ -22,7 +22,7 @@ On integer triples, the declared constraint H(x,y,z)=(0,2y,-z) is symmetric for 
 
 ## What is assumed
 
-The mathematical structures and operations are exactly those declared in `lean4/CampaignConstraintKernelProjector.lean`. This is a declared finite-dimensional integer model; its set of integer triples is infinite. It constructs no discrete Wheeler-DeWitt operator, triangulation dynamics, diffeomorphism action, physical state space or continuum limit. Its counterexample concerns an inference from symmetry and a nonzero kernel to positivity or idempotence, not a specified gravitational model.
+The mathematical structures and operations are exactly those declared in `lean4/ConstraintKernelProjector.lean`. This is a declared finite-dimensional integer model; its set of integer triples is infinite. It constructs no discrete Wheeler-DeWitt operator, triangulation dynamics, diffeomorphism action, physical state space or continuum limit. Its counterexample concerns an inference from symmetry and a nonzero kernel to positivity or idempotence, not a specified gravitational model.
 
 ## What is open
 

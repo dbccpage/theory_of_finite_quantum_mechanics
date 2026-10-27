@@ -17,7 +17,7 @@ Derivation of V from dressed Yukawa couplings, the unitarity-triangle reduction 
 Yukawa couplings, mass-basis diagonalization, a unitarity identification of the counting polynomials, and measured CKM values stay open. The general nonzero-label table classification uses supplied commutative-group rescalings; its restriction to physical unitary mixing matrices is not established.
 
 ### Witness Audit
-CampaignDfmCkmPhysicsFence records the rational counting identities, the values 0, 1, 4, 9 and 0, 0, 1, 3, the n = 3 split 4, 3, 1, and quartet imaginary parts 0 and 1. Status stays OPEN. Yukawa couplings and measured CKM values stay imported.
+DressingFieldCkmPhysicsFence records the rational counting identities, the values 0, 1, 4, 9 and 0, 0, 1, 3, the n = 3 split 4, 3, 1, and quartet imaginary parts 0 and 1. Status stays OPEN. Yukawa couplings and measured CKM values stay imported.
 
 ---
 
@@ -43,17 +43,17 @@ CampaignDfmCkmPhysicsFence records the rational counting identities, the values 
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignDfmCkmPhysicsFence.lean::cpCount_from_difference`
-- `lean4/CampaignDfmCkmPhysicsFence.lean::constraintCount_sum`
-- `lean4/CampaignDfmCkmPhysicsFence.lean::count_table`
-- `lean4/CampaignDfmCkmPhysicsFence.lean::three_generation_split`
-- `lean4/CampaignDfmCkmPhysicsFence.lean::count_misses_one_quartet`
-- `lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.related_iff_normalize`
-- `lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.coordinatesEquiv`
-- `lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.decideRelated_correct`
-- `lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_none_iff`
-- `lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.checkedLabel_value`
-- `lean4/CampaignDfmCkmPhysicsFence.lean::CampaignDfmCkmPhysicsFence.Rephasing.free_coordinate_count`
+- `lean4/DressingFieldCkmPhysicsFence.lean::cpCount_from_difference`
+- `lean4/DressingFieldCkmPhysicsFence.lean::constraintCount_sum`
+- `lean4/DressingFieldCkmPhysicsFence.lean::count_table`
+- `lean4/DressingFieldCkmPhysicsFence.lean::three_generation_split`
+- `lean4/DressingFieldCkmPhysicsFence.lean::count_misses_one_quartet`
+- `lean4/DressingFieldCkmPhysicsFence.lean::DressingFieldCkmPhysicsFence.Rephasing.related_iff_normalize`
+- `lean4/DressingFieldCkmPhysicsFence.lean::DressingFieldCkmPhysicsFence.Rephasing.coordinatesEquiv`
+- `lean4/DressingFieldCkmPhysicsFence.lean::DressingFieldCkmPhysicsFence.Rephasing.decideRelated_correct`
+- `lean4/DressingFieldCkmPhysicsFence.lean::DressingFieldCkmPhysicsFence.Rephasing.checkedLabel_none_iff`
+- `lean4/DressingFieldCkmPhysicsFence.lean::DressingFieldCkmPhysicsFence.Rephasing.checkedLabel_value`
+- `lean4/DressingFieldCkmPhysicsFence.lean::DressingFieldCkmPhysicsFence.Rephasing.free_coordinate_count`
 
 ### Rust Certifiers
 - *none*
@@ -76,6 +76,6 @@ CampaignDfmCkmPhysicsFence records the rational counting identities, the values 
 
 - **Cited Sources**:
   - `papers/ravera_dfm_dossier.md:191-203`
-  - `lean4/CampaignDfmCkmPhysicsFence.lean`
+  - `lean4/DressingFieldCkmPhysicsFence.lean`
   - `dag/derivations/independent/dfm-ckm-physics-fence.md`
   - `checks/independent/dfm-ckm-physics-fence.py`

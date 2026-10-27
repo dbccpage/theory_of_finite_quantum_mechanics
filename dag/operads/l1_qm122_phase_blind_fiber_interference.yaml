@@ -37,7 +37,7 @@ operation_candidates:
   name: psi2
   line: 40
   signature_excerpt: 'def psi2 : Vec GaussInt Bool'
-  source: lean4/H008PhaseBlindPresentation.lean
+  source: lean4/HilbertWalkPhaseBlindPresentation.lean
   repository: this_repository
   source_sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
   status: source_candidate_requires_semantic_review
@@ -45,7 +45,7 @@ operation_candidates:
   name: totalWeight
   line: 21
   signature_excerpt: 'def totalWeight {Q : Type} (E : Enum Q) (v : Vec GaussInt Q) : Int'
-  source: lean4/H008PhaseBlindPresentation.lean
+  source: lean4/HilbertWalkPhaseBlindPresentation.lean
   repository: this_repository
   source_sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
   status: source_candidate_requires_semantic_review
@@ -53,7 +53,7 @@ operation_candidates:
   name: phaseBlind
   line: 18
   signature_excerpt: 'def phaseBlind {Q : Type} (v : Vec GaussInt Q) : Q → Int'
-  source: lean4/H008PhaseBlindPresentation.lean
+  source: lean4/HilbertWalkPhaseBlindPresentation.lean
   repository: this_repository
   source_sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
   status: source_candidate_requires_semantic_review
@@ -61,7 +61,7 @@ operation_candidates:
   name: psi1
   line: 37
   signature_excerpt: 'def psi1 : Vec GaussInt Bool'
-  source: lean4/H008PhaseBlindPresentation.lean
+  source: lean4/HilbertWalkPhaseBlindPresentation.lean
   repository: this_repository
   source_sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
   status: source_candidate_requires_semantic_review
@@ -69,7 +69,7 @@ operation_candidates:
   name: readout
   line: 25
   signature_excerpt: 'def readout (v : Vec GaussInt Bool) : Bool → Int'
-  source: lean4/H010InterferenceNonDescent.lean
+  source: lean4/InterferenceNonDescent.lean
   repository: this_repository
   source_sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
   status: source_candidate_requires_semantic_review
@@ -77,7 +77,7 @@ operation_candidates:
   name: mix
   line: 20
   signature_excerpt: 'def mix (v : Vec GaussInt Bool) : Vec GaussInt Bool'
-  source: lean4/H010InterferenceNonDescent.lean
+  source: lean4/InterferenceNonDescent.lean
   repository: this_repository
   source_sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
   status: source_candidate_requires_semantic_review
@@ -89,7 +89,7 @@ relation_candidates:
     \ psi2 q) ∧\n      ¬(∀ q : Bool, psi1 q = psi2 q) ∧\n      (∀ (v : Vec GaussInt Bool) (q : Bool),\n\
     \        phaseBlind (fun x => GaussInt.gmul GaussInt.gi (v x)) q =\n          phaseBlind v q) ∧\n\
     \      totalWeight enumBool psi1 = totalWeight enumBool psi2"
-  source: lean4/H008PhaseBlindPresentation.lean
+  source: lean4/HilbertWalkPhaseBlindPresentation.lean
   repository: this_repository
   source_sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
   status: source_candidate_requires_semantic_review
@@ -100,7 +100,7 @@ relation_candidates:
   line: 48
   signature_excerpt: "theorem no_descent_through_fiber :\n    ¬ ∃ f : (Bool → Int) → (Bool → Int),\n \
     \     ∀ v : Vec GaussInt Bool, readout v = f (phaseBlind v)"
-  source: lean4/H010InterferenceNonDescent.lean
+  source: lean4/InterferenceNonDescent.lean
   repository: this_repository
   source_sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
   status: source_candidate_requires_semantic_review
@@ -110,7 +110,7 @@ relation_candidates:
   name: mix_separates
   line: 35
   signature_excerpt: 'theorem mix_separates : ¬(∀ q : Bool, readout psi1 q = readout psi2 q)'
-  source: lean4/H010InterferenceNonDescent.lean
+  source: lean4/InterferenceNonDescent.lean
   repository: this_repository
   source_sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
   status: source_candidate_requires_semantic_review
@@ -135,7 +135,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H008PhaseBlindPresentation.lean::phase_blind_presentation
   availability: local
   symbol: phase_blind_presentation
-  path: lean4/H008PhaseBlindPresentation.lean
+  path: lean4/HilbertWalkPhaseBlindPresentation.lean
   repository: this_repository
   sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
   declaration_status: declaration_found_not_proof_checked
@@ -144,7 +144,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H010InterferenceNonDescent.lean::no_descent_through_fiber
   availability: local
   symbol: no_descent_through_fiber
-  path: lean4/H010InterferenceNonDescent.lean
+  path: lean4/InterferenceNonDescent.lean
   repository: this_repository
   sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
   declaration_status: declaration_found_not_proof_checked
@@ -153,7 +153,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H010InterferenceNonDescent.lean::mix_separates
   availability: local
   symbol: mix_separates
-  path: lean4/H010InterferenceNonDescent.lean
+  path: lean4/InterferenceNonDescent.lean
   repository: this_repository
   sha256: e46f995a5af051ddb72746a7dfb674cccc95a3eb3a499d52a0287e5700f06703
   declaration_status: declaration_found_not_proof_checked
@@ -212,7 +212,7 @@ presentation:
   generators:
   - id: phase_blind_weight
     source_declarations:
-    - lean4/H008PhaseBlindPresentation.lean::phaseBlind (line 18), weight_nonneg (line 23)
+    - lean4/HilbertWalkPhaseBlindPresentation.lean::phaseBlind (line 18), weight_nonneg (line 23)
     ordered_inputs:
     - GaussianAmplitude
     output: Weight
@@ -259,7 +259,7 @@ presentation:
     latest_host_check: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p2/host_check.json
   - id: phase_fiber
     source_declarations:
-    - lean4/H008PhaseBlindPresentation.lean::psi1, psi2 (lines 37-40) are two points of one fiber; the
+    - lean4/HilbertWalkPhaseBlindPresentation.lean::psi1, psi2 (lines 37-40) are two points of one fiber; the
       general fiber is not declared in the source
     ordered_inputs:
     - Weight
@@ -308,7 +308,7 @@ presentation:
     latest_host_check: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p2/host_check.json
   - id: hadamard_readout
     source_declarations:
-    - lean4/H010InterferenceNonDescent.lean::mix (line 20), readout (line 25)
+    - lean4/InterferenceNonDescent.lean::mix (line 20), readout (line 25)
     ordered_inputs:
     - GaussianAmplitude
     - GaussianAmplitude
@@ -356,7 +356,7 @@ presentation:
     latest_host_check: dag/results/L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE/runs/20261021T132245Z_staged/p2/host_check.json
   - id: readout_total
     source_declarations:
-    - lean4/H008PhaseBlindPresentation.lean::totalWeight (line 21)
+    - lean4/HilbertWalkPhaseBlindPresentation.lean::totalWeight (line 21)
     ordered_inputs:
     - ReadoutPair
     output: Weight
@@ -404,7 +404,7 @@ presentation:
   relations:
   - id: weight_unit_invariance
     source_declarations:
-    - lean4/H008PhaseBlindPresentation.lean::global_phase_blind (source is general over Vec; this node
+    - lean4/HilbertWalkPhaseBlindPresentation.lean::global_phase_blind (source is general over Vec; this node
       proves the pair case again for the Z[i] pair carrier)
     equation_or_predicate: w(i*z)=w(z)=w(-z)
     typing_conditions: GaussianAmplitude
@@ -457,7 +457,7 @@ presentation:
     - PhaseBlindFiber.phase_blind_fiber_interference
   - id: readout_total_doubling
     source_declarations:
-    - lean4/H010InterferenceNonDescent.lean::mix_doubles_total (fixed witnesses psi1, psi2 only)
+    - lean4/InterferenceNonDescent.lean::mix_doubles_total (fixed witnesses psi1, psi2 only)
     equation_or_predicate: sum(readout(a,b)) = 2(w(a)+w(b))
     typing_conditions: GaussianAmplitude x GaussianAmplitude
     evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
@@ -541,7 +541,7 @@ presentation:
     named_Lean_scope: *id001
   - id: nonzero_sectors_nondescent
     source_declarations:
-    - 'lean4/H010InterferenceNonDescent.lean::no_descent_through_fiber (fixed witnesses psi1, psi2: an
+    - 'lean4/InterferenceNonDescent.lean::no_descent_through_fiber (fixed witnesses psi1, psi2: an
       instance, not the general statement)'
     equation_or_predicate: a!=0 and b!=0 imply no f with readout(x,y)=f(w x,w y) on fiber(w a) x fiber(w
       b)
@@ -827,7 +827,7 @@ operad_slots:
     algebraic_relations:
     - id: weight_unit_invariance
       source_declarations:
-      - lean4/H008PhaseBlindPresentation.lean::global_phase_blind (source is general over Vec; this node
+      - lean4/HilbertWalkPhaseBlindPresentation.lean::global_phase_blind (source is general over Vec; this node
         proves the pair case again for the Z[i] pair carrier)
       equation_or_predicate: w(i*z)=w(z)=w(-z)
       typing_conditions: GaussianAmplitude
@@ -866,7 +866,7 @@ operad_slots:
         sha256: 4cf4b81ba92633d0d9be1491a3681d329c7740d81ae268c45c21d2079204bbd3
     - id: readout_total_doubling
       source_declarations:
-      - lean4/H010InterferenceNonDescent.lean::mix_doubles_total (fixed witnesses psi1, psi2 only)
+      - lean4/InterferenceNonDescent.lean::mix_doubles_total (fixed witnesses psi1, psi2 only)
       equation_or_predicate: sum(readout(a,b)) = 2(w(a)+w(b))
       typing_conditions: GaussianAmplitude x GaussianAmplitude
       evidence_status: Kernel theorem readout_total; native table
@@ -942,7 +942,7 @@ operad_slots:
         sha256: 4cf4b81ba92633d0d9be1491a3681d329c7740d81ae268c45c21d2079204bbd3
     - id: nonzero_sectors_nondescent
       source_declarations:
-      - 'lean4/H010InterferenceNonDescent.lean::no_descent_through_fiber (fixed witnesses psi1, psi2:
+      - 'lean4/InterferenceNonDescent.lean::no_descent_through_fiber (fixed witnesses psi1, psi2:
         an instance, not the general statement)'
       equation_or_predicate: a!=0 and b!=0 imply no f with readout(x,y)=f(w x,w y) on fiber(w a) x fiber(w
         b)

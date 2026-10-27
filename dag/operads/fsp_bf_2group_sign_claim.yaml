@@ -44,7 +44,7 @@ operation_candidates:
   name: cocycle
   line: 7
   signature_excerpt: 'def cocycle (a b c : Bool) : Bool'
-  source: lean4/CampaignBfCocycleObstruction.lean
+  source: lean4/BfCocycleObstruction.lean
   repository: this_repository
   source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   status: source_candidate_requires_semantic_review
@@ -52,7 +52,7 @@ operation_candidates:
   name: Normalized
   line: 13
   signature_excerpt: 'def Normalized (β : Bool → Bool → Bool) : Prop'
-  source: lean4/CampaignBfCocycleObstruction.lean
+  source: lean4/BfCocycleObstruction.lean
   repository: this_repository
   source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   status: source_candidate_requires_semantic_review
@@ -60,7 +60,7 @@ operation_candidates:
   name: coboundary
   line: 9
   signature_excerpt: 'def coboundary (β : Bool → Bool → Bool) (a b c : Bool) : Bool'
-  source: lean4/CampaignBfCocycleObstruction.lean
+  source: lean4/BfCocycleObstruction.lean
   repository: this_repository
   source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   status: source_candidate_requires_semantic_review
@@ -68,7 +68,7 @@ operation_candidates:
   name: sign
   line: 16
   signature_excerpt: 'def sign (b : Bool) : Int'
-  source: lean4/CampaignBfCocycleObstruction.lean
+  source: lean4/BfCocycleObstruction.lean
   repository: this_repository
   source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   status: source_candidate_requires_semantic_review
@@ -76,7 +76,7 @@ operation_candidates:
   name: rephase
   line: 18
   signature_excerpt: 'def rephase (β : Bool → Bool → Bool) (a b c : Bool) : Bool'
-  source: lean4/CampaignBfCocycleObstruction.lean
+  source: lean4/BfCocycleObstruction.lean
   repository: this_repository
   source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   status: source_candidate_requires_semantic_review
@@ -88,7 +88,7 @@ relation_candidates:
     theorem normalized_cocycle : ∀ a b : Bool,
         cocycle false a b = false ∧ cocycle a false b = false ∧
         cocycle a b false = false
-  source: lean4/CampaignBfCocycleObstruction.lean
+  source: lean4/BfCocycleObstruction.lean
   repository: this_repository
   source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   status: source_candidate_requires_semantic_review
@@ -102,7 +102,7 @@ relation_candidates:
         Bool.xor (Bool.xor (Bool.xor (Bool.xor (cocycle b c d)
           (cocycle (Bool.xor a b) c d)) (cocycle a (Bool.xor b c) d))
           (cocycle a b (Bool.xor c d))) (cocycle a b c) = false
-  source: lean4/CampaignBfCocycleObstruction.lean
+  source: lean4/BfCocycleObstruction.lean
   repository: this_repository
   source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   status: source_candidate_requires_semantic_review
@@ -114,7 +114,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem normalized_coboundary_at_generator (β : Bool → Bool → Bool)
         (h : Normalized β) : coboundary β true true true = false
-  source: lean4/CampaignBfCocycleObstruction.lean
+  source: lean4/BfCocycleObstruction.lean
   repository: this_repository
   source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   status: source_candidate_requires_semantic_review
@@ -126,7 +126,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem not_a_normalized_coboundary (β : Bool → Bool → Bool)
         (h : Normalized β) : ¬ ∀ a b c, coboundary β a b c = cocycle a b c
-  source: lean4/CampaignBfCocycleObstruction.lean
+  source: lean4/BfCocycleObstruction.lean
   repository: this_repository
   source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   status: source_candidate_requires_semantic_review
@@ -138,7 +138,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem generator_sign_survives_rephasing (β : Bool → Bool → Bool)
         (h : Normalized β) : sign (rephase β true true true) = -1
-  source: lean4/CampaignBfCocycleObstruction.lean
+  source: lean4/BfCocycleObstruction.lean
   repository: this_repository
   source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   status: source_candidate_requires_semantic_review
@@ -151,62 +151,62 @@ relation_candidates:
     theorem no_normalized_rephasing_makes_all_signs_positive
         (β : Bool → Bool → Bool) (h : Normalized β) :
         ¬ ∀ a b c, sign (rephase β a b c) = 1
-  source: lean4/CampaignBfCocycleObstruction.lean
+  source: lean4/BfCocycleObstruction.lean
   repository: this_repository
   source_sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_cocycle
+- original_ref: lean4/BfCocycleObstruction.lean::BfCocycleObstruction.normalized_cocycle
   availability: local
-  symbol: CampaignBfCocycleObstruction.normalized_cocycle
-  path: lean4/CampaignBfCocycleObstruction.lean
+  symbol: BfCocycleObstruction.normalized_cocycle
+  path: lean4/BfCocycleObstruction.lean
   repository: this_repository
   sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   declaration_status: declaration_found_not_proof_checked
   line: 21
   role: source_lead_only
-- original_ref: lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.cocycle_identity
+- original_ref: lean4/BfCocycleObstruction.lean::BfCocycleObstruction.cocycle_identity
   availability: local
-  symbol: CampaignBfCocycleObstruction.cocycle_identity
-  path: lean4/CampaignBfCocycleObstruction.lean
+  symbol: BfCocycleObstruction.cocycle_identity
+  path: lean4/BfCocycleObstruction.lean
   repository: this_repository
   sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   declaration_status: declaration_found_not_proof_checked
   line: 25
   role: source_lead_only
-- original_ref: lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.normalized_coboundary_at_generator
+- original_ref: lean4/BfCocycleObstruction.lean::BfCocycleObstruction.normalized_coboundary_at_generator
   availability: local
-  symbol: CampaignBfCocycleObstruction.normalized_coboundary_at_generator
-  path: lean4/CampaignBfCocycleObstruction.lean
+  symbol: BfCocycleObstruction.normalized_coboundary_at_generator
+  path: lean4/BfCocycleObstruction.lean
   repository: this_repository
   sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   declaration_status: declaration_found_not_proof_checked
   line: 30
   role: source_lead_only
-- original_ref: lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.not_a_normalized_coboundary
+- original_ref: lean4/BfCocycleObstruction.lean::BfCocycleObstruction.not_a_normalized_coboundary
   availability: local
-  symbol: CampaignBfCocycleObstruction.not_a_normalized_coboundary
-  path: lean4/CampaignBfCocycleObstruction.lean
+  symbol: BfCocycleObstruction.not_a_normalized_coboundary
+  path: lean4/BfCocycleObstruction.lean
   repository: this_repository
   sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   declaration_status: declaration_found_not_proof_checked
   line: 34
   role: source_lead_only
-- original_ref: lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.generator_sign_survives_rephasing
+- original_ref: lean4/BfCocycleObstruction.lean::BfCocycleObstruction.generator_sign_survives_rephasing
   availability: local
-  symbol: CampaignBfCocycleObstruction.generator_sign_survives_rephasing
-  path: lean4/CampaignBfCocycleObstruction.lean
+  symbol: BfCocycleObstruction.generator_sign_survives_rephasing
+  path: lean4/BfCocycleObstruction.lean
   repository: this_repository
   sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   declaration_status: declaration_found_not_proof_checked
   line: 41
   role: source_lead_only
-- original_ref: lean4/CampaignBfCocycleObstruction.lean::CampaignBfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive
+- original_ref: lean4/BfCocycleObstruction.lean::BfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive
   availability: local
-  symbol: CampaignBfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive
-  path: lean4/CampaignBfCocycleObstruction.lean
+  symbol: BfCocycleObstruction.no_normalized_rephasing_makes_all_signs_positive
+  path: lean4/BfCocycleObstruction.lean
   repository: this_repository
   sha256: 882c2767c327fb2be146c2069898bea71eac43e6c1adf5b61c044475feb4eddc
   declaration_status: declaration_found_not_proof_checked

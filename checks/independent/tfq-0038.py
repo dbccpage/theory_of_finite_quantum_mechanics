@@ -18,7 +18,7 @@ Checks:
    alone does not establish whether a specific geometric exchange loop represents the
    order-2 torsion generator or a free/trivial cycle.
 5. Repository source and Lean 4 theorem anchors in `lean4/FiniteQM.lean` and
-   `lean4/CampaignTfq0038FiniteQcd.lean`.
+   `lean4/ConfK5TorsionReadings.lean`.
 """
 
 from __future__ import annotations
@@ -210,10 +210,10 @@ def run_all_checks() -> dict[str, Any]:
     # -------------------------------------------------------------------------
     repo_root = Path(__file__).resolve().parents[2]
     fqm = repo_root / "lean4/FiniteQM.lean"
-    lean_file = repo_root / "lean4/CampaignTfq0038FiniteQcd.lean"
+    lean_file = repo_root / "lean4/ConfK5TorsionReadings.lean"
 
     record(fqm.exists(), "lean4/FiniteQM.lean exists")
-    record(lean_file.exists(), "lean4/CampaignTfq0038FiniteQcd.lean exists")
+    record(lean_file.exists(), "lean4/ConfK5TorsionReadings.lean exists")
 
     fqm_src = fqm.read_text(encoding="utf-8")
     record(
@@ -235,8 +235,8 @@ def run_all_checks() -> dict[str, Any]:
         "theorem tfq0038_k5_torsion_and_exchange_loop_scope_ledger_fence",
     ]
     for thm in required_theorems:
-        record(thm in lean_src, f"CampaignTfq0038FiniteQcd.lean contains {thm}")
-    record("sorry" not in lean_src, "CampaignTfq0038FiniteQcd.lean is sorry-free")
+        record(thm in lean_src, f"ConfK5TorsionReadings.lean contains {thm}")
+    record("sorry" not in lean_src, "ConfK5TorsionReadings.lean is sorry-free")
 
     return {
         "node_id": "TFQ-0038",

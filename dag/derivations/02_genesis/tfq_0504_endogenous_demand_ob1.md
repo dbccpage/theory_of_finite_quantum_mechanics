@@ -33,16 +33,16 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.collapseTest_correct`](../../../lean4/CampaignGenesisDemandPolicy.lean)
-- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.fixed_data_saturates`](../../../lean4/CampaignGenesisDemandPolicy.lean)
-- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.instruction_records_demand`](../../../lean4/CampaignGenesisDemandPolicy.lean)
-- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_agenda`](../../../lean4/CampaignGenesisDemandPolicy.lean)
-- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.mem_contexts`](../../../lean4/CampaignGenesisDemandPolicy.lean)
-- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_none_iff`](../../../lean4/CampaignGenesisDemandPolicy.lean)
-- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.next_sound`](../../../lean4/CampaignGenesisDemandPolicy.lean)
-- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.no_host_target_in_program`](../../../lean4/CampaignGenesisDemandPolicy.lean)
-- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.policy_is_not_forced`](../../../lean4/CampaignGenesisDemandPolicy.lean)
-- [`lean4/CampaignGenesisDemandPolicy.lean::CampaignGenesisDemandPolicy.seek_is_recorded_source_step`](../../../lean4/CampaignGenesisDemandPolicy.lean)
+- [`lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.collapseTest_correct`](../../../lean4/GenesisDemandPolicy.lean)
+- [`lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.fixed_data_saturates`](../../../lean4/GenesisDemandPolicy.lean)
+- [`lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.instruction_records_demand`](../../../lean4/GenesisDemandPolicy.lean)
+- [`lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.mem_agenda`](../../../lean4/GenesisDemandPolicy.lean)
+- [`lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.mem_contexts`](../../../lean4/GenesisDemandPolicy.lean)
+- [`lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.next_none_iff`](../../../lean4/GenesisDemandPolicy.lean)
+- [`lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.next_sound`](../../../lean4/GenesisDemandPolicy.lean)
+- [`lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.no_host_target_in_program`](../../../lean4/GenesisDemandPolicy.lean)
+- [`lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.policy_is_not_forced`](../../../lean4/GenesisDemandPolicy.lean)
+- [`lean4/GenesisDemandPolicy.lean::GenesisDemandPolicy.seek_is_recorded_source_step`](../../../lean4/GenesisDemandPolicy.lean)
 - `missing obligation: no Lean demand generator for the harness; Generator.generation_never_dries concerns the reflective composite (TFQ-0487)`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)

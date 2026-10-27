@@ -17,7 +17,7 @@ A necessary or minimal extension still needs the six section-15 checks, and a bu
 
 ## 2. Derivation Context & Mathematical Grounding
 
-1. **Six Distinct Section-15 Evidence Checks (`Section15CheckSlot` in `lean4/CampaignTfq0376Pregenesis.lean`)**:
+1. **Six Distinct Section-15 Evidence Checks (`Section15CheckSlot` in `lean4/PregenesisLiftChecklist.lean`)**:
    - `FailedPredicate`: names the exact predicate failing on the current carrier/regime (e.g., `PreMssn.collapsed_observation_barrier` in `lean4/Imported/PreGenesisToMssn/Paper.lean` or `ChainRetraction.TwoPoints.no_chain_retraction` in `lean4/ChainRetraction.lean`).
    - `AdmissibleRepairs`: enumerates the admissible repair operations inside the declared repair space.
    - `ExtensionClass`: specifies the declared extension class $\mathcal{E}$ over which candidate lifts are drawn.
@@ -36,7 +36,7 @@ A necessary or minimal extension still needs the six section-15 checks, and a bu
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignTfq0376Pregenesis.lean`](../../../lean4/CampaignTfq0376Pregenesis.lean) (`CampaignTfq0376Pregenesis.tfq0376_justified_lift_six_check_scope_certificate`)
+- [`lean4/PregenesisLiftChecklist.lean`](../../../lean4/PregenesisLiftChecklist.lean) (`PregenesisLiftChecklist.tfq0376_justified_lift_six_check_scope_certificate`)
 - [`lean4/Imported/PreGenesisToMssn/Paper.lean`](../../../lean4/Imported/PreGenesisToMssn/Paper.lean) (`PreMssn.collapsed_observation_barrier`, `PreMssn.refine_separates`, `PreMssn.demand_accounting`)
 - [`lean4/ChainRetraction.lean`](../../../lean4/ChainRetraction.lean) (`ChainRetraction.TwoPoints.no_chain_retraction`)
 

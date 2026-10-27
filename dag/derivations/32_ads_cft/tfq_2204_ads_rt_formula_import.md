@@ -53,22 +53,22 @@ See also: `FQ-ENTROPY-DICHOTOMY-BAKER`, `TFQ-0100`.
 - Repository: `dag/research/campaign_ads-rt-formula-import_independent.json`
 
 ## Lean 4 declarations read
-- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.rt_ads3_reproduces_calabrese_cardy`
-- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.rt_over_brown_henneaux_eliminates_couplings`
-- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.rtLeadingEntropy_linear_in_area`
-- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.cut_pasting_strong_subadditivity_from_submodularity`
-- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.happy_mincut_and_entropy_complement_symmetry_all_380`
-- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.rtLeadingEntropy_realCast_isAlgebraic`
-- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.no_rational_rt_area_for_mixed_algebraic_spectrum`
-- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.rational_rt_match_iff_pure_and_zero_area`
-- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.stabilizer_bits_to_nats_transcendental_conversion`
-- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.orthogonal_pentatope_hinge_areas_sq`
-- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.nat_dvd_three_of_sq_mul_four_eq_three_mul_sq`
-- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.no_rational_linear_area_for_equilateral_pentatope_hinge`
-- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.reggeProxy_zero_on_flat_chart`
-- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.happy_all_380_intervals_pos_entropy_and_mincut`
-- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.cayleyMengerTriangleAreaSq_homogeneous_deg4_in_length`
-- `lean4/CampaignAdsRtFormulaImport.lean::CampaignAdsRtFormulaImport.no_scale_invariant_regge_to_rt_dictionary`
+- `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.rt_ads3_reproduces_calabrese_cardy`
+- `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.rt_over_brown_henneaux_eliminates_couplings`
+- `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.rtLeadingEntropy_linear_in_area`
+- `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.cut_pasting_strong_subadditivity_from_submodularity`
+- `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.happy_mincut_and_entropy_complement_symmetry_all_380`
+- `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.rtLeadingEntropy_realCast_isAlgebraic`
+- `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.no_rational_rt_area_for_mixed_algebraic_spectrum`
+- `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.rational_rt_match_iff_pure_and_zero_area`
+- `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.stabilizer_bits_to_nats_transcendental_conversion`
+- `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.orthogonal_pentatope_hinge_areas_sq`
+- `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.nat_dvd_three_of_sq_mul_four_eq_three_mul_sq`
+- `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.no_rational_linear_area_for_equilateral_pentatope_hinge`
+- `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.reggeProxy_zero_on_flat_chart`
+- `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.happy_all_380_intervals_pos_entropy_and_mincut`
+- `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.cayleyMengerTriangleAreaSq_homogeneous_deg4_in_length`
+- `lean4/AdsRtFormulaImport.lean::AdsRtFormulaImport.no_scale_invariant_regge_to_rt_dictionary`
 
 ## Downstream derivations
 

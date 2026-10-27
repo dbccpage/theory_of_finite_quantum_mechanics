@@ -43,22 +43,22 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignDfmZ1Z2CountertermFence.lean`
+### Lean: `lean4/DressingFieldZ1Z2CountertermFence.lean`
 
-- file: [lean4/CampaignDfmZ1Z2CountertermFence.lean](../../../lean4/CampaignDfmZ1Z2CountertermFence.lean)
-- sha256 (`bytes`): `1682fea96d404920c81783da2d5f2370df71a1b323468f725e077f45b78a3412`
-- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-z1-z2-counterterm-fence_lean_replay.json (CampaignDfmZ1Z2CountertermFence), record TFQ-1114
+- file: [lean4/DressingFieldZ1Z2CountertermFence.lean](../../../lean4/DressingFieldZ1Z2CountertermFence.lean)
+- sha256 (`bytes`): `b659387aa156095a4c861ee8e922918cdf6b71a88529c5e23e2a26f5f62fafaf`
+- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-z1-z2-counterterm-fence_lean_replay.json (DressingFieldZ1Z2CountertermFence), record TFQ-1114
 - replay: `verified`
-  - receipt [dag/research/campaign_dfm-z1-z2-counterterm-fence_lean_replay.json](../../../dag/research/campaign_dfm-z1-z2-counterterm-fence_lean_replay.json) (module `CampaignDfmZ1Z2CountertermFence`): recorded sha256 `1682fea96d404920c81783da2d5f2370df71a1b323468f725e077f45b78a3412` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignDfmZ1Z2CountertermFence`
+  - receipt [dag/research/campaign_dfm-z1-z2-counterterm-fence_lean_replay.json](../../../dag/research/campaign_dfm-z1-z2-counterterm-fence_lean_replay.json) (module `DressingFieldZ1Z2CountertermFence`): recorded sha256 `b659387aa156095a4c861ee8e922918cdf6b71a88529c5e23e2a26f5f62fafaf` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build DressingFieldZ1Z2CountertermFence`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignDfmZ1Z2CountertermFence.contraction` | yes | yes | yes | none | `#print axioms CampaignDfmZ1Z2CountertermFence.contraction` |
-| `CampaignDfmZ1Z2CountertermFence.contraction_entries` | yes | yes | yes | none | `#print axioms CampaignDfmZ1Z2CountertermFence.contraction_entries` |
-| `CampaignDfmZ1Z2CountertermFence.inverse_difference` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmZ1Z2CountertermFence.inverse_difference` |
-| `CampaignDfmZ1Z2CountertermFence.propagator_values` | yes | yes | yes | none | `#print axioms CampaignDfmZ1Z2CountertermFence.propagator_values` |
-| `CampaignDfmZ1Z2CountertermFence.sandwich` | yes | yes | yes | none | `#print axioms CampaignDfmZ1Z2CountertermFence.sandwich` |
+| `DressingFieldZ1Z2CountertermFence.contraction` | yes | yes | yes | none | `#print axioms DressingFieldZ1Z2CountertermFence.contraction` |
+| `DressingFieldZ1Z2CountertermFence.contraction_entries` | yes | yes | yes | none | `#print axioms DressingFieldZ1Z2CountertermFence.contraction_entries` |
+| `DressingFieldZ1Z2CountertermFence.inverse_difference` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldZ1Z2CountertermFence.inverse_difference` |
+| `DressingFieldZ1Z2CountertermFence.propagator_values` | yes | yes | yes | none | `#print axioms DressingFieldZ1Z2CountertermFence.propagator_values` |
+| `DressingFieldZ1Z2CountertermFence.sandwich` | yes | yes | yes | none | `#print axioms DressingFieldZ1Z2CountertermFence.sandwich` |
 | `contraction` | yes | yes | yes | none | `#print axioms contraction` |
 | `contraction_entries` | yes | yes | yes | none | `#print axioms contraction_entries` |
 | `inverse_difference` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms inverse_difference` |
@@ -84,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md](../../../dag/derivations/24_dressing_field/tfq_1114_dfm_z1_z2_counterterm_fence.md)
-- sha256 (`lf-normalised`): `6a6f91f03656713873f820a38da6a1229188182ce974e4cb3ce245a442d85220`
+- sha256 (`lf-normalised`): `21f6c3181e79ddfa0b14966a3ebb1d530eb39bc2f69e2a66189f5895b5a53987`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1114
 - counts toward the grade: no
@@ -92,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/dfm-z1-z2-counterterm-fence.md`
 
 - file: [dag/derivations/independent/dfm-z1-z2-counterterm-fence.md](../../../dag/derivations/independent/dfm-z1-z2-counterterm-fence.md)
-- sha256 (`lf-normalised`): `3f9d01e056e65b241295502fa2c319333206118d167a240ad03b5a465b2fa8b8`
+- sha256 (`lf-normalised`): `0fa288b82e6de1c92218547c35f0aab1de81ebae944a4e0a8468bb3eb2efc91e`
 - cited in: node.source
 - counts toward the grade: yes
 

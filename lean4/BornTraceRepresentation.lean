@@ -18,7 +18,7 @@ form of the valuation.  No continuity, no real scalars, no projection-lattice Gl
 the hypotheses are additivity on effects (not only on projections), positivity and normalisation.
 -/
 
-namespace BornFable.MatrixCarrier
+namespace BornFinite.MatrixCarrier
 
 open Matrix
 
@@ -238,33 +238,33 @@ theorem density_hasGram (W : EffectValuation (space n)) :
     PsdDecomposition.HasGram (density W) :=
   PsdDecomposition.gram_of_psd (density W) (density_symm W) (density_psd W)
 
-end BornFable.MatrixCarrier
+end BornFinite.MatrixCarrier
 
-#print axioms BornFable.MatrixCarrier.space_isOrderUnit
-#print axioms BornFable.MatrixCarrier.ext_effect
-#print axioms BornFable.MatrixCarrier.ext_one
-#print axioms BornFable.MatrixCarrier.ext_nonneg
-#print axioms BornFable.MatrixCarrier.ext_eq_trace
-#print axioms BornFable.MatrixCarrier.density_effect
-#print axioms BornFable.MatrixCarrier.density_trace
-#print axioms BornFable.MatrixCarrier.density_psd
-#print axioms BornFable.MatrixCarrier.single_transpose_eq
-#print axioms BornFable.MatrixCarrier.ext_skew_zero
-#print axioms BornFable.MatrixCarrier.density_symm
-#print axioms BornFable.MatrixCarrier.traceWith_apply
-#print axioms BornFable.MatrixCarrier.density_unique
-#print axioms BornFable.MatrixCarrier.born_representation
-#print axioms BornFable.MatrixCarrier.density_is_state
-#print axioms BornFable.MatrixCarrier.born_rule
-#print axioms BornFable.MatrixCarrier.ofState_density
-#print axioms BornFable.MatrixCarrier.trace_single_zero_mul
-#print axioms BornFable.MatrixCarrier.apply_zero_zero_eq_qf
-#print axioms BornFable.MatrixCarrier.pureZero_apply
-#print axioms BornFable.MatrixCarrier.pureZero_density
-#print axioms BornFable.MatrixCarrier.qf_transpose
-#print axioms BornFable.MatrixCarrier.trace_mul_transpose_of_symm
-#print axioms BornFable.MatrixCarrier.trace_mul_nonneg_of_effect
-#print axioms BornFable.MatrixCarrier.bornValuation_apply
-#print axioms BornFable.MatrixCarrier.bornValuation_density
-#print axioms BornFable.MatrixCarrier.state_valuation_correspondence
-#print axioms BornFable.MatrixCarrier.density_hasGram
+#print axioms BornFinite.MatrixCarrier.space_isOrderUnit
+#print axioms BornFinite.MatrixCarrier.ext_effect
+#print axioms BornFinite.MatrixCarrier.ext_one
+#print axioms BornFinite.MatrixCarrier.ext_nonneg
+#print axioms BornFinite.MatrixCarrier.ext_eq_trace
+#print axioms BornFinite.MatrixCarrier.density_effect
+#print axioms BornFinite.MatrixCarrier.density_trace
+#print axioms BornFinite.MatrixCarrier.density_psd
+#print axioms BornFinite.MatrixCarrier.single_transpose_eq
+#print axioms BornFinite.MatrixCarrier.ext_skew_zero
+#print axioms BornFinite.MatrixCarrier.density_symm
+#print axioms BornFinite.MatrixCarrier.traceWith_apply
+#print axioms BornFinite.MatrixCarrier.density_unique
+#print axioms BornFinite.MatrixCarrier.born_representation
+#print axioms BornFinite.MatrixCarrier.density_is_state
+#print axioms BornFinite.MatrixCarrier.born_rule
+#print axioms BornFinite.MatrixCarrier.ofState_density
+#print axioms BornFinite.MatrixCarrier.trace_single_zero_mul
+#print axioms BornFinite.MatrixCarrier.apply_zero_zero_eq_qf
+#print axioms BornFinite.MatrixCarrier.pureZero_apply
+#print axioms BornFinite.MatrixCarrier.pureZero_density
+#print axioms BornFinite.MatrixCarrier.qf_transpose
+#print axioms BornFinite.MatrixCarrier.trace_mul_transpose_of_symm
+#print axioms BornFinite.MatrixCarrier.trace_mul_nonneg_of_effect
+#print axioms BornFinite.MatrixCarrier.bornValuation_apply
+#print axioms BornFinite.MatrixCarrier.bornValuation_density
+#print axioms BornFinite.MatrixCarrier.state_valuation_correspondence
+#print axioms BornFinite.MatrixCarrier.density_hasGram

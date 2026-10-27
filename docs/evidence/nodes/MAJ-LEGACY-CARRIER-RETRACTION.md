@@ -42,31 +42,31 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignMajLegacyCarrierRetraction.lean`
+### Lean: `lean4/MajoranaLegacyCarrierRetraction.lean`
 
-- file: [lean4/CampaignMajLegacyCarrierRetraction.lean](../../../lean4/CampaignMajLegacyCarrierRetraction.lean)
-- sha256 (`bytes`): `7de4257dd41044aeee748fbb68d9899c1e64b5b2fcab7483b3b7234cdc2a5ba9`
-- cited in: node.lean, receipt dag/research/campaign_maj-legacy-carrier-retraction_lean_replay.json (CampaignMajLegacyCarrierRetraction), receipt dag/research/pr_382_round2_replay.json (CampaignMajLegacyCarrierRetraction), record TFQ-1154
+- file: [lean4/MajoranaLegacyCarrierRetraction.lean](../../../lean4/MajoranaLegacyCarrierRetraction.lean)
+- sha256 (`bytes`): `81a3d3bef75c8550de5174c37588eb346cbd705557e3bcb480023a7b3148cc06`
+- cited in: node.lean, receipt dag/research/campaign_maj-legacy-carrier-retraction_lean_replay.json (MajoranaLegacyCarrierRetraction), receipt dag/research/pr_382_round2_replay.json (MajoranaLegacyCarrierRetraction), record TFQ-1154
 - replay: `verified`
-  - receipt [dag/research/campaign_maj-legacy-carrier-retraction_lean_replay.json](../../../dag/research/campaign_maj-legacy-carrier-retraction_lean_replay.json) (module `CampaignMajLegacyCarrierRetraction`): recorded sha256 `7de4257dd41044aeee748fbb68d9899c1e64b5b2fcab7483b3b7234cdc2a5ba9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_382_round2_replay.json](../../../dag/research/pr_382_round2_replay.json) (module `CampaignMajLegacyCarrierRetraction`): recorded sha256 `7de4257dd41044aeee748fbb68d9899c1e64b5b2fcab7483b3b7234cdc2a5ba9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignMajLegacyCarrierRetraction`
+  - receipt [dag/research/campaign_maj-legacy-carrier-retraction_lean_replay.json](../../../dag/research/campaign_maj-legacy-carrier-retraction_lean_replay.json) (module `MajoranaLegacyCarrierRetraction`): recorded sha256 `81a3d3bef75c8550de5174c37588eb346cbd705557e3bcb480023a7b3148cc06` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_382_round2_replay.json](../../../dag/research/pr_382_round2_replay.json) (module `MajoranaLegacyCarrierRetraction`): recorded sha256 `81a3d3bef75c8550de5174c37588eb346cbd705557e3bcb480023a7b3148cc06` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build MajoranaLegacyCarrierRetraction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignMajLegacyCarrierRetraction.V` | yes | yes | yes | none | `#print axioms CampaignMajLegacyCarrierRetraction.V` |
-| `CampaignMajLegacyCarrierRetraction.all_cocycle` | yes | yes | yes | none | `#print axioms CampaignMajLegacyCarrierRetraction.all_cocycle` |
-| `CampaignMajLegacyCarrierRetraction.all_exact` | yes | yes | yes | none | `#print axioms CampaignMajLegacyCarrierRetraction.all_exact` |
-| `CampaignMajLegacyCarrierRetraction.d0` | yes | yes | yes | none | `#print axioms CampaignMajLegacyCarrierRetraction.d0` |
-| `CampaignMajLegacyCarrierRetraction.d0_id` | yes | yes | yes | none | `#print axioms CampaignMajLegacyCarrierRetraction.d0_id` |
-| `CampaignMajLegacyCarrierRetraction.d1` | yes | yes | yes | none | `#print axioms CampaignMajLegacyCarrierRetraction.d1` |
-| `CampaignMajLegacyCarrierRetraction.isClosed` | yes | yes | yes | none | `#print axioms CampaignMajLegacyCarrierRetraction.isClosed` |
-| `CampaignMajLegacyCarrierRetraction.isCocycle` | yes | yes | yes | none | `#print axioms CampaignMajLegacyCarrierRetraction.isCocycle` |
-| `CampaignMajLegacyCarrierRetraction.isExact` | yes | yes | yes | none | `#print axioms CampaignMajLegacyCarrierRetraction.isExact` |
-| `CampaignMajLegacyCarrierRetraction.nilpotent` | yes | yes | yes | none | `#print axioms CampaignMajLegacyCarrierRetraction.nilpotent` |
-| `CampaignMajLegacyCarrierRetraction.no_closed` | yes | yes | yes | none | `#print axioms CampaignMajLegacyCarrierRetraction.no_closed` |
-| `CampaignMajLegacyCarrierRetraction.window_no_closed` | yes | yes | yes | none | `#print axioms CampaignMajLegacyCarrierRetraction.window_no_closed` |
-| `CampaignMajLegacyCarrierRetraction.zero1` | yes | yes | yes | none | `#print axioms CampaignMajLegacyCarrierRetraction.zero1` |
+| `MajoranaLegacyCarrierRetraction.V` | yes | yes | yes | none | `#print axioms MajoranaLegacyCarrierRetraction.V` |
+| `MajoranaLegacyCarrierRetraction.all_cocycle` | yes | yes | yes | none | `#print axioms MajoranaLegacyCarrierRetraction.all_cocycle` |
+| `MajoranaLegacyCarrierRetraction.all_exact` | yes | yes | yes | none | `#print axioms MajoranaLegacyCarrierRetraction.all_exact` |
+| `MajoranaLegacyCarrierRetraction.d0` | yes | yes | yes | none | `#print axioms MajoranaLegacyCarrierRetraction.d0` |
+| `MajoranaLegacyCarrierRetraction.d0_id` | yes | yes | yes | none | `#print axioms MajoranaLegacyCarrierRetraction.d0_id` |
+| `MajoranaLegacyCarrierRetraction.d1` | yes | yes | yes | none | `#print axioms MajoranaLegacyCarrierRetraction.d1` |
+| `MajoranaLegacyCarrierRetraction.isClosed` | yes | yes | yes | none | `#print axioms MajoranaLegacyCarrierRetraction.isClosed` |
+| `MajoranaLegacyCarrierRetraction.isCocycle` | yes | yes | yes | none | `#print axioms MajoranaLegacyCarrierRetraction.isCocycle` |
+| `MajoranaLegacyCarrierRetraction.isExact` | yes | yes | yes | none | `#print axioms MajoranaLegacyCarrierRetraction.isExact` |
+| `MajoranaLegacyCarrierRetraction.nilpotent` | yes | yes | yes | none | `#print axioms MajoranaLegacyCarrierRetraction.nilpotent` |
+| `MajoranaLegacyCarrierRetraction.no_closed` | yes | yes | yes | none | `#print axioms MajoranaLegacyCarrierRetraction.no_closed` |
+| `MajoranaLegacyCarrierRetraction.window_no_closed` | yes | yes | yes | none | `#print axioms MajoranaLegacyCarrierRetraction.window_no_closed` |
+| `MajoranaLegacyCarrierRetraction.zero1` | yes | yes | yes | none | `#print axioms MajoranaLegacyCarrierRetraction.zero1` |
 
 - counts toward the grade: yes
 
@@ -113,7 +113,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md`
 
 - file: [dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md](../../../dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md)
-- sha256 (`lf-normalised`): `63c5776aa8c4b84133b342f999845f2b8dcb30f986bd3ad2352fc79aeff8ca9b`
+- sha256 (`lf-normalised`): `1d63d0acf863861711578ae65d0c4e0cd96bcbd506252232712f22dd94fab63b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1154
 - counts toward the grade: no

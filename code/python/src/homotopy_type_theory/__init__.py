@@ -1,6 +1,6 @@
 """Package seal for the circle certificate.
 
-Origin: lean4/H011Circle.lean theorem cyc3_one_double_ne_zero.
+Origin: lean4/HilbertWalkCircle.lean theorem cyc3_one_double_ne_zero.
 Claim: urn:omega:fqm:hott:package-circle-seal:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by code/python/src/homotopy_type_theory/test_hott_control.py.

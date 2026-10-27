@@ -45,7 +45,7 @@ operation_candidates:
   name: cob
   line: 9
   signature_excerpt: 'def cob (g0 g1 : Int) : Int × Int × Int × Int'
-  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  source: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   status: source_candidate_requires_semantic_review
@@ -53,7 +53,7 @@ operation_candidates:
   name: diag
   line: 13
   signature_excerpt: 'def diag (e00 e01 e10 : Int) : Int'
-  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  source: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   status: source_candidate_requires_semantic_review
@@ -91,7 +91,7 @@ relation_candidates:
           (cob g0 g1).2.1 = 0 ∧
             (cob g0 g1).2.2.1 = g0 - g1 ∧
               (cob g0 g1).2.2.2 = g1 - g0
-  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  source: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   status: source_candidate_requires_semantic_review
@@ -103,7 +103,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem diag_on_coboundary (g0 g1 : Int) :
         diag 0 (g0 - g1) (g1 - g0) = 0
-  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  source: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   status: source_candidate_requires_semantic_review
@@ -115,7 +115,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem diag_after_repair (e00 e01 e10 g0 g1 : Int) :
         diag (e00 + 0) (e01 + (g0 - g1)) (e10 + (g1 - g0)) = diag e00 e01 e10
-  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  source: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   status: source_candidate_requires_semantic_review
@@ -133,7 +133,7 @@ relation_candidates:
         (h01 : b * d01 = n0 - n1)
         (h10 : b * d10 = n1 - n0) :
         (d00, d11, d01, d10) = cob 0 (-d01)
-  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  source: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   status: source_candidate_requires_semantic_review
@@ -143,7 +143,7 @@ relation_candidates:
   name: compensated_loop_closed
   line: 61
   signature_excerpt: 'theorem compensated_loop_closed : diag 1 0 (-1) = 0'
-  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  source: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   status: source_candidate_requires_semantic_review
@@ -155,7 +155,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem compensated_loop_not_coboundary (g0 g1 : Int) :
         (cob g0 g1).1 ≠ 1
-  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  source: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   status: source_candidate_requires_semantic_review
@@ -165,7 +165,7 @@ relation_candidates:
   name: silent_loop_closed
   line: 69
   signature_excerpt: 'theorem silent_loop_closed : diag 0 0 0 = 0'
-  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  source: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   status: source_candidate_requires_semantic_review
@@ -177,7 +177,7 @@ relation_candidates:
   signature_excerpt: |-
     theorem silent_loop_not_coboundary (g0 g1 : Int) :
         (cob g0 g1).2.1 ≠ 1
-  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  source: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   status: source_candidate_requires_semantic_review
@@ -187,7 +187,7 @@ relation_candidates:
   name: one_arc_diagnostic
   line: 77
   signature_excerpt: 'theorem one_arc_diagnostic : diag 0 1 0 = 1'
-  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  source: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   status: source_candidate_requires_semantic_review
@@ -197,7 +197,7 @@ relation_candidates:
   name: two_way_sum
   line: 80
   signature_excerpt: 'theorem two_way_sum : (1 : Int) + 1 = 2'
-  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  source: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   status: source_candidate_requires_semantic_review
@@ -207,7 +207,7 @@ relation_candidates:
   name: two_way_difference
   line: 83
   signature_excerpt: 'theorem two_way_difference : (1 : Int) - 1 = 0'
-  source: lean4/CampaignPgwWdpBridgeOngoing.lean
+  source: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   source_sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   status: source_candidate_requires_semantic_review
@@ -227,100 +227,100 @@ relation_candidates:
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::cob_slots
+- original_ref: lean4/PregenesisWdpBridgeOngoing.lean::cob_slots
   availability: local
   symbol: cob_slots
-  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  path: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   declaration_status: declaration_found_not_proof_checked
   line: 16
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::diag_on_coboundary
+- original_ref: lean4/PregenesisWdpBridgeOngoing.lean::diag_on_coboundary
   availability: local
   symbol: diag_on_coboundary
-  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  path: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   declaration_status: declaration_found_not_proof_checked
   line: 24
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::diag_after_repair
+- original_ref: lean4/PregenesisWdpBridgeOngoing.lean::diag_after_repair
   availability: local
   symbol: diag_after_repair
-  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  path: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   declaration_status: declaration_found_not_proof_checked
   line: 29
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::denominator_clears
+- original_ref: lean4/PregenesisWdpBridgeOngoing.lean::denominator_clears
   availability: local
   symbol: denominator_clears
-  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  path: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   declaration_status: declaration_found_not_proof_checked
   line: 34
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::compensated_loop_closed
+- original_ref: lean4/PregenesisWdpBridgeOngoing.lean::compensated_loop_closed
   availability: local
   symbol: compensated_loop_closed
-  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  path: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   declaration_status: declaration_found_not_proof_checked
   line: 61
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::compensated_loop_not_coboundary
+- original_ref: lean4/PregenesisWdpBridgeOngoing.lean::compensated_loop_not_coboundary
   availability: local
   symbol: compensated_loop_not_coboundary
-  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  path: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   declaration_status: declaration_found_not_proof_checked
   line: 64
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::silent_loop_closed
+- original_ref: lean4/PregenesisWdpBridgeOngoing.lean::silent_loop_closed
   availability: local
   symbol: silent_loop_closed
-  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  path: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   declaration_status: declaration_found_not_proof_checked
   line: 69
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::silent_loop_not_coboundary
+- original_ref: lean4/PregenesisWdpBridgeOngoing.lean::silent_loop_not_coboundary
   availability: local
   symbol: silent_loop_not_coboundary
-  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  path: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   declaration_status: declaration_found_not_proof_checked
   line: 72
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::one_arc_diagnostic
+- original_ref: lean4/PregenesisWdpBridgeOngoing.lean::one_arc_diagnostic
   availability: local
   symbol: one_arc_diagnostic
-  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  path: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   declaration_status: declaration_found_not_proof_checked
   line: 77
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::two_way_sum
+- original_ref: lean4/PregenesisWdpBridgeOngoing.lean::two_way_sum
   availability: local
   symbol: two_way_sum
-  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  path: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   declaration_status: declaration_found_not_proof_checked
   line: 80
   role: source_lead_only
-- original_ref: lean4/CampaignPgwWdpBridgeOngoing.lean::two_way_difference
+- original_ref: lean4/PregenesisWdpBridgeOngoing.lean::two_way_difference
   availability: local
   symbol: two_way_difference
-  path: lean4/CampaignPgwWdpBridgeOngoing.lean
+  path: lean4/PregenesisWdpBridgeOngoing.lean
   repository: this_repository
   sha256: 70b6d1d23be815c94d992e1b1c3c50617997cdf2f139ef7c41ef9c3d6e68281a
   declaration_status: declaration_found_not_proof_checked

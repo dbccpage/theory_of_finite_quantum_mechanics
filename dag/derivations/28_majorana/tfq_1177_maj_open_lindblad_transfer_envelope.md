@@ -17,7 +17,7 @@ For four MZMs under a Lindblad braiding model with gap Delta, length L/xi and po
 The Lindblad derivation, the four-mode braiding model, the exponential poisoning term, the Landau-Zener square, and a positive lower bound on the physical transfer defect stay open. Older Nat positivity facts in MajoranaCore do not state this envelope. A positive envelope value stays separate from a positive transfer defect.
 
 ### Witness Audit
-Decided integer comparisons at T = 1, 2 and 3 of f(T) = 4 + T^3 against 3 T^2 in CampaignMajOpenLindbladTransferEnvelope, with no axioms. The Lindblad envelope is not derived here. Envelope value 12 at T = 2 is positive while the reading 0 lies strictly below it.
+Decided integer comparisons at T = 1, 2 and 3 of f(T) = 4 + T^3 against 3 T^2 in MajoranaOpenLindbladTransferEnvelope, with no axioms. The Lindblad envelope is not derived here. Envelope value 12 at T = 2 is positive while the reading 0 lies strictly below it.
 
 ---
 
@@ -31,11 +31,11 @@ Decided integer comparisons at T = 1, 2 and 3 of f(T) = 4 + T^3 against 3 T^2 in
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignMajOpenLindbladTransferEnvelope.lean::envelope_at_one`
-- `lean4/CampaignMajOpenLindbladTransferEnvelope.lean::envelope_at_two`
-- `lean4/CampaignMajOpenLindbladTransferEnvelope.lean::envelope_at_three`
-- `lean4/CampaignMajOpenLindbladTransferEnvelope.lean::envelope_positive`
-- `lean4/CampaignMajOpenLindbladTransferEnvelope.lean::defect_zero_below_envelope`
+- `lean4/MajoranaOpenLindbladTransferEnvelope.lean::envelope_at_one`
+- `lean4/MajoranaOpenLindbladTransferEnvelope.lean::envelope_at_two`
+- `lean4/MajoranaOpenLindbladTransferEnvelope.lean::envelope_at_three`
+- `lean4/MajoranaOpenLindbladTransferEnvelope.lean::envelope_positive`
+- `lean4/MajoranaOpenLindbladTransferEnvelope.lean::defect_zero_below_envelope`
 
 ### Rust Certifiers
 - *none*

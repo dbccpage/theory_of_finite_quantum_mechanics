@@ -271,8 +271,8 @@ fn support_exception(path: &str, value: &Value) -> Result<SupportException, Poli
     }
     if category == "finite_proof_example" {
         let lean_name = path.strip_prefix("lean4/").unwrap_or("");
-        if !lean_name.starts_with("Campaign") || !lean_name.ends_with(".lean") || lean_name.contains('/') {
-            return Err(field("support_exceptions.path", "a single lean4/Campaign*.lean module for finite_proof_example"));
+        if lean_name.len() <= ".lean".len() || !lean_name.ends_with(".lean") || lean_name.contains('/') {
+            return Err(field("support_exceptions.path", "a single top-level lean4/*.lean module for finite_proof_example"));
         }
     }
     Ok(SupportException { sha256: sha256.into(), category: category.into(), reason: reason.into() })
@@ -759,15 +759,15 @@ pub(crate) mod tests {
     }
 
     #[test]
-    fn finite_proof_examples_require_an_exact_campaign_module_pin() {
+    fn finite_proof_examples_require_an_exact_top_level_lean_module_pin() {
         let mut value: Value = serde_json::from_str(POLICY).unwrap();
         let pin = serde_json::json!({"sha256": "a".repeat(64), "category": "finite_proof_example", "reason": "reviewed finite example"});
-        value["support_exceptions"] = serde_json::json!({"lean4/CampaignFixture.lean": pin});
+        value["support_exceptions"] = serde_json::json!({"lean4/FiniteFixture.lean": pin});
         let policy = Policy::from_json(&value.to_string()).unwrap();
-        assert_eq!(policy.floor_for("lean4/CampaignFixture.lean", &"a".repeat(64)).min_level, Level::L1);
-        assert_eq!(policy.floor_for("lean4/CampaignFixture.lean", &"b".repeat(64)), policy.floor);
-        assert_eq!(policy.floor_for("lean4/CampaignOther.lean", &"a".repeat(64)), policy.floor);
-        for path in ["code/runtime.rs", "lean4/Runtime.lean", "lean4/CampaignNested/X.lean", "lean4/Campaign*.lean"] {
+        assert_eq!(policy.floor_for("lean4/FiniteFixture.lean", &"a".repeat(64)).min_level, Level::L1);
+        assert_eq!(policy.floor_for("lean4/FiniteFixture.lean", &"b".repeat(64)), policy.floor);
+        assert_eq!(policy.floor_for("lean4/FiniteOther.lean", &"a".repeat(64)), policy.floor);
+        for path in ["code/runtime.rs", "lean4/Runtime.rs", "lean4/.lean", "lean4/Nested/X.lean", "lean4/*.lean"] {
             value["support_exceptions"] = serde_json::json!({path: pin});
             assert!(Policy::from_json(&value.to_string()).is_err(), "{path}");
         }

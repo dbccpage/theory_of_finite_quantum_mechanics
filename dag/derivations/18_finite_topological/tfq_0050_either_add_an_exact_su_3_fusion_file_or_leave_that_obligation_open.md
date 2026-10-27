@@ -25,17 +25,17 @@ In accordance with strict constructive principles:
 
 ## 3. Multi-Tier Code & Proof Witnesses
 
-### Lean 4 Theorems (`lean4/CampaignTfq0050FiniteTopological.lean`)
-- `CampaignTfq0050FiniteTopological.catalog_ribbon_ranks_and_total_squared_dimensions`: Proves `isingTotalDimSq = 4`, `semionTotalDimSq = 2`, `z2x2PointedTotalDimSq = 4`, and `quantumDoubleCyclicRank n = n^2` (`4, 9, 16`).
-- `CampaignTfq0050FiniteTopological.toric_code_vs_three_fermion_topological_spin_twists`: Proves `[0, 0, 0, 1]` vs. `[0, 1, 1, 1]` spin parities on `ℤ_2 × ℤ_2`.
-- `CampaignTfq0050FiniteTopological.catalog_cyclotomic_field_admission_and_refusal`: Proves `fieldAdmitsRootOrder` rejects `Cyclotomic<8>` for Ising, Fibonacci, and `SU(2)_3`, and admits exact multiples.
-- `CampaignTfq0050FiniteTopological.su3_level1_pointed_z3_fusion_vs_higher_level_nonpointed`: Proves `su3WeylAlcoveCount k` values for `k = 1..6`.
-- `CampaignTfq0050FiniteTopological.quantum_double_z3_rank9_not_su3_level_k_fence`: Proves `su3WeylAlcoveCount k ≠ 9 = quantumDoubleCyclicRank 3` for `k = 1..6`.
-- `CampaignTfq0050FiniteTopological.catalog_self_dual_models_not_su3_conjugate_pair_fence`: Proves `su3WeightConjugate (1, 0) = (0, 1) ≠ (1, 0)`.
-- `CampaignTfq0050FiniteTopological.su3_level2_fundamental_quantum_dimension_golden_ratio`: Proves `d_{(1,0)}^2 = d_{(0,1)} + d_{(2,0)} = 1 + 2φ` in `QPhi`.
-- `CampaignTfq0050FiniteTopological.absence_of_su3_level_rs_is_open_obligation_not_impossibility_theorem_fence`: Proves `su3LevelRepoClassification = OpenImplementationObligation`.
-- `CampaignTfq0050FiniteTopological.catalog_ribbon_categories_do_not_assert_material_host_or_qcd_confinement_fence`: Audits `RibbonCatalogEntryAudit`.
-- `CampaignTfq0050FiniteTopological.tfq0050_catalog_and_su3_level_scope_ledger_fence`: Audits `Tfq0050ScopeLedger`.
+### Lean 4 Theorems (`lean4/RibbonCategoryCatalog.lean`)
+- `RibbonCategoryCatalog.catalog_ribbon_ranks_and_total_squared_dimensions`: Proves `isingTotalDimSq = 4`, `semionTotalDimSq = 2`, `z2x2PointedTotalDimSq = 4`, and `quantumDoubleCyclicRank n = n^2` (`4, 9, 16`).
+- `RibbonCategoryCatalog.toric_code_vs_three_fermion_topological_spin_twists`: Proves `[0, 0, 0, 1]` vs. `[0, 1, 1, 1]` spin parities on `ℤ_2 × ℤ_2`.
+- `RibbonCategoryCatalog.catalog_cyclotomic_field_admission_and_refusal`: Proves `fieldAdmitsRootOrder` rejects `Cyclotomic<8>` for Ising, Fibonacci, and `SU(2)_3`, and admits exact multiples.
+- `RibbonCategoryCatalog.su3_level1_pointed_z3_fusion_vs_higher_level_nonpointed`: Proves `su3WeylAlcoveCount k` values for `k = 1..6`.
+- `RibbonCategoryCatalog.quantum_double_z3_rank9_not_su3_level_k_fence`: Proves `su3WeylAlcoveCount k ≠ 9 = quantumDoubleCyclicRank 3` for `k = 1..6`.
+- `RibbonCategoryCatalog.catalog_self_dual_models_not_su3_conjugate_pair_fence`: Proves `su3WeightConjugate (1, 0) = (0, 1) ≠ (1, 0)`.
+- `RibbonCategoryCatalog.su3_level2_fundamental_quantum_dimension_golden_ratio`: Proves `d_{(1,0)}^2 = d_{(0,1)} + d_{(2,0)} = 1 + 2φ` in `QPhi`.
+- `RibbonCategoryCatalog.absence_of_su3_level_rs_is_open_obligation_not_impossibility_theorem_fence`: Proves `su3LevelRepoClassification = OpenImplementationObligation`.
+- `RibbonCategoryCatalog.catalog_ribbon_categories_do_not_assert_material_host_or_qcd_confinement_fence`: Audits `RibbonCatalogEntryAudit`.
+- `RibbonCategoryCatalog.tfq0050_catalog_and_su3_level_scope_ledger_fence`: Audits `Tfq0050ScopeLedger`.
 
 ### Sovereign Rust Certifiers (`code/rust/src/fusion_categories/catalog.rs`, `code/rust/src/fusion_categories/su2_level.rs`)
 - `code/rust/src/fusion_categories/catalog.rs::ising`

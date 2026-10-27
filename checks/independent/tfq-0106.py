@@ -3,7 +3,7 @@
 
 AuthorityEffect: None.
 Verifies all three exact rational components and non-equivalence fences in
-lean4/CampaignTfq0106FiniteQg.lean and code/rust/src/general_relativity/cosmological_constant.rs:
+lean4/CosmologicalCouplingReplay.lean and code/rust/src/general_relativity/cosmological_constant.rs:
 1. Exact rational replay of CosmologicalCoupling::evaluate_action and effective_scalar_curvature,
    curvature-volume balance condition evaluate_action == 0 <=> K == 2 * lambda * kappa * V,
    and homogeneous / reciprocal scaling identities.

@@ -14,10 +14,10 @@
 For lattice SU(2) with Dirac fermions in the real adjoint representation, an antiunitary symmetry of the Dirac operator makes det D_adj real for every gauge configuration.
 
 ### Governing Obligation
-For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. CampaignFspSu2AdjointRealDet.lean establishes the 3x3 SO(3) adjoint representation of unit quaternions, Z_2 center blindness R(-q) = R(q), the antiunitary intertwiner reality identity C conj(D) = D C -> Im(det D) = 0, reality of the 4D lattice adjoint Wilson-Dirac determinant wilsonDiracAdjoint4_det_im_zero, a negative-determinant witness (det = -1 < 0), and the 2x2 and 4x4 skew-symmetric Majorana Pfaffian square identities and sign-flip pairs. Full continuum SU(2) path-integral construction and general 2n x 2n Berezin Grassmann integration remain literature imports.
+For a single Majorana adjoint flavor the measure is a Pfaffian whose sign can change; reality is not positivity. FermionSignSu2AdjointRealDet.lean establishes the 3x3 SO(3) adjoint representation of unit quaternions, Z_2 center blindness R(-q) = R(q), the antiunitary intertwiner reality identity C conj(D) = D C -> Im(det D) = 0, reality of the 4D lattice adjoint Wilson-Dirac determinant wilsonDiracAdjoint4_det_im_zero, a negative-determinant witness (det = -1 < 0), and the 2x2 and 4x4 skew-symmetric Majorana Pfaffian square identities and sign-flip pairs. Full continuum SU(2) path-integral construction and general 2n x 2n Berezin Grassmann integration remain literature imports.
 
 ### Witness Audit
-Cited NonAbelianGaugeSigns.lean::su2_adjoint_fermion_real_determinant does not exist; adjoint_matter_zero_n_ality and adjoint_flux_tube_curvature_vanishes are rfl on a defined n_ality table (GIN-C12 historical fixture). The local Su2LatticeGauge symbol is absent from su2_lattice_gauge.py. CampaignFspSu2AdjointRealDet.lean formalizes the 3x3 SO(3) adjoint representation, Z_2 center blindness, the antiunitary intertwiner determinant reality theorem, 4D lattice adjoint Wilson-Dirac determinant reality, negative-determinant witnesses, and 2x2/4x4 Majorana Pfaffian square and sign-flip identities; checks/independent/fsp-su2-adjoint-real-det.py supplies 546 exact symbolic and rational checks.
+Cited NonAbelianGaugeSigns.lean::su2_adjoint_fermion_real_determinant does not exist; adjoint_matter_zero_n_ality and adjoint_flux_tube_curvature_vanishes are rfl on a defined n_ality table (GIN-C12 historical fixture). The local Su2LatticeGauge symbol is absent from su2_lattice_gauge.py. FermionSignSu2AdjointRealDet.lean formalizes the 3x3 SO(3) adjoint representation, Z_2 center blindness, the antiunitary intertwiner determinant reality theorem, 4D lattice adjoint Wilson-Dirac determinant reality, negative-determinant witnesses, and 2x2/4x4 Majorana Pfaffian square and sign-flip identities; checks/independent/fsp-su2-adjoint-real-det.py supplies 546 exact symbolic and rational checks.
 
 ---
 
@@ -35,22 +35,22 @@ Cited NonAbelianGaugeSigns.lean::su2_adjoint_fermion_real_determinant does not e
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_center_blind`
-- `lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_transpose_mul_self`
-- `lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_eq_norm_cube`
-- `lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.su2AdjointMatrix_det_one`
-- `lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_conj`
-- `lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_det_im_zero`
-- `lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.antiunitary_intertwiner_two_flavor_nonneg`
-- `lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.chargeConj4_intertwines_gamma4d`
-- `lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined`
-- `lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj`
-- `lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero`
-- `lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.reality_not_positivity_witness`
-- `lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.skew2_det_eq_pfaffian2_sq`
-- `lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.majorana_pfaffian2_sign_flip`
-- `lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.skew4_det_eq_pfaffian4_sq`
-- `lean4/CampaignFspSu2AdjointRealDet.lean::CampaignFspSu2AdjointRealDet.majorana_pfaffian4_sign_flip`
+- `lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.su2AdjointMatrix_center_blind`
+- `lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.su2AdjointMatrix_transpose_mul_self`
+- `lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.su2AdjointMatrix_det_eq_norm_cube`
+- `lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.su2AdjointMatrix_det_one`
+- `lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.antiunitary_intertwiner_det_conj`
+- `lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.antiunitary_intertwiner_det_im_zero`
+- `lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.antiunitary_intertwiner_two_flavor_nonneg`
+- `lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.chargeConj4_intertwines_gamma4d`
+- `lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.wilsonDiracAdjoint4_intertwined`
+- `lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.wilsonDiracAdjoint4_det_conj`
+- `lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.wilsonDiracAdjoint4_det_im_zero`
+- `lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.reality_not_positivity_witness`
+- `lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.skew2_det_eq_pfaffian2_sq`
+- `lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.majorana_pfaffian2_sign_flip`
+- `lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.skew4_det_eq_pfaffian4_sq`
+- `lean4/FermionSignSu2AdjointRealDet.lean::FermionSignSu2AdjointRealDet.majorana_pfaffian4_sign_flip`
 
 ### Rust Certifiers
 - *none*

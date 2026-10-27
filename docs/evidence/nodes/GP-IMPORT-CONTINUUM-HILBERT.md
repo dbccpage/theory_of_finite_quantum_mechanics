@@ -46,28 +46,28 @@ OPEN gap GAP-F001-S000-002 (continuum interface)
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignGpImportContinuumHilbert.lean`
+### Lean: `lean4/ContinuumHilbertImport.lean`
 
-- file: [lean4/CampaignGpImportContinuumHilbert.lean](../../../lean4/CampaignGpImportContinuumHilbert.lean)
-- sha256 (`bytes`): `c295d54bb448053163b2de830650a5724201901cb8b4f00e1a3c70418524e965`
-- cited in: node.lean, receipt dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json (CampaignGpImportContinuumHilbert), record TFQ-1035
+- file: [lean4/ContinuumHilbertImport.lean](../../../lean4/ContinuumHilbertImport.lean)
+- sha256 (`bytes`): `9e7afdeacea7f90b7280915b655a20aff4e66ea6ef902a2f8f91b66f883c1989`
+- cited in: node.lean, receipt dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json (ContinuumHilbertImport), record TFQ-1035
 - replay: `verified`
-  - receipt [dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json](../../../dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json) (module `CampaignGpImportContinuumHilbert`): recorded sha256 `c295d54bb448053163b2de830650a5724201901cb8b4f00e1a3c70418524e965` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignGpImportContinuumHilbert`
+  - receipt [dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json](../../../dag/research/campaign_gp-import-continuum-hilbert_lean_replay.json) (module `ContinuumHilbertImport`): recorded sha256 `9e7afdeacea7f90b7280915b655a20aff4e66ea6ef902a2f8f91b66f883c1989` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build ContinuumHilbertImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignGpImportContinuumHilbert.closedTail` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGpImportContinuumHilbert.closedTail` |
-| `CampaignGpImportContinuumHilbert.halves` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuumHilbert.halves` |
-| `CampaignGpImportContinuumHilbert.noPositiveDoubleOfOne` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGpImportContinuumHilbert.noPositiveDoubleOfOne` |
-| `CampaignGpImportContinuumHilbert.pow4Four` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuumHilbert.pow4Four` |
-| `CampaignGpImportContinuumHilbert.scaledTailIsOne` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGpImportContinuumHilbert.scaledTailIsOne` |
-| `CampaignGpImportContinuumHilbert.squareDiffs` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuumHilbert.squareDiffs` |
-| `CampaignGpImportContinuumHilbert.sumDiff` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignGpImportContinuumHilbert.sumDiff` |
-| `CampaignGpImportContinuumHilbert.windowIsSum` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuumHilbert.windowIsSum` |
-| `CampaignGpImportContinuumHilbert.windowScaled` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuumHilbert.windowScaled` |
-| `CampaignGpImportContinuumHilbert.windowSquares` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuumHilbert.windowSquares` |
-| `CampaignGpImportContinuumHilbert.windowSum` | yes | yes | yes | none | `#print axioms CampaignGpImportContinuumHilbert.windowSum` |
+| `ContinuumHilbertImport.closedTail` | yes | yes | yes | Quot.sound, propext | `#print axioms ContinuumHilbertImport.closedTail` |
+| `ContinuumHilbertImport.halves` | yes | yes | yes | none | `#print axioms ContinuumHilbertImport.halves` |
+| `ContinuumHilbertImport.noPositiveDoubleOfOne` | yes | yes | yes | Quot.sound, propext | `#print axioms ContinuumHilbertImport.noPositiveDoubleOfOne` |
+| `ContinuumHilbertImport.pow4Four` | yes | yes | yes | none | `#print axioms ContinuumHilbertImport.pow4Four` |
+| `ContinuumHilbertImport.scaledTailIsOne` | yes | yes | yes | Quot.sound, propext | `#print axioms ContinuumHilbertImport.scaledTailIsOne` |
+| `ContinuumHilbertImport.squareDiffs` | yes | yes | yes | none | `#print axioms ContinuumHilbertImport.squareDiffs` |
+| `ContinuumHilbertImport.sumDiff` | yes | yes | yes | Quot.sound, propext | `#print axioms ContinuumHilbertImport.sumDiff` |
+| `ContinuumHilbertImport.windowIsSum` | yes | yes | yes | none | `#print axioms ContinuumHilbertImport.windowIsSum` |
+| `ContinuumHilbertImport.windowScaled` | yes | yes | yes | none | `#print axioms ContinuumHilbertImport.windowScaled` |
+| `ContinuumHilbertImport.windowSquares` | yes | yes | yes | none | `#print axioms ContinuumHilbertImport.windowSquares` |
+| `ContinuumHilbertImport.windowSum` | yes | yes | yes | none | `#print axioms ContinuumHilbertImport.windowSum` |
 
 - counts toward the grade: yes
 
@@ -97,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1035_gp_import_continuum_hilbert.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1035_gp_import_continuum_hilbert.md](../../../dag/derivations/08_l1_to_l2/tfq_1035_gp_import_continuum_hilbert.md)
-- sha256 (`lf-normalised`): `97f91be837764652ab1542bb8619f2cf079ec1083ee845bac40074ce489470dd`
+- sha256 (`lf-normalised`): `4a65f10f42f52572ae9c1355ce535fbeb86d968d4ebd5a229e1f9c6b77791b49`
 - generated view: listed, not counted
 - cited in: record TFQ-1035
 - counts toward the grade: no

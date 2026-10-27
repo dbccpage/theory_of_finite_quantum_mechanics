@@ -15,7 +15,7 @@ import Mathlib.Tactic.Ring
 import Mathlib.Tactic.Abel
 
 /-
-Matrix carrier for the effect-valuation interface `BornFable.OrderedQUnit`.  AuthorityEffect: None.
+Matrix carrier for the effect-valuation interface `BornFinite.OrderedQUnit`.  AuthorityEffect: None.
 
 Carrier.  V := Matrix (Fin n) (Fin n) ℚ, all n×n rational matrices (symmetry is NOT imposed).
 Quadratic form qf A x := x ⬝ᵥ (A *ᵥ x).  Order: le A B := ∀ x, 0 ≤ qf (B - A) x, i.e. B - A is
@@ -32,7 +32,7 @@ algebra over ℚ), not derived from any physical postulate.  No Born rule and no
 uniqueness is proved here.  Everything is exact over ℚ; no real numbers, limits, or continuity.
 -/
 
-namespace BornFable.MatrixCarrier
+namespace BornFinite.MatrixCarrier
 
 open Matrix
 
@@ -292,40 +292,40 @@ theorem skew_le_zero_and_ge {A : Matrix (Fin n) (Fin n) ℚ} (hA : Aᵀ = -A) :
   · intro x
     rw [sub_zero, qf_eq_zero_of_skew hA]
 
-end BornFable.MatrixCarrier
+end BornFinite.MatrixCarrier
 
-#print axioms BornFable.MatrixCarrier.qf
-#print axioms BornFable.MatrixCarrier.qf_add
-#print axioms BornFable.MatrixCarrier.qf_sub
-#print axioms BornFable.MatrixCarrier.qf_neg
-#print axioms BornFable.MatrixCarrier.qf_smul
-#print axioms BornFable.MatrixCarrier.qf_zero
-#print axioms BornFable.MatrixCarrier.qf_one
-#print axioms BornFable.MatrixCarrier.qf_eq_sum_sum
-#print axioms BornFable.MatrixCarrier.dot_self_nonneg
-#print axioms BornFable.MatrixCarrier.dot_self_pos
-#print axioms BornFable.MatrixCarrier.dot_self_eq_sum_sq
-#print axioms BornFable.MatrixCarrier.PsdQ
-#print axioms BornFable.MatrixCarrier.space
-#print axioms BornFable.MatrixCarrier.space_le
-#print axioms BornFable.MatrixCarrier.space_u
-#print axioms BornFable.MatrixCarrier.effect_iff
-#print axioms BornFable.MatrixCarrier.effect_iff'
-#print axioms BornFable.MatrixCarrier.sq_le_dot
-#print axioms BornFable.MatrixCarrier.abs_mul_le_dot
-#print axioms BornFable.MatrixCarrier.abs_qf_le
-#print axioms BornFable.MatrixCarrier.order_unit
-#print axioms BornFable.MatrixCarrier.cauchy_schwarz
-#print axioms BornFable.MatrixCarrier.P
-#print axioms BornFable.MatrixCarrier.qf_vecMulVec
-#print axioms BornFable.MatrixCarrier.qf_rankOne
-#print axioms BornFable.MatrixCarrier.rankOne_effect
-#print axioms BornFable.MatrixCarrier.repMatrix
-#print axioms BornFable.MatrixCarrier.repMatrix_apply
-#print axioms BornFable.MatrixCarrier.trace_mul_eq_sum
-#print axioms BornFable.MatrixCarrier.trace_rep
-#print axioms BornFable.MatrixCarrier.rep_unique
-#print axioms BornFable.MatrixCarrier.qf_eq_trace
-#print axioms BornFable.MatrixCarrier.qf_eq_trace'
-#print axioms BornFable.MatrixCarrier.qf_eq_zero_of_skew
-#print axioms BornFable.MatrixCarrier.skew_le_zero_and_ge
+#print axioms BornFinite.MatrixCarrier.qf
+#print axioms BornFinite.MatrixCarrier.qf_add
+#print axioms BornFinite.MatrixCarrier.qf_sub
+#print axioms BornFinite.MatrixCarrier.qf_neg
+#print axioms BornFinite.MatrixCarrier.qf_smul
+#print axioms BornFinite.MatrixCarrier.qf_zero
+#print axioms BornFinite.MatrixCarrier.qf_one
+#print axioms BornFinite.MatrixCarrier.qf_eq_sum_sum
+#print axioms BornFinite.MatrixCarrier.dot_self_nonneg
+#print axioms BornFinite.MatrixCarrier.dot_self_pos
+#print axioms BornFinite.MatrixCarrier.dot_self_eq_sum_sq
+#print axioms BornFinite.MatrixCarrier.PsdQ
+#print axioms BornFinite.MatrixCarrier.space
+#print axioms BornFinite.MatrixCarrier.space_le
+#print axioms BornFinite.MatrixCarrier.space_u
+#print axioms BornFinite.MatrixCarrier.effect_iff
+#print axioms BornFinite.MatrixCarrier.effect_iff'
+#print axioms BornFinite.MatrixCarrier.sq_le_dot
+#print axioms BornFinite.MatrixCarrier.abs_mul_le_dot
+#print axioms BornFinite.MatrixCarrier.abs_qf_le
+#print axioms BornFinite.MatrixCarrier.order_unit
+#print axioms BornFinite.MatrixCarrier.cauchy_schwarz
+#print axioms BornFinite.MatrixCarrier.P
+#print axioms BornFinite.MatrixCarrier.qf_vecMulVec
+#print axioms BornFinite.MatrixCarrier.qf_rankOne
+#print axioms BornFinite.MatrixCarrier.rankOne_effect
+#print axioms BornFinite.MatrixCarrier.repMatrix
+#print axioms BornFinite.MatrixCarrier.repMatrix_apply
+#print axioms BornFinite.MatrixCarrier.trace_mul_eq_sum
+#print axioms BornFinite.MatrixCarrier.trace_rep
+#print axioms BornFinite.MatrixCarrier.rep_unique
+#print axioms BornFinite.MatrixCarrier.qf_eq_trace
+#print axioms BornFinite.MatrixCarrier.qf_eq_trace'
+#print axioms BornFinite.MatrixCarrier.qf_eq_zero_of_skew
+#print axioms BornFinite.MatrixCarrier.skew_le_zero_and_ge

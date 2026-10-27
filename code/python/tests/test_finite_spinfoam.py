@@ -89,7 +89,7 @@ def test_negative_shape_failures() -> None:
 
 def test_integration_matches_binomial_counts() -> None:
     root = Path(__file__).resolve().parents[3]
-    source = (root / "lean4" / "H029Simplicial3complexCayleyEvolution.lean").read_text(encoding="utf-8")
+    source = (root / "lean4" / "Simplicial3complexCayleyEvolution.lean").read_text(encoding="utf-8")
     assert "theorem tetrahedron_euler_characteristic" in source
     edges = binomial_exact(4, 2)
     faces = binomial_exact(4, 3)
@@ -111,7 +111,7 @@ def test_end_to_end_cli_prints_two() -> None:
 
 def test_origin_resolves_in_repo() -> None:
     root = Path(__file__).resolve().parents[3]
-    source = (root / "lean4" / "H029Simplicial3complexCayleyEvolution.lean").read_text(encoding="utf-8")
+    source = (root / "lean4" / "Simplicial3complexCayleyEvolution.lean").read_text(encoding="utf-8")
     assert "theorem tetrahedron_euler_characteristic" in source
     text = _MODULE_PATH.read_text(encoding="utf-8")
     assert "AuthorityEffect: None" in text

@@ -92,7 +92,7 @@ def test_negative_shape_failures() -> None:
 
 def test_integration_matches_scaled_separator() -> None:
     root = Path(__file__).resolve().parents[3]
-    source = (root / "lean4" / "H001Rats.lean").read_text(encoding="utf-8")
+    source = (root / "lean4" / "HilbertWalkRationals.lean").read_text(encoding="utf-8")
     assert "theorem fractional_half_simplex" in source
     assert "theorem uniform_half_mass" in source
     assert "theorem half_add_half" in source
@@ -112,7 +112,7 @@ def test_end_to_end_cli_prints_one() -> None:
 
 def test_origin_resolves_in_repo() -> None:
     source = _MODULE_PATH.read_text(encoding="utf-8")
-    assert "Origin: lean4/H001Rats.lean theorem fractional_half_simplex" in source
+    assert "Origin: lean4/HilbertWalkRationals.lean theorem fractional_half_simplex" in source
     assert "Claim: urn:omega:fqm:simplex:fractional-half:v1" in source
     assert "AuthorityEffect: None" in source
     assert "Scope Fence:" in source

@@ -42,24 +42,24 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignDfmReggeGravityFence.lean`
+### Lean: `lean4/DressingFieldReggeGravityFence.lean`
 
-- file: [lean4/CampaignDfmReggeGravityFence.lean](../../../lean4/CampaignDfmReggeGravityFence.lean)
-- sha256 (`bytes`): `dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6`
-- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-regge-gravity-fence_final_lean_replay.json (CampaignDfmReggeGravityFence), receipt dag/research/campaign_dfm-regge-gravity-fence_integrated_lean_replay.json (CampaignDfmReggeGravityFence), receipt dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json (CampaignDfmReggeGravityFence), receipt dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json (CampaignDfmReggeGravityFence), record TFQ-1137
+- file: [lean4/DressingFieldReggeGravityFence.lean](../../../lean4/DressingFieldReggeGravityFence.lean)
+- sha256 (`bytes`): `09c0b7b66c1a4b90a66f96dc648c22a64ce5519a7a1f1401a217e0f05b6a6d80`
+- cited in: node.lean, node.source, receipt dag/research/campaign_dfm-regge-gravity-fence_final_lean_replay.json (DressingFieldReggeGravityFence), receipt dag/research/campaign_dfm-regge-gravity-fence_integrated_lean_replay.json (DressingFieldReggeGravityFence), receipt dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json (DressingFieldReggeGravityFence), receipt dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json (DressingFieldReggeGravityFence), record TFQ-1137
 - replay: `verified`
-  - receipt [dag/research/campaign_dfm-regge-gravity-fence_final_lean_replay.json](../../../dag/research/campaign_dfm-regge-gravity-fence_final_lean_replay.json) (module `CampaignDfmReggeGravityFence`): recorded sha256 `dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/campaign_dfm-regge-gravity-fence_integrated_lean_replay.json](../../../dag/research/campaign_dfm-regge-gravity-fence_integrated_lean_replay.json) (module `CampaignDfmReggeGravityFence`): recorded sha256 `dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json](../../../dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json) (module `CampaignDfmReggeGravityFence`): recorded sha256 `dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-  - receipt [dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json](../../../dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json) (module `CampaignDfmReggeGravityFence`): recorded sha256 `dddcb90d0c502c292a4b7dc9d7f6c5aa9a96c5d550c0f4c2c056b9c8e22d61c6` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignDfmReggeGravityFence`
+  - receipt [dag/research/campaign_dfm-regge-gravity-fence_final_lean_replay.json](../../../dag/research/campaign_dfm-regge-gravity-fence_final_lean_replay.json) (module `DressingFieldReggeGravityFence`): recorded sha256 `09c0b7b66c1a4b90a66f96dc648c22a64ce5519a7a1f1401a217e0f05b6a6d80` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_dfm-regge-gravity-fence_integrated_lean_replay.json](../../../dag/research/campaign_dfm-regge-gravity-fence_integrated_lean_replay.json) (module `DressingFieldReggeGravityFence`): recorded sha256 `09c0b7b66c1a4b90a66f96dc648c22a64ce5519a7a1f1401a217e0f05b6a6d80` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json](../../../dag/research/campaign_dfm-regge-gravity-fence_lean_replay.json) (module `DressingFieldReggeGravityFence`): recorded sha256 `09c0b7b66c1a4b90a66f96dc648c22a64ce5519a7a1f1401a217e0f05b6a6d80` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json](../../../dag/research/campaign_dfm-regge-gravity-fence_review_lean_replay.json) (module `DressingFieldReggeGravityFence`): recorded sha256 `09c0b7b66c1a4b90a66f96dc648c22a64ce5519a7a1f1401a217e0f05b6a6d80` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build DressingFieldReggeGravityFence`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignDfmReggeGravityFence.block_trace_half` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmReggeGravityFence.block_trace_half` |
-| `CampaignDfmReggeGravityFence.cosine_sum_ne_block_trace` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmReggeGravityFence.cosine_sum_ne_block_trace` |
-| `CampaignDfmReggeGravityFence.lengths_345` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmReggeGravityFence.lengths_345` |
-| `CampaignDfmReggeGravityFence.numerator_sum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignDfmReggeGravityFence.numerator_sum` |
+| `DressingFieldReggeGravityFence.block_trace_half` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldReggeGravityFence.block_trace_half` |
+| `DressingFieldReggeGravityFence.cosine_sum_ne_block_trace` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldReggeGravityFence.cosine_sum_ne_block_trace` |
+| `DressingFieldReggeGravityFence.lengths_345` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldReggeGravityFence.lengths_345` |
+| `DressingFieldReggeGravityFence.numerator_sum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms DressingFieldReggeGravityFence.numerator_sum` |
 | `block_trace_half` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms block_trace_half` |
 | `cosine_sum_ne_block_trace` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms cosine_sum_ne_block_trace` |
 | `lengths_345` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms lengths_345` |
@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md](../../../dag/derivations/24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md)
-- sha256 (`lf-normalised`): `2a1fb25f3b016318b8d4e2aae1ec658c556268c3a25e89e3d24a6b6c375a54a5`
+- sha256 (`lf-normalised`): `e655375dc1c4539fc46a86814fc4d030f7ea570710990dbb58aac29ccaf356de`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1137
 - counts toward the grade: no
@@ -85,7 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/dfm-regge-gravity-fence.md`
 
 - file: [dag/derivations/independent/dfm-regge-gravity-fence.md](../../../dag/derivations/independent/dfm-regge-gravity-fence.md)
-- sha256 (`lf-normalised`): `83f18b3698451d20067f41c0b3751785ed33051d9c3de9c9518367a5fa1798ec`
+- sha256 (`lf-normalised`): `4ad0746da428eedae956e80e65fbea990fdb3d9c965436c1770a36ee7e0fe723`
 - cited in: node.source
 - counts toward the grade: yes
 

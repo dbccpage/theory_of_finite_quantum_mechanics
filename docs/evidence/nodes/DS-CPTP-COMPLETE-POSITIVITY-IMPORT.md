@@ -47,29 +47,44 @@ Complete positivity of a tensor extension, Kraus, Choi and Stinespring forms, an
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignDsCptpCompletePositivity.lean`
+### Lean: `lean4/CptpChannelsStinespring.lean`
 
-- file: [lean4/CampaignDsCptpCompletePositivity.lean](../../../lean4/CampaignDsCptpCompletePositivity.lean)
-- sha256 (`bytes`): `27282c5c83c9655fc167d6e9273702adf87d9b6068ec41b4e94ec21a9a741722`
-- cited in: node.lean, receipt dag/research/campaign_ds-cptp-complete-positivity-import_lean_replay.json (CampaignDsCptpCompletePositivity)
+- file: [lean4/CptpChannelsStinespring.lean](../../../lean4/CptpChannelsStinespring.lean)
+- sha256 (`bytes`): `a2cc913c5c8c2bcdf1fc029625b52cebeb2ee1c19913e1f886f287bbcddde62a`
+- cited in: node.lean
 - replay: `verified`
-  - receipt [dag/research/campaign_ds-cptp-complete-positivity-import_lean_replay.json](../../../dag/research/campaign_ds-cptp-complete-positivity-import_lean_replay.json) (module `CampaignDsCptpCompletePositivity`): recorded sha256 `27282c5c83c9655fc167d6e9273702adf87d9b6068ec41b4e94ec21a9a741722` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignDsCptpCompletePositivity`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `CptpChannelsStinespring`): recorded sha256 `a2cc913c5c8c2bcdf1fc029625b52cebeb2ee1c19913e1f886f287bbcddde62a` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build CptpChannelsStinespring`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignDsCptpCompletePositivity.bellNonneg` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsCptpCompletePositivity.bellNonneg` |
-| `CampaignDsCptpCompletePositivity.mulNonneg` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsCptpCompletePositivity.mulNonneg` |
-| `CampaignDsCptpCompletePositivity.mulOfNat` | yes | yes | yes | propext | `#print axioms CampaignDsCptpCompletePositivity.mulOfNat` |
-| `CampaignDsCptpCompletePositivity.negMulNeg` | yes | yes | yes | propext | `#print axioms CampaignDsCptpCompletePositivity.negMulNeg` |
-| `CampaignDsCptpCompletePositivity.negOut` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsCptpCompletePositivity.negOut` |
-| `CampaignDsCptpCompletePositivity.negT` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsCptpCompletePositivity.negT` |
-| `CampaignDsCptpCompletePositivity.normSq` | yes | yes | yes | none | `#print axioms CampaignDsCptpCompletePositivity.normSq` |
-| `CampaignDsCptpCompletePositivity.pairing` | yes | yes | yes | none | `#print axioms CampaignDsCptpCompletePositivity.pairing` |
-| `CampaignDsCptpCompletePositivity.scaleTwice` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsCptpCompletePositivity.scaleTwice` |
-| `CampaignDsCptpCompletePositivity.scaled` | yes | yes | yes | propext | `#print axioms CampaignDsCptpCompletePositivity.scaled` |
-| `CampaignDsCptpCompletePositivity.squareNonneg` | yes | yes | yes | propext | `#print axioms CampaignDsCptpCompletePositivity.squareNonneg` |
-| `CampaignDsCptpCompletePositivity.zeroScale` | yes | yes | yes | none | `#print axioms CampaignDsCptpCompletePositivity.zeroScale` |
+| `stinespring_requires_extension_verified` | yes | yes | yes | module-level | `#print axioms stinespring_requires_extension_verified` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/CptpCompletePositivity.lean`
+
+- file: [lean4/CptpCompletePositivity.lean](../../../lean4/CptpCompletePositivity.lean)
+- sha256 (`bytes`): `29ba1bbdb065043a4e45882a4c17bdaa4b6701caa826aa6f2c8c539c401d4cb0`
+- cited in: node.lean, receipt dag/research/campaign_ds-cptp-complete-positivity-import_lean_replay.json (CptpCompletePositivity)
+- replay: `verified`
+  - receipt [dag/research/campaign_ds-cptp-complete-positivity-import_lean_replay.json](../../../dag/research/campaign_ds-cptp-complete-positivity-import_lean_replay.json) (module `CptpCompletePositivity`): recorded sha256 `29ba1bbdb065043a4e45882a4c17bdaa4b6701caa826aa6f2c8c539c401d4cb0` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build CptpCompletePositivity`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `CptpCompletePositivity.bellNonneg` | yes | yes | yes | Quot.sound, propext | `#print axioms CptpCompletePositivity.bellNonneg` |
+| `CptpCompletePositivity.mulNonneg` | yes | yes | yes | Quot.sound, propext | `#print axioms CptpCompletePositivity.mulNonneg` |
+| `CptpCompletePositivity.mulOfNat` | yes | yes | yes | propext | `#print axioms CptpCompletePositivity.mulOfNat` |
+| `CptpCompletePositivity.negMulNeg` | yes | yes | yes | propext | `#print axioms CptpCompletePositivity.negMulNeg` |
+| `CptpCompletePositivity.negOut` | yes | yes | yes | Quot.sound, propext | `#print axioms CptpCompletePositivity.negOut` |
+| `CptpCompletePositivity.negT` | yes | yes | yes | Quot.sound, propext | `#print axioms CptpCompletePositivity.negT` |
+| `CptpCompletePositivity.normSq` | yes | yes | yes | none | `#print axioms CptpCompletePositivity.normSq` |
+| `CptpCompletePositivity.pairing` | yes | yes | yes | none | `#print axioms CptpCompletePositivity.pairing` |
+| `CptpCompletePositivity.scaleTwice` | yes | yes | yes | Quot.sound, propext | `#print axioms CptpCompletePositivity.scaleTwice` |
+| `CptpCompletePositivity.scaled` | yes | yes | yes | propext | `#print axioms CptpCompletePositivity.scaled` |
+| `CptpCompletePositivity.squareNonneg` | yes | yes | yes | propext | `#print axioms CptpCompletePositivity.squareNonneg` |
+| `CptpCompletePositivity.zeroScale` | yes | yes | yes | none | `#print axioms CptpCompletePositivity.zeroScale` |
 
 - counts toward the grade: yes
 
@@ -86,21 +101,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall` | yes | yes | yes | none | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall` |
 | `QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels` | yes | yes | yes | propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels` |
-
-- counts toward the grade: yes
-
-### Lean: `lean4/H063CptpChannelsStinespring.lean`
-
-- file: [lean4/H063CptpChannelsStinespring.lean](../../../lean4/H063CptpChannelsStinespring.lean)
-- sha256 (`bytes`): `b10a105b3d5810e558e75b3f8504b61433032d6aaff821da3b832baf06e890a7`
-- cited in: node.lean
-- replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_structure.json](../../../dag/research/lean_replay_campaign_finite_qm_structure.json) (module `H063CptpChannelsStinespring`): recorded sha256 `b10a105b3d5810e558e75b3f8504b61433032d6aaff821da3b832baf06e890a7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build H063CptpChannelsStinespring`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `stinespring_requires_extension_verified` | yes | yes | yes | module-level | `#print axioms stinespring_requires_extension_verified` |
 
 - counts toward the grade: yes
 

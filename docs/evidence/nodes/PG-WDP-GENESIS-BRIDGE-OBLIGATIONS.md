@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-O01..O05 remain open in the register. CampaignPgwWdpBridgeObligations records the symmetrised-adjacency candidate only: it is not a directed-step certificate, while the identity on adjacency is one, so O02 is not refuted. The integer relation p * p = 2 * q * q has no positive solution and is not the O04 scalar or Hilbert choice. No source admission system is given a preservation map. Checked slice, status unchanged. Narrowed finite case, status left OPEN: on any finite window, symmetrised adjacency is false at a pair exactly when both directed adjacencies are false; on two vertices that symmetrisation is not a directed-step certificate, since edge01 and edge10 differ as directed steps and both have pair-defect true at (0,1); the identity on adjacency is a directed-step certificate on every finite window; and no positive integers p, q satisfy p * p = 2 * q * q, with the numerical case 1 * 1 = 1 and 2 * 1 * 1 = 2. O01, O03, O04, O05, and the existence of an O02 map from a source admission system stay open.
+O01..O05 remain open in the register. PregenesisWdpBridgeObligations records the symmetrised-adjacency candidate only: it is not a directed-step certificate, while the identity on adjacency is one, so O02 is not refuted. The integer relation p * p = 2 * q * q has no positive solution and is not the O04 scalar or Hilbert choice. No source admission system is given a preservation map. Checked slice, status unchanged. Narrowed finite case, status left OPEN: on any finite window, symmetrised adjacency is false at a pair exactly when both directed adjacencies are false; on two vertices that symmetrisation is not a directed-step certificate, since edge01 and edge10 differ as directed steps and both have pair-defect true at (0,1); the identity on adjacency is a directed-step certificate on every finite window; and no positive integers p, q satisfy p * p = 2 * q * q, with the numerical case 1 * 1 = 1 and 2 * 1 * 1 = 2. O01, O03, O04, O05, and the existence of an O02 map from a source admission system stay open.
 
 ## Source status
 
@@ -45,29 +45,6 @@ GEN-WDP-O01..O05 five-obligation Genesis-to-WDP bridge gate, GEN-WDP-46/70 obser
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignPgwWdpBridgeObligations.lean`
-
-- file: [lean4/CampaignPgwWdpBridgeObligations.lean](../../../lean4/CampaignPgwWdpBridgeObligations.lean)
-- sha256 (`bytes`): `8d3358fa30d4b9a910101b4e49d925725239f47ecce5dec3f8de1ab238b6d026`
-- cited in: node.lean, node.source, receipt dag/research/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json (CampaignPgwWdpBridgeObligations)
-- replay: `verified`
-  - receipt [dag/research/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json](../../../dag/research/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json) (module `CampaignPgwWdpBridgeObligations`): recorded sha256 `8d3358fa30d4b9a910101b4e49d925725239f47ecce5dec3f8de1ab238b6d026` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignPgwWdpBridgeObligations`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `CampaignPgwWdpBridgeObligations.idAdj_is_certificate` | yes | yes | yes | none | `#print axioms CampaignPgwWdpBridgeObligations.idAdj_is_certificate` |
-| `CampaignPgwWdpBridgeObligations.no_sq_at_one` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwWdpBridgeObligations.no_sq_at_one` |
-| `CampaignPgwWdpBridgeObligations.no_sq_eq_two_sq` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignPgwWdpBridgeObligations.no_sq_eq_two_sq` |
-| `CampaignPgwWdpBridgeObligations.one_sq_ne_two` | yes | yes | yes | none | `#print axioms CampaignPgwWdpBridgeObligations.one_sq_ne_two` |
-| `CampaignPgwWdpBridgeObligations.one_sq_values` | yes | yes | yes | none | `#print axioms CampaignPgwWdpBridgeObligations.one_sq_values` |
-| `CampaignPgwWdpBridgeObligations.pairDefect_false_iff` | yes | yes | yes | propext | `#print axioms CampaignPgwWdpBridgeObligations.pairDefect_false_iff` |
-| `CampaignPgwWdpBridgeObligations.pairDefect_not_directed_step_certificate` | yes | yes | yes | propext | `#print axioms CampaignPgwWdpBridgeObligations.pairDefect_not_directed_step_certificate` |
-| `CampaignPgwWdpBridgeObligations.some_certificate_exists` | yes | yes | yes | none | `#print axioms CampaignPgwWdpBridgeObligations.some_certificate_exists` |
-| `CampaignPgwWdpBridgeObligations.witness_orientation_swap` | yes | yes | yes | propext | `#print axioms CampaignPgwWdpBridgeObligations.witness_orientation_swap` |
-
-- counts toward the grade: yes
-
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
@@ -83,6 +60,29 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `QuantumMechanics.DerivationDagQMClosure.genesis_to_wdp_bridge_preserves_and_reflects` | yes | yes | yes | module-level | `#print axioms QuantumMechanics.DerivationDagQMClosure.genesis_to_wdp_bridge_preserves_and_reflects` |
 | `QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl` | yes | yes | yes | module-level | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o01_o05_observer_completion_and_diamond_curl` |
 | `QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o03_o05_coherence_readout_and_standing_separation` | yes | yes | yes | module-level | `#print axioms QuantumMechanics.DerivationDagQMClosure.pg_wdp_genesis_bridge_o03_o05_coherence_readout_and_standing_separation` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/PregenesisWdpBridgeObligations.lean`
+
+- file: [lean4/PregenesisWdpBridgeObligations.lean](../../../lean4/PregenesisWdpBridgeObligations.lean)
+- sha256 (`bytes`): `7bbdcefde37106ab5e3dbbb17f86d94adc167d5036c41a44fe684a6a8d161729`
+- cited in: node.lean, node.source, receipt dag/research/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json (PregenesisWdpBridgeObligations)
+- replay: `verified`
+  - receipt [dag/research/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json](../../../dag/research/campaign_pg-wdp-genesis-bridge-obligations_lean_replay.json) (module `PregenesisWdpBridgeObligations`): recorded sha256 `7bbdcefde37106ab5e3dbbb17f86d94adc167d5036c41a44fe684a6a8d161729` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build PregenesisWdpBridgeObligations`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `PregenesisWdpBridgeObligations.idAdj_is_certificate` | yes | yes | yes | none | `#print axioms PregenesisWdpBridgeObligations.idAdj_is_certificate` |
+| `PregenesisWdpBridgeObligations.no_sq_at_one` | yes | yes | yes | Quot.sound, propext | `#print axioms PregenesisWdpBridgeObligations.no_sq_at_one` |
+| `PregenesisWdpBridgeObligations.no_sq_eq_two_sq` | yes | yes | yes | Quot.sound, propext | `#print axioms PregenesisWdpBridgeObligations.no_sq_eq_two_sq` |
+| `PregenesisWdpBridgeObligations.one_sq_ne_two` | yes | yes | yes | none | `#print axioms PregenesisWdpBridgeObligations.one_sq_ne_two` |
+| `PregenesisWdpBridgeObligations.one_sq_values` | yes | yes | yes | none | `#print axioms PregenesisWdpBridgeObligations.one_sq_values` |
+| `PregenesisWdpBridgeObligations.pairDefect_false_iff` | yes | yes | yes | propext | `#print axioms PregenesisWdpBridgeObligations.pairDefect_false_iff` |
+| `PregenesisWdpBridgeObligations.pairDefect_not_directed_step_certificate` | yes | yes | yes | propext | `#print axioms PregenesisWdpBridgeObligations.pairDefect_not_directed_step_certificate` |
+| `PregenesisWdpBridgeObligations.some_certificate_exists` | yes | yes | yes | none | `#print axioms PregenesisWdpBridgeObligations.some_certificate_exists` |
+| `PregenesisWdpBridgeObligations.witness_orientation_swap` | yes | yes | yes | propext | `#print axioms PregenesisWdpBridgeObligations.witness_orientation_swap` |
 
 - counts toward the grade: yes
 

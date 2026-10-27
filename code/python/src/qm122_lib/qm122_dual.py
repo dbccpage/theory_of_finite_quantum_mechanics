@@ -1,13 +1,13 @@
 """Exact Python dual of the named QM-122 report, dilation, and Gauss-integer witnesses.
 
-Origin: papers/foundations/finite_ledger.md claim QM-122-C38, and lean4/H010Scale.lean theorem witnesses_are_the_special_case.
+Origin: papers/foundations/finite_ledger.md claim QM-122-C38, and lean4/HilbertWalkScale.lean theorem witnesses_are_the_special_case.
 Claim: urn:omega:fqm:qm122:python-dual-of-named-lean-witnesses:v1
 AuthorityEffect: None
 Mutation-Kills: 8 non-equivalent source mutants, executed by papers/foundations/_code/qm_122/tests/test_qm122_dual.py.
 Gate 5 measurement: radon 6.0.1 cyclomatic complexity max 9; AST Sonar cognitive complexity max 9; AST nesting depth max 3; lizard 1.24.1 cyclomatic complexity max 9.
 Scope Fence: This file does not prove Gleason uniqueness, does not recover M_n(C), and does not claim the two mix witnesses are a theorem for every Gaussian vector. It is not a Lean proof.
 
-The exhibited vectors are lean4/H008PhaseBlindPresentation.lean psi1 and psi2.
+The exhibited vectors are lean4/HilbertWalkPhaseBlindPresentation.lean psi1 and psi2.
 """
 
 from __future__ import annotations

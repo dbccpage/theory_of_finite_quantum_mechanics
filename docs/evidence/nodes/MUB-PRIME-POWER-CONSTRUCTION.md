@@ -32,7 +32,7 @@ The characteristic-two family is dimension 2 only. For odd characteristic the co
 
 ## Source status
 
-Dimension-2 Gaussian-integer bases Z, X and Y (characteristic two). For every odd prime power q a complete q+1 family of orthogonal, mutually unbiased vector families is constructed over any commutative domain with a star ring structure (bases of R^F when R is a field; spanning is not formalised), given a nontrivial unitary additive character of F_q as a parameter (lean4/CampaignMubPrimePowerOddCharacteristic.lean). Characteristic two beyond dimension 2, and the existence of the character over the concrete complex or cyclotomic carrier, stay open.
+Dimension-2 Gaussian-integer bases Z, X and Y (characteristic two). For every odd prime power q a complete q+1 family of orthogonal, mutually unbiased vector families is constructed over any commutative domain with a star ring structure (bases of R^F when R is a field; spanning is not formalised), given a nontrivial unitary additive character of F_q as a parameter (lean4/MubPrimePowerOddCharacteristic.lean). Characteristic two beyond dimension 2, and the existence of the character over the concrete complex or cyclotomic carrier, stay open.
 
 ## Review
 
@@ -42,15 +42,15 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignMubPrimePowerConstruction.lean`
+### Lean: `lean4/MubPrimePowerConstruction.lean`
 
-- file: [lean4/CampaignMubPrimePowerConstruction.lean](../../../lean4/CampaignMubPrimePowerConstruction.lean)
+- file: [lean4/MubPrimePowerConstruction.lean](../../../lean4/MubPrimePowerConstruction.lean)
 - sha256 (`bytes`): `9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec`
-- cited in: node.lean, receipt dag/research/campaign_mub-prime-power-construction_lean_replay.json (CampaignMubPrimePowerConstruction), receipt dag/research/pr_359_review_replay.json (CampaignMubPrimePowerConstruction), record TFQ-0403
+- cited in: node.lean, receipt dag/research/campaign_mub-prime-power-construction_lean_replay.json (MubPrimePowerConstruction), receipt dag/research/pr_359_review_replay.json (MubPrimePowerConstruction), record TFQ-0403
 - replay: `verified`
-  - receipt [dag/research/campaign_mub-prime-power-construction_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction_lean_replay.json) (module `CampaignMubPrimePowerConstruction`): recorded sha256 `9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-  - receipt [dag/research/pr_359_review_replay.json](../../../dag/research/pr_359_review_replay.json) (module `CampaignMubPrimePowerConstruction`): recorded sha256 `9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignMubPrimePowerConstruction`
+  - receipt [dag/research/campaign_mub-prime-power-construction_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction_lean_replay.json) (module `MubPrimePowerConstruction`): recorded sha256 `9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+  - receipt [dag/research/pr_359_review_replay.json](../../../dag/research/pr_359_review_replay.json) (module `MubPrimePowerConstruction`): recorded sha256 `9239bffb805755bc6a937dfcbd0d35e258ac7ffb356d5be09f172eda4b93fbec` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: none; only standard axioms: yes
+- check: `cd lean4 && lake build MubPrimePowerConstruction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -64,27 +64,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/CampaignMubPrimePowerOddCharacteristic.lean`
+### Lean: `lean4/MubPrimePowerOddCharacteristic.lean`
 
-- file: [lean4/CampaignMubPrimePowerOddCharacteristic.lean](../../../lean4/CampaignMubPrimePowerOddCharacteristic.lean)
-- sha256 (`bytes`): `a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b`
-- cited in: node.lean, receipt dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json (CampaignMubPrimePowerOddCharacteristic)
+- file: [lean4/MubPrimePowerOddCharacteristic.lean](../../../lean4/MubPrimePowerOddCharacteristic.lean)
+- sha256 (`bytes`): `b06c0a46415edf0abf7d56c39eee5e0deb074d314f327026e8c9adabcdaa0c28`
+- cited in: node.lean, receipt dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json (MubPrimePowerOddCharacteristic)
 - replay: `verified`
-  - receipt [dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json) (module `CampaignMubPrimePowerOddCharacteristic`): recorded sha256 `a4a76bcdb4817fb2a7685940faaf4fb1d08b6fb51f0a87ec554d367796be1b5b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignMubPrimePowerOddCharacteristic`
+  - receipt [dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json) (module `MubPrimePowerOddCharacteristic`): recorded sha256 `b06c0a46415edf0abf7d56c39eee5e0deb074d314f327026e8c9adabcdaa0c28` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build MubPrimePowerOddCharacteristic`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `MubFable.PrimePowerOdd.basis_orthogonal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.basis_orthogonal` |
-| `MubFable.PrimePowerOdd.basis_unbiased` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.basis_unbiased` |
-| `MubFable.PrimePowerOdd.card_bases` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.card_bases` |
-| `MubFable.PrimePowerOdd.mub_family` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.mub_family` |
-| `MubFable.PrimePowerOdd.pair_qvec_cross_mul_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.pair_qvec_cross_mul_star` |
-| `MubFable.PrimePowerOdd.pair_qvec_same` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.pair_qvec_same` |
-| `MubFable.PrimePowerOdd.pair_std` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.pair_std` |
-| `MubFable.PrimePowerOdd.pair_std_qvec_mul_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.pair_std_qvec_mul_star` |
-| `MubFable.PrimePowerOdd.sum_mulShift` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.sum_mulShift` |
-| `MubFable.PrimePowerOdd.weil_sum_mul_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubFable.PrimePowerOdd.weil_sum_mul_star` |
+| `MubPrimePower.PrimePowerOdd.basis_orthogonal` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubPrimePower.PrimePowerOdd.basis_orthogonal` |
+| `MubPrimePower.PrimePowerOdd.basis_unbiased` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubPrimePower.PrimePowerOdd.basis_unbiased` |
+| `MubPrimePower.PrimePowerOdd.card_bases` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubPrimePower.PrimePowerOdd.card_bases` |
+| `MubPrimePower.PrimePowerOdd.mub_family` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubPrimePower.PrimePowerOdd.mub_family` |
+| `MubPrimePower.PrimePowerOdd.pair_qvec_cross_mul_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubPrimePower.PrimePowerOdd.pair_qvec_cross_mul_star` |
+| `MubPrimePower.PrimePowerOdd.pair_qvec_same` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubPrimePower.PrimePowerOdd.pair_qvec_same` |
+| `MubPrimePower.PrimePowerOdd.pair_std` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubPrimePower.PrimePowerOdd.pair_std` |
+| `MubPrimePower.PrimePowerOdd.pair_std_qvec_mul_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubPrimePower.PrimePowerOdd.pair_std_qvec_mul_star` |
+| `MubPrimePower.PrimePowerOdd.sum_mulShift` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubPrimePower.PrimePowerOdd.sum_mulShift` |
+| `MubPrimePower.PrimePowerOdd.weil_sum_mul_star` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms MubPrimePower.PrimePowerOdd.weil_sum_mul_star` |
 
 - counts toward the grade: yes
 
@@ -106,7 +106,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/mub-prime-power-construction-odd.md`
 
 - file: [dag/derivations/independent/mub-prime-power-construction-odd.md](../../../dag/derivations/independent/mub-prime-power-construction-odd.md)
-- sha256 (`lf-normalised`): `e80e8e33edd70a2b7379216a0660b3f6d5df26e28f7c0116a71af9b180a1b3ea`
+- sha256 (`lf-normalised`): `9e8ad0fc2ac612f9c5b04dba9346d52f9d65c09154e568189cfce7b4ee816a45`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -120,14 +120,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json`
 
 - file: [dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction-odd_lean_replay.json)
-- sha256 (`lf-normalised`): `dad4fca8640ba69ff32ee4d72cb34d3685c19b2dc88ef7788f97cb408d05fe41`
+- sha256 (`lf-normalised`): `c6ffea0c7c63b8026e7862b5b74364f234970dce759dde850517ba6cbfa35641`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_mub-prime-power-construction_lean_replay.json`
 
 - file: [dag/research/campaign_mub-prime-power-construction_lean_replay.json](../../../dag/research/campaign_mub-prime-power-construction_lean_replay.json)
-- sha256 (`lf-normalised`): `924d70ee83a46e14f69abab050d621fb2a576b10e6437b3b6765a964f4cca204`
+- sha256 (`lf-normalised`): `4826491277051b78fa1d5060cc5be1d77ccd681537cdfbe64bfe1c9de1e39450`
 - cited in: node.source
 - counts toward the grade: yes
 

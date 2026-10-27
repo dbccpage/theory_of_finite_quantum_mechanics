@@ -47,48 +47,6 @@ Continuity of reversible dynamics, global field uniqueness, local tomography, a 
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignDsQm062U1Residues.lean`
-
-- file: [lean4/CampaignDsQm062U1Residues.lean](../../../lean4/CampaignDsQm062U1Residues.lean)
-- sha256 (`bytes`): `98e2fe43c0863eba70d486731439c6ae7407c7a130390c7d7eb00b0462435179`
-- cited in: node.lean, receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (CampaignDsQm062U1Residues)
-- replay: `verified`
-  - receipt [dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json](../../../dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json) (module `CampaignDsQm062U1Residues`): recorded sha256 `98e2fe43c0863eba70d486731439c6ae7407c7a130390c7d7eb00b0462435179` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignDsQm062U1Residues`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `CampaignDsQm062U1Residues.alias4` | yes | yes | yes | propext | `#print axioms CampaignDsQm062U1Residues.alias4` |
-| `CampaignDsQm062U1Residues.cu` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.cu` |
-| `CampaignDsQm062U1Residues.eye_entries` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.eye_entries` |
-| `CampaignDsQm062U1Residues.fourth` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.fourth` |
-| `CampaignDsQm062U1Residues.jay2Ne` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.jay2Ne` |
-| `CampaignDsQm062U1Residues.jay2_entries` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.jay2_entries` |
-| `CampaignDsQm062U1Residues.jay3Ne` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.jay3Ne` |
-| `CampaignDsQm062U1Residues.jay3_entries` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.jay3_entries` |
-| `CampaignDsQm062U1Residues.jayNe` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.jayNe` |
-| `CampaignDsQm062U1Residues.jay_entries` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.jay_entries` |
-| `CampaignDsQm062U1Residues.mod_succ` | yes | yes | yes | propext | `#print axioms CampaignDsQm062U1Residues.mod_succ` |
-| `CampaignDsQm062U1Residues.pow1` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.pow1` |
-| `CampaignDsQm062U1Residues.pow2` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.pow2` |
-| `CampaignDsQm062U1Residues.pow3` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.pow3` |
-| `CampaignDsQm062U1Residues.pow4` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.pow4` |
-| `CampaignDsQm062U1Residues.pow_eye` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsQm062U1Residues.pow_eye` |
-| `CampaignDsQm062U1Residues.pow_period` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsQm062U1Residues.pow_period` |
-| `CampaignDsQm062U1Residues.pow_rep` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsQm062U1Residues.pow_rep` |
-| `CampaignDsQm062U1Residues.rem0` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.rem0` |
-| `CampaignDsQm062U1Residues.rem1` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.rem1` |
-| `CampaignDsQm062U1Residues.rem2` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.rem2` |
-| `CampaignDsQm062U1Residues.rem3` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.rem3` |
-| `CampaignDsQm062U1Residues.rem4` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.rem4` |
-| `CampaignDsQm062U1Residues.rep_eye` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsQm062U1Residues.rep_eye` |
-| `CampaignDsQm062U1Residues.rep_step` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignDsQm062U1Residues.rep_step` |
-| `CampaignDsQm062U1Residues.sq` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.sq` |
-| `CampaignDsQm062U1Residues.stepBack` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.stepBack` |
-| `CampaignDsQm062U1Residues.stepNeg` | yes | yes | yes | none | `#print axioms CampaignDsQm062U1Residues.stepNeg` |
-
-- counts toward the grade: yes
-
 ### Lean: `lean4/DerivationDagQMClosure.lean`
 
 - file: [lean4/DerivationDagQMClosure.lean](../../../lean4/DerivationDagQMClosure.lean)
@@ -101,6 +59,48 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels` | yes | yes | yes | propext | `#print axioms QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/U1ResiduesOrderFour.lean`
+
+- file: [lean4/U1ResiduesOrderFour.lean](../../../lean4/U1ResiduesOrderFour.lean)
+- sha256 (`bytes`): `e0cea83454141a891b39b8f1276fd453ef959066755a4bcd6a9430b01fcf9e4d`
+- cited in: node.lean, receipt dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json (U1ResiduesOrderFour)
+- replay: `verified`
+  - receipt [dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json](../../../dag/research/campaign_ds-qm062-u1-residues-import_lean_replay.json) (module `U1ResiduesOrderFour`): recorded sha256 `e0cea83454141a891b39b8f1276fd453ef959066755a4bcd6a9430b01fcf9e4d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build U1ResiduesOrderFour`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `U1ResiduesOrderFour.alias4` | yes | yes | yes | propext | `#print axioms U1ResiduesOrderFour.alias4` |
+| `U1ResiduesOrderFour.cu` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.cu` |
+| `U1ResiduesOrderFour.eye_entries` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.eye_entries` |
+| `U1ResiduesOrderFour.fourth` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.fourth` |
+| `U1ResiduesOrderFour.jay2Ne` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.jay2Ne` |
+| `U1ResiduesOrderFour.jay2_entries` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.jay2_entries` |
+| `U1ResiduesOrderFour.jay3Ne` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.jay3Ne` |
+| `U1ResiduesOrderFour.jay3_entries` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.jay3_entries` |
+| `U1ResiduesOrderFour.jayNe` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.jayNe` |
+| `U1ResiduesOrderFour.jay_entries` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.jay_entries` |
+| `U1ResiduesOrderFour.mod_succ` | yes | yes | yes | propext | `#print axioms U1ResiduesOrderFour.mod_succ` |
+| `U1ResiduesOrderFour.pow1` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.pow1` |
+| `U1ResiduesOrderFour.pow2` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.pow2` |
+| `U1ResiduesOrderFour.pow3` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.pow3` |
+| `U1ResiduesOrderFour.pow4` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.pow4` |
+| `U1ResiduesOrderFour.pow_eye` | yes | yes | yes | Quot.sound, propext | `#print axioms U1ResiduesOrderFour.pow_eye` |
+| `U1ResiduesOrderFour.pow_period` | yes | yes | yes | Quot.sound, propext | `#print axioms U1ResiduesOrderFour.pow_period` |
+| `U1ResiduesOrderFour.pow_rep` | yes | yes | yes | Quot.sound, propext | `#print axioms U1ResiduesOrderFour.pow_rep` |
+| `U1ResiduesOrderFour.rem0` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.rem0` |
+| `U1ResiduesOrderFour.rem1` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.rem1` |
+| `U1ResiduesOrderFour.rem2` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.rem2` |
+| `U1ResiduesOrderFour.rem3` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.rem3` |
+| `U1ResiduesOrderFour.rem4` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.rem4` |
+| `U1ResiduesOrderFour.rep_eye` | yes | yes | yes | Quot.sound, propext | `#print axioms U1ResiduesOrderFour.rep_eye` |
+| `U1ResiduesOrderFour.rep_step` | yes | yes | yes | Quot.sound, propext | `#print axioms U1ResiduesOrderFour.rep_step` |
+| `U1ResiduesOrderFour.sq` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.sq` |
+| `U1ResiduesOrderFour.stepBack` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.stepBack` |
+| `U1ResiduesOrderFour.stepNeg` | yes | yes | yes | none | `#print axioms U1ResiduesOrderFour.stepNeg` |
 
 - counts toward the grade: yes
 

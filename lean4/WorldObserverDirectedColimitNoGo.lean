@@ -7,7 +7,7 @@ import WorldObserverFunctoriality
 
 
 
-namespace OmegaWorld
+namespace ObserverWorld
 namespace ObserverDirectedColimitNoGoW84
 
 open OmegaCore
@@ -629,7 +629,7 @@ theorem authority_effect_none :
 #print axioms authority_effect_none
 
 end ObserverDirectedColimitNoGoW84
-end OmegaWorld
+end ObserverWorld
 
 private def l5aProvenance : String :=
   "Origin: lean4/WorldObserverDirectedColimitNoGo.lean Claim: refl AuthorityEffect: None Scope Fence: this file does not claim unproved continuum physics and does not inherit authority beyond its proved statements Level: L5"

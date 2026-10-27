@@ -42,14 +42,14 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignMub6WeylHeisenbergD6.lean`
+### Lean: `lean4/Mub6WeylHeisenbergD6.lean`
 
-- file: [lean4/CampaignMub6WeylHeisenbergD6.lean](../../../lean4/CampaignMub6WeylHeisenbergD6.lean)
-- sha256 (`bytes`): `7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe`
-- cited in: node.lean, receipt dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json (CampaignMub6WeylHeisenbergD6), record TFQ-1223
+- file: [lean4/Mub6WeylHeisenbergD6.lean](../../../lean4/Mub6WeylHeisenbergD6.lean)
+- sha256 (`bytes`): `564ce28dadfd8bf892353d8c1b2dd302e67af184f69c8a42d9140909f4fb4279`
+- cited in: node.lean, receipt dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json (Mub6WeylHeisenbergD6), record TFQ-1223
 - replay: `verified`
-  - receipt [dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json](../../../dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json) (module `CampaignMub6WeylHeisenbergD6`): recorded sha256 `7c3db818549733d639a3f321ee397d3f54ca9b10e7b83f67c0d1813b0c903cbe` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignMub6WeylHeisenbergD6`
+  - receipt [dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json](../../../dag/research/campaign_mub6-weyl-heisenberg-d6_lean_replay.json) (module `Mub6WeylHeisenbergD6`): recorded sha256 `564ce28dadfd8bf892353d8c1b2dd302e67af184f69c8a42d9140909f4fb4279` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build Mub6WeylHeisenbergD6`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1223_mub6_weyl_heisenberg_d6.md`
 
 - file: [dag/derivations/25_mub/tfq_1223_mub6_weyl_heisenberg_d6.md](../../../dag/derivations/25_mub/tfq_1223_mub6_weyl_heisenberg_d6.md)
-- sha256 (`lf-normalised`): `e71bab8bb959f922b25e3494fa226aaffcacabce4a5cfca8a47f0e159b204545`
+- sha256 (`lf-normalised`): `c109fe3a90b0a28bde267873e1f986c5ca30e7e72b8a5ba9b8594dbf81155ea3`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1223
 - counts toward the grade: no

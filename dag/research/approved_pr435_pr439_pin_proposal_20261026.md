@@ -4,8 +4,8 @@ Status: proposed, awaiting explicit user authorization. AuthorityEffect: None un
 
 | PR | Source | SHA-256 | Honest score | Original target status |
 |---|---|---|---|---|
-| [#435](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/435) | `lean4/CampaignL1U1SelectorOtherSegment.lean` | `2e1bf569100aacfe8ddc51540eafa0d198880599a0893ab62a8cc552f2fb815d` | L2D | OPEN |
-| [#439](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/439) | `lean4/CampaignOpsLeanGap.lean` | `28ba5a6e40e191c1060bd6bf67d33c795a5fdf937e95ed18b894e67649306414` | L1D | OPEN |
+| [#435](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/435) | `lean4/L1U1SelectorOtherSegment.lean` | `2e1bf569100aacfe8ddc51540eafa0d198880599a0893ab62a8cc552f2fb815d` | L2D | OPEN |
+| [#439](https://github.com/dbccpage/theory_of_finite_quantum_mechanics/pull/439) | `lean4/ObserverPresheafLeanGap.lean` | `28ba5a6e40e191c1060bd6bf67d33c795a5fdf937e95ed18b894e67649306414` | L1D | OPEN |
 
 The request applies only these two path/hash pairs under the existing `finite_proof_example` category. Previous approvals for DFM and LQG cover different sources. Neither a score nor a node status is raised; the L4/D default floor, baseline and all prior approved hashes are preserved.
 

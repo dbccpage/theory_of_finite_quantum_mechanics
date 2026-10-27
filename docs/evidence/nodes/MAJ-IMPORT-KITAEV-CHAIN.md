@@ -42,21 +42,21 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignMajImportKitaevChain.lean`
+### Lean: `lean4/KitaevChainImport.lean`
 
-- file: [lean4/CampaignMajImportKitaevChain.lean](../../../lean4/CampaignMajImportKitaevChain.lean)
-- sha256 (`bytes`): `4be2d26217c40beea3ab808e5140bd95ff3aef37867556343ea2d9c18b582585`
-- cited in: node.lean, receipt dag/research/campaign_maj-import-kitaev-chain_lean_replay.json (CampaignMajImportKitaevChain), record TFQ-1167
+- file: [lean4/KitaevChainImport.lean](../../../lean4/KitaevChainImport.lean)
+- sha256 (`bytes`): `1a3b19e68a5eabbcc2e289a60aaa9f0ca22d0bf5ce93d4800d69a5813998b36f`
+- cited in: node.lean, receipt dag/research/campaign_maj-import-kitaev-chain_lean_replay.json (KitaevChainImport), record TFQ-1167
 - replay: `verified`
-  - receipt [dag/research/campaign_maj-import-kitaev-chain_lean_replay.json](../../../dag/research/campaign_maj-import-kitaev-chain_lean_replay.json) (module `CampaignMajImportKitaevChain`): recorded sha256 `4be2d26217c40beea3ab808e5140bd95ff3aef37867556343ea2d9c18b582585` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignMajImportKitaevChain`
+  - receipt [dag/research/campaign_maj-import-kitaev-chain_lean_replay.json](../../../dag/research/campaign_maj-import-kitaev-chain_lean_replay.json) (module `KitaevChainImport`): recorded sha256 `1a3b19e68a5eabbcc2e289a60aaa9f0ca22d0bf5ce93d4800d69a5813998b36f` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build KitaevChainImport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignMajImportKitaevChain.edgeAbsent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignMajImportKitaevChain.edgeAbsent` |
-| `CampaignMajImportKitaevChain.edgeWitness` | yes | yes | yes | none | `#print axioms CampaignMajImportKitaevChain.edgeWitness` |
-| `CampaignMajImportKitaevChain.insidePoint` | yes | yes | yes | none | `#print axioms CampaignMajImportKitaevChain.insidePoint` |
-| `CampaignMajImportKitaevChain.outsidePoint` | yes | yes | yes | none | `#print axioms CampaignMajImportKitaevChain.outsidePoint` |
+| `KitaevChainImport.edgeAbsent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms KitaevChainImport.edgeAbsent` |
+| `KitaevChainImport.edgeWitness` | yes | yes | yes | none | `#print axioms KitaevChainImport.edgeWitness` |
+| `KitaevChainImport.insidePoint` | yes | yes | yes | none | `#print axioms KitaevChainImport.insidePoint` |
+| `KitaevChainImport.outsidePoint` | yes | yes | yes | none | `#print axioms KitaevChainImport.outsidePoint` |
 
 - counts toward the grade: yes
 
@@ -92,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md`
 
 - file: [dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md](../../../dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md)
-- sha256 (`lf-normalised`): `ba0e5dfbde1c43613cb312be2f20406febcf237973389d68575345d70ca7d5a4`
+- sha256 (`lf-normalised`): `7fd480f6632f96bcbc955f37650f13245aecf0f7f5b7dc7298c49996e28af49e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1167
 - counts toward the grade: no

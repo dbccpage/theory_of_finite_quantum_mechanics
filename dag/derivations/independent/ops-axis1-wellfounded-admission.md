@@ -22,7 +22,7 @@ The assignment that is true at candidate 0 and false at candidate 1 and at candi
 
 ## What is proved
 
-The predecessor table, the three admission equations for every base assignment, the three bits of each closed assignment, and the three admission bits of each closed assignment. The Lean declarations are pred0, pred1, pred2, adm0, adm1, adm2, none0, none1, none2, zb0, zb1, zb2, zero0, zero1 and zero2 in lean4/CampaignOpsAxis1WellfoundedAdmission.lean. The independent script recomputes the same equations on all eight base assignments.
+The predecessor table, the three admission equations for every base assignment, the three bits of each closed assignment, and the three admission bits of each closed assignment. The Lean declarations are pred0, pred1, pred2, adm0, adm1, adm2, none0, none1, none2, zb0, zb1, zb2, zero0, zero1 and zero2 in lean4/ObserverPresheafAxis1WellfoundedAdmission.lean. The independent script recomputes the same equations on all eight base assignments.
 
 ## What is assumed
 

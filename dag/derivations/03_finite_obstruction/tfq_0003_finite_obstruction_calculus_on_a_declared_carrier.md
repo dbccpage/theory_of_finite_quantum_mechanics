@@ -27,7 +27,7 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Formalization
 
-`lean4/CampaignTfq0003FiniteObstruction.lean` proves a finite fragment only. On the triangle with vertices {0,1,2}, Phi1(1,1,0) = 2, Gamma2 = 2, and the classical residual is 1. On the unfilled 4-cycle, Phi1(1,0,0,0) = 1 and Gamma2 = 0. The node stays OPEN. Rust is not cited.
+`lean4/FiniteObstructionTwoComplexes.lean` proves a finite fragment only. On the triangle with vertices {0,1,2}, Phi1(1,1,0) = 2, Gamma2 = 2, and the classical residual is 1. On the unfilled 4-cycle, Phi1(1,0,0,0) = 1 and Gamma2 = 0. The node stays OPEN. Rust is not cited.
 
 ### Sovereign Rust Certifiers
 

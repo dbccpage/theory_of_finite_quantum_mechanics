@@ -52,7 +52,7 @@ client to the original rational matrix; `rationalClock_blocks` instantiates it.
 
 ## What is proved
 
-In `lean4/CampaignDfmRelationalTimeFence.lean`:
+In `lean4/DressingFieldRelationalTimeFence.lean`:
 
 - `step_square_and_order` records `U^2 = -I`, `U^4 = I`, and `U^T U = I`.
 - `four_blocks` records the four products `(U^{t+1})^T U U^t = I`.

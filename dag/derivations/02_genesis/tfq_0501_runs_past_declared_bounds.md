@@ -30,12 +30,12 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`lean4/CampaignPgwRunsPastDeclaredBounds.lean::pgwBoundDataFour`](../../../lean4/CampaignPgwRunsPastDeclaredBounds.lean)
-- [`lean4/CampaignPgwRunsPastDeclaredBounds.lean::pgwBoundItemPast`](../../../lean4/CampaignPgwRunsPastDeclaredBounds.lean)
-- [`lean4/CampaignPgwRunsPastDeclaredBounds.lean::pgwBoundNodePast`](../../../lean4/CampaignPgwRunsPastDeclaredBounds.lean)
-- [`lean4/CampaignPgwRunsPastDeclaredBounds.lean::pgwBoundOnLine`](../../../lean4/CampaignPgwRunsPastDeclaredBounds.lean)
-- [`lean4/CampaignPgwRunsPastDeclaredBounds.lean::pgwBoundRoundPast`](../../../lean4/CampaignPgwRunsPastDeclaredBounds.lean)
 - [`lean4/Imported/Genesis19l57g1/Derivation/Progress.lean::mark_progress`](../../../lean4/Imported/Genesis19l57g1/Derivation/Progress.lean)
+- [`lean4/PregenesisRunsPastDeclaredBounds.lean::pgwBoundDataFour`](../../../lean4/PregenesisRunsPastDeclaredBounds.lean)
+- [`lean4/PregenesisRunsPastDeclaredBounds.lean::pgwBoundItemPast`](../../../lean4/PregenesisRunsPastDeclaredBounds.lean)
+- [`lean4/PregenesisRunsPastDeclaredBounds.lean::pgwBoundNodePast`](../../../lean4/PregenesisRunsPastDeclaredBounds.lean)
+- [`lean4/PregenesisRunsPastDeclaredBounds.lean::pgwBoundOnLine`](../../../lean4/PregenesisRunsPastDeclaredBounds.lean)
+- [`lean4/PregenesisRunsPastDeclaredBounds.lean::pgwBoundRoundPast`](../../../lean4/PregenesisRunsPastDeclaredBounds.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - `missing obligation: no Rust port of the forward runs`

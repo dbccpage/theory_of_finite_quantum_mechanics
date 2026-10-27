@@ -20,7 +20,7 @@ Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). T
 
 ## Flags
 
-- `receipt_names_uncited_module`: a replay receipt names this node for lean4/CampaignFspWilsonDiracGamma5.lean, but the node's lean, rust and source fields do not cite it. A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence).
+- `receipt_names_uncited_module`: a replay receipt names this node for lean4/FermionSignWilsonDiracGamma5.lean, but the node's lean, rust and source fields do not cite it. A replay receipt names this node for a Lean module that the node does not cite itself (a citation gap; the module is counted as evidence).
 
 ## Imported structure
 
@@ -42,29 +42,29 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignFspWilsonDiracGamma5.lean`
+### Lean: `lean4/FermionSignWilsonDiracGamma5.lean`
 
-- file: [lean4/CampaignFspWilsonDiracGamma5.lean](../../../lean4/CampaignFspWilsonDiracGamma5.lean)
-- sha256 (`bytes`): `1731bf59cd9e9c71586d911c13468c52b817549715edf0cea12ecdefb8246d09`
-- cited in: receipt dag/research/campaign_fsp-wilson-dirac-gamma5_lean_replay.json (CampaignFspWilsonDiracGamma5)
+- file: [lean4/FermionSignWilsonDiracGamma5.lean](../../../lean4/FermionSignWilsonDiracGamma5.lean)
+- sha256 (`bytes`): `ff846e497a572038d084022f188dfb1ec05affba46ff2c8c652a2c4f1cd3664e`
+- cited in: receipt dag/research/campaign_fsp-wilson-dirac-gamma5_lean_replay.json (FermionSignWilsonDiracGamma5)
 - replay: `verified`
-  - receipt [dag/research/campaign_fsp-wilson-dirac-gamma5_lean_replay.json](../../../dag/research/campaign_fsp-wilson-dirac-gamma5_lean_replay.json) (module `CampaignFspWilsonDiracGamma5`): recorded sha256 `1731bf59cd9e9c71586d911c13468c52b817549715edf0cea12ecdefb8246d09` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignFspWilsonDiracGamma5`
+  - receipt [dag/research/campaign_fsp-wilson-dirac-gamma5_lean_replay.json](../../../dag/research/campaign_fsp-wilson-dirac-gamma5_lean_replay.json) (module `FermionSignWilsonDiracGamma5`): recorded sha256 `ff846e497a572038d084022f188dfb1ec05affba46ff2c8c652a2c4f1cd3664e` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build FermionSignWilsonDiracGamma5`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignFspWilsonDiracGamma5.charpoly_rootMultiplicity_conj` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspWilsonDiracGamma5.charpoly_rootMultiplicity_conj` |
-| `CampaignFspWilsonDiracGamma5.euclideanClifford2` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspWilsonDiracGamma5.euclideanClifford2` |
-| `CampaignFspWilsonDiracGamma5.euclideanClifford4` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspWilsonDiracGamma5.euclideanClifford4` |
-| `CampaignFspWilsonDiracGamma5.two_flavor_det_eq_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspWilsonDiracGamma5.two_flavor_det_eq_sq` |
-| `CampaignFspWilsonDiracGamma5.two_flavor_det_real_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignFspWilsonDiracGamma5.two_flavor_det_real_nonneg` |
+| `FermionSignWilsonDiracGamma5.charpoly_rootMultiplicity_conj` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignWilsonDiracGamma5.charpoly_rootMultiplicity_conj` |
+| `FermionSignWilsonDiracGamma5.euclideanClifford2` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignWilsonDiracGamma5.euclideanClifford2` |
+| `FermionSignWilsonDiracGamma5.euclideanClifford4` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignWilsonDiracGamma5.euclideanClifford4` |
+| `FermionSignWilsonDiracGamma5.two_flavor_det_eq_sq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignWilsonDiracGamma5.two_flavor_det_eq_sq` |
+| `FermionSignWilsonDiracGamma5.two_flavor_det_real_nonneg` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FermionSignWilsonDiracGamma5.two_flavor_det_real_nonneg` |
 
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md`
 
 - file: [dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md](../../../dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md)
-- sha256 (`lf-normalised`): `2e031a71c1f5b38b75e949e8655e3b09ec2ed452e8c8401cb64a7e38beb0c77d`
+- sha256 (`lf-normalised`): `5944f7f53930425fc2ddf26e0b5f1ebc4af2d47e6a3e36b59a08a00ea491661d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1197
 - counts toward the grade: no
@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fsp-wilson-dirac-gamma5.md`
 
 - file: [dag/derivations/independent/fsp-wilson-dirac-gamma5.md](../../../dag/derivations/independent/fsp-wilson-dirac-gamma5.md)
-- sha256 (`lf-normalised`): `9201405d6d55ddd1ffeb4679791dbe9df4c05fe7be3dcb22e2db9ed09640aa96`
+- sha256 (`lf-normalised`): `aac83a289c8ebeb677869b60317534e732d61c2f3ae04a43bb564eef74405200`
 - cited in: node.source
 - counts toward the grade: yes
 

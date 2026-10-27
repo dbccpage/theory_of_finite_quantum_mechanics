@@ -61,14 +61,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Lean: `lean4/H017Fin.lean`
+### Lean: `lean4/HilbertWalkGleasonFin.lean`
 
-- file: [lean4/H017Fin.lean](../../../lean4/H017Fin.lean)
-- sha256 (`bytes`): `2294ae2512eac4a7c5167954b86118c7f02638dafbdb42b4b894fc1fbdc4dea2`
+- file: [lean4/HilbertWalkGleasonFin.lean](../../../lean4/HilbertWalkGleasonFin.lean)
+- sha256 (`bytes`): `a33c2aa3109d5a5c9cf79e8e032720afc39d76841c9ee781eedaddb13c98b0d9`
 - cited in: node.lean, record TFQ-1037
 - replay: `verified`
-  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `H017Fin`): recorded sha256 `2294ae2512eac4a7c5167954b86118c7f02638dafbdb42b4b894fc1fbdc4dea2` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build H017Fin`
+  - receipt [dag/research/lean_replay_campaign_finite_qm_core.json](../../../dag/research/lean_replay_campaign_finite_qm_core.json) (module `HilbertWalkGleasonFin`): recorded sha256 `a33c2aa3109d5a5c9cf79e8e032720afc39d76841c9ee781eedaddb13c98b0d9` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build HilbertWalkGleasonFin`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
@@ -86,7 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1037_gp_fin_gauss_matrix_algebra.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1037_gp_fin_gauss_matrix_algebra.md](../../../dag/derivations/10_finite_qm_core/tfq_1037_gp_fin_gauss_matrix_algebra.md)
-- sha256 (`lf-normalised`): `9a73f8702b513e7ebb3dc6e15be18b86ff620a8528225bb98e4b23037386ddcf`
+- sha256 (`lf-normalised`): `038dd11a7a34ccbb4e257aaa9debcb80534679f423c9c123a9b2c2062561c6e3`
 - generated view: listed, not counted
 - cited in: record TFQ-1037
 - counts toward the grade: no

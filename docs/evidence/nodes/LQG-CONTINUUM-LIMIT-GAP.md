@@ -44,52 +44,52 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignLqgContinuumLimitGap.lean`
+### Lean: `lean4/LqgContinuumLimitGap.lean`
 
-- file: [lean4/CampaignLqgContinuumLimitGap.lean](../../../lean4/CampaignLqgContinuumLimitGap.lean)
-- sha256 (`bytes`): `a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d`
-- cited in: node.lean, node.source, receipt dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json (CampaignLqgContinuumLimitGap)
+- file: [lean4/LqgContinuumLimitGap.lean](../../../lean4/LqgContinuumLimitGap.lean)
+- sha256 (`bytes`): `4a79e5e6ae40dcc26affad9b69b7a7b061a105e3b3cbdbc44395fecb504e4a39`
+- cited in: node.lean, node.source, receipt dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json (LqgContinuumLimitGap)
 - replay: `verified`
-  - receipt [dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json](../../../dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json) (module `CampaignLqgContinuumLimitGap`): recorded sha256 `a6adec8e3fe5ad9453a5a7ae74767860bd6794957da7dc9393242516b3d49d3d` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignLqgContinuumLimitGap`
+  - receipt [dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json](../../../dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json) (module `LqgContinuumLimitGap`): recorded sha256 `4a79e5e6ae40dcc26affad9b69b7a7b061a105e3b3cbdbc44395fecb504e4a39` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build LqgContinuumLimitGap`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignLqgContinuumLimitGap.level2_admissible_count` | yes | yes | yes | none | `#print axioms CampaignLqgContinuumLimitGap.level2_admissible_count` |
-| `CampaignLqgContinuumLimitGap.level2_counts_do_not_select_a_scale` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgContinuumLimitGap.level2_counts_do_not_select_a_scale` |
-| `CampaignLqgContinuumLimitGap.level2_dimension_truncation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgContinuumLimitGap.level2_dimension_truncation` |
-| `CampaignLqgContinuumLimitGap.level2_free_positive_scale` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgContinuumLimitGap.level2_free_positive_scale` |
-| `CampaignLqgContinuumLimitGap.level2_tuple_census` | yes | yes | yes | none | `#print axioms CampaignLqgContinuumLimitGap.level2_tuple_census` |
+| `LqgContinuumLimitGap.level2_admissible_count` | yes | yes | yes | none | `#print axioms LqgContinuumLimitGap.level2_admissible_count` |
+| `LqgContinuumLimitGap.level2_counts_do_not_select_a_scale` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgContinuumLimitGap.level2_counts_do_not_select_a_scale` |
+| `LqgContinuumLimitGap.level2_dimension_truncation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgContinuumLimitGap.level2_dimension_truncation` |
+| `LqgContinuumLimitGap.level2_free_positive_scale` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgContinuumLimitGap.level2_free_positive_scale` |
+| `LqgContinuumLimitGap.level2_tuple_census` | yes | yes | yes | none | `#print axioms LqgContinuumLimitGap.level2_tuple_census` |
 
 - counts toward the grade: yes
 
-### Lean: `lean4/CampaignLqgProjectiveLimit.lean`
+### Lean: `lean4/LqgProjectiveLimit.lean`
 
-- file: [lean4/CampaignLqgProjectiveLimit.lean](../../../lean4/CampaignLqgProjectiveLimit.lean)
-- sha256 (`bytes`): `44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5`
-- cited in: node.lean, node.source, receipt dag/research/campaign_lqg-projective-limit_lean_replay.json (CampaignLqgProjectiveLimit), record TFQ-2315
+- file: [lean4/LqgProjectiveLimit.lean](../../../lean4/LqgProjectiveLimit.lean)
+- sha256 (`bytes`): `da2eeaf7235a9235d37adfabb167008dbd920d935f71a1d8bb862c142052b3ef`
+- cited in: node.lean, node.source, receipt dag/research/campaign_lqg-projective-limit_lean_replay.json (LqgProjectiveLimit), record TFQ-2315
 - replay: `verified`
-  - receipt [dag/research/campaign_lqg-projective-limit_lean_replay.json](../../../dag/research/campaign_lqg-projective-limit_lean_replay.json) (module `CampaignLqgProjectiveLimit`): recorded sha256 `44e21fe5531a266095edfbf5a78b818b9e2778dd96c8b4bccd4e800c1dac03a5` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignLqgProjectiveLimit`
+  - receipt [dag/research/campaign_lqg-projective-limit_lean_replay.json](../../../dag/research/campaign_lqg-projective-limit_lean_replay.json) (module `LqgProjectiveLimit`): recorded sha256 `da2eeaf7235a9235d37adfabb167008dbd920d935f71a1d8bb862c142052b3ef` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build LqgProjectiveLimit`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignLqgProjectiveLimit.Config` | yes | yes | yes | none | `#print axioms CampaignLqgProjectiveLimit.Config` |
-| `CampaignLqgProjectiveLimit.constraints_have_configuration` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgProjectiveLimit.constraints_have_configuration` |
-| `CampaignLqgProjectiveLimit.content_sigma_subadditive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgProjectiveLimit.content_sigma_subadditive` |
-| `CampaignLqgProjectiveLimit.content_tendsto_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgProjectiveLimit.content_tendsto_zero` |
-| `CampaignLqgProjectiveLimit.countable_constraints` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgProjectiveLimit.countable_constraints` |
-| `CampaignLqgProjectiveLimit.cylinder_closed` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgProjectiveLimit.cylinder_closed` |
-| `CampaignLqgProjectiveLimit.empty_stage` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgProjectiveLimit.empty_stage` |
-| `CampaignLqgProjectiveLimit.exists_limit_iff_projective` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgProjectiveLimit.exists_limit_iff_projective` |
-| `CampaignLqgProjectiveLimit.exists_unique_limit` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgProjectiveLimit.exists_unique_limit` |
-| `CampaignLqgProjectiveLimit.limitMeasure` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgProjectiveLimit.limitMeasure` |
-| `CampaignLqgProjectiveLimit.limit_marginals` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgProjectiveLimit.limit_marginals` |
-| `CampaignLqgProjectiveLimit.limit_probability` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgProjectiveLimit.limit_probability` |
-| `CampaignLqgProjectiveLimit.limit_unique` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgProjectiveLimit.limit_unique` |
-| `CampaignLqgProjectiveLimit.projective_of_limit` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgProjectiveLimit.projective_of_limit` |
-| `CampaignLqgProjectiveLimit.spin_constraints_ae` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgProjectiveLimit.spin_constraints_ae` |
-| `CampaignLqgProjectiveLimit.spin_labels_extension` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignLqgProjectiveLimit.spin_labels_extension` |
+| `LqgProjectiveLimit.Config` | yes | yes | yes | none | `#print axioms LqgProjectiveLimit.Config` |
+| `LqgProjectiveLimit.constraints_have_configuration` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgProjectiveLimit.constraints_have_configuration` |
+| `LqgProjectiveLimit.content_sigma_subadditive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgProjectiveLimit.content_sigma_subadditive` |
+| `LqgProjectiveLimit.content_tendsto_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgProjectiveLimit.content_tendsto_zero` |
+| `LqgProjectiveLimit.countable_constraints` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgProjectiveLimit.countable_constraints` |
+| `LqgProjectiveLimit.cylinder_closed` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgProjectiveLimit.cylinder_closed` |
+| `LqgProjectiveLimit.empty_stage` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgProjectiveLimit.empty_stage` |
+| `LqgProjectiveLimit.exists_limit_iff_projective` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgProjectiveLimit.exists_limit_iff_projective` |
+| `LqgProjectiveLimit.exists_unique_limit` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgProjectiveLimit.exists_unique_limit` |
+| `LqgProjectiveLimit.limitMeasure` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgProjectiveLimit.limitMeasure` |
+| `LqgProjectiveLimit.limit_marginals` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgProjectiveLimit.limit_marginals` |
+| `LqgProjectiveLimit.limit_probability` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgProjectiveLimit.limit_probability` |
+| `LqgProjectiveLimit.limit_unique` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgProjectiveLimit.limit_unique` |
+| `LqgProjectiveLimit.projective_of_limit` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgProjectiveLimit.projective_of_limit` |
+| `LqgProjectiveLimit.spin_constraints_ae` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgProjectiveLimit.spin_constraints_ae` |
+| `LqgProjectiveLimit.spin_labels_extension` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms LqgProjectiveLimit.spin_labels_extension` |
 
 - counts toward the grade: yes
 
@@ -118,7 +118,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md`
 
 - file: [dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md](../../../dag/derivations/33_loop_quantum_gravity/tfq_2315_lqg_continuum_limit_gap.md)
-- sha256 (`lf-normalised`): `2aae847f97b286582b81aad805685c6031d848f11a143b00989179508f092f5f`
+- sha256 (`lf-normalised`): `9631012f80af4bf39f3145e7140638158effcc07c2da13120181de24a53540cd`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2315
 - counts toward the grade: no
@@ -133,21 +133,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/lqg-projective-limit.md`
 
 - file: [dag/derivations/independent/lqg-projective-limit.md](../../../dag/derivations/independent/lqg-projective-limit.md)
-- sha256 (`lf-normalised`): `ffbd674cdda04065f9e14e28b924bad96660bccc0f589c03865994692803663b`
+- sha256 (`lf-normalised`): `e7fab74ded89375031cd49e4efd1655a41ea2a4ae28d28cf225893eba258d125`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json`
 
 - file: [dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json](../../../dag/research/campaign_lqg-continuum-limit-gap_lean_replay.json)
-- sha256 (`lf-normalised`): `1b9cfaf12cd195764cd17567b71c47010ae2ba2273cd361c9323c8326eb86239`
+- sha256 (`lf-normalised`): `c14daa2b570129566d5e8bb15a74bb93a8a1baf38430e4bc639b974f8b7e947b`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/research/campaign_lqg-projective-limit_lean_replay.json`
 
 - file: [dag/research/campaign_lqg-projective-limit_lean_replay.json](../../../dag/research/campaign_lqg-projective-limit_lean_replay.json)
-- sha256 (`lf-normalised`): `432d9dad3b30266bc1ea6036ac2c2cffdc27be7793f4a80bac4653e26c99e7f5`
+- sha256 (`lf-normalised`): `62932e8533a0c36d4d5b4de59c83fa3b9dba456c6e886243986d2a1467ccef34`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -42,28 +42,6 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignReportFiberDescent.lean`
-
-- file: [lean4/CampaignReportFiberDescent.lean](../../../lean4/CampaignReportFiberDescent.lean)
-- sha256 (`bytes`): `135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56`
-- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json (CampaignReportFiberDescent), receipt dag/research/pr_380_round2_replay.json (CampaignReportFiberDescent), record TFQ-0556
-- replay: `verified`
-  - receipt [dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json](../../../dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json) (module `CampaignReportFiberDescent`): recorded sha256 `135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound; only standard axioms: yes
-  - receipt [dag/research/pr_380_round2_replay.json](../../../dag/research/pr_380_round2_replay.json) (module `CampaignReportFiberDescent`): recorded sha256 `135356388ee6294757c800db5b96c6d0e9ba670695346c6f7ad44cd469b89b56` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignReportFiberDescent`
-
-| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
-|---|---|---|---|---|---|
-| `CampaignReportFiberDescent.ConstantOnFibers` | yes | yes | yes | none | `#print axioms CampaignReportFiberDescent.ConstantOnFibers` |
-| `CampaignReportFiberDescent.Image` | yes | yes | yes | none | `#print axioms CampaignReportFiberDescent.Image` |
-| `CampaignReportFiberDescent.joint_report_sufficient` | yes | yes | yes | none | `#print axioms CampaignReportFiberDescent.joint_report_sufficient` |
-| `CampaignReportFiberDescent.lifted` | yes | yes | yes | none | `#print axioms CampaignReportFiberDescent.lifted` |
-| `CampaignReportFiberDescent.lost_bit_obstruction` | yes | yes | yes | none | `#print axioms CampaignReportFiberDescent.lost_bit_obstruction` |
-| `CampaignReportFiberDescent.postprocess_obstruction` | yes | yes | yes | none | `#print axioms CampaignReportFiberDescent.postprocess_obstruction` |
-| `CampaignReportFiberDescent.unique_decoder_iff` | yes | yes | yes | Classical.choice, Quot.sound | `#print axioms CampaignReportFiberDescent.unique_decoder_iff` |
-
-- counts toward the grade: yes
-
 ### Lean: `lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean`
 
 - file: [lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/ProposalAdmissionBridge.lean)
@@ -76,6 +54,28 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `factorization_iff_fiber_constancy` | yes | yes | yes | Classical.choice | `#print axioms factorization_iff_fiber_constancy` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/ReportFiberDescent.lean`
+
+- file: [lean4/ReportFiberDescent.lean](../../../lean4/ReportFiberDescent.lean)
+- sha256 (`bytes`): `10d9dba7602b9931ced83b8d050aaa4d547e08502ca3d8915d04a7215bad1237`
+- cited in: node.lean, receipt dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json (ReportFiberDescent), receipt dag/research/pr_380_round2_replay.json (ReportFiberDescent), record TFQ-0556
+- replay: `verified`
+  - receipt [dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json](../../../dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json) (module `ReportFiberDescent`): recorded sha256 `10d9dba7602b9931ced83b8d050aaa4d547e08502ca3d8915d04a7215bad1237` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound; only standard axioms: yes
+  - receipt [dag/research/pr_380_round2_replay.json](../../../dag/research/pr_380_round2_replay.json) (module `ReportFiberDescent`): recorded sha256 `10d9dba7602b9931ced83b8d050aaa4d547e08502ca3d8915d04a7215bad1237` matches the current file; exit code 0; Lean 4.35.0; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound; only standard axioms: yes
+- check: `cd lean4 && lake build ReportFiberDescent`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `ReportFiberDescent.ConstantOnFibers` | yes | yes | yes | none | `#print axioms ReportFiberDescent.ConstantOnFibers` |
+| `ReportFiberDescent.Image` | yes | yes | yes | none | `#print axioms ReportFiberDescent.Image` |
+| `ReportFiberDescent.joint_report_sufficient` | yes | yes | yes | none | `#print axioms ReportFiberDescent.joint_report_sufficient` |
+| `ReportFiberDescent.lifted` | yes | yes | yes | none | `#print axioms ReportFiberDescent.lifted` |
+| `ReportFiberDescent.lost_bit_obstruction` | yes | yes | yes | none | `#print axioms ReportFiberDescent.lost_bit_obstruction` |
+| `ReportFiberDescent.postprocess_obstruction` | yes | yes | yes | none | `#print axioms ReportFiberDescent.postprocess_obstruction` |
+| `ReportFiberDescent.unique_decoder_iff` | yes | yes | yes | Classical.choice, Quot.sound | `#print axioms ReportFiberDescent.unique_decoder_iff` |
 
 - counts toward the grade: yes
 
@@ -122,7 +122,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md`
 
 - file: [dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md](../../../dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md)
-- sha256 (`lf-normalised`): `521e481b359cf38d54b8df7be4dd82e996757c71f215f991af86bffd7ac224f9`
+- sha256 (`lf-normalised`): `09ad31e2670561b99420cde3b4962eeddfbb34144bdf5962526492489d355c25`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0556
 - counts toward the grade: no
@@ -137,7 +137,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json`
 
 - file: [dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json](../../../dag/research/campaign_pgw-wdp-bridge-report-fiber-observer_lean_replay.json)
-- sha256 (`lf-normalised`): `8e190dbfdaaccca9127a1b1da7f41cd30b457d2905a09c295d94a3247f773e52`
+- sha256 (`lf-normalised`): `cdaa2ff30bb7905eb0a52ac9ee2247230840ef8c83f8f87258f945b7834e0492`
 - cited in: node.source
 - counts toward the grade: yes
 

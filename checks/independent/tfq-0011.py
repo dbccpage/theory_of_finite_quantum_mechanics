@@ -15,7 +15,7 @@ Checks:
    in `d = 1..4`) and positive Wilson mass lifts `2 r m >= 2 r > 0`.
 5. Diagonal SU(3) Klein-four Landau-Gribov copy counts (`4^3 = 64` on 3 vertices vs `1` after
    spanning-tree gauge fixing), plus repository source and Lean 4 theorem anchors in
-   `lean4/FiniteQM.lean` and `lean4/CampaignTfq0011FiniteQcd.lean`.
+   `lean4/FiniteQM.lean` and `lean4/FiniteQcdColorWilsonLoops.lean`.
 """
 
 from __future__ import annotations
@@ -155,10 +155,10 @@ def run_all_checks() -> dict[str, Any]:
     # -------------------------------------------------------------------------
     repo_root = Path(__file__).resolve().parents[2]
     fqm = repo_root / "lean4/FiniteQM.lean"
-    lean_file = repo_root / "lean4/CampaignTfq0011FiniteQcd.lean"
+    lean_file = repo_root / "lean4/FiniteQcdColorWilsonLoops.lean"
 
     record(fqm.exists(), "lean4/FiniteQM.lean exists")
-    record(lean_file.exists(), "lean4/CampaignTfq0011FiniteQcd.lean exists")
+    record(lean_file.exists(), "lean4/FiniteQcdColorWilsonLoops.lean exists")
 
     fqm_src = fqm.read_text(encoding="utf-8")
     for sym in [
@@ -187,8 +187,8 @@ def run_all_checks() -> dict[str, Any]:
         "theorem tfq0011_finite_qcd_shadow_scope_ledger_fence",
     ]
     for thm in required_theorems:
-        record(thm in lean_src, f"CampaignTfq0011FiniteQcd.lean contains {thm}")
-    record("sorry" not in lean_src, "CampaignTfq0011FiniteQcd.lean is sorry-free")
+        record(thm in lean_src, f"FiniteQcdColorWilsonLoops.lean contains {thm}")
+    record("sorry" not in lean_src, "FiniteQcdColorWilsonLoops.lean is sorry-free")
 
     return {
         "node_id": "TFQ-0011",

@@ -32,7 +32,7 @@ The canonical retraction-induced transport, counterpart count, k-step commuting-
 
 ## Source status
 
-pregenesis_to_minimal_symbol_systems paper.md section 7 S(6) row; 002_oesn level_06; CampaignSnProtectedAnswerTransport.lean
+pregenesis_to_minimal_symbol_systems paper.md section 7 S(6) row; 002_oesn level_06; ProtectedAnswerTransport.lean
 
 ## Review
 
@@ -42,43 +42,43 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Lean: `lean4/CampaignSnProtectedAnswerTransport.lean`
+### Lean: `lean4/ProtectedAnswerTransport.lean`
 
-- file: [lean4/CampaignSnProtectedAnswerTransport.lean](../../../lean4/CampaignSnProtectedAnswerTransport.lean)
-- sha256 (`bytes`): `dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd`
-- cited in: node.lean, receipt dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json (CampaignSnProtectedAnswerTransport), record TFQ-0519
+- file: [lean4/ProtectedAnswerTransport.lean](../../../lean4/ProtectedAnswerTransport.lean)
+- sha256 (`bytes`): `e3af93f4699db79636693b753438e9f7007d05f6db50477bfd48da93de34668b`
+- cited in: node.lean, receipt dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json (ProtectedAnswerTransport), record TFQ-0519
 - replay: `verified`
-  - receipt [dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json](../../../dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json) (module `CampaignSnProtectedAnswerTransport`): recorded sha256 `dcd1f1a24a9f867c95c141246abd825c3f7caa159ca0c73ebd1b6063b7259ffd` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
-- check: `cd lean4 && lake build CampaignSnProtectedAnswerTransport`
+  - receipt [dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json](../../../dag/research/campaign_pgw-sn-protected-answer-transport_lean_replay.json) (module `ProtectedAnswerTransport`): recorded sha256 `e3af93f4699db79636693b753438e9f7007d05f6db50477bfd48da93de34668b` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build ProtectedAnswerTransport`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `CampaignSnProtectedAnswerTransport.canonical_transition_lift_commutes` | yes | yes | yes | none | `#print axioms CampaignSnProtectedAnswerTransport.canonical_transition_lift_commutes` |
-| `CampaignSnProtectedAnswerTransport.commuting_square_iff_boolean_answers_preserved_on_image` | yes | yes | yes | none | `#print axioms CampaignSnProtectedAnswerTransport.commuting_square_iff_boolean_answers_preserved_on_image` |
-| `CampaignSnProtectedAnswerTransport.commuting_square_iterated` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignSnProtectedAnswerTransport.commuting_square_iterated` |
-| `CampaignSnProtectedAnswerTransport.commuting_square_preserves_transported_answer` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignSnProtectedAnswerTransport.commuting_square_preserves_transported_answer` |
-| `CampaignSnProtectedAnswerTransport.not_conservative_extension_off_image` | yes | yes | yes | none | `#print axioms CampaignSnProtectedAnswerTransport.not_conservative_extension_off_image` |
-| `CampaignSnProtectedAnswerTransport.old_image_not_left_galois_adjunction` | yes | yes | yes | propext | `#print axioms CampaignSnProtectedAnswerTransport.old_image_not_left_galois_adjunction` |
-| `CampaignSnProtectedAnswerTransport.old_image_not_right_inverse` | yes | yes | yes | none | `#print axioms CampaignSnProtectedAnswerTransport.old_image_not_right_inverse` |
-| `CampaignSnProtectedAnswerTransport.retraction_transport_law` | yes | yes | yes | none | `#print axioms CampaignSnProtectedAnswerTransport.retraction_transport_law` |
-| `CampaignSnProtectedAnswerTransport.s6Descent_answer_transport` | yes | yes | yes | none | `#print axioms CampaignSnProtectedAnswerTransport.s6Descent_answer_transport` |
-| `CampaignSnProtectedAnswerTransport.s6Descent_canonical_transition_square` | yes | yes | yes | none | `#print axioms CampaignSnProtectedAnswerTransport.s6Descent_canonical_transition_square` |
-| `CampaignSnProtectedAnswerTransport.s6Descent_old_image_law` | yes | yes | yes | none | `#print axioms CampaignSnProtectedAnswerTransport.s6Descent_old_image_law` |
-| `CampaignSnProtectedAnswerTransport.s6Descent_transition_counterexample` | yes | yes | yes | none | `#print axioms CampaignSnProtectedAnswerTransport.s6Descent_transition_counterexample` |
-| `CampaignSnProtectedAnswerTransport.snCarrier_answer_transport` | yes | yes | yes | propext | `#print axioms CampaignSnProtectedAnswerTransport.snCarrier_answer_transport` |
-| `CampaignSnProtectedAnswerTransport.snCarrier_canonical_transition_square` | yes | yes | yes | propext | `#print axioms CampaignSnProtectedAnswerTransport.snCarrier_canonical_transition_square` |
-| `CampaignSnProtectedAnswerTransport.snCarrier_off_image_underdetermined` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignSnProtectedAnswerTransport.snCarrier_off_image_underdetermined` |
-| `CampaignSnProtectedAnswerTransport.snCarrier_s6_demand_active` | yes | yes | yes | propext | `#print axioms CampaignSnProtectedAnswerTransport.snCarrier_s6_demand_active` |
-| `CampaignSnProtectedAnswerTransport.snCarrier_transition_counterexample` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignSnProtectedAnswerTransport.snCarrier_transition_counterexample` |
-| `CampaignSnProtectedAnswerTransport.snRetract_nonDescent_iff` | yes | yes | yes | Quot.sound, propext | `#print axioms CampaignSnProtectedAnswerTransport.snRetract_nonDescent_iff` |
-| `CampaignSnProtectedAnswerTransport.snRetract_old_image_law` | yes | yes | yes | propext | `#print axioms CampaignSnProtectedAnswerTransport.snRetract_old_image_law` |
-| `CampaignSnProtectedAnswerTransport.transition_square_not_implied_general` | yes | yes | yes | none | `#print axioms CampaignSnProtectedAnswerTransport.transition_square_not_implied_general` |
-| `CampaignSnProtectedAnswerTransport.transport_counterpart_card` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignSnProtectedAnswerTransport.transport_counterpart_card` |
-| `CampaignSnProtectedAnswerTransport.transport_off_image_underdetermined` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms CampaignSnProtectedAnswerTransport.transport_off_image_underdetermined` |
-| `CampaignSnProtectedAnswerTransport.transport_unique_on_image` | yes | yes | yes | none | `#print axioms CampaignSnProtectedAnswerTransport.transport_unique_on_image` |
-| `CampaignSnProtectedAnswerTransport.typed_retraction_transport_law` | yes | yes | yes | none | `#print axioms CampaignSnProtectedAnswerTransport.typed_retraction_transport_law` |
-| `CampaignSnProtectedAnswerTransport.typed_retraction_transport_refuses` | yes | yes | yes | none | `#print axioms CampaignSnProtectedAnswerTransport.typed_retraction_transport_refuses` |
-| `CampaignSnProtectedAnswerTransport.unrelated_demand_not_resolved_by_lift` | yes | yes | yes | none | `#print axioms CampaignSnProtectedAnswerTransport.unrelated_demand_not_resolved_by_lift` |
+| `ProtectedAnswerTransport.canonical_transition_lift_commutes` | yes | yes | yes | none | `#print axioms ProtectedAnswerTransport.canonical_transition_lift_commutes` |
+| `ProtectedAnswerTransport.commuting_square_iff_boolean_answers_preserved_on_image` | yes | yes | yes | none | `#print axioms ProtectedAnswerTransport.commuting_square_iff_boolean_answers_preserved_on_image` |
+| `ProtectedAnswerTransport.commuting_square_iterated` | yes | yes | yes | Quot.sound, propext | `#print axioms ProtectedAnswerTransport.commuting_square_iterated` |
+| `ProtectedAnswerTransport.commuting_square_preserves_transported_answer` | yes | yes | yes | Quot.sound, propext | `#print axioms ProtectedAnswerTransport.commuting_square_preserves_transported_answer` |
+| `ProtectedAnswerTransport.not_conservative_extension_off_image` | yes | yes | yes | none | `#print axioms ProtectedAnswerTransport.not_conservative_extension_off_image` |
+| `ProtectedAnswerTransport.old_image_not_left_galois_adjunction` | yes | yes | yes | propext | `#print axioms ProtectedAnswerTransport.old_image_not_left_galois_adjunction` |
+| `ProtectedAnswerTransport.old_image_not_right_inverse` | yes | yes | yes | none | `#print axioms ProtectedAnswerTransport.old_image_not_right_inverse` |
+| `ProtectedAnswerTransport.retraction_transport_law` | yes | yes | yes | none | `#print axioms ProtectedAnswerTransport.retraction_transport_law` |
+| `ProtectedAnswerTransport.s6Descent_answer_transport` | yes | yes | yes | none | `#print axioms ProtectedAnswerTransport.s6Descent_answer_transport` |
+| `ProtectedAnswerTransport.s6Descent_canonical_transition_square` | yes | yes | yes | none | `#print axioms ProtectedAnswerTransport.s6Descent_canonical_transition_square` |
+| `ProtectedAnswerTransport.s6Descent_old_image_law` | yes | yes | yes | none | `#print axioms ProtectedAnswerTransport.s6Descent_old_image_law` |
+| `ProtectedAnswerTransport.s6Descent_transition_counterexample` | yes | yes | yes | none | `#print axioms ProtectedAnswerTransport.s6Descent_transition_counterexample` |
+| `ProtectedAnswerTransport.snCarrier_answer_transport` | yes | yes | yes | propext | `#print axioms ProtectedAnswerTransport.snCarrier_answer_transport` |
+| `ProtectedAnswerTransport.snCarrier_canonical_transition_square` | yes | yes | yes | propext | `#print axioms ProtectedAnswerTransport.snCarrier_canonical_transition_square` |
+| `ProtectedAnswerTransport.snCarrier_off_image_underdetermined` | yes | yes | yes | Quot.sound, propext | `#print axioms ProtectedAnswerTransport.snCarrier_off_image_underdetermined` |
+| `ProtectedAnswerTransport.snCarrier_s6_demand_active` | yes | yes | yes | propext | `#print axioms ProtectedAnswerTransport.snCarrier_s6_demand_active` |
+| `ProtectedAnswerTransport.snCarrier_transition_counterexample` | yes | yes | yes | Quot.sound, propext | `#print axioms ProtectedAnswerTransport.snCarrier_transition_counterexample` |
+| `ProtectedAnswerTransport.snRetract_nonDescent_iff` | yes | yes | yes | Quot.sound, propext | `#print axioms ProtectedAnswerTransport.snRetract_nonDescent_iff` |
+| `ProtectedAnswerTransport.snRetract_old_image_law` | yes | yes | yes | propext | `#print axioms ProtectedAnswerTransport.snRetract_old_image_law` |
+| `ProtectedAnswerTransport.transition_square_not_implied_general` | yes | yes | yes | none | `#print axioms ProtectedAnswerTransport.transition_square_not_implied_general` |
+| `ProtectedAnswerTransport.transport_counterpart_card` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ProtectedAnswerTransport.transport_counterpart_card` |
+| `ProtectedAnswerTransport.transport_off_image_underdetermined` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms ProtectedAnswerTransport.transport_off_image_underdetermined` |
+| `ProtectedAnswerTransport.transport_unique_on_image` | yes | yes | yes | none | `#print axioms ProtectedAnswerTransport.transport_unique_on_image` |
+| `ProtectedAnswerTransport.typed_retraction_transport_law` | yes | yes | yes | none | `#print axioms ProtectedAnswerTransport.typed_retraction_transport_law` |
+| `ProtectedAnswerTransport.typed_retraction_transport_refuses` | yes | yes | yes | none | `#print axioms ProtectedAnswerTransport.typed_retraction_transport_refuses` |
+| `ProtectedAnswerTransport.unrelated_demand_not_resolved_by_lift` | yes | yes | yes | none | `#print axioms ProtectedAnswerTransport.unrelated_demand_not_resolved_by_lift` |
 
 - counts toward the grade: yes
 
@@ -104,7 +104,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md](../../../dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md)
-- sha256 (`lf-normalised`): `2c1badbc0ff1d2b3b8387d954b0c4141ecd8f13d3b9f7e1642ebce5840140f79`
+- sha256 (`lf-normalised`): `7917cf12f2c2ecc5525218f1360e1effd17fc9200925061bb388f562f9a0f014`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0519
 - counts toward the grade: no
@@ -112,7 +112,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pgw-sn-protected-answer-transport.md`
 
 - file: [dag/derivations/independent/pgw-sn-protected-answer-transport.md](../../../dag/derivations/independent/pgw-sn-protected-answer-transport.md)
-- sha256 (`lf-normalised`): `af28444b874d2ff50ab0c4ae25109401d610a2f8b694ba97873b2b171b012412`
+- sha256 (`lf-normalised`): `49c98ec1d535e8ea4e59243fc32fd0817552782bffee4925420a6e7da633a3f3`
 - cited in: node.source
 - counts toward the grade: yes
 

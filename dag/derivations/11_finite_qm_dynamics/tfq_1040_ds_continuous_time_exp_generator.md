@@ -32,22 +32,22 @@ The one-parameter family T(t) = exp(tH), the generator H = log T, and a continuu
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- `lean4/H016ContinuousDynamicsFork.lean::continuous_dynamics_fork`
-- `lean4/H055DiscreteDynamicsStone.lean::stone_discrete_generator_ambiguity`
+- `lean4/ContinuousDynamicsFork.lean::continuous_dynamics_fork`
+- `lean4/DiscreteDynamicsStone.lean::stone_discrete_generator_ambiguity`
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_gap_measurement_projection_cptp_and_continuous_time_generator_countermodels`
-- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.toggleImages`
-- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.noToggleSquare`
-- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.gAddCoords`
-- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.gMulCoords`
-- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.scaledSquare`
-- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.negSquare`
-- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.scaledDiffer`
-- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.cayleyNorm`
-- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.energyZero`
-- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.energyOne`
-- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.energyDistinct`
-- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.candidateCorner`
-- `lean4/CampaignDsContinuousTimeExpGenerator.lean::CampaignDsContinuousTimeExpGenerator.noNilpotentIntegerLog`
+- `lean4/ContinuousTimeExpGenerator.lean::ContinuousTimeExpGenerator.toggleImages`
+- `lean4/ContinuousTimeExpGenerator.lean::ContinuousTimeExpGenerator.noToggleSquare`
+- `lean4/ContinuousTimeExpGenerator.lean::ContinuousTimeExpGenerator.gAddCoords`
+- `lean4/ContinuousTimeExpGenerator.lean::ContinuousTimeExpGenerator.gMulCoords`
+- `lean4/ContinuousTimeExpGenerator.lean::ContinuousTimeExpGenerator.scaledSquare`
+- `lean4/ContinuousTimeExpGenerator.lean::ContinuousTimeExpGenerator.negSquare`
+- `lean4/ContinuousTimeExpGenerator.lean::ContinuousTimeExpGenerator.scaledDiffer`
+- `lean4/ContinuousTimeExpGenerator.lean::ContinuousTimeExpGenerator.cayleyNorm`
+- `lean4/ContinuousTimeExpGenerator.lean::ContinuousTimeExpGenerator.energyZero`
+- `lean4/ContinuousTimeExpGenerator.lean::ContinuousTimeExpGenerator.energyOne`
+- `lean4/ContinuousTimeExpGenerator.lean::ContinuousTimeExpGenerator.energyDistinct`
+- `lean4/ContinuousTimeExpGenerator.lean::ContinuousTimeExpGenerator.candidateCorner`
+- `lean4/ContinuousTimeExpGenerator.lean::ContinuousTimeExpGenerator.noNilpotentIntegerLog`
 
 ### Rust Certifiers
 - `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`

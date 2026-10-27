@@ -42,7 +42,7 @@ operation_candidates:
   line: 20
   signature_excerpt: "def phasePD (Q : Type) :\n    PrimitiveDifference (Vec GaussInt Q) ((Q → Int) ×\
     \ (Q → Int))"
-  source: lean4/H009PhaseFiber.lean
+  source: lean4/PhaseFiber.lean
   repository: this_repository
   source_sha256: 0a41e5169888c39cab352ab7b0889bb01fdf0e1ab7410d7386d999c0958fa4b3
   status: source_candidate_requires_semantic_review
@@ -50,7 +50,7 @@ operation_candidates:
   name: phaseBlind
   line: 18
   signature_excerpt: 'def phaseBlind {Q : Type} (v : Vec GaussInt Q) : Q → Int'
-  source: lean4/H008PhaseBlindPresentation.lean
+  source: lean4/HilbertWalkPhaseBlindPresentation.lean
   repository: this_repository
   source_sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
   status: source_candidate_requires_semantic_review
@@ -60,7 +60,7 @@ relation_candidates:
   line: 28
   signature_excerpt: "theorem phasePD_zeroRel_iff {Q : Type} (u v : Vec GaussInt Q) :\n    ZeroRel (phasePD\
     \ Q) u v ↔ phaseBlind u = phaseBlind v"
-  source: lean4/H009PhaseFiber.lean
+  source: lean4/PhaseFiber.lean
   repository: this_repository
   source_sha256: 0a41e5169888c39cab352ab7b0889bb01fdf0e1ab7410d7386d999c0958fa4b3
   status: source_candidate_requires_semantic_review
@@ -71,7 +71,7 @@ relation_candidates:
   line: 44
   signature_excerpt: "theorem relative_phase_in_fiber :\n    ZeroRel (phasePD Bool) psi1 psi2 ∧ psi1 ≠\
     \ psi2"
-  source: lean4/H009PhaseFiber.lean
+  source: lean4/PhaseFiber.lean
   repository: this_repository
   source_sha256: 0a41e5169888c39cab352ab7b0889bb01fdf0e1ab7410d7386d999c0958fa4b3
   status: source_candidate_requires_semantic_review
@@ -82,7 +82,7 @@ relation_candidates:
   line: 24
   signature_excerpt: "theorem weight_nonneg {Q : Type} (v : Vec GaussInt Q) (q : Q) :\n    0 ≤ phaseBlind\
     \ v q"
-  source: lean4/H008PhaseBlindPresentation.lean
+  source: lean4/HilbertWalkPhaseBlindPresentation.lean
   repository: this_repository
   source_sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
   status: source_candidate_requires_semantic_review
@@ -107,7 +107,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H009PhaseFiber.lean::phasePD_zeroRel_iff
   availability: local
   symbol: phasePD_zeroRel_iff
-  path: lean4/H009PhaseFiber.lean
+  path: lean4/PhaseFiber.lean
   repository: this_repository
   sha256: 0a41e5169888c39cab352ab7b0889bb01fdf0e1ab7410d7386d999c0958fa4b3
   declaration_status: declaration_found_not_proof_checked
@@ -116,7 +116,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H009PhaseFiber.lean::relative_phase_in_fiber
   availability: local
   symbol: relative_phase_in_fiber
-  path: lean4/H009PhaseFiber.lean
+  path: lean4/PhaseFiber.lean
   repository: this_repository
   sha256: 0a41e5169888c39cab352ab7b0889bb01fdf0e1ab7410d7386d999c0958fa4b3
   declaration_status: declaration_found_not_proof_checked
@@ -125,7 +125,7 @@ source_bindings:
 - original_ref: lean4/quantum_mechanics/H008PhaseBlindPresentation.lean::weight_nonneg
   availability: local
   symbol: weight_nonneg
-  path: lean4/H008PhaseBlindPresentation.lean
+  path: lean4/HilbertWalkPhaseBlindPresentation.lean
   repository: this_repository
   sha256: 2ec11e9bfcd5470fd556ee7fe46ecb455c4ab6b5acde7b06213b624e65da439e
   declaration_status: declaration_found_not_proof_checked
@@ -757,12 +757,12 @@ operad_slots:
     - dag/pfp/review_exact_json.py
     - dag/pfp/exact_json.py
     - lean4/HWKernel.lean
-    - lean4/H004FreeLinearization.lean
-    - lean4/H005InnerProductAdmission.lean
-    - lean4/H008PhaseBlindPresentation.lean
+    - lean4/FreeLinearization.lean
+    - lean4/InnerProductAdmission.lean
+    - lean4/HilbertWalkPhaseBlindPresentation.lean
     - lean4/Core.lean
-    - lean4/H009PhaseFiber.lean
-    - lean4/H010InterferenceNonDescent.lean
+    - lean4/PhaseFiber.lean
+    - lean4/InterferenceNonDescent.lean
     - lean4/BornRedundancy.lean
     - lean4/GleasonRationalPlane.lean
     - QuantumMechanics.PromptPhaseScope.fiber_relative

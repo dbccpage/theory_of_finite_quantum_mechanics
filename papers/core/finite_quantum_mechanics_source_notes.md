@@ -1338,8 +1338,8 @@ rational simplex point is a quotient point.
 - The package's Lean modules (`GaussIntKernel`, `PhaseBlindPresentation`,
   `QuotientFiber`, `MixingObstruction`) prove the two-sector witness and the
   non-descent of the Hadamard map. They now live in `lean4/quantum_mechanics/`
-  as roots of its library, next to the overlapping `H008PhaseBlindPresentation`,
-  `H009PhaseFiber` and `H010InterferenceNonDescent`. A Mathlib-free staging
+  as roots of its library, next to the overlapping `HilbertWalkPhaseBlindPresentation`,
+  `PhaseFiber` and `InterferenceNonDescent`. A Mathlib-free staging
   build with toolchain `v4.33.1` compiled them without `sorry`; the only axiom
   reported is `Quot.sound`, in `no_descent_through_quotient`. That is a build,
   not a receipted replay.
@@ -3669,10 +3669,10 @@ selected algebraic statements are formalized in Lean 4 (`PrimitiveDifference.lea
   `GleasonRationalPlane.lean` now constructs a binary function on every nonzero
   rational two-vector, verifies invariance under nonzero rational rescaling and
   normalization on every orthogonal pair, and rules out a rational quadratic
-  representation using four rays. `H054GleasonCyclotomicObstruction.lean` establishes
+  representation using four rays. `GleasonCyclotomicObstruction.lean` establishes
   the nine-context Cabello parity contradiction [2] and checks that a trace-one
   non-PSD matrix passes all 18 sampled ray bounds and nine frame sums.
-  `H058EffectFrameBusch.lean` formalizes four-effect tomographic uniqueness
+  `EffectFrameBusch.lean` formalizes four-effect tomographic uniqueness
   and recovery on a supplied two-dimensional Hermitian coordinate space.
   Its rational-homogeneity result assumes an explicit homogeneity witness;
   its three-dimensional uniqueness result assumes the needed coordinate
@@ -3758,7 +3758,7 @@ statement actually checked:
 - **Cross-References:**
   - Python: `python/finite_qm/use_cases/advanced_targets.py` (`build_prime_p_phase_point_operators`, `evaluate_prime_p_discrete_wigner`, `verify_gross_stabilizer_covariance`). The phase-point builder and Fourier/shear covariance checks are floating-point diagnostics restricted to the paper's $p=3,5$ fixtures. Their measured residuals use the stated absolute tolerance $10^{-10}$ and are not exact algebraic certificates. The odd-prime algebraic construction is separate from this numerical replay.
   - Rust: `omega_quantum_physics::wigner` supplies exact phase-point operators, using `omega_lie_theory::heisenberg` and `omega_number_theory` cyclotomic scalars. These owners live in the external Rust workspace.
-  - Lean 4: `lean4/H041PrimePWignerPhaseSpace.lean` establishes the integer five-coordinate parity, shift and displayed-vector identities (`parity_is_involution`, `magic_wigner_negativity_witness`, `gross_parity_covariance`). It does not formalize the full cyclotomic phase-point family or every symplectic covariance identity above.
+  - Lean 4: `lean4/PrimePWignerPhaseSpace.lean` establishes the integer five-coordinate parity, shift and displayed-vector identities (`parity_is_involution`, `magic_wigner_negativity_witness`, `gross_parity_covariance`). It does not formalize the full cyclotomic phase-point family or every symplectic covariance identity above.
 
 ##### Target 14 (Loop 14): Shor [[9, 1, 3]] Concatenated Quantum Error Correcting Code
 
@@ -3784,7 +3784,7 @@ statement actually checked:
   6. Recovery fidelity: minimum-weight syndrome lookup yields exact recovery fidelity $F = 1.0$ across all 27 single-qubit error channels.
 - **Cross-References:**
   - Python: `python/finite_qm/use_cases/advanced_targets.py` (`build_shor_nine_qubit_code`, `extract_shor_syndrome`, `decode_and_recover_shor`, `simulate_shor_error_recovery`, `verify_all_single_qubit_errors_recovery`).
-  - Lean 4: `lean4/H042ShorNineQubitCode.lean` (`s1_s7_commute`, `xl_commutes_with_stabilizers`, `zl_commutes_with_stabilizers`, `logical_operators_anticommute`, `all_x_errors_detected`, `all_z_errors_detected`, `all_y_errors_detected`).
+  - Lean 4: `lean4/ShorNineQubitCode.lean` (`s1_s7_commute`, `xl_commutes_with_stabilizers`, `zl_commutes_with_stabilizers`, `logical_operators_anticommute`, `all_x_errors_detected`, `all_z_errors_detected`, `all_y_errors_detected`).
 
 ##### Target 15 (Loop 15): Discrete Quantum Phase Estimation over Cyclotomic Ring
 
@@ -3806,7 +3806,7 @@ statement actually checked:
   3. Deterministic projection: $\frac{1}{\sqrt{2^m}} F_4^\dagger |\Psi_k\rangle = |k\rangle$ (or unnormalized $F_4^\dagger |\Psi_k\rangle = 2 |k\rangle$), establishing exact dyadic phase extraction with zero phase leakage.
 - **Cross-References:**
   - Python: `python/finite_qm/use_cases/advanced_targets.py` (`discrete_qft`, `discrete_phase_estimation`, `verify_cyclotomic_dyadic_projection`).
-  - Lean 4: `lean4/H043DiscretePhaseEstimation.lean` (`phase_est_k0`, `prob_one_k0`, `zero_leakage_all_branches`, `geom_sum_4_cancellation`, `geom_sum_4_reinforcement`, `dyadic_qft_orthonormality_all_16_pairs`).
+  - Lean 4: `lean4/DiscretePhaseEstimation.lean` (`phase_est_k0`, `prob_one_k0`, `zero_leakage_all_branches`, `geom_sum_4_cancellation`, `geom_sum_4_reinforcement`, `dyadic_qft_orthonormality_all_16_pairs`).
 
 ##### Target 16 (Loop 16): Surface Code Toric Topology & Anyon Defect Algebra
 
@@ -3826,7 +3826,7 @@ statement actually checked:
   4. Abelian mutual braiding phase: a closed $e$-loop encircling a single $m$-defect intersects the dual $m$-string at an odd number of edges (exactly 1 edge in the minimal cell), resulting in the topological braiding phase factor $(-1)^1 = -1 = e^{i\pi}$.
 - **Cross-References:**
   - Python: `python/finite_qm/use_cases/advanced_targets.py` (`build_toric_code_2x2`, `verify_toric_homology_and_degeneracy`, `evaluate_anyon_defect_algebra`, `simulate_anyon_braiding_phase`).
-  - Lean 4: `lean4/H044SurfaceCodeToricTopology.lean` (`torus_euler_characteristic`, `torus_genus`, `homology_dimension_k2`, `all_star_plaq_commute`, `star_plaq_geometric_overlaps`, `anyon_loop_string_intersection`, `anyon_braiding_phase_pi`).
+  - Lean 4: `lean4/SurfaceCodeToricTopology.lean` (`torus_euler_characteristic`, `torus_genus`, `homology_dimension_k2`, `all_star_plaq_commute`, `star_plaq_geometric_overlaps`, `anyon_loop_string_intersection`, `anyon_braiding_phase_pi`).
 
 ##### Target 17 (Loop 17): Discrete Grover Search via Householder Reflections
 
@@ -3847,7 +3847,7 @@ statement actually checked:
   3. Discrete Chebyshev recurrence: the target amplitude sequence $s_k = \sin((2k+1)\theta)$ satisfies the linear difference equation $s_{k+1} = s_k - s_{k-1}$ over $\mathbb{Z}[\sqrt{3}]$, producing the exact periodic sequence $(1/2, 1, 1/2, -1/2, -1, -1/2, \dots)$ with period 6.
 - **Cross-References:**
   - Python: `python/finite_qm/use_cases/advanced_targets.py` (`discrete_grover_step`, `grover_exact_trigonometric_orbit`, `verify_grover_n4_exact_one_step`).
-  - Lean 4: `lean4/H045DiscreteGroverSearch.lean` (`diffusion_squared`, `grover_one_step_exact`, `grover_target_isolation`, `rotation_to_target`, `grover_periodicity_six`).
+  - Lean 4: `lean4/DiscreteGroverSearch.lean` (`diffusion_squared`, `grover_one_step_exact`, `grover_target_isolation`, `rotation_to_target`, `grover_periodicity_six`).
 
 ##### Target 18 (Loop 18): Discrete Clifford Group Structure & Eastin-Knill Limit
 
@@ -3871,7 +3871,7 @@ statement actually checked:
      A separate imported theorem of Eastin and Knill [25] states that a quantum error-correcting code detecting arbitrary errors on any single physical subsystem, in the stated finite-dimensional setting, admits no transversal encoded gate set that generates a dense subgroup of the encoded unitary group. The finite group checks here do not prove that general theorem or classify every transversal encoded operation of an arbitrary code.
 - **Cross-References:**
   - Python: `python/finite_qm/use_cases/advanced_targets.py` (`compute_symplectic_group_order`, `build_sp2_f2_generators_and_elements`, `verify_clifford_symplectic_isomorphism_n1`, `evaluate_eastin_knill_obstruction`).
-  - Lean 4: `lean4/H046DiscreteCliffordSymplectic.lean` (`sp2_elements_cardinality`, `sp2_group_closure`, `canonical_pairing`, `symplectic_preservation_all_six`, `order_two_elements`, `order_three_elements`, `order_sp2_f2`, `order_sp4_f2`, `sp2_finite_symplectic_quotient_closure`, `eastin_knill_representation_obstruction`).
+  - Lean 4: `lean4/DiscreteCliffordSymplectic.lean` (`sp2_elements_cardinality`, `sp2_group_closure`, `canonical_pairing`, `symplectic_preservation_all_six`, `order_two_elements`, `order_three_elements`, `order_sp2_f2`, `order_sp4_f2`, `sp2_finite_symplectic_quotient_closure`, `eastin_knill_representation_obstruction`).
 
 ##### Target 19 (Loop 19): The Finite CCR Trace Obstruction and the Weyl Representation
 
@@ -3908,7 +3908,7 @@ statement actually checked:
 - **Cross-References:**
   - Python: `python/finite_qm/use_cases/advanced_targets.py` (`evaluate_finite_commutator_trace_obstruction`, `evaluate_discrete_weyl_commutation`, `stone_von_neumann_finite_cyclic_report`).
   - Rust: `native/src/campaigns/carrier.rs` (`carrier_finite_commutator_obstruction`); `commutator.rs` and `weyl.rs` are former `code_rs` labels.
-  - Lean 4: `lean4/H047StoneVonNeumannObstruction.lean` (`tr_comm2_vanishes`, `tr_comm3_vanishes`, `tr_eye3_nonzero`, `finite_heisenberg_obstruction`, `discrete_weyl_commutation`).
+  - Lean 4: `lean4/StoneVonNeumannObstruction.lean` (`tr_comm2_vanishes`, `tr_comm3_vanishes`, `tr_eye3_nonzero`, `finite_heisenberg_obstruction`, `discrete_weyl_commutation`).
 
 **Constructive Weyl equivalence (written proof).** Let $K\subseteq\mathbb C$
 be closed under conjugation and contain a primitive $N$th root $\omega$.
@@ -3965,7 +3965,7 @@ representations or the existence of a normalized seed over arbitrary $K$.
      variances require their own budget calculation.
 - **Cross-References:**
   - Python: `python/finite_qm/use_cases/advanced_targets.py` (`compute_richardson_weights`, `richardson_zero_noise_extrapolate`, `simulate_mitigated_quantum_expectation`).
-  - Lean 4: `lean4/H048RichardsonErrorMitigation.lean` (`linear_weight_sum`, `linear_moment1_cancelled`, `linear_variance_amplification`, `quadratic_weight_sum`, `quadratic_moment1_cancelled`, `quadratic_moment2_cancelled`, `quadratic_variance_amplification`, `cubic_weight_sum`, `cubic_moment1_cancelled`, `cubic_moment2_cancelled`, `cubic_moment3_cancelled`, `cubic_variance_amplification`, `richardson_cubic_exact_recovery`).
+  - Lean 4: `lean4/RichardsonErrorMitigation.lean` (`linear_weight_sum`, `linear_moment1_cancelled`, `linear_variance_amplification`, `quadratic_weight_sum`, `quadratic_moment1_cancelled`, `quadratic_moment2_cancelled`, `quadratic_variance_amplification`, `cubic_weight_sum`, `cubic_moment1_cancelled`, `cubic_moment2_cancelled`, `cubic_moment3_cancelled`, `cubic_variance_amplification`, `richardson_cubic_exact_recovery`).
 
 ##### Target 21 (Loop 21): Discrete Quantum Walk on Permutation Group Cayley Graphs
 
@@ -3992,7 +3992,7 @@ representations or the existence of a normalized seed over arbitrary $K$.
      $w_0=s_1s_2s_1$ at step three; this is a fixture result, not a coin-independent law.
 - **Cross-References:**
   - Python: `python/finite_qm/use_cases/advanced_targets.py` (`build_cayley_graph_s3`, `build_cayley_graph_s4`, `simulate_discrete_quantum_walk_cayley`, `evaluate_ballistic_propagation`).
-  - Lean 4: `lean4/H049QuantumWalkSymmetricCayley.lean` (`s3_order`, `s3_diameter`, `s4_order`, `s4_diameter`, `s3_ballistic_t1`, `s3_ballistic_t3`, `dtqw_t3_ballistic_antipode_reached`, `s4_walk_ballistic_propagation`).
+  - Lean 4: `lean4/QuantumWalkSymmetricCayley.lean` (`s3_order`, `s3_diameter`, `s4_order`, `s4_diameter`, `s3_ballistic_t1`, `s3_ballistic_t3`, `dtqw_t3_ballistic_antipode_reached`, `s4_walk_ballistic_propagation`).
 
 ##### Target 22 (Loop 22): Discrete Mutually Unbiased Basis (MUB) State Tomography in Dimension $d=3$
 
@@ -4019,7 +4019,7 @@ representations or the existence of a normalized seed over arbitrary $K$.
 - **Cross-References:**
   - Python: `python/finite_qm/use_cases/advanced_targets.py` (`build_d3_mub_projectors`, `reconstruct_d3_state_from_mub_probabilities`, `simulate_mub_tomography`, `verify_mub_inversion_completeness`, an alias of `verify_mub_inversion_all_tested_states`).
   - Rust: `native/src/campaigns/carrier.rs` (`carrier_d3_mub_tomography`); `mub.rs`, `tomography.rs` and `cyclotomic.rs` are former `code_rs` labels.
-  - Lean 4: `lean4/H050MubTomographyInversion.lean` (`mub_orthonormal_diag`, `mub_orthogonal_01`, `mub_orthogonal_02`, `mub_orthogonal_12`, `mub_cross_overlap`, `exact_inversion_b0_j0`, `mixed_state_inversion_all_bases`, `pure_state_0_inversion`).
+  - Lean 4: `lean4/MubTomographyInversion.lean` (`mub_orthonormal_diag`, `mub_orthogonal_01`, `mub_orthogonal_02`, `mub_orthogonal_12`, `mub_cross_overlap`, `exact_inversion_b0_j0`, `mixed_state_inversion_all_bases`, `pure_state_0_inversion`).
 
 ##### Target 22 Extension: Galois Field $\mathbb{F}_4$ and 5 MUBs in Dimension $d=4$ (Positive-Reconstruction Obstruction)
 
@@ -4057,7 +4057,7 @@ representations or the existence of a normalized seed over arbitrary $K$.
 - **Cross-References:**
   - Python: `python/finite_qm/use_cases/advanced_targets.py` (`build_d4_mub_projectors`, `reconstruct_d4_state_from_mub_probabilities`, `simulate_d4_mub_tomography`, `evaluate_d4_clifton_kent_deficit`).
   - Rust: former `code_rs` labels (`mub.rs` with `MubD4System`, `verify_orthonormality` and `verify_cross_basis_unbiasedness`; `lib.rs`). No `MubD4System` is in the current tree; `omega_quantum_physics::mub::MubSystem` has a method `verify_cross_basis_unbiasedness`.
-  - Lean 4: `lean4/H051Mub4GaloisFieldContextuality.lean` (`mub4_orthonormal_diag`, `mub4_cross_overlap`, `total_projectors_d4`, `reconstructed_trace_is_one`, `valuation_purity_eval`, `mub4_non_psd_reconstruction_obstruction`, `clifton_kent_d4_purity_obstruction`, `five_mub_isotropic_lines_partition`).
+  - Lean 4: `lean4/Mub4GaloisFieldContextuality.lean` (`mub4_orthonormal_diag`, `mub4_cross_overlap`, `total_projectors_d4`, `reconstructed_trace_is_one`, `valuation_purity_eval`, `mub4_non_psd_reconstruction_obstruction`, `clifton_kent_d4_purity_obstruction`, `five_mub_isotropic_lines_partition`).
 
 ## 9. Historical package map and evidence-record guidance
 
