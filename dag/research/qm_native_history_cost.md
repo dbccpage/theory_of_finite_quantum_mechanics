@@ -211,7 +211,7 @@ and available preparations/effects still require independent premises.
 
 ## 6. Formal, native and reproduction scope
 
-[`NativeHistoryCost.lean`](../../../../../lean4/NativeHistoryCost.lean), registered
+[`NativeHistoryCost.lean`](../../lean4/NativeHistoryCost.lean), registered
 in the existing root Lake package, proves the one-cell loop endpoint, price,
 length, distinctness, price additivity, lack of a zero-price continuation,
 finite natural-number decoder obstruction and unbounded underestimation, and
