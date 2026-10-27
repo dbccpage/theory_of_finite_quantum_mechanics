@@ -134,7 +134,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md`
 
 - file: [dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md](../../../dag/derivations/06_wdp/tfq_0340_refuse_a_symmetry_equivariant_distinguished_point_on_a_finite_set_of_size_at.md)
-- sha256 (`lf-normalised`): `c8af17524ad63413cda8f847733778941a53442b244ed73a9480ec236a755ad5`
+- sha256 (`lf-normalised`): `3b1ec15c906a82c529f424343cd4578a694878720e499274d6abe4c1911240fe`
 - generated view: listed, not counted
 - cited in: record TFQ-0340
 - counts toward the grade: no

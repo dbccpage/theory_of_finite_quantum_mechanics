@@ -26,7 +26,7 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Rounds.lean`](../../lean4/)
+- [`absent: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Rounds.lean`](../../lean4/)
 - [`absent: declaration obligation: closedRun_round_bound under the ledger hypotheses of WDP-P000-009`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
@@ -49,4 +49,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`, `F000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/floor.yaml`
+  - `external:sha256:9504a35b2a33de8f85af42c874eb8da62364cbb364219de602dcfa98b26569e1`

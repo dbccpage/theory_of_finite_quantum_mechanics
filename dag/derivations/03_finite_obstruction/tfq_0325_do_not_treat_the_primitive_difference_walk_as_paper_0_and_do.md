@@ -32,7 +32,7 @@ In accordance with strict constructive principles:
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/tests_unit/test_authorization_boundary.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:18723e8e05ed25852935605b26e2e50b10a4639e7c86b9a064c15f4083e173cc`](../../code/python/)
 
 ---
 
@@ -46,5 +46,5 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000`, `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/claims/proposed_gaps.yaml`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/lakefile.lean`
+  - `external:sha256:7f0161fe2e71330fad6166c37ff1898e4729579747c0cbbdd190a42062e241fc`
+  - `external:sha256:fd98ab7a1d1f161291ee211709b80dd257a6fd0b3495b562a21adbed6d2af65f`

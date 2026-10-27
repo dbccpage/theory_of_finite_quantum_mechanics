@@ -65,7 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0243_finite_feynman_history_shadow.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0243_finite_feynman_history_shadow.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0243_finite_feynman_history_shadow.md)
-- sha256 (`lf-normalised`): `e34b782461355b6352c460ff4a7a8f9412d9a43cfbb723ade92cd5077cafaac7`
+- sha256 (`lf-normalised`): `fc6206f2656909284f4da934c84e1fe3948118378c3060bdd42df7884fed28e8`
 - generated view: listed, not counted
 - cited in: record TFQ-0243 (shared)
 - counts toward the grade: no
@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0059_each_language_must_carry_even_leg_wick_pairings_through_20_legs_a_hard.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0059_each_language_must_carry_even_leg_wick_pairings_through_20_legs_a_hard.md](../../../dag/derivations/15_finite_qed/tfq_0059_each_language_must_carry_even_leg_wick_pairings_through_20_legs_a_hard.md)
-- sha256 (`lf-normalised`): `104c6f177a7c727786b14cbb395ab1f9d9fa6c04593ea8cf8c72d3b2eb7bdf47`
+- sha256 (`lf-normalised`): `1f4fecca4a038e98182773480da8ba35c0a8da69739610d670e863a76c0273c8`
 - generated view: listed, not counted
 - cited in: record TFQ-0059 (shared)
 - counts toward the grade: no
@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0061_each_language_must_carry_2_forest_f0_equals_the_schur_complement_on_the.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0061_each_language_must_carry_2_forest_f0_equals_the_schur_complement_on_the.md](../../../dag/derivations/15_finite_qed/tfq_0061_each_language_must_carry_2_forest_f0_equals_the_schur_complement_on_the.md)
-- sha256 (`lf-normalised`): `2eb09d978326d2668cbbf65652a12715ee78c76116299d79686905bf5ca7599d`
+- sha256 (`lf-normalised`): `ba4ac1f7ed211c27bbf5a76fb60538ce5001d2f0922cb5caf9e40a4cc32ba046`
 - generated view: listed, not counted
 - cited in: record TFQ-0061 (shared)
 - counts toward the grade: no
@@ -89,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0072_each_language_must_carry_channel_amplitude_optical_defect_finite_born_partial_sum.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0072_each_language_must_carry_channel_amplitude_optical_defect_finite_born_partial_sum.md](../../../dag/derivations/15_finite_qed/tfq_0072_each_language_must_carry_channel_amplitude_optical_defect_finite_born_partial_sum.md)
-- sha256 (`lf-normalised`): `bc1017a8fe2b02814802bbec4dd55b40d95ca8f2d9ea8c744271e0077c3861b5`
+- sha256 (`lf-normalised`): `9bd4114f4897192f1238074c4153429f980c0d2c31045abde0b72be43f8e5ded`
 - generated view: listed, not counted
 - cited in: record TFQ-0072 (shared)
 - counts toward the grade: no

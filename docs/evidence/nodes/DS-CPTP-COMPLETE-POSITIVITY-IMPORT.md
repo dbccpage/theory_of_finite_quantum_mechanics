@@ -107,7 +107,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md](../../../dag/derivations/12_finite_qm_structure/tfq_0266_no_derivation_from_stochastic_kernels_to_complete_positivity.md)
-- sha256 (`lf-normalised`): `9cf8a5abbb5a34752350de9da7053d33f0cc14e1cc947a284d5cb762fb1a1f5b`
+- sha256 (`lf-normalised`): `96f889e071ca597164ad6f84f9de46575ee76c5e7c72fa0edf25e4c892aac986`
 - generated view: listed, not counted
 - cited in: record TFQ-0266
 - counts toward the grade: no
@@ -115,7 +115,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md](../../../dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md)
-- sha256 (`lf-normalised`): `d15381a243e254164c16e1eafedefccb868275f35a792b8564ec7f910f8138f5`
+- sha256 (`lf-normalised`): `327ba50e1f22adcf109b389647ecd5375d52629a3ece5b90b7755e17ab4ec771`
 - generated view: listed, not counted
 - cited in: record TFQ-0267 (shared)
 - counts toward the grade: no

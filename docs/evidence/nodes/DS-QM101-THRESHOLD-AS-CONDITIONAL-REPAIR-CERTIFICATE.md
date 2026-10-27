@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0269_threshold_theorems_read_as_repair_capacity_certificates.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0269_threshold_theorems_read_as_repair_capacity_certificates.md](../../../dag/derivations/13_finite_qm_information/tfq_0269_threshold_theorems_read_as_repair_capacity_certificates.md)
-- sha256 (`lf-normalised`): `53ac8ebb78a7261620abd1462a51d2d63f4be89bb43a8105f6c07afb43175092`
+- sha256 (`lf-normalised`): `1d8683b669ee73bf9aebf7c421b296d821314a1614fcb3fa1327eda1616f6f6e`
 - generated view: listed, not counted
 - cited in: record TFQ-0269
 - counts toward the grade: no

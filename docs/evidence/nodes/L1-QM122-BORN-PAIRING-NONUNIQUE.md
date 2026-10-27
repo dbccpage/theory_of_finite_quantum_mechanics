@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0306_born_uniqueness_stays_an_imported_boundary.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0306_born_uniqueness_stays_an_imported_boundary.md](../../../dag/derivations/08_l1_to_l2/tfq_0306_born_uniqueness_stays_an_imported_boundary.md)
-- sha256 (`lf-normalised`): `5f67f96080dc9f7fd4e9d5d0b275beec16cb1b7014ee22bc301ea09a07687cdb`
+- sha256 (`lf-normalised`): `cb5372ff39859e84f4b44fabf257bcf7f7aa28e390c21347623a4b0e3116e220`
 - generated view: listed, not counted
 - cited in: record TFQ-0306
 - counts toward the grade: no
@@ -99,7 +99,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/09_finite_hilbert/tfq_0312_four_necessity_verdicts_stay_open_beside_the_matrix_gap.md`
 
 - file: [dag/derivations/09_finite_hilbert/tfq_0312_four_necessity_verdicts_stay_open_beside_the_matrix_gap.md](../../../dag/derivations/09_finite_hilbert/tfq_0312_four_necessity_verdicts_stay_open_beside_the_matrix_gap.md)
-- sha256 (`lf-normalised`): `d82577d360b53ddbc9db6555e6d2846e0dff1202830f9b927f60534c64eb562d`
+- sha256 (`lf-normalised`): `7a88ebef332ac78cab8de69c4643d54ce5f272c58f21c8d24bd3396a68a9e0e9`
 - generated view: listed, not counted
 - cited in: record TFQ-0312 (shared)
 - counts toward the grade: no

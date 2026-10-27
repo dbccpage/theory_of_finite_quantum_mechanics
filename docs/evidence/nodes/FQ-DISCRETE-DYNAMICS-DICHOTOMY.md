@@ -75,7 +75,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md)
-- sha256 (`lf-normalised`): `a70dea94189cb9ca6b93b538a6421895c099576905968fec92f698c6cbfcdbbb`
+- sha256 (`lf-normalised`): `e2513e40c2ecce086e21e2854c8fe5265bcc64d468c32f322951cdebceca3fa9`
 - generated view: listed, not counted
 - cited in: record TFQ-0245 (shared)
 - counts toward the grade: no
@@ -83,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/14_finite_gauge/tfq_0052_each_language_must_carry_on_a_declared_m_2_q_i_packet_d0_of_an.md`
 
 - file: [dag/derivations/14_finite_gauge/tfq_0052_each_language_must_carry_on_a_declared_m_2_q_i_packet_d0_of_an.md](../../../dag/derivations/14_finite_gauge/tfq_0052_each_language_must_carry_on_a_declared_m_2_q_i_packet_d0_of_an.md)
-- sha256 (`lf-normalised`): `24435b37027494cea1e6541393a74dfaa720915fdab89c57efcf22685a0d8568`
+- sha256 (`lf-normalised`): `9d6162aed312ba2ddb1cf7c9c064ff94f92a33337fb7a8ffd5001b7600c2c036`
 - generated view: listed, not counted
 - cited in: record TFQ-0052 (shared)
 - counts toward the grade: no
@@ -91,7 +91,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0062_each_language_must_carry_a_truncated_intermediate_normalization_series_a.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0062_each_language_must_carry_a_truncated_intermediate_normalization_series_a.md](../../../dag/derivations/15_finite_qed/tfq_0062_each_language_must_carry_a_truncated_intermediate_normalization_series_a.md)
-- sha256 (`lf-normalised`): `d28b4c28546613fdb63a8abc8dd898dfc84f332f0afcf2944f8c6046ed79404b`
+- sha256 (`lf-normalised`): `a9bdb52dd01224b852a23cf101788a30e114d78102039865913146343120437d`
 - generated view: listed, not counted
 - cited in: record TFQ-0062
 - counts toward the grade: no

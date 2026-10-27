@@ -89,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0379_supply_does_not_admit.md`
 
 - file: [dag/derivations/02_genesis/tfq_0379_supply_does_not_admit.md](../../../dag/derivations/02_genesis/tfq_0379_supply_does_not_admit.md)
-- sha256 (`lf-normalised`): `9a6eb883fea650a6987a0b89ef7d4e447e392da606dd06fb04ba720b9920d462`
+- sha256 (`lf-normalised`): `477b2f6d8bf58ab6402a803ddaac23e8f0e903f98e5ae620a5ffb75212b4de84`
 - generated view: listed, not counted
 - cited in: record TFQ-0379
 - counts toward the grade: no
@@ -97,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0380_readings_left_unselected.md`
 
 - file: [dag/derivations/02_genesis/tfq_0380_readings_left_unselected.md](../../../dag/derivations/02_genesis/tfq_0380_readings_left_unselected.md)
-- sha256 (`lf-normalised`): `64d254d176c715a7c5025ff767d2edb6ac08f8103a88bb8bfc35c0153723adde`
+- sha256 (`lf-normalised`): `e9bb41b35ac1a11e92429101f1c9aeb3630f9f8270d659e348fd6004e276138f`
 - generated view: listed, not counted
 - cited in: record TFQ-0380
 - counts toward the grade: no

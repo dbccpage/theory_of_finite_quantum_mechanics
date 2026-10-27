@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md](../../../dag/derivations/13_finite_qm_information/tfq_0271_show_the_packet_protocol_for_a_finite_computation.md)
-- sha256 (`lf-normalised`): `6825eba11bad81327a12c685a56130cad70a5ec743ea5e249dd6593541e3e918`
+- sha256 (`lf-normalised`): `3f3b9bf181bed04962ac5f4424d094d205d5f0120bb651475f4c5c64431fc738`
 - generated view: listed, not counted
 - cited in: record TFQ-0271
 - counts toward the grade: no

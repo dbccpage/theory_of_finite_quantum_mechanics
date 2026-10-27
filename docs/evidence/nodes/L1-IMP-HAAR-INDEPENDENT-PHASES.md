@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0301_haar_independent_phases_are_not_the_finite_average.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0301_haar_independent_phases_are_not_the_finite_average.md](../../../dag/derivations/08_l1_to_l2/tfq_0301_haar_independent_phases_are_not_the_finite_average.md)
-- sha256 (`lf-normalised`): `95f2d96239c0edfe378442c1c671db920efb7c03475ecf3d985ef248f25a663c`
+- sha256 (`lf-normalised`): `0f91c7963b65fea7cbb5e4c566857d65145ee9783bb02efdfdd49231956444e3`
 - generated view: listed, not counted
 - cited in: record TFQ-0301
 - counts toward the grade: no

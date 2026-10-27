@@ -29,10 +29,10 @@ In accordance with strict constructive principles:
 *Formalization active. Proof obligations tracked under zero-sorry regime.*
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/meron_source_field.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:1d63cec400ac8406dc4fa31d974130853f1938647193bdbbf607c6c6b1358c69`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/code/meron_source_response.py`](../../code/python/)
+- [`absent: no local python twin located for sources/atlas/papers/finite_to_continuum/code/meron_source_response.py`](../../code/python/)
 
 ---
 
@@ -46,5 +46,5 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F002.S000`, `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent`
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:0fb81f77bbeba84143f574b5a4bc956196140991`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

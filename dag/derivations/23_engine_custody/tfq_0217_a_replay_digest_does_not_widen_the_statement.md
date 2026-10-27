@@ -26,14 +26,14 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/GenesisConstruction.lean`](../../lean4/)
+- [`absent: no local lean twin located for atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/GenesisConstruction.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_replay/src/replay_hash.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:d607354d8f84e955b89d65e58983964ef43675f69b92bfdf8a16da4b21f3b1ec`](../../code/rust/src/)
 - [`code/rust/src/wdp/coda/q/ledger.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/python/src/authorization_incompleteness/replay_fiber.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:d9f6e028e9c671a6320cd8ab4ab3cd36513fadd234056de98f0570c48e26a5c7`](../../code/python/)
 
 ---
 
@@ -47,6 +47,6 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F003.S000`, `F000.S001:001_authorization_an_incompleteness_theory`, `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory`
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:5d358f5062016c742016b891fa7891bb0f0e19ef`
+  - `external:git-tree:5ab26ee1f8e4e10cf2fbf7a36dd731d31fbf4a44`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

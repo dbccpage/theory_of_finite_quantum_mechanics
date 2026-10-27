@@ -29,12 +29,12 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/purification.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/bipartite_operator.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/relative_state_branching.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/no_cloning.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/teleportation.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:dd1b4e46a648387082ad2289a7af199984e2d166d08f5debbde4c4b30ddcf8c8`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:1079d3a7b2958efcc95ca07550213d87da604d8ada2d71c28684958b86dc21ab`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:f29fe2318e14a44a45fccfee6f94f69a7dc615832988d69c2b47ec6fef35e56b`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:bdfd46b9d29d0fba7f7d4e212d92d6621771eee3bac8425286e98df2fd72ce34`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:aa2a8686264281e11a2edd6d9b7aea5eb9a53ee333cca184cf15394bf611e597`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:ae407b5f6ef9b3c091496688fc7ed38f869d28cec1c88727de1c95a7eacef85c`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`code/python/src/majorana/tests/support/finite_qm/use_cases/higher_dim_entanglement.py`](../../code/python/)
@@ -52,4 +52,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

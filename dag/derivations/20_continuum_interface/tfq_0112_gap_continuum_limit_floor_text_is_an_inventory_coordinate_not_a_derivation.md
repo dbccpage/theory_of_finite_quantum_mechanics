@@ -43,4 +43,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F002.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent`
+  - `external:git-tree:0fb81f77bbeba84143f574b5a4bc956196140991`

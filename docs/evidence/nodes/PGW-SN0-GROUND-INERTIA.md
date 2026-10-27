@@ -84,7 +84,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0511_sn0_ground_inertia.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0511_sn0_ground_inertia.md](../../../dag/derivations/05_mssn_sn/tfq_0511_sn0_ground_inertia.md)
-- sha256 (`lf-normalised`): `ea8ebad66a723c0ac30d666b0073a2c679e066c49e20d7b669032cf685e2904e`
+- sha256 (`lf-normalised`): `d2b4f5e2a9dbe6a29f1227ec3e0de3806ffb901a4f59ebbd86eb74856b3640fe`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0511
 - counts toward the grade: no
@@ -95,7 +95,7 @@ Named by the node; not in this repository and not checked here.
 
 - `external:sha256:46be6e64c1b376af4f99e0cf78752dbf88d38bac87e33e5d82079c639f54b582:19-22`
 - `external:sha256:7cd90f66662c2628f0fcc5d8fb3154cfa6b0c4274de439fb73be21b2eb5673f7:44-45`
-- `external:upstream/external:sha256:afb535f684f1f4d2a5b16edf7f567e13da0863a4638d81b98586f08fcda6ef10::S0Ground`
+- `external:upstream/education/symmetric_group_presentations/code/sn_core.py::S0Ground`
 
 ## Absences recorded by the TFQ records
 

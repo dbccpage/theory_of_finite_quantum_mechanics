@@ -26,13 +26,13 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/lean4/OmegaEnginePrimeAlgorithmsRuntime/Prime000.lean`](../../lean4/)
+- [`absent: no local lean twin located for external:sha256:4f7a7f70818cb0181144f1793d1fc650d83fe6a15b86afe1530ead2a064e63be`](../../lean4/)
 - [`lean4/FiniteDensity.lean`](../../lean4/)
 - [`lean4/ExactRatBasic.lean`](../../../lean4/ExactRatBasic.lean)
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/lean4/FromPrimitiveDifferenceToMTheory/ContinuumLimit.lean`](../../lean4/)
+- [`absent: no local lean twin located for external:sha256:fa138464a47b0fe8c8163b9ac1f3c690215350943ffa16316bf0f63650f45efc`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/exact_operator.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:d8a797c3e2b79dea816a3ec3cffb85eb0179b327e0ffd5f08789bd59d72829a6`](../../code/rust/src/)
 
 ---
 
@@ -46,6 +46,6 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F003.S000:000_omega_engine_prime_algorithms_and_runtime`, `F001.S000:001_from_primitive_difference_to_quantum_mechanics`, `F002.S000:002_from_primitive_difference_to_mtheory`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime`
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics`
-  - `omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory`
+  - `external:git-tree:e03ce30c258cf9ca164637ea387b5267bad58df9`
+  - `external:git-tree:aaf60017b237ab042d2a4f52cec36e21f4264b2f`
+  - `external:git-tree:32768febc43a3cd915487089be70f91bca8c9bc9`

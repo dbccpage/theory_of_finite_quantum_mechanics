@@ -141,7 +141,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0347_keep_exactclass_closedresidual_and_activeclosurefailure_off_the_routing_terminal_and_leave.md`
 
 - file: [dag/derivations/06_wdp/tfq_0347_keep_exactclass_closedresidual_and_activeclosurefailure_off_the_routing_terminal_and_leave.md](../../../dag/derivations/06_wdp/tfq_0347_keep_exactclass_closedresidual_and_activeclosurefailure_off_the_routing_terminal_and_leave.md)
-- sha256 (`lf-normalised`): `761a413538d8440b7ae979bbf9c9b81a752dc6eeac1e1f3d3cca2915c775bbec`
+- sha256 (`lf-normalised`): `d42abe6dda763f08a747bf1dc9bf835c2f28adecbe61cdf9e37dbad8e8255b1a`
 - generated view: listed, not counted
 - cited in: record TFQ-0347
 - counts toward the grade: no

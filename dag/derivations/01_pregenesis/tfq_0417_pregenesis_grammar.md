@@ -42,8 +42,8 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust parser for pre_genesis.ebnf`
 
 ### Python Oracles & Numerical Evaluators
-- `external:sha256:0298d88a593c04c27c4bd73b2d5b270ad22dd27431e634a8477e8c4fd4acbe09::test_four_state_separation` (private upstream source, not in this repository)
-- `external:sha256:50a901e02a211a3baa64630a3b8ba5228fb9a0e3ddcf97ce57ed59ff8adbc932::validate_cases` (private upstream source, not in this repository)
+- `education/pregenesis_empty_mark/code/check_pre_genesis.py::validate_cases` (private upstream source, not in this repository)
+- `education/pregenesis_empty_mark/code/tests/test_pre_genesis_grammar.py::test_four_state_separation` (private upstream source, not in this repository)
 
 ---
 
@@ -56,5 +56,5 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `external:sha256:2dcda2eed19147360712ae3e49934853801b016723b4acc1694c1de01f84764a:14-19`
-  - `external:sha256:2dcda2eed19147360712ae3e49934853801b016723b4acc1694c1de01f84764a:26-28`
+  - `education/pregenesis_empty_mark/grammar/pre_genesis.ebnf:14-19`
+  - `education/pregenesis_empty_mark/grammar/pre_genesis.ebnf:26-28`

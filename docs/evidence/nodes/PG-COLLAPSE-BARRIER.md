@@ -111,7 +111,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0365_collapsed_observation_barrier.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0365_collapsed_observation_barrier.md](../../../dag/derivations/01_pregenesis/tfq_0365_collapsed_observation_barrier.md)
-- sha256 (`lf-normalised`): `22ff7f2bd53230484f4d90f9f89b79d8f1cf6915b13c8b3f859f3701959f4f4c`
+- sha256 (`lf-normalised`): `99baf8fea652ecde4a245d1fa9bf8c8f7d45794b453f2779435342c6cbb118b9`
 - generated view: listed, not counted
 - cited in: record TFQ-0365
 - counts toward the grade: no

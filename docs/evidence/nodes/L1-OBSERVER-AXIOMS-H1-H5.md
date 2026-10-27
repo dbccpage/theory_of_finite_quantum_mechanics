@@ -92,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0352_admit_h1_through_h5_as_observer_hypotheses_on_a_finite_edge_projection.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0352_admit_h1_through_h5_as_observer_hypotheses_on_a_finite_edge_projection.md](../../../dag/derivations/07_l1_emergence/tfq_0352_admit_h1_through_h5_as_observer_hypotheses_on_a_finite_edge_projection.md)
-- sha256 (`lf-normalised`): `8751d11735e5a9489eca89b6222b97d7316c6932c5529f276504c279a1aaa28f`
+- sha256 (`lf-normalised`): `e0fc4b5e256526f92bcd7823125ae8c7e8e764796655c9c132a7d89b86684213`
 - generated view: listed, not counted
 - cited in: record TFQ-0352
 - counts toward the grade: no

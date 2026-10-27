@@ -29,7 +29,7 @@ In accordance with strict constructive principles:
 - [`absent: the rectangular toric code is not a FiniteQM QCD theorem`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/toric_code.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:18a4dc1ca3a6770620ae1052c15115527d101914c7a984bc359605f26fd06034`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: toric CSS has no finite_qm QCD use case`](../../code/python/)
@@ -46,4 +46,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
+  - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`

@@ -1,6 +1,6 @@
 # PGW-MSSN-ALPHABET-DECLARATIONS
 
-Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `DEFINITION`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `DEFINITION`. Evidence grade: **E1**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `DEFINITION`. Evidence grade: **
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
+- counted in-repo evidence files: 1
 - cited Lean, Rust or Python symbols found in their in-repo files: 0
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: cite a Lean, Rust or Python symbol that exists in an in-repo file
 
 ## Flags
 
@@ -45,19 +45,25 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md](../../../dag/derivations/05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md)
-- sha256 (`lf-normalised`): `623136df588c5d5ceba05fd5531af1a43180ed21be7769a0eeb2710d1ffebd1f`
+- sha256 (`lf-normalised`): `eccdde6bf1ba5ebb6c1e76905ef37f78f0b8a82a94e7c4bb2d066a6b0219659a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0530
 - counts toward the grade: no
+
+### Documents and data: `education/minimal_symbol_systems/grammar/mssn.ebnf`
+
+- file: [education/minimal_symbol_systems/grammar/mssn.ebnf](../../../education/minimal_symbol_systems/grammar/mssn.ebnf)
+- sha256 (`lf-normalised`): `2fa40c612d21ff06c530d2d586cb46d72df8d464d544de8f3536254191df6aac`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:sha256:2fa40c612d21ff06c530d2d586cb46d72df8d464d544de8f3536254191df6aac:10-11`
 - `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:42-43`
 - `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:44-48`
-- `external:upstream/external:sha256:56626b2520b74d365419831189a5f3e91371b527e2f177f6c7a217222aed2ca1::RawGlyphs`
+- `external:upstream/education/minimal_symbol_systems/code/mssn_codec.py::RawGlyphs`
 
 ## Absences recorded by the TFQ records
 

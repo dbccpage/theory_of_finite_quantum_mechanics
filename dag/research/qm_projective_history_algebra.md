@@ -283,7 +283,7 @@ action. Missing, nonunitary or incoherent data are refused; no phases are
 silently completed. The exact native coefficient fields do not replace the
 complex scalar extension used in (3).
 
-From `omega_engine/crates_rs`, with the configured toolchain/cache, run the
+From `external:git-tree:ac1f6d647c3ecc2bf45f6fc4922213ac752e71a3`, with the configured toolchain/cache, run the
 two packages sequentially:
 
 ```sh

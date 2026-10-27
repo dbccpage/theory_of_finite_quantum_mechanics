@@ -39,7 +39,7 @@ In accordance with strict constructive principles:
 - [`B2SemidirectDressing.b2_color_dimension_mismatch`](../../lean4/B2SemidirectDressing.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`checks/independent/tfq-0016.py`](../../checks/independent/tfq-0016.py)
@@ -56,4 +56,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
+  - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`

@@ -122,7 +122,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md](../../../dag/derivations/12_finite_qm_structure/tfq_0253_conditional_complex_carrier_selector.md)
-- sha256 (`lf-normalised`): `156cf03a6e2efbe4a97922fe7e41bc0342db70068c5c46b2a82d79eb6b94f6cc`
+- sha256 (`lf-normalised`): `8d6df7390ca6d3b37c6f92c1217a79da71169b6f7e689137e31a1e6bfa827a15`
 - generated view: listed, not counted
 - cited in: record TFQ-0253 (shared)
 - counts toward the grade: no

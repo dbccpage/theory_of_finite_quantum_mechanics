@@ -29,7 +29,7 @@ In accordance with strict constructive principles:
 - [`absent: the Stiefel-Whitney sign search is not a FiniteQM theorem`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/spin_structure_obstruction.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:c76c5bd187ff61baee99a622c5d512278ad22d2cb2f6e397642fc414a760c314`](../../code/rust/src/)
 - [`code/rust/src/lie_theory/su2.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
@@ -47,4 +47,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
+  - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`

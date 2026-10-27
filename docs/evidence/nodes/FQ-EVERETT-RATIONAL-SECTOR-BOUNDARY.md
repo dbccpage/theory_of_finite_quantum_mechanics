@@ -75,7 +75,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0276_everettian_relative_state_contact.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0276_everettian_relative_state_contact.md](../../../dag/derivations/13_finite_qm_information/tfq_0276_everettian_relative_state_contact.md)
-- sha256 (`lf-normalised`): `583ff49913bc4e3a3472d21eec5373c9d8e1894a59069f3181dd26c6557f4e41`
+- sha256 (`lf-normalised`): `70e578c4a0ed0d5cb49ffafcff2b07f84b3ec7eaa2f5b328d4ce3fd917d188dc`
 - generated view: listed, not counted
 - cited in: record TFQ-0276 (shared)
 - counts toward the grade: no

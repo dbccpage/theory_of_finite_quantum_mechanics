@@ -29,7 +29,7 @@ In accordance with strict constructive principles:
 - [`absent: the dimension-16 Frobenius check is not in FiniteQM.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/frobenius_algebra.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:ad56a7102a48fb9287fc38f006245330317e837b536f3b50cfde36d31aebc29f`](../../code/rust/src/)
 - [`code/rust/src/fusion_categories/fusion_category.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
@@ -47,4 +47,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
+  - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`

@@ -131,7 +131,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/hierarchical_nonabelian_dfm_finite_map.md`
 
 - file: [dag/research/hierarchical_nonabelian_dfm_finite_map.md](../../../dag/research/hierarchical_nonabelian_dfm_finite_map.md)
-- sha256 (`lf-normalised`): `2124e198921c1a9978f94866a6777e623ef8cee8a175fef1326be2b5eafe6cf8`
+- sha256 (`lf-normalised`): `909b93833349847beb280ee010b3d622ebd2bd0a39bdae8ee225e196a78248d8`
 - cited in: node.source
 - counts toward the grade: yes
 

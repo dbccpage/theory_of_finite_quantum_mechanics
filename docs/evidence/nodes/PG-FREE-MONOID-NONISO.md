@@ -121,7 +121,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md](../../../dag/derivations/01_pregenesis/tfq_0373_free_monoid_size_noniso.md)
-- sha256 (`lf-normalised`): `5c9113aaf9f6d099a9aa0cb79ff70df7d5bdd80c8fa4c6254ccbcbd8aa648c69`
+- sha256 (`lf-normalised`): `89e2ee58b2504a28f1dfbe9d3e60943fb2367956a2370360b81f50f8a2ee7917`
 - generated view: listed, not counted
 - cited in: record TFQ-0373
 - counts toward the grade: no
@@ -129,7 +129,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md](../../../dag/derivations/05_mssn_sn/tfq_0336_keep_unequal_finite_alphabets_from_a_free_monoid_isomorphism_and_keep_language_restriction.md)
-- sha256 (`lf-normalised`): `8eae86d8a681cfe018680dead98addbe03bb1b79bfe4154e7a03ca9fbd3e76b0`
+- sha256 (`lf-normalised`): `5f9a8eab1065dff2f9c4d1298d762458159b36a55ce88e985cb4f931e8ee9ffc`
 - generated view: listed, not counted
 - cited in: record TFQ-0336
 - counts toward the grade: no

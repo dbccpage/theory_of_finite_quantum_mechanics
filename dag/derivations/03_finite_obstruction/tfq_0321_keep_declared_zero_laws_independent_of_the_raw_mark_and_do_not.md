@@ -26,14 +26,14 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B005_zero_law_independence.lean`](../../lean4/)
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B006_equivalence_closure.lean`](../../lean4/)
+- [`absent: no local lean twin located for external:sha256:ce7eab6a5ec30ddd82fe716905102a29b5f4d0f2a52e7a81d952c620c0b651f0`](../../lean4/)
+- [`absent: no local lean twin located for external:sha256:3d759a1861e2b0582fd6225ad745585d2228bf2f658fba21ca9f9d930a94b07b`](../../lean4/)
 
 ### Sovereign Rust Certifiers
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/tests_unit/test_zero_laws.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:dfd5a9d9f39a47b64ef5618e637944f21532c403db19c64a7232c538f9852b9c`](../../code/python/)
 
 ---
 
@@ -47,5 +47,5 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000`, `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/README.md`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/claims/proposed_gaps.yaml`
+  - `external:sha256:76c7fd177e3087bddd2fb14ed9f25f11b44a443385882205a3c7fcda8284f926`
+  - `external:sha256:7f0161fe2e71330fad6166c37ff1898e4729579747c0cbbdd190a42062e241fc`

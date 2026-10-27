@@ -128,7 +128,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0004_witnessed_difference_degree_1_window.md`
 
 - file: [dag/derivations/06_wdp/tfq_0004_witnessed_difference_degree_1_window.md](../../../dag/derivations/06_wdp/tfq_0004_witnessed_difference_degree_1_window.md)
-- sha256 (`lf-normalised`): `ff7df5416142771ec9a4d7edc2fe2b4150c3092d76bb90e30bc7926120b01570`
+- sha256 (`lf-normalised`): `90b898ec5d46ea81720c8342d231e26cd2161538c7d2bf7b4119fb856255fa39`
 - generated view: listed, not counted
 - cited in: record TFQ-0004
 - counts toward the grade: no
@@ -136,7 +136,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md`
 
 - file: [dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md](../../../dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md)
-- sha256 (`lf-normalised`): `c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9`
+- sha256 (`lf-normalised`): `c02bd1400eefba073093838a5da18cd236038b0827d9a784bf2cb742540d5d55`
 - generated view: listed, not counted
 - cited in: record TFQ-0344 (shared)
 - counts toward the grade: no
@@ -144,7 +144,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md](../../../dag/derivations/07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md)
-- sha256 (`lf-normalised`): `047105de6bc2cc440087151d00b36b8184df248cb1787f361bb411a256f3c1bf`
+- sha256 (`lf-normalised`): `fd010b5046d0bcdf92ac381f394fc56ffd2373d7101bfc2bcccb0dd066cd6d1e`
 - generated view: listed, not counted
 - cited in: record TFQ-0349 (shared)
 - counts toward the grade: no

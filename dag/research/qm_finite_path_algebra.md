@@ -141,7 +141,7 @@ GAP-FQM-021 and the unrestricted primitive-to-QM derivation remain open.
   nine-path example, coefficient recovery, the exact trace formula, restricted
   ranks, lost central projection, extra adjoints, sign gauge and limits pass.
 
-Commands run from `omega_engine/crates_rs` with the recorded offline cache:
+Commands run from `external:git-tree:ac1f6d647c3ecc2bf45f6fc4922213ac752e71a3` with the recorded offline cache:
 
 ```console
 cargo test -j 1 --offline --locked -p omega_category_theory --test finite_path

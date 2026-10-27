@@ -29,7 +29,7 @@ In accordance with strict constructive principles:
 - [`absent: the residual matrix test is not in FiniteQM.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/yang_baxter_equation.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:81cef7530a42b0fd9c77ebad734ec9001b102541d55b056c07911c1b8934d0c5`](../../code/rust/src/)
 - [`code/rust/src/fusion_categories/yang_baxter.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
@@ -47,4 +47,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
+  - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`

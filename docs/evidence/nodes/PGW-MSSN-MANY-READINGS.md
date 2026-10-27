@@ -10,7 +10,7 @@ Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `DEFINITION`. Evidence grade: **
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 2
+- counted in-repo evidence files: 3
 - cited Lean, Rust or Python symbols found in their in-repo files: 1
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
@@ -64,16 +64,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0531_mssn_many_readings.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0531_mssn_many_readings.md](../../../dag/derivations/05_mssn_sn/tfq_0531_mssn_many_readings.md)
-- sha256 (`lf-normalised`): `39a2df749cd641bde126c5833fcabb47f51e2a10e5f8aa8e5a74e70f0134b48c`
+- sha256 (`lf-normalised`): `2b4ce3a86a8125be659b4ead0d0fbb3dc660fcfee133474ae0cc78a5817d476c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0531
 - counts toward the grade: no
+
+### Documents and data: `education/minimal_symbol_systems/grammar/mssn.ebnf`
+
+- file: [education/minimal_symbol_systems/grammar/mssn.ebnf](../../../education/minimal_symbol_systems/grammar/mssn.ebnf)
+- sha256 (`lf-normalised`): `2fa40c612d21ff06c530d2d586cb46d72df8d464d544de8f3536254191df6aac`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:sha256:2fa40c612d21ff06c530d2d586cb46d72df8d464d544de8f3536254191df6aac:3-4`
 - `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:58-67`
 - `external:upstream/external:sha256:f2944b0fca54f5d5a13593c337da8f9887447e447a6ffe2cc7c4731e750cec63::main`
 

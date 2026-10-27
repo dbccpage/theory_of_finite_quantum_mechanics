@@ -61,5 +61,5 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `external:sha256:9edec90b2c87518d8a33cb78cbf439fe11ce6e4f33a3f613148b9137771649d6:19-29`
   - `external:sha256:9edec90b2c87518d8a33cb78cbf439fe11ce6e4f33a3f613148b9137771649d6:40-44`
-  - `external:sha256:58f41876692a51be940c4e0f44bd2e1ef72cd873c70b4726ef3d5f0639137165:20`
+  - `education/symmetric_group_presentations/levels/README.md:20`
   - `dag/derivations/independent/pgw-sn-e08-weighted-l1-duality.md:1-3`

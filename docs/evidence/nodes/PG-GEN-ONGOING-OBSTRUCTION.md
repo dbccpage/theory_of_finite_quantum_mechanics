@@ -106,7 +106,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0388_ongoing_obstruction_answers.md`
 
 - file: [dag/derivations/02_genesis/tfq_0388_ongoing_obstruction_answers.md](../../../dag/derivations/02_genesis/tfq_0388_ongoing_obstruction_answers.md)
-- sha256 (`lf-normalised`): `124d3f24d08a42e85ff8033bcc7250f54161b138117e3845d4debe86ffe66b15`
+- sha256 (`lf-normalised`): `f63176ad0aad246e9e4dc86c4cc367da36e79a981353210965c203cc960e9341`
 - generated view: listed, not counted
 - cited in: record TFQ-0388
 - counts toward the grade: no

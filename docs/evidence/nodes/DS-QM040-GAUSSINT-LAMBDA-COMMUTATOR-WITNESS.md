@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0249_trace_zero_summaries_do_not_fix_commutation.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0249_trace_zero_summaries_do_not_fix_commutation.md](../../../dag/derivations/12_finite_qm_structure/tfq_0249_trace_zero_summaries_do_not_fix_commutation.md)
-- sha256 (`lf-normalised`): `bc74a3f21862d383fb923fb0274303d4661470ceba2b8c7beddb8d727234145c`
+- sha256 (`lf-normalised`): `25ae4ced09d1d23907ccc77935d1115729f9608301d15c4cd35daf0cbf290761`
 - generated view: listed, not counted
 - cited in: record TFQ-0249
 - counts toward the grade: no

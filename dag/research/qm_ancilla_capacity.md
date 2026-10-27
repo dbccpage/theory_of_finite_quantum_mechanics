@@ -258,7 +258,7 @@ existing Lie-theory owner, and feeds its complex block profiles into the new
 capacity owner; it does not substitute a dimension-compatible guessed algebra.
 
 ```console
-cd omega_engine/crates_rs
+cd external:git-tree:ac1f6d647c3ecc2bf45f6fc4922213ac752e71a3
 cargo test -j 1 --offline --locked -p omega_quantum_physics --test ancilla_capacity
 ```
 

@@ -135,7 +135,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md](../../../dag/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md)
-- sha256 (`lf-normalised`): `afafc9b824245cd2b19b9f248fe02687da0b8782d2f01dd84904020ef321fe45`
+- sha256 (`lf-normalised`): `e1bfd7a9b858c861d7e13fcda4ae9aa97f3636eb276192cafed99d5d81c16937`
 - generated view: listed, not counted
 - cited in: record TFQ-0355 (shared)
 - counts toward the grade: no
@@ -143,7 +143,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0296_hilbert_inner_product_is_admitted_structure.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0296_hilbert_inner_product_is_admitted_structure.md](../../../dag/derivations/08_l1_to_l2/tfq_0296_hilbert_inner_product_is_admitted_structure.md)
-- sha256 (`lf-normalised`): `83cda23d2fb389c5c0c531914f4340dc368e3bf075b4685be3f734f54aec9f9e`
+- sha256 (`lf-normalised`): `30e8d00b43162f12a44ebb55a2bab28bef73981285f69aa71b48208f4823f2b7`
 - generated view: listed, not counted
 - cited in: record TFQ-0296
 - counts toward the grade: no

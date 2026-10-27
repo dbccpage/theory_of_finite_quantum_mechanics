@@ -11,21 +11,21 @@ This document provides a technical census of the computational kernels, compiled
 
 The computational and formal implementation is organized into three primary verification tiers:
 1. **Formal Proofs (Lean 4):** Flat library in `lean4/quantum_mechanics/` verifying algebraic cochains, difference identities, and foundational quantum theorems.
-2. **Compiled Rust Crates:** High-performance exact rational solvers and certifiers in `omega_engine/crates_rs/omega_quantum_physics/src/finite_qm/`.
-3. **Symbolic & Prototyping Engines (Python):** Modular packages in `omega_engine/crates/finite_qm/` and `omega_engine/code/`.
+2. **Compiled Rust Crates:** High-performance exact rational solvers and certifiers in `external:git-tree:28e7f6bafc86df73aa8e7f830384fa59dcbeaf20`.
+3. **Symbolic & Prototyping Engines (Python):** Modular packages in `external:unlocated` and `external:unlocated`.
 
 ### Where the live code actually lives
 
 After relocation and facade withdrawal:
 
-- **Python kernels (canonical crate):** `omega_engine/crates/finite_qm/` — `domain/` (4 modules: `cyclotomic_tower.py`, `gaussian_rational.py`, `primitive_difference.py`, `primitives.py`), `use_cases/` (**42** use-case `.py` files plus `__init__.py`), `entrypoints/` (consolidate, C250/C500 verifiers, replay). `omega_engine/crates/finite_qm/__init__.py` warns the Python package is deprecated in favor of workspace Rust / PyO3.
-- **Remaining C750/C1000 Python:** `omega_engine/code/` holds C750 (`c750_b01_*` through `c750_b10_synthesis.py`) **and** C1000 kernels (`causal_order.py`, `causal_price_list.py`, `commuting_observables.py`, `contextuality_obstruction.py`, `group_parameter.py`, `lorentz_boost.py`, `no_signalling.py`, `rotation_groups.py`) plus `boost_composition.py`, `quantum_correlation.py`, entropy/cyclotomic helpers, `pytest.ini`, `tests/`, `_paths.py`, `_finite_qm_rs.pyd`. A C750-only census of that directory is incomplete.
-- **Tests:** `omega_engine/code/tests/` with `pytest.ini` `testpaths=tests`. `tests/conftest.py` puts repo root and `omega_engine/code` on `sys.path`. Crate kernels import as `omega_engine.crates.finite_qm`; remaining C750/C1000 modules import by bare name.
+- **Python kernels (canonical crate):** `external:unlocated` — `domain/` (4 modules: `cyclotomic_tower.py`, `gaussian_rational.py`, `primitive_difference.py`, `primitives.py`), `use_cases/` (**42** use-case `.py` files plus `__init__.py`), `entrypoints/` (consolidate, C250/C500 verifiers, replay). `external:unlocated` warns the Python package is deprecated in favor of workspace Rust / PyO3.
+- **Remaining C750/C1000 Python:** `external:unlocated` holds C750 (`c750_b01_*` through `c750_b10_synthesis.py`) **and** C1000 kernels (`causal_order.py`, `causal_price_list.py`, `commuting_observables.py`, `contextuality_obstruction.py`, `group_parameter.py`, `lorentz_boost.py`, `no_signalling.py`, `rotation_groups.py`) plus `boost_composition.py`, `quantum_correlation.py`, entropy/cyclotomic helpers, `pytest.ini`, `tests/`, `_paths.py`, `_finite_qm_rs.pyd`. A C750-only census of that directory is incomplete.
+- **Tests:** `external:unlocated` with `pytest.ini` `testpaths=tests`. `tests/conftest.py` puts repo root and `external:unlocated` on `sys.path`. Crate kernels import as `omega_engine.crates.finite_qm`; remaining C750/C1000 modules import by bare name.
 - **Withdrawn application facades:** legacy `code/` directory is absent. `LOCAL_SOURCE_RELOCATION_SUPERSESSION.json` records status `FACADES_WITHDRAWN_CUSTODY_PRESERVED`, 49 withdrawn facades, destinations unchanged. Callers must import the recorded destination.
-- **Rust:** Canonical finite-QM implementations live in `omega_engine/crates_rs/omega_quantum_physics/src/finite_qm/` (continuum, MUB, Gleason, CPTP, dynamics, Weyl, …). `omega_engine/crates_rs/omega_finite_qm` is a backwards-compatible `pub use` facade. `omega_engine/code_rs/src/lib.rs` is `pub use omega_finite_qm::*` plus local C750/C1000 modules and a PyO3 bridge. Cited `omega_engine/code_rs/src/continuum.rs` is absent; exact-rational Wintner–Wielandt is `omega_quantum_physics::finite_qm::continuum`.
+- **Rust:** Canonical finite-QM implementations live in `external:git-tree:28e7f6bafc86df73aa8e7f830384fa59dcbeaf20` (continuum, MUB, Gleason, CPTP, dynamics, Weyl, …). `external:git-tree:0a82463742eb9ce7b9d51558d167187ccc4a20b1` is a backwards-compatible `pub use` facade. `external:unlocated` is `pub use omega_finite_qm::*` plus local C750/C1000 modules and a PyO3 bridge. Cited `external:unlocated` is absent; exact-rational Wintner–Wielandt is `omega_quantum_physics::finite_qm::continuum`.
 - **Lean:** `lean4/quantum_mechanics/` is one flat PascalCase library (toolchain `leanprover/lean4:v4.33.1`). Opened listing: **154 `*.lean` files counting `lakefile.lean`**, plus `lake-manifest.json` / `lean-toolchain`. README still says 122 library modules. Do not write “154 plus lakefile.” `evidence/lake_replay_20260905.json` application row: 152 lean files / 154 jobs. `lakefile.lean` roots `FiniteQm.C750.B01.{Definitions,Reduction,Purity,AxiomCensus}`, but `lean4/quantum_mechanics/FiniteQm/` does not exist. Those four files live only at `campaigns/c750/block_01/lean4/FiniteQm/C750/B01/`.
 - **Retained sources:** `sources/` holds verbatim QM_060 and QM_122 only. `coda_atlas/papers` is retired. `research/` holds the source-paper tree. Generated ledgers keep historical origin strings; `consolidate_sources` cannot rebuild without the corpus.
-- **Paper layout (§6) is stale:** it still draws legacy `code/` with `consolidate_sources.py`, `cochain.py`, `density_matrix.py`. Live paths are the crate and `omega_engine/code`.
+- **Paper layout (§6) is stale:** it still draws legacy `code/` with `consolidate_sources.py`, `cochain.py`, `density_matrix.py`. Live paths are the crate and `external:unlocated`.
 
 `foundations.py` is an explicit re-export facade over `rungs.py`, `discrete_walk_engines.py`, `advanced_targets.py`, and domain primitives. Paper Rung 1–8 still names `code/foundations.py`.
 
@@ -33,13 +33,13 @@ After relocation and facade withdrawal:
 
 **Governance and custody (not mathematics).**
 
-- `test_c500_execution.py`: live verifier `omega_engine/crates/finite_qm/entrypoints/c500_verify_execution.py` reports `open_targets == 250`, `launch_preconditions == "NOT_ESTABLISHED"`, `campaign_target_execution_certified is False`. Mutations that promote a target, fake a HIT, or mark launch `VERIFIED` must raise even after rehashing the replay manifest.
+- `test_c500_execution.py`: live verifier `external:unlocated` reports `open_targets == 250`, `launch_preconditions == "NOT_ESTABLISHED"`, `campaign_target_execution_certified is False`. Mutations that promote a target, fake a HIT, or mark launch `VERIFIED` must raise even after rehashing the replay manifest.
 - `test_c500_campaign.py`: planning tree verifies `PLAN_VERIFIED_NOT_EXECUTED`, 250 targets, 10 plans, 11 bets; rejects `execution_status == "COMPLETE"`.
 - `test_c750_execution.py::test_b10_synthesis_and_adjudication`: `adjudicate_fqmi1_clauses()` is 10 clauses, **8 DISCHARGED / 2 OPEN** (clauses 8 signed cancellation, 9 sign-decision growth law). That is the live FQMI-1 pin, matching `campaigns/c750/block_10/result.json` terminal `FQMI1_OPEN_INTERNAL_GAPS` and `C750_FQMI1_CLOSURE.md`. It does not match `campaigns/c750/README.md` (`Execution state: NOT_STARTED`) even though `sealed_targets.json` says `EXECUTED`.
 - `test_causal_price_list.py`: `select_campaign_terminal(...) == "FQMR1_CLOSED_AT_DECLARED_CLASS"`. `campaigns/c1000/block_10/result.json` and `C1000_FQMR1_CLOSURE.md` repeat that string. `campaigns/c1000/README.md` and `sealed_targets.json` still have `execution_status: NOT_STARTED` and `independence_established: false`. Conflicting receipts are not an FQMR-1 admission.
 - `test_cptp_channels_stinespring.py`: **pins** `choi_theorem_ported_lean is False` and depolarizing p=1/7 dilation conductor 28. That is an honesty pin, not a Choi theorem.
 - `test_lean_replay.py`: application Lean is one flat PascalCase directory with no subdirectories (`application_lean_replay.validate_layout`); zero `: True := by trivial`; no `sorry`. Receipt source-byte hashes must still match. C750 B01 modules are therefore **outside** the application library the replay validator will accept.
-- `test_mub_source_snapshot.py` points at `omega_engine/crates_rs/omega_finite_qm/src/mub`. That directory is absent. `SOURCE_SNAPSHOT.json` lives at `omega_engine/crates_rs/omega_quantum_physics/src/finite_qm/mub/` with status `UNINTEGRATED_SOURCE_SNAPSHOT`. The test as written cannot bind the live snapshot without a path repair.
+- `test_mub_source_snapshot.py` points at `external:unlocated`. That directory is absent. `SOURCE_SNAPSHOT.json` lives at `external:git-tree:72cd4f19cac9c95dd8a52bfab516ba940b262f2c` with status `UNINTEGRATED_SOURCE_SNAPSHOT`. The test as written cannot bind the live snapshot without a path repair.
 - `test_withdrawn_rows.py` pins the 31 audit-refuted packaging repairs against `sources/atlas/papers/quantum_foundations`, and **skips** when that tree is gone. After F004 retirement the withdrawal pins do not currently fire against `research/`.
 - `test_gap_register.py` validates only `gaps:` types in `{open_bridge, continuum_interface, evidence_vacuum, triage_required, missing_implementation, false_receipt}`. YAML-nested `GAP-C1000-*` (`declared_assumption` / `proved_theorem` / `open_question`) are not in that list and would be rejected if moved into `gaps:`.
 
@@ -108,7 +108,7 @@ Estimates below are operator judgment. Priced-continuum items are marked **not c
 
 ### GAP-FQM-003 — named source-paper algorithms still missing; register prose is stale
 
-- **Closable:** conditional. Register still says legacy `code/` holds only five kernel routines. Live tree has 42 crate use-cases plus C750/C1000 modules under `omega_engine/code`. That prose is false. The named objects (QM_005 `V_Q`, four-way classifier including Refusal, QM_006 descent audit, QM_002 cofiber-to-Banach bridge) were not found as implementations. `cochain.py` is a 3-way numerical LP trichotomy, not `V_Q`.
+- **Closable:** conditional. Register still says legacy `code/` holds only five kernel routines. Live tree has 42 crate use-cases plus C750/C1000 modules under `external:unlocated`. That prose is false. The named objects (QM_005 `V_Q`, four-way classifier including Refusal, QM_006 descent audit, QM_002 cofiber-to-Banach bridge) were not found as implementations. `cochain.py` is a 3-way numerical LP trichotomy, not `V_Q`.
 - **Object-level cofiber vs Q¹_sep is refused by `002:QM-002-C1`**, not a missing file. Φ₁=R_Λ is ill-typed (`002:QM-002-C7`).
 
 ### C750 B01 Lean roots are not in the application lean4 tree (not a register ID)
@@ -121,9 +121,9 @@ Estimates below are operator judgment. Priced-continuum items are marked **not c
 - **Closable:** yes (hygiene).
 - Concrete mismatches opened here:
   - `gap_register.yaml` still cites `code/continuum_lift.py` and `code_rs/src/continuum.rs`.
-  - `c750_b01_entropy.py`, `c750_b01_entropy_approx.py`, `c750_b01_entropy_verdict.py`, `c750_b01_carrier.py` keep `ImportError` fallbacks to `apps.finite_qm.code.*` (directory gone). First import succeeds via `omega_engine/code` on `sys.path`, so pytest does not exercise the dead branch.
+  - `c750_b01_entropy.py`, `c750_b01_entropy_approx.py`, `c750_b01_entropy_verdict.py`, `c750_b01_carrier.py` keep `ImportError` fallbacks to `apps.finite_qm.code.*` (directory gone). First import succeeds via `external:unlocated` on `sys.path`, so pytest does not exercise the dead branch.
   - `norm_approximation_frontier.py` still `from apps.finite_qm.code.gaussian_rational import Gaussian` on ImportError.
-  - `test_mub_source_snapshot.py` names `omega_engine/crates_rs/omega_finite_qm/src/mub`; snapshot is under `omega_quantum_physics/src/finite_qm/mub`.
+  - `test_mub_source_snapshot.py` names `external:unlocated`; snapshot is under `omega_quantum_physics/src/finite_qm/mub`.
   - `c500_execution/replay_manifest.json` still lists withdrawn `code/` facade paths (supersession preserves custody, does not restore files).
   - Paper §6 and GAP-FQM-003 still locate kernels under legacy `code/`.
 
@@ -265,13 +265,13 @@ Operator judgment. Do not spend continuum-priced effort pretending it is a finit
 
 ## Sources opened
 
-Start files and layout: `README.md`; `finite_quantum_mechanics.md` (§0, §3–§10); `claims/gap_register.yaml`; `claims/claim_ledger.yaml`; `claims/source_inventory.yaml`; `sources/` (QM_060, QM_122 listings); `research/` listing (no `finite_qm_roadmaps/` before this write); `omega_engine/code/`, `omega_engine/crates/finite_qm/`, `omega_engine/code_rs/`, `omega_engine/crates_rs/`, `lean4/quantum_mechanics/`.
+Start files and layout: `README.md`; `finite_quantum_mechanics.md` (§0, §3–§10); `claims/gap_register.yaml`; `claims/claim_ledger.yaml`; `claims/source_inventory.yaml`; `sources/` (QM_060, QM_122 listings); `research/` listing (no `finite_qm_roadmaps/` before this write); `external:unlocated`, `external:unlocated`, `external:unlocated`, `code/rust/src/`, `lean4/quantum_mechanics/`.
 
-Relocation and package: `omega_engine/crates/finite_qm/README.md`; `__init__.py`; `LOCAL_SOURCE_RELOCATION.json`; `LOCAL_SOURCE_RELOCATION_SUPERSESSION.json`; `use_cases/` listing (42 `.py` plus `__init__.py`); `domain/` listing (4); `entrypoints/` listing; `use_cases/foundations.py`; `use_cases/cochain.py`; `use_cases/continuum_lift.py`; `use_cases/density_matrix.py`; `use_cases/rungs.py`; `use_cases/cptp_channels_stinespring.py`; `use_cases/composition_tensor_mub.py`; `use_cases/norm_approximation_frontier.py`; `domain/primitives.py`.
+Relocation and package: `external:unlocated`; `__init__.py`; `LOCAL_SOURCE_RELOCATION.json`; `LOCAL_SOURCE_RELOCATION_SUPERSESSION.json`; `use_cases/` listing (42 `.py` plus `__init__.py`); `domain/` listing (4); `entrypoints/` listing; `use_cases/foundations.py`; `use_cases/cochain.py`; `use_cases/continuum_lift.py`; `use_cases/density_matrix.py`; `use_cases/rungs.py`; `use_cases/cptp_channels_stinespring.py`; `use_cases/composition_tensor_mub.py`; `use_cases/norm_approximation_frontier.py`; `domain/primitives.py`.
 
-Tests and bootstrap: `omega_engine/code/tests/conftest.py`; `omega_engine/code/pytest.ini`; `omega_engine/code/tests/unit/` listing; `test_c500_execution.py`; `test_c500_campaign.py`; `test_lean_replay.py`; `test_mub_source_snapshot.py`; `test_gap_register.py`; `test_withdrawn_rows.py`; `test_c750_execution.py`; `test_causal_price_list.py`; `test_cptp_channels_stinespring.py`; `omega_engine/code/application_lean_replay.py`; `omega_engine/code/c750_b10_synthesis.py`; `omega_engine/code/c750_b01_entropy.py`; `omega_engine/code/tests/e2e/` listing.
+Tests and bootstrap: `external:unlocated`; `external:unlocated`; `external:unlocated` listing; `test_c500_execution.py`; `test_c500_campaign.py`; `test_lean_replay.py`; `test_mub_source_snapshot.py`; `test_gap_register.py`; `test_withdrawn_rows.py`; `test_c750_execution.py`; `test_causal_price_list.py`; `test_cptp_channels_stinespring.py`; `external:unlocated`; `external:unlocated`; `external:unlocated`; `external:unlocated` listing.
 
-Rust: `omega_engine/code_rs/src/lib.rs`; `omega_engine/crates_rs/omega_finite_qm/src/lib.rs` and `src/` listing (no `mub/`); `omega_engine/crates_rs/omega_quantum_physics/src/` listing; `finite_qm/continuum.rs`; `finite_qm/mub/README.md`; `born_gleason.rs`; `stinespring_dilation.rs`; `quantum_hamiltonian.rs`.
+Rust: `external:unlocated`; `external:sha256:43edc2c07a57c2a022e02e6a6403044cfb8d1575080d4d3a3ebab4b1d0c3cfdf` and `src/` listing (no `mub/`); `external:git-tree:a6561fc3f755d6e6a5224657369bc3e7db5a7783` listing; `finite_qm/continuum.rs`; `finite_qm/mub/README.md`; `born_gleason.rs`; `stinespring_dilation.rs`; `quantum_hamiltonian.rs`.
 
 Lean: `lean4/lakefile.lean`; `DualWitness.lean`; `GleasonTheorem.lean`; `EffectFrameBusch.lean`; `CptpChannelsStinespring.lean`; `ContinuumLiftBoundary.lean`; `HilbertWalkGleasonFinish.lean`; `ContinuousTimeLocalityLimit.lean`; `FiniteDensity.lean`; `campaigns/c750/block_01/lean4/FiniteQm/C750/B01/Reduction.lean`; confirmed absent: `lean4/quantum_mechanics/original_lean_20260809`, `lean4/quantum_mechanics/FiniteQm/`, legacy `code/`.
 

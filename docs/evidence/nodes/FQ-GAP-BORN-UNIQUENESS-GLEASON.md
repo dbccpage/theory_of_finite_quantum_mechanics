@@ -355,7 +355,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/09_finite_hilbert/tfq_0307_gleason_route_for_dimension_at_least_three.md`
 
 - file: [dag/derivations/09_finite_hilbert/tfq_0307_gleason_route_for_dimension_at_least_three.md](../../../dag/derivations/09_finite_hilbert/tfq_0307_gleason_route_for_dimension_at_least_three.md)
-- sha256 (`lf-normalised`): `7c6c2498ae3a8a9ca89f986289680fec7db4936bceccc852ebc20ab3cc2f76c5`
+- sha256 (`lf-normalised`): `cbdaa44b0fba859fe8fe7dd5ada4b13dbeb9c1e39728690a396b044f7798a6ff`
 - generated view: listed, not counted
 - cited in: record TFQ-0307 (shared)
 - counts toward the grade: no

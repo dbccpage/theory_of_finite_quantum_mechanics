@@ -163,7 +163,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0343_leave_gen_wdp_o01_through_o05_open_carrier_floor_preservation_maps_higher_fillers_hilbert.md`
 
 - file: [dag/derivations/06_wdp/tfq_0343_leave_gen_wdp_o01_through_o05_open_carrier_floor_preservation_maps_higher_fillers_hilbert.md](../../../dag/derivations/06_wdp/tfq_0343_leave_gen_wdp_o01_through_o05_open_carrier_floor_preservation_maps_higher_fillers_hilbert.md)
-- sha256 (`lf-normalised`): `b2881fb2ff31e99f8713ff8fcfbfd2424cce534a3a348dc5b475bc4db7679cc4`
+- sha256 (`lf-normalised`): `ff35afe4e3f493fe232b27b9059c6a4145dee1f6f12d7a3962872db2830ee619`
 - generated view: listed, not counted
 - cited in: record TFQ-0343
 - counts toward the grade: no

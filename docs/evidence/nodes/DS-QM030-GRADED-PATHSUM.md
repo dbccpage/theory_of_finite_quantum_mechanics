@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0239_finite_path_sum_on_a_unique_intermediate_cut.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0239_finite_path_sum_on_a_unique_intermediate_cut.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0239_finite_path_sum_on_a_unique_intermediate_cut.md)
-- sha256 (`lf-normalised`): `72af62b8257c0b97b4c304a2d30904a588ab0458a052291b3da84c55e1aa05a4`
+- sha256 (`lf-normalised`): `2f474eb6d5d4c39560339bcffa1d75d35a4c2e173987ad7ee807b07edda3c138`
 - generated view: listed, not counted
 - cited in: record TFQ-0239
 - counts toward the grade: no
@@ -74,7 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0240_ungraded_overcount_and_multiplicative_gauge_residual.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0240_ungraded_overcount_and_multiplicative_gauge_residual.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0240_ungraded_overcount_and_multiplicative_gauge_residual.md)
-- sha256 (`lf-normalised`): `e3ab70fc1615368acff2f61b342743d9f071cca14d8e971cfb8fff95c5378416`
+- sha256 (`lf-normalised`): `aa5a173b172190b393d85768d9f179e3d8a593da450bc5485d055b06c89ce133`
 - generated view: listed, not counted
 - cited in: record TFQ-0240 (shared)
 - counts toward the grade: no
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0242_graded_path_sum_as_finite_transport.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0242_graded_path_sum_as_finite_transport.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0242_graded_path_sum_as_finite_transport.md)
-- sha256 (`lf-normalised`): `b561317e74f12b1ac4cfecb4d7687c043b759161c3217895df621250f1bb9a9e`
+- sha256 (`lf-normalised`): `ca6d79f457df035d3e635b0c9f43eca7c0907040e0d8b3cc28c711c0badc9dba`
 - generated view: listed, not counted
 - cited in: record TFQ-0242
 - counts toward the grade: no

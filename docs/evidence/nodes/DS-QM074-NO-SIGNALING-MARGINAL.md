@@ -102,7 +102,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md](../../../dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md)
-- sha256 (`lf-normalised`): `9711db6e414bdb26e12927b2fe00e63c56a498a6641e835efe841e9b23f3cfc3`
+- sha256 (`lf-normalised`): `58a3610eb6858401659ba0cdebbc2477a60bef37c3af9d7229697c33a9c6dde4`
 - generated view: listed, not counted
 - cited in: record TFQ-0261
 - counts toward the grade: no

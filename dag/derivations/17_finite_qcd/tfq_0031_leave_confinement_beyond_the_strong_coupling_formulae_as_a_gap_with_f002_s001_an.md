@@ -44,4 +44,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F002.S001`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F002_continuum/S001_continuum_finite_shadow_bridge/shelf.yaml`
+  - `external:sha256:860cdf8fc8fb8383f60020cd5c0ecf533cce228dd92c85b96bc8198d6d8102cb`

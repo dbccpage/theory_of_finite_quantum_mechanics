@@ -95,7 +95,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0185_record_the_k_2_3_finite_certificate_as_the_pair_6_and_9_2_with.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0185_record_the_k_2_3_finite_certificate_as_the_pair_6_and_9_2_with.md](../../../dag/derivations/22_implementation_sibling/tfq_0185_record_the_k_2_3_finite_certificate_as_the_pair_6_and_9_2_with.md)
-- sha256 (`lf-normalised`): `d60490d4c67592c93f72cba05072726c9657e000e7cdab45b5009b8d3d440858`
+- sha256 (`lf-normalised`): `02deb04973e1958be662ae1c6a6e089c6aea82e67dbebf7d2fc1a25e68c9c036`
 - generated view: listed, not counted
 - cited in: record TFQ-0185
 - counts toward the grade: no
@@ -103,7 +103,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0186_do_not_treat_tracezeroduality_lean_as_a_lean_formalization_of_the_k_2_3_quotients.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0186_do_not_treat_tracezeroduality_lean_as_a_lean_formalization_of_the_k_2_3_quotients.md](../../../dag/derivations/22_implementation_sibling/tfq_0186_do_not_treat_tracezeroduality_lean_as_a_lean_formalization_of_the_k_2_3_quotients.md)
-- sha256 (`lf-normalised`): `44bcbd75b0e24dcdcbe8b82a195f42348b96cea4d9023e77dd3f166352315e23`
+- sha256 (`lf-normalised`): `f855bdb3f8ad490606f9ed83eaaca9115c7c126bde955420a58ccc0dab83c747`
 - generated view: listed, not counted
 - cited in: record TFQ-0186 (shared)
 - counts toward the grade: no

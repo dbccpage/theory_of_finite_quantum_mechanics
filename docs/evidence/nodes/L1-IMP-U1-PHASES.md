@@ -93,7 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md](../../../dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md)
-- sha256 (`lf-normalised`): `9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5`
+- sha256 (`lf-normalised`): `71e46fba825f45715355268e43c9c0eb27e2d7cc388a1eac92b22c860143ce22`
 - generated view: listed, not counted
 - cited in: record TFQ-0294 (shared)
 - counts toward the grade: no
@@ -101,7 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md`
 
 - file: [dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md](../../../dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md)
-- sha256 (`lf-normalised`): `3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b`
+- sha256 (`lf-normalised`): `92badd834a2adb4c2df9a98953ddb29ba6a18a3b2e0ce2bd7c8e78a50222dda0`
 - generated view: listed, not counted
 - cited in: record TFQ-0053 (shared)
 - counts toward the grade: no
@@ -109,7 +109,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/14_finite_gauge/tfq_0055_each_language_must_carry_no_rational_homomorphism_supplies_the_missing_square_root.md`
 
 - file: [dag/derivations/14_finite_gauge/tfq_0055_each_language_must_carry_no_rational_homomorphism_supplies_the_missing_square_root.md](../../../dag/derivations/14_finite_gauge/tfq_0055_each_language_must_carry_no_rational_homomorphism_supplies_the_missing_square_root.md)
-- sha256 (`lf-normalised`): `8555f29d93d2a5613dab291139edc56748d7d471012998854a1a6f49e74f1cbb`
+- sha256 (`lf-normalised`): `aac42b34c8ebe5ea6144975a942d09d2680cc3632ada87e0928021725c6b68bd`
 - generated view: listed, not counted
 - cited in: record TFQ-0055 (shared)
 - counts toward the grade: no

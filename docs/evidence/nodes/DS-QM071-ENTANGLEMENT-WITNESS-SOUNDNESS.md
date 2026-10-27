@@ -94,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0257_separability_witness_relative_to_a_declared_family.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0257_separability_witness_relative_to_a_declared_family.md](../../../dag/derivations/12_finite_qm_structure/tfq_0257_separability_witness_relative_to_a_declared_family.md)
-- sha256 (`lf-normalised`): `576d21d6ccb1ca8fc339e395b819411c274ace40062c05e0f5e738a1ba35fb37`
+- sha256 (`lf-normalised`): `956fe9f0c32dc52def557adc192e5f8e0d26cc14464e648a09601b6e8f3c1d9a`
 - generated view: listed, not counted
 - cited in: record TFQ-0257
 - counts toward the grade: no

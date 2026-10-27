@@ -177,7 +177,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0303_linear_isometric_dynamics_are_an_import.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0303_linear_isometric_dynamics_are_an_import.md](../../../dag/derivations/08_l1_to_l2/tfq_0303_linear_isometric_dynamics_are_an_import.md)
-- sha256 (`lf-normalised`): `0f739ba559f00f23b62c9f2b7b9c67b79fc74048195b124e6b9d9deed7910029`
+- sha256 (`lf-normalised`): `1f6b1d32e9588d0e3b8d345a1c1bc61632bcb8e1c0d1d554b47841183cfbaeed`
 - generated view: listed, not counted
 - cited in: record TFQ-0303
 - counts toward the grade: no

@@ -29,13 +29,13 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/observable.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/hermitian_spectral.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/commuting_observables.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/local_operator_algebra.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/superselection_sector.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/algebraic_qft.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:d2174cadc3e253afb3631b8aa626911a607a1f18ee82be59b0f8c32d2708fd8f`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:7a5a4b3d6e1f9185b75b7b143c03a40c4838e58cffd4a77e2c900968c4467ba7`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:aaa24b2955f9d6b460c2aec041d1c9ebfa58a61bf4056394a372e45942b81f40`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:f2a261d179774c9344c1bf8ae35a9e0b8229111bf48e6304162794f776843999`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:54341faf5455b48716dd42f351b6727b58d7fa6ce32fee5ae1f30bd626712559`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:f61366a09184ce73ed59f4266bad09e884dd5c9815f5b35b30eebdecd24185eb`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:2c3063603fd3462c580b0cbfda3f2af787a0b06292ac7ea296360d6330ce0139`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: The python twin is not located for observable.rs under 006_finite_qm/python/finite_qm.`](../../code/python/)
@@ -54,4 +54,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

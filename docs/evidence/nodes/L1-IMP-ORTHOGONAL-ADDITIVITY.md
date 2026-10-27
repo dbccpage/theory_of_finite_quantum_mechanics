@@ -190,7 +190,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0299_orthogonal_additivity_is_an_extra_frame_law.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0299_orthogonal_additivity_is_an_extra_frame_law.md](../../../dag/derivations/08_l1_to_l2/tfq_0299_orthogonal_additivity_is_an_extra_frame_law.md)
-- sha256 (`lf-normalised`): `1063b6852f23b60ef029ea2e4b527b92e1d94778ff67de2bd4a4777407e4cb89`
+- sha256 (`lf-normalised`): `49c843c004b1bc60c2697d467520472c6222a614d2c0cddf2812a8fe48c6d0b8`
 - generated view: listed, not counted
 - cited in: record TFQ-0299
 - counts toward the grade: no

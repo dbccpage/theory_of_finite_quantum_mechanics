@@ -32,17 +32,17 @@ In accordance with strict constructive principles:
 ### Lean 4 Theorems
 - [`declaration obligation: compare fewest_changes_every_writing_A and obstruction_persists_reach with ledger rows O3 and O6`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::Reach.rename`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::Step.rename`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::fewest_changes_every_writing_A`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::fewest_changes_every_writing_B`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/Second/Rename.lean::obstruction_persists_reach`](../../code/lean4/)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean`](../../code/lean4/)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean::Reach.rename`](../../code/lean4/)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean::Step.rename`](../../code/lean4/)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean::fewest_changes_every_writing_A`](../../code/lean4/)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean::fewest_changes_every_writing_B`](../../code/lean4/)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/Second/Rename.lean::obstruction_persists_reach`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`missing obligation: no Rust renaming module was listed for the ongoing package; do not invent one to close O3`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_genesis_rewriting_and_sameness_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_genesis_rewriting_and_sameness_witness`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`missing obligation: a witness table under 001_genesis_ongoing_h3v7n5qf that cites rows O3 and O6 beside the Rename.lean declaration names without a status change`](../../code/python/)
@@ -59,7 +59,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`, `F000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/floor.yaml`
+  - `external:sha256:9504a35b2a33de8f85af42c874eb8da62364cbb364219de602dcfa98b26569e1`
 
 ---
 
@@ -73,5 +73,5 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-GEN-REWRITING-COMMUTATION): R_raw(128) - G_cob(63) - S_decoy(2) == 63 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 63$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_gen_rewriting_commutation_and_obstruction_persistence`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 8961b2145cfe721b4e62bcd8a6fb66df19351c1cd2d6c7b81943f160849b9ba6`

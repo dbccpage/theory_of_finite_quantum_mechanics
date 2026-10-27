@@ -120,7 +120,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0369_finite_demand_count.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0369_finite_demand_count.md](../../../dag/derivations/01_pregenesis/tfq_0369_finite_demand_count.md)
-- sha256 (`lf-normalised`): `fa811925167931ff378c127826335fa5aefcf0549776626bce3a3e4fa67da6b2`
+- sha256 (`lf-normalised`): `9b4a4f12166a0f65ea316089b126a3f7a5fced693e51e12e75a96a12ad6a4ed6`
 - generated view: listed, not counted
 - cited in: record TFQ-0369
 - counts toward the grade: no
@@ -128,7 +128,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0333_account_finite_demand_by_s_next_s_d_b_only.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0333_account_finite_demand_by_s_next_s_d_b_only.md](../../../dag/derivations/05_mssn_sn/tfq_0333_account_finite_demand_by_s_next_s_d_b_only.md)
-- sha256 (`lf-normalised`): `e9332de8aad7a06986b36302ebc06117983e8bb231b14aa925897666c6d96560`
+- sha256 (`lf-normalised`): `d134cbba5793fb82c7227560cbf1c0f3c56f254b88ccf0c300c361fb0cc6ed85`
 - generated view: listed, not counted
 - cited in: record TFQ-0333
 - counts toward the grade: no

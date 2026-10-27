@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0258_qubit_not_derived_from_the_bit_shadow.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0258_qubit_not_derived_from_the_bit_shadow.md](../../../dag/derivations/12_finite_qm_structure/tfq_0258_qubit_not_derived_from_the_bit_shadow.md)
-- sha256 (`lf-normalised`): `ae403c65587ee541146357fde141b0ebabe4b7fb6b7e39a3120a18e9f09fd7ee`
+- sha256 (`lf-normalised`): `bfe622cf7f7c845303d10039403ef0c34fd997a127b66471a82bca6abe4a9fa2`
 - generated view: listed, not counted
 - cited in: record TFQ-0258
 - counts toward the grade: no

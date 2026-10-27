@@ -10,7 +10,7 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `OPEN`. Evidence grade: **
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 4
+- counted in-repo evidence files: 5
 - cited Lean, Rust or Python symbols found in their in-repo files: 20
 - distinct cited Lean declarations covered by a current replay receipt: 14
 - counted in-repo runnable tests: 0
@@ -113,16 +113,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md](../../../dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md)
-- sha256 (`lf-normalised`): `04d093f65c9ed09525c08b58fa61c39979a0fca44adf2ceab41bbbc9fe7617d7`
+- sha256 (`lf-normalised`): `6b6de5f147b323dd49aa43be8c657bfdf4c6efa6b4495c2296ff2d9595cb8878`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0427
 - counts toward the grade: no
+
+### Documents and data: `education/pregenesis_empty_mark/sources/analysis_derivation_v1.md`
+
+- file: [education/pregenesis_empty_mark/sources/analysis_derivation_v1.md](../../../education/pregenesis_empty_mark/sources/analysis_derivation_v1.md)
+- sha256 (`lf-normalised`): `0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149`
+- cited in: node.source
+- counts toward the grade: yes
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:1065-1087`
 - `external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:127-134`
 - `external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:120-130`
 

@@ -52,10 +52,10 @@ Active formalization is located in `lean4/quantum_mechanics/` (toolchain `leanpr
   - `DynamicsDichotomy.lean`: Proves the periodic vs aperiodic dynamics dichotomy for discrete unitary operators.
 
 ### 3.2 Computational Kernels (Python & Rust)
-- **Rust Crates:** Canonical high-performance and exact rational implementations reside in `omega_engine/crates_rs/omega_quantum_physics/src/finite_qm/`:
+- **Rust Crates:** Canonical high-performance and exact rational implementations reside in `external:git-tree:28e7f6bafc86df73aa8e7f830384fa59dcbeaf20`:
   - `continuum.rs`: Exact rational Wintner-Wielandt witness and commutator trace analysis.
   - `mub/`: Mutually unbiased basis constructions across finite prime-power dimensions.
-- **Python Engines:** Domain and use-case solvers reside in `omega_engine/crates/finite_qm/`:
+- **Python Engines:** Domain and use-case solvers reside in `external:unlocated`:
   - `domain/primitive_difference.py`: Difference graph solvers.
   - `use_cases/continuum_lift.py`: Continuum boundary numerical diagnostics.
   - `use_cases/tensor_commuting_correlation_frontier.py`: Commuting-operator and tensor correlation frontier analysis.
@@ -80,4 +80,4 @@ The program has advanced through several focused research campaigns:
 
 - **Lean 4 Environment:** `lean4/quantum_mechanics/` consists of a flat library containing over 150 Lean source files compiling under Lake.
 - **Rust Architecture:** Crate `omega_quantum_physics` provides native compiled solvers, with `omega_finite_qm` serving as a public API facade.
-- **Python Architecture:** Structured package in `omega_engine/crates/finite_qm/` supporting symbolic algebra and rapid prototyping.
+- **Python Architecture:** Structured package in `external:unlocated` supporting symbolic algebra and rapid prototyping.

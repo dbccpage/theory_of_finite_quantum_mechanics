@@ -128,7 +128,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md](../../../dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md)
-- sha256 (`lf-normalised`): `40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9`
+- sha256 (`lf-normalised`): `144cf2a458eaa98b2d5277e88f08d9bd4280270bf9e48f1d681847a36b2d58f0`
 - generated view: listed, not counted
 - cited in: record TFQ-0395
 - counts toward the grade: no

@@ -29,7 +29,7 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/phase_estimation.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:13763a7ef4cd39498f6efd5d77b2bdc568848e116c94b508017bbc44df530185`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: The python twin is not located for phase_estimation.rs under 006_finite_qm/python/finite_qm.`](../../code/python/)
@@ -46,4 +46,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

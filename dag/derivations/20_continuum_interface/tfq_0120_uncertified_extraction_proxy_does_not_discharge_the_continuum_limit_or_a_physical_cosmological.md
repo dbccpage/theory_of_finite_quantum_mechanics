@@ -29,11 +29,11 @@ In accordance with strict constructive principles:
 *Formalization active. Proof obligations tracked under zero-sorry regime.*
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/meron_time_refinement.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:4ea200be723ed74e2090d95d338a5b72e24849f9688ef439873f27949d22a0e0`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/code/wilsonian_extrapolator.py`](../../code/python/)
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/code/meron_wilsonian_bridge.py`](../../code/python/)
+- [`absent: no local python twin located for sources/atlas/papers/finite_to_continuum/code/wilsonian_extrapolator.py`](../../code/python/)
+- [`absent: no local python twin located for sources/atlas/papers/finite_to_continuum/code/meron_wilsonian_bridge.py`](../../code/python/)
 
 ---
 
@@ -47,4 +47,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F002.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent`
+  - `external:git-tree:0fb81f77bbeba84143f574b5a4bc956196140991`

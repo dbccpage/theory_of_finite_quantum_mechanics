@@ -66,7 +66,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0302_phase_averaged_shadow_under_declared_phases.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0302_phase_averaged_shadow_under_declared_phases.md](../../../dag/derivations/08_l1_to_l2/tfq_0302_phase_averaged_shadow_under_declared_phases.md)
-- sha256 (`lf-normalised`): `4296a55d644277656be98d776d37082e584305634cc20c2f771e08c75b4288d2`
+- sha256 (`lf-normalised`): `d604cd4859b351530a4318d060009ee705174e7b205978342ab510455c242b93`
 - generated view: listed, not counted
 - cited in: record TFQ-0302
 - counts toward the grade: no

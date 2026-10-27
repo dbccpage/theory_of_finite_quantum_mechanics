@@ -94,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0236_declared_instruments_and_conditional_record_updates.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0236_declared_instruments_and_conditional_record_updates.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0236_declared_instruments_and_conditional_record_updates.md)
-- sha256 (`lf-normalised`): `b94ca33803e9d3135a2fd1a06c1f4278652ce36635784e4a71b7aa5024b7073f`
+- sha256 (`lf-normalised`): `22c068f6d8d57eff83d5919e716b5eb07d1c37e531a3f877505cc322f27433f1`
 - generated view: listed, not counted
 - cited in: record TFQ-0236 (shared)
 - counts toward the grade: no
@@ -102,7 +102,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0241_projection_postulate_and_born_pairing_remain_imported.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0241_projection_postulate_and_born_pairing_remain_imported.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0241_projection_postulate_and_born_pairing_remain_imported.md)
-- sha256 (`lf-normalised`): `54203a711dff1214150b94e6a2fc09dea829e2a93d44393046229b375364d8f8`
+- sha256 (`lf-normalised`): `2ff5d99d90a29f686733fb3a7e7c7979be3e10986b116ce953f931bdbdada51a`
 - generated view: listed, not counted
 - cited in: record TFQ-0241
 - counts toward the grade: no

@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0255_phase_gauge_annex_with_no_independent_derivation.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0255_phase_gauge_annex_with_no_independent_derivation.md](../../../dag/derivations/12_finite_qm_structure/tfq_0255_phase_gauge_annex_with_no_independent_derivation.md)
-- sha256 (`lf-normalised`): `d9550d315f9a93fdeacf37fbcf43979ad633bc9c83d8a57913b54d2d6c468d88`
+- sha256 (`lf-normalised`): `af20502cc21fd7ac4562b887afa7316536ae1d31fdec5fd6a973f502a72ad97a`
 - generated view: listed, not counted
 - cited in: record TFQ-0255
 - counts toward the grade: no
@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md](../../../dag/derivations/12_finite_qm_structure/tfq_0267_completely_positive_import_annex.md)
-- sha256 (`lf-normalised`): `d15381a243e254164c16e1eafedefccb868275f35a792b8564ec7f910f8138f5`
+- sha256 (`lf-normalised`): `327ba50e1f22adcf109b389647ecd5375d52629a3ece5b90b7755e17ab4ec771`
 - generated view: listed, not counted
 - cited in: record TFQ-0267 (shared)
 - counts toward the grade: no

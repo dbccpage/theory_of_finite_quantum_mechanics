@@ -29,7 +29,7 @@ In accordance with strict constructive principles:
 - [`lean4/FiniteDensity.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_certifiers/src/mathematical_claim.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:86d76ba12da358ec2df40ee148a77ac71c6fd449d213b41b462324fccbd49a96`](../../code/rust/src/)
 
 ---
 
@@ -43,6 +43,6 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000:001_from_primitive_difference_to_quantum_mechanics`, `F003.S000`, `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics`
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime`
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:aaf60017b237ab042d2a4f52cec36e21f4264b2f`
+  - `external:git-tree:5d358f5062016c742016b891fa7891bb0f0e19ef`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

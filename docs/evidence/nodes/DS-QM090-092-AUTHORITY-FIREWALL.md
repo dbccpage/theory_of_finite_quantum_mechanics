@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0272_interpretations_as_authority_shadows.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0272_interpretations_as_authority_shadows.md](../../../dag/derivations/13_finite_qm_information/tfq_0272_interpretations_as_authority_shadows.md)
-- sha256 (`lf-normalised`): `6c195fc19eee75d32fee97a7a26271292bd94e955cd2118335b839fe683c3d70`
+- sha256 (`lf-normalised`): `f092f47ed0eb952123e0f05c84c52ef339af7baadbb267c3ef6e561c68305815`
 - generated view: listed, not counted
 - cited in: record TFQ-0272
 - counts toward the grade: no
@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0275_formal_possibility_is_not_a_physical_terminal.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0275_formal_possibility_is_not_a_physical_terminal.md](../../../dag/derivations/13_finite_qm_information/tfq_0275_formal_possibility_is_not_a_physical_terminal.md)
-- sha256 (`lf-normalised`): `0c06e59caa9cf6e89889de2d616dcb14790b6dd396b74cf92ac1887c673db010`
+- sha256 (`lf-normalised`): `b24d7569df9368dc57292f936683c0a611956ae29245e7b4e90b05d6f1664064`
 - generated view: listed, not counted
 - cited in: record TFQ-0275
 - counts toward the grade: no
@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0277_typed_authority_boundary_suite.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0277_typed_authority_boundary_suite.md](../../../dag/derivations/13_finite_qm_information/tfq_0277_typed_authority_boundary_suite.md)
-- sha256 (`lf-normalised`): `f45813ea68654520b8c881591342a0c38c8266e675f47e144e2af6734aa78028`
+- sha256 (`lf-normalised`): `9d861bd0d77c68f20b1cf6c4f98581a4527caf7b63ac629fc08b26216d3de75a`
 - generated view: listed, not counted
 - cited in: record TFQ-0277
 - counts toward the grade: no
@@ -88,7 +88,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0278_copenhagen_slot_reserved_as_an_authority_shadow.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0278_copenhagen_slot_reserved_as_an_authority_shadow.md](../../../dag/derivations/13_finite_qm_information/tfq_0278_copenhagen_slot_reserved_as_an_authority_shadow.md)
-- sha256 (`lf-normalised`): `13bab7cc5334068682024b2f5a505ec0cd6ca48f568032a5f2421e8a42be2917`
+- sha256 (`lf-normalised`): `f3827289e778759e9f24d3804b03a2297f9d35d78290a11a6ad3d0b992f2c724`
 - generated view: listed, not counted
 - cited in: record TFQ-0278 (shared)
 - counts toward the grade: no

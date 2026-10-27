@@ -27,13 +27,13 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`lean4/TwoMarkCoboundary.lean`](../../../lean4/TwoMarkCoboundary.lean) records four functions on a two-mark carrier, self-coboundary 0, edge coboundaries 0, 1, 1, 0, and four pairings of one seven-nibble receipt. The node stays OPEN.
-- No local twin of `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B001_raw_distinction.lean` is in this checkout.
+- No local twin of `external:sha256:2e264c28e45671b646ce8e6ad290f689f7fb8ecf3625b109b9e97df3a74ee073` is in this checkout.
 
 ### Sovereign Rust Certifiers
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/src/s000_consolidation.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:a6e38275af609ac8854098b254297b56de79924af83911dd5f14947d875386bf`](../../code/python/)
 
 ---
 
@@ -47,7 +47,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000`, `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/floor.yaml`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/shelf.yaml`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/README.md`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/claims/proposed_gaps.yaml`
+  - `external:sha256:9504a35b2a33de8f85af42c874eb8da62364cbb364219de602dcfa98b26569e1`
+  - `external:sha256:98533bbe8dde6cad1f5bbd9d2de0fb85196b2d44c74964cec5a96620ff69c94f`
+  - `external:sha256:76c7fd177e3087bddd2fb14ed9f25f11b44a443385882205a3c7fcda8284f926`
+  - `external:sha256:7f0161fe2e71330fad6166c37ff1898e4729579747c0cbbdd190a42062e241fc`

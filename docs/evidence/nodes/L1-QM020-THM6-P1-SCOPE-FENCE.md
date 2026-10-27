@@ -88,7 +88,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0305_sector_weights_do_not_force_the_quadratic_form.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0305_sector_weights_do_not_force_the_quadratic_form.md](../../../dag/derivations/08_l1_to_l2/tfq_0305_sector_weights_do_not_force_the_quadratic_form.md)
-- sha256 (`lf-normalised`): `bbed7afa7659c56ece50792a81453fafadb13b189219ab4a6bd60dcb1a5d68aa`
+- sha256 (`lf-normalised`): `3dd615c58064bfcdc3dbc6a88c77882eb26ceee498868618eb12dfd557e14215`
 - generated view: listed, not counted
 - cited in: record TFQ-0305
 - counts toward the grade: no

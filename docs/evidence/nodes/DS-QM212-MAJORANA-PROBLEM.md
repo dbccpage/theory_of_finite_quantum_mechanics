@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md](../../../dag/derivations/22_implementation_sibling/tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md)
-- sha256 (`lf-normalised`): `5c4c1c38af5d2e4dbe1283909b64f49d25dd4435c9532175614fce1db84c758a`
+- sha256 (`lf-normalised`): `8f694df3808fc082c7f4ff808940729c259808b2ceb1f8af896c4d1782b8d48d`
 - generated view: listed, not counted
 - cited in: record TFQ-0181
 - counts toward the grade: no

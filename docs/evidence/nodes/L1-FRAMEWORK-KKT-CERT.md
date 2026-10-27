@@ -94,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0351_accept_an_integer_finite_list_certificate_only_inside_its_capacity_circulation_feasibility.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0351_accept_an_integer_finite_list_certificate_only_inside_its_capacity_circulation_feasibility.md](../../../dag/derivations/07_l1_emergence/tfq_0351_accept_an_integer_finite_list_certificate_only_inside_its_capacity_circulation_feasibility.md)
-- sha256 (`lf-normalised`): `91d69f16d86f87bb85e3b6a77d66a336dc667a588b82d8215d405dec79f5cfe6`
+- sha256 (`lf-normalised`): `a02083e57a8b0fb6de4b73077d0d3b757b83196d23f51891f4c0932d629f33b8`
 - generated view: listed, not counted
 - cited in: record TFQ-0351
 - counts toward the grade: no

@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md](../../../dag/derivations/08_l1_to_l2/tfq_0300_descent_compatible_maps_stay_row_sparse.md)
-- sha256 (`lf-normalised`): `1711cef9f69d5cafbf72d2e3c1a12bb8ce47f6773b96bab5491aec0055e0ca38`
+- sha256 (`lf-normalised`): `2cc468ab3c0ecf70660ddb84a55c40c691a49519ee14585e283fdbc50cde7e38`
 - generated view: listed, not counted
 - cited in: record TFQ-0300 (shared)
 - counts toward the grade: no

@@ -133,7 +133,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0293_complex_field_as_a_declared_carrier.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0293_complex_field_as_a_declared_carrier.md](../../../dag/derivations/08_l1_to_l2/tfq_0293_complex_field_as_a_declared_carrier.md)
-- sha256 (`lf-normalised`): `8ec15a3cd547dd8f4e99ac82959739db450d764d0de7303e56bb3bff493bf2fb`
+- sha256 (`lf-normalised`): `f926ab45dc41ec4a3f69b3968eba8f98de37d4b3f7646ffd9cf51cc0067f4f41`
 - generated view: listed, not counted
 - cited in: record TFQ-0293
 - counts toward the grade: no

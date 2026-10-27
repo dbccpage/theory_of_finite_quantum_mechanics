@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust MSS-N alphabet check`
 
 ### Python Oracles & Numerical Evaluators
-- `external:sha256:56626b2520b74d365419831189a5f3e91371b527e2f177f6c7a217222aed2ca1::RawGlyphs` (private upstream source, not in this repository)
+- `education/minimal_symbol_systems/code/mssn_codec.py::RawGlyphs` (private upstream source, not in this repository)
 
 ---
 
@@ -49,6 +49,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `external:sha256:2fa40c612d21ff06c530d2d586cb46d72df8d464d544de8f3536254191df6aac:10-11`
+  - `education/minimal_symbol_systems/grammar/mssn.ebnf:10-11`
   - `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:42-43`
   - `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:44-48`

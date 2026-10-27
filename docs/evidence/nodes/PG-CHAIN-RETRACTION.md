@@ -169,7 +169,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md](../../../dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md)
-- sha256 (`lf-normalised`): `6c66f7f52cd55a5c81e088f88245875f698adbf9b4fc78c2c35d1d4e6e366f41`
+- sha256 (`lf-normalised`): `36a0aad821af3477fea51f8126fcf4452c30015f294ea2decaef5454ea2cd104`
 - generated view: listed, not counted
 - cited in: record TFQ-0375
 - counts toward the grade: no
@@ -177,7 +177,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md](../../../dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md)
-- sha256 (`lf-normalised`): `0c09bf4ad8e9d5d94de08a6902582cbe615fcb572c696c53d1f7ffc2540a4946`
+- sha256 (`lf-normalised`): `fe2ea39dd76f240033b4cdd5934ad45accaed60b489cc8a3aa81e65f0008a1b0`
 - generated view: listed, not counted
 - cited in: record TFQ-0337
 - counts toward the grade: no
@@ -185,7 +185,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md`
 
 - file: [dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md](../../../dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md)
-- sha256 (`lf-normalised`): `6b435bb1723d6faae4828b1c28409220469504c82b119f60d2b15a2e2d5fdab4`
+- sha256 (`lf-normalised`): `a3f593ff7910ebfaf1a0be3247c6690513d5c22ee4ef772b6ce7a07f0e292484`
 - generated view: listed, not counted
 - cited in: record TFQ-0346 (shared)
 - counts toward the grade: no
@@ -193,7 +193,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0195_use_finite_rational_homology_and_simplicial_complexes_as_carriers_not_as_a.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0195_use_finite_rational_homology_and_simplicial_complexes_as_carriers_not_as_a.md](../../../dag/derivations/22_implementation_sibling/tfq_0195_use_finite_rational_homology_and_simplicial_complexes_as_carriers_not_as_a.md)
-- sha256 (`lf-normalised`): `cf8f2843c9f722335b7bf30c649ba760c2e0921ed9f900664b560e81e7744840`
+- sha256 (`lf-normalised`): `bb0588c9bd88af286ffafed0742d900ee54231258df3d1b7e3cb687d39212356`
 - generated view: listed, not counted
 - cited in: record TFQ-0195
 - counts toward the grade: no

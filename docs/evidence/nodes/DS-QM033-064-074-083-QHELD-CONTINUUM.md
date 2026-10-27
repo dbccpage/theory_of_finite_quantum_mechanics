@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/20_continuum_interface/tfq_0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md`
 
 - file: [dag/derivations/20_continuum_interface/tfq_0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md](../../../dag/derivations/20_continuum_interface/tfq_0122_filename_continuum_rs_does_not_discharge_the_continuum_limit_or_the_einstein_equation.md)
-- sha256 (`lf-normalised`): `df89bf4a0b6dfc8e59de3f457b87743b2c49ab9476f89ebfaa48041a170cadbb`
+- sha256 (`lf-normalised`): `b812e99d347b07a1f4695f081d4f6a581fd9074ea034adc45ef4af082878c7d2`
 - generated view: listed, not counted
 - cited in: record TFQ-0122
 - counts toward the grade: no
@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/20_continuum_interface/tfq_0124_gap_continuum_limit_einstein_equation_physical_cosmological_constant_and_smooth_manifold.md`
 
 - file: [dag/derivations/20_continuum_interface/tfq_0124_gap_continuum_limit_einstein_equation_physical_cosmological_constant_and_smooth_manifold.md](../../../dag/derivations/20_continuum_interface/tfq_0124_gap_continuum_limit_einstein_equation_physical_cosmological_constant_and_smooth_manifold.md)
-- sha256 (`lf-normalised`): `83438bd73e471fcb85435173c832b562c660217b5fe8cc2305bfe3d77829eaf4`
+- sha256 (`lf-normalised`): `81507d177bff05ca3ad15ba1eb0ddf13094bd2efe82d4458f92139499535cbe8`
 - generated view: listed, not counted
 - cited in: record TFQ-0124
 - counts toward the grade: no

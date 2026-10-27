@@ -41,16 +41,16 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics/ContextualityObstruction.lean::x1_has_no_global_section`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm120_mermin_peres_f2_no_global_section`](../../code/lean4/)
 - [`lean4/quantum_mechanics/DualWitness.lean::mermin_peres_parity_obstruction`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
+- [`sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs::construct_cabello_scenario`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/kochen_specker.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs::ParityAdmission`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`](../../code/rust/src/)
+- [`external:sha256:548be8ce94a17a91d70f87aa6ddd92b68ab38df11f95e8943a6ae35fe0a9d2b4::construct_cabello_scenario`](../../code/rust/src/)
+- [`external:sha256:604e2768b7d0ee3423792a93ba46749403a8df2cdfa61198bf69fa12243b52f7`](../../code/rust/src/)
+- [`external:sha256:84f635fc4390806ffa803c0278afb28439dc5449aff1ea756d948db611384a5f::ParityAdmission`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm`](../../code/python/)
+- [`sources/atlas/papers/finite_quantum_mechanics/python/finite_qm`](../../code/python/)
 
 ---
 
@@ -64,7 +64,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`
 
 ---
 
@@ -78,7 +78,7 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-CABELLO-NO-INTEGER-FRAME): R_raw(249) - G_cob(121) - S_decoy(7) == 121 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 121$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/H053EverettForkingTree.lean::cabello_parity_obstruction`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = ee4503323cdc9ca06aa0d15cd5d4cc48c7a7b5cf08b95a7d7d32130d3df07b18`
 
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`FQ-CONTEXTUALITY-CECH-F2`)
@@ -91,7 +91,7 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-CONTEXTUALITY-CECH-F2): R_raw(269) - G_cob(131) - S_decoy(7) == 131 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 131$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DualWitness.lean::mermin_peres_parity_obstruction`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs::ParityAdmission`
+- **Sovereign Rust Witness Anchor**: `external:sha256:84f635fc4390806ffa803c0278afb28439dc5449aff1ea756d948db611384a5f::ParityAdmission`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4-flash` | `status = PASS` | `receipt_sha256 = 9e973ede4508f1fd972fd1c8487d914603442b24e597d5f73180734084d0f5d8`
 
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`GP-GAP-EXACT-DUALITY`)
@@ -104,7 +104,7 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(GP-GAP-EXACT-DUALITY): R_raw(302) - G_cob(147) - S_decoy(8) == 147 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 147$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/LggrFiniteResults.lean::LggrFiniteResults.totalSatWeight3_le_two_mul_mass`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = c8a5318ce3d61fa11275d04af6f9ee53367c95da45b9a4f2d3a4fa696217cd93`
 
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM120-MERMIN-PERES-F2-OBSTRUCTION`)
@@ -117,5 +117,5 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(DS-QM120-MERMIN-PERES-F2-OBSTRUCTION): R_raw(382) - G_cob(187) - S_decoy(8) == 187 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 187$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm120_mermin_peres_f2_no_global_section`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 4b7b90ac4663017c9ec193829215699a99aaa73a9affd264f52acdd0cb4a4183`

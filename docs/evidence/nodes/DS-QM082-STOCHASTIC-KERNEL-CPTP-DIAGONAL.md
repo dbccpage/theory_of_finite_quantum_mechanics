@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0265_stochastic_population_shadow_of_a_channel.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0265_stochastic_population_shadow_of_a_channel.md](../../../dag/derivations/12_finite_qm_structure/tfq_0265_stochastic_population_shadow_of_a_channel.md)
-- sha256 (`lf-normalised`): `2d9b455b4987fec79de8d3cf90fac11d6191df9101791239e797027089c833e0`
+- sha256 (`lf-normalised`): `ba1a34e4364e665fb88aef0bc7b63b68d976b9c0b82c9d11ea97ea6ecb3ab047`
 - generated view: listed, not counted
 - cited in: record TFQ-0265
 - counts toward the grade: no

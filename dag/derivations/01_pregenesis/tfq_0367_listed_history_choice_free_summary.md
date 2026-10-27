@@ -31,14 +31,14 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`missing declaration obligation: a choice-free listed-history criterion inside 000_pre_genesis_to_mssn/lean4, where Paper.lean still mentions Classical.choice`](../../code/lean4/)
-- [`omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean::PreMssnListed.fiberConstant_of_recon`](../../code/lean4/)
-- [`omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean::PreMssnListed.listed_history_report_criterion`](../../code/lean4/)
-- [`omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean::PreMssnListed.recon_of_fiberConstant`](../../code/lean4/)
+- [`external:sha256:dd07f28f989eee33fbccd3ee213fab1eda3d533df2f96b5089975ae046fb7fcc::PreMssnListed.fiberConstant_of_recon`](../../code/lean4/)
+- [`external:sha256:dd07f28f989eee33fbccd3ee213fab1eda3d533df2f96b5089975ae046fb7fcc::PreMssnListed.listed_history_report_criterion`](../../code/lean4/)
+- [`external:sha256:dd07f28f989eee33fbccd3ee213fab1eda3d533df2f96b5089975ae046fb7fcc::PreMssnListed.recon_of_fiberConstant`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`missing obligation: a listed-history reconstructor in crate pre_mssn_preservation whose input length is part of the statement`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_pregenesis_constructive_summary_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_pregenesis_constructive_summary_witness`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`missing obligation: a first-match reconstructor on an explicit list in 000_pre_genesis_to_mssn/code/preservation.py, beside report_factor and not using an unlisted search`](../../code/python/)
@@ -55,7 +55,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch05_descent_versus_selected_representatives.md`
+  - `external:sha256:e3d9309d9f6863c1a0b8369833726351598655525025e6af343a316599f66074`
 
 ---
 
@@ -68,6 +68,6 @@ In accordance with strict constructive principles:
 - **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-PREGEN-CONSTRUCTIVE-SUMMARY): 4*idx(43) + 3*stage_rank(1) + route_degree(3) == 178` ($\text{value} = 178$)
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-PREGEN-CONSTRUCTIVE-SUMMARY): R_raw(91) - G_cob(45) - S_decoy(1) == 45 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 45$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
-- **Lean 4 Theorem Anchor**: `omega_engine_education/documentation/000_oepregen/lean4/ListedHistorySummary.lean::PreMssnListed.fiberConstant_of_recon`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- **Lean 4 Theorem Anchor**: `external:sha256:dd07f28f989eee33fbccd3ee213fab1eda3d533df2f96b5089975ae046fb7fcc::PreMssnListed.fiberConstant_of_recon`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = fda142091b847ff0c9c4270c0e46dab4eb5e4c01a012932242a083aea2e01ed9`

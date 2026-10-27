@@ -42,7 +42,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust check of the endpoint lemma in the S(n) strand`
 
 ### Python Oracles & Numerical Evaluators
-- `external:sha256:41be0ece4d1f0ecd255141dd5753d0c096aaa4cd31c6447a8fd3249217919f99::verify_wir` (private upstream source, not in this repository)
+- `education/symmetric_group_presentations/code/sn_audit.py::verify_wir` (private upstream source, not in this repository)
 
 ---
 

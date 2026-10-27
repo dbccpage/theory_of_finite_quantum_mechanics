@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0244_discrete_schrodinger_cochain_on_a_finite_graph.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0244_discrete_schrodinger_cochain_on_a_finite_graph.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0244_discrete_schrodinger_cochain_on_a_finite_graph.md)
-- sha256 (`lf-normalised`): `6640d197ae41d47ca78026d04fd1f33fa55ddfe9fba32c67d101490dd05aaf1e`
+- sha256 (`lf-normalised`): `1d644bd57f4dc76d31e1ada2f6fbf8c99582817c4ab8cd602c13ed771509c670`
 - generated view: listed, not counted
 - cited in: record TFQ-0244
 - counts toward the grade: no

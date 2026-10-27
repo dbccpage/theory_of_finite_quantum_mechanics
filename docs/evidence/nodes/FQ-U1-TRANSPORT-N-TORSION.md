@@ -94,7 +94,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md`
 
 - file: [dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md](../../../dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md)
-- sha256 (`lf-normalised`): `3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b`
+- sha256 (`lf-normalised`): `92badd834a2adb4c2df9a98953ddb29ba6a18a3b2e0ce2bd7c8e78a50222dda0`
 - generated view: listed, not counted
 - cited in: record TFQ-0053 (shared)
 - counts toward the grade: no
@@ -102,7 +102,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/14_finite_gauge/tfq_0054_each_language_must_carry_pure_gauge_iff_every_off_forest_edge_is_1.md`
 
 - file: [dag/derivations/14_finite_gauge/tfq_0054_each_language_must_carry_pure_gauge_iff_every_off_forest_edge_is_1.md](../../../dag/derivations/14_finite_gauge/tfq_0054_each_language_must_carry_pure_gauge_iff_every_off_forest_edge_is_1.md)
-- sha256 (`lf-normalised`): `bec1ff23684877868f7c92f7a5a339d288796a72cf8e04e3c4fb96610dd8206f`
+- sha256 (`lf-normalised`): `8caf39c1f0094e74e4dd3012a9f58f40085c183d62e5668eb31d881b32a99651`
 - generated view: listed, not counted
 - cited in: record TFQ-0054 (shared)
 - counts toward the grade: no
@@ -110,7 +110,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0057_each_language_must_carry_rational_dirac_inversion_on_an_admitted_gamma_family.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0057_each_language_must_carry_rational_dirac_inversion_on_an_admitted_gamma_family.md](../../../dag/derivations/15_finite_qed/tfq_0057_each_language_must_carry_rational_dirac_inversion_on_an_admitted_gamma_family.md)
-- sha256 (`lf-normalised`): `cc30729fc06fba14ad3a2eb0b87d1af117d3864925ef95ab2f9043aa112cabca`
+- sha256 (`lf-normalised`): `bdb048cef13f55c2790909e788ed2b66c21d61488ecda497a8014f3008b873f4`
 - generated view: listed, not counted
 - cited in: record TFQ-0057 (shared)
 - counts toward the grade: no

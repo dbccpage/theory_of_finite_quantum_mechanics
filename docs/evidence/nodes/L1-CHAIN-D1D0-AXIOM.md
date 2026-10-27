@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0350_assume_d1_d0_0_only_by_a_declared_certificate_or_the.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0350_assume_d1_d0_0_only_by_a_declared_certificate_or_the.md](../../../dag/derivations/07_l1_emergence/tfq_0350_assume_d1_d0_0_only_by_a_declared_certificate_or_the.md)
-- sha256 (`lf-normalised`): `8f48154986b12b817d4d0105fa7e1b783fac5b28600d67bf83566ae053f23475`
+- sha256 (`lf-normalised`): `da52e45b60c13aa6e6121c8cb7d3c48ddf5718fe5bd02ba71672914e1a8d2be0`
 - generated view: listed, not counted
 - cited in: record TFQ-0350
 - counts toward the grade: no
@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/14_finite_gauge/tfq_0052_each_language_must_carry_on_a_declared_m_2_q_i_packet_d0_of_an.md`
 
 - file: [dag/derivations/14_finite_gauge/tfq_0052_each_language_must_carry_on_a_declared_m_2_q_i_packet_d0_of_an.md](../../../dag/derivations/14_finite_gauge/tfq_0052_each_language_must_carry_on_a_declared_m_2_q_i_packet_d0_of_an.md)
-- sha256 (`lf-normalised`): `24435b37027494cea1e6541393a74dfaa720915fdab89c57efcf22685a0d8568`
+- sha256 (`lf-normalised`): `9d6162aed312ba2ddb1cf7c9c064ff94f92a33337fb7a8ffd5001b7600c2c036`
 - generated view: listed, not counted
 - cited in: record TFQ-0052 (shared)
 - counts toward the grade: no

@@ -29,12 +29,12 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/composite.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/composite_controls.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/composite_completion_gate.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/composite_tensor_family_gate.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/d10_controls.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/non_cyclic_falser.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:90994bce0491d03711037f468c4ec2fbff19350a83431170200491dfd602c86b`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:ebc90fc9e25aea5a9f6142c74ccd659b2540cac7fbe1891de6dc6c6cec317ea9`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:9296c8b6080ffbdc3ba88ca1ed17655af1746cf3c2460c8cb4c6e64169533225`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:e29f9651f96bd192309ec1227bfd711dc20efd030d91ac3f9b1766d2913246c1`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:f2833841ab4ff101c712310999d37362d63a05ca863f60492c3c594c7aff9131`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:6e368b036d0079043a60025b15b6b4b9377a295e8016744150257f7594bc984f`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: The python twin is not located for mub/composite.rs. composition_tensor_mub.py is a tensor-statistics replay, not this lower-control gate.`](../../code/python/)
@@ -51,4 +51,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

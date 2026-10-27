@@ -30,8 +30,8 @@ In accordance with strict constructive principles:
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_lifts/src/lift_license.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_lifts/src/candidate.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:b4c26ab4c15e52b2f236eee0c1d2cf80b6ebd4b31d89fe09ac901b60d2185a90`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:efc412f17bdf7ccea00fff86d63ddc4df7aff36766b2caa0256c36d31dd3fe4f`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: not located`](../../code/python/)
@@ -48,4 +48,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/shelf.yaml`
+  - `external:sha256:98533bbe8dde6cad1f5bbd9d2de0fb85196b2d44c74964cec5a96620ff69c94f`

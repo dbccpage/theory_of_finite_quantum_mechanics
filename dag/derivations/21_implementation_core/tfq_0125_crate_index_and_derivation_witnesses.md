@@ -32,8 +32,8 @@ In accordance with strict constructive principles:
 - [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
 - [`code/rust/src/dag_witnesses.rs`](../../code/rust/src/)
 - [`code/rust/src/qm/campaigns/engine_bridge.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/carrier_tests.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/bin/emit_pfp_workpads.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:4799bd7832947fd060449a609277b0884681021ac90fe1f3833a71ac20f0e412`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:d1787dad0abfd3ac2549cc51827014cd8feb4379238cb28de59ce92e0fda833b`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`code/python/src/majorana/tests/support/finite_qm/use_cases/finite_qm_engine.py`](../../code/python/)
@@ -51,4 +51,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

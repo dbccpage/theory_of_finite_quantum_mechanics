@@ -107,7 +107,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md](../../../dag/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md)
-- sha256 (`lf-normalised`): `afafc9b824245cd2b19b9f248fe02687da0b8782d2f01dd84904020ef321fe45`
+- sha256 (`lf-normalised`): `e1bfd7a9b858c861d7e13fcda4ae9aa97f3636eb276192cafed99d5d81c16937`
 - generated view: listed, not counted
 - cited in: record TFQ-0355 (shared)
 - counts toward the grade: no
@@ -115,7 +115,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0295_born_readout_of_a_supplied_lift_is_redundant.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0295_born_readout_of_a_supplied_lift_is_redundant.md](../../../dag/derivations/08_l1_to_l2/tfq_0295_born_readout_of_a_supplied_lift_is_redundant.md)
-- sha256 (`lf-normalised`): `53e71e6727e0d1b2ea74746ec90f8fb72d5052ada03be61eaf1fe5fc55076258`
+- sha256 (`lf-normalised`): `4cb5a1d4d42ce0a9a678a81b8b510452710902ea99e9e14e4df03ee537b4b2db`
 - generated view: listed, not counted
 - cited in: record TFQ-0295 (shared)
 - counts toward the grade: no
@@ -123,7 +123,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/09_finite_hilbert/tfq_0318_float_lift_helper_is_not_the_exact_embedding.md`
 
 - file: [dag/derivations/09_finite_hilbert/tfq_0318_float_lift_helper_is_not_the_exact_embedding.md](../../../dag/derivations/09_finite_hilbert/tfq_0318_float_lift_helper_is_not_the_exact_embedding.md)
-- sha256 (`lf-normalised`): `5e0938a0343faced0b1aa448278401e2cbfab27ae6f19cb21b03da344e69091a`
+- sha256 (`lf-normalised`): `9b86507c921e43ceabf0836dc6f5deeab5a703e4492785b99c07c7f768975686`
 - generated view: listed, not counted
 - cited in: record TFQ-0318 (shared)
 - counts toward the grade: no
@@ -131,7 +131,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_0234_supplied_hilbert_carrier_after_the_conditional_lift.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_0234_supplied_hilbert_carrier_after_the_conditional_lift.md](../../../dag/derivations/10_finite_qm_core/tfq_0234_supplied_hilbert_carrier_after_the_conditional_lift.md)
-- sha256 (`lf-normalised`): `6d982adae0ff3da0e19f4cd971e50eb7d55233d37d62353f37b3e171d2ed5ea5`
+- sha256 (`lf-normalised`): `586fc234b4003b6b1f87886f637cc21fda636b3a00e776e651e0106626c0ca1e`
 - generated view: listed, not counted
 - cited in: record TFQ-0234 (shared)
 - counts toward the grade: no

@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0235_selective_measurement_update_as_idempotent_conditioning.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0235_selective_measurement_update_as_idempotent_conditioning.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0235_selective_measurement_update_as_idempotent_conditioning.md)
-- sha256 (`lf-normalised`): `0b3e0cdac66b55bd27be6ccca1f2acf555afa7eaf305cd18824130fa66935a35`
+- sha256 (`lf-normalised`): `22a9e1c00bdd5909016a20eaf1c589de1e15d513b89f5cb5cd5347b370abded4`
 - generated view: listed, not counted
 - cited in: record TFQ-0235
 - counts toward the grade: no
@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0236_declared_instruments_and_conditional_record_updates.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0236_declared_instruments_and_conditional_record_updates.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0236_declared_instruments_and_conditional_record_updates.md)
-- sha256 (`lf-normalised`): `b94ca33803e9d3135a2fd1a06c1f4278652ce36635784e4a71b7aa5024b7073f`
+- sha256 (`lf-normalised`): `22c068f6d8d57eff83d5919e716b5eb07d1c37e531a3f877505cc322f27433f1`
 - generated view: listed, not counted
 - cited in: record TFQ-0236 (shared)
 - counts toward the grade: no

@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0248_finite_history_decoherence_matrix.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0248_finite_history_decoherence_matrix.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0248_finite_history_decoherence_matrix.md)
-- sha256 (`lf-normalised`): `27696629d6b8396320e708909f4c1abd64b63339fb9a15634ca0398ea578ef6c`
+- sha256 (`lf-normalised`): `d93f4bd4cea478dcd897bae13debcdfc6d4a50bc8ef1376855753cfc3f2fee2a`
 - generated view: listed, not counted
 - cited in: record TFQ-0248 (shared)
 - counts toward the grade: no

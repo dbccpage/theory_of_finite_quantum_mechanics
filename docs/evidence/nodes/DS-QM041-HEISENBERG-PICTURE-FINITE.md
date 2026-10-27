@@ -65,7 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0247_heisenberg_picture_on_a_finite_carrier.md)
-- sha256 (`lf-normalised`): `bee0972c21f69583f78c960d7e44622792f6d55d7732f1ad81a9e84f64ff8cc8`
+- sha256 (`lf-normalised`): `b8a5ddf508ca2fdeb6240ebfd2b358f2c87bc08d2c378d1e932c9c32e748e471`
 - generated view: listed, not counted
 - cited in: record TFQ-0247
 - counts toward the grade: no

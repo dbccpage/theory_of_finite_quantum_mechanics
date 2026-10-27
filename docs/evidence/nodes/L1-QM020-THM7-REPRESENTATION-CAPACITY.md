@@ -75,7 +75,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0304_lift_capacity_is_not_a_dynamics_derivation.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0304_lift_capacity_is_not_a_dynamics_derivation.md](../../../dag/derivations/08_l1_to_l2/tfq_0304_lift_capacity_is_not_a_dynamics_derivation.md)
-- sha256 (`lf-normalised`): `b250145994d50c0398c477d627846c539e3d795dcf8fda60ee9ed94ed365889e`
+- sha256 (`lf-normalised`): `0f776f574199cb65acc714603c01b1ea408af6f8e4cad89b2d422c63e18cc72e`
 - generated view: listed, not counted
 - cited in: record TFQ-0304
 - counts toward the grade: no

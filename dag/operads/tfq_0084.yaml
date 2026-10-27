@@ -23,7 +23,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/19_finite_qg/tfq_0084_finite_quantum_gravity_shadow.md
-    sha256: 897cef0b74256e9d1c8a12e3439b13d160e04af2a9f34b70a5205fdd5673b3f1
+    sha256: ca291081417cc1624dc80aef4a964ffea4b735777fa80d92ebcf71817a1dc73a
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -37,7 +37,7 @@ operation_candidates:
   line: 25
   signature_excerpt: 'pub fn cayley_menger(dimension: u8, squared_lengths: &[[BigRational; 5]; 5]) ->
     Result<CayleyMengerResult, ExactError>'
-  source: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs
+  source: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca
   repository: the_symbol_game
   source_sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
   status: source_candidate_requires_semantic_review
@@ -47,7 +47,7 @@ operation_candidates:
   line: 19
   signature_excerpt: 'pub struct CayleyMengerResult { pub dimension: u8, pub determinant: BigRational,
     pub volume_squared: BigRational }'
-  source: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs
+  source: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca
   repository: the_symbol_game
   source_sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
   status: source_candidate_requires_semantic_review
@@ -56,7 +56,7 @@ operation_candidates:
   name: signed_volume_4
   line: 64
   signature_excerpt: 'pub fn signed_volume_4(verts: &[[BigRational; 4]; 5]) -> Result<BigRational, ExactError>'
-  source: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs
+  source: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca
   repository: the_symbol_game
   source_sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
   status: source_candidate_requires_semantic_review
@@ -65,7 +65,7 @@ operation_candidates:
   name: determinant
   line: 15
   signature_excerpt: 'pub fn determinant<const N: usize>(matrix: &[[BigRational; N]; N], ...)'
-  source: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/gaussian.rs
+  source: external:sha256:109591b6a5b7dd3d9645d50e560736dc18907c1a87f352d58ff685611d8d7d37
   repository: the_symbol_game
   source_sha256: 9df6048a82771c2d0794dd0a00e514f310fd82c31bae4ae19be3031b23ac97f6
   status: source_candidate_requires_semantic_review
@@ -226,19 +226,19 @@ relation_candidates:
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
 source_bindings:
-- original_ref: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs::cayley_menger
+- original_ref: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca::cayley_menger
   availability: external
   symbol: cayley_menger
-  path: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs
+  path: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca
   repository: the_symbol_game
   sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
   declaration_status: declaration_found_not_executed_in_this_run
   line: 25
   role: exact_kernel_candidate_for_P1_checkers
-- original_ref: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/gaussian.rs::determinant
+- original_ref: external:sha256:109591b6a5b7dd3d9645d50e560736dc18907c1a87f352d58ff685611d8d7d37::determinant
   availability: external
   symbol: determinant
-  path: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/gaussian.rs
+  path: external:sha256:109591b6a5b7dd3d9645d50e560736dc18907c1a87f352d58ff685611d8d7d37
   repository: the_symbol_game
   sha256: 9df6048a82771c2d0794dd0a00e514f310fd82c31bae4ae19be3031b23ac97f6
   declaration_status: declaration_found_not_executed_in_this_run
@@ -361,19 +361,19 @@ source_bindings:
   declaration_status: declaration_found_float
   line: 41
   role: fenced_numpy_float_only_python_CM
-- original_ref: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs::CayleyMengerResult
+- original_ref: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca::CayleyMengerResult
   availability: external
   symbol: CayleyMengerResult
-  path: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs
+  path: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca
   repository: the_symbol_game
   sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
   declaration_status: declaration_found_pinned_for_custody_not_executed
   line: 19
   role: 'candidate_custody_binding: Carrier of the exact CM output.'
-- original_ref: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs::signed_volume_4
+- original_ref: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca::signed_volume_4
   availability: external
   symbol: signed_volume_4
-  path: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs
+  path: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca
   repository: the_symbol_game
   sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
   declaration_status: declaration_found_pinned_for_custody_not_executed
@@ -469,11 +469,11 @@ operad_slots:
     - path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/collection_before_mining.yaml
       sha256: 89da2f21390784f6d5559683d20c3f346a1c1fe2e8d072fb99125f43359a6f61
     - path: dag/derivations/19_finite_qg/tfq_0084_finite_quantum_gravity_shadow.md
-      sha256: 897cef0b74256e9d1c8a12e3439b13d160e04af2a9f34b70a5205fdd5673b3f1
+      sha256: ca291081417cc1624dc80aef4a964ffea4b735777fa80d92ebcf71817a1dc73a
     - path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/research_target_sharpened.md
       sha256: cc266230e7f6a671d241e5c7817b779ed4bfb39aa1d38f44c2b77d3f9e1ca015
     - &id001
-      path: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/cayley_menger.rs
+      path: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca
       repository: the_symbol_game
       sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
     - path: code/rust/src/general_relativity/certified_dihedral.rs
@@ -665,7 +665,7 @@ operad_slots:
     anchors:
     - PLANNED lean4/ReggeSchlafli.lean (absent on this branch)
     - *id001
-    - path: omega_engine/crates_rs/omega_linear_algebra/src/regge_exact/gaussian.rs
+    - path: external:sha256:109591b6a5b7dd3d9645d50e560736dc18907c1a87f352d58ff685611d8d7d37
       repository: the_symbol_game
       sha256: 9df6048a82771c2d0794dd0a00e514f310fd82c31bae4ae19be3031b23ac97f6
     - path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/relation_sign_check.py

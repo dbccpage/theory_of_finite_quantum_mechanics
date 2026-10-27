@@ -77,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0274_tier_3_uniqueness_left_without_a_derivation.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0274_tier_3_uniqueness_left_without_a_derivation.md](../../../dag/derivations/12_finite_qm_structure/tfq_0274_tier_3_uniqueness_left_without_a_derivation.md)
-- sha256 (`lf-normalised`): `efea6b419ae7b74a047883d974486edd4c3701cee1e73501da884e7fa000ac5d`
+- sha256 (`lf-normalised`): `c36094f16de5f5853e91e390fbcdc7b8187bb10e87e484075cb15487958d4d9c`
 - generated view: listed, not counted
 - cited in: record TFQ-0274
 - counts toward the grade: no

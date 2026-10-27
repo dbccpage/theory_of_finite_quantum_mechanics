@@ -26,13 +26,13 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/lean4/circle_haar.lean`](../../lean4/)
+- [`absent: no local lean twin located for sources/atlas/papers/finite_to_continuum/lean4/circle_haar.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/007_finite_to_continuum/code/pontryagin_duality.py`](../../code/python/)
+- [`absent: no local python twin located for sources/atlas/papers/finite_to_continuum/code/pontryagin_duality.py`](../../code/python/)
 
 ---
 
@@ -46,5 +46,5 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F002.S001`, `F002.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F002_continuum/S001_continuum_finite_shadow_bridge`
-  - `omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent`
+  - `external:git-tree:197a57e06c54cd85be796698967601ae741995cb`
+  - `external:git-tree:0fb81f77bbeba84143f574b5a4bc956196140991`

@@ -39,8 +39,8 @@ In accordance with strict constructive principles:
 - [`absent: not located`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/013_trace_zero_quotient_duality/code/trace_zero_quotient_duality_core.py`](../../code/python/)
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/013_trace_zero_quotient_duality/code/tests/test_trace_zero_quotient_duality.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:268cb7c97325e28274aeeb256645a51550ea6e687fa42b12343e4c63215430ad`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:15a047e84ecf1f2b166b471588781c72f32ce161a9222455b4fa786878f364ed`](../../code/python/)
 
 ---
 
@@ -54,4 +54,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
+  - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`

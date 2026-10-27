@@ -92,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0391_sameness_refinement_ledgers.md`
 
 - file: [dag/derivations/02_genesis/tfq_0391_sameness_refinement_ledgers.md](../../../dag/derivations/02_genesis/tfq_0391_sameness_refinement_ledgers.md)
-- sha256 (`lf-normalised`): `1fe2c76b4578903f211d18e85aa65bbab038be30d0d645ed90f438e30295fde5`
+- sha256 (`lf-normalised`): `9b5cd08da3fdf37e3d53274f87973ce66fe29a195e61bd2941ed59ca32844fb2`
 - generated view: listed, not counted
 - cited in: record TFQ-0391
 - counts toward the grade: no

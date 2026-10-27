@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0292_square_root_field_for_amplitude_coordinates.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0292_square_root_field_for_amplitude_coordinates.md](../../../dag/derivations/08_l1_to_l2/tfq_0292_square_root_field_for_amplitude_coordinates.md)
-- sha256 (`lf-normalised`): `41eec6fe14c89d0f9dd72a2e6d7905abd44858198fb8c406ad6dea6c90fa02ae`
+- sha256 (`lf-normalised`): `db291f99665d2bb8664b64f0cc6db63f4bcf527da447d6837c037c809bac0842`
 - generated view: listed, not counted
 - cited in: record TFQ-0292
 - counts toward the grade: no
@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/09_finite_hilbert/tfq_0318_float_lift_helper_is_not_the_exact_embedding.md`
 
 - file: [dag/derivations/09_finite_hilbert/tfq_0318_float_lift_helper_is_not_the_exact_embedding.md](../../../dag/derivations/09_finite_hilbert/tfq_0318_float_lift_helper_is_not_the_exact_embedding.md)
-- sha256 (`lf-normalised`): `5e0938a0343faced0b1aa448278401e2cbfab27ae6f19cb21b03da344e69091a`
+- sha256 (`lf-normalised`): `9b86507c921e43ceabf0836dc6f5deeab5a703e4492785b99c07c7f768975686`
 - generated view: listed, not counted
 - cited in: record TFQ-0318 (shared)
 - counts toward the grade: no

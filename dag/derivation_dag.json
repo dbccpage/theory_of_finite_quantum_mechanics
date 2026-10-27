@@ -3081,7 +3081,7 @@
       "source_status": "PUB-009 signed-sqrt lift and Cauchy-Schwarz Xi bound mechanized in DerivationDagQMClosure.lean and Rust BigRational witness",
       "statement": "For an l1 residual v with mass M(v) > 0, psi(v)_i = sgn(v_i) sqrt(|v_i| / M(v)) gives the rank-one real projector rho(v) = psi psi^T, a real L2 lift. The alignment statistic Xi = (1/2) ||rho(h*) - rho(phi*)||_tr is strictly below 1 by complementary slackness. Xi depends on coordinate order and is undefined at zero residual. It does not derive QM.",
       "source": [
-        "external:sha256:39b240b2592290928123eb7f457c8e0ceacfb513a59042eba77418841a6bdb37"
+        "papers/009_conditional_density_lift_and_dual_witness_xi_functional/density_lift.md"
       ],
       "lean": [
         "lean4/Imported/ConditionalDensityLift/Xi.lean",
@@ -10303,7 +10303,7 @@
       "statement": "hierarchical_nonabelian_dfm_finite_map.md, QM-213, separates an artificial Borel connection from a substantial one on a 4-vertex punctured diamond. Artificial data U_e = h(t)h(s)^{-1} has face and cycle holonomy I_2, and a single-valued vertex dressing neutralizes every edge. Substantial data keeps the triangular face flat while the punctured cycle carries a Borel matrix with trace 5/2 and determinant 1, so a dressing supported on a spanning tree is required. evaluate_qm213_nonabelian_dfm_control and run_qm213_nonabelian_dfm_control replay that split. The structure group in the map is B_2(Q), not SU(3).",
       "source": [
         "dag/derivations/17_finite_qcd/tfq_0015_keep_the_substantial_versus_artificial_split_on_b_2_q_not_on_su_3.md",
-        "external:sha256:2124e198921c1a9978f94866a6777e623ef8cee8a175fef1326be2b5eafe6cf8"
+        "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
       ],
       "lean": [],
       "rust": [],
@@ -10323,7 +10323,7 @@
       "statement": "Narrowed to the Lean model in B2SemidirectDressing.lean. Invertible upper-triangular 2x2 matrices over Q are modelled as triples (d1, b, d2) with product (d1 d1', d1 b' + b d2', d2 d2'). Each invertible x equals torusProj x times unipotentPart x, with torusProj x diagonal and unipotentPart x unit upper-triangular, the factorization is unique, and the unit upper-triangular matrices are closed under conjugation by invertible ones. On the graph with vertices 0 to 3, edges (0,1), (1,2), (0,2), (2,3), (1,3) and tree edges (0,1), (0,2), (2,3), take any assignment of one invertible matrix to each edge. The explicit stage-one dressing u_N(v) = (1, -b/d2, 1), read off the tree transport T(v) of the vertex v, leaves the tree edges diagonal and preserves torusProj on all five edges. Stage-two dressing by the inverse of the diagonal part of T(v) turns the stage-one connection into U_full(e) = T(target e)^-1 U_e T(source e) on all five edges. For any commutative ring R and any 1-cochain A as a function R to R to R, bA(u,v,w) = -A(u,w) and (A cup A)(u,v,w) = A(u,v) A(v,w) are defined, and K = bA + A cup A satisfies b(bA) = 0, the identity bK + A cup K - K cup A = 0, and gauge covariance. Lean does not identify the triple model with the QM-213 map, does not show u_N is a conjugate of the tree unipotent, does not identify U_full with tree_gauge_indexed.residual, has no poset P_5, and has no non-commutative coefficients in the curvature statements. The Lean module records that the natural numbers 2 and 3 differ and does not prove a color-transport statement. checks/independent/tfq-0016.py searches FiniteQM.lean for the substrings qm213, two_stage, and borel and does not find them.",
       "source": [
         "dag/derivations/17_finite_qcd/tfq_0016_add_a_lean_replay_of_the_two_stage_dressing_or_leave_qm_213_as.md",
-        "external:sha256:2124e198921c1a9978f94866a6777e623ef8cee8a175fef1326be2b5eafe6cf8"
+        "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
       ],
       "lean": [
         "lean4/B2SemidirectDressing.lean::B2SemidirectDressing.two_stage_factorization",
@@ -10808,7 +10808,7 @@
       "statement": "pauli_spin_statistics_graph.rs runs verify_qm223_spin_statistics_graph on Conf_2 of P3, the star K_{1,3}, C4, K4, and K5. The Rust test records K5 as 10 vertices, 30 edges, 15 squares, first Betti number 21, rational 2-complex Betti number 6, F2 Betti number 7, and Z2 torsion rank 1. Planar K4 stays torsion-free with rational Betti number 4. Lean graph_conf2_exchange_betti_and_character_collapse matches those K5 integers and adds the Rat collapse chi^2=1 if and only if chi is +1 or -1. This is a finite graph control. It is not a color wavefunction and not a baryon multiplet.",
       "source": [
         "dag/derivations/17_finite_qcd/tfq_0036_report_the_rust_and_lean_k5_torsion_rank_not_the_opening_paragraph_s.md",
-        "external:sha256:1ca8be781b4757c66e537b3f425e836a6d67ce07f98184edef04747101ac9dbd"
+        "dag/research/pauli_spin_statistics_graph_finite_map.md"
       ],
       "lean": [
         "lean4/FiniteQM.lean"
@@ -10830,7 +10830,7 @@
       "statement": "The same QM-223 certificate sets the same-orbital Slater combination to 0, the fermion swap ratio to -1, the boson swap ratio to +1, and the Hanbury Brown-Twiss coincidence ratio to 2. It records Jordan-Wigner nilpotency and the CAR identity on a finite Fock space. Shell capacities 1..4 are 2, 8, 18, 32, and the closures are 2, 10, 18, 36, 54, 86, 118. Lean slater_determinant_pauli_exclusion_and_swap_antisymmetry covers the two-row identities over Rat. These are identical-particle controls on graphs and exterior algebra. They do not assign flavor or color to a three-quark state.",
       "source": [
         "dag/derivations/17_finite_qcd/tfq_0037_keep_slater_car_and_shell_capacities_on_the_identical_particle_side_of_the.md",
-        "external:sha256:1ca8be781b4757c66e537b3f425e836a6d67ce07f98184edef04747101ac9dbd"
+        "dag/research/pauli_spin_statistics_graph_finite_map.md"
       ],
       "lean": [
         "lean4/FiniteQM.lean"
@@ -11230,7 +11230,7 @@
       "statement": "A finite gravity shadow is relational point coincidence, a Regge deficit on a finite simplicial complex, a spin-foam or area-spectrum control, and the kinematical shadows named in the quantum-foundations notes. The exact rational proxy that sums squared areas times deficits is not the Einstein-Hilbert action. The float script l1_regge.py is not that proxy. The three languages must say which finite identity they check. A certificate on a small complex is not quantum gravity, and it is not a derivation of the Einstein equation.",
       "source": [
         "dag/derivations/19_finite_qg/tfq_0084_finite_quantum_gravity_shadow.md",
-        "external:sha256:1ebf42f4a17cf379e2783b37423b2cc414e4035763cacdd28b5b3afd0bfd408e",
+        "papers/core/constraint_closure/README.md",
         "external:unlocated"
       ],
       "lean": [],
@@ -11342,7 +11342,7 @@
       "statement": "Family 004 constraint closure is an exploratory finite toy. Its README admits l1 quotient norms, strong linear-programming duality, and dual circulation witnesses on a finite cell complex, and it says the package is not a derivation of continuous general relativity or of physical law. A joint block operator can price a Hamiltonian residual that a lone coboundary misses, still inside finite cochain arithmetic. What is finite is the quotient norm of a declared coboundary. What is not discharged is the Einstein equation, a physical cosmological constant, and quantum gravity. A small-complex witness is not a cosmos.",
       "source": [
         "dag/derivations/19_finite_qg/tfq_0098_finite_l1_certificates_do_not_discharge_continuous_general_relativity_the_einstein_equation.md",
-        "external:sha256:1ebf42f4a17cf379e2783b37423b2cc414e4035763cacdd28b5b3afd0bfd408e",
+        "papers/core/constraint_closure/README.md",
         "external:sha256:f7d2714a1438dd70a6c7e19b36263a2645ecc86d1bdd5dc36606606352c6a1b4"
       ],
       "lean": [],
@@ -11364,7 +11364,7 @@
       "source": [
         "dag/derivations/19_finite_qg/tfq_0099_gap_float_regge_deficit_is_not_smooth_manifold_curvature_and_is_not_the.md",
         "papers/core/constraint_closure/code/l1_regge.py",
-        "external:sha256:1ebf42f4a17cf379e2783b37423b2cc414e4035763cacdd28b5b3afd0bfd408e"
+        "papers/core/constraint_closure/README.md"
       ],
       "lean": [],
       "rust": [],
@@ -11408,7 +11408,7 @@
       "statement": "einstein_hilbert_action.rs is an f64 face. Its fence says it is not the exact proxy, the sum of squared area times kappa. The stand-in follows a two-dimensional vertex sum of deficit with hinge volume one, and a legacy constructor may store a degree as a float. The continuum integral of scalar curvature against volume density is not this file. What is finite, at best, is a floating scalar on a named Regge value. What is not discharged is the Einstein-Hilbert action, the Einstein equation, and a continuum limit. Equating this float with the rational proxy is refused. A small complex is not quantum gravity.",
       "source": [
         "dag/derivations/19_finite_qg/tfq_0101_the_f64_face_does_not_discharge_the_einstein_hilbert_action_the_einstein_equation.md",
-        "external:sha256:1ebf42f4a17cf379e2783b37423b2cc414e4035763cacdd28b5b3afd0bfd408e"
+        "papers/core/constraint_closure/README.md"
       ],
       "lean": [],
       "rust": [
@@ -11474,7 +11474,7 @@
       "statement": "finite_spinfoam.rs holds two finite cyclotomic models of boundary amplitudes and a Pachner constraint. On eight admissible binary boundaries the published transition is a scalar times the all-ones matrix and is never unitary; the corrected transition is that scalar times the identity, unitary only when the scalar is a unit. The corrected partition is read as a Hermitian norm in a quadratic field. What is finite is this eight-boundary arithmetic. What is not discharged is spin-foam unitarity in general, triangulation independence, and quantum gravity. The amplitude is not a continuum path integral.",
       "source": [
         "dag/derivations/19_finite_qg/tfq_0104_eight_boundary_amplitudes_do_not_discharge_general_spin_foam_unitarity_the_einstein_equation.md",
-        "external:sha256:477efc5c129fc91cba749576ed0366c8c45163675613eed630ea3214e792f748"
+        "papers/foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md"
       ],
       "lean": [],
       "rust": [
@@ -14572,7 +14572,7 @@
       "source": [
         "dag/derivations/09_finite_hilbert/tfq_0316_package_chapter_states_a_conditional_lift.md",
         "external:sha256:74046b0efe38f01395d5f235a0fa215252b7f1dc2490116c9539133d530fd1bc",
-        "external:sha256:477efc5c129fc91cba749576ed0366c8c45163675613eed630ea3214e792f748"
+        "papers/foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md"
       ],
       "lean": [
         "lean4/FiniteDensity.lean",
@@ -15190,8 +15190,8 @@
       "statement": "The Pre-Genesis host grammar declares the inscription alphabet {<, >, a, b} and three public starts: ground_token (exactly <>), inscription (one balanced, non-nested bracketed inscription) and pre_genesis_regime (zero or more inscriptions between braces, where {} is host list notation and not the empty word). It keeps four states apart: absent input, the empty word, the literal token <> and the ground carrier that S(0) adopts. It has no event productions: the first event, supply(<>), is the Genesis boundary, and parsing a word admits no carrier, transition or observational operation.",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md",
-        "external:sha256:2dcda2eed19147360712ae3e49934853801b016723b4acc1694c1de01f84764a:14-19",
-        "external:sha256:2dcda2eed19147360712ae3e49934853801b016723b4acc1694c1de01f84764a:26-28"
+        "education/pregenesis_empty_mark/grammar/pre_genesis.ebnf:14-19",
+        "education/pregenesis_empty_mark/grammar/pre_genesis.ebnf:26-28"
       ],
       "lean": [],
       "rust": [],
@@ -15234,7 +15234,7 @@
       "source": [
         "dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md",
         "atlas/papers/finite_obstruction_calculus/genesis/paper.md:107-116",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:177-215",
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:177-215",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:64-70"
       ],
       "lean": [
@@ -15260,8 +15260,8 @@
       "statement": "Write P for the presented inscriptions and O for the internal observations. Supplying <a> after <> changes P from {<>} to {<a>} and leaves O_1 = O_0 = ∅, so no new internal distinction is available. With q : P → N sending an inscription to the distinctions the regime has, x ≠ y in P can hold while q(x) = q(y) in N, so a new presentation does not imply a new internal class, and in the other direction q(x) = q(y) does not imply x = y. Under the opaque convention <a> is a new presentation state in the same internal class as <>; the statement holds under that convention only.",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:110-135",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:925-975",
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:110-135",
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:925-975",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:29-43"
       ],
       "lean": [
@@ -15287,7 +15287,7 @@
       "statement": "Whether <a> supplied after <> is a new state depends on an identity convention that no prompt had declared. Under the opaque convention a state is what the regime can tell apart, and with O empty <> and <a> are not told apart; under the exact-inscription convention a state is the inscription itself, the strings differ, and the regime has one more syntactic state. Trials 1 and 2 answered under the first convention and the full replay under the second, calling <a> a new state. The analysis keeps both branches and records the effect as undecidable until one convention is declared.",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:731-737",
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:731-737",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:36-43",
         "external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:43-53",
         "dag/derivations/independent/pgw-identity-convention-undecidable.md:5",
@@ -15324,7 +15324,7 @@
       "source": [
         "dag/derivations/01_pregenesis/tfq_0424_absence_of_rule_not_identification.md",
         "atlas/papers/finite_obstruction_calculus/genesis/paper.md:62-68",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:147-175",
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:147-175",
         "external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:55-60"
       ],
       "lean": [],
@@ -15346,7 +15346,7 @@
       "source": [
         "dag/derivations/01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md",
         "atlas/papers/finite_obstruction_calculus/genesis/paper.md:118-133",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:283-305",
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:283-305",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:81-88"
       ],
       "lean": [
@@ -15375,7 +15375,7 @@
       "statement": "Let H be the possible histories, σ(h) the state that history h produces and π(h) the part of h an auditor sees, for example only the last turn. If π(h₁) = π(h₂) but σ(h₁) ≠ σ(h₂), no auditor A that sees only π reports σ(h) for every h, because A(π(h₁)) = A(π(h₂)) would give σ(h₁) = σ(h₂). The trial failures motivate the theorem: the blind auditor flagged the licensed words 'We' (Trial 1) and 'rule' (Trial 2) as imports, so an audit needs two levels; in Trial 2, Prompt 14's false attribution was answered without objection, so claim provenance is a check separate from claim correctness, Result 15 lost the state, saying the regime contains only <> after <a> had been supplied; and the two-level auditor, shown only that turn, answered None. State certification therefore needs replay information that separates the relevant histories, and on a declared finite population a summary on which σ is constant per fiber of the view can stand in for the raw history.",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0426_replay_necessity.md",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:1009-1047",
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:1009-1047",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:100-106",
         "external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:101-111"
       ],
@@ -15402,7 +15402,7 @@
       "statement": "A trace that starts from a declared context s′ and takes steps valid relative to s′ need not be valid relative to the actual replayed state s ≠ s′: ValidTrace(τ | s′) does not imply ValidTrace(τ | s). Trial 2's Result 15 is the example, with internally consistent reasoning from the stale premise s′ = {<>} after Prompt 12 had designated <a> as current. A sound execution contract therefore accepts a context binding C(s′) only when s′ = Replay(H). The analysis calls this a clean theorem target and gives no proof. The Prompt 17 contrast fits it: a truncated window answered Verified and the full replay Retracted, each right for the history it received, which the appended analysis calls an information boundary rather than a reasoning failure.",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:1065-1087",
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:1065-1087",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:127-134",
         "external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:120-130"
       ],
@@ -15430,7 +15430,7 @@
       "statement": "Given the corrected state, the full replay answered that the task of making <a> and <ab> internally distinguishable cannot be evaluated until <ab> is brought into the regime. The first addition can supply <ab> as data or write it into a rule pattern; the two are equally minimal and neither is uniquely forced. After Prompt 19 admitted <ab> beside <a> with no comparison, counting or matching, nothing in the regime reacts to them differently, so admission alone distinguishes nothing and no unique continuation is dictated. The requirement recorded is an order: the regime must admit inscriptions, retain them across turns and replay the current state before a separation task on them can be posed.",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:605-609",
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:605-609",
         "external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:132-149",
         "external:sha256:e15c1002c287921ce12959d4de7d7a313402443ec53dcb1d8159a017eb8c0b0d:179-194"
       ],
@@ -17720,7 +17720,7 @@
       ],
       "lean": [],
       "rust": [
-        "external:sha256:439bafc4a90225a06b9e80fb2d9458ecd3718cd1908db47b734056ef8b6c3de2::evaluate_two_boxed_laws_gate"
+        "education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::evaluate_two_boxed_laws_gate"
       ],
       "imported_structure": [
         "The S(n) stage labels and the two boxed laws, declared by the 002_oesn strand and not by 19L57G1 (assumption)"
@@ -18056,7 +18056,7 @@
         "dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md",
         "external:sha256:9edec90b2c87518d8a33cb78cbf439fe11ce6e4f33a3f613148b9137771649d6:19-29",
         "external:sha256:9edec90b2c87518d8a33cb78cbf439fe11ce6e4f33a3f613148b9137771649d6:40-44",
-        "external:sha256:58f41876692a51be940c4e0f44bd2e1ef72cd873c70b4726ef3d5f0639137165:20",
+        "education/symmetric_group_presentations/levels/README.md:20",
         "dag/derivations/independent/pgw-sn-e08-weighted-l1-duality.md:1-3"
       ],
       "lean": [
@@ -18144,7 +18144,7 @@
       ],
       "lean": [],
       "rust": [
-        "external:sha256:78cf459f4d860074ecad10cffdc415f211995b06e002bf7dd61f7bed216e0278::compute_integral_homology"
+        "education/minimal_symbol_systems/code/rust/src/smith_normal_form.rs::compute_integral_homology"
       ],
       "imported_structure": [],
       "bottleneck": "Erasing a class by changing coefficients supplies no integral repair, and a rational fraction 1/m offered as an integral repair receipt is refused; the page is a written finite example that grammar cases do not verify, and compute_integral_homology computes torsion factors for supplied integer matrices without a recorded run of this complex.",
@@ -18236,7 +18236,7 @@
       ],
       "lean": [],
       "rust": [
-        "external:sha256:439bafc4a90225a06b9e80fb2d9458ecd3718cd1908db47b734056ef8b6c3de2::CandidateLift"
+        "education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::CandidateLift"
       ],
       "imported_structure": [],
       "bottleneck": "The levels catalogue sets lift_status unlicensed; a PASS LiftReceipt from evaluate_two_boxed_laws_gate consumes supplied flags and is a candidate check, not a licensed lift, and the CandidateLift record shape is metadata only.",
@@ -18254,7 +18254,7 @@
       "statement": "The MSS-N alphabet Γ38 is 26 lowercase letters, 10 digits and the two marks < and >; the grammar's word production uses Σ36, the letters and digits, and raw_glyphs treats < and > as ordinary marks, so balanced pairing is not an axiom there. A model must declare eight things separately: terminal spellings, tokenization, grammar, public start, layout, identity policy, annotation decoding and manipulation rules. Three relations that share notation stay apart: an encoded relation E ⊆ V × V, a rewrite relation, and an observation map q: V → O.",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md",
-        "external:sha256:2fa40c612d21ff06c530d2d586cb46d72df8d464d544de8f3536254191df6aac:10-11",
+        "education/minimal_symbol_systems/grammar/mssn.ebnf:10-11",
         "external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:42-43",
         "external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:44-48"
       ],
@@ -18276,7 +18276,7 @@
       "statement": "mssn.ebnf declares 22 public starts, and every conformance case names its start; there is no guessed union or default start. The string a>b>c>a is accepted by raw_glyphs, label_path and glyph_path and refused by suffix_path, whose vertices need a digit annotation; a0>b2>c1>a0 is accepted by raw_glyphs, label_path and suffix_path and refused by glyph_path, which reads a0 as two adjacent vertices with no direction. check_mssn.py runs 39 cases over the 22 starts.",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0531_mssn_many_readings.md",
-        "external:sha256:2fa40c612d21ff06c530d2d586cb46d72df8d464d544de8f3536254191df6aac:3-4",
+        "education/minimal_symbol_systems/grammar/mssn.ebnf:3-4",
         "external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:58-67",
         "atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md:679-680"
       ],
@@ -18356,8 +18356,8 @@
         "lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean::no_scalar_potential_for_unit_flux"
       ],
       "rust": [
-        "external:sha256:439bafc4a90225a06b9e80fb2d9458ecd3718cd1908db47b734056ef8b6c3de2::verify_four_gate_factorization",
-        "external:sha256:439bafc4a90225a06b9e80fb2d9458ecd3718cd1908db47b734056ef8b6c3de2::audit_layer_2_circulation_flux"
+        "education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::verify_four_gate_factorization",
+        "education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux"
       ],
       "imported_structure": [
         "Supplied observation columns in PState, not a checked partition or the full Genesis passage state (assumption)"
@@ -30988,7 +30988,7 @@
       "output": "L1-DENSITY-LIFT-SIGNED-SQRT-PUB009",
       "status": "GAP_NO_DERIVATION",
       "source": [
-        "external:sha256:39b240b2592290928123eb7f457c8e0ceacfb513a59042eba77418841a6bdb37",
+        "papers/009_conditional_density_lift_and_dual_witness_xi_functional/density_lift.md",
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean",
         "sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
       ]
@@ -35303,8 +35303,8 @@
       "status": "DERIVED_PROSE",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md",
-        "external:sha256:2dcda2eed19147360712ae3e49934853801b016723b4acc1694c1de01f84764a:14-19",
-        "external:sha256:2dcda2eed19147360712ae3e49934853801b016723b4acc1694c1de01f84764a:26-28"
+        "education/pregenesis_empty_mark/grammar/pre_genesis.ebnf:14-19",
+        "education/pregenesis_empty_mark/grammar/pre_genesis.ebnf:26-28"
       ]
     },
     {
@@ -35329,7 +35329,7 @@
       "source": [
         "dag/derivations/01_pregenesis/tfq_0421_observational_equivalence.md",
         "atlas/papers/finite_obstruction_calculus/genesis/paper.md:107-116",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:177-215"
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:177-215"
       ]
     },
     {
@@ -35341,8 +35341,8 @@
       "status": "CONDITIONAL_ON_IMPORT",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0422_presentation_not_expressive_lift.md",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:110-135",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:925-975"
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:110-135",
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:925-975"
       ]
     },
     {
@@ -35354,7 +35354,7 @@
       "status": "CONDITIONAL_ON_IMPORT",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0423_identity_convention_undecidable.md",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:731-737",
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:731-737",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:36-43"
       ]
     },
@@ -35368,7 +35368,7 @@
       "source": [
         "dag/derivations/01_pregenesis/tfq_0424_absence_of_rule_not_identification.md",
         "atlas/papers/finite_obstruction_calculus/genesis/paper.md:62-68",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:147-175"
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:147-175"
       ]
     },
     {
@@ -35382,7 +35382,7 @@
       "source": [
         "dag/derivations/01_pregenesis/tfq_0425_forced_separation_lift_not_unique.md",
         "atlas/papers/finite_obstruction_calculus/genesis/paper.md:118-133",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:283-305"
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:283-305"
       ]
     },
     {
@@ -35396,7 +35396,7 @@
       "status": "DERIVED_LEAN",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0426_replay_necessity.md",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:1009-1047",
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:1009-1047",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:100-106"
       ]
     },
@@ -35409,7 +35409,7 @@
       "status": "GAP_NO_DERIVATION",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0427_context_fidelity.md",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:1065-1087",
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:1065-1087",
         "external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:127-134"
       ]
     },
@@ -35423,7 +35423,7 @@
       "status": "DERIVED_PROSE",
       "source": [
         "dag/derivations/01_pregenesis/tfq_0428_admission_before_distinction.md",
-        "external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:605-609",
+        "education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:605-609",
         "external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:132-149"
       ]
     },
@@ -36739,7 +36739,7 @@
       "status": "DERIVED_PROSE",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0530_mssn_alphabet_declarations.md",
-        "external:sha256:2fa40c612d21ff06c530d2d586cb46d72df8d464d544de8f3536254191df6aac:10-11",
+        "education/minimal_symbol_systems/grammar/mssn.ebnf:10-11",
         "external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:42-43"
       ]
     },
@@ -36752,7 +36752,7 @@
       "status": "DERIVED_PROSE",
       "source": [
         "dag/derivations/05_mssn_sn/tfq_0531_mssn_many_readings.md",
-        "external:sha256:2fa40c612d21ff06c530d2d586cb46d72df8d464d544de8f3536254191df6aac:3-4",
+        "education/minimal_symbol_systems/grammar/mssn.ebnf:3-4",
         "external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:58-67"
       ]
     },
@@ -43141,7 +43141,7 @@
         "TFQ-0015"
       ],
       "f004_refs": [
-        "external:sha256:2124e198921c1a9978f94866a6777e623ef8cee8a175fef1326be2b5eafe6cf8"
+        "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
       ],
       "id": "TFQ-0015",
       "lean4": [
@@ -43176,7 +43176,7 @@
         "TFQ-0016"
       ],
       "f004_refs": [
-        "external:sha256:2124e198921c1a9978f94866a6777e623ef8cee8a175fef1326be2b5eafe6cf8"
+        "dag/research/hierarchical_nonabelian_dfm_finite_map.md"
       ],
       "id": "TFQ-0016",
       "lean4": [
@@ -43904,7 +43904,7 @@
         "TFQ-0036"
       ],
       "f004_refs": [
-        "external:sha256:1ca8be781b4757c66e537b3f425e836a6d67ce07f98184edef04747101ac9dbd"
+        "dag/research/pauli_spin_statistics_graph_finite_map.md"
       ],
       "id": "TFQ-0036",
       "lean4": [
@@ -43939,7 +43939,7 @@
         "TFQ-0037"
       ],
       "f004_refs": [
-        "external:sha256:1ca8be781b4757c66e537b3f425e836a6d67ce07f98184edef04747101ac9dbd"
+        "dag/research/pauli_spin_statistics_graph_finite_map.md"
       ],
       "id": "TFQ-0037",
       "lean4": [
@@ -44704,7 +44704,7 @@
         "FQ-GAP-CONTINUUM-HILBERT-LIFT"
       ],
       "f004_refs": [
-        "external:sha256:9a564d5b534ac80f7f0592ba323281d1d19b3b6e15183252986798830de2c138"
+        "dag/research/dirac_ward_takahashi_finite_map.md"
       ],
       "id": "TFQ-0056",
       "lean4": [
@@ -44744,7 +44744,7 @@
         "FQ-U1-TRANSPORT-N-TORSION"
       ],
       "f004_refs": [
-        "external:sha256:9a564d5b534ac80f7f0592ba323281d1d19b3b6e15183252986798830de2c138"
+        "dag/research/dirac_ward_takahashi_finite_map.md"
       ],
       "id": "TFQ-0057",
       "lean4": [
@@ -44900,7 +44900,7 @@
         "DS-QM032-FINITE-FEYNMAN-SHADOW"
       ],
       "f004_refs": [
-        "external:sha256:1d657a76f10be5328a88e47af11eaaeced67e39772d0ff63e6877485a550788e"
+        "dag/research/symanzik_two_forest_bphz_finite_map.md"
       ],
       "id": "TFQ-0061",
       "lean4": [
@@ -44975,7 +44975,7 @@
         "FQ-QM207-231-FINITE-MAP-CONTROLS"
       ],
       "f004_refs": [
-        "external:sha256:9a564d5b534ac80f7f0592ba323281d1d19b3b6e15183252986798830de2c138"
+        "dag/research/dirac_ward_takahashi_finite_map.md"
       ],
       "id": "TFQ-0063",
       "lean4": [
@@ -45013,7 +45013,7 @@
         "FQ-QM207-231-FINITE-MAP-CONTROLS"
       ],
       "f004_refs": [
-        "external:sha256:9a564d5b534ac80f7f0592ba323281d1d19b3b6e15183252986798830de2c138"
+        "dag/research/dirac_ward_takahashi_finite_map.md"
       ],
       "id": "TFQ-0064",
       "lean4": [
@@ -45167,7 +45167,7 @@
         "FQ-QM207-231-FINITE-MAP-CONTROLS"
       ],
       "f004_refs": [
-        "external:sha256:19f7e40fd21c96ded2dbf72bfa60859b4315c7c08881622518b4453477b7a31a"
+        "dag/research/atomic_dirac_lamb_hartree_fock_finite_map.md"
       ],
       "id": "TFQ-0068",
       "lean4": [
@@ -45206,7 +45206,7 @@
       ],
       "f004_refs": [
         "external:sha256:a0a20d36586e05773ef3fdcde699de18d1a961f829639d0d2a0bb9cf71c1809f",
-        "external:sha256:19f7e40fd21c96ded2dbf72bfa60859b4315c7c08881622518b4453477b7a31a"
+        "dag/research/atomic_dirac_lamb_hartree_fock_finite_map.md"
       ],
       "id": "TFQ-0069",
       "lean4": [
@@ -45244,7 +45244,7 @@
         "FQ-QM207-231-FINITE-MAP-CONTROLS"
       ],
       "f004_refs": [
-        "external:sha256:19f7e40fd21c96ded2dbf72bfa60859b4315c7c08881622518b4453477b7a31a"
+        "dag/research/atomic_dirac_lamb_hartree_fock_finite_map.md"
       ],
       "id": "TFQ-0070",
       "lean4": [
@@ -45784,7 +45784,7 @@
         "TFQ-0084"
       ],
       "f004_refs": [
-        "external:sha256:1ebf42f4a17cf379e2783b37423b2cc414e4035763cacdd28b5b3afd0bfd408e",
+        "papers/core/constraint_closure/README.md",
         "external:unlocated"
       ],
       "id": "TFQ-0084",
@@ -45846,7 +45846,7 @@
         "FQ-GAP-CONTINUUM-HILBERT-LIFT"
       ],
       "f004_refs": [
-        "external:sha256:477efc5c129fc91cba749576ed0366c8c45163675613eed630ea3214e792f748"
+        "papers/foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md"
       ],
       "id": "TFQ-0086",
       "lean4": [
@@ -46259,7 +46259,7 @@
         "TFQ-0098"
       ],
       "f004_refs": [
-        "external:sha256:1ebf42f4a17cf379e2783b37423b2cc414e4035763cacdd28b5b3afd0bfd408e",
+        "papers/core/constraint_closure/README.md",
         "external:sha256:f7d2714a1438dd70a6c7e19b36263a2645ecc86d1bdd5dc36606606352c6a1b4"
       ],
       "id": "TFQ-0098",
@@ -46293,7 +46293,7 @@
       ],
       "f004_refs": [
         "papers/core/constraint_closure/code/l1_regge.py",
-        "external:sha256:1ebf42f4a17cf379e2783b37423b2cc414e4035763cacdd28b5b3afd0bfd408e"
+        "papers/core/constraint_closure/README.md"
       ],
       "id": "TFQ-0099",
       "lean4": [],
@@ -46353,7 +46353,7 @@
         "TFQ-0101"
       ],
       "f004_refs": [
-        "external:sha256:1ebf42f4a17cf379e2783b37423b2cc414e4035763cacdd28b5b3afd0bfd408e"
+        "papers/core/constraint_closure/README.md"
       ],
       "id": "TFQ-0101",
       "lean4": [],
@@ -46453,7 +46453,7 @@
         "TFQ-0104"
       ],
       "f004_refs": [
-        "external:sha256:477efc5c129fc91cba749576ed0366c8c45163675613eed630ea3214e792f748"
+        "papers/foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md"
       ],
       "id": "TFQ-0104",
       "lean4": [],
@@ -46673,7 +46673,7 @@
         "WDP-JOINT-CONTINUUM"
       ],
       "f004_refs": [
-        "external:sha256:1ebf42f4a17cf379e2783b37423b2cc414e4035763cacdd28b5b3afd0bfd408e",
+        "papers/core/constraint_closure/README.md",
         "external:unlocated",
         "atlas/papers/projection_obstruction/zero_container_relational_spacetime_and_witness_holonomy/README.md"
       ],
@@ -51855,7 +51855,7 @@
         "FQ-CONTEXTUALITY-CECH-F2"
       ],
       "f004_refs": [
-        "external:sha256:4fd84a80f3a8a21010ea7fc73664df1bd26fc91bcdd016288750101c2f6a323f",
+        "papers/foundations/qm_120_mermin_peres_contextuality_cochain_obstruction.md",
         "sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics.md",
         "sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md"
       ],
@@ -52079,7 +52079,7 @@
       ],
       "f004_refs": [
         "external:sha256:3cc7d6e08e4123663a78942bcbd7ef8030d8da04c38a58475d1286da61bb0e40",
-        "external:sha256:7d4cacd9128081d5f9f477d0406ad9b16371723b8eab0535af879c4b1fc8f73f",
+        "papers/foundations/qm_071_entanglement_as_a_separability_obstruction.md",
         "sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md"
       ],
       "id": "TFQ-0256",
@@ -52116,7 +52116,7 @@
         "DS-QM071-ENTANGLEMENT-WITNESS-SOUNDNESS"
       ],
       "f004_refs": [
-        "external:sha256:7d4cacd9128081d5f9f477d0406ad9b16371723b8eab0535af879c4b1fc8f73f",
+        "papers/foundations/qm_071_entanglement_as_a_separability_obstruction.md",
         "external:sha256:3cc7d6e08e4123663a78942bcbd7ef8030d8da04c38a58475d1286da61bb0e40",
         "sources/atlas/papers/finite_quantum_mechanics/finite_quantum_mechanics_claim_ledger.md"
       ],
@@ -53413,7 +53413,7 @@
         "L1-IMP-COMPLEX-FIELD"
       ],
       "f004_refs": [
-        "external:sha256:477efc5c129fc91cba749576ed0366c8c45163675613eed630ea3214e792f748",
+        "papers/foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md",
         "external:unlocated",
         "external:sha256:092d7c8bb16b66becac872e5e25f6a6be7203c240b36f25393d960fdec870e7b"
       ],
@@ -53452,7 +53452,7 @@
         "FQ-GAP-U1-CIRCLE"
       ],
       "f004_refs": [
-        "external:sha256:477efc5c129fc91cba749576ed0366c8c45163675613eed630ea3214e792f748",
+        "papers/foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md",
         "external:sha256:74046b0efe38f01395d5f235a0fa215252b7f1dc2490116c9539133d530fd1bc",
         "external:sha256:092d7c8bb16b66becac872e5e25f6a6be7203c240b36f25393d960fdec870e7b"
       ],
@@ -53541,7 +53541,7 @@
         "L1-IMP-HILBERT-INNER-PRODUCT"
       ],
       "f004_refs": [
-        "external:sha256:477efc5c129fc91cba749576ed0366c8c45163675613eed630ea3214e792f748",
+        "papers/foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md",
         "external:unlocated",
         "external:sha256:092d7c8bb16b66becac872e5e25f6a6be7203c240b36f25393d960fdec870e7b"
       ],
@@ -53649,7 +53649,7 @@
       ],
       "f004_refs": [
         "external:sha256:74046b0efe38f01395d5f235a0fa215252b7f1dc2490116c9539133d530fd1bc",
-        "external:sha256:477efc5c129fc91cba749576ed0366c8c45163675613eed630ea3214e792f748",
+        "papers/foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md",
         "external:sha256:092d7c8bb16b66becac872e5e25f6a6be7203c240b36f25393d960fdec870e7b"
       ],
       "id": "TFQ-0299",
@@ -53808,7 +53808,7 @@
       ],
       "f004_refs": [
         "external:sha256:74046b0efe38f01395d5f235a0fa215252b7f1dc2490116c9539133d530fd1bc",
-        "external:sha256:477efc5c129fc91cba749576ed0366c8c45163675613eed630ea3214e792f748",
+        "papers/foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md",
         "external:sha256:092d7c8bb16b66becac872e5e25f6a6be7203c240b36f25393d960fdec870e7b"
       ],
       "id": "TFQ-0303",
@@ -53969,7 +53969,7 @@
       ],
       "f004_refs": [
         "external:sha256:74046b0efe38f01395d5f235a0fa215252b7f1dc2490116c9539133d530fd1bc",
-        "external:sha256:477efc5c129fc91cba749576ed0366c8c45163675613eed630ea3214e792f748",
+        "papers/foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md",
         "external:unlocated",
         "external:sha256:092d7c8bb16b66becac872e5e25f6a6be7203c240b36f25393d960fdec870e7b"
       ],
@@ -54086,7 +54086,7 @@
         "L1-QM122-PHASE-BLIND-FIBER-INTERFERENCE"
       ],
       "f004_refs": [
-        "external:sha256:477efc5c129fc91cba749576ed0366c8c45163675613eed630ea3214e792f748",
+        "papers/foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md",
         "external:unlocated"
       ],
       "id": "TFQ-0310",
@@ -54128,7 +54128,7 @@
         "L1-QM122-LEFTOVER-MNC-NOT-RECOVERED"
       ],
       "f004_refs": [
-        "external:sha256:477efc5c129fc91cba749576ed0366c8c45163675613eed630ea3214e792f748",
+        "papers/foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md",
         "external:unlocated",
         "external:sha256:092d7c8bb16b66becac872e5e25f6a6be7203c240b36f25393d960fdec870e7b"
       ],
@@ -54169,7 +54169,7 @@
         "L1-QM122-BORN-PAIRING-NONUNIQUE"
       ],
       "f004_refs": [
-        "external:sha256:477efc5c129fc91cba749576ed0366c8c45163675613eed630ea3214e792f748",
+        "papers/foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md",
         "external:unlocated",
         "external:sha256:092d7c8bb16b66becac872e5e25f6a6be7203c240b36f25393d960fdec870e7b"
       ],
@@ -54350,7 +54350,7 @@
       ],
       "f004_refs": [
         "external:sha256:74046b0efe38f01395d5f235a0fa215252b7f1dc2490116c9539133d530fd1bc",
-        "external:sha256:477efc5c129fc91cba749576ed0366c8c45163675613eed630ea3214e792f748"
+        "papers/foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md"
       ],
       "id": "TFQ-0316",
       "lean4": [
@@ -54390,7 +54390,7 @@
       ],
       "f004_refs": [
         "external:sha256:74046b0efe38f01395d5f235a0fa215252b7f1dc2490116c9539133d530fd1bc",
-        "external:sha256:477efc5c129fc91cba749576ed0366c8c45163675613eed630ea3214e792f748",
+        "papers/foundations/qm_122_finite_hilbert_boundary_from_primitive_difference.md",
         "external:sha256:092d7c8bb16b66becac872e5e25f6a6be7203c240b36f25393d960fdec870e7b"
       ],
       "id": "TFQ-0317",
@@ -59288,8 +59288,8 @@
       "obligation": "Parse Pre-Genesis words with the declared grammar only, refuse the empty word at every public start, and admit nothing by parsing; supply(<>) belongs to Genesis.",
       "parent_id": "TFQ-0362",
       "python": [
-        "external:upstream/external:sha256:50a901e02a211a3baa64630a3b8ba5228fb9a0e3ddcf97ce57ed59ff8adbc932::validate_cases",
-        "external:upstream/external:sha256:0298d88a593c04c27c4bd73b2d5b270ad22dd27431e634a8477e8c4fd4acbe09::test_four_state_separation"
+        "external:upstream/education/pregenesis_empty_mark/code/check_pre_genesis.py::validate_cases",
+        "external:upstream/education/pregenesis_empty_mark/code/tests/test_pre_genesis_grammar.py::test_four_state_separation"
       ],
       "record_status": "DEFINITION",
       "rust": [
@@ -62176,7 +62176,7 @@
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:upstream/external:sha256:439bafc4a90225a06b9e80fb2d9458ecd3718cd1908db47b734056ef8b6c3de2::evaluate_two_boxed_laws_gate"
+        "external:upstream/education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::evaluate_two_boxed_laws_gate"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",
@@ -62203,7 +62203,7 @@
       "obligation": "Keep the two-byte, one-token presentation <> apart from the admitted carrier: at S(0) nothing is derivable, supply changes no admitted state, and the declared index-0 carrier has no element.",
       "parent_id": "TFQ-0510",
       "python": [
-        "external:upstream/external:sha256:afb535f684f1f4d2a5b16edf7f567e13da0863a4638d81b98586f08fcda6ef10::S0Ground"
+        "external:upstream/education/symmetric_group_presentations/code/sn_core.py::S0Ground"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
@@ -62232,7 +62232,7 @@
       "obligation": "Model supply and admission as different events, so that a supply of <a> admits nothing, and keep s₁ = 1 as a declared ledger entry tied to an issued demand.",
       "parent_id": "TFQ-0511",
       "python": [
-        "external:upstream/external:sha256:afb535f684f1f4d2a5b16edf7f567e13da0863a4638d81b98586f08fcda6ef10::S1Supply"
+        "external:upstream/education/symmetric_group_presentations/code/sn_core.py::S1Supply"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -62261,7 +62261,7 @@
       "obligation": "Keep <a> and <ab> as opaque admitted data with equal observation profiles, and record a collapse as an obstruction only after a separation demand is supplied.",
       "parent_id": "TFQ-0512",
       "python": [
-        "external:upstream/external:sha256:afb535f684f1f4d2a5b16edf7f567e13da0863a4638d81b98586f08fcda6ef10::S2Collapse"
+        "external:upstream/education/symmetric_group_presentations/code/sn_core.py::S2Collapse"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -62323,7 +62323,7 @@
       "obligation": "From irreflexivity and R(a,b) derive a ≠ b, report endpoint count 2 separately from witness multiplicity, and give the unique point-preserving map from D₂ to each asserted pair.",
       "parent_id": "TFQ-0514",
       "python": [
-        "external:upstream/external:sha256:41be0ece4d1f0ecd255141dd5753d0c096aaa4cd31c6447a8fd3249217919f99::verify_wir"
+        "external:upstream/education/symmetric_group_presentations/code/sn_audit.py::verify_wir"
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
@@ -62352,7 +62352,7 @@
       "obligation": "Under the declared closure policy, reach W₄ = ∅ with H₄ retained, bound a closed run by n(n−1)/2 rounds, and compute the cycle-space dimension m(m−1)/2 − m + 1 of K_m as a graph count, not a demand count.",
       "parent_id": "TFQ-0514",
       "python": [
-        "external:upstream/external:sha256:afb535f684f1f4d2a5b16edf7f567e13da0863a4638d81b98586f08fcda6ef10::S4Orbit"
+        "external:upstream/education/symmetric_group_presentations/code/sn_core.py::S4Orbit"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -62380,7 +62380,7 @@
       "obligation": "Record each continuation request as an external input before selecting its response, and state OB-1 as an unresolved question, not a no-go theorem about endogenous continuation.",
       "parent_id": "TFQ-0516",
       "python": [
-        "external:upstream/external:sha256:afb535f684f1f4d2a5b16edf7f567e13da0863a4638d81b98586f08fcda6ef10::S5Continuation"
+        "external:upstream/education/symmetric_group_presentations/code/sn_core.py::S5Continuation"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -62412,7 +62412,7 @@
       "obligation": "Show that retractionDownMap n accepts exactly the images of sectionLift n, with a unique witness, an exact stage test and a decidable image test, inside the five base shapes of the pinned carrier.",
       "parent_id": "TFQ-0517",
       "python": [
-        "external:upstream/external:sha256:afb535f684f1f4d2a5b16edf7f567e13da0863a4638d81b98586f08fcda6ef10::S6Descent"
+        "external:upstream/education/symmetric_group_presentations/code/sn_core.py::S6Descent"
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
@@ -62638,7 +62638,7 @@
       ],
       "record_status": "SOURCE_RECORD",
       "rust": [
-        "external:upstream/external:sha256:78cf459f4d860074ecad10cffdc415f211995b06e002bf7dd61f7bed216e0278::compute_integral_homology"
+        "external:upstream/education/minimal_symbol_systems/code/rust/src/smith_normal_form.rs::compute_integral_homology"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",
@@ -62750,7 +62750,7 @@
       ],
       "record_status": "DEFINITION",
       "rust": [
-        "external:upstream/external:sha256:439bafc4a90225a06b9e80fb2d9458ecd3718cd1908db47b734056ef8b6c3de2::CandidateLift"
+        "external:upstream/education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::CandidateLift"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",
@@ -62774,7 +62774,7 @@
       "obligation": "Declare all eight dimensions for each MSS-N model, accept raw glyphs only from Γ38, and keep encoded, rewrite and observation relations distinct.",
       "parent_id": "TFQ-0529",
       "python": [
-        "external:upstream/external:sha256:56626b2520b74d365419831189a5f3e91371b527e2f177f6c7a217222aed2ca1::RawGlyphs"
+        "external:upstream/education/minimal_symbol_systems/code/mssn_codec.py::RawGlyphs"
       ],
       "record_status": "DEFINITION",
       "rust": [
@@ -62895,8 +62895,8 @@
       ],
       "record_status": "PROVED_LEAN",
       "rust": [
-        "external:upstream/external:sha256:439bafc4a90225a06b9e80fb2d9458ecd3718cd1908db47b734056ef8b6c3de2::verify_four_gate_factorization",
-        "external:upstream/external:sha256:439bafc4a90225a06b9e80fb2d9458ecd3718cd1908db47b734056ef8b6c3de2::audit_layer_2_circulation_flux"
+        "external:upstream/education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::verify_four_gate_factorization",
+        "external:upstream/education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux"
       ],
       "source_slice": "pregenesis_to_wdp",
       "stage": "MSSN_SN",

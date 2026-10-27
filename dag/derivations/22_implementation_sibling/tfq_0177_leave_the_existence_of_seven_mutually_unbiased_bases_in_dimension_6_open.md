@@ -30,7 +30,7 @@ In accordance with strict constructive principles:
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`code/rust/src/mub/src/omega_native/mub6_smale_sentry.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/010_mub6/rust/network_simplex.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for papers/core/mub6/rust/network_simplex.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`code/python/src/mub/mub_verify/a1_collar_swarm.py`](../../code/python/)
@@ -48,4 +48,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
+  - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`

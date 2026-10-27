@@ -156,7 +156,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0390_rewriting_and_persistence_reconcile.md`
 
 - file: [dag/derivations/02_genesis/tfq_0390_rewriting_and_persistence_reconcile.md](../../../dag/derivations/02_genesis/tfq_0390_rewriting_and_persistence_reconcile.md)
-- sha256 (`lf-normalised`): `5d76448b3433e04b7ff13bea15c487f93dd03ac705cd86c8b3643c5c6671f105`
+- sha256 (`lf-normalised`): `d2f7e2af8815bc47cf29fbfc9c8843c8638504f966c4e539728d1cc46b6b3825`
 - generated view: listed, not counted
 - cited in: record TFQ-0390
 - counts toward the grade: no

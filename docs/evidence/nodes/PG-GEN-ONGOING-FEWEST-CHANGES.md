@@ -161,7 +161,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md`
 
 - file: [dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md](../../../dag/derivations/02_genesis/tfq_0389_fewest_changes_formula.md)
-- sha256 (`lf-normalised`): `a104cc78b841b7e7c5f927f96ff593a4cd3b2fe5195e5869f7e8d839d5646e70`
+- sha256 (`lf-normalised`): `ed2bb542c65f9f5ad4c900763d6c38069e1179b9b5732c8a40839664c348dd76`
 - generated view: listed, not counted
 - cited in: record TFQ-0389
 - counts toward the grade: no

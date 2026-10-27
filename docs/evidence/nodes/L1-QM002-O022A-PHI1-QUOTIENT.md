@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0359_keep_the_phi1_banach_quotient_reading_on_a_finite_dimensional_repair_packet_and_leave.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0359_keep_the_phi1_banach_quotient_reading_on_a_finite_dimensional_repair_packet_and_leave.md](../../../dag/derivations/07_l1_emergence/tfq_0359_keep_the_phi1_banach_quotient_reading_on_a_finite_dimensional_repair_packet_and_leave.md)
-- sha256 (`lf-normalised`): `46d73c193145815e5df5a3d4f71fa4ed65d54955e322ef115b622a1fa3b8bb27`
+- sha256 (`lf-normalised`): `31b5b03dc9a8eac2eb20b17eb53d63fa9b85492e3f1087a1b55106fa427fca5d`
 - generated view: listed, not counted
 - cited in: record TFQ-0359
 - counts toward the grade: no

@@ -98,7 +98,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0356_keep_the_m_compatible_gauge_route_to_weighted_l1_on_its_own_hypothesis.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0356_keep_the_m_compatible_gauge_route_to_weighted_l1_on_its_own_hypothesis.md](../../../dag/derivations/07_l1_emergence/tfq_0356_keep_the_m_compatible_gauge_route_to_weighted_l1_on_its_own_hypothesis.md)
-- sha256 (`lf-normalised`): `5825aea62937e055e1b3686055c0ede7cabf845f58e78b41f0c2c6b724163bf9`
+- sha256 (`lf-normalised`): `8273cf40e3c9e3da7c4a8b88e01c641b5672367ea2a3d539532bfc9063826508`
 - generated view: listed, not counted
 - cited in: record TFQ-0356
 - counts toward the grade: no

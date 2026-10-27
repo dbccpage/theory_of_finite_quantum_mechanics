@@ -132,7 +132,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0001_gap_between_and_difference_joined_with_structure.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0001_gap_between_and_difference_joined_with_structure.md](../../../dag/derivations/01_pregenesis/tfq_0001_gap_between_and_difference_joined_with_structure.md)
-- sha256 (`lf-normalised`): `e5299832395b3f700f68e619fb30d3a1fab83d0c2a0e3a6be8c963dc1fee8daa`
+- sha256 (`lf-normalised`): `d98bf849b1d5e5f015038ea9fc06e3d95af7a5211ded9ba01fe1d2820d291cf2`
 - generated view: listed, not counted
 - cited in: record TFQ-0001
 - counts toward the grade: no
@@ -140,7 +140,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md](../../../dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md)
-- sha256 (`lf-normalised`): `12b8df2a8a5beebd90a38c0cd77b219190e4711fa38464adaf8425f12b18300d`
+- sha256 (`lf-normalised`): `805b407b08734b226eeba139611850b31b64ffa7f0f9fa2006dc7027a316febf`
 - generated view: listed, not counted
 - cited in: record TFQ-0392 (shared)
 - counts toward the grade: no
@@ -148,7 +148,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0393_admitted_root_coproduct.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0393_admitted_root_coproduct.md](../../../dag/derivations/01_pregenesis/tfq_0393_admitted_root_coproduct.md)
-- sha256 (`lf-normalised`): `dbd5898bb1c5040f0f8ee270c294f4dd8b429c61f7fe831c82bd111ef0f3fe1b`
+- sha256 (`lf-normalised`): `0678ca1914ed2c45a79e015dd70be6aec7a9ceca27bc938949591dfba781c3f5`
 - generated view: listed, not counted
 - cited in: record TFQ-0393
 - counts toward the grade: no
@@ -156,7 +156,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0086_fq_gap_continuum_hilbert_lift_stays_unpaid_no_continuum_hilbert_space_is_admitted_at_the_root.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0086_fq_gap_continuum_hilbert_lift_stays_unpaid_no_continuum_hilbert_space_is_admitted_at_the_root.md](../../../dag/derivations/19_finite_qg/tfq_0086_fq_gap_continuum_hilbert_lift_stays_unpaid_no_continuum_hilbert_space_is_admitted_at_the_root.md)
-- sha256 (`lf-normalised`): `878199cafd2c1775202016787f8d29ad515ee87124dc446accd96e04f3a1741c`
+- sha256 (`lf-normalised`): `3072afaa47dfbc959c2508c46533aca54e609bf85bb1b5821af4706c58d1225d`
 - generated view: listed, not counted
 - cited in: record TFQ-0086 (shared)
 - counts toward the grade: no
@@ -164,7 +164,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0087_relational_difference_is_a_finite_carrier_smooth_spacetime_and_the_einstein_equation.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0087_relational_difference_is_a_finite_carrier_smooth_spacetime_and_the_einstein_equation.md](../../../dag/derivations/19_finite_qg/tfq_0087_relational_difference_is_a_finite_carrier_smooth_spacetime_and_the_einstein_equation.md)
-- sha256 (`lf-normalised`): `7c5e5fd4a9a2eaefb7ec0c0286f269c06a07f2513ae9d2abeb73d7a2f4497e00`
+- sha256 (`lf-normalised`): `73587b1e532a7a705ba6b2f531ed85660e6cadc408f881ff970887f878540195`
 - generated view: listed, not counted
 - cited in: record TFQ-0087
 - counts toward the grade: no

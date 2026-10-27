@@ -105,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0363_six_distinct_operations.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0363_six_distinct_operations.md](../../../dag/derivations/01_pregenesis/tfq_0363_six_distinct_operations.md)
-- sha256 (`lf-normalised`): `35b22999b32cd5540237f96b544b91d0e3a266731345bce1eb377290670b2a89`
+- sha256 (`lf-normalised`): `e2113c86ed9b453a3a8f0feecacb88e59dee2939b09c8a6902ed06c3d848117e`
 - generated view: listed, not counted
 - cited in: record TFQ-0363
 - counts toward the grade: no

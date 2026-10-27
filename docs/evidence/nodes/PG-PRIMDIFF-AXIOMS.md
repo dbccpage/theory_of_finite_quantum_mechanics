@@ -136,7 +136,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0394_primitive_axiom_list_underived.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0394_primitive_axiom_list_underived.md](../../../dag/derivations/01_pregenesis/tfq_0394_primitive_axiom_list_underived.md)
-- sha256 (`lf-normalised`): `12a0fd9c3cad9b27b0ffd39cc38863219f0667b6fe8b361aa2f1f28e4526db2d`
+- sha256 (`lf-normalised`): `69931a3036da71edd21f64f2e664aa025754b8d94aab32bb09bfce5906f1e7cd`
 - generated view: listed, not counted
 - cited in: record TFQ-0394
 - counts toward the grade: no
@@ -144,7 +144,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md`
 
 - file: [dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md](../../../dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md)
-- sha256 (`lf-normalised`): `c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9`
+- sha256 (`lf-normalised`): `c02bd1400eefba073093838a5da18cd236038b0827d9a784bf2cb742540d5d55`
 - generated view: listed, not counted
 - cited in: record TFQ-0344 (shared)
 - counts toward the grade: no

@@ -107,7 +107,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0384_cumulative_count_no_return.md`
 
 - file: [dag/derivations/02_genesis/tfq_0384_cumulative_count_no_return.md](../../../dag/derivations/02_genesis/tfq_0384_cumulative_count_no_return.md)
-- sha256 (`lf-normalised`): `87319e2ba3f4033aa40fa531d480ba409fc5ea34c38738a555025c94963259d3`
+- sha256 (`lf-normalised`): `ad8ca6ffa00ec9ae864ebacaea5c521c1f7e4c6010a2affbf428513947c31148`
 - generated view: listed, not counted
 - cited in: record TFQ-0384
 - counts toward the grade: no

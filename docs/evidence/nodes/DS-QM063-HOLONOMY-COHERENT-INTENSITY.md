@@ -93,7 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md](../../../dag/derivations/12_finite_qm_structure/tfq_0254_holonomy_structured_coherent_intensity.md)
-- sha256 (`lf-normalised`): `de650e72bb0e5b52cd654778e381b6e0118ba16b275c3464603dc8ec910b00f9`
+- sha256 (`lf-normalised`): `aa1110e6429477296caffe963f3ac7e807a35aeac9b1c306e76429bb2f2e8d5d`
 - generated view: listed, not counted
 - cited in: record TFQ-0254
 - counts toward the grade: no
@@ -101,7 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0091_finite_loop_words_stay_on_the_declared_graph_continuum_connection_and_the.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0091_finite_loop_words_stay_on_the_declared_graph_continuum_connection_and_the.md](../../../dag/derivations/19_finite_qg/tfq_0091_finite_loop_words_stay_on_the_declared_graph_continuum_connection_and_the.md)
-- sha256 (`lf-normalised`): `d6cce5255667b1c4230d1ee056f267f4bd2b970fadb463b1f828358ae39de481`
+- sha256 (`lf-normalised`): `7451e056537e9ece36ef701712354a401dab10f7605f55a631d59f71330b14b6`
 - generated view: listed, not counted
 - cited in: record TFQ-0091
 - counts toward the grade: no

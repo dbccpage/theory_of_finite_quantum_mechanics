@@ -78,7 +78,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md](../../../dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md)
-- sha256 (`lf-normalised`): `a8b8186f85a093a61bdcc4104959393ada8fa99ca487b667229e7f3d35694789`
+- sha256 (`lf-normalised`): `0ac994288b6212de4be7666abdf8f52211a71f98236cb991bf586d128f16759b`
 - generated view: listed, not counted
 - cited in: record TFQ-0256
 - counts toward the grade: no

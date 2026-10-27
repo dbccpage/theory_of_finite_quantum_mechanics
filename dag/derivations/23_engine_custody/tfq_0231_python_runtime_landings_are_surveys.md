@@ -33,7 +33,7 @@ In accordance with strict constructive principles:
 
 ### Python Oracles & Numerical Evaluators
 - [`code/python/src/majorana/tests/support/domain/shared_kernel/obstruction.py`](../../code/python/)
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/python/src/omega_engine_rc/prime_triad.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:118b9549a600eee604e58f81e4d692d85eacc23649fb6d451821820ca6f89911`](../../code/python/)
 
 ---
 
@@ -47,7 +47,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F003.S002`, `F003.S002:000_omega_engine_pfp`, `F003.S002:001_omega_engine_workflows_agents_skills`, `F003.S000:000_omega_engine_prime_algorithms_and_runtime`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S002_python_runtime`
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S002_python_runtime/000_omega_engine_pfp`
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S002_python_runtime/001_omega_engine_workflows_agents_skills`
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime`
+  - `external:git-tree:337e52879c32a70cbec65de9dadb0cc8b55ff282`
+  - `external:git-tree:fc58e03f871099f969e0c28a2d452e83656e4225`
+  - `external:git-tree:fd1b2878e807753f9abcf926f687c1fe37c197de`
+  - `external:git-tree:e03ce30c258cf9ca164637ea387b5267bad58df9`

@@ -108,7 +108,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0268_von_neumann_entropy_interface_for_mixed_states.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0268_von_neumann_entropy_interface_for_mixed_states.md](../../../dag/derivations/13_finite_qm_information/tfq_0268_von_neumann_entropy_interface_for_mixed_states.md)
-- sha256 (`lf-normalised`): `eba7e0962d5bd9b5d089ea55a6064d603ce041a426debabec7d873bcee3924cc`
+- sha256 (`lf-normalised`): `f5488153201d4b37cbc1b94e7755e227cad140716f0bfe7ffdeea6762eb203ed`
 - generated view: listed, not counted
 - cited in: record TFQ-0268
 - counts toward the grade: no

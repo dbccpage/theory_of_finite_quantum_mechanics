@@ -147,7 +147,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0366_history_report_fiber_criterion.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0366_history_report_fiber_criterion.md](../../../dag/derivations/01_pregenesis/tfq_0366_history_report_fiber_criterion.md)
-- sha256 (`lf-normalised`): `53afcc08cfd1a7152b598cc4b00579c4eb2bed613930df9178dd6c7e8554f4a1`
+- sha256 (`lf-normalised`): `9c4e2c7072b28d74e69d34e85592d8759f1f95b2456517a9d497e59d4a279086`
 - generated view: listed, not counted
 - cited in: record TFQ-0366
 - counts toward the grade: no
@@ -155,7 +155,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0338_descend_a_question_to_the_realized_report_image_exactly_when_it_is.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0338_descend_a_question_to_the_realized_report_image_exactly_when_it_is.md](../../../dag/derivations/05_mssn_sn/tfq_0338_descend_a_question_to_the_realized_report_image_exactly_when_it_is.md)
-- sha256 (`lf-normalised`): `67e578859c600c385a05c671572b69a3cb96b4b0f6e8bb27eb89efb7c1f3a627`
+- sha256 (`lf-normalised`): `7a0ac07464e815ab7eb78ca28b9b4b90feb864cceb6e5308be9d0151826054cc`
 - generated view: listed, not counted
 - cited in: record TFQ-0338
 - counts toward the grade: no

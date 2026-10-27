@@ -110,7 +110,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0353_under_admitted_h1_h5_record_an_edgewise_weighted_l1_aggregate_orbit_constant_weights_and.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0353_under_admitted_h1_h5_record_an_edgewise_weighted_l1_aggregate_orbit_constant_weights_and.md](../../../dag/derivations/07_l1_emergence/tfq_0353_under_admitted_h1_h5_record_an_edgewise_weighted_l1_aggregate_orbit_constant_weights_and.md)
-- sha256 (`lf-normalised`): `728346e31e7df2e97cc5cc1c296f42bfec0931ae5bc86fa107641dc40ce8193e`
+- sha256 (`lf-normalised`): `50e79d3778e964374a776a2588c86b6498ff2b32ed5cdd5bd59ac1865ab85833`
 - generated view: listed, not counted
 - cited in: record TFQ-0353
 - counts toward the grade: no
@@ -118,7 +118,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md](../../../dag/derivations/07_l1_emergence/tfq_0354_do_not_derive_declared_l1_sector_weights_from_the_phi1_and_gamma2.md)
-- sha256 (`lf-normalised`): `18700eae8449b13f08c61fadbbcd7fb803c6f31ab445adda49326decd63e389b`
+- sha256 (`lf-normalised`): `d4531de0213a9426dd4e3025c034634a7373aed0a94d9b8eb21bcf4f662e1e65`
 - generated view: listed, not counted
 - cited in: record TFQ-0354 (shared)
 - counts toward the grade: no

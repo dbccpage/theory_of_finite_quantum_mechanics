@@ -62,5 +62,5 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F002.S000`, `F002.S001`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent`
-  - `omega_engine_atlas/coda_atlas/F002_continuum/S001_continuum_finite_shadow_bridge`
+  - `external:git-tree:0fb81f77bbeba84143f574b5a4bc956196140991`
+  - `external:git-tree:197a57e06c54cd85be796698967601ae741995cb`

@@ -5,7 +5,7 @@
 **Goal IDs:** `QM-229-PPN-DEFLECTION-PERIHELION-MAP`, `QM-230-GHZ-MERMIN-PAGE-WOOTTERS-KRAUS-MAP`, `QM-231-QWZ-HALDANE-CHERN-PARITY-MAP`  
 **Parent Milestone:** `MS-QUANTUM`  
 **Status:** `DONE` (Rust, Python, and core Lean 4 `FiniteQFTAndGravity.lean` verified with exit code 0 and zero `sorryAx`)  
-**Executable Rust Module:** [`omega_engine/crates_rs/omega_quantum_physics/src/regge_gravity_ghz_chern_finite_maps.rs`](../../../../../omega_engine/crates_rs/omega_quantum_physics/src/regge_gravity_ghz_chern_finite_maps.rs)  
+**Executable Rust Module:** [`external:sha256:c5ad48d5c22ea89b1e481b44062e0de0f36728afa54ea6439e12e592c239f77a`](../../../../../omega_engine/crates_rs/omega_quantum_physics/src/regge_gravity_ghz_chern_finite_maps.rs)  
 **Executable Python Module:** [`python/finite_qm/use_cases/regge_gravity_ghz_chern_control.py`](../python/finite_qm/use_cases/regge_gravity_ghz_chern_control.py)  
 **Lean 4 Mechanization:** [`lean4/FiniteQFTAndGravity.lean`](../../lean4/FiniteQFTAndGravity.lean) and [`lean4/FiniteQFTAndGravity.lean`](../../lean4/FiniteQFTAndGravity.lean) (sections QM-229, QM-230, QM-231)  
 **E2E Verification Suite:** [`tests/e2e/test_e2e_regge_gravity_ghz_chern_control.py`](../tests/e2e/test_e2e_regge_gravity_ghz_chern_control.py)

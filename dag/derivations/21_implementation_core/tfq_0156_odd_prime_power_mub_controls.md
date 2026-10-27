@@ -29,11 +29,11 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_power_weyl.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_power_controls.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_power_field_theorem_gate.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/odd_prime_power_parametric_gate.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/prime_power_gtmur_boundary.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:262a84c0f4c17f34311b859ca88d2b6b15207f612c3bb4448e369966560e4bf1`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:a105030bc935c4dc8051763027af87200bdab3ea35244eb9848f993fb3076384`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:c19fe115023da356274e407a77e83f6e8a975e6f63316be2a3a27f9192a577db`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:3b52c087fad81061e03048884549a842213e53ceec5c6ca46868da497d17eebb`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:9b5d8924e7be5bba9565cbd05e23d0f9e4dd624802f64a1002ef6eefb5095280`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: The python twin is not located for the odd-prime-power MUB controls under 006_finite_qm/python/finite_qm.`](../../code/python/)
@@ -50,4 +50,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

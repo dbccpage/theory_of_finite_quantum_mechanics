@@ -122,7 +122,7 @@ basis potential, the three path pairings, all eight slit settings and the
 table above. The existing quadratic `sorkin_interference` independently
 agrees with the quadratic inclusion–exclusion value.
 
-From `omega_engine/crates_rs`, run:
+From `external:git-tree:ac1f6d647c3ecc2bf45f6fc4922213ac752e71a3`, run:
 
 ```sh
 cargo test -j 1 --offline --locked -p omega_quantum_physics --test synthesis quadratic_readout_interference::the_same_three_slit_packet_admits_distinct_readout_degrees -- --exact

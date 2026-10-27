@@ -53,6 +53,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:110-135`
-  - `external:sha256:0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149:925-975`
+  - `education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:110-135`
+  - `education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:925-975`
   - `external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:29-43`

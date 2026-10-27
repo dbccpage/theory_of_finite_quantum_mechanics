@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0270_syndrome_distance_and_repair_capacity.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0270_syndrome_distance_and_repair_capacity.md](../../../dag/derivations/13_finite_qm_information/tfq_0270_syndrome_distance_and_repair_capacity.md)
-- sha256 (`lf-normalised`): `6abb30d785a1b712a331240e3dded0fb8676eeaf503fb279ce96da3863dd1d4e`
+- sha256 (`lf-normalised`): `3b2c7203fc4f403c44d1e8c9a06b690510d03d5c9db4a11078e0311e62496fff`
 - generated view: listed, not counted
 - cited in: record TFQ-0270
 - counts toward the grade: no

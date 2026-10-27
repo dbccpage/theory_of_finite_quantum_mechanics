@@ -111,7 +111,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0358_normalize_a_declared_positive_witness_mass_to_cell_values_that_are_nonnegative.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0358_normalize_a_declared_positive_witness_mass_to_cell_values_that_are_nonnegative.md](../../../dag/derivations/07_l1_emergence/tfq_0358_normalize_a_declared_positive_witness_mass_to_cell_values_that_are_nonnegative.md)
-- sha256 (`lf-normalised`): `d421be4a39c66f770ca866ae5652bcc45115e5a81fe21d41a1e988078e03da27`
+- sha256 (`lf-normalised`): `d874e363fe5076d6c13794db07d1961c0acc6b4558b1625fb23973d23043b21e`
 - generated view: listed, not counted
 - cited in: record TFQ-0358
 - counts toward the grade: no
@@ -119,7 +119,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0167_admit_only_exact_nonnegative_rational_masses_that_sum_to_one_with_no.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0167_admit_only_exact_nonnegative_rational_masses_that_sum_to_one_with_no.md](../../../dag/derivations/22_implementation_sibling/tfq_0167_admit_only_exact_nonnegative_rational_masses_that_sum_to_one_with_no.md)
-- sha256 (`lf-normalised`): `f76075556be2935a7fa3b215d691a46daef041554f57a0c3c42faba6c6368459`
+- sha256 (`lf-normalised`): `9dc448ef81c388f20c4c1b8c8e0cbd5cad71d4a33c0038253ed4269c46cc90bb`
 - generated view: listed, not counted
 - cited in: record TFQ-0167 (shared)
 - counts toward the grade: no

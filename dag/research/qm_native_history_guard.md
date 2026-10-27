@@ -248,7 +248,7 @@ The fixture hashes the imported source files. This is bounded reproduction,
 not a universal source-language correctness claim.
 
 ```console
-python omega_engine_projects/finite_qm/tests/oracles/native_history_guard_replay.py --check
+python external:sha256:600e9d208322d95ecad83b16287081831d86880eaee21137029a225ead43ebbe --check
 cd lean4
 lake build +NativeHistoryGuard
 cd ../omega_engine/crates_rs

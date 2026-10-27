@@ -29,12 +29,12 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/anyon_model.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/anyon.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/r_matrix.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/yang_baxter_equation.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/modular_tensor_category.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/topological_quantum_computing.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:1b998e845c6cb87aacd3c80aea6dfeab4c89757dc8ae040a1e2ab8ef9fd87046`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:fc304d9ddd8e307e14c12aaab1d0538770b28760252cd7c07c933f3da0c78a27`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:3e7e56da3775a6e3d7e50ae1b02d5919f0e67701a37dd1af30f97919bd77a8d6`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:81cef7530a42b0fd9c77ebad734ec9001b102541d55b056c07911c1b8934d0c5`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:c5a468580a14418873219a21a9092c722a0eb690cc7178bebb7bbcf73bfa0dd4`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:2e8dae27ae2eb20bd4b748b6d4d44838b0b94b0f0ca60692ad0b01b8e0942b20`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: The python twin is not located for anyon_model.rs under 006_finite_qm/python/finite_qm.`](../../code/python/)
@@ -51,4 +51,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

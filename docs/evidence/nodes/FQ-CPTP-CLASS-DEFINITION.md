@@ -74,7 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0262_cptp_class_recorded_as_a_definition.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0262_cptp_class_recorded_as_a_definition.md](../../../dag/derivations/12_finite_qm_structure/tfq_0262_cptp_class_recorded_as_a_definition.md)
-- sha256 (`lf-normalised`): `327c476359539bbdd3578d8ea2e58b097be196dbe7d83e987f5b44738a66f8f0`
+- sha256 (`lf-normalised`): `096803e8b1c9e76cac81198e55765f3ff8b1c278d5b221214b1f4ab031ba410e`
 - generated view: listed, not counted
 - cited in: record TFQ-0262
 - counts toward the grade: no

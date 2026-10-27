@@ -43,8 +43,8 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean::obst_of_gates`](../../../lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `external:sha256:439bafc4a90225a06b9e80fb2d9458ecd3718cd1908db47b734056ef8b6c3de2::audit_layer_2_circulation_flux` (private upstream source, not in this repository)
-- `external:sha256:439bafc4a90225a06b9e80fb2d9458ecd3718cd1908db47b734056ef8b6c3de2::verify_four_gate_factorization` (private upstream source, not in this repository)
+- `education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux` (private upstream source, not in this repository)
+- `education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::verify_four_gate_factorization` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - `missing obligation: no Python check of the four-gate detector or the triangle circulation in 003_oemssn`

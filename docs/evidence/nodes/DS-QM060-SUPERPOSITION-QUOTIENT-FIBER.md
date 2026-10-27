@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0251_superposition_as_a_quotient_fiber.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0251_superposition_as_a_quotient_fiber.md](../../../dag/derivations/12_finite_qm_structure/tfq_0251_superposition_as_a_quotient_fiber.md)
-- sha256 (`lf-normalised`): `fd30063978c3acac62e4d0a4944f225af21e50c7b2a9c17085ee5449739aea8e`
+- sha256 (`lf-normalised`): `ca85cb4fb1b084167b9dca863fd66db0a63a1612295534e3fdebd0865c14727c`
 - generated view: listed, not counted
 - cited in: record TFQ-0251 (shared)
 - counts toward the grade: no

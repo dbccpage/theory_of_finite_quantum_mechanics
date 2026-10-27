@@ -98,7 +98,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0179_keep_omega_mub_float_cross_checks_from_authorizing_a_mub_6_existence_claim.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0179_keep_omega_mub_float_cross_checks_from_authorizing_a_mub_6_existence_claim.md](../../../dag/derivations/22_implementation_sibling/tfq_0179_keep_omega_mub_float_cross_checks_from_authorizing_a_mub_6_existence_claim.md)
-- sha256 (`lf-normalised`): `5076a6296a0d3ee1f01265c6807ea769d5e2529a405f3140552705e8ab8e34c1`
+- sha256 (`lf-normalised`): `b2cf15cc24f6584b2f86394950877d14017e77ff341e2908c78d8b87885afc31`
 - generated view: listed, not counted
 - cited in: record TFQ-0179
 - counts toward the grade: no
@@ -106,7 +106,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0188_refuse_the_f64_lift_scale_on_cycleliftspec_as_a_licence_for_an_exact.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0188_refuse_the_f64_lift_scale_on_cycleliftspec_as_a_licence_for_an_exact.md](../../../dag/derivations/22_implementation_sibling/tfq_0188_refuse_the_f64_lift_scale_on_cycleliftspec_as_a_licence_for_an_exact.md)
-- sha256 (`lf-normalised`): `62b613072f2ecc85322fd9d1ced77537fe961a0f434cd0e84b0834671f4e5c7a`
+- sha256 (`lf-normalised`): `303e9bfd8839de202416f2852b8fa9015dde0135d3c50ef84365a680f018522b`
 - generated view: listed, not counted
 - cited in: record TFQ-0188
 - counts toward the grade: no
@@ -114,7 +114,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0192_keep_diagnostic_floats_and_display_conversions_out_of_governance_and_out_of.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0192_keep_diagnostic_floats_and_display_conversions_out_of_governance_and_out_of.md](../../../dag/derivations/22_implementation_sibling/tfq_0192_keep_diagnostic_floats_and_display_conversions_out_of_governance_and_out_of.md)
-- sha256 (`lf-normalised`): `a66729e619d59a1cff501467c6b4425a0974f4defb279bff52126a17b0d17495`
+- sha256 (`lf-normalised`): `dda7baebd789bea679daa6cd553190a483e2d0ed5cac8efecf30bdcde81e9cd2`
 - generated view: listed, not counted
 - cited in: record TFQ-0192
 - counts toward the grade: no

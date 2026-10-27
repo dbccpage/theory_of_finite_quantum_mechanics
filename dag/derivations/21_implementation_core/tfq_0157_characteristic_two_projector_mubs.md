@@ -29,13 +29,13 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/char_two.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/char_two_weyl_board.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/finite_projector_control.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/projector_algebra.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/spectral_lift.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/hilbert_transport.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mub/gtmur_projector_ledger.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:4f4b4136c196f2431cecda69d19b0b7df397e0af948635e4e42543a7fedfb79b`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:ae2912155731efc9e4f9b6841425b8ce1952e05db3d03ceac87621fc34a70707`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:becaa33cea0771d95f0efee0dcf5b5f8ebcf23843b2145814f44405aa3c76978`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:b78705893ac175ecde4bf213101d69fca55ab1246f32c8c18874fd57dca8d54c`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:800c82dc185cd8ca2d773c46d9c8d3b66c31862eec49eee8e70dcade504c4557`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:cd99f7b59751aed8845f5d1127c7038739938db2629c9796f40781889b9c534c`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:ae85d0aad38bfd52a7e1d9f74b6abd01ea2ffd9f0570c462d8ccc84b59a4a886`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: The python twin is not located for characteristic-two MUB projectors under 006_finite_qm/python/finite_qm.`](../../code/python/)
@@ -52,4 +52,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

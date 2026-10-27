@@ -151,7 +151,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/electroweak_dfm_weinberg_finite_map.md`
 
 - file: [dag/research/electroweak_dfm_weinberg_finite_map.md](../../../dag/research/electroweak_dfm_weinberg_finite_map.md)
-- sha256 (`lf-normalised`): `9085e0b276afee079a11b980fc73e2c76a57d7d9b9d70fe29f97a0bd6f0b7fee`
+- sha256 (`lf-normalised`): `2c99604d0effe1ed2dc2afa6b13cac57d3a82df94e8ddb58dcb386d03cdbc56a`
 - cited in: node.source
 - counts toward the grade: yes
 

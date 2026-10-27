@@ -29,7 +29,7 @@ In accordance with strict constructive principles:
 - [`absent: the Ising and F2 Gauss benchmark is not a FiniteQM QCD theorem`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/lattice_gauge_manybody_benchmark.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:e10c0ce9ecc723b716548a23fd494af9cf8a4ac8a0b174a0b1aac2f86daf19f1`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: no finite_qm use case wraps Z2LatticeGauge`](../../code/python/)
@@ -46,4 +46,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
+  - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`

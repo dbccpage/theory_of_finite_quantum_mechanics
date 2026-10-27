@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0377_mss0_only_inscription.md`
 
 - file: [dag/derivations/02_genesis/tfq_0377_mss0_only_inscription.md](../../../dag/derivations/02_genesis/tfq_0377_mss0_only_inscription.md)
-- sha256 (`lf-normalised`): `8564b7e593adaebe2309645580e778f9980141052d1cba432d2c5491a5d634cc`
+- sha256 (`lf-normalised`): `e3676d9a5fdcf2e462ae0718696e821ef9b032ef5b22039ec6cb3bdb9f670ed6`
 - generated view: listed, not counted
 - cited in: record TFQ-0377
 - counts toward the grade: no

@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/09_finite_hilbert/tfq_0309_ingredient_ladder_stops_before_the_imported_ceiling.md`
 
 - file: [dag/derivations/09_finite_hilbert/tfq_0309_ingredient_ladder_stops_before_the_imported_ceiling.md](../../../dag/derivations/09_finite_hilbert/tfq_0309_ingredient_ladder_stops_before_the_imported_ceiling.md)
-- sha256 (`lf-normalised`): `f08c3c792bf8ed2c68ba7fba3caba50b94b7aa31a11d0b61aed5bcd0363ddc38`
+- sha256 (`lf-normalised`): `e8ad12116bdab4569eb09be9e3e26158c24bc78dc7eff9a3c6364ece8fc15be9`
 - generated view: listed, not counted
 - cited in: record TFQ-0309
 - counts toward the grade: no

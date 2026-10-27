@@ -26,14 +26,14 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/lean4/AuthorizationIncompletenessTheory/DescentAuthority.lean`](../../lean4/)
+- [`absent: no local lean twin located for external:sha256:55b2e20c6afb709764124e54e1326e75caf63d05255a1c1c6d096f67e07128cd`](../../lean4/)
 
 ### Sovereign Rust Certifiers
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/python/src/authorization_incompleteness/halt_guards.py`](../../code/python/)
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/python/tests_unit/test_halt_guards.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:f8873706013bce7cbe05ce67a978cd9bb4692fac10d744613db3e19b1a5e8ada`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:7afbfd37c50f16a53b12a95c4dfd89f9624b0f015924dea34ebc6ec80c7b8185`](../../code/python/)
 
 ---
 
@@ -47,6 +47,6 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000`, `F000.S001`, `F000.S001:001_authorization_an_incompleteness_theory`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/book/README.md`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/claims/proposed_gaps.yaml`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/lean4/AuthorizationIncompletenessTheory/DescentAuthority.lean`
+  - `external:sha256:8f664cdf087dfcffc889d6b105b271d2b3f8cf955381e8e96362ecff80d5a6fc`
+  - `external:sha256:178ade81ad0f81c58ab5e41247bce90fd7913741ee684293a6db87a6fb2e653a`
+  - `external:sha256:55b2e20c6afb709764124e54e1326e75caf63d05255a1c1c6d096f67e07128cd`

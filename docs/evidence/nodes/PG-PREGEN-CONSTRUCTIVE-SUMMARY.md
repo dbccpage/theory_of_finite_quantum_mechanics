@@ -89,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0367_listed_history_choice_free_summary.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0367_listed_history_choice_free_summary.md](../../../dag/derivations/01_pregenesis/tfq_0367_listed_history_choice_free_summary.md)
-- sha256 (`lf-normalised`): `02c8878992a584c356641d08a65ce6970dbcf06cf19a739694cac52ba2642557`
+- sha256 (`lf-normalised`): `5390a87cd45bdce2d05c6971c3d24f902c092dec6c656afe904fcda0598aa19a`
 - generated view: listed, not counted
 - cited in: record TFQ-0367
 - counts toward the grade: no

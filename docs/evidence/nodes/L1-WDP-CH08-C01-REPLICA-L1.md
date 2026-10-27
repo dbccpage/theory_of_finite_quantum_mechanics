@@ -135,7 +135,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0357_record_replica_extensivity_as_a_reason_l1_appears_and_keep_squared_l2.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0357_record_replica_extensivity_as_a_reason_l1_appears_and_keep_squared_l2.md](../../../dag/derivations/07_l1_emergence/tfq_0357_record_replica_extensivity_as_a_reason_l1_appears_and_keep_squared_l2.md)
-- sha256 (`lf-normalised`): `29c45e7a39f746201fd50195b2e291818a9959a9dee748a81f7c01459a6389ce`
+- sha256 (`lf-normalised`): `307d4e5f01bdf6e5fe541cbdf0450a4026ca9e48ea4586b223e2643fce6c23bd`
 - generated view: listed, not counted
 - cited in: record TFQ-0357
 - counts toward the grade: no
