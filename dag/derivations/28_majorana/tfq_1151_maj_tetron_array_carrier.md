@@ -39,8 +39,8 @@ tetron.rs builds d0 and d1 rows explicitly and refuses a carrier that fails d1 d
 - `code/rust/src/majorana/tetron.rs::logical_class_representative`
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::build_tetron_carrier`
-- `papers/core/majorana/code/majorana_evaluator.py::logical_representative`
+- `code/python/src/majorana/majorana_f2_trichotomy.py::build_tetron_carrier`
+- `code/python/src/majorana/majorana_f2_trichotomy.py::logical_representative`
 
 ### Cited by the source, not in this checkout
 - *none*

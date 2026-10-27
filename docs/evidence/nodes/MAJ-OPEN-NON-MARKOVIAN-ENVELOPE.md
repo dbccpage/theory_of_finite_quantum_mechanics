@@ -61,10 +61,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/majorana_evaluator.py`
+### Python: `code/python/src/majorana/majorana_transfer_bounds.py`
 
-- file: [papers/core/majorana/code/majorana_evaluator.py](../../../papers/core/majorana/code/majorana_evaluator.py)
-- sha256 (`bytes`): `86798eabea510363b59e164c516625c6055df24b4e12086cfe2fde5db16835c3`
+- file: [code/python/src/majorana/majorana_transfer_bounds.py](../../../code/python/src/majorana/majorana_transfer_bounds.py)
+- sha256 (`bytes`): `f14bf9dd639ec68e1e01d5d970cea8c5b36bcddfe066d2b3be00454a18f70737`
 - cited in: record TFQ-1178
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -76,7 +76,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md`
 
 - file: [dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md](../../../dag/derivations/28_majorana/tfq_1178_maj_open_non_markovian_envelope.md)
-- sha256 (`lf-normalised`): `5cb1971f2b52353bd3b0d5a0a077c672ff1cefe290f1f02c4704a93ea1a9c1ee`
+- sha256 (`lf-normalised`): `7e973c4240d84cd89b43d42c0b033c2a273548c4fbbf4410acf6d958aec23917`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1178
 - counts toward the grade: no

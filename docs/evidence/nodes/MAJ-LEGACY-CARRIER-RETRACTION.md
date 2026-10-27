@@ -85,10 +85,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/majorana_evaluator.py`
+### Python: `code/python/src/majorana/majorana_mzm_ising.py`
 
-- file: [papers/core/majorana/code/majorana_evaluator.py](../../../papers/core/majorana/code/majorana_evaluator.py)
-- sha256 (`bytes`): `86798eabea510363b59e164c516625c6055df24b4e12086cfe2fde5db16835c3`
+- file: [code/python/src/majorana/majorana_mzm_ising.py](../../../code/python/src/majorana/majorana_mzm_ising.py)
+- sha256 (`bytes`): `a4ac5734a5ab1a872aeaafd3835ed71261f069dfb29c17c9b5572a03e63b1310`
 - cited in: record TFQ-1154
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -97,23 +97,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py`
+### Python: `code/python/src/majorana/test_tetron_surface_codes.py`
 
-- file: [papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py](../../../papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py)
-- sha256 (`bytes`): `613eb90331749cead532af34aa06a1d61ff5c01a8cc6fd4bdce4bdb9923f7e32`
+- file: [code/python/src/majorana/test_tetron_surface_codes.py](../../../code/python/src/majorana/test_tetron_surface_codes.py)
+- sha256 (`bytes`): `6577a59d6a74b23a3f5a356b1ffaf308140451939f7541f472ac0de58bf6747e`
 - cited in: record TFQ-1154
-- check: `python -m pytest papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_audit_legacy_carrier_retraction`
+- check: `python -m pytest code/python/src/majorana/test_tetron_surface_codes.py::test_audit_legacy_carrier_retraction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_audit_legacy_carrier_retraction` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_audit_legacy_carrier_retraction` |
+| `test_audit_legacy_carrier_retraction` (python_test) | yes | yes | yes | - | `python -m pytest code/python/src/majorana/test_tetron_surface_codes.py::test_audit_legacy_carrier_retraction` |
 
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md`
 
 - file: [dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md](../../../dag/derivations/28_majorana/tfq_1154_maj_legacy_carrier_retraction.md)
-- sha256 (`lf-normalised`): `a7eed0a9cbbecd770895ab6f6bd49f243ff0afdc8c7c08359efd2c83f484ccf1`
+- sha256 (`lf-normalised`): `63c5776aa8c4b84133b342f999845f2b8dcb30f986bd3ad2352fc79aeff8ca9b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1154
 - counts toward the grade: no

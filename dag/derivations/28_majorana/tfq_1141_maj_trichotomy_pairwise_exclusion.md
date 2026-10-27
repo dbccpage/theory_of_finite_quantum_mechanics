@@ -39,8 +39,8 @@ coboundary_is_cocycle rewrites w = d0 a and applies C.nilpotent; the three exclu
 - `code/rust/src/majorana/classify.rs::torus_reaches_every_terminal`
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::classify_residual`
-- `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_residual_trichotomy_classification`
+- `code/python/src/majorana/majorana_f2_trichotomy.py::classify_residual`
+- `code/python/src/majorana/test_gf2_trichotomy.py::test_residual_trichotomy_classification`
 
 ### Cited by the source, not in this checkout
 - *none*

@@ -38,7 +38,7 @@ Lean cited for this row is the same Nat.le_refl as MAJ-C3 and times nothing (led
 - `code/rust/src/majorana/fixtures/tetron_lattice_scaling.json`
 
 ### Python Checks
-- `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_trichotomy_benchmark_6x6_torus`
+- `code/python/src/majorana/test_gf2_trichotomy.py::test_trichotomy_benchmark_6x6_torus`
 
 ### Cited by the source, not in this checkout
 - *none*

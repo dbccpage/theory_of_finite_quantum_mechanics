@@ -77,10 +77,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/majorana_evaluator.py`
+### Python: `code/python/src/majorana/majorana_mzm_ising.py`
 
-- file: [papers/core/majorana/code/majorana_evaluator.py](../../../papers/core/majorana/code/majorana_evaluator.py)
-- sha256 (`bytes`): `86798eabea510363b59e164c516625c6055df24b4e12086cfe2fde5db16835c3`
+- file: [code/python/src/majorana/majorana_mzm_ising.py](../../../code/python/src/majorana/majorana_mzm_ising.py)
+- sha256 (`bytes`): `a4ac5734a5ab1a872aeaafd3835ed71261f069dfb29c17c9b5572a03e63b1310`
 - cited in: record TFQ-1167
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -92,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md`
 
 - file: [dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md](../../../dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md)
-- sha256 (`lf-normalised`): `1b22a1fd3d8be6d706b4f2fbae29e9041e24506baf9db06a231187de7de589e7`
+- sha256 (`lf-normalised`): `ba0e5dfbde1c43613cb312be2f20406febcf237973389d68575345d70ca7d5a4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1167
 - counts toward the grade: no

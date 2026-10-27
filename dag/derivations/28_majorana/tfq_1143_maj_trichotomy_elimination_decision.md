@@ -38,9 +38,9 @@ Lean gaussian_elimination_cubic_bound is Nat.le_refl of gaussian_elimination_ops
 - `code/rust/src/majorana/classify.rs::classify_default`
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::GF2Matrix.solve`
-- `papers/core/majorana/code/majorana_evaluator.py::classify_residual`
-- `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_gf2_matrix_rank_and_solve`
+- `code/python/src/majorana/majorana_f2_trichotomy.py::GF2Matrix.solve`
+- `code/python/src/majorana/majorana_f2_trichotomy.py::classify_residual`
+- `code/python/src/majorana/test_gf2_trichotomy.py::test_gf2_matrix_rank_and_solve`
 
 ### Cited by the source, not in this checkout
 - *none*

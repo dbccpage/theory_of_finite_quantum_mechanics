@@ -57,10 +57,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/majorana_evaluator.py`
+### Python: `code/python/src/majorana/majorana_f2_trichotomy.py`
 
-- file: [papers/core/majorana/code/majorana_evaluator.py](../../../papers/core/majorana/code/majorana_evaluator.py)
-- sha256 (`bytes`): `86798eabea510363b59e164c516625c6055df24b4e12086cfe2fde5db16835c3`
+- file: [code/python/src/majorana/majorana_f2_trichotomy.py](../../../code/python/src/majorana/majorana_f2_trichotomy.py)
+- sha256 (`bytes`): `d6ffe11ba0e9fd0ba5a4a467147b95cf560b3d4c860b845a025e3b0e5e283b7a`
 - cited in: record TFQ-1161
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -69,23 +69,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py`
+### Python: `code/python/src/majorana/test_gf2_trichotomy.py`
 
-- file: [papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py](../../../papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py)
-- sha256 (`bytes`): `3389fbeaad7f67b996a8bc8aa2cef6d2ae1ae841d8b6cfa83564a3305190a60b`
+- file: [code/python/src/majorana/test_gf2_trichotomy.py](../../../code/python/src/majorana/test_gf2_trichotomy.py)
+- sha256 (`bytes`): `ef02fedf569c136afcde5946b0a5b597fa108fd48c981f60494aa3d9f517ec75`
 - cited in: record TFQ-1161
-- check: `python -m pytest papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_norm_equivalence_on_binary_vectors`
+- check: `python -m pytest code/python/src/majorana/test_gf2_trichotomy.py::test_norm_equivalence_on_binary_vectors`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_norm_equivalence_on_binary_vectors` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_norm_equivalence_on_binary_vectors` |
+| `test_norm_equivalence_on_binary_vectors` (python_test) | yes | yes | yes | - | `python -m pytest code/python/src/majorana/test_gf2_trichotomy.py::test_norm_equivalence_on_binary_vectors` |
 
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1161_maj_lp_invariance_binary.md`
 
 - file: [dag/derivations/28_majorana/tfq_1161_maj_lp_invariance_binary.md](../../../dag/derivations/28_majorana/tfq_1161_maj_lp_invariance_binary.md)
-- sha256 (`lf-normalised`): `360b8886efda458cc8a3f54fcd1be69b53302312682d694a6fc2f800e59faf94`
+- sha256 (`lf-normalised`): `68a2b1640bcb687721aa5a3ec88a829ee3e5d0ed0d27cb17883a110d01fd03bd`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1161
 - counts toward the grade: no

@@ -35,8 +35,8 @@ The paper evaluator reports the crate TypedHarmonic class as ClosedResidual with
 - `code/rust/src/majorana/classify.rs::classify`
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::compute_coset_weight`
-- `papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_coset_weight_budget_capping`
+- `code/python/src/majorana/majorana_f2_trichotomy.py::compute_coset_weight`
+- `code/python/src/majorana/test_tetron_surface_codes.py::test_coset_weight_budget_capping`
 
 ### Cited by the source, not in this checkout
 - *none*

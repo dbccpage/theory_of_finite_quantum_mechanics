@@ -35,9 +35,9 @@ nilpotency_refusal_sound: (exists v, d1(d0 v) != 0) -> not (forall v, d1(d0 v) =
 - `code/rust/src/majorana/classify.rs::representation_invalid_is_refused_not_classified`
 
 ### Python Checks
-- `papers/core/majorana/code/majorana_evaluator.py::F2CochainComplex.is_nilpotent`
-- `papers/core/majorana/code/majorana_evaluator.py::classify_residual`
-- `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_cochain_nilpotency_and_refusal`
+- `code/python/src/majorana/majorana_f2_trichotomy.py::F2CochainComplex.is_nilpotent`
+- `code/python/src/majorana/majorana_f2_trichotomy.py::classify_residual`
+- `code/python/src/majorana/test_gf2_trichotomy.py::test_cochain_nilpotency_and_refusal`
 
 ### Cited by the source, not in this checkout
 - *none*

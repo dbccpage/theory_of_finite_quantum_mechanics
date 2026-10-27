@@ -71,10 +71,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/majorana_evaluator.py`
+### Python: `code/python/src/majorana/majorana_f2_trichotomy.py`
 
-- file: [papers/core/majorana/code/majorana_evaluator.py](../../../papers/core/majorana/code/majorana_evaluator.py)
-- sha256 (`bytes`): `86798eabea510363b59e164c516625c6055df24b4e12086cfe2fde5db16835c3`
+- file: [code/python/src/majorana/majorana_f2_trichotomy.py](../../../code/python/src/majorana/majorana_f2_trichotomy.py)
+- sha256 (`bytes`): `d6ffe11ba0e9fd0ba5a4a467147b95cf560b3d4c860b845a025e3b0e5e283b7a`
 - cited in: record TFQ-1155
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -83,23 +83,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py`
+### Python: `code/python/src/majorana/test_tetron_surface_codes.py`
 
-- file: [papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py](../../../papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py)
-- sha256 (`bytes`): `613eb90331749cead532af34aa06a1d61ff5c01a8cc6fd4bdce4bdb9923f7e32`
+- file: [code/python/src/majorana/test_tetron_surface_codes.py](../../../code/python/src/majorana/test_tetron_surface_codes.py)
+- sha256 (`bytes`): `6577a59d6a74b23a3f5a356b1ffaf308140451939f7541f472ac0de58bf6747e`
 - cited in: record TFQ-1155
-- check: `python -m pytest papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_torus_per_class_minimum_weights`
+- check: `python -m pytest code/python/src/majorana/test_tetron_surface_codes.py::test_torus_per_class_minimum_weights`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_torus_per_class_minimum_weights` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_torus_per_class_minimum_weights` |
+| `test_torus_per_class_minimum_weights` (python_test) | yes | yes | yes | - | `python -m pytest code/python/src/majorana/test_tetron_surface_codes.py::test_torus_per_class_minimum_weights` |
 
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1155_maj_torus_3x4_coset_weights.md`
 
 - file: [dag/derivations/28_majorana/tfq_1155_maj_torus_3x4_coset_weights.md](../../../dag/derivations/28_majorana/tfq_1155_maj_torus_3x4_coset_weights.md)
-- sha256 (`lf-normalised`): `16d564db784c3fd3faf53f0de313f82e37037d0c405cb336309b9cc927125e1c`
+- sha256 (`lf-normalised`): `7b99c8656c76408a3073bd26339846e777a257757ed5002ccef57cc7c69e0f3b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1155
 - counts toward the grade: no

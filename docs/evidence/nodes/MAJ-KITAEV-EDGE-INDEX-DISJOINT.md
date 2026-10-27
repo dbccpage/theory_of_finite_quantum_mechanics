@@ -59,23 +59,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py`
+### Python: `code/python/src/majorana/test_tetron_surface_codes.py`
 
-- file: [papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py](../../../papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py)
-- sha256 (`bytes`): `613eb90331749cead532af34aa06a1d61ff5c01a8cc6fd4bdce4bdb9923f7e32`
+- file: [code/python/src/majorana/test_tetron_surface_codes.py](../../../code/python/src/majorana/test_tetron_surface_codes.py)
+- sha256 (`bytes`): `6577a59d6a74b23a3f5a356b1ffaf308140451939f7541f472ac0de58bf6747e`
 - cited in: record TFQ-1168
-- check: `python -m pytest papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_kitaev_sweet_spot_boundary_isolation`
+- check: `python -m pytest code/python/src/majorana/test_tetron_surface_codes.py::test_kitaev_sweet_spot_boundary_isolation`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_kitaev_sweet_spot_boundary_isolation` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_kitaev_sweet_spot_boundary_isolation` |
+| `test_kitaev_sweet_spot_boundary_isolation` (python_test) | yes | yes | yes | - | `python -m pytest code/python/src/majorana/test_tetron_surface_codes.py::test_kitaev_sweet_spot_boundary_isolation` |
 
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1168_maj_kitaev_edge_index_disjoint.md`
 
 - file: [dag/derivations/28_majorana/tfq_1168_maj_kitaev_edge_index_disjoint.md](../../../dag/derivations/28_majorana/tfq_1168_maj_kitaev_edge_index_disjoint.md)
-- sha256 (`lf-normalised`): `64f76908cd75ea563e3c0998f55144b2610bd5a10a2ff234df7058ebfd09d013`
+- sha256 (`lf-normalised`): `85fb78e9560c162d822bdf7ce5bf37fcc11367592caf5344d77e466f6cc77544`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1168
 - counts toward the grade: no

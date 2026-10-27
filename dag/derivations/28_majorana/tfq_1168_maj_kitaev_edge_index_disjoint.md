@@ -36,7 +36,7 @@ MajoranaGinCore establishes both by omega after unpacking the bond witness; stat
 - *none*
 
 ### Python Checks
-- `papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_kitaev_sweet_spot_boundary_isolation`
+- `code/python/src/majorana/test_tetron_surface_codes.py::test_kitaev_sweet_spot_boundary_isolation`
 
 ### Cited by the source, not in this checkout
 - *none*

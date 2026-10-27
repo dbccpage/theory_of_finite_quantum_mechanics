@@ -42,10 +42,10 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Python: `papers/core/majorana/code/majorana_evaluator.py`
+### Python: `code/python/src/majorana/majorana_mzm_ising.py`
 
-- file: [papers/core/majorana/code/majorana_evaluator.py](../../../papers/core/majorana/code/majorana_evaluator.py)
-- sha256 (`bytes`): `86798eabea510363b59e164c516625c6055df24b4e12086cfe2fde5db16835c3`
+- file: [code/python/src/majorana/majorana_mzm_ising.py](../../../code/python/src/majorana/majorana_mzm_ising.py)
+- sha256 (`bytes`): `a4ac5734a5ab1a872aeaafd3835ed71261f069dfb29c17c9b5572a03e63b1310`
 - cited in: record TFQ-1171
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -55,23 +55,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Python: `papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py`
+### Python: `code/python/src/majorana/test_gf2_trichotomy.py`
 
-- file: [papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py](../../../papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py)
-- sha256 (`bytes`): `3389fbeaad7f67b996a8bc8aa2cef6d2ae1ae841d8b6cfa83564a3305190a60b`
+- file: [code/python/src/majorana/test_gf2_trichotomy.py](../../../code/python/src/majorana/test_gf2_trichotomy.py)
+- sha256 (`bytes`): `ef02fedf569c136afcde5946b0a5b597fa108fd48c981f60494aa3d9f517ec75`
 - cited in: record TFQ-1171
-- check: `python -m pytest papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_ising_fusion_and_braid_relations`
+- check: `python -m pytest code/python/src/majorana/test_gf2_trichotomy.py::test_ising_fusion_and_braid_relations`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
-| `test_ising_fusion_and_braid_relations` (python_test) | yes | yes | yes | - | `python -m pytest papers/core/majorana/code/tests/unit/test_gf2_trichotomy.py::test_ising_fusion_and_braid_relations` |
+| `test_ising_fusion_and_braid_relations` (python_test) | yes | yes | yes | - | `python -m pytest code/python/src/majorana/test_gf2_trichotomy.py::test_ising_fusion_and_braid_relations` |
 
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1171_maj_ising_braid_exact_open.md`
 
 - file: [dag/derivations/28_majorana/tfq_1171_maj_ising_braid_exact_open.md](../../../dag/derivations/28_majorana/tfq_1171_maj_ising_braid_exact_open.md)
-- sha256 (`lf-normalised`): `d1ce22d98187bb3906574ac789bf033b04ba71e9f5266724bb23c3845c3c24fc`
+- sha256 (`lf-normalised`): `1f9f4de50ceb4fc5d437688b0ee441468fb042f78225d9506a977112208fb2aa`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1171
 - counts toward the grade: no

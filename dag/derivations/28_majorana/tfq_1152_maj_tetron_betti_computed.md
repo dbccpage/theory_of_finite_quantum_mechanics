@@ -41,7 +41,7 @@ Evidence is the Rust rank computation and its cross-language JSON fixture. Lean 
 - `code/rust/src/majorana/fixtures/tetron_lattice_scaling.json`
 
 ### Python Checks
-- `papers/core/majorana/code/tests/integration/test_tetron_surface_codes.py::test_tetron_homology_dimensions`
+- `code/python/src/majorana/test_tetron_surface_codes.py::test_tetron_homology_dimensions`
 
 ### Cited by the source, not in this checkout
 - *none*
