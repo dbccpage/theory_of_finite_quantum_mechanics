@@ -2672,7 +2672,7 @@
       "stage": "L1_EMERGENCE",
       "status": "OPEN",
       "source_status": "Tier-1 direction independence (Lemma 4.1), gauge proportionality (Corollary 2), single-orbit uniform collapse (Theorem 4.2), and ENC-0523 drop-one counterexamples mechanized in DerivationDagQMClosure.lean and mirrored in finite_quantum_mechanics",
-      "statement": "On two integer coordinates, for all integers x, y, and k and every coordinate swap and pair of coordinate signs, the aggregate |x| + |y| is unchanged by that signed permutation, equals |x| + |0| plus |0| + |y|, and after scaling both coordinates by k equals |k| times (|x| + |y|). The eight signed permutations send (1, 2) to (1, 2), (-1, 2), (1, -2), (-1, -2), (2, 1), (2, -1), (-2, 1), and (-2, -1), and these eight pairs are distinct, so equal images of (1, 2) force equal bit choices. For natural weights w1 and w2, w1 |x| + w2 |y| is unchanged by swapping the two coordinates for every integer pair if and only if w1 = w2, and in that case it equals w1 times (|x| + |y|). The weights 1 and 2 give 1 on (1, 0) and 2 on (0, 1). The pairs (3, 4) and (5, 0) both have squared length 25, and their aggregates are 7 and 5.",
+      "statement": "A faithful, edge-additive, maximal bounded-linear symmetry on the gauge presentation gives weighted l1 as the outer aggregation. Alternative route to l1 to L1-GS000-EDGEWISE-L1, with a different hypothesis set.",
       "source": [
         "atlas/papers/projection_obstruction/m_compatible_gauge_classification"
       ],
@@ -2697,7 +2697,7 @@
         "sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "Two integer coordinates only. A faithful, edge-additive, maximal bounded-linear symmetry on a general gauge presentation is not derived, and weighted l1 is not obtained as that symmetry outer aggregation. Route L1-R-GS001 from L1-OBSERVER-AXIOMS-H1-H5 stays GAP_NO_DERIVATION. The conditional norming package in gs001_maximal_symmetry_direction_independence_and_gauge_proportionality remains a hypothesis package.",
+      "bottleneck": "Checked slice (CampaignL1Gs001GaugeL1), two integer coordinates only: On two integer coordinates, for all integers x, y, and k and every coordinate swap and pair of coordinate signs, the aggregate |x| + |y| is unchanged by that signed permutation, equals |x| + |0| plus |0| + |y|, and after scaling both coordinates by k equals |k| times (|x| + |y|). The eight signed permutations send (1, 2) to (1, 2), (-1, 2), (1, -2), (-1, -2), (2, 1), (2, -1), (-2, 1), and (-2, -1), and these eight pairs are distinct, so equal images of (1, 2) force equal bit choices. For natural weights w1 and w2, w1 |x| + w2 |y| is unchanged by swapping the two coordinates for every integer pair if and only if w1 = w2, and in that case it equals w1 times (|x| + |y|). The weights 1 and 2 give 1 on (1, 0) and 2 on (0, 1). The pairs (3, 4) and (5, 0) both have squared length 25, and their aggregates are 7 and 5. A faithful, edge-additive, maximal bounded-linear symmetry on a general gauge presentation is not derived, and weighted l1 is not obtained as that symmetry outer aggregation. Route L1-R-GS001 from L1-OBSERVER-AXIOMS-H1-H5 stays GAP_NO_DERIVATION. The conditional norming package in gs001_maximal_symmetry_direction_independence_and_gauge_proportionality remains a hypothesis package.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/L1-GS001-GAUGE-L1/reviews/20261019_l1_import_audit/delivery_review_result.json",
@@ -2710,7 +2710,7 @@
         "does_not_support": "Establish the actual maximal bounded-linear symmetry and faithful edge-additive hypotheses; do not infer them from an eight-element test.",
         "next_test": "Establish the actual maximal bounded-linear symmetry and faithful edge-additive hypotheses; do not infer them from an eight-element test.",
         "scope_effect": "status_lowered",
-        "reason": "2026-10-26 status audit kept this node OPEN. The stored statement is now the two-coordinate signed-permutation shadow in CampaignL1Gs001GaugeL1. The general maximal bounded-linear classification stays outside that shadow.",
+        "reason": "2026-10-26 status audit kept this node OPEN. The target statement is restored; the two-coordinate signed-permutation shadow in CampaignL1Gs001GaugeL1 is recorded in the bottleneck. The general maximal bounded-linear classification stays outside that shadow.",
         "prior_status": "PROVED_LEAN",
         "prior_statement": "A faithful, edge-additive, maximal bounded-linear symmetry on the gauge presentation gives weighted l1 as the outer aggregation. Alternative route to l1 to L1-GS000-EDGEWISE-L1, with a different hypothesis set.",
         "prior_bottleneck": "None (Tier-1 direction independence, gauge proportionality, single-orbit uniformity, and ENC-0523 drop-one counterexamples mechanized in gs001_maximal_symmetry_direction_independence_and_gauge_proportionality).",
@@ -2755,7 +2755,7 @@
         "sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness"
       ],
       "imported_structure": [],
-      "bottleneck": "No classification is formalised. The cited Lean contains additivity of finite sums and the numerical example 3^2 + 4^2 = 5^2 with (2*3)^2 + (2*4)^2 = 100, which illustrates the extensive/homogeneous distinction but does not derive l1 from replica extensivity.",
+      "bottleneck": "No classification is formalised. Checked slice (CampaignL1ReplicaScale), Nat arithmetic only: For all natural numbers c, a, and b, c * a + c * b equals c * (a + b), and (c * a) * (c * a) + (c * b) * (c * b) equals (c * c) * (a * a + b * b). On a = 3 and b = 4, a + b = 7, a * a + b * b = 25, 5 * 5 = 25, (a + b) * (a + b) = 49, and 25 is not 49. On c = 2, c * (a + b) = 14, (c * a) * (c * a) + (c * b) * (c * b) = 100, c * (a * a + b * b) = 50, and 100 is not 50. Deriving l1 from replica extensivity, and a reading that l2 is excluded, stay outside this slice. The older citation wdp_ch08_c01_replica_extensivity_homogeneity_and_l2_separation records finite-sum additivity and the closed facts (2*3)^2+(2*4)^2=100 and 3^2+4^2=5^2, and does not discharge the open reading.",
       "tags": [],
       "pfp_review": {
         "review": "dag/results/L1-WDP-CH08-C01-REPLICA-L1/reviews/20261019_l1_import_audit/delivery_review_result.json",
@@ -13020,7 +13020,7 @@
       "stage": "IMPLEMENTATION_SIBLING",
       "status": "OPEN",
       "source_status": "TFQ record_status GAP (source slice 06)",
-      "statement": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap. Narrowed in Lean 4 and an independent Python check to Nat arithmetic, with no status change. For every natural number n, the product n * n * n is at most n * n * n. For every natural number n at least 1, twice that cube equals (n - 1) * n * (2 * n - 1) plus n * (3 * n - 1), the product (n - 1) * n * (2 * n - 1) is strictly below twice the cube, and n * (3 * n - 1) is at least 2. At n = 4 the cube is 64, the sum 1 * 1 + 2 * 2 + 3 * 3 is 14, the quotient (3 * 4 * (2 * 4 - 1)) / 6 is 14, and 14 is strictly below 64. A measured tetron-homology reading of those count facts, custody of the README title, the F004 realization-packet gap, noise sweeps, and the evaluator role stay outside this arithmetic.",
+      "statement": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap.",
       "source": [
         "dag/derivations/22_implementation_sibling/tfq_0184_do_not_read_paper_009_reflexivity_declarations_as_measured_tetron_homology.md",
         "dag/derivations/independent/tfq-0184.md",
@@ -13058,7 +13058,7 @@
         "code/rust/src/wdp/lib.rs::to_homology_carrier"
       ],
       "imported_structure": [],
-      "bottleneck": "Do not read paper 009 reflexivity declarations as measured tetron homology.",
+      "bottleneck": "Do not read paper 009 reflexivity declarations as measured tetron homology. Checked slice (CampaignTfq0184CubicCount and checks/independent/tfq-0184.py), Nat arithmetic only, with no status change: For every natural number n, the product n * n * n is at most n * n * n. For every natural number n at least 1, twice that cube equals (n - 1) * n * (2 * n - 1) plus n * (3 * n - 1), the product (n - 1) * n * (2 * n - 1) is strictly below twice the cube, and n * (3 * n - 1) is at least 2. At n = 4 the cube is 64, the sum 1 * 1 + 2 * 2 + 3 * 3 is 14, the quotient (3 * 4 * (2 * 4 - 1)) / 6 is 14, and 14 is strictly below 64. A measured tetron-homology reading of those count facts, custody of the README title, the F004 realization-packet gap, noise sweeps, and the evaluator role stay outside this arithmetic.",
       "tags": [
         "unified-dag",
         "TFQ-0184",
@@ -49365,7 +49365,7 @@
       ],
       "local_id": "A06-019",
       "name": "Do not read paper 009 reflexivity declarations as measured tetron homology",
-      "obligation": "Do not read paper 009 reflexivity declarations as measured tetron homology.",
+      "obligation": "Do not read paper 009 reflexivity declarations as measured tetron homology. Checked slice (CampaignTfq0184CubicCount and checks/independent/tfq-0184.py), Nat arithmetic only, with no status change: For every natural number n, the product n * n * n is at most n * n * n. For every natural number n at least 1, twice that cube equals (n - 1) * n * (2 * n - 1) plus n * (3 * n - 1), the product (n - 1) * n * (2 * n - 1) is strictly below twice the cube, and n * (3 * n - 1) is at least 2. At n = 4 the cube is 64, the sum 1 * 1 + 2 * 2 + 3 * 3 is 14, the quotient (3 * 4 * (2 * 4 - 1)) / 6 is 14, and 14 is strictly below 64. A measured tetron-homology reading of those count facts, custody of the README title, the F004 realization-packet gap, noise sweeps, and the evaluator role stay outside this arithmetic.",
       "parent_id": "TFQ-0181",
       "python": [
         "code/python/src/majorana/majorana_evaluator.py::KitaevSweetSpotChain",
@@ -49378,7 +49378,7 @@
       ],
       "source_slice": "06",
       "stage": "IMPLEMENTATION_SIBLING",
-      "summary": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap. Narrowed in Lean 4 and an independent Python check to Nat arithmetic, with no status change. For every natural number n, the product n * n * n is at most n * n * n. For every natural number n at least 1, twice that cube equals (n - 1) * n * (2 * n - 1) plus n * (3 * n - 1), the product (n - 1) * n * (2 * n - 1) is strictly below twice the cube, and n * (3 * n - 1) is at least 2. At n = 4 the cube is 64, the sum 1 * 1 + 2 * 2 + 3 * 3 is 14, the quotient (3 * 4 * (2 * 4 - 1)) / 6 is 14, and 14 is strictly below 64. A measured tetron-homology reading of those count facts, custody of the README title, the F004 realization-packet gap, noise sweeps, and the evaluator role stay outside this arithmetic.",
+      "summary": "Paper 009 README title is 026_microsoft_majorana_problem: Majorana Parity Obstruction Calculus & Topological Computing Apparatus. That README says Lean gaussian_elimination_cubic_bound is Nat.le_refl of n times n times n, and that enum rfl declarations are not measured tetron homology. The F004 register calls the program a Majorana realization-packet gap and says noise sweeps are a separate program. The obligation is to withhold a tetron-homology reading from those reflexivity declarations. majorana_evaluator.py is a companion control, not a closure of that gap.",
       "uuid": "7e0a95bd-f3d3-5e79-b862-6b33a4eab241"
     },
     {
