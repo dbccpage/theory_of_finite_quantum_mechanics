@@ -29,11 +29,11 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/page_wootters_tsirelson_wigner.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/page_wootters_tsirelson_wigner/cyclotomic_rings.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:24f64c814749a499091a6ff28d77985d0a958f2c7d61551981693687b67f45a9`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:8c984aacd751eca83b3e6ed98bfb7b99faa0ffc0580881b7d912b3d9ba02c94f`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/page_wootters_tsirelson_wigner_control.py`](../../code/python/)
+- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/page_wootters_tsirelson_wigner_control.py`](../../code/python/)
 
 ---
 
@@ -47,4 +47,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

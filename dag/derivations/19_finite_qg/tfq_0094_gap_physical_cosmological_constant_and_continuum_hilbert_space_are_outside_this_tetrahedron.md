@@ -53,4 +53,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

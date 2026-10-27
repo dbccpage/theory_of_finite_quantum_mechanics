@@ -35,15 +35,15 @@ In accordance with strict constructive principles:
 ### Lean 4 Theorems
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness`](../../code/lean4/)
 - [`lean4/quantum_mechanics/H014TensorCompositionBoundary.lean::tensor_not_forced_open`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
+- [`sources/atlas/papers/finite_quantum_mechanics/lean/DerivationDagQMClosure.lean`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs::entanglement`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`](../../code/rust/src/)
+- [`external:sha256:dd1b4e46a648387082ad2289a7af199984e2d166d08f5debbde4c4b30ddcf8c8`](../../code/rust/src/)
+- [`external:sha256:dd1b4e46a648387082ad2289a7af199984e2d166d08f5debbde4c4b30ddcf8c8::entanglement`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm`](../../code/python/)
+- [`sources/atlas/papers/finite_quantum_mechanics/python/finite_qm`](../../code/python/)
 
 ---
 
@@ -58,7 +58,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`
 
 ---
 
@@ -72,7 +72,7 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-BELL-CLASSICAL-JOINT-EXTENSION): R_raw(263) - G_cob(128) - S_decoy(7) == 128 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 128$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_bell_classical_joint_extension_convex_bound`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 22c87a7cc081b29fb96b6b3983b03b35c699ed9445f9a1cf0cd57046616791a6`
 
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM070-PRODUCT-NONFACTORIZATION`)
@@ -85,7 +85,7 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(DS-QM070-PRODUCT-NONFACTORIZATION): R_raw(340) - G_cob(166) - S_decoy(8) == 166 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 166$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_qm070_071_product_nonfactorization_and_entanglement_witness`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 9b7b203675cd581ecd15511bdd7832c6c361d581a33c1d487e500f76f0d25b83`
 
 ---
@@ -100,7 +100,7 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `projDump_pauliZ_covariance_defect: |(1,0) - (-1,0)|_1 == 2 (rival bilinear map violates local Pauli-Z covariance)` ($\text{value} = 2$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4-flash` | `status = PASS` | `receipt_sha256 = f797bcf12dc545d42a2a96b7dd02fe0b59613b8cfc18c337d4470e9c4bee4e7f`
 
 ---
@@ -115,5 +115,5 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `projDump_collision_defect: ||projDump(e0,e0) - projDump(e0,e1)||_1 == ||(1,0) - (1,0)||_1 == 0 (collapses distinct second-system states)` ($\text{value} = 0$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = c8aef65056eec1f595edaf2a9feac20558bfc7c4c8de960ec337c4965eab6cf5`

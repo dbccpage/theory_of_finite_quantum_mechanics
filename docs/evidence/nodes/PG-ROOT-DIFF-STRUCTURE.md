@@ -115,20 +115,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_types/src/primitive_difference.rs`
-
-- file: `omega_engine/crates_rs/omega_types/src/primitive_difference.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`
 
 - file: `code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`
@@ -146,7 +132,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0001_gap_between_and_difference_joined_with_structure.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0001_gap_between_and_difference_joined_with_structure.md](../../../dag/derivations/01_pregenesis/tfq_0001_gap_between_and_difference_joined_with_structure.md)
-- sha256 (`lf-normalised`): `e5299832395b3f700f68e619fb30d3a1fab83d0c2a0e3a6be8c963dc1fee8daa`
+- sha256 (`lf-normalised`): `d98bf849b1d5e5f015038ea9fc06e3d95af7a5211ded9ba01fe1d2820d291cf2`
 - generated view: listed, not counted
 - cited in: record TFQ-0001
 - counts toward the grade: no
@@ -154,7 +140,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md](../../../dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md)
-- sha256 (`lf-normalised`): `12b8df2a8a5beebd90a38c0cd77b219190e4711fa38464adaf8425f12b18300d`
+- sha256 (`lf-normalised`): `805b407b08734b226eeba139611850b31b64ffa7f0f9fa2006dc7027a316febf`
 - generated view: listed, not counted
 - cited in: record TFQ-0392 (shared)
 - counts toward the grade: no
@@ -162,7 +148,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0393_admitted_root_coproduct.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0393_admitted_root_coproduct.md](../../../dag/derivations/01_pregenesis/tfq_0393_admitted_root_coproduct.md)
-- sha256 (`lf-normalised`): `dbd5898bb1c5040f0f8ee270c294f4dd8b429c61f7fe831c82bd111ef0f3fe1b`
+- sha256 (`lf-normalised`): `0678ca1914ed2c45a79e015dd70be6aec7a9ceca27bc938949591dfba781c3f5`
 - generated view: listed, not counted
 - cited in: record TFQ-0393
 - counts toward the grade: no
@@ -170,7 +156,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0086_fq_gap_continuum_hilbert_lift_stays_unpaid_no_continuum_hilbert_space_is_admitted_at_the_root.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0086_fq_gap_continuum_hilbert_lift_stays_unpaid_no_continuum_hilbert_space_is_admitted_at_the_root.md](../../../dag/derivations/19_finite_qg/tfq_0086_fq_gap_continuum_hilbert_lift_stays_unpaid_no_continuum_hilbert_space_is_admitted_at_the_root.md)
-- sha256 (`lf-normalised`): `878199cafd2c1775202016787f8d29ad515ee87124dc446accd96e04f3a1741c`
+- sha256 (`lf-normalised`): `3072afaa47dfbc959c2508c46533aca54e609bf85bb1b5821af4706c58d1225d`
 - generated view: listed, not counted
 - cited in: record TFQ-0086 (shared)
 - counts toward the grade: no
@@ -178,24 +164,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0087_relational_difference_is_a_finite_carrier_smooth_spacetime_and_the_einstein_equation.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0087_relational_difference_is_a_finite_carrier_smooth_spacetime_and_the_einstein_equation.md](../../../dag/derivations/19_finite_qg/tfq_0087_relational_difference_is_a_finite_carrier_smooth_spacetime_and_the_einstein_equation.md)
-- sha256 (`lf-normalised`): `7c5e5fd4a9a2eaefb7ec0c0286f269c06a07f2513ae9d2abeb73d7a2f4497e00`
+- sha256 (`lf-normalised`): `73587b1e532a7a705ba6b2f531ed85660e6cadc408f881ff970887f878540195`
 - generated view: listed, not counted
 - cited in: record TFQ-0087
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/029_the_anomalon_boundary/the_anomalon_boundary_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/029_the_anomalon_boundary/the_anomalon_boundary_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_library/coda_library/encyclopedia/entries/foundations/enc-1138-stratified-root-boundary.md`
-
-- file: `omega_engine_library/coda_library/encyclopedia/entries/foundations/enc-1138-stratified-root-boundary.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:0587b19021255ec2f3274cbc1fb9b1be46f6212601f36c5913468668cab9bab1:1-45`
+- `external:sha256:273fb96233ba30a85e30a4045bee2e4a1750a78880e5e26a58cd80c6da7e4a80::PrimitiveDifference`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:e6ea3ff314ed30f8cf8330f499f7152d6f45ccb334d260f549f8650572f8d1c1:16`
 
 ## Absences recorded by the TFQ records
 
@@ -203,7 +186,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - TFQ-0392 python: missing obligation: a negative check that no function in pregenesis_to_minimal_symbol_systems/code/preservation.py sends literal <> to a two-channel coproduct
 - TFQ-0392 rust: missing obligation: a refused conversion in omega_ooutwire_primitives from the inscription token to a Difference-Structure value
 - TFQ-0393 lean4: missing declaration obligation: a coproduct Real_0 distinct from HasRawDistinction in B001_raw_distinction.lean
-- TFQ-0393 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B001_raw_distinction.lean
+- TFQ-0393 lean4: no local lean twin located for external:sha256:2e264c28e45671b646ce8e6ad290f689f7fb8ecf3625b109b9e97df3a74ee073
 - TFQ-0393 python: missing obligation: a two-summand carrier in the S000 python package that is not constructed from preservation.py token data
 - TFQ-0393 rust: missing obligation: a coproduct struct whose constructors are independent of the inscription token in omega_ooutwire_primitives
 

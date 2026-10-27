@@ -37,10 +37,10 @@ In accordance with strict constructive principles:
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_homology/src/finite_rational_homology.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:c03b90a1a4c10004a71a4988fae598c3cdd3f210e6d2f3e9cbd0d4833ce54ad8`](../../code/rust/src/)
 - [`code/rust/src/homology/simplicial.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_homology/src/chain_map.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_homology/src/cochain_primitive_difference.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:11c6f3bb8f50e1cc3ffb444f3699282bcbac16b6207a5ecfde9f1a590e26dc33`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:7a038e117ed5c36acca9ef8559034cb9fc3965236d6c48cc1d7ac428428f85e9`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: not located`](../../code/python/)
@@ -57,4 +57,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/shelf.yaml`
+  - `external:sha256:98533bbe8dde6cad1f5bbd9d2de0fb85196b2d44c74964cec5a96620ff69c94f`

@@ -31,15 +31,15 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/003_l1_obstruction_framework/lean4/lp_general_certificate.lean::general_finite_certificate_optimality`](../../code/lean4/)
+- [`external:sha256:34d3e3ecab98a8ac3028404987f8be52237bcbd5a1c1a5c0664f61252958e9a8::general_finite_certificate_optimality`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs::FenchelDualityReceipt`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_wdp/src/obstruction.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_wdp/src/obstruction.rs::DualWitnessCertificate`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
+- [`external:sha256:fc5a04df299e671184b29b3468bd5fd18b70680beadaeaf4aebd5d809976d3e1`](../../code/rust/src/)
+- [`external:sha256:fc5a04df299e671184b29b3468bd5fd18b70680beadaeaf4aebd5d809976d3e1::FenchelDualityReceipt`](../../code/rust/src/)
+- [`external:sha256:67f95afb329218e2db037b98e7b7d632e0ee073156f58a6c3b03ff9a386b4702`](../../code/rust/src/)
+- [`external:sha256:67f95afb329218e2db037b98e7b7d632e0ee073156f58a6c3b03ff9a386b4702::DualWitnessCertificate`](../../code/rust/src/)
 
 ---
 
@@ -66,5 +66,5 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(L1-FRAMEWORK-KKT-CERT): R_raw(177) - G_cob(86) - S_decoy(5) == 86 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 86$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_collapse_barrier_protected_questions_and_l1_kkt_trace_embed`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = da35df572608b49dd8ca39e61e94655da84dfde8e059805c94d0fab255a64a07`

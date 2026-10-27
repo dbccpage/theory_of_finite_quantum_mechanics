@@ -42,13 +42,6 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Rust: `omega_engine/crates_rs/omega_wdp/src/observer.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/observer.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py`
 
 - file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py)
@@ -71,23 +64,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0539_wdp_seven_witness_roles.md`
 
 - file: [dag/derivations/06_wdp/tfq_0539_wdp_seven_witness_roles.md](../../../dag/derivations/06_wdp/tfq_0539_wdp_seven_witness_roles.md)
-- sha256 (`lf-normalised`): `98ad8f15b5daba5e55dac0227293266fe79bc445ea36758c9c0f614371997d49`
+- sha256 (`lf-normalised`): `a7b27af35a701a17d60457fd6b8ffcd3dfeef2ca8120502b85b39e2f365df429`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0539
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/006_oewdp/levels/level_01_witness_function.md`
-
-- file: `omega_engine_education/documentation/006_oewdp/levels/level_01_witness_function.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine/crates_rs/omega_wdp/src/observer.rs::adapt_quotient`
+- `external:sha256:7dade8e5406842b3be776bcb1b6a4747fbaa697b0bdae9f1112e7fae6d9d22dc::adapt_quotient`
+- `external:sha256:a3928cbb59159e343cc8ec518c3015f08d59955caa77d0e07f6e4428202a863f:123-159`
+- `external:upstream/external:sha256:7dade8e5406842b3be776bcb1b6a4747fbaa697b0bdae9f1112e7fae6d9d22dc::adapt_quotient`
 
 ## Absences recorded by the TFQ records
 

@@ -59,17 +59,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0520_sn_postnikov_refusal.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0520_sn_postnikov_refusal.md](../../../dag/derivations/05_mssn_sn/tfq_0520_sn_postnikov_refusal.md)
-- sha256 (`lf-normalised`): `1ea67cda0761d1c925f53658985c1065a4fd5451af98783a358e90f505779847`
+- sha256 (`lf-normalised`): `dc5ed00537daf2a772e337420fe5fedf80974a3d94c67b521f651fd6e278c118`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0520
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/002_oesn/sn.md`
+### External sources
 
-- file: `omega_engine_education/documentation/002_oesn/sn.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:7cd90f66662c2628f0fcc5d8fb3154cfa6b0c4274de439fb73be21b2eb5673f7:106-109`
 
 ## Absences recorded by the TFQ records
 

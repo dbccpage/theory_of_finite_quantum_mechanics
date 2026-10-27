@@ -76,40 +76,30 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0265_stochastic_population_shadow_of_a_channel.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0265_stochastic_population_shadow_of_a_channel.md](../../../dag/derivations/12_finite_qm_structure/tfq_0265_stochastic_population_shadow_of_a_channel.md)
-- sha256 (`lf-normalised`): `2d9b455b4987fec79de8d3cf90fac11d6191df9101791239e797027089c833e0`
+- sha256 (`lf-normalised`): `ba1a34e4364e665fb88aef0bc7b63b68d976b9c0b82c9d11ea97ea6ecb3ab047`
 - generated view: listed, not counted
 - cited in: record TFQ-0265
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/031_finite_path_sum_as_graded_transport/qm_031_finite_path_sum_as_graded_transport_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/031_finite_path_sum_as_graded_transport/qm_031_finite_path_sum_as_graded_transport_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/082_channels_as_stochastic_kernels_and_the_cptp_lift/qm_082_channels_as_stochastic_kernels_and_the_cptp_lift_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/082_channels_as_stochastic_kernels_and_the_cptp_lift/qm_082_channels_as_stochastic_kernels_and_the_cptp_lift_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_ds_qm_dynamics_structure_and_majorana_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:8b651bc7f47a6021985dd235362573dd4b5d92943b82749b13242b6ca35d4709#QM-031-C17`
+- `external:sha256:c223d9defa7e19e64a7c5c8c484d3063f47c07f01d8e763fcc5532ed210e33c0#QM-082-C4`
+- `external:sha256:c223d9defa7e19e64a7c5c8c484d3063f47c07f01d8e763fcc5532ed210e33c0#QM-082-C7`
 
 ## Absences recorded by the TFQ records
 
 - TFQ-0265 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
-- TFQ-0265 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/exact_channel.rs
-- TFQ-0265 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_channel.rs
+- TFQ-0265 rust: no local rust twin located for external:sha256:19f735a77b55e8182884060c73a1c66ccc64e14b24e1c3d5a173d64f8fe5b024
+- TFQ-0265 rust: no local rust twin located for external:sha256:e17359f64c885efb596f3390cf43cc40c25011d24ded59d783982b1eb15318df
 
 ## Routes
 

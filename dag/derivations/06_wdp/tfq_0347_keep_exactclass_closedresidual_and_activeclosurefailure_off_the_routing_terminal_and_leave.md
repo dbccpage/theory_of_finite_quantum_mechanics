@@ -31,16 +31,16 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Routing.lean::outside_profile_ne_refuted`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/Routing.lean::route`](../../code/lean4/)
+- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Routing.lean::outside_profile_ne_refuted`](../../code/lean4/)
+- [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Routing.lean::route`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_types/src/ceiling.rs::EvidenceCeiling`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_types/src/fda.rs::GuardEvidence`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_types/src/routing.rs::RoutingTerminal`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_wdp/src/authority_gap.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_wdp/src/wdp_kernel_check.rs`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`](../../code/rust/src/)
+- [`external:sha256:bcb9825eb7031147a89239c7c5c90a65f7eb70bd996338ebbd0f1900316af187::EvidenceCeiling`](../../code/rust/src/)
+- [`external:sha256:d5bfe8d13dd272a247b6448dc6597b2683283e7245db0441e35009cd59637324::GuardEvidence`](../../code/rust/src/)
+- [`external:sha256:37446bd8af70040d3412b4895efe73f28dc7662ab259bc00986debcc8660c765::RoutingTerminal`](../../code/rust/src/)
+- [`external:sha256:b448a1c4ffff0d382af5016037e3df1cd18d1a2b671665a4e6f71575b142d851`](../../code/rust/src/)
+- [`external:sha256:6642a9d068501abba883ce5f00369a4f9c7c17382babed56fd55775035b87bf9`](../../code/rust/src/)
 
 ---
 
@@ -54,7 +54,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000`, `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch07_finite_obstruction_calculus.md`
+  - `external:sha256:9e6382d28d7dcbdca845bec88104a21be9faa746f944a6b56d1495b03ca412ae`
 
 ---
 
@@ -68,5 +68,5 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-WDP-DIAGNOSTIC-NOT-ROUTING): R_raw(154) - G_cob(75) - S_decoy(4) == 75 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 75$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.pg_to_sn_and_wdp_route_chain_composition`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = a2b690f493369995c5a6f1294002a9659c048e36233332df40e9a234d316db23`

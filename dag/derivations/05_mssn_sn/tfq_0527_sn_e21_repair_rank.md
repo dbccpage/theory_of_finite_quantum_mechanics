@@ -49,6 +49,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_education/documentation/002_oesn/levels/level_21_discrete_4d_regge_curvature.md:42-47`
-  - `omega_engine_education/documentation/002_oesn/levels/level_21_discrete_4d_regge_curvature.md:49-55`
-  - `omega_engine_education/documentation/002_oesn/curriculum.md:163-166`
+  - `external:sha256:07dcae5e71386c1a44b8b6d660e80887b4d30c4671ed0c2ac97df6d141e17905:42-47`
+  - `external:sha256:07dcae5e71386c1a44b8b6d660e80887b4d30c4671ed0c2ac97df6d141e17905:49-55`
+  - `external:sha256:a51ceb8d0d5703baac230c14caa4638cf25f3ae46fdc77013c7e09f27caaa1e9:163-166`

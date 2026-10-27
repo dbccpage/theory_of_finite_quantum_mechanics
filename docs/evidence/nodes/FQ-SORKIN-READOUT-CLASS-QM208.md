@@ -62,31 +62,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/everett.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/everett.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1011
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1011
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1011
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1011_fq_sorkin_readout_class_qm208.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1011_fq_sorkin_readout_class_qm208.md](../../../dag/derivations/10_finite_qm_core/tfq_1011_fq_sorkin_readout_class_qm208.md)
-- sha256 (`lf-normalised`): `434977606178e52bd90ca63d34538b8ee42faa035b9fdccb4076e3090d0dd327`
+- sha256 (`lf-normalised`): `503165fa2354b59c853b50e356c40e6d8a26511f0adc99b3b33f3b01f884ac2d`
 - generated view: listed, not counted
 - cited in: record TFQ-1011
 - counts toward the grade: no
@@ -104,6 +83,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `259e971c72c485503b9c9f157bec6ec9412fe24b8c4cc266e1d0ab6aa7e2d1e0`
 - cited in: node.source
 - counts toward the grade: yes
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579::evaluate_qm208_quadratic_readout`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- `external:sha256:6983e52032f87a31b351b356ab57a52f8f75e26e57b8e7746d75e3609470f99c::sorkin_3slit_i3`
 
 ## Routes
 

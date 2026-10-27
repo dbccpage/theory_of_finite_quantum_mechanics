@@ -32,7 +32,7 @@ A finite certificate for one supplied complex: φ₁ = γ₂ here does not hold 
 
 ## Source status
 
-004_oepfp level_finite_qm_certificate_walkthrough.md; omega_engine_pfp fixture c4_public_input.json; native test receipt batch_13 c4_native_actual.json (2 passed)
+external walkthrough level_finite_qm_certificate_walkthrough.md; external fixture c4_public_input.json; native test receipt batch_13 c4_native_actual.json (2 passed)
 
 ## Review
 
@@ -42,49 +42,25 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/04_authorization/tfq_0509_pfp_c4_certificate.md`
 
 - file: [dag/derivations/04_authorization/tfq_0509_pfp_c4_certificate.md](../../../dag/derivations/04_authorization/tfq_0509_pfp_c4_certificate.md)
-- sha256 (`lf-normalised`): `f552ade72d0b6a21330f1f877522ee5211d05ce2295f7b730045143d1f591638`
+- sha256 (`lf-normalised`): `fc2f0c290bcf2be2c3c6c3ec4df2ba0edfcc1053f2174025724ec02a70418563`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0509
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/004_oepfp/levels/level_finite_qm_certificate_walkthrough.md`
-
-- file: `omega_engine_education/documentation/004_oepfp/levels/level_finite_qm_certificate_walkthrough.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_pfp/fixtures/finite_qm_workflow/c4_public_input.json`
-
-- file: `omega_engine_pfp/fixtures/finite_qm_workflow/c4_public_input.json`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_product_planning_office/plans/review_remediation/evidence/batch_13/c4_native_actual.json`
-
-- file: `omega_engine_product_planning_office/plans/review_remediation/evidence/batch_13/c4_native_actual.json`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs::PromptCochainEvaluator`
-- `external:upstream/omega_engine_pfp/infrastructure/finite_qm_cochain_judge.py::NativeCochainJudge`
-- `external:upstream/omega_engine_pfp/tests/finite_qm_workflow/test_finite_qm_reference_workflow.py::test_native_certificate_positive_and_decisive_mutations`
+- `external:sha256:3512168b69694d721f7878accd7b9fb9a72493e3219e36b231bff25c485f4cb9:174`
+- `external:sha256:bacfa8ca0bcf63778acf28f60ecb84985b20b7332d38eebb7212d9008b08246c:1-8`
+- `external:sha256:c324dc40d52818d23c350f65d7713acab9e81db6593ffcd6dd904086069807bd::PromptCochainEvaluator`
+- `external:sha256:dbfd225f093e2e37d27cf508e9437092906353b692249f8e65ed1faac61c7516:84-93`
+- `external:upstream/external:sha256:669f33dced65b7f88d61dd17f9e7876f65c8ae044ba03c38020d04aa36f18a37::test_native_certificate_positive_and_decisive_mutations`
+- `external:upstream/external:sha256:a0e1b641bd377518bac80db7c24ee5c8850a369402bb5e6ca1c741fc5fcddae6::NativeCochainJudge`
+- `external:upstream/external:sha256:c324dc40d52818d23c350f65d7713acab9e81db6593ffcd6dd904086069807bd::PromptCochainEvaluator`
 
 ## Absences recorded by the TFQ records
 

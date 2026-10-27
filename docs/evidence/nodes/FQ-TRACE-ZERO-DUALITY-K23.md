@@ -92,24 +92,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/trace_distance_quotient.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/trace_distance_quotient.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0185_record_the_k_2_3_finite_certificate_as_the_pair_6_and_9_2_with.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0185_record_the_k_2_3_finite_certificate_as_the_pair_6_and_9_2_with.md](../../../dag/derivations/22_implementation_sibling/tfq_0185_record_the_k_2_3_finite_certificate_as_the_pair_6_and_9_2_with.md)
-- sha256 (`lf-normalised`): `d60490d4c67592c93f72cba05072726c9657e000e7cdab45b5009b8d3d440858`
+- sha256 (`lf-normalised`): `02deb04973e1958be662ae1c6a6e089c6aea82e67dbebf7d2fc1a25e68c9c036`
 - generated view: listed, not counted
 - cited in: record TFQ-0185
 - counts toward the grade: no
@@ -117,7 +103,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0186_do_not_treat_tracezeroduality_lean_as_a_lean_formalization_of_the_k_2_3_quotients.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0186_do_not_treat_tracezeroduality_lean_as_a_lean_formalization_of_the_k_2_3_quotients.md](../../../dag/derivations/22_implementation_sibling/tfq_0186_do_not_treat_tracezeroduality_lean_as_a_lean_formalization_of_the_k_2_3_quotients.md)
-- sha256 (`lf-normalised`): `44bcbd75b0e24dcdcbe8b82a195f42348b96cea4d9023e77dd3f166352315e23`
+- sha256 (`lf-normalised`): `f855bdb3f8ad490606f9ed83eaaca9115c7c126bde955420a58ccc0dab83c747`
 - generated view: listed, not counted
 - cited in: record TFQ-0186 (shared)
 - counts toward the grade: no
@@ -136,13 +122,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_fq_core_and_k23_duality_witness`
+- `external:sha256:6d5d5d60c5905f79d67d8a8bc365e337b56a0ffb2270da01f2589b4c1a2620f0::PrimalCertificate`
+
 ## Absences recorded by the TFQ records
 
 - TFQ-0185 lean4: not located
-- TFQ-0185 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/013_trace_zero_quotient_duality/code/tests/test_trace_zero_quotient_duality.py
-- TFQ-0185 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/013_trace_zero_quotient_duality/code/trace_zero_quotient_duality_core.py
+- TFQ-0185 python: no local python twin located for external:sha256:15a047e84ecf1f2b166b471588781c72f32ce161a9222455b4fa786878f364ed
+- TFQ-0185 python: no local python twin located for external:sha256:268cb7c97325e28274aeeb256645a51550ea6e687fa42b12343e4c63215430ad
 - TFQ-0185 rust: not located
-- TFQ-0186 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/013_trace_zero_quotient_duality/code/trace_zero_quotient_duality_core.py
+- TFQ-0186 python: no local python twin located for external:sha256:268cb7c97325e28274aeeb256645a51550ea6e687fa42b12343e4c63215430ad
 - TFQ-0186 rust: not located
 
 ## Routes

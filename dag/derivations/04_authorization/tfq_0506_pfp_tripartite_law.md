@@ -52,5 +52,5 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_education/documentation/004_oepfp/levels/meta_00_symbol_game_foundations.md:100-106`
-  - `omega_engine_education/documentation/004_oepfp/levels/meta_00_symbol_game_foundations.md:104`
+  - `external:sha256:04e462178e89418177b7a403e0329e9e8bac34adf783b1c1b050b01628b1d0a9:100-106`
+  - `external:sha256:04e462178e89418177b7a403e0329e9e8bac34adf783b1c1b050b01628b1d0a9:104`

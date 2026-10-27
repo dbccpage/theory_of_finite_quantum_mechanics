@@ -63,17 +63,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0245_unitary_finite_shadow_slot_still_reserved.md)
-- sha256 (`lf-normalised`): `a70dea94189cb9ca6b93b538a6421895c099576905968fec92f698c6cbfcdbbb`
+- sha256 (`lf-normalised`): `e2513e40c2ecce086e21e2854c8fe5265bcc64d468c32f322951cdebceca3fa9`
 - generated view: listed, not counted
 - cited in: record TFQ-0245 (shared)
 - counts toward the grade: no
@@ -81,7 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0246_hamiltonian_generator_admission_still_reserved.md)
-- sha256 (`lf-normalised`): `5a5e181911194955dd1390a01fc988265bfba481d61489d270abc7ed4689f568`
+- sha256 (`lf-normalised`): `567c2a7e1ebeb376b74aff83982ba897398a10f6f26803414b3ba391f4776d75`
 - generated view: listed, not counted
 - cited in: record TFQ-0246 (shared)
 - counts toward the grade: no
@@ -89,66 +82,26 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0278_copenhagen_slot_reserved_as_an_authority_shadow.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0278_copenhagen_slot_reserved_as_an_authority_shadow.md](../../../dag/derivations/13_finite_qm_information/tfq_0278_copenhagen_slot_reserved_as_an_authority_shadow.md)
-- sha256 (`lf-normalised`): `13bab7cc5334068682024b2f5a505ec0cd6ca48f568032a5f2421e8a42be2917`
+- sha256 (`lf-normalised`): `f3827289e778759e9f24d3804b03a2297f9d35d78290a11a6ad3d0b992f2c724`
 - generated view: listed, not counted
 - cited in: record TFQ-0278 (shared)
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/034_unitary_finite_shadow/qm_034_unitary_finite_shadow_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/034_unitary_finite_shadow/qm_034_unitary_finite_shadow_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/035_hamiltonian_generator_admission/qm_035_hamiltonian_generator_admission_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/035_hamiltonian_generator_admission/qm_035_hamiltonian_generator_admission_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/050_dirac_equation_admission/qm_050_dirac_equation_admission_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/050_dirac_equation_admission/qm_050_dirac_equation_admission_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/051_spinor_structure_admission/qm_051_spinor_structure_admission_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/051_spinor_structure_admission/qm_051_spinor_structure_admission_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/095_copenhagen_as_authority_shadow/qm_095_copenhagen_as_authority_shadow_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/095_copenhagen_as_authority_shadow/qm_095_copenhagen_as_authority_shadow_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/202_operator_algebra_shadow/qm_202_operator_algebra_shadow_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/202_operator_algebra_shadow/qm_202_operator_algebra_shadow_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/203_measurement_problem_obstruction/qm_203_measurement_problem_obstruction_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/203_measurement_problem_obstruction/qm_203_measurement_problem_obstruction_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/205_pointer_basis_obstruction/qm_205_pointer_basis_obstruction_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/205_pointer_basis_obstruction/qm_205_pointer_basis_obstruction_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:1494bf7bd4b575bf4fd55f701625313b640d6bb6da9cc7d8bdb0fcf61b7356b7#QM_203-C0`
+- `external:sha256:2146758ae7ffadfd070bcf96aa58f57462830217e4e29483e28a545aefe01ea2#QM_034-C0`
+- `external:sha256:2e330e8070370c47aa7ce824d0a91b49d9fd057458c5646e4e0440c106eb403d#QM_051-C0`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche4_edgewise_l1_u1_holonomy_chsh_and_cayley_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche9_bloch_gap_cayley_u1_hadamard_coherence_and_destructive_interference_witness`
+- `external:sha256:9a029ebf407a2437256e94496d09add63ef1b27449ec9543b88f64b4f73f9b86#QM_035-C0`
+- `external:sha256:a0c447cab768c3fe12823d4618525f4335d3ed27a61d7d7e00c363426865ab57#QM_205-C0`
+- `external:sha256:a0f370963e9ed2fa38ebc7e309fff86340e17a90e6f342ccc8d0d29391290164#QM_050-C0`
+- `external:sha256:b5b7f6d366f589b342d69bcd0cc6206ad025317ad0837a2059b51ec8ab822cf8#QM_095-C0`
+- `external:sha256:ecea5df07ecd8ffaabcfccbca41f85aa940dcf0b051bc9ee69481bc1f700c04e#QM_202-C0`
 
 ## Routes
 

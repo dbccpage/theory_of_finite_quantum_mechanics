@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust MSS-N alphabet check`
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_education/documentation/003_oemssn/code/mssn_codec.py::RawGlyphs` (private upstream source, not in this repository)
+- `education/minimal_symbol_systems/code/mssn_codec.py::RawGlyphs` (private upstream source, not in this repository)
 
 ---
 
@@ -49,6 +49,6 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_education/documentation/003_oemssn/grammar/mssn.ebnf:10-11`
-  - `omega_engine_education/documentation/003_oemssn/curriculum.md:42-43`
-  - `omega_engine_education/documentation/003_oemssn/curriculum.md:44-48`
+  - `education/minimal_symbol_systems/grammar/mssn.ebnf:10-11`
+  - `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:42-43`
+  - `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:44-48`

@@ -2,8 +2,8 @@
 
 AuthorityEffect: None. This package adds provider calls to the PFP workflow; it accepts no theorem.
 Source of the method: the Proposal Fidelity Protocol / Symbol Game reference system
-(`the_symbol_game/omega_engine_pfp`, `omega_engine_woland/infrastructure/providers`, and the teaching
-corpus `omega_engine_education/documentation/004_oepfp`). Everything below was read, not executed.
+(`the_symbol_game/omega_engine_pfp`, `external:git-tree:a9ee45ce1419980890e0ce9f59c5e35706e48f96`, and the teaching
+corpus `external:git-tree:d84b8a68db4ee594888c56bd2ccd659cb1d54842`). Everything below was read, not executed.
 
 Goal: a derivation that a free or small model can find for about a dollar must never cost a thousand.
 Cheap models mine operads and propose lemmas. The host checks every claim locally, at once. Refused claims
@@ -44,13 +44,13 @@ Claude model is used only for a step the cheap tiers failed to close, under a ha
    ambiguous outcome keeps its reservation, an unreported cost is unknown rather than zero, and there are no
    silent retries or model substitutions (`pfp_stages.py`, `openrouter_seat_gateway.py` `CallLedger`).
 7. **Management policies are measured, not assumed.** The management-ladder design
-   (`omega_engine_woland/tests/pilots/certified_ladder/design_v2.md`, `infrastructure/management_ladder.py`)
+   (`external:sha256:f307f6810f0b8d6446eea469294a2bd3c10be2d9f12ac69ddd53a0b2f4aa84c5`, `infrastructure/management_ladder.py`)
    compares M0 plain, M1 typed objectives/obligations, M2 enforced structured output, M3 staged carry-over,
    M4 a training-derived correction, M5 a checked planar PFP/check/report operation tree (at most four ops),
    M6 one extra repair with failure-class feedback; paired exact sign tests, Wilson intervals, "descriptive
    small sample". `rewriting/README.md`: "a clearer prompt remains a heuristic until evaluated under a
    declared comparison."
-8. **Cheap models pre-mine before dear tokens are spent.** `omega_engine_woland/.../operad_pre_miner.py`:
+8. **Cheap models pre-mine before dear tokens are spent.** `external:unlocated`:
    ten narrowly scoped mining roles (environment ring, finite fixtures, forward and obstruction morphism
    trees, antibodies, anti-patterns, helpful lemmas, SpanTable invariants, symmetries, a pre-mortem) run on
    free OpenRouter models, then are folded into a 3-layer operad prompt for the stronger stage. Providers are

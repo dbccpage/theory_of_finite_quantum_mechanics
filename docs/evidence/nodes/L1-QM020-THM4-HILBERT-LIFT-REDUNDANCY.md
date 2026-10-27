@@ -97,20 +97,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build FiniteQM`
 - counts toward the grade: no
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/mass_phase_embedding.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/mass_phase_embedding.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`
 
 - file: `code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`
@@ -121,7 +107,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md](../../../dag/derivations/07_l1_emergence/tfq_0355_stop_at_the_open_residual_to_weight_gap_and_do_not_import_a_hilbert.md)
-- sha256 (`lf-normalised`): `afafc9b824245cd2b19b9f248fe02687da0b8782d2f01dd84904020ef321fe45`
+- sha256 (`lf-normalised`): `e1bfd7a9b858c861d7e13fcda4ae9aa97f3636eb276192cafed99d5d81c16937`
 - generated view: listed, not counted
 - cited in: record TFQ-0355 (shared)
 - counts toward the grade: no
@@ -129,7 +115,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0295_born_readout_of_a_supplied_lift_is_redundant.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0295_born_readout_of_a_supplied_lift_is_redundant.md](../../../dag/derivations/08_l1_to_l2/tfq_0295_born_readout_of_a_supplied_lift_is_redundant.md)
-- sha256 (`lf-normalised`): `53e71e6727e0d1b2ea74746ec90f8fb72d5052ada03be61eaf1fe5fc55076258`
+- sha256 (`lf-normalised`): `4cb5a1d4d42ce0a9a678a81b8b510452710902ea99e9e14e4df03ee537b4b2db`
 - generated view: listed, not counted
 - cited in: record TFQ-0295 (shared)
 - counts toward the grade: no
@@ -137,7 +123,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/09_finite_hilbert/tfq_0318_float_lift_helper_is_not_the_exact_embedding.md`
 
 - file: [dag/derivations/09_finite_hilbert/tfq_0318_float_lift_helper_is_not_the_exact_embedding.md](../../../dag/derivations/09_finite_hilbert/tfq_0318_float_lift_helper_is_not_the_exact_embedding.md)
-- sha256 (`lf-normalised`): `5e0938a0343faced0b1aa448278401e2cbfab27ae6f19cb21b03da344e69091a`
+- sha256 (`lf-normalised`): `9b86507c921e43ceabf0836dc6f5deeab5a703e4492785b99c07c7f768975686`
 - generated view: listed, not counted
 - cited in: record TFQ-0318 (shared)
 - counts toward the grade: no
@@ -145,16 +131,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_0234_supplied_hilbert_carrier_after_the_conditional_lift.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_0234_supplied_hilbert_carrier_after_the_conditional_lift.md](../../../dag/derivations/10_finite_qm_core/tfq_0234_supplied_hilbert_carrier_after_the_conditional_lift.md)
-- sha256 (`lf-normalised`): `6d982adae0ff3da0e19f4cd971e50eb7d55233d37d62353f37b3e171d2ed5ea5`
+- sha256 (`lf-normalised`): `586fc234b4003b6b1f87886f637cc21fda636b3a00e776e651e0106626c0ca1e`
 - generated view: listed, not counted
 - cited in: record TFQ-0234 (shared)
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/020_born_normalization_and_conditional_hilbert_lift/born_normalization_and_conditional_hilbert_lift.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### Documents and data: `sources/atlas/papers/finite_quantum_mechanics/claims/claim_ledger.yaml`
@@ -164,17 +143,26 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:2367d7d43e194cf155298ace7054041ae444c67ab6cd71f51cc12cfacda6f3d4::born_weights`
+- `external:sha256:2367d7d43e194cf155298ace7054041ae444c67ab6cd71f51cc12cfacda6f3d4::exact_amplitudes`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_l1_to_l2_bridges_and_ladder_witness`
+- `external:sha256:8534bf2948b65ab72605a33c219105f09458247c00aa57acc8beb275df568d27:550`
+
 ## Absences recorded by the TFQ records
 
 - TFQ-0234 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
-- TFQ-0295 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/_code/qm_020/tests/test_qm020_born_lift.py
+- TFQ-0295 python: no local python twin located for external:unlocated
 - TFQ-0295 python: no local python twin located for sources/atlas/papers/quantum_foundations/_code/qm_020/code/qm_020_born_normalization_and_conditional_hilbert_lift_core.py
-- TFQ-0295 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mass_phase_embedding.rs
-- TFQ-0295 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_state.rs
-- TFQ-0318 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/_code/qm_020/tests/test_qm020_born_lift.py
+- TFQ-0295 rust: no local rust twin located for external:sha256:2367d7d43e194cf155298ace7054041ae444c67ab6cd71f51cc12cfacda6f3d4
+- TFQ-0295 rust: no local rust twin located for external:sha256:d58eb2c1f4ae2ac65cc7145554cd2a5c955e096776c1f6d9daafb2065b14450e
+- TFQ-0318 python: no local python twin located for external:unlocated
 - TFQ-0318 python: no local python twin located for sources/atlas/papers/quantum_foundations/_code/qm_020/code/qm_020_born_normalization_and_conditional_hilbert_lift_core.py
-- TFQ-0318 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/mass_phase_embedding.rs
-- TFQ-0318 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_state.rs
+- TFQ-0318 rust: no local rust twin located for external:sha256:2367d7d43e194cf155298ace7054041ae444c67ab6cd71f51cc12cfacda6f3d4
+- TFQ-0318 rust: no local rust twin located for external:sha256:d58eb2c1f4ae2ac65cc7145554cd2a5c955e096776c1f6d9daafb2065b14450e
 
 ## Routes
 

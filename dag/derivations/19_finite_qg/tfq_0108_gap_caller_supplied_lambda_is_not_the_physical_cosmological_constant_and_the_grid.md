@@ -38,8 +38,8 @@ In accordance with strict constructive principles:
 *Formalization active. Proof obligations tracked under zero-sorry regime.*
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_regge_bridge.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/spin_area_spectrum.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:daa2544f59a9e79153dd422e291957ad086cabfeed37aa2bf2d5ddc847a4aade`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:849b3a7c308df09c211ccfce2f4bfac5187a01e4dbba5b527ff6b4d32bc2796e`](../../code/rust/src/)
 
 ---
 
@@ -53,4 +53,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

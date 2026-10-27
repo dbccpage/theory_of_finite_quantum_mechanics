@@ -88,13 +88,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
@@ -112,10 +105,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0363_six_distinct_operations.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0363_six_distinct_operations.md](../../../dag/derivations/01_pregenesis/tfq_0363_six_distinct_operations.md)
-- sha256 (`lf-normalised`): `35b22999b32cd5540237f96b544b91d0e3a266731345bce1eb377290670b2a89`
+- sha256 (`lf-normalised`): `e2113c86ed9b453a3a8f0feecacb88e59dee2939b09c8a6902ed06c3d848117e`
 - generated view: listed, not counted
 - cited in: record TFQ-0363
 - counts toward the grade: no
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
 
 ## Absences recorded by the TFQ records
 

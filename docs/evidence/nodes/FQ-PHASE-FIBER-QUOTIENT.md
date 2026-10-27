@@ -88,31 +88,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/phase_averaged_shadow.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/phase_averaged_shadow.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0251_superposition_as_a_quotient_fiber.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0251_superposition_as_a_quotient_fiber.md](../../../dag/derivations/12_finite_qm_structure/tfq_0251_superposition_as_a_quotient_fiber.md)
-- sha256 (`lf-normalised`): `fd30063978c3acac62e4d0a4944f225af21e50c7b2a9c17085ee5449739aea8e`
+- sha256 (`lf-normalised`): `ca85cb4fb1b084167b9dca863fd66db0a63a1612295534e3fdebd0865c14727c`
 - generated view: listed, not counted
 - cited in: record TFQ-0251 (shared)
 - counts toward the grade: no
@@ -130,6 +109,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `259e971c72c485503b9c9f157bec6ec9412fe24b8c4cc266e1d0ab6aa7e2d1e0`
 - cited in: node.source
 - counts toward the grade: yes
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- `external:sha256:726fa8afa05803e040d092cf665b4a775fb5f3626f1631071aac9763510e15d5::averages_to_dephasing`
+- `external:sha256:a2c0d7450948662c89ffb80f0ebcfa02f1f013179a207d3d24db3421e81e84c6::phase_blind_projection`
 
 ## Absences recorded by the TFQ records
 

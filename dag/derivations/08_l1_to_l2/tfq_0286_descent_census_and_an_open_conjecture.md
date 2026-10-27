@@ -43,7 +43,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001`, `F001.S000`, `F001.S000:001_from_primitive_difference_to_quantum_mechanics`, `F002`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/floor.yaml`
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics/book/README.md`
-  - `omega_engine_atlas/coda_atlas/F002_continuum/floor.yaml`
+  - `external:sha256:ddbf8bad986fa5587b534c0f96f2c4ff370f95cb696c6245df0526d4bad32351`
+  - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
+  - `external:sha256:aa96a8bb76ae8bc4e83571f57783f369b645332421db0e1fdd8a7d9cf333aac9`
+  - `external:sha256:b4ded5af7203501488fee5e61c915a8d553f0f71a6a3ff5b07969cfda8abaa07`

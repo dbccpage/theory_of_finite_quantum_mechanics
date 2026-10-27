@@ -29,11 +29,11 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/heisenberg_picture.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/heisenberg_representation_uniqueness.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:d425fe2c91956b215477384bfdbca9273ec86548579684941d9656cc15f3659a`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:cab5191a6b4532d9a2998e185a6e8a23eb54ad0425d560fd0ee2dbe8b33e0d44`](../../code/rust/src/)
 - [`code/rust/src/qm/campaigns/dynamics_dichotomy.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/stochastic_unitary_boundary.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/finite_report_dynamics.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:a6542ce076172281d53371c837af86ce663165d8fdd28f710858297c4d60a87d`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:1021ae73186e67c501f0b2ecf0234074c4bdbf2a08bbc2af5a5a1794604a140b`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`code/python/src/majorana/tests/support/finite_qm/use_cases/heisenberg_representation_uniqueness.py`](../../code/python/)
@@ -51,4 +51,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

@@ -33,11 +33,11 @@ In accordance with strict constructive principles:
 - [`absent: missing declaration obligation: a four-constructor host condition in 000_pre_genesis_to_mssn/lean4/Paper.lean matching ledger row WDP-P000-001`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/rust/src/main.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs`](../../code/rust/src/)
 - [`absent: missing obligation: an enum in crate pre_mssn_preservation with those four host conditions`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/preservation.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/preservation.py`](../../code/python/)
 - [`absent: missing obligation: four-way classifier beside preservation.report_factor for absent payload, empty word, literal <>, and admitted ground`](../../code/python/)
 
 ---
@@ -55,5 +55,5 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`, `F000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/floor.yaml`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/README.md`
+  - `external:sha256:9504a35b2a33de8f85af42c874eb8da62364cbb364219de602dcfa98b26569e1`
+  - `external:sha256:76c7fd177e3087bddd2fb14ed9f25f11b44a443385882205a3c7fcda8284f926`

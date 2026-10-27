@@ -32,9 +32,9 @@ In accordance with strict constructive principles:
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/python/src/authorization_incompleteness/replay_fiber.py`](../../code/python/)
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/python/tests_unit/test_replay_fiber.py`](../../code/python/)
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/python/tests_integration/test_authorization_pipeline.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:d9f6e028e9c671a6320cd8ab4ab3cd36513fadd234056de98f0570c48e26a5c7`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:3ca8c7547ef972dafc0bdd15c5451005c90c4df04190643f1d0e5b62335f23a8`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:a454736d5c621a2b7b9dd540872039ee56239089f60ad772b7b5893bab6cf6cd`](../../code/python/)
 
 ---
 
@@ -49,5 +49,5 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000`, `F000.S001`, `F000.S001:001_authorization_an_incompleteness_theory`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/book/README.md`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/shelf.yaml`
+  - `external:sha256:8f664cdf087dfcffc889d6b105b271d2b3f8cf955381e8e96362ecff80d5a6fc`
+  - `external:sha256:f1e9a10038dca4d2b00b28ffe558eaa8ba74f8f893b3b8c28ff78a539f3ebddd`

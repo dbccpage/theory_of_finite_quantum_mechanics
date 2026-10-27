@@ -42,8 +42,8 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust parser for pre_genesis.ebnf`
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_education/documentation/000_oepregen/code/check_pre_genesis.py::validate_cases` (private upstream source, not in this repository)
-- `omega_engine_education/documentation/000_oepregen/code/tests/test_pre_genesis_grammar.py::test_four_state_separation` (private upstream source, not in this repository)
+- `education/pregenesis_empty_mark/code/check_pre_genesis.py::validate_cases` (private upstream source, not in this repository)
+- `education/pregenesis_empty_mark/code/tests/test_pre_genesis_grammar.py::test_four_state_separation` (private upstream source, not in this repository)
 
 ---
 
@@ -56,5 +56,5 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_education/documentation/000_oepregen/grammar/pre_genesis.ebnf:14-19`
-  - `omega_engine_education/documentation/000_oepregen/grammar/pre_genesis.ebnf:26-28`
+  - `education/pregenesis_empty_mark/grammar/pre_genesis.ebnf:14-19`
+  - `education/pregenesis_empty_mark/grammar/pre_genesis.ebnf:26-28`

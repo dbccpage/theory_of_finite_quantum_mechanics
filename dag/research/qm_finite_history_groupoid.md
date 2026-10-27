@@ -276,7 +276,7 @@ Central-projector, character-kernel and projective-twist controls are exact. Thr
 unit tests cover noninvertible daggers, bad/missing inverse/composition data,
 unknown arrows, the empty case, and the validation budget.
 
-From `omega_engine/crates_rs`, with the configured toolchain/cache:
+From `external:git-tree:ac1f6d647c3ecc2bf45f6fc4922213ac752e71a3`, with the configured toolchain/cache:
 
 ```sh
 cargo test -j 1 --offline --locked -p omega_category_theory --lib finite_groupoid::tests

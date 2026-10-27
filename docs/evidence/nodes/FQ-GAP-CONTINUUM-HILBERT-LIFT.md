@@ -231,13 +231,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`
 
 - file: `code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`
@@ -248,7 +241,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_0234_supplied_hilbert_carrier_after_the_conditional_lift.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_0234_supplied_hilbert_carrier_after_the_conditional_lift.md](../../../dag/derivations/10_finite_qm_core/tfq_0234_supplied_hilbert_carrier_after_the_conditional_lift.md)
-- sha256 (`lf-normalised`): `6d982adae0ff3da0e19f4cd971e50eb7d55233d37d62353f37b3e171d2ed5ea5`
+- sha256 (`lf-normalised`): `586fc234b4003b6b1f87886f637cc21fda636b3a00e776e651e0106626c0ca1e`
 - generated view: listed, not counted
 - cited in: record TFQ-0234 (shared)
 - counts toward the grade: no
@@ -256,7 +249,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/14_finite_gauge/tfq_0055_each_language_must_carry_no_rational_homomorphism_supplies_the_missing_square_root.md`
 
 - file: [dag/derivations/14_finite_gauge/tfq_0055_each_language_must_carry_no_rational_homomorphism_supplies_the_missing_square_root.md](../../../dag/derivations/14_finite_gauge/tfq_0055_each_language_must_carry_no_rational_homomorphism_supplies_the_missing_square_root.md)
-- sha256 (`lf-normalised`): `8555f29d93d2a5613dab291139edc56748d7d471012998854a1a6f49e74f1cbb`
+- sha256 (`lf-normalised`): `aac42b34c8ebe5ea6144975a942d09d2680cc3632ada87e0928021725c6b68bd`
 - generated view: listed, not counted
 - cited in: record TFQ-0055 (shared)
 - counts toward the grade: no
@@ -264,7 +257,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0056_each_language_must_carry_clifford_admission_slash_square_exact_solution_rank_and_a.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0056_each_language_must_carry_clifford_admission_slash_square_exact_solution_rank_and_a.md](../../../dag/derivations/15_finite_qed/tfq_0056_each_language_must_carry_clifford_admission_slash_square_exact_solution_rank_and_a.md)
-- sha256 (`lf-normalised`): `39f4c3c06256d4dca93b1c0e9d48f2ed8731bbe0a3610b1c8fa9cb2e707ed87d`
+- sha256 (`lf-normalised`): `d9a586c65a8a7511d68933db5fd6e8ceb73676d3371ed9c92576dde8ac6bc362`
 - generated view: listed, not counted
 - cited in: record TFQ-0056 (shared)
 - counts toward the grade: no
@@ -272,7 +265,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0071_each_language_must_carry_hermitian_k_yields_a_unitary_cayley_s_on.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0071_each_language_must_carry_hermitian_k_yields_a_unitary_cayley_s_on.md](../../../dag/derivations/15_finite_qed/tfq_0071_each_language_must_carry_hermitian_k_yields_a_unitary_cayley_s_on.md)
-- sha256 (`lf-normalised`): `b4f76c09d7ffde16cc737b032458b0737899d4a6562182e7780d16f55f36b9e0`
+- sha256 (`lf-normalised`): `f62634a3e526dcba8e9b53dbb319c69233e938a7c597a55e9191460f87d0ff94`
 - generated view: listed, not counted
 - cited in: record TFQ-0071 (shared)
 - counts toward the grade: no
@@ -280,7 +273,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0073_each_language_must_carry_isotony_locality_and_optional_complement_duality_on_a.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0073_each_language_must_carry_isotony_locality_and_optional_complement_duality_on_a.md](../../../dag/derivations/15_finite_qed/tfq_0073_each_language_must_carry_isotony_locality_and_optional_complement_duality_on_a.md)
-- sha256 (`lf-normalised`): `8422d79c4dbb10d10e91c4857c0c47bf6ea69dfb2763047b54bed9d3ae700b63`
+- sha256 (`lf-normalised`): `1fbf26d2ecb2a2ec131134c56c35f40710fe37fe27e5a0c35b75e8fbeb210d36`
 - generated view: listed, not counted
 - cited in: record TFQ-0073
 - counts toward the grade: no
@@ -288,7 +281,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/16_finite_electroweak/tfq_0083_each_language_must_carry_an_explicit_gap_record_the_finite_gauge_dirac.md`
 
 - file: [dag/derivations/16_finite_electroweak/tfq_0083_each_language_must_carry_an_explicit_gap_record_the_finite_gauge_dirac.md](../../../dag/derivations/16_finite_electroweak/tfq_0083_each_language_must_carry_an_explicit_gap_record_the_finite_gauge_dirac.md)
-- sha256 (`lf-normalised`): `55926d07640196e84281a1e438d0cb9792d3df0d4781e8db3f75aa94df39ff8b`
+- sha256 (`lf-normalised`): `4e9ef44d9d701df1b6f6465e61f9a5abae4a36a7768d5202888f7a266cd356b5`
 - generated view: listed, not counted
 - cited in: record TFQ-0083 (shared)
 - counts toward the grade: no
@@ -296,7 +289,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0086_fq_gap_continuum_hilbert_lift_stays_unpaid_no_continuum_hilbert_space_is_admitted_at_the_root.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0086_fq_gap_continuum_hilbert_lift_stays_unpaid_no_continuum_hilbert_space_is_admitted_at_the_root.md](../../../dag/derivations/19_finite_qg/tfq_0086_fq_gap_continuum_hilbert_lift_stays_unpaid_no_continuum_hilbert_space_is_admitted_at_the_root.md)
-- sha256 (`lf-normalised`): `878199cafd2c1775202016787f8d29ad515ee87124dc446accd96e04f3a1741c`
+- sha256 (`lf-normalised`): `3072afaa47dfbc959c2508c46533aca54e609bf85bb1b5821af4706c58d1225d`
 - generated view: listed, not counted
 - cited in: record TFQ-0086 (shared)
 - counts toward the grade: no
@@ -304,7 +297,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0111_the_interface_stays_open_gap_f000_f002_001_and_gap_f002_s001_001_are_not_discharged.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0111_the_interface_stays_open_gap_f000_f002_001_and_gap_f002_s001_001_are_not_discharged.md](../../../dag/derivations/19_finite_qg/tfq_0111_the_interface_stays_open_gap_f000_f002_001_and_gap_f002_s001_001_are_not_discharged.md)
-- sha256 (`lf-normalised`): `95fe120b3c9f0ba8e8f01d0f95aabdd704d0682fc157a7308d8c3d8ddca32207`
+- sha256 (`lf-normalised`): `b6b5826369458f1af50968244bb88b8aa1e44a8a19ca289074548a9c00ae4ec5`
 - generated view: listed, not counted
 - cited in: record TFQ-0111
 - counts toward the grade: no
@@ -312,7 +305,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/20_continuum_interface/tfq_0115_gap_f002_limit_and_gap_f002_topology_stay_open_the_continuum_limit_is_not_discharged.md`
 
 - file: [dag/derivations/20_continuum_interface/tfq_0115_gap_f002_limit_and_gap_f002_topology_stay_open_the_continuum_limit_is_not_discharged.md](../../../dag/derivations/20_continuum_interface/tfq_0115_gap_f002_limit_and_gap_f002_topology_stay_open_the_continuum_limit_is_not_discharged.md)
-- sha256 (`lf-normalised`): `c3a6f2eed6b3a490c88884c968376d74421668ecfc317d2e4854b84935de4387`
+- sha256 (`lf-normalised`): `24707adb0ba7fe8c2ea725e45980084a54ba5ce5ac2f7706c7d39b820acfbf17`
 - generated view: listed, not counted
 - cited in: record TFQ-0115
 - counts toward the grade: no
@@ -324,26 +317,34 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness`
+
 ## Absences recorded by the TFQ records
 
 - TFQ-0055 lean4: not located
 - TFQ-0055 python: not located
-- TFQ-0055 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/u1_gauge_triviality.rs
+- TFQ-0055 rust: no local rust twin located for external:sha256:e86ad3309b090c78f09e92fa9833a87b325a0513396663cbf2bd5c2ea1fd0c7b
 - TFQ-0056 lean4: not located
 - TFQ-0056 python: not located
-- TFQ-0056 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/dirac_gamma_admission.rs
+- TFQ-0056 rust: no local rust twin located for external:sha256:6d09fe3d269514b28dde4a6f6dec6760ac77e87653e9f18c490226f9f26bb231
 - TFQ-0071 lean4: not located
 - TFQ-0071 python: not located
-- TFQ-0071 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/s_matrix.rs
+- TFQ-0071 rust: no local rust twin located for external:sha256:2d9da71f2a615ba2de86c6896030b306594bc1169d72e912cd6e525b06887b66
 - TFQ-0073 lean4: not located
 - TFQ-0073 python: not located
-- TFQ-0073 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/algebraic_qft.rs
+- TFQ-0073 rust: no local rust twin located for external:sha256:2c3063603fd3462c580b0cbfda3f2af787a0b06292ac7ea296360d6330ce0139
 - TFQ-0083 lean4: not located
 - TFQ-0083 python: not located
-- TFQ-0083 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/s_matrix.rs
-- TFQ-0111 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/lean4/FromPrimitiveDifferenceToMTheory/ContinuumLimit.lean
-- TFQ-0115 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/lean4/FromPrimitiveDifferenceToMTheory/ContinuumLimit.lean
-- TFQ-0115 python: no local python twin located for omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/002_from_primitive_difference_to_mtheory/python/src/mtheory_interfaces/cochain_limit.py
+- TFQ-0083 rust: no local rust twin located for external:sha256:2d9da71f2a615ba2de86c6896030b306594bc1169d72e912cd6e525b06887b66
+- TFQ-0111 lean4: no local lean twin located for external:sha256:fa138464a47b0fe8c8163b9ac1f3c690215350943ffa16316bf0f63650f45efc
+- TFQ-0115 lean4: no local lean twin located for external:sha256:fa138464a47b0fe8c8163b9ac1f3c690215350943ffa16316bf0f63650f45efc
+- TFQ-0115 python: no local python twin located for external:sha256:3aa4b5bfeec3b0c5d4cb3be6ec214de49e023c1f7e36b1617b0452100e39a8fb
 - TFQ-0234 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
 
 ## Routes

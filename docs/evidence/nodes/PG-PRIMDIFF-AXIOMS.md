@@ -112,20 +112,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: no
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `code/python/src/majorana/tests/unit/test_primitive_difference.py`
 
 - file: `code/python/src/majorana/tests/unit/test_primitive_difference.py`
@@ -150,7 +136,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0394_primitive_axiom_list_underived.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0394_primitive_axiom_list_underived.md](../../../dag/derivations/01_pregenesis/tfq_0394_primitive_axiom_list_underived.md)
-- sha256 (`lf-normalised`): `12a0fd9c3cad9b27b0ffd39cc38863219f0667b6fe8b361aa2f1f28e4526db2d`
+- sha256 (`lf-normalised`): `69931a3036da71edd21f64f2e664aa025754b8d94aab32bb09bfce5906f1e7cd`
 - generated view: listed, not counted
 - cited in: record TFQ-0394
 - counts toward the grade: no
@@ -158,15 +144,25 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md`
 
 - file: [dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md](../../../dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md)
-- sha256 (`lf-normalised`): `c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9`
+- sha256 (`lf-normalised`): `c02bd1400eefba073093838a5da18cd236038b0827d9a784bf2cb742540d5d55`
 - generated view: listed, not counted
 - cited in: record TFQ-0344 (shared)
 - counts toward the grade: no
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:3301e36106cfe1fb4415d4f6218951cd83516f0a714d773fcb477ea3dce63814::GenesisAdmissionKernel`
+- `external:sha256:3301e36106cfe1fb4415d4f6218951cd83516f0a714d773fcb477ea3dce63814::PrimitiveDifferenceAxiom`
+- `external:sha256:3301e36106cfe1fb4415d4f6218951cd83516f0a714d773fcb477ea3dce63814::TriadSignature`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+
 ## Absences recorded by the TFQ records
 
 - TFQ-0394 lean4: declaration obligation: HasRawDistinction is not a stand-in for an unread A1-A10 enum
-- TFQ-0394 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B001_raw_distinction.lean
+- TFQ-0394 lean4: no local lean twin located for external:sha256:2e264c28e45671b646ce8e6ad290f689f7fb8ecf3625b109b9e97df3a74ee073
 - TFQ-0394 python: missing obligation: test_primitive_difference.py was listed and not opened; it must not be read as the A1-A10 list
 - TFQ-0394 rust: missing obligation: the axiom enum cited by the DAG was not opened; do not equate it with omega_ooutwire_primitives until a path is checked
 

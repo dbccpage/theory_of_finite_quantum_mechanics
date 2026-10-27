@@ -40,7 +40,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust check of the S(4) ledger or of K_m cycle-space dimension`
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_education/documentation/002_oesn/code/sn_core.py::S4Orbit` (private upstream source, not in this repository)
+- `education/symmetric_group_presentations/code/sn_core.py::S4Orbit` (private upstream source, not in this repository)
 
 ---
 
@@ -55,5 +55,5 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:531-537`
-  - `omega_engine_education/documentation/002_oesn/levels/level_04_simplex_graph_expansions.md:24-27`
-  - `omega_engine_education/documentation/002_oesn/levels/level_04_simplex_graph_expansions.md:35-37`
+  - `external:sha256:2e70889e739a5d0f329fc639a8a0a4b2e80e6a83d5232a9f2e92ae029c31fcca:24-27`
+  - `external:sha256:2e70889e739a5d0f329fc639a8a0a4b2e80e6a83d5232a9f2e92ae029c31fcca:35-37`

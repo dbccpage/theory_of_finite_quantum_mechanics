@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Lean statement of Φ₁, Γ₂ or Ξ`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine/crates_rs/omega_symbol_game_runtime/src/cochain.rs::PromptCochainEvaluator` (private upstream source, not in this repository)
+- `external:sha256:c324dc40d52818d23c350f65d7713acab9e81db6593ffcd6dd904086069807bd::PromptCochainEvaluator` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - `missing obligation: the Python adapter finite_qm_cochain_judge.NativeCochainJudge delegates to the Rust evaluator (TFQ-0509)`
@@ -52,5 +52,5 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_education/documentation/004_oepfp/levels/meta_02_symbol_game_pfp.md:79-80`
-  - `omega_engine_education/documentation/004_oepfp/levels/meta_02_symbol_game_pfp.md:83`
+  - `external:sha256:89dcd4882ff47b9393887ff794120b9b9323b996e0fe6a828d9a499627103ea1:79-80`
+  - `external:sha256:89dcd4882ff47b9393887ff794120b9b9323b996e0fe6a828d9a499627103ea1:83`

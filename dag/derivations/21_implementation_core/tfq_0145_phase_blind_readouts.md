@@ -29,15 +29,15 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/phase_readout.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/phase_averaged_shadow.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/power_rule_outcomes.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/gaussian_frame_readout.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/pairing_audit.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:b2f4bf668ae1355462ffeb0514855dd7c2cf96aee469d5ef66e00be01ca63357`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:a2c0d7450948662c89ffb80f0ebcfa02f1f013179a207d3d24db3421e81e84c6`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:726fa8afa05803e040d092cf665b4a775fb5f3626f1631071aac9763510e15d5`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:786e694a1f59b6c8de4b7f82712098ad3c550af3f998ac9a754f9322b1a839e3`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:e2e268d30ae5afd4e5536bd4d79353f6e5b4488c3ab976c0fd142cbb18e18c68`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:c8f020f9abf33d6d86e8630fd8f9d3da0bb1db91835d6dfcbe56cfa4709cad7e`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/quadratic_readout_control.py`](../../code/python/)
+- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/quadratic_readout_control.py`](../../code/python/)
 
 ---
 
@@ -51,4 +51,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

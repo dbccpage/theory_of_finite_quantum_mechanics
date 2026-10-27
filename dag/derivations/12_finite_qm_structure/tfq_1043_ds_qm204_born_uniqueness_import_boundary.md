@@ -42,8 +42,8 @@ QM_204 ledger: stub "Band slot reserved" (QM_204-C0); content carried by QM-210-
 - `lean4/BornUniquenessIntegerSlice.lean::BornUniquenessIntegerSlice.rotWitness`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
 
 ---
 
@@ -56,6 +56,6 @@ QM_204 ledger: stub "Band slot reserved" (QM_204-C0); content carried by QM-210-
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/204_born_uniqueness_import_boundary/qm_204_born_uniqueness_import_boundary_claim_ledger.md#QM_204-C0`
-  - `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/210_born_rule_postulate_and_state_effect_pairing/qm_210_born_rule_postulate_and_state_effect_pairing_claim_ledger.md#QM210-C3`
-  - `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/206_universal_boundary_synthesis_and_cochain_lift/qm_206_universal_boundary_synthesis_and_cochain_lift_claim_ledger.md#QM206-C5`
+  - `external:sha256:de157adb681fa9dd392740354bc72c799b74b3c4493fb38c6da7685aa918b9cd#QM_204-C0`
+  - `external:sha256:f9b815a51e8e2748a89001239a63f49274febcad5e3e958f9a01c13f0ec6b96a#QM210-C3`
+  - `external:sha256:00e380c0339e021857f8f47186d2e8bb5c77c3eddbb75d4c0906b21b104a612b#QM206-C5`

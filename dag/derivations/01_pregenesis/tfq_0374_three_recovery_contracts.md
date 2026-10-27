@@ -27,13 +27,13 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`lean4/FreshLetterRecoveryContracts.lean`](../../../lean4/FreshLetterRecoveryContracts.lean) records one old letter, one new letter, and the three results of restriction, recovery, and erasure on the word [a, fresh]. The node stays OPEN.
-- No local twin of `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/WordRecovery.lean` is in this checkout.
+- No local twin of `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/WordRecovery.lean` is in this checkout.
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`absent: missing obligation: three recovery contracts in crate pre_mssn_preservation that disagree on one new letter`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/code/preservation.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/preservation.py`](../../code/python/)
 - [`absent: missing obligation: one new-letter witness where recover_word, erase_word, and a restriction map return different types`](../../code/python/)
 
 ---
@@ -48,4 +48,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`, `F000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/floor.yaml`
+  - `external:sha256:9504a35b2a33de8f85af42c874eb8da62364cbb364219de602dcfa98b26569e1`

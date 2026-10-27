@@ -46,4 +46,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch02_primitive_difference_and_finite_carrier.md`
+  - `external:sha256:07724476310fc38ea18d221fb21dde8539d81abdf022c569173d1b10f9085473`

@@ -32,7 +32,7 @@ In accordance with strict constructive principles:
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/004_general_relativity/002_constraint_closure_and_the_l1structure_of_physical_law/code/l1_regge.py`](../../code/python/)
+- [`absent: no local python twin located for papers/core/constraint_closure/code/l1_regge.py`](../../code/python/)
 
 ---
 
@@ -46,4 +46,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction`
+  - `external:git-tree:6c3ddd228c139e91dd74dc2ea348d97cc54608a0`

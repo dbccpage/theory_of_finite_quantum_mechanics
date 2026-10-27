@@ -29,14 +29,14 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/density_matrix.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/exact_hermitian.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/exact_operator.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/packed_hermitian.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/residual_density_calculus.rs`](../../code/rust/src/)
+- [`external:sha256:a9858061f68a9165aeb743a82864df532a5026453c94ca6eed5b5a7b4a704499`](../../code/rust/src/)
+- [`external:sha256:a9fd670f9cb50b43c77a2353570f76a49b6416ce82e53371978297e66620dd8e`](../../code/rust/src/)
+- [`external:sha256:d8a797c3e2b79dea816a3ec3cffb85eb0179b327e0ffd5f08789bd59d72829a6`](../../code/rust/src/)
+- [`external:sha256:fb191f3f4dd0d504f69d2f792adf83dc6dfb0b7196e5d1eb498bb454f336f338`](../../code/rust/src/)
+- [`external:sha256:91902ad0b3daed220b6cb851493f83faf8fe90131ef5b3e5e3260cc721968c14`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/density_matrix.py`](../../code/python/)
+- [`external:sha256:e5884d1527023af19775b9c000a135a80f4ba943367af9afd1981840489029ef`](../../code/python/)
 
 ---
 
@@ -53,7 +53,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`
 
 ---
 
@@ -67,5 +67,5 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-IMPL-REALIFICATION-ADAPTER): R_raw(306) - G_cob(148) - S_decoy(10) == 148 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 148$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_fq_core_and_k23_duality_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 1c56a98cc8cf257130cd64356714a78d4a73d6560cd1967d2996270a706d64d7`

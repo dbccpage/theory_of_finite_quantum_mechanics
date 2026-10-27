@@ -36,8 +36,8 @@ H062 / campaign C250 Block 05; ledger LEAN PROVED (RECEIPTED)
 - `lean4/CompositionTensorMub.lean::rival_fails_local_unitary_covariance`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_quantum_physics/src/composition_tensor_mub.rs::compose_density`
-- `omega_engine/crates_rs/omega_quantum_physics/src/composition_quantum_bound.rs::passes_squared_chsh_bound`
+- `external:sha256:7d6837ac6419b226a3ceb10423ff2aae18580207effb6b01a2bb7f50409089f6::compose_density`
+- `external:sha256:9765c2d94791424a10351167ef55ae78167558d6f03b943c2cc26ea339d421a6::passes_squared_chsh_bound`
 
 ---
 

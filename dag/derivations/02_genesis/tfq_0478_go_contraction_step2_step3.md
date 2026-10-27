@@ -55,4 +55,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/second/claim_ledger.md:47`
   - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/third/claim_ledger.md:52`
-  - `omega_engine_education/documentation/005_oegenong/levels/level_06_stage_embeddings.md:36`
+  - `external:sha256:b9029b5bf217f6cd67b350aff6bfefe937ea4e879d7257db46c0949e33db8023:36`

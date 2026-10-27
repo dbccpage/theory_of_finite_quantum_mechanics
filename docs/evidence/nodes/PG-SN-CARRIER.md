@@ -107,20 +107,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_category_theory/src/mssn_functor_bridge.rs`
-
-- file: `omega_engine/crates_rs/omega_category_theory/src/mssn_functor_bridge.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
@@ -138,7 +124,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md](../../../dag/derivations/05_mssn_sn/tfq_0341_refuse_unrestricted_old_image_recovery_and_the_advertised_sncarrier_cardinalities_until_a.md)
-- sha256 (`lf-normalised`): `6f37257bee7116f7d7250d17ad1ab3fa9cb817fb85a90fc92afd9648cf5a5788`
+- sha256 (`lf-normalised`): `26a34bcda1da02f1e948f500524c8f9adb959de135e8bb87e3e1a19779d526c4`
 - generated view: listed, not counted
 - cited in: record TFQ-0341
 - counts toward the grade: no
@@ -146,16 +132,25 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md](../../../dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md)
-- sha256 (`lf-normalised`): `3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1`
+- sha256 (`lf-normalised`): `25e0b07b2bc6009b403513967b2017d8c498888faf1bfd6afd3973af7170b29b`
 - generated view: listed, not counted
 - cited in: record TFQ-0342 (shared)
 - counts toward the grade: no
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`
+- `external:sha256:f153673a66e02df95e99c7d046cf7edd90d654f74547e54678f3b3ecb3008a8e::MssnFunctorBridge`
 
 ## Absences recorded by the TFQ records
 
 - TFQ-0341 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/SnCarrierDischarge.lean
 - TFQ-0341 python: no local python twin located for atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/code/sn_mssn_checks.py
-- TFQ-0342 rust: no local rust twin located for omega_engine/crates_rs/omega_kernel/src/obligation.rs
+- TFQ-0342 rust: no local rust twin located for external:sha256:5c5cb8a52c5879da00a72654ee0c47e551e4839cb3b2cee5daa00557af3c58d8
 
 ## Routes
 

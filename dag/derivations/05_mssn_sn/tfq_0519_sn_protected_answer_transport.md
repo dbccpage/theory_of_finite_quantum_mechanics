@@ -66,6 +66,6 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md:237`
-  - `omega_engine_education/documentation/002_oesn/levels/level_06_tower_extension_retraction.md:39-42`
-  - `omega_engine_education/documentation/002_oesn/sn.md:97-99`
+  - `external:sha256:500c64e5f321b6a2bc3c9e2258464755d50505324ac671b644f2848cf7a84f01:39-42`
+  - `external:sha256:7cd90f66662c2628f0fcc5d8fb3154cfa6b0c4274de439fb73be21b2eb5673f7:97-99`
   - `dag/derivations/independent/pgw-sn-protected-answer-transport.md:13-18`

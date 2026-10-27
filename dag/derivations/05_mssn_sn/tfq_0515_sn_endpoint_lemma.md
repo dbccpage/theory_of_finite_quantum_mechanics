@@ -42,7 +42,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust check of the endpoint lemma in the S(n) strand`
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_education/documentation/002_oesn/code/sn_audit.py::verify_wir` (private upstream source, not in this repository)
+- `education/symmetric_group_presentations/code/sn_audit.py::verify_wir` (private upstream source, not in this repository)
 
 ---
 
@@ -56,5 +56,5 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md:302-307`
-  - `omega_engine_education/documentation/002_oesn/sn.md:58-66`
-  - `omega_engine_education/documentation/002_oesn/reading_guide.md:32-35`
+  - `external:sha256:7cd90f66662c2628f0fcc5d8fb3154cfa6b0c4274de439fb73be21b2eb5673f7:58-66`
+  - `external:sha256:17ebebc4a063d888d237da44f44f0937e15f6920e8e6fc63fbdf83909718616c:32-35`

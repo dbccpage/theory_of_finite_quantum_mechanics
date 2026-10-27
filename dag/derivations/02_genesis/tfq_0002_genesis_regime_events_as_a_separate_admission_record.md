@@ -45,4 +45,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/tests_unit/test_genesis_bridge_contract.py`
+  - `external:sha256:9fdd0b37374bf1776fb39cc9122fa02b621f3500fa0bdd1132cf3bc23028d577`

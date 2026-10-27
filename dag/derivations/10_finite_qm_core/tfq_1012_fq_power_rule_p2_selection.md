@@ -35,9 +35,9 @@ paper s11.6 (proof in supplement s11.58); rational controls in Rust
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_power_p2_cabello_146_and_weyl_commutant_irreducibility`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_quantum_physics/src/power_rule_outcomes.rs::PowerRuleError`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:786e694a1f59b6c8de4b7f82712098ad3c550af3f998ac9a754f9322b1a839e3::PowerRuleError`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_fq_core_and_k23_duality_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 
 ---
 

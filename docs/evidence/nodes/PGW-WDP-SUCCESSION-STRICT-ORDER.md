@@ -58,13 +58,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_wdp/src/relational_retention.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/relational_retention.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py`
 
 - file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/relational_retention.py)
@@ -87,23 +80,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0550_wdp_succession_strict_order.md`
 
 - file: [dag/derivations/06_wdp/tfq_0550_wdp_succession_strict_order.md](../../../dag/derivations/06_wdp/tfq_0550_wdp_succession_strict_order.md)
-- sha256 (`lf-normalised`): `cacf95a3c3c4d08053edfbf13f96a8632f172dcdbe367f3809e499970143e102`
+- sha256 (`lf-normalised`): `7bf81c61eb3b9769d5ef7436c11811662c921f7092bf079b4ed7dc9c0098f354`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0550
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/006_oewdp/levels/level_05_retention_discrete_succession.md`
-
-- file: `omega_engine_education/documentation/006_oewdp/levels/level_05_retention_discrete_succession.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine/crates_rs/omega_wdp/src/relational_retention.rs::RelationalRetentionPacket`
+- `external:sha256:db10cc7ea0ed8a47ab985151883f1e3ad0f30be4fc21f5bc88fd661c4a19f789::RelationalRetentionPacket`
+- `external:sha256:dd53cffa90b882e2551799359eb57f464bcbb2369600f4542d5410b9acce0d63:128-158`
+- `external:upstream/external:sha256:db10cc7ea0ed8a47ab985151883f1e3ad0f30be4fc21f5bc88fd661c4a19f789::RelationalRetentionPacket`
 
 ## Routes
 

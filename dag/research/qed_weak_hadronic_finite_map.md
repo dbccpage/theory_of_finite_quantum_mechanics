@@ -5,7 +5,7 @@
 **Goal IDs:** `QM-226-KLEIN-NISHINA-BHABHA-MOLLER-MAP`, `QM-227-CHIRAL-MUON-FERMI-CKM-MAP`, `QM-228-ABJ-GMO-HADRONIC-MAP`  
 **Parent Milestone:** `MS-QUANTUM`  
 **Status:** `DONE` (Rust, Python, and core Lean 4 `FiniteQFTAndGravity.lean` verified with exit code 0 and zero `sorryAx`)  
-**Executable Rust Module:** [`omega_engine/crates_rs/omega_quantum_physics/src/qed_weak_hadronic_finite_maps.rs`](../../../../../omega_engine/crates_rs/omega_quantum_physics/src/qed_weak_hadronic_finite_maps.rs)  
+**Executable Rust Module:** [`external:sha256:b2756728a2444a8202ad7ab9078b63b94e2b41bb2addc311e7a2b1bebd8d9f44`](../../../../../omega_engine/crates_rs/omega_quantum_physics/src/qed_weak_hadronic_finite_maps.rs)  
 **Executable Python Module:** [`python/finite_qm/use_cases/qed_weak_hadronic_control.py`](../python/finite_qm/use_cases/qed_weak_hadronic_control.py)  
 **Lean 4 Mechanization:** [`lean4/FiniteQFTAndGravity.lean`](../../lean4/FiniteQFTAndGravity.lean) and [`lean4/FiniteQFTAndGravity.lean`](../../lean4/FiniteQFTAndGravity.lean) (sections QM-226, QM-227, QM-228)  
 **E2E Verification Suite:** [`tests/e2e/test_e2e_qed_weak_hadronic_control.py`](../tests/e2e/test_e2e_qed_weak_hadronic_control.py)

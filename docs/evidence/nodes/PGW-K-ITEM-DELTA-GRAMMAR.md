@@ -161,16 +161,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0490_k_item_delta_grammar.md`
 
 - file: [dag/derivations/02_genesis/tfq_0490_k_item_delta_grammar.md](../../../dag/derivations/02_genesis/tfq_0490_k_item_delta_grammar.md)
-- sha256 (`lf-normalised`): `1e4d7926b0884bf081b030087b35fda4c4bd8a4d7ac24e6b4e2cf058349bcda3`
+- sha256 (`lf-normalised`): `5484cc5ca7e50dc429e6a6339287ad7426e9f1ad7779e58638031ae270812d6a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0490
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md`
-
-- file: `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
@@ -178,6 +171,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 Named by the node; not in this repository and not checked here.
 
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/research/second_stream/stream.py::iter_k_item_deltas`
+- `external:sha256:0d098004a566c40656af6035d6e66ff13f7e873b11966677df080686a1b29cf9:1101`
 
 ## Routes
 

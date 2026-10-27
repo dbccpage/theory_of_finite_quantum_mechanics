@@ -35,8 +35,8 @@ repository module GleasonRationalPlane.lean (gap register S000-004/010); older G
 - `lean4/GleasonTheorem.lean::d2_binary_non_bornian_obstruction`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs::FrameSystem`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:ae888a69f68011cf2bdbe26b173cbe6cf818f2a9c044b25aa7b39f5592b688c5::FrameSystem`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 
 ---
 

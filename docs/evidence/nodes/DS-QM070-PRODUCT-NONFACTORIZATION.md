@@ -75,39 +75,28 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md](../../../dag/derivations/12_finite_qm_structure/tfq_0256_product_defect_on_a_bipartite_weight_table.md)
-- sha256 (`lf-normalised`): `a8b8186f85a093a61bdcc4104959393ada8fa99ca487b667229e7f3d35694789`
+- sha256 (`lf-normalised`): `0ac994288b6212de4be7666abdf8f52211a71f98236cb991bf586d128f16759b`
 - generated view: listed, not counted
 - cited in: record TFQ-0256
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/070_product_non_factorization_as_a_bipartite_obstruction/qm_070_product_non_factorization_as_a_bipartite_obstruction_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/070_product_non_factorization_as_a_bipartite_obstruction/qm_070_product_non_factorization_as_a_bipartite_obstruction_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche2_row_sparsity_bell_torsion_and_structure_witness`
+- `external:sha256:8f2355a546bd2b350c8d91adab3738a38520b3e6f67437e5fb768a2092c0d208#QM-070-C5`
+- `external:sha256:8f2355a546bd2b350c8d91adab3738a38520b3e6f67437e5fb768a2092c0d208#QM-070-C7`
+- `external:sha256:8f2355a546bd2b350c8d91adab3738a38520b3e6f67437e5fb768a2092c0d208#QM-070-C9`
+- `external:sha256:dd1b4e46a648387082ad2289a7af199984e2d166d08f5debbde4c4b30ddcf8c8::entanglement`
 
 ## Absences recorded by the TFQ records
 
 - TFQ-0256 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
-- TFQ-0256 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/entanglement.rs
+- TFQ-0256 rust: no local rust twin located for external:sha256:dd1b4e46a648387082ad2289a7af199984e2d166d08f5debbde4c4b30ddcf8c8
 
 ## Routes
 

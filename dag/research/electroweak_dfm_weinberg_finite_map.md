@@ -5,7 +5,7 @@
 **Goal ID:** `QM-220-ELECTROWEAK-DFM-WEINBERG-MAP`  
 **Parent Milestone:** `MS-QUANTUM`  
 **Status:** `DONE`  
-**Executable Rust Module:** [`omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/electroweak_dfm_weinberg_control.rs`](../../../../../omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/electroweak_dfm_weinberg_control.rs)  
+**Executable Rust Module:** [`external:sha256:12edc74432418787b0ed633d04e6c77602431a6969b5172b53a4ffaf55e38d9f`](../../../../../omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/electroweak_dfm_weinberg_control.rs)  
 **Executable Python Module:** [`python/finite_qm/use_cases/electroweak_dfm_weinberg_control.py`](../python/finite_qm/use_cases/electroweak_dfm_weinberg_control.py)  
 **Lean 4 Mechanization:** [`lean4/FiniteQM.lean`](../../lean4/FiniteQM.lean) and [`lean4/FiniteQM.lean`](../../lean4/FiniteQM.lean) (Part III)  
 **E2E Verification Suite:** [`tests/e2e/test_e2e_electroweak_dfm_weinberg_control.py`](../tests/e2e/test_e2e_electroweak_dfm_weinberg_control.py)  

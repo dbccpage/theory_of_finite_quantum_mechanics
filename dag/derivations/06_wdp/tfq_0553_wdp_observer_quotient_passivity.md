@@ -41,7 +41,7 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::observer_passivity_of_infimum`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine/crates_rs/omega_category_theory/src/finite_partial_structure.rs::descend` (private upstream source, not in this repository)
+- `external:sha256:3a7641ede95a9b216375ab6fae723147f5ceb889a8dc0b5d5219fa6367e8b560::descend` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py::test_passivity_can_be_strict_and_core_identifications_survive`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_quotient_observer.py)
@@ -60,5 +60,5 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:3841-3905`
-  - `omega_engine_education/documentation/006_oewdp/levels/level_09_behavioral_quotients_finite_states.md:67-128`
-  - `omega_engine_education/documentation/006_oewdp/levels/level_09_behavioral_quotients_finite_states.md:185-193`
+  - `external:sha256:05ceb39d5b1945f0fbc1435f61344d788832e42ffc9969fcfbea4e7e6ab756c0:67-128`
+  - `external:sha256:05ceb39d5b1945f0fbc1435f61344d788832e42ffc9969fcfbea4e7e6ab756c0:185-193`

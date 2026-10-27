@@ -36,9 +36,9 @@ H058 theorem family (38 theorems); Rust exact effects at declared cyclotomic rea
 - `lean4/EffectFrameBusch.lean::two_mul_half`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_quantum_physics/src/busch_effects.rs::EffectAlgebra`
-- `omega_engine/crates_rs/omega_quantum_physics/src/busch_effects.rs::TraceFrameFunction`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- `external:sha256:3e7e1210d5c49a5c5f40835b086b7d56e6812c4eb788e1714d989c931a3a1bf1::EffectAlgebra`
+- `external:sha256:3e7e1210d5c49a5c5f40835b086b7d56e6812c4eb788e1714d989c931a3a1bf1::TraceFrameFunction`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
 
 ---
 

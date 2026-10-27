@@ -29,9 +29,9 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/spin_area_spectrum.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/tower_topological_completion.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/tower_walk_validator.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:849b3a7c308df09c211ccfce2f4bfac5187a01e4dbba5b527ff6b4d32bc2796e`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:9ea253ec42b3f6852b679ca4242ef18d570521e5f607bdc1a0e378f30471ea9f`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:5238dc8d9b742c943486e4d1366099ab88a8295e5e6dc69d80840c879bef7030`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`code/python/src/majorana/tests/support/finite_qm/use_cases/tower_topological_completion.py`](../../code/python/)
@@ -49,4 +49,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

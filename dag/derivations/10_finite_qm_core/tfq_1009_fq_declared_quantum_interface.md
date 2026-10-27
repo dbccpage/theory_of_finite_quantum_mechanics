@@ -39,10 +39,10 @@ paper s7 / s13.1: complex structure, Hilbert space, tensor factorization, Born r
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs::HilbertSpace`
-- `omega_engine/crates_rs/omega_quantum_physics/src/operational_axiom_selection.rs::FiniteRivalTheory`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness`
+- `external:sha256:904a09d9ca4b18f97838457416046361842e537e895afce0374f8b6c670a1ef1::HilbertSpace`
+- `external:sha256:1fd31dc21930dee731ce1da479cda2cc88dc4de8f08a467515fb739d658ff812::FiniteRivalTheory`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness`
 
 ---
 

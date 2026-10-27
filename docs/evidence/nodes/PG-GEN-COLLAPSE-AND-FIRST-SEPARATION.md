@@ -61,13 +61,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
@@ -78,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0381_cost_two_first_separation.md`
 
 - file: [dag/derivations/02_genesis/tfq_0381_cost_two_first_separation.md](../../../dag/derivations/02_genesis/tfq_0381_cost_two_first_separation.md)
-- sha256 (`lf-normalised`): `bb0b5162a99dd7ae687b47ecf310d8fe756f0413113d35038bf00e566435fad1`
+- sha256 (`lf-normalised`): `50a4ad35313b18e41a78a73bdc7375c4bcb102b38831dbbc3bfd986763ad970f`
 - generated view: listed, not counted
 - cited in: record TFQ-0381
 - counts toward the grade: no
@@ -86,10 +79,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0382_refined_minimum_class.md`
 
 - file: [dag/derivations/02_genesis/tfq_0382_refined_minimum_class.md](../../../dag/derivations/02_genesis/tfq_0382_refined_minimum_class.md)
-- sha256 (`lf-normalised`): `5a6a51d1235e423b3739a481d864aaa4b0b3599aca456f512efd0272c0520d51`
+- sha256 (`lf-normalised`): `03be6cd4e1d022a7788c36039784922f28d243312bed13b47beb8eab431132d2`
 - generated view: listed, not counted
 - cited in: record TFQ-0382
 - counts toward the grade: no
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
 
 ## Absences recorded by the TFQ records
 

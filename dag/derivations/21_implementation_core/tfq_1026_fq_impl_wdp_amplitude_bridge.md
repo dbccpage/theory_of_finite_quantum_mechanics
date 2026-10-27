@@ -35,12 +35,12 @@ The claims are about a Rust artifact and are backed by its native exact tests. T
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::same_up_to_common_phase`
-- `omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::readout_quadratic`
-- `omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::readout_quartic`
-- `omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs::u_power_is_never_one`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness`
+- `external:sha256:77726675ace7bc93c8e8203260618f203aa20359b38d15cd48dee38f04c7a89f::same_up_to_common_phase`
+- `external:sha256:77726675ace7bc93c8e8203260618f203aa20359b38d15cd48dee38f04c7a89f::readout_quadratic`
+- `external:sha256:77726675ace7bc93c8e8203260618f203aa20359b38d15cd48dee38f04c7a89f::readout_quartic`
+- `external:sha256:77726675ace7bc93c8e8203260618f203aa20359b38d15cd48dee38f04c7a89f::u_power_is_never_one`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_fq_core_and_k23_duality_witness`
 
 ---
 
@@ -53,4 +53,4 @@ The claims are about a Rust artifact and are backed by its native exact tests. T
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine/crates_rs/omega_wdp/src/amplitude_bridge.rs:1`
+  - `external:sha256:77726675ace7bc93c8e8203260618f203aa20359b38d15cd48dee38f04c7a89f:1`

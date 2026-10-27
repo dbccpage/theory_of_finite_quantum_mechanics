@@ -26,13 +26,13 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/lean4/AuthorizationIncompletenessTheory/TuringBarrier.lean`](../../lean4/)
+- [`absent: no local lean twin located for external:sha256:7351df006f91d356c383f51ce3140cc9b3fa22fbb90ef0c2c3c96f279684a18e`](../../lean4/)
 
 ### Sovereign Rust Certifiers
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/python/tests_unit/test_ait_contract.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:31e1b1d5e8af45386f35db1e1ab2776a2b1cbf6024d5dd4a554c9216277d6c03`](../../code/python/)
 
 ---
 
@@ -46,5 +46,5 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000`, `F000.S001`, `F000.S001:001_authorization_an_incompleteness_theory`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/claims/proposed_gaps.yaml`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/lean4/AuthorizationIncompletenessTheory/TuringBarrier.lean`
+  - `external:sha256:178ade81ad0f81c58ab5e41247bce90fd7913741ee684293a6db87a6fb2e653a`
+  - `external:sha256:7351df006f91d356c383f51ce3140cc9b3fa22fbb90ef0c2c3c96f279684a18e`

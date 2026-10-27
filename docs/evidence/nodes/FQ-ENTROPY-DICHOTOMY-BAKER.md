@@ -93,27 +93,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/exact_entropy.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/exact_entropy.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
 - file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
@@ -129,7 +108,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0268_von_neumann_entropy_interface_for_mixed_states.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0268_von_neumann_entropy_interface_for_mixed_states.md](../../../dag/derivations/13_finite_qm_information/tfq_0268_von_neumann_entropy_interface_for_mixed_states.md)
-- sha256 (`lf-normalised`): `eba7e0962d5bd9b5d089ea55a6064d603ce041a426debabec7d873bcee3924cc`
+- sha256 (`lf-normalised`): `f5488153201d4b37cbc1b94e7755e227cad140716f0bfe7ffdeea6762eb203ed`
 - generated view: listed, not counted
 - cited in: record TFQ-0268
 - counts toward the grade: no
@@ -141,11 +120,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche4_edgewise_l1_u1_holonomy_chsh_and_cayley_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche8_tensor_stone_continuum_embedding_and_leftover_mnc_witness`
+- `external:sha256:b4a0392795f1e742a256ae815cdc26550b49a4f6e92e1b8c6beb0d28f159c92d::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness`
+- `external:sha256:b4c75f1ec3426411ee8aefa7428ed3b708ee0263ab2507b10ceca7a821abb88a::CitedAnchor`
+- `external:sha256:b4c75f1ec3426411ee8aefa7428ed3b708ee0263ab2507b10ceca7a821abb88a::RationalSpectrum`
+
 ## Absences recorded by the TFQ records
 
 - TFQ-0268 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
-- TFQ-0268 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/entropy.rs
-- TFQ-0268 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/exact_entropy.rs
+- TFQ-0268 rust: no local rust twin located for external:sha256:a535b66c7800bd1d4f29228891ab5a6c23dd8ce3173c2521621c366686fe5ab5
+- TFQ-0268 rust: no local rust twin located for external:sha256:b4c75f1ec3426411ee8aefa7428ed3b708ee0263ab2507b10ceca7a821abb88a
 
 ## Routes
 

@@ -86,24 +86,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/contextuality_obstruction.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0250_mermin_peres_contextuality_on_a_finite_cochain.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0250_mermin_peres_contextuality_on_a_finite_cochain.md](../../../dag/derivations/12_finite_qm_structure/tfq_0250_mermin_peres_contextuality_on_a_finite_cochain.md)
-- sha256 (`lf-normalised`): `557a53d1afb9d856952c871b81e9a733c8e8224a6a47012fac461759b0f157c9`
+- sha256 (`lf-normalised`): `49e68ad4f48249add2c697fd7247b1a9c82f71d8c733fa5128fc316579805c86`
 - generated view: listed, not counted
 - cited in: record TFQ-0250 (shared)
 - counts toward the grade: no
@@ -115,10 +101,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:548be8ce94a17a91d70f87aa6ddd92b68ab38df11f95e8943a6ae35fe0a9d2b4::construct_cabello_scenario`
+- `external:sha256:84f635fc4390806ffa803c0278afb28439dc5449aff1ea756d948db611384a5f::ParityAdmission`
+
 ## Absences recorded by the TFQ records
 
 - TFQ-0250 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
-- TFQ-0250 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/kochen_specker.rs
+- TFQ-0250 rust: no local rust twin located for external:sha256:604e2768b7d0ee3423792a93ba46749403a8df2cdfa61198bf69fa12243b52f7
 
 ## Routes
 

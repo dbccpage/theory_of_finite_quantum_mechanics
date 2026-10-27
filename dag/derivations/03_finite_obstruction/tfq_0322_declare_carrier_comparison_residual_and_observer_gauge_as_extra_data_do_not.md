@@ -26,14 +26,14 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/E004_split_retraction.lean`](../../lean4/)
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/E006_induced_idempotent.lean`](../../lean4/)
+- [`absent: no local lean twin located for external:sha256:ec0627958900ece4b043df114c22b565bf9936136dd5b076031420de2aa9f7bd`](../../lean4/)
+- [`absent: no local lean twin located for external:sha256:9fce3e173e199a738c1b9f428ca1c2527480118dde5dfeb293169495aea9165a`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`code/rust/src/wdp/gauge_classification.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/tests_unit/test_m_compatible_gauge.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:d962d12328cc1c600be34fe639ca170247c351ec5cafdf48ea450d608d3d4e15`](../../code/python/)
 
 ---
 
@@ -47,6 +47,6 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000`, `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/README.md`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch07_finite_obstruction_calculus.md`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/holdings/k_hosts_that_are_not_a_difference/README.md`
+  - `external:sha256:76c7fd177e3087bddd2fb14ed9f25f11b44a443385882205a3c7fcda8284f926`
+  - `external:sha256:9e6382d28d7dcbdca845bec88104a21be9faa746f944a6b56d1495b03ca412ae`
+  - `external:sha256:51a122ddbff9f587daf586917427747f16ff2c8d349138584e83ac4120231719`

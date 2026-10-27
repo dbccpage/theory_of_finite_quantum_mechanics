@@ -87,17 +87,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0092_qm_110_c11_hamiltonian_constraint_stays_q_held_continuum_su_2_data_in_qm_110_c10_are_imported.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0092_qm_110_c11_hamiltonian_constraint_stays_q_held_continuum_su_2_data_in_qm_110_c10_are_imported.md](../../../dag/derivations/19_finite_qg/tfq_0092_qm_110_c11_hamiltonian_constraint_stays_q_held_continuum_su_2_data_in_qm_110_c10_are_imported.md)
-- sha256 (`lf-normalised`): `c5aa199a34845229447be7da16117810d3bd9048f0980d4fd7b35ea14183601b`
+- sha256 (`lf-normalised`): `fc225066cc8f3ce1c259ffb5957827dfe6c10528a63117c876cd6b1357dc0350`
 - generated view: listed, not counted
 - cited in: record TFQ-0092
 - counts toward the grade: no
@@ -105,7 +98,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0093_imported_area_scale_and_casimir_stay_unpaid_the_einstein_equation_and_smooth.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0093_imported_area_scale_and_casimir_stay_unpaid_the_einstein_equation_and_smooth.md](../../../dag/derivations/19_finite_qg/tfq_0093_imported_area_scale_and_casimir_stay_unpaid_the_einstein_equation_and_smooth.md)
-- sha256 (`lf-normalised`): `c0b748f607115481f865496eba4fc725dc8bdd62912de177f2be215fef2cc9d8`
+- sha256 (`lf-normalised`): `956719e0ccff02451107b10617e09604a3433183978406a4bcee12162718879f`
 - generated view: listed, not counted
 - cited in: record TFQ-0093
 - counts toward the grade: no
@@ -113,7 +106,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0094_gap_physical_cosmological_constant_and_continuum_hilbert_space_are_outside_this_tetrahedron.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0094_gap_physical_cosmological_constant_and_continuum_hilbert_space_are_outside_this_tetrahedron.md](../../../dag/derivations/19_finite_qg/tfq_0094_gap_physical_cosmological_constant_and_continuum_hilbert_space_are_outside_this_tetrahedron.md)
-- sha256 (`lf-normalised`): `7f278dddc85ca3cd0c665ac5584a8eafa31003c754c9ff152de5a86d0229bee8`
+- sha256 (`lf-normalised`): `a2d6ac3c6fe8e22c1009bf62e86a82fc9d7fca77f84694bbea238a7b1955220c`
 - generated view: listed, not counted
 - cited in: record TFQ-0094
 - counts toward the grade: no
@@ -121,7 +114,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0095_qm_111_c3_does_not_discharge_nabla_g_equals_zero_qm_111_c7_imports_the_continuum.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0095_qm_111_c3_does_not_discharge_nabla_g_equals_zero_qm_111_c7_imports_the_continuum.md](../../../dag/derivations/19_finite_qg/tfq_0095_qm_111_c3_does_not_discharge_nabla_g_equals_zero_qm_111_c7_imports_the_continuum.md)
-- sha256 (`lf-normalised`): `f1ca072abde88c64a827694f31f5ce27a2f37c9e27c459759f5d44722b8674c1`
+- sha256 (`lf-normalised`): `1e8b1ab910b9295b2b870aef2103f21a819b99c9a25e70672b675cc7cc8dd599`
 - generated view: listed, not counted
 - cited in: record TFQ-0095
 - counts toward the grade: no
@@ -129,7 +122,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0096_gap_einstein_equation_stays_q_held_for_this_finite_descent_program_and_is_not.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0096_gap_einstein_equation_stays_q_held_for_this_finite_descent_program_and_is_not.md](../../../dag/derivations/19_finite_qg/tfq_0096_gap_einstein_equation_stays_q_held_for_this_finite_descent_program_and_is_not.md)
-- sha256 (`lf-normalised`): `3a945624e5f48a316b70eff5a94b0c8c4003ffee0954ebdf1f4705a5730416e8`
+- sha256 (`lf-normalised`): `9cf995fa8dbc50ad84500ee39645f45a8a9a87ec7b61c502b5280d17367f63d6`
 - generated view: listed, not counted
 - cited in: record TFQ-0096
 - counts toward the grade: no
@@ -137,7 +130,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0097_gap_the_cosine_motif_does_not_discharge_gap_f000_f002_001_the_continuum_limit_bridge.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0097_gap_the_cosine_motif_does_not_discharge_gap_f000_f002_001_the_continuum_limit_bridge.md](../../../dag/derivations/19_finite_qg/tfq_0097_gap_the_cosine_motif_does_not_discharge_gap_f000_f002_001_the_continuum_limit_bridge.md)
-- sha256 (`lf-normalised`): `2548b25349fa839ffce1e74704f70823bca1e3961126739e388699dc5d9142fe`
+- sha256 (`lf-normalised`): `0651735c3c036663988970973276c4d79b80eeb58eed896a9034e628208531f9`
 - generated view: listed, not counted
 - cited in: record TFQ-0097
 - counts toward the grade: no
@@ -145,7 +138,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0108_gap_caller_supplied_lambda_is_not_the_physical_cosmological_constant_and_the_grid.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0108_gap_caller_supplied_lambda_is_not_the_physical_cosmological_constant_and_the_grid.md](../../../dag/derivations/19_finite_qg/tfq_0108_gap_caller_supplied_lambda_is_not_the_physical_cosmological_constant_and_the_grid.md)
-- sha256 (`lf-normalised`): `9f9559aae7e2c5779b0610a0ab7135c2b5c8474156db21c50f7ebd27a645be89`
+- sha256 (`lf-normalised`): `387d3014f0b78f2aa008ea0606f07200dcc7d58c7f5705e0992fc0014b1e9891`
 - generated view: listed, not counted
 - cited in: record TFQ-0108
 - counts toward the grade: no
@@ -153,33 +146,31 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/19_finite_qg/tfq_0110_gap_on_continuum_limit_einstein_equation_physical_cosmological_constant_and_smooth_curvature.md`
 
 - file: [dag/derivations/19_finite_qg/tfq_0110_gap_on_continuum_limit_einstein_equation_physical_cosmological_constant_and_smooth_curvature.md](../../../dag/derivations/19_finite_qg/tfq_0110_gap_on_continuum_limit_einstein_equation_physical_cosmological_constant_and_smooth_curvature.md)
-- sha256 (`lf-normalised`): `5072aa055985e2040491694623ea4a131cc5c6d19d3bfdf44353d282c1ff9261`
+- sha256 (`lf-normalised`): `e25c3ba2ec04fd37f15db3abc0e38fd687bcd7503c817442a002bcbe12bf46a0`
 - generated view: listed, not counted
 - cited in: record TFQ-0110
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/110_loop_quantum_gravity_kinematical_shadows/qm_110_loop_quantum_gravity_kinematical_shadows_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/110_loop_quantum_gravity_kinematical_shadows/qm_110_loop_quantum_gravity_kinematical_shadows_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/111_general_relativity_kinematical_shadows/qm_111_general_relativity_kinematical_shadows_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/111_general_relativity_kinematical_shadows/qm_111_general_relativity_kinematical_shadows_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:1892e34e319a1f165ed31402cae724d190be9fdc8fa3ea10e27672b8f38e5eed#QM-111-C7`
+- `external:sha256:1892e34e319a1f165ed31402cae724d190be9fdc8fa3ea10e27672b8f38e5eed#QM-111-C8`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_ds_qm_dynamics_structure_and_majorana_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- `external:sha256:865e924e88cdcae52987737e2871a0dce2e8ed5032c417c2d2a60c3682afd66c#QM-110-C10`
+- `external:sha256:865e924e88cdcae52987737e2871a0dce2e8ed5032c417c2d2a60c3682afd66c#QM-110-C11`
+- `external:sha256:865e924e88cdcae52987737e2871a0dce2e8ed5032c417c2d2a60c3682afd66c#QM-110-C2`
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0092 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/spin_area_spectrum.rs
-- TFQ-0093 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/spin_area_spectrum.rs
-- TFQ-0108 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_regge_bridge.rs
-- TFQ-0108 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/spin_area_spectrum.rs
+- TFQ-0092 rust: no local rust twin located for external:sha256:849b3a7c308df09c211ccfce2f4bfac5187a01e4dbba5b527ff6b4d32bc2796e
+- TFQ-0093 rust: no local rust twin located for external:sha256:849b3a7c308df09c211ccfce2f4bfac5187a01e4dbba5b527ff6b4d32bc2796e
+- TFQ-0108 rust: no local rust twin located for external:sha256:849b3a7c308df09c211ccfce2f4bfac5187a01e4dbba5b527ff6b4d32bc2796e
+- TFQ-0108 rust: no local rust twin located for external:sha256:daa2544f59a9e79153dd422e291957ad086cabfeed37aa2bf2d5ddc847a4aade
 - TFQ-0110 lean4: no local lean twin located for sources/atlas/papers/general_relativity/constraint_closure_and_the_l1_structure_of_physical_law/lean4/GR002.lean
-- TFQ-0110 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/004_general_relativity/002_constraint_closure_and_the_l1structure_of_physical_law/code/l1_regge.py
+- TFQ-0110 python: no local python twin located for papers/core/constraint_closure/code/l1_regge.py
 
 ## Routes
 

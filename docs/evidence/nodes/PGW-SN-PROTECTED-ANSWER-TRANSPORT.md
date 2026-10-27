@@ -104,7 +104,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md](../../../dag/derivations/05_mssn_sn/tfq_0519_sn_protected_answer_transport.md)
-- sha256 (`lf-normalised`): `7917cf12f2c2ecc5525218f1360e1effd17fc9200925061bb388f562f9a0f014`
+- sha256 (`lf-normalised`): `879819ca8bf8b694621267993f1561ec5a7de6b507c67efc5addabc02806e5bf`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0519
 - counts toward the grade: no
@@ -112,23 +112,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pgw-sn-protected-answer-transport.md`
 
 - file: [dag/derivations/independent/pgw-sn-protected-answer-transport.md](../../../dag/derivations/independent/pgw-sn-protected-answer-transport.md)
-- sha256 (`lf-normalised`): `05e6d5867f9a25014fd119c5cd98293bf01c8c311ad1a1a63b06c0b94d43181b`
+- sha256 (`lf-normalised`): `d40bcd22d8f5ab23edd2ff0aa805db2f82faf867db60b8c16811658287be5bdb`
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `omega_engine_education/documentation/002_oesn/levels/level_06_tower_extension_retraction.md`
+### External sources
 
-- file: `omega_engine_education/documentation/002_oesn/levels/level_06_tower_extension_retraction.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_education/documentation/002_oesn/sn.md`
-
-- file: `omega_engine_education/documentation/002_oesn/sn.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:500c64e5f321b6a2bc3c9e2258464755d50505324ac671b644f2848cf7a84f01:39-42`
+- `external:sha256:7cd90f66662c2628f0fcc5d8fb3154cfa6b0c4274de439fb73be21b2eb5673f7:97-99`
 
 ## Absences recorded by the TFQ records
 

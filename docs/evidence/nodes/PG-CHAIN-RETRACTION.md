@@ -152,27 +152,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: no
 
-### Rust: `omega_engine/crates_rs/omega_homology/src/chain_map.rs`
-
-- file: `omega_engine/crates_rs/omega_homology/src/chain_map.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_homology/src/integral_chain_equivalence.rs`
-
-- file: `omega_engine/crates_rs/omega_homology/src/integral_chain_equivalence.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
@@ -190,7 +169,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md](../../../dag/derivations/01_pregenesis/tfq_0375_chain_retraction_old_class.md)
-- sha256 (`lf-normalised`): `6c66f7f52cd55a5c81e088f88245875f698adbf9b4fc78c2c35d1d4e6e366f41`
+- sha256 (`lf-normalised`): `36a0aad821af3477fea51f8126fcf4452c30015f294ea2decaef5454ea2cd104`
 - generated view: listed, not counted
 - cited in: record TFQ-0375
 - counts toward the grade: no
@@ -198,7 +177,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md](../../../dag/derivations/05_mssn_sn/tfq_0337_record_homology_injectivity_under_a_chain_map_retraction_and_record_that_the_two_point.md)
-- sha256 (`lf-normalised`): `0c09bf4ad8e9d5d94de08a6902582cbe615fcb572c696c53d1f7ffc2540a4946`
+- sha256 (`lf-normalised`): `fe2ea39dd76f240033b4cdd5934ad45accaed60b489cc8a3aa81e65f0008a1b0`
 - generated view: listed, not counted
 - cited in: record TFQ-0337
 - counts toward the grade: no
@@ -206,7 +185,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md`
 
 - file: [dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md](../../../dag/derivations/06_wdp/tfq_0346_do_not_lower_phi1_by_passing_to_a_larger_complex_attaching_faces.md)
-- sha256 (`lf-normalised`): `6b435bb1723d6faae4828b1c28409220469504c82b119f60d2b15a2e2d5fdab4`
+- sha256 (`lf-normalised`): `a3f593ff7910ebfaf1a0be3247c6690513d5c22ee4ef772b6ce7a07f0e292484`
 - generated view: listed, not counted
 - cited in: record TFQ-0346 (shared)
 - counts toward the grade: no
@@ -214,17 +193,25 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0195_use_finite_rational_homology_and_simplicial_complexes_as_carriers_not_as_a.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0195_use_finite_rational_homology_and_simplicial_complexes_as_carriers_not_as_a.md](../../../dag/derivations/22_implementation_sibling/tfq_0195_use_finite_rational_homology_and_simplicial_complexes_as_carriers_not_as_a.md)
-- sha256 (`lf-normalised`): `cf8f2843c9f722335b7bf30c649ba760c2e0921ed9f900664b560e81e7744840`
+- sha256 (`lf-normalised`): `bb0588c9bd88af286ffafed0742d900ee54231258df3d1b7e3cb687d39212356`
 - generated view: listed, not counted
 - cited in: record TFQ-0195
 - counts toward the grade: no
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:11c6f3bb8f50e1cc3ffb444f3699282bcbac16b6207a5ecfde9f1a590e26dc33::CertifiedChainMap`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- `external:sha256:f4806506294f8696a4a072d760952f5454185e22ba8ec6ae9eb5ef62d0b154b2::CheckedChainEquivalence`
+
 ## Absences recorded by the TFQ records
 
 - TFQ-0195 python: not located
-- TFQ-0195 rust: no local rust twin located for omega_engine/crates_rs/omega_homology/src/chain_map.rs
-- TFQ-0195 rust: no local rust twin located for omega_engine/crates_rs/omega_homology/src/cochain_primitive_difference.rs
-- TFQ-0195 rust: no local rust twin located for omega_engine/crates_rs/omega_homology/src/finite_rational_homology.rs
+- TFQ-0195 rust: no local rust twin located for external:sha256:11c6f3bb8f50e1cc3ffb444f3699282bcbac16b6207a5ecfde9f1a590e26dc33
+- TFQ-0195 rust: no local rust twin located for external:sha256:7a038e117ed5c36acca9ef8559034cb9fc3965236d6c48cc1d7ac428428f85e9
+- TFQ-0195 rust: no local rust twin located for external:sha256:c03b90a1a4c10004a71a4988fae598c3cdd3f210e6d2f3e9cbd0d4833ce54ad8
 - TFQ-0337 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean
 - TFQ-0337 python: no local python twin located for atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/code/sn_mssn_checks.py
 - TFQ-0375 lean4: declaration obligation: chain_retraction_cannot_kill on a declared ChainFragment

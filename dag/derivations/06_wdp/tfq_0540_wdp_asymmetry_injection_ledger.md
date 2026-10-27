@@ -57,4 +57,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:669-692`
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:736-763`
-  - `omega_engine_education/documentation/006_oewdp/levels/level_02_residuals_obstructions.md:98-113`
+  - `external:sha256:104a94a77bc234397e3283849847ec59c5fad87938acfeaa1b58144e3d9ee03d:98-113`

@@ -91,27 +91,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1002
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1002
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_wdp/src/genesis_realification_adapter.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/genesis_realification_adapter.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1002
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_qm_realification_bridge.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_qm_realification_bridge.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_qm_realification_bridge.md)
@@ -122,10 +101,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md](../../../dag/derivations/08_l1_to_l2/tfq_1002_l1_wdp_realification_j.md)
-- sha256 (`lf-normalised`): `5de2af4ee8bb15dec12aedc100defde70d26d23709d0e5a6a9a0354e2bddd955`
+- sha256 (`lf-normalised`): `d74ec9954ceef6fefdd913e89f33317617460f9caaa54a30af64f48fb5190fe1`
 - generated view: listed, not counted
 - cited in: record TFQ-1002
 - counts toward the grade: no
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:1ae9121daca3f6d1f5cb700a325bc1aaa0d5a6988db99eee907e24ca729e876e`
+- `external:sha256:3dab36e238ec5c724db50e333358961506db6e3c22a04fbd6a26402ffe48f7fc::DeclaredRealComposite`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_fq_core_and_k23_duality_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
 
 ## Routes
 

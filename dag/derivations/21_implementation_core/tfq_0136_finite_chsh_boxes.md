@@ -29,12 +29,12 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/finite_chsh_correlations.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/finite_bell_extension.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/finite_bell_preparation.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:3aa68d6116ce374efc50eed1e23d148aaae1be854b3bf16be67d8d1ab42dceb4`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:436c024d77fc3479e5ac42ac8b0fc5e0884fa46295d995abb94d20d477c5c9cc`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:edadce6cfa6d264bacd1dc434d6f67944b5bbb3a61d6da68f28c21c1e3c7d54f`](../../code/rust/src/)
 - [`code/rust/src/qm/campaigns/quantum_correlation.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/tensor_commuting_correlation_frontier.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/composition_quantum_bound.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:b414fa05dfae91edfc9db32ccb708ad96dae21e6e86197c9716f39cb46b6e3cc`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:9765c2d94791424a10351167ef55ae78167558d6f03b943c2cc26ea339d421a6`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`code/python/src/majorana/tests/support/finite_qm/use_cases/quantum_correlation.py`](../../code/python/)
@@ -52,4 +52,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

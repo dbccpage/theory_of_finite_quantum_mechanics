@@ -79,17 +79,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md`
 
 - file: [dag/derivations/06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md](../../../dag/derivations/06_wdp/tfq_0540_wdp_asymmetry_injection_ledger.md)
-- sha256 (`lf-normalised`): `c15e41d8d355fea1204acc5c9feb3bf543d50c3ecb1851d6f3738a807c17c8dd`
+- sha256 (`lf-normalised`): `1ebac803e8e341ad034ed8db6810a8327a51bc05bf2cc8a4cb843be4e3422369`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0540
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/006_oewdp/levels/level_02_residuals_obstructions.md`
+### External sources
 
-- file: `omega_engine_education/documentation/006_oewdp/levels/level_02_residuals_obstructions.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:104a94a77bc234397e3283849847ec59c5fad87938acfeaa1b58144e3d9ee03d:98-113`
 
 ## Absences recorded by the TFQ records
 

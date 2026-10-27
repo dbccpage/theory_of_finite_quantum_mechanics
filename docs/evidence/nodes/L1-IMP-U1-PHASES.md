@@ -90,31 +90,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md`
 
 - file: [dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md](../../../dag/derivations/08_l1_to_l2/tfq_0294_circle_phases_as_an_imported_unit_group.md)
-- sha256 (`lf-normalised`): `9c76c771cb03a3bf6146900e6299b36965daaccf2675e868e966af303a9657a5`
+- sha256 (`lf-normalised`): `71e46fba825f45715355268e43c9c0eb27e2d7cc388a1eac92b22c860143ce22`
 - generated view: listed, not counted
 - cited in: record TFQ-0294 (shared)
 - counts toward the grade: no
@@ -122,7 +101,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md`
 
 - file: [dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md](../../../dag/derivations/14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md)
-- sha256 (`lf-normalised`): `3b89d84355253adb91b6cab1ff8de82e84c48bea6adc7e49603890463649038b`
+- sha256 (`lf-normalised`): `92badd834a2adb4c2df9a98953ddb29ba6a18a3b2e0ce2bd7c8e78a50222dda0`
 - generated view: listed, not counted
 - cited in: record TFQ-0053 (shared)
 - counts toward the grade: no
@@ -130,29 +109,31 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/14_finite_gauge/tfq_0055_each_language_must_carry_no_rational_homomorphism_supplies_the_missing_square_root.md`
 
 - file: [dag/derivations/14_finite_gauge/tfq_0055_each_language_must_carry_no_rational_homomorphism_supplies_the_missing_square_root.md](../../../dag/derivations/14_finite_gauge/tfq_0055_each_language_must_carry_no_rational_homomorphism_supplies_the_missing_square_root.md)
-- sha256 (`lf-normalised`): `8555f29d93d2a5613dab291139edc56748d7d471012998854a1a6f49e74f1cbb`
+- sha256 (`lf-normalised`): `aac42b34c8ebe5ea6144975a942d09d2680cc3632ada87e0928021725c6b68bd`
 - generated view: listed, not counted
 - cited in: record TFQ-0055 (shared)
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/qm_122_finite_hilbert_boundary_from_primitive_difference_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/122_finite_hilbert_boundary_from_primitive_difference/qm_122_finite_hilbert_boundary_from_primitive_difference_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- `external:sha256:86710ba8ef7db719a42a2165e71d3bc72ac5db63d0b2a51e57f48f14e137754e`
+- `external:sha256:a2c0d7450948662c89ffb80f0ebcfa02f1f013179a207d3d24db3421e81e84c6::UnitPhaseGroup`
+- `external:sha256:ddaee3d0d77722244a6451750ca1e5acf7a57b4f02e75ecec70e810976d57d9e`
 
 ## Absences recorded by the TFQ records
 
 - TFQ-0053 lean4: not located
 - TFQ-0053 python: not located
-- TFQ-0053 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs
+- TFQ-0053 rust: no local rust twin located for external:sha256:c2b85e3d42e7b05c158b418cbf2a803bdc86262cde384177ac8264c9c67ef6fe
 - TFQ-0055 lean4: not located
 - TFQ-0055 python: not located
-- TFQ-0055 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/u1_gauge_triviality.rs
-- TFQ-0294 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/complex_structure_selector.rs
-- TFQ-0294 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/phase_averaged_shadow.rs
-- TFQ-0294 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/phase_blind_quotient.rs
+- TFQ-0055 rust: no local rust twin located for external:sha256:e86ad3309b090c78f09e92fa9833a87b325a0513396663cbf2bd5c2ea1fd0c7b
+- TFQ-0294 rust: no local rust twin located for external:sha256:726fa8afa05803e040d092cf665b4a775fb5f3626f1631071aac9763510e15d5
+- TFQ-0294 rust: no local rust twin located for external:sha256:a2c0d7450948662c89ffb80f0ebcfa02f1f013179a207d3d24db3421e81e84c6
+- TFQ-0294 rust: no local rust twin located for external:sha256:ddaee3d0d77722244a6451750ca1e5acf7a57b4f02e75ecec70e810976d57d9e
 
 ## Routes
 

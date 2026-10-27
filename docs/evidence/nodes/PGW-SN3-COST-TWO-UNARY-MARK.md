@@ -108,17 +108,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0514_sn3_cost_two_unary_mark.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0514_sn3_cost_two_unary_mark.md](../../../dag/derivations/05_mssn_sn/tfq_0514_sn3_cost_two_unary_mark.md)
-- sha256 (`lf-normalised`): `8ac8ee49056af0348b7f31080278b82ecf84c3b26bfdea9b39af58845d6b696e`
+- sha256 (`lf-normalised`): `4e165a664d50fd273ba4c425932e0b2b350f2068c4db7be39095cb4a4190cfba`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0514
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/002_oesn/levels/level_03_abstract_simplices.md`
+### External sources
 
-- file: `omega_engine_education/documentation/002_oesn/levels/level_03_abstract_simplices.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:217d5f5c9cdc03ec3787cd9e1c38bfca51fa068ca55f96b61ce4c1c61d34b3fb:28-36`
 
 ## Routes
 

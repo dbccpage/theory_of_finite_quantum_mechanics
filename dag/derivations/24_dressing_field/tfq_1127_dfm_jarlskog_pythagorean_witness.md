@@ -43,7 +43,7 @@ Lean evaluates one fixed instance by grind (three quartets, three row norms, one
 - `code/python/src/qm/ravera_dfm.py::verify_pillar7_ckm_jarlskog_bipartite_dfm`
 
 ### Cited by the source, not in this checkout
-- `external:upstream/omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/ravera_dfm_finite_to_continuum.rs (implementation behind the local re-export shim code/rust/src/qm/campaigns/ravera_dfm.rs; not in this checkout)`
+- `external:external:sha256:ffb1e75bcae5b8a374ff28751a7417535a65fb6b6f58a9600dd8af6818322aa8 (implementation behind the local re-export shim code/rust/src/qm/campaigns/ravera_dfm.rs; not in this checkout)`
 
 ---
 

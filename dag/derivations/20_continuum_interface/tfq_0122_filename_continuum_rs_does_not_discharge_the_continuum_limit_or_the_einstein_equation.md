@@ -38,9 +38,9 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
+- [`external:sha256:cf5119090eb0b22a44f55374a9d37eecdbbd1877fbde75226237781aae046351`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
 
 ---
 
@@ -54,8 +54,8 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`, `F002.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
-  - `omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`
+  - `external:git-tree:0fb81f77bbeba84143f574b5a4bc956196140991`
 
 ---
 
@@ -69,7 +69,7 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-COMMUTATOR-TRACE-OBSTRUCTION): R_raw(283) - G_cob(137) - S_decoy(9) == 137 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 137$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/H068WeylCcrResidual.lean::tr_comm2_vanishes`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs::canonical_commutator_obstruction`
+- **Sovereign Rust Witness Anchor**: `external:sha256:cf5119090eb0b22a44f55374a9d37eecdbbd1877fbde75226237781aae046351::canonical_commutator_obstruction`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 9c5cfc16491784e2c5221b179df644465e5d6ea354ee630b6f55ed558b497c29`
 
 ## 6. Multi-Stage PFP & 4-Mission Operad Verification Receipt (`DS-QM033-064-074-083-QHELD-CONTINUUM`)
@@ -82,5 +82,5 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `discrete_vs_continuum_promotion_allowed == 0 (all 4 rows held as external L2 lifts)` ($\text{value} = 0$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `2` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_and_ds_imported_assumption_separation_certificates`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 1703936361a632b909cec47713df8f47f4e85fc0ee8777846f355c85708bd60f`

@@ -43,8 +43,8 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean::obst_of_gates`](../../../lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux` (private upstream source, not in this repository)
-- `omega_engine_education/documentation/003_oemssn/code/rust/src/obstruction_detector.rs::verify_four_gate_factorization` (private upstream source, not in this repository)
+- `education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::audit_layer_2_circulation_flux` (private upstream source, not in this repository)
+- `education/minimal_symbol_systems/code/rust/src/obstruction_detector.rs::verify_four_gate_factorization` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - `missing obligation: no Python check of the four-gate detector or the triangle circulation in 003_oemssn`
@@ -62,4 +62,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean:13-18`
   - `lean4/Imported/MinimalSymbolSystems/MssnObstructionDetector.lean:132-133`
-  - `omega_engine_education/documentation/003_oemssn/lean4/README.md:11`
+  - `external:sha256:1cd37babf20398c25a80ebbcad266a07807181d81f7502740c13b03d79822db7:11`

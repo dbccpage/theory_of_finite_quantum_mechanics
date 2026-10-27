@@ -39,8 +39,8 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean::filled_rational_betti`](../../../lean4/Imported/WitnessedDifferenceProgramme/GenesisIncidence.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::cycle_construction` (private upstream source, not in this repository)
-- `omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::homology` (private upstream source, not in this repository)
+- `external:sha256:2252c69f4bba9c28eb9ab8a435a9a62ed96fb8314f053e8de431be4b50ed2526::cycle_construction` (private upstream source, not in this repository)
+- `external:sha256:2252c69f4bba9c28eb9ab8a435a9a62ed96fb8314f053e8de431be4b50ed2526::homology` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - `missing obligation: no Python implementation of the incidence reading or its homology`

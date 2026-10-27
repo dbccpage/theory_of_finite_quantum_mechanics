@@ -6,7 +6,7 @@ This directory holds `derivation_dag.json`, a derivation graph that starts at th
 
 ## Model and shape
 
-- The format is the one in `mub6/research/derivation_dag_20261011.json`. The path `omega_engine_woland/tests/mub6` named in the request does not exist on main, so that file is the model.
+- The format is the one in `mub6/research/derivation_dag_20261011.json`. The path `external:git-tree:6d3d4b020502661a64322af8941e2ac726338f4b` named in the request does not exist on main, so that file is the model.
 - Nodes carry id, stage, status, source_status, statement, source (file:line or ledger row), lean, rust, imported_structure, bottleneck and tags.
 - A route lists the inputs it needs together and one output. Routes with one output are alternatives. A route with status `GAP_NO_DERIVATION` carries no source: it marks a link that no record derives.
 - Node statuses are ADMITTED_PRIMITIVE, DEFINITION, PROVED_PROSE, PROVED_LEAN, COMPUTATIONALLY_CHECKED, CONDITIONAL, IMPORTED_ASSUMPTION, OPEN, REFUTED and SOURCE_RECORD. Route statuses are DERIVED_PROSE, DERIVED_LEAN, COMPUTED, CONDITIONAL_ON_IMPORT, GAP_NO_DERIVATION and RECORD_PARENT.

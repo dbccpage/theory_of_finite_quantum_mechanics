@@ -29,11 +29,11 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/measurement.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/measurement_update.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/instruments.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/exact_instrument.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/instrument_repeatability.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:32bcf706711e8c0460831c97a9d55d8e64bb3ba66c27d70d4d64695823902525`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:2f7a80b008ddf5d6bb5a15e7080e547751175d557874aee2c6511496cbca3b01`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:4fbc6b0667894450336cabb7dd92392cca1592abb3feb809e1fff47ee1281cec`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:6391572c23248195d97785667c444e6f67da73cab83285825dc16d94e998598b`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:554f17e8bc6a46b39123c95a11e602a08ac13b0e13880b59bee4b354f3cafea9`](../../code/rust/src/)
 - [`code/rust/src/qm/campaigns/sector_conditioning.rs`](../../code/rust/src/)
 - [`code/rust/src/qm/campaigns/busch_effects.rs`](../../code/rust/src/)
 
@@ -54,4 +54,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

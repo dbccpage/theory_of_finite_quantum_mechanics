@@ -81,17 +81,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0479_go_multiplicity_monotone.md`
 
 - file: [dag/derivations/02_genesis/tfq_0479_go_multiplicity_monotone.md](../../../dag/derivations/02_genesis/tfq_0479_go_multiplicity_monotone.md)
-- sha256 (`lf-normalised`): `80a0653bba99eafc8fcb85dc4b9715540012579bcf73599ec162dad4b4ff77b9`
+- sha256 (`lf-normalised`): `ba3b6b9fc2b23edf34090bba70569eeaa209e9af65f708e57368b8c302e67d8f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0479
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/005_oegenong/levels/level_05_monotone_mass_growth.md`
+### External sources
 
-- file: `omega_engine_education/documentation/005_oegenong/levels/level_05_monotone_mass_growth.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:8b8d536217ef3d16457e9c7a2cdbc492da7bf00addbd2f6c83cfdae08870f395:37`
 
 ## Absences recorded by the TFQ records
 

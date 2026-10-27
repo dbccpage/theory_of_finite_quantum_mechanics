@@ -52,24 +52,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0528_mssn_atlas_not_derivation.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0528_mssn_atlas_not_derivation.md](../../../dag/derivations/05_mssn_sn/tfq_0528_mssn_atlas_not_derivation.md)
-- sha256 (`lf-normalised`): `d2551c338080299798d556671218859d1411d99696fa67ae51f0cd79d324b849`
+- sha256 (`lf-normalised`): `903d6bea6989d0cb5795c7fb05348b6d4c06a196fbde6fefc5d6d93a0d3a16dc`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0528
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/003_oemssn/curriculum.md`
+### External sources
 
-- file: `omega_engine_education/documentation/003_oemssn/curriculum.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_education/documentation/003_oemssn/levels/README.md`
-
-- file: `omega_engine_education/documentation/003_oemssn/levels/README.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:6313c51659873eb093e3ef4171a13eac33217dd96e168a97416623d6248005b9:27-35`
+- `external:sha256:ea610e33827464418f0f2786ff65c9af072659bf2884a9411900e07d482e9740:22-28`
 
 ## Absences recorded by the TFQ records
 

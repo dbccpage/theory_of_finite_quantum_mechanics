@@ -77,16 +77,9 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0488_declared_challenge_import_per_level.md`
 
 - file: [dag/derivations/02_genesis/tfq_0488_declared_challenge_import_per_level.md](../../../dag/derivations/02_genesis/tfq_0488_declared_challenge_import_per_level.md)
-- sha256 (`lf-normalised`): `7dd8051dc4b6dd619dbc7708c6af9e995662075d8389d0e12f7d94ddf7fba3d3`
+- sha256 (`lf-normalised`): `f2424a99c5e12a357b3254eaa8959976aa2e14f660253f0cbc142cdde946e604`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0488
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md`
-
-- file: `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
@@ -94,6 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 Named by the node; not in this repository and not checked here.
 
 - `external:github.com/dbccpage/19L57G1@85a83ae7ce64dc2123ff218568a4ecd37e566d33/docs/ALPHA_HANDOFF.md:78-88`
+- `external:sha256:0d098004a566c40656af6035d6e66ff13f7e873b11966677df080686a1b29cf9:947`
 
 ## Absences recorded by the TFQ records
 

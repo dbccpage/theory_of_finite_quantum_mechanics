@@ -60,13 +60,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/incidence_construction.txt`
 
 - file: [atlas/papers/finite_obstruction_calculus/genesis/docs/sources/incidence_construction.txt](../../../atlas/papers/finite_obstruction_calculus/genesis/docs/sources/incidence_construction.txt)
@@ -84,7 +77,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0460_incidence_construction_betti.md`
 
 - file: [dag/derivations/02_genesis/tfq_0460_incidence_construction_betti.md](../../../dag/derivations/02_genesis/tfq_0460_incidence_construction_betti.md)
-- sha256 (`lf-normalised`): `75309875315a3f6c894df88af464d3e6d675ed4d66ae838cc273e02bea636293`
+- sha256 (`lf-normalised`): `65d9f9b449a0434ceff5647c715761186aea03f22271971fe94cecf759fc7b94`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0460
 - counts toward the grade: no
@@ -93,8 +86,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::cycle_construction`
-- `external:upstream/omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs::homology`
+- `external:sha256:2252c69f4bba9c28eb9ab8a435a9a62ed96fb8314f053e8de431be4b50ed2526::cycle_construction`
+- `external:sha256:2252c69f4bba9c28eb9ab8a435a9a62ed96fb8314f053e8de431be4b50ed2526::homology`
+- `external:upstream/external:sha256:2252c69f4bba9c28eb9ab8a435a9a62ed96fb8314f053e8de431be4b50ed2526::cycle_construction`
+- `external:upstream/external:sha256:2252c69f4bba9c28eb9ab8a435a9a62ed96fb8314f053e8de431be4b50ed2526::homology`
 
 ## Absences recorded by the TFQ records
 

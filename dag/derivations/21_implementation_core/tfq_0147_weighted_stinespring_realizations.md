@@ -29,12 +29,12 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/cptp_channels_stinespring.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/stinespring_dilation.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/cptp_trajectory_verifier.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/population_shadow.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/difference_transport_channel.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/qddc.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:7ecaf8b5a2fd5a4428b83ca6f579e8bda5323dd5ca0b2d87b0138227eb0e5cf3`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:3f6c8254db5f7f1cf34666bdcbabaca42db3715c6458f0d62c7e3fe7cf105cf9`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:ada3020191cd8fa36b0f4e9a76d9be86078a2e5854c9c395421126e118f9d73d`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:7b309464bfb77b31189268792f462650765f6d1a30cb1473cb2053a13fe3d861`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:f33c66ad847debef2c592483e63336b15c52ad19d9d543515d334e66806435ab`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:e69dc209e4b456a6f2777bd3fc921366f1e499b60106637ce01d9dde686de112`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`code/python/src/majorana/tests/support/finite_qm/use_cases/cptp_channels_stinespring.py`](../../code/python/)
@@ -51,4 +51,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

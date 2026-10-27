@@ -1,6 +1,6 @@
 # PGW-PREGENESIS-GRAMMAR
 
-Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `DEFINITION`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `DEFINITION`. Evidence grade: **E1**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `DEFINITION`. Evidence gra
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
+- counted in-repo evidence files: 1
 - cited Lean, Rust or Python symbols found in their in-repo files: 0
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: cite a Lean, Rust or Python symbol that exists in an in-repo file
 
 ## Flags
 
@@ -45,24 +45,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md](../../../dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md)
-- sha256 (`lf-normalised`): `7af474a89ed417f1e4c52c43d41d36466aaabeec3f15e4e9e255b9f382c280fa`
+- sha256 (`lf-normalised`): `68c71c90c954cedd39693e43c0a3b6312b9fb36fb83c98d7bfcaaf3f63268a6d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0417
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/000_oepregen/grammar/pre_genesis.ebnf`
+### Documents and data: `education/pregenesis_empty_mark/grammar/pre_genesis.ebnf`
 
-- file: `omega_engine_education/documentation/000_oepregen/grammar/pre_genesis.ebnf`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [education/pregenesis_empty_mark/grammar/pre_genesis.ebnf](../../../education/pregenesis_empty_mark/grammar/pre_genesis.ebnf)
+- sha256 (`lf-normalised`): `2dcda2eed19147360712ae3e49934853801b016723b4acc1694c1de01f84764a`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine_education/documentation/000_oepregen/code/check_pre_genesis.py::validate_cases`
-- `external:upstream/omega_engine_education/documentation/000_oepregen/code/tests/test_pre_genesis_grammar.py::test_four_state_separation`
+- `external:upstream/education/pregenesis_empty_mark/code/check_pre_genesis.py::validate_cases`
+- `external:upstream/education/pregenesis_empty_mark/code/tests/test_pre_genesis_grammar.py::test_four_state_separation`
 
 ## Absences recorded by the TFQ records
 

@@ -33,7 +33,7 @@ In accordance with strict constructive principles:
 
 ### Python Oracles & Numerical Evaluators
 - [`code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`](../../code/python/)
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/src/finite_obstruction.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:28bf40cf36c459316ada0e9f8d6862026535c3fee1455678793ce7af060af8c9`](../../code/python/)
 
 ---
 
@@ -47,6 +47,6 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000:001_from_primitive_difference_to_quantum_mechanics`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`, `F003.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus`
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime`
+  - `external:git-tree:aaf60017b237ab042d2a4f52cec36e21f4264b2f`
+  - `external:git-tree:825506e48afab1825c9431562935d4f0fcadc33f`
+  - `external:git-tree:5d358f5062016c742016b891fa7891bb0f0e19ef`

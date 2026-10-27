@@ -59,5 +59,5 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis/paper.md:118-133`
-  - `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md:283-305`
-  - `omega_engine_education/documentation/000_oepregen/03_results_and_arguments.md:81-88`
+  - `education/pregenesis_empty_mark/sources/analysis_derivation_v1.md:283-305`
+  - `external:sha256:1713d12cc07cce5f295bb69922c49e278be2277c31d4fecee6b41ecb87d639bb:81-88`

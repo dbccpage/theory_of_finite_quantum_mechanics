@@ -61,24 +61,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/foundational_derivation_closure.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/foundational_derivation_closure.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1013
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1013
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1013_fq_five_import_proxy_separation.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1013_fq_five_import_proxy_separation.md](../../../dag/derivations/12_finite_qm_structure/tfq_1013_fq_five_import_proxy_separation.md)
-- sha256 (`lf-normalised`): `23e57744adbb9b2f3ab6aa8112dd2391a2521a53e1589dcf5ac2a15d1cd5cd1e`
+- sha256 (`lf-normalised`): `6950b9be4f0da3872f5b197bc54e07dc69c6626edf1e2bf15d283d622450ec3d`
 - generated view: listed, not counted
 - cited in: record TFQ-1013
 - counts toward the grade: no
@@ -89,6 +75,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- `external:sha256:73ff1307c7f46b2f7648dd055f2db749abcaa4b8ab76c43fa35099fb1cd20ed4::evaluate_qm219_foundational_derivation_closure`
 
 ## Routes
 

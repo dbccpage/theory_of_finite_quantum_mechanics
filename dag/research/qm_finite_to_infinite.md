@@ -117,7 +117,7 @@ These items constitute solvable mathematical and computational questions formula
 ### C. Toolchain, Formalization, and Verification Tasks
 
 1. **Lean 4 Mechanization:** Complete compilation and Lake replay for foundation modules under current Lean toolchain (`leanprover/lean4:v4.34.0`).
-2. **Exact Numerical Engines:** Ensure parity between Python symbolic solvers (`omega_engine/crates/finite_qm`) and compiled exact rational Rust crates (`omega_quantum_physics::finite_qm`).
+2. **Exact Numerical Engines:** Ensure parity between Python symbolic solvers (`external:unlocated`) and compiled exact rational Rust crates (`omega_quantum_physics::finite_qm`).
 3. **Receipt Validation:** Maintain typed machine receipts verifying that all algebraic claims match executable unit tests.
 
 ---

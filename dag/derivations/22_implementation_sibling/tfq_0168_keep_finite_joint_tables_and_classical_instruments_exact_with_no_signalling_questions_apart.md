@@ -48,4 +48,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/floor.yaml`
+  - `external:sha256:9504a35b2a33de8f85af42c874eb8da62364cbb364219de602dcfa98b26569e1`

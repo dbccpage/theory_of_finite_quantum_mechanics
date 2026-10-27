@@ -10,7 +10,7 @@ Stage: [PREGENESIS](../stages/PREGENESIS.md). Status: `DEFINITION`. Evidence gra
 
 Evidence grade **E1** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 1
+- counted in-repo evidence files: 2
 - cited Lean, Rust or Python symbols found in their in-repo files: 0
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
@@ -52,24 +52,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0424_absence_of_rule_not_identification.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0424_absence_of_rule_not_identification.md](../../../dag/derivations/01_pregenesis/tfq_0424_absence_of_rule_not_identification.md)
-- sha256 (`lf-normalised`): `ec6a6ccfb0e59ba181d436be0b2d6537993ab4c19cd802e00c0d2de8e52f99b5`
+- sha256 (`lf-normalised`): `6722626d7378973d525515164461af9f7d0f9f3cfda089913f39347658b247af`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0424
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/000_oepregen/02_trial_record.md`
+### Documents and data: `education/pregenesis_empty_mark/sources/analysis_derivation_v1.md`
 
-- file: `omega_engine_education/documentation/000_oepregen/02_trial_record.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [education/pregenesis_empty_mark/sources/analysis_derivation_v1.md](../../../education/pregenesis_empty_mark/sources/analysis_derivation_v1.md)
+- sha256 (`lf-normalised`): `0a9068781f8c282418f8ae2933ae6502b1bef56df91c16758cf730de1e359149`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
-### Documents and data: `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md`
+### External sources
 
-- file: `omega_engine_education/documentation/000_oepregen/sources/analysis_derivation_v1.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:2e49c338376d7a78a6a89cdd340c9b3c351c485c20d4127e3c455b3fb1570428:55-60`
 
 ## Absences recorded by the TFQ records
 

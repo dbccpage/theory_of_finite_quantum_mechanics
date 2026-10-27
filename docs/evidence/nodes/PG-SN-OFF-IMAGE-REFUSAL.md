@@ -94,13 +94,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/paper_claim_ledger.md)
@@ -111,7 +104,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md](../../../dag/derivations/01_pregenesis/tfq_0372_off_image_refusal_half.md)
-- sha256 (`lf-normalised`): `1e8abee0e6abe01280b9297401837bbcd5ea1d7e0236c5faaebd0261761eec9d`
+- sha256 (`lf-normalised`): `5d11c8a2a13ab970178b0ab0250c7c2229a453b6560de10a32da874ffe27fd91`
 - generated view: listed, not counted
 - cited in: record TFQ-0372
 - counts toward the grade: no
@@ -119,7 +112,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md](../../../dag/derivations/05_mssn_sn/tfq_0335_from_typed_old_image_recovery_record_injectivity_of_the_lift_only_and_refuse.md)
-- sha256 (`lf-normalised`): `8f89fd7a8a1e5586b501a9066cb2970205e03f31262fbe69b43061d36ff930a8`
+- sha256 (`lf-normalised`): `5e441f6d6cea05a6e47222af1768694b15169fdfbb545da6db8ce7dc84ebd6d5`
 - generated view: listed, not counted
 - cited in: record TFQ-0335 (shared)
 - counts toward the grade: no
@@ -136,6 +129,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 Named by the node; not in this repository and not checked here.
 
 - `external:prompts/fable_theorems_2026-10-17/05_sn_off_image_refusal.md`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_sn_off_image_refusal_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 
 ## Absences recorded by the TFQ records
 

@@ -30,11 +30,11 @@ In accordance with strict constructive principles:
 - The opened fragments Inertia.lean and Run.lean are not cited for this counterexample.
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/imposition.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/imposition.rs`](../../code/rust/src/)
 - [`absent: missing obligation: imposition.rs must be able to show a rule that drops a prior separation`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/derivation/candidates.py`](../../code/python/)
+- [`absent: no local python twin located for atlas/papers/finite_obstruction_calculus/genesis/code/derivation/candidates.py`](../../code/python/)
 - [`absent: missing obligation: replay the two-data AdmitRuleAll counterexample from ledger row WDP-P000-017`](../../code/python/)
 
 ---
@@ -49,4 +49,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch06_residuals_non_factorization_and_authorization_boundaries.md`
+  - `external:sha256:c92f890dee80822acb0d7ed59a59e23209c0b90300437eff0014a2a4b312503e`

@@ -64,23 +64,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md](../../../dag/derivations/05_mssn_sn/tfq_0518_sn_off_image_refusal_proposal.md)
-- sha256 (`lf-normalised`): `ec97b380116d2b698ec189d631c5a7364662a9ecf4fc7fef4a1db7833f0aae3c`
+- sha256 (`lf-normalised`): `6ce77b0e46e13d34e02de83217801821e1d105ce307a6e81f1c1514909be2c72`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0518
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/002_oesn/docs/off_image_refusal_note.md`
-
-- file: `omega_engine_education/documentation/002_oesn/docs/off_image_refusal_note.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine_education/documentation/002_oesn/code/sn_core.py::S6Descent`
+- `external:sha256:157f84c3f7ee7150d5a2112923a602668ae545a0a318f5205025026142f58b71:155-158`
+- `external:sha256:157f84c3f7ee7150d5a2112923a602668ae545a0a318f5205025026142f58b71:98-99`
+- `external:upstream/education/symmetric_group_presentations/code/sn_core.py::S6Descent`
 
 ## Absences recorded by the TFQ records
 

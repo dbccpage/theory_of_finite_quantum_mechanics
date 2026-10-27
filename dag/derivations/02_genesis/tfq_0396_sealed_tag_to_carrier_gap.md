@@ -26,15 +26,15 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B001_raw_distinction.lean`](../../lean4/)
+- [`absent: no local lean twin located for external:sha256:2e264c28e45671b646ce8e6ad290f689f7fb8ecf3625b109b9e97df3a74ee073`](../../lean4/)
 - [`absent: missing declaration obligation: a certified map from the sealed tag into HasRawDistinction is absent from the opened chapter and from proposed_gaps.yaml`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`absent: missing obligation: no term-map crate was opened from tag 3100c4e into the S000 carrier`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/src/finite_obstruction.py`](../../code/python/)
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/tests_unit/test_genesis_bridge_contract.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:28bf40cf36c459316ada0e9f8d6862026535c3fee1455678793ce7af060af8c9`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:9fdd0b37374bf1776fb39cc9122fa02b621f3500fa0bdd1132cf3bc23028d577`](../../code/python/)
 - [`absent: missing obligation: test_genesis_bridge_contract.py was listed and not opened; chapter 1 says it checks a pinned reference file and is not a term map`](../../code/python/)
 
 ---
@@ -49,5 +49,5 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/claims/proposed_gaps.yaml`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch01_genesis_of_difference.md`
+  - `external:sha256:7f0161fe2e71330fad6166c37ff1898e4729579747c0cbbdd190a42062e241fc`
+  - `external:sha256:eed47042e450b5608d203687f53103f3f8f4cbc3e5056c8a3b73b9992a1811db`

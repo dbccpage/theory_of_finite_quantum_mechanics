@@ -99,34 +99,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is theory_of_finite_qm
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/no_signalling.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/no_signalling.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md](../../../dag/derivations/12_finite_qm_structure/tfq_0261_no_signalling_marginals_under_an_admitted_composition.md)
-- sha256 (`lf-normalised`): `9711db6e414bdb26e12927b2fe00e63c56a498a6641e835efe841e9b23f3cfc3`
+- sha256 (`lf-normalised`): `58a3610eb6858401659ba0cdebbc2477a60bef37c3af9d7229697c33a9c6dde4`
 - generated view: listed, not counted
 - cited in: record TFQ-0261
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/074_no_signaling_finite_shadow/qm_074_no_signaling_finite_shadow_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/074_no_signaling_finite_shadow/qm_074_no_signaling_finite_shadow_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:30aec070f0d0ba7a6c7a79671ca572935ebe155f5b10c29577ee4c127c455799#QM_074-C1`
+- `external:sha256:30aec070f0d0ba7a6c7a79671ca572935ebe155f5b10c29577ee4c127c455799#QM_074-C3`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche4_edgewise_l1_u1_holonomy_chsh_and_cayley_witness`
+- `external:sha256:e0f586ad94889080d74ad1297fadf59196e4e05cb5b399ef9b7f4d0ae2482c7c::no_signalling`
 
 ## Absences recorded by the TFQ records
 

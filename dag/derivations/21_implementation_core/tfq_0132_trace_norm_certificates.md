@@ -29,10 +29,10 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/projective_preservers.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/trace_distance_quotient.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/trace_observer_certificate.rs`](../../code/rust/src/)
+- [`external:sha256:d624cce9416a1c8adab500a1870240397d709d870c732ece9abc613659e67254`](../../code/rust/src/)
+- [`external:sha256:6d5d5d60c5905f79d67d8a8bc365e337b56a0ffb2270da01f2589b4c1a2620f0`](../../code/rust/src/)
+- [`external:sha256:8de9a137f60908341dba42d28fa768bf1da772772d76f839787a5fcc9b56f170`](../../code/rust/src/)
+- [`external:sha256:20222a01c115b7c3ba9c1433f23b998f895d5111023d5fab4ab51a9b06cdd6f3`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`The python twin is not located for trace_norm_certificate.rs under 006_finite_qm/python/finite_qm.`](../../code/python/)
@@ -49,7 +49,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`
 
 ---
 
@@ -63,5 +63,5 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(DS-QM080-IMPORT-FREE-TRACE-NORM-CORE): R_raw(352) - G_cob(172) - S_decoy(8) == 172 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 172$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.trace_zero_pinching_contraction`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 973e86eed2afbe0161c84f92c4ff28648ad4e792a11449b1f338360b552dc318`

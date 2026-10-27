@@ -61,4 +61,4 @@ A necessary or minimal extension still needs the six section-15 checks, and a bu
 
 - **Atlas Lineage**: `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch07_finite_obstruction_calculus.md`
+  - `external:sha256:9e6382d28d7dcbdca845bec88104a21be9faa746f944a6b56d1495b03ca412ae`

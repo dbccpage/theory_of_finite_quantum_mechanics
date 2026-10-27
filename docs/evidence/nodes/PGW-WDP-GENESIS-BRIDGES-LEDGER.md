@@ -98,17 +98,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md`
 
 - file: [dag/derivations/06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md](../../../dag/derivations/06_wdp/tfq_0554_wdp_genesis_bridges_ledger.md)
-- sha256 (`lf-normalised`): `d4b61c8e3e2a379da8a1bbd28ad0ed678a80c0127f392fc348f1b988d792ac63`
+- sha256 (`lf-normalised`): `b6dc0a07f85b11869a4be57dcfcf5650d8a7577867ce4c0ac5baad45706b5dd9`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0554
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/006_oewdp/levels/level_22_genesis_to_wdp_bridges.md`
+### External sources
 
-- file: `omega_engine_education/documentation/006_oewdp/levels/level_22_genesis_to_wdp_bridges.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:a11697dcdf5788b476d5c2e541b635a81c03e665684f69bd260bc463a03ee458:130-155`
 
 ## Routes
 

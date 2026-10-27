@@ -57,13 +57,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_pointed_relation.py`
 
 - file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_pointed_relation.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/unit_tests/test_pointed_relation.py)
@@ -106,23 +99,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0537_wdp_pointed_apartness.md`
 
 - file: [dag/derivations/06_wdp/tfq_0537_wdp_pointed_apartness.md](../../../dag/derivations/06_wdp/tfq_0537_wdp_pointed_apartness.md)
-- sha256 (`lf-normalised`): `917eb404e920c0b7c25ee2476d79dfee49d644b7578609f009304af114124412`
+- sha256 (`lf-normalised`): `f806febdaebabfbdb70d7ffbaa25e933d1a97f6fb93465aa7dce6323931819d5`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0537
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/006_oewdp/levels/level_00_admitted_cut.md`
-
-- file: `omega_engine_education/documentation/006_oewdp/levels/level_00_admitted_cut.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs::GenesisAdmissionKernel`
+- `external:sha256:3301e36106cfe1fb4415d4f6218951cd83516f0a714d773fcb477ea3dce63814::GenesisAdmissionKernel`
+- `external:sha256:b3182646c084a1d31b4c382572524489dcfa76f74bf74ee0863573424d048c65:165-170`
+- `external:upstream/external:sha256:3301e36106cfe1fb4415d4f6218951cd83516f0a714d773fcb477ea3dce63814::GenesisAdmissionKernel`
 
 ## Routes
 

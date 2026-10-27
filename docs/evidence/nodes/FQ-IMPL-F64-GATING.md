@@ -32,7 +32,7 @@ Exact faces use BigRational/Q(i)/Q(zeta_n); f64 faces are legacy debt, not agree
 
 ## Source status
 
-omega_engine_operations/use_cases/cicd/f64_contract.json schema omega.f64_contract.v1, authority_effect None; sealed: {} ; legacy_debt: 370 files
+external:sha256:6ae8c7c272743af5f672a868ca9ad528f1753b9e66b179994b5d35ad0113c5d1 schema omega.f64_contract.v1, authority_effect None; sealed: {} ; legacy_debt: 370 files
 
 ## Review
 
@@ -95,31 +95,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_mub
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/engine_bridge.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/engine_bridge.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Python: `omega_engine_operations/use_cases/cicd/f64_contract_gate.py`
-
-- file: `omega_engine_operations/use_cases/cicd/f64_contract_gate.py`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0179_keep_omega_mub_float_cross_checks_from_authorizing_a_mub_6_existence_claim.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0179_keep_omega_mub_float_cross_checks_from_authorizing_a_mub_6_existence_claim.md](../../../dag/derivations/22_implementation_sibling/tfq_0179_keep_omega_mub_float_cross_checks_from_authorizing_a_mub_6_existence_claim.md)
-- sha256 (`lf-normalised`): `5076a6296a0d3ee1f01265c6807ea769d5e2529a405f3140552705e8ab8e34c1`
+- sha256 (`lf-normalised`): `b2cf15cc24f6584b2f86394950877d14017e77ff341e2908c78d8b87885afc31`
 - generated view: listed, not counted
 - cited in: record TFQ-0179
 - counts toward the grade: no
@@ -127,7 +106,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0188_refuse_the_f64_lift_scale_on_cycleliftspec_as_a_licence_for_an_exact.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0188_refuse_the_f64_lift_scale_on_cycleliftspec_as_a_licence_for_an_exact.md](../../../dag/derivations/22_implementation_sibling/tfq_0188_refuse_the_f64_lift_scale_on_cycleliftspec_as_a_licence_for_an_exact.md)
-- sha256 (`lf-normalised`): `62b613072f2ecc85322fd9d1ced77537fe961a0f434cd0e84b0834671f4e5c7a`
+- sha256 (`lf-normalised`): `303e9bfd8839de202416f2852b8fa9015dde0135d3c50ef84365a680f018522b`
 - generated view: listed, not counted
 - cited in: record TFQ-0188
 - counts toward the grade: no
@@ -135,31 +114,34 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0192_keep_diagnostic_floats_and_display_conversions_out_of_governance_and_out_of.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0192_keep_diagnostic_floats_and_display_conversions_out_of_governance_and_out_of.md](../../../dag/derivations/22_implementation_sibling/tfq_0192_keep_diagnostic_floats_and_display_conversions_out_of_governance_and_out_of.md)
-- sha256 (`lf-normalised`): `a66729e619d59a1cff501467c6b4425a0974f4defb279bff52126a17b0d17495`
+- sha256 (`lf-normalised`): `dda7baebd789bea679daa6cd553190a483e2d0ed5cac8efecf30bdcde81e9cd2`
 - generated view: listed, not counted
 - cited in: record TFQ-0192
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_operations/use_cases/cicd/f64_contract.json`
+### External sources
 
-- file: `omega_engine_operations/use_cases/cicd/f64_contract.json`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:6ae8c7c272743af5f672a868ca9ad528f1753b9e66b179994b5d35ad0113c5d1:1`
+- `external:sha256:759a26347ca8bdc640e99bf834323b5fa222daa326765c5c5bdc95e618b126ed:1`
+- `external:sha256:8a8eb6cdf84a34d0de92f887c5efc2d394dbc6aed7be3b70394c09b72d36f078::DiagnosticBridgeError`
 
 ## Absences recorded by the TFQ records
 
 - TFQ-0179 lean4: not located
 - TFQ-0179 python: not located
 - TFQ-0188 python: not located
-- TFQ-0188 rust: no local rust twin located for omega_engine/crates_rs/omega_lifts/src/cycle_lift_result.rs
-- TFQ-0188 rust: no local rust twin located for omega_engine/crates_rs/omega_lifts/src/cycle_lift_spec.rs
-- TFQ-0188 rust: no local rust twin located for omega_engine/crates_rs/omega_lifts/src/lift_primitive.rs
+- TFQ-0188 rust: no local rust twin located for external:sha256:2908042afeabf18585e04298b65ebe3d19f65c7d68d6e6761fce9a908e9a59d7
+- TFQ-0188 rust: no local rust twin located for external:sha256:7cdc5e0bce6c29a1598347459d048b0b89de2fe7170e1892096c2f9e93c3db89
+- TFQ-0188 rust: no local rust twin located for external:sha256:c58c7a83c804699a86ad761d7e3f9456f56daa0c1ba50dcff68378049955b99c
 - TFQ-0192 lean4: not located
 - TFQ-0192 python: not located
-- TFQ-0192 rust: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/documentary_traceability.rs
-- TFQ-0192 rust: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/measurement_access.rs
-- TFQ-0192 rust: no local rust twin located for omega_engine/crates_rs/omega_measurement/src/measurement_kernel.rs
+- TFQ-0192 rust: no local rust twin located for external:sha256:07e63c53da4b64ecfc4fa925a1544eccb27b590bfd3e257b35947c3c15a3ca73
+- TFQ-0192 rust: no local rust twin located for external:sha256:0d9d32875b0dda27f266bef37af470f35769ab924210bd90b9ed923958b2baf3
+- TFQ-0192 rust: no local rust twin located for external:sha256:e7de14f3a7ac549411872b110b09968dc2178ab76ed8099b8871e949a9d69b7a
 
 ## Routes
 

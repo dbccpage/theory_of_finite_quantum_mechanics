@@ -59,4 +59,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean:98-117`
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:1518-1535`
-  - `omega_engine_education/documentation/006_oewdp/levels/level_03_discrete_complex_cochains.md:319-328`
+  - `external:sha256:f444bcaa3ae162d185a3a8a21cf0b59606958107ac5510e84015090750d5c3cc:319-328`

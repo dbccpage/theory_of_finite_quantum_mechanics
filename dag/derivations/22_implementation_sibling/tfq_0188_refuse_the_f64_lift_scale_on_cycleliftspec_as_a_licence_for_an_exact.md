@@ -38,12 +38,12 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics/PrimitiveLiftCertificate.lean`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_lifts/src/cycle_lift_result.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_lifts/src/cycle_lift_spec.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_lifts/src/lift_primitive.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/engine_bridge.rs::DiagnosticBridgeError`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
+- [`external:sha256:2908042afeabf18585e04298b65ebe3d19f65c7d68d6e6761fce9a908e9a59d7`](../../code/rust/src/)
+- [`external:sha256:c58c7a83c804699a86ad761d7e3f9456f56daa0c1ba50dcff68378049955b99c`](../../code/rust/src/)
+- [`external:sha256:7cdc5e0bce6c29a1598347459d048b0b89de2fe7170e1892096c2f9e93c3db89`](../../code/rust/src/)
+- [`external:sha256:8a8eb6cdf84a34d0de92f887c5efc2d394dbc6aed7be3b70394c09b72d36f078::DiagnosticBridgeError`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`not located`](../../code/python/)
@@ -60,7 +60,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/shelf.yaml`
+  - `external:sha256:98533bbe8dde6cad1f5bbd9d2de0fb85196b2d44c74964cec5a96620ff69c94f`
 
 ---
 
@@ -74,5 +74,5 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-IMPL-F64-GATING): R_raw(302) - G_cob(146) - S_decoy(10) == 146 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 146$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.ds_and_fq_cptp_partial_transpose_born_lp_and_f64_diagnostic_firewall`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 8a80e51136e8fca160ef271621bb3bcde0e90531dcb8cc3516a7ce5e97a025fc`

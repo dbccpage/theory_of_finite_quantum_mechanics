@@ -45,17 +45,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0524_sn_e18_l1_ties_l2_center.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0524_sn_e18_l1_ties_l2_center.md](../../../dag/derivations/05_mssn_sn/tfq_0524_sn_e18_l1_ties_l2_center.md)
-- sha256 (`lf-normalised`): `1ed6897c4c8f997a8cccba7ff3d1d7260ac4fccf753108d256fb502b60828059`
+- sha256 (`lf-normalised`): `633504d74f31fd6784c7b3958ffb0a6b83eefdccf57f0ce1ddb8f97c59701b78`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0524
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/002_oesn/levels/level_18_discrete_hodge_decomposition.md`
+### External sources
 
-- file: `omega_engine_education/documentation/002_oesn/levels/level_18_discrete_hodge_decomposition.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:4f2631eb4418b0032c51f4cb9b3226a62faf5c2105e43d096706abaf578f805e:44-47`
+- `external:sha256:4f2631eb4418b0032c51f4cb9b3226a62faf5c2105e43d096706abaf578f805e:49-52`
+- `external:sha256:4f2631eb4418b0032c51f4cb9b3226a62faf5c2105e43d096706abaf578f805e:55-57`
 
 ## Absences recorded by the TFQ records
 

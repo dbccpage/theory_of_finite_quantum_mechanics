@@ -31,8 +31,8 @@ In accordance with strict constructive principles:
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`code/rust/src/qm/campaigns/everett.rs`](../../code/rust/src/)
 - [`code/rust/src/qm/campaigns/branch_finegraining.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/chain_histories.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/decoherence_functional.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:999f13f11c0384133e2d36beffcf970397b22c642c5937469b59c24024ac7697`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:9e8f04ba6dbce5a5f7a38bb491dbeaa956d2769951d143f2d05f2cca21ab92a3`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`code/python/src/majorana/tests/support/finite_qm/use_cases/everett_tree.py`](../../code/python/)
@@ -50,4 +50,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

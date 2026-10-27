@@ -29,14 +29,14 @@ In accordance with strict constructive principles:
 - [`lean4/quantum_mechanics`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/dagger_category.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/higher_dim.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/hilbert_space.rs`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/operational_axiom_selection.rs`](../../code/rust/src/)
+- [`external:sha256:df0d2326195309ad4b91bccf94848c1860eaadb44ca614964001af14b58d090d`](../../code/rust/src/)
+- [`external:sha256:0bd011659ba2be72b9aa56341182dafe52ef7f6ce3671ba694aa4af4f8790c53`](../../code/rust/src/)
+- [`external:sha256:904a09d9ca4b18f97838457416046361842e537e895afce0374f8b6c670a1ef1`](../../code/rust/src/)
+- [`external:sha256:1fd31dc21930dee731ce1da479cda2cc88dc4de8f08a467515fb739d658ff812`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`not located`](../../code/python/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/operational_axiom_selection.py`](../../code/python/)
+- [`external:sha256:8f17a31edd8c0bb28bda7f59d394b68e4d5a9f9c06c5004667f7b8005c58a418`](../../code/python/)
 
 ---
 
@@ -53,7 +53,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`
 
 ---
 
@@ -67,7 +67,7 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `projDump_pauliZ_covariance_defect: |(1,0) - (-1,0)|_1 == 2 (rival bilinear map violates local Pauli-Z covariance)` ($\text{value} = 2$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.conditional_route_bridges_pg_l1_fq_ds_sixteen_route_closure`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4-flash` | `status = PASS` | `receipt_sha256 = f797bcf12dc545d42a2a96b7dd02fe0b59613b8cfc18c337d4470e9c4bee4e7f`
 
 ---
@@ -82,5 +82,5 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `projDump_collision_defect: ||projDump(e0,e0) - projDump(e0,e1)||_1 == ||(1,0) - (1,0)||_1 == 0 (collapses distinct second-system states)` ($\text{value} = 0$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.l1_gap_u1_inner_product_orthogonal_additivity_and_isometric_dynamics_countermodels`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = c8aef65056eec1f595edaf2a9feac20558bfc7c4c8de960ec337c4965eab6cf5`

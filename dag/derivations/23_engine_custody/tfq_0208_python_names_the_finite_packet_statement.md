@@ -26,14 +26,14 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/lean4/OmegaEnginePrimeAlgorithmsRuntime/Prime000.lean`](../../lean4/)
+- [`absent: no local lean twin located for external:sha256:4f7a7f70818cb0181144f1793d1fc650d83fe6a15b86afe1530ead2a064e63be`](../../lean4/)
 
 ### Sovereign Rust Certifiers
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/python/src/omega_engine_rc/prime_triad.py`](../../code/python/)
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/python/src/omega_engine_rc/intake_status.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:118b9549a600eee604e58f81e4d692d85eacc23649fb6d451821820ca6f89911`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:033198650df7db94b49b2b91d275fb2308db7460db00bd06ac591218d127de43`](../../code/python/)
 - [`code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`](../../code/python/)
 
 ---
@@ -48,6 +48,6 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F003.S000:000_omega_engine_prime_algorithms_and_runtime`, `F001.S000:001_from_primitive_difference_to_quantum_mechanics`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime`
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus`
+  - `external:git-tree:e03ce30c258cf9ca164637ea387b5267bad58df9`
+  - `external:git-tree:aaf60017b237ab042d2a4f52cec36e21f4264b2f`
+  - `external:git-tree:825506e48afab1825c9431562935d4f0fcadc33f`

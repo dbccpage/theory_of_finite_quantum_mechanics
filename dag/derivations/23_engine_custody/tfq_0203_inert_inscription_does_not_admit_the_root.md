@@ -26,13 +26,13 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_witnessed_difference_programme/lean4/WitnessedDifference/GenesisConstruction.lean`](../../lean4/)
+- [`absent: no local lean twin located for atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/GenesisConstruction.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`code/rust/src/wdp/examples/genesis_construction.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/python/src/omega_engine_rc/prime_triad.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:118b9549a600eee604e58f81e4d692d85eacc23649fb6d451821820ca6f89911`](../../code/python/)
 
 ---
 
@@ -46,6 +46,6 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F003.S000`, `F003.S000:000_omega_engine_prime_algorithms_and_runtime`, `F000.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime`
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction`
+  - `external:git-tree:5d358f5062016c742016b891fa7891bb0f0e19ef`
+  - `external:git-tree:e03ce30c258cf9ca164637ea387b5267bad58df9`
+  - `external:git-tree:6c3ddd228c139e91dd74dc2ea348d97cc54608a0`

@@ -57,13 +57,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_wdp/src/cochains.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/cochains.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py`
 
 - file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py)
@@ -87,23 +80,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0542_wdp_graph_cochain_host.md`
 
 - file: [dag/derivations/06_wdp/tfq_0542_wdp_graph_cochain_host.md](../../../dag/derivations/06_wdp/tfq_0542_wdp_graph_cochain_host.md)
-- sha256 (`lf-normalised`): `74336d8c3444c57b1c4c627823512567eaa10eca36bde5d22ad8f0c471694ba7`
+- sha256 (`lf-normalised`): `35e1217b22b1f935fa2387254d494e139f0015adaf674c8f84e27005ed6440a1`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0542
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/006_oewdp/levels/level_03_discrete_complex_cochains.md`
-
-- file: `omega_engine_education/documentation/006_oewdp/levels/level_03_discrete_complex_cochains.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine/crates_rs/omega_wdp/src/cochains.rs::FiniteComplex`
+- `external:sha256:83da0237063adab6d54c81f7a608e1c44131ab10ba23aebfeb5378c19f25e4cd::FiniteComplex`
+- `external:sha256:f444bcaa3ae162d185a3a8a21cf0b59606958107ac5510e84015090750d5c3cc:68-121`
+- `external:upstream/external:sha256:83da0237063adab6d54c81f7a608e1c44131ab10ba23aebfeb5378c19f25e4cd::FiniteComplex`
 
 ## Routes
 

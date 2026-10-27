@@ -79,13 +79,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_wdp/src/proposal_admission_bridge.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/proposal_admission_bridge.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py`
 
 - file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/proposal_admission_bridge.py)
@@ -122,7 +115,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md`
 
 - file: [dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md](../../../dag/derivations/06_wdp/tfq_0556_wdp_bridge_report_fiber_observer.md)
-- sha256 (`lf-normalised`): `09ad31e2670561b99420cde3b4962eeddfbb34144bdf5962526492489d355c25`
+- sha256 (`lf-normalised`): `cca5ce65fd6ab5c23254dd303ecb21b3b24169b9c25cce8697b9ee5f614a735c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0556
 - counts toward the grade: no
@@ -141,18 +134,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `omega_engine_education/documentation/006_oewdp/levels/level_22_genesis_to_wdp_bridges.md`
-
-- file: `omega_engine_education/documentation/006_oewdp/levels/level_22_genesis_to_wdp_bridges.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine/crates_rs/omega_wdp/src/proposal_admission_bridge.rs::ProposalAdmissionModel`
+- `external:sha256:8f12bd5921d1b1e472ecaf9c5d7ccbc467a2b808ccd452c695dcfbac42e7bc55::ProposalAdmissionModel`
+- `external:sha256:a11697dcdf5788b476d5c2e541b635a81c03e665684f69bd260bc463a03ee458:81-92`
+- `external:upstream/external:sha256:8f12bd5921d1b1e472ecaf9c5d7ccbc467a2b808ccd452c695dcfbac42e7bc55::ProposalAdmissionModel`
 
 ## Routes
 

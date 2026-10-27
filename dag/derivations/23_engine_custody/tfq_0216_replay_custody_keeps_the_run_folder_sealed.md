@@ -26,16 +26,16 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/lean4/OmegaEnginePrimeAlgorithmsRuntime/IntakeContract.lean`](../../lean4/)
+- [`absent: no local lean twin located for external:sha256:19e794086b88a7edc2c69799cb7d3c3339abc6c5801043d311a13333cd0b2881`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`code/rust/src/wdp/lib.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_replay/src/run_folder.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_replay/src/replay_hash.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:02639231a7e2985fb581adedc4455415ce6ad641e736b98ca20063edb6beff98`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:d607354d8f84e955b89d65e58983964ef43675f69b92bfdf8a16da4b21f3b1ec`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory/python/src/authorization_incompleteness/replay_fiber.py`](../../code/python/)
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/python/src/omega_engine_rc/prime_triad.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:d9f6e028e9c671a6320cd8ab4ab3cd36513fadd234056de98f0570c48e26a5c7`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:118b9549a600eee604e58f81e4d692d85eacc23649fb6d451821820ca6f89911`](../../code/python/)
 
 ---
 
@@ -49,6 +49,6 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F003.S000`, `F003.S000:000_omega_engine_prime_algorithms_and_runtime`, `F000.S001:001_authorization_an_incompleteness_theory`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime`
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S001_authorization_and_incompleteness/001_authorization_an_incompleteness_theory`
+  - `external:git-tree:5d358f5062016c742016b891fa7891bb0f0e19ef`
+  - `external:git-tree:e03ce30c258cf9ca164637ea387b5267bad58df9`
+  - `external:git-tree:5ab26ee1f8e4e10cf2fbf7a36dd731d31fbf4a44`

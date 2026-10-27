@@ -10,7 +10,7 @@ Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `PROVED_LEAN`. Evidence grade: *
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 3
+- counted in-repo evidence files: 4
 - cited Lean, Rust or Python symbols found in their in-repo files: 25
 - distinct cited Lean declarations covered by a current replay receipt: 14
 - counted in-repo runnable tests: 0
@@ -95,7 +95,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md](../../../dag/derivations/05_mssn_sn/tfq_0522_sn_e08_weighted_l1_duality.md)
-- sha256 (`lf-normalised`): `f704453398b9e328b1a39135e3b884fba20dff9d49f68d39e5cb29a2abbcf4b8`
+- sha256 (`lf-normalised`): `4471a458f38dbd7b80b533f3069a3486a0e2b82a054388fbc95467ca465c74c6`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0522
 - counts toward the grade: no
@@ -107,19 +107,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
-### Documents and data: `omega_engine_education/documentation/002_oesn/levels/README.md`
+### Documents and data: `education/symmetric_group_presentations/levels/README.md`
 
-- file: `omega_engine_education/documentation/002_oesn/levels/README.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [education/symmetric_group_presentations/levels/README.md](../../../education/symmetric_group_presentations/levels/README.md)
+- sha256 (`lf-normalised`): `58f41876692a51be940c4e0f44bd2e1ef72cd873c70b4726ef3d5f0639137165`
 - cited in: node.source
-- counts toward the grade: no
+- counts toward the grade: yes
 
-### Documents and data: `omega_engine_education/documentation/002_oesn/levels/level_08_monadic_adjunction_cochains.md`
+### External sources
 
-- file: `omega_engine_education/documentation/002_oesn/levels/level_08_monadic_adjunction_cochains.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:9edec90b2c87518d8a33cb78cbf439fe11ce6e4f33a3f613148b9137771649d6:19-29`
+- `external:sha256:9edec90b2c87518d8a33cb78cbf439fe11ce6e4f33a3f613148b9137771649d6:40-44`
 
 ## Absences recorded by the TFQ records
 

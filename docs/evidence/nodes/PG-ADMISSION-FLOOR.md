@@ -118,13 +118,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
@@ -135,7 +128,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md](../../../dag/derivations/01_pregenesis/tfq_0395_law_bearing_cut_not_two_marks.md)
-- sha256 (`lf-normalised`): `40d09784d53938ed6a5562e4ba3b4c63e344b833c7cb339da6d83405e8e049d9`
+- sha256 (`lf-normalised`): `144cf2a458eaa98b2d5277e88f08d9bd4280270bf9e48f1d681847a36b2d58f0`
 - generated view: listed, not counted
 - cited in: record TFQ-0395
 - counts toward the grade: no
@@ -148,12 +141,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: record TFQ-0360
 - counts toward the grade: no
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+
 ## Absences recorded by the TFQ records
 
 - TFQ-0395 lean4: missing declaration obligation: endpoints-apart under a law, no cut on a subsingleton, beyond TwoPointMarks
-- TFQ-0395 lean4: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/B001_raw_distinction.lean
+- TFQ-0395 lean4: no local lean twin located for external:sha256:2e264c28e45671b646ce8e6ad290f689f7fb8ecf3625b109b9e97df3a74ee073
 - TFQ-0395 python: missing obligation: test_zero_laws.py was listed and not opened; a law must stay an input, not a consequence of two marks
-- TFQ-0395 python: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/tests_unit/test_zero_laws.py
+- TFQ-0395 python: no local python twin located for external:sha256:dfd5a9d9f39a47b64ef5618e637944f21532c403db19c64a7232c538f9852b9c
 - TFQ-0395 rust: missing obligation: a cut struct with an explicit law field, absent from the opened genesis regime header
 
 ## Routes

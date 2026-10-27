@@ -97,13 +97,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
@@ -114,7 +107,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0384_cumulative_count_no_return.md`
 
 - file: [dag/derivations/02_genesis/tfq_0384_cumulative_count_no_return.md](../../../dag/derivations/02_genesis/tfq_0384_cumulative_count_no_return.md)
-- sha256 (`lf-normalised`): `87319e2ba3f4033aa40fa531d480ba409fc5ea34c38738a555025c94963259d3`
+- sha256 (`lf-normalised`): `ad8ca6ffa00ec9ae864ebacaea5c521c1f7e4c6010a2affbf428513947c31148`
 - generated view: listed, not counted
 - cited in: record TFQ-0384
 - counts toward the grade: no
@@ -125,6 +118,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `05df9c79673528ca235e6777b70ff7f571a3be2e52d02f281ef5b04592593f60`
 - cited in: node.source
 - counts toward the grade: yes
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
 
 ## Absences recorded by the TFQ records
 

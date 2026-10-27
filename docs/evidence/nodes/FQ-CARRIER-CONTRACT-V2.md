@@ -77,24 +77,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/tower.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/tower.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1006
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1006
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md](../../../dag/derivations/10_finite_qm_core/tfq_1006_fq_carrier_contract_v2.md)
-- sha256 (`lf-normalised`): `59a4a7105abe197c5da551731e1681c8b889cc4bef705ba49bb9c80eec50f518`
+- sha256 (`lf-normalised`): `7df51157931450301bbd5cd53c0b983bba69dd33bd2ebc4f14437a61007dc56c`
 - generated view: listed, not counted
 - cited in: record TFQ-1006
 - counts toward the grade: no
@@ -112,6 +98,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:0ba65dffd00ca2ae423a972431eb56b48d31e223d7d05b4c7e2680aa2f0502fb::CyclotomicTower`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`
 
 ## Routes
 

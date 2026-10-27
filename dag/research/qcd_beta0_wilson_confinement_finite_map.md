@@ -40,7 +40,7 @@ This research note documents **QM-221** (`qcd_beta0_wilson_confinement_control`)
 
 | Verification Anchor | Artifact Path | Key Checked Invariants |
 |---|---|---|
-| **Rust Native Kernel** | `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/qcd_beta0_wilson_confinement_control.rs` | `test_qm221_qcd_beta0_wilson_confinement_control` (81-entry Fierz identity, $\beta_0, \beta_1$, Creutz ratio, 12-decimal enclosures) |
+| **Rust Native Kernel** | `external:sha256:b76d75cf31011b45adf41918beb988b8a475fb6967032f0649c5a0fb300eba30` | `test_qm221_qcd_beta0_wilson_confinement_control` (81-entry Fierz identity, $\beta_0, \beta_1$, Creutz ratio, 12-decimal enclosures) |
 | **Python Use Case & E2E** | `python/finite_qm/use_cases/qcd_beta0_wilson_confinement_control.py`, `tests/e2e/test_e2e_qcd_beta0_wilson_confinement_control.py` | 5 E2E tests checking Parts A–E and Fable MCTS receipt parity |
 | **Lean 4 Kernel** | `lean4/FiniteQM.lean` (`lean4/FiniteQM.lean` Part IV) | 6 theorems (`su3_casimir_and_channel_identities`, `su3_fierz_diagonal_and_offdiagonal_identities`, `qcd_beta0_asymptotic_freedom_window`, `qcd_beta1_and_banks_zaks_fixed_point`, `wilson_creutz_ratio_area_vs_perimeter`, `wilson_lattice_3x3_dfm_betti_identity`), `0` `sorryAx` |
 

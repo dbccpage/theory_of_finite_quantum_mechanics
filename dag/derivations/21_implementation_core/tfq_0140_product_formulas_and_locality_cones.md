@@ -29,12 +29,12 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/continuous_time_locality_limit.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/product_defect_bound.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/norm_approximation_frontier.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:ce1c94d0ab84256d9dfd38a365daf2c8b0451d2628be4dce26e70c9493dc7d4e`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:dfb5bb461f97bf8df5e6f2a89f446ad4e057ea3c840bac23c7c726d32459ea56`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:aaf25aa062ea0b5b2c12ef380659735be18e44837a39eebb6c904013236f3807`](../../code/rust/src/)
 - [`code/rust/src/qm/campaigns/growth_refinement.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/refinement_subsystem_tower.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/richardson.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:7fa6cf79f7aa766503b4ccac8815d017703c1d7086e7cc8572bfb24fecf21aaa`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:137371a7ef39fe21af104b863ad39cb8d7476c8c4fe6f0f0fa98e158e83f5e4d`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`code/python/src/majorana/tests/support/finite_qm/use_cases/continuous_time_locality_limit.py`](../../code/python/)
@@ -52,4 +52,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

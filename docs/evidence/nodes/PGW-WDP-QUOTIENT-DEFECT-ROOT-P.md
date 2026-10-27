@@ -58,13 +58,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_wdp/src/obstruction.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/obstruction.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py`
 
 - file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py)
@@ -87,23 +80,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0538_wdp_quotient_defect_root_p.md`
 
 - file: [dag/derivations/06_wdp/tfq_0538_wdp_quotient_defect_root_p.md](../../../dag/derivations/06_wdp/tfq_0538_wdp_quotient_defect_root_p.md)
-- sha256 (`lf-normalised`): `978ad95e4a0c24ac283996689d143a894482ee237dac1d89dde15bfb0c298d25`
+- sha256 (`lf-normalised`): `063183529cc42e4fd00371a4c09fde69d2e94fb4a824eec352ac4e15a5aea8c4`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0538
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/006_oewdp/levels/level_01_witness_function.md`
-
-- file: `omega_engine_education/documentation/006_oewdp/levels/level_01_witness_function.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine/crates_rs/omega_wdp/src/obstruction.rs::solve_exact_potential_weighted`
+- `external:sha256:67f95afb329218e2db037b98e7b7d632e0ee073156f58a6c3b03ff9a386b4702::solve_exact_potential_weighted`
+- `external:sha256:a3928cbb59159e343cc8ec518c3015f08d59955caa77d0e07f6e4428202a863f:60-76`
+- `external:upstream/external:sha256:67f95afb329218e2db037b98e7b7d632e0ee073156f58a6c3b03ff9a386b4702::solve_exact_potential_weighted`
 
 ## Routes
 

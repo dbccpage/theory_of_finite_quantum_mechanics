@@ -130,20 +130,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_category_theory/src/finite_report_query.rs`
-
-- file: `omega_engine/crates_rs/omega_category_theory/src/finite_report_query.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md](../../../atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md)
@@ -161,7 +147,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0366_history_report_fiber_criterion.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0366_history_report_fiber_criterion.md](../../../dag/derivations/01_pregenesis/tfq_0366_history_report_fiber_criterion.md)
-- sha256 (`lf-normalised`): `53afcc08cfd1a7152b598cc4b00579c4eb2bed613930df9178dd6c7e8554f4a1`
+- sha256 (`lf-normalised`): `9c4e2c7072b28d74e69d34e85592d8759f1f95b2456517a9d497e59d4a279086`
 - generated view: listed, not counted
 - cited in: record TFQ-0366
 - counts toward the grade: no
@@ -169,10 +155,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0338_descend_a_question_to_the_realized_report_image_exactly_when_it_is.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0338_descend_a_question_to_the_realized_report_image_exactly_when_it_is.md](../../../dag/derivations/05_mssn_sn/tfq_0338_descend_a_question_to_the_realized_report_image_exactly_when_it_is.md)
-- sha256 (`lf-normalised`): `67e578859c600c385a05c671572b69a3cb96b4b0f6e8bb27eb89efb7c1f3a627`
+- sha256 (`lf-normalised`): `7a0ac07464e815ab7eb78ca28b9b4b90feb864cceb6e5308be9d0151826054cc`
 - generated view: listed, not counted
 - cited in: record TFQ-0338
 - counts toward the grade: no
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- `external:sha256:c9695009f0223f680802cec81590d681e386060da9a98d7715878b885bda6700::FactorizationCertificate`
 
 ## Absences recorded by the TFQ records
 

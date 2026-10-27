@@ -45,7 +45,7 @@ In accordance with strict constructive principles:
 - [`absent: not located`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/gauge_cochain_complex.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:1716598040aa40ee83bed4fdf0e76ab6111debd683decf50bbbe5df6dbc71b65`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: not located`](../../code/python/)
@@ -62,5 +62,5 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`, `F002.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
-  - `omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`
+  - `external:git-tree:0fb81f77bbeba84143f574b5a4bc956196140991`

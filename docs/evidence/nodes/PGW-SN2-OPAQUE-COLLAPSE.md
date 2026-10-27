@@ -68,23 +68,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0513_sn2_opaque_collapse.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0513_sn2_opaque_collapse.md](../../../dag/derivations/05_mssn_sn/tfq_0513_sn2_opaque_collapse.md)
-- sha256 (`lf-normalised`): `146383afbe3d1275e36ab83b8ad00632685c35cb0b5505632b4d5e33cc224090`
+- sha256 (`lf-normalised`): `93f4713452d8c193c2d4c449cbc9405c20e7d35e9fa6a43febd7c9172f99ac56`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0513
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/002_oesn/levels/level_02_relational_pairings.md`
-
-- file: `omega_engine_education/documentation/002_oesn/levels/level_02_relational_pairings.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine_education/documentation/002_oesn/code/sn_core.py::S2Collapse`
+- `external:sha256:75489b76e5af44bcf0edfd71b8b4e127881c8275ecc8b3bfb767d121d38f6d9b:33-35`
+- `external:upstream/education/symmetric_group_presentations/code/sn_core.py::S2Collapse`
 
 ## Absences recorded by the TFQ records
 

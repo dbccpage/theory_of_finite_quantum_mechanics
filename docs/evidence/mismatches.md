@@ -87,7 +87,7 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [COMP-C1-FIRST-SEPARATION-REPLAY](nodes/COMP-C1-FIRST-SEPARATION-REPLAY.md) | COMPUTATION | `COMPUTATIONALLY_CHECKED` | E3 | 30 | 6 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0131](nodes/TFQ-0131.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 30 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0013](nodes/TFQ-0013.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 29 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0015](nodes/TFQ-0015.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E0 | 27 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0015](nodes/TFQ-0015.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 27 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0018](nodes/TFQ-0018.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 24 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0019](nodes/TFQ-0019.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 23 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0043](nodes/TFQ-0043.md) | FINITE_TOPOLOGICAL | `COMPUTATIONALLY_CHECKED` | E1 | 23 | 2 in-repo Rust or Python symbol(s) cited, none a test |
@@ -235,7 +235,7 @@ PROVED_PROSE with no in-repo source document cited. Ordered by downstream nodes,
 | Node | Stage | Status | Grade | Downstream | Detail |
 |---|---|---|---|---|---|
 | [PGW-SN-E18-L1-TIES-L2-CENTER](nodes/PGW-SN-E18-L1-TIES-L2-CENTER.md) | MSSN_SN | `PROVED_PROSE` | E0 | 0 | no in-repo non-generated document among the counted sources |
-| [PGW-SN-E19-TORSION-ERASED-OVER-Q](nodes/PGW-SN-E19-TORSION-ERASED-OVER-Q.md) | MSSN_SN | `PROVED_PROSE` | E0 | 0 | no in-repo non-generated document among the counted sources |
+| [PGW-SN-E19-TORSION-ERASED-OVER-Q](nodes/PGW-SN-E19-TORSION-ERASED-OVER-Q.md) | MSSN_SN | `PROVED_PROSE` | E2 | 0 | no in-repo non-generated document among the counted sources |
 | [PGW-SN-E20-OBSERVER-COMPLETION](nodes/PGW-SN-E20-OBSERVER-COMPLETION.md) | MSSN_SN | `PROVED_PROSE` | E0 | 0 | no in-repo non-generated document among the counted sources |
 | [PGW-SN-E21-REPAIR-RANK](nodes/PGW-SN-E21-REPAIR-RANK.md) | MSSN_SN | `PROVED_PROSE` | E0 | 0 | no in-repo non-generated document among the counted sources |
 

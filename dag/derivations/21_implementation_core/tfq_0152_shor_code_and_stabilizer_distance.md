@@ -29,12 +29,12 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/shor.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/stabilizer_code_distance.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/toric_code.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/cochain_repair_code.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:b62ab9003d85d1d44d2f6bcc176b2080054e652534be2615f0c777c319030676`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:5e3fd1edf72e8f1056c51c5b5e86bf5fc82f8d203f4cff925ce19857eb4c8be7`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:18a4dc1ca3a6770620ae1052c15115527d101914c7a984bc359605f26fd06034`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:0afca57b5b9d44930fdafc79b2199989c1617b63981a2718bcfd3960a957dfd0`](../../code/rust/src/)
 - [`code/rust/src/majorana/repair_capacity.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/threshold_repair_certificate.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:1278d82569648290cc95532c1c1d6376f6b9aa07b98e04d267d8b32906fdaad9`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`code/python/src/majorana/tests/support/finite_qm/use_cases/stabilizer_codes.py`](../../code/python/)
@@ -52,4 +52,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

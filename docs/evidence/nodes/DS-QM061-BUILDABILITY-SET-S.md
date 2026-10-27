@@ -88,27 +88,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build FiniteQM`
 - counts toward the grade: no
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0252_interference_as_a_resource_outside_l1_bookkeeping.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0252_interference_as_a_resource_outside_l1_bookkeeping.md](../../../dag/derivations/12_finite_qm_structure/tfq_0252_interference_as_a_resource_outside_l1_bookkeeping.md)
-- sha256 (`lf-normalised`): `97f3fbb9777b27f143ba1ce853c88170987c15d90a4a9e59f9a310a89ff96995`
+- sha256 (`lf-normalised`): `46017b75546479fe58333c82e7b59c2620d5ef13ae0466f953e81aa77c1447bd`
 - generated view: listed, not counted
 - cited in: record TFQ-0252 (shared)
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/061_interference_as_the_non_l1_resource/qm_061_interference_as_the_non_l1_resource_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/061_interference_as_the_non_l1_resource/qm_061_interference_as_the_non_l1_resource_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_ds_qm_dynamics_structure_and_majorana_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- `external:sha256:ee82f2c4e43bc6dbbb2718dd45e38dc5b5e68f42e8ffb26b169406a562071d12#QM-061-C12`
+- `external:sha256:ee82f2c4e43bc6dbbb2718dd45e38dc5b5e68f42e8ffb26b169406a562071d12#QM-061-C13`
+- `external:sha256:ee82f2c4e43bc6dbbb2718dd45e38dc5b5e68f42e8ffb26b169406a562071d12#QM-061-C15`
 
 ## Absences recorded by the TFQ records
 

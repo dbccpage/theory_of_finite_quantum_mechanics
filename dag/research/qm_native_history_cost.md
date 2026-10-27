@@ -236,7 +236,7 @@ This is bounded source/native correspondence, not a universal equivalence proof.
 Focused reproduction (from repository root, unless a `cd` is shown):
 
 ```console
-python omega_engine_projects/finite_qm/tests/oracles/native_history_cost_replay.py --check
+python external:sha256:99eb99f5a1fad40b39df6987f02f9a7c110788fd27dcee788c0d6da260c6326a --check
 cd lean4
 lake build +NativeHistoryCost
 cd ../omega_engine/crates_rs

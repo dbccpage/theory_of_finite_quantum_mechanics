@@ -28,14 +28,14 @@ In accordance with strict constructive principles:
 ### Lean 4 Theorems
 - [`lean4/UniqueDescendedDynamics.lean`](../../lean4/)
 - [`lean4/SelectedProjectedMap.lean`](../../lean4/)
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/E014_descent_agreement.lean`](../../lean4/)
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/E016_semigroup_defect.lean`](../../lean4/)
+- [`absent: no local lean twin located for external:sha256:8f2885157a63f698f238de2a7a63d6334e3aae168336ed108f2ca064764eafee`](../../lean4/)
+- [`absent: no local lean twin located for external:sha256:1f9484ec0869e42311fab3a74e0358ee26c54a5cf61b813b6d612b9730ca2e2e`](../../lean4/)
 
 ### Sovereign Rust Certifiers
 *Computational witness tracked under `theory_of_finite_qm` crate.*
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/tests_unit/test_descent.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:4318f393d4dd5d3040696ab120cb0d84a3746a63e639c614d7344aeb0a15b0c5`](../../code/python/)
 
 ---
 
@@ -49,4 +49,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000`, `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/lean4/FromPrimitiveDifferenceToFiniteObstructionCalculus/README.md`
+  - `external:sha256:22d8911a2d0e082be7452e3e9370e5343d45a1e05fa549aad05fc09f21c9174e`

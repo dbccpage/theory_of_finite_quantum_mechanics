@@ -75,13 +75,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build   # the library that contains lean4/Imported/GenesisOngoing/Twentyfirst/Refusal.lean`
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md](../../../atlas/papers/finite_obstruction_calculus/genesis_ongoing/CLAUDE.md)
@@ -99,10 +92,17 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0391_sameness_refinement_ledgers.md`
 
 - file: [dag/derivations/02_genesis/tfq_0391_sameness_refinement_ledgers.md](../../../dag/derivations/02_genesis/tfq_0391_sameness_refinement_ledgers.md)
-- sha256 (`lf-normalised`): `1fe2c76b4578903f211d18e85aa65bbab038be30d0d645ed90f438e30295fde5`
+- sha256 (`lf-normalised`): `9b5cd08da3fdf37e3d53274f87973ce66fe29a195e61bd2941ed59ca32844fb2`
 - generated view: listed, not counted
 - cited in: record TFQ-0391
 - counts toward the grade: no
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_genesis_rewriting_and_sameness_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 
 ## Absences recorded by the TFQ records
 

@@ -71,24 +71,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - check: `cd lean4 && lake build DerivationDagQMClosure`
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/cptp_channels_stinespring.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/cptp_channels_stinespring.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/exact_channel.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/exact_channel.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0262_cptp_class_recorded_as_a_definition.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0262_cptp_class_recorded_as_a_definition.md](../../../dag/derivations/12_finite_qm_structure/tfq_0262_cptp_class_recorded_as_a_definition.md)
-- sha256 (`lf-normalised`): `327c476359539bbdd3578d8ea2e58b097be196dbe7d83e987f5b44738a66f8f0`
+- sha256 (`lf-normalised`): `096803e8b1c9e76cac81198e55765f3ff8b1c278d5b221214b1f4ab031ba410e`
 - generated view: listed, not counted
 - cited in: record TFQ-0262
 - counts toward the grade: no
@@ -100,12 +86,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:19f735a77b55e8182884060c73a1c66ccc64e14b24e1c3d5a173d64f8fe5b024::ExactChoiMatrix`
+- `external:sha256:7ecaf8b5a2fd5a4428b83ca6f579e8bda5323dd5ca0b2d87b0138227eb0e5cf3::WeightedStinespring`
+
 ## Absences recorded by the TFQ records
 
 - TFQ-0262 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
-- TFQ-0262 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/cptp_channels_stinespring.rs
-- TFQ-0262 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/exact_channel.rs
-- TFQ-0262 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_channel.rs
+- TFQ-0262 rust: no local rust twin located for external:sha256:19f735a77b55e8182884060c73a1c66ccc64e14b24e1c3d5a173d64f8fe5b024
+- TFQ-0262 rust: no local rust twin located for external:sha256:7ecaf8b5a2fd5a4428b83ca6f579e8bda5323dd5ca0b2d87b0138227eb0e5cf3
+- TFQ-0262 rust: no local rust twin located for external:sha256:e17359f64c885efb596f3390cf43cc40c25011d24ded59d783982b1eb15318df
 
 ## Routes
 

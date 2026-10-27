@@ -29,16 +29,16 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/pauli.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/pauli_context_table.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/qubit_bloch_map.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/parity_context_packet.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/pauli_spin_statistics_graph.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/pair_exchange_characters.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:03d8dc44e2b48847afa8f562a899ee5d758f3ce9335af82270b755f921164401`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:2dc61f13ffcd3d6fe5a06c808077b268d82ae90da2f1473c34b8e099d0caf01a`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:8fa90b765b7795fe5d95b29b3bc96fac6a904e37527b90130df716de4bc389df`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:84f635fc4390806ffa803c0278afb28439dc5449aff1ea756d948db611384a5f`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:7b92d189c034dc6bb19e748fa9689912254a5b0b9a50a1f25d2566b9a4d4744f`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:4935d5a66cc832a33b76053028b8f74c320534cc433c51a33c468491c9348a31`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/pauli_spin_statistics_graph_control.py`](../../code/python/)
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/context_parity_control.py`](../../code/python/)
+- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/pauli_spin_statistics_graph_control.py`](../../code/python/)
+- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/context_parity_control.py`](../../code/python/)
 
 ---
 
@@ -53,4 +53,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

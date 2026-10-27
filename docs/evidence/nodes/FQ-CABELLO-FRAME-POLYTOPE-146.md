@@ -61,24 +61,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/frame_function_polytope.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1016
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1016
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1016_fq_cabello_frame_polytope_146.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1016_fq_cabello_frame_polytope_146.md](../../../dag/derivations/10_finite_qm_core/tfq_1016_fq_cabello_frame_polytope_146.md)
-- sha256 (`lf-normalised`): `312faced347471d98487a90255ad55eff2c2b1af53dc6b4850d3adbb34c3e813`
+- sha256 (`lf-normalised`): `44626c0b00cbd58f65d406a07181880e51cd315ae7abdd9fe86b4931dd088adb`
 - generated view: listed, not counted
 - cited in: record TFQ-1016
 - counts toward the grade: no
@@ -89,6 +75,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_fq_core_and_k23_duality_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:ae888a69f68011cf2bdbe26b173cbe6cf818f2a9c044b25aa7b39f5592b688c5::FrameSystem::is_vertex`
+- `external:sha256:ae888a69f68011cf2bdbe26b173cbe6cf818f2a9c044b25aa7b39f5592b688c5::FrameSystem::vertices`
 
 ## Routes
 

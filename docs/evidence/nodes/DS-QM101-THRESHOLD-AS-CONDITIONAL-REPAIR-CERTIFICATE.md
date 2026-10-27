@@ -62,20 +62,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Rust: `sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs`
 
 - file: [sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs](../../../sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs)
@@ -91,17 +77,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0269_threshold_theorems_read_as_repair_capacity_certificates.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0269_threshold_theorems_read_as_repair_capacity_certificates.md](../../../dag/derivations/13_finite_qm_information/tfq_0269_threshold_theorems_read_as_repair_capacity_certificates.md)
-- sha256 (`lf-normalised`): `53ac8ebb78a7261620abd1462a51d2d63f4be89bb43a8105f6c07afb43175092`
+- sha256 (`lf-normalised`): `1d8683b669ee73bf9aebf7c421b296d821314a1614fcb3fa1327eda1616f6f6e`
 - generated view: listed, not counted
 - cited in: record TFQ-0269
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/101_threshold_theorems_as_repair_capacity_certificates/qm_101_threshold_theorems_as_repair_capacity_certificates_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/101_threshold_theorems_as_repair_capacity_certificates/qm_101_threshold_theorems_as_repair_capacity_certificates_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche3_emergence_dynamics_heisenberg_and_qec_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche6_conditional_and_open_boundary_certificates_witness`
+- `external:sha256:8bb0896f39616a131150ac1c737b389dc1becb2034abbe11c7352fa89dc79d68#QM-101-C11`
+- `external:sha256:8bb0896f39616a131150ac1c737b389dc1becb2034abbe11c7352fa89dc79d68#QM-101-C4`
+- `external:sha256:8bb0896f39616a131150ac1c737b389dc1becb2034abbe11c7352fa89dc79d68#QM-101-C9b`
+- `external:sha256:b4a0392795f1e742a256ae815cdc26550b49a4f6e92e1b8c6beb0d28f159c92d::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness`
 
 ## Absences recorded by the TFQ records
 

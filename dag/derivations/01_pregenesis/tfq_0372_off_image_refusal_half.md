@@ -31,15 +31,15 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`missing declaration obligation: off-image non-descent inside this package, not an unread education module`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_pre_genesis_to_mssn/lean4/SnCarrier.lean`](../../code/lean4/)
-- [`omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::SnOffImage.accepted_only_from_section`](../../code/lean4/)
-- [`omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::SnOffImage.nonDescent_iff_off_image`](../../code/lean4/)
-- [`omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::SnOffImage.old_image_base'`](../../code/lean4/)
+- [`education/symmetric_group_presentations/lean4/SnCarrier.lean`](../../code/lean4/)
+- [`education/symmetric_group_presentations/lean4/SnOffImage.lean::SnOffImage.accepted_only_from_section`](../../code/lean4/)
+- [`education/symmetric_group_presentations/lean4/SnOffImage.lean::SnOffImage.nonDescent_iff_off_image`](../../code/lean4/)
+- [`education/symmetric_group_presentations/lean4/SnOffImage.lean::SnOffImage.old_image_base'`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`missing obligation: section-retraction refusal in crate pre_mssn_preservation for points outside the section image`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_sn_off_image_refusal_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_sn_off_image_refusal_witness`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`missing obligation: an off-image refusal predicate in 000_pre_genesis_to_mssn/code/preservation.py that does not call recover_word a total inverse`](../../code/python/)
@@ -56,7 +56,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch04_report_maps_fibers_quotients_and_sections.md`
+  - `external:sha256:e9771151ef2b40fcf062ad0b03605ecdd55eb43a1deb26c90a245b012e93bf2a`
 
 ---
 
@@ -69,6 +69,6 @@ In accordance with strict constructive principles:
 - **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-SN-OFF-IMAGE-REFUSAL): 4*idx(47) + 3*stage_rank(1) + route_degree(2) == 193` ($\text{value} = 193$)
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-SN-OFF-IMAGE-REFUSAL): R_raw(99) - G_cob(49) - S_decoy(1) == 49 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 49$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
-- **Lean 4 Theorem Anchor**: `omega_engine_education/documentation/002_oesn/lean4/SnOffImage.lean::SnOffImage.old_image_base'`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- **Lean 4 Theorem Anchor**: `education/symmetric_group_presentations/lean4/SnOffImage.lean::SnOffImage.old_image_base'`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = 8d6d5d053ab2b9a671bbc4aaf2a937bf15ec0d50223cd3bde06e0aed78422f65`

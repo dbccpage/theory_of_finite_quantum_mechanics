@@ -118,27 +118,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: no
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_wdp/src/obstruction.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/obstruction.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/primitive_axiomatics.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme_claim_ledger.md)
@@ -149,7 +128,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0004_witnessed_difference_degree_1_window.md`
 
 - file: [dag/derivations/06_wdp/tfq_0004_witnessed_difference_degree_1_window.md](../../../dag/derivations/06_wdp/tfq_0004_witnessed_difference_degree_1_window.md)
-- sha256 (`lf-normalised`): `ff7df5416142771ec9a4d7edc2fe2b4150c3092d76bb90e30bc7926120b01570`
+- sha256 (`lf-normalised`): `90b898ec5d46ea81720c8342d231e26cd2161538c7d2bf7b4119fb856255fa39`
 - generated view: listed, not counted
 - cited in: record TFQ-0004
 - counts toward the grade: no
@@ -157,7 +136,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md`
 
 - file: [dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md](../../../dag/derivations/06_wdp/tfq_0344_do_not_derive_the_degree_1_window_c0_c1_c2_d0_d1_from.md)
-- sha256 (`lf-normalised`): `c16aa4ea4b517bdc1a92a8369e95aeb46571eb4ab99577a59f4423c1aecdfdd9`
+- sha256 (`lf-normalised`): `c02bd1400eefba073093838a5da18cd236038b0827d9a784bf2cb742540d5d55`
 - generated view: listed, not counted
 - cited in: record TFQ-0344 (shared)
 - counts toward the grade: no
@@ -165,10 +144,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md](../../../dag/derivations/07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md)
-- sha256 (`lf-normalised`): `047105de6bc2cc440087151d00b36b8184df248cb1787f361bb411a256f3c1bf`
+- sha256 (`lf-normalised`): `fd010b5046d0bcdf92ac381f394fc56ffd2373d7101bfc2bcccb0dd066cd6d1e`
 - generated view: listed, not counted
 - cited in: record TFQ-0349 (shared)
 - counts toward the grade: no
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:3301e36106cfe1fb4415d4f6218951cd83516f0a714d773fcb477ea3dce63814::TriadSignature`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- `external:sha256:67f95afb329218e2db037b98e7b7d632e0ee073156f58a6c3b03ff9a386b4702::Cochain1`
 
 ## Routes
 

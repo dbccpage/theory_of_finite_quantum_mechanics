@@ -1,6 +1,6 @@
 # PGW-SN-E19-TORSION-ERASED-OVER-Q
 
-Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `PROVED_PROSE`. Evidence grade: **E0**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `PROVED_PROSE`. Evidence grade: **E2**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [MSSN_SN](../stages/MSSN_SN.md). Status: `PROVED_PROSE`. Evidence grade: 
 
 ## Grade
 
-Evidence grade **E0** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 0
-- cited Lean, Rust or Python symbols found in their in-repo files: 0
+- counted in-repo evidence files: 1
+- cited Lean, Rust or Python symbols found in their in-repo files: 1
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
-- counted in-repo Rust or Python files that are not tests: 0
+- counted in-repo Rust or Python files that are not tests: 1
 - recorded statement-match reviews that qualify: 0
-- next step to raise the grade: cite at least one in-repo file that bears on the statement
+- next step to raise the grade: replay a cited Lean declaration and record a receipt whose sha256 matches the current file (see docs/evidence/README.md, Verify it yourself)
 
 ## Flags
 
@@ -42,40 +42,34 @@ No recorded statement-match review.
 
 Items are grouped by file. "Counts" means the item counts toward the grade: the file is in this checkout, the citation is the node's own (or an exclusive record's), and the file is not a generated view. To list the axioms of a cited Lean declaration, build its module and run `#print axioms <name>` in a scratch file that imports it.
 
-### Rust: `omega_engine_education/documentation/003_oemssn/code/rust/src/smith_normal_form.rs`
+### Rust: `education/minimal_symbol_systems/code/rust/src/smith_normal_form.rs`
 
-- file: `omega_engine_education/documentation/003_oemssn/code/rust/src/smith_normal_form.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
+- file: [education/minimal_symbol_systems/code/rust/src/smith_normal_form.rs](../../../education/minimal_symbol_systems/code/rust/src/smith_normal_form.rs)
+- sha256 (`bytes`): `78cf459f4d860074ecad10cffdc415f211995b06e002bf7dd61f7bed216e0278`
 - cited in: node.rust
-- counts toward the grade: no
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `compute_integral_homology` (rust_symbol) | yes | yes | yes | - | - |
+
+- counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0525_sn_e19_torsion_erased_over_q.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0525_sn_e19_torsion_erased_over_q.md](../../../dag/derivations/05_mssn_sn/tfq_0525_sn_e19_torsion_erased_over_q.md)
-- sha256 (`lf-normalised`): `ab2a60386028df3166cd717e63a377c1f400ebbf79ab37230e2ee2384502f9c3`
+- sha256 (`lf-normalised`): `18c708aef9f7e580fac876277e3868baba1c45a99949a869f5906a4115c71a30`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0525
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/002_oesn/curriculum.md`
-
-- file: `omega_engine_education/documentation/002_oesn/curriculum.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_education/documentation/002_oesn/levels/level_19_zeta_spectral_shadow.md`
-
-- file: `omega_engine_education/documentation/002_oesn/levels/level_19_zeta_spectral_shadow.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
 - counts toward the grade: no
 
 ### External sources
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine_education/documentation/003_oemssn/code/rust/src/smith_normal_form.rs::compute_integral_homology`
+- `external:sha256:5aef105ec34fddc0f0092687564bcbbf1a27ccde32e756b3050c2edbb23b6e9d:46-49`
+- `external:sha256:5aef105ec34fddc0f0092687564bcbbf1a27ccde32e756b3050c2edbb23b6e9d:51-54`
+- `external:sha256:a51ceb8d0d5703baac230c14caa4638cf25f3ae46fdc77013c7e09f27caaa1e9:146-147`
+- `external:upstream/education/minimal_symbol_systems/code/rust/src/smith_normal_form.rs::compute_integral_homology`
 
 ## Absences recorded by the TFQ records
 

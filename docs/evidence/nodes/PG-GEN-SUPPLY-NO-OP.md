@@ -79,13 +79,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
@@ -96,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0379_supply_does_not_admit.md`
 
 - file: [dag/derivations/02_genesis/tfq_0379_supply_does_not_admit.md](../../../dag/derivations/02_genesis/tfq_0379_supply_does_not_admit.md)
-- sha256 (`lf-normalised`): `9a6eb883fea650a6987a0b89ef7d4e447e392da606dd06fb04ba720b9920d462`
+- sha256 (`lf-normalised`): `477b2f6d8bf58ab6402a803ddaac23e8f0e903f98e5ae620a5ffb75212b4de84`
 - generated view: listed, not counted
 - cited in: record TFQ-0379
 - counts toward the grade: no
@@ -104,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0380_readings_left_unselected.md`
 
 - file: [dag/derivations/02_genesis/tfq_0380_readings_left_unselected.md](../../../dag/derivations/02_genesis/tfq_0380_readings_left_unselected.md)
-- sha256 (`lf-normalised`): `64d254d176c715a7c5025ff767d2edb6ac08f8103a88bb8bfc35c0153723adde`
+- sha256 (`lf-normalised`): `e9bb41b35ac1a11e92429101f1c9aeb3630f9f8270d659e348fd6004e276138f`
 - generated view: listed, not counted
 - cited in: record TFQ-0380
 - counts toward the grade: no
@@ -115,6 +108,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `add9d5680c4e88f25cd10db8bb36c3c02f858cab3e166a4aa6317b6611f878f2`
 - cited in: node.source
 - counts toward the grade: yes
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
 
 ## Absences recorded by the TFQ records
 

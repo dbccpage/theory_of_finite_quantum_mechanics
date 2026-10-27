@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1267_mub6_deltoid_cover_box_defect.md`
 
 - file: [dag/derivations/25_mub/tfq_1267_mub6_deltoid_cover_box_defect.md](../../../dag/derivations/25_mub/tfq_1267_mub6_deltoid_cover_box_defect.md)
-- sha256 (`lf-normalised`): `4368817de940820cea53343f50c5a7f9737554418cbd5618c9080f9886fb7fd1`
+- sha256 (`lf-normalised`): `d2ccaa20c450111b5ab96f5b4a1224f840ac92b546bfd06a53b6c163a4d8b7e0`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1267
 - counts toward the grade: no

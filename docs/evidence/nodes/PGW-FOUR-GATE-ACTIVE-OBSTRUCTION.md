@@ -89,17 +89,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md`
 
 - file: [dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md](../../../dag/derivations/02_genesis/tfq_0493_four_gate_active_obstruction.md)
-- sha256 (`lf-normalised`): `d548aeb18903ceedfa05c665a96610709dd554b15c6b2ee8ef903fecaa6cd093`
+- sha256 (`lf-normalised`): `ffd51617382c812095439d19d52e4e8be9cb3a232edbbb105a95992bf2a3a72c`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0493
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md`
+### External sources
 
-- file: `omega_engine_education/documentation/001_oegen/archive/genesis_pre_2026-10-09.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:0d098004a566c40656af6035d6e66ff13f7e873b11966677df080686a1b29cf9:1105-1107`
 
 ## Absences recorded by the TFQ records
 

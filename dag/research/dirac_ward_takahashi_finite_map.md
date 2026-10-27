@@ -28,7 +28,7 @@ Standard textbook presentations of Quantum Electrodynamics (QED) encounter three
 
 ## 2. Executable Evidence and Parity
 
-- **Rust Unit Control:** `omega_quantum_physics::quantum_import_finite_maps::evaluate_qm215_dirac_ward_takahashi` and `test_qm215_dirac_ward_takahashi_control` in `omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps.rs`.
+- **Rust Unit Control:** `omega_quantum_physics::quantum_import_finite_maps::evaluate_qm215_dirac_ward_takahashi` and `test_qm215_dirac_ward_takahashi_control` in `external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579`.
 - **Python Use-Case & E2E Suite:** `finite_qm.use_cases.dirac_ward_takahashi_control` and `tests/e2e/test_e2e_dirac_ward_takahashi_control.py` (`6 passed`).
 
 ## 3. Claim Hygiene Summary

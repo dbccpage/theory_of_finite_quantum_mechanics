@@ -61,17 +61,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0272_interpretations_as_authority_shadows.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0272_interpretations_as_authority_shadows.md](../../../dag/derivations/13_finite_qm_information/tfq_0272_interpretations_as_authority_shadows.md)
-- sha256 (`lf-normalised`): `6c195fc19eee75d32fee97a7a26271292bd94e955cd2118335b839fe683c3d70`
+- sha256 (`lf-normalised`): `f092f47ed0eb952123e0f05c84c52ef339af7baadbb267c3ef6e561c68305815`
 - generated view: listed, not counted
 - cited in: record TFQ-0272
 - counts toward the grade: no
@@ -79,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0275_formal_possibility_is_not_a_physical_terminal.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0275_formal_possibility_is_not_a_physical_terminal.md](../../../dag/derivations/13_finite_qm_information/tfq_0275_formal_possibility_is_not_a_physical_terminal.md)
-- sha256 (`lf-normalised`): `0c06e59caa9cf6e89889de2d616dcb14790b6dd396b74cf92ac1887c673db010`
+- sha256 (`lf-normalised`): `b24d7569df9368dc57292f936683c0a611956ae29245e7b4e90b05d6f1664064`
 - generated view: listed, not counted
 - cited in: record TFQ-0275
 - counts toward the grade: no
@@ -87,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0277_typed_authority_boundary_suite.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0277_typed_authority_boundary_suite.md](../../../dag/derivations/13_finite_qm_information/tfq_0277_typed_authority_boundary_suite.md)
-- sha256 (`lf-normalised`): `f45813ea68654520b8c881591342a0c38c8266e675f47e144e2af6734aa78028`
+- sha256 (`lf-normalised`): `9d861bd0d77c68f20b1cf6c4f98581a4527caf7b63ac629fc08b26216d3de75a`
 - generated view: listed, not counted
 - cited in: record TFQ-0277
 - counts toward the grade: no
@@ -95,31 +88,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/13_finite_qm_information/tfq_0278_copenhagen_slot_reserved_as_an_authority_shadow.md`
 
 - file: [dag/derivations/13_finite_qm_information/tfq_0278_copenhagen_slot_reserved_as_an_authority_shadow.md](../../../dag/derivations/13_finite_qm_information/tfq_0278_copenhagen_slot_reserved_as_an_authority_shadow.md)
-- sha256 (`lf-normalised`): `13bab7cc5334068682024b2f5a505ec0cd6ca48f568032a5f2421e8a42be2917`
+- sha256 (`lf-normalised`): `f3827289e778759e9f24d3804b03a2297f9d35d78290a11a6ad3d0b992f2c724`
 - generated view: listed, not counted
 - cited in: record TFQ-0278 (shared)
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/090_interpretations_as_authority_shadows/qm_090_interpretations_as_authority_shadows_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/090_interpretations_as_authority_shadows/qm_090_interpretations_as_authority_shadows_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/091_deutsch_everett_wolfram_promotion_error/qm_091_deutsch_everett_wolfram_promotion_error_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/091_deutsch_everett_wolfram_promotion_error/qm_091_deutsch_everett_wolfram_promotion_error_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
-
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/092_qm_typed_authority_boundary_suite/qm_092_qm_typed_authority_boundary_suite_claim_ledger.md`
-
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/092_qm_typed_authority_boundary_suite/qm_092_qm_typed_authority_boundary_suite_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_ds_qm_dynamics_structure_and_majorana_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`
+- `external:sha256:a1b05e0aea6beef6d9ccc993952ce0d4c00dc695716e48d1800112e2b77284f8#QM-090-C9`
+- `external:sha256:e3654d5e92fe9c522754b597ad0a8e2464822e0dad0b6711be0b971b1c967c9a#QM-092-C1`
+- `external:sha256:e658eb30c824c4c49e806e9a5cde2cb249a2b03c8738c8696a64e44e67a65034#QM-091-C1a`
 
 ## Routes
 

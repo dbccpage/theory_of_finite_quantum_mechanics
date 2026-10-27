@@ -26,15 +26,15 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/lean4/OmegaEnginePrimeAlgorithmsRuntime/IntakeContract.lean`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/lean4/OmegaEnginePrimeAlgorithmsRuntime/Prime000.lean`](../../code/lean4/)
+- [`external:sha256:19e794086b88a7edc2c69799cb7d3c3339abc6c5801043d311a13333cd0b2881`](../../code/lean4/)
+- [`external:sha256:4f7a7f70818cb0181144f1793d1fc650d83fe6a15b86afe1530ead2a064e63be`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`omega_engine/crates_rs/omega_wdp/src/prime_algos/prime_algorithm_0.rs`](../../code/rust/src/)
+- [`external:sha256:4c43efe420d9871fabf07637dafc0da183553531921ad3a663d8e291a293eb92`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/python/src/omega_engine_rc/intake_status.py`](../../code/python/)
-- [`omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/python/src/omega_engine_rc/prime_triad.py`](../../code/python/)
+- [`external:sha256:033198650df7db94b49b2b91d275fb2308db7460db00bd06ac591218d127de43`](../../code/python/)
+- [`external:sha256:118b9549a600eee604e58f81e4d692d85eacc23649fb6d451821820ca6f89911`](../../code/python/)
 
 ---
 
@@ -48,8 +48,8 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F003.S000`, `F003.S000:000_omega_engine_prime_algorithms_and_runtime`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime`
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime`
+  - `external:git-tree:5d358f5062016c742016b891fa7891bb0f0e19ef`
+  - `external:git-tree:e03ce30c258cf9ca164637ea387b5267bad58df9`
 
 ---
 
@@ -63,5 +63,5 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `block10_unpaid_bet_clauses_count(M2,M5,M7,J1,J2) == 5` ($\text{value} = 5$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_gap_c500_ten_blocks_and_custody_axiom_audit_certificate`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche6_conditional_and_open_boundary_certificates_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche6_conditional_and_open_boundary_certificates_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = d2f6692c4de4b94cc37d6e542849c39863fc352d33fb48b275a642f888db2e0c`

@@ -75,24 +75,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_0263_trace_norm_under_a_supplied_cptp_family.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_0263_trace_norm_under_a_supplied_cptp_family.md](../../../dag/derivations/12_finite_qm_structure/tfq_0263_trace_norm_under_a_supplied_cptp_family.md)
-- sha256 (`lf-normalised`): `57ea05eb68d72f3982fa7f5d2fb129fa8b62e6e047dfd05bcce347ec9a6c38d3`
+- sha256 (`lf-normalised`): `df96660e49d14a6db071327215f097ee24fbe2221e34a7766424cb282ddbbcf3`
 - generated view: listed, not counted
 - cited in: record TFQ-0263 (shared)
 - counts toward the grade: no
@@ -100,7 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0186_do_not_treat_tracezeroduality_lean_as_a_lean_formalization_of_the_k_2_3_quotients.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0186_do_not_treat_tracezeroduality_lean_as_a_lean_formalization_of_the_k_2_3_quotients.md](../../../dag/derivations/22_implementation_sibling/tfq_0186_do_not_treat_tracezeroduality_lean_as_a_lean_formalization_of_the_k_2_3_quotients.md)
-- sha256 (`lf-normalised`): `44bcbd75b0e24dcdcbe8b82a195f42348b96cea4d9023e77dd3f166352315e23`
+- sha256 (`lf-normalised`): `f855bdb3f8ad490606f9ed83eaaca9115c7c126bde955420a58ccc0dab83c747`
 - generated view: listed, not counted
 - cited in: record TFQ-0186 (shared)
 - counts toward the grade: no
@@ -112,13 +98,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_fq_core_and_k23_duality_witness`
+- `external:sha256:8de9a137f60908341dba42d28fa768bf1da772772d76f839787a5fcc9b56f170::TraceNormCertificate`
+
 ## Absences recorded by the TFQ records
 
-- TFQ-0186 python: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/013_trace_zero_quotient_duality/code/trace_zero_quotient_duality_core.py
+- TFQ-0186 python: no local python twin located for external:sha256:268cb7c97325e28274aeeb256645a51550ea6e687fa42b12343e4c63215430ad
 - TFQ-0186 rust: not located
 - TFQ-0263 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
-- TFQ-0263 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/exact_channel.rs
-- TFQ-0263 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs
+- TFQ-0263 rust: no local rust twin located for external:sha256:19f735a77b55e8182884060c73a1c66ccc64e14b24e1c3d5a173d64f8fe5b024
+- TFQ-0263 rust: no local rust twin located for external:sha256:8de9a137f60908341dba42d28fa768bf1da772772d76f839787a5fcc9b56f170
 
 ## Routes
 

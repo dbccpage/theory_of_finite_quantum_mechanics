@@ -55,4 +55,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/fifteenth/claim_ledger.md:22`
   - `atlas/papers/finite_obstruction_calculus/genesis_ongoing/paper/fifteenth/claim_ledger.md:37`
-  - `omega_engine_education/documentation/005_oegenong/levels/level_15_admission_record_boundary.md:38`
+  - `external:sha256:0e64131ef8fa37dfd5979d1cd82872324bbe93c10dc82fbdd78643e39acb8684:38`

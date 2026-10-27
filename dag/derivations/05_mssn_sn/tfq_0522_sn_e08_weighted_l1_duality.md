@@ -59,7 +59,7 @@ In accordance with strict constructive principles:
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Source Lines**:
-  - `omega_engine_education/documentation/002_oesn/levels/level_08_monadic_adjunction_cochains.md:19-29`
-  - `omega_engine_education/documentation/002_oesn/levels/level_08_monadic_adjunction_cochains.md:40-44`
-  - `omega_engine_education/documentation/002_oesn/levels/README.md:20`
+  - `external:sha256:9edec90b2c87518d8a33cb78cbf439fe11ce6e4f33a3f613148b9137771649d6:19-29`
+  - `external:sha256:9edec90b2c87518d8a33cb78cbf439fe11ce6e4f33a3f613148b9137771649d6:40-44`
+  - `education/symmetric_group_presentations/levels/README.md:20`
   - `dag/derivations/independent/pgw-sn-e08-weighted-l1-duality.md:1-3`

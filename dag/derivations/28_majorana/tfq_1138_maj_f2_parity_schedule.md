@@ -51,7 +51,7 @@ Lean F2CochainComplex is a structure whose field nilpotent states d1(d0 v) = 0 f
 - `code/python/src/majorana/majorana_f2_trichotomy.py::GF2Matrix`
 
 ### Cited by the source, not in this checkout
-- `external:omega_engine/crates_rs/omega_majorana (canonical crate named by the README and change log v1.5.1; the local twin is code/rust/src/majorana)`
+- `external:external:git-tree:44d4c52f55d3868ce4e5e94c02468a9743af8f0f (canonical crate named by the README and change log v1.5.1; the local twin is code/rust/src/majorana)`
 
 ---
 

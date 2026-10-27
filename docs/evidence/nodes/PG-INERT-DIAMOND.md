@@ -105,20 +105,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
@@ -136,7 +122,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md](../../../dag/derivations/01_pregenesis/tfq_0000_inert_inscription.md)
-- sha256 (`lf-normalised`): `a8b58aa4aaf032cb531aaa6bd3b05397d641cf37a5169865f396dce2de36c094`
+- sha256 (`lf-normalised`): `6795faf58e5975e51cefb08f2dec8a26daca8ea16a7b9c254d11464d64da8764`
 - generated view: listed, not counted
 - cited in: record TFQ-0000
 - counts toward the grade: no
@@ -144,7 +130,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0361_inert_literal_inscription.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0361_inert_literal_inscription.md](../../../dag/derivations/01_pregenesis/tfq_0361_inert_literal_inscription.md)
-- sha256 (`lf-normalised`): `887c0eeee0ddac63426e90c068952011c3fd39113353031e8d4a8b911a3f8442`
+- sha256 (`lf-normalised`): `6b6bdc4e19717e8279d70105bab9b278dd06d343b08adfde05e8f583247d8750`
 - generated view: listed, not counted
 - cited in: record TFQ-0361
 - counts toward the grade: no
@@ -152,7 +138,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0362_four_host_conditions.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0362_four_host_conditions.md](../../../dag/derivations/01_pregenesis/tfq_0362_four_host_conditions.md)
-- sha256 (`lf-normalised`): `3ddb9558c2fac39189b3c84e6c1c7844d5338b5a2e1a2e9e0df276ee07ed4340`
+- sha256 (`lf-normalised`): `be643f61279161a586a5fb2412ad789c97f82b944c6baae259d07f8961812710`
 - generated view: listed, not counted
 - cited in: record TFQ-0362
 - counts toward the grade: no
@@ -160,17 +146,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md](../../../dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md)
-- sha256 (`lf-normalised`): `12b8df2a8a5beebd90a38c0cd77b219190e4711fa38464adaf8425f12b18300d`
+- sha256 (`lf-normalised`): `805b407b08734b226eeba139611850b31b64ffa7f0f9fa2006dc7027a316febf`
 - generated view: listed, not counted
 - cited in: record TFQ-0392 (shared)
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_product_planning_office/architecture_review/06_genesis_native_route.md`
+### External sources
 
-- file: `omega_engine_product_planning_office/architecture_review/06_genesis_native_route.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:2252c69f4bba9c28eb9ab8a435a9a62ed96fb8314f053e8de431be4b50ed2526::GenesisConstruction`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:b81c3dbd8682592ccbcecf26a217a32c59b634e42540acb55d4f19d5d47edfe9`
 
 ## Absences recorded by the TFQ records
 

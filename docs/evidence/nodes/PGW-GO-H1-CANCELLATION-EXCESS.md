@@ -112,17 +112,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0483_go_h1_cancellation_excess.md`
 
 - file: [dag/derivations/02_genesis/tfq_0483_go_h1_cancellation_excess.md](../../../dag/derivations/02_genesis/tfq_0483_go_h1_cancellation_excess.md)
-- sha256 (`lf-normalised`): `ecbec4e82ae6b1fa1d082f22db01cc231d99703414fa21a4b8da66083a829560`
+- sha256 (`lf-normalised`): `5a41309c8290fc7fba1ee78848eb446deaa63da54d7cd9231d674ef188b5a484`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0483
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/005_oegenong/levels/level_19_round_r1_cancellation.md`
+### External sources
 
-- file: `omega_engine_education/documentation/005_oegenong/levels/level_19_round_r1_cancellation.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:f016b739d1272d0f46037a65694f050bde85456ebe26cab5e029212bdbf8e34e:47`
 
 ## Absences recorded by the TFQ records
 

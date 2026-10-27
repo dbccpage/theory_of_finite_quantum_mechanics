@@ -26,7 +26,7 @@ In accordance with strict constructive principles:
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- [`absent: no local lean twin located for omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime/000_omega_engine_prime_algorithms_and_runtime/lean4/OmegaEnginePrimeAlgorithmsRuntime/Prime000.lean`](../../lean4/)
+- [`absent: no local lean twin located for external:sha256:4f7a7f70818cb0181144f1793d1fc650d83fe6a15b86afe1530ead2a064e63be`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`code/rust/src/wdp/prime_algos/prime_algorithm_0.rs`](../../code/rust/src/)
@@ -43,9 +43,9 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F003.S001`, `F003.S001:000_omega_prompt_civilization`, `F003.S001:001_omega_oewas`, `F003.S001:002_omega_operad_theory`, `F003.S001:003_omega_symbol_game_host`, `F003.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S001_runtime_crates`
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S001_runtime_crates/000_omega_prompt_civilization`
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S001_runtime_crates/001_omega_oewas`
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S001_runtime_crates/002_omega_operad_theory`
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S001_runtime_crates/003_omega_symbol_game_host`
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime`
+  - `external:git-tree:226cd319cca5577d94c5b3df4f7b355edfab0e70`
+  - `external:git-tree:eaedced51dbe0c7d75ab18013e4bd91975e43568`
+  - `external:git-tree:7213d7570349285f01c3575d96cd2d107f502e3a`
+  - `external:git-tree:51ab059acdb0cf229970fe1487c5a1cb8f7898f5`
+  - `external:git-tree:a761c4c9a85f8cbcaaf96c38a497fcb5d4c1f454`
+  - `external:git-tree:5d358f5062016c742016b891fa7891bb0f0e19ef`

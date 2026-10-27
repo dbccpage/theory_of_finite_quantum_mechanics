@@ -31,16 +31,16 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`declaration obligation: identify_legal_iff and adding_xrx_always_obstructed`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Answers.lean`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Answers.lean::remove_obstruction_first_or_last`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Finite.lean`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Finite.lean::adding_xrx_always_obstructed`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Finite.lean::identify_legal_iff`](../../code/lean4/)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Answers.lean`](../../code/lean4/)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Answers.lean::remove_obstruction_first_or_last`](../../code/lean4/)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Finite.lean`](../../code/lean4/)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Finite.lean::adding_xrx_always_obstructed`](../../code/lean4/)
+- [`atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Finite.lean::identify_legal_iff`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`missing obligation: the ongoing package listing showed no Rust crate; a later crate must not reuse this obstruction as an L1 weight`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`missing obligation: an answer triple refuse, remove, build under 001_genesis_ongoing_h3v7n5qf/code, not a Phi1 residual`](../../code/python/)
@@ -57,7 +57,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch07_finite_obstruction_calculus.md`
+  - `external:sha256:9e6382d28d7dcbdca845bec88104a21be9faa746f944a6b56d1495b03ca412ae`
 
 ---
 
@@ -70,6 +70,6 @@ In accordance with strict constructive principles:
 - **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-GEN-ONGOING-OBSTRUCTION): 4*idx(57) + 3*stage_rank(2) + route_degree(3) == 237` ($\text{value} = 237$)
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-GEN-ONGOING-OBSTRUCTION): R_raw(124) - G_cob(61) - S_decoy(2) == 61 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 61$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `0` (`unconditional_promotion_refused = true`)
-- **Lean 4 Theorem Anchor**: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/001_genesis_ongoing_h3v7n5qf/lean4/H3V7N5QF/Answers.lean::remove_obstruction_first_or_last`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- **Lean 4 Theorem Anchor**: `atlas/papers/finite_obstruction_calculus/genesis_ongoing/lean4/H3V7N5QF/Answers.lean::remove_obstruction_first_or_last`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4-flash` | `status = PASS` | `receipt_sha256 = 1b0bf55e0dd333b1334b2ba7eb7241b8fc04e76360790441a46bcfa7caa06180`

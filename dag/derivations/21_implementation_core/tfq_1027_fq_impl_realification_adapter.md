@@ -34,11 +34,11 @@ module docs: "preserve a supplied operational model; they select no scalar/Born 
 - `lean4/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.fq_impl_wdp_amplitude_realification_pairing_and_gauss_matrix_algebra`
 
 ### Rust Certifiers
-- `omega_engine/crates_rs/omega_wdp/src/genesis_realification_adapter.rs::DeclaredRealComposite`
-- `omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs::realify_operator_with_limits`
-- `omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs::realify_density_with_limits`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
-- `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness`
+- `external:sha256:3dab36e238ec5c724db50e333358961506db6e3c22a04fbd6a26402ffe48f7fc::DeclaredRealComposite`
+- `external:sha256:1ae9121daca3f6d1f5cb700a325bc1aaa0d5a6988db99eee907e24ca729e876e::realify_operator_with_limits`
+- `external:sha256:1ae9121daca3f6d1f5cb700a325bc1aaa0d5a6988db99eee907e24ca729e876e::realify_density_with_limits`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_fq_core_and_k23_duality_witness`
 
 ---
 
@@ -51,5 +51,5 @@ module docs: "preserve a supplied operational model; they select no scalar/Born 
 ## 5. Audit Trail & Primary Source Lineage
 
 - **Cited Sources**:
-  - `omega_engine/crates_rs/omega_wdp/src/genesis_realification_adapter.rs:1`
-  - `omega_engine/crates_rs/omega_quantum_physics/src/complex_realification.rs:1`
+  - `external:sha256:3dab36e238ec5c724db50e333358961506db6e3c22a04fbd6a26402ffe48f7fc:1`
+  - `external:sha256:1ae9121daca3f6d1f5cb700a325bc1aaa0d5a6988db99eee907e24ca729e876e:1`

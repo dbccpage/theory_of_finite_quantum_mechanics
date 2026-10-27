@@ -57,13 +57,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_wdp/src/retention.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/retention.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Python: `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py`
 
 - file: [atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py)
@@ -105,7 +98,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0541_wdp_retention_packet.md`
 
 - file: [dag/derivations/06_wdp/tfq_0541_wdp_retention_packet.md](../../../dag/derivations/06_wdp/tfq_0541_wdp_retention_packet.md)
-- sha256 (`lf-normalised`): `413da8ec1e14984c50c6fd360e9d9cf9f2a2d2dd6385bf1b499e6c7f9606277e`
+- sha256 (`lf-normalised`): `cc1e4e6e074c0c4d65502d626a8d1bc923063bcbf6b6dbb17d2155d85d94d094`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0541
 - counts toward the grade: no
@@ -114,7 +107,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Named by the node; not in this repository and not checked here.
 
-- `external:upstream/omega_engine/crates_rs/omega_wdp/src/retention.rs::compute_exact_behavioral_quotient`
+- `external:sha256:771ef5c5655d71a9f40d00600090d1ee957e7209d7134a3e294c9d8e24dabe93::compute_exact_behavioral_quotient`
+- `external:upstream/external:sha256:771ef5c5655d71a9f40d00600090d1ee957e7209d7134a3e294c9d8e24dabe93::compute_exact_behavioral_quotient`
 
 ## Routes
 

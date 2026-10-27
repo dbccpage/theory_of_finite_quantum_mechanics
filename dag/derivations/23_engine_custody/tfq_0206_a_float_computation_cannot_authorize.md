@@ -29,11 +29,11 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/Level18ZeroFloatLaw.lean`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_kernel/src/exact.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:70c158328f038a7c76fcacc04288b142250b1121803c1c0c511aa71943a83782`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`code/python/src/majorana/tests/support/finite_qm/use_cases/density_matrix.py`](../../code/python/)
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/python/src/finite_obstruction.py`](../../code/python/)
+- [`absent: no local python twin located for external:sha256:28bf40cf36c459316ada0e9f8d6862026535c3fee1455678793ce7af060af8c9`](../../code/python/)
 
 ---
 
@@ -47,7 +47,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F003.S000`, `F001.S000`, `F000.S000`, `F001.S000:001_from_primitive_difference_to_quantum_mechanics`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F003_omega_engine/S000_prime_algorithms_and_runtime`
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction`
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/001_from_primitive_difference_to_quantum_mechanics`
+  - `external:git-tree:5d358f5062016c742016b891fa7891bb0f0e19ef`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`
+  - `external:git-tree:6c3ddd228c139e91dd74dc2ea348d97cc54608a0`
+  - `external:git-tree:aaf60017b237ab042d2a4f52cec36e21f4264b2f`

@@ -46,12 +46,12 @@ In accordance with strict constructive principles:
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`not located`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/trace_distance_quotient.rs::PrimalCertificate`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_quantum_physics/src/trace_norm_certificate.rs::TraceNormCertificate`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness`](../../code/rust/src/)
+- [`external:sha256:6d5d5d60c5905f79d67d8a8bc365e337b56a0ffb2270da01f2589b4c1a2620f0::PrimalCertificate`](../../code/rust/src/)
+- [`external:sha256:8de9a137f60908341dba42d28fa768bf1da772772d76f839787a5fcc9b56f170::TraceNormCertificate`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_fq_core_and_k23_duality_witness`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`omega_engine_atlas/coda_atlas/F004_papers/013_trace_zero_quotient_duality/code/trace_zero_quotient_duality_core.py`](../../code/python/)
+- [`external:sha256:268cb7c97325e28274aeeb256645a51550ea6e687fa42b12343e4c63215430ad`](../../code/python/)
 
 ---
 
@@ -65,7 +65,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics/shelf.yaml`
+  - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
 ---
 
@@ -79,5 +79,5 @@ In accordance with strict constructive principles:
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(FQ-TRACE-ZERO-DUALITY-K23): R_raw(261) - G_cob(127) - S_decoy(7) == 127 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 127$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
 - **Lean 4 Theorem Anchor**: `lean4/quantum_mechanics/DerivationDagQMClosure.lean::QuantumMechanics.DerivationDagQMClosure.k23_centered_scaled2_zero_duality_gap`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_fq_core_and_k23_duality_witness`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_fq_core_and_k23_duality_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = de44fc4bd6581c92da8ddba49c422db1070b3deac57da8ff1014a69336548778`

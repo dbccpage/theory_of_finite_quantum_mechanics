@@ -33,7 +33,7 @@ In accordance with strict constructive principles:
 - `missing obligation: the claim map lists WDP-CH02-D01 and WDP-CH02-P01 without an exact Lean declaration`
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `omega_engine/crates_rs/omega_wdp/src/observer.rs::adapt_quotient` (private upstream source, not in this repository)
+- `external:sha256:7dade8e5406842b3be776bcb1b6a4747fbaa697b0bdae9f1112e7fae6d9d22dc::adapt_quotient` (private upstream source, not in this repository)
 
 ### Python Oracles & Numerical Evaluators
 - [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py::adapt_quotient`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/observer.py)
@@ -51,4 +51,4 @@ In accordance with strict constructive principles:
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:566-599`
   - `atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md:601-609`
-  - `omega_engine_education/documentation/006_oewdp/levels/level_01_witness_function.md:123-159`
+  - `external:sha256:a3928cbb59159e343cc8ec518c3015f08d59955caa77d0e07f6e4428202a863f:123-159`

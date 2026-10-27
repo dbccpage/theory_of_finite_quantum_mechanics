@@ -40,7 +40,7 @@ In accordance with strict constructive principles:
 - `missing obligation: no Rust check of supply versus admission in the S(n) strand`
 
 ### Python Oracles & Numerical Evaluators
-- `omega_engine_education/documentation/002_oesn/code/sn_core.py::S1Supply` (private upstream source, not in this repository)
+- `education/symmetric_group_presentations/code/sn_core.py::S1Supply` (private upstream source, not in this repository)
 
 ---
 
@@ -54,5 +54,5 @@ In accordance with strict constructive principles:
 
 - **Cited Source Lines**:
   - `atlas/papers/finite_obstruction_calculus/genesis/docs/sources/genesis_source.txt:228-234`
-  - `omega_engine_education/documentation/002_oesn/levels/level_01_symbol_genesis.md:19-22`
-  - `omega_engine_education/documentation/002_oesn/levels/level_01_symbol_genesis.md:29-32`
+  - `external:sha256:700df1b0797ccdacd3bda7c99efca3de91cb40463c8623fcc75bcab442e7fe9f:19-22`
+  - `external:sha256:700df1b0797ccdacd3bda7c99efca3de91cb40463c8623fcc75bcab442e7fe9f:29-32`

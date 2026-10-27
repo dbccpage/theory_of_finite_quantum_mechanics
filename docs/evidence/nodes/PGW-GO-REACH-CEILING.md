@@ -81,17 +81,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0477_go_reach_ceiling.md`
 
 - file: [dag/derivations/02_genesis/tfq_0477_go_reach_ceiling.md](../../../dag/derivations/02_genesis/tfq_0477_go_reach_ceiling.md)
-- sha256 (`lf-normalised`): `44244edaf095842d0fe63ff02fd0cd3d8261ef8a39abfccb32e7fba862e2321d`
+- sha256 (`lf-normalised`): `79be81339e7a654524f2c4b9d3d7c30340f94130e6aa90d462b05c14104eec82`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0477
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/005_oegenong/levels/level_07_graph_reachability_closure.md`
+### External sources
 
-- file: `omega_engine_education/documentation/005_oegenong/levels/level_07_graph_reachability_closure.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:e9980870b3fbf4a10e6edee3b299b40d21596bee9bdc3d22a5c5e9cd871589c7:33`
 
 ## Absences recorded by the TFQ records
 

@@ -29,14 +29,14 @@ In accordance with strict constructive principles:
 - [`absent: no local lean twin located for lean4/quantum_mechanics`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/u1_graph_connection.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/u1_gauge_triviality.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quaternion_gauge_shadow.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/transport_isometry_orbits.rs`](../../code/rust/src/)
-- [`absent: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/spin_structure_obstruction.rs`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:c2b85e3d42e7b05c158b418cbf2a803bdc86262cde384177ac8264c9c67ef6fe`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:e86ad3309b090c78f09e92fa9833a87b325a0513396663cbf2bd5c2ea1fd0c7b`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:5cb64e2aaf7b93cf52ee87e8545c9f2b3de52d45c3e8339ca80abdafdb9cc505`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:756874830c8541053d5f4966f71c8e84d747232a4226034f3d3319e7c58f3ff6`](../../code/rust/src/)
+- [`absent: no local rust twin located for external:sha256:c76c5bd187ff61baee99a622c5d512278ad22d2cb2f6e397642fc414a760c314`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
-- [`absent: no local python twin located for omega_engine_atlas/coda_atlas/F004_papers/006_finite_qm/python/finite_qm/use_cases/holonomy_bridge_control.py`](../../code/python/)
+- [`absent: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/holonomy_bridge_control.py`](../../code/python/)
 
 ---
 
@@ -50,4 +50,4 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F001.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F001_quantum/S000_finite_quantum_mechanics`
+  - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`

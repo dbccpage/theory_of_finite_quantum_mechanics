@@ -90,24 +90,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/commutator.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/continuum.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0067_each_language_must_carry_kravchuk_brackets_and_spacing_balmer_values_1_n_2_on.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0067_each_language_must_carry_kravchuk_brackets_and_spacing_balmer_values_1_n_2_on.md](../../../dag/derivations/15_finite_qed/tfq_0067_each_language_must_carry_kravchuk_brackets_and_spacing_balmer_values_1_n_2_on.md)
-- sha256 (`lf-normalised`): `e173adbbe0f1421f43e86a2cc92be90e64e94f727f4fff508248b945ba840e1a`
+- sha256 (`lf-normalised`): `ecfd79c9a67ae784a8c02be7275d29a8ce6a576970c52d044f322d03db485ed1`
 - generated view: listed, not counted
 - cited in: record TFQ-0067 (shared)
 - counts toward the grade: no
@@ -126,11 +112,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:aaa24b2955f9d6b460c2aec041d1c9ebfa58a61bf4056394a372e45942b81f40::verify_trace_cyclicity_d3`
+- `external:sha256:cf5119090eb0b22a44f55374a9d37eecdbbd1877fbde75226237781aae046351::canonical_commutator_obstruction`
+
 ## Absences recorded by the TFQ records
 
 - TFQ-0067 lean4: not located
 - TFQ-0067 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm/use_cases/algebraic_bound_state_spectra_control.py
-- TFQ-0067 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/quantum_import_finite_maps/algebraic_bound_state_spectra.rs
+- TFQ-0067 rust: no local rust twin located for external:sha256:a10da92df13ef926419410d2e5c98c7366f31aa5dd28fa48718916ad8f904b62
 
 ## Routes
 

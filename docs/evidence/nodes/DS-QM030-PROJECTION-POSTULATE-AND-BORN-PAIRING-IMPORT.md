@@ -91,17 +91,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0236_declared_instruments_and_conditional_record_updates.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0236_declared_instruments_and_conditional_record_updates.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0236_declared_instruments_and_conditional_record_updates.md)
-- sha256 (`lf-normalised`): `b94ca33803e9d3135a2fd1a06c1f4278652ce36635784e4a71b7aa5024b7073f`
+- sha256 (`lf-normalised`): `22c068f6d8d57eff83d5919e716b5eb07d1c37e531a3f877505cc322f27433f1`
 - generated view: listed, not counted
 - cited in: record TFQ-0236 (shared)
 - counts toward the grade: no
@@ -109,24 +102,28 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/11_finite_qm_dynamics/tfq_0241_projection_postulate_and_born_pairing_remain_imported.md`
 
 - file: [dag/derivations/11_finite_qm_dynamics/tfq_0241_projection_postulate_and_born_pairing_remain_imported.md](../../../dag/derivations/11_finite_qm_dynamics/tfq_0241_projection_postulate_and_born_pairing_remain_imported.md)
-- sha256 (`lf-normalised`): `54203a711dff1214150b94e6a2fc09dea829e2a93d44393046229b375364d8f8`
+- sha256 (`lf-normalised`): `2ff5d99d90a29f686733fb3a7e7c7979be3e10986b116ce953f931bdbdada51a`
 - generated view: listed, not counted
 - cited in: record TFQ-0241
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/030_finite_weighted_transport_calculus/qm_030_finite_weighted_transport_calculus_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/003_quantum_foundations/030_finite_weighted_transport_calculus/qm_030_finite_weighted_transport_calculus_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:e5ae08fbe8e7f3276392db13249b8444caff1fa746dec306f66e0a26fbbf9d2e#QM-030-C12`
+- `external:sha256:e5ae08fbe8e7f3276392db13249b8444caff1fa746dec306f66e0a26fbbf9d2e#QM-030-C13`
+- `external:sha256:e5ae08fbe8e7f3276392db13249b8444caff1fa746dec306f66e0a26fbbf9d2e#QM-030-C16`
 
 ## Absences recorded by the TFQ records
 
 - TFQ-0236 python: no local python twin located for sources/atlas/papers/finite_quantum_mechanics/python/finite_qm
-- TFQ-0236 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/exact_instrument.rs
-- TFQ-0236 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/instruments.rs
-- TFQ-0236 rust: no local rust twin located for omega_engine/crates_rs/omega_quantum_physics/src/measurement.rs
+- TFQ-0236 rust: no local rust twin located for external:sha256:32bcf706711e8c0460831c97a9d55d8e64bb3ba66c27d70d4d64695823902525
+- TFQ-0236 rust: no local rust twin located for external:sha256:4fbc6b0667894450336cabb7dd92392cca1592abb3feb809e1fff47ee1281cec
+- TFQ-0236 rust: no local rust twin located for external:sha256:6391572c23248195d97785667c444e6f67da73cab83285825dc16d94e998598b
 
 ## Routes
 

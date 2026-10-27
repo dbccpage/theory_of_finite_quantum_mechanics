@@ -85,7 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/24_dressing_field/tfq_1127_dfm_jarlskog_pythagorean_witness.md`
 
 - file: [dag/derivations/24_dressing_field/tfq_1127_dfm_jarlskog_pythagorean_witness.md](../../../dag/derivations/24_dressing_field/tfq_1127_dfm_jarlskog_pythagorean_witness.md)
-- sha256 (`lf-normalised`): `333a5370b73a7cdc2a3df90d69273e182d891018e0f8a1056330072ae125b535`
+- sha256 (`lf-normalised`): `cef3fd2ebf072dc1ba7477e451844c0d4fe877b51804000d2e58687f25d2e558`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1127
 - counts toward the grade: no

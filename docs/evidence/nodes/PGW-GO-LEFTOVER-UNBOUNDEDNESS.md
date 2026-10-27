@@ -80,17 +80,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0482_go_leftover_unboundedness.md`
 
 - file: [dag/derivations/02_genesis/tfq_0482_go_leftover_unboundedness.md](../../../dag/derivations/02_genesis/tfq_0482_go_leftover_unboundedness.md)
-- sha256 (`lf-normalised`): `e75e0129ea3ad342b448271adbc33d2c5b2ee1e2fe9bdddd453c2d6e6c1a8af0`
+- sha256 (`lf-normalised`): `fae21275c18d140decc7e5b8eafeed0ceae38bc5c925bbb134d1e98c94e56698`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0482
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/005_oegenong/levels/level_18_leftovers_unboundedness.md`
+### External sources
 
-- file: `omega_engine_education/documentation/005_oegenong/levels/level_18_leftovers_unboundedness.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:eebe0e22e9fe941ee23747636ea5b160f75f6f5d3da3cbee14fc7212fc150be1:38`
 
 ## Absences recorded by the TFQ records
 

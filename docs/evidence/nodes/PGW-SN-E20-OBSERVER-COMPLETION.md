@@ -45,24 +45,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0526_sn_e20_observer_completion.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0526_sn_e20_observer_completion.md](../../../dag/derivations/05_mssn_sn/tfq_0526_sn_e20_observer_completion.md)
-- sha256 (`lf-normalised`): `a1cf22a06fbdd47bbb37ba53843f311901795d838f426fb86d7e8bcfbc820725`
+- sha256 (`lf-normalised`): `04c3ec0df2cfe81d7a72e513ae28723b1ee518daaa1b681930aa8cc123c708a3`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0526
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_education/documentation/002_oesn/curriculum.md`
+### External sources
 
-- file: `omega_engine_education/documentation/002_oesn/curriculum.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
 
-### Documents and data: `omega_engine_education/documentation/002_oesn/levels/level_20_autopoietic_reflection.md`
-
-- file: `omega_engine_education/documentation/002_oesn/levels/level_20_autopoietic_reflection.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+- `external:sha256:a51ceb8d0d5703baac230c14caa4638cf25f3ae46fdc77013c7e09f27caaa1e9:159-162`
+- `external:sha256:ff4048bf7ebdc3eb9d00b8635c5abdaa7a16bd79581901c5f38670ccb0b4ec15:46-49`
+- `external:sha256:ff4048bf7ebdc3eb9d00b8635c5abdaa7a16bd79581901c5f38670ccb0b4ec15:57-59`
 
 ## Absences recorded by the TFQ records
 

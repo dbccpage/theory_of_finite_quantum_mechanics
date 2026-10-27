@@ -91,41 +91,23 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/fenchel_duality.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_wdp/src/obstruction.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/obstruction.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0351_accept_an_integer_finite_list_certificate_only_inside_its_capacity_circulation_feasibility.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0351_accept_an_integer_finite_list_certificate_only_inside_its_capacity_circulation_feasibility.md](../../../dag/derivations/07_l1_emergence/tfq_0351_accept_an_integer_finite_list_certificate_only_inside_its_capacity_circulation_feasibility.md)
-- sha256 (`lf-normalised`): `91d69f16d86f87bb85e3b6a77d66a336dc667a588b82d8215d405dec79f5cfe6`
+- sha256 (`lf-normalised`): `a02083e57a8b0fb6de4b73077d0d3b757b83196d23f51891f4c0932d629f33b8`
 - generated view: listed, not counted
 - cited in: record TFQ-0351
 - counts toward the grade: no
 
-### Documents and data: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/003_l1_obstruction_framework/l1_obstruction_framework_claim_ledger.md`
+### External sources
 
-- file: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/003_l1_obstruction_framework/l1_obstruction_framework_claim_ledger.md`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.source
-- counts toward the grade: no
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+- `external:sha256:67f95afb329218e2db037b98e7b7d632e0ee073156f58a6c3b03ff9a386b4702::DualWitnessCertificate`
+- `external:sha256:fc5a04df299e671184b29b3468bd5fd18b70680beadaeaf4aebd5d809976d3e1::FenchelDualityReceipt`
+- `external:sha256:fd65bc148e80462c1c467b0b5a483e5691a901b95d2789ac25425bb5da64eb19`
 
 ## Routes
 

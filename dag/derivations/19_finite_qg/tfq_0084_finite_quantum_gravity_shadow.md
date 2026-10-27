@@ -43,5 +43,5 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F002.S000`, `F000.S000`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F002_continuum/S000_continuum_descent/shelf.yaml`
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/shelf.yaml`
+  - `external:sha256:7255477b627653b19b3370af3e2f2782a36e5388a01904614222f37681c88c74`
+  - `external:sha256:98533bbe8dde6cad1f5bbd9d2de0fb85196b2d44c74964cec5a96620ff69c94f`

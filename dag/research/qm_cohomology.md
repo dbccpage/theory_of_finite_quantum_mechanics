@@ -26,9 +26,9 @@ Paper §1 states the shared spine is a **plan, not a proof**. The intended found
 
 **What is numerically checked, not exact:**
 
-- `omega_engine/crates/finite_qm/use_cases/cochain.py` computes D, d1 d0 = 0, weighted L1, Phi_1 via scipy HiGHS (`TOL = 1e-9`), Gamma_2, and a **3-way** trichotomy (`ExactClass` / `ClosedResidual` / `ActiveClosureFailure`). The module docstring itself refuses an infinite-precision solver. Tests: `omega_engine/code/tests/unit/test_cochain.py` (negative controls on d1 d0 and coboundary invariance).
+- `external:unlocated` computes D, d1 d0 = 0, weighted L1, Phi_1 via scipy HiGHS (`TOL = 1e-9`), Gamma_2, and a **3-way** trichotomy (`ExactClass` / `ClosedResidual` / `ActiveClosureFailure`). The module docstring itself refuses an infinite-precision solver. Tests: `external:unlocated` (negative controls on d1 d0 and coboundary invariance).
 - `rungs.py` `h1_dim` uses SVD float ranks. Paper Rung 2 / §4 calling Phi_1 an **exact** LP is stronger than the live kernel and than FQM-E8's computational status.
-- C1000 Block 07 Python (`omega_engine/code/contextuality_obstruction.py`) is exact Z_2 linear algebra (zero floats on algebraic paths). That exactness is scoped to the declared coefficient group.
+- C1000 Block 07 Python (`external:unlocated`) is exact Z_2 linear algebra (zero floats on algebraic paths). That exactness is scoped to the declared coefficient group.
 
 **What remains prose / ledger-ASSERTED:**
 
@@ -65,13 +65,13 @@ This gap has two distinct mathematical objects that the register currently confl
 
 ### GAP-F001-S000-002 — Continuum Hilbert lift (`continuum_interface`; PRICED_CONTINUUM_INTERFACE)
 
-**Why open.** No source constructs a map from finite graph cochains (integer/rational weights, finite labels) to infinite-dimensional Hilbert space. QM_122 §6 refuses the lift; QM_010 forbids continuum physics from finite cochains. Canonical [X,P]=i hbar I has no finite-dimensional representation (Wintner–Wielandt). Cited `code/continuum_lift.py` and `code_rs/src/continuum.rs` do not exist at those paths; live kernels are `omega_engine/crates/finite_qm/use_cases/continuum_lift.py` (numpy floats) and `omega_engine/crates_rs/omega_quantum_physics/src/finite_qm/continuum.rs` (exact rationals). `ContinuumLiftBoundary.lean` is 2x2 Int, not a completion functor.
+**Why open.** No source constructs a map from finite graph cochains (integer/rational weights, finite labels) to infinite-dimensional Hilbert space. QM_122 §6 refuses the lift; QM_010 forbids continuum physics from finite cochains. Canonical [X,P]=i hbar I has no finite-dimensional representation (Wintner–Wielandt). Cited `code/continuum_lift.py` and `code_rs/src/continuum.rs` do not exist at those paths; live kernels are `external:unlocated` (numpy floats) and `external:sha256:55ada06a22f283b8ab22c727842fcf9667a4d938e834ac676c1a7231bb3c2f3b` (exact rationals). `ContinuumLiftBoundary.lean` is 2x2 Int, not a completion functor.
 
 **Closable inside the finite programme:** no. Marked **priced-continuum**. Infinite-dimensional Hilbert cochain cohomology C^*(X;H) for complete H is the same priced interface, not a finite-carrier task.
 
 ### GAP-FQM-003 — Cofiber–Banach bridge and four-way classifier unimplemented (`missing_implementation`)
 
-**Why open.** Register still says the cofiber-to-Banach bridge, V_Q, and Exact / ClosedResidual / ActiveClosureFailure / **Refusal** classifier do not exist as code, and that legacy `code/` holds only five kernel routines. The five-routine clause is **stale** against the live tree (`omega_engine/crates/finite_qm/use_cases/` has 42 use-case `.py` files plus `__init__.py`; legacy `code/` is absent). The **named objects** were not found as implementations: QM_005 V_Q packet verifier, four-way classifier including Refusal, QM_006 descent audit, QM_002 cofiber-to-Banach bridge. `cochain.py` is a 3-way diagnostic. `CochainWindow.sector_trichotomy` is 3-way. QM-002-C6 remains an unmechanized scalar identity. Object-level cofiber identification with Q¹_sep is fenced by **C1**, not C7. GAP-FQM-003 is missing_implementation of described algorithms, not a Phi_1-identity gap. Paper Rung 7 mis-cites this ID as the measurement problem.
+**Why open.** Register still says the cofiber-to-Banach bridge, V_Q, and Exact / ClosedResidual / ActiveClosureFailure / **Refusal** classifier do not exist as code, and that legacy `code/` holds only five kernel routines. The five-routine clause is **stale** against the live tree (`external:unlocated` has 42 use-case `.py` files plus `__init__.py`; legacy `code/` is absent). The **named objects** were not found as implementations: QM_005 V_Q packet verifier, four-way classifier including Refusal, QM_006 descent audit, QM_002 cofiber-to-Banach bridge. `cochain.py` is a 3-way diagnostic. `CochainWindow.sector_trichotomy` is 3-way. QM-002-C6 remains an unmechanized scalar identity. Object-level cofiber identification with Q¹_sep is fenced by **C1**, not C7. GAP-FQM-003 is missing_implementation of described algorithms, not a Phi_1-identity gap. Paper Rung 7 mis-cites this ID as the measurement problem.
 
 **Closable:** conditional for the finite scalar identity and 4-way certificates; object-level cofiber identified with Q^1_sep is refused (C1); Φ₁=R_Λ is ill-typed (C7).
 
@@ -152,8 +152,8 @@ Until those admission items exist as named files, the finite presentation **does
 - `sources/` listing; retained `122_...` and `060_...`
 - `research/` listing; `research/README.md`; confirmed `research/finite_qm_roadmaps` **did not exist** before this write
 - `research/000_...`; `research/001_...`; `research/002_...`; `research/004_...`; `research/010_...`; `research/080_...`; `research/120_...`
-- `omega_engine/crates/finite_qm/` listing; `use_cases/cochain.py`; `use_cases/rungs.py`
-- `omega_engine/code/` listing; `contextuality_obstruction.py`; `tests/unit/test_cochain.py`
-- `omega_engine/code_rs/` listing (no `src/continuum.rs`)
+- `external:unlocated` listing; `use_cases/cochain.py`; `use_cases/rungs.py`
+- `external:unlocated` listing; `contextuality_obstruction.py`; `tests/unit/test_cochain.py`
+- `external:unlocated` listing (no `src/continuum.rs`)
 - `lean4/quantum_mechanics/`: `PrimitiveDifference.lean`, `FiniteCochain.lean`, `CochainWindow.lean`, `CellGrammar.lean`, `ContextualityObstruction.lean`, `WorldCycle3Quotient.lean`, `FiniteN3ResidualDual.lean`, `DualWitness.lean`, `PointedObstructionClassifier.lean`, `WorldLGGRWitness.lean`, `CabelloSignPolytope.lean`, `SurfaceCodeToricTopology.lean`, `ContextualityThresholds.lean`; confirmed `lean4/quantum_mechanics/original_lean_20260809` **absent**; no `GOMC_*.lean`
 - `campaigns/c1000/block_07/RESULT.md`; `result.json`; `evidence/contextuality_obstruction_receipt.json`

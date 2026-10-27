@@ -91,24 +91,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/composition_quantum_bound.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/composition_quantum_bound.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1018
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_quantum_physics/src/composition_tensor_mub.rs`
-
-- file: `omega_engine/crates_rs/omega_quantum_physics/src/composition_tensor_mub.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust, record TFQ-1018
-- counts toward the grade: no
-
 ### Documents and data: `dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md`
 
 - file: [dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md](../../../dag/derivations/12_finite_qm_structure/tfq_1018_fq_tensor_lu_rival_exclusion.md)
-- sha256 (`lf-normalised`): `41c856043726ec5c04ba347ed6b73f06998a7790b897f9d2d13e54ed62a73d2e`
+- sha256 (`lf-normalised`): `232363a4cf1d34a99d91e036e2b74f1ffbb82bdbda0e94da7225d2c39656a16c`
 - generated view: listed, not counted
 - cited in: record TFQ-1018
 - counts toward the grade: no
@@ -126,6 +112,13 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - sha256 (`lf-normalised`): `85ca7b22b1c1e360a4c17ad8a9e0bddae03433592585b01d23a74cd09c82929e`
 - cited in: node.source
 - counts toward the grade: yes
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:7d6837ac6419b226a3ceb10423ff2aae18580207effb6b01a2bb7f50409089f6::compose_density`
+- `external:sha256:9765c2d94791424a10351167ef55ae78167558d6f03b943c2cc26ea339d421a6::passes_squared_chsh_bound`
 
 ## Routes
 

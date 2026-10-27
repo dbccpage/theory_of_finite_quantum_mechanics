@@ -34,15 +34,15 @@ In accordance with strict constructive principles:
 
 ### Lean 4 Theorems
 - [`declaration obligation: deltaU0_valid inside the declared response grammar`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::U0_separable`](../../code/lean4/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::deltaU0_valid`](../../code/lean4/)
+- [`atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Minimality.lean`](../../code/lean4/)
+- [`atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Minimality.lean::U0_separable`](../../code/lean4/)
+- [`atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Minimality.lean::deltaU0_valid`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
 - [`missing obligation: minima.rs must record item cost two without dropping ties`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`](../../code/rust/src/)
-- [`omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
-- [`omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/code/rust/src/minima.rs`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`](../../code/rust/src/)
+- [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
+- [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`missing obligation: a cost counter in 000_genesis_19l57g1/code/derivation/candidates.py, listed and not opened, scoped to the declared response grammar`](../../code/python/)
@@ -59,7 +59,7 @@ In accordance with strict constructive principles:
 
 - **Atlas Lineage**: `F000.S000`, `F000.S000:000_from_primitive_difference_to_finite_obstruction_calculus`
 - **Primary Source Paths**:
-  - `omega_engine_atlas/coda_atlas/F000_finite/S000_primitive_difference_and_finite_obstruction/000_from_primitive_difference_to_finite_obstruction_calculus/book/ch03_marks_presentations_and_declared_comparisons.md`
+  - `external:sha256:9dd2ed282b00133517ad1afb404b1dd51cdd54e517e07c21e395abadc89a0144`
 
 ---
 
@@ -72,6 +72,6 @@ In accordance with strict constructive principles:
 - **Finite Shadow Exact Witness (`M4`)**: `stage_route_shadow_invariant(PG-GEN-COLLAPSE-AND-FIRST-SEPARATION): 4*idx(54) + 3*stage_rank(2) + route_degree(3) == 225` ($\text{value} = 225$)
 - **Finite Countermodel / Obstruction Witness (`M3/M4`)**: `quotient_reduced_countermodel_defect(PG-GEN-COLLAPSE-AND-FIRST-SEPARATION): R_raw(118) - G_cob(58) - S_decoy(2) == 58 (annihilating coboundary gauge shift G_cob and boundary sign double-count S_decoy under Congruence Ideal I)` ($\text{value} = 58$)
 - **Unpaid External Imports Refused from Unconditional Promotion**: `1` (`unconditional_promotion_refused = true`)
-- **Lean 4 Theorem Anchor**: `omega_engine_atlas/coda_atlas/F004_papers/001_finite_obstruction_calculus/000_genesis_19l57g1/lean4/Derivation/Minimality.lean::deltaU0_valid`
-- **Sovereign Rust Witness Anchor**: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
+- **Lean 4 Theorem Anchor**: `atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Minimality.lean::deltaU0_valid`
+- **Sovereign Rust Witness Anchor**: `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness`
 - **Verified Model & Gate Receipt**: `deepseek/deepseek-v4.1-flash` | `status = PASS` | `receipt_sha256 = bf446d713f355a933f8f546e2219a75a7a2b7eb5307042f0d28c0adc1d773801`

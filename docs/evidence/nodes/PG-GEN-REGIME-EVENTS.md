@@ -75,20 +75,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs`
-
-- file: `omega_engine/crates_rs/omega_wdp/src/genesis_construction.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `atlas/papers/finite_obstruction_calculus/genesis/paper.md`
 
 - file: [atlas/papers/finite_obstruction_calculus/genesis/paper.md](../../../atlas/papers/finite_obstruction_calculus/genesis/paper.md)
@@ -99,7 +85,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0002_genesis_regime_events_as_a_separate_admission_record.md`
 
 - file: [dag/derivations/02_genesis/tfq_0002_genesis_regime_events_as_a_separate_admission_record.md](../../../dag/derivations/02_genesis/tfq_0002_genesis_regime_events_as_a_separate_admission_record.md)
-- sha256 (`lf-normalised`): `877686e085ad0b56189b726c321055eb7a37b30a3c74fa83a4319b2ab00bd04c`
+- sha256 (`lf-normalised`): `6ffc3a2cc74299480ee2677f702dd3927ed3607c2c85a8772e76d85a52f413fa`
 - generated view: listed, not counted
 - cited in: record TFQ-0002
 - counts toward the grade: no
@@ -107,7 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0378_regime_tuple_and_events.md`
 
 - file: [dag/derivations/02_genesis/tfq_0378_regime_tuple_and_events.md](../../../dag/derivations/02_genesis/tfq_0378_regime_tuple_and_events.md)
-- sha256 (`lf-normalised`): `c0c1350ab74a70fbfef1aff3948eeb360e6c203b2306ad63ed19cc96750d582e`
+- sha256 (`lf-normalised`): `c40d2e7ae2a4cc40694fcbdee3440a070f2c6a258218244927a5c4ac69be0007`
 - generated view: listed, not counted
 - cited in: record TFQ-0378
 - counts toward the grade: no
@@ -115,14 +101,24 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md`
 
 - file: [dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md](../../../dag/derivations/05_mssn_sn/tfq_0342_do_not_treat_genesis_events_or_s_n_maps_as_obligation_monoid_morphisms_until.md)
-- sha256 (`lf-normalised`): `3c5506026eeada78ccc327f0bd2ee297d044bb4e3c6fc875975ee080d25bacb1`
+- sha256 (`lf-normalised`): `25e0b07b2bc6009b403513967b2017d8c498888faf1bfd6afd3973af7170b29b`
 - generated view: listed, not counted
 - cited in: record TFQ-0342 (shared)
 - counts toward the grade: no
 
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:2252c69f4bba9c28eb9ab8a435a9a62ed96fb8314f053e8de431be4b50ed2526::interpret_event`
+- `external:sha256:2252c69f4bba9c28eb9ab8a435a9a62ed96fb8314f053e8de431be4b50ed2526::interpret_regime`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`
+
 ## Absences recorded by the TFQ records
 
-- TFQ-0342 rust: no local rust twin located for omega_engine/crates_rs/omega_kernel/src/obligation.rs
+- TFQ-0342 rust: no local rust twin located for external:sha256:5c5cb8a52c5879da00a72654ee0c47e551e4839cb3b2cee5daa00557af3c58d8
 - TFQ-0378 lean4: declaration obligation: genesis as the five-field empty regime, events still to be matched to the ledger families
 - TFQ-0378 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Inertia.lean
 - TFQ-0378 python: missing obligation: model.py was listed and not opened; the five regime fields still need a local check against WDP-P000-006

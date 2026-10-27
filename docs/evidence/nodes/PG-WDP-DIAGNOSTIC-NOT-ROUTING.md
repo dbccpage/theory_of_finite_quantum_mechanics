@@ -124,34 +124,6 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
 
-### Rust: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-
-- file: `omega_engine/crates_rs/omega_symbol_game/src/derivation_dag_witnesses.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_types/src/ceiling.rs`
-
-- file: `omega_engine/crates_rs/omega_types/src/ceiling.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_types/src/fda.rs`
-
-- file: `omega_engine/crates_rs/omega_types/src/fda.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
-### Rust: `omega_engine/crates_rs/omega_types/src/routing.rs`
-
-- file: `omega_engine/crates_rs/omega_types/src/routing.rs`
-- resolution: `external_unresolved` (a path outside this repository; neither confirmed nor refuted here)
-- cited in: node.rust
-- counts toward the grade: no
-
 ### Documents and data: `.claude/rules/authority/rl_gtla_rules_rubric.md`
 
 - file: `.claude/rules/authority/rl_gtla_rules_rubric.md`
@@ -169,10 +141,19 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0347_keep_exactclass_closedresidual_and_activeclosurefailure_off_the_routing_terminal_and_leave.md`
 
 - file: [dag/derivations/06_wdp/tfq_0347_keep_exactclass_closedresidual_and_activeclosurefailure_off_the_routing_terminal_and_leave.md](../../../dag/derivations/06_wdp/tfq_0347_keep_exactclass_closedresidual_and_activeclosurefailure_off_the_routing_terminal_and_leave.md)
-- sha256 (`lf-normalised`): `761a413538d8440b7ae979bbf9c9b81a752dc6eeac1e1f3d3cca2915c775bbec`
+- sha256 (`lf-normalised`): `d42abe6dda763f08a747bf1dc9bf835c2f28adecbe61cdf9e37dbad8e8255b1a`
 - generated view: listed, not counted
 - cited in: record TFQ-0347
 - counts toward the grade: no
+
+### External sources
+
+Named by the node; not in this repository and not checked here.
+
+- `external:sha256:37446bd8af70040d3412b4895efe73f28dc7662ab259bc00986debcc8660c765::RoutingTerminal`
+- `external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness`
+- `external:sha256:bcb9825eb7031147a89239c7c5c90a65f7eb70bd996338ebbd0f1900316af187::EvidenceCeiling`
+- `external:sha256:d5bfe8d13dd272a247b6448dc6597b2683283e7245db0441e35009cd59637324::GuardEvidence`
 
 ## Routes
 
