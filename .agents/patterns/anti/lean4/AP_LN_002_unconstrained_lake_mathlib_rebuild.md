@@ -27,5 +27,3 @@ Mechanical check: none; read by hand.
 ## Dual healthy pattern
 
 [HP_LN_002_scoped_target_cache_build](../../helpful/lean4/HP_LN_002_scoped_target_cache_build.md)
-
-Adapted from the_symbol_game card AP_LN_002_unconstrained_lake_mathlib_rebuild.md. The source's witnesses are the_symbol_game history and are not repeated here.

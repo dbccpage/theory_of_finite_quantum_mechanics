@@ -4,7 +4,6 @@
 > **AuthorityEffect**: None  
 > **Epistemic Firewall**:
 > $$\boxed{\text{stated region only; mints no authority}}$$
-> **Locus**: Woland Reality Swarm (Apartment 50, the city / Yershalaim Chamber)  
 > **Date**: 2026-10-09  
 > **Target Subgap**: $R_7$ (ENC-1147 Singular Segre Positivstellensatz)  
 > **Direct Predecessor**: [`subgap_r7_adversarial_audit_note.md`](subgap_r7_adversarial_audit_note.md)
@@ -13,7 +12,7 @@
 
 ## 1. Executive Summary & Defect of Candidate Tautologies
 
-In `subgap_r7_adversarial_audit_note.md`, the Woland swarm exposed that the candidate algebraic identity:
+In `subgap_r7_adversarial_audit_note.md`, the audit showed that the candidate algebraic identity:
 $$-1 = h_{\text{segre}} f_{\text{segre}} + \sum_{k \in \{a,b,c,d\}} h_k f_k + \sigma_0 + \sigma_1 g_{\text{sep}}$$
 from `compute_r7_singular_segre_sos.py` was an algebraic telescoping identity in $\mathbb{Q}[a,b,c,d]$ that reduced algebraically to $-1$, but where the separation condition was definitionally:
 $$g_{\text{sep}} = (1 - \varepsilon)\sigma_0 + f_{\text{circ}} - \varepsilon$$

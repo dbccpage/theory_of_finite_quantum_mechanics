@@ -27,5 +27,3 @@ Mechanical check: `scripts/auto/anti_pattern_lint.py` rule AP_LN_004; `scripts/o
 ## Dual healthy pattern
 
 [HP_LN_004_constructive_kernel_discharge](../../helpful/lean4/HP_LN_004_constructive_kernel_discharge.md)
-
-Adapted from the_symbol_game card AP_LN_004_smuggled_custom_axiom_injection.md. The source's witnesses are the_symbol_game history and are not repeated here.

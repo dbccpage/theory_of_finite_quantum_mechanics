@@ -26,5 +26,3 @@ Mechanical check: partly `scripts/overclaim_scan.py` rules R6 and R7; otherwise 
 ## Dual healthy pattern
 
 [HP_MATH_022_bounded_claim_with_named_assumptions](../../helpful/math/HP_MATH_022_bounded_claim_with_named_assumptions.md)
-
-Adapted from the_symbol_game card AP_MATH_022_premature_triumph_promotion.md. The source's witnesses are the_symbol_game history and are not repeated here.

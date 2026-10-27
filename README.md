@@ -59,7 +59,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | PFP review outcomes on DAG nodes | 177 nodes carry `pfp_review`; scope_effect: consistent 45, caveat_added 37, statement_narrowed 22, status_lowered 73 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Outside-corpus records audited | 266 records from 8 corpora | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
 | Of those, claimed `PROVED_LEAN` by their source | 173: kept 88, refuted 2, recorded lower 83 (OPEN 37, IMPORTED_ASSUMPTION 17, COMPUTATIONALLY_CHECKED 14, PROVED_PROSE 8, DEFINITION 5, CONDITIONAL 2) | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
-| Tracked `.lean` files | lean4 1093, papers 146, code 66, dag 182, other 69 (the `dag` files are run snapshots) | `git ls-files` |
+| Tracked `.lean` files | lean4 1093, papers 146, code 66, dag 182, other 67 (the `dag` files are run snapshots) | `git ls-files` |
 | Lake libraries / module roots in `lean4/lakefile.lean` | 181 / 1039 | [`lean4/lakefile.lean`](lean4/lakefile.lean) |
 | Lean toolchain | `leanprover/lean4:v4.35.0` | [`lean4/lean-toolchain`](lean4/lean-toolchain) |
 | Mathlib | `v4.35.0` (manifest rev `56a005855ea1`) | [`lean4/lakefile.lean`](lean4/lakefile.lean), [`lean4/lake-manifest.json`](lean4/lake-manifest.json) |

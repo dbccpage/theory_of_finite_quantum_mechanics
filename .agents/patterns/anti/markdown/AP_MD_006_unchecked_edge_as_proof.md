@@ -27,5 +27,3 @@ Mechanical check: partly `scripts/auto/obstruction_scan.py` rule O3 (a derived r
 ## Dual healthy pattern
 
 [HP_MD_006_scoped_edge_not_proof](../../helpful/markdown/HP_MD_006_scoped_edge_not_proof.md)
-
-Adapted from the_symbol_game card AP_MD_006_unchecked_edge_as_proof.md. The source's witnesses are the_symbol_game history and are not repeated here.

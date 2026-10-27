@@ -27,5 +27,3 @@ Mechanical check: partly `scripts/overclaim_scan.py` rule R4 (replay receipts) a
 ## Dual healthy pattern
 
 [HP_PY_009_recomputed_binding](../../helpful/python/HP_PY_009_recomputed_binding.md)
-
-Adapted from the_symbol_game card AP_PY_009_stale_binding_hash.md. The source's witnesses are the_symbol_game history and are not repeated here.

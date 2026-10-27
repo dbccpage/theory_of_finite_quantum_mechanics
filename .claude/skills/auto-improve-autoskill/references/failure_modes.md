@@ -1,8 +1,6 @@
 # Failure modes of a learning skill
 
-**AuthorityEffect:** None. Adapted from the_symbol_game `auto-improve-autoskill/references/failure_modes.md`; the
-dated the_symbol_game incidents (paper-family propagation, four-host mirrors, SciSpace harvests) were dropped and the
-standard modes kept.
+**AuthorityEffect:** None.
 
 1. **Missed durable correction.** The user gave an explicit, repeated, project-specific correction and no skill
    changed. Fix: add the signal to `auto-skill/references/signals.md` or tighten its trigger.

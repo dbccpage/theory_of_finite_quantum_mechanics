@@ -20,5 +20,3 @@ Name the error code: `# type: ignore[attr-defined]`, or fix the type.
 ## Removes
 
 [AP_PY_001_blanket_mypy_ignore](../../anti/python/AP_PY_001_blanket_mypy_ignore.md). Applying this pattern leaves the anti-pattern's signature empty for the change it covers; it does not certify the rest of the file.
-
-Adapted from the_symbol_game card HP_PY_001_scoped_mypy_overrides.md.

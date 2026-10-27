@@ -119,4 +119,4 @@ summarize gaps. Their outputs are kept as exploratory records. No claim in
 1. **What this document supports:** Formally delineates the epistemic boundary between external empirical search bounds ($N(6)=3$) and exact rational certificates ($N(6) \le 5$, Fourier vanishing) under `BRIDGE-MUB6-COVERAGE`, enforcing the mandatory firewall line across all documentation.
 2. **What this document does not support:** Does not establish that $\text{MUB}(6) = 3$ or $\text{MUB}(6) \le 3$ is proven, nor does it admit external floating-point search routines into the estate's deductive core.
 3. **Narrowest defensible claim:** External solvers suggest $N(6)=3$ within declared floating-point search regions, but only $N(6) \le 5$ and exhaustive Fourier vanishing outside Tao's class $T$ possess machine-checkable exact rational certificates over $\mathbb{Q}(\omega_6)$.
-4. **Next test needed:** Execution of Milestone M4 Woland reality gate tribunal sequence to verify complete artifact and claim hygiene adherence.
+4. **Next test needed:** An independent review of every artifact and claim listed here.

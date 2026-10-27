@@ -5,10 +5,7 @@ description: Turn one concrete correction or failure from the current session in
 
 # Auto learn
 
-**AuthorityEffect:** None. Imported from the_symbol_game `auto-learn`, adapted: the OE lesson stores, host mirroring,
-Woland finish hook and the automatic repair engine (`--repair` for markdown bullets and mypy codes) were not ported.
-The candidate-admission boundary of the_symbol_game `auto-anti-skill` is folded in (Step 4). Constraints:
-`.claude/rules/auto_skills_constraints.md`.
+**AuthorityEffect:** None. The candidate-admission boundary is in Step 4. Constraints: `.claude/rules/auto_skills_constraints.md`.
 
 The outcome is a useful change to an existing file that the next task will find, not a new report.
 

@@ -5,9 +5,7 @@ description: Detect drift between copies of the same rule in this repository. Us
 
 # Symmetry hunter
 
-**AuthorityEffect:** None. Imported from the_symbol_game `auto-symmetry-hunter`, adapted: the sibling hunters and the
-paper-family invariants it names do not exist here, and the drift catalog was replaced by the invariants this
-repository restates. Constraints: `.claude/rules/auto_skills_constraints.md`.
+**AuthorityEffect:** None. The invariants it checks are the ones this repository restates. Constraints: `.claude/rules/auto_skills_constraints.md`.
 
 A symmetry break is a rule stated in two places that no longer agree. Declare the correspondence first (which copy
 corresponds to which), then compare. File names, PR numbers and proximity do not by themselves establish that two texts

@@ -5,9 +5,8 @@ description: Find places in this repository where two records do not fit, from a
 
 # Obstruction hunter
 
-**AuthorityEffect:** None. Imported from the_symbol_game `auto-obstruction-hunter`, adapted: the networkx cochain
-scanner became a standard-library import graph, and the ten-level scanner (hard-wired to the_symbol_game paper trees)
-was not ported. The levels below are mapped to this repository. Constraints: `.claude/rules/auto_skills_constraints.md`.
+**AuthorityEffect:** None. The scanner is a standard-library import graph; the levels below are this repository's.
+Constraints: `.claude/rules/auto_skills_constraints.md`.
 
 An obstruction is a non-fit: two records that cannot both be right as written. The hunter finds it and states both
 sides. It does not pick the repair.

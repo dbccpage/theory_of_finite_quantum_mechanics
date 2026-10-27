@@ -5,10 +5,8 @@ description: Suggest new skills for this repository from recurring work in the s
 
 # Suggest new skills
 
-**AuthorityEffect:** None. Imported from the_symbol_game `auto-suggest-new-skills`, adapted. The source admitted
-skills automatically and mirrored them to four host roots; here a suggestion stays a proposal until the user approves
-it, and there is one host root (`.claude/skills/`). The God-run receipts, Algorithm Prime 000 protocol and paper outline
-were not ported. Constraints: `.claude/rules/auto_skills_constraints.md`.
+**AuthorityEffect:** None. A suggestion stays a proposal until the user approves it, and there is one host root
+(`.claude/skills/`). Constraints: `.claude/rules/auto_skills_constraints.md`.
 
 ## Step 1. Find the capability gap
 

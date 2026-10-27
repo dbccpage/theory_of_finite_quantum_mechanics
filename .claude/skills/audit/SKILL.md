@@ -39,7 +39,7 @@ skill's by-hand step.
 | 2c | always | `python -I -X utf8 scripts/auto/anti_pattern_lint.py <diff-flags> --fail-on none` | [auto-anti-pattern-lint](../auto-anti-pattern-lint/SKILL.md) |
 | 2d | Lean, Python, independent checks, replay receipts, companions or DAG prose changed | (2c's output) | [auto-code-anti-pattern-hunter](../auto-code-anti-pattern-hunter/SKILL.md) |
 | 2e | Markdown or scripts changed | `python -I -X utf8 scripts/auto/estate_audit.py docs <diff-flags> --fail-on none`, then `scripts/build_readme_facts.py --check` | [auto-docs](../auto-docs/SKILL.md) |
-| 2f | an agent definition or teamwork brief changed (`.claude/agents/`, `.agents/agents/`, `.agents/teamwork/`) | `python -I -X utf8 scripts/auto/estate_audit.py agents --fail-on none` | [auto-review-agents](../auto-review-agents/SKILL.md) |
+| 2f | an agent definition changed (`.claude/agents/`, `.agents/agents/`) | `python -I -X utf8 scripts/auto/estate_audit.py agents --fail-on none` | [auto-review-agents](../auto-review-agents/SKILL.md) |
 | 2g | a skill or rule changed (`.claude/skills/`, `.claude/rules/`) | `python -I -X utf8 scripts/auto/estate_audit.py skills --fail-on none` | [auto-review-skills](../auto-review-skills/SKILL.md) and, for a learner's output, [auto-improve-autoskill](../auto-improve-autoskill/SKILL.md) |
 
 A stage that does not apply is listed in the report as "not run: no matching change". A stage that could not run (a

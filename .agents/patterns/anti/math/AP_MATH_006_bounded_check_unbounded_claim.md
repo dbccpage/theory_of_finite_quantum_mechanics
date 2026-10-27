@@ -27,5 +27,3 @@ Mechanical check: partly `scripts/overclaim_scan.py` rule R2 (universal wording 
 ## Dual healthy pattern
 
 [HP_MATH_006_statement_matches_check_bound](../../helpful/math/HP_MATH_006_statement_matches_check_bound.md)
-
-Adapted from the_symbol_game card AP_MATH_006_finite_matrix_promotion_fallacy.md. The source's witnesses are the_symbol_game history and are not repeated here.

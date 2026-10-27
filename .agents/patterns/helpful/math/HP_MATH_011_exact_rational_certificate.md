@@ -20,5 +20,3 @@ Use integers, `fractions.Fraction`, Gaussian rationals or exact SymPy objects th
 ## Removes
 
 [AP_MATH_011_float_in_exact_certificate](../../anti/math/AP_MATH_011_float_in_exact_certificate.md). Applying this pattern leaves the anti-pattern's signature empty for the change it covers; it does not certify the rest of the file.
-
-Adapted from the_symbol_game card HP_MATH_010_rational_interval_smale_sentry.md.

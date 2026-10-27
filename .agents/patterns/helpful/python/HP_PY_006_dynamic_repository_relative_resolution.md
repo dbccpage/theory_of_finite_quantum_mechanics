@@ -20,5 +20,3 @@ Resolve paths from the script: `ROOT = Path(__file__).resolve().parents[n]`, or 
 ## Removes
 
 [AP_PY_006_host_absolute_path_injection](../../anti/python/AP_PY_006_host_absolute_path_injection.md). Applying this pattern leaves the anti-pattern's signature empty for the change it covers; it does not certify the rest of the file.
-
-Adapted from the_symbol_game card HP_PY_006_dynamic_repository_relative_resolution.md.

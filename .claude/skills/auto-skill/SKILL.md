@@ -5,10 +5,8 @@ description: Capture durable lessons from the current session as proposed edits 
 
 # Auto skill
 
-**AuthorityEffect:** None. Imported from the_symbol_game `auto-skill`, adapted. The source's hot path was a 19L57G1
-object-language continuation runner (genesis replay, orbit policies, cost measures); that is specific to the 19L57G1
-programme and was not ported. What came in is the session-learning half: signal detection, proposal format, the
-self-reference check and the git-tracking check. Constraints: `.claude/rules/auto_skills_constraints.md`.
+**AuthorityEffect:** None. This skill covers session learning: signal detection, proposal format, the self-reference
+check and the git-tracking check. Constraints: `.claude/rules/auto_skills_constraints.md`.
 
 ## Step 1. Detect signals
 

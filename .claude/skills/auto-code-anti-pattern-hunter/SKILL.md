@@ -5,9 +5,7 @@ description: Human-judgement pass over the .agents/patterns cards for a change i
 
 # Code anti-pattern hunter
 
-**AuthorityEffect:** None. Imported from the_symbol_game `auto-code-anti-pattern-hunter`, adapted: the four
-language-specialist skills it dispatched to do not exist here, so their scope is the card catalog in
-`.agents/patterns/`. Constraints: `.claude/rules/auto_skills_constraints.md`.
+**AuthorityEffect:** None. Its scope is the card catalog in `.agents/patterns/`. Constraints: `.claude/rules/auto_skills_constraints.md`.
 
 Each anti-pattern card (`anti/`) has a dual healthy pattern (`helpful/`). Finding the anti-pattern and confirming the
 healthy pattern are the same check read two ways, so this skill does both.

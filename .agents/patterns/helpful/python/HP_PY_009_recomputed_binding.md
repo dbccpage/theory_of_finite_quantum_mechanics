@@ -21,5 +21,3 @@ Recompute the digest from the bytes at the moment of recording, and re-pin whene
 ## Removes
 
 [AP_PY_009_stale_binding_hash](../../anti/python/AP_PY_009_stale_binding_hash.md). Applying this pattern leaves the anti-pattern's signature empty for the change it covers; it does not certify the rest of the file.
-
-Adapted from the_symbol_game card HP_PY_009_recomputed_binding.md.
