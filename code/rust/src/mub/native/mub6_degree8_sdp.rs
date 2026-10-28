@@ -12,7 +12,7 @@ pub use crate::native::exact::mub6_quad_sdp::{
     get_basis_triples,
 };
 use linear_algebra::exact_ldlt::ldlt_pivots_strictly_positive_rational;
-use tfqm_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::cyclotomic::Cyc24;
 
 pub const SCHEMA_VERSION: &str = "omega.mub.degree8-diagnostics.v2";
 pub const SCOPE_STRING: &str = "experimental_coefficient_projection_only_no_moment_soundness";

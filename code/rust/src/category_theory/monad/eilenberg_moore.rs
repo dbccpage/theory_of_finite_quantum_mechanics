@@ -5,7 +5,7 @@
 //! Shell holds a base monad ref only; algebra objects are separate shells.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a labeled Eilenberg–Moore category of a monad.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

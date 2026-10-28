@@ -10,10 +10,9 @@ path = "lib.rs"
 
 [features]
 default = []
-external-omega = ["dep:omega_homology", "dep:linear_algebra"]
 
 [dependencies]
-omega_homology = { version = "0.1.0", optional = true }
+engine_homology = { path = "../../../../vendor/engine/engine_homology" }
 tfqm_holonomy = { path = "../holonomy" }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
@@ -22,7 +21,7 @@ num-rational = "0.4"
 num-traits = "0.2"
 thiserror = "2"
 tfqm_number_theory = { path = "../number_theory" }
-linear_algebra = { version = "0.1.0", optional = true }
+linear_algebra = { path = "../../../../vendor/engine/linear_algebra" }
 tfqm_lie_theory = { path = "../lie_theory" }
 
 # Contract governance hook (build.rs); see governance/README.md.

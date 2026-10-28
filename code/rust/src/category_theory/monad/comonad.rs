@@ -5,7 +5,7 @@
 //! comultiply δ : W ⇒ W². Label refs only; law discharge is external.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a labeled comonad (W, ε, δ).
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

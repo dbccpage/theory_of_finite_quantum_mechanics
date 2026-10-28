@@ -6,8 +6,8 @@ use crate::native::exact::d6_exact_curvature_cochain::{ExactVec, D};
 use crate::native::exact::mub6_cyclotomic_enclosure::{
     cyc24_real_imag_enclosure, sqrt_enclosure, SqrtBox,
 };
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 pub type Form = [[Cyc24; D]; D];
 
@@ -126,7 +126,7 @@ mod tests {
     use crate::native::exact::d6_exact_curvature_cochain::{abs_sq, canonical_triple_exact, inner};
     use linear_algebra::exact_ldlt::is_psd_rational;
 
-    use tfqm_number_theory::rational::rq;
+    use engine_number_theory::rational::rq;
 
     fn mat(rows: &[&[(i64, i64)]]) -> Vec<Vec<BigRational>> {
         rows.iter()
@@ -216,7 +216,7 @@ mod tests {
 
     #[test]
     fn real_sign_cyc24_resolves_known_values() {
-        use tfqm_number_theory::cyclotomic::Cyc24;
+        use engine_number_theory::cyclotomic::Cyc24;
         let s2 = Cyc24::sqrt2();
         assert_eq!(real_sign_cyc24(&Cyc24::zero()), 0);
         assert_eq!(real_sign_cyc24(&s2), 1);
@@ -246,7 +246,7 @@ mod tests {
 
     #[test]
     fn psd_cyc24_handles_irrational_entries() {
-        use tfqm_number_theory::cyclotomic::Cyc24;
+        use engine_number_theory::cyclotomic::Cyc24;
         let s2 = Cyc24::sqrt2();
         assert!(is_psd_cyc24(&cyc_mat(vec![
             vec![cr(2, 1), s2.clone()],

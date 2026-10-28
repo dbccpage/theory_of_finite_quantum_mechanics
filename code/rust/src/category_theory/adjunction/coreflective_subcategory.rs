@@ -5,7 +5,7 @@
 //! a right adjoint (coreflector) c : C → A, i ⊣ c.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a coreflective subcategory declaration.
 ///

@@ -7,8 +7,8 @@ use crate::native::exact::d6_exact_curvature_cochain::{
 };
 use crate::native::exact::mub6_field::inv_sqrt6;
 use crate::native::exact::mub6_f6_chart::{f6_family_columns, f6_point_is_exact_chm};
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 fn target_one_over_d() -> Cyc24 {
     Cyc24::rat(ri(1) / ri(D as i64))
@@ -839,7 +839,7 @@ pub fn exhaust_base_mu_class_full_root_of_unity_lattice() -> Vec<DiscreteF6BaseM
 
 pub fn write_base_mu_lattice_exhaustion_artifact() -> Result<std::path::PathBuf, String> {
     let reports = exhaust_base_mu_class_full_root_of_unity_lattice();
-    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     std::fs::create_dir_all(&dir).map_err(|e| format!("mkdir: {e}"))?;
     let path = dir.join("f6_y2q_base_mu_lattice_exhaustion_24x24_20260724.json");
     let json = serde_json::to_string_pretty(&reports).map_err(|e| format!("ser: {e}"))?;

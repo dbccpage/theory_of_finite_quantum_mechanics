@@ -6,17 +6,17 @@
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
-use omega_certifiers::phi1_certifier::{
+use engine_certifiers::phi1_certifier::{
     CertificateError, Phi1FormCertificate, Phi1FormError, Phi1Verifier,
 };
-use omega_number_theory::rational::{ri, rq};
-use omega_solvers::solver_lp_exact_simplex::{
+use engine_number_theory::rational::{ri, rq};
+use engine_solvers::solver_lp_exact_simplex::{
     solve_weighted_l1_projection, L1LpError, L1ProjectionSolution,
 };
-use omega_solvers::solver_flow_network_simplex::NetworkSimplexError;
-use omega_solvers::solver_flow_network_simplex::Arc;
-use omega_solvers::solver_flow_network_simplex::NetworkSimplex;
-use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge};
+use engine_solvers::solver_flow_network_simplex::NetworkSimplexError;
+use engine_solvers::solver_flow_network_simplex::Arc;
+use engine_solvers::solver_flow_network_simplex::NetworkSimplex;
+use engine_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge};
 
 fn q_big(num: &str, den: &str) -> BigRational {
     let n: BigInt = num.parse().unwrap();

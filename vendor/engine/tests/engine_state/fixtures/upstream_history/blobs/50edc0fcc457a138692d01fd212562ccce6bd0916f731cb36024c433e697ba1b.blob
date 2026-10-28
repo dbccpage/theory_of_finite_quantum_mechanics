@@ -1,0 +1,157 @@
+# SAGA-02 — Operator Registry and Runtime Gauges
+
+**Parent EPIC:** [Omega Conductor v1](omega-conductor-epic-v001.md)  
+**LifecycleStatus:** ACTIVE
+**GtocTerminal:** OpenObstruction
+**AuthorityStatus:** None
+**AuthorityEffect:** `None`
+**Owner:** Coder  
+**Created:** 2026-07-17  
+**Last verified:** 2026-07-18
+
+---
+
+## Outcome
+Establish a vendor-neutral operator registry that maps requested tasks to runtime gauges (Claude, Codex, Gemini, Rust, Lean, Human) interchangeably.
+
+## Carrier
+
+Operator manifests, licenses, gauge bindings, provider/compiler adapters, and fixture runtimes.
+
+## Primitive Difference
+
+Task transformations are coupled to runtime-specific assumptions, and no verified registry proves that a selected gauge preserves an operator's carrier, permissions, evidence ceiling, and witness obligations.
+
+## ZeroRel
+
+Two bindings are equivalent when they expose the same typed inputs, outputs, permissions, licenses, deterministic evidence obligations, and authority ceiling.
+
+## Cochain realization
+
+**Realization:** Structural
+
+### C0
+
+Operator, gauge, license, permission, and evidence declarations.
+
+### C1
+
+Operator-to-gauge bindings, capability requirements, and witness dependencies.
+
+### C2
+
+Composition obligations across operator chains and runtime substitutions.
+
+### d0
+
+Maps a manifest or binding change to capability, permission, and witness edges.
+
+### d1
+
+Maps those edges to incompatible composition, privilege expansion, missing evidence, or provider-specific semantic drift.
+
+### d1 o d0 witness
+
+A locally valid binding cannot expand permissions, lifts, write surfaces, or evidence ceilings in a composed workflow.
+
+## Q1
+
+Binding discrepancies modulo declared vendor-neutral adapter equivalences.
+
+## Phi1 before
+
+No canonical verified manifest registry, fixture gauge conformance suite, or closed capability negotiation.
+
+## Gamma2 risks
+
+Provider substitution may alter hidden context, tool access, determinism, privacy, or witness independence.
+
+## Observer
+
+Registry analyst at a frozen manifest closure with no provider secrets and exact adapter read/write surfaces.
+
+## Witnesses and evidence ceiling
+
+Producer defines manifests; evaluator runs cross-gauge conformance and negative cases; authority witness checks license and ceiling preservation; schema and fixture gates emit evidence.
+
+## Licensed operators and lifts
+
+Manifest registration, pure capability adapters, fixture execution, and bounded conformance tests. Provider or permission expansion requires a licensed lift.
+
+## Survivor routing
+
+Unavailable gauges route to `InfrastructureFailure`; missing capability to `OperatorNeeded`; permission expansion to `LiftLicenseNeeded`.
+
+## Terminal set
+
+`ExactRepair`, `StabilizedSurvivor`, `OpenObstruction`, `OracleNeeded`, `LiftLicenseNeeded`, `Refused`, `Invalid`, or `InfrastructureFailure`; authority remains none before human promotion.
+
+## Scope
+* Schemas for `OperatorManifest` and `GaugeBinding`.
+* Interface for the interchangeability of gauges.
+* Execution adapters for model/compiler runtime environments.
+
+## Explicit non-scope
+* Re-implementing every provider adapter.
+
+## Existing implementation and limitations
+
+* Operator candidates, skills, adapters, and runtime substrates exist across the repository.
+* S02-001 now supplies one bounded, verified conductor-level registry.
+* Live provider behavior remains outside the admitted fixture-replay profile.
+
+## Canonical contracts and vocabulary
+
+`OperatorManifest` describes transformation; `GaugeBinding` selects runtime without changing semantics or authority.
+
+Conductor operator, capability, packet, receipt, terminal, and governance types must resolve to `omega_contracts/src`; mathematical types resolve to their owning math crates. Runtime adapters may not establish competing semantic owners.
+
+## SAGA invariants
+* Adapters must be interchangeable, and no operator may execute without a valid license and witness criteria.
+* No gauge or conductor adapter may redeclare a semantic type already owned by a canonical math crate or `omega_contracts/src`.
+
+## Dependencies
+* [SAGA-01](saga_01_universal_gtoc_gtla_protocol.md)
+
+## Canonical goal bindings
+
+| Goal | Sprint | Scope |
+|---|---|---|
+| GTOC-3 | [S02-002](sprint_s02_002.md) | Lift trigger is not a license; require preservation, non-destruction, budget, authority, and terminalizer evidence |
+
+## Candidate backlog
+* Current planned work is assigned to the owned sprint. New survivors require a host-admitted successor packet.
+
+## Sprint roster
+| Sprint | Goal | Status | Entry gate | Exit gate |
+|--------|------|--------|------------|-----------|
+| [SPRINT S02-001](sprint_s02_001.md) | Operator Manifest and Fixture Gauge | COMPLETED | SAGA-01 merged bounded receipts; user-directed construction | Closed registry and fixture/model-profile substitution receipts |
+| [SPRINT S02-002](sprint_s02_002.md) | GTOC-3 Lift Trigger and License | BLOCKED | S02-001 and GTOC-2 terminal receipts human-promoted | Every carrier change has a complete license or a typed refusal |
+
+## SAGA exit criteria
+
+SAGA-02 completes when the bounded registry and admitted gauges preserve contracts, permissions, witnesses, and ceilings, and GTOC-3 machine-checks that every carrier change has a complete lift license or typed refusal.
+
+## Surviving obstructions
+
+* SAGA-01 construction is complete; no authority promotion is inferred.
+* The S02-001 manifest and gauge schemas are closed only for the canonical JSON echo carrier.
+* Broader Python conductor and provider inventories remain unreconciled.
+* Cross-gauge conformance exists only for deterministic fixture and canned Codex model-profile replay.
+
+* GTOC-3/S02-002 remains blocked until this sprint is merged and the host begins it separately.
+## Prior work and import ledger
+* Conductor Design Spec §8.
+* `gtoc-canonicalization-remaining-work.md` GTOC-3.
+
+## S02-001 baseline - 2026-07-18
+
+`S02-001` establishes the first bounded registry baseline:
+
+* Canonical conductor manifest, binding, capability, permission, witness, typed I/O, and runtime-profile types resolve to `omega_contracts`.
+* `omega_state` imports those types and owns bounded execution, independent reconstruction, replay, and terminal receipts.
+* One deterministic fixture gauge and one canned Codex model-profile fixture replay preserve the same semantic output, permissions, write surface, evidence ceiling, witness set, and literal `AuthorityEffect::None`.
+* Missing capabilities route to survivor `OperatorNeeded` under terminal `OpenObstruction`; expansion requires `LiftLicenseNeeded`; an unavailable adapter routes to `InfrastructureFailure`.
+* The frozen packet, observer, source manifest, identities, budgets, exact writes, hostile matrix, and no-network/no-credential boundary are machine-checked.
+
+This baseline is not provider activation or general gauge interchangeability. SAGA-02 remains `ACTIVE` because `S02-002` must separately implement and review GTOC-3 lift-trigger and license completeness. No gate is enabled by this lifecycle transition.

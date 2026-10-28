@@ -136,8 +136,8 @@ pub fn reduce_multiplicative_dependence(
     eigenvalues: &[Rational],
     multiplicities: Option<&[usize]>,
 ) -> Result<MultiplicativeReductionResult, String> {
-    use omega_number_theory::integer_factorization::FactorizationBudget;
-    use omega_quantum_physics::exact_entropy::RationalSpectrum;
+    use engine_number_theory::integer_factorization::FactorizationBudget;
+    use engine_quantum_physics::exact_entropy::RationalSpectrum;
     let mults = multiplicities
         .map(<[usize]>::to_vec)
         .unwrap_or_else(|| vec![1; eigenvalues.len()]);
@@ -185,7 +185,7 @@ pub fn reduce_multiplicative_dependence(
         is_pure,
     );
     let evidence_sha =
-        omega_kernel::digest::Digest::of_bytes(payload.as_bytes()).as_str()[7..].to_owned();
+        engine_kernel::digest::Digest::of_bytes(payload.as_bytes()).as_str()[7..].to_owned();
     let anchor = if is_pure {
         "Pure State Trivial (0 log 0 = 0, 1 log 1 = 0)"
     } else if prime_basis.len() == 1 {
@@ -220,7 +220,7 @@ pub fn exact_power_trace(
     if mults.len() != eigenvalues.len() {
         return Err("SPECTRUM_MULTIPLICITY_LENGTH_MISMATCH".into());
     }
-    omega_quantum_physics::exact_entropy::RationalSpectrum::try_new(
+    engine_quantum_physics::exact_entropy::RationalSpectrum::try_new(
         eigenvalues.iter().cloned().zip(mults).collect(),
     )
     .and_then(|spectrum| spectrum.power_trace(order, 4096))
@@ -236,7 +236,7 @@ pub fn rational_log_bounds(p: u64, precision_bits: usize) -> Result<(Rational, R
         return Err("POSITIVE_LOG_PRECISION_REQUIRED".into());
     }
     let interval =
-        omega_kernel::elementary::ln_enclosure(&Rational::from_integer(BigInt::from(p)), bits)
+        engine_kernel::elementary::ln_enclosure(&Rational::from_integer(BigInt::from(p)), bits)
             .map_err(|error| error.to_string())?;
     Ok((interval.lo().clone(), interval.hi().clone()))
 }
@@ -255,7 +255,7 @@ pub fn approximate_entropy_rational_bounds(
         return Err("ENTROPY_REDUCTION_REPLAY_MISMATCH".into());
     }
     let bits = u32::try_from(precision_bits).map_err(|_| "ENTROPY_PRECISION_BUDGET")?;
-    let spectrum = omega_quantum_physics::exact_entropy::RationalSpectrum::try_new(
+    let spectrum = engine_quantum_physics::exact_entropy::RationalSpectrum::try_new(
         eigenvalues
             .into_iter()
             .zip(reduction.multiplicities.iter().copied())
@@ -264,7 +264,7 @@ pub fn approximate_entropy_rational_bounds(
     .map_err(|error| error.to_string())?;
     let interval = spectrum
         .log_reduction(
-            omega_number_theory::integer_factorization::FactorizationBudget {
+            engine_number_theory::integer_factorization::FactorizationBudget {
                 max_operations: 1_000_000,
             },
         )
@@ -277,7 +277,7 @@ pub fn verify_negative_control_vanishing_linear_form() -> BTreeMap<String, serde
     let args = vec![r_int(2), r_int(3), r_int(6)];
     let coeffs = vec![r_int(1), r_int(1), r_int(-1)];
 
-    use omega_number_theory::integer_factorization::{
+    use engine_number_theory::integer_factorization::{
         factor_positive_rational, FactorizationBudget,
     };
     let factors = args
@@ -526,7 +526,7 @@ pub fn generate_c750_b01_parity_receipt() -> Result<ParityReceipt, String> {
     let systems_json =
         serde_json::to_string(&systems).map_err(|e| format!("Serialization error: {}", e))?;
     let receipt_sha =
-        omega_kernel::digest::Digest::of_bytes(systems_json.as_bytes()).as_str()[7..].to_owned();
+        engine_kernel::digest::Digest::of_bytes(systems_json.as_bytes()).as_str()[7..].to_owned();
     let replay = (1..=8)
         .map(|index| {
             let id = format!("S{index}");

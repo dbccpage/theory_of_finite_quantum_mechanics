@@ -11,7 +11,7 @@ use crate::native::exact::d6_exact_curvature_cochain::{
     is_mutually_unbiased_triple_exact, ExactVec, BASIS_COUNT, COLUMN_COUNT, D,
 };
 use crate::native::exact::mub6_cover_run::CoverCertificate;
-use tfqm_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::cyclotomic::Cyc24;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize)]
 pub enum ResidualDefinition {
@@ -43,7 +43,7 @@ pub fn try_unitary_basis6(columns: &[ExactVec]) -> Result<UnitaryBasis6, BasisAd
     if columns.len() != D {
         return Err(BasisAdmissionError::ColumnCount { got: columns.len() });
     }
-    let one = Cyc24::rat(tfqm_number_theory::rational::ri(1));
+    let one = Cyc24::rat(engine_number_theory::rational::ri(1));
     let zero = Cyc24::zero();
     for i in 0..D {
         for j in 0..D {
@@ -61,7 +61,7 @@ pub fn try_unitary_basis6(columns: &[ExactVec]) -> Result<UnitaryBasis6, BasisAd
 
 pub fn basis_extension_residual(fixed: &[ExactVec], candidate: &[ExactVec]) -> Vec<Cyc24> {
     let target = Cyc24::rat(
-        tfqm_number_theory::rational::ri(1) / tfqm_number_theory::rational::ri(D as i64),
+        engine_number_theory::rational::ri(1) / engine_number_theory::rational::ri(D as i64),
     );
     let mut out = Vec::with_capacity(fixed.len() * candidate.len());
     for e in fixed {
@@ -151,7 +151,7 @@ pub fn standard_basis() -> Vec<ExactVec> {
     (0..D)
         .map(|j| {
             let mut v: ExactVec = std::array::from_fn(|_| Cyc24::zero());
-            v[j] = Cyc24::rat(tfqm_number_theory::rational::ri(1));
+            v[j] = Cyc24::rat(engine_number_theory::rational::ri(1));
             v
         })
         .collect()
@@ -409,7 +409,7 @@ impl Mub6OdpInstance {
 
 pub const T0_VECTOR_COVER_PATH: &str = concat!(
     env!("CARGO_MANIFEST_DIR"),
-    "/../tests/mub/artifacts/gauge_fixed_5_torus_cover_certificate_20260620.json"
+    "/../../tests/mub/artifacts/gauge_fixed_5_torus_cover_certificate_20260620.json"
 );
 
 pub const T0_COVER_REGION: &str = "gauge_fixed_5_torus";
@@ -483,8 +483,8 @@ mod tests {
     use crate::native::exact::d6_exact_curvature_cochain::{canonical_triple_exact, COLUMN_COUNT};
 
     fn inv_sqrt6() -> Cyc24 {
-        let one = Cyc24::rat(tfqm_number_theory::rational::ri(1));
-        let two = Cyc24::rat(tfqm_number_theory::rational::ri(2));
+        let one = Cyc24::rat(engine_number_theory::rational::ri(1));
+        let two = Cyc24::rat(engine_number_theory::rational::ri(2));
         let sqrt3 = two.mul(&Cyc24::zeta24(8)).add(&one).mul(&Cyc24::zeta24(18));
         let sqrt2 = Cyc24::zeta24(3).add(&Cyc24::zeta24(-3));
         sqrt2.mul(&sqrt3).inv()

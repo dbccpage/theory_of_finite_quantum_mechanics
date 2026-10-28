@@ -4,7 +4,7 @@ use num_traits::{One, Zero};
 pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; not PROVED; not GlobalGreen; conditional Born/Gleason face; assumptions exposed.";
 
-pub type Q = omega_number_theory::rational::Rational;
+pub type Q = engine_number_theory::rational::Rational;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GleasonAssumptions {
@@ -118,8 +118,8 @@ pub const OPEN_RESIDUAL_DIM2: &str =
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_number_theory::rational::rq;
-    use omega_quantum_physics::busch_effects::{
+    use engine_number_theory::rational::rq;
+    use engine_quantum_physics::busch_effects::{
         available_born_routes, dim_two_forces_busch_route, BornSelectionRoute,
     };
 

@@ -1,0 +1,29 @@
+pub mod binding;
+pub mod contract_images;
+pub mod contracts_contract;
+pub mod descriptors;
+pub mod enforcement;
+pub mod kinds;
+pub mod registry;
+pub mod runtime;
+pub mod schema;
+pub mod sealed;
+pub mod traits;
+pub mod validate;
+pub mod validation;
+pub mod witness;
+pub use binding::*;
+pub use contracts_contract::*;
+pub use enforcement::*;
+pub use kinds::*;
+pub use runtime::*;
+pub use schema::*;
+pub use sealed::Sealed;
+pub use validate::*;
+pub use witness::*;
+
+// ── Migrated from obstruction_calculus (Wave 6) ─────────────────────────────
+pub mod no_authority;
+
+#[cfg(test)]
+mod contract_property_witnesses;

@@ -5,8 +5,8 @@ use num_traits::{Signed, Zero};
 use super::mub6_continuous_chaining::{build_multi_anchor_covering, MultiAnchorCover};
 use super::mub6_continuous_chaining::{t_max_multi_anchor, t_min_multi_anchor};
 use crate::native::exact::mub6_constants::delta_certified;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::rq;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::rq;
 
 pub const NUM_ANCHORS_CANONICAL: usize = 250;
 pub const MISSING_EVIDENCE: &str = "MissingProofObligation: parameter-bound Szollosi matrices, verified derivative enclosures, and common-gauge continuation evidence are required";

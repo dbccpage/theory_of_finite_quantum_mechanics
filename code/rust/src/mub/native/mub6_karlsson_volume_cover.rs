@@ -12,8 +12,8 @@ use crate::native::exact::mub6_basis_cover::{
 use crate::native::exact::mub6_cyclotomic_enclosure::{cyc24_real_imag_enclosure, SqrtBox};
 use crate::native::exact::mub6_f6_chart::f6_family_columns;
 use crate::native::exact::mub6_interval_cover::VectorBox;
-use omega_kernel::interval::Interval;
-use tfqm_number_theory::rational::ri;
+use engine_kernel::interval::Interval;
+use engine_number_theory::rational::ri;
 
 crate::fixture_set!(fixtures, "mub6_karlsson_volume_cover");
 

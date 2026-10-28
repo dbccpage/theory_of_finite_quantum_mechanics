@@ -2,7 +2,7 @@ use crate::types::AuthorityEffect;
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use num_rational::BigRational;
 use num_traits::{One, Zero};
-use tfqm_functional::projection_leakage::{
+use engine_functional::projection_leakage::{
     evaluate_projection_leakage, ProjectionLeakage, ProjectionLeakageError,
 };
 

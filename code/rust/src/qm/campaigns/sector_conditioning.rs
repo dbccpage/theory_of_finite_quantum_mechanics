@@ -1,7 +1,7 @@
 use super::residual_density::ResidualLedger;
 use num_traits::{One, Signed, Zero};
-use omega_number_theory::rational::Rational;
-use omega_quantum_physics::sector_conditioning::{self, ConditioningError};
+use engine_number_theory::rational::Rational;
+use engine_quantum_physics::sector_conditioning::{self, ConditioningError};
 
 pub fn sector_probability(
     ledger: &ResidualLedger,

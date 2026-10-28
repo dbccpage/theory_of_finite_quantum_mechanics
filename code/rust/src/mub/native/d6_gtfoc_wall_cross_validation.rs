@@ -1,6 +1,6 @@
 
 use linear_algebra::linear_algebra::complex_matrix::{CVector, C64};
-use tfqm_functional::{
+use engine_functional::{
     MubFeasibilityWallFunctional, MubFeasibilityWallTargetComparison, MubFeasibilityWallValue,
 };
 use serde::Serialize;
@@ -65,7 +65,7 @@ pub fn run_d6_gtfoc_wall_cross_validation() -> D6GtfocWallCrossValidation {
 
     D6GtfocWallCrossValidation {
         target: "d=6 canonical-triple {Z2⊗Z3, X2⊗Q0, Y2⊗Q1} fourth-vector wall",
-        method: "Omega-native f64 unit-sphere optimizer over the rebuilt triple plus tfqm_functional normalized feasibility functional (target 1/6)",
+        method: "Omega-native f64 unit-sphere optimizer over the rebuilt triple plus engine_functional normalized feasibility functional (target 1/6)",
         wall_value_native,
         wall_value_certified: w,
         wall_abs_error: wall_comparison.wall_abs_error,
@@ -278,7 +278,7 @@ mod tests {
 
     #[test]
     fn d6_target_comparison_is_f64_diagnostic_and_mints_nothing() {
-        use tfqm_functional::MubFeasibilityWallEvidenceKind;
+        use engine_functional::MubFeasibilityWallEvidenceKind;
         let report = run_d6_gtfoc_wall_cross_validation();
         let columns = canonical_d6_columns();
         let maximizer = optimize_wall_candidate(&columns);

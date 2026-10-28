@@ -1,16 +1,16 @@
 
 use linear_algebra::linear_algebra::image_kernel::ExactLinearAlgebraError;
 use tfqm_finite_probability::error::ClassicalShadowError;
-use tfqm_functional::gamma2::ExactGamma2Error;
-use tfqm_functional::l1_seminorm::L1SeminormError;
+use engine_functional::gamma2::ExactGamma2Error;
+use engine_functional::l1_seminorm::L1SeminormError;
 use tfqm_holonomy::HolonomyError;
-use omega_homology::errors::HomologicalError;
-use omega_homology::finite_directed_graph::NamedEdgeResolutionError;
-use omega_policy::trichotomy::TrichotomyRefusal;
-use omega_quantum_physics::exact_channel::ExactChannelError;
-use omega_quantum_physics::exact_hermitian::ExactHermitianError;
-use omega_quantum_physics::finite_chsh_correlations::CorrelationError;
-use omega_solvers::solver_lp_phi1_quotient::Phi1SolveError;
+use engine_homology::errors::HomologicalError;
+use engine_homology::finite_directed_graph::NamedEdgeResolutionError;
+use engine_policy::trichotomy::TrichotomyRefusal;
+use engine_quantum_physics::exact_channel::ExactChannelError;
+use engine_quantum_physics::exact_hermitian::ExactHermitianError;
+use engine_quantum_physics::finite_chsh_correlations::CorrelationError;
+use engine_solvers::solver_lp_phi1_quotient::Phi1SolveError;
 use thiserror::Error;
 
 use crate::empirical_adapter::AdapterRefusal;

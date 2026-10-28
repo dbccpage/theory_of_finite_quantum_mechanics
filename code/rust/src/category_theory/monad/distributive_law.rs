@@ -5,7 +5,7 @@
 //! Shell holds monad refs and a transformation label; law discharge is external.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a labeled distributive law between two monads.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

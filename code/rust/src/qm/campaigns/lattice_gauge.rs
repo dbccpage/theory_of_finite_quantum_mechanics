@@ -1,11 +1,11 @@
 use crate::qm::bridge::matrix as mx;
 use num_bigint::BigInt;
 use num_traits::{Signed, Zero};
-use omega_homology::f2_cohomology::F2ChainComplex;
-use omega_lie_theory::pauli_symplectic::{pauli_word, Pauli};
-use omega_number_theory::cyclotomic::GaussianRat;
-use omega_number_theory::gf2::{F2Matrix, F2Vector};
-use omega_quantum_physics::lattice_gauge_manybody_benchmark::Z2LatticeGauge;
+use engine_homology::f2_cohomology::F2ChainComplex;
+use engine_lie_theory::pauli_symplectic::{pauli_word, Pauli};
+use engine_number_theory::cyclotomic::GaussianRat;
+use engine_number_theory::gf2::{F2Matrix, F2Vector};
+use engine_quantum_physics::lattice_gauge_manybody_benchmark::Z2LatticeGauge;
 use serde_json::json;
 
 fn tfim_root(j: i64, h: i64) -> (BigInt, BigInt, bool, String) {

@@ -601,14 +601,14 @@ impl Phi1Functional {
 
 impl Phi1Functional {
     pub fn bounded_representative_mass(
-        weights: &[omega_kernel::bounded_rational::StackRational],
-        reading: &[omega_kernel::bounded_rational::StackRational],
-        exact_part: &[omega_kernel::bounded_rational::StackRational],
+        weights: &[engine_kernel::bounded_rational::StackRational],
+        reading: &[engine_kernel::bounded_rational::StackRational],
+        exact_part: &[engine_kernel::bounded_rational::StackRational],
     ) -> Result<
-        omega_kernel::bounded_rational::StackRational,
-        omega_kernel::bounded_rational::BoundedRationalError,
+        engine_kernel::bounded_rational::StackRational,
+        engine_kernel::bounded_rational::BoundedRationalError,
     > {
-        use omega_kernel::bounded_rational::{BoundedRationalError, StackRational};
+        use engine_kernel::bounded_rational::{BoundedRationalError, StackRational};
         if weights.len() != reading.len() || reading.len() != exact_part.len() {
             return Err(BoundedRationalError::Overflow);
         }

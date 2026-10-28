@@ -6,7 +6,7 @@ use crate::native::exact::d6_exact_curvature_cochain::D;
 use crate::native::exact::mub6_constants::{
     base_gap, certified_margin, delta_certified, delta_crit, lipschitz_bound,
 };
-use tfqm_number_theory::rational::rq;
+use engine_number_theory::rational::rq;
 
 pub const AMBIENT_DIM: usize = D;
 

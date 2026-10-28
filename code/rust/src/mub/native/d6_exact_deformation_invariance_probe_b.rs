@@ -13,8 +13,8 @@ use crate::native::exact::d6_exact_deformation_invariance_probe::{
 use crate::native::exact::d6_exact_lift_repair::solve_exact;
 use crate::native::exact::d6_exact_maurer_cartan::second_order_obstruction;
 use crate::native::exact::d6_exact_tangent_obstruction::{curvature_jacobian, mat_vec};
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 fn numeric_complex(z: &Cyc24) -> (f64, f64) {
     let mut re = 0.0f64;

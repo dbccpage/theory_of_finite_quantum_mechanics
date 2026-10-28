@@ -1,7 +1,7 @@
 //! cone / cocone shells for omega_category_theory.
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Add shape location while preserving every other typed failure unchanged.

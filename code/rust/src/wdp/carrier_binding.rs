@@ -3,10 +3,10 @@ use linear_algebra::backend::basic_matrix::BasicMatrix;
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::Zero;
-use omega_homology::carrier::Carrier;
-use omega_homology::carrier_manifest::CarrierManifest;
-use omega_homology::cochain_complex::TheoremProvenance;
-use omega_homology::errors::HomologicalError;
+use engine_homology::carrier::Carrier;
+use engine_homology::carrier_manifest::CarrierManifest;
+use engine_homology::cochain_complex::TheoremProvenance;
+use engine_homology::errors::HomologicalError;
 
 use crate::solver_of_solvers::{d1_rows_for_binding, FiniteCarrier2};
 

@@ -7,12 +7,12 @@ use num_traits::{One, Zero};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 
-use omega_solvers::solver_flow_network_simplex::NetworkSimplexError;
+use engine_solvers::solver_flow_network_simplex::NetworkSimplexError;
 
 use crate::native::exact::mub6_constants::{base_gap, certified_margin, delta_certified};
 use crate::native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
-use tfqm_number_theory::rational::rq;
-use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge};
+use engine_number_theory::rational::rq;
+use engine_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge};
 
 pub const NUM_REGIONAL_COMPONENTS: usize = 6;
 

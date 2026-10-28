@@ -69,8 +69,8 @@ pub struct Block07Report {
     pub cabello_18_evaluation: CabelloReport,
 }
 
-use omega_quantum_physics::kochen_specker::{self, CABELLO_9_CONTEXTS};
-use omega_solvers::solver_sat_dpll::{BooleanError, BooleanOutcome, BooleanProblem};
+use engine_quantum_physics::kochen_specker::{self, CABELLO_9_CONTEXTS};
+use engine_solvers::solver_sat_dpll::{BooleanError, BooleanOutcome, BooleanProblem};
 
 pub fn solve_ks_coloring(
     n: usize,
@@ -143,12 +143,12 @@ pub fn evaluate_conductor_12_search(ray_bound: usize) -> Result<Conductor12Repor
 pub fn evaluate_conductor_24_search() -> Conductor24Report {
     Conductor24Report {
         conductor: 24,
-        contains_sqrt2: omega_number_theory::cyclotomic_field::sqrt_of_integer(
+        contains_sqrt2: engine_number_theory::cyclotomic_field::sqrt_of_integer(
             24,
             &num_bigint::BigInt::from(2),
         )
         .is_ok(),
-        contains_sqrt3: omega_number_theory::cyclotomic_field::sqrt_of_integer(
+        contains_sqrt3: engine_number_theory::cyclotomic_field::sqrt_of_integer(
             24,
             &num_bigint::BigInt::from(3),
         )

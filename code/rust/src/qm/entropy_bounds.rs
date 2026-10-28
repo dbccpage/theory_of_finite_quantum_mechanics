@@ -4,8 +4,8 @@ use crate::linear_algebra::matrix as mx;
 use num_bigint::BigInt;
 use num_integer::Integer;
 use num_traits::Zero;
-use omega_number_theory::cyclotomic_integer::CyclotomicInteger as C;
-use omega_number_theory::rational::{ri, rq, Rational as Q};
+use engine_number_theory::cyclotomic_integer::CyclotomicInteger as C;
+use engine_number_theory::rational::{ri, rq, Rational as Q};
 use serde_json::{json, Value};
 pub fn newton_p_to_e(p: &[Q]) -> Result<Vec<Q>, String> {
     if p.len() > 64 {
@@ -50,7 +50,7 @@ pub fn thermal(r: &Q) -> Result<Vec<Q>, String> {
     if r <= &ri(0) {
         return Err("POSITIVE_GIBBS_RATIO_REQUIRED".into());
     }
-    omega_quantum_physics::majorization::thermal_ladder(r, 4, 4)
+    engine_quantum_physics::majorization::thermal_ladder(r, 4, 4)
         .map(|simplex| simplex.probs().to_vec())
         .map_err(|error| error.to_string())
 }
@@ -79,21 +79,21 @@ fn is_sorted_prob_vec(v: &[Q]) -> bool {
 
 fn build_rational_spectrum(
     v: &[Q],
-) -> Result<omega_quantum_physics::exact_entropy::RationalSpectrum, String> {
-    omega_quantum_physics::exact_entropy::RationalSpectrum::try_new(
+) -> Result<engine_quantum_physics::exact_entropy::RationalSpectrum, String> {
+    engine_quantum_physics::exact_entropy::RationalSpectrum::try_new(
         v.iter().cloned().map(|q| (q, 1)).collect(),
     )
     .map_err(|error| format!("INVALID_SPECTRUM:{error}"))
 }
 
 pub fn majorization(p: &[Q], q: &[Q]) -> Result<&'static str, String> {
-    use omega_quantum_physics::majorization::Majorization;
+    use engine_quantum_physics::majorization::Majorization;
     if !is_sorted_prob_vec(p) || !is_sorted_prob_vec(q) {
         return Err("INVALID_SORTED_PROBABILITY_VECTORS".into());
     }
     let first = build_rational_spectrum(p)?;
     let second = build_rational_spectrum(q)?;
-    let relation = omega_quantum_physics::majorization::compare_spectra(&first, &second)
+    let relation = engine_quantum_physics::majorization::compare_spectra(&first, &second)
         .map_err(|error| format!("INVALID_SPECTRUM:{error}"))?;
     Ok(match relation {
         Majorization::Equal => "EQUAL",
@@ -119,9 +119,9 @@ pub fn mobius(n: u64) -> Result<i64, String> {
     if n == 0 || n > 1000000 {
         return Err("INVALID_MOBIUS_BOUND".into());
     }
-    let f = omega_number_theory::integer_factorization::factor_natural(
+    let f = engine_number_theory::integer_factorization::factor_natural(
         &n.into(),
-        omega_number_theory::integer_factorization::FactorizationBudget {
+        engine_number_theory::integer_factorization::FactorizationBudget {
             max_operations: 1_000_000,
         },
     )
@@ -204,9 +204,9 @@ fn compute_conductor_semigroup(input: &Value) -> Result<(usize, Vec<usize>), Str
     if conductor == 0 {
         return Err("POSITIVE_CONDUCTOR_REQUIRED".into());
     }
-    let factors = omega_number_theory::integer_factorization::factor_natural(
+    let factors = engine_number_theory::integer_factorization::factor_natural(
         &conductor.into(),
-        omega_number_theory::integer_factorization::FactorizationBudget {
+        engine_number_theory::integer_factorization::FactorizationBudget {
             max_operations: 1_000_000,
         },
     )

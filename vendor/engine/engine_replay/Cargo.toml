@@ -1,0 +1,50 @@
+[package]
+autotests = false
+name = "engine_replay"
+version.workspace = true
+edition = "2021"
+description = "Traces, witnesses, and replay ledger for the omega_engine workspace"
+authors = ["Engine contributors"]
+license.workspace = true
+
+[dependencies]
+engine_functional = { path = "../engine_functional" }
+linear_algebra = { path = "../linear_algebra" }
+engine_types = { path = "../engine_types" }
+blake3 = { version = "1.8", features = ["serde"] }
+num-bigint = { version = "0.4", features = ["serde"] }
+num-rational = { version = "0.4", features = ["serde"] }
+num-traits = "0.2"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"
+thiserror = "2"
+
+[dev-dependencies]
+num-bigint = { version = "0.4", features = ["serde"] }
+num-rational = { version = "0.4", features = ["serde"] }
+num-traits = "0.2"
+serde_json = "1.0"
+tempfile = "3"
+
+# Shared integration-test targets. Sources and fixtures live in `../tests/engine_replay`.
+
+[[test]]
+name = "dual_trace_memory"
+path = "../tests/engine_replay/dual_trace_memory.rs"
+
+[[test]]
+name = "retention_security_test"
+path = "../tests/engine_replay/retention_security_test.rs"
+
+[[test]]
+name = "run_folder_v1"
+path = "../tests/engine_replay/run_folder_v1.rs"
+
+[[test]]
+name = "trace_writer_roundtrip"
+path = "../tests/engine_replay/trace_writer_roundtrip.rs"
+
+[[test]]
+name = "t3_exact_admission"
+path = "../tests/engine_replay/t3_exact_admission.rs"

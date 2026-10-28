@@ -19,7 +19,7 @@ use crate::native::exact::mub6_global_gluing::{
 use crate::native::exact::mub6_grand_synthesis::{
     canonical_global_partition_tree, GrandSynthesisChart, SynthesisLeafCell,
 };
-use tfqm_number_theory::rational::rq;
+use engine_number_theory::rational::rq;
 
 crate::fixture_set!(fixtures, "mub6_manifold_integration");
 

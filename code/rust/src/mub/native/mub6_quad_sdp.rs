@@ -4,8 +4,8 @@ use num_traits::{One, Zero};
 use serde::{Deserialize, Serialize};
 
 use crate::native::exact::d6_exact_curvature_cochain::{canonical_triple_exact, inner};
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 pub use crate::native::exact::mub6_field::{inv_sqrt6, omega3_pow, sqrt6};
 pub const DIM_HILBERT: usize = 6;

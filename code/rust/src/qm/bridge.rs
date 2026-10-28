@@ -123,12 +123,12 @@ fn binary<F: Field + ExactRing>(
         .and_then(Local::into_provider)
         .map_err(provider_error)
 }
-impl From<LocalError> for omega_lie_theory::lorentz::LorentzError {
+impl From<LocalError> for engine_lie_theory::lorentz::LorentzError {
     fn from(error: LocalError) -> Self {
         Self::Matrix(provider_error(error))
     }
 }
-impl From<LocalError> for omega_general_relativity::simplicial_dynamics::SimplicialDynamicsError {
+impl From<LocalError> for engine_general_relativity::simplicial_dynamics::SimplicialDynamicsError {
     fn from(error: LocalError) -> Self {
         Self::Matrix(provider_error(error))
     }

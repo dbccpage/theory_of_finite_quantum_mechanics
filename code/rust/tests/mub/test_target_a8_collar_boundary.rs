@@ -14,7 +14,7 @@ use tfqm_mub::native::exact::mub6_collar_boundary::{
 };
 use tfqm_mub::native::exact::mub6_constants::{base_gap, delta_certified, lipschitz_bound};
 use tfqm_mub::native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
-use omega_number_theory::rational::rq;
+use engine_number_theory::rational::rq;
 
 #[test]
 fn test_canonical_constants_exact_values() {

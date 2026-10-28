@@ -1,4 +1,4 @@
-extern crate self as omega_combinatorics;
+extern crate self as tfqm_combinatorics;
 
 pub const PROVENANCE: &str = "Origin: code/rust/src/combinatorics/lib.rs\nClaim: urn:omega:fqm:combinatorics:crate-surface:v1\nAuthorityEffect: None\nScope Fence: the crate root does not classify MUBs outside the certified prime-ray construction and does not inherit an authority grant.\nMutation-Kills: 1 non-equivalent source mutant, executed by cargo test -p tfqm_combinatorics --lib.\n";
 

@@ -8,7 +8,7 @@ use tfqm_mub::native::campaign::mub6_dita_seed_cover::{
     neighborhood_chunk_filename, neighborhood_delta_1_1000, write_cover_certificate_artifact,
 };
 use tfqm_mub::native::exact::mub6_cover_run::CoverCertificate;
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::rational::ri;
 
 struct DitaCli {
     dx: i64,
@@ -165,7 +165,7 @@ fn run_merge_mode(cli: &DitaCli) {
             println!("{}", path.display());
             let manifest_fname = format!("{fname}.chunks.sha256");
             let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-                .join("../tests/mub/artifacts");
+                .join("../../tests/mub/artifacts");
             let manifest_path = dir.join(manifest_fname);
             let mut manifest_content = String::new();
             for (idx, sha) in &checksums {

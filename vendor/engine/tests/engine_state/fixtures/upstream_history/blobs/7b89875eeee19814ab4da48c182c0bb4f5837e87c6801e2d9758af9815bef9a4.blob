@@ -1,0 +1,133 @@
+"""Lease records + hard path checks. Repo-relative, canonicalized, fail closed.
+
+Canonicalization here is STRING-LEVEL only (separator normalization, casefold,
+dot-segment rejection): symlink/realpath resolution is deferred to the Phase 1
+checkpoints (#3 post-diff, #4 pre-commit), where real worktree files exist to
+resolve against. The drive-letter guard covers the first segment only; ADS and
+case-collision tricks are likewise Phase 1 realpath territory.
+"""
+from __future__ import annotations
+
+import posixpath
+from dataclasses import dataclass
+from fnmatch import fnmatchcase
+
+from .protocol import ProtocolError
+
+
+@dataclass(frozen=True)
+class Lease:
+    lease_id: str
+    owner: str
+    mode: str
+    canonical_paths: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class Violation:
+    lease_id: str
+    owner: str
+    path: str
+    pattern: str
+
+
+def _canon(path: str) -> str:
+    """Normalize a repo-relative path: forward slashes, casefold, no traversal."""
+    p = path.replace("\\", "/").strip()
+    if not p or p.startswith("/") or ":" in p.split("/", 1)[0]:
+        raise ProtocolError(f"lease check: non-repo-relative path {path!r} (fail closed)")
+    if ".." in p.split("/"):
+        # Reject any raw ".." segment before normalizing — posixpath.normpath
+        # silently absorbs "docs/../x" into "x", which would defeat this
+        # check if applied to the already-collapsed string.
+        raise ProtocolError(f"lease check: traversal in {path!r} (fail closed)")
+    norm = posixpath.normpath(p)
+    return norm.casefold()
+
+
+def _canon_pattern(pattern: str) -> str:
+    """Validate + casefold one lease pattern; reject anything _match cannot honor."""
+    p = pattern.replace("\\", "/").strip()
+    if p.endswith("/"):
+        p = p[:-1]  # tolerate one trailing slash: "docs/specs/" == "docs/specs"
+    body, suffix = (p[:-3], "/**") if p.endswith("/**") else (p, "")
+    if not body:
+        raise ProtocolError(f"lease pattern: empty pattern {pattern!r} (fail closed)")
+    if body.startswith("/"):  # absolute; also catches UNC "//server/share"
+        raise ProtocolError(f"lease pattern: non-repo-relative {pattern!r} (fail closed)")
+    segments = body.split("/")
+    if "" in segments:
+        # Canonical paths never contain "//" (normpath collapses it), so a
+        # pattern with an empty segment can match nothing — silent fail-open.
+        raise ProtocolError(f"lease pattern: empty segment in {pattern!r} (fail closed)")
+    if ":" in segments[0]:
+        raise ProtocolError(f"lease pattern: drive prefix in {pattern!r} (fail closed)")
+    if "." in segments or ".." in segments:
+        raise ProtocolError(f"lease pattern: dot segment in {pattern!r} (fail closed)")
+    if "**" in body:
+        # _match implements only the trailing-"/**" subtree form; a bare "**"
+        # or mid-pattern "a/**/b" would silently mis-match — reject instead.
+        raise ProtocolError(
+            f"lease pattern: '**' allowed only as trailing '/**' in {pattern!r} (fail closed)")
+    return (body + suffix).casefold()
+
+
+def _match(path: str, pattern: str) -> bool:
+    """Trailing '/**' = subtree prefix match; otherwise fnmatchcase (whose '*' crosses '/').
+
+    fnmatchcase, not fnmatch: fnmatch applies platform case/sep normalization
+    (os.path.normcase), which would make matching OS-dependent; _canon has
+    already casefolded and slash-normalized both sides deterministically."""
+    if pattern.endswith("/**"):
+        prefix = pattern[:-3].rstrip("/")
+        return path == prefix or path.startswith(prefix + "/")
+    return fnmatchcase(path, pattern)
+
+
+def active(events: list[dict]) -> list[Lease]:
+    """Fold journal events into the live lease set; last LeaseIssued wins per lease_id."""
+    live: dict[str, Lease] = {}
+    for e in events:
+        if e["type"] == "LeaseIssued":
+            pl = e["payload"]
+            lease_id = pl.get("lease_id")
+            owner = pl.get("owner")
+            paths = pl.get("canonical_paths")
+            if not isinstance(lease_id, str) or not isinstance(owner, str):
+                raise ProtocolError(
+                    f"lease payload: LeaseIssued requires str lease_id and str owner, "
+                    f"got {pl!r} (fail closed)")
+            if (not isinstance(paths, list) or not paths
+                    or not all(isinstance(x, str) for x in paths)):
+                raise ProtocolError(
+                    f"lease payload: LeaseIssued requires non-empty list[str] "
+                    f"canonical_paths, got {pl!r} (fail closed)")
+            live[lease_id] = Lease(
+                lease_id=lease_id, owner=owner,
+                mode=pl.get("mode", "write"),
+                canonical_paths=tuple(_canon_pattern(x) for x in paths),
+            )
+        elif e["type"] == "LeaseExpired":
+            lease_id = e["payload"].get("lease_id")
+            if not isinstance(lease_id, str):
+                raise ProtocolError(
+                    f"lease payload: LeaseExpired requires str lease_id, "
+                    f"got {e['payload']!r} (fail closed)")
+            live.pop(lease_id, None)
+    return list(live.values())
+
+
+def check(paths: list[str], active_leases: list[Lease]) -> list[Violation]:
+    """Return every (path, lease) collision. Raise on uncheckable paths.
+
+    Lease mode is not yet consulted — every active lease blocks; Phase 0
+    issues write leases only.
+    """
+    violations: list[Violation] = []
+    for raw in paths:
+        cp = _canon(raw)
+        for lease in active_leases:
+            for pattern in lease.canonical_paths:
+                if _match(cp, pattern):
+                    violations.append(Violation(lease.lease_id, lease.owner, raw, pattern))
+    return violations

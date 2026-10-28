@@ -4,7 +4,7 @@ use num_bigint::BigInt;
 use num_traits::{One, Signed, ToPrimitive, Zero};
 use serde::{Deserialize, Serialize};
 
-use omega_number_theory::rational::{ri, rq, Rational};
+use engine_number_theory::rational::{ri, rq, Rational};
 
 pub const MAX_SERIES_TERMS: usize = 256;
 
@@ -659,7 +659,7 @@ pub fn build_frozen_inventory() -> Result<Vec<GroupParameterRecord>, GroupParame
 mod tests {
     use super::*;
 
-    type Q5 = omega_number_theory::quadratic::Quadratic<5>;
+    type Q5 = engine_number_theory::quadratic::Quadratic<5>;
 
     fn parse_entry(text: &str) -> Q5 {
         if let Some(inner) = text.strip_prefix('(') {

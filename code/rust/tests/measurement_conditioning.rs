@@ -1,4 +1,4 @@
-use omega_number_theory::rational::{ri, rq};
+use engine_number_theory::rational::{ri, rq};
 use theory_of_finite_qm::campaigns::residual_density::ResidualLedger;
 use theory_of_finite_qm::campaigns::sector_conditioning::sector_probability;
 const PROVENANCE: &str = "Origin: code/rust/src/qm/campaigns/sector_conditioning.rs Claim: urn:fqm:sector-conditioning:half-mass-sector-probability AuthorityEffect: None";

@@ -4,7 +4,7 @@
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{One, Zero};
-use omega_kernel::resource_limits::OperationLimits;
+use engine_kernel::resource_limits::OperationLimits;
 use tfqm_holonomy::matrix::ScalarRef;
 use tfqm_holonomy::{
     CellComplex, Connection, ConnectionLaplacian, ExactMatrix, ExactScalar, GaussianRational,

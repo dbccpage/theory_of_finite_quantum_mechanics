@@ -2,9 +2,9 @@
 use std::collections::{BTreeMap, BTreeSet};
 
 use num_traits::{One, Signed, Zero};
-use tfqm_functional::phi1::VerifiedExactPhi1;
-use omega_solvers::solver_cohomology_quotient_phi1::certified_phi1;
-use omega_solvers::solver_lp_standard_form::{StandardLp, StandardLpError, StandardLpSolution};
+use engine_functional::phi1::VerifiedExactPhi1;
+use engine_solvers::solver_cohomology_quotient_phi1::certified_phi1;
+use engine_solvers::solver_lp_standard_form::{StandardLp, StandardLpError, StandardLpSolution};
 
 use super::lp::{
     bound_dense, dot, l1_distance_to_convex_hull, too_large, verify_l1_defect_receipt,

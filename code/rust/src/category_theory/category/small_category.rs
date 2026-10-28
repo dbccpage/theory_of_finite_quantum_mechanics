@@ -4,7 +4,7 @@
 //! A small category has a set (not a proper class) of morphisms.
 //! This shell records a finite presentation claim only.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 use super::category::{FiniteCategoryShell, MorphismTriple};

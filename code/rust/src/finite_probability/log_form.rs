@@ -5,8 +5,8 @@ use std::collections::BTreeMap;
 use num_bigint::{BigInt, BigUint};
 
 use num_traits::{One, Signed, ToPrimitive, Zero};
-use omega_kernel::elementary::{ln_enclosure, ElementaryError};
-use omega_kernel::interval::Interval;
+use engine_kernel::elementary::{ln_enclosure, ElementaryError};
+use engine_kernel::interval::Interval;
 use tfqm_number_theory::integer_factorization::{
     factor_natural, is_prime_u64, FactorizationBudget, FactorizationError,
 };

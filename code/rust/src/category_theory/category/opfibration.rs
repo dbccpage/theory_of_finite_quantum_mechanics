@@ -4,7 +4,7 @@
 //! An opfibration (cocartesian fibration) p: E → B has cocartesian lifts
 //! of morphisms out of each object of E.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort opfibration shell p: total → base.

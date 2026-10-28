@@ -1,4 +1,4 @@
-use omega_lie_theory::rotation::{self, RotationError};
+use engine_lie_theory::rotation::{self, RotationError};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 

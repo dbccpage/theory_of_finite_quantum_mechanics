@@ -2,8 +2,8 @@ use crate::qm::bridge::matrix as mx;
 use num_bigint::BigInt;
 use num_integer::Integer;
 use num_traits::One;
-use omega_lie_theory::lorentz::{self, LorentzError};
-use omega_number_theory::rational::ri;
+use engine_lie_theory::lorentz::{self, LorentzError};
+use engine_number_theory::rational::ri;
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct PowerSequenceItem {
@@ -47,7 +47,7 @@ pub fn boost_order_receipt(depth: usize) -> Result<BoostOrderReceipt, LorentzErr
     Ok(BoostOrderReceipt {
         rapidity_ratio: "2".into(),
         trace: mx::trace(&b)?.to_string(),
-        finite_order: omega_lie_theory::finite_order::finite_order(&b)?,
+        finite_order: engine_lie_theory::finite_order::finite_order(&b)?,
         powers: power_sequence(depth)?,
     })
 }

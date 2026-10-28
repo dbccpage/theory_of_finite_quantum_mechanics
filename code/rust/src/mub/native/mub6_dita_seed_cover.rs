@@ -21,10 +21,10 @@ use crate::native::campaign::mub6_f6_external_b3::{
     genuine_dita_y2q2_triple_seeds, product_y2_qa_columns,
 };
 use crate::native::exact::mub6_interval_cover::VectorBox;
-use omega_kernel::interval::Interval;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
-use tfqm_number_theory::rational::rq;
+use engine_kernel::interval::Interval;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
+use engine_number_theory::rational::rq;
 
 pub fn resolve_genuine_dita_qa(dx: i64, dy: i64) -> Result<i64, String> {
     if genuine_dita_y2q1_triple_seeds()
@@ -337,7 +337,7 @@ pub fn merge_on_disk_presplit6_neighborhood_chunks(
     dy: i64,
     delta_tag: &str,
 ) -> Result<CoverCertificate, String> {
-    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     let merged = dir.join(format!(
         "dita_seed_F6_{dx}_{dy}_neigh_delta_{delta_tag}_gauge_fixed_5_torus_presplit6_merged_complete.json"
     ));
@@ -465,7 +465,7 @@ pub fn write_cover_certificate_artifact(
     cert: &CoverCertificate,
     filename: &str,
 ) -> Result<std::path::PathBuf, String> {
-    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     std::fs::create_dir_all(&dir).map_err(|e| format!("mkdir artifacts: {e}"))?;
     let path = dir.join(filename);
     let json = serde_json::to_string_pretty(cert).map_err(|e| format!("serialize: {e}"))?;
@@ -624,7 +624,7 @@ pub fn merge_on_disk_presplit6_chunks_strict(
     dx: i64,
     dy: i64,
 ) -> Result<(CoverCertificate, Vec<(usize, String)>), String> {
-    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     let n_chunks = 64usize;
     let mut chunks = Vec::with_capacity(n_chunks);
     let mut checksums = Vec::with_capacity(n_chunks);
@@ -666,7 +666,7 @@ pub fn merge_on_disk_presplit6_neighborhood_chunks_strict(
     dy: i64,
     delta_tag: &str,
 ) -> Result<(CoverCertificate, Vec<(usize, String)>), String> {
-    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     let n_chunks = 64usize;
     let mut chunks = Vec::with_capacity(n_chunks);
     let mut checksums = Vec::with_capacity(n_chunks);
@@ -702,7 +702,7 @@ pub fn merge_on_disk_presplit6_neighborhood_chunks_strict(
 }
 
 pub fn merge_on_disk_presplit6_chunks(dx: i64, dy: i64) -> Result<CoverCertificate, String> {
-    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     let merged = dir.join(format!(
         "dita_seed_F6_{dx}_{dy}_gauge_fixed_5_torus_presplit6_merged_complete.json"
     ));

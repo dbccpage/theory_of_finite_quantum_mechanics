@@ -14,8 +14,8 @@ use tfqm_mub::native::exact::mub6_tao_chart::{
     NUM_SUBMATRICES_225, TAO_PHASES,
 };
 use tfqm_mub::native::exact::mub6_tao_confluence::TaoConfluenceReport;
-use omega_number_theory::cyclotomic::Cyc24;
-use omega_number_theory::rational::rq;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::rq;
 
 // ============================================================================
 // 1. STRICT ZERO-FLOAT DISCIPLINE AST AUDIT

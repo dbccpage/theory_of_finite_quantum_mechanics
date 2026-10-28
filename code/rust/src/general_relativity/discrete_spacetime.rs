@@ -1,6 +1,6 @@
 
-use omega_homology::errors::HomologicalError;
-use omega_homology::simplicial::{OrientedSimplex, Simplex, SimplicialComplex};
+use engine_homology::errors::HomologicalError;
+use engine_homology::simplicial::{OrientedSimplex, Simplex, SimplicialComplex};
 
 pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; not PROVED; not GlobalGreen; finite simplicial spacetime.";

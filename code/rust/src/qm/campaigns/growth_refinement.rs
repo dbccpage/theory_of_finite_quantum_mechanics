@@ -2,12 +2,12 @@
 #[cfg(test)]
 use num_integer::Integer;
 use num_traits::ToPrimitive;
-use omega_number_theory::cyclotomic_field::CyclotomicNumber;
+use engine_number_theory::cyclotomic_field::CyclotomicNumber;
 #[cfg(test)]
-use omega_number_theory::finite_field::is_prime;
-use omega_number_theory::rational::rq;
-use omega_quantum_physics::branch_finegraining::{BranchCounting, BranchCountingError};
-use omega_quantum_physics::growth_refinement::{growth_witness, w_state_carrier};
+use engine_number_theory::finite_field::is_prime;
+use engine_number_theory::rational::rq;
+use engine_quantum_physics::branch_finegraining::{BranchCounting, BranchCountingError};
+use engine_quantum_physics::growth_refinement::{growth_witness, w_state_carrier};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -85,7 +85,7 @@ pub fn evaluate_cglmp_conductors() -> CglmpReport {
     let cglmp = [(3, 24), (4, 240), (5, 120), (6, 120), (7, 840), (8, 480)];
     let mut all_lcm = 1;
     for &(_, c) in &cglmp {
-        all_lcm = omega_number_theory::rational::checked_lcm_usize(all_lcm, c)
+        all_lcm = engine_number_theory::rational::checked_lcm_usize(all_lcm, c)
             .expect("fixed finite inventory LCM");
     }
     CglmpReport {
@@ -110,7 +110,7 @@ pub fn evaluate_w_state_conductors() -> WStateReport {
             .to_usize()
             .expect("bounded conductor fits usize");
         w_conds.push((n, c));
-        all_lcm = omega_number_theory::rational::checked_lcm_usize(all_lcm, c)
+        all_lcm = engine_number_theory::rational::checked_lcm_usize(all_lcm, c)
             .expect("fixed finite inventory LCM");
     }
     WStateReport {

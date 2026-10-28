@@ -8,8 +8,8 @@ use crate::native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
 use crate::native::exact::mub6_global_gluing::{
     circulation_gamma_threshold, is_nerve2, ModuliChart5,
 };
-use tfqm_number_theory::rational::rq;
-use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge};
+use engine_number_theory::rational::rq;
+use engine_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge};
 
 pub const SCOPE: &str = "synthetic_edge_weights_no_geometric_or_curvature_bridge";
 pub const DIM_2D: usize = 2;

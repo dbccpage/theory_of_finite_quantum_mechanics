@@ -454,7 +454,7 @@ fn emit_frontier_report(mut report: FrontierReport) {
     println!("{json_final}");
 
     if let Ok(manifest) = std::env::var("CARGO_MANIFEST_DIR") {
-        let dir = std::path::PathBuf::from(manifest).join("../tests/mub/artifacts");
+        let dir = std::path::PathBuf::from(manifest).join("../../tests/mub/artifacts");
         let _ = std::fs::create_dir_all(&dir);
         let path = dir.join("mub6_frontier_report.json");
         if std::fs::write(&path, &json_final).is_ok() {

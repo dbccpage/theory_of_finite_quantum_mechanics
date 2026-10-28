@@ -1,0 +1,220 @@
+# SPRINT S03-002 - GTOC-7 Migration Packet Bundles
+
+**Parent SAGA:** [SAGA-03 - Task Admission and Heterogeneous Carrier Bundles](saga_03_task_admission_and_carriers.md)
+**LifecycleStatus:** BLOCKED
+**GtocTerminal:** NOT_EVALUATED
+**AuthorityStatus:** None
+**AuthorityEffect:** `None`
+**Canonical goal:** `GTOC-7`
+**Goal namespace:** `GTOC-7` is a canonical goal, not a SAGA identifier.
+**Frozen base:** UNFROZEN - exact Git commit required before READY or ACTIVE
+**Packet hash:** UNCOMPUTED - exact packet SHA-256 required before READY or ACTIVE
+**Observer hash:** UNCOMPUTED - required before admission
+**Attempt budget:** 1
+**Repair budget:** 2
+**Successor budget:** 1
+**Time budget:** 8 hours
+**Process budget:** 4 maximum
+**Token budget:** 200000 maximum
+
+## Sprint goal
+
+Define preservation and terminalization semantics for migration packet bundles across heterogeneous artifacts.
+
+## Carrier
+
+GTOC-7 statement, carrier-bundle and packet registries, migration fixtures, per-defect receipts, path policies, and terminalizer inputs.
+
+## Primitive Difference
+
+Bundle hashes can be checked, but no general semantics proves that migration preserves every member obligation and terminal route.
+
+## ZeroRel
+
+Bundle membership, artifact hashes, dependency edges, path policies, per-member terminals, and aggregate terminal agree.
+
+## Cochain realization
+
+**Realization:** Structural
+
+### C0
+
+Bundle members, artifacts, dependencies, policies, migrations, per-member receipts, and terminals.
+
+### C1
+
+Bindings among target declarations, source evidence, prerequisites, witnesses, and claimed status.
+
+### C2
+
+Cross-file obligations requiring compatible scope, authority, proof status, imports, and terminal classification.
+
+### d0
+
+Map each changed declaration to every binding, dependency, and evidence obligation it creates or modifies.
+
+### d1
+
+Reject local changes that leave a cross-file status, scope, authority, import, or terminal contradiction.
+
+### d1 o d0 witness
+
+Every admitted local change must preserve all declared composition obligations or emit a named residual.
+
+## Q1
+
+Local discrepancies modulo licensed repairs within the frozen carrier.
+
+## Phi1 before
+
+Members can be omitted, reordered, rewritten outside policy, or terminalized inconsistently after migration.
+
+## Gamma2 risks
+
+Bundle substitution, hidden member loss, path escape, mixed observer contexts, or aggregate terminal masking a failed member.
+
+## Frozen observer
+
+Admission freezes the repository base, visible artifacts, hidden classes, tools, exact write surface, evidence ceiling, and independent witness identities before stage 1.
+
+## Witness plan and evidence ceiling
+
+Producer performs only frozen work. Evaluation witness checks every target and nonclaim against the exact diff. Authority witness checks independence, ceilings, and non-promotion. Deterministic gates run bundle closure/hash checks, migration replay, member conservation, path-policy tests, and aggregate terminal verification. Human promotion is separate.
+
+Evidence is limited to finite explicit bundles with no wildcard members. No receipt establishes global GTOC/GTLA truth or authority outside the frozen carrier.
+
+## Licensed operators and lifts
+
+Compile and migrate only exact bundle members under host path guards; reject implicit imports or member discovery.
+
+Undeclared imports, theorem strengthening, carrier changes, or lifts route to `LiftLicenseNeeded`, `OracleNeeded`, or `Refused`.
+
+## Survivor routing
+
+Missing member -> `Invalid`; external import -> `OracleNeeded`; unsupported migration -> `LiftLicenseNeeded`.
+
+Only the host may instantiate a successor packet within the successor budget.
+
+## Story roster
+
+### STORY S03-002-01 - Define and verify migration bundle semantics
+
+**LifecycleStatus:** BLOCKED
+
+#### Goal
+
+Bind each migration step to exact member preservation and per-member terminal receipts.
+
+#### Primitive Difference
+
+Current packet admission does not prove semantic preservation across bundle migration.
+
+#### Carrier and exact write surface
+
+Read carrier: GTOC-7, bundle schemas, packet registry, migration fixtures, path policies, and receipts. Write surface: none while UNFROZEN; admission must enumerate every writable file and forbids directory or glob writes.
+
+#### Preconditions and dependencies
+
+S03-001 admission baseline and S06-003 GTOC-6 terminal receipts human-promoted. This is a later SAGA-03 re-entry sprint.
+
+#### Licensed operations
+
+Edit only admitted bundle schema, migration, registry, fixture, and receipt files.
+
+#### Acceptance criteria
+
+- The packet names exact target rows, files, hashes, budgets, and evidence ceilings.
+- Every pre-migration member maps to one post-migration member or typed refusal with no hidden additions.
+- Unsupported or deferred claims remain named residuals.
+
+#### Evidence receipts
+
+Producer diff receipt, source/hash manifest, target-status matrix, and deterministic gate outputs.
+
+#### Survivor route
+
+Unproved target -> `ProofObligation`; missing source -> `OracleNeeded`; unlicensed strengthening -> `LiftLicenseNeeded`.
+
+#### Nonclaims
+
+Does not certify arbitrary repository moves or external imports.
+
+### STORY S03-002-02 - Adversarial verification and terminalization
+
+**LifecycleStatus:** BLOCKED
+
+#### Goal
+
+Independently attack the proposed result, replay deterministic evidence, and emit one legal terminal proposal.
+
+#### Primitive Difference
+
+A producer-complete diff is not independently verified or promotable.
+
+#### Carrier and exact write surface
+
+Read-only frozen packet, exact diff, producer receipts, deterministic outputs, and prior-work ledger. Write surface: host receipt paths only as enumerated at admission.
+
+#### Preconditions and dependencies
+
+STORY S03-002-01 complete with immutable receipts.
+
+#### Licensed operations
+
+Replay, compare, reject, classify per defect, preserve nonclaims, and propose a terminal. No repair, promotion, or evidence-ceiling increase.
+
+#### Acceptance criteria
+
+- Evaluator identity differs from producer identity.
+- Independent replay confirms bundle closure, member conservation, path safety, and terminal agreement.
+- Residuals cannot disappear without receipts, and authority remains `None`.
+
+#### Evidence receipts
+
+Independent evaluation receipt, authority-witness attestation, replay receipt, terminal receipt, and human-decision placeholder.
+
+#### Survivor route
+
+Blocking defect -> bounded repair if budget remains; otherwise typed survivor, oracle, lift-license, refusal, invalid, or infrastructure terminal.
+
+#### Nonclaims
+
+Passing verification does not authorize the result; only separate human promotion may record a scoped `AuthorizedLocalResult`.
+
+## Story dependency graph
+
+```mermaid
+graph LR
+    A["S03-002-01: bounded producer work"] --> B["S03-002-02: independent verification"]
+```
+
+## Exact write surfaces
+
+None while UNFROZEN. Before READY, the host must record exact repository-relative files, receipt destinations, and path guards. Directory-wide and wildcard writes are invalid.
+
+## Deterministic verification
+
+- Verify base, packet, observer, source, import, and diff hashes.
+- Run bundle closure/hash checks, migration replay, member conservation, path-policy tests, and aggregate terminal verification.
+- Validate schema, dependency closure, status vocabulary, receipts, and nonclaim preservation.
+- Run only target-relevant Rust or Lean gates declared by the packet.
+
+## Terminal set
+
+`ExactRepair`, `StabilizedSurvivor`, `OpenObstruction`, `OracleNeeded`, `LiftLicenseNeeded`, `Refused`, `Invalid`, or `InfrastructureFailure`. Authority remains `None` before human promotion.
+
+## Exit criteria
+
+The finite admitted bundle domain is verified; unsupported migration forms remain typed survivors.
+
+## Completion evidence
+
+Not admitted. No frozen packet, producer receipt, independent evaluation receipt, terminal receipt, or human-promotion record exists.
+
+## Retrospective
+
+After terminalization, record Phi1, exposed Gamma2, failed gates, repeated residuals, evidence limits, and bounded improvement candidates. Improvements require separate host-admitted packets.
+
+## Prior work and import ledger
+
+`docs/gtoc-canonicalization-remaining-work.md` GTOC-7; packet registry; carrier-bundle schemas; migration and terminal receipts.

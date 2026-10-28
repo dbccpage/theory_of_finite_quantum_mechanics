@@ -3,7 +3,7 @@
 
 use linear_algebra::regge_exact::{cayley_menger, q_i64, q_ratio, signed_volume_4, So4};
 use num_rational::BigRational;
-use omega_general_relativity::exact_regge::{
+use tfqm_general_relativity::exact_regge::{
     all_hinges_simple, all_tetra_closures_vanish, closed_s4_cube_boundary, defect_bound_holds,
     flat_einstein_hilbert, freudenthal_refine_16, hinge_holonomy, orthogonal_pentatope,
     pythagorean_so4, pythagorean_so4_inverse, rational_regge_proxy, try_transition, ManifoldError,

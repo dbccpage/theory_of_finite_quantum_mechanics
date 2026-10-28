@@ -1,6 +1,6 @@
-use omega_lie_theory::heisenberg::FiniteHeisenberg;
+use engine_lie_theory::heisenberg::FiniteHeisenberg;
 #[cfg(test)]
-use omega_lie_theory::heisenberg::HeisenbergElement;
+use engine_lie_theory::heisenberg::HeisenbergElement;
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct CentralCharacterCensus {
@@ -150,7 +150,7 @@ mod tests {
     fn composite_census_is_rejected() {
         assert_eq!(
             FiniteHeisenberg::new(9),
-            Err(omega_lie_theory::heisenberg::FiniteHeisenbergError::Prime)
+            Err(engine_lie_theory::heisenberg::FiniteHeisenbergError::Prime)
         );
     }
 
@@ -158,7 +158,7 @@ mod tests {
     fn characteristic_two_is_rejected() {
         assert_eq!(
             FiniteHeisenberg::new(2),
-            Err(omega_lie_theory::heisenberg::FiniteHeisenbergError::Prime)
+            Err(engine_lie_theory::heisenberg::FiniteHeisenbergError::Prime)
         );
     }
 }

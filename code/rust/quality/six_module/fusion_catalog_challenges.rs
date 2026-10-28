@@ -2,9 +2,9 @@
 mod catalog_review {
     use super::*;
     use linear_algebra::scalars::{Ring, Semiring};
-    use omega_number_theory::cyclotomic::{Cyc12, Cyc5, GaussianRat};
-    use omega_number_theory::cyclotomic_field::Cyclotomic;
-    use omega_number_theory::rational::{rq, Rational};
+    use engine_number_theory::cyclotomic::{Cyc12, Cyc5, GaussianRat};
+    use engine_number_theory::cyclotomic_field::Cyclotomic;
+    use engine_number_theory::rational::{rq, Rational};
 
     fn divisor(a: usize, b: usize) -> usize {
         (1..=a.min(b))
@@ -144,7 +144,7 @@ mod catalog_review {
         );
         let f = ising.category().f_symbols().block([1, 1, 1, 1]).unwrap();
         let two = Cyclotomic::<16>::one().add(&Cyclotomic::<16>::one());
-        let inverse = s.mul(&omega_number_theory::scalar::inverse(&two).unwrap());
+        let inverse = s.mul(&engine_number_theory::scalar::inverse(&two).unwrap());
         assert_eq!(
             f.matrix().as_slice(),
             &[

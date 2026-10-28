@@ -134,7 +134,7 @@ impl ChainComplex {
     }
 }
 
-impl omega_homology::chain_map::FiniteChainComplexView<Q> for ChainComplex {
+impl engine_homology::chain_map::FiniteChainComplexView<Q> for ChainComplex {
     fn boundaries(&self) -> &[::linear_algebra::backend::basic_matrix::BasicMatrix<Q>] {
         &self.boundaries
     }

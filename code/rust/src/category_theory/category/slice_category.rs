@@ -3,7 +3,7 @@
 //!
 //! C/c (objects over c): objects are morphisms x → c; morphisms are commuting triangles.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort slice category shell C / apex.

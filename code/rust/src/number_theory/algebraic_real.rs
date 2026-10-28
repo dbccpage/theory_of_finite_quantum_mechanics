@@ -3,7 +3,7 @@ use crate::quadratic::{QuadraticError, QuadraticNumber, Surd};
 use crate::rational::Rational;
 use num_bigint::BigInt;
 use num_traits::{One, Signed, ToPrimitive, Zero};
-use omega_kernel::interval::Interval;
+use engine_kernel::interval::Interval;
 use std::fmt;
 type Q = Rational;
 pub const MAX_POLYNOMIAL_DEGREE: usize = 64;

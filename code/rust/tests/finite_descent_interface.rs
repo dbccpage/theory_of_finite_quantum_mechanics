@@ -1,4 +1,4 @@
-use omega_number_theory::rational::ri;
+use engine_number_theory::rational::ri;
 use theory_of_finite_qm::evidence_routes::DeclaredTolerance;
 const PROVENANCE: &str = "Origin: code/rust/src/qm/evidence_routes.rs Claim: urn:fqm:descent:nonnegative-declared-tolerance AuthorityEffect: None";
 const SAMPLE: i64 = 1;

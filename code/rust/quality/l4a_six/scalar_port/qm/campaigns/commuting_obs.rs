@@ -4,11 +4,11 @@ use crate::qm::bridge::{
 };
 use crate::qm::campaigns::causal_order::census_unlabeled;
 use ::linear_algebra::backend::basic_matrix::BasicMatrix;
-use omega_homology::finite_poset::FinitePoset;
-use omega_homology::graph_coloring::{two_coloring, TwoColoring};
-use omega_lie_theory::pauli_symplectic::{pauli, Pauli};
-use omega_number_theory::cyclotomic::GaussianRat;
-use omega_quantum_physics::commuting_observables::*;
+use engine_homology::finite_poset::FinitePoset;
+use engine_homology::graph_coloring::{two_coloring, TwoColoring};
+use engine_lie_theory::pauli_symplectic::{pauli, Pauli};
+use engine_number_theory::cyclotomic::GaussianRat;
+use engine_quantum_physics::commuting_observables::*;
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeSet, HashMap};
 

@@ -1,7 +1,7 @@
 
 use num_rational::BigRational;
 use num_traits::ToPrimitive;
-use tfqm_number_theory::rational::rq;
+use engine_number_theory::rational::rq;
 
 crate::fixture_set!(fixtures, "mub6_constants");
 

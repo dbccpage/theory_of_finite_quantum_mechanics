@@ -1,8 +1,8 @@
-use omega_number_theory::cyclotomic_ordered::{
+use engine_number_theory::cyclotomic_ordered::{
     CyclotomicRealRoot, FieldElementF, FieldElementFPlus,
 };
-use omega_number_theory::rational::{rq, Rational, Zero};
-use omega_quantum_physics::busch_effects::*;
+use engine_number_theory::rational::{rq, Rational, Zero};
+use engine_quantum_physics::busch_effects::*;
 use serde::{Deserialize, Serialize};
 pub fn construct_test_density_matrix(
     dim: usize,
@@ -590,7 +590,7 @@ pub fn bounded_effect_algebraic_search(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_number_theory::rational::{r_zero, ri};
+    use engine_number_theory::rational::{r_zero, ri};
 
     #[test]
     fn test_hermitian_matrix_algebra_and_minors() {

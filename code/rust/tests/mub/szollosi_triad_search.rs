@@ -7,8 +7,8 @@ use tfqm_mub::native::exact::szollosi_triad_solver::{
     check_hadamard_transition, emit_receipt_files, execute_szollosi_triad_search,
     search_discrete_szollosi_chm_points, szollosi_dephased_b6, tao_s6_matrix, verify_chm,
 };
-use omega_number_theory::cyclotomic::Cyc24;
-use omega_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 #[test]
 fn test_tao_s6_exact_hadamard_properties() {

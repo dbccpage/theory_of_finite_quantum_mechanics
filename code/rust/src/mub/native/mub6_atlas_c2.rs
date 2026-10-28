@@ -8,9 +8,9 @@ use crate::native::exact::mub6_cyclotomic_enclosure::{cyc24_real_imag_enclosure,
 use crate::native::campaign::mub6_dita_seed_cover::{
     all_genuine_dita_seeds, dita_seed_triple_columns, neighborhood_delta_1_1000,
 };
-use omega_kernel::interval::Interval;
+use engine_kernel::interval::Interval;
 #[cfg(test)]
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::rational::ri;
 
 fn abs_lower(i: &Interval) -> BigRational {
     if i.lo() >= &BigRational::zero() {
@@ -224,7 +224,7 @@ pub fn dita_seed_atlas_c2_report() -> AtlasC2Report {
 
 pub fn write_atlas_c2_report_artifact() -> Result<std::path::PathBuf, String> {
     let report = dita_seed_atlas_c2_report();
-    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     std::fs::create_dir_all(&dir).map_err(|e| format!("mkdir: {e}"))?;
     let path = dir.join("dita_seed_atlas_c2_report_20260724.json");
     let json = serde_json::to_string_pretty(&report).map_err(|e| format!("ser: {e}"))?;
@@ -288,7 +288,7 @@ fn write_pilot(
             pilot.cover.complete, pilot.cover.uncertified
         ));
     }
-    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     std::fs::create_dir_all(&dir).map_err(|e| format!("mkdir: {e}"))?;
     let path = dir.join(path_name);
     let json = serde_json::to_string_pretty(pilot).map_err(|e| format!("ser: {e}"))?;

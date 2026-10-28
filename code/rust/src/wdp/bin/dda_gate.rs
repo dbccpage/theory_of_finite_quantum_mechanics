@@ -3,7 +3,7 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::ExitCode;
 
-use omega_wdp::ddc::agent_contract::{
+use engine_wdp::ddc::agent_contract::{
     render_rust_bytes, verify_bytes, DdaGateReceipt,
 };
 

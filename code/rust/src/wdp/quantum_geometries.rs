@@ -9,8 +9,8 @@ use serde::{Deserialize, Serialize};
 
 use crate::types::AuthorityEffect;
 use linear_algebra::backend::basic_matrix::BasicMatrix;
-use tfqm_number_theory::cyclotomic::GaussianRat;
-use omega_quantum_physics::exact_channel::{ExactChannelError, ExactKrausChannel};
+use engine_number_theory::cyclotomic::GaussianRat;
+use engine_quantum_physics::exact_channel::{ExactChannelError, ExactKrausChannel};
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct QuantumGeometryReceipt {
@@ -148,7 +148,7 @@ impl QuantumDensityStalk {
         if !self.has_valid_shape() || !other.has_valid_shape() {
             return Err("Density matrix shape does not match its dimension");
         }
-        tfqm_functional::distinguishability::DistinguishabilityFunctional::qubit_trace_distance_squared(&self.data, &other.data)
+        engine_functional::distinguishability::DistinguishabilityFunctional::qubit_trace_distance_squared(&self.data, &other.data)
     }
 
     pub fn trace_distance_2x2(&self, other: &Self) -> Result<BigRational, &'static str> {
@@ -158,7 +158,7 @@ impl QuantumDensityStalk {
         if !self.has_valid_shape() || !other.has_valid_shape() {
             return Err("Density matrix shape does not match its dimension");
         }
-        tfqm_functional::distinguishability::DistinguishabilityFunctional::qubit_trace_distance(
+        engine_functional::distinguishability::DistinguishabilityFunctional::qubit_trace_distance(
             &self.data,
             &other.data,
         )
@@ -174,7 +174,7 @@ impl QuantumDensityStalk {
         if !self.has_valid_shape() || !other.has_valid_shape() {
             return Err("Density matrix shape does not match its dimension");
         }
-        tfqm_functional::distinguishability::DistinguishabilityFunctional::qubit_shadow_contraction_slack(&self.data, &other.data)
+        engine_functional::distinguishability::DistinguishabilityFunctional::qubit_shadow_contraction_slack(&self.data, &other.data)
     }
 
     fn has_valid_shape(&self) -> bool {
@@ -186,7 +186,7 @@ impl QuantumDensityStalk {
     pub fn classical_l1_distance(&self, other: &Self) -> BigRational {
         let p = self.classical_population_shadow();
         let q = other.classical_population_shadow();
-        tfqm_functional::distinguishability::DistinguishabilityFunctional::rational_total_variation(&p,&q)
+        engine_functional::distinguishability::DistinguishabilityFunctional::rational_total_variation(&p,&q)
             .expect("matching exact diagonal shadows")
     }
 }
@@ -393,7 +393,7 @@ impl QuantumObserverBundle {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_homology::scalar::{q, qr};
+    use engine_homology::scalar::{q, qr};
 
     #[test]
     fn test_density_stalk_validity_and_shadow() {

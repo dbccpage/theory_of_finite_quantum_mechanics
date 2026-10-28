@@ -1,13 +1,13 @@
 
 pub mod sparse;
 
-use omega_homology::f2_cohomology::ComplexError;
-use omega_homology::finite_poset::{FinitePoset, PosetError};
-use omega_homology::integral_chain_complex::{IntegralChainComplex, SparseIntegerMatrix};
-use omega_homology::integral_chain_equivalence::{
+use engine_homology::f2_cohomology::ComplexError;
+use engine_homology::finite_poset::{FinitePoset, PosetError};
+use engine_homology::integral_chain_complex::{IntegralChainComplex, SparseIntegerMatrix};
+use engine_homology::integral_chain_equivalence::{
     verify_chain_equivalence, ChainEquivalenceCertificate, ChainEquivalenceError,
 };
-use omega_homology::permutohedral::{
+use engine_homology::permutohedral::{
     add_scaled, boundary, Cell, CellChain, ContractionLimits, LinearExtensionContraction,
     PermutohedralError,
 };

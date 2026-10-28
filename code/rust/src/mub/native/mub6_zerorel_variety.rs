@@ -8,8 +8,8 @@ use crate::native::exact::mub6_constants::base_gap;
 use crate::native::exact::mub6_f6_chart::f6_family_columns;
 use crate::native::exact::mub6_matrix6::Matrix6;
 use crate::native::exact::mub6_tao_chart::tao_s6_matrix;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::rq;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::rq;
 
 pub const TOTAL_ZEROREL_EQUATIONS: usize = 108;
 
@@ -151,7 +151,7 @@ pub fn margin_tao() -> BigRational {
 }
 
 pub fn squared_norm(z: &Cyc24) -> Cyc24 {
-    tfqm_functional::MubFeasibilityWallFunctional::cyclotomic_squared_norm(std::slice::from_ref(z))
+    engine_functional::MubFeasibilityWallFunctional::cyclotomic_squared_norm(std::slice::from_ref(z))
 }
 
 pub fn exact_norm_sq_rat(z: &Cyc24) -> Result<BigRational, String> {
@@ -162,7 +162,7 @@ pub fn exact_norm_sq_rat(z: &Cyc24) -> Result<BigRational, String> {
 
 #[cfg(test)]
 fn coefficient_square_mass(z: &Cyc24) -> BigRational {
-    tfqm_functional::MubFeasibilityWallFunctional::cyclotomic_coefficient_energy(
+    engine_functional::MubFeasibilityWallFunctional::cyclotomic_coefficient_energy(
         std::slice::from_ref(z),
     )
 }
@@ -254,7 +254,7 @@ pub fn eval_artin_schreier_curvature(triple: &MuTripleCyc, cand_u: &BasisCyc) ->
             }
         }
     }
-    tfqm_functional::MubFeasibilityWallFunctional::cyclotomic_coefficient_energy(&residuals)
+    engine_functional::MubFeasibilityWallFunctional::cyclotomic_coefficient_energy(&residuals)
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]

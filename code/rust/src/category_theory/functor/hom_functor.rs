@@ -3,7 +3,7 @@
 //!
 //! Hom-functor Hom(A, −) / Hom(−, A) — shape only.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for a Hom-functor on a category reference.

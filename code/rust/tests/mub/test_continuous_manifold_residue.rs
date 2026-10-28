@@ -3,13 +3,13 @@
 //! AuthorityEffect: None
 
 use num_rational::BigRational;
-use omega_kernel::interval::Interval;
+use engine_kernel::interval::Interval;
 use tfqm_mub::native::exact::mub6_continuous_manifold_residue::{
     all_6_genuine_seeds, box_touches_parameter_torus, seed_coordinate_ivals,
     solve_continuous_manifold_residue, triad_unbiasedness_defect_lower, DitaContinuousParameterBox,
 };
 use tfqm_mub::native::exact::mub6_cyclotomic_enclosure::SqrtBox;
-use omega_number_theory::rational::ri;
+use engine_number_theory::rational::ri;
 
 #[test]
 fn test_genuine_seeds_inventory_and_properties() {

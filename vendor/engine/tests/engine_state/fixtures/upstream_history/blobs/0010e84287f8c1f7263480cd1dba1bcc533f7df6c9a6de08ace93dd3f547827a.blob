@@ -1,0 +1,220 @@
+# SPRINT S02-002 - GTOC-3 Lift Trigger and License
+
+**Parent SAGA:** [SAGA-02 - Operator Registry and Runtime Gauges](saga_02_operator_registry_and_gauges.md)
+**LifecycleStatus:** BLOCKED
+**GtocTerminal:** NOT_EVALUATED
+**AuthorityStatus:** None
+**AuthorityEffect:** `None`
+**Canonical goal:** `GTOC-3`
+**Goal namespace:** `GTOC-3` is a canonical goal, not a SAGA identifier.
+**Frozen base:** UNFROZEN - exact Git commit required before READY or ACTIVE
+**Packet hash:** UNCOMPUTED - exact packet SHA-256 required before READY or ACTIVE
+**Observer hash:** UNCOMPUTED - required before admission
+**Attempt budget:** 1
+**Repair budget:** 2
+**Successor budget:** 1
+**Time budget:** 8 hours
+**Process budget:** 4 maximum
+**Token budget:** 200000 maximum
+
+## Sprint goal
+
+Machine-check that a lift trigger is not a lift license and require preservation, non-destruction, budget, authority, and terminalizer evidence.
+
+## Carrier
+
+GTOC-3 statement, `omega_lifts` license types, DDA carrier-changing operations, operator manifests, policy budgets, and lift/refusal fixtures.
+
+## Primitive Difference
+
+Carrier change can be detected structurally, but current DDA verification does not establish that the lift is licensed.
+
+## ZeroRel
+
+A lift is equivalent only when trigger, license scope, preservation/non-destruction witnesses, budgets, authority ceiling, and terminal route match.
+
+## Cochain realization
+
+**Realization:** Structural
+
+### C0
+
+Lift triggers, licenses, carrier states, witnesses, budgets, operators, and receipts.
+
+### C1
+
+Bindings among target declarations, source evidence, prerequisites, witnesses, and claimed status.
+
+### C2
+
+Cross-file obligations requiring compatible scope, authority, proof status, imports, and terminal classification.
+
+### d0
+
+Map each changed declaration to every binding, dependency, and evidence obligation it creates or modifies.
+
+### d1
+
+Reject local changes that leave a cross-file status, scope, authority, import, or terminal contradiction.
+
+### d1 o d0 witness
+
+Every admitted local change must preserve all declared composition obligations or emit a named residual.
+
+## Q1
+
+Local discrepancies modulo licensed repairs within the frozen carrier.
+
+## Phi1 before
+
+C/D/Lambda can show a carrier changed without proving the change was licensed or preserved obligations.
+
+## Gamma2 risks
+
+Trigger/license conflation, forged witnesses, budget escalation, self-authorization, or destructive carrier migration.
+
+## Frozen observer
+
+Admission freezes the repository base, visible artifacts, hidden classes, tools, exact write surface, evidence ceiling, and independent witness identities before stage 1.
+
+## Witness plan and evidence ceiling
+
+Producer performs only frozen work. Evaluation witness checks every target and nonclaim against the exact diff. Authority witness checks independence, ceilings, and non-promotion. Deterministic gates run license-schema validation, preservation/non-destruction fixtures, budget checks, negative authorization tests, and terminal routing. Human promotion is separate.
+
+Evidence is limited to fixed finite carriers and declared lift licenses. No receipt establishes global GTOC/GTLA truth or authority outside the frozen carrier.
+
+## Licensed operators and lifts
+
+Extend bounded license and witness types; refuse any carrier-changing operation lacking all required fields.
+
+Undeclared imports, theorem strengthening, carrier changes, or lifts route to `LiftLicenseNeeded`, `OracleNeeded`, or `Refused`.
+
+## Survivor routing
+
+Missing license -> `LiftLicenseNeeded`; unavailable preservation oracle -> `OracleNeeded`; destructive lift -> `Refused`.
+
+Only the host may instantiate a successor packet within the successor budget.
+
+## Story roster
+
+### STORY S02-002-01 - Enforce complete lift licenses
+
+**LifecycleStatus:** BLOCKED
+
+#### Goal
+
+Bind carrier-changing operators to machine-checked license and witness bundles.
+
+#### Primitive Difference
+
+Structural carrier change currently passes without a full admissibility license.
+
+#### Carrier and exact write surface
+
+Read carrier: GTOC-3, omega_lifts, DDA carrier operations, operator manifests, and policy fixtures. Write surface: none while UNFROZEN; admission must enumerate every writable file and forbids directory or glob writes.
+
+#### Preconditions and dependencies
+
+S02-001 operator registry and S01-003 GTOC-2 terminal receipts human-promoted.
+
+#### Licensed operations
+
+Edit only admitted license, operator, verifier, fixture, and policy files.
+
+#### Acceptance criteria
+
+- The packet names exact target rows, files, hashes, budgets, and evidence ceilings.
+- No carrier-changing operation verifies without all preservation, non-destruction, budget, authority, and terminalizer evidence.
+- Unsupported or deferred claims remain named residuals.
+
+#### Evidence receipts
+
+Producer diff receipt, source/hash manifest, target-status matrix, and deterministic gate outputs.
+
+#### Survivor route
+
+Unproved target -> `ProofObligation`; missing source -> `OracleNeeded`; unlicensed strengthening -> `LiftLicenseNeeded`.
+
+#### Nonclaims
+
+Does not license arbitrary lifts or treat model assertions as witnesses.
+
+### STORY S02-002-02 - Adversarial verification and terminalization
+
+**LifecycleStatus:** BLOCKED
+
+#### Goal
+
+Independently attack the proposed result, replay deterministic evidence, and emit one legal terminal proposal.
+
+#### Primitive Difference
+
+A producer-complete diff is not independently verified or promotable.
+
+#### Carrier and exact write surface
+
+Read-only frozen packet, exact diff, producer receipts, deterministic outputs, and prior-work ledger. Write surface: host receipt paths only as enumerated at admission.
+
+#### Preconditions and dependencies
+
+STORY S02-002-01 complete with immutable receipts.
+
+#### Licensed operations
+
+Replay, compare, reject, classify per defect, preserve nonclaims, and propose a terminal. No repair, promotion, or evidence-ceiling increase.
+
+#### Acceptance criteria
+
+- Evaluator identity differs from producer identity.
+- Hostile missing/forged/over-budget fixtures fail with the correct typed terminal.
+- Residuals cannot disappear without receipts, and authority remains `None`.
+
+#### Evidence receipts
+
+Independent evaluation receipt, authority-witness attestation, replay receipt, terminal receipt, and human-decision placeholder.
+
+#### Survivor route
+
+Blocking defect -> bounded repair if budget remains; otherwise typed survivor, oracle, lift-license, refusal, invalid, or infrastructure terminal.
+
+#### Nonclaims
+
+Passing verification does not authorize the result; only separate human promotion may record a scoped `AuthorizedLocalResult`.
+
+## Story dependency graph
+
+```mermaid
+graph LR
+    A["S02-002-01: bounded producer work"] --> B["S02-002-02: independent verification"]
+```
+
+## Exact write surfaces
+
+None while UNFROZEN. Before READY, the host must record exact repository-relative files, receipt destinations, and path guards. Directory-wide and wildcard writes are invalid.
+
+## Deterministic verification
+
+- Verify base, packet, observer, source, import, and diff hashes.
+- Run license-schema validation, preservation/non-destruction fixtures, budget checks, negative authorization tests, and terminal routing.
+- Validate schema, dependency closure, status vocabulary, receipts, and nonclaim preservation.
+- Run only target-relevant Rust or Lean gates declared by the packet.
+
+## Terminal set
+
+`ExactRepair`, `StabilizedSurvivor`, `OpenObstruction`, `OracleNeeded`, `LiftLicenseNeeded`, `Refused`, `Invalid`, or `InfrastructureFailure`. Authority remains `None` before human promotion.
+
+## Exit criteria
+
+The admitted lift classes are enforced; unsupported lifts remain `LiftLicenseNeeded`.
+
+## Completion evidence
+
+Not admitted. No frozen packet, producer receipt, independent evaluation receipt, terminal receipt, or human-promotion record exists.
+
+## Retrospective
+
+After terminalization, record Phi1, exposed Gamma2, failed gates, repeated residuals, evidence limits, and bounded improvement candidates. Improvements require separate host-admitted packets.
+
+## Prior work and import ledger
+
+`docs/gtoc-canonicalization-remaining-work.md` GTOC-3; `omega_lifts`; DDA `op_verification.rs`; operator registry.

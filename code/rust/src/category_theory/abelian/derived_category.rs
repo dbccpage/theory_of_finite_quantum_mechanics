@@ -6,7 +6,7 @@
 //! Computational homology of complexes is owned by `omega_homology` (docs link).
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a derived-category claim.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

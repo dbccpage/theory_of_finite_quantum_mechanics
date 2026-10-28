@@ -4,7 +4,7 @@
 //! A discrete fibration p: E → B has unique cartesian lifts of morphisms
 //! into each object of E (equivalently: fibers are discrete categories).
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort discrete fibration shell p: total → base.

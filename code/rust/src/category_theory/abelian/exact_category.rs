@@ -4,7 +4,7 @@
 //! Exact category shape: admissible short exact sequences. Optional bound on
 //! tracked exact-sequence length is a diagnostic note only.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for an exact-category claim.

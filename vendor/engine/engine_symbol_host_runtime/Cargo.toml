@@ -1,0 +1,131 @@
+[package]
+autotests = false
+name = "engine_symbol_host_runtime"
+version.workspace = true
+edition = "2021"
+description = "symbol host round loop: candidate packets, host round records, frontier state, and exact domain adapters"
+authors = ["Engine contributors"]
+license.workspace = true
+
+[dependencies]
+linear_algebra = { path = "../linear_algebra" }
+engine_kernel = { path = "../engine_kernel" }
+engine_operad_theory = { path = "../engine_operad_theory" }
+engine_prompt_evolution = { path = "../engine_prompt_evolution" }
+engine_wdp = { path = "../engine_wdp" }
+engine_functional = { path = "../engine_functional" }
+engine_quantum_physics = { path = "../engine_quantum_physics" }
+engine_homology = { path = "../engine_homology" }
+engine_holonomy = { path = "../engine_holonomy" }
+num-bigint = "0.4"
+num-rational = { version = "0.4", features = ["num-bigint"] }
+num-traits = "0.2"
+num-integer = "0.1"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0", features = ["arbitrary_precision", "raw_value"] }
+unicode-normalization = "0.1"
+sha2 = "0.10"
+hex = "0.4"
+thiserror = "2"
+ryu = "1.0"
+blake3 = "1.8"
+serde_yaml = "0.9"
+
+[build-dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.9"
+
+[[bin]]
+name = "symgam"
+path = "src/main.rs"
+
+# Shared integration-test targets. Sources and fixtures live in `../tests/engine_symbol_host_runtime`.
+
+[[test]]
+name = "canonical_parity"
+path = "../tests/engine_symbol_host_runtime/canonical_parity.rs"
+
+[[test]]
+name = "curriculum"
+path = "../tests/engine_symbol_host_runtime/curriculum.rs"
+
+[[test]]
+name = "digest_is_canonical"
+path = "../tests/engine_symbol_host_runtime/digest_is_canonical.rs"
+
+[[test]]
+name = "engine_turn_driver"
+path = "../tests/engine_symbol_host_runtime/engine_turn_driver.rs"
+
+[[test]]
+name = "f2_shape_invariant"
+path = "../tests/engine_symbol_host_runtime/f2_shape_invariant.rs"
+
+[[test]]
+name = "host_interface"
+path = "../tests/engine_symbol_host_runtime/host_interface.rs"
+
+[[test]]
+name = "jcs_vectors"
+path = "../tests/engine_symbol_host_runtime/jcs_vectors.rs"
+
+[[test]]
+name = "modular_residue_contract"
+path = "../tests/engine_symbol_host_runtime/modular_residue_contract.rs"
+
+[[test]]
+name = "operand_injection"
+path = "../tests/engine_symbol_host_runtime/operand_injection.rs"
+
+[[test]]
+name = "permutation_order"
+path = "../tests/engine_symbol_host_runtime/permutation_order.rs"
+
+[[test]]
+name = "pfp_task_turn"
+path = "../tests/engine_symbol_host_runtime/pfp_task_turn.rs"
+
+[[test]]
+name = "immune_fence"
+path = "../tests/engine_symbol_host_runtime/immune_fence.rs"
+
+[[test]]
+name = "private_wire_unknown_fields"
+path = "../tests/engine_symbol_host_runtime/private_wire_unknown_fields.rs"
+
+[[test]]
+name = "prompt_artifact_parity"
+path = "../tests/engine_symbol_host_runtime/prompt_artifact_parity.rs"
+
+[[test]]
+name = "stabilizer"
+path = "../tests/engine_symbol_host_runtime/stabilizer.rs"
+
+[[test]]
+name = "stabilizer_certificate_binding"
+path = "../tests/engine_symbol_host_runtime/stabilizer_certificate_binding.rs"
+
+[[test]]
+name = "stabilizer_energy_width"
+path = "../tests/engine_symbol_host_runtime/stabilizer_energy_width.rs"
+
+[[test]]
+name = "stabilizer_phase_reconciliation"
+path = "../tests/engine_symbol_host_runtime/stabilizer_phase_reconciliation.rs"
+
+[[test]]
+name = "synthesis_dag"
+path = "../tests/engine_symbol_host_runtime/synthesis_dag.rs"
+
+[[test]]
+name = "wp6_expectation_corpus"
+path = "../tests/engine_symbol_host_runtime/wp6_expectation_corpus.rs"
+
+[[test]]
+name = "operad_tests"
+path = "../tests/engine_symbol_host_runtime/operad_tests.rs"
+
+[[test]]
+name = "cochain_tests"
+path = "../tests/engine_symbol_host_runtime/cochain_tests.rs"
+

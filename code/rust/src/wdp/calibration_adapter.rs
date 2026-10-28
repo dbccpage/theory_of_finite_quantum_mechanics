@@ -1,6 +1,6 @@
 
 use num_rational::BigRational;
-use omega_measurement::affine_calibration::{
+use engine_measurement::affine_calibration::{
     compose_nominal, nominal_chain_update_bound, propagate_chain, AffineCalibration, BoundedReading,
 };
 use thiserror::Error;

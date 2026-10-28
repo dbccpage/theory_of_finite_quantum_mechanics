@@ -5,14 +5,14 @@ use num_traits::{One, Signed, Zero};
 use serde::{Deserialize, Serialize};
 
 use tfqm_holonomy::matrix::ExactMatrix;
-use omega_homology::finite_directed_graph::{DirectedGraphBuilder, TheoremProvenance};
+use engine_homology::finite_directed_graph::{DirectedGraphBuilder, TheoremProvenance};
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum MatrixPathError {
     #[error("Invalid input: {detail}")]
     InvalidInput { detail: String },
     #[error("Graph carrier refusal: {0}")]
-    GraphCarrier(#[from] omega_homology::finite_directed_graph::NamedEdgeResolutionError),
+    GraphCarrier(#[from] engine_homology::finite_directed_graph::NamedEdgeResolutionError),
     #[error("Holonomy refusal: {0}")]
     Holonomy(#[from] tfqm_holonomy::HolonomyError),
 }
@@ -59,19 +59,17 @@ impl RationalMatrix2x2 {
         )?)
     }
 
-    fn from_native(matrix: &ExactMatrix<BigRational>) -> Self {
-        Self {
-            m00: matrix.get(0, 0).clone(),
-            m01: matrix.get(0, 1).clone(),
-            m10: matrix.get(1, 0).clone(),
-            m11: matrix.get(1, 1).clone(),
-        }
+    fn from_native(matrix: &ExactMatrix<BigRational>) -> Result<Self, MatrixPathError> {
+        Ok(Self {
+            m00: matrix.get(0, 0)?.clone(),
+            m01: matrix.get(0, 1)?.clone(),
+            m10: matrix.get(1, 0)?.clone(),
+            m11: matrix.get(1, 1)?.clone(),
+        })
     }
 
     pub fn multiply(&self, other: &Self) -> Result<Self, MatrixPathError> {
-        Ok(Self::from_native(
-            &self.to_native()?.matmul(&other.to_native()?)?,
-        ))
+        Self::from_native(&self.to_native()?.matmul(&other.to_native()?)?)
     }
 
     pub fn determinant(&self) -> Result<BigRational, MatrixPathError> {
@@ -81,8 +79,8 @@ impl RationalMatrix2x2 {
     pub fn l1_norm(&self) -> Result<BigRational, MatrixPathError> {
         let native = self.to_native()?;
         let rows = (0..2)
-            .map(|i| (0..2).map(|j| native.get(i, j).clone()).collect())
-            .collect::<Vec<_>>();
+            .map(|i| (0..2).map(|j| native.get(i, j).cloned()).collect::<Result<Vec<_>, _>>())
+            .collect::<Result<Vec<_>, _>>()?;
         tfqm_functional::residual_splitting::weighted_l1_operator_norm(
             &rows,
             &[BigRational::one(), BigRational::one()],
@@ -95,10 +93,10 @@ impl RationalMatrix2x2 {
     pub fn deviation_from_identity(&self) -> Result<BigRational, MatrixPathError> {
         let native = self.to_native()?;
         let diff = Self {
-            m00: native.get(0, 0) - BigRational::one(),
-            m01: native.get(0, 1).clone(),
-            m10: native.get(1, 0).clone(),
-            m11: native.get(1, 1) - BigRational::one(),
+            m00: native.get(0, 0)? - BigRational::one(),
+            m01: native.get(0, 1)?.clone(),
+            m10: native.get(1, 0)?.clone(),
+            m11: native.get(1, 1)? - BigRational::one(),
         };
         diff.l1_norm()
     }
@@ -136,7 +134,7 @@ impl EvaluatedPathKernelGraph {
             self.vertices.clone(),
             &self.edges,
             TheoremProvenance {
-                verification_source: "omega_epk::matrix_path_kernel".into(),
+                verification_source: "engine_epk::matrix_path_kernel".into(),
             },
         )?;
         for matrix in &self.transition_matrices {
@@ -234,9 +232,7 @@ impl EvaluatedPathKernelGraph {
         let canonical_patches: Vec<_> = patch_evaluations
             .iter()
             .map(|patch| {
-                patch
-                    .to_native()
-                    .map(|native| RationalMatrix2x2::from_native(&native))
+                RationalMatrix2x2::from_native(&patch.to_native()?)
             })
             .collect::<Result<_, _>>()?;
         if overlaps
@@ -318,7 +314,7 @@ pub fn generate_canonical_lggr_counterexample() -> (EvaluatedPathKernelGraph, Ve
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_homology::scalar::{q, qr};
+    use engine_homology::scalar::{q, qr};
 
     #[test]
     fn test_canonical_lggr_counterexample() {

@@ -5,7 +5,7 @@
 //! Shell holds carrier + structure-map labels and a comonad ref.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a labeled W-coalgebra (A, k).
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

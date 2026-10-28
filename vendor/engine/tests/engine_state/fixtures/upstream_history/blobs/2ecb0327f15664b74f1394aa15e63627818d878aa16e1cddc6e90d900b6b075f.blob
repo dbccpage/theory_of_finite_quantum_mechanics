@@ -1,0 +1,78 @@
+use crate::declared_action::DeclaredAction;
+use std::collections::HashMap;
+
+/// Budget for a finite operator registry.
+#[derive(Debug, Clone)]
+pub struct RegistryBudget {
+    /// Maximum number of registered operators.
+    pub max_operators: usize,
+}
+
+impl RegistryBudget {
+    pub fn new(max_operators: usize) -> Self {
+        Self { max_operators }
+    }
+}
+
+/// Error from registry operations.
+#[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
+pub enum RegistryError {
+    #[error("registry budget exceeded: max={max}, current={current}")]
+    BudgetExceeded { max: usize, current: usize },
+    #[error("duplicate operator label: {0}")]
+    DuplicateLabel(String),
+    #[error("registry requires an explicit budget")]
+    NoBudget,
+}
+
+/// Finite registry of declared operator actions under an explicit budget.
+#[derive(Debug, Clone)]
+pub struct OperatorRegistry {
+    budget: RegistryBudget,
+    actions: HashMap<String, DeclaredAction>,
+}
+
+impl OperatorRegistry {
+    /// Create a new registry with the given budget.
+    pub fn new(budget: RegistryBudget) -> Self {
+        Self {
+            budget,
+            actions: HashMap::new(),
+        }
+    }
+
+    /// Register an action. Returns error if budget is exceeded or label is duplicate.
+    pub fn register(&mut self, action: DeclaredAction) -> Result<(), RegistryError> {
+        if self.actions.len() >= self.budget.max_operators {
+            return Err(RegistryError::BudgetExceeded {
+                max: self.budget.max_operators,
+                current: self.actions.len(),
+            });
+        }
+        if self.actions.contains_key(&action.operator_label) {
+            return Err(RegistryError::DuplicateLabel(action.operator_label.clone()));
+        }
+        self.actions.insert(action.operator_label.clone(), action);
+        Ok(())
+    }
+
+    /// Get a registered action by label.
+    pub fn get(&self, label: &str) -> Option<&DeclaredAction> {
+        self.actions.get(label)
+    }
+
+    /// Number of currently registered actions.
+    pub fn len(&self) -> usize {
+        self.actions.len()
+    }
+
+    /// Whether the registry is empty.
+    pub fn is_empty(&self) -> bool {
+        self.actions.is_empty()
+    }
+
+    /// Remaining capacity before budget is hit.
+    pub fn remaining(&self) -> usize {
+        self.budget.max_operators.saturating_sub(self.actions.len())
+    }
+}

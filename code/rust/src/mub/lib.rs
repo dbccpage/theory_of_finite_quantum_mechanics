@@ -1,5 +1,5 @@
 
-extern crate self as omega_mub;
+extern crate self as tfqm_mub;
 pub mod deep_run;
 pub mod native;
 pub mod primitive_map;

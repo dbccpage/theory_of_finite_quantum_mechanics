@@ -3,7 +3,7 @@ use num_rational::BigRational;
 use num_traits::{Signed, Zero};
 use serde::{Deserialize, Serialize};
 
-use omega_kernel::evidence::{
+use engine_kernel::evidence::{
     CarrierManifestHash, CertifiedScalar, Hash256, ReplayHash, ToleranceProfileHash,
 };
 
@@ -568,7 +568,7 @@ mod tests {
     fn untrusted_artifact_claim_cannot_replace_exact_gamma2_recomputation() {
         let artifact = Gamma2Artifact {
             value: CertifiedScalar::ExactRational(
-                omega_kernel::evidence::RationalValue::try_new(
+                engine_kernel::evidence::RationalValue::try_new(
                     num_bigint::BigInt::from(0),
                     num_bigint::BigInt::from(1),
                 )

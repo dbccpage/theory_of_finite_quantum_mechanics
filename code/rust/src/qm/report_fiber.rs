@@ -1,8 +1,8 @@
 use crate::linear_algebra::basic_matrix::BasicMatrix;
 use crate::linear_algebra::image_kernel::ExactRowReduction;
 use num_traits::Zero;
-use omega_number_theory::cyclotomic::GaussianRat as G;
-use omega_number_theory::rational::{ri, rq, Rational as Q};
+use engine_number_theory::cyclotomic::GaussianRat as G;
+use engine_number_theory::rational::{ri, rq, Rational as Q};
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 
@@ -93,7 +93,7 @@ pub fn mix(a: &[G; 2]) -> [G; 2] {
 
 pub fn born_probabilities(amplitudes: &[G]) -> Result<Vec<Q>, String> {
     let weights = phase_blind(amplitudes)?;
-    omega_functional::born_probabilities::BornProbabilities::from_weights(&weights)
+    engine_functional::born_probabilities::BornProbabilities::from_weights(&weights)
         .map(|probabilities| probabilities.probabilities().to_vec())
         .map_err(|_| "ZERO_WEIGHT_STATE".into())
 }
@@ -184,7 +184,7 @@ fn compute_stage_betti(
     let c2 = usize::from(stage == 8);
     let d2_data = if c2 == 1 { vec![ri(1); 3] } else { vec![] };
     let d2 = BasicMatrix::from_row_major(edges_len, c2, d2_data).map_err(|e| e.to_string())?;
-    let _complex = omega_homology::chain_complex::ChainComplex::new(
+    let _complex = engine_homology::chain_complex::ChainComplex::new(
         vertices,
         edges_len,
         c2,
@@ -396,7 +396,7 @@ fn closed_with_exponent_two<T: PartialEq>(
 }
 
 fn phase_extra_does_not_select_circle() -> bool {
-    use omega_number_theory::cyclotomic::EisensteinRat as E;
+    use engine_number_theory::cyclotomic::EisensteinRat as E;
     let signs = [G::one(), G::from_ints(-1, 0)];
     let units = [G::one(), G::i(), G::from_ints(-1, 0), G::from_ints(0, -1)];
     let cube_roots = [E::one(), E::zeta3(), E::zeta3_sq()];

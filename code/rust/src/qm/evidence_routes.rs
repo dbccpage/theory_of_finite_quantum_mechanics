@@ -1,7 +1,7 @@
 
 
 use num_traits::{Signed, Zero};
-use omega_number_theory::rational::Rational;
+use engine_number_theory::rational::Rational;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DeclaredTolerance {

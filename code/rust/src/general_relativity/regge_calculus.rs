@@ -1,7 +1,7 @@
 
 use crate::discrete_spacetime::DiscreteSpacetime;
-use omega_homology::errors::HomologicalError;
-use omega_homology::simplicial::{OrientedSimplex, Simplex, SimplicialComplex};
+use engine_homology::errors::HomologicalError;
+use engine_homology::simplicial::{OrientedSimplex, Simplex, SimplicialComplex};
 use std::collections::BTreeMap;
 
 pub const AUTHORITY_FENCE: &str =

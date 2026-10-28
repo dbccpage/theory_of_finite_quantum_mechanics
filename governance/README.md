@@ -95,13 +95,13 @@ The JSON Schema of a companion, with the extra rules the checker enforces, is [`
 
 ## Running `governance-check`
 
-The `code/rust` workspace resolves with a local `[patch]` for its native omega providers (`code/rust/.cargo/config.toml.example`). Run Cargo from `code/rust` so it discovers that configuration; see [the workspace instructions](../code/rust/README.md). With that in place:
+The `code/rust` workspace builds from a plain checkout: its engine dependencies are path dependencies on the vendored crates in [`vendor/engine`](../vendor/engine/README.md). From `code/rust`:
 
 ```
 cd code/rust && cargo run -p governance --bin governance-check -- check
 ```
 
-Without it, use the standalone manifest, which points directly at the existing source files and has its own lockfile:
+Or use the standalone manifest, which points directly at the existing source files and has its own lockfile:
 
 ```
 cargo build --locked --release --manifest-path governance/Cargo.toml

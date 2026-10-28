@@ -1,5 +1,5 @@
 
-use omega_types::authority::AuthorityEffect;
+use engine_types::authority::AuthorityEffect;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]

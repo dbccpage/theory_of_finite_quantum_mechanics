@@ -18,7 +18,7 @@ use tfqm_mub::native::exact::mub6_quad_sdp::{
     canonical_quad_gramian, dual_certificate_matrix, exact_rational, ldlt_pivots_rational,
     trace_inner_product,
 };
-use omega_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::cyclotomic::Cyc24;
 
 #[test]
 fn test_degree2_moment_matrix_dimensions_and_structure() {

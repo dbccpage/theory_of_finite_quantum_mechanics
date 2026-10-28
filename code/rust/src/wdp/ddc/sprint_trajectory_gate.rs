@@ -357,7 +357,7 @@ pub fn emit_integrity_v1_record(
     record.insert("step_index".into(), json_u64(step_index));
     record.insert(
         "phi1".into(),
-        Value::String(omega_kernel::to_canonical_string(phi1)),
+        Value::String(engine_kernel::to_canonical_string(phi1)),
     );
     record.insert(
         "state_fingerprint".into(),

@@ -3,7 +3,7 @@
 //!
 //! c/C (objects under c): objects are morphisms c → x; morphisms are commuting triangles.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort coslice category shell base / under nadir.

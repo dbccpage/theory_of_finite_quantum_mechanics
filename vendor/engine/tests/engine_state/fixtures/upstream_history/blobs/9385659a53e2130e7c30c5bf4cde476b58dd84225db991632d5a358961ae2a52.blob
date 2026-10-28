@@ -1,0 +1,127 @@
+# Omega Conductor S01-003 Build and Review Record - 2026-07-18
+
+## State
+
+- Sprint: `S01-003 - GTOC-2 Degree-Shift Invariance`
+- Frozen implementation base: `f1d8390e081596ce50fdf91c9e9cca5e32294342`
+- Frozen packet-matrix SHA-256: `cfa13741f8958c9914fc4de279c2b70d40904d4c82d80f82426b761f4db086af`
+- Observer SHA-256: `338933a670940cb2ded1a24c74253f4889bd5cabd1d93c43dfc5fe64efa264e6`
+- Lifecycle terminal: `COMPLETED`
+- GTOC terminal: `StabilizedSurvivor` for the represented sprint carrier
+- Authority status/effect: `None` / `None`
+- Gate activation: deferred to SAGA-15
+
+The human host directed construction after S01-002 merged in PR #1110. This instruction admitted the sprint build; it did not promote authority. No hook, CI rule, runtime enforcement, successor packet, or self-modifying loop was activated.
+
+## Frozen Admissions
+
+The committed matrix contains four sealed GTOC-2 packets, each bound to one sealed S01-002 route:
+
+| Packet | Packet SHA-256 | Base `k` | Source route | Source terminal |
+|---|---|---:|---|---|
+| `S01-003:S01-002:exact:1` | `9ec03584c491356def639147296666b082b9b88e8bd0d30fc9a880576994fd63` | 1 | `ExactRepair` | `ExactRepair` |
+| `S01-003:S01-002:closed:2` | `a18a92cfd7744e3d3af7beb21fa4f2e08d20eab0d408ad348c57b3cf26297397` | 2 | `ClosedResidual` | `StabilizedSurvivor` |
+| `S01-003:S01-002:active:32768` | `63a124b69027aff5fc378e0ba550e48b617f446f51963826f91c280ca868faae` | 32768 | `ActiveClosureFailure` | `OpenObstruction` |
+| `S01-003:S01-002:no-rule:65533` | `97be20544ed1a6a2006373f4460adfa84d1c10bad2d73a1de4d99a1f1c1cfbbf` | 65533 | `NoRule` | `OracleNeeded` |
+
+Each packet binds target row `GTOC-2`, the exact base commit, six finite budgets, three pairwise-distinct witness identities, twelve exact write paths, hidden classes, permissions, the evidence ceiling, the source GTOC-1 admission/classification/observer hashes, expected route/terminal, and one checked degree shift.
+
+## Frozen Sources
+
+Source hashes are computed from blobs at the frozen base, so later status edits cannot silently rewrite the admitted source:
+
+| Frozen source | SHA-256 |
+|---|---|
+| `omega_engine/crates/omega_state/src/gtoc1_classifier.rs` | `de753b8664cd118f83f18399161c33887316f4e93702ff34f39ace8b9bcb46af` |
+| `omega_engine/crates/omega_state/tests/fixtures/gtoc1_fixture_matrix_v1.json` | `28955416a2c0f97ee560851fc132625813966dd0e0112b2dc413b0f1ac3d0784` |
+| `omega_engine/general_theory_of_obstruction_calculus/papers/999_GTOC/math_spine.md` | `3d261e061ab7988891c7ecbb9b762b3d3146d7b961b14231fd6dd88245161679` |
+
+## Admitted Write Surface
+
+Implementation and evidence:
+
+- `omega_engine/crates/omega_state/src/gtoc2_degree_shift.rs`
+- `omega_engine/crates/omega_state/src/lib.rs`
+- `omega_engine/crates/omega_state/tests/gtoc2_degree_shift.rs`
+- `omega_engine/crates/omega_state/tests/fixtures/gtoc2_fixture_matrix_v1.json`
+- `omega_engine/crates/omega_state/tests/fixtures/gtoc2_receipt_matrix_v1.json`
+
+Planning and canonical status:
+
+- `docs/gtoc-canonicalization-remaining-work.md`
+- `docs/omega-conductor-epic-v001.md`
+- `docs/saga_01_universal_gtoc_gtla_protocol.md`
+- `docs/sprint_s01_003.md`
+- this dated record
+- `omega_engine/general_theory_of_obstruction_calculus/papers/999_GTOC/math_spine.md`
+- `omega_engine/general_theory_of_obstruction_calculus/papers/999_GTOC/theorem_ledger.md`
+
+No wildcard, directory-wide write, runtime host, workflow, hook, authority constructor, mathematical classifier rewrite, unrelated paper, GTOC-3 implementation, or autonomous successor is admitted.
+
+## Degree-Shift Receipt
+
+The implementation provides:
+
+- a represented base domain of exactly `1..=65533` over `u16`;
+- checked maps `[k,k+1,k+2] -> [0,1,2]` and `[0,1,2] -> [k,k+1,k+2]`;
+- explicit witnesses for both inverse laws;
+- sealed GTOC-1 admission, classification, observer, cochain-rule, route, and terminal hashes before and after re-indexing;
+- source admission/classification binding before any shift result is accepted;
+- an independently reconstructed evaluator degree array and fresh GTOC-1 replay;
+- producer, evaluator, authority-witness, replay, and terminal receipts;
+- a one-value pending-human-decision placeholder and `AuthorityEffect::None` throughout;
+- typed refusal of zero, overflowing, out-of-window, scope-expanded, identity-colliding, authority-expanded, and tampered evidence.
+
+The outer `StabilizedSurvivor` records stability of the bounded label-transport result. It does not replace each preserved source route or source terminal, which remain recorded byte-for-byte in the classification and receipts.
+
+## Story Review
+
+| Story | Acceptance review | Result |
+|---|---|---|
+| S01-003-01 | Packets freeze exact target/source/path/identity/budget/ceiling data; every represented base satisfies both inverse laws; sealed GTOC-1 bytes, cochain rule, route, and terminal are preserved. | PASS |
+| S01-003-02 | Evaluator identity differs from producer; independent array reconstruction and fresh classification replay match; hostile source/packet/path/receipt/authority mutations fail closed; authority remains `None`. | PASS |
+
+Exact-diff review found no unmet acceptance criterion inside the represented admitted carrier.
+
+## Verification Receipt
+
+Commands run from `omega_engine` unless stated otherwise:
+
+- `cargo check -p omega_state --all-targets --offline`: PASS; existing dependency warnings remain outside the changed crate.
+- `cargo test -p omega_state --test gtoc2_degree_shift --locked`: PASS, 11 focused integration tests.
+- `cargo test -p omega_state --all-targets --locked`: PASS, 43 tests total: 10 unit, 11 GTOC-1, 11 GTOC-2, and 11 protocol integration tests.
+- `cargo clippy -p omega_state --all-targets --no-deps --locked -- -D warnings -A deprecated`: PASS for `omega_state`; existing dependency warnings remain outside the changed crate.
+- `rustfmt --edition 2021 --check` on the changed Rust source/test files: PASS.
+- `python -W error scripts/validate_omega_conductor_docs.py --json`: PASS with zero findings.
+- `git diff --check` and exact staged-scope review: PASS.
+
+The focused suite checks all 65533 admitted base degrees, all four source routes at representative and boundary bases, committed byte-stable matrices, frozen-base source blobs, deterministic double replay, and hostile bound/hash/path/identity/source/classification/producer/authority mutations.
+
+## Artifact Hashes
+
+| Artifact | SHA-256 |
+|---|---|
+| degree-shift module | `e08238f971301bb12a98dfea5f80ea51fd8650ef4670a664d1fa5e22035ee3e4` |
+| integration test | `ecd3519b07b8b36730ce0940ca89fb74d36085615fb310a969b514ae5ee6f724` |
+| admission fixture matrix | `cfa13741f8958c9914fc4de279c2b70d40904d4c82d80f82426b761f4db086af` |
+| receipt matrix | `1fc9e0bbde49b905ca47d92883a1cf1ec0f54451751ffc7d393d9e593c5abf08` |
+
+## Surviving Obstructions
+
+- The canonical GTOC-2 theorem row remains `OPEN`; this sprint supplies bounded Rust evidence, not a Lean proof or unrestricted natural-degree theorem.
+- The represented base domain is `u16` values `1..=65533`; base `0`, `65534`, and `65535` remain typed `OpenObstruction` outcomes.
+- The source carrier is exactly the four sealed S01-002 finite exact-rational fixtures. No arbitrary carrier transport theorem is claimed.
+- Degree transport preserves the existing cochain bytes; it does not prove a general cochain-isomorphism theorem for independently encoded windows.
+- No runtime conductor host consumes the receipts yet.
+- No independent process or binary separation is claimed; evaluator logic and identity are separate within the bounded test carrier.
+- No human authority promotion, protected enforcement, or autonomous successor creation occurred.
+
+## Nonclaims
+
+This sprint does not prove unrestricted GTOC-2, derive QM, certify every carrier, establish GTOC-3, integrate every role/runtime, mint authority, activate gates, or make Omega Engine self-authorizing. SAGA-01 lifecycle completion records completion of its bounded construction/review sprints only.
+
+## Post-merge erratum - local JSON failure routing
+
+PR #1113 froze the degree-shift module at SHA-256 `e08238f971301bb12a98dfea5f80ea51fd8650ef4670a664d1fa5e22035ee3e4`. During S02-001 review, Gemini Code Assist correctly identified that local GTOC-2 serialization failures were being wrapped as `Gtoc1Dependency`, which mapped them to `Invalid` and left `Gtoc2Error::Json` unused.
+
+S02-001 repairs that diagnostic boundary: local canonical-JSON failures now remain `Gtoc2Error::Json` and terminalize as `InfrastructureFailure`; genuine GTOC-1 classifier or validation failures remain `Gtoc1Dependency` and terminalize as `Invalid`. A deliberately failing serializer exercises the repaired route. The successful S01-003 packet, observer, classification, fixture, and receipt bytes are unchanged; only failure attribution changed. The repaired degree-shift module SHA-256 is `7ac4a5c806f89efedc91e0295f6b578855c3f4da7f64567c85b98e9c32e7101a`.

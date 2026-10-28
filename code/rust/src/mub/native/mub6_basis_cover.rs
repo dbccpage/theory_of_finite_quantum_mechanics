@@ -7,7 +7,7 @@ use crate::native::exact::mub6_cyclotomic_enclosure::{
     cyc24_real_imag_enclosure, full_residual_sq_lower, SqrtBox,
 };
 use crate::native::exact::mub6_interval_cover::VectorBox;
-use omega_kernel::interval::Interval;
+use engine_kernel::interval::Interval;
 
 pub type BasisBox = [VectorBox; D];
 
@@ -243,7 +243,7 @@ mod tests {
     use super::*;
     use crate::native::exact::mub6_interval_cover::VectorBox;
 
-    use tfqm_number_theory::rational::rq;
+    use engine_number_theory::rational::rq;
 
     fn near_standard_vector(idx: usize) -> VectorBox {
         let small = Interval::new(rq(-1, 20), rq(1, 20));

@@ -2,7 +2,7 @@ use num_rational::BigRational;
 use tfqm_mub::native::exact::mub6_quad_sdp::tao_s6_block;
 use tfqm_mub::native::exact::mub6_tao_confluence::check_pilot035_candidate;
 use tfqm_mub::native::exact::mub6_tao_confluence::solve_tao_confluence;
-use omega_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::cyclotomic::Cyc24;
 use serde_json::json;
 
 fn answer() -> serde_json::Value {

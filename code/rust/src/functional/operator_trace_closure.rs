@@ -104,7 +104,7 @@ fn validate_entries(m: &Operator) -> Result<(), OperatorTraceError> {
             "noncanonical rational or invalid denominator",
         ));
     }
-    omega_kernel::resource_limits::OperationLimits::default()
+    engine_kernel::resource_limits::OperationLimits::default()
         .check_dense_matrix(m.rows(), m.cols(), std::mem::size_of::<GaussianRat>())
         .map_err(|_| OperatorTraceError("operator resource limit"))?;
     Ok(())

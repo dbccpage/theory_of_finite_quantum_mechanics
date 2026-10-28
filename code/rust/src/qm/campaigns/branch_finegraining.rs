@@ -1,5 +1,5 @@
-use omega_number_theory::rational::rq;
-use omega_quantum_physics::branch_finegraining::*;
+use engine_number_theory::rational::rq;
+use engine_quantum_physics::branch_finegraining::*;
 use serde::{Deserialize, Serialize};
 #[allow(non_snake_case)]
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]

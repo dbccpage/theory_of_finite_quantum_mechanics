@@ -1,6 +1,6 @@
 use crate::types::AuthorityEffect;
-use omega_replay::StepTrace;
-use omega_solvers::data_computation_carrier::{
+use engine_replay::StepTrace;
+use engine_solvers::data_computation_carrier::{
     BooleanGraph, Cnf, ComputationError, Configuration, FiniteMachine, MachineRun,
     PrefixTermination, Transition,
 };

@@ -1,12 +1,12 @@
 
 use tfqm_functional::gamma2::ExactGamma2Result;
 use tfqm_functional::phi1::VerifiedExactPhi1;
-use omega_policy::trichotomy::{CertifiedExactTrichotomy, ObstructionDiagnosticClass};
+use engine_policy::trichotomy::{CertifiedExactTrichotomy, ObstructionDiagnosticClass};
 use crate::residual_families::{
     reconcile_verified, FamilyCollision, FamilyRegistry, RegistryWrite, ShapeSignature,
 };
-use omega_types::authority::{AuthorityEffect, Outcome, RefusalSource};
-use omega_types::observer::Observer;
+use engine_types::authority::{AuthorityEffect, Outcome, RefusalSource};
+use engine_types::observer::Observer;
 use serde::{Deserialize, Serialize};
 
 use crate::epk_engine::EpkMetrics;
@@ -100,7 +100,7 @@ impl EpkResidualLedger {
 mod tests {
     use super::*;
     use crate::epk_engine::{calculate_metrics, CompositionRecord};
-    use omega_types::authority::{
+    use engine_types::authority::{
         authority_from_outcome_f13, AuthorityTerminal, DescentWitness, IsAuth,
     };
 
@@ -115,7 +115,7 @@ mod tests {
 
     fn valid_is_auth() -> IsAuth {
         let evidence =
-            omega_types::GuardEvidence::new_valid(["cand_01"], "K_carrier_01", "blake3:deadbeef");
+            engine_types::GuardEvidence::new_valid(["cand_01"], "K_carrier_01", "blake3:deadbeef");
         IsAuth::decide(AuthorityTerminal::ExactRuleDerived, evidence)
             .expect("all seven guards produce an IsAuth token")
     }

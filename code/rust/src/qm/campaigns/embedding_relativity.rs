@@ -1,7 +1,7 @@
-use omega_number_theory::cyclotomic_field::Cyclotomic;
-use omega_number_theory::rational::rq;
-use omega_number_theory::real_embedding::RealEmbeddings;
-use omega_quantum_physics::embedding_relativity::{
+use engine_number_theory::cyclotomic_field::Cyclotomic;
+use engine_number_theory::rational::rq;
+use engine_number_theory::real_embedding::RealEmbeddings;
+use engine_quantum_physics::embedding_relativity::{
     born_weights, conductor_5_witness, conductor_8_witness, galois_born_weights,
     positivity_under_embeddings, PositivityError,
 };

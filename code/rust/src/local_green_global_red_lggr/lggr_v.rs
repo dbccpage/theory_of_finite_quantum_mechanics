@@ -30,8 +30,8 @@
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
-use omega_linear_algebra::backend::basic_matrix::BasicMatrix;
-use omega_linear_algebra::linear_algebra::image_kernel::{ExactRowReduction, RankRref};
+use linear_algebra::backend::basic_matrix::BasicMatrix;
+use linear_algebra::linear_algebra::image_kernel::{ExactRowReduction, RankRref};
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 

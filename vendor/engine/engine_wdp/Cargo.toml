@@ -1,0 +1,504 @@
+[package]
+autoexamples = false
+autotests = false
+name = "engine_wdp"
+version.workspace = true
+license.workspace = true
+edition = "2021"
+description = "Witnessed Difference Programme foundational mathematics: Finite Obstruction Calculus, exact rational dual-certified cochains, Moore behavioral quotients, presheaves, and connections to HoTT, Homology, Higher Categories, and Quantum Mechanics."
+
+[dependencies]
+engine_wire_primitives = { path = "../engine_wire_primitives" }
+engine_policy = { path = "../engine_policy" }
+engine_types = { path = "../engine_types" }
+engine_certifiers = { path = "../engine_certifiers" }
+nalgebra = "0.33"
+engine_epk = { path = "../engine_local_green_global_red_lggr" }
+engine_measurement = { path = "../engine_measurement" }
+num-bigint = { version = "0.4", features = ["serde"] }
+num-rational = { version = "0.4", features = ["serde"] }
+num-traits = "0.2"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "2"
+blake3 = "1.8"
+sha2 = "0.10"
+hex = "0.4"
+engine_homotopy_type_theory = { path = "../engine_homotopy_type_theory" }
+engine_functional = { path = "../engine_functional" }
+engine_homology = { path = "../engine_homology" }
+linear_algebra = { path = "../linear_algebra" }
+engine_holonomy = { path = "../engine_holonomy" }
+engine_kernel = { path = "../engine_kernel" }
+engine_combinatorics = { path = "../engine_combinatorics" }
+engine_quantum_physics = { path = "../engine_quantum_physics" }
+engine_finite_probability = { path = "../engine_finite_probability" }
+engine_number_theory = { path = "../engine_number_theory" }
+engine_solvers = { path = "../engine_solvers" }
+
+engine_category_theory = { path = "../engine_category_theory" }
+engine_general_relativity = { path = "../engine_general_relativity" }
+engine_replay = { path = "../engine_replay" }
+
+[dev-dependencies]
+engine_homology = { path = "../engine_homology" }
+engine_majorana = { path = "../engine_majorana" }
+serde_yaml = "0.9"
+
+# Shared integration-test targets. Sources and fixtures live in `../tests/engine_wdp`.
+
+[[test]]
+name = "witnessed_reasoning"
+path = "../tests/engine_wdp/witnessed_reasoning.rs"
+
+[[test]]
+name = "witnessed_reasoning_replay"
+path = "../tests/engine_wdp/witnessed_reasoning_replay.rs"
+
+[[test]]
+name = "derivation_controls"
+path = "../tests/engine_wdp/derivation_controls/mod.rs"
+
+[[test]]
+name = "genesis_bell_joint"
+path = "../tests/engine_wdp/genesis_bell_joint.rs"
+
+[[test]]
+name = "genesis_carrier"
+path = "../tests/engine_wdp/genesis_carrier.rs"
+
+[[test]]
+name = "genesis_independence"
+path = "../tests/engine_wdp/genesis_independence.rs"
+
+[[test]]
+name = "genesis_joint_carrier"
+path = "../tests/engine_wdp/genesis_joint_carrier.rs"
+
+[[test]]
+name = "genesis_native_simulation"
+path = "../tests/engine_wdp/genesis_native_simulation.rs"
+
+[[test]]
+name = "genesis_passage_parity"
+path = "../tests/engine_wdp/genesis_passage_parity.rs"
+
+[[test]]
+name = "genesis_trace"
+path = "../tests/engine_wdp/genesis_trace.rs"
+
+[[test]]
+name = "test_admission_execution_oracle"
+path = "../tests/engine_wdp/test_admission_execution_oracle.rs"
+
+[[test]]
+name = "test_coda_k_cell_input_bounds"
+path = "../tests/engine_wdp/test_coda_k_cell_input_bounds.rs"
+
+[[test]]
+name = "test_coda_layers_1_to_9"
+path = "../tests/engine_wdp/test_coda_layers_1_to_9.rs"
+
+[[test]]
+name = "test_coda_pipeline_flow"
+path = "../tests/engine_wdp/test_coda_pipeline_flow.rs"
+
+[[test]]
+name = "test_coda_q_conformance_spine"
+path = "../tests/engine_wdp/test_coda_q_conformance_spine.rs"
+
+[[test]]
+name = "test_coda_q_finite_shadow_exact_fixtures"
+path = "../tests/engine_wdp/test_coda_q_finite_shadow_exact_fixtures.rs"
+
+[[test]]
+name = "test_coda_q_nine_layers"
+path = "../tests/engine_wdp/test_coda_q_nine_layers.rs"
+
+[[test]]
+name = "test_coda_q_qm_finite_shadow_membrane_admission"
+path = "../tests/engine_wdp/test_coda_q_qm_finite_shadow_membrane_admission.rs"
+
+[[test]]
+name = "test_coda_q_spectral_membrane_conformance"
+path = "../tests/engine_wdp/test_coda_q_spectral_membrane_conformance.rs"
+
+[[test]]
+name = "test_covering_edge_descent"
+path = "../tests/engine_wdp/test_covering_edge_descent.rs"
+
+[[test]]
+name = "test_d_sel_conformance"
+path = "../tests/engine_wdp/test_d_sel_conformance.rs"
+
+[[test]]
+name = "test_ddc_authority_firewall"
+path = "../tests/engine_wdp/test_ddc_authority_firewall.rs"
+
+[[test]]
+name = "test_ddc_definite_integral_trace"
+path = "../tests/engine_wdp/test_ddc_definite_integral_trace.rs"
+
+[[test]]
+name = "test_ddc_episode_segmentation_and_motifs"
+path = "../tests/engine_wdp/test_ddc_episode_segmentation_and_motifs.rs"
+
+[[test]]
+name = "test_ddc_finite_lambda_ledger_integration"
+path = "../tests/engine_wdp/test_ddc_finite_lambda_ledger_integration.rs"
+
+[[test]]
+name = "test_ddc_move_network"
+path = "../tests/engine_wdp/test_ddc_move_network.rs"
+
+[[test]]
+name = "test_ddc_parser_golden_parity"
+path = "../tests/engine_wdp/test_ddc_parser_golden_parity.rs"
+
+[[test]]
+name = "test_ddc_projection_obstruction_demos"
+path = "../tests/engine_wdp/test_ddc_projection_obstruction_demos.rs"
+
+[[test]]
+name = "test_ddc_step_row_v1"
+path = "../tests/engine_wdp/test_ddc_step_row_v1.rs"
+
+[[test]]
+name = "test_ddc_transition_effects_tests"
+path = "../tests/engine_wdp/test_ddc_transition_effects_tests.rs"
+
+[[test]]
+name = "test_diagnostic_routing"
+path = "../tests/engine_wdp/test_diagnostic_routing.rs"
+
+[[test]]
+name = "test_dp1_presentation_query"
+path = "../tests/engine_wdp/test_dp1_presentation_query.rs"
+
+[[test]]
+name = "test_dp3_gamma_reconciliation"
+path = "../tests/engine_wdp/test_dp3_gamma_reconciliation.rs"
+
+[[test]]
+name = "test_dp4_contractive_complement"
+path = "../tests/engine_wdp/test_dp4_contractive_complement.rs"
+
+[[test]]
+name = "test_dp5_square_root_enclosure"
+path = "../tests/engine_wdp/test_dp5_square_root_enclosure.rs"
+
+[[test]]
+name = "test_dp6_presheaf_boundary"
+path = "../tests/engine_wdp/test_dp6_presheaf_boundary.rs"
+
+[[test]]
+name = "test_dp8_quantum_geometry_adapter"
+path = "../tests/engine_wdp/test_dp8_quantum_geometry_adapter.rs"
+
+[[test]]
+name = "test_dual_witness_multistage_descent"
+path = "../tests/engine_wdp/test_dual_witness_multistage_descent.rs"
+
+[[test]]
+name = "test_dyadic_character_adapter"
+path = "../tests/engine_wdp/test_dyadic_character_adapter.rs"
+
+[[test]]
+name = "test_evaluation_preorder"
+path = "../tests/engine_wdp/test_evaluation_preorder.rs"
+
+[[test]]
+name = "test_finite_instrument_replay"
+path = "../tests/engine_wdp/test_finite_instrument_replay.rs"
+
+[[test]]
+name = "test_finite_routing"
+path = "../tests/engine_wdp/test_finite_routing.rs"
+
+[[test]]
+name = "test_functional_classification"
+path = "../tests/engine_wdp/test_functional_classification.rs"
+
+[[test]]
+name = "test_gauge_result_oracle"
+path = "../tests/engine_wdp/test_gauge_result_oracle.rs"
+
+[[test]]
+name = "test_genesis_admission_execution"
+path = "../tests/engine_wdp/test_genesis_admission_execution.rs"
+
+[[test]]
+name = "test_genesis_balance_transition"
+path = "../tests/engine_wdp/test_genesis_balance_transition.rs"
+
+[[test]]
+name = "test_genesis_computation_extension"
+path = "../tests/engine_wdp/test_genesis_computation_extension.rs"
+
+[[test]]
+name = "test_genesis_construction"
+path = "../tests/engine_wdp/test_genesis_construction.rs"
+
+[[test]]
+name = "test_genesis_context_restriction"
+path = "../tests/engine_wdp/test_genesis_context_restriction.rs"
+
+[[test]]
+name = "test_genesis_future_compression"
+path = "../tests/engine_wdp/test_genesis_future_compression.rs"
+
+[[test]]
+name = "test_genesis_gauge_result"
+path = "../tests/engine_wdp/test_genesis_gauge_result.rs"
+
+[[test]]
+name = "test_genesis_geometry_extension"
+path = "../tests/engine_wdp/test_genesis_geometry_extension.rs"
+
+[[test]]
+name = "test_genesis_guarded_history"
+path = "../tests/engine_wdp/test_genesis_guarded_history.rs"
+
+[[test]]
+name = "test_genesis_marked_result"
+path = "../tests/engine_wdp/test_genesis_marked_result.rs"
+
+[[test]]
+name = "test_genesis_observer"
+path = "../tests/engine_wdp/test_genesis_observer.rs"
+
+[[test]]
+name = "test_genesis_ongoing_adapter"
+path = "../tests/engine_wdp/test_genesis_ongoing_adapter.rs"
+
+[[test]]
+name = "test_genesis_primitive_execution"
+path = "../tests/engine_wdp/test_genesis_primitive_execution.rs"
+
+[[test]]
+name = "test_genesis_questions"
+path = "../tests/engine_wdp/test_genesis_questions.rs"
+
+[[test]]
+name = "test_genesis_realification_adapter"
+path = "../tests/engine_wdp/test_genesis_realification_adapter.rs"
+
+[[test]]
+name = "test_genesis_source_execution"
+path = "../tests/engine_wdp/test_genesis_source_execution.rs"
+
+[[test]]
+name = "test_genesis_source_replay"
+path = "../tests/engine_wdp/test_genesis_source_replay.rs"
+
+[[test]]
+name = "test_genesis_transport_descent"
+path = "../tests/engine_wdp/test_genesis_transport_descent.rs"
+
+[[test]]
+name = "test_guarded_chain_transport"
+path = "../tests/engine_wdp/test_guarded_chain_transport.rs"
+
+[[test]]
+name = "test_ising_cycle_repair"
+path = "../tests/engine_wdp/test_ising_cycle_repair.rs"
+
+[[test]]
+name = "test_legacy_adapter_predicate_countermodels"
+path = "../tests/engine_wdp/test_legacy_adapter_predicate_countermodels.rs"
+
+[[test]]
+name = "test_legacy_observer_adapters"
+path = "../tests/engine_wdp/test_legacy_observer_adapters.rs"
+
+[[test]]
+name = "test_legacy_six_observer"
+path = "../tests/engine_wdp/test_legacy_six_observer.rs"
+
+[[test]]
+name = "test_linear_sensing_adapter"
+path = "../tests/engine_wdp/test_linear_sensing_adapter.rs"
+
+[[test]]
+name = "test_marked_result_oracle"
+path = "../tests/engine_wdp/test_marked_result_oracle.rs"
+
+[[test]]
+name = "test_meron_analytic_adapter"
+path = "../tests/engine_wdp/test_meron_analytic_adapter.rs"
+
+[[test]]
+name = "test_meron_field_adapter"
+path = "../tests/engine_wdp/test_meron_field_adapter.rs"
+
+[[test]]
+name = "test_meron_observable_adapter"
+path = "../tests/engine_wdp/test_meron_observable_adapter.rs"
+
+[[test]]
+name = "test_meron_source_adapter"
+path = "../tests/engine_wdp/test_meron_source_adapter.rs"
+
+[[test]]
+name = "test_meron_time_adapter"
+path = "../tests/engine_wdp/test_meron_time_adapter.rs"
+
+[[test]]
+name = "test_native_history_cost"
+path = "../tests/engine_wdp/test_native_history_cost.rs"
+
+[[test]]
+name = "test_native_history_guard"
+path = "../tests/engine_wdp/test_native_history_guard.rs"
+
+[[test]]
+name = "test_native_owner_compatibility"
+path = "../tests/engine_wdp/test_native_owner_compatibility.rs"
+
+[[test]]
+name = "test_observation_scope"
+path = "../tests/engine_wdp/test_observation_scope.rs"
+
+[[test]]
+name = "test_observer_world_adapter"
+path = "../tests/engine_wdp/test_observer_world_adapter.rs"
+
+[[test]]
+name = "test_po000_operator_observer"
+path = "../tests/engine_wdp/test_po000_operator_observer.rs"
+
+[[test]]
+name = "test_po000_projection_obstruction"
+path = "../tests/engine_wdp/test_po000_projection_obstruction.rs"
+
+[[test]]
+name = "test_policy_observer_adapter"
+path = "../tests/engine_wdp/test_policy_observer_adapter.rs"
+
+[[test]]
+name = "test_prime_descent_engine"
+path = "../tests/engine_wdp/test_prime_descent_engine.rs"
+
+[[test]]
+name = "test_prime_majorana_detector_adequacy"
+path = "../tests/engine_wdp/test_prime_majorana_detector_adequacy.rs"
+
+[[test]]
+name = "test_prime_rules_end_to_end"
+path = "../tests/engine_wdp/test_prime_rules_end_to_end.rs"
+
+[[test]]
+name = "test_primitive_execution_oracle"
+path = "../tests/engine_wdp/test_primitive_execution_oracle.rs"
+
+[[test]]
+name = "test_profile_evaluator"
+path = "../tests/engine_wdp/test_profile_evaluator.rs"
+
+[[test]]
+name = "test_proposal_admission_bridge"
+path = "../tests/engine_wdp/test_proposal_admission_bridge.rs"
+
+[[test]]
+name = "test_qm_route"
+path = "../tests/engine_wdp/test_qm_route.rs"
+
+[[test]]
+name = "test_quantum_geometry_exact"
+path = "../tests/engine_wdp/test_quantum_geometry_exact.rs"
+
+[[test]]
+name = "test_quantum_measurement_packet"
+path = "../tests/engine_wdp/test_quantum_measurement_packet.rs"
+
+[[test]]
+name = "test_question_preserving_encoding"
+path = "../tests/engine_wdp/test_question_preserving_encoding.rs"
+
+[[test]]
+name = "test_rational_phase_gauge"
+path = "../tests/engine_wdp/test_rational_phase_gauge.rs"
+
+[[test]]
+name = "test_residual_family"
+path = "../tests/engine_wdp/test_residual_family.rs"
+
+[[test]]
+name = "test_self_reference_adapter"
+path = "../tests/engine_wdp/test_self_reference_adapter.rs"
+
+[[test]]
+name = "test_semiring_coarse_graining"
+path = "../tests/engine_wdp/test_semiring_coarse_graining.rs"
+
+[[test]]
+name = "test_source_execution_oracle"
+path = "../tests/engine_wdp/test_source_execution_oracle.rs"
+
+[[test]]
+name = "test_sparse_simplex_scaling_benchmark"
+path = "../tests/engine_wdp/test_sparse_simplex_scaling_benchmark.rs"
+
+[[test]]
+name = "test_sql_normal_form_adapter"
+path = "../tests/engine_wdp/test_sql_normal_form_adapter.rs"
+
+[[test]]
+name = "test_wdp_joint_support_recovery"
+path = "../tests/engine_wdp/test_wdp_joint_support_recovery.rs"
+
+[[test]]
+name = "test_wdp_lggr_chromatic"
+path = "../tests/engine_wdp/test_wdp_lggr_chromatic.rs"
+
+[[test]]
+name = "test_wdp_observation_completion_and_cost"
+path = "../tests/engine_wdp/test_wdp_observation_completion_and_cost.rs"
+
+[[test]]
+name = "test_witness_valuation"
+path = "../tests/engine_wdp/test_witness_valuation.rs"
+
+[[test]]
+name = "wdp_rust_routes"
+path = "../tests/engine_wdp/wdp_rust_routes.rs"
+
+[[test]]
+name = "wdp_source_packet"
+path = "../tests/engine_wdp/wdp_source_packet.rs"
+# Example programs remain package-owned source under `src/examples`.
+[[example]]
+name = "balance_preserving_edits"
+path = "src/examples/balance_preserving_edits.rs"
+
+[[example]]
+name = "finite_derivations"
+path = "src/examples/finite_derivations.rs"
+
+[[example]]
+name = "genesis_bell"
+path = "src/examples/genesis_bell.rs"
+
+[[example]]
+name = "genesis_construction"
+path = "src/examples/genesis_construction.rs"
+
+[[example]]
+name = "guarded_chain_transport"
+path = "src/examples/guarded_chain_transport.rs"
+
+[[example]]
+name = "prime_rosetta_report"
+path = "src/examples/prime_rosetta_report.rs"
+
+[[example]]
+name = "question_preserving_encoding"
+path = "src/examples/question_preserving_encoding.rs"
+
+[[example]]
+name = "sparse_guarded_transport"
+path = "src/examples/sparse_guarded_transport.rs"
+
+[[example]]
+name = "witnessed_reasoning_replay"
+path = "src/examples/witnessed_reasoning_replay.rs"

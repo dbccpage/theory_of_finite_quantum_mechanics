@@ -1,0 +1,1663 @@
+//! Bounded S03-001 mixed-carrier packet admission and host lease receipts.
+//!
+//! Historical source paths identify frozen AnomalonPy bytes and are not local CODA paths.
+//! This module compiles one finite packet against an exact Git base and source
+//! closure. It validates bytes supplied by the host, but performs no file I/O,
+//! task execution, model delegation, authority promotion, or gate activation.
+
+use std::collections::{BTreeMap, BTreeSet};
+
+use engine_types::authority::AuthorityEffect;
+use serde::{Deserialize, Serialize};
+use sha2::{Digest, Sha256};
+use thiserror::Error;
+
+use crate::coda_gtla_protocol::CodaTerminal;
+
+pub const TASK_PACKET_SCHEMA_VERSION: &str = "omega.task-admission.packet.v1";
+pub const TASK_ENVELOPE_SCHEMA_VERSION: &str = "omega.task-admission.envelope.v1";
+pub const TASK_COMPILATION_SCHEMA_VERSION: &str = "omega.task-admission.compilation.v1";
+pub const TASK_LEASE_SCHEMA_VERSION: &str = "omega.task-admission.lease.v1";
+pub const TASK_RECEIPT_SCHEMA_VERSION: &str = "omega.task-admission.receipt.v1";
+pub const S03_001_FROZEN_BASE: &str = "cae8a69bdf7f2357ca990544ac1c421ebae1da91";
+pub const S03_001_PACKET_ID: &str = "omega-conductor-s03-001-mixed-carrier-v1";
+pub const S03_001_GOAL_ID: &str = "S03-001";
+pub const S03_001_OBSERVER_DOMAIN: &str = "mixed-carrier-packet-admission";
+pub const S03_001_STATE_DOMAIN: &str = "omega.task-admission.state.v1";
+pub const S03_001_EVIDENCE_CEILING: &str =
+    "finite mixed-carrier packet shape, bytes, paths, budgets, and host lease evidence only; no task execution or authority";
+pub const S03_001_GOAL_DECLARATION: &str =
+    "freeze and hash one mixed Markdown, Rust, JSON, and Python task carrier";
+pub const S03_001_HOST_ID: &str = "host:s03-001";
+pub const S03_001_PRODUCER_ID: &str = "producer:s03-001";
+pub const S03_001_EVALUATOR_ID: &str = "evaluator:s03-001";
+pub const S03_001_AUTHORITY_WITNESS_ID: &str = "authority-witness:s03-001";
+pub const S03_001_LEASE_ID: &str = "lease:s03-001:attempt-1";
+pub const S03_001_UPSTREAM_REFERENCE_ID: &str = "s02-002-gtoc3";
+pub const S03_001_UPSTREAM_PACKET_ID: &str = "omega-conductor-s02-002-gtoc3-v1";
+pub const S03_001_UPSTREAM_SCHEMA_VERSION: &str = "omega.gtoc3.admission.v1";
+pub const S03_001_UPSTREAM_PACKET_SHA256: &str =
+    "3945f37e661536e67a46947eebb0ad4b58f1fa38734a99b501f47546ae40d423";
+pub const S03_001_LEGACY_LEASE_REFERENCE_ID: &str = "legacy-lease-checker";
+pub const S03_001_LEGACY_LEASE_PATH: &str =
+    "omega_engine/general_theory_of_obstruction_calculus/conductor/core/leases.py";
+pub const S03_001_LEGACY_LEASE_SCHEMA_VERSION: &str = "omega.conductor.lease.python.phase0";
+pub const S03_001_LEGACY_LEASE_SHA256: &str =
+    "7b89875eeee19814ab4da48c182c0bb4f5837e87c6801e2d9758af9815bef9a4";
+pub const S03_001_LEGACY_SCHEMA_REFERENCE_ID: &str = "legacy-work-packet-schema";
+pub const S03_001_LEGACY_SCHEMA_PATH: &str =
+    "omega_engine/general_theory_of_obstruction_calculus/conductor/protocol/work_packet.schema.json";
+pub const S03_001_LEGACY_SCHEMA_VERSION: &str = "omega.agent_work.v1";
+pub const S03_001_LEGACY_SCHEMA_SHA256: &str =
+    "a991591a7f02a859de05f4131b83ae7faba4fc0401da748be8b88910a9399768";
+pub const S03_001_PACKET_SHA256: &str =
+    "f6a67d5ec2a05669948aa4044007604d7b536417c127dd2f88ce3ed4bb3c4f36";
+pub const S03_001_OBSERVER_SHA256: &str =
+    "94c5891bb0a9d2b1b8cf842be8b82b7c0b58883181ad6d685a8ebe5267a44876";
+pub const S03_001_BUNDLE_SHA256: &str =
+    "44e3d8246ab3daf678f3f8610c5c6d17defedb19584ab9d61d5920eb4298bb52";
+
+pub const S03_001_WRITE_SURFACE: [&str; 10] = [
+    "docs/gtoc-canonicalization-remaining-work.md",
+    "docs/omega-conductor-epic-v001.md",
+    "docs/saga_03_task_admission_and_carriers.md",
+    "docs/sprint_s03_001.md",
+    "docs/status/omega_conductor_s03_001_status_2026-07-18.md",
+    "omega_engine/crates/omega_state/src/lib.rs",
+    "omega_engine/crates/omega_state/src/task_admission.rs",
+    "omega_engine/crates/omega_state/tests/fixtures/s03_001_task_admission_packet_v1.json",
+    "omega_engine/crates/omega_state/tests/fixtures/s03_001_task_admission_receipt_v1.json",
+    "omega_engine/crates/omega_state/tests/task_admission.rs",
+];
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct FrozenTaskArtifactV1 {
+    pub artifact_id: &'static str,
+    pub path: &'static str,
+    pub kind: TaskArtifactKindV1,
+    pub role: TaskArtifactRoleV1,
+    pub sha256: &'static str,
+    pub byte_len: u64,
+}
+
+pub const S03_001_SOURCE_MANIFEST: [FrozenTaskArtifactV1; 10] = [
+    FrozenTaskArtifactV1 {
+        artifact_id: "epic",
+        path: "docs/omega-conductor-epic-v001.md",
+        kind: TaskArtifactKindV1::Markdown,
+        role: TaskArtifactRoleV1::Plan,
+        sha256: "69c9ca1e2863bb7ba56b3d2b4d819127cad06b2d827c4ee47bece57a05dab3c8",
+        byte_len: 54_576,
+    },
+    FrozenTaskArtifactV1 {
+        artifact_id: "saga-03",
+        path: "docs/saga_03_task_admission_and_carriers.md",
+        kind: TaskArtifactKindV1::Markdown,
+        role: TaskArtifactRoleV1::Plan,
+        sha256: "2a54c355e52441b7b470a2cb075b565bc3f81ba1be857e42f09c23498f90a02f",
+        byte_len: 5_422,
+    },
+    FrozenTaskArtifactV1 {
+        artifact_id: "sprint-s03-001",
+        path: "docs/sprint_s03_001.md",
+        kind: TaskArtifactKindV1::Markdown,
+        role: TaskArtifactRoleV1::Plan,
+        sha256: "dd89947a4b5fc6b20aadaa66c58fcf567a0c5ade083638abf924ccd9cf4ad372",
+        byte_len: 5_187,
+    },
+    FrozenTaskArtifactV1 {
+        artifact_id: "legacy-work-packet-schema",
+        path: "omega_engine/general_theory_of_obstruction_calculus/conductor/protocol/work_packet.schema.json",
+        kind: TaskArtifactKindV1::Json,
+        role: TaskArtifactRoleV1::LegacyProtocol,
+        sha256: "a991591a7f02a859de05f4131b83ae7faba4fc0401da748be8b88910a9399768",
+        byte_len: 2_844,
+    },
+    FrozenTaskArtifactV1 {
+        artifact_id: "legacy-lease-checker",
+        path: "omega_engine/general_theory_of_obstruction_calculus/conductor/core/leases.py",
+        kind: TaskArtifactKindV1::Python,
+        role: TaskArtifactRoleV1::LegacyProtocol,
+        sha256: "7b89875eeee19814ab4da48c182c0bb4f5837e87c6801e2d9758af9815bef9a4",
+        byte_len: 5_722,
+    },
+    FrozenTaskArtifactV1 {
+        artifact_id: "legacy-lease-tests",
+        path: "omega_engine/general_theory_of_obstruction_calculus/conductor/tests/test_leases.py",
+        kind: TaskArtifactKindV1::Python,
+        role: TaskArtifactRoleV1::Test,
+        sha256: "2c0c13288a71260922cc5688f249a8351d9c40a21217797b4bf2d7669b87f9bf",
+        byte_len: 4_486,
+    },
+    FrozenTaskArtifactV1 {
+        artifact_id: "gtoc-gtla-protocol",
+        path: "omega_engine/crates/omega_state/src/gtoc_gtla_protocol.rs",
+        kind: TaskArtifactKindV1::Rust,
+        role: TaskArtifactRoleV1::Protocol,
+        sha256: "da57f9f89dd396cbd1bca72880d024c81a4d3238bd6f78af9add06572c3f160f",
+        byte_len: 35_825,
+    },
+    FrozenTaskArtifactV1 {
+        artifact_id: "gtoc1-admission-precedent",
+        path: "omega_engine/crates/omega_state/src/gtoc1_classifier.rs",
+        kind: TaskArtifactKindV1::Rust,
+        role: TaskArtifactRoleV1::Protocol,
+        sha256: "de753b8664cd118f83f18399161c33887316f4e93702ff34f39ace8b9bcb46af",
+        byte_len: 41_632,
+    },
+    FrozenTaskArtifactV1 {
+        artifact_id: "operator-registry-precedent",
+        path: "omega_engine/crates/omega_state/src/operator_registry_runtime.rs",
+        kind: TaskArtifactKindV1::Rust,
+        role: TaskArtifactRoleV1::Protocol,
+        sha256: "a4e2e54ea5e594c65089ee8fe04e17cab61e3e5a2b34990c529889185e7e535a",
+        byte_len: 45_922,
+    },
+    FrozenTaskArtifactV1 {
+        artifact_id: "obstruction-packet-standard",
+        path: "omega_engine/crates/omega_contracts/src/contract_canonical_definitions/core/09_packets/omega_obstruction_packet_standard.md",
+        kind: TaskArtifactKindV1::Markdown,
+        role: TaskArtifactRoleV1::Policy,
+        sha256: "4a7d644eda9eea04292e78d60409fd880cc2825fcc0b4dddc7be760e800f1af8",
+        byte_len: 22_269,
+    },
+];
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum TaskArtifactKindV1 {
+    Markdown,
+    Rust,
+    Lean,
+    Json,
+    Yaml,
+    Toml,
+    Python,
+    Text,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum TaskArtifactRoleV1 {
+    Plan,
+    Protocol,
+    Policy,
+    Test,
+    LegacyProtocol,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum TaskOperationV1 {
+    CanonicalizePacket,
+    HashArtifacts,
+    ValidateBundle,
+    CheckLease,
+    IssueLease,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum TaskAdmissionPermissionV1 {
+    ReadFrozenArtifacts,
+    CompilePacket,
+    ValidatePacket,
+    CheckLeases,
+    IssueLease,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum TaskFreezeStatusV1 {
+    Unfrozen,
+    Frozen,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum LegacyReadPolicyV1 {
+    Refuse,
+    ExplicitReadOnly,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum OraclePolicyV1 {
+    Route,
+    Refuse,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum CarrierChangePolicyV1 {
+    RequireLiftLicense,
+    AllowImplicit,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum TaskLeaseModeV1 {
+    Write,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum TaskAdmissionStatusV1 {
+    CompiledForHostLease,
+    Admitted,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum TaskAdmissionSurvivorV1 {
+    MissingArtifact,
+    LeaseConflict,
+    LiftLicenseNeeded,
+    Refused,
+    InvalidEvidence,
+    InfrastructureFailure,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TaskArtifactV1 {
+    pub artifact_id: String,
+    pub path: String,
+    pub kind: TaskArtifactKindV1,
+    pub role: TaskArtifactRoleV1,
+    pub sha256: String,
+    pub byte_len: u64,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct ResolvedTaskArtifactV1 {
+    artifact_id: String,
+    path: String,
+    sha256: String,
+    byte_len: u64,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TaskPacketReferenceV1 {
+    pub reference_id: String,
+    pub packet_id: String,
+    pub schema_version: String,
+    pub packet_sha256: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct LegacyPacketReferenceV1 {
+    pub reference_id: String,
+    pub path: String,
+    pub schema_version: String,
+    pub sha256: String,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TaskAdmissionBudgetsV1 {
+    pub attempt_budget: u16,
+    pub repair_budget: u16,
+    pub successor_budget: u16,
+    pub time_budget_seconds: u32,
+    pub process_budget: u16,
+    pub token_budget: u64,
+    pub max_changed_files: u16,
+    pub max_diff_bytes: u64,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TaskAdmissionPolicyV1 {
+    pub legacy_read_policy: LegacyReadPolicyV1,
+    pub oracle_policy: OraclePolicyV1,
+    pub carrier_change_policy: CarrierChangePolicyV1,
+    pub imports_require_packet_reference: bool,
+    pub exact_write_surface: bool,
+    pub public_hashes_declared_artifacts_only: bool,
+    pub model_delegation_allowed: bool,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TaskSuccessorPolicyV1 {
+    pub host_only: bool,
+    pub max_successors: u16,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TaskLeaseRequestV1 {
+    pub lease_id: String,
+    pub owner_id: String,
+    pub mode: TaskLeaseModeV1,
+    pub canonical_paths: Vec<String>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct FrozenTaskObserverV1 {
+    pub observer_id: String,
+    pub observer_domain: String,
+    pub state_domain: String,
+    pub frozen_base: String,
+    pub visible_artifact_hashes: Vec<String>,
+    pub hidden_artifact_classes: Vec<String>,
+    pub tool_permissions: Vec<TaskAdmissionPermissionV1>,
+    pub write_surface: Vec<String>,
+    pub evidence_ceiling: String,
+    pub model_delegation_allowed: bool,
+    pub observer_hash: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct MixedCarrierTaskPacketV1 {
+    pub schema_version: String,
+    pub packet_id: String,
+    pub goal_id: String,
+    pub goal_declaration: String,
+    pub freeze_status: TaskFreezeStatusV1,
+    pub frozen_base: String,
+    pub artifacts: Vec<TaskArtifactV1>,
+    pub packet_references: Vec<TaskPacketReferenceV1>,
+    pub legacy_inputs: Vec<LegacyPacketReferenceV1>,
+    pub allowed_operations: Vec<TaskOperationV1>,
+    pub policy: TaskAdmissionPolicyV1,
+    pub budgets: TaskAdmissionBudgetsV1,
+    pub write_surface: Vec<String>,
+    pub lease_request: TaskLeaseRequestV1,
+    pub successor_policy: TaskSuccessorPolicyV1,
+    pub nonclaims: Vec<String>,
+    pub evidence_ceiling: String,
+    pub admission_host_id: String,
+    pub producer_id: String,
+    pub evaluator_id: String,
+    pub authority_witness_id: String,
+    pub observer: FrozenTaskObserverV1,
+    pub authority_effect: AuthorityEffect,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TaskAdmissionEnvelopeV1 {
+    pub schema_version: String,
+    pub packet: MixedCarrierTaskPacketV1,
+    pub packet_sha256: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct CompiledTaskPacketV1 {
+    pub schema_version: String,
+    pub packet_id: String,
+    pub packet_sha256: String,
+    pub bundle_sha256: String,
+    pub observer_sha256: String,
+    pub frozen_base: String,
+    pub admission_host_id: String,
+    pub lease_request: TaskLeaseRequestV1,
+    pub write_surface: Vec<String>,
+    pub evidence_ceiling: String,
+    pub status: TaskAdmissionStatusV1,
+    pub authority_effect: AuthorityEffect,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ActiveTaskLeaseV1 {
+    pub schema_version: String,
+    pub lease_id: String,
+    pub owner_id: String,
+    pub packet_sha256: String,
+    pub mode: TaskLeaseModeV1,
+    pub canonical_paths: Vec<String>,
+    pub authority_effect: AuthorityEffect,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TaskAdmissionReceiptV1 {
+    pub schema_version: String,
+    pub packet_id: String,
+    pub packet_sha256: String,
+    pub bundle_sha256: String,
+    pub observer_sha256: String,
+    pub frozen_base: String,
+    pub lease: ActiveTaskLeaseV1,
+    pub schema_checked: bool,
+    pub canonical_bytes_checked: bool,
+    pub bundle_checked: bool,
+    pub paths_checked: bool,
+    pub budgets_checked: bool,
+    pub policy_checked: bool,
+    pub lease_checked: bool,
+    pub status: TaskAdmissionStatusV1,
+    pub terminal: CodaTerminal,
+    pub authority_effect: AuthorityEffect,
+}
+
+#[derive(Debug, Clone, Default, PartialEq, Eq)]
+pub struct HostLeaseRegistryV1 {
+    active: BTreeMap<String, ActiveTaskLeaseV1>,
+}
+
+pub fn expected_source_manifest_v1() -> Vec<TaskArtifactV1> {
+    S03_001_SOURCE_MANIFEST
+        .iter()
+        .map(|artifact| TaskArtifactV1 {
+            artifact_id: artifact.artifact_id.to_owned(),
+            path: artifact.path.to_owned(),
+            kind: artifact.kind,
+            role: artifact.role,
+            sha256: artifact.sha256.to_owned(),
+            byte_len: artifact.byte_len,
+        })
+        .collect()
+}
+
+fn expected_write_surface_v1() -> Vec<String> {
+    S03_001_WRITE_SURFACE
+        .iter()
+        .map(|path| (*path).to_owned())
+        .collect()
+}
+
+pub fn resolve_task_artifact_v1(
+    artifact_id: impl Into<String>,
+    path: impl Into<String>,
+    bytes: &[u8],
+) -> ResolvedTaskArtifactV1 {
+    ResolvedTaskArtifactV1 {
+        artifact_id: artifact_id.into(),
+        path: path.into(),
+        sha256: sha256_bytes_v1(bytes),
+        byte_len: bytes.len() as u64,
+    }
+}
+
+impl ResolvedTaskArtifactV1 {
+    pub fn artifact_id(&self) -> &str {
+        &self.artifact_id
+    }
+
+    pub fn path(&self) -> &str {
+        &self.path
+    }
+
+    pub fn sha256(&self) -> &str {
+        &self.sha256
+    }
+
+    pub const fn byte_len(&self) -> u64 {
+        self.byte_len
+    }
+}
+
+impl TaskArtifactV1 {
+    pub fn validate(&self) -> Result<(), TaskAdmissionError> {
+        require_text("artifact.artifact_id", &self.artifact_id)?;
+        require_canonical_repo_path("artifact.path", &self.path)?;
+        require_sha256("artifact.sha256", &self.sha256)?;
+        if self.byte_len == 0 {
+            return Err(TaskAdmissionError::EmptyArtifact(self.artifact_id.clone()));
+        }
+        let lower = self.path.to_ascii_lowercase();
+        if !artifact_extension_matches_kind(self.kind, &lower) {
+            return Err(TaskAdmissionError::ArtifactKindMismatch {
+                artifact_id: self.artifact_id.clone(),
+                path: self.path.clone(),
+            });
+        }
+        Ok(())
+    }
+}
+
+fn artifact_extension_matches_kind(kind: TaskArtifactKindV1, lower: &str) -> bool {
+    match kind {
+        TaskArtifactKindV1::Markdown => lower.ends_with(".md"),
+        TaskArtifactKindV1::Rust => lower.ends_with(".rs"),
+        TaskArtifactKindV1::Lean => lower.ends_with(".lean"),
+        TaskArtifactKindV1::Json => lower.ends_with(".json"),
+        other => artifact_extension_matches_other_kind(other, lower),
+    }
+}
+
+fn artifact_extension_matches_other_kind(kind: TaskArtifactKindV1, lower: &str) -> bool {
+    match kind {
+        TaskArtifactKindV1::Yaml => lower.ends_with(".yaml") || lower.ends_with(".yml"),
+        TaskArtifactKindV1::Toml => lower.ends_with(".toml"),
+        TaskArtifactKindV1::Python => lower.ends_with(".py"),
+        TaskArtifactKindV1::Text => lower.ends_with(".txt"),
+        _ => false,
+    }
+}
+
+impl MixedCarrierTaskPacketV1 {
+    pub fn validate(&self) -> Result<(), TaskAdmissionError> {
+        self.validate_header_and_freeze()?;
+        self.validate_artifacts_and_inputs()?;
+        self.validate_operations_and_lease()?;
+        self.validate_nonclaims_and_identities()?;
+        validate_observer(self)
+    }
+
+    fn validate_header_and_freeze(&self) -> Result<(), TaskAdmissionError> {
+        require_schema(
+            "packet.schema_version",
+            TASK_PACKET_SCHEMA_VERSION,
+            &self.schema_version,
+        )?;
+        if self.packet_id != S03_001_PACKET_ID {
+            return Err(TaskAdmissionError::ScopeExpansion("packet.packet_id"));
+        }
+        if self.goal_id != S03_001_GOAL_ID {
+            return Err(TaskAdmissionError::ScopeExpansion("packet.goal_id"));
+        }
+        require_text("packet.goal_declaration", &self.goal_declaration)?;
+        if self.goal_declaration != S03_001_GOAL_DECLARATION {
+            return Err(TaskAdmissionError::ScopeExpansion(
+                "packet.goal_declaration",
+            ));
+        }
+        if self.freeze_status != TaskFreezeStatusV1::Frozen {
+            return Err(TaskAdmissionError::UnfrozenPacket);
+        }
+        require_git_commit("packet.frozen_base", &self.frozen_base)?;
+        if self.frozen_base != S03_001_FROZEN_BASE {
+            return Err(TaskAdmissionError::FrozenBaseMismatch);
+        }
+        Ok(())
+    }
+
+    fn validate_artifacts_and_inputs(&self) -> Result<(), TaskAdmissionError> {
+        for artifact in &self.artifacts {
+            artifact.validate()?;
+        }
+        if self.artifacts != expected_source_manifest_v1() {
+            return Err(TaskAdmissionError::SourceManifestMismatch);
+        }
+        validate_packet_references(&self.packet_references)?;
+        validate_legacy_inputs(self)
+    }
+
+    fn validate_operations_and_lease(&self) -> Result<(), TaskAdmissionError> {
+        let required_operations = [
+            TaskOperationV1::CanonicalizePacket,
+            TaskOperationV1::HashArtifacts,
+            TaskOperationV1::ValidateBundle,
+            TaskOperationV1::CheckLease,
+            TaskOperationV1::IssueLease,
+        ];
+        if self.allowed_operations != required_operations {
+            return Err(TaskAdmissionError::OperationSetChanged);
+        }
+        validate_policy(&self.policy)?;
+        validate_budgets(self.budgets, self.write_surface.len())?;
+
+        let expected_writes = expected_write_surface_v1();
+        validate_exact_paths("packet.write_surface", &self.write_surface)?;
+        if self.write_surface != expected_writes {
+            return Err(TaskAdmissionError::WriteSurfaceChanged);
+        }
+        self.validate_lease_and_successor_policy()
+    }
+
+    fn validate_lease_and_successor_policy(&self) -> Result<(), TaskAdmissionError> {
+        validate_lease_request(&self.lease_request)?;
+        if self.lease_request.lease_id != S03_001_LEASE_ID
+            || self.lease_request.owner_id != S03_001_PRODUCER_ID
+            || self.lease_request.owner_id != self.producer_id
+            || self.lease_request.mode != TaskLeaseModeV1::Write
+            || self.lease_request.canonical_paths != self.write_surface
+        {
+            return Err(TaskAdmissionError::LeaseRequestMismatch);
+        }
+        if !self.successor_policy.host_only
+            || self.successor_policy.max_successors != self.budgets.successor_budget
+        {
+            return Err(TaskAdmissionError::SuccessorPolicyChanged);
+        }
+        Ok(())
+    }
+
+    fn validate_nonclaims_and_identities(&self) -> Result<(), TaskAdmissionError> {
+        let required_nonclaims = [
+            "does not activate gates",
+            "does not execute tasks",
+            "does not expose or hash hidden secret artifacts",
+            "does not promote authority",
+        ]
+        .map(str::to_owned);
+        if self.nonclaims != required_nonclaims {
+            return Err(TaskAdmissionError::NonclaimSetChanged);
+        }
+        if self.evidence_ceiling != S03_001_EVIDENCE_CEILING {
+            return Err(TaskAdmissionError::EvidenceCeilingChanged);
+        }
+        self.validate_packet_identities()?;
+        if !self.authority_effect.is_none() {
+            return Err(TaskAdmissionError::AuthorityExpansion);
+        }
+        Ok(())
+    }
+
+    fn validate_packet_identities(&self) -> Result<(), TaskAdmissionError> {
+        let pairs = [
+            (
+                "packet.admission_host_id",
+                self.admission_host_id.as_str(),
+                S03_001_HOST_ID,
+            ),
+            (
+                "packet.producer_id",
+                self.producer_id.as_str(),
+                S03_001_PRODUCER_ID,
+            ),
+            (
+                "packet.evaluator_id",
+                self.evaluator_id.as_str(),
+                S03_001_EVALUATOR_ID,
+            ),
+            (
+                "packet.authority_witness_id",
+                self.authority_witness_id.as_str(),
+                S03_001_AUTHORITY_WITNESS_ID,
+            ),
+        ];
+        for (field, value, _) in pairs {
+            require_text(field, value)?;
+        }
+        if pairs
+            .iter()
+            .map(|(_, value, _)| *value)
+            .collect::<BTreeSet<_>>()
+            .len()
+            != 4
+        {
+            return Err(TaskAdmissionError::IdentityCollision);
+        }
+        for (field, found, expected) in pairs {
+            if found != expected {
+                return Err(TaskAdmissionError::IdentitySetChanged(field));
+            }
+        }
+        Ok(())
+    }
+}
+
+impl TaskAdmissionEnvelopeV1 {
+    pub fn validate(&self) -> Result<(), TaskAdmissionError> {
+        require_schema(
+            "envelope.schema_version",
+            TASK_ENVELOPE_SCHEMA_VERSION,
+            &self.schema_version,
+        )?;
+        require_sha256("envelope.packet_sha256", &self.packet_sha256)?;
+        self.packet.validate()?;
+        let found = task_packet_sha256_v1(&self.packet)?;
+        if found != self.packet_sha256 {
+            return Err(TaskAdmissionError::PacketHashMismatch {
+                expected: self.packet_sha256.clone(),
+                found,
+            });
+        }
+        if self.packet_sha256 != S03_001_PACKET_SHA256 {
+            return Err(TaskAdmissionError::PacketHashMismatch {
+                expected: S03_001_PACKET_SHA256.to_owned(),
+                found: self.packet_sha256.clone(),
+            });
+        }
+        Ok(())
+    }
+}
+
+fn validate_packet_references(
+    references: &[TaskPacketReferenceV1],
+) -> Result<(), TaskAdmissionError> {
+    if references.is_empty() {
+        return Err(TaskAdmissionError::EmptyField("packet.packet_references"));
+    }
+    let mut previous: Option<&str> = None;
+    for reference in references {
+        validate_single_packet_reference(reference, previous)?;
+        previous = Some(&reference.reference_id);
+    }
+    if references.len() != 1 || !upstream_packet_reference_matches(&references[0]) {
+        return Err(TaskAdmissionError::PacketReferenceSetChanged);
+    }
+    Ok(())
+}
+
+fn validate_single_packet_reference(
+    reference: &TaskPacketReferenceV1,
+    previous: Option<&str>,
+) -> Result<(), TaskAdmissionError> {
+    for (field, value) in [
+        (
+            "packet_reference.reference_id",
+            reference.reference_id.as_str(),
+        ),
+        ("packet_reference.packet_id", reference.packet_id.as_str()),
+        (
+            "packet_reference.schema_version",
+            reference.schema_version.as_str(),
+        ),
+    ] {
+        require_text(field, value)?;
+    }
+    require_sha256("packet_reference.packet_sha256", &reference.packet_sha256)?;
+    if previous.is_some_and(|value| value >= reference.reference_id.as_str()) {
+        return Err(TaskAdmissionError::NonCanonicalList(
+            "packet.packet_references",
+        ));
+    }
+    Ok(())
+}
+
+fn upstream_packet_reference_matches(reference: &TaskPacketReferenceV1) -> bool {
+    reference.reference_id == S03_001_UPSTREAM_REFERENCE_ID
+        && reference.packet_id == S03_001_UPSTREAM_PACKET_ID
+        && reference.schema_version == S03_001_UPSTREAM_SCHEMA_VERSION
+        && reference.packet_sha256 == S03_001_UPSTREAM_PACKET_SHA256
+}
+
+fn validate_legacy_inputs(packet: &MixedCarrierTaskPacketV1) -> Result<(), TaskAdmissionError> {
+    validate_legacy_read_policy_mode(packet)?;
+    let artifacts = packet
+        .artifacts
+        .iter()
+        .map(|artifact| (artifact.path.as_str(), artifact))
+        .collect::<BTreeMap<_, _>>();
+    let mut previous: Option<&str> = None;
+    for legacy in &packet.legacy_inputs {
+        validate_single_legacy_input(packet, legacy, previous, &artifacts)?;
+        previous = Some(&legacy.reference_id);
+    }
+    if !expected_legacy_inputs_match(&packet.legacy_inputs) {
+        return Err(TaskAdmissionError::ImplicitLegacyRead);
+    }
+    Ok(())
+}
+
+fn validate_legacy_read_policy_mode(
+    packet: &MixedCarrierTaskPacketV1,
+) -> Result<(), TaskAdmissionError> {
+    match packet.policy.legacy_read_policy {
+        LegacyReadPolicyV1::Refuse if !packet.legacy_inputs.is_empty() => {
+            Err(TaskAdmissionError::ImplicitLegacyRead)
+        }
+        LegacyReadPolicyV1::ExplicitReadOnly if packet.legacy_inputs.is_empty() => {
+            Err(TaskAdmissionError::ImplicitLegacyRead)
+        }
+        _ => Ok(()),
+    }
+}
+
+fn validate_single_legacy_input(
+    packet: &MixedCarrierTaskPacketV1,
+    legacy: &LegacyPacketReferenceV1,
+    previous: Option<&str>,
+    artifacts: &BTreeMap<&str, &TaskArtifactV1>,
+) -> Result<(), TaskAdmissionError> {
+    for (field, value) in [
+        ("legacy.reference_id", legacy.reference_id.as_str()),
+        ("legacy.schema_version", legacy.schema_version.as_str()),
+    ] {
+        require_text(field, value)?;
+    }
+    require_canonical_repo_path("legacy.path", &legacy.path)?;
+    require_sha256("legacy.sha256", &legacy.sha256)?;
+    if previous.is_some_and(|value| value >= legacy.reference_id.as_str()) {
+        return Err(TaskAdmissionError::NonCanonicalList("packet.legacy_inputs"));
+    }
+    let Some(artifact) = artifacts.get(legacy.path.as_str()) else {
+        return Err(TaskAdmissionError::ImplicitLegacyRead);
+    };
+    if artifact.role != TaskArtifactRoleV1::LegacyProtocol
+        || artifact.sha256 != legacy.sha256
+        || packet.write_surface.contains(&legacy.path)
+    {
+        return Err(TaskAdmissionError::ImplicitLegacyRead);
+    }
+    Ok(())
+}
+
+fn expected_legacy_inputs_match(legacy_inputs: &[LegacyPacketReferenceV1]) -> bool {
+    legacy_inputs.len() == 2
+        && legacy_input_matches(
+            &legacy_inputs[0],
+            S03_001_LEGACY_LEASE_REFERENCE_ID,
+            S03_001_LEGACY_LEASE_PATH,
+            S03_001_LEGACY_LEASE_SCHEMA_VERSION,
+            S03_001_LEGACY_LEASE_SHA256,
+        )
+        && legacy_input_matches(
+            &legacy_inputs[1],
+            S03_001_LEGACY_SCHEMA_REFERENCE_ID,
+            S03_001_LEGACY_SCHEMA_PATH,
+            S03_001_LEGACY_SCHEMA_VERSION,
+            S03_001_LEGACY_SCHEMA_SHA256,
+        )
+}
+
+fn legacy_input_matches(
+    input: &LegacyPacketReferenceV1,
+    reference_id: &str,
+    path: &str,
+    schema_version: &str,
+    sha256: &str,
+) -> bool {
+    input.reference_id == reference_id
+        && input.path == path
+        && input.schema_version == schema_version
+        && input.sha256 == sha256
+}
+
+fn validate_policy(policy: &TaskAdmissionPolicyV1) -> Result<(), TaskAdmissionError> {
+    if policy.legacy_read_policy != LegacyReadPolicyV1::ExplicitReadOnly
+        || policy.oracle_policy != OraclePolicyV1::Route
+        || !policy.imports_require_packet_reference
+        || !policy.exact_write_surface
+        || !policy.public_hashes_declared_artifacts_only
+        || policy.model_delegation_allowed
+    {
+        return Err(TaskAdmissionError::PolicyExpansion);
+    }
+    if policy.carrier_change_policy != CarrierChangePolicyV1::RequireLiftLicense {
+        return Err(TaskAdmissionError::CarrierChangeUnlicensed);
+    }
+    Ok(())
+}
+
+fn validate_budgets(
+    budgets: TaskAdmissionBudgetsV1,
+    write_count: usize,
+) -> Result<(), TaskAdmissionError> {
+    let expected = TaskAdmissionBudgetsV1 {
+        attempt_budget: 1,
+        repair_budget: 2,
+        successor_budget: 1,
+        time_budget_seconds: 8 * 60 * 60,
+        process_budget: 4,
+        token_budget: 200_000,
+        max_changed_files: S03_001_WRITE_SURFACE.len() as u16,
+        max_diff_bytes: 1_000_000,
+    };
+    if budgets != expected || write_count != S03_001_WRITE_SURFACE.len() {
+        return Err(TaskAdmissionError::BudgetOutsideAdmission);
+    }
+    Ok(())
+}
+
+fn validate_lease_request(request: &TaskLeaseRequestV1) -> Result<(), TaskAdmissionError> {
+    require_text("lease.lease_id", &request.lease_id)?;
+    require_text("lease.owner_id", &request.owner_id)?;
+    validate_exact_paths("lease.canonical_paths", &request.canonical_paths)
+}
+
+fn validate_observer(packet: &MixedCarrierTaskPacketV1) -> Result<(), TaskAdmissionError> {
+    let observer = &packet.observer;
+    validate_task_observer_fields(observer)?;
+    if !task_observer_context_matches(packet) || !task_observer_surfaces_match(packet) {
+        return Err(TaskAdmissionError::ObserverContextMismatch);
+    }
+    let found = task_observer_sha256_v1(observer)?;
+    if found != observer.observer_hash {
+        return Err(TaskAdmissionError::ObserverHashMismatch {
+            expected: observer.observer_hash.clone(),
+            found,
+        });
+    }
+    if observer.observer_hash != S03_001_OBSERVER_SHA256 {
+        return Err(TaskAdmissionError::ObserverHashMismatch {
+            expected: S03_001_OBSERVER_SHA256.to_owned(),
+            found: observer.observer_hash.clone(),
+        });
+    }
+    Ok(())
+}
+
+fn validate_task_observer_fields(
+    observer: &FrozenTaskObserverV1,
+) -> Result<(), TaskAdmissionError> {
+    for (field, value) in [
+        ("observer.observer_id", observer.observer_id.as_str()),
+        (
+            "observer.observer_domain",
+            observer.observer_domain.as_str(),
+        ),
+        ("observer.state_domain", observer.state_domain.as_str()),
+    ] {
+        require_text(field, value)?;
+    }
+    require_git_commit("observer.frozen_base", &observer.frozen_base)?;
+    require_sha256("observer.observer_hash", &observer.observer_hash)
+}
+
+fn task_observer_context_matches(packet: &MixedCarrierTaskPacketV1) -> bool {
+    let observer = &packet.observer;
+    let mut visible = packet
+        .artifacts
+        .iter()
+        .map(|artifact| artifact.sha256.clone())
+        .collect::<Vec<_>>();
+    visible.sort();
+    visible.dedup();
+    observer.observer_id == packet.admission_host_id
+        && observer.observer_domain == S03_001_OBSERVER_DOMAIN
+        && observer.state_domain == S03_001_STATE_DOMAIN
+        && observer.frozen_base == packet.frozen_base
+        && observer.visible_artifact_hashes == visible
+        && observer.evidence_ceiling == packet.evidence_ceiling
+        && !observer.model_delegation_allowed
+}
+
+fn task_observer_surfaces_match(packet: &MixedCarrierTaskPacketV1) -> bool {
+    let observer = &packet.observer;
+    let hidden = [
+        "credentials".to_owned(),
+        "hidden-context".to_owned(),
+        "raw-secrets".to_owned(),
+    ];
+    let permissions = [
+        TaskAdmissionPermissionV1::ReadFrozenArtifacts,
+        TaskAdmissionPermissionV1::CompilePacket,
+        TaskAdmissionPermissionV1::ValidatePacket,
+        TaskAdmissionPermissionV1::CheckLeases,
+        TaskAdmissionPermissionV1::IssueLease,
+    ];
+    observer.hidden_artifact_classes == hidden
+        && observer.tool_permissions == permissions
+        && observer.write_surface == packet.write_surface
+}
+
+#[derive(Serialize)]
+struct ObserverHashMaterialV1<'a> {
+    observer_id: &'a str,
+    observer_domain: &'a str,
+    state_domain: &'a str,
+    frozen_base: &'a str,
+    visible_artifact_hashes: &'a [String],
+    hidden_artifact_classes: &'a [String],
+    tool_permissions: &'a [TaskAdmissionPermissionV1],
+    write_surface: &'a [String],
+    evidence_ceiling: &'a str,
+    model_delegation_allowed: bool,
+}
+
+pub fn task_observer_sha256_v1(
+    observer: &FrozenTaskObserverV1,
+) -> Result<String, TaskAdmissionError> {
+    sha256_json_v1(&ObserverHashMaterialV1 {
+        observer_id: &observer.observer_id,
+        observer_domain: &observer.observer_domain,
+        state_domain: &observer.state_domain,
+        frozen_base: &observer.frozen_base,
+        visible_artifact_hashes: &observer.visible_artifact_hashes,
+        hidden_artifact_classes: &observer.hidden_artifact_classes,
+        tool_permissions: &observer.tool_permissions,
+        write_surface: &observer.write_surface,
+        evidence_ceiling: &observer.evidence_ceiling,
+        model_delegation_allowed: observer.model_delegation_allowed,
+    })
+}
+
+pub fn task_packet_canonical_bytes_v1(
+    packet: &MixedCarrierTaskPacketV1,
+) -> Result<Vec<u8>, TaskAdmissionError> {
+    packet.validate()?;
+    serde_json::to_vec(packet).map_err(json_error)
+}
+
+pub fn task_packet_sha256_v1(
+    packet: &MixedCarrierTaskPacketV1,
+) -> Result<String, TaskAdmissionError> {
+    Ok(sha256_bytes_v1(&task_packet_canonical_bytes_v1(packet)?))
+}
+
+pub fn task_bundle_sha256_v1(artifacts: &[TaskArtifactV1]) -> Result<String, TaskAdmissionError> {
+    if artifacts != expected_source_manifest_v1() {
+        return Err(TaskAdmissionError::SourceManifestMismatch);
+    }
+    sha256_json_v1(artifacts)
+}
+
+pub fn compile_task_packet_v1(
+    envelope: &TaskAdmissionEnvelopeV1,
+    resolved_artifacts: &[ResolvedTaskArtifactV1],
+    current_base: &str,
+) -> Result<CompiledTaskPacketV1, TaskAdmissionError> {
+    envelope.validate()?;
+    require_git_commit("compile.current_base", current_base)?;
+    if current_base != envelope.packet.frozen_base {
+        return Err(TaskAdmissionError::StaleBase {
+            expected: envelope.packet.frozen_base.clone(),
+            found: current_base.to_owned(),
+        });
+    }
+    validate_resolved_bundle(&envelope.packet.artifacts, resolved_artifacts)?;
+    Ok(CompiledTaskPacketV1 {
+        schema_version: TASK_COMPILATION_SCHEMA_VERSION.to_owned(),
+        packet_id: envelope.packet.packet_id.clone(),
+        packet_sha256: envelope.packet_sha256.clone(),
+        bundle_sha256: task_bundle_sha256_v1(&envelope.packet.artifacts)?,
+        observer_sha256: envelope.packet.observer.observer_hash.clone(),
+        frozen_base: envelope.packet.frozen_base.clone(),
+        admission_host_id: envelope.packet.admission_host_id.clone(),
+        lease_request: envelope.packet.lease_request.clone(),
+        write_surface: envelope.packet.write_surface.clone(),
+        evidence_ceiling: envelope.packet.evidence_ceiling.clone(),
+        status: TaskAdmissionStatusV1::CompiledForHostLease,
+        authority_effect: AuthorityEffect::None,
+    })
+}
+
+fn validate_resolved_bundle(
+    declared: &[TaskArtifactV1],
+    resolved: &[ResolvedTaskArtifactV1],
+) -> Result<(), TaskAdmissionError> {
+    if resolved.len() < declared.len() {
+        return Err(TaskAdmissionError::MissingArtifact(
+            find_missing_artifact_id(declared, resolved),
+        ));
+    }
+    if resolved.len() != declared.len() {
+        return Err(TaskAdmissionError::BundleMemberMismatch);
+    }
+    for evidence in resolved {
+        validate_resolved_artifact_fields(evidence)?;
+    }
+    for (artifact, evidence) in declared.iter().zip(resolved) {
+        verify_declared_matches_resolved(artifact, evidence)?;
+    }
+    Ok(())
+}
+
+fn find_missing_artifact_id(
+    declared: &[TaskArtifactV1],
+    resolved: &[ResolvedTaskArtifactV1],
+) -> String {
+    declared
+        .iter()
+        .find(|artifact| {
+            !resolved
+                .iter()
+                .any(|candidate| candidate.artifact_id == artifact.artifact_id)
+        })
+        .map(|artifact| artifact.artifact_id.clone())
+        .unwrap_or_else(|| "unknown".to_owned())
+}
+
+fn validate_resolved_artifact_fields(
+    evidence: &ResolvedTaskArtifactV1,
+) -> Result<(), TaskAdmissionError> {
+    require_text("resolved.artifact_id", &evidence.artifact_id)?;
+    require_canonical_repo_path("resolved.path", &evidence.path)?;
+    require_sha256("resolved.sha256", &evidence.sha256)?;
+    if evidence.byte_len == 0 {
+        return Err(TaskAdmissionError::EmptyArtifact(
+            evidence.artifact_id.clone(),
+        ));
+    }
+    Ok(())
+}
+
+fn verify_declared_matches_resolved(
+    artifact: &TaskArtifactV1,
+    evidence: &ResolvedTaskArtifactV1,
+) -> Result<(), TaskAdmissionError> {
+    if artifact.artifact_id != evidence.artifact_id || artifact.path != evidence.path {
+        return Err(TaskAdmissionError::BundleMemberMismatch);
+    }
+    if artifact.sha256 != evidence.sha256 || artifact.byte_len != evidence.byte_len {
+        return Err(TaskAdmissionError::ArtifactHashMismatch(
+            artifact.artifact_id.clone(),
+        ));
+    }
+    Ok(())
+}
+
+impl CompiledTaskPacketV1 {
+    fn validate(&self) -> Result<(), TaskAdmissionError> {
+        self.validate_compiled_fields()?;
+        let expected_writes = expected_write_surface_v1();
+        if !self.compiled_hashes_and_host_match()
+            || !self.compiled_lease_and_surfaces_match(&expected_writes)
+        {
+            return Err(TaskAdmissionError::CompilationInvariant);
+        }
+        Ok(())
+    }
+
+    fn validate_compiled_fields(&self) -> Result<(), TaskAdmissionError> {
+        require_schema(
+            "compilation.schema_version",
+            TASK_COMPILATION_SCHEMA_VERSION,
+            &self.schema_version,
+        )?;
+        if self.packet_id != S03_001_PACKET_ID {
+            return Err(TaskAdmissionError::ScopeExpansion("compilation.packet_id"));
+        }
+        for (field, value) in [
+            ("compilation.packet_sha256", self.packet_sha256.as_str()),
+            ("compilation.bundle_sha256", self.bundle_sha256.as_str()),
+            ("compilation.observer_sha256", self.observer_sha256.as_str()),
+        ] {
+            require_sha256(field, value)?;
+        }
+        require_git_commit("compilation.frozen_base", &self.frozen_base)?;
+        require_text("compilation.admission_host_id", &self.admission_host_id)?;
+        validate_lease_request(&self.lease_request)?;
+        validate_exact_paths("compilation.write_surface", &self.write_surface)
+    }
+
+    fn compiled_hashes_and_host_match(&self) -> bool {
+        self.packet_sha256 == S03_001_PACKET_SHA256
+            && self.bundle_sha256 == S03_001_BUNDLE_SHA256
+            && self.observer_sha256 == S03_001_OBSERVER_SHA256
+            && self.frozen_base == S03_001_FROZEN_BASE
+            && self.admission_host_id == S03_001_HOST_ID
+            && self.evidence_ceiling == S03_001_EVIDENCE_CEILING
+            && self.status == TaskAdmissionStatusV1::CompiledForHostLease
+            && self.authority_effect.is_none()
+    }
+
+    fn compiled_lease_and_surfaces_match(&self, expected_writes: &[String]) -> bool {
+        self.lease_request.lease_id == S03_001_LEASE_ID
+            && self.lease_request.owner_id == S03_001_PRODUCER_ID
+            && self.lease_request.mode == TaskLeaseModeV1::Write
+            && self.lease_request.canonical_paths == expected_writes
+            && self.write_surface == expected_writes
+    }
+}
+
+impl ActiveTaskLeaseV1 {
+    fn validate(&self) -> Result<(), TaskAdmissionError> {
+        require_schema(
+            "active_lease.schema_version",
+            TASK_LEASE_SCHEMA_VERSION,
+            &self.schema_version,
+        )?;
+        require_text("active_lease.lease_id", &self.lease_id)?;
+        require_text("active_lease.owner_id", &self.owner_id)?;
+        require_sha256("active_lease.packet_sha256", &self.packet_sha256)?;
+        validate_exact_paths("active_lease.canonical_paths", &self.canonical_paths)?;
+        if !self.authority_effect.is_none() {
+            return Err(TaskAdmissionError::AuthorityExpansion);
+        }
+        Ok(())
+    }
+}
+
+impl HostLeaseRegistryV1 {
+    pub fn from_active(
+        leases: impl IntoIterator<Item = ActiveTaskLeaseV1>,
+    ) -> Result<Self, TaskAdmissionError> {
+        let mut registry = Self::default();
+        for lease in leases {
+            lease.validate()?;
+            if registry.active.contains_key(&lease.lease_id) {
+                return Err(TaskAdmissionError::LeaseIdCollision(lease.lease_id.clone()));
+            }
+            for active in registry.active.values() {
+                if let Some(path) =
+                    first_path_overlap(&active.canonical_paths, &lease.canonical_paths)
+                {
+                    return Err(TaskAdmissionError::LeaseConflict {
+                        lease_id: active.lease_id.clone(),
+                        path,
+                    });
+                }
+            }
+            registry.active.insert(lease.lease_id.clone(), lease);
+        }
+        Ok(registry)
+    }
+
+    pub fn active_leases(&self) -> Vec<ActiveTaskLeaseV1> {
+        self.active.values().cloned().collect()
+    }
+
+    pub fn issue(
+        &mut self,
+        compiled: &CompiledTaskPacketV1,
+        issuer_id: &str,
+    ) -> Result<TaskAdmissionReceiptV1, TaskAdmissionError> {
+        compiled.validate()?;
+        if issuer_id != compiled.admission_host_id {
+            return Err(TaskAdmissionError::HostIssuerMismatch);
+        }
+        let request = &compiled.lease_request;
+        if self.active.contains_key(&request.lease_id) {
+            return Err(TaskAdmissionError::LeaseIdCollision(
+                request.lease_id.clone(),
+            ));
+        }
+        for active in self.active.values() {
+            if let Some(path) =
+                first_path_overlap(&active.canonical_paths, &request.canonical_paths)
+            {
+                return Err(TaskAdmissionError::LeaseConflict {
+                    lease_id: active.lease_id.clone(),
+                    path,
+                });
+            }
+        }
+        let lease = ActiveTaskLeaseV1 {
+            schema_version: TASK_LEASE_SCHEMA_VERSION.to_owned(),
+            lease_id: request.lease_id.clone(),
+            owner_id: request.owner_id.clone(),
+            packet_sha256: compiled.packet_sha256.clone(),
+            mode: request.mode,
+            canonical_paths: request.canonical_paths.clone(),
+            authority_effect: AuthorityEffect::None,
+        };
+        lease.validate()?;
+        let receipt = TaskAdmissionReceiptV1 {
+            schema_version: TASK_RECEIPT_SCHEMA_VERSION.to_owned(),
+            packet_id: compiled.packet_id.clone(),
+            packet_sha256: compiled.packet_sha256.clone(),
+            bundle_sha256: compiled.bundle_sha256.clone(),
+            observer_sha256: compiled.observer_sha256.clone(),
+            frozen_base: compiled.frozen_base.clone(),
+            lease: lease.clone(),
+            schema_checked: true,
+            canonical_bytes_checked: true,
+            bundle_checked: true,
+            paths_checked: true,
+            budgets_checked: true,
+            policy_checked: true,
+            lease_checked: true,
+            status: TaskAdmissionStatusV1::Admitted,
+            terminal: CodaTerminal::ExactRepair,
+            authority_effect: AuthorityEffect::None,
+        };
+        receipt.validate()?;
+        self.active.insert(lease.lease_id.clone(), lease);
+        Ok(receipt)
+    }
+}
+
+impl TaskAdmissionReceiptV1 {
+    pub fn validate(&self) -> Result<(), TaskAdmissionError> {
+        self.validate_receipt_fields()?;
+        let expected_writes = expected_write_surface_v1();
+        if !self.receipt_hashes_and_lease_match(&expected_writes)
+            || !self.receipt_checks_and_status_match()
+        {
+            return Err(TaskAdmissionError::ReceiptInvariant);
+        }
+        Ok(())
+    }
+
+    fn validate_receipt_fields(&self) -> Result<(), TaskAdmissionError> {
+        require_schema(
+            "receipt.schema_version",
+            TASK_RECEIPT_SCHEMA_VERSION,
+            &self.schema_version,
+        )?;
+        if self.packet_id != S03_001_PACKET_ID {
+            return Err(TaskAdmissionError::ScopeExpansion("receipt.packet_id"));
+        }
+        for (field, value) in [
+            ("receipt.packet_sha256", self.packet_sha256.as_str()),
+            ("receipt.bundle_sha256", self.bundle_sha256.as_str()),
+            ("receipt.observer_sha256", self.observer_sha256.as_str()),
+        ] {
+            require_sha256(field, value)?;
+        }
+        require_git_commit("receipt.frozen_base", &self.frozen_base)?;
+        self.lease.validate()
+    }
+
+    fn receipt_hashes_and_lease_match(&self, expected_writes: &[String]) -> bool {
+        self.packet_sha256 == S03_001_PACKET_SHA256
+            && self.bundle_sha256 == S03_001_BUNDLE_SHA256
+            && self.observer_sha256 == S03_001_OBSERVER_SHA256
+            && self.frozen_base == S03_001_FROZEN_BASE
+            && self.lease.packet_sha256 == self.packet_sha256
+            && self.lease.lease_id == S03_001_LEASE_ID
+            && self.lease.owner_id == S03_001_PRODUCER_ID
+            && self.lease.mode == TaskLeaseModeV1::Write
+            && self.lease.canonical_paths == expected_writes
+    }
+
+    fn receipt_checks_and_status_match(&self) -> bool {
+        let checks = [
+            self.schema_checked,
+            self.canonical_bytes_checked,
+            self.bundle_checked,
+            self.paths_checked,
+            self.budgets_checked,
+            self.policy_checked,
+            self.lease_checked,
+        ];
+        checks.into_iter().all(|checked| checked)
+            && self.status == TaskAdmissionStatusV1::Admitted
+            && self.terminal == CodaTerminal::ExactRepair
+            && self.authority_effect.is_none()
+    }
+}
+
+pub fn replay_task_admission_v1(
+    envelope: &TaskAdmissionEnvelopeV1,
+    resolved_artifacts: &[ResolvedTaskArtifactV1],
+    current_base: &str,
+    active_before: &[ActiveTaskLeaseV1],
+    claimed: &TaskAdmissionReceiptV1,
+) -> Result<TaskAdmissionReceiptV1, TaskAdmissionError> {
+    let compiled = compile_task_packet_v1(envelope, resolved_artifacts, current_base)?;
+    let mut registry = HostLeaseRegistryV1::from_active(active_before.iter().cloned())?;
+    let replayed = registry.issue(&compiled, &envelope.packet.admission_host_id)?;
+    if &replayed != claimed {
+        return Err(TaskAdmissionError::ReplayMismatch);
+    }
+    Ok(replayed)
+}
+
+fn first_path_overlap(left: &[String], right: &[String]) -> Option<String> {
+    let right_folded = right
+        .iter()
+        .map(|path| path.to_ascii_lowercase())
+        .collect::<BTreeSet<_>>();
+    left.iter()
+        .find(|path| right_folded.contains(&path.to_ascii_lowercase()))
+        .cloned()
+}
+
+fn validate_exact_paths(field: &'static str, paths: &[String]) -> Result<(), TaskAdmissionError> {
+    if paths.is_empty() {
+        return Err(TaskAdmissionError::EmptyField(field));
+    }
+    let mut previous: Option<&str> = None;
+    let mut folded = BTreeSet::new();
+    for path in paths {
+        require_canonical_repo_path(field, path)?;
+        if previous.is_some_and(|value| value >= path.as_str())
+            || !folded.insert(path.to_ascii_lowercase())
+        {
+            return Err(TaskAdmissionError::NonCanonicalList(field));
+        }
+        previous = Some(path);
+    }
+    Ok(())
+}
+
+fn require_canonical_repo_path(field: &'static str, path: &str) -> Result<(), TaskAdmissionError> {
+    if repo_path_has_forbidden_syntax(path) || path.split('/').any(repo_segment_is_invalid) {
+        return Err(TaskAdmissionError::NonCanonicalPath {
+            field,
+            path: path.to_owned(),
+        });
+    }
+    Ok(())
+}
+
+fn repo_path_has_forbidden_syntax(path: &str) -> bool {
+    path.is_empty()
+        || path.trim() != path
+        || !path.is_ascii()
+        || path.starts_with('/')
+        || path.ends_with('/')
+        || path.contains('\\')
+        || path.contains(':')
+        || path
+            .chars()
+            .any(|character| character.is_control() || "*?[]{}".contains(character))
+}
+
+fn repo_segment_is_invalid(segment: &str) -> bool {
+    segment.is_empty()
+        || segment == "."
+        || segment == ".."
+        || segment.trim() != segment
+        || segment.ends_with('.')
+        || is_windows_device_segment(segment)
+}
+
+fn is_windows_device_segment(segment: &str) -> bool {
+    let base = segment
+        .split_once('.')
+        .map_or(segment, |(candidate, _)| candidate)
+        .to_ascii_uppercase();
+    matches!(
+        base.as_str(),
+        "CON"
+            | "PRN"
+            | "AUX"
+            | "NUL"
+            | "COM1"
+            | "COM2"
+            | "COM3"
+            | "COM4"
+            | "COM5"
+            | "COM6"
+            | "COM7"
+            | "COM8"
+            | "COM9"
+            | "LPT1"
+            | "LPT2"
+            | "LPT3"
+            | "LPT4"
+            | "LPT5"
+            | "LPT6"
+            | "LPT7"
+            | "LPT8"
+            | "LPT9"
+            | "CONIN$"
+            | "CONOUT$"
+    )
+}
+
+fn require_text(field: &'static str, value: &str) -> Result<(), TaskAdmissionError> {
+    if value.is_empty() || value.trim() != value || value.chars().any(char::is_control) {
+        return Err(TaskAdmissionError::EmptyField(field));
+    }
+    Ok(())
+}
+
+fn require_schema(
+    field: &'static str,
+    expected: &'static str,
+    found: &str,
+) -> Result<(), TaskAdmissionError> {
+    if found != expected {
+        return Err(TaskAdmissionError::SchemaMismatch {
+            field,
+            expected,
+            found: found.to_owned(),
+        });
+    }
+    Ok(())
+}
+
+fn require_git_commit(field: &'static str, value: &str) -> Result<(), TaskAdmissionError> {
+    if value.len() != 40
+        || !value
+            .bytes()
+            .all(|byte| byte.is_ascii_digit() || (b'a'..=b'f').contains(&byte))
+    {
+        return Err(TaskAdmissionError::InvalidGitCommit(field));
+    }
+    Ok(())
+}
+
+fn require_sha256(field: &'static str, value: &str) -> Result<(), TaskAdmissionError> {
+    if value.len() != 64
+        || !value
+            .bytes()
+            .all(|byte| byte.is_ascii_digit() || (b'a'..=b'f').contains(&byte))
+    {
+        return Err(TaskAdmissionError::InvalidSha256(field));
+    }
+    Ok(())
+}
+
+fn sha256_json_v1<T: Serialize + ?Sized>(value: &T) -> Result<String, TaskAdmissionError> {
+    let bytes = serde_json::to_vec(value).map_err(json_error)?;
+    Ok(sha256_bytes_v1(&bytes))
+}
+
+fn sha256_bytes_v1(bytes: &[u8]) -> String {
+    let mut hasher = Sha256::new();
+    hasher.update(bytes);
+    format!("{:x}", hasher.finalize())
+}
+
+fn json_error(error: serde_json::Error) -> TaskAdmissionError {
+    TaskAdmissionError::Json(error.to_string())
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Error)]
+pub enum TaskAdmissionError {
+    #[error("schema mismatch in {field}: expected {expected}, found {found}")]
+    SchemaMismatch {
+        field: &'static str,
+        expected: &'static str,
+        found: String,
+    },
+    #[error("required field is empty or non-canonical: {0}")]
+    EmptyField(&'static str),
+    #[error("invalid lowercase SHA-256 in {0}")]
+    InvalidSha256(&'static str),
+    #[error("invalid lowercase Git commit in {0}")]
+    InvalidGitCommit(&'static str),
+    #[error("path is not an exact canonical repository file in {field}: {path}")]
+    NonCanonicalPath { field: &'static str, path: String },
+    #[error("list is not strictly sorted, unique, and case-safe: {0}")]
+    NonCanonicalList(&'static str),
+    #[error("artifact is empty: {0}")]
+    EmptyArtifact(String),
+    #[error("artifact kind does not match its path: {artifact_id} at {path}")]
+    ArtifactKindMismatch { artifact_id: String, path: String },
+    #[error("packet is not frozen and cannot be admitted")]
+    UnfrozenPacket,
+    #[error("packet frozen base differs from the admitted S03-001 base")]
+    FrozenBaseMismatch,
+    #[error("current base is stale: expected {expected}, found {found}")]
+    StaleBase { expected: String, found: String },
+    #[error("scope expansion is not licensed: {0}")]
+    ScopeExpansion(&'static str),
+    #[error("source manifest differs from the frozen S03-001 closure")]
+    SourceManifestMismatch,
+    #[error("required packet reference or field is implicit")]
+    ImplicitLegacyRead,
+    #[error("upstream packet reference set differs from the frozen S03-001 set")]
+    PacketReferenceSetChanged,
+    #[error("allowed packet operation set changed")]
+    OperationSetChanged,
+    #[error("packet policy exceeds the admitted boundary")]
+    PolicyExpansion,
+    #[error("carrier change is not guarded by a lift license")]
+    CarrierChangeUnlicensed,
+    #[error("packet budget exceeds the admitted S03-001 ceiling")]
+    BudgetOutsideAdmission,
+    #[error("exact write surface changed")]
+    WriteSurfaceChanged,
+    #[error("lease request does not exactly bind the write surface")]
+    LeaseRequestMismatch,
+    #[error("successor policy changed")]
+    SuccessorPolicyChanged,
+    #[error("required nonclaim set changed")]
+    NonclaimSetChanged,
+    #[error("evidence ceiling changed")]
+    EvidenceCeilingChanged,
+    #[error("host, producer, evaluator, and authority witness identities must differ")]
+    IdentityCollision,
+    #[error("frozen admission identity changed: {0}")]
+    IdentitySetChanged(&'static str),
+    #[error("authority effect is not none")]
+    AuthorityExpansion,
+    #[error("observer context differs from the frozen packet")]
+    ObserverContextMismatch,
+    #[error("observer hash mismatch: expected {expected}, found {found}")]
+    ObserverHashMismatch { expected: String, found: String },
+    #[error("packet hash mismatch: expected {expected}, found {found}")]
+    PacketHashMismatch { expected: String, found: String },
+    #[error("required artifact is missing: {0}")]
+    MissingArtifact(String),
+    #[error("resolved bundle membership or order differs")]
+    BundleMemberMismatch,
+    #[error("resolved artifact bytes do not match: {0}")]
+    ArtifactHashMismatch(String),
+    #[error("compiled packet invariant failed")]
+    CompilationInvariant,
+    #[error("only the frozen admission host may issue the lease")]
+    HostIssuerMismatch,
+    #[error("lease id already exists: {0}")]
+    LeaseIdCollision(String),
+    #[error("lease {lease_id} overlaps exact path {path}")]
+    LeaseConflict { lease_id: String, path: String },
+    #[error("admission receipt invariant failed")]
+    ReceiptInvariant,
+    #[error("deterministic admission replay differs from the claimed receipt")]
+    ReplayMismatch,
+    #[error("canonical JSON operation failed: {0}")]
+    Json(String),
+}
+
+impl TaskAdmissionError {
+    pub const fn terminal_route(&self) -> CodaTerminal {
+        match self {
+            Self::MissingArtifact(_) => CodaTerminal::OracleNeeded,
+            Self::StaleBase { .. } | Self::LeaseIdCollision(_) | Self::LeaseConflict { .. } => {
+                CodaTerminal::OpenObstruction
+            }
+            Self::CarrierChangeUnlicensed => CodaTerminal::LiftLicenseNeeded,
+            Self::PolicyExpansion
+            | Self::BudgetOutsideAdmission
+            | Self::IdentityCollision
+            | Self::IdentitySetChanged(_)
+            | Self::AuthorityExpansion
+            | Self::HostIssuerMismatch => CodaTerminal::Refused,
+            Self::Json(_) => CodaTerminal::InfrastructureFailure,
+            _ => CodaTerminal::Invalid,
+        }
+    }
+
+    pub const fn survivor_route(&self) -> Option<TaskAdmissionSurvivorV1> {
+        match self {
+            Self::MissingArtifact(_) => Some(TaskAdmissionSurvivorV1::MissingArtifact),
+            Self::LeaseIdCollision(_) | Self::LeaseConflict { .. } | Self::StaleBase { .. } => {
+                Some(TaskAdmissionSurvivorV1::LeaseConflict)
+            }
+            Self::CarrierChangeUnlicensed => Some(TaskAdmissionSurvivorV1::LiftLicenseNeeded),
+            Self::PolicyExpansion
+            | Self::BudgetOutsideAdmission
+            | Self::IdentityCollision
+            | Self::IdentitySetChanged(_)
+            | Self::AuthorityExpansion
+            | Self::HostIssuerMismatch => Some(TaskAdmissionSurvivorV1::Refused),
+            Self::Json(_) => Some(TaskAdmissionSurvivorV1::InfrastructureFailure),
+            _ => Some(TaskAdmissionSurvivorV1::InvalidEvidence),
+        }
+    }
+}
+
+// Origin: vendor/engine/engine_state/src/task_admission.rs
+// Claim: urn:omega:crates_rs:omega-state:task-admission:l4-production-boundary:v1
+// AuthorityEffect: None
+// Scope Fence: Does not claim authority promotion outside declared finite bounds.
+// Mutation Accounting: no source-bound mutation campaign run for this repair; ratio=null.
+
+#[cfg(test)]
+mod workspace_repair_tests {
+    use super::*;
+    #[test]
+    fn exact_paths_accept_relative_files_and_refuse_delimiters_and_traversal() {
+        assert!(require_canonical_repo_path("test", "src/module.rs").is_ok());
+        for path in [
+            r"src\module.rs",
+            "../module.rs",
+            "/module.rs",
+            "a//b",
+            "a/*.rs",
+            "C:/module.rs",
+        ] {
+            assert!(require_canonical_repo_path("test", path).is_err(), "{path}");
+        }
+    }
+}

@@ -58,9 +58,9 @@ impl<'ast> Visit<'ast> for AuthorityConstructorAudit {
 fn runtime_adapter_imports_shared_types_without_importing_apache_semantics() {
     let root = Path::new(env!("CARGO_MANIFEST_DIR"));
     let adapter = fs::read_to_string(root.join("src/runtime_adapter.rs")).unwrap();
-    assert!(adapter.contains("omega_wdp::coda::coda_gtla"));
-    assert!(adapter.contains("omega_state::CodaTerminal"));
-    assert!(adapter.contains("omega_contracts::mub_domain_ownership"));
+    assert!(adapter.contains("tfqm_wdp::coda::coda_gtla"));
+    assert!(adapter.contains("engine_state::CodaTerminal"));
+    assert!(adapter.contains("engine_contracts::mub_domain_ownership"));
     assert!(!adapter.contains("use mub::"));
     assert!(!adapter.contains("mub::apache"));
 }

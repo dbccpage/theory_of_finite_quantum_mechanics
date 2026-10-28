@@ -19,7 +19,7 @@ use tfqm_mub::native::exact::mub6_global_cover::{
     CompositeCycleLoop, GlobalAtlasAggregator, GlobalCoverError, RationalCell,
     RegionalCoverComponent, RegionalCoverPatch, RegionalPartitionTree, NUM_REGIONAL_COMPONENTS,
 };
-use omega_number_theory::rational::rq;
+use engine_number_theory::rational::rq;
 
 // ============================================================================
 // 1. STRICT ZERO-FLOAT DISCIPLINE AST AUDIT

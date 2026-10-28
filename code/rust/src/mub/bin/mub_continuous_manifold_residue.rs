@@ -76,7 +76,7 @@ fn emit_residue_receipt<T: serde::Serialize>(report: &T) {
     hasher.update(json_str.as_bytes());
     let digest = format!("{:x}", hasher.finalize());
 
-    let crate_artifact_dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+    let crate_artifact_dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     fs::create_dir_all(&crate_artifact_dir)
         .expect("failed to create crate artifacts directory");
     let crate_artifact_path =

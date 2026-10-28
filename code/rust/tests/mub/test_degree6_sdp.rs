@@ -155,8 +155,8 @@ fn test_negative_control_indefinite_pivots_rejected() {
     assert!(res.unwrap_err().contains("not strictly positive"));
 }
 
-fn repeated_basis_gramian() -> Vec<Vec<omega_number_theory::cyclotomic::Cyc24>> {
-    use omega_number_theory::cyclotomic::Cyc24;
+fn repeated_basis_gramian() -> Vec<Vec<engine_number_theory::cyclotomic::Cyc24>> {
+    use engine_number_theory::cyclotomic::Cyc24;
     (0..24)
         .map(|i| {
             (0..24)
@@ -175,7 +175,7 @@ fn repeated_basis_gramian() -> Vec<Vec<omega_number_theory::cyclotomic::Cyc24>> 
 #[test]
 fn nonrational_real_part_is_rejected() {
     use tfqm_mub::native::exact::mub6_degree6_sdp as q;
-    use omega_number_theory::cyclotomic::Cyc24;
+    use engine_number_theory::cyclotomic::Cyc24;
     let sqrt3 = Cyc24::zeta24(2).add(&Cyc24::zeta24(-2));
     assert!(q::cyc_real_rational(&sqrt3).is_err());
     assert!(q::cyc_real_constant_coefficient(&sqrt3).is_zero());

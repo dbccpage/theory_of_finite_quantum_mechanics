@@ -1,4 +1,4 @@
-use omega_quantum_physics::pauli::Pauli;
+use engine_quantum_physics::pauli::Pauli;
 use theory_of_finite_qm::campaigns::toric::ToricCode2x2;
 const PROVENANCE: &str = "Origin: code/rust/src/qm/campaigns/toric.rs Claim: urn:fqm:toric:logical-braid-one-and-euler-zero AuthorityEffect: None";
 const SAMPLE: i64 = 8;

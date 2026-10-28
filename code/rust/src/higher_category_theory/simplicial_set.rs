@@ -1,7 +1,7 @@
 
 use std::collections::HashMap;
 
-use omega_kernel::resource_limits::OperationLimits;
+use engine_kernel::resource_limits::OperationLimits;
 use serde::{Deserialize, Serialize};
 
 use crate::error::{reserve_exact, HigherCategoryError};

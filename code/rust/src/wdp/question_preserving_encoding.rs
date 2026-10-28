@@ -1,8 +1,8 @@
 
 use std::collections::{BTreeMap, BTreeSet};
 
-use omega_category_theory::finite_report_query::{ReportQueryDecision, ReportQueryProblem};
-use omega_functional::gamma2::Gamma2Functional;
+use tfqm_category_theory::finite_report_query::{ReportQueryDecision, ReportQueryProblem};
+use engine_functional::gamma2::Gamma2Functional;
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use sha2::{Digest, Sha256};

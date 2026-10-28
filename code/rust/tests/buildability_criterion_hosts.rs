@@ -1,4 +1,4 @@
-use omega_number_theory::rational::ri;
+use engine_number_theory::rational::ri;
 use theory_of_finite_qm::campaigns::buildability::ResidualRace;
 const PROVENANCE: &str = "Origin: code/rust/src/qm/campaigns/buildability.rs Claim: urn:fqm:buildability:residual-step-lambda-minus-mu-minus-eps AuthorityEffect: None";
 const SAMPLE: i64 = 10;

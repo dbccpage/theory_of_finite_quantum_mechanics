@@ -4,15 +4,15 @@ use linear_algebra::exact_field::rational_bareiss::{
     RationalBudget, RationalError, RationalLimits,
 };
 use num_rational::BigRational;
-use omega_kernel::{exact_wire, exact_wire_vec};
-use tfqm_number_theory::cyclotomic::GaussianRat;
-use omega_quantum_physics::exact_channel::{ExactChannelError, ExactKrausChannel};
-use omega_solvers::data_hodge_packet::{
+use engine_kernel::{exact_wire, exact_wire_vec};
+use engine_number_theory::cyclotomic::GaussianRat;
+use engine_quantum_physics::exact_channel::{ExactChannelError, ExactKrausChannel};
+use engine_solvers::data_hodge_packet::{
     self as hodge, HodgeAvailabilityModelV1, HodgeCompositionModelV1, HodgePacketError,
     HodgePacketHeaderV1, HodgePositivityModelV1, HodgeQuestionV1, HodgeQuotientModelV1,
     HodgeRequestV1, HodgeResourceLimitsV1, HodgeResultV1, HodgeScalarModelV1, RationalMatrixV1,
 };
-use omega_types::AuthorityEffect;
+use engine_types::AuthorityEffect;
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 
@@ -348,7 +348,7 @@ fn arithmetic_refusal(error: RationalError) -> WdpPacketRefusalV1 {
 fn hodge_refusal(error: HodgePacketError) -> WdpPacketRefusalV1 {
     match error {
         HodgePacketError::Arithmetic(error) => arithmetic_refusal(error),
-        HodgePacketError::Hodge(omega_solvers::cert_hodge_decomp::HodgeError::Arithmetic(
+        HodgePacketError::Hodge(engine_solvers::cert_hodge_decomp::HodgeError::Arithmetic(
             error,
         )) => arithmetic_refusal(error),
         HodgePacketError::Hodge(error) => {

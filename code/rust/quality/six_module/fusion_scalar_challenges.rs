@@ -1,8 +1,8 @@
 #[cfg(test)]
 mod scalar_review {
     use super::*;
-    use omega_number_theory::rational::rq;
-    use omega_number_theory::scalar::RationalEmbedding;
+    use engine_number_theory::rational::rq;
+    use engine_number_theory::scalar::RationalEmbedding;
 
     #[test]
     fn full_signed_exponents_use_the_mathematical_period() {

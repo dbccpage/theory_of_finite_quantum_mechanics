@@ -2,7 +2,7 @@ use num_rational::BigRational;
 use tfqm_mub::native::exact::mub6_collar_solver::{
     evaluate_collar_barrier, solve_karlsson_collar_cover,
 };
-use omega_number_theory::rational::rq;
+use engine_number_theory::rational::rq;
 
 #[test]
 fn conditional_margin_does_not_certify_a_cover() {

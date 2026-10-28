@@ -5,13 +5,13 @@
 use num_rational::BigRational;
 use num_traits::Zero;
 
-use omega_kernel::interval::Interval;
+use engine_kernel::interval::Interval;
 use tfqm_mub::native::exact::d6_exact_curvature_cochain::D;
 use tfqm_mub::native::exact::mub6_karlsson_volume_cover::{
     box_touches_parameter_torus, overlap_abs_sq, solve_karlsson_volume_cover,
     KarlssonVolumeContext, KarlssonVolumeParameterBox,
 };
-use omega_number_theory::rational::ri;
+use engine_number_theory::rational::ri;
 
 #[test]
 fn test_torus_pruning() {

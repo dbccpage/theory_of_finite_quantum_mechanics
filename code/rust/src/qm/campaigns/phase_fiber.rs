@@ -1,5 +1,5 @@
 
-use omega_homology::cyclic_phase::{CyclicPhaseError, CyclicPhaseGroup};
+use engine_homology::cyclic_phase::{CyclicPhaseError, CyclicPhaseGroup};
 
 pub const AUTHORITY_FENCE: &str = "AuthorityEffect None; not PROVED; not GlobalGreen; \
      discrete Z/n toy fence retained; continuum U(1) not constructed; no continuum promotion.";
@@ -128,9 +128,9 @@ pub enum ContinuumU1ClaimEvidence {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_homology::cyclic_phase::{check_coboundary_triviality, coboundary, PhaseOneCochain};
-    use omega_homology::finite_directed_graph::{DirectedGraphBuilder, TheoremProvenance};
-    use omega_number_theory::rational::rq;
+    use engine_homology::cyclic_phase::{check_coboundary_triviality, coboundary, PhaseOneCochain};
+    use engine_homology::finite_directed_graph::{DirectedGraphBuilder, TheoremProvenance};
+    use engine_number_theory::rational::rq;
 
     #[test]
     fn toy_n2_constructs_discrete_z2() {

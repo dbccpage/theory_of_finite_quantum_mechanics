@@ -20,7 +20,7 @@ pub const AXIOM_A17_OBSERVABLES: &str =
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_quantum_physics::hermitian_spectral::leading_block_structure;
+    use engine_quantum_physics::hermitian_spectral::leading_block_structure;
     fn squish(text: &str) -> String {
         text.split_whitespace().collect::<Vec<_>>().join(" ")
     }

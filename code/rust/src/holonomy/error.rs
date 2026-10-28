@@ -203,9 +203,9 @@ impl HolonomyError {
     }
 }
 
-impl From<omega_kernel::resource_limits::ResourceError> for HolonomyError {
-    fn from(error: omega_kernel::resource_limits::ResourceError) -> Self {
-        use omega_kernel::resource_limits::ResourceError;
+impl From<engine_kernel::resource_limits::ResourceError> for HolonomyError {
+    fn from(error: engine_kernel::resource_limits::ResourceError) -> Self {
+        use engine_kernel::resource_limits::ResourceError;
         match error {
             ResourceError::AllocationFailure { requested, detail } => {
                 Self::AllocationFailure { requested, detail }

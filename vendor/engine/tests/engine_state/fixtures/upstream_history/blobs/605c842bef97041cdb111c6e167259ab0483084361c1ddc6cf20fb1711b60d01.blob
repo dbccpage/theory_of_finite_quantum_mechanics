@@ -1,0 +1,120 @@
+# Omega Conductor S02-001 Build and Review Record - 2026-07-18
+
+## State
+
+- Sprint: `S02-001 - Operator Manifest and Fixture Gauge`
+- Frozen implementation base: `7b34a4e32fa4a30335c1468f752e4531173d0667`
+- Frozen packet SHA-256: `036d2c59fe2fb82c47071fc961f109c98902d396d1ef9ab2972be670a4a266ea`
+- Observer SHA-256: `4a9c6681b646343f2f72e71d43e7c2c57183b29b5a14210b6806cedce23efd02`
+- Lifecycle terminal: `COMPLETED`
+- GTOC terminal: `StabilizedSurvivor` for the admitted bounded substitution carrier
+- Authority status/effect: `None` / `None`
+- Gate activation: deferred; no hook, CI enforcement rule, runtime gate, or successor loop enabled
+
+The human host directed construction after PR #1113 merged and explicitly required build and review before gate activation. This instruction admitted S02-001 construction; it did not authorize a provider, promote authority, or start GTOC-3.
+
+## Frozen source closure
+
+| Source | SHA-256 at frozen base |
+|---|---|
+| `docs/omega-conductor-epic-v001.md` | `c167ed6e93d53f12aa5834a01a069a19843fa2df72b9c75147715c10fecf47c1` |
+| `docs/saga_02_operator_registry_and_gauges.md` | `109b4f3626d194289807769a7937e5e2e8883475d8edf3561bc66924717e9119` |
+| `docs/sprint_s02_001.md` | `b840689495f500791b4f619a47d8c22fe4fd0de4ddf97ac84df1af122b67168a` |
+| `omega_engine/crates/omega_contracts/src/lib.rs` | `d5cd968aaa83386da6bf2db2b45cd8939d32f63410d309a926c3f52615145c56` |
+| `omega_engine/crates/omega_operator_algebra/src/registry.rs` | `2ecb0327f15664b74f1394aa15e63627818d878aa16e1cddc6e90d900b6b075f` |
+| `omega_engine/crates/omega_state/src/gtoc2_degree_shift.rs` | `e08238f971301bb12a98dfea5f80ea51fd8650ef4670a664d1fa5e22035ee3e4` |
+
+Tests recompute each SHA-256 from `git show 7b34a4e32fa4a30335c1468f752e4531173d0667:<path>` and reject any mismatch. The observer visible hashes are exactly this closure; live-provider context and production credentials are explicitly hidden from the admitted observer.
+
+## Canonical ownership and registry closure
+
+- `omega_contracts` owns the canonical conductor `OperatorManifestV1`, `GaugeBindingV1`, `OperatorRegistryV1`, typed input/output, capability, permission, witness, and runtime-profile types.
+- `omega_state` imports those semantic types and owns only bounded execution, independent evaluation, replay, terminal routing, and receipts.
+- `omega_operator_algebra::registry::DeclaredAction` remains the mathematical action-registry owner; no duplicate mathematical semantic type was introduced.
+- Unknown fields and unknown enum variants fail serde decoding; lists are strictly sorted and unique; duplicate or unknown owners fail validation.
+
+The admitted registry has one manifest and two bindings:
+
+| Binding | Runtime | Execution | Network | Credentials | Hidden context |
+|---|---|---|---:|---:|---:|
+| `binding:fixture-canonical-json-echo-v1` | fixture | deterministic fixture | false | false | none |
+| `binding:codex-model-fixture-replay-v1` | Codex canned profile | model fixture replay | false | false | none |
+
+The Codex profile is fixture data, not a live model call. Both bindings preserve the same semantic contract, capabilities, permission ceiling, exact writes, witness set, evidence ceiling, typed output, and `AuthorityEffect::None`.
+
+## Receipt closure
+
+| Receipt field | SHA-256 / value |
+|---|---|
+| registry | `6d4a6df74df9f01958d7004df55f27657ecb8852316687e094fc8078fb2214bb` |
+| operator manifest | `5188aef18c9aae493bb6475dfc7da35878dfa564fa4fe8dec75a188b43aaeef1` |
+| fixture output | `665646c5979bc3e0ff5fbf2f63d27a3b23af39a2b88544947f3058853b8a2587` |
+| model-profile output | `665646c5979bc3e0ff5fbf2f63d27a3b23af39a2b88544947f3058853b8a2587` |
+| first run | `7aa6ed625eb84ebbc22453eb603200de8883a3a04f454daa70ed4d1f502138e4` |
+| deterministic replay | `7aa6ed625eb84ebbc22453eb603200de8883a3a04f454daa70ed4d1f502138e4` |
+| terminal proposal | `StabilizedSurvivor` |
+| survivor routes / residuals | empty / empty |
+| actual writes | empty for both bindings |
+| human promotion | false |
+| authority effect | `None` |
+
+## Review matrix
+
+| Case | Expected route | Result |
+|---|---|---|
+| fixture and model-profile semantic equality | `StabilizedSurvivor` | PASS |
+| duplicate or unknown registry entry | `Invalid` | PASS |
+| missing capability | `OpenObstruction` + survivor `OperatorNeeded` | PASS |
+| permission/write/evidence/privacy/network/credential expansion | `LiftLicenseNeeded` | PASS |
+| semantic drift | `OpenObstruction` + survivor `InvalidEvidence` | PASS |
+| unknown or live adapter profile | `InfrastructureFailure` | PASS |
+| packet/source/observer/identity/authority tamper | typed refusal or invalid | PASS |
+| producer metadata/run identity/output/write/authority or classification tamper | independent evaluator rejection | PASS |
+| deterministic replay and byte-stable fixtures | exact equality | PASS |
+
+## GTOC-2 review repair
+
+Gemini Code Assist review on merged PR #1113 identified a medium-severity diagnostic defect: local GTOC-2 serialization failures were wrapped as `Gtoc1Dependency`, which incorrectly mapped them to terminal `Invalid` and left `Gtoc2Error::Json` unused.
+
+S02-001 preserves canonical JSON bytes while separating provenance. `Gtoc1Error::Json` produced by a local GTOC-2 serialization operation is now converted to `Gtoc2Error::Json` and terminal `InfrastructureFailure`; genuine GTOC-1 classification/validation errors remain `Gtoc1Dependency` and terminal `Invalid`. A serializer that deliberately returns an error proves the route. Successful S01-003 packet, observer, fixture, classification, and receipt bytes remain unchanged.
+
+## Verification receipt
+
+Commands run from `omega_engine` unless stated otherwise:
+
+- `cargo check -p omega_contracts --all-targets --offline`: PASS.
+- `cargo check -p omega_state --all-targets --offline`: PASS.
+- `cargo test -p omega_state --test operator_registry_runtime --locked`: PASS, 12 focused tests.
+- `cargo test -p omega_state --test gtoc2_degree_shift --locked`: PASS, 12 focused tests including forced local JSON failure.
+- `cargo test -p omega_state --all-targets --locked`: PASS, 56 tests across unit, GTOC-1, GTOC-2, protocol, and S02 registry targets.
+- `cargo test -p omega_contracts --locked`: 105 library tests and preceding integration targets pass; the broader suite then reproduces the frozen-base `v1_rust_binding_conformance` failure because its source scanner does not recognize the existing multiline `pub use omega_types::trace_artifact::{..., TraceArtifact, ...}` re-export. This sprint changes none of the contract YAML, `omega_replay`, or conformance-test paths involved, so the baseline defect remains outside the admitted write surface.
+- focused `cargo clippy` for both changed integration targets with `--no-deps --offline -- -D warnings -A deprecated`: PASS.
+- `cargo clippy -p omega_contracts --lib --no-deps --offline` with pre-existing crate warnings explicitly allowed and all remaining warnings denied: PASS.
+- `rustfmt --edition 2021 --check` on every changed Rust source/test: PASS.
+- `python -W error scripts/validate_omega_conductor_docs.py --json`: PASS with zero findings.
+- `git diff --check`, exact write-surface comparison, and staged-scope review: PASS.
+
+Fixture regeneration is explicit and test-only through `OMEGA_REGEN_S02_001_FIXTURES`; no hook, workflow, daemon, provider call, or runtime enforcement gate was installed.
+
+## Artifact hashes
+
+| Artifact | SHA-256 |
+|---|---|
+| canonical operator/gauge contracts | `ac2c0f1f10c90f7486c22317ee5541595014fdbdad63cb1c3adfe584852eec65` |
+| bounded registry runtime | `64e3cd469e8211fadd1a2864837344ab23ba483f7a5f98baebf11a0699df0250` |
+| repaired GTOC-2 degree-shift module | `7ac4a5c806f89efedc91e0295f6b578855c3f4da7f64567c85b98e9c32e7101a` |
+| admission fixture matrix | `b297ced3226c3610ed9551532fdcd37272e90a4c334060eadcb22f8572638ea9` |
+| receipt matrix | `10abf56915184e71bec88f5b8eb14ca62afd498475957a1a5dc4cb0b2e1d58f2` |
+
+## Surviving obstructions
+
+- The registry proves substitution only for one canonical JSON echo operation and two deterministic fixture-backed profiles.
+- The Codex profile is canned fixture replay; no live Codex, Claude, Gemini, compiler, Lean, or human gauge is activated or shown equivalent.
+- Declared license identifiers are contract data, not grants. GTOC-3 license completeness remains S02-002 work.
+- No independent process or binary separation is claimed; evaluator logic and identity are distinct within one bounded crate.
+- No runtime conductor host consumes these receipts yet.
+- No human authority promotion, protected enforcement, gate activation, or autonomous successor creation occurred.
+
+## Nonclaims
+
+This sprint does not claim provider parity, authorize model access, prove general operator interchangeability, establish GTOC-3, derive QM, certify every carrier, mint authority, activate gates, or make Omega Engine self-authorizing.

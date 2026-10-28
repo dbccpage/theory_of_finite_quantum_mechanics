@@ -1,5 +1,5 @@
 
-extern crate self as omega_homotopy_type_theory;
+extern crate self as tfqm_homotopy_type_theory;
 pub mod contractible_type;
 pub mod difference;
 pub mod empty_type;

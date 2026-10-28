@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 use super::errors::{QError, QPacketField};
-use omega_types::q_continuum::{ObstructionKind, TerminalStatus};
+use engine_types::q_continuum::{ObstructionKind, TerminalStatus};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
 pub enum QTerminal {

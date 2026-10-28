@@ -1,5 +1,5 @@
-use omega_homology::permutohedral::{add_scaled, boundary, Cell, CellChain, ContractionLimits};
-use omega_wdp::guarded_chain_transport::sparse::{
+use engine_homology::permutohedral::{add_scaled, boundary, Cell, CellChain, ContractionLimits};
+use engine_wdp::guarded_chain_transport::sparse::{
     verify_sparse_event_filling, SparseTransport, SparseTransportLimits,
 };
 use serde::{Deserialize, Serialize};
@@ -97,7 +97,7 @@ fn run() -> Result<serde_json::Value> {
                 SparseTransport::new_minimum_sweep(n, 3, limits, SparseTransportLimits::default())?;
             let reduced_filling = maps.project(&original, degree + 1)?;
             let reduced_cycle = maps.project(&cycle, degree)?;
-            let projected_boundary = omega_homology::permutohedral::boundary_chain(
+            let projected_boundary = engine_homology::permutohedral::boundary_chain(
                 &reduced_filling,
                 n,
                 degree + 1,

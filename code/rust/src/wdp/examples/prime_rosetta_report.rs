@@ -1,8 +1,8 @@
 
-use omega_wdp::prime_algos::prime_algorithm_0_conformance::{
+use engine_wdp::prime_algos::prime_algorithm_0_conformance::{
     check_builtin_roster, ReceiptViolation, UNDECIDABLE_WITHOUT_PER_STEP_STATE,
 };
-use omega_wdp::prime_algos::rosetta::{rosetta_builtin_roster, RosterProvenance};
+use engine_wdp::prime_algos::rosetta::{rosetta_builtin_roster, RosterProvenance};
 
 fn main() -> std::process::ExitCode {
     let r = rosetta_builtin_roster();

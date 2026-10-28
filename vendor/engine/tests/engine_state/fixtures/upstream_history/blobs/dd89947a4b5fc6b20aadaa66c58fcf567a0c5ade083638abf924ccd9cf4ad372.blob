@@ -1,0 +1,254 @@
+# SPRINT S03-001 — Mixed Carrier Packet Admission
+
+**Parent SAGA:** [SAGA-03 — Task Admission and Heterogeneous Carrier Bundles](saga_03_task_admission_and_carriers.md)  
+**LifecycleStatus:** BLOCKED
+**GtocTerminal:** NOT_EVALUATED
+**AuthorityStatus:** None
+**AuthorityEffect:** `None`
+**Frozen base:** UNFROZEN - exact Git commit required before READY or ACTIVE
+**Packet hash:** UNCOMPUTED - exact canonical packet SHA-256 required before READY or ACTIVE
+**Observer hash:** UNCOMPUTED - frozen observer required before admission
+**Attempt budget:** 1
+**Successor budget:** 1
+**Time budget:** 8 hours
+**Process budget:** 4 maximum
+**Token budget:** 200000 maximum
+**Repair budget:** 2
+
+---
+
+## Sprint goal
+Establish a compiler that freezes and hashes a mixed paper-and-Rust task packet.
+
+## Carrier
+
+Work-packet schema, serializer, observer, packet refs, Git base, hashes, policies, budgets, writes, leases, and tests.
+
+## Primitive Difference
+
+Admission does not bind every observer, artifact, reference, budget, permission, and write surface into one hash.
+
+## ZeroRel
+
+Packets are equivalent only when canonical bytes and every frozen field match.
+
+## Cochain realization
+
+**Realization:** Structural
+
+### C0
+
+Packet fields, artifacts, policies, hashes, budgets, refs, leases.
+
+### C1
+
+Reference, dependency, permission, and claim-binding edges.
+
+### C2
+
+Hash, policy, path, dependency, and lease consistency.
+
+### d0
+
+Maps fields to references/obligations.
+
+### d1
+
+Maps edges to missing artifact, mismatch, conflict, or unauthorized write.
+
+### d1 o d0 witness
+
+Canonical validation reproduces the hash without unresolved references.
+
+## Q1
+
+Packet differences modulo canonical serialization and licensed path normalization.
+
+## Phi1 before
+
+Incomplete schema, single refs, draft bases, undefined budgets, underbound observer.
+
+## Gamma2 risks
+
+Cross-platform paths, hidden artifacts, bundle mismatch, lease races.
+
+## Frozen observer
+
+Host admission; models have no tools and cannot mutate packet.
+
+## Witness plan and evidence ceiling
+
+Packet shape and local artifact existence.
+
+## Licensed operators and lifts
+
+Canonical bytes, SHA-256, path/schema/lease checks.
+
+## Survivor routing
+
+Malformed -> `Invalid`; external -> `OracleNeeded`; carrier change -> lift; lease race -> open.
+
+## Story roster
+
+### STORY S03-001-01 - Close packet schema
+
+**LifecycleStatus:** BLOCKED
+
+#### Goal
+
+Close packet schema.
+
+#### Primitive Difference
+
+Admission fields are incomplete.
+
+#### Carrier and exact write surface
+
+Schema/fixtures.
+
+#### Preconditions and dependencies
+
+S01-001 promoted.
+
+#### Licensed operations
+
+Define observer, refs, budgets, policies, surfaces.
+
+#### Acceptance criteria
+
+- Missing fields fail.
+- Legacy read explicit.
+- Writes exact.
+
+#### Evidence receipts
+
+Schema receipt.
+
+#### Survivor route
+
+Unknown version -> `Invalid`.
+
+#### Nonclaims
+
+Does not execute task.
+
+### STORY S03-001-02 - Canonicalize and hash
+
+**LifecycleStatus:** BLOCKED
+
+#### Goal
+
+Canonicalize and hash.
+
+#### Primitive Difference
+
+Bytes are not reproducible across platforms.
+
+#### Carrier and exact write surface
+
+Serializer/hash fixtures.
+
+#### Preconditions and dependencies
+
+After story 01.
+
+#### Licensed operations
+
+Implement canonical bytes/hash.
+
+#### Acceptance criteria
+
+- Serialization repeats.
+- Tamper/bundle mismatch fail.
+
+#### Evidence receipts
+
+Hash receipt.
+
+#### Survivor route
+
+Ambiguity -> open.
+
+#### Nonclaims
+
+No public raw-secret hashes.
+
+### STORY S03-001-03 - Enforce admission/leases
+
+**LifecycleStatus:** BLOCKED
+
+#### Goal
+
+Enforce admission/leases.
+
+#### Primitive Difference
+
+Valid bytes may exceed writes or collide.
+
+#### Carrier and exact write surface
+
+Admission/lease tests.
+
+#### Preconditions and dependencies
+
+After story 02.
+
+#### Licensed operations
+
+Validate base, paths, budgets, policy, leases.
+
+#### Acceptance criteria
+
+- Unfrozen not ACTIVE.
+- Traversal/overlap fail.
+- Host issues lease.
+
+#### Evidence receipts
+
+Admission receipt.
+
+#### Survivor route
+
+Missing fact -> oracle.
+
+#### Nonclaims
+
+Does not run task.
+
+## Story dependency graph
+
+S03-001-01 -> S03-001-02 -> S03-001-03.
+
+## Witness plan
+
+Producer owns the carrier. Independent evaluator checks the exact diff. Authority witness checks independence, residuals, and nonpromotion. Deterministic gates emit receipts; a human alone promotes.
+
+## Exact write surfaces
+
+- Admitted packet schema/serializer.
+- Admission/lease validators and fixtures.
+
+## Deterministic verification
+
+- Schema/version tests.
+- Hash/tamper tests.
+- Traversal, bundle, stale-base, budget, lease-race tests.
+
+## Terminal set
+
+`ExactRepair`, `StabilizedSurvivor`, `OpenObstruction`, `OracleNeeded`, `LiftLicenseNeeded`, `Refused`, `Invalid`, or `InfrastructureFailure`.
+
+## Exit criteria
+
+The mixed packet is reproducibly frozen, hash-checked, path/lease checked, and admitted or refused with typed receipts at one exact base.
+
+## Completion evidence
+
+None. Sprint not admitted; no terminal or promotion receipt exists.
+
+## Retrospective
+Required after terminalization. Improvements become separate host-admitted candidates.
+
+## Prior work and import ledger
+
+Legacy packets cannot weaken v1 requirements.

@@ -1,12 +1,12 @@
 
 
-use omega_number_theory::rational::{rq, One, Rational, Zero};
+use engine_number_theory::rational::{rq, One, Rational, Zero};
 use serde::{Deserialize, Serialize};
 
 use crate::linear_algebra::{elimination, matrix};
-use omega_number_theory::quadratic::Quadratic;
-use omega_quantum_physics::kochen_specker::{self, CABELLO_18_VECTORS, CABELLO_9_CONTEXTS};
-use omega_solvers::solver_sat_dpll::{BooleanOutcome, BooleanProblem};
+use engine_number_theory::quadratic::Quadratic;
+use engine_quantum_physics::kochen_specker::{self, CABELLO_18_VECTORS, CABELLO_9_CONTEXTS};
+use engine_solvers::solver_sat_dpll::{BooleanOutcome, BooleanProblem};
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct CabelloHypergraphReport {
@@ -534,22 +534,22 @@ pub fn verify_higher_conductor_triads() -> HigherConductorTriadReport {
 
 pub fn verify_higher_conductor_topology() -> HigherConductorTopologyReport {
     let conductors = vec![120, 240, 480, 840];
-    let obs_120 = omega_number_theory::cyclotomic_field::first_missing_quadratic_prime(120, 100)
+    let obs_120 = engine_number_theory::cyclotomic_field::first_missing_quadratic_prime(120, 100)
         .expect("fixed conductor obstruction");
-    let obs_240 = omega_number_theory::cyclotomic_field::first_missing_quadratic_prime(240, 100)
+    let obs_240 = engine_number_theory::cyclotomic_field::first_missing_quadratic_prime(240, 100)
         .expect("fixed conductor obstruction");
-    let obs_480 = omega_number_theory::cyclotomic_field::first_missing_quadratic_prime(480, 100)
+    let obs_480 = engine_number_theory::cyclotomic_field::first_missing_quadratic_prime(480, 100)
         .expect("fixed conductor obstruction");
-    let obs_840 = omega_number_theory::cyclotomic_field::first_missing_quadratic_prime(840, 100)
+    let obs_840 = engine_number_theory::cyclotomic_field::first_missing_quadratic_prime(840, 100)
         .expect("fixed conductor obstruction");
 
     let c840_sqrt7 = (num_bigint::BigInt::from(840)
-        % omega_number_theory::cyclotomic_field::quadratic_field_conductor(
+        % engine_number_theory::cyclotomic_field::quadratic_field_conductor(
             &num_bigint::BigInt::from(7),
         ))
     .is_zero();
     let c840_sqrt11 = (num_bigint::BigInt::from(840)
-        % omega_number_theory::cyclotomic_field::quadratic_field_conductor(
+        % engine_number_theory::cyclotomic_field::quadratic_field_conductor(
             &num_bigint::BigInt::from(11),
         ))
     .is_zero();

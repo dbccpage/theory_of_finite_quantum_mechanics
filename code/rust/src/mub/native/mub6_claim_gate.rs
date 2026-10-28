@@ -78,8 +78,8 @@ pub fn seal_vbox_certificate(
 mod tests {
     use super::*;
     use crate::native::exact::mub6_interval_cover::VectorBox;
-    use omega_kernel::interval::Interval;
-    use tfqm_number_theory::rational::ri;
+    use engine_kernel::interval::Interval;
+    use engine_number_theory::rational::ri;
 
     fn wide_box() -> VectorBox {
         std::array::from_fn(|_| Interval::new(ri(0), ri(1)))

@@ -1,7 +1,7 @@
 
 use crate::native::exact::d6_exact_curvature_cochain::{curvature_c2, ExactVec};
 use crate::native::exact::d6_exact_tangent_obstruction::curvature_jacobian;
-use tfqm_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::cyclotomic::Cyc24;
 
 #[derive(Debug, Clone, PartialEq, Eq, PartialOrd, Ord)]
 pub enum SolveError {
@@ -195,8 +195,8 @@ mod tests {
     use super::*;
     use crate::native::exact::d6_exact_curvature_cochain::{canonical_triple_exact, COLUMN_COUNT};
     use crate::native::exact::d6_exact_tangent_obstruction::{mat_vec, REAL_DIM};
-    use tfqm_number_theory::cyclotomic::Cyc24;
-    use tfqm_number_theory::rational::ri;
+    use engine_number_theory::cyclotomic::Cyc24;
+    use engine_number_theory::rational::ri;
 
     fn rat(num: i64, den: i64) -> Cyc24 {
         Cyc24::rat(ri(num) / ri(den))

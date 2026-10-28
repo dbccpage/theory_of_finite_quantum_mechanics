@@ -4,11 +4,11 @@
 use linear_algebra::backend::basic_matrix::{BasicMatrix, OperationLimits};
 use linear_algebra::exact_field::elimination::{solve_with_limits, LinearSolution};
 use num_traits::Zero;
-use omega_homology::finite_rational_homology::{
+use engine_homology::finite_rational_homology::{
     FiniteRationalChainComplex, RationalHomologyQuotient,
 };
-use omega_homology::scalar::Q;
-use omega_kernel::Digest;
+use engine_homology::scalar::Q;
+use engine_kernel::Digest;
 
 pub const MAX_GAUGE_DIMENSION: usize = 256;
 

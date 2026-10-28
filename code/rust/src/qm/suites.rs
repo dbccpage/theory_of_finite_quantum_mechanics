@@ -137,7 +137,7 @@ fn run_c1000_suite() -> Result<Value, String> {
     Ok(json!({
         "authority_effect": "None",
         "scope": "declared C1000 finite witnesses",
-        "no_signalling": omega_quantum_physics::no_signalling::verify_no_signalling_on_bell_states(),
+        "no_signalling": engine_quantum_physics::no_signalling::verify_no_signalling_on_bell_states(),
         "rotation_groups": crate::qm::campaigns::rotation_groups::build_rotation_groups_receipt().map_err(|error| error.to_string())?,
         "boost_powers": crate::qm::campaigns::lorentz_boost::power_sequence(10).map_err(|e| e.to_string())?,
         "contextuality": crate::qm::campaigns::context_barrier::evaluate_campaign_block_07()?,

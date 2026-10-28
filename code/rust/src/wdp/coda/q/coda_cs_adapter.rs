@@ -1,8 +1,8 @@
 
 use std::collections::BTreeMap;
 
-use omega_types::authority_lattice::AuthorityEffectLevel;
-use omega_types::q_continuum::{ObstructionKind, Residual};
+use engine_types::authority_lattice::AuthorityEffectLevel;
+use engine_types::q_continuum::{ObstructionKind, Residual};
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 

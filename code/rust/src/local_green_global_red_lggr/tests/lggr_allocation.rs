@@ -7,7 +7,7 @@ use std::alloc::{GlobalAlloc, Layout, System};
 use std::cell::Cell;
 
 use num_rational::BigRational;
-use omega_linear_algebra::backend::basic_matrix::BasicMatrix;
+use linear_algebra::backend::basic_matrix::BasicMatrix;
 use tfqm_local_green_global_red_lggr::lggr_v::{
     check_soundness, verify_unsoundness_witness, LggrSoundnessError, MAX_LGGR_CELLS,
 };

@@ -2,11 +2,11 @@
 
 use num_traits::Signed;
 
-use omega_number_theory::rational::Rational;
-use omega_quantum_physics::u1_graph_connection::U1Connection;
-use omega_solvers::data_cochain_packet::FiniteCochainPacket;
+use engine_number_theory::rational::Rational;
+use engine_quantum_physics::u1_graph_connection::U1Connection;
+use engine_solvers::data_cochain_packet::FiniteCochainPacket;
 
-use omega_quantum_physics::holonomy_interference::{HolonomyInterferenceError, TreeGaugeFixing};
+use engine_quantum_physics::holonomy_interference::{HolonomyInterferenceError, TreeGaugeFixing};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ResidualRace {

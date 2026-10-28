@@ -1,11 +1,11 @@
 use crate::qm::bridge::matrix as mx;
 use crate::qm::finite_witness::{field_q, field_usize, parse_q, qstr, qvec};
 use num_traits::Zero;
-use omega_general_relativity::simplicial_dynamics::{
+use engine_general_relativity::simplicial_dynamics::{
     bianchi, emit_angular, CauchySlice, Constraints, ReggeFourSimplex,
 };
-use omega_lie_theory::cayley::{cayley_transform, is_orthogonal};
-use omega_number_theory::rational::{ri, rq, Rational as Q};
+use engine_lie_theory::cayley::{cayley_transform, is_orthogonal};
+use engine_number_theory::rational::{ri, rq, Rational as Q};
 use serde_json::{json, Value};
 use std::collections::BTreeMap;
 
@@ -20,7 +20,7 @@ fn constraints_json(c: &Constraints) -> Value {
 pub fn run(input: &Value) -> Result<Value, String> {
     evaluate(input).map_err(|e| e.to_string())
 }
-type GravError = omega_general_relativity::simplicial_dynamics::SimplicialDynamicsError;
+type GravError = engine_general_relativity::simplicial_dynamics::SimplicialDynamicsError;
 
 fn parse_glued(input: &Value, n: usize) -> Result<Vec<[(usize, usize); 2]>, GravError> {
     if let Some(g) = input.get("glued") {

@@ -48,7 +48,7 @@ pub use finite_shadow_exact::{
     FINITE_QM_CONTRACT_SCHEMA_VERSION, FINITE_QM_CONTRACT_URN, LAYER_CODA_CS_Q,
 };
 pub use ledger::QLedger;
-pub use omega_types::ObstructionDiagnosticClass;
+pub use engine_types::ObstructionDiagnosticClass;
 pub use packet::{QPacket, QTerminal, ResidualSpec, TransportSpec, ValidatedQPacket};
 pub use probe::probe_plan_for_packet;
 pub use product_vertical_slice::{
@@ -71,7 +71,7 @@ pub use zeta::{
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_types::q_continuum::{
+    use engine_types::q_continuum::{
         AuthorityScope, AuthorityStrength, DescentResult, ObstructionKind, QContinuumLedger,
         Residual, TerminalStatus, Witness,
     };

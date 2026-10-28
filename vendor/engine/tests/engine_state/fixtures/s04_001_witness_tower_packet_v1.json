@@ -1,0 +1,179 @@
+{
+  "schema_version": "omega.witness-tower.packet.v1",
+  "packet_id": "omega-conductor-s04-001-witness-tower-v1",
+  "goal_id": "S04-001",
+  "frozen_base": "bb6abd25846c23f990fa787bde3f91f84c6bcda7",
+  "source_manifest": [
+    {
+      "path": "docs/omega-conductor-epic-v001.md",
+      "sha256": "6b372f15534bdd532b0d6e1fe298f3b7c1e75091efefbaa48dea0a55da13bdbe",
+      "byte_len": 56035
+    },
+    {
+      "path": "docs/saga_04_witness_tower_and_joint_authority.md",
+      "sha256": "5f319c5ea9975dfacc7cd6154c5c09e02556bcf5ae41bf2833df968478e556a1",
+      "byte_len": 4876
+    },
+    {
+      "path": "docs/saga_14_cert_authority_firewall.md",
+      "sha256": "92e41415240312782a529883bc8fad9e4b85dcf1dd948f63d101b43f09f750a5",
+      "byte_len": 7985
+    },
+    {
+      "path": "docs/sprint_s04_001.md",
+      "sha256": "65dbc8a5c9aba509ed89c903fda7de9a68ef4423d06f0a55cff346c3a80e4efe",
+      "byte_len": 5707
+    },
+    {
+      "path": "docs/status-vocabulary.md",
+      "sha256": "bd10e7ecf448ed6f4dca45a431c573242179a66b828492ecfe02f52572289b84",
+      "byte_len": 4203
+    },
+    {
+      "path": "docs/status/omega_conductor_s03_001_status_2026-07-18.md",
+      "sha256": "56fb66000f87a56bac7a821d75014a4f9439c465ea7e748e2f93abb7ff1517af",
+      "byte_len": 8922
+    },
+    {
+      "path": "omega_engine/crates/omega_state/src/gtoc1_classifier.rs",
+      "sha256": "de753b8664cd118f83f18399161c33887316f4e93702ff34f39ace8b9bcb46af",
+      "byte_len": 41632
+    },
+    {
+      "path": "omega_engine/crates/omega_state/src/gtoc_gtla_protocol.rs",
+      "sha256": "da57f9f89dd396cbd1bca72880d024c81a4d3238bd6f78af9add06572c3f160f",
+      "byte_len": 35825
+    },
+    {
+      "path": "omega_engine/crates/omega_state/src/operator_registry_runtime.rs",
+      "sha256": "a4e2e54ea5e594c65089ee8fe04e17cab61e3e5a2b34990c529889185e7e535a",
+      "byte_len": 45922
+    },
+    {
+      "path": "omega_engine/crates/omega_state/src/task_admission.rs",
+      "sha256": "8904c36f0dce155de2c735d1199b553f2a4b5772121d462318515a449938d951",
+      "byte_len": 55627
+    },
+    {
+      "path": "omega_engine/crates/omega_types/src/authority.rs",
+      "sha256": "42051a106954daa5ca2170c79bbf7d4cc9b04e0f7b554b8807251a0da552d2a9",
+      "byte_len": 39913
+    }
+  ],
+  "upstream": {
+    "goal_id": "S03-001",
+    "packet_id": "omega-conductor-s03-001-mixed-carrier-v1",
+    "packet_sha256": "f6a67d5ec2a05669948aa4044007604d7b536417c127dd2f88ce3ed4bb3c4f36",
+    "receipt_artifact_sha256": "41e6895b82382a8ab84f48d62aa18f50f47f43bbf95210db1f891c11ed7ef7a8",
+    "terminal": "StabilizedSurvivor",
+    "authority_effect": "None"
+  },
+  "budgets": {
+    "attempt_budget": 1,
+    "repair_budget": 2,
+    "successor_budget": 1,
+    "time_budget_seconds": 28800,
+    "process_budget": 4,
+    "token_budget": 200000
+  },
+  "role_plan": [
+    {
+      "role": "host",
+      "identity_id": "host:s04-001",
+      "session_id": "session:s04-001:host",
+      "context_sha256": "3d3a8f4c747f7f3060e6ffe43f4210e20b83b5f75f1e8f0700160c695f3467ec",
+      "visibility_class": "host-control-plane"
+    },
+    {
+      "role": "producer",
+      "identity_id": "producer:s04-001",
+      "session_id": "session:s04-001:producer",
+      "context_sha256": "697476063cdecef162f32ea6229d3665d7283909b3e00d96e845749cb0c23b83",
+      "visibility_class": "producer-visible-context"
+    },
+    {
+      "role": "independent_evaluator",
+      "identity_id": "evaluator:s04-001",
+      "session_id": "session:s04-001:evaluator",
+      "context_sha256": "57894479ac707f6fdacc65ffcba8d342d7e62ce57203e1d3b8ae1f3787fa3b42",
+      "visibility_class": "evaluator-independent-context"
+    },
+    {
+      "role": "authority_witness",
+      "identity_id": "authority-witness:s04-001",
+      "session_id": "session:s04-001:authority-witness",
+      "context_sha256": "ca50e297f89d62c8b237da34b3a35c85b59687be6c9a14e437623080ae9c3478",
+      "visibility_class": "authority-audit-context"
+    },
+    {
+      "role": "deterministic_gate",
+      "identity_id": "gate:s04-001",
+      "session_id": "session:s04-001:deterministic-gate",
+      "context_sha256": "1942eaa57768b7f8f79abe6729675b6eb2881a82b76aa218b8125052a6c77033",
+      "visibility_class": "deterministic-gate-context"
+    },
+    {
+      "role": "human_authority",
+      "identity_id": "human:s04-001",
+      "session_id": "session:s04-001:human",
+      "context_sha256": "c02cb53c97b252c1561e11f22fd1f1f926e4d803486b2bb5035701f9846661f7",
+      "visibility_class": "human-decision-context"
+    }
+  ],
+  "observer": {
+    "observer_id": "observer:s04-001:host",
+    "observer_domain": "finite-witness-receipt-dag",
+    "state_domain": "omega.witness-tower.state.v1",
+    "frozen_base": "bb6abd25846c23f990fa787bde3f91f84c6bcda7",
+    "observer_hash": "ba6d7078c4efd0548bfbc1d16087ad3359d079bac46fd77080fafdd6c3ab2677",
+    "visible_artifact_hashes": [
+      "42051a106954daa5ca2170c79bbf7d4cc9b04e0f7b554b8807251a0da552d2a9",
+      "56fb66000f87a56bac7a821d75014a4f9439c465ea7e748e2f93abb7ff1517af",
+      "5f319c5ea9975dfacc7cd6154c5c09e02556bcf5ae41bf2833df968478e556a1",
+      "65dbc8a5c9aba509ed89c903fda7de9a68ef4423d06f0a55cff346c3a80e4efe",
+      "6b372f15534bdd532b0d6e1fe298f3b7c1e75091efefbaa48dea0a55da13bdbe",
+      "8904c36f0dce155de2c735d1199b553f2a4b5772121d462318515a449938d951",
+      "92e41415240312782a529883bc8fad9e4b85dcf1dd948f63d101b43f09f750a5",
+      "a4e2e54ea5e594c65089ee8fe04e17cab61e3e5a2b34990c529889185e7e535a",
+      "bd10e7ecf448ed6f4dca45a431c573242179a66b828492ecfe02f52572289b84",
+      "da57f9f89dd396cbd1bca72880d024c81a4d3238bd6f78af9add06572c3f160f",
+      "de753b8664cd118f83f18399161c33887316f4e93702ff34f39ace8b9bcb46af"
+    ],
+    "hidden_artifact_classes": [
+      "credentials",
+      "hidden-model-state",
+      "unadmitted-artifacts"
+    ],
+    "tool_permissions": [
+      "read_frozen_sources",
+      "verify_receipts",
+      "record_human_decision"
+    ],
+    "write_surface": [
+      "docs/omega-conductor-epic-v001.md",
+      "docs/saga_04_witness_tower_and_joint_authority.md",
+      "docs/sprint_s04_001.md",
+      "docs/status/omega_conductor_s04_001_status_2026-07-18.md",
+      "omega_engine/crates/omega_state/src/lib.rs",
+      "omega_engine/crates/omega_state/src/witness_receipt_dag.rs",
+      "omega_engine/crates/omega_state/tests/fixtures/s04_001_witness_tower_packet_v1.json",
+      "omega_engine/crates/omega_state/tests/fixtures/s04_001_witness_tower_receipt_v1.json",
+      "omega_engine/crates/omega_state/tests/witness_receipt_dag.rs"
+    ],
+    "evidence_ceiling": "finite role identity, context, receipt ancestry, rank, gate, and human-decision evidence only; no authority promotion"
+  },
+  "write_surface": [
+    "docs/omega-conductor-epic-v001.md",
+    "docs/saga_04_witness_tower_and_joint_authority.md",
+    "docs/sprint_s04_001.md",
+    "docs/status/omega_conductor_s04_001_status_2026-07-18.md",
+    "omega_engine/crates/omega_state/src/lib.rs",
+    "omega_engine/crates/omega_state/src/witness_receipt_dag.rs",
+    "omega_engine/crates/omega_state/tests/fixtures/s04_001_witness_tower_packet_v1.json",
+    "omega_engine/crates/omega_state/tests/fixtures/s04_001_witness_tower_receipt_v1.json",
+    "omega_engine/crates/omega_state/tests/witness_receipt_dag.rs"
+  ],
+  "evidence_ceiling": "finite role identity, context, receipt ancestry, rank, gate, and human-decision evidence only; no authority promotion",
+  "authority_effect": "None",
+  "promotion_constructor_available": false
+}

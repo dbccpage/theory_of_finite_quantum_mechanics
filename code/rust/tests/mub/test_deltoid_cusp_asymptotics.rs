@@ -2,7 +2,7 @@ use num_rational::BigRational;
 use tfqm_mub::native::exact::mub6_deltoid_cusp_asymptotics::{
     evaluate_taylor_lagrange_enclosure, solve_deltoid_cusp_asymptotics,
 };
-use omega_number_theory::rational::rq;
+use engine_number_theory::rational::rq;
 
 #[test]
 fn invalid_widths_are_refused() {

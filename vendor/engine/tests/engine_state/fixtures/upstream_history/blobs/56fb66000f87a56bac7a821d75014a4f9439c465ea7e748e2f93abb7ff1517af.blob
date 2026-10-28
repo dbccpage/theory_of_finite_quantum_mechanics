@@ -1,0 +1,114 @@
+# Omega Conductor S03-001 Build and Review Record - 2026-07-18
+
+## State
+
+- Sprint: `S03-001 - Mixed Carrier Packet Admission`
+- Frozen implementation base: `cae8a69bdf7f2357ca990544ac1c421ebae1da91`
+- Frozen packet SHA-256: `f6a67d5ec2a05669948aa4044007604d7b536417c127dd2f88ce3ed4bb3c4f36`
+- Observer SHA-256: `94c5891bb0a9d2b1b8cf842be8b82b7c0b58883181ad6d685a8ebe5267a44876`
+- Bundle SHA-256: `44e3d8246ab3daf678f3f8610c5c6d17defedb19584ab9d61d5920eb4298bb52`
+- Lifecycle terminal: `COMPLETED`
+- GTOC terminal: `ExactRepair`
+- Authority status/effect: `None` / `None`
+- Gate activation: deferred; no hook, CI rule, runtime gate, or successor loop enabled
+
+The human host directed the next construction sprint after PR #1115 merged and separately required reduced Lean CPU use. S03-001 therefore uses Rust and documentation checks only. This admission receipt is evidence for one finite carrier; it does not execute the admitted task, mutate a workspace, promote authority, or activate enforcement.
+
+## Frozen source closure
+
+| Artifact | Kind / role | SHA-256 at frozen base | Bytes |
+|---|---|---|---:|
+| `docs/omega-conductor-epic-v001.md` | Markdown / plan | `69c9ca1e2863bb7ba56b3d2b4d819127cad06b2d827c4ee47bece57a05dab3c8` | 54576 |
+| `docs/saga_03_task_admission_and_carriers.md` | Markdown / plan | `2a54c355e52441b7b470a2cb075b565bc3f81ba1be857e42f09c23498f90a02f` | 5422 |
+| `docs/sprint_s03_001.md` | Markdown / plan | `dd89947a4b5fc6b20aadaa66c58fcf567a0c5ade083638abf924ccd9cf4ad372` | 5187 |
+| `omega_engine/general_theory_of_obstruction_calculus/conductor/protocol/work_packet.schema.json` | JSON / legacy protocol | `a991591a7f02a859de05f4131b83ae7faba4fc0401da748be8b88910a9399768` | 2844 |
+| `omega_engine/general_theory_of_obstruction_calculus/conductor/core/leases.py` | Python / legacy protocol | `7b89875eeee19814ab4da48c182c0bb4f5837e87c6801e2d9758af9815bef9a4` | 5722 |
+| `omega_engine/general_theory_of_obstruction_calculus/conductor/tests/test_leases.py` | Python / test | `2c0c13288a71260922cc5688f249a8351d9c40a21217797b4bf2d7669b87f9bf` | 4486 |
+| `omega_engine/crates/omega_state/src/gtoc_gtla_protocol.rs` | Rust / protocol | `da57f9f89dd396cbd1bca72880d024c81a4d3238bd6f78af9add06572c3f160f` | 35825 |
+| `omega_engine/crates/omega_state/src/gtoc1_classifier.rs` | Rust / protocol | `de753b8664cd118f83f18399161c33887316f4e93702ff34f39ace8b9bcb46af` | 41632 |
+| `omega_engine/crates/omega_state/src/operator_registry_runtime.rs` | Rust / protocol | `a4e2e54ea5e594c65089ee8fe04e17cab61e3e5a2b34990c529889185e7e535a` | 45922 |
+| `omega_engine/crates/omega_contracts/src/contract_canonical_definitions/core/09_packets/omega_obstruction_packet_standard.md` | Markdown / policy | `4a7d644eda9eea04292e78d60409fd880cc2825fcc0b4dddc7be760e800f1af8` | 22269 |
+
+The integration test reads each source with `git show cae8a69bdf7f2357ca990544ac1c421ebae1da91:<path>` and recomputes its SHA-256 and byte length. The observer sees exactly those ten public artifacts. Credentials, hidden context, and raw secrets are named hidden classes and are not hashed into public evidence.
+
+## Admission and ownership boundary
+
+- `omega_state::task_admission` owns the bounded S03-001 runtime-local packet, compiler, exact-path lease registry, routing, and receipts.
+- The packet closes required fields with `deny_unknown_fields`; future enum variants and omitted fields fail decoding.
+- Artifact kinds include Markdown, Rust, Lean, JSON, YAML, TOML, Python, and text. A Lean kind is a typed reference only; the compiler has no Lean execution path.
+- Legacy `omega.agent_work.v1` and Python lease inputs are explicit hash-bound read-only members. New writes are ten exact canonical files; patterns, globs, traversal, absolute paths, backslashes, empty segments, non-ASCII paths, case-fold collisions, whitespace/dot aliases, and Windows device names fail closed.
+- Packet, observer, and source bundle hashes are independent SHA-256 receipts. Resolved evidence is opaque outside the module and can only be constructed by hashing caller-supplied bytes; every declared id, path, hash, length, and sequence member must match.
+- The producer requests a write lease, but only the frozen admission host can issue it. Every active exact-path collision blocks admission.
+- All packet, compilation, lease, and receipt authority effects are literally `None`.
+
+## Receipt closure
+
+| Receipt field | Value |
+|---|---|
+| packet | `f6a67d5ec2a05669948aa4044007604d7b536417c127dd2f88ce3ed4bb3c4f36` |
+| observer | `94c5891bb0a9d2b1b8cf842be8b82b7c0b58883181ad6d685a8ebe5267a44876` |
+| source bundle | `44e3d8246ab3daf678f3f8610c5c6d17defedb19584ab9d61d5920eb4298bb52` |
+| lease id / owner | `lease:s03-001:attempt-1` / `producer:s03-001` |
+| admission host | `host:s03-001` |
+| write paths | ten exact files |
+| status / terminal | `admitted` / `ExactRepair` |
+| schema, bytes, bundle, paths, budgets, policy, lease checks | all true |
+| authority effect | `None` |
+
+## Review matrix
+
+| Case | Expected route | Result |
+|---|---|---|
+| canonical packet compile, host lease, and replay | `ExactRepair` | PASS |
+| missing required field, unknown field, or future enum | closed decode failure | PASS |
+| unfrozen packet | `Invalid` | PASS |
+| packet, observer, source, or receipt tamper | `Invalid` | PASS |
+| missing source member | `OracleNeeded` | PASS |
+| extra, reordered, or changed bundle member | `Invalid` | PASS |
+| stale Git base | `OpenObstruction` | PASS |
+| traversal, absolute, wildcard, separator, empty, aliasing, or device path segment | `Invalid` | PASS |
+| case-fold collision or unlisted write | typed refusal/invalid | PASS |
+| forged compiled write surface or receipt lease path | `Invalid` | PASS |
+| budget, model delegation, identity, or authority expansion | `Refused` | PASS |
+| implicit carrier change | `LiftLicenseNeeded` | PASS |
+| implicit or writable legacy input | `Invalid` | PASS |
+| wrong lease issuer | `Refused` | PASS |
+| duplicate lease id or exact-path lease race | `OpenObstruction` | PASS |
+| typed Lean artifact declaration | schema-only acceptance; no process | PASS |
+| committed packet and receipt bytes | exact equality | PASS |
+
+## Verification receipt
+
+Commands ran without invoking Lean or `lake`:
+
+- `cargo check -p omega_state --lib --offline` and `cargo check -p omega_state --all-targets --offline`: PASS; only pre-existing dependency and deprecated-test warnings remain.
+- `cargo test -p omega_state --test task_admission --locked`: PASS, 24 tests.
+- `cargo clippy -p omega_state --test task_admission --no-deps --offline -- -D warnings -A deprecated`: PASS for the changed target; dependency warnings are pre-existing.
+- `rustfmt --edition 2021` on the changed Rust source, export, and integration suite: PASS.
+- `python -W error scripts/validate_omega_conductor_docs.py --json`: PASS with zero findings across 63 audited files; corpus SHA-256 `a731c3645170d4d0aa31f07415126f1a0562a5b2e916ab3ff5ae247850dab7fe`.
+- `git diff --check` and exact ten-path worktree comparison: PASS; only expected Windows line-ending notices remain.
+- Fixture generation is explicit and test-only through `OMEGA_REGEN_S03_001_FIXTURES`; ordinary tests compare committed bytes.
+
+No `lean.exe` process was present when the sprint began, and no Lean process was launched. This is a resource boundary for this sprint, not a claim that future proof obligations are discharged.
+
+## Artifact hashes
+
+| Artifact | SHA-256 |
+|---|---|
+| bounded packet/compiler/lease source | `8904c36f0dce155de2c735d1199b553f2a4b5772121d462318515a449938d951` |
+| hostile integration suite | `ecce0b7b1a8bd8565c717fa93e969c8434f63c4c4bb3bcea0f65546336956b48` |
+| packet fixture | `4555575ab14041fe827edd416ffb7bf1bc8b594b3bdc3c9ca2d8a6063c231f58` |
+| receipt fixture | `41e6895b82382a8ab84f48d62aa18f50f47f43bbf95210db1f891c11ed7ef7a8` |
+
+## Surviving obstructions
+
+- The compiler is bounded to one frozen source closure, packet id, base commit, evidence ceiling, budget, and exact write surface. It is not a general packet-admission theorem.
+- The lease registry is an in-memory deterministic verifier. It does not acquire OS locks, resolve symlinks/realpaths, write a journal, or mutate a worktree.
+- Artifact bytes are supplied by the host. The production file reader and activated conductor host do not exist.
+- Pattern leases remain legacy read evidence only; interoperability with active legacy journals is not claimed.
+- S03-002/GTOC-7 must separately prove finite migration-bundle member preservation and terminalization after GTOC-6.
+- No independent binary/process separation, human promotion, runtime gate, CI enforcement, or autonomous successor consumes the receipt.
+
+## Nonclaims
+
+This sprint does not execute a task, mutate a workspace, activate gates, run Lean, prove GTOC-7, certify arbitrary packet families, expose hidden artifacts, derive QM, mint authority, or make Omega Engine self-authorizing.

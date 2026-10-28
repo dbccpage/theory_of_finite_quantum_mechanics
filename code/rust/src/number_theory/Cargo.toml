@@ -10,11 +10,10 @@ path = "lib.rs"
 
 [features]
 default = []
-external-omega = ["dep:linear_algebra", "dep:omega_kernel"]
 
 [dependencies]
-linear_algebra = { version = "0.1.0", optional = true }
-omega_kernel = { version = "0.1.0", optional = true }
+linear_algebra = { path = "../../../../vendor/engine/linear_algebra" }
+engine_kernel = { path = "../../../../vendor/engine/engine_kernel" }
 tfqm_combinatorics = { path = "../combinatorics" }
 num-rational = { version = "0.4", features = ["serde"] }
 num-bigint = { version = "0.4", features = ["serde"] }

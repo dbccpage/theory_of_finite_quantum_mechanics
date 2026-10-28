@@ -3,7 +3,7 @@ use crate::cayley_menger::simplex_volume_cayley_menger;
 use crate::dec_laplacian::DecOperators;
 use crate::dihedral_angles::pentachoron_dihedral_angle_at_triangle;
 use crate::regge_calculus::{EdgeLengthMetric, ReggeError, DEFAULT_TOL};
-use omega_homology::simplicial::{OrientedSimplex, SimplicialComplex};
+use engine_homology::simplicial::{OrientedSimplex, SimplicialComplex};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]

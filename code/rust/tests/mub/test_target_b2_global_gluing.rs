@@ -27,9 +27,9 @@ use tfqm_mub::native::exact::mub6_global_gluing::{
     ModuliChart5, ModuliLoop, ModuliPoint6, TransitionCocycleFamily, Unitary6,
     NUM_CHARTS,
 };
-use omega_number_theory::cyclotomic::Cyc24;
-use omega_number_theory::rational::ri;
-use omega_number_theory::rational::rq;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
+use engine_number_theory::rational::rq;
 
 // ============================================================================
 // 1. STRICT ZERO-FLOAT DISCIPLINE AST AUDIT

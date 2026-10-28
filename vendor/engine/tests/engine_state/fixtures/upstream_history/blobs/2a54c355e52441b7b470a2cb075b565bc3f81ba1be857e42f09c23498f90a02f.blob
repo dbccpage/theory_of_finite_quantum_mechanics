@@ -1,0 +1,141 @@
+# SAGA-03 — Task Admission and Heterogeneous Carrier Bundles
+
+**Parent EPIC:** [Omega Conductor v1](omega-conductor-epic-v001.md)  
+**LifecycleStatus:** BLOCKED
+**GtocTerminal:** OpenObstruction
+**AuthorityStatus:** None
+**AuthorityEffect:** `None`
+**Owner:** Analyst  
+**Created:** 2026-07-17  
+**Last verified:** 2026-07-17  
+
+---
+
+## Outcome
+Establish structured task admission via frozen carrier bundles that encapsulate papers, code, tests, and policies.
+
+## Carrier
+
+Goal declaration, typed artifact bundle, frozen observer, Git base, hashes, policies, write surfaces, budgets, packet references, and successor policy.
+
+## Primitive Difference
+
+Existing packet readers do not yet prove that all inputs, observer permissions, writes, budgets, imports, and carrier changes are immutable and hash-bound before work begins.
+
+## ZeroRel
+
+Two admitted packets are equivalent only when canonical bytes, base commit, artifact hashes, observer, policies, licenses, budgets, references, and write surfaces match.
+
+## Cochain realization
+
+**Realization:** Structural
+
+### C0
+
+Packet fields, typed artifacts, goals, policies, budgets, and hash declarations.
+
+### C1
+
+Artifact references, claim/program bindings, write permissions, dependencies, and license edges.
+
+### C2
+
+Whole-packet consistency: hashes resolve, policies compose, dependencies exist, and no hidden write or authority path appears.
+
+### d0
+
+Maps each packet declaration to the references and obligations it creates.
+
+### d1
+
+Maps those edges to missing artifacts, hash mismatch, policy conflict, lease overlap, or authority-ceiling violation.
+
+### d1 o d0 witness
+
+Canonicalization followed by validation cannot create a new unresolved reference or policy contradiction; recomputed packet bytes reproduce the admitted hash.
+
+## Q1
+
+Packet discrepancies modulo canonical serialization and explicitly licensed path normalization.
+
+## Phi1 before
+
+Incomplete work-packet schema, legacy single-packet references, draft bases, undefined budgets, and insufficient observer binding.
+
+## Gamma2 risks
+
+Cross-platform path normalization, hidden artifact leakage, packet-bundle mismatch, and stale-base writes.
+
+## Observer
+
+Admission host with repository read access, no model delegation, and exclusive authority to freeze the packet and issue leases.
+
+## Witnesses and evidence ceiling
+
+Producer proposes packet data; evaluator validates exact canonical bytes; authority witness checks policy and ceiling; deterministic hash/schema/path/lease gates emit evidence.
+
+## Licensed operators and lifts
+
+Canonical serialization, SHA-256 hashing, path normalization, schema validation, and host lease issuance. Imports and carrier changes require explicit licenses.
+
+## Survivor routing
+
+Malformed packets route to `Invalid`; missing external data to `OracleNeeded`; unlicensed carrier changes to `LiftLicenseNeeded`; lease conflict to `OpenObstruction`.
+
+## Terminal set
+
+`ExactRepair`, `StabilizedSurvivor`, `OpenObstruction`, `OracleNeeded`, `LiftLicenseNeeded`, `Refused`, `Invalid`, or `InfrastructureFailure`; authority remains none before human promotion.
+
+## Scope
+* Carrier compilation and artifact hashing.
+* Immutable packet base revision hashing.
+* Support for typed artifacts (Markdown, Rust, Lean, etc.).
+
+## Explicit non-scope
+* Direct code execution or workspace edits.
+
+## Existing implementation and limitations
+
+* Basic packet and queue parsing exists in conductor prototypes.
+* Prompt-packet, symbol-game, and obstruction-packet substrates exist.
+* No verified conductor-level immutable heterogeneous admission closure exists.
+
+## Canonical contracts and vocabulary
+
+Admission freezes the observer before stage 1 and binds all packet references, not a single legacy packet string.
+
+## SAGA invariants
+* The packet must freeze its contents via SHA-256 against a Git base commit.
+
+## Dependencies
+* [SAGA-01](saga_01_universal_gtoc_gtla_protocol.md)
+
+## Canonical goal bindings
+
+| Goal | Sprint | Scope |
+|---|---|---|
+| GTOC-7 | [S03-002](sprint_s03_002.md) | Preservation and terminalization semantics for finite migration packet bundles |
+
+## Candidate backlog
+* Current planned work is assigned to the owned sprint. New survivors require a host-admitted successor packet.
+
+## Sprint roster
+| Sprint | Goal | Status | Entry gate | Exit gate |
+|--------|------|--------|------------|-----------|
+| [SPRINT S03-001](sprint_s03_001.md) | Mixed Carrier Packet Admission | BLOCKED | SPRINT S01-001 human-promoted | Packet compiles and hashes correctly |
+| [SPRINT S03-002](sprint_s03_002.md) | GTOC-7 Migration Packet Bundles | BLOCKED | S03-001 and GTOC-6 terminal receipts human-promoted | Every explicit bundle member and residual is preserved or lawfully terminalized |
+
+## SAGA exit criteria
+
+S03-001 may establish the packet baseline used by later runtime work. SAGA-03 completes only when S03-002 also verifies GTOC-7 preservation and terminalization for finite migration bundles and both sprints are human promoted; this re-entry does not add a cyclic SAGA prerequisite.
+
+## Surviving obstructions
+
+* SAGA-01 is not promoted.
+* Canonical work-packet schema and packet bundle closure are incomplete.
+* Host lease and successor-budget admission are unverified.
+
+* GTOC-7/S03-002 is blocked on the packet baseline and GTOC-6.
+## Prior work and import ledger
+* `omega_obstruction_packet_standard.md`.
+* `gtoc-canonicalization-remaining-work.md` GTOC-7.

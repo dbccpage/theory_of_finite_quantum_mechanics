@@ -1,0 +1,252 @@
+# SPRINT S02-001 — Operator Manifest and Fixture Gauge
+
+**Parent SAGA:** [SAGA-02 — Operator Registry and Runtime Gauges](saga_02_operator_registry_and_gauges.md)  
+**LifecycleStatus:** BLOCKED
+**GtocTerminal:** NOT_EVALUATED
+**AuthorityStatus:** None
+**AuthorityEffect:** `None`
+**Frozen base:** UNFROZEN - exact Git commit required before READY or ACTIVE
+**Packet hash:** UNCOMPUTED - exact canonical packet SHA-256 required before READY or ACTIVE
+**Observer hash:** UNCOMPUTED - frozen observer required before admission
+**Attempt budget:** 1
+**Successor budget:** 1
+**Time budget:** 8 hours
+**Process budget:** 4 maximum
+**Token budget:** 200000 maximum
+**Repair budget:** 2
+
+---
+
+## Sprint goal
+Establish one manifest, one registry, one deterministic fixture gauge, and one model gauge.
+
+## Carrier
+
+Operator/gauge schemas, licenses, capabilities, fixture gauges, and conformance tests.
+
+## Primitive Difference
+
+No verified registry proves runtime substitution preserves semantics, permissions, ceilings, and witnesses.
+
+## ZeroRel
+
+Bindings are equivalent when inputs, outputs, permissions, licenses, writes, witnesses, and ceilings match.
+
+## Cochain realization
+
+**Realization:** Structural
+
+### C0
+
+Operators, gauges, capabilities, licenses, evidence.
+
+### C1
+
+Binding and capability edges.
+
+### C2
+
+Semantic, permission, privacy, and evidence consistency.
+
+### d0
+
+Maps manifests to capability/witness edges.
+
+### d1
+
+Maps edges to incompatibility, privilege expansion, or evidence loss.
+
+### d1 o d0 witness
+
+Gauge substitution cannot change operator contract or authority ceiling.
+
+## Q1
+
+Binding differences modulo declared adapter equivalence.
+
+## Phi1 before
+
+Missing registry, fixture gauge, and substitution tests.
+
+## Gamma2 risks
+
+Hidden context, tool drift, privacy, nondeterminism.
+
+## Frozen observer
+
+Registry implementer with fixtures and no production credentials.
+
+## Witness plan and evidence ceiling
+
+Manifest/fixture conformance.
+
+## Licensed operators and lifts
+
+Schema registration, fixture adapters, capability tests.
+
+## Survivor routing
+
+Capability missing -> `OperatorNeeded`; expansion -> `LiftLicenseNeeded`; runtime absent -> infrastructure.
+
+## Story roster
+
+### STORY S02-001-01 - Define registry
+
+**LifecycleStatus:** BLOCKED
+
+#### Goal
+
+Define registry.
+
+#### Primitive Difference
+
+Contracts are not closed.
+
+#### Carrier and exact write surface
+
+Manifest/license files.
+
+#### Preconditions and dependencies
+
+S01-001 promoted.
+
+#### Licensed operations
+
+Add schemas and validation.
+
+#### Acceptance criteria
+
+- Required contract fields exist.
+- Duplicates/unknowns fail.
+
+#### Evidence receipts
+
+Registry receipt.
+
+#### Survivor route
+
+Invalid -> `Invalid`.
+
+#### Nonclaims
+
+Does not activate providers.
+
+### STORY S02-001-02 - Implement fixture gauge
+
+**LifecycleStatus:** BLOCKED
+
+#### Goal
+
+Implement fixture gauge.
+
+#### Primitive Difference
+
+No provider-neutral control exists.
+
+#### Carrier and exact write surface
+
+Fixture adapter/tests.
+
+#### Preconditions and dependencies
+
+After story 01.
+
+#### Licensed operations
+
+Implement deterministic no-network gauge.
+
+#### Acceptance criteria
+
+- Typed I/O executes.
+- No undeclared tools/writes.
+
+#### Evidence receipts
+
+Fixture receipt.
+
+#### Survivor route
+
+Unavailable -> infrastructure.
+
+#### Nonclaims
+
+Does not claim provider parity.
+
+### STORY S02-001-03 - Verify substitution
+
+**LifecycleStatus:** BLOCKED
+
+#### Goal
+
+Verify substitution.
+
+#### Primitive Difference
+
+Fixture pass is not interchangeability.
+
+#### Carrier and exact write surface
+
+Conformance fixtures.
+
+#### Preconditions and dependencies
+
+After story 02.
+
+#### Licensed operations
+
+Reject semantic/permission drift.
+
+#### Acceptance criteria
+
+- Equivalent gauges preserve receipts.
+- Expansion fails.
+
+#### Evidence receipts
+
+Conformance receipt.
+
+#### Survivor route
+
+Difference -> `OpenObstruction`.
+
+#### Nonclaims
+
+Does not authorize gauge.
+
+## Story dependency graph
+
+S02-001-01 -> S02-001-02 -> S02-001-03.
+
+## Witness plan
+
+Producer owns the carrier. Independent evaluator checks the exact diff. Authority witness checks independence, residuals, and nonpromotion. Deterministic gates emit receipts; a human alone promotes.
+
+## Exact write surfaces
+
+- Admitted registry/schema files.
+- Fixture adapter/tests.
+
+## Deterministic verification
+
+- Schema/duplicate tests.
+- Fixture tests.
+- Permission, ceiling, substitution negatives.
+
+## Terminal set
+
+`ExactRepair`, `StabilizedSurvivor`, `OpenObstruction`, `OracleNeeded`, `LiftLicenseNeeded`, `Refused`, `Invalid`, or `InfrastructureFailure`.
+
+## Exit criteria
+
+The registry and fixture gauges preserve contracts, permissions, witnesses, and ceilings under bounded conformance tests; provider activation remains separate.
+
+## Completion evidence
+
+None. Sprint not admitted; no terminal or promotion receipt exists.
+
+## Retrospective
+Required after terminalization. Improvements become separate host-admitted candidates.
+
+## Prior work and import ledger
+
+Existing skills/adapters are read-only census inputs.

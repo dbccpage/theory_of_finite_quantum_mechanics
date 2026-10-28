@@ -3,7 +3,7 @@
 //!
 //! C^op has the same objects; morphisms reverse (source ↔ target).
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 use super::category::MorphismTriple;

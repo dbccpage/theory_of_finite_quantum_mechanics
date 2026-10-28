@@ -35,8 +35,8 @@ use tfqm_mub::native::exact::mub6_manifold_integration::{
     UnifiedModuliSample, UnifiedObstructionArm, NUM_CANONICAL_CHARTS,
     NUM_CECH_TRIPLES, TOTAL_CELL_COUNT,
 };
-use omega_number_theory::cyclotomic::Cyc24;
-use omega_number_theory::rational::rq;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::rq;
 
 // ============================================================================
 // 1. STRICT ZERO-FLOAT DISCIPLINE AST AUDIT & NEGATIVE CONTROL

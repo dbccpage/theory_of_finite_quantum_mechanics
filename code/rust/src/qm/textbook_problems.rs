@@ -1,4 +1,4 @@
-use omega_number_theory::rational::{ri, rq, Rational};
+use engine_number_theory::rational::{ri, rq, Rational};
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 

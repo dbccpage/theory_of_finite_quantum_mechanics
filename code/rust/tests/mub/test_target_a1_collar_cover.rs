@@ -12,7 +12,7 @@ use tfqm_mub::native::exact::mub6_collar_cover::{
     CollarCoverError, RationalBox2D,
 };
 use tfqm_mub::native::exact::mub6_firewall::FIREWALL;
-use omega_number_theory::rational::rq;
+use engine_number_theory::rational::rq;
 
 #[test]
 fn test_rational_box_2d_basic() {

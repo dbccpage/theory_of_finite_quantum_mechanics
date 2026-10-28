@@ -1,0 +1,27 @@
+[package]
+autotests = false
+name = "engine_lifts"
+version.workspace = true
+license.workspace = true
+edition = "2021"
+description = "Lift licenses and lift-forget fixed point types from §7, §14 of the finite obstruction calculus"
+
+[dependencies]
+engine_policy = { path = "../engine_policy" }
+serde = { version = "1.0", features = ["derive"] }
+engine_functional = { path = "../engine_functional" }
+engine_category_theory = { path = "../engine_category_theory" }
+engine_types = { path = "../engine_types" }
+engine_solvers = { path = "../engine_solvers" }
+engine_wdp = { path = "../engine_wdp" }
+num-bigint = { version = "0.4", features = ["serde"] }
+num-rational = { version = "0.4", features = ["serde"] }
+num-traits = "0.2"
+serde_json = "1.0"
+sha2 = "0.10"
+thiserror = "2"
+
+[[test]]
+name = "lift_integration"
+path = "../tests/engine_lifts/lift_integration.rs"
+

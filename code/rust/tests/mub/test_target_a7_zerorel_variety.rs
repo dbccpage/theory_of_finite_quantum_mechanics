@@ -14,8 +14,8 @@ use tfqm_mub::native::exact::mub6_zerorel_variety::{
     tao_representative_triple, verify_curvature_bound, verify_unitary_gauge_invariance, BasisCyc,
     TOTAL_ZEROREL_EQUATIONS,
 };
-use omega_number_theory::cyclotomic::Cyc24;
-use omega_number_theory::rational::rq;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::rq;
 
 /// Helper: construct candidate fourth basis test matrices.
 /// Candidate 1: phase-modulated Fourier basis columns.

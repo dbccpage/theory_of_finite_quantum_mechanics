@@ -1,0 +1,137 @@
+{
+  "schema_version": "omega.s02-001.receipts.v1",
+  "executions": [
+    {
+      "classification": {
+        "schema_version": "omega.s02-001.classification.v1",
+        "packet_id": "S02-001:operator-registry-v1",
+        "packet_sha256": "036d2c59fe2fb82c47071fc961f109c98902d396d1ef9ab2972be670a4a266ea",
+        "observer_sha256": "4a9c6681b646343f2f72e71d43e7c2c57183b29b5a14210b6806cedce23efd02",
+        "registry_sha256": "6d4a6df74df9f01958d7004df55f27657ecb8852316687e094fc8078fb2214bb",
+        "operator_manifest_sha256": "5188aef18c9aae493bb6475dfc7da35878dfa564fa4fe8dec75a188b43aaeef1",
+        "fixture_output_sha256": "665646c5979bc3e0ff5fbf2f63d27a3b23af39a2b88544947f3058853b8a2587",
+        "model_output_sha256": "665646c5979bc3e0ff5fbf2f63d27a3b23af39a2b88544947f3058853b8a2587",
+        "semantic_outputs_equal": true,
+        "permissions_preserved": true,
+        "writes_preserved": true,
+        "evidence_ceiling_preserved": true,
+        "witnesses_preserved": true,
+        "terminal_proposal": "StabilizedSurvivor",
+        "survivor_routes": [],
+        "residual_ids": [],
+        "authority_effect": "None"
+      },
+      "receipts": {
+        "schema_version": "omega.s02-001.receipts.v1",
+        "producer": {
+          "schema_version": "omega.s02-001.receipts.v1",
+          "producer_id": "witness:producer:operator-fixture-v1",
+          "packet_sha256": "036d2c59fe2fb82c47071fc961f109c98902d396d1ef9ab2972be670a4a266ea",
+          "registry_sha256": "6d4a6df74df9f01958d7004df55f27657ecb8852316687e094fc8078fb2214bb",
+          "runs": [
+            {
+              "schema_version": "omega.s02-001.receipts.v1",
+              "binding_id": "binding:codex-model-fixture-replay-v1",
+              "runtime": {
+                "model_profile": {
+                  "provider": "codex",
+                  "profile_id": "codex:canned-fixture-replay-v1"
+                }
+              },
+              "adapter_id": "adapter:model-fixture:canonical-json-echo-v1",
+              "input_sha256": "0aaed088f20ace43f51bf6a7b8cc1ffb4d39508b495a47348ece53a5793bcf8e",
+              "output": {
+                "schema_version": "omega.operator-output.v1",
+                "request_id": "request:s02-001:canonical-echo",
+                "family": "fixture.canonical-json-response.v1",
+                "payload": {
+                  "claim": "bounded fixture replay only",
+                  "payload": "omega-operator-registry"
+                }
+              },
+              "output_sha256": "665646c5979bc3e0ff5fbf2f63d27a3b23af39a2b88544947f3058853b8a2587",
+              "granted_permissions": [
+                "read_fixture",
+                "write_receipt"
+              ],
+              "actual_writes": [],
+              "evidence_ceiling": "one canonical JSON echo operator under deterministic fixture replay; no live provider, parity, license grant, theorem, or authority promotion",
+              "network_accessed": false,
+              "credentials_accessed": false,
+              "authority_effect": "None"
+            },
+            {
+              "schema_version": "omega.s02-001.receipts.v1",
+              "binding_id": "binding:fixture-canonical-json-echo-v1",
+              "runtime": "fixture",
+              "adapter_id": "adapter:fixture:canonical-json-echo-v1",
+              "input_sha256": "0aaed088f20ace43f51bf6a7b8cc1ffb4d39508b495a47348ece53a5793bcf8e",
+              "output": {
+                "schema_version": "omega.operator-output.v1",
+                "request_id": "request:s02-001:canonical-echo",
+                "family": "fixture.canonical-json-response.v1",
+                "payload": {
+                  "claim": "bounded fixture replay only",
+                  "payload": "omega-operator-registry"
+                }
+              },
+              "output_sha256": "665646c5979bc3e0ff5fbf2f63d27a3b23af39a2b88544947f3058853b8a2587",
+              "granted_permissions": [
+                "read_fixture",
+                "write_receipt"
+              ],
+              "actual_writes": [],
+              "evidence_ceiling": "one canonical JSON echo operator under deterministic fixture replay; no live provider, parity, license grant, theorem, or authority promotion",
+              "network_accessed": false,
+              "credentials_accessed": false,
+              "authority_effect": "None"
+            }
+          ],
+          "semantic_outputs_equal": true,
+          "authority_effect": "None"
+        },
+        "evaluation": {
+          "schema_version": "omega.s02-001.receipts.v1",
+          "evaluator_id": "witness:evaluator:operator-substitution-v1",
+          "producer_id": "witness:producer:operator-fixture-v1",
+          "algorithm": "independent-canonical-json-echo-reconstruction-v1",
+          "independently_reconstructed_output_sha256": "665646c5979bc3e0ff5fbf2f63d27a3b23af39a2b88544947f3058853b8a2587",
+          "fixture_output_sha256": "665646c5979bc3e0ff5fbf2f63d27a3b23af39a2b88544947f3058853b8a2587",
+          "model_output_sha256": "665646c5979bc3e0ff5fbf2f63d27a3b23af39a2b88544947f3058853b8a2587",
+          "exact_match": true,
+          "semantic_contract_preserved": true,
+          "permissions_preserved": true,
+          "writes_preserved": true,
+          "evidence_ceiling_preserved": true,
+          "witnesses_preserved": true,
+          "authority_effect": "None"
+        },
+        "authority_witness": {
+          "schema_version": "omega.s02-001.receipts.v1",
+          "authority_witness_id": "witness:authority:operator-none-check-v1",
+          "identities_distinct": true,
+          "no_network_or_credentials": true,
+          "no_live_provider_execution": true,
+          "promotion_performed": false,
+          "authority_effect": "None"
+        },
+        "replay": {
+          "schema_version": "omega.s02-001.receipts.v1",
+          "packet_sha256": "036d2c59fe2fb82c47071fc961f109c98902d396d1ef9ab2972be670a4a266ea",
+          "first_run_sha256": "7aa6ed625eb84ebbc22453eb603200de8883a3a04f454daa70ed4d1f502138e4",
+          "replay_sha256": "7aa6ed625eb84ebbc22453eb603200de8883a3a04f454daa70ed4d1f502138e4",
+          "deterministic": true
+        },
+        "terminal": {
+          "schema_version": "omega.s02-001.receipts.v1",
+          "packet_id": "S02-001:operator-registry-v1",
+          "terminal_proposal": "StabilizedSurvivor",
+          "survivor_routes": [],
+          "residual_ids": [],
+          "human_promotion_performed": false,
+          "authority_effect": "None"
+        }
+      }
+    }
+  ]
+}

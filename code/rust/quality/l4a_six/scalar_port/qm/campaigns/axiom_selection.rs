@@ -1,7 +1,7 @@
 use serde_json::json;
 
 use num_bigint::BigInt;
-use omega_quantum_physics::operational_axiom_selection::{
+use engine_quantum_physics::operational_axiom_selection::{
     local_tomography_dimensions, FiniteRivalTheory, OperationalModelError,
 };
 pub fn evaluate_local_tomography(
@@ -28,9 +28,9 @@ pub fn audit_naimark_dilation() -> (bool, bool) {
 
 fn checked_naimark_fixture() -> bool {
     use crate::linear_algebra::matrix;
-    use omega_number_theory::{cyclotomic::GaussianRat, rational::rq};
-    use omega_quantum_physics::instruments::ExactPovm;
-    use omega_quantum_physics::operational_axiom_selection::{
+    use engine_number_theory::{cyclotomic::GaussianRat, rational::rq};
+    use engine_quantum_physics::instruments::ExactPovm;
+    use engine_quantum_physics::operational_axiom_selection::{
         naimark_projective_dilation, verify_naimark_certificate,
     };
     let q = |r| GaussianRat::from_rational(r);

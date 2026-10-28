@@ -675,12 +675,12 @@ impl QuadraticNumber {
     pub fn enclosure(
         &self,
         width: &Rational,
-    ) -> Result<omega_kernel::interval::Interval, QuadraticError> {
+    ) -> Result<engine_kernel::interval::Interval, QuadraticError> {
         if !width.is_positive() {
             return Err(QuadraticError::NonPositiveWidth);
         }
         if self.is_rational() {
-            return Ok(omega_kernel::interval::Interval::point(self.a.clone()));
+            return Ok(engine_kernel::interval::Interval::point(self.a.clone()));
         }
         if self.radicand.is_negative() {
             return Err(QuadraticError::NotReal(self.radicand.clone()));
@@ -714,7 +714,7 @@ impl QuadraticNumber {
         } else {
             (high, low)
         };
-        Ok(omega_kernel::interval::Interval::new(
+        Ok(engine_kernel::interval::Interval::new(
             &self.a + &self.b * low,
             &self.a + &self.b * high,
         ))

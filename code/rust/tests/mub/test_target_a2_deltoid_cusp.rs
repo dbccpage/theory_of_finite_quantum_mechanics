@@ -9,7 +9,7 @@ use syn::visit::Visit;
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
 
-use omega_kernel::interval::Interval;
+use engine_kernel::interval::Interval;
 use tfqm_mub::native::exact::mub6_constants::delta_crit;
 use tfqm_mub::native::exact::mub6_deltoid_cusp::{
     accelerate_blownup_cell_with_network_simplex, attempt_unblown_singular_certification,
@@ -23,8 +23,8 @@ use tfqm_mub::native::exact::mub6_deltoid_cusp::{
     ProjectiveBlowupCoords, QPolynomial,
 };
 use tfqm_mub::native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
-use omega_number_theory::cyclotomic::Cyc24;
-use omega_number_theory::rational::rq;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::rq;
 
 // ============================================================================
 // 1. STRICT ZERO-FLOAT DISCIPLINE AST AUDIT

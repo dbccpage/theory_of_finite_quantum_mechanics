@@ -1,4 +1,4 @@
-use omega_number_theory::rational::ri;
+use engine_number_theory::rational::ri;
 const PROVENANCE: &str = "Origin: code/rust/src/qm/entropy_bounds.rs Claim: urn:fqm:entropy:splitting-degree-and-exact-rational-parse AuthorityEffect: None";
 const SAMPLE: i64 = 2;
 const EXPECTED: i64 = 2;

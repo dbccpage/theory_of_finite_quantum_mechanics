@@ -1,5 +1,5 @@
 
-extern crate self as omega_local_green_global_red_lggr;
+extern crate self as tfqm_local_green_global_red_lggr;
 pub mod matrix_path_kernel;
 pub mod lggr_engine;
 pub use lggr_engine as epk_engine;

@@ -7,8 +7,8 @@ use crate::native::exact::d6_exact_curvature_cochain::{canonical_triple_exact, i
 pub use crate::native::exact::mub6_field::{inv_sqrt6, omega3_pow, omega6_pow, sqrt6};
 pub use crate::native::exact::mub6_quad_sdp::tao_s6_block;
 use crate::native::exact::mub6_quad_sdp::{exact_rational, ldlt_pivots_rational};
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 pub const DIM_HILBERT: usize = 6;
 pub const NUM_BASES_5: usize = 5;
 pub const GRAMIAN_DIM_5: usize = NUM_BASES_5 * DIM_HILBERT;

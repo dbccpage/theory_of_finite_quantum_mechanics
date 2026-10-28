@@ -4,10 +4,10 @@ use num_traits::Zero;
 
 use crate::native::exact::d6_exact_curvature_cochain::{canonical_triple_exact, ExactVec, D};
 use crate::native::exact::mub6_interval_cover::{NoVectorBox, VectorBox};
-use omega_kernel::interval::Interval;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
-use tfqm_number_theory::rational::rq;
+use engine_kernel::interval::Interval;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
+use engine_number_theory::rational::rq;
 
 pub fn sqrt_enclosure(n: i64, iters: u32) -> Interval {
     assert!(n >= 1, "sqrt_enclosure expects n >= 1");

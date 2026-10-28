@@ -2,12 +2,12 @@
 use num_bigint::BigInt;
 use num_integer::Integer;
 
-use omega_number_theory::{
+use engine_number_theory::{
     cyclotomic_field::quadratic_field_conductor,
     rational::{squarefree_part, ArithmeticError},
 };
-use omega_quantum_physics::exact_operator::ExactOperator;
-use omega_quantum_physics::pauli::PauliString;
+use engine_quantum_physics::exact_operator::ExactOperator;
+use engine_quantum_physics::pauli::PauliString;
 
 pub const TARGET_LCM_120: u64 = 120;
 
@@ -76,7 +76,7 @@ pub fn verify_prime_qudit_escalation_boundary() -> Result<(bool, BigInt), Arithm
 }
 
 pub fn verify_horodecki_3x3_bound_entanglement() -> bool {
-    omega_quantum_physics::higher_dim::tiles().is_ok()
+    engine_quantum_physics::higher_dim::tiles().is_ok()
 }
 
 pub fn verify_cglmp_escalation_boundary() -> (bool, BigInt, BigInt) {

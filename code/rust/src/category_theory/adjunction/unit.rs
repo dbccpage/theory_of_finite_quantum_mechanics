@@ -4,7 +4,7 @@
 //! Natural-transformation-style record for the unit of an adjunction:
 //! η : Id_C ⇒ R ∘ L.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 

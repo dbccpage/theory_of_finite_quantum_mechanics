@@ -2,7 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort traced monoidal category shell.
 /// Trace operator family Tr^X_{A,B} : C(A⊗X, B⊗X) → C(A,B) as a ref.

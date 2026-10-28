@@ -1,5 +1,5 @@
 
-extern crate self as omega_general_relativity;
+extern crate self as tfqm_general_relativity;
 pub mod bi_crossed_product;
 pub mod causal_dynamical_triangulation;
 pub mod causal_set;

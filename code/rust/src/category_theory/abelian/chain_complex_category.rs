@@ -6,7 +6,7 @@
 //! live in `omega_homology` (conceptual link in docs comments only).
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for Ch(A) / Kom(A) with optional degree window.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

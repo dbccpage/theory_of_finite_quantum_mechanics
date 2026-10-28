@@ -1,5 +1,5 @@
 
-use omega_kernel::resource_limits::OperationLimits;
+use engine_kernel::resource_limits::OperationLimits;
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 

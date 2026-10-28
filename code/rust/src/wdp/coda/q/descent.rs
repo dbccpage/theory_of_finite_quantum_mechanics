@@ -1,4 +1,4 @@
-use omega_types::q_continuum::{
+use engine_types::q_continuum::{
     holonomy_ladder_descent_ledger, AuthorityScope, DescentGate, DescentObligation, DescentResult,
     FiniteProjection, LeanWitness, QContinuumLedger,
 };

@@ -3,10 +3,10 @@ mod modular_review {
     use super::*;
     use crate::catalog;
     use linear_algebra::scalars::{Ring, Semiring};
-    use omega_number_theory::cyclotomic::{Cyc12, Cyc8};
-    use omega_number_theory::cyclotomic_field::Cyclotomic;
-    use omega_number_theory::rational::rq;
-    use omega_number_theory::scalar::RationalEmbedding;
+    use engine_number_theory::cyclotomic::{Cyc12, Cyc8};
+    use engine_number_theory::cyclotomic_field::Cyclotomic;
+    use engine_number_theory::rational::rq;
+    use engine_number_theory::scalar::RationalEmbedding;
 
     type K = Cyc8;
     fn q(n: i64, d: i64) -> K {
@@ -45,7 +45,7 @@ mod modular_review {
                 for c in 0..3 {
                     if (b + c) % 3 == a {
                         let ratio =
-                            omega_number_theory::scalar::divide(&data.twists[b], &data.twists[c])
+                            engine_number_theory::scalar::divide(&data.twists[b], &data.twists[c])
                                 .unwrap();
                         expected = expected.add(
                             &data.dimensions[b]
@@ -295,7 +295,7 @@ mod modular_review {
                 label: 7
             }))
         );
-        let limit = omega_number_theory::scalar::MAX_SCALAR_EXPONENT as u32;
+        let limit = engine_number_theory::scalar::MAX_SCALAR_EXPONENT as u32;
         assert_eq!(ModularData::<K>::genus_exponent(0).unwrap(), -1);
         assert_eq!(
             ModularData::<K>::genus_exponent(limit + 1).unwrap(),

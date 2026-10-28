@@ -1,4 +1,4 @@
-use omega_wdp::question_preserving_encoding::{
+use engine_wdp::question_preserving_encoding::{
     candidates, check, cochain_proposal, direct_proposal, encode_cochain, encode_direct,
     experiment, parse_cochain, parse_direct, verify_cochain, verify_direct, Refusal, Task,
     MAX_REPORT_BYTES,

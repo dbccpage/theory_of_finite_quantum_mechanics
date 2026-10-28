@@ -1,7 +1,7 @@
 use crate::qm::bridge::matrix as mx;
-use omega_number_theory::cyclotomic::GaussianRat;
-use omega_number_theory::rational::Rational;
-use omega_quantum_physics::continuum::canonical_commutator_obstruction;
+use engine_number_theory::cyclotomic::GaussianRat;
+use engine_number_theory::rational::Rational;
+use engine_quantum_physics::continuum::canonical_commutator_obstruction;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct WintnerWielandtWitness {
@@ -76,16 +76,16 @@ impl WeylHeisenbergInvariants {
 }
 
 fn weyl_fixture<const D: usize, const C: usize>() -> bool {
-    use omega_number_theory::cyclotomic_field::Cyclotomic;
+    use engine_number_theory::cyclotomic_field::Cyclotomic;
     let omega = Cyclotomic::<C>::zeta(2);
     let system = if D % 2 == 0 {
-        omega_lie_theory::heisenberg::WeylHeisenberg::with_phase_root(
+        engine_lie_theory::heisenberg::WeylHeisenberg::with_phase_root(
             D,
             omega,
             Cyclotomic::<C>::zeta(1),
         )
     } else {
-        omega_lie_theory::heisenberg::WeylHeisenberg::new(D, omega)
+        engine_lie_theory::heisenberg::WeylHeisenberg::new(D, omega)
     }
     .expect("fixed primitive phase");
     system.verify_relations() == Ok(true)
@@ -125,7 +125,7 @@ impl Default for ContinuumBoundaryReport {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_number_theory::rational::r_zero;
+    use engine_number_theory::rational::r_zero;
 
     #[test]
     fn test_wintner_wielandt_trace_obstruction() {

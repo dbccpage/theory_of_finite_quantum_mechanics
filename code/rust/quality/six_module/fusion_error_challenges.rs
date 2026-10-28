@@ -142,8 +142,8 @@ mod error_review {
 
     #[test]
     fn generated_provider_conversions_preserve_variant_and_text() {
-        let scalar = omega_number_theory::scalar::ScalarError::ZeroInverse;
-        let algebraic = omega_number_theory::algebraic_real::AlgebraicRealError::Invalid("probe");
+        let scalar = engine_number_theory::scalar::ScalarError::ZeroInverse;
+        let algebraic = engine_number_theory::algebraic_real::AlgebraicRealError::Invalid("probe");
         let matrix = MatrixError::AllocationLimitExceeded {
             requested: 17,
             limit: 9,

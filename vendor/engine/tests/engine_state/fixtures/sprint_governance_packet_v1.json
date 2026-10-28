@@ -1,0 +1,207 @@
+{
+  "schema_version": "omega.sprint-governance.packet.v1",
+  "sprint_id": "S15-900",
+  "parent_saga_ids": [
+    "SAGA-15"
+  ],
+  "lifecycle": "ACTIVE",
+  "gtoc_terminal": null,
+  "authority_status": "None",
+  "authority_effect": "None",
+  "frozen_base": "d4e6c17e7a6ec48c81b662a5ea8ff740401544ad",
+  "packet_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "observer_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "profiles": [
+    "rust_development",
+    "python_development",
+    "lean_mathematics",
+    "research_paper",
+    "manual_edit",
+    "mixed"
+  ],
+  "stories": [
+    {
+      "story_id": "S15-900-01",
+      "lifecycle": "ACTIVE",
+      "producer_id": "producer:rust",
+      "profile": "rust_development",
+      "operations": [
+        "edit_rust",
+        "run_focused_gate"
+      ],
+      "write_surface": [
+        "src/governance.rs"
+      ],
+      "acceptance_criteria": [
+        "focused Rust checks pass"
+      ],
+      "evidence_receipts": [
+        "receipt:rust"
+      ],
+      "survivor_route": "OpenObstruction",
+      "nonclaims": [
+        "does not activate CI"
+      ]
+    },
+    {
+      "story_id": "S15-900-02",
+      "lifecycle": "ACTIVE",
+      "producer_id": "producer:python",
+      "profile": "python_development",
+      "operations": [
+        "edit_python",
+        "run_focused_gate"
+      ],
+      "write_surface": [
+        "scripts/governance.py"
+      ],
+      "acceptance_criteria": [
+        "focused Python checks pass"
+      ],
+      "evidence_receipts": [
+        "receipt:python"
+      ],
+      "survivor_route": "OpenObstruction",
+      "nonclaims": [
+        "does not replace the Rust protocol"
+      ]
+    },
+    {
+      "story_id": "S15-900-03",
+      "lifecycle": "ACTIVE",
+      "producer_id": "producer:lean",
+      "profile": "lean_mathematics",
+      "operations": [
+        "edit_lean",
+        "run_focused_gate"
+      ],
+      "write_surface": [
+        "omega_engine/lean4/Governance.lean"
+      ],
+      "acceptance_criteria": [
+        "targeted Lean build and axiom audit pass"
+      ],
+      "evidence_receipts": [
+        "receipt:lean"
+      ],
+      "survivor_route": "OpenObstruction",
+      "nonclaims": [
+        "does not prove schema semantics"
+      ]
+    },
+    {
+      "story_id": "S15-900-04",
+      "lifecycle": "ACTIVE",
+      "producer_id": "producer:paper",
+      "profile": "research_paper",
+      "operations": [
+        "edit_research_paper",
+        "update_claim_ledger",
+        "update_citations",
+        "run_focused_gate"
+      ],
+      "write_surface": [
+        "docs/research.md"
+      ],
+      "acceptance_criteria": [
+        "claims, citations, and evidence ceiling are bound"
+      ],
+      "evidence_receipts": [
+        "receipt:paper"
+      ],
+      "survivor_route": "OracleNeeded",
+      "nonclaims": [
+        "does not promote a paper claim"
+      ]
+    },
+    {
+      "story_id": "S15-900-05",
+      "lifecycle": "ACTIVE",
+      "producer_id": "producer:manual",
+      "profile": "manual_edit",
+      "operations": [
+        "apply_exact_manual_diff",
+        "run_focused_gate"
+      ],
+      "write_surface": [
+        "manual/change.txt"
+      ],
+      "acceptance_criteria": [
+        "manual diff receives the same independent witnesses"
+      ],
+      "evidence_receipts": [
+        "receipt:manual"
+      ],
+      "survivor_route": "Refused",
+      "nonclaims": [
+        "human authorship is not a gate waiver"
+      ]
+    },
+    {
+      "story_id": "S15-900-06",
+      "lifecycle": "ACTIVE",
+      "producer_id": "producer:mixed",
+      "profile": "mixed",
+      "operations": [
+        "edit_mixed_carrier",
+        "run_focused_gate"
+      ],
+      "write_surface": [
+        "workspace/mixed.txt"
+      ],
+      "acceptance_criteria": [
+        "mixed carrier compiles to the same twelve stages"
+      ],
+      "evidence_receipts": [
+        "receipt:mixed"
+      ],
+      "survivor_route": "LiftLicenseNeeded",
+      "nonclaims": [
+        "does not widen any component profile"
+      ]
+    }
+  ],
+  "dependency_edges": [
+    {
+      "predecessor": "S15-900-01",
+      "successor": "S15-900-02"
+    },
+    {
+      "predecessor": "S15-900-02",
+      "successor": "S15-900-03"
+    },
+    {
+      "predecessor": "S15-900-03",
+      "successor": "S15-900-04"
+    },
+    {
+      "predecessor": "S15-900-04",
+      "successor": "S15-900-05"
+    },
+    {
+      "predecessor": "S15-900-05",
+      "successor": "S15-900-06"
+    }
+  ],
+  "exact_write_surface": [
+    "docs/research.md",
+    "manual/change.txt",
+    "omega_engine/lean4/Governance.lean",
+    "scripts/governance.py",
+    "src/governance.rs",
+    "workspace/mixed.txt"
+  ],
+  "budgets": {
+    "attempt_budget": 1,
+    "successor_budget": 1,
+    "time_budget_seconds": 28800,
+    "process_budget": 4,
+    "token_budget": 200000,
+    "repair_budget": 2
+  },
+  "witnesses": {
+    "producer_id": "witness:producer",
+    "independent_evaluator_id": "witness:evaluator",
+    "authority_witness_id": "witness:authority"
+  }
+}

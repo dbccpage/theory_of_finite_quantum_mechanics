@@ -1,4 +1,4 @@
-use omega_wdp::guarded_chain_transport::{
+use engine_wdp::guarded_chain_transport::{
     propose_transport, verify_transport, TransportProposal, MAX_CERTIFICATE_BYTES,
 };
 use serde_json::json;

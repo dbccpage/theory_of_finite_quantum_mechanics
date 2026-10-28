@@ -1,10 +1,10 @@
 use crate::qm::bridge::matrix as mx;
 use ::linear_algebra::backend::basic_matrix::BasicMatrix;
 use num_traits::{Signed, Zero};
-use omega_number_theory::cyclotomic::Cyc12;
-use omega_number_theory::rational::{r_one, r_zero, ri, rq, Rational};
-use omega_quantum_physics::pauli::{pauli_commutes, Pauli};
-use omega_quantum_physics::stabilizer_code_distance::StabilizerCode;
+use engine_number_theory::cyclotomic::Cyc12;
+use engine_number_theory::rational::{r_one, r_zero, ri, rq, Rational};
+use engine_quantum_physics::pauli::{pauli_commutes, Pauli};
+use engine_quantum_physics::stabilizer_code_distance::StabilizerCode;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -182,12 +182,12 @@ pub fn verify_target4_rational_cayley() -> Target4RationalCayleyReceipt {
     let taus = [rq(1, 3), rq(1, 2), rq(1, 1), rq(2, 1), rq(5, 7), rq(-1, 4)];
     let identity = mx::identity::<Rational>(dim).expect("declared fixture");
     let all_ok = taus.iter().all(|tau| {
-        omega_lie_theory::cayley::cayley_transform(&x, tau).is_ok_and(|cay| {
+        engine_lie_theory::cayley::cayley_transform(&x, tau).is_ok_and(|cay| {
             let tau_x = mx::scale(&x, tau).expect("fixture shape");
             let plus = mx::add(&identity, &tau_x).expect("fixture shape");
             let minus = mx::sub(&identity, &tau_x).expect("fixture shape");
             mx::multiply(&plus, &cay).expect("fixture shape") == minus
-                && omega_lie_theory::cayley::is_special_orthogonal(&cay)
+                && engine_lie_theory::cayley::is_special_orthogonal(&cay)
         })
     });
     Target4RationalCayleyReceipt {
@@ -372,8 +372,8 @@ fn verify_cabello_interface_transfer(rays: &[[i64; 4]; 18], m_diag: &[i64; 4]) -
 }
 
 pub fn verify_target6_cabello_polytope() -> Target6CabelloPolytopeReceipt {
-    let rays = omega_quantum_physics::kochen_specker::CABELLO_18_VECTORS;
-    let tetrads = omega_quantum_physics::kochen_specker::CABELLO_9_CONTEXTS;
+    let rays = engine_quantum_physics::kochen_specker::CABELLO_18_VECTORS;
+    let tetrads = engine_quantum_physics::kochen_specker::CABELLO_9_CONTEXTS;
     let (all_ortho, all_deg_two) = verify_cabello_tetrads_and_degrees(&rays, &tetrads);
     let parity_ok = all_deg_two && (tetrads.len() % 2 == 1);
 
@@ -568,8 +568,8 @@ pub struct Target10TeleportationReceipt {
 }
 
 pub fn verify_target10_teleportation() -> Target10TeleportationReceipt {
-    use omega_quantum_physics::quantum_state::RayVector;
-    use omega_quantum_physics::teleportation::Teleportation;
+    use engine_quantum_physics::quantum_state::RayVector;
+    use engine_quantum_physics::teleportation::Teleportation;
     let input = RayVector::from_ints(&[(3, 0), (4, 0)])
         .expect("declared nonzero exact teleportation fixture");
     let branches = Teleportation::exact(&input).expect("checked Bell contraction fixture");

@@ -4,7 +4,7 @@
 //! Strict isomorphism of categories (inverse functors) — shape only.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for an isomorphism-of-categories claim.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

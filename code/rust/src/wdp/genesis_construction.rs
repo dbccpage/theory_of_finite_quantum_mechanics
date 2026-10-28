@@ -1,8 +1,8 @@
 
-use omega_ooutwire_primitives::{admission, event::Event, regime::Regime, token::Token};
+use engine_wire_primitives::{admission, event::Event, regime::Regime, token::Token};
 
-use omega_homology::declared_incidence::{declared_chain_report, encode_declared};
-use omega_homology::simplicial::SimplicialComplex;
+use engine_homology::declared_incidence::{declared_chain_report, encode_declared};
+use engine_homology::simplicial::SimplicialComplex;
 
 use crate::genesis_geometry::{ChainReport, ComplexPacket};
 use crate::genesis_primitive_execution::{
@@ -282,7 +282,7 @@ pub fn verify_history_report(
 }
 
 pub fn cycle_construction(labels: [&str; 3]) -> Result<GenesisConstruction, ConstructionError> {
-    use omega_ooutwire_primitives::mark::Mark;
+    use engine_wire_primitives::mark::Mark;
     let mut walk = GenesisConstruction::from_literal_seed()?;
     for label in labels {
         walk = walk.advance(Event::Supply(Token::new(label)))?;

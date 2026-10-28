@@ -1,11 +1,11 @@
 use crate::qm::bridge::{matrix as mx, ExactFieldError};
-use omega_lie_theory::heisenberg::{
+use engine_lie_theory::heisenberg::{
     prime_characteristic_ccr, trace_obstruction, HeisenbergError, WeylHeisenberg,
 };
-use omega_lie_theory::scalar::is_unitary;
-use omega_number_theory::cyclotomic_field::{normalized_conductor, Cyclotomic, CyclotomicError};
-use omega_number_theory::polynomial::{self, PolynomialError};
-use omega_number_theory::rational::rq;
+use engine_lie_theory::scalar::is_unitary;
+use engine_number_theory::cyclotomic_field::{normalized_conductor, Cyclotomic, CyclotomicError};
+use engine_number_theory::polynomial::{self, PolynomialError};
+use engine_number_theory::rational::rq;
 use serde_json::{json, Value};
 use std::collections::BTreeMap;
 #[derive(Debug, thiserror::Error)]
@@ -129,7 +129,7 @@ pub fn verify_trace_obstruction(d: usize, n: i64, q: i64) -> Result<Value, WeylR
 }
 pub fn char_p_weyl_representation(p: usize) -> Result<Value, WeylReceiptError> {
     let model = prime_characteristic_ccr(p)?;
-    let field = omega_number_theory::finite_field::FiniteField::prime_field(p)
+    let field = engine_number_theory::finite_field::FiniteField::prime_field(p)
         .ok_or(WeylReceiptError::Dimension)?;
     let identity = (0..p).all(|r| {
         (0..p).all(|c| {

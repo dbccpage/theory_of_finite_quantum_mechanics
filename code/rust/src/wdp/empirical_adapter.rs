@@ -3,7 +3,7 @@ use std::collections::{BTreeMap, BTreeSet};
 
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
-use omega_quantum_physics::finite_chsh_correlations::PairwiseBox;
+use engine_quantum_physics::finite_chsh_correlations::PairwiseBox;
 use thiserror::Error;
 
 use crate::error::WdpError;
@@ -212,7 +212,7 @@ pub fn l1_distance(a: &SectionDistribution, b: &SectionDistribution) -> BigRatio
         .into_iter()
         .map(|key| a.get(key).unwrap_or(&zero) - b.get(key).unwrap_or(&zero))
         .collect();
-    tfqm_functional::Phi1Functional::unweighted_l1_rational(&difference)
+    engine_functional::Phi1Functional::unweighted_l1_rational(&difference)
         .expect("exact section frequencies")
 }
 

@@ -20,9 +20,9 @@ use crate::native::exact::mub6_smale_sentry::{
     smale_alpha_threshold, CertifiedLeafCell, LuError, SentryRootInspection, SmaleSentry,
     SquarePolynomialSystem,
 };
-use tfqm_number_theory::rational::rq;
-use omega_solvers::solver_flow_network_simplex::NetworkSimplexError;
-use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge};
+use engine_number_theory::rational::rq;
+use engine_solvers::solver_flow_network_simplex::NetworkSimplexError;
+use engine_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge};
 
 crate::fixture_set!(fixtures, "mub6_grand_synthesis");
 

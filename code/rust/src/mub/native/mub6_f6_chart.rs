@@ -3,8 +3,8 @@ use serde::Serialize;
 
 use crate::native::exact::d6_exact_curvature_cochain::{abs_sq, inner, ExactVec, D};
 use crate::native::exact::mub6_field::inv_sqrt6;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 fn f3(j: usize, k: usize) -> Cyc24 {
     Cyc24::zeta24(((8 * j * k) % 24) as i32)

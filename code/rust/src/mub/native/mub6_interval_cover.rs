@@ -1,8 +1,8 @@
 
 use num_rational::BigRational;
 use num_traits::Zero;
-use omega_kernel::interval::Interval;
-use tfqm_number_theory::rational::rq;
+use engine_kernel::interval::Interval;
+use engine_number_theory::rational::rq;
 
 pub type VectorBox = [Interval; 12];
 

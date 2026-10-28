@@ -3,8 +3,8 @@ use std::collections::BTreeMap;
 
 use crate::native::exact::d6_exact_curvature_cochain::D;
 use crate::native::exact::d6_exact_sos::{canonical_forms, quad_form, Form};
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 pub const RDIM: usize = 2 * D;
 
@@ -250,7 +250,7 @@ mod tests {
     use crate::native::exact::d6_exact_curvature_cochain::norm_sq;
     use crate::native::exact::d6_exact_sos::{is_psd_cyc24, obstruction_value};
 
-    use tfqm_number_theory::rational::rq;
+    use engine_number_theory::rational::rq;
 
     fn sample_z() -> Vec<[Cyc24; RDIM]> {
         let mut out = Vec::new();

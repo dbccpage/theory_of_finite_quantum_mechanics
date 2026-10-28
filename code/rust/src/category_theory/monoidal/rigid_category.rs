@@ -2,7 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort rigid (autonomous) monoidal category shell.
 /// Left and right duals with zig-zag (snake) identities claimed via refs.

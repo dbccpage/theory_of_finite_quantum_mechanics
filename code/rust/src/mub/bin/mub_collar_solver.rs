@@ -29,7 +29,7 @@ fn write_artifact_targets(bytes: &[u8], emit: bool, output: Option<PathBuf>) -> 
         let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../..");
         for dir in [
             root.join("artifacts"),
-            PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts"),
+            PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts"),
         ] {
             fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
             fs::write(dir.join("mub_karlsson_collar_cover.json"), bytes)

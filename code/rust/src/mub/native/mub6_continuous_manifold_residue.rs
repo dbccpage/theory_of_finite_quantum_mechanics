@@ -12,9 +12,9 @@ use crate::native::exact::mub6_basis_cover::{
 use crate::native::exact::mub6_cyclotomic_enclosure::{cyc24_real_imag_enclosure, SqrtBox};
 use crate::native::campaign::mub6_f6_external_b3::product_y2_qa_columns;
 use crate::native::exact::mub6_interval_cover::VectorBox;
-use omega_kernel::interval::Interval;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_kernel::interval::Interval;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 crate::fixture_set!(fixtures, "mub6_continuous_manifold_residue");
 

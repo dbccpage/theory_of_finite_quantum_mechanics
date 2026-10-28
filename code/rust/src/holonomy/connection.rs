@@ -2,7 +2,7 @@ use crate::error::HolonomyError;
 use crate::graph::CellComplex;
 use crate::matrix::{ExactMatrix, ExactScalar};
 use num_rational::BigRational;
-use omega_kernel::resource_limits::OperationLimits;
+use engine_kernel::resource_limits::OperationLimits;
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::collections::BTreeMap;

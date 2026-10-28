@@ -2,11 +2,11 @@
 use std::collections::{BTreeSet, VecDeque};
 use std::path::{Path, PathBuf};
 
-const AUTHORITY_CRATE: &str = "omega_types";
+const AUTHORITY_CRATE: &str = "engine_types";
 
 const AUTHORITY_TYPE_DECL: &str = "pub struct CertifiedAuthority";
 
-const MUST_REACH: &[&str] = &["linear_algebra", "omega_homotopy_type_theory"];
+const MUST_REACH: &[&str] = &["linear_algebra", "engine_homotopy_type_theory"];
 
 const FENCE_PREFIX: &str = "AuthorityEffect None; not PROVED; not GlobalGreen;";
 
@@ -72,23 +72,12 @@ fn is_negated(before: &str) -> bool {
 }
 
 fn assert_authority_type_still_lives(root: &Path) {
-    let candidate1 = root
-        .parent()
-        .expect("crate directory has a parent")
+    // The engine crates are vendored at the repository root.
+    let source = root
+        .join("../../../../vendor/engine")
         .join(AUTHORITY_CRATE)
         .join("src")
         .join("authority.rs");
-    let candidate2 = PathBuf::from(r"C:\Users\a343o\.gemini\antigravity\worktrees\the_symbol_game\create_new_worktree\omega_engine\crates_rs\omega_types\src\authority.rs");
-    let candidate3 = PathBuf::from(r"C:\Users\a343o\source\repos\the_symbol_game\omega_engine\crates_rs\omega_types\src\authority.rs");
-    let source = if candidate1.exists() {
-        candidate1
-    } else if candidate2.exists() {
-        candidate2
-    } else if candidate3.exists() {
-        candidate3
-    } else {
-        return;
-    };
     let text =
         std::fs::read_to_string(&source).unwrap_or_else(|err| panic!("read {source:?}: {err}"));
     assert!(

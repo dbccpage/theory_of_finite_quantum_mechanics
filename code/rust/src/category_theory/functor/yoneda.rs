@@ -4,7 +4,7 @@
 //! Yoneda embedding / lemma carrier — shape only (label + category_ref).
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a Yoneda construction on a category reference.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

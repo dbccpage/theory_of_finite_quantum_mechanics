@@ -2,7 +2,7 @@ use crate::connection::DiscreteConnection;
 use crate::error::HolonomyError;
 use crate::holonomy::compute_loop_holonomy;
 use crate::matrix::{ExactMatrix, ExactScalar};
-use omega_kernel::resource_limits::{check_and_reserve, OperationLimits};
+use engine_kernel::resource_limits::{check_and_reserve, OperationLimits};
 
 /// Admit scalar arithmetic counts and per-matrix cells before any output
 /// allocation. These limits do not bound arbitrary-precision coefficient bytes.

@@ -1,4 +1,4 @@
-use omega_types::q_continuum::{AuthorityScope, DescentResult, QContinuumLedger, Residual};
+use engine_types::q_continuum::{AuthorityScope, DescentResult, QContinuumLedger, Residual};
 
 #[derive(Clone, Debug, Default, PartialEq, Eq)]
 pub struct QLedger {

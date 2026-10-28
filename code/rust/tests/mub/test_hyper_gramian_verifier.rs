@@ -7,7 +7,7 @@ use tfqm_mub::native::exact::mub6_hyper_gramian::{
     GRAMIAN_DIM_5, GRAMIAN_DIM_6, NUM_BASES_5, NUM_BASES_6,
 };
 use tfqm_mub::native::exact::mub6_quad_sdp::ldlt_pivots_rational;
-use omega_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::cyclotomic::Cyc24;
 
 #[test]
 fn test_5mub_gramian_dimensions_and_structure() {
@@ -143,7 +143,7 @@ fn test_solve_hyper_gramian_certificate_complete() {
 
 #[test]
 fn ldlt_refuses_nonrational_and_malformed_inputs() {
-    use omega_number_theory::cyclotomic::Cyc24;
+    use engine_number_theory::cyclotomic::Cyc24;
     let one = Cyc24::rat(BigRational::from_integer(1.into()));
     // 1-sqrt(2) has a positive rational coefficient but a negative real value.
     assert!(ldlt_pivots_rational(&[vec![one.sub(&Cyc24::sqrt2())]]).is_err());

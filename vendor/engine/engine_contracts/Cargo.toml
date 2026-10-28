@@ -1,0 +1,146 @@
+[package]
+autotests = false
+name = "engine_contracts"
+version.workspace = true
+edition = "2021"
+description = "Law/contract traits and generated bindings for the omega_engine workspace"
+authors = ["Engine contributors"]
+license.workspace = true
+# Build-time contract gate: validates the v1 corpus firewall/identity before compiling.
+build = "build.rs"
+
+[dependencies]
+syn = { version = "2.0.119", features = ["full"] }
+engine_types = { path = "../engine_types" }
+# NOTE (SG-LAYER-001 / PO-LAYER): engine_contracts MUST NOT depend on
+# engine_replay. Contracts are governance law; replay is verification machinery.
+# Shared trace vocabulary (TraceArtifact, VoidTrace) lives in the foundation
+# crate engine_types::trace_artifact. Re-adding an engine_replay edge here
+# re-inverts the layer order and must be refused.
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.9"
+serde_json = "1.0"
+sha2 = "0.10"
+blake3 = { version = "1.8.3", features = ["serde"] }
+erased-serde = "0.4"
+thiserror = "2"
+
+[build-dependencies]
+syn = { version = "2.0.119", features = ["full"] }
+engine_types = { path = "../engine_types" }
+serde = { version = "1.0", features = ["derive"] }
+serde_yaml = "0.9"
+serde_json = "1.0"
+sha2 = "0.10"
+thiserror = "2"
+
+
+[dev-dependencies]
+num-rational = "0.4"
+num-bigint = "0.4"
+linear_algebra = { path = "../linear_algebra" }
+engine_solvers = { path = "../engine_solvers" }
+engine_policy = { path = "../engine_policy" }
+engine_kernel = { path = "../engine_kernel" }
+engine_functional = { path = "../engine_functional" }
+# Parse declared module items; comments/strings are not Rust bindings.
+# This already-locked parser is used offline, not installed as a tool.
+syn = { version = "2.0.119", features = ["full"] }
+
+[[bin]]
+name = "contract_binding_audit"
+path = "src/contract_binding_audit.rs"
+
+[[bin]]
+name = "validate_architecture"
+path = "src/validate_architecture.rs"
+
+# Shared integration-test targets. Sources and fixtures live in `../tests/engine_contracts`.
+
+[[test]]
+name = "artifact_policy"
+path = "../tests/engine_contracts/artifact_policy.rs"
+
+[[test]]
+name = "binding_audit"
+path = "../tests/engine_contracts/binding_audit.rs"
+
+[[test]]
+name = "certificate_promotion_firewall"
+path = "../tests/engine_contracts/certificate_promotion_firewall.rs"
+
+[[test]]
+name = "contract_projections"
+path = "../tests/engine_contracts/contract_projections.rs"
+
+[[test]]
+name = "ddc_file_contract_gate"
+path = "../tests/engine_contracts/ddc_file_contract_gate.rs"
+
+[[test]]
+name = "ddc_v1_12_subset_of_v1_13"
+path = "../tests/engine_contracts/ddc_v1_12_subset_of_v1_13.rs"
+
+[[test]]
+name = "functional_boundary"
+path = "../tests/engine_contracts/functional_boundary.rs"
+
+[[test]]
+name = "governance_math_corpus"
+path = "../tests/engine_contracts/governance_math_corpus.rs"
+
+[[test]]
+name = "governance_validator"
+path = "../tests/engine_contracts/governance_validator.rs"
+
+[[test]]
+name = "invariant_atlas_schema_gate"
+path = "../tests/engine_contracts/invariant_atlas_schema_gate.rs"
+
+[[test]]
+name = "math_contract_gate"
+path = "../tests/engine_contracts/math_contract_gate.rs"
+
+[[test]]
+name = "authority_gates"
+path = "../tests/engine_contracts/authority_gates.rs"
+
+[[test]]
+name = "rust_file_contract_gate"
+path = "../tests/engine_contracts/rust_file_contract_gate.rs"
+
+[[test]]
+name = "source_binding_command"
+path = "../tests/engine_contracts/source_binding_command.rs"
+
+[[test]]
+name = "source_bindings"
+path = "../tests/engine_contracts/source_bindings.rs"
+
+[[test]]
+name = "v1_contract_firewalls"
+path = "../tests/engine_contracts/v1_contract_firewalls.rs"
+
+[[test]]
+name = "v1_core_layers"
+path = "../tests/engine_contracts/v1_core_layers.rs"
+
+[[test]]
+name = "v1_corpus_gate"
+path = "../tests/engine_contracts/v1_corpus_gate.rs"
+
+[[test]]
+name = "v1_fixtures"
+path = "../tests/engine_contracts/v1_fixtures.rs"
+
+[[test]]
+name = "v1_image_descriptor_conformance"
+path = "../tests/engine_contracts/v1_image_descriptor_conformance.rs"
+
+[[test]]
+name = "v1_math_recent"
+path = "../tests/engine_contracts/v1_math_recent.rs"
+
+[[test]]
+name = "v1_rust_binding_conformance"
+path = "../tests/engine_contracts/v1_rust_binding_conformance.rs"

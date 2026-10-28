@@ -4,7 +4,7 @@
 //! Essential surjectivity claim (every target object isomorphic to an image) — shape only.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for an essential-surjectivity claim on a functor reference.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

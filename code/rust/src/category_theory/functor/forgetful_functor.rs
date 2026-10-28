@@ -4,7 +4,7 @@
 //! Forgetful (underlying) functor U : C → D — shape only.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a forgetful functor between labeled categories.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

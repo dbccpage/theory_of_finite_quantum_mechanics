@@ -21,8 +21,8 @@ use tfqm_mub::native::exact::mub6_haagerup_cover::{
     ScaledBoxComplexArtifact,
 };
 use tfqm_mub::native::exact::szollosi_triad_solver::verify_chm;
-use omega_number_theory::cyclotomic::Cyc24;
-use omega_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 #[test]
 fn test_haagerup_h6_basepoints_are_exact_chm() {

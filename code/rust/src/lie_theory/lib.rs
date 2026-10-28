@@ -1,4 +1,4 @@
-extern crate self as omega_lie_theory;
+extern crate self as tfqm_lie_theory;
 pub mod cayley;
 pub mod cayley_unitary;
 pub mod clifford;

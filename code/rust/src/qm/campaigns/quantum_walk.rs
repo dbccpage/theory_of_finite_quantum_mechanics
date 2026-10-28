@@ -1,5 +1,5 @@
-use omega_number_theory::rational::Rational;
-use omega_quantum_physics::quantum_walk::{
+use engine_number_theory::rational::Rational;
+use engine_quantum_physics::quantum_walk::{
     simulate_walk_s3_exact, simulate_walk_s4_exact, QuantumWalkError,
 };
 use serde::{Deserialize, Serialize};

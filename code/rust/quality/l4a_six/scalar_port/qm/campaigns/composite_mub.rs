@@ -1,10 +1,10 @@
 use crate::qm::bridge::{elimination::rank, involution::outer_product, matrix};
-use omega_number_theory::cyclotomic::Cyc24;
-use omega_number_theory::integer_factorization::FactorizationBudget;
-use omega_number_theory::rational::{ri, Rational};
-use omega_number_theory::vanishing_sums::minimal_root_conductor;
-use omega_quantum_physics::mub::algebra::{verify_mub_projector_algebra, ProjectorAlgebraStatus};
-use omega_quantum_physics::mub::composite::build_composite_mub_d6;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::integer_factorization::FactorizationBudget;
+use engine_number_theory::rational::{ri, Rational};
+use engine_number_theory::vanishing_sums::minimal_root_conductor;
+use engine_quantum_physics::mub::algebra::{verify_mub_projector_algebra, ProjectorAlgebraStatus};
+use engine_quantum_physics::mub::composite::build_composite_mub_d6;
 
 pub const TENSOR_AXIOMS: [&str; 4] = [
     "bilinearity",

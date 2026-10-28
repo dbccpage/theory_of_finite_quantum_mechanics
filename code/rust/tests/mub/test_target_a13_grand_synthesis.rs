@@ -35,8 +35,8 @@ use tfqm_mub::native::exact::mub6_smale_sentry::{
 };
 use tfqm_mub::native::exact::mub6_tao_chart::tao_s6_matrix;
 use tfqm_mub::native::exact::szollosi_triad_solver::szollosi_dephased_b6;
-use omega_number_theory::cyclotomic::Cyc24;
-use omega_number_theory::rational::rq;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::rq;
 
 // ============================================================================
 // 1. STRICT ZERO-FLOAT DISCIPLINE AST AUDIT

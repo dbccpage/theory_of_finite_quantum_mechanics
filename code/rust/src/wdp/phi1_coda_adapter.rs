@@ -6,18 +6,18 @@ use crate::coda::coda_gtla::{
 };
 use num_bigint::BigInt;
 use num_rational::BigRational;
-use tfqm_functional::gamma2::{ExactCochainComplexQ, ExactGamma2Error};
-use tfqm_functional::phi1::ExactPhi1Certificate;
+use engine_functional::gamma2::{ExactCochainComplexQ, ExactGamma2Error};
+use engine_functional::phi1::ExactPhi1Certificate;
 use tfqm_homotopy_type_theory::primitive_difference::PrimitiveDifference;
-use omega_policy::trichotomy::ObstructionDiagnosticClass;
-use tfqm_local_green_global_red_lggr::residual_families::{
+use engine_policy::trichotomy::ObstructionDiagnosticClass;
+use engine_epk::residual_families::{
     reconcile_verified, shape_signature_from_exact_complex, FamilyCollision, FamilyRegistry,
     FamilyResolution, ShapeSignatureError,
 };
-use omega_solvers::solver_flow_network_simplex::NetworkSimplexError;
-use omega_types::observer::{Observer, ObserverKind};
+use engine_solvers::solver_flow_network_simplex::NetworkSimplexError;
+use engine_types::observer::{Observer, ObserverKind};
 
-use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, Phi1Solution};
+use engine_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, Phi1Solution};
 
 #[derive(Debug, PartialEq, Eq)]
 struct PotentialDelta {
@@ -170,7 +170,7 @@ pub fn solve_phi1_coda(
         vec![vec![rational(0); boundary.edges.len()]],
     )?;
 
-    let signature = shape_signature_from_exact_complex("omega_solvers::phi1_boundary", &complex)?;
+    let signature = shape_signature_from_exact_complex("engine_solvers::phi1_boundary", &complex)?;
     let consultation = registry.consult(signature);
 
     let carrier_manifest = serde_json::to_vec(&(
@@ -189,7 +189,7 @@ pub fn solve_phi1_coda(
         &complex,
     ))?;
     let binding = bind_domain_evidence(
-        "omega_solvers::phi1_boundary",
+        "engine_solvers::phi1_boundary",
         &carrier_manifest,
         &evidence_manifest,
     )?;
@@ -217,7 +217,7 @@ pub fn solve_phi1_coda(
 
     let residual_family = if evaluation.status() == ObstructionDiagnosticClass::ClosedResidual {
         let observer = Observer {
-            id: omega_kernel::ObserverId::parse("omega_solvers_phi1_v1")
+            id: engine_kernel::ObserverId::parse("omega_solvers_phi1_v1")
                 .expect("static observer id is canonical"),
             kind: ObserverKind::Custom("solver".to_string()),
         };

@@ -2,8 +2,8 @@
 use serde::{Deserialize, Serialize};
 
 use crate::epk_engine::GluingDefect;
-use omega_types::authority::AuthorityEffect;
-use omega_types::ceiling::EvidenceCeiling;
+use engine_types::authority::AuthorityEffect;
+use engine_types::ceiling::EvidenceCeiling;
 
 use crate::adequacy::{
     DetectorAdequacyVerdict, DetectorAdequacyVerdictKind, DetectorStructuralFailure,

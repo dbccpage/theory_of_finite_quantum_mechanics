@@ -286,7 +286,7 @@ impl DomainAdapter for SymbolGameExpressivityAdapter {
             observer: Some("expressivity_norm_face / unit ℓ¹ diagnostic".into()),
             witnesses: vec![
                 "omega_symbol_game::expressivity".into(),
-                "tfqm_functional exact Phi1/Gamma2 rails".into(),
+                "engine_functional exact Phi1/Gamma2 rails".into(),
             ],
         }
     }

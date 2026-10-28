@@ -1,6 +1,6 @@
 
-use omega_policy::trichotomy::ObstructionDiagnosticClass;
-use omega_types::{EvidenceCeiling, FactLabel};
+use engine_policy::trichotomy::ObstructionDiagnosticClass;
+use engine_types::{EvidenceCeiling, FactLabel};
 use serde::Serialize;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize)]

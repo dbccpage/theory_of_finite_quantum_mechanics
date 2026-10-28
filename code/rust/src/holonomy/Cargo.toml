@@ -10,12 +10,11 @@ path = "lib.rs"
 
 [features]
 default = []
-external-omega = ["dep:omega_kernel", "dep:omega_homology", "dep:linear_algebra"]
 
 [dependencies]
-omega_kernel = { version = "0.1.0", optional = true }
-omega_homology = { version = "0.1.0", optional = true }
-linear_algebra = { version = "0.1.0", optional = true }
+engine_kernel = { path = "../../../../vendor/engine/engine_kernel" }
+engine_homology = { path = "../../../../vendor/engine/engine_homology" }
+linear_algebra = { path = "../../../../vendor/engine/linear_algebra" }
 num-rational = { version = "0.4.2", features = ["serde"] }
 num-bigint = { version = "0.4.6", features = ["serde"] }
 num-traits = "0.2.19"

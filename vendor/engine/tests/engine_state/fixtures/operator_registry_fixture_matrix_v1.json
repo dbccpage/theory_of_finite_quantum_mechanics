@@ -1,0 +1,216 @@
+{
+  "schema_version": "omega.s02-001.admission.v1",
+  "admissions": [
+    {
+      "schema_version": "omega.s02-001.admission.v1",
+      "packet": {
+        "schema_version": "omega.s02-001.packet.v1",
+        "packet_id": "S02-001:operator-registry-v1",
+        "frozen_base": "7b34a4e32fa4a30335c1468f752e4531173d0667",
+        "target_sprint": "S02-001",
+        "source_manifest": [
+          {
+            "path": "docs/omega-conductor-epic-v001.md",
+            "sha256": "c167ed6e93d53f12aa5834a01a069a19843fa2df72b9c75147715c10fecf47c1"
+          },
+          {
+            "path": "docs/saga_02_operator_registry_and_gauges.md",
+            "sha256": "109b4f3626d194289807769a7937e5e2e8883475d8edf3561bc66924717e9119"
+          },
+          {
+            "path": "docs/sprint_s02_001.md",
+            "sha256": "b840689495f500791b4f619a47d8c22fe4fd0de4ddf97ac84df1af122b67168a"
+          },
+          {
+            "path": "omega_engine/crates/omega_contracts/src/lib.rs",
+            "sha256": "d5cd968aaa83386da6bf2db2b45cd8939d32f63410d309a926c3f52615145c56"
+          },
+          {
+            "path": "omega_engine/crates/omega_operator_algebra/src/registry.rs",
+            "sha256": "2ecb0327f15664b74f1394aa15e63627818d878aa16e1cddc6e90d900b6b075f"
+          },
+          {
+            "path": "omega_engine/crates/omega_state/src/gtoc2_degree_shift.rs",
+            "sha256": "e08238f971301bb12a98dfea5f80ea51fd8650ef4670a664d1fa5e22035ee3e4"
+          }
+        ],
+        "budgets": {
+          "attempt_budget": 1,
+          "repair_budget": 2,
+          "successor_budget": 1,
+          "time_budget_seconds": 28800,
+          "process_budget": 4,
+          "token_budget": 200000
+        },
+        "evidence_ceiling": "one canonical JSON echo operator under deterministic fixture replay; no live provider, parity, license grant, theorem, or authority promotion",
+        "observer": {
+          "observer_id": "witness:evaluator:operator-substitution-v1",
+          "observer_domain": "bounded-operator-gauge-substitution",
+          "state_domain": "omega.s02-001.operator-registry.v1",
+          "observer_hash": "4a9c6681b646343f2f72e71d43e7c2c57183b29b5a14210b6806cedce23efd02",
+          "visible_artifact_hashes": [
+            "109b4f3626d194289807769a7937e5e2e8883475d8edf3561bc66924717e9119",
+            "2ecb0327f15664b74f1394aa15e63627818d878aa16e1cddc6e90d900b6b075f",
+            "b840689495f500791b4f619a47d8c22fe4fd0de4ddf97ac84df1af122b67168a",
+            "c167ed6e93d53f12aa5834a01a069a19843fa2df72b9c75147715c10fecf47c1",
+            "d5cd968aaa83386da6bf2db2b45cd8939d32f63410d309a926c3f52615145c56",
+            "e08238f971301bb12a98dfea5f80ea51fd8650ef4670a664d1fa5e22035ee3e4"
+          ],
+          "hidden_artifact_classes": [
+            "live-provider-context",
+            "production-credentials"
+          ],
+          "tool_permissions": [
+            "read:frozen-source",
+            "test:omega_state",
+            "write:admitted-paths"
+          ],
+          "write_surface": [
+            "docs/omega-conductor-epic-v001.md",
+            "docs/saga_02_operator_registry_and_gauges.md",
+            "docs/sprint_s02_001.md",
+            "docs/status/omega_conductor_s01_003_status_2026-07-18.md",
+            "docs/status/omega_conductor_s02_001_status_2026-07-18.md",
+            "omega_engine/Cargo.lock",
+            "omega_engine/crates/omega_contracts/src/lib.rs",
+            "omega_engine/crates/omega_contracts/src/operator_gauge.rs",
+            "omega_engine/crates/omega_state/Cargo.toml",
+            "omega_engine/crates/omega_state/src/gtoc2_degree_shift.rs",
+            "omega_engine/crates/omega_state/src/lib.rs",
+            "omega_engine/crates/omega_state/src/operator_registry_runtime.rs",
+            "omega_engine/crates/omega_state/tests/fixtures/operator_registry_fixture_matrix_v1.json",
+            "omega_engine/crates/omega_state/tests/fixtures/operator_registry_receipt_matrix_v1.json",
+            "omega_engine/crates/omega_state/tests/gtoc2_degree_shift.rs",
+            "omega_engine/crates/omega_state/tests/operator_registry_runtime.rs"
+          ],
+          "evidence_ceiling": "one canonical JSON echo operator under deterministic fixture replay; no live provider, parity, license grant, theorem, or authority promotion"
+        },
+        "producer_id": "witness:producer:operator-fixture-v1",
+        "evaluator_id": "witness:evaluator:operator-substitution-v1",
+        "authority_witness_id": "witness:authority:operator-none-check-v1",
+        "prior_work_ledger": [
+          "S01-001 canonical protocol machine",
+          "S01-003 bounded GTOC-2 transport",
+          "omega_contracts canonical semantic owner",
+          "omega_operator_algebra mathematical registry owner"
+        ],
+        "registry": {
+          "schema_version": "omega.operator-registry.v1",
+          "registry_id": "registry:s02-001-v1",
+          "max_operators": 1,
+          "manifests": [
+            {
+              "schema_version": "omega.operator-manifest.v1",
+              "operator_id": "operator:canonical-json-echo-v1",
+              "semantic_contract_id": "contract:canonical-json-echo-v1",
+              "input_families": [
+                "fixture.canonical-json-request.v1"
+              ],
+              "output_families": [
+                "fixture.canonical-json-response.v1"
+              ],
+              "permitted_operations": [
+                "canonical_json_echo"
+              ],
+              "required_capabilities": [
+                "canonical_json",
+                "deterministic_replay"
+              ],
+              "permission_ceiling": [
+                "read_fixture",
+                "write_receipt"
+              ],
+              "write_surface": [
+                "omega_engine/crates/omega_state/tests/fixtures/operator_registry_fixture_matrix_v1.json",
+                "omega_engine/crates/omega_state/tests/fixtures/operator_registry_receipt_matrix_v1.json"
+              ],
+              "evidence_ceiling": "one canonical JSON echo operator under deterministic fixture replay; no live provider, parity, license grant, theorem, or authority promotion",
+              "license_ids": [
+                "license:fixture-read-v1",
+                "license:receipt-write-v1"
+              ],
+              "witness_requirements": [
+                "producer",
+                "independent_evaluator",
+                "authority_witness"
+              ],
+              "authority_effect": "None"
+            }
+          ],
+          "bindings": [
+            {
+              "schema_version": "omega.gauge-binding.v1",
+              "binding_id": "binding:codex-model-fixture-replay-v1",
+              "operator_id": "operator:canonical-json-echo-v1",
+              "runtime": {
+                "model_profile": {
+                  "provider": "codex",
+                  "profile_id": "codex:canned-fixture-replay-v1"
+                }
+              },
+              "execution_mode": "model_fixture_replay",
+              "adapter_id": "adapter:model-fixture:canonical-json-echo-v1",
+              "semantic_contract_id": "contract:canonical-json-echo-v1",
+              "provided_capabilities": [
+                "canonical_json",
+                "deterministic_replay",
+                "model_profile"
+              ],
+              "granted_permissions": [
+                "read_fixture",
+                "write_receipt"
+              ],
+              "write_surface": [
+                "omega_engine/crates/omega_state/tests/fixtures/operator_registry_fixture_matrix_v1.json",
+                "omega_engine/crates/omega_state/tests/fixtures/operator_registry_receipt_matrix_v1.json"
+              ],
+              "evidence_ceiling": "one canonical JSON echo operator under deterministic fixture replay; no live provider, parity, license grant, theorem, or authority promotion",
+              "network_access": false,
+              "credential_access": false,
+              "hidden_context_classes": [],
+              "operator_manifest_sha256": "5188aef18c9aae493bb6475dfc7da35878dfa564fa4fe8dec75a188b43aaeef1",
+              "authority_effect": "None"
+            },
+            {
+              "schema_version": "omega.gauge-binding.v1",
+              "binding_id": "binding:fixture-canonical-json-echo-v1",
+              "operator_id": "operator:canonical-json-echo-v1",
+              "runtime": "fixture",
+              "execution_mode": "deterministic_fixture",
+              "adapter_id": "adapter:fixture:canonical-json-echo-v1",
+              "semantic_contract_id": "contract:canonical-json-echo-v1",
+              "provided_capabilities": [
+                "canonical_json",
+                "deterministic_replay"
+              ],
+              "granted_permissions": [
+                "read_fixture",
+                "write_receipt"
+              ],
+              "write_surface": [
+                "omega_engine/crates/omega_state/tests/fixtures/operator_registry_fixture_matrix_v1.json",
+                "omega_engine/crates/omega_state/tests/fixtures/operator_registry_receipt_matrix_v1.json"
+              ],
+              "evidence_ceiling": "one canonical JSON echo operator under deterministic fixture replay; no live provider, parity, license grant, theorem, or authority promotion",
+              "network_access": false,
+              "credential_access": false,
+              "hidden_context_classes": [],
+              "operator_manifest_sha256": "5188aef18c9aae493bb6475dfc7da35878dfa564fa4fe8dec75a188b43aaeef1",
+              "authority_effect": "None"
+            }
+          ]
+        },
+        "input": {
+          "schema_version": "omega.operator-input.v1",
+          "request_id": "request:s02-001:canonical-echo",
+          "family": "fixture.canonical-json-request.v1",
+          "payload": {
+            "claim": "bounded fixture replay only",
+            "payload": "omega-operator-registry"
+          }
+        }
+      },
+      "packet_sha256": "036d2c59fe2fb82c47071fc961f109c98902d396d1ef9ab2972be670a4a266ea"
+    }
+  ]
+}

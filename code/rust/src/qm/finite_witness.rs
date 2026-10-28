@@ -1,6 +1,6 @@
 use num_bigint::BigInt;
 use num_traits::Zero;
-use omega_number_theory::rational::Rational as Q;
+use engine_number_theory::rational::Rational as Q;
 use serde::Serialize;
 use serde_json::Value;
 use std::str::FromStr;

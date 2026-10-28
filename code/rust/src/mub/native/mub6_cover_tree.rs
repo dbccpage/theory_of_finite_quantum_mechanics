@@ -683,12 +683,12 @@ pub fn verify_cover_obstruction(
 }
 
 
-use omega_solvers::solver_flow_network_simplex::NetworkSimplexSolution;
+use engine_solvers::solver_flow_network_simplex::NetworkSimplexSolution;
 
 use crate::native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
 use crate::native::exact::mub6_quad_sdp::MubQuadSdpCertificate;
-use omega_certifiers::phi1_certifier::Phi1Certificate;
-use omega_solvers::solver_lp_phi1_boundary::Phi1Solution;
+use engine_certifiers::phi1_certifier::Phi1Certificate;
+use engine_solvers::solver_lp_phi1_boundary::Phi1Solution;
 
 pub fn certify_leaf_with_sdp(
     tree: &mut BisectionTree,

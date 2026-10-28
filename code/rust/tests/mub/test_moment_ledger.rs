@@ -23,7 +23,7 @@ use tfqm_mub::native::exact::mub6_moment_ledger::{
     STATUS_CERTIFIED_CANDIDATE_REFUTATION, STATUS_MISSING_PROOF_OBLIGATION, SUPPORTED_DEGREES,
 };
 use tfqm_mub::native::exact::mub6_quad_sdp::{DIM_HILBERT, GRAMIAN_DIM};
-use omega_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::cyclotomic::Cyc24;
 
 #[test]
 fn test_basis_gramians_and_dimensions() {

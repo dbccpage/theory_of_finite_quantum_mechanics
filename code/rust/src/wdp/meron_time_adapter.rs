@@ -1,16 +1,16 @@
 
 use crate::types::AuthorityEffect;
-use tfqm_number_theory::rational::Rational;
+use engine_number_theory::rational::Rational;
 
 pub const ORIGIN: &str =
     "Origin: code/rust/src/wdp/meron_time_adapter.rs @ 40de7d5cda1ff1f0db8305d0c1b2103646fab197";
 pub const CLAIM: &str = "Claim: the intensive meron response is the staggered mean square divided by the positive site count";
 pub const AUTHORITY_EFFECT_TEXT: &str = "AuthorityEffect: None";
 pub const MUTATION_KILLS: u32 = 0;
-use omega_quantum_physics::meron_source_field::{
+use engine_quantum_physics::meron_source_field::{
     AnalyticResponseError, AnalyticResponsePlan, SourceFieldPlan,
 };
-use omega_quantum_physics::meron_time_refinement::{
+use engine_quantum_physics::meron_time_refinement::{
     EulerTimePlan, FiniteMeronChain, MeronTimeError, StaggeredMoments,
 };
 
@@ -164,8 +164,8 @@ fn parse_signed_digits(token: &str) -> Result<i64, MeronTokenError> {
 mod tests {
     use super::*;
     use super::StaggeredMoments;
-    use tfqm_number_theory::rational::rq;
-    use omega_quantum_physics::meron_source_field::AnalyticResponsePlan;
+    use engine_number_theory::rational::rq;
+    use engine_quantum_physics::meron_source_field::AnalyticResponsePlan;
 
     fn need(cond: bool, message: &str) -> Result<(), String> {
         if cond {

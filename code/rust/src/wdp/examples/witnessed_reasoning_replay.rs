@@ -1,5 +1,5 @@
-use omega_wdp::witnessed_reasoning::{Countermodel, Proof, ProofStep, Rule, Theory};
-use omega_wdp::witnessed_reasoning_replay::{countermodel_module, proof_module};
+use engine_wdp::witnessed_reasoning::{Countermodel, Proof, ProofStep, Rule, Theory};
+use engine_wdp::witnessed_reasoning_replay::{countermodel_module, proof_module};
 use std::{fs, path::PathBuf};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {

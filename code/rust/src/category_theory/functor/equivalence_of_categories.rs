@@ -4,7 +4,7 @@
 //! Equivalence C ≃ D via functors + unit/counit refs — shape only, not a proof.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for an equivalence of categories claim.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

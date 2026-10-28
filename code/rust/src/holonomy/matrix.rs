@@ -2,7 +2,7 @@ use crate::error::HolonomyError;
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{One, Zero};
-use omega_kernel::resource_limits::{check_and_reserve, OperationLimits};
+use engine_kernel::resource_limits::{check_and_reserve, OperationLimits};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::fmt::{Debug, Display};

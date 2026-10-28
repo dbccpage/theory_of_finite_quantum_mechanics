@@ -3,9 +3,9 @@ use crate::linear_algebra::ordered;
 use crate::linear_algebra::{involution as star, matrix as mx};
 use ::linear_algebra::backend::basic_matrix::BasicMatrix as ProviderMatrix;
 use num_traits::{One, Signed};
-use omega_number_theory::cyclotomic::GaussianRat;
-use omega_number_theory::rational::Rational;
-use omega_quantum_physics::gauge_cochain_complex::{BornEntry, M2Packet, VerifiedM2Packet};
+use engine_number_theory::cyclotomic::GaussianRat;
+use engine_number_theory::rational::Rational;
+use engine_quantum_physics::gauge_cochain_complex::{BornEntry, M2Packet, VerifiedM2Packet};
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum M2Refusal {

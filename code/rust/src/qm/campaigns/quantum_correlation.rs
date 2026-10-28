@@ -4,10 +4,10 @@ use crate::linear_algebra::{
 };
 use num_integer::Integer;
 use num_traits::{One, Signed, Zero};
-use omega_number_theory::cyclotomic_field::{sqrt_of_integer, Cyclotomic, CyclotomicNumber};
-use omega_number_theory::cyclotomic_ordered::element_minimal_polynomial;
-use omega_number_theory::rational::{ri, rq, Rational};
-use omega_quantum_physics::quantum_correlation::{self, PlanarObservable};
+use engine_number_theory::cyclotomic_field::{sqrt_of_integer, Cyclotomic, CyclotomicNumber};
+use engine_number_theory::cyclotomic_ordered::element_minimal_polynomial;
+use engine_number_theory::rational::{ri, rq, Rational};
+use engine_quantum_physics::quantum_correlation::{self, PlanarObservable};
 use serde::{Deserialize, Serialize};
 pub const HEIGHT_BOUND: usize = 5;
 pub const DECLARED_CONDUCTORS: [usize; 5] = [1, 2, 4, 8, 12];

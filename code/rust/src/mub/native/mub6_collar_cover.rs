@@ -5,8 +5,8 @@ use serde::{Deserialize, Serialize};
 
 use crate::native::exact::mub6_constants::{base_gap, delta_certified, lipschitz_bound};
 use crate::native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
-use tfqm_number_theory::rational::rq;
-use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge, Phi1Solution};
+use engine_number_theory::rational::rq;
+use engine_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge, Phi1Solution};
 
 pub const DIM_2D: usize = 2;
 

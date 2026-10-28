@@ -10,8 +10,8 @@ use tfqm_mub::native::exact::mub6_normalized_triples::{
     generate_normalized_triple_report, is_regular_corner_cyc, is_singular_corner_cyc,
     sample_normalized_fourier_triple, verify_transition_scaling_cross_mult, CornerParamCyc,
 };
-use omega_number_theory::cyclotomic::Cyc24;
-use omega_number_theory::rational::rq;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::rq;
 
 #[test]
 fn test_transition_scaling_cross_multiplication() {

@@ -4,13 +4,13 @@ use linear_algebra::linear_algebra::image_kernel::{
 };
 use num_bigint::BigInt;
 use num_traits::{One, Signed, Zero};
-use omega_functional::gamma2::ExactCochainComplexQ;
-use omega_number_theory::rational::Rational;
-use omega_policy::trichotomy::ObstructionDiagnosticClass;
-use omega_quantum_physics::repair_capacity::{windows_to_exceed, RepairBudget};
-use omega_solvers::data_cochain_packet::certified_trichotomy;
+use engine_functional::gamma2::ExactCochainComplexQ;
+use engine_number_theory::rational::Rational;
+use engine_policy::trichotomy::ObstructionDiagnosticClass;
+use engine_quantum_physics::repair_capacity::{windows_to_exceed, RepairBudget};
+use engine_solvers::data_cochain_packet::certified_trichotomy;
 
-use omega_quantum_physics::threshold_repair_certificate::ThresholdScaling;
+use engine_quantum_physics::threshold_repair_certificate::ThresholdScaling;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum EvidenceKind {

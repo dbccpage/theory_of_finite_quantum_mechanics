@@ -11,7 +11,7 @@ use tfqm_finite_probability::error::ClassicalShadowError;
 use tfqm_finite_probability::log_form::{shannon_entropy_form_with_bound, LogForm, LogFormError};
 use tfqm_finite_probability::simplex::ProbabilitySimplex;
 use tfqm_finite_probability::stochastic_map::StochasticMap;
-use omega_ooutwire_primitives::event::Event;
+use engine_wire_primitives::event::Event;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 

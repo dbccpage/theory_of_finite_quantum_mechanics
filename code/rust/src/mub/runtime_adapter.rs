@@ -1,15 +1,15 @@
 
 use num_bigint::BigInt;
 use num_rational::BigRational;
-use omega_contracts::mub_domain_ownership::{
+use engine_contracts::mub_domain_ownership::{
     CANONICAL_MUB_DOMAIN_OWNER_V1, MUB_OWNERSHIP_CONTRACT_ID_V1,
 };
-use tfqm_functional::gamma2::{ExactCochainComplexQ, ExactGamma2Error};
-use tfqm_functional::phi1::ExactPhi1Certificate;
+use engine_functional::gamma2::{ExactCochainComplexQ, ExactGamma2Error};
+use engine_functional::phi1::ExactPhi1Certificate;
 use tfqm_homotopy_type_theory::primitive_difference::PrimitiveDifference;
-use omega_policy::trichotomy::ObstructionDiagnosticClass;
-pub use omega_state::CodaTerminal;
-use omega_types::authority::AuthorityEffect;
+use engine_policy::trichotomy::ObstructionDiagnosticClass;
+pub use engine_state::CodaTerminal;
+use engine_types::authority::AuthorityEffect;
 use tfqm_wdp::coda::coda_gtla::{
     bind_domain_evidence, evaluate_exact, validate_primitive_difference, CodaExactInput,
     CodaGtlaEvaluation, CodaGtlaEvaluationError, DomainEvidenceBindingError,

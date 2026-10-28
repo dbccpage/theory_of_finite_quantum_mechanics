@@ -3,7 +3,7 @@
 //!
 //! Related contract (if present): `urn:omega:math:type_universe:v0.1.0`.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for a type-universe level record (U_i).

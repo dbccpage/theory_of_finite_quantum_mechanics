@@ -3,7 +3,7 @@
 //!
 //! Diagonal functor Δ : C → C × C (or C^n) — shape only.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for a diagonal functor on a category reference.

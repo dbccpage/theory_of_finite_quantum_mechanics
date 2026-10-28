@@ -1,7 +1,7 @@
 
 use std::collections::BTreeMap;
 
-use omega_kernel::resource_limits::OperationLimits;
+use engine_kernel::resource_limits::OperationLimits;
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 

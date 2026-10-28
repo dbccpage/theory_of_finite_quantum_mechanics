@@ -6,7 +6,7 @@ use std::collections::BTreeMap;
 
 use crate::cochains::FiniteComplex;
 use crate::error::WdpError;
-use omega_solvers::solver_lp_exact_simplex::solve_weighted_l1_projection;
+use engine_solvers::solver_lp_exact_simplex::solve_weighted_l1_projection;
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Cochain0 {
@@ -31,7 +31,7 @@ pub struct Cochain1 {
 
 impl Cochain1 {
     pub fn l1_norm(&self) -> BigRational {
-        tfqm_functional::Phi1Functional::unweighted_l1_rational(
+        engine_functional::Phi1Functional::unweighted_l1_rational(
             &self.values.values().cloned().collect::<Vec<_>>(),
         )
         .expect("exact cochain entries")
@@ -53,7 +53,7 @@ pub enum CertificateVerificationError {
     #[error("Missing element: {0}")]
     MissingElement(String),
     #[error(transparent)]
-    Functional(#[from] tfqm_functional::phi1::ExactPhi1CertificateError),
+    Functional(#[from] engine_functional::phi1::ExactPhi1CertificateError),
 }
 
 impl DualWitnessCertificate {
@@ -124,8 +124,8 @@ impl DualWitnessCertificate {
                     .unwrap_or_else(BigRational::one),
             );
         }
-        tfqm_functional::phi1::Phi1Functional::verify_exact_certificate(
-            tfqm_functional::phi1::ExactPhi1Certificate {
+        engine_functional::phi1::Phi1Functional::verify_exact_certificate(
+            engine_functional::phi1::ExactPhi1Certificate {
                 omega,
                 d0,
                 weights: declared_weights,

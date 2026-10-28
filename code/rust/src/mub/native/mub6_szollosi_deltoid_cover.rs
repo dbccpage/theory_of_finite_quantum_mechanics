@@ -12,10 +12,10 @@ use crate::native::exact::mub6_basis_cover::{
 use crate::native::exact::mub6_cyclotomic_enclosure::{cyc24_real_imag_enclosure, SqrtBox};
 use crate::native::exact::mub6_f6_chart::f6_family_columns;
 use crate::native::exact::mub6_interval_cover::VectorBox;
-use omega_kernel::interval::Interval;
-use tfqm_number_theory::rational::ri;
-use omega_solvers::solver_flow_network_simplex::NetworkSimplexError;
-use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge, Phi1Solution};
+use engine_kernel::interval::Interval;
+use engine_number_theory::rational::ri;
+use engine_solvers::solver_flow_network_simplex::NetworkSimplexError;
+use engine_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge, Phi1Solution};
 
 crate::fixture_set!(fixtures, "mub6_szollosi_deltoid_cover");
 

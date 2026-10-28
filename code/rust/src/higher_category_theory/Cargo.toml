@@ -10,13 +10,12 @@ path = "lib.rs"
 
 [features]
 default = []
-external-omega = ["dep:constants", "dep:omega_kernel", "dep:linear_algebra"]
 
 [dependencies]
-constants = { version = "0.1.0", optional = true }
+constants = { path = "../../../../vendor/engine/constants" }
 tfqm_category_theory = { path = "../category_theory" }
-omega_kernel = { version = "0.1.0", optional = true }
-linear_algebra = { version = "0.1.0", optional = true }
+engine_kernel = { path = "../../../../vendor/engine/engine_kernel" }
+linear_algebra = { path = "../../../../vendor/engine/linear_algebra" }
 serde = { version = "1.0", features = ["derive"] }
 thiserror = "2"
 sha2 = "0.10"

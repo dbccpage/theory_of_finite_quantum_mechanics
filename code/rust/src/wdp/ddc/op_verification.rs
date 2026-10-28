@@ -1,5 +1,5 @@
 
-use omega_types::authority::AuthorityEffect;
+use engine_types::authority::AuthorityEffect;
 use serde::{Deserialize, Serialize};
 
 use crate::ddc::ddc_alphabet::{DdaOp, DdaStep, DdaTrace, StepOutcome};

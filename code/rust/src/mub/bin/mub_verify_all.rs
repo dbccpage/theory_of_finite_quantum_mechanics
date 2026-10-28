@@ -46,7 +46,7 @@ use tfqm_mub::native::exact::mub6_nerve_chaining::{
 use tfqm_mub::native::exact::mub6_tao_chart::tao_s6_matrix;
 use tfqm_mub::native::exact::mub6_zerorel_variety::{dita_representative_triple, BasisCyc};
 use tfqm_mub::native::exact::szollosi_triad_solver::szollosi_dephased_b6;
-use tfqm_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::cyclotomic::Cyc24;
 
 tfqm_mub::fixture_set!(fixtures, "mub_verify_all");
 
@@ -928,7 +928,7 @@ fn emit_receipt_to_artifact_dirs(receipt_json: &str, log_progress: bool) -> Resu
     let root_dir = manifest_dir.join("../../..");
     for dir in [
         root_dir.join("artifacts"),
-        manifest_dir.join("../tests/mub/artifacts"),
+        manifest_dir.join("../../tests/mub/artifacts"),
     ] {
         fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
         let dest = dir.join("omega_mub_verify_all_receipt.json");

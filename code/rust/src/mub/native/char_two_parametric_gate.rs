@@ -1,7 +1,7 @@
 
 use serde::Serialize;
 
-use omega_quantum_physics::mub::finite_projector_control::{
+use engine_quantum_physics::mub::finite_projector_control::{
     verify_current_finite_projector_controls, FiniteProjectorControlReport,
     FiniteProjectorControlStatus,
 };

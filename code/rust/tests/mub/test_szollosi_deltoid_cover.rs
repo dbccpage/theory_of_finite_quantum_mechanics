@@ -5,12 +5,12 @@
 use num_rational::BigRational;
 use num_traits::Zero;
 
-use omega_kernel::interval::Interval;
+use engine_kernel::interval::Interval;
 use tfqm_mub::native::exact::mub6_szollosi_deltoid_cover::{
     box_touches_parameter_circle, solve_szollosi_deltoid_cover, SzollosiDeltoidContext,
     SzollosiDeltoidParameterBox,
 };
-use omega_number_theory::rational::ri;
+use engine_number_theory::rational::ri;
 
 #[test]
 fn test_circle_pruning() {

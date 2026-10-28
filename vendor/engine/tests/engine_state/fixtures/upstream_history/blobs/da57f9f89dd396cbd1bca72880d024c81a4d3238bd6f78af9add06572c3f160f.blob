@@ -1,0 +1,1054 @@
+//! Canonical structural GTOC/GTLA execution protocol.
+//!
+//! This module validates protocol shape, legacy-field compilation, transition
+//! ordering, frozen-observer preservation, residual monotonicity, terminal
+//! compatibility, and the non-authority ceiling. It does not prove a
+//! mathematical cochain realization or promote a result.
+
+use std::collections::BTreeSet;
+
+use omega_types::authority::AuthorityEffect;
+use serde::{Deserialize, Serialize};
+use thiserror::Error;
+
+pub const PROTOCOL_SCHEMA_VERSION: &str = "omega.gtoc-gtla.protocol.v1";
+pub const LEGACY_PACKET_SCHEMA_VERSION: &str = "omega.gtoc-gtla.legacy-packet.v1";
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum GtocGtlaStage {
+    Carrier,
+    PrimitiveDifference,
+    ZeroRelation,
+    CochainRealization,
+    Quotient,
+    ResidualSeparation,
+    Observer,
+    Witnesses,
+    LicensedTransformation,
+    SurvivorRouting,
+    TerminalProposal,
+    PriorWorkLedger,
+}
+
+impl GtocGtlaStage {
+    pub const ALL: [Self; 12] = [
+        Self::Carrier,
+        Self::PrimitiveDifference,
+        Self::ZeroRelation,
+        Self::CochainRealization,
+        Self::Quotient,
+        Self::ResidualSeparation,
+        Self::Observer,
+        Self::Witnesses,
+        Self::LicensedTransformation,
+        Self::SurvivorRouting,
+        Self::TerminalProposal,
+        Self::PriorWorkLedger,
+    ];
+
+    pub const fn ordinal(self) -> u8 {
+        match self {
+            Self::Carrier => 1,
+            Self::PrimitiveDifference => 2,
+            Self::ZeroRelation => 3,
+            Self::CochainRealization => 4,
+            Self::Quotient => 5,
+            Self::ResidualSeparation => 6,
+            Self::Observer => 7,
+            Self::Witnesses => 8,
+            Self::LicensedTransformation => 9,
+            Self::SurvivorRouting => 10,
+            Self::TerminalProposal => 11,
+            Self::PriorWorkLedger => 12,
+        }
+    }
+
+    pub const fn next(self) -> Option<Self> {
+        match self {
+            Self::Carrier => Some(Self::PrimitiveDifference),
+            Self::PrimitiveDifference => Some(Self::ZeroRelation),
+            Self::ZeroRelation => Some(Self::CochainRealization),
+            Self::CochainRealization => Some(Self::Quotient),
+            Self::Quotient => Some(Self::ResidualSeparation),
+            Self::ResidualSeparation => Some(Self::Observer),
+            Self::Observer => Some(Self::Witnesses),
+            Self::Witnesses => Some(Self::LicensedTransformation),
+            Self::LicensedTransformation => Some(Self::SurvivorRouting),
+            Self::SurvivorRouting => Some(Self::TerminalProposal),
+            Self::TerminalProposal => Some(Self::PriorWorkLedger),
+            Self::PriorWorkLedger => None,
+        }
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum GtocTerminal {
+    ExactRepair,
+    StabilizedSurvivor,
+    OpenObstruction,
+    OracleNeeded,
+    LiftLicenseNeeded,
+    Refused,
+    Invalid,
+    InfrastructureFailure,
+}
+
+impl GtocTerminal {
+    pub const ALL: [Self; 8] = [
+        Self::ExactRepair,
+        Self::StabilizedSurvivor,
+        Self::OpenObstruction,
+        Self::OracleNeeded,
+        Self::LiftLicenseNeeded,
+        Self::Refused,
+        Self::Invalid,
+        Self::InfrastructureFailure,
+    ];
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+pub enum CochainRealizationKind {
+    Exact,
+    Structural,
+    Unresolved,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct FrozenObserverContextV1 {
+    pub observer_id: String,
+    pub observer_domain: String,
+    pub state_domain: String,
+    pub observer_hash: String,
+    pub visible_artifact_hashes: Vec<String>,
+    pub hidden_artifact_classes: Vec<String>,
+    pub tool_permissions: Vec<String>,
+    pub write_surface: Vec<String>,
+    pub evidence_ceiling: String,
+}
+
+impl FrozenObserverContextV1 {
+    pub fn validate(&self) -> Result<(), ProtocolError> {
+        require_text("observer.observer_id", &self.observer_id)?;
+        require_text("observer.observer_domain", &self.observer_domain)?;
+        require_text("observer.state_domain", &self.state_domain)?;
+        require_hash("observer.observer_hash", &self.observer_hash)?;
+        require_text("observer.evidence_ceiling", &self.evidence_ceiling)?;
+        require_nonempty_texts("observer.tool_permissions", &self.tool_permissions)?;
+        require_nonempty_texts("observer.write_surface", &self.write_surface)?;
+        for hash in &self.visible_artifact_hashes {
+            require_hash("observer.visible_artifact_hashes", hash)?;
+        }
+        require_texts(
+            "observer.hidden_artifact_classes",
+            &self.hidden_artifact_classes,
+        )
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum LegacyPacketFieldV1 {
+    Carrier,
+    C0,
+    D0,
+    C1,
+    ZeroRel,
+    Q1,
+    D1,
+    Gamma2,
+    Phi1,
+    Classification,
+    LicensedLift,
+    DdaExecution,
+    Terminalization,
+}
+
+impl LegacyPacketFieldV1 {
+    pub const ALL: [Self; 13] = [
+        Self::Carrier,
+        Self::C0,
+        Self::D0,
+        Self::C1,
+        Self::ZeroRel,
+        Self::Q1,
+        Self::D1,
+        Self::Gamma2,
+        Self::Phi1,
+        Self::Classification,
+        Self::LicensedLift,
+        Self::DdaExecution,
+        Self::Terminalization,
+    ];
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum CompileContextFieldV1 {
+    PrimitiveDifference,
+    C2,
+    D1D0Witness,
+    Observer,
+    Witnesses,
+    PriorWorkLedger,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(tag = "source", content = "field", rename_all = "snake_case")]
+pub enum ProtocolSourceV1 {
+    Legacy(LegacyPacketFieldV1),
+    Context(CompileContextFieldV1),
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(tag = "kind", content = "license_id", rename_all = "snake_case")]
+pub enum LegacyLiftV1 {
+    NoneDeclared,
+    License(String),
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct LegacyDdaExecutionV1 {
+    pub licensed_transformation: String,
+    pub survivor_routing: String,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct LegacyPacketV1 {
+    pub schema_version: String,
+    pub carrier: String,
+    pub c0: String,
+    pub d0: String,
+    pub c1: String,
+    pub zero_rel: String,
+    pub q1: String,
+    pub d1: String,
+    pub gamma2: Vec<String>,
+    pub phi1: Vec<String>,
+    pub classification: GtocTerminal,
+    pub licensed_lift: LegacyLiftV1,
+    pub dda_execution: LegacyDdaExecutionV1,
+    pub terminalization: GtocTerminal,
+}
+
+impl LegacyPacketV1 {
+    fn validate(&self) -> Result<(), ProtocolError> {
+        require_schema(LEGACY_PACKET_SCHEMA_VERSION, &self.schema_version)?;
+        for (field, value) in [
+            ("legacy.carrier", self.carrier.as_str()),
+            ("legacy.c0", self.c0.as_str()),
+            ("legacy.d0", self.d0.as_str()),
+            ("legacy.c1", self.c1.as_str()),
+            ("legacy.zero_rel", self.zero_rel.as_str()),
+            ("legacy.q1", self.q1.as_str()),
+            ("legacy.d1", self.d1.as_str()),
+            (
+                "legacy.dda_execution.licensed_transformation",
+                self.dda_execution.licensed_transformation.as_str(),
+            ),
+            (
+                "legacy.dda_execution.survivor_routing",
+                self.dda_execution.survivor_routing.as_str(),
+            ),
+        ] {
+            require_text(field, value)?;
+        }
+        require_nonempty_texts("legacy.gamma2", &self.gamma2)?;
+        require_nonempty_texts("legacy.phi1", &self.phi1)?;
+        if let LegacyLiftV1::License(license_id) = &self.licensed_lift {
+            require_text("legacy.licensed_lift", license_id)?;
+        }
+        if self.classification != self.terminalization {
+            return Err(ProtocolError::LegacyTerminalMismatch {
+                classification: self.classification,
+                terminalization: self.terminalization,
+            });
+        }
+        Ok(())
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct LegacyCompileContextV1 {
+    pub primitive_difference: String,
+    pub realization: CochainRealizationKind,
+    pub c2: String,
+    pub d1_d0_witness: String,
+    pub observer: FrozenObserverContextV1,
+    pub witnesses: Vec<String>,
+    pub prior_work_ledger: Vec<String>,
+}
+
+impl LegacyCompileContextV1 {
+    fn validate(&self) -> Result<(), ProtocolError> {
+        require_text("context.primitive_difference", &self.primitive_difference)?;
+        require_text("context.c2", &self.c2)?;
+        require_text("context.d1_d0_witness", &self.d1_d0_witness)?;
+        self.observer.validate()?;
+        require_nonempty_texts("context.witnesses", &self.witnesses)?;
+        require_nonempty_texts("context.prior_work_ledger", &self.prior_work_ledger)
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct CompiledStageV1 {
+    pub stage: GtocGtlaStage,
+    pub sources: Vec<ProtocolSourceV1>,
+    pub payloads: Vec<String>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct CompiledProtocolV1 {
+    pub schema_version: String,
+    pub stages: Vec<CompiledStageV1>,
+}
+
+impl CompiledProtocolV1 {
+    pub fn validate(&self) -> Result<(), ProtocolError> {
+        require_schema(PROTOCOL_SCHEMA_VERSION, &self.schema_version)?;
+        if self.stages.len() != GtocGtlaStage::ALL.len() {
+            return Err(ProtocolError::StageCount {
+                expected: GtocGtlaStage::ALL.len(),
+                found: self.stages.len(),
+            });
+        }
+        for (index, expected) in GtocGtlaStage::ALL.iter().copied().enumerate() {
+            let stage = &self.stages[index];
+            if stage.stage != expected {
+                return Err(ProtocolError::StageOrder {
+                    expected,
+                    found: stage.stage,
+                });
+            }
+            if stage.sources.is_empty() {
+                return Err(ProtocolError::EmptyField("compiled_stage.sources"));
+            }
+            require_nonempty_texts("compiled_stage.payloads", &stage.payloads)?;
+        }
+        Ok(())
+    }
+
+    pub fn stage(&self, stage: GtocGtlaStage) -> &CompiledStageV1 {
+        &self.stages[usize::from(stage.ordinal() - 1)]
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum LegacyAdapterLimitationV1 {
+    PrimitiveDifferenceRequiresContext,
+    C2AndCompositionWitnessRequireContext,
+    ObserverRequiresContext,
+    WitnessesRequireContext,
+    PriorWorkLedgerRequiresContext,
+    DdaExecutionSplitsAcrossStagesNineAndTen,
+    ClassificationAndTerminalizationMustAgreeAtStageEleven,
+    StructuralCompilationDoesNotProveMathematicalCochains,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct StageSourceReceiptV1 {
+    pub stage: GtocGtlaStage,
+    pub sources: Vec<ProtocolSourceV1>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct LegacyCompileReceiptV1 {
+    pub source_schema_version: String,
+    pub target_schema_version: String,
+    pub legacy_field_count: usize,
+    pub stage_sources: Vec<StageSourceReceiptV1>,
+    pub limitations: Vec<LegacyAdapterLimitationV1>,
+    pub authority_effect: AuthorityEffect,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct LegacyCompileOutputV1 {
+    pub protocol: CompiledProtocolV1,
+    pub receipt: LegacyCompileReceiptV1,
+}
+
+pub fn compile_legacy_packet_v1(
+    packet: &LegacyPacketV1,
+    context: &LegacyCompileContextV1,
+) -> Result<LegacyCompileOutputV1, ProtocolError> {
+    packet.validate()?;
+    context.validate()?;
+
+    let lift_payload = match &packet.licensed_lift {
+        LegacyLiftV1::NoneDeclared => "no lift declared".to_owned(),
+        LegacyLiftV1::License(license_id) => format!("lift license: {license_id}"),
+    };
+    let mut residual_payloads = packet
+        .gamma2
+        .iter()
+        .map(|value| format!("Gamma2: {value}"))
+        .collect::<Vec<_>>();
+    residual_payloads.extend(packet.phi1.iter().map(|value| format!("Phi1: {value}")));
+
+    let stages = vec![
+        compiled_stage(
+            GtocGtlaStage::Carrier,
+            vec![legacy(LegacyPacketFieldV1::Carrier)],
+            vec![packet.carrier.clone()],
+        ),
+        compiled_stage(
+            GtocGtlaStage::PrimitiveDifference,
+            vec![context_source(CompileContextFieldV1::PrimitiveDifference)],
+            vec![context.primitive_difference.clone()],
+        ),
+        compiled_stage(
+            GtocGtlaStage::ZeroRelation,
+            vec![legacy(LegacyPacketFieldV1::ZeroRel)],
+            vec![packet.zero_rel.clone()],
+        ),
+        compiled_stage(
+            GtocGtlaStage::CochainRealization,
+            vec![
+                legacy(LegacyPacketFieldV1::C0),
+                legacy(LegacyPacketFieldV1::D0),
+                legacy(LegacyPacketFieldV1::C1),
+                legacy(LegacyPacketFieldV1::D1),
+                context_source(CompileContextFieldV1::C2),
+                context_source(CompileContextFieldV1::D1D0Witness),
+            ],
+            vec![
+                format!("realization: {:?}", context.realization),
+                packet.c0.clone(),
+                packet.d0.clone(),
+                packet.c1.clone(),
+                packet.d1.clone(),
+                context.c2.clone(),
+                context.d1_d0_witness.clone(),
+            ],
+        ),
+        compiled_stage(
+            GtocGtlaStage::Quotient,
+            vec![legacy(LegacyPacketFieldV1::Q1)],
+            vec![packet.q1.clone()],
+        ),
+        compiled_stage(
+            GtocGtlaStage::ResidualSeparation,
+            vec![
+                legacy(LegacyPacketFieldV1::Gamma2),
+                legacy(LegacyPacketFieldV1::Phi1),
+            ],
+            residual_payloads,
+        ),
+        compiled_stage(
+            GtocGtlaStage::Observer,
+            vec![context_source(CompileContextFieldV1::Observer)],
+            vec![
+                format!("observer_id: {}", context.observer.observer_id),
+                format!("observer_domain: {}", context.observer.observer_domain),
+                format!("state_domain: {}", context.observer.state_domain),
+                format!("observer_hash: {}", context.observer.observer_hash),
+            ],
+        ),
+        compiled_stage(
+            GtocGtlaStage::Witnesses,
+            vec![context_source(CompileContextFieldV1::Witnesses)],
+            context.witnesses.clone(),
+        ),
+        compiled_stage(
+            GtocGtlaStage::LicensedTransformation,
+            vec![
+                legacy(LegacyPacketFieldV1::LicensedLift),
+                legacy(LegacyPacketFieldV1::DdaExecution),
+            ],
+            vec![
+                lift_payload,
+                packet.dda_execution.licensed_transformation.clone(),
+            ],
+        ),
+        compiled_stage(
+            GtocGtlaStage::SurvivorRouting,
+            vec![legacy(LegacyPacketFieldV1::DdaExecution)],
+            vec![packet.dda_execution.survivor_routing.clone()],
+        ),
+        compiled_stage(
+            GtocGtlaStage::TerminalProposal,
+            vec![
+                legacy(LegacyPacketFieldV1::Classification),
+                legacy(LegacyPacketFieldV1::Terminalization),
+            ],
+            vec![format!("terminal: {:?}", packet.classification)],
+        ),
+        compiled_stage(
+            GtocGtlaStage::PriorWorkLedger,
+            vec![context_source(CompileContextFieldV1::PriorWorkLedger)],
+            context.prior_work_ledger.clone(),
+        ),
+    ];
+    let protocol = CompiledProtocolV1 {
+        schema_version: PROTOCOL_SCHEMA_VERSION.to_owned(),
+        stages,
+    };
+    protocol.validate()?;
+
+    let receipt = LegacyCompileReceiptV1 {
+        source_schema_version: LEGACY_PACKET_SCHEMA_VERSION.to_owned(),
+        target_schema_version: PROTOCOL_SCHEMA_VERSION.to_owned(),
+        legacy_field_count: LegacyPacketFieldV1::ALL.len(),
+        stage_sources: protocol
+            .stages
+            .iter()
+            .map(|stage| StageSourceReceiptV1 {
+                stage: stage.stage,
+                sources: stage.sources.clone(),
+            })
+            .collect(),
+        limitations: vec![
+            LegacyAdapterLimitationV1::PrimitiveDifferenceRequiresContext,
+            LegacyAdapterLimitationV1::C2AndCompositionWitnessRequireContext,
+            LegacyAdapterLimitationV1::ObserverRequiresContext,
+            LegacyAdapterLimitationV1::WitnessesRequireContext,
+            LegacyAdapterLimitationV1::PriorWorkLedgerRequiresContext,
+            LegacyAdapterLimitationV1::DdaExecutionSplitsAcrossStagesNineAndTen,
+            LegacyAdapterLimitationV1::ClassificationAndTerminalizationMustAgreeAtStageEleven,
+            LegacyAdapterLimitationV1::StructuralCompilationDoesNotProveMathematicalCochains,
+        ],
+        authority_effect: AuthorityEffect::None,
+    };
+    Ok(LegacyCompileOutputV1 { protocol, receipt })
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ProtocolSchemaReceiptV1 {
+    pub schema_version: String,
+    pub stages: Vec<GtocGtlaStage>,
+    pub terminals: Vec<GtocTerminal>,
+    pub legacy_schema_version: String,
+    pub legacy_fields: Vec<LegacyPacketFieldV1>,
+    pub authority_effect: AuthorityEffect,
+}
+
+pub fn protocol_schema_receipt_v1() -> ProtocolSchemaReceiptV1 {
+    ProtocolSchemaReceiptV1 {
+        schema_version: PROTOCOL_SCHEMA_VERSION.to_owned(),
+        stages: GtocGtlaStage::ALL.to_vec(),
+        terminals: GtocTerminal::ALL.to_vec(),
+        legacy_schema_version: LEGACY_PACKET_SCHEMA_VERSION.to_owned(),
+        legacy_fields: LegacyPacketFieldV1::ALL.to_vec(),
+        authority_effect: AuthorityEffect::None,
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ProtocolStateV1 {
+    pub schema_version: String,
+    pub task_id: String,
+    pub current_stage: GtocGtlaStage,
+    pub carrier_hash: String,
+    pub observer: FrozenObserverContextV1,
+    pub residual_ids: BTreeSet<String>,
+    pub license_ids: BTreeSet<String>,
+    pub terminal_proposal: Option<GtocTerminal>,
+    pub authority_effect: AuthorityEffect,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TransitionProposalV1 {
+    pub to_stage: GtocGtlaStage,
+    pub observer_hash: String,
+    pub state_domain: String,
+    pub residual_ids: BTreeSet<String>,
+    pub license_ids: BTreeSet<String>,
+    pub terminal_proposal: Option<GtocTerminal>,
+    pub authority_effect: AuthorityEffect,
+    pub evidence_refs: Vec<String>,
+}
+
+impl TransitionProposalV1 {
+    pub fn preserving(state: &ProtocolStateV1, to_stage: GtocGtlaStage) -> Self {
+        Self {
+            to_stage,
+            observer_hash: state.observer.observer_hash.clone(),
+            state_domain: state.observer.state_domain.clone(),
+            residual_ids: state.residual_ids.clone(),
+            license_ids: state.license_ids.clone(),
+            terminal_proposal: state.terminal_proposal,
+            authority_effect: AuthorityEffect::None,
+            evidence_refs: vec![format!("evidence:stage-{}", to_stage.ordinal())],
+        }
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TransitionReceiptV1 {
+    pub sequence: u8,
+    pub from_stage: GtocGtlaStage,
+    pub to_stage: GtocGtlaStage,
+    pub observer_hash: String,
+    pub state_domain: String,
+    pub residual_ids: BTreeSet<String>,
+    pub license_ids: BTreeSet<String>,
+    pub terminal_proposal: Option<GtocTerminal>,
+    pub authority_effect: AuthorityEffect,
+    pub evidence_refs: Vec<String>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ProtocolTraceV1 {
+    pub schema_version: String,
+    pub task_id: String,
+    pub carrier_hash: String,
+    pub observer: FrozenObserverContextV1,
+    pub initial_residual_ids: BTreeSet<String>,
+    pub license_ids: BTreeSet<String>,
+    pub receipts: Vec<TransitionReceiptV1>,
+}
+
+#[derive(Debug, Clone)]
+pub struct ProtocolMachineV1 {
+    state: ProtocolStateV1,
+    initial_residual_ids: BTreeSet<String>,
+    receipts: Vec<TransitionReceiptV1>,
+}
+
+impl ProtocolMachineV1 {
+    pub fn new(
+        task_id: impl Into<String>,
+        carrier_hash: impl Into<String>,
+        observer: FrozenObserverContextV1,
+        residual_ids: BTreeSet<String>,
+        license_ids: BTreeSet<String>,
+    ) -> Result<Self, ProtocolError> {
+        let task_id = task_id.into();
+        let carrier_hash = carrier_hash.into();
+        require_text("state.task_id", &task_id)?;
+        require_hash("state.carrier_hash", &carrier_hash)?;
+        observer.validate()?;
+        validate_ids("state.residual_ids", &residual_ids)?;
+        validate_ids("state.license_ids", &license_ids)?;
+
+        Ok(Self {
+            state: ProtocolStateV1 {
+                schema_version: PROTOCOL_SCHEMA_VERSION.to_owned(),
+                task_id,
+                current_stage: GtocGtlaStage::Carrier,
+                carrier_hash,
+                observer,
+                residual_ids: residual_ids.clone(),
+                license_ids,
+                terminal_proposal: None,
+                authority_effect: AuthorityEffect::None,
+            },
+            initial_residual_ids: residual_ids,
+            receipts: Vec::new(),
+        })
+    }
+
+    pub fn state(&self) -> &ProtocolStateV1 {
+        &self.state
+    }
+
+    pub fn is_terminalized(&self) -> bool {
+        self.state.current_stage == GtocGtlaStage::PriorWorkLedger
+            && self.state.terminal_proposal.is_some()
+            && self.state.authority_effect.is_none()
+    }
+
+    pub fn advance(
+        &mut self,
+        proposal: TransitionProposalV1,
+    ) -> Result<TransitionReceiptV1, ProtocolError> {
+        let from_stage = self.state.current_stage;
+        let expected = from_stage
+            .next()
+            .ok_or(ProtocolError::AlreadyTerminalized)?;
+        if proposal.to_stage != expected {
+            return Err(ProtocolError::SkippedStage {
+                from: from_stage,
+                expected,
+                found: proposal.to_stage,
+            });
+        }
+        if proposal.observer_hash != self.state.observer.observer_hash {
+            return Err(ProtocolError::ObserverChanged);
+        }
+        if proposal.state_domain != self.state.observer.state_domain {
+            return Err(ProtocolError::StateDomainChanged);
+        }
+        validate_ids("proposal.residual_ids", &proposal.residual_ids)?;
+        if let Some(lost) = self
+            .state
+            .residual_ids
+            .difference(&proposal.residual_ids)
+            .next()
+        {
+            return Err(ProtocolError::ResidualLost(lost.clone()));
+        }
+        validate_ids("proposal.license_ids", &proposal.license_ids)?;
+        if proposal.license_ids != self.state.license_ids {
+            return Err(ProtocolError::LicenseSetChanged);
+        }
+        if !proposal.authority_effect.is_none() || !self.state.authority_effect.is_none() {
+            return Err(ProtocolError::AuthorityExpanded);
+        }
+        require_nonempty_texts("proposal.evidence_refs", &proposal.evidence_refs)?;
+        validate_terminal_transition(&self.state, &proposal)?;
+
+        let receipt = TransitionReceiptV1 {
+            sequence: from_stage.ordinal(),
+            from_stage,
+            to_stage: proposal.to_stage,
+            observer_hash: proposal.observer_hash,
+            state_domain: proposal.state_domain,
+            residual_ids: proposal.residual_ids.clone(),
+            license_ids: proposal.license_ids.clone(),
+            terminal_proposal: proposal.terminal_proposal,
+            authority_effect: proposal.authority_effect.clone(),
+            evidence_refs: proposal.evidence_refs,
+        };
+        self.state.current_stage = proposal.to_stage;
+        self.state.residual_ids = proposal.residual_ids;
+        self.state.terminal_proposal = proposal.terminal_proposal;
+        self.state.authority_effect = proposal.authority_effect;
+        self.receipts.push(receipt.clone());
+        Ok(receipt)
+    }
+
+    pub fn into_trace(self) -> ProtocolTraceV1 {
+        ProtocolTraceV1 {
+            schema_version: PROTOCOL_SCHEMA_VERSION.to_owned(),
+            task_id: self.state.task_id,
+            carrier_hash: self.state.carrier_hash,
+            observer: self.state.observer,
+            initial_residual_ids: self.initial_residual_ids,
+            license_ids: self.state.license_ids,
+            receipts: self.receipts,
+        }
+    }
+}
+
+fn validate_terminal_transition(
+    state: &ProtocolStateV1,
+    proposal: &TransitionProposalV1,
+) -> Result<(), ProtocolError> {
+    match proposal.to_stage {
+        GtocGtlaStage::TerminalProposal => {
+            let terminal = proposal
+                .terminal_proposal
+                .ok_or(ProtocolError::MissingTerminal)?;
+            let residual_count = proposal.residual_ids.len();
+            if (terminal == GtocTerminal::ExactRepair && residual_count != 0)
+                || (matches!(
+                    terminal,
+                    GtocTerminal::StabilizedSurvivor | GtocTerminal::OpenObstruction
+                ) && residual_count == 0)
+            {
+                return Err(ProtocolError::TerminalResidualMismatch {
+                    terminal,
+                    residual_count,
+                });
+            }
+        }
+        GtocGtlaStage::PriorWorkLedger => {
+            if state.terminal_proposal.is_none() {
+                return Err(ProtocolError::MissingTerminal);
+            }
+            if proposal.terminal_proposal != state.terminal_proposal {
+                return Err(ProtocolError::TerminalChanged);
+            }
+        }
+        _ if proposal.terminal_proposal.is_some() => return Err(ProtocolError::EarlyTerminal),
+        _ => {}
+    }
+    Ok(())
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum CompositionFailureKindV1 {
+    EdgeDiscontinuity,
+    SkippedStage,
+    ObserverChanged,
+    StateDomainChanged,
+    ResidualLost,
+    LicenseSetChanged,
+    TerminalChanged,
+    AuthorityExpanded,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct CompositionFailureV1 {
+    pub left_sequence: u8,
+    pub right_sequence: u8,
+    pub kind: CompositionFailureKindV1,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct StructuralCochainReceiptV1 {
+    pub realization: CochainRealizationKind,
+    pub edge_count: usize,
+    pub composition_count: usize,
+    pub failures: Vec<CompositionFailureV1>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TraceValidationReceiptV1 {
+    pub schema_version: String,
+    pub transition_count: usize,
+    pub terminal: GtocTerminal,
+    pub authority_effect: AuthorityEffect,
+    pub cochain: StructuralCochainReceiptV1,
+}
+
+pub fn structural_d1_v1(
+    left: &TransitionReceiptV1,
+    right: &TransitionReceiptV1,
+) -> Vec<CompositionFailureV1> {
+    let mut failures = Vec::new();
+    let mut push = |kind| {
+        failures.push(CompositionFailureV1 {
+            left_sequence: left.sequence,
+            right_sequence: right.sequence,
+            kind,
+        });
+    };
+    if left.to_stage != right.from_stage || left.sequence + 1 != right.sequence {
+        push(CompositionFailureKindV1::EdgeDiscontinuity);
+    }
+    if left.to_stage.next() != Some(right.to_stage) {
+        push(CompositionFailureKindV1::SkippedStage);
+    }
+    if left.observer_hash != right.observer_hash {
+        push(CompositionFailureKindV1::ObserverChanged);
+    }
+    if left.state_domain != right.state_domain {
+        push(CompositionFailureKindV1::StateDomainChanged);
+    }
+    if !left.residual_ids.is_subset(&right.residual_ids) {
+        push(CompositionFailureKindV1::ResidualLost);
+    }
+    if left.license_ids != right.license_ids {
+        push(CompositionFailureKindV1::LicenseSetChanged);
+    }
+    if left.terminal_proposal.is_some() && left.terminal_proposal != right.terminal_proposal {
+        push(CompositionFailureKindV1::TerminalChanged);
+    }
+    if !left.authority_effect.is_none() || !right.authority_effect.is_none() {
+        push(CompositionFailureKindV1::AuthorityExpanded);
+    }
+    failures
+}
+
+pub fn structural_cochain_receipt_v1(trace: &ProtocolTraceV1) -> StructuralCochainReceiptV1 {
+    let failures = trace
+        .receipts
+        .windows(2)
+        .flat_map(|pair| structural_d1_v1(&pair[0], &pair[1]))
+        .collect();
+    StructuralCochainReceiptV1 {
+        realization: CochainRealizationKind::Structural,
+        edge_count: trace.receipts.len(),
+        composition_count: trace.receipts.len().saturating_sub(1),
+        failures,
+    }
+}
+
+pub fn validate_protocol_trace_v1(
+    trace: &ProtocolTraceV1,
+) -> Result<TraceValidationReceiptV1, ProtocolError> {
+    require_schema(PROTOCOL_SCHEMA_VERSION, &trace.schema_version)?;
+    let mut machine = ProtocolMachineV1::new(
+        trace.task_id.clone(),
+        trace.carrier_hash.clone(),
+        trace.observer.clone(),
+        trace.initial_residual_ids.clone(),
+        trace.license_ids.clone(),
+    )?;
+    for supplied in &trace.receipts {
+        let produced = machine.advance(TransitionProposalV1 {
+            to_stage: supplied.to_stage,
+            observer_hash: supplied.observer_hash.clone(),
+            state_domain: supplied.state_domain.clone(),
+            residual_ids: supplied.residual_ids.clone(),
+            license_ids: supplied.license_ids.clone(),
+            terminal_proposal: supplied.terminal_proposal,
+            authority_effect: supplied.authority_effect.clone(),
+            evidence_refs: supplied.evidence_refs.clone(),
+        })?;
+        if &produced != supplied {
+            return Err(ProtocolError::ReceiptMismatch(supplied.sequence));
+        }
+    }
+    if !machine.is_terminalized() {
+        return Err(ProtocolError::TraceNotTerminalized);
+    }
+    let terminal = machine
+        .state()
+        .terminal_proposal
+        .ok_or(ProtocolError::TraceNotTerminalized)?;
+    let cochain = structural_cochain_receipt_v1(trace);
+    if !cochain.failures.is_empty() {
+        return Err(ProtocolError::StructuralCompositionFailure(
+            cochain.failures.len(),
+        ));
+    }
+    Ok(TraceValidationReceiptV1 {
+        schema_version: PROTOCOL_SCHEMA_VERSION.to_owned(),
+        transition_count: trace.receipts.len(),
+        terminal,
+        authority_effect: AuthorityEffect::None,
+        cochain,
+    })
+}
+
+#[derive(Debug, Error, Clone, PartialEq, Eq)]
+pub enum ProtocolError {
+    #[error("schema version mismatch: expected {expected}, found {found}")]
+    SchemaVersion { expected: String, found: String },
+    #[error("required field is empty: {0}")]
+    EmptyField(&'static str),
+    #[error("invalid SHA-256 field: {0}")]
+    InvalidHash(&'static str),
+    #[error("compiled stage count mismatch: expected {expected}, found {found}")]
+    StageCount { expected: usize, found: usize },
+    #[error("compiled stage order mismatch: expected {expected:?}, found {found:?}")]
+    StageOrder {
+        expected: GtocGtlaStage,
+        found: GtocGtlaStage,
+    },
+    #[error(
+        "legacy classification {classification:?} disagrees with terminalization {terminalization:?}"
+    )]
+    LegacyTerminalMismatch {
+        classification: GtocTerminal,
+        terminalization: GtocTerminal,
+    },
+    #[error("stage transition skipped: {from:?} expected {expected:?}, found {found:?}")]
+    SkippedStage {
+        from: GtocGtlaStage,
+        expected: GtocGtlaStage,
+        found: GtocGtlaStage,
+    },
+    #[error("frozen observer changed")]
+    ObserverChanged,
+    #[error("frozen state domain changed")]
+    StateDomainChanged,
+    #[error("residual disappeared from the append-only ledger: {0}")]
+    ResidualLost(String),
+    #[error("license set changed after packet freeze")]
+    LicenseSetChanged,
+    #[error("terminal proposal appeared before stage 11")]
+    EarlyTerminal,
+    #[error("stage 11 requires one terminal proposal")]
+    MissingTerminal,
+    #[error("terminal proposal changed after stage 11")]
+    TerminalChanged,
+    #[error("terminal {terminal:?} is incompatible with {residual_count} residuals")]
+    TerminalResidualMismatch {
+        terminal: GtocTerminal,
+        residual_count: usize,
+    },
+    #[error("protocol transition attempted to expand authority")]
+    AuthorityExpanded,
+    #[error("protocol already terminalized")]
+    AlreadyTerminalized,
+    #[error("receipt {0} does not match deterministic replay")]
+    ReceiptMismatch(u8),
+    #[error("trace did not reach stage 12 with a terminal proposal")]
+    TraceNotTerminalized,
+    #[error("structural d1 o d0 validation found {0} composition failures")]
+    StructuralCompositionFailure(usize),
+}
+
+impl ProtocolError {
+    pub fn terminal_route(&self) -> GtocTerminal {
+        match self {
+            Self::EmptyField(field)
+                if field.starts_with("context.") || field.starts_with("observer.") =>
+            {
+                GtocTerminal::OracleNeeded
+            }
+            Self::AuthorityExpanded => GtocTerminal::Refused,
+            _ => GtocTerminal::Invalid,
+        }
+    }
+}
+
+fn compiled_stage(
+    stage: GtocGtlaStage,
+    sources: Vec<ProtocolSourceV1>,
+    payloads: Vec<String>,
+) -> CompiledStageV1 {
+    CompiledStageV1 {
+        stage,
+        sources,
+        payloads,
+    }
+}
+
+const fn legacy(field: LegacyPacketFieldV1) -> ProtocolSourceV1 {
+    ProtocolSourceV1::Legacy(field)
+}
+
+const fn context_source(field: CompileContextFieldV1) -> ProtocolSourceV1 {
+    ProtocolSourceV1::Context(field)
+}
+
+fn require_schema(expected: &str, found: &str) -> Result<(), ProtocolError> {
+    if expected == found {
+        Ok(())
+    } else {
+        Err(ProtocolError::SchemaVersion {
+            expected: expected.to_owned(),
+            found: found.to_owned(),
+        })
+    }
+}
+
+fn require_text(field: &'static str, value: &str) -> Result<(), ProtocolError> {
+    if value.trim().is_empty() {
+        Err(ProtocolError::EmptyField(field))
+    } else {
+        Ok(())
+    }
+}
+
+fn require_texts(field: &'static str, values: &[String]) -> Result<(), ProtocolError> {
+    for value in values {
+        require_text(field, value)?;
+    }
+    Ok(())
+}
+
+fn require_nonempty_texts(field: &'static str, values: &[String]) -> Result<(), ProtocolError> {
+    if values.is_empty() {
+        return Err(ProtocolError::EmptyField(field));
+    }
+    require_texts(field, values)
+}
+
+fn require_hash(field: &'static str, value: &str) -> Result<(), ProtocolError> {
+    if value.len() == 64 && value.bytes().all(|byte| byte.is_ascii_hexdigit()) {
+        Ok(())
+    } else {
+        Err(ProtocolError::InvalidHash(field))
+    }
+}
+
+fn validate_ids(field: &'static str, ids: &BTreeSet<String>) -> Result<(), ProtocolError> {
+    for id in ids {
+        require_text(field, id)?;
+    }
+    Ok(())
+}

@@ -1,0 +1,927 @@
+# Omega Conductor v1: Universal Kernel and Assurance Profile (Canonical Epic)
+
+**Document kind:** Canonical implementation epic
+**Lifecycle status:** ACTIVE
+**GTOC terminal:** OpenObstruction
+**Authority status:** None
+**Date:** 2026-07-18
+**Version:** v1.8
+**Authority effect:** `None`
+
+---
+
+## Executive Summary
+
+Omega Conductor v1 is a supervised finite-discrete deformation algebra (DDA) workflow. The code-only reduction of earlier designs was the wrong abstraction. The conductor must be **carrier-general from the start**.
+
+Finite DDA is the **invariant protocol applied to every role and every carrier** under GTLA/GTOC authority discipline. There is one machine-enforced operation:
+
+```text
+execute_gtoc_gtla(packet, role, carrier, permissions) -> receipt
+```
+
+The programmatic entry point is `omega_engine_solve()`, which accepts a general `SolveRequest` defining a `GoalDeclaration` and a heterogeneous `CarrierBundle`. It initializes the finite witness tower, maps required operators to witness roles, resolves the runtime gauge (Claude, Codex, Gemini, Rust, Lean, or Human), and executes.
+
+This epic consolidates all previous design specifications (`product_dev_v001.md`, `2026-06-12-omega-engine-immune-review.md`, `master_product_atlas.md`, `autoresearch-harness-spec.md`, and `status_vocabulary.rs`) into a single canonical backlog.
+
+This is the sole canonical hierarchy for conductor work. Each SAGA has one file; each sprint has exactly one parent SAGA; complete stories live in that sprint file. Product-platform work and research-spine work are distinct carrier profiles governed by the same protocol, not competing epics.
+
+This document defines target contracts. It does not claim that every interface shown here exists or that activation has occurred. Time-indexed repository facts and implementation receipts belong under `docs/status/`.
+
+### Canonical Rust ownership firewall
+
+For conductor migrations, semantic ownership is closed: mathematical types come from their owning math crates, and current contract ids, packet/receipt schemas, governance types, terminal vocabularies, and authority boundaries come from `omega_engine/crates/omega_contracts/src`. Other Rust files are implementation evidence, not contract authority, until registered there.
+
+- The conductor imports or identity-preserving re-exports canonical semantic types; it does not recreate equivalent structs, enums, traits, or wrappers.
+- Runtime-local types require an ownership-ledger proof that they carry no mathematical or contract semantics.
+- Rust sketches in this epic are target contracts, not permission to define local shadow types. Before implementation, every sketched type must resolve to an owning crate, an `omega_contracts/src` contract, or an explicit `OpenObstruction`.
+- MIG-02 must include a mechanized duplicate-semantic-type detector for identifiers, licenses, terminal vocabularies, authority effects, carrier roles, and packet schemas.
+- Missing canonical types or contracts terminalize as `OpenObstruction` and require a separately admitted contract proposal.
+- No migration may infer contractual status from an unofficial Rust implementation or use a duplicate type to bypass the authority firewall.
+
+### Construction order before activation
+
+The epic is built one sprint at a time in dependency order: implement the sprint deliverables, review the exact diff and deterministic evidence, record residuals, then move to the next sprint. While the conductor is under construction, target-state gates are deliverables to build and review; a gate that is not yet implemented or activated cannot invalidate the construction run that creates it.
+
+`LifecycleStatus: COMPLETED` means the sprint scoped deliverables and review are complete. It does not imply `AuthorizedLocalResult`, runtime activation, policy enforcement, or human promotion. Gate activation occurs only in the later activation milestone after the relevant gate, verifier, safety, and governance sprints are complete.
+
+### Universal enforcement boundary
+
+After activation, no process may change a protected Omega Engine artifact except through a frozen conductor packet and host-recorded terminal. The rule applies equally to models, humans, scripts, hooks, CI, paper tools, `omega_rip_papers`, sweepers, packetizers, formatters, Rust and Python developers, Lean proof work, research, releases, and process-improvement jobs.
+
+The enforced path is:
+
+1. host admission against an exact Git base and packet hash;
+2. frozen observer, carrier, write surface, tools, operators, lifts, budgets, and evidence ceiling;
+3. host-only lease issuance and write application;
+4. independent producer, evaluator, and authority-witness receipts;
+5. deterministic gate receipts that provide evidence but do not approve;
+6. host verification of the receipt DAG and terminal proposal;
+7. explicit human promotion for any `AuthorizedLocalResult`;
+8. hook, CI, and protected-branch rejection of missing packet/receipt bindings;
+9. halt on policy drift or bypass;
+10. a new immutable packet for every resumption.
+
+### Self-development invariant
+
+Omega Engine may become self-developing only at the object layer: it may propose changes to papers, code, proofs, packets, operators, process traces, and schedules. It may not self-authorize changes to its judges: gates, oracles, evaluators, witnesses, authority constructors, policy manifests, safety controllers, halt paths, evidence ceilings, protected write surfaces, schemas, binaries, or conserved paths.
+
+Any candidate touching a judge surface routes to a separate `MetaImprovementTask` with a new immutable packet, independent evaluator, authority witness, deterministic policy comparison, and explicit human promotion. The run that discovered the candidate cannot activate it, widen its evidence ceiling, instantiate its successor packet, or clear its own halt.
+
+No SAGA-10 allopoietic-improvement lane may be admitted until SAGA-14 closes the certificate-to-authority obstruction in code, SAGA-06 provides receipt-DAG verification for the lane, and the corrigibility/safety closure in sections 11, 15, and 16 is load-bearing in the executable conductor.
+
+Emergency recovery may stop or revert execution but cannot silently waive the protocol. A break-glass action is a typed human decision with its own scope, expiry, receipt, and retrospective.
+
+---
+
+## SAGA Roster
+
+The master epic orchestrates the following cross-cutting or sequential SAGA workstreams:
+
+| SAGA | Name | Document | Status |
+|------|------|----------|--------|
+| **SAGA-00** | **Canonicality and Ground-Truth Census** | [saga_00_canonicality_and_ground_truth.md](saga_00_canonicality_and_ground_truth.md) | **ACTIVE** |
+| **SAGA-01** | **Universal GTOC/GTLA Execution Protocol** | [saga_01_universal_gtoc_gtla_protocol.md](saga_01_universal_gtoc_gtla_protocol.md) | **COMPLETED** |
+| **SAGA-02** | **Operator Registry and Runtime Gauges** | [saga_02_operator_registry_and_gauges.md](saga_02_operator_registry_and_gauges.md) | **BLOCKED** |
+| **SAGA-03** | **Task Admission and Heterogeneous Carrier Bundles** | [saga_03_task_admission_and_carriers.md](saga_03_task_admission_and_carriers.md) | **BLOCKED** |
+| **SAGA-04** | **Finite Witness Tower and Joint Authority** | [saga_04_witness_tower_and_joint_authority.md](saga_04_witness_tower_and_joint_authority.md) | **BLOCKED** |
+| **SAGA-05** | **One-Window Conductor Runtime** | [saga_05_one_window_runtime.md](saga_05_one_window_runtime.md) | **BLOCKED** |
+| **SAGA-06** | **Deterministic Receipt Verification and Terminalization** | [saga_06_receipt_verification_and_terminalization.md](saga_06_receipt_verification_and_terminalization.md) | **BLOCKED** |
+| **SAGA-07** | **Research, Paper, and Program Binding** | [saga_07_research_paper_program_binding.md](saga_07_research_paper_program_binding.md) | **BLOCKED** |
+| **SAGA-08** | **Software Development Workflow** | [saga_08_software_development_workflow.md](saga_08_software_development_workflow.md) | **BLOCKED** |
+| **SAGA-09** | **Process Trace, Introspection, and Residual Memory** | [saga_09_trace_introspection_and_memory.md](saga_09_trace_introspection_and_memory.md) | **BLOCKED** |
+| **SAGA-10** | **Licensed Allopoietic Improvement** | [saga_10_licensed_allopoietic_improvement.md](saga_10_licensed_allopoietic_improvement.md) | **BLOCKED** |
+| **SAGA-11** | **Privacy, IP, and Publication Controls** | [saga_11_privacy_ip_and_publication.md](saga_11_privacy_ip_and_publication.md) | **BLOCKED** |
+| **SAGA-12** | **Production Assurance** | [saga_12_production_assurance.md](saga_12_production_assurance.md) | **BLOCKED** |
+| **SAGA-13** | **Mixed Self-Hosting Pilot** | [saga_13_mixed_self_hosting_pilot.md](saga_13_mixed_self_hosting_pilot.md) | **BLOCKED** |
+| **SAGA-14** | **Certificate ≠ Authority Firewall Enforcement** | [saga_14_cert_authority_firewall.md](saga_14_cert_authority_firewall.md) | **ACTIVE** |
+| **SAGA-15** | **Sprint Governance and Evidence Lifecycle** | [saga_15_sprint_governance_and_evidence.md](saga_15_sprint_governance_and_evidence.md) | **ACTIVE** |
+| **SAGA-16** | **Application Runtime Convergence** | [saga_16_application_runtime_convergence.md](saga_16_application_runtime_convergence.md) | **ACTIVE** |
+
+A sprint is owned by exactly one SAGA. Cross-SAGA prerequisites are dependency edges, not shared ownership.
+
+| SAGA | Owned sprint files |
+|---|---|
+| SAGA-00 | [S00-001](sprint_s00_001.md), [S00-002](sprint_s00_002.md) |
+| SAGA-01 | [S01-001](sprint_s01_001.md), [S01-002](sprint_s01_002.md), [S01-003](sprint_s01_003.md) |
+| SAGA-02 | [S02-001](sprint_s02_001.md), [S02-002](sprint_s02_002.md) |
+| SAGA-03 | [S03-001](sprint_s03_001.md), [S03-002](sprint_s03_002.md) |
+| SAGA-04 | [S04-001](sprint_s04_001.md) |
+| SAGA-05 | [S05-001](sprint_s05_001.md) |
+| SAGA-06 | [S06-001](sprint_s06_001.md), [S06-002](sprint_s06_002.md), [S06-003](sprint_s06_003.md), [S06-004](sprint_s06_004.md) |
+| SAGA-07 | [S07-001](sprint_s07_001.md), [S07-002](sprint_s07_002.md), [S07-003](sprint_s07_003.md), [S07-004](sprint_s07_004.md), [S07-005](sprint_s07_005.md), [S07-006](sprint_s07_006.md) |
+| SAGA-08 | [S08-001](sprint_s08_001.md), [S08-002](sprint_s08_002.md) |
+| SAGA-09 | [S09-001](sprint_s09_001.md) |
+| SAGA-10 | [S10-001](sprint_s10_001.md) |
+| SAGA-11 | [S11-001](sprint_s11_001.md) |
+| SAGA-12 | [S12-001](sprint_s12_001.md), [S12-002](sprint_s12_002.md) |
+| SAGA-13 | [S13-001](sprint_s13_001.md) |
+| SAGA-14 | [S14-001](sprint_s14_001.md), [S14-002](sprint_s14_002.md), [S14-003](sprint_s14_003.md), [S14-004](sprint_s14_004.md), [S14-005](sprint_s14_005.md) |
+| SAGA-15 | [S15-001](sprint_s15_001.md) |
+| SAGA-16 | [S16-001](sprint_s16_001.md), [S16-002](sprint_s16_002.md), [S16-003](sprint_s16_003.md), [S16-004](sprint_s16_004.md), [S16-005](sprint_s16_005.md) |
+
+## Canonical G-series and basement-goal binding
+
+`G10` through `G17` are canonicalization-goal identifiers. They are not aliases for `SAGA-10` through `SAGA-17`; no second SAGA namespace is created. G0-G9 are retained as accepted prior-work evidence and are not reactivated by this table. Every remaining goal has one owning SAGA and one immutable sprint packet:
+
+| Goal | Owning SAGA | Canonical sprint | Required predecessor | Evidence ceiling |
+|---|---|---|---|---|
+| G10 | SAGA-14 | [S14-003](sprint_s14_003.md) | S14-001, S14-002, S00-001 | Bounded GTFDA definitions and minimal firewall |
+| G11 | SAGA-07 | [S07-002](sprint_s07_002.md) | G10, S06-001 | Registered PL-GTOC rows and admitted proof tranche |
+| G12 | SAGA-14 | [S14-004](sprint_s14_004.md) | G10, G11 | GTOR-2, GTTC-1, and GTTA-14 only |
+| G13 | SAGA-07 | [S07-003](sprint_s07_003.md) | G12 | GTLA-T26 H3-double-prime only |
+| G14 | SAGA-07 | [S07-004](sprint_s07_004.md) | G11, G13 | PL-GTOC-6/12/13 and direct dependents |
+| G15 | SAGA-00 | [S00-002](sprint_s00_002.md) | G12-G14 | Cross-layer consistency evidence |
+| G16 | SAGA-07 | [S07-005](sprint_s07_005.md) | G15 | Published papers 000-010 |
+| G17 | SAGA-12 | [S12-002](sprint_s12_002.md) | MIG-02, S12-001, GTOC-8 | Release/index/seal evidence |
+| GTOC-1 | SAGA-01 | [S01-002](sprint_s01_002.md) | S01-001 | Finite general classifier |
+| GTOC-2 | SAGA-01 | [S01-003](sprint_s01_003.md) | GTOC-1 | Finite degree-shift invariance |
+| GTOC-3 | SAGA-02 | [S02-002](sprint_s02_002.md) | S02-001, GTOC-2 | Registered lift licenses |
+| GTOC-4 | SAGA-06 | [S06-002](sprint_s06_002.md) | S06-001, GTOC-3 | Registered DDA transition coverage |
+| GTOC-5 | SAGA-14 | [S14-005](sprint_s14_005.md) | G10, GTOC-4 | Registered DDA-to-authority paths |
+| GTOC-6 | SAGA-06 | [S06-003](sprint_s06_003.md) | GTOC-4, GTOC-5 | Finite enumerated multi-defect packets |
+| GTOC-7 | SAGA-03 | [S03-002](sprint_s03_002.md) | S03-001, GTOC-6 | Finite explicit migration bundles |
+| GTOC-8 | SAGA-06 | [S06-004](sprint_s06_004.md) | GTOC-6, GTOC-7 | Registered import/oracle interfaces |
+
+`GTOC-1` has the bounded S01-002 Rust classifier and `GTOC-2` has S01-003 checked `u16` label transport for bases `1..=65533`; both have replay receipts terminalized as `StabilizedSurvivor` with authority `None`. Their unrestricted theorem rows remain OPEN. Every later GTOC row remains `BLOCKED` and `NOT_EVALUATED` until its exact base, packet, observer, write surface, witnesses, and budgets are frozen.
+## Canonical repository migration binding
+
+`MIG-01` and `MIG-02` are repository migration goals, not G-series or SAGA identifiers. They are ordered before G17 so release artifacts cannot seal obsolete paths or a Python conductor.
+
+| Migration goal | Owning SAGA | Canonical sprint | Required predecessor | Evidence ceiling |
+|---|---|---|---|---|
+| MIG-01 | SAGA-07 | [S07-006](sprint_s07_006.md) | G16, S11-001 | Byte, identity, reference, and build equivalence for the GTOC paper move |
+| MIG-02 | SAGA-08 | [S08-002](sprint_s08_002.md) | MIG-01, S08-001, S05-001, S14-001 | Bounded Python-to-Rust parity and canonical type/contract reuse |
+
+Both migrations are `BLOCKED`, `UNFROZEN`, and `NOT_EVALUATED`. Neither move is licensed until its packet freezes complete source, destination, reference, ownership, witness, and rollback manifests.
+
+## Canonical application-convergence binding
+
+The eleven June-era application sprint plans are superseded planning artifacts, not a second active backlog. Their landed evidence and residuals are compiled into [SAGA-16](saga_16_application_runtime_convergence.md). The 2026-07-16 `270/316` score remains dated evidence at observer `142ce3692`; it is not a current terminal or production-readiness score.
+
+| Canonical sprint | Owned application work | Required predecessor | Evidence ceiling |
+|---|---|---|---|
+| [S16-001](sprint_s16_001.md) | Current-base re-audit, packet reconciliation, and legacy Markdown cutover for all eleven lanes | S00-001, S15-001 | Repository state and eleven named lanes at one frozen base |
+| [S16-002](sprint_s16_002.md) | `omega_api` live/shadow cutover and carrier-derived exact adapter | S16-001, S11-001, GTOC-1..4 | Bounded admitted traffic fixtures |
+| [S16-003](sprint_s16_003.md) | One MUB owner, exact adapter, Lean boundary, and duplicate-rail retirement | S16-001, S02-001, S14-001, GTOC-1..4 | Declared finite MUB carrier and named MUB6 statement |
+| [S16-004](sprint_s16_004.md) | Prompt consumers, BPA deferred classes, residual-family consumers, rewrite controls, and finite-lambda closure | S16-001, S05-001, GTOC-1, GTOC-4 | Five named finite residual bundles |
+| [S16-005](sprint_s16_005.md) | Eleven-lane clean replay, semantic invariants, hostile faults, and convergence packet | S16-002..4 | Eleven admitted lanes and bounded live/shadow controls |
+
+No old application sprint Markdown may be executed after this binding. Deletion of those plans means only that their planning role is superseded; implementation terminals and residuals are unchanged until S16 receipts prove otherwise.
+
+SAGA-16 uses the canonical `GtocTerminal` vocabulary only. `OperatorNeeded` is a survivor route, not a terminal. An absent canonical owner terminalizes as `OpenObstruction` with survivor route `OperatorNeeded` until a separate packet admits the needed operator, owner, or license.
+
+
+---
+
+# Part I: Omega Conductor Universal Kernel
+
+## 1. One Algorithm, Every Role
+
+Every worker, researcher, planner, reviewer, evaluator, authority witness, and manual operator executes the same twelve stages:
+
+```rust
+pub enum GtocGtlaStage {
+    Carrier,
+    PrimitiveDifference,
+    ZeroRelation,
+    CochainRealization,
+    Quotient,
+    ResidualSeparation,
+    Observer,
+    Witnesses,
+    LicensedTransformation,
+    SurvivorRouting,
+    TerminalProposal,
+    PriorWorkLedger,
+}
+```
+
+1. **Carrier:** Bind exact inputs, read-only evidence, write surface, base commit, and hashes.
+2. **Primitive Difference:** State the obstruction before selecting a repair.
+3. **Zero relation:** Define equivalence with respect to the declared obstruction.
+4. **Cochain realization:** Declare `C0`, `C1`, `C2`, `d0`, `d1`, and a justified `d1 o d0 = 0` witness as `Exact`, `Structural`, or `Unresolved`.
+5. **Quotient:** Define `Q1`, discrepancies modulo licensed local repairs.
+6. **Residual separation:** Ledger local `Phi1` separately from compositional `Gamma2`.
+7. **Observer:** Restate the observer context frozen before stage 1.
+8. **Witnesses:** Bind independent roles, deterministic gates, and evidence ceilings.
+9. **Licensed transformation:** Apply only packet-listed operators, operads, and lifts.
+10. **Survivor routing:** Route residuals to typed destinations. Agents may propose but cannot instantiate successor packets.
+11. **Terminal proposal:** Propose one closed terminal with `AuthorityEffect::None`.
+12. **Prior-work ledger:** Bind imports, literature, receipts, staleness, and nonclaims.
+
+Older thirteen-field packet formats compile into these stages; field count and execution-stage count need not match. DDA execution belongs to stages 9 and 10, while classification belongs to stage 11. No role may invent an exact cochain realization to fill the schema.
+
+
+The **role does not change the algorithm**. It changes:
+
+* the carrier being inspected;
+* the write and tool permissions;
+* the admissible operators;
+* the evidence ceiling;
+* the observer position;
+* the terminal authority ceiling.
+
+## Frozen observer context
+
+The observer is frozen before stage 1 even though stage 7 makes it explicit:
+
+```rust
+pub struct FrozenObserverContext {
+    pub identity: ObserverId,
+    pub visible_artifacts: Vec<ArtifactHash>,
+    pub hidden_artifacts: Vec<ArtifactClass>,
+    pub tool_permissions: PermissionSet,
+    pub write_surface: Vec<ArtifactPath>,
+    pub evidence_ceiling: EvidenceCeiling,
+}
+```
+
+A role may not expand this context during execution. A changed observer, carrier, evidence ceiling, or permission set invalidates direct `Phi1` comparison and requires a new packet.
+
+## State vocabulary
+
+Three independent state domains are mandatory:
+
+```text
+LifecycleStatus:
+  PLANNED | READY | ACTIVE | BLOCKED | COMPLETED
+
+GtocTerminal:
+  NOT_EVALUATED
+  ExactRepair
+  StabilizedSurvivor
+  OpenObstruction
+  OracleNeeded
+  LiftLicenseNeeded
+  Refused
+  Invalid
+  InfrastructureFailure
+
+AuthorityStatus:
+  None
+  PendingHumanPromotion
+  AuthorizedLocalResult
+  HumanRejected
+```
+
+Lifecycle status describes work progress. A GTOC terminal classifies a frozen attempt. Authority status records a separate human-controlled transition. These values are never substitutes for one another.
+
+## 2. Universal Solve Interface
+
+The programmatic entry point `omega_engine_solve` accepts a generalized, target-neutral request:
+
+```rust
+pub struct SolveRequest {
+    pub task_id: TaskId,
+    pub task_class: TaskClass,
+    pub goal: GoalDeclaration,
+    pub carrier: CarrierBundle,
+    pub role_plan: WitnessRolePlan,
+    pub execution_policy: ExecutionPolicy,
+}
+
+pub struct GoalDeclaration {
+    pub objective: String,
+    pub success_criteria: Vec<String>,
+}
+
+pub enum TaskClass {
+    ResearchPaper,
+    SoftwareChange,
+    MathProof,
+    Planning,
+    ProductReview,
+    CorpusSweep,
+    Experiment,
+    DatasetAnalysis,
+    ReleasePrep,
+    GovernanceReview,
+    OperatorImprovement,
+    Mixed,
+}
+```
+
+The task carrier bundle, rather than an enum variant, defines the actual contents of the task.
+
+## 3. The Finite Witness Tower
+
+Self-observation is restricted to a finite, ranked witness tower to prevent infinite recursion:
+
+```mermaid
+graph TD
+    Task[Task Request] --> Producer[Rank 0: Producer]
+    Producer --> EvalWitness[Rank 1: Evaluation Witness]
+    EvalWitness --> AuthWitness[Rank 2: Authority Witness]
+    AuthWitness --> DeterministicGate[Deterministic Gate Check]
+    DeterministicGate --> HumanPromotion[Rank 3: Human Promotion]
+    HumanPromotion --> AuthorizedResult[Authorized Local Result]
+```
+
+* **Rank 0: Producer (Object Work):** Receives the task, applies licensed operators to the carrier, and emits an `AgentRunReceipt`.
+* **Rank 1: Evaluation Witness:** Inspects original packet, results, and activity log. Its primitive difference is `claimed execution` vs `witnessed execution`.
+* **Rank 2: Authority Witness:** Receives original packet, producer receipts, evaluation receipts, and deterministic outputs. Its primitive difference is `required promotion conditions` vs `assembled evidence bundle`. Resolves whether credentials, independence, and licenses are correct. Outputs `AuthorityWitnessAttestation`.
+* **Rank 3: Human Authority:** Reviews the verified bundle and commits the final promotion.
+* **Identity Separation:** No layer can witness itself. Identity separation is strictly enforced at execution time.
+
+## 4. Operator Mapping to Witness Roles
+
+Prompts, skills, and model sessions are decoupled from the core architecture:
+
+* **Operator:** Reusable task transformation.
+* **Gauge/Runtime:** The execution engine (ClaudeCode, Codex, Gemini, Rust, Lean, Human).
+* **Workflow:** Composition of operators.
+* **Evidence:** Execution trace.
+* **License:** Permission to use, compose, or lift.
+
+```rust
+pub struct OperatorManifest {
+    pub operator_id: OperatorId,
+    pub input_families: Vec<String>,
+    pub output_families: Vec<String>,
+    pub gtoc_binding: GtocBinding,
+    pub permitted_operations: Vec<String>,
+    pub evidence_ceiling: EvidenceCeiling,
+    pub licenses: Vec<LicenseId>,
+    pub witnesses: Vec<WitnessRequirement>,
+}
+
+pub struct GaugeBinding {
+    pub operator_id: OperatorId,
+    pub runtime: RuntimeGauge,
+    pub adapter: String,
+}
+
+pub enum RuntimeGauge {
+    ClaudeCode,
+    Codex,
+    Gemini,
+    RustCompiler,
+    LeanKernel,
+    HumanReview,
+}
+```
+
+Active mathematical, editorial, and quality operations map to witness tower roles:
+
+* **Research Paper Operators:**
+  * *Rank 0 (Producer):* `paper.claim_ledger.repair` (maps to `/paper-improver` gauge)
+  * *Rank 1 (Evaluation):* `paper.adversary.audit` (maps to `/paper-adversary` or `/rip-papers` gauge)
+  * *Rank 2 (Authority):* `paper.release.signoff` (maps to `/paper-proof-signoff` or `/paper-release` gauge)
+* **Math Proof Operators:**
+  * *Rank 0 (Producer):* `math.proof.write` (maps to `/math-prover` gauge)
+  * *Rank 1 (Evaluation):* `math.step.audit` (maps to `/math-adversary` gauge)
+  * *Rank 2 (Authority):* `math.obligation.route` (maps to `/omega-math-wizard` or `/omega-math-dev` gauge)
+  * *Deterministic Gate:* Executes `lake build` to verify Lean fast-track obligations compile sorry/admit-free with no unauthorized axioms (via `#print axioms` audit). The host preserves the 8.5 GB Mathlib cache by using a persistent checkout with `git reset --hard` + `git clean -fdx -e .lake` to prevent cold rebuilds.
+* **Software Change Operators:**
+  * *Rank 0 (Producer):* `code.change.write` (human or coder gauge)
+  * *Rank 1 (Evaluation):* `code.verification.test` (maps to `/verification-loop` or `/soviet-inspector` gauge)
+  * *Rank 2 (Authority):* `code.invariant.audit` (maps to `/symmetry-hunter` or `/blackrod` gauge)
+
+## 5. Universal Carrier Bundles & Artifact Policy
+
+The heterogeneous carrier bundle maps all inputs, outputs, permissions, and disclosure constraints:
+
+```rust
+pub struct CarrierBundle {
+    pub carrier_id: CarrierId,
+    pub artifacts: Vec<TypedArtifact>,
+    pub claim_bindings: Vec<ClaimBinding>,
+    pub program_bindings: Vec<ProgramBinding>,
+    pub lift_licenses: Vec<LiftLicense>,
+    pub witness_commands: Vec<WitnessCommand>,
+    pub write_surface: Vec<ArtifactPath>,
+    pub policy: ArtifactPolicy,
+}
+
+pub struct ArtifactPolicy {
+    pub visibility: VisibilityClass,
+    pub retention: RetentionPolicy,
+    pub external_model_access: ExternalAccessPolicy,
+    pub redaction: RedactionPolicy,
+    pub publication_surface: Option<PublicationSurface>,
+}
+
+pub enum VisibilityClass {
+    PrivateLane,
+    BrandedLane,
+    BrightPublicLane,
+}
+```
+
+A **Publication and Disclosure Profile** checks what may appear on each surface. Memory overlays store hashes, family IDs, and metadata rather than raw private text.
+
+## 6. Connecting Papers to Programs
+
+A paper claim is bound to executable witnesses to establish validation traceability:
+
+```rust
+pub struct ClaimBinding {
+    pub claim_id: String,
+    pub paper_path: ArtifactPath,
+    pub section_anchor: String,
+    pub supporting_programs: Vec<ProgramBindingId>,
+    pub supporting_tests: Vec<WitnessCommandId>,
+    pub lean_obligations: Vec<LeanObligationId>,
+    pub evidence_ceiling: EvidenceCeiling,
+}
+```
+
+## 7. Cochain Realization & Anti-Ceremonial Cohomology
+
+To prevent models from inventing decorative cohomology correspondences or "heuristic glue", every role must state its cochain realization:
+
+```rust
+pub enum CochainRealization {
+    Exact {
+        carrier_basis: Basis,
+        d0: ExactMap,
+        d1: ExactMap,
+        zero_rel_witness: ExactWitness,
+    },
+    Structural {
+        objects: Vec<TypedObject>,
+        incidence: Vec<TypedIncidence>,
+        composition_witnesses: Vec<Witness>,
+        limitations: Vec<Limitation>,
+    },
+    Unresolved {
+        missing_bindings: Vec<PrimitiveDifference>,
+    },
+}
+```
+
+An unjustified map or incorrect zero-relation check becomes an explicit obstruction, preventing automated transition.
+
+## 8. Universal Process Trace & Narrative (Dual Trace)
+
+Every execution produces a dual trace to satisfy both machine and human verification:
+
+* **Run Trace:** Canonical machine-readable JSONL event and receipt stream.
+* **Run Narrative:** Human-readable generated Markdown explaining the hypothesis, diffs, command outputs, and gate results. The narrative carries no independent authority and is strictly derived from the Run Trace.
+
+## 9. Introspection & Termination Laws
+
+1. **Fixed witness depth:** Producer (0) -> Evaluator (1) -> Authority Witness (2) -> Human (3).
+2. **Finite budgets:** Attempts, repairs, time, tokens, processes, and successors are bounded in the packet.
+3. **Acyclic receipts:** A receipt references only the packet, earlier-ranked receipts, or host evidence.
+4. **Terminal immutability:** Resumption requires a new packet.
+5. **Host-only spawning:** An agent cannot create or execute a successor packet.
+6. **No silent residual loss:** Every known residual remains ledgered until a receipt changes its disposition.
+
+Every repair must do at least one:
+
+1. reduce a named `Phi1` under the same carrier and observer;
+2. expose and ledger a new `Gamma2`;
+3. preserve a justified stabilized survivor;
+4. route to `OracleNeeded`;
+5. route to `LiftLicenseNeeded`;
+6. produce a typed refusal;
+7. terminate as `Invalid` or `InfrastructureFailure`.
+
+Valid survivor destinations are `CarryForward`, `ProofObligation`, `OperatorNeeded`, `LiftLicenseNeeded`, `OracleNeeded`, `HumanDecision`, `TypedRefusal`, and `SuccessorPacketCandidate`. Only the host may instantiate a successor within the original packet's successor budget and authorization policy.
+
+## 10. Safe Operator Improvement (Meta-Improvement Task)
+
+Every agent job and manual change emits a retrospective carrier recording observed `Phi1`, exposed `Gamma2`, gate and infrastructure failures, evidence limits, repeated residuals, proposed process changes, routes, and nonclaims.
+
+A retrospective may emit an `OperatorImprovementCandidate`; it cannot modify active prompts, skills, policies, gates, schemas, binaries, or evaluators. The host may admit the candidate only as a separate `MetaImprovementTask` with a new immutable packet.
+
+That packet runs through producer, independent evaluator, authority witness, deterministic policy comparison, and human promotion. The current run cannot activate its own improvement, change its oracle, or increase its evidence ceiling.
+
+Allopoietic work is therefore blocked by any open authority-constructor path, unwired receipt-DAG verifier, unwired halt/corrigibility controller, unmechanized conserved-path check, or missing signed-closure proof. A candidate may improve search policy only as data under a closed schema; it may not generate executable evaluators, gate code, oracle code, or policy mutation logic.
+
+Product-platform and research-spine improvements are carrier profiles of this same mechanism. Neither creates a parallel authority or backlog hierarchy.
+
+# Part II: Omega Conductor Production Assurance Profile
+
+## 11. Bilevel Autoresearch and Self-Improvement Swarm Rules
+
+When executing auto-improving or self-optimization loops (such as guide tuning or prompt optimization), the Conductor enforces the safe bilevel autoresearch harness specification to prevent uncontrolled self-modification:
+
+1. **The Admissibility Rule:** A candidate proposal may change the object under experiment (e.g., a guide markdown file or prompt template), but can *never* change the evaluation gates, admissibility criteria, or selection oracle.
+2. **Strict Sandbox Isolation:**
+    * Proposer models are spawned in a sanitized directory containing only tracked files. The directory has no `.git` files, no credentials, and network access is disabled.
+    * Hidden corpora, holdout oracles, and the host controller scripts remain strictly outside the proposer's worktree.
+3. **Bilevel Swarm Control:**
+    * **Level 1 (Task Loop):** Proposes a single, atomic change to a hypothesis/file and runs a fixed mechanical evaluator.
+    * **Level 1.5 (Pacing Control):** Modifies exploration schedules, repeats, or restarts within fixed numeric bounds to combat stagnation.
+    * **Level 2 (Mechanism Tuning):** Optimizes search policies by outputting a declarative JSON document conforming to a closed schema (e.g. Tabu tenures, operator weights). *Dynamic script generation, dynamic code injection, or model-generated evaluators are strictly prohibited.*
+4. **Anti-Gaming & Verification Tiers:**
+    * *Tier 0 (Static Admission):* Rejects invalid diff sizes, protected path edits, and illegal imports.
+    * *Tier 1 (Focused Evaluator):* Runs exact local oracles and compiles targets.
+    * *Tier 2 (Affected Subsystem):* Runs regression test suites over adjacent crates.
+    * *Tier 3 (Promotion):* Full clean-cache verification and holdout validation.
+    * *Axiom/Proof Audits:* Scans Lean targets for `sorry`/`admit` and executes `#print axioms` to prevent unledgered placeholder insertion.
+    * *No Soft Scores:* No LLM-generated soft scores or self-evaluations are ever used as gate admissibility criteria.
+5. **Corrigibility & Conserved-Path Closure:**
+    * Before any SAGA-10 or Level 2 mechanism-tuning lane runs, host admission must invoke the signed safety/corrigibility closure and fail closed if `gated_activate`, `verify_integrity`, the tamper watch, or council-to-halt routing is absent, stubbed, or outside the live conductor path.
+    * Admission refuses any packet whose write surface intersects `CANONICAL_CONSERVED_PATHS`, halt/off-switch implementations, safety-controller code, policy-signing paths, evaluator/oracle paths, or the manifest that defines those paths.
+    * The signed closure must include the corrigibility crates, safety controller, conductor halt controller, policy manifest, schema validators, and host admission code. If the closure cannot name and hash those sources, the lane terminalizes as `OpenObstruction`.
+    * Duplicate halt namespaces must be bridged by an explicit verified receipt or collapsed to one host-controlled mechanism before activation. Clearing a halt is a typed human decision, never an agent action.
+
+## 12. Hard Claim Boundaries & Joint Authority
+
+- Models propose; witnesses observe; deterministic gates verify; the human promotes.
+- Agent, compiler, test, sweep, and certificate outputs carry `AuthorityEffect::None`.
+- A typed refusal may carry `AuthorityEffect::Refused`; it does not authorize another result.
+
+The target certificate transition is:
+
+```text
+certify_checked_packet(...)
+    -> CheckedPacketCertificate
+    -> AuthorityEffect::None
+```
+
+The current Rust implementation still exposes certificate-to-authority semantics in `omega_certifiers`. That mismatch is a named `OpenObstruction` owned by SAGA-14; this epic does not describe it as repaired.
+
+Activation criterion 7 binds this exact surface: certificate and verifier constructors may not construct any authority-bearing effect, including current or legacy `CertifiedAuthority`/`Certified` forms, merely because a packet, proof, test, gate, or sweep passed. Machine constructors return evidence certificates with `AuthorityEffect::None`; typed refusal remains the only non-approval exception.
+
+The only target promotion transition is host-only:
+
+```text
+VerifiedReceiptDAG {
+    producer_receipt,
+    evaluation_receipt,
+    authority_witness_attestation,
+    deterministic_gate_receipt
+}
++ HumanPromotion
+= promote_authorized_local_result(...)
+= AuthorizedLocalResult
+```
+
+No model, gate, certificate constructor, sweep decision, compiler, test, or status mapper may call the promotion constructor.
+
+## 13. One Window, Multiple Isolated Agents
+
+A single command initiates the flow: `omega conduct packets/TASK-001.json`
+
+The host conductor manages subprocess spawning based on the specified `WitnessRolePlan`:
+
+```rust
+pub struct WitnessRolePlan {
+    pub producer: GaugeSelection,
+    pub evaluator: GaugeSelection,
+    pub authority_witness: GaugeSelection,
+    pub independence_requirement: IndependenceRequirement,
+}
+
+pub struct GaugeSelection {
+    pub runtime: RuntimeGauge,
+    pub config_id: String,
+}
+
+pub enum IndependenceRequirement {
+    SeparateSession,
+    SeparateContext,
+    SeparateModel,
+    SeparateProvider,
+    HumanSpecified,
+}
+```
+
+The host conductor spawns separate, sandboxed processes for each role sequentially in a single terminal.
+
+Any lane that runs a single producer plus deterministic gates may emit evidence-only side-branch results, but it cannot satisfy activation, promotion, or terminalized conductor-run criteria. Activation receipts require an independent evaluator and an authority witness whose identity, session, context, model, and provider constraints are verified against host-recorded runtime metadata, not just self-declared strings. Reviewer-equals-author and witness-equals-producer negative tests are mandatory hostile faults.
+
+## 14. Immutable Work Packets and Gate Verification
+
+Packets are frozen via SHA-256 against a Git base commit. The Rust gates verify the receipt DAG, DDA laws, dimensions, and terminal operations. Renderers output canonical test or implementation files, generating Cargo verification receipts.
+
+The Conductor enforces git-level gates:
+
+* **Pre-commit hook (`.githooks/pre-commit`):** Ensures contract compliance when files touch the contract corpus or rule-1 crates (`omega_pipeline`, `omega_certifiers`, etc.).
+* **Commit message hook (`.githooks/commit-msg`):** Enforces packet references (`Packet-Ref: <packet>`) on all commits.
+
+The Conductor performs status mapping according to [status-vocabulary.md](status-vocabulary.md). Status adapters never change the authority domain.
+
+* `trichotomy_to_q`: Maps trichotomy (`ExactRepair`, `StabilizedSurvivor`, `OpenObstruction`) to `TerminalStatus`.
+* `product_to_q`: Maps product target (`Repaired`, `ClosedSurvivor`, etc.) to `TerminalStatus`.
+* `q_to_sweep`: Maps `TerminalStatus` to `SweepDecision`.
+* **Authority Firewall:** No diagnostic reading, model judgment, or sweep decision can mint authority.
+
+`omega_engine/crates` provide the substrate for this verification loop:
+
+* `omega_prompt_packets` builds context.
+* `omega_symbol_game` parses/validates symbols.
+* `omega_discrete_deformation_algebra` & `omega_sweep_kernel` verify algebraic traces.
+* `omega_solvers` provides solvers (SAT, graph, etc.).
+* `omega_rip_papers` syncs paper claim ledgers.
+
+### Mandatory carrier profiles
+
+All profiles compile into the same twelve stages and authority boundary:
+
+| Profile | Carrier | Deterministic evidence |
+|---|---|---|
+| Planning and sprint governance | Epic, one SAGA, one sprint, exact stories | Schema, link, dependency, status, and hash checks |
+| Rust development | Source diff, manifests, lockfile, tests | Format, check, Clippy, focused and affected tests |
+| Python development | Source diff, environment and tests | Configured lint/type/import checks and focused tests |
+| Lean and mathematics | Statement, imports, proof, claim ledger | Clean target build, placeholder scan, theorem-level `#print axioms` |
+| Research and papers | Claims, citations, programs, proof obligations | Claim-binding, citation, build, Rust, Lean, and ceiling receipts |
+| Paper sweep and `omega_rip_papers` | Frozen corpus and sweep policy | Author-blind review, ledger checks, terminal mapping, no auto-promotion |
+| Packetization and symbol games | Typed packet and grammar | Schema, hash, budget, admission, unknown-tag, and trailing-text checks |
+| Agent workflow | Frozen context, prompts, roles, outputs | Sandbox, identity, schema, tool, budget, and receipt checks |
+| Manual edit | Exact proposed diff and justification | Same profile gates and independent witnesses as an agent edit |
+| Release and publication | Signed release carrier and disclosure policy | Hash, provenance, privacy, release, and human-promotion receipts |
+| Process improvement | Trace, residual ledger, candidate change | Holdout comparison, quarantine, policy closure, new packet |
+
+Passing gates emit deterministic evidence receipts. They do not approve or promote a change.
+
+## 15. Signed Policy and Frozen Binaries
+
+Production runs require a content-valid SSH signature over the policy manifest.
+Trusted binaries (e.g., `omega_symbol_admit`, `omega_dda_gate`, `omega_terminalize_dda`) are frozen outside the workspace and pinned in the signed manifest. The manifest also pins the safety/corrigibility closure, conserved-path list, halt controller, host admission code, schema validators, receipt-DAG verifier, evaluator/oracle identities, and authority-constructor denylist. Any binary, policy, safety, or denylist drift raises halt.
+
+## 16. Halt, Cancellation, and Recovery
+
+* The host polls for halt signals and signed policy drift at bounded intervals (≤ 15s).
+* On halt, the active model/gate is cancelled, and if unsuccessful, the process tree is killed.
+* Recovery is journal-driven and idempotent. In-progress items without terminals are requeued without semantic retry penalty.
+* Halt, off-switch, policy-signing, safety-controller, and conserved-path definitions are protected write surfaces. Any packet attempting to edit them without a separate human-promoted meta-improvement packet is refused before execution.
+* If multiple halt mechanisms exist, the activation packet must prove one host-controlled bridge or collapse them to one mechanism. Otherwise halt semantics remain an `OpenObstruction`.
+
+## 17. The First Correct Vertical Slice
+
+The first release must prove that the universal architecture can process **one mixed paper-and-Rust obstruction** from declaration through human promotion.
+
+**Task:** Review and repair one GTOC paper section and its corresponding Rust implementation.
+
+* **Producer:** Declares primitive difference, edits paper/code, runs witnesses, emits receipt.
+* **Evaluation witness:** Checks claims against code/tests, checks process report against logs, emits receipt.
+* **Authority witness:** Audits receipts, checks boundaries/licenses, proposes status.
+* **Rust:** Verifies receipt DAG and DDA laws, renders canonical replay record.
+* **Human:** Promotes or refuses.
+
+## 18. Fault Matrix and Activation
+
+Activation must successfully exercise structural faults, including malformed packets, receipt tampering, missing signatures, lease races, model timeouts, reviewer equal to author, policy drift, and halt drills. The final activation packet requires the signed manifest, verifiable receipts, deterministic traces, and explicit human promotion records.
+
+# Part III: SAGA Dependency Graph and Templates
+
+## SAGA Dependency Graph
+
+```mermaid
+graph TD
+    S00[SAGA-00 Ground Truth] --> S01[SAGA-01 Protocol]
+    S00 --> S14[SAGA-14 Authority Firewall]
+    S00 --> S15[SAGA-15 Sprint Governance]
+    S01 --> S02[SAGA-02 Operators and Gauges]
+    S01 --> S03[SAGA-03 Carrier Admission]
+    S03 --> S04[SAGA-04 Witness Tower]
+    S02 --> S05[SAGA-05 Runtime]
+    S04 --> S05
+    S05 --> S06[SAGA-06 Deterministic Verification]
+    S03 --> S11[SAGA-11 Privacy and Publication]
+    S06 --> S07[SAGA-07 Paper and Program]
+    S06 --> S08[SAGA-08 Software Workflow]
+    S05 --> S09[SAGA-09 Trace and Memory]
+    S02 --> S10[SAGA-10 Allopoietic Improvement]
+    S09 --> S10
+    S06 --> S10
+    S14 --> S10
+    S05 --> S12[SAGA-12 Assurance]
+    S06 --> S12
+    S11 --> S12
+    S07 --> S13[SAGA-13 Mixed Pilot]
+    S08 --> S13
+    S09 --> S13
+    S10 --> S13
+    S12 --> S13
+    S14 --> S13
+    S15[SAGA-15 Sprint Governance] --> S13
+    S05 --> S16[SAGA-16 App Runtime Convergence]
+    S06 --> S16
+    S08 --> S16
+    S01 --> S16
+    S14 --> S16
+    S15 --> S16
+    S16 --> S13
+```
+
+> [!NOTE]
+> SAGA-14 (Authority Firewall), SAGA-15 (Sprint Governance), and SAGA-16 (Application Runtime Convergence) are cross-cutting workstreams that do not represent sequential kernel execution stages but must be satisfied throughout the program.
+
+## Canonical goal and migration sprint dependency graph
+
+This graph governs the remaining goal and migration packets. It does not add SAGA-level dependency edges. S00-001 is the baseline that unblocks early work; S00-002 is the later G15 re-entry sweep. S03-001 is the admission baseline and S03-002 is the later GTOC-7 bundle-semantics re-entry. MIG-01 moves the reconciled papers before MIG-02 freezes conductor paths; MIG-02 then gates G17. These distinctions prevent false SAGA cycles.
+
+```mermaid
+graph TD
+    S00B["S00-001 baseline"] --> G10["G10 / S14-003"]
+    S14B["S14-001 authority boundary"] --> G10
+    S14C["S14-002 compatibility decision"] --> G10
+    G10 --> G11["G11 / S07-002"]
+    S06B["S06-001 receipt baseline"] --> G11
+    G11 --> G12["G12 / S14-004"]
+    G10 --> G12
+    G12 --> G13["G13 / S07-003"]
+    G13 --> G14["G14 / S07-004"]
+    G11 --> G14
+    G12 --> G15["G15 / S00-002"]
+    G13 --> G15
+    G14 --> G15
+    G15 --> G16["G16 / S07-005"]
+    G16 --> MIG1["MIG-01 / S07-006"]
+    S11B["S11-001 publication controls"] --> MIG1
+    MIG1 --> MIG2["MIG-02 / S08-002"]
+    S08B["S08-001 software profiles"] --> MIG2
+    S05B["S05-001 runtime"] --> MIG2
+    S14B --> MIG2
+    MIG2 --> G17["G17 / S12-002"]
+
+    S01B["S01-001 protocol baseline"] --> B1["GTOC-1 / S01-002"]
+    B1 --> B2["GTOC-2 / S01-003"]
+    B2 --> B3["GTOC-3 / S02-002"]
+    S02B["S02-001 operator baseline"] --> B3
+    B3 --> B4["GTOC-4 / S06-002"]
+    S06B --> B4
+    B4 --> B5["GTOC-5 / S14-005"]
+    G10 --> B5
+    B5 --> B6["GTOC-6 / S06-003"]
+    B4 --> B6
+    B6 --> B7["GTOC-7 / S03-002"]
+    S03B["S03-001 admission baseline"] --> B7
+    B7 --> B8["GTOC-8 / S06-004"]
+    B6 --> B8
+    B8 --> G17
+    S12B["S12-001 assurance"] --> G17
+```
+
+---
+
+## Global SAGA Document Template
+
+Every SAGA is itself governed by the protocol and contains every heading below. A realization may be `Structural` or `Unresolved`; authors must not invent exact maps.
+
+```text
+# SAGA-XX - Name
+Parent epic
+LifecycleStatus
+GtocTerminal
+AuthorityStatus
+AuthorityEffect
+Owner
+Created
+Last verified
+
+## Outcome
+## Carrier
+## Primitive Difference
+## ZeroRel
+## Cochain realization
+### C0
+### C1
+### C2
+### d0
+### d1
+### d1 o d0 witness
+## Q1
+## Phi1 before
+## Gamma2 risks
+## Observer
+## Witnesses and evidence ceiling
+## Licensed operators and lifts
+## Survivor routing
+## Terminal set
+## Scope
+## Explicit non-scope
+## Existing implementation and limitations
+## Dependencies
+## Sprint roster
+## SAGA exit criteria
+## Surviving obstructions
+## Prior work and import ledger
+```
+
+A noncompleted SAGA lists at least one concrete surviving obstruction.
+
+## Global Sprint Document Template
+
+Sprints are immutable sub-deformations of exactly one parent SAGA:
+
+```text
+# SPRINT SXX-NNN - Name
+Parent SAGA
+LifecycleStatus
+GtocTerminal
+AuthorityStatus
+AuthorityEffect
+Frozen base
+Packet hash
+Observer hash
+Attempt budget
+Repair budget
+Successor budget
+Time/process/token budgets
+
+## Sprint goal
+## Carrier
+## Primitive Difference
+## ZeroRel
+## Cochain realization
+### C0
+### C1
+### C2
+### d0
+### d1
+### d1 o d0 witness
+## Q1
+## Phi1 before
+## Gamma2 risks
+## Frozen observer
+## Witness plan and evidence ceiling
+## Licensed operators and lifts
+## Survivor routing
+## Story roster
+## Story dependency graph
+## Exact write surfaces
+## Deterministic verification
+## Terminal set
+## Exit criteria
+## Completion evidence
+## Retrospective
+## Prior work and import ledger
+```
+
+An unfrozen sprint is `PLANNED` or `BLOCKED`, never `ACTIVE`. `HEAD`, `TBD`, and an unbounded `Standard` budget are draft markers and are invalid after admission.
+
+---
+
+## Global Story Template
+
+Every story in a sprint file is complete only when it contains:
+
+```text
+### STORY SXX-NNN-YY - Title
+LifecycleStatus
+Dependencies
+
+#### Goal
+#### Primitive Difference
+#### Carrier and exact write surface
+#### Preconditions and dependencies
+#### Licensed operations
+#### Acceptance criteria
+#### Evidence receipts
+#### Survivor route
+#### Nonclaims
+```
+
+Story acceptance criteria must be observable and attributable to the exact diff. A story cannot claim sprint or SAGA completion; it may only contribute receipts to the parent sprint.
+
+---
+
+# Part IV: Program Milestones and Activation
+
+## Program Milestones
+
+| Milestone | Target SAGAs | Stable exit definition |
+|---|---|---|
+| M1: Canonical contract | SAGA-00, SAGA-01, SAGA-14, SAGA-15 | Hierarchy, protocol, state domains, G10 authority core, sprint schema, and authority firewall are machine checked. |
+| M2: Runtime foundation | SAGA-01 through SAGA-06, SAGA-14 | Runtime components, receipt-DAG verification, certificate-is-evidence enforcement, and GTOC-1..8 packets are terminalized without survivor loss or authority inflation. |
+| M3: Governed research closure | SAGA-00, SAGA-07, SAGA-14 | G11-G16 proof, categorical, consistency, and publication packets have complete receipts and honest survivors. |
+| M4: Repository migration closure | SAGA-05, SAGA-07, SAGA-08, SAGA-11, SAGA-14 | MIG-01 establishes one canonical GTOC paper tree; MIG-02 establishes one Rust conductor with canonical type and contract ownership. |
+| M5: Application convergence | SAGA-16 | Eleven legacy application lanes have current-base exact-runtime, ownership, residual, fault, and authority-firewall receipts. |
+| M6: Release closure | SAGA-12 | G17 produces reproducible bundles, index, status table, signatures, and a separate human seal decision after both migrations. |
+| M7: Activation pilot | SAGA-13 | Exact repair, stabilized survivor, refusal/oracle, and self-development safety pilots produce complete receipts, hostile-fault failures, and separate human decisions. |
+Milestone progress is recorded in dated status documents, not in this stable table.
+
+## Advisory and historical sources
+
+The following are advisory with `AuthorityEffect::None` and must be reverified before ticketing:
+
+- [research-program-survey.md](research-program-survey.md), observer base `af416c007`;
+- [research-program-improvements.md](research-program-improvements.md), derived from that survey;
+- [gtoc-canonicalization-remaining-work.md](gtoc-canonicalization-remaining-work.md), the advisory source ledger from which G10-G17 and GTOC-1..8 were compiled into canonical sprint ownership.
+
+Dated implementation snapshots live under `docs/status/`. Historical plans may explain provenance but cannot override this epic, its SAGA files, an admitted packet, or executable contracts.
+
+## Final Activation Criteria
+
+The Conductor is deemed production-ready and activated only when the final activation packet satisfies the following boundaries:
+1. **Verified Receipt DAG**: A complete, acyclic chain of receipts signed by the respective witness roles.
+2. **Deterministic Replay Record**: The Rust verifier (`SAGA-06`) reconstructs and verifies all state changes identically from the event logs.
+3. **Signed Policy Manifest**: SSH signature verification of the deployment config matches the authorized key list.
+4. **Explicit Human Promotion:** A separate human decision is registered after receipt-DAG and authority-witness verification.
+5. **Host-only mutation:** Lease, write, commit, successor, and promotion paths reject direct model or tool mutation.
+6. **Profile coverage:** Agent, manual, paper, sweep, Rust, Python, Lean, packet, and release profiles pass positive and hostile tests.
+7. **Authority firewall:** Certificate, verifier, status-mapper, sweep, test, compiler, gate, and model constructors cannot construct any authority-bearing effect, including legacy `CertifiedAuthority`/`Certified` forms or future `AuthorizedLocalResult`. They return evidence with `AuthorityEffect::None`; typed refusal may return only `AuthorityEffect::Refused`.
+8. **Fault closure:** Drift, cancellation, crash recovery, lease races, commit failures, and unavailable reviewers terminalize safely.
+9. **Pilot coverage:** Genuine runs cover exact repair, stabilized survivor, and refusal/oracle routing.
+10. **Goal-ledger closure:** G10-G17 and GTOC-1..8 each have a terminal receipt or a preserved named survivor at the exact activation base.
+11. **Bypass rejection:** Hooks, CI, and protected-branch policy reject missing packet and receipt bindings.
+12. **Repository location closure:** `omega_engine/research/published/900_gtoc/` is the sole GTOC paper tree and `omega_engine/crates/omega_engine_agents/conductor/` is the sole executable conductor.
+13. **Canonical type ownership:** The Rust conductor imports semantic math types from their owning math crates and contract/governance types from `omega_contracts/src`; a mechanized detector reports no shadow semantic type, duplicate terminal dialect, duplicate authority effect, or unregistered contract.
+14. **Application convergence:** All eleven SAGA-16 lanes have current-base exact-runtime, packet/source, residual, fault, and authority-witness receipts, or preserve a named typed survivor accepted by the activation packet. `OperatorNeeded` appears only as a survivor route, never as a `GtocTerminal`.
+15. **Self-development safety closure:** SAGA-10 and any Level 2 mechanism-tuning lane remain blocked until SAGA-14 authority constructors are evidence-only, SAGA-06 receipt-DAG verification is live for the lane, the safety/corrigibility closure is invoked by the conductor, conserved paths are fail-closed at admission, halt routing is unified or receipt-bridged, and the signed manifest pins all of those surfaces.
+
+Until all criteria are recorded at one exact base, the planning corpus remains `OpenObstruction` with `AuthorityEffect::None`.
+
+---
+
+## Final Nonclaim
+
+Before explicit human promotion, every passing conductor run remains non-authoritative and carries `AuthorityEffect::None`. After a verified receipt DAG, an authority-witness attestation, and explicit human promotion, the host may record an `AuthorizedLocalResult` scoped only to the frozen carrier, observer, evidence ceiling, and terminal receipt. No such result establishes global GTOC/GTLA truth or authority outside that finite scope.

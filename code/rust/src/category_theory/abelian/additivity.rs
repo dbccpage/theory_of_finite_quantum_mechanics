@@ -5,7 +5,7 @@
 //! enrichment over Ab or of biproduct existence.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for an additive-category claim.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
