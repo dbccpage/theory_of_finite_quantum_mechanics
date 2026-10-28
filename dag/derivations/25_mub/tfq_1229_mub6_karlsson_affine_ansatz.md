@@ -39,7 +39,7 @@ The Lean docstring itself says no equivalence to the full Karlsson family is sup
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.Karlsson.three_parameter_moduli_orbit (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/hadamard/karlsson_moduli.py::sample_karlsson_orbit (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_hadamard::karlsson_moduli_orbit_sampler (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_hadamard::karlsson_moduli_orbit_sampler (external engine crate, not in this checkout)`
 
 ---
 

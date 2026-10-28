@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-spin_structure_obstruction.rs lifts a flat rational rotation transport on a declared finite 2-complex to SU(2) matrices, using omega_lie_theory::su2_matrix::matrix_spin_lift. A face is marked obstructed when the lifted holonomy is -I rather than I. Flat lifts are the sign patterns whose traversal parities match those obstruction bits, which the file describes as the cellular form of a vanishing second Stiefel-Whitney class on that declared complex only. This is a spin-structure control. It is not the lattice Dirac kernel, not a color fermion measure, and not a QCD composite.
+spin_structure_obstruction.rs lifts a flat rational rotation transport on a declared finite 2-complex to SU(2) matrices, using tfqm_lie_theory::su2_matrix::matrix_spin_lift. A face is marked obstructed when the lifted holonomy is -I rather than I. Flat lifts are the sign patterns whose traversal parities match those obstruction bits, which the file describes as the cellular form of a vanishing second Stiefel-Whitney class on that declared complex only. This is a spin-structure control. It is not the lattice Dirac kernel, not a color fermion measure, and not a QCD composite.
 
 ### Governing Obligation
 Keep the spin lift on declared flat complexes and off the Dirac and color controls.

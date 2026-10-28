@@ -16,7 +16,7 @@ Fix an existing pair of terms, one relation and every other field of a
 validated raw Source-25 state. Let the chosen assertion's multiplicity be
 $n\in\mathbb N$. The
 [preserved seed](../../finite_obstruction_calculus/genesis_ongoing/prompt/twentyfifth/seed_prompt.md)
-and the [native executor](../../../../../omega_engine/crates_rs/omega_wdp/src/genesis_source_execution.rs)
+and the native executor (`external:sha256:e91d9ac87959e852be0e2289bc376b3da967b04c1faa67add917de6982b1fcf1`)
 give the following slice:
 
 $$a:n\mapsto n+1,\qquad b:n+1\mapsto n,$$
@@ -97,10 +97,10 @@ but their legal removal successors $r-1,r$ have different $q_r$ reports.
 Consequently this is a depth-indexed family of exact observers, not a single
 finite congruence for unrestricted native continuation.
 
-The reusable [category owner](../../../../../omega_engine/crates_rs/omega_category_theory/src/bounded_counter.rs)
+The reusable category owner (`external:sha256:4ce20eb1baefc887c27ff5cfcb6a3ebe9f25396d7d004d5e84911c0f710648bf`)
 implements clips, transitions and distinguishing removal lengths without
 allocating raw count-sized data. It handles `usize::MAX` without increment
-overflow. The [Source-25 adapter](../../../../../omega_engine/crates_rs/omega_wdp/src/genesis_guard_report.rs)
+overflow. The Source-25 adapter (`external:sha256:03b97847503df7fbccce815badb3266301fd6cdd0ec45b7ff2991469d1841626`)
 reads validated arbitrary-precision native counts, clips before any machine
 conversion, and accepts only the chosen cell's add/remove events.
 
@@ -231,10 +231,10 @@ use fewer). The finite cardinal consequences use the written pigeonhole
 argument; there is no full Source-25 interpreter equivalence proof, formal
 inverse-limit classification or formal category-algebra reconstruction here.
 
-The [category tests](../../../../../omega_engine/crates_rs/tests/omega_category_theory/bounded_counter.rs)
+The category tests (`external:sha256:7bf40c13bdb807f1dae2bbf5a95a73001c19376d2db34f7710c57dfd53247bcb`)
 check all words through depth eight, exact behavior partitions, the canonical
 Moore quotient, composition, boundary distinctions and machine-integer limits.
-The [native tests](../../../../../omega_engine/crates_rs/tests/omega_wdp/native_history_guard.rs)
+The native tests (`external:unlocated`)
 check every cell of one-to-three-term marked states for both relations, counts
 $0,1,3,2^{140}$ and all words through depth five. They compare complete raw
 state updates along allowed prefixes and test the refusal, 100-attempt,
@@ -251,9 +251,9 @@ not a universal source-language correctness claim.
 python external:sha256:600e9d208322d95ecad83b16287081831d86880eaee21137029a225ead43ebbe --check
 cd lean4
 lake build +NativeHistoryGuard
-cd ../omega_engine/crates_rs
-cargo test -j 1 --offline --locked -p omega_category_theory --test bounded_counter
-cargo test -j 1 --offline --locked -p omega_wdp --test native_history_guard
+cd external:git-tree:ac1f6d647c3ecc2bf45f6fc4922213ac752e71a3
+cargo test -j 1 --offline --locked -p tfqm_category_theory --test bounded_counter
+cargo test -j 1 --offline --locked -p tfqm_wdp --test native_history_guard
 ```
 
 Use the configured shared Cargo target in a worktree. The

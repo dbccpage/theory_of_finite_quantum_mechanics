@@ -81,7 +81,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md`
 
 - file: [dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md](../../../dag/derivations/26_fsp/tfq_1213_fsp_discrete_wdw_constraint.md)
-- sha256 (`lf-normalised`): `a86eaa84acad592fbc51583418d7dad4805710e7866c1391c789b8675b67038f`
+- sha256 (`lf-normalised`): `f1bfeb65dbc5d7972da9f4127a354abba5867e23164b5178b2e86dc196e3445f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1213
 - counts toward the grade: no

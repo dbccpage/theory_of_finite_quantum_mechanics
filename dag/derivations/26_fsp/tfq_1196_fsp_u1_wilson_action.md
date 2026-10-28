@@ -55,7 +55,7 @@ Cited NonAbelianGaugeSigns.lean::u1_plaquette_gauge_invariance does not exist. r
 
 ### Cited by the source, not in this checkout
 - `external:external:unlocated::test_plaquette_holonomy (cited by the source, not in this checkout)`
-- `external:omega_holonomy::strict_zero_float::lattice_u1_gauge_action (cited by the source, not in this checkout)`
+- `external:tfqm_holonomy::strict_zero_float::lattice_u1_gauge_action (cited by the source, not in this checkout)`
 
 ---
 

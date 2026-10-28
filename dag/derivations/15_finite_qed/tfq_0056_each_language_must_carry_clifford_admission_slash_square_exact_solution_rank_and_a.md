@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-dirac_gamma_admission.rs admits a declared family of square gamma matrices over Q(i) with a diagonal metric of entries +1 or -1. CliffordFamily::admit checks every anticommutator against 2 eta I and names the first failing pair. dirac and weyl are the signature (+,-,-,-) families built from the Pauli matrices in omega_lie_theory. slash(p) squares to (p·p) I. solution_dimension is N minus the exact rank of slash(p) - m I. has_dirac_adjoint checks gamma^0 (gamma^mu)* gamma^0 = gamma^mu separately: the anticommutators do not imply that adjoint. Momenta, masses and spin-element parameters stay rational and declared.
+dirac_gamma_admission.rs admits a declared family of square gamma matrices over Q(i) with a diagonal metric of entries +1 or -1. CliffordFamily::admit checks every anticommutator against 2 eta I and names the first failing pair. dirac and weyl are the signature (+,-,-,-) families built from the Pauli matrices in tfqm_lie_theory. slash(p) squares to (p·p) I. solution_dimension is N minus the exact rank of slash(p) - m I. has_dirac_adjoint checks gamma^0 (gamma^mu)* gamma^0 = gamma^mu separately: the anticommutators do not imply that adjoint. Momenta, masses and spin-element parameters stay rational and declared.
 
 ### Governing Obligation
 Each language must carry: Clifford admission, slash-square, exact solution rank, and a separate Dirac-adjoint check that anticommutators do not imply.

@@ -44,7 +44,7 @@ Cited FibonacciAnyonBraiding.lean::fibonacci_anyon_fusion_pentagon_solution does
 - *none*
 
 ### Cited by the source, not in this checkout
-- `external:omega_majorana::multiqubit_braid::fibonacci_braiding_unitary (cited by the source, not in this checkout)`
+- `external:tfqm_majorana::multiqubit_braid::fibonacci_braiding_unitary (cited by the source, not in this checkout)`
 
 ---
 

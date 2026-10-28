@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md`
 
 - file: [dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md](../../../dag/derivations/26_fsp/tfq_1208_fsp_laughlin_exchange_phase.md)
-- sha256 (`lf-normalised`): `ecae176aa524aebbf3475709a0d8b48db3f68724a8ccf4407c295cd45de6691b`
+- sha256 (`lf-normalised`): `5c7e54dd6e3ea570a4c2a7c93f4649a83bf700ff46c3d2cf89972c1920864eed`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1208
 - counts toward the grade: no

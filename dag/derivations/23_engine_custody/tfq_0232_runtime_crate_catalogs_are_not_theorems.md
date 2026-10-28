@@ -41,7 +41,7 @@ In accordance with strict constructive principles:
 
 ## 5. Audit Trail & Primary Source Lineage
 
-- **Atlas Lineage**: `F003.S001`, `F003.S001:000_omega_prompt_civilization`, `F003.S001:001_omega_oewas`, `F003.S001:002_omega_operad_theory`, `F003.S001:003_omega_symbol_game_host`, `F003.S000`
+- **Atlas Lineage**: `F003.S001`, `F003.S001:000_prompt_civilization`, `F003.S001:001_oewas`, `F003.S001:002_operad_theory`, `F003.S001:003_symbol_host`, `F003.S000`
 - **Primary Source Paths**:
   - `external:git-tree:226cd319cca5577d94c5b3df4f7b355edfab0e70`
   - `external:git-tree:eaedced51dbe0c7d75ab18013e4bd91975e43568`

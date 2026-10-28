@@ -43,7 +43,7 @@ operation_candidates:
   line: 59
   signature_excerpt: 'def refineReport {A O T : Type} (q : A → O) (t : A → T) (a : A)'
   source: atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean
-  repository: the_symbol_game
+  repository: external
   source_sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
   status: source_candidate_requires_semantic_review
 relation_candidates:
@@ -53,7 +53,7 @@ relation_candidates:
   signature_excerpt: "theorem refine_separates {A O T : Type} (q : A → O) (t : A → T)\n    (a b : A) (different\
     \ : t a ≠ t b) : refineReport q t a ≠ refineReport q t b"
   source: atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean
-  repository: the_symbol_game
+  repository: external
   source_sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
@@ -64,7 +64,7 @@ relation_candidates:
   signature_excerpt: "theorem supplied_tag_separates {A O : Type} (q : A → O) (t : A → Fin 2)\n    (a\
     \ b : A) (ht : t a ≠ t b) :\n    (q a, t a) ≠ (q b, t b) ∧ (q a, t a).1 = q a ∧ (q b, t b).1 = q b"
   source: atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean
-  repository: the_symbol_game
+  repository: external
   source_sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
@@ -91,7 +91,7 @@ source_bindings:
   availability: external
   symbol: refine_separates
   path: atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/lean4/Paper.lean
-  repository: the_symbol_game
+  repository: external
   sha256: b0f6365df8b146d3b8e798b7f2c21dd59ca5f60a37cde258942f6ace9d3ff8e7
   declaration_status: declaration_found_not_proof_checked
   line: 64
@@ -100,7 +100,7 @@ source_bindings:
   availability: external
   symbol: supplied_tag_separates
   path: atlas/papers/finite_obstruction_calculus/symmetric_groups_and_minimal_symbol_systems/lean4/Paper001.lean
-  repository: the_symbol_game
+  repository: external
   sha256: b90693440dd9596e12bdd2eeb424bb4d3709bca64b7e2a560e553432cf36b092
   declaration_status: declaration_found_not_proof_checked
   line: 96
@@ -118,7 +118,7 @@ source_bindings:
   availability: external
   symbol: verify_tranche5_full_dag_177_node_coverage_witness
   path: external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4
-  repository: the_symbol_game
+  repository: external
   sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
   declaration_status: declaration_found_not_executed
   line: 768
@@ -127,7 +127,7 @@ source_bindings:
   availability: external
   symbol: verify_tranche12_pg_l1_fq_gp_second_witness_certificates_witness
   path: external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4
-  repository: the_symbol_game
+  repository: external
   sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
   declaration_status: declaration_found_not_executed
   line: 1280
@@ -136,7 +136,7 @@ source_bindings:
   availability: external
   symbol: verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness
   path: external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4
-  repository: the_symbol_game
+  repository: external
   sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
   declaration_status: declaration_found_not_executed
   line: 1415
@@ -163,7 +163,7 @@ presentation:
   generators:
   - id: refine_report
     source_declarations:
-    - the_symbol_game Paper.lean::refineReport (line 59) - a definition (general in A O T)
+    - the external repository Paper.lean::refineReport (line 59) - a definition (general in A O T)
     ordered_inputs:
     - Report
     - Tag
@@ -211,7 +211,7 @@ presentation:
     latest_host_check: dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p2/host_check.json
   - id: project_old_report
     source_declarations:
-    - the_symbol_game Paper.lean::refine_preserves (line 61) - general theorem, proved by rfl
+    - the external repository Paper.lean::refine_preserves (line 61) - general theorem, proved by rfl
     ordered_inputs:
     - RefinedReport
     output: Report
@@ -258,7 +258,7 @@ presentation:
     latest_host_check: dag/results/PG-REFINE-SEPARATES/runs/20261021T175809Z_staged/p2/host_check.json
   - id: proper_tag_test
     source_declarations:
-    - the_symbol_game Paper001.lean::supplied_tag_separates (line 96) - general in A O but the tag is
+    - the external repository Paper001.lean::supplied_tag_separates (line 96) - general in A O but the tag is
       Fin 2 and the statement concerns ONE pair; the conflict-graph reading is prose only (paper.md section
       9)
     ordered_inputs:
@@ -406,7 +406,7 @@ presentation:
   relations:
   - id: refine_retains_old_report
     source_declarations:
-    - 'the_symbol_game Paper.lean::refine_preserves (line 61): general'
+    - 'external repository, Paper.lean::refine_preserves (line 61): general'
     equation_or_predicate: fst o refine q t = q
     typing_conditions: A O T arbitrary types
     evidence_status: Accepted actual P2 and P4 controls; only the literal named Lean signatures are kernel
@@ -461,7 +461,7 @@ presentation:
     - RefineSeparates.refine_separates_many
   - id: tag_difference_separates_pair
     source_declarations:
-    - 'the_symbol_game Paper.lean::refine_separates (line 64), Paper001.lean::supplied_tag_separates (line
+    - 'external repository, Paper.lean::refine_separates (line 64), Paper001.lean::supplied_tag_separates (line
       96): general / Fin 2 tag'
     equation_or_predicate: t a != t b implies refine q t a != refine q t b
     typing_conditions: any tag type T
@@ -635,7 +635,7 @@ presentation:
     named_Lean_scope: *id001
   - id: odd_closed_walk_refuses_one_bit
     source_declarations:
-    - 'the_symbol_game Paper.lean::triangle_not_two_colored (line 69): a FIXED instance (three Bool values),
+    - 'external repository, Paper.lean::triangle_not_two_colored (line 69): a FIXED instance (three Bool values),
       not the general statement'
     equation_or_predicate: odd closed walk in C implies no Bool tag is proper
     typing_conditions: any C, any closed walk of odd length
@@ -1068,7 +1068,7 @@ operad_slots:
     algebraic_relations:
     - id: refine_retains_old_report
       source_declarations:
-      - 'the_symbol_game Paper.lean::refine_preserves (line 61): general'
+      - 'external repository, Paper.lean::refine_preserves (line 61): general'
       equation_or_predicate: fst o refine q t = q
       typing_conditions: A O T arbitrary types
       evidence_status: Kernel theorem refine_retains
@@ -1106,7 +1106,7 @@ operad_slots:
         sha256: 290ddd9127a9b1b764c163fcaeed19e9ccbbfd050b971cd23877a15896bc0cb6
     - id: tag_difference_separates_pair
       source_declarations:
-      - 'the_symbol_game Paper.lean::refine_separates (line 64), Paper001.lean::supplied_tag_separates
+      - 'external repository, Paper.lean::refine_separates (line 64), Paper001.lean::supplied_tag_separates
         (line 96): general / Fin 2 tag'
       equation_or_predicate: t a != t b implies refine q t a != refine q t b
       typing_conditions: any tag type T
@@ -1263,7 +1263,7 @@ operad_slots:
         sha256: 290ddd9127a9b1b764c163fcaeed19e9ccbbfd050b971cd23877a15896bc0cb6
     - id: odd_closed_walk_refuses_one_bit
       source_declarations:
-      - 'the_symbol_game Paper.lean::triangle_not_two_colored (line 69): a FIXED instance (three Bool
+      - 'external repository, Paper.lean::triangle_not_two_colored (line 69): a FIXED instance (three Bool
         values), not the general statement'
       equation_or_predicate: odd closed walk in C implies no Bool tag is proper
       typing_conditions: any C, any closed walk of odd length

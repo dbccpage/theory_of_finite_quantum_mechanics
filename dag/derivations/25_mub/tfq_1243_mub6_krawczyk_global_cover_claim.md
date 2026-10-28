@@ -42,7 +42,7 @@ Sound exclusion criteria exist (MUB6-C25) but no successful quartet-domain check
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.Krawczyk.interval_newton_slice_rigor (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/conjecture2/krawczyk_slices.py::run_krawczyk_interval_test (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_conjecture2::krawczyk_interval_operator (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_conjecture2::krawczyk_interval_operator (external engine crate, not in this checkout)`
 
 ---
 

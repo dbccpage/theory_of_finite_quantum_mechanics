@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Sibling crates outside omega_quantum_physics stay controls and libraries, not completed derivations, and the surveyed headers keep AuthorityEffect None. Roots read are lib.rs in omega_mub, omega_majorana, omega_holonomy, omega_finite_probability, omega_measurement, omega_lifts, omega_lie_theory, omega_homology, omega_fusion_categories, and the finite-shadow face of omega_general_relativity. lean4/quantum_mechanics is entered by file name and fifteen headers, not by a rebuilt Lake run. The obligation is to hang the later nodes on FINITE_QM_CORE without treating a crate inventory as a derivation terminal.
+Sibling crates outside quantum_physics stay controls and libraries, not completed derivations, and the surveyed headers keep AuthorityEffect None. Roots read are lib.rs in tfqm_mub, tfqm_majorana, tfqm_holonomy, tfqm_finite_probability, measurement, lifts, tfqm_lie_theory, homology, tfqm_fusion_categories, and the finite-shadow face of tfqm_general_relativity. lean4/quantum_mechanics is entered by file name and fifteen headers, not by a rebuilt Lake run. The obligation is to hang the later nodes on FINITE_QM_CORE without treating a crate inventory as a derivation terminal.
 
 ### Governing Obligation
 Record these sibling crates as controls under AuthorityEffect None, not as completed derivations.
@@ -49,8 +49,8 @@ In accordance with strict constructive principles:
 
 - [TFQ-0167](tfq_0167_admit_only_exact_nonnegative_rational_masses_that_sum_to_one_with_no.md)
 - [TFQ-0172](tfq_0172_compute_discrete_gauge_holonomy_as_exact_ordered_products_on_a_finite_cell.md)
-- [TFQ-0176](tfq_0176_treat_omega_mub_as_reconstruction_bookkeeping_not_as_the_owner_of_a_completed.md)
-- [TFQ-0181](tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md)
+- [TFQ-0176](tfq_0176_treat_tfqm_mub_as_reconstruction_bookkeeping_not_as_the_owner_of_a_completed.md)
+- [TFQ-0181](tfq_0181_keep_tfqm_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md)
 - [TFQ-0185](tfq_0185_record_the_k_2_3_finite_certificate_as_the_pair_6_and_9_2_with.md)
 - [TFQ-0187](tfq_0187_keep_lift_licences_as_descent_paired_obstruction_metadata_not_as_a_hilbert_derivation.md)
 - [TFQ-0189](tfq_0189_keep_exact_rational_measurement_evidence_distinct_and_free_of_float_authority.md)

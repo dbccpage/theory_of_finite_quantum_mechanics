@@ -42,7 +42,7 @@ In accordance with strict constructive principles:
 
 ## 5. Audit Trail & Primary Source Lineage
 
-- **Atlas Lineage**: `F003.S001`, `F003.S000:000_omega_engine_prime_algorithms_and_runtime`, `F001.S000`
+- **Atlas Lineage**: `F003.S001`, `F003.S000:000_prime_algorithms_and_runtime`, `F001.S000`
 - **Primary Source Paths**:
   - `external:git-tree:226cd319cca5577d94c5b3df4f7b355edfab0e70`
   - `external:git-tree:e03ce30c258cf9ca164637ea387b5267bad58df9`

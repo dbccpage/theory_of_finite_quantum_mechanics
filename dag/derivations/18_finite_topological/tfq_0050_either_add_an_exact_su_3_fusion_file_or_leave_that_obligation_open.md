@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-catalog.rs pins exact ribbon data for Ising, Fibonacci, semion, pointed braided categories, the toric code as D(Z_2), a three-fermion model, and quantum doubles D(Z_n). A coefficient field that lacks the needed root of unity is FusionError::FieldTooSmall, not an approximation. su2_level.rs is the SU(2) family in a Racah gauge. The file su3_level.rs is absent from omega_fusion_categories/src, so there is no fusion-category obligation already discharged for SU(3)_k. The catalog does not assert a material host. This absence is an open obligation, not a negative theorem about fusion categories.
+catalog.rs pins exact ribbon data for Ising, Fibonacci, semion, pointed braided categories, the toric code as D(Z_2), a three-fermion model, and quantum doubles D(Z_n). A coefficient field that lacks the needed root of unity is FusionError::FieldTooSmall, not an approximation. su2_level.rs is the SU(2) family in a Racah gauge. The file su3_level.rs is absent from tfqm_fusion_categories/src, so there is no fusion-category obligation already discharged for SU(3)_k. The catalog does not assert a material host. This absence is an open obligation, not a negative theorem about fusion categories.
 
 ### Governing Obligation
 Either add an exact SU(3) fusion file or leave that obligation open.

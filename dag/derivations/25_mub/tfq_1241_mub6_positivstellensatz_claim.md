@@ -42,7 +42,7 @@ lean4/MasterClassification.lean::singular_segre_stengle_identity is an identity 
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.Positivstellensatz.exact_dual_certificate (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/sos/positivstellensatz.py::construct_psatz_certificate (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_solvers::sos::exact_rational_positivstellensatz (omega_engine crate, not in this checkout)`
+- `external:rust solvers::sos::exact_rational_positivstellensatz (external engine crate, not in this checkout)`
 
 ---
 

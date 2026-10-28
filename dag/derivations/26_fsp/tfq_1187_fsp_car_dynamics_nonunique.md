@@ -43,7 +43,7 @@ Cited FermionSignCore.lean::car_hamiltonian_non_uniqueness does not exist. The a
 - `code/python/src/fsp/fermionic_hamiltonian.py::DiscreteFermionicHamiltonian`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::quantum_hamiltonian::car_non_uniqueness_proof (cited by the source, not in this checkout)`
+- `external:quantum_physics::quantum_hamiltonian::car_non_uniqueness_proof (cited by the source, not in this checkout)`
 
 ---
 

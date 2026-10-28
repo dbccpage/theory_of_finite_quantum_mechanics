@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md`
 
 - file: [dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md](../../../dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md)
-- sha256 (`lf-normalised`): `1adecad528c06c237cfbbf8424833baeb28ddcfb5abc3ac0563600e26ca2ec6b`
+- sha256 (`lf-normalised`): `f8be4d70b4190b4f1a6cce09cca6a4eae9d09ededed3983dc2d17ed1d24f9a0d`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1219
 - counts toward the grade: no

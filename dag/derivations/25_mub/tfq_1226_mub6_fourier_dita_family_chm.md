@@ -39,7 +39,7 @@ IsCH6 H is EntrywiseUnit H and H * H^* = 6 . 1 (ConcreteSemantics.lean:26); the 
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.FourierF6.discrete_fourier_defect_d6 (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/hadamard/fourier_f6.py::analyze_f6_defect (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_hadamard::fourier_matrix_f6_properties (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_hadamard::fourier_matrix_f6_properties (external engine crate, not in this checkout)`
 
 ---
 

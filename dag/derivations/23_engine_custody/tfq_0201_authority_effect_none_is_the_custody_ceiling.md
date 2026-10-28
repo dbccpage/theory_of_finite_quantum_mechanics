@@ -2,7 +2,7 @@
 
 > **Stage**: `ENGINE_CUSTODY` | **Status**: `SOURCE_RECORD`  
 > **UUID**: `4f872dc2-416f-596c-b5da-3ec66259cf00`  
-> **Parent Derivation**: [TFQ-0200](tfq_0200_three_language_custody_on_the_omega_engine_runtime.md)
+> **Parent Derivation**: [TFQ-0200](tfq_0200_three_language_custody_on_the_engine_runtime.md)
 
 ---
 
@@ -46,7 +46,7 @@ In accordance with strict constructive principles:
 
 ## 5. Audit Trail & Primary Source Lineage
 
-- **Atlas Lineage**: `F003.S000`, `F003.S000:000_omega_engine_prime_algorithms_and_runtime`
+- **Atlas Lineage**: `F003.S000`, `F003.S000:000_prime_algorithms_and_runtime`
 - **Primary Source Paths**:
   - `external:git-tree:5d358f5062016c742016b891fa7891bb0f0e19ef`
   - `external:git-tree:e03ce30c258cf9ca164637ea387b5267bad58df9`

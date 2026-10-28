@@ -2,7 +2,7 @@
 
 > **Stage**: `IMPLEMENTATION_SIBLING` | **Status**: `OPEN_OBLIGATION`  
 > **UUID**: `0511d25b-6430-5ce5-bb5e-3bcde17cf8e7`  
-> **Parent Derivation**: [TFQ-0181](tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md)
+> **Parent Derivation**: [TFQ-0181](tfq_0181_keep_tfqm_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md)
 
 ---
 

@@ -41,7 +41,7 @@ Cardinality computations by simp and decide.
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.Residuals.one_hundred_eighty_constraints (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/algebraic_variety/residuals_180.py::evaluate_180_residuals (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_polynomials::ConcreteMubPolynomials::compute_180_residuals (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_polynomials::ConcreteMubPolynomials::compute_180_residuals (external engine crate, not in this checkout)`
 
 ---
 

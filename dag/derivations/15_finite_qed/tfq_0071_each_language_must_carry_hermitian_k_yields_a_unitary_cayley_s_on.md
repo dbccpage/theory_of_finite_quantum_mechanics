@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-s_matrix.rs builds an exact finite scattering matrix over Q(i) at a declared energy. from_k takes a Hermitian reaction matrix and returns S = (I + i K)(I - i K)^(-1), then replays unitarity with the shared exact linear algebra. from_unitary refuses a matrix that is not unitary. Non-Hermitian K is refused. Carrier dimension above MAX_SCATTERING_CHANNELS = 128 is refused. transition_operator returns T = (S - I)/(2 i). The file header says this is finite channel scattering at a declared energy, not an asymptotic continuum scattering construction. Modular S-data are left to omega_fusion_categories.
+s_matrix.rs builds an exact finite scattering matrix over Q(i) at a declared energy. from_k takes a Hermitian reaction matrix and returns S = (I + i K)(I - i K)^(-1), then replays unitarity with the shared exact linear algebra. from_unitary refuses a matrix that is not unitary. Non-Hermitian K is refused. Carrier dimension above MAX_SCATTERING_CHANNELS = 128 is refused. transition_operator returns T = (S - I)/(2 i). The file header says this is finite channel scattering at a declared energy, not an asymptotic continuum scattering construction. Modular S-data are left to tfqm_fusion_categories.
 
 ### Governing Obligation
 Each language must carry: Hermitian K yields a unitary Cayley S on at most 128 channels, T = (S-I)/(2i), and the construction is not an asymptotic continuum scattering operator.

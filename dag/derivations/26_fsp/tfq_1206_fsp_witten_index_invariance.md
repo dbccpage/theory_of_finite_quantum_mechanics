@@ -41,7 +41,7 @@ Cited NonAbelianGaugeSigns.lean::witten_index_beta_independence does not exist. 
 - `checks/independent/fsp-witten-index-invariance.py`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::quantum_state::witten_index_invariance (cited by the source, not in this checkout)`
+- `external:quantum_physics::quantum_state::witten_index_invariance (cited by the source, not in this checkout)`
 
 ---
 

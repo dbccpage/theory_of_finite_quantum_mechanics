@@ -46,7 +46,7 @@ Cited FrustratedSpectrumObstruction.lean::representation_dependent_sign_solvabil
 - `code/python/src/fsp/hamiltonian_gin_bridge.py::index_hamiltonian_paths`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::quantum_hamiltonian::frustrated_triangle_exact_diagonalization (cited by the source, not in this checkout)`
+- `external:quantum_physics::quantum_hamiltonian::frustrated_triangle_exact_diagonalization (cited by the source, not in this checkout)`
 
 ---
 

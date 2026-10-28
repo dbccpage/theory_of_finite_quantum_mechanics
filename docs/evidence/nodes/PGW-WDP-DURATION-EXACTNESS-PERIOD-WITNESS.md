@@ -92,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0551_wdp_duration_exactness_period_witness.md`
 
 - file: [dag/derivations/06_wdp/tfq_0551_wdp_duration_exactness_period_witness.md](../../../dag/derivations/06_wdp/tfq_0551_wdp_duration_exactness_period_witness.md)
-- sha256 (`lf-normalised`): `450eb7726a9a0812e78bf782e94fc10767c6766a29863023b02a9c4751e5304c`
+- sha256 (`lf-normalised`): `7b5f814d37644badd0fc79bf6cdc96ad62b42da26c16a3a93da9208e2666f9d8`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0551
 - counts toward the grade: no
@@ -105,7 +105,7 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0551 rust: no omega_wdp Rust binding of the duration gauge or the four exactness statuses
+- TFQ-0551 rust: no tfqm_wdp Rust binding of the duration gauge or the four exactness statuses
 
 ## Routes
 

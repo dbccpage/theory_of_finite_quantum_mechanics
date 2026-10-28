@@ -4,7 +4,7 @@
   "stages": [
     "OBSERVER_PRESHEAF"
   ],
-  "segment_note": "FOC-035 observer presheaf added 2026-10-22. One stage, OBSERVER_PRESHEAF, maps the 40 rows of the claim ledger of FOC-035 (copied byte for byte under sources/atlas/) to 33 nodes at the status the evidence supports in this repository. PROVED_LEAN is used only for the narrowed statements of lean4/LggrFiniteResults.lean. COMPUTATIONALLY_CHECKED is used where checks/independent/foc035_observer_presheaf.py or an imported Python test recomputes the instance values here; rows whose computing test is a Rust test stay CONDITIONAL, because the Rust module needs the external omega_solvers crate and its tests are not run here. Cited results are IMPORTED_ASSUMPTION, with external identifiers checked against the arXiv and Crossref records. WDP chapters 14 and 15 have no node in this graph, so links into them are GAP_NO_DERIVATION. Negative-evidence rows are REFUTED, except PR 1050, which is a SOURCE_RECORD.",
+  "segment_note": "FOC-035 observer presheaf added 2026-10-22. One stage, OBSERVER_PRESHEAF, maps the 40 rows of the claim ledger of FOC-035 (copied byte for byte under sources/atlas/) to 33 nodes at the status the evidence supports in this repository. PROVED_LEAN is used only for the narrowed statements of lean4/LggrFiniteResults.lean. COMPUTATIONALLY_CHECKED is used where checks/independent/foc035_observer_presheaf.py or an imported Python test recomputes the instance values here; rows whose computing test is a Rust test stay CONDITIONAL, because the Rust module needs the external solvers crate and its tests are not run here. Cited results are IMPORTED_ASSUMPTION, with external identifiers checked against the arXiv and Crossref records. WDP chapters 14 and 15 have no node in this graph, so links into them are GAP_NO_DERIVATION. Negative-evidence rows are REFUTED, except PR 1050, which is a SOURCE_RECORD.",
   "citations": {
     "abramsky2011": {
       "ref": "external:arXiv:1102.0264",
@@ -571,7 +571,7 @@
         "code/rust/src/sheaf_theory/empirical_presheaf/observer.rs::evaluate_l1_claim"
       ],
       "imported_structure": [],
-      "bottleneck": "The computing tests are Rust tests of the source repository. The in-repo copy of the module (code/rust/src/sheaf_theory/empirical_presheaf) uses omega_solvers, an external crate that is not a member of the code/rust workspace (cargo metadata --no-deps lists no such package), and the source test file was not imported. These tests are not run here. Outside this slice: a defect receipt, Unicode whitespace other than one space, the terminal token, the typed profile, and any kernel label other than the one Bell label. The Python gate on node OPS-THREE-ROLE-GATE checks its own observer field and is not this classifier.",
+      "bottleneck": "The computing tests are Rust tests of the source repository. The in-repo copy of the module (code/rust/src/sheaf_theory/empirical_presheaf) uses solvers, an external crate that is not a member of the code/rust workspace (cargo metadata --no-deps lists no such package), and the source test file was not imported. These tests are not run here. Outside this slice: a defect receipt, Unicode whitespace other than one space, the terminal token, the typed profile, and any kernel label other than the one Bell label. The Python gate on node OPS-THREE-ROLE-GATE checks its own observer field and is not this classifier.",
       "tags": [
         "foc035-observer-presheaf",
         "TFQ-2518",
@@ -625,7 +625,7 @@
         "code/rust/src/sheaf_theory/empirical_presheaf/lp.rs::verify_l1_defect_receipt"
       ],
       "imported_structure": [],
-      "bottleneck": "The Lean statement is the narrowed ceiling arithmetic above. The Rust receipt replay, tamper rejection, shape check, zero-gap dual certificate, PR box, noisy boxes, and the functions verify_noncontextual_fraction and verify_l1_defect_receipt are not run here. The in-repo module uses omega_solvers, an external crate that is not a workspace member.",
+      "bottleneck": "The Lean statement is the narrowed ceiling arithmetic above. The Rust receipt replay, tamper rejection, shape check, zero-gap dual certificate, PR box, noisy boxes, and the functions verify_noncontextual_fraction and verify_l1_defect_receipt are not run here. The in-repo module uses solvers, an external crate that is not a workspace member.",
       "tags": [
         "foc035-observer-presheaf",
         "TFQ-2519",
@@ -1892,7 +1892,7 @@
       "lean4": [],
       "local_id": "OPS-OBSERVER-DECLARATION-REFUSAL",
       "name": "Refusal of an undeclared or unsupported observer component",
-      "obligation": "The computing tests are Rust tests of the source repository. The in-repo copy of the module (code/rust/src/sheaf_theory/empirical_presheaf) uses omega_solvers, an external crate that is not a member of the code/rust workspace (cargo metadata --no-deps lists no such package), and the source test file was not imported. These tests are not run here. Outside this slice: a defect receipt, Unicode whitespace other than one space, the terminal token, the typed profile, and any kernel label other than the one Bell label. The Python gate on node OPS-THREE-ROLE-GATE checks its own observer field and is not this classifier.",
+      "obligation": "The computing tests are Rust tests of the source repository. The in-repo copy of the module (code/rust/src/sheaf_theory/empirical_presheaf) uses solvers, an external crate that is not a member of the code/rust workspace (cargo metadata --no-deps lists no such package), and the source test file was not imported. These tests are not run here. Outside this slice: a defect receipt, Unicode whitespace other than one space, the terminal token, the typed profile, and any kernel label other than the one Bell label. The Python gate on node OPS-THREE-ROLE-GATE checks its own observer field and is not this classifier.",
       "parent_id": "TFQ-2500",
       "python": [],
       "record_status": "CONDITIONAL",
@@ -1930,7 +1930,7 @@
       ],
       "local_id": "OPS-RUST-RECEIPTS-AND-LIMITS",
       "name": "Receipt replay, tamper rejection and size ceilings of the Rust module",
-      "obligation": "The Lean statement is the narrowed ceiling arithmetic above. The Rust receipt replay, tamper rejection, shape check, zero-gap dual certificate, PR box, noisy boxes, and the functions verify_noncontextual_fraction and verify_l1_defect_receipt are not run here. The in-repo module uses omega_solvers, an external crate that is not a workspace member.",
+      "obligation": "The Lean statement is the narrowed ceiling arithmetic above. The Rust receipt replay, tamper rejection, shape check, zero-gap dual certificate, PR box, noisy boxes, and the functions verify_noncontextual_fraction and verify_l1_defect_receipt are not run here. The in-repo module uses solvers, an external crate that is not a workspace member.",
       "parent_id": "TFQ-2505",
       "python": [],
       "record_status": "CONDITIONAL",

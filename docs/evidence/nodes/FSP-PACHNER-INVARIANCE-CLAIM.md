@@ -167,7 +167,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md`
 
 - file: [dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md](../../../dag/derivations/26_fsp/tfq_1214_fsp_pachner_invariance_claim.md)
-- sha256 (`lf-normalised`): `a5c798faaeee4c798c24b9a8d39e3cd74eb14235014d11e1303ae464a68597c9`
+- sha256 (`lf-normalised`): `130e156bdb079b1072bca8b55cce438ecfe5a8fdd1d80e681d68c38a6a409007`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1214
 - counts toward the grade: no

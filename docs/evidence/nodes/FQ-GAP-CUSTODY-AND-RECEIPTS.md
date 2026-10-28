@@ -68,7 +68,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md](../../../dag/derivations/10_finite_qm_core/tfq_1023_fq_gap_custody_and_receipts.md)
-- sha256 (`lf-normalised`): `b33725df51e4738827263697010ef5ceea91cb54a4c8d772bfd4a8e1db552330`
+- sha256 (`lf-normalised`): `6571547b7e550b367e89d080c9b14997f79972ef5cc0b87635c4b50d8508a771`
 - generated view: listed, not counted
 - cited in: record TFQ-1023
 - counts toward the grade: no

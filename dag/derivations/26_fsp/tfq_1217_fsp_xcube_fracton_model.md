@@ -43,7 +43,7 @@ Cited FoliatedFracton2Gauge.lean::xcube_model_exact_solvability does not exist; 
 - *none*
 
 ### Cited by the source, not in this checkout
-- `external:omega_majorana::hard_invariants::xcube_fracton_stabilizer (cited by the source, not in this checkout)`
+- `external:tfqm_majorana::hard_invariants::xcube_fracton_stabilizer (cited by the source, not in this checkout)`
 
 ---
 

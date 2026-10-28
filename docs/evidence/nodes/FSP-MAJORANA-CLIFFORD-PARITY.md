@@ -99,7 +99,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md`
 
 - file: [dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md](../../../dag/derivations/26_fsp/tfq_1186_fsp_majorana_clifford_parity.md)
-- sha256 (`lf-normalised`): `ba788966796f33334eea2fc8f0de4cb20e187eb3a71d5800b1d3a253402e3135`
+- sha256 (`lf-normalised`): `f92e9f56cb924363b8b5b8aa31c0edb5a65b2633eccceb34830e1befb105263f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1186
 - counts toward the grade: no

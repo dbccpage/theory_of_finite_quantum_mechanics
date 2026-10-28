@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Diagnostic floats are a fourth arm and are barred from governance even when a display conversion exists. MeasurementValue::DiagnosticFloat carries an f64 plus a DiagnosticPurpose limited to logging or visualization. MeasurementError variants RawF64ForbiddenInGovernance and DiagnosticFloatForbiddenInGovernance name the refusal. try_to_f64_for_display is documented as forbidden for governance decisions. The obligation is to leave that display path outside every licence, probability, and MUB certificate. FQ-IMPL-F64-GATING counts two omega_measurement files in legacy_debt.
+Diagnostic floats are a fourth arm and are barred from governance even when a display conversion exists. MeasurementValue::DiagnosticFloat carries an f64 plus a DiagnosticPurpose limited to logging or visualization. MeasurementError variants RawF64ForbiddenInGovernance and DiagnosticFloatForbiddenInGovernance name the refusal. try_to_f64_for_display is documented as forbidden for governance decisions. The obligation is to leave that display path outside every licence, probability, and MUB certificate. FQ-IMPL-F64-GATING counts two measurement files in legacy_debt.
 
 ### Governing Obligation
 Keep diagnostic floats and display conversions out of governance and out of exact certificates.

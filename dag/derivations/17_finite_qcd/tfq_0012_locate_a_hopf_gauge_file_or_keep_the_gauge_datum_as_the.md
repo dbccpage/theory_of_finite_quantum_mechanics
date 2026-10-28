@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-quaternion_gauge_shadow.rs presents Q8 as eight matrices over Q(i), embedded by omega_lie_theory::su2_matrix, and treats that finite subgroup of SU(2) as a non-abelian gauge shadow. finite_group.rs can hold a Cayley table for the same shadow, but the table is not an SU(3) color connection. A file search under omega_lie_theory/src and omega_quantum_physics/src found no Hopf-algebra module, so Hopf gauge data remains an open obligation next to this shadow. AuthorityEffect on the quaternion module is None. F001.S000 coordinates finite carriers and does not supply color links.
+quaternion_gauge_shadow.rs presents Q8 as eight matrices over Q(i), embedded by tfqm_lie_theory::su2_matrix, and treats that finite subgroup of SU(2) as a non-abelian gauge shadow. finite_group.rs can hold a Cayley table for the same shadow, but the table is not an SU(3) color connection. A file search under tfqm_lie_theory/src and quantum_physics/src found no Hopf-algebra module, so Hopf gauge data remains an open obligation next to this shadow. AuthorityEffect on the quaternion module is None. F001.S000 coordinates finite carriers and does not supply color links.
 
 ### Governing Obligation
 Locate a Hopf gauge file or keep the gauge datum as the Q8 shadow plus Cayley tables.

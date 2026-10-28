@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1217_fsp_xcube_fracton_model.md`
 
 - file: [dag/derivations/26_fsp/tfq_1217_fsp_xcube_fracton_model.md](../../../dag/derivations/26_fsp/tfq_1217_fsp_xcube_fracton_model.md)
-- sha256 (`lf-normalised`): `d9db4e96a94d47467776f881e9d1f0e408b311c52dd10abe11bcbfeeb47c4fb0`
+- sha256 (`lf-normalised`): `557b03f4c61f5c463776bc32ab3d632b5bb3b742e2b1a786eb37867be4267752`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1217
 - counts toward the grade: no

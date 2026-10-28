@@ -47,7 +47,7 @@ Exact SymPy check replayed PASS in this draft (scope: three explicit bases). lea
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.StandardTriad.triad_system_definition (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/algebraic_variety/standard_triad.py::construct_standard_triad (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_triad::construct_triad_system (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_triad::construct_triad_system (external engine crate, not in this checkout)`
 
 ---
 

@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1202_fsp_triality_center_projection.md`
 
 - file: [dag/derivations/26_fsp/tfq_1202_fsp_triality_center_projection.md](../../../dag/derivations/26_fsp/tfq_1202_fsp_triality_center_projection.md)
-- sha256 (`lf-normalised`): `ce7b70ae01616ba00c9aef983bb4ad94174e5eee3be598d106901b32a15dd50c`
+- sha256 (`lf-normalised`): `c3775b55763c0b83e17102f02cd0dfe38c55264f4f033d796920d5f16cda7d45`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1202
 - counts toward the grade: no

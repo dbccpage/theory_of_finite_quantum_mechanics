@@ -35,7 +35,7 @@ In accordance with strict constructive principles:
 - [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/GenesisConstruction.lean::literalRoot`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`missing obligation: a host token in omega_ooutwire_primitives that rejects equating <> with an admitted ground`](../../code/rust/src/)
+- [`missing obligation: a host token in wire_primitives that rejects equating <> with an admitted ground`](../../code/rust/src/)
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`](../../code/rust/src/)
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
 - [`external:sha256:2252c69f4bba9c28eb9ab8a435a9a62ed96fb8314f053e8de431be4b50ed2526::GenesisConstruction`](../../code/rust/src/)

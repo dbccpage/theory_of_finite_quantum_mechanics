@@ -51,7 +51,7 @@ Cited FermionSignCore.lean::car_algebra_anticommutation_relations does not exist
 
 ### Cited by the source, not in this checkout
 - `external:sources/atlas/papers/fermion_sign_problem/code/fermionic_hamiltonian.py::FermionicFockSpace (cited by the source, not in this checkout)`
-- `external:omega_majorana::majorana_fock_algebra::MajoranaFockAlgebra (cited by the source, not in this checkout)`
+- `external:tfqm_majorana::majorana_fock_algebra::MajoranaFockAlgebra (cited by the source, not in this checkout)`
 
 ---
 

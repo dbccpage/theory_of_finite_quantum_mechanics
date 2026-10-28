@@ -252,20 +252,20 @@ outcome selection, or continuum limit. Those remain distinct obligations.
 
 ## 7. Native implementation and reproduction scope
 
-The [category owner](../../../../../omega_engine/crates_rs/omega_category_theory/src/finite_groupoid.rs)
+The category owner (`external:sha256:2699c3d9ebadb8c137c63928fef94ad71be4f3f416f22acb5cffc3acaeafe1e3`)
 strengthens the existing validated dagger category by checking every inverse
 equation. It retains the 64-arrow budget, constructs deterministic component
 and matrix/group coordinates, and distinguishes empty from connected thin.
 It neither adds missing inverses nor silently completes a composition table.
 
-The [group algebra owner](../../../../../omega_engine/crates_rs/omega_lie_theory/src/finite_groupoid_algebra.rs)
+The group algebra owner (`external:sha256:cce11eccce6839a70eeda00460d40890e65c06dd94342a0cc84a3ba6ed538fdd`)
 implements exact $\mathbb Q(i)$ convolution, involution, coefficient trace,
 the full regular action, and central isotropy averages, using sovereign
 number-theory scalars and linear-algebra matrices. The direct category
 dependency follows the existing foundation dependency direction; no foundation
 depends on the physics crate.
 
-The [six integration tests](../../../../../omega_engine/crates_rs/tests/omega_lie_theory/finite_groupoid_algebra.rs)
+The six integration tests (`external:sha256:51000f36c4343697dda3c3968486bc189653e2ebaa0416af93f3f836109bec1b`)
 check full coordinate/product/inverse tables for Pair(6), Pair(2)$\times C_2$,
 Pair(2)$\times S_3$ (also with a nonidentity connector), and two isolated identities.
 Noncommuting $S_3$ exposes an accidentally reversed product convention and the
@@ -279,8 +279,8 @@ unknown arrows, the empty case, and the validation budget.
 From `external:git-tree:ac1f6d647c3ecc2bf45f6fc4922213ac752e71a3`, with the configured toolchain/cache:
 
 ```sh
-cargo test -j 1 --offline --locked -p omega_category_theory --lib finite_groupoid::tests
-cargo test -j 1 --offline --locked -p omega_lie_theory --test finite_groupoid_algebra
+cargo test -j 1 --offline --locked -p tfqm_category_theory --lib finite_groupoid::tests
+cargo test -j 1 --offline --locked -p tfqm_lie_theory --test finite_groupoid_algebra
 ```
 
 The receipt records the focused native checks on 2026-10-11. The initial category run

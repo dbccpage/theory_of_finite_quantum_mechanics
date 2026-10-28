@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Exact rational finite probability sits in omega_finite_probability, a library under the finite floor rather than a Hilbert derivation. src/lib.rs says masses, kernels, tables, and majorization data are BigRational, with no floating point and no tolerance. src/simplex.rs admits a ProbabilitySimplex only after nonnegativity and an exact sum of one, and it states that the law is classical and makes no Born-rule claim. The obligation is that a float, a tolerance, or a display conversion cannot authorize a finite probability. ProbabilitySimplex.lean is a separate candidate rung and is not this constructor.
+Exact rational finite probability sits in tfqm_finite_probability, a library under the finite floor rather than a Hilbert derivation. src/lib.rs says masses, kernels, tables, and majorization data are BigRational, with no floating point and no tolerance. src/simplex.rs admits a ProbabilitySimplex only after nonnegativity and an exact sum of one, and it states that the law is classical and makes no Born-rule claim. The obligation is that a float, a tolerance, or a display conversion cannot authorize a finite probability. ProbabilitySimplex.lean is a separate candidate rung and is not this constructor.
 
 ### Governing Obligation
 Admit only exact nonnegative rational masses that sum to one, with no float authority.

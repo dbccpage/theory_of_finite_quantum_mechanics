@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-anyon_model.rs wraps a ribbon category after braided validation and a dimension check. Its SU(2)_k constructor uses the shared Racah gauge in omega_fusion_categories::su2_level, with a bounded pentagon and hexagon replay. That file warns the gauge is generally not orthonormal, so the F matrices must not be advertised as unitary in the ordinary inner product. Labels a=0..k are twice a spin, which is an SU(2) level family. There is no su3_level.rs beside su2_level.rs. An SU(2)_k anyon model is not the three-color matrix algebra, and its quantum dimensions are not C_F or C_A.
+anyon_model.rs wraps a ribbon category after braided validation and a dimension check. Its SU(2)_k constructor uses the shared Racah gauge in tfqm_fusion_categories::su2_level, with a bounded pentagon and hexagon replay. That file warns the gauge is generally not orthonormal, so the F matrices must not be advertised as unitary in the ordinary inner product. Labels a=0..k are twice a spin, which is an SU(2) level family. There is no su3_level.rs beside su2_level.rs. An SU(2)_k anyon model is not the three-color matrix algebra, and its quantum dimensions are not C_F or C_A.
 
 ### Governing Obligation
 Do not treat SU(2)_k as a color fusion category; su3_level.rs is absent.

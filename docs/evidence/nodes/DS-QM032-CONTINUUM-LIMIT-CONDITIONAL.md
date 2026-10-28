@@ -93,7 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0071_each_language_must_carry_hermitian_k_yields_a_unitary_cayley_s_on.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0071_each_language_must_carry_hermitian_k_yields_a_unitary_cayley_s_on.md](../../../dag/derivations/15_finite_qed/tfq_0071_each_language_must_carry_hermitian_k_yields_a_unitary_cayley_s_on.md)
-- sha256 (`lf-normalised`): `f62634a3e526dcba8e9b53dbb319c69233e938a7c597a55e9191460f87d0ff94`
+- sha256 (`lf-normalised`): `4ab9a4f5d29e585ab0ec9ff37c0e47736d454ba0035d8a578ae1e2dbf887bf99`
 - generated view: listed, not counted
 - cited in: record TFQ-0071 (shared)
 - counts toward the grade: no

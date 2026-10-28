@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-CycleLiftSpec breaks the exact-licence story by storing lift_scale as f64. src/cycle_lift_spec.rs declares cycle_node_indices as a vector of usize and lift_scale as f64, and its error NonFiniteLiftScale only rejects a non-finite float. That is not a BigRational descent witness. FQ-IMPL-F64-GATING counts three omega_lifts files in legacy_debt and says a float may propose but never authorize a result. The obligation is to refuse this f64 scale as a lift licence. PrimitiveLiftCertificate.lean is only a boolean checklist of propositions and does not supply the missing exact scale.
+CycleLiftSpec breaks the exact-licence story by storing lift_scale as f64. src/cycle_lift_spec.rs declares cycle_node_indices as a vector of usize and lift_scale as f64, and its error NonFiniteLiftScale only rejects a non-finite float. That is not a BigRational descent witness. FQ-IMPL-F64-GATING counts three lifts files in legacy_debt and says a float may propose but never authorize a result. The obligation is to refuse this f64 scale as a lift licence. PrimitiveLiftCertificate.lean is only a boolean checklist of propositions and does not supply the missing exact scale.
 
 ### Governing Obligation
 Refuse the f64 lift_scale on CycleLiftSpec as a licence for an exact finite lift.

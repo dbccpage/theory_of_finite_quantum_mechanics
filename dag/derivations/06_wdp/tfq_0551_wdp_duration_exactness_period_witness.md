@@ -40,7 +40,7 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean::exact_duration_path_independent`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Succession.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `missing obligation: no omega_wdp Rust binding of the duration gauge or the four exactness statuses`
+- `missing obligation: no tfqm_wdp Rust binding of the duration gauge or the four exactness statuses`
 
 ### Python Oracles & Numerical Evaluators
 - [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py::solve_potential`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/cochains.py)

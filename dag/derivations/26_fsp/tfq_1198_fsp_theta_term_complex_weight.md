@@ -64,7 +64,7 @@ Cited NonAbelianGaugeSigns.lean::topological_theta_sign_defect does not exist. T
 - `checks/independent/fsp-theta-term-complex-weight.py::check`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::meron_source_field::topological_charge_action (cited by the source, not in this checkout)`
+- `external:quantum_physics::meron_source_field::topological_charge_action (cited by the source, not in this checkout)`
 
 ---
 

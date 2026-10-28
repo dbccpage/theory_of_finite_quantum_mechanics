@@ -48,7 +48,7 @@ lean4/RouteCFourierLandingBypass.lean::dim6_composite_factorization is rfl on 6 
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.GaloisObstruction.no_finite_field_order_six (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/dim6/galois_obstruction.py::verify_galois_absence (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_matrix6::galois_order6_absence (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_matrix6::galois_order6_absence (external engine crate, not in this checkout)`
 
 ---
 

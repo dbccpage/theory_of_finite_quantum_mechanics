@@ -42,7 +42,7 @@ Cited FermionGinCore.lean::gin_posting_query_soundness does not exist. involutio
 - `code/python/src/fsp/ct_aux_streaming_gin_engine.py`
 
 ### Cited by the source, not in this checkout
-- `external:omega_majorana::harmonic::gin_posting_list_intersection (cited by the source, not in this checkout)`
+- `external:tfqm_majorana::harmonic::gin_posting_list_intersection (cited by the source, not in this checkout)`
 
 ---
 

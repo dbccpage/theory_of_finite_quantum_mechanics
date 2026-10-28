@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1224_mub6_weyl_stabilizer_bound.md`
 
 - file: [dag/derivations/25_mub/tfq_1224_mub6_weyl_stabilizer_bound.md](../../../dag/derivations/25_mub/tfq_1224_mub6_weyl_stabilizer_bound.md)
-- sha256 (`lf-normalised`): `897a6bf83630b590d5c1149b386419ae2764801d22cb861330133360c41a79bb`
+- sha256 (`lf-normalised`): `04273515c8eb29e1a175dff08439c5ae3165e9953995c0ef8467c08e1d2cc736`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1224
 - counts toward the grade: no

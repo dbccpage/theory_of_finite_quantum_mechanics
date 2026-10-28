@@ -39,7 +39,7 @@ No local declaration, script or receipt checks this claim.
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.PauliGroup.symplectic_subspaces_d6 (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/dim6/pauli_group.py::analyze_pauli_subgroups (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_matrix6::pauli_symplectic_analysis (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_matrix6::pauli_symplectic_analysis (external engine crate, not in this checkout)`
 
 ---
 

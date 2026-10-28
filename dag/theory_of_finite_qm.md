@@ -55,12 +55,12 @@ Nodes: 985. Dropped atlas paths that were not on disk: 0.
 | F001 | F001.S000 | 001_from_primitive_difference_to_quantum_mechanics | `external:git-tree:aaf60017b237ab042d2a4f52cec36e21f4264b2f` |
 | F002 | F002.S000 | 002_from_primitive_difference_to_mtheory | `external:git-tree:32768febc43a3cd915487089be70f91bca8c9bc9` |
 | F003 | F003.S000 | 000_prime_algorithms_and_runtime | `external:git-tree:e03ce30c258cf9ca164637ea387b5267bad58df9` |
-| F003 | F003.S001 | 000_omega_prompt_civilization | `external:git-tree:eaedced51dbe0c7d75ab18013e4bd91975e43568` |
-| F003 | F003.S001 | 001_omega_oewas | `external:git-tree:7213d7570349285f01c3575d96cd2d107f502e3a` |
-| F003 | F003.S001 | 002_omega_operad_theory | `external:git-tree:51ab059acdb0cf229970fe1487c5a1cb8f7898f5` |
+| F003 | F003.S001 | 000_prompt_civilization | `external:git-tree:eaedced51dbe0c7d75ab18013e4bd91975e43568` |
+| F003 | F003.S001 | 001_oewas | `external:git-tree:7213d7570349285f01c3575d96cd2d107f502e3a` |
+| F003 | F003.S001 | 002_operad_theory | `external:git-tree:51ab059acdb0cf229970fe1487c5a1cb8f7898f5` |
 | F003 | F003.S001 | 003_symbol_host | `external:git-tree:a761c4c9a85f8cbcaaf96c38a497fcb5d4c1f454` |
-| F003 | F003.S002 | 000_omega_engine_pfp | `external:git-tree:fc58e03f871099f969e0c28a2d452e83656e4225` |
-| F003 | F003.S002 | 001_omega_engine_workflows_agents_skills | `external:git-tree:fd1b2878e807753f9abcf926f687c1fe37c197de` |
+| F003 | F003.S002 | 000_pfp | `external:git-tree:fc58e03f871099f969e0c28a2d452e83656e4225` |
+| F003 | F003.S002 | 001_workflows_agents_skills | `external:git-tree:fd1b2878e807753f9abcf926f687c1fe37c197de` |
 | F003 | F003.S003 | 000_engine_use_notes_from_genx | `external:git-tree:5f517e6a918b4f3f35ff7c50675cc3dc70033e15` |
 
 <!-- unified-dag:crosswalk:begin -->
@@ -1072,7 +1072,7 @@ These source records restate a trunk step; the trunk node carries an `alias:` ta
 | `DFM-P3.2-FENCE` | `papers/ravera_dfm_dossier.md` | `DFM-HIERARCHICAL-BOREL` | Dossier Theorem 3.2 is wider than TFQ-0400. TFQ-0400 records unique factorization, normality, rooted-tree two-stage dressing for a supplied parent and depth, quotient invariance, the coboundary criterion, and the specified incidence operators. It does not build a spanning tree from an arbitrary graph, a computed cohomology group, or a 2-plaquette prism. The dossier diamond instance remains DFM-P3.2-TWO-STAGE. |
 | `DFM-SEC5-SCOPE` | `papers/ravera_dfm_dossier.md` | `DFM-CONTINUUM-INTERFACE` | Dossier section 5 restricts every claim to finite graphs and complexes over Q and Q(i) and leaves continuum Yang-Mills, gravity and the residual root and tree-change symmetries explicit, which is the obligation set of TFQ-0401. |
 | `MAJ-C12` | `papers/core/majorana/the_majorana_problem.md` | `TFQ-0184` | The ledger row says the enum rfl Betti declarations are not tetron homology, which is TFQ-0184; the computed Betti numbers are MAJ-COMP-TETRON-BETTI. |
-| `MAJ-FENCE-DIAGNOSTIC-LABELS` | `papers/core/majorana/the_majorana_problem.md` | `DS-QM212-MAJORANA-PROBLEM` | Section 0.2 name-collision fix and non-claim 3: Exact/ClosedResidual/OpenObstruction are GF(2) diagnostic classes with AuthorityEffect None, not FOC ExactRepair; TFQ-0181 states this for omega_majorana. |
+| `MAJ-FENCE-DIAGNOSTIC-LABELS` | `papers/core/majorana/the_majorana_problem.md` | `DS-QM212-MAJORANA-PROBLEM` | Section 0.2 name-collision fix and non-claim 3: Exact/ClosedResidual/OpenObstruction are GF(2) diagnostic classes with AuthorityEffect None, not FOC ExactRepair; TFQ-0181 states this for tfqm_majorana. |
 | `MAJ-C9` | `papers/core/majorana/the_majorana_problem.md` | `FSP-EFFICIENT-SAMPLING-OBLIGATIONS` | MAJ-C9 says Pfaffian non-negativity under declared BDI/D symmetry does not solve the generic FSP; the trunk node states it for determinant weights. Lean pfaffian_topological_sign is (s = 1 or s = -1) -> s * s = 1. |
 | `FSP-DERIV-001` | `papers/core/fsp/theory_of_finite_fsp.jsonl` | `PG-INERT-DIAMOND` | Same inert inscription <>; the cited witness GenesisConstruction.lean::literalRoot is not in this checkout. |
 | `FSP-DERIV-002` | `papers/core/fsp/theory_of_finite_fsp.jsonl` | `PG-ROOT-DIFF-STRUCTURE` | Same admitted coproduct Real_0 = PrimitiveDifference + Structure; the lone mark X1 = {a} is the S(1) supply step (PGW-SN1-SUPPLY-NOT-ADMISSION); cited OntologyBasic.lean::Real0 is not in this checkout. |
@@ -2907,7 +2907,7 @@ Obligation: Refuse unrestricted old-image recovery and the advertised SnCarrier 
 - Status: `GAP`
 - Coda atlas: `F000.S000`
 
-The pregenesis segment note in derivation_dag.json still says no source opened there derives Genesis events or S(n) maps as morphisms carrying generated and discharged obligation vectors in the free commutative monoid. The monoid is present as Rust in omega_kernel/src/obligation.rs: Obligations is a BTreeMap of ObligationId to positive counts, with empty, single, of, and combine, and ObligationError for never-generated and over-discharge. Node PG-OBLIGATION-MONOID says Genesis morphisms are meant to carry those vectors. The later route label is not adopted; the join stays open.
+The pregenesis segment note in derivation_dag.json still says no source opened there derives Genesis events or S(n) maps as morphisms carrying generated and discharged obligation vectors in the free commutative monoid. The monoid is present as Rust in kernel/src/obligation.rs: Obligations is a BTreeMap of ObligationId to positive counts, with empty, single, of, and combine, and ObligationError for never-generated and over-discharge. Node PG-OBLIGATION-MONOID says Genesis morphisms are meant to carry those vectors. The later route label is not adopted; the join stays open.
 
 Obligation: Do not treat Genesis events or S(n) maps as obligation-monoid morphisms until generated and discharged vectors are derived, not only implemented.
 
@@ -3513,7 +3513,7 @@ Obligation: Attach a named falsifier to each WDP result family, keep the Appendi
 - Parent: `TFQ-0557`
 - Status: `OPEN_OBLIGATION`
 
-WDP hands onward a declared, certified degree-1 window: Φ₁([h]) = Φ_J([h]), the quotient infimum over repairs, certified for weighted ℓ¹ over ℚ by a matching repair and bounded circulation; Γ₂([h]) = ‖d₁h‖₁; the diagnostic trichotomy; and the observer discipline that a protected question passes through a report only when constant on its fibres. The 007 Local-Green/Global-Red series refuses the case in which every local check passes and the global check fails, and its Symbol Game integration sets the global verdict to 0 when Φ₁ > 0 or Γ₂ > 0, but it writes Φ₁(h) = ‖d₀h‖₁ (boundary leakage), which is not WDP's quotient infimum. The 007 lesson states that no automatic identification with the PFP quantities phi1 or gamma2 is supplied, so an adapter from WDP's quotient Φ₁ and Γ₂ to the LGGR global evaluator is owed. The DAG's next stage is L1_EMERGENCE (TFQ-0005 declared L1 sector weights, TFQ-0349).
+WDP hands onward a declared, certified degree-1 window: Φ₁([h]) = Φ_J([h]), the quotient infimum over repairs, certified for weighted ℓ¹ over ℚ by a matching repair and bounded circulation; Γ₂([h]) = ‖d₁h‖₁; the diagnostic trichotomy; and the observer discipline that a protected question passes through a report only when constant on its fibres. The 007 Local-Green/Global-Red series refuses the case in which every local check passes and the global check fails, and its symbol-host integration sets the global verdict to 0 when Φ₁ > 0 or Γ₂ > 0, but it writes Φ₁(h) = ‖d₀h‖₁ (boundary leakage), which is not WDP's quotient infimum. The 007 lesson states that no automatic identification with the PFP quantities phi1 or gamma2 is supplied, so an adapter from WDP's quotient Φ₁ and Γ₂ to the LGGR global evaluator is owed. The DAG's next stage is L1_EMERGENCE (TFQ-0005 declared L1 sector weights, TFQ-0349).
 
 Obligation: Keep the certified window open beyond this triangle: weighted l1 over the rationals, a bounded-circulation dual on a general carrier, the second coboundary diagnostic, and a checked adapter before any LGGR verdict reads the quotient value as a coboundary length.
 
@@ -3539,7 +3539,7 @@ Obligation: Keep L1 sector weights as declared mass until a derivation from the 
 - Status: `SOURCE_RECORD`
 - Coda atlas: `F000.S000`
 
-DAG node L1-WDP-WINDOW-PHI1-GAMMA2 restates the declared window: Phi1 of a class is the quotient seminorm, the minimum of a weighted l1 norm of x minus d0 h, and Gamma2 is the l1 norm of d1 on a minimizer. The node says the weighted l1 form is declared, not derived from MSS-0 or from Difference, and it warns that WDP Gamma2 is a norm while a later QM note uses Gamma for a set of residual sectors. primitive_axiomatics.rs says Root P owns no arithmetic: d0 and d1 come from omega_homology, and Phi1, Gamma2, and the trichotomy come from omega_functional.
+DAG node L1-WDP-WINDOW-PHI1-GAMMA2 restates the declared window: Phi1 of a class is the quotient seminorm, the minimum of a weighted l1 norm of x minus d0 h, and Gamma2 is the l1 norm of d1 on a minimizer. The node says the weighted l1 form is declared, not derived from MSS-0 or from Difference, and it warns that WDP Gamma2 is a norm while a later QM note uses Gamma for a set of residual sectors. primitive_axiomatics.rs says Root P owns no arithmetic: d0 and d1 come from homology, and Phi1, Gamma2, and the trichotomy come from tfqm_functional.
 
 Obligation: Compute declared Phi1 and Gamma2 on a finite window, and do not treat the weighted l1 norm as derived from MSS-0.
 
@@ -5402,7 +5402,7 @@ Obligation: Reserve Copenhagen as an authority shadow with no declared carrier, 
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
   - `external:sha256:9504a35b2a33de8f85af42c874eb8da62364cbb364219de602dcfa98b26569e1`
 
-A finite gauge step is a cochain of group-valued or Hopf-valued data on a finite complex, together with holonomy around finite loops and a coboundary that plays the role of curvature. omega_holonomy is a zero-float discrete holonomy library and is a control, not this derivation. The three languages must share one finite complex, one coefficient object, and one holonomy identity. U(1) and a non-abelian color shadow fork after this node. Neither fork is continuum Yang-Mills theory.
+A finite gauge step is a cochain of group-valued or Hopf-valued data on a finite complex, together with holonomy around finite loops and a coboundary that plays the role of curvature. tfqm_holonomy is a zero-float discrete holonomy library and is a control, not this derivation. The three languages must share one finite complex, one coefficient object, and one holonomy identity. U(1) and a non-abelian color shadow fork after this node. Neither fork is continuum Yang-Mills theory.
 
 Obligation: Define connection, holonomy, and curvature on a finite complex before any continuum gauge theory. Checked slice, status unchanged. Narrowed in Lean 4 and an independent Python verifier to four exact finite/algebraic components and non-equivalence fences: (1) shared finite square plaquette boundary exactness (d_1 o d_2 = 0) and adjacent plaquette shared-edge cancellation (chain_boundary_squared_zero_on_plaquette, shared_edge_cancellation_two_plaquettes); (2) abelian cochain connection, coboundary curvature exactness (d_1 o d_0 = 0), gauge invariance, and the discrete Bianchi identity (d_2 o d_1 = 0) on the 6-face, 12-edge 3-cube complex (abelian_cochain_coboundary_squared_zero, abelian_curvature_gauge_invariant, abelian_bianchi_identity_cube); (3) non-abelian 2x2 matrix link holonomy conjugation H(U^g) = g0 H(U) g0^-1, Wilson loop cyclic trace gauge invariance, and the abelian vs. non-abelian SL(2, Z) shear commutator fork (nonabelian_holonomy_conjugation_identity, nonabelian_wilson_loop_trace_gauge_invariant, abelian_vs_nonabelian_fork_commutator_witness); and (4) the no-continuum-Yang-Mills fence separating finite N^E cochain cardinality and metric-free combinatorial curvature from metric-weighted Yang-Mills actions (finite_cochain_cardinality_and_quotient_bound, combinatorial_coboundary_metric_free_vs_yang_mills_action_fence).
 
@@ -5488,7 +5488,7 @@ Obligation: Prove the formula in Lean from the column orthogonality of character
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
   - `external:sha256:860cdf8fc8fb8383f60020cd5c0ecf533cce228dd92c85b96bc8198d6d8102cb`
 
-Finite QED here means charged finite transport, a finite Dirac or Clifford shadow, interaction vertices on a finite complex, and finite maps that mirror vacuum polarization, a Lamb shift datum, and an electroweak mixing control. Files under omega_quantum_physics and the finite-QM research notes are computational controls of those maps. The three languages must state the finite identity each control checks. F002 is an interface inventory. Naming a continuum limit on that floor does not derive continuum QED.
+Finite QED here means charged finite transport, a finite Dirac or Clifford shadow, interaction vertices on a finite complex, and finite maps that mirror vacuum polarization, a Lamb shift datum, and an electroweak mixing control. Files under quantum_physics and the finite-QM research notes are computational controls of those maps. The three languages must state the finite identity each control checks. F002 is an interface inventory. Naming a continuum limit on that floor does not derive continuum QED.
 
 Obligation: Carry finite charged transport, vertices, and Ward shadows without calling the result continuum QED.
 
@@ -5502,7 +5502,7 @@ Obligation: Carry finite charged transport, vertices, and Ward shadows without c
   - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`
   - `external:git-tree:0fb81f77bbeba84143f574b5a4bc956196140991`
 
-dirac_gamma_admission.rs admits a declared family of square gamma matrices over Q(i) with a diagonal metric of entries +1 or -1. CliffordFamily::admit checks every anticommutator against 2 eta I and names the first failing pair. dirac and weyl are the signature (+,-,-,-) families built from the Pauli matrices in omega_lie_theory. slash(p) squares to (p·p) I. solution_dimension is N minus the exact rank of slash(p) - m I. has_dirac_adjoint checks gamma^0 (gamma^mu)* gamma^0 = gamma^mu separately: the anticommutators do not imply that adjoint. Momenta, masses and spin-element parameters stay rational and declared.
+dirac_gamma_admission.rs admits a declared family of square gamma matrices over Q(i) with a diagonal metric of entries +1 or -1. CliffordFamily::admit checks every anticommutator against 2 eta I and names the first failing pair. dirac and weyl are the signature (+,-,-,-) families built from the Pauli matrices in tfqm_lie_theory. slash(p) squares to (p·p) I. solution_dimension is N minus the exact rank of slash(p) - m I. has_dirac_adjoint checks gamma^0 (gamma^mu)* gamma^0 = gamma^mu separately: the anticommutators do not imply that adjoint. Momenta, masses and spin-element parameters stay rational and declared.
 
 Obligation: Each language must carry: Clifford admission, slash-square, exact solution rank, and a separate Dirac-adjoint check that anticommutators do not imply.
 
@@ -5712,7 +5712,7 @@ Obligation: Each language must carry: Kellner value -729/256, Hylleraas sign cha
   - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`
   - `external:git-tree:0fb81f77bbeba84143f574b5a4bc956196140991`
 
-s_matrix.rs builds an exact finite scattering matrix over Q(i) at a declared energy. from_k takes a Hermitian reaction matrix and returns S = (I + i K)(I - i K)^(-1), then replays unitarity with the shared exact linear algebra. from_unitary refuses a matrix that is not unitary. Non-Hermitian K is refused. Carrier dimension above MAX_SCATTERING_CHANNELS = 128 is refused. transition_operator returns T = (S - I)/(2 i). The file header says this is finite channel scattering at a declared energy, not an asymptotic continuum scattering construction. Modular S-data are left to omega_fusion_categories.
+s_matrix.rs builds an exact finite scattering matrix over Q(i) at a declared energy. from_k takes a Hermitian reaction matrix and returns S = (I + i K)(I - i K)^(-1), then replays unitarity with the shared exact linear algebra. from_unitary refuses a matrix that is not unitary. Non-Hermitian K is refused. Carrier dimension above MAX_SCATTERING_CHANNELS = 128 is refused. transition_operator returns T = (S - I)/(2 i). The file header says this is finite channel scattering at a declared energy, not an asymptotic continuum scattering construction. Modular S-data are left to tfqm_fusion_categories.
 
 Obligation: Each language must carry: Hermitian K yields a unitary Cayley S on at most 128 channels, T = (S-I)/(2i), and the construction is not an asymptotic continuum scattering operator.
 
@@ -5912,7 +5912,7 @@ Obligation: Carry a finite color, Wilson, and beta0 control without calling it c
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-quaternion_gauge_shadow.rs presents Q8 as eight matrices over Q(i), embedded by omega_lie_theory::su2_matrix, and treats that finite subgroup of SU(2) as a non-abelian gauge shadow. finite_group.rs can hold a Cayley table for the same shadow, but the table is not an SU(3) color connection. A file search under omega_lie_theory/src and omega_quantum_physics/src found no Hopf-algebra module, so Hopf gauge data remains an open obligation next to this shadow. AuthorityEffect on the quaternion module is None. F001.S000 coordinates finite carriers and does not supply color links.
+quaternion_gauge_shadow.rs presents Q8 as eight matrices over Q(i), embedded by tfqm_lie_theory::su2_matrix, and treats that finite subgroup of SU(2) as a non-abelian gauge shadow. finite_group.rs can hold a Cayley table for the same shadow, but the table is not an SU(3) color connection. A file search under tfqm_lie_theory/src and quantum_physics/src found no Hopf-algebra module, so Hopf gauge data remains an open obligation next to this shadow. AuthorityEffect on the quaternion module is None. F001.S000 coordinates finite carriers and does not supply color links.
 
 Obligation: Locate a Hopf gauge file or keep the gauge datum as the Q8 shadow plus Cayley tables. Checked slice, status unchanged. Narrowed in Lean 4 and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) Q8 quaternion group Cayley table associativity, two-sided identity/inverses, Hamilton relations i^2 = j^2 = k^2 = ijk = -1, non-commutativity ij = k != -k = ji, and the Q8 class equation 1 + 1 + 2 + 2 + 2 = 8 with irrep degree sum 1^2 + 1^2 + 1^2 + 1^2 + 2^2 = 8 (q8_group_associativity_unit_and_inverses, q8_nonabelian_hamilton_relations_and_class_equation); (2) faithful 2x2 Gaussian-integer SU(2) matrix embedding q8ToMat2GI homomorphism, injectivity, unit determinant 1 + 0i, and conjugation-invariant character trace in {-2, 0, 2} (q8_mat2gi_embedding_homomorphism, q8_mat2gi_embedding_injective_and_unit_det, q8_plaquette_holonomy_conjugation_and_trace_invariance, q8_wilson_plaquette_character_discrete_spectrum_fence); and (3) non-equivalence fences against SU(3) color connections (fundamental dimension 2 != 3, Lie algebra dimension 3 != 8, Lagrange center obstruction 8 % 3 != 0, max irrep degree 2 < 3) and unbuilt Hopf gauge modules (q8_su2_vs_su3_color_dimension_and_center_fence, q8_irrep_max_degree_two_no_color_triplet_fence, group_like_coproduct_vs_hopf_linearity_fence, f001_s000_carrier_coordination_not_color_connection_fence).
 
@@ -6391,7 +6391,7 @@ Obligation: Keep ribbon charges off the color and Wilson spine.
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-anyon_model.rs wraps a ribbon category after braided validation and a dimension check. Its SU(2)_k constructor uses the shared Racah gauge in omega_fusion_categories::su2_level, with a bounded pentagon and hexagon replay. That file warns the gauge is generally not orthonormal, so the F matrices must not be advertised as unitary in the ordinary inner product. Labels a=0..k are twice a spin, which is an SU(2) level family. There is no su3_level.rs beside su2_level.rs. An SU(2)_k anyon model is not the three-color matrix algebra, and its quantum dimensions are not C_F or C_A.
+anyon_model.rs wraps a ribbon category after braided validation and a dimension check. Its SU(2)_k constructor uses the shared Racah gauge in tfqm_fusion_categories::su2_level, with a bounded pentagon and hexagon replay. That file warns the gauge is generally not orthonormal, so the F matrices must not be advertised as unitary in the ordinary inner product. Labels a=0..k are twice a spin, which is an SU(2) level family. There is no su3_level.rs beside su2_level.rs. An SU(2)_k anyon model is not the three-color matrix algebra, and its quantum dimensions are not C_F or C_A.
 
 Obligation: Do not treat SU(2)_k as a color fusion category; su3_level.rs is absent. Checked slice, status unchanged. Narrowed in Lean 4, Rust (su2_level.rs), and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) SU(2)_k (k = 1..6) simple-object counts k + 1, cyclotomic root orders 8*(k + 2), central charges 3k/(k + 2), and level-3 Fibonacci subring fusion 2 tensor 2 = 0 oplus 2 (su2_level_rank_and_root_order_bounds, su2_level_central_charge_and_level3_fibonacci_subring); (2) exact Q(phi) (phi^2 = 1 + phi) verification that the level-3 q-Racah associator F^[2,2,2,2] is not Euclidean orthonormal (F^T F != I) while satisfying weighted metric unitarity F^T G F = G with G = diag(phi, 1 + phi) and det(F) = -1 (qphi_golden_ratio_identities, racah_level3_fibonacci_f_matrix_not_euclidean_orthonormal, racah_level3_fibonacci_f_matrix_weighted_metric_unitarity); and (3) non-equivalence fences separating SU(2)_k quantum dimensions and rank-1 self-dual labels from SU(3)_c Casimirs (C_F = 4/3, C_A = 3), SU(3)_k rank-2 Dynkin weights (count (k + 1)(k + 2)/2 > k + 1), and absent su3_level.rs (su2_level_quantum_dimensions_not_su3_casimirs_fence, su2_weight_lattice_rank1_not_su3_rank2_color_fusion_fence, su2_vs_su3_level_simple_object_count_separation, su2_level_budget_and_field_refusal_predicates, tfq0044_su2_level_scope_ledger_fence).
 
@@ -6417,7 +6417,7 @@ Obligation: Admit an exchange only after the exact inverse check, and do not att
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-yang_baxter_equation.rs keeps the residual matrix of a braid-form defect or of a spectral defect R12(u-v) R13(u) R23(v), including a multiplicative form that divides the spectral parameters. holds is true only when that residual matrix is the zero matrix over the exact scalar field, and first_failing_entry points at a nonzero coordinate. The defect itself is computed by omega_fusion_categories::yang_baxter. There is no tolerance and no floating-point comparison. A zero residual is a finite identity for the matrix that was supplied. It is not a QCD braid of quark color and not a substitute for the Fierz replay.
+yang_baxter_equation.rs keeps the residual matrix of a braid-form defect or of a spectral defect R12(u-v) R13(u) R23(v), including a multiplicative form that divides the spectral parameters. holds is true only when that residual matrix is the zero matrix over the exact scalar field, and first_failing_entry points at a nonzero coordinate. The defect itself is computed by tfqm_fusion_categories::yang_baxter. There is no tolerance and no floating-point comparison. A zero residual is a finite identity for the matrix that was supplied. It is not a QCD braid of quark color and not a substitute for the Fierz replay.
 
 Obligation: Cite a zero residual only for the supplied exact matrix.
 
@@ -6430,7 +6430,7 @@ Obligation: Cite a zero residual only for the supplied exact matrix.
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-modular_tensor_category.rs builds ModularData::verified from an AnyonModel and exposes ground_state_degeneracy at a declared genus. The modular arithmetic lives in omega_fusion_categories::modular, which states that the familiar normalized relation (ST)^3 = S^2 needs a root that need not lie in the coefficient field. The in-field statements are the ones actually checked. A genus degeneracy computed from S and T data is a topological count. It is not a QCD vacuum degeneracy, and the module does not claim a mass gap. Toric or Ising modular data must stay on this side branch.
+modular_tensor_category.rs builds ModularData::verified from an AnyonModel and exposes ground_state_degeneracy at a declared genus. The modular arithmetic lives in tfqm_fusion_categories::modular, which states that the familiar normalized relation (ST)^3 = S^2 needs a root that need not lie in the coefficient field. The in-field statements are the ones actually checked. A genus degeneracy computed from S and T data is a topological count. It is not a QCD vacuum degeneracy, and the module does not claim a mass gap. Toric or Ising modular data must stay on this side branch.
 
 Obligation: Keep genus degeneracy on the topological branch and away from a QCD vacuum claim.
 
@@ -6469,7 +6469,7 @@ Obligation: Keep Frobenius and multiplicity-free fusion off the missing color Ho
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-catalog.rs pins exact ribbon data for Ising, Fibonacci, semion, pointed braided categories, the toric code as D(Z_2), a three-fermion model, and quantum doubles D(Z_n). A coefficient field that lacks the needed root of unity is FusionError::FieldTooSmall, not an approximation. su2_level.rs is the SU(2) family in a Racah gauge. The file su3_level.rs is absent from omega_fusion_categories/src, so there is no fusion-category obligation already discharged for SU(3)_k. The catalog does not assert a material host. This absence is an open obligation, not a negative theorem about fusion categories.
+catalog.rs pins exact ribbon data for Ising, Fibonacci, semion, pointed braided categories, the toric code as D(Z_2), a three-fermion model, and quantum doubles D(Z_n). A coefficient field that lacks the needed root of unity is FusionError::FieldTooSmall, not an approximation. su2_level.rs is the SU(2) family in a Racah gauge. The file su3_level.rs is absent from tfqm_fusion_categories/src, so there is no fusion-category obligation already discharged for SU(3)_k. The catalog does not assert a material host. This absence is an open obligation, not a negative theorem about fusion categories.
 
 Obligation: Either add an exact SU(3) fusion file or leave that obligation open. Checked slice, status unchanged. Narrowed in Lean 4, Rust (catalog.rs, su2_level.rs), and an independent Python verifier to three exact finite/algebraic components and non-equivalence fences: (1) catalog.rs ribbon ranks, squared quantum dimensions D^2 (Ising 4, semion 2, D(Z_2) 4, D(Z_n) n^2), and Z_2 x Z_2 spin parities ([0,0,0,1] for toric_code vs [0,1,1,1] for three_fermion) (catalog_ribbon_ranks_and_total_squared_dimensions, toric_code_vs_three_fermion_topological_spin_twists); (2) exact cyclotomic root-of-unity divisibility admission and FusionError::FieldTooSmall refusal (catalog_cyclotomic_field_admission_and_refusal); and (3) SU(3)_k Weyl alcove combinatorics ((k+1)(k+2)/2 simple objects, non-self-dual fundamental pair (1,0)* = (0,1), and SU(3)_2 Q(phi) quantum dimension identity d_(1,0)^2 = d_(0,1) + d_(2,0) = 1 + 2*phi) together with scope fences classifying the absence of su3_level.rs as an open obligation rather than a negative theorem and confirming no material-host assertion (su3_level1_pointed_z3_fusion_vs_higher_level_nonpointed, quantum_double_z3_rank9_not_su3_level_k_fence, catalog_self_dual_models_not_su3_conjugate_pair_fence, su3_level2_fundamental_quantum_dimension_golden_ratio, absence_of_su3_level_rs_is_open_obligation_not_impossibility_theorem_fence, catalog_ribbon_categories_do_not_assert_material_host_or_qcd_confinement_fence, tfq0050_catalog_and_su3_level_scope_ledger_fence).
 
@@ -6482,7 +6482,7 @@ Obligation: Either add an exact SU(3) fusion file or leave that obligation open.
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-spin_structure_obstruction.rs lifts a flat rational rotation transport on a declared finite 2-complex to SU(2) matrices, using omega_lie_theory::su2_matrix::matrix_spin_lift. A face is marked obstructed when the lifted holonomy is -I rather than I. Flat lifts are the sign patterns whose traversal parities match those obstruction bits, which the file describes as the cellular form of a vanishing second Stiefel-Whitney class on that declared complex only. This is a spin-structure control. It is not the lattice Dirac kernel, not a color fermion measure, and not a QCD composite.
+spin_structure_obstruction.rs lifts a flat rational rotation transport on a declared finite 2-complex to SU(2) matrices, using tfqm_lie_theory::su2_matrix::matrix_spin_lift. A face is marked obstructed when the lifted holonomy is -I rather than I. Flat lifts are the sign patterns whose traversal parities match those obstruction bits, which the file describes as the cellular form of a vanishing second Stiefel-Whitney class on that declared complex only. This is a spin-structure control. It is not the lattice Dirac kernel, not a color fermion measure, and not a QCD composite.
 
 Obligation: Keep the spin lift on declared flat complexes and off the Dirac and color controls.
 
@@ -7595,7 +7595,7 @@ Obligation: Match the area-label surd of j(j+1) at spin j = n/2 and the declared
 - Status: `COMPUTATIONAL_CONTROL`
 - DAG node: `FQ-IMPL-WDP-AMPLITUDE-BRIDGE` (`COMPUTATIONALLY_CHECKED`)
 
-omega_wdp amplitude_bridge.rs is the only artifact for WDP-CH19-P11/P12: with unit phase u=(3+4i)/5, integer edge cochains give transports u^{a_e}; adding a coboundary conjugates transports and leaves cycle holonomy unchanged; both readouts N(z1+z2) and N(z1+z2)^2 are common-phase invariant and left free; no homomorphism (Q,+) -> U(1)(Q(i)) sends 1 to u, and u^n != 1 for every n >= 1 (certified via (3+4i)^n mod 5).
+tfqm_wdp amplitude_bridge.rs is the only artifact for WDP-CH19-P11/P12: with unit phase u=(3+4i)/5, integer edge cochains give transports u^{a_e}; adding a coboundary conjugates transports and leaves cycle holonomy unchanged; both readouts N(z1+z2) and N(z1+z2)^2 are common-phase invariant and left free; no homomorphism (Q,+) -> U(1)(Q(i)) sends 1 to u, and u^n != 1 for every n >= 1 (certified via (3+4i)^n mod 5).
 
 Obligation: The claims are about a Rust artifact and are backed by its native exact tests. The cited Lean is integer arithmetic (3^2 + 4^2 = 5^2 and similar) and does not state the claims.
 
@@ -7606,7 +7606,7 @@ Obligation: The claims are about a Rust artifact and are backed by its native ex
 - Status: `COMPUTATIONAL_CONTROL`
 - DAG node: `FQ-IMPL-REALIFICATION-ADAPTER` (`COMPUTATIONALLY_CHECKED`)
 
-A declared finite complex realization over Q(i) is mapped to its balanced real tensor (realify operator/density, product operator/density), in both omega_wdp (Genesis side) and omega_quantum_physics (quantum owner). State admission stays with the quantum owner and balancing with the math owner; this is the Rust site where a Genesis result meets a declared complex structure, and the code states it chooses none.
+A declared finite complex realization over Q(i) is mapped to its balanced real tensor (realify operator/density, product operator/density), in both tfqm_wdp (Genesis side) and quantum_physics (quantum owner). State admission stays with the quantum owner and balancing with the math owner; this is the Rust site where a Genesis result meets a declared complex structure, and the code states it chooses none.
 
 Obligation: The claims describe Rust code and are backed by its native exact tests. The cited Lean is integer arithmetic and does not state the claims.
 
@@ -7666,7 +7666,7 @@ Obligation: Not covered by the PFP review: Prove the external Rust gate/represen
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-Sibling crates outside omega_quantum_physics stay controls and libraries, not completed derivations, and the surveyed headers keep AuthorityEffect None. Roots read are lib.rs in omega_mub, omega_majorana, omega_holonomy, omega_finite_probability, omega_measurement, omega_lifts, omega_lie_theory, omega_homology, omega_fusion_categories, and the finite-shadow face of omega_general_relativity. lean4/quantum_mechanics is entered by file name and fifteen headers, not by a rebuilt Lake run. The obligation is to hang the later nodes on FINITE_QM_CORE without treating a crate inventory as a derivation terminal.
+Sibling crates outside quantum_physics stay controls and libraries, not completed derivations, and the surveyed headers keep AuthorityEffect None. Roots read are lib.rs in tfqm_mub, tfqm_majorana, tfqm_holonomy, tfqm_finite_probability, measurement, lifts, tfqm_lie_theory, homology, tfqm_fusion_categories, and the finite-shadow face of tfqm_general_relativity. lean4/quantum_mechanics is entered by file name and fifteen headers, not by a rebuilt Lake run. The obligation is to hang the later nodes on FINITE_QM_CORE without treating a crate inventory as a derivation terminal.
 
 Obligation: Record these sibling crates as controls under AuthorityEffect None, not as completed derivations.
 
@@ -7679,7 +7679,7 @@ Obligation: Record these sibling crates as controls under AuthorityEffect None, 
 - Atlas paths:
   - `external:sha256:9504a35b2a33de8f85af42c874eb8da62364cbb364219de602dcfa98b26569e1`
 
-Exact rational finite probability sits in omega_finite_probability, a library under the finite floor rather than a Hilbert derivation. src/lib.rs says masses, kernels, tables, and majorization data are BigRational, with no floating point and no tolerance. src/simplex.rs admits a ProbabilitySimplex only after nonnegativity and an exact sum of one, and it states that the law is classical and makes no Born-rule claim. The obligation is that a float, a tolerance, or a display conversion cannot authorize a finite probability. ProbabilitySimplex.lean is a separate candidate rung and is not this constructor.
+Exact rational finite probability sits in tfqm_finite_probability, a library under the finite floor rather than a Hilbert derivation. src/lib.rs says masses, kernels, tables, and majorization data are BigRational, with no floating point and no tolerance. src/simplex.rs admits a ProbabilitySimplex only after nonnegativity and an exact sum of one, and it states that the law is classical and makes no Born-rule claim. The obligation is that a float, a tolerance, or a display conversion cannot authorize a finite probability. ProbabilitySimplex.lean is a separate candidate rung and is not this constructor.
 
 Obligation: Admit only exact nonnegative rational masses that sum to one, with no float authority.
 
@@ -7705,7 +7705,7 @@ Obligation: Keep finite joint tables and classical instruments exact, with no-si
 - Atlas paths:
   - `external:sha256:9504a35b2a33de8f85af42c874eb8da62364cbb364219de602dcfa98b26569e1`
 
-Entropy in this crate is a LogForm, not a float and not a measurement-interval kind. src/log_form.rs stores Shannon, relative, Renyi, and mutual information as rational coefficients of logarithms of primes, using unique factorization so two forms match exactly when their coefficient maps match. Enclosure returns a rational interval around that form; the interval is a bound on the logarithm, not authority to replace the form by a float. The obligation is to authorize entropy comparisons from the exact coefficient map, and to keep those rational enclosures distinct from omega_measurement interval evidence.
+Entropy in this crate is a LogForm, not a float and not a measurement-interval kind. src/log_form.rs stores Shannon, relative, Renyi, and mutual information as rational coefficients of logarithms of primes, using unique factorization so two forms match exactly when their coefficient maps match. Enclosure returns a rational interval around that form; the interval is a bound on the logarithm, not authority to replace the form by a float. The obligation is to authorize entropy comparisons from the exact coefficient map, and to keep those rational enclosures distinct from measurement interval evidence.
 
 Obligation: Compare finite entropies as exact rational combinations of prime logarithms, not as floats.
 
@@ -7744,7 +7744,7 @@ Obligation: Positive natural masses on two coordinates are separated from the un
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-Discrete gauge holonomy is the omega_holonomy crate, under a stated zero-float law and AuthorityEffect None. src/lib.rs exports path and loop products, Wilson traces, and cycle pairings; src/holonomy.rs builds a HolonomyLoop only when the vertex list closes, rejecting a short path and an open loop. Transport data are ExactMatrix values, not display floats. The obligation is to evaluate ordered products on a finite cell complex without promoting the result to a continuum connection or to a U(1) Hilbert phase. This crate is not the scaffold type in omega_general_relativity/src/holonomy.rs.
+Discrete gauge holonomy is the tfqm_holonomy crate, under a stated zero-float law and AuthorityEffect None. src/lib.rs exports path and loop products, Wilson traces, and cycle pairings; src/holonomy.rs builds a HolonomyLoop only when the vertex list closes, rejecting a short path and an open loop. Transport data are ExactMatrix values, not display floats. The obligation is to evaluate ordered products on a finite cell complex without promoting the result to a continuum connection or to a U(1) Hilbert phase. This crate is not the scaffold type in tfqm_general_relativity/src/holonomy.rs.
 
 Obligation: Compute discrete gauge holonomy as exact ordered products on a finite cell complex.
 
@@ -7757,7 +7757,7 @@ Obligation: Compute discrete gauge holonomy as exact ordered products on a finit
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-Curvature in omega_holonomy is a finite commutator and a plaquette defect, not a continuum Riemann tensor. src/curvature.rs documents F_Box as the loop transport of the boundary minus the identity, and curvature_commutator as the matrix bracket M1 M2 minus M2 M1, with a discrete Bianchi check named in lib.rs. Scalars stay on ExactScalar. The obligation is to record flatness only when that exact defect vanishes, and to refuse a numerical tolerance as a stand-in for the identity. The module does not supply the Einstein equation or a Regge deficit angle.
+Curvature in tfqm_holonomy is a finite commutator and a plaquette defect, not a continuum Riemann tensor. src/curvature.rs documents F_Box as the loop transport of the boundary minus the identity, and curvature_commutator as the matrix bracket M1 M2 minus M2 M1, with a discrete Bianchi check named in lib.rs. Scalars stay on ExactScalar. The obligation is to record flatness only when that exact defect vanishes, and to refuse a numerical tolerance as a stand-in for the identity. The module does not supply the Einstein equation or a Regge deficit angle.
 
 Obligation: Keep discrete curvature as an exact plaquette defect and matrix commutator, without a float tolerance.
 
@@ -7783,11 +7783,11 @@ Obligation: Keep the discrete connection Laplacian and gauge quotient on exact m
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-Lean coboundary holonomy is an integer cochain control and is not the matrix gauge engine. CoboundaryHolonomy.lean, header AuthorityEffect None, defines integer 0-cochains and 1-cochains on four named vertices and sets (delta phi)(u, v) to phi(v) minus phi(u). FiniteCochain.lean does the same style of bookkeeping on a 3-vertex, 3-edge carrier with an integer 2-cochain. The obligation is to keep these integer coboundaries from being cited as omega_holonomy's ExactMatrix loop products. They witness a finite cochain shape; they do not evaluate Wilson traces or plaquette curvature.
+Lean coboundary holonomy is an integer cochain control and is not the matrix gauge engine. CoboundaryHolonomy.lean, header AuthorityEffect None, defines integer 0-cochains and 1-cochains on four named vertices and sets (delta phi)(u, v) to phi(v) minus phi(u). FiniteCochain.lean does the same style of bookkeeping on a 3-vertex, 3-edge carrier with an integer 2-cochain. The obligation is to keep these integer coboundaries from being cited as tfqm_holonomy's ExactMatrix loop products. They witness a finite cochain shape; they do not evaluate Wilson traces or plaquette curvature.
 
 Obligation: Keep integer coboundary holonomy distinct from exact matrix gauge holonomy.
 
-### TFQ-0176 Treat omega_mub as reconstruction bookkeeping, not as the owner of a completed
+### TFQ-0176 Treat tfqm_mub as reconstruction bookkeeping, not as the owner of a completed
 
 - UUID: `cb492133-3fa1-5cf8-ad31-ba3e2c0dc250`
 - Parent: `TFQ-0166`
@@ -7796,9 +7796,9 @@ Obligation: Keep integer coboundary holonomy distinct from exact matrix gauge ho
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-MUB reconstruction in omega_mub is not a completed existence derivation. src/lib.rs says nothing there mints authority and that the exact finite MUB constructions and the projector-algebra verifier live in omega_quantum_physics::mub. src/omega_native/mod.rs repeats that split: exact certificates, campaign corpora, and float cross-checks are separate modules, while the finite carriers are re-exported from the physics crate. The obligation is to cite this crate as reconstruction bookkeeping and stated-region checks. It does not settle how many mutually unbiased bases exist in dimension 6.
+MUB reconstruction in tfqm_mub is not a completed existence derivation. src/lib.rs says nothing there mints authority and that the exact finite MUB constructions and the projector-algebra verifier live in quantum_physics::mub. src/native/mod.rs repeats that split: exact certificates, campaign corpora, and float cross-checks are separate modules, while the finite carriers are re-exported from the physics crate. The obligation is to cite this crate as reconstruction bookkeeping and stated-region checks. It does not settle how many mutually unbiased bases exist in dimension 6.
 
-Obligation: Treat omega_mub as reconstruction bookkeeping, not as the owner of a completed MUB derivation.
+Obligation: Treat tfqm_mub as reconstruction bookkeeping, not as the owner of a completed MUB derivation.
 
 ### TFQ-0177 Leave the existence of seven mutually unbiased bases in dimension 6 open
 
@@ -7822,11 +7822,11 @@ Obligation: Leave the existence of seven mutually unbiased bases in dimension 6 
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-The MUB(6) claim firewall refuses a global solution bit even when a float is handed in. src/omega_native/mub6_firewall.rs stores the line stated region only; mints no authority, with AUTHORITY_EFFECT None. src/omega_native/mub6_claim_gate.rs builds a StatedRegionSeal whose mub6_equals_3, mub6_at_most_3, global_solution, and verified_certificate fields are documented as always false, and certificate_from_exact_only discards its f64 argument. The obligation is to accept only the exact EnclosedTriple certificate from that call.
+The MUB(6) claim firewall refuses a global solution bit even when a float is handed in. src/native/mub6_firewall.rs stores the line stated region only; mints no authority, with AUTHORITY_EFFECT None. src/native/mub6_claim_gate.rs builds a StatedRegionSeal whose mub6_equals_3, mub6_at_most_3, global_solution, and verified_certificate fields are documented as always false, and certificate_from_exact_only discards its f64 argument. The obligation is to accept only the exact EnclosedTriple certificate from that call.
 
 Obligation: Accept a MUB(6) stated-region bit only from the exact certificate, never from a float or a global flag.
 
-### TFQ-0179 Keep omega_mub float cross-checks from authorizing a MUB(6) existence claim
+### TFQ-0179 Keep tfqm_mub float cross-checks from authorizing a MUB(6) existence claim
 
 - UUID: `79cdac0c-c928-52f2-8f96-d6c20c25aef5`
 - Parent: `TFQ-0178`
@@ -7835,9 +7835,9 @@ Obligation: Accept a MUB(6) stated-region bit only from the exact certificate, n
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-Float cross-checks in omega_mub remain legacy debt beside the exact lane. src/omega_native/mod.rs separates float_check from exact. The source tree lists d6_sos_float_sdp.rs next to exact modules such as d6_exact_sos.rs; this pass did not read the float solver body. derivation_dag.json node FQ-IMPL-F64-GATING records twenty omega_mub files in legacy_debt and states that a float may propose but never authorize a result, with sealed use empty. The obligation is to keep those float files from authorizing a MUB(6) count. The open existence question is unchanged by a float prefilter.
+Float cross-checks in tfqm_mub remain legacy debt beside the exact lane. src/native/mod.rs separates float_check from exact. The source tree lists d6_sos_float_sdp.rs next to exact modules such as d6_exact_sos.rs; this pass did not read the float solver body. derivation_dag.json node FQ-IMPL-F64-GATING records twenty tfqm_mub files in legacy_debt and states that a float may propose but never authorize a result, with sealed use empty. The obligation is to keep those float files from authorizing a MUB(6) count. The open existence question is unchanged by a float prefilter.
 
-Obligation: Keep omega_mub float cross-checks from authorizing a MUB(6) existence claim.
+Obligation: Keep tfqm_mub float cross-checks from authorizing a MUB(6) existence claim.
 
 ### TFQ-0180 Keep Lean MUB reconstructions in dimensions 3 and 4 from being cited
 
@@ -7852,7 +7852,7 @@ Lean MUB files in quantum_mechanics reconstruct small dimensions and do not clos
 
 Obligation: Keep Lean MUB reconstructions in dimensions 3 and 4 from being cited as a dimension-6 existence result.
 
-### TFQ-0181 Keep omega_majorana a GF(2) diagnostic and do not treat it as an
+### TFQ-0181 Keep tfqm_majorana a GF(2) diagnostic and do not treat it as an
 
 - UUID: `b52b525c-5784-5264-9715-036cbb08b19b`
 - Parent: `TFQ-0166`
@@ -7861,9 +7861,9 @@ Obligation: Keep Lean MUB reconstructions in dimensions 3 and 4 from being cited
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-omega_majorana is a GF(2) diagnostic, not an authority terminal. src/lib.rs titles the crate a GF(2) Majorana parity diagnostic playground, sets AuthorityEffect None on every receipt, and says it does not mint CertifiedAuthority and does not claim physical Majorana modes, topological qubits, or NISQ hardware. Status labels Exact, ClosedResidual, and OpenObstruction are diagnostic schedule classes, not FOC ExactRepair. The obligation is to cite the crate only as that diagnostic. derivation_dag.json id DS-QM212-MAJORANA-PROBLEM names lib.rs, but that citation does not lift the fence written in the file.
+tfqm_majorana is a GF(2) diagnostic, not an authority terminal. src/lib.rs titles the crate a GF(2) Majorana parity diagnostic playground, sets AuthorityEffect None on every receipt, and says it does not mint CertifiedAuthority and does not claim physical Majorana modes, topological qubits, or NISQ hardware. Status labels Exact, ClosedResidual, and OpenObstruction are diagnostic schedule classes, not FOC ExactRepair. The obligation is to cite the crate only as that diagnostic. derivation_dag.json id DS-QM212-MAJORANA-PROBLEM names lib.rs, but that citation does not lift the fence written in the file.
 
-Obligation: Keep omega_majorana a GF(2) diagnostic and do not treat it as an authority terminal.
+Obligation: Keep tfqm_majorana a GF(2) diagnostic and do not treat it as an authority terminal.
 
 ### TFQ-0182 Treat GF(2) terminalize receipts as diagnostic schedule classes, not as minted authority
 
@@ -7874,7 +7874,7 @@ Obligation: Keep omega_majorana a GF(2) diagnostic and do not treat it as an aut
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-The GF(2) receipt emitter is not a terminalizer in the authority sense. src/gf2_terminalizer.rs says Cyclotomic16Element is an overflow-checked product in Z[zeta_16], that no braid identity is checked in this crate, and that the historical name terminalize means a parity-schedule diagnostic receipt. It repeats AuthorityEffect None and refuses CertifiedAuthority. The obligation is to read every emitted receipt as a schedule class. Braid relations over Q(i) are explicitly deferred to omega_quantum_physics::majorana_fock_algebra, which this sibling node does not enter.
+The GF(2) receipt emitter is not a terminalizer in the authority sense. src/gf2_terminalizer.rs says Cyclotomic16Element is an overflow-checked product in Z[zeta_16], that no braid identity is checked in this crate, and that the historical name terminalize means a parity-schedule diagnostic receipt. It repeats AuthorityEffect None and refuses CertifiedAuthority. The obligation is to read every emitted receipt as a schedule class. Braid relations over Q(i) are explicitly deferred to quantum_physics::majorana_fock_algebra, which this sibling node does not enter.
 
 Obligation: Treat GF(2) terminalize receipts as diagnostic schedule classes, not as minted authority.
 
@@ -7939,7 +7939,7 @@ Obligation: Do not treat TraceZeroDuality.lean as a Lean formalization of the K_
 - Atlas paths:
   - `external:sha256:98533bbe8dde6cad1f5bbd9d2de0fb85196b2d44c74964cec5a96620ff69c94f`
 
-Lift licences in omega_lifts are obstruction-calculus metadata, not a Hilbert derivation. src/lib.rs defines a lift as a map from Q_n to Q_{n+1} with a forgetful descent back, and says no lift is admissible without an explicit descent map. src/lift_license.rs labels LiftLicense as legacy metadata for that pair, not the maps themselves, and says the record is not used as proof that a lift is licensed. Candidate evaluations in candidate.rs carry Phi1 and Gamma2 as BigRational. The obligation is to keep a licence candidate from being read as an inner-product space, a Born rule, or a completed Hilbert lift.
+Lift licences in lifts are obstruction-calculus metadata, not a Hilbert derivation. src/lib.rs defines a lift as a map from Q_n to Q_{n+1} with a forgetful descent back, and says no lift is admissible without an explicit descent map. src/lift_license.rs labels LiftLicense as legacy metadata for that pair, not the maps themselves, and says the record is not used as proof that a lift is licensed. Candidate evaluations in candidate.rs carry Phi1 and Gamma2 as BigRational. The obligation is to keep a licence candidate from being read as an inner-product space, a Born rule, or a completed Hilbert lift.
 
 Obligation: Keep lift licences as descent-paired obstruction metadata, not as a Hilbert derivation.
 
@@ -7952,7 +7952,7 @@ Obligation: Keep lift licences as descent-paired obstruction metadata, not as a 
 - Atlas paths:
   - `external:sha256:98533bbe8dde6cad1f5bbd9d2de0fb85196b2d44c74964cec5a96620ff69c94f`
 
-CycleLiftSpec breaks the exact-licence story by storing lift_scale as f64. src/cycle_lift_spec.rs declares cycle_node_indices as a vector of usize and lift_scale as f64, and its error NonFiniteLiftScale only rejects a non-finite float. That is not a BigRational descent witness. FQ-IMPL-F64-GATING counts three omega_lifts files in legacy_debt and says a float may propose but never authorize a result. The obligation is to refuse this f64 scale as a lift licence. PrimitiveLiftCertificate.lean is only a boolean checklist of propositions and does not supply the missing exact scale.
+CycleLiftSpec breaks the exact-licence story by storing lift_scale as f64. src/cycle_lift_spec.rs declares cycle_node_indices as a vector of usize and lift_scale as f64, and its error NonFiniteLiftScale only rejects a non-finite float. That is not a BigRational descent witness. FQ-IMPL-F64-GATING counts three lifts files in legacy_debt and says a float may propose but never authorize a result. The obligation is to refuse this f64 scale as a lift licence. PrimitiveLiftCertificate.lean is only a boolean checklist of propositions and does not supply the missing exact scale.
 
 Obligation: Refuse the f64 lift_scale on CycleLiftSpec as a licence for an exact finite lift.
 
@@ -8004,7 +8004,7 @@ Obligation: Keep interval measurement evidence distinct, and do not let an f64-b
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-Diagnostic floats are a fourth arm and are barred from governance even when a display conversion exists. MeasurementValue::DiagnosticFloat carries an f64 plus a DiagnosticPurpose limited to logging or visualization. MeasurementError variants RawF64ForbiddenInGovernance and DiagnosticFloatForbiddenInGovernance name the refusal. try_to_f64_for_display is documented as forbidden for governance decisions. The obligation is to leave that display path outside every licence, probability, and MUB certificate. FQ-IMPL-F64-GATING counts two omega_measurement files in legacy_debt.
+Diagnostic floats are a fourth arm and are barred from governance even when a display conversion exists. MeasurementValue::DiagnosticFloat carries an f64 plus a DiagnosticPurpose limited to logging or visualization. MeasurementError variants RawF64ForbiddenInGovernance and DiagnosticFloatForbiddenInGovernance name the refusal. try_to_f64_for_display is documented as forbidden for governance decisions. The obligation is to leave that display path outside every licence, probability, and MUB certificate. FQ-IMPL-F64-GATING counts two measurement files in legacy_debt.
 
 Obligation: Keep diagnostic floats and display conversions out of governance and out of exact certificates.
 
@@ -8017,7 +8017,7 @@ Obligation: Keep diagnostic floats and display conversions out of governance and
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-omega_lie_theory is an exact finite-group and rational Lie library, not a completed continuum symmetry derivation. src/lib.rs says every quantity is rational, cyclotomic, or quadratic, with no floating point and no tolerance, and it marks the crate Not PROVED. Declared modules include finite_group.rs, cayley.rs, su2.rs, rotation.rs, lorentz.rs, finite_order.rs, and lie_algebra.rs. Lorentz boosts in lorentz.rs are rational points of a hyperboloid. The obligation is to use these matrices as finite exact controls. They do not install a continuous Haar measure or a Hilbert representation.
+tfqm_lie_theory is an exact finite-group and rational Lie library, not a completed continuum symmetry derivation. src/lib.rs says every quantity is rational, cyclotomic, or quadratic, with no floating point and no tolerance, and it marks the crate Not PROVED. Declared modules include finite_group.rs, cayley.rs, su2.rs, rotation.rs, lorentz.rs, finite_order.rs, and lie_algebra.rs. Lorentz boosts in lorentz.rs are rational points of a hyperboloid. The obligation is to use these matrices as finite exact controls. They do not install a continuous Haar measure or a Hilbert representation.
 
 Obligation: Keep rational Lie and finite-group constructions exact, without a continuum Haar or Hilbert step.
 
@@ -8043,7 +8043,7 @@ Obligation: Keep the finite Weyl relation distinct from a characteristic-zero CC
 - Atlas paths:
   - `external:sha256:98533bbe8dde6cad1f5bbd9d2de0fb85196b2d44c74964cec5a96620ff69c94f`
 
-omega_homology supplies finite carriers for later shadows and is not itself a quantum derivation. src/lib.rs opens as computational algebraic topology with AuthorityEffect None and says new TDA modules are best-effort shells unless marked otherwise. src/finite_rational_homology.rs computes rational homology quotients through the shared exact linear-algebra owner and states that it makes no integer-quotient transport or homotopy claim. src/simplicial.rs is the face-closed complex used by the gravity shadow. The obligation is to cite chain maps and simplices as finite controls only.
+homology supplies finite carriers for later shadows and is not itself a quantum derivation. src/lib.rs opens as computational algebraic topology with AuthorityEffect None and says new TDA modules are best-effort shells unless marked otherwise. src/finite_rational_homology.rs computes rational homology quotients through the shared exact linear-algebra owner and states that it makes no integer-quotient transport or homotopy claim. src/simplicial.rs is the face-closed complex used by the gravity shadow. The obligation is to cite chain maps and simplices as finite controls only.
 
 Obligation: Use finite rational homology and simplicial complexes as carriers, not as a quantum derivation.
 
@@ -8056,7 +8056,7 @@ Obligation: Use finite rational homology and simplicial complexes as carriers, n
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-Fusion data in omega_fusion_categories are exact ring controls, not a Hilbert anyon derivation. src/lib.rs requires nonnegative integer fusion coefficients and symbols in an exact number field, with no floating-point conversion and no tolerance, and it marks the crate Not PROVED. catalog.rs pins Ising, Fibonacci, and semion constructors and returns a typed field error when a needed root of unity is missing. su2_level.rs places algebraic Racah F-symbols in a cyclotomic field and says that gauge is not orthonormal. The obligation is to keep a pentagon or hexagon check from being cited as continuum SU(2).
+Fusion data in tfqm_fusion_categories are exact ring controls, not a Hilbert anyon derivation. src/lib.rs requires nonnegative integer fusion coefficients and symbols in an exact number field, with no floating-point conversion and no tolerance, and it marks the crate Not PROVED. catalog.rs pins Ising, Fibonacci, and semion constructors and returns a typed field error when a needed root of unity is missing. su2_level.rs places algebraic Racah F-symbols in a cyclotomic field and says that gauge is not orthonormal. The obligation is to keep a pentagon or hexagon check from being cited as continuum SU(2).
 
 Obligation: Keep exact fusion and SU(2)_k data from being cited as a continuum anyon or Hilbert derivation.
 
@@ -8095,13 +8095,13 @@ Obligation: Keep discrete spin-foam amplitudes cyclotomic and refuse a continuum
 - Atlas paths:
   - `external:sha256:3429888abb5e68b4f86f2bd9efe085b8dcdc981179166df315b7b6acf23de0b6`
 
-Other gravity files are scaffolds or a different 2D calculus and must not be folded into the rational 4D proxy. src/holonomy.rs is a best-effort scaffold whose Holonomy struct stores only a degree and a string label. src/regge_calculus.rs is finite 2D Regge, with action a sum of vertex deficits, and it says it is not continuum GR and not 3+1 dihedral Regge. src/discrete_spacetime.rs is the combinatorial carrier via omega_homology::simplicial. The obligation is to withhold those labels and the 2D deficit sum from the exact_regge proxy. FiniteQFTAndGravity.lean keeps pi and square roots out of its identities.
+Other gravity files are scaffolds or a different 2D calculus and must not be folded into the rational 4D proxy. src/holonomy.rs is a best-effort scaffold whose Holonomy struct stores only a degree and a string label. src/regge_calculus.rs is finite 2D Regge, with action a sum of vertex deficits, and it says it is not continuum GR and not 3+1 dihedral Regge. src/discrete_spacetime.rs is the combinatorial carrier via homology::simplicial. The obligation is to withhold those labels and the 2D deficit sum from the exact_regge proxy. FiniteQFTAndGravity.lean keeps pi and square roots out of its identities.
 
 Obligation: Do not treat the GR holonomy scaffold or the 2D Regge sum as the exact rational 4D gravity shadow.
 
 ## ENGINE_CUSTODY
 
-### TFQ-0200 Three-language custody on the Omega Engine runtime
+### TFQ-0200 Three-language custody on the engine runtime
 
 - UUID: `94bf76e0-dbb4-5cba-a717-7cabf14375ac`
 - Parent: `TFQ-0007`
@@ -8185,7 +8185,7 @@ Obligation: Name the finite carrier on F000.S000 before a quantum interface is a
   - `external:git-tree:e03ce30c258cf9ca164637ea387b5267bad58df9`
   - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`
 
-Exact rational carriers are the values a finite derivation may transport. omega_kernel defines Exact as BigRational and writes canonical text such as 3/4, refusing a JSON number because many readers treat that token as a float. parse_exact accepts only lowest terms with a positive denominator. Lean ExactRat.Frac is an integer numerator over a positive natural denominator, with equality by cross-multiplication, under AuthorityEffect None. ExactOperator builds matrices over Gaussian rationals and states that nothing there is floating point. The derivation folder stores these objects, not a rounded substitute.
+Exact rational carriers are the values a finite derivation may transport. kernel defines Exact as BigRational and writes canonical text such as 3/4, refusing a JSON number because many readers treat that token as a float. parse_exact accepts only lowest terms with a positive denominator. Lean ExactRat.Frac is an integer numerator over a positive natural denominator, with equality by cross-multiplication, under AuthorityEffect None. ExactOperator builds matrices over Gaussian rationals and states that nothing there is floating point. The derivation folder stores these objects, not a rounded substitute.
 
 Obligation: Transport authorizing carriers as exact rationals or canonical rational text.
 
@@ -8246,7 +8246,7 @@ Obligation: Require a Python text of the finite statement tied to a carrier and 
   - `external:git-tree:e03ce30c258cf9ca164637ea387b5267bad58df9`
   - `external:git-tree:662d50fe40fdbf9e98bc3ae140d0355d3b3a45f5`
 
-Rust must name that same finite statement on a crate the runtime actually builds. omega_kernel carries the rational parser, omega_wdp carries prime_algorithm_0 with AuthorityEffect always None, and omega_quantum_physics carries ExactOperator over Gaussian rationals. finite_shadow_exact.rs uses exact masses and budgets, excludes f64 arithmetic, and says it is not a continuum theorem. These crates expose neighboring APIs, not one shared statement id. Custody cites a crate only after its directory exists. The obligation is to print the same finite sentence and the same carrier text the Python record names.
+Rust must name that same finite statement on a crate the runtime actually builds. kernel carries the rational parser, tfqm_wdp carries prime_algorithm_0 with AuthorityEffect always None, and quantum_physics carries ExactOperator over Gaussian rationals. finite_shadow_exact.rs uses exact masses and budgets, excludes f64 arithmetic, and says it is not a continuum theorem. These crates expose neighboring APIs, not one shared statement id. Custody cites a crate only after its directory exists. The obligation is to print the same finite sentence and the same carrier text the Python record names.
 
 Obligation: Require a Rust text of the same finite statement on a crate directory that exists.
 
@@ -8357,7 +8357,7 @@ Obligation: Cite F001.S000 and F000.S000 together with the F003 packet when the 
   - `external:git-tree:e03ce30c258cf9ca164637ea387b5267bad58df9`
   - `external:git-tree:5ab26ee1f8e4e10cf2fbf7a36dd731d31fbf4a44`
 
-Replay custody means a later reader can reopen the bytes the runtime accepted. omega_replay exports run-folder sealing and AUTHORITY_EFFECT_NONE, and run_folder.rs rejects a receipt whose authority effect is not that constant. ReplayHash and the append log sit beside the seal so a trace can be named without being rewritten in place. The authorization book adds ReplayFiber, which hashes proposal bytes, and its docstring says the helper is not certification or authorization. Prime issue_finite_receipt builds a digest from the local packet checks. Custody keeps the sealed folder, the hash, and the None marker.
+Replay custody means a later reader can reopen the bytes the runtime accepted. replay exports run-folder sealing and AUTHORITY_EFFECT_NONE, and run_folder.rs rejects a receipt whose authority effect is not that constant. ReplayHash and the append log sit beside the seal so a trace can be named without being rewritten in place. The authorization book adds ReplayFiber, which hashes proposal bytes, and its docstring says the helper is not certification or authorization. Prime issue_finite_receipt builds a digest from the local packet checks. Custody keeps the sealed folder, the hash, and the None marker.
 
 Obligation: Seal the accepted bytes with a replay hash and with authority effect None.
 
@@ -8444,7 +8444,7 @@ Obligation: Land a finished prime cycle on evidence, unresolved, refused, or not
   - `external:git-tree:5d358f5062016c742016b891fa7891bb0f0e19ef`
   - `external:git-tree:226cd319cca5577d94c5b3df4f7b355edfab0e70`
 
-A finite receipt is a digest of the local prime checks, not a second statement. Python FiniteReceipt stores a digest plus bits for packet_declared, adapter_sound, and continuation_allowed. omega_replay seals a run folder only when the receipt authority effect equals None, so another effect fails verification. The pipeline runtime says its entry contract cannot mint authority and emits AuthorityEffect None. The folder may attach one receipt after primes 000, 001, and 002. The receipt points at the checks and does not replace the rational carrier or the unfinished language triple.
+A finite receipt is a digest of the local prime checks, not a second statement. Python FiniteReceipt stores a digest plus bits for packet_declared, adapter_sound, and continuation_allowed. replay seals a run folder only when the receipt authority effect equals None, so another effect fails verification. The pipeline runtime says its entry contract cannot mint authority and emits AuthorityEffect None. The folder may attach one receipt after primes 000, 001, and 002. The receipt points at the checks and does not replace the rational carrier or the unfinished language triple.
 
 Obligation: Attach a receipt as a pointer to local checks, not as a replacement statement.
 
@@ -8574,7 +8574,7 @@ Obligation: Cite finite_quantum_mechanics as corpus material without discharging
 - UUID: `05cd66ef-a1bb-5a76-85ed-1b9346e8bfaa`
 - Parent: `TFQ-0230`
 - Status: `SOURCE_RECORD`
-- Coda atlas: `F003.S002`, `F003.S002:000_omega_engine_pfp`, `F003.S002:001_omega_engine_workflows_agents_skills`, `F003.S000:000_prime_algorithms_and_runtime`
+- Coda atlas: `F003.S002`, `F003.S002:000_pfp`, `F003.S002:001_workflows_agents_skills`, `F003.S000:000_prime_algorithms_and_runtime`
 - Atlas paths:
   - `external:git-tree:337e52879c32a70cbec65de9dadb0cc8b55ff282`
   - `external:git-tree:fc58e03f871099f969e0c28a2d452e83656e4225`
@@ -8590,7 +8590,7 @@ Obligation: Keep S002 packages auxiliary and off the prime completion path.
 - UUID: `8d60a533-6182-5682-a4b4-bfcc92cfa951`
 - Parent: `TFQ-0231`
 - Status: `SOURCE_RECORD`
-- Coda atlas: `F003.S001`, `F003.S001:000_omega_prompt_civilization`, `F003.S001:001_omega_oewas`, `F003.S001:002_omega_operad_theory`, `F003.S001:003_symbol_host`, `F003.S000`
+- Coda atlas: `F003.S001`, `F003.S001:000_prompt_civilization`, `F003.S001:001_oewas`, `F003.S001:002_operad_theory`, `F003.S001:003_symbol_host`, `F003.S000`
 - Atlas paths:
   - `external:git-tree:226cd319cca5577d94c5b3df4f7b355edfab0e70`
   - `external:git-tree:eaedced51dbe0c7d75ab18013e4bd91975e43568`
@@ -13157,7 +13157,7 @@ Obligation: The norm and Term rows are arithmetic on the defect 2, not receipts 
 
 As the note states it for the Rust evaluator evaluate_l1_claim (Policy A2' and the profile binding): before any arithmetic it refuses an undeclared, empty or whitespace component with UndeclaredObserverComponent(name), and a component the evaluator does not implement with UnsupportedObserverComponent { component, declared }. The kernel must equal the label of the scenario under evaluation (for the Bell scenario "support presheaf over the maximal-context cover {0,2}|{0,3}|{1,2}|{1,3} with arities 2,2,2,2"); the other four components must equal the constants for the noncontextual polytope, the l1 norm, the terminal rule and the diagnostic layer. A supported tuple yields a receipt with authority_effect None, the terminal token and the typed profile. The refusal is a policy invariant by construction; the note does not derive it from Lemma A2.
 
-Obligation: The computing tests are Rust tests of the source repository. The in-repo copy of the module (code/rust/src/sheaf_theory/empirical_presheaf) uses omega_solvers, an external crate that is not a member of the code/rust workspace (cargo metadata --no-deps lists no such package), and the source test file was not imported. These tests are not run here. Outside this slice: a defect receipt, Unicode whitespace other than one space, the terminal token, the typed profile, and any kernel label other than the one Bell label. The Python gate on node OPS-THREE-ROLE-GATE checks its own observer field and is not this classifier.
+Obligation: The computing tests are Rust tests of the source repository. The in-repo copy of the module (code/rust/src/sheaf_theory/empirical_presheaf) uses solvers, an external crate that is not a member of the code/rust workspace (cargo metadata --no-deps lists no such package), and the source test file was not imported. These tests are not run here. Outside this slice: a defect receipt, Unicode whitespace other than one space, the terminal token, the typed profile, and any kernel label other than the one Bell label. The Python gate on node OPS-THREE-ROLE-GATE checks its own observer field and is not this classifier.
 
 ### TFQ-2519 Receipt replay, tamper rejection and size ceilings of the Rust module
 
@@ -13169,7 +13169,7 @@ Obligation: The computing tests are Rust tests of the source repository. The in-
 
 As the ledger states them for the Rust module empirical_presheaf. (B15) The l1 defect receipt has zero duality gap: <phi*, e> + y0 equals the defect, with the sup norm of phi* at most 1 and A^T phi* + y0 <= 0, and replay rejects tampering and shape errors. (B17) verify_noncontextual_fraction and verify_l1_defect_receipt rebuild the linear programme, verify the embedded solution as its certificate, and bind primal, dual and value to the receipt's part, functional and fraction; the pivot trace is not bound. (B16) Every global and local section count is a checked fold against MAX_GLOBAL_ASSIGNMENTS = 2^20 returning EnumerationLimit, and dense allocations are bounded by MAX_LP_ENTRIES = 2^22 returning LpSizeLimit, with nothing of either size allocated or enumerated before the refusal: 64 binary singletons have 2^64 assignments and one context of 21 binary measurements has 2^21 sections, both above 2^20, while ten binary singletons give a 20 x 1024 incidence inside both ceilings. (B9, shape) The whole declared cochain is shape-checked before any incidence is read. Recomputed here: the ceiling arithmetic, and a zero-gap primal and dual pair for the PR box and the noisy boxes in the independent script's own solver, which does not test the Rust verifiers.
 
-Obligation: The Lean statement is the narrowed ceiling arithmetic above. The Rust receipt replay, tamper rejection, shape check, zero-gap dual certificate, PR box, noisy boxes, and the functions verify_noncontextual_fraction and verify_l1_defect_receipt are not run here. The in-repo module uses omega_solvers, an external crate that is not a workspace member.
+Obligation: The Lean statement is the narrowed ceiling arithmetic above. The Rust receipt replay, tamper rejection, shape check, zero-gap dual certificate, PR box, noisy boxes, and the functions verify_noncontextual_fraction and verify_l1_defect_receipt are not run here. The in-repo module uses solvers, an external crate that is not a workspace member.
 
 ### TFQ-2520 What is not formalised in Lean
 

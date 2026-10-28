@@ -42,7 +42,7 @@ No receipt or declaration with this content is present.
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.CuspExclusion.deltoid_cusp_singularity_rejection (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/conjecture2/cusp_exclusion.py::exclude_cusp_singularities (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_conjecture2::deltoid_cusp_exclusion (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_conjecture2::deltoid_cusp_exclusion (external engine crate, not in this checkout)`
 
 ---
 

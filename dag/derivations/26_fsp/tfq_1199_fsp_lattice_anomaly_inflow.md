@@ -47,7 +47,7 @@ Cited ChiralAnomalyInflow.lean::chiral_anomaly_inflow_cancellation does not exis
 - `checks/independent/fsp-lattice-anomaly-inflow.py::main`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::spin_structure_obstruction::chiral_anomaly_inflow (cited by the source, not in this checkout)`
+- `external:quantum_physics::spin_structure_obstruction::chiral_anomaly_inflow (cited by the source, not in this checkout)`
 
 ---
 

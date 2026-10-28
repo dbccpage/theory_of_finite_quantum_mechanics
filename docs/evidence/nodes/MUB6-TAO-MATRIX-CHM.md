@@ -60,7 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1230_mub6_tao_matrix_chm.md`
 
 - file: [dag/derivations/25_mub/tfq_1230_mub6_tao_matrix_chm.md](../../../dag/derivations/25_mub/tfq_1230_mub6_tao_matrix_chm.md)
-- sha256 (`lf-normalised`): `2dc8079fd2bc30078876c7545194c9e3f31681df64c8701dcd26ca25379d3f44`
+- sha256 (`lf-normalised`): `182b773f0028e3234ccbb5c1fd558fef582288af4b21d962a563056a2e1dde55`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1230
 - counts toward the grade: no

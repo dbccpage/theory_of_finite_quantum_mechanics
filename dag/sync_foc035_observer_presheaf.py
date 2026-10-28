@@ -8,7 +8,7 @@ repository, not the status it has in the source repository:
 - PROVED_LEAN only for the declarations of lean4/LggrFiniteResults.lean, with the statement narrowed to them;
 - COMPUTATIONALLY_CHECKED only where a check that runs here recomputes the instance values: the exact independent
   script checks/independent/foc035_observer_presheaf.py or the imported Python tests under code/python/tests;
-- CONDITIONAL where the computing test is a Rust test that needs the external omega_solvers crate and is not run here;
+- CONDITIONAL where the computing test is a Rust test that needs the external solvers crate and is not run here;
 - IMPORTED_ASSUMPTION for results the note cites by name and does not re-prove (external ids checked against the
   arXiv and DOI records);
 - PROVED_PROSE for statements the note proves in prose only, REFUTED for the negative-evidence rows, OPEN for the

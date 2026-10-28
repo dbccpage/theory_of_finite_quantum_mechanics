@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Entropy in this crate is a LogForm, not a float and not a measurement-interval kind. src/log_form.rs stores Shannon, relative, Renyi, and mutual information as rational coefficients of logarithms of primes, using unique factorization so two forms match exactly when their coefficient maps match. Enclosure returns a rational interval around that form; the interval is a bound on the logarithm, not authority to replace the form by a float. The obligation is to authorize entropy comparisons from the exact coefficient map, and to keep those rational enclosures distinct from omega_measurement interval evidence.
+Entropy in this crate is a LogForm, not a float and not a measurement-interval kind. src/log_form.rs stores Shannon, relative, Renyi, and mutual information as rational coefficients of logarithms of primes, using unique factorization so two forms match exactly when their coefficient maps match. Enclosure returns a rational interval around that form; the interval is a bound on the logarithm, not authority to replace the form by a float. The obligation is to authorize entropy comparisons from the exact coefficient map, and to keep those rational enclosures distinct from measurement interval evidence.
 
 ### Governing Obligation
 Compare finite entropies as exact rational combinations of prime logarithms, not as floats.

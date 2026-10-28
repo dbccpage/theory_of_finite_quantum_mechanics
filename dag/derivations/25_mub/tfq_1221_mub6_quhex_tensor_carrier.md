@@ -48,7 +48,7 @@ No local declaration states this factorization; lean4/CompositionTensorMub.lean:
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.Quhex.tensor_product_decomposition_d6 (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/dim6/quhex_decomp.py::decompose_c6_qubit_qutrit (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_matrix6::quhex_qubit_qutrit_product (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_matrix6::quhex_qubit_qutrit_product (external engine crate, not in this checkout)`
 
 ---
 

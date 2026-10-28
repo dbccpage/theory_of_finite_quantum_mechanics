@@ -79,7 +79,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/06_wdp/tfq_0545_wdp_closure_needs_degree.md`
 
 - file: [dag/derivations/06_wdp/tfq_0545_wdp_closure_needs_degree.md](../../../dag/derivations/06_wdp/tfq_0545_wdp_closure_needs_degree.md)
-- sha256 (`lf-normalised`): `108a5f6deeaec5463c0249a272426a6f495a9bd44f9d6b592b37d5c298bb4ac3`
+- sha256 (`lf-normalised`): `d7219925dda3f7bf172c4d3dde07deb646f0bbb3246426f7cfb67ceb2ec4d744`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-0545
 - counts toward the grade: no
@@ -92,7 +92,7 @@ Named by the node; not in this repository and not checked here.
 
 ## Absences recorded by the TFQ records
 
-- TFQ-0545 rust: no omega_wdp Rust check of the window-level composition defect K = d1 d0; the Python degree_one_window carries it
+- TFQ-0545 rust: no tfqm_wdp Rust check of the window-level composition defect K = d1 d0; the Python degree_one_window carries it
 
 ## Routes
 

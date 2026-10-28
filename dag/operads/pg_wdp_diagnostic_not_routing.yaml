@@ -39,7 +39,7 @@ operation_candidates:
   line: 19
   signature_excerpt: 'def route (inProfile contradicted supported : Bool) : RelativeStatus'
   source: atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Routing.lean
-  repository: the_symbol_game
+  repository: external
   source_sha256: cd9087a9ef86a63ad055c7be4310ef2fbdba6f3470243cf6e16161f8bfc35e13
   status: source_candidate_requires_semantic_review
 - kind: inductive
@@ -47,7 +47,7 @@ operation_candidates:
   line: 12
   signature_excerpt: inductive RelativeStatus
   source: atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Routing.lean
-  repository: the_symbol_game
+  repository: external
   source_sha256: cd9087a9ef86a63ad055c7be4310ef2fbdba6f3470243cf6e16161f8bfc35e13
   status: source_candidate_requires_semantic_review
 relation_candidates:
@@ -56,7 +56,7 @@ relation_candidates:
   line: 26
   signature_excerpt: "theorem outside_profile_ne_refuted :\n    RelativeStatus.outsideProfile ≠ RelativeStatus.refuted"
   source: atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Routing.lean
-  repository: the_symbol_game
+  repository: external
   source_sha256: cd9087a9ef86a63ad055c7be4310ef2fbdba6f3470243cf6e16161f8bfc35e13
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
@@ -81,7 +81,7 @@ source_bindings:
   availability: external
   symbol: route
   path: atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Routing.lean
-  repository: the_symbol_game
+  repository: external
   sha256: cd9087a9ef86a63ad055c7be4310ef2fbdba6f3470243cf6e16161f8bfc35e13
   declaration_status: declaration_found_not_proof_checked
   line: 19
@@ -90,7 +90,7 @@ source_bindings:
   availability: external
   symbol: outside_profile_ne_refuted
   path: atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Routing.lean
-  repository: the_symbol_game
+  repository: external
   sha256: cd9087a9ef86a63ad055c7be4310ef2fbdba6f3470243cf6e16161f8bfc35e13
   declaration_status: declaration_found_not_proof_checked
   line: 26
@@ -108,7 +108,7 @@ source_bindings:
   availability: external
   symbol: RoutingTerminal
   path: external:sha256:37446bd8af70040d3412b4895efe73f28dc7662ab259bc00986debcc8660c765
-  repository: the_symbol_game
+  repository: external
   sha256: 7dd9a3b1815434eb384c3a7837de2b16c6b560570f3b287ffb25439b987d596c
   declaration_status: declaration_found_not_executed
   line: 15
@@ -117,7 +117,7 @@ source_bindings:
   availability: external
   symbol: GuardEvidence
   path: external:sha256:d5bfe8d13dd272a247b6448dc6597b2683283e7245db0441e35009cd59637324
-  repository: the_symbol_game
+  repository: external
   sha256: b2dace40a49f3579d9ec8c4e672fc4365fe992b2b787176751a772669238e692
   declaration_status: declaration_found_not_executed
   line: 20
@@ -126,7 +126,7 @@ source_bindings:
   availability: external
   symbol: EvidenceCeiling
   path: external:sha256:bcb9825eb7031147a89239c7c5c90a65f7eb70bd996338ebbd0f1900316af187
-  repository: the_symbol_game
+  repository: external
   sha256: be3c295c05219740a6c1bfe168b5cf0ab8a74d3d9569533240a7d4cba4ba600a
   declaration_status: declaration_found_not_executed
   line: 18
@@ -135,7 +135,7 @@ source_bindings:
   availability: external
   symbol: verify_tranche14_cross_stage_route_composition_and_sorkin_hierarchy_witness
   path: external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4
-  repository: the_symbol_game
+  repository: external
   sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
   declaration_status: declaration_found_not_executed
   line: 1415
@@ -173,7 +173,7 @@ presentation:
   generators:
   - id: diagnostic_class
     source_declarations:
-    - 'external omega_policy/src/trichotomy.rs::ObstructionDiagnosticClass (line 17): exact class named
+    - 'external policy/src/trichotomy.rs::ObstructionDiagnosticClass (line 17): exact class named
       ExactRepair in Rust; classify_exact (line 65)'
     ordered_inputs:
     - ExactPhi1Gamma2Evidence
@@ -181,7 +181,7 @@ presentation:
     semantic_predicate: 'SOURCE-ONLY (not recomputed here): ExactClass iff Phi1 = 0, ClosedResidual iff
       Phi1 > 0 and Gamma2 = 0, ActiveClosureFailure iff Gamma2 > 0.'
     hypotheses:
-    - Finite enumerations and total maps transcribed from the_symbol_game; the diagnostic class is ObstructionDiagnosticClass
+    - Finite enumerations and total maps transcribed from the external repository; the diagnostic class is ObstructionDiagnosticClass
       (the exact class is `ExactRepair` in Rust, `ExactClass` in the ledger); ResidualClass is NOT identified
       with the diagnostic class; the only diagnostic-to-terminal code is the partial run.rs tag plus terminal_routing.json.
     arity: 1
@@ -225,14 +225,14 @@ presentation:
     latest_host_check: dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/runs/20261021T175809Z_staged/p2/host_check.json
   - id: routing_of_status
     source_declarations:
-    - 'external omega_types/src/routing.rs::RoutingTerminal (line 15), From<TerminalStatus> (line 25):
+    - 'external types/src/routing.rs::RoutingTerminal (line 15), From<TerminalStatus> (line 25):
       total map, 21 to 7'
     ordered_inputs:
     - TerminalStatus
     output: RoutingTerminal
     semantic_predicate: The declared total map from the 21 statuses to the seven routing terminals.
     hypotheses:
-    - Finite enumerations and total maps transcribed from the_symbol_game; the diagnostic class is ObstructionDiagnosticClass
+    - Finite enumerations and total maps transcribed from the external repository; the diagnostic class is ObstructionDiagnosticClass
       (the exact class is `ExactRepair` in Rust, `ExactClass` in the ledger); ResidualClass is NOT identified
       with the diagnostic class; the only diagnostic-to-terminal code is the partial run.rs tag plus terminal_routing.json.
     arity: 1
@@ -276,7 +276,7 @@ presentation:
     latest_host_check: dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/runs/20261021T175809Z_staged/p2/host_check.json
   - id: routing_of_pfp_terminal
     source_declarations:
-    - 'external omega_types/src/routing.rs::PfpTerminal (line 59), From<PfpTerminal> (line 87): total
+    - 'external types/src/routing.rs::PfpTerminal (line 59), From<PfpTerminal> (line 87): total
       map, 10 to 7, equal to terminal_routing.json'
     ordered_inputs:
     - PfpTerminal
@@ -284,7 +284,7 @@ presentation:
     semantic_predicate: The declared total map from the 10 PfpTerminal values to the routing terminals;
       not surjective (Repair, NoRule missing).
     hypotheses:
-    - Finite enumerations and total maps transcribed from the_symbol_game; the diagnostic class is ObstructionDiagnosticClass
+    - Finite enumerations and total maps transcribed from the external repository; the diagnostic class is ObstructionDiagnosticClass
       (the exact class is `ExactRepair` in Rust, `ExactClass` in the ledger); ResidualClass is NOT identified
       with the diagnostic class; the only diagnostic-to-terminal code is the partial run.rs tag plus terminal_routing.json.
     arity: 1
@@ -328,7 +328,7 @@ presentation:
     latest_host_check: dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/runs/20261021T175809Z_staged/p2/host_check.json
   - id: terminal_from_fiber
     source_declarations:
-    - 'external omega_types/src/terminal_status.rs::terminal_from_fiber (line 166): total function with
+    - 'external types/src/terminal_status.rs::terminal_from_fiber (line 166): total function with
       Err on inconsistent counts'
     ordered_inputs:
     - FiberInput
@@ -336,7 +336,7 @@ presentation:
     semantic_predicate: Classifier of a candidate fiber; PARTIAL as modelled (an Err has no status); the
       diagnostic class is not an input.
     hypotheses:
-    - Finite enumerations and total maps transcribed from the_symbol_game; the diagnostic class is ObstructionDiagnosticClass
+    - Finite enumerations and total maps transcribed from the external repository; the diagnostic class is ObstructionDiagnosticClass
       (the exact class is `ExactRepair` in Rust, `ExactClass` in the ledger); ResidualClass is NOT identified
       with the diagnostic class; the only diagnostic-to-terminal code is the partial run.rs tag plus terminal_routing.json.
     arity: 1
@@ -380,14 +380,14 @@ presentation:
     latest_host_check: dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/runs/20261021T175809Z_staged/p2/host_check.json
   - id: residual_of_status
     source_declarations:
-    - external omega_types/src/terminal_status.rs::residual_class (line 119)
+    - external types/src/terminal_status.rs::residual_class (line 119)
     ordered_inputs:
     - TerminalStatus
     output: ResidualClass
     semantic_predicate: Residual class Exact, ClosedSurvivor, Open or Refused (terminal_status::ResidualClass,
       not the homology enum of the same name).
     hypotheses:
-    - Finite enumerations and total maps transcribed from the_symbol_game; the diagnostic class is ObstructionDiagnosticClass
+    - Finite enumerations and total maps transcribed from the external repository; the diagnostic class is ObstructionDiagnosticClass
       (the exact class is `ExactRepair` in Rust, `ExactClass` in the ledger); ResidualClass is NOT identified
       with the diagnostic class; the only diagnostic-to-terminal code is the partial run.rs tag plus terminal_routing.json.
     arity: 1
@@ -431,7 +431,7 @@ presentation:
     latest_host_check: dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/runs/20261021T175809Z_staged/p2/host_check.json
   - id: authority_tag_of_status
     source_declarations:
-    - external omega_types/src/terminal_status.rs::authority_level (line 92), authority_terminal (line
+    - external types/src/terminal_status.rs::authority_level (line 92), authority_terminal (line
       157); test authority_level_never_returns_certified_from_tag_alone (line 322)
     ordered_inputs:
     - TerminalStatus
@@ -439,7 +439,7 @@ presentation:
     semantic_predicate: Tag-level authority Certifiable / Refused / Uncertified; the modelled type has
       no Certified value (by construction).
     hypotheses:
-    - Finite enumerations and total maps transcribed from the_symbol_game; the diagnostic class is ObstructionDiagnosticClass
+    - Finite enumerations and total maps transcribed from the external repository; the diagnostic class is ObstructionDiagnosticClass
       (the exact class is `ExactRepair` in Rust, `ExactClass` in the ledger); ResidualClass is NOT identified
       with the diagnostic class; the only diagnostic-to-terminal code is the partial run.rs tag plus terminal_routing.json.
     arity: 1
@@ -483,7 +483,7 @@ presentation:
     latest_host_check: dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/runs/20261021T175809Z_staged/p2/host_check.json
   - id: diagnostic_run_tag
     source_declarations:
-    - 'external omega_id_run/src/run.rs lines 626-633: ExactRepair -> "ExactRepair", ClosedResidual ->
+    - 'external id_run/src/run.rs lines 626-633: ExactRepair -> "ExactRepair", ClosedResidual ->
       "StabilizedSurvivor", ActiveClosureFailure -> "OpenObstruction" (a String)'
     ordered_inputs:
     - DiagClass
@@ -491,7 +491,7 @@ presentation:
     semantic_predicate: 'Status-tag string per class read as a PfpTerminal by string identity (OUR identification;
       partial: "ExactRepair" is not a PfpTerminal).'
     hypotheses:
-    - Finite enumerations and total maps transcribed from the_symbol_game; the diagnostic class is ObstructionDiagnosticClass
+    - Finite enumerations and total maps transcribed from the external repository; the diagnostic class is ObstructionDiagnosticClass
       (the exact class is `ExactRepair` in Rust, `ExactClass` in the ledger); ResidualClass is NOT identified
       with the diagnostic class; the only diagnostic-to-terminal code is the partial run.rs tag plus terminal_routing.json.
     arity: 1
@@ -535,7 +535,7 @@ presentation:
     latest_host_check: dag/results/PG-WDP-DIAGNOSTIC-NOT-ROUTING/runs/20261021T175809Z_staged/p2/host_check.json
   - id: certificate_seal_gate
     source_declarations:
-    - 'external omega_certifiers/src/checked_packet.rs line 243-250: ExactRepair -> AuthorityTerminal::ExactRuleDerived,
+    - 'external certifiers/src/checked_packet.rs line 243-250: ExactRepair -> AuthorityTerminal::ExactRuleDerived,
       other classes -> NotAuthorityBearing error; witness bound to the replay hash also required'
     ordered_inputs:
     - DiagClass
@@ -543,7 +543,7 @@ presentation:
     semantic_predicate: Only the exact class can seal a checked-packet certificate (necessary, not sufficient;
       the certificate retains AuthorityEffect::None).
     hypotheses:
-    - Finite enumerations and total maps transcribed from the_symbol_game; the diagnostic class is ObstructionDiagnosticClass
+    - Finite enumerations and total maps transcribed from the external repository; the diagnostic class is ObstructionDiagnosticClass
       (the exact class is `ExactRepair` in Rust, `ExactClass` in the ledger); ResidualClass is NOT identified
       with the diagnostic class; the only diagnostic-to-terminal code is the partial run.rs tag plus terminal_routing.json.
     arity: 1
@@ -594,7 +594,7 @@ presentation:
     output: RelativeStatus
     semantic_predicate: 'A different axis: outside the profile is not refuted.'
     hypotheses:
-    - Finite enumerations and total maps transcribed from the_symbol_game; the diagnostic class is ObstructionDiagnosticClass
+    - Finite enumerations and total maps transcribed from the external repository; the diagnostic class is ObstructionDiagnosticClass
       (the exact class is `ExactRepair` in Rust, `ExactClass` in the ledger); ResidualClass is NOT identified
       with the diagnostic class; the only diagnostic-to-terminal code is the partial run.rs tag plus terminal_routing.json.
     arity: 1
@@ -717,7 +717,7 @@ presentation:
     - WdpDiagnosticRouting.relRoute_surjective
   - id: declared_policy_is_partial
     source_declarations:
-    - 'external omega_id_run/src/run.rs lines 626-633 and omega_engine_pfp terminal_routing.json: ExactRepair
+    - 'external id_run/src/run.rs lines 626-633 and the external PFP package terminal_routing.json: ExactRepair
       tag has no key; no code composes the two'
     equation_or_predicate: 'our string-identity composite route: ClosedResidual to RequiresLift, ActiveClosureFailure
       to Refusal, ExactClass undefined'
@@ -764,7 +764,7 @@ presentation:
     named_Lean_scope: *id001
   - id: status_tables_non_determination
     source_declarations:
-    - external omega_types/src/routing.rs (From<TerminalStatus>) and external omega_types/src/terminal_status.rs
+    - external types/src/routing.rs (From<TerminalStatus>) and external types/src/terminal_status.rs
       (residual_class, authority_level)
     equation_or_predicate: residual does not determine route, route does not determine residual, authority
       tag does not determine route, but route determines the authority tag
@@ -811,7 +811,7 @@ presentation:
     named_Lean_scope: *id001
   - id: image_sizes
     source_declarations:
-    - external omega_types/src/routing.rs From<PfpTerminal> equals terminal_routing.json (read, not parsed
+    - external types/src/routing.rs From<PfpTerminal> equals terminal_routing.json (read, not parsed
       at run time)
     equation_or_predicate: routing image of statuses is all 7, of PfpTerminal is 5 (no Repair, no NoRule),
       of terminal_from_fiber is 4 (no RequiresLift, BudgetUnknown, Refused)
@@ -859,7 +859,7 @@ presentation:
     named_Lean_scope: *id001
   - id: authority_not_from_diagnostic
     source_declarations:
-    - external omega_types/src/terminal_status.rs test authority_level_never_returns_certified_from_tag_alone
+    - external types/src/terminal_status.rs test authority_level_never_returns_certified_from_tag_alone
       (line 322); external checked_packet.rs lines 243-250
     equation_or_predicate: certified s w = w and s authority-bearing (diagnostic absent by construction);
       sealed d w = w and d exact; tag type has no Certified value (by construction); ExactClass is eligible
@@ -978,7 +978,7 @@ presentation:
     input_slot: 0
     inner_operation: terminal_from_fiber
     colour_match: TerminalStatus
-    hypothesis_match: Finite enumerations and total maps transcribed from the_symbol_game; the diagnostic
+    hypothesis_match: Finite enumerations and total maps transcribed from the external repository; the diagnostic
       class is ObstructionDiagnosticClass (the exact class is `ExactRepair` in Rust, `ExactClass` in the
       ledger); ResidualClass is NOT identified with the diagnostic class; the only diagnostic-to-terminal
       code is the partial run.rs tag plus terminal_routing.json. Fixed contexts must agree across both
@@ -990,7 +990,7 @@ presentation:
     input_slot: 0
     inner_operation: terminal_from_fiber
     colour_match: TerminalStatus
-    hypothesis_match: Finite enumerations and total maps transcribed from the_symbol_game; the diagnostic
+    hypothesis_match: Finite enumerations and total maps transcribed from the external repository; the diagnostic
       class is ObstructionDiagnosticClass (the exact class is `ExactRepair` in Rust, `ExactClass` in the
       ledger); ResidualClass is NOT identified with the diagnostic class; the only diagnostic-to-terminal
       code is the partial run.rs tag plus terminal_routing.json. Fixed contexts must agree across both
@@ -1901,7 +1901,7 @@ operad_slots:
       authority.
     source_scope_review: 'The operad candidates `route` and `RelativeStatus` (external Routing.lean) are
       NOT the seven-valued routing terminal: they are a four-valued relative status with three Bool inputs;
-      the real terminals are in omega_types routing.rs. The diagnostic class lives in omega_policy trichotomy.rs,
+      the real terminals are in types routing.rs. The diagnostic class lives in policy trichotomy.rs,
       where its exact class is named ExactRepair (the ledger says ExactClass and states that ExactClass
       is not ExactRepair). The only class-to-status code (run.rs 626-633) maps ClosedResidual to the tag
       StabilizedSurvivor although N01 says ClosedResidual is not StabilizedSurvivor, and the exact class
@@ -1910,11 +1910,11 @@ operad_slots:
       EvidenceCeiling are further separate axes (guards, capability chain) that are read but not tabulated.
       All tables were transcribed by hand and cross-checked against the Rust sources by regex at authoring
       time (a unit test repeats this when the pinned checkout is present); the checker uses a separate
-      grouped transcription but the transcription risk is shared. Source sha256 (the_symbol_game): omega_types/src/routing.rs
-      7dd9a3b1815434eb384c3a7837de2b16c6b560570f3b287ffb25439b987d596c; omega_types/src/terminal_status.rs
-      fa4b67c847ea16cb8a3289ce3e18195f83175996a9d597158347db9fa0568160; omega_policy/src/trichotomy.rs
-      68cd397e43237e2ec7019907278849d54c56fc2b23efc7f8d28480d8d9898a5e; omega_id_run/src/run.rs cb4cf5ad9d464da7503200f80cf3e126c7f46483b395a5e5531702c1d1b80a74;
-      omega_certifiers/src/checked_packet.rs 9e70b20ceb8c7b78b2997febaf715ea62b9d179ab5d184d09cf42723d834541e;
+      grouped transcription but the transcription risk is shared. Source sha256 (the external repository): types/src/routing.rs
+      7dd9a3b1815434eb384c3a7837de2b16c6b560570f3b287ffb25439b987d596c; types/src/terminal_status.rs
+      fa4b67c847ea16cb8a3289ce3e18195f83175996a9d597158347db9fa0568160; policy/src/trichotomy.rs
+      68cd397e43237e2ec7019907278849d54c56fc2b23efc7f8d28480d8d9898a5e; id_run/src/run.rs cb4cf5ad9d464da7503200f80cf3e126c7f46483b395a5e5531702c1d1b80a74;
+      certifiers/src/checked_packet.rs 9e70b20ceb8c7b78b2997febaf715ea62b9d179ab5d184d09cf42723d834541e;
       external:sha256:18c4da98ec31e88e955f1d5f6a9184c06300fd66ec2ada35b9496c4c882f4df3 18c4da98ec31e88e955f1d5f6a9184c06300fd66ec2ada35b9496c4c882f4df3;
       WitnessedDifference/Routing.lean cd9087a9ef86a63ad055c7be4310ef2fbdba6f3470243cf6e16161f8bfc35e13.
       No source code composes run.rs with terminal_routing.json (omega_id_run never references PfpTerminal):
@@ -1922,12 +1922,12 @@ operad_slots:
       is modelled. No budget, rule-availability or lift-availability input exists in the source routing
       code, so none is invented; all 343 abstract policies are enumerated instead.'
     admitted_assumptions:
-    - Finite enumerations and total maps transcribed from the_symbol_game; the diagnostic class is ObstructionDiagnosticClass
+    - Finite enumerations and total maps transcribed from the external repository; the diagnostic class is ObstructionDiagnosticClass
       (the exact class is `ExactRepair` in Rust, `ExactClass` in the ledger); ResidualClass is NOT identified
       with the diagnostic class; the only diagnostic-to-terminal code is the partial run.rs tag plus terminal_routing.json.
     historical_source_assumptions: []
     work_unit_admitted_hypotheses:
-    - Finite enumerations and total maps transcribed from the_symbol_game; the diagnostic class is ObstructionDiagnosticClass
+    - Finite enumerations and total maps transcribed from the external repository; the diagnostic class is ObstructionDiagnosticClass
       (the exact class is `ExactRepair` in Rust, `ExactClass` in the ledger); ResidualClass is NOT identified
       with the diagnostic class; the only diagnostic-to-terminal code is the partial run.rs tag plus terminal_routing.json.
   slot_m2_layer1_forward_morphisms:
@@ -2038,7 +2038,7 @@ operad_slots:
         sha256: 02d72c5d45fad1dde1159798112c2cf11af79fdab6499f32ca1415b1950e7304
     - id: declared_policy_is_partial
       source_declarations:
-      - 'external omega_id_run/src/run.rs lines 626-633 and omega_engine_pfp terminal_routing.json: ExactRepair
+      - 'external id_run/src/run.rs lines 626-633 and the external PFP package terminal_routing.json: ExactRepair
         tag has no key; no code composes the two'
       equation_or_predicate: 'our string-identity composite route: ClosedResidual to RequiresLift, ActiveClosureFailure
         to Refusal, ExactClass undefined'
@@ -2081,7 +2081,7 @@ operad_slots:
         sha256: 02d72c5d45fad1dde1159798112c2cf11af79fdab6499f32ca1415b1950e7304
     - id: status_tables_non_determination
       source_declarations:
-      - external omega_types/src/routing.rs (From<TerminalStatus>) and external omega_types/src/terminal_status.rs
+      - external types/src/routing.rs (From<TerminalStatus>) and external types/src/terminal_status.rs
         (residual_class, authority_level)
       equation_or_predicate: residual does not determine route, route does not determine residual, authority
         tag does not determine route, but route determines the authority tag
@@ -2124,7 +2124,7 @@ operad_slots:
         sha256: 02d72c5d45fad1dde1159798112c2cf11af79fdab6499f32ca1415b1950e7304
     - id: image_sizes
       source_declarations:
-      - external omega_types/src/routing.rs From<PfpTerminal> equals terminal_routing.json (read, not
+      - external types/src/routing.rs From<PfpTerminal> equals terminal_routing.json (read, not
         parsed at run time)
       equation_or_predicate: routing image of statuses is all 7, of PfpTerminal is 5 (no Repair, no NoRule),
         of terminal_from_fiber is 4 (no RequiresLift, BudgetUnknown, Refused)
@@ -2168,7 +2168,7 @@ operad_slots:
         sha256: 02d72c5d45fad1dde1159798112c2cf11af79fdab6499f32ca1415b1950e7304
     - id: authority_not_from_diagnostic
       source_declarations:
-      - external omega_types/src/terminal_status.rs test authority_level_never_returns_certified_from_tag_alone
+      - external types/src/terminal_status.rs test authority_level_never_returns_certified_from_tag_alone
         (line 322); external checked_packet.rs lines 243-250
       equation_or_predicate: certified s w = w and s authority-bearing (diagnostic absent by construction);
         sealed d w = w and d exact; tag type has no Certified value (by construction); ExactClass is eligible
@@ -2368,7 +2368,7 @@ latest_run:
 scope_notes:
 - 'The operad candidates `route` and `RelativeStatus` (external Routing.lean) are NOT the seven-valued
   routing terminal: they are a four-valued relative status with three Bool inputs; the real terminals
-  are in omega_types routing.rs. The diagnostic class lives in omega_policy trichotomy.rs, where its exact
+  are in types routing.rs. The diagnostic class lives in policy trichotomy.rs, where its exact
   class is named ExactRepair (the ledger says ExactClass and states that ExactClass is not ExactRepair).
   The only class-to-status code (run.rs 626-633) maps ClosedResidual to the tag StabilizedSurvivor although
   N01 says ClosedResidual is not StabilizedSurvivor, and the exact class to a tag that has no routing
@@ -2377,10 +2377,10 @@ scope_notes:
   separate axes (guards, capability chain) that are read but not tabulated. All tables were transcribed
   by hand and cross-checked against the Rust sources by regex at authoring time (a unit test repeats this
   when the pinned checkout is present); the checker uses a separate grouped transcription but the transcription
-  risk is shared. Source sha256 (the_symbol_game): omega_types/src/routing.rs 7dd9a3b1815434eb384c3a7837de2b16c6b560570f3b287ffb25439b987d596c;
-  omega_types/src/terminal_status.rs fa4b67c847ea16cb8a3289ce3e18195f83175996a9d597158347db9fa0568160;
-  omega_policy/src/trichotomy.rs 68cd397e43237e2ec7019907278849d54c56fc2b23efc7f8d28480d8d9898a5e; omega_id_run/src/run.rs
-  cb4cf5ad9d464da7503200f80cf3e126c7f46483b395a5e5531702c1d1b80a74; omega_certifiers/src/checked_packet.rs
+  risk is shared. Source sha256 (the external repository): types/src/routing.rs 7dd9a3b1815434eb384c3a7837de2b16c6b560570f3b287ffb25439b987d596c;
+  types/src/terminal_status.rs fa4b67c847ea16cb8a3289ce3e18195f83175996a9d597158347db9fa0568160;
+  policy/src/trichotomy.rs 68cd397e43237e2ec7019907278849d54c56fc2b23efc7f8d28480d8d9898a5e; id_run/src/run.rs
+  cb4cf5ad9d464da7503200f80cf3e126c7f46483b395a5e5531702c1d1b80a74; certifiers/src/checked_packet.rs
   9e70b20ceb8c7b78b2997febaf715ea62b9d179ab5d184d09cf42723d834541e; external:sha256:18c4da98ec31e88e955f1d5f6a9184c06300fd66ec2ada35b9496c4c882f4df3
   18c4da98ec31e88e955f1d5f6a9184c06300fd66ec2ada35b9496c4c882f4df3; WitnessedDifference/Routing.lean cd9087a9ef86a63ad055c7be4310ef2fbdba6f3470243cf6e16161f8bfc35e13.
   No source code composes run.rs with terminal_routing.json (omega_id_run never references PfpTerminal):

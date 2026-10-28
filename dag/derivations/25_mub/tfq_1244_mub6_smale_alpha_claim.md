@@ -42,7 +42,7 @@ lean4/TargetA12SmaleSentry.lean::krawczyk_inclusion_criterion takes the contract
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.SmaleAlpha.zero_isolated_roots_certificate (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/conjecture2/smale_alpha.py::run_smale_alpha_test (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_conjecture2::smale_alpha_sentry (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_conjecture2::smale_alpha_sentry (external engine crate, not in this checkout)`
 
 ---
 

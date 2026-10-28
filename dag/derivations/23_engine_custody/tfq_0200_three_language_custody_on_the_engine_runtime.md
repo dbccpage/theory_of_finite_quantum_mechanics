@@ -1,4 +1,4 @@
-# [TFQ-0200] Three-language custody on the Omega Engine runtime
+# [TFQ-0200] Three-language custody on the engine runtime
 
 > **Stage**: `ENGINE_CUSTODY` | **Status**: `OPEN_OBLIGATION`  
 > **UUID**: `94bf76e0-dbb4-5cba-a717-7cabf14375ac`  

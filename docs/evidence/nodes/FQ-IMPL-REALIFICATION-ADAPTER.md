@@ -4,7 +4,7 @@ Stage: [IMPLEMENTATION](../stages/IMPLEMENTATION.md). Status: `COMPUTATIONALLY_C
 
 ## Statement
 
-> A declared finite complex realization over Q(i) is mapped to its balanced real tensor (realify operator/density, product operator/density), in both omega_wdp (Genesis side) and omega_quantum_physics (quantum owner). State admission stays with the quantum owner and balancing with the math owner; this is the Rust site where a Genesis result meets a declared complex structure, and the code states it chooses none.
+> A declared finite complex realization over Q(i) is mapped to its balanced real tensor (realify operator/density, product operator/density), in both tfqm_wdp (Genesis side) and quantum_physics (quantum owner). State admission stays with the quantum owner and balancing with the math owner; this is the Rust site where a Genesis result meets a declared complex structure, and the code states it chooses none.
 
 ## Grade
 
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/21_implementation_core/tfq_1027_fq_impl_realification_adapter.md`
 
 - file: [dag/derivations/21_implementation_core/tfq_1027_fq_impl_realification_adapter.md](../../../dag/derivations/21_implementation_core/tfq_1027_fq_impl_realification_adapter.md)
-- sha256 (`lf-normalised`): `108a0f7617d4dfaad61c71f92e4643beb35efc0ec1e273d47ab30522f7483377`
+- sha256 (`lf-normalised`): `8c441d3af55248df58fa4ca83ab09f1d29a8d1b69110aa7d2832a928a77cd61e`
 - generated view: listed, not counted
 - cited in: record TFQ-1027
 - counts toward the grade: no

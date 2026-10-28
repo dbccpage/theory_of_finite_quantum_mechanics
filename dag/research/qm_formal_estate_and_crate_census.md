@@ -56,7 +56,7 @@ paths below; other Rust modules received ownership/interface review.
 
 The [validation record](qm_weyl_gleason_validation.json) records commands,
 source-inventory binding, toolchain revisions and the development wheel digest.
-Default-library `cargo check` also passes for `omega_mub` and `omega_sheaf_theory`;
+Default-library `cargo check` also passes for `tfqm_mub` and `tfqm_sheaf_theory`;
 no claim of all-feature or all-test coverage follows.
 
 The paper tree was inventoried separately through its refreshed file manifest.
@@ -81,7 +81,7 @@ old success receipts are not promoted to current reproduction results.
 ## Weyl: constructive equivalence and its exact price
 
 The reusable implementation is
-`omega_lie_theory::heisenberg::WeylHeisenberg::intertwiner_from_clock_seed`.
+`tfqm_lie_theory::heisenberg::WeylHeisenberg::intertwiner_from_clock_seed`.
 Given a primitive d-th root omega, exact unitary d-by-d matrices X', Z' with
 Z'X'=omega X'Z', X'^d=I, and a supplied v with Z'v=v and v* v=1, set
 
@@ -159,23 +159,23 @@ not claims that every listed crate has been fully tested in this review.
 
 | Owner | Existing route into finite QM | Obligation at the boundary |
 | --- | --- | --- |
-| omega_number_theory | Cyclotomic fields, finite fields, character sums, ordered real embeddings | Specify conductor, conjugation, embeddings and scalar extensions. Q(zeta_n) is generally not ordered. |
-| omega_linear_algebra | Exact field matrices, elimination, commutants and Hermitian inertia | Distinguish matrix identities, positivity and state admission. |
-| omega_lie_theory | Weyl systems, intertwiners, finite path and twisted groupoid algebras | Prove the native history presentation and faithful quotient/phase transport. |
-| omega_quantum_physics | Projector checks, frame polytopes, tomography, channels | State/effect availability and composition remain model inputs. |
-| omega_sheaf_theory | `finite_report_gluing`, covers and sections | A compatible report section need not be a physical global state. |
-| omega_mub | Search/obstruction orchestration over the physics owner | Exhaustion is relative to a declared carrier and search region. |
-| omega_finite_probability | Simplexes, marginal compatibility, signed representations | Classical probabilities do not by themselves select a Born pairing. |
-| omega_category_theory | Finite histories, groupoids, dagger and report descent | Identify relations, invertibility, composition and faithfulness. |
-| omega_combinatorics | Budgeted Cartesian-word and finite enumeration | Termination under a budget is not unbounded completeness. |
-| omega_fusion_categories | Exact fusion rings, pentagon/hexagon and braid data | Validate each model and its field; no blanket classification follows. |
-| omega_functional | Exact residual, norm and feasibility functionals | Bind a functional to its supplied norm, carrier and operational meaning. |
-| omega_general_relativity | Finite Regge, causal and simplicial models | Toy amplitudes or integer area formulae do not establish quantum gravity. |
-| omega_homology | Chain/cochain complexes, F2 and rational cohomology | An obstruction class has meaning relative to its declared complex. |
-| omega_holonomy | `signed_transport`, connections and discrete loop products | FSP sign transport is not automatically a full complex phase group. |
-| omega_homotopy_type_theory | Finite paths, transport and presentation differences | Runtime records are not themselves a proof of a HoTT foundation. |
-| omega_solvers | Exact rational feasibility and Boolean constraints | Require a replayable witness/refutation within the declared bounds. |
-| omega_wdp | Genesis histories, question-preserving encodings and observer adapters | Preserve protected questions across each quotient and representation. |
+| tfqm_number_theory | Cyclotomic fields, finite fields, character sums, ordered real embeddings | Specify conductor, conjugation, embeddings and scalar extensions. Q(zeta_n) is generally not ordered. |
+| linear_algebra | Exact field matrices, elimination, commutants and Hermitian inertia | Distinguish matrix identities, positivity and state admission. |
+| tfqm_lie_theory | Weyl systems, intertwiners, finite path and twisted groupoid algebras | Prove the native history presentation and faithful quotient/phase transport. |
+| quantum_physics | Projector checks, frame polytopes, tomography, channels | State/effect availability and composition remain model inputs. |
+| tfqm_sheaf_theory | `finite_report_gluing`, covers and sections | A compatible report section need not be a physical global state. |
+| tfqm_mub | Search/obstruction orchestration over the physics owner | Exhaustion is relative to a declared carrier and search region. |
+| tfqm_finite_probability | Simplexes, marginal compatibility, signed representations | Classical probabilities do not by themselves select a Born pairing. |
+| tfqm_category_theory | Finite histories, groupoids, dagger and report descent | Identify relations, invertibility, composition and faithfulness. |
+| tfqm_combinatorics | Budgeted Cartesian-word and finite enumeration | Termination under a budget is not unbounded completeness. |
+| tfqm_fusion_categories | Exact fusion rings, pentagon/hexagon and braid data | Validate each model and its field; no blanket classification follows. |
+| tfqm_functional | Exact residual, norm and feasibility functionals | Bind a functional to its supplied norm, carrier and operational meaning. |
+| tfqm_general_relativity | Finite Regge, causal and simplicial models | Toy amplitudes or integer area formulae do not establish quantum gravity. |
+| homology | Chain/cochain complexes, F2 and rational cohomology | An obstruction class has meaning relative to its declared complex. |
+| tfqm_holonomy | `signed_transport`, connections and discrete loop products | FSP sign transport is not automatically a full complex phase group. |
+| tfqm_homotopy_type_theory | Finite paths, transport and presentation differences | Runtime records are not themselves a proof of a HoTT foundation. |
+| solvers | Exact rational feasibility and Boolean constraints | Require a replayable witness/refutation within the declared bounds. |
+| tfqm_wdp | Genesis histories, question-preserving encodings and observer adapters | Preserve protected questions across each quotient and representation. |
 
 The useful combined route is native histories -> checked relations/groupoid ->
 declared exact *-algebra -> positive state/effect model -> faithful operational

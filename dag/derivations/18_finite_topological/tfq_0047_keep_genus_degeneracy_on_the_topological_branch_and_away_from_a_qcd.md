@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-modular_tensor_category.rs builds ModularData::verified from an AnyonModel and exposes ground_state_degeneracy at a declared genus. The modular arithmetic lives in omega_fusion_categories::modular, which states that the familiar normalized relation (ST)^3 = S^2 needs a root that need not lie in the coefficient field. The in-field statements are the ones actually checked. A genus degeneracy computed from S and T data is a topological count. It is not a QCD vacuum degeneracy, and the module does not claim a mass gap. Toric or Ising modular data must stay on this side branch.
+modular_tensor_category.rs builds ModularData::verified from an AnyonModel and exposes ground_state_degeneracy at a declared genus. The modular arithmetic lives in tfqm_fusion_categories::modular, which states that the familiar normalized relation (ST)^3 = S^2 needs a root that need not lie in the coefficient field. The in-field statements are the ones actually checked. A genus degeneracy computed from S and T data is a topological count. It is not a QCD vacuum degeneracy, and the module does not claim a mass gap. Toric or Ising modular data must stay on this side branch.
 
 ### Governing Obligation
 Keep genus degeneracy on the topological branch and away from a QCD vacuum claim.

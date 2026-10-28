@@ -5,7 +5,7 @@
 **Goal IDs:** `QM-226-KLEIN-NISHINA-BHABHA-MOLLER-MAP`, `QM-227-CHIRAL-MUON-FERMI-CKM-MAP`, `QM-228-ABJ-GMO-HADRONIC-MAP`  
 **Parent Milestone:** `MS-QUANTUM`  
 **Status:** `DONE` (Rust, Python, and core Lean 4 `FiniteQFTAndGravity.lean` verified with exit code 0 and zero `sorryAx`)  
-**Executable Rust Module:** [`external:sha256:b2756728a2444a8202ad7ab9078b63b94e2b41bb2addc311e7a2b1bebd8d9f44`](../../../../../omega_engine/crates_rs/omega_quantum_physics/src/qed_weak_hadronic_finite_maps.rs)  
+**Executable Rust Module:** `external:sha256:b2756728a2444a8202ad7ab9078b63b94e2b41bb2addc311e7a2b1bebd8d9f44`  
 **Executable Python Module:** [`python/finite_qm/use_cases/qed_weak_hadronic_control.py`](../python/finite_qm/use_cases/qed_weak_hadronic_control.py)  
 **Lean 4 Mechanization:** [`lean4/FiniteQFTAndGravity.lean`](../../lean4/FiniteQFTAndGravity.lean) and [`lean4/FiniteQFTAndGravity.lean`](../../lean4/FiniteQFTAndGravity.lean) (sections QM-226, QM-227, QM-228)  
 **E2E Verification Suite:** [`tests/e2e/test_e2e_qed_weak_hadronic_control.py`](../tests/e2e/test_e2e_qed_weak_hadronic_control.py)
@@ -33,7 +33,7 @@ Audit records store computed values (matrices, enclosures, amplitudes). Every ch
 ## 2. Claim Hygiene Summary
 
 1. **What it supports:**
-   * Checked by [`qed_weak_hadronic_finite_maps.rs`](../../../../../omega_engine/crates_rs/omega_quantum_physics/src/qed_weak_hadronic_finite_maps.rs) (5 inline tests), [`qed_weak_hadronic_control.py`](../python/finite_qm/use_cases/qed_weak_hadronic_control.py) (9 e2e tests) and the Lean theorems `kn_forward` through `gmo_omega_from_spacing` in [`FiniteQFTAndGravity.lean`](../../lean4/FiniteQFTAndGravity.lean): the Klein–Nishina forward value, Thomson limit and normalization; the $s \leftrightarrow u$ crossing; the chiral projector algebra; the factorization of $f_0$; the sign of the one-loop muon bracket; the ABJ factor and the factor 9; the octet and decuplet GMO identities as polynomial identities in $(M_0, M_1, M_2)$.
+   * Checked by `qed_weak_hadronic_finite_maps.rs` (`external:sha256:b2756728a2444a8202ad7ab9078b63b94e2b41bb2addc311e7a2b1bebd8d9f44`) (5 inline tests), [`qed_weak_hadronic_control.py`](../python/finite_qm/use_cases/qed_weak_hadronic_control.py) (9 e2e tests) and the Lean theorems `kn_forward` through `gmo_omega_from_spacing` in [`FiniteQFTAndGravity.lean`](../../lean4/FiniteQFTAndGravity.lean): the Klein–Nishina forward value, Thomson limit and normalization; the $s \leftrightarrow u$ crossing; the chiral projector algebra; the factorization of $f_0$; the sign of the one-loop muon bracket; the ABJ factor and the factor 9; the octet and decuplet GMO identities as polynomial identities in $(M_0, M_1, M_2)$.
    * Checked in Rust and Python only: the Fermi-constant enclosure $G_F/(\hbar c)^3 \in [1.16638176 \times 10^{-5}, 1.16638177 \times 10^{-5}]\ \mathrm{GeV}^{-2}$ inside the requested window $[1.1663 \times 10^{-5}, 1.1665 \times 10^{-5}]$; the CKM matrix with exact $V^\dagger V = V V^\dagger = I$, exact triangle closure and Jarlskog $J \neq 0$ with $|V_{us}|^2$ and $|V_{cb}|^2$ within ten percent of $\lambda^2$ and $A^2\lambda^4$ at $\lambda = 9/40$, $A = 4/5$; the octet residual $5.7 \times 10^{-3}$ (within $0.6\%$) and the decuplet $\Omega^-$ prediction $1682.2$ MeV against $1672.45$ MeV (residual $0.58\%$, within $1\%$).
 2. **What it does not support:**
    * The enclosures use the toy inputs declared in the modules (PDG-style masses and couplings as exact rationals) and do not compute radiative corrections beyond the one-loop bracket quoted, nor QCD corrections to the pion rate, nor the full Wolfenstein hierarchy of the CKM matrix. The Lean file does not elaborate the CKM, $G_F$ or interval claims.
@@ -102,8 +102,8 @@ From the repository root:
 ```text
 cd sources/atlas/papers/finite_quantum_mechanics
 python3 -m pytest tests/e2e/test_e2e_qed_weak_hadronic_control.py -q
-cd ../../../../../omega_engine/crates_rs
-cargo test -j 1 -p omega_quantum_physics --lib -- qed_weak_hadronic
+cd external:git-tree:ac1f6d647c3ecc2bf45f6fc4922213ac752e71a3
+cargo test -j 1 -p quantum_physics --lib -- qed_weak_hadronic
 cd ../../lean4/quantum_mechanics
 lean FiniteQFTAndGravity.lean
 ```

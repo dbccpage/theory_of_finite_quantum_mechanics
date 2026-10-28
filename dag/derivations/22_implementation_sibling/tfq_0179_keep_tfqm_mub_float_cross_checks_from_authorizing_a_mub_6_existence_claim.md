@@ -1,4 +1,4 @@
-# [TFQ-0179] Keep omega_mub float cross-checks from authorizing a MUB(6) existence claim
+# [TFQ-0179] Keep tfqm_mub float cross-checks from authorizing a MUB(6) existence claim
 
 > **Stage**: `IMPLEMENTATION_SIBLING` | **Status**: `GAP`  
 > **UUID**: `79cdac0c-c928-52f2-8f96-d6c20c25aef5`  
@@ -8,10 +8,10 @@
 
 ## 1. Abstract & Formal Statement
 
-Float cross-checks in omega_mub remain legacy debt beside the exact lane. src/omega_native/mod.rs separates float_check from exact. The source tree lists d6_sos_float_sdp.rs next to exact modules such as d6_exact_sos.rs; this pass did not read the float solver body. derivation_dag.json node FQ-IMPL-F64-GATING records twenty omega_mub files in legacy_debt and states that a float may propose but never authorize a result, with sealed use empty. The obligation is to keep those float files from authorizing a MUB(6) count. The open existence question is unchanged by a float prefilter.
+Float cross-checks in tfqm_mub remain legacy debt beside the exact lane. src/native/mod.rs separates float_check from exact. The source tree lists d6_sos_float_sdp.rs next to exact modules such as d6_exact_sos.rs; this pass did not read the float solver body. derivation_dag.json node FQ-IMPL-F64-GATING records twenty tfqm_mub files in legacy_debt and states that a float may propose but never authorize a result, with sealed use empty. The obligation is to keep those float files from authorizing a MUB(6) count. The open existence question is unchanged by a float prefilter.
 
 ### Governing Obligation
-Keep omega_mub float cross-checks from authorizing a MUB(6) existence claim.
+Keep tfqm_mub float cross-checks from authorizing a MUB(6) existence claim.
 
 ---
 

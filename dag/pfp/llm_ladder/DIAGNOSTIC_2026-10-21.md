@@ -157,7 +157,7 @@ SOURCE_RECORD and IMPORTED nodes name or anchor code in the checkout (`Entanglem
 applies to SOURCE_RECORD and IMPORTED_ASSUMPTION nodes only, so OPEN nodes with weak matches are sent.
 `LQG-AREA-SPECTRUM-EXACT-TARGET` has no code anywhere and is kept only because a finite target is exempt from the skip.
 
-## 7. Notes for `omega_engine_pfp` (read-only inspection, no run data from that repo)
+## 7. Notes for `the external PFP package` (read-only inspection, no run data from that repo)
 
 * The schema-delivery defect does **not** occur there: `use_cases/pfp_prompt.py` appends `json.dumps(schema)` to the system
   text. This ladder had diverged from it.

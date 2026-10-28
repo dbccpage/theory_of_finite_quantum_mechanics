@@ -24,7 +24,7 @@ Removal is enabled only when the selected multiplicity is positive. Diagonal
 assertions are allowed. Filling data is carried unchanged by these two events.
 
 The existing native owner
-[`genesis_source_execution.rs`](../../../../../omega_engine/crates_rs/omega_wdp/src/genesis_source_execution.rs)
+`genesis_source_execution.rs` (`external:sha256:e91d9ac87959e852be0e2289bc376b3da967b04c1faa67add917de6982b1fcf1`)
 implements those guards, arbitrary-precision multiplicities, every intermediate
 raw state, the ordered events and the two addition prices. `Source25Run::then`
 requires equality of the complete intermediate raw states and adds prices.
@@ -111,7 +111,7 @@ with a possibly shorter final block. This uses at most $K$ labels. Decode each
 block by the midpoint of its endpoints; every error is at most $(w-1)/2$ and
 the first full block attains it. For $K>N+1$, $w=1$ and the error is zero.
 
-[`FiniteCostReport`](../../../../../omega_engine/crates_rs/omega_wdp/src/finite_cost_report.rs)
+`FiniteCostReport` (`external:sha256:c5a37377a13853537c2ec5b4f7b1d60cf17edee43d39ac432e59681f3a325ae9`)
 implements this construction with `BigUint`/`BigRational`, no floating point
 and no allocation proportional to $N$ or $K$. Zero labels, costs outside the
 window and unused labels are refused. It is a static report: with $N=3,K=2$,
@@ -222,7 +222,7 @@ It does not formalize the full Source-25 interpreter, NHC2, Cayley-Hamilton or
 the infinite-order rotation argument. NHC2 and the algebra results are written
 proofs with the native controls above.
 
-[`native_history_cost.rs`](../../../../../omega_engine/crates_rs/tests/omega_wdp/native_history_cost.rs)
+`native_history_cost.rs` (`external:unlocated`)
 checks actual source replay on zero/large multiplicities and marked states,
 prices and occurrences through eight repetitions, refusal before term admission,
 finite cyclic collisions, exact matrix identities, all partitions on integer
@@ -239,8 +239,8 @@ Focused reproduction (from repository root, unless a `cd` is shown):
 python external:sha256:99eb99f5a1fad40b39df6987f02f9a7c110788fd27dcee788c0d6da260c6326a --check
 cd lean4
 lake build +NativeHistoryCost
-cd ../omega_engine/crates_rs
-cargo test -j 1 --offline --locked -p omega_wdp --test native_history_cost
+cd external:git-tree:ac1f6d647c3ecc2bf45f6fc4922213ac752e71a3
+cargo test -j 1 --offline --locked -p tfqm_wdp --test native_history_cost
 ```
 
 Use the configured shared Cargo target in a worktree. The

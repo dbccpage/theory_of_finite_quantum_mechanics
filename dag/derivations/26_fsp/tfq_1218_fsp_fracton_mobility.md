@@ -40,7 +40,7 @@ Cited FoliatedFracton2Gauge.lean::fracton_subdimensional_mobility_constraints do
 - *none*
 
 ### Cited by the source, not in this checkout
-- `external:omega_majorana::hard_invariants::subdimensional_mobility_proof (cited by the source, not in this checkout)`
+- `external:tfqm_majorana::hard_invariants::subdimensional_mobility_proof (cited by the source, not in this checkout)`
 
 ---
 

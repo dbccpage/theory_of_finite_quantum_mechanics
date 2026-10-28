@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1247_mub6_psi_gluing_claim.md`
 
 - file: [dag/derivations/25_mub/tfq_1247_mub6_psi_gluing_claim.md](../../../dag/derivations/25_mub/tfq_1247_mub6_psi_gluing_claim.md)
-- sha256 (`lf-normalised`): `533cc110cc6c383470f271fb4db5ebae4b09152222c76d93221624de39adfef2`
+- sha256 (`lf-normalised`): `ddc54ef6f8a4db461e39d2d87e93dba23e4e6296dbb190ef3d5fb31af69a7d5b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1247
 - counts toward the grade: no

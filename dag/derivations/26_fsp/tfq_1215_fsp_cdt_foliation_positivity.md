@@ -40,7 +40,7 @@ Cited ReggePachnerWdw.lean::cdt_causal_foliation_positivity does not exist. Gene
 - `code/python/src/fsp/cdt_fermion_sign_evaluator.py::CdtFermionSignEvaluator`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::finite_spinfoam::cdt_causal_transfer_matrix (cited by the source, not in this checkout)`
+- `external:quantum_physics::finite_spinfoam::cdt_causal_transfer_matrix (cited by the source, not in this checkout)`
 
 ---
 

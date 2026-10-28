@@ -87,7 +87,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1138_maj_f2_parity_schedule.md`
 
 - file: [dag/derivations/28_majorana/tfq_1138_maj_f2_parity_schedule.md](../../../dag/derivations/28_majorana/tfq_1138_maj_f2_parity_schedule.md)
-- sha256 (`lf-normalised`): `9be58028ba5178368e6647757f7de604d15c9b436bfbeca3ce379e9537dece39`
+- sha256 (`lf-normalised`): `c1449222bb2346e336d19a5caa01d6aa0272fc3d3b4ca15231cd52233d3baefe`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1138
 - counts toward the grade: no

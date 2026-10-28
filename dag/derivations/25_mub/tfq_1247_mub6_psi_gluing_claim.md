@@ -42,7 +42,7 @@ lean4/Gluing.lean declares Basis and is_mutually_unbiased as opaque; r4_basis_gl
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.BasisGluing.psi_map_overlap_contraction (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/terminal/basis_gluing_psi.py::evaluate_psi_contraction (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_terminal::basis_gluing_psi_contractor (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_terminal::basis_gluing_psi_contractor (external engine crate, not in this checkout)`
 
 ---
 

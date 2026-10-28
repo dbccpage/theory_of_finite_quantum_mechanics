@@ -41,7 +41,7 @@ python -X utf8 dag/pfp/batch_tools/pfp_batch.py disk-check --need-gb 20
 python -X utf8 dag/pfp/batch_tools/pfp_batch.py init --count 20 [--start <first un-run position>] [--batch-id ID]
 
 # 2. P0 request and byte-custody inventory for every selected node
-python -X utf8 dag/pfp/batch_tools/pfp_batch.py prepare-p0 --batch B [--external the_symbol_game=PATH]
+python -X utf8 dag/pfp/batch_tools/pfp_batch.py prepare-p0 --batch B [--external external=PATH]
 
 # 3. write dag/results/batches/B/specs/<NODE>.json (and the checker/format/mutant files it names), then
 python -X utf8 dag/pfp/batch_tools/pfp_batch.py p0 --batch B        # reviewed missions + host review

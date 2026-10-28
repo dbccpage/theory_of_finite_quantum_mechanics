@@ -39,7 +39,7 @@ evaluation_moment_positive_flat states normalization, PosSemidef of momentTwo an
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.Lasserre.hierarchy_moment_formulation (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/sos/lasserre_formulation.py::build_lasserre_relaxation (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_solvers::sdp::lasserre_hierarchy_builder (omega_engine crate, not in this checkout)`
+- `external:rust solvers::sdp::lasserre_hierarchy_builder (external engine crate, not in this checkout)`
 
 ---
 

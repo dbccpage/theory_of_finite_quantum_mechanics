@@ -136,7 +136,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0394_primitive_axiom_list_underived.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0394_primitive_axiom_list_underived.md](../../../dag/derivations/01_pregenesis/tfq_0394_primitive_axiom_list_underived.md)
-- sha256 (`lf-normalised`): `69931a3036da71edd21f64f2e664aa025754b8d94aab32bb09bfce5906f1e7cd`
+- sha256 (`lf-normalised`): `0e50ab158ece0715371ed6feffd755bcaff9c5f6b0c71cdd8dd0230cb33baf73`
 - generated view: listed, not counted
 - cited in: record TFQ-0394
 - counts toward the grade: no
@@ -164,7 +164,7 @@ Named by the node; not in this repository and not checked here.
 - TFQ-0394 lean4: declaration obligation: HasRawDistinction is not a stand-in for an unread A1-A10 enum
 - TFQ-0394 lean4: no local lean twin located for external:sha256:2e264c28e45671b646ce8e6ad290f689f7fb8ecf3625b109b9e97df3a74ee073
 - TFQ-0394 python: missing obligation: test_primitive_difference.py was listed and not opened; it must not be read as the A1-A10 list
-- TFQ-0394 rust: missing obligation: the axiom enum cited by the DAG was not opened; do not equate it with omega_ooutwire_primitives until a path is checked
+- TFQ-0394 rust: missing obligation: the axiom enum cited by the DAG was not opened; do not equate it with wire_primitives until a path is checked
 
 ## Routes
 

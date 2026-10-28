@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Lift licences in omega_lifts are obstruction-calculus metadata, not a Hilbert derivation. src/lib.rs defines a lift as a map from Q_n to Q_{n+1} with a forgetful descent back, and says no lift is admissible without an explicit descent map. src/lift_license.rs labels LiftLicense as legacy metadata for that pair, not the maps themselves, and says the record is not used as proof that a lift is licensed. Candidate evaluations in candidate.rs carry Phi1 and Gamma2 as BigRational. The obligation is to keep a licence candidate from being read as an inner-product space, a Born rule, or a completed Hilbert lift.
+Lift licences in lifts are obstruction-calculus metadata, not a Hilbert derivation. src/lib.rs defines a lift as a map from Q_n to Q_{n+1} with a forgetful descent back, and says no lift is admissible without an explicit descent map. src/lift_license.rs labels LiftLicense as legacy metadata for that pair, not the maps themselves, and says the record is not used as proof that a lift is licensed. Candidate evaluations in candidate.rs carry Phi1 and Gamma2 as BigRational. The obligation is to keep a licence candidate from being read as an inner-product space, a Born rule, or a completed Hilbert lift.
 
 ### Governing Obligation
 Keep lift licences as descent-paired obstruction metadata, not as a Hilbert derivation.

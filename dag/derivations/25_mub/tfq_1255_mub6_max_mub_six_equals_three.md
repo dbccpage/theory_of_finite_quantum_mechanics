@@ -46,7 +46,7 @@ No declaration with this statement exists anywhere under lean4/; the package its
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.TerminalTheorem.max_mub_six_equals_three (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/terminal/terminal_mub6_theorem.py::certify_max_mub6_equals_3 (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_terminal::terminal_classification_max_mub6_equals_3 (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_terminal::terminal_classification_max_mub6_equals_3 (external engine crate, not in this checkout)`
 
 ---
 

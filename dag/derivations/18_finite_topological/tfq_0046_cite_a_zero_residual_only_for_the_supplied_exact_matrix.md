@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-yang_baxter_equation.rs keeps the residual matrix of a braid-form defect or of a spectral defect R12(u-v) R13(u) R23(v), including a multiplicative form that divides the spectral parameters. holds is true only when that residual matrix is the zero matrix over the exact scalar field, and first_failing_entry points at a nonzero coordinate. The defect itself is computed by omega_fusion_categories::yang_baxter. There is no tolerance and no floating-point comparison. A zero residual is a finite identity for the matrix that was supplied. It is not a QCD braid of quark color and not a substitute for the Fierz replay.
+yang_baxter_equation.rs keeps the residual matrix of a braid-form defect or of a spectral defect R12(u-v) R13(u) R23(v), including a multiplicative form that divides the spectral parameters. holds is true only when that residual matrix is the zero matrix over the exact scalar field, and first_failing_entry points at a nonzero coordinate. The defect itself is computed by tfqm_fusion_categories::yang_baxter. There is no tolerance and no floating-point comparison. A zero residual is a finite identity for the matrix that was supplied. It is not a QCD braid of quark color and not a substitute for the Fierz replay.
 
 ### Governing Obligation
 Cite a zero residual only for the supplied exact matrix.

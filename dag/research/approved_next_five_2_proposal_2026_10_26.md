@@ -16,7 +16,7 @@ Approval would authorize only the five `finite_proof_example` path/digest pairs 
 
 Each proof builds in Lean 4.35.0, its explicit declarations pass the axiom audit, and its independent exact Python checker passes. All five modules also build and import together. No full repository Lean workspace build is claimed. Individually, every required local check passes except the policy floor for that one new proof source; the same governance check passes with its proposed exact pin temporarily applied and then restored.
 
-The identity PR has one existing external-citation test skipped because `the_symbol_game` is unavailable. Its changed record's local citations and declarations were separately verified against the published branch; three unchanged external citations were skipped.
+The identity PR has one existing external-citation test skipped because the external repository is unavailable. Its changed record's local citations and declarations were separately verified against the published branch; three unchanged external citations were skipped.
 
 ### PR #396: FSP-BF-2GROUP-SIGN-CLAIM
 

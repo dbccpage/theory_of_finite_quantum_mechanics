@@ -114,9 +114,9 @@ supplied; they do not remove this earlier bridge obligation.
 
 The new test
 `quadratic_readout_interference::the_same_three_slit_packet_admits_distinct_readout_degrees`
-in [the sovereign physics suite](../../../../../omega_engine/crates_rs/tests/omega_quantum_physics/synthesis/quadratic_readout_interference.rs)
-uses `omega_solvers::finite_cochain_packet`, the shared exact inner product,
-`omega_number_theory` rational/Gaussian scalars, and the existing
+in the sovereign physics suite (`external:sha256:1f318ce71c1e56d7886325d56faeedea941d8a24b8f26e6cacae1da02081d26b`)
+uses `solvers::finite_cochain_packet`, the shared exact inner product,
+`tfqm_number_theory` rational/Gaussian scalars, and the existing
 `gaussian_frame_readout::readout`. It checks $d_1d_0$ on every coordinate
 basis potential, the three path pairings, all eight slit settings and the
 table above. The existing quadratic `sorkin_interference` independently
@@ -125,7 +125,7 @@ agrees with the quadratic inclusion–exclusion value.
 From `external:git-tree:ac1f6d647c3ecc2bf45f6fc4922213ac752e71a3`, run:
 
 ```sh
-cargo test -j 1 --offline --locked -p omega_quantum_physics --test synthesis quadratic_readout_interference::the_same_three_slit_packet_admits_distinct_readout_degrees -- --exact
+cargo test -j 1 --offline --locked -p quantum_physics --test synthesis quadratic_readout_interference::the_same_three_slit_packet_admits_distinct_readout_degrees -- --exact
 ```
 
 This test is a finite counterexample under the stated weak premises. The

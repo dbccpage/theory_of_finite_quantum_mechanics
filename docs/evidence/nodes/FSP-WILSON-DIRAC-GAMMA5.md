@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md`
 
 - file: [dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md](../../../dag/derivations/26_fsp/tfq_1197_fsp_wilson_dirac_gamma5.md)
-- sha256 (`lf-normalised`): `bcacbb3dfdfaf52ceedc5774f16446f31f23b65d4616a60dae776d71e321df03`
+- sha256 (`lf-normalised`): `d7cd78c0b521e8901e7e184f8ef031ccf9b3b57c17478a4d41f061b95eaf31ee`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1197
 - counts toward the grade: no
@@ -89,7 +89,8 @@ Incoming (1):
 
 - `APP-R-FSP-WILSON-DIRAC-GAMMA5` `CONDITIONAL_ON_IMPORT`: [FSP-U1-WILSON-ACTION](FSP-U1-WILSON-ACTION.md) (PROVED_LEAN), [FSP-CAR-EXTERIOR-FOCK](FSP-CAR-EXTERIOR-FOCK.md) (PROVED_PROSE)
 
-Outgoing (2):
+Outgoing (3):
 
 - `APP-R-FSP-LATTICE-ANOMALY-INFLOW` `GAP_NO_DERIVATION`: [FSP-LATTICE-ANOMALY-INFLOW](FSP-LATTICE-ANOMALY-INFLOW.md) (OPEN)
 - `APP-R-FSP-SU2-ADJOINT-REAL-DET` `CONDITIONAL_ON_IMPORT`: [FSP-SU2-ADJOINT-REAL-DET](FSP-SU2-ADJOINT-REAL-DET.md) (IMPORTED_ASSUMPTION)
+- `FQCD-R-WILSON-DIRAC-GAMMA5-HERMITICITY` `GAP_NO_DERIVATION`: [FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY](FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY.md) (OPEN)

@@ -40,7 +40,7 @@ verify_three_bases checks unitarity and squared overlaps 1/6 exactly; replayed P
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.DitaAffine.moduli_fiber_stratification (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/hadamard/dita_affine.py::stratify_moduli_fibers (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_hadamard::dita_affine_stratification (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_hadamard::dita_affine_stratification (external engine crate, not in this checkout)`
 
 ---
 

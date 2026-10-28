@@ -6,7 +6,7 @@ What is the exact finite cohomological criterion on a cell complex or poset that
 
 ## Finite Model and Control Modules
 
-- Rust implementation: `external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579` (`evaluate_qm213_nonabelian_dfm_control`), combining `omega_holonomy::gauge_fixing` (`EdgeConnection`, `tree_gauge_indexed`, `holonomy_verdict`, `HolonomyVerdict`, `PureGaugeVerdict`) and `omega_homology::restriction_dga` (`OperatorCarrier`, `Cochain::internal_differential`, `Cochain::cup`, `Cochain::curvature`, `Cochain::covariant_differential`, `Cochain::gauge`).
+- Rust implementation: `external:sha256:376085dc410bbb86117c8efb40f2280ed15cb5734a22d050f6e1718aef3be579` (`evaluate_qm213_nonabelian_dfm_control`), combining `tfqm_holonomy::gauge_fixing` (`EdgeConnection`, `tree_gauge_indexed`, `holonomy_verdict`, `HolonomyVerdict`, `PureGaugeVerdict`) and `homology::restriction_dga` (`OperatorCarrier`, `Cochain::internal_differential`, `Cochain::cup`, `Cochain::curvature`, `Cochain::covariant_differential`, `Cochain::gauge`).
 - Python control: `python/finite_qm/use_cases/nonabelian_dfm_control.py` (`run_qm213_nonabelian_dfm_control`).
 - End-to-end test suite: `tests/e2e/test_e2e_nonabelian_dfm_control.py`.
 

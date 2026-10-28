@@ -17,7 +17,7 @@ For Gaussian rationals with |u_i| = |d_j| = 1, rephasing row i by u_i preserves 
 Invariance under the full U(1)^{N_g} x U(1)^{N_g} rephasing follows by composing single-vertex steps and is not written in Lean; Python checks all 9 plaquettes under one fixed rephasing.
 
 ### Witness Audit
-The Lean theorem covers rephasing at one up vertex (and a column bilinear), not the simultaneous action on all four quartet entries; the Rust test calls an implementation in the external omega_quantum_physics crate.
+The Lean theorem covers rephasing at one up vertex (and a column bilinear), not the simultaneous action on all four quartet entries; the Rust test calls an implementation in the external quantum_physics crate.
 
 ---
 

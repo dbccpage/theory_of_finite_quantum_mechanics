@@ -114,7 +114,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1220_fsp_master_dichotomy_refuted.md`
 
 - file: [dag/derivations/26_fsp/tfq_1220_fsp_master_dichotomy_refuted.md](../../../dag/derivations/26_fsp/tfq_1220_fsp_master_dichotomy_refuted.md)
-- sha256 (`lf-normalised`): `72fb615eb2f8c0acd4a8756d8d3c0f1b94a76921e06069db743df10d22fa045d`
+- sha256 (`lf-normalised`): `d00576635036e6ed0fca7dc12e7554a30c7bbf415dffaf8313f7d5048f44895f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1220
 - counts toward the grade: no

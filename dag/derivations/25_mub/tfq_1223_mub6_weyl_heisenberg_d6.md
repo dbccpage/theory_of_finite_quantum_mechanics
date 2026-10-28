@@ -54,7 +54,7 @@ Mub6WeylHeisenbergD6.lean checks the integer-pair shift, clock, commutation and 
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.WeylHeisenberg.discrete_operators_d6 (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/dim6/weyl_heisenberg.py::generate_weyl_heisenberg_d6 (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_matrix6::weyl_heisenberg_generators (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_matrix6::weyl_heisenberg_generators (external engine crate, not in this checkout)`
 
 ---
 

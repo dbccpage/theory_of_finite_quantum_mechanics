@@ -4,7 +4,7 @@ Stage: [IMPLEMENTATION](../stages/IMPLEMENTATION.md). Status: `DEFINITION`. Evid
 
 ## Statement
 
-> Float policy for tracked Rust: "sealed: agreed use only, each entry added or raised by Jeremy (dbccpage) alone, class SEARCH_OR_SOLVER or DIAGNOSTIC_ONLY; a float may propose but never authorize a result. legacy_debt: float use present when the gate was introduced on 2026-10-16 (origin/main bef50fb2e); it may only shrink." sealed is empty; legacy_debt counts per crate: omega_quantum_physics 35 files, omega_mub 20, omega_wdp 9, omega_local_green_global_red_lggr 8, omega_lifts 3, omega_majorana 2, omega_measurement 2. engine_bridge.rs is the diagnostic f64 lens ("numerical result never certifies an exact state or theorem").
+> Float policy for tracked Rust: "sealed: agreed use only, each entry added or raised by Jeremy (dbccpage) alone, class SEARCH_OR_SOLVER or DIAGNOSTIC_ONLY; a float may propose but never authorize a result. legacy_debt: float use present when the gate was introduced on 2026-10-16 (origin/main bef50fb2e); it may only shrink." sealed is empty; legacy_debt counts per crate: quantum_physics 35 files, tfqm_mub 20, tfqm_wdp 9, tfqm_local_green_global_red_lggr 8, lifts 3, tfqm_majorana 2, measurement 2. engine_bridge.rs is the diagnostic f64 lens ("numerical result never certifies an exact state or theorem").
 
 ## Grade
 
@@ -95,10 +95,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_mub
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0179_keep_omega_mub_float_cross_checks_from_authorizing_a_mub_6_existence_claim.md`
+### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0179_keep_tfqm_mub_float_cross_checks_from_authorizing_a_mub_6_existence_claim.md`
 
-- file: [dag/derivations/22_implementation_sibling/tfq_0179_keep_omega_mub_float_cross_checks_from_authorizing_a_mub_6_existence_claim.md](../../../dag/derivations/22_implementation_sibling/tfq_0179_keep_omega_mub_float_cross_checks_from_authorizing_a_mub_6_existence_claim.md)
-- sha256 (`lf-normalised`): `b2cf15cc24f6584b2f86394950877d14017e77ff341e2908c78d8b87885afc31`
+- file: [dag/derivations/22_implementation_sibling/tfq_0179_keep_tfqm_mub_float_cross_checks_from_authorizing_a_mub_6_existence_claim.md](../../../dag/derivations/22_implementation_sibling/tfq_0179_keep_tfqm_mub_float_cross_checks_from_authorizing_a_mub_6_existence_claim.md)
+- sha256 (`lf-normalised`): `2c8395ea2419a96b901651eb3e75fc6c150e52018ca66aa7c61ca4848af9dc60`
 - generated view: listed, not counted
 - cited in: record TFQ-0179
 - counts toward the grade: no
@@ -106,7 +106,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0188_refuse_the_f64_lift_scale_on_cycleliftspec_as_a_licence_for_an_exact.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0188_refuse_the_f64_lift_scale_on_cycleliftspec_as_a_licence_for_an_exact.md](../../../dag/derivations/22_implementation_sibling/tfq_0188_refuse_the_f64_lift_scale_on_cycleliftspec_as_a_licence_for_an_exact.md)
-- sha256 (`lf-normalised`): `303e9bfd8839de202416f2852b8fa9015dde0135d3c50ef84365a680f018522b`
+- sha256 (`lf-normalised`): `9bc31f956844baa4c9aab09c841f562fcc6ba4eb05e71141b0ddceaae24f6b2a`
 - generated view: listed, not counted
 - cited in: record TFQ-0188
 - counts toward the grade: no
@@ -114,7 +114,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0192_keep_diagnostic_floats_and_display_conversions_out_of_governance_and_out_of.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0192_keep_diagnostic_floats_and_display_conversions_out_of_governance_and_out_of.md](../../../dag/derivations/22_implementation_sibling/tfq_0192_keep_diagnostic_floats_and_display_conversions_out_of_governance_and_out_of.md)
-- sha256 (`lf-normalised`): `dda7baebd789bea679daa6cd553190a483e2d0ed5cac8efecf30bdcde81e9cd2`
+- sha256 (`lf-normalised`): `ea704eb5804ef6ad9003b1ed9856af1a32ad30a542dc565b75fc71a7b81f5905`
 - generated view: listed, not counted
 - cited in: record TFQ-0192
 - counts toward the grade: no

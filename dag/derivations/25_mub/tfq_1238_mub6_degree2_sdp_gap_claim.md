@@ -42,7 +42,7 @@ No receipt or code for this SDP is present.
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.Degree2SDP.moment_matrix_infeasibility (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/sos/degree2_sdp.py::solve_degree2_sdp (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_solvers::sdp::degree2_moment_evaluator (omega_engine crate, not in this checkout)`
+- `external:rust solvers::sdp::degree2_moment_evaluator (external engine crate, not in this checkout)`
 
 ---
 

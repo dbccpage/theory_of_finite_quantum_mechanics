@@ -29,7 +29,7 @@ In accordance with strict constructive principles:
 - [`absent: missing declaration obligation: a three-run record type with no rate field, absent from the opened Derivation/Inertia.lean header`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`absent: missing obligation: a fixture checker in omega_ooutwire_primitives that accepts three pinned runs and rejects a rate column`](../../code/rust/src/)
+- [`absent: missing obligation: a fixture checker in wire_primitives that accepts three pinned runs and rejects a rate column`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: missing obligation: a transcript bound in 000_genesis_19l57g1/code/genesis_checks.py that rejects a success-rate field on the three-run record`](../../code/python/)

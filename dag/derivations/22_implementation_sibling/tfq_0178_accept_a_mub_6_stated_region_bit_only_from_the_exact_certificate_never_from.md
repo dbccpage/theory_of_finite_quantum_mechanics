@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-The MUB(6) claim firewall refuses a global solution bit even when a float is handed in. src/omega_native/mub6_firewall.rs stores the line stated region only; mints no authority, with AUTHORITY_EFFECT None. src/omega_native/mub6_claim_gate.rs builds a StatedRegionSeal whose mub6_equals_3, mub6_at_most_3, global_solution, and verified_certificate fields are documented as always false, and certificate_from_exact_only discards its f64 argument. The obligation is to accept only the exact EnclosedTriple certificate from that call.
+The MUB(6) claim firewall refuses a global solution bit even when a float is handed in. src/native/mub6_firewall.rs stores the line stated region only; mints no authority, with AUTHORITY_EFFECT None. src/native/mub6_claim_gate.rs builds a StatedRegionSeal whose mub6_equals_3, mub6_at_most_3, global_solution, and verified_certificate fields are documented as always false, and certificate_from_exact_only discards its f64 argument. The obligation is to accept only the exact EnclosedTriple certificate from that call.
 
 ### Governing Obligation
 Accept a MUB(6) stated-region bit only from the exact certificate, never from a float or a global flag.
@@ -39,7 +39,7 @@ In accordance with strict constructive principles:
 
 ## 4. Downstream Derivations (Outgoing DAG Links)
 
-- [TFQ-0179](tfq_0179_keep_omega_mub_float_cross_checks_from_authorizing_a_mub_6_existence_claim.md)
+- [TFQ-0179](tfq_0179_keep_tfqm_mub_float_cross_checks_from_authorizing_a_mub_6_existence_claim.md)
 
 ---
 

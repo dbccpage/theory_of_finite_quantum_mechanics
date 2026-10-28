@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Lean coboundary holonomy is an integer cochain control and is not the matrix gauge engine. CoboundaryHolonomy.lean, header AuthorityEffect None, defines integer 0-cochains and 1-cochains on four named vertices and sets (delta phi)(u, v) to phi(v) minus phi(u). FiniteCochain.lean does the same style of bookkeeping on a 3-vertex, 3-edge carrier with an integer 2-cochain. The obligation is to keep these integer coboundaries from being cited as omega_holonomy's ExactMatrix loop products. They witness a finite cochain shape; they do not evaluate Wilson traces or plaquette curvature.
+Lean coboundary holonomy is an integer cochain control and is not the matrix gauge engine. CoboundaryHolonomy.lean, header AuthorityEffect None, defines integer 0-cochains and 1-cochains on four named vertices and sets (delta phi)(u, v) to phi(v) minus phi(u). FiniteCochain.lean does the same style of bookkeeping on a 3-vertex, 3-edge carrier with an integer 2-cochain. The obligation is to keep these integer coboundaries from being cited as tfqm_holonomy's ExactMatrix loop products. They witness a finite cochain shape; they do not evaluate Wilson traces or plaquette curvature.
 
 ### Governing Obligation
 Keep integer coboundary holonomy distinct from exact matrix gauge holonomy.

@@ -52,7 +52,7 @@ Cited MajoranaGinCore.lean::majorana_clifford_anticommutation does not exist; Ma
 
 ### Cited by the source, not in this checkout
 - `external:sources/atlas/papers/fermion_sign_problem/code/ising_majorana_braiding.py::MajoranaOperatorSet (cited by the source; the local file code/python/src/fsp/ising_majorana_braiding.py has no such symbol)`
-- `external:omega_majorana::majorana_fock_algebra::MajoranaCliffordGrading (cited by the source, not in this checkout)`
+- `external:tfqm_majorana::majorana_fock_algebra::MajoranaCliffordGrading (cited by the source, not in this checkout)`
 
 ---
 

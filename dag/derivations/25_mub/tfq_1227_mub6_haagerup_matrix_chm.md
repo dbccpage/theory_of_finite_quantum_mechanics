@@ -39,7 +39,7 @@ haagerupMatrix_isCH6 is IsCH6 for one fixed literal matrix; no family parameter 
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.Haagerup.h6_one_parameter_family (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/hadamard/haagerup_h6.py::construct_haagerup_family (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_hadamard::haagerup_family_evaluator (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_hadamard::haagerup_family_evaluator (external engine crate, not in this checkout)`
 
 ---
 

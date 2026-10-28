@@ -43,7 +43,7 @@ Cited Cobordism5dAnomaly.lean::cobordism_5d_anomaly_sign_classification does not
 - `checks/independent/fsp-cobordism-intrinsic-sign.py`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::spin_structure_obstruction::cobordism_5d_eta_invariant (cited by the source, not in this checkout)`
+- `external:quantum_physics::spin_structure_obstruction::cobordism_5d_eta_invariant (cited by the source, not in this checkout)`
 
 ---
 

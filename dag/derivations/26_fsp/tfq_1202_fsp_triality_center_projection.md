@@ -37,7 +37,7 @@ Cited NonAbelianGaugeSigns.lean::baryon_triality_center_symmetry_projection does
 - *none*
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::quantum_state::baryon_triality_center_projection (cited by the source, not in this checkout)`
+- `external:quantum_physics::quantum_state::baryon_triality_center_projection (cited by the source, not in this checkout)`
 
 ---
 

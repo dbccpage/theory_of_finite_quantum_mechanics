@@ -42,7 +42,7 @@ No chart-derived cochain is present.
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.Circulation.cochain_invariant_phi1_bound (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/terminal/cochain_circulation.py::compute_phi1_lower_bound (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_terminal::simplicial_cochain_circulation (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_terminal::simplicial_cochain_circulation (external engine crate, not in this checkout)`
 
 ---
 

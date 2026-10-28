@@ -193,7 +193,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0195_use_finite_rational_homology_and_simplicial_complexes_as_carriers_not_as_a.md`
 
 - file: [dag/derivations/22_implementation_sibling/tfq_0195_use_finite_rational_homology_and_simplicial_complexes_as_carriers_not_as_a.md](../../../dag/derivations/22_implementation_sibling/tfq_0195_use_finite_rational_homology_and_simplicial_complexes_as_carriers_not_as_a.md)
-- sha256 (`lf-normalised`): `bb0588c9bd88af286ffafed0742d900ee54231258df3d1b7e3cb687d39212356`
+- sha256 (`lf-normalised`): `4f04d3d97f1138ecd9d36e4b711b41758399531dd390e11618d8ac4be3116118`
 - generated view: listed, not counted
 - cited in: record TFQ-0195
 - counts toward the grade: no

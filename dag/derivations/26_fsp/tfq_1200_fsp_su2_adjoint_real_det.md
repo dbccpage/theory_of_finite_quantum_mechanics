@@ -59,7 +59,7 @@ Cited NonAbelianGaugeSigns.lean::su2_adjoint_fermion_real_determinant does not e
 - `checks/independent/fsp-su2-adjoint-real-det.py::main`
 
 ### Cited by the source, not in this checkout
-- `external:omega_lie_theory::cayley_unitary::su2_link_holonomy (cited by the source, not in this checkout)`
+- `external:tfqm_lie_theory::cayley_unitary::su2_link_holonomy (cited by the source, not in this checkout)`
 
 ---
 

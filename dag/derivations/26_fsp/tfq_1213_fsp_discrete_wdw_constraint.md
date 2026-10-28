@@ -45,7 +45,7 @@ Cited ReggePachnerWdw.lean::wheeler_dewitt_constraint_null_kernel does not exist
 - `checks/independent/fsp-discrete-wdw-constraint.py`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::quantum_regge_bridge::wheeler_dewitt_constraint_projector (cited by the source, not in this checkout)`
+- `external:quantum_physics::quantum_regge_bridge::wheeler_dewitt_constraint_projector (cited by the source, not in this checkout)`
 
 ---
 

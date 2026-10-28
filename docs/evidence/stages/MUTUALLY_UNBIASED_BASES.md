@@ -2,7 +2,7 @@
 
 Part of the [evidence map](../README.md). AuthorityEffect: None.
 
-Nodes: 67. Grades: E1 27, E2 3, E3 37. Statuses: PROVED_LEAN 32, PROVED_PROSE 2, COMPUTATIONALLY_CHECKED 3, CONDITIONAL 1, DEFINITION 2, IMPORTED_ASSUMPTION 4, OPEN 22, REFUTED 1.
+Nodes: 68. Grades: E1 28, E2 3, E3 37. Statuses: PROVED_LEAN 32, PROVED_PROSE 2, COMPUTATIONALLY_CHECKED 3, CONDITIONAL 1, DEFINITION 2, IMPORTED_ASSUMPTION 4, OPEN 23, REFUTED 1.
 
 | Node | Status | Grade | Statement | Counted in-repo evidence | Flags |
 |---|---|---|---|---|---|
@@ -73,4 +73,5 @@ Nodes: 67. Grades: E1 27, E2 3, E3 37. Statuses: PROVED_LEAN 32, PROVED_PROSE 2,
 | [MUB6-COMMUTATIVE-FLAT-REAL-POINT](../nodes/MUB6-COMMUTATIVE-FLAT-REAL-POINT.md) | `PROVED_LEAN` | E3 | For a normalized real functional on polynomials whose degree-two coordinate moment matrix is positive semidefinite with rank equal to the... | [CommutativeFlatMoments.lean](../../../lean4/CommutativeFlatMoments.lean): `operators_commute`, `real_point_of_positive_flat`<br>[mub6.md](../../../papers/core/mub6/mub6.md)<br>[mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md) | - |
 | [MUB6-FOURTH-BASIS-FLAT-MOMENTS](../nodes/MUB6-FOURTH-BASIS-FLAT-MOMENTS.md) | `PROVED_LEAN` | E3 | For a fixed triple T, a fourth basis exists iff some normalized real moment functional has positive semidefinite degree-two moment matrix... | [ConcreteMubFlatExtension.lean](../../../lean4/ConcreteMubFlatExtension.lean): `fourth_basis_iff_positive_flat_moments`, `fourth_basis_of_positive_flat`<br>[mub6.md](../../../papers/core/mub6/mub6.md)<br>[mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md) | - |
 | [MUB6-EMPTY-VARIETY-MOMENT-NONPSD](../nodes/MUB6-EMPTY-VARIETY-MOMENT-NONPSD.md) | `PROVED_LEAN` | E3 | If the fixed-triple variety is empty, every normalized real moment functional with equal degree-two and degree-one ranks and finite relat... | [ConcreteMubFlatExtension.lean](../../../lean4/ConcreteMubFlatExtension.lean): `moment_nonpositive_of_empty_variety`<br>[mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md) | - |
+| [MUB-PRIME-POWER-CHARACTERISTIC-TWO](../nodes/MUB-PRIME-POWER-CHARACTERISTIC-TWO.md) | `OPEN` | E1 | For d = 2^k with k \>= 2, construct d+1 bases of C^d, each orthonormal, with \|\<u, v\>\|^2 = 1/d for vectors u and v from different bases, us... | [MubPrimePowerOddCharacteristic.lean](../../../lean4/MubPrimePowerOddCharacteristic.lean)<br>[mub-prime-power-construction-odd.md](../../../dag/derivations/independent/mub-prime-power-construction-odd.md) | - |
 

@@ -84,7 +84,7 @@ in code.
 
 The ladder wires **P0 only** (`ladder.py`: "Only --stage P0 is wired"; `runner.py` raises for other stages). P1 to P5 exist in
 `dag/pfp/batch_tools`, but there they run from a host-authored spec with no provider call, and in the reference system
-(`the_symbol_game/omega_engine_pfp/use_cases/pfp_stages.py`) behind a native host this repository does not import. **Arm S is
+(`external:sha256:6242ce27786976ac1c386ff6b360f82700dd50fb2b85846803ab4ff55762844d`) behind a native host this repository does not import. **Arm S is
 therefore P0 only.** Consequences, fixed in advance:
 
 * It can earn **O** units (host-verified operad entries) and, only through a model's own `lean_skeleton` that claims a sorry-free

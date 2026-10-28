@@ -67,6 +67,6 @@ These items constitute solvable mathematical and computational questions formula
 | ID | Title | Task Description | Target Environment |
 | :--- | :--- | :--- | :--- |
 | `GAP-FQM-019` | Lean 4 library consolidation | Restore and replay foundational quantum mechanics proofs under current Lean 4.34.0 toolchain. | `lean4/quantum_mechanics/` |
-| `GAP-FQM-003` | Exact cochain algorithms | Implement four-way classifier and exact network simplex solvers over $\mathbb{Q}$ replacing floating-point LP routines. | `omega_solvers`, `omega_quantum_physics` |
+| `GAP-FQM-003` | Exact cochain algorithms | Implement four-way classifier and exact network simplex solvers over $\mathbb{Q}$ replacing floating-point LP routines. | `solvers`, `quantum_physics` |
 | `NEW-PHASE-060-LEDGER` | Superposition non-descent | Integrate `MixingObstruction.no_descent_through_quotient` into main application library. | `lean4/quantum_mechanics/` |
 | `GAP-FQM-017` | Dynamics claim mappings | Update and reconcile claim maps for discrete dynamics and unitary step operators. | `research/208_...` through `211_...` |

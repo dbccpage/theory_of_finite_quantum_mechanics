@@ -79,5 +79,5 @@ The program has advanced through several focused research campaigns:
 ## 5. Architectural Layout & Environment
 
 - **Lean 4 Environment:** `lean4/quantum_mechanics/` consists of a flat library containing over 150 Lean source files compiling under Lake.
-- **Rust Architecture:** Crate `omega_quantum_physics` provides native compiled solvers, with `omega_finite_qm` serving as a public API facade.
+- **Rust Architecture:** Crate `quantum_physics` provides native compiled solvers, with `finite_qm` serving as a public API facade.
 - **Python Architecture:** Structured package in `external:unlocated` supporting symbolic algebra and rapid prototyping.

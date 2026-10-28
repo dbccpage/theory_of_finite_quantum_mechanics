@@ -83,7 +83,7 @@ def test_statuses_follow_the_evidence():
         if node['status'] == 'COMPUTATIONALLY_CHECKED':
             assert sync.INDEPENDENT in node['source'] or any(t in node['source'] for t in sync.PYTHON_TESTS), nid
         if node['status'] == 'CONDITIONAL' and nid in ('OPS-OBSERVER-DECLARATION-REFUSAL', 'OPS-RUST-RECEIPTS-AND-LIMITS'):
-            assert 'omega_solvers' in node['bottleneck'] and 'not run here' in node['bottleneck'], nid
+            assert 'solvers' in node['bottleneck'] and 'not run here' in node['bottleneck'], nid
         if node['status'] == 'IMPORTED_ASSUMPTION':
             assert node['imported_structure'], nid
         assert node['stage'] == 'OBSERVER_PRESHEAF' and 'foc035-observer-presheaf' in node['tags']

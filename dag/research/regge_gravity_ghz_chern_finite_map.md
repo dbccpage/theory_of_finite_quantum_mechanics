@@ -5,7 +5,7 @@
 **Goal IDs:** `QM-229-PPN-DEFLECTION-PERIHELION-MAP`, `QM-230-GHZ-MERMIN-PAGE-WOOTTERS-KRAUS-MAP`, `QM-231-QWZ-HALDANE-CHERN-PARITY-MAP`  
 **Parent Milestone:** `MS-QUANTUM`  
 **Status:** `DONE` (Rust, Python, and core Lean 4 `FiniteQFTAndGravity.lean` verified with exit code 0 and zero `sorryAx`)  
-**Executable Rust Module:** [`external:sha256:c5ad48d5c22ea89b1e481b44062e0de0f36728afa54ea6439e12e592c239f77a`](../../../../../omega_engine/crates_rs/omega_quantum_physics/src/regge_gravity_ghz_chern_finite_maps.rs)  
+**Executable Rust Module:** `external:sha256:c5ad48d5c22ea89b1e481b44062e0de0f36728afa54ea6439e12e592c239f77a`  
 **Executable Python Module:** [`python/finite_qm/use_cases/regge_gravity_ghz_chern_control.py`](../python/finite_qm/use_cases/regge_gravity_ghz_chern_control.py)  
 **Lean 4 Mechanization:** [`lean4/FiniteQFTAndGravity.lean`](../../lean4/FiniteQFTAndGravity.lean) and [`lean4/FiniteQFTAndGravity.lean`](../../lean4/FiniteQFTAndGravity.lean) (sections QM-229, QM-230, QM-231)  
 **E2E Verification Suite:** [`tests/e2e/test_e2e_regge_gravity_ghz_chern_control.py`](../tests/e2e/test_e2e_regge_gravity_ghz_chern_control.py)
@@ -35,7 +35,7 @@ An eigenvalue is exact or refused. `exact_eigenvalue` takes the Rayleigh quotien
 ## 2. Claim Hygiene Summary
 
 1. **What it supports:**
-   * Checked by [`regge_gravity_ghz_chern_finite_maps.rs`](../../../../../omega_engine/crates_rs/omega_quantum_physics/src/regge_gravity_ghz_chern_finite_maps.rs) (6 inline tests), [`regge_gravity_ghz_chern_control.py`](../python/finite_qm/use_cases/regge_gravity_ghz_chern_control.py) (13 e2e tests) and the Lean theorems `deflection_factor_values` through `chern_parity` in [`FiniteQFTAndGravity.lean`](../../lean4/FiniteQFTAndGravity.lean): the PPN factors at $(\gamma, \beta) = (1, 1)$ and $\gamma = 0$; $\delta\varphi_{\mathrm{GR}} = 2\,\delta\varphi_{\mathrm{Newton}}$; the Minkowski trace $e\,\eta(k, k)$ of the flow tensor $e\,k k$ for every $e$ and $k$, which vanishes for the null probe and is $\rho$ for dust; the Pauli single-site identities $XYY = X$, $YXY = -X$, $YYX = X$ behind $A_1A_2A_3 = -B$; the Mermin bound $|x_1x_2x_3 - x_1y_2y_3 - y_1x_2y_3 - y_1y_2x_3| \le 2$ over all 64 assignments; $U = W\operatorname{diag}(1, i)W^\dagger$ with $W = \tfrac15\begin{pmatrix}3 & 4i \\ 4i & 3\end{pmatrix}$, $UU^\dagger = I$ and $U^4 = I$; $S^4 = I$; Kraus completeness, three applications of the $(3, 4, 5)$ channel to $\rho_+$ ending at off-diagonal entry $27/250$, and the coherence $(3/5)^3$ read off that output; the QWZ parity table.
+   * Checked by `regge_gravity_ghz_chern_finite_maps.rs` (`external:sha256:c5ad48d5c22ea89b1e481b44062e0de0f36728afa54ea6439e12e592c239f77a`) (6 inline tests), [`regge_gravity_ghz_chern_control.py`](../python/finite_qm/use_cases/regge_gravity_ghz_chern_control.py) (13 e2e tests) and the Lean theorems `deflection_factor_values` through `chern_parity` in [`FiniteQFTAndGravity.lean`](../../lean4/FiniteQFTAndGravity.lean): the PPN factors at $(\gamma, \beta) = (1, 1)$ and $\gamma = 0$; $\delta\varphi_{\mathrm{GR}} = 2\,\delta\varphi_{\mathrm{Newton}}$; the Minkowski trace $e\,\eta(k, k)$ of the flow tensor $e\,k k$ for every $e$ and $k$, which vanishes for the null probe and is $\rho$ for dust; the Pauli single-site identities $XYY = X$, $YXY = -X$, $YYX = X$ behind $A_1A_2A_3 = -B$; the Mermin bound $|x_1x_2x_3 - x_1y_2y_3 - y_1x_2y_3 - y_1y_2x_3| \le 2$ over all 64 assignments; $U = W\operatorname{diag}(1, i)W^\dagger$ with $W = \tfrac15\begin{pmatrix}3 & 4i \\ 4i & 3\end{pmatrix}$, $UU^\dagger = I$ and $U^4 = I$; $S^4 = I$; Kraus completeness, three applications of the $(3, 4, 5)$ channel to $\rho_+$ ending at off-diagonal entry $27/250$, and the coherence $(3/5)^3$ read off that output; the QWZ parity table.
    * Checked in Rust and Python only: the solar-limb deflection $1.751190''$ inside $[1.750, 1.752]''$ and the Newtonian half $0.875595''$ inside $[0.875, 0.876]''$; Mercury $42.980654''$ per century inside $[42.97, 42.99]''$; the $8 \times 8$ operators commute, are Hermitian and involutive, $A_1A_2A_3 = -B$ on $\mathbb{Q}(i)^8$, GHZ is an eigenvector of each with exact eigenvalues $(-1, -1, -1, +1)$, and of $M = B - A_1 - A_2 - A_3$ with eigenvalue $4$; the four-tick history constraint; the Haldane sign decisions.
 2. **What it does not support:**
    * The deflection and perihelion numbers are evaluated at the declared rational inputs ($GM_\odot$, $c$, $R_\odot$, Mercury's $a$ and $e$, orbits per century) and are not fits to data; the PPN factors are the standard parameterized forms, not derivations from a field equation. The Regge-calculus discretization named in the goal title is not implemented here; only the PPN endpoint checks are.
@@ -74,8 +74,8 @@ From the repository root:
 ```text
 cd sources/atlas/papers/finite_quantum_mechanics
 python3 -m pytest tests/e2e/test_e2e_regge_gravity_ghz_chern_control.py -q
-cd ../../../../../omega_engine/crates_rs
-cargo test -j 1 -p omega_quantum_physics --lib -- regge_gravity
+cd external:git-tree:ac1f6d647c3ecc2bf45f6fc4922213ac752e71a3
+cargo test -j 1 -p quantum_physics --lib -- regge_gravity
 cd ../../lean4/quantum_mechanics
 lean FiniteQFTAndGravity.lean
 ```

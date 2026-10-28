@@ -47,7 +47,7 @@ Cited MeronClusterInvolution.lean::involution_cancellation_theorem does not exis
 - `code/python/tests/fsp/test_normal_form_laws.py::test_near_equal_or_zero_total_does_not_imply_equal_weight_pairing`
 
 ### Cited by the source, not in this checkout
-- `external:omega_majorana::lggr::involution_cancellation_certifier (cited by the source, not in this checkout)`
+- `external:tfqm_majorana::lggr::involution_cancellation_certifier (cited by the source, not in this checkout)`
 
 ---
 
