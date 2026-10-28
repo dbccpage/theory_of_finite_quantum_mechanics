@@ -42,7 +42,7 @@ lean4/CommutativeFlatMoments.lean::operators_commute states Commute P Q for symm
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.FlatMoments.commutative_truncation_proof (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/sos/flat_moments.py::certify_moment_truncation (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_solvers::sdp::flat_moment_certifier (omega_engine crate, not in this checkout)`
+- `external:rust solvers::sdp::flat_moment_certifier (external engine crate, not in this checkout)`
 
 ---
 

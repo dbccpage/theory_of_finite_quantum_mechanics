@@ -56,7 +56,7 @@ Replaced missing NonAbelianGaugeSigns.lean::su3_chemical_potential_complex_deter
 - `checks/independent/fsp-qcd-chemical-potential-det.py::main`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::quantum_channel::su3_staggered_dirac_determinant (cited by the source, not in this checkout)`
+- `external:quantum_physics::quantum_channel::su3_staggered_dirac_determinant (cited by the source, not in this checkout)`
 
 ---
 

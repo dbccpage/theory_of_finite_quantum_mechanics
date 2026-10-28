@@ -231,7 +231,7 @@ from complex quantum theory and do not repair GAP-FQM-021 by dimension counting.
 
 ## 7. Native scope and reproduction
 
-[`ancilla_capacity.rs`](../../../../../omega_engine/crates_rs/omega_quantum_physics/src/ancilla_capacity.rs)
+`ancilla_capacity.rs` (`external:sha256:4447dc07da9857e72fdf961ed63fce285cebd4e0762f487974029267b988fe85`)
 uses the existing `RationalSpectrum`, exact operator spectrum, canonical
 `BasicMatrix<GaussianRat>` and rational square-root owners. The spectrum-only
 route takes validated normalized sector spectra and explicit central weights;
@@ -248,7 +248,7 @@ every possible same-field construction. A rotated marginal requires the
 corresponding conjugation of the attainer; the tests check this explicitly.
 Spectrum expansion and matrix allocation/work budgets fail closed.
 
-Nine focused [native tests](../../../../../omega_engine/crates_rs/tests/omega_quantum_physics/ancilla_capacity.rs)
+Nine focused native tests (`external:sha256:c4f1455b865c76a70420f59e6a24537597237c54499a775a94a49b33679684d4`)
 verify exact partial traces, positivity, purity, extension ranks, nearest
 marginals and joint pure-state distance, a non-diagonal marginal, central
 attainment, nondividing block sizes, all table rows, product-state controls,
@@ -259,7 +259,7 @@ capacity owner; it does not substitute a dimension-compatible guessed algebra.
 
 ```console
 cd external:git-tree:ac1f6d647c3ecc2bf45f6fc4922213ac752e71a3
-cargo test -j 1 --offline --locked -p omega_quantum_physics --test ancilla_capacity
+cargo test -j 1 --offline --locked -p quantum_physics --test ancilla_capacity
 ```
 
 Use the shared target cache when running in a worktree. The

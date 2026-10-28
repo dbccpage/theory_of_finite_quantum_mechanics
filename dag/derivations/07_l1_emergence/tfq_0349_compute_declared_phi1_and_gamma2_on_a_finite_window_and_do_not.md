@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-DAG node L1-WDP-WINDOW-PHI1-GAMMA2 restates the declared window: Phi1 of a class is the quotient seminorm, the minimum of a weighted l1 norm of x minus d0 h, and Gamma2 is the l1 norm of d1 on a minimizer. The node says the weighted l1 form is declared, not derived from MSS-0 or from Difference, and it warns that WDP Gamma2 is a norm while a later QM note uses Gamma for a set of residual sectors. primitive_axiomatics.rs says Root P owns no arithmetic: d0 and d1 come from omega_homology, and Phi1, Gamma2, and the trichotomy come from omega_functional.
+DAG node L1-WDP-WINDOW-PHI1-GAMMA2 restates the declared window: Phi1 of a class is the quotient seminorm, the minimum of a weighted l1 norm of x minus d0 h, and Gamma2 is the l1 norm of d1 on a minimizer. The node says the weighted l1 form is declared, not derived from MSS-0 or from Difference, and it warns that WDP Gamma2 is a norm while a later QM note uses Gamma for a set of residual sectors. primitive_axiomatics.rs says Root P owns no arithmetic: d0 and d1 come from homology, and Phi1, Gamma2, and the trichotomy come from tfqm_functional.
 
 ### Governing Obligation
 Compute declared Phi1 and Gamma2 on a finite window, and do not treat the weighted l1 norm as derived from MSS-0.

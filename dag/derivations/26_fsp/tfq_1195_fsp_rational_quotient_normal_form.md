@@ -53,7 +53,7 @@ Cited BqnfSignPacket.lean::bqnf_canonical_reduction_confluence does not exist; B
 - `code/python/tests/fsp/test_normal_form_laws.py::test_l1_section_is_not_l1_minimizer_and_exact_distance_is`
 
 ### Cited by the source, not in this checkout
-- `external:omega_majorana::hard_invariants::bqnf_canonical_packet (cited by the source, not in this checkout)`
+- `external:tfqm_majorana::hard_invariants::bqnf_canonical_packet (cited by the source, not in this checkout)`
 
 ---
 

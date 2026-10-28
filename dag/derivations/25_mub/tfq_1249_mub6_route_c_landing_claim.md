@@ -42,7 +42,7 @@ Earlier unconditional Route C statements are withdrawn by the superseded notice.
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.RouteC.fourier_landing_bypass_resolution (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/terminal/route_c_bypass.py::resolve_route_c_obstruction (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_terminal::route_c_bypass_resolver (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_terminal::route_c_bypass_resolver (external engine crate, not in this checkout)`
 
 ---
 

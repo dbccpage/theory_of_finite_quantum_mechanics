@@ -144,7 +144,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md`
 
 - file: [dag/derivations/07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md](../../../dag/derivations/07_l1_emergence/tfq_0349_compute_declared_phi1_and_gamma2_on_a_finite_window_and_do_not.md)
-- sha256 (`lf-normalised`): `fd010b5046d0bcdf92ac381f394fc56ffd2373d7101bfc2bcccb0dd066cd6d1e`
+- sha256 (`lf-normalised`): `c321a8efe2a469ab8b50dc430b7862e5549ec51c9cace58c32c7d470de19b0a6`
 - generated view: listed, not counted
 - cited in: record TFQ-0349 (shared)
 - counts toward the grade: no

@@ -103,7 +103,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/pgw-sn-e08-weighted-l1-duality.md`
 
 - file: [dag/derivations/independent/pgw-sn-e08-weighted-l1-duality.md](../../../dag/derivations/independent/pgw-sn-e08-weighted-l1-duality.md)
-- sha256 (`lf-normalised`): `fa27c797d38f309352500d78747f9cd2e588a18dbcc1f6a80221d424315938d7`
+- sha256 (`lf-normalised`): `223b8b17c00279a4a630cdc23323badfa4103e5918a3ab89369fa733f5a6b1bd`
 - cited in: node.source
 - counts toward the grade: yes
 

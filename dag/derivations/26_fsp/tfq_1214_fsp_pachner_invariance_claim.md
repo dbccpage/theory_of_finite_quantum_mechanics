@@ -59,7 +59,7 @@ Cited ReggePachnerWdw.lean::pachner_move_topological_invariance does not exist; 
 - `checks/independent/fsp-pachner-invariance-claim.py`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::finite_spinfoam::pachner_move_invariance (cited by the source, not in this checkout)`
+- `external:quantum_physics::finite_spinfoam::pachner_move_invariance (cited by the source, not in this checkout)`
 
 ---
 

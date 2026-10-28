@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1209_fsp_fibonacci_anyon_data.md`
 
 - file: [dag/derivations/26_fsp/tfq_1209_fsp_fibonacci_anyon_data.md](../../../dag/derivations/26_fsp/tfq_1209_fsp_fibonacci_anyon_data.md)
-- sha256 (`lf-normalised`): `3d0549757594415274d8713922e05d1ebde5ae2b559117acd9a999c9c9d8c777`
+- sha256 (`lf-normalised`): `47bf1b7b81849ff6550ebd122cf295776f9549926d52273b2df73bc7aaaa410e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1209
 - counts toward the grade: no

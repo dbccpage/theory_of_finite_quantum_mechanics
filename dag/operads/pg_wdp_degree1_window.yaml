@@ -42,7 +42,7 @@ operation_candidates:
     \ y) = d1 x + d1 y)\n    (d1_d0 : ∀ α : C0, d1 (d0 α) = 0)\n    (add_zero_right : ∀ z : C2, z + 0\
     \ = z) :\n    Q1 d0 → C2"
   source: atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
-  repository: the_symbol_game
+  repository: external
   source_sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
   status: source_candidate_requires_semantic_review
 - kind: abbrev
@@ -50,7 +50,7 @@ operation_candidates:
   line: 42
   signature_excerpt: 'abbrev Q1 (d0 : C0 → C1) : Type'
   source: atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
-  repository: the_symbol_game
+  repository: external
   source_sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
   status: source_candidate_requires_semantic_review
 - kind: def
@@ -58,7 +58,7 @@ operation_candidates:
   line: 37
   signature_excerpt: 'def Repair (d0 : C0 → C1) : C1 → C1 → Prop'
   source: atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
-  repository: the_symbol_game
+  repository: external
   source_sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
   status: source_candidate_requires_semantic_review
 relation_candidates:
@@ -81,7 +81,7 @@ source_bindings:
   availability: external
   symbol: kappa
   path: atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
-  repository: the_symbol_game
+  repository: external
   sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
   declaration_status: declaration_found_not_proof_checked
   line: 61
@@ -90,7 +90,7 @@ source_bindings:
   availability: external
   symbol: Repair
   path: atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/Obstruction.lean
-  repository: the_symbol_game
+  repository: external
   sha256: 3d970ea9cc3ed97c56f7f002b31a96f5989e91bb2698f3785d887d9eb9369a22
   declaration_status: declaration_found_not_proof_checked
   line: 37
@@ -126,7 +126,7 @@ source_bindings:
   availability: external
   symbol: verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness
   path: external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4
-  repository: the_symbol_game
+  repository: external
   sha256: f188014d4916e679b4f4850928c9cf0405935261724b2578568d7d49d1c384fb
   declaration_status: declaration_found_not_executed
   line: 1489
@@ -356,7 +356,7 @@ presentation:
     latest_host_check: dag/results/PG-WDP-DEGREE1-WINDOW/runs/20261021T175809Z_staged/p2/host_check.json
   - id: diagnostic_class
     source_declarations:
-    - 'external omega_policy/src/trichotomy.rs::ObstructionDiagnosticClass (line 17), classify_exact (line
+    - 'external policy/src/trichotomy.rs::ObstructionDiagnosticClass (line 17), classify_exact (line
       65): the first variant is named ExactRepair there'
     - 'code/rust/src/wdp/primitive_axiomatics.rs::TriadSignature::r_cl (line 159): returns Some(0) at
       Phi1 = 0 and Gamma2 = 0, an extension of the node statement'
@@ -558,7 +558,7 @@ presentation:
     named_Lean_scope: *id001
   - id: diagnostic_trichotomy
     source_declarations:
-    - 'external omega_policy/src/trichotomy.rs::classify_exact (line 65): fixed code with an if-chain,
+    - 'external policy/src/trichotomy.rs::classify_exact (line 65): fixed code with an if-chain,
       not a theorem'
     equation_or_predicate: exactly one of Phi1 = 0, (Phi1 > 0 and Gamma2 = 0), (Phi1 > 0 and Gamma2 >
       0)
@@ -1255,7 +1255,7 @@ operad_slots:
     source_scope_review: 'The node statement is a DEFINITION. Mined from Obstruction.lean (Repair, Q1,
       kappa, kappa_well_defined, H1, kappa_exact_sequence: general over Add types), code/rust/src/wdp/obstruction.rs
       (Cochain1, the exact LP certificate) and primitive_axiomatics.rs (TriadSignature, compute_triad_signature)
-      plus the external omega_policy trichotomy. The source classes (Rust trichotomy.rs) are: exact iff
+      plus the external policy trichotomy. The source classes (Rust trichotomy.rs) are: exact iff
       Phi1 = 0, closed residual iff Phi1 > 0 and Gamma2 = 0, active closure failure iff Phi1 > 0 and Gamma2
       > 0 (first variant named ExactRepair in Rust, ExactClass in the node). The node statement defines
       R_cl only for Phi1 > 0; Rust returns Some(0) at Phi1 = 0, Gamma2 = 0. The source operates on a bare
@@ -1433,7 +1433,7 @@ operad_slots:
         sha256: f4869238bfc1dae87f3fe88a2d7f6e4c9b8e44aa45a4296e48809ba7c243513e
     - id: diagnostic_trichotomy
       source_declarations:
-      - 'external omega_policy/src/trichotomy.rs::classify_exact (line 65): fixed code with an if-chain,
+      - 'external policy/src/trichotomy.rs::classify_exact (line 65): fixed code with an if-chain,
         not a theorem'
       equation_or_predicate: exactly one of Phi1 = 0, (Phi1 > 0 and Gamma2 = 0), (Phi1 > 0 and Gamma2
         > 0)
@@ -1651,7 +1651,7 @@ scope_notes:
 - 'The node statement is a DEFINITION. Mined from Obstruction.lean (Repair, Q1, kappa, kappa_well_defined,
   H1, kappa_exact_sequence: general over Add types), code/rust/src/wdp/obstruction.rs (Cochain1, the exact
   LP certificate) and primitive_axiomatics.rs (TriadSignature, compute_triad_signature) plus the external
-  omega_policy trichotomy. The source classes (Rust trichotomy.rs) are: exact iff Phi1 = 0, closed residual
+  policy trichotomy. The source classes (Rust trichotomy.rs) are: exact iff Phi1 = 0, closed residual
   iff Phi1 > 0 and Gamma2 = 0, active closure failure iff Phi1 > 0 and Gamma2 > 0 (first variant named
   ExactRepair in Rust, ExactClass in the node). The node statement defines R_cl only for Phi1 > 0; Rust
   returns Some(0) at Phi1 = 0, Gamma2 = 0. The source operates on a bare Add type; here kappa is proved

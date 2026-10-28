@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1241_mub6_positivstellensatz_claim.md`
 
 - file: [dag/derivations/25_mub/tfq_1241_mub6_positivstellensatz_claim.md](../../../dag/derivations/25_mub/tfq_1241_mub6_positivstellensatz_claim.md)
-- sha256 (`lf-normalised`): `b1a4e40fb6a05c19b8a279b71fdd808e01842a34bd47d8b076a2598d9f7c50ea`
+- sha256 (`lf-normalised`): `1ebb4a515408b474099d8d9568ef5d7ce70447a68482bac04df7836e810e5426`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1241
 - counts toward the grade: no

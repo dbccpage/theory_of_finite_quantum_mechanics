@@ -54,7 +54,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1216_fsp_dirac_kahler_spinfoam_claim.md`
 
 - file: [dag/derivations/26_fsp/tfq_1216_fsp_dirac_kahler_spinfoam_claim.md](../../../dag/derivations/26_fsp/tfq_1216_fsp_dirac_kahler_spinfoam_claim.md)
-- sha256 (`lf-normalised`): `ebf02ff51d7deccec2ef9dcd68096b025816369989e6f85bb86d96bbd4a91753`
+- sha256 (`lf-normalised`): `51d9b49571be7eb6e70f1522e007bd0aedba09963ffa56f5001cee6badc0c565`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1216
 - counts toward the grade: no

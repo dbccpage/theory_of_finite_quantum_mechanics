@@ -92,7 +92,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md`
 
 - file: [dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md](../../../dag/derivations/28_majorana/tfq_1167_maj_import_kitaev_chain.md)
-- sha256 (`lf-normalised`): `7fd480f6632f96bcbc955f37650f13245aecf0f7f5b7dc7298c49996e28af49e`
+- sha256 (`lf-normalised`): `1abbd7439a3603dec1a5c4e1bc80b40baf8d7d47abc34d8531226bc7af0d4c45`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1167
 - counts toward the grade: no

@@ -72,7 +72,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1196_fsp_u1_wilson_action.md`
 
 - file: [dag/derivations/26_fsp/tfq_1196_fsp_u1_wilson_action.md](../../../dag/derivations/26_fsp/tfq_1196_fsp_u1_wilson_action.md)
-- sha256 (`lf-normalised`): `8ffdd4377afca56523940e91db6e4726acb3ab055c5531a9521ee9d7847fb99a`
+- sha256 (`lf-normalised`): `fbf9823ab93e78c7f59833533a74cfed192e0f51630115457bd2a16c5baf081f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1196
 - counts toward the grade: no
@@ -97,8 +97,9 @@ Incoming (1):
 
 - `APP-R-FSP-U1-WILSON-ACTION` `DERIVED_LEAN`: [DS-QM063-HOLONOMY-COHERENT-INTENSITY](DS-QM063-HOLONOMY-COHERENT-INTENSITY.md) (COMPUTATIONALLY_CHECKED), [FSP-HUBBARD-PROTECTED-REPRESENTATIONS](FSP-HUBBARD-PROTECTED-REPRESENTATIONS.md) (CONDITIONAL)
 
-Outgoing (3):
+Outgoing (4):
 
 - `APP-R-FSP-SU2-ADJOINT-REAL-DET` `CONDITIONAL_ON_IMPORT`: [FSP-SU2-ADJOINT-REAL-DET](FSP-SU2-ADJOINT-REAL-DET.md) (IMPORTED_ASSUMPTION)
 - `APP-R-FSP-THETA-TERM-COMPLEX-WEIGHT` `CONDITIONAL_ON_IMPORT`: [FSP-THETA-TERM-COMPLEX-WEIGHT](FSP-THETA-TERM-COMPLEX-WEIGHT.md) (IMPORTED_ASSUMPTION)
 - `APP-R-FSP-WILSON-DIRAC-GAMMA5` `CONDITIONAL_ON_IMPORT`: [FSP-WILSON-DIRAC-GAMMA5](FSP-WILSON-DIRAC-GAMMA5.md) (IMPORTED_ASSUMPTION)
+- `FQCD-R-FINITE-TRANSFER-MATRIX-GAP` `GAP_NO_DERIVATION`: [FQCD-FINITE-TRANSFER-MATRIX-GAP](FQCD-FINITE-TRANSFER-MATRIX-GAP.md) (OPEN)

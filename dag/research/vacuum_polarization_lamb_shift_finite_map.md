@@ -2,7 +2,7 @@
 
 **Goal IDs:** `QM-216-VACUUM-POL-LAMB-MAP`, `QM-216-VACUUM-POL-LAMB-MAP-CONTROL`
 **Parent Epic / Milestone:** `EP-QUANTUM-FINITE`, `MS-QUANTUM`
-**Target Crate & Package:** `omega_quantum_physics::quantum_import_finite_maps`, `finite_quantum_mechanics`
+**Target Crate & Package:** `quantum_physics::quantum_import_finite_maps`, `finite_quantum_mechanics`
 
 ---
 

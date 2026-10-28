@@ -45,7 +45,7 @@ In accordance with strict constructive principles:
 - [`external:sha256:1758a99dfa72fba91d01d0dfa5fc4fa5aced126b77ab906cd01118b497793533::Real0`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`missing obligation: a refused conversion in omega_ooutwire_primitives from the inscription token to a Difference-Structure value`](../../code/rust/src/)
+- [`missing obligation: a refused conversion in wire_primitives from the inscription token to a Difference-Structure value`](../../code/rust/src/)
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`](../../code/rust/src/)
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche16_master_177_node_172_route_dag_completeness_and_operad_audit_witness`](../../code/rust/src/)
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)

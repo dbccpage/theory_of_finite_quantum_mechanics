@@ -1,4 +1,4 @@
-# [TFQ-0181] Keep omega_majorana a GF(2) diagnostic and do not treat it as an
+# [TFQ-0181] Keep tfqm_majorana a GF(2) diagnostic and do not treat it as an
 
 > **Stage**: `IMPLEMENTATION_SIBLING` | **Status**: `COMPUTATIONAL_CONTROL`  
 > **UUID**: `b52b525c-5784-5264-9715-036cbb08b19b`  
@@ -8,10 +8,10 @@
 
 ## 1. Abstract & Formal Statement
 
-omega_majorana is a GF(2) diagnostic, not an authority terminal. src/lib.rs titles the crate a GF(2) Majorana parity diagnostic playground, sets AuthorityEffect None on every receipt, and says it does not mint CertifiedAuthority and does not claim physical Majorana modes, topological qubits, or NISQ hardware. Status labels Exact, ClosedResidual, and OpenObstruction are diagnostic schedule classes, not FOC ExactRepair. The obligation is to cite the crate only as that diagnostic. derivation_dag.json id DS-QM212-MAJORANA-PROBLEM names lib.rs, but that citation does not lift the fence written in the file.
+tfqm_majorana is a GF(2) diagnostic, not an authority terminal. src/lib.rs titles the crate a GF(2) Majorana parity diagnostic playground, sets AuthorityEffect None on every receipt, and says it does not mint CertifiedAuthority and does not claim physical Majorana modes, topological qubits, or NISQ hardware. Status labels Exact, ClosedResidual, and OpenObstruction are diagnostic schedule classes, not FOC ExactRepair. The obligation is to cite the crate only as that diagnostic. derivation_dag.json id DS-QM212-MAJORANA-PROBLEM names lib.rs, but that citation does not lift the fence written in the file.
 
 ### Governing Obligation
-Keep omega_majorana a GF(2) diagnostic and do not treat it as an authority terminal.
+Keep tfqm_majorana a GF(2) diagnostic and do not treat it as an authority terminal.
 
 ---
 

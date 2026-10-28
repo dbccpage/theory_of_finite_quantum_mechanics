@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1189_fsp_average_sign_definition.md`
 
 - file: [dag/derivations/26_fsp/tfq_1189_fsp_average_sign_definition.md](../../../dag/derivations/26_fsp/tfq_1189_fsp_average_sign_definition.md)
-- sha256 (`lf-normalised`): `df6a006b29f9001a3fc5e1439bceeb4b134441e4d7d041274c01cb4933b07e1a`
+- sha256 (`lf-normalised`): `18424ce14730aef702f207a2a6b0eb38dc08a0fcf5871605f8eb7a81aafb3cdc`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1189
 - counts toward the grade: no

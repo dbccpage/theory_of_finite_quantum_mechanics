@@ -268,7 +268,7 @@ def build_ledger() -> str:
         "| **`QM_111`** | §19 (`111:C1`) | Discrete connection & curvature constraint | [`TFQ-0095`](../../dag/derivations/19_finite_qg/tfq_0095_qm_111_c3_does_not_discharge_nabla_g_equals_zero_qm_111_c7_imports_the_continuum.md) | `FiniteQFTAndGravity.lean` | `code/rust/src/general_relativity/exact_regge/action.rs` |",
         "| **`QM_120`** | §5.3 (`120:C1`) | Mermin-Peres contextuality cochain obstruction | [`TFQ-0250`](../../dag/derivations/12_finite_qm_structure/tfq_0250_mermin_peres_contextuality_on_a_finite_cochain.md) | `FiniteQM.lean` | `code/rust/src/qm/campaigns/mermin_peres.rs` |",
         "| **`QM_122`** | §8.1 (`122:C1`) | Finite Hilbert boundary from primitive difference | [`TFQ-0310`](../../dag/derivations/09_finite_hilbert/tfq_0310_finite_hilbert_boundary_from_a_presented_carrier.md) | `DerivationDagQMClosure.lean` | `code/rust/src/qm/campaigns/carrier.rs` |",
-        "| **`QM_212`** | §8.2 (`212:C1`) | Microsoft Majorana problem & $\\mathbb{F}_2$ parity | [`TFQ-0181`](../../dag/derivations/22_implementation_sibling/tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md) | `AuditMub6Axioms.lean` | `code/rust/src/majorana/parity_schedules.rs` |",
+        "| **`QM_212`** | §8.2 (`212:C1`) | Microsoft Majorana problem & $\\mathbb{F}_2$ parity | [`TFQ-0181`](../../dag/derivations/22_implementation_sibling/tfq_0181_keep_tfqm_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md) | `AuditMub6Axioms.lean` | `code/rust/src/majorana/parity_schedules.rs` |",
         "",
         "---",
         "",

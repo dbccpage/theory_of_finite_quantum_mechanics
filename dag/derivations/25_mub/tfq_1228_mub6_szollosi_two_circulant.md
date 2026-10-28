@@ -43,7 +43,7 @@ rawSix_gram needs UnitPhases a, UnitPhases b and compatibility a b = 0; paramete
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.Szollosi.deltoid_two_parameter_geometry (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/hadamard/szollosi_deltoid.py::compute_deltoid_boundary (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_hadamard::szollosi_deltoid_evaluator (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_hadamard::szollosi_deltoid_evaluator (external engine crate, not in this checkout)`
 
 ---
 

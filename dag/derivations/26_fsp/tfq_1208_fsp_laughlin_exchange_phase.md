@@ -45,7 +45,7 @@ Cited FqhLaughlinBraiding.lean::laughlin_fractional_exchange_phase does not exis
 - `checks/independent/fsp-laughlin-exchange-phase.py`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::anyonic_braiding::laughlin_statistical_phase (cited by the source, not in this checkout)`
+- `external:quantum_physics::anyonic_braiding::laughlin_statistical_phase (cited by the source, not in this checkout)`
 
 ---
 

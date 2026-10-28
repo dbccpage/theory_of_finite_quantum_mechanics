@@ -48,7 +48,7 @@ Cited HaltingQuotient.lean::troyer_wiese_np_hardness does not exist; HaltingQuot
 
 ### Cited by the source, not in this checkout
 - `external:sources/atlas/papers/fermion_sign_problem/code/bqnf_sign_evaluator.py::verify_troyer_wiese_reduction (cited by the source; the local code/python/src/fsp/bqnf_sign_evaluator.py has no such symbol)`
-- `external:omega_majorana::hard_invariants::troyer_wiese_hardness_reduction (cited by the source, not in this checkout)`
+- `external:tfqm_majorana::hard_invariants::troyer_wiese_hardness_reduction (cited by the source, not in this checkout)`
 
 ---
 

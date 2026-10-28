@@ -6,7 +6,7 @@ The machine-readable form is [`dag/evidence/evidence_map.json`](../../dag/eviden
 
 ## Progress at a glance
 
-The DAG has 925 nodes in 36 stages. Evidence grades: E0 70, E1 263, E2 49, E3 543.
+The DAG has 933 nodes in 36 stages. Evidence grades: E0 70, E1 271, E2 49, E3 543.
 
 ### What is proved here, what is imported, what is open
 
@@ -18,8 +18,8 @@ The DAG has 925 nodes in 36 stages. Evidence grades: E0 70, E1 263, E2 49, E3 54
 | Conditional on named hypotheses | `CONDITIONAL` | 37 | Holds given hypotheses that the node names; the hypotheses are not derived. |
 | Definitions | `DEFINITION` | 92 | A definition or construction, not a claim of truth. |
 | Imported or admitted, not derived here | `IMPORTED_ASSUMPTION`, `ADMITTED_PRIMITIVE` | 73 | Taken in from outside the finite construction. Admitted as a starting object. |
-| External results recorded, not audited here | `SOURCE_RECORD` | 81 | An external result is recorded; nothing here audits it. |
-| Open | `OPEN` | 186 | No derivation is recorded. |
+| External results recorded, not audited here | `SOURCE_RECORD` | 83 | An external result is recorded; nothing here audits it. |
+| Open | `OPEN` | 192 | No derivation is recorded. |
 | Refuted | `REFUTED` | 6 | A counterexample is recorded. |
 
 Of the 220 `PROVED_LEAN` nodes, 220 reach grade E3 or E4 (100 percent); 0 do not. The second group is listed in [mismatches](mismatches.md).
@@ -41,10 +41,10 @@ The `lean` fields of nodes cite 2707 distinct Lean declarations that lie in file
 | `DEFINITION` | 4 | 27 | 8 | 53 | 0 | 92 |
 | `IMPORTED_ASSUMPTION` | 4 | 13 | 0 | 53 | 0 | 70 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 0 | 3 | 0 | 3 |
-| `SOURCE_RECORD` | 39 | 41 | 0 | 1 | 0 | 81 |
-| `OPEN` | 15 | 64 | 7 | 100 | 0 | 186 |
+| `SOURCE_RECORD` | 39 | 43 | 0 | 1 | 0 | 83 |
+| `OPEN` | 15 | 70 | 7 | 100 | 0 | 192 |
 | `REFUTED` | 0 | 4 | 1 | 1 | 0 | 6 |
-| Total | 70 | 263 | 49 | 543 | 0 | 925 |
+| Total | 70 | 271 | 49 | 543 | 0 | 933 |
 
 ### Stage by evidence grade
 
@@ -56,20 +56,20 @@ The `lean` fields of nodes cite 2707 distinct Lean declarations that lie in file
 | [WDP](stages/WDP.md) | 0 | 1 | 3 | 25 | 0 | 29 | 6 | 3 |
 | [L1_EMERGENCE](stages/L1_EMERGENCE.md) | 0 | 0 | 0 | 9 | 0 | 9 | 1 | 1 |
 | [L1_TO_L2](stages/L1_TO_L2.md) | 10 | 0 | 0 | 38 | 0 | 48 | 3 | 13 |
-| [FINITE_QM_CORE](stages/FINITE_QM_CORE.md) | 1 | 0 | 0 | 32 | 0 | 33 | 12 | 34 |
+| [FINITE_QM_CORE](stages/FINITE_QM_CORE.md) | 1 | 1 | 0 | 32 | 0 | 34 | 12 | 34 |
 | [FINITE_QM_DYNAMICS](stages/FINITE_QM_DYNAMICS.md) | 0 | 2 | 0 | 20 | 0 | 22 | 1 | 18 |
 | [FINITE_QM_STRUCTURE](stages/FINITE_QM_STRUCTURE.md) | 0 | 0 | 0 | 44 | 0 | 44 | 11 | 26 |
 | [IMPLEMENTATION](stages/IMPLEMENTATION.md) | 1 | 1 | 0 | 8 | 0 | 10 | 4 | 5 |
 | [DRESSING_FIELD](stages/DRESSING_FIELD.md) | 0 | 10 | 8 | 25 | 0 | 43 | 11 | 2 |
-| [MUTUALLY_UNBIASED_BASES](stages/MUTUALLY_UNBIASED_BASES.md) | 0 | 27 | 3 | 37 | 0 | 67 | 32 | 3 |
+| [MUTUALLY_UNBIASED_BASES](stages/MUTUALLY_UNBIASED_BASES.md) | 0 | 28 | 3 | 37 | 0 | 68 | 32 | 3 |
 | [FERMION_SIGN](stages/FERMION_SIGN.md) | 0 | 11 | 6 | 24 | 0 | 41 | 5 | 1 |
 | [TENSOR_COMPOSITION](stages/TENSOR_COMPOSITION.md) | 0 | 0 | 0 | 7 | 0 | 7 | 7 | 0 |
 | [FINITE_OBSTRUCTION](stages/FINITE_OBSTRUCTION.md) | 2 | 5 | 0 | 2 | 0 | 9 | 0 | 1 |
 | [AUTHORIZATION](stages/AUTHORIZATION.md) | 7 | 0 | 1 | 0 | 0 | 8 | 0 | 0 |
 | [FINITE_HILBERT](stages/FINITE_HILBERT.md) | 3 | 4 | 0 | 1 | 0 | 8 | 0 | 4 |
-| [FINITE_GAUGE](stages/FINITE_GAUGE.md) | 0 | 0 | 0 | 1 | 0 | 1 | 0 | 0 |
+| [FINITE_GAUGE](stages/FINITE_GAUGE.md) | 0 | 1 | 0 | 1 | 0 | 2 | 0 | 0 |
 | [FINITE_QED](stages/FINITE_QED.md) | 0 | 0 | 0 | 1 | 0 | 1 | 0 | 0 |
-| [FINITE_QCD](stages/FINITE_QCD.md) | 2 | 17 | 0 | 13 | 0 | 32 | 1 | 18 |
+| [FINITE_QCD](stages/FINITE_QCD.md) | 2 | 22 | 0 | 13 | 0 | 37 | 1 | 18 |
 | [FINITE_TOPOLOGICAL](stages/FINITE_TOPOLOGICAL.md) | 2 | 5 | 0 | 2 | 0 | 9 | 0 | 7 |
 | [FINITE_QG](stages/FINITE_QG.md) | 1 | 11 | 0 | 3 | 0 | 15 | 0 | 0 |
 | [CONTINUUM_INTERFACE](stages/CONTINUUM_INTERFACE.md) | 2 | 3 | 0 | 4 | 0 | 9 | 0 | 0 |

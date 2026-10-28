@@ -45,7 +45,7 @@ Cited FermionSignCore.lean::jordan_wigner_parity_string_bijection does not exist
 - `code/python/src/fsp/fermionic_hamiltonian.py::_fermionic_sign`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::pauli_spin_statistics_graph::jordan_wigner_string (cited by the source, not in this checkout)`
+- `external:quantum_physics::pauli_spin_statistics_graph::jordan_wigner_string (cited by the source, not in this checkout)`
 
 ---
 

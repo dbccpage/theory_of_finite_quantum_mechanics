@@ -45,7 +45,7 @@ polynomialVariety_eq_empty_iff: polynomialVariety T = empty iff not exists U, Fo
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.PolynomialSystem.seventy_two_coordinate_variety (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/algebraic_variety/polynomial_system.py::build_72_coordinate_system (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_polynomials::ConcreteMubPolynomials::build_72_coordinate_system (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_polynomials::ConcreteMubPolynomials::build_72_coordinate_system (external engine crate, not in this checkout)`
 
 ---
 

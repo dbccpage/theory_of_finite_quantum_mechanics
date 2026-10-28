@@ -44,7 +44,7 @@ Cited FermionSignCore.lean::average_sign_free_energy_exponential_decay does not 
 
 ### Cited by the source, not in this checkout
 - `external:external:unlocated (cited by the source, not in this checkout)`
-- `external:omega_quantum_physics::signed_sampling::average_sign_exponential_decay (cited by the source, not in this checkout)`
+- `external:quantum_physics::signed_sampling::average_sign_exponential_decay (cited by the source, not in this checkout)`
 
 ---
 

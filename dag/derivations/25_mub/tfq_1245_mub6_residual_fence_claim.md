@@ -42,7 +42,7 @@ No receipt with this bound is present.
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.ManifoldFences.continuous_hadamard_lower_bounds (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/conjecture2/manifold_fences.py::compute_residue_fences (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_conjecture2::hadamard_manifold_fences (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_conjecture2::hadamard_manifold_fences (external engine crate, not in this checkout)`
 
 ---
 

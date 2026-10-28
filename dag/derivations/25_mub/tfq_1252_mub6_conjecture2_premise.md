@@ -45,7 +45,7 @@ lean4/Conjecture2GeneralMechanization.lean::proposition_4_2_moduli_reduction dec
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.Conjecture2.matolcsi_weiner_formalization (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/conjecture2/matolcsi_weiner.py::formalize_conjecture_2 (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_conjecture2::conjecture2_mask_generator (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_conjecture2::conjecture2_mask_generator (external engine crate, not in this checkout)`
 
 ---
 

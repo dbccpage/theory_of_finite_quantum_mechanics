@@ -42,7 +42,7 @@ No certificate or LDL receipt for the MUB(6) system is present.
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.Cholesky.exact_rational_gram_sos (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/sos/rational_cholesky.py::compute_rational_cholesky (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_solvers::cholesky::exact_rational_ldl_decomposition (omega_engine crate, not in this checkout)`
+- `external:rust solvers::cholesky::exact_rational_ldl_decomposition (external engine crate, not in this checkout)`
 
 ---
 

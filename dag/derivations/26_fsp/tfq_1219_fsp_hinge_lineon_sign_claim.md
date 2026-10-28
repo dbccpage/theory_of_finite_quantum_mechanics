@@ -37,7 +37,7 @@ Cited FoliatedFracton2Gauge.lean::hinge_lineon_fermion_sign_elimination does not
 - *none*
 
 ### Cited by the source, not in this checkout
-- `external:omega_majorana::lggr::hinge_lineon_sign_elimination (cited by the source, not in this checkout)`
+- `external:tfqm_majorana::lggr::hinge_lineon_sign_elimination (cited by the source, not in this checkout)`
 
 ---
 

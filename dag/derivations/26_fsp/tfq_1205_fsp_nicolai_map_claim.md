@@ -37,7 +37,7 @@ Cited NonAbelianGaugeSigns.lean::nicolai_map_exact_sign_elimination does not exi
 - *none*
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::quantum_channel::nicolai_map_jacobian_identity (cited by the source, not in this checkout)`
+- `external:quantum_physics::quantum_channel::nicolai_map_jacobian_identity (cited by the source, not in this checkout)`
 
 ---
 

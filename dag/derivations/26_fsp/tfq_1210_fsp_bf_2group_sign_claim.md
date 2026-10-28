@@ -42,7 +42,7 @@ Cited Higher2GroupBraiding.lean::higher_2group_anomaly_cancellation does not exi
 - `checks/independent/fsp-bf-2group-sign-claim.py`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::gauge_cochain_complex::bf_theory_linking_number (cited by the source, not in this checkout)`
+- `external:quantum_physics::gauge_cochain_complex::bf_theory_linking_number (cited by the source, not in this checkout)`
 
 ---
 

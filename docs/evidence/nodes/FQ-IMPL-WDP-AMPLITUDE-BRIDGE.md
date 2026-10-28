@@ -4,7 +4,7 @@ Stage: [IMPLEMENTATION](../stages/IMPLEMENTATION.md). Status: `COMPUTATIONALLY_C
 
 ## Statement
 
-> omega_wdp amplitude_bridge.rs is the only artifact for WDP-CH19-P11/P12: with unit phase u=(3+4i)/5, integer edge cochains give transports u^{a_e}; adding a coboundary conjugates transports and leaves cycle holonomy unchanged; both readouts N(z1+z2) and N(z1+z2)^2 are common-phase invariant and left free; no homomorphism (Q,+) -\> U(1)(Q(i)) sends 1 to u, and u^n != 1 for every n \>= 1 (certified via (3+4i)^n mod 5).
+> tfqm_wdp amplitude_bridge.rs is the only artifact for WDP-CH19-P11/P12: with unit phase u=(3+4i)/5, integer edge cochains give transports u^{a_e}; adding a coboundary conjugates transports and leaves cycle holonomy unchanged; both readouts N(z1+z2) and N(z1+z2)^2 are common-phase invariant and left free; no homomorphism (Q,+) -\> U(1)(Q(i)) sends 1 to u, and u^n != 1 for every n \>= 1 (certified via (3+4i)^n mod 5).
 
 ## Grade
 
@@ -65,7 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/21_implementation_core/tfq_1026_fq_impl_wdp_amplitude_bridge.md`
 
 - file: [dag/derivations/21_implementation_core/tfq_1026_fq_impl_wdp_amplitude_bridge.md](../../../dag/derivations/21_implementation_core/tfq_1026_fq_impl_wdp_amplitude_bridge.md)
-- sha256 (`lf-normalised`): `09d53e6b0d09ec5d03b6fdeba0bd1a2203caf706ec1c8a42fb4b396842ca57af`
+- sha256 (`lf-normalised`): `98710524fe1513ce471431a1b4d1513a9f00612cb50adaf35ac358ef8156b47a`
 - generated view: listed, not counted
 - cited in: record TFQ-1026
 - counts toward the grade: no

@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-Separation is a definitional discipline that the source code does not follow at the tag level (run.rs 626-633; the Rust exact class is named ExactRepair; omega_mub maps the class to a CodaTerminal); WDP-CH04-O01 (diagnostics feed checked finite routing receipts under a declared terminal, lift and guarded-change policy) is CONDITIONAL and only partially ported.
+Separation is a definitional discipline that the source code does not follow at the tag level (run.rs 626-633; the Rust exact class is named ExactRepair; tfqm_mub maps the class to a CodaTerminal); WDP-CH04-O01 (diagnostics feed checked finite routing receipts under a declared terminal, lift and guarded-change policy) is CONDITIONAL and only partially ported.
 
 ## Source status
 

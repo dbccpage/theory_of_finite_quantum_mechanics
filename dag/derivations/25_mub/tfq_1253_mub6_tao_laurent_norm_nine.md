@@ -44,7 +44,7 @@ tao_all_balanced_masks: for every mask in Fin 64 with three positives, maskTaoNo
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.TaoNorm.l1_operator_norm_nine_bound (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/conjecture2/tao_norm9.py::compute_tao_l1_norm (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_conjecture2::tao_norm9_evaluator (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_conjecture2::tao_norm9_evaluator (external engine crate, not in this checkout)`
 
 ---
 

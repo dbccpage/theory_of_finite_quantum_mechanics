@@ -2,13 +2,13 @@
 
 > **Stage**: `IMPLEMENTATION_SIBLING` | **Status**: `COMPUTATIONAL_CONTROL`  
 > **UUID**: `7a4d5184-a9ef-519b-9e90-366fbf8d4a14`  
-> **Parent Derivation**: [TFQ-0181](tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md)
+> **Parent Derivation**: [TFQ-0181](tfq_0181_keep_tfqm_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md)
 
 ---
 
 ## 1. Abstract & Formal Statement
 
-The GF(2) receipt emitter is not a terminalizer in the authority sense. src/gf2_terminalizer.rs says Cyclotomic16Element is an overflow-checked product in Z[zeta_16], that no braid identity is checked in this crate, and that the historical name terminalize means a parity-schedule diagnostic receipt. It repeats AuthorityEffect None and refuses CertifiedAuthority. The obligation is to read every emitted receipt as a schedule class. Braid relations over Q(i) are explicitly deferred to omega_quantum_physics::majorana_fock_algebra, which this sibling node does not enter.
+The GF(2) receipt emitter is not a terminalizer in the authority sense. src/gf2_terminalizer.rs says Cyclotomic16Element is an overflow-checked product in Z[zeta_16], that no braid identity is checked in this crate, and that the historical name terminalize means a parity-schedule diagnostic receipt. It repeats AuthorityEffect None and refuses CertifiedAuthority. The obligation is to read every emitted receipt as a schedule class. Braid relations over Q(i) are explicitly deferred to quantum_physics::majorana_fock_algebra, which this sibling node does not enter.
 
 ### Governing Obligation
 Treat GF(2) terminalize receipts as diagnostic schedule classes, not as minted authority.

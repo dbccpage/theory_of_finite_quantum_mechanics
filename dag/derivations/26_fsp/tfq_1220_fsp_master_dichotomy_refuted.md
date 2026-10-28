@@ -57,7 +57,7 @@ Cited FermionSignAll.lean::master_finite_fermion_sign_problem_theorem does not e
 - `code/python/src/fsp/fermionic_hamiltonian.py::free_triangle_analytics`
 
 ### Cited by the source, not in this checkout
-- `external:omega_majorana::lib::master_fsp_theory_verifier (cited by the source, not in this checkout)`
+- `external:tfqm_majorana::lib::master_fsp_theory_verifier (cited by the source, not in this checkout)`
 - `external:sources/atlas/papers/fermion_sign_problem/code/tests/e2e/test_monograph_derivation_walk_e2e.py::test_master_fsp_synthesis_e2e (cited by the source; the local e2e file has only test_monograph_full_derivation_walk_e2e)`
 
 ---

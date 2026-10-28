@@ -97,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md`
 
 - file: [dag/derivations/26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md](../../../dag/derivations/26_fsp/tfq_1204_fsp_lattice_wess_zumino_susy.md)
-- sha256 (`lf-normalised`): `4176a20c063138ad92eff27c6c58758e9dc640db7e79023acf7d621a02391b28`
+- sha256 (`lf-normalised`): `54c5a5bf5b45f862897d57b71ef56d6dbfb07c5efee5a2e5b458f064aa444c1e`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1204
 - counts toward the grade: no

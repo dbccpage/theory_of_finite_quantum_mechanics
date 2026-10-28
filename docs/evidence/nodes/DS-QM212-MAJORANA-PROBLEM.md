@@ -32,7 +32,7 @@ Finite Majorana Clifford parity algebra and tetron braid/parity checks are mecha
 
 ## Source status
 
-Majorana Clifford generator anticommutation and parity invariants mechanized in DerivationDagQMClosure.lean and omega_majorana
+Majorana Clifford generator anticommutation and parity invariants mechanized in DerivationDagQMClosure.lean and tfqm_majorana
 
 ## Review
 
@@ -69,10 +69,10 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
 
-### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md`
+### Documents and data: `dag/derivations/22_implementation_sibling/tfq_0181_keep_tfqm_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md`
 
-- file: [dag/derivations/22_implementation_sibling/tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md](../../../dag/derivations/22_implementation_sibling/tfq_0181_keep_omega_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md)
-- sha256 (`lf-normalised`): `8f694df3808fc082c7f4ff808940729c259808b2ceb1f8af896c4d1782b8d48d`
+- file: [dag/derivations/22_implementation_sibling/tfq_0181_keep_tfqm_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md](../../../dag/derivations/22_implementation_sibling/tfq_0181_keep_tfqm_majorana_a_gf_2_diagnostic_and_do_not_treat_it_as_an.md)
+- sha256 (`lf-normalised`): `8c6704c7b5aaebd68eb5e709f67e9c0446a158331273d882ddc17f764db435db`
 - generated view: listed, not counted
 - cited in: record TFQ-0181
 - counts toward the grade: no

@@ -42,7 +42,7 @@ lean4/MasterClassification.lean::full_moduli_variety_classification_of_five_bran
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.MasterRouting.moduli_classification_router (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/terminal/moduli_routing.py::classify_master_routing (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_terminal::matolcsi_szollosi_master_router (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_terminal::matolcsi_szollosi_master_router (external engine crate, not in this checkout)`
 
 ---
 

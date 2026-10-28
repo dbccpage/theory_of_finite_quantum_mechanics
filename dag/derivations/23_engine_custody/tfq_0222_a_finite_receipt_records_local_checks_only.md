@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-A finite receipt is a digest of the local prime checks, not a second statement. Python FiniteReceipt stores a digest plus bits for packet_declared, adapter_sound, and continuation_allowed. omega_replay seals a run folder only when the receipt authority effect equals None, so another effect fails verification. The pipeline runtime says its entry contract cannot mint authority and emits AuthorityEffect None. The folder may attach one receipt after primes 000, 001, and 002. The receipt points at the checks and does not replace the rational carrier or the unfinished language triple.
+A finite receipt is a digest of the local prime checks, not a second statement. Python FiniteReceipt stores a digest plus bits for packet_declared, adapter_sound, and continuation_allowed. replay seals a run folder only when the receipt authority effect equals None, so another effect fails verification. The pipeline runtime says its entry contract cannot mint authority and emits AuthorityEffect None. The folder may attach one receipt after primes 000, 001, and 002. The receipt points at the checks and does not replace the rational carrier or the unfinished language triple.
 
 ### Governing Obligation
 Attach a receipt as a pointer to local checks, not as a replacement statement.
@@ -45,7 +45,7 @@ In accordance with strict constructive principles:
 
 ## 5. Audit Trail & Primary Source Lineage
 
-- **Atlas Lineage**: `F003.S000:000_omega_engine_prime_algorithms_and_runtime`, `F003.S000`, `F003.S001`
+- **Atlas Lineage**: `F003.S000:000_prime_algorithms_and_runtime`, `F003.S000`, `F003.S001`
 - **Primary Source Paths**:
   - `external:git-tree:e03ce30c258cf9ca164637ea387b5267bad58df9`
   - `external:git-tree:5d358f5062016c742016b891fa7891bb0f0e19ef`

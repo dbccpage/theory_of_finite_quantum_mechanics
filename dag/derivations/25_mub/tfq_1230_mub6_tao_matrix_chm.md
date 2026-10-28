@@ -39,7 +39,7 @@ taoMatrix_isCH6 is IsCH6 for the fixed literal matrix.
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.TaoMatrix.s6_equilateral_configurations (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/hadamard/tao_matrix.py::verify_s6_properties (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_hadamard::tao_matrix_s6_verifier (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_hadamard::tao_matrix_s6_verifier (external engine crate, not in this checkout)`
 
 ---
 

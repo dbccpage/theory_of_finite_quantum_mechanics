@@ -45,7 +45,7 @@ The JSONL Lean target does not exist in this checkout; README, claim ledger and 
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.QuartetAbsence.no_mutually_unbiased_quartet_d6 (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/terminal/quartet_non_existence.py::certify_quartet_absence (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_terminal::quartet_absence_certifier (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_terminal::quartet_absence_certifier (external engine crate, not in this checkout)`
 
 ---
 

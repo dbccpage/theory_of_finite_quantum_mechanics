@@ -91,6 +91,6 @@ Checked on main at `dc4346860`.
 ## 8. What would close more
 
 - A Lean statement of Theorem 4.3 over an arbitrary finite connected graph type with a decidable spanning tree, elaborated in a Lake project that builds. The kernel is a tree induction; Mathlib is not needed.
-- A Rust port of `holonomy_bridge_control` into `omega_quantum_physics`, using `omega_number_theory::cyclotomic_field::CyclotomicNumber`, so the authoritative core carries the control and Python stays a thin layer.
+- A Rust port of `holonomy_bridge_control` into `quantum_physics`, using `tfqm_number_theory::cyclotomic_field::CyclotomicNumber`, so the authoritative core carries the control and Python stays a thin layer.
 - For QM-208, a finite statement of which readout rules on three amplitudes have I₃ = 0; Sorkin's characterization is the target, and only the quadratic and quartic cases are computed here.
 - For QM-210, a finite analogue of Gleason on a declared finite frame set is not available and should stay marked IMPORTED until one is proved.

@@ -1,4 +1,4 @@
-# [TFQ-0176] Treat omega_mub as reconstruction bookkeeping, not as the owner of a completed
+# [TFQ-0176] Treat tfqm_mub as reconstruction bookkeeping, not as the owner of a completed
 
 > **Stage**: `IMPLEMENTATION_SIBLING` | **Status**: `COMPUTATIONAL_CONTROL`  
 > **UUID**: `cb492133-3fa1-5cf8-ad31-ba3e2c0dc250`  
@@ -8,10 +8,10 @@
 
 ## 1. Abstract & Formal Statement
 
-MUB reconstruction in omega_mub is not a completed existence derivation. src/lib.rs says nothing there mints authority and that the exact finite MUB constructions and the projector-algebra verifier live in omega_quantum_physics::mub. src/omega_native/mod.rs repeats that split: exact certificates, campaign corpora, and float cross-checks are separate modules, while the finite carriers are re-exported from the physics crate. The obligation is to cite this crate as reconstruction bookkeeping and stated-region checks. It does not settle how many mutually unbiased bases exist in dimension 6.
+MUB reconstruction in tfqm_mub is not a completed existence derivation. src/lib.rs says nothing there mints authority and that the exact finite MUB constructions and the projector-algebra verifier live in quantum_physics::mub. src/native/mod.rs repeats that split: exact certificates, campaign corpora, and float cross-checks are separate modules, while the finite carriers are re-exported from the physics crate. The obligation is to cite this crate as reconstruction bookkeeping and stated-region checks. It does not settle how many mutually unbiased bases exist in dimension 6.
 
 ### Governing Obligation
-Treat omega_mub as reconstruction bookkeeping, not as the owner of a completed MUB derivation.
+Treat tfqm_mub as reconstruction bookkeeping, not as the owner of a completed MUB derivation.
 
 ---
 

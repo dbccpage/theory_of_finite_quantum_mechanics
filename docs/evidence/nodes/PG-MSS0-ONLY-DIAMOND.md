@@ -71,7 +71,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/02_genesis/tfq_0377_mss0_only_inscription.md`
 
 - file: [dag/derivations/02_genesis/tfq_0377_mss0_only_inscription.md](../../../dag/derivations/02_genesis/tfq_0377_mss0_only_inscription.md)
-- sha256 (`lf-normalised`): `e3676d9a5fdcf2e462ae0718696e821ef9b032ef5b22039ec6cb3bdb9f670ed6`
+- sha256 (`lf-normalised`): `facb7ff85ab8956b8912b8281c08b0e3b7d86453c02dd4e7a2ed5f78a4bac338`
 - generated view: listed, not counted
 - cited in: record TFQ-0377
 - counts toward the grade: no
@@ -90,7 +90,7 @@ Named by the node; not in this repository and not checked here.
 - TFQ-0377 lean4: missing declaration obligation: no MSS-0 name was seen in the opened Inertia.lean header
 - TFQ-0377 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Inertia.lean
 - TFQ-0377 python: missing obligation: the tower profile cited by the DAG was not opened; a local stage-0 check is still required in genesis/code/genesis_checks.py
-- TFQ-0377 rust: missing obligation: an MSS-0 symbol was not confirmed in omega_ooutwire_primitives
+- TFQ-0377 rust: missing obligation: an MSS-0 symbol was not confirmed in wire_primitives
 - TFQ-0377 rust: no local rust twin located for atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/profile.rs
 
 ## Routes

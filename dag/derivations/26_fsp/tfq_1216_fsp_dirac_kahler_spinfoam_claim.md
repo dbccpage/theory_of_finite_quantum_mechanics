@@ -37,7 +37,7 @@ Cited ReggePachnerWdw.lean::dirac_kahler_fermion_positivity does not exist. regg
 - *none*
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::lattice_dirac_doubling::dirac_kahler_spinfoam_coupling (cited by the source, not in this checkout)`
+- `external:quantum_physics::lattice_dirac_doubling::dirac_kahler_spinfoam_coupling (cited by the source, not in this checkout)`
 
 ---
 

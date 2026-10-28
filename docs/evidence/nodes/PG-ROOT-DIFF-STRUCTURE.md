@@ -33,7 +33,7 @@ Admitted, not derived. Only coproduct neutrality for abstract payload types is k
 
 ## Source status
 
-DEFINITION (anomalon ledger C1); DEFINED (ENC-1138); GTLA rule 2 'admitted root'
+DEFINITION (boundary ledger C1); DEFINED (ENC-1138); GTLA rule 2 'admitted root'
 
 ## Review
 
@@ -140,7 +140,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md](../../../dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md)
-- sha256 (`lf-normalised`): `805b407b08734b226eeba139611850b31b64ffa7f0f9fa2006dc7027a316febf`
+- sha256 (`lf-normalised`): `8b2271e6cc33b434323d97a58135ec4edcc0066aa3cb4fc1c339397da5adcd28`
 - generated view: listed, not counted
 - cited in: record TFQ-0392 (shared)
 - counts toward the grade: no
@@ -148,7 +148,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0393_admitted_root_coproduct.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0393_admitted_root_coproduct.md](../../../dag/derivations/01_pregenesis/tfq_0393_admitted_root_coproduct.md)
-- sha256 (`lf-normalised`): `0678ca1914ed2c45a79e015dd70be6aec7a9ceca27bc938949591dfba781c3f5`
+- sha256 (`lf-normalised`): `9bbaae661297f8034bebf9f7831c1ebd21fc909e462e04c824ec29bfcff79b94`
 - generated view: listed, not counted
 - cited in: record TFQ-0393
 - counts toward the grade: no
@@ -184,11 +184,11 @@ Named by the node; not in this repository and not checked here.
 
 - TFQ-0392 lean4: missing declaration obligation: no arrow in pregenesis_to_minimal_symbol_systems/lean4/Paper.lean from a literal inscription to a coproduct root
 - TFQ-0392 python: missing obligation: a negative check that no function in pregenesis_to_minimal_symbol_systems/code/preservation.py sends literal <> to a two-channel coproduct
-- TFQ-0392 rust: missing obligation: a refused conversion in omega_ooutwire_primitives from the inscription token to a Difference-Structure value
+- TFQ-0392 rust: missing obligation: a refused conversion in wire_primitives from the inscription token to a Difference-Structure value
 - TFQ-0393 lean4: missing declaration obligation: a coproduct Real_0 distinct from HasRawDistinction in B001_raw_distinction.lean
 - TFQ-0393 lean4: no local lean twin located for external:sha256:2e264c28e45671b646ce8e6ad290f689f7fb8ecf3625b109b9e97df3a74ee073
 - TFQ-0393 python: missing obligation: a two-summand carrier in the S000 python package that is not constructed from preservation.py token data
-- TFQ-0393 rust: missing obligation: a coproduct struct whose constructors are independent of the inscription token in omega_ooutwire_primitives
+- TFQ-0393 rust: missing obligation: a coproduct struct whose constructors are independent of the inscription token in wire_primitives
 
 ## Routes
 

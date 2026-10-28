@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Rust must name that same finite statement on a crate the runtime actually builds. omega_kernel carries the rational parser, omega_wdp carries prime_algorithm_0 with AuthorityEffect always None, and omega_quantum_physics carries ExactOperator over Gaussian rationals. finite_shadow_exact.rs uses exact masses and budgets, excludes f64 arithmetic, and says it is not a continuum theorem. These crates expose neighboring APIs, not one shared statement id. Custody cites a crate only after its directory exists. The obligation is to print the same finite sentence and the same carrier text the Python record names.
+Rust must name that same finite statement on a crate the runtime actually builds. kernel carries the rational parser, tfqm_wdp carries prime_algorithm_0 with AuthorityEffect always None, and quantum_physics carries ExactOperator over Gaussian rationals. finite_shadow_exact.rs uses exact masses and budgets, excludes f64 arithmetic, and says it is not a continuum theorem. These crates expose neighboring APIs, not one shared statement id. Custody cites a crate only after its directory exists. The obligation is to print the same finite sentence and the same carrier text the Python record names.
 
 ### Governing Obligation
 Require a Rust text of the same finite statement on a crate directory that exists.
@@ -47,7 +47,7 @@ In accordance with strict constructive principles:
 
 ## 5. Audit Trail & Primary Source Lineage
 
-- **Atlas Lineage**: `F003.S000`, `F003.S000:000_omega_engine_prime_algorithms_and_runtime`, `F001.S000`
+- **Atlas Lineage**: `F003.S000`, `F003.S000:000_prime_algorithms_and_runtime`, `F001.S000`
 - **Primary Source Paths**:
   - `external:git-tree:5d358f5062016c742016b891fa7891bb0f0e19ef`
   - `external:git-tree:e03ce30c258cf9ca164637ea387b5267bad58df9`

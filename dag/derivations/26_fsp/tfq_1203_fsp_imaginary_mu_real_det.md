@@ -48,7 +48,7 @@ Cited NonAbelianGaugeSigns.lean::imaginary_chemical_potential_positivity does no
 - `checks/independent/fsp-imaginary-mu-real-det.py`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::quantum_channel::roberge_weiss_imaginary_mu (cited by the source, not in this checkout)`
+- `external:quantum_physics::quantum_channel::roberge_weiss_imaginary_mu (cited by the source, not in this checkout)`
 
 ---
 

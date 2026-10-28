@@ -42,7 +42,7 @@ artifacts/mub6_szollosi_t5_cover_receipt.json is pointwise at p0 with 0 excluded
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.Semialgebraic.torus_coordinate_emptiness (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/algebraic_variety/torus_emptiness.py::verify_slice_emptiness (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_solvers::cad::semialgebraic_slice_verifier (omega_engine crate, not in this checkout)`
+- `external:rust solvers::cad::semialgebraic_slice_verifier (external engine crate, not in this checkout)`
 
 ---
 

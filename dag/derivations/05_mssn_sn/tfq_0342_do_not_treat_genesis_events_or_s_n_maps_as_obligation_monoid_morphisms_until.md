@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-The pregenesis segment note in derivation_dag.json still says no source opened there derives Genesis events or S(n) maps as morphisms carrying generated and discharged obligation vectors in the free commutative monoid. The monoid is present as Rust in omega_kernel/src/obligation.rs: Obligations is a BTreeMap of ObligationId to positive counts, with empty, single, of, and combine, and ObligationError for never-generated and over-discharge. Node PG-OBLIGATION-MONOID says Genesis morphisms are meant to carry those vectors. The later route label is not adopted; the join stays open.
+The pregenesis segment note in derivation_dag.json still says no source opened there derives Genesis events or S(n) maps as morphisms carrying generated and discharged obligation vectors in the free commutative monoid. The monoid is present as Rust in kernel/src/obligation.rs: Obligations is a BTreeMap of ObligationId to positive counts, with empty, single, of, and combine, and ObligationError for never-generated and over-discharge. Node PG-OBLIGATION-MONOID says Genesis morphisms are meant to carry those vectors. The later route label is not adopted; the join stays open.
 
 ### Governing Obligation
 Do not treat Genesis events or S(n) maps as obligation-monoid morphisms until generated and discharged vectors are derived, not only implemented.

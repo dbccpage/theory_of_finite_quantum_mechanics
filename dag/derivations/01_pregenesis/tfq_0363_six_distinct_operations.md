@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - [`atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Inertia.lean`](../../code/lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`missing obligation: six named operations in omega_ooutwire_primitives rather than one event enum that merges them`](../../code/rust/src/)
+- [`missing obligation: six named operations in wire_primitives rather than one event enum that merges them`](../../code/rust/src/)
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche11_admitted_primitives_definitions_and_imported_assumptions_witness`](../../code/rust/src/)
 - [`external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche5_full_dag_177_node_coverage_witness`](../../code/rust/src/)
 - [`atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/event.rs`](../../code/rust/src/)

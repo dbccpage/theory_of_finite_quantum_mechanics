@@ -38,7 +38,7 @@ operation_candidates:
   signature_excerpt: 'pub fn cayley_menger(dimension: u8, squared_lengths: &[[BigRational; 5]; 5]) ->
     Result<CayleyMengerResult, ExactError>'
   source: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca
-  repository: the_symbol_game
+  repository: external
   source_sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
   status: source_candidate_requires_semantic_review
   scope_note: Exact BigRational CM determinant and volume^2, d in 1..=4; no f64.
@@ -48,7 +48,7 @@ operation_candidates:
   signature_excerpt: 'pub struct CayleyMengerResult { pub dimension: u8, pub determinant: BigRational,
     pub volume_squared: BigRational }'
   source: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca
-  repository: the_symbol_game
+  repository: external
   source_sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
   status: source_candidate_requires_semantic_review
   scope_note: Carrier of the exact CM output.
@@ -57,7 +57,7 @@ operation_candidates:
   line: 64
   signature_excerpt: 'pub fn signed_volume_4(verts: &[[BigRational; 4]; 5]) -> Result<BigRational, ExactError>'
   source: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca
-  repository: the_symbol_game
+  repository: external
   source_sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
   status: source_candidate_requires_semantic_review
   scope_note: Orientation sign of a pentatope chart.
@@ -66,7 +66,7 @@ operation_candidates:
   line: 15
   signature_excerpt: 'pub fn determinant<const N: usize>(matrix: &[[BigRational; N]; N], ...)'
   source: external:sha256:109591b6a5b7dd3d9645d50e560736dc18907c1a87f352d58ff685611d8d7d37
-  repository: the_symbol_game
+  repository: external
   source_sha256: 9df6048a82771c2d0794dd0a00e514f310fd82c31bae4ae19be3031b23ac97f6
   status: source_candidate_requires_semantic_review
   scope_note: Division-based exact determinant (fine at rational points).
@@ -230,7 +230,7 @@ source_bindings:
   availability: external
   symbol: cayley_menger
   path: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca
-  repository: the_symbol_game
+  repository: external
   sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
   declaration_status: declaration_found_not_executed_in_this_run
   line: 25
@@ -239,7 +239,7 @@ source_bindings:
   availability: external
   symbol: determinant
   path: external:sha256:109591b6a5b7dd3d9645d50e560736dc18907c1a87f352d58ff685611d8d7d37
-  repository: the_symbol_game
+  repository: external
   sha256: 9df6048a82771c2d0794dd0a00e514f310fd82c31bae4ae19be3031b23ac97f6
   declaration_status: declaration_found_not_executed_in_this_run
   line: 15
@@ -365,7 +365,7 @@ source_bindings:
   availability: external
   symbol: CayleyMengerResult
   path: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca
-  repository: the_symbol_game
+  repository: external
   sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
   declaration_status: declaration_found_pinned_for_custody_not_executed
   line: 19
@@ -374,7 +374,7 @@ source_bindings:
   availability: external
   symbol: signed_volume_4
   path: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca
-  repository: the_symbol_game
+  repository: external
   sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
   declaration_status: declaration_found_pinned_for_custody_not_executed
   line: 64
@@ -474,7 +474,7 @@ operad_slots:
       sha256: cc266230e7f6a671d241e5c7817b779ed4bfb39aa1d38f44c2b77d3f9e1ca015
     - &id001
       path: external:sha256:18c8e8cd3acc2a22ea02440995c92d368c109d5788c55ce110d003a533860dca
-      repository: the_symbol_game
+      repository: external
       sha256: 159cf75aa7172fcea807d0d5a6c98f39221e256414840bd5c5b3935f05f310b5
     - path: code/rust/src/general_relativity/certified_dihedral.rs
       sha256: 921b37f1a066521ceed3ced825a9f252dacec1561aa05409649f7b1d6cec955f
@@ -666,7 +666,7 @@ operad_slots:
     - PLANNED lean4/ReggeSchlafli.lean (absent on this branch)
     - *id001
     - path: external:sha256:109591b6a5b7dd3d9645d50e560736dc18907c1a87f352d58ff685611d8d7d37
-      repository: the_symbol_game
+      repository: external
       sha256: 9df6048a82771c2d0794dd0a00e514f310fd82c31bae4ae19be3031b23ac97f6
     - path: dag/results/TFQ-0084/runs/20261021T161243Z_staged/p0/relation_sign_check.py
       sha256: e63a02785de184774bf3776c57642d4466489eea56c10a63a37b4c86b88895e9

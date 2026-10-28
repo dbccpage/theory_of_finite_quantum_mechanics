@@ -58,7 +58,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1231_mub6_affine_fiber_third_basis.md`
 
 - file: [dag/derivations/25_mub/tfq_1231_mub6_affine_fiber_third_basis.md](../../../dag/derivations/25_mub/tfq_1231_mub6_affine_fiber_third_basis.md)
-- sha256 (`lf-normalised`): `dead8eac2402061468759566fef134bc5a22d351c58da78118b30960afb302da`
+- sha256 (`lf-normalised`): `5f8e5560a3224afc109d14f279f5a8c961d00c930d4c736fead78d9f6f5c5e5b`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1231
 - counts toward the grade: no

@@ -105,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0363_six_distinct_operations.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0363_six_distinct_operations.md](../../../dag/derivations/01_pregenesis/tfq_0363_six_distinct_operations.md)
-- sha256 (`lf-normalised`): `e2113c86ed9b453a3a8f0feecacb88e59dee2939b09c8a6902ed06c3d848117e`
+- sha256 (`lf-normalised`): `de59bc174946dfd3fb570f677a4f02c821e4b89625827360c195ab01281ef845`
 - generated view: listed, not counted
 - cited in: record TFQ-0363
 - counts toward the grade: no
@@ -122,7 +122,7 @@ Named by the node; not in this repository and not checked here.
 - TFQ-0363 lean4: missing declaration obligation: six operation names beside supply_no_op in Derivation/Inertia.lean
 - TFQ-0363 lean4: no local lean twin located for atlas/papers/finite_obstruction_calculus/genesis/lean4/Derivation/Inertia.lean
 - TFQ-0363 python: missing obligation: six operation constructors in genesis/code/derivation/model.py, listed but not opened, kept distinct from one another
-- TFQ-0363 rust: missing obligation: six named operations in omega_ooutwire_primitives rather than one event enum that merges them
+- TFQ-0363 rust: missing obligation: six named operations in wire_primitives rather than one event enum that merges them
 - TFQ-0363 rust: no local rust twin located for atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/event.rs
 - TFQ-0363 rust: no local rust twin located for atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/supply.rs
 

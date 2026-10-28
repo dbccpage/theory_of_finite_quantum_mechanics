@@ -42,7 +42,7 @@ lean4/MomentPositivityObligation.lean CurtoFialkowFlatExtension carries rank lab
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.CurtoFialkow.flat_extension_obstruction (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/sos/curto_fialkow.py::check_flat_extension (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_solvers::sdp::curto_fialkow_flat_checker (omega_engine crate, not in this checkout)`
+- `external:rust solvers::sdp::curto_fialkow_flat_checker (external engine crate, not in this checkout)`
 
 ---
 

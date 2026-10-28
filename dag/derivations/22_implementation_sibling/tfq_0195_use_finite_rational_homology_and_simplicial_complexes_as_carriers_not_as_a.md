@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-omega_homology supplies finite carriers for later shadows and is not itself a quantum derivation. src/lib.rs opens as computational algebraic topology with AuthorityEffect None and says new TDA modules are best-effort shells unless marked otherwise. src/finite_rational_homology.rs computes rational homology quotients through the shared exact linear-algebra owner and states that it makes no integer-quotient transport or homotopy claim. src/simplicial.rs is the face-closed complex used by the gravity shadow. The obligation is to cite chain maps and simplices as finite controls only.
+homology supplies finite carriers for later shadows and is not itself a quantum derivation. src/lib.rs opens as computational algebraic topology with AuthorityEffect None and says new TDA modules are best-effort shells unless marked otherwise. src/finite_rational_homology.rs computes rational homology quotients through the shared exact linear-algebra owner and states that it makes no integer-quotient transport or homotopy claim. src/simplicial.rs is the face-closed complex used by the gravity shadow. The obligation is to cite chain maps and simplices as finite controls only.
 
 ### Governing Obligation
 Use finite rational homology and simplicial complexes as carriers, not as a quantum derivation.

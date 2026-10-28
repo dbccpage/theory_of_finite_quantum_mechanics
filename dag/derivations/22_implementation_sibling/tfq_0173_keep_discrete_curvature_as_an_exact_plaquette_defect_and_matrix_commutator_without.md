@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Curvature in omega_holonomy is a finite commutator and a plaquette defect, not a continuum Riemann tensor. src/curvature.rs documents F_Box as the loop transport of the boundary minus the identity, and curvature_commutator as the matrix bracket M1 M2 minus M2 M1, with a discrete Bianchi check named in lib.rs. Scalars stay on ExactScalar. The obligation is to record flatness only when that exact defect vanishes, and to refuse a numerical tolerance as a stand-in for the identity. The module does not supply the Einstein equation or a Regge deficit angle.
+Curvature in tfqm_holonomy is a finite commutator and a plaquette defect, not a continuum Riemann tensor. src/curvature.rs documents F_Box as the loop transport of the boundary minus the identity, and curvature_commutator as the matrix bracket M1 M2 minus M2 M1, with a discrete Bianchi check named in lib.rs. Scalars stay on ExactScalar. The obligation is to record flatness only when that exact defect vanishes, and to refuse a numerical tolerance as a stand-in for the identity. The module does not supply the Einstein equation or a Regge deficit angle.
 
 ### Governing Obligation
 Keep discrete curvature as an exact plaquette defect and matrix commutator, without a float tolerance.

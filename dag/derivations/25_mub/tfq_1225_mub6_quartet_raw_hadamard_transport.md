@@ -44,7 +44,7 @@ exists_quartet_iff_exists_rawQuartet states (exists B, Quartet B) iff (exists H,
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.HadamardEquiv.mub_pair_complex_hadamard_isomorphism (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/hadamard/mub_hadamard_equiv.py::verify_hadamard_bijection (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_mub::omega_native::mub6_hadamard::mub_to_hadamard_bijection (omega_engine crate, not in this checkout)`
+- `external:rust tfqm_mub::native::mub6_hadamard::mub_to_hadamard_bijection (external engine crate, not in this checkout)`
 
 ---
 

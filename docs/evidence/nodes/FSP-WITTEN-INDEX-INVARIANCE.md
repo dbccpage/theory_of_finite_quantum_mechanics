@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md`
 
 - file: [dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md](../../../dag/derivations/26_fsp/tfq_1206_fsp_witten_index_invariance.md)
-- sha256 (`lf-normalised`): `fe3ef626a44a2dd92a949d3450aa63724b00d156345eafdcba3d09f15646ae95`
+- sha256 (`lf-normalised`): `0311a9f38757cfbf11be2273e3a2a8fb01b2bdd6432edb1616b3cfa2489aac1a`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1206
 - counts toward the grade: no

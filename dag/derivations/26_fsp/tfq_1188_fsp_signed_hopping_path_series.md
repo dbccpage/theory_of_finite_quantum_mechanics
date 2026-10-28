@@ -48,7 +48,7 @@ Cited FermionSignCore.lean::trotter_path_permutation_parity_sign does not exist;
 - `code/python/tests/fsp/sign_sql/test_exact_models.py::test_sql_hubbard_obstruction_agrees_with_independent_sign_normal_form`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::signed_sampling::trotter_permutation_parity (cited by the source, not in this checkout)`
+- `external:quantum_physics::signed_sampling::trotter_permutation_parity (cited by the source, not in this checkout)`
 - `external:30805c5c research/natural_sections/lean/NaturalSections/HopFixture.lean (post-seal source pinned by the manuscript, not in this checkout)`
 
 ---

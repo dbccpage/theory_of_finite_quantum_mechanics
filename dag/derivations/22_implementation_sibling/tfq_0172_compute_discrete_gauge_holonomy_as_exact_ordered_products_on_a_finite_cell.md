@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Discrete gauge holonomy is the omega_holonomy crate, under a stated zero-float law and AuthorityEffect None. src/lib.rs exports path and loop products, Wilson traces, and cycle pairings; src/holonomy.rs builds a HolonomyLoop only when the vertex list closes, rejecting a short path and an open loop. Transport data are ExactMatrix values, not display floats. The obligation is to evaluate ordered products on a finite cell complex without promoting the result to a continuum connection or to a U(1) Hilbert phase. This crate is not the scaffold type in omega_general_relativity/src/holonomy.rs.
+Discrete gauge holonomy is the tfqm_holonomy crate, under a stated zero-float law and AuthorityEffect None. src/lib.rs exports path and loop products, Wilson traces, and cycle pairings; src/holonomy.rs builds a HolonomyLoop only when the vertex list closes, rejecting a short path and an open loop. Transport data are ExactMatrix values, not display floats. The obligation is to evaluate ordered products on a finite cell complex without promoting the result to a continuum connection or to a U(1) Hilbert phase. This crate is not the scaffold type in tfqm_general_relativity/src/holonomy.rs.
 
 ### Governing Obligation
 Compute discrete gauge holonomy as exact ordered products on a finite cell complex.

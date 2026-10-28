@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Exact rational carriers are the values a finite derivation may transport. omega_kernel defines Exact as BigRational and writes canonical text such as 3/4, refusing a JSON number because many readers treat that token as a float. parse_exact accepts only lowest terms with a positive denominator. Lean ExactRat.Frac is an integer numerator over a positive natural denominator, with equality by cross-multiplication, under AuthorityEffect None. ExactOperator builds matrices over Gaussian rationals and states that nothing there is floating point. The derivation folder stores these objects, not a rounded substitute.
+Exact rational carriers are the values a finite derivation may transport. kernel defines Exact as BigRational and writes canonical text such as 3/4, refusing a JSON number because many readers treat that token as a float. parse_exact accepts only lowest terms with a positive denominator. Lean ExactRat.Frac is an integer numerator over a positive natural denominator, with equality by cross-multiplication, under AuthorityEffect None. ExactOperator builds matrices over Gaussian rationals and states that nothing there is floating point. The derivation folder stores these objects, not a rounded substitute.
 
 ### Governing Obligation
 Transport authorizing carriers as exact rationals or canonical rational text.
@@ -42,7 +42,7 @@ In accordance with strict constructive principles:
 
 ## 5. Audit Trail & Primary Source Lineage
 
-- **Atlas Lineage**: `F003.S000`, `F003.S000:000_omega_engine_prime_algorithms_and_runtime`, `F001.S000`
+- **Atlas Lineage**: `F003.S000`, `F003.S000:000_prime_algorithms_and_runtime`, `F001.S000`
 - **Primary Source Paths**:
   - `external:git-tree:5d358f5062016c742016b891fa7891bb0f0e19ef`
   - `external:git-tree:e03ce30c258cf9ca164637ea387b5267bad58df9`

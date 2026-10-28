@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-omega_lie_theory is an exact finite-group and rational Lie library, not a completed continuum symmetry derivation. src/lib.rs says every quantity is rational, cyclotomic, or quadratic, with no floating point and no tolerance, and it marks the crate Not PROVED. Declared modules include finite_group.rs, cayley.rs, su2.rs, rotation.rs, lorentz.rs, finite_order.rs, and lie_algebra.rs. Lorentz boosts in lorentz.rs are rational points of a hyperboloid. The obligation is to use these matrices as finite exact controls. They do not install a continuous Haar measure or a Hilbert representation.
+tfqm_lie_theory is an exact finite-group and rational Lie library, not a completed continuum symmetry derivation. src/lib.rs says every quantity is rational, cyclotomic, or quadratic, with no floating point and no tolerance, and it marks the crate Not PROVED. Declared modules include finite_group.rs, cayley.rs, su2.rs, rotation.rs, lorentz.rs, finite_order.rs, and lie_algebra.rs. Lorentz boosts in lorentz.rs are rational points of a hyperboloid. The obligation is to use these matrices as finite exact controls. They do not install a continuous Haar measure or a Hilbert representation.
 
 ### Governing Obligation
 Keep rational Lie and finite-group constructions exact, without a continuum Haar or Hilbert step.

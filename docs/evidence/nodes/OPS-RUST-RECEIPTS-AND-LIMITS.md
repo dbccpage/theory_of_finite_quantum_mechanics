@@ -28,7 +28,7 @@ None recorded.
 
 ## Bottleneck
 
-The Lean statement is the narrowed ceiling arithmetic above. The Rust receipt replay, tamper rejection, shape check, zero-gap dual certificate, PR box, noisy boxes, and the functions verify_noncontextual_fraction and verify_l1_defect_receipt are not run here. The in-repo module uses omega_solvers, an external crate that is not a workspace member.
+The Lean statement is the narrowed ceiling arithmetic above. The Rust receipt replay, tamper rejection, shape check, zero-gap dual certificate, PR box, noisy boxes, and the functions verify_noncontextual_fraction and verify_l1_defect_receipt are not run here. The in-repo module uses solvers, an external crate that is not a workspace member.
 
 ## Source status
 
@@ -105,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/35_foc035_observer_presheaf/tfq_2519_ops_rust_receipts_and_limits.md`
 
 - file: [dag/derivations/35_foc035_observer_presheaf/tfq_2519_ops_rust_receipts_and_limits.md](../../../dag/derivations/35_foc035_observer_presheaf/tfq_2519_ops_rust_receipts_and_limits.md)
-- sha256 (`lf-normalised`): `1345be99a8846efd6e13aec155c2106f3335d6b056dff1ffa7cb40e79f6d6841`
+- sha256 (`lf-normalised`): `81b9253321a4e6c04ffa6d18dfcda030f03f7ca005ecc42a30a68fb153c3408f`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-2519
 - counts toward the grade: no
@@ -113,7 +113,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/ops-rust-receipts-and-limits.md`
 
 - file: [dag/derivations/independent/ops-rust-receipts-and-limits.md](../../../dag/derivations/independent/ops-rust-receipts-and-limits.md)
-- sha256 (`lf-normalised`): `1a80ece24abd6af2b799b2ed5ad3be87f8c1b9e136c43ea53ed9ba32de167405`
+- sha256 (`lf-normalised`): `0767b4dc5cbccc6b584e0a41bff90ca6c7d47a636f558af2b3d9e337b4c15d2f`
 - cited in: node.source
 - counts toward the grade: yes
 

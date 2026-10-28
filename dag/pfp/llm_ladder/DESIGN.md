@@ -1,8 +1,8 @@
 # PFP LLM ladder: design
 
 AuthorityEffect: None. This package adds provider calls to the PFP workflow; it accepts no theorem.
-Source of the method: the Proposal Fidelity Protocol / Symbol Game reference system
-(`the_symbol_game/omega_engine_pfp`, `external:git-tree:a9ee45ce1419980890e0ce9f59c5e35706e48f96`, and the teaching
+Source of the method: the Proposal Fidelity Protocol / symbol-host reference system
+(`the external PFP package`, `external:git-tree:a9ee45ce1419980890e0ce9f59c5e35706e48f96`, and the teaching
 corpus `external:git-tree:d84b8a68db4ee594888c56bd2ccd659cb1d54842`). Everything below was read, not executed.
 
 Goal: a derivation that a free or small model can find for about a dollar must never cost a thousand.
@@ -197,7 +197,7 @@ Keys are redacted from every field before writing; `test_ladder.py` re-scans the
 
 ## 10. Ported from the reference, and what was not
 
-Nothing from `the_symbol_game` was copied byte for byte: its provider and budget layers sit on a Rust native
+Nothing from `the external repository` was copied byte for byte: its provider and budget layers sit on a Rust native
 host (`RustSymbolGameHost`), pydantic domain types and SQLite accounting, none of which this standard-library
 package can import. The following designs and algorithms were re-implemented, with attribution in the module
 docstrings:

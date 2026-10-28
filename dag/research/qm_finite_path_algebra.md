@@ -125,18 +125,18 @@ GAP-FQM-021 and the unrestricted primitive-to-QM derivation remain open.
 
 ## Owners and completed validation
 
-- [Category owner](../../../../../omega_engine/crates_rs/omega_category_theory/src/finite_path.rs):
+- Category owner (`external:sha256:cd6fb681dd588e94543bc8174c9394770a5be07e0108c6ff665d2e82054c3887`):
   complete paths, edge identity, composition and canonical category validation.
   At most 64 vertices, edges and paths are admitted; this is an execution cap.
-- [Algebra owner](../../../../../omega_engine/crates_rs/omega_lie_theory/src/finite_path_algebra.rs):
+- Algebra owner (`external:sha256:12eaeef573a118790aa49e1e0c16944d3e98785056ef93e7e52839387dd27399`):
   canonical `BasicMatrix<GaussianRat>` operations, regular actions, coefficient
   recovery, generator words for matrix units, origin blocks and typed refusals.
   Matrix limits apply per operation, not as a total bit-complexity budget.
-- [Category tests](../../../../../omega_engine/crates_rs/tests/omega_category_theory/finite_path.rs):
+- Category tests (`external:sha256:0fcb8e90c87aa59377bd821e395069d47b9ab128e86ce3beb547f21ef6039e86`):
   **3 pass**. All 75 ordered simple DAGs through four vertices agree with an
   independent word enumeration; a separate multigraph retains parallel paths.
   Cycles, bad endpoints and incomplete path budgets are refused.
-- [Algebra tests](../../../../../omega_engine/crates_rs/tests/omega_lie_theory/finite_path_algebra.rs):
+- Algebra tests (`external:sha256:bcdddca70746f9d30ad89a3121be20cf00857f74336410d34a20d3d569774103`):
   **5 pass**. All 81 basis products and 41 same-origin matrix units in the
   nine-path example, coefficient recovery, the exact trace formula, restricted
   ranks, lost central projection, extra adjoints, sign gauge and limits pass.
@@ -144,8 +144,8 @@ GAP-FQM-021 and the unrestricted primitive-to-QM derivation remain open.
 Commands run from `external:git-tree:ac1f6d647c3ecc2bf45f6fc4922213ac752e71a3` with the recorded offline cache:
 
 ```console
-cargo test -j 1 --offline --locked -p omega_category_theory --test finite_path
-cargo test -j 1 --offline --locked -p omega_lie_theory --test finite_path_algebra
+cargo test -j 1 --offline --locked -p tfqm_category_theory --test finite_path
+cargo test -j 1 --offline --locked -p tfqm_lie_theory --test finite_path_algebra
 ```
 
 Both final invocations exit zero with no warnings. These finite checks do not

@@ -96,7 +96,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md`
 
 - file: [dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md](../../../dag/derivations/26_fsp/tfq_1198_fsp_theta_term_complex_weight.md)
-- sha256 (`lf-normalised`): `fa9ce4c57abd25d255a0f04f0dac3d7ee7cb94cc362a6e2225ff988952f31507`
+- sha256 (`lf-normalised`): `3e91bbc2261f1798486de74df3d5dbc9ab9ce26d3ef36da0ba6ea4d0a6e1abd0`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1198
 - counts toward the grade: no

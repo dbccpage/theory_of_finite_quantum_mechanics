@@ -44,7 +44,7 @@ In accordance with strict constructive principles:
 
 ## 5. Audit Trail & Primary Source Lineage
 
-- **Atlas Lineage**: `F003.S000:000_omega_engine_prime_algorithms_and_runtime`, `F001.S000:001_from_primitive_difference_to_quantum_mechanics`, `F002.S000:002_from_primitive_difference_to_mtheory`
+- **Atlas Lineage**: `F003.S000:000_prime_algorithms_and_runtime`, `F001.S000:001_from_primitive_difference_to_quantum_mechanics`, `F002.S000:002_from_primitive_difference_to_mtheory`
 - **Primary Source Paths**:
   - `external:git-tree:e03ce30c258cf9ca164637ea387b5267bad58df9`
   - `external:git-tree:aaf60017b237ab042d2a4f52cec36e21f4264b2f`

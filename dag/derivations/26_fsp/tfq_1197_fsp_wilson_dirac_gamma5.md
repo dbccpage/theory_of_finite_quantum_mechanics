@@ -44,7 +44,7 @@ Cited NonAbelianGaugeSigns.lean::wilson_dirac_gamma5_hermiticity_positivity does
 
 ### Cited by the source, not in this checkout
 - `external:external:unlocated::test_gamma5_hermiticity (cited by the source, not in this checkout)`
-- `external:omega_quantum_physics::lattice_dirac_doubling::wilson_dirac_gamma5_hermitian (cited by the source, not in this checkout)`
+- `external:quantum_physics::lattice_dirac_doubling::wilson_dirac_gamma5_hermitian (cited by the source, not in this checkout)`
 
 ---
 

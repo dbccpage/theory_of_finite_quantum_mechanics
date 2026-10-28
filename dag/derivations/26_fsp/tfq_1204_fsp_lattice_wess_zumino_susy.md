@@ -65,7 +65,7 @@ Replaced missing NonAbelianGaugeSigns.lean::susy_supercharge_positive_hamiltonia
 - `checks/independent/fsp-lattice-wess-zumino-susy.py::main`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::quantum_hamiltonian::wess_zumino_supercharge_closure (cited by the source, not in this checkout)`
+- `external:quantum_physics::quantum_hamiltonian::wess_zumino_supercharge_closure (cited by the source, not in this checkout)`
 
 ---
 

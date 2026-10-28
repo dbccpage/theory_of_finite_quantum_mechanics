@@ -44,7 +44,7 @@ Cited FermionSignCore.lean::monte_carlo_sample_complexity_exponential_bound does
 
 ### Cited by the source, not in this checkout
 - `external:sources/atlas/papers/fermion_sign_problem/code/gin_cluster_scaling_benchmark.py::variance_blowup_simulation (cited by the source; the local code/python/src/fsp/gin_cluster_scaling_benchmark.py has no such symbol)`
-- `external:omega_quantum_physics::signed_sampling::sample_complexity_variance_bound (cited by the source, not in this checkout)`
+- `external:quantum_physics::signed_sampling::sample_complexity_variance_bound (cited by the source, not in this checkout)`
 
 ---
 

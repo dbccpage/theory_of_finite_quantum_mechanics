@@ -80,7 +80,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/15_finite_qed/tfq_0056_each_language_must_carry_clifford_admission_slash_square_exact_solution_rank_and_a.md`
 
 - file: [dag/derivations/15_finite_qed/tfq_0056_each_language_must_carry_clifford_admission_slash_square_exact_solution_rank_and_a.md](../../../dag/derivations/15_finite_qed/tfq_0056_each_language_must_carry_clifford_admission_slash_square_exact_solution_rank_and_a.md)
-- sha256 (`lf-normalised`): `d9a586c65a8a7511d68933db5fd6e8ceb73676d3371ed9c92576dde8ac6bc362`
+- sha256 (`lf-normalised`): `4f62eccdbdd2a181e64f3dbbae8cafb93721d111a3a60ebe4a831992030730f3`
 - generated view: listed, not counted
 - cited in: record TFQ-0056 (shared)
 - counts toward the grade: no

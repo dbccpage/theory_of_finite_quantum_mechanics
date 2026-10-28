@@ -2,7 +2,7 @@
 
 > **Stage**: `IMPLEMENTATION_SIBLING` | **Status**: `OPEN_OBLIGATION`  
 > **UUID**: `e96070e1-5911-5764-9fab-3c39f39315c9`  
-> **Parent Derivation**: [TFQ-0176](tfq_0176_treat_omega_mub_as_reconstruction_bookkeeping_not_as_the_owner_of_a_completed.md)
+> **Parent Derivation**: [TFQ-0176](tfq_0176_treat_tfqm_mub_as_reconstruction_bookkeeping_not_as_the_owner_of_a_completed.md)
 
 ---
 

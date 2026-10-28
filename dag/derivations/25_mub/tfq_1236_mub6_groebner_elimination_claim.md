@@ -42,7 +42,7 @@ No computation or receipt; the JSONL target is absent.
 ### Cited by the source, not in this checkout
 - `external:lean4 MUB.Grobner.elimination_ideal_slices (named by the JSONL; no such declaration in this checkout)`
 - `external:papers/core/mub6/code/mub_verify/algebraic_variety/grobner_elimination.py::compute_grobner_slices (named by the JSONL; code/mub_verify is not in this checkout)`
-- `external:rust omega_solvers::grobner::elimination_ideal_solver (omega_engine crate, not in this checkout)`
+- `external:rust solvers::grobner::elimination_ideal_solver (external engine crate, not in this checkout)`
 
 ---
 

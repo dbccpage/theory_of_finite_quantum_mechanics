@@ -54,7 +54,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/26_fsp/tfq_1205_fsp_nicolai_map_claim.md`
 
 - file: [dag/derivations/26_fsp/tfq_1205_fsp_nicolai_map_claim.md](../../../dag/derivations/26_fsp/tfq_1205_fsp_nicolai_map_claim.md)
-- sha256 (`lf-normalised`): `132c0bb4954d244d541da9c50b8beee93008501f450a82abb484fb38a167cecf`
+- sha256 (`lf-normalised`): `641b2627c00d9cd715d24b6282521f1b4a637241434e6363ff6c7957770db009`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1205
 - counts toward the grade: no

@@ -83,5 +83,5 @@ All Lean declarations in `lean4/WeightedL1Duality.lean` compile under Lean 4.35.
 
 ## 5. What is open
 
-1. In the external `S(n)` educational strand (`the_symbol_game`), `AdjunctionCochain` in `sn_realizations.py` remains a product section and first-coordinate projection rather than a linear-program solver or a full categorical functor/natural-transformation adjunction.
+1. In the external `S(n)` educational strand (external repository), `AdjunctionCochain` in `sn_realizations.py` remains a product section and first-coordinate projection rather than a linear-program solver or a full categorical functor/natural-transformation adjunction.
 2. Constructive polynomial-time LP solver complexity bounds (interior-point or simplex pivot bounds) are not formalized in Lean; `farkas` uses finite $m \mapsto m^2$ Fourier–Motzkin elimination.

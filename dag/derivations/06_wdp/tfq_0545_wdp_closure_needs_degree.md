@@ -36,7 +36,7 @@ In accordance with strict constructive principles:
 - [`lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean::kappa_well_defined`](../../../lean4/Imported/WitnessedDifference/WitnessedDifference/Obstruction.lean)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- `missing obligation: no omega_wdp Rust check of the window-level composition defect K = d1 d0; the Python degree_one_window carries it`
+- `missing obligation: no tfqm_wdp Rust check of the window-level composition defect K = d1 d0; the Python degree_one_window carries it`
 
 ### Python Oracles & Numerical Evaluators
 - [`atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py::degree_one_window`](../../../atlas/papers/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/obstruction.py)

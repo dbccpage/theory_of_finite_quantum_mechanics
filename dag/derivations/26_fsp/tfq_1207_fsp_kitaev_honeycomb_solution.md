@@ -54,7 +54,7 @@ Cited KitaevHoneycombCore.lean::kitaev_honeycomb_exact_majorana_solution does no
 - `checks/independent/fsp-kitaev-honeycomb-solution.py`
 
 ### Cited by the source, not in this checkout
-- `external:omega_majorana::sparse_kitaev::solve_kitaev_honeycomb_majorana (cited by the source, not in this checkout)`
+- `external:tfqm_majorana::sparse_kitaev::solve_kitaev_honeycomb_majorana (cited by the source, not in this checkout)`
 
 ---
 

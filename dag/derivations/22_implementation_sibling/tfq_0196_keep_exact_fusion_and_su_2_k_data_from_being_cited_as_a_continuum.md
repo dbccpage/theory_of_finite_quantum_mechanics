@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Fusion data in omega_fusion_categories are exact ring controls, not a Hilbert anyon derivation. src/lib.rs requires nonnegative integer fusion coefficients and symbols in an exact number field, with no floating-point conversion and no tolerance, and it marks the crate Not PROVED. catalog.rs pins Ising, Fibonacci, and semion constructors and returns a typed field error when a needed root of unity is missing. su2_level.rs places algebraic Racah F-symbols in a cyclotomic field and says that gauge is not orthonormal. The obligation is to keep a pentagon or hexagon check from being cited as continuum SU(2).
+Fusion data in tfqm_fusion_categories are exact ring controls, not a Hilbert anyon derivation. src/lib.rs requires nonnegative integer fusion coefficients and symbols in an exact number field, with no floating-point conversion and no tolerance, and it marks the crate Not PROVED. catalog.rs pins Ising, Fibonacci, and semion constructors and returns a typed field error when a needed root of unity is missing. su2_level.rs places algebraic Racah F-symbols in a cyclotomic field and says that gauge is not orthonormal. The obligation is to keep a pentagon or hexagon check from being cited as continuum SU(2).
 
 ### Governing Obligation
 Keep exact fusion and SU(2)_k data from being cited as a continuum anyon or Hilbert derivation.

@@ -130,7 +130,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0361_inert_literal_inscription.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0361_inert_literal_inscription.md](../../../dag/derivations/01_pregenesis/tfq_0361_inert_literal_inscription.md)
-- sha256 (`lf-normalised`): `6b6bdc4e19717e8279d70105bab9b278dd06d343b08adfde05e8f583247d8750`
+- sha256 (`lf-normalised`): `1f516e99da5a355ada7ab5481415544db4ed657d74103d710961a3aad098b9f6`
 - generated view: listed, not counted
 - cited in: record TFQ-0361
 - counts toward the grade: no
@@ -146,7 +146,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md`
 
 - file: [dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md](../../../dag/derivations/01_pregenesis/tfq_0392_inscription_to_coproduct_gap.md)
-- sha256 (`lf-normalised`): `805b407b08734b226eeba139611850b31b64ffa7f0f9fa2006dc7027a316febf`
+- sha256 (`lf-normalised`): `8b2271e6cc33b434323d97a58135ec4edcc0066aa3cb4fc1c339397da5adcd28`
 - generated view: listed, not counted
 - cited in: record TFQ-0392 (shared)
 - counts toward the grade: no
@@ -164,7 +164,7 @@ Named by the node; not in this repository and not checked here.
 
 - TFQ-0361 lean4: missing declaration obligation: a literal inscription type in pregenesis_to_minimal_symbol_systems/lean4/Paper.lean, which was opened and does not declare that token
 - TFQ-0361 python: missing obligation: a typed token constructor in pregenesis_to_minimal_symbol_systems/code/preservation.py that stores literal <> without turning it into an empty word or a carrier
-- TFQ-0361 rust: missing obligation: a host token in omega_ooutwire_primitives that rejects equating <> with an admitted ground
+- TFQ-0361 rust: missing obligation: a host token in wire_primitives that rejects equating <> with an admitted ground
 - TFQ-0361 rust: no local rust twin located for atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/token.rs
 - TFQ-0362 lean4: missing declaration obligation: a four-constructor host condition in pregenesis_to_minimal_symbol_systems/lean4/Paper.lean matching ledger row WDP-P000-001
 - TFQ-0362 python: missing obligation: four-way classifier beside preservation.report_factor for absent payload, empty word, literal <>, and admitted ground
@@ -173,7 +173,7 @@ Named by the node; not in this repository and not checked here.
 - TFQ-0362 rust: no local rust twin located for atlas/papers/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/code/rust/src/main.rs
 - TFQ-0392 lean4: missing declaration obligation: no arrow in pregenesis_to_minimal_symbol_systems/lean4/Paper.lean from a literal inscription to a coproduct root
 - TFQ-0392 python: missing obligation: a negative check that no function in pregenesis_to_minimal_symbol_systems/code/preservation.py sends literal <> to a two-channel coproduct
-- TFQ-0392 rust: missing obligation: a refused conversion in omega_ooutwire_primitives from the inscription token to a Difference-Structure value
+- TFQ-0392 rust: missing obligation: a refused conversion in wire_primitives from the inscription token to a Difference-Structure value
 
 ## Routes
 

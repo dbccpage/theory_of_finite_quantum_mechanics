@@ -8,7 +8,7 @@
 
 ## 1. Abstract & Formal Statement
 
-Finite QED here means charged finite transport, a finite Dirac or Clifford shadow, interaction vertices on a finite complex, and finite maps that mirror vacuum polarization, a Lamb shift datum, and an electroweak mixing control. Files under omega_quantum_physics and the finite-QM research notes are computational controls of those maps. The three languages must state the finite identity each control checks. F002 is an interface inventory. Naming a continuum limit on that floor does not derive continuum QED.
+Finite QED here means charged finite transport, a finite Dirac or Clifford shadow, interaction vertices on a finite complex, and finite maps that mirror vacuum polarization, a Lamb shift datum, and an electroweak mixing control. Files under quantum_physics and the finite-QM research notes are computational controls of those maps. The three languages must state the finite identity each control checks. F002 is an interface inventory. Naming a continuum limit on that floor does not derive continuum QED.
 
 ### Governing Obligation
 Carry finite charged transport, vertices, and Ward shadows without calling the result continuum QED.

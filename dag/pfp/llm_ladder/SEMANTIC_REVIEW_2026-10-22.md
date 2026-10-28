@@ -208,7 +208,7 @@ The 20 worst verified entries across the accepted runs are quoted below (with `e
 - **Run:** `TFQ-0103/20261021T161800Z_ladder` (`a0-3`)
 - **Node statement:** *"The constraint-closure ledger records a Ponzano-Regge style bound: a fixed-angle linear functional moves by at most the l1 distance of the spin labels times the sup-norm of the angles..."*
 - **Entry (`relation` `r1`):** `"Exact deformation invariance holds on the pentagon-to-quad reduction"`
-- **Cited declaration (`code/rust/src/mub/native/d6_exact_deformation_invariance_probe_b.rs::probe_b_pentagon_to_quad_exact_invariance`, line 179):** An electrostatics boundary-capacitance Schur-complement test in `mub/omega_native` offered by `@SRC` because its filename shared the words `pentagon` and `invariance`.
+- **Cited declaration (`code/rust/src/mub/native/d6_exact_deformation_invariance_probe_b.rs::probe_b_pentagon_to_quad_exact_invariance`, line 179):** An electrostatics boundary-capacitance Schur-complement test in `mub/native` offered by `@SRC` because its filename shared the words `pentagon` and `invariance`.
 
 ### 15. `[971]` `TFQ-0162` (`nvidia/nemotron-3.5-lightning:free`, `MISLEADING`) — Non-signalling test cited for a claim about `decoherence_functional` vs Born weight
 - **Run:** `TFQ-0162/20261021T035611Z_ladder` (`a0-3`)
@@ -226,13 +226,13 @@ The 20 worst verified entries across the accepted runs are quoted below (with `e
 - **Entry (`relation` `gleason_uniqueness`):** `"For dimension d >= 3, any noncontextual frame function on the projection lattice is determined by a density operator, as checked by the QM-201 test."`
 - **Cited declaration (`code/python/tests/test_e2e_born_rule_gleason_uniqueness_control.py::test_unit_qm201_born_rule_gleason_uniqueness_and_noncontextual_frame_function`, line 20):** Checks a finite rational identity on $d=2$; moreover, `TFQ-0165`'s point is that `probability_simplex.rs` is *not* Gleason's theorem.
 
-### 17. `[992]` `TFQ-0177` (`openai/gpt-oss-120b`, `MISLEADING`) — PyO3 module registration function `#[pymodule] fn omega_mub` cited as a mathematical relation on MUB(6)
+### 17. `[992]` `TFQ-0177` (`openai/gpt-oss-120b`, `MISLEADING`) — PyO3 module registration function `#[pymodule] fn tfqm_mub` cited as a mathematical relation on MUB(6)
 - **Run:** `TFQ-0177/20261021T161800Z_ladder` (`a0-1`)
-- **Entry (`relation` `r_mub6_open`):** `"omega_mub keeps dimension-6 MUB existence open and exposes only bounded finite checks to Python."`
-- **Cited declaration (`code/rust/src/mub/python.rs::omega_mub`, line 143):**
+- **Entry (`relation` `r_mub6_open`):** `"tfqm_mub keeps dimension-6 MUB existence open and exposes only bounded finite checks to Python."`
+- **Cited declaration (`code/rust/src/mub/python.rs::tfqm_mub`, line 143):**
   ```rust
   #[pymodule]
-  fn omega_mub(m: &Bound<'_, PyModule>) -> PyResult<()> {
+  fn tfqm_mub(m: &Bound<'_, PyModule>) -> PyResult<()> {
       m.add_function(wrap_pyfunction!(prime_power_mub_count, m)?)?; ...
   ```
 

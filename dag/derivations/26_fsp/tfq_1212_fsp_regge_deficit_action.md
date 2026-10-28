@@ -51,7 +51,7 @@ Cited ReggePachnerWdw.lean::regge_deficit_angle_action_identity does not exist; 
 - `checks/independent/fsp-regge-deficit-action.py`
 
 ### Cited by the source, not in this checkout
-- `external:omega_quantum_physics::quantum_regge_bridge::regge_deficit_angle_curvature (cited by the source, not in this checkout)`
+- `external:quantum_physics::quantum_regge_bridge::regge_deficit_angle_curvature (cited by the source, not in this checkout)`
 
 ---
 

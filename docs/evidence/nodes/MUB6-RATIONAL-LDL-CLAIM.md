@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/25_mub/tfq_1242_mub6_rational_ldl_claim.md`
 
 - file: [dag/derivations/25_mub/tfq_1242_mub6_rational_ldl_claim.md](../../../dag/derivations/25_mub/tfq_1242_mub6_rational_ldl_claim.md)
-- sha256 (`lf-normalised`): `621b0c5f09950a6e2be12ec193e9f538ac3efe2578e3f086dee7d4fba0918f94`
+- sha256 (`lf-normalised`): `39c2184a9e6e75d294feee53be2d50275694de4fe9e8526c316fd6598dfd9bde`
 - generated view: listed, not counted
 - cited in: node.source, record TFQ-1242
 - counts toward the grade: no

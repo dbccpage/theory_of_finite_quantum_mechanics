@@ -30,6 +30,6 @@ Natural-number arithmetic. No identification of an exponent with a singleton cen
 
 ## What is open
 
-A zero duality gap, the dual inequality, tamper and shape rejection, rebuilding a linear programme, the PR box, the noisy boxes, and the Rust functions `verify_noncontextual_fraction` and `verify_l1_defect_receipt`. The in-repo module depends on `omega_solvers`, which is not a workspace member, so those tests are not run here.
+A zero duality gap, the dual inequality, tamper and shape rejection, rebuilding a linear programme, the PR box, the noisy boxes, and the Rust functions `verify_noncontextual_fraction` and `verify_l1_defect_receipt`. The in-repo module depends on `solvers`, which is not a workspace member, so those tests are not run here.
 
 Review replay: binary-choice counts are recomputed as binomial sums, and the ten-variable assignment table and its twenty rows are enumerated as Cartesian products. This checks the stated fixed counts without exercising Rust limit constants or refusal paths.

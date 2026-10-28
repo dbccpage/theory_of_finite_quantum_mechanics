@@ -274,7 +274,7 @@ availability remain separately justified premises. GAP-FQM-021 stays open.
 
 ## 7. Implementation and reproduction scope
 
-[TwistedAbelianAlgebra](../../../../../omega_engine/crates_rs/omega_lie_theory/src/twisted_abelian_algebra.rs)
+TwistedAbelianAlgebra (`external:sha256:e18265604b1f898f958b563058d2a4992246262d498213293f44f138621b6a75`)
 uses the existing `FiniteGroup::from_table` owner and canonical exact complex
 fields. It checks all group laws, commutativity, normalization, unitarity and
 every cocycle triple, with a 64-label limit. It exposes the radical, complex
@@ -287,12 +287,12 @@ From `external:git-tree:ac1f6d647c3ecc2bf45f6fc4922213ac752e71a3`, with the conf
 two packages sequentially:
 
 ```sh
-cargo test -j 1 --offline --locked -p omega_lie_theory --test twisted_abelian_algebra
-cargo test -j 1 --offline --locked -p omega_quantum_physics --test projective_history_mub6
+cargo test -j 1 --offline --locked -p tfqm_lie_theory --test twisted_abelian_algebra
+cargo test -j 1 --offline --locked -p quantum_physics --test projective_history_mub6
 ```
 
-The [algebra tests](../../../../../omega_engine/crates_rs/tests/omega_lie_theory/twisted_abelian_algebra.rs)
-and [physics test](../../../../../omega_engine/crates_rs/tests/omega_quantum_physics/projective_history_mub6.rs)
+The algebra tests (`external:sha256:6005a1eda9d6d760c8e82023d88eaf47bc5580265128a247a3a405c49d6b12d5`)
+and physics test (`external:sha256:d145f197c01e78b7ee0c612e93a8f46089b5c7940767cd2e0a57640970f2be35`)
 separate finite arithmetic from the general written proofs. The execution
 receipt records actual results and selected source hashes. There is no new
 Lean module in this block, no full-suite claim, and no claim that the finite

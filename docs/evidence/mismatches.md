@@ -70,45 +70,45 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 
 | Node | Stage | Status | Grade | Downstream | Detail |
 |---|---|---|---|---|---|
-| [PG-GEN-COLLAPSE-AND-FIRST-SEPARATION](nodes/PG-GEN-COLLAPSE-AND-FIRST-SEPARATION.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 711 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [L1-GS000-EDGEWISE-L1](nodes/L1-GS000-EDGEWISE-L1.md) | L1_EMERGENCE | `COMPUTATIONALLY_CHECKED` | E3 | 461 | 2 in-repo Rust or Python symbol(s) cited, none a test |
+| [PG-GEN-COLLAPSE-AND-FIRST-SEPARATION](nodes/PG-GEN-COLLAPSE-AND-FIRST-SEPARATION.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 719 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [L1-GS000-EDGEWISE-L1](nodes/L1-GS000-EDGEWISE-L1.md) | L1_EMERGENCE | `COMPUTATIONALLY_CHECKED` | E3 | 469 | 2 in-repo Rust or Python symbol(s) cited, none a test |
 | [PGW-GENESIS-THREE-AXIS-VERDICT](nodes/PGW-GENESIS-THREE-AXIS-VERDICT.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E2 | 126 | 4 in-repo Rust or Python symbol(s) cited, none a test |
 | [PGW-RUNG0-INHERITANCE-REPLAY](nodes/PGW-RUNG0-INHERITANCE-REPLAY.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 125 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [PGW-FORCED-CENSUS-COLUMN](nodes/PGW-FORCED-CENSUS-COLUMN.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E3 | 111 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [DS-QM062-U1-SELECTOR-LAYERS](nodes/DS-QM062-U1-SELECTOR-LAYERS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 69 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [DS-QM063-HOLONOMY-COHERENT-INTENSITY](nodes/DS-QM063-HOLONOMY-COHERENT-INTENSITY.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 54 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [DS-QM062-U1-SELECTOR-LAYERS](nodes/DS-QM062-U1-SELECTOR-LAYERS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 71 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [DS-QM063-HOLONOMY-COHERENT-INTENSITY](nodes/DS-QM063-HOLONOMY-COHERENT-INTENSITY.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 56 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM070-PRODUCT-NONFACTORIZATION](nodes/DS-QM070-PRODUCT-NONFACTORIZATION.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 50 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [PGW-RUNG2B-STAKE-MENU](nodes/PGW-RUNG2B-STAKE-MENU.md) | GENESIS | `COMPUTATIONALLY_CHECKED` | E1 | 44 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0125](nodes/TFQ-0125.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 40 | 3 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0126](nodes/TFQ-0126.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 39 | 3 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0127](nodes/TFQ-0127.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 38 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0129](nodes/TFQ-0129.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 34 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0013](nodes/TFQ-0013.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 33 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0166](nodes/TFQ-0166.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 32 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0015](nodes/TFQ-0015.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 31 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [COMP-C1-FIRST-SEPARATION-REPLAY](nodes/COMP-C1-FIRST-SEPARATION-REPLAY.md) | COMPUTATION | `COMPUTATIONALLY_CHECKED` | E3 | 30 | 6 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0131](nodes/TFQ-0131.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 30 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0013](nodes/TFQ-0013.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 29 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0015](nodes/TFQ-0015.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 27 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0018](nodes/TFQ-0018.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 24 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0019](nodes/TFQ-0019.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 23 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0018](nodes/TFQ-0018.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 28 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0019](nodes/TFQ-0019.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 27 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0020](nodes/TFQ-0020.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 26 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0021](nodes/TFQ-0021.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 25 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0022](nodes/TFQ-0022.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 24 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0023](nodes/TFQ-0023.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 23 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0043](nodes/TFQ-0043.md) | FINITE_TOPOLOGICAL | `COMPUTATIONALLY_CHECKED` | E1 | 23 | 2 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0020](nodes/TFQ-0020.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 22 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0021](nodes/TFQ-0021.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 21 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0022](nodes/TFQ-0022.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 20 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0024](nodes/TFQ-0024.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 20 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0133](nodes/TFQ-0133.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 20 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0023](nodes/TFQ-0023.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 19 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0025](nodes/TFQ-0025.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 19 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM073-FINITE-CHSH-AND-PR-BOX](nodes/DS-QM073-FINITE-CHSH-AND-PR-BOX.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 17 | 1 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM102-SYNDROME-CAPACITY-BOUND](nodes/DS-QM102-SYNDROME-CAPACITY-BOUND.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 16 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0024](nodes/TFQ-0024.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 16 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0197](nodes/TFQ-0197.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 16 | 3 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM074-NO-SIGNALING-MARGINAL](nodes/DS-QM074-NO-SIGNALING-MARGINAL.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 15 | 1 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0025](nodes/TFQ-0025.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 15 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0028](nodes/TFQ-0028.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 15 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0048](nodes/TFQ-0048.md) | FINITE_TOPOLOGICAL | `COMPUTATIONALLY_CHECKED` | E0 | 15 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS](nodes/DS-QM110-111-LQG-GR-KINEMATICAL-SHADOWS.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 14 | 3 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0029](nodes/TFQ-0029.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 14 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0198](nodes/TFQ-0198.md) | IMPLEMENTATION_SIBLING | `COMPUTATIONALLY_CHECKED` | E1 | 14 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [TFQ-0030](nodes/TFQ-0030.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 13 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM061-BUILDABILITY-SET-S](nodes/DS-QM061-BUILDABILITY-SET-S.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 12 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0028](nodes/TFQ-0028.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 12 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0029](nodes/TFQ-0029.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 11 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [TFQ-0030](nodes/TFQ-0030.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 10 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM030-UNGRADED-OVERCOUNT](nodes/DS-QM030-UNGRADED-OVERCOUNT.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 9 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0144](nodes/TFQ-0144.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 9 | 2 in-repo Rust or Python symbol(s) cited, none a test |
 | [AUTH-TC0-TAPE-CONTROL-TYPING](nodes/AUTH-TC0-TAPE-CONTROL-TYPING.md) | COMPUTATION | `COMPUTATIONALLY_CHECKED` | E3 | 8 | 0 in-repo Rust or Python symbol(s) cited, none a test |
@@ -138,6 +138,9 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [DFM-BPHZ-SECTOR-KERNEL](nodes/DFM-BPHZ-SECTOR-KERNEL.md) | DRESSING_FIELD | `COMPUTATIONALLY_CHECKED` | E2 | 2 | 2 in-repo Rust or Python symbol(s) cited, none a test |
 | [DFM-TREE-CHANGE-GLZ-SYMANZIK-U](nodes/DFM-TREE-CHANGE-GLZ-SYMANZIK-U.md) | DRESSING_FIELD | `COMPUTATIONALLY_CHECKED` | E2 | 2 | 3 in-repo Rust or Python symbol(s) cited, none a test |
 | [DS-QM033-SCHRODINGER-DISCRETE-COCHAIN](nodes/DS-QM033-SCHRODINGER-DISCRETE-COCHAIN.md) | FINITE_QM_DYNAMICS | `COMPUTATIONALLY_CHECKED` | E3 | 2 | 1 in-repo Rust or Python symbol(s) cited, none a test |
+| [FQ-CABELLO-FRAME-POLYTOPE-146](nodes/FQ-CABELLO-FRAME-POLYTOPE-146.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [FQ-POWER-RULE-P2-SELECTION](nodes/FQ-POWER-RULE-P2-SELECTION.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
+| [FQ-SORKIN-READOUT-CLASS-QM208](nodes/FQ-SORKIN-READOUT-CLASS-QM208.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [FQ-TRACE-ZERO-DUALITY-K23](nodes/FQ-TRACE-ZERO-DUALITY-K23.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [L1-QM020-THM6-P1-SCOPE-FENCE](nodes/L1-QM020-THM6-P1-SCOPE-FENCE.md) | L1_TO_L2 | `COMPUTATIONALLY_CHECKED` | E3 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [TFQ-0036](nodes/TFQ-0036.md) | FINITE_QCD | `COMPUTATIONALLY_CHECKED` | E1 | 2 | 0 in-repo Rust or Python symbol(s) cited, none a test |
@@ -150,9 +153,6 @@ COMPUTATIONALLY_CHECKED with no in-repo runnable Rust or Python test cited. Orde
 | [DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO](nodes/DS-QM093-QUANTUM-COCHAIN-D1D0-ZERO.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [FQ-BELL-RATIONAL-VIOLATION-14-5](nodes/FQ-BELL-RATIONAL-VIOLATION-14-5.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [FQ-BUSCH-EFFECT-FRAME](nodes/FQ-BUSCH-EFFECT-FRAME.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [FQ-CABELLO-FRAME-POLYTOPE-146](nodes/FQ-CABELLO-FRAME-POLYTOPE-146.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [FQ-POWER-RULE-P2-SELECTION](nodes/FQ-POWER-RULE-P2-SELECTION.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
-| [FQ-SORKIN-READOUT-CLASS-QM208](nodes/FQ-SORKIN-READOUT-CLASS-QM208.md) | FINITE_QM_CORE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [GP-GAP-EXACT-DUALITY](nodes/GP-GAP-EXACT-DUALITY.md) | FINITE_QM_STRUCTURE | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [L1-QM020-THM7-REPRESENTATION-CAPACITY](nodes/L1-QM020-THM7-REPRESENTATION-CAPACITY.md) | L1_TO_L2 | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
 | [L1-QM122-BORN-PAIRING-NONUNIQUE](nodes/L1-QM122-BORN-PAIRING-NONUNIQUE.md) | L1_TO_L2 | `COMPUTATIONALLY_CHECKED` | E3 | 1 | 0 in-repo Rust or Python symbol(s) cited, none a test |
@@ -245,7 +245,7 @@ A cited in-repo path or symbol cannot be found in this checkout. Ordered by down
 
 | Node | Stage | Status | Grade | Downstream | Detail |
 |---|---|---|---|---|---|
-| [PG-PRIMDIFF-AXIOMS](nodes/PG-PRIMDIFF-AXIOMS.md) | PREGENESIS | `DEFINITION` | E3 | 500 | path not found: code/python/src/majorana/tests/unit/test_primitive_difference.py |
+| [PG-PRIMDIFF-AXIOMS](nodes/PG-PRIMDIFF-AXIOMS.md) | PREGENESIS | `DEFINITION` | E3 | 508 | path not found: code/python/src/majorana/tests/unit/test_primitive_difference.py |
 | [TFQ-0125](nodes/TFQ-0125.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 40 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/finite_qm_engine.py |
 | [TFQ-0127](nodes/TFQ-0127.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 38 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/operational_axiom_selection.py |
 | [TFQ-0129](nodes/TFQ-0129.md) | IMPLEMENTATION_CORE | `COMPUTATIONALLY_CHECKED` | E1 | 34 | path not found: code/python/src/majorana/tests/support/finite_qm/use_cases/born_normalization.py |
@@ -304,14 +304,14 @@ A replay receipt names this node for a Lean module that the node does not cite i
 
 | Node | Stage | Status | Grade | Downstream | Detail |
 |---|---|---|---|---|---|
-| [PG-INERT-DIAMOND](nodes/PG-INERT-DIAMOND.md) | PREGENESIS | `DEFINITION` | E3 | 803 | a replay receipt names this node for lean4/InertDiamond.lean, but the node's lean, rust and source fields do not cite it |
-| [PG-SIX-OPERATIONS](nodes/PG-SIX-OPERATIONS.md) | PREGENESIS | `DEFINITION` | E3 | 781 | a replay receipt names this node for lean4/SixOperations.lean, but the node's lean, rust and source fields do not cite it |
-| [PG-WDP-GENESIS-BRIDGE-OBLIGATIONS](nodes/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS.md) | WDP | `OPEN` | E3 | 505 | a replay receipt names this node for lean4/WdpBridgeObligations.lean, but the node's lean, rust and source fields do not cite it |
-| [PG-PRIMDIFF-AXIOMS](nodes/PG-PRIMDIFF-AXIOMS.md) | PREGENESIS | `DEFINITION` | E3 | 500 | a replay receipt names this node for lean4/PrimdiffAxioms.lean, but the node's lean, rust and source fields do not cite it |
-| [PG-WDP-DEGREE1-WINDOW](nodes/PG-WDP-DEGREE1-WINDOW.md) | WDP | `DEFINITION` | E3 | 499 | a replay receipt names this node for lean4/WdpDegree1Window.lean, but the node's lean, rust and source fields do not cite it |
-| [L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED](nodes/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED.md) | L1_TO_L2 | `CONDITIONAL` | E3 | 460 | a replay receipt names this node for lean4/ResidualSectorWeights.lean, but the node's lean, rust and source fields do not cite it |
-| [PG-ROOT-DIFF-STRUCTURE](nodes/PG-ROOT-DIFF-STRUCTURE.md) | PREGENESIS | `ADMITTED_PRIMITIVE` | E3 | 262 | a replay receipt names this node for lean4/RootDiffStructure.lean, but the node's lean, rust and source fields do not cite it |
-| [FSP-WILSON-DIRAC-GAMMA5](nodes/FSP-WILSON-DIRAC-GAMMA5.md) | FERMION_SIGN | `IMPORTED_ASSUMPTION` | E3 | 21 | a replay receipt names this node for lean4/FermionSignWilsonDiracGamma5.lean, but the node's lean, rust and source fields do not cite it |
+| [PG-INERT-DIAMOND](nodes/PG-INERT-DIAMOND.md) | PREGENESIS | `DEFINITION` | E3 | 811 | a replay receipt names this node for lean4/InertDiamond.lean, but the node's lean, rust and source fields do not cite it |
+| [PG-SIX-OPERATIONS](nodes/PG-SIX-OPERATIONS.md) | PREGENESIS | `DEFINITION` | E3 | 789 | a replay receipt names this node for lean4/SixOperations.lean, but the node's lean, rust and source fields do not cite it |
+| [PG-WDP-GENESIS-BRIDGE-OBLIGATIONS](nodes/PG-WDP-GENESIS-BRIDGE-OBLIGATIONS.md) | WDP | `OPEN` | E3 | 513 | a replay receipt names this node for lean4/WdpBridgeObligations.lean, but the node's lean, rust and source fields do not cite it |
+| [PG-PRIMDIFF-AXIOMS](nodes/PG-PRIMDIFF-AXIOMS.md) | PREGENESIS | `DEFINITION` | E3 | 508 | a replay receipt names this node for lean4/PrimdiffAxioms.lean, but the node's lean, rust and source fields do not cite it |
+| [PG-WDP-DEGREE1-WINDOW](nodes/PG-WDP-DEGREE1-WINDOW.md) | WDP | `DEFINITION` | E3 | 507 | a replay receipt names this node for lean4/WdpDegree1Window.lean, but the node's lean, rust and source fields do not cite it |
+| [L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED](nodes/L1-RESIDUAL-SECTOR-WEIGHTS-DECLARED.md) | L1_TO_L2 | `CONDITIONAL` | E3 | 468 | a replay receipt names this node for lean4/ResidualSectorWeights.lean, but the node's lean, rust and source fields do not cite it |
+| [PG-ROOT-DIFF-STRUCTURE](nodes/PG-ROOT-DIFF-STRUCTURE.md) | PREGENESIS | `ADMITTED_PRIMITIVE` | E3 | 263 | a replay receipt names this node for lean4/RootDiffStructure.lean, but the node's lean, rust and source fields do not cite it |
+| [FSP-WILSON-DIRAC-GAMMA5](nodes/FSP-WILSON-DIRAC-GAMMA5.md) | FERMION_SIGN | `IMPORTED_ASSUMPTION` | E3 | 22 | a replay receipt names this node for lean4/FermionSignWilsonDiracGamma5.lean, but the node's lean, rust and source fields do not cite it |
 | [L1-WDP-REALIFICATION-J](nodes/L1-WDP-REALIFICATION-J.md) | L1_TO_L2 | `DEFINITION` | E3 | 5 | a replay receipt names this node for lean4/RealificationJ.lean, but the node's lean, rust and source fields do not cite it |
 | [L1-U1-SELECTOR-OTHER-SEGMENT](nodes/L1-U1-SELECTOR-OTHER-SEGMENT.md) | L1_TO_L2 | `OPEN` | E3 | 0 | a replay receipt names this node for lean4/U1SelectorSegment.lean, but the node's lean, rust and source fields do not cite it |
 | [PG-WDP-DIAGNOSTIC-NOT-ROUTING](nodes/PG-WDP-DIAGNOSTIC-NOT-ROUTING.md) | WDP | `DEFINITION` | E3 | 0 | a replay receipt names this node for lean4/WdpDiagnosticRouting.lean, but the node's lean, rust and source fields do not cite it |

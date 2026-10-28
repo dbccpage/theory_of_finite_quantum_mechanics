@@ -72,7 +72,7 @@ Until 19L57G1 is readable, the working reconstruction — labelled **SPECULATIVE
 
 1. **Genesis (distinction before physics).** The only origin of a finite claim is a declared primitive difference. In-tree genesis is **not** `PrimitiveDifference.lean` as `D(x,y)=y-x`. Opened `lean4/PrimitiveDifference.lean` is an **abstract** `δ` with ZeroRel / residual quotient; a later Int kernel `diff x y := y - x` lives in the same file. Concrete coboundary `(d0 α)(u,v) = α(v) - α(u)` is `FiniteCochain.d0` / `external:unlocated`. Hilbert space, Born, U(1), tensor, CPTP, and continuous time are representation layers, not genesis.
 2. **Ontology (descent or typed refusal).** A claim packet is representation until it descends to Primitive Difference or Structure, or carries an explicit typed refusal (`OntologyBasic.lean` `ClaimPacket.Terminalized`). Positive authority additionally requires an authoritative terminal status. This application’s `AuthorityEffect` is None; the machine therefore **never** inhabits `HasAuthority` for a finite-QM claim. It may inhabit `refused`, `noRule`, or `budgetUnknown`.
-3. **Alpha Engine law (no silent promotion).** Structure derived is not authority (`research/090_…`; `research/091_…` even demotes a vacuous `AuthorityNonPromotion` lemma). `omega_atlas_reconciliation` governance: a Model may not diagnose authoritatively; enforcement, diagnosis, voting, waiving, and doctrine revision are separated. GOMC explains residual accounting and **refuses** physical QM (`research/004_…`). Interpretations (Copenhagen, Everett, …) are packet-indistinguishable authority shadows unless they make a finite, distinguishable false claim (`research/090_…`).
+3. **Alpha Engine law (no silent promotion).** Structure derived is not authority (`research/090_…`; `research/091_…` even demotes a vacuous `AuthorityNonPromotion` lemma). `atlas_reconciliation` governance: a Model may not diagnose authoritatively; enforcement, diagnosis, voting, waiving, and doctrine revision are separated. GOMC explains residual accounting and **refuses** physical QM (`research/004_…`). Interpretations (Copenhagen, Everett, …) are packet-indistinguishable authority shadows unless they make a finite, distinguishable false claim (`research/090_…`).
 
 If a future public 19L57G1 text contradicts this reconstruction, rewrite this section; do not keep a fan-fiction law.
 
@@ -108,7 +108,7 @@ If a future public 19L57G1 text contradicts this reconstruction, rewrite this se
 
 Grounded in: `external:unlocated`; `lean4/FiniteCochain.lean`; `WorldCycle3Quotient.lean`; `PointedObstructionClassifier.lean`; `external:sha256:4706f94a74ee1384cb406d1528bae8ee5e8f516ba6c7194e245849e6e73fd6fe` / `phi1_l1_boundary_solver.rs`; ledger `000:QMC-T1` ASSERTED; GAP-FQM-003.
 
-**Idea.** Implement the cochain packet directly as an exact computational and verification engine: run exact $\Phi_1 / \Gamma_2$ descent on declared finite 2-complexes: primitive difference → coboundary nilpotence → quotient mass → classifier. `omega_solvers` already implements exact rational network simplex routines; modernize `cochain.phi_1` to exact rational solvers.
+**Idea.** Implement the cochain packet directly as an exact computational and verification engine: run exact $\Phi_1 / \Gamma_2$ descent on declared finite 2-complexes: primitive difference → coboundary nilpotence → quotient mass → classifier. `solvers` already implements exact rational network simplex routines; modernize `cochain.phi_1` to exact rational solvers.
 
 **Mathematical boundary.** Exact $\Phi_1$ evaluation on declared graphs is a concrete finite optimization task; distinguishing scalar vs cofiber representations maintains clean algebraic typing.
 
@@ -204,7 +204,7 @@ These are falsifiers for the **speculations**, not for quantum mechanics.
 - `external:unlocated` (domain, 42 use-case `.py` including `cochain.py`, `finite_qm_engine.py`; entrypoints)
 - `external:unlocated` (C750/C1000 Python, tests)
 - `external:unlocated` (remaining PyO3/C750/C1000 Rust)
-- `code/rust/src/` (including `omega_finite_qm`, `omega_quantum_physics`, `omega_engines`, `omega_solvers`, `omega_certifiers`, `omega_atlas_reconciliation`)
+- `code/rust/src/` (including `finite_qm`, `quantum_physics`, `engines`, `solvers`, `certifiers`, `atlas_reconciliation`)
 - `lean4/quantum_mechanics/` listing plus opened: `OntologyBasic.lean`, `OntologyPrimitiveBridge.lean`, `SolverFrontier.lean`, `PointedObstructionClassifier.lean`, `OperationalAxiomSelection.lean`, `WorldWGOCSealedRefusal.lean`, `WorldObserverDirectedColimitNoGo.lean`, `PrimitiveDifference.lean`, `FiniteCochain.lean`, `lakefile.lean`
 - `campaigns/` listing; `c750/README.md`; `c500_execution/WITHDRAWAL.md`; `check_result_schema.py`
 - `external:sha256:2f6ebc349638b7639e3b60bbf2ba1c7cab8dc0329e65e654342890ca49b0d653`; `…/src/governance.rs`
