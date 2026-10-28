@@ -9973,6 +9973,155 @@
       }
     },
     {
+      "id": "FQCD-FINITE-TRANSFER-MATRIX-GAP",
+      "stage": "FINITE_QCD",
+      "status": "OPEN",
+      "source_status": "Added 2026-10-27 with maintainer approval as a precisely stated target; no Lean, Rust or Python evidence exists in this checkout.",
+      "statement": "For a finite group G with a unitary representation, a finite periodic spatial lattice with edge set E and finite real beta, the temporal-gauge transfer matrix of the Wilson action acting on functions on G^E has strictly positive entries, so it has a simple largest eigenvalue lambda_0, a gauge-invariant Perron eigenvector, and every other eigenvalue satisfies |lambda| < lambda_0; the finite-volume gap log(lambda_0/|lambda_1|) is positive on the gauge-invariant subspace.",
+      "source": [
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Prove the statement in Lean from the Perron-Frobenius theorem for positive matrices. The node is the automatic finite-volume gap only: it gives no bound uniform in volume or lattice spacing and is not the Yang-Mills mass gap of the Clay problem.",
+      "tags": [
+        "finite-gauge-targets"
+      ],
+      "see_also": [
+        "TFQ-0031",
+        "DFM-GRIBOV-CONTINUUM-FENCE"
+      ]
+    },
+    {
+      "id": "FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY",
+      "stage": "FINITE_QCD",
+      "status": "OPEN",
+      "source_status": "Added 2026-10-27 with maintainer approval as a precisely stated target; no Lean, Rust or Python evidence exists in this checkout.",
+      "statement": "On a finite periodic hypercubic lattice in dimension 2 or 4 with arbitrary unitary link matrices U_mu(x), Hermitian Euclidean gamma matrices and gamma5 anticommuting with each gamma_mu, the Wilson-Dirac operator D_W = m + sum_mu [gamma_mu (nabla_mu + nabla*_mu)/2 - (r/2) nabla*_mu nabla_mu] with real m and r satisfies gamma5 D_W gamma5 = D_W^dagger.",
+      "source": [
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
+        "lean4/FermionSignWilsonDiracGamma5.lean"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Prove the operator identity in Lean for the finite lattice. A proof would supply the hypothesis that FSP-WILSON-DIRAC-GAMMA5 now imports; lean4/FermionSignWilsonDiracGamma5.lean states only the Clifford and determinant lemmas, not this identity.",
+      "tags": [
+        "finite-gauge-targets"
+      ],
+      "see_also": [
+        "FSP-QCD-CHEMICAL-POTENTIAL-DET",
+        "TFQ-0027"
+      ]
+    },
+    {
+      "id": "FGAUGE-MEDNYKH-2D-YANG-MILLS",
+      "stage": "FINITE_GAUGE",
+      "status": "OPEN",
+      "source_status": "Added 2026-10-27 with maintainer approval as a precisely stated target; no Lean, Rust or Python evidence exists in this checkout.",
+      "statement": "For a finite group G and a closed orientable surface of genus g, |Hom(pi_1(Sigma_g), G)| / |G| equals the sum over irreducible complex representations R of G of (|G| / dim R)^(2g-2); this number is the zero-area partition function of two-dimensional lattice gauge theory with gauge group G and does not depend on the cellulation of the surface.",
+      "source": [
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
+        "lean4/FiniteGroupPachner.lean"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Prove the formula in Lean from the column orthogonality of characters, and the cellulation independence under the Pachner moves. Two-dimensional gauge theory has no propagating gluons, so the node models finite gauge structure and not four-dimensional confinement.",
+      "tags": [
+        "finite-gauge-targets"
+      ],
+      "see_also": [
+        "FSP-U1-WILSON-ACTION"
+      ]
+    },
+    {
+      "id": "FQCD-STRONG-COUPLING-AREA-LAW",
+      "stage": "FINITE_QCD",
+      "status": "OPEN",
+      "source_status": "Added 2026-10-27 with maintainer approval as a precisely stated target; no Lean, Rust or Python evidence exists in this checkout.",
+      "statement": "For a finite gauge group G, a nontrivial irreducible unitary representation R and dimension d >= 2, there are explicit beta_0 > 0, K and sigma > 0 depending on G, R and d such that for 0 <= beta < beta_0 the Wilson-action expectation of the R-character of every rectangular Wilson loop C on a finite periodic lattice much larger than C satisfies |<W_R(C)>| <= K exp(-sigma Area(C)), with Area(C) the minimal spanning area.",
+      "source": [
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Prove the bound by a convergent strong-coupling (cluster) expansion in the style of Osterwalder-Seiler (1978), with explicit constants. The bound would replace the declared area-law formula of TFQ-0024 by a derived inequality at strong coupling; it says nothing about weak coupling or the continuum.",
+      "tags": [
+        "finite-gauge-targets"
+      ],
+      "see_also": [
+        "TFQ-0031"
+      ]
+    },
+    {
+      "id": "FQCD-FINITE-GROUP-FREEZING-FENCE",
+      "stage": "FINITE_QCD",
+      "status": "SOURCE_RECORD",
+      "source_status": "Added 2026-10-27 with maintainer approval as a record of published or announced work; it carries no derivation status in this graph.",
+      "statement": "Source record: lattice gauge theories whose gauge group is a finite subgroup of SU(2) or SU(3) follow the Lie-group theory at small beta and undergo a freezing transition at larger beta (Petcher-Weingarten 1980 for subgroups of SU(2); Bhanot-Rebbi 1981 for the 1080-element subgroup of SU(3)).",
+      "source": [
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
+        "external:D. Petcher, D. H. Weingarten, Phys. Rev. D 22 (1980) 2465",
+        "external:G. Bhanot, C. Rebbi, Phys. Rev. D 24 (1981) 3319"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Fence: a fixed finite gauge group is not a route to the asymptotically free continuum limit, which needs beta to go to infinity; a finite route must enlarge the group, or pass to a quantum-group truncation, together with the lattice. The cited results are numerical; no rigorous freezing theorem is recorded here.",
+      "tags": [
+        "finite-gauge-targets"
+      ],
+      "see_also": [
+        "TFQ-0017"
+      ]
+    },
+    {
+      "id": "FQCD-CONTINUUM-EXISTENCE-ANNOUNCEMENT",
+      "stage": "FINITE_QCD",
+      "status": "SOURCE_RECORD",
+      "source_status": "Added 2026-10-27 with maintainer approval as a record of published or announced work; it carries no derivation status in this graph.",
+      "statement": "Source record: an OpenAI announcement of October 2026 reports a model-generated existence proof for four-dimensional pure Yang-Mills theory and QCD, building on the Balaban renormalization-group programme, with a Lean formalization reported complete on 2026-10-16 and an external group led by D. Gross writing it up. The announcement does not state that the Clay mass-gap problem is solved.",
+      "source": [
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
+        "external:https://openai.com/index/building-scientific-understanding-with-academic-communities/"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Not reviewed here, and nothing in this graph depends on it. If the proof and its Lean code become public and survive review, record it as an imported assumption for the finite-to-continuum bridge of TFQ-0031 after checking its axioms; it does not promote any node of this graph.",
+      "tags": [
+        "finite-gauge-targets"
+      ],
+      "see_also": [
+        "DFM-GRIBOV-CONTINUUM-FENCE"
+      ]
+    },
+    {
+      "id": "FQ-GLEASON-QI3-FRAME-FUNCTIONS",
+      "stage": "FINITE_QM_CORE",
+      "status": "OPEN",
+      "source_status": "Added 2026-10-27 with maintainer approval as a precisely stated target; no Lean, Rust or Python evidence exists in this checkout.",
+      "statement": "Let V = Q(i)^3 with the standard Hermitian form. Decide whether every function f from the nonzero vectors of V to Q with f(u) + f(v) + f(w) = 1 for every orthogonal triple of nonzero vectors has the form f(v) = <v, rho v>/<v, v> for a Hermitian trace-one 3 x 3 matrix rho over Q(i), or exhibit one that does not; state separately the signed, nonnegative and {0,1}-valued variants, and whether the non-quadratic Q^3 frame function extends to Q(i)^3.",
+      "source": [
+        "dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md",
+        "lean4/BornRationalRayObstruction.lean",
+        "lean4/BornGaussianMod2ClassRigidity.lean"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "Either answer is a result. Over Q^3 a non-quadratic frame function exists (BornRationalRayObstruction.exotic_not_quadratic); over Q(i)^3 only the residue-modulo-2 class ansatz is excluded (BornGaussianMod2ClassRigidity.mod2_class_function_is_third). Continuum Gleason does not decide this, because Q(i)^3 is not complete.",
+      "tags": [
+        "born-gleason-targets"
+      ],
+      "see_also": [
+        "TFQ-0308"
+      ]
+    },
+    {
       "id": "TFQ-0003",
       "stage": "FINITE_OBSTRUCTION",
       "status": "OPEN",
@@ -27503,6 +27652,31 @@
       ]
     },
     {
+      "id": "MUB-PRIME-POWER-CHARACTERISTIC-TWO",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "status": "OPEN",
+      "source_status": "dag/derivations/independent/mub-prime-power-construction-odd.md record MUB-CAMPAIGN-448-CHAR2 claims no status; audited status OPEN",
+      "statement": "For d = 2^k with k >= 2, construct d+1 bases of C^d, each orthonormal, with |<u, v>|^2 = 1/d for vectors u and v from different bases, using the Galois ring GR(4, k) and its Teichmuller set (Klappenecker-Roetteler) or the symplectic construction over F_(2^k) (Wootters-Fields), and verify every identity over an exact cyclotomic carrier.",
+      "source": [
+        "dag/derivations/25_mub/tfq_1366_mub_prime_power_characteristic_two.md",
+        "dag/derivations/independent/mub-prime-power-construction-odd.md",
+        "lean4/MubPrimePowerOddCharacteristic.lean"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The odd-characteristic family of MUB-PRIME-POWER-CONSTRUCTION uses x -> psi(a x^2 + b x), which fails in characteristic two because x -> x^2 is additive there. A Lean proof of this node, together with the odd case, would complete the prime-power construction.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1366",
+        "MUB-CAMPAIGN-448-CHAR2"
+      ],
+      "see_also": [
+        "MUB6-NO-FIELD-OF-ORDER-SIX"
+      ]
+    },
+    {
       "id": "CT-DEUTSCH-2013-SOURCE",
       "stage": "CONSTRUCTOR_THEORY",
       "status": "SOURCE_RECORD",
@@ -32895,6 +33069,94 @@
       "status": "GAP_NO_DERIVATION",
       "mechanism": "Select the scalar field and the l2 uniformity from finite-theory primitives; the construction node supplies the completion once they are chosen.",
       "source": []
+    },
+    {
+      "id": "FQCD-R-FINITE-TRANSFER-MATRIX-GAP",
+      "inputs": [
+        "TFQ-0011",
+        "FSP-U1-WILSON-ACTION"
+      ],
+      "output": "FQCD-FINITE-TRANSFER-MATRIX-GAP",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Prove the statement in Lean from the Perron-Frobenius theorem for positive matrices. The node is the automatic finite-volume gap only: it gives no bound uniform in volume or lattice spacing and is not the Yang-Mills mass gap of the Clay problem.",
+      "source": [
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+      ]
+    },
+    {
+      "id": "FQCD-R-WILSON-DIRAC-GAMMA5-HERMITICITY",
+      "inputs": [
+        "TFQ-0026",
+        "FSP-WILSON-DIRAC-GAMMA5"
+      ],
+      "output": "FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Prove the operator identity in Lean for the finite lattice. A proof would supply the hypothesis that FSP-WILSON-DIRAC-GAMMA5 now imports; lean4/FermionSignWilsonDiracGamma5.lean states only the Clifford and determinant lemmas, not this identity.",
+      "source": [
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+      ]
+    },
+    {
+      "id": "FGAUGE-R-MEDNYKH-2D-YANG-MILLS",
+      "inputs": [
+        "TFQ-0009"
+      ],
+      "output": "FGAUGE-MEDNYKH-2D-YANG-MILLS",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Prove the formula in Lean from the column orthogonality of characters, and the cellulation independence under the Pachner moves. Two-dimensional gauge theory has no propagating gluons, so the node models finite gauge structure and not four-dimensional confinement.",
+      "source": [
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+      ]
+    },
+    {
+      "id": "FQCD-R-STRONG-COUPLING-AREA-LAW",
+      "inputs": [
+        "TFQ-0030",
+        "TFQ-0024"
+      ],
+      "output": "FQCD-STRONG-COUPLING-AREA-LAW",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Prove the bound by a convergent strong-coupling (cluster) expansion in the style of Osterwalder-Seiler (1978), with explicit constants. The bound would replace the declared area-law formula of TFQ-0024 by a derived inequality at strong coupling; it says nothing about weak coupling or the continuum.",
+      "source": [
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+      ]
+    },
+    {
+      "id": "FQCD-R-FINITE-GROUP-FREEZING-FENCE",
+      "inputs": [
+        "TFQ-0031",
+        "TFQ-0012"
+      ],
+      "output": "FQCD-FINITE-GROUP-FREEZING-FENCE",
+      "status": "RECORD_PARENT",
+      "mechanism": "Fence: a fixed finite gauge group is not a route to the asymptotically free continuum limit, which needs beta to go to infinity; a finite route must enlarge the group, or pass to a quantum-group truncation, together with the lattice. The cited results are numerical; no rigorous freezing theorem is recorded here.",
+      "source": [
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+      ]
+    },
+    {
+      "id": "FQCD-R-CONTINUUM-EXISTENCE-ANNOUNCEMENT",
+      "inputs": [
+        "TFQ-0031"
+      ],
+      "output": "FQCD-CONTINUUM-EXISTENCE-ANNOUNCEMENT",
+      "status": "RECORD_PARENT",
+      "mechanism": "Not reviewed here, and nothing in this graph depends on it. If the proof and its Lean code become public and survive review, record it as an imported assumption for the finite-to-continuum bridge of TFQ-0031 after checking its axioms; it does not promote any node of this graph.",
+      "source": [
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+      ]
+    },
+    {
+      "id": "FQ-R-GLEASON-QI3-FRAME-FUNCTIONS",
+      "inputs": [
+        "FQ-GAP-BORN-UNIQUENESS-GLEASON"
+      ],
+      "output": "FQ-GLEASON-QI3-FRAME-FUNCTIONS",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "Either answer is a result. Over Q^3 a non-quadratic frame function exists (BornRationalRayObstruction.exotic_not_quadratic); over Q(i)^3 only the residue-modulo-2 class ansatz is excluded (BornGaussianMod2ClassRigidity.mod2_class_function_is_third). Continuum Gleason does not decide this, because Q(i)^3 is not complete.",
+      "source": [
+        "dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md"
+      ]
     },
     {
       "id": "UDG-R-TFQ-0003",
@@ -41152,6 +41414,20 @@
       "source": [
         "dag/derivations/29_computation/tfq_1364_authf_dtm0_simulation_open.md",
         "papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json"
+      ]
+    },
+    {
+      "id": "APP-R-MUB-PRIME-POWER-CHARACTERISTIC-TWO",
+      "inputs": [
+        "MUB-PRIME-POWER-CONSTRUCTION"
+      ],
+      "output": "MUB-PRIME-POWER-CHARACTERISTIC-TWO",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "The odd-characteristic family of MUB-PRIME-POWER-CONSTRUCTION uses x -> psi(a x^2 + b x), which fails in characteristic two because x -> x^2 is additive there. A Lean proof of this node, together with the odd case, would complete the prime-power construction.",
+      "source": [
+        "dag/derivations/25_mub/tfq_1366_mub_prime_power_characteristic_two.md",
+        "dag/derivations/independent/mub-prime-power-construction-odd.md",
+        "lean4/MubPrimePowerOddCharacteristic.lean"
       ]
     },
     {
@@ -59275,6 +59551,178 @@
       "coda_atlas_ids": [],
       "coda_atlas_paths": [],
       "existing_derivation_dag_ids": [
+        "FQCD-FINITE-TRANSFER-MATRIX-GAP"
+      ],
+      "f004_refs": [
+        "dag/derivations/17_finite_qcd/tfq_1049_fqcd_finite_transfer_matrix_gap.md",
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+      ],
+      "id": "TFQ-1049",
+      "lean4": [],
+      "local_id": "FQCD-FINITE-TRANSFER-MATRIX-GAP",
+      "name": "fqcd-finite-transfer-matrix-gap",
+      "obligation": "Prove the statement in Lean from the Perron-Frobenius theorem for positive matrices. The node is the automatic finite-volume gap only: it gives no bound uniform in volume or lattice spacing and is not the Yang-Mills mass gap of the Clay problem.",
+      "parent_id": "TFQ-0011",
+      "python": [],
+      "record_status": "OPEN_OBLIGATION",
+      "rust": [],
+      "source_slice": "unified_dag",
+      "stage": "FINITE_QCD",
+      "summary": "For a finite group G with a unitary representation, a finite periodic spatial lattice with edge set E and finite real beta, the temporal-gauge transfer matrix of the Wilson action acting on functions on G^E has strictly positive entries, so it has a simple largest eigenvalue lambda_0, a gauge-invariant Perron eigenvector, and every other eigenvalue satisfies |lambda| < lambda_0; the finite-volume gap log(lambda_0/|lambda_1|) is positive on the gauge-invariant subspace.",
+      "uuid": "e16dc279-441e-54fa-9982-27762b4e67e7"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY"
+      ],
+      "f004_refs": [
+        "dag/derivations/17_finite_qcd/tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.md",
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
+        "lean4/FermionSignWilsonDiracGamma5.lean"
+      ],
+      "id": "TFQ-1050",
+      "lean4": [],
+      "local_id": "FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY",
+      "name": "fqcd-wilson-dirac-gamma5-hermiticity",
+      "obligation": "Prove the operator identity in Lean for the finite lattice. A proof would supply the hypothesis that FSP-WILSON-DIRAC-GAMMA5 now imports; lean4/FermionSignWilsonDiracGamma5.lean states only the Clifford and determinant lemmas, not this identity.",
+      "parent_id": "TFQ-0026",
+      "python": [],
+      "record_status": "OPEN_OBLIGATION",
+      "rust": [],
+      "source_slice": "unified_dag",
+      "stage": "FINITE_QCD",
+      "summary": "On a finite periodic hypercubic lattice in dimension 2 or 4 with arbitrary unitary link matrices U_mu(x), Hermitian Euclidean gamma matrices and gamma5 anticommuting with each gamma_mu, the Wilson-Dirac operator D_W = m + sum_mu [gamma_mu (nabla_mu + nabla*_mu)/2 - (r/2) nabla*_mu nabla_mu] with real m and r satisfies gamma5 D_W gamma5 = D_W^dagger.",
+      "uuid": "49f12c7b-7bef-5972-bf17-0cafaceb7633"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "FGAUGE-MEDNYKH-2D-YANG-MILLS"
+      ],
+      "f004_refs": [
+        "dag/derivations/14_finite_gauge/tfq_1051_fgauge_mednykh_2d_yang_mills.md",
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
+        "lean4/FiniteGroupPachner.lean"
+      ],
+      "id": "TFQ-1051",
+      "lean4": [],
+      "local_id": "FGAUGE-MEDNYKH-2D-YANG-MILLS",
+      "name": "fgauge-mednykh-2d-yang-mills",
+      "obligation": "Prove the formula in Lean from the column orthogonality of characters, and the cellulation independence under the Pachner moves. Two-dimensional gauge theory has no propagating gluons, so the node models finite gauge structure and not four-dimensional confinement.",
+      "parent_id": "TFQ-0009",
+      "python": [],
+      "record_status": "OPEN_OBLIGATION",
+      "rust": [],
+      "source_slice": "unified_dag",
+      "stage": "FINITE_GAUGE",
+      "summary": "For a finite group G and a closed orientable surface of genus g, |Hom(pi_1(Sigma_g), G)| / |G| equals the sum over irreducible complex representations R of G of (|G| / dim R)^(2g-2); this number is the zero-area partition function of two-dimensional lattice gauge theory with gauge group G and does not depend on the cellulation of the surface.",
+      "uuid": "562cbcd3-3ed1-5f14-adf9-2428c20a4337"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "FQCD-STRONG-COUPLING-AREA-LAW"
+      ],
+      "f004_refs": [
+        "dag/derivations/17_finite_qcd/tfq_1052_fqcd_strong_coupling_area_law.md",
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+      ],
+      "id": "TFQ-1052",
+      "lean4": [],
+      "local_id": "FQCD-STRONG-COUPLING-AREA-LAW",
+      "name": "fqcd-strong-coupling-area-law",
+      "obligation": "Prove the bound by a convergent strong-coupling (cluster) expansion in the style of Osterwalder-Seiler (1978), with explicit constants. The bound would replace the declared area-law formula of TFQ-0024 by a derived inequality at strong coupling; it says nothing about weak coupling or the continuum.",
+      "parent_id": "TFQ-0030",
+      "python": [],
+      "record_status": "OPEN_OBLIGATION",
+      "rust": [],
+      "source_slice": "unified_dag",
+      "stage": "FINITE_QCD",
+      "summary": "For a finite gauge group G, a nontrivial irreducible unitary representation R and dimension d >= 2, there are explicit beta_0 > 0, K and sigma > 0 depending on G, R and d such that for 0 <= beta < beta_0 the Wilson-action expectation of the R-character of every rectangular Wilson loop C on a finite periodic lattice much larger than C satisfies |<W_R(C)>| <= K exp(-sigma Area(C)), with Area(C) the minimal spanning area.",
+      "uuid": "6140bee6-f364-5e32-8776-3ea91bb9dcaf"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "FQCD-FINITE-GROUP-FREEZING-FENCE"
+      ],
+      "f004_refs": [
+        "dag/derivations/17_finite_qcd/tfq_1053_fqcd_finite_group_freezing_fence.md",
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+      ],
+      "id": "TFQ-1053",
+      "lean4": [],
+      "local_id": "FQCD-FINITE-GROUP-FREEZING-FENCE",
+      "name": "fqcd-finite-group-freezing-fence",
+      "obligation": "Fence: a fixed finite gauge group is not a route to the asymptotically free continuum limit, which needs beta to go to infinity; a finite route must enlarge the group, or pass to a quantum-group truncation, together with the lattice. The cited results are numerical; no rigorous freezing theorem is recorded here.",
+      "parent_id": "TFQ-0031",
+      "python": [],
+      "record_status": "SOURCE_RECORD",
+      "rust": [],
+      "source_slice": "unified_dag",
+      "stage": "FINITE_QCD",
+      "summary": "Source record: lattice gauge theories whose gauge group is a finite subgroup of SU(2) or SU(3) follow the Lie-group theory at small beta and undergo a freezing transition at larger beta (Petcher-Weingarten 1980 for subgroups of SU(2); Bhanot-Rebbi 1981 for the 1080-element subgroup of SU(3)).",
+      "uuid": "2633e885-5a1a-5147-bccf-94ac7ec93d31"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "FQCD-CONTINUUM-EXISTENCE-ANNOUNCEMENT"
+      ],
+      "f004_refs": [
+        "dag/derivations/17_finite_qcd/tfq_1054_fqcd_continuum_existence_announcement.md",
+        "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
+      ],
+      "id": "TFQ-1054",
+      "lean4": [],
+      "local_id": "FQCD-CONTINUUM-EXISTENCE-ANNOUNCEMENT",
+      "name": "fqcd-continuum-existence-announcement",
+      "obligation": "Not reviewed here, and nothing in this graph depends on it. If the proof and its Lean code become public and survive review, record it as an imported assumption for the finite-to-continuum bridge of TFQ-0031 after checking its axioms; it does not promote any node of this graph.",
+      "parent_id": "TFQ-0031",
+      "python": [],
+      "record_status": "SOURCE_RECORD",
+      "rust": [],
+      "source_slice": "unified_dag",
+      "stage": "FINITE_QCD",
+      "summary": "Source record: an OpenAI announcement of October 2026 reports a model-generated existence proof for four-dimensional pure Yang-Mills theory and QCD, building on the Balaban renormalization-group programme, with a Lean formalization reported complete on 2026-10-16 and an external group led by D. Gross writing it up. The announcement does not state that the Clay mass-gap problem is solved.",
+      "uuid": "a656a7d9-8b8b-5949-9bb3-178aab80c31a"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "FQ-GLEASON-QI3-FRAME-FUNCTIONS"
+      ],
+      "f004_refs": [
+        "dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md",
+        "dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md",
+        "lean4/BornRationalRayObstruction.lean",
+        "lean4/BornGaussianMod2ClassRigidity.lean"
+      ],
+      "id": "TFQ-1055",
+      "lean4": [],
+      "local_id": "FQ-GLEASON-QI3-FRAME-FUNCTIONS",
+      "name": "fq-gleason-qi3-frame-functions",
+      "obligation": "Either answer is a result. Over Q^3 a non-quadratic frame function exists (BornRationalRayObstruction.exotic_not_quadratic); over Q(i)^3 only the residue-modulo-2 class ansatz is excluded (BornGaussianMod2ClassRigidity.mod2_class_function_is_third). Continuum Gleason does not decide this, because Q(i)^3 is not complete.",
+      "parent_id": "TFQ-0307",
+      "python": [],
+      "record_status": "OPEN_OBLIGATION",
+      "rust": [],
+      "source_slice": "unified_dag",
+      "stage": "FINITE_QM_CORE",
+      "summary": "Let V = Q(i)^3 with the standard Hermitian form. Decide whether every function f from the nonzero vectors of V to Q with f(u) + f(v) + f(w) = 1 for every orthogonal triple of nonzero vectors has the form f(v) = <v, rho v>/<v, v> for a Hermitian trace-one 3 x 3 matrix rho over Q(i), or exhibit one that does not; state separately the signed, nonnegative and {0,1}-valued variants, and whether the non-quadratic Q^3 frame function extends to Q(i)^3.",
+      "uuid": "bda39be8-54ab-569d-9349-5581eaa94c17"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
         "PGW-PREGENESIS-GRAMMAR",
         "PGW-R-PREGENESIS-GRAMMAR"
       ],
@@ -72628,6 +73076,31 @@
       "stage": "COMPUTATION",
       "summary": "DTM0 has no simulation theorem, no machine that runs encoded machines, no input or configuration encoding, no parser-to-execution agreement and no equivalence with Mathlib's Turing.TM0 or with Nat.Partrec.Code; its fuel-bounded evaluator decides only bounded runs.",
       "uuid": "dad66551-3fd8-5dab-b1f1-e99c025e2304"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "MUB-PRIME-POWER-CHARACTERISTIC-TWO"
+      ],
+      "f004_refs": [
+        "dag/derivations/25_mub/tfq_1366_mub_prime_power_characteristic_two.md",
+        "dag/derivations/independent/mub-prime-power-construction-odd.md",
+        "lean4/MubPrimePowerOddCharacteristic.lean"
+      ],
+      "id": "TFQ-1366",
+      "lean4": [],
+      "local_id": "MUB-PRIME-POWER-CHARACTERISTIC-TWO",
+      "name": "Complete MUB family in dimension 2^k for k at least 2",
+      "obligation": "The odd-characteristic family of MUB-PRIME-POWER-CONSTRUCTION uses x -> psi(a x^2 + b x), which fails in characteristic two because x -> x^2 is additive there. A Lean proof of this node, together with the odd case, would complete the prime-power construction.",
+      "parent_id": "TFQ-0403",
+      "python": [],
+      "record_status": "OPEN_OBLIGATION",
+      "rust": [],
+      "source_slice": "application_branches",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "summary": "For d = 2^k with k >= 2, construct d+1 bases of C^d, each orthonormal, with |<u, v>|^2 = 1/d for vectors u and v from different bases, using the Galois ring GR(4, k) and its Teichmuller set (Klappenecker-Roetteler) or the symplectic construction over F_(2^k) (Wootters-Fields), and verify every identity over an exact cyclotomic carrier.",
+      "uuid": "e460bf64-8958-5d3f-a45c-91844e8cfdae"
     },
     {
       "coda_atlas_ids": [],
