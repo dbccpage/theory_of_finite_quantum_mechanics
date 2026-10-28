@@ -4,7 +4,7 @@ use std::collections::{BTreeMap, BTreeSet};
 
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
-use omega_holonomy::{CellComplex, DiscreteConnection, ExactMatrix, ExactScalar, GaussianRational};
+use tfqm_holonomy::{CellComplex, DiscreteConnection, ExactMatrix, ExactScalar, GaussianRational};
 use serde::Serialize;
 
 use crate::error::WdpError;
@@ -121,9 +121,9 @@ impl U1Connection {
             });
         }
         let first =
-            omega_holonomy::ConnectionLaplacian::compute(&self.complex, &self.connection, None)?;
+            tfqm_holonomy::ConnectionLaplacian::compute(&self.complex, &self.connection, None)?;
         let second =
-            omega_holonomy::ConnectionLaplacian::compute(&other.complex, &other.connection, None)?;
+            tfqm_holonomy::ConnectionLaplacian::compute(&other.complex, &other.connection, None)?;
         let mut row_sum_bounds = Vec::with_capacity(first.total_dim);
         for i in 0..first.total_dim {
             let mut sum = BigRational::zero();
@@ -182,7 +182,7 @@ impl U1Connection {
 mod tests {
     use super::*;
     use num_traits::Zero;
-    use omega_holonomy::{compute_loop_holonomy, ConnectionLaplacian};
+    use tfqm_holonomy::{compute_loop_holonomy, ConnectionLaplacian};
     use omega_homology::scalar::{q, qr};
 
     fn phase(re: BigRational, im: BigRational) -> GaussianRational<BigRational> {

@@ -11,9 +11,9 @@ pub enum FusionError {
     #[error(transparent)]
     ExactField(#[from] linear_algebra::exact_field::ExactFieldError),
     #[error(transparent)]
-    AlgebraicReal(#[from] omega_number_theory::algebraic_real::AlgebraicRealError),
+    AlgebraicReal(#[from] tfqm_number_theory::algebraic_real::AlgebraicRealError),
     #[error(transparent)]
-    Scalar(#[from] omega_number_theory::scalar::ScalarError),
+    Scalar(#[from] tfqm_number_theory::scalar::ScalarError),
     #[error("rank {rank} is outside 1..={max}")]
     RankOutOfRange { rank: usize, max: usize },
 

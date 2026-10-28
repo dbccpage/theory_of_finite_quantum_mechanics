@@ -1,7 +1,7 @@
 
 use std::collections::{BTreeMap, BTreeSet};
 
-use omega_category_theory::finite_report_descent::{CoverClassification, FiniteReportPresheaf};
+use tfqm_category_theory::finite_report_descent::{CoverClassification, FiniteReportPresheaf};
 
 use super::model::Scenario;
 use super::{positions, EmpiricalError};

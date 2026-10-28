@@ -4,7 +4,7 @@ use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
 use serde::{Deserialize, Serialize};
 
-use omega_holonomy::matrix::ExactMatrix;
+use tfqm_holonomy::matrix::ExactMatrix;
 use omega_homology::finite_directed_graph::{DirectedGraphBuilder, TheoremProvenance};
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
@@ -14,7 +14,7 @@ pub enum MatrixPathError {
     #[error("Graph carrier refusal: {0}")]
     GraphCarrier(#[from] omega_homology::finite_directed_graph::NamedEdgeResolutionError),
     #[error("Holonomy refusal: {0}")]
-    Holonomy(#[from] omega_holonomy::HolonomyError),
+    Holonomy(#[from] tfqm_holonomy::HolonomyError),
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
@@ -83,7 +83,7 @@ impl RationalMatrix2x2 {
         let rows = (0..2)
             .map(|i| (0..2).map(|j| native.get(i, j).clone()).collect())
             .collect::<Vec<_>>();
-        omega_functional::residual_splitting::weighted_l1_operator_norm(
+        tfqm_functional::residual_splitting::weighted_l1_operator_norm(
             &rows,
             &[BigRational::one(), BigRational::one()],
         )

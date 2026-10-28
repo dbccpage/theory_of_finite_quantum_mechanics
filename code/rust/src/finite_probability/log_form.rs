@@ -7,10 +7,10 @@ use num_bigint::{BigInt, BigUint};
 use num_traits::{One, Signed, ToPrimitive, Zero};
 use omega_kernel::elementary::{ln_enclosure, ElementaryError};
 use omega_kernel::interval::Interval;
-use omega_number_theory::integer_factorization::{
+use tfqm_number_theory::integer_factorization::{
     factor_natural, is_prime_u64, FactorizationBudget, FactorizationError,
 };
-use omega_number_theory::rational::Rational;
+use tfqm_number_theory::rational::Rational;
 
 use crate::error::ClassicalShadowError;
 use crate::joint_table::{JointTable, WeightTableError};
@@ -320,7 +320,7 @@ pub fn total_correlation_form(table: &JointTable) -> Result<LogForm, LogFormErro
 mod tests {
     use super::*;
     use crate::test_support::{grid_simplices, simplex};
-    use omega_number_theory::rational::{ri, rq};
+    use tfqm_number_theory::rational::{ri, rq};
 
     fn decimal(text: &str) -> Rational {
         let (whole, fraction) = text.split_once('.').unwrap_or((text, ""));

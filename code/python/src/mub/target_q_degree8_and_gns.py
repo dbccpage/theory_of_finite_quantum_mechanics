@@ -1087,9 +1087,9 @@ def verify_target_q_lean4_and_rust_consistency(
             )
 
     lean_path = repo_root / "lean4" / "sdp" / "TargetQArchimedeanPositivstellensatz.lean"
-    rust_path = repo_root / "code" / "rust" / "src" / "mub" / "omega_native" / "mub6_degree8_sdp.rs"
+    rust_path = repo_root / "code" / "rust" / "src" / "mub" / "native" / "mub6_degree8_sdp.rs"
     if not rust_path.exists():
-        rust_path = repo_root / "omega_engine" / "crates_rs" / "omega_mub" / "src" / "omega_native" / "mub6_degree8_sdp.rs"
+        rust_path = repo_root / "omega_engine" / "crates_rs" / "omega_mub" / "src" / "native" / "mub6_degree8_sdp.rs"
 
     lean_matched: List[str] = []
     if lean_path.exists():

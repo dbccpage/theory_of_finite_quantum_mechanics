@@ -5,14 +5,14 @@ pub fn l2_diagnostic(values: &[f64]) -> f64 {
 }
 
 pub fn cyclotomic_l1<const P: usize>(
-    values: &[omega_number_theory::cyclotomic_field::Cyclotomic<P>],
+    values: &[tfqm_number_theory::cyclotomic_field::Cyclotomic<P>],
     embedding: i64,
 ) -> Result<
-    omega_number_theory::cyclotomic_field::Cyclotomic<P>,
-    omega_number_theory::real_embedding::EmbeddingError,
+    tfqm_number_theory::cyclotomic_field::Cyclotomic<P>,
+    tfqm_number_theory::real_embedding::EmbeddingError,
 > {
-    use omega_number_theory::cyclotomic_field::Cyclotomic;
-    let mut signs = omega_number_theory::real_embedding::RealEmbeddings::new(P)?;
+    use tfqm_number_theory::cyclotomic_field::Cyclotomic;
+    let mut signs = tfqm_number_theory::real_embedding::RealEmbeddings::new(P)?;
     let mut result = Cyclotomic::<P>::zero();
     for value in values {
         let sign = signs.sign_under_embedding(value.as_number(), embedding)?;

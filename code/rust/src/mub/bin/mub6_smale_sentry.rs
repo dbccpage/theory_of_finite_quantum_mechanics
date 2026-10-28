@@ -1,4 +1,4 @@
-use omega_mub::omega_native::exact::mub6_szollosi_executable::ExecutableQuartetSystem;
+use tfqm_mub::native::exact::mub6_szollosi_executable::ExecutableQuartetSystem;
 use std::{
     env, fs,
     path::{Path, PathBuf},

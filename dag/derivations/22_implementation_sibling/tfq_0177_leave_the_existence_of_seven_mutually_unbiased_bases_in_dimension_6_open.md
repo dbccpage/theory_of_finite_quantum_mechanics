@@ -29,7 +29,7 @@ In accordance with strict constructive principles:
 - [`absent: not located`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`code/rust/src/mub/src/omega_native/mub6_smale_sentry.rs`](../../code/rust/src/)
+- [`code/rust/src/mub/native/mub6_smale_sentry.rs`](../../code/rust/src/)
 - [`absent: no local rust twin located for papers/core/mub6/rust/network_simplex.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators

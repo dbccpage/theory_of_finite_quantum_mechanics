@@ -4,8 +4,8 @@ use crate::su2::{Quaternion, Su2Error};
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{matrix as mx, ExactFieldError};
 use num_traits::One;
-use omega_number_theory::cyclotomic::GaussianRat;
-use omega_number_theory::rational::{ri, Rational};
+use tfqm_number_theory::cyclotomic::GaussianRat;
+use tfqm_number_theory::rational::{ri, Rational};
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum SpinLiftError {

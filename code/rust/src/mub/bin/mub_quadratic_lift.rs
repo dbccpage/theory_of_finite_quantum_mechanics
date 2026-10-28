@@ -1,4 +1,4 @@
-use omega_mub::omega_native::exact::mub6_quadratic_lift::QuadraticLift;
+use tfqm_mub::native::exact::mub6_quadratic_lift::QuadraticLift;
 use std::{error::Error, fs, path::PathBuf};
 
 fn inspect_lift_bytes(

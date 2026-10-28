@@ -4,24 +4,24 @@ use num_rational::BigRational;
 use omega_contracts::mub_domain_ownership::{
     CANONICAL_MUB_DOMAIN_OWNER_V1, MUB_OWNERSHIP_CONTRACT_ID_V1,
 };
-use omega_functional::gamma2::{ExactCochainComplexQ, ExactGamma2Error};
-use omega_functional::phi1::ExactPhi1Certificate;
-use omega_homotopy_type_theory::primitive_difference::PrimitiveDifference;
+use tfqm_functional::gamma2::{ExactCochainComplexQ, ExactGamma2Error};
+use tfqm_functional::phi1::ExactPhi1Certificate;
+use tfqm_homotopy_type_theory::primitive_difference::PrimitiveDifference;
 use omega_policy::trichotomy::ObstructionDiagnosticClass;
 pub use omega_state::CodaTerminal;
 use omega_types::authority::AuthorityEffect;
-use omega_wdp::coda::coda_gtla::{
+use tfqm_wdp::coda::coda_gtla::{
     bind_domain_evidence, evaluate_exact, validate_primitive_difference, CodaExactInput,
     CodaGtlaEvaluation, CodaGtlaEvaluationError, DomainEvidenceBindingError,
     PrimitiveDifferenceReceiptError,
 };
 use serde::{Deserialize, Serialize};
 
-use crate::omega_native::exact::mub6_basis_extension_packet::{
+use crate::native::exact::mub6_basis_extension_packet::{
     discharge_t0_with_vector_cover, Mub6OdpInstance,
 };
 
-const ADAPTER_NAMESPACE: &str = "omega_mub::mub6_runtime_adapter_v1";
+const ADAPTER_NAMESPACE: &str = "tfqm_mub::mub6_runtime_adapter_v1";
 
 #[derive(Debug, Clone, Copy, PartialEq, PartialOrd, Serialize, Deserialize)]
 #[serde(tag = "kind", rename_all = "snake_case")]

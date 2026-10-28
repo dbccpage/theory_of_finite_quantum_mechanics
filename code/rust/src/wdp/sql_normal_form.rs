@@ -1,4 +1,4 @@
-use omega_category_theory::finite_functional_dependencies::{
+use tfqm_category_theory::finite_functional_dependencies::{
     natural_join, project, BinaryDecompositionReport, FdSchema, FunctionalDependency,
 };
 use std::collections::BTreeSet;

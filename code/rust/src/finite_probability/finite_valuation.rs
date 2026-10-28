@@ -1,7 +1,7 @@
 use std::collections::{BTreeMap, BTreeSet};
 
 use num_traits::{Signed, Zero};
-use omega_number_theory::rational::Rational;
+use tfqm_number_theory::rational::Rational;
 
 pub type Event = BTreeSet<usize>;
 

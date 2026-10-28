@@ -3,11 +3,11 @@ use std::collections::BTreeSet;
 
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::semiring_lumpability::lumpable_quotient;
-use omega_finite_probability::finite_valuation::BooleanValuation;
+use tfqm_finite_probability::finite_valuation::BooleanValuation;
 use omega_measurement::affine_calibration::{AffineCalibration, BoundedReading};
 use omega_measurement::finite_chain_clock::ChainClock;
-use omega_number_theory::cyclotomic::GaussianRat;
-use omega_number_theory::rational::{ri, rq};
+use tfqm_number_theory::cyclotomic::GaussianRat;
+use tfqm_number_theory::rational::{ri, rq};
 use omega_quantum_physics::exact_hermitian::outer;
 use omega_quantum_physics::exact_instrument::ExactDensityState;
 use omega_quantum_physics::instrument_repeatability::analyze_repeatability;

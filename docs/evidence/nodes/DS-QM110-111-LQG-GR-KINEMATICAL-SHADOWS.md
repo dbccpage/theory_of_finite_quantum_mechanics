@@ -74,7 +74,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/general_relativity/loop_quantum_gravity.rs`
 
 - file: [code/rust/src/general_relativity/loop_quantum_gravity.rs](../../../code/rust/src/general_relativity/loop_quantum_gravity.rs)
-- sha256 (`bytes`): `bd7871747c53cee825aff6575c167966d82314dc1740de9666478ecfb7b9ed29`
+- sha256 (`bytes`): `66d4f401480f3e4c57e3a19ebec8508d045198e8ff4f0ec25f785973fc522eb3`
 - cited in: record TFQ-0094
 - note: no test is cited for this symbol; its crate is tfqm_general_relativity
 - counts toward the grade: yes
@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/wdp/lib.rs`
 
 - file: [code/rust/src/wdp/lib.rs](../../../code/rust/src/wdp/lib.rs)
-- sha256 (`bytes`): `aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c`
+- sha256 (`bytes`): `9111d9c82247cc2f1e8176b0a0285a788fcd1d2bc6cd2c1d3be81f84f431d235`
 - cited in: record TFQ-0093, record TFQ-0094, record TFQ-0110
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes

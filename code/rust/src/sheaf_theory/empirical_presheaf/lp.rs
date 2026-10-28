@@ -142,7 +142,7 @@ fn verify_l1_residuals_and_duality(
         .iter()
         .all(|g| dot(g, &receipt.dual_witness) + &receipt.dual_offset <= Q::zero());
     let gap_zero = dot(target, &receipt.dual_witness) + &receipt.dual_offset == receipt.defect
-        && omega_functional::Phi1Functional::unweighted_l1_rational(&receipt.residual).as_ref()
+        && tfqm_functional::Phi1Functional::unweighted_l1_rational(&receipt.residual).as_ref()
             == Some(&receipt.defect);
     residual_ok && coefficients_ok && sup_norm_ok && adjoint_ok && gap_zero
 }

@@ -7,7 +7,6 @@
 //! --- yaml
 //! title: family_category
 //! file_name: family_category.rs
-//! file_location: ~/anomalon/anomalon_kernel/omega_core/src/ascent/lambdas/l161/family_category.rs
 //! lambda: L161
 //! tower_address: ascent/lambdas/l161/family_category.rs
 //! status: Coal

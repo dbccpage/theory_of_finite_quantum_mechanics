@@ -1,7 +1,7 @@
 
 use std::collections::{BTreeMap, BTreeSet};
 
-use omega_category_theory::finite_self_reference::{
+use tfqm_category_theory::finite_self_reference::{
     CheckedSelfReference, PartialComparisonProtocol, ReflexiveProvenance, SelfReferenceData,
     SelfReferencePoint, SelfReferenceSignature,
 };

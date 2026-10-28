@@ -292,7 +292,7 @@ def verify_gramian_structure(g: Sequence[Sequence[Cyc24]]) -> GramianStructureRe
 def ldlt_pivots_rational(m: Sequence[Sequence[Cyc24]]) -> List[Fraction]:
     """Exact rational LDL^T pivots of a Hermitian matrix over Q(zeta_24).
 
-    Replicates the exact semantics of `omega_native::mub6_quad_sdp::ldlt_pivots_rational`:
+    Replicates the exact semantics of `native::mub6_quad_sdp::ldlt_pivots_rational`:
     - Checks matrix is square, non-empty, and Hermitian.
     - Requires all diagonal pivots to be in Q (via `exact_rational`).
     - Requires pivots to be non-negative; raises ValueError on negative pivot.
@@ -509,7 +509,7 @@ def dual_certificate_matrix(strict: bool = False) -> List[List[Cyc24]]:
 class MubQuadSdpCertificate:
     """Full exact verification certificate for the 24x24 Gramian matrix.
 
-    Matches schema 'omega.mub.quad-sdp.v2' from omega_native::mub6_quad_sdp.
+    Matches schema 'omega.mub.quad-sdp.v2' from native::mub6_quad_sdp.
     """
     schema_version: str
     dimension: int

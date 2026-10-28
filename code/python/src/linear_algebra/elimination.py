@@ -1,6 +1,6 @@
 """Partial-pivoted LU factorization over Q.
 
-Origin: code/rust/src/mub/omega_native/mub6_smale_sentry.rs, which states
+Origin: code/rust/src/mub/native/mub6_smale_sentry.rs, which states
 that an n by n matrix has an exact LU factorization with partial row pivoting,
 P * A = L * U, and that L has ones on the diagonal.
 Claim: urn:omega:fqm:linear-algebra:partial-pivoted-lu:v1

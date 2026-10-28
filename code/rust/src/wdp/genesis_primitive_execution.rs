@@ -1,6 +1,6 @@
 use num_bigint::{BigInt, BigUint};
-use omega_combinatorics::cartesian_words::CartesianWords;
-use omega_combinatorics::enumeration::CombinatoricsError;
+use tfqm_combinatorics::cartesian_words::CartesianWords;
+use tfqm_combinatorics::enumeration::CombinatoricsError;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 

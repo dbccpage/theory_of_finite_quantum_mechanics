@@ -1,6 +1,6 @@
 use num_rational::BigRational;
 use num_traits::Zero;
-use omega_epk::matrix_path_kernel as native;
+use tfqm_local_green_global_red_lggr::matrix_path_kernel as native;
 use serde::{Deserialize, Serialize};
 
 use crate::error::WdpError;

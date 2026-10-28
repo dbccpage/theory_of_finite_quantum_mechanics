@@ -1,0 +1,420 @@
+{
+  "schema": "omega_mub.fixture_receipts.v1",
+  "authority_effect": "None",
+  "description": "Committed receipts whose headline verdict is not computed by the code that writes it: a literal, a value that cannot come out false, an assumed constant bound, or a file no current code produces. These files are fixtures. They are not evidence for any MUB(6) statement and must not be cited as computed results. Paths are relative to the repository root; sha256 is the committed byte digest. The hard-coded values these receipts rest on are listed, with their kind and reason, in external:unlocated, which the code reads; fixture_values names the files for each receipt. Source: omega_mub code review of 2026-10-15; decision D5 (Jeremy, 2026-10-15).",
+  "kinds": {
+    "literal": "the verdict field is written as a constant",
+    "by_construction": "the verdict is computed but cannot come out false",
+    "assumed_constant": "the verdict rests on a constant bound that is not derived",
+    "no_producer": "no code in the repository writes this file"
+  },
+  "fixtures": [
+    {
+      "path": "external:unlocated",
+      "sha256": "2036c2662ca47f821c5b241bf006fe1c1813f91a27eefc42f8e16194cf3d13b5",
+      "evidence_kind": "fixture",
+      "kind": "literal",
+      "fields": [
+        "cross_orbit_circulation[].phi1",
+        "cross_orbit_circulation[].is_obstructed",
+        "declared_catalog_classification.unassigned",
+        "timestamp"
+      ],
+      "producer": "external:sha256:572b73aae02e5a69430e3b888298304b87f8cbcbdd5aec28ec4ec7ccd0f0a415:532",
+      "literal_at": [
+        "external:unlocated",
+        "external:unlocated",
+        "external:sha256:572b73aae02e5a69430e3b888298304b87f8cbcbdd5aec28ec4ec7ccd0f0a415"
+      ],
+      "reason": "Phi1 values are per-enum constants compared with a constant gamma, and classify_orbit always returns a class so unassigned is always 0.",
+      "fixture_values": [
+        "external:sha256:6c9c6de89ff5935564423b6cbd219f77d22f352050160b4ce2f72cfa27853c45",
+        "external:sha256:880db5c48dca21d07937f0fb0197e512a0009cbd2bab556f6835f6b132ff6a01",
+        "code/rust/src/mub/fixtures/mub6_gap_solver.json"
+      ]
+    },
+    {
+      "path": "external:unlocated",
+      "sha256": "38af0ff8468aeb99529113e4939cbab4d05addb9daf8c408b3429ccf473bc961",
+      "evidence_kind": "fixture",
+      "kind": "by_construction",
+      "fields": [
+        "candidates[omega_mass,wall_functional_f].gate_a.pass",
+        "candidates[].disposition",
+        "firewall ('scalar I has A not B')"
+      ],
+      "producer": "external:unlocated:346",
+      "literal_at": [
+        "external:unlocated"
+      ],
+      "reason": "For omega_mass and wall_functional_f the invariant is a function of the mass, so the same-mass collision test cannot fire; the disposition string is the same whether Gate A passes or not. Written by a unit test.",
+      "fixture_values": [
+        "external:sha256:b186f4aff557cfdd28880c2b655745bef79669369e0b564854d2ff8c6bb191a5"
+      ]
+    },
+    {
+      "path": "external:unlocated",
+      "sha256": "867d18a65b0cdf8fe7292872588d552f27d4015b8edd7677e838903c896b3a5d",
+      "evidence_kind": "fixture",
+      "kind": "literal",
+      "fields": [
+        "basepoints[T0_product].pairwise_mu",
+        "basepoints[].gate_a_reason"
+      ],
+      "producer": "external:unlocated:227",
+      "literal_at": [
+        "external:unlocated",
+        "external:unlocated"
+      ],
+      "reason": "The T0 pairwise_mu flag is passed as the literal true and gate_a_reason is fixed prose; the top-level verdict is computed from the Dita seeds only. Written by a unit test on every cargo test.",
+      "fixture_values": [
+        "external:sha256:4a383e209bd933a361c557e6a19f2b52f9bb432a5a83074ecfa0562c1323fdb9",
+        "external:sha256:19dde3b7bc38ff0caeb0f7207d2dd4b43ae6e1d5935c4657ef6b28dc5900a163"
+      ]
+    },
+    {
+      "path": "external:unlocated",
+      "sha256": "8cfde36248b61bc7dc904cf5f48cebb67f03e964f6a988549fe736fcbdcb6d53",
+      "evidence_kind": "fixture",
+      "kind": "assumed_constant",
+      "fields": [
+        "min_extension_psi_gap",
+        "certified_sample_boxes[].verified_positive",
+        "complete"
+      ],
+      "producer": "external:sha256:918a36e1e86d73fc5934c02ddc1e1f2106df9e51a3e1d2011a689927665f2527:126",
+      "literal_at": [
+        "external:unlocated"
+      ],
+      "reason": "min_extension_psi_gap equals base_gap 37249/90000 exactly and any refined outside box can be certified by that constant or by one of two triad gaps; the triad gaps themselves are computed.",
+      "fixture_values": [
+        "external:sha256:17ba05af8615274b6205f00534c37707f4428bda39e811722775c58edd9e99bf"
+      ]
+    },
+    {
+      "path": "external:unlocated",
+      "sha256": "5d534f8d8c8b93c5bcd9cde8d136d9fff84a510ef05b690c35edc1cc6a60ae6f",
+      "evidence_kind": "fixture",
+      "kind": "assumed_constant",
+      "fields": [
+        "complete",
+        "outside_boxes_certified",
+        "min_extension_psi_gap",
+        "boxes[].verified_positive"
+      ],
+      "producer": "external:sha256:3f4bccc1bd563ce7b8b7303a191c53a18b144edfa66029dd829a20d8e7cc9402:134",
+      "literal_at": [
+        "external:unlocated"
+      ],
+      "reason": "extension_psi_lower is base_gap 37249/90000 plus a nonnegative term, so every strictly-outside box passes psi_gap > 0 whatever the matrix; the K6(3) family used is not unimodular.",
+      "fixture_values": [
+        "external:sha256:ef1090c1172826b2cb1fcddc81b0784d27d2f2ab84a236848a09f85fd686a166"
+      ]
+    },
+    {
+      "path": "external:unlocated",
+      "sha256": "30d57f53d99a2d5d40c9aa11fe3f5db71f20dfc0804bfd2b2797a3524e7ecd64",
+      "evidence_kind": "fixture",
+      "kind": "assumed_constant",
+      "fields": [
+        "complete",
+        "outside_boxes_certified",
+        "min_extension_psi_gap",
+        "boxes[].verified_positive"
+      ],
+      "producer": "external:sha256:28981678fe8fc62e6db2b6c5431fbeec83e5f69542c962cd156bafb222c44117:131",
+      "literal_at": [
+        "external:unlocated"
+      ],
+      "reason": "psi lower bound is base_gap plus nonnegative terms and the network-simplex fallback cochain contains the constant 37249, so no box can fail; base_gap comes from one fixed candidate U.",
+      "fixture_values": [
+        "external:sha256:0583d897e89a71429be57824d532925b0d93dc6de3a8b1ec10722811d783d218"
+      ]
+    },
+    {
+      "path": "external:unlocated",
+      "sha256": "0eb63944ecb8632c4adc6615ddebcf3c6d3476e75865b58aeefccd3bedb301ba",
+      "evidence_kind": "fixture",
+      "kind": "literal",
+      "fields": [
+        "overall_status",
+        "total_steps_failed",
+        "zero_float_discipline_verified",
+        "partition_covers_verified",
+        "continuous_chaining_verified",
+        "boundary_residues_verified",
+        "cech_cocycles_verified",
+        "moment_sdp_ldlt_verified",
+        "steps[].passed"
+      ],
+      "producer": "external:unlocated:838",
+      "literal_at": [
+        "external:unlocated (every step pushed with passed: true)",
+        "external:unlocated",
+        "external:unlocated",
+        "external:unlocated"
+      ],
+      "reason": "Every step row is written passed: true, so overall_status can only read CERTIFIED; the committed file also has zero_float_discipline_verified true where the code writes false, and current code exits at step 3.2 (closure_certified false), so this file is not reproducible.",
+      "fixture_values": [
+        "external:unlocated",
+        "external:sha256:4a2316dd4830345eab9c90551191a322ff32f34b63f1e6760b35ee1eefd0231b",
+        "external:sha256:7a988e0ea15de93ff6bcdf3f6af26634325653b41e8e8f44d3e5eb2e9f29050a"
+      ]
+    },
+    {
+      "path": "papers/core/mub6/artifacts/mub_flat_extension_rank_obstruction_receipt.json",
+      "sha256": "d385b08470810eb18f4157d214debc5a0bfa694775ffe182b7fe75d67d14ec30",
+      "evidence_kind": "fixture",
+      "kind": "no_producer",
+      "fields": [
+        "status",
+        "curto_fialkow_evaluations[].rank_m1",
+        "curto_fialkow_evaluations[].rank_m2",
+        "is_rank_gap_certified"
+      ],
+      "producer": null,
+      "literal_at": [
+        "external:unlocated (Rust analogue hard-codes ranks 21/1)"
+      ],
+      "reason": "No code in the repo produces rank 36/144 for X0 or S6; the only Rust ledger function hard-codes ranks 21 and 1, and a rank gap would show non-flatness, not an obstruction.",
+      "fixture_values": [
+        "external:sha256:a25d1fe196266414a9dc9c30a14e4c8c425bbe3f7f3af0a8af66885a53166c17"
+      ]
+    },
+    {
+      "path": "papers/core/mub6/artifacts/mub_karlsson_volume_cover.json",
+      "sha256": "56a5ea4f2c0a6a3aefeb3736607925c527dfc93d0a1a231058ddb434248df88f",
+      "evidence_kind": "fixture",
+      "kind": "assumed_constant",
+      "fields": [
+        "complete",
+        "outside_boxes_certified",
+        "min_extension_psi_gap",
+        "boxes[].verified_positive"
+      ],
+      "producer": null,
+      "literal_at": [
+        "external:unlocated"
+      ],
+      "reason": "Copy of the tests/ cover with a different firewall string; no code writes to this path (the bin writes tests/ and repo-root artifacts/), and its verdict rests on the same base_gap constant.",
+      "fixture_values": [
+        "external:sha256:ef1090c1172826b2cb1fcddc81b0784d27d2f2ab84a236848a09f85fd686a166"
+      ]
+    },
+    {
+      "path": "papers/core/mub6/artifacts/mub_target_4_gap_propagation_receipt.json",
+      "sha256": "9b1fd146c0d1a3568d13a74f52e90091e738f13ec1605168d8e5fd8342f82d45",
+      "evidence_kind": "fixture",
+      "kind": "assumed_constant",
+      "fields": [
+        "verified",
+        "all_margins_positive"
+      ],
+      "producer": null,
+      "literal_at": [
+        "external:unlocated (generate_target4_receipt builds the struct; nothing writes the file)",
+        "external:unlocated"
+      ],
+      "reason": "verified is the literal true and the 250000 cells all get the same margin base_gap minus L*h/2 from two assumed constants; no function is evaluated.",
+      "fixture_values": [
+        "external:sha256:43c7b501797505fe33219b0f637127bd2cc1ae9f8aaf3a75b78b3eb6ca8620d1"
+      ]
+    },
+    {
+      "path": "sources/atlas/papers/mub6/artifacts/mub_target_a10_global_cover_receipt.json",
+      "sha256": "403a692d6b156e70c89a8befc4cfe0c3e47f3e80670c8b282c7b315131b00a98",
+      "evidence_kind": "fixture",
+      "kind": "literal",
+      "fields": [
+        "regional_covers.*.certified",
+        "global_volume_conservation.volume_conserved",
+        "boundary_adjacency_verified",
+        "verified"
+      ],
+      "producer": "sources/atlas/papers/mub6/code/mub_verify/target_a10_global_cover.py:1351",
+      "literal_at": [
+        "sources/atlas/papers/mub6/code/mub_verify/target_a10_global_cover.py",
+        "external:unlocated (Rust analogue)"
+      ],
+      "reason": "Written by a Python script (not by omega_mub) from constant margins with certified/verified set to True; the Rust analogue also sets certified: true after checks on literal volumes."
+    },
+    {
+      "path": "papers/core/mub6/artifacts/mub_target_a11_orbit_exhaustiveness_receipt.json",
+      "sha256": "f5d0670490ad082094837efd856c8ea2b743458723c8716f235d0df6264aa4cc",
+      "evidence_kind": "fixture",
+      "kind": "literal",
+      "fields": [
+        "catalog_exhaustiveness.all_orbits_mapped_to_certified_regions",
+        "verified"
+      ],
+      "producer": "sources/atlas/papers/mub6/code/mub_verify/target_a11_orbit_exhaustiveness.py:939",
+      "literal_at": [
+        "sources/atlas/papers/mub6/code/mub_verify/target_a11_orbit_exhaustiveness.py",
+        "external:unlocated (Rust analogue)"
+      ],
+      "reason": "Written by a Python script (not by omega_mub) with both fields as the literal True; the Rust analogue enumerates no orbits and its classifier always assigns a class.",
+      "fixture_values": [
+        "external:sha256:880db5c48dca21d07937f0fb0197e512a0009cbd2bab556f6835f6b132ff6a01"
+      ]
+    },
+    {
+      "path": "sources/atlas/papers/mub6/artifacts/mub_target_a12_smale_sentry_receipt.json",
+      "sha256": "29902b40cbf238ccb7dd50fcf53e0f72b8a30d8a24df17b84ae7a4c064520ac9",
+      "evidence_kind": "fixture",
+      "kind": "no_producer",
+      "fields": [
+        "sentry_scan_summary.all_cells_certified_positive_margin",
+        "bifurcation_status.branch_a_confirmed",
+        "verified"
+      ],
+      "producer": null,
+      "literal_at": [
+        "external:unlocated (scan re-reads caller margins)"
+      ],
+      "reason": "No writer in the repo; the Rust sentry only re-reads the literal leaf margins (12133/30000) and is never applied to the MUB system."
+    },
+    {
+      "path": "papers/core/mub6/artifacts/mub_target_a13_grand_synthesis_receipt.json",
+      "sha256": "9c9e505fce9862b3aa715e59fa89a076f1ac1bedcf2d7f4c99c830efd875d295",
+      "evidence_kind": "fixture",
+      "kind": "no_producer",
+      "fields": [
+        "grand_synthesis.grand_synthesis_certified",
+        "premise_g3_combinatorial_gluing.certified_cover_implies_no_fourth",
+        "premise_g3_combinatorial_gluing.zero_rel_variety_empty_on_cover",
+        "verified"
+      ],
+      "producer": null,
+      "literal_at": [
+        "external:unlocated (Rust analogue: zero_rel_empty from literal leaf margins)",
+        "external:unlocated"
+      ],
+      "reason": "No writer in the repo (only a reader in verify_all_receipts.py); the Rust analogue sets no_fourth_basis from literal leaf margins and returns it true for the all-ones matrix.",
+      "fixture_values": [
+        "external:sha256:2fce23379fe1d115cbcfc0275593c2ebfc9b1f25624c5bc5bdca8d9e887cd018"
+      ]
+    },
+    {
+      "path": "sources/atlas/papers/mub6/artifacts/mub_target_a2_deltoid_cusp_receipt.json",
+      "sha256": "e818a88d2658dee3e020b053f812032d7a24ce893455d7e0172bef99c1ac1dda",
+      "evidence_kind": "fixture",
+      "kind": "no_producer",
+      "fields": [
+        "deltoid_cusps[].factorization_verified",
+        "deltoid_cusps[].margin_verified",
+        "bisection_partition.desingularization_verified",
+        "verified"
+      ],
+      "producer": null,
+      "literal_at": [
+        "external:unlocated (invented Q coefficients)",
+        "external:unlocated"
+      ],
+      "reason": "Schema string differs from the Rust schema (hyphens vs underscores) and no code writes it; the Rust analogue factorization holds by definition of Q and all_cells_certified is the literal true; cusp 0 is labelled F6 though the family never meets F6.",
+      "fixture_values": [
+        "external:sha256:f5d0844f2b5743bd8fee6809b7e783f633fa1e0e54ddb38759fc83299a30ead1"
+      ]
+    },
+    {
+      "path": "sources/atlas/papers/mub6/artifacts/mub_target_a8_collar_boundary_receipt.json",
+      "sha256": "597f71a52b625c96455db86b3cb08e3ddeea40dce7350c508ea9bc5d09e0c858",
+      "evidence_kind": "fixture",
+      "kind": "no_producer",
+      "fields": [
+        "verified",
+        "interface_overlap_verified",
+        "circulation_positive",
+        "phi1_ge_circulation",
+        "all_margins_positive"
+      ],
+      "producer": null,
+      "literal_at": [
+        "external:unlocated (Rust analogue hard-codes collar_certified/karlsson_certified)",
+        "receipt values derive from 37249/90000 and 85/9"
+      ],
+      "reason": "Its key set differs from CollarBoundaryReceipt and no Python or Rust code writes it; every margin and the circulation 110047/90000 come from the assumed constants.",
+      "fixture_values": [
+        "external:sha256:9b60e50b4da7accb7fc42596f9f528f55c93cdac49eea7880fbeb662ca0bfc5e",
+        "external:sha256:0f604a9e7cd6d7e8ec395922c5bb10fd69387a6095b1e8c65e71707f0bacc99c"
+      ]
+    },
+    {
+      "path": "papers/core/mub6/artifacts/mub_target_a9_haagerup_receipt.json",
+      "sha256": "6b46ef0dc4c68514108d4284256173deabeeeed983e6260f5e3f17ffbab839ce",
+      "evidence_kind": "fixture",
+      "kind": "no_producer",
+      "fields": [
+        "verified",
+        "network_simplex.phi1_strictly_positive",
+        "orbit_isolation.all_isolated"
+      ],
+      "producer": null,
+      "literal_at": [
+        "external:unlocated (circulation from certified_margin)",
+        "external:unlocated"
+      ],
+      "reason": "Key set differs from HaagerupOrbitReceipt and no code writes it; the Rust analogue builds the circulation from a constant margin, uses non-invariant exponent multisets for isolation, and the matrix called H6 is Dita D6.",
+      "fixture_values": [
+        "external:sha256:46c839943bfe20a6928ed093c6421e33fd92bdbf723cde1c48803f0a8a91d6e5"
+      ]
+    },
+    {
+      "path": "papers/core/mub6/artifacts/mub_target_b2_global_gluing_receipt.json",
+      "sha256": "e0e3b6451151e9a6626b8078c3504e04855e354feccaf1472243d246faacd532",
+      "evidence_kind": "fixture",
+      "kind": "no_producer",
+      "fields": [
+        "no_complete_mub6",
+        "global_cross_section_obstructed",
+        "circulation_obstruction_verified",
+        "verified"
+      ],
+      "producer": null,
+      "literal_at": [
+        "external:unlocated",
+        "external:unlocated (injected twist)"
+      ],
+      "reason": "No writer in the repo; in the Rust analogue the cross-section test returns all_points_obstructed || hol_non_trivial (always true), dual_gap_zero is the literal true, and the holonomy comes from an injected twist.",
+      "fixture_values": [
+        "external:sha256:157201158c3da4c66cd796cb6f7639b7a2b77ad86ea31138e4acf2ebb87cdeec"
+      ]
+    },
+    {
+      "path": "papers/core/mub6/artifacts/mub_target_b3_manifold_integration_receipt.json",
+      "sha256": "e369a3db8b07f6743b1984db97fae7a7710d1c057fa4f21c73643a6340f9909e",
+      "evidence_kind": "fixture",
+      "kind": "no_producer",
+      "fields": [
+        "master_unified_obstruction.complete_moduli_non_extendibility_closure",
+        "verified"
+      ],
+      "producer": null,
+      "literal_at": [
+        "external:unlocated (Rust sets closure_certified: false)"
+      ],
+      "reason": "No writer in the repo, and the committed file reports closure true while the current Rust module fixes closure_certified to false, so no current code can produce it.",
+      "fixture_values": [
+        "external:sha256:7a988e0ea15de93ff6bcdf3f6af26634325653b41e8e8f44d3e5eb2e9f29050a"
+      ]
+    },
+    {
+      "path": "papers/core/mub6/artifacts/mub_target_g1_matolcsi_conjecture2_receipt.json",
+      "sha256": "daf213fa4b27b16cb080d5bdf7f3dc68e5ac1649fe5ed986f71f588b533e212d",
+      "evidence_kind": "fixture",
+      "kind": "literal",
+      "fields": [
+        "ideal_55_poly_status",
+        "ideal_membership_verdict",
+        "mathematical_synthesis"
+      ],
+      "producer": "external:unlocated:712",
+      "literal_at": [
+        "external:unlocated"
+      ],
+      "reason": "Both status strings are literals that do not read the computed Tao values, and the 'holds identically' sentence rests on 7 sampled points; the write error is ignored.",
+      "fixture_values": [
+        "external:sha256:6c9c6de89ff5935564423b6cbd219f77d22f352050160b4ce2f72cfa27853c45"
+      ]
+    }
+  ]
+}

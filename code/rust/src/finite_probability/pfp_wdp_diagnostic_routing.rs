@@ -1,7 +1,7 @@
 //! Diagnostic class, routing terminal, residual class and authority tag: exhaustive tables of the real source maps.
 //!
 //! Exact replay of `code/python/src/qm/pfp_wdp_diagnostic_routing.py` for PFP batch 01, node
-//! PG-WDP-DIAGNOSTIC-NOT-ROUTING. The enumerations and maps are transcribed from the_symbol_game
+//! PG-WDP-DIAGNOSTIC-NOT-ROUTING. The enumerations and maps are transcribed from an external source
 //! (`omega_types` routing.rs / terminal_status.rs, `omega_policy` trichotomy.rs, `omega_id_run` run.rs 626-633,
 //! `omega_certifiers` checked_packet.rs 248, external WitnessedDifference/Routing.lean). Rust uses enums and `match`;
 //! it recomputes every summary by enumeration (all 343 policies, all 640 fiber inputs, all 21 statuses) and never reads

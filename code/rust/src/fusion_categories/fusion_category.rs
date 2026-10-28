@@ -519,7 +519,7 @@ impl<K: FusionScalar> Gauge<K> {
         for (labels, value) in &self.u {
             u.insert(
                 *labels,
-                omega_number_theory::scalar::inverse(value).map_err(FusionError::from)?,
+                tfqm_number_theory::scalar::inverse(value).map_err(FusionError::from)?,
             );
         }
         Ok(Self { u })
@@ -794,7 +794,7 @@ impl<K: FusionScalar> FusionCategory<K> {
                     let f = block.cols[j];
                     let numerator = gauge.require([a, b, e])?.mul(gauge.require([e, c, d])?);
                     let denominator = gauge.require([b, c, f])?.mul(gauge.require([a, f, d])?);
-                    let factor = omega_number_theory::scalar::divide(&numerator, &denominator)
+                    let factor = tfqm_number_theory::scalar::divide(&numerator, &denominator)
                         .map_err(FusionError::from)?;
                     Ok(factor.mul(block.matrix.get_ref(i, j)?))
                 },
@@ -830,7 +830,7 @@ impl<K: FusionScalar> FusionCategory<K> {
         let b_star = self.ring.dual(b)?;
         let right = self.unit_constraint([b_star, b, unit, unit], unit, b)?;
         let left_inverse = self.unit_constraint([unit, b, b_star, unit], b, unit)?;
-        let left = omega_number_theory::scalar::inverse(left_inverse).map_err(FusionError::from)?;
+        let left = tfqm_number_theory::scalar::inverse(left_inverse).map_err(FusionError::from)?;
         Ok((right.clone(), left))
     }
 
@@ -892,7 +892,7 @@ impl<K: FusionScalar> FusionCategory<K> {
             if multiplicity == 0 {
                 continue;
             }
-            let n = omega_number_theory::scalar::from_i64::<K>(
+            let n = tfqm_number_theory::scalar::from_i64::<K>(
                 i64::try_from(multiplicity).map_err(|_| FusionError::Overflow {
                     context: "embedding a fusion coefficient",
                 })?,
@@ -975,7 +975,7 @@ impl<K: FusionScalar> FusionCategory<K> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_number_theory::rational::{rq, Rational};
+    use tfqm_number_theory::rational::{rq, Rational};
 
     #[test]
     fn generic_category_admission_bounds_storage_and_law_work_before_coefficients() {

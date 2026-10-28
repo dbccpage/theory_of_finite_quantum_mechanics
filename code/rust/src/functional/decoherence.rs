@@ -1,7 +1,7 @@
 
 
 use linear_algebra::backend::basic_matrix::BasicMatrix;
-use omega_number_theory::cyclotomic::GaussianRat;
+use tfqm_number_theory::cyclotomic::GaussianRat;
 
 fn check_well_formed(matrix: &BasicMatrix<GaussianRat>) -> Result<(), DecoherenceError> {
     if matrix.rows() == 0 || matrix.cols() == 0 {

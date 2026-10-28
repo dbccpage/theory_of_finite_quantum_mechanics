@@ -4,7 +4,6 @@ Exact integer Smith Normal Form and Betti numbers.
 
 AuthorityEffect: None.
 
-Canonical Implementation: omega_engine.crates.homology_theory.snf_betti
 """
 
 

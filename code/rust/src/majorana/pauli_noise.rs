@@ -2,7 +2,7 @@
 use linear_algebra::backend::basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
 use linear_algebra::exact_field::{matrix, ExactFieldError};
 use num_traits::Signed;
-use omega_number_theory::{ri, rq, One, Rational, Zero};
+use tfqm_number_theory::{ri, rq, One, Rational, Zero};
 use serde::{Deserialize, Serialize};
 
 use crate::braid_action::MajoranaBraidAction;

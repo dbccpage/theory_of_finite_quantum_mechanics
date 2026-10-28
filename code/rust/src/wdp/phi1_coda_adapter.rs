@@ -6,11 +6,11 @@ use crate::coda::coda_gtla::{
 };
 use num_bigint::BigInt;
 use num_rational::BigRational;
-use omega_functional::gamma2::{ExactCochainComplexQ, ExactGamma2Error};
-use omega_functional::phi1::ExactPhi1Certificate;
-use omega_homotopy_type_theory::primitive_difference::PrimitiveDifference;
+use tfqm_functional::gamma2::{ExactCochainComplexQ, ExactGamma2Error};
+use tfqm_functional::phi1::ExactPhi1Certificate;
+use tfqm_homotopy_type_theory::primitive_difference::PrimitiveDifference;
 use omega_policy::trichotomy::ObstructionDiagnosticClass;
-use omega_epk::residual_families::{
+use tfqm_local_green_global_red_lggr::residual_families::{
     reconcile_verified, shape_signature_from_exact_complex, FamilyCollision, FamilyRegistry,
     FamilyResolution, ShapeSignatureError,
 };

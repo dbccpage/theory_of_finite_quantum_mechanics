@@ -1,8 +1,8 @@
 
 use num_rational::BigRational;
 use num_traits::Signed;
-use omega_functional::l1_seminorm::L1Seminorm;
-use omega_functional::phi1::VerifiedExactPhi1;
+use tfqm_functional::l1_seminorm::L1Seminorm;
+use tfqm_functional::phi1::VerifiedExactPhi1;
 use omega_solvers::solver_lp_phi1_quotient::solve_exact_phi1;
 use serde::{Deserialize, Serialize};
 
@@ -115,7 +115,7 @@ impl WeightedComplex {
 mod tests {
     use super::*;
     use num_traits::Zero;
-    use omega_functional::phi1::Phi1Functional;
+    use tfqm_functional::phi1::Phi1Functional;
     use omega_homology::scalar::q;
 
     #[test]

@@ -3,7 +3,7 @@ use linear_algebra::backend::basic_matrix::{BasicMatrix, MatrixError, OperationL
 use linear_algebra::exact_field::{involution as star, matrix as mx, ordered, ExactFieldError};
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
-use omega_number_theory::cyclotomic::GaussianRat;
+use tfqm_number_theory::cyclotomic::GaussianRat;
 use std::collections::{BTreeMap, BTreeSet};
 
 pub type Operator = BasicMatrix<GaussianRat>;

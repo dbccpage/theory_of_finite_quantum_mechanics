@@ -142,7 +142,7 @@ pub use wdp_lggr_chromatic::{ChromaticCertificate, ChromaticConstraintSystem};
 mod tests {
     use super::*;
     use num_traits::Zero;
-    use omega_functional::phi1::Phi1Functional;
+    use tfqm_functional::phi1::Phi1Functional;
     use omega_homology::scalar::{q, qr};
     use omega_solvers::solver_lp_phi1_quotient::solve_exact_phi1;
     use std::collections::{BTreeMap, BTreeSet};

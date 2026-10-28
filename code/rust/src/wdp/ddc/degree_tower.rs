@@ -1,4 +1,4 @@
-use omega_functional::binary_degree::{
+use tfqm_functional::binary_degree::{
     BinaryDegreeError, BinaryDegreeFunctional, MAX_EXHAUSTIVE_BINARY_DOMAIN_DIM,
 };
 use serde::{Deserialize, Serialize};
@@ -138,7 +138,7 @@ impl BinaryLinearMap {
         &self,
         target: &[bool],
     ) -> Result<usize, DegreeTowerError> {
-        omega_functional::phi1::Phi1Functional::binary(&self.rows, self.domain_dim, target)
+        tfqm_functional::phi1::Phi1Functional::binary(&self.rows, self.domain_dim, target)
             .map_err(Into::into)
     }
 }
@@ -212,7 +212,7 @@ impl BinaryCochainSegment {
         }
 
         let phi = self.previous.min_hamming_distance_to_image(residual)?;
-        let gamma = omega_functional::gamma2::Gamma2Functional::binary(
+        let gamma = tfqm_functional::gamma2::Gamma2Functional::binary(
             &self.next.rows,
             self.next.domain_dim,
             residual,

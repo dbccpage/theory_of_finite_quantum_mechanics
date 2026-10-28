@@ -4,9 +4,9 @@ use crate::genesis_primitive_execution::{PrimitiveEvent, PrimitiveInstance};
 use crate::genesis_questions::{
     Answer, History, Presentation, ProtectedQuestion, Question, QuestionLimits,
 };
-use omega_category_theory::finite_question_family::{factor_tables, FiniteQuestionFamily};
-use omega_category_theory::finite_report_query::ReportQueryDecision;
-use omega_category_theory::finite_report_repair::{
+use tfqm_category_theory::finite_question_family::{factor_tables, FiniteQuestionFamily};
+use tfqm_category_theory::finite_report_query::ReportQueryDecision;
+use tfqm_category_theory::finite_report_repair::{
     repair_report, replay_repair_prefix, verify_repair, RepairLimits,
 };
 use omega_ooutwire_primitives::{

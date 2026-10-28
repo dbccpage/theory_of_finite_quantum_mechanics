@@ -2,7 +2,7 @@
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use num_bigint::BigInt;
 use num_traits::{One, Signed, Zero};
-use omega_number_theory::rational::Rational;
+use tfqm_number_theory::rational::Rational;
 
 use crate::error::ClassicalShadowError;
 use crate::finite_set::{checked_size_product, FinN};
@@ -468,7 +468,7 @@ impl StochasticMap {
 mod tests {
     use super::*;
     use crate::test_support::{grid_simplices, simplex, stochastic as map};
-    use omega_number_theory::rational::{ri, rq};
+    use tfqm_number_theory::rational::{ri, rq};
 
     fn q(n: i64, d: i64) -> Rational {
         rq(n, d)

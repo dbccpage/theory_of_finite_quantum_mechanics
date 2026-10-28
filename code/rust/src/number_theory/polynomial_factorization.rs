@@ -5,7 +5,7 @@ use linear_algebra::scalars::{ExactRing, Field, Ring, Semiring};
 use num_bigint::BigInt;
 use num_integer::Integer;
 use num_traits::{One, Signed, ToPrimitive};
-use omega_combinatorics::enumeration::{Combinations, CombinatoricsError};
+use tfqm_combinatorics::enumeration::{Combinations, CombinatoricsError};
 
 pub const MAX_FACTOR_DEGREE: usize = 32;
 pub const MAX_FACTOR_COEFFICIENT_BITS: u64 = 8192;

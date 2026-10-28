@@ -1,5 +1,5 @@
 
-use omega_mub::omega_native::exact::szollosi_triad_solver::{
+use tfqm_mub::native::exact::szollosi_triad_solver::{
     emit_receipt_files, execute_szollosi_triad_search,
 };
 

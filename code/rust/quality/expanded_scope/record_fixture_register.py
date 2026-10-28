@@ -5,8 +5,8 @@ from pathlib import Path
 from record_batch2 import ROOT, add, pin, store
 
 BASE = ROOT / "evidence/quality/expanded_scope"
-SOURCE = "code/rust/src/tests/omega_mub/fixture_receipts.rs"
-ASSET = "code/rust/src/tests/omega_mub/fixture_receipt_register.json"
+SOURCE = "code/rust/tests/mub/fixture_receipts.rs"
+ASSET = "code/rust/tests/mub/fixture_receipt_register.json"
 FIRST = BASE / "20261020T225459Z-rust-fixture-challenge"
 SECOND = BASE / "20261020T230113Z-rust-fixture-challenge"
 BEFORE = BASE / "20261020T224042Z-fixture-register-before"
@@ -63,7 +63,7 @@ def main():
             "verify_receipt": "Canonicalize a supplied local root, refuse unsafe relative/device paths and canonical escapes, require a regular file, stream complete SHA-256 under the per-file bound, then return an owned read-only observation of the bytes read at that call.",
             "verify_register": "Verify every receipt and existence of referenced fixture-value files, under the total byte cap. Return the first indexed typed refusal instead of partial success. Fixture-value bytes and producer/reason assertions are not independently certified.",
             "relocation": "Three explicit legacy prefix rules only: Rust test fixtures, MUB paper artifacts, and MUB source/fixture-value names. No basename search or external-repository fallback.",
-            "registration": "The standalone code/rust/quality/fixture_register crate imports this actual source file and its pinned tests. Other src/tests copies and the main Cargo workspace are not certified by this receipt."},
+            "registration": "The standalone code/rust/quality/fixture_register crate imports this actual source file and its pinned tests. Other test copies and the main Cargo workspace are not certified by this receipt."},
         "policy": "Register<=1 MiB, <=4096 entries, <=128 list items, path<=2048 UTF-8 bytes, text<=8192 UTF-8 bytes. Receipt<=16 MiB and all receipt reads<=64 MiB; one extra byte detects overrun before refusal. SHA streaming uses an 8192-byte buffer. All limits are declared engineering policies.",
         "failure_boundary": "ReceiptError variants retain validation/limit/JSON location/IO operation and ErrorKind/digest mismatch/containment distinctions; RegistryFailure adds the entry index. File handles use Rust ownership on all exits. VerifiedReceipt fields are private and do not alias caller data. The parser does not allocate or read the caller's initial byte slice.",
         "trust": "Pinned compiler/Cargo and Rust package sources plus declared serde/SHA/std semantics. Non-Rust dependency build assets and compiler internals remain trusted. This assumes local non-hostile filesystem state; no guarantee against replacement races, hostile concurrent writes, blocking OS IO, hash collisions or future file changes.",

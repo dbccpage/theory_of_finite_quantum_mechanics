@@ -1,13 +1,13 @@
 {
   "AuthorityEffect": "None",
   "artifact": "code/python/src/wdp/three_role_gate.py",
-  "assurance": "Source-bound contract and a completed v2 score with disclosed mutation accounting; the baseline coverage records are retained in the history. Not independently reviewed.",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
   "contract": {
     "AuthorityEffect": "None",
     "artifact": {
       "language": "Python",
       "path": "code/python/src/wdp/three_role_gate.py",
-      "sha256": "8ab1e3557ac46b7ab6dcc17c77191482e53c484076760dc2476e8c4bde0adcf1"
+      "sha256": "b912c617d4b617fe8828f3ee8f066248af7ec8764e01e11459efd806c752cda9"
     },
     "boundaries": [
       "No cryptographic identity or authorization authority: roles and principals are caller-declared data.",
@@ -277,10 +277,61 @@
         ]
       },
       "sha256": "47ff04a46ef67d87fb4f5621a3cef3b129e5347cf85cd7ebacc8f164f7e742ec"
+    },
+    {
+      "bytes": 1599,
+      "original_paths": [
+        "code/python/src/wdp/three_role_gate.contract.score.yaml#assessment"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/wdp/three_role_gate.py\",\n    \"sha256\": \"b912c617d4b617fe8828f3ee8f066248af7ec8764e01e11459efd806c752cda9\"\n  },\n  \"boundaries\": [\n    \"No cryptographic identity or authorization authority: roles and principals are caller-declared data.\",\n    \"This gate checks packet admissibility, not the truth of a mathematical or physical claim.\"\n  ],\n  \"claim\": \"Parse provenance packets and return typed accept/refusal verdicts enforcing distinct roles, roots, scope and principals with AuthorityEffect None.\",\n  \"contract_urn\": \"urn:tfqm:pr208-repair:three_role_gate\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/foc035_l4_refactor_equivalence.json\",\n      \"sha256\": \"c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_tests_retry.json\",\n      \"sha256\": \"683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_gate_replay.json\",\n      \"sha256\": \"99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_checker_refactor.json\",\n      \"sha256\": \"b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_metrics.json\",\n      \"sha256\": \"bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6\"\n    }\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"ThreeRoleGate\",\n    \"RolePolicy\",\n    \"ProvenancePacket\",\n    \"GateVerdict\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/wdp/three_role_gate.py",
+          "sha256": "b912c617d4b617fe8828f3ee8f066248af7ec8764e01e11459efd806c752cda9"
+        },
+        "boundaries": [
+          "No cryptographic identity or authorization authority: roles and principals are caller-declared data.",
+          "This gate checks packet admissibility, not the truth of a mathematical or physical claim."
+        ],
+        "claim": "Parse provenance packets and return typed accept/refusal verdicts enforcing distinct roles, roots, scope and principals with AuthorityEffect None.",
+        "contract_urn": "urn:tfqm:pr208-repair:three_role_gate",
+        "evidence": [
+          {
+            "path": "dag/research/foc035_l4_refactor_equivalence.json",
+            "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+          },
+          {
+            "path": "dag/research/foc035_l4_tests_retry.json",
+            "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+          },
+          {
+            "path": "dag/research/foc035_l4_gate_replay.json",
+            "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+          },
+          {
+            "path": "dag/research/foc035_l4_checker_refactor.json",
+            "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+          },
+          {
+            "path": "dag/research/foc035_l4_metrics.json",
+            "sha256": "bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6"
+          }
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "ThreeRoleGate",
+          "RolePolicy",
+          "ProvenancePacket",
+          "GateVerdict"
+        ]
+      },
+      "sha256": "3843580304b484afb68c71e8a476a766ca6c4db5f41e73ad733fa981fbee449f"
     }
   ],
-  "current_contract": "47ff04a46ef67d87fb4f5621a3cef3b129e5347cf85cd7ebacc8f164f7e742ec",
-  "current_scoring": "10b0f66722de5dc690ac191489d8485a21efee7986ef71810199463e2b66c294",
+  "current_contract": "3843580304b484afb68c71e8a476a766ca6c4db5f41e73ad733fa981fbee449f",
+  "current_scoring": "c78cf416f2557342fe6862acb32dae94f7f7e5282be928aef4fb03edf8b6a3c1",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {},
   "schema_version": "tfqm.contract-score.v1",
@@ -587,6 +638,87 @@
         "score_token": "L4D"
       },
       "sha256": "10b0f66722de5dc690ac191489d8485a21efee7986ef71810199463e2b66c294"
+    },
+    {
+      "bytes": 3542,
+      "original_paths": [
+        "code/python/src/wdp/three_role_gate.contract.score.yaml#assessment"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/src/wdp/three_role_gate.py\",\n    \"sha256\": \"b912c617d4b617fe8828f3ee8f066248af7ec8764e01e11459efd806c752cda9\"\n  },\n  \"assessor\": \"Codex repair review\",\n  \"basis\": {\n    \"G1\": \"Explicit current source digest, named consumer boundary and reproducible receipts; historical scores remain in history.\",\n    \"G2\": \"Exact regression and negative cases plus 440 unchanged generated-output hashes; no probabilistic or floating certificate claim.\",\n    \"G3\": \"No cryptographic identity or authorization authority: roles and principals are caller-declared data.\",\n    \"G4\": \"117 integrated tests pass with one disclosed skip; 15 runtime gate tests; 50 independent checks in normal and optimized modes and 20 certificate subprocess cases. Three selected gate mutations are killed by the existing suite.\",\n    \"G5\": \"Measured CCN and cognitive complexity are below E ceilings; repository input size and multifile publication cost are not given a stronger global bound.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-10-23T16:31:30.374540+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/foc035_l4_refactor_equivalence.json\",\n      \"sha256\": \"c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_tests_retry.json\",\n      \"sha256\": \"683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_gate_replay.json\",\n      \"sha256\": \"99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_checker_refactor.json\",\n      \"sha256\": \"b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_metrics.json\",\n      \"sha256\": \"bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"D\",\n    \"G4\": \"C\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Repository integration API with explicit ownership, preparation/validation before publication, source-bound receipts or structured refusals; assessed at the concrete API boundary named in the contract, not by topic or line count.\",\n  \"metrics\": {\n    \"ccn_max\": 9,\n    \"cognitive_max\": 10,\n    \"sha256\": \"8ab1e3557ac46b7ab6dcc17c77191482e53c484076760dc2476e8c4bde0adcf1\"\n  },\n  \"open_higher_grade_findings\": [\n    \"No cryptographic identity or authorization authority: roles and principals are caller-declared data.\",\n    \"This gate checks packet admissibility, not the truth of a mathematical or physical claim.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rebound\": {\n    \"date\": \"2026-10-27\",\n    \"from_path\": \"code/python/src/wdp/three_role_gate.py\",\n    \"from_sha256\": \"8ab1e3557ac46b7ab6dcc17c77191482e53c484076760dc2476e8c4bde0adcf1\",\n    \"note\": \"Rename-only rebind on 2026-10-27, authorized by the maintainer: private-engine names were removed from in-repo code (crate aliases omega_<x> to tfqm_<x>, omega_native to native, omega_mub tests to mub, omega_* binaries renamed, comments naming the private repository rewritten). The grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived.\"\n  },\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/src/wdp/three_role_gate.py",
+          "sha256": "b912c617d4b617fe8828f3ee8f066248af7ec8764e01e11459efd806c752cda9"
+        },
+        "assessor": "Codex repair review",
+        "basis": {
+          "G1": "Explicit current source digest, named consumer boundary and reproducible receipts; historical scores remain in history.",
+          "G2": "Exact regression and negative cases plus 440 unchanged generated-output hashes; no probabilistic or floating certificate claim.",
+          "G3": "No cryptographic identity or authorization authority: roles and principals are caller-declared data.",
+          "G4": "117 integrated tests pass with one disclosed skip; 15 runtime gate tests; 50 independent checks in normal and optimized modes and 20 certificate subprocess cases. Three selected gate mutations are killed by the existing suite.",
+          "G5": "Measured CCN and cognitive complexity are below E ceilings; repository input size and multifile publication cost are not given a stronger global bound."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-10-23T16:31:30.374540+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/foc035_l4_refactor_equivalence.json",
+            "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+          },
+          {
+            "path": "dag/research/foc035_l4_tests_retry.json",
+            "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+          },
+          {
+            "path": "dag/research/foc035_l4_gate_replay.json",
+            "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+          },
+          {
+            "path": "dag/research/foc035_l4_checker_refactor.json",
+            "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+          },
+          {
+            "path": "dag/research/foc035_l4_metrics.json",
+            "sha256": "bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "D",
+          "G4": "C",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Repository integration API with explicit ownership, preparation/validation before publication, source-bound receipts or structured refusals; assessed at the concrete API boundary named in the contract, not by topic or line count.",
+        "metrics": {
+          "ccn_max": 9,
+          "cognitive_max": 10,
+          "sha256": "8ab1e3557ac46b7ab6dcc17c77191482e53c484076760dc2476e8c4bde0adcf1"
+        },
+        "open_higher_grade_findings": [
+          "No cryptographic identity or authorization authority: roles and principals are caller-declared data.",
+          "This gate checks packet admissibility, not the truth of a mathematical or physical claim."
+        ],
+        "profile": "Non-Numeric",
+        "rebound": {
+          "date": "2026-10-27",
+          "from_path": "code/python/src/wdp/three_role_gate.py",
+          "from_sha256": "8ab1e3557ac46b7ab6dcc17c77191482e53c484076760dc2476e8c4bde0adcf1",
+          "note": "Rename-only rebind on 2026-10-27, authorized by the maintainer: private-engine names were removed from in-repo code (crate aliases omega_<x> to tfqm_<x>, omega_native to native, omega_mub tests to mub, omega_* binaries renamed, comments naming the private repository rewritten). The grades, level and completion flag are copied unchanged from the previous assessment and were not re-derived."
+        },
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "4dddbe35dcf5bcaae1f14fe166f4b3f154bf61149cffbb36907f63c30ca68297"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "c78cf416f2557342fe6862acb32dae94f7f7e5282be928aef4fb03edf8b6a3c1"
     }
   ]
 }

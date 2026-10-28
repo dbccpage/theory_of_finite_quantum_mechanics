@@ -45,14 +45,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `code/python/src/wdp/three_role_gate.py`
 
 - file: [code/python/src/wdp/three_role_gate.py](../../../code/python/src/wdp/three_role_gate.py)
-- sha256 (`bytes`): `8ab1e3557ac46b7ab6dcc17c77191482e53c484076760dc2476e8c4bde0adcf1`
+- sha256 (`bytes`): `b912c617d4b617fe8828f3ee8f066248af7ec8764e01e11459efd806c752cda9`
 - cited in: node.source, record TFQ-2521
 - counts toward the grade: yes
 
 ### Python: `code/python/tests/test_three_role_gate.py`
 
 - file: [code/python/tests/test_three_role_gate.py](../../../code/python/tests/test_three_role_gate.py)
-- sha256 (`bytes`): `8b5716a7a80bebf130cc09d70df1ea159f8ca4c693c90ca3e4fd85125040dc3d`
+- sha256 (`bytes`): `7e4b22afc8c5a0f14d4d757cf8514787777f12d12c41e15d74bb1bcc153199f6`
 - cited in: node.source, record TFQ-2521
 - check: `python -m pytest code/python/tests/test_three_role_gate.py`
 - counts toward the grade: yes

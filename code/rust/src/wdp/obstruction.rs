@@ -31,7 +31,7 @@ pub struct Cochain1 {
 
 impl Cochain1 {
     pub fn l1_norm(&self) -> BigRational {
-        omega_functional::Phi1Functional::unweighted_l1_rational(
+        tfqm_functional::Phi1Functional::unweighted_l1_rational(
             &self.values.values().cloned().collect::<Vec<_>>(),
         )
         .expect("exact cochain entries")
@@ -53,7 +53,7 @@ pub enum CertificateVerificationError {
     #[error("Missing element: {0}")]
     MissingElement(String),
     #[error(transparent)]
-    Functional(#[from] omega_functional::phi1::ExactPhi1CertificateError),
+    Functional(#[from] tfqm_functional::phi1::ExactPhi1CertificateError),
 }
 
 impl DualWitnessCertificate {
@@ -124,8 +124,8 @@ impl DualWitnessCertificate {
                     .unwrap_or_else(BigRational::one),
             );
         }
-        omega_functional::phi1::Phi1Functional::verify_exact_certificate(
-            omega_functional::phi1::ExactPhi1Certificate {
+        tfqm_functional::phi1::Phi1Functional::verify_exact_certificate(
+            tfqm_functional::phi1::ExactPhi1Certificate {
                 omega,
                 d0,
                 weights: declared_weights,

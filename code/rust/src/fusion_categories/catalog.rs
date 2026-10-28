@@ -23,7 +23,7 @@ pub fn ising<K: FusionScalar>() -> Result<RibbonFusionCategory<K>, FusionError> 
 }
 
 fn ising_f<K: FusionScalar>(ring: &FusionRing, sqrt2: &K) -> Result<FSymbols<K>, FusionError> {
-    let inverse = omega_number_theory::scalar::inverse(sqrt2).map_err(FusionError::from)?;
+    let inverse = tfqm_number_theory::scalar::inverse(sqrt2).map_err(FusionError::from)?;
     let negative = inverse.neg();
     let minus_one = K::one().neg();
     FSymbols::from_fn(ring, |labels, e, f| match (labels, e, f) {

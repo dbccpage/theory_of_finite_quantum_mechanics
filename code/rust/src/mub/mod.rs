@@ -1,14 +1,14 @@
 
 pub mod deep_run;
-pub mod omega_native;
+pub mod native;
 pub mod primitive_map;
 pub mod runtime_adapter;
 
-pub use omega_native::exact::mub6_cover_tree;
-pub use omega_native::exact::mub6_degree8_sdp;
-pub use omega_native::exact::mub6_moment_ledger;
-pub use omega_native::exact::mub6_nerve_chaining;
-pub use omega_native::exact::mub6_szollosi_t5_cover;
+pub use native::exact::mub6_cover_tree;
+pub use native::exact::mub6_degree8_sdp;
+pub use native::exact::mub6_moment_ledger;
+pub use native::exact::mub6_nerve_chaining;
+pub use native::exact::mub6_szollosi_t5_cover;
 
 #[cfg(feature = "python")]
 pub mod python;
@@ -28,12 +28,12 @@ pub fn verify_mub_crate_invariants() -> Result<(), String> {
     }
 
     // 1. Genuine algebraic verification of MUB triple pairwise mutual unbiasedness on Dita seed (0, 8)
-    if !omega_native::campaign::mub6_dita_seed_cover::dita_seed_triple_is_pairwise_mu(0, 8) {
+    if !native::campaign::mub6_dita_seed_cover::dita_seed_triple_is_pairwise_mu(0, 8) {
         return Err("Dita seed (0, 8) failed pairwise mutual unbiasedness".to_string());
     }
 
     // 2. Genuine Fourier cross-ratio invariant verification across constituent triples
-    let fourier_receipt = omega_native::exact::mub6_fourier_landing_verifier::verify_fourier_landing();
+    let fourier_receipt = native::exact::mub6_fourier_landing_verifier::verify_fourier_landing();
     if fourier_receipt.status != "PASS"
         || !fourier_receipt.cross_ratio_invariant_valid
         || !fourier_receipt.gauge_invariance_certified
@@ -42,7 +42,7 @@ pub fn verify_mub_crate_invariants() -> Result<(), String> {
     }
 
     // 3. Genuine rectangular exclusion solver verification across active subboxes
-    let excl_receipt = omega_native::exact::mub6_rectangular_exclusion_solver::verify_rectangular_exclusion();
+    let excl_receipt = native::exact::mub6_rectangular_exclusion_solver::verify_rectangular_exclusion();
     if excl_receipt.status != "PASS" || !excl_receipt.all_boxes_zero_excluded {
         return Err("Rectangular exclusion solver check failed".to_string());
     }
@@ -61,8 +61,8 @@ mod crate_tests {
 
     #[test]
     fn test_dita_seed_pairwise_mu_check() {
-        assert!(omega_native::campaign::mub6_dita_seed_cover::dita_seed_triple_is_pairwise_mu(0, 8));
-        assert!(omega_native::campaign::mub6_dita_seed_cover::dita_seed_triple_is_pairwise_mu(0, 16));
-        assert!(omega_native::campaign::mub6_dita_seed_cover::dita_seed_triple_is_pairwise_mu(8, 0));
+        assert!(native::campaign::mub6_dita_seed_cover::dita_seed_triple_is_pairwise_mu(0, 8));
+        assert!(native::campaign::mub6_dita_seed_cover::dita_seed_triple_is_pairwise_mu(0, 16));
+        assert!(native::campaign::mub6_dita_seed_cover::dita_seed_triple_is_pairwise_mu(8, 0));
     }
 }

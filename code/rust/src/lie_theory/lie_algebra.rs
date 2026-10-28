@@ -462,7 +462,7 @@ pub fn cohomology_betti_numbers<L: LieAlgebra>(algebra: &L) -> Result<Vec<usize>
 mod tests {
     use super::*;
     use num_rational::BigRational;
-    use omega_number_theory::rational::ri;
+    use tfqm_number_theory::rational::ri;
 
     #[test]
     fn subsets_are_the_lexicographic_basis_of_the_exterior_powers() {

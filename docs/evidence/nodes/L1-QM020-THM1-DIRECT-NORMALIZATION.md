@@ -102,7 +102,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/finite_probability/simplex.rs`
 
 - file: [code/rust/src/finite_probability/simplex.rs](../../../code/rust/src/finite_probability/simplex.rs)
-- sha256 (`bytes`): `f806fa8ae31e1d13be6cfe1ba131d1ae33c5778f7448c58601e5f2ed6eb7791f`
+- sha256 (`bytes`): `96b602326544a81692b2d2b21ca3e555434715918df271de6957c835b91db39d`
 - cited in: record TFQ-0167 (shared)
 - note: no test is cited for this symbol; its crate is tfqm_finite_probability
 - counts toward the grade: no
@@ -110,7 +110,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/wdp/lib.rs`
 
 - file: [code/rust/src/wdp/lib.rs](../../../code/rust/src/wdp/lib.rs)
-- sha256 (`bytes`): `aa868cc58a3c6fdf1eabfcdd46798329bf560389e83367c574259837d2d3ed4c`
+- sha256 (`bytes`): `9111d9c82247cc2f1e8176b0a0285a788fcd1d2bc6cd2c1d3be81f84f431d235`
 - cited in: record TFQ-0167 (shared)
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: no

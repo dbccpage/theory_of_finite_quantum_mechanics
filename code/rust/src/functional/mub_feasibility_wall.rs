@@ -113,18 +113,18 @@ pub struct MubFeasibilityWallFunctional;
 
 impl MubFeasibilityWallFunctional {
     pub fn cyclotomic_squared_norm(
-        values: &[omega_number_theory::cyclotomic::Cyc24],
-    ) -> omega_number_theory::cyclotomic::Cyc24 {
-        use omega_number_theory::cyclotomic::Cyc24;
+        values: &[tfqm_number_theory::cyclotomic::Cyc24],
+    ) -> tfqm_number_theory::cyclotomic::Cyc24 {
+        use tfqm_number_theory::cyclotomic::Cyc24;
         values.iter().fold(Cyc24::zero(), |sum, value| {
             sum.add(&value.mul(&value.conj()))
         })
     }
 
     pub fn exact_d6_wall(
-        residuals: &[omega_number_theory::cyclotomic::Cyc24],
-    ) -> Result<omega_number_theory::cyclotomic::Cyc24, &'static str> {
-        use omega_number_theory::{
+        residuals: &[tfqm_number_theory::cyclotomic::Cyc24],
+    ) -> Result<tfqm_number_theory::cyclotomic::Cyc24, &'static str> {
+        use tfqm_number_theory::{
             cyclotomic::Cyc24,
             rational::{ri, rq},
         };
@@ -136,7 +136,7 @@ impl MubFeasibilityWallFunctional {
     }
 
     pub fn cyclotomic_coefficient_energy(
-        values: &[omega_number_theory::cyclotomic::Cyc24],
+        values: &[tfqm_number_theory::cyclotomic::Cyc24],
     ) -> num_rational::BigRational {
         use num_traits::Zero;
         values

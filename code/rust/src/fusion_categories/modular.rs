@@ -2,7 +2,7 @@ use std::cmp::Ordering;
 
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use num_bigint::BigInt;
-use omega_number_theory::rational::Rational;
+use tfqm_number_theory::rational::Rational;
 use thiserror::Error;
 
 use crate::braided::RibbonFusionCategory;
@@ -66,7 +66,7 @@ impl<K: FusionScalar> ModularData<K> {
         let n = ring.rank();
         let inverses = twists
             .iter()
-            .map(|theta| omega_number_theory::scalar::inverse(theta).map_err(FusionError::from))
+            .map(|theta| tfqm_number_theory::scalar::inverse(theta).map_err(FusionError::from))
             .collect::<Result<Vec<_>, _>>()?;
         let weighted = dimensions
             .iter()
@@ -87,7 +87,7 @@ impl<K: FusionScalar> ModularData<K> {
             0 => Ok(total),
             1 => Ok(total.add(value)),
             _ => {
-                let weight = omega_number_theory::scalar::from_i64::<K>(
+                let weight = tfqm_number_theory::scalar::from_i64::<K>(
                     i64::try_from(multiplicity).map_err(|_| FusionError::Overflow {
                         context: "embedding a fusion coefficient",
                     })?,
@@ -283,7 +283,7 @@ impl<K: FusionScalar> ModularData<K> {
 
     pub fn central_charge_mod_4(&self) -> Result<Rational, FusionError> {
         let ratio =
-            omega_number_theory::scalar::divide(&self.p_plus.mul(&self.p_plus), &self.d_squared)
+            tfqm_number_theory::scalar::divide(&self.p_plus.mul(&self.p_plus), &self.d_squared)
                 .map_err(FusionError::from)?;
         let (n, k) = root_of_unity_data(&ratio).ok_or(FusionError::NotInSubfield {
             what: "p_+^2 / D^2",
@@ -308,7 +308,7 @@ impl<K: FusionScalar> ModularData<K> {
                 })
             }
         }
-        let ratio = omega_number_theory::scalar::divide(&self.p_plus, total_dimension)
+        let ratio = tfqm_number_theory::scalar::divide(&self.p_plus, total_dimension)
             .map_err(FusionError::from)?;
         let (n, k) = root_of_unity_data(&ratio).ok_or(FusionError::NotInSubfield {
             what: "p_+ / D",
@@ -330,7 +330,7 @@ impl<K: FusionScalar> ModularData<K> {
         for b in 0..n {
             total = total.add(&self.indicator_row(a, b, &weights)?);
         }
-        let value = omega_number_theory::scalar::divide(&total, &self.d_squared)
+        let value = tfqm_number_theory::scalar::divide(&total, &self.d_squared)
             .map_err(FusionError::from)?;
         Self::indicator_result(a, &value)
     }
@@ -343,7 +343,7 @@ impl<K: FusionScalar> ModularData<K> {
                 let square = t.mul(t);
                 Ok((
                     d.mul(&square),
-                    omega_number_theory::scalar::divide(d, &square).map_err(FusionError::from)?,
+                    tfqm_number_theory::scalar::divide(d, &square).map_err(FusionError::from)?,
                 ))
             })
             .collect()
@@ -380,7 +380,7 @@ impl<K: FusionScalar> ModularData<K> {
         let mut total = K::zero();
         for (ratio, multiplicity) in self.dimension_ratios()? {
             let value =
-                omega_number_theory::scalar::power(&ratio, exponent).map_err(FusionError::from)?;
+                tfqm_number_theory::scalar::power(&ratio, exponent).map_err(FusionError::from)?;
             total = Self::add_multiple(total, &value, multiplicity)?;
         }
         let rational = total.to_rational().ok_or(FusionError::NotInSubfield {
@@ -398,7 +398,7 @@ impl<K: FusionScalar> ModularData<K> {
     fn genus_exponent(genus: u32) -> Result<i64, FusionError> {
         let exponent = i64::from(genus) - 1;
         let requested = exponent.unsigned_abs();
-        let limit = omega_number_theory::scalar::MAX_SCALAR_EXPONENT;
+        let limit = tfqm_number_theory::scalar::MAX_SCALAR_EXPONENT;
         if requested > limit {
             return Err(FusionError::Budget {
                 what: "ground-state exponent",
@@ -420,7 +420,7 @@ impl<K: FusionScalar> ModularData<K> {
             }
         }
         for (square, _) in &mut squares {
-            *square = omega_number_theory::scalar::divide(&self.d_squared, square)
+            *square = tfqm_number_theory::scalar::divide(&self.d_squared, square)
                 .map_err(FusionError::from)?;
         }
         Ok(squares)

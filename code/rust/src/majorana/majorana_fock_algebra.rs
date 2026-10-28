@@ -3,9 +3,9 @@ use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{matrix as mx, ExactFieldError};
 use linear_algebra::exact_pfaffian::{pfaffian, PfaffianError};
 use num_traits::Zero;
-use omega_lie_theory::clifford::{CliffordError, CliffordFamily};
-use omega_number_theory::cyclotomic::GaussianRat;
-use omega_number_theory::rational::{rq, Rational};
+use tfqm_lie_theory::clifford::{CliffordError, CliffordFamily};
+use tfqm_number_theory::cyclotomic::GaussianRat;
+use tfqm_number_theory::rational::{rq, Rational};
 
 pub const AUTHORITY_EFFECT: &str = "AuthorityEffect: None";
 
@@ -88,7 +88,7 @@ impl FockCarrier {
     }
 
     fn majorana_unchecked(&self, index: usize) -> BasicMatrix<GaussianRat> {
-        omega_lie_theory::clifford::jordan_wigner_operator::<GaussianRat>(self.modes, index - 1)
+        tfqm_lie_theory::clifford::jordan_wigner_operator::<GaussianRat>(self.modes, index - 1)
             .expect("the validated Fock carrier is within the Clifford representation bound")
     }
 
@@ -302,7 +302,7 @@ mod tests {
     use super::*;
     use linear_algebra::exact_field::involution as iv;
     use linear_algebra::exact_field::matrix as mx;
-    use omega_number_theory::rational::ri;
+    use tfqm_number_theory::rational::ri;
 
     fn anticommutator(
         a: &BasicMatrix<GaussianRat>,

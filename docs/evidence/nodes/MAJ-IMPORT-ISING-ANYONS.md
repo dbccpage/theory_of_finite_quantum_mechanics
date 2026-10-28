@@ -62,7 +62,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/fusion_categories/catalog.rs`
 
 - file: [code/rust/src/fusion_categories/catalog.rs](../../../code/rust/src/fusion_categories/catalog.rs)
-- sha256 (`bytes`): `0aa0caac8a1af06d892120b3f1b1b49a81620d76239768d205f2e79358ed687b`
+- sha256 (`bytes`): `e203fb8a73b9250543d3d51d7a5df850349cca02add430acae225d5006addd7f`
 - cited in: node.rust, record TFQ-1170
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

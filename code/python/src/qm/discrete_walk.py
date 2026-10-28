@@ -1,6 +1,6 @@
 """Phase 1 separating experiment and Phase 2 walk packet engines.
 
-Decomposed from foundations.py monolith. Integrates with omega_engine crates.
+Decomposed from foundations.py monolith.
 AuthorityEffect: None.
 """
 

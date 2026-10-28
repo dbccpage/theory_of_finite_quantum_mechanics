@@ -3,8 +3,8 @@ use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::scalars::{ExactRing, Field};
 use num_bigint::BigInt;
 use num_rational::BigRational;
-use omega_number_theory::quadratic::Quadratic;
-use omega_number_theory::rational::{ri, rq, sqrt_exact, squarefree_part, ArithmeticError};
+use tfqm_number_theory::quadratic::Quadratic;
+use tfqm_number_theory::rational::{ri, rq, sqrt_exact, squarefree_part, ArithmeticError};
 
 use crate::cayley::is_special_orthogonal;
 use crate::finite_group::{FiniteGroup, GroupError};

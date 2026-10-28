@@ -1,9 +1,9 @@
 
 use crate::types::AuthorityEffect;
-use omega_category_theory::finite_history_context::{
+use tfqm_category_theory::finite_history_context::{
     run, FiniteWordTransducer, HistoryContext, HistoryDescent, HistoryError, StateContextLift,
 };
-use omega_category_theory::finite_moore::FiniteMoore;
+use tfqm_category_theory::finite_moore::FiniteMoore;
 use std::collections::{BTreeMap, BTreeSet, VecDeque};
 
 #[derive(Debug, Clone, PartialEq, Eq)]

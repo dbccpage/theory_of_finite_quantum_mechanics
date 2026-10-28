@@ -1,6 +1,6 @@
 """Three-role provenance gate: fail-closed check of ``(proposer, evaluator, authorizer)``.
 
-Origin: omega_engine_pfp/domain/provenance/three_role_gate.py in the_symbol_game at commit
+Origin: external:sha256:a2128acc7b8d888fc74f90d6cf10814a1924406829724512c175f696a93b3c18 (external repository) at commit
 28a98c069133de6165f4461b19af943d3e32e1f4 (FOC-035, section 3.3). Imported unchanged below this docstring.
 Claim: urn:omega:fqm:foc035:three-role-gate:v1
 AuthorityEffect: None.

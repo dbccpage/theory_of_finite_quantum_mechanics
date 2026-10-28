@@ -1,6 +1,6 @@
-use omega_category_theory::finite_history_context::run;
-use omega_category_theory::finite_moore::FiniteMoore;
-use omega_category_theory::finite_partial_structure::{
+use tfqm_category_theory::finite_history_context::run;
+use tfqm_category_theory::finite_moore::FiniteMoore;
+use tfqm_category_theory::finite_partial_structure::{
     descend, verify, DescentError, FinitePartialStructure, PartialOperation, SortQuotient,
 };
 use std::collections::BTreeMap;

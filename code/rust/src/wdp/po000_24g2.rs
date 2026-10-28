@@ -1,7 +1,7 @@
 //! PO-000 §5.2--§5.4.1 and §5.8 (J = 1): the `24 g^2` short-time defect
 //! chain, computed exactly on declared qubit instances.
 //!
-//! Paper: `projection_obstruction.md` (the_symbol_game, F004_papers/002).
+//! Paper: `projection_obstruction.md` (external atlas, paper 002).
 //!
 //! * Lemma 5.2: the support-counting constants `2g`, `8g^2`, `24g^2` are
 //!   *computed* by [`counting_constants`] from the counting rules (a

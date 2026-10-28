@@ -7,10 +7,10 @@ use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{One, Zero};
 
-use omega_number_theory::polynomial::MAX_CONDUCTOR;
-use omega_number_theory::rational::checked_lcm_usize;
+use tfqm_number_theory::polynomial::MAX_CONDUCTOR;
+use tfqm_number_theory::rational::checked_lcm_usize;
 
-use omega_number_theory::cyclotomic_integer::CyclotomicInteger;
+use tfqm_number_theory::cyclotomic_integer::CyclotomicInteger;
 
 pub const MAX_TABLE_ORDER: usize = 2048;
 pub const MAX_CHARACTER_TABLE_ORDER: usize = 2000;

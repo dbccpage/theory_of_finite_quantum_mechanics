@@ -1,6 +1,6 @@
 """Simplicial complex quantum mechanics, geometric holonomy, and MUB frame polytopes.
 
-Decomposed from foundations.py monolith. Integrates with omega_engine crates.
+Decomposed from foundations.py monolith.
 AuthorityEffect: None.
 """
 

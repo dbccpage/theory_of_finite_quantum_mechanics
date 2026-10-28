@@ -2,7 +2,7 @@
 use linear_algebra::regge_exact::{determinant, solve};
 use num_rational::BigRational as Q;
 use num_traits::Zero;
-use omega_number_theory::certified_angles::{
+use tfqm_number_theory::certified_angles::{
     atan_enclosure, pi_enclosure, sqrt_enclosure, validate_precision, validate_rational, AngleError,
 };
 use std::collections::{BTreeMap, BTreeSet};
@@ -20,7 +20,7 @@ pub enum GeometryError {
     LinearAlgebra,
 }
 
-pub use omega_number_theory::certified_angles::RationalInterval;
+pub use tfqm_number_theory::certified_angles::RationalInterval;
 
 #[derive(Debug, Clone)]
 pub struct DihedralEnclosure {

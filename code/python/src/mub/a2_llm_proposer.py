@@ -5,7 +5,7 @@ This is where an LLM proposer provides genuine value: the det=0 surface
 is an algebraic variety where creative proposals from a language model
 can discover exact rational points that a grid search would miss.
 
-The governor uses the 3-vertex cycle encoding from mub6_symbol_game_session.py:
+The governor uses the 3-vertex cycle encoding from the original MUB(6) session generator:
   det = ad - bc - (a - b) - (d - c)
   Phi_1 = |det| exactly (H^1 cohomological obstruction)
 

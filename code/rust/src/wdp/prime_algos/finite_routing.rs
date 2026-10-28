@@ -5,7 +5,7 @@ use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::finite_cochain_map::{CochainMap, CochainWindow};
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
-use omega_functional::phi1::ExactPhi1Certificate;
+use tfqm_functional::phi1::ExactPhi1Certificate;
 use omega_policy::trichotomy::ObstructionDiagnosticClass;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

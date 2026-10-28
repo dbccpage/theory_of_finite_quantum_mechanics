@@ -212,7 +212,7 @@ pub fn l1_distance(a: &SectionDistribution, b: &SectionDistribution) -> BigRatio
         .into_iter()
         .map(|key| a.get(key).unwrap_or(&zero) - b.get(key).unwrap_or(&zero))
         .collect();
-    omega_functional::Phi1Functional::unweighted_l1_rational(&difference)
+    tfqm_functional::Phi1Functional::unweighted_l1_rational(&difference)
         .expect("exact section frequencies")
 }
 

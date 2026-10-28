@@ -3,8 +3,8 @@ use pyo3::exceptions::PyRuntimeError;
 use pyo3::prelude::*;
 use serde::Serialize;
 
-use crate::omega_native::float_check::d10_wall_status::current_d10_wall_status;
-use crate::omega_native::exact::extension::{
+use crate::native::float_check::d10_wall_status::current_d10_wall_status;
+use crate::native::exact::extension::{
     attempt_full_mub6_from_pinned_t0, attempt_general_mub_n, attempt_mub10,
 };
 use crate::primitive_map::{assess_d6_pinned_wall, assess_general_mub_n};

@@ -2,7 +2,7 @@ use crate::pauli_symplectic::{pauli_word, Pauli, PauliError};
 use crate::scalar::ComplexField;
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{elimination, matrix as mx, ExactFieldError};
-use omega_number_theory::rational::{ri, rq, Rational};
+use tfqm_number_theory::rational::{ri, rq, Rational};
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum CliffordError {

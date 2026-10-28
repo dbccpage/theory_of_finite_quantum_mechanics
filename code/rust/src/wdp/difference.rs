@@ -1,7 +1,7 @@
 
 use crate::error::WdpError;
 use crate::types::AuthorityEffect;
-use omega_category_theory::finite_report_query::{
+use tfqm_category_theory::finite_report_query::{
     ReportQueryDecision, ReportQueryProblem, ReportQueryRefusal,
 };
 use serde::{Deserialize, Serialize};
@@ -134,7 +134,7 @@ impl PresentationMap {
     }
 }
 
-impl omega_homotopy_type_theory::primitive_difference::PrimitiveDifference for Carrier {
+impl tfqm_homotopy_type_theory::primitive_difference::PrimitiveDifference for Carrier {
     type Carrier = String;
     type Diff = DifferenceOutcome;
 
@@ -150,7 +150,7 @@ impl omega_homotopy_type_theory::primitive_difference::PrimitiveDifference for C
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_homotopy_type_theory::primitive_difference::PrimitiveDifference;
+    use tfqm_homotopy_type_theory::primitive_difference::PrimitiveDifference;
 
     #[test]
     fn test_primitive_difference() {

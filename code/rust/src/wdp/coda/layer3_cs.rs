@@ -1,5 +1,5 @@
 use num_rational::BigRational;
-use omega_category_theory::finite_report_query::{
+use tfqm_category_theory::finite_report_query::{
     ReportQueryDecision, ReportQueryProblem, ReportQueryRefusal,
 };
 use serde_json::json;

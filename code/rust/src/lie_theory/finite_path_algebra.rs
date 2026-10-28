@@ -1,7 +1,7 @@
 use linear_algebra::backend::basic_matrix::{BasicMatrix, MatrixError, OperationLimits};
 use linear_algebra::exact_field::{ExactFieldError, involution as star, matrix as mx};
-use omega_category_theory::finite_path::{FinitePathCategory, PathError};
-use omega_number_theory::cyclotomic::GaussianRat;
+use tfqm_category_theory::finite_path::{FinitePathCategory, PathError};
+use tfqm_number_theory::cyclotomic::GaussianRat;
 
 #[derive(Debug, Clone, thiserror::Error)]
 pub enum PathAlgebraError {

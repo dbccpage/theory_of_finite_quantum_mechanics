@@ -2,8 +2,8 @@
 use std::fmt;
 
 use omega_linear_algebra::backend::basic_matrix::CheckedNumeric;
-use omega_functional::gamma2::ExactGamma2Result;
-use omega_functional::phi1::VerifiedExactPhi1;
+use tfqm_functional::gamma2::ExactGamma2Result;
+use tfqm_functional::phi1::VerifiedExactPhi1;
 use omega_homology::cochain_primitive_difference::CochainPrimitiveDifference;
 use omega_homology::quotient::QuotientSpace;
 use omega_types::observer::Observer;

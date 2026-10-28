@@ -1,9 +1,9 @@
 use num_rational::BigRational;
 use num_traits::Zero;
-use omega_holonomy::signed_transport::{
+use tfqm_holonomy::signed_transport::{
     certify_signed_transport, SignedCoefficientGraph, SignedTransportCertificate,
 };
-use omega_number_theory::cyclotomic::GaussianRat;
+use tfqm_number_theory::cyclotomic::GaussianRat;
 use omega_quantum_physics::signed_sampling::{
     finite_transfer_partition, verify_real_hamiltonian_step, SignedWeightFamily,
 };

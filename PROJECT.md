@@ -20,7 +20,7 @@ The Theory of Finite Quantum Mechanics repository maintains exact, computational
 | F08 | Majorana Python Library Migration | Purge 103 duplicate library files from `papers/core/majorana/code/`, retaining evaluators/shims importing from `code/python/src/majorana/`. | M1 | Survey E3 |
 | F09 | Majorana Legacy Import Decoupling | Decouple `majorana_evaluator.py` and `gf2_matrix.py` from nonexistent `omega_engine_operating_system` to native `gf2_terminalizer.py`. | M1 | Survey E3 |
 | F10 | Majorana Deposit Checksum Refresh | Refresh `papers/core/majorana/sha256sums` for updated `README.md` and test configs so `verify_deposit.py` passes cleanly. | M1 | Survey E3 |
-| F11 | MUB6 Rust Crate Verification | Verify that crate `tfqm_mub` in `code/rust/src/mub/` (109 modules) and 52 tests in `code/rust/tests/omega_mub/` compile and pass. | M2 | Survey E1 |
+| F11 | MUB6 Rust Crate Verification | Verify that crate `tfqm_mub` in `code/rust/src/mub/` (109 modules) and 52 tests in `code/rust/tests/mub/` compile and pass. | M2 | Survey E1 |
 | F12 | Majorana Rust Crate Verification | Verify that crate `tfqm_majorana` in `code/rust/src/majorana/` (20 modules) compiles and passes tests under `code/rust/`. | M2 | Survey E3 |
 | F13 | FSP Rust Crate Creation (`tfqm_fsp`) | Implement `code/rust/src/fsp/` subcrate covering Fock space CAR, GIN posting lists, BQNF terminal routing, exact Hubbard determinants, and normal forms. | M2 | Survey E2 |
 | F14 | Rust Workspace Root Wiring | Register `src/fsp` in `code/rust/Cargo.toml` and export `pub use tfqm_fsp as fsp;` in `code/rust/src/lib.rs`. | M2 | Survey E2, E3 |

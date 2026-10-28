@@ -1,5 +1,5 @@
 
-use omega_mub::omega_native::{
+use tfqm_mub::native::{
     exact::mub6_collar_solver, exact::mub6_deltoid_cusp_asymptotics, exact::mub6_frame_potential, exact::mub6_hyper_gramian,
     exact::mub6_quad_sdp, exact::mub6_tao_confluence,
 };
@@ -263,7 +263,7 @@ fn write_verifier_output(
 }
 
 fn run() -> Result<i32, String> {
-    let artifacts = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/omega_mub/artifacts");
+    let artifacts = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
     let Some(parsed) = parse_verifier_args(artifacts.clone())? else {
         return Ok(0);
     };

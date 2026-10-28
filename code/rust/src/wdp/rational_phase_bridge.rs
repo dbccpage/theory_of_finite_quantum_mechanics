@@ -1,7 +1,7 @@
 use crate::amplitude_bridge::{EdgePath, OrientedGraph, PathStep};
 use crate::error::WdpError;
-use omega_number_theory::rational::Rational;
-use omega_number_theory::rational_turns::RationalTurn;
+use tfqm_number_theory::rational::Rational;
+use tfqm_number_theory::rational_turns::RationalTurn;
 
 pub const ORIGIN: &str =
     "Origin: code/rust/src/wdp/rational_phase_bridge.rs @ 40de7d5cda1ff1f0db8305d0c1b2103646fab197";

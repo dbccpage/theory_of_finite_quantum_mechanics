@@ -1,6 +1,6 @@
 
 use crate::types::AuthorityEffect;
-use omega_number_theory::rational::Rational;
+use tfqm_number_theory::rational::Rational;
 
 pub const ORIGIN: &str =
     "Origin: code/rust/src/wdp/meron_time_adapter.rs @ 40de7d5cda1ff1f0db8305d0c1b2103646fab197";
@@ -164,7 +164,7 @@ fn parse_signed_digits(token: &str) -> Result<i64, MeronTokenError> {
 mod tests {
     use super::*;
     use super::StaggeredMoments;
-    use omega_number_theory::rational::rq;
+    use tfqm_number_theory::rational::rq;
     use omega_quantum_physics::meron_source_field::AnalyticResponsePlan;
 
     fn need(cond: bool, message: &str) -> Result<(), String> {

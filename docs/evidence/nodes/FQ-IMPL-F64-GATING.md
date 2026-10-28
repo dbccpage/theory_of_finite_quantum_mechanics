@@ -79,18 +79,18 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - note: no test is cited for this symbol; its crate is tfqm_category_theory
 - counts toward the grade: yes
 
-### Rust: `code/rust/src/mub/src/omega_native/d6_exact_sos.rs`
+### Rust: `code/rust/src/mub/native/d6_exact_sos.rs`
 
-- file: [code/rust/src/mub/src/omega_native/d6_exact_sos.rs](../../../code/rust/src/mub/src/omega_native/d6_exact_sos.rs)
-- sha256 (`bytes`): `4c9d104916d7e1a8128a979a3e96a9fb563c1cbe316f53be2f8c933f3e7e23cf`
+- file: [code/rust/src/mub/native/d6_exact_sos.rs](../../../code/rust/src/mub/native/d6_exact_sos.rs)
+- sha256 (`bytes`): `04c6547bc35ec8ffc30263c446ddce9b88b4e643cc5a1bd894a0afd8a6ac69b8`
 - cited in: record TFQ-0179
 - note: no test is cited for this symbol; its crate is tfqm_mub
 - counts toward the grade: yes
 
-### Rust: `code/rust/src/mub/src/omega_native/d6_sos_float_sdp.rs`
+### Rust: `code/rust/src/mub/native/d6_sos_float_sdp.rs`
 
-- file: [code/rust/src/mub/src/omega_native/d6_sos_float_sdp.rs](../../../code/rust/src/mub/src/omega_native/d6_sos_float_sdp.rs)
-- sha256 (`bytes`): `31b90be076ba73c5e7367c0ba9e440ad70a4dfa54879157d64753734911efd3f`
+- file: [code/rust/src/mub/native/d6_sos_float_sdp.rs](../../../code/rust/src/mub/native/d6_sos_float_sdp.rs)
+- sha256 (`bytes`): `d29187fe7c4dbf10a165e2e8243ca02f02d7c196d231368ec48349ecf62a1e65`
 - cited in: record TFQ-0179
 - note: no test is cited for this symbol; its crate is tfqm_mub
 - counts toward the grade: yes

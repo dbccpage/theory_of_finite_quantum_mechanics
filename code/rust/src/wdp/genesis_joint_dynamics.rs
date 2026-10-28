@@ -2,7 +2,7 @@ use crate::genesis_carrier::{
     CarrierError, CarrierRequest, PassageAnswer, PassageCarrier, PassageQuestion,
 };
 use crate::genesis_passage::PassageEvent;
-use omega_category_theory::finite_joint_dynamics::{
+use tfqm_category_theory::finite_joint_dynamics::{
     JointDynamics, JointDynamicsError, JointOperation,
 };
 use std::collections::BTreeMap;

@@ -5,9 +5,9 @@ use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{matrix as mx, ExactFieldError};
 use linear_algebra::scalars::{ExactRing, Field};
 use num_rational::BigRational;
-use omega_number_theory::cyclotomic::{Cyc12, Cyc24, Cyc5, Cyc8, GaussianRat};
-use omega_number_theory::cyclotomic_field::Cyclotomic;
-use omega_number_theory::rational::{ri, Rational};
+use tfqm_number_theory::cyclotomic::{Cyc12, Cyc24, Cyc5, Cyc8, GaussianRat};
+use tfqm_number_theory::cyclotomic_field::Cyclotomic;
+use tfqm_number_theory::rational::{ri, Rational};
 
 pub trait ComplexField: Field + ExactRing + Hash + Eq {
     fn conjugate(&self) -> Self;
@@ -208,7 +208,7 @@ pub fn cyclotomic_root_order<const N: usize>(z: &Cyclotomic<N>) -> Option<usize>
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_number_theory::rational::rq;
+    use tfqm_number_theory::rational::rq;
 
     fn check_field<F: ComplexField + std::fmt::Debug>() {
         let half = F::from_rational(&rq(1, 2));

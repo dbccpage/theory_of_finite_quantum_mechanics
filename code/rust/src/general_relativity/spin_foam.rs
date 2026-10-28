@@ -1,4 +1,4 @@
-use omega_number_theory::quadratic::Quadratic;
+use tfqm_number_theory::quadratic::Quadratic;
 pub type IsingScalar = Quadratic<2>;
 pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; not PROVED; not GlobalGreen; exact finite recoupling; no continuum admission.";

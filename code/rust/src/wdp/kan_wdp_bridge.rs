@@ -3,8 +3,8 @@ use std::collections::{BTreeMap, BTreeSet};
 
 use omega_homology::errors::HomologicalError;
 use omega_homology::simplicial::{Simplex, SimplicialComplex};
-use omega_homotopy_type_theory::identity::{TermId, TypeId};
-use omega_homotopy_type_theory::path::Path as HottPath;
+use tfqm_homotopy_type_theory::identity::{TermId, TypeId};
+use tfqm_homotopy_type_theory::path::Path as HottPath;
 use serde::{Deserialize, Serialize};
 
 use crate::cochains::{Edge, Face, FiniteComplex};

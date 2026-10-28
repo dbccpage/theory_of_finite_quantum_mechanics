@@ -5,7 +5,7 @@ use linear_algebra::exact_field::ExactFieldError;
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
-use omega_functional::phi1::{ExactPhi1CertificateError, Phi1Functional, VerifiedExactPhi1};
+use tfqm_functional::phi1::{ExactPhi1CertificateError, Phi1Functional, VerifiedExactPhi1};
 use omega_kernel::{exact_wire, exact_wire_vec};
 use omega_solvers::solver_flow_network_simplex::NetworkSimplexError;
 use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1};

@@ -10,9 +10,9 @@ use crate::coda::coda_gtla::{
 };
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::linear_algebra::image_kernel::{ExactLinearAlgebraError, ExactRowReduction};
-use omega_functional::gamma2::ExactCochainComplexQ;
-use omega_functional::phi1::{ExactPhi1Certificate, Phi1Functional, VerifiedExactPhi1};
-use omega_homotopy_type_theory::primitive_difference::PrimitiveDifference;
+use tfqm_functional::gamma2::ExactCochainComplexQ;
+use tfqm_functional::phi1::{ExactPhi1Certificate, Phi1Functional, VerifiedExactPhi1};
+use tfqm_homotopy_type_theory::primitive_difference::PrimitiveDifference;
 use omega_policy::trichotomy::ObstructionDiagnosticClass;
 use omega_types::authority::AuthorityEffect;
 
@@ -303,7 +303,7 @@ fn d1_rows(carrier: &FiniteCarrier2) -> Result<Vec<Vec<BigRational>>, SolveRefus
 }
 
 fn weighted_l1(z: &[BigRational], weights: &[BigRational]) -> BigRational {
-    omega_functional::phi1::Phi1Functional::weighted_l1_rational(weights, z)
+    tfqm_functional::phi1::Phi1Functional::weighted_l1_rational(weights, z)
         .expect("validated carrier gives equal residual and weight dimensions")
 }
 

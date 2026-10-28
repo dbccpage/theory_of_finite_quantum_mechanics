@@ -1,17 +1,17 @@
 
-use omega_mub::omega_native::exact::mub6_chm_registry::current_chm_registry;
-use omega_mub::omega_native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
-use omega_mub::omega_native::exact::mub6_g1_variety::{
+use tfqm_mub::native::exact::mub6_chm_registry::current_chm_registry;
+use tfqm_mub::native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
+use tfqm_mub::native::exact::mub6_g1_variety::{
     verify_cross_orbit_triad_circulation, CrossOrbitTriad,
 };
-use omega_mub::omega_native::exact::mub6_orbit_exhaustiveness::{
+use tfqm_mub::native::exact::mub6_orbit_exhaustiveness::{
     canonical_catalog_candidates, certify_catalog_exhaustiveness,
 };
 
 use serde::Serialize;
 use sha2::{Digest, Sha256};
 
-omega_mub::fixture_set!(fixtures, "mub6_gap_solver");
+tfqm_mub::fixture_set!(fixtures, "mub6_gap_solver");
 
 #[derive(Debug, Clone, Serialize)]
 pub struct FrontierTarget {
@@ -454,7 +454,7 @@ fn emit_frontier_report(mut report: FrontierReport) {
     println!("{json_final}");
 
     if let Ok(manifest) = std::env::var("CARGO_MANIFEST_DIR") {
-        let dir = std::path::PathBuf::from(manifest).join("../tests/omega_mub/artifacts");
+        let dir = std::path::PathBuf::from(manifest).join("../tests/mub/artifacts");
         let _ = std::fs::create_dir_all(&dir);
         let path = dir.join("mub6_frontier_report.json");
         if std::fs::write(&path, &json_final).is_ok() {

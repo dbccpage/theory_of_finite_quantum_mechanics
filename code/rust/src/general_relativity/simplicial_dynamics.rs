@@ -1,8 +1,8 @@
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{matrix as mx, ExactFieldError};
 use num_traits::{Signed, Zero};
-use omega_lie_theory::cayley::cayley_transform;
-use omega_number_theory::rational::{ri, rq, Rational as Q};
+use tfqm_lie_theory::cayley::cayley_transform;
+use tfqm_number_theory::rational::{ri, rq, Rational as Q};
 use serde::Serialize;
 use std::collections::{BTreeMap, BTreeSet};
 pub type V3 = [Q; 3];
@@ -11,7 +11,7 @@ pub enum SimplicialDynamicsError {
     #[error(transparent)]
     Matrix(#[from] ExactFieldError),
     #[error(transparent)]
-    Cayley(#[from] omega_lie_theory::cayley::CayleyError),
+    Cayley(#[from] tfqm_lie_theory::cayley::CayleyError),
     #[error("a tetrahedron has zero volume")]
     Degenerate,
     #[error("a slice vertex belongs to no tetrahedron")]

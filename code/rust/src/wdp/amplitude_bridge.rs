@@ -3,7 +3,7 @@ use std::collections::{BTreeMap, BTreeSet};
 
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
-use omega_holonomy::{ExactScalar, GaussianRational};
+use tfqm_holonomy::{ExactScalar, GaussianRational};
 use serde::Serialize;
 
 use crate::connection::U1Connection;

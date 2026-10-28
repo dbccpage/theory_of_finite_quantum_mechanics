@@ -1,6 +1,6 @@
 
 use num_traits::{Signed, Zero};
-use omega_number_theory::rational::Rational;
+use tfqm_number_theory::rational::Rational;
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -276,7 +276,7 @@ mod tests {
     use super::*;
     use crate::majorana_fock_algebra::{gi, FockCarrier};
     use linear_algebra::exact_field::matrix;
-    use omega_number_theory::{
+    use tfqm_number_theory::{
         cyclotomic::GaussianRat,
         rational::{ri, rq},
     };

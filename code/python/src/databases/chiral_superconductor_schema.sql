@@ -1,7 +1,7 @@
 -- ========================================================================
 -- chiral_superconductor_schema.sql
 -- 3D Chiral Topological Superconductor Relational Schema & Auditing CTE Views
--- Origin: omega_engine_atlas/coda_atlas/F004_papers/008_fsp
+-- Origin: sources/atlas/papers/fermion_sign_problem
 -- Claim: urn:omega:sql:chiral_superconductor_schema:v1
 -- AuthorityEffect: None
 -- Scope Fence: What this file does not claim: Relational DDL and audit views for superconductor lattices; does not execute continuous wave equation dynamics.

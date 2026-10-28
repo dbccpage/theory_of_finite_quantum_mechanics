@@ -2,7 +2,7 @@
 
 use crate::heisenberg::WeylHeisenberg;
 use linear_algebra::backend::basic_matrix::BasicMatrix;
-use omega_number_theory::cyclotomic::{Cyc24, Cyc5};
+use tfqm_number_theory::cyclotomic::{Cyc24, Cyc5};
 
 fn system_d3() -> WeylHeisenberg<Cyc24> {
     WeylHeisenberg::new(3, Cyc24::zeta3()).expect("declared primitive third root")
@@ -48,8 +48,8 @@ pub fn weyl_displacement_d5(q: i64, p: i64) -> BasicMatrix<Cyc5> {
 mod tests {
     use super::*;
     use linear_algebra::exact_field::{involution, matrix as mx};
-    use omega_number_theory::cyclotomic::GaussianRat;
-    use omega_number_theory::rational::ri;
+    use tfqm_number_theory::cyclotomic::GaussianRat;
+    use tfqm_number_theory::rational::ri;
 
     #[test]
     fn test_d3_weyl_commutation_relation() {

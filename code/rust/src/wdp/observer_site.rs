@@ -1,7 +1,7 @@
 
 use std::collections::{BTreeMap, BTreeSet};
 
-use omega_category_theory::finite_report_descent::{
+use tfqm_category_theory::finite_report_descent::{
     CoverClassification, DescentError, DescentFiber, FiniteReportPresheaf,
 };
 use thiserror::Error;

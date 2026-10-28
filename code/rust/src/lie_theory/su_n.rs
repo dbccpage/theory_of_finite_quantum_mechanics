@@ -4,9 +4,9 @@ use crate::scalar::is_hermitian;
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{elimination, matrix as mx, ExactFieldError};
 use num_traits::Zero;
-use omega_number_theory::cyclotomic::GaussianRat;
-use omega_number_theory::quadratic::{QuadraticError, Surd};
-use omega_number_theory::rational::{ri, rq, Rational};
+use tfqm_number_theory::cyclotomic::GaussianRat;
+use tfqm_number_theory::quadratic::{QuadraticError, Surd};
+use tfqm_number_theory::rational::{ri, rq, Rational};
 
 pub const MAX_DIMENSION: usize = 8;
 pub type GaussianMatrix = BasicMatrix<GaussianRat>;

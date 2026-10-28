@@ -2,15 +2,15 @@
 use crate::genesis_computation::{BridgeError, CheckedBooleanPacket, SourceBooleanPacket};
 use crate::genesis_construction::{ConstructionError, ConstructionLimits, GenesisConstruction};
 use crate::genesis_primitive_execution::{PrimitiveExecutionError, PrimitiveInstance};
-use omega_category_theory::finite_question_family::{
+use tfqm_category_theory::finite_question_family::{
     factor_tables, FiniteQuestionFamily, QuestionFamilyError, QuestionQuotient, QuestionReportSite,
 };
-use omega_category_theory::finite_report_descent::DescentFiber;
-use omega_category_theory::finite_report_query::ReportQueryDecision;
-use omega_finite_probability::error::ClassicalShadowError;
-use omega_finite_probability::log_form::{shannon_entropy_form_with_bound, LogForm, LogFormError};
-use omega_finite_probability::simplex::ProbabilitySimplex;
-use omega_finite_probability::stochastic_map::StochasticMap;
+use tfqm_category_theory::finite_report_descent::DescentFiber;
+use tfqm_category_theory::finite_report_query::ReportQueryDecision;
+use tfqm_finite_probability::error::ClassicalShadowError;
+use tfqm_finite_probability::log_form::{shannon_entropy_form_with_bound, LogForm, LogFormError};
+use tfqm_finite_probability::simplex::ProbabilitySimplex;
+use tfqm_finite_probability::stochastic_map::StochasticMap;
 use omega_ooutwire_primitives::event::Event;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;

@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/majorana/majorana_fock_algebra.rs`
 
 - file: [code/rust/src/majorana/majorana_fock_algebra.rs](../../../code/rust/src/majorana/majorana_fock_algebra.rs)
-- sha256 (`bytes`): `b5f84e2141e806ee857892b576a412c8f5f4d601816eabe5b338717a00ddf3b6`
+- sha256 (`bytes`): `5da71d117706660f313b3ab162cf2155ed9b852878651667e066d564a5ba9602`
 - cited in: node.rust, record TFQ-1174
 - check: `cd code/rust && cargo test -p tfqm_majorana test_sector_restriction_and_refusals`
 

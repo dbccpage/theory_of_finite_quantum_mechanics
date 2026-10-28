@@ -1,8 +1,8 @@
 //! Conductor labels are not colimits or field-minimality proofs.
 use num_integer::Integer;
 use num_rational::BigRational as Q;
-use omega_number_theory::cyclotomic_field::{CyclotomicError, CyclotomicNumber as C};
-use omega_number_theory::polynomial::cyclotomic_polynomial;
+use tfqm_number_theory::cyclotomic_field::{CyclotomicError, CyclotomicNumber as C};
+use tfqm_number_theory::polynomial::cyclotomic_polynomial;
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Sample {
     pub source: usize,

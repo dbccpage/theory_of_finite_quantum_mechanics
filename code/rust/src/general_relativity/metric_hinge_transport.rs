@@ -5,7 +5,7 @@ use crate::certified_dihedral::{
 use linear_algebra::regge_exact::So4;
 use num_rational::BigRational as Q;
 use num_traits::{One, Zero};
-use omega_number_theory::{certified_angles::validate_rational, rational::sqrt_exact};
+use tfqm_number_theory::{certified_angles::validate_rational, rational::sqrt_exact};
 use thiserror::Error;
 
 #[derive(Debug, Error)]
