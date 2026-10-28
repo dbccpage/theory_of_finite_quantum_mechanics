@@ -126,18 +126,18 @@ These are interpretations, not results, and are labelled so they can be deleted 
 - **[Speculation]** The appearance of N_c = 3 in anomaly cancellation (Section 3.2) and of three-index alternating contractions for baryons (`TFQ-0033`, OPEN) are both finite-algebraic. Whether the finite programme can say anything about why the gauge group is SU(3) rather than taking it as input is open, and we have no candidate argument.
 - **[Speculation]** The freezing obstruction of Section 4.3 suggests that the continuum is not reached by refining a finite structure at fixed algebraic content; the algebra (group or quantum group) has to grow as well. If that is right, the finite programme's role in gauge theory is to describe exact finite stages and their compatibility maps, with the limit imported.
 
-## 8. Proposed graph changes (not made)
+## 8. Graph nodes added for these targets
 
-None of these is in the graph. Each would need the maintainer's approval.
+With the maintainer's approval (2026-10-27) the targets of this draft are recorded as graph nodes. None is proved; each status says so.
 
-| Proposed node | Content | Expected status if done |
+| Node | Content | Status |
 |---|---|---|
-| Finite transfer-matrix gap | Perron–Frobenius gap for finite G on a finite periodic lattice, gauge-invariant sector; statement says it is not the Yang–Mills gap | PROVED_LEAN (small) |
-| Wilson–Dirac γ₅-hermiticity | γ₅ D_W γ₅ = D_W† on a finite periodic lattice with arbitrary links | would promote `FSP-WILSON-DIRAC-GAMMA5` |
-| Mednykh / 2D Yang–Mills | Mednykh's formula for finite G; triangulation independence | PROVED_LEAN (medium) |
-| Strong-coupling area law | Osterwalder–Seiler cluster bound with explicit constants for finite G | hard; would replace the declared formula in `TFQ-0024` |
-| Finite-group freezing | Statement of the freezing obstruction as a fence on finite-group routes to the continuum | DEFINITION or SOURCE_RECORD |
-| Balaban / announced existence result | Source record and import, once public | SOURCE_RECORD, IMPORTED_ASSUMPTION |
+| `FQCD-FINITE-TRANSFER-MATRIX-GAP` | Perron–Frobenius gap for finite G on a finite periodic lattice, gauge-invariant sector; the statement says it is not the Yang–Mills gap | OPEN |
+| `FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` | γ₅ D_W γ₅ = D_W† on a finite periodic lattice with arbitrary links; would supply the hypothesis `FSP-WILSON-DIRAC-GAMMA5` imports | OPEN |
+| `FGAUGE-MEDNYKH-2D-YANG-MILLS` | Mednykh's formula for finite G; cellulation independence | OPEN |
+| `FQCD-STRONG-COUPLING-AREA-LAW` | Osterwalder–Seiler cluster bound with explicit constants for finite G | OPEN |
+| `FQCD-FINITE-GROUP-FREEZING-FENCE` | The freezing obstruction as a fence on finite-group routes to the continuum | SOURCE_RECORD |
+| `FQCD-CONTINUUM-EXISTENCE-ANNOUNCEMENT` | The October 2026 announcement, recorded without review; not imported | SOURCE_RECORD |
 
 ## References
 

@@ -8450,6 +8450,31 @@
         "COMP-C5-CLOSURES-HALTING",
         "AUTH-DTM2-INPUT-REQUEST-PLANNED"
       ]
+    },
+    {
+      "id": "MUB-PRIME-POWER-CHARACTERISTIC-TWO",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "status": "OPEN",
+      "source_status": "dag/derivations/independent/mub-prime-power-construction-odd.md record MUB-CAMPAIGN-448-CHAR2 claims no status; audited status OPEN",
+      "statement": "For d = 2^k with k >= 2, construct d+1 bases of C^d, each orthonormal, with |<u, v>|^2 = 1/d for vectors u and v from different bases, using the Galois ring GR(4, k) and its Teichmuller set (Klappenecker-Roetteler) or the symplectic construction over F_(2^k) (Wootters-Fields), and verify every identity over an exact cyclotomic carrier.",
+      "source": [
+        "dag/derivations/25_mub/tfq_1366_mub_prime_power_characteristic_two.md",
+        "dag/derivations/independent/mub-prime-power-construction-odd.md",
+        "lean4/MubPrimePowerOddCharacteristic.lean"
+      ],
+      "lean": [],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "The odd-characteristic family of MUB-PRIME-POWER-CONSTRUCTION uses x -> psi(a x^2 + b x), which fails in characteristic two because x -> x^2 is additive there. A Lean proof of this node, together with the odd case, would complete the prime-power construction.",
+      "tags": [
+        "application-branch",
+        "source-corpus",
+        "TFQ-1366",
+        "MUB-CAMPAIGN-448-CHAR2"
+      ],
+      "see_also": [
+        "MUB6-NO-FIELD-OF-ORDER-SIX"
+      ]
     }
   ],
   "routes": [
@@ -12478,6 +12503,20 @@
       "source": [
         "dag/derivations/29_computation/tfq_1364_authf_dtm0_simulation_open.md",
         "papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json"
+      ]
+    },
+    {
+      "id": "APP-R-MUB-PRIME-POWER-CHARACTERISTIC-TWO",
+      "inputs": [
+        "MUB-PRIME-POWER-CONSTRUCTION"
+      ],
+      "output": "MUB-PRIME-POWER-CHARACTERISTIC-TWO",
+      "status": "GAP_NO_DERIVATION",
+      "mechanism": "The odd-characteristic family of MUB-PRIME-POWER-CONSTRUCTION uses x -> psi(a x^2 + b x), which fails in characteristic two because x -> x^2 is additive there. A Lean proof of this node, together with the odd case, would complete the prime-power construction.",
+      "source": [
+        "dag/derivations/25_mub/tfq_1366_mub_prime_power_characteristic_two.md",
+        "dag/derivations/independent/mub-prime-power-construction-odd.md",
+        "lean4/MubPrimePowerOddCharacteristic.lean"
       ]
     }
   ],
@@ -21468,6 +21507,31 @@
       "python": [
         "code/python/src/qm/auth_incompleteness/finite_models.py::execute"
       ],
+      "rust": [],
+      "lean4": []
+    },
+    {
+      "id": "TFQ-1366",
+      "uuid": "e460bf64-8958-5d3f-a45c-91844e8cfdae",
+      "local_id": "MUB-PRIME-POWER-CHARACTERISTIC-TWO",
+      "name": "Complete MUB family in dimension 2^k for k at least 2",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "parent_id": "TFQ-0403",
+      "record_status": "OPEN_OBLIGATION",
+      "summary": "For d = 2^k with k >= 2, construct d+1 bases of C^d, each orthonormal, with |<u, v>|^2 = 1/d for vectors u and v from different bases, using the Galois ring GR(4, k) and its Teichmuller set (Klappenecker-Roetteler) or the symplectic construction over F_(2^k) (Wootters-Fields), and verify every identity over an exact cyclotomic carrier.",
+      "obligation": "The odd-characteristic family of MUB-PRIME-POWER-CONSTRUCTION uses x -> psi(a x^2 + b x), which fails in characteristic two because x -> x^2 is additive there. A Lean proof of this node, together with the odd case, would complete the prime-power construction.",
+      "source_slice": "application_branches",
+      "existing_derivation_dag_ids": [
+        "MUB-PRIME-POWER-CHARACTERISTIC-TWO"
+      ],
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "f004_refs": [
+        "dag/derivations/25_mub/tfq_1366_mub_prime_power_characteristic_two.md",
+        "dag/derivations/independent/mub-prime-power-construction-odd.md",
+        "lean4/MubPrimePowerOddCharacteristic.lean"
+      ],
+      "python": [],
       "rust": [],
       "lean4": []
     }

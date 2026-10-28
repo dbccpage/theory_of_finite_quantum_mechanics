@@ -352,7 +352,7 @@ Folder: [`09_finite_hilbert/`](./09_finite_hilbert/)
 | [`TFQ-0317`](./09_finite_hilbert/tfq_0317_three_lean_files_stay_on_a_narrow_carrier.md) | Three Lean files stay on a narrow carrier | `OPEN_OBLIGATION` | [`TFQ-0316`](./09_finite_hilbert/tfq_0316_package_chapter_states_a_conditional_lift.md) |
 | [`TFQ-0318`](./09_finite_hilbert/tfq_0318_float_lift_helper_is_not_the_exact_embedding.md) | Float lift helper is not the exact embedding | `OPEN_OBLIGATION` | [`TFQ-0317`](./09_finite_hilbert/tfq_0317_three_lean_files_stay_on_a_narrow_carrier.md) |
 
-### FINITE_QM_CORE (20 derivations)
+### FINITE_QM_CORE (21 derivations)
 
 Folder: [`10_finite_qm_core/`](./10_finite_qm_core/)
 
@@ -378,6 +378,7 @@ Folder: [`10_finite_qm_core/`](./10_finite_qm_core/)
 | [`TFQ-1037`](./10_finite_qm_core/tfq_1037_gp_fin_gauss_matrix_algebra.md) | gp-fin-gauss-matrix-algebra | `PROVED_LEAN` | [`TFQ-0293`](./08_l1_to_l2/tfq_0293_complex_field_as_a_declared_carrier.md) |
 | [`TFQ-1038`](./10_finite_qm_core/tfq_1038_gp_drop_one_census.md) | gp-drop-one-census | `PROVED_LEAN` | [`TFQ-1029`](./08_l1_to_l2/tfq_1029_gp_import_complex_field.md) |
 | [`TFQ-1048`](./10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md) | fq-operational-local-tomography | `IMPORTED_ASSUMPTION` | [`TFQ-1019`](./10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md) |
+| [`TFQ-1055`](./10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md) | fq-gleason-qi3-frame-functions | `OPEN_OBLIGATION` | [`TFQ-0307`](./09_finite_hilbert/tfq_0307_gleason_route_for_dimension_at_least_three.md) |
 
 ### FINITE_QM_DYNAMICS (18 derivations)
 
@@ -456,7 +457,7 @@ Folder: [`13_finite_qm_information/`](./13_finite_qm_information/)
 | [`TFQ-0277`](./13_finite_qm_information/tfq_0277_typed_authority_boundary_suite.md) | Typed authority-boundary suite | `SOURCE_RECORD` | [`TFQ-0272`](./13_finite_qm_information/tfq_0272_interpretations_as_authority_shadows.md) |
 | [`TFQ-0278`](./13_finite_qm_information/tfq_0278_copenhagen_slot_reserved_as_an_authority_shadow.md) | Copenhagen slot reserved as an authority shadow | `OPEN_OBLIGATION` | [`TFQ-0272`](./13_finite_qm_information/tfq_0272_interpretations_as_authority_shadows.md) |
 
-### FINITE_GAUGE (5 derivations)
+### FINITE_GAUGE (6 derivations)
 
 Folder: [`14_finite_gauge/`](./14_finite_gauge/)
 
@@ -467,6 +468,7 @@ Folder: [`14_finite_gauge/`](./14_finite_gauge/)
 | [`TFQ-0053`](./14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md) | Each language must carry: a unit Gaussian edge connection, covariant difference, vertex | `COMPUTATIONAL_CONTROL` | [`TFQ-0052`](./14_finite_gauge/tfq_0052_each_language_must_carry_on_a_declared_m_2_q_i_packet_d0_of_an.md) |
 | [`TFQ-0054`](./14_finite_gauge/tfq_0054_each_language_must_carry_pure_gauge_iff_every_off_forest_edge_is_1.md) | Each language must carry: pure gauge iff every off-forest edge is 1, | `COMPUTATIONAL_CONTROL` | [`TFQ-0053`](./14_finite_gauge/tfq_0053_each_language_must_carry_a_unit_gaussian_edge_connection_covariant_difference_vertex.md) |
 | [`TFQ-0055`](./14_finite_gauge/tfq_0055_each_language_must_carry_no_rational_homomorphism_supplies_the_missing_square_root.md) | Each language must carry: no rational homomorphism supplies the missing square root | `GAP` | [`TFQ-0054`](./14_finite_gauge/tfq_0054_each_language_must_carry_pure_gauge_iff_every_off_forest_edge_is_1.md) |
+| [`TFQ-1051`](./14_finite_gauge/tfq_1051_fgauge_mednykh_2d_yang_mills.md) | fgauge-mednykh-2d-yang-mills | `OPEN_OBLIGATION` | [`TFQ-0009`](./14_finite_gauge/tfq_0009_finite_gauge_cochain.md) |
 
 ### FINITE_QED (20 derivations)
 
@@ -511,7 +513,7 @@ Folder: [`16_finite_electroweak/`](./16_finite_electroweak/)
 | [`TFQ-0082`](./16_finite_electroweak/tfq_0082_each_language_must_carry_the_octet_and_decuplet_relations_as_polynomial_identities.md) | Each language must carry the octet and decuplet relations as polynomial identities | `COMPUTATIONAL_CONTROL` | [`TFQ-0081`](./16_finite_electroweak/tfq_0081_each_language_must_carry_s_n_c_n_c_3_the_values_1_and_1_3.md) |
 | [`TFQ-0083`](./16_finite_electroweak/tfq_0083_each_language_must_carry_an_explicit_gap_record_the_finite_gauge_dirac.md) | Each language must carry an explicit gap record: the finite gauge, Dirac, | `GAP` | [`TFQ-0082`](./16_finite_electroweak/tfq_0082_each_language_must_carry_the_octet_and_decuplet_relations_as_polynomial_identities.md) |
 
-### FINITE_QCD (32 derivations)
+### FINITE_QCD (37 derivations)
 
 Folder: [`17_finite_qcd/`](./17_finite_qcd/)
 
@@ -549,6 +551,11 @@ Folder: [`17_finite_qcd/`](./17_finite_qcd/)
 | [`TFQ-0040`](./17_finite_qcd/tfq_0040_close_the_missing_python_or_lean_twins_before_treating_a_control_as.md) | Close the missing Python or Lean twins before treating a control as | `OPEN_OBLIGATION` | [`TFQ-0039`](./17_finite_qcd/tfq_0039_cite_f002_s001_as_an_open_bridge_and_do_not_convert_the_finite.md) |
 | [`TFQ-0041`](./17_finite_qcd/tfq_0041_keep_the_z2_many_body_benchmark_off_the_su_3_wilson_claim.md) | Keep the Z2 many-body benchmark off the SU(3) Wilson claim | `COMPUTATIONAL_CONTROL` | [`TFQ-0023`](./17_finite_qcd/tfq_0023_keep_the_3_by_3_betti_count_separate_from_a_link_ensemble.md) |
 | [`TFQ-0042`](./17_finite_qcd/tfq_0042_supply_a_python_replay_or_keep_the_gribov_diamond_as_rust_plus.md) | Supply a Python replay or keep the Gribov diamond as Rust plus | `OPEN_OBLIGATION` | [`TFQ-0023`](./17_finite_qcd/tfq_0023_keep_the_3_by_3_betti_count_separate_from_a_link_ensemble.md) |
+| [`TFQ-1049`](./17_finite_qcd/tfq_1049_fqcd_finite_transfer_matrix_gap.md) | fqcd-finite-transfer-matrix-gap | `OPEN_OBLIGATION` | [`TFQ-0011`](./17_finite_qcd/tfq_0011_finite_qcd_shadow.md) |
+| [`TFQ-1050`](./17_finite_qcd/tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.md) | fqcd-wilson-dirac-gamma5-hermiticity | `OPEN_OBLIGATION` | [`TFQ-0026`](./17_finite_qcd/tfq_0026_add_python_and_lean_replays_of_the_declared_doubling_count_or_leave.md) |
+| [`TFQ-1052`](./17_finite_qcd/tfq_1052_fqcd_strong_coupling_area_law.md) | fqcd-strong-coupling-area-law | `OPEN_OBLIGATION` | [`TFQ-0030`](./17_finite_qcd/tfq_0030_limit_the_confinement_certificate_to_the_declared_strong_coupling_formulae.md) |
+| [`TFQ-1053`](./17_finite_qcd/tfq_1053_fqcd_finite_group_freezing_fence.md) | fqcd-finite-group-freezing-fence | `SOURCE_RECORD` | [`TFQ-0031`](./17_finite_qcd/tfq_0031_leave_confinement_beyond_the_strong_coupling_formulae_as_a_gap_with_f002_s001_an.md) |
+| [`TFQ-1054`](./17_finite_qcd/tfq_1054_fqcd_continuum_existence_announcement.md) | fqcd-continuum-existence-announcement | `SOURCE_RECORD` | [`TFQ-0031`](./17_finite_qcd/tfq_0031_leave_confinement_beyond_the_strong_coupling_formulae_as_a_gap_with_f002_s001_an.md) |
 
 ### FINITE_TOPOLOGICAL (9 derivations)
 
@@ -827,7 +834,7 @@ These branches attach to existing finite carriers. A proved theorem has its stat
 | [TFQ-1136](./24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md) | Artificial versus substantial hinge holonomy witness | `COMPUTATIONAL_CONTROL` | [TFQ-1135](./24_dressing_field/tfq_1135_dfm_dressed_affine_transport.md) | `DFM-HINGE-HOLONOMY-WITNESS` |
 | [TFQ-1137](./24_dressing_field/tfq_1137_dfm_regge_gravity_fence.md) | Cosine-law data for lengths 3, 4, 5 differs from block trace 16/3 | `OPEN_OBLIGATION` | [TFQ-1136](./24_dressing_field/tfq_1136_dfm_hinge_holonomy_witness.md) | `DFM-REGGE-GRAVITY-FENCE` |
 
-### MUTUALLY_UNBIASED_BASES (67 derivations)
+### MUTUALLY_UNBIASED_BASES (68 derivations)
 
 | ID | Name | Status | Parent | DAG node |
 |---|---|---|---|---|
@@ -898,6 +905,7 @@ These branches attach to existing finite carriers. A proved theorem has its stat
 | [TFQ-1280](./25_mub/tfq_1280_mub6_commutative_flat_real_point.md) | Common real point from positive flat coordinate moments | `PROVED_LEAN` | [TFQ-1251](./25_mub/tfq_1251_mub6_moment_evaluation_flat.md) | `MUB6-COMMUTATIVE-FLAT-REAL-POINT` |
 | [TFQ-1281](./25_mub/tfq_1281_mub6_fourth_basis_flat_moments.md) | Fourth basis iff positive flat compatible moments | `PROVED_LEAN` | [TFQ-1280](./25_mub/tfq_1280_mub6_commutative_flat_real_point.md) | `MUB6-FOURTH-BASIS-FLAT-MOMENTS` |
 | [TFQ-1282](./25_mub/tfq_1282_mub6_empty_variety_moment_nonpsd.md) | Empty variety forces non-positive flat moments | `PROVED_LEAN` | [TFQ-1281](./25_mub/tfq_1281_mub6_fourth_basis_flat_moments.md) | `MUB6-EMPTY-VARIETY-MOMENT-NONPSD` |
+| [TFQ-1366](./25_mub/tfq_1366_mub_prime_power_characteristic_two.md) | Complete MUB family in dimension 2^k for k at least 2 | `OPEN_OBLIGATION` | [TFQ-0403](./25_mub/tfq_0403_mub_prime_power_construction.md) | `MUB-PRIME-POWER-CHARACTERISTIC-TWO` |
 
 ### FERMION_SIGN (41 derivations)
 

@@ -189,6 +189,34 @@
     "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY": {
       "id": "TFQ-1048",
       "parent": "TFQ-1019"
+    },
+    "FQCD-FINITE-TRANSFER-MATRIX-GAP": {
+      "id": "TFQ-1049",
+      "parent": "TFQ-0011"
+    },
+    "FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY": {
+      "id": "TFQ-1050",
+      "parent": "TFQ-0026"
+    },
+    "FGAUGE-MEDNYKH-2D-YANG-MILLS": {
+      "id": "TFQ-1051",
+      "parent": "TFQ-0009"
+    },
+    "FQCD-STRONG-COUPLING-AREA-LAW": {
+      "id": "TFQ-1052",
+      "parent": "TFQ-0030"
+    },
+    "FQCD-FINITE-GROUP-FREEZING-FENCE": {
+      "id": "TFQ-1053",
+      "parent": "TFQ-0031"
+    },
+    "FQCD-CONTINUUM-EXISTENCE-ANNOUNCEMENT": {
+      "id": "TFQ-1054",
+      "parent": "TFQ-0031"
+    },
+    "FQ-GLEASON-QI3-FRAME-FUNCTIONS": {
+      "id": "TFQ-1055",
+      "parent": "TFQ-0307"
     }
   },
   "packet_crosswalk": {
@@ -11271,6 +11299,37 @@
         "AUTH-DTM2-INPUT-REQUEST-PLANNED"
       ],
       "uses": []
+    },
+    {
+      "source_claimed_status": null,
+      "imported_structure": [],
+      "lean": [],
+      "rust": [],
+      "python": [],
+      "external_witnesses": [],
+      "see_also": [
+        "MUB6-NO-FIELD-OF-ORDER-SIX"
+      ],
+      "uses": [],
+      "source_id": "MUB-CAMPAIGN-448-CHAR2",
+      "corpus": "dag/derivations/independent/mub-prime-power-construction-odd.md",
+      "record_id": "TFQ-1366",
+      "node_id": "MUB-PRIME-POWER-CHARACTERISTIC-TWO",
+      "slug": "mub-prime-power-characteristic-two",
+      "name": "Complete MUB family in dimension 2^k for k at least 2",
+      "stage": "MUTUALLY_UNBIASED_BASES",
+      "status": "OPEN",
+      "parent_nodes": [
+        "MUB-PRIME-POWER-CONSTRUCTION"
+      ],
+      "parent_record": "TFQ-0403",
+      "statement": "For d = 2^k with k >= 2, construct d+1 bases of C^d, each orthonormal, with |<u, v>|^2 = 1/d for vectors u and v from different bases, using the Galois ring GR(4, k) and its Teichmuller set (Klappenecker-Roetteler) or the symplectic construction over F_(2^k) (Wootters-Fields), and verify every identity over an exact cyclotomic carrier.",
+      "obligation": "The odd-characteristic family of MUB-PRIME-POWER-CONSTRUCTION uses x -> psi(a x^2 + b x), which fails in characteristic two because x -> x^2 is additive there. A Lean proof of this node, together with the odd case, would complete the prime-power construction.",
+      "sources": [
+        "dag/derivations/independent/mub-prime-power-construction-odd.md",
+        "lean4/MubPrimePowerOddCharacteristic.lean"
+      ],
+      "audit": "The dimension-2 family is in lean4/MubPrimePowerConstruction.lean; no family for d = 4 or larger powers of two exists in this checkout."
     }
   ]
 }
