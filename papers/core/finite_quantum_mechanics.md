@@ -1630,7 +1630,7 @@ This section reports what the derivation DAG records and what the Lean closure m
 
 <!-- BEGIN GENERATED dag-census (papers/core/tools/build_results_audit_table.py) -->
 
-The derivation DAG (`dag/derivation_dag.json`, schema `derivation_dag.v2`) now has 925 nodes in 34 stages and 934 routes. The tables below are generated from that file by `papers/core/tools/build_results_audit_table.py`; they replace the earlier 177-node, 172-route partition.
+The derivation DAG (`dag/derivation_dag.json`, schema `derivation_dag.v2`) now has 933 nodes in 34 stages and 942 routes. The tables below are generated from that file by `papers/core/tools/build_results_audit_table.py`; they replace the earlier 177-node, 172-route partition.
 
 | Node status | Nodes | PFP-reviewed |
 | --- | ---: | ---: |
@@ -1641,10 +1641,10 @@ The derivation DAG (`dag/derivation_dag.json`, schema `derivation_dag.v2`) now h
 | `COMPUTATIONALLY_CHECKED` | 193 | 56 |
 | `CONDITIONAL` | 37 | 12 |
 | `IMPORTED_ASSUMPTION` | 70 | 21 |
-| `OPEN` | 186 | 17 |
+| `OPEN` | 192 | 17 |
 | `REFUTED` | 6 | 0 |
-| `SOURCE_RECORD` | 81 | 0 |
-| **Total** | **925** | **177** |
+| `SOURCE_RECORD` | 83 | 0 |
+| **Total** | **933** | **177** |
 
 | Route status | Routes |
 | --- | ---: |
@@ -1652,11 +1652,11 @@ The derivation DAG (`dag/derivation_dag.json`, schema `derivation_dag.v2`) now h
 | `DERIVED_LEAN` | 224 |
 | `COMPUTED` | 201 |
 | `CONDITIONAL_ON_IMPORT` | 91 |
-| `GAP_NO_DERIVATION` | 215 |
-| `RECORD_PARENT` | 89 |
-| **Total** | **934** |
+| `GAP_NO_DERIVATION` | 221 |
+| `RECORD_PARENT` | 91 |
+| **Total** | **942** |
 
-Of the 177 reviewed nodes, 45 are `consistent`, 37 are `caveat_added`, 22 are `statement_narrowed`, 73 are `status_lowered`. Only 217 of the 925 nodes cite two or more Lean declarations and two or more Rust witnesses; 337 cite no Lean declaration and 543 cite no Rust witness. A node's status is a label on its statement; it does not say that the statement is mechanized in both languages.
+Of the 177 reviewed nodes, 45 are `consistent`, 37 are `caveat_added`, 22 are `statement_narrowed`, 73 are `status_lowered`. Only 217 of the 933 nodes cite two or more Lean declarations and two or more Rust witnesses; 342 cite no Lean declaration and 551 cite no Rust witness. A node's status is a label on its statement; it does not say that the statement is mechanized in both languages.
 
 <!-- END GENERATED dag-census (papers/core/tools/build_results_audit_table.py) -->
 

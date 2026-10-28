@@ -97,7 +97,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/wdp/obstruction.rs`
 
 - file: [code/rust/src/wdp/obstruction.rs](../../../code/rust/src/wdp/obstruction.rs)
-- sha256 (`bytes`): `54a2d6c70adcbfb8ef7203785769515f17ab69b375f47f8f9eca1fb4eaa0bcb7`
+- sha256 (`bytes`): `30b2b590d0fb59ab9f01eb5f5ee924651ae5c2d391628a48ec57b88f3620fc29`
 - cited in: record TFQ-0344 (shared), record TFQ-0349 (shared)
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: no
@@ -105,7 +105,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/wdp/phi1_coda_adapter.rs`
 
 - file: [code/rust/src/wdp/phi1_coda_adapter.rs](../../../code/rust/src/wdp/phi1_coda_adapter.rs)
-- sha256 (`bytes`): `51867118a39587581377ec1362f81ecbc64647522f2e12d3aeafb097a1abdee2`
+- sha256 (`bytes`): `685ace0e14a954ee2fd4fa40e01b46c741534a12a94943f324a388a79648ed2b`
 - cited in: record TFQ-0349 (shared)
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: no
@@ -113,7 +113,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/wdp/primitive_axiomatics.rs`
 
 - file: [code/rust/src/wdp/primitive_axiomatics.rs](../../../code/rust/src/wdp/primitive_axiomatics.rs)
-- sha256 (`bytes`): `ec684060aeb104e94b73d1e3f72802ada1fa8bb5755232199380e454e66fd45d`
+- sha256 (`bytes`): `aed341e968c77a4efc9dd15172fe992ead69e98c7dc8ec576ddf940acb5d8b6d`
 - cited in: record TFQ-0344 (shared), record TFQ-0349 (shared)
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: no

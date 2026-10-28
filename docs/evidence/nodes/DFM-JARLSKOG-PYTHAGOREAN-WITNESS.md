@@ -60,7 +60,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/qm/campaigns/ravera_dfm.rs`
 
 - file: [code/rust/src/qm/campaigns/ravera_dfm.rs](../../../code/rust/src/qm/campaigns/ravera_dfm.rs)
-- sha256 (`bytes`): `000828b04ba50dedc39a4bd6cbf36734e50e36bc80cf05bfe5cb8f5b229ac477`
+- sha256 (`bytes`): `4b865159ebe5a6ab9cd60382784354719fe46dc71f3346e817fdaae8162f646f`
 - cited in: node.rust, record TFQ-1127
 - check: `cd code/rust && cargo test -p theory_of_finite_qm test_ckm_jarlskog_bipartite_dfm_control`
 

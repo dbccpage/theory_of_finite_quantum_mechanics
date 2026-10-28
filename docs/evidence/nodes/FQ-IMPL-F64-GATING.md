@@ -82,7 +82,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/mub/native/d6_exact_sos.rs`
 
 - file: [code/rust/src/mub/native/d6_exact_sos.rs](../../../code/rust/src/mub/native/d6_exact_sos.rs)
-- sha256 (`bytes`): `04c6547bc35ec8ffc30263c446ddce9b88b4e643cc5a1bd894a0afd8a6ac69b8`
+- sha256 (`bytes`): `9834ebaa9fd4dda90fa8bc2d17fa7ddce112695aeeb92188d987293baef6e64c`
 - cited in: record TFQ-0179
 - note: no test is cited for this symbol; its crate is tfqm_mub
 - counts toward the grade: yes
@@ -90,7 +90,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/mub/native/d6_sos_float_sdp.rs`
 
 - file: [code/rust/src/mub/native/d6_sos_float_sdp.rs](../../../code/rust/src/mub/native/d6_sos_float_sdp.rs)
-- sha256 (`bytes`): `d29187fe7c4dbf10a165e2e8243ca02f02d7c196d231368ec48349ecf62a1e65`
+- sha256 (`bytes`): `5036040fd2aec467367b87becbaefbc2ea6db7981b8c1d0ed788fb0d0a5b0e04`
 - cited in: record TFQ-0179
 - note: no test is cited for this symbol; its crate is tfqm_mub
 - counts toward the grade: yes

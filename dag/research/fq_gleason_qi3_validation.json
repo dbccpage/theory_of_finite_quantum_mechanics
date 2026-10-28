@@ -1,0 +1,142 @@
+{
+  "authority_effect": "None",
+  "base_commit": "83667d6f0bd3a52898b915a0e68dcbadf443b6c1",
+  "evaluated_at": "2026-10-28T20:40:13.496748+00:00",
+  "python": "3.12.14",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/fq-gleason-qi3-frame-functions.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"status\": \"PASS\",\n  \"authority_effect\": \"None\",\n  \"claim\": \"No {0,1}-valued frame function on all Q^3 or Q(i)^3 rays\",\n  \"rays\": 49,\n  \"orthogonal_pairs\": 138,\n  \"internal_frames\": 26,\n  \"completed_pairs\": 138,\n  \"raw_cross_products_outside_box\": 90,\n  \"binary_search_nodes\": 11,\n  \"controls\": [\n    \"triples-only SAT\",\n    \"pairs-only SAT\",\n    \"exhaustive small instances\"\n  ],\n  \"not_established\": [\n    \"signed rigidity\",\n    \"nonnegative rigidity\",\n    \"exotic extension\"\n  ]\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/fq-gleason-qi3-extension.py",
+        "--self-test"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"contradiction_rhs\": 32, \"frames\": 210, \"rays\": 277, \"real_values\": 19}\nExact certificate: 0 = 32 for g=3*f-1. No signed extension of the prescribed exotic.\nNot established: classification or existence of other nonquadratic Q(i)^3 frame functions.\nNegative control rejected: frame coefficient\nNegative control rejected: nonorthogonal vector\nNegative control rejected: exotic value\nNegative control rejected: Boolean coordinate\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "checks/independent/fq-gleason-qi3-tomography.py"
+      ],
+      "exit_code": 0,
+      "stdout": "{\"scope\": \"symbolic algebra controls; no global rigidity claim\", \"status\": \"PASS\", \"sympy_version\": \"1.14.0\", \"tomography_rank\": 9}\n",
+      "stderr": ""
+    }
+  ],
+  "source_sha256": {
+    "checks/independent/data/fq_gleason_qi3_extension.json": "fd0fd770fd92f7cb60203c2b813936717db74707e9e3ac5954fab3eaed0f226b",
+    "checks/independent/fq-gleason-qi3-extension.py": "e54fbb9b4babc7324cf22aa43cab27a89b72208ba1f482c893cbf18128a99d0d",
+    "checks/independent/fq-gleason-qi3-frame-functions.py": "79b9d9fac2eea13b1e5a498c6aefa6017c787e3f5a8c9224e503c7d71e1c939d",
+    "checks/independent/fq-gleason-qi3-tomography.py": "c9225143f4f7d24e972fa966fd0313c574ce93d7036305e2cdc4439a57c0d43d"
+  },
+  "scope": "Exact finite obstructions and symbolic reconstruction controls; no general signed or nonnegative rigidity claim.",
+  "repository_checks": [
+    {
+      "command": "python -I -X utf8 dag/validate_derivation_dag.py --no-files",
+      "exit_code": 0,
+      "observed_summary": "nodes=933 routes=942 records=985 failures=0"
+    },
+    {
+      "command": "python -I -X utf8 dag/render_dag_views.py --check",
+      "exit_code": 0,
+      "observed_summary": "views match derivation_dag.json"
+    },
+    {
+      "command": "python -I -X utf8 dag/sync_unified_dag.py --invariants",
+      "exit_code": 0,
+      "observed_summary": "unified invariants failures=0"
+    },
+    {
+      "commands": [
+        "python -I -X utf8 dag/sync_pfp_results.py --check",
+        "python -I -X utf8 dag/sync_unified_dag.py --check",
+        "python -I -X utf8 dag/sync_application_branches.py --check",
+        "python -I -X utf8 dag/sync_pregenesis_to_wdp.py --check",
+        "python -I -X utf8 dag/sync_frontier_branches.py --check",
+        "python -I -X utf8 dag/sync_genesis_to_higher.py --check",
+        "python -I -X utf8 dag/sync_foc035_observer_presheaf.py --check"
+      ],
+      "exit_code": 0,
+      "observed_summary": "All seven synchronized"
+    },
+    {
+      "command": "python -I -X utf8 dag/pfp/generate_prompts.py --check --nodes FQ-GLEASON-QI3-FRAME-FUNCTIONS",
+      "exit_code": 0,
+      "observed_summary": "current=1; stale={}; would_create=0. Existing sealed-corpus drift is reported by the tool and not modified."
+    },
+    {
+      "command": "python -I -X utf8 scripts/verify_qm_atlas_loc.py",
+      "exit_code": 0,
+      "observed_summary": "all_passed=True questions=65 verified_links=403 verified_window_symbols=197 rust_python_parity=True"
+    },
+    {
+      "command": "python -m pytest code/python/tests/test_qm_atlas_loc.py -q",
+      "exit_code": 0,
+      "observed_summary": "5 passed"
+    },
+    {
+      "command": "python -m pytest dag/test_tensor_countermodel_receipt.py dag/test_tensor_measurement_receipt.py dag/test_application_branches.py -q",
+      "exit_code": 1,
+      "observed_summary": "11 passed, 1 failed because shallow checkout lacked historical source commit 93b0f10a58415f33670a76f648d85efbcf73bf4e; fetched full history and reran affected file below."
+    },
+    {
+      "command": "python -m pytest dag/test_tensor_measurement_receipt.py -q",
+      "exit_code": 0,
+      "observed_summary": "2 passed after fetching full repository history"
+    },
+    {
+      "command": "python -m pytest dag/test_frontier_branches.py dag/test_genesis_to_higher.py dag/test_foc035_observer_presheaf.py -q",
+      "exit_code": 0,
+      "observed_summary": "22 passed"
+    },
+    {
+      "command": "python -I -X utf8 scripts/overclaim_scan.py --changed-since origin/main --strict",
+      "exit_code": 0,
+      "observed_summary": "HIGH=0 MEDIUM=0 LOW=6"
+    },
+    {
+      "command": "git -c core.whitespace=cr-at-eol diff --check",
+      "exit_code": 0,
+      "observed_summary": "No whitespace errors. CRLF is the required JSONL renderer format."
+    },
+    {
+      "command": "python -I -X utf8 scripts/build_status.py --check",
+      "exit_code": 0,
+      "observed_summary": "generated status files are current (16 files checked)"
+    }
+  ],
+  "dag_scope_review": {
+    "modified_node_ids": [
+      "FQ-GLEASON-QI3-FRAME-FUNCTIONS"
+    ],
+    "modified_route_ids": [
+      "FQ-R-GLEASON-QI3-FRAME-FUNCTIONS"
+    ],
+    "modified_record_ids": [
+      "TFQ-1055"
+    ],
+    "all_node_statuses_unchanged": true,
+    "queue_count": 209,
+    "target_queue_rank": 133,
+    "note": "The checked-in baseline queue had 159 rows and omitted this target; regenerated with existing make_queue.py."
+  }
+}

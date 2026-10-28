@@ -10,13 +10,22 @@ target:
     the non-quadratic Q^3 frame function extends to Q(i)^3.
   statement_status: source_claim_to_scope_check_not_accepted_result
   declared_assumptions: []
-  source_bottleneck: Either answer is a result. Over Q^3 a non-quadratic frame function exists (BornRationalRayObstruction.exotic_not_quadratic);
-    over Q(i)^3 only the residue-modulo-2 class ansatz is excluded (BornGaussianMod2ClassRigidity.mod2_class_function_is_third).
-    Continuum Gleason does not decide this, because Q(i)^3 is not complete.
+  source_bottleneck: General signed and nonnegative quadratic rigidity on all Q(i)^3 rays remain open.
+    The {0,1}-valued variant is excluded by a finite real-ray obstruction. The specific exotic Q^3 frame
+    function has no signed extension, by an exact finite linear certificate. The remaining problem reduces
+    in prose to vanishing of zero-weight frame functions on Q(i)^3 that vanish on nine tomography rays
+    (all residuals for signed rigidity; bounded residuals for nonnegative rigidity). Neither finite obstruction
+    establishes either general vanishing assertion.
   source_refs:
   - dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md
   - lean4/BornRationalRayObstruction.lean
   - lean4/BornGaussianMod2ClassRigidity.lean
+  - dag/derivations/independent/fq-gleason-qi3-frame-functions.md
+  - dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md
+  - checks/independent/data/fq_gleason_qi3_extension.json
+  - checks/independent/fq-gleason-qi3-frame-functions.py
+  - checks/independent/fq-gleason-qi3-extension.py
+  - checks/independent/fq-gleason-qi3-tomography.py
   paper_refs:
   - dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md
   source_claim_label: OPEN
@@ -25,7 +34,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md
-    sha256: fafe545eea94c000c0035854c57bf460780d693e08beb38fc6d67dda60b1c9c5
+    sha256: 6aff3f111d5d3ee4b0e7143fec82eccd5bc4855cd9782258bb224db8a247b726
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -34,8 +43,83 @@ source_provenance:
   path: dag/prompts/finite_qm_core_fq_gleason_qi3_frame_functions_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates: []
-relation_candidates: []
-source_bindings: []
+relation_candidates:
+- kind: theorem
+  name: no_zero_one_frame_function
+  line: 38
+  signature_excerpt: |-
+    theorem no_zero_one_frame_function (f : GVec → ℚ) (hF : IsFrameFunction f)
+        (hB : ∀ v, v.NonZero → f v = 0 ∨ f v = 1) : False
+  source: lean4/BornGaussianRationalNoColouring.lean
+  repository: this_repository
+  source_sha256: fffb58fbf26650d8e27fcabb2935937eda3d919dee03d9b481a21b67ea0ac778
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: no_prescribed_frame_function
+  line: 20
+  signature_excerpt: |-
+    theorem no_prescribed_frame_function (f : GVec → ℚ) (hF : IsFrameFunction f)
+        (r0 : f (gv 0 0 1 0 (-2) 0) = (1 / 3 : ℚ))
+        (r1 : f (gv 0 0 1 0 (-1) 0) = (2 / 3 : ℚ))
+        (r2 : f (gv 0 0 1 0 1 0) = (0 : ℚ))
+        (r3 : f (gv 0 0 1 0 2 0) = (1 / 3 : ℚ))
+        (r4 : f (gv 0 0 1 0 3 0) = (2 / 3 : ℚ))
+        (r5 : f (gv 0 0 2 0 (-1) 0) = (1 / 3 : ℚ))
+        (r6 : f (gv 0 0 2 0 1 0) = (1 / 3 : ℚ))
+        (r7 : f (gv 1 0 (-2) 0 0 0) = (1 / 3 : ℚ))
+        (r8 : f (gv 1 0 0 0 (-2) 0) = (1 / 3 : ℚ))
+        (r9 : f (gv 1 0 0 0 (-1) 0) = (2 / 3 : ℚ))
+        (r10 : f (gv 1 0 0 0 0 0) = (1 / 3 : ℚ))
+        (r11 : f (gv 1 0 0 0
+  source: lean4/BornGaussianRationalExtensionObstruction.lean
+  repository: this_repository
+  source_sha256: aa68f3cdf925dcbe35b7aa2d23f51bc9bf1171963f060c8540988e5c77b1fb33
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: no_exotic_extension
+  line: 694
+  signature_excerpt: |-
+    theorem no_exotic_extension (f : GVec → ℚ) (hF : IsFrameFunction f)
+        (hreal : ∀ a b c : ℤ, BornFinite.RationalRays.Vec3.IsRay ⟨a, b, c⟩ →
+          f (gv a 0 b 0 c 0) = BornFinite.RationalRays.exotic ⟨a, b, c⟩) : False
+  source: lean4/BornGaussianRationalExtensionObstruction.lean
+  repository: this_repository
+  source_sha256: aa68f3cdf925dcbe35b7aa2d23f51bc9bf1171963f060c8540988e5c77b1fb33
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/BornGaussianRationalNoColouring.lean::BornFinite.GaussianFrames.NoColouring.no_zero_one_frame_function
+  availability: local
+  symbol: BornFinite.GaussianFrames.NoColouring.no_zero_one_frame_function
+  path: lean4/BornGaussianRationalNoColouring.lean
+  repository: this_repository
+  sha256: fffb58fbf26650d8e27fcabb2935937eda3d919dee03d9b481a21b67ea0ac778
+  declaration_status: declaration_found_not_proof_checked
+  line: 38
+  role: source_lead_only
+- original_ref: lean4/BornGaussianRationalExtensionObstruction.lean::BornFinite.GaussianExtension.no_prescribed_frame_function
+  availability: local
+  symbol: BornFinite.GaussianExtension.no_prescribed_frame_function
+  path: lean4/BornGaussianRationalExtensionObstruction.lean
+  repository: this_repository
+  sha256: aa68f3cdf925dcbe35b7aa2d23f51bc9bf1171963f060c8540988e5c77b1fb33
+  declaration_status: declaration_found_not_proof_checked
+  line: 20
+  role: source_lead_only
+- original_ref: lean4/BornGaussianRationalExtensionObstruction.lean::BornFinite.GaussianExtension.no_exotic_extension
+  availability: local
+  symbol: BornFinite.GaussianExtension.no_exotic_extension
+  path: lean4/BornGaussianRationalExtensionObstruction.lean
+  repository: this_repository
+  sha256: aa68f3cdf925dcbe35b7aa2d23f51bc9bf1171963f060c8540988e5c77b1fb33
+  declaration_status: declaration_found_not_proof_checked
+  line: 694
+  role: source_lead_only
 presentation:
   colours: []
   generators: []
@@ -73,8 +157,6 @@ operad_slots:
     unpaid_imports: []
 stage_history: []
 open_obligations:
-- No source definition was recovered by the bounded declaration scan. Inspect imported modules and function-valued
-  premises; do not invent an operation.
 - Match the exact source theorem to this target, including quantifiers and imported hypotheses.
 - Select and semantically check the generators needed by one useful next step.
 - Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
