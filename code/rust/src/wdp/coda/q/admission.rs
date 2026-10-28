@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 use super::continuum::ContinuumDebt;
 use super::errors::QError;
 use super::packet::{QPacket, QTerminal};
-use omega_types::q_continuum::{
+use engine_types::q_continuum::{
     AuthorityScope, DescentResult, ObstructionKind, QContinuumLedger, Residual,
 };
 

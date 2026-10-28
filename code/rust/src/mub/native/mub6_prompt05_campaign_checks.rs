@@ -8,7 +8,7 @@ use linear_algebra::exact_field::elimination;
 use linear_algebra::linear_algebra::rank::compute_exact_rank;
 use num_rational::{BigRational, Rational64};
 use num_traits::{One, Zero};
-use tfqm_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::cyclotomic::Cyc24;
 use serde::Serialize;
 use std::collections::btree_map::Entry;
 use std::collections::{BTreeMap, BTreeSet};

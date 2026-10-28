@@ -3,7 +3,7 @@ use num_rational::BigRational;
 use num_traits::{One, Zero};
 use serde::{Deserialize, Serialize};
 
-use tfqm_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::cyclotomic::Cyc24;
 
 pub use crate::native::exact::mub6_field::{inv_sqrt6, omega3_pow, omega6_pow};
 pub const DIM_HILBERT: usize = 6;

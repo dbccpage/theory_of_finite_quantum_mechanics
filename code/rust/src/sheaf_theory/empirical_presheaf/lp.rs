@@ -1,6 +1,6 @@
 
 use num_traits::{One, Signed, Zero};
-use omega_solvers::solver_lp_standard_form::{StandardLp, StandardLpError, StandardLpSolution};
+use engine_solvers::solver_lp_standard_form::{StandardLp, StandardLpError, StandardLpSolution};
 
 use super::{EmpiricalError, MAX_LP_ENTRIES, Q};
 

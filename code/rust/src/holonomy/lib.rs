@@ -1,5 +1,5 @@
 
-extern crate self as omega_holonomy;
+extern crate self as tfqm_holonomy;
 pub mod connection;
 pub mod curvature;
 pub mod error;

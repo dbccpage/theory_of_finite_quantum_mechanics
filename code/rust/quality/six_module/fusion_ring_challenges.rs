@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod ring_review {
     use super::*;
-    use omega_number_theory::rational::rq;
+    use engine_number_theory::rational::rq;
 
     fn oracle(n:&[u64],r:usize,commutative:bool)->Option<RingDefect> {
         let at=|a,b,c|n[(a*r+b)*r+c];
@@ -113,10 +113,10 @@ mod ring_review {
         for a in 0..4 {for b in 0..4 {for c in 0..4 {let sum:i128=(0..4).map(|x|values[a][x].to_integer().to_i128().unwrap()*values[b][x].to_integer().to_i128().unwrap()*values[c][x].to_integer().to_i128().unwrap()).sum();if sum!=4*i128::from(u8::from(c==a^b)){expected.push([a,b,c]);}}}}
         assert_eq!(ring.verlinde_defects(&broken,&rq(4,1)).unwrap(),expected);
         {
-            use omega_number_theory::cyclotomic::Cyc12;
+            use engine_number_theory::cyclotomic::Cyc12;
             let group=FusionRing::z_n(3).unwrap();
             let fourier=matrix::from_rows((0..3).map(|a|(0..3).map(|x|crate::scalar::root_of_unity::<Cyc12>(3,(a*x) as i64).unwrap()).collect()).collect()).unwrap();
-            let dimension=omega_number_theory::scalar::from_i64::<Cyc12>(3);
+            let dimension=engine_number_theory::scalar::from_i64::<Cyc12>(3);
             assert!(group.verlinde_defects(&fourier,&dimension).unwrap().is_empty());
         }
         let wrong=matrix::zeros(3,3).unwrap();assert!(matches!(ring.verlinde_defects(&wrong,&rq(0,1)),Err(FusionError::Shape{..})));

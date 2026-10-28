@@ -7,7 +7,7 @@
 //! (conceptual link in docs comments only — no crate dependency).
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a homological-algebra topic claim.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

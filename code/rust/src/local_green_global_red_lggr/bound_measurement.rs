@@ -6,9 +6,9 @@ use crate::epk_engine::{
     calculate_metrics, evaluator_gluing_defect, BoundarySlice, CompositionRecord, EpkError,
     EpkMetrics, GluingDefect, TraceLedger,
 };
-use omega_types::authority::AuthorityEffect;
-use omega_types::ceiling::EvidenceCeiling;
-use omega_types::{DetectorCapacityEvidence, DetectorDeploymentDeclaration};
+use engine_types::authority::AuthorityEffect;
+use engine_types::ceiling::EvidenceCeiling;
+use engine_types::{DetectorCapacityEvidence, DetectorDeploymentDeclaration};
 
 use crate::adequacy::{evaluate_detector_adequacy, DetectorAdequacyVerdict};
 use crate::ledger::EpkResidualLedger;

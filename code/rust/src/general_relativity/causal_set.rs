@@ -2,7 +2,7 @@ pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; not PROVED; not GlobalGreen; finite causal set; no continuum admission.";
 use num_bigint::BigInt;
 use num_traits::Zero;
-use omega_homology::finite_poset::{FinitePoset, PosetError};
+use engine_homology::finite_poset::{FinitePoset, PosetError};
 use tfqm_number_theory::rational::Rational;
 
 #[derive(Debug, Clone, PartialEq, Eq)]

@@ -4,26 +4,26 @@ use std::collections::BTreeSet;
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::semiring_lumpability::lumpable_quotient;
 use tfqm_finite_probability::finite_valuation::BooleanValuation;
-use omega_measurement::affine_calibration::{AffineCalibration, BoundedReading};
-use omega_measurement::finite_chain_clock::ChainClock;
-use tfqm_number_theory::cyclotomic::GaussianRat;
-use tfqm_number_theory::rational::{ri, rq};
-use omega_quantum_physics::exact_hermitian::outer;
-use omega_quantum_physics::exact_instrument::ExactDensityState;
-use omega_quantum_physics::instrument_repeatability::analyze_repeatability;
-use omega_wdp::calibration_adapter::{
+use engine_measurement::affine_calibration::{AffineCalibration, BoundedReading};
+use engine_measurement::finite_chain_clock::ChainClock;
+use engine_number_theory::cyclotomic::GaussianRat;
+use engine_number_theory::rational::{ri, rq};
+use engine_quantum_physics::exact_hermitian::outer;
+use engine_quantum_physics::exact_instrument::ExactDensityState;
+use engine_quantum_physics::instrument_repeatability::analyze_repeatability;
+use engine_wdp::calibration_adapter::{
     evaluate_calibration_packet, verify_calibration_receipt, CalibrationPacket,
     NamedCalibrationStage,
 };
-use omega_wdp::clock_adequacy_adapter::{
+use engine_wdp::clock_adequacy_adapter::{
     evaluate_clock_adequacy, evaluate_clock_coarsening, verify_clock_adequacy,
     verify_clock_coarsening, NamedChainClockPacket,
 };
-use omega_wdp::empirical_adapter::{MeasurementCover, RunTable};
-use omega_wdp::empirical_repair::{repair, sampling_tolerance, verify_repair};
-use omega_wdp::instrument_adapter::FiniteQuantumInstrument;
-use omega_wdp::profile_evaluator::{FiniteProfile, ProfileStatus, TableEvidence};
-use omega_wdp::retention::{compute_behavioral_quotient, make_cm1_static_carrier};
+use engine_wdp::empirical_adapter::{MeasurementCover, RunTable};
+use engine_wdp::empirical_repair::{repair, sampling_tolerance, verify_repair};
+use engine_wdp::instrument_adapter::FiniteQuantumInstrument;
+use engine_wdp::profile_evaluator::{FiniteProfile, ProfileStatus, TableEvidence};
+use engine_wdp::retention::{compute_behavioral_quotient, make_cm1_static_carrier};
 
 fn main() {
     let (classes, _) = compute_behavioral_quotient(&make_cm1_static_carrier()).unwrap();

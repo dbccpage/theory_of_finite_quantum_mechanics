@@ -11,9 +11,9 @@ use crate::native::exact::mub6_constants::{
 };
 use crate::native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
 use crate::native::exact::mub6_matrix6::{eye3, mul_mat3};
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
-use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge};
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
+use engine_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge};
 
 crate::fixture_set!(fixtures, "mub6_collar_boundary");
 

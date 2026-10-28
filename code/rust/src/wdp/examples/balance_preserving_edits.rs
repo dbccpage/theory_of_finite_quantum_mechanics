@@ -1,9 +1,9 @@
 use linear_algebra::backend::basic_matrix::OperationLimits;
 use num_bigint::BigInt;
 use num_traits::One;
-use omega_wdp::genesis_balance_transition::{BalanceVerdict, Source25BalanceProfile};
-use omega_wdp::genesis_ongoing_adapter::{GenesisOngoingPacket, MarkedTriple};
-use omega_wdp::genesis_source_execution::{Source25Change, Source25State, SourceRelation};
+use engine_wdp::genesis_balance_transition::{BalanceVerdict, Source25BalanceProfile};
+use engine_wdp::genesis_ongoing_adapter::{GenesisOngoingPacket, MarkedTriple};
+use engine_wdp::genesis_source_execution::{Source25Change, Source25State, SourceRelation};
 use serde_json::{json, Value};
 
 fn state(faces: Vec<MarkedTriple>, one_arc: bool) -> Source25State {

@@ -1,7 +1,7 @@
 
 
 use num_bigint::BigInt;
-use omega_number_theory::rational::{ri, rq, Rational as Q};
+use engine_number_theory::rational::{ri, rq, Rational as Q};
 use serde::Serialize;
 use std::collections::BTreeSet;
 

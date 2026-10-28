@@ -3,7 +3,7 @@ use crate::prime_algos::licensed_lift_gate::{
     step9_licensed_lift_gate, LicensedLiftAdmission, NineUpLiftBits, PaperEr003LiftCertificate,
 };
 use crate::ddc::dda_alphabet::{DdaOp, DdaStep, DdaTrace, TraceTerminal};
-use omega_types::authority::AuthorityEffect;
+use engine_types::authority::AuthorityEffect;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 use std::fmt;

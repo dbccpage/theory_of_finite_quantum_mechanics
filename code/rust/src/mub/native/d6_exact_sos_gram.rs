@@ -3,8 +3,8 @@ use num_rational::BigRational;
 
 use crate::native::exact::d6_exact_curvature_cochain::{ExactVec, D};
 use crate::native::exact::d6_exact_sos::canonical_forms;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 pub fn monomials() -> Vec<(usize, usize)> {
     let mut m = Vec::new();
@@ -100,7 +100,7 @@ mod tests {
     use crate::native::exact::d6_exact_curvature_cochain::{canonical_triple_exact, norm_sq};
     use crate::native::exact::d6_exact_sos::{is_psd_cyc24, obstruction_value};
 
-    use tfqm_number_theory::rational::rq;
+    use engine_number_theory::rational::rq;
 
     fn sample_vecs() -> Vec<ExactVec> {
         let mut out = Vec::new();

@@ -5,7 +5,7 @@ use crate::native::exact::d6_exact_obstruction_cohomology::bianchi_d1;
 use crate::native::exact::d6_exact_tangent_obstruction::{
     curvature_jacobian, im, mat_vec, re, REAL_DIM,
 };
-use tfqm_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::cyclotomic::Cyc24;
 
 pub fn quadratic_bracket(columns: &[ExactVec], dv: &ExactVec) -> Vec<Cyc24> {
     columns.iter().map(|e| abs_sq(&inner(e, dv))).collect()
@@ -66,7 +66,7 @@ mod tests {
     use crate::native::exact::d6_exact_curvature_cochain::{
         canonical_triple_exact, norm_sq, BASIS_COUNT, COLUMN_COUNT, D,
     };
-    use tfqm_number_theory::rational::ri;
+    use engine_number_theory::rational::ri;
 
     fn rat(num: i64, den: i64) -> Cyc24 {
         Cyc24::rat(ri(num) / ri(den))

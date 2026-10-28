@@ -3,7 +3,7 @@
 //!
 //! Arr(C): objects are morphisms of C; morphisms are commutative squares.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 use super::category::MorphismTriple;

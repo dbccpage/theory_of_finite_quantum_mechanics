@@ -1,5 +1,5 @@
 use num_traits::Zero;
-use omega_kernel::exact::{exact_wire, exact_wire_vec, to_canonical_string, Exact};
+use engine_kernel::exact::{exact_wire, exact_wire_vec, to_canonical_string, Exact};
 use serde::{Deserialize, Serialize};
 use thiserror::Error;
 
@@ -86,7 +86,7 @@ impl From<Residual> for ResidualWire {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_kernel::exact::{exact, integer};
+    use engine_kernel::exact::{exact, integer};
 
     fn v(values: &[i64]) -> Vec<Exact> {
         values.iter().copied().map(integer).collect()

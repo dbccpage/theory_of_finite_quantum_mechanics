@@ -7,7 +7,7 @@
 //! AuthorityEffect: None
 //! Firewall Line: NOT MUB(6)=3, NOT MUB(6)<=3; stated region only; mints no authority
 
-use omega_kernel::interval::Interval;
+use engine_kernel::interval::Interval;
 use tfqm_mub::native::census::mub6_claim_gate::seal_vbox_certificate;
 use tfqm_mub::native::exact::mub6_cover::EnclosedTriple;
 use tfqm_mub::native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
@@ -15,7 +15,7 @@ use tfqm_mub::native::exact::mub6_interval_cover::VectorBox;
 use tfqm_mub::runtime_adapter::{
     evaluate_mub6_request, Mub6RuntimeAdapterError, Mub6RuntimeEvidenceV1, Mub6RuntimeRequestV1,
 };
-use omega_number_theory::rational::ri;
+use engine_number_theory::rational::ri;
 
 fn wide_box() -> VectorBox {
     std::array::from_fn(|_| Interval::new(ri(0), ri(1)))

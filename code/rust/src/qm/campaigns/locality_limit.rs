@@ -1,5 +1,5 @@
-use omega_number_theory::rational::{ri, rq};
-use omega_quantum_physics::continuous_time_locality_limit::*;
+use engine_number_theory::rational::{ri, rq};
+use engine_quantum_physics::continuous_time_locality_limit::*;
 use serde_json::json;
 pub fn audit_c250_dense_orbit() -> (&'static str, bool) {
     ("NARROWED", false)

@@ -3,7 +3,7 @@
 //!
 //! C × D: objects are pairs (c, d); morphisms are pairs of morphisms.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort product category shell C × D.

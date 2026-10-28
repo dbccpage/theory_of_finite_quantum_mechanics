@@ -11,9 +11,9 @@ use crate::native::exact::mub6_matrix6::{matrix_adjoint, Matrix6};
 use crate::native::exact::mub6_orbit_exhaustiveness::standard_fourier_f6;
 use crate::native::exact::mub6_tao_chart::tao_s6_matrix;
 use crate::native::exact::szollosi_triad_solver::szollosi_dephased_b6;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
-use tfqm_number_theory::rational::rq;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
+use engine_number_theory::rational::rq;
 
 crate::fixture_set!(fixtures, "mub6_g1_variety");
 

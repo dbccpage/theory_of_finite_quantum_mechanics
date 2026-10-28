@@ -208,7 +208,7 @@ pub fn run_second_basepoint_campaign() -> SecondBasepointCampaignReport {
 
 pub fn write_second_basepoint_artifact() -> Result<std::path::PathBuf, String> {
     let report = run_second_basepoint_campaign();
-    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     std::fs::create_dir_all(&dir).map_err(|e| format!("mkdir: {e}"))?;
     let path = dir.join("mub6_second_basepoint_campaign_20260725.json");
     let json = serde_json::to_string_pretty(&report).map_err(|e| format!("ser: {e}"))?;

@@ -33,7 +33,7 @@ use tfqm_mub::native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
 use tfqm_mub::native::exact::mub6_zerorel_variety::{
     dita_representative_triple, tao_representative_triple, BasisCyc,
 };
-use omega_number_theory::rational::rq;
+use engine_number_theory::rational::rq;
 
 // ============================================================================
 // 1. STRICT ZERO-FLOAT DISCIPLINE AST AUDIT

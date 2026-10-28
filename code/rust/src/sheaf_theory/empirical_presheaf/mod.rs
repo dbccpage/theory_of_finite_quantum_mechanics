@@ -16,7 +16,7 @@ pub use presheaf::*;
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use tfqm_category_theory::finite_report_descent::DescentError;
-use omega_solvers::solver_lp_standard_form::StandardLpError;
+use engine_solvers::solver_lp_standard_form::StandardLpError;
 use thiserror::Error;
 
 pub type Q = BigRational;

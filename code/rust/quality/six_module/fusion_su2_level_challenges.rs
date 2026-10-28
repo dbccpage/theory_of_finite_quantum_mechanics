@@ -2,8 +2,8 @@
 mod su2_review {
     use super::*;
     use linear_algebra::scalars::{Ring, Semiring};
-    use omega_number_theory::cyclotomic_field::Cyclotomic;
-    use omega_number_theory::rational::{rq, Rational};
+    use engine_number_theory::cyclotomic_field::Cyclotomic;
+    use engine_number_theory::rational::{rq, Rational};
 
     fn fuses(k: usize, a: usize, b: usize, c: usize) -> bool {
         c <= k && a.abs_diff(b) <= c && c <= a + b && a + b + c <= 2 * k && (a + b + c) % 2 == 0
@@ -12,7 +12,7 @@ mod su2_review {
         let numerator =
             Cyclotomic::<N>::zeta(4 * n as i64).sub(&Cyclotomic::<N>::zeta(-4 * n as i64));
         let denominator = Cyclotomic::<N>::zeta(4).sub(&Cyclotomic::<N>::zeta(-4));
-        omega_number_theory::scalar::divide(&numerator, &denominator).unwrap()
+        engine_number_theory::scalar::divide(&numerator, &denominator).unwrap()
     }
     fn raw_factorials<const N: usize>(k: usize) -> Vec<Cyclotomic<N>> {
         let mut values = vec![Cyclotomic::<N>::one()];
@@ -32,7 +32,7 @@ mod su2_review {
         let top = facts[(b + c - a) / 2]
             .mul(&facts[(a + c - b) / 2])
             .mul(&facts[(a + b - c) / 2]);
-        omega_number_theory::scalar::divide(&top, &facts[s + 1]).unwrap()
+        engine_number_theory::scalar::divide(&top, &facts[s + 1]).unwrap()
     }
     fn tables<const N: usize>(k: usize) {
         assert_eq!(N, 8 * (k + 2));
@@ -118,7 +118,7 @@ mod su2_review {
             for s in bottom {
                 denominator = denominator.mul(&facts[s - z]);
             }
-            let term = omega_number_theory::scalar::divide(&facts[z + 1], &denominator).unwrap();
+            let term = engine_number_theory::scalar::divide(&facts[z + 1], &denominator).unwrap();
             sum = if z % 2 == 0 {
                 sum.add(&term)
             } else {
@@ -154,7 +154,7 @@ mod su2_review {
                 .mul(&raw_delta(e, c, d, &facts));
             for col in 0..left.len() {
                 let expected = if col == index {
-                    omega_number_theory::scalar::inverse(&squared).unwrap()
+                    engine_number_theory::scalar::inverse(&squared).unwrap()
                 } else {
                     Cyclotomic::<N>::zero()
                 };
@@ -174,7 +174,7 @@ mod su2_review {
                 .mul(&raw_delta(a, f, d, &facts));
             assert_eq!(
                 rm.get(index, index).unwrap(),
-                omega_number_theory::scalar::inverse(&squared).unwrap()
+                engine_number_theory::scalar::inverse(&squared).unwrap()
             );
         }
     }
@@ -193,7 +193,7 @@ mod su2_review {
             block::<64>(6, labels);
         }
         let (d, facts) = coefficient_data::<Cyclotomic<32>>(2).unwrap();
-        let t = omega_number_theory::scalar::inverse(&raw_q::<32>(2)).unwrap();
+        let t = engine_number_theory::scalar::inverse(&raw_q::<32>(2)).unwrap();
         for (e, f, expected) in [
             (0, 0, t.neg()),
             (0, 2, t.clone()),
@@ -224,7 +224,7 @@ mod su2_review {
             Cyclotomic::<24>::one().neg()
         );
         let fib = su2_level::<Cyclotomic<40>>(3).unwrap();
-        let x = omega_number_theory::scalar::inverse(&raw_q::<40>(3)).unwrap();
+        let x = engine_number_theory::scalar::inverse(&raw_q::<40>(3)).unwrap();
         let f = fib
             .category()
             .f_symbols()

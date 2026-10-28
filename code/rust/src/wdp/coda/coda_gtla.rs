@@ -1,27 +1,27 @@
 
 use num_rational::BigRational;
-use omega_certifiers::certify_checked_packet;
-use omega_certifiers::checked_packet::{
+use engine_certifiers::certify_checked_packet;
+use engine_certifiers::checked_packet::{
     BoundaryMapsHash, CarrierManifestHash, CertificateRef, CertificateVerdict, CheckedClaimKind,
     CheckedClaimScope, CheckedPacket, CheckedPacketArgs, CheckedPacketCertificateError,
     CheckedPacketCertificateV1, CheckedPacketError, CheckerRef, DefectFieldHash, EvidenceRef,
     Hash256, ObserverBoundaryHash, ReplayHash, ToleranceProfileHash, WeightsAndGaugesHash,
 };
-use tfqm_functional::gamma2::{
+use engine_functional::gamma2::{
     DegreeOneResidualQ, ExactCochainComplexQ, ExactGamma2Error, ExactGamma2Result, Gamma2Functional,
 };
-use tfqm_functional::phi1::{
+use engine_functional::phi1::{
     ExactPhi1Certificate, ExactPhi1CertificateError, Phi1Functional, VerifiedExactPhi1,
 };
 use tfqm_homotopy_type_theory::primitive_difference::{
     PrimitiveDifference, PrimitiveDifferenceError, ValidatedFiniteCarrier,
 };
-use omega_policy::trichotomy::{
+use engine_policy::trichotomy::{
     classify_exact, CertifiedExactTrichotomy, ObstructionDiagnosticClass, TrichotomyOutcome,
     TrichotomyRefusal,
 };
-use omega_types::authority::{DescentWitness, IsAuth};
-use omega_types::EvidenceCeiling;
+use engine_types::authority::{DescentWitness, IsAuth};
+use engine_types::EvidenceCeiling;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PrimitiveDifferenceReceipt {
@@ -299,13 +299,13 @@ pub fn evaluate_exact(
 #[cfg(test)]
 mod tests {
     use num_bigint::BigInt;
-    use omega_certifiers::checked_packet::{
+    use engine_certifiers::checked_packet::{
         BoundaryMapsHash, CertificateRef, CertificateVerdict, CheckedClaimKind, CheckedClaimScope,
         CheckerRef, DefectFieldHash, EvidenceRef, Hash256, ObserverBoundaryHash, ReplayHash,
         ToleranceProfileHash, WeightsAndGaugesHash,
     };
-    use omega_types::authority::AuthorityTerminal;
-    use omega_types::{EvidenceCeiling, GuardEvidence};
+    use engine_types::authority::AuthorityTerminal;
+    use engine_types::{EvidenceCeiling, GuardEvidence};
 
     use super::*;
 

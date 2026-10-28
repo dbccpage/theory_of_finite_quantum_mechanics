@@ -6,7 +6,7 @@
 //! (see crate-root `kleisli_category` / `legacy_monad` for finite builds).
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a labeled Kleisli category of a monad.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

@@ -1,0 +1,213 @@
+{
+  "authority_effect": "None",
+  "authorized_local_result_constructor_available": false,
+  "budgets": {
+    "attempt_budget": 1,
+    "halt_poll_seconds": 0.05,
+    "max_stdout_bytes": 65536,
+    "process_budget": 4,
+    "repair_budget": 2,
+    "role_timeout_seconds": 10,
+    "successor_budget": 1,
+    "time_budget_seconds": 28800,
+    "token_budget": 200000
+  },
+  "commit_fixture": {
+    "committed_artifacts": [
+      "roles/00-producer.json",
+      "roles/01-independent-evaluator.json",
+      "roles/02-authority-witness.json",
+      "gate_receipt.json"
+    ],
+    "git_commit": false,
+    "merge": false,
+    "mode": "atomic-receipt-only",
+    "push": false
+  },
+  "durable_artifacts": [
+    "state/events.jsonl",
+    "state/run.lock",
+    "roles/00-producer.json",
+    "roles/01-independent-evaluator.json",
+    "roles/02-authority-witness.json",
+    "gate_receipt.json",
+    "commit/fixture_commit.json",
+    "run_receipt.json"
+  ],
+  "evidence_ceiling": "fixture-orchestration-behavior-only",
+  "expected_gtoc_terminal": "StabilizedSurvivor",
+  "frozen_base": "08ac8a642475a7ee0281d100a277ff5aaeded5aa",
+  "item_id": "fixture:s05-001",
+  "observer": {
+    "credentials_passed_to_roles": false,
+    "environment_allowlist": [
+      "COMSPEC",
+      "HOME",
+      "LANG",
+      "PYTHONDONTWRITEBYTECODE",
+      "PYTHONIOENCODING",
+      "PYTHONUTF8",
+      "SYSTEMROOT",
+      "TEMP",
+      "TMP",
+      "TMPDIR",
+      "USERPROFILE",
+      "WINDIR"
+    ],
+    "host_identity": "host:s05-001",
+    "host_state_passed_to_roles": false,
+    "network_operation_present": false,
+    "network_requested_by_roles": false,
+    "os_network_sandbox_enforced": false,
+    "repository_path_passed_to_roles": false
+  },
+  "packet_id": "omega-conductor-s05-001-fixture-runtime-v1",
+  "promotion_constructor_available": false,
+  "roles": [
+    {
+      "context": {
+        "host_state_visible": false,
+        "journal_visible": false,
+        "queue_visible": false,
+        "task": "emit the deterministic S05-001 fixture candidate receipt",
+        "visible_inputs": [
+          "packet_sha256",
+          "attempt_id"
+        ]
+      },
+      "identity": "fixture:producer:s05-001",
+      "rank": 0,
+      "required_parent_roles": [],
+      "role": "producer",
+      "session_id": "session:s05-001:producer"
+    },
+    {
+      "context": {
+        "host_state_visible": false,
+        "journal_visible": false,
+        "queue_visible": false,
+        "task": "inspect the producer receipt without producer scratch state",
+        "visible_inputs": [
+          "packet_sha256",
+          "attempt_id",
+          "producer_receipt"
+        ]
+      },
+      "identity": "fixture:independent-evaluator:s05-001",
+      "rank": 1,
+      "required_parent_roles": [
+        "producer"
+      ],
+      "role": "independent-evaluator",
+      "session_id": "session:s05-001:independent-evaluator"
+    },
+    {
+      "context": {
+        "host_state_visible": false,
+        "journal_visible": false,
+        "queue_visible": false,
+        "task": "verify separation, evidence ceiling, and nonpromotion",
+        "visible_inputs": [
+          "packet_sha256",
+          "attempt_id",
+          "producer_receipt",
+          "independent_evaluator_receipt"
+        ]
+      },
+      "identity": "fixture:authority-witness:s05-001",
+      "rank": 2,
+      "required_parent_roles": [
+        "producer",
+        "independent-evaluator"
+      ],
+      "role": "authority-witness",
+      "session_id": "session:s05-001:authority-witness"
+    }
+  ],
+  "schema": "omega.conductor.fixture-tower-packet.v1",
+  "source_closure": [
+    {
+      "bytes": 57519,
+      "path": "docs/omega-conductor-epic-v001.md",
+      "sha256": "cd5b49c4db4070bc9f482a77cc9965eae47b2b5a52aeabd9ebda998049228d73"
+    },
+    {
+      "bytes": 5782,
+      "path": "docs/saga_05_one_window_runtime.md",
+      "sha256": "f192b207009b70229e2158cd2960ec5a3650b33dd4db3eb24855d5c488434423"
+    },
+    {
+      "bytes": 5647,
+      "path": "docs/sprint_s05_001.md",
+      "sha256": "156c4e297228168a7403c13090f437a1c8a46f84a432e8652d499d3eeed7d3f5"
+    },
+    {
+      "bytes": 4203,
+      "path": "docs/status-vocabulary.md",
+      "sha256": "bd10e7ecf448ed6f4dca45a431c573242179a66b828492ecfe02f52572289b84"
+    },
+    {
+      "bytes": 9680,
+      "path": "docs/status/omega_conductor_s04_001_status_2026-07-18.md",
+      "sha256": "001542344c4adc94f5e1f527b8e3ba67eab2ea4c31c5399914077219f695fe49"
+    },
+    {
+      "bytes": 4671,
+      "path": "omega_engine/general_theory_of_obstruction_calculus/conductor/adapters/_subprocess.py",
+      "sha256": "9649058b7f5b266a1cf523ac7285de6e8e67543e233b3aaccc480f6e144a79f0"
+    },
+    {
+      "bytes": 5735,
+      "path": "omega_engine/general_theory_of_obstruction_calculus/conductor/adapters/fixture.py",
+      "sha256": "1897fc9dbf95bc4bef5ebc92227ccf19483b6bb7e1a8e0e1bfc7de0add0a77d7"
+    },
+    {
+      "bytes": 17601,
+      "path": "omega_engine/general_theory_of_obstruction_calculus/conductor/core/cli.py",
+      "sha256": "eabda358c214d3817d7464ddc2dbef5810972ecf414efdf7228748aa0c439baa"
+    },
+    {
+      "bytes": 18386,
+      "path": "omega_engine/general_theory_of_obstruction_calculus/conductor/core/dispatch.py",
+      "sha256": "8074580f8f6cb718f3fd35f70f603cf5925812692b4e8c7d8fd5c790c2e8d76c"
+    },
+    {
+      "bytes": 2929,
+      "path": "omega_engine/general_theory_of_obstruction_calculus/conductor/core/journal.py",
+      "sha256": "ab993fc85e1775999730d2ed3d11cb3be32d74d9a5aa6d3c4e811ff314b82365"
+    },
+    {
+      "bytes": 5722,
+      "path": "omega_engine/general_theory_of_obstruction_calculus/conductor/core/leases.py",
+      "sha256": "7b89875eeee19814ab4da48c182c0bb4f5837e87c6801e2d9758af9815bef9a4"
+    },
+    {
+      "bytes": 10119,
+      "path": "omega_engine/general_theory_of_obstruction_calculus/conductor/core/state_machine.py",
+      "sha256": "858c6bfcf5cb206917661a710ea4aa9b625deb576759e3fa9a705ac991447e43"
+    },
+    {
+      "bytes": 7130,
+      "path": "omega_engine/general_theory_of_obstruction_calculus/conductor/core/transaction.py",
+      "sha256": "b9e6cf4ec46e3c9c0da0592772bb72fc3c8645f19de1b31fd2482699a2c79f8d"
+    },
+    {
+      "bytes": 1111,
+      "path": "omega_engine/general_theory_of_obstruction_calculus/conductor/protocol/event.schema.json",
+      "sha256": "0e4a8c35174b154278ba3b8f19265d6f17f7d62c273f2cd806f790bc3e15b876"
+    },
+    {
+      "bytes": 707,
+      "path": "omega_engine/general_theory_of_obstruction_calculus/conductor/protocol/transition_table.json",
+      "sha256": "3a2873fdd401cc10a8d77891411ad1e61a69457adc2e0633555a30d0210766ba"
+    }
+  ],
+  "transient_artifacts": [
+    "work/**",
+    "**/*.tmp"
+  ],
+  "upstream": {
+    "s04_packet_sha256": "bb524be92ab90930059e26783c7ce3d38a17c4a4112e41835e55aff4c162d7d7",
+    "s04_receipt_dag_sha256": "4757d79043f5b36d9fe35f88569119ec741af6e798a386e3c17f7702644e97d5"
+  }
+}

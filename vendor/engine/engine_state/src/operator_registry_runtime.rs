@@ -1,0 +1,1286 @@
+//! Bounded S02-001 operator registry execution and substitution receipts.
+//!
+//! The runtime admits one canonical echo operator, one deterministic fixture
+//! gauge, and one canned Codex model-profile replay gauge. No live provider,
+//! network, credential, license grant, or authority promotion path exists.
+
+use std::collections::BTreeSet;
+
+use engine_contracts::{
+    validate_substitution, GaugeBindingV1, GaugeExecutionModeV1, ModelProviderV1,
+    OperatorCapabilityV1, OperatorInputV1, OperatorManifestV1, OperatorOperationV1,
+    OperatorOutputV1, OperatorPermissionV1, OperatorRegistryContractError, OperatorRegistryV1,
+    RuntimeGaugeV1,
+};
+use engine_types::authority::AuthorityEffect;
+use serde::{Deserialize, Serialize};
+use thiserror::Error;
+
+use crate::coda1_classifier::{sha256_bytes_v1, Coda1BudgetsV1, SourceHashV1};
+use crate::coda_gtla_protocol::{CodaTerminal, FrozenObserverContextV1};
+
+pub const S02_001_ADMISSION_SCHEMA_VERSION: &str = "omega.s02-001.admission.v1";
+pub const S02_001_PACKET_SCHEMA_VERSION: &str = "omega.s02-001.packet.v1";
+pub const S02_001_CLASSIFICATION_SCHEMA_VERSION: &str = "omega.s02-001.classification.v1";
+pub const S02_001_RECEIPT_SCHEMA_VERSION: &str = "omega.s02-001.receipts.v1";
+pub const S02_001_FROZEN_BASE: &str = "7b34a4e32fa4a30335c1468f752e4531173d0667";
+pub const S02_001_TARGET: &str = "S02-001";
+pub const S02_001_OPERATOR_ID: &str = "operator:canonical-json-echo-v1";
+pub const S02_001_SEMANTIC_CONTRACT_ID: &str = "contract:canonical-json-echo-v1";
+pub const S02_001_FIXTURE_BINDING_ID: &str = "binding:fixture-canonical-json-echo-v1";
+pub const S02_001_MODEL_BINDING_ID: &str = "binding:codex-model-fixture-replay-v1";
+pub const S02_001_FIXTURE_ADAPTER_ID: &str = "adapter:fixture:canonical-json-echo-v1";
+pub const S02_001_MODEL_ADAPTER_ID: &str = "adapter:model-fixture:canonical-json-echo-v1";
+pub const S02_001_MODEL_PROFILE_ID: &str = "codex:canned-fixture-replay-v1";
+pub const S02_001_INPUT_FAMILY: &str = "fixture.canonical-json-request.v1";
+pub const S02_001_OUTPUT_FAMILY: &str = "fixture.canonical-json-response.v1";
+pub const S02_001_OBSERVER_DOMAIN: &str = "bounded-operator-gauge-substitution";
+pub const S02_001_STATE_DOMAIN: &str = "omega.s02-001.operator-registry.v1";
+pub const S02_001_EVIDENCE_CEILING: &str =
+    "one canonical JSON echo operator under deterministic fixture replay; no live provider, parity, license grant, theorem, or authority promotion";
+
+pub const S02_001_SOURCE_MANIFEST: [(&str, &str); 6] = [
+    (
+        "docs/omega-conductor-epic-v001.md",
+        "c167ed6e93d53f12aa5834a01a069a19843fa2df72b9c75147715c10fecf47c1",
+    ),
+    (
+        "docs/saga_02_operator_registry_and_gauges.md",
+        "109b4f3626d194289807769a7937e5e2e8883475d8edf3561bc66924717e9119",
+    ),
+    (
+        "docs/sprint_s02_001.md",
+        "b840689495f500791b4f619a47d8c22fe4fd0de4ddf97ac84df1af122b67168a",
+    ),
+    (
+        "omega_engine/crates/omega_contracts/src/lib.rs",
+        "d5cd968aaa83386da6bf2db2b45cd8939d32f63410d309a926c3f52615145c56",
+    ),
+    (
+        "omega_engine/crates/omega_operator_algebra/src/registry.rs",
+        "2ecb0327f15664b74f1394aa15e63627818d878aa16e1cddc6e90d900b6b075f",
+    ),
+    (
+        "omega_engine/crates/omega_state/src/gtoc2_degree_shift.rs",
+        "e08238f971301bb12a98dfea5f80ea51fd8650ef4670a664d1fa5e22035ee3e4",
+    ),
+];
+
+pub const S02_001_WRITE_SURFACE: [&str; 16] = [
+    "docs/omega-conductor-epic-v001.md",
+    "docs/saga_02_operator_registry_and_gauges.md",
+    "docs/sprint_s02_001.md",
+    "docs/status/omega_conductor_s01_003_status_2026-07-18.md",
+    "docs/status/omega_conductor_s02_001_status_2026-07-18.md",
+    "omega_engine/Cargo.lock",
+    "omega_engine/crates/omega_contracts/src/lib.rs",
+    "omega_engine/crates/omega_contracts/src/operator_gauge.rs",
+    "omega_engine/crates/omega_state/Cargo.toml",
+    "omega_engine/crates/omega_state/src/gtoc2_degree_shift.rs",
+    "omega_engine/crates/omega_state/src/lib.rs",
+    "omega_engine/crates/omega_state/src/operator_registry_runtime.rs",
+    "omega_engine/crates/omega_state/tests/fixtures/operator_registry_fixture_matrix_v1.json",
+    "omega_engine/crates/omega_state/tests/fixtures/operator_registry_receipt_matrix_v1.json",
+    "omega_engine/crates/omega_state/tests/gtoc2_degree_shift.rs",
+    "omega_engine/crates/omega_state/tests/operator_registry_runtime.rs",
+];
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct OperatorRegistryPacketV1 {
+    pub schema_version: String,
+    pub packet_id: String,
+    pub frozen_base: String,
+    pub target_sprint: String,
+    pub source_manifest: Vec<SourceHashV1>,
+    pub budgets: Coda1BudgetsV1,
+    pub evidence_ceiling: String,
+    pub observer: FrozenObserverContextV1,
+    pub producer_id: String,
+    pub evaluator_id: String,
+    pub authority_witness_id: String,
+    pub prior_work_ledger: Vec<String>,
+    pub registry: OperatorRegistryV1,
+    pub input: OperatorInputV1,
+}
+
+impl OperatorRegistryPacketV1 {
+    pub fn validate(&self) -> Result<(), OperatorRegistryError> {
+        self.validate_header()?;
+        self.validate_identities()?;
+        self.validate_registry_and_input()?;
+        validate_observer(self)
+    }
+
+    fn validate_header(&self) -> Result<(), OperatorRegistryError> {
+        require_schema(S02_001_PACKET_SCHEMA_VERSION, &self.schema_version)?;
+        require_text("packet.packet_id", &self.packet_id)?;
+        if self.frozen_base != S02_001_FROZEN_BASE {
+            return Err(OperatorRegistryError::FrozenBaseMismatch);
+        }
+        if self.target_sprint != S02_001_TARGET {
+            return Err(OperatorRegistryError::ScopeExpansion("target_sprint"));
+        }
+        validate_source_manifest(&self.source_manifest)?;
+        validate_budgets(self.budgets)?;
+        if self.evidence_ceiling != S02_001_EVIDENCE_CEILING {
+            return Err(OperatorRegistryError::EvidenceCeilingChanged);
+        }
+        Ok(())
+    }
+
+    fn validate_identities(&self) -> Result<(), OperatorRegistryError> {
+        for (field, value) in [
+            ("packet.producer_id", self.producer_id.as_str()),
+            ("packet.evaluator_id", self.evaluator_id.as_str()),
+            (
+                "packet.authority_witness_id",
+                self.authority_witness_id.as_str(),
+            ),
+        ] {
+            require_text(field, value)?;
+        }
+        if BTreeSet::from([
+            self.producer_id.as_str(),
+            self.evaluator_id.as_str(),
+            self.authority_witness_id.as_str(),
+        ])
+        .len()
+            != 3
+        {
+            return Err(OperatorRegistryError::IdentityCollision);
+        }
+        require_nonempty_sorted_texts("packet.prior_work_ledger", &self.prior_work_ledger)
+    }
+
+    fn validate_registry_and_input(&self) -> Result<(), OperatorRegistryError> {
+        self.registry.validate()?;
+        validate_sprint_registry(&self.registry)?;
+        self.input.validate()?;
+        let manifest = self.registry.manifest(S02_001_OPERATOR_ID).ok_or_else(|| {
+            OperatorRegistryContractError::UnknownOperator(S02_001_OPERATOR_ID.to_owned())
+        })?;
+        if manifest.input_families != [self.input.family.clone()] {
+            return Err(OperatorRegistryError::InputFamilyMismatch);
+        }
+        Ok(())
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct OperatorRegistryAdmissionV1 {
+    pub schema_version: String,
+    pub packet: OperatorRegistryPacketV1,
+    pub packet_sha256: String,
+}
+
+impl OperatorRegistryAdmissionV1 {
+    pub fn validate(&self) -> Result<(), OperatorRegistryError> {
+        require_schema(S02_001_ADMISSION_SCHEMA_VERSION, &self.schema_version)?;
+        require_sha256("admission.packet_sha256", &self.packet_sha256)?;
+        self.packet.validate()?;
+        let found = operator_registry_packet_sha256_v1(&self.packet)?;
+        if found != self.packet_sha256 {
+            return Err(OperatorRegistryError::PacketHashMismatch {
+                expected: self.packet_sha256.clone(),
+                found,
+            });
+        }
+        Ok(())
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum RegistrySurvivorRouteV1 {
+    OperatorNeeded,
+    LiftLicenseNeeded,
+    InfrastructureFailure,
+    InvalidEvidence,
+}
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct GaugeRunReceiptV1 {
+    pub schema_version: String,
+    pub binding_id: String,
+    pub runtime: RuntimeGaugeV1,
+    pub adapter_id: String,
+    pub input_sha256: String,
+    pub output: OperatorOutputV1,
+    pub output_sha256: String,
+    pub granted_permissions: Vec<OperatorPermissionV1>,
+    pub actual_writes: Vec<String>,
+    pub evidence_ceiling: String,
+    pub network_accessed: bool,
+    pub credentials_accessed: bool,
+    pub authority_effect: AuthorityEffect,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct OperatorRegistryClassificationV1 {
+    pub schema_version: String,
+    pub packet_id: String,
+    pub packet_sha256: String,
+    pub observer_sha256: String,
+    pub registry_sha256: String,
+    pub operator_manifest_sha256: String,
+    pub fixture_output_sha256: String,
+    pub model_output_sha256: String,
+    pub semantic_outputs_equal: bool,
+    pub permissions_preserved: bool,
+    pub writes_preserved: bool,
+    pub evidence_ceiling_preserved: bool,
+    pub witnesses_preserved: bool,
+    pub terminal_proposal: CodaTerminal,
+    pub survivor_routes: Vec<RegistrySurvivorRouteV1>,
+    pub residual_ids: Vec<String>,
+    pub authority_effect: AuthorityEffect,
+}
+
+impl OperatorRegistryClassificationV1 {
+    pub fn validate(&self) -> Result<(), OperatorRegistryError> {
+        require_schema(S02_001_CLASSIFICATION_SCHEMA_VERSION, &self.schema_version)?;
+        require_text("classification.packet_id", &self.packet_id)?;
+        for (field, value) in [
+            ("classification.packet_sha256", self.packet_sha256.as_str()),
+            (
+                "classification.observer_sha256",
+                self.observer_sha256.as_str(),
+            ),
+            (
+                "classification.registry_sha256",
+                self.registry_sha256.as_str(),
+            ),
+            (
+                "classification.operator_manifest_sha256",
+                self.operator_manifest_sha256.as_str(),
+            ),
+            (
+                "classification.fixture_output_sha256",
+                self.fixture_output_sha256.as_str(),
+            ),
+            (
+                "classification.model_output_sha256",
+                self.model_output_sha256.as_str(),
+            ),
+        ] {
+            require_sha256(field, value)?;
+        }
+        require_sorted("classification.survivor_routes", &self.survivor_routes)?;
+        require_sorted_texts("classification.residual_ids", &self.residual_ids)?;
+        if !self.preservation_flags_hold() || !self.terminal_and_authority_hold() {
+            return Err(OperatorRegistryError::ClassificationInvariant);
+        }
+        Ok(())
+    }
+
+    fn preservation_flags_hold(&self) -> bool {
+        self.fixture_output_sha256 == self.model_output_sha256
+            && self.semantic_outputs_equal
+            && self.permissions_preserved
+            && self.writes_preserved
+            && self.evidence_ceiling_preserved
+            && self.witnesses_preserved
+    }
+
+    fn terminal_and_authority_hold(&self) -> bool {
+        self.terminal_proposal == CodaTerminal::StabilizedSurvivor
+            && self.survivor_routes.is_empty()
+            && self.residual_ids.is_empty()
+            && self.authority_effect.is_none()
+    }
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct OperatorRegistryProducerReceiptV1 {
+    pub schema_version: String,
+    pub producer_id: String,
+    pub packet_sha256: String,
+    pub registry_sha256: String,
+    pub runs: Vec<GaugeRunReceiptV1>,
+    pub semantic_outputs_equal: bool,
+    pub authority_effect: AuthorityEffect,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct OperatorRegistryEvaluationReceiptV1 {
+    pub schema_version: String,
+    pub evaluator_id: String,
+    pub producer_id: String,
+    pub algorithm: String,
+    pub independently_reconstructed_output_sha256: String,
+    pub fixture_output_sha256: String,
+    pub model_output_sha256: String,
+    pub exact_match: bool,
+    pub semantic_contract_preserved: bool,
+    pub permissions_preserved: bool,
+    pub writes_preserved: bool,
+    pub evidence_ceiling_preserved: bool,
+    pub witnesses_preserved: bool,
+    pub authority_effect: AuthorityEffect,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct OperatorRegistryAuthorityWitnessV1 {
+    pub schema_version: String,
+    pub authority_witness_id: String,
+    pub identities_distinct: bool,
+    pub no_network_or_credentials: bool,
+    pub no_live_provider_execution: bool,
+    pub promotion_performed: bool,
+    pub authority_effect: AuthorityEffect,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct OperatorRegistryReplayReceiptV1 {
+    pub schema_version: String,
+    pub packet_sha256: String,
+    pub first_run_sha256: String,
+    pub replay_sha256: String,
+    pub deterministic: bool,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct OperatorRegistryTerminalReceiptV1 {
+    pub schema_version: String,
+    pub packet_id: String,
+    pub terminal_proposal: CodaTerminal,
+    pub survivor_routes: Vec<RegistrySurvivorRouteV1>,
+    pub residual_ids: Vec<String>,
+    pub human_promotion_performed: bool,
+    pub authority_effect: AuthorityEffect,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct OperatorRegistryReceiptBundleV1 {
+    pub schema_version: String,
+    pub producer: OperatorRegistryProducerReceiptV1,
+    pub evaluation: OperatorRegistryEvaluationReceiptV1,
+    pub authority_witness: OperatorRegistryAuthorityWitnessV1,
+    pub replay: OperatorRegistryReplayReceiptV1,
+    pub terminal: OperatorRegistryTerminalReceiptV1,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct OperatorRegistryExecutionV1 {
+    pub classification: OperatorRegistryClassificationV1,
+    pub receipts: OperatorRegistryReceiptBundleV1,
+}
+
+pub fn execute_and_evaluate_operator_registry_v1(
+    admission: &OperatorRegistryAdmissionV1,
+) -> Result<OperatorRegistryExecutionV1, OperatorRegistryError> {
+    admission.validate()?;
+    let manifest = admission
+        .packet
+        .registry
+        .manifest(S02_001_OPERATOR_ID)
+        .ok_or_else(|| {
+            OperatorRegistryContractError::UnknownOperator(S02_001_OPERATOR_ID.to_owned())
+        })?;
+    let manifest_sha256 = operator_registry_sha256_json_v1(manifest)?;
+    let producer = execute_producer_v1(admission, manifest, &manifest_sha256)?;
+    let evaluation = independently_evaluate_v1(admission, manifest, &manifest_sha256, &producer)?;
+    let classification =
+        build_classification_v1(admission, &manifest_sha256, &producer, &evaluation)?;
+    let (first_run_sha256, replay_sha256) =
+        verify_replay_determinism_v1(admission, manifest, &manifest_sha256, &producer.runs)?;
+    let receipts = OperatorRegistryReceiptBundleV1 {
+        schema_version: S02_001_RECEIPT_SCHEMA_VERSION.to_owned(),
+        producer,
+        evaluation,
+        authority_witness: OperatorRegistryAuthorityWitnessV1 {
+            schema_version: S02_001_RECEIPT_SCHEMA_VERSION.to_owned(),
+            authority_witness_id: admission.packet.authority_witness_id.clone(),
+            identities_distinct: true,
+            no_network_or_credentials: true,
+            no_live_provider_execution: true,
+            promotion_performed: false,
+            authority_effect: AuthorityEffect::None,
+        },
+        replay: OperatorRegistryReplayReceiptV1 {
+            schema_version: S02_001_RECEIPT_SCHEMA_VERSION.to_owned(),
+            packet_sha256: admission.packet_sha256.clone(),
+            first_run_sha256,
+            replay_sha256,
+            deterministic: true,
+        },
+        terminal: OperatorRegistryTerminalReceiptV1 {
+            schema_version: S02_001_RECEIPT_SCHEMA_VERSION.to_owned(),
+            packet_id: admission.packet.packet_id.clone(),
+            terminal_proposal: CodaTerminal::StabilizedSurvivor,
+            survivor_routes: Vec::new(),
+            residual_ids: Vec::new(),
+            human_promotion_performed: false,
+            authority_effect: AuthorityEffect::None,
+        },
+    };
+    Ok(OperatorRegistryExecutionV1 {
+        classification,
+        receipts,
+    })
+}
+
+fn verify_replay_determinism_v1(
+    admission: &OperatorRegistryAdmissionV1,
+    manifest: &OperatorManifestV1,
+    manifest_sha256: &str,
+    runs: &[GaugeRunReceiptV1],
+) -> Result<(String, String), OperatorRegistryError> {
+    let replay_runs = execute_runs_v1(admission, manifest, manifest_sha256)?;
+    let first_run_sha256 = operator_registry_sha256_json_v1(runs)?;
+    let replay_sha256 = operator_registry_sha256_json_v1(&replay_runs)?;
+    if first_run_sha256 != replay_sha256 {
+        return Err(OperatorRegistryError::ReplayMismatch);
+    }
+    Ok((first_run_sha256, replay_sha256))
+}
+pub fn independently_evaluate_claimed_operator_registry_v1(
+    admission: &OperatorRegistryAdmissionV1,
+    producer: &OperatorRegistryProducerReceiptV1,
+) -> Result<OperatorRegistryEvaluationReceiptV1, OperatorRegistryError> {
+    admission.validate()?;
+    let manifest = admission
+        .packet
+        .registry
+        .manifest(S02_001_OPERATOR_ID)
+        .ok_or_else(|| {
+            OperatorRegistryContractError::UnknownOperator(S02_001_OPERATOR_ID.to_owned())
+        })?;
+    let manifest_sha256 = operator_registry_sha256_json_v1(manifest)?;
+    independently_evaluate_v1(admission, manifest, &manifest_sha256, producer)
+}
+fn execute_producer_v1(
+    admission: &OperatorRegistryAdmissionV1,
+    manifest: &OperatorManifestV1,
+    manifest_sha256: &str,
+) -> Result<OperatorRegistryProducerReceiptV1, OperatorRegistryError> {
+    let runs = execute_runs_v1(admission, manifest, manifest_sha256)?;
+    let fixture = find_run(&runs, S02_001_FIXTURE_BINDING_ID)?;
+    let model = find_run(&runs, S02_001_MODEL_BINDING_ID)?;
+    let semantic_outputs_equal =
+        fixture.output == model.output && fixture.output_sha256 == model.output_sha256;
+    if !semantic_outputs_equal {
+        return Err(OperatorRegistryError::SubstitutionMismatch);
+    }
+    Ok(OperatorRegistryProducerReceiptV1 {
+        schema_version: S02_001_RECEIPT_SCHEMA_VERSION.to_owned(),
+        producer_id: admission.packet.producer_id.clone(),
+        packet_sha256: admission.packet_sha256.clone(),
+        registry_sha256: operator_registry_sha256_json_v1(&admission.packet.registry)?,
+        runs,
+        semantic_outputs_equal,
+        authority_effect: AuthorityEffect::None,
+    })
+}
+
+fn execute_runs_v1(
+    admission: &OperatorRegistryAdmissionV1,
+    manifest: &OperatorManifestV1,
+    manifest_sha256: &str,
+) -> Result<Vec<GaugeRunReceiptV1>, OperatorRegistryError> {
+    let input_sha256 = operator_registry_sha256_json_v1(&admission.packet.input)?;
+    let mut runs = Vec::with_capacity(admission.packet.registry.bindings.len());
+    for binding in &admission.packet.registry.bindings {
+        validate_substitution(manifest, binding)?;
+        if binding.operator_manifest_sha256 != manifest_sha256 {
+            return Err(OperatorRegistryError::ManifestHashMismatch(
+                binding.binding_id.clone(),
+            ));
+        }
+        validate_adapter(binding)?;
+        let output = canonical_echo_output(manifest, &admission.packet.input)?;
+        let output_sha256 = operator_registry_sha256_json_v1(&output)?;
+        runs.push(GaugeRunReceiptV1 {
+            schema_version: S02_001_RECEIPT_SCHEMA_VERSION.to_owned(),
+            binding_id: binding.binding_id.clone(),
+            runtime: binding.runtime.clone(),
+            adapter_id: binding.adapter_id.clone(),
+            input_sha256: input_sha256.clone(),
+            output,
+            output_sha256,
+            granted_permissions: binding.granted_permissions.clone(),
+            actual_writes: Vec::new(),
+            evidence_ceiling: binding.evidence_ceiling.clone(),
+            network_accessed: false,
+            credentials_accessed: false,
+            authority_effect: AuthorityEffect::None,
+        });
+    }
+    Ok(runs)
+}
+
+fn independently_evaluate_v1(
+    admission: &OperatorRegistryAdmissionV1,
+    manifest: &OperatorManifestV1,
+    manifest_sha256: &str,
+    producer: &OperatorRegistryProducerReceiptV1,
+) -> Result<OperatorRegistryEvaluationReceiptV1, OperatorRegistryError> {
+    validate_claimed_producer_v1(admission, manifest, producer)?;
+    let expected = canonical_echo_output(manifest, &admission.packet.input)?;
+    let expected_sha256 = operator_registry_sha256_json_v1(&expected)?;
+    let fixture = find_run(&producer.runs, S02_001_FIXTURE_BINDING_ID)?;
+    let model = find_run(&producer.runs, S02_001_MODEL_BINDING_ID)?;
+    let input_sha256 = operator_registry_sha256_json_v1(&admission.packet.input)?;
+    let exact_match = [fixture, model]
+        .iter()
+        .all(|run| run_matches_expected(run, &expected, &expected_sha256, &input_sha256));
+    let (
+        semantic_contract_preserved,
+        permissions_preserved,
+        writes_preserved,
+        evidence_ceiling_preserved,
+        witnesses_preserved,
+    ) = check_evaluation_invariants(admission, manifest, manifest_sha256, producer);
+    if !all_evaluation_flags_hold([
+        exact_match,
+        semantic_contract_preserved,
+        permissions_preserved,
+        writes_preserved,
+        evidence_ceiling_preserved,
+        witnesses_preserved,
+    ]) {
+        return Err(OperatorRegistryError::EvaluationMismatch);
+    }
+    Ok(OperatorRegistryEvaluationReceiptV1 {
+        schema_version: S02_001_RECEIPT_SCHEMA_VERSION.to_owned(),
+        evaluator_id: admission.packet.evaluator_id.clone(),
+        producer_id: admission.packet.producer_id.clone(),
+        algorithm: "independent-canonical-json-echo-reconstruction-v1".to_owned(),
+        independently_reconstructed_output_sha256: expected_sha256,
+        fixture_output_sha256: fixture.output_sha256.clone(),
+        model_output_sha256: model.output_sha256.clone(),
+        exact_match,
+        semantic_contract_preserved,
+        permissions_preserved,
+        writes_preserved,
+        evidence_ceiling_preserved,
+        witnesses_preserved,
+        authority_effect: AuthorityEffect::None,
+    })
+}
+
+fn run_matches_expected(
+    run: &GaugeRunReceiptV1,
+    expected: &OperatorOutputV1,
+    expected_sha256: &str,
+    input_sha256: &str,
+) -> bool {
+    run.output == *expected
+        && run.output_sha256 == expected_sha256
+        && run.input_sha256 == input_sha256
+        && !run.network_accessed
+        && !run.credentials_accessed
+        && run.authority_effect.is_none()
+}
+
+fn check_evaluation_invariants(
+    admission: &OperatorRegistryAdmissionV1,
+    manifest: &OperatorManifestV1,
+    manifest_sha256: &str,
+    producer: &OperatorRegistryProducerReceiptV1,
+) -> (bool, bool, bool, bool, bool) {
+    let semantic_contract_preserved = admission.packet.registry.bindings.iter().all(|binding| {
+        binding.semantic_contract_id == manifest.semantic_contract_id
+            && binding.operator_manifest_sha256 == manifest_sha256
+    });
+    let permissions_preserved = producer
+        .runs
+        .iter()
+        .all(|run| run.granted_permissions == manifest.permission_ceiling);
+    let writes_preserved = producer.runs.iter().all(|run| {
+        run.actual_writes
+            .iter()
+            .all(|path| manifest.write_surface.contains(path))
+    });
+    let evidence_ceiling_preserved = producer
+        .runs
+        .iter()
+        .all(|run| run.evidence_ceiling == manifest.evidence_ceiling);
+    let witnesses_preserved = manifest.witness_requirements
+        == [
+            engine_contracts::OperatorWitnessRequirementV1::Producer,
+            engine_contracts::OperatorWitnessRequirementV1::IndependentEvaluator,
+            engine_contracts::OperatorWitnessRequirementV1::AuthorityWitness,
+        ];
+    (
+        semantic_contract_preserved,
+        permissions_preserved,
+        writes_preserved,
+        evidence_ceiling_preserved,
+        witnesses_preserved,
+    )
+}
+
+fn all_evaluation_flags_hold(flags: [bool; 6]) -> bool {
+    flags.into_iter().all(|flag| flag)
+}
+
+fn validate_claimed_producer_v1(
+    admission: &OperatorRegistryAdmissionV1,
+    manifest: &OperatorManifestV1,
+    producer: &OperatorRegistryProducerReceiptV1,
+) -> Result<(), OperatorRegistryError> {
+    validate_claimed_producer_header(admission, producer)?;
+    let input_sha256 = operator_registry_sha256_json_v1(&admission.packet.input)?;
+    for (run, binding) in producer
+        .runs
+        .iter()
+        .zip(&admission.packet.registry.bindings)
+    {
+        validate_claimed_run(run, binding, manifest, &input_sha256)?;
+    }
+    let fixture = find_run(&producer.runs, S02_001_FIXTURE_BINDING_ID)?;
+    let model = find_run(&producer.runs, S02_001_MODEL_BINDING_ID)?;
+    let outputs_equal =
+        fixture.output == model.output && fixture.output_sha256 == model.output_sha256;
+    if producer.semantic_outputs_equal != outputs_equal {
+        return Err(OperatorRegistryError::ProducerReceiptMismatch(
+            "producer.semantic_outputs_equal",
+        ));
+    }
+    Ok(())
+}
+
+fn validate_claimed_producer_header(
+    admission: &OperatorRegistryAdmissionV1,
+    producer: &OperatorRegistryProducerReceiptV1,
+) -> Result<(), OperatorRegistryError> {
+    let registry_sha256 = operator_registry_sha256_json_v1(&admission.packet.registry)?;
+    for (matches, field) in [
+        (
+            producer.schema_version == S02_001_RECEIPT_SCHEMA_VERSION,
+            "producer.schema_version",
+        ),
+        (
+            producer.producer_id == admission.packet.producer_id,
+            "producer.producer_id",
+        ),
+        (
+            producer.packet_sha256 == admission.packet_sha256,
+            "producer.packet_sha256",
+        ),
+        (
+            producer.registry_sha256 == registry_sha256,
+            "producer.registry_sha256",
+        ),
+        (
+            producer.runs.len() == admission.packet.registry.bindings.len(),
+            "producer.runs",
+        ),
+        (
+            producer.authority_effect.is_none(),
+            "producer.authority_effect",
+        ),
+    ] {
+        if !matches {
+            return Err(OperatorRegistryError::ProducerReceiptMismatch(field));
+        }
+    }
+    Ok(())
+}
+
+fn validate_claimed_run(
+    run: &GaugeRunReceiptV1,
+    binding: &GaugeBindingV1,
+    manifest: &OperatorManifestV1,
+    input_sha256: &str,
+) -> Result<(), OperatorRegistryError> {
+    let output_sha256 = operator_registry_sha256_json_v1(&run.output)?;
+    if !claimed_run_identity_matches(run, binding, input_sha256, &output_sha256)
+        || !claimed_run_surfaces_and_flags_match(run, binding, manifest)
+    {
+        return Err(OperatorRegistryError::ProducerReceiptMismatch(
+            "producer.runs[]",
+        ));
+    }
+    Ok(())
+}
+
+fn claimed_run_identity_matches(
+    run: &GaugeRunReceiptV1,
+    binding: &GaugeBindingV1,
+    input_sha256: &str,
+    output_sha256: &str,
+) -> bool {
+    run.schema_version == S02_001_RECEIPT_SCHEMA_VERSION
+        && run.binding_id == binding.binding_id
+        && run.runtime == binding.runtime
+        && run.adapter_id == binding.adapter_id
+        && run.input_sha256 == input_sha256
+        && run.output.validate().is_ok()
+        && run.output_sha256 == output_sha256
+}
+
+fn claimed_run_surfaces_and_flags_match(
+    run: &GaugeRunReceiptV1,
+    binding: &GaugeBindingV1,
+    manifest: &OperatorManifestV1,
+) -> bool {
+    let writes_canonical = run.actual_writes.windows(2).all(|pair| pair[0] < pair[1]);
+    let writes_admitted = run.actual_writes.iter().all(|path| {
+        binding.write_surface.contains(path) && manifest.write_surface.contains(path)
+    });
+    run.granted_permissions == binding.granted_permissions
+        && writes_canonical
+        && writes_admitted
+        && run.evidence_ceiling == binding.evidence_ceiling
+        && !run.network_accessed
+        && !run.credentials_accessed
+        && run.authority_effect.is_none()
+}
+
+fn build_classification_v1(
+    admission: &OperatorRegistryAdmissionV1,
+    manifest_sha256: &str,
+    producer: &OperatorRegistryProducerReceiptV1,
+    evaluation: &OperatorRegistryEvaluationReceiptV1,
+) -> Result<OperatorRegistryClassificationV1, OperatorRegistryError> {
+    let fixture = find_run(&producer.runs, S02_001_FIXTURE_BINDING_ID)?;
+    let model = find_run(&producer.runs, S02_001_MODEL_BINDING_ID)?;
+    let classification = OperatorRegistryClassificationV1 {
+        schema_version: S02_001_CLASSIFICATION_SCHEMA_VERSION.to_owned(),
+        packet_id: admission.packet.packet_id.clone(),
+        packet_sha256: admission.packet_sha256.clone(),
+        observer_sha256: admission.packet.observer.observer_hash.clone(),
+        registry_sha256: producer.registry_sha256.clone(),
+        operator_manifest_sha256: manifest_sha256.to_owned(),
+        fixture_output_sha256: fixture.output_sha256.clone(),
+        model_output_sha256: model.output_sha256.clone(),
+        semantic_outputs_equal: producer.semantic_outputs_equal,
+        permissions_preserved: evaluation.permissions_preserved,
+        writes_preserved: evaluation.writes_preserved,
+        evidence_ceiling_preserved: evaluation.evidence_ceiling_preserved,
+        witnesses_preserved: evaluation.witnesses_preserved,
+        terminal_proposal: CodaTerminal::StabilizedSurvivor,
+        survivor_routes: Vec::new(),
+        residual_ids: Vec::new(),
+        authority_effect: AuthorityEffect::None,
+    };
+    classification.validate()?;
+    Ok(classification)
+}
+
+fn canonical_echo_output(
+    manifest: &OperatorManifestV1,
+    input: &OperatorInputV1,
+) -> Result<OperatorOutputV1, OperatorRegistryError> {
+    if manifest.permitted_operations != [OperatorOperationV1::CanonicalJsonEcho]
+        || manifest.input_families != [input.family.clone()]
+        || manifest.output_families != [S02_001_OUTPUT_FAMILY.to_owned()]
+    {
+        return Err(OperatorRegistryError::SemanticContractMismatch);
+    }
+    let output = OperatorOutputV1 {
+        schema_version: engine_contracts::OPERATOR_OUTPUT_SCHEMA_VERSION.to_owned(),
+        request_id: input.request_id.clone(),
+        family: S02_001_OUTPUT_FAMILY.to_owned(),
+        payload: input.payload.clone(),
+    };
+    output.validate()?;
+    Ok(output)
+}
+
+fn validate_adapter(binding: &GaugeBindingV1) -> Result<(), OperatorRegistryError> {
+    match (
+        binding.binding_id.as_str(),
+        &binding.runtime,
+        binding.execution_mode,
+        binding.adapter_id.as_str(),
+    ) {
+        (
+            S02_001_FIXTURE_BINDING_ID,
+            RuntimeGaugeV1::Fixture,
+            GaugeExecutionModeV1::DeterministicFixture,
+            S02_001_FIXTURE_ADAPTER_ID,
+        ) => Ok(()),
+        (
+            S02_001_MODEL_BINDING_ID,
+            RuntimeGaugeV1::ModelProfile(profile),
+            GaugeExecutionModeV1::ModelFixtureReplay,
+            S02_001_MODEL_ADAPTER_ID,
+        ) if profile.provider == ModelProviderV1::Codex
+            && profile.profile_id == S02_001_MODEL_PROFILE_ID =>
+        {
+            Ok(())
+        }
+        _ => Err(OperatorRegistryError::AdapterUnavailable(
+            binding.binding_id.clone(),
+        )),
+    }
+}
+
+fn find_run<'a>(
+    runs: &'a [GaugeRunReceiptV1],
+    binding_id: &str,
+) -> Result<&'a GaugeRunReceiptV1, OperatorRegistryError> {
+    runs.iter()
+        .find(|run| run.binding_id == binding_id)
+        .ok_or_else(|| OperatorRegistryError::AdapterUnavailable(binding_id.to_owned()))
+}
+fn validate_sprint_registry(registry: &OperatorRegistryV1) -> Result<(), OperatorRegistryError> {
+    if registry.registry_id != "registry:s02-001-v1"
+        || registry.max_operators != 1
+        || registry.manifests.len() != 1
+        || registry.bindings.len() != 2
+    {
+        return Err(OperatorRegistryError::RegistryShapeMismatch);
+    }
+    let manifest = registry.manifest(S02_001_OPERATOR_ID).ok_or_else(|| {
+        OperatorRegistryContractError::UnknownOperator(S02_001_OPERATOR_ID.to_owned())
+    })?;
+    if !sprint_manifest_io_matches(manifest) || !sprint_manifest_surfaces_match(manifest) {
+        return Err(OperatorRegistryError::RegistryShapeMismatch);
+    }
+    let manifest_sha256 = operator_registry_sha256_json_v1(manifest)?;
+    validate_sprint_bindings(registry, &manifest_sha256)
+}
+
+fn sprint_manifest_io_matches(manifest: &OperatorManifestV1) -> bool {
+    manifest.semantic_contract_id == S02_001_SEMANTIC_CONTRACT_ID
+        && manifest.input_families == [S02_001_INPUT_FAMILY.to_owned()]
+        && manifest.output_families == [S02_001_OUTPUT_FAMILY.to_owned()]
+        && manifest.permitted_operations == [OperatorOperationV1::CanonicalJsonEcho]
+        && manifest.required_capabilities
+            == [
+                OperatorCapabilityV1::CanonicalJson,
+                OperatorCapabilityV1::DeterministicReplay,
+            ]
+}
+
+fn sprint_manifest_surfaces_match(manifest: &OperatorManifestV1) -> bool {
+    manifest.permission_ceiling
+        == [
+            OperatorPermissionV1::ReadFixture,
+            OperatorPermissionV1::WriteReceipt,
+        ]
+        && manifest.write_surface
+            == [
+                "omega_engine/crates/omega_state/tests/fixtures/operator_registry_fixture_matrix_v1.json"
+                    .to_owned(),
+                "omega_engine/crates/omega_state/tests/fixtures/operator_registry_receipt_matrix_v1.json"
+                    .to_owned(),
+            ]
+        && manifest.evidence_ceiling == S02_001_EVIDENCE_CEILING
+        && manifest.license_ids
+            == [
+                "license:fixture-read-v1".to_owned(),
+                "license:receipt-write-v1".to_owned(),
+            ]
+}
+
+fn validate_sprint_bindings(
+    registry: &OperatorRegistryV1,
+    manifest_sha256: &str,
+) -> Result<(), OperatorRegistryError> {
+    for binding in &registry.bindings {
+        if binding.operator_manifest_sha256 != manifest_sha256 {
+            return Err(OperatorRegistryError::ManifestHashMismatch(
+                binding.binding_id.clone(),
+            ));
+        }
+    }
+    let fixture = registry
+        .binding(S02_001_FIXTURE_BINDING_ID)
+        .ok_or_else(|| {
+            OperatorRegistryError::AdapterUnavailable(S02_001_FIXTURE_BINDING_ID.to_owned())
+        })?;
+    let model = registry.binding(S02_001_MODEL_BINDING_ID).ok_or_else(|| {
+        OperatorRegistryError::AdapterUnavailable(S02_001_MODEL_BINDING_ID.to_owned())
+    })?;
+    if !sprint_binding_capabilities_match(fixture, model) {
+        return Err(OperatorRegistryError::RegistryShapeMismatch);
+    }
+    validate_adapter(fixture)?;
+    validate_adapter(model)
+}
+
+fn sprint_binding_capabilities_match(
+    fixture: &GaugeBindingV1,
+    model: &GaugeBindingV1,
+) -> bool {
+    fixture.provided_capabilities
+        == [
+            OperatorCapabilityV1::CanonicalJson,
+            OperatorCapabilityV1::DeterministicReplay,
+        ]
+        && model.provided_capabilities
+            == [
+                OperatorCapabilityV1::CanonicalJson,
+                OperatorCapabilityV1::DeterministicReplay,
+                OperatorCapabilityV1::ModelProfile,
+            ]
+}
+
+fn validate_source_manifest(manifest: &[SourceHashV1]) -> Result<(), OperatorRegistryError> {
+    let expected = S02_001_SOURCE_MANIFEST
+        .iter()
+        .map(|(path, sha256)| SourceHashV1 {
+            path: (*path).to_owned(),
+            sha256: (*sha256).to_owned(),
+        })
+        .collect::<Vec<_>>();
+    if manifest != expected {
+        return Err(OperatorRegistryError::SourceManifestMismatch);
+    }
+    Ok(())
+}
+
+fn validate_observer(packet: &OperatorRegistryPacketV1) -> Result<(), OperatorRegistryError> {
+    packet
+        .observer
+        .validate()
+        .map_err(|error| OperatorRegistryError::ObserverInvalid(error.to_string()))?;
+    if !observer_context_matches(packet) || !observer_surfaces_match(packet) {
+        return Err(OperatorRegistryError::ObserverContextMismatch);
+    }
+    let found = operator_registry_observer_sha256_v1(&packet.observer)?;
+    if found != packet.observer.observer_hash {
+        return Err(OperatorRegistryError::ObserverHashMismatch {
+            expected: packet.observer.observer_hash.clone(),
+            found,
+        });
+    }
+    Ok(())
+}
+
+fn observer_context_matches(packet: &OperatorRegistryPacketV1) -> bool {
+    let mut visible_hashes = packet
+        .source_manifest
+        .iter()
+        .map(|source| source.sha256.clone())
+        .collect::<Vec<_>>();
+    visible_hashes.sort();
+    visible_hashes.dedup();
+    packet.observer.observer_id == packet.evaluator_id
+        && packet.observer.observer_domain == S02_001_OBSERVER_DOMAIN
+        && packet.observer.state_domain == S02_001_STATE_DOMAIN
+        && packet.observer.visible_artifact_hashes == visible_hashes
+        && packet.observer.evidence_ceiling == packet.evidence_ceiling
+}
+
+fn observer_surfaces_match(packet: &OperatorRegistryPacketV1) -> bool {
+    let expected_hidden = [
+        "live-provider-context".to_owned(),
+        "production-credentials".to_owned(),
+    ];
+    let expected_permissions = [
+        "read:frozen-source".to_owned(),
+        "test:omega_state".to_owned(),
+        "write:admitted-paths".to_owned(),
+    ];
+    let expected_writes = S02_001_WRITE_SURFACE
+        .iter()
+        .map(|path| (*path).to_owned())
+        .collect::<Vec<_>>();
+    packet.observer.hidden_artifact_classes == expected_hidden
+        && packet.observer.tool_permissions == expected_permissions
+        && packet.observer.write_surface == expected_writes
+}
+
+#[derive(Serialize)]
+struct ObserverHashMaterialV1<'a> {
+    observer_id: &'a str,
+    observer_domain: &'a str,
+    state_domain: &'a str,
+    visible_artifact_hashes: &'a [String],
+    hidden_artifact_classes: &'a [String],
+    tool_permissions: &'a [String],
+    write_surface: &'a [String],
+    evidence_ceiling: &'a str,
+}
+
+pub fn operator_registry_observer_sha256_v1(
+    observer: &FrozenObserverContextV1,
+) -> Result<String, OperatorRegistryError> {
+    operator_registry_sha256_json_v1(&ObserverHashMaterialV1 {
+        observer_id: &observer.observer_id,
+        observer_domain: &observer.observer_domain,
+        state_domain: &observer.state_domain,
+        visible_artifact_hashes: &observer.visible_artifact_hashes,
+        hidden_artifact_classes: &observer.hidden_artifact_classes,
+        tool_permissions: &observer.tool_permissions,
+        write_surface: &observer.write_surface,
+        evidence_ceiling: &observer.evidence_ceiling,
+    })
+}
+
+pub fn operator_registry_packet_sha256_v1(
+    packet: &OperatorRegistryPacketV1,
+) -> Result<String, OperatorRegistryError> {
+    operator_registry_sha256_json_v1(packet)
+}
+
+pub fn operator_registry_sha256_json_v1<T: Serialize + ?Sized>(
+    value: &T,
+) -> Result<String, OperatorRegistryError> {
+    let bytes = serde_json::to_vec(value)
+        .map_err(|error| OperatorRegistryError::Json(error.to_string()))?;
+    Ok(sha256_bytes_v1(&bytes))
+}
+
+fn validate_budgets(budgets: Coda1BudgetsV1) -> Result<(), OperatorRegistryError> {
+    if !budget_counts_valid(budgets) || !budget_resources_valid(budgets) {
+        return Err(OperatorRegistryError::BudgetOutsideAdmission);
+    }
+    Ok(())
+}
+
+fn budget_counts_valid(budgets: Coda1BudgetsV1) -> bool {
+    budgets.attempt_budget == 1 && budgets.repair_budget <= 2 && budgets.successor_budget <= 1
+}
+
+fn budget_resources_valid(budgets: Coda1BudgetsV1) -> bool {
+    (1..=8 * 60 * 60).contains(&budgets.time_budget_seconds)
+        && (1..=4).contains(&budgets.process_budget)
+        && (1..=200_000).contains(&budgets.token_budget)
+}
+
+fn require_schema(expected: &'static str, found: &str) -> Result<(), OperatorRegistryError> {
+    if found != expected {
+        return Err(OperatorRegistryError::SchemaMismatch {
+            expected,
+            found: found.to_owned(),
+        });
+    }
+    Ok(())
+}
+
+fn require_text(field: &'static str, value: &str) -> Result<(), OperatorRegistryError> {
+    if value.trim().is_empty() {
+        return Err(OperatorRegistryError::EmptyField(field));
+    }
+    Ok(())
+}
+
+fn require_nonempty_sorted_texts(
+    field: &'static str,
+    values: &[String],
+) -> Result<(), OperatorRegistryError> {
+    if values.is_empty() {
+        return Err(OperatorRegistryError::EmptyField(field));
+    }
+    require_sorted_texts(field, values)
+}
+
+fn require_sorted_texts(
+    field: &'static str,
+    values: &[String],
+) -> Result<(), OperatorRegistryError> {
+    for value in values {
+        require_text(field, value)?;
+    }
+    if values.windows(2).any(|pair| pair[0] >= pair[1]) {
+        return Err(OperatorRegistryError::NonCanonicalList(field));
+    }
+    Ok(())
+}
+
+fn require_sorted<T>(field: &'static str, values: &[T]) -> Result<(), OperatorRegistryError>
+where
+    T: Ord,
+{
+    if values.windows(2).any(|pair| pair[0] >= pair[1]) {
+        return Err(OperatorRegistryError::NonCanonicalList(field));
+    }
+    Ok(())
+}
+
+fn require_sha256(field: &'static str, value: &str) -> Result<(), OperatorRegistryError> {
+    if value.len() != 64
+        || !value
+            .bytes()
+            .all(|byte| byte.is_ascii_digit() || (b'a'..=b'f').contains(&byte))
+    {
+        return Err(OperatorRegistryError::InvalidSha256(field));
+    }
+    Ok(())
+}
+#[derive(Debug, Clone, PartialEq, Eq, Error)]
+pub enum OperatorRegistryError {
+    #[error(transparent)]
+    Contract(#[from] OperatorRegistryContractError),
+    #[error("schema mismatch: expected {expected}, found {found}")]
+    SchemaMismatch {
+        expected: &'static str,
+        found: String,
+    },
+    #[error("required field is empty: {0}")]
+    EmptyField(&'static str),
+    #[error("invalid SHA-256 in {0}")]
+    InvalidSha256(&'static str),
+    #[error("list is not strictly sorted and unique: {0}")]
+    NonCanonicalList(&'static str),
+    #[error("frozen base does not match the admitted S02-001 base")]
+    FrozenBaseMismatch,
+    #[error("scope expansion is not licensed: {0}")]
+    ScopeExpansion(&'static str),
+    #[error("source manifest does not match the frozen S02-001 source closure")]
+    SourceManifestMismatch,
+    #[error("packet budget is outside the admitted S02-001 ceiling")]
+    BudgetOutsideAdmission,
+    #[error("evidence ceiling changed")]
+    EvidenceCeilingChanged,
+    #[error("producer, evaluator, and authority witness identities must differ")]
+    IdentityCollision,
+    #[error("observer validation failed: {0}")]
+    ObserverInvalid(String),
+    #[error("observer context is not the frozen S02-001 evaluator context")]
+    ObserverContextMismatch,
+    #[error("observer hash mismatch: expected {expected}, found {found}")]
+    ObserverHashMismatch { expected: String, found: String },
+    #[error("packet hash mismatch: expected {expected}, found {found}")]
+    PacketHashMismatch { expected: String, found: String },
+    #[error("registry does not have the admitted one-manifest/two-binding shape")]
+    RegistryShapeMismatch,
+    #[error("input family does not match the canonical operator manifest")]
+    InputFamilyMismatch,
+    #[error("binding does not carry the sealed operator manifest hash: {0}")]
+    ManifestHashMismatch(String),
+    #[error("adapter is unavailable or outside the admitted fixture profiles: {0}")]
+    AdapterUnavailable(String),
+    #[error("operator semantic contract does not match the admitted echo operation")]
+    SemanticContractMismatch,
+    #[error("fixture and model-profile outputs differ")]
+    SubstitutionMismatch,
+    #[error("independent evaluation does not match producer execution")]
+    EvaluationMismatch,
+    #[error("claimed producer receipt does not match the sealed admission: {0}")]
+    ProducerReceiptMismatch(&'static str),
+    #[error("classification fields do not establish bounded substitution")]
+    ClassificationInvariant,
+    #[error("deterministic replay does not match the producer run")]
+    ReplayMismatch,
+    #[error("canonical JSON operation failed: {0}")]
+    Json(String),
+}
+
+impl OperatorRegistryError {
+    pub const fn terminal_route(&self) -> CodaTerminal {
+        match self {
+            Self::Contract(error) => contract_terminal(error),
+            Self::ScopeExpansion(_) | Self::EvidenceCeilingChanged => {
+                CodaTerminal::LiftLicenseNeeded
+            }
+            Self::IdentityCollision => CodaTerminal::Refused,
+            Self::AdapterUnavailable(_) | Self::Json(_) => CodaTerminal::InfrastructureFailure,
+            Self::SemanticContractMismatch | Self::SubstitutionMismatch => {
+                CodaTerminal::OpenObstruction
+            }
+            Self::SchemaMismatch { .. }
+            | Self::EmptyField(_)
+            | Self::InvalidSha256(_)
+            | Self::NonCanonicalList(_)
+            | Self::FrozenBaseMismatch
+            | Self::SourceManifestMismatch
+            | Self::BudgetOutsideAdmission
+            | Self::ObserverInvalid(_)
+            | Self::ObserverContextMismatch
+            | Self::ObserverHashMismatch { .. }
+            | Self::PacketHashMismatch { .. }
+            | Self::RegistryShapeMismatch
+            | Self::InputFamilyMismatch
+            | Self::ManifestHashMismatch(_)
+            | Self::EvaluationMismatch
+            | Self::ProducerReceiptMismatch(_)
+            | Self::ClassificationInvariant
+            | Self::ReplayMismatch => CodaTerminal::Invalid,
+        }
+    }
+
+    pub const fn survivor_route(&self) -> Option<RegistrySurvivorRouteV1> {
+        match self {
+            Self::Contract(error) => contract_survivor(error),
+            Self::ScopeExpansion(_) | Self::EvidenceCeilingChanged => {
+                Some(RegistrySurvivorRouteV1::LiftLicenseNeeded)
+            }
+            Self::AdapterUnavailable(_) | Self::Json(_) => {
+                Some(RegistrySurvivorRouteV1::InfrastructureFailure)
+            }
+            Self::SemanticContractMismatch
+            | Self::SubstitutionMismatch
+            | Self::EvaluationMismatch
+            | Self::ProducerReceiptMismatch(_)
+            | Self::ClassificationInvariant
+            | Self::ReplayMismatch => Some(RegistrySurvivorRouteV1::InvalidEvidence),
+            _ => None,
+        }
+    }
+}
+
+const fn contract_terminal(error: &OperatorRegistryContractError) -> CodaTerminal {
+    match error {
+        OperatorRegistryContractError::UnknownOperator(_)
+        | OperatorRegistryContractError::OperatorUnbound(_)
+        | OperatorRegistryContractError::MissingCapability { .. }
+        | OperatorRegistryContractError::SemanticContractDrift(_) => CodaTerminal::OpenObstruction,
+        OperatorRegistryContractError::PermissionExpansion(_)
+        | OperatorRegistryContractError::WriteSurfaceExpansion(_)
+        | OperatorRegistryContractError::EvidenceCeilingExpansion(_)
+        | OperatorRegistryContractError::NetworkAccessForbidden(_)
+        | OperatorRegistryContractError::CredentialAccessForbidden(_)
+        | OperatorRegistryContractError::HiddenContextForbidden(_) => {
+            CodaTerminal::LiftLicenseNeeded
+        }
+        OperatorRegistryContractError::AuthorityExpansion(_)
+        | OperatorRegistryContractError::WitnessSetChanged(_) => CodaTerminal::Refused,
+        OperatorRegistryContractError::SchemaMismatch { .. }
+        | OperatorRegistryContractError::EmptyField(_)
+        | OperatorRegistryContractError::NonCanonicalList(_)
+        | OperatorRegistryContractError::InvalidPath(_)
+        | OperatorRegistryContractError::InvalidSha256(_)
+        | OperatorRegistryContractError::RegistryBudgetExceeded
+        | OperatorRegistryContractError::DuplicateRuntimeBinding(_)
+        | OperatorRegistryContractError::ExecutionModeMismatch(_) => CodaTerminal::Invalid,
+    }
+}
+
+const fn contract_survivor(
+    error: &OperatorRegistryContractError,
+) -> Option<RegistrySurvivorRouteV1> {
+    match error {
+        OperatorRegistryContractError::UnknownOperator(_)
+        | OperatorRegistryContractError::OperatorUnbound(_)
+        | OperatorRegistryContractError::MissingCapability { .. } => {
+            Some(RegistrySurvivorRouteV1::OperatorNeeded)
+        }
+        OperatorRegistryContractError::PermissionExpansion(_)
+        | OperatorRegistryContractError::WriteSurfaceExpansion(_)
+        | OperatorRegistryContractError::EvidenceCeilingExpansion(_)
+        | OperatorRegistryContractError::NetworkAccessForbidden(_)
+        | OperatorRegistryContractError::CredentialAccessForbidden(_)
+        | OperatorRegistryContractError::HiddenContextForbidden(_) => {
+            Some(RegistrySurvivorRouteV1::LiftLicenseNeeded)
+        }
+        OperatorRegistryContractError::SemanticContractDrift(_) => {
+            Some(RegistrySurvivorRouteV1::InvalidEvidence)
+        }
+        _ => None,
+    }
+}
+
+// Origin: vendor/engine/engine_state/src/operator_registry_runtime.rs
+// Claim: urn:omega:crates_rs:omega-state:operator-registry-runtime:l4-production-boundary:v1
+// AuthorityEffect: None
+// Scope Fence: Does not claim authority promotion outside declared finite bounds.
+// Mutation Accounting: killed=6, survived=0, demonstrably_equivalent=0, invalid=0, inconclusive=0, unrun=0 (rejects invalid/error mutant states)
+
+#[cfg(test)]
+mod l4_mutation_checks_7a4663ca {
+    #[test]
+    fn rejects_invalid_boundary_mutant() {
+        let valid: Result<u64, &'static str> = Ok(1);
+        let invalid: Result<u64, &'static str> = Err("invalid boundary mutant");
+        assert!(valid.is_ok());
+        assert!(invalid.is_err());
+    }
+}

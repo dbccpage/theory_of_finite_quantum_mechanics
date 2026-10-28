@@ -1,10 +1,10 @@
 use crate::qm::bridge::matrix;
 use ::linear_algebra::backend::basic_matrix::BasicMatrix;
 use num_traits::Signed;
-use omega_functional::born_probabilities::{BornProbabilities, BornProbabilityError};
-use omega_number_theory::{cyclotomic::GaussianRat, rational::Rational};
-use omega_quantum_physics::exact_hermitian::{self};
-use omega_quantum_physics::residual_density_calculus::{sector_measurement, ResidualDensityError};
+use engine_functional::born_probabilities::{BornProbabilities, BornProbabilityError};
+use engine_number_theory::{cyclotomic::GaussianRat, rational::Rational};
+use engine_quantum_physics::exact_hermitian::{self};
+use engine_quantum_physics::residual_density_calculus::{sector_measurement, ResidualDensityError};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct ResidualLedger {

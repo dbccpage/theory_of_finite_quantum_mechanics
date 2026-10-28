@@ -2,7 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for the base of enrichment (monoidal V, often closed).
 /// Separates "V as enrichment base" from ordinary monoidal inventory.

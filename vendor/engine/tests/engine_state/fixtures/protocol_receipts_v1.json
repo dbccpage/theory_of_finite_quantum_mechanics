@@ -1,0 +1,216 @@
+{
+  "schema": {
+    "schema_version": "omega.gtoc-gtla.protocol.v1",
+    "stages": [
+      "carrier",
+      "primitive_difference",
+      "zero_relation",
+      "cochain_realization",
+      "quotient",
+      "residual_separation",
+      "observer",
+      "witnesses",
+      "licensed_transformation",
+      "survivor_routing",
+      "terminal_proposal",
+      "prior_work_ledger"
+    ],
+    "terminals": [
+      "ExactRepair",
+      "StabilizedSurvivor",
+      "OpenObstruction",
+      "OracleNeeded",
+      "LiftLicenseNeeded",
+      "Refused",
+      "Invalid",
+      "InfrastructureFailure"
+    ],
+    "legacy_schema_version": "omega.gtoc-gtla.legacy-packet.v1",
+    "legacy_fields": [
+      "carrier",
+      "c0",
+      "d0",
+      "c1",
+      "zero_rel",
+      "q1",
+      "d1",
+      "gamma2",
+      "phi1",
+      "classification",
+      "licensed_lift",
+      "dda_execution",
+      "terminalization"
+    ],
+    "authority_effect": "None"
+  },
+  "adapter": {
+    "source_schema_version": "omega.gtoc-gtla.legacy-packet.v1",
+    "target_schema_version": "omega.gtoc-gtla.protocol.v1",
+    "legacy_field_count": 13,
+    "stage_sources": [
+      {
+        "stage": "carrier",
+        "sources": [
+          {
+            "source": "legacy",
+            "field": "carrier"
+          }
+        ]
+      },
+      {
+        "stage": "primitive_difference",
+        "sources": [
+          {
+            "source": "context",
+            "field": "primitive_difference"
+          }
+        ]
+      },
+      {
+        "stage": "zero_relation",
+        "sources": [
+          {
+            "source": "legacy",
+            "field": "zero_rel"
+          }
+        ]
+      },
+      {
+        "stage": "cochain_realization",
+        "sources": [
+          {
+            "source": "legacy",
+            "field": "c0"
+          },
+          {
+            "source": "legacy",
+            "field": "d0"
+          },
+          {
+            "source": "legacy",
+            "field": "c1"
+          },
+          {
+            "source": "legacy",
+            "field": "d1"
+          },
+          {
+            "source": "context",
+            "field": "c2"
+          },
+          {
+            "source": "context",
+            "field": "d1_d0_witness"
+          }
+        ]
+      },
+      {
+        "stage": "quotient",
+        "sources": [
+          {
+            "source": "legacy",
+            "field": "q1"
+          }
+        ]
+      },
+      {
+        "stage": "residual_separation",
+        "sources": [
+          {
+            "source": "legacy",
+            "field": "gamma2"
+          },
+          {
+            "source": "legacy",
+            "field": "phi1"
+          }
+        ]
+      },
+      {
+        "stage": "observer",
+        "sources": [
+          {
+            "source": "context",
+            "field": "observer"
+          }
+        ]
+      },
+      {
+        "stage": "witnesses",
+        "sources": [
+          {
+            "source": "context",
+            "field": "witnesses"
+          }
+        ]
+      },
+      {
+        "stage": "licensed_transformation",
+        "sources": [
+          {
+            "source": "legacy",
+            "field": "licensed_lift"
+          },
+          {
+            "source": "legacy",
+            "field": "dda_execution"
+          }
+        ]
+      },
+      {
+        "stage": "survivor_routing",
+        "sources": [
+          {
+            "source": "legacy",
+            "field": "dda_execution"
+          }
+        ]
+      },
+      {
+        "stage": "terminal_proposal",
+        "sources": [
+          {
+            "source": "legacy",
+            "field": "classification"
+          },
+          {
+            "source": "legacy",
+            "field": "terminalization"
+          }
+        ]
+      },
+      {
+        "stage": "prior_work_ledger",
+        "sources": [
+          {
+            "source": "context",
+            "field": "prior_work_ledger"
+          }
+        ]
+      }
+    ],
+    "limitations": [
+      "primitive_difference_requires_context",
+      "c2_and_composition_witness_require_context",
+      "observer_requires_context",
+      "witnesses_require_context",
+      "prior_work_ledger_requires_context",
+      "dda_execution_splits_across_stages_nine_and_ten",
+      "classification_and_terminalization_must_agree_at_stage_eleven",
+      "structural_compilation_does_not_prove_mathematical_cochains"
+    ],
+    "authority_effect": "None"
+  },
+  "validation": {
+    "schema_version": "omega.gtoc-gtla.protocol.v1",
+    "transition_count": 11,
+    "terminal": "ExactRepair",
+    "authority_effect": "None",
+    "cochain": {
+      "realization": "Structural",
+      "edge_count": 11,
+      "composition_count": 10,
+      "failures": []
+    }
+  }
+}

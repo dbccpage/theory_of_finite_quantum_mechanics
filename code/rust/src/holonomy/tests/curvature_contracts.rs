@@ -1,7 +1,7 @@
 //! Independent exact arithmetic and public-storage boundary challenges.
 //! AuthorityEffect: None.
 use num_rational::BigRational;
-use omega_kernel::resource_limits::OperationLimits;
+use engine_kernel::resource_limits::OperationLimits;
 use tfqm_holonomy::{
     compute_loop_holonomy, curvature_commutator, plaquette_curvature, DiscreteConnection,
     ExactMatrix, HolonomyError,

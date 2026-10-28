@@ -2,14 +2,14 @@ use num_traits::ToPrimitive;
 use serde::{Deserialize, Serialize};
 
 use ::linear_algebra::backend::basic_matrix::BasicMatrix;
-use omega_number_theory::rational::Rational;
-use omega_quantum_physics::engine_bridge::{
+use engine_number_theory::rational::Rational;
+use engine_quantum_physics::engine_bridge::{
     cyc24_matrix_to_prod_density, rational_matrix_to_prod_density,
 };
-use omega_quantum_physics::tomography;
+use engine_quantum_physics::tomography;
 
 use linear_algebra::linear_algebra::density::{DensityMatrix, DensityMatrixConfig};
-use omega_engines::quantum::density::{
+use engine_runtime::quantum::density::{
     bures_angle_observable, bures_distance_observable, classical_projection_observable,
     classical_projection_observable_checked, fidelity_observable, purity_observable,
     trace_observable, von_neumann_entropy_observable,
@@ -56,7 +56,7 @@ pub fn evaluate_state_observables(dm: &DensityMatrix) -> EngineObservablesReport
 }
 
 fn convert_state(
-    exact: &BasicMatrix<omega_number_theory::cyclotomic::Cyc24>,
+    exact: &BasicMatrix<engine_number_theory::cyclotomic::Cyc24>,
     label: &str,
     expected_pure: bool,
 ) -> Result<(DensityMatrix, bool), String> {
@@ -209,9 +209,9 @@ pub fn verify_born_gleason_domain_bridge(
 pub fn verify_composition_tomography_domain_bridge(
     dim_a: usize,
     dim_b: usize,
-    carrier: omega_quantum_physics::composition_tomography::PhaseCarrier,
+    carrier: engine_quantum_physics::composition_tomography::PhaseCarrier,
 ) -> Result<bool, String> {
-    use omega_quantum_physics::composition_tomography::{
+    use engine_quantum_physics::composition_tomography::{
         local_tomography_spanning_complex, local_tomography_spanning_real_via_gaussian,
         LocalTomographyReport, PhaseCarrier,
     };
@@ -250,7 +250,7 @@ pub fn verify_composition_tomography_domain_bridge(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_quantum_physics::engine_bridge::domain_diagonal_to_prod_density;
+    use engine_quantum_physics::engine_bridge::domain_diagonal_to_prod_density;
 
     #[test]
     fn test_d3_ground_state_engine_observables() {
@@ -284,10 +284,10 @@ mod tests {
 
     #[test]
     fn test_domain_diagonal_density_conversion() {
-        let h_space = omega_quantum_physics::hilbert_space::HilbertSpace::new(3, "H3");
+        let h_space = engine_quantum_physics::hilbert_space::HilbertSpace::new(3, "H3");
         let r_third = num_rational::Ratio::new(1, 3);
         let domain_dm =
-            omega_quantum_physics::density_matrix::DensityMatrix::try_from_rational_probs(
+            engine_quantum_physics::density_matrix::DensityMatrix::try_from_rational_probs(
                 &h_space,
                 vec![r_third, r_third, r_third],
                 "maximally_mixed_d3",
@@ -329,7 +329,7 @@ mod tests {
         )
         .unwrap();
         assert!(verify_born_gleason_domain_bridge(&rho, &assumptions).unwrap());
-        let complex = omega_quantum_physics::composition_tomography::PhaseCarrier::ComplexU1;
+        let complex = engine_quantum_physics::composition_tomography::PhaseCarrier::ComplexU1;
         assert!(verify_composition_tomography_domain_bridge(2, 2, complex).unwrap());
     }
 }

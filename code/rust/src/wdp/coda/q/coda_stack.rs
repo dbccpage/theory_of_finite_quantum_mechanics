@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 use std::ops::Sub;
 use thiserror::Error;
 
-use omega_types::{
+use engine_types::{
     AuthorityTerminal, ObstructionDiagnosticClass, Outcome, RefusalSource, ResidualTerminal,
 };
 

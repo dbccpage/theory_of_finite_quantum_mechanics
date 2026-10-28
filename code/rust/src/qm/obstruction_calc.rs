@@ -1,10 +1,10 @@
 use ::linear_algebra::backend::basic_matrix::BasicMatrix;
 use num_traits::{Signed, Zero};
-use omega_number_theory::rational::Rational;
-use omega_solvers::data_cochain_packet::CochainPacketError;
+use engine_number_theory::rational::Rational;
+use engine_solvers::data_cochain_packet::CochainPacketError;
 
 use crate::qm::campaigns::residual_density::{CoherenceLicense, ResidualLedger};
-use omega_quantum_physics::residual_density_calculus::{
+use engine_quantum_physics::residual_density_calculus::{
     row_stochastic_pushforward, ResidualDensityError,
 };
 
@@ -95,7 +95,7 @@ fn improvement(
 
 fn rank_order(candidates: &[(String, ObstructionPoint)], a: usize, b: usize) -> std::cmp::Ordering {
     let ((label_a, point_a), (label_b, point_b)) = (&candidates[a], &candidates[b]);
-    use omega_policy::evaluation_hierarchy::{compare_exact_ranking, ExactRankingKey};
+    use engine_policy::evaluation_hierarchy::{compare_exact_ranking, ExactRankingKey};
     compare_exact_ranking(
         ExactRankingKey {
             phi1: &point_a.phi1,

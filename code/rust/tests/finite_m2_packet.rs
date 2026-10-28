@@ -1,4 +1,4 @@
-use omega_number_theory::rational::{ri, rq};
+use engine_number_theory::rational::{ri, rq};
 use theory_of_finite_qm::quantum_packet::{verify, worked_example_packet, M2Refusal};
 const PROVENANCE: &str = "Origin: code/rust/src/qm/quantum_packet.rs Claim: urn:fqm:m2-packet:povm-weights-sum-to-one AuthorityEffect: None";
 const SAMPLE: i64 = 2;

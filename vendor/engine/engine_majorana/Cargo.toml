@@ -1,0 +1,30 @@
+[package]
+autotests = false
+name = "engine_majorana"
+version.workspace = true
+edition = "2021"
+description = "Majorana GF(2) parity schedule diagnostics + lattice play complexes (AuthorityEffect None; not GTLA terminalizer)"
+license.workspace = true
+authors = ["Engine contributors"]
+
+[dependencies]
+linear_algebra = { path = "../linear_algebra" }
+engine_number_theory = { path = "../engine_number_theory" }
+engine_lie_theory = { path = "../engine_lie_theory" }
+engine_functional = { path = "../engine_functional" }
+num-traits = "0.2"
+thiserror = "2"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+[dev-dependencies]
+engine_fusion_categories = { path = "../engine_fusion_categories" }
+engine_homology = { path = "../engine_homology" }
+
+[[test]]
+name = "majorana_parity_algebra"
+path = "../tests/engine_majorana/majorana_parity_algebra.rs"
+
+[lib]
+name = "engine_majorana"
+path = "src/lib.rs"

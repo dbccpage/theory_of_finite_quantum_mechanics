@@ -3,7 +3,7 @@ use crate::legacy_observer_adapters::{
 };
 use crate::observer::QuotientObserver;
 use num_traits::Zero;
-use tfqm_functional::phi1::{ExactPhi1Certificate, Phi1Functional};
+use engine_functional::phi1::{ExactPhi1Certificate, Phi1Functional};
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SixObserverAdapter {

@@ -7,11 +7,11 @@ use crate::native::exact::mub6_constants::{
     base_gap, certified_erosion, certified_margin, delta_certified, lipschitz_bound,
 };
 use crate::native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
-use omega_kernel::interval::Interval;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::rq;
-use omega_solvers::solver_flow_network_simplex::NetworkSimplexError;
-use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge, Phi1Solution};
+use engine_kernel::interval::Interval;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::rq;
+use engine_solvers::solver_flow_network_simplex::NetworkSimplexError;
+use engine_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge, Phi1Solution};
 
 crate::fixture_set!(fixtures, "mub6_deltoid_cusp");
 

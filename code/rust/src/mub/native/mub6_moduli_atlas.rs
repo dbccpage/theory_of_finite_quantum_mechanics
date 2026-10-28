@@ -34,7 +34,7 @@ impl ModuliCoverPatch {
 
 pub const T0_MODULI_COVER_PATH: &str = concat!(
     env!("CARGO_MANIFEST_DIR"),
-    "/../tests/mub/artifacts/gauge_fixed_5_torus_moduli_delta_1_1000_cover_certificate_20260621.json"
+    "/../../tests/mub/artifacts/gauge_fixed_5_torus_moduli_delta_1_1000_cover_certificate_20260621.json"
 );
 
 pub fn dita_seed_point_cover_path(dx: i64, dy: i64) -> String {

@@ -5,10 +5,10 @@ use linear_algebra::exact_field::ExactFieldError;
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
-use tfqm_functional::phi1::{ExactPhi1CertificateError, Phi1Functional, VerifiedExactPhi1};
-use omega_kernel::{exact_wire, exact_wire_vec};
-use omega_solvers::solver_flow_network_simplex::NetworkSimplexError;
-use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1};
+use engine_functional::phi1::{ExactPhi1CertificateError, Phi1Functional, VerifiedExactPhi1};
+use engine_kernel::{exact_wire, exact_wire_vec};
+use engine_solvers::solver_flow_network_simplex::NetworkSimplexError;
+use engine_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1};
 use serde::Serialize;
 
 pub const D_SEL_RULE_ID: &str = "d-sel.network-simplex-vertex.v1";
@@ -153,7 +153,7 @@ impl DSelReceipt {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_solvers::solver_lp_phi1_boundary::BoundaryEdge;
+    use engine_solvers::solver_lp_phi1_boundary::BoundaryEdge;
 
     fn unit_edge(tail: usize, head: usize) -> BoundaryEdge {
         BoundaryEdge {

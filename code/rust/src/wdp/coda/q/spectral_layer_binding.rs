@@ -1,5 +1,5 @@
 
-pub const OPERATOR_SPECTRAL_LAYER_PATH: &str = "omega_quantum_physics::hermitian_spectral";
+pub const OPERATOR_SPECTRAL_LAYER_PATH: &str = "engine_quantum_physics::hermitian_spectral";
 
 pub const CERTIFICATE_SPECTRAL_MEMBRANE_PATH: &str = "crate::coda::q::spectral_membrane";
 

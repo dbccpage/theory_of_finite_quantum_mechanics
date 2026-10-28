@@ -6,8 +6,8 @@ use crate::native::exact::d6_exact_curvature_cochain::D;
 use crate::native::exact::mub6_f6_chart::f6_family_columns;
 use crate::native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
 use crate::native::exact::mub6_matrix6::Matrix6;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::rq;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::rq;
 
 pub fn verify_transition_scaling_cross_mult() -> bool {
     let cross_mult = 1i64 * 36 == 6i64 * 6;

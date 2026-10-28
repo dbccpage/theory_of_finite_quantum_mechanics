@@ -3,10 +3,10 @@ use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{involution, matrix as mx};
 use num_bigint::BigInt;
 use num_traits::{Signed, ToPrimitive, Zero};
-use tfqm_number_theory::cyclotomic::GaussianRat;
-use tfqm_number_theory::rational::{ri, Rational};
-use omega_quantum_physics::exact_channel::ExactKrausChannel;
-use omega_quantum_physics::exact_hermitian::hermitian_trace;
+use engine_number_theory::cyclotomic::GaussianRat;
+use engine_number_theory::rational::{ri, Rational};
+use engine_quantum_physics::exact_channel::ExactKrausChannel;
+use engine_quantum_physics::exact_hermitian::hermitian_trace;
 use serde::Serialize;
 
 use crate::empirical_adapter::{adapt_exact, EmpiricalModel, MeasurementCover, RunTable, Section};
@@ -348,7 +348,7 @@ pub struct FiniteInstrumentReceipt {
 
 #[derive(Debug, Clone)]
 pub struct FiniteQuantumInstrument {
-    instrument: omega_quantum_physics::exact_instrument::ExactFiniteInstrument,
+    instrument: engine_quantum_physics::exact_instrument::ExactFiniteInstrument,
 }
 
 fn finite_matrix_digest(matrix: &BasicMatrix<GaussianRat>) -> String {
@@ -365,15 +365,15 @@ impl FiniteQuantumInstrument {
         dim_out: usize,
         groups: Vec<Vec<BasicMatrix<GaussianRat>>>,
         label: &str,
-    ) -> Result<Self, omega_quantum_physics::exact_instrument::ExactInstrumentError> {
+    ) -> Result<Self, engine_quantum_physics::exact_instrument::ExactInstrumentError> {
         Ok(Self {
-            instrument: omega_quantum_physics::exact_instrument::ExactFiniteInstrument::try_new(
+            instrument: engine_quantum_physics::exact_instrument::ExactFiniteInstrument::try_new(
                 dim_in, dim_out, groups, label,
             )?,
         })
     }
 
-    pub fn instrument(&self) -> &omega_quantum_physics::exact_instrument::ExactFiniteInstrument {
+    pub fn instrument(&self) -> &engine_quantum_physics::exact_instrument::ExactFiniteInstrument {
         &self.instrument
     }
 
@@ -402,10 +402,10 @@ impl FiniteQuantumInstrument {
     pub fn receipt(
         &self,
         outcome: usize,
-        state: &omega_quantum_physics::exact_instrument::ExactDensityState,
+        state: &engine_quantum_physics::exact_instrument::ExactDensityState,
     ) -> Result<
         FiniteInstrumentReceipt,
-        omega_quantum_physics::exact_instrument::ExactInstrumentError,
+        engine_quantum_physics::exact_instrument::ExactInstrumentError,
     > {
         let probability = self.instrument.probability(outcome, state)?;
         let post_state_digest = self
@@ -424,9 +424,9 @@ impl FiniteQuantumInstrument {
 
     pub fn verify_receipt(
         &self,
-        state: &omega_quantum_physics::exact_instrument::ExactDensityState,
+        state: &engine_quantum_physics::exact_instrument::ExactDensityState,
         receipt: &FiniteInstrumentReceipt,
-    ) -> Result<bool, omega_quantum_physics::exact_instrument::ExactInstrumentError> {
+    ) -> Result<bool, engine_quantum_physics::exact_instrument::ExactInstrumentError> {
         Ok(self.receipt(receipt.outcome, state)? == *receipt)
     }
 }

@@ -6,7 +6,7 @@ use super::ordered::{HermitianOrdered, OrderedExactField};
 use super::scalars::{
     CheckedExactField, ExactRing, Field, Involution, Ring, ScalarError, ScalarResult, Semiring,
 };
-use omega_number_theory::cyclotomic::GaussianRat;
+use engine_number_theory::cyclotomic::GaussianRat;
 
 fn pair(left: &GaussianRat, right: &GaussianRat) -> ScalarResult<()> {
     Semiring::validate(left)?;
@@ -150,8 +150,8 @@ mod tests {
 // coefficients and irreducible cyclotomic moduli. Their legacy inverse is called
 // only after nonzero admission. Provider algorithm correctness, unbounded scalar
 // allocations and the nonzero-to-invertible proof remain explicit review duties.
-use omega_number_theory::cyclotomic::{Cyc12, Cyc24};
-use omega_number_theory::cyclotomic_field::Cyclotomic;
+use engine_number_theory::cyclotomic::{Cyc12, Cyc24};
+use engine_number_theory::cyclotomic_field::Cyclotomic;
 fn admit_coefficients(values: &[super::scalars::Q]) -> ScalarResult<()> {
     for value in values {
         Semiring::validate(value)?;

@@ -1,12 +1,12 @@
 
 
 use num_traits::Zero;
-use omega_number_theory::rational::Rational;
-use omega_quantum_physics::composition_tomography::LocalTomographyReport;
-use omega_quantum_physics::separating_predictions::MerminPeresSquare;
+use engine_number_theory::rational::Rational;
+use engine_quantum_physics::composition_tomography::LocalTomographyReport;
+use engine_quantum_physics::separating_predictions::MerminPeresSquare;
 
 use crate::qm::quantum_packet::{verify, M2Refusal};
-use omega_quantum_physics::gauge_cochain_complex::M2Packet;
+use engine_quantum_physics::gauge_cochain_complex::M2Packet;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum TransitionStatus {

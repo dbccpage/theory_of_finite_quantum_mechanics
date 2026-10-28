@@ -1,5 +1,5 @@
 
-extern crate self as omega_sheaf_theory;
+extern crate self as tfqm_sheaf_theory;
 pub mod cech;
 pub mod empirical_presheaf;
 pub mod epistemic_observer;

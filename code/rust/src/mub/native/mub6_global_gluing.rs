@@ -12,8 +12,8 @@ use crate::native::exact::mub6_matrix6::{matrix_adjoint, matrix_identity, matrix
 use crate::native::exact::mub6_zerorel_variety::{
     apply_unitary_to_basis, apply_unitary_to_triple, BasisCyc, MuTripleCyc,
 };
-use tfqm_number_theory::cyclotomic::Cyc24;
-use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge};
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge};
 
 crate::fixture_set!(fixtures, "mub6_global_gluing");
 
@@ -548,7 +548,7 @@ pub fn is_holonomy_non_trivial(hol: &Unitary6) -> bool {
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]
 pub struct LoopCirculationReport {
     #[serde(skip)]
-    verified_phi1: Option<tfqm_functional::VerifiedExactPhi1>,
+    verified_phi1: Option<engine_functional::VerifiedExactPhi1>,
     pub loop_name: String,
     pub num_edges: usize,
     pub edge_cochain: Vec<i128>,
@@ -564,7 +564,7 @@ impl LoopCirculationReport {
     pub fn scaled_verified_value(&self, scale: i128) -> Option<BigRational> {
         self.verified_phi1
             .as_ref()
-            .and_then(|value| tfqm_functional::Phi1Functional::scaled_verified_value(value, scale))
+            .and_then(|value| engine_functional::Phi1Functional::scaled_verified_value(value, scale))
     }
 }
 

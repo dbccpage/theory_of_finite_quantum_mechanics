@@ -1,7 +1,7 @@
 //! enriched_category shell for omega_category_theory.
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Hom-object entry: pair of object labels maps to a V-object label.

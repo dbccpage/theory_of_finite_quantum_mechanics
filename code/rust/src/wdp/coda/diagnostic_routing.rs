@@ -2,17 +2,17 @@ use num_rational::BigRational;
 use tfqm_category_theory::context_reflection::{
     CongruenceReflection, ContextError, ContextSystem, ContextWitness,
 };
-use tfqm_functional::gamma2::{
+use engine_functional::gamma2::{
     DegreeOneResidualQ, ExactCochainComplexQ, ExactGamma2Error, Gamma2Functional,
     RawClosureDefectResult,
 };
-use tfqm_functional::phi1::{
+use engine_functional::phi1::{
     ExactPhi1Certificate, ExactPhi1CertificateError, Phi1Functional, VerifiedExactPhi1,
 };
-use omega_policy::trichotomy::{
+use engine_policy::trichotomy::{
     classify_exact, CertifiedExactTrichotomy, TrichotomyOutcome, TrichotomyRefusal,
 };
-use omega_solvers::solver_cohomology_simplicial_l1::{
+use engine_solvers::solver_cohomology_simplicial_l1::{
     verify_constrained_curved_phi1, CurvedConstrainedPhi1Certificate, CurvedConstrainedPhi1Error,
     VerifiedCurvedConstrainedPhi1,
 };

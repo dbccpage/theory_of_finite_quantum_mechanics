@@ -3,7 +3,7 @@
 //!
 //! Homotopy h-level / n-type classification shell (shape only).
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for an h-level claim on a type reference.

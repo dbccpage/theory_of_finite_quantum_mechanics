@@ -13,8 +13,8 @@ use crate::native::exact::mub6_cover::{
 };
 use crate::native::exact::mub6_cyclotomic_enclosure::{cyc24_real_imag_enclosure, SqrtBox};
 use crate::native::exact::mub6_interval_cover::VectorBox;
-use omega_kernel::interval::Interval;
-use tfqm_number_theory::rational::ri;
+use engine_kernel::interval::Interval;
+use engine_number_theory::rational::ri;
 
 pub fn circle_box() -> Interval {
     Interval::new(-ri(41) / ri(100), ri(41) / ri(100))

@@ -16,9 +16,9 @@ use crate::native::campaign::mub6_f6_external_b3::basis_is_exact_chm;
 use crate::native::exact::mub6_interval_cover::VectorBox;
 use crate::native::exact::mub6_matrix6::Matrix6;
 use crate::native::exact::szollosi_triad_solver::{szollosi_dephased_b6, verify_chm};
-use omega_kernel::interval::Interval;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_kernel::interval::Interval;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 pub use crate::native::exact::mub6_field::inv_sqrt6;
 

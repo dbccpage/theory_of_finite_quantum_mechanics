@@ -7,9 +7,9 @@ use crate::prime_algos::prime_scope::{
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::Zero;
-use tfqm_functional::phi1::VerifiedExactPhi1;
-use omega_kernel::evidence::Hash256;
-use omega_types::authority::AuthorityEffect;
+use engine_functional::phi1::VerifiedExactPhi1;
+use engine_kernel::evidence::Hash256;
+use engine_types::authority::AuthorityEffect;
 use serde::Serialize;
 use std::collections::{BTreeMap, BTreeSet};
 use std::fmt;
@@ -1690,7 +1690,7 @@ mod tests {
     }
 
     fn verified_phi1(v: i64) -> VerifiedExactPhi1 {
-        use tfqm_functional::phi1::{ExactPhi1Certificate, Phi1Functional};
+        use engine_functional::phi1::{ExactPhi1Certificate, Phi1Functional};
         Phi1Functional::verify_exact_certificate(ExactPhi1Certificate {
             omega: vec![rational(v)],
             d0: vec![vec![rational(0)]],
@@ -2165,7 +2165,7 @@ mod tests {
 
     #[test]
     fn phi1_endpoints_over_different_d0_are_not_comparable() {
-        use tfqm_functional::phi1::{ExactPhi1Certificate, Phi1Functional};
+        use engine_functional::phi1::{ExactPhi1Certificate, Phi1Functional};
         let two_edge = Phi1Functional::verify_exact_certificate(ExactPhi1Certificate {
             omega: vec![rational(1), rational(1)],
             d0: vec![vec![rational(0)], vec![rational(0)]],

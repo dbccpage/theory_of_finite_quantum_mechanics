@@ -1,7 +1,7 @@
 
 use num_rational::BigRational;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 pub const D: usize = 6;
 pub const BASIS_COUNT: usize = 3;
@@ -93,11 +93,11 @@ pub fn inner(u: &ExactVec, v: &ExactVec) -> Cyc24 {
 }
 
 pub fn abs_sq(z: &Cyc24) -> Cyc24 {
-    tfqm_functional::MubFeasibilityWallFunctional::cyclotomic_squared_norm(std::slice::from_ref(z))
+    engine_functional::MubFeasibilityWallFunctional::cyclotomic_squared_norm(std::slice::from_ref(z))
 }
 
 pub fn norm_sq(v: &ExactVec) -> Cyc24 {
-    tfqm_functional::MubFeasibilityWallFunctional::cyclotomic_squared_norm(v)
+    engine_functional::MubFeasibilityWallFunctional::cyclotomic_squared_norm(v)
 }
 
 pub fn connection_c1(columns: &[ExactVec], v: &ExactVec) -> Vec<Cyc24> {
@@ -133,7 +133,7 @@ pub fn try_wall_functional(omega: &[Cyc24]) -> Result<Cyc24, &'static str> {
     if omega.len() != COLUMN_COUNT {
         return Err("wall_functional expects the full 18-vector curvature cochain");
     }
-    tfqm_functional::MubFeasibilityWallFunctional::exact_d6_wall(omega)
+    engine_functional::MubFeasibilityWallFunctional::exact_d6_wall(omega)
         .map_err(|_| "eighteen residuals required for exact_d6_wall")
 }
 
@@ -189,8 +189,8 @@ pub fn cmp_exact_real(a: &Cyc24, b: &Cyc24) -> std::cmp::Ordering {
         return std::cmp::Ordering::Equal;
     }
     let diff = a.sub(b);
-    let num = tfqm_number_theory::cyclotomic_field::CyclotomicNumber::from(&diff);
-    match tfqm_number_theory::cyclotomic_ordered::standard_real_sign(&num) {
+    let num = engine_number_theory::cyclotomic_field::CyclotomicNumber::from(&diff);
+    match engine_number_theory::cyclotomic_ordered::standard_real_sign(&num) {
         Ok(1) => std::cmp::Ordering::Greater,
         Ok(-1) => std::cmp::Ordering::Less,
         Ok(0) => std::cmp::Ordering::Equal,

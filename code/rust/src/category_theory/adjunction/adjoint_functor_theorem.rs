@@ -4,7 +4,7 @@
 //! Records hypothesis/conclusion labels for an AFT-style claim
 //! (e.g. solution-set condition ⇒ right adjoint exists). Shape only.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for an adjoint-functor-theorem claim record.

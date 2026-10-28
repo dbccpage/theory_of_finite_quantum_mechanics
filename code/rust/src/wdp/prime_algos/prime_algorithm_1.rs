@@ -1,7 +1,7 @@
 
 use crate::prime_algos::prime_scope::{digest, ScopeBinding};
-use omega_kernel::evidence::Hash256;
-use omega_types::authority::AuthorityEffect;
+use engine_kernel::evidence::Hash256;
+use engine_types::authority::AuthorityEffect;
 use serde::Serialize;
 use std::collections::BTreeMap;
 use std::fmt;

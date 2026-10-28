@@ -3,14 +3,14 @@ use num_traits::Zero;
 use tfqm_holonomy::signed_transport::{
     certify_signed_transport, SignedCoefficientGraph, SignedTransportCertificate,
 };
-use tfqm_number_theory::cyclotomic::GaussianRat;
-use omega_quantum_physics::signed_sampling::{
+use engine_number_theory::cyclotomic::GaussianRat;
+use engine_quantum_physics::signed_sampling::{
     finite_transfer_partition, verify_real_hamiltonian_step, SignedWeightFamily,
 };
-use omega_wdp::genesis_computation::{
+use engine_wdp::genesis_computation::{
     NamedConfiguration, SourceBooleanPacket, SourceMachinePacket, SourcePrefix,
 };
-use omega_wdp::genesis_geometry::{
+use engine_wdp::genesis_geometry::{
     chain_report, metric_report, sheaf_report, verify_source_incidence, ComplexPacket,
     MetricPacket, SheafPacket, SourceIncidenceState,
 };

@@ -8,9 +8,9 @@ use crate::native::exact::d6_exact_curvature_cochain::{inner, ExactVec, D};
 use crate::native::exact::mub6_zerorel_variety::{
     exact_norm_sq_rat, squared_norm, BasisCyc, MuTripleCyc,
 };
-use omega_kernel::interval::{Interval, IntervalBox};
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::rq;
+use engine_kernel::interval::{Interval, IntervalBox};
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::rq;
 
 pub const TOTAL_MUB_RELATIONS: usize = 108;
 

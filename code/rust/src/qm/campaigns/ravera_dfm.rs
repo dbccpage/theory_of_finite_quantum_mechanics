@@ -1,5 +1,5 @@
 
-pub use omega_quantum_physics::quantum_import_finite_maps::ravera_dfm_finite_to_continuum::*;
+pub use engine_quantum_physics::quantum_import_finite_maps::ravera_dfm_finite_to_continuum::*;
 
 #[cfg(test)]
 mod ravera_dfm_tests {

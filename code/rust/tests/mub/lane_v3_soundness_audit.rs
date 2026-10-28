@@ -13,7 +13,7 @@
 use num_rational::BigRational;
 use num_traits::Zero;
 
-use omega_kernel::interval::Interval;
+use engine_kernel::interval::Interval;
 use tfqm_mub::native::exact::d6_exact_curvature_cochain::{
     abs_sq, canonical_triple_exact, inner, ExactVec, D,
 };
@@ -27,8 +27,8 @@ use tfqm_mub::native::campaign::mub6_dita_seed_cover::{
     neighborhood_delta_1_1000,
 };
 use tfqm_mub::native::exact::mub6_interval_cover::VectorBox;
-use omega_number_theory::cyclotomic::Cyc24;
-use omega_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 fn sixth() -> BigRational {
     ri(1) / ri(6)

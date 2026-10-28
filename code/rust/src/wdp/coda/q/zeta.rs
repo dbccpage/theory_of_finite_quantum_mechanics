@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 use super::admission::{AdmissionDecision, QAdmissionGate, QAdmissionRequest};
 use super::packet::{QPacket, QTerminal};
-use omega_types::q_continuum::{ObstructionKind, Residual};
+use engine_types::q_continuum::{ObstructionKind, Residual};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum ZetaRhClaimKind {

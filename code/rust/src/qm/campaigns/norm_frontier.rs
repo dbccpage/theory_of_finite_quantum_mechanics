@@ -5,10 +5,10 @@ use num_integer::Integer;
 use num_traits::{Signed, Zero};
 use serde::{Deserialize, Serialize};
 
-use omega_number_theory::rational::{ri, rq, Rational};
+use engine_number_theory::rational::{ri, rq, Rational};
 
-use omega_number_theory::rational_circle::{nearest_root_of_unity, phase_distance_on_circle};
-use omega_quantum_physics::norm_approximation_frontier::{clock_shift_winding, NormFrontierError};
+use engine_number_theory::rational_circle::{nearest_root_of_unity, phase_distance_on_circle};
+use engine_quantum_physics::norm_approximation_frontier::{clock_shift_winding, NormFrontierError};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CcrDefectBoundResult {
@@ -57,7 +57,7 @@ pub struct WeylPhaseScheduleRow {
 pub fn compute_weyl_phase_schedule(
     target_phase: Rational,
     dimensions: &[usize],
-) -> Result<Vec<WeylPhaseScheduleRow>, omega_number_theory::rational_circle::RationalCircleError> {
+) -> Result<Vec<WeylPhaseScheduleRow>, engine_number_theory::rational_circle::RationalCircleError> {
     let mut rows = Vec::with_capacity(dimensions.len());
     for &d in dimensions {
         let (a, dist) = nearest_root_of_unity(&target_phase, d)?;
@@ -199,7 +199,7 @@ pub fn generate_canonical_block02_receipt() -> CanonicalBlock02Receipt {
 mod tests {
     use super::*;
     use crate::linear_algebra::{involution::hs_norm_squared, matrix};
-    use omega_number_theory::cyclotomic::GaussianRat;
+    use engine_number_theory::cyclotomic::GaussianRat;
 
     #[test]
     fn winding_refuses_the_principal_log_branch_cut() {

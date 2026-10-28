@@ -4,7 +4,7 @@
 //! Hom-set formulation: Hom_D(L(A), B) ≅ Hom_C(A, R(B)).
 //! Diagnostic mate-pair tags only — not a bijection certificate.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// A single mate pair tag: f : L(A)→B  ↔  f̄ : A→R(B).

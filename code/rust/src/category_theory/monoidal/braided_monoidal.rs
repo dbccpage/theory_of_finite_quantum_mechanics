@@ -2,7 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort braided monoidal category shell (braiding ref only).
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

@@ -4,16 +4,16 @@ use std::collections::{BTreeMap, BTreeSet};
 use num_rational::BigRational;
 use num_traits::{One, Zero};
 use tfqm_category_theory::finite_relational::FinitePreorder;
-use tfqm_functional::gamma2::{
+use engine_functional::gamma2::{
     DegreeOneResidualQ, ExactCochainComplexQ, ExactGamma2Result, Gamma2Functional,
 };
-use tfqm_functional::l1_seminorm::L1Seminorm;
-use tfqm_functional::phi1::VerifiedExactPhi1;
-use omega_homology::carrier::Carrier;
-use omega_policy::trichotomy::{
+use engine_functional::l1_seminorm::L1Seminorm;
+use engine_functional::phi1::VerifiedExactPhi1;
+use engine_homology::carrier::Carrier;
+use engine_policy::trichotomy::{
     classify_exact, CertifiedExactTrichotomy, ObstructionDiagnosticClass, TrichotomyOutcome,
 };
-use omega_solvers::solver_lp_phi1_quotient::solve_exact_phi1;
+use engine_solvers::solver_lp_phi1_quotient::solve_exact_phi1;
 use serde::{Deserialize, Serialize};
 
 use crate::cochains::{coboundary_rows, named_graph_carrier};
@@ -200,7 +200,7 @@ impl EvaluationCarrier {
             &self.edges,
             &self.faces,
             vec![BigRational::one(); self.edges.len()],
-            "omega_wdp::EvaluationCarrier",
+            "engine_wdp::EvaluationCarrier",
         )
     }
 
@@ -237,8 +237,8 @@ impl EvaluationCarrier {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use tfqm_functional::phi1::Phi1Functional;
-    use omega_homology::scalar::{q, qr};
+    use engine_functional::phi1::Phi1Functional;
+    use engine_homology::scalar::{q, qr};
 
     fn triangle(faces: Vec<(String, String, String)>) -> EvaluationCarrier {
         let vertices = vec!["0".to_string(), "1".to_string(), "2".to_string()];

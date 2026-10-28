@@ -1,35 +1,35 @@
 
 use serde::Serialize;
 
-use omega_quantum_physics::mub::char_two_weyl_board::{CharTwoWeylBoardReport, CharTwoWeylBoardStatus};
-use omega_quantum_physics::mub::composite_tensor_family_gate::{
+use engine_quantum_physics::mub::char_two_weyl_board::{CharTwoWeylBoardReport, CharTwoWeylBoardStatus};
+use engine_quantum_physics::mub::composite_tensor_family_gate::{
     CompositeTensorFamilyReport, CompositeTensorFamilyStatus,
 };
-use omega_quantum_physics::mub::dimension_stratification::DimensionStratificationReport;
-use omega_quantum_physics::mub::finite_projector_control::{
+use engine_quantum_physics::mub::dimension_stratification::DimensionStratificationReport;
+use engine_quantum_physics::mub::finite_projector_control::{
     FiniteProjectorControlReport, FiniteProjectorControlStatus,
 };
-use omega_quantum_physics::mub::gtmur_projector_ledger::{
+use engine_quantum_physics::mub::gtmur_projector_ledger::{
     GtmurProjectorLedgerReport, GtmurProjectorLedgerStatus,
 };
-use omega_quantum_physics::mub::hilbert_transport::{HilbertTransportReport, HilbertTransportStatus};
-use omega_quantum_physics::mub::odd_prime_gauss_certificate_gate::{
+use engine_quantum_physics::mub::hilbert_transport::{HilbertTransportReport, HilbertTransportStatus};
+use engine_quantum_physics::mub::odd_prime_gauss_certificate_gate::{
     OddPrimeGaussCertificateReport, OddPrimeGaussCertificateStatus,
 };
-use omega_quantum_physics::mub::odd_prime_power_controls::{
+use engine_quantum_physics::mub::odd_prime_power_controls::{
     OddPrimePowerControlReport, OddPrimePowerControlStatus,
 };
-use omega_quantum_physics::mub::odd_prime_power_parametric_gate::{
+use engine_quantum_physics::mub::odd_prime_power_parametric_gate::{
     OddPrimePowerParametricGateReport, OddPrimePowerParametricStatus,
 };
-use omega_quantum_physics::mub::odd_prime_power_weyl::{OddPrimePowerWeylReport, OddPrimePowerWeylStatus};
-use omega_quantum_physics::mub::odd_prime_weyl::{OddPrimeWeylReport, OddPrimeWeylStatus};
-use omega_quantum_physics::mub::prime_controls::{BenchmarkStatus, PrimeControlReport};
-use omega_quantum_physics::mub::prime_power_gtmur_boundary::{
+use engine_quantum_physics::mub::odd_prime_power_weyl::{OddPrimePowerWeylReport, OddPrimePowerWeylStatus};
+use engine_quantum_physics::mub::odd_prime_weyl::{OddPrimeWeylReport, OddPrimeWeylStatus};
+use engine_quantum_physics::mub::prime_controls::{BenchmarkStatus, PrimeControlReport};
+use engine_quantum_physics::mub::prime_power_gtmur_boundary::{
     PrimePowerGtmurBoundaryReport, PrimePowerGtmurBoundaryStatus,
 };
-use omega_quantum_physics::mub::projector_algebra::{ProjectorAlgebraReport, ProjectorAlgebraStatus};
-use omega_quantum_physics::mub::spectral_lift::{SpectralLiftReport, SpectralLiftStatus};
+use engine_quantum_physics::mub::projector_algebra::{ProjectorAlgebraReport, ProjectorAlgebraStatus};
+use engine_quantum_physics::mub::spectral_lift::{SpectralLiftReport, SpectralLiftStatus};
 
 use crate::native::exact::char_two_parametric_gate::{
     CharTwoParametricGateReport, CharTwoParametricStatus,

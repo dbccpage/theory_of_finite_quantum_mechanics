@@ -1,8 +1,8 @@
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
-use omega_kernel::exact::{parse_exact, to_canonical_string};
-use omega_kernel::interval::Interval;
+use engine_kernel::exact::{parse_exact, to_canonical_string};
+use engine_kernel::interval::Interval;
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::collections::{BTreeMap, BTreeSet};

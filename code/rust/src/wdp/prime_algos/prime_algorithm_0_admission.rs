@@ -4,7 +4,7 @@ use crate::prime_algos::prime_algorithm_0::{
     PrimeAlgorithm0Receipt, PrimeStepRecord, PrimeTerminal,
 };
 use crate::ddc::dda_alphabet::{DdaOp, DdaStep, DdaTrace, TraceTerminal};
-use omega_types::authority::AuthorityEffect;
+use engine_types::authority::AuthorityEffect;
 use serde::Serialize;
 use std::fmt;
 

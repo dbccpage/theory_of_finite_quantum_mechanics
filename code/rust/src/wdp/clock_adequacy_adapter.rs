@@ -1,5 +1,5 @@
 
-use omega_measurement::finite_chain_clock::{ChainClock, ChainClockError, ClockIntervalBound};
+use engine_measurement::finite_chain_clock::{ChainClock, ChainClockError, ClockIntervalBound};
 use thiserror::Error;
 
 use crate::types::AuthorityEffect;

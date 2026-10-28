@@ -1,5 +1,5 @@
 
-extern crate self as omega_functional;
+extern crate self as tfqm_functional;
 pub struct FunctionalLayerBoundary;
 
 pub mod aggregation;

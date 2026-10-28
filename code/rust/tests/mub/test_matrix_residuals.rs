@@ -2,8 +2,8 @@
 //! AuthorityEffect: None.
 use tfqm_mub::native::exact::mub6_continuous_chaining::{t_max_multi_anchor, t_min_multi_anchor};
 use tfqm_mub::native::exact::mub6_matrix_residuals::*;
-use omega_number_theory::cyclotomic::Cyc24;
-use omega_number_theory::rational::rq;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::rq;
 
 #[test]
 fn supplied_matrix_residual_and_perturbation() {

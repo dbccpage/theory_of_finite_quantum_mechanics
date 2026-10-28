@@ -1,5 +1,5 @@
 
-use omega_kernel::evidence::Hash256;
+use engine_kernel::evidence::Hash256;
 use serde::Serialize;
 use sha2::{Digest, Sha256};
 use std::fmt;
@@ -57,14 +57,14 @@ impl fmt::Display for BoundCarrierManifest {
 #[derive(Debug, Clone, PartialEq, Eq, Serialize)]
 pub struct CallerAttested<T> {
     inner: T,
-    authority: omega_types::authority::AuthorityEffect,
+    authority: engine_types::authority::AuthorityEffect,
 }
 
 impl<T> CallerAttested<T> {
     pub fn new(inner: T) -> Self {
         Self {
             inner,
-            authority: omega_types::authority::AuthorityEffect::None,
+            authority: engine_types::authority::AuthorityEffect::None,
         }
     }
 
@@ -80,8 +80,8 @@ impl<T> CallerAttested<T> {
         self.inner
     }
 
-    pub fn authority(&self) -> omega_types::authority::AuthorityEffect {
-        omega_types::authority::AuthorityEffect::None
+    pub fn authority(&self) -> engine_types::authority::AuthorityEffect {
+        engine_types::authority::AuthorityEffect::None
     }
 }
 

@@ -19,7 +19,6 @@ path = "src/bin/governance-check.rs"
 serde_json = "1"
 sha2 = "0.10"
 
-# A member of the code/rust workspace (`cargo test -p governance`). That workspace
-# resolves only with a local [patch] for the optional external engine crates
-# (code/rust/.cargo/config.toml.example), so CI copies this package out of the
-# tree and builds it on its own with the Cargo.lock kept here (unused in the workspace).
+# A member of the code/rust workspace (`cargo test -p governance`). CI copies this
+# package out of the tree and builds it on its own with the Cargo.lock kept here
+# (unused in the workspace), so the check does not compile the vendored engine crates.

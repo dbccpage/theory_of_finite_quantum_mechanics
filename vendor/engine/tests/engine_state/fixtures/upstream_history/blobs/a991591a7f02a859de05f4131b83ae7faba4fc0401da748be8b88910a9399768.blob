@@ -1,0 +1,82 @@
+{
+  "$id": "omega.agent_work.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "item_id", "carrier", "c0", "c1", "c2",
+               "d0", "d1", "zero_rel", "defects", "allowed_operations",
+               "oracle_policy", "evidence_ceiling", "packet_refs",
+               "write_surface", "budgets", "nonclaims", "terminal_policy"],
+  "properties": {
+    "schema_version": {"const": "omega.agent_work.v1"},
+    "item_id": {"type": "string"},
+    "carrier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "coefficient_ring"],
+      "properties": {
+        "id": {"type": "string"},
+        "coefficient_ring": {"const": "F2"}
+      }
+    },
+    "c0": {"type": "array", "items": {"type": "string"}},
+    "c1": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "c2": {"type": "array", "items": {"type": "string"}},
+    "d0": {"type": "array", "items": {"type": "array", "items": {"type": "boolean"}}},
+    "d1": {"type": "array", "items": {"type": "array", "items": {"type": "boolean"}}},
+    "zero_rel": {"const": "d1*d0=0"},
+    "defects": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["defect_id", "residual"],
+        "properties": {
+          "defect_id": {"type": "string"},
+          "residual": {"type": "array", "items": {"type": "boolean"}}
+        }
+      }
+    },
+    "allowed_operations": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"enum": ["E", "R", "I", "M", "T"]}
+    },
+    "oracle_policy": {"enum": ["route", "refuse"]},
+    "evidence_ceiling": {"const": "AuthorityEffect::None"},
+    "packet_refs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "write_surface": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "budgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_wall_seconds", "max_changed_files", "max_diff_bytes", "max_repairs"],
+      "properties": {
+        "max_wall_seconds": {"type": "integer", "minimum": 1},
+        "max_changed_files": {"type": "integer", "minimum": 1},
+        "max_diff_bytes": {"type": "integer", "minimum": 1},
+        "max_repairs": {"type": "integer", "minimum": 0, "maximum": 2}
+      }
+    },
+    "nonclaims": {"type": "array", "minItems": 3, "items": {"type": "string"}},
+    "terminal_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allow_survivor", "require_terminal_op"],
+      "properties": {
+        "allow_survivor": {"type": "boolean"},
+        "require_terminal_op": {"const": true}
+      }
+    }
+  }
+}

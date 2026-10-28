@@ -13,7 +13,7 @@ use tfqm_mub::native::exact::mub6_gap_propagation::{
     erosion_certified, generate_target4_receipt, margin_certified, partition_2d_periodic_collar,
     GapPropagationError, LipschitzParameters, RationalPoint2D,
 };
-use omega_number_theory::rational::rq;
+use engine_number_theory::rational::rq;
 
 #[test]
 fn test_canonical_parameters_exact_values() {

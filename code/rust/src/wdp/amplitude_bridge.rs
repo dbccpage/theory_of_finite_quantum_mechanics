@@ -37,7 +37,7 @@ pub fn mul(a: &Amplitude, b: &Amplitude) -> Amplitude {
 }
 
 pub fn unit_phase() -> Amplitude {
-    GaussianRational::new(ratio(3, 5), ratio(4, 5))
+    GaussianRational::new(ratio(3, 5), ratio(4, 5)).expect("3/5 and 4/5 are reduced rationals")
 }
 
 pub fn u_pow(n: i64) -> Result<Amplitude, WdpError> {
@@ -353,7 +353,7 @@ pub fn readout_quartic(z1: &Amplitude, z2: &Amplitude) -> BigRational {
 
 pub fn cross_term(z1: &Amplitude, z2: &Amplitude) -> BigRational {
     let product = mul(z1, &conj(z2));
-    &product.re + &product.re
+    product.real() + product.real()
 }
 
 fn rational_sqrt(x: &BigRational) -> Option<BigRational> {
@@ -371,15 +371,15 @@ pub fn unit_square_root(z: &Amplitude) -> Result<Option<Amplitude>, WdpError> {
     if !norm(z).is_one() {
         return Err(invalid(format!("{z} is not of norm one")));
     }
-    let x_squared = (BigRational::one() + &z.re) / BigRational::from_integer(2.into());
+    let x_squared = (BigRational::one() + z.real()) / BigRational::from_integer(2.into());
     let Some(x) = rational_sqrt(&x_squared) else {
         return Ok(None);
     };
     let root = if x.is_zero() {
         Amplitude::i()
     } else {
-        let y = &z.im / (&x + &x);
-        GaussianRational::new(x, y)
+        let y = z.imag() / (&x + &x);
+        GaussianRational::new(x, y)?
     };
     Ok((mul(&root, &root) == *z).then_some(root))
 }
@@ -395,7 +395,7 @@ pub struct HalfExponentObstruction {
 
 pub fn half_exponent_obstruction() -> Result<HalfExponentObstruction, WdpError> {
     let u = unit_phase();
-    let x_squared = (BigRational::one() + &u.re) / BigRational::from_integer(2.into());
+    let x_squared = (BigRational::one() + u.real()) / BigRational::from_integer(2.into());
     Ok(HalfExponentObstruction {
         x_squared_is_rational_square: rational_sqrt(&x_squared).is_some(),
         u_has_square_root_in_q_i: unit_square_root(&u)?.is_some(),

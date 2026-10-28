@@ -5,8 +5,8 @@ use std::path::PathBuf;
 
 use crate::native::exact::d6_exact_curvature_cochain::D;
 use crate::native::exact::mub6_matrix6::{matrix_adjoint, matrix_mul, matrix_zero, Matrix6};
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 pub type ExactVec = [Cyc24; D];
 
@@ -468,7 +468,7 @@ pub fn execute_szollosi_triad_search() -> SzollosiTriadSearchReceipt {
 
 pub fn emit_receipt_files(receipt: &SzollosiTriadSearchReceipt) -> Result<Vec<PathBuf>, String> {
     let manifest_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-    let artifacts_dir = manifest_dir.join("../tests/mub/artifacts");
+    let artifacts_dir = manifest_dir.join("../../tests/mub/artifacts");
     let runs_dir = manifest_dir.join("runs").join("mub6");
 
     std::fs::create_dir_all(&artifacts_dir).map_err(|e| format!("mkdir artifacts: {e}"))?;

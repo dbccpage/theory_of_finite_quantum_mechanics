@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod tensor_review {
     use super::*;
-    use omega_number_theory::rational::{rq, Rational};
+    use engine_number_theory::rational::{rq, Rational};
 
     fn values(n: usize, seed: i64) -> BasicMatrix<Rational> {
         BasicMatrix::from_row_major(

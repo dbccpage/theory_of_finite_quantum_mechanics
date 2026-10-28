@@ -1,8 +1,8 @@
 use crate::qm::bridge::{basic_matrix::BasicMatrix, matrix as mx};
-use omega_number_theory::cyclotomic::Cyc24;
-use omega_number_theory::rational::{r_zero, rq};
-use omega_quantum_physics::mub::algebra::ProjectorAlgebraStatus;
-use omega_quantum_physics::mub::MubSystem;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::{r_zero, rq};
+use engine_quantum_physics::mub::algebra::ProjectorAlgebraStatus;
+use engine_quantum_physics::mub::MubSystem;
 use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CliftonKentDeficitReceipt {

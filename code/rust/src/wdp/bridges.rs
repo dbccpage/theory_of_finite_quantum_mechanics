@@ -181,7 +181,7 @@ pub fn evaluate_path_homotopy(
         .coboundary_matrix(1)?
         .mul_vec(&values)
         .map_err(|error| {
-            WdpError::Homology(omega_homology::errors::HomologicalError::MatrixError(error))
+            WdpError::Homology(engine_homology::errors::HomologicalError::MatrixError(error))
         })?;
     if closure.iter().any(|value| !value.is_zero()) {
         return Err(WdpError::InvalidInput {
@@ -354,7 +354,7 @@ impl AlgebraicNonFactorableWitness {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_homology::scalar::q;
+    use engine_homology::scalar::q;
 
     #[test]
     fn test_cabello_18ray_parity_witness() {

@@ -1,0 +1,408 @@
+use std::collections::BTreeMap;
+use std::fs;
+use std::path::{Path, PathBuf};
+
+use omega_state::gtoc6_defect_terminalization::{
+    aggregate_gtoc6_terminals_v1, canonical_gtoc6_json_line_v1, canonical_s06_003_packet_v1,
+    canonical_s06_003_receipt_v1, classify_gtoc6_diagnostic_v1, gtoc6_observer_sha256_v1,
+    gtoc6_packet_sha256_v1, gtoc6_receipt_sha256_v1, gtoc6_verification_sha256_v1,
+    parse_gtoc6_packet_canonical_v1, parse_gtoc6_receipt_canonical_v1,
+    parse_gtoc6_verification_canonical_v1, verify_gtoc6_defect_terminalization_v1,
+    DiagnosticEvidenceV1, DiagnosticRuleV1, Gtoc6ArtifactBytesV1,
+    Gtoc6DefectTerminalizationPacketV1, Gtoc6DefectTerminalizationReceiptV1, Gtoc6Error,
+    SurvivorRouteV1, S06_002_VERIFICATION_PATH, S06_003_FROZEN_BASE, S06_003_GTOC5_RESIDUAL_ID,
+};
+use omega_state::gtoc_gtla_protocol::GtocTerminal;
+
+const PACKET_FIXTURE: &str = "s06_003_gtoc6_packet_v1.json";
+const RECEIPT_FIXTURE: &str = "s06_003_gtoc6_receipt_v1.json";
+const VERIFICATION_FIXTURE: &str = "s06_003_gtoc6_verification_v1.json";
+
+fn repo_root() -> PathBuf {
+    Path::new(env!("CARGO_MANIFEST_DIR"))
+        .ancestors()
+        .nth(3)
+        .expect("omega_state must live under omega_engine/crates")
+        .to_path_buf()
+}
+
+fn fixture_path(name: &str) -> PathBuf {
+    Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("tests")
+        .join("fixtures")
+        .join(name)
+}
+
+fn resolve_artifact_path(logical_path: &str) -> PathBuf {
+    let direct = repo_root().join(logical_path);
+    if direct.is_file() {
+        return direct;
+    }
+    let logical = Path::new(logical_path);
+    if logical.parent() == Some(Path::new("docs")) {
+        if let Some(name) = logical.file_name() {
+            let archived = repo_root()
+                .join("docs/archive/omega_conductor_v001")
+                .join(name);
+            if archived.is_file() {
+                return archived;
+            }
+        }
+    }
+    direct
+}
+
+fn artifact_bytes(packet: &Gtoc6DefectTerminalizationPacketV1) -> Gtoc6ArtifactBytesV1 {
+    packet
+        .input_artifacts
+        .iter()
+        .map(|artifact| {
+            let bytes = fs::read(resolve_artifact_path(&artifact.path))
+                .unwrap_or_else(|error| panic!("cannot read {}: {error}", artifact.path));
+            (artifact.path.clone(), bytes)
+        })
+        .collect::<BTreeMap<_, _>>()
+}
+
+fn canonical_case() -> (
+    Gtoc6DefectTerminalizationPacketV1,
+    Gtoc6DefectTerminalizationReceiptV1,
+    Gtoc6ArtifactBytesV1,
+) {
+    let packet = canonical_s06_003_packet_v1();
+    let receipt = canonical_s06_003_receipt_v1().expect("canonical receipt");
+    let artifacts = artifact_bytes(&packet);
+    (packet, receipt, artifacts)
+}
+
+fn assert_error_route(
+    packet: &Gtoc6DefectTerminalizationPacketV1,
+    receipt: &Gtoc6DefectTerminalizationReceiptV1,
+    artifacts: &Gtoc6ArtifactBytesV1,
+    expected: Gtoc6Error,
+    route: GtocTerminal,
+) {
+    let error = verify_gtoc6_defect_terminalization_v1(packet, receipt, artifacts)
+        .expect_err("hostile receipt must fail");
+    assert_eq!(error, expected);
+    assert_eq!(error.terminal_route(), route);
+}
+
+#[test]
+fn canonical_fixtures_classify_every_subclaim_and_preserve_both_survivors() {
+    let (packet, receipt, artifacts) = canonical_case();
+    let verification = verify_gtoc6_defect_terminalization_v1(&packet, &receipt, &artifacts)
+        .expect("canonical terminalization verifies");
+    let packet_bytes = canonical_gtoc6_json_line_v1(&packet).unwrap();
+    let receipt_bytes = canonical_gtoc6_json_line_v1(&receipt).unwrap();
+    let verification_bytes = canonical_gtoc6_json_line_v1(&verification).unwrap();
+
+    if std::env::var_os("OMEGA_REGEN_S06_003_FIXTURES").is_some() {
+        for (name, bytes) in [
+            (PACKET_FIXTURE, &packet_bytes),
+            (RECEIPT_FIXTURE, &receipt_bytes),
+            (VERIFICATION_FIXTURE, &verification_bytes),
+        ] {
+            fs::write(fixture_path(name), bytes).expect("write canonical fixture");
+        }
+    }
+
+    assert_eq!(
+        fs::read(fixture_path(PACKET_FIXTURE)).unwrap(),
+        packet_bytes
+    );
+    assert_eq!(
+        fs::read(fixture_path(RECEIPT_FIXTURE)).unwrap(),
+        receipt_bytes
+    );
+    assert_eq!(
+        fs::read(fixture_path(VERIFICATION_FIXTURE)).unwrap(),
+        verification_bytes
+    );
+
+    let parsed_packet = parse_gtoc6_packet_canonical_v1(&packet_bytes).unwrap();
+    let parsed_receipt = parse_gtoc6_receipt_canonical_v1(&receipt_bytes).unwrap();
+    let parsed_verification = parse_gtoc6_verification_canonical_v1(&verification_bytes).unwrap();
+    assert_eq!(parsed_packet, packet);
+    assert_eq!(parsed_receipt, receipt);
+    assert_eq!(parsed_verification, verification);
+    assert_eq!(
+        verify_gtoc6_defect_terminalization_v1(&parsed_packet, &parsed_receipt, &artifacts)
+            .unwrap(),
+        verification
+    );
+
+    assert_eq!(packet.frozen_base, S06_003_FROZEN_BASE);
+    assert_eq!(verification.defect_count, 3);
+    assert_eq!(verification.subclaim_count, 6);
+    assert_eq!(verification.residual_count, 2);
+    assert!(verification.every_defect_classified_once);
+    assert!(verification.every_subclaim_classified_once);
+    assert!(verification.every_local_terminal_recomputed);
+    assert!(verification.every_residual_conserved);
+    assert!(verification.aggregation_truth_table_replayed);
+    assert!(verification.aggregation_permutation_invariant);
+    assert!(verification.predecessor_receipt_verified);
+    assert!(!verification.gtoc5_dependency_receipt_present);
+    assert!(verification.gtoc5_dependency_preserved_as_residual);
+    assert!(verification
+        .residual_ids
+        .contains(&S06_003_GTOC5_RESIDUAL_ID.to_owned()));
+    assert_eq!(verification.terminal, GtocTerminal::StabilizedSurvivor);
+    assert!(!verification.promotion_requested);
+    assert!(!verification.promotion_constructor_called);
+    assert!(!verification.authorized_local_result_created);
+
+    println!("packet_sha256={}", gtoc6_packet_sha256_v1(&packet).unwrap());
+    println!(
+        "observer_sha256={}",
+        gtoc6_observer_sha256_v1(&packet.observer).unwrap()
+    );
+    println!(
+        "receipt_sha256={}",
+        gtoc6_receipt_sha256_v1(&receipt).unwrap()
+    );
+    println!(
+        "verification_sha256={}",
+        gtoc6_verification_sha256_v1(&verification).unwrap()
+    );
+}
+
+#[test]
+fn predecessor_artifact_is_required_and_hash_checked() {
+    let (packet, receipt, mut artifacts) = canonical_case();
+    artifacts.remove(S06_002_VERIFICATION_PATH);
+    assert_error_route(
+        &packet,
+        &receipt,
+        &artifacts,
+        Gtoc6Error::MissingArtifact(S06_002_VERIFICATION_PATH.to_owned()),
+        GtocTerminal::InfrastructureFailure,
+    );
+
+    let mut artifacts = artifact_bytes(&packet);
+    artifacts.get_mut(S06_002_VERIFICATION_PATH).unwrap()[0] ^= 1;
+    assert_error_route(
+        &packet,
+        &receipt,
+        &artifacts,
+        Gtoc6Error::ArtifactHashMismatch(S06_002_VERIFICATION_PATH.to_owned()),
+        GtocTerminal::Invalid,
+    );
+
+    let mut artifacts = artifact_bytes(&packet);
+    artifacts.insert("unexpected:artifact".to_owned(), b"unexpected".to_vec());
+    assert_error_route(
+        &packet,
+        &receipt,
+        &artifacts,
+        Gtoc6Error::ArtifactSetMismatch,
+        GtocTerminal::Invalid,
+    );
+}
+
+#[test]
+fn duplicate_defect_and_subclaim_attribution_is_rejected() {
+    let (packet, mut receipt, artifacts) = canonical_case();
+    receipt.defects[1].defect_id = receipt.defects[0].defect_id.clone();
+    assert_error_route(
+        &packet,
+        &receipt,
+        &artifacts,
+        Gtoc6Error::DuplicateDefectId(receipt.defects[0].defect_id.clone()),
+        GtocTerminal::Invalid,
+    );
+
+    let (_, mut receipt, _) = canonical_case();
+    receipt.defects[0].subclaims[1].subclaim_id =
+        receipt.defects[0].subclaims[0].subclaim_id.clone();
+    assert_error_route(
+        &packet,
+        &receipt,
+        &artifacts,
+        Gtoc6Error::DuplicateSubclaimId(receipt.defects[0].subclaims[0].subclaim_id.clone()),
+        GtocTerminal::Invalid,
+    );
+}
+
+#[test]
+fn fabricated_gtoc5_completion_and_changed_local_terminals_are_rejected() {
+    let (packet, mut receipt, artifacts) = canonical_case();
+    receipt.defects[1].subclaims[0].evidence = DiagnosticEvidenceV1::DependencyReceipt {
+        receipt_id: "S14-005:GTOC-5".to_owned(),
+        present: true,
+        verified: true,
+    };
+    assert_error_route(
+        &packet,
+        &receipt,
+        &artifacts,
+        Gtoc6Error::DiagnosticEvidenceMismatch(
+            "subclaim:s06-003:gtoc5-construction-receipt".to_owned(),
+        ),
+        GtocTerminal::Invalid,
+    );
+
+    let (_, mut receipt, _) = canonical_case();
+    receipt.defects[0].subclaims[1].claimed_terminal = GtocTerminal::ExactRepair;
+    assert_error_route(
+        &packet,
+        &receipt,
+        &artifacts,
+        Gtoc6Error::SubclaimTerminalMismatch {
+            subclaim_id: "subclaim:s06-003:gtoc4-lift-residual-carried".to_owned(),
+            expected: GtocTerminal::StabilizedSurvivor,
+            found: GtocTerminal::ExactRepair,
+        },
+        GtocTerminal::Invalid,
+    );
+}
+
+#[test]
+fn residuals_cannot_be_dropped_duplicated_or_laundered_by_the_aggregate() {
+    let (packet, mut receipt, artifacts) = canonical_case();
+    receipt.defects[1].subclaims[0].residual_ids.clear();
+    assert_error_route(
+        &packet,
+        &receipt,
+        &artifacts,
+        Gtoc6Error::SubclaimResidualMismatch(
+            "subclaim:s06-003:gtoc5-construction-receipt".to_owned(),
+        ),
+        GtocTerminal::Invalid,
+    );
+
+    let (_, mut receipt, _) = canonical_case();
+    receipt.residual_ledger.pop();
+    assert_error_route(
+        &packet,
+        &receipt,
+        &artifacts,
+        Gtoc6Error::ResidualLedgerMismatch,
+        GtocTerminal::Invalid,
+    );
+
+    let (_, mut receipt, _) = canonical_case();
+    receipt.claimed_terminal = GtocTerminal::ExactRepair;
+    assert_error_route(
+        &packet,
+        &receipt,
+        &artifacts,
+        Gtoc6Error::AggregateTerminalMismatch {
+            expected: GtocTerminal::StabilizedSurvivor,
+            found: GtocTerminal::ExactRepair,
+        },
+        GtocTerminal::Invalid,
+    );
+}
+
+#[test]
+fn aggregation_is_permutation_invariant_and_replays_all_terminal_precedence() {
+    let all = GtocTerminal::ALL;
+    for terminal in all {
+        assert_eq!(
+            aggregate_gtoc6_terminals_v1(&[terminal]).unwrap(),
+            terminal,
+            "every declared terminal variant must be handled explicitly"
+        );
+    }
+    for first in all {
+        for second in all {
+            for third in all {
+                let expected = aggregate_gtoc6_terminals_v1(&[first, second, third]).unwrap();
+                for permutation in [
+                    [first, third, second],
+                    [second, first, third],
+                    [second, third, first],
+                    [third, first, second],
+                    [third, second, first],
+                ] {
+                    assert_eq!(
+                        aggregate_gtoc6_terminals_v1(&permutation).unwrap(),
+                        expected
+                    );
+                }
+            }
+        }
+    }
+    assert_eq!(
+        aggregate_gtoc6_terminals_v1(&[GtocTerminal::ExactRepair, GtocTerminal::OpenObstruction,])
+            .unwrap(),
+        GtocTerminal::StabilizedSurvivor
+    );
+    assert_eq!(
+        aggregate_gtoc6_terminals_v1(&[
+            GtocTerminal::LiftLicenseNeeded,
+            GtocTerminal::OracleNeeded,
+            GtocTerminal::Refused,
+            GtocTerminal::Invalid,
+            GtocTerminal::InfrastructureFailure,
+        ])
+        .unwrap(),
+        GtocTerminal::InfrastructureFailure
+    );
+    assert_eq!(
+        aggregate_gtoc6_terminals_v1(&[]),
+        Err(Gtoc6Error::EmptyTerminalSet)
+    );
+}
+
+#[test]
+fn unavailable_rule_is_an_open_operator_needed_survivor_not_a_terminal_variant() {
+    let outcome = classify_gtoc6_diagnostic_v1(
+        DiagnosticRuleV1::Unavailable,
+        &DiagnosticEvidenceV1::RuleUnavailable {
+            rule_id: "diagnostic:unregistered".to_owned(),
+        },
+    )
+    .unwrap();
+    assert_eq!(outcome.terminal, GtocTerminal::OpenObstruction);
+    assert_eq!(
+        outcome.survivor_route,
+        Some(SurvivorRouteV1::OperatorNeeded)
+    );
+
+    let mismatch = classify_gtoc6_diagnostic_v1(
+        DiagnosticRuleV1::InvariantCheck,
+        &DiagnosticEvidenceV1::RuleUnavailable {
+            rule_id: "diagnostic:unregistered".to_owned(),
+        },
+    )
+    .unwrap_err();
+    assert_eq!(mismatch.terminal_route(), GtocTerminal::Invalid);
+}
+
+#[test]
+fn authority_expansion_and_noncanonical_json_fail_closed() {
+    let (packet, mut receipt, artifacts) = canonical_case();
+    receipt.promotion_requested = true;
+    assert_error_route(
+        &packet,
+        &receipt,
+        &artifacts,
+        Gtoc6Error::AuthorityExpanded,
+        GtocTerminal::Refused,
+    );
+
+    let packet_bytes = canonical_gtoc6_json_line_v1(&packet).unwrap();
+    let mut pretty = serde_json::to_vec_pretty(&packet).unwrap();
+    pretty.push(b'\n');
+    assert_eq!(
+        parse_gtoc6_packet_canonical_v1(&pretty),
+        Err(Gtoc6Error::NonCanonicalJson("GTOC-6 packet".to_owned()))
+    );
+
+    let mut value = serde_json::to_value(&packet).unwrap();
+    value
+        .as_object_mut()
+        .unwrap()
+        .insert("unexpected".to_owned(), serde_json::Value::Bool(true));
+    let mut unknown = serde_json::to_vec(&value).unwrap();
+    unknown.push(b'\n');
+    let error = parse_gtoc6_packet_canonical_v1(&unknown).unwrap_err();
+    assert!(matches!(error, Gtoc6Error::Decode(_)));
+    assert_eq!(error.terminal_route(), GtocTerminal::Invalid);
+
+    let parsed = parse_gtoc6_packet_canonical_v1(&packet_bytes).unwrap();
+    assert_eq!(parsed, packet);
+}

@@ -421,7 +421,7 @@ pub fn write_chm_registry_artifact() -> Result<std::path::PathBuf, String> {
             report.mechanical_check_detail
         ));
     }
-    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     std::fs::create_dir_all(&dir).map_err(|e| format!("mkdir: {e}"))?;
     let path = dir.join("mub6_chm_registry_enc1147_20260724.json");
     let json = serde_json::to_string_pretty(&report).map_err(|e| format!("ser: {e}"))?;

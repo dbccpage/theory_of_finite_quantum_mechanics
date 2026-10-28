@@ -5,7 +5,7 @@ use std::io::{self, Read};
 use std::path::PathBuf;
 use std::process::ExitCode;
 
-use omega_wdp::ddc::parser::DdcTapeParser;
+use engine_wdp::ddc::parser::DdcTapeParser;
 
 fn flag(args: &[String], name: &str) -> Option<PathBuf> {
     args.windows(2)

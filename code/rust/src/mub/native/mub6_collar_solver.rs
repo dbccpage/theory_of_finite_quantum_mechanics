@@ -3,7 +3,7 @@ use crate::native::exact::mub6_constants::{base_gap, delta_certified, lipschitz_
 use crate::native::exact::mub6_karlsson_volume_cover::circle_touches;
 use num_rational::BigRational;
 use num_traits::Zero;
-use omega_kernel::interval::Interval;
+use engine_kernel::interval::Interval;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, PartialEq, Eq, Serialize, Deserialize)]

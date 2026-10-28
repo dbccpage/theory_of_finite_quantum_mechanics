@@ -1,5 +1,5 @@
 use linear_algebra::backend::basic_matrix::BasicMatrix;
-use tfqm_number_theory::cyclotomic::GaussianRat;
+use engine_number_theory::cyclotomic::GaussianRat;
 use std::collections::{BTreeMap, BTreeSet};
 
 use linear_algebra::linear_observer_presentation::{
@@ -9,8 +9,8 @@ use num_rational::BigRational;
 use num_traits::{One, Signed};
 use tfqm_category_theory::context_reflection::{ContextHom, ContextSystem};
 use tfqm_category_theory::finite_moore::FiniteMoore;
-use omega_quantum_physics::exact_channel::ExactKrausChannel;
-use omega_quantum_physics::exact_hermitian::{hermitian_trace, is_psd, square_dim};
+use engine_quantum_physics::exact_channel::ExactKrausChannel;
+use engine_quantum_physics::exact_hermitian::{hermitian_trace, is_psd, square_dim};
 
 use crate::coda::diagnostic_routing::DiagnosticPacket;
 use crate::observer::{OperationalObserverPacket, QuotientObserver};

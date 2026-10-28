@@ -5,7 +5,7 @@
 //! verify that every mono is a kernel or that coimage ≅ image.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for an abelian-category claim.
 ///

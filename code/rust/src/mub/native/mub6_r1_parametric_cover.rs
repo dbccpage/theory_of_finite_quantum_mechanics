@@ -108,7 +108,7 @@ pub fn r1_s1_design_report() -> R1ParametricCoverDesignReport {
 
 pub fn write_r1_design_artifact() -> Result<std::path::PathBuf, String> {
     let report = r1_s1_design_report();
-    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     std::fs::create_dir_all(&dir).map_err(|e| format!("mkdir: {e}"))?;
     let path = dir.join("mub6_r1_parametric_cover_design_20260725.json");
     let json = serde_json::to_string_pretty(&report).map_err(|e| format!("ser: {e}"))?;

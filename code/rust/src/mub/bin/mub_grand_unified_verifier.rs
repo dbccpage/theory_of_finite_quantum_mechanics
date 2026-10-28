@@ -263,7 +263,7 @@ fn write_verifier_output(
 }
 
 fn run() -> Result<i32, String> {
-    let artifacts = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+    let artifacts = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     let Some(parsed) = parse_verifier_args(artifacts.clone())? else {
         return Ok(0);
     };

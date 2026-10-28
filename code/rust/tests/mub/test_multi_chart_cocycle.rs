@@ -7,8 +7,8 @@ use tfqm_mub::native::exact::mub6_multi_chart_cocycle::{
     evaluate_multi_chart_circulation_extension, AffineCorner4D, ChartTransition4D,
     MultiChartCycle4D,
 };
-use omega_number_theory::cyclotomic::Cyc24;
-use omega_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 fn rat(n: i64, d: i64) -> Cyc24 {
     Cyc24::rat(ri(n) / ri(d))

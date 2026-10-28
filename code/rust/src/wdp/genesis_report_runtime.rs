@@ -9,12 +9,12 @@ use tfqm_category_theory::finite_report_query::ReportQueryDecision;
 use tfqm_category_theory::finite_report_repair::{
     repair_report, replay_repair_prefix, verify_repair, RepairLimits,
 };
-use omega_ooutwire_primitives::{
+use engine_wire_primitives::{
     event::Event,
     mark::{Mark, Pair},
     token::Token,
 };
-use omega_types::AuthorityEffect;
+use engine_types::AuthorityEffect;
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::collections::BTreeSet;

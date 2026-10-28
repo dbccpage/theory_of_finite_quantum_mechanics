@@ -5,8 +5,8 @@ use num_traits::Zero;
 use crate::native::exact::d6_exact_curvature_cochain::{canonical_triple_exact, ExactVec, D};
 use crate::native::exact::mub6_cyclotomic_enclosure::{cyc24_real_imag_enclosure, SqrtBox};
 use crate::native::exact::mub6_interval_cover::{NoVectorBox, VectorBox};
-use omega_kernel::interval::Interval;
-use tfqm_number_theory::rational::ri;
+use engine_kernel::interval::Interval;
+use engine_number_theory::rational::ri;
 
 fn sixth() -> BigRational {
     ri(1) / ri(6)

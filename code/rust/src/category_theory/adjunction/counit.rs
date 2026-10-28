@@ -4,7 +4,7 @@
 //! Natural-transformation-style record for the counit of an adjunction:
 //! ε : L ∘ R ⇒ Id_D.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 

@@ -3,13 +3,13 @@
 
 #[test]
 fn finite_core_adapter_preserves_types_and_refusals() {
-    use omega_quantum_physics::mub::dimension_stratification::{
+    use engine_quantum_physics::mub::dimension_stratification::{
         stratify_dimension, DimensionAuthorityStatus,
     };
-    use omega_quantum_physics::mub::algebra::{
+    use engine_quantum_physics::mub::algebra::{
         verify_mub_projector_algebra, ProjectorAlgebraStatus,
     };
-    use omega_quantum_physics::mub::odd_prime::build_odd_prime_mub_d3;
+    use engine_quantum_physics::mub::odd_prime::build_odd_prime_mub_d3;
 
     let mut bases = build_odd_prime_mub_d3();
     let verified = verify_mub_projector_algebra(&bases, 3);

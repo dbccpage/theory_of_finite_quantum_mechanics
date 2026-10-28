@@ -1,0 +1,115 @@
+import pytest
+
+from core import journal, leases
+from core.protocol import ProtocolError
+
+
+def issue(state_dir, lease_id, paths, owner="codex", mode="write"):
+    journal.append(state_dir, "LeaseIssued", actor="human:test", payload={
+        "lease_id": lease_id, "owner": owner, "mode": mode,
+        "canonical_paths": paths,
+    })
+
+
+def test_active_leases_from_journal(state_dir):
+    issue(state_dir, "L1", ["omega_engine/general_theory_of_obstruction_calculus/papers/**"])
+    active = leases.active(journal.read(state_dir))
+    assert [lease.lease_id for lease in active] == ["L1"]
+
+
+def test_expired_lease_is_inactive(state_dir):
+    issue(state_dir, "L1", ["docs/**"])
+    journal.append(state_dir, "LeaseExpired", actor="human:test",
+                   payload={"lease_id": "L1"})
+    assert leases.active(journal.read(state_dir)) == []
+
+
+def test_violation_detected_for_leased_path(state_dir, tmp_path):
+    issue(state_dir, "L1", ["omega_engine/general_theory_of_obstruction_calculus/papers/**"])
+    active = leases.active(journal.read(state_dir))
+    v = leases.check(
+        ["omega_engine/general_theory_of_obstruction_calculus/papers/001_GTFOC/paper.md"],
+        active)
+    assert len(v) == 1 and v[0].lease_id == "L1"
+
+
+def test_unleased_path_passes(state_dir):
+    issue(state_dir, "L1", ["omega_engine/general_theory_of_obstruction_calculus/papers/**"])
+    active = leases.active(journal.read(state_dir))
+    assert leases.check(["docs/notes.md"], active) == []
+
+
+def test_case_fold_and_backslash_normalization(state_dir):
+    issue(state_dir, "L1", ["Docs/Specs/**"])
+    active = leases.active(journal.read(state_dir))
+    assert len(leases.check(["docs\\specs\\a.md"], active)) == 1
+
+
+def test_traversal_fails_closed(state_dir):
+    issue(state_dir, "L1", ["docs/**"])
+    active = leases.active(journal.read(state_dir))
+    with pytest.raises(ProtocolError):
+        leases.check(["docs/../omega_engine/x.rs"], active)
+
+
+def test_absolute_path_fails_closed(state_dir):
+    active = leases.active(journal.read(state_dir))
+    with pytest.raises(ProtocolError):
+        leases.check(["C:/Windows/system32/evil"], active)
+
+
+def test_malformed_lease_payload_fails_closed(state_dir):
+    journal.append(state_dir, "LeaseIssued", actor="human:test",
+                   payload={"lease_id": "L1", "owner": "codex"})  # no canonical_paths
+    with pytest.raises(ProtocolError):
+        leases.active(journal.read(state_dir))
+
+
+@pytest.mark.parametrize("bad", [
+    "secret/**/x/**", "./secret/**", "docs/../secret/**", "/secret/**",
+    "C:/secret/**", "**", "a/**/b", "", "docs/./x", "docs//x/**",
+])
+def test_malformed_lease_pattern_fails_closed(state_dir, bad):
+    issue(state_dir, "LX", [bad])
+    with pytest.raises(ProtocolError):
+        leases.active(journal.read(state_dir))
+
+
+def test_trailing_slash_pattern_is_normalized_not_rejected(state_dir):
+    issue(state_dir, "L1", ["docs/specs/"])
+    active = leases.active(journal.read(state_dir))
+    assert leases.check(["docs/specs"], active)
+
+
+def test_read_mode_lease_still_blocks(state_dir):
+    issue(state_dir, "L1", ["docs/**"], mode="read")
+    active = leases.active(journal.read(state_dir))
+    assert leases.check(["docs/a.md"], active)  # Phase 0: all leases block
+
+
+def test_reissue_last_write_wins(state_dir):
+    issue(state_dir, "L1", ["docs/**"], owner="codex")
+    issue(state_dir, "L1", ["sprints/**"], owner="claude")
+    active = leases.active(journal.read(state_dir))
+    assert len(active) == 1 and active[0].owner == "claude"
+    assert leases.check(["sprints/x.md"], active)
+    assert leases.check(["docs/x.md"], active) == []
+
+
+def test_one_path_multiple_violations(state_dir):
+    issue(state_dir, "L1", ["docs/**"])
+    issue(state_dir, "L2", ["docs/specs/**"])
+    active = leases.active(journal.read(state_dir))
+    v = leases.check(["docs/specs/a.md"], active)
+    assert {x.lease_id for x in v} == {"L1", "L2"}
+
+
+def test_match_is_platform_independent_fnmatchcase(state_dir):
+    # Case handling comes ONLY from _canon's casefold (deterministic), never
+    # from fnmatch's platform normcase: a pattern canonicalized to lowercase
+    # must match a lowercased path on every OS, and glob '*' stays within the
+    # already-normalized forward-slash form.
+    issue(state_dir, "L1", ["Docs/Specs/*.MD"])
+    active = leases.active(journal.read(state_dir))
+    assert len(leases.check(["docs\specs\A.md"], active)) == 1
+    assert leases.check(["docs/specs/a.txt"], active) == []

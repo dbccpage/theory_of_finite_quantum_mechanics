@@ -10,16 +10,16 @@ use crate::coda::coda_gtla::{
 };
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::linear_algebra::image_kernel::{ExactLinearAlgebraError, ExactRowReduction};
-use tfqm_functional::gamma2::ExactCochainComplexQ;
-use tfqm_functional::phi1::{ExactPhi1Certificate, Phi1Functional, VerifiedExactPhi1};
+use engine_functional::gamma2::ExactCochainComplexQ;
+use engine_functional::phi1::{ExactPhi1Certificate, Phi1Functional, VerifiedExactPhi1};
 use tfqm_homotopy_type_theory::primitive_difference::PrimitiveDifference;
-use omega_policy::trichotomy::ObstructionDiagnosticClass;
-use omega_types::authority::AuthorityEffect;
+use engine_policy::trichotomy::ObstructionDiagnosticClass;
+use engine_types::authority::AuthorityEffect;
 
 use crate::phi1_coda_adapter::exact_certificate;
-use omega_solvers::solver_lp_exact_simplex::{solve_weighted_l1_projection, L1LpError};
-use omega_solvers::solver_flow_network_simplex::NetworkSimplexError;
-use omega_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge};
+use engine_solvers::solver_lp_exact_simplex::{solve_weighted_l1_projection, L1LpError};
+use engine_solvers::solver_flow_network_simplex::NetworkSimplexError;
+use engine_solvers::solver_lp_phi1_boundary::{solve_phi1, Boundary1, BoundaryEdge};
 
 pub const MAX_PROJECTION_EDGES: usize = 4096;
 
@@ -303,7 +303,7 @@ fn d1_rows(carrier: &FiniteCarrier2) -> Result<Vec<Vec<BigRational>>, SolveRefus
 }
 
 fn weighted_l1(z: &[BigRational], weights: &[BigRational]) -> BigRational {
-    tfqm_functional::phi1::Phi1Functional::weighted_l1_rational(weights, z)
+    engine_functional::phi1::Phi1Functional::weighted_l1_rational(weights, z)
         .expect("validated carrier gives equal residual and weight dimensions")
 }
 

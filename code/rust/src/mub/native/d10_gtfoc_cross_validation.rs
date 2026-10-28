@@ -1,6 +1,6 @@
 
 use linear_algebra::linear_algebra::complex_matrix::{CVector, ComplexMatrix, C64};
-use tfqm_functional::{
+use engine_functional::{
     MubFeasibilityWallDiagnosticIntervalAttempt, MubFeasibilityWallFunctional,
     MubFeasibilityWallTargetComparison,
 };
@@ -209,7 +209,7 @@ pub fn run_d10_gtfoc_cross_validation() -> D10GtfocCrossValidationReport {
 
     D10GtfocCrossValidationReport {
         target: "d=10 canonical-triple fourth-vector wall",
-        method: "Omega-native f64 CODA-FOC/DDA residual cochain plus tfqm_functional wall scalar/comparison plus full Cl(2) tensor Cl(5) stabilizer census",
+        method: "Omega-native f64 CODA-FOC/DDA residual cochain plus engine_functional wall scalar/comparison plus full Cl(2) tensor Cl(5) stabilizer census",
         wall_value,
         wall_comparison: wall_comparison.clone(),
         wall_interval_attempt: wall_interval_attempt.clone(),
@@ -218,7 +218,7 @@ pub fn run_d10_gtfoc_cross_validation() -> D10GtfocCrossValidationReport {
             computed: phi_value,
             expected: TARGET_PHI1,
             tolerance: wall_comparison.tolerance,
-            note: "Phi1 is the normalized squared residual 1 - f(v*) computed by tfqm_functional; f64 diagnostic comparison only certifies by the declared tolerance.",
+            note: "Phi1 is the normalized squared residual 1 - f(v*) computed by engine_functional; f64 diagnostic comparison only certifies by the declared tolerance.",
         },
         class: D10GtfocMatchItem {
             status: status(class_match),
@@ -1034,7 +1034,7 @@ fn normalize(v: &Vector) -> Vector {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use tfqm_functional::MubFeasibilityWallEvidenceKind;
+    use engine_functional::MubFeasibilityWallEvidenceKind;
 
     #[test]
     fn d10_gtfoc_rebuilds_canonical_triple_columns() {

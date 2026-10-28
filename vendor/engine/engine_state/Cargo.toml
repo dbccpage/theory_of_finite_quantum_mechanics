@@ -1,0 +1,110 @@
+[package]
+autotests = false
+name = "engine_state"
+version.workspace = true
+license.workspace = true
+edition = "2021"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+linear_algebra = { path = "../linear_algebra" }
+engine_homology = { path = "../engine_homology" }
+engine_types = { path = "../engine_types" }
+engine_contracts = { path = "../engine_contracts" }
+engine_wdp = { path = "../engine_wdp" }
+engine_lifts = { path = "../engine_lifts" }
+num-bigint = { version = "0.4", features = ["serde"] }
+num-traits = "0.2"
+sha2 = "0.10"
+thiserror = "2"
+
+# Shared integration-test targets. Sources and fixtures live in `../tests/engine_state`.
+
+[[test]]
+name = "application_convergence"
+path = "../tests/engine_state/application_convergence.rs"
+
+[[test]]
+name = "coda1_classifier"
+path = "../tests/engine_state/coda1_classifier.rs"
+
+[[test]]
+name = "coda2_degree_shift"
+path = "../tests/engine_state/coda2_degree_shift.rs"
+
+[[test]]
+name = "coda3_lift_license"
+path = "../tests/engine_state/coda3_lift_license.rs"
+
+[[test]]
+name = "coda4_transition_coverage"
+path = "../tests/engine_state/coda4_transition_coverage.rs"
+
+[[test]]
+name = "coda6_defect_terminalization"
+path = "../tests/engine_state/coda6_defect_terminalization.rs"
+
+[[test]]
+name = "coda7_migration_bundle"
+path = "../tests/engine_state/coda7_migration_bundle.rs"
+
+[[test]]
+name = "coda8_import_oracle_firewall"
+path = "../tests/engine_state/coda8_import_oracle_firewall.rs"
+
+[[test]]
+name = "coda_corpus_migration"
+path = "../tests/engine_state/coda_corpus_migration.rs"
+
+[[test]]
+name = "coda_foundations_registry"
+path = "../tests/engine_state/coda_foundations_registry.rs"
+
+[[test]]
+name = "coda_gtla_protocol"
+path = "../tests/engine_state/coda_gtla_protocol.rs"
+
+[[test]]
+name = "coda_gtla_run_receipt"
+path = "../tests/engine_state/coda_gtla_run_receipt.rs"
+
+[[test]]
+name = "coda_gtla_t26_glue"
+path = "../tests/engine_state/coda_gtla_t26_glue.rs"
+
+[[test]]
+name = "delta2_closure"
+path = "../tests/engine_state/delta2_closure.rs"
+
+[[test]]
+name = "operator_registry_runtime"
+path = "../tests/engine_state/operator_registry_runtime.rs"
+
+[[test]]
+name = "published_series_agreement"
+path = "../tests/engine_state/published_series_agreement.rs"
+
+[[test]]
+name = "research_claim_binding"
+path = "../tests/engine_state/research_claim_binding.rs"
+
+[[test]]
+name = "software_change_profile"
+path = "../tests/engine_state/software_change_profile.rs"
+
+[[test]]
+name = "sprint_governance"
+path = "../tests/engine_state/sprint_governance.rs"
+
+[[test]]
+name = "task_admission"
+path = "../tests/engine_state/task_admission.rs"
+
+[[test]]
+name = "upstream_fixture_custody"
+path = "../tests/engine_state/upstream_fixture_custody.rs"
+
+[[test]]
+name = "witness_receipt_dag"
+path = "../tests/engine_state/witness_receipt_dag.rs"

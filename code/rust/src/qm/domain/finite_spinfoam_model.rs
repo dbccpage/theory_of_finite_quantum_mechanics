@@ -3,10 +3,10 @@
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{involution as iv, matrix as mx, ExactFieldError};
 use num_traits::Zero;
-use omega_number_theory::cyclotomic::Cyc12;
-use omega_number_theory::cyclotomic_integer::{CyclotomicInteger as C, CyclotomicIntegerError};
-use omega_number_theory::quadratic::Quadratic;
-use omega_number_theory::rational::{ri, Rational};
+use engine_number_theory::cyclotomic::Cyc12;
+use engine_number_theory::cyclotomic_integer::{CyclotomicInteger as C, CyclotomicIntegerError};
+use engine_number_theory::quadratic::Quadratic;
+use engine_number_theory::rational::{ri, Rational};
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum SpinFoamModelError {
@@ -54,7 +54,7 @@ pub const ADMISSIBLE_BASIS: [[u32; 4]; 8] = [
 ];
 
 pub fn quantum_integer(n: usize) -> C {
-    let value = omega_number_theory::cyclotomic_field::quantum_integer(12, n as i64)
+    let value = engine_number_theory::cyclotomic_field::quantum_integer(12, n as i64)
         .expect("fixed q-number budget");
     C::new(12, value.coefficients().to_vec())
         .expect("q-integer has integral cyclotomic coordinates")
@@ -215,7 +215,7 @@ impl PachnerState {
     }
 }
 fn combinations(n: usize, k: usize) -> Vec<Vec<usize>> {
-    omega_combinatorics::enumeration::combinations(n, k, 64).expect("fixed simplex face budget")
+    engine_combinatorics::enumeration::combinations(n, k, 64).expect("fixed simplex face budget")
 }
 pub fn sphere_partition(spins: &[u32; 20]) -> C {
     let faces = combinations(6, 3);

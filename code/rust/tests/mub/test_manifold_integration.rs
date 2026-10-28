@@ -31,8 +31,8 @@ use tfqm_mub::native::exact::mub6_manifold_integration::{
     verify_full_unified_coverage, ManifoldIntegrationError, UnifiedObstructionArm,
     NUM_CANONICAL_CHARTS, NUM_CECH_TRIPLES, TOTAL_CELL_COUNT,
 };
-use omega_number_theory::cyclotomic::Cyc24;
-use omega_number_theory::rational::rq;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::rq;
 
 struct FloatAuditVisitor {
     found_floats: Vec<String>,

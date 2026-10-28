@@ -11,8 +11,8 @@ use crate::native::exact::mub6_quad_sdp::{
 };
 pub use crate::native::exact::mub6_quad_sdp::{DIM_HILBERT, GRAMIAN_DIM, NUM_BASES};
 use linear_algebra::exact_ldlt::ldlt_pivots_strictly_positive_rational;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 pub const SCHEMA_VERSION: &str = "omega.mub.degree2-sdp.v1";
 pub const SCOPE_STRING: &str = "degree2_moment_relaxation_quadruple_sdp";

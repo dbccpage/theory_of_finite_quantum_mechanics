@@ -3,7 +3,7 @@ use crate::rational::{checked_integer_sqrt, rq, sqrt_exact};
 use num_bigint::BigInt;
 use num_rational::BigRational as Q;
 use num_traits::{One, Signed, Zero};
-use omega_kernel::interval::{Interval, IntervalError};
+use engine_kernel::interval::{Interval, IntervalError};
 use thiserror::Error;
 
 pub type RationalInterval = Interval;

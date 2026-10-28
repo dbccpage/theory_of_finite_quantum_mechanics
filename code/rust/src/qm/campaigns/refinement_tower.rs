@@ -1,6 +1,6 @@
 use crate::qm::bridge::matrix as mx;
-use omega_number_theory::cyclotomic::GaussianRat;
-use omega_quantum_physics::refinement_subsystem_tower::ObservableEmbedding;
+use engine_number_theory::cyclotomic::GaussianRat;
+use engine_quantum_physics::refinement_subsystem_tower::ObservableEmbedding;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]

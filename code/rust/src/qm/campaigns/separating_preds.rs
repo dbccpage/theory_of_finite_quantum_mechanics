@@ -1,6 +1,6 @@
 
 use num_traits::Signed;
-use omega_number_theory::rational::{ri, Rational};
+use engine_number_theory::rational::{ri, Rational};
 
 pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; not PROVED; not GlobalGreen; CHSH/Tsirelson + Mermin-Peres cochain bridge face.";

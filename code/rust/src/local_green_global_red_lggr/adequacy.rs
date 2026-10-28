@@ -1,13 +1,13 @@
 use crate::epk_engine::{BoundarySlice, CompositionRecord, TraceLedger, TraceRecord};
 use num_rational::BigRational;
 use num_traits::{One, Signed, ToPrimitive, Zero};
-use omega_types::{
+use engine_types::{
     detector_magnitude_is_in_policy, AuthorityEffect, DetectorCapacityEvidence,
     DetectorDeploymentDeclaration, DetectorEvaluatorDeclaration, DetectorEvaluatorRole,
     DETECTOR_CAPACITY_EVIDENCE_SCHEMA, DETECTOR_CAPACITY_SCOPE,
 };
 
-pub use omega_types::{
+pub use engine_types::{
     detector_capacity_comparison_tolerance_rational, detector_capacity_rank_tolerance_rational,
     detector_capacity_residual_acceptance_tolerance_rational,
 };
@@ -767,7 +767,7 @@ fn check_structural_evaluators<'a>(
     evaluators
 }
 fn check_protected_direction(
-    item: &omega_types::ProtectedDistinctionDeclaration,
+    item: &engine_types::ProtectedDistinctionDeclaration,
     expected: Option<usize>,
     failures: &mut Vec<DetectorStructuralFailure>,
 ) {
@@ -801,7 +801,7 @@ fn check_protected_direction(
     }
 }
 fn check_protected_records(
-    item: &omega_types::ProtectedDistinctionDeclaration,
+    item: &engine_types::ProtectedDistinctionDeclaration,
     corpus: &StructuralCorpus<'_>,
     evaluators: &StructuralEvaluators<'_>,
     failures: &mut Vec<DetectorStructuralFailure>,
@@ -1187,7 +1187,7 @@ mod tests {
 
     use super::*;
     use num_traits::{One, Zero};
-    use omega_types::{
+    use engine_types::{
         DetectorCapacityResiduals, DetectorCapacityWitness, DetectorEvaluatorDeclaration,
         ProtectedDistinctionDeclaration, DETECTOR_CAPACITY_COMPARISON_TOLERANCE,
         DETECTOR_CAPACITY_RANK_TOLERANCE, DETECTOR_CAPACITY_RESIDUAL_ACCEPTANCE_TOLERANCE,

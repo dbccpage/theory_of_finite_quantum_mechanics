@@ -4,8 +4,8 @@ use crate::qm::bridge::matrix as mx;
 use ::linear_algebra::backend::basic_matrix::BasicMatrix;
 use num_bigint::BigInt;
 use num_traits::Zero;
-use omega_number_theory::cyclotomic_integer::CyclotomicInteger;
-use omega_number_theory::rational::{rq, Rational};
+use engine_number_theory::cyclotomic_integer::CyclotomicInteger;
+use engine_number_theory::rational::{rq, Rational};
 use serde::{Deserialize, Serialize};
 
 fn pythagorean_rotation() -> BasicMatrix<Rational> {
@@ -88,7 +88,7 @@ pub struct DynamicsDichotomyReport {
 pub fn execute_dynamics_dichotomy_report() -> DynamicsDichotomyReport {
     let census = run_target_unitary_census();
     let powers_ok = verify_pythagorean_infinite_order(100);
-    let exact_aperiodic = omega_lie_theory::finite_order::finite_order(&pythagorean_rotation())
+    let exact_aperiodic = engine_lie_theory::finite_order::finite_order(&pythagorean_rotation())
         .expect("bounded exact decision")
         .is_none();
 

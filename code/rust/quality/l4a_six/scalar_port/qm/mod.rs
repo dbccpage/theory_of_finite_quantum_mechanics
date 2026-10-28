@@ -122,15 +122,15 @@ pub struct FiniteQmSuiteReport {
     pub clifton_kent_all_1024_non_psd_certified: bool,
     pub d5_wigner_algebra_verified: bool,
     pub d5_magic_state_negativity_witnessed: bool,
-    pub d5_magic_point_value: omega_number_theory::rational::Rational,
+    pub d5_magic_point_value: engine_number_theory::rational::Rational,
     pub commutator_trace_obstruction_verified: bool,
 }
 
 fn verify_mub_exhaustive<
-    C: omega_number_theory::scalar::RationalEmbedding
+    C: engine_number_theory::scalar::RationalEmbedding
         + ::linear_algebra::exact_field::involution::Involution,
 >(
-    mub: &omega_quantum_physics::mub::MubSystem<C>,
+    mub: &engine_quantum_physics::mub::MubSystem<C>,
 ) -> bool {
     mub.verify_hermiticity()
         && mub.verify_idempotence()
@@ -140,9 +140,9 @@ fn verify_mub_exhaustive<
         && mub.verify_cross_basis_unbiasedness()
 }
 
-fn verify_wigner_d5_suite() -> (bool, bool, omega_number_theory::rational::Rational) {
-    use omega_number_theory::rational::rq;
-    use omega_quantum_physics::wigner;
+fn verify_wigner_d5_suite() -> (bool, bool, engine_number_theory::rational::Rational) {
+    use engine_number_theory::rational::rq;
+    use engine_quantum_physics::wigner;
     let wsys5 = wigner::DiscreteWignerSystemD5::new();
     let d5_wigner_algebra_verified = wsys5.verify_hermiticity()
         && wsys5.verify_unit_trace()
@@ -154,7 +154,7 @@ fn verify_wigner_d5_suite() -> (bool, bool, omega_number_theory::rational::Ratio
         .evaluate_exact(&rho_m5)
         .expect("declared exact Wigner fixture");
     let d5_magic_point_value =
-        omega_number_theory::cyclotomic_field::CyclotomicNumber::from(&w5_grid[0][0])
+        engine_number_theory::cyclotomic_field::CyclotomicNumber::from(&w5_grid[0][0])
             .as_rational()
             .expect("declared magic Wigner origin is rational");
     let d5_magic_state_negativity_witnessed = d5_magic_point_value == rq(-1, 5);
@@ -166,7 +166,7 @@ fn verify_wigner_d5_suite() -> (bool, bool, omega_number_theory::rational::Ratio
 }
 
 fn verify_commutator_d3_suite() -> bool {
-    let comm_report = omega_quantum_physics::commutator::audit_commutator_obstruction_d3()
+    let comm_report = engine_quantum_physics::commutator::audit_commutator_obstruction_d3()
         .expect("the declared dimension-three commutator fixture is admitted");
     comm_report.commutator_trace_is_zero
         && comm_report.hypothetical_ccr_trace_non_zero
@@ -175,7 +175,7 @@ fn verify_commutator_d3_suite() -> bool {
 }
 
 pub fn run_finite_qm_verification_suite() -> FiniteQmSuiteReport {
-    use omega_quantum_physics::{mub, tomography};
+    use engine_quantum_physics::{mub, tomography};
 
     let mub3 = mub::MubSystem::mub_d3();
     let d3_mub_exhaustive = verify_mub_exhaustive(&mub3);

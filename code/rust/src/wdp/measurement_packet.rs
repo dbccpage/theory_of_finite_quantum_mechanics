@@ -3,14 +3,14 @@ use std::collections::BTreeSet;
 
 use num_rational::BigRational;
 use num_traits::Zero;
-use omega_measurement::affine_calibration::{BoundedReading, CalibrationError};
-use omega_measurement::documentary_traceability::{
+use engine_measurement::affine_calibration::{BoundedReading, CalibrationError};
+use engine_measurement::documentary_traceability::{
     validate_documentary_traceability, DocumentaryTraceabilityError, DocumentaryTraceabilityGraph,
     DocumentaryTraceabilityReport,
 };
-use omega_measurement::{MeasurementValue, UnitSpec};
-use omega_quantum_physics::exact_instrument::{ExactDensityState, ExactInstrumentError};
-use omega_quantum_physics::instrument_repeatability::{is_outcome_repeatable, RepeatabilityError};
+use engine_measurement::{MeasurementValue, UnitSpec};
+use engine_quantum_physics::exact_instrument::{ExactDensityState, ExactInstrumentError};
+use engine_quantum_physics::instrument_repeatability::{is_outcome_repeatable, RepeatabilityError};
 use serde::Serialize;
 use serde_json::{json, Value};
 

@@ -54,7 +54,7 @@ pub fn run(input: &Value) -> Result<Value, String> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_number_theory::cyclotomic_integer::CyclotomicInteger as C;
+    use engine_number_theory::cyclotomic_integer::CyclotomicInteger as C;
 
     #[test]
     fn finite_lean_models() {

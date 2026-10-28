@@ -14,11 +14,11 @@ pub fn classify_conductor_cancellations(
     conductor: usize,
 ) -> Result<
     ConductorCancellationClassification,
-    omega_number_theory::vanishing_sums::VanishingLengthError,
+    engine_number_theory::vanishing_sums::VanishingLengthError,
 > {
-    let polygon = omega_number_theory::vanishing_sums::minimal_unpairable_polygon(
+    let polygon = engine_number_theory::vanishing_sums::minimal_unpairable_polygon(
         conductor as u64,
-        omega_number_theory::integer_factorization::FactorizationBudget::default(),
+        engine_number_theory::integer_factorization::FactorizationBudget::default(),
     )?;
     Ok(match polygon.map(|p| p as usize) {
         None => ConductorCancellationClassification {

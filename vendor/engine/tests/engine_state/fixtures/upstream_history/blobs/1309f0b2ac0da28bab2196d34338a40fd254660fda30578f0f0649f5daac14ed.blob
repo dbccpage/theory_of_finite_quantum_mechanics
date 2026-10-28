@@ -1,0 +1,186 @@
+# Omega Conductor S06-003 Status - 2026-07-18
+
+**Sprint:** S06-003 - GTOC-6 Per-Defect Terminalization
+**Branch:** codex/s06-003-per-defect-terminalization
+**Frozen base:** 67a8ebdc642bb50121b64b0cab8e0df198cd99cc
+**LifecycleStatus:** COMPLETED
+**GtocTerminal:** StabilizedSurvivor
+**AuthorityStatus:** None
+**AuthorityEffect:** None
+**Gate activation:** Absent
+**Human promotion:** Absent
+**Successor instantiation:** Absent
+**Lean runtime:** Not invoked
+
+## Decision
+
+S06-003 completes construction and review of one bounded GTOC-6 per-defect terminalization verifier. It freezes one three-defect, six-subclaim carrier, binds the exact S06-002 independent verification artifact, derives every local terminal from typed evidence, conserves every survivor in a two-entry residual ledger, and computes one permutation-invariant aggregate terminal.
+
+The S14-005/GTOC-5 construction receipt is absent at the frozen base. The verifier does not infer or fabricate it. It records `residual:s06-003:gtoc5-construction-receipt-absent` as `OpenObstruction` with survivor route `ProofObligation`. The existing S06-002 unissued-lift residual is separately carried forward. Because the bounded carrier also contains exact repairs, the legal aggregate is `StabilizedSurvivor`; both survivors remain independently visible.
+
+Completion means the bounded packet, producer receipt, independent verification, hostile tests, and documentation reconciliation are complete. Under the epic's construction-before-activation rule, it does not mean GTOC-5 is complete, a predecessor was human-promoted, a gate is active, authority was constructed, or unrestricted GTOC-6 is established.
+
+## Frozen packet
+
+| Field | Receipt |
+|---|---|
+| packet id | omega-conductor-s06-003-gtoc6-terminalization-v1 |
+| packet SHA-256 | 91b8c9cb0a5829ff3e77ec97b669fc7fe147752e273205a3c33be4ba2cbd8eb9 |
+| observer SHA-256 | d3e659bda30f2715eadcd136ff978d5abe642c414ee0eff5107d9b68bf0aac0b |
+| producer | witness:producer:s06-003-defect-matrix-v1 |
+| independent evaluator | witness:evaluator:s06-003-independent-v1 |
+| authority witness | witness:authority:s06-003-none-v1 |
+| attempt / repair / successor | 1 / 2 / 1 |
+| sprint time / process / token ceiling | 8 hours / 4 / 200000 |
+| defect / subclaim / residual ceiling | 3 / 6 / 2 |
+| legal terminal vocabulary | ExactRepair, StabilizedSurvivor, OpenObstruction, OracleNeeded, LiftLicenseNeeded, Refused, Invalid, InfrastructureFailure |
+| evidence ceiling | one frozen three-defect, six-subclaim packet over the bounded S06-002 verification; absent S14-005/GTOC-5 evidence remains a named proof obligation |
+| promotion constructor available | false |
+| AuthorizedLocalResult constructor available | false |
+| authority effect | None |
+
+## Frozen source closure
+
+Hashes and byte lengths are over repository blobs at the frozen base before the admitted write surface changed.
+
+| Path | SHA-256 | Bytes |
+|---|---|---:|
+| docs/gtoc-canonicalization-remaining-work.md | e7ee9ae3c8b34e6b8985e21c528fe3926655ca3567c61a0bc28b446f6f7b0d81 | 26373 |
+| docs/omega-conductor-epic-v001.md | 06f8cc6ffd006889d9b3fd36a98072242a78e0194bfca703133b5423fba4923e | 64471 |
+| docs/saga_06_receipt_verification_and_terminalization.md | dad9f0b55eaec43933f279dc166ef0254d9da63f86bc78cff042fa688a6b26e0 | 9082 |
+| docs/sprint_s06_002.md | 35ed34c6f89d0ce3453e9fc746e69394a1b6de457cd3bc2963ed640591063003 | 14323 |
+| docs/sprint_s06_003.md | 22acc3988a1f9147b049434c5d718d171ce71f64a8d9a8f096ce356700daf5a8 | 8346 |
+| docs/sprint_s14_005.md | 3e93a78754782164cc8352f46464873b04849b978c422d63dd4dc7bbc7366629 | 8522 |
+| docs/status-vocabulary.md | d39813a9e440a6c7ef45276fadf1c42cb5a34aea2368b94185ecd2500fae2d54 | 4309 |
+| docs/status/omega_conductor_s06_002_status_2026-07-18.md | 14cb150cb5b298d344f5f003ef0d0dc31770e4836b931405b37d453bdbef7b0f | 12454 |
+| omega_engine/crates/omega_state/Cargo.toml | 3cfa4b23be89d16d8eec1074126c9faef9828dbf2c794af7eee2a058fb9e90b6 | 528 |
+| omega_engine/crates/omega_state/src/gtoc_gtla_protocol.rs | da57f9f89dd396cbd1bca72880d024c81a4d3238bd6f78af9add06572c3f160f | 35825 |
+| omega_engine/crates/omega_state/src/gtoc_gtla_run_receipt.rs | cb3012dfcfc3ef6e16179bbed45795c88e46375234547a65bd4a4d1aa6a0e806 | 61366 |
+| omega_engine/crates/omega_state/src/gtoc4_transition_coverage.rs | a19d524e1b4caaadd1150f00ce923cb0278d7ee9c0b02b0542543153724602de | 47470 |
+| omega_engine/crates/omega_state/src/lib.rs | 930f4cd800029ceb8c34429d5ca9e72b58abeb54ccaa62ea5fc6cdff022f8c2c | 1707 |
+| omega_engine/crates/omega_state/src/residual_receipt.rs | e82676fec218c47f0ae1dbade554bbfa8ba48ceddb123efd534357cd4a01d62c | 2756 |
+| omega_engine/crates/omega_state/src/terminal_status.rs | b0c43eb6036fa0bd473f17a7f62a0a42550b13896abbccae856b97bfa0993e1c | 12421 |
+| omega_engine/crates/omega_types/src/authority.rs | 42051a106954daa5ca2170c79bbf7d4cc9b04e0f7b554b8807251a0da552d2a9 | 39913 |
+| omega_engine/crates/omega_state/tests/fixtures/s06_002_gtoc4_packet_v1.json | 3a657f0149acc85c285164aff0259a727e44e7e9a5cda206ae0b52800fa9f4a4 | 8512 |
+| omega_engine/crates/omega_state/tests/fixtures/s06_002_gtoc4_receipt_v1.json | 23b7f8c9f896c2ba5ec1b57e8e3650391ce028df81d19d3c69001616a9e32a6b | 6682 |
+| omega_engine/crates/omega_state/tests/fixtures/s06_002_gtoc4_verification_v1.json | b429c165f8e2dc09f72ff07db0c26891942c315773bf6e859da99e97e7f50170 | 4737 |
+
+## Frozen predecessor artifact
+
+The verifier accepts exactly one artifact path. Missing bytes route to `InfrastructureFailure`; extra paths, byte-length drift, hash drift, schema drift, noncanonical JSON, or semantic drift are `Invalid`.
+
+| Artifact | SHA-256 | Bytes | Required semantic boundary |
+|---|---|---:|---|
+| S06-002 bounded GTOC-4 independent verification | b429c165f8e2dc09f72ff07db0c26891942c315773bf6e859da99e97e7f50170 | 4737 | eight classes covered; seven executions; lift and unknown class refuse immutably; one named lift residual; authority None |
+
+## Defect and subclaim matrix
+
+| Defect | Subclaim | Evidence | Local terminal | Residual / route |
+|---|---|---|---|---|
+| gtoc4-predecessor | gtoc4-verification-bound | exact S06-002 verification artifact parses and replays | ExactRepair | none |
+| gtoc4-predecessor | gtoc4-lift-residual-carried | predecessor lift residual is preserved | StabilizedSurvivor | `residual:s06-002:lift-license-not-issued` / CarryForward |
+| gtoc5-authority-path | gtoc5-construction-receipt | S14-005/GTOC-5 receipt is absent | OpenObstruction | `residual:s06-003:gtoc5-construction-receipt-absent` / ProofObligation |
+| aggregation-kernel | defect-id-uniqueness | all defect and subclaim ids are unique and sequenced | ExactRepair | none |
+| aggregation-kernel | residual-conservation | subclaim, defect, and ledger residual sets agree exactly | ExactRepair | none |
+| aggregation-kernel | terminal-derivation | local and aggregate terminals recompute from typed evidence | ExactRepair | none |
+
+The three defect terminals are `StabilizedSurvivor`, `OpenObstruction`, and `ExactRepair`. Their canonical aggregate is `StabilizedSurvivor`, with both residuals retained.
+
+## Aggregation policy
+
+Dominance order is `InfrastructureFailure > Invalid > Refused > OracleNeeded > LiftLicenseNeeded > trichotomy`. Within the trichotomy, all exact repairs yield `ExactRepair`; open-only evidence yields `OpenObstruction`; stabilized evidence yields `StabilizedSurvivor`; and exact progress plus an open survivor yields `StabilizedSurvivor`. This follows the existing bounded partial-repair semantics while the residual ledger keeps every open local claim visible.
+
+| Truth row | Local terminals | Expected aggregate |
+|---|---|---|
+| exact-only | ExactRepair | ExactRepair |
+| stabilized-only | StabilizedSurvivor | StabilizedSurvivor |
+| open-only | OpenObstruction | OpenObstruction |
+| partial-repair-open | ExactRepair, OpenObstruction | StabilizedSurvivor |
+| stabilized-plus-open | StabilizedSurvivor, OpenObstruction | OpenObstruction |
+| partial-repair-mixed-survivors | ExactRepair, StabilizedSurvivor, OpenObstruction | StabilizedSurvivor |
+| lift-dominates-trichotomy | ExactRepair, LiftLicenseNeeded | LiftLicenseNeeded |
+| oracle-dominates-lift | LiftLicenseNeeded, OracleNeeded | OracleNeeded |
+| refusal-dominates-oracle | OracleNeeded, Refused | Refused |
+| invalid-dominates-refusal | Refused, Invalid | Invalid |
+| infrastructure-dominates-invalid | Invalid, InfrastructureFailure | InfrastructureFailure |
+
+The hostile suite additionally enumerates all 512 triples over the eight-terminal vocabulary and all six permutations of each triple. Every permutation produces the same aggregate.
+
+## Canonical verification receipts
+
+| Receipt | SHA-256 |
+|---|---|
+| defect-terminalization packet | 91b8c9cb0a5829ff3e77ec97b669fc7fe147752e273205a3c33be4ba2cbd8eb9 |
+| frozen observer | d3e659bda30f2715eadcd136ff978d5abe642c414ee0eff5107d9b68bf0aac0b |
+| producer receipt | bbe85b78f0e21265a1e3bff9eaaa2b8ea3c24e0fe151b79d3fe564f96af02c23 |
+| independent verification | 126f1d8c03ab38e2ff2afa8dfda40ba3ed5fa70d088e1e1fe2165deb2a70e97d |
+| predecessor artifact closure | b059768c3345cfd5d422c5321926a98142a18d0f37b8a77830aef84fd835424c |
+| diagnostic matrix | 3c54cc1d5d093c8747eca35a633777c46536411389b9ce0c769c2b8cb8f8e1e8 |
+| residual ledger | 1b6f183dd9605c36ae26355937ee4d069664bca0d45d09156b03ee202316791e |
+| aggregation truth table | 71a8c5ed50df1443610246d06f616484424e5c909e6a2adeb39dfc71b6c12c6e |
+
+The verification records three defects, six subclaims, two residuals, complete predecessor and truth-table replay, pairwise-distinct witness identities, `StabilizedSurvivor`, and `AuthorityEffect::None`.
+
+## Hostile evidence matrix
+
+- Missing, extra, truncated, hash-mutated, schema-drifting, noncanonical, or semantically invalid predecessor artifacts fail closed.
+- Duplicate defect ids, duplicate subclaim ids, sequence drift, and unknown diagnostic rules fail closed or route to the declared survivor.
+- Fabricating a completed S14-005/GTOC-5 receipt or changing its local terminal fails closed.
+- Deleting either residual from a subclaim, defect, or ledger fails exact conservation checks.
+- A false aggregate cannot launder an `OpenObstruction` or any higher-precedence terminal.
+- Every three-terminal multiset is permutation invariant across the full terminal vocabulary.
+- An unavailable diagnostic rule emits `OpenObstruction` with survivor route `OperatorNeeded`; `OperatorNeeded` is never a terminal.
+- Promotion requests, constructor calls, `AuthorizedLocalResult`, non-none authority, or evidence-ceiling expansion are refused or invalid.
+- Unknown JSON fields and noncanonical JSON layouts are rejected.
+- Malformed external JSON routes to `Invalid`; local serializer failure routes separately to `InfrastructureFailure`.
+
+## Verification
+
+- `cargo check -p omega_state --lib --locked`: PASS.
+- `cargo test -p omega_state --test gtoc6_defect_terminalization --locked`: PASS, 8/8 without regeneration.
+- `cargo test -p omega_state --test gtoc4_transition_coverage --locked`: PASS, 6/6 predecessor regression.
+- `cargo test -p omega_state --lib --locked`: PASS, 10/10.
+- `cargo clippy -p omega_state --test gtoc6_defect_terminalization --locked --no-deps -- -D warnings`: PASS for the target; dependency warnings remain outside the no-deps target.
+- `rustfmt --edition 2021 --check` over the three scoped Rust files: PASS.
+- `python -W error scripts/validate_omega_conductor_docs.py --json`: PASS, 63 audited files and zero findings.
+- `python scripts/local_ci.py`: PASS; workspace `cargo check -j 1`, incremental rustfmt over the three changed Rust files, and the v1 contract gate (1/1) all pass.
+- No Lean, `lake`, model, gate-activation, successor, or human-promotion command is invoked.
+
+## Implementation artifact hashes
+
+Hashes and lengths are over working-tree bytes after formatting.
+
+| Artifact | SHA-256 | Bytes |
+|---|---|---:|
+| omega_state export surface | 619ac769a2b14529c4c64cb124c139ce9a370f1f865740bd8f33e70db8b702ce | 2014 |
+| bounded GTOC-6 verifier | 0f8d9b9b5fa6a16aa8a5589043b134b4a9a1a5599e9a38e5cd7a4bf280d0db78 | 51593 |
+| hostile integration suite | c4039af956fa20c5abae09f26edf4ee6d5e2f0723996170cd8f784d44262bd75 | 13162 |
+| canonical packet fixture | 74bfd49c586e3306c71a6a2be43ff1376c6df6465cf54a85ddd226a351c944c3 | 8899 |
+| canonical producer receipt fixture | f2fcf300ab958ed78107f2e218d032d343f1ce40043957e97c898dcc3a52080a | 3300 |
+| canonical verification fixture | 15f33eee4d7dd791996964076e92b9f928789d06ef41ab1c2309acc792551c98 | 2171 |
+
+## Exact write surface
+
+1. `docs/omega-conductor-epic-v001.md`
+2. `docs/saga_06_receipt_verification_and_terminalization.md`
+3. `docs/sprint_s06_003.md`
+4. `docs/status/omega_conductor_s06_003_status_2026-07-18.md`
+5. `omega_engine/crates/omega_state/src/lib.rs`
+6. `omega_engine/crates/omega_state/src/gtoc6_defect_terminalization.rs`
+7. `omega_engine/crates/omega_state/tests/gtoc6_defect_terminalization.rs`
+8. `omega_engine/crates/omega_state/tests/fixtures/s06_003_gtoc6_packet_v1.json`
+9. `omega_engine/crates/omega_state/tests/fixtures/s06_003_gtoc6_receipt_v1.json`
+10. `omega_engine/crates/omega_state/tests/fixtures/s06_003_gtoc6_verification_v1.json`
+
+## Surviving obstructions
+
+- This is one frozen three-defect, six-subclaim matrix, not unrestricted GTOC-6 over arbitrary carriers, defect families, diagnostic rules, or predecessor receipts.
+- The bounded GTOC-3 predecessor did not issue a lift license. The S06-002 lift residual is preserved, not repaired or hidden.
+- S14-005/GTOC-5 remains absent and `NOT_EVALUATED`; the named proof-obligation residual does not complete or authorize it.
+- S06-004/GTOC-8 still requires its own import/oracle packet and the separately constructed GTOC-7 migration receipt. It may consume only this bounded S06-003 evidence.
+- The verifier is a library and fixture suite, not a signed binary, activated runtime gate, protected-branch policy, host lease controller, or mutation enforcer.
+- SAGA-14 still owns certificate-to-authority enforcement and any future `AuthorizedLocalResult` constructor.
+
+## Nonclaims
+
+This sprint does not establish GTOC-5, unrestricted GTOC-6, GTOC-7, or GTOC-8; cover arbitrary defects, dynamic rules, imports, carrier families, or every repository receipt; issue or execute a lift license; prove a general cochain theorem; run a live model; activate a gate; sign a binary; mutate a protected branch; authenticate a human; record human promotion; mint authority; create `AuthorizedLocalResult`; instantiate an autonomous successor; or run Lean.

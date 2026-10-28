@@ -4,7 +4,7 @@
 //! Constant functor Δ_d : C → D with value d — shape only.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a constant functor between labeled categories.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

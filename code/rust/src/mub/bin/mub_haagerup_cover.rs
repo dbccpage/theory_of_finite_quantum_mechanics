@@ -6,7 +6,7 @@ use tfqm_mub::native::exact::mub6_haagerup_cover::{
     cover_haagerup_neighborhood_region, cover_haagerup_wide_cell, haagerup_cover_status,
     write_haagerup_reflection_artifact,
 };
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::rational::ri;
 use std::path::PathBuf;
 
 fn save_certificate(cert: &CoverCertificate, path: &PathBuf) {
@@ -178,7 +178,7 @@ fn main() {
     let cli = parse_haagerup_cli(&args);
 
     let manifest_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-    let artifacts_dir = manifest_dir.join("../tests/mub/artifacts");
+    let artifacts_dir = manifest_dir.join("../../tests/mub/artifacts");
     if !artifacts_dir.exists() {
         std::fs::create_dir_all(&artifacts_dir).expect("create artifacts dir");
     }

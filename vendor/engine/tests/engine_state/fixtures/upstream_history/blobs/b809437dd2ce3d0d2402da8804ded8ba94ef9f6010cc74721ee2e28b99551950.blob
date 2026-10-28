@@ -1,0 +1,72 @@
+//! § 7, Definition 16.10: Licensed Lift
+//!
+//! A **lift** is a map $F: Q_n \to Q_{n+1}$ together with a **forgetful
+//! descent** $U: Q_{n+1} \to Q_n$ such that $U \circ F$ is computable and
+//! preserves exact classes. No lift is admissible without an explicit
+//! descent map.
+
+use serde::{Deserialize, Serialize};
+
+/// A licensed lift contract (Definition 16.10).
+///
+/// This contains the metadata for a lift-descent pair, not the maps
+/// themselves (which are solver-level functions).
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct LiftLicense {
+    /// Checked obstruction packet hash.
+    pub packet_hash: [u8; 32],
+    /// Whether repair exhaustion was certified.
+    pub exhaustion_certified: bool,
+    /// Finite context witness identifier.
+    pub witness_id: String,
+    /// Comparison map to the old representation (hash).
+    pub comparison_hash: [u8; 32],
+    /// Rollback or migration record (hash).
+    pub rollback_hash: [u8; 32],
+    /// Level being lifted from.
+    pub source_level: usize,
+    /// Level being lifted to.
+    pub target_level: usize,
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_lift_license_construction_and_fields() {
+        let license = LiftLicense {
+            packet_hash: [0xAB; 32],
+            exhaustion_certified: true,
+            witness_id: "witness_001".to_string(),
+            comparison_hash: [0xCD; 32],
+            rollback_hash: [0xEF; 32],
+            source_level: 2,
+            target_level: 3,
+        };
+        assert_eq!(license.packet_hash, [0xAB; 32]);
+        assert!(license.exhaustion_certified);
+        assert_eq!(license.witness_id, "witness_001");
+        assert_eq!(license.comparison_hash, [0xCD; 32]);
+        assert_eq!(license.rollback_hash, [0xEF; 32]);
+        assert_eq!(license.source_level, 2);
+        assert_eq!(license.target_level, 3);
+    }
+
+    #[test]
+    fn test_lift_license_serde_roundtrip() {
+        let license = LiftLicense {
+            packet_hash: [1; 32],
+            exhaustion_certified: false,
+            witness_id: "w".to_string(),
+            comparison_hash: [2; 32],
+            rollback_hash: [3; 32],
+            source_level: 0,
+            target_level: 1,
+        };
+        let json = serde_json::to_string(&license).unwrap();
+        let restored: LiftLicense = serde_json::from_str(&json).unwrap();
+        assert_eq!(restored.witness_id, "w");
+        assert_eq!(restored.source_level, 0);
+    }
+}

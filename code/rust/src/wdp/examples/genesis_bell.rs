@@ -1,7 +1,7 @@
-#[path = "../../../tests/omega_wdp/common/genesis_bell_cases.rs"]
+#[path = "../../../../../vendor/engine/tests/engine_wdp/common/genesis_bell_cases.rs"]
 mod cases;
-use omega_solvers::solver_convex_farkas_feasibility::FeasibilityVerdict;
-use omega_wdp::genesis_bell::PassageBellExperiment;
+use engine_solvers::solver_convex_farkas_feasibility::FeasibilityVerdict;
+use engine_wdp::genesis_bell::PassageBellExperiment;
 fn main() -> Result<(), String> {
     for (name, request) in [
         (

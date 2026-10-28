@@ -3,7 +3,7 @@
 //!
 //! Explicit component inventory for a natural transformation (shape only).
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for component data attached to a nat-trans reference.

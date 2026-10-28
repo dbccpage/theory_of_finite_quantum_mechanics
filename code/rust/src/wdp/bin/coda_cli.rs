@@ -11,8 +11,8 @@ use num_traits::Zero;
 use serde::Serialize;
 use serde_json::Value;
 
-use omega_wdp::coda::pipeline::evaluate_coda_pipeline;
-use omega_wdp::coda::types::{MasterNormalFormOutcome, ProblemInstance};
+use engine_wdp::coda::pipeline::evaluate_coda_pipeline;
+use engine_wdp::coda::types::{MasterNormalFormOutcome, ProblemInstance};
 
 fn parse_rational(val: &Value) -> Result<BigRational, String> {
     if let Some(i) = val.as_i64() {

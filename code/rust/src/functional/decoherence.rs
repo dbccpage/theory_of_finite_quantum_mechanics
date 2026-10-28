@@ -7,7 +7,7 @@ fn check_well_formed(matrix: &BasicMatrix<GaussianRat>) -> Result<(), Decoherenc
     if matrix.rows() == 0 || matrix.cols() == 0 {
         return Err(DecoherenceError::Empty);
     }
-    omega_kernel::resource_limits::OperationLimits::default()
+    engine_kernel::resource_limits::OperationLimits::default()
         .check_dense_matrix(
             matrix.rows(),
             matrix.cols(),

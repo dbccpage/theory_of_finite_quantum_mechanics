@@ -1,5 +1,5 @@
 
-use omega_kernel::resource_limits::OperationLimits;
+use engine_kernel::resource_limits::OperationLimits;
 use std::collections::{BTreeMap, BTreeSet};
 
 use num_rational::BigRational;
@@ -128,8 +128,8 @@ impl U1Connection {
         for i in 0..first.total_dim {
             let mut sum = BigRational::zero();
             for j in 0..first.total_dim {
-                let delta = second.matrix.get(i, j).clone() - first.matrix.get(i, j).clone();
-                sum += delta.re.abs() + delta.im.abs();
+                let delta = second.matrix.get(i, j)?.clone() - first.matrix.get(i, j)?.clone();
+                sum += delta.real().abs() + delta.imag().abs();
             }
             row_sum_bounds.push(sum);
         }
@@ -183,10 +183,10 @@ mod tests {
     use super::*;
     use num_traits::Zero;
     use tfqm_holonomy::{compute_loop_holonomy, ConnectionLaplacian};
-    use omega_homology::scalar::{q, qr};
+    use engine_homology::scalar::{q, qr};
 
     fn phase(re: BigRational, im: BigRational) -> GaussianRational<BigRational> {
-        GaussianRational::new(re, im)
+        GaussianRational::new(re, im).expect("test phases are reduced rationals")
     }
 
     fn triangle(phases: [GaussianRational<BigRational>; 3]) -> U1Connection {
@@ -209,7 +209,7 @@ mod tests {
         let one = GaussianRational::one();
         let conn = triangle([one.clone(), one.clone(), one.clone()]);
         let hol = compute_loop_holonomy(conn.connection(), &loop_path()).unwrap();
-        assert_eq!(hol.get(0, 0), &one);
+        assert_eq!(hol.get(0, 0).unwrap(), &one);
 
         let lap = ConnectionLaplacian::compute(conn.complex(), conn.connection(), None).unwrap();
         assert!(lap.is_hermitian());
@@ -227,7 +227,7 @@ mod tests {
         let rotation = phase(qr(3, 5), qr(4, 5));
         let conn = triangle([rotation.clone(), one.clone(), one]);
         let hol = compute_loop_holonomy(conn.connection(), &loop_path()).unwrap();
-        assert_eq!(hol.get(0, 0), &rotation);
+        assert_eq!(hol.get(0, 0).unwrap(), &rotation);
 
         let gauge = BTreeMap::from([
             ("0".to_string(), phase(qr(5, 13), qr(12, 13))),
@@ -236,10 +236,10 @@ mod tests {
         ]);
         let gauged = conn.gauge_transform(&gauge).unwrap();
         let gauged_hol = compute_loop_holonomy(gauged.connection(), &loop_path()).unwrap();
-        assert_eq!(gauged_hol.get(0, 0), &rotation);
+        assert_eq!(gauged_hol.get(0, 0).unwrap(), &rotation);
 
         let lap = ConnectionLaplacian::compute(conn.complex(), conn.connection(), None).unwrap();
-        assert!(lap.has_spectral_gap());
+        assert!(lap.has_spectral_gap().unwrap());
     }
 
     #[test]

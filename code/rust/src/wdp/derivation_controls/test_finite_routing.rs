@@ -2,9 +2,9 @@ use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::finite_cochain_map::{CochainMap, CochainWindow};
 use num_rational::BigRational;
 use tfqm_category_theory::context_reflection::ContextSystem;
-use tfqm_functional::phi1::ExactPhi1Certificate;
-use omega_wdp::coda::diagnostic_routing::DiagnosticPacket;
-use omega_wdp::prime_algos::finite_routing::*;
+use engine_functional::phi1::ExactPhi1Certificate;
+use engine_wdp::coda::diagnostic_routing::DiagnosticPacket;
+use engine_wdp::prime_algos::finite_routing::*;
 fn q(x: i64) -> BigRational {
     BigRational::from_integer(x.into())
 }

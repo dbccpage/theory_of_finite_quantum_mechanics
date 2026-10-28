@@ -1,11 +1,11 @@
-use omega_contracts::mub_domain_ownership::{
+use engine_contracts::mub_domain_ownership::{
     validate_mub_ownership_contract_v1, CANONICAL_MUB_DOMAIN_OWNER_V1,
 };
 use tfqm_mub::runtime_adapter::{
     evaluate_mub6_json, evaluate_mub6_request, Mub6RuntimeEvidenceV1, Mub6RuntimeRequestV1,
 };
-use omega_policy::trichotomy::ObstructionDiagnosticClass;
-use omega_state::CodaTerminal;
+use engine_policy::trichotomy::ObstructionDiagnosticClass;
+use engine_state::CodaTerminal;
 
 fn exact_request(cover_discharged: bool) -> Mub6RuntimeRequestV1 {
     Mub6RuntimeRequestV1 {

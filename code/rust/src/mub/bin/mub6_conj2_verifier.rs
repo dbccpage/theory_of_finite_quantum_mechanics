@@ -8,7 +8,7 @@ use tfqm_mub::native::campaign::mub6_dita_seed_cover::{
 use tfqm_mub::native::exact::mub6_matolcsi_weiner_conj2::{
     verify_conjecture2_single, Conj2SingleResult,
 };
-use tfqm_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::cyclotomic::Cyc24;
 
 use serde::Serialize;
 use sha2::{Digest, Sha256};
@@ -197,7 +197,7 @@ fn main() {
     assert!(report_digest_is_valid(&report));
     let final_json = render_report(&report);
 
-    let out_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+    let out_dir = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     std::fs::create_dir_all(&out_dir).expect("artifact directory must be creatable");
     let out_path = out_dir.join("mub6_conj2_verification.json");
     std::fs::write(&out_path, final_json.as_bytes()).expect("artifact report must be writable");

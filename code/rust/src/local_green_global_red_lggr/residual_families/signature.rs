@@ -2,10 +2,10 @@
 use std::fmt;
 
 use blake3::Hasher;
-use omega_linear_algebra::backend::basic_matrix::CheckedNumeric;
+use linear_algebra::backend::basic_matrix::CheckedNumeric;
 use tfqm_functional::gamma2::ExactCochainComplexQ;
-use omega_homology::cochain_primitive_difference::CochainPrimitiveDifference;
-use omega_homology::quotient::{QuotientRelation, QuotientSpace};
+use engine_homology::cochain_primitive_difference::CochainPrimitiveDifference;
+use engine_homology::quotient::{QuotientRelation, QuotientSpace};
 use serde::Serialize;
 
 #[derive(Copy, Clone, Debug, Eq, Hash, PartialEq)]
@@ -40,7 +40,7 @@ impl std::error::Error for ShapeSignatureError {}
 
 fn cochain_shape_fingerprint(c0: usize, c1: usize, c2: usize) -> Vec<u8> {
     let mut out = Vec::with_capacity(128);
-    out.extend_from_slice(b"omega_homology::CochainPrimitiveDifference::shape_fingerprint::v1");
+    out.extend_from_slice(b"engine_homology::CochainPrimitiveDifference::shape_fingerprint::v1");
     out.extend_from_slice(&(c0 as u64).to_le_bytes());
     out.extend_from_slice(&(c1 as u64).to_le_bytes());
     out.extend_from_slice(&(c2 as u64).to_le_bytes());
@@ -140,18 +140,18 @@ where
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_linear_algebra::backend::basic_matrix::BasicMatrix;
+    use linear_algebra::backend::basic_matrix::BasicMatrix;
     use num_bigint::BigInt;
     use num_rational::{BigRational, Rational64};
-    use omega_homology::cochain_complex::{CochainComplex, TheoremProvenance};
-    use omega_homology::coefficient_domain::CoefficientDomain;
-    use omega_homology::hash::{Blake3Hash, ComplexHash};
-    use omega_homology::quotient::{QuotientRelation, QuotientSpace};
+    use engine_homology::cochain_complex::{CochainComplex, TheoremProvenance};
+    use engine_homology::coefficient_domain::CoefficientDomain;
+    use engine_homology::hash::{Blake3Hash, ComplexHash};
+    use engine_homology::quotient::{QuotientRelation, QuotientSpace};
 
-    type Q = omega_homology::scalar::Q;
+    type Q = engine_homology::scalar::Q;
 
     fn r(n: i64) -> Q {
-        omega_homology::scalar::q(n)
+        engine_homology::scalar::q(n)
     }
 
     fn br(n: i64) -> BigRational {

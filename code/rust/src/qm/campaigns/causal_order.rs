@@ -1,5 +1,5 @@
-use omega_homology::finite_poset::{FinitePoset, PosetError};
-use omega_homology::poset_census::{canonical_relations, labelled_posets};
+use engine_homology::finite_poset::{FinitePoset, PosetError};
+use engine_homology::poset_census::{canonical_relations, labelled_posets};
 use std::collections::BTreeMap;
 
 pub fn construct_c1() -> FinitePoset {

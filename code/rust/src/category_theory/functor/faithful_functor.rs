@@ -4,7 +4,7 @@
 //! Faithfulness claim (injective on Hom-sets) — shape only, not a proof.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a faithfulness claim on a functor reference.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

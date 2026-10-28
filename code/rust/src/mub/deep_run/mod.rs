@@ -9,77 +9,77 @@ use crate::native::exact::basis_gluing_gate::{
 use crate::native::exact::char_two_parametric_gate::{
     verify_current_char_two_parametric_gate, CharTwoParametricGateReport,
 };
-use omega_quantum_physics::mub::char_two_weyl_board::{
+use engine_quantum_physics::mub::char_two_weyl_board::{
     verify_current_char_two_weyl_board_schemas, CharTwoWeylBoardReport,
 };
-use omega_quantum_physics::mub::composite_completion_gate::{
+use engine_quantum_physics::mub::composite_completion_gate::{
     verify_current_composite_completion_gates, CompositeCompletionGateReport,
 };
-use omega_quantum_physics::mub::composite_controls::{
+use engine_quantum_physics::mub::composite_controls::{
     verify_composite_lower_controls, CompositeControlReport, CompositeControlStatus,
 };
-use omega_quantum_physics::mub::composite_tensor_family_gate::{
+use engine_quantum_physics::mub::composite_tensor_family_gate::{
     verify_composite_tensor_family_gate, CompositeTensorFamilyReport,
 };
-use omega_quantum_physics::mub::d10_controls::{
+use engine_quantum_physics::mub::d10_controls::{
     verify_cyclotomic120_controls, Cyclotomic120ControlReport, Cyclotomic120Status,
 };
 use crate::native::float_check::d10_wall_status::{current_d10_wall_status, D10WallStatusReport};
-use omega_quantum_physics::mub::dimension_stratification::{
+use engine_quantum_physics::mub::dimension_stratification::{
     current_dimension_stratification_reports, DimensionStratificationReport,
 };
 use crate::native::exact::extension::{
     assess_full_mub6, assess_general_mub_n as assess_general_extension, assess_mub10,
     ExtensionTerminal, ExtensionVerdict, FullMub6Census, GeneralMubEvidence, Mub10Census,
 };
-use omega_quantum_physics::mub::finite_projector_control::{
+use engine_quantum_physics::mub::finite_projector_control::{
     verify_current_finite_projector_controls, FiniteProjectorControlReport,
     FiniteProjectorControlStatus,
 };
 use crate::native::exact::global_atlas::{
     assess_current_global_atlas, AtlasStatus, GlobalAtlasAssessment,
 };
-use omega_quantum_physics::mub::gtmur_projector_ledger::{
+use engine_quantum_physics::mub::gtmur_projector_ledger::{
     verify_current_gtmur_projector_ledgers, GtmurProjectorLedgerReport,
 };
 use crate::native::exact::gtor_gttc_gate::{
     verify_gtor_gttc_gates, GtorGttcGateInputs, GtorGttcGateReport,
 };
-use omega_quantum_physics::mub::hilbert_transport::{
+use engine_quantum_physics::mub::hilbert_transport::{
     verify_current_hilbert_transport_schemas, HilbertTransportReport,
 };
 use crate::native::exact::local_transport::{
     check_pinned_transport_receipt, LocalTransportStatus, LocalTransportSubcertificate,
 };
-use omega_quantum_physics::mub::odd_prime_gauss_certificate_gate::{
+use engine_quantum_physics::mub::odd_prime_gauss_certificate_gate::{
     verify_current_odd_prime_gauss_certificate_gate, OddPrimeGaussCertificateReport,
 };
-use omega_quantum_physics::mub::odd_prime_power_controls::{
+use engine_quantum_physics::mub::odd_prime_power_controls::{
     verify_current_odd_prime_power_controls, OddPrimePowerControlReport, OddPrimePowerControlStatus,
 };
-use omega_quantum_physics::mub::odd_prime_power_field_theorem_gate::{
+use engine_quantum_physics::mub::odd_prime_power_field_theorem_gate::{
     verify_current_odd_prime_power_field_theorem_gate, OddPrimePowerFieldTheoremReport,
 };
-use omega_quantum_physics::mub::odd_prime_power_parametric_gate::{
+use engine_quantum_physics::mub::odd_prime_power_parametric_gate::{
     verify_current_odd_prime_power_parametric_gate, OddPrimePowerParametricGateReport,
 };
-use omega_quantum_physics::mub::odd_prime_power_weyl::{
+use engine_quantum_physics::mub::odd_prime_power_weyl::{
     verify_current_odd_prime_power_weyl_schemas, OddPrimePowerWeylReport,
 };
-use omega_quantum_physics::mub::odd_prime_weyl::{
+use engine_quantum_physics::mub::odd_prime_weyl::{
     verify_current_odd_prime_weyl_schemas, OddPrimeWeylReport,
 };
 use crate::native::exact::operator_ladder::{current_operator_ladder, OperatorAttempt};
-use omega_quantum_physics::mub::prime_controls::{
+use engine_quantum_physics::mub::prime_controls::{
     verify_prime_controls, verify_prime_power_controls, BenchmarkStatus, PrimeControlReport,
 };
-use omega_quantum_physics::mub::prime_power_gtmur_boundary::{
+use engine_quantum_physics::mub::prime_power_gtmur_boundary::{
     verify_prime_power_gtmur_boundary, PrimePowerGtmurBoundaryReport,
 };
-use omega_quantum_physics::mub::projector_algebra::{
+use engine_quantum_physics::mub::projector_algebra::{
     verify_current_projector_algebra_schemas, ProjectorAlgebraReport,
 };
-use omega_quantum_physics::mub::spectral_lift::{
+use engine_quantum_physics::mub::spectral_lift::{
     verify_current_spectral_lift_schemas, SpectralLiftReport,
 };
 use crate::primitive_map::{
@@ -259,8 +259,8 @@ fn collect_additional_terminalized_dimensions(
 fn is_terminalized_composite_gate(gate: &&CompositeCompletionGateReport) -> bool {
     matches!(
         gate.status,
-        omega_quantum_physics::mub::composite_completion_gate::CompositeCompletionStatus::CompleteWitnessAccepted
-            | omega_quantum_physics::mub::composite_completion_gate::CompositeCompletionStatus::NoGoCertificateAccepted
+        engine_quantum_physics::mub::composite_completion_gate::CompositeCompletionStatus::CompleteWitnessAccepted
+            | engine_quantum_physics::mub::composite_completion_gate::CompositeCompletionStatus::NoGoCertificateAccepted
     )
 }
 

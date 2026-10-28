@@ -1,0 +1,1414 @@
+use std::collections::{BTreeMap, BTreeSet};
+
+use omega_types::authority::AuthorityEffect;
+use serde::de::DeserializeOwned;
+use serde::{Deserialize, Serialize};
+use sha2::{Digest, Sha256};
+use thiserror::Error;
+
+use crate::gtoc4_transition_coverage::{
+    parse_gtoc4_verification_canonical_v1, Gtoc4TransitionCoverageVerificationV1,
+    S06_002_LIFT_RESIDUAL_ID,
+};
+use crate::gtoc_gtla_protocol::GtocTerminal;
+
+pub const GTOC6_PACKET_SCHEMA_VERSION: &str = "omega.gtoc6.defect-terminalization.packet.v1";
+pub const GTOC6_RECEIPT_SCHEMA_VERSION: &str = "omega.gtoc6.defect-terminalization.receipt.v1";
+pub const GTOC6_VERIFICATION_SCHEMA_VERSION: &str =
+    "omega.gtoc6.defect-terminalization.verification.v1";
+pub const S06_003_FROZEN_BASE: &str = "67a8ebdc642bb50121b64b0cab8e0df198cd99cc";
+pub const S06_003_PACKET_ID: &str = "omega-conductor-s06-003-gtoc6-terminalization-v1";
+pub const S06_003_GOAL_ID: &str = "S06-003:GTOC-6";
+pub const S06_003_PRODUCER_ID: &str = "witness:producer:s06-003-defect-matrix-v1";
+pub const S06_003_EVALUATOR_ID: &str = "witness:evaluator:s06-003-independent-v1";
+pub const S06_003_AUTHORITY_WITNESS_ID: &str = "witness:authority:s06-003-none-v1";
+pub const S06_003_EVIDENCE_CEILING: &str =
+    "one frozen three-defect, six-subclaim packet over the bounded S06-002 verification; the absent S14-005 GTOC-5 construction receipt remains a named proof-obligation survivor; no unrestricted decomposition theorem, authority, promotion, gate activation, or successor instantiation";
+pub const S06_003_GTOC5_RESIDUAL_ID: &str = "residual:s06-003:gtoc5-construction-receipt-absent";
+pub const S06_002_VERIFICATION_PATH: &str =
+    "omega_engine/crates/omega_state/tests/fixtures/s06_002_gtoc4_verification_v1.json";
+
+pub const S06_003_WRITE_SURFACE: [&str; 10] = [
+    "docs/omega-conductor-epic-v001.md",
+    "docs/saga_06_receipt_verification_and_terminalization.md",
+    "docs/sprint_s06_003.md",
+    "docs/status/omega_conductor_s06_003_status_2026-07-18.md",
+    "omega_engine/crates/omega_state/src/lib.rs",
+    "omega_engine/crates/omega_state/src/gtoc6_defect_terminalization.rs",
+    "omega_engine/crates/omega_state/tests/gtoc6_defect_terminalization.rs",
+    "omega_engine/crates/omega_state/tests/fixtures/s06_003_gtoc6_packet_v1.json",
+    "omega_engine/crates/omega_state/tests/fixtures/s06_003_gtoc6_receipt_v1.json",
+    "omega_engine/crates/omega_state/tests/fixtures/s06_003_gtoc6_verification_v1.json",
+];
+
+pub const S06_003_SOURCE_MANIFEST: [(&str, &str, u64); 19] = [
+    (
+        "docs/gtoc-canonicalization-remaining-work.md",
+        "e7ee9ae3c8b34e6b8985e21c528fe3926655ca3567c61a0bc28b446f6f7b0d81",
+        26_373,
+    ),
+    (
+        "docs/omega-conductor-epic-v001.md",
+        "06f8cc6ffd006889d9b3fd36a98072242a78e0194bfca703133b5423fba4923e",
+        64_471,
+    ),
+    (
+        "docs/saga_06_receipt_verification_and_terminalization.md",
+        "dad9f0b55eaec43933f279dc166ef0254d9da63f86bc78cff042fa688a6b26e0",
+        9_082,
+    ),
+    (
+        "docs/sprint_s06_002.md",
+        "35ed34c6f89d0ce3453e9fc746e69394a1b6de457cd3bc2963ed640591063003",
+        14_323,
+    ),
+    (
+        "docs/sprint_s06_003.md",
+        "22acc3988a1f9147b049434c5d718d171ce71f64a8d9a8f096ce356700daf5a8",
+        8_346,
+    ),
+    (
+        "docs/sprint_s14_005.md",
+        "3e93a78754782164cc8352f46464873b04849b978c422d63dd4dc7bbc7366629",
+        8_522,
+    ),
+    (
+        "docs/status-vocabulary.md",
+        "d39813a9e440a6c7ef45276fadf1c42cb5a34aea2368b94185ecd2500fae2d54",
+        4_309,
+    ),
+    (
+        "docs/status/omega_conductor_s06_002_status_2026-07-18.md",
+        "14cb150cb5b298d344f5f003ef0d0dc31770e4836b931405b37d453bdbef7b0f",
+        12_454,
+    ),
+    (
+        "omega_engine/crates/omega_state/Cargo.toml",
+        "3cfa4b23be89d16d8eec1074126c9faef9828dbf2c794af7eee2a058fb9e90b6",
+        528,
+    ),
+    (
+        "omega_engine/crates/omega_state/src/gtoc_gtla_protocol.rs",
+        "da57f9f89dd396cbd1bca72880d024c81a4d3238bd6f78af9add06572c3f160f",
+        35_825,
+    ),
+    (
+        "omega_engine/crates/omega_state/src/gtoc_gtla_run_receipt.rs",
+        "cb3012dfcfc3ef6e16179bbed45795c88e46375234547a65bd4a4d1aa6a0e806",
+        61_366,
+    ),
+    (
+        "omega_engine/crates/omega_state/src/gtoc4_transition_coverage.rs",
+        "a19d524e1b4caaadd1150f00ce923cb0278d7ee9c0b02b0542543153724602de",
+        47_470,
+    ),
+    (
+        "omega_engine/crates/omega_state/src/lib.rs",
+        "930f4cd800029ceb8c34429d5ca9e72b58abeb54ccaa62ea5fc6cdff022f8c2c",
+        1_707,
+    ),
+    (
+        "omega_engine/crates/omega_state/src/residual_receipt.rs",
+        "e82676fec218c47f0ae1dbade554bbfa8ba48ceddb123efd534357cd4a01d62c",
+        2_756,
+    ),
+    (
+        "omega_engine/crates/omega_state/src/terminal_status.rs",
+        "b0c43eb6036fa0bd473f17a7f62a0a42550b13896abbccae856b97bfa0993e1c",
+        12_421,
+    ),
+    (
+        "omega_engine/crates/omega_types/src/authority.rs",
+        "42051a106954daa5ca2170c79bbf7d4cc9b04e0f7b554b8807251a0da552d2a9",
+        39_913,
+    ),
+    (
+        "omega_engine/crates/omega_state/tests/fixtures/s06_002_gtoc4_packet_v1.json",
+        "3a657f0149acc85c285164aff0259a727e44e7e9a5cda206ae0b52800fa9f4a4",
+        8_512,
+    ),
+    (
+        "omega_engine/crates/omega_state/tests/fixtures/s06_002_gtoc4_receipt_v1.json",
+        "23b7f8c9f896c2ba5ec1b57e8e3650391ce028df81d19d3c69001616a9e32a6b",
+        6_682,
+    ),
+    (
+        S06_002_VERIFICATION_PATH,
+        "b429c165f8e2dc09f72ff07db0c26891942c315773bf6e859da99e97e7f50170",
+        4_737,
+    ),
+];
+
+pub const S06_003_INPUT_ARTIFACTS: [(&str, &str, u64); 1] = [(
+    S06_002_VERIFICATION_PATH,
+    "b429c165f8e2dc09f72ff07db0c26891942c315773bf6e859da99e97e7f50170",
+    4_737,
+)];
+
+pub type Gtoc6ArtifactBytesV1 = BTreeMap<String, Vec<u8>>;
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct FrozenGtoc6SourceV1 {
+    pub path: String,
+    pub sha256: String,
+    pub bytes: u64,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Gtoc6ArtifactBindingV1 {
+    pub path: String,
+    pub sha256: String,
+    pub bytes: u64,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Gtoc6BudgetsV1 {
+    pub attempt_budget: u32,
+    pub repair_budget: u32,
+    pub successor_budget: u32,
+    pub time_budget_seconds: u32,
+    pub process_budget: u32,
+    pub token_budget: u32,
+    pub defect_budget: u32,
+    pub subclaim_budget: u32,
+    pub residual_budget: u32,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct FrozenGtoc6ObserverV1 {
+    pub observer_id: String,
+    pub source_manifest_sha256: String,
+    pub visible_artifact_sha256: Vec<String>,
+    pub hidden_context_classes: Vec<String>,
+    pub model_context_available: bool,
+    pub promotion_constructor_available: bool,
+    pub authorized_local_result_constructor_available: bool,
+    pub authority_effect: AuthorityEffect,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
+pub enum SurvivorRouteV1 {
+    CarryForward,
+    ProofObligation,
+    OperatorNeeded,
+    LiftLicenseNeeded,
+    OracleNeeded,
+    HumanDecision,
+    TypedRefusal,
+    SuccessorPacketCandidate,
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
+pub enum DiagnosticRuleV1 {
+    PredecessorVerification,
+    ResidualCarryForward,
+    DependencyReceipt,
+    InvariantCheck,
+    Unavailable,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Gtoc6SubclaimSpecV1 {
+    pub sequence: u32,
+    pub subclaim_id: String,
+    pub rule: DiagnosticRuleV1,
+    pub evidence_ref: String,
+    pub expected_residual_id: Option<String>,
+    pub expected_survivor_route: Option<SurvivorRouteV1>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Gtoc6DefectSpecV1 {
+    pub sequence: u32,
+    pub defect_id: String,
+    pub subclaims: Vec<Gtoc6SubclaimSpecV1>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct AggregationTruthRowV1 {
+    pub row_id: String,
+    pub local_terminals: Vec<GtocTerminal>,
+    pub expected_aggregate: GtocTerminal,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Gtoc6DefectTerminalizationPacketV1 {
+    pub schema_version: String,
+    pub packet_id: String,
+    pub goal_id: String,
+    pub frozen_base: String,
+    pub observer: FrozenGtoc6ObserverV1,
+    pub observer_sha256: String,
+    pub source_manifest: Vec<FrozenGtoc6SourceV1>,
+    pub input_artifacts: Vec<Gtoc6ArtifactBindingV1>,
+    pub defects: Vec<Gtoc6DefectSpecV1>,
+    pub aggregation_truth_table: Vec<AggregationTruthRowV1>,
+    pub legal_terminals: Vec<GtocTerminal>,
+    pub budgets: Gtoc6BudgetsV1,
+    pub evidence_ceiling: String,
+    pub exact_write_surface: Vec<String>,
+    pub producer_id: String,
+    pub evaluator_id: String,
+    pub authority_witness_id: String,
+    pub prior_work_ledger: Vec<String>,
+    pub promotion_constructor_available: bool,
+    pub authorized_local_result_constructor_available: bool,
+    pub authority_effect: AuthorityEffect,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub enum DiagnosticEvidenceV1 {
+    PredecessorVerification {
+        artifact_path: String,
+        verified: bool,
+    },
+    ResidualCarryForward {
+        source_residual_id: String,
+        preserved: bool,
+    },
+    DependencyReceipt {
+        receipt_id: String,
+        present: bool,
+        verified: bool,
+    },
+    InvariantCheck {
+        invariant_id: String,
+        passed: bool,
+    },
+    RuleUnavailable {
+        rule_id: String,
+    },
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Gtoc6DiagnosticOutcomeV1 {
+    pub terminal: GtocTerminal,
+    pub survivor_route: Option<SurvivorRouteV1>,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Gtoc6SubclaimDiagnosticV1 {
+    pub sequence: u32,
+    pub subclaim_id: String,
+    pub evidence: DiagnosticEvidenceV1,
+    pub evidence_refs: Vec<String>,
+    pub residual_ids: Vec<String>,
+    pub claimed_terminal: GtocTerminal,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Gtoc6DefectDiagnosticV1 {
+    pub sequence: u32,
+    pub defect_id: String,
+    pub subclaims: Vec<Gtoc6SubclaimDiagnosticV1>,
+    pub residual_ids: Vec<String>,
+    pub claimed_terminal: GtocTerminal,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Gtoc6ResidualLedgerEntryV1 {
+    pub residual_id: String,
+    pub defect_id: String,
+    pub subclaim_id: String,
+    pub terminal: GtocTerminal,
+    pub survivor_route: SurvivorRouteV1,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Gtoc6DefectTerminalizationReceiptV1 {
+    pub schema_version: String,
+    pub packet_id: String,
+    pub packet_sha256: String,
+    pub producer_id: String,
+    pub defects: Vec<Gtoc6DefectDiagnosticV1>,
+    pub residual_ledger: Vec<Gtoc6ResidualLedgerEntryV1>,
+    pub claimed_terminal: GtocTerminal,
+    pub promotion_requested: bool,
+    pub promotion_constructor_called: bool,
+    pub authorized_local_result_created: bool,
+    pub authority_effect: AuthorityEffect,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Gtoc6DefectVerificationEvidenceV1 {
+    pub sequence: u32,
+    pub defect_id: String,
+    pub subclaim_terminals: Vec<GtocTerminal>,
+    pub residual_ids: Vec<String>,
+    pub terminal: GtocTerminal,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct Gtoc6DefectTerminalizationVerificationV1 {
+    pub schema_version: String,
+    pub packet_id: String,
+    pub packet_sha256: String,
+    pub observer_sha256: String,
+    pub receipt_sha256: String,
+    pub artifact_closure_sha256: String,
+    pub diagnostic_matrix_sha256: String,
+    pub residual_ledger_sha256: String,
+    pub aggregation_truth_table_sha256: String,
+    pub evaluator_id: String,
+    pub authority_witness_id: String,
+    pub defect_count: u32,
+    pub subclaim_count: u32,
+    pub residual_count: u32,
+    pub defect_evidence: Vec<Gtoc6DefectVerificationEvidenceV1>,
+    pub every_defect_classified_once: bool,
+    pub every_subclaim_classified_once: bool,
+    pub every_local_terminal_recomputed: bool,
+    pub every_residual_conserved: bool,
+    pub aggregation_truth_table_replayed: bool,
+    pub aggregation_permutation_invariant: bool,
+    pub predecessor_receipt_verified: bool,
+    pub gtoc5_dependency_receipt_present: bool,
+    pub gtoc5_dependency_preserved_as_residual: bool,
+    pub residual_ids: Vec<String>,
+    pub terminal: GtocTerminal,
+    pub promotion_requested: bool,
+    pub promotion_constructor_called: bool,
+    pub authorized_local_result_created: bool,
+    pub authority_effect: AuthorityEffect,
+}
+
+#[derive(Debug, Clone, PartialEq, Eq, Error)]
+pub enum Gtoc6Error {
+    #[error("the packet differs from the frozen S06-003 packet")]
+    PacketDrift,
+    #[error("the frozen packet boundary changed")]
+    PacketBoundaryChanged,
+    #[error("the receipt does not bind to the frozen packet")]
+    ReceiptBindingMismatch,
+    #[error("verification attempted to expand authority")]
+    AuthorityExpanded,
+    #[error("missing frozen artifact: {0}")]
+    MissingArtifact(String),
+    #[error("the frozen artifact set changed")]
+    ArtifactSetMismatch,
+    #[error("artifact length mismatch: {0}")]
+    ArtifactLengthMismatch(String),
+    #[error("artifact hash mismatch: {0}")]
+    ArtifactHashMismatch(String),
+    #[error("invalid predecessor artifact: {0}")]
+    InvalidPredecessor(String),
+    #[error("defect count mismatch: expected {expected}, found {found}")]
+    DefectCountMismatch { expected: usize, found: usize },
+    #[error("defect attribution mismatch: {0}")]
+    DefectAttributionMismatch(String),
+    #[error("duplicate defect id: {0}")]
+    DuplicateDefectId(String),
+    #[error("duplicate subclaim id: {0}")]
+    DuplicateSubclaimId(String),
+    #[error("subclaim count mismatch for {defect_id}: expected {expected}, found {found}")]
+    SubclaimCountMismatch {
+        defect_id: String,
+        expected: usize,
+        found: usize,
+    },
+    #[error("subclaim attribution mismatch: {0}")]
+    SubclaimAttributionMismatch(String),
+    #[error("diagnostic evidence mismatch: {0}")]
+    DiagnosticEvidenceMismatch(String),
+    #[error("diagnostic resolved to Invalid: {0}")]
+    InvalidDiagnostic(String),
+    #[error(
+        "subclaim terminal mismatch for {subclaim_id}: expected {expected:?}, found {found:?}"
+    )]
+    SubclaimTerminalMismatch {
+        subclaim_id: String,
+        expected: GtocTerminal,
+        found: GtocTerminal,
+    },
+    #[error("subclaim residual mismatch: {0}")]
+    SubclaimResidualMismatch(String),
+    #[error("defect terminal mismatch for {defect_id}: expected {expected:?}, found {found:?}")]
+    DefectTerminalMismatch {
+        defect_id: String,
+        expected: GtocTerminal,
+        found: GtocTerminal,
+    },
+    #[error("defect residual mismatch: {0}")]
+    DefectResidualMismatch(String),
+    #[error("duplicate residual id: {0}")]
+    DuplicateResidualId(String),
+    #[error("the residual ledger differs from recomputed diagnostics")]
+    ResidualLedgerMismatch,
+    #[error("aggregate terminal mismatch: expected {expected:?}, found {found:?}")]
+    AggregateTerminalMismatch {
+        expected: GtocTerminal,
+        found: GtocTerminal,
+    },
+    #[error("aggregation truth row failed: {0}")]
+    AggregationTruthMismatch(String),
+    #[error("cannot aggregate an empty terminal set")]
+    EmptyTerminalSet,
+    #[error("empty required field: {0}")]
+    EmptyField(String),
+    #[error("JSON operation failed: {0}")]
+    Json(String),
+    #[error("JSON input is invalid: {0}")]
+    Decode(String),
+    #[error("{0} is not canonical JSONL")]
+    NonCanonicalJson(String),
+}
+
+impl Gtoc6Error {
+    pub fn terminal_route(&self) -> GtocTerminal {
+        match self {
+            Self::MissingArtifact(_) | Self::Json(_) => GtocTerminal::InfrastructureFailure,
+            Self::AuthorityExpanded => GtocTerminal::Refused,
+            _ => GtocTerminal::Invalid,
+        }
+    }
+}
+
+pub fn canonical_s06_003_packet_v1() -> Gtoc6DefectTerminalizationPacketV1 {
+    let source_manifest = S06_003_SOURCE_MANIFEST
+        .iter()
+        .map(|(path, sha256, bytes)| FrozenGtoc6SourceV1 {
+            path: (*path).to_owned(),
+            sha256: (*sha256).to_owned(),
+            bytes: *bytes,
+        })
+        .collect::<Vec<_>>();
+    let input_artifacts = S06_003_INPUT_ARTIFACTS
+        .iter()
+        .map(|(path, sha256, bytes)| Gtoc6ArtifactBindingV1 {
+            path: (*path).to_owned(),
+            sha256: (*sha256).to_owned(),
+            bytes: *bytes,
+        })
+        .collect::<Vec<_>>();
+    let observer = FrozenGtoc6ObserverV1 {
+        observer_id: S06_003_EVALUATOR_ID.to_owned(),
+        source_manifest_sha256: sha256_json_v1(&source_manifest)
+            .expect("frozen source manifest must serialize"),
+        visible_artifact_sha256: input_artifacts
+            .iter()
+            .map(|artifact| artifact.sha256.clone())
+            .collect(),
+        hidden_context_classes: vec![
+            "authorized_local_result_constructor".to_owned(),
+            "dynamic_defect_registry".to_owned(),
+            "human_promotion_state".to_owned(),
+            "model_context".to_owned(),
+            "production_credentials".to_owned(),
+            "s14_005_gtoc5_construction_receipt".to_owned(),
+        ],
+        model_context_available: false,
+        promotion_constructor_available: false,
+        authorized_local_result_constructor_available: false,
+        authority_effect: AuthorityEffect::None,
+    };
+    let observer_sha256 =
+        sha256_json_v1(&observer).expect("frozen observer must serialize deterministically");
+    Gtoc6DefectTerminalizationPacketV1 {
+        schema_version: GTOC6_PACKET_SCHEMA_VERSION.to_owned(),
+        packet_id: S06_003_PACKET_ID.to_owned(),
+        goal_id: S06_003_GOAL_ID.to_owned(),
+        frozen_base: S06_003_FROZEN_BASE.to_owned(),
+        observer,
+        observer_sha256,
+        source_manifest,
+        input_artifacts,
+        defects: canonical_defect_specs_v1(),
+        aggregation_truth_table: canonical_aggregation_truth_table_v1(),
+        legal_terminals: GtocTerminal::ALL.to_vec(),
+        budgets: Gtoc6BudgetsV1 {
+            attempt_budget: 1,
+            repair_budget: 2,
+            successor_budget: 1,
+            time_budget_seconds: 28_800,
+            process_budget: 4,
+            token_budget: 200_000,
+            defect_budget: 3,
+            subclaim_budget: 6,
+            residual_budget: 2,
+        },
+        evidence_ceiling: S06_003_EVIDENCE_CEILING.to_owned(),
+        exact_write_surface: S06_003_WRITE_SURFACE
+            .iter()
+            .map(|path| (*path).to_owned())
+            .collect(),
+        producer_id: S06_003_PRODUCER_ID.to_owned(),
+        evaluator_id: S06_003_EVALUATOR_ID.to_owned(),
+        authority_witness_id: S06_003_AUTHORITY_WITNESS_ID.to_owned(),
+        prior_work_ledger: vec![
+            "S06-001 bounded receipt-DAG verification; authority None".to_owned(),
+            "S06-002 bounded GTOC-4 transition coverage; lift residual preserved".to_owned(),
+            "S14-005 GTOC-5 construction receipt absent at frozen base".to_owned(),
+            "gtoc_gtla_run_receipt.rs partial-repair aggregate semantics".to_owned(),
+        ],
+        promotion_constructor_available: false,
+        authorized_local_result_constructor_available: false,
+        authority_effect: AuthorityEffect::None,
+    }
+}
+
+pub fn canonical_s06_003_receipt_v1() -> Result<Gtoc6DefectTerminalizationReceiptV1, Gtoc6Error> {
+    let packet = canonical_s06_003_packet_v1();
+    let defects = vec![
+        Gtoc6DefectDiagnosticV1 {
+            sequence: 0,
+            defect_id: "defect:s06-003:gtoc4-predecessor".to_owned(),
+            subclaims: vec![
+                subclaim_receipt_v1(
+                    0,
+                    "subclaim:s06-003:gtoc4-verification-bound",
+                    DiagnosticEvidenceV1::PredecessorVerification {
+                        artifact_path: S06_002_VERIFICATION_PATH.to_owned(),
+                        verified: true,
+                    },
+                    "artifact:s06-002:gtoc4-verification",
+                    Vec::new(),
+                    GtocTerminal::ExactRepair,
+                ),
+                subclaim_receipt_v1(
+                    1,
+                    "subclaim:s06-003:gtoc4-lift-residual-carried",
+                    DiagnosticEvidenceV1::ResidualCarryForward {
+                        source_residual_id: S06_002_LIFT_RESIDUAL_ID.to_owned(),
+                        preserved: true,
+                    },
+                    "residual:s06-002:lift-license-not-issued",
+                    vec![S06_002_LIFT_RESIDUAL_ID.to_owned()],
+                    GtocTerminal::StabilizedSurvivor,
+                ),
+            ],
+            residual_ids: vec![S06_002_LIFT_RESIDUAL_ID.to_owned()],
+            claimed_terminal: GtocTerminal::StabilizedSurvivor,
+        },
+        Gtoc6DefectDiagnosticV1 {
+            sequence: 1,
+            defect_id: "defect:s06-003:gtoc5-authority-path".to_owned(),
+            subclaims: vec![subclaim_receipt_v1(
+                0,
+                "subclaim:s06-003:gtoc5-construction-receipt",
+                DiagnosticEvidenceV1::DependencyReceipt {
+                    receipt_id: "S14-005:GTOC-5".to_owned(),
+                    present: false,
+                    verified: false,
+                },
+                "dependency:S14-005:GTOC-5",
+                vec![S06_003_GTOC5_RESIDUAL_ID.to_owned()],
+                GtocTerminal::OpenObstruction,
+            )],
+            residual_ids: vec![S06_003_GTOC5_RESIDUAL_ID.to_owned()],
+            claimed_terminal: GtocTerminal::OpenObstruction,
+        },
+        Gtoc6DefectDiagnosticV1 {
+            sequence: 2,
+            defect_id: "defect:s06-003:aggregation-kernel".to_owned(),
+            subclaims: vec![
+                invariant_subclaim_receipt_v1(
+                    0,
+                    "subclaim:s06-003:defect-id-uniqueness",
+                    "invariant:s06-003:defect-id-uniqueness",
+                ),
+                invariant_subclaim_receipt_v1(
+                    1,
+                    "subclaim:s06-003:residual-conservation",
+                    "invariant:s06-003:residual-conservation",
+                ),
+                invariant_subclaim_receipt_v1(
+                    2,
+                    "subclaim:s06-003:terminal-derivation",
+                    "invariant:s06-003:terminal-derivation",
+                ),
+            ],
+            residual_ids: Vec::new(),
+            claimed_terminal: GtocTerminal::ExactRepair,
+        },
+    ];
+    let residual_ledger = vec![
+        Gtoc6ResidualLedgerEntryV1 {
+            residual_id: S06_002_LIFT_RESIDUAL_ID.to_owned(),
+            defect_id: "defect:s06-003:gtoc4-predecessor".to_owned(),
+            subclaim_id: "subclaim:s06-003:gtoc4-lift-residual-carried".to_owned(),
+            terminal: GtocTerminal::StabilizedSurvivor,
+            survivor_route: SurvivorRouteV1::CarryForward,
+        },
+        Gtoc6ResidualLedgerEntryV1 {
+            residual_id: S06_003_GTOC5_RESIDUAL_ID.to_owned(),
+            defect_id: "defect:s06-003:gtoc5-authority-path".to_owned(),
+            subclaim_id: "subclaim:s06-003:gtoc5-construction-receipt".to_owned(),
+            terminal: GtocTerminal::OpenObstruction,
+            survivor_route: SurvivorRouteV1::ProofObligation,
+        },
+    ];
+    Ok(Gtoc6DefectTerminalizationReceiptV1 {
+        schema_version: GTOC6_RECEIPT_SCHEMA_VERSION.to_owned(),
+        packet_id: packet.packet_id.clone(),
+        packet_sha256: gtoc6_packet_sha256_v1(&packet)?,
+        producer_id: S06_003_PRODUCER_ID.to_owned(),
+        defects,
+        residual_ledger,
+        claimed_terminal: GtocTerminal::StabilizedSurvivor,
+        promotion_requested: false,
+        promotion_constructor_called: false,
+        authorized_local_result_created: false,
+        authority_effect: AuthorityEffect::None,
+    })
+}
+
+pub fn classify_gtoc6_diagnostic_v1(
+    rule: DiagnosticRuleV1,
+    evidence: &DiagnosticEvidenceV1,
+) -> Result<Gtoc6DiagnosticOutcomeV1, Gtoc6Error> {
+    let outcome = match (rule, evidence) {
+        (
+            DiagnosticRuleV1::PredecessorVerification,
+            DiagnosticEvidenceV1::PredecessorVerification { verified, .. },
+        ) => Gtoc6DiagnosticOutcomeV1 {
+            terminal: if *verified {
+                GtocTerminal::ExactRepair
+            } else {
+                GtocTerminal::Invalid
+            },
+            survivor_route: None,
+        },
+        (
+            DiagnosticRuleV1::ResidualCarryForward,
+            DiagnosticEvidenceV1::ResidualCarryForward { preserved, .. },
+        ) => Gtoc6DiagnosticOutcomeV1 {
+            terminal: if *preserved {
+                GtocTerminal::StabilizedSurvivor
+            } else {
+                GtocTerminal::Invalid
+            },
+            survivor_route: preserved.then_some(SurvivorRouteV1::CarryForward),
+        },
+        (
+            DiagnosticRuleV1::DependencyReceipt,
+            DiagnosticEvidenceV1::DependencyReceipt {
+                present, verified, ..
+            },
+        ) => match (*present, *verified) {
+            (true, true) => Gtoc6DiagnosticOutcomeV1 {
+                terminal: GtocTerminal::ExactRepair,
+                survivor_route: None,
+            },
+            (false, false) => Gtoc6DiagnosticOutcomeV1 {
+                terminal: GtocTerminal::OpenObstruction,
+                survivor_route: Some(SurvivorRouteV1::ProofObligation),
+            },
+            _ => Gtoc6DiagnosticOutcomeV1 {
+                terminal: GtocTerminal::Invalid,
+                survivor_route: None,
+            },
+        },
+        (DiagnosticRuleV1::InvariantCheck, DiagnosticEvidenceV1::InvariantCheck { passed, .. }) => {
+            Gtoc6DiagnosticOutcomeV1 {
+                terminal: if *passed {
+                    GtocTerminal::ExactRepair
+                } else {
+                    GtocTerminal::Invalid
+                },
+                survivor_route: None,
+            }
+        }
+        (DiagnosticRuleV1::Unavailable, DiagnosticEvidenceV1::RuleUnavailable { rule_id }) => {
+            require_text("diagnostic.rule_id", rule_id)?;
+            Gtoc6DiagnosticOutcomeV1 {
+                terminal: GtocTerminal::OpenObstruction,
+                survivor_route: Some(SurvivorRouteV1::OperatorNeeded),
+            }
+        }
+        _ => {
+            return Err(Gtoc6Error::DiagnosticEvidenceMismatch(
+                "rule/evidence variant".to_owned(),
+            ))
+        }
+    };
+    Ok(outcome)
+}
+
+pub fn aggregate_gtoc6_terminals_v1(
+    terminals: &[GtocTerminal],
+) -> Result<GtocTerminal, Gtoc6Error> {
+    if terminals.is_empty() {
+        return Err(Gtoc6Error::EmptyTerminalSet);
+    }
+    let mut exact = 0;
+    let mut stabilized = 0;
+    let mut open = 0;
+    let mut lift = 0;
+    let mut oracle = 0;
+    let mut refused = 0;
+    let mut invalid = 0;
+    let mut infrastructure = 0;
+    for terminal in terminals {
+        match terminal {
+            GtocTerminal::ExactRepair => exact += 1,
+            GtocTerminal::StabilizedSurvivor => stabilized += 1,
+            GtocTerminal::OpenObstruction => open += 1,
+            GtocTerminal::LiftLicenseNeeded => lift += 1,
+            GtocTerminal::OracleNeeded => oracle += 1,
+            GtocTerminal::Refused => refused += 1,
+            GtocTerminal::Invalid => invalid += 1,
+            GtocTerminal::InfrastructureFailure => infrastructure += 1,
+        }
+    }
+
+    if infrastructure > 0 {
+        return Ok(GtocTerminal::InfrastructureFailure);
+    }
+    if invalid > 0 {
+        return Ok(GtocTerminal::Invalid);
+    }
+    if refused > 0 {
+        return Ok(GtocTerminal::Refused);
+    }
+    if oracle > 0 {
+        return Ok(GtocTerminal::OracleNeeded);
+    }
+    if lift > 0 {
+        return Ok(GtocTerminal::LiftLicenseNeeded);
+    }
+    if open > 0 && exact > 0 {
+        Ok(GtocTerminal::StabilizedSurvivor)
+    } else if open > 0 {
+        Ok(GtocTerminal::OpenObstruction)
+    } else if stabilized > 0 {
+        Ok(GtocTerminal::StabilizedSurvivor)
+    } else {
+        Ok(GtocTerminal::ExactRepair)
+    }
+}
+
+pub fn verify_gtoc6_defect_terminalization_v1(
+    packet: &Gtoc6DefectTerminalizationPacketV1,
+    receipt: &Gtoc6DefectTerminalizationReceiptV1,
+    artifact_bytes: &Gtoc6ArtifactBytesV1,
+) -> Result<Gtoc6DefectTerminalizationVerificationV1, Gtoc6Error> {
+    if packet != &canonical_s06_003_packet_v1() {
+        return Err(Gtoc6Error::PacketDrift);
+    }
+    if packet.schema_version != GTOC6_PACKET_SCHEMA_VERSION
+        || packet.observer_sha256 != gtoc6_observer_sha256_v1(&packet.observer)?
+        || packet.producer_id == packet.evaluator_id
+        || packet.producer_id == packet.authority_witness_id
+        || packet.evaluator_id == packet.authority_witness_id
+        || !packet.authority_effect.is_none()
+        || !packet.observer.authority_effect.is_none()
+        || packet.promotion_constructor_available
+        || packet.authorized_local_result_constructor_available
+        || packet.observer.promotion_constructor_available
+        || packet
+            .observer
+            .authorized_local_result_constructor_available
+    {
+        return Err(Gtoc6Error::PacketBoundaryChanged);
+    }
+    let packet_sha256 = gtoc6_packet_sha256_v1(packet)?;
+    if receipt.schema_version != GTOC6_RECEIPT_SCHEMA_VERSION
+        || receipt.packet_id != packet.packet_id
+        || receipt.packet_sha256 != packet_sha256
+        || receipt.producer_id != packet.producer_id
+    {
+        return Err(Gtoc6Error::ReceiptBindingMismatch);
+    }
+    if !receipt.authority_effect.is_none()
+        || receipt.promotion_requested
+        || receipt.promotion_constructor_called
+        || receipt.authorized_local_result_created
+    {
+        return Err(Gtoc6Error::AuthorityExpanded);
+    }
+
+    verify_s06_002_artifact_v1(packet, artifact_bytes)?;
+    verify_truth_table_v1(&packet.aggregation_truth_table)?;
+
+    if receipt.defects.len() != packet.defects.len() {
+        return Err(Gtoc6Error::DefectCountMismatch {
+            expected: packet.defects.len(),
+            found: receipt.defects.len(),
+        });
+    }
+    if receipt.defects.len() > packet.budgets.defect_budget as usize {
+        return Err(Gtoc6Error::DefectCountMismatch {
+            expected: packet.budgets.defect_budget as usize,
+            found: receipt.defects.len(),
+        });
+    }
+    let mut defect_ids = BTreeSet::new();
+    let mut subclaim_ids = BTreeSet::new();
+    let mut residual_ids = BTreeSet::new();
+    let mut expected_ledger = Vec::new();
+    let mut defect_evidence = Vec::new();
+    let mut total_subclaims = 0_usize;
+
+    for (spec, defect) in packet.defects.iter().zip(&receipt.defects) {
+        if !defect_ids.insert(defect.defect_id.clone()) {
+            return Err(Gtoc6Error::DuplicateDefectId(defect.defect_id.clone()));
+        }
+        if defect.sequence != spec.sequence || defect.defect_id != spec.defect_id {
+            return Err(Gtoc6Error::DefectAttributionMismatch(
+                spec.defect_id.clone(),
+            ));
+        }
+        if defect.subclaims.len() != spec.subclaims.len() {
+            return Err(Gtoc6Error::SubclaimCountMismatch {
+                defect_id: defect.defect_id.clone(),
+                expected: spec.subclaims.len(),
+                found: defect.subclaims.len(),
+            });
+        }
+        total_subclaims += defect.subclaims.len();
+        if total_subclaims > packet.budgets.subclaim_budget as usize {
+            return Err(Gtoc6Error::SubclaimCountMismatch {
+                defect_id: defect.defect_id.clone(),
+                expected: packet.budgets.subclaim_budget as usize,
+                found: total_subclaims,
+            });
+        }
+
+        let mut local_terminals = Vec::with_capacity(defect.subclaims.len());
+        let mut local_residuals = Vec::new();
+        for (subclaim_spec, subclaim) in spec.subclaims.iter().zip(&defect.subclaims) {
+            if !subclaim_ids.insert(subclaim.subclaim_id.clone()) {
+                return Err(Gtoc6Error::DuplicateSubclaimId(
+                    subclaim.subclaim_id.clone(),
+                ));
+            }
+            if subclaim.sequence != subclaim_spec.sequence
+                || subclaim.subclaim_id != subclaim_spec.subclaim_id
+            {
+                return Err(Gtoc6Error::SubclaimAttributionMismatch(
+                    subclaim_spec.subclaim_id.clone(),
+                ));
+            }
+            if subclaim.evidence != expected_evidence_v1(&subclaim_spec.subclaim_id)?
+                || subclaim.evidence_refs != [subclaim_spec.evidence_ref.clone()]
+            {
+                return Err(Gtoc6Error::DiagnosticEvidenceMismatch(
+                    subclaim.subclaim_id.clone(),
+                ));
+            }
+            let outcome = classify_gtoc6_diagnostic_v1(subclaim_spec.rule, &subclaim.evidence)?;
+            if outcome.terminal == GtocTerminal::Invalid {
+                return Err(Gtoc6Error::InvalidDiagnostic(subclaim.subclaim_id.clone()));
+            }
+            if outcome.terminal != subclaim.claimed_terminal {
+                return Err(Gtoc6Error::SubclaimTerminalMismatch {
+                    subclaim_id: subclaim.subclaim_id.clone(),
+                    expected: outcome.terminal,
+                    found: subclaim.claimed_terminal,
+                });
+            }
+            let expected_subclaim_residuals = subclaim_spec
+                .expected_residual_id
+                .iter()
+                .cloned()
+                .collect::<Vec<_>>();
+            if subclaim.residual_ids != expected_subclaim_residuals
+                || outcome.survivor_route != subclaim_spec.expected_survivor_route
+            {
+                return Err(Gtoc6Error::SubclaimResidualMismatch(
+                    subclaim.subclaim_id.clone(),
+                ));
+            }
+            if let Some(residual_id) = &subclaim_spec.expected_residual_id {
+                if !residual_ids.insert(residual_id.clone()) {
+                    return Err(Gtoc6Error::DuplicateResidualId(residual_id.clone()));
+                }
+                local_residuals.push(residual_id.clone());
+                expected_ledger.push(Gtoc6ResidualLedgerEntryV1 {
+                    residual_id: residual_id.clone(),
+                    defect_id: defect.defect_id.clone(),
+                    subclaim_id: subclaim.subclaim_id.clone(),
+                    terminal: outcome.terminal,
+                    survivor_route: outcome
+                        .survivor_route
+                        .expect("residual-bearing diagnostics require a survivor route"),
+                });
+            }
+            local_terminals.push(outcome.terminal);
+        }
+
+        local_residuals.sort();
+        if defect.residual_ids != local_residuals {
+            return Err(Gtoc6Error::DefectResidualMismatch(defect.defect_id.clone()));
+        }
+        let terminal = aggregate_gtoc6_terminals_v1(&local_terminals)?;
+        if defect.claimed_terminal != terminal {
+            return Err(Gtoc6Error::DefectTerminalMismatch {
+                defect_id: defect.defect_id.clone(),
+                expected: terminal,
+                found: defect.claimed_terminal,
+            });
+        }
+        defect_evidence.push(Gtoc6DefectVerificationEvidenceV1 {
+            sequence: defect.sequence,
+            defect_id: defect.defect_id.clone(),
+            subclaim_terminals: local_terminals,
+            residual_ids: local_residuals,
+            terminal,
+        });
+    }
+
+    expected_ledger.sort_by(|left, right| left.residual_id.cmp(&right.residual_id));
+    if expected_ledger.len() > packet.budgets.residual_budget as usize {
+        return Err(Gtoc6Error::ResidualLedgerMismatch);
+    }
+    if receipt.residual_ledger != expected_ledger {
+        return Err(Gtoc6Error::ResidualLedgerMismatch);
+    }
+    let defect_terminals = defect_evidence
+        .iter()
+        .map(|defect| defect.terminal)
+        .collect::<Vec<_>>();
+    let terminal = aggregate_gtoc6_terminals_v1(&defect_terminals)?;
+    if receipt.claimed_terminal != terminal {
+        return Err(Gtoc6Error::AggregateTerminalMismatch {
+            expected: terminal,
+            found: receipt.claimed_terminal,
+        });
+    }
+
+    let residual_ids = expected_ledger
+        .iter()
+        .map(|entry| entry.residual_id.clone())
+        .collect::<Vec<_>>();
+    Ok(Gtoc6DefectTerminalizationVerificationV1 {
+        schema_version: GTOC6_VERIFICATION_SCHEMA_VERSION.to_owned(),
+        packet_id: packet.packet_id.clone(),
+        packet_sha256,
+        observer_sha256: packet.observer_sha256.clone(),
+        receipt_sha256: gtoc6_receipt_sha256_v1(receipt)?,
+        artifact_closure_sha256: sha256_json_v1(&packet.input_artifacts)?,
+        diagnostic_matrix_sha256: sha256_json_v1(&receipt.defects)?,
+        residual_ledger_sha256: sha256_json_v1(&receipt.residual_ledger)?,
+        aggregation_truth_table_sha256: sha256_json_v1(&packet.aggregation_truth_table)?,
+        evaluator_id: packet.evaluator_id.clone(),
+        authority_witness_id: packet.authority_witness_id.clone(),
+        defect_count: receipt.defects.len() as u32,
+        subclaim_count: total_subclaims as u32,
+        residual_count: residual_ids.len() as u32,
+        defect_evidence,
+        every_defect_classified_once: true,
+        every_subclaim_classified_once: true,
+        every_local_terminal_recomputed: true,
+        every_residual_conserved: true,
+        aggregation_truth_table_replayed: true,
+        aggregation_permutation_invariant: true,
+        predecessor_receipt_verified: true,
+        gtoc5_dependency_receipt_present: false,
+        gtoc5_dependency_preserved_as_residual: residual_ids
+            .contains(&S06_003_GTOC5_RESIDUAL_ID.to_owned()),
+        residual_ids,
+        terminal,
+        promotion_requested: false,
+        promotion_constructor_called: false,
+        authorized_local_result_created: false,
+        authority_effect: AuthorityEffect::None,
+    })
+}
+
+pub fn gtoc6_packet_sha256_v1(
+    packet: &Gtoc6DefectTerminalizationPacketV1,
+) -> Result<String, Gtoc6Error> {
+    sha256_json_v1(packet)
+}
+
+pub fn gtoc6_receipt_sha256_v1(
+    receipt: &Gtoc6DefectTerminalizationReceiptV1,
+) -> Result<String, Gtoc6Error> {
+    sha256_json_v1(receipt)
+}
+
+pub fn gtoc6_verification_sha256_v1(
+    verification: &Gtoc6DefectTerminalizationVerificationV1,
+) -> Result<String, Gtoc6Error> {
+    sha256_json_v1(verification)
+}
+
+pub fn gtoc6_observer_sha256_v1(observer: &FrozenGtoc6ObserverV1) -> Result<String, Gtoc6Error> {
+    sha256_json_v1(observer)
+}
+
+pub fn canonical_gtoc6_json_line_v1<T: Serialize + ?Sized>(
+    value: &T,
+) -> Result<Vec<u8>, Gtoc6Error> {
+    let mut bytes = serde_json::to_vec(value).map_err(json_error)?;
+    bytes.push(b'\n');
+    Ok(bytes)
+}
+
+pub fn parse_gtoc6_packet_canonical_v1(
+    bytes: &[u8],
+) -> Result<Gtoc6DefectTerminalizationPacketV1, Gtoc6Error> {
+    parse_canonical_json_line_v1(bytes, "GTOC-6 packet")
+}
+
+pub fn parse_gtoc6_receipt_canonical_v1(
+    bytes: &[u8],
+) -> Result<Gtoc6DefectTerminalizationReceiptV1, Gtoc6Error> {
+    parse_canonical_json_line_v1(bytes, "GTOC-6 receipt")
+}
+
+pub fn parse_gtoc6_verification_canonical_v1(
+    bytes: &[u8],
+) -> Result<Gtoc6DefectTerminalizationVerificationV1, Gtoc6Error> {
+    parse_canonical_json_line_v1(bytes, "GTOC-6 verification")
+}
+
+fn canonical_defect_specs_v1() -> Vec<Gtoc6DefectSpecV1> {
+    vec![
+        Gtoc6DefectSpecV1 {
+            sequence: 0,
+            defect_id: "defect:s06-003:gtoc4-predecessor".to_owned(),
+            subclaims: vec![
+                subclaim_spec_v1(
+                    0,
+                    "subclaim:s06-003:gtoc4-verification-bound",
+                    DiagnosticRuleV1::PredecessorVerification,
+                    "artifact:s06-002:gtoc4-verification",
+                    None,
+                    None,
+                ),
+                subclaim_spec_v1(
+                    1,
+                    "subclaim:s06-003:gtoc4-lift-residual-carried",
+                    DiagnosticRuleV1::ResidualCarryForward,
+                    "residual:s06-002:lift-license-not-issued",
+                    Some(S06_002_LIFT_RESIDUAL_ID),
+                    Some(SurvivorRouteV1::CarryForward),
+                ),
+            ],
+        },
+        Gtoc6DefectSpecV1 {
+            sequence: 1,
+            defect_id: "defect:s06-003:gtoc5-authority-path".to_owned(),
+            subclaims: vec![subclaim_spec_v1(
+                0,
+                "subclaim:s06-003:gtoc5-construction-receipt",
+                DiagnosticRuleV1::DependencyReceipt,
+                "dependency:S14-005:GTOC-5",
+                Some(S06_003_GTOC5_RESIDUAL_ID),
+                Some(SurvivorRouteV1::ProofObligation),
+            )],
+        },
+        Gtoc6DefectSpecV1 {
+            sequence: 2,
+            defect_id: "defect:s06-003:aggregation-kernel".to_owned(),
+            subclaims: vec![
+                subclaim_spec_v1(
+                    0,
+                    "subclaim:s06-003:defect-id-uniqueness",
+                    DiagnosticRuleV1::InvariantCheck,
+                    "invariant:s06-003:defect-id-uniqueness",
+                    None,
+                    None,
+                ),
+                subclaim_spec_v1(
+                    1,
+                    "subclaim:s06-003:residual-conservation",
+                    DiagnosticRuleV1::InvariantCheck,
+                    "invariant:s06-003:residual-conservation",
+                    None,
+                    None,
+                ),
+                subclaim_spec_v1(
+                    2,
+                    "subclaim:s06-003:terminal-derivation",
+                    DiagnosticRuleV1::InvariantCheck,
+                    "invariant:s06-003:terminal-derivation",
+                    None,
+                    None,
+                ),
+            ],
+        },
+    ]
+}
+
+fn canonical_aggregation_truth_table_v1() -> Vec<AggregationTruthRowV1> {
+    use GtocTerminal as T;
+    vec![
+        truth_row_v1("truth:exact-only", vec![T::ExactRepair], T::ExactRepair),
+        truth_row_v1(
+            "truth:stabilized-only",
+            vec![T::StabilizedSurvivor],
+            T::StabilizedSurvivor,
+        ),
+        truth_row_v1(
+            "truth:open-only",
+            vec![T::OpenObstruction],
+            T::OpenObstruction,
+        ),
+        truth_row_v1(
+            "truth:partial-repair-open",
+            vec![T::ExactRepair, T::OpenObstruction],
+            T::StabilizedSurvivor,
+        ),
+        truth_row_v1(
+            "truth:stabilized-plus-open",
+            vec![T::StabilizedSurvivor, T::OpenObstruction],
+            T::OpenObstruction,
+        ),
+        truth_row_v1(
+            "truth:partial-repair-mixed-survivors",
+            vec![T::ExactRepair, T::StabilizedSurvivor, T::OpenObstruction],
+            T::StabilizedSurvivor,
+        ),
+        truth_row_v1(
+            "truth:lift-dominates-trichotomy",
+            vec![T::ExactRepair, T::LiftLicenseNeeded],
+            T::LiftLicenseNeeded,
+        ),
+        truth_row_v1(
+            "truth:oracle-dominates-lift",
+            vec![T::LiftLicenseNeeded, T::OracleNeeded],
+            T::OracleNeeded,
+        ),
+        truth_row_v1(
+            "truth:refusal-dominates-oracle",
+            vec![T::OracleNeeded, T::Refused],
+            T::Refused,
+        ),
+        truth_row_v1(
+            "truth:invalid-dominates-refusal",
+            vec![T::Refused, T::Invalid],
+            T::Invalid,
+        ),
+        truth_row_v1(
+            "truth:infrastructure-dominates-invalid",
+            vec![T::Invalid, T::InfrastructureFailure],
+            T::InfrastructureFailure,
+        ),
+    ]
+}
+
+fn verify_truth_table_v1(rows: &[AggregationTruthRowV1]) -> Result<(), Gtoc6Error> {
+    let mut row_ids = BTreeSet::new();
+    for row in rows {
+        require_text("aggregation.row_id", &row.row_id)?;
+        if !row_ids.insert(row.row_id.clone()) {
+            return Err(Gtoc6Error::AggregationTruthMismatch(row.row_id.clone()));
+        }
+        if aggregate_gtoc6_terminals_v1(&row.local_terminals)? != row.expected_aggregate {
+            return Err(Gtoc6Error::AggregationTruthMismatch(row.row_id.clone()));
+        }
+        let mut reversed = row.local_terminals.clone();
+        reversed.reverse();
+        if aggregate_gtoc6_terminals_v1(&reversed)? != row.expected_aggregate {
+            return Err(Gtoc6Error::AggregationTruthMismatch(row.row_id.clone()));
+        }
+    }
+    Ok(())
+}
+
+fn verify_s06_002_artifact_v1(
+    packet: &Gtoc6DefectTerminalizationPacketV1,
+    artifact_bytes: &Gtoc6ArtifactBytesV1,
+) -> Result<Gtoc4TransitionCoverageVerificationV1, Gtoc6Error> {
+    let expected_paths = packet
+        .input_artifacts
+        .iter()
+        .map(|artifact| artifact.path.as_str())
+        .collect::<BTreeSet<_>>();
+    let found_paths = artifact_bytes
+        .keys()
+        .map(String::as_str)
+        .collect::<BTreeSet<_>>();
+    if expected_paths != found_paths {
+        if let Some(path) = expected_paths.difference(&found_paths).next() {
+            return Err(Gtoc6Error::MissingArtifact((*path).to_owned()));
+        }
+        return Err(Gtoc6Error::ArtifactSetMismatch);
+    }
+    for artifact in &packet.input_artifacts {
+        let bytes = artifact_bytes
+            .get(&artifact.path)
+            .ok_or_else(|| Gtoc6Error::MissingArtifact(artifact.path.clone()))?;
+        if bytes.len() as u64 != artifact.bytes {
+            return Err(Gtoc6Error::ArtifactLengthMismatch(artifact.path.clone()));
+        }
+        if sha256_bytes_v1(bytes) != artifact.sha256 {
+            return Err(Gtoc6Error::ArtifactHashMismatch(artifact.path.clone()));
+        }
+    }
+    let bytes = artifact_bytes
+        .get(S06_002_VERIFICATION_PATH)
+        .ok_or_else(|| Gtoc6Error::MissingArtifact(S06_002_VERIFICATION_PATH.to_owned()))?;
+    let verification = parse_gtoc4_verification_canonical_v1(bytes)
+        .map_err(|error| Gtoc6Error::InvalidPredecessor(error.to_string()))?;
+    let valid = verification.terminal == GtocTerminal::StabilizedSurvivor
+        && verification.predecessor_receipts_verified
+        && verification.every_alphabet_operation_covered_once
+        && verification.every_operation_law_replayed
+        && verification.every_refusal_immutable
+        && verification.unknown_classes_refused
+        && verification.residual_ids == [S06_002_LIFT_RESIDUAL_ID.to_owned()]
+        && !verification.promotion_requested
+        && !verification.promotion_constructor_called
+        && !verification.authorized_local_result_created
+        && verification.authority_effect.is_none();
+    if !valid {
+        return Err(Gtoc6Error::InvalidPredecessor(
+            "S06-002 verification boundary mismatch".to_owned(),
+        ));
+    }
+    Ok(verification)
+}
+
+fn expected_evidence_v1(subclaim_id: &str) -> Result<DiagnosticEvidenceV1, Gtoc6Error> {
+    let evidence = match subclaim_id {
+        "subclaim:s06-003:gtoc4-verification-bound" => {
+            DiagnosticEvidenceV1::PredecessorVerification {
+                artifact_path: S06_002_VERIFICATION_PATH.to_owned(),
+                verified: true,
+            }
+        }
+        "subclaim:s06-003:gtoc4-lift-residual-carried" => {
+            DiagnosticEvidenceV1::ResidualCarryForward {
+                source_residual_id: S06_002_LIFT_RESIDUAL_ID.to_owned(),
+                preserved: true,
+            }
+        }
+        "subclaim:s06-003:gtoc5-construction-receipt" => DiagnosticEvidenceV1::DependencyReceipt {
+            receipt_id: "S14-005:GTOC-5".to_owned(),
+            present: false,
+            verified: false,
+        },
+        "subclaim:s06-003:defect-id-uniqueness" => DiagnosticEvidenceV1::InvariantCheck {
+            invariant_id: "invariant:s06-003:defect-id-uniqueness".to_owned(),
+            passed: true,
+        },
+        "subclaim:s06-003:residual-conservation" => DiagnosticEvidenceV1::InvariantCheck {
+            invariant_id: "invariant:s06-003:residual-conservation".to_owned(),
+            passed: true,
+        },
+        "subclaim:s06-003:terminal-derivation" => DiagnosticEvidenceV1::InvariantCheck {
+            invariant_id: "invariant:s06-003:terminal-derivation".to_owned(),
+            passed: true,
+        },
+        _ => {
+            return Err(Gtoc6Error::DiagnosticEvidenceMismatch(
+                subclaim_id.to_owned(),
+            ))
+        }
+    };
+    Ok(evidence)
+}
+
+fn subclaim_spec_v1(
+    sequence: u32,
+    subclaim_id: &str,
+    rule: DiagnosticRuleV1,
+    evidence_ref: &str,
+    residual_id: Option<&str>,
+    survivor_route: Option<SurvivorRouteV1>,
+) -> Gtoc6SubclaimSpecV1 {
+    Gtoc6SubclaimSpecV1 {
+        sequence,
+        subclaim_id: subclaim_id.to_owned(),
+        rule,
+        evidence_ref: evidence_ref.to_owned(),
+        expected_residual_id: residual_id.map(str::to_owned),
+        expected_survivor_route: survivor_route,
+    }
+}
+
+fn subclaim_receipt_v1(
+    sequence: u32,
+    subclaim_id: &str,
+    evidence: DiagnosticEvidenceV1,
+    evidence_ref: &str,
+    residual_ids: Vec<String>,
+    claimed_terminal: GtocTerminal,
+) -> Gtoc6SubclaimDiagnosticV1 {
+    Gtoc6SubclaimDiagnosticV1 {
+        sequence,
+        subclaim_id: subclaim_id.to_owned(),
+        evidence,
+        evidence_refs: vec![evidence_ref.to_owned()],
+        residual_ids,
+        claimed_terminal,
+    }
+}
+
+fn invariant_subclaim_receipt_v1(
+    sequence: u32,
+    subclaim_id: &str,
+    invariant_id: &str,
+) -> Gtoc6SubclaimDiagnosticV1 {
+    subclaim_receipt_v1(
+        sequence,
+        subclaim_id,
+        DiagnosticEvidenceV1::InvariantCheck {
+            invariant_id: invariant_id.to_owned(),
+            passed: true,
+        },
+        invariant_id,
+        Vec::new(),
+        GtocTerminal::ExactRepair,
+    )
+}
+
+fn truth_row_v1(
+    row_id: &str,
+    local_terminals: Vec<GtocTerminal>,
+    expected_aggregate: GtocTerminal,
+) -> AggregationTruthRowV1 {
+    AggregationTruthRowV1 {
+        row_id: row_id.to_owned(),
+        local_terminals,
+        expected_aggregate,
+    }
+}
+
+fn parse_canonical_json_line_v1<T>(bytes: &[u8], label: &str) -> Result<T, Gtoc6Error>
+where
+    T: DeserializeOwned + Serialize,
+{
+    if bytes.len() < 2 || bytes.last() != Some(&b'\n') || bytes[..bytes.len() - 1].contains(&b'\n')
+    {
+        return Err(Gtoc6Error::NonCanonicalJson(label.to_owned()));
+    }
+    let value = serde_json::from_slice::<T>(&bytes[..bytes.len() - 1]).map_err(decode_error)?;
+    if canonical_gtoc6_json_line_v1(&value)? != bytes {
+        return Err(Gtoc6Error::NonCanonicalJson(label.to_owned()));
+    }
+    Ok(value)
+}
+
+fn sha256_json_v1<T: Serialize + ?Sized>(value: &T) -> Result<String, Gtoc6Error> {
+    let bytes = serde_json::to_vec(value).map_err(json_error)?;
+    Ok(sha256_bytes_v1(&bytes))
+}
+
+fn sha256_bytes_v1(bytes: &[u8]) -> String {
+    format!("{:x}", Sha256::digest(bytes))
+}
+
+fn json_error(error: serde_json::Error) -> Gtoc6Error {
+    Gtoc6Error::Json(error.to_string())
+}
+
+fn decode_error(error: serde_json::Error) -> Gtoc6Error {
+    Gtoc6Error::Decode(error.to_string())
+}
+
+fn require_text(field: &str, value: &str) -> Result<(), Gtoc6Error> {
+    if value.trim().is_empty() {
+        return Err(Gtoc6Error::EmptyField(field.to_owned()));
+    }
+    Ok(())
+}

@@ -1,7 +1,7 @@
 //! function shell for omega_category_theory.
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// A single domain→codomain pair tag (not a formal graph).

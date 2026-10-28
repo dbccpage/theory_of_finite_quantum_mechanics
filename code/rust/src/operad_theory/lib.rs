@@ -1,5 +1,5 @@
 
-extern crate self as omega_operad_theory;
+extern crate self as tfqm_operad_theory;
 pub mod kernel;
 pub mod foundation;
 pub mod realization;

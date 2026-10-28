@@ -10,7 +10,7 @@ use std::fs;
 use std::path::Path;
 use syn::visit::Visit;
 
-use omega_kernel::interval::{Interval, IntervalBox};
+use engine_kernel::interval::{Interval, IntervalBox};
 use tfqm_mub::native::exact::d6_exact_curvature_cochain::D;
 use tfqm_mub::native::exact::mub6_f6_chart::f6_family_columns;
 use tfqm_mub::native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
@@ -25,7 +25,7 @@ use tfqm_mub::native::exact::mub6_zerorel_variety::{
     dita_representative_triple, standard_basis, szollosi_representative_triple,
     tao_representative_triple,
 };
-use omega_number_theory::rational::rq;
+use engine_number_theory::rational::rq;
 
 // ============================================================================
 // 1. STRICT ZERO-FLOAT DISCIPLINE AST AUDIT

@@ -4,7 +4,7 @@
 //! Vertical composition of natural transformations (β ∘ α) — shape only.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort shell for a vertical composition claim on nat-trans refs.
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

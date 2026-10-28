@@ -1,5 +1,5 @@
 use num_traits::One;
-use omega_number_theory::rational::{rq, Rational, Zero};
+use engine_number_theory::rational::{rq, Rational, Zero};
 fn dot_pair(u: &(Rational, Rational), v: &(Rational, Rational)) -> Rational {
     crate::linear_algebra::matrix::dot(
         &[u.0.clone(), u.1.clone()],
@@ -62,8 +62,8 @@ pub fn chsh_pythagorean_s() -> (Rational, i64, bool) {
 }
 
 pub fn cabello_18_ray_parity_obstruction() -> bool {
-    let rays = &omega_quantum_physics::kochen_specker::CABELLO_18_VECTORS;
-    let tetrads = &omega_quantum_physics::kochen_specker::CABELLO_9_CONTEXTS;
+    let rays = &engine_quantum_physics::kochen_specker::CABELLO_18_VECTORS;
+    let tetrads = &engine_quantum_physics::kochen_specker::CABELLO_9_CONTEXTS;
 
     for tet in tetrads {
         for i in 0..4 {
@@ -94,8 +94,8 @@ pub fn cabello_18_ray_parity_obstruction() -> bool {
 }
 
 pub fn verify_branch_non_signaling() -> bool {
-    use omega_quantum_physics::exact_hermitian::{gi, partial_trace_first, partial_trace_second};
-    use omega_quantum_physics::relative_state_branching::RelativeStatePacket;
+    use engine_quantum_physics::exact_hermitian::{gi, partial_trace_first, partial_trace_second};
+    use engine_quantum_physics::relative_state_branching::RelativeStatePacket;
     let packet = RelativeStatePacket::new(
         vec![gi(1, 0), gi(1, 0)],
         vec![vec![gi(1, 0), gi(0, 0)], vec![gi(0, 0), gi(1, 0)]],

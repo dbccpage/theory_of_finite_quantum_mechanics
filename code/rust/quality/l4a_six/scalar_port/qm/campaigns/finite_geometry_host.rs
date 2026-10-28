@@ -1,12 +1,12 @@
 use crate::qm::bridge::{elimination, matrix as mx, ordered};
 use crate::qm::finite_witness::{field_q, qstr, qvec};
 use num_traits::{Signed, Zero};
-use omega_homology::finite_cliques::cliques;
-use omega_lie_theory::cayley::{cayley_transform, is_orthogonal, so_basis};
-use omega_lie_theory::finite_group::FiniteGroup;
-use omega_number_theory::cyclotomic_integer::CyclotomicInteger as C;
-use omega_number_theory::rational::{ri, rq, Rational as Q};
-use omega_quantum_physics::finite_geometry::{
+use engine_homology::finite_cliques::cliques;
+use engine_lie_theory::cayley::{cayley_transform, is_orthogonal, so_basis};
+use engine_lie_theory::finite_group::FiniteGroup;
+use engine_number_theory::cyclotomic_integer::CyclotomicInteger as C;
+use engine_number_theory::rational::{ri, rq, Rational as Q};
+use engine_quantum_physics::finite_geometry::{
     adjacent, cabello, cabello_rays, coloring_count_small, config, d4_rays, e8, interface_defect,
     peres, sorkin, sorkin_coefficients,
 };
@@ -15,17 +15,17 @@ use serde_json::{json, Value};
 #[derive(Debug, thiserror::Error)]
 enum GeometryHostError {
     #[error(transparent)]
-    Geometry(#[from] omega_quantum_physics::finite_geometry::GeometryError),
+    Geometry(#[from] engine_quantum_physics::finite_geometry::GeometryError),
     #[error(transparent)]
-    Cliques(#[from] omega_homology::finite_cliques::CliqueError),
+    Cliques(#[from] engine_homology::finite_cliques::CliqueError),
     #[error(transparent)]
-    Group(#[from] omega_lie_theory::finite_group::GroupError),
+    Group(#[from] engine_lie_theory::finite_group::GroupError),
     #[error(transparent)]
     Matrix(#[from] crate::qm::bridge::ExactFieldError),
     #[error(transparent)]
-    Cayley(#[from] omega_lie_theory::cayley::CayleyError),
+    Cayley(#[from] engine_lie_theory::cayley::CayleyError),
     #[error(transparent)]
-    Ring(#[from] omega_number_theory::cyclotomic_integer::CyclotomicIntegerError),
+    Ring(#[from] engine_number_theory::cyclotomic_integer::CyclotomicIntegerError),
     #[error("{0}")]
     Input(String),
 }
@@ -107,7 +107,7 @@ fn diamond() -> Result<Value, GeometryHostError> {
         vec![ri(0), ri(1)],
         vec![ri(0), ri(-1)],
     ])?;
-    omega_homology::chain_complex::ChainComplex::new(4, 5, 2, b1.clone(), b2.clone())
+    engine_homology::chain_complex::ChainComplex::new(4, 5, 2, b1.clone(), b2.clone())
         .map_err(|e| e.to_string())?;
     let boundary = mx::multiply_vector(&b2, &[ri(1), ri(1)])?;
     let cochain = vec![ri(2), ri(3), ri(-1), ri(4), ri(5)];
@@ -222,7 +222,7 @@ fn check_signed_perm_mask(p: &[usize], mask: usize) -> Result<bool, GeometryHost
 }
 
 fn verify_signed_permutations() -> Result<bool, GeometryHostError> {
-    let perms = omega_combinatorics::enumeration::permutations(3, 6).map_err(|e| e.to_string())?;
+    let perms = engine_combinatorics::enumeration::permutations(3, 6).map_err(|e| e.to_string())?;
     let mut signed = true;
     for p in perms {
         for mask in 0..8 {
@@ -319,7 +319,7 @@ fn build_checks_json(
 
 fn build_config_summary(
     rays: &[Vec<i64>],
-) -> Result<(omega_quantum_physics::finite_geometry::Configuration, usize), GeometryHostError> {
+) -> Result<(engine_quantum_physics::finite_geometry::Configuration, usize), GeometryHostError> {
     let adj = adjacent(rays)?;
     let clq = cliques(&adj, 4)?;
     let cfg = config(&adj, &clq)?;
@@ -328,7 +328,7 @@ fn build_config_summary(
 }
 
 fn build_f4_config(
-) -> Result<omega_quantum_physics::finite_geometry::Configuration, GeometryHostError> {
+) -> Result<engine_quantum_physics::finite_geometry::Configuration, GeometryHostError> {
     let f4a = adjacent(&build_f4_rays())?;
     let f4_clq = cliques(&f4a, 4)?;
     Ok(config(&f4a, &f4_clq)?)

@@ -1,11 +1,11 @@
 use crate::qm::bridge::{involution as star, matrix as mx, ExactFieldError};
 use ::linear_algebra::backend::basic_matrix::BasicMatrix;
-use omega_number_theory::cyclotomic::GaussianRat;
-use omega_number_theory::rational::rq;
-use omega_quantum_physics::no_signalling::*;
+use engine_number_theory::cyclotomic::GaussianRat;
+use engine_number_theory::rational::rq;
+use engine_quantum_physics::no_signalling::*;
 
-fn pauli_mat(kind: omega_lie_theory::pauli_symplectic::Pauli) -> BasicMatrix<GaussianRat> {
-    omega_lie_theory::pauli_symplectic::pauli::<GaussianRat>(kind).expect("fixed Pauli carrier")
+fn pauli_mat(kind: engine_lie_theory::pauli_symplectic::Pauli) -> BasicMatrix<GaussianRat> {
+    engine_lie_theory::pauli_symplectic::pauli::<GaussianRat>(kind).expect("fixed Pauli carrier")
 }
 
 fn check_left_additivity<F>(
@@ -65,7 +65,7 @@ where
         &BasicMatrix<GaussianRat>,
     ) -> Result<BasicMatrix<GaussianRat>, ExactFieldError>,
 {
-    use omega_lie_theory::pauli_symplectic::Pauli;
+    use engine_lie_theory::pauli_symplectic::Pauli;
     let a1 = pauli_mat(Pauli::X);
     let a2 = pauli_mat(Pauli::Z);
     let b1 = pauli_mat(Pauli::Y);
@@ -109,7 +109,7 @@ fn trace_split_bilinear_rule(
     a: &BasicMatrix<GaussianRat>,
     b: &BasicMatrix<GaussianRat>,
 ) -> Result<BasicMatrix<GaussianRat>, ExactFieldError> {
-    let id2 = pauli_mat(omega_lie_theory::pauli_symplectic::Pauli::Identity);
+    let id2 = pauli_mat(engine_lie_theory::pauli_symplectic::Pauli::Identity);
     let id4 = mx::identity(4)?;
     let half = GaussianRat::from_rational(rq(1, 2));
     let quarter = GaussianRat::from_rational(rq(1, 4));
@@ -122,7 +122,7 @@ fn trace_split_bilinear_rule(
 }
 
 fn build_rival_candidates() -> Result<Vec<RivalCandidate>, RivalSearchError> {
-    use omega_lie_theory::pauli_symplectic::Pauli;
+    use engine_lie_theory::pauli_symplectic::Pauli;
     let w_z = mx::kronecker(&pauli_mat(Pauli::Z), &pauli_mat(Pauli::Identity))?;
     let w_cnot = cnot_matrix();
     let w_cz = cz_matrix();
@@ -196,7 +196,7 @@ fn rival_signals_on_state(
     paulis: &[BasicMatrix<GaussianRat>; 4],
     rho: &BasicMatrix<GaussianRat>,
 ) -> Result<bool, ExactFieldError> {
-    use omega_lie_theory::pauli_symplectic::Pauli;
+    use engine_lie_theory::pauli_symplectic::Pauli;
     let before = reconstruct_bob_marginal(r, id2, paulis, rho)?;
     for u in [&pauli_mat(Pauli::X), &pauli_mat(Pauli::Z)] {
         let post = apply_alice_unitary(r, u, id2, rho)?;
@@ -225,7 +225,7 @@ fn evaluate_rival_candidate(
 }
 
 pub fn enumerate_rival_compositions() -> Result<(usize, bool), RivalSearchError> {
-    use omega_lie_theory::pauli_symplectic::Pauli;
+    use engine_lie_theory::pauli_symplectic::Pauli;
     let rivals = build_rival_candidates()?;
     let id2 = pauli_mat(Pauli::Identity);
     let id4 = mx::identity(4)?;

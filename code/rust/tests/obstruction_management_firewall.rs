@@ -1,4 +1,4 @@
-use omega_number_theory::rational::ri;
+use engine_number_theory::rational::ri;
 use theory_of_finite_qm::obstruction_calc::{evaluate_lift_candidate, terminalize_reconstruction, ObstructionPoint, ReconstructionTerminal};
 const PROVENANCE: &str = "Origin: code/rust/src/qm/obstruction_calc.rs Claim: urn:fqm:obstruction:five-reconstruction-imports-and-licensed-lift AuthorityEffect: None";
 const SAMPLE: i64 = 5;

@@ -12,7 +12,7 @@ use crate::native::exact::d6_exact_obstruction_cohomology::obstruction_cohomolog
 use crate::native::exact::d6_exact_tangent_obstruction::tangent_obstruction;
 use crate::native::campaign::mub6_dita_seed_cover::dita_seed_triple_columns;
 use num_rational::BigRational;
-use tfqm_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::cyclotomic::Cyc24;
 
 crate::fixture_set!(fixtures, "d6_exact_path_b_gate_candidates");
 
@@ -326,7 +326,7 @@ pub fn run_path_b_gate_candidate_campaign() -> PathBGateCandidateReport {
 
 pub fn write_path_b_gate_candidate_artifact() -> Result<std::path::PathBuf, String> {
     let report = run_path_b_gate_candidate_campaign();
-    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+    let dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     std::fs::create_dir_all(&dir).map_err(|e| format!("mkdir: {e}"))?;
     let path = dir.join("mub6_path_b_gate_candidates_20260725.json");
     let json = serde_json::to_string_pretty(&report).map_err(|e| format!("ser: {e}"))?;

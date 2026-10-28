@@ -1,6 +1,6 @@
 
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 pub fn sqrt6() -> Cyc24 {
     Cyc24::sqrt2().mul(&Cyc24::sqrt3())

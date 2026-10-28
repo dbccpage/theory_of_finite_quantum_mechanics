@@ -106,9 +106,9 @@ fn append_pair_and_triple_simplices(
     cover: &[OpenSet],
     i: usize,
     j: usize,
-    simplices: &mut Vec<omega_homology::simplicial::Simplex>,
+    simplices: &mut Vec<engine_homology::simplicial::Simplex>,
 ) -> Result<(), String> {
-    use omega_homology::simplicial::Simplex;
+    use engine_homology::simplicial::Simplex;
     let pair = cover[i].intersection(&cover[j]);
     if pair.is_empty() {
         return Ok(());
@@ -124,8 +124,8 @@ fn append_pair_and_triple_simplices(
 
 fn build_nerve_2_skeleton(
     cover: &[OpenSet],
-) -> Result<omega_homology::simplicial::SimplicialComplex, String> {
-    use omega_homology::simplicial::{Simplex, SimplicialComplex};
+) -> Result<engine_homology::simplicial::SimplicialComplex, String> {
+    use engine_homology::simplicial::{Simplex, SimplicialComplex};
     let n = cover.len();
     let mut simplices = Vec::new();
     for i in 0..n {
@@ -141,7 +141,7 @@ fn build_nerve_2_skeleton(
 }
 
 fn validate_transition_cocycle_keys(
-    nerve: &omega_homology::simplicial::SimplicialComplex,
+    nerve: &engine_homology::simplicial::SimplicialComplex,
     transition_1_cocycle: &BTreeMap<Vec<usize>, Ratio<i64>>,
 ) -> Result<(), String> {
     for key in transition_1_cocycle.keys() {
@@ -156,8 +156,8 @@ pub fn compute_cech_h1_obstruction(
     cover: &[OpenSet],
     transition_1_cocycle: BTreeMap<Vec<usize>, Ratio<i64>>,
 ) -> Result<CechH1Result, String> {
-    use omega_homology::scalar::inject_rational64;
-    use omega_homology::trichotomy_witness::{is_coboundary, is_cocycle};
+    use engine_homology::scalar::inject_rational64;
+    use engine_homology::trichotomy_witness::{is_coboundary, is_cocycle};
 
     let nerve = build_nerve_2_skeleton(cover)?;
     validate_transition_cocycle_keys(&nerve, &transition_1_cocycle)?;

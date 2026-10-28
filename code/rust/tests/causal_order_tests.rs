@@ -160,7 +160,7 @@ fn census_holds() -> Result<(), ClaimError> {
 }
 
 fn cycle_refused() -> Result<(), ClaimError> {
-    let bad = omega_homology::finite_poset::FinitePoset::new(3, [(1usize, 0usize), (0, 1)]);
+    let bad = engine_homology::finite_poset::FinitePoset::new(3, [(1usize, 0usize), (0, 1)]);
     require(bad.is_err(), "antisymmetric refusal", 0, 1)
 }
 

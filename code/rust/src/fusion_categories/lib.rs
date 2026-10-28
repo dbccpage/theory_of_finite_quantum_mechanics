@@ -1,4 +1,4 @@
-extern crate self as omega_fusion_categories;
+extern crate self as tfqm_fusion_categories;
 pub mod braid_group;
 pub mod braided;
 pub mod catalog;

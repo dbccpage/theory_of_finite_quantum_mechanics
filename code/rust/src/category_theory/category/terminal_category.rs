@@ -4,7 +4,7 @@
 //! 1: one object, one identity morphism (terminal object of Cat).
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort terminal category shell (one object, one id).
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

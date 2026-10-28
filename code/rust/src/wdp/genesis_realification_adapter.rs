@@ -1,9 +1,9 @@
 
 use crate::types::AuthorityEffect;
 use linear_algebra::backend::basic_matrix::{BasicMatrix, OperationLimits};
-use tfqm_number_theory::rational::Rational;
-use omega_quantum_physics::complex_realification::{self, ComplexTensorError};
-use omega_quantum_physics::exact_instrument::ExactDensityState;
+use engine_number_theory::rational::Rational;
+use engine_quantum_physics::complex_realification::{self, ComplexTensorError};
+use engine_quantum_physics::exact_instrument::ExactDensityState;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DeclaredRealComposite {

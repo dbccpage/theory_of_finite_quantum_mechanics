@@ -3,7 +3,7 @@
 use num_bigint::BigUint;
 use num_integer::Integer;
 use num_traits::ToPrimitive;
-use omega_number_theory::rational::Rational;
+use engine_number_theory::rational::Rational;
 use serde::{Deserialize, Serialize};
 
 pub fn is_directed_subfield(m: u32, n: u32) -> bool {
@@ -214,7 +214,7 @@ pub struct VerifiedBornWeight {
 impl VerifiedBornWeight {
     pub fn from_rational_amplitude(re: Rational, im: Rational) -> Self {
         use num_traits::Zero;
-        let amplitude = omega_number_theory::cyclotomic::GaussianRat { re, im };
+        let amplitude = engine_number_theory::cyclotomic::GaussianRat { re, im };
         let norm = amplitude.mul(&amplitude.conj());
         let norm_sq = norm.re;
         let non_neg = norm_sq >= Rational::zero();
@@ -229,7 +229,7 @@ impl VerifiedBornWeight {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_number_theory::rational::rq;
+    use engine_number_theory::rational::rq;
 
     #[test]
     fn test_gcd_and_lcm() {

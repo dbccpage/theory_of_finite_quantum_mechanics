@@ -16,7 +16,7 @@
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{One, Zero};
-use omega_number_theory::rational::{rq as num_rq, Rational};
+use engine_number_theory::rational::{rq as num_rq, Rational};
 use proptest::prelude::*;
 
 use theory_of_finite_qm::linear_algebra::basic_matrix::BasicMatrix;
@@ -210,7 +210,7 @@ proptest! {
         prop_assert_eq!(sqmod, sqmod_rot);
 
         // Exact phase_blind measurement on Gaussian integer x + i*y
-        let g = omega_number_theory::cyclotomic::GaussianRat::from_ints(x, y);
+        let g = engine_number_theory::cyclotomic::GaussianRat::from_ints(x, y);
         let pb = phase_blind(&[g]).unwrap();
         prop_assert_eq!(&pb[0], &num_rq(sqmod, 1));
     }

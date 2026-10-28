@@ -1,5 +1,5 @@
 
-extern crate self as omega_finite_probability;
+extern crate self as tfqm_finite_probability;
 pub mod bell_joint_extension;
 pub mod bell_separator_extension;
 pub mod pfp_exact;

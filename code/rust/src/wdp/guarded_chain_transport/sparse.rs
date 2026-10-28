@@ -1,7 +1,7 @@
 
 use super::{event_order, event_task_order, task_order, CellImages, OrderKey, TransportError};
-use omega_homology::finite_poset::{FinitePoset, MAX_POSET_ELEMENTS};
-use omega_homology::permutohedral::{
+use engine_homology::finite_poset::{FinitePoset, MAX_POSET_ELEMENTS};
+use engine_homology::permutohedral::{
     add_scaled, boundary, boundary_chain, validate_cell, Cell, CellChain, ContractionLimits,
     LinearExtensionContraction, MinimumSweepContraction, PermutohedralError,
 };

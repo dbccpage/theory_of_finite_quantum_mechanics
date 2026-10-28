@@ -1,4 +1,4 @@
-use omega_number_theory::rational::ri;
+use engine_number_theory::rational::ri;
 use theory_of_finite_qm::campaigns::residual_density::ResidualLedger;
 const PROVENANCE: &str = "Origin: code/rust/src/qm/campaigns/residual_density.rs Claim: urn:fqm:residual-density:diagonal-mass-total AuthorityEffect: None";
 const SAMPLE: i64 = 4;

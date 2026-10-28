@@ -1,7 +1,7 @@
 
 
-use omega_homology::matrix_reduction::{is_zero_z2, multiply_z2, rank_z2};
-use omega_quantum_physics::pauli::{pauli_anticommutes, pauli_commutes, Pauli};
+use engine_homology::matrix_reduction::{is_zero_z2, multiply_z2, rank_z2};
+use engine_quantum_physics::pauli::{pauli_anticommutes, pauli_commutes, Pauli};
 use serde::{Deserialize, Serialize};
 
 pub type Pauli8 = [Pauli; 8];

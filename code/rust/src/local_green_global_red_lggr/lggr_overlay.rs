@@ -1,7 +1,7 @@
 
 use serde::{Deserialize, Serialize};
 
-use omega_types::authority::AuthorityEffect;
+use engine_types::authority::AuthorityEffect;
 
 use crate::verdict::LggrVerdict;
 

@@ -9,7 +9,7 @@ use crate::native::exact::d6_exact_sos_real::{
 };
 use crate::native::float_check::d6_gtfoc_wall_cross_validation::certified_wall_w;
 use crate::native::exact::mub6_cyclotomic_enclosure::real_imag_decompose;
-use tfqm_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::cyclotomic::Cyc24;
 
 const DEFAULT_FEASIBILITY_TOL: f64 = 1.0e-7;
 const DEFAULT_ITERATIONS: usize = 24;

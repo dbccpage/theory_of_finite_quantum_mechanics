@@ -2,7 +2,7 @@
 //!
 //! This is the core carrier for the MSS-N obstruction calculus.
 //! All arithmetic is exact over the canonical coefficient domain
-//! `omega_homology::scalar::Q` = `BigRational` (ADR-001, 2026-08-04). It was
+//! `engine_homology::scalar::Q` = `BigRational` (ADR-001, 2026-08-04). It was
 //! `Rational64` before the widening; nothing here narrows back. The cochain
 //! relation is verified at construction time.
 //!

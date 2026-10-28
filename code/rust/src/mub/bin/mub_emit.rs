@@ -57,7 +57,7 @@ fn emit(bytes: &[u8], artifact: &str) -> Result<(), String> {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../..");
     for dir in [
         root.join("artifacts"),
-        PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts"),
+        PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts"),
     ] {
         fs::create_dir_all(&dir).map_err(|error| error.to_string())?;
         fs::write(dir.join(artifact), bytes).map_err(|error| error.to_string())?;

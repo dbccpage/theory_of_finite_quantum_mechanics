@@ -2,7 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort symmetric monoidal category shell.
 /// Braiding ref with optional symmetry claim (c_{Y,X} ∘ c_{X,Y} = id).

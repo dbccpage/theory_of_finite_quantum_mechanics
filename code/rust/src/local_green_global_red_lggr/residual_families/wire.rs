@@ -1,12 +1,12 @@
 
 use std::fmt;
 
-use omega_linear_algebra::backend::basic_matrix::CheckedNumeric;
+use linear_algebra::backend::basic_matrix::CheckedNumeric;
 use tfqm_functional::gamma2::ExactGamma2Result;
 use tfqm_functional::phi1::VerifiedExactPhi1;
-use omega_homology::cochain_primitive_difference::CochainPrimitiveDifference;
-use omega_homology::quotient::QuotientSpace;
-use omega_types::observer::Observer;
+use engine_homology::cochain_primitive_difference::CochainPrimitiveDifference;
+use engine_homology::quotient::QuotientSpace;
+use engine_types::observer::Observer;
 use serde::Serialize;
 
 use crate::residual_families::record::{Gamma2ClassId, Q1ClassId};

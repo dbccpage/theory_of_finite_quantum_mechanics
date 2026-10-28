@@ -1,4 +1,4 @@
-use omega_quantum_physics::contextuality_obstruction::*;
+use engine_quantum_physics::contextuality_obstruction::*;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -108,7 +108,7 @@ pub fn evaluate_campaign_block_07() -> Result<Block07Receipt, String> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_quantum_physics::kochen_specker::CABELLO_9_CONTEXTS;
+    use engine_quantum_physics::kochen_specker::CABELLO_9_CONTEXTS;
 
     #[test]
     fn test_x1_complex_and_cohomology() {
@@ -139,7 +139,7 @@ mod tests {
     fn test_mutation_1_differential_not_squaring_to_zero() {
         let mut cx = build_cochain_complex(&construct_cabello_scenario()).unwrap();
         cx.dim_c2 = 1;
-        cx.d1_matrix = omega_number_theory::gf2::F2Matrix::zeros(1, cx.dim_c1).unwrap();
+        cx.d1_matrix = engine_number_theory::gf2::F2Matrix::zeros(1, cx.dim_c1).unwrap();
         cx.d1_matrix.set(0, 0, true).unwrap();
         assert!(cx.checked_complex().is_err());
     }

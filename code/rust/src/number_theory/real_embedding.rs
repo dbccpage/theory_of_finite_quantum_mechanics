@@ -4,7 +4,7 @@ use std::cmp::Ordering;
 use num_bigint::BigInt;
 use num_integer::Integer;
 use num_traits::{One, Signed};
-use omega_kernel::interval::Interval;
+use engine_kernel::interval::Interval;
 
 use crate::cyclotomic_field::{min_poly_of_2cos, CyclotomicError, CyclotomicNumber};
 use crate::polynomial::{

@@ -2,7 +2,7 @@
 mod category_review {
     use super::*;
     use crate::fusion_ring::FusionTable;
-    use omega_number_theory::rational::{rq, Rational};
+    use engine_number_theory::rational::{rq, Rational};
 
     fn tuple<const N: usize>(mut code: usize, rank: usize) -> [usize; N] {
         let mut out = [0; N];

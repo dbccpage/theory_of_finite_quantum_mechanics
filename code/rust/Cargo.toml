@@ -33,23 +33,6 @@ description = "Sovereign exact rational algebraic certifiers for the Theory of F
 
 [features]
 default = []
-external-omega = [
-    "dep:linear_algebra",
-    "dep:omega_homology",
-    "dep:omega_policy",
-    "dep:omega_functional",
-    "dep:omega_solvers",
-    "dep:omega_kernel",
-    "dep:omega_combinatorics",
-    "dep:omega_lie_theory",
-    "dep:omega_general_relativity",
-    "dep:omega_engines",
-    "dep:omega_quantum_physics",
-    "dep:omega_number_theory",
-    "dep:omega_holonomy",
-    "dep:omega_types",
-    "dep:finite_qm_native",
-]
 
 [dependencies]
 num-rational = { version = "0.4", features = ["serde"] }
@@ -63,24 +46,20 @@ blake3 = "1.5"
 hex = "0.4"
 
 nalgebra = { version = "0.33", features = ["serde-serialize"] }
-# External engine crates (optional; override via gitignored .cargo/config.toml [patch.crates-io]).
-# Note: in-repo counterparts for functional, combinatorics, lie_theory, general_relativity,
-# number_theory, and holonomy are linked below via relative paths as tfqm_<domain>.
-linear_algebra = { version = "0.1.0", optional = true }
-omega_homology = { version = "0.1.0", optional = true }
-omega_policy = { version = "0.1.0", optional = true }
-omega_functional = { version = "0.1.0", optional = true }
-omega_solvers = { version = "0.1.0", optional = true }
-omega_kernel = { version = "0.1.0", optional = true }
-omega_combinatorics = { version = "0.1.0", optional = true }
-omega_lie_theory = { version = "0.1.0", optional = true }
-omega_general_relativity = { version = "0.1.0", optional = true }
-omega_engines = { version = "0.1.0", features = ["strict_invariants"], optional = true }
-omega_quantum_physics = { version = "0.1.0", optional = true }
-omega_number_theory = { version = "0.1.0", optional = true }
-omega_holonomy = { version = "0.1.0", optional = true }
-omega_types = { version = "0.1.0", optional = true }
-finite_qm_native = { version = "0.1.0", optional = true }
+linear_algebra = { path = "../../vendor/engine/linear_algebra" }
+engine_homology = { path = "../../vendor/engine/engine_homology" }
+engine_policy = { path = "../../vendor/engine/engine_policy" }
+engine_functional = { path = "../../vendor/engine/engine_functional" }
+engine_solvers = { path = "../../vendor/engine/engine_solvers" }
+engine_kernel = { path = "../../vendor/engine/engine_kernel" }
+engine_combinatorics = { path = "../../vendor/engine/engine_combinatorics" }
+engine_lie_theory = { path = "../../vendor/engine/engine_lie_theory" }
+engine_general_relativity = { path = "../../vendor/engine/engine_general_relativity" }
+engine_runtime = { path = "../../vendor/engine/engine_runtime", features = ["strict_invariants"] }
+engine_quantum_physics = { path = "../../vendor/engine/engine_quantum_physics" }
+engine_number_theory = { path = "../../vendor/engine/engine_number_theory" }
+engine_holonomy = { path = "../../vendor/engine/engine_holonomy" }
+engine_types = { path = "../../vendor/engine/engine_types" }
 
 tfqm_category_theory = { path = "src/category_theory" }
 tfqm_combinatorics = { path = "src/combinatorics" }

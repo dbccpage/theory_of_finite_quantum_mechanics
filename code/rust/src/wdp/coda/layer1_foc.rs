@@ -3,10 +3,10 @@ use num_traits::{Signed, Zero};
 use serde_json::json;
 
 use crate::coda::types::{DualWitness, LayerExecutionRecord, LayerId, ProblemInstance};
-use tfqm_functional::gamma2::{
+use engine_functional::gamma2::{
     DegreeOneResidualQ, ExactCochainComplexQ, ExactGamma2Error, Gamma2Functional,
 };
-use omega_solvers::solver_cohomology_simplicial_l1::{
+use engine_solvers::solver_cohomology_simplicial_l1::{
     solve_l1_curved_constrained, solve_l1_quotient, VerifiedCurvedConstrainedPhi1,
 };
 

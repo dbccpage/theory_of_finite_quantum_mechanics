@@ -1,7 +1,7 @@
 use crate::qm::bridge::matrix as mx;
 use num_bigint::BigInt;
-use omega_lie_theory::lorentz::{self, LorentzError};
-use omega_number_theory::rational::{ri, Rational};
+use engine_lie_theory::lorentz::{self, LorentzError};
+use engine_number_theory::rational::{ri, Rational};
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct IterationStep {
@@ -60,7 +60,7 @@ pub fn composition_receipt(max_m: usize) -> Result<CompositionReceipt, LorentzEr
     Ok(CompositionReceipt {
         cosine: lorentz::rotation_cosine(&rotation)?,
         sine: rotation.as_slice()[7].clone(),
-        rotation_order: omega_lie_theory::finite_order::finite_order(&rotation)?,
+        rotation_order: engine_lie_theory::finite_order::finite_order(&rotation)?,
         census: enumerate_boost_pair_space(max_m)?,
     })
 }

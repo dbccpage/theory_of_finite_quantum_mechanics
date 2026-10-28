@@ -2,8 +2,8 @@
 use serde::{Deserialize, Serialize};
 
 use crate::native::exact::d6_exact_curvature_cochain::D;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 pub type Matrix6 = [[Cyc24; D]; D];
 

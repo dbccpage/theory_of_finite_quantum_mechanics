@@ -3,19 +3,19 @@ use crate::qm::campaigns::born_gleason::{
     ConditionalUniqueness, FrameFunction, GleasonAssumptions, OPEN_RESIDUAL_DIM2,
 };
 use crate::qm::campaigns::separating_preds::{ChshClass, ChshExample};
-use omega_number_theory::rational::{ri, rq};
-use omega_quantum_physics::composition_tomography::{
+use engine_number_theory::rational::{ri, rq};
+use engine_quantum_physics::composition_tomography::{
     local_tomography_spanning_real, rebit_separating_projector, rebit_state_pair,
     skew_skew_deficiency, FiniteSystem, LocalTomographyReport, MonoidalComposite,
     RealRebitCountermodel,
 };
-use omega_quantum_physics::hermitian_spectral::{
+use engine_quantum_physics::hermitian_spectral::{
     spectral_decompose, HermitianMatrix, ScalarCarrier,
 };
-use omega_quantum_physics::instruments::{
+use engine_quantum_physics::instruments::{
     paid_computational_spectral, InstrumentChannel, LudersInstrument, Povm,
 };
-use omega_quantum_physics::separating_predictions::MerminPeresCochainBridge;
+use engine_quantum_physics::separating_predictions::MerminPeresCochainBridge;
 
 pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; not PROVED; not GlobalGreen; sealed recovery diagnostic; no auto GlobalGreen.";
@@ -434,7 +434,7 @@ mod tests {
             } else {
                 assert_eq!(
                     LocalTomographyReport::complex_product(a, b),
-                    Err(omega_quantum_physics::composition_tomography::CompError::BudgetExceeded)
+                    Err(engine_quantum_physics::composition_tomography::CompError::BudgetExceeded)
                 );
             }
         }

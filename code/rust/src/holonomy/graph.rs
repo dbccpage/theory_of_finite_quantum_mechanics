@@ -1,6 +1,6 @@
 
 use crate::error::HolonomyError;
-use omega_kernel::resource_limits::{check_and_reserve, OperationLimits};
+use engine_kernel::resource_limits::{check_and_reserve, OperationLimits};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::collections::BTreeMap;

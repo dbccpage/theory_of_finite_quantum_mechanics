@@ -242,8 +242,8 @@ mod tests {
 
     #[test]
     fn test_hash_provenance_deterministic() {
-        let h1 = hash_provenance("omega_homology::test");
-        let h2 = hash_provenance("omega_homology::test");
+        let h1 = hash_provenance("engine_homology::test");
+        let h2 = hash_provenance("engine_homology::test");
         assert_eq!(h1, h2);
     }
 

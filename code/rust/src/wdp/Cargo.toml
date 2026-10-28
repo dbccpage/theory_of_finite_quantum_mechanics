@@ -10,29 +10,15 @@ path = "lib.rs"
 
 [features]
 default = []
-external-omega = [
-    "dep:omega_ooutwire_primitives",
-    "dep:omega_policy",
-    "dep:omega_types",
-    "dep:omega_certifiers",
-    "dep:omega_measurement",
-    "dep:omega_homology",
-    "dep:linear_algebra",
-    "dep:omega_kernel",
-    "dep:omega_quantum_physics",
-    "dep:omega_solvers",
-    "dep:omega_replay",
-    "dep:omega_wdp",
-]
 
 [dependencies]
-omega_ooutwire_primitives = { version = "0.1.0", optional = true }
-omega_policy = { version = "0.1.0", optional = true }
-omega_types = { version = "0.1.0", optional = true }
-omega_certifiers = { version = "0.1.0", optional = true }
+engine_wire_primitives = { path = "../../../../vendor/engine/engine_wire_primitives" }
+engine_policy = { path = "../../../../vendor/engine/engine_policy" }
+engine_types = { path = "../../../../vendor/engine/engine_types" }
+engine_certifiers = { path = "../../../../vendor/engine/engine_certifiers" }
 nalgebra = "0.33"
 tfqm_local_green_global_red_lggr = { path = "../local_green_global_red_lggr" }
-omega_measurement = { version = "0.1.0", optional = true }
+engine_measurement = { path = "../../../../vendor/engine/engine_measurement" }
 num-bigint = { version = "0.4", features = ["serde"] }
 num-rational = { version = "0.4", features = ["serde"] }
 num-traits = "0.2"
@@ -44,21 +30,25 @@ sha2 = "0.10"
 hex = "0.4"
 tfqm_homotopy_type_theory = { path = "../homotopy_type_theory" }
 tfqm_functional = { path = "../functional" }
-omega_homology = { version = "0.1.0", optional = true }
-linear_algebra = { version = "0.1.0", optional = true }
+engine_homology = { path = "../../../../vendor/engine/engine_homology" }
+linear_algebra = { path = "../../../../vendor/engine/linear_algebra" }
 tfqm_holonomy = { path = "../holonomy" }
-omega_kernel = { version = "0.1.0", optional = true }
+engine_kernel = { path = "../../../../vendor/engine/engine_kernel" }
+engine_functional = { path = "../../../../vendor/engine/engine_functional" }
+engine_epk = { path = "../../../../vendor/engine/engine_local_green_global_red_lggr" }
+engine_number_theory = { path = "../../../../vendor/engine/engine_number_theory" }
 tfqm_combinatorics = { path = "../combinatorics" }
-omega_quantum_physics = { version = "0.1.0", optional = true }
+engine_quantum_physics = { path = "../../../../vendor/engine/engine_quantum_physics" }
 tfqm_finite_probability = { path = "../finite_probability" }
 tfqm_number_theory = { path = "../number_theory" }
-omega_solvers = { version = "0.1.0", optional = true }
+engine_solvers = { path = "../../../../vendor/engine/engine_solvers" }
 tfqm_category_theory = { path = "../category_theory" }
 tfqm_general_relativity = { path = "../general_relativity" }
-omega_replay = { version = "0.1.0", optional = true }
-omega_wdp = { version = "0.1.0", optional = true }
+engine_replay = { path = "../../../../vendor/engine/engine_replay" }
+engine_wdp = { path = "../../../../vendor/engine/engine_wdp" }
 
 [dev-dependencies]
+engine_finite_probability = { path = "../../../../vendor/engine/engine_finite_probability" }
 tfqm_majorana = { path = "../majorana" }
 serde_yaml = "0.9"
 

@@ -4,7 +4,7 @@
 //! Order-theoretic adjunction: monotone maps f ⊣ g between posets
 //! with f(x) ≤ y ⇔ x ≤ g(y). Diagnostic pair tags only.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// A single ordered pair tag (x, y) used as a monotone-map edge.

@@ -2,7 +2,7 @@
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
 use serde::{Deserialize, Serialize};
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 
 /// Best-effort enriched presheaf shell F : C^op → V (V-enriched).
 #[derive(Debug, Clone, Default, PartialEq, Eq, Serialize, Deserialize)]

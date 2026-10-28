@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod braid_review {
     use super::*;
-    use omega_number_theory::rational::{rq, Rational};
+    use engine_number_theory::rational::{rq, Rational};
 
     fn mat(n: usize, entries: Vec<i64>) -> BasicMatrix<Rational> {
         BasicMatrix::from_row_major(n, n, entries.into_iter().map(|x| rq(x, 1)).collect()).unwrap()

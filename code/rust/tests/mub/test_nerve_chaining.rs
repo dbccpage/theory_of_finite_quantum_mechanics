@@ -19,7 +19,7 @@ use tfqm_mub::native::exact::mub6_nerve_chaining::{
     CollarNerveChaining, CollarNerveInterfaceType, NerveChainingError, INTEGER_SCALE,
     SCALED_GAMMA_THRESHOLD,
 };
-use omega_number_theory::rational::rq;
+use engine_number_theory::rational::rq;
 
 // ==============================================================================
 // 1. Certified Topological & Circulation Constants

@@ -4,7 +4,7 @@
 //! A cloven / fibered category over a base: p: E → B with cartesian lifts
 //! (Grothendieck fibration data recorded diagnostically).
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort fibered category shell over a base.

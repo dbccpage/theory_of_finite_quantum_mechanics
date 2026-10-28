@@ -10,9 +10,9 @@ pub use crate::native::exact::mub6_matrix6::{
     cross_ratio_at, enumerate_225_submatrices, evaluate_all_225_cross_ratios, root24_exponent,
     Submatrix2Index, NUM_SUBMATRICES_225,
 };
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
-use tfqm_number_theory::rational::rq;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
+use engine_number_theory::rational::rq;
 
 pub const TAO_PHASES: [[i64; D]; D] = [
     [0, 0, 0, 0, 0, 0],

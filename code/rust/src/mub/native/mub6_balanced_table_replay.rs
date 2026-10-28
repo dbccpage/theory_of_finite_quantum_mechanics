@@ -2,7 +2,7 @@
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
-use tfqm_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::cyclotomic::Cyc24;
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 use std::collections::btree_map::Entry;

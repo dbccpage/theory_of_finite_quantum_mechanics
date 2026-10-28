@@ -1,4 +1,4 @@
-use omega_wdp::genesis_guarded_history::{
+use engine_wdp::genesis_guarded_history::{
     admit_problem, guarded_certificate, kind_compatible, kind_sorted_order, legal_extensions,
     respects, CausalProblem, GuardedHistoryError, Json, StarCoherence, SwapComplex,
     MAX_H1_COMPONENT,

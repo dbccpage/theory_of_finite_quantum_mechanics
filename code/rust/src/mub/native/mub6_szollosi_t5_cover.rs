@@ -17,8 +17,8 @@ use crate::native::exact::mub6_cover_tree::{CoverTreeError, RationalBox5D};
 use crate::native::exact::mub6_smale_sentry::{
     krawczyk_contractor, QuadraticComponent, RationalMatrix, SquarePolynomialSystem,
 };
-use omega_kernel::interval::{Interval, IntervalBox};
-use tfqm_number_theory::rational::{ri, rq};
+use engine_kernel::interval::{Interval, IntervalBox};
+use engine_number_theory::rational::{ri, rq};
 
 pub fn epsilon_tolerance() -> BigRational {
     rq(1, 1000)

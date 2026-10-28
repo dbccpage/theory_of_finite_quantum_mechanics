@@ -3,7 +3,7 @@
 //!
 //! Natural transformation η : F ⇒ G as a labeled finite record (shape only).
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for a natural transformation between labeled functors.

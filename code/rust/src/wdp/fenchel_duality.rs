@@ -1,9 +1,9 @@
 
 use num_rational::BigRational;
 use num_traits::Signed;
-use tfqm_functional::l1_seminorm::L1Seminorm;
-use tfqm_functional::phi1::VerifiedExactPhi1;
-use omega_solvers::solver_lp_phi1_quotient::solve_exact_phi1;
+use engine_functional::l1_seminorm::L1Seminorm;
+use engine_functional::phi1::VerifiedExactPhi1;
+use engine_solvers::solver_lp_phi1_quotient::solve_exact_phi1;
 use serde::{Deserialize, Serialize};
 
 use crate::cochains::{coboundary_rows, named_graph_carrier};
@@ -74,7 +74,7 @@ impl WeightedComplex {
             &self.edges,
             &[],
             self.capacities.clone(),
-            "omega_wdp::WeightedComplex",
+            "engine_wdp::WeightedComplex",
         )?;
         Ok(L1Seminorm::new(
             coboundary_rows(carrier.d0()),
@@ -115,8 +115,8 @@ impl WeightedComplex {
 mod tests {
     use super::*;
     use num_traits::Zero;
-    use tfqm_functional::phi1::Phi1Functional;
-    use omega_homology::scalar::q;
+    use engine_functional::phi1::Phi1Functional;
+    use engine_homology::scalar::q;
 
     #[test]
     fn test_fenchel_rockafellar_zero_duality_gap_triangle() {

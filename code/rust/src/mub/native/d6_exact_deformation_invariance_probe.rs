@@ -8,8 +8,8 @@ use crate::native::exact::d6_exact_curvature_cochain::{
 };
 use crate::native::exact::d6_exact_obstruction_cohomology::obstruction_cohomology;
 use crate::native::exact::d6_exact_tangent_obstruction::tangent_obstruction;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 crate::fixture_set!(fixtures, "d6_exact_deformation_invariance_probe");
 

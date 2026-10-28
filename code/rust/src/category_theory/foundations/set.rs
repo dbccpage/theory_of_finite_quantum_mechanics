@@ -1,7 +1,7 @@
 //! set shell for omega_category_theory.
 //! AuthorityEffect: None. Not PROVED / GlobalGreen.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort shell for a labeled set (elements as string tags).

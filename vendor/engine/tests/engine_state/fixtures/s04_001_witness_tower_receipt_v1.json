@@ -1,0 +1,185 @@
+{
+  "schema_version": "omega.witness-tower.bundle.v1",
+  "packet_sha256": "bb524be92ab90930059e26783c7ce3d38a17c4a4112e41835e55aff4c162d7d7",
+  "receipts": [
+    {
+      "material": {
+        "schema_version": "omega.witness-tower.receipt.v1",
+        "receipt_id": "receipt:s04-001:00-producer",
+        "packet_id": "omega-conductor-s04-001-witness-tower-v1",
+        "packet_sha256": "bb524be92ab90930059e26783c7ce3d38a17c4a4112e41835e55aff4c162d7d7",
+        "kind": "producer",
+        "issuer_identity_id": "producer:s04-001",
+        "issuer_session_id": "session:s04-001:producer",
+        "issuer_context_sha256": "697476063cdecef162f32ea6229d3665d7283909b3e00d96e845749cb0c23b83",
+        "graph_rank": 0,
+        "parents": [],
+        "evidence_hashes": [
+          "404cb5a8b20209186edaefd2dbd385104c8e113b8f51ba396fd0abbc893256e7"
+        ],
+        "evidence_ceiling": "finite role identity, context, receipt ancestry, rank, gate, and human-decision evidence only; no authority promotion",
+        "human_decision": null,
+        "authority_effect": "None"
+      },
+      "receipt_sha256": "80961e6c829248afe91e8bf36efe77e772841fd7b361eecad0121630eec45666"
+    },
+    {
+      "material": {
+        "schema_version": "omega.witness-tower.receipt.v1",
+        "receipt_id": "receipt:s04-001:01-independent-evaluation",
+        "packet_id": "omega-conductor-s04-001-witness-tower-v1",
+        "packet_sha256": "bb524be92ab90930059e26783c7ce3d38a17c4a4112e41835e55aff4c162d7d7",
+        "kind": "independent_evaluation",
+        "issuer_identity_id": "evaluator:s04-001",
+        "issuer_session_id": "session:s04-001:evaluator",
+        "issuer_context_sha256": "57894479ac707f6fdacc65ffcba8d342d7e62ce57203e1d3b8ae1f3787fa3b42",
+        "graph_rank": 1,
+        "parents": [
+          {
+            "receipt_id": "receipt:s04-001:00-producer",
+            "receipt_sha256": "80961e6c829248afe91e8bf36efe77e772841fd7b361eecad0121630eec45666"
+          }
+        ],
+        "evidence_hashes": [
+          "80961e6c829248afe91e8bf36efe77e772841fd7b361eecad0121630eec45666"
+        ],
+        "evidence_ceiling": "finite role identity, context, receipt ancestry, rank, gate, and human-decision evidence only; no authority promotion",
+        "human_decision": null,
+        "authority_effect": "None"
+      },
+      "receipt_sha256": "a5f92a4e22e1e198cbbddf8ece2eab02943f97d84586bc68cda10761cfadef60"
+    },
+    {
+      "material": {
+        "schema_version": "omega.witness-tower.receipt.v1",
+        "receipt_id": "receipt:s04-001:02-authority-witness",
+        "packet_id": "omega-conductor-s04-001-witness-tower-v1",
+        "packet_sha256": "bb524be92ab90930059e26783c7ce3d38a17c4a4112e41835e55aff4c162d7d7",
+        "kind": "authority_witness",
+        "issuer_identity_id": "authority-witness:s04-001",
+        "issuer_session_id": "session:s04-001:authority-witness",
+        "issuer_context_sha256": "ca50e297f89d62c8b237da34b3a35c85b59687be6c9a14e437623080ae9c3478",
+        "graph_rank": 2,
+        "parents": [
+          {
+            "receipt_id": "receipt:s04-001:00-producer",
+            "receipt_sha256": "80961e6c829248afe91e8bf36efe77e772841fd7b361eecad0121630eec45666"
+          },
+          {
+            "receipt_id": "receipt:s04-001:01-independent-evaluation",
+            "receipt_sha256": "a5f92a4e22e1e198cbbddf8ece2eab02943f97d84586bc68cda10761cfadef60"
+          }
+        ],
+        "evidence_hashes": [
+          "80961e6c829248afe91e8bf36efe77e772841fd7b361eecad0121630eec45666",
+          "a5f92a4e22e1e198cbbddf8ece2eab02943f97d84586bc68cda10761cfadef60"
+        ],
+        "evidence_ceiling": "finite role identity, context, receipt ancestry, rank, gate, and human-decision evidence only; no authority promotion",
+        "human_decision": null,
+        "authority_effect": "None"
+      },
+      "receipt_sha256": "51f56e93c67773b1f0d91e5c88038eb25d1efffea44f0b5503d73b507f188702"
+    },
+    {
+      "material": {
+        "schema_version": "omega.witness-tower.receipt.v1",
+        "receipt_id": "receipt:s04-001:03-deterministic-gate",
+        "packet_id": "omega-conductor-s04-001-witness-tower-v1",
+        "packet_sha256": "bb524be92ab90930059e26783c7ce3d38a17c4a4112e41835e55aff4c162d7d7",
+        "kind": "deterministic_gate",
+        "issuer_identity_id": "gate:s04-001",
+        "issuer_session_id": "session:s04-001:deterministic-gate",
+        "issuer_context_sha256": "1942eaa57768b7f8f79abe6729675b6eb2881a82b76aa218b8125052a6c77033",
+        "graph_rank": 3,
+        "parents": [
+          {
+            "receipt_id": "receipt:s04-001:00-producer",
+            "receipt_sha256": "80961e6c829248afe91e8bf36efe77e772841fd7b361eecad0121630eec45666"
+          },
+          {
+            "receipt_id": "receipt:s04-001:01-independent-evaluation",
+            "receipt_sha256": "a5f92a4e22e1e198cbbddf8ece2eab02943f97d84586bc68cda10761cfadef60"
+          },
+          {
+            "receipt_id": "receipt:s04-001:02-authority-witness",
+            "receipt_sha256": "51f56e93c67773b1f0d91e5c88038eb25d1efffea44f0b5503d73b507f188702"
+          }
+        ],
+        "evidence_hashes": [
+          "51f56e93c67773b1f0d91e5c88038eb25d1efffea44f0b5503d73b507f188702",
+          "80961e6c829248afe91e8bf36efe77e772841fd7b361eecad0121630eec45666",
+          "a5f92a4e22e1e198cbbddf8ece2eab02943f97d84586bc68cda10761cfadef60"
+        ],
+        "evidence_ceiling": "finite role identity, context, receipt ancestry, rank, gate, and human-decision evidence only; no authority promotion",
+        "human_decision": null,
+        "authority_effect": "None"
+      },
+      "receipt_sha256": "c29afc8a2478d19b5fdc4866d104f7a92d4dd6955e67796bde98af6151df25e6"
+    },
+    {
+      "material": {
+        "schema_version": "omega.witness-tower.receipt.v1",
+        "receipt_id": "receipt:s04-001:04-human-decision",
+        "packet_id": "omega-conductor-s04-001-witness-tower-v1",
+        "packet_sha256": "bb524be92ab90930059e26783c7ce3d38a17c4a4112e41835e55aff4c162d7d7",
+        "kind": "human_decision",
+        "issuer_identity_id": "human:s04-001",
+        "issuer_session_id": "session:s04-001:human",
+        "issuer_context_sha256": "c02cb53c97b252c1561e11f22fd1f1f926e4d803486b2bb5035701f9846661f7",
+        "graph_rank": 4,
+        "parents": [
+          {
+            "receipt_id": "receipt:s04-001:02-authority-witness",
+            "receipt_sha256": "51f56e93c67773b1f0d91e5c88038eb25d1efffea44f0b5503d73b507f188702"
+          },
+          {
+            "receipt_id": "receipt:s04-001:03-deterministic-gate",
+            "receipt_sha256": "c29afc8a2478d19b5fdc4866d104f7a92d4dd6955e67796bde98af6151df25e6"
+          }
+        ],
+        "evidence_hashes": [
+          "5c16484cf68decdb4e1cf36d3dc69f8376970c2b7e3fda9eff1f1eb6befac304"
+        ],
+        "evidence_ceiling": "finite role identity, context, receipt ancestry, rank, gate, and human-decision evidence only; no authority promotion",
+        "human_decision": {
+          "decision_id": "decision:s04-001:human",
+          "recorded_by_host_id": "host:s04-001",
+          "human_actor_id": "human:s04-001",
+          "outcome": "pending_human_promotion",
+          "basis": "tower verified; authority promotion remains a separate human and SAGA-14 transition"
+        },
+        "authority_effect": "None"
+      },
+      "receipt_sha256": "7a7156b648dfb3e674c15377034b5a36f2992c4738596c9db76089d0bdc88cb3"
+    }
+  ],
+  "verification": {
+    "schema_version": "omega.witness-tower.verification.v1",
+    "packet_id": "omega-conductor-s04-001-witness-tower-v1",
+    "packet_sha256": "bb524be92ab90930059e26783c7ce3d38a17c4a4112e41835e55aff4c162d7d7",
+    "role_plan_sha256": "46b6a1c09f07d721463ac47305753605bc6ccde5b2d8f8d54e5f3f8c2b87ffb6",
+    "receipt_dag_sha256": "4757d79043f5b36d9fe35f88569119ec741af6e798a386e3c17f7702644e97d5",
+    "human_decision": {
+      "decision_id": "decision:s04-001:human",
+      "recorded_by_host_id": "host:s04-001",
+      "human_actor_id": "human:s04-001",
+      "outcome": "pending_human_promotion",
+      "basis": "tower verified; authority promotion remains a separate human and SAGA-14 transition"
+    },
+    "boundary": {
+      "identity_separated": true,
+      "session_separated": true,
+      "context_separated": true,
+      "receipt_dag_acyclic": true,
+      "rank_ordered": true,
+      "deterministic_gate_present": true,
+      "human_decision_recorded": true,
+      "promotion_requested": false,
+      "promotion_constructor_called": false,
+      "authorized_local_result_created": false,
+      "authority_effect": "None"
+    },
+    "terminal": "StabilizedSurvivor",
+    "authority_effect": "None"
+  }
+}

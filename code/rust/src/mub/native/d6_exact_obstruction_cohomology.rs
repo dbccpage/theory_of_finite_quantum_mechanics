@@ -3,8 +3,8 @@ use crate::native::exact::d6_exact_curvature_cochain::{ExactVec, BASIS_COUNT, CO
 use crate::native::exact::d6_exact_tangent_obstruction::{
     curvature_jacobian, mat_vec, rank_cyc24, REAL_DIM,
 };
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 pub const C2_DIM: usize = BASIS_COUNT - 1;
 

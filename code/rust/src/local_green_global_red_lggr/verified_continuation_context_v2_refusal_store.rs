@@ -2,7 +2,7 @@
 use std::collections::{BTreeMap, BTreeSet};
 use std::path::{Path, PathBuf};
 
-use omega_replay::append_log::{AppendLogError, AppendLogRecordV1, AppendLogV1};
+use engine_replay::append_log::{AppendLogError, AppendLogRecordV1, AppendLogV1};
 use serde::{Deserialize, Serialize};
 
 use crate::verified_continuation_context_v2::{ContinuationBlockerV2, RefusalStore};

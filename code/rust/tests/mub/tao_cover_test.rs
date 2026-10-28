@@ -13,8 +13,8 @@ use tfqm_mub::native::exact::mub6_tao_cover::{
     write_kernel_reflection_tao_s6_artifact, KernelReflectionScaledArtifact,
 };
 use tfqm_mub::native::exact::szollosi_triad_solver::{tao_s6_matrix, verify_chm};
-use omega_number_theory::cyclotomic::Cyc24;
-use omega_number_theory::rational::ri;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
 
 #[test]
 fn test_tao_s6_matrix_is_exact_chm() {

@@ -1,7 +1,7 @@
 
 use crate::ddc::ddc_alphabet::DdaTrace;
 use crate::ddc::op_verification::VerifiedTrace;
-use omega_types::authority::AuthorityEffect;
+use engine_types::authority::AuthorityEffect;
 
 mod sealed {
     pub trait Sealed {}

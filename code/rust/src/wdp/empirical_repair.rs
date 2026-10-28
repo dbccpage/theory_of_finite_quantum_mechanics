@@ -4,7 +4,7 @@ use num_traits::Zero;
 use tfqm_finite_probability::marginal_compatibility::{
     iid_l1_sampling_bound, joint_sampling_failure, MarginalError, MarginalScenario, SamplingBound,
 };
-use omega_solvers::solver_lp_standard_form::{StandardLp, StandardLpError, StandardLpSolution};
+use engine_solvers::solver_lp_standard_form::{StandardLp, StandardLpError, StandardLpSolution};
 use thiserror::Error;
 
 use crate::empirical_adapter::{frequencies, AdapterRefusal, MeasurementCover, RunTable};

@@ -2,7 +2,7 @@
 use crate::native::exact::d6_exact_curvature_cochain::{
     inner, is_mutually_unbiased_triple_exact, ExactVec, COLUMN_COUNT,
 };
-use tfqm_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::cyclotomic::Cyc24;
 use serde::Serialize;
 
 type GammaVec = [i64; 6];

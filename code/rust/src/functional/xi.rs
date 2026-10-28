@@ -1,7 +1,7 @@
 use nalgebra::{DMatrix, DVector};
 use num_complex::Complex64;
 use num_traits::{Signed, Zero};
-use omega_kernel::Exact;
+use engine_kernel::Exact;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -235,7 +235,7 @@ impl XiFunctional {
         let to_float = |values: &[Exact]| -> Option<DVector<f64>> {
             values
                 .iter()
-                .map(omega_kernel::approximate)
+                .map(engine_kernel::approximate)
                 .collect::<Option<Vec<f64>>>()
                 .map(DVector::from_vec)
         };
@@ -296,7 +296,7 @@ mod tests {
     }
 
     fn ex(value: i64) -> Exact {
-        omega_kernel::integer(value)
+        engine_kernel::integer(value)
     }
 
     #[test]
@@ -425,7 +425,7 @@ mod tests {
 
     #[test]
     fn a_sub_tolerance_phi1_is_not_an_exact_repair() {
-        let tiny = omega_kernel::exact(1, 100_000_000_000);
+        let tiny = engine_kernel::exact(1, 100_000_000_000);
         let primal = [ex(1), ex(0)];
         let dual = [ex(1), ex(0)];
         assert!(!matches!(

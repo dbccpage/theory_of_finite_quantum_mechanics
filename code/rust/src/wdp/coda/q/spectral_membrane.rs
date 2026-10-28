@@ -1,5 +1,5 @@
 
-use omega_types::{
+use engine_types::{
     AuthorityEffectLevel, ConvergenceCertificate, EvidenceCeiling, RefinementRelation,
     RefinementTower, ShadowKind, SpectralTopology, CONVERGENCE_CERTIFICATE_SCHEMA,
 };

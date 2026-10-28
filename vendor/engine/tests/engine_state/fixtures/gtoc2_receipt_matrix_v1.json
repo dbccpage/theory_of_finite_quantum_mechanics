@@ -1,0 +1,899 @@
+{
+  "schema_version": "omega.gtoc2.receipts.v1",
+  "executions": [
+    {
+      "source_packet_id": "S01-002:exact",
+      "source_execution": {
+        "classification": {
+          "schema_version": "omega.gtoc1.classification.v1",
+          "packet_id": "S01-002:exact",
+          "packet_sha256": "61300906ebdb313c3e6dba444d5d7622424b9bfe2e79f0607b44e6fc6029c6dc",
+          "observer_sha256": "ab9643c9c9249142d7fb62b8fe577ad8e0869405df2dc7ccafbd12262bc9e9f0",
+          "phi1_support": "zero",
+          "gamma2_support": "zero",
+          "route": "exact_repair",
+          "terminal_proposal": "ExactRepair",
+          "residual_ids": [],
+          "evidence_ceiling": "finite admitted-window classification at local degrees 0-2; no theorem or authority promotion",
+          "authority_effect": "None"
+        },
+        "receipts": {
+          "schema_version": "omega.gtoc1.receipts.v1",
+          "producer": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "packet_id": "S01-002:exact",
+            "packet_sha256": "61300906ebdb313c3e6dba444d5d7622424b9bfe2e79f0607b44e6fc6029c6dc",
+            "observer_sha256": "ab9643c9c9249142d7fb62b8fe577ad8e0869405df2dc7ccafbd12262bc9e9f0",
+            "producer_id": "witness:producer:omega-state-v1",
+            "source_manifest_sha256": "5ff30ab03fd08a27101a63162be208eee21d5288dabfdab6dd15c6dde822eb60",
+            "classifier_input_sha256": "d36c4b4b1b84c54edb357ed3f36bb74f744b600a7ff9bd84743706d688f79780",
+            "classification_sha256": "1f23030cfb621888a09475a06479b00ab40f1682e2acd2a7d0d8fcbe1e2e4c76",
+            "route": "exact_repair",
+            "terminal_proposal": "ExactRepair",
+            "residual_ids": [],
+            "authority_effect": "None"
+          },
+          "evaluation": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "evaluator_id": "witness:evaluator:direct-replay-v1",
+            "producer_id": "witness:producer:omega-state-v1",
+            "algorithm": "direct-image-and-closure-replay-v1",
+            "replay_classification_sha256": "1f23030cfb621888a09475a06479b00ab40f1682e2acd2a7d0d8fcbe1e2e4c76",
+            "producer_classification_sha256": "1f23030cfb621888a09475a06479b00ab40f1682e2acd2a7d0d8fcbe1e2e4c76",
+            "exact_match": true,
+            "route": "exact_repair",
+            "terminal_proposal": "ExactRepair",
+            "authority_effect": "None"
+          },
+          "authority_witness": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "authority_witness_id": "witness:authority:none-check-v1",
+            "producer_evaluator_witness_distinct": true,
+            "evidence_ceiling_preserved": true,
+            "promotion_performed": false,
+            "authority_effect": "None"
+          },
+          "replay": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "packet_sha256": "61300906ebdb313c3e6dba444d5d7622424b9bfe2e79f0607b44e6fc6029c6dc",
+            "classification_sha256": "1f23030cfb621888a09475a06479b00ab40f1682e2acd2a7d0d8fcbe1e2e4c76",
+            "replay_sha256": "73e9fd41cd782a9407663bc4e60667ea5a0bcf00980301bba18a59d4964dba9e",
+            "deterministic": true
+          },
+          "terminal": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "packet_id": "S01-002:exact",
+            "route": "exact_repair",
+            "terminal_proposal": "ExactRepair",
+            "residual_ids": [],
+            "human_decision": "pending_human_promotion",
+            "authority_effect": "None"
+          },
+          "target_status_matrix": [
+            {
+              "route": "exact_repair",
+              "phi1_support": "zero",
+              "gamma2_support": "zero",
+              "legal_terminals": [
+                "ExactRepair"
+              ],
+              "requirement": "residual lies in the exact image of d0"
+            },
+            {
+              "route": "closed_residual",
+              "phi1_support": "non_zero",
+              "gamma2_support": "zero",
+              "legal_terminals": [
+                "StabilizedSurvivor",
+                "OpenObstruction"
+              ],
+              "requirement": "stabilized only with an explicit frozen stabilization witness; otherwise open"
+            },
+            {
+              "route": "active_closure_failure",
+              "phi1_support": "non_zero",
+              "gamma2_support": "non_zero",
+              "legal_terminals": [
+                "OpenObstruction"
+              ],
+              "requirement": "residual is non-exact and d1(residual) is nonzero"
+            },
+            {
+              "route": "no_rule",
+              "phi1_support": "not_populated",
+              "gamma2_support": "not_populated",
+              "legal_terminals": [
+                "OracleNeeded",
+                "Refused"
+              ],
+              "requirement": "retained carrier has no admitted closure rule"
+            }
+          ]
+        }
+      },
+      "execution": {
+        "classification": {
+          "schema_version": "omega.gtoc2.classification.v1",
+          "packet_id": "S01-003:S01-002:exact:1",
+          "packet_sha256": "9ec03584c491356def639147296666b082b9b88e8bd0d30fc9a880576994fd63",
+          "observer_sha256": "338933a670940cb2ded1a24c74253f4889bd5cabd1d93c43dfc5fe64efa264e6",
+          "source_admission_sha256": "c9ae416e2b4758730df36586c3b51931f141f012d79c620074afdf442eb1fd6a",
+          "reindexed_admission_sha256": "c9ae416e2b4758730df36586c3b51931f141f012d79c620074afdf442eb1fd6a",
+          "source_classification_sha256": "1f23030cfb621888a09475a06479b00ab40f1682e2acd2a7d0d8fcbe1e2e4c76",
+          "reindexed_classification_sha256": "1f23030cfb621888a09475a06479b00ab40f1682e2acd2a7d0d8fcbe1e2e4c76",
+          "source_observer_sha256": "ab9643c9c9249142d7fb62b8fe577ad8e0869405df2dc7ccafbd12262bc9e9f0",
+          "reindexed_observer_sha256": "ab9643c9c9249142d7fb62b8fe577ad8e0869405df2dc7ccafbd12262bc9e9f0",
+          "source_rule_sha256": "d36c4b4b1b84c54edb357ed3f36bb74f744b600a7ff9bd84743706d688f79780",
+          "reindexed_rule_sha256": "d36c4b4b1b84c54edb357ed3f36bb74f744b600a7ff9bd84743706d688f79780",
+          "degree_bijection": {
+            "base_degree": 1,
+            "original_degrees": [
+              1,
+              2,
+              3
+            ],
+            "local_degrees": [
+              0,
+              1,
+              2
+            ],
+            "forward_then_inverse": true,
+            "inverse_then_forward": true
+          },
+          "source_route": "exact_repair",
+          "reindexed_route": "exact_repair",
+          "source_terminal": "ExactRepair",
+          "reindexed_terminal": "ExactRepair",
+          "classification_preserved": true,
+          "terminal_proposal": "StabilizedSurvivor",
+          "residual_ids": [],
+          "evidence_ceiling": "u16 degree-label reindexing for base degrees 1-65533; no unbounded theorem or authority promotion",
+          "authority_effect": "None"
+        },
+        "receipts": {
+          "schema_version": "omega.gtoc2.receipts.v1",
+          "producer": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "packet_id": "S01-003:S01-002:exact:1",
+            "packet_sha256": "9ec03584c491356def639147296666b082b9b88e8bd0d30fc9a880576994fd63",
+            "observer_sha256": "338933a670940cb2ded1a24c74253f4889bd5cabd1d93c43dfc5fe64efa264e6",
+            "producer_id": "witness:producer:degree-shift-v1",
+            "source_admission_sha256": "c9ae416e2b4758730df36586c3b51931f141f012d79c620074afdf442eb1fd6a",
+            "degree_bijection_sha256": "d4f5cc37d298bcfdb2e47c46915aec1a8b1bd63e1725ca8e8046cfe801b05987",
+            "classification_sha256": "55c4492d8c77fb8b1885adefa6a4acd0724d9d79acc51781a7fc8cd76d2b9d36",
+            "source_route": "exact_repair",
+            "reindexed_route": "exact_repair",
+            "source_terminal": "ExactRepair",
+            "reindexed_terminal": "ExactRepair",
+            "classification_preserved": true,
+            "authority_effect": "None"
+          },
+          "evaluation": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "evaluator_id": "witness:evaluator:degree-array-replay-v1",
+            "producer_id": "witness:producer:degree-shift-v1",
+            "algorithm": "independent-degree-array-and-byte-identity-replay-v1",
+            "replay_classification_sha256": "55c4492d8c77fb8b1885adefa6a4acd0724d9d79acc51781a7fc8cd76d2b9d36",
+            "producer_classification_sha256": "55c4492d8c77fb8b1885adefa6a4acd0724d9d79acc51781a7fc8cd76d2b9d36",
+            "independently_reconstructed_degrees": [
+              1,
+              2,
+              3
+            ],
+            "expected_local_degrees": [
+              0,
+              1,
+              2
+            ],
+            "exact_match": true,
+            "route_preserved": true,
+            "terminal_preserved": true,
+            "cochain_rule_preserved": true,
+            "authority_effect": "None"
+          },
+          "authority_witness": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "authority_witness_id": "witness:authority:none-check-gtoc2-v1",
+            "producer_evaluator_witness_distinct": true,
+            "evidence_ceiling_preserved": true,
+            "promotion_performed": false,
+            "authority_effect": "None"
+          },
+          "replay": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "packet_sha256": "9ec03584c491356def639147296666b082b9b88e8bd0d30fc9a880576994fd63",
+            "source_admission_sha256": "c9ae416e2b4758730df36586c3b51931f141f012d79c620074afdf442eb1fd6a",
+            "classification_sha256": "55c4492d8c77fb8b1885adefa6a4acd0724d9d79acc51781a7fc8cd76d2b9d36",
+            "replay_sha256": "faa3b7affdf7861496e303a13f255b1af87fbd04629e26fc40ee033e1f1dad1d",
+            "deterministic": true
+          },
+          "terminal": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "packet_id": "S01-003:S01-002:exact:1",
+            "source_route": "exact_repair",
+            "source_terminal": "ExactRepair",
+            "terminal_proposal": "StabilizedSurvivor",
+            "residual_ids": [],
+            "human_decision": "pending_human_promotion",
+            "authority_effect": "None"
+          }
+        }
+      }
+    },
+    {
+      "source_packet_id": "S01-002:closed",
+      "source_execution": {
+        "classification": {
+          "schema_version": "omega.gtoc1.classification.v1",
+          "packet_id": "S01-002:closed",
+          "packet_sha256": "fc85625550e486940f84ed8ba0ab8e51e252939b1f41628f855eb3e74459e4b3",
+          "observer_sha256": "ab9643c9c9249142d7fb62b8fe577ad8e0869405df2dc7ccafbd12262bc9e9f0",
+          "phi1_support": "non_zero",
+          "gamma2_support": "zero",
+          "route": "closed_residual",
+          "terminal_proposal": "StabilizedSurvivor",
+          "residual_ids": [
+            "residual:closed"
+          ],
+          "evidence_ceiling": "finite admitted-window classification at local degrees 0-2; no theorem or authority promotion",
+          "authority_effect": "None"
+        },
+        "receipts": {
+          "schema_version": "omega.gtoc1.receipts.v1",
+          "producer": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "packet_id": "S01-002:closed",
+            "packet_sha256": "fc85625550e486940f84ed8ba0ab8e51e252939b1f41628f855eb3e74459e4b3",
+            "observer_sha256": "ab9643c9c9249142d7fb62b8fe577ad8e0869405df2dc7ccafbd12262bc9e9f0",
+            "producer_id": "witness:producer:omega-state-v1",
+            "source_manifest_sha256": "5ff30ab03fd08a27101a63162be208eee21d5288dabfdab6dd15c6dde822eb60",
+            "classifier_input_sha256": "b3a6d51bb7c00d68b4e7a0cf8f1b0fec03437b23b1c03bf50861f421639798bc",
+            "classification_sha256": "15d331e6c5e88f79c00f18401cb85324c4e700a3db8918e34908906e48641cd9",
+            "route": "closed_residual",
+            "terminal_proposal": "StabilizedSurvivor",
+            "residual_ids": [
+              "residual:closed"
+            ],
+            "authority_effect": "None"
+          },
+          "evaluation": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "evaluator_id": "witness:evaluator:direct-replay-v1",
+            "producer_id": "witness:producer:omega-state-v1",
+            "algorithm": "direct-image-and-closure-replay-v1",
+            "replay_classification_sha256": "15d331e6c5e88f79c00f18401cb85324c4e700a3db8918e34908906e48641cd9",
+            "producer_classification_sha256": "15d331e6c5e88f79c00f18401cb85324c4e700a3db8918e34908906e48641cd9",
+            "exact_match": true,
+            "route": "closed_residual",
+            "terminal_proposal": "StabilizedSurvivor",
+            "authority_effect": "None"
+          },
+          "authority_witness": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "authority_witness_id": "witness:authority:none-check-v1",
+            "producer_evaluator_witness_distinct": true,
+            "evidence_ceiling_preserved": true,
+            "promotion_performed": false,
+            "authority_effect": "None"
+          },
+          "replay": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "packet_sha256": "fc85625550e486940f84ed8ba0ab8e51e252939b1f41628f855eb3e74459e4b3",
+            "classification_sha256": "15d331e6c5e88f79c00f18401cb85324c4e700a3db8918e34908906e48641cd9",
+            "replay_sha256": "4244d26f1a17b0d3af528f5162a434364ae50d1c4e9fc3ac0dfb536083144068",
+            "deterministic": true
+          },
+          "terminal": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "packet_id": "S01-002:closed",
+            "route": "closed_residual",
+            "terminal_proposal": "StabilizedSurvivor",
+            "residual_ids": [
+              "residual:closed"
+            ],
+            "human_decision": "pending_human_promotion",
+            "authority_effect": "None"
+          },
+          "target_status_matrix": [
+            {
+              "route": "exact_repair",
+              "phi1_support": "zero",
+              "gamma2_support": "zero",
+              "legal_terminals": [
+                "ExactRepair"
+              ],
+              "requirement": "residual lies in the exact image of d0"
+            },
+            {
+              "route": "closed_residual",
+              "phi1_support": "non_zero",
+              "gamma2_support": "zero",
+              "legal_terminals": [
+                "StabilizedSurvivor",
+                "OpenObstruction"
+              ],
+              "requirement": "stabilized only with an explicit frozen stabilization witness; otherwise open"
+            },
+            {
+              "route": "active_closure_failure",
+              "phi1_support": "non_zero",
+              "gamma2_support": "non_zero",
+              "legal_terminals": [
+                "OpenObstruction"
+              ],
+              "requirement": "residual is non-exact and d1(residual) is nonzero"
+            },
+            {
+              "route": "no_rule",
+              "phi1_support": "not_populated",
+              "gamma2_support": "not_populated",
+              "legal_terminals": [
+                "OracleNeeded",
+                "Refused"
+              ],
+              "requirement": "retained carrier has no admitted closure rule"
+            }
+          ]
+        }
+      },
+      "execution": {
+        "classification": {
+          "schema_version": "omega.gtoc2.classification.v1",
+          "packet_id": "S01-003:S01-002:closed:2",
+          "packet_sha256": "a18a92cfd7744e3d3af7beb21fa4f2e08d20eab0d408ad348c57b3cf26297397",
+          "observer_sha256": "338933a670940cb2ded1a24c74253f4889bd5cabd1d93c43dfc5fe64efa264e6",
+          "source_admission_sha256": "3b206aa0a3e269f427bc002f73a6fb3f8925df5beca60d1bf1790e028af67a1b",
+          "reindexed_admission_sha256": "3b206aa0a3e269f427bc002f73a6fb3f8925df5beca60d1bf1790e028af67a1b",
+          "source_classification_sha256": "15d331e6c5e88f79c00f18401cb85324c4e700a3db8918e34908906e48641cd9",
+          "reindexed_classification_sha256": "15d331e6c5e88f79c00f18401cb85324c4e700a3db8918e34908906e48641cd9",
+          "source_observer_sha256": "ab9643c9c9249142d7fb62b8fe577ad8e0869405df2dc7ccafbd12262bc9e9f0",
+          "reindexed_observer_sha256": "ab9643c9c9249142d7fb62b8fe577ad8e0869405df2dc7ccafbd12262bc9e9f0",
+          "source_rule_sha256": "b3a6d51bb7c00d68b4e7a0cf8f1b0fec03437b23b1c03bf50861f421639798bc",
+          "reindexed_rule_sha256": "b3a6d51bb7c00d68b4e7a0cf8f1b0fec03437b23b1c03bf50861f421639798bc",
+          "degree_bijection": {
+            "base_degree": 2,
+            "original_degrees": [
+              2,
+              3,
+              4
+            ],
+            "local_degrees": [
+              0,
+              1,
+              2
+            ],
+            "forward_then_inverse": true,
+            "inverse_then_forward": true
+          },
+          "source_route": "closed_residual",
+          "reindexed_route": "closed_residual",
+          "source_terminal": "StabilizedSurvivor",
+          "reindexed_terminal": "StabilizedSurvivor",
+          "classification_preserved": true,
+          "terminal_proposal": "StabilizedSurvivor",
+          "residual_ids": [],
+          "evidence_ceiling": "u16 degree-label reindexing for base degrees 1-65533; no unbounded theorem or authority promotion",
+          "authority_effect": "None"
+        },
+        "receipts": {
+          "schema_version": "omega.gtoc2.receipts.v1",
+          "producer": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "packet_id": "S01-003:S01-002:closed:2",
+            "packet_sha256": "a18a92cfd7744e3d3af7beb21fa4f2e08d20eab0d408ad348c57b3cf26297397",
+            "observer_sha256": "338933a670940cb2ded1a24c74253f4889bd5cabd1d93c43dfc5fe64efa264e6",
+            "producer_id": "witness:producer:degree-shift-v1",
+            "source_admission_sha256": "3b206aa0a3e269f427bc002f73a6fb3f8925df5beca60d1bf1790e028af67a1b",
+            "degree_bijection_sha256": "0b3d17cb64faa32e370456430199b215d8637adf1cae6e207472267682e85fc3",
+            "classification_sha256": "76cea029684607b0a97f46998739d1206ed8a2c3a07f4936196411df8019bb51",
+            "source_route": "closed_residual",
+            "reindexed_route": "closed_residual",
+            "source_terminal": "StabilizedSurvivor",
+            "reindexed_terminal": "StabilizedSurvivor",
+            "classification_preserved": true,
+            "authority_effect": "None"
+          },
+          "evaluation": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "evaluator_id": "witness:evaluator:degree-array-replay-v1",
+            "producer_id": "witness:producer:degree-shift-v1",
+            "algorithm": "independent-degree-array-and-byte-identity-replay-v1",
+            "replay_classification_sha256": "76cea029684607b0a97f46998739d1206ed8a2c3a07f4936196411df8019bb51",
+            "producer_classification_sha256": "76cea029684607b0a97f46998739d1206ed8a2c3a07f4936196411df8019bb51",
+            "independently_reconstructed_degrees": [
+              2,
+              3,
+              4
+            ],
+            "expected_local_degrees": [
+              0,
+              1,
+              2
+            ],
+            "exact_match": true,
+            "route_preserved": true,
+            "terminal_preserved": true,
+            "cochain_rule_preserved": true,
+            "authority_effect": "None"
+          },
+          "authority_witness": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "authority_witness_id": "witness:authority:none-check-gtoc2-v1",
+            "producer_evaluator_witness_distinct": true,
+            "evidence_ceiling_preserved": true,
+            "promotion_performed": false,
+            "authority_effect": "None"
+          },
+          "replay": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "packet_sha256": "a18a92cfd7744e3d3af7beb21fa4f2e08d20eab0d408ad348c57b3cf26297397",
+            "source_admission_sha256": "3b206aa0a3e269f427bc002f73a6fb3f8925df5beca60d1bf1790e028af67a1b",
+            "classification_sha256": "76cea029684607b0a97f46998739d1206ed8a2c3a07f4936196411df8019bb51",
+            "replay_sha256": "949c3403431b0b6c626e5b474f16aa66edf75c9aac53033384728140e5989878",
+            "deterministic": true
+          },
+          "terminal": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "packet_id": "S01-003:S01-002:closed:2",
+            "source_route": "closed_residual",
+            "source_terminal": "StabilizedSurvivor",
+            "terminal_proposal": "StabilizedSurvivor",
+            "residual_ids": [],
+            "human_decision": "pending_human_promotion",
+            "authority_effect": "None"
+          }
+        }
+      }
+    },
+    {
+      "source_packet_id": "S01-002:active",
+      "source_execution": {
+        "classification": {
+          "schema_version": "omega.gtoc1.classification.v1",
+          "packet_id": "S01-002:active",
+          "packet_sha256": "ce2f3e8b25a61dc9ddfc0a0cd4353e7b0a36cf8675c5a3b3e1736464be30b261",
+          "observer_sha256": "ab9643c9c9249142d7fb62b8fe577ad8e0869405df2dc7ccafbd12262bc9e9f0",
+          "phi1_support": "non_zero",
+          "gamma2_support": "non_zero",
+          "route": "active_closure_failure",
+          "terminal_proposal": "OpenObstruction",
+          "residual_ids": [
+            "residual:active"
+          ],
+          "evidence_ceiling": "finite admitted-window classification at local degrees 0-2; no theorem or authority promotion",
+          "authority_effect": "None"
+        },
+        "receipts": {
+          "schema_version": "omega.gtoc1.receipts.v1",
+          "producer": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "packet_id": "S01-002:active",
+            "packet_sha256": "ce2f3e8b25a61dc9ddfc0a0cd4353e7b0a36cf8675c5a3b3e1736464be30b261",
+            "observer_sha256": "ab9643c9c9249142d7fb62b8fe577ad8e0869405df2dc7ccafbd12262bc9e9f0",
+            "producer_id": "witness:producer:omega-state-v1",
+            "source_manifest_sha256": "5ff30ab03fd08a27101a63162be208eee21d5288dabfdab6dd15c6dde822eb60",
+            "classifier_input_sha256": "adf3ee16480e5b4598e350b34d8e614e6452fee4b37d96e660e1f0fcac4da43e",
+            "classification_sha256": "7d7759dcb539cfdf8142207be89d51762195a4bece85ef7f81d1361838de918d",
+            "route": "active_closure_failure",
+            "terminal_proposal": "OpenObstruction",
+            "residual_ids": [
+              "residual:active"
+            ],
+            "authority_effect": "None"
+          },
+          "evaluation": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "evaluator_id": "witness:evaluator:direct-replay-v1",
+            "producer_id": "witness:producer:omega-state-v1",
+            "algorithm": "direct-image-and-closure-replay-v1",
+            "replay_classification_sha256": "7d7759dcb539cfdf8142207be89d51762195a4bece85ef7f81d1361838de918d",
+            "producer_classification_sha256": "7d7759dcb539cfdf8142207be89d51762195a4bece85ef7f81d1361838de918d",
+            "exact_match": true,
+            "route": "active_closure_failure",
+            "terminal_proposal": "OpenObstruction",
+            "authority_effect": "None"
+          },
+          "authority_witness": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "authority_witness_id": "witness:authority:none-check-v1",
+            "producer_evaluator_witness_distinct": true,
+            "evidence_ceiling_preserved": true,
+            "promotion_performed": false,
+            "authority_effect": "None"
+          },
+          "replay": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "packet_sha256": "ce2f3e8b25a61dc9ddfc0a0cd4353e7b0a36cf8675c5a3b3e1736464be30b261",
+            "classification_sha256": "7d7759dcb539cfdf8142207be89d51762195a4bece85ef7f81d1361838de918d",
+            "replay_sha256": "268a80680330eefe5f85630355019fdb6d9ee3b6ded84319d2a14da4198b1a41",
+            "deterministic": true
+          },
+          "terminal": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "packet_id": "S01-002:active",
+            "route": "active_closure_failure",
+            "terminal_proposal": "OpenObstruction",
+            "residual_ids": [
+              "residual:active"
+            ],
+            "human_decision": "pending_human_promotion",
+            "authority_effect": "None"
+          },
+          "target_status_matrix": [
+            {
+              "route": "exact_repair",
+              "phi1_support": "zero",
+              "gamma2_support": "zero",
+              "legal_terminals": [
+                "ExactRepair"
+              ],
+              "requirement": "residual lies in the exact image of d0"
+            },
+            {
+              "route": "closed_residual",
+              "phi1_support": "non_zero",
+              "gamma2_support": "zero",
+              "legal_terminals": [
+                "StabilizedSurvivor",
+                "OpenObstruction"
+              ],
+              "requirement": "stabilized only with an explicit frozen stabilization witness; otherwise open"
+            },
+            {
+              "route": "active_closure_failure",
+              "phi1_support": "non_zero",
+              "gamma2_support": "non_zero",
+              "legal_terminals": [
+                "OpenObstruction"
+              ],
+              "requirement": "residual is non-exact and d1(residual) is nonzero"
+            },
+            {
+              "route": "no_rule",
+              "phi1_support": "not_populated",
+              "gamma2_support": "not_populated",
+              "legal_terminals": [
+                "OracleNeeded",
+                "Refused"
+              ],
+              "requirement": "retained carrier has no admitted closure rule"
+            }
+          ]
+        }
+      },
+      "execution": {
+        "classification": {
+          "schema_version": "omega.gtoc2.classification.v1",
+          "packet_id": "S01-003:S01-002:active:32768",
+          "packet_sha256": "63a124b69027aff5fc378e0ba550e48b617f446f51963826f91c280ca868faae",
+          "observer_sha256": "338933a670940cb2ded1a24c74253f4889bd5cabd1d93c43dfc5fe64efa264e6",
+          "source_admission_sha256": "9e06d80f7172939cad592b92b1ce121d2536f84e29ff0374aa78eff57e053f73",
+          "reindexed_admission_sha256": "9e06d80f7172939cad592b92b1ce121d2536f84e29ff0374aa78eff57e053f73",
+          "source_classification_sha256": "7d7759dcb539cfdf8142207be89d51762195a4bece85ef7f81d1361838de918d",
+          "reindexed_classification_sha256": "7d7759dcb539cfdf8142207be89d51762195a4bece85ef7f81d1361838de918d",
+          "source_observer_sha256": "ab9643c9c9249142d7fb62b8fe577ad8e0869405df2dc7ccafbd12262bc9e9f0",
+          "reindexed_observer_sha256": "ab9643c9c9249142d7fb62b8fe577ad8e0869405df2dc7ccafbd12262bc9e9f0",
+          "source_rule_sha256": "adf3ee16480e5b4598e350b34d8e614e6452fee4b37d96e660e1f0fcac4da43e",
+          "reindexed_rule_sha256": "adf3ee16480e5b4598e350b34d8e614e6452fee4b37d96e660e1f0fcac4da43e",
+          "degree_bijection": {
+            "base_degree": 32768,
+            "original_degrees": [
+              32768,
+              32769,
+              32770
+            ],
+            "local_degrees": [
+              0,
+              1,
+              2
+            ],
+            "forward_then_inverse": true,
+            "inverse_then_forward": true
+          },
+          "source_route": "active_closure_failure",
+          "reindexed_route": "active_closure_failure",
+          "source_terminal": "OpenObstruction",
+          "reindexed_terminal": "OpenObstruction",
+          "classification_preserved": true,
+          "terminal_proposal": "StabilizedSurvivor",
+          "residual_ids": [],
+          "evidence_ceiling": "u16 degree-label reindexing for base degrees 1-65533; no unbounded theorem or authority promotion",
+          "authority_effect": "None"
+        },
+        "receipts": {
+          "schema_version": "omega.gtoc2.receipts.v1",
+          "producer": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "packet_id": "S01-003:S01-002:active:32768",
+            "packet_sha256": "63a124b69027aff5fc378e0ba550e48b617f446f51963826f91c280ca868faae",
+            "observer_sha256": "338933a670940cb2ded1a24c74253f4889bd5cabd1d93c43dfc5fe64efa264e6",
+            "producer_id": "witness:producer:degree-shift-v1",
+            "source_admission_sha256": "9e06d80f7172939cad592b92b1ce121d2536f84e29ff0374aa78eff57e053f73",
+            "degree_bijection_sha256": "df0756ab8219949aa684aa108ca403059dbdf1bed77275ecb3dbd7457484a5c6",
+            "classification_sha256": "e46271c440d035d3afba68acf25d94036127610bc06d2a33d09913020f3a81ac",
+            "source_route": "active_closure_failure",
+            "reindexed_route": "active_closure_failure",
+            "source_terminal": "OpenObstruction",
+            "reindexed_terminal": "OpenObstruction",
+            "classification_preserved": true,
+            "authority_effect": "None"
+          },
+          "evaluation": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "evaluator_id": "witness:evaluator:degree-array-replay-v1",
+            "producer_id": "witness:producer:degree-shift-v1",
+            "algorithm": "independent-degree-array-and-byte-identity-replay-v1",
+            "replay_classification_sha256": "e46271c440d035d3afba68acf25d94036127610bc06d2a33d09913020f3a81ac",
+            "producer_classification_sha256": "e46271c440d035d3afba68acf25d94036127610bc06d2a33d09913020f3a81ac",
+            "independently_reconstructed_degrees": [
+              32768,
+              32769,
+              32770
+            ],
+            "expected_local_degrees": [
+              0,
+              1,
+              2
+            ],
+            "exact_match": true,
+            "route_preserved": true,
+            "terminal_preserved": true,
+            "cochain_rule_preserved": true,
+            "authority_effect": "None"
+          },
+          "authority_witness": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "authority_witness_id": "witness:authority:none-check-gtoc2-v1",
+            "producer_evaluator_witness_distinct": true,
+            "evidence_ceiling_preserved": true,
+            "promotion_performed": false,
+            "authority_effect": "None"
+          },
+          "replay": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "packet_sha256": "63a124b69027aff5fc378e0ba550e48b617f446f51963826f91c280ca868faae",
+            "source_admission_sha256": "9e06d80f7172939cad592b92b1ce121d2536f84e29ff0374aa78eff57e053f73",
+            "classification_sha256": "e46271c440d035d3afba68acf25d94036127610bc06d2a33d09913020f3a81ac",
+            "replay_sha256": "4fe6c7e6a732963820923705e09d84df052f83de2af39a136b9699d16c7f14a4",
+            "deterministic": true
+          },
+          "terminal": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "packet_id": "S01-003:S01-002:active:32768",
+            "source_route": "active_closure_failure",
+            "source_terminal": "OpenObstruction",
+            "terminal_proposal": "StabilizedSurvivor",
+            "residual_ids": [],
+            "human_decision": "pending_human_promotion",
+            "authority_effect": "None"
+          }
+        }
+      }
+    },
+    {
+      "source_packet_id": "S01-002:no-rule",
+      "source_execution": {
+        "classification": {
+          "schema_version": "omega.gtoc1.classification.v1",
+          "packet_id": "S01-002:no-rule",
+          "packet_sha256": "1ff5c4dffbd8ac5cc8ba121c87c678e66ec5d237830356e83cb1f49e7918f04f",
+          "observer_sha256": "ab9643c9c9249142d7fb62b8fe577ad8e0869405df2dc7ccafbd12262bc9e9f0",
+          "phi1_support": "not_populated",
+          "gamma2_support": "not_populated",
+          "route": "no_rule",
+          "terminal_proposal": "OracleNeeded",
+          "residual_ids": [
+            "oracle:closure-window"
+          ],
+          "evidence_ceiling": "finite admitted-window classification at local degrees 0-2; no theorem or authority promotion",
+          "authority_effect": "None"
+        },
+        "receipts": {
+          "schema_version": "omega.gtoc1.receipts.v1",
+          "producer": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "packet_id": "S01-002:no-rule",
+            "packet_sha256": "1ff5c4dffbd8ac5cc8ba121c87c678e66ec5d237830356e83cb1f49e7918f04f",
+            "observer_sha256": "ab9643c9c9249142d7fb62b8fe577ad8e0869405df2dc7ccafbd12262bc9e9f0",
+            "producer_id": "witness:producer:omega-state-v1",
+            "source_manifest_sha256": "5ff30ab03fd08a27101a63162be208eee21d5288dabfdab6dd15c6dde822eb60",
+            "classifier_input_sha256": "0d8b501f6098ee987747c0894789180c1d885e58d43b5f751baa5469aa11d476",
+            "classification_sha256": "921d3c48c896fc8c10bcf83c0134bb034c7c939b6c6733cd2fbc43787816a1af",
+            "route": "no_rule",
+            "terminal_proposal": "OracleNeeded",
+            "residual_ids": [
+              "oracle:closure-window"
+            ],
+            "authority_effect": "None"
+          },
+          "evaluation": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "evaluator_id": "witness:evaluator:direct-replay-v1",
+            "producer_id": "witness:producer:omega-state-v1",
+            "algorithm": "direct-image-and-closure-replay-v1",
+            "replay_classification_sha256": "921d3c48c896fc8c10bcf83c0134bb034c7c939b6c6733cd2fbc43787816a1af",
+            "producer_classification_sha256": "921d3c48c896fc8c10bcf83c0134bb034c7c939b6c6733cd2fbc43787816a1af",
+            "exact_match": true,
+            "route": "no_rule",
+            "terminal_proposal": "OracleNeeded",
+            "authority_effect": "None"
+          },
+          "authority_witness": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "authority_witness_id": "witness:authority:none-check-v1",
+            "producer_evaluator_witness_distinct": true,
+            "evidence_ceiling_preserved": true,
+            "promotion_performed": false,
+            "authority_effect": "None"
+          },
+          "replay": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "packet_sha256": "1ff5c4dffbd8ac5cc8ba121c87c678e66ec5d237830356e83cb1f49e7918f04f",
+            "classification_sha256": "921d3c48c896fc8c10bcf83c0134bb034c7c939b6c6733cd2fbc43787816a1af",
+            "replay_sha256": "7b9ed8930b2061d1ea35f0969413aaaa634c041a676cdffcbcc62983b0f7348f",
+            "deterministic": true
+          },
+          "terminal": {
+            "schema_version": "omega.gtoc1.receipts.v1",
+            "packet_id": "S01-002:no-rule",
+            "route": "no_rule",
+            "terminal_proposal": "OracleNeeded",
+            "residual_ids": [
+              "oracle:closure-window"
+            ],
+            "human_decision": "pending_human_promotion",
+            "authority_effect": "None"
+          },
+          "target_status_matrix": [
+            {
+              "route": "exact_repair",
+              "phi1_support": "zero",
+              "gamma2_support": "zero",
+              "legal_terminals": [
+                "ExactRepair"
+              ],
+              "requirement": "residual lies in the exact image of d0"
+            },
+            {
+              "route": "closed_residual",
+              "phi1_support": "non_zero",
+              "gamma2_support": "zero",
+              "legal_terminals": [
+                "StabilizedSurvivor",
+                "OpenObstruction"
+              ],
+              "requirement": "stabilized only with an explicit frozen stabilization witness; otherwise open"
+            },
+            {
+              "route": "active_closure_failure",
+              "phi1_support": "non_zero",
+              "gamma2_support": "non_zero",
+              "legal_terminals": [
+                "OpenObstruction"
+              ],
+              "requirement": "residual is non-exact and d1(residual) is nonzero"
+            },
+            {
+              "route": "no_rule",
+              "phi1_support": "not_populated",
+              "gamma2_support": "not_populated",
+              "legal_terminals": [
+                "OracleNeeded",
+                "Refused"
+              ],
+              "requirement": "retained carrier has no admitted closure rule"
+            }
+          ]
+        }
+      },
+      "execution": {
+        "classification": {
+          "schema_version": "omega.gtoc2.classification.v1",
+          "packet_id": "S01-003:S01-002:no-rule:65533",
+          "packet_sha256": "97be20544ed1a6a2006373f4460adfa84d1c10bad2d73a1de4d99a1f1c1cfbbf",
+          "observer_sha256": "338933a670940cb2ded1a24c74253f4889bd5cabd1d93c43dfc5fe64efa264e6",
+          "source_admission_sha256": "1447a8e2528ba8d422b581d1606e03a98b531e71484339aa812e48bbd5f79161",
+          "reindexed_admission_sha256": "1447a8e2528ba8d422b581d1606e03a98b531e71484339aa812e48bbd5f79161",
+          "source_classification_sha256": "921d3c48c896fc8c10bcf83c0134bb034c7c939b6c6733cd2fbc43787816a1af",
+          "reindexed_classification_sha256": "921d3c48c896fc8c10bcf83c0134bb034c7c939b6c6733cd2fbc43787816a1af",
+          "source_observer_sha256": "ab9643c9c9249142d7fb62b8fe577ad8e0869405df2dc7ccafbd12262bc9e9f0",
+          "reindexed_observer_sha256": "ab9643c9c9249142d7fb62b8fe577ad8e0869405df2dc7ccafbd12262bc9e9f0",
+          "source_rule_sha256": "0d8b501f6098ee987747c0894789180c1d885e58d43b5f751baa5469aa11d476",
+          "reindexed_rule_sha256": "0d8b501f6098ee987747c0894789180c1d885e58d43b5f751baa5469aa11d476",
+          "degree_bijection": {
+            "base_degree": 65533,
+            "original_degrees": [
+              65533,
+              65534,
+              65535
+            ],
+            "local_degrees": [
+              0,
+              1,
+              2
+            ],
+            "forward_then_inverse": true,
+            "inverse_then_forward": true
+          },
+          "source_route": "no_rule",
+          "reindexed_route": "no_rule",
+          "source_terminal": "OracleNeeded",
+          "reindexed_terminal": "OracleNeeded",
+          "classification_preserved": true,
+          "terminal_proposal": "StabilizedSurvivor",
+          "residual_ids": [],
+          "evidence_ceiling": "u16 degree-label reindexing for base degrees 1-65533; no unbounded theorem or authority promotion",
+          "authority_effect": "None"
+        },
+        "receipts": {
+          "schema_version": "omega.gtoc2.receipts.v1",
+          "producer": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "packet_id": "S01-003:S01-002:no-rule:65533",
+            "packet_sha256": "97be20544ed1a6a2006373f4460adfa84d1c10bad2d73a1de4d99a1f1c1cfbbf",
+            "observer_sha256": "338933a670940cb2ded1a24c74253f4889bd5cabd1d93c43dfc5fe64efa264e6",
+            "producer_id": "witness:producer:degree-shift-v1",
+            "source_admission_sha256": "1447a8e2528ba8d422b581d1606e03a98b531e71484339aa812e48bbd5f79161",
+            "degree_bijection_sha256": "0686a90d6281e4f0f353e4506894be9b0ff948c7b3504d658260342f41f5c4ad",
+            "classification_sha256": "0fc0a6b5eaed8001cd62217424ae1a678d56bd6045a6cd580a272b00a3856c95",
+            "source_route": "no_rule",
+            "reindexed_route": "no_rule",
+            "source_terminal": "OracleNeeded",
+            "reindexed_terminal": "OracleNeeded",
+            "classification_preserved": true,
+            "authority_effect": "None"
+          },
+          "evaluation": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "evaluator_id": "witness:evaluator:degree-array-replay-v1",
+            "producer_id": "witness:producer:degree-shift-v1",
+            "algorithm": "independent-degree-array-and-byte-identity-replay-v1",
+            "replay_classification_sha256": "0fc0a6b5eaed8001cd62217424ae1a678d56bd6045a6cd580a272b00a3856c95",
+            "producer_classification_sha256": "0fc0a6b5eaed8001cd62217424ae1a678d56bd6045a6cd580a272b00a3856c95",
+            "independently_reconstructed_degrees": [
+              65533,
+              65534,
+              65535
+            ],
+            "expected_local_degrees": [
+              0,
+              1,
+              2
+            ],
+            "exact_match": true,
+            "route_preserved": true,
+            "terminal_preserved": true,
+            "cochain_rule_preserved": true,
+            "authority_effect": "None"
+          },
+          "authority_witness": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "authority_witness_id": "witness:authority:none-check-gtoc2-v1",
+            "producer_evaluator_witness_distinct": true,
+            "evidence_ceiling_preserved": true,
+            "promotion_performed": false,
+            "authority_effect": "None"
+          },
+          "replay": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "packet_sha256": "97be20544ed1a6a2006373f4460adfa84d1c10bad2d73a1de4d99a1f1c1cfbbf",
+            "source_admission_sha256": "1447a8e2528ba8d422b581d1606e03a98b531e71484339aa812e48bbd5f79161",
+            "classification_sha256": "0fc0a6b5eaed8001cd62217424ae1a678d56bd6045a6cd580a272b00a3856c95",
+            "replay_sha256": "00f641d22d21f7fd94c6fb3e0385d2754dd829c66cca489551cca8d56d82c605",
+            "deterministic": true
+          },
+          "terminal": {
+            "schema_version": "omega.gtoc2.receipts.v1",
+            "packet_id": "S01-003:S01-002:no-rule:65533",
+            "source_route": "no_rule",
+            "source_terminal": "OracleNeeded",
+            "terminal_proposal": "StabilizedSurvivor",
+            "residual_ids": [],
+            "human_decision": "pending_human_promotion",
+            "authority_effect": "None"
+          }
+        }
+      }
+    }
+  ]
+}

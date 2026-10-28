@@ -5,11 +5,11 @@ use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::linear_algebra::image_kernel::{solve_in_image, ImageMembership};
 use num_rational::BigRational;
 use num_traits::One;
-use tfqm_functional::l1_seminorm::L1Seminorm;
-use omega_homology::carrier::Carrier;
-use omega_homology::cochain_complex::TheoremProvenance;
-use omega_homology::finite_directed_graph::{self, DirectedGraphBuilder};
-use omega_homology::graph_carrier::graph_carrier;
+use engine_functional::l1_seminorm::L1Seminorm;
+use engine_homology::carrier::Carrier;
+use engine_homology::cochain_complex::TheoremProvenance;
+use engine_homology::finite_directed_graph::{self, DirectedGraphBuilder};
+use engine_homology::graph_carrier::graph_carrier;
 use serde::{Deserialize, Serialize};
 
 use crate::error::WdpError;
@@ -173,7 +173,7 @@ impl FiniteComplex {
             &self.edges,
             &[],
             weights,
-            "omega_wdp::FiniteComplex",
+            "engine_wdp::FiniteComplex",
         )
     }
 
@@ -266,9 +266,9 @@ pub fn solve_potential(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use tfqm_functional::phi1::Phi1Functional;
-    use omega_homology::scalar::{q, qr};
-    use omega_solvers::solver_lp_phi1_quotient::solve_exact_phi1;
+    use engine_functional::phi1::Phi1Functional;
+    use engine_homology::scalar::{q, qr};
+    use engine_solvers::solver_lp_phi1_quotient::solve_exact_phi1;
 
     fn triangle() -> FiniteComplex {
         let vertices = BTreeSet::from(["0".to_string(), "1".to_string(), "2".to_string()]);

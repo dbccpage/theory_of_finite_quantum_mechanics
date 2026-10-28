@@ -16,10 +16,10 @@ use crate::native::exact::mub6_cover_run::{
 use crate::native::exact::mub6_f6_chart::f6_family_columns;
 use crate::native::exact::mub6_interval_cover::VectorBox;
 use crate::native::exact::szollosi_triad_solver::tao_s6_matrix;
-use omega_kernel::interval::Interval;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
-use tfqm_number_theory::rational::rq;
+use engine_kernel::interval::Interval;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
+use engine_number_theory::rational::rq;
 
 pub use crate::native::exact::mub6_field::inv_sqrt6;
 
@@ -271,7 +271,7 @@ pub fn write_kernel_reflection_tao_s6_artifact(presplit_depth: u32) -> Result<Pa
             artifact.complex.complete, artifact.complex.uncertified
         ));
     }
-    let dir = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+    let dir = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     std::fs::create_dir_all(&dir).map_err(|e| format!("mkdir: {e}"))?;
     let path = dir.join("kernel_reflection_tao_s6_box_cover.json");
     let json = serde_json::to_string_pretty(&artifact).map_err(|e| format!("serde: {e}"))?;

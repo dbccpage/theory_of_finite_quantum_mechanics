@@ -1,4 +1,4 @@
-use omega_wdp::genesis_guarded_history::{guarded_certificate, Json, CERTIFICATE_SCHEMA};
+use engine_wdp::genesis_guarded_history::{guarded_certificate, Json, CERTIFICATE_SCHEMA};
 use std::process::ExitCode;
 
 fn refuse(reason: String) -> ExitCode {

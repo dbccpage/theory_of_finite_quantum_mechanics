@@ -6,7 +6,7 @@ use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::smith_normal_form::smith_normal_form_checked;
 use num_bigint::{BigInt, BigUint};
 use num_traits::{ToPrimitive, Zero};
-use omega_kernel::resource_limits::check_and_reserve;
+use engine_kernel::resource_limits::check_and_reserve;
 use std::collections::{BTreeMap, VecDeque};
 
 fn edge_endpoints(complex: &CellComplex) -> Result<Vec<(usize, usize)>, HolonomyError> {

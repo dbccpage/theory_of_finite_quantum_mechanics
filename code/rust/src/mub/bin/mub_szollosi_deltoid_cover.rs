@@ -83,7 +83,7 @@ fn emit_deltoid_receipt(
         .expect("failed to serialize final deltoid report to JSON");
 
     let crate_artifact_dir =
-        Path::new(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
+        Path::new(env!("CARGO_MANIFEST_DIR")).join("../../tests/mub/artifacts");
     fs::create_dir_all(&crate_artifact_dir).expect("failed to create crate artifacts directory");
     let crate_artifact_path = crate_artifact_dir.join("mub_szollosi_deltoid_cover.json");
     fs::write(&crate_artifact_path, &json_str).expect("failed to write crate cover receipt JSON");

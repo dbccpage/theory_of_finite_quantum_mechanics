@@ -10,7 +10,7 @@ use num_rational::BigRational;
 use num_traits::{One, Zero};
 use syn::visit::Visit;
 
-use omega_certifiers::phi1_certifier::Phi1Verifier;
+use engine_certifiers::phi1_certifier::Phi1Verifier;
 use tfqm_mub::native::exact::mub6_cover_tree::{
     certify_all_leaves_with_margin, certify_leaf_with_margin, certify_leaf_with_phi1,
     certify_leaf_with_phi1_solution, certify_leaf_with_sdp, check_partition_cover,
@@ -19,8 +19,8 @@ use tfqm_mub::native::exact::mub6_cover_tree::{
 };
 use tfqm_mub::native::exact::mub6_firewall::{AUTHORITY_EFFECT, FIREWALL};
 use tfqm_mub::native::exact::mub6_quad_sdp::solve_quad_sdp_certificate;
-use omega_number_theory::rational::rq;
-use omega_solvers::solver_lp_phi1_boundary::{solve_l1_boundary, Boundary1, BoundaryEdge};
+use engine_number_theory::rational::rq;
+use engine_solvers::solver_lp_phi1_boundary::{solve_l1_boundary, Boundary1, BoundaryEdge};
 
 // ============================================================================
 // 1. STRICT ZERO-FLOAT DISCIPLINE AST & SYNTACTIC AUDIT

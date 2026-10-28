@@ -3,7 +3,7 @@
 //!
 //! C + D: disjoint union of objects and morphisms; no cross morphisms.
 
-use omega_category_theory::errors::ArithmosError;
+use tfqm_category_theory::errors::ArithmosError;
 use serde::{Deserialize, Serialize};
 
 /// Best-effort sum (coproduct) category shell C + D.

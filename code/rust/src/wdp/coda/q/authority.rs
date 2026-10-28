@@ -1,4 +1,4 @@
-use omega_types::q_continuum::{AuthorityScope, AuthorityTrace, DescentResult};
+use engine_types::q_continuum::{AuthorityScope, AuthorityTrace, DescentResult};
 
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
 pub struct AuthorityPolicy;

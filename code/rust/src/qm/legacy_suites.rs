@@ -15,18 +15,18 @@ use crate::qm::campaigns::growth_refinement::*;
 use crate::qm::campaigns::quantum_walk::*;
 use crate::qm::campaigns::terminal_price_list::*;
 use crate::qm::campaigns::toric::*;
-use omega_lie_theory::pauli_symplectic::*;
-use omega_number_theory::cyclotomic_field::CyclotomicNumber;
-use omega_number_theory::cyclotomic_ordered::standard_real_sign;
-use omega_quantum_physics::branch_finegraining::search_smallest_irrational_conductor;
-use omega_quantum_physics::commutator::*;
-use omega_quantum_physics::grover::*;
-use omega_quantum_physics::mub::*;
-use omega_quantum_physics::phase_estimation::*;
-use omega_quantum_physics::richardson::*;
-use omega_quantum_physics::shor::*;
-use omega_quantum_physics::tomography::*;
-use omega_quantum_physics::wigner::*;
+use engine_lie_theory::pauli_symplectic::*;
+use engine_number_theory::cyclotomic_field::CyclotomicNumber;
+use engine_number_theory::cyclotomic_ordered::standard_real_sign;
+use engine_quantum_physics::branch_finegraining::search_smallest_irrational_conductor;
+use engine_quantum_physics::commutator::*;
+use engine_quantum_physics::grover::*;
+use engine_quantum_physics::mub::*;
+use engine_quantum_physics::phase_estimation::*;
+use engine_quantum_physics::richardson::*;
+use engine_quantum_physics::shor::*;
+use engine_quantum_physics::tomography::*;
+use engine_quantum_physics::wigner::*;
 use serde::Serialize;
 use serde_json::json;
 
@@ -161,7 +161,7 @@ fn run_target_13_wigner_d5() -> Result<serde_json::Value, String> {
     let w_ground = wigner
         .evaluate_wigner(&state_ground_d5())
         .map_err(|error| error.to_string())?;
-    let zero_q = omega_number_theory::rational::r_zero();
+    let zero_q = engine_number_theory::rational::r_zero();
     let stabilizer_non_neg = w_ground.iter().flatten().all(|v| v >= &zero_q);
     let magic_has_negativity = wigner_d5_magic_has_negativity(&wigner)?;
     let both_ok = [stabilizer_non_neg, magic_has_negativity].into_iter().all(|b| b);
@@ -242,13 +242,13 @@ fn run_target_21_ballistic_walk() -> Result<serde_json::Value, String> {
 fn run_target_22_mub_tomography() -> Result<serde_json::Value, String> {
     let mub_d3 = MubSystem::mub_d3();
     let tomographer_d3 =
-        ExactStateTomographerSystem::new(omega_quantum_physics::mub::MubSystem::mub_d3());
+        ExactStateTomographerSystem::new(engine_quantum_physics::mub::MubSystem::mub_d3());
     let d3_tomography_ground = tomographer_d3.verify_exact_reconstruction(&state_ground_d3());
     let d3_tomography_magic = tomographer_d3.verify_exact_reconstruction(&state_magic_d3());
 
     let mub_d4 = MubSystem::mub_d4();
     let tomographer_d4 =
-        ExactStateTomographerSystem::new(omega_quantum_physics::mub::MubSystem::mub_d4());
+        ExactStateTomographerSystem::new(engine_quantum_physics::mub::MubSystem::mub_d4());
     let d4_tomography_bell = tomographer_d4.verify_exact_reconstruction(&state_bell_d4());
     let d4_tomography_mixed = tomographer_d4.verify_exact_reconstruction(&state_mixed_d4());
     let ck_receipt =
@@ -542,7 +542,7 @@ fn evaluate_foundational_1_to_12_flags() -> ([bool; 12], bool, bool) {
     let t10 = verify_target10_teleportation();
     let t11 = verify_target11_superdense_coding();
     let t12 = verify_target12_css_code();
-    let r_one = omega_number_theory::rational::r_one();
+    let r_one = engine_number_theory::rational::r_one();
 
     let flags = [
         all_bools(&[
@@ -621,7 +621,7 @@ fn run_all_targets_and_c250() -> Result<serde_json::Value, String> {
     let (f1_12, t10_fid_one, t11_succ_one) = evaluate_foundational_1_to_12_flags();
     let wigner = DiscreteWignerSystemD5::new();
     let magic_has_negativity = wigner_d5_magic_has_negativity(&wigner)?;
-    let shor_ok = ShorNineQubitCode::new().recovery_success_rate == omega_number_theory::rational::r_one();
+    let shor_ok = ShorNineQubitCode::new().recovery_success_rate == engine_number_theory::rational::r_one();
     let pe_verified = DiscretePhaseEstimation::verify_all_dyadic_phases(3);
     let toric_ok = ToricCode2x2::new().logical_homology_braiding_phase == -1;
     let grover_ok = GroverRecurrenceN4::compute(6).exact_one_step_success;
@@ -648,7 +648,7 @@ fn run_all_targets_and_c250() -> Result<serde_json::Value, String> {
         mub_d4.verify_cross_basis_unbiasedness(),
     ]);
     let d4_tomography_ok =
-        ExactStateTomographerSystem::new(omega_quantum_physics::mub::MubSystem::mub_d4())
+        ExactStateTomographerSystem::new(engine_quantum_physics::mub::MubSystem::mub_d4())
             .verify_exact_reconstruction(&state_bell_d4());
     let ck_receipt =
         crate::qm::campaigns::mub_reports::evaluate_all_1024_clifton_kent_valuations(&mub_d4)?;

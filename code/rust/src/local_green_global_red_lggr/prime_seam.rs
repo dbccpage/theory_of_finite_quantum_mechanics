@@ -1,11 +1,11 @@
 
 use serde::{Deserialize, Serialize};
 
-use omega_types::authority::AuthorityEffect;
-use omega_types::ceiling::EvidenceCeiling;
+use engine_types::authority::AuthorityEffect;
+use engine_types::ceiling::EvidenceCeiling;
 
 use crate::epk_engine::GluingDefect;
-use omega_policy::trichotomy::ObstructionDiagnosticClass;
+use engine_policy::trichotomy::ObstructionDiagnosticClass;
 
 use crate::adequacy::DetectorAdequacyVerdictKind;
 use crate::bound_measurement::{verdict_tag, CanonicalHasher};
@@ -603,7 +603,7 @@ impl PrimeContinuation {
     }
 }
 
-pub use omega_types::prime::CanContinueResult;
+pub use engine_types::prime::CanContinueResult;
 
 impl From<&PrimeContinuation> for CanContinueResult {
     fn from(c: &PrimeContinuation) -> Self {

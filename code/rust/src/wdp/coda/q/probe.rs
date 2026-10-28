@@ -1,4 +1,4 @@
-use omega_types::q_continuum::{generate_probe_plan, ProbePlan, QIdea};
+use engine_types::q_continuum::{generate_probe_plan, ProbePlan, QIdea};
 
 use super::packet::ValidatedQPacket;
 

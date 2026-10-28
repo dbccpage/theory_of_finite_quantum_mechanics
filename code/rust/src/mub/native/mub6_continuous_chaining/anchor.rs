@@ -12,8 +12,8 @@ use crate::native::exact::mub6_zerorel_variety::{
     apply_unitary_to_basis, apply_unitary_to_triple, eval_artin_schreier_curvature, BasisCyc,
     MuTripleCyc,
 };
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::rq;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::rq;
 
 use super::curve::*;
 

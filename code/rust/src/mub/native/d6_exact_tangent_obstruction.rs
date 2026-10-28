@@ -2,11 +2,11 @@
 use crate::native::exact::d6_exact_curvature_cochain::{inner, ExactVec, COLUMN_COUNT, D};
 use num_rational::BigRational;
 use num_traits::Zero;
-use omega_certifiers::phi1_certifier::Phi1FormCertificate;
-use tfqm_number_theory::cyclotomic::Cyc24;
-use tfqm_number_theory::rational::ri;
-use omega_policy::trichotomy::ObstructionDiagnosticClass;
-use omega_solvers::solver_lp_exact_simplex::{
+use engine_certifiers::phi1_certifier::Phi1FormCertificate;
+use engine_number_theory::cyclotomic::Cyc24;
+use engine_number_theory::rational::ri;
+use engine_policy::trichotomy::ObstructionDiagnosticClass;
+use engine_solvers::solver_lp_exact_simplex::{
     solve_weighted_l1_projection, L1LpError, L1ProjectionSolution,
 };
 

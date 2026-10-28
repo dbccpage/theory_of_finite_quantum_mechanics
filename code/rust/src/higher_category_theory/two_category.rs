@@ -1,6 +1,6 @@
 
 use crate::error::HigherCategoryError;
-use omega_kernel::resource_limits::OperationLimits;
+use engine_kernel::resource_limits::OperationLimits;
 use sha2::{Digest, Sha256};
 use std::collections::{BTreeMap, BTreeSet};
 

@@ -3,10 +3,10 @@ use num_traits::Zero;
 use serde::{Deserialize, Serialize};
 
 use crate::qm::bridge::{elimination, matrix as mx, ExactFieldError};
-use omega_number_theory::cyclotomic::GaussianRat;
-use omega_number_theory::rational::{ri, rq, Rational};
-use omega_quantum_physics::exact_channel::{ExactChannelError, ExactChoiMatrix, ExactKrausChannel};
-use omega_quantum_physics::exact_hermitian::{self};
+use engine_number_theory::cyclotomic::GaussianRat;
+use engine_number_theory::rational::{ri, rq, Rational};
+use engine_quantum_physics::exact_channel::{ExactChannelError, ExactChoiMatrix, ExactKrausChannel};
+use engine_quantum_physics::exact_hermitian::{self};
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum CensusError {
@@ -77,7 +77,7 @@ pub fn unit_weight_family(
 ) -> Result<Vec<BasicMatrix<GaussianRat>>, CensusError> {
     let mut out = Vec::new();
     for (weight, op) in terms {
-        let split = omega_number_theory::four_squares::rational_square_split(weight, 1_000_000)
+        let split = engine_number_theory::four_squares::rational_square_split(weight, 1_000_000)
             .map_err(|_| CensusError::WeightTooLarge(weight.clone()))?;
         for q in split {
             out.push(mx::scale(op, &GaussianRat::from_rational(q))?);
@@ -267,8 +267,8 @@ pub fn run_block_06_execution() -> Result<Block06Report, CensusError> {
 mod tests {
     use super::*;
     use num_bigint::BigInt;
-    use omega_number_theory::cyclotomic_field::quadratic_field_conductor;
-    use omega_number_theory::rational::squarefree_part;
+    use engine_number_theory::cyclotomic_field::quadratic_field_conductor;
+    use engine_number_theory::rational::squarefree_part;
 
     #[test]
     fn test_minimal_cyclotomic_conductor_for_sqrt() {
@@ -330,7 +330,7 @@ mod tests {
         );
         for m in [7u64, 182, 4550, 999_983] {
             let squares =
-                omega_number_theory::four_squares::four_squares(&BigInt::from(m), 1_000_000)
+                engine_number_theory::four_squares::four_squares(&BigInt::from(m), 1_000_000)
                     .unwrap();
             assert_eq!(
                 squares.iter().map(|x| x * x).sum::<BigInt>(),
@@ -378,18 +378,18 @@ mod review_counterexamples {
     #[test]
     fn zero_carriers_are_refused_and_zero_radicands_are_exact() {
         assert!(
-            omega_number_theory::cyclotomic_field::sqrt_of_integer(0, &BigInt::from(1)).is_err()
+            engine_number_theory::cyclotomic_field::sqrt_of_integer(0, &BigInt::from(1)).is_err()
         );
         assert!(
-            omega_number_theory::vanishing_sums::minimal_unpairable_polygon(
+            engine_number_theory::vanishing_sums::minimal_unpairable_polygon(
                 0,
-                omega_number_theory::integer_factorization::FactorizationBudget::default()
+                engine_number_theory::integer_factorization::FactorizationBudget::default()
             )
             .is_err()
         );
-        assert!(omega_quantum_physics::growth_refinement::growth_witness(0).is_err());
+        assert!(engine_quantum_physics::growth_refinement::growth_witness(0).is_err());
         assert_eq!(
-            omega_number_theory::rational::squarefree_part(&BigInt::from(0)).unwrap(),
+            engine_number_theory::rational::squarefree_part(&BigInt::from(0)).unwrap(),
             (BigInt::from(0), BigInt::from(1))
         );
     }

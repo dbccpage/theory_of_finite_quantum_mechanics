@@ -1,0 +1,256 @@
+# GTOC canonicalization: remaining work
+
+**ArtifactKind:** AdvisoryBacklog
+**AuthorityEffect:** `None`
+**ObserverBase:** `55e23fdb6`
+**StalenessPolicy:** MustReverifyBeforeTicketing
+
+**Snapshot:** 2026-07-17, `origin/main` at `55e23fdb6`
+**Canonical program ownership:** [Omega Conductor epic goal binding](omega-conductor-epic-v001.md#canonical-g-series-and-basement-goal-binding)
+**Ground truth:** the encyclopedia, checked Lean/Rust artifacts, canonical layer ledgers, and independent review receipts—not an unverified preprint status or this checklist.
+**Authority:** this is a work index. It proves, certifies, terminalizes, and authorizes nothing.
+
+**Canonical execution binding:** [Omega Conductor epic v1.3](omega-conductor-epic-v001.md#canonical-g-series-and-basement-goal-binding) compiles G10-G17 and GTOC-1..8 into exactly one owner SAGA and one canonical sprint per goal. This file remains the detailed source ledger; its ordering and imperative text cannot admit, execute, terminalize, promote, or authorize work.
+
+## 1. Current position
+
+G0 through G9 are merged. The inventory and all nine bounded Phase-B reconciliations are therefore complete and must not be redone:
+
+- G0: inventory and canonical-layout specification;
+- G1: `999_GTOC` basement consolidation;
+- G2: `002_GTFDA` consolidation;
+- G3: `003_GTMUR` consolidation;
+- G4: `004_GTOR` consolidation;
+- G5: `005_GTTC` consolidation;
+- G6: `006_GTTA` consolidation;
+- G7: `007_GTLA` consolidation;
+- G8: `008_Q` consolidation; and
+- G9: `001_GTFOC` reconciliation, merged in PR #1067.
+
+The remaining canonicalization program is G10 through G17. G10 is the next bounded goal. The two final required outputs do not yet exist:
+
+- `omega_engine/general_theory_of_obstruction_calculus/gtoc_canon_index.md`; and
+- `omega_engine/general_theory_of_obstruction_calculus/reviews/reconciliation_000_010_20260715.md`.
+
+“Complete” does not require promoting every conditional theorem. It requires every claim to equal the evidence. An obligation may remain OPEN if its id, exact blocker, scope, and downstream effect remain explicit.
+
+## 2. Critical path: G10–G17
+
+After its canonical sprint packet is frozen and all declared predecessors are human-promoted, execute each admitted row in its own clean worktree and branch. Merge and remove that worktree before admitting the next row.
+
+| Order | Goal | Required outcome | Main dependencies | Completion evidence |
+|---:|---|---|---|---|
+| 1 | **G10** | Mechanize the GTFDA authority definitions and the smallest honest authority firewall surface | Canonical GTFDA definitions; existing pointwise firewall results as witnesses, not substitutes | Lean build, sorry scan, theorem-level axiom audit, adversary/proof sign-off, synchronized ENC rows |
+| 2 | **G11** | Establish the foundations Lean project and discharge the tractable `PL-GTOC-1..20` targets without swallowing G14 | Repaired 2026-07-15 statements; existing `Paper004` and QM lemmas where cited | Per-target builds and axiom receipts; OPEN rows retained where proof/model work is unfinished |
+| 3 | **G12** | Promote GTOR-2, GTTC-1, and GTTA-14 from pointwise/type-level firewalls toward their actual categorical statements | G10's real `Authority_S`/`IsAuth` surface; genuine categories, functors, and naturality data | Separate theorem and receipt for each layer; no toy-enum result relabeled categorical |
+| 4 | **G13** | Discharge or precisely re-block GTLA-T26 hypothesis H3-double-prime | Authorized glue for the finite-shadow comparison, with all T26 hypotheses preserved | ENC-0546 build/sign-off receipt or an unchanged CONDITIONAL row with exact blocker |
+| 5 | **G14** | Resolve the δ2 scalar construction, repaired cancellation, and equivariance obligations | `PL-GTOC-12`, route-B `PL-GTOC-13`, and `PL-GTOC-6`; G11 foundations | Constructed scalar package and admissible-construction proof, or preserved conditional downstream |
+| 6 | **G15** | Perform the cross-layer consistency and documentation-drift sweep | Final Phase-C truth | Review report; all detected drift patched or logged as a named obstruction |
+| 7 | **G16** | Reconcile published papers 000–010; include 011–012 if the budget permits | Finalized layers and encyclopedia after G15 | Required reconciliation table plus adversary receipts for every edited paper |
+| 8 | **G17** | Build release-ready artifacts, generate the canonical index, and seal the program | G10–G16 receipts; green cited Lean | Build receipts, bundles, `gtoc_canon_index.md`, final status table, final governed merge |
+
+### G10 — authority definitions and firewall
+
+Bound G10 to the definitional core and the non-generation boundary; do not interpret “73/74 GTLA Lean NOT-STARTED” as an instruction to mechanize all 74 rows in one change.
+
+- [ ] Add the canonical five-field GTFDA descent packet `(K, E, V, tau, Lambda)` in the existing Lean architecture.
+- [ ] Keep it definitionally distinct from the eight-field GTFOC `TracePacket`; model only the declared forgetful relationship.
+- [ ] Define the seven-guard `IsAuth` predicate: accepted, deterministic, zero residual mass, exhaustive, skeleton-preserving, no pending lift, and no refusal.
+- [ ] Define authority as the dependent witness requiring both the terminalizer path and `IsAuth`, corresponding to `ENC-0026` and `ENC-0027`.
+- [ ] Mechanize the smallest honest forms of Uniform Non-Creation (`ENC-0001`), Authority Non-Construction (`ENC-0031`), and Authority Non-Generation (`ENC-0150`) that follow from the definitions.
+- [ ] Preserve the distinction between constructor/type separation and verifier soundness. A Rust constructor gate is not a proof of the full categorical pipeline.
+- [ ] Import the new module through the canonical GTFDA/GTLA Lean target without creating a duplicate authority implementation.
+- [ ] Update ENC status only for results actually built and audited; advance no row more than one status step.
+
+Current boundary that must remain visible after G10:
+
+- GTFDA owns the Authority type, `IsAuth`, and descent packet; GTLA governs and characterizes authority.
+- The existing OB2–OB8 kernel consumes declared witnesses. It does not construct observer quotients, packets, terminalizers, or authority records.
+- Most of GTLA remains prose after this bounded goal unless separately mechanized. G10 must not claim to close all 73 NOT-STARTED rows.
+
+### G11 — foundations Lean
+
+Create a real basement Lean surface and work from the amended proof-ledger statements. Start with low-risk hardening targets, then the central targets. Keep prose/model obligations distinct from Lean obligations.
+
+| Id | Remaining target | Owner / disposition |
+|---|---|---|
+| `PL-GTOC-1` | Ring-free triangle identity `delta1(delta0(f)) = 0` over the two-element parity algebra | G11 Lean hardening |
+| `PL-GTOC-2` | Finite-order units are `+/-1`; repaired product-family cancellation uses tally chains and lexicographic blocks, not fixed-`c` slicing | G11 Lean; feeds G14 |
+| `PL-GTOC-3` | Two scalar symmetric-exchange characters with the characteristic split | G11 central Lean target; H1–H3/K9 remain explicit |
+| `PL-GTOC-4` | Align orbit-uniform `l1` with `Paper004/CoordinateL1.lean` | G11 alignment; blocked on `PL-GTOC-6` for full H2 supply |
+| `PL-GTOC-5` | Independence models for non-transitive sameness and cyclic incidence | Prose/model obligation; do not fake as a Lean checkbox |
+| `PL-GTOC-6` | Object-level no-privileged-witness invariance derivation | G14 gating sub-obligation; K10 remains the interim declaration |
+| `PL-GTOC-7` | K1/no-norms independence models and triangle minimality | Prose/model obligation |
+| `PL-GTOC-8` | Fixed-carrier `Q1` coset/equivalence relation | G11 Lean; no class-comprehension claim across exhibitions |
+| `PL-GTOC-9` | Succession asymmetry and the `TransGen` strict-order rendering of declared K11 | G11 Lean using the amended scope |
+| `PL-GTOC-10` | Finite sum/product cardinality arithmetic for multiplicity | G11 Lean hardening |
+| `PL-GTOC-11` | Global `C1`/`C2` group closure and coboundary-homomorphism package | G11 gating target; the triangle identity alone does not close it |
+| `PL-GTOC-12` | Constructed rational-like scalars, signed addition, quotient operations, repaired cancellation, domain/unit laws | **G14 owns full discharge**; G11 may supply prerequisites only |
+| `PL-GTOC-13` | Replace metalanguage definability with an admissible-construction language and equivariance induction | **G14 owns route B**; route A/K10 is already the honest interim |
+| `PL-GTOC-14` | Finite-chain intervals, duration additivity, and the chain-relativity diamond | G11 Lean hardening |
+| `PL-GTOC-15` | Independence pair for absolute duration | Prose/model obligation |
+| `PL-GTOC-16` | Gauge shifts fix residual cosets and class-tally inertia | G11 Lean; do not restore the refuted representative-wise claim |
+| `PL-GTOC-17` | Capacity bounds and data processing under reflecting **and** covering transport | G11 Lean; preservation alone is insufficient |
+| `PL-GTOC-18` | One-edge tree-triviality and repair-family-relative residual | G11 Lean; exhibition-fullness remains separate |
+| `PL-GTOC-19` | Universal separability of bare finite tables and finite CHSH arithmetic | G11 central Lean target; no quantum-violation claim |
+| `PL-GTOC-20` | Diagonal suppression under integral-domain/characteristic-not-2 assumptions | G11 Lean; never restore the false generic `2 != 0` ring statement |
+
+`PL-GTOC-GB1` is additional to the numbered twenty. It remains a conceptual, gating root-notation obligation: either exhibit an independence model for the two root channels or retype them as projections of one admitted cut. Until then, `PrimitiveDifference sqcup Structure` is a fenced boundary classification, not a proof that independent summands exist. G15 must verify this fence everywhere; closing GB1 would require its own bounded goal.
+
+### G12 — categorical firewall promotion
+
+Treat these as three separate proof surfaces inside the bounded G12 program; a failure in one must not inflate the others.
+
+- [ ] **GTOR-2 / ENC-0489:** replace the local two-branch completion-envelope argument with the declared categorical completion/reflector statement and real finite-descent interface.
+- [ ] **GTTC-1 / ENC-0508:** prove the continuum non-creation statement over the declared continuum/cofinality data, not only a shallow pointwise separation.
+- [ ] **GTTA-14 / ENC-0545:** formalize the stated `Nat(Omega_residual, Auth) = empty` scope. Keep the pointwise disjointness witness axiom-free and separately identify any theorem that depends on the deliberate `anomalon_exists` axiom.
+- [ ] Audit ANP-001, transport, the Pi-sharp seal, and Q-T1 language so none is cited as a full categorical `Authority_S` result.
+- [ ] Adjudicate the red-team challenge to the necessity of `anomalon_exists`; do not remove, add, or hide an axiom through a scope rewrite.
+
+### G13 — GTLA-T26 authorized glue
+
+- [ ] Formalize the T26 setting: continuum object, cofinal authorized finite shadows, comparison/reflection object, terminal agreement, replay, and verifier assumptions.
+- [ ] Prove H3-double-prime authorized glue, or state the minimal counterexample/unsupplied datum that blocks it.
+- [ ] Preserve H1, H2, H3-prime, H4, and H5/C4; solving one glue condition does not erase the rest of the theorem surface.
+- [ ] Re-evaluate direct dependents after the result: GTOR-21, GTTC-7, and the T28 umbrella.
+- [ ] Keep `ENC-0546` CONDITIONAL if any required hypothesis remains merely declared or if the Lean/adversary gate fails.
+
+### G14 — delta2 scalar and equivariance closure
+
+- [ ] Construct the pair-family product and genuine negative addition rather than attaching a sign to a tally.
+- [ ] Construct ratios as a quotient and prove operations well-defined, including `+0 = -0`.
+- [ ] Prove the repaired scaffold tally-chain/lexicographic-block cancellation argument and integral-domain/unit results.
+- [ ] Build an object-level admissible-construction language and prove equivariance by induction (route B of `PL-GTOC-13`, with `PL-GTOC-6` as its sub-obligation).
+- [ ] Re-run every downstream claim that currently depends on the scalar/equivariance package, especially the symmetric-exchange-character result and orbit-uniform weighting claims.
+- [ ] If only route A/K10 is retained, leave the downstream rows conditional and say so explicitly.
+
+### G15 — cross-layer consistency and drift repair
+
+- [ ] Verify the same “one engine” description in the basement and every layer.
+- [ ] Verify authority is defined exactly once in GTFDA and only governed/consumed elsewhere.
+- [ ] Verify every pointwise/categorical scope caveat, including the flagship firewalls.
+- [ ] Verify the Genesis-Bias root fence and every import-price ledger; no layer may re-import a basement primitive as free.
+- [ ] Verify the five-field GTFDA packet is never conflated with the eight-field GTFOC packet.
+- [ ] Verify the sole deliberate axiom `anomalon_exists` is visible exactly where consumed; run theorem-level axiom audits rather than global prose claims.
+- [ ] Fix stale master-design text that still says GTFOC is unreconciled and lists preprint reconciliation as future work after merged G9.
+- [ ] Reconcile historical “review pending” report language by preserving the original receipt and adding a current closure pointer where needed; do not rewrite history as if review had already happened at authorship time.
+- [ ] Log genuine contradictions as named obstructions instead of silently harmonizing mathematical statements.
+- [ ] Produce a G15 report under `omega_engine/general_theory_of_obstruction_calculus/reviews/`.
+
+### G16 — published-series agreement
+
+For each published paper 000 through 010:
+
+- [ ] read its main paper and claim ledger;
+- [ ] cross-check every load-bearing claim against the final canonical layers, ENC status, and Lean evidence;
+- [ ] classify the paper **AGREES**, **DRIFTED**, or **CONFLICTS**;
+- [ ] patch terminology and cross-reference drift only;
+- [ ] log mathematical conflict as an obligation and leave it unedited until adjudicated; and
+- [ ] run the paper adversary on every edited paper.
+
+Include 011 and 012 if the fixed G16 budget allows. The required deliverable is:
+
+`omega_engine/general_theory_of_obstruction_calculus/reviews/reconciliation_000_010_20260715.md`
+
+It must contain paper, verdict, action, and replayable evidence columns. No unflagged contradiction may remain.
+
+### G17 — build, index, and seal
+
+- [ ] Decide release readiness paper-by-paper; OPEN mathematics is allowed only when the artifact labels it honestly.
+- [ ] For every release-ready canonical paper, build all cited Lean, scan for `sorry`, and audit named theorem axioms.
+- [ ] Run the repository paper-build pipeline and capture the PDF/zip/source-bundle receipt.
+- [ ] Preserve the accepted `999_GTOC` numbered-ladder/charter exception; do not invent a synthetic basement `paper.md` merely to satisfy a filename template.
+- [ ] Generate `omega_engine/general_theory_of_obstruction_calculus/gtoc_canon_index.md` from actual canonical files and exact ENC/Lean vectors.
+- [ ] Produce the final layer table: canonical files, honest prose status, Lean status, OPEN obligation ids, artifact paths, and gate receipts.
+- [ ] Run final encyclopedia, paper, Lean, axiom, and relevant Rust gates.
+- [ ] Commit and publish through the governed GitHub flow.
+
+## 3. Open basement operating obligations not assigned a discharge goal
+
+These eight rows remain OPEN in the canonical basement ledger. They are not silently completed by G11. Before G17, either create a bounded follow-on goal for a row or carry it into the final status table with its present blocker.
+
+| Id | Remaining result | Current blocker |
+|---|---|---|
+| `GTOC-1` | General sliding two-window classifier with exact, closed-residual, active-closure-failure, and no-rule routing | S01-002 adds a bounded exact-rational Rust classifier, sealed four-route fixtures, and independent replay; the unrestricted theorem, larger domains, and Lean proof remain open |
+| `GTOC-2` | Degree-shift invariance for arbitrary windows re-indexed to degrees 0–2 | S01-003 adds checked Rust label transport for represented `u16` bases `1..=65533`, sealed four-route replay, and exhaustive inverse-law tests; unrestricted naturals, arbitrary carriers, and a Lean proof remain open |
+| `GTOC-3` | Lift trigger is not lift license | Needs preservation, non-destruction, budget/authority, and terminalizer evidence |
+| `GTOC-4` | Every lawful transition emits a typed DDA operation and log, or refuses | No verified general DDA execution-coverage theorem |
+| `GTOC-5` | A well-typed DDA trace cannot mint authority | Requires the real GTFDA/GTLA boundary, not basement doctrine alone |
+| `GTOC-6` | Per-defect/subclaim diagnostics and terminal state | No general multi-claim decomposition theorem |
+| `GTOC-7` | Preservation/terminalization for migration packet bundles | Bundle semantics remain uncertified |
+| `GTOC-8` | Imports/oracles are not DDA operations and route to `OracleNeeded` | Concrete doors are priced; the general interface theorem is unproved |
+
+## 4. Layer-specific residual backlog
+
+These items need not all be proved to finish canonicalization. They must remain accurately classified, and any future proof work should be split into bounded goals.
+
+| Layer | Remaining honest work and nonclaim |
+|---|---|
+| `001_GTFOC` | Sixteen Paper-993 aliases remain Lean NOT-STARTED. GTFOC-3 remains prose under explicit LP-duality hypotheses and needs an exact certificate per instance. Target-domain and LLM/QM bridge packets remain conditional. No GTFOC result inhabits `Authority_S` or supplies a categorical authority functor. |
+| `002_GTFDA` | G10 owns the Authority/`IsAuth`/packet definitions and minimal firewall. Core-1..11/Core-13, FAS-1, and OB8 retain their conditional surfaces unless separately proved. Concrete observer quotients, replay, generator growth, packet transport, terminal/refusal preservation, and verifier soundness remain outside the partial OB kernel. |
+| `003_GTMUR` | L03, P01, T04, T05, and T06 have mechanized components but conditional prose status; T02/T07 are partial. No arbitrary content-carrying bicategory or unconditional universal factorization theorem has been established. Replace any hand-maintained theorem-count headline with reproducible census evidence during G15 if it still survives. |
+| `004_GTOR` | GTOR-21 remains conditional on T26/H3-double-prime, restricted shapes, and declared cone/terminalizer/verifier data. `PL-996-1..4` remain the categorical, cross-engine replay, real-regime, and shape-extension targets. GTOR-6 does not construct general categorical limit authority. |
+| `005_GTTC` | GTTC-3, 5, 5a, 5b, 7, and 8 remain conditional. Needed inputs include an authority normal form, exact GTFOC complex, genuine cofinal coverage, T26 glue, terminal agreement/replay/soundness, and conservativity. GTTC-8-Suff consumes a supplied packet; it does not produce one. GTTC-R1 remains unregistered local material. |
+| `006_GTTA` | GTTA-12 remains conditional on CT-2-H1/H2/H3; GTTA-18 still needs the Hausdorff tau-limit analytic input. GTTA-14's categorical theorem remains distinct from axiom-free pointwise witnesses and may depend on `anomalon_exists`. The axiom-necessity challenge requires explicit adjudication. |
+| `007_GTLA` | 73 of 74 rows are Lean NOT-STARTED; G10 closes only a bounded core. T26/H3-double-prime is G13. T41, T42, T49, and T52 remain `PUBLICATION-HOLD / CONTESTED-AS-WRITTEN` until their listed categorical constructions/coherence proofs or narrowed statements are adjudicated. A0–A7 and R1–R7 remain local/unregistered unless the ENC authority acts. |
+| `008_Q` | Q remains a quarantine wrapper, not an authority layer. No full categorical GTFDA bridge is claimed. A general machine-validated Q receipt schema and a committed command joining ENC status, Lean source home, and paper rows remain useful future engineering, not existing proof. |
+| `999_GTOC` | `GTOC-1..8`, `PL-GTOC-1..20`, and `PL-GTOC-GB1` remain OPEN at this snapshot. G11 and G14 cover only the explicitly assigned portions; every survivor must appear in the G17 final status table. |
+
+## 5. Adjacent certificate-versus-authority cleanup
+
+[SAGA-14](saga_14_cert_authority_firewall.md) owns the current certificate-versus-authority reconciliation; the deleted standalone tracker is retained only in Git history:
+
+- [x] **T1 implementation is present:** published Paper 016 now says `phi1.rs` verifies a mandatory-`d0` exact certificate and distinguishes solver from verifier (PR #1066 lineage).
+- [x] **T2 implementation is present:** `mub_feasibility_wall` has a canonical `FUNCTIONAL_CONTRACT_BINDINGS` entry. On this snapshot, `cargo test -j 1 -p omega_functional --test functional_boundary` passed **16/16**. The first cold attempt timed out at 124 seconds with no test verdict; the warm rerun passed in 1.2 seconds.
+- [ ] Update the tracker so T1/T2 no longer claim deleted/unowned fixes or two red tests.
+- [ ] **T3 operator decision:** rename the public `MubFeasibilityWallAuthorityKind`/`authority_kind` API to evidence terminology, document the legacy name without breaking it, or explicitly defer. If renamed, inspect every downstream consumer first.
+- [ ] **T4 comments:** retype the surviving `mub_feasibility_wall.rs` and `conformance_gamma2_trichotomy.rs` “authority path” comments. Independently review `trichotomy.rs`’s “Exact authority is emitted” header; do not run a global text replacement.
+- [ ] **T5 warning:** escape the observer rustdoc expression if it still produces the logged broken-link warning under `cargo doc`.
+
+This adjacent cleanup must preserve the doctrine: a certificate is evidence, never authority; authority still requires the GTFDA descent and terminal seal.
+
+## 6. Required gates for every bounded goal
+
+- [ ] Start from current `origin/main` in a clean, isolated worktree.
+- [ ] Use one attributable goal/commit sequence; stage explicit paths only.
+- [ ] Build the exact Lean target from `omega_engine/lean4`; no `sorry`, `admit`, or hidden new axiom.
+- [ ] Record `#print axioms` for every promoted theorem. The only sanctioned project axiom is the explicitly scoped `anomalon_exists`; standard Lean axioms must be reported rather than hand-waved.
+- [ ] Run encyclopedia regeneration/index emission for every ledger or status change.
+- [ ] Run the math adversary for every ENC status change and proof sign-off for every paper citing new Lean.
+- [ ] Advance a status at most one step, and only after all applicable gates pass.
+- [ ] Run `cargo build -j 1` / `cargo test -j 1` for Rust changes and the test-quality veto for new tests.
+- [ ] Run the paper pipeline for each canonical paper changed.
+- [ ] Preserve full stdout, stderr, commands, commit id, environment/toolchain, axiom receipt, and failures in the goal report.
+- [ ] If a gate fails, keep the row OPEN/CONDITIONAL with the exact blocker; never weaken a theorem, test, validator, or coverage surface to obtain green.
+- [ ] Commit the green pre-adversary state, obtain independent review, merge, then delete the bounded worktree.
+
+## 7. Repository hygiene still due
+
+- [ ] Delete the merged remote branch `origin/codex/gtoc-g9-gtfoc-reconciliation` after confirming no active work depends on it.
+- [ ] Keep the G0–G9 review receipts as historical evidence; do not treat their at-authorship “pending” text as a live failure after the corresponding reviewed merge.
+- [ ] At program end, archive or close trackers whose items are all resolved rather than leaving stale TODO boards as current authority.
+
+## 8. Program exit checklist
+
+The program is ready to close only when all of the following are true:
+
+- [ ] G10–G17 each have a bounded report and governed review/merge receipt.
+- [ ] The canonical layer files and accepted `999_GTOC` exception remain intact and archived sources remain recoverable.
+- [ ] Every ledger status equals ENC/Lean ground truth and every pointwise/categorical caveat remains explicit.
+- [ ] Every Phase-C and basement obligation is either discharged through the full gate or remains listed OPEN with its id and blocker.
+- [ ] G15 confirms one engine, one authority definition, clean Genesis-Bias/import pricing, and no packet aliasing.
+- [ ] G16 classifies published papers 000–010 with evidence and no unflagged contradiction.
+- [ ] G17 produces the canonical index, final status table, and release artifacts for every paper actually declared release-ready.
+- [ ] All applicable encyclopedia, Lean, axiom, Rust, adversary, proof-signoff, and paper-build gates have replayable receipts.
+
+## 9. Evidence index
+
+- [Canonical G-series and basement-goal binding](omega-conductor-epic-v001.md#canonical-g-series-and-basement-goal-binding)
+- [Master design and mechanization scoreboard](../omega_engine/general_theory_of_obstruction_calculus/papers/gt_tower_master_design.md)
+- [Basement theorem and obligation ledger](../omega_engine/general_theory_of_obstruction_calculus/papers/999_GTOC/theorem_ledger.md)
+- [GTFDA theorem ledger](../omega_engine/general_theory_of_obstruction_calculus/papers/002_GTFDA/theorem_ledger.md)
+- [GTLA theorem ledger](../omega_engine/general_theory_of_obstruction_calculus/papers/007_GTLA/theorem_ledger.md)
+- [Proof ledger, 2026-07-13](../omega_engine/research/encyclopedia/proof_ledgers/proof_ledger_20260713.md)
+- [Proof-ledger amendments and physics-contact obligations, 2026-07-15](../omega_engine/research/encyclopedia/proof_ledgers/proof_ledger_20260715.md)
+- [G0–G8 and other independent review receipts](../omega_engine/general_theory_of_obstruction_calculus/reviews/)
+- [Canonical certificate-versus-authority SAGA](saga_14_cert_authority_firewall.md)

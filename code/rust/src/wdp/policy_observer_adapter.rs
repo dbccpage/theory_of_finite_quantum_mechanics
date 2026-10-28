@@ -3,7 +3,7 @@ use std::collections::BTreeSet;
 
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
-use tfqm_functional::phi1::{ExactPhi1Certificate, Phi1Functional};
+use engine_functional::phi1::{ExactPhi1Certificate, Phi1Functional};
 use serde::{Deserialize, Serialize};
 use sha2::{Digest, Sha256};
 

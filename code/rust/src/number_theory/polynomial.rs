@@ -5,7 +5,7 @@ use linear_algebra::scalars::{ExactRing, Field};
 use num_bigint::BigInt;
 use num_integer::Integer;
 use num_traits::{One, Signed, Zero};
-use omega_kernel::interval::Interval;
+use engine_kernel::interval::Interval;
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
 
 use crate::rational::{r_one, r_zero, ri, Rational};
