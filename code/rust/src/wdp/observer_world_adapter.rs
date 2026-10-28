@@ -1,6 +1,6 @@
 use std::collections::BTreeSet;
 
-use omega_category_theory::context_reflection::ContextSystem;
+use tfqm_category_theory::context_reflection::ContextSystem;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct WorldWitness {

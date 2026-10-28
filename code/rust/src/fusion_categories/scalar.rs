@@ -2,14 +2,14 @@ use std::cmp::Ordering;
 
 use linear_algebra::scalars::{ExactRing, Field};
 use num_traits::Signed;
-use omega_number_theory::cyclotomic::{Cyc12, Cyc24, Cyc5, Cyc8, EisensteinRat, GaussianRat};
-use omega_number_theory::cyclotomic120::Cyc120;
-use omega_number_theory::cyclotomic28::Cyc28;
-use omega_number_theory::cyclotomic44::Cyc44;
-use omega_number_theory::cyclotomic52::Cyc52;
-use omega_number_theory::cyclotomic_field::{Cyclotomic, CyclotomicNumber};
-use omega_number_theory::rational::Rational;
-use omega_number_theory::real_embedding::real_embeddings;
+use tfqm_number_theory::cyclotomic::{Cyc12, Cyc24, Cyc5, Cyc8, EisensteinRat, GaussianRat};
+use tfqm_number_theory::cyclotomic120::Cyc120;
+use tfqm_number_theory::cyclotomic28::Cyc28;
+use tfqm_number_theory::cyclotomic44::Cyc44;
+use tfqm_number_theory::cyclotomic52::Cyc52;
+use tfqm_number_theory::cyclotomic_field::{Cyclotomic, CyclotomicNumber};
+use tfqm_number_theory::rational::Rational;
+use tfqm_number_theory::real_embedding::real_embeddings;
 
 use crate::error::FusionError;
 
@@ -21,7 +21,7 @@ pub trait FusionScalar:
     Field
     + ExactRing
     + linear_algebra::exact_field::involution::Involution
-    + omega_number_theory::scalar::RationalEmbedding
+    + tfqm_number_theory::scalar::RationalEmbedding
 {
     fn to_rational(&self) -> Option<Rational>;
 
@@ -46,7 +46,7 @@ pub trait FusionScalar:
         // 0 <= residue < n and step*n = w <= 4096, so this product fits.
         let exponent = k.rem_euclid(i64::from(n)) * step;
         let exponent = u32::try_from(exponent).ok()?;
-        omega_number_theory::scalar::power_unsigned(
+        tfqm_number_theory::scalar::power_unsigned(
             &Self::primitive_root_of_unity(),
             u64::from(exponent),
         )
@@ -181,7 +181,7 @@ impl<const N: usize> FusionScalar for Cyclotomic<N> {
         self.as_rational()
     }
     fn root_of_unity_order() -> u32 {
-        if N == 0 || N > omega_number_theory::polynomial::MAX_CONDUCTOR {
+        if N == 0 || N > tfqm_number_theory::polynomial::MAX_CONDUCTOR {
             return 0;
         }
         let order = if N % 2 == 0 { N } else { 2 * N };
@@ -235,29 +235,29 @@ cyclotomic_scalar!(Cyc120, 120, Cyc120::zeta(1));
 mod tests {
     use super::*;
     use linear_algebra::exact_field::involution::Involution;
-    use omega_number_theory::rational::rq;
-    use omega_number_theory::scalar::RationalEmbedding;
-    use omega_number_theory::scalar::{from_i64, ScalarError};
+    use tfqm_number_theory::rational::rq;
+    use tfqm_number_theory::scalar::RationalEmbedding;
+    use tfqm_number_theory::scalar::{from_i64, ScalarError};
 
     fn check_roots<K: FusionScalar>() {
         let w = K::root_of_unity_order();
         let zeta = K::primitive_root_of_unity();
         assert_eq!(
-            omega_number_theory::scalar::power_unsigned(&zeta, (w).into()).unwrap(),
+            tfqm_number_theory::scalar::power_unsigned(&zeta, (w).into()).unwrap(),
             K::one(),
             "zeta^w = 1"
         );
         for d in 1..w {
             if w % d == 0 {
                 assert_ne!(
-                    omega_number_theory::scalar::power_unsigned(&zeta, (d).into()).unwrap(),
+                    tfqm_number_theory::scalar::power_unsigned(&zeta, (d).into()).unwrap(),
                     K::one(),
                     "zeta has no smaller order than w (checked divisor {d})"
                 );
             }
         }
         assert_eq!(
-            omega_number_theory::scalar::power_unsigned(&zeta, (w / 2).into()).unwrap(),
+            tfqm_number_theory::scalar::power_unsigned(&zeta, (w / 2).into()).unwrap(),
             K::one().neg(),
             "the unique involution is -1"
         );
@@ -333,12 +333,12 @@ mod tests {
         assert_eq!(Cyc24::from_rational(&q).to_rational(), Some(q.clone()));
         assert_eq!(Cyc5::from_rational(&q).to_rational(), Some(q.clone()));
         assert_eq!(
-            <GaussianRat as omega_number_theory::scalar::RationalEmbedding>::from_rational(&q)
+            <GaussianRat as tfqm_number_theory::scalar::RationalEmbedding>::from_rational(&q)
                 .to_rational(),
             Some(q.clone())
         );
         assert_eq!(
-            <EisensteinRat as omega_number_theory::scalar::RationalEmbedding>::from_rational(&q)
+            <EisensteinRat as tfqm_number_theory::scalar::RationalEmbedding>::from_rational(&q)
                 .to_rational(),
             Some(q)
         );
@@ -356,29 +356,29 @@ mod tests {
     fn powers_handle_negative_exponents_and_refuse_zero() {
         let z = Cyc8::zeta8(1);
         assert_eq!(
-            omega_number_theory::scalar::power(&z, 8)
+            tfqm_number_theory::scalar::power(&z, 8)
                 .map_err(FusionError::from)
                 .unwrap(),
             Cyc8::one()
         );
         assert_eq!(
-            omega_number_theory::scalar::power(&z, -1)
+            tfqm_number_theory::scalar::power(&z, -1)
                 .map_err(FusionError::from)
                 .unwrap(),
             z.conjugate()
         );
         assert_eq!(
-            omega_number_theory::scalar::power(&z, 0)
+            tfqm_number_theory::scalar::power(&z, 0)
                 .map_err(FusionError::from)
                 .unwrap(),
             Cyc8::one()
         );
         assert_eq!(
-            omega_number_theory::scalar::power(&Cyc8::zero(), -1).map_err(FusionError::from),
+            tfqm_number_theory::scalar::power(&Cyc8::zero(), -1).map_err(FusionError::from),
             Err(FusionError::Scalar(ScalarError::ZeroInverse))
         );
         assert_eq!(
-            omega_number_theory::scalar::power(&Cyc8::zero(), 0)
+            tfqm_number_theory::scalar::power(&Cyc8::zero(), 0)
                 .map_err(FusionError::from)
                 .unwrap(),
             Cyc8::one()

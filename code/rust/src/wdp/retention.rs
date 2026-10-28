@@ -1,7 +1,7 @@
 
 use crate::error::WdpError;
 use crate::types::AuthorityEffect;
-use omega_category_theory::finite_moore::{FiniteMoore, MooreQuotient};
+use tfqm_category_theory::finite_moore::{FiniteMoore, MooreQuotient};
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
 

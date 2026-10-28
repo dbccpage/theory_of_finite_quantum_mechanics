@@ -119,7 +119,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/wdp/wdp_kernel_check.rs`
 
 - file: [code/rust/src/wdp/wdp_kernel_check.rs](../../../code/rust/src/wdp/wdp_kernel_check.rs)
-- sha256 (`bytes`): `ed19fff6227820f276fbe81f21c2338bccb3337e7ef165188a99923ae59b94ec`
+- sha256 (`bytes`): `4c6385f95eabc53b7e430168d1eef908643244f34924fb31728bf4d51d7a9961`
 - cited in: record TFQ-0347
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes

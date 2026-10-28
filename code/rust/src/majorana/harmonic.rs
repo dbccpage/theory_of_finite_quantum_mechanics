@@ -132,7 +132,7 @@ pub fn l1_harmonic_projection(
     residual: &[u8],
     budget: u64,
 ) -> Result<L1HarmonicProjection, String> {
-    let measured = omega_functional::Phi1Functional::binary_coset_projection(
+    let measured = tfqm_functional::Phi1Functional::binary_coset_projection(
         &d0.data, d0.cols, residual, budget,
     )?;
     Ok(L1HarmonicProjection {

@@ -1,12 +1,12 @@
 use num_rational::BigRational;
-use omega_category_theory::context_reflection::{
+use tfqm_category_theory::context_reflection::{
     CongruenceReflection, ContextError, ContextSystem, ContextWitness,
 };
-use omega_functional::gamma2::{
+use tfqm_functional::gamma2::{
     DegreeOneResidualQ, ExactCochainComplexQ, ExactGamma2Error, Gamma2Functional,
     RawClosureDefectResult,
 };
-use omega_functional::phi1::{
+use tfqm_functional::phi1::{
     ExactPhi1Certificate, ExactPhi1CertificateError, Phi1Functional, VerifiedExactPhi1,
 };
 use omega_policy::trichotomy::{

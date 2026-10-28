@@ -160,7 +160,7 @@ pub fn projective_normal_form<K: FusionScalar>(
         return Ok(None);
     };
     let lambda = first.clone();
-    let scale = omega_number_theory::scalar::inverse(&lambda).map_err(FusionError::from)?;
+    let scale = tfqm_number_theory::scalar::inverse(&lambda).map_err(FusionError::from)?;
     Ok(Some((
         matrix::scale(m, &scale).map_err(FusionError::from)?,
         lambda,
@@ -178,7 +178,7 @@ pub fn equal_up_to_scalar<K: FusionScalar>(
         (Some((na, la)), Some((nb, lb))) => {
             if na == nb {
                 Ok(Some(
-                    omega_number_theory::scalar::divide(&lb, &la).map_err(FusionError::from)?,
+                    tfqm_number_theory::scalar::divide(&lb, &la).map_err(FusionError::from)?,
                 ))
             } else {
                 Ok(None)
@@ -330,7 +330,7 @@ fn normalized<K: FusionScalar>(
             .ok_or(FusionError::Inconsistent {
                 context: "a product of invertible group generators is zero",
             })?;
-    let scale = omega_number_theory::scalar::inverse(first).map_err(FusionError::from)?;
+    let scale = tfqm_number_theory::scalar::inverse(first).map_err(FusionError::from)?;
     // Keep the already owned dense product. No second matrix allocation/clone.
     let cols = m.cols();
     for i in 0..m.as_slice().len() {
@@ -415,8 +415,8 @@ fn expand_closure<K: FusionScalar + Hash + Eq>(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_number_theory::cyclotomic::GaussianRat;
-    use omega_number_theory::rational::{rq, Rational};
+    use tfqm_number_theory::cyclotomic::GaussianRat;
+    use tfqm_number_theory::rational::{rq, Rational};
 
     fn q(n: i64) -> Rational {
         rq(n, 1)

@@ -12,7 +12,7 @@ PYTHON_GROUPS = (
     "homotopy_type_theory lie_theory linear_algebra local_green_global_red_lggr "
     "majorana mub number_theory operad_theory qm sheaf_theory"
 ).split()
-DIRECTORIES = ["code/rust/src/tests", "code/rust/src/wdp", *[
+DIRECTORIES = ["code/rust/tests", "code/rust/src/wdp", *[
     "code/python/src/" + group for group in PYTHON_GROUPS]]
 GENERATED = {"__pycache__", "target", ".git", ".pytest_cache", ".mypy_cache"}
 

@@ -210,8 +210,8 @@ fn metadata_lists_digest_and_no_producer() {
 fn projected_path_duplicates_refuse() {
     let mut data = example();
     let mut second = data["fixtures"][0].clone();
-    data["fixtures"][0]["path"] = json!("omega_engine/crates_rs/tests/a.json");
-    second["path"] = json!("code/rust/src/tests/a.json");
+    data["fixtures"][0]["path"] = json!("omega_engine/crates_rs/tests/omega_mub/a.json");
+    second["path"] = json!("code/rust/tests/mub/a.json");
     data["fixtures"].as_array_mut().unwrap().push(second);
     assert_eq!(
         parse(data).unwrap_err(),
@@ -366,8 +366,8 @@ fn compiled_candidate_binding() {
 #[test]
 fn historical_paths_are_explicit_and_not_guessed() {
     assert_eq!(
-        relocate("omega_engine/crates_rs/tests/a.json"),
-        "code/rust/src/tests/a.json"
+        relocate("omega_engine/crates_rs/tests/omega_mub/a.json"),
+        "code/rust/tests/mub/a.json"
     );
     assert_eq!(
         relocate("omega_engine_atlas/coda_atlas/F004_papers/010_mub6/artifacts/a.json"),
@@ -387,7 +387,7 @@ fn actual_register_custody_does_not_promote_fixtures() {
         .find(|p| p.join("SCORING.md").is_file() && p.join("scripts/contract_scores.py").is_file())
         .expect("repository markers");
     let raw = std::fs::read(
-        root.join("code/rust/src/tests/omega_mub/fixture_receipt_register_current.json"),
+        root.join("code/rust/tests/mub/fixture_receipt_register_current.json"),
     )
     .unwrap();
     let register = parse_register(&raw).unwrap();
@@ -407,7 +407,7 @@ fn annotated_receipts_preserve_history_and_fixture_status() {
         .ancestors()
         .find(|p| p.join("SCORING.md").is_file())
         .unwrap();
-    let directory = root.join("code/rust/src/tests/omega_mub");
+    let directory = root.join("code/rust/tests/mub");
     let history = std::fs::read(directory.join("fixture_receipt_register.json")).unwrap();
     let current = std::fs::read(directory.join("fixture_receipt_register_current.json")).unwrap();
     let transitions: Value = serde_json::from_slice(

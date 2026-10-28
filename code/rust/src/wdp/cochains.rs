@@ -5,7 +5,7 @@ use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::linear_algebra::image_kernel::{solve_in_image, ImageMembership};
 use num_rational::BigRational;
 use num_traits::One;
-use omega_functional::l1_seminorm::L1Seminorm;
+use tfqm_functional::l1_seminorm::L1Seminorm;
 use omega_homology::carrier::Carrier;
 use omega_homology::cochain_complex::TheoremProvenance;
 use omega_homology::finite_directed_graph::{self, DirectedGraphBuilder};
@@ -266,7 +266,7 @@ pub fn solve_potential(
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_functional::phi1::Phi1Functional;
+    use tfqm_functional::phi1::Phi1Functional;
     use omega_homology::scalar::{q, qr};
     use omega_solvers::solver_lp_phi1_quotient::solve_exact_phi1;
 

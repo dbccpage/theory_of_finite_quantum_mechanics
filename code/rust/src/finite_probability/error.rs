@@ -1,6 +1,6 @@
 
 use linear_algebra::backend::basic_matrix::MatrixError;
-use omega_number_theory::rational::Rational;
+use tfqm_number_theory::rational::Rational;
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum ClassicalShadowError {

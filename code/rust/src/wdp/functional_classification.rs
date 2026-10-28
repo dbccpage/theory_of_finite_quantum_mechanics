@@ -1,7 +1,7 @@
 
 use std::collections::{BTreeMap, BTreeSet};
 
-use omega_category_theory::finite_functional_classification::{
+use tfqm_category_theory::finite_functional_classification::{
     realize_retention, FiniteFunctionalModel, FiniteRetentionModel, FunctionalSignature,
     RetentionSignature,
 };

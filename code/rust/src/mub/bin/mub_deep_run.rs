@@ -1,7 +1,7 @@
 
 use std::path::PathBuf;
 
-use omega_mub::deep_run::run_deep_mub;
+use tfqm_mub::deep_run::run_deep_mub;
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();

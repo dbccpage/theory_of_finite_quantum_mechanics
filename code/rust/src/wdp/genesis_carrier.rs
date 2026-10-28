@@ -1,15 +1,15 @@
 
 use crate::genesis_passage::{replay, PassageEvent, PassageState};
 use crate::genesis_questions::GluingRequest;
-use omega_category_theory::finite_continuation::{
+use tfqm_category_theory::finite_continuation::{
     ContinuationError, DistinguishingWord, PartialDynamics,
 };
-use omega_category_theory::finite_moore::MooreQuotient;
-use omega_category_theory::finite_question_family::{
+use tfqm_category_theory::finite_moore::MooreQuotient;
+use tfqm_category_theory::finite_question_family::{
     factor_tables, FiniteQuestionFamily, QuestionFamilyError,
 };
-use omega_category_theory::finite_report_descent::DescentFiber;
-use omega_category_theory::finite_report_query::ReportQueryDecision;
+use tfqm_category_theory::finite_report_descent::DescentFiber;
+use tfqm_category_theory::finite_report_query::ReportQueryDecision;
 use std::collections::{BTreeMap, BTreeSet};
 
 #[derive(Debug, Clone, PartialEq, Eq)]

@@ -1,7 +1,7 @@
 use linear_algebra::backend::basic_matrix::{BasicMatrix, MatrixError};
 use linear_algebra::exact_field::elimination::determinant;
 use num_traits::Zero;
-use omega_number_theory::rational::{ri, Rational};
+use tfqm_number_theory::rational::{ri, Rational};
 pub const AUTHORITY_FENCE: &str =
     "AuthorityEffect None; not PROVED; not GlobalGreen; finite flux geometry; no continuum admission.";
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]

@@ -3,7 +3,6 @@ Finite matrix primitives for quantum physics.
 
 AuthorityEffect: None.
 
-Canonical Implementation: omega_engine_projects.ms_majorana.code.tests.support.finite_qm.domain.primitives
 """
 
 from __future__ import annotations

@@ -75,7 +75,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/wdp/gauge_classification.rs`
 
 - file: [code/rust/src/wdp/gauge_classification.rs](../../../code/rust/src/wdp/gauge_classification.rs)
-- sha256 (`bytes`): `bc047a1c21f261ec1a8240d4dc42e455608ed060c0a1719a8e37a492d6d51591`
+- sha256 (`bytes`): `b320df07bd64d8bad3655d9209261967386e5deef22b17383414adaaa7926c19`
 - cited in: record TFQ-0353
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
@@ -83,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/wdp/obstruction.rs`
 
 - file: [code/rust/src/wdp/obstruction.rs](../../../code/rust/src/wdp/obstruction.rs)
-- sha256 (`bytes`): `d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8`
+- sha256 (`bytes`): `54a2d6c70adcbfb8ef7203785769515f17ab69b375f47f8f9eca1fb4eaa0bcb7`
 - cited in: record TFQ-0354 (shared)
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: no

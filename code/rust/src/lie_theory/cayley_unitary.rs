@@ -1,7 +1,7 @@
 use crate::scalar::{is_hermitian, is_unitary, ComplexField};
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{elimination, matrix as mx, ExactFieldError};
-use omega_number_theory::rational::Rational;
+use tfqm_number_theory::rational::Rational;
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum UnitaryCayleyError {

@@ -3,7 +3,7 @@ use num_bigint::BigInt;
 use num_integer::Integer;
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
-use omega_number_theory::rational::{ri, rq, sqrt_exact, squarefree_part, ArithmeticError};
+use tfqm_number_theory::rational::{ri, rq, sqrt_exact, squarefree_part, ArithmeticError};
 
 use crate::cayley::is_special_orthogonal;
 use crate::finite_order::{finite_order, FiniteOrderError};

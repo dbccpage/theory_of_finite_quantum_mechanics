@@ -10,10 +10,10 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[4]
-SOURCE = "code/rust/src/tests/omega_mub/fixture_receipts.rs"
+SOURCE = "code/rust/tests/mub/fixture_receipts.rs"
 CRATE = "code/rust/quality/fixture_register"
 TESTS = CRATE + "/src/validator_tests.rs"
-ASSET = "code/rust/src/tests/omega_mub/fixture_receipt_register.json"
+ASSET = "code/rust/tests/mub/fixture_receipt_register.json"
 MUTANTS = [
     ("register byte quota omitted", "if bytes.len() > MAX_REGISTER_BYTES {", "if false {"),
     ("schema or authority allowed", 'wire.schema != "omega_mub.fixture_receipts.v1" || wire.authority_effect != "None"', 'wire.schema != "omega_mub.fixture_receipts.v1" && wire.authority_effect != "None"'),
@@ -45,7 +45,7 @@ MUTANTS = [
     ("total quota never decreases", "remaining -= result.bytes;", "remaining -= 0;"),
     ("fixture-value existence check omitted", "resolved(root, value)?;", "// value-file check omitted"),
     ("fixture-value unsafe path admitted", "relative_path(value)?;", "// value path guard omitted"),
-    ("wrong historical relocation", '"code/rust/src/tests/"', '"code/rust/src/absent-tests/"'),
+    ("wrong historical relocation", '"code/rust/tests/mub/"', '"code/rust/absent-tests/"'),
     ("overlapping traversal guards jointly omitted", 'if part.is_empty() || part == "." || part == ".." || part.ends_with([\'.\', \' \']) {', 'if part.is_empty() || part == "." {'),
 ]
 
@@ -117,7 +117,7 @@ def main():
                 dependencies[str(path)] = sha(path)
     (work / "dependency-pins.json").write_text(json.dumps(dependencies, indent=2) + "\n", encoding="utf-8")
     inputs = {SOURCE, TESTS, ASSET, "SCORING.md", CRATE + "/Cargo.toml", CRATE + "/Cargo.lock", CRATE + "/src/lib.rs", CRATE + "/src/bin/observe.rs"}
-    rules = [("omega_engine/crates_rs/tests/", "code/rust/src/tests/"), ("omega_engine_atlas/coda_atlas/F004_papers/010_mub6/", "papers/core/mub6/"), ("omega_engine/crates_rs/omega_mub/", "code/rust/src/mub/")]
+    rules = [("omega_engine/crates_rs/tests/omega_mub/", "code/rust/tests/mub/"), ("omega_engine/crates_rs/omega_mub/fixtures/omega_mub_", "code/rust/src/mub/fixtures/mub_"), ("omega_engine_atlas/coda_atlas/F004_papers/010_mub6/", "papers/core/mub6/"), ("omega_engine/crates_rs/omega_mub/", "code/rust/src/mub/")]
     for record in json.loads((ROOT / ASSET).read_text())["fixtures"]:
         for name in [record["path"], *record.get("fixture_values", [])]:
             for old, new in rules:

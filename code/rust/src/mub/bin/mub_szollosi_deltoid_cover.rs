@@ -6,7 +6,7 @@ use std::time::Instant;
 use num_rational::BigRational;
 use sha2::{Digest, Sha256};
 
-use omega_mub::omega_native::exact::mub6_szollosi_deltoid_cover::solve_szollosi_deltoid_cover;
+use tfqm_mub::native::exact::mub6_szollosi_deltoid_cover::solve_szollosi_deltoid_cover;
 
 fn find_repo_root(start: &Path) -> PathBuf {
     let mut cur = start.to_path_buf();
@@ -69,7 +69,7 @@ fn parse_deltoid_args(args: &[String]) -> Option<(usize, i64, u32, bool)> {
 }
 
 fn emit_deltoid_receipt(
-    report: &mut omega_mub::omega_native::exact::mub6_szollosi_deltoid_cover::SzollosiDeltoidCoverReport,
+    report: &mut tfqm_mub::native::exact::mub6_szollosi_deltoid_cover::SzollosiDeltoidCoverReport,
 ) {
     let pre_json = serde_json::to_string_pretty(report)
         .expect("failed to serialize preliminary deltoid report to JSON");
@@ -83,7 +83,7 @@ fn emit_deltoid_receipt(
         .expect("failed to serialize final deltoid report to JSON");
 
     let crate_artifact_dir =
-        Path::new(env!("CARGO_MANIFEST_DIR")).join("../tests/omega_mub/artifacts");
+        Path::new(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
     fs::create_dir_all(&crate_artifact_dir).expect("failed to create crate artifacts directory");
     let crate_artifact_path = crate_artifact_dir.join("mub_szollosi_deltoid_cover.json");
     fs::write(&crate_artifact_path, &json_str).expect("failed to write crate cover receipt JSON");

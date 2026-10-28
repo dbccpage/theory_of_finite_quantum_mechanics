@@ -6,9 +6,9 @@ pub const CLAIM: &str = "Claim: a zero circle profile keeps the weighted meron f
 pub const AUTHORITY_EFFECT_TEXT: &str = "AuthorityEffect: None";
 pub const MUTATION_KILLS: u32 = 0;
 use num_traits::Zero;
-use omega_functional::circle_piecewise_linear::{CirclePiecewiseLinear, CircleProfileError};
+use tfqm_functional::circle_piecewise_linear::{CirclePiecewiseLinear, CircleProfileError};
 use omega_measurement::affine_calibration::{BoundedReading, CalibrationError};
-use omega_number_theory::rational::{rq, Rational};
+use tfqm_number_theory::rational::{rq, Rational};
 use omega_quantum_physics::meron_source_field::AnalyticResponsePlan;
 use omega_quantum_physics::meron_spatial_source::{SpatialSourceError, SpatialSourcePlan};
 use omega_quantum_physics::meron_time_refinement::{
@@ -202,8 +202,8 @@ fn parse_signed_digits(token: &str) -> Result<i64, MeronFieldTokenError> {
 mod tests {
     use super::*;
     use num_traits::{One, Zero};
-    use omega_functional::circle_piecewise_linear::CirclePiecewiseLinear;
-    use omega_number_theory::rational::rq;
+    use tfqm_functional::circle_piecewise_linear::CirclePiecewiseLinear;
+    use tfqm_number_theory::rational::rq;
     use omega_quantum_physics::meron_source_field::AnalyticResponsePlan;
     use omega_quantum_physics::meron_spatial_source::SpatialSourceError;
 

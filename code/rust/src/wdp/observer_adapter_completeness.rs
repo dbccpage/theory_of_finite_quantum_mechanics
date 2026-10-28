@@ -1,4 +1,4 @@
-use omega_category_theory::finite_partial_structure::{
+use tfqm_category_theory::finite_partial_structure::{
     descend, DescentError, FinitePartialStructure, PartialOperation, Predicate, SortQuotient,
 };
 use std::collections::{BTreeMap, BTreeSet};

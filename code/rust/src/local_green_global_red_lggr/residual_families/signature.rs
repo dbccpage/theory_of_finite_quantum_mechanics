@@ -3,7 +3,7 @@ use std::fmt;
 
 use blake3::Hasher;
 use omega_linear_algebra::backend::basic_matrix::CheckedNumeric;
-use omega_functional::gamma2::ExactCochainComplexQ;
+use tfqm_functional::gamma2::ExactCochainComplexQ;
 use omega_homology::cochain_primitive_difference::CochainPrimitiveDifference;
 use omega_homology::quotient::{QuotientRelation, QuotientSpace};
 use serde::Serialize;

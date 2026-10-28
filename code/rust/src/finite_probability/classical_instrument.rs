@@ -2,7 +2,7 @@
 use std::collections::BTreeMap;
 
 use num_traits::{One, Zero};
-use omega_number_theory::rational::Rational;
+use tfqm_number_theory::rational::Rational;
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
 pub enum ClassicalInstrumentError {
@@ -536,7 +536,7 @@ impl ConditionalBox {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_number_theory::rational::{ri, rq};
+    use tfqm_number_theory::rational::{ri, rq};
 
     fn m(rows: &[&[(i64, i64)]]) -> Matrix {
         rows.iter()

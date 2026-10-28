@@ -1,6 +1,6 @@
 
 use crate::error::WdpError;
-use omega_category_theory::finite_relational::{
+use tfqm_category_theory::finite_relational::{
     FiniteRelational, RelationalQuotient, SuccessionClassification,
 };
 use std::collections::{BTreeMap, BTreeSet};

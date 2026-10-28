@@ -29,8 +29,8 @@ In accordance with strict constructive principles:
 - [`absent: not located`](../../lean4/)
 
 ### Sovereign Rust Certifiers (Exact Rational Arithmetic)
-- [`code/rust/src/mub/src/omega_native/mub6_firewall.rs`](../../code/rust/src/)
-- [`code/rust/src/mub/src/omega_native/mub6_claim_gate.rs`](../../code/rust/src/)
+- [`code/rust/src/mub/native/mub6_firewall.rs`](../../code/rust/src/)
+- [`code/rust/src/mub/native/mub6_claim_gate.rs`](../../code/rust/src/)
 
 ### Python Oracles & Numerical Evaluators
 - [`absent: not located`](../../code/python/)

@@ -543,11 +543,11 @@ mod tests {
 
     fn spec_input<'a>() -> OperationSpecInput<'a> {
         OperationSpecInput {
-            operation_id: "woland",
+            operation_id: "solver",
             version: "v1",
             input_ports: vec![port("in_0", "State"), port("in_1", "Code")],
             output_port: port("out", "Receipt"),
-            executor_ref: "skill.woland",
+            executor_ref: "skill.solver",
             executor_digest: &EXEC_DIGEST,
             tool_refs: vec![],
             effects: vec![],
@@ -623,7 +623,7 @@ mod tests {
 
     #[test]
     fn key_is_id_at_version() {
-        assert_eq!(OperationSpec::new(spec_input()).unwrap().key(), "woland@v1");
+        assert_eq!(OperationSpec::new(spec_input()).unwrap().key(), "solver@v1");
     }
 
     #[test]

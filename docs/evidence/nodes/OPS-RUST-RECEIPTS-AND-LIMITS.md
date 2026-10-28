@@ -73,7 +73,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/sheaf_theory/empirical_presheaf/lp.rs`
 
 - file: [code/rust/src/sheaf_theory/empirical_presheaf/lp.rs](../../../code/rust/src/sheaf_theory/empirical_presheaf/lp.rs)
-- sha256 (`bytes`): `fd449b6519d292c1b407945bbed50069995223fe20caf9a062155e1a1a56d0bb`
+- sha256 (`bytes`): `0ea47d9533355179e69f854e6c4fcd14359308d8fd64deda4bec12913ba71c58`
 - cited in: node.rust, record TFQ-2519
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -86,7 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/sheaf_theory/empirical_presheaf/model.rs`
 
 - file: [code/rust/src/sheaf_theory/empirical_presheaf/model.rs](../../../code/rust/src/sheaf_theory/empirical_presheaf/model.rs)
-- sha256 (`bytes`): `e810daa27f63e26cebb273fc083bef80797858f842573ba2ea837ac75d4ed06e`
+- sha256 (`bytes`): `1bbdcc927883815b7a10755e4b1211d5002504c6c99af43cf699d4de7497b352`
 - cited in: node.rust, record TFQ-2519
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

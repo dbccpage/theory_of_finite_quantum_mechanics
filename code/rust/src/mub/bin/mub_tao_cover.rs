@@ -1,5 +1,5 @@
 
-use omega_mub::omega_native::exact::mub6_tao_cover::{
+use tfqm_mub::native::exact::mub6_tao_cover::{
     cover_tao_narrow_cell, cover_tao_wide_cell, tao_gauge_fixed_chunk_cover,
     tao_gauge_fixed_cover_parallel, tao_seed_smoke_check, write_kernel_reflection_tao_s6_artifact,
 };

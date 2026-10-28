@@ -78,7 +78,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/wdp/fenchel_duality.rs`
 
 - file: [code/rust/src/wdp/fenchel_duality.rs](../../../code/rust/src/wdp/fenchel_duality.rs)
-- sha256 (`bytes`): `ca7fe2172744dc3952b90c9367a64e649d4b0b46fc81b9471e5f79e6dde41df8`
+- sha256 (`bytes`): `7bd1e0270147e2fdda1c12f22c9fad37c177aec39d64a50301c8d880f798bc06`
 - cited in: record TFQ-0351
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
@@ -86,7 +86,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/wdp/obstruction.rs`
 
 - file: [code/rust/src/wdp/obstruction.rs](../../../code/rust/src/wdp/obstruction.rs)
-- sha256 (`bytes`): `d4a9514b3ee22c73ac47193206838c49cd5d908485d2c38dd026cd3bd9416cf8`
+- sha256 (`bytes`): `54a2d6c70adcbfb8ef7203785769515f17ab69b375f47f8f9eca1fb4eaa0bcb7`
 - cited in: record TFQ-0351
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes

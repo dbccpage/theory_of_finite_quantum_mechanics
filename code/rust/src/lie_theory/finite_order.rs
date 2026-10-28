@@ -2,10 +2,10 @@
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::One;
-use omega_number_theory::polynomial::{
+use tfqm_number_theory::polynomial::{
     cyclotomic_polynomial, euler_phi, Polynomial, PolynomialError,
 };
-use omega_number_theory::rational::checked_lcm_usize;
+use tfqm_number_theory::rational::checked_lcm_usize;
 
 use linear_algebra::exact_field::{characteristic_polynomial, matrix as mx, ExactFieldError};
 
@@ -127,7 +127,7 @@ pub fn rational_cosines_of_finite_order_rotations() -> Result<Vec<BigRational>, 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_number_theory::rational::{ri, rq};
+    use tfqm_number_theory::rational::{ri, rq};
 
     fn mat(rows: &[&[i64]]) -> QMatrix {
         let cols = rows[0].len();
@@ -260,7 +260,7 @@ mod tests {
 
 pub fn gaussian_finite_order(
     matrix: &linear_algebra::backend::basic_matrix::BasicMatrix<
-        omega_number_theory::cyclotomic::GaussianRat,
+        tfqm_number_theory::cyclotomic::GaussianRat,
     >,
 ) -> Result<Option<usize>, FiniteOrderError> {
     let n = matrix.rows();
@@ -287,8 +287,8 @@ pub fn gaussian_finite_order(
 mod dynamics_laws {
 
     use super::*;
-    use omega_number_theory::cyclotomic::GaussianRat;
-    use omega_number_theory::rational::{ri, rq};
+    use tfqm_number_theory::cyclotomic::GaussianRat;
+    use tfqm_number_theory::rational::{ri, rq};
     #[test]
     fn gaussian_order_decision_preserves_the_faithful_realification() {
         let phase = GaussianRat {

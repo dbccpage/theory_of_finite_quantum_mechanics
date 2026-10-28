@@ -1,6 +1,6 @@
 
 use num_traits::{One, Signed, Zero};
-use omega_number_theory::rational::Rational;
+use tfqm_number_theory::rational::Rational;
 
 use crate::error::ClassicalShadowError;
 use crate::simplex::ProbabilitySimplex;
@@ -312,7 +312,7 @@ pub fn doubly_stochastic_transform(
 mod tests {
     use super::*;
     use crate::test_support::compositions;
-    use omega_number_theory::rational::{ri, rq};
+    use tfqm_number_theory::rational::{ri, rq};
 
     fn pv(entries: &[(i64, i64)]) -> ProbabilityVector {
         ProbabilityVector::try_new(entries.iter().map(|&(n, d)| rq(n, d)).collect()).unwrap()

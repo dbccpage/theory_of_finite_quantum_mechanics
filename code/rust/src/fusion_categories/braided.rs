@@ -12,8 +12,8 @@ use crate::fusion_ring::FusionRing;
 use crate::scalar::{sign_of, FusionScalar};
 use linear_algebra::backend::basic_matrix::OperationLimits;
 use linear_algebra::exact_field::matrix;
-use omega_number_theory::algebraic_real::{IsolatedRoot, RealAlgebraic};
-use omega_number_theory::quadratic::QuadraticNumber;
+use tfqm_number_theory::algebraic_real::{IsolatedRoot, RealAlgebraic};
+use tfqm_number_theory::quadratic::QuadraticNumber;
 
 pub const MAX_FUSION_SPACE: usize = 1 << 16;
 
@@ -479,7 +479,7 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
             ))?;
             entries.insert(
                 [a, b, c],
-                omega_number_theory::scalar::divide(forward, backward)
+                tfqm_number_theory::scalar::divide(forward, backward)
                     .map_err(FusionError::from)?
                     .mul(value),
             );
@@ -518,7 +518,7 @@ impl<K: FusionScalar> BraidedFusionCategory<K> {
                     }))?;
             entries.insert(
                 [a, b, c],
-                omega_number_theory::scalar::inverse(opposite).map_err(FusionError::from)?,
+                tfqm_number_theory::scalar::inverse(opposite).map_err(FusionError::from)?,
             );
         }
         Self::new(
@@ -1161,7 +1161,7 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
                 .get(a)
                 .ok_or(FusionError::Label { label: a, rank: n })?;
             twists
-                .push(omega_number_theory::scalar::divide(&total, d_a).map_err(FusionError::from)?);
+                .push(tfqm_number_theory::scalar::divide(&total, d_a).map_err(FusionError::from)?);
         }
         Ok(twists)
     }
@@ -1198,7 +1198,7 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
                 continue;
             };
             let expected =
-                omega_number_theory::scalar::divide(tc, &ta.mul(tb)).map_err(FusionError::from)?;
+                tfqm_number_theory::scalar::divide(tc, &ta.mul(tb)).map_err(FusionError::from)?;
             if braided.monodromy([a, b, c]) != Some(expected) {
                 return Err(FusionError::Braided(BraidedDefect::Ribbon {
                     labels: [a, b, c],
@@ -1279,7 +1279,7 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
         d: &K,
         surd: &QuadraticNumber,
     ) -> Result<bool, FusionError> {
-        let annihilates = omega_number_theory::scalar::evaluate_integer_polynomial(
+        let annihilates = tfqm_number_theory::scalar::evaluate_integer_polynomial(
             &surd.minimal_polynomial(),
             d,
         )
@@ -1299,7 +1299,7 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
         root: &IsolatedRoot,
     ) -> Result<bool, FusionError> {
         let interval = root.isolating_interval()?;
-        let annihilates = omega_number_theory::scalar::evaluate_integer_polynomial(
+        let annihilates = tfqm_number_theory::scalar::evaluate_integer_polynomial(
             root.polynomial(),
             d,
         )
@@ -1393,21 +1393,21 @@ impl<K: FusionScalar> RibbonFusionCategory<K> {
     pub fn full_twist_scalar(&self, a: usize, n: usize, total: usize) -> Result<K, FusionError> {
         let theta_a = self.twist(a)?;
         let theta_total = self.twist(total)?;
-        let power = omega_number_theory::scalar::power(
+        let power = tfqm_number_theory::scalar::power(
             theta_a,
             i64::try_from(n).map_err(|_| FusionError::Overflow {
                 context: "the number of strands",
             })?,
         )
         .map_err(FusionError::from)?;
-        omega_number_theory::scalar::divide(theta_total, &power).map_err(FusionError::from)
+        tfqm_number_theory::scalar::divide(theta_total, &power).map_err(FusionError::from)
     }
 }
 
 #[cfg(test)]
 mod resource_tests {
     use super::*;
-    use omega_number_theory::cyclotomic_field::Cyclotomic;
+    use tfqm_number_theory::cyclotomic_field::Cyclotomic;
 
     #[test]
     fn empty_sectors_charge_intermediate_paths_across_generator_materialization() {

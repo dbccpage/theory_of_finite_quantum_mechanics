@@ -1,6 +1,6 @@
 """Rungs 1 through 8 foundational walk for finite quantum mechanics.
 
-Decomposed from foundations.py monolith. Integrates with omega_engine crates.
+Decomposed from foundations.py monolith.
 AuthorityEffect: None.
 """
 

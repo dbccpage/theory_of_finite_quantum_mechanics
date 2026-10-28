@@ -1,10 +1,10 @@
 use super::*;
-use crate::omega_native::exact::basis_gluing_gate::BasisGluingStatus;
-use crate::omega_native::exact::char_two_parametric_gate::CharTwoParametricStatus;
+use crate::native::exact::basis_gluing_gate::BasisGluingStatus;
+use crate::native::exact::char_two_parametric_gate::CharTwoParametricStatus;
 use omega_quantum_physics::mub::char_two_weyl_board::CharTwoWeylBoardStatus;
 use omega_quantum_physics::mub::composite_completion_gate::CompositeCompletionStatus;
 use omega_quantum_physics::mub::composite_tensor_family_gate::CompositeTensorFamilyStatus;
-use crate::omega_native::exact::gtor_gttc_gate::GtorGttcGateStatus;
+use crate::native::exact::gtor_gttc_gate::GtorGttcGateStatus;
 use omega_quantum_physics::mub::gtmur_projector_ledger::GtmurProjectorLedgerStatus;
 use omega_quantum_physics::mub::hilbert_transport::HilbertTransportStatus;
 use omega_quantum_physics::mub::odd_prime_gauss_certificate_gate::OddPrimeGaussCertificateStatus;
@@ -15,9 +15,9 @@ use omega_quantum_physics::mub::odd_prime_weyl::OddPrimeWeylStatus;
 use omega_quantum_physics::mub::prime_power_gtmur_boundary::PrimePowerGtmurBoundaryStatus;
 use omega_quantum_physics::mub::projector_algebra::ProjectorAlgebraStatus;
 use omega_quantum_physics::mub::spectral_lift::SpectralLiftStatus;
-    use crate::omega_native::float_check::d10_wall_status::{D10StabilizerStatus, D10WallAuthorityStatus};
+    use crate::native::float_check::d10_wall_status::{D10StabilizerStatus, D10WallAuthorityStatus};
     use omega_quantum_physics::mub::dimension_stratification::DimensionAuthorityStatus;
-    use omega_wdp::ddc::mub_cochain::{
+    use tfqm_wdp::ddc::mub_cochain::{
         D2C3Result, FunctionalPacketStatus, MubBasisGluingStatus, MubHigherLayer,
         MubTripleCarrierAtlasDefectKind, MubTripleCarrierAtlasStatus,
     };
@@ -105,7 +105,7 @@ use omega_quantum_physics::mub::spectral_lift::SpectralLiftStatus;
             if !root.join(source.relative_path).exists() {
                 assert_eq!(
                     source.verdict,
-                    crate::omega_native::exact::global_atlas::CandidateCoverVerdict::Missing
+                    crate::native::exact::global_atlas::CandidateCoverVerdict::Missing
                 );
             }
         }

@@ -1,7 +1,7 @@
 use crate::genesis_source_execution::{Source25Change, Source25State, SourceRelation};
 use num_bigint::BigInt;
 use num_traits::ToPrimitive;
-use omega_category_theory::bounded_counter::{
+use tfqm_category_theory::bounded_counter::{
     CounterBoundary, CounterEvent, CounterReport, CounterReportError,
 };
 

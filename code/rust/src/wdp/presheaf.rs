@@ -1,7 +1,7 @@
 
 use crate::error::WdpError;
 use crate::types::AuthorityEffect;
-use omega_category_theory::finite_report_descent::{
+use tfqm_category_theory::finite_report_descent::{
     DescentError, DescentOutcome, FiniteReportPresheaf,
 };
 use serde::{Deserialize, Serialize};

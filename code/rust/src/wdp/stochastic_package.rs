@@ -5,7 +5,7 @@ use linear_algebra::linear_algebra::image_kernel::{
 };
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
-use omega_finite_probability::stochastic_map::StochasticMap;
+use tfqm_finite_probability::stochastic_map::StochasticMap;
 use serde::Serialize;
 
 use crate::error::WdpError;

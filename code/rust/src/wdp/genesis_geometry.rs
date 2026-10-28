@@ -1,6 +1,6 @@
 use num_rational::BigRational;
-use omega_category_theory::finite_report_descent::{CoverClassification, FiniteReportPresheaf};
-use omega_general_relativity::regge_calculus::{EdgeLengthMetric, ReggeCalculus};
+use tfqm_category_theory::finite_report_descent::{CoverClassification, FiniteReportPresheaf};
+use tfqm_general_relativity::regge_calculus::{EdgeLengthMetric, ReggeCalculus};
 use omega_homology::declared_incidence::{
     declared_chain_report, encode_declared, DeclaredChainReport, DeclaredIncidenceError,
 };

@@ -1,6 +1,6 @@
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
-use omega_category_theory::finite_section_separation::{
+use tfqm_category_theory::finite_section_separation::{
     decide_separation, weighted_coordinate_pseudometric, FiniteEquivalence, SectionRecord,
     SeparationOutcome, SeparationRefusal,
 };

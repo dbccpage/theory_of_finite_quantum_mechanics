@@ -6,7 +6,7 @@ use thiserror::Error;
 use crate::error::FusionError;
 use crate::scalar::FusionScalar;
 use linear_algebra::exact_field::{characteristic_polynomial, matrix};
-use omega_number_theory::algebraic_real::{largest_real_root, RealAlgebraic};
+use tfqm_number_theory::algebraic_real::{largest_real_root, RealAlgebraic};
 
 pub const MAX_RANK: usize = 32;
 
@@ -622,14 +622,14 @@ impl FusionRing {
     fn rational_fusion_matrix(
         &self,
         a: usize,
-    ) -> Result<BasicMatrix<omega_number_theory::rational::Rational>, FusionError> {
+    ) -> Result<BasicMatrix<tfqm_number_theory::rational::Rational>, FusionError> {
         self.table.check(a)?;
         BasicMatrix::try_from_fn_with_limit(
             self.rank(),
             self.rank(),
             MAX_RANK * MAX_RANK,
             |b, c| {
-                omega_number_theory::rational::Rational::from_integer(BigInt::from(
+                tfqm_number_theory::rational::Rational::from_integer(BigInt::from(
                     self.table.at(a, b, c),
                 ))
             },
@@ -638,7 +638,7 @@ impl FusionRing {
     }
 
     fn integral_coefficients(
-        values: Vec<omega_number_theory::rational::Rational>,
+        values: Vec<tfqm_number_theory::rational::Rational>,
     ) -> Result<Vec<BigInt>, FusionError> {
         values
             .into_iter()
@@ -666,7 +666,7 @@ impl FusionRing {
 
     pub fn global_dimension_squared(&self) -> Result<RealAlgebraic, FusionError> {
         let r = self.rank();
-        let mut total = matrix::zeros::<omega_number_theory::rational::Rational>(r, r)?;
+        let mut total = matrix::zeros::<tfqm_number_theory::rational::Rational>(r, r)?;
         for a in 0..r {
             let a_star = self.dual(a)?;
             let left = self.rational_fusion_matrix(a)?;
@@ -693,11 +693,11 @@ impl FusionRing {
             });
         }
         let d_inverse =
-            omega_number_theory::scalar::inverse(d_squared).map_err(FusionError::from)?;
+            tfqm_number_theory::scalar::inverse(d_squared).map_err(FusionError::from)?;
         let mut first_row_inverse = Vec::with_capacity(r);
         for x in 0..r {
             first_row_inverse.push(
-                omega_number_theory::scalar::inverse(s_tilde.get_ref(0, x)?)
+                tfqm_number_theory::scalar::inverse(s_tilde.get_ref(0, x)?)
                     .map_err(FusionError::from)?,
             );
         }
@@ -749,7 +749,7 @@ impl FusionRing {
     ) -> Result<(), FusionError> {
         for c in 0..self.rank() {
             let value = self.verlinde_value(s_tilde, weights, d_inverse, a, b, c)?;
-            let expected = omega_number_theory::scalar::from_i64::<K>(
+            let expected = tfqm_number_theory::scalar::from_i64::<K>(
                 i64::try_from(self.table.at(a, b, c)).map_err(|_| FusionError::Overflow {
                     context: "embedding a fusion coefficient",
                 })?,
@@ -860,7 +860,7 @@ impl FusionRing {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_number_theory::rational::rq;
+    use tfqm_number_theory::rational::rq;
 
     fn ising_array() -> [[[u64; 3]; 3]; 3] {
         [

@@ -176,7 +176,7 @@ def test_negative_boundary_failures() -> None:
 
 def test_integration_matches_rust_lu_sentence_and_matrix_product() -> None:
     root = Path(__file__).resolve().parents[3]
-    source = (root / "code" / "rust" / "src" / "mub" / "omega_native" / "mub6_smale_sentry.rs").read_text(
+    source = (root / "code" / "rust" / "src" / "mub" / "native" / "mub6_smale_sentry.rs").read_text(
         encoding="utf-8"
     )
     assert 'smale_alpha_threshold' in source
@@ -203,7 +203,7 @@ def test_end_to_end_public_contract() -> None:
 
 def test_origin_resolves_in_repo() -> None:
     root = Path(__file__).resolve().parents[3]
-    origin = root / "code" / "rust" / "src" / "mub" / "omega_native" / "mub6_smale_sentry.rs"
+    origin = root / "code" / "rust" / "src" / "mub" / "native" / "mub6_smale_sentry.rs"
     assert origin.is_file()
     text = origin.read_text(encoding="utf-8")
     assert 'SMALE_ALPHA_THRESHOLD_DEN' in text

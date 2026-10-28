@@ -1,5 +1,5 @@
 
-use omega_mub::omega_native::campaign::mub6_prompt05_campaign_checks::run_campaign_checks;
+use tfqm_mub::native::campaign::mub6_prompt05_campaign_checks::run_campaign_checks;
 use std::{error::Error, fs, io::Write, path::PathBuf};
 
 fn run() -> Result<(), Box<dyn Error>> {

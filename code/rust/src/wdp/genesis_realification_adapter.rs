@@ -1,7 +1,7 @@
 
 use crate::types::AuthorityEffect;
 use linear_algebra::backend::basic_matrix::{BasicMatrix, OperationLimits};
-use omega_number_theory::rational::Rational;
+use tfqm_number_theory::rational::Rational;
 use omega_quantum_physics::complex_realification::{self, ComplexTensorError};
 use omega_quantum_physics::exact_instrument::ExactDensityState;
 

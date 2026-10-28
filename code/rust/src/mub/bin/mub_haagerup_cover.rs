@@ -1,12 +1,12 @@
 
-use omega_mub::omega_native::exact::mub6_cover_run::CoverCertificate;
-use omega_mub::omega_native::campaign::mub6_dita_seed_cover::narrow_torus_cell;
-use omega_mub::omega_native::exact::mub6_haagerup_cover::{
+use tfqm_mub::native::exact::mub6_cover_run::CoverCertificate;
+use tfqm_mub::native::campaign::mub6_dita_seed_cover::narrow_torus_cell;
+use tfqm_mub::native::exact::mub6_haagerup_cover::{
     cover_haagerup_gauge_fixed_chunk, cover_haagerup_narrow_cell,
     cover_haagerup_neighborhood_region, cover_haagerup_wide_cell, haagerup_cover_status,
     write_haagerup_reflection_artifact,
 };
-use omega_number_theory::rational::ri;
+use tfqm_number_theory::rational::ri;
 use std::path::PathBuf;
 
 fn save_certificate(cert: &CoverCertificate, path: &PathBuf) {
@@ -178,7 +178,7 @@ fn main() {
     let cli = parse_haagerup_cli(&args);
 
     let manifest_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-    let artifacts_dir = manifest_dir.join("../tests/omega_mub/artifacts");
+    let artifacts_dir = manifest_dir.join("../tests/mub/artifacts");
     if !artifacts_dir.exists() {
         std::fs::create_dir_all(&artifacts_dir).expect("create artifacts dir");
     }

@@ -292,7 +292,7 @@ pub fn yang_rational<K: FusionScalar>(n: usize, u: &K) -> Result<BasicMatrix<K>,
 }
 
 pub fn hecke<K: FusionScalar>(q: &K) -> Result<BasicMatrix<K>, FusionError> {
-    let q_inverse = omega_number_theory::scalar::inverse(q).map_err(FusionError::from)?;
+    let q_inverse = tfqm_number_theory::scalar::inverse(q).map_err(FusionError::from)?;
     let zero = K::zero();
     let one = K::one();
     matrix::from_rows(vec![
@@ -309,7 +309,7 @@ pub fn hecke_quadratic_defect<K: FusionScalar>(
     q: &K,
 ) -> Result<BasicMatrix<K>, FusionError> {
     hecke_admission(r)?;
-    let q_inverse = omega_number_theory::scalar::inverse(q).map_err(FusionError::from)?;
+    let q_inverse = tfqm_number_theory::scalar::inverse(q).map_err(FusionError::from)?;
     let identity = matrix::identity_with_limits::<K>(r.rows(), DEFAULT_BRAID_LIMITS)?;
     let left = matrix::sub(r, &matrix::scale(&identity, q)?)?;
     let right = matrix::add(r, &matrix::scale(&identity, &q_inverse)?)?;
@@ -340,9 +340,9 @@ fn hecke_admission<K: FusionScalar>(r: &BasicMatrix<K>) -> Result<(), FusionErro
 
 pub fn six_vertex<K: FusionScalar>(q: &K, z: &K) -> Result<BasicMatrix<K>, FusionError> {
     let qz = q.mul(z);
-    let a = qz.sub(&omega_number_theory::scalar::inverse(&qz).map_err(FusionError::from)?);
-    let b = z.sub(&omega_number_theory::scalar::inverse(z).map_err(FusionError::from)?);
-    let c = q.sub(&omega_number_theory::scalar::inverse(q).map_err(FusionError::from)?);
+    let a = qz.sub(&tfqm_number_theory::scalar::inverse(&qz).map_err(FusionError::from)?);
+    let b = z.sub(&tfqm_number_theory::scalar::inverse(z).map_err(FusionError::from)?);
+    let c = q.sub(&tfqm_number_theory::scalar::inverse(q).map_err(FusionError::from)?);
     let zero = K::zero();
     matrix::from_rows(vec![
         vec![a.clone(), zero.clone(), zero.clone(), zero.clone()],
@@ -357,7 +357,7 @@ pub fn six_vertex<K: FusionScalar>(q: &K, z: &K) -> Result<BasicMatrix<K>, Fusio
 mod tests {
     use super::*;
     use linear_algebra::exact_field::elimination;
-    use omega_number_theory::rational::{rq, Rational};
+    use tfqm_number_theory::rational::{rq, Rational};
 
     fn q(n: i64, d: i64) -> Rational {
         rq(n, d)

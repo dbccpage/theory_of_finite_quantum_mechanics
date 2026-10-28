@@ -6,7 +6,7 @@ use std::time::Instant;
 use num_rational::BigRational;
 use sha2::{Digest, Sha256};
 
-use omega_mub::omega_native::exact::mub6_continuous_manifold_residue::solve_continuous_manifold_residue;
+use tfqm_mub::native::exact::mub6_continuous_manifold_residue::solve_continuous_manifold_residue;
 
 fn find_repo_root(start: &Path) -> PathBuf {
     let mut cur = start.to_path_buf();
@@ -76,7 +76,7 @@ fn emit_residue_receipt<T: serde::Serialize>(report: &T) {
     hasher.update(json_str.as_bytes());
     let digest = format!("{:x}", hasher.finalize());
 
-    let crate_artifact_dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("../tests/omega_mub/artifacts");
+    let crate_artifact_dir = Path::new(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts");
     fs::create_dir_all(&crate_artifact_dir)
         .expect("failed to create crate artifacts directory");
     let crate_artifact_path =

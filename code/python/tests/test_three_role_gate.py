@@ -1,6 +1,6 @@
 """Three-role provenance gate: fail-closed separation of proposer, evaluator and authorizer.
 
-Origin: omega_engine_pfp/tests/normal_forms/test_three_role_gate.py in the_symbol_game at commit
+Origin: external:sha256:231776330ef151fdfe485404c4cee489ab0ad90096ddcf2d4498cfe13140efc6 (external repository) at commit
 28a98c069133de6165f4461b19af943d3e32e1f4 (FOC-035, ledger rows C6, C8, C9, C10). Imports and the fixture path are adapted;
 the test bodies are unchanged.
 Claim: urn:omega:fqm:foc035:three-role-gate-tests:v1

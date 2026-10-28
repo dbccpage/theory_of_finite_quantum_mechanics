@@ -2,9 +2,9 @@
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{One, Signed, Zero};
-use omega_number_theory::cyclotomic::GaussianRat;
-use omega_number_theory::polynomial::euler_phi;
-use omega_number_theory::rational::ri;
+use tfqm_number_theory::cyclotomic::GaussianRat;
+use tfqm_number_theory::polynomial::euler_phi;
+use tfqm_number_theory::rational::ri;
 
 use linear_algebra::exact_field::{elimination, matrix as mx, ExactFieldError};
 
@@ -234,7 +234,7 @@ pub fn gaussian_unit_order(u: &GaussianRat) -> Result<Option<usize>, CayleyError
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_number_theory::rational::rq;
+    use tfqm_number_theory::rational::rq;
 
     #[test]
     fn the_plane_cayley_transform_is_the_pythagorean_parametrisation() {

@@ -1,5 +1,5 @@
 
-use omega_category_theory::finite_report_descent::{CoverClassification, DescentOutcome};
+use tfqm_category_theory::finite_report_descent::{CoverClassification, DescentOutcome};
 
 #[derive(Debug, Clone, PartialEq, Eq, Default)]
 pub struct DescentSummary {

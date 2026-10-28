@@ -100,4 +100,4 @@ Conjecture 2(a) is proved algebraically for the class of $6\times 6$ matrices of
 ## Files
 - [`conj2_tensor_product_proof.py`](conj2_tensor_product_proof.py): Complete symbolic proof script
 - [`conj2_fourier_family_proof.py`](conj2_fourier_family_proof.py): Symbolic check on the Fourier-family CHMs themselves
-- [`mub6_matolcsi_weiner_conj2.rs`](../../../../omega_engine/crates_rs/omega_mub/src/omega_native/mub6_matolcsi_weiner_conj2.rs): Rust exact finite verifier
+- [`mub6_matolcsi_weiner_conj2.rs`](../../../../omega_engine/crates_rs/omega_mub/src/native/mub6_matolcsi_weiner_conj2.rs): Rust exact finite verifier

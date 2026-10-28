@@ -5,7 +5,7 @@ use linear_algebra::exact_field::rational_bareiss::{
 };
 use num_rational::BigRational;
 use omega_kernel::{exact_wire, exact_wire_vec};
-use omega_number_theory::cyclotomic::GaussianRat;
+use tfqm_number_theory::cyclotomic::GaussianRat;
 use omega_quantum_physics::exact_channel::{ExactChannelError, ExactKrausChannel};
 use omega_solvers::data_hodge_packet::{
     self as hodge, HodgeAvailabilityModelV1, HodgeCompositionModelV1, HodgePacketError,

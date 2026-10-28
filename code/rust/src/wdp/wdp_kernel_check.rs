@@ -1,6 +1,6 @@
 use num_rational::BigRational;
 use num_traits::{One, Zero};
-use omega_epk::matrix_path_kernel::{EvaluatedPathKernelGraph, MatrixPathError, RationalMatrix2x2};
+use tfqm_local_green_global_red_lggr::matrix_path_kernel::{EvaluatedPathKernelGraph, MatrixPathError, RationalMatrix2x2};
 
 pub const ORIGIN: &str =
     "Origin: code/rust/src/wdp/wdp_kernel_check.rs @ 40de7d5cda1ff1f0db8305d0c1b2103646fab197";

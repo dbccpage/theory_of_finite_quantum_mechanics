@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/general_relativity/spin_foam.rs`
 
 - file: [code/rust/src/general_relativity/spin_foam.rs](../../../code/rust/src/general_relativity/spin_foam.rs)
-- sha256 (`bytes`): `8ab22473e5ebc36ab2cb23247e2d6835664bab9ac0e9f0f26b6ab9b4fd63892e`
+- sha256 (`bytes`): `c86bd4b46662efd95a7c57ab35dbe047ba83ed6a8c89d6317d55caaeaefbe7fb`
 - cited in: node.source
 - note: no test is cited for this symbol; its crate is tfqm_general_relativity
 - counts toward the grade: yes

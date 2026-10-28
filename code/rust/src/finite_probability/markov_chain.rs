@@ -5,7 +5,7 @@ use linear_algebra::linear_algebra::image_kernel::{
 };
 use num_integer::Integer;
 use num_traits::{One, Signed, Zero};
-use omega_number_theory::rational::Rational;
+use tfqm_number_theory::rational::Rational;
 
 use crate::error::ClassicalShadowError;
 use crate::simplex::ProbabilitySimplex;
@@ -723,7 +723,7 @@ impl MarkovChain {
 mod tests {
     use super::*;
     use crate::test_support::stochastic;
-    use omega_number_theory::rational::{ri, rq};
+    use tfqm_number_theory::rational::{ri, rq};
 
     fn chain(rows: &[&[(i64, i64)]]) -> MarkovChain {
         MarkovChain::try_new(stochastic(rows)).unwrap()

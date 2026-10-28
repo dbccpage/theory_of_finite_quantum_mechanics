@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/sheaf_theory/empirical_presheaf/descent.rs`
 
 - file: [code/rust/src/sheaf_theory/empirical_presheaf/descent.rs](../../../code/rust/src/sheaf_theory/empirical_presheaf/descent.rs)
-- sha256 (`bytes`): `f69c766a07bf1c4624808653855fc2fe99e962e17a35a9307bf57f7994f3f9f6`
+- sha256 (`bytes`): `b17c1ffacf19b9ea8080eaffb7883b79c6c7fce27ec448c4fd7aa1e94a54fae0`
 - cited in: node.rust, record TFQ-2507
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |

@@ -1,4 +1,4 @@
-use omega_number_theory::rational::{ri, Rational};
+use tfqm_number_theory::rational::{ri, Rational};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct LocalVertexLimits {

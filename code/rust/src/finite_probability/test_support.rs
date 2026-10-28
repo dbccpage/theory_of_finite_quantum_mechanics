@@ -1,5 +1,5 @@
 
-use omega_number_theory::rational::rq;
+use tfqm_number_theory::rational::rq;
 
 use crate::simplex::ProbabilitySimplex;
 use crate::stochastic_map::StochasticMap;

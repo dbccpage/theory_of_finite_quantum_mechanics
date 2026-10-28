@@ -49,9 +49,9 @@ impl IdentityPathWitness {
         })
     }
 
-    pub fn to_hott_path(&self, type_id: &str) -> omega_homotopy_type_theory::path::Path {
-        use omega_homotopy_type_theory::identity::{TermId, TypeId};
-        omega_homotopy_type_theory::path::Path {
+    pub fn to_hott_path(&self, type_id: &str) -> tfqm_homotopy_type_theory::path::Path {
+        use tfqm_homotopy_type_theory::identity::{TermId, TypeId};
+        tfqm_homotopy_type_theory::path::Path {
             type_id: TypeId(type_id.to_string()),
             source: TermId(self.source.clone()),
             target: TermId(self.target.clone()),
@@ -63,7 +63,7 @@ impl IdentityPathWitness {
         }
     }
 
-    pub fn from_hott_path(path: &omega_homotopy_type_theory::path::Path) -> Self {
+    pub fn from_hott_path(path: &tfqm_homotopy_type_theory::path::Path) -> Self {
         let is_refl =
             path.source.0 == path.target.0 && path.path_ref == format!("refl({})", path.source.0);
         Self {
@@ -476,10 +476,10 @@ mod tests {
         let mut malformed = horn;
         malformed.edge_xy = ("a".into(), "c".into());
         assert!(verify_kan_horn_filling(&triangle(true), &triangle_cochain(0), malformed).is_err());
-        let loop_path = omega_homotopy_type_theory::path::Path {
-            type_id: omega_homotopy_type_theory::identity::TypeId("A".into()),
-            source: omega_homotopy_type_theory::identity::TermId("x".into()),
-            target: omega_homotopy_type_theory::identity::TermId("x".into()),
+        let loop_path = tfqm_homotopy_type_theory::path::Path {
+            type_id: tfqm_homotopy_type_theory::identity::TypeId("A".into()),
+            source: tfqm_homotopy_type_theory::identity::TermId("x".into()),
+            target: tfqm_homotopy_type_theory::identity::TermId("x".into()),
             path_ref: "nontrivial-loop".into(),
         };
         assert!(!IdentityPathWitness::from_hott_path(&loop_path).is_refl);

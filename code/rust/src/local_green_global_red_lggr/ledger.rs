@@ -1,6 +1,6 @@
 
-use omega_functional::gamma2::ExactGamma2Result;
-use omega_functional::phi1::VerifiedExactPhi1;
+use tfqm_functional::gamma2::ExactGamma2Result;
+use tfqm_functional::phi1::VerifiedExactPhi1;
 use omega_policy::trichotomy::{CertifiedExactTrichotomy, ObstructionDiagnosticClass};
 use crate::residual_families::{
     reconcile_verified, FamilyCollision, FamilyRegistry, RegistryWrite, ShapeSignature,

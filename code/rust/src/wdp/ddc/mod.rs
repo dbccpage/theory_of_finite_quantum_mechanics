@@ -28,7 +28,7 @@ pub use transition_effects::{
     TransitionEffectsError,
 };
 
-use omega_functional::gamma2::Gamma2Functional;
+use tfqm_functional::gamma2::Gamma2Functional;
 use serde::Serialize;
 use std::collections::BTreeMap;
 use std::ops::{Add, Mul, Neg};

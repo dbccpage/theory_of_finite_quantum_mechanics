@@ -1,5 +1,5 @@
 use crate::types::AuthorityEffect;
-use omega_combinatorics::color_constraints::{
+use tfqm_combinatorics::color_constraints::{
     minimum_color_violations, ColorConstraintError, MinimumColorViolations,
 };
 use std::collections::{BTreeMap, BTreeSet};

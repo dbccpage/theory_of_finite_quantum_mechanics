@@ -5,9 +5,9 @@ use std::ops::Neg;
 use linear_algebra::backend::basic_matrix::{BasicMatrix, MatrixError, Numeric};
 use num_rational::BigRational;
 use num_traits::One;
-use omega_number_theory::polynomial::euler_phi;
-use omega_number_theory::quadratic::Quadratic;
-use omega_number_theory::rational::{ri, rq};
+use tfqm_number_theory::polynomial::euler_phi;
+use tfqm_number_theory::quadratic::Quadratic;
+use tfqm_number_theory::rational::{ri, rq};
 
 use crate::finite_group::{FiniteGroup, GroupError};
 
@@ -204,7 +204,7 @@ pub fn trace_field_conductor(element_orders: impl IntoIterator<Item = usize>) ->
         .into_iter()
         .map(real_subfield_conductor)
         .fold(1, |acc, c| {
-            omega_number_theory::rational::checked_lcm_usize(acc, c).unwrap_or(usize::MAX)
+            tfqm_number_theory::rational::checked_lcm_usize(acc, c).unwrap_or(usize::MAX)
         })
 }
 

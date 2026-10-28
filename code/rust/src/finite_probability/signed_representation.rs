@@ -1,5 +1,5 @@
 use num_traits::{One, Signed, Zero};
-use omega_number_theory::rational::Rational;
+use tfqm_number_theory::rational::Rational;
 
 use crate::error::ClassicalShadowError;
 use crate::simplex::ProbabilitySimplex;

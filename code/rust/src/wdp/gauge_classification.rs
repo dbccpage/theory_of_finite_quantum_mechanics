@@ -130,7 +130,7 @@ impl ConvexPolyhedralGauge {
 
     pub fn evaluate(&self, x: &[BigRational]) -> BigRational {
         assert_eq!(x.len(), self.dim);
-        omega_functional::observer_gauge::polyhedral_gauge(&self.dual_facets, x)
+        tfqm_functional::observer_gauge::polyhedral_gauge(&self.dual_facets, x)
             .expect("declared gauge facet dimensions and exact coordinates")
     }
 
@@ -202,20 +202,20 @@ impl MixedNormJ21 {
     }
 
     pub fn l2_norm_squared(v: &[BigRational]) -> BigRational {
-        omega_functional::observer_gauge::rational_squared_l2(v)
+        tfqm_functional::observer_gauge::rational_squared_l2(v)
     }
 
     pub fn l2_norm_approx(v: &[BigRational]) -> BigRational {
-        omega_functional::observer_gauge::rational_l2_approx(v)
+        tfqm_functional::observer_gauge::rational_l2_approx(v)
     }
 
     pub fn evaluate(&self, omega: &[Vec<BigRational>]) -> BigRational {
-        omega_functional::observer_gauge::mixed_rational_gauge(&self.edge_capacities, omega, true)
+        tfqm_functional::observer_gauge::mixed_rational_gauge(&self.edge_capacities, omega, true)
             .expect("declared positive edge capacities and exact stalk coordinates")
     }
 
     pub fn evaluate_l11(&self, omega: &[Vec<BigRational>]) -> BigRational {
-        omega_functional::observer_gauge::mixed_rational_gauge(&self.edge_capacities, omega, false)
+        tfqm_functional::observer_gauge::mixed_rational_gauge(&self.edge_capacities, omega, false)
             .expect("declared positive edge capacities and exact stalk coordinates")
     }
 }
@@ -296,7 +296,7 @@ pub fn single_cycle_quotient_rational(
             *slot += val;
         }
     }
-    let l1_norm = omega_functional::phi1::Phi1Functional::unweighted_l1_rational(&sum_circulation)
+    let l1_norm = tfqm_functional::phi1::Phi1Functional::unweighted_l1_rational(&sum_circulation)
         .ok_or(SingleCycleQuotientError::OwnerRefusedMass)?;
     Ok(min_w * l1_norm)
 }

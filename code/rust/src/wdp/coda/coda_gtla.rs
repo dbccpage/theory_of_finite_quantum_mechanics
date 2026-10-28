@@ -7,13 +7,13 @@ use omega_certifiers::checked_packet::{
     CheckedPacketCertificateV1, CheckedPacketError, CheckerRef, DefectFieldHash, EvidenceRef,
     Hash256, ObserverBoundaryHash, ReplayHash, ToleranceProfileHash, WeightsAndGaugesHash,
 };
-use omega_functional::gamma2::{
+use tfqm_functional::gamma2::{
     DegreeOneResidualQ, ExactCochainComplexQ, ExactGamma2Error, ExactGamma2Result, Gamma2Functional,
 };
-use omega_functional::phi1::{
+use tfqm_functional::phi1::{
     ExactPhi1Certificate, ExactPhi1CertificateError, Phi1Functional, VerifiedExactPhi1,
 };
-use omega_homotopy_type_theory::primitive_difference::{
+use tfqm_homotopy_type_theory::primitive_difference::{
     PrimitiveDifference, PrimitiveDifferenceError, ValidatedFiniteCarrier,
 };
 use omega_policy::trichotomy::{

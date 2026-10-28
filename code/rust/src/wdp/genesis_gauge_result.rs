@@ -8,7 +8,7 @@ use linear_algebra::pair_table_canonical::PairCanonicalError;
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{Signed, Zero};
-use omega_combinatorics::enumeration::{Combinations, CombinatoricsError};
+use tfqm_combinatorics::enumeration::{Combinations, CombinatoricsError};
 use std::collections::BTreeSet;
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]

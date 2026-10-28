@@ -1,6 +1,6 @@
 """Discrete quantum information protocols, nonlocality, and Wigner negativity.
 
-Decomposed from foundations.py monolith. Integrates with omega_engine crates.
+Decomposed from foundations.py monolith.
 AuthorityEffect: None.
 """
 

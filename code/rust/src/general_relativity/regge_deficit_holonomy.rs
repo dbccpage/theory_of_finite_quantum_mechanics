@@ -6,11 +6,11 @@ use linear_algebra::regge_exact::So4;
 use num_bigint::BigInt;
 use num_rational::BigRational;
 use num_traits::{One, Zero};
-use omega_holonomy::gauge_quotient::{
+use tfqm_holonomy::gauge_quotient::{
     GaugeDiagnosticAuthority, GaugeQuotientRefusal, GaugeSource, RationalGaugeQuotient,
     MAX_GAUGE_DIMENSION,
 };
-use omega_number_theory::rational_turns::RationalTurn;
+use tfqm_number_theory::rational_turns::RationalTurn;
 use std::collections::BTreeSet;
 
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]

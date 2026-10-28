@@ -6,7 +6,7 @@ use num_traits::{One, Zero};
 use serde::{Deserialize, Serialize};
 
 use linear_algebra::backend::basic_matrix::BasicMatrix;
-use omega_number_theory::cyclotomic::Cyc8;
+use tfqm_number_theory::cyclotomic::Cyc8;
 use crate::types::AuthorityEffect;
 
 

@@ -2,7 +2,7 @@
 use std::collections::{BTreeMap, BTreeSet};
 
 use num_traits::{One, Signed, Zero};
-use omega_functional::phi1::VerifiedExactPhi1;
+use tfqm_functional::phi1::VerifiedExactPhi1;
 use omega_solvers::solver_cohomology_quotient_phi1::certified_phi1;
 use omega_solvers::solver_lp_standard_form::{StandardLp, StandardLpError, StandardLpSolution};
 

@@ -1,9 +1,9 @@
 
 use linear_algebra::linear_algebra::image_kernel::ExactLinearAlgebraError;
-use omega_finite_probability::error::ClassicalShadowError;
-use omega_functional::gamma2::ExactGamma2Error;
-use omega_functional::l1_seminorm::L1SeminormError;
-use omega_holonomy::HolonomyError;
+use tfqm_finite_probability::error::ClassicalShadowError;
+use tfqm_functional::gamma2::ExactGamma2Error;
+use tfqm_functional::l1_seminorm::L1SeminormError;
+use tfqm_holonomy::HolonomyError;
 use omega_homology::errors::HomologicalError;
 use omega_homology::finite_directed_graph::NamedEdgeResolutionError;
 use omega_policy::trichotomy::TrichotomyRefusal;
@@ -15,9 +15,9 @@ use thiserror::Error;
 
 use crate::empirical_adapter::AdapterRefusal;
 
-impl From<omega_epk::matrix_path_kernel::MatrixPathError> for WdpError {
-    fn from(error: omega_epk::matrix_path_kernel::MatrixPathError) -> Self {
-        use omega_epk::matrix_path_kernel::MatrixPathError;
+impl From<tfqm_local_green_global_red_lggr::matrix_path_kernel::MatrixPathError> for WdpError {
+    fn from(error: tfqm_local_green_global_red_lggr::matrix_path_kernel::MatrixPathError) -> Self {
+        use tfqm_local_green_global_red_lggr::matrix_path_kernel::MatrixPathError;
         match error {
             MatrixPathError::InvalidInput { detail } => Self::InvalidInput { detail },
             MatrixPathError::GraphCarrier(error) => Self::GraphCarrier(error),
@@ -56,7 +56,7 @@ pub enum WdpError {
     GraphCarrier(#[from] NamedEdgeResolutionError),
 
     #[error("Finite relation refusal: {0:?}")]
-    FiniteRelation(#[from] omega_category_theory::finite_relational::RelationalError),
+    FiniteRelation(#[from] tfqm_category_theory::finite_relational::RelationalError),
 
     #[error("Homology refusal: {0}")]
     Homology(#[from] HomologicalError),

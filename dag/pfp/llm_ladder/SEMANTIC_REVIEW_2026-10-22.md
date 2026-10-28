@@ -208,7 +208,7 @@ The 20 worst verified entries across the accepted runs are quoted below (with `e
 - **Run:** `TFQ-0103/20261021T161800Z_ladder` (`a0-3`)
 - **Node statement:** *"The constraint-closure ledger records a Ponzano-Regge style bound: a fixed-angle linear functional moves by at most the l1 distance of the spin labels times the sup-norm of the angles..."*
 - **Entry (`relation` `r1`):** `"Exact deformation invariance holds on the pentagon-to-quad reduction"`
-- **Cited declaration (`code/rust/src/mub/omega_native/d6_exact_deformation_invariance_probe_b.rs::probe_b_pentagon_to_quad_exact_invariance`, line 179):** An electrostatics boundary-capacitance Schur-complement test in `mub/omega_native` offered by `@SRC` because its filename shared the words `pentagon` and `invariance`.
+- **Cited declaration (`code/rust/src/mub/native/d6_exact_deformation_invariance_probe_b.rs::probe_b_pentagon_to_quad_exact_invariance`, line 179):** An electrostatics boundary-capacitance Schur-complement test in `mub/omega_native` offered by `@SRC` because its filename shared the words `pentagon` and `invariance`.
 
 ### 15. `[971]` `TFQ-0162` (`nvidia/nemotron-3.5-lightning:free`, `MISLEADING`) — Non-signalling test cited for a claim about `decoherence_functional` vs Born weight
 - **Run:** `TFQ-0162/20261021T035611Z_ladder` (`a0-3`)

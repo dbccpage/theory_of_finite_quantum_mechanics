@@ -29,14 +29,14 @@ pub fn quantum_integer<K: FusionScalar>(level: usize, n: usize) -> Result<K, Fus
         });
     }
     let q = root_of_unity::<K>((2 * (level + 2)) as u32, 1)?;
-    let q_inverse = omega_number_theory::scalar::inverse(&q).map_err(FusionError::from)?;
-    let numerator = omega_number_theory::scalar::power_unsigned(&q, n as u64)
+    let q_inverse = tfqm_number_theory::scalar::inverse(&q).map_err(FusionError::from)?;
+    let numerator = tfqm_number_theory::scalar::power_unsigned(&q, n as u64)
         .map_err(FusionError::from)?
         .sub(
-            &omega_number_theory::scalar::power_unsigned(&q_inverse, n as u64)
+            &tfqm_number_theory::scalar::power_unsigned(&q_inverse, n as u64)
                 .map_err(FusionError::from)?,
         );
-    omega_number_theory::scalar::divide(&numerator, &q.sub(&q_inverse)).map_err(FusionError::from)
+    tfqm_number_theory::scalar::divide(&numerator, &q.sub(&q_inverse)).map_err(FusionError::from)
 }
 
 fn triangle_squared<K: FusionScalar>(
@@ -50,7 +50,7 @@ fn triangle_squared<K: FusionScalar>(
     let numerator = factorials[half - a]
         .mul(&factorials[half - b])
         .mul(&factorials[half - c]);
-    omega_number_theory::scalar::divide(&numerator, &factorials[half + 1])
+    tfqm_number_theory::scalar::divide(&numerator, &factorials[half + 1])
         .map_err(FusionError::from)
 }
 
@@ -67,7 +67,7 @@ fn racah_term<K: FusionScalar>(
     for &s in upper {
         denominator = denominator.mul(&factorials[s - z]);
     }
-    omega_number_theory::scalar::divide(&factorials[z + 1], &denominator).map_err(FusionError::from)
+    tfqm_number_theory::scalar::divide(&factorials[z + 1], &denominator).map_err(FusionError::from)
 }
 
 fn racah_sum<K: FusionScalar>(
@@ -124,10 +124,10 @@ fn associator<K: FusionScalar>(
 fn quantum_dimensions<K: FusionScalar>(level: usize) -> Result<Vec<K>, FusionError> {
     // Caller admitted 1<=level<=6. One root/inverse and one denominator admission.
     let q = root_of_unity::<K>((2 * (level + 2)) as u32, 1)?;
-    let inverse = omega_number_theory::scalar::inverse(&q).map_err(FusionError::from)?;
+    let inverse = tfqm_number_theory::scalar::inverse(&q).map_err(FusionError::from)?;
     let difference = q.sub(&inverse);
     let one =
-        omega_number_theory::scalar::divide(&difference, &difference).map_err(FusionError::from)?;
+        tfqm_number_theory::scalar::divide(&difference, &difference).map_err(FusionError::from)?;
     let step = q.add(&inverse);
     let mut dimensions = Vec::with_capacity(level + 1);
     dimensions.push(one);
@@ -163,7 +163,7 @@ fn tree_weight<K: FusionScalar>(
         .mul(&dimensions[total])
         .mul(&triangle_squared(left[0], left[1], left[2], factorials)?)
         .mul(&triangle_squared(right[0], right[1], right[2], factorials)?);
-    omega_number_theory::scalar::inverse(&squared).map_err(FusionError::from)
+    tfqm_number_theory::scalar::inverse(&squared).map_err(FusionError::from)
 }
 
 fn metric_diagonal<K: FusionScalar>(
@@ -301,7 +301,7 @@ mod tests {
     use super::*;
     use crate::braided::HexagonForm;
     use crate::modular::ModularData;
-    use omega_number_theory::cyclotomic_field::Cyclotomic;
+    use tfqm_number_theory::cyclotomic_field::Cyclotomic;
 
     fn replay<K: FusionScalar>(k: usize) {
         let model = su2_level::<K>(k).unwrap();
@@ -321,7 +321,7 @@ mod tests {
         let modular = ModularData::verified(&model).unwrap();
         assert_eq!(
             modular.central_charge_mod_4().unwrap(),
-            omega_number_theory::rational::rq((3 * k) as i64, (k + 2) as i64)
+            tfqm_number_theory::rational::rq((3 * k) as i64, (k + 2) as i64)
         );
         for a in 0..=k {
             assert_eq!(

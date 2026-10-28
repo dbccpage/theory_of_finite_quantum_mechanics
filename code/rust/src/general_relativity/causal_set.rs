@@ -3,7 +3,7 @@ pub const AUTHORITY_FENCE: &str =
 use num_bigint::BigInt;
 use num_traits::Zero;
 use omega_homology::finite_poset::{FinitePoset, PosetError};
-use omega_number_theory::rational::Rational;
+use tfqm_number_theory::rational::Rational;
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct CausalSet {

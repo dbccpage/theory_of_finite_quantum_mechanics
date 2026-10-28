@@ -1,9 +1,9 @@
 use num_bigint::BigInt;
 use num_rational::BigRational;
-use omega_functional::gamma2::{
+use tfqm_functional::gamma2::{
     DegreeOneResidualQ, ExactCochainComplexQ, ExactGamma2Error, ExactGamma2Result, Gamma2Functional,
 };
-use omega_functional::phi1::{
+use tfqm_functional::phi1::{
     ExactPhi1Certificate, ExactPhi1CertificateError, Phi1Functional, VerifiedExactPhi1,
 };
 use omega_policy::trichotomy::{classify_exact, ObstructionDiagnosticClass, TrichotomyOutcome};
@@ -510,7 +510,7 @@ pub fn mub6_carrier_declaration() -> MubCarrierDeclaration {
         required_basis_count: dimension + 1,
         fixed_basis_count: 3,
         carrier: "complete MUB(6) atlas of admissible triple classes with pinned T0, product, Weyl-sector, and general triple-class nodes",
-        observer: "exact cochain observer over projector/atlas/basis-gluing defects; Phi/Gamma functionals are delegated to omega_functional",
+        observer: "exact cochain observer over projector/atlas/basis-gluing defects; Phi/Gamma functionals are delegated to tfqm_functional",
         terminalizer_preserves: &[
             "exact orthonormality",
             "exact mutual unbiasedness",
@@ -1294,7 +1294,7 @@ pub fn run_mub6_cochain_obstruction_search(
 
     let verdict = mub6_terminal_verdict(&carrier, &d1d0, &quotient, &basis_gluing_cochain);
     let theorem_or_counterexample = match verdict {
-        MubTerminalVerdict::MissingProofObligation => "MUB(6) atlas carrier replays a synthetic Phi1/Gamma2 packet through omega_functional, but exhaustive triple-cover transport, C3 atlas coherence, and basis gluing remain Lean proof obligations",
+        MubTerminalVerdict::MissingProofObligation => "MUB(6) atlas carrier replays a synthetic Phi1/Gamma2 packet through tfqm_functional, but exhaustive triple-cover transport, C3 atlas coherence, and basis gluing remain Lean proof obligations",
         MubTerminalVerdict::CounterexampleToCandidateCochain => "the MUB(6) atlas candidate cochain has a nonzero d1 d0 or missing face support, so the candidate is refuted before any basis gluing",
         MubTerminalVerdict::TheoremAccepted => "basis gluing closed over a geometry-bound Phi1/Gamma2 packet with every Lean obligation discharged",
     };
@@ -1799,8 +1799,8 @@ mod tests {
 
     #[test]
     fn mub_cochain_error_is_clone_display_and_std_error() {
-        use omega_functional::gamma2::ExactGamma2Error;
-        use omega_functional::phi1::ExactPhi1CertificateError;
+        use tfqm_functional::gamma2::ExactGamma2Error;
+        use tfqm_functional::phi1::ExactPhi1CertificateError;
         use std::error::Error as _;
 
         let algebra = MubCochainError::Algebra(LambdaAlgebraError::CapacityOverflow);

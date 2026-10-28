@@ -1,7 +1,7 @@
 
 use crate::types::AuthorityEffect;
-use omega_number_theory::cyclotomic_field::CyclotomicNumber;
-use omega_number_theory::dyadic_presentation::{
+use tfqm_number_theory::cyclotomic_field::CyclotomicNumber;
+use tfqm_number_theory::dyadic_presentation::{
     CharacterSumLimits, DyadicError, DyadicLevel, FiniteDualPrefix,
 };
 

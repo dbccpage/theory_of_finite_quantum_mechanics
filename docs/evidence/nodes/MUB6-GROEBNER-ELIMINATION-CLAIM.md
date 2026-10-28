@@ -53,7 +53,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `papers/core/mub6/mub6_claim_ledger.md`
 
 - file: [papers/core/mub6/mub6_claim_ledger.md](../../../papers/core/mub6/mub6_claim_ledger.md)
-- sha256 (`lf-normalised`): `e21c9d2f20bd0e87979c8b003ab6e2c60422c19cfdd0117308db09ec10c47f7a`
+- sha256 (`lf-normalised`): `6708883b9f1ed33cc93d794d2c7c50484f0f8e075e4576c2eaa74fadf6fbf842`
 - cited in: node.source
 - counts toward the grade: yes
 

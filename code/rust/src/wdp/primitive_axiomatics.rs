@@ -3,12 +3,12 @@ use std::collections::{BTreeMap, BTreeSet};
 
 use num_rational::BigRational;
 use num_traits::{One, Zero};
-use omega_category_theory::finite_relational::FinitePreorder;
-use omega_functional::gamma2::{
+use tfqm_category_theory::finite_relational::FinitePreorder;
+use tfqm_functional::gamma2::{
     DegreeOneResidualQ, ExactCochainComplexQ, ExactGamma2Result, Gamma2Functional,
 };
-use omega_functional::l1_seminorm::L1Seminorm;
-use omega_functional::phi1::VerifiedExactPhi1;
+use tfqm_functional::l1_seminorm::L1Seminorm;
+use tfqm_functional::phi1::VerifiedExactPhi1;
 use omega_homology::carrier::Carrier;
 use omega_policy::trichotomy::{
     classify_exact, CertifiedExactTrichotomy, ObstructionDiagnosticClass, TrichotomyOutcome,
@@ -237,7 +237,7 @@ impl EvaluationCarrier {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use omega_functional::phi1::Phi1Functional;
+    use tfqm_functional::phi1::Phi1Functional;
     use omega_homology::scalar::{q, qr};
 
     fn triangle(faces: Vec<(String, String, String)>) -> EvaluationCarrier {

@@ -1,7 +1,7 @@
 
 use crate::error::WdpError;
 use crate::retention::RetentionPacket;
-use omega_category_theory::finite_retention_choices::{
+use tfqm_category_theory::finite_retention_choices::{
     FiniteRetentionData, ForwardRelationReceipt,
 };
 use std::collections::{BTreeMap, BTreeSet};

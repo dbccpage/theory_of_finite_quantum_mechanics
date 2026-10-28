@@ -2,7 +2,7 @@
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{matrix as mx, ExactFieldError};
 use num_bigint::BigUint;
-use omega_number_theory::rational::ri;
+use tfqm_number_theory::rational::ri;
 
 use crate::scalar::{dagger, ComplexField};
 
@@ -425,7 +425,7 @@ pub struct StoneVonNeumannCensus {
 }
 
 pub fn stone_von_neumann_census(prime: usize) -> Result<StoneVonNeumannCensus, HeisenbergError> {
-    if !(2..=MAX_DIMENSION).contains(&prime) || !omega_number_theory::finite_field::is_prime(prime)
+    if !(2..=MAX_DIMENSION).contains(&prime) || !tfqm_number_theory::finite_field::is_prime(prime)
     {
         return Err(HeisenbergError::NotPrime(prime));
     }
@@ -469,7 +469,7 @@ impl FiniteHeisenberg {
         if prime < 3
             || prime > 127
             || prime % 2 == 0
-            || !omega_number_theory::finite_field::is_prime(prime as usize)
+            || !tfqm_number_theory::finite_field::is_prime(prime as usize)
         {
             return Err(FiniteHeisenbergError::Prime);
         }
@@ -574,17 +574,17 @@ impl FiniteHeisenberg {
 #[derive(Debug, Clone)]
 pub struct PrimeCharacteristicCcr {
     pub characteristic: usize,
-    pub multiplication: BasicMatrix<omega_number_theory::finite_field::FieldElement>,
-    pub derivative: BasicMatrix<omega_number_theory::finite_field::FieldElement>,
-    pub commutator: BasicMatrix<omega_number_theory::finite_field::FieldElement>,
-    pub identity_trace: omega_number_theory::finite_field::FieldElement,
+    pub multiplication: BasicMatrix<tfqm_number_theory::finite_field::FieldElement>,
+    pub derivative: BasicMatrix<tfqm_number_theory::finite_field::FieldElement>,
+    pub commutator: BasicMatrix<tfqm_number_theory::finite_field::FieldElement>,
+    pub identity_trace: tfqm_number_theory::finite_field::FieldElement,
 }
 
 pub fn prime_characteristic_ccr(p: usize) -> Result<PrimeCharacteristicCcr, HeisenbergError> {
     if !(2..=31).contains(&p) {
         return Err(HeisenbergError::Dimension(p));
     }
-    let field = omega_number_theory::finite_field::FiniteField::prime_field(p)
+    let field = tfqm_number_theory::finite_field::FiniteField::prime_field(p)
         .ok_or(HeisenbergError::Dimension(p))?;
     let multiplication = BasicMatrix::try_from_fn(p, p, |r, c| {
         if r == c + 1 {

@@ -3,10 +3,10 @@ use std::{collections::BTreeSet, path::Path};
 
 use serde::Serialize;
 
-use crate::omega_native::exact::basis_gluing_gate::{
+use crate::native::exact::basis_gluing_gate::{
     verify_basis_gluing_gate, BasisGluingGateReport, BasisGluingInputs,
 };
-use crate::omega_native::exact::char_two_parametric_gate::{
+use crate::native::exact::char_two_parametric_gate::{
     verify_current_char_two_parametric_gate, CharTwoParametricGateReport,
 };
 use omega_quantum_physics::mub::char_two_weyl_board::{
@@ -24,11 +24,11 @@ use omega_quantum_physics::mub::composite_tensor_family_gate::{
 use omega_quantum_physics::mub::d10_controls::{
     verify_cyclotomic120_controls, Cyclotomic120ControlReport, Cyclotomic120Status,
 };
-use crate::omega_native::float_check::d10_wall_status::{current_d10_wall_status, D10WallStatusReport};
+use crate::native::float_check::d10_wall_status::{current_d10_wall_status, D10WallStatusReport};
 use omega_quantum_physics::mub::dimension_stratification::{
     current_dimension_stratification_reports, DimensionStratificationReport,
 };
-use crate::omega_native::exact::extension::{
+use crate::native::exact::extension::{
     assess_full_mub6, assess_general_mub_n as assess_general_extension, assess_mub10,
     ExtensionTerminal, ExtensionVerdict, FullMub6Census, GeneralMubEvidence, Mub10Census,
 };
@@ -36,19 +36,19 @@ use omega_quantum_physics::mub::finite_projector_control::{
     verify_current_finite_projector_controls, FiniteProjectorControlReport,
     FiniteProjectorControlStatus,
 };
-use crate::omega_native::exact::global_atlas::{
+use crate::native::exact::global_atlas::{
     assess_current_global_atlas, AtlasStatus, GlobalAtlasAssessment,
 };
 use omega_quantum_physics::mub::gtmur_projector_ledger::{
     verify_current_gtmur_projector_ledgers, GtmurProjectorLedgerReport,
 };
-use crate::omega_native::exact::gtor_gttc_gate::{
+use crate::native::exact::gtor_gttc_gate::{
     verify_gtor_gttc_gates, GtorGttcGateInputs, GtorGttcGateReport,
 };
 use omega_quantum_physics::mub::hilbert_transport::{
     verify_current_hilbert_transport_schemas, HilbertTransportReport,
 };
-use crate::omega_native::exact::local_transport::{
+use crate::native::exact::local_transport::{
     check_pinned_transport_receipt, LocalTransportStatus, LocalTransportSubcertificate,
 };
 use omega_quantum_physics::mub::odd_prime_gauss_certificate_gate::{
@@ -69,7 +69,7 @@ use omega_quantum_physics::mub::odd_prime_power_weyl::{
 use omega_quantum_physics::mub::odd_prime_weyl::{
     verify_current_odd_prime_weyl_schemas, OddPrimeWeylReport,
 };
-use crate::omega_native::exact::operator_ladder::{current_operator_ladder, OperatorAttempt};
+use crate::native::exact::operator_ladder::{current_operator_ladder, OperatorAttempt};
 use omega_quantum_physics::mub::prime_controls::{
     verify_prime_controls, verify_prime_power_controls, BenchmarkStatus, PrimeControlReport,
 };
@@ -86,7 +86,7 @@ use crate::primitive_map::{
     assess_d6_pinned_wall, assess_general_mub_n, first_run_primitive_map, CorpusPull,
     MubClaimAssessment,
 };
-use omega_wdp::ddc::mub_cochain::{
+use tfqm_wdp::ddc::mub_cochain::{
     run_mub6_cochain_obstruction_search, MubAtlasEvidence, MubCochainRunReport,
 };
 

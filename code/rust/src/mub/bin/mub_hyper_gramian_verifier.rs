@@ -1,4 +1,4 @@
-use omega_mub::omega_native::mub6_hyper_gramian;
+use tfqm_mub::native::mub6_hyper_gramian;
 use std::{fs, path::PathBuf};
 
 fn parse_cli_args() -> Result<Option<(bool, Option<PathBuf>)>, String> {
@@ -29,7 +29,7 @@ fn write_artifact_targets(bytes: &[u8], emit: bool, output: Option<PathBuf>) -> 
         let root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../..");
         for dir in [
             root.join("artifacts"),
-            PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/omega_mub/artifacts"),
+            PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../tests/mub/artifacts"),
         ] {
             fs::create_dir_all(&dir).map_err(|e| e.to_string())?;
             fs::write(dir.join("mub_hyper_gramian_sdp.json"), bytes).map_err(|e| e.to_string())?;

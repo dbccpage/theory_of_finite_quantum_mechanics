@@ -1,7 +1,7 @@
 use crate::genesis_carrier::{PassageAnswer, PassageCarrier, PassageQuestion};
 use crate::genesis_joint_dynamics::{PassageJoint, PassageJointError, PassageJointRequest};
-use omega_category_theory::finite_joint_dynamics::{JointDynamicsAnalysis, JointDynamicsError};
-use omega_number_theory::rational::Rational;
+use tfqm_category_theory::finite_joint_dynamics::{JointDynamicsAnalysis, JointDynamicsError};
+use tfqm_number_theory::rational::Rational;
 use omega_quantum_physics::finite_bell_extension::BellLimits;
 use omega_quantum_physics::finite_bell_preparation::{
     PreparationError, PreparedBellCertificate, PreparedBellProblem, ResponseFunctions,

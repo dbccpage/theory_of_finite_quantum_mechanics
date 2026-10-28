@@ -121,7 +121,7 @@ def snapshot(work):
             target = work / item.relative_to(RUST)
             target.parent.mkdir(parents=True, exist_ok=True)
             _copy_record_file(item, target)
-    # Copy src/tests/omega_mub/fixtures (required by src/mub include_str!)
+    # Copy src/tests/mub/fixtures (required by src/mub include_str!)
     if (RUST / "src/tests").is_dir():
         for item in (RUST / "src/tests").rglob("*"):
             if item.is_file() and not _is_sidecar(item):

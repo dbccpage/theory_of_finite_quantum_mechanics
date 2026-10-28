@@ -1,4 +1,4 @@
-// Local source port from the_symbol_game/frame_function_polytope.rs.
+// Local port of an external source, frame_function_polytope.rs.
 // Original SHA256: e5c15eeac034c32c6b6a00e208847efd5f83fe316215ebd4764810bab7b9b2d7
 // Only API extension: expose the completed support-visit count.
 // AuthorityEffect: None.
@@ -50,7 +50,7 @@ use linear_algebra::exact_field::{
 use num_bigint::BigInt;
 
 use num_traits::{One, Signed, Zero};
-use omega_number_theory::rational::{ri, Rational};
+use tfqm_number_theory::rational::{ri, Rational};
 
 /// Refusals for frame systems.
 #[derive(Debug, Clone, PartialEq, Eq, thiserror::Error)]
@@ -595,7 +595,7 @@ impl FrameSystem {
         if rank != frames {
             return Err(FramePolytopeError::RankDeficient { rank, frames });
         }
-        let count = omega_combinatorics::enumeration::binomial(edges.len() as u64, frames as u64)
+        let count = tfqm_combinatorics::enumeration::binomial(edges.len() as u64, frames as u64)
             .map_err(|_| FramePolytopeError::EnumerationLimit { limit })?;
         if count > num_bigint::BigUint::from(limit) {
             return Err(FramePolytopeError::EnumerationLimit { limit });

@@ -1,6 +1,6 @@
 
-use omega_category_theory::finite_report_descent::{DescentError, FiniteReportPresheaf};
-use omega_category_theory::finite_report_query::{
+use tfqm_category_theory::finite_report_descent::{DescentError, FiniteReportPresheaf};
+use tfqm_category_theory::finite_report_query::{
     ReportQueryDecision, ReportQueryProblem, ReportQueryRefusal,
 };
 use std::collections::{BTreeMap, BTreeSet};

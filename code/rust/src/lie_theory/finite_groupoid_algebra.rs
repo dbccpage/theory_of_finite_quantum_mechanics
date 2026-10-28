@@ -1,9 +1,9 @@
 
 use linear_algebra::backend::basic_matrix::BasicMatrix;
 use linear_algebra::exact_field::{matrix as mx, ExactFieldError};
-use omega_category_theory::finite_groupoid::{GroupoidError, ValidatedFiniteGroupoid};
-use omega_number_theory::cyclotomic::GaussianRat;
-use omega_number_theory::rational::{rq, Rational};
+use tfqm_category_theory::finite_groupoid::{GroupoidError, ValidatedFiniteGroupoid};
+use tfqm_number_theory::cyclotomic::GaussianRat;
+use tfqm_number_theory::rational::{rq, Rational};
 use std::collections::BTreeMap;
 
 #[derive(Debug, Clone, thiserror::Error)]

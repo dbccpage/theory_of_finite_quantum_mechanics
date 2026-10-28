@@ -1,7 +1,7 @@
 """Diagnostic class, routing terminal, residual and authority tag: exhaustive tables of the real source maps.
 
 Producer for PFP batch 01, node PG-WDP-DIAGNOSTIC-NOT-ROUTING. Exact integers and names only.
-Transcribed from the_symbol_game (sha256 pinned in the operad collection and rechecked by the node author):
+Transcribed from an external source (sha256 pinned in the operad collection and rechecked by the node author):
   omega_types/src/routing.rs      RoutingTerminal, From<TerminalStatus>, PfpTerminal, From<PfpTerminal>
   omega_types/src/terminal_status.rs  TerminalStatus (21), residual_class, authority_level tag, authority_terminal, terminal_from_fiber
   omega_policy/src/trichotomy.rs  ObstructionDiagnosticClass (Rust names the exact class `ExactRepair`; the ledger says `ExactClass`)
