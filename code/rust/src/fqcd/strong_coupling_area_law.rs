@@ -212,6 +212,82 @@ pub fn twod_character_decimation_area_law(
     Ok(dim_factor * activity_factor)
 }
 
+/// Exact rational normalized cubic character invariants for S_4 (order 24):
+/// returns (I_3(3), I_3(3'), I_3(2), I_3(sgn)) = (1, 1, 1, 0).
+pub fn s4_cubic_character_invariants() -> (BigRational, BigRational, BigRational, BigRational) {
+    let order = 24i64;
+    let sum_3 = 1 * 27 + 6 * 1 + 8 * 0 + 6 * (-1) + 3 * (-1);
+    let sum_3_prime = 1 * 27 + 6 * (-1) + 8 * 0 + 6 * 1 + 3 * (-1);
+    let sum_2 = 1 * 8 + 6 * 0 + 8 * (-1) + 6 * 0 + 3 * 8;
+    let sum_sgn = 1 * 1 + 6 * (-1) + 8 * 1 + 6 * (-1) + 3 * 1;
+    (
+        rat(sum_3, order),
+        rat(sum_3_prime, order),
+        rat(sum_2, order),
+        rat(sum_sgn, order),
+    )
+}
+
+/// Exact rational normalized cubic character invariants for A_5 (order 60):
+/// returns (I_3(3_a), I_3(3_b), I_3(4), I_3(5)) = (1, 1, 1, 2).
+pub fn a5_cubic_character_invariants() -> (BigRational, BigRational, BigRational, BigRational) {
+    let order = 60i64;
+    // Over the two 5-cycle classes of size 12, phi^3 + (1 - phi)^3 = 4
+    let sum_3 = 1 * 27 + 15 * (-1) + 20 * 0 + 12 * 4;
+    let sum_4 = 1 * 64 + 15 * 0 + 20 * 1 + 12 * (-1) + 12 * (-1);
+    let sum_5 = 1 * 125 + 15 * 1 + 20 * (-1) + 12 * 0 + 12 * 0;
+    (
+        rat(sum_3, order),
+        rat(sum_3, order),
+        rat(sum_4, order),
+        rat(sum_5, order),
+    )
+}
+
+/// General representation collar tensor contraction c_X(d_R, E_off) = d_R^{-E_off}.
+pub fn general_collar_tube_contraction(dim_r: u64, e_off: u32) -> Result<BigRational, &'static str> {
+    if dim_r == 0 {
+        return Err("Representation dimension must be >= 1");
+    }
+    let denom = big_pow(dim_r, e_off as u64);
+    Ok(BigRational::new(BigInt::one(), denom))
+}
+
+/// Number of orthogonal normal half-plane directions to a 2D planar loop in dimension d >= 3: N_normal(d) = 2(d - 2).
+pub fn normal_directions_count(d: u64) -> Result<u64, &'static str> {
+    if d < 3 {
+        return Err("Dimension must be >= 3 for normal collar directions");
+    }
+    Ok(2 * (d - 2))
+}
+
+/// Multi-plaquette boundary collar contraction bound in d = 4:
+/// B_collar^(d=4)(P, k, d_R, beta) = (4 * d_R^{-2k} * beta^{3k})^P.
+pub fn d4_multi_plaquette_collar_bound(
+    perim: u64,
+    width_k: u64,
+    dim_r: u64,
+    beta: &BigRational,
+) -> Result<BigRational, &'static str> {
+    if perim == 0 || width_k == 0 || dim_r < 2 {
+        return Err("Requires perim >= 1, width_k >= 1, dim_r >= 2");
+    }
+    if beta <= &BigRational::zero() {
+        return Err("Requires beta > 0");
+    }
+    let d_pow = big_pow(dim_r, 2 * width_k);
+    let mut beta_pow = BigRational::one();
+    for _ in 0..(3 * width_k) {
+        beta_pow *= beta;
+    }
+    let step = BigRational::new(BigInt::from(4), d_pow) * beta_pow;
+    let mut total = BigRational::one();
+    for _ in 0..perim {
+        total *= &step;
+    }
+    Ok(total)
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -275,6 +351,35 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
     let dec_q8 = twod_character_decimation_area_law(2, &alpha, 3)?;
     if dec_q8 != rat(1, 500) {
         return Err("2D decimation for dim R = 2 failed");
+    }
+
+    // 8. S_4 and A_5 cubic character invariants
+    let (s4_3, s4_3p, s4_2, s4_sgn) = s4_cubic_character_invariants();
+    if s4_3 != BigRational::one()
+        || s4_3p != BigRational::one()
+        || s4_2 != BigRational::one()
+        || !s4_sgn.is_zero()
+    {
+        return Err("S_4 cubic character invariants mismatch");
+    }
+    let (a5_3a, a5_3b, a5_4, a5_5) = a5_cubic_character_invariants();
+    if a5_3a != BigRational::one()
+        || a5_3b != BigRational::one()
+        || a5_4 != BigRational::one()
+        || a5_5 != rat(2, 1)
+    {
+        return Err("A_5 cubic character invariants mismatch");
+    }
+
+    // 9. d=4 normal directions and multi-plaquette collar contraction bound
+    if normal_directions_count(4)? != 4 {
+        return Err("normal_directions_count(4) != 4");
+    }
+    let beta_tenth = rat(1, 10);
+    let b1 = d4_multi_plaquette_collar_bound(4, 1, 2, &beta_tenth)?;
+    let b2 = d4_multi_plaquette_collar_bound(4, 2, 2, &beta_tenth)?;
+    if b1 != BigRational::new(BigInt::one(), big_pow(10, 12)) || b2 >= b1 || b2 <= BigRational::zero() {
+        return Err("d=4 multi-plaquette collar bound check failed");
     }
 
     Ok(true)

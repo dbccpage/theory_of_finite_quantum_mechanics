@@ -14,6 +14,7 @@ try:
     from fqcd.strong_coupling_area_law import (
         CONST_K,
         CONST_SIGMA_0,
+        a5_cubic_character_invariants_rational,
         area_law_decay_bound,
         area_law_decay_bound_rational,
         cluster_series_geometric_sum,
@@ -21,14 +22,18 @@ try:
         collar_tube_contraction,
         collar_tube_contraction_rational,
         coordination_number_delta,
+        d4_multi_plaquette_collar_bound_rational,
+        general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
         loop_perimeter,
         minimal_spanning_area,
+        normal_directions_count,
         q8_center_parity_protection,
         q8_cubic_character_invariant,
         q8_cubic_character_invariant_rational,
         s3_cubic_character_invariant,
         s3_cubic_character_invariant_rational,
+        s4_cubic_character_invariants_rational,
         single_plaquette_character_activity_zn,
         strong_coupling_threshold_beta0,
         strong_coupling_threshold_beta0_rational,
@@ -41,6 +46,7 @@ except ImportError:
     from src.fqcd.strong_coupling_area_law import (
         CONST_K,
         CONST_SIGMA_0,
+        a5_cubic_character_invariants_rational,
         area_law_decay_bound,
         area_law_decay_bound_rational,
         cluster_series_geometric_sum,
@@ -48,14 +54,18 @@ except ImportError:
         collar_tube_contraction,
         collar_tube_contraction_rational,
         coordination_number_delta,
+        d4_multi_plaquette_collar_bound_rational,
+        general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
         loop_perimeter,
         minimal_spanning_area,
+        normal_directions_count,
         q8_center_parity_protection,
         q8_cubic_character_invariant,
         q8_cubic_character_invariant_rational,
         s3_cubic_character_invariant,
         s3_cubic_character_invariant_rational,
+        s4_cubic_character_invariants_rational,
         single_plaquette_character_activity_zn,
         strong_coupling_threshold_beta0,
         strong_coupling_threshold_beta0_rational,
@@ -234,6 +244,41 @@ def test_twod_character_decimation_area_law() -> None:
         assert abs(val - expected) < 1e-15
         expected_rat = Fraction(1, 2 ** (area - 1)) * Fraction(1, 5 ** area)
         assert val_rat == expected_rat
+
+
+def test_s4_and_a5_cubic_invariants_and_d4_collar_bounds() -> None:
+    s4_invs = s4_cubic_character_invariants_rational()
+    assert s4_invs["3"] == Fraction(1, 1)
+    assert s4_invs["3_prime"] == Fraction(1, 1)
+    assert s4_invs["2"] == Fraction(1, 1)
+    assert s4_invs["sgn"] == Fraction(0, 1)
+
+    a5_invs = a5_cubic_character_invariants_rational()
+    assert a5_invs["3_a"] == Fraction(1, 1)
+    assert a5_invs["3_b"] == Fraction(1, 1)
+    assert a5_invs["4"] == Fraction(1, 1)
+    assert a5_invs["5"] == Fraction(2, 1)
+
+    # Higher representation dimension d_R yields stronger per-edge collar contraction
+    c_d2 = general_collar_tube_contraction_rational(2, 6)
+    c_d3 = general_collar_tube_contraction_rational(3, 6)
+    c_d4 = general_collar_tube_contraction_rational(4, 6)
+    c_d5 = general_collar_tube_contraction_rational(5, 6)
+    assert c_d2 > c_d3 > c_d4 > c_d5 > Fraction(0, 1)
+
+    # d=4 normal directions and multi-plaquette collar contraction bounds
+    assert normal_directions_count(3) == 2
+    assert normal_directions_count(4) == 4
+    with pytest.raises(ValueError):
+        normal_directions_count(2)
+
+    beta = Fraction(1, 10)
+    b_k1 = d4_multi_plaquette_collar_bound_rational(4, 1, 2, beta)
+    b_k2 = d4_multi_plaquette_collar_bound_rational(4, 2, 2, beta)
+    b_k1_d3 = d4_multi_plaquette_collar_bound_rational(4, 1, 3, beta)
+    assert b_k1 == Fraction(1, 10 ** 12)
+    assert Fraction(0, 1) < b_k2 < b_k1
+    assert Fraction(0, 1) < b_k1_d3 < b_k1
 
 
 def test_master_witness_passes() -> None:

@@ -110,6 +110,48 @@ def twod_decimation_rational(dim_r: int, activity_ratio: Fraction, area: int) ->
     return dim_factor * (activity_ratio ** area)
 
 
+def s4_cubic_invariants_rational() -> Dict[str, Fraction]:
+    order = 24
+    return {
+        "3": Fraction(1 * 27 + 6 * 1 + 8 * 0 + 6 * (-1) + 3 * (-1), order),
+        "3_prime": Fraction(1 * 27 + 6 * (-1) + 8 * 0 + 6 * 1 + 3 * (-1), order),
+        "2": Fraction(1 * 8 + 6 * 0 + 8 * (-1) + 6 * 0 + 3 * 8, order),
+        "sgn": Fraction(1 * 1 + 6 * (-1) + 8 * 1 + 6 * (-1) + 3 * 1, order),
+    }
+
+
+def a5_cubic_invariants_rational() -> Dict[str, Fraction]:
+    order = 60
+    sum_3 = 1 * 27 + 15 * (-1) + 20 * 0 + 12 * 4
+    sum_4 = 1 * 64 + 15 * 0 + 20 * 1 + 12 * (-1) + 12 * (-1)
+    sum_5 = 1 * 125 + 15 * 1 + 20 * (-1) + 12 * 0 + 12 * 0
+    return {
+        "3_a": Fraction(sum_3, order),
+        "3_b": Fraction(sum_3, order),
+        "4": Fraction(sum_4, order),
+        "5": Fraction(sum_5, order),
+    }
+
+
+def general_collar_contraction_rational(dim_r: int, e_off: int) -> Fraction:
+    if dim_r < 1 or e_off < 0:
+        raise ValueError("Requires dim_r >= 1 and e_off >= 0")
+    return Fraction(1, dim_r ** e_off)
+
+
+def normal_directions(d: int) -> int:
+    if d < 3:
+        raise ValueError("Requires d >= 3")
+    return 2 * (d - 2)
+
+
+def d4_multi_plaquette_collar_bound(perim: int, width_k: int, dim_r: int, beta: Fraction) -> Fraction:
+    if perim < 1 or width_k < 1 or dim_r < 2 or beta <= Fraction(0, 1):
+        raise ValueError("Invalid parameters for d=4 collar bound")
+    step = Fraction(4, dim_r ** (2 * width_k)) * (beta ** (3 * width_k))
+    return step ** perim
+
+
 def run_checks() -> Dict[str, Any]:
     total_checks = 0
     failures: List[str] = []
@@ -208,6 +250,36 @@ def run_checks() -> Dict[str, Any]:
     check(twod_decimation_rational(2, act, 2) == Fraction(1, 200), "2D decimation dim=2 Area=2")
     # Area = 3: 2^{-2} * (1/10)^3 = (1/4) * (1/1000) = 1/4000
     check(twod_decimation_rational(2, act, 3) == Fraction(1, 4000), "2D decimation dim=2 Area=3")
+
+    # -------------------------------------------------------------------------
+    # Family 7: Higher-order non-abelian S_4 and A_5 cubic character invariants
+    # -------------------------------------------------------------------------
+    s4_invs = s4_cubic_invariants_rational()
+    check(s4_invs["3"] == Fraction(1, 1), "S_4 standard 3D irrep cubic invariant == 1")
+    check(s4_invs["3_prime"] == Fraction(1, 1), "S_4 signed 3D irrep cubic invariant == 1")
+    check(s4_invs["2"] == Fraction(1, 1), "S_4 quotient 2D irrep cubic invariant == 1")
+    check(s4_invs["sgn"] == Fraction(0, 1), "S_4 sign 1D irrep cubic invariant == 0")
+
+    a5_invs = a5_cubic_invariants_rational()
+    check(a5_invs["3_a"] == Fraction(1, 1), "A_5 icosahedral 3_a irrep cubic invariant == 1")
+    check(a5_invs["3_b"] == Fraction(1, 1), "A_5 icosahedral 3_b irrep cubic invariant == 1")
+    check(a5_invs["4"] == Fraction(1, 1), "A_5 standard 4D irrep cubic invariant == 1")
+    check(a5_invs["5"] == Fraction(2, 1), "A_5 5D irrep cubic invariant == 2")
+
+    # -------------------------------------------------------------------------
+    # Family 8: General d_R collar contraction and d=4 multi-plaquette collar bounds
+    # -------------------------------------------------------------------------
+    check(general_collar_contraction_rational(2, 4) > general_collar_contraction_rational(3, 4), "Collar contraction stronger for dim=3 than dim=2")
+    check(general_collar_contraction_rational(3, 4) > general_collar_contraction_rational(4, 4), "Collar contraction stronger for dim=4 than dim=3")
+    check(general_collar_contraction_rational(4, 4) > general_collar_contraction_rational(5, 4), "Collar contraction stronger for dim=5 than dim=4")
+    check(normal_directions(3) == 2 and normal_directions(4) == 4, "Normal directions N_normal(3)=2, N_normal(4)=4")
+
+    b_k1 = d4_multi_plaquette_collar_bound(4, 1, 2, act)
+    b_k2 = d4_multi_plaquette_collar_bound(4, 2, 2, act)
+    b_k1_d3 = d4_multi_plaquette_collar_bound(4, 1, 3, act)
+    check(b_k1 == Fraction(1, 10 ** 12), "d=4 collar bound at P=4, k=1, d_R=2 equals (beta^3)^4")
+    check(Fraction(0, 1) < b_k2 < b_k1, "d=4 collar bound decays geometrically with radial width k")
+    check(Fraction(0, 1) < b_k1_d3 < b_k1, "d=4 collar bound decreases with representation dimension d_R")
 
     return {
         "record_id": "TFQ-1052",

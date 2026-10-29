@@ -67,8 +67,8 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | Axioms named in those receipts | propext 518, Quot.sound 450, Classical.choice 385; outside {propext, Classical.choice, Quot.sound}: none | same receipts |
 | `sorry` tokens outside comments and strings | lean4 0, papers 0, code 0 | `git ls-files '*.lean'` |
 | `admit` used as a tactic | lean4 0, papers 0, code 0 (identifiers named `admit`: 156) | `git ls-files '*.lean'` |
-| Python test functions (`def test_`) | 5751 (plus 152 in `dag/results` snapshots) | `git ls-files '*.py'` |
-| Rust test functions (`#[test]`) | 16889 (plus 113 in `dag/results` snapshots) | `git ls-files '*.rs'` |
+| Python test functions (`def test_`) | 5752 (plus 152 in `dag/results` snapshots) | `git ls-files '*.py'` |
+| Rust test functions (`#[test]`) | 16890 (plus 113 in `dag/results` snapshots) | `git ls-files '*.rs'` |
 | Contract/score companions | combined_files = 3690, all_passed = true | `python -I -X utf8 scripts/contract_scores.py check` |
 
 Counts of test functions and files are inventory counts, not pass results. Status labels are the DAG's own; the legend is in `dag/derivation_dag.json` (`status_legend`).

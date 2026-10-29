@@ -9,11 +9,13 @@ use num_traits::{One, Zero};
 
 use theory_of_finite_qm::crate_root_inventory_holds;
 use theory_of_finite_qm::fqcd::{
-    area_law_decay_bound_rational, beta0_rational_approx, beta0_rational_bounds,
-    check_geometric_cluster_series_bound, cluster_series_geometric_sum, collar_tube_contraction,
-    const_k, coordination_number_delta, loop_perimeter, minimal_spanning_area,
-    q8_center_parity_non_screening_verified, q8_cubic_character_invariant_sum,
-    s3_cubic_character_invariant_sum, twod_character_decimation_area_law,
+    a5_cubic_character_invariants, area_law_decay_bound_rational, beta0_rational_approx,
+    beta0_rational_bounds, check_geometric_cluster_series_bound, cluster_series_geometric_sum,
+    collar_tube_contraction, const_k, coordination_number_delta, d4_multi_plaquette_collar_bound,
+    general_collar_tube_contraction, loop_perimeter, minimal_spanning_area,
+    normal_directions_count, q8_center_parity_non_screening_verified,
+    q8_cubic_character_invariant_sum, s3_cubic_character_invariant_sum,
+    s4_cubic_character_invariants, twod_character_decimation_area_law,
     verify_fqcd_strong_coupling_area_law_witness,
 };
 
@@ -149,6 +151,39 @@ fn test_twod_character_decimation_area_law() {
 
     assert!(twod_character_decimation_area_law(0, &alpha, 1).is_err());
     assert!(twod_character_decimation_area_law(1, &alpha, 0).is_err());
+}
+
+#[test]
+fn test_s4_and_a5_cubic_invariants_and_d4_collar_bounds() {
+    let (s4_3, s4_3p, s4_2, s4_sgn) = s4_cubic_character_invariants();
+    assert_eq!(s4_3, BigRational::one());
+    assert_eq!(s4_3p, BigRational::one());
+    assert_eq!(s4_2, BigRational::one());
+    assert!(s4_sgn.is_zero());
+
+    let (a5_3a, a5_3b, a5_4, a5_5) = a5_cubic_character_invariants();
+    assert_eq!(a5_3a, BigRational::one());
+    assert_eq!(a5_3b, BigRational::one());
+    assert_eq!(a5_4, BigRational::one());
+    assert_eq!(a5_5, rat(2, 1));
+
+    let c2 = general_collar_tube_contraction(2, 4).unwrap();
+    let c3 = general_collar_tube_contraction(3, 4).unwrap();
+    let c4 = general_collar_tube_contraction(4, 4).unwrap();
+    let c5 = general_collar_tube_contraction(5, 4).unwrap();
+    assert!(c2 > c3 && c3 > c4 && c4 > c5 && c5 > BigRational::zero());
+
+    assert_eq!(normal_directions_count(3).unwrap(), 2);
+    assert_eq!(normal_directions_count(4).unwrap(), 4);
+    assert!(normal_directions_count(2).is_err());
+
+    let beta = rat(1, 10);
+    let b1 = d4_multi_plaquette_collar_bound(4, 1, 2, &beta).unwrap();
+    let b2 = d4_multi_plaquette_collar_bound(4, 2, 2, &beta).unwrap();
+    let b1_d3 = d4_multi_plaquette_collar_bound(4, 1, 3, &beta).unwrap();
+    assert_eq!(b1, rat(1, 1_000_000_000_000));
+    assert!(b2 < b1 && b2 > BigRational::zero());
+    assert!(b1_d3 < b1 && b1_d3 > BigRational::zero());
 }
 
 #[test]

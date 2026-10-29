@@ -260,6 +260,79 @@ def twod_character_decimation_area_law_rational(dim_r: int, activity_ratio: Frac
     return dim_factor * (activity_ratio ** area)
 
 
+def s4_cubic_character_invariants_rational() -> Dict[str, Fraction]:
+    """Exact rational normalized cubic character invariants for S_4 (order 24).
+
+    Conjugacy classes of S_4 have sizes (1, 6, 8, 6, 3):
+    - 3: chi = (3, 1, 0, -1, -1) -> sum = 27 + 6 + 0 - 6 - 3 = 24 -> 24/24 = 1
+    - 3': chi = (3, -1, 0, 1, -1) -> sum = 27 - 6 + 0 + 6 - 3 = 24 -> 24/24 = 1
+    - 2: chi = (2, 0, -1, 0, 2) -> sum = 8 + 0 - 8 + 0 + 24 = 24 -> 24/24 = 1
+    - sgn: chi = (1, -1, 1, -1, 1) -> sum = 1 - 6 + 8 - 6 + 3 = 0 -> 0/24 = 0
+    """
+    order = 24
+    sum_3 = 1 * (3 ** 3) + 6 * (1 ** 3) + 8 * (0 ** 3) + 6 * ((-1) ** 3) + 3 * ((-1) ** 3)
+    sum_3_prime = 1 * (3 ** 3) + 6 * ((-1) ** 3) + 8 * (0 ** 3) + 6 * (1 ** 3) + 3 * ((-1) ** 3)
+    sum_2 = 1 * (2 ** 3) + 6 * (0 ** 3) + 8 * ((-1) ** 3) + 6 * (0 ** 3) + 3 * (2 ** 3)
+    sum_sgn = 1 * (1 ** 3) + 6 * ((-1) ** 3) + 8 * (1 ** 3) + 6 * ((-1) ** 3) + 3 * (1 ** 3)
+    return {
+        "3": Fraction(sum_3, order),
+        "3_prime": Fraction(sum_3_prime, order),
+        "2": Fraction(sum_2, order),
+        "sgn": Fraction(sum_sgn, order),
+    }
+
+
+def a5_cubic_character_invariants_rational() -> Dict[str, Fraction]:
+    """Exact rational normalized cubic character invariants for A_5 (order 60).
+
+    Conjugacy classes of A_5 have sizes (1, 15, 20, 12, 12):
+    - 3_a, 3_b: over the two 5-cycle classes of size 12, phi^3 + (1 - phi)^3 = 4,
+      so sum = 1 * 3^3 + 15 * (-1)^3 + 20 * 0^3 + 12 * 4 = 27 - 15 + 48 = 60 -> 60/60 = 1.
+    - 4: chi = (4, 0, 1, -1, -1) -> sum = 64 + 0 + 20 - 12 - 12 = 60 -> 60/60 = 1.
+    - 5: chi = (5, 1, -1, 0, 0) -> sum = 125 + 15 - 20 + 0 + 0 = 120 -> 120/60 = 2.
+    """
+    order = 60
+    sum_3 = 1 * (3 ** 3) + 15 * ((-1) ** 3) + 20 * (0 ** 3) + 12 * 4
+    sum_4 = 1 * (4 ** 3) + 15 * (0 ** 3) + 20 * (1 ** 3) + 12 * ((-1) ** 3) + 12 * ((-1) ** 3)
+    sum_5 = 1 * (5 ** 3) + 15 * (1 ** 3) + 20 * ((-1) ** 3) + 12 * (0 ** 3) + 12 * (0 ** 3)
+    return {
+        "3_a": Fraction(sum_3, order),
+        "3_b": Fraction(sum_3, order),
+        "4": Fraction(sum_4, order),
+        "5": Fraction(sum_5, order),
+    }
+
+
+def general_collar_tube_contraction_rational(dim_r: int, e_off: int) -> Fraction:
+    """General representation collar tensor contraction c_X(d_R, E_off) = d_R^{-E_off}."""
+    if dim_r < 1:
+        raise ValueError(f"Representation dimension must be >= 1, got {dim_r}")
+    if e_off < 0:
+        raise ValueError(f"Off-surface edge count must be non-negative, got {e_off}")
+    return Fraction(1, dim_r ** e_off)
+
+
+def normal_directions_count(d: int) -> int:
+    """Number of orthogonal normal half-plane directions to a 2D planar loop in dimension d >= 3: N_normal(d) = 2(d - 2)."""
+    if d < 3:
+        raise ValueError(f"Dimension must be >= 3 for normal collar directions, got {d}")
+    return 2 * (d - 2)
+
+
+def d4_multi_plaquette_collar_bound_rational(
+    perim: int, width_k: int, dim_r: int, beta: Fraction
+) -> Fraction:
+    """Multi-plaquette boundary collar contraction bound in d = 4:
+    B_collar^(d=4)(P, k, d_R, beta) = (4 * d_R^{-2k} * beta^{3k})^P.
+    """
+    if perim < 1 or width_k < 1 or dim_r < 2:
+        raise ValueError("Requires perim >= 1, width_k >= 1, dim_r >= 2")
+    if beta <= Fraction(0, 1):
+        raise ValueError("Requires beta > 0")
+    step_factor = Fraction(4, dim_r ** (2 * width_k)) * (beta ** (3 * width_k))
+    return step_factor ** perim
+
+
 def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
     """Master multi-language verification witness for Record TFQ-1052."""
     checks = []
@@ -316,6 +389,29 @@ def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
     dec_q8 = twod_character_decimation_area_law(2, 0.1, 3)
     # (2)^{1 - 3} * (0.1)^3 = 2^{-2} * 10^{-3} = 0.25 * 0.001 = 0.00025
     checks.append(("2d_decimation_q8", 0, abs(dec_q8 - 0.00025) < 1e-12))
+
+    # 8. Higher-order non-abelian S_4 and A_5 cubic invariants
+    s4_invs = s4_cubic_character_invariants_rational()
+    checks.append(("s4_cubic_invariants", 0, (
+        s4_invs["3"] == Fraction(1, 1)
+        and s4_invs["3_prime"] == Fraction(1, 1)
+        and s4_invs["2"] == Fraction(1, 1)
+        and s4_invs["sgn"] == Fraction(0, 1)
+    )))
+    a5_invs = a5_cubic_character_invariants_rational()
+    checks.append(("a5_cubic_invariants", 0, (
+        a5_invs["3_a"] == Fraction(1, 1)
+        and a5_invs["3_b"] == Fraction(1, 1)
+        and a5_invs["4"] == Fraction(1, 1)
+        and a5_invs["5"] == Fraction(2, 1)
+    )))
+
+    # 9. General d_R collar contraction and d=4 multi-plaquette collar bound
+    checks.append(("general_collar_contraction_d3", 0, general_collar_tube_contraction_rational(3, 4) == Fraction(1, 81)))
+    checks.append(("d4_normal_directions", 0, normal_directions_count(4) == 4))
+    d4_b1 = d4_multi_plaquette_collar_bound_rational(4, 1, 2, Fraction(1, 10))
+    d4_b2 = d4_multi_plaquette_collar_bound_rational(4, 2, 2, Fraction(1, 10))
+    checks.append(("d4_collar_bound_decay", 0, Fraction(0, 1) < d4_b2 < d4_b1 == Fraction(1, 10 ** 12)))
 
     all_passed = all(status for _, _, status in checks)
     return {
