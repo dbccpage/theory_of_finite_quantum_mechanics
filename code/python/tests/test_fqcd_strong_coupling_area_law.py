@@ -40,6 +40,8 @@ try:
         strong_coupling_threshold_beta0,
         strong_coupling_threshold_beta0_rational,
         strong_coupling_threshold_beta0_rational_bounds,
+        su2_ade_binary_polyhedral_tower_rational,
+        su3_subgroup_tower_and_freezing_scales_rational,
         twod_character_decimation_area_law,
         twod_character_decimation_area_law_rational,
         valentiner_sigma1080_invariants_rational,
@@ -75,6 +77,8 @@ except ImportError:
         strong_coupling_threshold_beta0,
         strong_coupling_threshold_beta0_rational,
         strong_coupling_threshold_beta0_rational_bounds,
+        su2_ade_binary_polyhedral_tower_rational,
+        su3_subgroup_tower_and_freezing_scales_rational,
         twod_character_decimation_area_law,
         twod_character_decimation_area_law_rational,
         valentiner_sigma1080_invariants_rational,
@@ -315,6 +319,28 @@ def test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() -
     assert float(d2i_low) < exact_d2i < float(d2i_high)
     assert float(ds1080_low) < exact_ds1080 < float(ds1080_high)
     assert Fraction(0, 1) < d2i_low < d2i_high < ds1080_low < ds1080_high < Fraction(1, 1)
+
+
+def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
+    su2_tower = su2_ade_binary_polyhedral_tower_rational()
+    assert su2_tower["I3_2T_2s"] == Fraction(0, 1)
+    assert su2_tower["I3_2T_3t"] == Fraction(2, 1)
+    assert su2_tower["I3_2O_2s"] == Fraction(0, 1)
+    assert su2_tower["I3_2O_3"] == Fraction(1, 1)
+    d2i_low, d2i_high = su2_tower["delta_min_2I_bounds"]
+    d2o_low, d2o_high = su2_tower["delta_min_2O_bounds"]
+    exact_d2o = 1.0 - math.sqrt(2.0) / 2.0
+    assert float(d2o_low) < exact_d2o < float(d2o_high)
+    assert Fraction(0, 1) < d2i_low < d2i_high < d2o_low < d2o_high < su2_tower["delta_min_2T"] < su2_tower["delta_min_Q8"]
+
+    su3_tower = su3_subgroup_tower_and_freezing_scales_rational()
+    assert su3_tower["I3_Delta27_3"] == Fraction(3, 1)
+    assert su3_tower["I3_Delta54_3_1"] == Fraction(1, 1)
+    assert su3_tower["I3_Delta54_3_2"] == Fraction(2, 1)
+    bf_s1080_low, bf_s1080_high = su3_tower["beta_freeze_proxy_Sigma1080_bounds"]
+    assert su3_tower["beta_freeze_proxy_Delta27"] == Fraction(1, 1)
+    assert su3_tower["beta_freeze_proxy_Delta54"] == Fraction(6, 5)
+    assert su3_tower["beta_freeze_proxy_Delta27"] < su3_tower["beta_freeze_proxy_Delta54"] < bf_s1080_low < bf_s1080_high
 
 
 def test_master_witness_passes() -> None:

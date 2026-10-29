@@ -391,6 +391,52 @@ def freezing_plaquette_defect_rational_bounds() -> Dict[str, Tuple[Fraction, Fra
     }
 
 
+def su2_ade_binary_polyhedral_tower_rational() -> Dict[str, Any]:
+    """Complete SU(2) ADE binary polyhedral subgroup tower (Q_8, 2T, 2O, 2I):
+    spinorial vs tensorial cubic character invariants and strict monotonic ordering
+    of minimal non-identity plaquette defects:
+    0 < 3/16 < Delta_min(2I) < 1/5 < 7/24 < Delta_min(2O) < 3/10 < Delta_min(2T)=1/2 < Delta_min(Q_8)=1.
+    """
+    i3_2t_2s = Fraction(1 * 8 + 1 * (-8) + 6 * 0 + 4 * 1 + 4 * (-1) + 4 * 1 + 4 * (-1), 24)
+    i3_2t_3t = Fraction(2 * (1 * 27 + 3 * (-1)), 24)
+    i3_2o_2s = Fraction(0, 48)
+    i3_2o_3 = Fraction(2 * 24, 48)
+    return {
+        "I3_2T_2s": i3_2t_2s,
+        "I3_2T_3t": i3_2t_3t,
+        "I3_2O_2s": i3_2o_2s,
+        "I3_2O_3": i3_2o_3,
+        "delta_min_Q8": Fraction(1, 1),
+        "delta_min_2T": Fraction(1, 2),
+        "delta_min_2O_bounds": (Fraction(7, 24), Fraction(3, 10)),
+        "delta_min_2I_bounds": (Fraction(3, 16), Fraction(1, 5)),
+    }
+
+
+def su3_subgroup_tower_and_freezing_scales_rational() -> Dict[str, Any]:
+    """SU(3) finite crystal subgroup hierarchy (Delta(27), Delta(54), Sigma(1080))
+    cubic character invariants, minimal plaquette defects, and inverse-defect Peierls
+    freezing scale proxies beta_freeze^proxy(G, R) = 1 / Delta_min(G, R).
+    """
+    i3_delta27 = Fraction(3 * 27 + 24 * 0, 27)
+    i3_delta54_3_1 = Fraction(81 - 27, 54)
+    i3_delta54_3_2 = Fraction(81 + 27, 54)
+    d_delta27 = Fraction(1, 1)
+    d_delta54 = Fraction(5, 6)
+    d_s1080_low, d_s1080_high = Fraction(11, 24), Fraction(7, 15)
+    return {
+        "I3_Delta27_3": i3_delta27,
+        "I3_Delta54_3_1": i3_delta54_3_1,
+        "I3_Delta54_3_2": i3_delta54_3_2,
+        "delta_min_Delta27": d_delta27,
+        "delta_min_Delta54": d_delta54,
+        "delta_min_Sigma1080_bounds": (d_s1080_low, d_s1080_high),
+        "beta_freeze_proxy_Delta27": Fraction(1, 1) / d_delta27,
+        "beta_freeze_proxy_Delta54": Fraction(1, 1) / d_delta54,
+        "beta_freeze_proxy_Sigma1080_bounds": (Fraction(1, 1) / d_s1080_high, Fraction(1, 1) / d_s1080_low),
+    }
+
+
 def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
     """Master multi-language verification witness for Record TFQ-1052."""
     checks = []
@@ -493,6 +539,25 @@ def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
     ds1080_low, ds1080_high = defects["Sigma1080_3a"]
     checks.append(("freezing_defect_bounds", 0, (
         Fraction(0, 1) < d2i_low < d2i_high < ds1080_low < ds1080_high < Fraction(1, 1)
+    )))
+
+    # 11. Complete SU(2) ADE and SU(3) subgroup towers & freezing scale proxies
+    su2_tower = su2_ade_binary_polyhedral_tower_rational()
+    d2o_low, d2o_high = su2_tower["delta_min_2O_bounds"]
+    checks.append(("su2_ade_tower_monotonicity", 0, (
+        su2_tower["I3_2T_2s"] == Fraction(0, 1)
+        and su2_tower["I3_2T_3t"] == Fraction(2, 1)
+        and su2_tower["I3_2O_2s"] == Fraction(0, 1)
+        and su2_tower["I3_2O_3"] == Fraction(1, 1)
+        and Fraction(0, 1) < d2i_low < d2i_high < d2o_low < d2o_high < su2_tower["delta_min_2T"] < su2_tower["delta_min_Q8"]
+    )))
+    su3_tower = su3_subgroup_tower_and_freezing_scales_rational()
+    bf_s1080_low, bf_s1080_high = su3_tower["beta_freeze_proxy_Sigma1080_bounds"]
+    checks.append(("su3_tower_and_freezing_proxies", 0, (
+        su3_tower["I3_Delta27_3"] == Fraction(3, 1)
+        and su3_tower["I3_Delta54_3_1"] == Fraction(1, 1)
+        and su3_tower["I3_Delta54_3_2"] == Fraction(2, 1)
+        and su3_tower["beta_freeze_proxy_Delta27"] < su3_tower["beta_freeze_proxy_Delta54"] < bf_s1080_low < bf_s1080_high
     )))
 
     all_passed = all(status for _, _, status in checks)

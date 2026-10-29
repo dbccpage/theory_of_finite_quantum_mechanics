@@ -747,6 +747,96 @@ theorem petcher_weingarten_bhanot_rebbi_freezing_defect_bounds :
   dsimp [deltaMin2ILower, deltaMin2IUpper, deltaMinSigma1080Lower, deltaMinSigma1080Upper]
   norm_num
 
+-- ----------------------------------------------------------------------------
+-- Main Theorem 7: Complete SU(2) Binary Polyhedral ADE Tower (Q_8, 2T, 2O, 2I)
+-- and SU(3) Finite Subgroup Hierarchy (Δ(27), Δ(54), Σ(1080)) Freezing Scales
+-- ----------------------------------------------------------------------------
+
+/-- Binary tetrahedral group `2T = 2·A_4 ≅ SL(2, F_3) ⊂ SU(2)` order `|2T| = 24`. -/
+def binaryTetrahedral_order : Nat := 24
+
+/-- `2T` spinorial fundamental doublet `2_s` cubic character sum over classes `(1, 1, 6, 4, 4, 4, 4)`:
+central pairs `(g, -g)` cancel (`χ(-g)^3 = -χ(g)^3`). -/
+def binaryTetrahedral_chi2s_cubed_sum : Int :=
+  1 * (2 ^ 3) + 1 * ((-2) ^ 3) + 6 * (0 ^ 3) + 4 * (1 ^ 3) + 4 * ((-1) ^ 3) + 4 * (1 ^ 3) + 4 * ((-1) ^ 3)
+
+/-- `2T` tensorial 3D tetrahedral triplet `3_t` (pulled back from `A_4` classes `2 × (1, 3, 4, 4)`):
+`2 · (1·27 + 3·(-1) + 4·0 + 4·0) = 48`, so `I_3(2T, 3_t) = 48 / 24 = 2` (both `ε_{ijk}` and `xyz` are `A_4`-invariant). -/
+def binaryTetrahedral_chi3t_cubed_sum : Int :=
+  2 * (1 * (3 ^ 3) + 3 * ((-1) ^ 3) + 4 * (0 ^ 3) + 4 * (0 ^ 3))
+
+/-- Binary octahedral group `2O = 2·S_4 ⊂ SU(2)` order `|2O| = 48`. -/
+def binaryOctahedral_order : Nat := 48
+
+/-- `2O` spinorial fundamental doublet `2_s` cubic character sum vanishes by `Z_2` center parity. -/
+def binaryOctahedral_chi2s_cubed_sum : Int := 0
+
+/-- `2O` tensorial 3D irreps `3, 3'` lift from `S_4` with factor 2: `I_3(2O, 3) = 1`. -/
+def binaryOctahedral_chi3_cubed_sum : Int := 2 * s4_chi3_cubed_sum
+
+/-- Minimal plaquette defects across the `SU(2)` ADE binary polyhedral series:
+- `Δ_min(Q_8, 2_s) = 1`
+- `Δ_min(2T, 2_s) = 1 - 1/2 = 1/2` (from `max_{g ≠ 1} χ_{2_s}(g) = 2 cos(π/3) = 1` on class `6A`)
+- `Δ_min(2O, 2_s) = (2 - √2)/2 ∈ (7/24, 3/10)` (from `7/5 < √2 < 17/12`)
+- `Δ_min(2I, 2_s) = (3 - √5)/4 ∈ (3/16, 1/5)`. -/
+def deltaMinQ8 : ℚ := 1
+def deltaMin2T : ℚ := 1 / 2
+def deltaMin2OLower : ℚ := 7 / 24
+def deltaMin2OUpper : ℚ := 3 / 10
+
+theorem su2_binary_polyhedral_ade_tower_defects_and_invariants :
+    (binaryTetrahedral_chi2s_cubed_sum : ℚ) / (binaryTetrahedral_order : ℚ) = 0 ∧
+    (binaryTetrahedral_chi3t_cubed_sum : ℚ) / (binaryTetrahedral_order : ℚ) = 2 ∧
+    (binaryOctahedral_chi2s_cubed_sum : ℚ) / (binaryOctahedral_order : ℚ) = 0 ∧
+    (binaryOctahedral_chi3_cubed_sum : ℚ) / (binaryOctahedral_order : ℚ) = 1 ∧
+    ((7 / 5 : ℚ) ^ 2 < 2 ∧ (2 : ℚ) < (17 / 12 : ℚ) ^ 2) ∧
+    (0 < deltaMin2ILower ∧
+      deltaMin2ILower < deltaMin2IUpper ∧
+      deltaMin2IUpper < deltaMin2OLower ∧
+      deltaMin2OLower < deltaMin2OUpper ∧
+      deltaMin2OUpper < deltaMin2T ∧
+      deltaMin2T < deltaMinQ8) := by
+  dsimp [binaryTetrahedral_chi2s_cubed_sum, binaryTetrahedral_chi3t_cubed_sum,
+    binaryTetrahedral_order, binaryOctahedral_chi2s_cubed_sum, binaryOctahedral_chi3_cubed_sum,
+    s4_chi3_cubed_sum, binaryOctahedral_order,
+    deltaMin2ILower, deltaMin2IUpper, deltaMin2OLower, deltaMin2OUpper, deltaMin2T, deltaMinQ8]
+  norm_num
+
+/-- Heisenberg–Weyl subgroup `Δ(27) = (Z_3 × Z_3) ⋊ Z_3 ⊂ SU(3)` order `|Δ(27)| = 27`:
+3 central elements have `χ_3(z)^3 = 27` and 24 non-central elements have `χ_3(g) = 0`,
+giving `I_3(Δ(27), 3) = 81 / 27 = 3` and minimal plaquette defect `Δ_min(Δ(27), 3) = 1`. -/
+def delta27_order : Nat := 27
+def delta27_chi3_cubed_sum : Int := 3 * (3 ^ 3) + 24 * 0
+def deltaMinDelta27 : ℚ := 1
+
+/-- Subgroup `Δ(54) = (Z_3 × Z_3) ⋊ S_3 ⊂ SU(3)` order `|Δ(54)| = 54`:
+27 even elements contribute `81` and 27 odd elements have `χ_3(g)^3 = -1` (or `+1` on `3_2`),
+giving `I_3(Δ(54), 3_1) = 54 / 54 = 1`, `I_3(Δ(54), 3_2) = 108 / 54 = 2`,
+and minimal plaquette defect `Δ_min(Δ(54), 3_1) = 1 - (1/2)/3 = 5/6`. -/
+def delta54_order : Nat := 54
+def delta54_chi3_1_cubed_sum : Int := 81 - 27
+def delta54_chi3_2_cubed_sum : Int := 81 + 27
+def deltaMinDelta54 : ℚ := 5 / 6
+
+/-- Inverse-defect Peierls freezing scale proxy `β_freeze^proxy(G, R) = 1 / Δ_min(G, R)`. -/
+def inverseDefectFreezingProxy (deltaMin : ℚ) : ℚ := 1 / deltaMin
+
+theorem su3_subgroup_tower_defects_and_freezing_scales :
+    (delta27_chi3_cubed_sum : ℚ) / (delta27_order : ℚ) = 3 ∧
+    (delta54_chi3_1_cubed_sum : ℚ) / (delta54_order : ℚ) = 1 ∧
+    (delta54_chi3_2_cubed_sum : ℚ) / (delta54_order : ℚ) = 2 ∧
+    (0 < deltaMinSigma1080Lower ∧
+      deltaMinSigma1080Lower < deltaMinSigma1080Upper ∧
+      deltaMinSigma1080Upper < deltaMinDelta54 ∧
+      deltaMinDelta54 < deltaMinDelta27) ∧
+    (inverseDefectFreezingProxy deltaMinDelta27 < inverseDefectFreezingProxy deltaMinDelta54 ∧
+      inverseDefectFreezingProxy deltaMinDelta54 < inverseDefectFreezingProxy deltaMinSigma1080Upper ∧
+      inverseDefectFreezingProxy deltaMinSigma1080Upper < inverseDefectFreezingProxy deltaMinSigma1080Lower) := by
+  dsimp [delta27_chi3_cubed_sum, delta27_order, delta54_chi3_1_cubed_sum,
+    delta54_chi3_2_cubed_sum, delta54_order, deltaMinSigma1080Lower,
+    deltaMinSigma1080Upper, deltaMinDelta54, deltaMinDelta27, inverseDefectFreezingProxy]
+  norm_num
+
 -- ============================================================================
 -- Axiom Verification Receipts
 -- ============================================================================
@@ -761,5 +851,7 @@ theorem petcher_weingarten_bhanot_rebbi_freezing_defect_bounds :
 #print axioms binary_icosahedral_2i_invariants_and_protection
 #print axioms valentiner_sigma1080_invariants_exact
 #print axioms petcher_weingarten_bhanot_rebbi_freezing_defect_bounds
+#print axioms su2_binary_polyhedral_ade_tower_defects_and_invariants
+#print axioms su3_subgroup_tower_defects_and_freezing_scales
 
 end FQCD

@@ -16,7 +16,8 @@ use theory_of_finite_qm::fqcd::{
     general_collar_tube_contraction, loop_perimeter, minimal_spanning_area,
     normal_directions_count, q8_center_parity_non_screening_verified,
     q8_cubic_character_invariant_sum, s3_cubic_character_invariant_sum,
-    s4_cubic_character_invariants, twod_character_decimation_area_law,
+    s4_cubic_character_invariants, su2_ade_binary_polyhedral_tower,
+    su3_subgroup_tower_and_freezing_scales, twod_character_decimation_area_law,
     valentiner_sigma1080_invariants, verify_fqcd_strong_coupling_area_law_witness,
 };
 
@@ -205,6 +206,21 @@ fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
 
     let (d2i_l, d2i_u, ds_l, ds_u) = freezing_plaquette_defect_bounds();
     assert!(BigRational::zero() < d2i_l && d2i_l < d2i_u && d2i_u < ds_l && ds_l < ds_u && ds_u < BigRational::one());
+
+    let (i3_2t_2s, i3_2t_3t, i3_2o_2s, i3_2o_3, d2o_l, d2o_u, d2t, dq8) =
+        su2_ade_binary_polyhedral_tower();
+    assert_eq!(i3_2t_2s, BigRational::zero());
+    assert_eq!(i3_2t_3t, rat(2, 1));
+    assert_eq!(i3_2o_2s, BigRational::zero());
+    assert_eq!(i3_2o_3, BigRational::one());
+    assert!(d2i_u < d2o_l && d2o_l < d2o_u && d2o_u < d2t && d2t < dq8);
+
+    let (i3_d27, i3_d54_1, i3_d54_2, bf_d27, bf_d54, bf_s_l, bf_s_u) =
+        su3_subgroup_tower_and_freezing_scales();
+    assert_eq!(i3_d27, rat(3, 1));
+    assert_eq!(i3_d54_1, BigRational::one());
+    assert_eq!(i3_d54_2, rat(2, 1));
+    assert!(bf_d27 < bf_d54 && bf_d54 < bf_s_l && bf_s_l < bf_s_u);
 }
 
 #[test]

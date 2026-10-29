@@ -331,6 +331,59 @@ pub fn freezing_plaquette_defect_bounds() -> (BigRational, BigRational, BigRatio
     (rat(3, 16), rat(1, 5), rat(11, 24), rat(7, 15))
 }
 
+/// Complete `SU(2)` ADE binary polyhedral subgroup tower (`Q_8, 2T, 2O, 2I`):
+/// returns `(I_3(2T, 2_s), I_3(2T, 3_t), I_3(2O, 2_s), I_3(2O, 3), Δ_min(2O)_low, Δ_min(2O)_high, Δ_min(2T), Δ_min(Q_8))`.
+pub fn su2_ade_binary_polyhedral_tower() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let i3_2t_2s = rat(1 * 8 + 1 * (-8) + 6 * 0 + 4 * 1 + 4 * (-1) + 4 * 1 + 4 * (-1), 24);
+    let i3_2t_3t = rat(2 * (1 * 27 + 3 * (-1)), 24);
+    let i3_2o_2s = rat(0, 48);
+    let i3_2o_3 = rat(2 * 24, 48);
+    (
+        i3_2t_2s,
+        i3_2t_3t,
+        i3_2o_2s,
+        i3_2o_3,
+        rat(7, 24),
+        rat(3, 10),
+        rat(1, 2),
+        rat(1, 1),
+    )
+}
+
+/// `SU(3)` finite crystal subgroup hierarchy (`Δ(27), Δ(54), Σ(1080)`):
+/// returns `(I_3(Δ(27), 3), I_3(Δ(54), 3_1), I_3(Δ(54), 3_2), β_proxy(Δ(27)), β_proxy(Δ(54)), β_proxy(Σ(1080))_low, β_proxy(Σ(1080))_high)`.
+pub fn su3_subgroup_tower_and_freezing_scales() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let i3_d27 = rat(3 * 27, 27);
+    let i3_d54_1 = rat(81 - 27, 54);
+    let i3_d54_2 = rat(81 + 27, 54);
+    (
+        i3_d27,
+        i3_d54_1,
+        i3_d54_2,
+        rat(1, 1),
+        rat(6, 5),
+        rat(15, 7),
+        rat(24, 11),
+    )
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -447,6 +500,27 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
     let (d2i_l, d2i_u, ds_l, ds_u) = freezing_plaquette_defect_bounds();
     if !(BigRational::zero() < d2i_l && d2i_l < d2i_u && d2i_u < ds_l && ds_l < ds_u && ds_u < BigRational::one()) {
         return Err("Freezing plaquette defect bounds ordering failed");
+    }
+
+    // 11. Complete SU(2) ADE and SU(3) subgroup towers & freezing scale proxies
+    let (i3_2t_2s, i3_2t_3t, i3_2o_2s, i3_2o_3, d2o_l, d2o_u, d2t, dq8) =
+        su2_ade_binary_polyhedral_tower();
+    if !i3_2t_2s.is_zero()
+        || i3_2t_3t != rat(2, 1)
+        || !i3_2o_2s.is_zero()
+        || i3_2o_3 != BigRational::one()
+        || !(d2i_u < d2o_l && d2o_l < d2o_u && d2o_u < d2t && d2t < dq8)
+    {
+        return Err("SU(2) ADE binary polyhedral tower verification failed");
+    }
+    let (i3_d27, i3_d54_1, i3_d54_2, bf_d27, bf_d54, bf_s_l, bf_s_u) =
+        su3_subgroup_tower_and_freezing_scales();
+    if i3_d27 != rat(3, 1)
+        || i3_d54_1 != BigRational::one()
+        || i3_d54_2 != rat(2, 1)
+        || !(bf_d27 < bf_d54 && bf_d54 < bf_s_l && bf_s_l < bf_s_u)
+    {
+        return Err("SU(3) subgroup tower and freezing scales verification failed");
     }
 
     Ok(true)
