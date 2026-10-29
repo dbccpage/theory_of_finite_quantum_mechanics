@@ -212,6 +212,447 @@ pub fn twod_character_decimation_area_law(
     Ok(dim_factor * activity_factor)
 }
 
+/// Exact rational normalized cubic character invariants for S_4 (order 24):
+/// returns (I_3(3), I_3(3'), I_3(2), I_3(sgn)) = (1, 1, 1, 0).
+pub fn s4_cubic_character_invariants() -> (BigRational, BigRational, BigRational, BigRational) {
+    let order = 24i64;
+    let sum_3 = 1 * 27 + 6 * 1 + 8 * 0 + 6 * (-1) + 3 * (-1);
+    let sum_3_prime = 1 * 27 + 6 * (-1) + 8 * 0 + 6 * 1 + 3 * (-1);
+    let sum_2 = 1 * 8 + 6 * 0 + 8 * (-1) + 6 * 0 + 3 * 8;
+    let sum_sgn = 1 * 1 + 6 * (-1) + 8 * 1 + 6 * (-1) + 3 * 1;
+    (
+        rat(sum_3, order),
+        rat(sum_3_prime, order),
+        rat(sum_2, order),
+        rat(sum_sgn, order),
+    )
+}
+
+/// Exact rational normalized cubic character invariants for A_5 (order 60):
+/// returns (I_3(3_a), I_3(3_b), I_3(4), I_3(5)) = (1, 1, 1, 2).
+pub fn a5_cubic_character_invariants() -> (BigRational, BigRational, BigRational, BigRational) {
+    let order = 60i64;
+    // Over the two 5-cycle classes of size 12, phi^3 + (1 - phi)^3 = 4
+    let sum_3 = 1 * 27 + 15 * (-1) + 20 * 0 + 12 * 4;
+    let sum_4 = 1 * 64 + 15 * 0 + 20 * 1 + 12 * (-1) + 12 * (-1);
+    let sum_5 = 1 * 125 + 15 * 1 + 20 * (-1) + 12 * 0 + 12 * 0;
+    (
+        rat(sum_3, order),
+        rat(sum_3, order),
+        rat(sum_4, order),
+        rat(sum_5, order),
+    )
+}
+
+/// General representation collar tensor contraction c_X(d_R, E_off) = d_R^{-E_off}.
+pub fn general_collar_tube_contraction(dim_r: u64, e_off: u32) -> Result<BigRational, &'static str> {
+    if dim_r == 0 {
+        return Err("Representation dimension must be >= 1");
+    }
+    let denom = big_pow(dim_r, e_off as u64);
+    Ok(BigRational::new(BigInt::one(), denom))
+}
+
+/// Number of orthogonal normal half-plane directions to a 2D planar loop in dimension d >= 3: N_normal(d) = 2(d - 2).
+pub fn normal_directions_count(d: u64) -> Result<u64, &'static str> {
+    if d < 3 {
+        return Err("Dimension must be >= 3 for normal collar directions");
+    }
+    Ok(2 * (d - 2))
+}
+
+/// Multi-plaquette boundary collar contraction bound in d = 4:
+/// B_collar^(d=4)(P, k, d_R, beta) = (4 * d_R^{-2k} * beta^{3k})^P.
+pub fn d4_multi_plaquette_collar_bound(
+    perim: u64,
+    width_k: u64,
+    dim_r: u64,
+    beta: &BigRational,
+) -> Result<BigRational, &'static str> {
+    if perim == 0 || width_k == 0 || dim_r < 2 {
+        return Err("Requires perim >= 1, width_k >= 1, dim_r >= 2");
+    }
+    if beta <= &BigRational::zero() {
+        return Err("Requires beta > 0");
+    }
+    let d_pow = big_pow(dim_r, 2 * width_k);
+    let mut beta_pow = BigRational::one();
+    for _ in 0..(3 * width_k) {
+        beta_pow *= beta;
+    }
+    let step = BigRational::new(BigInt::from(4), d_pow) * beta_pow;
+    let mut total = BigRational::one();
+    for _ in 0..perim {
+        total *= &step;
+    }
+    Ok(total)
+}
+
+/// Binary icosahedral group `2I ⊂ SU(2)` (`|2I| = 120`) cubic character invariants
+/// `(I_3(2_s), I_3(3_a), I_3(4_t), I_3(5_t))`.
+pub fn binary_icosahedral_2i_invariants() -> (BigRational, BigRational, BigRational, BigRational) {
+    let order = 120_i64;
+    let sum_2s: i64 = 1 * 8 + 1 * (-8) + 30 * 0 + 20 * 1 + 20 * (-1) + 12 * 0 + 12 * 0;
+    let (a5_3a, _, a5_4, a5_5) = a5_cubic_character_invariants();
+    (rat(sum_2s, order), a5_3a, a5_4, a5_5)
+}
+
+/// Valentiner subgroup `Σ(1080) = 3·A_6 ⊂ SU(3)` (`|Σ(1080)| = 1080`) character invariants
+/// `(I_{1,1}(3_a), I_2(3_a), I_3(3_a), I_3(5_a), I_3(8_a), I_3(10))`.
+pub fn valentiner_sigma1080_invariants() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let order = 1080_i64;
+    let norm_sq_3a: i64 = 3 * 9 + 135 * 1 + 270 * 1 + 216 * 3;
+    let sq_3a: i64 = 0;
+    let cubed_3a: i64 = 3 * 27 + 135 * (-1) + 270 * 1 + 216 * 4;
+    let cubed_5a: i64 = 3 * (125 + 45 + 320 - 40 - 90);
+    let cubed_8a: i64 = 3 * (512 - 40 - 40 + 72 * 4);
+    let cubed_10: i64 = 3 * (1000 - 360 + 40 + 40);
+    (
+        rat(norm_sq_3a, order),
+        rat(sq_3a, order),
+        rat(cubed_3a, order),
+        rat(cubed_5a, order),
+        rat(cubed_8a, order),
+        rat(cubed_10, order),
+    )
+}
+
+/// Exact rational enclosure bounds `(low_2I, high_2I, low_Sigma1080, high_Sigma1080)`
+/// for the Petcher–Weingarten (`2I ⊂ SU(2)`) and Bhanot–Rebbi (`Σ(1080) ⊂ SU(3)`)
+/// minimal non-identity plaquette character defects.
+pub fn freezing_plaquette_defect_bounds() -> (BigRational, BigRational, BigRational, BigRational) {
+    (rat(3, 16), rat(1, 5), rat(11, 24), rat(7, 15))
+}
+
+/// Complete `SU(2)` ADE binary polyhedral subgroup tower (`Q_8, 2T, 2O, 2I`):
+/// returns `(I_3(2T, 2_s), I_3(2T, 3_t), I_3(2O, 2_s), I_3(2O, 3), Δ_min(2O)_low, Δ_min(2O)_high, Δ_min(2T), Δ_min(Q_8))`.
+pub fn su2_ade_binary_polyhedral_tower() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let i3_2t_2s = rat(1 * 8 + 1 * (-8) + 6 * 0 + 4 * 1 + 4 * (-1) + 4 * 1 + 4 * (-1), 24);
+    let i3_2t_3t = rat(2 * (1 * 27 + 3 * (-1)), 24);
+    let i3_2o_2s = rat(0, 48);
+    let i3_2o_3 = rat(2 * 24, 48);
+    (
+        i3_2t_2s,
+        i3_2t_3t,
+        i3_2o_2s,
+        i3_2o_3,
+        rat(7, 24),
+        rat(3, 10),
+        rat(1, 2),
+        rat(1, 1),
+    )
+}
+
+/// `SU(3)` finite crystal subgroup hierarchy (`Δ(27), Δ(54), Σ(1080)`):
+/// returns `(I_3(Δ(27), 3), I_3(Δ(54), 3_1), I_3(Δ(54), 3_2), β_proxy(Δ(27)), β_proxy(Δ(54)), β_proxy(Σ(1080))_low, β_proxy(Σ(1080))_high)`.
+pub fn su3_subgroup_tower_and_freezing_scales() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let i3_d27 = rat(3 * 27, 27);
+    let i3_d54_1 = rat(81 - 27, 54);
+    let i3_d54_2 = rat(81 + 27, 54);
+    (
+        i3_d27,
+        i3_d54_1,
+        i3_d54_2,
+        rat(1, 1),
+        rat(6, 5),
+        rat(15, 7),
+        rat(24, 11),
+    )
+}
+
+/// Exact rational intermediate cross-over coupling gap
+/// `Δβ_gap(N, d, Δ_min) = 1 / Δ_min - β_0^rat(N, d)`
+/// separating the strong-coupling cluster-expansion regime from the weak-coupling Peierls frozen regime.
+pub fn strong_to_freezing_coupling_gap(
+    n: u64,
+    d: u64,
+    delta_min: &BigRational,
+) -> Result<BigRational, &'static str> {
+    if delta_min <= &BigRational::zero() {
+        return Err("Requires delta_min > 0");
+    }
+    let b0 = beta0_rational_approx(n, d)?;
+    Ok((BigRational::one() / delta_min) - b0)
+}
+
+/// Klein simple subgroup `Σ(168) ≅ PSL(2,7) ⊂ SU(3)` (`|Σ(168)| = 168`) and `Σ(168×3)`:
+/// returns `(I_{1,1}(3_a), I_2(3_a), I_3(3_a), I_3(6), I_3(7), I_2(8), I_3(8), Δ_min(Σ(168×3))_low, Δ_min(Σ(168×3))_high, Δ_min(Σ(168)))`.
+pub fn klein_sigma168_invariants_and_su3_chain() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let order = 168_i64;
+    let i11_3a = rat(1 * 9 + 21 * 1 + 42 * 1 + 48 * 2, order);
+    let i2_3a = rat(1 * 9 + 21 * 1 + 42 * 1 + 24 * (-3), order);
+    let i3_3a = rat(1 * 27 + 21 * (-1) + 42 * 1 + 24 * 5, order);
+    let i3_6 = rat(1 * 216 + 21 * 8 + 48 * (-1), order);
+    let i3_7 = rat(1 * 343 + 21 * (-1) + 56 * 1 + 42 * (-1), order);
+    let i2_8 = rat(1 * 64 + 56 * 1 + 48 * 1, order);
+    let i3_8 = rat(1 * 512 + 56 * (-1) + 48 * 1, order);
+    (
+        i11_3a,
+        i2_3a,
+        i3_3a,
+        i3_6,
+        i3_7,
+        i2_8,
+        i3_8,
+        rat(8, 15),
+        rat(13, 24),
+        rat(2, 3),
+    )
+}
+
+/// Quartic character invariants `I_4(G, N) = (1/|G|) Σ_{g∈G} |χ_N(g)|^4 = 1 + <Ad, Ad>_G`
+/// across the SU(2) ADE binary polyhedral series and SU(3) crystal subgroup hierarchy:
+/// returns `(I_4(Q_8), I_4(2T), I_4(2O), I_4(2I), I_4(Δ(27)), I_4(Δ(54)), I_4(Σ(168)), I_4(Σ(1080)))`.
+pub fn quartic_character_invariants_and_continuum_matching() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let i4_q8 = rat(2 * 16, 8);
+    let i4_2t = rat(2 * 16 + 16 * 1, 24);
+    let i4_2o = rat(2 * 16 + 16 * 1 + 12 * 4, 48);
+    let i4_2i = rat(2 * 16 + 40 * 1 + 24 * 7, 120);
+    let i4_d27 = rat(3 * 81, 27);
+    let i4_d54 = rat(3 * 81 + 27 * 1, 54);
+    let i4_s168 = rat(1 * 81 + 21 * 1 + 42 * 1 + 48 * 4, 168);
+    let i4_s1080 = rat(3 * 81 + 135 * 1 + 270 * 1 + 216 * 7, 1080);
+    (
+        i4_q8,
+        i4_2t,
+        i4_2o,
+        i4_2i,
+        i4_d27,
+        i4_d54,
+        i4_s168,
+        i4_s1080,
+    )
+}
+
+/// Principal subgroup `Σ(72×3)` (`|G| = 216`) and Hessian group `Σ(216×3)` (`|G| = 648`)
+/// fundamental invariants and the quartic adjoint Casimir hierarchy `I_4(G, 8) > 8 = I_4(SU(3), 8)`:
+/// returns `(I_{1,1}(Σ(72×3), 3), I_3(Σ(72×3), 3), I_4(Σ(72×3), 3), I_{1,1}(Σ(216×3), 3), I_3(Σ(216×3), 3), I_4(Σ(216×3), 3), I_3(Σ(72×3), 8), I_3(Σ(216×3), 8), I_4(Σ(72×3), 8), I_4(Σ(168), 8), I_4(Σ(216×3), 8), I_4(Σ(1080), 8_a), I_4(SU(3), 8))`.
+pub fn hessian_subgroups_and_quartic_adjoint_casimir_obstruction() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let i11_72 = rat(3 * 9 + 189 * 1, 216);
+    let i3_72 = rat(3 * 27 + 162 * 1 + 27 * (-1), 216);
+    let i4_72 = rat(3 * 81 + 189 * 1, 216);
+    let i11_216 = rat(3 * 9 + 72 * 3 + 405 * 1, 648);
+    let i3_216 = rat(3 * 27 + 108 * 1 + 162 * 1 + 27 * (-1) + 72 * 4 + 36 * 1, 648);
+    let i4_216 = rat(3 * 81 + 72 * 9 + 405 * 1, 648);
+    let i3_72_8 = rat(3 * 512 + 24 * (-1), 216);
+    let i3_216_8 = rat(3 * 512 + 72 * 8 + 168 * (-1), 648);
+    let i4_72_8 = rat(3 * 4096 + 24 * 1, 216);
+    let i4_168_8 = rat(1 * 4096 + 56 * 1 + 48 * 1, 168);
+    let i4_216_8 = rat(3 * 4096 + 72 * 16 + 168 * 1, 648);
+    let i4_1080_8 = rat(3 * (4096 + 80 + 72 * 7), 1080);
+    let i4_su3_8 = rat(1 + 4 + 1 + 1 + 1, 1);
+    (
+        i11_72,
+        i3_72,
+        i4_72,
+        i11_216,
+        i3_216,
+        i4_216,
+        i3_72_8,
+        i3_216_8,
+        i4_72_8,
+        i4_168_8,
+        i4_216_8,
+        i4_1080_8,
+        i4_su3_8,
+    )
+}
+
+/// SU(2) ADE quartic adjoint invariants `I_4(G, 3)`, spin-2 (`5_t`) Casimir obstruction on `2I`,
+/// and cubic polynomial enclosure of the Hessian group minimal plaquette defect
+/// `Δ_min(Σ(216×3), 3) = (4 - 2c - 2c^2)/3` for `c = cos(2π/9) ∈ (36/47, 23/30)`:
+/// returns `(I_4(2T, 3_t), I_4(2O, 3), I_4(2I, 3_a), I_4(SU(2), 3), I_4(2I, 5_t), I_4(SU(2), 5), Δ_min(Σ(216×3))_tight_low, Δ_min(Σ(216×3))_tight_high, Δ_min(Σ(216×3))_low, Δ_min(Σ(216×3))_high)`.
+pub fn su2_higher_spin_casimir_and_hessian_defect_bounds() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let i4_2t_3 = rat(1 * 81 + 3 * 1, 12);
+    let i4_2o_3 = rat(1 * 81 + 6 * 1 + 3 * 1 + 6 * 1, 24);
+    let i4_2i_3 = rat(1 * 81 + 15 * 1 + 12 * 7, 60);
+    let i4_su2_3 = rat(3, 1);
+    let i4_2i_5 = rat(1 * 625 + 15 * 1 + 20 * 1, 60);
+    let i4_su2_5 = rat(5, 1);
+    let c_low = rat(36, 47);
+    let c_high = rat(23, 30);
+    let d_tight_low = (rat(4, 1) - rat(2, 1) * &c_high - rat(2, 1) * &c_high * &c_high) / rat(3, 1);
+    let d_tight_high = (rat(4, 1) - rat(2, 1) * &c_low - rat(2, 1) * &c_low * &c_low) / rat(3, 1);
+    (
+        i4_2t_3,
+        i4_2o_3,
+        i4_2i_3,
+        i4_su2_3,
+        i4_2i_5,
+        i4_su2_5,
+        d_tight_low,
+        d_tight_high,
+        rat(43, 100),
+        rat(13, 30),
+    )
+}
+
+/// Complete 8-group Blichfeldt-FFK SU(3) crystal classification invariants for
+/// `Σ(36×3)` (`|G| = 108`), `Σ(60×3) ≅ A_5 × Z_3`, `Δ(27)`, and `Δ(54)`:
+/// returns `(I_{1,1}(Σ(36×3), 3), I_3(Σ(36×3), 3), I_4(Σ(36×3), 3), I_2(Σ(60), 8), I_3(Δ(27), 8), I_3(Δ(54), 8), I_3(Σ(36×3), 8), I_3(Σ(60), 8), I_4(Δ(27), 8), I_4(Δ(54), 8), I_4(Σ(36×3), 8), I_4(Σ(60), 8))`.
+pub fn complete_blichfeldt_ffk_su3_crystal_hierarchy() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let i11_36 = rat(3 * 9 + 81 * 1, 108);
+    let i3_36 = rat(3 * 27 + 54 * 1 + 27 * (-1), 108);
+    let i4_36 = rat(3 * 81 + 81 * 1, 108);
+    let i2_60_8 = rat(1 * 64 + 20 * 1 + 12 * 3, 60);
+    let i3_d27_8 = rat(3 * 512 + 24 * (-1), 27);
+    let i3_d54_8 = rat(3 * 512 + 24 * (-1), 54);
+    let i3_36_8 = rat(3 * 512 + 24 * (-1), 108);
+    let i3_60_8 = rat(1 * 512 + 20 * (-1) + 12 * 4, 60);
+    let i4_d27_8 = rat(3 * 4096 + 24 * 1, 27);
+    let i4_d54_8 = rat(3 * 4096 + 24 * 1, 54);
+    let i4_36_8 = rat(3 * 4096 + 24 * 1, 108);
+    let i4_60_8 = rat(1 * 4096 + 20 * 1 + 12 * 7, 60);
+    (
+        i11_36,
+        i3_36,
+        i4_36,
+        i2_60_8,
+        i3_d27_8,
+        i3_d54_8,
+        i3_36_8,
+        i3_60_8,
+        i4_d27_8,
+        i4_d54_8,
+        i4_36_8,
+        i4_60_8,
+    )
+}
+
+/// Baryon-junction vs. gluon-collar screening ratios (`c_X(3, 4)/c_X(6, 4) = 16`,
+/// `c_X(3, 4)/c_X(8, 4) = 4096/81`), Casimir ratios (`C_2(8)/C_2(3) = 9/4`, `C_2(6)/C_2(3) = 5/2`,
+/// `C_2(10)/C_2(3) = 9/2`, `C_2(3_a)/C_2(2_s) = 8/3`), and 2D Mednykh genus-2 invariants
+/// `(M_2(Q_8), M_2(2T), M_2(2O), M_2(2I), Z_2(2I), M_2(Σ(1080)), Z_2(Σ(1080)), Z_2(Σ(216×3)))`.
+pub fn baryon_vs_gluon_casimir_and_mednykh_2d_towers() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let c8_over_c3 = rat(3, 1) / rat(4, 3);
+    let c6_over_c3 = rat(10, 3) / rat(4, 3);
+    let c10_over_c3 = rat(6, 1) / rat(4, 3);
+    let c3_over_c2_su2 = rat(2, 1) / rat(3, 4);
+    let ratio_3_6 = rat(6_i64.pow(4), 3_i64.pow(4));
+    let ratio_3_8 = rat(8_i64.pow(4), 3_i64.pow(4));
+    let m2_q8 = rat(17, 4);
+    let m2_2t = rat(139, 36);
+    let m2_2o = rat(437, 144);
+    let m2_2i = rat(383, 200);
+    let z2_2i = rat(120 * 120, 1) * &m2_2i;
+    let m2_s1080 = rat(36011, 21600);
+    let z2_s1080 = rat(1080 * 1080, 1) * &m2_s1080;
+    let z2_s216x3 = rat(648 * 648, 1) * rat(24707, 5184);
+    (
+        c8_over_c3,
+        c6_over_c3,
+        c10_over_c3,
+        c3_over_c2_su2,
+        ratio_3_6,
+        ratio_3_8,
+        m2_q8,
+        m2_2t,
+        m2_2o,
+        m2_2i,
+        z2_2i,
+        m2_s1080,
+        z2_s1080,
+        z2_s216x3,
+    )
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -275,6 +716,254 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
     let dec_q8 = twod_character_decimation_area_law(2, &alpha, 3)?;
     if dec_q8 != rat(1, 500) {
         return Err("2D decimation for dim R = 2 failed");
+    }
+
+    // 8. S_4 and A_5 cubic character invariants
+    let (s4_3, s4_3p, s4_2, s4_sgn) = s4_cubic_character_invariants();
+    if s4_3 != BigRational::one()
+        || s4_3p != BigRational::one()
+        || s4_2 != BigRational::one()
+        || !s4_sgn.is_zero()
+    {
+        return Err("S_4 cubic character invariants mismatch");
+    }
+    let (a5_3a, a5_3b, a5_4, a5_5) = a5_cubic_character_invariants();
+    if a5_3a != BigRational::one()
+        || a5_3b != BigRational::one()
+        || a5_4 != BigRational::one()
+        || a5_5 != rat(2, 1)
+    {
+        return Err("A_5 cubic character invariants mismatch");
+    }
+
+    // 9. d=4 normal directions and multi-plaquette collar contraction bound
+    if normal_directions_count(4)? != 4 {
+        return Err("normal_directions_count(4) != 4");
+    }
+    let beta_tenth = rat(1, 10);
+    let b1 = d4_multi_plaquette_collar_bound(4, 1, 2, &beta_tenth)?;
+    let b2 = d4_multi_plaquette_collar_bound(4, 2, 2, &beta_tenth)?;
+    if b1 != BigRational::new(BigInt::one(), big_pow(10, 12)) || b2 >= b1 || b2 <= BigRational::zero() {
+        return Err("d=4 multi-plaquette collar bound check failed");
+    }
+
+    // 10. Binary icosahedral 2I and Valentiner Sigma(1080) invariants & freezing defect bounds
+    let (i2i_2s, i2i_3a, i2i_4t, i2i_5t) = binary_icosahedral_2i_invariants();
+    if !i2i_2s.is_zero()
+        || i2i_3a != BigRational::one()
+        || i2i_4t != BigRational::one()
+        || i2i_5t != rat(2, 1)
+    {
+        return Err("2I cubic character invariants mismatch");
+    }
+    let (s_i11, s_i2, s_i3_3a, s_i3_5a, s_i3_8a, s_i3_10) = valentiner_sigma1080_invariants();
+    if s_i11 != BigRational::one()
+        || !s_i2.is_zero()
+        || s_i3_3a != BigRational::one()
+        || s_i3_5a != BigRational::one()
+        || s_i3_8a != rat(2, 1)
+        || s_i3_10 != rat(2, 1)
+    {
+        return Err("Sigma(1080) character invariants mismatch");
+    }
+    let (d2i_l, d2i_u, ds_l, ds_u) = freezing_plaquette_defect_bounds();
+    if !(BigRational::zero() < d2i_l && d2i_l < d2i_u && d2i_u < ds_l && ds_l < ds_u && ds_u < BigRational::one()) {
+        return Err("Freezing plaquette defect bounds ordering failed");
+    }
+
+    // 11. Complete SU(2) ADE and SU(3) subgroup towers & freezing scale proxies
+    let (i3_2t_2s, i3_2t_3t, i3_2o_2s, i3_2o_3, d2o_l, d2o_u, d2t, dq8) =
+        su2_ade_binary_polyhedral_tower();
+    if !i3_2t_2s.is_zero()
+        || i3_2t_3t != rat(2, 1)
+        || !i3_2o_2s.is_zero()
+        || i3_2o_3 != BigRational::one()
+        || !(d2i_u < d2o_l && d2o_l < d2o_u && d2o_u < d2t && d2t < dq8)
+    {
+        return Err("SU(2) ADE binary polyhedral tower verification failed");
+    }
+    let (i3_d27, i3_d54_1, i3_d54_2, bf_d27, bf_d54, bf_s_l, bf_s_u) =
+        su3_subgroup_tower_and_freezing_scales();
+    if i3_d27 != rat(3, 1)
+        || i3_d54_1 != BigRational::one()
+        || i3_d54_2 != rat(2, 1)
+        || !(bf_d27 < bf_d54 && bf_d54 < bf_s_l && bf_s_l < bf_s_u)
+    {
+        return Err("SU(3) subgroup tower and freezing scales verification failed");
+    }
+
+    // 12. Strong-coupling vs freezing regime separation & gap widening
+    let g_q8 = strong_to_freezing_coupling_gap(8, 4, &dq8)?;
+    let g_2t = strong_to_freezing_coupling_gap(24, 4, &d2t)?;
+    let g_2o_l = strong_to_freezing_coupling_gap(48, 4, &d2o_u)?;
+    let g_2i_l = strong_to_freezing_coupling_gap(120, 4, &d2i_u)?;
+    let g_d27 = strong_to_freezing_coupling_gap(27, 4, &rat(1, 1))?;
+    let g_d54 = strong_to_freezing_coupling_gap(54, 4, &rat(5, 6))?;
+    let g_s1080_l = strong_to_freezing_coupling_gap(1080, 4, &ds_u)?;
+    if !(rat(999, 1000) < g_q8
+        && g_q8 < g_2t
+        && g_2t < g_2o_l
+        && g_2o_l < g_2i_l
+        && rat(999, 1000) < g_d27
+        && g_d27 < g_d54
+        && g_d54 < g_s1080_l)
+    {
+        return Err("Strong-coupling to freezing coupling gap widening failed");
+    }
+
+    // 13. Klein Sigma(168) invariants, spurious cubic adjoint elimination, and complete SU(3) defect chain
+    let (k_i11, k_i2, k_i3_3a, k_i3_6, k_i3_7, k_i2_8, k_i3_8, ds168x3_l, ds168x3_u, ds168) =
+        klein_sigma168_invariants_and_su3_chain();
+    if k_i11 != BigRational::one()
+        || !k_i2.is_zero()
+        || k_i3_3a != BigRational::one()
+        || k_i3_6 != rat(2, 1)
+        || k_i3_7 != rat(2, 1)
+        || k_i2_8 != BigRational::one()
+        || k_i3_8 != rat(3, 1)
+        || !(s_i3_8a < k_i3_8)
+        || !(ds_u < ds168x3_l && ds168x3_l < ds168x3_u && ds168x3_u < ds168 && ds168 < rat(5, 6))
+    {
+        return Err("Klein Sigma(168) invariants and SU(3) defect chain verification failed");
+    }
+
+    // 14. Quartic character invariants I_4(G, N) and unique SU(3) continuum matching at Sigma(1080)
+    let (i4_q8, i4_2t, i4_2o, i4_2i, i4_d27, i4_d54, i4_s168, i4_s1080) =
+        quartic_character_invariants_and_continuum_matching();
+    if i4_q8 != rat(4, 1)
+        || i4_2t != rat(2, 1)
+        || i4_2o != rat(2, 1)
+        || i4_2i != rat(2, 1)
+        || i4_d27 != rat(9, 1)
+        || i4_d54 != rat(5, 1)
+        || i4_s168 != rat(2, 1)
+        || i4_s1080 != rat(2, 1)
+        || !(i4_s1080 == i4_s168 && i4_s168 < i4_d54 && i4_d54 < i4_d27)
+    {
+        return Err("Quartic character invariants and SU(3) continuum matching failed");
+    }
+
+    // 15. Principal & Hessian subgroups Sigma(72x3), Sigma(216x3) & quartic adjoint Casimir obstruction
+    let (
+        i11_72,
+        i3_72,
+        i4_72,
+        i11_216,
+        i3_216,
+        i4_216,
+        i3_72_8,
+        i3_216_8,
+        i4_72_8,
+        i4_168_8,
+        i4_216_8,
+        i4_1080_8,
+        i4_su3_8,
+    ) = hessian_subgroups_and_quartic_adjoint_casimir_obstruction();
+    if i11_72 != BigRational::one()
+        || i3_72 != BigRational::one()
+        || i4_72 != rat(2, 1)
+        || i11_216 != BigRational::one()
+        || i3_216 != BigRational::one()
+        || i4_216 != rat(2, 1)
+        || i3_72_8 != rat(7, 1)
+        || i3_216_8 != rat(3, 1)
+        || i4_72_8 != rat(57, 1)
+        || i4_168_8 != rat(25, 1)
+        || i4_216_8 != rat(21, 1)
+        || i4_1080_8 != rat(13, 1)
+        || i4_su3_8 != rat(8, 1)
+        || !(i4_su3_8 < i4_1080_8 && i4_1080_8 < i4_216_8 && i4_216_8 < i4_168_8 && i4_168_8 < i4_72_8)
+    {
+        return Err("Hessian subgroups and quartic adjoint Casimir obstruction failed");
+    }
+
+    // 16. SU(2) higher-spin Casimir obstruction & Hessian Sigma(216x3) defect enclosure
+    let (
+        i4_2t_3,
+        i4_2o_3,
+        i4_2i_3,
+        i4_su2_3,
+        i4_2i_5,
+        i4_su2_5,
+        d216_tl,
+        d216_tu,
+        d216_l,
+        d216_u,
+    ) = su2_higher_spin_casimir_and_hessian_defect_bounds();
+    if i4_2t_3 != rat(7, 1)
+        || i4_2o_3 != rat(4, 1)
+        || i4_2i_3 != rat(3, 1)
+        || i4_su2_3 != rat(3, 1)
+        || i4_2i_5 != rat(11, 1)
+        || i4_su2_5 != rat(5, 1)
+        || !(d216_l < d216_tl && d216_tl < d216_tu && d216_tu < d216_u && d216_u < ds_l)
+    {
+        return Err("SU(2) higher-spin Casimir obstruction and Hessian defect bounds failed");
+    }
+
+    // 17. Complete 8-group Blichfeldt-FFK SU(3) crystal hierarchy & dyadic halving laws
+    let (
+        i11_36,
+        i3_36,
+        i4_36,
+        i2_60_8,
+        i3_d27_8,
+        i3_d54_8,
+        i3_36_8,
+        i3_60_8,
+        i4_d27_8,
+        i4_d54_8,
+        i4_36_8,
+        i4_60_8,
+    ) = complete_blichfeldt_ffk_su3_crystal_hierarchy();
+    if i11_36 != BigRational::one()
+        || i3_36 != BigRational::one()
+        || i4_36 != rat(3, 1)
+        || i2_60_8 != rat(2, 1)
+        || i3_d27_8 != rat(56, 1)
+        || i3_d54_8 != rat(28, 1)
+        || i3_36_8 != rat(14, 1)
+        || i3_60_8 != rat(9, 1)
+        || i4_d27_8 != rat(456, 1)
+        || i4_d54_8 != rat(228, 1)
+        || i4_36_8 != rat(114, 1)
+        || i4_60_8 != rat(70, 1)
+        || !(i4_72_8 < i4_60_8 && i4_60_8 < i4_36_8 && i4_36_8 < i4_d54_8 && i4_d54_8 < i4_d27_8)
+    {
+        return Err("Complete Blichfeldt-FFK SU(3) crystal hierarchy verification failed");
+    }
+
+    // 18. Baryon vs gluon screening ratios, Casimir hierarchy & 2D Mednykh genus-2 towers
+    let (
+        c8_c3,
+        c6_c3,
+        c10_c3,
+        c3_c2_su2,
+        r_3_6,
+        r_3_8,
+        m2_q8,
+        m2_2t,
+        m2_2o,
+        m2_2i,
+        z2_2i,
+        m2_s1080,
+        z2_s1080,
+        z2_s216x3,
+    ) = baryon_vs_gluon_casimir_and_mednykh_2d_towers();
+    if c8_c3 != rat(9, 4)
+        || c6_c3 != rat(5, 2)
+        || c10_c3 != rat(9, 2)
+        || c3_c2_su2 != rat(8, 3)
+        || r_3_6 != rat(16, 1)
+        || r_3_8 != rat(4096, 81)
+        || !(BigRational::one() < m2_2i && m2_2i < m2_2o && m2_2o < m2_2t && m2_2t < m2_q8)
+        || z2_2i != rat(27576, 1)
+        || !(m2_s1080 < rat(2, 1))
+        || z2_s1080 != rat(1944594, 1)
+        || z2_s216x3 != rat(2001267, 1)
+        || !(z2_s1080 < z2_s216x3)
+    {
+        return Err("Baryon vs gluon Casimir ratios and Mednykh 2D towers verification failed");
     }
 
     Ok(true)

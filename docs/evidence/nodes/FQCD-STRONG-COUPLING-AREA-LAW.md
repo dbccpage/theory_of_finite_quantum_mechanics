@@ -11,8 +11,8 @@ Stage: [FINITE_QCD](../stages/FINITE_QCD.md). Status: `CONDITIONAL`. Evidence gr
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 4
-- cited Lean, Rust or Python symbols found in their in-repo files: 4
-- distinct cited Lean declarations covered by a current replay receipt: 4
+- cited Lean, Rust or Python symbols found in their in-repo files: 7
+- distinct cited Lean declarations covered by a current replay receipt: 7
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 2
 - recorded statement-match reviews that qualify: 0
@@ -32,7 +32,7 @@ Prove the bound by a convergent strong-coupling (cluster) expansion in the style
 
 ## Source status
 
-Formally proved in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean) and checked across Rust and Python; conditional on non-screening/center-protection in d \>= 3, unconditional for abelian and 2D decimation.
+Formally proved in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean) and checked across Rust and Python; conditional on non-screening/center-protection in d \>= 3 (including S_3, S_4, and A_5 cubic character invariants and d = 4 multi-plaquette boundary collar contraction bounds), unconditional for abelian and 2D decimation.
 
 ## Review
 
@@ -45,25 +45,28 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/FQCD/StrongCouplingAreaLaw.lean`
 
 - file: [lean4/FQCD/StrongCouplingAreaLaw.lean](../../../lean4/FQCD/StrongCouplingAreaLaw.lean)
-- sha256 (`bytes`): `40efc55c0f98df963bc352276415c1ce0f51176c28894fe413a51df54043d095`
+- sha256 (`bytes`): `bebd21ce379d3f45ae39af12735c624dc02712c64b5e20a00713b8cbbac01d26`
 - cited in: node.lean, receipt dag/research/campaign_tfq-1052_lean_replay.json (FQCD.StrongCouplingAreaLaw), record TFQ-1052
 - replay: `verified`
-  - receipt [dag/research/campaign_tfq-1052_lean_replay.json](../../../dag/research/campaign_tfq-1052_lean_replay.json) (module `FQCD.StrongCouplingAreaLaw`): recorded sha256 `40efc55c0f98df963bc352276415c1ce0f51176c28894fe413a51df54043d095` matches the current file; exit code 0; Lean None; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_tfq-1052_lean_replay.json](../../../dag/research/campaign_tfq-1052_lean_replay.json) (module `FQCD.StrongCouplingAreaLaw`): recorded sha256 `bebd21ce379d3f45ae39af12735c624dc02712c64b5e20a00713b8cbbac01d26` matches the current file; exit code 0; Lean None; Mathlib `-`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build   # the library that contains lean4/FQCD/StrongCouplingAreaLaw.lean`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
+| `FQCD.StrongCouplingAreaLaw.a5_cubic_invariants_exact` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FQCD.StrongCouplingAreaLaw.a5_cubic_invariants_exact` |
 | `FQCD.StrongCouplingAreaLaw.abelian_strong_coupling_area_law` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FQCD.StrongCouplingAreaLaw.abelian_strong_coupling_area_law` |
 | `FQCD.StrongCouplingAreaLaw.center_protected_3d_strong_coupling_area_law` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FQCD.StrongCouplingAreaLaw.center_protected_3d_strong_coupling_area_law` |
 | `FQCD.StrongCouplingAreaLaw.cubic_invariant_screening_perimeter_receipt` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FQCD.StrongCouplingAreaLaw.cubic_invariant_screening_perimeter_receipt` |
+| `FQCD.StrongCouplingAreaLaw.d4_multi_plaquette_collar_contraction_bound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FQCD.StrongCouplingAreaLaw.d4_multi_plaquette_collar_contraction_bound` |
 | `FQCD.StrongCouplingAreaLaw.finite_group_2d_character_decimation_area_law` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FQCD.StrongCouplingAreaLaw.finite_group_2d_character_decimation_area_law` |
+| `FQCD.StrongCouplingAreaLaw.s4_cubic_invariants_exact` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms FQCD.StrongCouplingAreaLaw.s4_cubic_invariants_exact` |
 
 - counts toward the grade: yes
 
 ### Rust: `code/rust/src/fqcd/strong_coupling_area_law.rs`
 
 - file: [code/rust/src/fqcd/strong_coupling_area_law.rs](../../../code/rust/src/fqcd/strong_coupling_area_law.rs)
-- sha256 (`bytes`): `1fff3c425e6804618b2de8efa5e9eb4134fba635a323921ab7d0ef1f4a69f8ad`
+- sha256 (`bytes`): `3de9e305324d2a00d21e5abbeece41feb7c28a63502c4b652e864af303e1360d`
 - cited in: node.rust, record TFQ-1052
 - note: no test is cited for this symbol; its crate is theory_of_finite_qm
 - counts toward the grade: yes
@@ -71,14 +74,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `code/python/src/fqcd/strong_coupling_area_law.py`
 
 - file: [code/python/src/fqcd/strong_coupling_area_law.py](../../../code/python/src/fqcd/strong_coupling_area_law.py)
-- sha256 (`bytes`): `27237e2c05fd53cac02c7359f4cb3d37c4b24e432a5164ae13efb464727583e1`
+- sha256 (`bytes`): `1f2d671a3cbff3d91e57d98861cac8c3bf2e61977322c083228bef997ba9651b`
 - cited in: record TFQ-1052
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/17_finite_qcd/tfq_1052_fqcd_strong_coupling_area_law.md`
 
 - file: [dag/derivations/17_finite_qcd/tfq_1052_fqcd_strong_coupling_area_law.md](../../../dag/derivations/17_finite_qcd/tfq_1052_fqcd_strong_coupling_area_law.md)
-- sha256 (`lf-normalised`): `ca7b8bb919e42c1040546d9d104122c7813296e5c28d0cfa10d434130d517dc6`
+- sha256 (`lf-normalised`): `d09392f20bbd2361d66c9d66b646c3d7545d89e3949d8d16f553cd6eea77dbca`
 - generated view: listed, not counted
 - cited in: record TFQ-1052
 - counts toward the grade: no
@@ -86,7 +89,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md`
 
 - file: [papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md](../../../papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md)
-- sha256 (`lf-normalised`): `25c22c21f7110959ca9602da6022e7e825c59b24413d303332d4140341e7ebe0`
+- sha256 (`lf-normalised`): `8a7a3be8a63e3712d9ab4f9846017c540fad454c328a9c94b79dff8317af75d7`
 - cited in: node.source
 - counts toward the grade: yes
 

@@ -53,7 +53,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md`
 
 - file: [papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md](../../../papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md)
-- sha256 (`lf-normalised`): `25c22c21f7110959ca9602da6022e7e825c59b24413d303332d4140341e7ebe0`
+- sha256 (`lf-normalised`): `8a7a3be8a63e3712d9ab4f9846017c540fad454c328a9c94b79dff8317af75d7`
 - cited in: node.source
 - counts toward the grade: yes
 
