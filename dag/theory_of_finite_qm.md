@@ -4671,7 +4671,7 @@ Obligation: Under calibration, a nonzero observation and descent of an admitted 
 
 Let V = Q(i)^3 with the standard Hermitian form. Decide whether every function f from the nonzero vectors of V to Q with f(u) + f(v) + f(w) = 1 for every orthogonal triple of nonzero vectors has the form f(v) = <v, rho v>/<v, v> for a Hermitian trace-one 3 x 3 matrix rho over Q(i), or exhibit one that does not; state separately the signed, nonnegative and {0,1}-valued variants, and whether the non-quadratic Q^3 frame function extends to Q(i)^3.
 
-Obligation: Either answer is a result. Over Q^3 a non-quadratic frame function exists (BornRationalRayObstruction.exotic_not_quadratic); over Q(i)^3 only the residue-modulo-2 class ansatz is excluded (BornGaussianMod2ClassRigidity.mod2_class_function_is_third). Continuum Gleason does not decide this, because Q(i)^3 is not complete.
+Obligation: General signed and nonnegative quadratic rigidity on all Q(i)^3 rays remain open. The {0,1}-valued variant is excluded by a finite real-ray obstruction. The specific exotic Q^3 frame function has no signed extension, by an exact finite linear certificate. The remaining problem reduces in prose to vanishing of zero-weight frame functions on Q(i)^3 that vanish on nine tomography rays (all residuals for signed rigidity; bounded residuals for nonnegative rigidity). Neither finite obstruction establishes either general vanishing assertion.
 <!-- unified-dag:rows:FINITE_QM_CORE:end -->
 
 ## FINITE_QM_DYNAMICS
