@@ -495,6 +495,36 @@ def run_checks() -> Dict[str, Any]:
         "Burnside-Frobenius obstruction: |A_6| = 360 < 27^2 = 729 forces continuum 27-plet in 8x8 to split",
     )
 
+    # -------------------------------------------------------------------------
+    # Family 15: SU(2) higher-spin Casimir obstruction & Hessian Sigma(216x3) defect enclosure
+    # -------------------------------------------------------------------------
+    i4_2t_3 = Fraction(1 * 81 + 3 * 1, 12)
+    i4_2o_3 = Fraction(1 * 81 + 6 * 1 + 3 * 1 + 6 * 1, 24)
+    i4_2i_3 = Fraction(1 * 81 + 15 * 1 + 12 * 7, 60)
+    i4_su2_3 = Fraction(3, 1)
+    i4_2i_5 = Fraction(1 * 625 + 15 * 1 + 20 * 1, 60)
+    i4_su2_5 = Fraction(5, 1)
+    a5_dim_sq = 1 ** 2 + 3 ** 2 + 3 ** 2 + 4 ** 2 + 5 ** 2
+    two_i_dim_sq = 1 ** 2 + 2 ** 2 + 2 ** 2 + 3 ** 2 + 3 ** 2 + 4 ** 2 + 4 ** 2 + 5 ** 2 + 6 ** 2
+    c_l = Fraction(36, 47)
+    c_u = Fraction(23, 30)
+    p_l = 8 * (c_l ** 3) - 6 * c_l + 1
+    p_u = 8 * (c_u ** 3) - 6 * c_u + 1
+    d216_tl = (Fraction(4, 1) - 2 * c_u - 2 * (c_u ** 2)) / 3
+    d216_tu = (Fraction(4, 1) - 2 * c_l - 2 * (c_l ** 2)) / 3
+    check(
+        i4_2t_3 == Fraction(7, 1) > i4_2o_3 == Fraction(4, 1) > i4_2i_3 == i4_su2_3 == Fraction(3, 1),
+        "SU(2) ADE quartic adjoint invariants descend I_4(2T, 3_t)=7 > I_4(2O, 3)=4 > I_4(2I, 3_a)=I_4(SU(2), 3)=3",
+    )
+    check(
+        i4_2i_5 == Fraction(11, 1) > i4_su2_5 == Fraction(5, 1) and a5_dim_sq == 60 and two_i_dim_sq == 120,
+        "2I spin-2 (5_t) quartic Casimir obstruction I_4(2I, 5_t)=11 > 5 = I_4(SU(2), 5) with |A_5|=60 and |2I|=120",
+    )
+    check(
+        p_l < Fraction(0, 1) < p_u and Fraction(43, 100) < d216_tl < d216_tu < Fraction(13, 30) < ds1080_low,
+        "Hessian Sigma(216x3) order-9 Cartan phase defect enclosed in (581/1350, 2860/6627) subset (43/100, 13/30) < 11/24",
+    )
+
     return {
         "record_id": "TFQ-1052",
         "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",

@@ -516,6 +516,46 @@ pub fn hessian_subgroups_and_quartic_adjoint_casimir_obstruction() -> (
     )
 }
 
+/// SU(2) ADE quartic adjoint invariants `I_4(G, 3)`, spin-2 (`5_t`) Casimir obstruction on `2I`,
+/// and cubic polynomial enclosure of the Hessian group minimal plaquette defect
+/// `Δ_min(Σ(216×3), 3) = (4 - 2c - 2c^2)/3` for `c = cos(2π/9) ∈ (36/47, 23/30)`:
+/// returns `(I_4(2T, 3_t), I_4(2O, 3), I_4(2I, 3_a), I_4(SU(2), 3), I_4(2I, 5_t), I_4(SU(2), 5), Δ_min(Σ(216×3))_tight_low, Δ_min(Σ(216×3))_tight_high, Δ_min(Σ(216×3))_low, Δ_min(Σ(216×3))_high)`.
+pub fn su2_higher_spin_casimir_and_hessian_defect_bounds() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let i4_2t_3 = rat(1 * 81 + 3 * 1, 12);
+    let i4_2o_3 = rat(1 * 81 + 6 * 1 + 3 * 1 + 6 * 1, 24);
+    let i4_2i_3 = rat(1 * 81 + 15 * 1 + 12 * 7, 60);
+    let i4_su2_3 = rat(3, 1);
+    let i4_2i_5 = rat(1 * 625 + 15 * 1 + 20 * 1, 60);
+    let i4_su2_5 = rat(5, 1);
+    let c_low = rat(36, 47);
+    let c_high = rat(23, 30);
+    let d_tight_low = (rat(4, 1) - rat(2, 1) * &c_high - rat(2, 1) * &c_high * &c_high) / rat(3, 1);
+    let d_tight_high = (rat(4, 1) - rat(2, 1) * &c_low - rat(2, 1) * &c_low * &c_low) / rat(3, 1);
+    (
+        i4_2t_3,
+        i4_2o_3,
+        i4_2i_3,
+        i4_su2_3,
+        i4_2i_5,
+        i4_su2_5,
+        d_tight_low,
+        d_tight_high,
+        rat(43, 100),
+        rat(13, 30),
+    )
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -738,6 +778,30 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
         || !(i4_su3_8 < i4_1080_8 && i4_1080_8 < i4_216_8 && i4_216_8 < i4_168_8 && i4_168_8 < i4_72_8)
     {
         return Err("Hessian subgroups and quartic adjoint Casimir obstruction failed");
+    }
+
+    // 16. SU(2) higher-spin Casimir obstruction & Hessian Sigma(216x3) defect enclosure
+    let (
+        i4_2t_3,
+        i4_2o_3,
+        i4_2i_3,
+        i4_su2_3,
+        i4_2i_5,
+        i4_su2_5,
+        d216_tl,
+        d216_tu,
+        d216_l,
+        d216_u,
+    ) = su2_higher_spin_casimir_and_hessian_defect_bounds();
+    if i4_2t_3 != rat(7, 1)
+        || i4_2o_3 != rat(4, 1)
+        || i4_2i_3 != rat(3, 1)
+        || i4_su2_3 != rat(3, 1)
+        || i4_2i_5 != rat(11, 1)
+        || i4_su2_5 != rat(5, 1)
+        || !(d216_l < d216_tl && d216_tl < d216_tu && d216_tu < d216_u && d216_u < ds_l)
+    {
+        return Err("SU(2) higher-spin Casimir obstruction and Hessian defect bounds failed");
     }
 
     Ok(true)

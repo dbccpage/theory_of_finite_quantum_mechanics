@@ -45,6 +45,7 @@ try:
         strong_coupling_threshold_beta0_rational_bounds,
         strong_to_freezing_coupling_gap_rational,
         su2_ade_binary_polyhedral_tower_rational,
+        su2_higher_spin_casimir_and_hessian_defect_bounds_rational,
         su3_subgroup_tower_and_freezing_scales_rational,
         twod_character_decimation_area_law,
         twod_character_decimation_area_law_rational,
@@ -86,6 +87,7 @@ except ImportError:
         strong_coupling_threshold_beta0_rational_bounds,
         strong_to_freezing_coupling_gap_rational,
         su2_ade_binary_polyhedral_tower_rational,
+        su2_higher_spin_casimir_and_hessian_defect_bounds_rational,
         su3_subgroup_tower_and_freezing_scales_rational,
         twod_character_decimation_area_law,
         twod_character_decimation_area_law_rational,
@@ -393,6 +395,21 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
     assert hess["I4_Sigma1080_8a"] == Fraction(13, 1)
     assert hess["I4_SU3_continuum_8"] == Fraction(8, 1)
     assert hess["a6_irrep_dim_sq_sum"] == 360 < hess["continuum_27_dim_sq"] == 729
+
+    su2_hs = su2_higher_spin_casimir_and_hessian_defect_bounds_rational()
+    assert su2_hs["I4_2T_3t"] == Fraction(7, 1)
+    assert su2_hs["I4_2O_3"] == Fraction(4, 1)
+    assert su2_hs["I4_2I_3a"] == su2_hs["I4_SU2_continuum_3"] == Fraction(3, 1)
+    assert su2_hs["I4_2I_5t"] == Fraction(11, 1) > su2_hs["I4_SU2_continuum_5"] == Fraction(5, 1)
+    assert su2_hs["a5_irrep_dim_sq_sum"] == 60
+    assert su2_hs["2i_irrep_dim_sq_sum"] == 120
+    assert su2_hs["poly_at_36_47"] < Fraction(0, 1) < su2_hs["poly_at_23_30"]
+    d216_tight_l, d216_tight_u = su2_hs["delta_min_Sigma216x3_tight_bounds"]
+    d216_l, d216_u = su2_hs["delta_min_Sigma216x3_bounds"]
+    c1 = math.cos(2.0 * math.pi / 9.0)
+    exact_d216 = (4.0 - 2.0 * c1 - 2.0 * (c1 ** 2)) / 3.0
+    assert float(d216_tight_l) < exact_d216 < float(d216_tight_u)
+    assert d216_l < d216_tight_l < d216_tight_u < d216_u < Fraction(11, 24)
 
 
 def test_master_witness_passes() -> None:

@@ -518,6 +518,33 @@ def hessian_subgroups_and_quartic_adjoint_casimir_obstruction_rational() -> Dict
     }
 
 
+def su2_higher_spin_casimir_and_hessian_defect_bounds_rational() -> Dict[str, Any]:
+    """Exact quartic adjoint invariants I_4(G, 3) across the SU(2) ADE series (2T -> 2O -> 2I),
+    the spin-2 (5_t) quartic Casimir obstruction on 2I, and the cubic polynomial enclosure of
+    the Hessian group minimal plaquette defect Delta_min(Sigma(216 x 3), 3) = (4 - 2c - 2c^2)/3
+    for c = cos(2pi/9) (root of 8c^3 - 6c + 1 = 0, enclosed in (36/47, 23/30)).
+    """
+    c_lower = Fraction(36, 47)
+    c_upper = Fraction(23, 30)
+    return {
+        "I4_2T_3t": Fraction(1 * 81 + 3 * 1, 12),
+        "I4_2O_3": Fraction(1 * 81 + 6 * 1 + 3 * 1 + 6 * 1, 24),
+        "I4_2I_3a": Fraction(1 * 81 + 15 * 1 + 12 * 7, 60),
+        "I4_SU2_continuum_3": Fraction(1 ** 2 + 1 ** 2 + 1 ** 2, 1),
+        "I4_2I_5t": Fraction(1 * 625 + 15 * 1 + 20 * 1, 60),
+        "I4_SU2_continuum_5": Fraction(1 ** 2 + 1 ** 2 + 1 ** 2 + 1 ** 2 + 1 ** 2, 1),
+        "a5_irrep_dim_sq_sum": 1 ** 2 + 3 ** 2 + 3 ** 2 + 4 ** 2 + 5 ** 2,
+        "2i_irrep_dim_sq_sum": 1 ** 2 + 2 ** 2 + 2 ** 2 + 3 ** 2 + 3 ** 2 + 4 ** 2 + 4 ** 2 + 5 ** 2 + 6 ** 2,
+        "poly_at_36_47": 8 * (c_lower ** 3) - 6 * c_lower + 1,
+        "poly_at_23_30": 8 * (c_upper ** 3) - 6 * c_upper + 1,
+        "delta_min_Sigma216x3_tight_bounds": (
+            (Fraction(4, 1) - 2 * c_upper - 2 * (c_upper ** 2)) / 3,
+            (Fraction(4, 1) - 2 * c_lower - 2 * (c_lower ** 2)) / 3,
+        ),
+        "delta_min_Sigma216x3_bounds": (Fraction(43, 100), Fraction(13, 30)),
+    }
+
+
 def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
     """Master multi-language verification witness for Record TFQ-1052."""
     checks = []
@@ -693,6 +720,21 @@ def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
         > hess["I4_Sigma1080_8a"] == Fraction(13, 1)
         > hess["I4_SU3_continuum_8"] == Fraction(8, 1)
         and hess["a6_irrep_dim_sq_sum"] == 360 < hess["continuum_27_dim_sq"] == 729
+    )))
+
+    # 16. SU(2) higher-spin Casimir obstruction & Hessian Sigma(216x3) defect enclosure
+    su2_hs = su2_higher_spin_casimir_and_hessian_defect_bounds_rational()
+    d216_tight_l, d216_tight_u = su2_hs["delta_min_Sigma216x3_tight_bounds"]
+    d216_l, d216_u = su2_hs["delta_min_Sigma216x3_bounds"]
+    checks.append(("su2_higher_spin_and_hessian_defect", 0, (
+        su2_hs["I4_2T_3t"] == Fraction(7, 1)
+        > su2_hs["I4_2O_3"] == Fraction(4, 1)
+        > su2_hs["I4_2I_3a"] == su2_hs["I4_SU2_continuum_3"] == Fraction(3, 1)
+        and su2_hs["I4_2I_5t"] == Fraction(11, 1) > su2_hs["I4_SU2_continuum_5"] == Fraction(5, 1)
+        and su2_hs["a5_irrep_dim_sq_sum"] == 60
+        and su2_hs["2i_irrep_dim_sq_sum"] == 120
+        and su2_hs["poly_at_36_47"] < Fraction(0, 1) < su2_hs["poly_at_23_30"]
+        and d216_l < d216_tight_l < d216_tight_u < d216_u < ds1080_low
     )))
 
     all_passed = all(status for _, _, status in checks)

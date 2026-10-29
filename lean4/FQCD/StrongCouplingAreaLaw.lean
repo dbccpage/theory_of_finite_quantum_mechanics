@@ -1056,6 +1056,61 @@ theorem hessian_subgroups_and_quartic_adjoint_casimir_obstruction :
     su3_continuum_chi8_quartic_invariant, a6_irrep_dim_sq_sum]
   norm_num
 
+-- ----------------------------------------------------------------------------
+-- Main Theorem 12: SU(2) ADE Quartic Adjoint Matching, Spin-2 Casimir Obstruction,
+-- and Hessian Σ(216×3) Anisotropic Order-9 Plaquette Defect Enclosure
+-- ----------------------------------------------------------------------------
+
+/-- Quartic adjoint sums `∑_{g ∈ G/Z_2} χ_3(g)^4` across `A_4 = 2T/Z_2` (order 12),
+`S_4 = 2O/Z_2` (order 24), and `A_5 = 2I/Z_2` (order 60), compared against continuum `SU(2)`
+where `3 ⊗ 3 = 1 ⊕ 3 ⊕ 5` gives `I_4(SU(2), 3) = 1^2 + 1^2 + 1^2 = 3`. -/
+def a4_order : Nat := 12
+def a4_chi3_quartic_sum : Int := 1 * (3 ^ 4) + 3 * ((-1) ^ 4) + 8 * 0
+def s4_chi3_quartic_sum : Int := 1 * (3 ^ 4) + 6 * (1 ^ 4) + 3 * ((-1) ^ 4) + 8 * 0 + 6 * ((-1) ^ 4)
+def a5_chi3a_quartic_sum : Int := 1 * (3 ^ 4) + 15 * ((-1) ^ 4) + 20 * 0 + 12 * 7
+def su2_continuum_chi3_quartic_invariant : ℚ := 1 ^ 2 + 1 ^ 2 + 1 ^ 2
+
+/-- Spin-2 (`5_t`) quartic sum on `A_5 = 2I/Z_2` (`χ_5 = (5, 1, -1, 0, 0)` on `(1, 15, 20, 12, 12)`):
+`1·625 + 15·1 + 20·1 = 660` (`I_4(2I, 5_t) = 11 > 5 = I_4(SU(2), 5)`), obstructed by
+`|A_5| = ∑_{ρ ∈ Irr(A_5)} (dim ρ)^2 = 60` and `|2I| = ∑_{ρ ∈ Irr(2I)} (dim ρ)^2 = 120`. -/
+def a5_chi5_quartic_sum : Int := 1 * (5 ^ 4) + 15 * (1 ^ 4) + 20 * ((-1) ^ 4) + 24 * 0
+def su2_continuum_chi5_quartic_invariant : ℚ := 1 ^ 2 + 1 ^ 2 + 1 ^ 2 + 1 ^ 2 + 1 ^ 2
+def a5_irrep_dim_sq_sum : Nat := 1 ^ 2 + 3 ^ 2 + 3 ^ 2 + 4 ^ 2 + 5 ^ 2
+def binaryIcosahedral_irrep_dim_sq_sum : Nat :=
+  1 ^ 2 + 2 ^ 2 + 2 ^ 2 + 3 ^ 2 + 3 ^ 2 + 4 ^ 2 + 4 ^ 2 + 5 ^ 2 + 6 ^ 2
+
+/-- Cubic polynomial `P(c) = 8 c^3 - 6 c + 1` vanished by `c = cos(2π/9)` (`cos(6π/9) = -1/2`),
+and rational enclosure `36/47 < cos(2π/9) < 23/30` inducing bounds on the Hessian group minimal
+plaquette defect `Δ_min(Σ(216×3), 3) = (4 - 2c - 2c^2)/3 ∈ (581/1350, 2860/6627) ⊂ (43/100, 13/30)`. -/
+def cosTwoPiOverNinePoly (c : ℚ) : ℚ := 8 * (c ^ 3) - 6 * c + 1
+def hessianDefectFromCos (c : ℚ) : ℚ := (4 - 2 * c - 2 * (c ^ 2)) / 3
+def deltaMinSigma216x3Lower : ℚ := 43 / 100
+def deltaMinSigma216x3Upper : ℚ := 13 / 30
+
+theorem su2_higher_spin_casimir_obstruction_and_hessian_defect_enclosure :
+    ((a4_chi3_quartic_sum : ℚ) / (a4_order : ℚ) = 7 ∧
+      (s4_chi3_quartic_sum : ℚ) / (s4_order : ℚ) = 4 ∧
+      (a5_chi3a_quartic_sum : ℚ) / (a5_order : ℚ) = 3 ∧
+      su2_continuum_chi3_quartic_invariant = 3) ∧
+    ((a5_chi5_quartic_sum : ℚ) / (a5_order : ℚ) = 11 ∧
+      su2_continuum_chi5_quartic_invariant = 5 ∧
+      su2_continuum_chi5_quartic_invariant < (a5_chi5_quartic_sum : ℚ) / (a5_order : ℚ) ∧
+      a5_irrep_dim_sq_sum = 60 ∧
+      binaryIcosahedral_irrep_dim_sq_sum = 120) ∧
+    (cosTwoPiOverNinePoly (36 / 47 : ℚ) < 0 ∧
+      0 < cosTwoPiOverNinePoly (23 / 30 : ℚ) ∧
+      deltaMinSigma216x3Lower < hessianDefectFromCos (23 / 30 : ℚ) ∧
+      hessianDefectFromCos (23 / 30 : ℚ) < hessianDefectFromCos (36 / 47 : ℚ) ∧
+      hessianDefectFromCos (36 / 47 : ℚ) < deltaMinSigma216x3Upper ∧
+      deltaMinSigma216x3Upper < deltaMinSigma1080Lower) := by
+  dsimp [a4_chi3_quartic_sum, a4_order, s4_chi3_quartic_sum, s4_order,
+    a5_chi3a_quartic_sum, a5_chi5_quartic_sum, a5_order,
+    su2_continuum_chi3_quartic_invariant, su2_continuum_chi5_quartic_invariant,
+    a5_irrep_dim_sq_sum, binaryIcosahedral_irrep_dim_sq_sum,
+    cosTwoPiOverNinePoly, hessianDefectFromCos,
+    deltaMinSigma216x3Lower, deltaMinSigma216x3Upper, deltaMinSigma1080Lower]
+  norm_num
+
 -- ============================================================================
 -- Axiom Verification Receipts
 -- ============================================================================
@@ -1076,5 +1131,6 @@ theorem hessian_subgroups_and_quartic_adjoint_casimir_obstruction :
 #print axioms klein_sigma168_invariants_and_complete_su3_defect_chain
 #print axioms quartic_character_invariants_and_su3_continuum_matching
 #print axioms hessian_subgroups_and_quartic_adjoint_casimir_obstruction
+#print axioms su2_higher_spin_casimir_obstruction_and_hessian_defect_enclosure
 
 end FQCD

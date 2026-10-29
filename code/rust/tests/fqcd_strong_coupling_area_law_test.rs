@@ -19,6 +19,7 @@ use theory_of_finite_qm::fqcd::{
     q8_cubic_character_invariant_sum, quartic_character_invariants_and_continuum_matching,
     s3_cubic_character_invariant_sum, s4_cubic_character_invariants,
     strong_to_freezing_coupling_gap, su2_ade_binary_polyhedral_tower,
+    su2_higher_spin_casimir_and_hessian_defect_bounds,
     su3_subgroup_tower_and_freezing_scales, twod_character_decimation_area_law,
     valentiner_sigma1080_invariants, verify_fqcd_strong_coupling_area_law_witness,
 };
@@ -283,6 +284,26 @@ fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
     assert_eq!(i4_1080_8, rat(13, 1));
     assert_eq!(i4_su3_8, rat(8, 1));
     assert!(i4_su3_8 < i4_1080_8 && i4_1080_8 < i4_216_8 && i4_216_8 < i4_168_8 && i4_168_8 < i4_72_8);
+
+    let (
+        i4_2t_3,
+        i4_2o_3,
+        i4_2i_3,
+        i4_su2_3,
+        i4_2i_5,
+        i4_su2_5,
+        d216_tl,
+        d216_tu,
+        d216_l,
+        d216_u,
+    ) = su2_higher_spin_casimir_and_hessian_defect_bounds();
+    assert_eq!(i4_2t_3, rat(7, 1));
+    assert_eq!(i4_2o_3, rat(4, 1));
+    assert_eq!(i4_2i_3, rat(3, 1));
+    assert_eq!(i4_su2_3, rat(3, 1));
+    assert_eq!(i4_2i_5, rat(11, 1));
+    assert_eq!(i4_su2_5, rat(5, 1));
+    assert!(d216_l < d216_tl && d216_tl < d216_tu && d216_tu < d216_u && d216_u < ds_l);
 }
 
 #[test]
