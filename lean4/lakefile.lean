@@ -1556,3 +1556,8 @@ lean_lib CarrierTests where
 -- qm_native_history_guard.md. Not a default target.
 lean_lib NativeHistory where
   roots := #[`NativeHistoryCost, `NativeHistoryGuard]
+
+-- FQCD: Strong-coupling area law for finite gauge theories (TFQ-1052). Non-default target.
+lean_lib FQCD where
+  roots := #[`FQCD.StrongCouplingAreaLaw]
+

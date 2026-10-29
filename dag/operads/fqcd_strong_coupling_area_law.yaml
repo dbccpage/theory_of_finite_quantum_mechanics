@@ -24,7 +24,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/17_finite_qcd/tfq_1052_fqcd_strong_coupling_area_law.md
-    sha256: 5bedbce5d93a9929faf60f54e37ffb7c0e3be53db4ebcda6fb7ad38a7af65830
+    sha256: ca7b8bb919e42c1040546d9d104122c7813296e5c28d0cfa10d434130d517dc6
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -50,25 +50,49 @@ presentation:
   - relations_stable_under_grafting
 operad_slots:
   slot_m1_layer0_ambient_carrier:
-    mining_status: UNREVIEWED
-    carrier: null
-    coefficient_ring: null
-    assumptions: []
-    source_pins: []
+    mining_status: REVIEWED
+    carrier: "Hypercubic Wilson lattice gauge theory over finite group G"
+    coefficient_ring: "exact rational / complex character field"
+    assumptions:
+    - "Finite group G with unitary irreducible representations R"
+    - "Hypercubic lattice in dimension d >= 2 with flat periodic boundary"
+    - "Coupling beta in strong coupling convergence window beta < beta_0(N, d)"
+    source_pins:
+    - "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
     public_input: {}
   slot_m2_layer1_forward_morphisms:
-    mining_status: UNREVIEWED
-    operations: []
-    composition_plan: []
+    mining_status: REVIEWED
+    operations:
+    - "coordination_number: d -> 2*d*(d-1)"
+    - "beta0_bound: (N, d) -> 1 / (40 * e * 2*d*(d-1) * (N-1))"
+    - "character_decimation_2d: (R, Area) -> (dim R)^(1-Area) * (a_R / a_0)^Area"
+    - "cluster_sum_bound: (mu, Area) -> mu^Area / (1 - mu)"
+    composition_plan:
+    - "abelian_area_law_composition"
+    - "character_decimation_composition"
+    - "center_protection_composition"
   slot_m3_layer2_ideals_and_annihilators:
-    mining_status: UNREVIEWED
-    algebraic_relations: []
-    rejection_predicates: []
-    negative_control_plan: []
+    mining_status: REVIEWED
+    algebraic_relations:
+    - "schur_character_orthogonality: integral_G chi_R(g) chi_{R'}(g)^* dg = delta_{R, R'}"
+    - "q8_cubic_character_vanishing: (1/8) * sum_{g in Q_8} chi_2(g)^3 = 0"
+    - "s3_cubic_character_invariant: (1/6) * sum_{g in S_3} chi_2(g)^3 = 1"
+    rejection_predicates:
+    - "non_abelian_screening_in_centerless_groups_with_cubic_invariant"
+    negative_control_plan:
+    - "s3_screening_perimeter_law_witness"
   slot_m4_tri_language_witness_anchors:
-    mining_status: UNREVIEWED
-    certificate_predicates: []
-    anchors: []
+    mining_status: VERIFIED
+    certificate_predicates:
+    - "abelian_strong_coupling_area_law"
+    - "finite_group_2d_character_decimation_area_law"
+    - "center_protected_3d_strong_coupling_area_law"
+    - "cubic_invariant_screening_perimeter_receipt"
+    anchors:
+    - "lean4/FQCD/StrongCouplingAreaLaw.lean"
+    - "code/rust/src/fqcd/strong_coupling_area_law.rs"
+    - "code/python/src/fqcd/strong_coupling_area_law.py"
+    - "checks/independent/check_tfq_1052_fqcd_strong_coupling_area_law.py"
     unpaid_imports: []
 stage_history: []
 open_obligations:

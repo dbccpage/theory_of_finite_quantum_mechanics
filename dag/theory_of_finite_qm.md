@@ -523,7 +523,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1049` | `FINITE_QCD` | `OPEN_OBLIGATION` | `FQCD-FINITE-TRANSFER-MATRIX-GAP` (OPEN) | - |
 | `TFQ-1050` | `FINITE_QCD` | `OPEN_OBLIGATION` | `FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` (OPEN) | - |
 | `TFQ-1051` | `FINITE_GAUGE` | `OPEN_OBLIGATION` | `FGAUGE-MEDNYKH-2D-YANG-MILLS` (OPEN) | - |
-| `TFQ-1052` | `FINITE_QCD` | `OPEN_OBLIGATION` | `FQCD-STRONG-COUPLING-AREA-LAW` (OPEN) | - |
+| `TFQ-1052` | `FINITE_QCD` | `CONDITIONAL` | `FQCD-STRONG-COUPLING-AREA-LAW` (CONDITIONAL) | - |
 | `TFQ-1053` | `FINITE_QCD` | `SOURCE_RECORD` | `FQCD-FINITE-GROUP-FREEZING-FENCE` (SOURCE_RECORD) | - |
 | `TFQ-1054` | `FINITE_QCD` | `SOURCE_RECORD` | `FQCD-CONTINUUM-EXISTENCE-ANNOUNCEMENT` (SOURCE_RECORD) | - |
 | `TFQ-1055` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GLEASON-QI3-FRAME-FUNCTIONS` (OPEN) | - |
@@ -6337,8 +6337,8 @@ Obligation: Prove the operator identity in Lean for the finite lattice. A proof 
 
 - UUID: `6140bee6-f364-5e32-8776-3ea91bb9dcaf`
 - Parent: `TFQ-0030`
-- Status: `OPEN_OBLIGATION`
-- DAG node: `FQCD-STRONG-COUPLING-AREA-LAW` (`OPEN`)
+- Status: `CONDITIONAL`
+- DAG node: `FQCD-STRONG-COUPLING-AREA-LAW` (`CONDITIONAL`)
 
 For a finite gauge group G, a nontrivial irreducible unitary representation R and dimension d >= 2, there are explicit beta_0 > 0, K and sigma > 0 depending on G, R and d such that for 0 <= beta < beta_0 the Wilson-action expectation of the R-character of every rectangular Wilson loop C on a finite periodic lattice much larger than C satisfies |<W_R(C)>| <= K exp(-sigma Area(C)), with Area(C) the minimal spanning area.
 

@@ -45,7 +45,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/sheaf_theory/empirical_presheaf/model.rs`
 
 - file: [code/rust/src/sheaf_theory/empirical_presheaf/model.rs](../../../code/rust/src/sheaf_theory/empirical_presheaf/model.rs)
-- sha256 (`bytes`): `1bbdcc927883815b7a10755e4b1211d5002504c6c99af43cf699d4de7497b352`
+- sha256 (`bytes`): `f3394e924037042349bc7593855651e9f470d5b57fd5512b82e7761a8e40765a`
 - cited in: node.rust, record TFQ-2505
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `dag/test_foc035_observer_presheaf.py`
 
 - file: [dag/test_foc035_observer_presheaf.py](../../../dag/test_foc035_observer_presheaf.py)
-- sha256 (`bytes`): `32040af32e2e31d7968ffb29d913201267f75260feee44bd9b8439158206e497`
+- sha256 (`bytes`): `66148a006577647bc2bd17c8f113a125215d40d946a9be29ba9325051e04828b`
 - cited in: node.source
 - check: `python -m pytest dag/test_foc035_observer_presheaf.py`
 - counts toward the grade: yes

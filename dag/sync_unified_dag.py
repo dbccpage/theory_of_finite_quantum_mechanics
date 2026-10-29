@@ -211,7 +211,7 @@ def node_for_record(r, root, paths, parent_node):
     return node, route
 
 
-def record_for_node(n, rid, parent_id, root):
+def record_for_node(n, rid, parent_id, root, python_refs=None):
     stage = RECORD_STAGE[n['stage']]
     local = [x for x in n['source'] if not x.startswith(('external:', 'pr:')) and resolves(root, x)]
     paper = f'dag/derivations/{STAGE_FOLDERS[stage]}/tfq_{rid[4:]}_{slug(n["id"])}.md'
@@ -219,7 +219,7 @@ def record_for_node(n, rid, parent_id, root):
         'coda_atlas_ids': [], 'coda_atlas_paths': [], 'existing_derivation_dag_ids': [n['id']],
         'f004_refs': [paper] + [x for x in local if x != paper], 'id': rid, 'lean4': list(n['lean']),
         'local_id': n['id'], 'name': n['id'].lower(), 'obligation': n['bottleneck'], 'parent_id': parent_id,
-        'python': [], 'record_status': RECORD_STATUS[n['status']], 'rust': list(n['rust']),
+        'python': list(python_refs or []), 'record_status': RECORD_STATUS[n['status']], 'rust': list(n['rust']),
         'source_slice': SLICE, 'stage': stage, 'summary': n['statement'], 'uuid': record_uuid(rid),
     }
     refs = n.get('pfp_review', {}).get('review_refs')
@@ -244,8 +244,10 @@ def render_paper(r, n, paper, parent_paper, kids):
         out += ['### See Also', *[f'- `{x}`' for x in n['see_also']], '']
     out += ['---', '', '## 3. Multi-Tier Code & Proof Witnesses', '', '### Lean 4 Theorems',
             *([f'- `{x}`' for x in n['lean']] or ['- *none cited*']), '', '### Rust Certifiers',
-            *([f'- `{x}`' for x in n['rust']] or ['- *none cited*']), '', '---', '',
-            '## 4. Downstream Derivations (Outgoing DAG Links)', '']
+            *([f'- `{x}`' for x in n['rust']] or ['- *none cited*']), '']
+    if r.get('python'):
+        out += ['### Python Checks', *[f'- `{x}`' for x in r['python']], '']
+    out += ['---', '', '## 4. Downstream Derivations (Outgoing DAG Links)', '']
     out += [f'- `{k}`' for k in kids] or ['*None (Leaf or Terminal derivation in current tree)*']
     out += ['', '---', '', '## 5. Audit Trail & Primary Source Lineage', '', '- **Cited Sources**:',
             *[f'  - `{x}`' for x in n['source']]]
@@ -492,7 +494,8 @@ def _render_unrecorded_nodes(by_id, app, pgw, fragment, dag, root, paths, output
         if parent is None:
             errors.append(f'node {nid}: no parent record; give node_records.{nid}.parent')
             continue
-        rec, paper = record_for_node(n, spec['id'], parent, root)
+        python_refs = [x for x in spec.get('python', []) if resolves(root, x)]
+        rec, paper = record_for_node(n, spec['id'], parent, root, python_refs=python_refs)
         node_rows.append((rec, n, paper))
     row_ids = {rec['id'] for rec, _, _ in node_rows}
     for rec, n, paper in node_rows:
