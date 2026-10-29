@@ -16,6 +16,7 @@ use theory_of_finite_qm::fqcd::{
     complete_blichfeldt_ffk_su3_crystal_hierarchy, const_k, coordination_number_delta,
     d4_multi_plaquette_collar_bound, freezing_plaquette_defect_bounds,
     general_collar_tube_contraction, hessian_subgroups_and_quartic_adjoint_casimir_obstruction,
+    higher_genus_mednykh_abelianization_and_genus3_bounds,
     klein_sigma168_invariants_and_su3_chain, loop_perimeter, minimal_spanning_area,
     normal_directions_count, q8_center_parity_non_screening_verified,
     q8_cubic_character_invariant_sum, quartic_character_invariants_and_continuum_matching,
@@ -363,6 +364,15 @@ fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
     assert_eq!(z2_s1080, rat(1944594, 1));
     assert_eq!(z2_s216x3, rat(2001267, 1));
     assert!(z2_s1080 < z2_s216x3);
+
+    let (m3_q8, m3_2t, m3_2o, m3_2i, m3_d27, m3_d54, m3_s216, m3_s1080) =
+        higher_genus_mednykh_abelianization_and_genus3_bounds();
+    assert!(BigRational::one() < m3_2i && m3_2i < m3_2o && m3_2o < m3_2t && m3_2t < m3_q8);
+    assert_eq!(&m3_q8 - rat(4, 1), rat(1, 4) * (&m2_q8 - rat(4, 1)));
+    assert!(BigRational::zero() < (&m3_s1080 - BigRational::one())
+        && (&m3_s1080 - BigRational::one()) < rat(1, 9) * (&m2_s1080 - BigRational::one())
+        && (&m3_s1080 - BigRational::one()) < rat(3, 50));
+    assert!(rat(2, 1) < m3_d54 && m3_d54 < m3_s216 && m3_s216 < m3_d27);
 }
 
 #[test]

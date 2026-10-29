@@ -615,6 +615,41 @@ def baryon_vs_gluon_screening_casimir_and_mednykh_2d_towers_rational() -> Dict[s
     }
 
 
+def higher_genus_mednykh_abelianization_and_genus3_bounds_rational() -> Dict[str, Any]:
+    """Exact abelianization orders |G/[G, G]| and genus-3 (chi = -4) normalized Mednykh sums
+    M_3(G) = sum_{R in Irr(G)} (dim R)^{-4} across the SU(2) ADE and SU(3) crystal towers,
+    together with the per-genus non-abelian contraction bounds
+    0 < M_3(G) - |G/[G, G]| <= (1 / d_min(G)^2) * (M_2(G) - |G/[G, G]|).
+    """
+    m3_q8 = sum(Fraction(1, d ** 4) for d in [1, 1, 1, 1, 2])
+    m3_2t = sum(Fraction(1, d ** 4) for d in [1, 1, 1, 2, 2, 2, 3])
+    m3_2o = sum(Fraction(1, d ** 4) for d in [1, 1, 2, 2, 2, 3, 3, 4])
+    m3_2i = sum(Fraction(1, d ** 4) for d in [1, 2, 2, 3, 3, 4, 4, 5, 6])
+    m3_d27 = sum(Fraction(1, d ** 4) for d in [1] * 9 + [3] * 2)
+    m3_d54 = sum(Fraction(1, d ** 4) for d in [1] * 2 + [2] * 4 + [3] * 4)
+    m3_s216x3 = sum(Fraction(1, d ** 4) for d in [1] * 3 + [2] * 3 + [3] * 7 + [6] * 6 + [8] * 3 + [9] * 2)
+    s1080_dims = [1, 5, 5, 8, 8, 9, 10] + [3, 3, 6, 9, 15] * 2
+    m3_s1080 = sum(Fraction(1, d ** 4) for d in s1080_dims)
+    return {
+        "ab_Q8": Fraction(4, 1),
+        "ab_2T": Fraction(3, 1),
+        "ab_2O": Fraction(2, 1),
+        "ab_2I": Fraction(1, 1),
+        "ab_Delta27": Fraction(9, 1),
+        "ab_Delta54": Fraction(2, 1),
+        "ab_Sigma216x3": Fraction(3, 1),
+        "ab_Sigma1080": Fraction(1, 1),
+        "M3_Q8": m3_q8,
+        "M3_2T": m3_2t,
+        "M3_2O": m3_2o,
+        "M3_2I": m3_2i,
+        "M3_Delta27": m3_d27,
+        "M3_Delta54": m3_d54,
+        "M3_Sigma216x3": m3_s216x3,
+        "M3_Sigma1080": m3_s1080,
+    }
+
+
 def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
     """Master multi-language verification witness for Record TFQ-1052."""
     checks = []
@@ -839,6 +874,19 @@ def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
         and med["sigma1080_irrep_dim_sq_sum"] == 1080
         and med["M2_Sigma1080"] == Fraction(36011, 21600) < Fraction(2, 1)
         and med["Z2_Sigma1080"] == 1944594 < med["Z2_Sigma216x3"] == 2001267
+    )))
+
+    # 19. Higher-genus Mednykh abelianization asymptotics & genus-3 bounds
+    med3 = higher_genus_mednykh_abelianization_and_genus3_bounds_rational()
+    checks.append(("higher_genus_mednykh_asymptotics_and_genus3", 0, (
+        med3["ab_2I"] < med3["ab_2O"] < med3["ab_2T"] < med3["ab_Q8"]
+        and Fraction(1, 1) < med3["M3_2I"] < med3["M3_2O"] < med3["M3_2T"] < med3["M3_Q8"] == Fraction(65, 16)
+        and med3["M3_Q8"] - med3["ab_Q8"] == Fraction(1, 4) * (med["M2_Q8"] - med3["ab_Q8"])
+        and med3["M3_2I"] - med3["ab_2I"] < Fraction(1, 4) * (med["M2_2I"] - med3["ab_2I"])
+        and med3["M3_Sigma1080"] == Fraction(590783071, 559872000)
+        and Fraction(0, 1) < med3["M3_Sigma1080"] - med3["ab_Sigma1080"]
+        < Fraction(3, 50) < Fraction(1, 9) * (med["M2_Sigma1080"] - med3["ab_Sigma1080"])
+        and Fraction(2, 1) < med3["M3_Delta54"] < med3["M3_Sigma216x3"] < med3["M3_Delta27"] == Fraction(731, 81)
     )))
 
     all_passed = all(status for _, _, status in checks)

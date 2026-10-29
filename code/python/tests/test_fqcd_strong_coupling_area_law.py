@@ -30,6 +30,7 @@ try:
         general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
         hessian_subgroups_and_quartic_adjoint_casimir_obstruction_rational,
+        higher_genus_mednykh_abelianization_and_genus3_bounds_rational,
         klein_sigma168_invariants_and_su3_chain_rational,
         loop_perimeter,
         minimal_spanning_area,
@@ -74,6 +75,7 @@ except ImportError:
         general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
         hessian_subgroups_and_quartic_adjoint_casimir_obstruction_rational,
+        higher_genus_mednykh_abelianization_and_genus3_bounds_rational,
         klein_sigma168_invariants_and_su3_chain_rational,
         loop_perimeter,
         minimal_spanning_area,
@@ -448,6 +450,15 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
     assert med["sigma1080_irrep_dim_sq_sum"] == 1080
     assert med["M2_Sigma1080"] == Fraction(36011, 21600) < Fraction(2, 1)
     assert med["Z2_Sigma1080"] == 1944594 < med["Z2_Sigma216x3"] == 2001267
+
+    med3 = higher_genus_mednykh_abelianization_and_genus3_bounds_rational()
+    assert med3["ab_2I"] < med3["ab_2O"] < med3["ab_2T"] < med3["ab_Q8"]
+    assert Fraction(1, 1) < med3["M3_2I"] < med3["M3_2O"] < med3["M3_2T"] < med3["M3_Q8"] == Fraction(65, 16)
+    assert med3["M3_Q8"] - med3["ab_Q8"] == Fraction(1, 4) * (med["M2_Q8"] - med3["ab_Q8"])
+    assert med3["M3_2I"] - med3["ab_2I"] < Fraction(1, 4) * (med["M2_2I"] - med3["ab_2I"])
+    assert med3["M3_Sigma1080"] == Fraction(590783071, 559872000)
+    assert Fraction(0, 1) < med3["M3_Sigma1080"] - med3["ab_Sigma1080"] < Fraction(3, 50) < Fraction(1, 9) * (med["M2_Sigma1080"] - med3["ab_Sigma1080"])
+    assert Fraction(2, 1) < med3["M3_Delta54"] < med3["M3_Sigma216x3"] < med3["M3_Delta27"] == Fraction(731, 81)
 
 
 def test_master_witness_passes() -> None:

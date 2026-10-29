@@ -1271,6 +1271,76 @@ theorem baryon_vs_gluon_screening_casimir_ratios_and_mednykh_2d_towers :
     mednykhZ2_Sigma216x3, mednykhZ2_Sigma1080, sigma216x3_order, sigma1080_order]
   norm_num
 
+-- ----------------------------------------------------------------------------
+-- Main Theorem 15: Higher-Genus (g ≥ 2) Mednykh Abelianization Asymptotics
+-- M_g(G) → |G/[G, G]|, Genus-3 (χ = -4) Bounds, and 1/9 Perfect-Group Contraction
+-- ----------------------------------------------------------------------------
+
+/-- Abelianization orders `|G/[G, G]|` (number of 1D irreducible representations) across
+the `SU(2)` ADE tower (`Q_8: 4, 2T: 3, 2O: 2, 2I: 1`) and `SU(3)` crystal tower
+(`Δ(27): 9, Σ(36×3): 4, Σ(72×3): 4, Σ(216×3): 3, Δ(54): 2, Σ(168): 1, Σ(1080): 1`). -/
+def abelianizationOrder_Q8 : ℚ := 4
+def abelianizationOrder_2T : ℚ := 3
+def abelianizationOrder_2O : ℚ := 2
+def abelianizationOrder_2I : ℚ := 1
+
+def abelianizationOrder_Delta27 : ℚ := 9
+def abelianizationOrder_Sigma36x3 : ℚ := 4
+def abelianizationOrder_Sigma72x3 : ℚ := 4
+def abelianizationOrder_Sigma216x3 : ℚ := 3
+def abelianizationOrder_Delta54 : ℚ := 2
+def abelianizationOrder_Sigma168 : ℚ := 1
+def abelianizationOrder_Sigma1080 : ℚ := 1
+
+/-- Normalized genus-3 (`2 - 2g = -4`) Mednykh character sums `M_3(G) = ∑_{R ∈ Irr(G)} 1 / (dim R)^4`. -/
+def mednykhM3_Q8 : ℚ := 4 * (1 / (1 ^ 4 : ℚ)) + 1 * (1 / (2 ^ 4 : ℚ))
+def mednykhM3_2T : ℚ := 3 * (1 / (1 ^ 4 : ℚ)) + 3 * (1 / (2 ^ 4 : ℚ)) + 1 * (1 / (3 ^ 4 : ℚ))
+def mednykhM3_2O : ℚ :=
+  2 * (1 / (1 ^ 4 : ℚ)) + 3 * (1 / (2 ^ 4 : ℚ)) + 2 * (1 / (3 ^ 4 : ℚ)) + 1 * (1 / (4 ^ 4 : ℚ))
+def mednykhM3_2I : ℚ :=
+  1 * (1 / (1 ^ 4 : ℚ)) + 2 * (1 / (2 ^ 4 : ℚ)) + 2 * (1 / (3 ^ 4 : ℚ)) +
+  2 * (1 / (4 ^ 4 : ℚ)) + 1 * (1 / (5 ^ 4 : ℚ)) + 1 * (1 / (6 ^ 4 : ℚ))
+
+def mednykhM3_Delta27 : ℚ := 9 * (1 / (1 ^ 4 : ℚ)) + 2 * (1 / (3 ^ 4 : ℚ))
+def mednykhM3_Delta54 : ℚ :=
+  2 * (1 / (1 ^ 4 : ℚ)) + 4 * (1 / (2 ^ 4 : ℚ)) + 4 * (1 / (3 ^ 4 : ℚ))
+def mednykhM3_Sigma216x3 : ℚ :=
+  3 * (1 / (1 ^ 4 : ℚ)) + 3 * (1 / (2 ^ 4 : ℚ)) + 7 * (1 / (3 ^ 4 : ℚ)) +
+  6 * (1 / (6 ^ 4 : ℚ)) + 3 * (1 / (8 ^ 4 : ℚ)) + 2 * (1 / (9 ^ 4 : ℚ))
+def mednykhM3_Sigma1080 : ℚ :=
+  (1 / (1 ^ 4 : ℚ) + 2 * (1 / (5 ^ 4 : ℚ)) + 2 * (1 / (8 ^ 4 : ℚ)) + 1 / (9 ^ 4 : ℚ) + 1 / (10 ^ 4 : ℚ)) +
+  2 * (2 * (1 / (3 ^ 4 : ℚ)) + 1 / (6 ^ 4 : ℚ) + 1 / (9 ^ 4 : ℚ) + 1 / (15 ^ 4 : ℚ))
+
+theorem higher_genus_mednykh_abelianization_asymptotics_and_genus3_bounds :
+    (abelianizationOrder_2I < abelianizationOrder_2O ∧
+      abelianizationOrder_2O < abelianizationOrder_2T ∧
+      abelianizationOrder_2T < abelianizationOrder_Q8) ∧
+    (mednykhM3_Q8 = 65 / 16 ∧
+      mednykhM3_2T = 4147 / 1296 ∧
+      mednykhM3_2O = 45953 / 20736 ∧
+      mednykhM3_2I = 2505331 / 2160000 ∧
+      1 < mednykhM3_2I ∧ mednykhM3_2I < mednykhM3_2O ∧
+      mednykhM3_2O < mednykhM3_2T ∧ mednykhM3_2T < mednykhM3_Q8) ∧
+    (mednykhM3_Q8 - abelianizationOrder_Q8 = (1 / 4 : ℚ) * (mednykhM2_Q8 - abelianizationOrder_Q8) ∧
+      mednykhM3_2T - abelianizationOrder_2T < (1 / 4 : ℚ) * (mednykhM2_2T - abelianizationOrder_2T) ∧
+      mednykhM3_2O - abelianizationOrder_2O < (1 / 4 : ℚ) * (mednykhM2_2O - abelianizationOrder_2O) ∧
+      mednykhM3_2I - abelianizationOrder_2I < (1 / 4 : ℚ) * (mednykhM2_2I - abelianizationOrder_2I)) ∧
+    (mednykhM3_Delta27 = 731 / 81 ∧
+      mednykhM3_Delta54 = 745 / 324 ∧
+      mednykhM3_Sigma216x3 = 88135139 / 26873856 ∧
+      mednykhM3_Sigma1080 = 590783071 / 559872000 ∧
+      0 < mednykhM3_Sigma1080 - abelianizationOrder_Sigma1080 ∧
+      mednykhM3_Sigma1080 - abelianizationOrder_Sigma1080 <
+        (1 / 9 : ℚ) * (mednykhM2_Sigma1080 - abelianizationOrder_Sigma1080) ∧
+      mednykhM3_Sigma1080 - abelianizationOrder_Sigma1080 < 3 / 50 ∧
+      2 < mednykhM3_Delta54 ∧ mednykhM3_Delta54 < mednykhM3_Sigma216x3 ∧
+      mednykhM3_Sigma216x3 < mednykhM3_Delta27) := by
+  dsimp [abelianizationOrder_Q8, abelianizationOrder_2T, abelianizationOrder_2O, abelianizationOrder_2I,
+    abelianizationOrder_Sigma1080, mednykhM2_Q8, mednykhM2_2T, mednykhM2_2O, mednykhM2_2I,
+    mednykhM2_Sigma1080, mednykhM3_Q8, mednykhM3_2T, mednykhM3_2O, mednykhM3_2I,
+    mednykhM3_Delta27, mednykhM3_Delta54, mednykhM3_Sigma216x3, mednykhM3_Sigma1080]
+  norm_num
+
 -- ============================================================================
 -- Axiom Verification Receipts
 -- ============================================================================
@@ -1294,5 +1364,6 @@ theorem baryon_vs_gluon_screening_casimir_ratios_and_mednykh_2d_towers :
 #print axioms su2_higher_spin_casimir_obstruction_and_hessian_defect_enclosure
 #print axioms complete_blichfeldt_ffk_su3_crystal_hierarchy_and_halving_laws
 #print axioms baryon_vs_gluon_screening_casimir_ratios_and_mednykh_2d_towers
+#print axioms higher_genus_mednykh_abelianization_asymptotics_and_genus3_bounds
 
 end FQCD

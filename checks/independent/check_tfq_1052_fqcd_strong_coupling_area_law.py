@@ -591,6 +591,33 @@ def run_checks() -> Dict[str, Any]:
         "Sigma(1080) 17-irrep Burnside sum = 1080, M_2(Sigma(1080)) = 36011/21600 < 2, and Z_2(Sigma(1080)) = 1944594 < Z_2(Sigma(216x3)) = 2001267",
     )
 
+    # -------------------------------------------------------------------------
+    # Family 18: Higher-genus Mednykh abelianization asymptotics & genus-3 bounds
+    # -------------------------------------------------------------------------
+    m3_q8 = sum(Fraction(1, d ** 4) for d in [1, 1, 1, 1, 2])
+    m3_2t = sum(Fraction(1, d ** 4) for d in [1, 1, 1, 2, 2, 2, 3])
+    m3_2o = sum(Fraction(1, d ** 4) for d in [1, 1, 2, 2, 2, 3, 3, 4])
+    m3_2i = sum(Fraction(1, d ** 4) for d in [1, 2, 2, 3, 3, 4, 4, 5, 6])
+    m3_d27 = sum(Fraction(1, d ** 4) for d in [1] * 9 + [3] * 2)
+    m3_d54 = sum(Fraction(1, d ** 4) for d in [1] * 2 + [2] * 4 + [3] * 4)
+    m3_s216x3 = sum(Fraction(1, d ** 4) for d in [1] * 3 + [2] * 3 + [3] * 7 + [6] * 6 + [8] * 3 + [9] * 2)
+    m3_s1080 = sum(Fraction(1, d ** 4) for d in s1080_dims)
+    check(
+        Fraction(1, 1) < m3_2i == Fraction(2505331, 2160000) < m3_2o == Fraction(45953, 20736) < m3_2t == Fraction(4147, 1296) < m3_q8 == Fraction(65, 16),
+        "Genus-3 normalized Mednykh sum M_3(G) descends strictly across SU(2) ADE series Q_8 -> 2T -> 2O -> 2I",
+    )
+    check(
+        m3_q8 - Fraction(4, 1) == Fraction(1, 4) * (m2_q8 - Fraction(4, 1))
+        and m3_2i - Fraction(1, 1) < Fraction(1, 4) * (m2_2i - Fraction(1, 1)),
+        "Per-genus non-abelian 1/4 contraction bound on SU(2) ADE series (d_min = 2)",
+    )
+    check(
+        m3_s1080 == Fraction(590783071, 559872000)
+        and Fraction(0, 1) < m3_s1080 - Fraction(1, 1) < Fraction(3, 50) < Fraction(1, 9) * (m2_s1080 - Fraction(1, 1))
+        and Fraction(2, 1) < m3_d54 < m3_s216x3 < m3_d27 == Fraction(731, 81),
+        "Perfect Sigma(1080) genus-3 1/9 contraction bound M_3(Sigma(1080)) - 1 < (1/9)(M_2 - 1) < 3/50 vs solvable M_3 > 2",
+    )
+
     return {
         "record_id": "TFQ-1052",
         "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",

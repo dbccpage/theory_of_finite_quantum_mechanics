@@ -653,6 +653,31 @@ pub fn baryon_vs_gluon_casimir_and_mednykh_2d_towers() -> (
     )
 }
 
+/// Higher-genus (`g = 3`, `2 - 2g = -4`) normalized Mednykh sums `M_3(G) = ∑_{R ∈ Irr(G)} (dim R)^{-4}`
+/// and abelianization asymptotics `0 < M_3(G) - |G/[G, G]| ≤ (1/d_min^2)(M_2(G) - |G/[G, G]|)`:
+/// returns `(M_3(Q_8), M_3(2T), M_3(2O), M_3(2I), M_3(Δ(27)), M_3(Δ(54)), M_3(Σ(216×3)), M_3(Σ(1080)))`.
+pub fn higher_genus_mednykh_abelianization_and_genus3_bounds() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    (
+        rat(65, 16),
+        rat(4147, 1296),
+        rat(45953, 20736),
+        rat(2505331, 2160000),
+        rat(731, 81),
+        rat(745, 324),
+        rat(88135139, 26873856),
+        rat(590783071, 559872000),
+    )
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -964,6 +989,21 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
         || !(z2_s1080 < z2_s216x3)
     {
         return Err("Baryon vs gluon Casimir ratios and Mednykh 2D towers verification failed");
+    }
+
+    // 19. Higher-genus Mednykh abelianization asymptotics & genus-3 bounds
+    let (m3_q8, m3_2t, m3_2o, m3_2i, m3_d27, m3_d54, m3_s216, m3_s1080) =
+        higher_genus_mednykh_abelianization_and_genus3_bounds();
+    let d3_s1080 = &m3_s1080 - BigRational::one();
+    let d2_s1080 = &m2_s1080 - BigRational::one();
+    if !(BigRational::one() < m3_2i && m3_2i < m3_2o && m3_2o < m3_2t && m3_2t < m3_q8)
+        || (&m3_q8 - rat(4, 1)) != rat(1, 4) * (&m2_q8 - rat(4, 1))
+        || !(BigRational::zero() < d3_s1080
+            && d3_s1080 < rat(1, 9) * d2_s1080
+            && d3_s1080 < rat(3, 50))
+        || !(rat(2, 1) < m3_d54 && m3_d54 < m3_s216 && m3_s216 < m3_d27)
+    {
+        return Err("Higher-genus Mednykh abelianization asymptotics and genus-3 bounds failed");
     }
 
     Ok(true)
