@@ -399,6 +399,42 @@ pub fn strong_to_freezing_coupling_gap(
     Ok((BigRational::one() / delta_min) - b0)
 }
 
+/// Klein simple subgroup `Σ(168) ≅ PSL(2,7) ⊂ SU(3)` (`|Σ(168)| = 168`) and `Σ(168×3)`:
+/// returns `(I_{1,1}(3_a), I_2(3_a), I_3(3_a), I_3(6), I_3(7), I_2(8), I_3(8), Δ_min(Σ(168×3))_low, Δ_min(Σ(168×3))_high, Δ_min(Σ(168)))`.
+pub fn klein_sigma168_invariants_and_su3_chain() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let order = 168_i64;
+    let i11_3a = rat(1 * 9 + 21 * 1 + 42 * 1 + 48 * 2, order);
+    let i2_3a = rat(1 * 9 + 21 * 1 + 42 * 1 + 24 * (-3), order);
+    let i3_3a = rat(1 * 27 + 21 * (-1) + 42 * 1 + 24 * 5, order);
+    let i3_6 = rat(1 * 216 + 21 * 8 + 48 * (-1), order);
+    let i3_7 = rat(1 * 343 + 21 * (-1) + 56 * 1 + 42 * (-1), order);
+    let i2_8 = rat(1 * 64 + 56 * 1 + 48 * 1, order);
+    let i3_8 = rat(1 * 512 + 56 * (-1) + 48 * 1, order);
+    (
+        i11_3a,
+        i2_3a,
+        i3_3a,
+        i3_6,
+        i3_7,
+        i2_8,
+        i3_8,
+        rat(8, 15),
+        rat(13, 24),
+        rat(2, 3),
+    )
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -555,6 +591,22 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
         && g_d54 < g_s1080_l)
     {
         return Err("Strong-coupling to freezing coupling gap widening failed");
+    }
+
+    // 13. Klein Sigma(168) invariants, spurious cubic adjoint elimination, and complete SU(3) defect chain
+    let (k_i11, k_i2, k_i3_3a, k_i3_6, k_i3_7, k_i2_8, k_i3_8, ds168x3_l, ds168x3_u, ds168) =
+        klein_sigma168_invariants_and_su3_chain();
+    if k_i11 != BigRational::one()
+        || !k_i2.is_zero()
+        || k_i3_3a != BigRational::one()
+        || k_i3_6 != rat(2, 1)
+        || k_i3_7 != rat(2, 1)
+        || k_i2_8 != BigRational::one()
+        || k_i3_8 != rat(3, 1)
+        || !(s_i3_8a < k_i3_8)
+        || !(ds_u < ds168x3_l && ds168x3_l < ds168x3_u && ds168x3_u < ds168 && ds168 < rat(5, 6))
+    {
+        return Err("Klein Sigma(168) invariants and SU(3) defect chain verification failed");
     }
 
     Ok(true)

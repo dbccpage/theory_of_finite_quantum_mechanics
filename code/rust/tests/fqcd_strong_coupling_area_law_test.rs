@@ -13,8 +13,8 @@ use theory_of_finite_qm::fqcd::{
     beta0_rational_bounds, binary_icosahedral_2i_invariants, check_geometric_cluster_series_bound,
     cluster_series_geometric_sum, collar_tube_contraction, const_k, coordination_number_delta,
     d4_multi_plaquette_collar_bound, freezing_plaquette_defect_bounds,
-    general_collar_tube_contraction, loop_perimeter, minimal_spanning_area,
-    normal_directions_count, q8_center_parity_non_screening_verified,
+    general_collar_tube_contraction, klein_sigma168_invariants_and_su3_chain, loop_perimeter,
+    minimal_spanning_area, normal_directions_count, q8_center_parity_non_screening_verified,
     q8_cubic_character_invariant_sum, s3_cubic_character_invariant_sum,
     s4_cubic_character_invariants, strong_to_freezing_coupling_gap,
     su2_ade_binary_polyhedral_tower, su3_subgroup_tower_and_freezing_scales,
@@ -228,6 +228,18 @@ fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
     let g_2o_l = strong_to_freezing_coupling_gap(48, 4, &d2o_u).unwrap();
     let g_2i_l = strong_to_freezing_coupling_gap(120, 4, &d2i_u).unwrap();
     assert!(rat(999, 1000) < g_q8 && g_q8 < g_2t && g_2t < g_2o_l && g_2o_l < g_2i_l);
+
+    let (k_i11, k_i2, k_i3_3a, k_i3_6, k_i3_7, k_i2_8, k_i3_8, ds168x3_l, ds168x3_u, ds168) =
+        klein_sigma168_invariants_and_su3_chain();
+    assert_eq!(k_i11, BigRational::one());
+    assert_eq!(k_i2, BigRational::zero());
+    assert_eq!(k_i3_3a, BigRational::one());
+    assert_eq!(k_i3_6, rat(2, 1));
+    assert_eq!(k_i3_7, rat(2, 1));
+    assert_eq!(k_i2_8, BigRational::one());
+    assert_eq!(k_i3_8, rat(3, 1));
+    assert!(s_i3_8a < k_i3_8);
+    assert!(ds_u < ds168x3_l && ds168x3_l < ds168x3_u && ds168x3_u < ds168 && ds168 < rat(5, 6));
 }
 
 #[test]

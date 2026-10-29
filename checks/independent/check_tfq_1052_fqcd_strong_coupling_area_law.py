@@ -417,6 +417,26 @@ def run_checks() -> Dict[str, Any]:
     check(Fraction(999, 1000) < g_q8 < g_2t < g_2o_low < g_2i_low, "SU(2) ADE strong-to-freezing coupling gap > 999/1000 and widens strictly with |G|")
     check(Fraction(999, 1000) < g_d27 < g_d54 < g_s1080_low, "SU(3) crystal strong-to-freezing coupling gap > 999/1000 and widens strictly with |G|")
 
+    # -------------------------------------------------------------------------
+    # Family 12: Klein Sigma(168) invariants, spurious cubic adjoint elimination, and complete SU(3) defect chain
+    # -------------------------------------------------------------------------
+    order_168 = 168
+    k_i11 = Fraction(1 * 9 + 21 * 1 + 42 * 1 + 48 * 2, order_168)
+    k_i2 = Fraction(1 * 9 + 21 * 1 + 42 * 1 + 24 * (-3), order_168)
+    k_i3_3a = Fraction(1 * 27 + 21 * (-1) + 42 * 1 + 24 * 5, order_168)
+    k_i3_6 = Fraction(1 * 216 + 21 * 8 + 48 * (-1), order_168)
+    k_i3_7 = Fraction(1 * 343 + 21 * (-1) + 56 * 1 + 42 * (-1), order_168)
+    k_i2_8 = Fraction(1 * 64 + 56 * 1 + 48 * 1, order_168)
+    k_i3_8 = Fraction(1 * 512 + 56 * (-1) + 48 * 1, order_168)
+    check(k_i11 == Fraction(1, 1) and k_i2 == Fraction(0, 1) and k_i3_3a == Fraction(1, 1), "Sigma(168) fundamental 3_a invariants I_{1,1}=1, I_2=0, I_3=1")
+    check(k_i3_6 == Fraction(2, 1) and k_i3_7 == Fraction(2, 1), "Sigma(168) sextet and septet cubic invariants I_3(6)=I_3(7)=2")
+    check(k_i2_8 == Fraction(1, 1) and k_i3_8 == Fraction(3, 1) > invs_s1080["I3_8a"], "Sigma(168) adjoint 8 has I_2=1 and spurious I_3=3 > 2 = I_3(Sigma(1080), 8_a)")
+    check(Fraction(9, 2) ** 2 < Fraction(21, 1) < Fraction(23, 5) ** 2, "Rational sqrt(21) enclosure (9/2)^2 < 21 < (23/5)^2")
+    check(
+        ds1080_low < ds1080_high < Fraction(8, 15) < Fraction(13, 24) < Fraction(2, 3) < Fraction(5, 6) < Fraction(1, 1),
+        "Complete 6-step SU(3) minimal plaquette defect chain across Sigma(1080), Sigma(168x3), Sigma(168), Delta(54), Delta(27)",
+    )
+
     return {
         "record_id": "TFQ-1052",
         "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",

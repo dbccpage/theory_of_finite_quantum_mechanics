@@ -27,6 +27,7 @@ try:
         freezing_plaquette_defect_rational_bounds,
         general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
+        klein_sigma168_invariants_and_su3_chain_rational,
         loop_perimeter,
         minimal_spanning_area,
         normal_directions_count,
@@ -65,6 +66,7 @@ except ImportError:
         freezing_plaquette_defect_rational_bounds,
         general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
+        klein_sigma168_invariants_and_su3_chain_rational,
         loop_perimeter,
         minimal_spanning_area,
         normal_directions_count,
@@ -353,6 +355,19 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
     g_s1080_low = strong_to_freezing_coupling_gap_rational(1080, 4, Fraction(7, 15))
     assert Fraction(999, 1000) < g_q8 < g_2t < g_2o_low < g_2i_low
     assert Fraction(999, 1000) < g_d27 < g_d54 < g_s1080_low
+
+    s168 = klein_sigma168_invariants_and_su3_chain_rational()
+    assert s168["I11_3a"] == Fraction(1, 1)
+    assert s168["I2_3a"] == Fraction(0, 1)
+    assert s168["I3_3a"] == Fraction(1, 1)
+    assert s168["I3_6"] == Fraction(2, 1)
+    assert s168["I3_7"] == Fraction(2, 1)
+    assert s168["I2_8"] == Fraction(1, 1)
+    assert s168["I3_8"] == Fraction(3, 1)
+    ds168x3_low, ds168x3_high = s168["delta_min_Sigma168x3_bounds"]
+    exact_ds168x3 = (11.0 - math.sqrt(21.0)) / 12.0
+    assert float(ds168x3_low) < exact_ds168x3 < float(ds168x3_high)
+    assert Fraction(7, 15) < ds168x3_low < ds168x3_high < s168["delta_min_Sigma168"] < su3_tower["delta_min_Delta54"] < su3_tower["delta_min_Delta27"]
 
 
 def test_master_witness_passes() -> None:

@@ -447,6 +447,29 @@ def strong_to_freezing_coupling_gap_rational(n: int, d: int, delta_min: Fraction
     return (Fraction(1, 1) / delta_min) - strong_coupling_threshold_beta0_rational(n, d)
 
 
+def klein_sigma168_invariants_and_su3_chain_rational() -> Dict[str, Any]:
+    """Exact character invariants and plaquette defect bounds for the Klein simple subgroup
+    Sigma(168) = PSL(2, 7) subset SU(3) (|Sigma(168)| = 168) and Sigma(168 x 3) (|Sigma(168 x 3)| = 504):
+    - Fundamental 3_a: I_{1,1} = 1, I_2 = 0, I_3 = 1
+    - Sextet 6 and septet 7: I_3(6) = 2, I_3(7) = 2
+    - Adjoint octet 8: I_2(8) = 1 (irreducible), I_3(8) = 3 > 2 = I_3(Sigma(1080), 8_a)
+      (spurious 3rd cubic adjoint invariant on Sigma(168) eliminated in Sigma(1080))
+    - Plaquette defects: Delta_min(Sigma(168)) = 2/3, Delta_min(Sigma(168x3)) in (8/15, 13/24).
+    """
+    order = 168
+    return {
+        "I11_3a": Fraction(1 * 9 + 21 * 1 + 42 * 1 + 48 * 2, order),
+        "I2_3a": Fraction(1 * 9 + 21 * 1 + 42 * 1 + 24 * (-3), order),
+        "I3_3a": Fraction(1 * 27 + 21 * (-1) + 42 * 1 + 24 * 5, order),
+        "I3_6": Fraction(1 * 216 + 21 * 8 + 48 * (-1), order),
+        "I3_7": Fraction(1 * 343 + 21 * (-1) + 56 * 1 + 42 * (-1), order),
+        "I2_8": Fraction(1 * 64 + 56 * 1 + 48 * 1, order),
+        "I3_8": Fraction(1 * 512 + 56 * (-1) + 48 * 1, order),
+        "delta_min_Sigma168": Fraction(2, 3),
+        "delta_min_Sigma168x3_bounds": (Fraction(8, 15), Fraction(13, 24)),
+    }
+
+
 def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
     """Master multi-language verification witness for Record TFQ-1052."""
     checks = []
@@ -581,6 +604,20 @@ def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
     checks.append(("strong_to_freezing_gap_widening", 0, (
         Fraction(999, 1000) < g_q8 < g_2t < g_2o_low < g_2i_low
         and Fraction(999, 1000) < g_d27 < g_d54 < g_s1080_low
+    )))
+
+    # 13. Klein Sigma(168) invariants, spurious cubic adjoint elimination, and complete SU(3) defect chain
+    s168 = klein_sigma168_invariants_and_su3_chain_rational()
+    ds168x3_low, ds168x3_high = s168["delta_min_Sigma168x3_bounds"]
+    checks.append(("klein_sigma168_and_su3_chain", 0, (
+        s168["I11_3a"] == Fraction(1, 1)
+        and s168["I2_3a"] == Fraction(0, 1)
+        and s168["I3_3a"] == Fraction(1, 1)
+        and s168["I3_6"] == Fraction(2, 1)
+        and s168["I3_7"] == Fraction(2, 1)
+        and s168["I2_8"] == Fraction(1, 1)
+        and s168["I3_8"] == Fraction(3, 1) > invs_s1080["I3_8a"]
+        and ds1080_low < ds1080_high < ds168x3_low < ds168x3_high < s168["delta_min_Sigma168"] < su3_tower["delta_min_Delta54"] < su3_tower["delta_min_Delta27"]
     )))
 
     all_passed = all(status for _, _, status in checks)

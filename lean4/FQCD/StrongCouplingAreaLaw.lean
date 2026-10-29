@@ -875,6 +875,69 @@ theorem strong_coupling_to_freezing_regime_separation :
     deltaMinDelta27, deltaMinDelta54, deltaMinSigma1080Upper]
   norm_num
 
+-- ----------------------------------------------------------------------------
+-- Main Theorem 9: Klein Simple Subgroup Σ(168) ≅ PSL(2,7) ⊂ SU(3) & Σ(168×3)
+-- Spurious Cubic Adjoint Invariant Elimination and Complete SU(3) Defect Chain
+-- ----------------------------------------------------------------------------
+
+/-- Klein simple subgroup `Σ(168) ≅ PSL(2,7) ⊂ SU(3)` order `|Σ(168)| = 168`,
+with 6 conjugacy classes `(1, 21, 56, 42, 24, 24)`. -/
+def sigma168_order : Nat := 168
+
+/-- Faithful complex 3D irrep `3_a` of `Σ(168)`:
+- Hermitian norm sum `1·9 + 21·1 + 56·0 + 42·1 + 48·2 = 168` (`I_{1,1} = 1`)
+- Quadratic sum `1·9 + 21·1 + 56·0 + 42·1 + 24·(-3) = 72 - 72 = 0` (`I_2 = 0`, since `α^2 + ᾱ^2 = -3`)
+- Cubic sum `1·27 + 21·(-1) + 56·0 + 42·1 + 24·5 = 48 + 120 = 168` (`I_3 = 1`, since `α^3 + ᾱ^3 = 5`). -/
+def sigma168_chi3a_norm_sq_sum : Int := 1 * 9 + 21 * 1 + 56 * 0 + 42 * 1 + 48 * 2
+def sigma168_chi3a_sq_sum : Int := 1 * 9 + 21 * 1 + 56 * 0 + 42 * 1 + 24 * (-3)
+def sigma168_chi3a_cubed_sum : Int := 1 * (3 ^ 3) + 21 * ((-1) ^ 3) + 56 * 0 + 42 * (1 ^ 3) + 24 * 5
+
+/-- Symmetric sextet `6 = S^2(3_a)` (`χ_6 = (6, 2, 0, 0, -1, -1)`):
+cubic sum `216 + 21·8 - 48·1 = 336` (`I_3 = 2`). -/
+def sigma168_chi6_cubed_sum : Int := 1 * (6 ^ 3) + 21 * (2 ^ 3) + 56 * 0 + 42 * 0 + 48 * ((-1) ^ 3)
+
+/-- Septet `7` (`χ_7 = (7, -1, 1, -1, 0, 0)`):
+cubic sum `343 - 21 + 56 - 42 = 336` (`I_3 = 2`). -/
+def sigma168_chi7_cubed_sum : Int := 1 * (7 ^ 3) + 21 * ((-1) ^ 3) + 56 * (1 ^ 3) + 42 * ((-1) ^ 3)
+
+/-- `SU(3)` adjoint octet `8` restricted to `Σ(168)` (`χ_8 = |χ_{3_a}|^2 - 1 = (8, 0, -1, 0, 1, 1)`):
+- Quadratic norm sum `64 + 56 + 48 = 168` (`I_2 = 1`, irreducible on `Σ(168)`)
+- Cubic sum `512 - 56 + 48 = 504 = 3 · 168` (`I_3(Σ(168), 8) = 3`, exhibiting a spurious 3rd cubic
+  adjoint invariant on `Σ(168)` that is eliminated in `Σ(1080)` where `I_3(Σ(1080), 8_a) = 2`). -/
+def sigma168_chi8_sq_sum : Int := 1 * (8 ^ 2) + 21 * 0 + 56 * ((-1) ^ 2) + 42 * 0 + 48 * (1 ^ 2)
+def sigma168_chi8_cubed_sum : Int := 1 * (8 ^ 3) + 21 * 0 + 56 * ((-1) ^ 3) + 42 * 0 + 48 * (1 ^ 3)
+
+/-- Minimal non-identity plaquette defects for `Σ(168)` (`Δ_min = 1 - 1/3 = 2/3`)
+and `Σ(168 × 3)` (`Δ_min = (11 - √21)/12 ∈ (8/15, 13/24)` from `9/2 < √21 < 23/5`). -/
+def deltaMinSigma168 : ℚ := 2 / 3
+def deltaMinSigma168x3Lower : ℚ := 8 / 15
+def deltaMinSigma168x3Upper : ℚ := 13 / 24
+
+theorem klein_sigma168_invariants_and_complete_su3_defect_chain :
+    (sigma168_chi3a_norm_sq_sum : ℚ) / (sigma168_order : ℚ) = 1 ∧
+    (sigma168_chi3a_sq_sum : ℚ) / (sigma168_order : ℚ) = 0 ∧
+    (sigma168_chi3a_cubed_sum : ℚ) / (sigma168_order : ℚ) = 1 ∧
+    (sigma168_chi6_cubed_sum : ℚ) / (sigma168_order : ℚ) = 2 ∧
+    (sigma168_chi7_cubed_sum : ℚ) / (sigma168_order : ℚ) = 2 ∧
+    (sigma168_chi8_sq_sum : ℚ) / (sigma168_order : ℚ) = 1 ∧
+    (sigma168_chi8_cubed_sum : ℚ) / (sigma168_order : ℚ) = 3 ∧
+    ((sigma1080_chi8a_cubed_sum : ℚ) / (sigma1080_order : ℚ) <
+      (sigma168_chi8_cubed_sum : ℚ) / (sigma168_order : ℚ)) ∧
+    ((9 / 2 : ℚ) ^ 2 < 21 ∧ (21 : ℚ) < (23 / 5 : ℚ) ^ 2) ∧
+    (0 < deltaMinSigma1080Lower ∧
+      deltaMinSigma1080Lower < deltaMinSigma1080Upper ∧
+      deltaMinSigma1080Upper < deltaMinSigma168x3Lower ∧
+      deltaMinSigma168x3Lower < deltaMinSigma168x3Upper ∧
+      deltaMinSigma168x3Upper < deltaMinSigma168 ∧
+      deltaMinSigma168 < deltaMinDelta54 ∧
+      deltaMinDelta54 < deltaMinDelta27) := by
+  dsimp [sigma168_chi3a_norm_sq_sum, sigma168_chi3a_sq_sum, sigma168_chi3a_cubed_sum,
+    sigma168_chi6_cubed_sum, sigma168_chi7_cubed_sum, sigma168_chi8_sq_sum,
+    sigma168_chi8_cubed_sum, sigma168_order, sigma1080_chi8a_cubed_sum, sigma1080_order,
+    deltaMinSigma1080Lower, deltaMinSigma1080Upper, deltaMinSigma168x3Lower,
+    deltaMinSigma168x3Upper, deltaMinSigma168, deltaMinDelta54, deltaMinDelta27]
+  norm_num
+
 -- ============================================================================
 -- Axiom Verification Receipts
 -- ============================================================================
@@ -892,5 +955,6 @@ theorem strong_coupling_to_freezing_regime_separation :
 #print axioms su2_binary_polyhedral_ade_tower_defects_and_invariants
 #print axioms su3_subgroup_tower_defects_and_freezing_scales
 #print axioms strong_coupling_to_freezing_regime_separation
+#print axioms klein_sigma168_invariants_and_complete_su3_defect_chain
 
 end FQCD
