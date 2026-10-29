@@ -13,8 +13,9 @@ use theory_of_finite_qm::fqcd::{
     beta0_rational_bounds, binary_icosahedral_2i_invariants, check_geometric_cluster_series_bound,
     cluster_series_geometric_sum, collar_tube_contraction, const_k, coordination_number_delta,
     d4_multi_plaquette_collar_bound, freezing_plaquette_defect_bounds,
-    general_collar_tube_contraction, klein_sigma168_invariants_and_su3_chain, loop_perimeter,
-    minimal_spanning_area, normal_directions_count, q8_center_parity_non_screening_verified,
+    general_collar_tube_contraction, hessian_subgroups_and_quartic_adjoint_casimir_obstruction,
+    klein_sigma168_invariants_and_su3_chain, loop_perimeter, minimal_spanning_area,
+    normal_directions_count, q8_center_parity_non_screening_verified,
     q8_cubic_character_invariant_sum, quartic_character_invariants_and_continuum_matching,
     s3_cubic_character_invariant_sum, s4_cubic_character_invariants,
     strong_to_freezing_coupling_gap, su2_ade_binary_polyhedral_tower,
@@ -252,6 +253,36 @@ fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
     assert_eq!(i4_s168, rat(2, 1));
     assert_eq!(i4_s1080, rat(2, 1));
     assert!(i4_s1080 == i4_s168 && i4_s168 < i4_d54 && i4_d54 < i4_d27);
+
+    let (
+        i11_72,
+        i3_72,
+        i4_72,
+        i11_216,
+        i3_216,
+        i4_216,
+        i3_72_8,
+        i3_216_8,
+        i4_72_8,
+        i4_168_8,
+        i4_216_8,
+        i4_1080_8,
+        i4_su3_8,
+    ) = hessian_subgroups_and_quartic_adjoint_casimir_obstruction();
+    assert_eq!(i11_72, BigRational::one());
+    assert_eq!(i3_72, BigRational::one());
+    assert_eq!(i4_72, rat(2, 1));
+    assert_eq!(i11_216, BigRational::one());
+    assert_eq!(i3_216, BigRational::one());
+    assert_eq!(i4_216, rat(2, 1));
+    assert_eq!(i3_72_8, rat(7, 1));
+    assert_eq!(i3_216_8, rat(3, 1));
+    assert_eq!(i4_72_8, rat(57, 1));
+    assert_eq!(i4_168_8, rat(25, 1));
+    assert_eq!(i4_216_8, rat(21, 1));
+    assert_eq!(i4_1080_8, rat(13, 1));
+    assert_eq!(i4_su3_8, rat(8, 1));
+    assert!(i4_su3_8 < i4_1080_8 && i4_1080_8 < i4_216_8 && i4_216_8 < i4_168_8 && i4_168_8 < i4_72_8);
 }
 
 #[test]

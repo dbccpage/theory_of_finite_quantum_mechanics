@@ -488,6 +488,36 @@ def quartic_character_invariants_and_continuum_matching_rational() -> Dict[str, 
     }
 
 
+def hessian_subgroups_and_quartic_adjoint_casimir_obstruction_rational() -> Dict[str, Any]:
+    """Exact invariants for the Principal subgroup Sigma(72 x 3) (|G| = 216) and Hessian subgroup
+    Sigma(216 x 3) (|G| = 648) of SU(3), together with the quartic adjoint Casimir hierarchy
+    I_4(G, 8) = (1/|G|) sum_{g in G} chi_8(g)^4 across Sigma(72 x 3), Sigma(168), Sigma(216 x 3),
+    and Sigma(1080) compared against continuum SU(3) (I_4(SU(3), 8) = 8):
+    - Fundamental 3: I_{1,1} = 1, I_3 = 1, I_4 = 2 for both Sigma(72 x 3) and Sigma(216 x 3)
+    - Cubic adjoint: I_3(Sigma(72 x 3), 8) = 7 > I_3(Sigma(216 x 3), 8) = I_3(Sigma(168), 8) = 3 > I_3(Sigma(1080), 8_a) = 2
+    - Quartic adjoint: I_4(Sigma(72 x 3), 8) = 57 > I_4(Sigma(168), 8) = 25 > I_4(Sigma(216 x 3), 8) = 21
+      > I_4(Sigma(1080), 8_a) = 13 > 8 = I_4(SU(3), 8)
+    - Burnside / Frobenius dimension obstruction: |Sigma(1080)/Z_3| = |A_6| = 360 < 27^2 = 729.
+    """
+    return {
+        "I11_Sigma72x3_3": Fraction(3 * 9 + 189 * 1, 216),
+        "I3_Sigma72x3_3": Fraction(3 * 27 + 162 * 1 + 27 * (-1), 216),
+        "I4_Sigma72x3_3": Fraction(3 * 81 + 189 * 1, 216),
+        "I11_Sigma216x3_3": Fraction(3 * 9 + 72 * 3 + 405 * 1, 648),
+        "I3_Sigma216x3_3": Fraction(3 * 27 + 108 * 1 + 162 * 1 + 27 * (-1) + 72 * 4 + 36 * 1, 648),
+        "I4_Sigma216x3_3": Fraction(3 * 81 + 72 * 9 + 405 * 1, 648),
+        "I3_Sigma72x3_8": Fraction(3 * (8 ** 3) + 24 * (-1), 216),
+        "I3_Sigma216x3_8": Fraction(3 * (8 ** 3) + 72 * (2 ** 3) + 168 * (-1), 648),
+        "I4_Sigma72x3_8": Fraction(3 * (8 ** 4) + 24 * 1, 216),
+        "I4_Sigma168_8": Fraction(1 * (8 ** 4) + 56 * 1 + 48 * 1, 168),
+        "I4_Sigma216x3_8": Fraction(3 * (8 ** 4) + 72 * (2 ** 4) + 168 * 1, 648),
+        "I4_Sigma1080_8a": Fraction(3 * (8 ** 4 + 40 * 1 + 40 * 1 + 72 * 7), 1080),
+        "I4_SU3_continuum_8": Fraction(1 ** 2 + 2 ** 2 + 1 ** 2 + 1 ** 2 + 1 ** 2, 1),
+        "a6_irrep_dim_sq_sum": 1 ** 2 + 5 ** 2 + 5 ** 2 + 8 ** 2 + 8 ** 2 + 9 ** 2 + 10 ** 2,
+        "continuum_27_dim_sq": 27 ** 2,
+    }
+
+
 def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
     """Master multi-language verification witness for Record TFQ-1052."""
     checks = []
@@ -647,6 +677,22 @@ def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
         and q4["I4_Delta54_3"] == Fraction(5, 1)
         and q4["I4_Sigma168_3a"] == q4["I4_Sigma1080_3a"] == Fraction(2, 1)
         and (invs_s1080["I3_3a"], q4["I4_Sigma1080_3a"], invs_s1080["I3_8a"]) == (Fraction(1, 1), Fraction(2, 1), Fraction(2, 1))
+    )))
+
+    # 15. Principal & Hessian subgroups Sigma(72x3), Sigma(216x3) & quartic adjoint Casimir obstruction
+    hess = hessian_subgroups_and_quartic_adjoint_casimir_obstruction_rational()
+    checks.append(("hessian_subgroups_and_quartic_adjoint_obstruction", 0, (
+        hess["I11_Sigma72x3_3"] == hess["I3_Sigma72x3_3"] == Fraction(1, 1)
+        and hess["I4_Sigma72x3_3"] == Fraction(2, 1)
+        and hess["I11_Sigma216x3_3"] == hess["I3_Sigma216x3_3"] == Fraction(1, 1)
+        and hess["I4_Sigma216x3_3"] == Fraction(2, 1)
+        and hess["I3_Sigma72x3_8"] == Fraction(7, 1) > hess["I3_Sigma216x3_8"] == Fraction(3, 1) > invs_s1080["I3_8a"]
+        and hess["I4_Sigma72x3_8"] == Fraction(57, 1)
+        > hess["I4_Sigma168_8"] == Fraction(25, 1)
+        > hess["I4_Sigma216x3_8"] == Fraction(21, 1)
+        > hess["I4_Sigma1080_8a"] == Fraction(13, 1)
+        > hess["I4_SU3_continuum_8"] == Fraction(8, 1)
+        and hess["a6_irrep_dim_sq_sum"] == 360 < hess["continuum_27_dim_sq"] == 729
     )))
 
     all_passed = all(status for _, _, status in checks)

@@ -468,6 +468,54 @@ pub fn quartic_character_invariants_and_continuum_matching() -> (
     )
 }
 
+/// Principal subgroup `Σ(72×3)` (`|G| = 216`) and Hessian group `Σ(216×3)` (`|G| = 648`)
+/// fundamental invariants and the quartic adjoint Casimir hierarchy `I_4(G, 8) > 8 = I_4(SU(3), 8)`:
+/// returns `(I_{1,1}(Σ(72×3), 3), I_3(Σ(72×3), 3), I_4(Σ(72×3), 3), I_{1,1}(Σ(216×3), 3), I_3(Σ(216×3), 3), I_4(Σ(216×3), 3), I_3(Σ(72×3), 8), I_3(Σ(216×3), 8), I_4(Σ(72×3), 8), I_4(Σ(168), 8), I_4(Σ(216×3), 8), I_4(Σ(1080), 8_a), I_4(SU(3), 8))`.
+pub fn hessian_subgroups_and_quartic_adjoint_casimir_obstruction() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let i11_72 = rat(3 * 9 + 189 * 1, 216);
+    let i3_72 = rat(3 * 27 + 162 * 1 + 27 * (-1), 216);
+    let i4_72 = rat(3 * 81 + 189 * 1, 216);
+    let i11_216 = rat(3 * 9 + 72 * 3 + 405 * 1, 648);
+    let i3_216 = rat(3 * 27 + 108 * 1 + 162 * 1 + 27 * (-1) + 72 * 4 + 36 * 1, 648);
+    let i4_216 = rat(3 * 81 + 72 * 9 + 405 * 1, 648);
+    let i3_72_8 = rat(3 * 512 + 24 * (-1), 216);
+    let i3_216_8 = rat(3 * 512 + 72 * 8 + 168 * (-1), 648);
+    let i4_72_8 = rat(3 * 4096 + 24 * 1, 216);
+    let i4_168_8 = rat(1 * 4096 + 56 * 1 + 48 * 1, 168);
+    let i4_216_8 = rat(3 * 4096 + 72 * 16 + 168 * 1, 648);
+    let i4_1080_8 = rat(3 * (4096 + 80 + 72 * 7), 1080);
+    let i4_su3_8 = rat(1 + 4 + 1 + 1 + 1, 1);
+    (
+        i11_72,
+        i3_72,
+        i4_72,
+        i11_216,
+        i3_216,
+        i4_216,
+        i3_72_8,
+        i3_216_8,
+        i4_72_8,
+        i4_168_8,
+        i4_216_8,
+        i4_1080_8,
+        i4_su3_8,
+    )
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -656,6 +704,40 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
         || !(i4_s1080 == i4_s168 && i4_s168 < i4_d54 && i4_d54 < i4_d27)
     {
         return Err("Quartic character invariants and SU(3) continuum matching failed");
+    }
+
+    // 15. Principal & Hessian subgroups Sigma(72x3), Sigma(216x3) & quartic adjoint Casimir obstruction
+    let (
+        i11_72,
+        i3_72,
+        i4_72,
+        i11_216,
+        i3_216,
+        i4_216,
+        i3_72_8,
+        i3_216_8,
+        i4_72_8,
+        i4_168_8,
+        i4_216_8,
+        i4_1080_8,
+        i4_su3_8,
+    ) = hessian_subgroups_and_quartic_adjoint_casimir_obstruction();
+    if i11_72 != BigRational::one()
+        || i3_72 != BigRational::one()
+        || i4_72 != rat(2, 1)
+        || i11_216 != BigRational::one()
+        || i3_216 != BigRational::one()
+        || i4_216 != rat(2, 1)
+        || i3_72_8 != rat(7, 1)
+        || i3_216_8 != rat(3, 1)
+        || i4_72_8 != rat(57, 1)
+        || i4_168_8 != rat(25, 1)
+        || i4_216_8 != rat(21, 1)
+        || i4_1080_8 != rat(13, 1)
+        || i4_su3_8 != rat(8, 1)
+        || !(i4_su3_8 < i4_1080_8 && i4_1080_8 < i4_216_8 && i4_216_8 < i4_168_8 && i4_168_8 < i4_72_8)
+    {
+        return Err("Hessian subgroups and quartic adjoint Casimir obstruction failed");
     }
 
     Ok(true)

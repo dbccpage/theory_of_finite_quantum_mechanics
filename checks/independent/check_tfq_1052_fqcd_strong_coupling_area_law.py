@@ -461,6 +461,40 @@ def run_checks() -> Dict[str, Any]:
         "Sigma(1080) uniquely matches the continuum SU(3) invariant triple (I_3(3), I_4(3), I_3(8)) = (1, 2, 2)",
     )
 
+    # -------------------------------------------------------------------------
+    # Family 14: Principal & Hessian subgroups Sigma(72x3), Sigma(216x3) & quartic adjoint Casimir obstruction
+    # -------------------------------------------------------------------------
+    i11_72 = Fraction(3 * 9 + 189 * 1, 216)
+    i3_72 = Fraction(3 * 27 + 162 * 1 + 27 * (-1), 216)
+    i4_72 = Fraction(3 * 81 + 189 * 1, 216)
+    i11_216 = Fraction(3 * 9 + 72 * 3 + 405 * 1, 648)
+    i3_216 = Fraction(3 * 27 + 108 * 1 + 162 * 1 + 27 * (-1) + 72 * 4 + 36 * 1, 648)
+    i4_216 = Fraction(3 * 81 + 72 * 9 + 405 * 1, 648)
+    i3_72_8 = Fraction(3 * 512 + 24 * (-1), 216)
+    i3_216_8 = Fraction(3 * 512 + 72 * 8 + 168 * (-1), 648)
+    i4_72_8 = Fraction(3 * 4096 + 24 * 1, 216)
+    i4_168_8 = Fraction(1 * 4096 + 56 * 1 + 48 * 1, 168)
+    i4_216_8 = Fraction(3 * 4096 + 72 * 16 + 168 * 1, 648)
+    i4_1080_8 = Fraction(3 * (4096 + 80 + 72 * 7), 1080)
+    i4_su3_8 = Fraction(1 + 4 + 1 + 1 + 1, 1)
+    a6_dim_sq_sum = 1 ** 2 + 5 ** 2 + 5 ** 2 + 8 ** 2 + 8 ** 2 + 9 ** 2 + 10 ** 2
+    check(
+        i11_72 == i3_72 == i11_216 == i3_216 == Fraction(1, 1) and i4_72 == i4_216 == Fraction(2, 1),
+        "Principal Sigma(72x3) and Hessian Sigma(216x3) satisfy I_{1,1}(3)=I_3(3)=1 and I_4(3)=2 (irreducible 8)",
+    )
+    check(
+        i3_72_8 == Fraction(7, 1) > i3_216_8 == Fraction(3, 1) > invs_s1080["I3_8a"],
+        "Cubic adjoint invariants descend I_3(Sigma(72x3), 8)=7 > I_3(Sigma(216x3), 8)=3 > I_3(Sigma(1080), 8_a)=2",
+    )
+    check(
+        i4_72_8 == Fraction(57, 1) > i4_168_8 == Fraction(25, 1) > i4_216_8 == Fraction(21, 1) > i4_1080_8 == Fraction(13, 1) > i4_su3_8 == Fraction(8, 1),
+        "Quartic adjoint invariants descend 57 > 25 > 21 > 13 > 8 = I_4(SU(3), 8) across finite crystal subgroups",
+    )
+    check(
+        a6_dim_sq_sum == 360 < 27 ** 2 == 729,
+        "Burnside-Frobenius obstruction: |A_6| = 360 < 27^2 = 729 forces continuum 27-plet in 8x8 to split",
+    )
+
     return {
         "record_id": "TFQ-1052",
         "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",

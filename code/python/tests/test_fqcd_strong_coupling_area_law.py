@@ -27,6 +27,7 @@ try:
         freezing_plaquette_defect_rational_bounds,
         general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
+        hessian_subgroups_and_quartic_adjoint_casimir_obstruction_rational,
         klein_sigma168_invariants_and_su3_chain_rational,
         loop_perimeter,
         minimal_spanning_area,
@@ -67,6 +68,7 @@ except ImportError:
         freezing_plaquette_defect_rational_bounds,
         general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
+        hessian_subgroups_and_quartic_adjoint_casimir_obstruction_rational,
         klein_sigma168_invariants_and_su3_chain_rational,
         loop_perimeter,
         minimal_spanning_area,
@@ -377,6 +379,20 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
     assert q4["I4_Delta27_3"] == Fraction(9, 1)
     assert q4["I4_Delta54_3"] == Fraction(5, 1)
     assert q4["I4_Sigma168_3a"] == q4["I4_Sigma1080_3a"] == Fraction(2, 1)
+
+    hess = hessian_subgroups_and_quartic_adjoint_casimir_obstruction_rational()
+    assert hess["I11_Sigma72x3_3"] == hess["I3_Sigma72x3_3"] == Fraction(1, 1)
+    assert hess["I4_Sigma72x3_3"] == Fraction(2, 1)
+    assert hess["I11_Sigma216x3_3"] == hess["I3_Sigma216x3_3"] == Fraction(1, 1)
+    assert hess["I4_Sigma216x3_3"] == Fraction(2, 1)
+    assert hess["I3_Sigma72x3_8"] == Fraction(7, 1)
+    assert hess["I3_Sigma216x3_8"] == Fraction(3, 1)
+    assert hess["I4_Sigma72x3_8"] == Fraction(57, 1)
+    assert hess["I4_Sigma168_8"] == Fraction(25, 1)
+    assert hess["I4_Sigma216x3_8"] == Fraction(21, 1)
+    assert hess["I4_Sigma1080_8a"] == Fraction(13, 1)
+    assert hess["I4_SU3_continuum_8"] == Fraction(8, 1)
+    assert hess["a6_irrep_dim_sq_sum"] == 360 < hess["continuum_27_dim_sq"] == 729
 
 
 def test_master_witness_passes() -> None:

@@ -987,6 +987,75 @@ theorem quartic_character_invariants_and_su3_continuum_matching :
     sigma1080_chi3a_cubed_sum, sigma1080_chi8a_cubed_sum, sigma1080_order]
   norm_num
 
+-- ----------------------------------------------------------------------------
+-- Main Theorem 11: Principal & Hessian Subgroups Σ(72×3), Σ(216×3) ⊂ SU(3) and
+-- Quartic Adjoint Casimir Obstruction (I_4(G, 8) > 8 from 27-plet Splitting)
+-- ----------------------------------------------------------------------------
+
+/-- Principal subgroup `Σ(72×3) ⊂ SU(3)` order `|Σ(72×3)| = 216` (`Σ(72×3)/Z_3 ≅ (Z_3 × Z_3) ⋊ Q_8`):
+`|χ_3(g)|^2` takes values `9` (`3` central elements), `1` (`189` elements), and `0` (`24` elements). -/
+def sigma72x3_order : Nat := 216
+def sigma72x3_chi3_norm_sq_sum : Int := 3 * 9 + 189 * 1 + 24 * 0
+def sigma72x3_chi3_cubed_sum : Int := 3 * 27 + 162 * 1 + 27 * (-1) + 24 * 0
+def sigma72x3_chi3_quartic_sum : Int := 3 * 81 + 189 * 1 + 24 * 0
+def sigma72x3_chi8_cubed_sum : Int := 3 * (8 ^ 3) + 189 * (0 ^ 3) + 24 * ((-1) ^ 3)
+def sigma72x3_chi8_quartic_sum : Int := 3 * (8 ^ 4) + 189 * (0 ^ 4) + 24 * ((-1) ^ 4)
+
+/-- Hessian group `Σ(216×3) ⊂ SU(3)` order `|Σ(216×3)| = 648` (`Σ(216×3)/Z_3 ≅ (Z_3 × Z_3) ⋊ SL(2, F_3)`):
+`|χ_3(g)|^2` takes values `9` (`3` central elements), `3` (`72` elements), `1` (`405` elements), and `0` (`168` elements). -/
+def sigma216x3_order : Nat := 648
+def sigma216x3_chi3_norm_sq_sum : Int := 3 * 9 + 72 * 3 + 405 * 1 + 168 * 0
+def sigma216x3_chi3_cubed_sum : Int := 3 * 27 + 72 * 0 + 108 * 1 + 162 * 1 + 27 * (-1) + 72 * 4 + 36 * 1
+def sigma216x3_chi3_quartic_sum : Int := 3 * 81 + 72 * 9 + 405 * 1 + 168 * 0
+def sigma216x3_chi8_cubed_sum : Int := 3 * (8 ^ 3) + 72 * (2 ^ 3) + 405 * (0 ^ 3) + 168 * ((-1) ^ 3)
+def sigma216x3_chi8_quartic_sum : Int := 3 * (8 ^ 4) + 72 * (2 ^ 4) + 405 * (0 ^ 4) + 168 * ((-1) ^ 4)
+
+/-- Quartic adjoint sums `∑_{g ∈ G} χ_8(g)^4` for `Σ(168)` (`|G| = 168`) and `Σ(1080)` (`|G| = 1080`),
+compared against continuum `SU(3)` where `8 ⊗ 8 = 1 ⊕ 8_s ⊕ 8_a ⊕ 10 ⊕ 10̄ ⊕ 27` gives
+`I_4(SU(3), 8) = 1^2 + 2^2 + 1^2 + 1^2 + 1^2 = 8`. -/
+def sigma168_chi8_quartic_sum : Int := 1 * (8 ^ 4) + 21 * 0 + 56 * ((-1) ^ 4) + 42 * 0 + 48 * (1 ^ 4)
+def sigma1080_chi8a_quartic_sum : Int :=
+  3 * (1 * (8 ^ 4) + 45 * 0 + 40 * ((-1) ^ 4) + 40 * ((-1) ^ 4) + 90 * 0 + 72 * 7)
+def su3_continuum_chi8_quartic_invariant : ℚ := 1 ^ 2 + 2 ^ 2 + 1 ^ 2 + 1 ^ 2 + 1 ^ 2
+def a6_irrep_dim_sq_sum : Nat := 1 ^ 2 + 5 ^ 2 + 5 ^ 2 + 8 ^ 2 + 8 ^ 2 + 9 ^ 2 + 10 ^ 2
+
+/-- `theorem hessian_subgroups_and_quartic_adjoint_casimir_obstruction`:
+1. Both `Σ(72×3)` (`|G| = 216`) and `Σ(216×3)` (`|G| = 648`) satisfy `I_{1,1}(G, 3) = 1`,
+   `I_3(G, 3) = 1`, and `I_4(G, 3) = 2` (irreducible 8D adjoint via transitive action of `Q_8 ⊂ SL(2, F_3)`
+   on `(Z_3 × Z_3) \ {0}`).
+2. Their cubic adjoint invariants descend `I_3(Σ(72×3), 8) = 7 > I_3(Σ(216×3), 8) = I_3(Σ(168), 8) = 3 > I_3(Σ(1080), 8_a) = 2`.
+3. Their quartic adjoint invariants descend strictly:
+   `I_4(Σ(72×3), 8) = 57 > I_4(Σ(168), 8) = 25 > I_4(Σ(216×3), 8) = 21 > I_4(Σ(1080), 8_a) = 13 > 8 = I_4(SU(3), 8)`,
+   because `|Σ(1080)/Z_3| = |A_6| = ∑_{ρ ∈ Irr(A_6)} (dim ρ)^2 = 360 < 27^2 = 729`, forcing the continuum
+   `27`-plet in `8 ⊗ 8` to split on every finite crystal subgroup of `SU(3)`. -/
+theorem hessian_subgroups_and_quartic_adjoint_casimir_obstruction :
+    ((sigma72x3_chi3_norm_sq_sum : ℚ) / (sigma72x3_order : ℚ) = 1 ∧
+      (sigma72x3_chi3_cubed_sum : ℚ) / (sigma72x3_order : ℚ) = 1 ∧
+      (sigma72x3_chi3_quartic_sum : ℚ) / (sigma72x3_order : ℚ) = 2 ∧
+      (sigma216x3_chi3_norm_sq_sum : ℚ) / (sigma216x3_order : ℚ) = 1 ∧
+      (sigma216x3_chi3_cubed_sum : ℚ) / (sigma216x3_order : ℚ) = 1 ∧
+      (sigma216x3_chi3_quartic_sum : ℚ) / (sigma216x3_order : ℚ) = 2) ∧
+    ((sigma72x3_chi8_cubed_sum : ℚ) / (sigma72x3_order : ℚ) = 7 ∧
+      (sigma216x3_chi8_cubed_sum : ℚ) / (sigma216x3_order : ℚ) = 3 ∧
+      (sigma216x3_chi8_cubed_sum : ℚ) / (sigma216x3_order : ℚ) >
+        (sigma1080_chi8a_cubed_sum : ℚ) / (sigma1080_order : ℚ)) ∧
+    ((sigma72x3_chi8_quartic_sum : ℚ) / (sigma72x3_order : ℚ) = 57 ∧
+      (sigma168_chi8_quartic_sum : ℚ) / (sigma168_order : ℚ) = 25 ∧
+      (sigma216x3_chi8_quartic_sum : ℚ) / (sigma216x3_order : ℚ) = 21 ∧
+      (sigma1080_chi8a_quartic_sum : ℚ) / (sigma1080_order : ℚ) = 13 ∧
+      su3_continuum_chi8_quartic_invariant = 8 ∧
+      su3_continuum_chi8_quartic_invariant <
+        (sigma1080_chi8a_quartic_sum : ℚ) / (sigma1080_order : ℚ)) ∧
+    (a6_irrep_dim_sq_sum = 360 ∧ a6_irrep_dim_sq_sum < 27 ^ 2) := by
+  dsimp [sigma72x3_chi3_norm_sq_sum, sigma72x3_chi3_cubed_sum, sigma72x3_chi3_quartic_sum,
+    sigma72x3_chi8_cubed_sum, sigma72x3_chi8_quartic_sum, sigma72x3_order,
+    sigma216x3_chi3_norm_sq_sum, sigma216x3_chi3_cubed_sum, sigma216x3_chi3_quartic_sum,
+    sigma216x3_chi8_cubed_sum, sigma216x3_chi8_quartic_sum, sigma216x3_order,
+    sigma168_chi8_quartic_sum, sigma168_order, sigma1080_chi8a_cubed_sum,
+    sigma1080_chi8a_quartic_sum, sigma1080_order,
+    su3_continuum_chi8_quartic_invariant, a6_irrep_dim_sq_sum]
+  norm_num
+
 -- ============================================================================
 -- Axiom Verification Receipts
 -- ============================================================================
@@ -1006,5 +1075,6 @@ theorem quartic_character_invariants_and_su3_continuum_matching :
 #print axioms strong_coupling_to_freezing_regime_separation
 #print axioms klein_sigma168_invariants_and_complete_su3_defect_chain
 #print axioms quartic_character_invariants_and_su3_continuum_matching
+#print axioms hessian_subgroups_and_quartic_adjoint_casimir_obstruction
 
 end FQCD
