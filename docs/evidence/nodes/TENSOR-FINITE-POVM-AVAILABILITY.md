@@ -75,7 +75,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/tensor_measurement_validation.json`
 
 - file: [dag/research/tensor_measurement_validation.json](../../../dag/research/tensor_measurement_validation.json)
-- sha256 (`lf-normalised`): `0ba5c6fbd2b445aaf6f372a6f0b46427b7440245e863408a41ef7d6f0a2c6e90`
+- sha256 (`lf-normalised`): `b527b722e90d69dd18aa762d109425189ff7636e0b6510c1481e8579cff0f597`
 - cited in: node.source
 - counts toward the grade: yes
 

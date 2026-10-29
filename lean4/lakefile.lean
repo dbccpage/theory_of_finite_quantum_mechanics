@@ -923,6 +923,13 @@ lean_lib BornGaussianFrames where
 lean_lib BornGleasonRays where
   roots := #[`BornRationalRayObstruction, `BornGaussianMod2ClassRigidity]
 
+-- Partial obstructions for FQ-GLEASON-QI3-FRAME-FUNCTIONS; not default targets.
+lean_lib BornGaussianRationalNoColouring where
+  roots := #[`BornGaussianRationalNoColouring]
+
+lean_lib BornGaussianRationalExtensionObstruction where
+  roots := #[`BornGaussianRationalExtensionObstruction]
+
 -- PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT
 lean_lib PregenesisPresentationLift where
   roots := #[`PregenesisPresentationLift]

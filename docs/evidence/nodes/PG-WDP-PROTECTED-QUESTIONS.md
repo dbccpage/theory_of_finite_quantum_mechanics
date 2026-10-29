@@ -111,7 +111,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/wdp/primitive_axiomatics.rs`
 
 - file: [code/rust/src/wdp/primitive_axiomatics.rs](../../../code/rust/src/wdp/primitive_axiomatics.rs)
-- sha256 (`bytes`): `ec684060aeb104e94b73d1e3f72802ada1fa8bb5755232199380e454e66fd45d`
+- sha256 (`bytes`): `aed341e968c77a4efc9dd15172fe992ead69e98c7dc8ec576ddf940acb5d8b6d`
 - cited in: record TFQ-0339
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes

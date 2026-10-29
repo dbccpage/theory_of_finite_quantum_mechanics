@@ -139,7 +139,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/wdp/lib.rs`
 
 - file: [code/rust/src/wdp/lib.rs](../../../code/rust/src/wdp/lib.rs)
-- sha256 (`bytes`): `9111d9c82247cc2f1e8176b0a0285a788fcd1d2bc6cd2c1d3be81f84f431d235`
+- sha256 (`bytes`): `c844d8c003be489580055a725155199cd38ae56ca2f0bbb2dc141f8da77e7c9d`
 - cited in: record TFQ-0195
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes
@@ -147,7 +147,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/wdp/obstruction.rs`
 
 - file: [code/rust/src/wdp/obstruction.rs](../../../code/rust/src/wdp/obstruction.rs)
-- sha256 (`bytes`): `54a2d6c70adcbfb8ef7203785769515f17ab69b375f47f8f9eca1fb4eaa0bcb7`
+- sha256 (`bytes`): `30b2b590d0fb59ab9f01eb5f5ee924651ae5c2d391628a48ec57b88f3620fc29`
 - cited in: record TFQ-0346 (shared)
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: no

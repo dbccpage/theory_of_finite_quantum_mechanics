@@ -1,0 +1,62 @@
+{
+  "schema_version": "tfqm.scoped-governance-validation.v1",
+  "authority_effect": "None",
+  "base_commit": "83667d6f0bd3a52898b915a0e68dcbadf443b6c1",
+  "evaluated_at": "2026-10-28T20:56:23.023033+00:00",
+  "scope": "The three new or changed governed Lean artifacts, including the declarative Lake registration. No policy or baseline changes; no whole-tree audit file written.",
+  "commands": [
+    {
+      "command": [
+        "python",
+        "-I",
+        "-X",
+        "utf8",
+        "scripts/score_scope_contracts.py",
+        "check",
+        "--changed-since",
+        "HEAD"
+      ],
+      "exit_code": 0,
+      "stdout": "{\n  \"audit\": null,\n  \"passed\": true,\n  \"summary\": {\n    \"sources\": 3,\n    \"valid_contracts_and_scores\": 3,\n    \"invalid_or_missing\": 0,\n    \"invalid_but_grandfathered\": 0,\n    \"blocking_errors\": 0,\n    \"by_language\": {\n      \"Lean 4\": 3\n    },\n    \"by_preliminary_profile\": {\n      \"Non-Numeric\": 1,\n      \"Symbolic/Formal\": 2\n    },\n    \"completed_scores\": 3,\n    \"pinned_boilerplate\": 0,\n    \"incomplete_scores\": 0,\n    \"generated_governance_twins\": 0,\n    \"non_twin_sources\": 3\n  },\n  \"errors\": [],\n  \"scope\": \"in-scope sources changed since HEAD (merge base 83667d6f0bd3), including ordinary untracked files. The tracked audit file is not written. Grades are not read.\"\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "governance/target/release/governance-check",
+        "--root",
+        ".",
+        "check",
+        "--changed-since",
+        "HEAD"
+      ],
+      "exit_code": 1,
+      "stdout": "changed since HEAD (83667d6f0bd3a52898b915a0e68dcbadf443b6c1): 129 paths\nchecked 3: 0 pass, 0 grandfathered, 0 boilerplate, 3 failed\nFAIL lean4/BornGaussianRationalExtensionObstruction.lean (new or not grandfathered)\n  lean4/BornGaussianRationalExtensionObstruction.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L3D\nFAIL lean4/BornGaussianRationalNoColouring.lean (new or not grandfathered)\n  lean4/BornGaussianRationalNoColouring.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L3D\nFAIL lean4/lakefile.lean (grandfathering lost: bytes changed since the baseline)\n  lean4/lakefile.contract.score.yaml: [FLOOR] score: expected a completed token with level >= L4 and grade >= D, found L1D\n",
+      "stderr": ""
+    }
+  ],
+  "source_sha256": {
+    "lean4/BornGaussianRationalNoColouring.lean": "fffb58fbf26650d8e27fcabb2935937eda3d919dee03d9b481a21b67ea0ac778",
+    "lean4/BornGaussianRationalExtensionObstruction.lean": "aa68f3cdf925dcbe35b7aa2d23f51bc9bf1171963f060c8540988e5c77b1fb33",
+    "lean4/lakefile.lean": "ab075cf29cda55286b2a188a1982adbe946e3273c438a58d8ad1ed9818a56bcc",
+    "lean4/BornGaussianRationalNoColouring.contract.score.yaml": "ee6a3952fe46df19217bc8f1f954d1ead0bcff508903e97a7b92efd8b056ba31",
+    "lean4/BornGaussianRationalExtensionObstruction.contract.score.yaml": "7d736785ba3a973c940e0830fbf7bc2cd2abeb2762235d34c0c66454d36b317f",
+    "lean4/lakefile.contract.score.yaml": "460e57040000340793dcccdab5857d9a5bd806d3a627b1e7cf750031d07d78be",
+    "dag/research/fq_gleason_qi3_assessment.json": "63280afd3da4d54ac1528f1a4452a91eea5fc0432d00910d8563c645af7d10f5",
+    "governance/policy.json": "23fe1df64f79b67fae9a4b2ad20e18301cb3ecee555c20e01afa19a264820276",
+    "governance/baseline.json": "255680a9bbaca30c24826f936827b117fe183c11bb79709120753cf90d71066b",
+    "governance/Cargo.toml": "0856a5acae312cc25bd43bb93df4fbe19d64e8b2381cebc337ab6ed3484d088a",
+    "governance/Cargo.lock": "aa5e458593dc02a0e2dd96f6f914f2b5dc93a91978075f57a4f2d411ef741d3e",
+    "scripts/score_scope_contracts.py": "d5a51b4b59948b38cebfc756aeb4bf36a239144d1202a397c72cecdb6aa45609"
+  },
+  "governance_executable": {
+    "path": "governance/target/release/governance-check",
+    "sha256": "6aa224347cfd7666e121453773320ea0e5683382c9d394966305cee16dd7e2c6",
+    "build_command": "CARGO_HOME=/workspace/.toolchains/cargo RUSTUP_HOME=/workspace/.toolchains/rustup CARGO_NET_RETRY=0 /workspace/.toolchains/cargo/bin/cargo build --locked --release --manifest-path governance/Cargo.toml",
+    "build_exit_code": 0
+  },
+  "result": {
+    "source_binding_validation": "PASS: three valid completed byte-bound source contracts and scores.",
+    "repository_acceptance": "FAIL: exactly three FLOOR findings, L3D / L3D / L1D below the default required capability level L4. No other finding was reported.",
+    "interpretation": "This is a repository acceptance limitation. It does not invalidate the mathematical proof replay or require approval to perform local derivation work. No exception, merge or policy change is authorized by this receipt."
+  }
+}

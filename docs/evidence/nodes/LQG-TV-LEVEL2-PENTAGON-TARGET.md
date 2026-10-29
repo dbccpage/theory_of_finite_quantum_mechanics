@@ -93,7 +93,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/qm/finite_spinfoam.rs`
 
 - file: [code/rust/src/qm/finite_spinfoam.rs](../../../code/rust/src/qm/finite_spinfoam.rs)
-- sha256 (`bytes`): `a541eaef1a2c1fcd54317f865a923f8f70a7202e151d6565c5d2f5b4c6e15d58`
+- sha256 (`bytes`): `6b3341a24ba75f08902d98c9a718f7c9071240fc204d5a7ff194ca182b81be5f`
 - cited in: node.source
 - note: no test is cited for this symbol; its crate is theory_of_finite_qm
 - counts toward the grade: yes

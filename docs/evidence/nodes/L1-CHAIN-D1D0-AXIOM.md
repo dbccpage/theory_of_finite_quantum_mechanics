@@ -64,7 +64,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/wdp/cochains.rs`
 
 - file: [code/rust/src/wdp/cochains.rs](../../../code/rust/src/wdp/cochains.rs)
-- sha256 (`bytes`): `3dac1005a7b8b0518af7251f083259015cacbc8c1b0976f0ed563e5873e4ab1a`
+- sha256 (`bytes`): `bce64c50b35d13c08ca49e02105d5ce0562e012b50524c0d7f32b66cc6f72886`
 - cited in: record TFQ-0350
 - note: no test is cited for this symbol; its crate is tfqm_wdp
 - counts toward the grade: yes

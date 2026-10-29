@@ -65,7 +65,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Rust: `code/rust/src/qm/campaigns/continuum.rs`
 
 - file: [code/rust/src/qm/campaigns/continuum.rs](../../../code/rust/src/qm/campaigns/continuum.rs)
-- sha256 (`bytes`): `68a35304067d3806f52fbbaec7459e89a192187b7d5074bcacb6f33f97e63524`
+- sha256 (`bytes`): `f63929ef1d3d58237149b0509ce311834f94fd5657df8c0aebe6743decbe6757`
 - cited in: record TFQ-0122, record TFQ-0124
 - note: no test is cited for this symbol; its crate is theory_of_finite_qm
 - counts toward the grade: yes
