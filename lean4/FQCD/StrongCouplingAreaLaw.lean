@@ -938,6 +938,55 @@ theorem klein_sigma168_invariants_and_complete_su3_defect_chain :
     deltaMinSigma168x3Upper, deltaMinSigma168, deltaMinDelta54, deltaMinDelta27]
   norm_num
 
+-- ----------------------------------------------------------------------------
+-- Main Theorem 10: Quartic Character Invariants I_4(G, N) = (1/|G|) ∑ |χ_N(g)|^4
+-- Adjoint Splitting Hierarchy and Unique Minimal SU(3) Invariant Matching at Σ(1080)
+-- ----------------------------------------------------------------------------
+
+/-- `SU(2)` ADE series quartic character sums `∑_{g ∈ G} |χ_{2_s}(g)|^4`:
+- `Q_8` (order 8): `1·16 + 1·16 + 6·0 = 32` (`I_4 = 4 > 2`, adjoint splits into three 1D irreps)
+- `2T` (order 24): `2·16 + 6·0 + 16·1 = 48` (`I_4 = 2`, adjoint `3_t` irreducible)
+- `2O` (order 48): `2·16 + 18·0 + 16·1 + 12·4 = 96` (`I_4 = 2`, adjoint `3` irreducible)
+- `2I` (order 120): `2·16 + 30·0 + 40·1 + 24·7 = 240` (`I_4 = 2`, since `φ^4 + (1-φ)^4 = 7`). -/
+def q8_chi2s_quartic_sum : Int := 1 * 16 + 1 * 16 + 6 * 0
+def binaryTetrahedral_chi2s_quartic_sum : Int := 2 * 16 + 6 * 0 + 16 * 1
+def binaryOctahedral_chi2s_quartic_sum : Int := 2 * 16 + 18 * 0 + 16 * 1 + 12 * 4
+def binaryIcosahedral_chi2s_quartic_sum : Int := 2 * 16 + 30 * 0 + 40 * 1 + 24 * 7
+
+/-- `SU(3)` crystal hierarchy quartic character sums `∑_{g ∈ G} |χ_3(g)|^4`:
+- `Δ(27)` (order 27): `3·81 + 24·0 = 243` (`I_4 = 9`, adjoint splits into eight 1D irreps)
+- `Δ(54)` (order 54): `3·81 + 24·0 + 27·1 = 270` (`I_4 = 5`, adjoint splits into four 2D irreps)
+- `Σ(168)` (order 168): `1·81 + 21·1 + 56·0 + 42·1 + 48·4 = 336` (`I_4 = 2`, adjoint `8` irreducible)
+- `Σ(1080)` (order 1080): `3·81 + 135·1 + 270·1 + 216·7 = 2160` (`I_4 = 2`, since `φ^4 + (1-φ)^4 = 7`). -/
+def delta27_chi3_quartic_sum : Int := 3 * 81 + 24 * 0
+def delta54_chi3_quartic_sum : Int := 3 * 81 + 24 * 0 + 27 * 1
+def sigma168_chi3a_quartic_sum : Int := 1 * 81 + 21 * 1 + 56 * 0 + 42 * 1 + 48 * 4
+def sigma1080_chi3a_quartic_sum : Int := 3 * 81 + 135 * 1 + 240 * 0 + 270 * 1 + 216 * 7
+
+/-- `theorem quartic_character_invariants_and_su3_continuum_matching`:
+Across the `SU(2)` ADE tower, `I_4(Q_8, 2_s) = 4 > 2 = I_4(2T, 2_s) = I_4(2O, 2_s) = I_4(2I, 2_s)`.
+Across the `SU(3)` crystal tower, `I_4(G, 3)` descends `9 → 5 → 2 → 2` along
+`Δ(27) → Δ(54) → Σ(168) → Σ(1080)`, and `Σ(1080)` is the unique subgroup in the hierarchy
+matching the continuum `SU(3)` invariant triple `(I_3(3), I_4(3), I_3(8)) = (1, 2, 2)`. -/
+theorem quartic_character_invariants_and_su3_continuum_matching :
+    ((q8_chi2s_quartic_sum : ℚ) / (q8_order : ℚ) = 4 ∧
+      (binaryTetrahedral_chi2s_quartic_sum : ℚ) / (binaryTetrahedral_order : ℚ) = 2 ∧
+      (binaryOctahedral_chi2s_quartic_sum : ℚ) / (binaryOctahedral_order : ℚ) = 2 ∧
+      (binaryIcosahedral_chi2s_quartic_sum : ℚ) / (binaryIcosahedral_order : ℚ) = 2) ∧
+    ((delta27_chi3_quartic_sum : ℚ) / (delta27_order : ℚ) = 9 ∧
+      (delta54_chi3_quartic_sum : ℚ) / (delta54_order : ℚ) = 5 ∧
+      (sigma168_chi3a_quartic_sum : ℚ) / (sigma168_order : ℚ) = 2 ∧
+      (sigma1080_chi3a_quartic_sum : ℚ) / (sigma1080_order : ℚ) = 2) ∧
+    ((sigma1080_chi3a_cubed_sum : ℚ) / (sigma1080_order : ℚ) = 1 ∧
+      (sigma1080_chi3a_quartic_sum : ℚ) / (sigma1080_order : ℚ) = 2 ∧
+      (sigma1080_chi8a_cubed_sum : ℚ) / (sigma1080_order : ℚ) = 2) := by
+  dsimp [q8_chi2s_quartic_sum, q8_order, binaryTetrahedral_chi2s_quartic_sum, binaryTetrahedral_order,
+    binaryOctahedral_chi2s_quartic_sum, binaryOctahedral_order, binaryIcosahedral_chi2s_quartic_sum,
+    binaryIcosahedral_order, delta27_chi3_quartic_sum, delta27_order, delta54_chi3_quartic_sum,
+    delta54_order, sigma168_chi3a_quartic_sum, sigma168_order, sigma1080_chi3a_quartic_sum,
+    sigma1080_chi3a_cubed_sum, sigma1080_chi8a_cubed_sum, sigma1080_order]
+  norm_num
+
 -- ============================================================================
 -- Axiom Verification Receipts
 -- ============================================================================
@@ -956,5 +1005,6 @@ theorem klein_sigma168_invariants_and_complete_su3_defect_chain :
 #print axioms su3_subgroup_tower_defects_and_freezing_scales
 #print axioms strong_coupling_to_freezing_regime_separation
 #print axioms klein_sigma168_invariants_and_complete_su3_defect_chain
+#print axioms quartic_character_invariants_and_su3_continuum_matching
 
 end FQCD

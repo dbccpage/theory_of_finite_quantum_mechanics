@@ -34,6 +34,7 @@ try:
         q8_center_parity_protection,
         q8_cubic_character_invariant,
         q8_cubic_character_invariant_rational,
+        quartic_character_invariants_and_continuum_matching_rational,
         s3_cubic_character_invariant,
         s3_cubic_character_invariant_rational,
         s4_cubic_character_invariants_rational,
@@ -73,6 +74,7 @@ except ImportError:
         q8_center_parity_protection,
         q8_cubic_character_invariant,
         q8_cubic_character_invariant_rational,
+        quartic_character_invariants_and_continuum_matching_rational,
         s3_cubic_character_invariant,
         s3_cubic_character_invariant_rational,
         s4_cubic_character_invariants_rational,
@@ -368,6 +370,13 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
     exact_ds168x3 = (11.0 - math.sqrt(21.0)) / 12.0
     assert float(ds168x3_low) < exact_ds168x3 < float(ds168x3_high)
     assert Fraction(7, 15) < ds168x3_low < ds168x3_high < s168["delta_min_Sigma168"] < su3_tower["delta_min_Delta54"] < su3_tower["delta_min_Delta27"]
+
+    q4 = quartic_character_invariants_and_continuum_matching_rational()
+    assert q4["I4_Q8_2s"] == Fraction(4, 1)
+    assert q4["I4_2T_2s"] == q4["I4_2O_2s"] == q4["I4_2I_2s"] == Fraction(2, 1)
+    assert q4["I4_Delta27_3"] == Fraction(9, 1)
+    assert q4["I4_Delta54_3"] == Fraction(5, 1)
+    assert q4["I4_Sigma168_3a"] == q4["I4_Sigma1080_3a"] == Fraction(2, 1)
 
 
 def test_master_witness_passes() -> None:

@@ -470,6 +470,24 @@ def klein_sigma168_invariants_and_su3_chain_rational() -> Dict[str, Any]:
     }
 
 
+def quartic_character_invariants_and_continuum_matching_rational() -> Dict[str, Fraction]:
+    """Exact quartic character invariants I_4(G, N) = (1/|G|) sum_{g in G} |chi_N(g)|^4
+    measuring <N otimes bar(N), N otimes bar(N)>_G across the SU(2) ADE series (Q_8, 2T, 2O, 2I)
+    and the SU(3) crystal hierarchy (Delta(27), Delta(54), Sigma(168), Sigma(1080)).
+    I_4(G, N) == 2 iff the (N^2 - 1)-dimensional adjoint representation remains irreducible on G.
+    """
+    return {
+        "I4_Q8_2s": Fraction(1 * 16 + 1 * 16, 8),
+        "I4_2T_2s": Fraction(2 * 16 + 16 * 1, 24),
+        "I4_2O_2s": Fraction(2 * 16 + 16 * 1 + 12 * 4, 48),
+        "I4_2I_2s": Fraction(2 * 16 + 40 * 1 + 24 * 7, 120),
+        "I4_Delta27_3": Fraction(3 * 81, 27),
+        "I4_Delta54_3": Fraction(3 * 81 + 27 * 1, 54),
+        "I4_Sigma168_3a": Fraction(1 * 81 + 21 * 1 + 42 * 1 + 48 * 4, 168),
+        "I4_Sigma1080_3a": Fraction(3 * 81 + 135 * 1 + 270 * 1 + 216 * 7, 1080),
+    }
+
+
 def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
     """Master multi-language verification witness for Record TFQ-1052."""
     checks = []
@@ -618,6 +636,17 @@ def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
         and s168["I2_8"] == Fraction(1, 1)
         and s168["I3_8"] == Fraction(3, 1) > invs_s1080["I3_8a"]
         and ds1080_low < ds1080_high < ds168x3_low < ds168x3_high < s168["delta_min_Sigma168"] < su3_tower["delta_min_Delta54"] < su3_tower["delta_min_Delta27"]
+    )))
+
+    # 14. Quartic character invariants I_4(G, N) & unique SU(3) continuum matching at Sigma(1080)
+    q4 = quartic_character_invariants_and_continuum_matching_rational()
+    checks.append(("quartic_invariants_and_continuum_matching", 0, (
+        q4["I4_Q8_2s"] == Fraction(4, 1)
+        and q4["I4_2T_2s"] == q4["I4_2O_2s"] == q4["I4_2I_2s"] == Fraction(2, 1)
+        and q4["I4_Delta27_3"] == Fraction(9, 1)
+        and q4["I4_Delta54_3"] == Fraction(5, 1)
+        and q4["I4_Sigma168_3a"] == q4["I4_Sigma1080_3a"] == Fraction(2, 1)
+        and (invs_s1080["I3_3a"], q4["I4_Sigma1080_3a"], invs_s1080["I3_8a"]) == (Fraction(1, 1), Fraction(2, 1), Fraction(2, 1))
     )))
 
     all_passed = all(status for _, _, status in checks)

@@ -437,6 +437,30 @@ def run_checks() -> Dict[str, Any]:
         "Complete 6-step SU(3) minimal plaquette defect chain across Sigma(1080), Sigma(168x3), Sigma(168), Delta(54), Delta(27)",
     )
 
+    # -------------------------------------------------------------------------
+    # Family 13: Quartic character invariants I_4(G, N) and unique SU(3) continuum matching
+    # -------------------------------------------------------------------------
+    i4_q8 = Fraction(2 * 16, 8)
+    i4_2t = Fraction(2 * 16 + 16 * 1, 24)
+    i4_2o = Fraction(2 * 16 + 16 * 1 + 12 * 4, 48)
+    i4_2i = Fraction(2 * 16 + 40 * 1 + 24 * 7, 120)
+    i4_d27 = Fraction(3 * 81, 27)
+    i4_d54 = Fraction(3 * 81 + 27 * 1, 54)
+    i4_s168 = Fraction(1 * 81 + 21 * 1 + 42 * 1 + 48 * 4, 168)
+    i4_s1080 = Fraction(3 * 81 + 135 * 1 + 270 * 1 + 216 * 7, 1080)
+    check(
+        i4_q8 == Fraction(4, 1) and i4_2t == Fraction(2, 1) and i4_2o == Fraction(2, 1) and i4_2i == Fraction(2, 1),
+        "SU(2) ADE quartic character invariants I_4(Q_8)=4, I_4(2T)=I_4(2O)=I_4(2I)=2",
+    )
+    check(
+        i4_d27 == Fraction(9, 1) and i4_d54 == Fraction(5, 1) and i4_s168 == Fraction(2, 1) and i4_s1080 == Fraction(2, 1),
+        "SU(3) crystal quartic character invariants I_4(Delta(27))=9 > I_4(Delta(54))=5 > I_4(Sigma(168))=I_4(Sigma(1080))=2",
+    )
+    check(
+        (invs_s1080["I3_3a"], i4_s1080, invs_s1080["I3_8a"]) == (Fraction(1, 1), Fraction(2, 1), Fraction(2, 1)),
+        "Sigma(1080) uniquely matches the continuum SU(3) invariant triple (I_3(3), I_4(3), I_3(8)) = (1, 2, 2)",
+    )
+
     return {
         "record_id": "TFQ-1052",
         "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",

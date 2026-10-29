@@ -435,6 +435,39 @@ pub fn klein_sigma168_invariants_and_su3_chain() -> (
     )
 }
 
+/// Quartic character invariants `I_4(G, N) = (1/|G|) Σ_{g∈G} |χ_N(g)|^4 = 1 + <Ad, Ad>_G`
+/// across the SU(2) ADE binary polyhedral series and SU(3) crystal subgroup hierarchy:
+/// returns `(I_4(Q_8), I_4(2T), I_4(2O), I_4(2I), I_4(Δ(27)), I_4(Δ(54)), I_4(Σ(168)), I_4(Σ(1080)))`.
+pub fn quartic_character_invariants_and_continuum_matching() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let i4_q8 = rat(2 * 16, 8);
+    let i4_2t = rat(2 * 16 + 16 * 1, 24);
+    let i4_2o = rat(2 * 16 + 16 * 1 + 12 * 4, 48);
+    let i4_2i = rat(2 * 16 + 40 * 1 + 24 * 7, 120);
+    let i4_d27 = rat(3 * 81, 27);
+    let i4_d54 = rat(3 * 81 + 27 * 1, 54);
+    let i4_s168 = rat(1 * 81 + 21 * 1 + 42 * 1 + 48 * 4, 168);
+    let i4_s1080 = rat(3 * 81 + 135 * 1 + 270 * 1 + 216 * 7, 1080);
+    (
+        i4_q8,
+        i4_2t,
+        i4_2o,
+        i4_2i,
+        i4_d27,
+        i4_d54,
+        i4_s168,
+        i4_s1080,
+    )
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -607,6 +640,22 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
         || !(ds_u < ds168x3_l && ds168x3_l < ds168x3_u && ds168x3_u < ds168 && ds168 < rat(5, 6))
     {
         return Err("Klein Sigma(168) invariants and SU(3) defect chain verification failed");
+    }
+
+    // 14. Quartic character invariants I_4(G, N) and unique SU(3) continuum matching at Sigma(1080)
+    let (i4_q8, i4_2t, i4_2o, i4_2i, i4_d27, i4_d54, i4_s168, i4_s1080) =
+        quartic_character_invariants_and_continuum_matching();
+    if i4_q8 != rat(4, 1)
+        || i4_2t != rat(2, 1)
+        || i4_2o != rat(2, 1)
+        || i4_2i != rat(2, 1)
+        || i4_d27 != rat(9, 1)
+        || i4_d54 != rat(5, 1)
+        || i4_s168 != rat(2, 1)
+        || i4_s1080 != rat(2, 1)
+        || !(i4_s1080 == i4_s168 && i4_s168 < i4_d54 && i4_d54 < i4_d27)
+    {
+        return Err("Quartic character invariants and SU(3) continuum matching failed");
     }
 
     Ok(true)
