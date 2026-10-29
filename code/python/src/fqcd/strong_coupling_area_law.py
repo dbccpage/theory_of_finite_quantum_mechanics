@@ -571,6 +571,50 @@ def complete_blichfeldt_ffk_su3_crystal_hierarchy_rational() -> Dict[str, Fracti
     }
 
 
+def baryon_vs_gluon_screening_casimir_and_mednykh_2d_towers_rational() -> Dict[str, Any]:
+    """Exact representation-dependent Casimir string-tension ratios (3 vs 6 vs 8 vs 10 in Sigma(1080)/SU(3)
+    and 2_s vs 3_a vs 4_s vs 5_t in 2I/SU(2)), baryon-junction vs gluon-collar per-step contraction ratios,
+    and 2D Mednykh genus-2 partition-function sums M_2(G) = sum_{R in Irr(G)} (dim R)^{-2} and
+    Z_Mednykh(G, 2) = |G|^2 M_2(G) across the SU(2) ADE and SU(3) crystal towers.
+    """
+    m2_q8 = sum(Fraction(1, d ** 2) for d in [1, 1, 1, 1, 2])
+    m2_2t = sum(Fraction(1, d ** 2) for d in [1, 1, 1, 2, 2, 2, 3])
+    m2_2o = sum(Fraction(1, d ** 2) for d in [1, 1, 2, 2, 2, 3, 3, 4])
+    m2_2i = sum(Fraction(1, d ** 2) for d in [1, 2, 2, 3, 3, 4, 4, 5, 6])
+    m2_d27 = sum(Fraction(1, d ** 2) for d in [1] * 9 + [3] * 2)
+    m2_d54 = sum(Fraction(1, d ** 2) for d in [1] * 2 + [2] * 4 + [3] * 4)
+    m2_s168x3 = sum(Fraction(1, d ** 2) for d in [1, 3, 3, 6, 7, 8] * 3)
+    m2_s216x3 = sum(Fraction(1, d ** 2) for d in [1] * 3 + [2] * 3 + [3] * 7 + [6] * 6 + [8] * 3 + [9] * 2)
+    s1080_dims = [1, 5, 5, 8, 8, 9, 10] + [3, 3, 6, 9, 15] * 2
+    m2_s1080 = sum(Fraction(1, d ** 2) for d in s1080_dims)
+    return {
+        "casimir_ratio_SU3_8_over_3": Fraction(3, 1) / Fraction(4, 3),
+        "casimir_ratio_SU3_6_over_3": Fraction(10, 3) / Fraction(4, 3),
+        "casimir_ratio_SU3_10_over_3": Fraction(6, 1) / Fraction(4, 3),
+        "casimir_ratio_SU2_3a_over_2s": Fraction(2, 1) / Fraction(3, 4),
+        "casimir_ratio_SU2_4s_over_2s": Fraction(15, 4) / Fraction(3, 4),
+        "casimir_ratio_SU2_5t_over_2s": Fraction(6, 1) / Fraction(3, 4),
+        "collar_ratio_3_over_6_e4": general_collar_tube_contraction_rational(3, 4) / general_collar_tube_contraction_rational(6, 4),
+        "collar_ratio_3_over_8_e4": general_collar_tube_contraction_rational(3, 4) / general_collar_tube_contraction_rational(8, 4),
+        "M2_Q8": m2_q8,
+        "M2_2T": m2_2t,
+        "M2_2O": m2_2o,
+        "M2_2I": m2_2i,
+        "Z2_Q8": (8 ** 2) * m2_q8,
+        "Z2_2T": (24 ** 2) * m2_2t,
+        "Z2_2O": (48 ** 2) * m2_2o,
+        "Z2_2I": (120 ** 2) * m2_2i,
+        "sigma1080_irrep_dim_sq_sum": sum(d ** 2 for d in s1080_dims),
+        "M2_Delta27": m2_d27,
+        "M2_Delta54": m2_d54,
+        "M2_Sigma168x3": m2_s168x3,
+        "M2_Sigma216x3": m2_s216x3,
+        "M2_Sigma1080": m2_s1080,
+        "Z2_Sigma216x3": (648 ** 2) * m2_s216x3,
+        "Z2_Sigma1080": (1080 ** 2) * m2_s1080,
+    }
+
+
 def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
     """Master multi-language verification witness for Record TFQ-1052."""
     checks = []
@@ -777,6 +821,24 @@ def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
         > ffk["I4_Sigma60_8"] == Fraction(70, 1)
         > ffk["I4_Sigma72x3_8"] == Fraction(57, 1)
         > hess["I4_Sigma168_8"] > hess["I4_Sigma216x3_8"] > hess["I4_Sigma1080_8a"] > hess["I4_SU3_continuum_8"]
+    )))
+
+    # 18. Baryon vs gluon screening ratios, Casimir string-tension hierarchy & 2D Mednykh towers
+    med = baryon_vs_gluon_screening_casimir_and_mednykh_2d_towers_rational()
+    checks.append(("baryon_vs_gluon_casimir_and_mednykh_towers", 0, (
+        med["casimir_ratio_SU3_8_over_3"] == Fraction(9, 4)
+        and med["casimir_ratio_SU3_6_over_3"] == Fraction(5, 2)
+        and med["casimir_ratio_SU3_10_over_3"] == Fraction(9, 2)
+        and med["casimir_ratio_SU2_3a_over_2s"] == Fraction(8, 3)
+        and med["casimir_ratio_SU2_4s_over_2s"] == Fraction(5, 1)
+        and med["casimir_ratio_SU2_5t_over_2s"] == Fraction(8, 1)
+        and med["collar_ratio_3_over_6_e4"] == Fraction(16, 1)
+        and med["collar_ratio_3_over_8_e4"] == Fraction(4096, 81)
+        and Fraction(1, 1) < med["M2_2I"] < med["M2_2O"] < med["M2_2T"] < med["M2_Q8"]
+        and (med["Z2_Q8"], med["Z2_2T"], med["Z2_2O"], med["Z2_2I"]) == (272, 2224, 6992, 27576)
+        and med["sigma1080_irrep_dim_sq_sum"] == 1080
+        and med["M2_Sigma1080"] == Fraction(36011, 21600) < Fraction(2, 1)
+        and med["Z2_Sigma1080"] == 1944594 < med["Z2_Sigma216x3"] == 2001267
     )))
 
     all_passed = all(status for _, _, status in checks)

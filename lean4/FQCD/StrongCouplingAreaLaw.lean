@@ -1169,6 +1169,108 @@ theorem complete_blichfeldt_ffk_su3_crystal_hierarchy_and_halving_laws :
     su3_continuum_chi8_quartic_invariant]
   norm_num
 
+-- ----------------------------------------------------------------------------
+-- Main Theorem 14: Baryon-Junction vs. Gluon-Collar Screening Ratios,
+-- SU(3) & SU(2) Casimir String-Tension Ratios (3 vs 6 vs 8 vs 10), and
+-- 2D Mednykh Genus-g Partition-Function Sums Across SU(2) and SU(3) Towers
+-- ----------------------------------------------------------------------------
+
+/-- Quadratic Casimir eigenvalues `C_2(R)` for `SU(3)` irreps `3` (`4/3`), `6` (`10/3`),
+`8` (`3`), `10` (`6`), and `SU(2)` irreps `2_s` (`3/4`), `3_a` (`2`), `4_s` (`15/4`), `5_t` (`6`). -/
+def casimirSU3_3 : ℚ := 4 / 3
+def casimirSU3_6 : ℚ := 10 / 3
+def casimirSU3_8 : ℚ := 3
+def casimirSU3_10 : ℚ := 6
+
+def casimirSU2_2s : ℚ := 3 / 4
+def casimirSU2_3a : ℚ := 2
+def casimirSU2_4s : ℚ := 15 / 4
+def casimirSU2_5t : ℚ := 6
+
+/-- Single-plaquette collar contraction ratio `c_X(d_1, E_off) / c_X(d_2, E_off) = (d_2 / d_1)^E_off`
+comparing fundamental baryon-junction sheets (`d = 3`) against sextet (`d = 6`) and gluon-adjoint (`d = 8`)
+collar tubes at off-loop interior edge count `E_off = 4`. -/
+def collarScreeningRatio (d1 d2 eOff : Nat) : ℚ :=
+  generalCollarContraction d1 eOff / generalCollarContraction d2 eOff
+
+/-- Normalized genus-2 Mednykh character sum `M_2(G) = ∑_{R ∈ Irr(G)} 1 / (dim R)^2`
+and unnormalized genus-2 Mednykh partition function `Z_Mednykh(G, 2) = |G|^2 · M_2(G)`
+across the `SU(2)` ADE tower (`Q_8, 2T, 2O, 2I`) and `SU(3)` crystal tower (`Δ(27), Δ(54), Σ(168×3), Σ(216×3), Σ(1080)`). -/
+def mednykhM2_Q8 : ℚ := 4 * (1 / (1 ^ 2 : ℚ)) + 1 * (1 / (2 ^ 2 : ℚ))
+def mednykhM2_2T : ℚ := 3 * (1 / (1 ^ 2 : ℚ)) + 3 * (1 / (2 ^ 2 : ℚ)) + 1 * (1 / (3 ^ 2 : ℚ))
+def mednykhM2_2O : ℚ :=
+  2 * (1 / (1 ^ 2 : ℚ)) + 3 * (1 / (2 ^ 2 : ℚ)) + 2 * (1 / (3 ^ 2 : ℚ)) + 1 * (1 / (4 ^ 2 : ℚ))
+def mednykhM2_2I : ℚ :=
+  1 * (1 / (1 ^ 2 : ℚ)) + 2 * (1 / (2 ^ 2 : ℚ)) + 2 * (1 / (3 ^ 2 : ℚ)) +
+  2 * (1 / (4 ^ 2 : ℚ)) + 1 * (1 / (5 ^ 2 : ℚ)) + 1 * (1 / (6 ^ 2 : ℚ))
+
+def mednykhZ2_Q8 : ℚ := (q8_order : ℚ) ^ 2 * mednykhM2_Q8
+def mednykhZ2_2T : ℚ := (binaryTetrahedral_order : ℚ) ^ 2 * mednykhM2_2T
+def mednykhZ2_2O : ℚ := (binaryOctahedral_order : ℚ) ^ 2 * mednykhM2_2O
+def mednykhZ2_2I : ℚ := (binaryIcosahedral_order : ℚ) ^ 2 * mednykhM2_2I
+
+def sigma1080_irrep_dim_sq_sum : Nat :=
+  (1 ^ 2 + 5 ^ 2 + 5 ^ 2 + 8 ^ 2 + 8 ^ 2 + 9 ^ 2 + 10 ^ 2) +
+  2 * (3 ^ 2 + 3 ^ 2 + 6 ^ 2 + 9 ^ 2 + 15 ^ 2)
+
+def mednykhM2_Delta27 : ℚ := 9 * (1 / (1 ^ 2 : ℚ)) + 2 * (1 / (3 ^ 2 : ℚ))
+def mednykhM2_Delta54 : ℚ :=
+  2 * (1 / (1 ^ 2 : ℚ)) + 4 * (1 / (2 ^ 2 : ℚ)) + 4 * (1 / (3 ^ 2 : ℚ))
+def mednykhM2_Sigma168x3 : ℚ :=
+  3 * (1 / (1 ^ 2 : ℚ) + 2 * (1 / (3 ^ 2 : ℚ)) + 1 / (6 ^ 2 : ℚ) + 1 / (7 ^ 2 : ℚ) + 1 / (8 ^ 2 : ℚ))
+def mednykhM2_Sigma216x3 : ℚ :=
+  3 * (1 / (1 ^ 2 : ℚ)) + 3 * (1 / (2 ^ 2 : ℚ)) + 7 * (1 / (3 ^ 2 : ℚ)) +
+  6 * (1 / (6 ^ 2 : ℚ)) + 3 * (1 / (8 ^ 2 : ℚ)) + 2 * (1 / (9 ^ 2 : ℚ))
+def mednykhM2_Sigma1080 : ℚ :=
+  (1 / (1 ^ 2 : ℚ) + 2 * (1 / (5 ^ 2 : ℚ)) + 2 * (1 / (8 ^ 2 : ℚ)) + 1 / (9 ^ 2 : ℚ) + 1 / (10 ^ 2 : ℚ)) +
+  2 * (2 * (1 / (3 ^ 2 : ℚ)) + 1 / (6 ^ 2 : ℚ) + 1 / (9 ^ 2 : ℚ) + 1 / (15 ^ 2 : ℚ))
+
+def mednykhZ2_Sigma216x3 : ℚ := (sigma216x3_order : ℚ) ^ 2 * mednykhM2_Sigma216x3
+def mednykhZ2_Sigma1080 : ℚ := (sigma1080_order : ℚ) ^ 2 * mednykhM2_Sigma1080
+
+theorem baryon_vs_gluon_screening_casimir_ratios_and_mednykh_2d_towers :
+    (casimirSU3_8 / casimirSU3_3 = 9 / 4 ∧
+      casimirSU3_6 / casimirSU3_3 = 5 / 2 ∧
+      casimirSU3_10 / casimirSU3_3 = 9 / 2 ∧
+      casimirSU3_3 < casimirSU3_8 ∧
+      casimirSU3_8 < casimirSU3_6 ∧
+      casimirSU3_6 < casimirSU3_10 ∧
+      casimirSU2_3a / casimirSU2_2s = 8 / 3 ∧
+      casimirSU2_4s / casimirSU2_2s = 5 ∧
+      casimirSU2_5t / casimirSU2_2s = 8) ∧
+    (collarScreeningRatio 3 6 4 = 16 ∧
+      collarScreeningRatio 3 8 4 = 4096 / 81 ∧
+      1 < collarScreeningRatio 3 6 4 ∧
+      collarScreeningRatio 3 6 4 < collarScreeningRatio 3 8 4) ∧
+    (mednykhM2_Q8 = 17 / 4 ∧
+      mednykhM2_2T = 139 / 36 ∧
+      mednykhM2_2O = 437 / 144 ∧
+      mednykhM2_2I = 383 / 200 ∧
+      1 < mednykhM2_2I ∧ mednykhM2_2I < mednykhM2_2O ∧
+      mednykhM2_2O < mednykhM2_2T ∧ mednykhM2_2T < mednykhM2_Q8 ∧
+      mednykhZ2_Q8 = 272 ∧ mednykhZ2_2T = 2224 ∧
+      mednykhZ2_2O = 6992 ∧ mednykhZ2_2I = 27576) ∧
+    (sigma1080_irrep_dim_sq_sum = 1080 ∧
+      mednykhM2_Delta27 = 83 / 9 ∧
+      mednykhM2_Delta54 = 31 / 9 ∧
+      mednykhM2_Sigma168x3 = 12099 / 3136 ∧
+      mednykhM2_Sigma216x3 = 24707 / 5184 ∧
+      mednykhM2_Sigma1080 = 36011 / 21600 ∧
+      mednykhM2_Sigma1080 < 2 ∧
+      mednykhZ2_Sigma1080 = 1944594 ∧
+      mednykhZ2_Sigma216x3 = 2001267 ∧
+      mednykhZ2_Sigma1080 < mednykhZ2_Sigma216x3) := by
+  dsimp [casimirSU3_3, casimirSU3_6, casimirSU3_8, casimirSU3_10,
+    casimirSU2_2s, casimirSU2_3a, casimirSU2_4s, casimirSU2_5t,
+    collarScreeningRatio, generalCollarContraction,
+    mednykhM2_Q8, mednykhM2_2T, mednykhM2_2O, mednykhM2_2I,
+    mednykhZ2_Q8, mednykhZ2_2T, mednykhZ2_2O, mednykhZ2_2I,
+    q8_order, binaryTetrahedral_order, binaryOctahedral_order, binaryIcosahedral_order,
+    sigma1080_irrep_dim_sq_sum, mednykhM2_Delta27, mednykhM2_Delta54,
+    mednykhM2_Sigma168x3, mednykhM2_Sigma216x3, mednykhM2_Sigma1080,
+    mednykhZ2_Sigma216x3, mednykhZ2_Sigma1080, sigma216x3_order, sigma1080_order]
+  norm_num
+
 -- ============================================================================
 -- Axiom Verification Receipts
 -- ============================================================================
@@ -1191,5 +1293,6 @@ theorem complete_blichfeldt_ffk_su3_crystal_hierarchy_and_halving_laws :
 #print axioms hessian_subgroups_and_quartic_adjoint_casimir_obstruction
 #print axioms su2_higher_spin_casimir_obstruction_and_hessian_defect_enclosure
 #print axioms complete_blichfeldt_ffk_su3_crystal_hierarchy_and_halving_laws
+#print axioms baryon_vs_gluon_screening_casimir_ratios_and_mednykh_2d_towers
 
 end FQCD

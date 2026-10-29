@@ -9,7 +9,8 @@ use num_traits::{One, Zero};
 
 use theory_of_finite_qm::crate_root_inventory_holds;
 use theory_of_finite_qm::fqcd::{
-    a5_cubic_character_invariants, area_law_decay_bound_rational, beta0_rational_approx,
+    a5_cubic_character_invariants, area_law_decay_bound_rational,
+    baryon_vs_gluon_casimir_and_mednykh_2d_towers, beta0_rational_approx,
     beta0_rational_bounds, binary_icosahedral_2i_invariants, check_geometric_cluster_series_bound,
     cluster_series_geometric_sum, collar_tube_contraction,
     complete_blichfeldt_ffk_su3_crystal_hierarchy, const_k, coordination_number_delta,
@@ -333,6 +334,35 @@ fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
     assert_eq!(i4_36_8, rat(114, 1));
     assert_eq!(i4_60_8, rat(70, 1));
     assert!(i4_72_8 < i4_60_8 && i4_60_8 < i4_36_8 && i4_36_8 < i4_d54_8 && i4_d54_8 < i4_d27_8);
+
+    let (
+        c8_c3,
+        c6_c3,
+        c10_c3,
+        c3_c2_su2,
+        r_3_6,
+        r_3_8,
+        m2_q8,
+        m2_2t,
+        m2_2o,
+        m2_2i,
+        z2_2i,
+        m2_s1080,
+        z2_s1080,
+        z2_s216x3,
+    ) = baryon_vs_gluon_casimir_and_mednykh_2d_towers();
+    assert_eq!(c8_c3, rat(9, 4));
+    assert_eq!(c6_c3, rat(5, 2));
+    assert_eq!(c10_c3, rat(9, 2));
+    assert_eq!(c3_c2_su2, rat(8, 3));
+    assert_eq!(r_3_6, rat(16, 1));
+    assert_eq!(r_3_8, rat(4096, 81));
+    assert!(BigRational::one() < m2_2i && m2_2i < m2_2o && m2_2o < m2_2t && m2_2t < m2_q8);
+    assert_eq!(z2_2i, rat(27576, 1));
+    assert!(m2_s1080 < rat(2, 1));
+    assert_eq!(z2_s1080, rat(1944594, 1));
+    assert_eq!(z2_s216x3, rat(2001267, 1));
+    assert!(z2_s1080 < z2_s216x3);
 }
 
 #[test]

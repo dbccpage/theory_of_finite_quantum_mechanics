@@ -553,6 +553,44 @@ def run_checks() -> Dict[str, Any]:
         "Strict 8-step descent of quartic adjoint invariants 456 > 228 > 114 > 70 > 57 > 25 > 21 > 13 > 8 = I_4(SU(3), 8)",
     )
 
+    # -------------------------------------------------------------------------
+    # Family 17: Baryon-junction vs gluon-collar screening ratios, Casimir hierarchy & 2D Mednykh towers
+    # -------------------------------------------------------------------------
+    c8_c3 = Fraction(3, 1) / Fraction(4, 3)
+    c6_c3 = Fraction(10, 3) / Fraction(4, 3)
+    c10_c3 = Fraction(6, 1) / Fraction(4, 3)
+    c3_c2_su2 = Fraction(2, 1) / Fraction(3, 4)
+    c4_c2_su2 = Fraction(15, 4) / Fraction(3, 4)
+    c5_c2_su2 = Fraction(6, 1) / Fraction(3, 4)
+    r_3_6 = general_collar_contraction_rational(3, 4) / general_collar_contraction_rational(6, 4)
+    r_3_8 = general_collar_contraction_rational(3, 4) / general_collar_contraction_rational(8, 4)
+    m2_q8 = sum(Fraction(1, d ** 2) for d in [1, 1, 1, 1, 2])
+    m2_2t = sum(Fraction(1, d ** 2) for d in [1, 1, 1, 2, 2, 2, 3])
+    m2_2o = sum(Fraction(1, d ** 2) for d in [1, 1, 2, 2, 2, 3, 3, 4])
+    m2_2i = sum(Fraction(1, d ** 2) for d in [1, 2, 2, 3, 3, 4, 4, 5, 6])
+    s1080_dims = [1, 5, 5, 8, 8, 9, 10] + [3, 3, 6, 9, 15] * 2
+    m2_s1080 = sum(Fraction(1, d ** 2) for d in s1080_dims)
+    m2_s216x3 = sum(Fraction(1, d ** 2) for d in [1] * 3 + [2] * 3 + [3] * 7 + [6] * 6 + [8] * 3 + [9] * 2)
+    z2_s1080 = (1080 ** 2) * m2_s1080
+    z2_s216x3 = (648 ** 2) * m2_s216x3
+    check(
+        (c8_c3, c6_c3, c10_c3) == (Fraction(9, 4), Fraction(5, 2), Fraction(9, 2))
+        and (c3_c2_su2, c4_c2_su2, c5_c2_su2) == (Fraction(8, 3), Fraction(5, 1), Fraction(8, 1)),
+        "Exact SU(3) (3, 6, 8, 10) and SU(2) (2_s, 3_a, 4_s, 5_t) quadratic Casimir string-tension ratios",
+    )
+    check(
+        r_3_6 == Fraction(16, 1) and r_3_8 == Fraction(4096, 81) and Fraction(1, 1) < r_3_6 < r_3_8,
+        "Baryon-junction vs sextet and gluon-collar contraction ratios c_X(3,4)/c_X(6,4)=16 < c_X(3,4)/c_X(8,4)=4096/81",
+    )
+    check(
+        Fraction(1, 1) < m2_2i == Fraction(383, 200) < m2_2o == Fraction(437, 144) < m2_2t == Fraction(139, 36) < m2_q8 == Fraction(17, 4),
+        "2D Mednykh genus-2 normalized sum M_2(G) descends strictly across SU(2) ADE series Q_8 -> 2T -> 2O -> 2I",
+    )
+    check(
+        sum(d ** 2 for d in s1080_dims) == 1080 and m2_s1080 == Fraction(36011, 21600) < Fraction(2, 1) and z2_s1080 == 1944594 < z2_s216x3 == 2001267,
+        "Sigma(1080) 17-irrep Burnside sum = 1080, M_2(Sigma(1080)) = 36011/21600 < 2, and Z_2(Sigma(1080)) = 1944594 < Z_2(Sigma(216x3)) = 2001267",
+    )
+
     return {
         "record_id": "TFQ-1052",
         "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",

@@ -17,6 +17,7 @@ try:
         a5_cubic_character_invariants_rational,
         area_law_decay_bound,
         area_law_decay_bound_rational,
+        baryon_vs_gluon_screening_casimir_and_mednykh_2d_towers_rational,
         binary_icosahedral_2i_invariants_rational,
         cluster_series_geometric_sum,
         cluster_series_geometric_sum_rational,
@@ -60,6 +61,7 @@ except ImportError:
         a5_cubic_character_invariants_rational,
         area_law_decay_bound,
         area_law_decay_bound_rational,
+        baryon_vs_gluon_screening_casimir_and_mednykh_2d_towers_rational,
         binary_icosahedral_2i_invariants_rational,
         cluster_series_geometric_sum,
         cluster_series_geometric_sum_rational,
@@ -431,6 +433,21 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
         Fraction(70, 1),
         Fraction(57, 1),
     )
+
+    med = baryon_vs_gluon_screening_casimir_and_mednykh_2d_towers_rational()
+    assert med["casimir_ratio_SU3_8_over_3"] == Fraction(9, 4)
+    assert med["casimir_ratio_SU3_6_over_3"] == Fraction(5, 2)
+    assert med["casimir_ratio_SU3_10_over_3"] == Fraction(9, 2)
+    assert med["casimir_ratio_SU2_3a_over_2s"] == Fraction(8, 3)
+    assert med["casimir_ratio_SU2_4s_over_2s"] == Fraction(5, 1)
+    assert med["casimir_ratio_SU2_5t_over_2s"] == Fraction(8, 1)
+    assert med["collar_ratio_3_over_6_e4"] == Fraction(16, 1)
+    assert med["collar_ratio_3_over_8_e4"] == Fraction(4096, 81)
+    assert Fraction(1, 1) < med["M2_2I"] < med["M2_2O"] < med["M2_2T"] < med["M2_Q8"]
+    assert (med["Z2_Q8"], med["Z2_2T"], med["Z2_2O"], med["Z2_2I"]) == (272, 2224, 6992, 27576)
+    assert med["sigma1080_irrep_dim_sq_sum"] == 1080
+    assert med["M2_Sigma1080"] == Fraction(36011, 21600) < Fraction(2, 1)
+    assert med["Z2_Sigma1080"] == 1944594 < med["Z2_Sigma216x3"] == 2001267
 
 
 def test_master_witness_passes() -> None:

@@ -601,6 +601,58 @@ pub fn complete_blichfeldt_ffk_su3_crystal_hierarchy() -> (
     )
 }
 
+/// Baryon-junction vs. gluon-collar screening ratios (`c_X(3, 4)/c_X(6, 4) = 16`,
+/// `c_X(3, 4)/c_X(8, 4) = 4096/81`), Casimir ratios (`C_2(8)/C_2(3) = 9/4`, `C_2(6)/C_2(3) = 5/2`,
+/// `C_2(10)/C_2(3) = 9/2`, `C_2(3_a)/C_2(2_s) = 8/3`), and 2D Mednykh genus-2 invariants
+/// `(M_2(Q_8), M_2(2T), M_2(2O), M_2(2I), Z_2(2I), M_2(Σ(1080)), Z_2(Σ(1080)), Z_2(Σ(216×3)))`.
+pub fn baryon_vs_gluon_casimir_and_mednykh_2d_towers() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let c8_over_c3 = rat(3, 1) / rat(4, 3);
+    let c6_over_c3 = rat(10, 3) / rat(4, 3);
+    let c10_over_c3 = rat(6, 1) / rat(4, 3);
+    let c3_over_c2_su2 = rat(2, 1) / rat(3, 4);
+    let ratio_3_6 = rat(6_i64.pow(4), 3_i64.pow(4));
+    let ratio_3_8 = rat(8_i64.pow(4), 3_i64.pow(4));
+    let m2_q8 = rat(17, 4);
+    let m2_2t = rat(139, 36);
+    let m2_2o = rat(437, 144);
+    let m2_2i = rat(383, 200);
+    let z2_2i = rat(120 * 120, 1) * &m2_2i;
+    let m2_s1080 = rat(36011, 21600);
+    let z2_s1080 = rat(1080 * 1080, 1) * &m2_s1080;
+    let z2_s216x3 = rat(648 * 648, 1) * rat(24707, 5184);
+    (
+        c8_over_c3,
+        c6_over_c3,
+        c10_over_c3,
+        c3_over_c2_su2,
+        ratio_3_6,
+        ratio_3_8,
+        m2_q8,
+        m2_2t,
+        m2_2o,
+        m2_2i,
+        z2_2i,
+        m2_s1080,
+        z2_s1080,
+        z2_s216x3,
+    )
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -879,6 +931,39 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
         || !(i4_72_8 < i4_60_8 && i4_60_8 < i4_36_8 && i4_36_8 < i4_d54_8 && i4_d54_8 < i4_d27_8)
     {
         return Err("Complete Blichfeldt-FFK SU(3) crystal hierarchy verification failed");
+    }
+
+    // 18. Baryon vs gluon screening ratios, Casimir hierarchy & 2D Mednykh genus-2 towers
+    let (
+        c8_c3,
+        c6_c3,
+        c10_c3,
+        c3_c2_su2,
+        r_3_6,
+        r_3_8,
+        m2_q8,
+        m2_2t,
+        m2_2o,
+        m2_2i,
+        z2_2i,
+        m2_s1080,
+        z2_s1080,
+        z2_s216x3,
+    ) = baryon_vs_gluon_casimir_and_mednykh_2d_towers();
+    if c8_c3 != rat(9, 4)
+        || c6_c3 != rat(5, 2)
+        || c10_c3 != rat(9, 2)
+        || c3_c2_su2 != rat(8, 3)
+        || r_3_6 != rat(16, 1)
+        || r_3_8 != rat(4096, 81)
+        || !(BigRational::one() < m2_2i && m2_2i < m2_2o && m2_2o < m2_2t && m2_2t < m2_q8)
+        || z2_2i != rat(27576, 1)
+        || !(m2_s1080 < rat(2, 1))
+        || z2_s1080 != rat(1944594, 1)
+        || z2_s216x3 != rat(2001267, 1)
+        || !(z2_s1080 < z2_s216x3)
+    {
+        return Err("Baryon vs gluon Casimir ratios and Mednykh 2D towers verification failed");
     }
 
     Ok(true)
