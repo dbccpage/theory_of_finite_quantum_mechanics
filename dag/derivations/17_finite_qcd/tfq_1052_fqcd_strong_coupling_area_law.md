@@ -16,7 +16,7 @@ For a finite gauge group G, a nontrivial irreducible unitary representation R an
 Prove the bound by a convergent strong-coupling (cluster) expansion in the style of Osterwalder-Seiler (1978), with explicit constants. The bound would replace the declared area-law formula of TFQ-0024 by a derived inequality at strong coupling; it says nothing about weak coupling or the continuum.
 
 ### Source Status
-Formally proved in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean) and checked across Rust and Python; conditional on non-screening/center-protection in d >= 3, unconditional for abelian and 2D decimation.
+Formally proved in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean) and checked across Rust and Python; conditional on non-screening/center-protection in d >= 3 (including S_3, S_4, and A_5 cubic character invariants and d = 4 multi-plaquette boundary collar contraction bounds), unconditional for abelian and 2D decimation.
 
 ---
 
