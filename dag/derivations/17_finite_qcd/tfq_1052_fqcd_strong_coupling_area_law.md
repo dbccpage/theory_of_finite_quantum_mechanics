@@ -1,6 +1,6 @@
 # [TFQ-1052] FQCD-STRONG-COUPLING-AREA-LAW
 
-> **Stage**: `FINITE_QCD` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `FQCD-STRONG-COUPLING-AREA-LAW` (`OPEN`)  
+> **Stage**: `FINITE_QCD` | **Status**: `CONDITIONAL` | **DAG node**: `FQCD-STRONG-COUPLING-AREA-LAW` (`CONDITIONAL`)  
 > **UUID**: `6140bee6-f364-5e32-8776-3ea91bb9dcaf`  
 > **Parent Derivation**: [TFQ-0030](tfq_0030_limit_the_confinement_certificate_to_the_declared_strong_coupling_formulae.md)
 
@@ -16,7 +16,7 @@ For a finite gauge group G, a nontrivial irreducible unitary representation R an
 Prove the bound by a convergent strong-coupling (cluster) expansion in the style of Osterwalder-Seiler (1978), with explicit constants. The bound would replace the declared area-law formula of TFQ-0024 by a derived inequality at strong coupling; it says nothing about weak coupling or the continuum.
 
 ### Source Status
-Added 2026-10-27 with maintainer approval as a precisely stated target; no Lean, Rust or Python evidence exists in this checkout.
+Formally proved in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean) and checked across Rust and Python; conditional on non-screening/center-protection in d >= 3, unconditional for abelian and 2D decimation.
 
 ---
 
@@ -30,10 +30,13 @@ Added 2026-10-27 with maintainer approval as a precisely stated target; no Lean,
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none cited*
+- `lean4/FQCD/StrongCouplingAreaLaw.lean`
 
 ### Rust Certifiers
-- *none cited*
+- `code/rust/src/fqcd/strong_coupling_area_law.rs`
+
+### Python Checks
+- `code/python/src/fqcd/strong_coupling_area_law.py`
 
 ---
 

@@ -1,0 +1,244 @@
+"""Unit and property tests for FQCD Strong-Coupling Area Law (Record TFQ-1052).
+
+Governing DAG target node: FQCD-STRONG-COUPLING-AREA-LAW
+AuthorityEffect: None
+"""
+
+from __future__ import annotations
+
+from fractions import Fraction
+import math
+import pytest
+
+try:
+    from fqcd.strong_coupling_area_law import (
+        CONST_K,
+        CONST_SIGMA_0,
+        area_law_decay_bound,
+        area_law_decay_bound_rational,
+        cluster_series_geometric_sum,
+        cluster_series_geometric_sum_rational,
+        collar_tube_contraction,
+        collar_tube_contraction_rational,
+        coordination_number_delta,
+        geometric_cluster_series_bound_satisfied,
+        loop_perimeter,
+        minimal_spanning_area,
+        q8_center_parity_protection,
+        q8_cubic_character_invariant,
+        q8_cubic_character_invariant_rational,
+        s3_cubic_character_invariant,
+        s3_cubic_character_invariant_rational,
+        single_plaquette_character_activity_zn,
+        strong_coupling_threshold_beta0,
+        strong_coupling_threshold_beta0_rational,
+        strong_coupling_threshold_beta0_rational_bounds,
+        twod_character_decimation_area_law,
+        twod_character_decimation_area_law_rational,
+        verify_fqcd_strong_coupling_area_law_witness,
+    )
+except ImportError:
+    from src.fqcd.strong_coupling_area_law import (
+        CONST_K,
+        CONST_SIGMA_0,
+        area_law_decay_bound,
+        area_law_decay_bound_rational,
+        cluster_series_geometric_sum,
+        cluster_series_geometric_sum_rational,
+        collar_tube_contraction,
+        collar_tube_contraction_rational,
+        coordination_number_delta,
+        geometric_cluster_series_bound_satisfied,
+        loop_perimeter,
+        minimal_spanning_area,
+        q8_center_parity_protection,
+        q8_cubic_character_invariant,
+        q8_cubic_character_invariant_rational,
+        s3_cubic_character_invariant,
+        s3_cubic_character_invariant_rational,
+        single_plaquette_character_activity_zn,
+        strong_coupling_threshold_beta0,
+        strong_coupling_threshold_beta0_rational,
+        strong_coupling_threshold_beta0_rational_bounds,
+        twod_character_decimation_area_law,
+        twod_character_decimation_area_law_rational,
+        verify_fqcd_strong_coupling_area_law_witness,
+    )
+
+
+def test_coordination_numbers_and_refusals() -> None:
+    expected = {
+        2: 4,
+        3: 12,
+        4: 24,
+        5: 40,
+        6: 60,
+    }
+    for d, delta in expected.items():
+        assert coordination_number_delta(d) == delta
+        assert delta == 2 * d * (d - 1)
+
+    with pytest.raises(ValueError):
+        coordination_number_delta(1)
+    with pytest.raises(ValueError):
+        coordination_number_delta(0)
+    with pytest.raises(ValueError):
+        coordination_number_delta(-2)
+
+
+def test_strong_coupling_threshold_beta0() -> None:
+    for n in [2, 3, 4, 8]:
+        for d in [2, 3, 4]:
+            beta0 = strong_coupling_threshold_beta0(n, d)
+            assert beta0 > 0.0
+            # Analytical check against formula
+            expected = 1.0 / (8.0 * math.e * (2 * d * (d - 1)) * (n - 1))
+            assert abs(beta0 - expected) < 1e-15
+
+    # Monotonicity: strictly decreasing with dimension d
+    assert strong_coupling_threshold_beta0(2, 2) > strong_coupling_threshold_beta0(2, 3)
+    assert strong_coupling_threshold_beta0(2, 3) > strong_coupling_threshold_beta0(2, 4)
+
+    # Monotonicity: strictly decreasing with group order N
+    assert strong_coupling_threshold_beta0(2, 4) > strong_coupling_threshold_beta0(3, 4)
+    assert strong_coupling_threshold_beta0(3, 4) > strong_coupling_threshold_beta0(4, 4)
+
+    with pytest.raises(ValueError):
+        strong_coupling_threshold_beta0(1, 4)
+    with pytest.raises(ValueError):
+        strong_coupling_threshold_beta0(2, 1)
+
+
+def test_strong_coupling_threshold_rational_bounds() -> None:
+    for n in [2, 3, 5]:
+        for d in [2, 3, 4]:
+            lower, upper = strong_coupling_threshold_beta0_rational_bounds(n, d)
+            rat_val = strong_coupling_threshold_beta0_rational(n, d)
+            flt_val = strong_coupling_threshold_beta0(n, d)
+
+            assert lower > 0
+            assert upper > lower
+            assert float(lower) <= flt_val <= float(upper)
+            assert lower <= rat_val <= upper
+
+
+def test_minimal_spanning_area_and_perimeter() -> None:
+    assert minimal_spanning_area(1, 1) == 1
+    assert loop_perimeter(1, 1) == 4
+
+    assert minimal_spanning_area(3, 5) == 15
+    assert loop_perimeter(3, 5) == 16
+
+    assert minimal_spanning_area(10, 20) == 200
+    assert loop_perimeter(10, 20) == 60
+
+    with pytest.raises(ValueError):
+        minimal_spanning_area(0, 5)
+    with pytest.raises(ValueError):
+        minimal_spanning_area(5, -1)
+    with pytest.raises(ValueError):
+        loop_perimeter(0, 4)
+
+
+def test_exact_constants_and_decay_bound() -> None:
+    assert CONST_K == 1
+    assert abs(math.exp(-CONST_SIGMA_0) - 0.25) < 1e-15
+    assert CONST_SIGMA_0 == pytest.approx(math.log(4.0))
+
+    for area in [1, 2, 3, 4, 8]:
+        flt_bound = area_law_decay_bound(area)
+        rat_bound = area_law_decay_bound_rational(area)
+        expected = 0.25 ** area
+        assert abs(flt_bound - expected) < 1e-15
+        assert rat_bound == Fraction(1, 4 ** area)
+        assert abs(float(rat_bound) - flt_bound) < 1e-15
+
+
+def test_single_plaquette_character_activity_zn() -> None:
+    for n in [2, 3, 4, 5, 8]:
+        beta0 = strong_coupling_threshold_beta0(n, 4)
+        for beta in [0.0, beta0 * 0.1, beta0 * 0.5, beta0 * 0.9]:
+            for m in range(1, n):
+                a_m, a_0, alpha = single_plaquette_character_activity_zn(n, m, beta)
+                assert a_0 > 0.0
+                if beta == 0.0:
+                    assert abs(a_m) < 1e-15
+                    assert abs(alpha) < 1e-15
+                else:
+                    # Bound: |alpha_m| <= beta < beta_0
+                    assert abs(alpha) <= beta + 1e-14
+                    assert abs(alpha) < beta0
+
+
+def test_cluster_series_geometric_sum_and_bound() -> None:
+    # Test for mu <= 0.20 (which corresponds to beta <= beta_0 / 5)
+    mu_rat = Fraction(1, 5)
+    for area in range(1, 10):
+        rat_sum = cluster_series_geometric_sum_rational(mu_rat, area)
+        rat_decay = area_law_decay_bound_rational(area)
+        assert rat_sum <= rat_decay
+
+    for n in [2, 3, 4]:
+        for d in [2, 3, 4]:
+            beta0 = strong_coupling_threshold_beta0(n, d)
+            # For beta <= beta0 / 5
+            for beta in [beta0 * 0.01, beta0 * 0.1, beta0 * 0.2]:
+                for area in [1, 2, 3, 5, 10]:
+                    assert geometric_cluster_series_bound_satisfied(n, d, beta, area)
+
+
+def test_s3_cubic_character_invariant_and_screening() -> None:
+    s3_inv = s3_cubic_character_invariant()
+    s3_inv_rat = s3_cubic_character_invariant_rational()
+    assert abs(s3_inv - 1.0) < 1e-15
+    assert s3_inv_rat == Fraction(1, 1)
+
+    # Collar tube screening tensor contraction
+    assert collar_tube_contraction(0) == 1.0
+    assert collar_tube_contraction(1) == 0.5
+    assert collar_tube_contraction(17) == 2.0 ** (-17)
+    assert collar_tube_contraction_rational(17) == Fraction(1, 131072)
+    assert collar_tube_contraction_rational(17) > 0
+
+    with pytest.raises(ValueError):
+        collar_tube_contraction(-1)
+
+
+def test_q8_cubic_character_invariant_and_protection() -> None:
+    q8_inv = q8_cubic_character_invariant()
+    q8_inv_rat = q8_cubic_character_invariant_rational()
+    assert abs(q8_inv) < 1e-15
+    assert q8_inv_rat == Fraction(0, 1)
+
+    protection = q8_center_parity_protection()
+    assert protection["group"] == "Q_8"
+    assert protection["cubic_invariant"] == 0.0
+    assert protection["screening_protection"] is True
+    assert protection["chi_center_defect"] == -2
+
+
+def test_twod_character_decimation_area_law() -> None:
+    # Abelian case (dim R = 1): <W> = (alpha)^Area
+    alpha = 0.2
+    for area in [1, 2, 3, 5]:
+        val = twod_character_decimation_area_law(1, alpha, area)
+        val_rat = twod_character_decimation_area_law_rational(1, Fraction(1, 5), area)
+        assert abs(val - (alpha ** area)) < 1e-15
+        assert val_rat == Fraction(1, 5 ** area)
+
+    # Non-abelian case (dim R = 2): <W> = 2^{1 - Area} * (alpha)^Area
+    for area in [1, 2, 3, 4]:
+        val = twod_character_decimation_area_law(2, alpha, area)
+        val_rat = twod_character_decimation_area_law_rational(2, Fraction(1, 5), area)
+        expected = (2.0 ** (1 - area)) * (alpha ** area)
+        assert abs(val - expected) < 1e-15
+        expected_rat = Fraction(1, 2 ** (area - 1)) * Fraction(1, 5 ** area)
+        assert val_rat == expected_rat
+
+
+def test_master_witness_passes() -> None:
+    receipt = verify_fqcd_strong_coupling_area_law_witness()
+    assert receipt["record_id"] == "TFQ-1052"
+    assert receipt["dag_node"] == "FQCD-STRONG-COUPLING-AREA-LAW"
+    assert receipt["all_passed"] is True
+    assert receipt["total_checks"] >= 15

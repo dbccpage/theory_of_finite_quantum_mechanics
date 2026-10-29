@@ -3,6 +3,7 @@ pub mod linear_algebra;
 pub mod homology;
 pub mod qm;
 pub mod dag_witnesses;
+pub mod fqcd;
 
 pub use tfqm_category_theory as category_theory;
 pub use tfqm_combinatorics as combinatorics;
@@ -27,7 +28,7 @@ pub use qm::*;
 pub use qm::group_param as group_parameter;
 
 pub fn crate_root_inventory_holds() -> Result<(), &'static str> {
-    const MODULES: &[&str] = &["linear_algebra", "homology", "qm", "dag_witnesses"];
+    const MODULES: &[&str] = &["linear_algebra", "homology", "qm", "dag_witnesses", "fqcd"];
     inventory_mass(MODULES)?;
     let harmonic = 3i64 + 2 + 1;
     if harmonic != 6 {
