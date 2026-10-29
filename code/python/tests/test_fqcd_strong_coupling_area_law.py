@@ -22,6 +22,7 @@ try:
         cluster_series_geometric_sum_rational,
         collar_tube_contraction,
         collar_tube_contraction_rational,
+        complete_blichfeldt_ffk_su3_crystal_hierarchy_rational,
         coordination_number_delta,
         d4_multi_plaquette_collar_bound_rational,
         freezing_plaquette_defect_rational_bounds,
@@ -64,6 +65,7 @@ except ImportError:
         cluster_series_geometric_sum_rational,
         collar_tube_contraction,
         collar_tube_contraction_rational,
+        complete_blichfeldt_ffk_su3_crystal_hierarchy_rational,
         coordination_number_delta,
         d4_multi_plaquette_collar_bound_rational,
         freezing_plaquette_defect_rational_bounds,
@@ -410,6 +412,25 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
     exact_d216 = (4.0 - 2.0 * c1 - 2.0 * (c1 ** 2)) / 3.0
     assert float(d216_tight_l) < exact_d216 < float(d216_tight_u)
     assert d216_l < d216_tight_l < d216_tight_u < d216_u < Fraction(11, 24)
+
+    ffk = complete_blichfeldt_ffk_su3_crystal_hierarchy_rational()
+    assert ffk["I11_Sigma36x3_3"] == ffk["I3_Sigma36x3_3"] == Fraction(1, 1)
+    assert ffk["I4_Sigma36x3_3"] == Fraction(3, 1)
+    assert ffk["I2_Sigma60_8"] == Fraction(2, 1)
+    assert (ffk["I3_Delta27_8"], ffk["I3_Delta54_8"], ffk["I3_Sigma36x3_8"], ffk["I3_Sigma60_8"], ffk["I3_Sigma72x3_8"]) == (
+        Fraction(56, 1),
+        Fraction(28, 1),
+        Fraction(14, 1),
+        Fraction(9, 1),
+        Fraction(7, 1),
+    )
+    assert (ffk["I4_Delta27_8"], ffk["I4_Delta54_8"], ffk["I4_Sigma36x3_8"], ffk["I4_Sigma60_8"], ffk["I4_Sigma72x3_8"]) == (
+        Fraction(456, 1),
+        Fraction(228, 1),
+        Fraction(114, 1),
+        Fraction(70, 1),
+        Fraction(57, 1),
+    )
 
 
 def test_master_witness_passes() -> None:

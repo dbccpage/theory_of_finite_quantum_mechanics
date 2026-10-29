@@ -545,6 +545,32 @@ def su2_higher_spin_casimir_and_hessian_defect_bounds_rational() -> Dict[str, An
     }
 
 
+def complete_blichfeldt_ffk_su3_crystal_hierarchy_rational() -> Dict[str, Fraction]:
+    """Exact invariants for Sigma(36 x 3) (|G| = 108) and Sigma(60 x 3) = A_5 x Z_3 (|G| = 180),
+    completing the 8-group Blichfeldt-FFK SU(3) crystal classification:
+    - Dyadic halving along Delta(27) -> Delta(54) -> Sigma(36 x 3) -> Sigma(72 x 3):
+      <8, 8>_G = 8 -> 4 -> 2 -> 1, I_3(8) = 56 -> 28 -> 14 -> 7, I_4(8) = 456 -> 228 -> 114 -> 57
+    - Complete 8-step quartic adjoint descent:
+      456 > 228 > 114 > 70 > 57 > 25 > 21 > 13 > 8 = I_4(SU(3), 8).
+    """
+    return {
+        "I11_Sigma36x3_3": Fraction(3 * 9 + 81 * 1, 108),
+        "I3_Sigma36x3_3": Fraction(3 * 27 + 54 * 1 + 27 * (-1), 108),
+        "I4_Sigma36x3_3": Fraction(3 * 81 + 81 * 1, 108),
+        "I2_Sigma60_8": Fraction(1 * 64 + 20 * 1 + 12 * 3, 60),
+        "I3_Delta27_8": Fraction(3 * 512 + 24 * (-1), 27),
+        "I3_Delta54_8": Fraction(3 * 512 + 24 * (-1), 54),
+        "I3_Sigma36x3_8": Fraction(3 * 512 + 24 * (-1), 108),
+        "I3_Sigma60_8": Fraction(1 * 512 + 20 * (-1) + 12 * 4, 60),
+        "I3_Sigma72x3_8": Fraction(3 * 512 + 24 * (-1), 216),
+        "I4_Delta27_8": Fraction(3 * 4096 + 24 * 1, 27),
+        "I4_Delta54_8": Fraction(3 * 4096 + 24 * 1, 54),
+        "I4_Sigma36x3_8": Fraction(3 * 4096 + 24 * 1, 108),
+        "I4_Sigma60_8": Fraction(1 * 4096 + 20 * 1 + 12 * 7, 60),
+        "I4_Sigma72x3_8": Fraction(3 * 4096 + 24 * 1, 216),
+    }
+
+
 def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
     """Master multi-language verification witness for Record TFQ-1052."""
     checks = []
@@ -735,6 +761,22 @@ def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
         and su2_hs["2i_irrep_dim_sq_sum"] == 120
         and su2_hs["poly_at_36_47"] < Fraction(0, 1) < su2_hs["poly_at_23_30"]
         and d216_l < d216_tight_l < d216_tight_u < d216_u < ds1080_low
+    )))
+
+    # 17. Complete 8-group Blichfeldt-FFK SU(3) crystal hierarchy & dyadic halving laws
+    ffk = complete_blichfeldt_ffk_su3_crystal_hierarchy_rational()
+    checks.append(("complete_blichfeldt_ffk_su3_hierarchy", 0, (
+        ffk["I11_Sigma36x3_3"] == ffk["I3_Sigma36x3_3"] == Fraction(1, 1)
+        and ffk["I4_Sigma36x3_3"] == Fraction(3, 1)
+        and ffk["I2_Sigma60_8"] == Fraction(2, 1)
+        and (ffk["I3_Delta27_8"], ffk["I3_Delta54_8"], ffk["I3_Sigma36x3_8"], ffk["I3_Sigma60_8"], ffk["I3_Sigma72x3_8"])
+        == (Fraction(56, 1), Fraction(28, 1), Fraction(14, 1), Fraction(9, 1), Fraction(7, 1))
+        and ffk["I4_Delta27_8"] == Fraction(456, 1)
+        > ffk["I4_Delta54_8"] == Fraction(228, 1)
+        > ffk["I4_Sigma36x3_8"] == Fraction(114, 1)
+        > ffk["I4_Sigma60_8"] == Fraction(70, 1)
+        > ffk["I4_Sigma72x3_8"] == Fraction(57, 1)
+        > hess["I4_Sigma168_8"] > hess["I4_Sigma216x3_8"] > hess["I4_Sigma1080_8a"] > hess["I4_SU3_continuum_8"]
     )))
 
     all_passed = all(status for _, _, status in checks)

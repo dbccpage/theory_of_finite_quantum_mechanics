@@ -556,6 +556,51 @@ pub fn su2_higher_spin_casimir_and_hessian_defect_bounds() -> (
     )
 }
 
+/// Complete 8-group Blichfeldt-FFK SU(3) crystal classification invariants for
+/// `Σ(36×3)` (`|G| = 108`), `Σ(60×3) ≅ A_5 × Z_3`, `Δ(27)`, and `Δ(54)`:
+/// returns `(I_{1,1}(Σ(36×3), 3), I_3(Σ(36×3), 3), I_4(Σ(36×3), 3), I_2(Σ(60), 8), I_3(Δ(27), 8), I_3(Δ(54), 8), I_3(Σ(36×3), 8), I_3(Σ(60), 8), I_4(Δ(27), 8), I_4(Δ(54), 8), I_4(Σ(36×3), 8), I_4(Σ(60), 8))`.
+pub fn complete_blichfeldt_ffk_su3_crystal_hierarchy() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let i11_36 = rat(3 * 9 + 81 * 1, 108);
+    let i3_36 = rat(3 * 27 + 54 * 1 + 27 * (-1), 108);
+    let i4_36 = rat(3 * 81 + 81 * 1, 108);
+    let i2_60_8 = rat(1 * 64 + 20 * 1 + 12 * 3, 60);
+    let i3_d27_8 = rat(3 * 512 + 24 * (-1), 27);
+    let i3_d54_8 = rat(3 * 512 + 24 * (-1), 54);
+    let i3_36_8 = rat(3 * 512 + 24 * (-1), 108);
+    let i3_60_8 = rat(1 * 512 + 20 * (-1) + 12 * 4, 60);
+    let i4_d27_8 = rat(3 * 4096 + 24 * 1, 27);
+    let i4_d54_8 = rat(3 * 4096 + 24 * 1, 54);
+    let i4_36_8 = rat(3 * 4096 + 24 * 1, 108);
+    let i4_60_8 = rat(1 * 4096 + 20 * 1 + 12 * 7, 60);
+    (
+        i11_36,
+        i3_36,
+        i4_36,
+        i2_60_8,
+        i3_d27_8,
+        i3_d54_8,
+        i3_36_8,
+        i3_60_8,
+        i4_d27_8,
+        i4_d54_8,
+        i4_36_8,
+        i4_60_8,
+    )
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -802,6 +847,38 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
         || !(d216_l < d216_tl && d216_tl < d216_tu && d216_tu < d216_u && d216_u < ds_l)
     {
         return Err("SU(2) higher-spin Casimir obstruction and Hessian defect bounds failed");
+    }
+
+    // 17. Complete 8-group Blichfeldt-FFK SU(3) crystal hierarchy & dyadic halving laws
+    let (
+        i11_36,
+        i3_36,
+        i4_36,
+        i2_60_8,
+        i3_d27_8,
+        i3_d54_8,
+        i3_36_8,
+        i3_60_8,
+        i4_d27_8,
+        i4_d54_8,
+        i4_36_8,
+        i4_60_8,
+    ) = complete_blichfeldt_ffk_su3_crystal_hierarchy();
+    if i11_36 != BigRational::one()
+        || i3_36 != BigRational::one()
+        || i4_36 != rat(3, 1)
+        || i2_60_8 != rat(2, 1)
+        || i3_d27_8 != rat(56, 1)
+        || i3_d54_8 != rat(28, 1)
+        || i3_36_8 != rat(14, 1)
+        || i3_60_8 != rat(9, 1)
+        || i4_d27_8 != rat(456, 1)
+        || i4_d54_8 != rat(228, 1)
+        || i4_36_8 != rat(114, 1)
+        || i4_60_8 != rat(70, 1)
+        || !(i4_72_8 < i4_60_8 && i4_60_8 < i4_36_8 && i4_36_8 < i4_d54_8 && i4_d54_8 < i4_d27_8)
+    {
+        return Err("Complete Blichfeldt-FFK SU(3) crystal hierarchy verification failed");
     }
 
     Ok(true)

@@ -11,7 +11,8 @@ use theory_of_finite_qm::crate_root_inventory_holds;
 use theory_of_finite_qm::fqcd::{
     a5_cubic_character_invariants, area_law_decay_bound_rational, beta0_rational_approx,
     beta0_rational_bounds, binary_icosahedral_2i_invariants, check_geometric_cluster_series_bound,
-    cluster_series_geometric_sum, collar_tube_contraction, const_k, coordination_number_delta,
+    cluster_series_geometric_sum, collar_tube_contraction,
+    complete_blichfeldt_ffk_su3_crystal_hierarchy, const_k, coordination_number_delta,
     d4_multi_plaquette_collar_bound, freezing_plaquette_defect_bounds,
     general_collar_tube_contraction, hessian_subgroups_and_quartic_adjoint_casimir_obstruction,
     klein_sigma168_invariants_and_su3_chain, loop_perimeter, minimal_spanning_area,
@@ -304,6 +305,34 @@ fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
     assert_eq!(i4_2i_5, rat(11, 1));
     assert_eq!(i4_su2_5, rat(5, 1));
     assert!(d216_l < d216_tl && d216_tl < d216_tu && d216_tu < d216_u && d216_u < ds_l);
+
+    let (
+        i11_36,
+        i3_36,
+        i4_36,
+        i2_60_8,
+        i3_d27_8,
+        i3_d54_8,
+        i3_36_8,
+        i3_60_8,
+        i4_d27_8,
+        i4_d54_8,
+        i4_36_8,
+        i4_60_8,
+    ) = complete_blichfeldt_ffk_su3_crystal_hierarchy();
+    assert_eq!(i11_36, BigRational::one());
+    assert_eq!(i3_36, BigRational::one());
+    assert_eq!(i4_36, rat(3, 1));
+    assert_eq!(i2_60_8, rat(2, 1));
+    assert_eq!(i3_d27_8, rat(56, 1));
+    assert_eq!(i3_d54_8, rat(28, 1));
+    assert_eq!(i3_36_8, rat(14, 1));
+    assert_eq!(i3_60_8, rat(9, 1));
+    assert_eq!(i4_d27_8, rat(456, 1));
+    assert_eq!(i4_d54_8, rat(228, 1));
+    assert_eq!(i4_36_8, rat(114, 1));
+    assert_eq!(i4_60_8, rat(70, 1));
+    assert!(i4_72_8 < i4_60_8 && i4_60_8 < i4_36_8 && i4_36_8 < i4_d54_8 && i4_d54_8 < i4_d27_8);
 }
 
 #[test]

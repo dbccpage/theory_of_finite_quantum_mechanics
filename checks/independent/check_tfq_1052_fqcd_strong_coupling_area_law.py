@@ -525,6 +525,34 @@ def run_checks() -> Dict[str, Any]:
         "Hessian Sigma(216x3) order-9 Cartan phase defect enclosed in (581/1350, 2860/6627) subset (43/100, 13/30) < 11/24",
     )
 
+    # -------------------------------------------------------------------------
+    # Family 16: Complete 8-group Blichfeldt-FFK SU(3) crystal hierarchy & dyadic halving laws
+    # -------------------------------------------------------------------------
+    i11_36 = Fraction(3 * 9 + 81 * 1, 108)
+    i3_36 = Fraction(3 * 27 + 54 * 1 + 27 * (-1), 108)
+    i4_36 = Fraction(3 * 81 + 81 * 1, 108)
+    i2_60_8 = Fraction(1 * 64 + 20 * 1 + 12 * 3, 60)
+    i3_d27_8 = Fraction(3 * 512 + 24 * (-1), 27)
+    i3_d54_8 = Fraction(3 * 512 + 24 * (-1), 54)
+    i3_36_8 = Fraction(3 * 512 + 24 * (-1), 108)
+    i3_60_8 = Fraction(1 * 512 + 20 * (-1) + 12 * 4, 60)
+    i4_d27_8 = Fraction(3 * 4096 + 24 * 1, 27)
+    i4_d54_8 = Fraction(3 * 4096 + 24 * 1, 54)
+    i4_36_8 = Fraction(3 * 4096 + 24 * 1, 108)
+    i4_60_8 = Fraction(1 * 4096 + 20 * 1 + 12 * 7, 60)
+    check(
+        i11_36 == i3_36 == Fraction(1, 1) and i4_36 == Fraction(3, 1) and i2_60_8 == Fraction(2, 1),
+        "Sigma(36x3) has I_{1,1}(3)=I_3(3)=1, I_4(3)=3 (8 = 4_1 + 4_2) and Sigma(60x3) has <8,8>=2 (8 = 3_a + 5)",
+    )
+    check(
+        (i3_d27_8, i3_d54_8, i3_36_8, i3_60_8, i3_72_8) == (Fraction(56, 1), Fraction(28, 1), Fraction(14, 1), Fraction(9, 1), Fraction(7, 1)),
+        "Dyadic halving of cubic adjoint invariants I_3(8): 56 -> 28 -> 14 -> 7 across Delta(27) -> Delta(54) -> Sigma(36x3) -> Sigma(72x3)",
+    )
+    check(
+        i4_d27_8 == Fraction(456, 1) > i4_d54_8 == Fraction(228, 1) > i4_36_8 == Fraction(114, 1) > i4_60_8 == Fraction(70, 1) > i4_72_8 > i4_168_8 > i4_216_8 > i4_1080_8 > i4_su3_8,
+        "Strict 8-step descent of quartic adjoint invariants 456 > 228 > 114 > 70 > 57 > 25 > 21 > 13 > 8 = I_4(SU(3), 8)",
+    )
+
     return {
         "record_id": "TFQ-1052",
         "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",
