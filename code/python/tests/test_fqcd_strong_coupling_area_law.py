@@ -40,6 +40,7 @@ try:
         strong_coupling_threshold_beta0,
         strong_coupling_threshold_beta0_rational,
         strong_coupling_threshold_beta0_rational_bounds,
+        strong_to_freezing_coupling_gap_rational,
         su2_ade_binary_polyhedral_tower_rational,
         su3_subgroup_tower_and_freezing_scales_rational,
         twod_character_decimation_area_law,
@@ -77,6 +78,7 @@ except ImportError:
         strong_coupling_threshold_beta0,
         strong_coupling_threshold_beta0_rational,
         strong_coupling_threshold_beta0_rational_bounds,
+        strong_to_freezing_coupling_gap_rational,
         su2_ade_binary_polyhedral_tower_rational,
         su3_subgroup_tower_and_freezing_scales_rational,
         twod_character_decimation_area_law,
@@ -341,6 +343,16 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
     assert su3_tower["beta_freeze_proxy_Delta27"] == Fraction(1, 1)
     assert su3_tower["beta_freeze_proxy_Delta54"] == Fraction(6, 5)
     assert su3_tower["beta_freeze_proxy_Delta27"] < su3_tower["beta_freeze_proxy_Delta54"] < bf_s1080_low < bf_s1080_high
+
+    g_q8 = strong_to_freezing_coupling_gap_rational(8, 4, Fraction(1, 1))
+    g_2t = strong_to_freezing_coupling_gap_rational(24, 4, Fraction(1, 2))
+    g_2o_low = strong_to_freezing_coupling_gap_rational(48, 4, Fraction(3, 10))
+    g_2i_low = strong_to_freezing_coupling_gap_rational(120, 4, Fraction(1, 5))
+    g_d27 = strong_to_freezing_coupling_gap_rational(27, 4, Fraction(1, 1))
+    g_d54 = strong_to_freezing_coupling_gap_rational(54, 4, Fraction(5, 6))
+    g_s1080_low = strong_to_freezing_coupling_gap_rational(1080, 4, Fraction(7, 15))
+    assert Fraction(999, 1000) < g_q8 < g_2t < g_2o_low < g_2i_low
+    assert Fraction(999, 1000) < g_d27 < g_d54 < g_s1080_low
 
 
 def test_master_witness_passes() -> None:

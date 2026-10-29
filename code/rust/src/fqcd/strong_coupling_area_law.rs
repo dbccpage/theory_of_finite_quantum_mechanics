@@ -384,6 +384,21 @@ pub fn su3_subgroup_tower_and_freezing_scales() -> (
     )
 }
 
+/// Exact rational intermediate cross-over coupling gap
+/// `Δβ_gap(N, d, Δ_min) = 1 / Δ_min - β_0^rat(N, d)`
+/// separating the strong-coupling cluster-expansion regime from the weak-coupling Peierls frozen regime.
+pub fn strong_to_freezing_coupling_gap(
+    n: u64,
+    d: u64,
+    delta_min: &BigRational,
+) -> Result<BigRational, &'static str> {
+    if delta_min <= &BigRational::zero() {
+        return Err("Requires delta_min > 0");
+    }
+    let b0 = beta0_rational_approx(n, d)?;
+    Ok((BigRational::one() / delta_min) - b0)
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -521,6 +536,25 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
         || !(bf_d27 < bf_d54 && bf_d54 < bf_s_l && bf_s_l < bf_s_u)
     {
         return Err("SU(3) subgroup tower and freezing scales verification failed");
+    }
+
+    // 12. Strong-coupling vs freezing regime separation & gap widening
+    let g_q8 = strong_to_freezing_coupling_gap(8, 4, &dq8)?;
+    let g_2t = strong_to_freezing_coupling_gap(24, 4, &d2t)?;
+    let g_2o_l = strong_to_freezing_coupling_gap(48, 4, &d2o_u)?;
+    let g_2i_l = strong_to_freezing_coupling_gap(120, 4, &d2i_u)?;
+    let g_d27 = strong_to_freezing_coupling_gap(27, 4, &rat(1, 1))?;
+    let g_d54 = strong_to_freezing_coupling_gap(54, 4, &rat(5, 6))?;
+    let g_s1080_l = strong_to_freezing_coupling_gap(1080, 4, &ds_u)?;
+    if !(rat(999, 1000) < g_q8
+        && g_q8 < g_2t
+        && g_2t < g_2o_l
+        && g_2o_l < g_2i_l
+        && rat(999, 1000) < g_d27
+        && g_d27 < g_d54
+        && g_d54 < g_s1080_l)
+    {
+        return Err("Strong-coupling to freezing coupling gap widening failed");
     }
 
     Ok(true)

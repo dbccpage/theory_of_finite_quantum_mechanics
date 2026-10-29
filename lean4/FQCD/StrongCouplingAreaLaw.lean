@@ -837,6 +837,44 @@ theorem su3_subgroup_tower_defects_and_freezing_scales :
     deltaMinSigma1080Upper, deltaMinDelta54, deltaMinDelta27, inverseDefectFreezingProxy]
   norm_num
 
+-- ----------------------------------------------------------------------------
+-- Main Theorem 8: Strong-Coupling vs. Freezing Regime Separation & Gap Widening
+-- ----------------------------------------------------------------------------
+
+/-- Rational strong-coupling threshold `β_0^rat(N, d) = 100 / (10873 · Δ_d · (N - 1))`. -/
+def beta0Rational (N d : Nat) : ℚ :=
+  100 / (10873 * (coordinationNumber d : ℚ) * ((N : ℚ) - 1))
+
+/-- Intermediate cross-over coupling gap `Δβ_gap(N, d, Δ_min) = 1 / Δ_min - β_0^rat(N, d)`
+separating the strong-coupling cluster-expansion regime `(0, β_0^rat)` from the
+weak-coupling Peierls frozen regime `(1 / Δ_min, ∞)`. -/
+def strongToFreezingCouplingGap (N d : Nat) (deltaMin : ℚ) : ℚ :=
+  inverseDefectFreezingProxy deltaMin - beta0Rational N d
+
+/-- `theorem strong_coupling_to_freezing_regime_separation`:
+In `d = 4`, across both the `SU(2)` ADE binary polyhedral series (`Q_8` order 8, `2T` order 24,
+`2O` order 48, `2I` order 120) and the `SU(3)` crystal hierarchy (`Δ(27)` order 27, `Δ(54)` order 54,
+`Σ(1080)` order 1080), the strong-coupling convergence radius `β_0^rat(|G|, 4)` is strictly below `1/1000`,
+the freezing scale proxy `1 / Δ_min(G, R)` is at least `1`, and the intermediate cross-over gap
+`Δβ_gap(|G|, 4, Δ_min(G, R))` is strictly positive (`> 999/1000`) and widens strictly monotonically
+with group order `|G|`. -/
+theorem strong_coupling_to_freezing_regime_separation :
+    (beta0Rational 120 4 < beta0Rational 48 4 ∧
+      beta0Rational 48 4 < beta0Rational 24 4 ∧
+      beta0Rational 24 4 < beta0Rational 8 4 ∧
+      beta0Rational 8 4 < (1 / 1000 : ℚ)) ∧
+    ((999 / 1000 : ℚ) < strongToFreezingCouplingGap 8 4 deltaMinQ8 ∧
+      strongToFreezingCouplingGap 8 4 deltaMinQ8 < strongToFreezingCouplingGap 24 4 deltaMin2T ∧
+      strongToFreezingCouplingGap 24 4 deltaMin2T < strongToFreezingCouplingGap 48 4 deltaMin2OUpper ∧
+      strongToFreezingCouplingGap 48 4 deltaMin2OLower < strongToFreezingCouplingGap 120 4 deltaMin2IUpper) ∧
+    ((999 / 1000 : ℚ) < strongToFreezingCouplingGap 27 4 deltaMinDelta27 ∧
+      strongToFreezingCouplingGap 27 4 deltaMinDelta27 < strongToFreezingCouplingGap 54 4 deltaMinDelta54 ∧
+      strongToFreezingCouplingGap 54 4 deltaMinDelta54 < strongToFreezingCouplingGap 1080 4 deltaMinSigma1080Upper) := by
+  dsimp [strongToFreezingCouplingGap, inverseDefectFreezingProxy, beta0Rational, coordinationNumber,
+    deltaMinQ8, deltaMin2T, deltaMin2OUpper, deltaMin2OLower, deltaMin2IUpper,
+    deltaMinDelta27, deltaMinDelta54, deltaMinSigma1080Upper]
+  norm_num
+
 -- ============================================================================
 -- Axiom Verification Receipts
 -- ============================================================================
@@ -853,5 +891,6 @@ theorem su3_subgroup_tower_defects_and_freezing_scales :
 #print axioms petcher_weingarten_bhanot_rebbi_freezing_defect_bounds
 #print axioms su2_binary_polyhedral_ade_tower_defects_and_invariants
 #print axioms su3_subgroup_tower_defects_and_freezing_scales
+#print axioms strong_coupling_to_freezing_regime_separation
 
 end FQCD

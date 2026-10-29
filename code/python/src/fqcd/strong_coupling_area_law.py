@@ -437,6 +437,16 @@ def su3_subgroup_tower_and_freezing_scales_rational() -> Dict[str, Any]:
     }
 
 
+def strong_to_freezing_coupling_gap_rational(n: int, d: int, delta_min: Fraction) -> Fraction:
+    """Exact rational intermediate cross-over coupling gap
+    Delta_beta_gap(N, d, Delta_min) = 1 / Delta_min - beta_0^rat(N, d)
+    separating the strong-coupling cluster-expansion regime from the weak-coupling Peierls frozen regime.
+    """
+    if delta_min <= Fraction(0, 1):
+        raise ValueError("Requires delta_min > 0")
+    return (Fraction(1, 1) / delta_min) - strong_coupling_threshold_beta0_rational(n, d)
+
+
 def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
     """Master multi-language verification witness for Record TFQ-1052."""
     checks = []
@@ -558,6 +568,19 @@ def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
         and su3_tower["I3_Delta54_3_1"] == Fraction(1, 1)
         and su3_tower["I3_Delta54_3_2"] == Fraction(2, 1)
         and su3_tower["beta_freeze_proxy_Delta27"] < su3_tower["beta_freeze_proxy_Delta54"] < bf_s1080_low < bf_s1080_high
+    )))
+
+    # 12. Strong-coupling vs freezing regime separation & gap widening
+    g_q8 = strong_to_freezing_coupling_gap_rational(8, 4, Fraction(1, 1))
+    g_2t = strong_to_freezing_coupling_gap_rational(24, 4, Fraction(1, 2))
+    g_2o_low = strong_to_freezing_coupling_gap_rational(48, 4, Fraction(3, 10))
+    g_2i_low = strong_to_freezing_coupling_gap_rational(120, 4, Fraction(1, 5))
+    g_d27 = strong_to_freezing_coupling_gap_rational(27, 4, Fraction(1, 1))
+    g_d54 = strong_to_freezing_coupling_gap_rational(54, 4, Fraction(5, 6))
+    g_s1080_low = strong_to_freezing_coupling_gap_rational(1080, 4, Fraction(7, 15))
+    checks.append(("strong_to_freezing_gap_widening", 0, (
+        Fraction(999, 1000) < g_q8 < g_2t < g_2o_low < g_2i_low
+        and Fraction(999, 1000) < g_d27 < g_d54 < g_s1080_low
     )))
 
     all_passed = all(status for _, _, status in checks)

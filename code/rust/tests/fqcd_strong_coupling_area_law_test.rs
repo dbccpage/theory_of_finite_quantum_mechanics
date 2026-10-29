@@ -16,9 +16,10 @@ use theory_of_finite_qm::fqcd::{
     general_collar_tube_contraction, loop_perimeter, minimal_spanning_area,
     normal_directions_count, q8_center_parity_non_screening_verified,
     q8_cubic_character_invariant_sum, s3_cubic_character_invariant_sum,
-    s4_cubic_character_invariants, su2_ade_binary_polyhedral_tower,
-    su3_subgroup_tower_and_freezing_scales, twod_character_decimation_area_law,
-    valentiner_sigma1080_invariants, verify_fqcd_strong_coupling_area_law_witness,
+    s4_cubic_character_invariants, strong_to_freezing_coupling_gap,
+    su2_ade_binary_polyhedral_tower, su3_subgroup_tower_and_freezing_scales,
+    twod_character_decimation_area_law, valentiner_sigma1080_invariants,
+    verify_fqcd_strong_coupling_area_law_witness,
 };
 
 fn rat(n: i64, d: i64) -> BigRational {
@@ -221,6 +222,12 @@ fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
     assert_eq!(i3_d54_1, BigRational::one());
     assert_eq!(i3_d54_2, rat(2, 1));
     assert!(bf_d27 < bf_d54 && bf_d54 < bf_s_l && bf_s_l < bf_s_u);
+
+    let g_q8 = strong_to_freezing_coupling_gap(8, 4, &dq8).unwrap();
+    let g_2t = strong_to_freezing_coupling_gap(24, 4, &d2t).unwrap();
+    let g_2o_l = strong_to_freezing_coupling_gap(48, 4, &d2o_u).unwrap();
+    let g_2i_l = strong_to_freezing_coupling_gap(120, 4, &d2i_u).unwrap();
+    assert!(rat(999, 1000) < g_q8 && g_q8 < g_2t && g_2t < g_2o_l && g_2o_l < g_2i_l);
 }
 
 #[test]

@@ -404,6 +404,19 @@ def run_checks() -> Dict[str, Any]:
         "Strict monotonic increase of inverse-defect Peierls freezing scale proxy across SU(3) tower Delta(27) -> Delta(54) -> Sigma(1080)",
     )
 
+    # -------------------------------------------------------------------------
+    # Family 11: Strong-coupling vs freezing regime separation & gap widening
+    # -------------------------------------------------------------------------
+    g_q8 = Fraction(1, 1) - beta0_rational_midpoint(8, 4)
+    g_2t = Fraction(2, 1) - beta0_rational_midpoint(24, 4)
+    g_2o_low = Fraction(10, 3) - beta0_rational_midpoint(48, 4)
+    g_2i_low = Fraction(5, 1) - beta0_rational_midpoint(120, 4)
+    g_d27 = Fraction(1, 1) - beta0_rational_midpoint(27, 4)
+    g_d54 = Fraction(6, 5) - beta0_rational_midpoint(54, 4)
+    g_s1080_low = Fraction(15, 7) - beta0_rational_midpoint(1080, 4)
+    check(Fraction(999, 1000) < g_q8 < g_2t < g_2o_low < g_2i_low, "SU(2) ADE strong-to-freezing coupling gap > 999/1000 and widens strictly with |G|")
+    check(Fraction(999, 1000) < g_d27 < g_d54 < g_s1080_low, "SU(3) crystal strong-to-freezing coupling gap > 999/1000 and widens strictly with |G|")
+
     return {
         "record_id": "TFQ-1052",
         "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",
