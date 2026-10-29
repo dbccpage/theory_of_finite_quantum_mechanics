@@ -17,12 +17,14 @@ try:
         a5_cubic_character_invariants_rational,
         area_law_decay_bound,
         area_law_decay_bound_rational,
+        binary_icosahedral_2i_invariants_rational,
         cluster_series_geometric_sum,
         cluster_series_geometric_sum_rational,
         collar_tube_contraction,
         collar_tube_contraction_rational,
         coordination_number_delta,
         d4_multi_plaquette_collar_bound_rational,
+        freezing_plaquette_defect_rational_bounds,
         general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
         loop_perimeter,
@@ -40,6 +42,7 @@ try:
         strong_coupling_threshold_beta0_rational_bounds,
         twod_character_decimation_area_law,
         twod_character_decimation_area_law_rational,
+        valentiner_sigma1080_invariants_rational,
         verify_fqcd_strong_coupling_area_law_witness,
     )
 except ImportError:
@@ -49,12 +52,14 @@ except ImportError:
         a5_cubic_character_invariants_rational,
         area_law_decay_bound,
         area_law_decay_bound_rational,
+        binary_icosahedral_2i_invariants_rational,
         cluster_series_geometric_sum,
         cluster_series_geometric_sum_rational,
         collar_tube_contraction,
         collar_tube_contraction_rational,
         coordination_number_delta,
         d4_multi_plaquette_collar_bound_rational,
+        freezing_plaquette_defect_rational_bounds,
         general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
         loop_perimeter,
@@ -72,6 +77,7 @@ except ImportError:
         strong_coupling_threshold_beta0_rational_bounds,
         twod_character_decimation_area_law,
         twod_character_decimation_area_law_rational,
+        valentiner_sigma1080_invariants_rational,
         verify_fqcd_strong_coupling_area_law_witness,
     )
 
@@ -279,6 +285,36 @@ def test_s4_and_a5_cubic_invariants_and_d4_collar_bounds() -> None:
     assert b_k1 == Fraction(1, 10 ** 12)
     assert Fraction(0, 1) < b_k2 < b_k1
     assert Fraction(0, 1) < b_k1_d3 < b_k1
+
+
+def test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() -> None:
+    invs_2i = binary_icosahedral_2i_invariants_rational()
+    assert invs_2i["2_s"] == Fraction(0, 1)
+    assert invs_2i["2_s_prime"] == Fraction(0, 1)
+    assert invs_2i["4_s"] == Fraction(0, 1)
+    assert invs_2i["6_s"] == Fraction(0, 1)
+    assert invs_2i["3_a"] == Fraction(1, 1)
+    assert invs_2i["3_b"] == Fraction(1, 1)
+    assert invs_2i["4_t"] == Fraction(1, 1)
+    assert invs_2i["5_t"] == Fraction(2, 1)
+
+    invs_s1080 = valentiner_sigma1080_invariants_rational()
+    assert invs_s1080["I11_3a"] == Fraction(1, 1)
+    assert invs_s1080["I2_3a"] == Fraction(0, 1)
+    assert invs_s1080["I3_3a"] == Fraction(1, 1)
+    assert invs_s1080["I3_5a"] == Fraction(1, 1)
+    assert invs_s1080["I3_8a"] == Fraction(2, 1)
+    assert invs_s1080["I3_10"] == Fraction(2, 1)
+
+    defects = freezing_plaquette_defect_rational_bounds()
+    d2i_low, d2i_high = defects["2I_2s"]
+    ds1080_low, ds1080_high = defects["Sigma1080_3a"]
+    phi = (1.0 + math.sqrt(5.0)) / 2.0
+    exact_d2i = 1.0 - phi / 2.0
+    exact_ds1080 = 1.0 - phi / 3.0
+    assert float(d2i_low) < exact_d2i < float(d2i_high)
+    assert float(ds1080_low) < exact_ds1080 < float(ds1080_high)
+    assert Fraction(0, 1) < d2i_low < d2i_high < ds1080_low < ds1080_high < Fraction(1, 1)
 
 
 def test_master_witness_passes() -> None:

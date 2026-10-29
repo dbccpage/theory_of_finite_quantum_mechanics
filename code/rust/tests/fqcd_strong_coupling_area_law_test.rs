@@ -10,13 +10,14 @@ use num_traits::{One, Zero};
 use theory_of_finite_qm::crate_root_inventory_holds;
 use theory_of_finite_qm::fqcd::{
     a5_cubic_character_invariants, area_law_decay_bound_rational, beta0_rational_approx,
-    beta0_rational_bounds, check_geometric_cluster_series_bound, cluster_series_geometric_sum,
-    collar_tube_contraction, const_k, coordination_number_delta, d4_multi_plaquette_collar_bound,
+    beta0_rational_bounds, binary_icosahedral_2i_invariants, check_geometric_cluster_series_bound,
+    cluster_series_geometric_sum, collar_tube_contraction, const_k, coordination_number_delta,
+    d4_multi_plaquette_collar_bound, freezing_plaquette_defect_bounds,
     general_collar_tube_contraction, loop_perimeter, minimal_spanning_area,
     normal_directions_count, q8_center_parity_non_screening_verified,
     q8_cubic_character_invariant_sum, s3_cubic_character_invariant_sum,
     s4_cubic_character_invariants, twod_character_decimation_area_law,
-    verify_fqcd_strong_coupling_area_law_witness,
+    valentiner_sigma1080_invariants, verify_fqcd_strong_coupling_area_law_witness,
 };
 
 fn rat(n: i64, d: i64) -> BigRational {
@@ -184,6 +185,26 @@ fn test_s4_and_a5_cubic_invariants_and_d4_collar_bounds() {
     assert_eq!(b1, rat(1, 1_000_000_000_000));
     assert!(b2 < b1 && b2 > BigRational::zero());
     assert!(b1_d3 < b1 && b1_d3 > BigRational::zero());
+}
+
+#[test]
+fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
+    let (i2i_2s, i2i_3a, i2i_4t, i2i_5t) = binary_icosahedral_2i_invariants();
+    assert_eq!(i2i_2s, BigRational::zero());
+    assert_eq!(i2i_3a, BigRational::one());
+    assert_eq!(i2i_4t, BigRational::one());
+    assert_eq!(i2i_5t, rat(2, 1));
+
+    let (s_i11, s_i2, s_i3_3a, s_i3_5a, s_i3_8a, s_i3_10) = valentiner_sigma1080_invariants();
+    assert_eq!(s_i11, BigRational::one());
+    assert_eq!(s_i2, BigRational::zero());
+    assert_eq!(s_i3_3a, BigRational::one());
+    assert_eq!(s_i3_5a, BigRational::one());
+    assert_eq!(s_i3_8a, rat(2, 1));
+    assert_eq!(s_i3_10, rat(2, 1));
+
+    let (d2i_l, d2i_u, ds_l, ds_u) = freezing_plaquette_defect_bounds();
+    assert!(BigRational::zero() < d2i_l && d2i_l < d2i_u && d2i_u < ds_l && ds_l < ds_u && ds_u < BigRational::one());
 }
 
 #[test]

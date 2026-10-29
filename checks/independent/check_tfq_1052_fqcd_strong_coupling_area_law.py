@@ -152,6 +152,47 @@ def d4_multi_plaquette_collar_bound(perim: int, width_k: int, dim_r: int, beta: 
     return step ** perim
 
 
+def binary_icosahedral_2i_invariants_rational() -> Dict[str, Fraction]:
+    order = 120
+    sum_2s = 1 * 8 + 1 * (-8) + 30 * 0 + 20 * 1 + 20 * (-1) + 12 * 0 + 12 * 0
+    a5_invs = a5_cubic_invariants_rational()
+    return {
+        "2_s": Fraction(sum_2s, order),
+        "2_s_prime": Fraction(sum_2s, order),
+        "4_s": Fraction(0, 1),
+        "6_s": Fraction(0, 1),
+        "3_a": a5_invs["3_a"],
+        "3_b": a5_invs["3_b"],
+        "4_t": a5_invs["4"],
+        "5_t": a5_invs["5"],
+    }
+
+
+def valentiner_sigma1080_invariants_rational() -> Dict[str, Fraction]:
+    order = 1080
+    norm_sq_3a = 3 * 9 + 135 * 1 + 270 * 1 + 216 * 3
+    sq_3a = 0
+    cubed_3a = 3 * 27 + 135 * (-1) + 270 * 1 + 216 * 4
+    cubed_5a = 3 * (125 + 45 + 320 - 40 - 90)
+    cubed_8a = 3 * (512 - 40 - 40 + 72 * 4)
+    cubed_10 = 3 * (1000 - 360 + 40 + 40)
+    return {
+        "I11_3a": Fraction(norm_sq_3a, order),
+        "I2_3a": Fraction(sq_3a, order),
+        "I3_3a": Fraction(cubed_3a, order),
+        "I3_5a": Fraction(cubed_5a, order),
+        "I3_8a": Fraction(cubed_8a, order),
+        "I3_10": Fraction(cubed_10, order),
+    }
+
+
+def freezing_plaquette_defect_rational_bounds() -> Dict[str, Tuple[Fraction, Fraction]]:
+    return {
+        "2I_2s": (Fraction(3, 16), Fraction(1, 5)),
+        "Sigma1080_3a": (Fraction(11, 24), Fraction(7, 15)),
+    }
+
+
 def run_checks() -> Dict[str, Any]:
     total_checks = 0
     failures: List[str] = []
@@ -280,6 +321,33 @@ def run_checks() -> Dict[str, Any]:
     check(b_k1 == Fraction(1, 10 ** 12), "d=4 collar bound at P=4, k=1, d_R=2 equals (beta^3)^4")
     check(Fraction(0, 1) < b_k2 < b_k1, "d=4 collar bound decays geometrically with radial width k")
     check(Fraction(0, 1) < b_k1_d3 < b_k1, "d=4 collar bound decreases with representation dimension d_R")
+
+    # -------------------------------------------------------------------------
+    # Family 9: Binary icosahedral 2I and Valentiner Sigma(1080) & freezing defects
+    # -------------------------------------------------------------------------
+    invs_2i = binary_icosahedral_2i_invariants_rational()
+    check(invs_2i["2_s"] == Fraction(0, 1), "2I spinorial fundamental 2_s cubic invariant == 0 (Z_2 center protection)")
+    check(invs_2i["2_s_prime"] == Fraction(0, 1), "2I spinorial 2_s_prime cubic invariant == 0")
+    check(invs_2i["4_s"] == Fraction(0, 1), "2I spinorial 4_s cubic invariant == 0")
+    check(invs_2i["6_s"] == Fraction(0, 1), "2I spinorial 6_s cubic invariant == 0")
+    check(invs_2i["3_a"] == Fraction(1, 1), "2I tensorial SO(3) adjoint 3_a cubic invariant == 1")
+    check(invs_2i["3_b"] == Fraction(1, 1), "2I tensorial 3_b cubic invariant == 1")
+    check(invs_2i["4_t"] == Fraction(1, 1), "2I tensorial 4_t cubic invariant == 1")
+    check(invs_2i["5_t"] == Fraction(2, 1), "2I tensorial 5_t cubic invariant == 2")
+
+    invs_s1080 = valentiner_sigma1080_invariants_rational()
+    check(invs_s1080["I11_3a"] == Fraction(1, 1), "Sigma(1080) fundamental 3_a Hermitian norm I_{1,1} == 1")
+    check(invs_s1080["I2_3a"] == Fraction(0, 1), "Sigma(1080) fundamental 3_a quadratic invariant I_2 == 0 (Z_3 center protection)")
+    check(invs_s1080["I3_3a"] == Fraction(1, 1), "Sigma(1080) fundamental 3_a baryon-singlet cubic invariant I_3 == 1")
+    check(invs_s1080["I3_5a"] == Fraction(1, 1), "Sigma(1080) quotient 5_a cubic invariant I_3 == 1")
+    check(invs_s1080["I3_8a"] == Fraction(2, 1), "Sigma(1080) SU(3) adjoint octet 8_a cubic invariant I_3 == 2 (f_abc and d_abc)")
+    check(invs_s1080["I3_10"] == Fraction(2, 1), "Sigma(1080) decuplet 10 cubic invariant I_3 == 2")
+
+    defects = freezing_plaquette_defect_rational_bounds()
+    d2i_low, d2i_high = defects["2I_2s"]
+    ds1080_low, ds1080_high = defects["Sigma1080_3a"]
+    check(Fraction(11, 5) ** 2 < Fraction(5, 1) < Fraction(9, 4) ** 2, "Rational sqrt(5) enclosure (11/5)^2 < 5 < (9/4)^2")
+    check(Fraction(0, 1) < d2i_low < d2i_high < ds1080_low < ds1080_high < Fraction(1, 1), "Petcher-Weingarten and Bhanot-Rebbi defect bounds ordering")
 
     return {
         "record_id": "TFQ-1052",

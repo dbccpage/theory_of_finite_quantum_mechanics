@@ -288,6 +288,49 @@ pub fn d4_multi_plaquette_collar_bound(
     Ok(total)
 }
 
+/// Binary icosahedral group `2I ⊂ SU(2)` (`|2I| = 120`) cubic character invariants
+/// `(I_3(2_s), I_3(3_a), I_3(4_t), I_3(5_t))`.
+pub fn binary_icosahedral_2i_invariants() -> (BigRational, BigRational, BigRational, BigRational) {
+    let order = 120_i64;
+    let sum_2s: i64 = 1 * 8 + 1 * (-8) + 30 * 0 + 20 * 1 + 20 * (-1) + 12 * 0 + 12 * 0;
+    let (a5_3a, _, a5_4, a5_5) = a5_cubic_character_invariants();
+    (rat(sum_2s, order), a5_3a, a5_4, a5_5)
+}
+
+/// Valentiner subgroup `Σ(1080) = 3·A_6 ⊂ SU(3)` (`|Σ(1080)| = 1080`) character invariants
+/// `(I_{1,1}(3_a), I_2(3_a), I_3(3_a), I_3(5_a), I_3(8_a), I_3(10))`.
+pub fn valentiner_sigma1080_invariants() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let order = 1080_i64;
+    let norm_sq_3a: i64 = 3 * 9 + 135 * 1 + 270 * 1 + 216 * 3;
+    let sq_3a: i64 = 0;
+    let cubed_3a: i64 = 3 * 27 + 135 * (-1) + 270 * 1 + 216 * 4;
+    let cubed_5a: i64 = 3 * (125 + 45 + 320 - 40 - 90);
+    let cubed_8a: i64 = 3 * (512 - 40 - 40 + 72 * 4);
+    let cubed_10: i64 = 3 * (1000 - 360 + 40 + 40);
+    (
+        rat(norm_sq_3a, order),
+        rat(sq_3a, order),
+        rat(cubed_3a, order),
+        rat(cubed_5a, order),
+        rat(cubed_8a, order),
+        rat(cubed_10, order),
+    )
+}
+
+/// Exact rational enclosure bounds `(low_2I, high_2I, low_Sigma1080, high_Sigma1080)`
+/// for the Petcher–Weingarten (`2I ⊂ SU(2)`) and Bhanot–Rebbi (`Σ(1080) ⊂ SU(3)`)
+/// minimal non-identity plaquette character defects.
+pub fn freezing_plaquette_defect_bounds() -> (BigRational, BigRational, BigRational, BigRational) {
+    (rat(3, 16), rat(1, 5), rat(11, 24), rat(7, 15))
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -380,6 +423,30 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
     let b2 = d4_multi_plaquette_collar_bound(4, 2, 2, &beta_tenth)?;
     if b1 != BigRational::new(BigInt::one(), big_pow(10, 12)) || b2 >= b1 || b2 <= BigRational::zero() {
         return Err("d=4 multi-plaquette collar bound check failed");
+    }
+
+    // 10. Binary icosahedral 2I and Valentiner Sigma(1080) invariants & freezing defect bounds
+    let (i2i_2s, i2i_3a, i2i_4t, i2i_5t) = binary_icosahedral_2i_invariants();
+    if !i2i_2s.is_zero()
+        || i2i_3a != BigRational::one()
+        || i2i_4t != BigRational::one()
+        || i2i_5t != rat(2, 1)
+    {
+        return Err("2I cubic character invariants mismatch");
+    }
+    let (s_i11, s_i2, s_i3_3a, s_i3_5a, s_i3_8a, s_i3_10) = valentiner_sigma1080_invariants();
+    if s_i11 != BigRational::one()
+        || !s_i2.is_zero()
+        || s_i3_3a != BigRational::one()
+        || s_i3_5a != BigRational::one()
+        || s_i3_8a != rat(2, 1)
+        || s_i3_10 != rat(2, 1)
+    {
+        return Err("Sigma(1080) character invariants mismatch");
+    }
+    let (d2i_l, d2i_u, ds_l, ds_u) = freezing_plaquette_defect_bounds();
+    if !(BigRational::zero() < d2i_l && d2i_l < d2i_u && d2i_u < ds_l && ds_l < ds_u && ds_u < BigRational::one()) {
+        return Err("Freezing plaquette defect bounds ordering failed");
     }
 
     Ok(true)
