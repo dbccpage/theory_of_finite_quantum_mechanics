@@ -14,7 +14,8 @@ use theory_of_finite_qm::fqcd::{
     beta0_rational_bounds, binary_icosahedral_2i_invariants, check_geometric_cluster_series_bound,
     cluster_series_geometric_sum, collar_tube_contraction,
     complete_blichfeldt_ffk_su3_crystal_hierarchy, const_k, coordination_number_delta,
-    d4_multi_plaquette_collar_bound, freezing_plaquette_defect_bounds,
+    d4_multi_plaquette_collar_bound, finite_coupling_galois_conjugate_suppression,
+    freezing_plaquette_defect_bounds,
     general_collar_tube_contraction, hessian_subgroups_and_quartic_adjoint_casimir_obstruction,
     higher_genus_mednykh_abelianization_and_genus3_bounds,
     klein_sigma168_invariants_and_su3_chain, loop_perimeter, minimal_spanning_area,
@@ -373,6 +374,15 @@ fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
         && (&m3_s1080 - BigRational::one()) < rat(1, 9) * (&m2_s1080 - BigRational::one())
         && (&m3_s1080 - BigRational::one()) < rat(3, 50));
     assert!(rat(2, 1) < m3_d54 && m3_d54 < m3_s216 && m3_s216 < m3_d27);
+
+    let (dk_2sp, dk_3b, dk_4t, dk_8b, dk_3p, cr_2sp, cr_3b, cr_4t, cr_27, u6, u4, u3, u2) =
+        finite_coupling_galois_conjugate_suppression();
+    assert_eq!((dk_2sp, dk_3b, dk_4t, dk_8b, dk_3p), (6, 4, 3, 2, 4));
+    assert_eq!(cr_2sp, rat(21, 1));
+    assert_eq!(cr_3b, rat(6, 1));
+    assert_eq!(cr_4t, rat(16, 5));
+    assert_eq!(cr_27, rat(8, 3));
+    assert!(BigRational::zero() < u6 && u6 < u4 && u4 < u3 && u3 < u2 && u2 < BigRational::one());
 }
 
 #[test]

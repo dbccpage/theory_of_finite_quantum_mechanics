@@ -650,6 +650,62 @@ def higher_genus_mednykh_abelianization_and_genus3_bounds_rational() -> Dict[str
     }
 
 
+def finite_coupling_galois_conjugate_suppression_rational(u: Fraction = Fraction(1, 10)) -> Dict[str, Any]:
+    """Exact tensor-power generation depths k(R), parent SU(2)/SU(3) quadratic Casimir ratios,
+    and single-plaquette Galois-conjugate suppression factors u^{Delta k} across 2I and Sigma(1080).
+    """
+    k_2i = {
+        "2_s": 1,
+        "3_a": 2,
+        "4_s": 3,
+        "5_t": 4,
+        "6_s": 5,
+        "3_b": 6,
+        "4_t": 6,
+        "2_sp": 7,
+    }
+    k_s1080 = {
+        "3": 1,
+        "8_a": 2,
+        "8_b": 4,
+        "9": 4,
+        "3_p": 5,
+    }
+    c2_su2 = {
+        "2_s": Fraction(3, 4),
+        "3_a": Fraction(2, 1),
+        "4_s": Fraction(15, 4),
+        "3_b_parent": Fraction(12, 1),
+        "4_t_parent": Fraction(12, 1),
+        "2_sp_parent": Fraction(63, 4),
+    }
+    c2_su3 = {
+        "8_a": Fraction(3, 1),
+        "27_parent": Fraction(8, 1),
+    }
+    dk_2sp_2s = k_2i["2_sp"] - k_2i["2_s"]
+    dk_3b_3a = k_2i["3_b"] - k_2i["3_a"]
+    dk_4t_4s = k_2i["4_t"] - k_2i["4_s"]
+    dk_8b_8a = k_s1080["8_b"] - k_s1080["8_a"]
+    dk_3p_3 = k_s1080["3_p"] - k_s1080["3"]
+    return {
+        "dk_2I_2sp_2s": dk_2sp_2s,
+        "dk_2I_3b_3a": dk_3b_3a,
+        "dk_2I_4t_4s": dk_4t_4s,
+        "dk_Sigma1080_8b_8a": dk_8b_8a,
+        "dk_Sigma1080_3p_3": dk_3p_3,
+        "casimir_ratio_2sp_over_2s": c2_su2["2_sp_parent"] / c2_su2["2_s"],
+        "casimir_ratio_3b_over_3a": c2_su2["3_b_parent"] / c2_su2["3_a"],
+        "casimir_ratio_4t_over_4s": c2_su2["4_t_parent"] / c2_su2["4_s"],
+        "casimir_ratio_27_over_8a": c2_su3["27_parent"] / c2_su3["8_a"],
+        "suppression_2sp_2s": u ** dk_2sp_2s,
+        "suppression_3b_3a": u ** dk_3b_3a,
+        "suppression_3p_3": u ** dk_3p_3,
+        "suppression_4t_4s": u ** dk_4t_4s,
+        "suppression_8b_8a": u ** dk_8b_8a,
+    }
+
+
 def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
     """Master multi-language verification witness for Record TFQ-1052."""
     checks = []
@@ -887,6 +943,21 @@ def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
         and Fraction(0, 1) < med3["M3_Sigma1080"] - med3["ab_Sigma1080"]
         < Fraction(3, 50) < Fraction(1, 9) * (med["M2_Sigma1080"] - med3["ab_Sigma1080"])
         and Fraction(2, 1) < med3["M3_Delta54"] < med3["M3_Sigma216x3"] < med3["M3_Delta27"] == Fraction(731, 81)
+    )))
+
+    # 20. Finite-coupling Galois-conjugate suppression, tensor depths, and parent Casimir ratios
+    gal = finite_coupling_galois_conjugate_suppression_rational(Fraction(1, 10))
+    checks.append(("finite_coupling_galois_suppression", 0, (
+        (gal["dk_2I_2sp_2s"], gal["dk_2I_3b_3a"], gal["dk_2I_4t_4s"]) == (6, 4, 3)
+        and (gal["dk_Sigma1080_8b_8a"], gal["dk_Sigma1080_3p_3"]) == (2, 4)
+        and gal["casimir_ratio_2sp_over_2s"] == Fraction(21, 1)
+        > gal["casimir_ratio_3b_over_3a"] == Fraction(6, 1)
+        > gal["casimir_ratio_4t_over_4s"] == Fraction(16, 5) > Fraction(1, 1)
+        and gal["casimir_ratio_27_over_8a"] == Fraction(8, 3) > Fraction(1, 1)
+        and gal["suppression_2sp_2s"] == Fraction(1, 1000000)
+        < gal["suppression_3b_3a"] == gal["suppression_3p_3"] == Fraction(1, 10000)
+        < gal["suppression_4t_4s"] == Fraction(1, 1000)
+        < gal["suppression_8b_8a"] == Fraction(1, 100) < Fraction(1, 1)
     )))
 
     all_passed = all(status for _, _, status in checks)

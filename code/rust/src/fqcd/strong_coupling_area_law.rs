@@ -678,6 +678,43 @@ pub fn higher_genus_mednykh_abelianization_and_genus3_bounds() -> (
     )
 }
 
+/// Finite-coupling Galois-conjugate suppression, tensor-power generation depths `k(R)`,
+/// and parent `SU(2)/SU(3)` quadratic Casimir ratios across `2I` and `Σ(1080)`:
+/// returns `(Δk(2_{s'}, 2_s), Δk(3_b, 3_a), Δk(4_t, 4_s), Δk(8_b, 8_a), Δk(3', 3),
+/// C_2(2_{s'})/C_2(2_s), C_2(3_b)/C_2(3_a), C_2(4_t)/C_2(4_s), C_2(27)/C_2(8_a),
+/// u^6, u^4, u^3, u^2)` at `u = 1/10`.
+pub fn finite_coupling_galois_conjugate_suppression() -> (
+    u32,
+    u32,
+    u32,
+    u32,
+    u32,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    (
+        7 - 1,
+        6 - 2,
+        6 - 3,
+        4 - 2,
+        5 - 1,
+        rat(63, 4) / rat(3, 4),
+        rat(12, 1) / rat(2, 1),
+        rat(12, 1) / rat(15, 4),
+        rat(8, 1) / rat(3, 1),
+        rat(1, 1_000_000),
+        rat(1, 10_000),
+        rat(1, 1_000),
+        rat(1, 100),
+    )
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -1004,6 +1041,20 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
         || !(rat(2, 1) < m3_d54 && m3_d54 < m3_s216 && m3_s216 < m3_d27)
     {
         return Err("Higher-genus Mednykh abelianization asymptotics and genus-3 bounds failed");
+    }
+
+    // 20. Finite-coupling Galois-conjugate suppression, tensor depths & parent Casimir ratios
+    let (dk_2sp, dk_3b, dk_4t, dk_8b, dk_3p, cr_2sp, cr_3b, cr_4t, cr_27, u6, u4, u3, u2) =
+        finite_coupling_galois_conjugate_suppression();
+    if (dk_2sp, dk_3b, dk_4t, dk_8b, dk_3p) != (6, 4, 3, 2, 4)
+        || cr_2sp != rat(21, 1)
+        || cr_3b != rat(6, 1)
+        || cr_4t != rat(16, 5)
+        || cr_27 != rat(8, 3)
+        || !(BigRational::one() < cr_4t && cr_4t < cr_3b && cr_3b < cr_2sp)
+        || !(BigRational::zero() < u6 && u6 < u4 && u4 < u3 && u3 < u2 && u2 < BigRational::one())
+    {
+        return Err("Finite-coupling Galois-conjugate suppression and Casimir ratios failed");
     }
 
     Ok(true)

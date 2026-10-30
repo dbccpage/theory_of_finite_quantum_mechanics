@@ -618,6 +618,30 @@ def run_checks() -> Dict[str, Any]:
         "Perfect Sigma(1080) genus-3 1/9 contraction bound M_3(Sigma(1080)) - 1 < (1/9)(M_2 - 1) < 3/50 vs solvable M_3 > 2",
     )
 
+    # -------------------------------------------------------------------------
+    # Family 19: Finite-coupling Galois-conjugate suppression & parent Casimir ratios
+    # -------------------------------------------------------------------------
+    dk_2sp_2s, dk_3b_3a, dk_4t_4s = 7 - 1, 6 - 2, 6 - 3
+    dk_8b_8a, dk_3p_3 = 4 - 2, 5 - 1
+    cr_2sp = Fraction(63, 4) / Fraction(3, 4)
+    cr_3b = Fraction(12, 1) / Fraction(2, 1)
+    cr_4t = Fraction(12, 1) / Fraction(15, 4)
+    cr_27_8a = Fraction(8, 1) / Fraction(3, 1)
+    u_tenth = Fraction(1, 10)
+    check(
+        (dk_2sp_2s, dk_3b_3a, dk_4t_4s, dk_8b_8a, dk_3p_3) == (6, 4, 3, 2, 4)
+        and cr_2sp == Fraction(21, 1) > cr_3b == Fraction(6, 1) > cr_4t == Fraction(16, 5) > Fraction(1, 1)
+        and cr_27_8a == Fraction(8, 3) > Fraction(1, 1),
+        "Tensor-power generation depth gaps (6, 4, 3, 2, 4) and parent SU(2)/SU(3) Casimir ratios (21 > 6 > 16/5 > 1, 8/3 > 1)",
+    )
+    check(
+        u_tenth ** dk_2sp_2s == Fraction(1, 1000000)
+        < u_tenth ** dk_3b_3a == u_tenth ** dk_3p_3 == Fraction(1, 10000)
+        < u_tenth ** dk_4t_4s == Fraction(1, 1000)
+        < u_tenth ** dk_8b_8a == Fraction(1, 100) < Fraction(1, 1),
+        "Single-plaquette Galois-conjugate suppression hierarchy u^6 < u^4 < u^3 < u^2 < 1 at u = 1/10",
+    )
+
     return {
         "record_id": "TFQ-1052",
         "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",

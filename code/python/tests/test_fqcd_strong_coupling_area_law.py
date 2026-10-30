@@ -26,6 +26,7 @@ try:
         complete_blichfeldt_ffk_su3_crystal_hierarchy_rational,
         coordination_number_delta,
         d4_multi_plaquette_collar_bound_rational,
+        finite_coupling_galois_conjugate_suppression_rational,
         freezing_plaquette_defect_rational_bounds,
         general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
@@ -71,6 +72,7 @@ except ImportError:
         complete_blichfeldt_ffk_su3_crystal_hierarchy_rational,
         coordination_number_delta,
         d4_multi_plaquette_collar_bound_rational,
+        finite_coupling_galois_conjugate_suppression_rational,
         freezing_plaquette_defect_rational_bounds,
         general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
@@ -459,6 +461,18 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
     assert med3["M3_Sigma1080"] == Fraction(590783071, 559872000)
     assert Fraction(0, 1) < med3["M3_Sigma1080"] - med3["ab_Sigma1080"] < Fraction(3, 50) < Fraction(1, 9) * (med["M2_Sigma1080"] - med3["ab_Sigma1080"])
     assert Fraction(2, 1) < med3["M3_Delta54"] < med3["M3_Sigma216x3"] < med3["M3_Delta27"] == Fraction(731, 81)
+
+    gal = finite_coupling_galois_conjugate_suppression_rational(Fraction(1, 10))
+    assert (gal["dk_2I_2sp_2s"], gal["dk_2I_3b_3a"], gal["dk_2I_4t_4s"]) == (6, 4, 3)
+    assert (gal["dk_Sigma1080_8b_8a"], gal["dk_Sigma1080_3p_3"]) == (2, 4)
+    assert gal["casimir_ratio_2sp_over_2s"] == Fraction(21, 1)
+    assert gal["casimir_ratio_3b_over_3a"] == Fraction(6, 1)
+    assert gal["casimir_ratio_4t_over_4s"] == Fraction(16, 5)
+    assert gal["casimir_ratio_27_over_8a"] == Fraction(8, 3)
+    assert gal["suppression_2sp_2s"] == Fraction(1, 1000000)
+    assert gal["suppression_3b_3a"] == gal["suppression_3p_3"] == Fraction(1, 10000)
+    assert gal["suppression_4t_4s"] == Fraction(1, 1000)
+    assert gal["suppression_8b_8a"] == Fraction(1, 100)
 
 
 def test_master_witness_passes() -> None:
