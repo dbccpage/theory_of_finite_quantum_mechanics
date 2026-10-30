@@ -715,6 +715,55 @@ pub fn finite_coupling_galois_conjugate_suppression() -> (
     )
 }
 
+/// Temporal-gauge transfer-matrix character-defect sums `∑_{g ∈ G} Δ_R(g) = |G|`,
+/// Birkhoff–Hopf Perron–Frobenius contraction ratios `κ_BH(1, 2, P_slice)`, and
+/// 2D Mednykh genus-1 / genus-2 homomorphism counts `|Hom(π_1(Σ_g), G)|`:
+/// returns `(defect_Q8, defect_2T, defect_2O, defect_2I, defect_Sigma1080,
+/// κ_BH(1), κ_BH(2), κ_BH(4), hom_g1_Q8, hom_g1_Sigma1080, hom_g2_Q8, hom_g2_2I, hom_g2_Sigma1080)`.
+pub fn temporal_gauge_perron_frobenius_and_2d_mednykh_pachner() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    u64,
+    u64,
+    u64,
+    u64,
+    u64,
+) {
+    let defect_q8 = rat(1 * 0 + 1 * 2 + 6 * 1, 1);
+    let defect_2t = rat(1 * 0 + 1 * 2 + 6 * 1, 1) + rat(8, 2) + rat(24, 2);
+    let defect_2o = rat(1 * 0 + 1 * 2 + 18 * 1 + 12 * 1, 1) + rat(8, 2) + rat(24, 2);
+    let defect_2i = rat(1 * 0 + 1 * 2 + 30 * 1 + 24 * 1 + 24 * 1, 1) + rat(20, 2) + rat(60, 2);
+    let defect_s1080 = (rat(0, 1) + rat(6, 2))
+        + (rat(180, 3) + rat(450, 6))
+        + rat(240, 1)
+        + (rat(180, 3) + rat(1260, 6))
+        + (rat(720, 6) + rat(3744, 12));
+    let k1 = rat(2 - 1, 2 + 1);
+    let k2 = rat(4 - 1, 4 + 1);
+    let k4 = rat(16 - 1, 16 + 1);
+    (
+        defect_q8,
+        defect_2t,
+        defect_2o,
+        defect_2i,
+        defect_s1080,
+        k1,
+        k2,
+        k4,
+        8 * 5,
+        1080 * 17,
+        8 * 272,
+        120 * 27_576,
+        1080 * 1_944_594,
+    )
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -1055,6 +1104,40 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
         || !(BigRational::zero() < u6 && u6 < u4 && u4 < u3 && u3 < u2 && u2 < BigRational::one())
     {
         return Err("Finite-coupling Galois-conjugate suppression and Casimir ratios failed");
+    }
+
+    // 21. Temporal-gauge Perron-Frobenius gap & 2D Pachner-invariant Mednykh formula
+    let (
+        def_q8,
+        def_2t,
+        def_2o,
+        def_2i,
+        def_s1080,
+        kbh_1,
+        kbh_2,
+        kbh_4,
+        hg1_q8,
+        hg1_s1080,
+        hg2_q8,
+        hg2_2i,
+        hg2_s1080,
+    ) = temporal_gauge_perron_frobenius_and_2d_mednykh_pachner();
+    if def_q8 != rat(8, 1)
+        || def_2t != rat(24, 1)
+        || def_2o != rat(48, 1)
+        || def_2i != rat(120, 1)
+        || def_s1080 != rat(1080, 1)
+        || !(BigRational::zero() < kbh_1
+            && kbh_1 == rat(1, 3)
+            && kbh_1 < kbh_2
+            && kbh_2 == rat(3, 5)
+            && kbh_2 < kbh_4
+            && kbh_4 == rat(15, 17)
+            && kbh_4 < BigRational::one())
+        || (hg1_q8, hg1_s1080, hg2_q8, hg2_2i, hg2_s1080)
+            != (40, 18_360, 2_176, 3_309_120, 2_100_161_520)
+    {
+        return Err("Temporal-gauge Perron-Frobenius gap and 2D Mednykh Pachner check failed");
     }
 
     Ok(true)

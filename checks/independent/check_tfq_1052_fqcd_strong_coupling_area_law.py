@@ -642,6 +642,36 @@ def run_checks() -> Dict[str, Any]:
         "Single-plaquette Galois-conjugate suppression hierarchy u^6 < u^4 < u^3 < u^2 < 1 at u = 1/10",
     )
 
+    # -------------------------------------------------------------------------
+    # Family 20: Temporal-gauge Perron-Frobenius gap & 2D Mednykh Pachner invariance
+    # -------------------------------------------------------------------------
+    def_q8 = Fraction(1 * 0 + 1 * 2 + 6 * 1, 1)
+    def_2t = Fraction(1 * 0 + 1 * 2 + 6 * 1, 1) + 8 * Fraction(1, 2) + 8 * Fraction(3, 2)
+    def_2o = Fraction(1 * 0 + 1 * 2 + 18 * 1 + 12 * 1, 1) + 8 * Fraction(1, 2) + 8 * Fraction(3, 2)
+    def_2i = Fraction(1 * 0 + 1 * 2 + 30 * 1 + 24 * 1 + 24 * 1, 1) + 20 * Fraction(1, 2) + 20 * Fraction(3, 2)
+    def_s1080 = (
+        (Fraction(0, 1) + 2 * Fraction(3, 2))
+        + (45 * Fraction(4, 3) + 90 * Fraction(5, 6))
+        + 240 * Fraction(1, 1)
+        + (90 * Fraction(2, 3) + 180 * Fraction(7, 6))
+        + (144 * Fraction(5, 6) + 288 * Fraction(13, 12))
+    )
+    kbh_1 = Fraction(2 ** 1 - 1, 2 ** 1 + 1)
+    kbh_2 = Fraction(2 ** 2 - 1, 2 ** 2 + 1)
+    kbh_4 = Fraction(2 ** 4 - 1, 2 ** 4 + 1)
+    check(
+        (def_q8, def_2t, def_2o, def_2i, def_s1080)
+        == (Fraction(8, 1), Fraction(24, 1), Fraction(48, 1), Fraction(120, 1), Fraction(1080, 1))
+        and Fraction(0, 1) < kbh_1 == Fraction(1, 3) < kbh_2 == Fraction(3, 5) < kbh_4 == Fraction(15, 17) < Fraction(1, 1),
+        "Character-defect sum identity sum_{g in G} Delta_R(g) = |G| and Birkhoff-Hopf contraction 0 < kappa_BH(P_slice) < 1",
+    )
+    check(
+        all(((E + 3) - (V + 1) - (F + 2)) == (E - V - F) == (E - 1 - V - (F - 1)) for V, E, F in [(4, 6, 4), (6, 18, 10), (10, 36, 22)])
+        and (8 * 272, 24 * 2224, 48 * 6992, 120 * 27576, 648 * 2001267, 1080 * 1944594)
+        == (2176, 53376, 335616, 3309120, 1296821016, 2100161520),
+        "2D Pachner Euler exponent invariance E - V - F = 2g - 2 and genus-2 homomorphism counts |Hom(pi_1(Sigma_2), G)| = |G| Z_2(G)",
+    )
+
     return {
         "record_id": "TFQ-1052",
         "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",

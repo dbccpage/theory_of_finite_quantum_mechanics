@@ -51,6 +51,7 @@ try:
         su2_ade_binary_polyhedral_tower_rational,
         su2_higher_spin_casimir_and_hessian_defect_bounds_rational,
         su3_subgroup_tower_and_freezing_scales_rational,
+        temporal_gauge_perron_frobenius_and_2d_mednykh_pachner_rational,
         twod_character_decimation_area_law,
         twod_character_decimation_area_law_rational,
         valentiner_sigma1080_invariants_rational,
@@ -97,6 +98,7 @@ except ImportError:
         su2_ade_binary_polyhedral_tower_rational,
         su2_higher_spin_casimir_and_hessian_defect_bounds_rational,
         su3_subgroup_tower_and_freezing_scales_rational,
+        temporal_gauge_perron_frobenius_and_2d_mednykh_pachner_rational,
         twod_character_decimation_area_law,
         twod_character_decimation_area_law_rational,
         valentiner_sigma1080_invariants_rational,
@@ -473,6 +475,26 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
     assert gal["suppression_3b_3a"] == gal["suppression_3p_3"] == Fraction(1, 10000)
     assert gal["suppression_4t_4s"] == Fraction(1, 1000)
     assert gal["suppression_8b_8a"] == Fraction(1, 100)
+
+    pf_med = temporal_gauge_perron_frobenius_and_2d_mednykh_pachner_rational()
+    assert (
+        pf_med["defect_sum_Q8"],
+        pf_med["defect_sum_2T"],
+        pf_med["defect_sum_2O"],
+        pf_med["defect_sum_2I"],
+        pf_med["defect_sum_Sigma1080"],
+    ) == (Fraction(8, 1), Fraction(24, 1), Fraction(48, 1), Fraction(120, 1), Fraction(1080, 1))
+    assert Fraction(0, 1) < pf_med["kappa_BH_1"] == Fraction(1, 3) < pf_med["kappa_BH_2"] == Fraction(3, 5) < pf_med["kappa_BH_4"] == Fraction(15, 17) < Fraction(1, 1)
+    assert (pf_med["q8_comm_identity_count"], pf_med["q8_comm_minus_one_count"]) == (40, 24)
+    assert pf_med["hom_g1_Q8"] == 40
+    assert pf_med["hom_g2_Q8_bruteforce"] == pf_med["hom_g2_Q8"] == 2176
+    assert (
+        pf_med["hom_g2_2T"],
+        pf_med["hom_g2_2O"],
+        pf_med["hom_g2_2I"],
+        pf_med["hom_g2_Sigma216x3"],
+        pf_med["hom_g2_Sigma1080"],
+    ) == (53376, 335616, 3309120, 1296821016, 2100161520)
 
 
 def test_master_witness_passes() -> None:

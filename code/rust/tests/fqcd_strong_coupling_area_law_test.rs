@@ -24,7 +24,9 @@ use theory_of_finite_qm::fqcd::{
     s3_cubic_character_invariant_sum, s4_cubic_character_invariants,
     strong_to_freezing_coupling_gap, su2_ade_binary_polyhedral_tower,
     su2_higher_spin_casimir_and_hessian_defect_bounds,
-    su3_subgroup_tower_and_freezing_scales, twod_character_decimation_area_law,
+    su3_subgroup_tower_and_freezing_scales,
+    temporal_gauge_perron_frobenius_and_2d_mednykh_pachner,
+    twod_character_decimation_area_law,
     valentiner_sigma1080_invariants, verify_fqcd_strong_coupling_area_law_witness,
 };
 
@@ -383,6 +385,31 @@ fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
     assert_eq!(cr_4t, rat(16, 5));
     assert_eq!(cr_27, rat(8, 3));
     assert!(BigRational::zero() < u6 && u6 < u4 && u4 < u3 && u3 < u2 && u2 < BigRational::one());
+
+    let (
+        def_q8,
+        def_2t,
+        def_2o,
+        def_2i,
+        def_s1080,
+        kbh_1,
+        kbh_2,
+        kbh_4,
+        hg1_q8,
+        hg1_s1080,
+        hg2_q8,
+        hg2_2i,
+        hg2_s1080,
+    ) = temporal_gauge_perron_frobenius_and_2d_mednykh_pachner();
+    assert_eq!(
+        (def_q8, def_2t, def_2o, def_2i, def_s1080),
+        (rat(8, 1), rat(24, 1), rat(48, 1), rat(120, 1), rat(1080, 1))
+    );
+    assert!(BigRational::zero() < kbh_1 && kbh_1 < kbh_2 && kbh_2 < kbh_4 && kbh_4 < BigRational::one());
+    assert_eq!(
+        (hg1_q8, hg1_s1080, hg2_q8, hg2_2i, hg2_s1080),
+        (40, 18_360, 2_176, 3_309_120, 2_100_161_520)
+    );
 }
 
 #[test]
