@@ -30,6 +30,7 @@ try:
         freezing_plaquette_defect_rational_bounds,
         general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
+        ginsparg_wilson_overlap_and_luscher_index_rational,
         hessian_subgroups_and_quartic_adjoint_casimir_obstruction_rational,
         higher_genus_mednykh_abelianization_and_genus3_bounds_rational,
         klein_sigma168_invariants_and_su3_chain_rational,
@@ -56,6 +57,8 @@ try:
         twod_character_decimation_area_law_rational,
         valentiner_sigma1080_invariants_rational,
         verify_fqcd_strong_coupling_area_law_witness,
+        wilson_dirac_chemical_potential_and_nielsen_ninomiya_rational,
+        wilson_dirac_gamma5_and_two_flavor_positivity_rational,
     )
 except ImportError:
     from src.fqcd.strong_coupling_area_law import (
@@ -77,6 +80,7 @@ except ImportError:
         freezing_plaquette_defect_rational_bounds,
         general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
+        ginsparg_wilson_overlap_and_luscher_index_rational,
         hessian_subgroups_and_quartic_adjoint_casimir_obstruction_rational,
         higher_genus_mednykh_abelianization_and_genus3_bounds_rational,
         klein_sigma168_invariants_and_su3_chain_rational,
@@ -103,6 +107,8 @@ except ImportError:
         twod_character_decimation_area_law_rational,
         valentiner_sigma1080_invariants_rational,
         verify_fqcd_strong_coupling_area_law_witness,
+        wilson_dirac_chemical_potential_and_nielsen_ninomiya_rational,
+        wilson_dirac_gamma5_and_two_flavor_positivity_rational,
     )
 
 
@@ -495,6 +501,53 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
         pf_med["hom_g2_Sigma216x3"],
         pf_med["hom_g2_Sigma1080"],
     ) == (53376, 335616, 3309120, 1296821016, 2100161520)
+
+    wd = wilson_dirac_gamma5_and_two_flavor_positivity_rational()
+    assert wd["gamma5_hermitian_matched_entries"] == 64
+    assert wd["hw_hermitian_matched_entries"] == 64
+    assert wd["det_single_m_minus_1"] == wd["det_single_m_minus_3"] == Fraction(-3, 1) < Fraction(0, 1)
+    assert wd["det_two_flavor_m_minus_1"] == Fraction(9, 1) > Fraction(0, 1)
+    assert wd["det_single_m_minus_2"] == wd["det_two_flavor_m_minus_2"] == Fraction(0, 1)
+    assert wd["det_single_m_0"] == Fraction(192, 1) > Fraction(0, 1)
+    assert wd["det_single_m_1"] == Fraction(6237, 1) > Fraction(0, 1)
+    assert wd["det_two_flavor_m_0"] == Fraction(36864, 1) > Fraction(0, 1)
+
+    mu_nn = wilson_dirac_chemical_potential_and_nielsen_ninomiya_rational()
+    assert mu_nn["asym_z1"] == Fraction(0, 1)
+    assert mu_nn["asym_z2"] == -mu_nn["asym_zhalf"] == Fraction(3, 2) > Fraction(0, 1)
+    assert mu_nn["intertwine_neg_mu_matched_entries"] == 64
+    assert mu_nn["broken_self_mu_entries"] > 0
+    assert mu_nn["su3_det_z1"] == (Fraction(16, 1), Fraction(0, 1))
+    assert mu_nn["su3_det_z2"] == (Fraction(63, 8), Fraction(-27, 1))
+    assert mu_nn["su3_det_zhalf"] == (Fraction(63, 8), Fraction(27, 1))
+    assert mu_nn["su3_two_flavor_det_z2"] == (Fraction(-42687, 64), Fraction(-1701, 4))
+    assert mu_nn["su3_phase_quenched_det_z2"] == Fraction(50625, 64) > Fraction(0, 1)
+    assert mu_nn["nn_corner_counts"] == {1: 2, 2: 4, 3: 8, 4: 16}
+    assert mu_nn["nn_chiral_sums"] == {1: 0, 2: 0, 3: 0, 4: 0}
+    assert mu_nn["nn_doubler_chiral_sums"] == {1: -1, 2: -1, 3: -1, 4: -1}
+    assert mu_nn["free_det_2x2_m0"] == mu_nn["free_det_2x2_m_minus_2"] == mu_nn["free_det_2x2_m_minus_4"] == Fraction(0, 1)
+    assert mu_nn["free_det_2x2_m_minus_1"] == Fraction(9, 1)
+
+    gw = ginsparg_wilson_overlap_and_luscher_index_rational()
+    assert gw["pythagorean_gw_verified_count"] == 5
+    assert gw["d_ov_physical_s_minus_1"] == Fraction(0, 1)
+    assert gw["d_ov_doubler_s_plus_1"] == Fraction(2, 1)
+    assert gw["luscher_factor_physical"] == Fraction(1, 1)
+    assert gw["luscher_factor_doubler"] == Fraction(0, 1)
+    assert gw["luscher_4d_sums"] == {
+        1: Fraction(0, 1),
+        -1: Fraction(1, 1),
+        -3: Fraction(-3, 1),
+        -5: Fraction(3, 1),
+        -7: Fraction(-1, 1),
+        -9: Fraction(0, 1),
+    }
+    assert (gw["luscher_index_half_4_4"], gw["luscher_index_half_5_3"], gw["luscher_index_half_3_5"]) == (
+        Fraction(0, 1),
+        Fraction(-1, 1),
+        Fraction(1, 1),
+    )
+    assert gw["det_product_m_minus_1_m_0"] == Fraction(-576, 1) < Fraction(0, 1)
 
 
 def test_master_witness_passes() -> None:

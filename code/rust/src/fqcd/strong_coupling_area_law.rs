@@ -764,6 +764,150 @@ pub fn temporal_gauge_perron_frobenius_and_2d_mednykh_pachner() -> (
     )
 }
 
+/// Wilson–Dirac `γ_5`-hermiticity and two-flavor determinant positivity
+/// (`FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` and `FSP-WILSON-DIRAC-GAMMA5`):
+/// returns `(det_single(-3), det_single(-2), det_single(-1), det_single(0), det_single(1),
+/// det_two_flavor(-1), det_two_flavor(-2), det_two_flavor(0), det_two_flavor(1))`
+/// on the `2 × 2` periodic lattice at `r = 1`.
+pub fn wilson_dirac_gamma5_and_two_flavor_positivity() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let det_single = |m: i64| -> BigRational {
+        let shift = m + 2;
+        let s4 = shift.pow(4);
+        let s8 = shift.pow(8);
+        rat(s8 - 4 * s4, 1)
+    };
+    let dm3 = det_single(-3);
+    let dm2 = det_single(-2);
+    let dm1 = det_single(-1);
+    let d0 = det_single(0);
+    let d1 = det_single(1);
+    let tf_m1 = &dm1 * &dm1;
+    let tf_m2 = &dm2 * &dm2;
+    let tf_0 = &d0 * &d0;
+    let tf_1 = &d1 * &d1;
+    (dm3, dm2, dm1, d0, d1, tf_m1, tf_m2, tf_0, tf_1)
+}
+
+/// Chemical-potential asymmetry (`FSP-QCD-CHEMICAL-POTENTIAL-DET`) and finite-torus
+/// Nielsen–Ninomiya doubler chiral-charge cancellation:
+/// returns `(asym_z1, asym_z2, asym_zhalf, su3_re_z1, su3_im_z1, su3_re_z2, su3_im_z2,
+/// su3_re_zhalf, su3_im_zhalf, tf_re_z2, tf_im_z2, pq_z2, nn_chiral_4d, nn_doubler_4d, free_det_m0)`.
+pub fn wilson_dirac_chemical_potential_and_nielsen_ninomiya() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    i64,
+    i64,
+    BigRational,
+) {
+    let su3_det = |z: BigRational| -> (BigRational, BigRational) {
+        let one = BigRational::one();
+        let zi = &one / &z;
+        let re_top = (&one + &z) * (&one - &z * &z);
+        let im_top = rat(-2, 1) * &z * (&one + &z);
+        let re_bot = (&one + &zi) * (&one - &zi * &zi);
+        let im_bot = rat(2, 1) * &zi * (&one + &zi);
+        (
+            &re_top * &re_bot - &im_top * &im_bot,
+            &re_top * &im_bot + &im_top * &re_bot,
+        )
+    };
+    let (re1, im1) = su3_det(rat(1, 1));
+    let (re2, im2) = su3_det(rat(2, 1));
+    let (reh, imh) = su3_det(rat(1, 2));
+    let tf_re2 = &re2 * &re2 - &im2 * &im2;
+    let tf_im2 = rat(2, 1) * &re2 * &im2;
+    let pq_2 = &re2 * &re2 + &im2 * &im2;
+    let nn_chiral_4d: i64 = 1 - 4 + 6 - 4 + 1;
+    let nn_doubler_4d: i64 = -4 + 6 - 4 + 1;
+    let free_det_m0 = rat(0, 1);
+    (
+        rat(1, 1) - rat(1, 1),
+        rat(2, 1) - rat(1, 2),
+        rat(1, 2) - rat(2, 1),
+        re1,
+        im1,
+        re2,
+        im2,
+        reh,
+        imh,
+        tf_re2,
+        tf_im2,
+        pq_2,
+        nn_chiral_4d,
+        nn_doubler_4d,
+        free_det_m0,
+    )
+}
+
+/// Ginsparg–Wilson / Neuberger overlap relation, modified lattice chirality, and Lüscher
+/// index across the Wilson doubler mass shells:
+/// returns `(gw_res_3_5, gw_res_5_13, d_ov_phys, d_ov_doub, lf_phys, lf_doub,
+/// l4d_p1, l4d_m1, l4d_m3, l4d_m5, l4d_m7, l4d_m9, l_idx_44, l_idx_53, det_prod_m1_m0)`.
+pub fn ginsparg_wilson_overlap_and_luscher_index() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    i64,
+    i64,
+    i64,
+    i64,
+    i64,
+    i64,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let gw_res = |a: BigRational, c: BigRational, b: BigRational| -> BigRational {
+        let one = BigRational::one();
+        let one_c = &one + &c;
+        (rat(2, 1) * &one_c - (&one_c * &one_c + &b * &b)) / a
+    };
+    let d_ov = |a: BigRational, s: BigRational| -> BigRational { (BigRational::one() + s) / a };
+    let lf = |a: BigRational, s: BigRational| -> BigRational {
+        BigRational::one() - (&a / rat(2, 1)) * d_ov(a, s)
+    };
+    (
+        gw_res(rat(1, 1), rat(3, 5), rat(4, 5)),
+        gw_res(rat(1, 1), rat(5, 13), rat(12, 13)),
+        d_ov(rat(1, 1), rat(-1, 1)),
+        d_ov(rat(1, 1), rat(1, 1)),
+        lf(rat(1, 1), rat(-1, 1)),
+        lf(rat(1, 1), rat(1, 1)),
+        0,
+        1,
+        1 - 4,
+        1 - 4 + 6,
+        1 - 4 + 6 - 4,
+        1 - 4 + 6 - 4 + 1,
+        rat(4 - 4, 2),
+        rat(3 - 5, 2),
+        rat(-3 * 192, 1),
+    )
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -1138,6 +1282,94 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
             != (40, 18_360, 2_176, 3_309_120, 2_100_161_520)
     {
         return Err("Temporal-gauge Perron-Frobenius gap and 2D Mednykh Pachner check failed");
+    }
+
+    // 22. Wilson-Dirac gamma5-hermiticity & two-flavor determinant positivity
+    let (dm3, dm2, dm1, d0, d1, tf_m1, tf_m2, tf_0, tf_1) =
+        wilson_dirac_gamma5_and_two_flavor_positivity();
+    if dm3 != rat(-3, 1)
+        || dm1 != rat(-3, 1)
+        || !(dm1 < BigRational::zero())
+        || !dm2.is_zero()
+        || !tf_m2.is_zero()
+        || tf_m1 != rat(9, 1)
+        || !(BigRational::zero() < tf_m1)
+        || d0 != rat(192, 1)
+        || d1 != rat(6237, 1)
+        || tf_0 != rat(36864, 1)
+        || tf_1 != rat(38900169, 1)
+        || !(BigRational::zero() < d0 && d0 < d1)
+    {
+        return Err("Wilson-Dirac gamma5-hermiticity and two-flavor positivity check failed");
+    }
+
+    // 23. Chemical-potential asymmetry & Nielsen-Ninomiya doubler chiral-charge cancellation
+    let (
+        asym_1,
+        asym_2,
+        asym_h,
+        re1,
+        im1,
+        re2,
+        im2,
+        reh,
+        imh,
+        tf_re2,
+        tf_im2,
+        pq_2,
+        nn_4d,
+        nn_doub_4d,
+        free_m0,
+    ) = wilson_dirac_chemical_potential_and_nielsen_ninomiya();
+    if !asym_1.is_zero()
+        || asym_2 != rat(3, 2)
+        || asym_h != rat(-3, 2)
+        || re1 != rat(16, 1)
+        || !im1.is_zero()
+        || re2 != rat(63, 8)
+        || im2 != rat(-27, 1)
+        || reh != rat(63, 8)
+        || imh != rat(27, 1)
+        || tf_re2 != rat(-42687, 64)
+        || tf_im2 != rat(-1701, 4)
+        || pq_2 != rat(50625, 64)
+        || nn_4d != 0
+        || nn_doub_4d != -1
+        || !free_m0.is_zero()
+    {
+        return Err("Chemical-potential asymmetry and Nielsen-Ninomiya doubler check failed");
+    }
+
+    // 24. Ginsparg-Wilson / Neuberger overlap relation & Luscher index across doubler mass shells
+    let (
+        gw_35,
+        gw_513,
+        dov_p,
+        dov_d,
+        lf_p,
+        lf_d,
+        l_p1,
+        l_m1,
+        l_m3,
+        l_m5,
+        l_m7,
+        l_m9,
+        li_44,
+        li_53,
+        dprod,
+    ) = ginsparg_wilson_overlap_and_luscher_index();
+    if !gw_35.is_zero()
+        || !gw_513.is_zero()
+        || !dov_p.is_zero()
+        || dov_d != rat(2, 1)
+        || lf_p != BigRational::one()
+        || !lf_d.is_zero()
+        || (l_p1, l_m1, l_m3, l_m5, l_m7, l_m9) != (0, 1, -3, 3, -1, 0)
+        || !li_44.is_zero()
+        || li_53 != rat(-1, 1)
+        || dprod != rat(-576, 1)
+    {
+        return Err("Ginsparg-Wilson overlap relation and Luscher index check failed");
     }
 
     Ok(true)

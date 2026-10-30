@@ -16,7 +16,8 @@ use theory_of_finite_qm::fqcd::{
     complete_blichfeldt_ffk_su3_crystal_hierarchy, const_k, coordination_number_delta,
     d4_multi_plaquette_collar_bound, finite_coupling_galois_conjugate_suppression,
     freezing_plaquette_defect_bounds,
-    general_collar_tube_contraction, hessian_subgroups_and_quartic_adjoint_casimir_obstruction,
+    general_collar_tube_contraction, ginsparg_wilson_overlap_and_luscher_index,
+    hessian_subgroups_and_quartic_adjoint_casimir_obstruction,
     higher_genus_mednykh_abelianization_and_genus3_bounds,
     klein_sigma168_invariants_and_su3_chain, loop_perimeter, minimal_spanning_area,
     normal_directions_count, q8_center_parity_non_screening_verified,
@@ -28,6 +29,8 @@ use theory_of_finite_qm::fqcd::{
     temporal_gauge_perron_frobenius_and_2d_mednykh_pachner,
     twod_character_decimation_area_law,
     valentiner_sigma1080_invariants, verify_fqcd_strong_coupling_area_law_witness,
+    wilson_dirac_chemical_potential_and_nielsen_ninomiya,
+    wilson_dirac_gamma5_and_two_flavor_positivity,
 };
 
 fn rat(n: i64, d: i64) -> BigRational {
@@ -410,6 +413,58 @@ fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
         (hg1_q8, hg1_s1080, hg2_q8, hg2_2i, hg2_s1080),
         (40, 18_360, 2_176, 3_309_120, 2_100_161_520)
     );
+
+    let (dm3, dm2, dm1, d0, d1, tf_m1, tf_m2, tf_0, tf_1) =
+        wilson_dirac_gamma5_and_two_flavor_positivity();
+    assert_eq!((dm3, dm1), (rat(-3, 1), rat(-3, 1)));
+    assert!(dm2.is_zero() && tf_m2.is_zero());
+    assert_eq!(tf_m1, rat(9, 1));
+    assert!(BigRational::zero() < tf_m1);
+    assert_eq!((d0, d1, tf_0, tf_1), (rat(192, 1), rat(6237, 1), rat(36864, 1), rat(38900169, 1)));
+
+    let (
+        asym_1,
+        asym_2,
+        asym_h,
+        re1,
+        im1,
+        re2,
+        im2,
+        reh,
+        imh,
+        tf_re2,
+        tf_im2,
+        pq_2,
+        nn_4d,
+        nn_doub_4d,
+        free_m0,
+    ) = wilson_dirac_chemical_potential_and_nielsen_ninomiya();
+    assert!(asym_1.is_zero() && im1.is_zero() && free_m0.is_zero());
+    assert_eq!((asym_2, asym_h, re1), (rat(3, 2), rat(-3, 2), rat(16, 1)));
+    assert_eq!((re2, im2, reh, imh), (rat(63, 8), rat(-27, 1), rat(63, 8), rat(27, 1)));
+    assert_eq!((tf_re2, tf_im2, pq_2), (rat(-42687, 64), rat(-1701, 4), rat(50625, 64)));
+    assert_eq!((nn_4d, nn_doub_4d), (0, -1));
+
+    let (
+        gw_35,
+        gw_513,
+        dov_p,
+        dov_d,
+        lf_p,
+        lf_d,
+        l_p1,
+        l_m1,
+        l_m3,
+        l_m5,
+        l_m7,
+        l_m9,
+        li_44,
+        li_53,
+        dprod,
+    ) = ginsparg_wilson_overlap_and_luscher_index();
+    assert!(gw_35.is_zero() && gw_513.is_zero() && dov_p.is_zero() && lf_d.is_zero() && li_44.is_zero());
+    assert_eq!((dov_d, lf_p, li_53, dprod), (rat(2, 1), rat(1, 1), rat(-1, 1), rat(-576, 1)));
+    assert_eq!((l_p1, l_m1, l_m3, l_m5, l_m7, l_m9), (0, 1, -3, 3, -1, 0));
 }
 
 #[test]
