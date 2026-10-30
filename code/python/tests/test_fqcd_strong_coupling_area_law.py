@@ -30,6 +30,7 @@ try:
         freezing_plaquette_defect_rational_bounds,
         general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
+        ginsparg_wilson_overlap_and_luscher_index_rational,
         hessian_subgroups_and_quartic_adjoint_casimir_obstruction_rational,
         higher_genus_mednykh_abelianization_and_genus3_bounds_rational,
         klein_sigma168_invariants_and_su3_chain_rational,
@@ -79,6 +80,7 @@ except ImportError:
         freezing_plaquette_defect_rational_bounds,
         general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
+        ginsparg_wilson_overlap_and_luscher_index_rational,
         hessian_subgroups_and_quartic_adjoint_casimir_obstruction_rational,
         higher_genus_mednykh_abelianization_and_genus3_bounds_rational,
         klein_sigma168_invariants_and_su3_chain_rational,
@@ -525,6 +527,27 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
     assert mu_nn["nn_doubler_chiral_sums"] == {1: -1, 2: -1, 3: -1, 4: -1}
     assert mu_nn["free_det_2x2_m0"] == mu_nn["free_det_2x2_m_minus_2"] == mu_nn["free_det_2x2_m_minus_4"] == Fraction(0, 1)
     assert mu_nn["free_det_2x2_m_minus_1"] == Fraction(9, 1)
+
+    gw = ginsparg_wilson_overlap_and_luscher_index_rational()
+    assert gw["pythagorean_gw_verified_count"] == 5
+    assert gw["d_ov_physical_s_minus_1"] == Fraction(0, 1)
+    assert gw["d_ov_doubler_s_plus_1"] == Fraction(2, 1)
+    assert gw["luscher_factor_physical"] == Fraction(1, 1)
+    assert gw["luscher_factor_doubler"] == Fraction(0, 1)
+    assert gw["luscher_4d_sums"] == {
+        1: Fraction(0, 1),
+        -1: Fraction(1, 1),
+        -3: Fraction(-3, 1),
+        -5: Fraction(3, 1),
+        -7: Fraction(-1, 1),
+        -9: Fraction(0, 1),
+    }
+    assert (gw["luscher_index_half_4_4"], gw["luscher_index_half_5_3"], gw["luscher_index_half_3_5"]) == (
+        Fraction(0, 1),
+        Fraction(-1, 1),
+        Fraction(1, 1),
+    )
+    assert gw["det_product_m_minus_1_m_0"] == Fraction(-576, 1) < Fraction(0, 1)
 
 
 def test_master_witness_passes() -> None:

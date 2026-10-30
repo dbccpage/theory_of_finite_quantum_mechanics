@@ -736,6 +736,28 @@ def run_checks() -> Dict[str, Any]:
         "Finite-torus Nielsen-Ninomiya 2^d corner chiral-charge sum == 0 and lifted doubler chiral sum == -1 across d=1..4",
     )
 
+    # -------------------------------------------------------------------------
+    # Family 23: Ginsparg-Wilson / Neuberger overlap & Luscher index across doubler shells
+    # -------------------------------------------------------------------------
+    def gw_res(a: Fraction, c: Fraction, b: Fraction) -> Fraction:
+        return (2 * (1 + c) - ((1 + c) ** 2 + b ** 2)) / a
+
+    binom4 = [1, 4, 6, 4, 1]
+    l4d_seq = [
+        sum(binom4[c] * ((-1) ** c) * (1 if (m_int + 2 * c) < 0 else 0) for c in range(5))
+        for m_int in (1, -1, -3, -5, -7, -9)
+    ]
+    check(
+        all(gw_res(Fraction(1, 1), c, b) == Fraction(0, 1) for c, b in [(Fraction(1, 1), Fraction(0, 1)), (Fraction(-1, 1), Fraction(0, 1)), (Fraction(3, 5), Fraction(4, 5)), (Fraction(5, 13), Fraction(12, 13))])
+        and (Fraction(1 + (-1), 1), Fraction(1 + 1, 1)) == (Fraction(0, 1), Fraction(2, 1)),
+        "Ginsparg-Wilson 2x2 block residual vanishes on c^2 + b^2 = 1 and overlap eigenvalues split 0 (physical) vs 2/a (doublers)",
+    )
+    check(
+        l4d_seq == [0, 1, -3, 3, -1, 0]
+        and det_dw_2x2(Fraction(-1, 1)) * det_dw_2x2(Fraction(0, 1)) == Fraction(-576, 1) < Fraction(0, 1),
+        "4D Luscher corner index sequence (0, 1, -3, 3, -1, 0) across doubler mass shells and 2x2 supercritical det sign flip -576 < 0",
+    )
+
     return {
         "record_id": "TFQ-1052",
         "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",

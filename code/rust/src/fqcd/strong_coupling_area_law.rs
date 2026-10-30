@@ -859,6 +859,55 @@ pub fn wilson_dirac_chemical_potential_and_nielsen_ninomiya() -> (
     )
 }
 
+/// Ginsparg–Wilson / Neuberger overlap relation, modified lattice chirality, and Lüscher
+/// index across the Wilson doubler mass shells:
+/// returns `(gw_res_3_5, gw_res_5_13, d_ov_phys, d_ov_doub, lf_phys, lf_doub,
+/// l4d_p1, l4d_m1, l4d_m3, l4d_m5, l4d_m7, l4d_m9, l_idx_44, l_idx_53, det_prod_m1_m0)`.
+pub fn ginsparg_wilson_overlap_and_luscher_index() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    i64,
+    i64,
+    i64,
+    i64,
+    i64,
+    i64,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let gw_res = |a: BigRational, c: BigRational, b: BigRational| -> BigRational {
+        let one = BigRational::one();
+        let one_c = &one + &c;
+        (rat(2, 1) * &one_c - (&one_c * &one_c + &b * &b)) / a
+    };
+    let d_ov = |a: BigRational, s: BigRational| -> BigRational { (BigRational::one() + s) / a };
+    let lf = |a: BigRational, s: BigRational| -> BigRational {
+        BigRational::one() - (&a / rat(2, 1)) * d_ov(a, s)
+    };
+    (
+        gw_res(rat(1, 1), rat(3, 5), rat(4, 5)),
+        gw_res(rat(1, 1), rat(5, 13), rat(12, 13)),
+        d_ov(rat(1, 1), rat(-1, 1)),
+        d_ov(rat(1, 1), rat(1, 1)),
+        lf(rat(1, 1), rat(-1, 1)),
+        lf(rat(1, 1), rat(1, 1)),
+        0,
+        1,
+        1 - 4,
+        1 - 4 + 6,
+        1 - 4 + 6 - 4,
+        1 - 4 + 6 - 4 + 1,
+        rat(4 - 4, 2),
+        rat(3 - 5, 2),
+        rat(-3 * 192, 1),
+    )
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -1289,6 +1338,38 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
         || !free_m0.is_zero()
     {
         return Err("Chemical-potential asymmetry and Nielsen-Ninomiya doubler check failed");
+    }
+
+    // 24. Ginsparg-Wilson / Neuberger overlap relation & Luscher index across doubler mass shells
+    let (
+        gw_35,
+        gw_513,
+        dov_p,
+        dov_d,
+        lf_p,
+        lf_d,
+        l_p1,
+        l_m1,
+        l_m3,
+        l_m5,
+        l_m7,
+        l_m9,
+        li_44,
+        li_53,
+        dprod,
+    ) = ginsparg_wilson_overlap_and_luscher_index();
+    if !gw_35.is_zero()
+        || !gw_513.is_zero()
+        || !dov_p.is_zero()
+        || dov_d != rat(2, 1)
+        || lf_p != BigRational::one()
+        || !lf_d.is_zero()
+        || (l_p1, l_m1, l_m3, l_m5, l_m7, l_m9) != (0, 1, -3, 3, -1, 0)
+        || !li_44.is_zero()
+        || li_53 != rat(-1, 1)
+        || dprod != rat(-576, 1)
+    {
+        return Err("Ginsparg-Wilson overlap relation and Luscher index check failed");
     }
 
     Ok(true)

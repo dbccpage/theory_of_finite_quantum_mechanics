@@ -16,7 +16,8 @@ use theory_of_finite_qm::fqcd::{
     complete_blichfeldt_ffk_su3_crystal_hierarchy, const_k, coordination_number_delta,
     d4_multi_plaquette_collar_bound, finite_coupling_galois_conjugate_suppression,
     freezing_plaquette_defect_bounds,
-    general_collar_tube_contraction, hessian_subgroups_and_quartic_adjoint_casimir_obstruction,
+    general_collar_tube_contraction, ginsparg_wilson_overlap_and_luscher_index,
+    hessian_subgroups_and_quartic_adjoint_casimir_obstruction,
     higher_genus_mednykh_abelianization_and_genus3_bounds,
     klein_sigma168_invariants_and_su3_chain, loop_perimeter, minimal_spanning_area,
     normal_directions_count, q8_center_parity_non_screening_verified,
@@ -443,6 +444,27 @@ fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
     assert_eq!((re2, im2, reh, imh), (rat(63, 8), rat(-27, 1), rat(63, 8), rat(27, 1)));
     assert_eq!((tf_re2, tf_im2, pq_2), (rat(-42687, 64), rat(-1701, 4), rat(50625, 64)));
     assert_eq!((nn_4d, nn_doub_4d), (0, -1));
+
+    let (
+        gw_35,
+        gw_513,
+        dov_p,
+        dov_d,
+        lf_p,
+        lf_d,
+        l_p1,
+        l_m1,
+        l_m3,
+        l_m5,
+        l_m7,
+        l_m9,
+        li_44,
+        li_53,
+        dprod,
+    ) = ginsparg_wilson_overlap_and_luscher_index();
+    assert!(gw_35.is_zero() && gw_513.is_zero() && dov_p.is_zero() && lf_d.is_zero() && li_44.is_zero());
+    assert_eq!((dov_d, lf_p, li_53, dprod), (rat(2, 1), rat(1, 1), rat(-1, 1), rat(-576, 1)));
+    assert_eq!((l_p1, l_m1, l_m3, l_m5, l_m7, l_m9), (0, 1, -3, 3, -1, 0));
 }
 
 #[test]
