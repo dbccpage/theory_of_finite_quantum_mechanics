@@ -28,6 +28,7 @@ use theory_of_finite_qm::fqcd::{
     temporal_gauge_perron_frobenius_and_2d_mednykh_pachner,
     twod_character_decimation_area_law,
     valentiner_sigma1080_invariants, verify_fqcd_strong_coupling_area_law_witness,
+    wilson_dirac_gamma5_and_two_flavor_positivity,
 };
 
 fn rat(n: i64, d: i64) -> BigRational {
@@ -410,6 +411,14 @@ fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
         (hg1_q8, hg1_s1080, hg2_q8, hg2_2i, hg2_s1080),
         (40, 18_360, 2_176, 3_309_120, 2_100_161_520)
     );
+
+    let (dm3, dm2, dm1, d0, d1, tf_m1, tf_m2, tf_0, tf_1) =
+        wilson_dirac_gamma5_and_two_flavor_positivity();
+    assert_eq!((dm3, dm1), (rat(-3, 1), rat(-3, 1)));
+    assert!(dm2.is_zero() && tf_m2.is_zero());
+    assert_eq!(tf_m1, rat(9, 1));
+    assert!(BigRational::zero() < tf_m1);
+    assert_eq!((d0, d1, tf_0, tf_1), (rat(192, 1), rat(6237, 1), rat(36864, 1), rat(38900169, 1)));
 }
 
 #[test]

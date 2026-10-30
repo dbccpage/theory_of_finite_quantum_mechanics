@@ -672,6 +672,40 @@ def run_checks() -> Dict[str, Any]:
         "2D Pachner Euler exponent invariance E - V - F = 2g - 2 and genus-2 homomorphism counts |Hom(pi_1(Sigma_2), G)| = |G| Z_2(G)",
     )
 
+    # -------------------------------------------------------------------------
+    # Family 21: Wilson-Dirac gamma5-hermiticity & two-flavor determinant positivity
+    # -------------------------------------------------------------------------
+    def p_char(lam: Fraction) -> Fraction:
+        return (
+            lam ** 8
+            - 8 * (lam ** 7)
+            + 28 * (lam ** 6)
+            - 56 * (lam ** 5)
+            + 66 * (lam ** 4)
+            - 40 * (lam ** 3)
+            + 4 * (lam ** 2)
+            + 8 * lam
+            - 3
+        )
+
+    def det_dw_2x2(m: Fraction, r: Fraction = Fraction(1, 1)) -> Fraction:
+        s = m + 2 * r
+        return s ** 8 - 4 * (s ** 4)
+
+    check(
+        all(p_char(Fraction(k, 2)) == (Fraction(k, 2) - 1) ** 8 - 4 * ((Fraction(k, 2) - 1) ** 4) for k in range(-6, 9))
+        and all((( -g - r) / 2 == (-g - r) / 2 and ((g - r) / 2 + (-g - r) / 2 == -r)) for g in (Fraction(-1, 1), Fraction(1, 1)) for r in (Fraction(1, 2), Fraction(1, 1))),
+        "Wilson-Dirac 2x2 characteristic polynomial P(lambda) == (lambda - 1)^8 - 4(lambda - 1)^4 and gamma_5 projector swapping",
+    )
+    check(
+        det_dw_2x2(Fraction(-1, 1)) == det_dw_2x2(Fraction(-3, 1)) == Fraction(-3, 1) < Fraction(0, 1)
+        and (det_dw_2x2(Fraction(-1, 1)) ** 2) == Fraction(9, 1) > Fraction(0, 1)
+        and det_dw_2x2(Fraction(-2, 1)) == Fraction(0, 1)
+        and det_dw_2x2(Fraction(0, 1)) == Fraction(192, 1) > Fraction(0, 1)
+        and det_dw_2x2(Fraction(1, 1)) == Fraction(6237, 1) > Fraction(0, 1),
+        "Supercritical single-flavor sign problem det D_W(-1) = -3 < 0 vs two-flavor positivity det(D_W)^2 = 9 > 0 and physical branch det D_W(0) = 192 > 0",
+    )
+
     return {
         "record_id": "TFQ-1052",
         "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",

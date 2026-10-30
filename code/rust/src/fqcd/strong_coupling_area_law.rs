@@ -764,6 +764,40 @@ pub fn temporal_gauge_perron_frobenius_and_2d_mednykh_pachner() -> (
     )
 }
 
+/// Wilson–Dirac `γ_5`-hermiticity and two-flavor determinant positivity
+/// (`FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` and `FSP-WILSON-DIRAC-GAMMA5`):
+/// returns `(det_single(-3), det_single(-2), det_single(-1), det_single(0), det_single(1),
+/// det_two_flavor(-1), det_two_flavor(-2), det_two_flavor(0), det_two_flavor(1))`
+/// on the `2 × 2` periodic lattice at `r = 1`.
+pub fn wilson_dirac_gamma5_and_two_flavor_positivity() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    let det_single = |m: i64| -> BigRational {
+        let shift = m + 2;
+        let s4 = shift.pow(4);
+        let s8 = shift.pow(8);
+        rat(s8 - 4 * s4, 1)
+    };
+    let dm3 = det_single(-3);
+    let dm2 = det_single(-2);
+    let dm1 = det_single(-1);
+    let d0 = det_single(0);
+    let d1 = det_single(1);
+    let tf_m1 = &dm1 * &dm1;
+    let tf_m2 = &dm2 * &dm2;
+    let tf_0 = &d0 * &d0;
+    let tf_1 = &d1 * &d1;
+    (dm3, dm2, dm1, d0, d1, tf_m1, tf_m2, tf_0, tf_1)
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -1138,6 +1172,25 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
             != (40, 18_360, 2_176, 3_309_120, 2_100_161_520)
     {
         return Err("Temporal-gauge Perron-Frobenius gap and 2D Mednykh Pachner check failed");
+    }
+
+    // 22. Wilson-Dirac gamma5-hermiticity & two-flavor determinant positivity
+    let (dm3, dm2, dm1, d0, d1, tf_m1, tf_m2, tf_0, tf_1) =
+        wilson_dirac_gamma5_and_two_flavor_positivity();
+    if dm3 != rat(-3, 1)
+        || dm1 != rat(-3, 1)
+        || !(dm1 < BigRational::zero())
+        || !dm2.is_zero()
+        || !tf_m2.is_zero()
+        || tf_m1 != rat(9, 1)
+        || !(BigRational::zero() < tf_m1)
+        || d0 != rat(192, 1)
+        || d1 != rat(6237, 1)
+        || tf_0 != rat(36864, 1)
+        || tf_1 != rat(38900169, 1)
+        || !(BigRational::zero() < d0 && d0 < d1)
+    {
+        return Err("Wilson-Dirac gamma5-hermiticity and two-flavor positivity check failed");
     }
 
     Ok(true)

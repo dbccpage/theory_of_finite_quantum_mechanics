@@ -56,6 +56,7 @@ try:
         twod_character_decimation_area_law_rational,
         valentiner_sigma1080_invariants_rational,
         verify_fqcd_strong_coupling_area_law_witness,
+        wilson_dirac_gamma5_and_two_flavor_positivity_rational,
     )
 except ImportError:
     from src.fqcd.strong_coupling_area_law import (
@@ -103,6 +104,7 @@ except ImportError:
         twod_character_decimation_area_law_rational,
         valentiner_sigma1080_invariants_rational,
         verify_fqcd_strong_coupling_area_law_witness,
+        wilson_dirac_gamma5_and_two_flavor_positivity_rational,
     )
 
 
@@ -495,6 +497,16 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
         pf_med["hom_g2_Sigma216x3"],
         pf_med["hom_g2_Sigma1080"],
     ) == (53376, 335616, 3309120, 1296821016, 2100161520)
+
+    wd = wilson_dirac_gamma5_and_two_flavor_positivity_rational()
+    assert wd["gamma5_hermitian_matched_entries"] == 64
+    assert wd["hw_hermitian_matched_entries"] == 64
+    assert wd["det_single_m_minus_1"] == wd["det_single_m_minus_3"] == Fraction(-3, 1) < Fraction(0, 1)
+    assert wd["det_two_flavor_m_minus_1"] == Fraction(9, 1) > Fraction(0, 1)
+    assert wd["det_single_m_minus_2"] == wd["det_two_flavor_m_minus_2"] == Fraction(0, 1)
+    assert wd["det_single_m_0"] == Fraction(192, 1) > Fraction(0, 1)
+    assert wd["det_single_m_1"] == Fraction(6237, 1) > Fraction(0, 1)
+    assert wd["det_two_flavor_m_0"] == Fraction(36864, 1) > Fraction(0, 1)
 
 
 def test_master_witness_passes() -> None:
