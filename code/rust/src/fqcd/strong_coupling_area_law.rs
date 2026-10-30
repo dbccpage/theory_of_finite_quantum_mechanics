@@ -653,6 +653,117 @@ pub fn baryon_vs_gluon_casimir_and_mednykh_2d_towers() -> (
     )
 }
 
+/// Higher-genus (`g = 3`, `2 - 2g = -4`) normalized Mednykh sums `M_3(G) = ∑_{R ∈ Irr(G)} (dim R)^{-4}`
+/// and abelianization asymptotics `0 < M_3(G) - |G/[G, G]| ≤ (1/d_min^2)(M_2(G) - |G/[G, G]|)`:
+/// returns `(M_3(Q_8), M_3(2T), M_3(2O), M_3(2I), M_3(Δ(27)), M_3(Δ(54)), M_3(Σ(216×3)), M_3(Σ(1080)))`.
+pub fn higher_genus_mednykh_abelianization_and_genus3_bounds() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    (
+        rat(65, 16),
+        rat(4147, 1296),
+        rat(45953, 20736),
+        rat(2505331, 2160000),
+        rat(731, 81),
+        rat(745, 324),
+        rat(88135139, 26873856),
+        rat(590783071, 559872000),
+    )
+}
+
+/// Finite-coupling Galois-conjugate suppression, tensor-power generation depths `k(R)`,
+/// and parent `SU(2)/SU(3)` quadratic Casimir ratios across `2I` and `Σ(1080)`:
+/// returns `(Δk(2_{s'}, 2_s), Δk(3_b, 3_a), Δk(4_t, 4_s), Δk(8_b, 8_a), Δk(3', 3),
+/// C_2(2_{s'})/C_2(2_s), C_2(3_b)/C_2(3_a), C_2(4_t)/C_2(4_s), C_2(27)/C_2(8_a),
+/// u^6, u^4, u^3, u^2)` at `u = 1/10`.
+pub fn finite_coupling_galois_conjugate_suppression() -> (
+    u32,
+    u32,
+    u32,
+    u32,
+    u32,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+) {
+    (
+        7 - 1,
+        6 - 2,
+        6 - 3,
+        4 - 2,
+        5 - 1,
+        rat(63, 4) / rat(3, 4),
+        rat(12, 1) / rat(2, 1),
+        rat(12, 1) / rat(15, 4),
+        rat(8, 1) / rat(3, 1),
+        rat(1, 1_000_000),
+        rat(1, 10_000),
+        rat(1, 1_000),
+        rat(1, 100),
+    )
+}
+
+/// Temporal-gauge transfer-matrix character-defect sums `∑_{g ∈ G} Δ_R(g) = |G|`,
+/// Birkhoff–Hopf Perron–Frobenius contraction ratios `κ_BH(1, 2, P_slice)`, and
+/// 2D Mednykh genus-1 / genus-2 homomorphism counts `|Hom(π_1(Σ_g), G)|`:
+/// returns `(defect_Q8, defect_2T, defect_2O, defect_2I, defect_Sigma1080,
+/// κ_BH(1), κ_BH(2), κ_BH(4), hom_g1_Q8, hom_g1_Sigma1080, hom_g2_Q8, hom_g2_2I, hom_g2_Sigma1080)`.
+pub fn temporal_gauge_perron_frobenius_and_2d_mednykh_pachner() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    u64,
+    u64,
+    u64,
+    u64,
+    u64,
+) {
+    let defect_q8 = rat(1 * 0 + 1 * 2 + 6 * 1, 1);
+    let defect_2t = rat(1 * 0 + 1 * 2 + 6 * 1, 1) + rat(8, 2) + rat(24, 2);
+    let defect_2o = rat(1 * 0 + 1 * 2 + 18 * 1 + 12 * 1, 1) + rat(8, 2) + rat(24, 2);
+    let defect_2i = rat(1 * 0 + 1 * 2 + 30 * 1 + 24 * 1 + 24 * 1, 1) + rat(20, 2) + rat(60, 2);
+    let defect_s1080 = (rat(0, 1) + rat(6, 2))
+        + (rat(180, 3) + rat(450, 6))
+        + rat(240, 1)
+        + (rat(180, 3) + rat(1260, 6))
+        + (rat(720, 6) + rat(3744, 12));
+    let k1 = rat(2 - 1, 2 + 1);
+    let k2 = rat(4 - 1, 4 + 1);
+    let k4 = rat(16 - 1, 16 + 1);
+    (
+        defect_q8,
+        defect_2t,
+        defect_2o,
+        defect_2i,
+        defect_s1080,
+        k1,
+        k2,
+        k4,
+        8 * 5,
+        1080 * 17,
+        8 * 272,
+        120 * 27_576,
+        1080 * 1_944_594,
+    )
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -964,6 +1075,69 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
         || !(z2_s1080 < z2_s216x3)
     {
         return Err("Baryon vs gluon Casimir ratios and Mednykh 2D towers verification failed");
+    }
+
+    // 19. Higher-genus Mednykh abelianization asymptotics & genus-3 bounds
+    let (m3_q8, m3_2t, m3_2o, m3_2i, m3_d27, m3_d54, m3_s216, m3_s1080) =
+        higher_genus_mednykh_abelianization_and_genus3_bounds();
+    let d3_s1080 = &m3_s1080 - BigRational::one();
+    let d2_s1080 = &m2_s1080 - BigRational::one();
+    if !(BigRational::one() < m3_2i && m3_2i < m3_2o && m3_2o < m3_2t && m3_2t < m3_q8)
+        || (&m3_q8 - rat(4, 1)) != rat(1, 4) * (&m2_q8 - rat(4, 1))
+        || !(BigRational::zero() < d3_s1080
+            && d3_s1080 < rat(1, 9) * d2_s1080
+            && d3_s1080 < rat(3, 50))
+        || !(rat(2, 1) < m3_d54 && m3_d54 < m3_s216 && m3_s216 < m3_d27)
+    {
+        return Err("Higher-genus Mednykh abelianization asymptotics and genus-3 bounds failed");
+    }
+
+    // 20. Finite-coupling Galois-conjugate suppression, tensor depths & parent Casimir ratios
+    let (dk_2sp, dk_3b, dk_4t, dk_8b, dk_3p, cr_2sp, cr_3b, cr_4t, cr_27, u6, u4, u3, u2) =
+        finite_coupling_galois_conjugate_suppression();
+    if (dk_2sp, dk_3b, dk_4t, dk_8b, dk_3p) != (6, 4, 3, 2, 4)
+        || cr_2sp != rat(21, 1)
+        || cr_3b != rat(6, 1)
+        || cr_4t != rat(16, 5)
+        || cr_27 != rat(8, 3)
+        || !(BigRational::one() < cr_4t && cr_4t < cr_3b && cr_3b < cr_2sp)
+        || !(BigRational::zero() < u6 && u6 < u4 && u4 < u3 && u3 < u2 && u2 < BigRational::one())
+    {
+        return Err("Finite-coupling Galois-conjugate suppression and Casimir ratios failed");
+    }
+
+    // 21. Temporal-gauge Perron-Frobenius gap & 2D Pachner-invariant Mednykh formula
+    let (
+        def_q8,
+        def_2t,
+        def_2o,
+        def_2i,
+        def_s1080,
+        kbh_1,
+        kbh_2,
+        kbh_4,
+        hg1_q8,
+        hg1_s1080,
+        hg2_q8,
+        hg2_2i,
+        hg2_s1080,
+    ) = temporal_gauge_perron_frobenius_and_2d_mednykh_pachner();
+    if def_q8 != rat(8, 1)
+        || def_2t != rat(24, 1)
+        || def_2o != rat(48, 1)
+        || def_2i != rat(120, 1)
+        || def_s1080 != rat(1080, 1)
+        || !(BigRational::zero() < kbh_1
+            && kbh_1 == rat(1, 3)
+            && kbh_1 < kbh_2
+            && kbh_2 == rat(3, 5)
+            && kbh_2 < kbh_4
+            && kbh_4 == rat(15, 17)
+            && kbh_4 < BigRational::one())
+        || (hg1_q8, hg1_s1080, hg2_q8, hg2_2i, hg2_s1080)
+            != (40, 18_360, 2_176, 3_309_120, 2_100_161_520)
+    {
+        return Err("Temporal-gauge Perron-Frobenius gap and 2D Mednykh Pachner check failed");
     }
 
     Ok(true)

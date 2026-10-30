@@ -14,15 +14,19 @@ use theory_of_finite_qm::fqcd::{
     beta0_rational_bounds, binary_icosahedral_2i_invariants, check_geometric_cluster_series_bound,
     cluster_series_geometric_sum, collar_tube_contraction,
     complete_blichfeldt_ffk_su3_crystal_hierarchy, const_k, coordination_number_delta,
-    d4_multi_plaquette_collar_bound, freezing_plaquette_defect_bounds,
+    d4_multi_plaquette_collar_bound, finite_coupling_galois_conjugate_suppression,
+    freezing_plaquette_defect_bounds,
     general_collar_tube_contraction, hessian_subgroups_and_quartic_adjoint_casimir_obstruction,
+    higher_genus_mednykh_abelianization_and_genus3_bounds,
     klein_sigma168_invariants_and_su3_chain, loop_perimeter, minimal_spanning_area,
     normal_directions_count, q8_center_parity_non_screening_verified,
     q8_cubic_character_invariant_sum, quartic_character_invariants_and_continuum_matching,
     s3_cubic_character_invariant_sum, s4_cubic_character_invariants,
     strong_to_freezing_coupling_gap, su2_ade_binary_polyhedral_tower,
     su2_higher_spin_casimir_and_hessian_defect_bounds,
-    su3_subgroup_tower_and_freezing_scales, twod_character_decimation_area_law,
+    su3_subgroup_tower_and_freezing_scales,
+    temporal_gauge_perron_frobenius_and_2d_mednykh_pachner,
+    twod_character_decimation_area_law,
     valentiner_sigma1080_invariants, verify_fqcd_strong_coupling_area_law_witness,
 };
 
@@ -363,6 +367,49 @@ fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
     assert_eq!(z2_s1080, rat(1944594, 1));
     assert_eq!(z2_s216x3, rat(2001267, 1));
     assert!(z2_s1080 < z2_s216x3);
+
+    let (m3_q8, m3_2t, m3_2o, m3_2i, m3_d27, m3_d54, m3_s216, m3_s1080) =
+        higher_genus_mednykh_abelianization_and_genus3_bounds();
+    assert!(BigRational::one() < m3_2i && m3_2i < m3_2o && m3_2o < m3_2t && m3_2t < m3_q8);
+    assert_eq!(&m3_q8 - rat(4, 1), rat(1, 4) * (&m2_q8 - rat(4, 1)));
+    assert!(BigRational::zero() < (&m3_s1080 - BigRational::one())
+        && (&m3_s1080 - BigRational::one()) < rat(1, 9) * (&m2_s1080 - BigRational::one())
+        && (&m3_s1080 - BigRational::one()) < rat(3, 50));
+    assert!(rat(2, 1) < m3_d54 && m3_d54 < m3_s216 && m3_s216 < m3_d27);
+
+    let (dk_2sp, dk_3b, dk_4t, dk_8b, dk_3p, cr_2sp, cr_3b, cr_4t, cr_27, u6, u4, u3, u2) =
+        finite_coupling_galois_conjugate_suppression();
+    assert_eq!((dk_2sp, dk_3b, dk_4t, dk_8b, dk_3p), (6, 4, 3, 2, 4));
+    assert_eq!(cr_2sp, rat(21, 1));
+    assert_eq!(cr_3b, rat(6, 1));
+    assert_eq!(cr_4t, rat(16, 5));
+    assert_eq!(cr_27, rat(8, 3));
+    assert!(BigRational::zero() < u6 && u6 < u4 && u4 < u3 && u3 < u2 && u2 < BigRational::one());
+
+    let (
+        def_q8,
+        def_2t,
+        def_2o,
+        def_2i,
+        def_s1080,
+        kbh_1,
+        kbh_2,
+        kbh_4,
+        hg1_q8,
+        hg1_s1080,
+        hg2_q8,
+        hg2_2i,
+        hg2_s1080,
+    ) = temporal_gauge_perron_frobenius_and_2d_mednykh_pachner();
+    assert_eq!(
+        (def_q8, def_2t, def_2o, def_2i, def_s1080),
+        (rat(8, 1), rat(24, 1), rat(48, 1), rat(120, 1), rat(1080, 1))
+    );
+    assert!(BigRational::zero() < kbh_1 && kbh_1 < kbh_2 && kbh_2 < kbh_4 && kbh_4 < BigRational::one());
+    assert_eq!(
+        (hg1_q8, hg1_s1080, hg2_q8, hg2_2i, hg2_s1080),
+        (40, 18_360, 2_176, 3_309_120, 2_100_161_520)
+    );
 }
 
 #[test]

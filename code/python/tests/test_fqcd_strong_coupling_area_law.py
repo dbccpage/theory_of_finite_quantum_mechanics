@@ -26,10 +26,12 @@ try:
         complete_blichfeldt_ffk_su3_crystal_hierarchy_rational,
         coordination_number_delta,
         d4_multi_plaquette_collar_bound_rational,
+        finite_coupling_galois_conjugate_suppression_rational,
         freezing_plaquette_defect_rational_bounds,
         general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
         hessian_subgroups_and_quartic_adjoint_casimir_obstruction_rational,
+        higher_genus_mednykh_abelianization_and_genus3_bounds_rational,
         klein_sigma168_invariants_and_su3_chain_rational,
         loop_perimeter,
         minimal_spanning_area,
@@ -49,6 +51,7 @@ try:
         su2_ade_binary_polyhedral_tower_rational,
         su2_higher_spin_casimir_and_hessian_defect_bounds_rational,
         su3_subgroup_tower_and_freezing_scales_rational,
+        temporal_gauge_perron_frobenius_and_2d_mednykh_pachner_rational,
         twod_character_decimation_area_law,
         twod_character_decimation_area_law_rational,
         valentiner_sigma1080_invariants_rational,
@@ -70,10 +73,12 @@ except ImportError:
         complete_blichfeldt_ffk_su3_crystal_hierarchy_rational,
         coordination_number_delta,
         d4_multi_plaquette_collar_bound_rational,
+        finite_coupling_galois_conjugate_suppression_rational,
         freezing_plaquette_defect_rational_bounds,
         general_collar_tube_contraction_rational,
         geometric_cluster_series_bound_satisfied,
         hessian_subgroups_and_quartic_adjoint_casimir_obstruction_rational,
+        higher_genus_mednykh_abelianization_and_genus3_bounds_rational,
         klein_sigma168_invariants_and_su3_chain_rational,
         loop_perimeter,
         minimal_spanning_area,
@@ -93,6 +98,7 @@ except ImportError:
         su2_ade_binary_polyhedral_tower_rational,
         su2_higher_spin_casimir_and_hessian_defect_bounds_rational,
         su3_subgroup_tower_and_freezing_scales_rational,
+        temporal_gauge_perron_frobenius_and_2d_mednykh_pachner_rational,
         twod_character_decimation_area_law,
         twod_character_decimation_area_law_rational,
         valentiner_sigma1080_invariants_rational,
@@ -448,6 +454,47 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
     assert med["sigma1080_irrep_dim_sq_sum"] == 1080
     assert med["M2_Sigma1080"] == Fraction(36011, 21600) < Fraction(2, 1)
     assert med["Z2_Sigma1080"] == 1944594 < med["Z2_Sigma216x3"] == 2001267
+
+    med3 = higher_genus_mednykh_abelianization_and_genus3_bounds_rational()
+    assert med3["ab_2I"] < med3["ab_2O"] < med3["ab_2T"] < med3["ab_Q8"]
+    assert Fraction(1, 1) < med3["M3_2I"] < med3["M3_2O"] < med3["M3_2T"] < med3["M3_Q8"] == Fraction(65, 16)
+    assert med3["M3_Q8"] - med3["ab_Q8"] == Fraction(1, 4) * (med["M2_Q8"] - med3["ab_Q8"])
+    assert med3["M3_2I"] - med3["ab_2I"] < Fraction(1, 4) * (med["M2_2I"] - med3["ab_2I"])
+    assert med3["M3_Sigma1080"] == Fraction(590783071, 559872000)
+    assert Fraction(0, 1) < med3["M3_Sigma1080"] - med3["ab_Sigma1080"] < Fraction(3, 50) < Fraction(1, 9) * (med["M2_Sigma1080"] - med3["ab_Sigma1080"])
+    assert Fraction(2, 1) < med3["M3_Delta54"] < med3["M3_Sigma216x3"] < med3["M3_Delta27"] == Fraction(731, 81)
+
+    gal = finite_coupling_galois_conjugate_suppression_rational(Fraction(1, 10))
+    assert (gal["dk_2I_2sp_2s"], gal["dk_2I_3b_3a"], gal["dk_2I_4t_4s"]) == (6, 4, 3)
+    assert (gal["dk_Sigma1080_8b_8a"], gal["dk_Sigma1080_3p_3"]) == (2, 4)
+    assert gal["casimir_ratio_2sp_over_2s"] == Fraction(21, 1)
+    assert gal["casimir_ratio_3b_over_3a"] == Fraction(6, 1)
+    assert gal["casimir_ratio_4t_over_4s"] == Fraction(16, 5)
+    assert gal["casimir_ratio_27_over_8a"] == Fraction(8, 3)
+    assert gal["suppression_2sp_2s"] == Fraction(1, 1000000)
+    assert gal["suppression_3b_3a"] == gal["suppression_3p_3"] == Fraction(1, 10000)
+    assert gal["suppression_4t_4s"] == Fraction(1, 1000)
+    assert gal["suppression_8b_8a"] == Fraction(1, 100)
+
+    pf_med = temporal_gauge_perron_frobenius_and_2d_mednykh_pachner_rational()
+    assert (
+        pf_med["defect_sum_Q8"],
+        pf_med["defect_sum_2T"],
+        pf_med["defect_sum_2O"],
+        pf_med["defect_sum_2I"],
+        pf_med["defect_sum_Sigma1080"],
+    ) == (Fraction(8, 1), Fraction(24, 1), Fraction(48, 1), Fraction(120, 1), Fraction(1080, 1))
+    assert Fraction(0, 1) < pf_med["kappa_BH_1"] == Fraction(1, 3) < pf_med["kappa_BH_2"] == Fraction(3, 5) < pf_med["kappa_BH_4"] == Fraction(15, 17) < Fraction(1, 1)
+    assert (pf_med["q8_comm_identity_count"], pf_med["q8_comm_minus_one_count"]) == (40, 24)
+    assert pf_med["hom_g1_Q8"] == 40
+    assert pf_med["hom_g2_Q8_bruteforce"] == pf_med["hom_g2_Q8"] == 2176
+    assert (
+        pf_med["hom_g2_2T"],
+        pf_med["hom_g2_2O"],
+        pf_med["hom_g2_2I"],
+        pf_med["hom_g2_Sigma216x3"],
+        pf_med["hom_g2_Sigma1080"],
+    ) == (53376, 335616, 3309120, 1296821016, 2100161520)
 
 
 def test_master_witness_passes() -> None:

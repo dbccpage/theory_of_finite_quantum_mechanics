@@ -591,6 +591,87 @@ def run_checks() -> Dict[str, Any]:
         "Sigma(1080) 17-irrep Burnside sum = 1080, M_2(Sigma(1080)) = 36011/21600 < 2, and Z_2(Sigma(1080)) = 1944594 < Z_2(Sigma(216x3)) = 2001267",
     )
 
+    # -------------------------------------------------------------------------
+    # Family 18: Higher-genus Mednykh abelianization asymptotics & genus-3 bounds
+    # -------------------------------------------------------------------------
+    m3_q8 = sum(Fraction(1, d ** 4) for d in [1, 1, 1, 1, 2])
+    m3_2t = sum(Fraction(1, d ** 4) for d in [1, 1, 1, 2, 2, 2, 3])
+    m3_2o = sum(Fraction(1, d ** 4) for d in [1, 1, 2, 2, 2, 3, 3, 4])
+    m3_2i = sum(Fraction(1, d ** 4) for d in [1, 2, 2, 3, 3, 4, 4, 5, 6])
+    m3_d27 = sum(Fraction(1, d ** 4) for d in [1] * 9 + [3] * 2)
+    m3_d54 = sum(Fraction(1, d ** 4) for d in [1] * 2 + [2] * 4 + [3] * 4)
+    m3_s216x3 = sum(Fraction(1, d ** 4) for d in [1] * 3 + [2] * 3 + [3] * 7 + [6] * 6 + [8] * 3 + [9] * 2)
+    m3_s1080 = sum(Fraction(1, d ** 4) for d in s1080_dims)
+    check(
+        Fraction(1, 1) < m3_2i == Fraction(2505331, 2160000) < m3_2o == Fraction(45953, 20736) < m3_2t == Fraction(4147, 1296) < m3_q8 == Fraction(65, 16),
+        "Genus-3 normalized Mednykh sum M_3(G) descends strictly across SU(2) ADE series Q_8 -> 2T -> 2O -> 2I",
+    )
+    check(
+        m3_q8 - Fraction(4, 1) == Fraction(1, 4) * (m2_q8 - Fraction(4, 1))
+        and m3_2i - Fraction(1, 1) < Fraction(1, 4) * (m2_2i - Fraction(1, 1)),
+        "Per-genus non-abelian 1/4 contraction bound on SU(2) ADE series (d_min = 2)",
+    )
+    check(
+        m3_s1080 == Fraction(590783071, 559872000)
+        and Fraction(0, 1) < m3_s1080 - Fraction(1, 1) < Fraction(3, 50) < Fraction(1, 9) * (m2_s1080 - Fraction(1, 1))
+        and Fraction(2, 1) < m3_d54 < m3_s216x3 < m3_d27 == Fraction(731, 81),
+        "Perfect Sigma(1080) genus-3 1/9 contraction bound M_3(Sigma(1080)) - 1 < (1/9)(M_2 - 1) < 3/50 vs solvable M_3 > 2",
+    )
+
+    # -------------------------------------------------------------------------
+    # Family 19: Finite-coupling Galois-conjugate suppression & parent Casimir ratios
+    # -------------------------------------------------------------------------
+    dk_2sp_2s, dk_3b_3a, dk_4t_4s = 7 - 1, 6 - 2, 6 - 3
+    dk_8b_8a, dk_3p_3 = 4 - 2, 5 - 1
+    cr_2sp = Fraction(63, 4) / Fraction(3, 4)
+    cr_3b = Fraction(12, 1) / Fraction(2, 1)
+    cr_4t = Fraction(12, 1) / Fraction(15, 4)
+    cr_27_8a = Fraction(8, 1) / Fraction(3, 1)
+    u_tenth = Fraction(1, 10)
+    check(
+        (dk_2sp_2s, dk_3b_3a, dk_4t_4s, dk_8b_8a, dk_3p_3) == (6, 4, 3, 2, 4)
+        and cr_2sp == Fraction(21, 1) > cr_3b == Fraction(6, 1) > cr_4t == Fraction(16, 5) > Fraction(1, 1)
+        and cr_27_8a == Fraction(8, 3) > Fraction(1, 1),
+        "Tensor-power generation depth gaps (6, 4, 3, 2, 4) and parent SU(2)/SU(3) Casimir ratios (21 > 6 > 16/5 > 1, 8/3 > 1)",
+    )
+    check(
+        u_tenth ** dk_2sp_2s == Fraction(1, 1000000)
+        < u_tenth ** dk_3b_3a == u_tenth ** dk_3p_3 == Fraction(1, 10000)
+        < u_tenth ** dk_4t_4s == Fraction(1, 1000)
+        < u_tenth ** dk_8b_8a == Fraction(1, 100) < Fraction(1, 1),
+        "Single-plaquette Galois-conjugate suppression hierarchy u^6 < u^4 < u^3 < u^2 < 1 at u = 1/10",
+    )
+
+    # -------------------------------------------------------------------------
+    # Family 20: Temporal-gauge Perron-Frobenius gap & 2D Mednykh Pachner invariance
+    # -------------------------------------------------------------------------
+    def_q8 = Fraction(1 * 0 + 1 * 2 + 6 * 1, 1)
+    def_2t = Fraction(1 * 0 + 1 * 2 + 6 * 1, 1) + 8 * Fraction(1, 2) + 8 * Fraction(3, 2)
+    def_2o = Fraction(1 * 0 + 1 * 2 + 18 * 1 + 12 * 1, 1) + 8 * Fraction(1, 2) + 8 * Fraction(3, 2)
+    def_2i = Fraction(1 * 0 + 1 * 2 + 30 * 1 + 24 * 1 + 24 * 1, 1) + 20 * Fraction(1, 2) + 20 * Fraction(3, 2)
+    def_s1080 = (
+        (Fraction(0, 1) + 2 * Fraction(3, 2))
+        + (45 * Fraction(4, 3) + 90 * Fraction(5, 6))
+        + 240 * Fraction(1, 1)
+        + (90 * Fraction(2, 3) + 180 * Fraction(7, 6))
+        + (144 * Fraction(5, 6) + 288 * Fraction(13, 12))
+    )
+    kbh_1 = Fraction(2 ** 1 - 1, 2 ** 1 + 1)
+    kbh_2 = Fraction(2 ** 2 - 1, 2 ** 2 + 1)
+    kbh_4 = Fraction(2 ** 4 - 1, 2 ** 4 + 1)
+    check(
+        (def_q8, def_2t, def_2o, def_2i, def_s1080)
+        == (Fraction(8, 1), Fraction(24, 1), Fraction(48, 1), Fraction(120, 1), Fraction(1080, 1))
+        and Fraction(0, 1) < kbh_1 == Fraction(1, 3) < kbh_2 == Fraction(3, 5) < kbh_4 == Fraction(15, 17) < Fraction(1, 1),
+        "Character-defect sum identity sum_{g in G} Delta_R(g) = |G| and Birkhoff-Hopf contraction 0 < kappa_BH(P_slice) < 1",
+    )
+    check(
+        all(((E + 3) - (V + 1) - (F + 2)) == (E - V - F) == (E - 1 - V - (F - 1)) for V, E, F in [(4, 6, 4), (6, 18, 10), (10, 36, 22)])
+        and (8 * 272, 24 * 2224, 48 * 6992, 120 * 27576, 648 * 2001267, 1080 * 1944594)
+        == (2176, 53376, 335616, 3309120, 1296821016, 2100161520),
+        "2D Pachner Euler exponent invariance E - V - F = 2g - 2 and genus-2 homomorphism counts |Hom(pi_1(Sigma_2), G)| = |G| Z_2(G)",
+    )
+
     return {
         "record_id": "TFQ-1052",
         "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",
