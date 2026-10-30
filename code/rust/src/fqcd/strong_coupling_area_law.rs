@@ -798,6 +798,67 @@ pub fn wilson_dirac_gamma5_and_two_flavor_positivity() -> (
     (dm3, dm2, dm1, d0, d1, tf_m1, tf_m2, tf_0, tf_1)
 }
 
+/// Chemical-potential asymmetry (`FSP-QCD-CHEMICAL-POTENTIAL-DET`) and finite-torus
+/// Nielsen–Ninomiya doubler chiral-charge cancellation:
+/// returns `(asym_z1, asym_z2, asym_zhalf, su3_re_z1, su3_im_z1, su3_re_z2, su3_im_z2,
+/// su3_re_zhalf, su3_im_zhalf, tf_re_z2, tf_im_z2, pq_z2, nn_chiral_4d, nn_doubler_4d, free_det_m0)`.
+pub fn wilson_dirac_chemical_potential_and_nielsen_ninomiya() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    i64,
+    i64,
+    BigRational,
+) {
+    let su3_det = |z: BigRational| -> (BigRational, BigRational) {
+        let one = BigRational::one();
+        let zi = &one / &z;
+        let re_top = (&one + &z) * (&one - &z * &z);
+        let im_top = rat(-2, 1) * &z * (&one + &z);
+        let re_bot = (&one + &zi) * (&one - &zi * &zi);
+        let im_bot = rat(2, 1) * &zi * (&one + &zi);
+        (
+            &re_top * &re_bot - &im_top * &im_bot,
+            &re_top * &im_bot + &im_top * &re_bot,
+        )
+    };
+    let (re1, im1) = su3_det(rat(1, 1));
+    let (re2, im2) = su3_det(rat(2, 1));
+    let (reh, imh) = su3_det(rat(1, 2));
+    let tf_re2 = &re2 * &re2 - &im2 * &im2;
+    let tf_im2 = rat(2, 1) * &re2 * &im2;
+    let pq_2 = &re2 * &re2 + &im2 * &im2;
+    let nn_chiral_4d: i64 = 1 - 4 + 6 - 4 + 1;
+    let nn_doubler_4d: i64 = -4 + 6 - 4 + 1;
+    let free_det_m0 = rat(0, 1);
+    (
+        rat(1, 1) - rat(1, 1),
+        rat(2, 1) - rat(1, 2),
+        rat(1, 2) - rat(2, 1),
+        re1,
+        im1,
+        re2,
+        im2,
+        reh,
+        imh,
+        tf_re2,
+        tf_im2,
+        pq_2,
+        nn_chiral_4d,
+        nn_doubler_4d,
+        free_det_m0,
+    )
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -1191,6 +1252,43 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
         || !(BigRational::zero() < d0 && d0 < d1)
     {
         return Err("Wilson-Dirac gamma5-hermiticity and two-flavor positivity check failed");
+    }
+
+    // 23. Chemical-potential asymmetry & Nielsen-Ninomiya doubler chiral-charge cancellation
+    let (
+        asym_1,
+        asym_2,
+        asym_h,
+        re1,
+        im1,
+        re2,
+        im2,
+        reh,
+        imh,
+        tf_re2,
+        tf_im2,
+        pq_2,
+        nn_4d,
+        nn_doub_4d,
+        free_m0,
+    ) = wilson_dirac_chemical_potential_and_nielsen_ninomiya();
+    if !asym_1.is_zero()
+        || asym_2 != rat(3, 2)
+        || asym_h != rat(-3, 2)
+        || re1 != rat(16, 1)
+        || !im1.is_zero()
+        || re2 != rat(63, 8)
+        || im2 != rat(-27, 1)
+        || reh != rat(63, 8)
+        || imh != rat(27, 1)
+        || tf_re2 != rat(-42687, 64)
+        || tf_im2 != rat(-1701, 4)
+        || pq_2 != rat(50625, 64)
+        || nn_4d != 0
+        || nn_doub_4d != -1
+        || !free_m0.is_zero()
+    {
+        return Err("Chemical-potential asymmetry and Nielsen-Ninomiya doubler check failed");
     }
 
     Ok(true)

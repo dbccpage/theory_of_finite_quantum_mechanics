@@ -56,6 +56,7 @@ try:
         twod_character_decimation_area_law_rational,
         valentiner_sigma1080_invariants_rational,
         verify_fqcd_strong_coupling_area_law_witness,
+        wilson_dirac_chemical_potential_and_nielsen_ninomiya_rational,
         wilson_dirac_gamma5_and_two_flavor_positivity_rational,
     )
 except ImportError:
@@ -104,6 +105,7 @@ except ImportError:
         twod_character_decimation_area_law_rational,
         valentiner_sigma1080_invariants_rational,
         verify_fqcd_strong_coupling_area_law_witness,
+        wilson_dirac_chemical_potential_and_nielsen_ninomiya_rational,
         wilson_dirac_gamma5_and_two_flavor_positivity_rational,
     )
 
@@ -507,6 +509,22 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
     assert wd["det_single_m_0"] == Fraction(192, 1) > Fraction(0, 1)
     assert wd["det_single_m_1"] == Fraction(6237, 1) > Fraction(0, 1)
     assert wd["det_two_flavor_m_0"] == Fraction(36864, 1) > Fraction(0, 1)
+
+    mu_nn = wilson_dirac_chemical_potential_and_nielsen_ninomiya_rational()
+    assert mu_nn["asym_z1"] == Fraction(0, 1)
+    assert mu_nn["asym_z2"] == -mu_nn["asym_zhalf"] == Fraction(3, 2) > Fraction(0, 1)
+    assert mu_nn["intertwine_neg_mu_matched_entries"] == 64
+    assert mu_nn["broken_self_mu_entries"] > 0
+    assert mu_nn["su3_det_z1"] == (Fraction(16, 1), Fraction(0, 1))
+    assert mu_nn["su3_det_z2"] == (Fraction(63, 8), Fraction(-27, 1))
+    assert mu_nn["su3_det_zhalf"] == (Fraction(63, 8), Fraction(27, 1))
+    assert mu_nn["su3_two_flavor_det_z2"] == (Fraction(-42687, 64), Fraction(-1701, 4))
+    assert mu_nn["su3_phase_quenched_det_z2"] == Fraction(50625, 64) > Fraction(0, 1)
+    assert mu_nn["nn_corner_counts"] == {1: 2, 2: 4, 3: 8, 4: 16}
+    assert mu_nn["nn_chiral_sums"] == {1: 0, 2: 0, 3: 0, 4: 0}
+    assert mu_nn["nn_doubler_chiral_sums"] == {1: -1, 2: -1, 3: -1, 4: -1}
+    assert mu_nn["free_det_2x2_m0"] == mu_nn["free_det_2x2_m_minus_2"] == mu_nn["free_det_2x2_m_minus_4"] == Fraction(0, 1)
+    assert mu_nn["free_det_2x2_m_minus_1"] == Fraction(9, 1)
 
 
 def test_master_witness_passes() -> None:

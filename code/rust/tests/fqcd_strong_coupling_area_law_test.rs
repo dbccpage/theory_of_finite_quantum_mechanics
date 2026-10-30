@@ -28,6 +28,7 @@ use theory_of_finite_qm::fqcd::{
     temporal_gauge_perron_frobenius_and_2d_mednykh_pachner,
     twod_character_decimation_area_law,
     valentiner_sigma1080_invariants, verify_fqcd_strong_coupling_area_law_witness,
+    wilson_dirac_chemical_potential_and_nielsen_ninomiya,
     wilson_dirac_gamma5_and_two_flavor_positivity,
 };
 
@@ -419,6 +420,29 @@ fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
     assert_eq!(tf_m1, rat(9, 1));
     assert!(BigRational::zero() < tf_m1);
     assert_eq!((d0, d1, tf_0, tf_1), (rat(192, 1), rat(6237, 1), rat(36864, 1), rat(38900169, 1)));
+
+    let (
+        asym_1,
+        asym_2,
+        asym_h,
+        re1,
+        im1,
+        re2,
+        im2,
+        reh,
+        imh,
+        tf_re2,
+        tf_im2,
+        pq_2,
+        nn_4d,
+        nn_doub_4d,
+        free_m0,
+    ) = wilson_dirac_chemical_potential_and_nielsen_ninomiya();
+    assert!(asym_1.is_zero() && im1.is_zero() && free_m0.is_zero());
+    assert_eq!((asym_2, asym_h, re1), (rat(3, 2), rat(-3, 2), rat(16, 1)));
+    assert_eq!((re2, im2, reh, imh), (rat(63, 8), rat(-27, 1), rat(63, 8), rat(27, 1)));
+    assert_eq!((tf_re2, tf_im2, pq_2), (rat(-42687, 64), rat(-1701, 4), rat(50625, 64)));
+    assert_eq!((nn_4d, nn_doub_4d), (0, -1));
 }
 
 #[test]

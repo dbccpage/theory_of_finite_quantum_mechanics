@@ -706,6 +706,36 @@ def run_checks() -> Dict[str, Any]:
         "Supercritical single-flavor sign problem det D_W(-1) = -3 < 0 vs two-flavor positivity det(D_W)^2 = 9 > 0 and physical branch det D_W(0) = 192 > 0",
     )
 
+    # -------------------------------------------------------------------------
+    # Family 22: Chemical-potential asymmetry & Nielsen-Ninomiya doubler counting
+    # -------------------------------------------------------------------------
+    def su3_mu_det(z: Fraction) -> tuple[Fraction, Fraction]:
+        zi = Fraction(1, 1) / z
+        re_top = (1 + z) * (1 - z * z)
+        im_top = -2 * z * (1 + z)
+        re_bot = (1 + zi) * (1 - zi * zi)
+        im_bot = 2 * zi * (1 + zi)
+        return (re_top * re_bot - im_top * im_bot, re_top * im_bot + im_top * re_bot)
+
+    det_z1 = su3_mu_det(Fraction(1, 1))
+    det_z2 = su3_mu_det(Fraction(2, 1))
+    det_zh = su3_mu_det(Fraction(1, 2))
+    tf_re_z2 = det_z2[0] ** 2 - det_z2[1] ** 2
+    tf_im_z2 = 2 * det_z2[0] * det_z2[1]
+    pq_z2 = det_z2[0] ** 2 + det_z2[1] ** 2
+    check(
+        det_z1 == (Fraction(16, 1), Fraction(0, 1))
+        and det_z2 == (Fraction(63, 8), Fraction(-27, 1))
+        and det_zh == (Fraction(63, 8), Fraction(27, 1))
+        and (tf_re_z2, tf_im_z2, pq_z2) == (Fraction(-42687, 64), Fraction(-1701, 4), Fraction(50625, 64)),
+        "Chemical-potential asymmetry (FSP-QCD-CHEMICAL-POTENTIAL-DET): det D_SU3(2) = 63/8 - 27i, two-flavor square = -42687/64 - (1701/4)i, phase-quenched = 50625/64 > 0",
+    )
+    check(
+        all(sum((-1) ** sum((mask >> b) & 1 for b in range(d)) for mask in range(1 << d)) == 0 for d in (1, 2, 3, 4))
+        and all(sum((-1) ** sum((mask >> b) & 1 for b in range(d)) for mask in range(1, 1 << d)) == -1 for d in (1, 2, 3, 4)),
+        "Finite-torus Nielsen-Ninomiya 2^d corner chiral-charge sum == 0 and lifted doubler chiral sum == -1 across d=1..4",
+    )
+
     return {
         "record_id": "TFQ-1052",
         "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",
