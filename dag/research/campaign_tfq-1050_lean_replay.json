@@ -8,8 +8,8 @@
         "module": "FQCD.StrongCouplingAreaLaw",
         "dag_node": "FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY",
         "source": "lean4/FQCD/StrongCouplingAreaLaw.lean",
-        "sha256": "eb81e7b840ff8400c58e544517609cddc9f390dd15fd08fdb26c14c019c9974b",
-        "sha256_after_build": "eb81e7b840ff8400c58e544517609cddc9f390dd15fd08fdb26c14c019c9974b",
+        "sha256": "db17d2c354fea1ee36a152576c5e5a2670db389b81c4f34ded2e88ff7fe38bb5",
+        "sha256_after_build": "db17d2c354fea1ee36a152576c5e5a2670db389b81c4f34ded2e88ff7fe38bb5",
         "source_unchanged_during_build": true,
         "exit_code": 0,
         "admission_scan_passed": true,
@@ -17,7 +17,8 @@
         "anchors": [
           "FQCD.wilson_dirac_gamma5_hermiticity_and_two_flavor_det_positivity",
           "FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity",
-          "FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity"
+          "FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity",
+          "FQCD.assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivity"
         ],
         "anchors_reported": true,
         "axioms": {
@@ -32,6 +33,11 @@
             "Quot.sound"
           ],
           "FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "FQCD.assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivity": [
             "propext",
             "Classical.choice",
             "Quot.sound"
