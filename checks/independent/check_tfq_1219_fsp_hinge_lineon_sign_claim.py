@@ -283,6 +283,29 @@ def run_checks() -> Dict[str, Any]:
     checks.append(("defect_mass_phi1_abelian_is_0", compute_defect_mass_phi1(tr_abelian.re) == 0))
     checks.append(("defect_mass_phi1_nonabelian_is_2", compute_defect_mass_phi1(tr_nonab.re) == 2))
 
+    # Non-commuting SU(2) counterexample: A = diag(i, -i), B = [[4/5, -3/5], [3/5, 4/5]]
+    # Both in SU(2), AB != BA, yet Tr(A B A^-1 B^-1) = 14/25 > 0
+    zero_c = ComplexRat(Fraction(0, 1), Fraction(0, 1))
+    one_c = ComplexRat(Fraction(1, 1), Fraction(0, 1))
+    a_su2 = Mat2x2(
+        ComplexRat(Fraction(0, 1), Fraction(1, 1)),
+        zero_c,
+        zero_c,
+        ComplexRat(Fraction(0, 1), Fraction(-1, 1)),
+    )
+    b_su2 = Mat2x2(
+        ComplexRat(Fraction(4, 5), Fraction(0, 1)),
+        ComplexRat(Fraction(-3, 5), Fraction(0, 1)),
+        ComplexRat(Fraction(3, 5), Fraction(0, 1)),
+        ComplexRat(Fraction(4, 5), Fraction(0, 1)),
+    )
+    tr_su2_ce = compute_commutator_holonomy_trace(a_su2, b_su2)
+    checks.append(("su2_counterexample_det_one", a_su2.det() == one_c and b_su2.det() == one_c))
+    checks.append(("su2_counterexample_noncommuting", a_su2.mul(b_su2) != b_su2.mul(a_su2)))
+    checks.append(("su2_counterexample_trace_re_is_14_over_25", tr_su2_ce.re == Fraction(14, 25)))
+    checks.append(("su2_counterexample_trace_im_is_zero", tr_su2_ce.im == Fraction(0, 1)))
+    checks.append(("su2_counterexample_trace_strictly_positive", tr_su2_ce.re > Fraction(0, 1)))
+
     # -------------------------------------------------------------------------
     # Family 5: Foliated categorical quantum double projection
     # -------------------------------------------------------------------------

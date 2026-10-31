@@ -365,11 +365,13 @@ impl LineonHingeConfig {
         1
     }
 
-    /// Evaluates the discrete commutator holonomy trace M_hinge = B_xy B_yz B_xy^-1 B_yz^-1:
-    /// - For abelian sheets (A = I, B = I): M = I, Tr(M) = +2
-    /// - For non-abelian sheets (A = sigma_z, B = sigma_x): M = -I, Tr(M) = -2
+    /// Evaluates the discrete commutator holonomy trace M_hinge = B_xy B_yz B_xy^-1 B_yz^-1
+    /// for the canonical Pauli/identity fixture:
+    /// - For commuting identity sheets (A = I, B = I): M = I, Tr(M) = +2
+    /// - For anticommuting Pauli sheets (A = sigma_z, B = sigma_x, AB = -BA): M = -I, Tr(M) = -2
     ///
-    /// Derived from genuine Gaussian rational 2x2 matrix commutator multiplication.
+    /// For arbitrary 2x2 matrices over Q(i) (such as non-commuting SU(2) holonomies with positive
+    /// rational trace like 14/25), use `compute_defect_sheet_trace`.
     pub fn hinge_commutator_trace(is_nonabelian: bool) -> i64 {
         let (sheet_xy, sheet_yz) = if is_nonabelian {
             (Mat2x2::pauli_z(), Mat2x2::pauli_x())

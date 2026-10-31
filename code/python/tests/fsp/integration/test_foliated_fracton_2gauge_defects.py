@@ -229,4 +229,23 @@ class TestFoliatedFracton2GaugeDefects:
         assert yj["nonabelian_holonomy_exchange_weight"] == 2
         assert yj["axis_conserved_branch_exchange_possible"] is False
 
+    def test_noncommuting_su2_positive_commutator_trace_counterexample(self) -> None:
+        """
+        Regression test for the SU(2) non-commuting holonomy counterexample (Theorem 10):
+        A = diag(i, -i) and B = [[4/5, -3/5], [3/5, 4/5]] are both in SU(2) and do not
+        commute (AB != BA), yet Tr(A B A^-1 B^-1) = 14/25 > 0 (not -2, and not rounded to 1).
+        """
+        a_complex = np.array([[1j, 0.0], [0.0, -1j]], dtype=complex)
+        b_complex = np.array([[4.0 / 5.0, -3.0 / 5.0], [3.0 / 5.0, 4.0 / 5.0]], dtype=complex)
+        assert not np.allclose(a_complex @ b_complex, b_complex @ a_complex)
+        assert HingeLineonSignCertifier.compute_hinge_holonomy_trace(a_complex, b_complex) == Fraction(14, 25)
+        assert HingeLineonSignCertifier.compute_hinge_holonomy_trace(a_complex, b_complex) > Fraction(0, 1)
+
+        a_exact = np.array([[(Fraction(0, 1), Fraction(1, 1)), (Fraction(0, 1), Fraction(0, 1))],
+                            [(Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(-1, 1))]], dtype=object)
+        b_exact = np.array([[Fraction(4, 5), Fraction(-3, 5)],
+                            [Fraction(3, 5), Fraction(4, 5)]], dtype=object)
+        assert HingeLineonSignCertifier.compute_hinge_holonomy_trace(a_exact, b_exact) == Fraction(14, 25)
+
+
 

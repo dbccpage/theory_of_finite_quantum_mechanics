@@ -450,18 +450,101 @@ class HingeLineonSignCertifier:
         return False
 
     @staticmethod
+    def _to_gaussian_rat(val: object) -> Tuple[Fraction, Fraction]:
+        """Converts a scalar (int, float, Fraction, complex, or (re, im) pair) to exact (re, im) in Q(i)."""
+        def _to_frac(x: object) -> Fraction:
+            if isinstance(x, Fraction):
+                return x
+            if isinstance(x, (int, np.integer)):
+                return Fraction(int(x), 1)
+            if isinstance(x, (float, np.floating)):
+                return Fraction(float(x)).limit_denominator(10**9)
+            return Fraction(x).limit_denominator(10**9)  # type: ignore[arg-type]
+
+        if isinstance(val, (tuple, list, np.ndarray)) and len(val) == 2:
+            return (_to_frac(val[0]), _to_frac(val[1]))
+        if isinstance(val, (int, np.integer, Fraction)):
+            return (_to_frac(val), Fraction(0, 1))
+        if isinstance(val, (float, np.floating)):
+            return (_to_frac(val), Fraction(0, 1))
+        if isinstance(val, (complex, np.complexfloating)) or (hasattr(val, "real") and hasattr(val, "imag")):
+            return (_to_frac(getattr(val, "real")), _to_frac(getattr(val, "imag")))
+        return (_to_frac(val), Fraction(0, 1))
+
+    @staticmethod
     def compute_hinge_holonomy_trace(sheet_xy: np.ndarray, sheet_yz: np.ndarray) -> Fraction:
         """
-        Computes exact commutator holonomy M_hinge = B_xy B_yz B_xy^-1 B_yz^-1 over Q(i).
-        Returns real part of trace as exact Fraction: +2 for abelian, -2 for non-abelian.
+        Computes exact commutator holonomy M_hinge = B_xy B_yz B_xy^-1 B_yz^-1 over Q(i)
+        using exact Gaussian rational arithmetic without floating-point rounding.
+        Returns the exact real part of Tr(M_hinge) as a Fraction:
+        - +2 for commuting sheets (AB = BA),
+        - -2 for anticommuting 2x2 Pauli/quaternion sheets (AB = -BA),
+        - rational values in (-2, 2) for general non-commuting SU(2) holonomies
+          (e.g., 14/25 for A = diag(i, -i) and B = [[4/5, -3/5], [3/5, 4/5]]).
         """
-        inv_xy = np.linalg.inv(sheet_xy)
-        inv_yz = np.linalg.inv(sheet_yz)
-        comm = sheet_xy @ sheet_yz @ inv_xy @ inv_yz
-        tr = np.trace(comm)
-        real_val = float(np.real(tr))
-        rounded = round(real_val)
-        return Fraction(rounded, 1)
+        def c_add(z: Tuple[Fraction, Fraction], w: Tuple[Fraction, Fraction]) -> Tuple[Fraction, Fraction]:
+            return (z[0] + w[0], z[1] + w[1])
+
+        def c_sub(z: Tuple[Fraction, Fraction], w: Tuple[Fraction, Fraction]) -> Tuple[Fraction, Fraction]:
+            return (z[0] - w[0], z[1] - w[1])
+
+        def c_neg(z: Tuple[Fraction, Fraction]) -> Tuple[Fraction, Fraction]:
+            return (-z[0], -z[1])
+
+        def c_mul(z: Tuple[Fraction, Fraction], w: Tuple[Fraction, Fraction]) -> Tuple[Fraction, Fraction]:
+            return (z[0] * w[0] - z[1] * w[1], z[0] * w[1] + z[1] * w[0])
+
+        def c_inv(z: Tuple[Fraction, Fraction]) -> Tuple[Fraction, Fraction]:
+            norm_sq = z[0] * z[0] + z[1] * z[1]
+            if norm_sq == Fraction(0, 1):
+                raise ValueError("Singular 2x2 matrix over Q(i): zero determinant")
+            return (z[0] / norm_sq, -z[1] / norm_sq)
+
+        def to_mat2x2(arr: np.ndarray) -> Tuple[
+            Tuple[Fraction, Fraction],
+            Tuple[Fraction, Fraction],
+            Tuple[Fraction, Fraction],
+            Tuple[Fraction, Fraction],
+        ]:
+            return (
+                HingeLineonSignCertifier._to_gaussian_rat(arr[0][0]),
+                HingeLineonSignCertifier._to_gaussian_rat(arr[0][1]),
+                HingeLineonSignCertifier._to_gaussian_rat(arr[1][0]),
+                HingeLineonSignCertifier._to_gaussian_rat(arr[1][1]),
+            )
+
+        def mat_mul(
+            m1: Tuple[Tuple[Fraction, Fraction], Tuple[Fraction, Fraction], Tuple[Fraction, Fraction], Tuple[Fraction, Fraction]],
+            m2: Tuple[Tuple[Fraction, Fraction], Tuple[Fraction, Fraction], Tuple[Fraction, Fraction], Tuple[Fraction, Fraction]],
+        ) -> Tuple[Tuple[Fraction, Fraction], Tuple[Fraction, Fraction], Tuple[Fraction, Fraction], Tuple[Fraction, Fraction]]:
+            return (
+                c_add(c_mul(m1[0], m2[0]), c_mul(m1[1], m2[2])),
+                c_add(c_mul(m1[0], m2[1]), c_mul(m1[1], m2[3])),
+                c_add(c_mul(m1[2], m2[0]), c_mul(m1[3], m2[2])),
+                c_add(c_mul(m1[2], m2[1]), c_mul(m1[3], m2[3])),
+            )
+
+        def mat_inv(
+            m: Tuple[Tuple[Fraction, Fraction], Tuple[Fraction, Fraction], Tuple[Fraction, Fraction], Tuple[Fraction, Fraction]],
+        ) -> Tuple[Tuple[Fraction, Fraction], Tuple[Fraction, Fraction], Tuple[Fraction, Fraction], Tuple[Fraction, Fraction]]:
+            det = c_sub(c_mul(m[0], m[3]), c_mul(m[1], m[2]))
+            det_inv = c_inv(det)
+            return (
+                c_mul(m[3], det_inv),
+                c_mul(c_neg(m[1]), det_inv),
+                c_mul(c_neg(m[2]), det_inv),
+                c_mul(m[0], det_inv),
+            )
+
+        a = to_mat2x2(sheet_xy)
+        b = to_mat2x2(sheet_yz)
+        a_inv = mat_inv(a)
+        b_inv = mat_inv(b)
+        comm = mat_mul(mat_mul(a, b), mat_mul(a_inv, b_inv))
+        tr_re, tr_im = c_add(comm[0], comm[3])
+        if tr_im != Fraction(0, 1):
+            raise ValueError(f"Commutator holonomy trace has non-zero imaginary part: {tr_im}")
+        return tr_re
 
     @staticmethod
     def evaluate_terminal_routing(is_corner_lineon: bool, is_nonabelian: bool) -> TerminalRoute:

@@ -1,6 +1,10 @@
 
 
 
+import Mathlib.Data.Rat.Defs
+import Mathlib.Tactic.Ring
+import Mathlib.Tactic.NormNum
+
 namespace FoliatedFracton2Gauge
 
 inductive FoliationPlane : Type where
@@ -31,8 +35,13 @@ theorem extensive_gap_separates_weights (w_plus w_minus : Int) (gap : Nat) (h_ga
     w_plus ≠ w_minus := by
   omega
 
-def hingeCommutatorTrace (is_nonabelian : Bool) : Int :=
-  if is_nonabelian then -2 else 2
+/-- Scalar indicator model for 2×2 commuting (`false`, trace `+2`) vs anticommuting Pauli (`true`,
+    `A B = -B A`, trace `-2`) hinge holonomy. For the general 2×2 matrix identity over `ℚ(i)` and the
+    non-commuting `SU(2)` counterexample with positive trace `14/25`, see
+    `anticommuting_mat2x2_commutator_trace_neg_two` and
+    `noncommuting_su2_positive_commutator_trace_counterexample`. -/
+def hingeCommutatorTrace (is_anticommuting_pauli : Bool) : Int :=
+  if is_anticommuting_pauli then -2 else 2
 
 theorem abelian_hinge_trace_positive :
     hingeCommutatorTrace false = 2 := by
@@ -302,6 +311,166 @@ theorem foliated_lineon_axis_conservation_forbids_branch_exchange
   have h_pres := axis_conserving_path_preserves_axes path
   exact h_distinct (Eq.trans h_pres.1.symm h_swap.1)
 
+/-- Gaussian rationals `ℚ(i)` for exact 2×2 gauge holonomy matrices. -/
+@[ext]
+structure GaussRat where
+  re : ℚ
+  im : ℚ
+  deriving DecidableEq, Repr
+
+namespace GaussRat
+
+def zero : GaussRat := ⟨0, 0⟩
+def one : GaussRat := ⟨1, 0⟩
+def iUnit : GaussRat := ⟨0, 1⟩
+def negIUnit : GaussRat := ⟨0, -1⟩
+
+def add (z w : GaussRat) : GaussRat := ⟨z.re + w.re, z.im + w.im⟩
+def sub (z w : GaussRat) : GaussRat := ⟨z.re - w.re, z.im - w.im⟩
+def neg (z : GaussRat) : GaussRat := ⟨-z.re, -z.im⟩
+def mul (z w : GaussRat) : GaussRat :=
+  ⟨z.re * w.re - z.im * w.im, z.re * w.im + z.im * w.re⟩
+
+end GaussRat
+
+/-- Exact 2×2 matrix over `ℚ(i)`. -/
+@[ext]
+structure Mat2x2Q where
+  m00 : GaussRat
+  m01 : GaussRat
+  m10 : GaussRat
+  m11 : GaussRat
+  deriving DecidableEq, Repr
+
+namespace Mat2x2Q
+
+def identity : Mat2x2Q :=
+  ⟨GaussRat.one, GaussRat.zero, GaussRat.zero, GaussRat.one⟩
+
+def negIdentity : Mat2x2Q :=
+  ⟨⟨-1, 0⟩, GaussRat.zero, GaussRat.zero, ⟨-1, 0⟩⟩
+
+def neg (A : Mat2x2Q) : Mat2x2Q :=
+  ⟨GaussRat.neg A.m00, GaussRat.neg A.m01, GaussRat.neg A.m10, GaussRat.neg A.m11⟩
+
+def mul (A B : Mat2x2Q) : Mat2x2Q :=
+  ⟨GaussRat.add (GaussRat.mul A.m00 B.m00) (GaussRat.mul A.m01 B.m10),
+   GaussRat.add (GaussRat.mul A.m00 B.m01) (GaussRat.mul A.m01 B.m11),
+   GaussRat.add (GaussRat.mul A.m10 B.m00) (GaussRat.mul A.m11 B.m10),
+   GaussRat.add (GaussRat.mul A.m10 B.m01) (GaussRat.mul A.m11 B.m11)⟩
+
+def trace (A : Mat2x2Q) : GaussRat :=
+  GaussRat.add A.m00 A.m11
+
+def det (A : Mat2x2Q) : GaussRat :=
+  GaussRat.sub (GaussRat.mul A.m00 A.m11) (GaussRat.mul A.m01 A.m10)
+
+/-- Multiplicative commutator `A B A⁻¹ B⁻¹` given explicit inverses `A_inv, B_inv`. -/
+def commutatorHolonomy (A B A_inv B_inv : Mat2x2Q) : Mat2x2Q :=
+  mul (mul A B) (mul A_inv B_inv)
+
+theorem mul_assoc (X Y Z : Mat2x2Q) :
+    mul (mul X Y) Z = mul X (mul Y Z) := by
+  ext <;> dsimp [mul, GaussRat.add, GaussRat.mul] <;> ring
+
+theorem neg_mul (X Y : Mat2x2Q) :
+    mul (neg X) Y = neg (mul X Y) := by
+  ext <;> dsimp [mul, neg, GaussRat.add, GaussRat.mul, GaussRat.neg] <;> ring
+
+theorem identity_mul (X : Mat2x2Q) :
+    mul identity X = X := by
+  ext <;> dsimp [mul, identity, GaussRat.add, GaussRat.mul, GaussRat.one, GaussRat.zero] <;> ring
+
+theorem neg_identity_eq :
+    neg identity = negIdentity := by
+  rfl
+
+end Mat2x2Q
+
+/-- Theorem 9: For any invertible 2×2 matrices `A, B` over `ℚ(i)` satisfying `A B = -B A`,
+    the multiplicative commutator `A B A⁻¹ B⁻¹` equals `-I₂` and has trace `-2 < 0`. -/
+theorem anticommuting_mat2x2_commutator_trace_neg_two
+    (A B A_inv B_inv : Mat2x2Q)
+    (h_anticomm : Mat2x2Q.mul A B = Mat2x2Q.neg (Mat2x2Q.mul B A))
+    (h_invA : Mat2x2Q.mul A A_inv = Mat2x2Q.identity)
+    (h_invB : Mat2x2Q.mul B B_inv = Mat2x2Q.identity) :
+    Mat2x2Q.commutatorHolonomy A B A_inv B_inv = Mat2x2Q.negIdentity ∧
+    (Mat2x2Q.trace (Mat2x2Q.commutatorHolonomy A B A_inv B_inv)).re = -2 ∧
+    (Mat2x2Q.trace (Mat2x2Q.commutatorHolonomy A B A_inv B_inv)).im = 0 := by
+  have h_comm : Mat2x2Q.commutatorHolonomy A B A_inv B_inv = Mat2x2Q.negIdentity := by
+    dsimp [Mat2x2Q.commutatorHolonomy]
+    rw [h_anticomm, Mat2x2Q.neg_mul, Mat2x2Q.mul_assoc]
+    rw [← Mat2x2Q.mul_assoc A A_inv B_inv, h_invA, Mat2x2Q.identity_mul, h_invB]
+    exact Mat2x2Q.neg_identity_eq
+  refine ⟨h_comm, ?_, ?_⟩
+  · rw [h_comm]
+    dsimp [Mat2x2Q.trace, Mat2x2Q.negIdentity, GaussRat.add]
+    norm_num
+  · rw [h_comm]
+    dsimp [Mat2x2Q.trace, Mat2x2Q.negIdentity, GaussRat.add]
+    norm_num
+
+/-- Non-commuting `SU(2)` counterexample matrix `A = diag(i, -i)`. -/
+def su2CounterexampleA : Mat2x2Q :=
+  ⟨GaussRat.iUnit, GaussRat.zero, GaussRat.zero, GaussRat.negIUnit⟩
+
+/-- Inverse `A⁻¹ = diag(-i, i)` of `su2CounterexampleA`. -/
+def su2CounterexampleAInv : Mat2x2Q :=
+  ⟨GaussRat.negIUnit, GaussRat.zero, GaussRat.zero, GaussRat.iUnit⟩
+
+/-- Non-commuting `SU(2)` Pythagorean rotator `B = [[4/5, -3/5], [3/5, 4/5]]`. -/
+def su2CounterexampleB : Mat2x2Q :=
+  ⟨⟨4 / 5, 0⟩, ⟨-3 / 5, 0⟩, ⟨3 / 5, 0⟩, ⟨4 / 5, 0⟩⟩
+
+/-- Inverse `B⁻¹ = [[4/5, 3/5], [-3/5, 4/5]]` of `su2CounterexampleB`. -/
+def su2CounterexampleBInv : Mat2x2Q :=
+  ⟨⟨4 / 5, 0⟩, ⟨3 / 5, 0⟩, ⟨-3 / 5, 0⟩, ⟨4 / 5, 0⟩⟩
+
+/-- Theorem 10: Non-commuting `SU(2)` holonomies do not generally give negative commutator trace:
+    for `A = diag(i, -i) ∈ SU(2)` and `B = [[4/5, -3/5], [3/5, 4/5]] ∈ SU(2)`,
+    `A B ≠ B A` yet `Tr(A B A⁻¹ B⁻¹) = 14/25 > 0`. -/
+theorem noncommuting_su2_positive_commutator_trace_counterexample :
+    Mat2x2Q.det su2CounterexampleA = GaussRat.one ∧
+    Mat2x2Q.det su2CounterexampleB = GaussRat.one ∧
+    Mat2x2Q.mul su2CounterexampleA su2CounterexampleAInv = Mat2x2Q.identity ∧
+    Mat2x2Q.mul su2CounterexampleB su2CounterexampleBInv = Mat2x2Q.identity ∧
+    Mat2x2Q.mul su2CounterexampleA su2CounterexampleB ≠
+      Mat2x2Q.mul su2CounterexampleB su2CounterexampleA ∧
+    (Mat2x2Q.trace
+      (Mat2x2Q.commutatorHolonomy
+        su2CounterexampleA su2CounterexampleB
+        su2CounterexampleAInv su2CounterexampleBInv)).re = 14 / 25 ∧
+    (Mat2x2Q.trace
+      (Mat2x2Q.commutatorHolonomy
+        su2CounterexampleA su2CounterexampleB
+        su2CounterexampleAInv su2CounterexampleBInv)).im = 0 ∧
+    (14 / 25 : ℚ) > 0 := by
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, by norm_num⟩
+  · ext <;> dsimp [Mat2x2Q.det, su2CounterexampleA, GaussRat.sub, GaussRat.mul,
+      GaussRat.iUnit, GaussRat.negIUnit, GaussRat.zero, GaussRat.one] <;> norm_num
+  · ext <;> dsimp [Mat2x2Q.det, su2CounterexampleB, GaussRat.sub, GaussRat.mul,
+      GaussRat.one] <;> norm_num
+  · ext <;> dsimp [Mat2x2Q.mul, su2CounterexampleA, su2CounterexampleAInv, Mat2x2Q.identity,
+      GaussRat.add, GaussRat.mul, GaussRat.iUnit, GaussRat.negIUnit,
+      GaussRat.zero, GaussRat.one] <;> norm_num
+  · ext <;> dsimp [Mat2x2Q.mul, su2CounterexampleB, su2CounterexampleBInv, Mat2x2Q.identity,
+      GaussRat.add, GaussRat.mul, GaussRat.zero, GaussRat.one] <;> norm_num
+  · intro h_eq
+    have h01 : (Mat2x2Q.mul su2CounterexampleA su2CounterexampleB).m01.im =
+        (Mat2x2Q.mul su2CounterexampleB su2CounterexampleA).m01.im :=
+      congrArg GaussRat.im (congrArg Mat2x2Q.m01 h_eq)
+    dsimp [Mat2x2Q.mul, su2CounterexampleA, su2CounterexampleB,
+      GaussRat.add, GaussRat.mul, GaussRat.iUnit, GaussRat.negIUnit, GaussRat.zero] at h01
+    norm_num at h01
+  · dsimp [Mat2x2Q.trace, Mat2x2Q.commutatorHolonomy, Mat2x2Q.mul,
+      su2CounterexampleA, su2CounterexampleB, su2CounterexampleAInv, su2CounterexampleBInv,
+      GaussRat.add, GaussRat.mul, GaussRat.iUnit, GaussRat.negIUnit, GaussRat.zero]
+    norm_num
+  · dsimp [Mat2x2Q.trace, Mat2x2Q.commutatorHolonomy, Mat2x2Q.mul,
+      su2CounterexampleA, su2CounterexampleB, su2CounterexampleAInv, su2CounterexampleBInv,
+      GaussRat.add, GaussRat.mul, GaussRat.iUnit, GaussRat.negIUnit, GaussRat.zero]
+    norm_num
+
 end FoliatedFracton2Gauge
 
 #print axioms FoliatedFracton2Gauge.hinge_path_preserves_relative_order
@@ -314,4 +483,6 @@ end FoliatedFracton2Gauge
 #print axioms FoliatedFracton2Gauge.y_junction_collision_free_exchange_exists
 #print axioms FoliatedFracton2Gauge.y_junction_exchange_induces_negative_sign
 #print axioms FoliatedFracton2Gauge.foliated_lineon_axis_conservation_forbids_branch_exchange
+#print axioms FoliatedFracton2Gauge.anticommuting_mat2x2_commutator_trace_neg_two
+#print axioms FoliatedFracton2Gauge.noncommuting_su2_positive_commutator_trace_counterexample
 

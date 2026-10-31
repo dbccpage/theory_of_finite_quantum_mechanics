@@ -23411,7 +23411,7 @@
       "id": "FSP-HINGE-LINEON-SIGN-CLAIM",
       "stage": "FERMION_SIGN",
       "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "Formally proved in Lean 4 (lean4/FoliatedFracton2Gauge.lean) and verified in Rust and Python; collision-avoidance eliminates 1D hinge permutations, while intersecting hinges exhibit uncancelled commutator defect curvature.",
+      "source_status": "Formally proved in Lean 4 (lean4/FoliatedFracton2Gauge.lean) and verified in Rust and Python; collision-avoidance eliminates 1D hinge permutations, while intersecting anticommuting 2x2 Pauli hinges (AB = -BA) exhibit commutator trace -2 (contrasted with non-commuting SU(2) counterexamples with positive trace 14/25).",
       "statement": "Claimed: lineons confined to 1D hinge lines cannot exchange without collision, so their worldlines carry no nontrivial permutations and foliated fracton models are sign free; no model, path expansion or sign computation exists in this checkout.",
       "source": [
         "dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md",
@@ -23429,7 +23429,9 @@
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free",
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_collision_free_exchange_exists",
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_exchange_induces_negative_sign",
-        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.foliated_lineon_axis_conservation_forbids_branch_exchange"
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.foliated_lineon_axis_conservation_forbids_branch_exchange",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.anticommuting_mat2x2_commutator_trace_neg_two",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.noncommuting_su2_positive_commutator_trace_counterexample"
       ],
       "rust": [
         "code/rust/src/fsp/foliated_fracton_lineon.rs"
