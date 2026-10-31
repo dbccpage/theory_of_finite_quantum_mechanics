@@ -54,10 +54,18 @@ A pass shows that a completed, byte-bound score at or above the floor exists. It
 | Where | What runs | Effect of a violation |
 |---|---|---|
 | `cargo build` / `cargo check` of any workspace package | `build.rs` calls `governance::verify_crate_contracts!()` on that package's `.rs` files | depends on `TFQM_GOVERNANCE` (below) |
-| CI, [`.github/workflows/governance.yml`](../.github/workflows/governance.yml), on every pull request and push to `main` | `governance-check check --changed-since origin/main` (full check on `main`), the crate tests, `contract_scores.py check`, and a comparison of the Rust and Python populations | the job fails |
+| CI, [`.github/workflows/governance.yml`](../.github/workflows/governance.yml), on every pull request and push to `main` | `governance-check check --changed-since <event-base-sha>` (plus a full check on `main`), the crate tests, `contract_scores.py check`, and a comparison of the Rust and Python populations | the job fails |
 | By hand | `governance-check check`, `explain <path>`, `list`, `baseline` | exit status 1 |
 
 Python and Lean are not built by cargo, so they are covered by `governance-check` and CI only.
+
+CI pins the pull request base SHA or push `before` SHA; manual runs require a
+`base_sha` input. For retrospective checks, pass the recorded pre-merge commit
+to `--changed-since`. A later `origin/main` can already contain the reviewed
+merge and select zero sources. Do not use that empty comparison as evidence for
+the merged changes. The retained FQCD retrospective uses
+`16a9464c666eb19693244442f64e003f26a36ed4` for PR #489.
+
 
 ### Build-time modes (`TFQM_GOVERNANCE`)
 

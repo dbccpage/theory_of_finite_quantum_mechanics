@@ -9,6 +9,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      base_sha:
+        description: Immutable pre-change commit for retrospective verification
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -58,7 +63,10 @@ jobs:
         run: cargo build --locked --release --manifest-path "$GOV_DIR/Cargo.toml" --bin governance-check
 
       - name: Test the shared policy in the Python scripts
-        run: python -I -X utf8 -m pytest scripts/test_governance_policy.py -q -p no:cacheprovider
+        run: python -I -X utf8 -m pytest scripts/test_governance_policy.py scripts/test_changed_since_contracts.py scripts/test_replay_fqcd_lean.py -q -p no:cacheprovider
+
+      - name: Verify FQCD replay source pins and fully qualified kernel reports
+        run: python -I -X utf8 scripts/replay_fqcd_lean.py --verify-receipt
 
       - name: Rust and Python agree on the governed population
         run: |
@@ -67,9 +75,22 @@ jobs:
           diff -u "$RUNNER_TEMP/population.rust" "$RUNNER_TEMP/population.python"
           wc -l < "$RUNNER_TEMP/population.rust"
 
-      - name: governance-check on the pull request (changes since origin/main)
-        if: github.event_name == 'pull_request'
-        run: '"$GOV_DIR/target/release/governance-check" --root . check --changed-since origin/main'
+      - name: Pin the event's pre-change base
+        env:
+          GOV_BASE_REF: ${{ github.event.pull_request.base.sha || github.event.before || inputs.base_sha }}
+        run: |
+          [[ "$GOV_BASE_REF" =~ ^[0-9a-fA-F]{40}$ ]]
+          GOV_BASE_SHA=$(git rev-parse --verify "${GOV_BASE_REF}^{commit}")
+          echo "GOV_BASE_SHA=$GOV_BASE_SHA" >> "$GITHUB_ENV"
+          echo "Governance comparison base: $GOV_BASE_SHA"
+
+      - name: governance-check against the pinned pre-change base
+        run: '"$GOV_DIR/target/release/governance-check" --root . check --changed-since "$GOV_BASE_SHA"'
+
+      - name: Source bindings against the pinned pre-change base
+        run: |
+          python -I -X utf8 scripts/score_scope_contracts.py check --changed-since "$GOV_BASE_SHA"
+          python -I -X utf8 scripts/contract_scores.py check --changed-since "$GOV_BASE_SHA"
 
       - name: governance-check on every governed source
         if: github.event_name != 'pull_request'

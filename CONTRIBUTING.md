@@ -25,6 +25,13 @@ Reviews are the most useful contribution at present. A reviewer who finds a stat
 - **The contract.** Every code addition or change carries a contract/score companion, `<name>.contract.score.yaml`, next to the source file. It is bound to the SHA-256 of the exact bytes you submit, so changing the source means updating the companion. Pull requests say which companion files they add or change and the score token of each (the [pull request template](.github/pull_request_template.md) has a line for it).
 - **How it is checked.** For the files this change adds or edits, run `python -I -X utf8 scripts/score_scope_contracts.py check --changed-since origin/main` and `python -I -X utf8 scripts/contract_scores.py check --changed-since origin/main`. Both use the merge base of that ref and include ordinary untracked files. They exit 0 when every added or edited source under `code/` or `lean4/` has a companion bound to its current bytes, and that companion's stored history matches those bytes. A change that adds or edits no such source exits 0. Neither command writes a file or reads the L4/D floor. The floor is checked by `governance-check` (see [`governance/README.md`](governance/README.md)), which the `governance` workflow runs in enforce mode on every pull request, and which every `cargo build` runs on its own package as a warning. A passing check still does not mean the grades are deserved: the maintainer reads them against the evidence you cite. Without `--changed-since` the same commands scan the whole tree; sources listed in `governance/baseline.json` with unchanged bytes are reported there but do not fail, and `score_scope_contracts.py check` writes `evidence/contract_score_coverage_scope_audit.json` only when given `--write-audit`. Do not repair unrelated companions in a change.
 
+For retrospective verification after merge, use the recorded pre-merge commit
+in `--changed-since`, rather than a moving `origin/main` that may already contain
+the change. CI resolves the event’s recorded base SHA and prints it; manual
+governance workflow runs require an explicit `base_sha`. See
+[`docs/maintenance/fqcd_corrective_followup.md`](docs/maintenance/fqcd_corrective_followup.md)
+for a five-source reproduction.
+
 The rule applies to code added or changed from now on. It does not rescore existing code, most of which carries only an explicitly incomplete baseline score. Proofs and DAG changes also follow the [honesty rules](#honesty-rules) below, which apply in addition.
 
 ## Setup
