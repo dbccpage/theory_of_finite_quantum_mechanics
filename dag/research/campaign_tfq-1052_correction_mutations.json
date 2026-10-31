@@ -1,0 +1,39 @@
+{
+  "AuthorityEffect": "None",
+  "scope": "Three targeted regressions only; no whole-module mutation score.",
+  "results": [
+    {
+      "mutant": "old-general-r-determinant",
+      "killed": true
+    },
+    {
+      "mutant": "old-modified-chirality-square",
+      "killed": true
+    },
+    {
+      "mutant": "incorrect-overlap-construction",
+      "killed": true
+    }
+  ],
+  "source": "code/python/src/fqcd/strong_coupling_area_law.py",
+  "source_sha256": "dab60255057a7796fedc6dfbe1bcf45febf8fe6815c2cdabbce1c833a818d57f",
+  "regression_suite": "code/python/tests/test_fqcd_strong_coupling_area_law.py",
+  "regression_suite_sha256": "b8687f1fedd9e837a4944b876bca2f2576287dc76fbf7cfa1fd9e88e4ca03923",
+  "mutations": [
+    {
+      "replace": "return s2 * (s2 - 2 * r ** 2) * (s2 + 2) * (s2 + 2 - 2 * r ** 2)",
+      "with": "return (m + 2*r)**8 - 4*(m + 2*r)**4",
+      "witness": "det(0, 1/2) == 15/4"
+    },
+    {
+      "replace": "return c ** 2 + b ** 2",
+      "with": "return (1-c) ** 2 + b ** 2",
+      "witness": "square(1, 0) == 1"
+    },
+    {
+      "replace": "int(i == j) - a * dov[i][j]",
+      "with": "int(i == j) + a * dov[i][j]",
+      "witness": "actual matrix square at (a,c,b)=(1,3/5,4/5) is identity"
+    }
+  ]
+}

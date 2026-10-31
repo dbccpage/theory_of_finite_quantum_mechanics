@@ -678,11 +678,13 @@ pub fn higher_genus_mednykh_abelianization_and_genus3_bounds() -> (
     )
 }
 
-/// Finite-coupling Galois-conjugate suppression, tensor-power generation depths `k(R)`,
+/// Power-counting estimates (not Wilson coefficient ratios), tensor depths `k(R)`,
 /// and parent `SU(2)/SU(3)` quadratic Casimir ratios across `2I` and `Σ(1080)`:
 /// returns `(Δk(2_{s'}, 2_s), Δk(3_b, 3_a), Δk(4_t, 4_s), Δk(8_b, 8_a), Δk(3', 3),
 /// C_2(2_{s'})/C_2(2_s), C_2(3_b)/C_2(3_a), C_2(4_t)/C_2(4_s), C_2(27)/C_2(8_a),
 /// u^6, u^4, u^3, u^2)` at `u = 1/10`.
+/// These omit character multiplicities, factorial coefficients and higher orders.
+/// The historical function name is retained for compatibility.
 pub fn finite_coupling_galois_conjugate_suppression() -> (
     u32,
     u32,
@@ -715,8 +717,8 @@ pub fn finite_coupling_galois_conjugate_suppression() -> (
     )
 }
 
-/// Temporal-gauge transfer-matrix character-defect sums `∑_{g ∈ G} Δ_R(g) = |G|`,
-/// Birkhoff–Hopf Perron–Frobenius contraction ratios `κ_BH(1, 2, P_slice)`, and
+/// Fixed character-defect sums `∑_{g ∈ G} Δ_R(g) = |G|`,
+/// Candidate Birkhoff–Hopf expression values `κ_BH(1, 2, P_slice)`, and
 /// 2D Mednykh genus-1 / genus-2 homomorphism counts `|Hom(π_1(Σ_g), G)|`:
 /// returns `(defect_Q8, defect_2T, defect_2O, defect_2I, defect_Sigma1080,
 /// κ_BH(1), κ_BH(2), κ_BH(4), hom_g1_Q8, hom_g1_Sigma1080, hom_g2_Q8, hom_g2_2I, hom_g2_Sigma1080)`.
@@ -1247,7 +1249,7 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
         || !(BigRational::one() < cr_4t && cr_4t < cr_3b && cr_3b < cr_2sp)
         || !(BigRational::zero() < u6 && u6 < u4 && u4 < u3 && u3 < u2 && u2 < BigRational::one())
     {
-        return Err("Finite-coupling Galois-conjugate suppression and Casimir ratios failed");
+        return Err("Power-counting estimates and Casimir ratios failed");
     }
 
     // 21. Temporal-gauge Perron-Frobenius gap & 2D Pachner-invariant Mednykh formula

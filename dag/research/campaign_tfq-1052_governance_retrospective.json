@@ -1,0 +1,114 @@
+{
+  "before": {
+    "AuthorityEffect": "None",
+    "comparison_base": "16a9464c666eb19693244442f64e003f26a36ed4",
+    "reviewed_merge": "aac4b75da6046b83e1e8b946da689f4180bf8f47",
+    "command": [
+      "/workspace/theory_of_finite_quantum_mechanics/governance/target/release/governance-check",
+      "--root",
+      "/workspace/fqcd-pr489-retrospective",
+      "check",
+      "--changed-since",
+      "16a9464c666eb19693244442f64e003f26a36ed4"
+    ],
+    "exit_code": 1,
+    "output": "changed since 16a9464c666eb19693244442f64e003f26a36ed4 (16a9464c666eb19693244442f64e003f26a36ed4): 8 paths\nchecked 5: 0 pass, 0 grandfathered, 0 boilerplate, 5 failed\nFAIL code/python/src/fqcd/strong_coupling_area_law.py (new or not grandfathered)\n  code/python/src/fqcd/strong_coupling_area_law.contract.score.yaml: [BINDING] contract.artifact.sha256: expected f13fd1c30f629e918eda11b063927950cf4b43e0ac2de506184f823edfbbc7e7, found 9ca849bf073c7964ab77acebd32c92dafc15ecae08afdbd36ef543a44523cea3\nFAIL code/python/tests/test_fqcd_strong_coupling_area_law.py (new or not grandfathered)\n  code/python/tests/test_fqcd_strong_coupling_area_law.contract.score.yaml: [BINDING] contract.artifact.sha256: expected fa9961990efbce6b231bce452517481f08f7703d4dca0019f2e0d5de16a26e5f, found d61e078f55288bc66239347336124df302867f740946daf6bbcd207ac456d38b\nFAIL code/rust/src/fqcd/strong_coupling_area_law.rs (new or not grandfathered)\n  code/rust/src/fqcd/strong_coupling_area_law.contract.score.yaml: [BINDING] contract.artifact.sha256: expected 09b615a86a1a5012072edaefc47e0926f2a2ae4f9d283e5938c197c105dff568, found c9e947dd1aa53b5aacd05277d1e2af23b8f5c43c03fe24f2f2b411234af6ddb5\nFAIL code/rust/tests/fqcd_strong_coupling_area_law_test.rs (new or not grandfathered)\n  code/rust/tests/fqcd_strong_coupling_area_law_test.contract.score.yaml: [BINDING] contract.artifact.sha256: expected 1e97a793a5b811ed9f6834bfc00ed389c77dde924d6ff0cda3d76f2643c06893, found da336f5ed3cdc70cb0c338cf7236d0f7e6a2a300e0f1cbe63612b330df3684d0\nFAIL lean4/FQCD/StrongCouplingAreaLaw.lean (new or not grandfathered)\n  lean4/FQCD/StrongCouplingAreaLaw.contract.score.yaml: [BINDING] contract.artifact.sha256: expected 34af2b33b6ab06e2694aab9e31930cb4bfc6d5332600fd6739f2cfcf638f25ac, found 11d7c126915675a92b3b936f1a8d775d33b0521fe51c5cfb15fe3498ff83aa83\n",
+    "source_pins": {
+      "code/python/src/fqcd/strong_coupling_area_law.py": "f13fd1c30f629e918eda11b063927950cf4b43e0ac2de506184f823edfbbc7e7",
+      "code/python/tests/test_fqcd_strong_coupling_area_law.py": "fa9961990efbce6b231bce452517481f08f7703d4dca0019f2e0d5de16a26e5f",
+      "code/rust/src/fqcd/strong_coupling_area_law.rs": "09b615a86a1a5012072edaefc47e0926f2a2ae4f9d283e5938c197c105dff568",
+      "code/rust/tests/fqcd_strong_coupling_area_law_test.rs": "1e97a793a5b811ed9f6834bfc00ed389c77dde924d6ff0cda3d76f2643c06893",
+      "lean4/FQCD/StrongCouplingAreaLaw.lean": "34af2b33b6ab06e2694aab9e31930cb4bfc6d5332600fd6739f2cfcf638f25ac"
+    },
+    "checker_sha256": "6aa224347cfd7666e121453773320ea0e5683382c9d394966305cee16dd7e2c6"
+  },
+  "scope": "Original merge snapshot and its immutable first-parent base; after replay overlays only the five corrected FQCD sources and their source-bound companions.",
+  "after": {
+    "comparison_base": "16a9464c666eb19693244442f64e003f26a36ed4",
+    "snapshot": "aac4b75da6046b83e1e8b946da689f4180bf8f47",
+    "command": [
+      "/workspace/theory_of_finite_quantum_mechanics/governance/target/release/governance-check",
+      "--root",
+      "/workspace/fqcd-pr489-retrospective",
+      "check",
+      "--changed-since",
+      "16a9464c666eb19693244442f64e003f26a36ed4"
+    ],
+    "exit_code": 0,
+    "output": "changed since 16a9464c666eb19693244442f64e003f26a36ed4 (16a9464c666eb19693244442f64e003f26a36ed4): 13 paths\nchecked 5: 5 pass, 0 grandfathered, 0 boilerplate, 0 failed\n",
+    "source_and_companion_pins": {
+      "code/python/src/fqcd/strong_coupling_area_law.py": "dab60255057a7796fedc6dfbe1bcf45febf8fe6815c2cdabbce1c833a818d57f",
+      "code/python/src/fqcd/strong_coupling_area_law.contract.score.yaml": "6a308a0926c5b5575cc3deadba25128ec6ef35c71302cf7dd2d8f3fa31809e11",
+      "code/python/tests/test_fqcd_strong_coupling_area_law.py": "b8687f1fedd9e837a4944b876bca2f2576287dc76fbf7cfa1fd9e88e4ca03923",
+      "code/python/tests/test_fqcd_strong_coupling_area_law.contract.score.yaml": "65b5adee82edcb559ae8401430b2fdb1a6ca3ca31db3c52e9263a2ffb9c1ca97",
+      "code/rust/src/fqcd/strong_coupling_area_law.rs": "71b57dd35540c90071e85290fc9f7e0e9a7439539e00717397afe329a2687f5d",
+      "code/rust/src/fqcd/strong_coupling_area_law.contract.score.yaml": "c689d980f4a1fe15d67f2e518b3beef6767658c1bdbb032c2e7292d83ca2861d",
+      "code/rust/tests/fqcd_strong_coupling_area_law_test.rs": "1e97a793a5b811ed9f6834bfc00ed389c77dde924d6ff0cda3d76f2643c06893",
+      "code/rust/tests/fqcd_strong_coupling_area_law_test.contract.score.yaml": "05f7e569ce5f5827c1a6dd824b6bd28b24549cbc601d671f7f99766caf0c5e3c",
+      "lean4/FQCD/StrongCouplingAreaLaw.lean": "748061193bc3d67830c2cfcd735e6d3958b8c500a4526cae2a0029c8981dd91f",
+      "lean4/FQCD/StrongCouplingAreaLaw.contract.score.yaml": "95ed5da98899cceb41c283274f1ece1b85b18db97645ca2bcbc481da0f3735ed"
+    },
+    "additional_checks": [
+      {
+        "command": [
+          "/workspace/.toolchains/review-venv/bin/python",
+          "-I",
+          "-X",
+          "utf8",
+          "/workspace/fqcd-pr489-retrospective/scripts/score_scope_contracts.py",
+          "check",
+          "--changed-since",
+          "16a9464c666eb19693244442f64e003f26a36ed4"
+        ],
+        "exit_code": 0,
+        "output": {
+          "audit": null,
+          "passed": true,
+          "summary": {
+            "sources": 5,
+            "valid_contracts_and_scores": 5,
+            "invalid_or_missing": 0,
+            "invalid_but_grandfathered": 0,
+            "blocking_errors": 0,
+            "by_language": {
+              "Lean 4": 1,
+              "Python": 2,
+              "Rust": 2
+            },
+            "by_preliminary_profile": {
+              "Exact": 4,
+              "Symbolic/Formal": 1
+            },
+            "completed_scores": 5,
+            "pinned_boilerplate": 0,
+            "incomplete_scores": 0,
+            "generated_governance_twins": 0,
+            "non_twin_sources": 5
+          },
+          "errors": [],
+          "scope": "in-scope sources changed since 16a9464c666eb19693244442f64e003f26a36ed4 (merge base 16a9464c666e), including ordinary untracked files. The tracked audit file is not written. Grades are not read."
+        }
+      },
+      {
+        "command": [
+          "/workspace/.toolchains/review-venv/bin/python",
+          "-I",
+          "-X",
+          "utf8",
+          "/workspace/fqcd-pr489-retrospective/scripts/contract_scores.py",
+          "check",
+          "--changed-since",
+          "16a9464c666eb19693244442f64e003f26a36ed4"
+        ],
+        "exit_code": 0,
+        "output": {
+          "originals": null,
+          "combined_files": 5,
+          "all_passed": true,
+          "errors": [],
+          "scope": "changed files only; the rest of the tree was not read"
+        }
+      }
+    ]
+  }
+}

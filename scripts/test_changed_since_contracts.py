@@ -148,6 +148,30 @@ def test_invalid_comparison_ref_fails_closed(subjects: Subjects) -> None:
         scope.changed_paths("refs/heads/does-not-exist-review-fixture")
 
 
+def test_pinned_premerge_base_catches_stale_binding_after_main_moves(subjects: Subjects) -> None:
+    scores, scope = subjects
+    root = scope.ROOT
+    source = root / "code/python/probe.py"
+    source.write_text("value = 1\n", encoding="utf-8")
+    scope.prepare_source(source)
+    git(root, "add", ".")
+    git(root, "commit", "-m", "valid pre-change binding")
+    pinned_base = git(root, "rev-parse", "HEAD")
+    source.write_text("value = 2\n", encoding="utf-8")
+    git(root, "add", ".")
+    git(root, "commit", "-m", "merged change with stale companion")
+    git(root, "branch", "moving-main", "HEAD")
+    # A moving ref hides the defect after merge; the event's recorded SHA retains it.
+    assert scope.changed_paths("moving-main")[1] == set()
+    assert scope.main(["check", "--changed-since", "moving-main"]) == 0
+    scores.main(["check", "--changed-since", "moving-main"])
+    assert "code/python/probe.py" in scope.changed_paths(pinned_base)[1]
+    assert scope.main(["check", "--changed-since", pinned_base]) == 1
+    # History integrity alone still passes: its original records are unmodified.
+    # Both checks belong in CI; source binding is enforced by the scope checker.
+    scores.main(["check", "--changed-since", pinned_base])
+
+
 
 def test_valid_companion_then_changed_source_is_refused(subjects: Subjects) -> None:
     scores, scope = subjects
