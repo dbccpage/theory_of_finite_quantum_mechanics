@@ -758,6 +758,37 @@ def run_checks() -> Dict[str, Any]:
         "4D Luscher corner index sequence (0, 1, -3, 3, -1, 0) across doubler mass shells and 2x2 supercritical det sign flip -576 < 0",
     )
 
+    # -------------------------------------------------------------------------
+    # Family 24: Topological theta-vacuum complex weight & Wilson-Dirac operator identity
+    # -------------------------------------------------------------------------
+    def theta_phase(c: Fraction, s: Fraction, q: int) -> tuple[Fraction, Fraction]:
+        if q == 0:
+            return (Fraction(1, 1), Fraction(0, 1))
+        if q in (1, -1):
+            return (c, -s if q == 1 else s)
+        if q in (2, -2):
+            return (c * c - s * s, -2 * c * s if q == 2 else 2 * c * s)
+        return (c * (c * c - 3 * s * s), (-s if q == 3 else s) * (3 * c * c - s * s))
+
+    def z_theta_re(c: Fraction, s: Fraction) -> Fraction:
+        return (
+            10 * theta_phase(c, s, 0)[0]
+            + 8 * theta_phase(c, s, 1)[0]
+            + 4 * theta_phase(c, s, 2)[0]
+            + 2 * theta_phase(c, s, 3)[0]
+        )
+
+    c35, s45 = Fraction(3, 5), Fraction(4, 5)
+    check(
+        all(theta_phase(c35, s45, q)[0] ** 2 + theta_phase(c35, s45, q)[1] ** 2 == Fraction(1, 1) for q in (-3, -2, -1, 0, 1, 2, 3))
+        and theta_phase(Fraction(0, 1), Fraction(1, 1), 1)[1] == Fraction(-1, 1)
+        and theta_phase(c35, s45, 1)[1] == Fraction(-4, 5)
+        and [theta_phase(Fraction(-1, 1), Fraction(0, 1), q)[0] for q in (0, 1, -3, 3, -1)] == [Fraction(1, 1), Fraction(-1, 1), Fraction(-1, 1), Fraction(-1, 1), Fraction(-1, 1)]
+        and (z_theta_re(Fraction(1, 1), Fraction(0, 1)), z_theta_re(c35, s45), z_theta_re(Fraction(0, 1), Fraction(1, 1)), z_theta_re(Fraction(-1, 1), Fraction(0, 1)))
+        == (Fraction(24, 1), Fraction(1476, 125), Fraction(6, 1), Fraction(4, 1)),
+        "Topological theta-vacuum complex weight (FSP-THETA-TERM-COMPLEX-WEIGHT), CP points theta in {0, pi}, and parity-paired frustration Z(0) - Z(pi) = 20",
+    )
+
     return {
         "record_id": "TFQ-1052",
         "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",

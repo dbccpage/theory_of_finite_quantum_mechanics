@@ -478,4 +478,48 @@ impl LineonHingeConfig {
         }
         Err("Discrete IVT violation: no collision point found for swap")
     }
+
+    /// Evaluates the 6-step collision-free exchange trajectory on a 3-prong multi-hinge
+    /// Y-junction (0: center, 1: branchX, 2: branchY, 3: branchZ) when corner branch-hopping
+    /// is permitted vs. strict hinge-axis conservation (Theorems 6-8 of TFQ-1219):
+    /// returns `(steps, collision_free, valid_hops, exchanged, exchange_sign, ab_weight, nonab_weight, axis_swap_allowed)`.
+    pub fn verify_y_junction_exchange_statistics() -> (usize, bool, bool, bool, i64, i64, i64, bool) {
+        let is_adj = |u: u8, v: u8| -> bool {
+            (u == 0 && (v == 1 || v == 2 || v == 3)) || (v == 0 && (u == 1 || u == 2 || u == 3))
+        };
+        let traj: [(u8, u8); 7] = [
+            (1, 2),
+            (0, 2),
+            (3, 2),
+            (3, 0),
+            (3, 1),
+            (0, 1),
+            (2, 1),
+        ];
+        let collision_free = traj.iter().all(|&(v1, v2)| v1 != v2);
+        let mut valid_hops = true;
+        for w in traj.windows(2) {
+            let (u1, u2) = w[0];
+            let (v1, v2) = w[1];
+            let step_ok = (u1 == v1 && is_adj(u2, v2)) || (u2 == v2 && is_adj(u1, v1));
+            if !step_ok {
+                valid_hops = false;
+                break;
+            }
+        }
+        let exchanged = traj[6].0 == traj[0].1 && traj[6].1 == traj[0].0;
+        let exchange_sign: i64 = if exchanged { -1 } else { 1 };
+        let ab_weight = exchange_sign * Self::hinge_commutator_trace(false);
+        let nonab_weight = exchange_sign * Self::hinge_commutator_trace(true);
+        (
+            traj.len() - 1,
+            collision_free,
+            valid_hops,
+            exchanged,
+            exchange_sign,
+            ab_weight,
+            nonab_weight,
+            false,
+        )
+    }
 }

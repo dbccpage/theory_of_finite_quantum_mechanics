@@ -1,6 +1,6 @@
 # [TFQ-1050] FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY
 
-> **Stage**: `FINITE_QCD` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` (`OPEN`)  
+> **Stage**: `FINITE_QCD` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` (`COMPUTATIONALLY_CHECKED`)  
 > **UUID**: `49f12c7b-7bef-5972-bf17-0cafaceb7633`  
 > **Parent Derivation**: [TFQ-0026](tfq_0026_add_python_and_lean_replays_of_the_declared_doubling_count_or_leave.md)
 
@@ -16,7 +16,7 @@ On a finite periodic hypercubic lattice in dimension 2 or 4 with arbitrary unita
 Prove the operator identity in Lean for the finite lattice. A proof would supply the hypothesis that FSP-WILSON-DIRAC-GAMMA5 now imports; lean4/FermionSignWilsonDiracGamma5.lean states only the Clifford and determinant lemmas, not this identity.
 
 ### Source Status
-Added 2026-10-27 with maintainer approval as a precisely stated target; no Lean, Rust or Python evidence exists in this checkout.
+Formally proved entrywise over Q(i) in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean) and verified in Rust, Python, and standalone check script (checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py).
 
 ---
 
@@ -31,10 +31,17 @@ Added 2026-10-27 with maintainer approval as a precisely stated target; no Lean,
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none cited*
+- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.wilson_dirac_gamma5_hermiticity_and_two_flavor_det_positivity`
+- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity`
 
 ### Rust Certifiers
-- *none cited*
+- `code/rust/src/fqcd/strong_coupling_area_law.rs::wilson_dirac_gamma5_and_two_flavor_positivity`
+- `code/rust/src/fqcd/strong_coupling_area_law.rs::theta_vacuum_and_wilson_dirac_operator_identity`
+
+### Python Checks
+- `code/python/src/fqcd/strong_coupling_area_law.py::wilson_dirac_gamma5_and_two_flavor_positivity_rational`
+- `code/python/src/fqcd/strong_coupling_area_law.py::theta_vacuum_and_wilson_dirac_operator_identity_rational`
+- `checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py::check`
 
 ---
 
@@ -49,3 +56,4 @@ Added 2026-10-27 with maintainer approval as a precisely stated target; no Lean,
 - **Cited Sources**:
   - `papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md`
   - `lean4/FermionSignWilsonDiracGamma5.lean`
+  - `checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py`

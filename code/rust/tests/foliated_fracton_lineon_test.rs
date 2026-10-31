@@ -448,3 +448,18 @@ fn test_adversarial_quaternion_algebra_and_holonomy() {
     }
 }
 
+#[test]
+fn test_multi_hinge_y_junction_exchange_and_axis_conservation() {
+    let (steps, collision_free, valid_hops, exchanged, sign, ab_w, nonab_w, axis_swap_allowed) =
+        LineonHingeConfig::verify_y_junction_exchange_statistics();
+    assert_eq!(steps, 6);
+    assert!(collision_free);
+    assert!(valid_hops);
+    assert!(exchanged);
+    assert_eq!(sign, -1);
+    assert_eq!(ab_w, -2);
+    assert_eq!(nonab_w, 2);
+    assert!(!axis_swap_allowed);
+}
+
+

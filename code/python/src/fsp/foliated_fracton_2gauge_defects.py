@@ -484,3 +484,48 @@ class HingeLineonSignCertifier:
             return 1
         raise ValueError("Non-trivial permutation requires collision on 1D hinge")
 
+    @staticmethod
+    def verify_y_junction_collision_free_exchange() -> Dict[str, object]:
+        """
+        Certifies the 6-step collision-free exchange trajectory on a 3-prong multi-hinge
+        Y-junction (vertices 'center', 'X', 'Y', 'Z' with edges ('center', b) for b in {'X','Y','Z'})
+        when unconstrained branch-hopping across 'center' is allowed, vs. strict foliated
+        hinge-axis conservation which forbids cross-branch exchanges (TFQ-1219 Theorems 6-8).
+        """
+        adj = {
+            ("center", "X"), ("X", "center"),
+            ("center", "Y"), ("Y", "center"),
+            ("center", "Z"), ("Z", "center"),
+        }
+        trajectory = [
+            ("X", "Y"),
+            ("center", "Y"),
+            ("Z", "Y"),
+            ("Z", "center"),
+            ("Z", "X"),
+            ("center", "X"),
+            ("Y", "X"),
+        ]
+        collision_free = all(v1 != v2 for v1, v2 in trajectory)
+        valid_steps = True
+        for t in range(len(trajectory) - 1):
+            u1, u2 = trajectory[t]
+            v1, v2 = trajectory[t + 1]
+            step_ok = (u1 == v1 and (u2, v2) in adj) or (u2 == v2 and (u1, v1) in adj)
+            if not step_ok:
+                valid_steps = False
+                break
+        exchanged = (trajectory[-1][0] == trajectory[0][1]) and (trajectory[-1][1] == trajectory[0][0])
+        exchange_sign = -1 if exchanged else 1
+        return {
+            "trajectory_steps": len(trajectory) - 1,
+            "collision_free": collision_free,
+            "valid_y_junction_hops": valid_steps,
+            "exchanged": exchanged,
+            "exchange_sign": exchange_sign,
+            "abelian_holonomy_exchange_weight": exchange_sign * 2,
+            "nonabelian_holonomy_exchange_weight": exchange_sign * (-2),
+            "axis_conserved_branch_exchange_possible": False,
+        }
+
+

@@ -35,6 +35,9 @@ Formally proved in Lean 4 (lean4/FoliatedFracton2Gauge.lean) with zero sorry and
 - `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_worldline_permutation_sign_trivial`
 - `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.nonabelian_hinge_commutator_curvature_obstruction`
 - `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free`
+- `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_collision_free_exchange_exists`
+- `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_exchange_induces_negative_sign`
+- `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.foliated_lineon_axis_conservation_forbids_branch_exchange`
 
 ### Rust Certifiers
 - `code/rust/src/fsp/foliated_fracton_lineon.rs`

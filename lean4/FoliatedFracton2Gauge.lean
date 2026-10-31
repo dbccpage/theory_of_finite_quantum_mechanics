@@ -181,6 +181,127 @@ theorem decoupled_foliated_lineon_sign_free (tr : Int) :
   dsimp [foliatedProjectedTrace]
   exact Int.natCast_nonneg _
 
+/-- 3-prong multi-hinge Y-junction vertex where three 1D hinge axes (X, Y, Z) meet at a corner. -/
+inductive YJunctionVertex : Type where
+  | center  : YJunctionVertex
+  | branchX : YJunctionVertex
+  | branchY : YJunctionVertex
+  | branchZ : YJunctionVertex
+  deriving DecidableEq, Repr
+
+/-- Undirected adjacency on the 3-prong multi-hinge Y-junction graph. -/
+def yJunctionAdj : YJunctionVertex → YJunctionVertex → Bool
+  | .center, .branchX => true
+  | .branchX, .center => true
+  | .center, .branchY => true
+  | .branchY, .center => true
+  | .center, .branchZ => true
+  | .branchZ, .center => true
+  | _, _ => false
+
+/-- Collision-free two-particle configuration on a multi-hinge Y-junction. -/
+structure TwoParticleYJunctionConfig where
+  v1 : YJunctionVertex
+  v2 : YJunctionVertex
+  distinct : v1 ≠ v2
+  deriving DecidableEq, Repr
+
+/-- Elementary collision-free single-particle hop on a multi-hinge Y-junction. -/
+inductive YJunctionHop : TwoParticleYJunctionConfig → TwoParticleYJunctionConfig → Type where
+  | hop1 (c : TwoParticleYJunctionConfig) (v1' : YJunctionVertex)
+      (h_adj : yJunctionAdj c.v1 v1' = true) (h_dist : v1' ≠ c.v2) :
+      YJunctionHop c ⟨v1', c.v2, h_dist⟩
+  | hop2 (c : TwoParticleYJunctionConfig) (v2' : YJunctionVertex)
+      (h_adj : yJunctionAdj c.v2 v2' = true) (h_dist : c.v1 ≠ v2') :
+      YJunctionHop c ⟨c.v1, v2', h_dist⟩
+
+/-- Reflexive-transitive closure of collision-free hops on the multi-hinge Y-junction. -/
+inductive YJunctionPath : TwoParticleYJunctionConfig → TwoParticleYJunctionConfig → Prop where
+  | refl (c : TwoParticleYJunctionConfig) : YJunctionPath c c
+  | step {c1 c2 c3 : TwoParticleYJunctionConfig}
+      (h12 : YJunctionPath c1 c2) (hop : YJunctionHop c2 c3) :
+      YJunctionPath c1 c3
+
+def yConfigXY : TwoParticleYJunctionConfig := ⟨.branchX, .branchY, by decide⟩
+def yConfig0Y : TwoParticleYJunctionConfig := ⟨.center, .branchY, by decide⟩
+def yConfigZY : TwoParticleYJunctionConfig := ⟨.branchZ, .branchY, by decide⟩
+def yConfigZ0 : TwoParticleYJunctionConfig := ⟨.branchZ, .center, by decide⟩
+def yConfigZX : TwoParticleYJunctionConfig := ⟨.branchZ, .branchX, by decide⟩
+def yConfig0X : TwoParticleYJunctionConfig := ⟨.center, .branchX, by decide⟩
+def yConfigYX : TwoParticleYJunctionConfig := ⟨.branchY, .branchX, by decide⟩
+
+/-- Theorem 6: On a 3-prong multi-hinge Y-junction where corner branch-hopping is permitted,
+    two particles starting at `(branchX, branchY)` admit an explicit 6-step collision-free
+    exchange trajectory to `(branchY, branchX)` via the third hinge branch `branchZ`. -/
+theorem y_junction_collision_free_exchange_exists :
+    YJunctionPath yConfigXY yConfigYX ∧
+    yConfigYX.v1 = yConfigXY.v2 ∧
+    yConfigYX.v2 = yConfigXY.v1 := by
+  refine ⟨?_, rfl, rfl⟩
+  have s0 : YJunctionPath yConfigXY yConfigXY := YJunctionPath.refl yConfigXY
+  have s1 : YJunctionPath yConfigXY yConfig0Y :=
+    YJunctionPath.step s0 (YJunctionHop.hop1 yConfigXY .center rfl (by decide))
+  have s2 : YJunctionPath yConfigXY yConfigZY :=
+    YJunctionPath.step s1 (YJunctionHop.hop1 yConfig0Y .branchZ rfl (by decide))
+  have s3 : YJunctionPath yConfigXY yConfigZ0 :=
+    YJunctionPath.step s2 (YJunctionHop.hop2 yConfigZY .center rfl (by decide))
+  have s4 : YJunctionPath yConfigXY yConfigZX :=
+    YJunctionPath.step s3 (YJunctionHop.hop2 yConfigZ0 .branchX rfl (by decide))
+  have s5 : YJunctionPath yConfigXY yConfig0X :=
+    YJunctionPath.step s4 (YJunctionHop.hop1 yConfigZX .center rfl (by decide))
+  exact YJunctionPath.step s5 (YJunctionHop.hop1 yConfig0X .branchY rfl (by decide))
+
+/-- Worldline exchange permutation sign on a two-particle Y-junction trajectory (`-1` if exchanged, `+1` otherwise). -/
+def yJunctionExchangeSign (c_init c_final : TwoParticleYJunctionConfig) : Int :=
+  if c_final.v1 = c_init.v2 ∧ c_final.v2 = c_init.v1 then -1 else 1
+
+/-- Theorem 7: Unconstrained multi-hinge Y-junction exchange induces a negative worldline
+    permutation sign (`-1 < 0`), and when combined with abelian (`+2`) or non-abelian (`-2`)
+    hinge commutator holonomy yields non-trivial signed amplitudes (`-2` vs `+2`). -/
+theorem y_junction_exchange_induces_negative_sign :
+    yJunctionExchangeSign yConfigXY yConfigYX = -1 ∧
+    yJunctionExchangeSign yConfigXY yConfigXY = 1 ∧
+    yJunctionExchangeSign yConfigXY yConfigYX * hingeCommutatorTrace false = -2 ∧
+    yJunctionExchangeSign yConfigXY yConfigYX * hingeCommutatorTrace true = 2 ∧
+    yJunctionExchangeSign yConfigXY yConfigXY * hingeCommutatorTrace true = -2 := by
+  decide
+
+/-- Two-lineon state with conserved 1D hinge-axis sector labels `(axis1, axis2)`. -/
+structure AxisConservedTwoLineonState where
+  axis1 : FoliationPlane
+  axis2 : FoliationPlane
+  coord1 : Int
+  coord2 : Int
+  deriving DecidableEq, Repr
+
+/-- Hinge-sector-conserving transition: lineons hop only along their own 1D hinge axis. -/
+inductive AxisConservingPath : AxisConservedTwoLineonState → AxisConservedTwoLineonState → Prop where
+  | refl (s : AxisConservedTwoLineonState) : AxisConservingPath s s
+  | step {s1 s2 s3 : AxisConservedTwoLineonState}
+      (h12 : AxisConservingPath s1 s2)
+      (h_ax1 : s3.axis1 = s2.axis1)
+      (h_ax2 : s3.axis2 = s2.axis2) :
+      AxisConservingPath s1 s3
+
+theorem axis_conserving_path_preserves_axes {s_init s_final : AxisConservedTwoLineonState}
+    (path : AxisConservingPath s_init s_final) :
+    s_final.axis1 = s_init.axis1 ∧ s_final.axis2 = s_init.axis2 := by
+  induction path with
+  | refl => exact ⟨rfl, rfl⟩
+  | step _ h_ax1 h_ax2 ih =>
+    exact ⟨Eq.trans h_ax1 ih.1, Eq.trans h_ax2 ih.2⟩
+
+/-- Theorem 8: Strict foliated dipole conservation preserves each lineon's 1D hinge sector,
+    forbidding cross-branch Y-junction exchange between distinct hinge axes (`axis1 ≠ axis2`). -/
+theorem foliated_lineon_axis_conservation_forbids_branch_exchange
+    {s_init s_final : AxisConservedTwoLineonState}
+    (h_distinct : s_init.axis1 ≠ s_init.axis2)
+    (path : AxisConservingPath s_init s_final)
+    (h_swap : s_final.axis1 = s_init.axis2 ∧ s_final.axis2 = s_init.axis1) :
+    False := by
+  have h_pres := axis_conserving_path_preserves_axes path
+  exact h_distinct (Eq.trans h_pres.1.symm h_swap.1)
+
 end FoliatedFracton2Gauge
 
 #print axioms FoliatedFracton2Gauge.hinge_path_preserves_relative_order
@@ -190,4 +311,7 @@ end FoliatedFracton2Gauge
 #print axioms FoliatedFracton2Gauge.hinge_lineon_worldline_permutation_sign_trivial
 #print axioms FoliatedFracton2Gauge.nonabelian_hinge_commutator_curvature_obstruction
 #print axioms FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free
+#print axioms FoliatedFracton2Gauge.y_junction_collision_free_exchange_exists
+#print axioms FoliatedFracton2Gauge.y_junction_exchange_induces_negative_sign
+#print axioms FoliatedFracton2Gauge.foliated_lineon_axis_conservation_forbids_branch_exchange
 

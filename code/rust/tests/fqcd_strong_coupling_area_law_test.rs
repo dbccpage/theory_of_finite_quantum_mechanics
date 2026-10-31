@@ -27,6 +27,7 @@ use theory_of_finite_qm::fqcd::{
     su2_higher_spin_casimir_and_hessian_defect_bounds,
     su3_subgroup_tower_and_freezing_scales,
     temporal_gauge_perron_frobenius_and_2d_mednykh_pachner,
+    theta_vacuum_and_wilson_dirac_operator_identity,
     twod_character_decimation_area_law,
     valentiner_sigma1080_invariants, verify_fqcd_strong_coupling_area_law_witness,
     wilson_dirac_chemical_potential_and_nielsen_ninomiya,
@@ -465,6 +466,32 @@ fn test_binary_icosahedral_2i_and_valentiner_sigma1080_and_freezing_defects() {
     assert!(gw_35.is_zero() && gw_513.is_zero() && dov_p.is_zero() && lf_d.is_zero() && li_44.is_zero());
     assert_eq!((dov_d, lf_p, li_53, dprod), (rat(2, 1), rat(1, 1), rat(-1, 1), rat(-576, 1)));
     assert_eq!((l_p1, l_m1, l_m3, l_m5, l_m7, l_m9), (0, 1, -3, 3, -1, 0));
+
+    let (
+        im_hp,
+        im_345,
+        mod_q3,
+        re_pi_0,
+        re_pi_1,
+        re_pi_3,
+        z0_re,
+        z345_re,
+        zhp_re,
+        zpi_re,
+        def_0_pi,
+        offdiag_ok,
+        diag_ok,
+        d_d2,
+        d_d4,
+    ) = theta_vacuum_and_wilson_dirac_operator_identity();
+    assert_eq!((im_hp, im_345, mod_q3), (rat(-1, 1), rat(-4, 5), rat(1, 1)));
+    assert_eq!((re_pi_0, re_pi_1, re_pi_3), (rat(1, 1), rat(-1, 1), rat(-1, 1)));
+    assert_eq!(
+        (z0_re, z345_re, zhp_re, zpi_re, def_0_pi),
+        (rat(24, 1), rat(1476, 125), rat(6, 1), rat(4, 1), rat(20, 1))
+    );
+    assert!(offdiag_ok && diag_ok);
+    assert_eq!((d_d2, d_d4), (rat(3, 1), rat(5, 1)));
 }
 
 #[test]

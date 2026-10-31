@@ -218,3 +218,15 @@ class TestFoliatedFracton2GaugeDefects:
         with pytest.raises(ValueError):
             HingeLineonSignCertifier.permutation_sign_trivial(is_collision_free=False)
 
+        # 6. Multi-hinge Y-junction collision-free exchange vs axis conservation (Theorems 6-8)
+        yj = HingeLineonSignCertifier.verify_y_junction_collision_free_exchange()
+        assert yj["trajectory_steps"] == 6
+        assert yj["collision_free"] is True
+        assert yj["valid_y_junction_hops"] is True
+        assert yj["exchanged"] is True
+        assert yj["exchange_sign"] == -1
+        assert yj["abelian_holonomy_exchange_weight"] == -2
+        assert yj["nonabelian_holonomy_exchange_weight"] == 2
+        assert yj["axis_conserved_branch_exchange_possible"] is False
+
+

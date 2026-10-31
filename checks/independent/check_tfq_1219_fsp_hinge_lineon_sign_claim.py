@@ -314,6 +314,22 @@ def run_checks() -> Dict[str, Any]:
     checks.append(("terminal_route_straight_decoupled_is_exact_repair", route_straight == "EXACT_REPAIR"))
     checks.append(("terminal_route_corner_turn_is_open_sign_obstruction", route_corner == "OPEN_SIGN_OBSTRUCTION"))
 
+    # -------------------------------------------------------------------------
+    # Family 8: Multi-hinge Y-junction 6-step collision-free exchange vs axis conservation
+    # -------------------------------------------------------------------------
+    y_adj = {("0", "X"), ("X", "0"), ("0", "Y"), ("Y", "0"), ("0", "Z"), ("Z", "0")}
+    y_traj = [("X", "Y"), ("0", "Y"), ("Z", "Y"), ("Z", "0"), ("Z", "X"), ("0", "X"), ("Y", "X")]
+    y_coll_free = all(u != v for u, v in y_traj)
+    y_steps_ok = all(
+        (y_traj[t][0] == y_traj[t + 1][0] and (y_traj[t][1], y_traj[t + 1][1]) in y_adj)
+        or (y_traj[t][1] == y_traj[t + 1][1] and (y_traj[t][0], y_traj[t + 1][0]) in y_adj)
+        for t in range(len(y_traj) - 1)
+    )
+    y_exchanged = y_traj[-1][0] == y_traj[0][1] and y_traj[-1][1] == y_traj[0][0]
+    y_sign = -1 if y_exchanged else 1
+    checks.append(("y_junction_6step_collision_free_exchange", len(y_traj) - 1 == 6 and y_coll_free and y_steps_ok and y_exchanged))
+    checks.append(("y_junction_exchange_induces_negative_sign", y_sign == -1 and y_sign * tr_abelian.re == Fraction(-2, 1)))
+
     total = len(checks)
     failures = [name for name, passed in checks if not passed]
     all_passed = len(failures) == 0

@@ -53,6 +53,7 @@ try:
         su2_higher_spin_casimir_and_hessian_defect_bounds_rational,
         su3_subgroup_tower_and_freezing_scales_rational,
         temporal_gauge_perron_frobenius_and_2d_mednykh_pachner_rational,
+        theta_vacuum_and_wilson_dirac_operator_identity_rational,
         twod_character_decimation_area_law,
         twod_character_decimation_area_law_rational,
         valentiner_sigma1080_invariants_rational,
@@ -103,6 +104,7 @@ except ImportError:
         su2_higher_spin_casimir_and_hessian_defect_bounds_rational,
         su3_subgroup_tower_and_freezing_scales_rational,
         temporal_gauge_perron_frobenius_and_2d_mednykh_pachner_rational,
+        theta_vacuum_and_wilson_dirac_operator_identity_rational,
         twod_character_decimation_area_law,
         twod_character_decimation_area_law_rational,
         valentiner_sigma1080_invariants_rational,
@@ -548,6 +550,28 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
         Fraction(1, 1),
     )
     assert gw["det_product_m_minus_1_m_0"] == Fraction(-576, 1) < Fraction(0, 1)
+
+    th_op = theta_vacuum_and_wilson_dirac_operator_identity_rational()
+    assert th_op["unit_modulus_verified_count"] == 35
+    assert th_op["theta_im_half_pi_q1"] == Fraction(-1, 1)
+    assert th_op["theta_im_345_q1"] == Fraction(-4, 5)
+    assert th_op["cp_zero_im_all_zero"] is True
+    assert th_op["cp_pi_im_all_zero"] is True
+    assert th_op["cp_pi_re_luscher_sectors"] == [
+        Fraction(1, 1),
+        Fraction(-1, 1),
+        Fraction(-1, 1),
+        Fraction(-1, 1),
+        Fraction(-1, 1),
+    ]
+    assert th_op["z_theta_0"] == (Fraction(24, 1), Fraction(0, 1))
+    assert th_op["z_theta_345"] == (Fraction(1476, 125), Fraction(0, 1))
+    assert th_op["z_theta_half_pi"] == (Fraction(6, 1), Fraction(0, 1))
+    assert th_op["z_theta_pi"] == (Fraction(4, 1), Fraction(0, 1))
+    assert th_op["frustration_deficit_0_minus_pi"] == Fraction(20, 1)
+    assert th_op["chiral_offdiag_matched"] == 3
+    assert th_op["chiral_diag_matched"] == 3
+    assert (th_op["onsite_d2_m1_r1"], th_op["onsite_d4_m1_r1"]) == (Fraction(3, 1), Fraction(5, 1))
 
 
 def test_master_witness_passes() -> None:
