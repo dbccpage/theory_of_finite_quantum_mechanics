@@ -35,6 +35,7 @@ Lean formalizes the explicit four-component/four-direction rational kernel, its 
 - `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity`
 - `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity`
 - `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivity`
+- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity`
 
 ### Rust Certifiers
 - `code/rust/src/fqcd/strong_coupling_area_law.rs::wilson_dirac_gamma5_and_two_flavor_positivity`

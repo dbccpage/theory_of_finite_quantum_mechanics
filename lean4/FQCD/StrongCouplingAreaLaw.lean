@@ -2546,6 +2546,284 @@ theorem assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivit
   · rw [h_tf_eq]; exact h_tf_pos.2
 
 -- ============================================================================
+-- 22d. Chemical-Potential Fugacity Matrix Wrapper D_W(z), Γ_5-Intertwining
+--      Γ_5 D_W(z) Γ_5 = D_W(z⁻¹)ᴴ, and Phase-Quenched Determinant Positivity
+--      det(D_W(z) D_W(z⁻¹)) = |det D_W(z)|^2 ≥ 0 (FSP-QCD-CHEMICAL-POTENTIAL-DET)
+-- ============================================================================
+
+/-- Directional forward link scale under Hasenfratz–Karsch baryon chemical potential
+    fugacity `z = e^μ ∈ ℚ`: scales temporal links (`μ = .s3`) by `z` and spatial links by `1`. -/
+def chemicalPotentialDirFwdScale (μ : WeylSpinIdx) (z : ℚ) : ℚ :=
+  match μ with
+  | .s3 => z
+  | _ => 1
+
+/-- Directional backward link scale under Hasenfratz–Karsch baryon chemical potential
+    fugacity `z = e^μ ∈ ℚ`: scales temporal links (`μ = .s3`) by `z⁻¹` and spatial links by `1`. -/
+def chemicalPotentialDirBwdScale (μ : WeylSpinIdx) (z : ℚ) : ℚ :=
+  match μ with
+  | .s3 => z⁻¹
+  | _ => 1
+
+/-- For any rational fugacity `z ∈ ℚ \ {0, ±1}`, forward and backward temporal weights are
+    strictly asymmetric (`z ≠ z⁻¹`). -/
+theorem chemicalPotential_fugacity_asymmetry (z : ℚ)
+    (hz0 : z ≠ 0) (hz1 : z ≠ 1) (hzm1 : z ≠ -1) :
+    z ≠ z⁻¹ := by
+  intro h
+  have hmul : z * z = 1 := by
+    calc
+      z * z = z * z⁻¹ := by rw [← h]
+      _ = 1 := mul_inv_cancel₀ hz0
+  have hfac : (z - 1) * (z + 1) = 0 := by
+    calc
+      (z - 1) * (z + 1) = z * z - 1 := by ring
+      _ = 0 := by rw [hmul, sub_self]
+  rcases mul_eq_zero.mp hfac with h1 | hm1
+  · exact hz1 (sub_eq_zero.mp h1)
+  · exact hzm1 (eq_neg_of_add_eq_zero_left hm1)
+
+/-- Assembled directional Wilson–Dirac hopping kernel with chemical-potential fugacity `z ∈ ℚ`
+    in direction `μ` on `Site × Color × WeylSpinIdx`. -/
+def assembledWilsonDiracChemPotDirKernel {Site Color : Type}
+    (r z : ℚ)
+    (uFwd uBwd : WeylSpinIdx → Site → Site → Color → Color → FQCDGaussRat)
+    (μ : WeylSpinIdx) (x : Site) (c1 : Color) (α : WeylSpinIdx)
+    (y : Site) (c2 : Color) (β : WeylSpinIdx) : FQCDGaussRat :=
+  FQCDGaussRat.add
+    (FQCDGaussRat.smul (chemicalPotentialDirFwdScale μ z)
+      (FQCDGaussRat.mul (uFwd μ x y c1 c2) (wilsonSpinProjFwd μ r α β)))
+    (FQCDGaussRat.smul (chemicalPotentialDirBwdScale μ z)
+      (FQCDGaussRat.mul (uBwd μ x y c1 c2) (wilsonSpinProjBwd μ r α β)))
+
+/-- Full assembled finite-lattice Wilson–Dirac operator entry `D_W(z)((x, c1, α), (y, c2, β))`
+    with temporal chemical-potential fugacity `z ∈ ℚ`. -/
+def assembledWilsonDiracChemPot {Site Color : Type} [DecidableEq Site] [DecidableEq Color]
+    (m r z : ℚ)
+    (uFwd uBwd : WeylSpinIdx → Site → Site → Color → Color → FQCDGaussRat)
+    (x : Site) (c1 : Color) (α : WeylSpinIdx)
+    (y : Site) (c2 : Color) (β : WeylSpinIdx) : FQCDGaussRat :=
+  FQCDGaussRat.add (assembledWilsonDiracOnsite m r x c1 α y c2 β)
+    (FQCDGaussRat.sum4 (fun μ => assembledWilsonDiracChemPotDirKernel r z uFwd uBwd μ x c1 α y c2 β))
+
+/-- `Matrix` wrapper `D_W(z)` on `Site × Color × WeylSpinIdx` over `FQCDGaussRat`. -/
+def assembledWilsonDiracChemPotMatrix {Site Color : Type} [DecidableEq Site] [DecidableEq Color]
+    (m r z : ℚ)
+    (uFwd uBwd : WeylSpinIdx → Site → Site → Color → Color → FQCDGaussRat) :
+    Matrix (Site × Color × WeylSpinIdx) (Site × Color × WeylSpinIdx) FQCDGaussRat :=
+  fun i j => assembledWilsonDiracChemPot m r z uFwd uBwd i.1 i.2.1 i.2.2 j.1 j.2.1 j.2.2
+
+/-- Complex-valued `Matrix` wrapper `D_W(z)` over `ℂ` obtained via `FQCDGaussRat.toComplex`. -/
+noncomputable def assembledWilsonDiracChemPotComplexMatrix
+    {Site Color : Type} [DecidableEq Site] [DecidableEq Color]
+    (m r z : ℚ)
+    (uFwd uBwd : WeylSpinIdx → Site → Site → Color → Color → FQCDGaussRat) :
+    Matrix (Site × Color × WeylSpinIdx) (Site × Color × WeylSpinIdx) ℂ :=
+  (assembledWilsonDiracChemPotMatrix m r z uFwd uBwd).map FQCDGaussRat.toComplex
+
+/-- At unit fugacity `z = 1` (`μ = 0`), `assembledWilsonDiracChemPotMatrix` reduces to
+    `assembledWilsonDiracMatrix`. -/
+theorem assembledWilsonDiracChemPotMatrix_at_one
+    {Site Color : Type} [DecidableEq Site] [DecidableEq Color]
+    (m r : ℚ)
+    (uFwd uBwd : WeylSpinIdx → Site → Site → Color → Color → FQCDGaussRat) :
+    assembledWilsonDiracChemPotMatrix m r 1 uFwd uBwd =
+      assembledWilsonDiracMatrix m r uFwd uBwd := by
+  funext i j
+  ext <;>
+    dsimp [assembledWilsonDiracChemPotMatrix, assembledWilsonDiracMatrix,
+      assembledWilsonDiracChemPot, assembledWilsonDirac,
+      assembledWilsonDiracChemPotDirKernel, assembledWilsonDiracDirKernel,
+      chemicalPotentialDirFwdScale, chemicalPotentialDirBwdScale,
+      FQCDGaussRat.sum4, FQCDGaussRat.add, FQCDGaussRat.smul] <;>
+    ring
+
+/-- Lemma: Each directional Wilson hopping kernel at fugacity `z` intertwines under `γ_5`
+    with the Hermitian adjoint at inverse fugacity `z⁻¹` under link-reversal adjointness. -/
+theorem assembledWilsonDiracChemPotDirKernel_gamma5_intertwine {Site Color : Type}
+    (r z : ℚ)
+    (uFwd uBwd : WeylSpinIdx → Site → Site → Color → Color → FQCDGaussRat)
+    (hLinkAdj : ∀ μ x y c1 c2, uBwd μ x y c1 c2 = FQCDGaussRat.conj (uFwd μ y x c2 c1))
+    (μ : WeylSpinIdx) (x : Site) (c1 : Color) (α : WeylSpinIdx)
+    (y : Site) (c2 : Color) (β : WeylSpinIdx) :
+    FQCDGaussRat.smul (chiralGamma5Sign α * chiralGamma5Sign β)
+      (assembledWilsonDiracChemPotDirKernel r z uFwd uBwd μ x c1 α y c2 β) =
+    FQCDGaussRat.conj (assembledWilsonDiracChemPotDirKernel r z⁻¹ uFwd uBwd μ y c2 β x c1 α) := by
+  have hL1Re := congrArg FQCDGaussRat.re (hLinkAdj μ x y c1 c2)
+  have hL1Im := congrArg FQCDGaussRat.im (hLinkAdj μ x y c1 c2)
+  have hL2Re := congrArg FQCDGaussRat.re (hLinkAdj μ y x c2 c1)
+  have hL2Im := congrArg FQCDGaussRat.im (hLinkAdj μ y x c2 c1)
+  dsimp [FQCDGaussRat.conj] at hL1Re hL1Im hL2Re hL2Im
+  cases μ <;> cases α <;> cases β <;>
+    ext <;>
+    dsimp [assembledWilsonDiracChemPotDirKernel, chemicalPotentialDirFwdScale,
+      chemicalPotentialDirBwdScale, wilsonSpinProjFwd, wilsonSpinProjBwd,
+      euclideanGammaMat, chiralGamma5Sign, FQCDGaussRat.smul, FQCDGaussRat.add,
+      FQCDGaussRat.sub, FQCDGaussRat.mul, FQCDGaussRat.conj, FQCDGaussRat.zero] <;>
+    rw [hL1Re, hL1Im, hL2Re, hL2Im] <;>
+    (try simp only [inv_inv]) <;>
+    ring
+
+/-- Pointwise `Γ_5`-intertwining identity for `assembledWilsonDiracChemPot`:
+    `γ_5(α) D_W(z)((x,c1,α),(y,c2,β)) γ_5(β) = conj(D_W(z⁻¹)((y,c2,β),(x,c1,α)))`. -/
+theorem assembledWilsonDiracChemPot_gamma5_intertwine
+    {Site Color : Type} [DecidableEq Site] [DecidableEq Color]
+    (m r z : ℚ)
+    (uFwd uBwd : WeylSpinIdx → Site → Site → Color → Color → FQCDGaussRat)
+    (hLinkAdj : ∀ μ x y c1 c2, uBwd μ x y c1 c2 = FQCDGaussRat.conj (uFwd μ y x c2 c1))
+    (x : Site) (c1 : Color) (α : WeylSpinIdx)
+    (y : Site) (c2 : Color) (β : WeylSpinIdx) :
+    FQCDGaussRat.smul (chiralGamma5Sign α * chiralGamma5Sign β)
+      (assembledWilsonDiracChemPot m r z uFwd uBwd x c1 α y c2 β) =
+    FQCDGaussRat.conj (assembledWilsonDiracChemPot m r z⁻¹ uFwd uBwd y c2 β x c1 α) := by
+  have hDir0 := assembledWilsonDiracChemPotDirKernel_gamma5_intertwine r z uFwd uBwd hLinkAdj .s0 x c1 α y c2 β
+  have hDir1 := assembledWilsonDiracChemPotDirKernel_gamma5_intertwine r z uFwd uBwd hLinkAdj .s1 x c1 α y c2 β
+  have hDir2 := assembledWilsonDiracChemPotDirKernel_gamma5_intertwine r z uFwd uBwd hLinkAdj .s2 x c1 α y c2 β
+  have hDir3 := assembledWilsonDiracChemPotDirKernel_gamma5_intertwine r z uFwd uBwd hLinkAdj .s3 x c1 α y c2 β
+  have hOnsite := assembledWilsonDiracOnsite_gamma5_hermiticity m r x c1 α y c2 β
+  have h0Re := congrArg FQCDGaussRat.re hDir0
+  have h0Im := congrArg FQCDGaussRat.im hDir0
+  have h1Re := congrArg FQCDGaussRat.re hDir1
+  have h1Im := congrArg FQCDGaussRat.im hDir1
+  have h2Re := congrArg FQCDGaussRat.re hDir2
+  have h2Im := congrArg FQCDGaussRat.im hDir2
+  have h3Re := congrArg FQCDGaussRat.re hDir3
+  have h3Im := congrArg FQCDGaussRat.im hDir3
+  have hOnRe := congrArg FQCDGaussRat.re hOnsite
+  have hOnIm := congrArg FQCDGaussRat.im hOnsite
+  dsimp [FQCDGaussRat.smul, FQCDGaussRat.conj] at h0Re h0Im h1Re h1Im h2Re h2Im h3Re h3Im hOnRe hOnIm
+  ext <;>
+    dsimp [assembledWilsonDiracChemPot, FQCDGaussRat.sum4,
+      FQCDGaussRat.smul, FQCDGaussRat.add, FQCDGaussRat.conj]
+  · linarith
+  · linarith
+
+/-- Matrix-level chemical-potential `Γ_5`-intertwining identity:
+    `Γ_5 * D_W(z) * Γ_5 = (D_W(z⁻¹))ᴴ` on `Matrix (Site × Color × WeylSpinIdx)`. -/
+theorem assembledWilsonDiracChemPotMatrix_gamma5_intertwine
+    {Site Color : Type} [Fintype Site] [DecidableEq Site] [Fintype Color] [DecidableEq Color]
+    (m r z : ℚ)
+    (uFwd uBwd : WeylSpinIdx → Site → Site → Color → Color → FQCDGaussRat)
+    (hLinkAdj : ∀ μ x y c1 c2, uBwd μ x y c1 c2 = FQCDGaussRat.conj (uFwd μ y x c2 c1)) :
+    assembledGamma5Matrix * assembledWilsonDiracChemPotMatrix m r z uFwd uBwd * assembledGamma5Matrix =
+      (assembledWilsonDiracChemPotMatrix m r z⁻¹ uFwd uBwd)ᴴ := by
+  funext i j
+  dsimp [assembledGamma5Matrix]
+  simp only [Matrix.mul_diagonal, Matrix.diagonal_mul]
+  have hscale :
+      (⟨chiralGamma5Sign i.2.2, 0⟩ : FQCDGaussRat) *
+        assembledWilsonDiracChemPotMatrix m r z uFwd uBwd i j *
+        ⟨chiralGamma5Sign j.2.2, 0⟩ =
+      FQCDGaussRat.smul (chiralGamma5Sign i.2.2 * chiralGamma5Sign j.2.2)
+        (assembledWilsonDiracChemPot m r z uFwd uBwd i.1 i.2.1 i.2.2 j.1 j.2.1 j.2.2) := by
+    ext <;>
+      dsimp [assembledWilsonDiracChemPotMatrix, FQCDGaussRat.smul] <;>
+      ring
+  rw [hscale]
+  exact assembledWilsonDiracChemPot_gamma5_intertwine m r z uFwd uBwd hLinkAdj
+    i.1 i.2.1 i.2.2 j.1 j.2.1 j.2.2
+
+/-- From `Γ_5 * D_W(z) * Γ_5 = (D_W(z⁻¹))ᴴ` and `Γ_5^2 = 1`, the determinant at inverse
+    fugacity `z⁻¹` equals the complex conjugate of the determinant at fugacity `z`:
+    `det(D_W(z⁻¹)) = star (det(D_W(z)))`. -/
+theorem assembledWilsonDiracChemPotMatrix_det_inv_eq_star
+    {Site Color : Type} [Fintype Site] [DecidableEq Site] [Fintype Color] [DecidableEq Color]
+    (m r z : ℚ)
+    (uFwd uBwd : WeylSpinIdx → Site → Site → Color → Color → FQCDGaussRat)
+    (hLinkAdj : ∀ μ x y c1 c2, uBwd μ x y c1 c2 = FQCDGaussRat.conj (uFwd μ y x c2 c1)) :
+    (assembledWilsonDiracChemPotMatrix m r z⁻¹ uFwd uBwd).det =
+      star (assembledWilsonDiracChemPotMatrix m r z uFwd uBwd).det := by
+  let Dz := assembledWilsonDiracChemPotMatrix m r z uFwd uBwd
+  let DzInv := assembledWilsonDiracChemPotMatrix m r z⁻¹ uFwd uBwd
+  let Γ5 : Matrix (Site × Color × WeylSpinIdx) (Site × Color × WeylSpinIdx) FQCDGaussRat :=
+    assembledGamma5Matrix
+  have h_int : Γ5 * Dz * Γ5 = DzInvᴴ :=
+    assembledWilsonDiracChemPotMatrix_gamma5_intertwine m r z uFwd uBwd hLinkAdj
+  have h_sq : Γ5 * Γ5 = 1 := assembledGamma5Matrix_sq
+  have hdet : Dz.det = (DzInvᴴ).det := by
+    calc
+      Dz.det = (1 : Matrix (Site × Color × WeylSpinIdx) (Site × Color × WeylSpinIdx) FQCDGaussRat).det * Dz.det := by
+        rw [Matrix.det_one, one_mul]
+      _ = (Γ5 * Γ5).det * Dz.det := by rw [h_sq]
+      _ = (Γ5.det * Γ5.det) * Dz.det := by rw [Matrix.det_mul]
+      _ = Γ5.det * Dz.det * Γ5.det := by ring
+      _ = (Γ5 * Dz * Γ5).det := by rw [← Matrix.det_mul, ← Matrix.det_mul]
+      _ = (DzInvᴴ).det := by rw [h_int]
+  rw [Matrix.det_conjTranspose] at hdet
+  have hstar := congrArg star hdet
+  simpa only [star_star] using hstar.symm
+
+/-- Main Theorem 25: Chemical-Potential Matrix Intertwining `Γ_5 D_W(z) Γ_5 = D_W(z⁻¹)ᴴ`
+    and Phase-Quenched Determinant Positivity `det(D_W(z) D_W(z⁻¹)) = |det D_W(z)|^2 ≥ 0`
+    (`FSP-QCD-CHEMICAL-POTENTIAL-DET` / `FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY`). -/
+theorem assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity
+    {Site Color : Type} [Fintype Site] [DecidableEq Site] [Fintype Color] [DecidableEq Color]
+    (m r z : ℚ)
+    (uFwd uBwd : WeylSpinIdx → Site → Site → Color → Color → FQCDGaussRat)
+    (hLinkAdj : ∀ μ x y c1 c2, uBwd μ x y c1 c2 = FQCDGaussRat.conj (uFwd μ y x c2 c1)) :
+    let D_Q := fun w => assembledWilsonDiracChemPotMatrix m r w uFwd uBwd
+    let D_C := fun w => assembledWilsonDiracChemPotComplexMatrix m r w uFwd uBwd
+    D_Q 1 = assembledWilsonDiracMatrix m r uFwd uBwd ∧
+    (z ≠ 0 → z ≠ 1 → z ≠ -1 → z ≠ z⁻¹) ∧
+    assembledGamma5Matrix * D_Q z * assembledGamma5Matrix = (D_Q z⁻¹)ᴴ ∧
+    (D_Q z⁻¹).det = star (D_Q z).det ∧
+    (D_Q z * D_Q z⁻¹).det = (D_Q z).det * star (D_Q z).det ∧
+    (Matrix.fromBlocks (D_Q z) 0 0 (D_Q z⁻¹)).det = (D_Q z * D_Q z⁻¹).det ∧
+    ((D_Q z * D_Q z⁻¹).det).im = 0 ∧
+    ((D_Q z * D_Q z⁻¹).det).re = ((D_Q z).det).re ^ 2 + ((D_Q z).det).im ^ 2 ∧
+    0 ≤ ((D_Q z * D_Q z⁻¹).det).re ∧
+    (D_C z⁻¹).det = star (D_C z).det ∧
+    ((D_C z * D_C z⁻¹).det).im = 0 ∧
+    0 ≤ ((D_C z * D_C z⁻¹).det).re := by
+  intro D_Q D_C
+  have h_one : D_Q 1 = assembledWilsonDiracMatrix m r uFwd uBwd :=
+    assembledWilsonDiracChemPotMatrix_at_one m r uFwd uBwd
+  have h_asym : z ≠ 0 → z ≠ 1 → z ≠ -1 → z ≠ z⁻¹ :=
+    chemicalPotential_fugacity_asymmetry z
+  have h_int : assembledGamma5Matrix * D_Q z * assembledGamma5Matrix = (D_Q z⁻¹)ᴴ :=
+    assembledWilsonDiracChemPotMatrix_gamma5_intertwine m r z uFwd uBwd hLinkAdj
+  have h_det_inv : (D_Q z⁻¹).det = star (D_Q z).det :=
+    assembledWilsonDiracChemPotMatrix_det_inv_eq_star m r z uFwd uBwd hLinkAdj
+  have h_pq_det : (D_Q z * D_Q z⁻¹).det = (D_Q z).det * star (D_Q z).det := by
+    rw [Matrix.det_mul, h_det_inv]
+  have h_fb : (Matrix.fromBlocks (D_Q z) 0 0 (D_Q z⁻¹)).det = (D_Q z * D_Q z⁻¹).det := by
+    rw [Matrix.det_fromBlocks_zero₂₁, Matrix.det_mul]
+  have h_pq_im : ((D_Q z * D_Q z⁻¹).det).im = 0 := by
+    rw [h_pq_det, FQCDGaussRat.im_mul, FQCDGaussRat.re_star, FQCDGaussRat.im_star]
+    ring
+  have h_pq_re : ((D_Q z * D_Q z⁻¹).det).re = ((D_Q z).det).re ^ 2 + ((D_Q z).det).im ^ 2 := by
+    rw [h_pq_det, FQCDGaussRat.re_mul, FQCDGaussRat.re_star, FQCDGaussRat.im_star]
+    ring
+  have h_pq_nonneg : 0 ≤ ((D_Q z * D_Q z⁻¹).det).re := by
+    rw [h_pq_re]
+    exact add_nonneg (sq_nonneg _) (sq_nonneg _)
+  have h_map_z : (D_C z).det = FQCDGaussRat.toComplex (D_Q z).det := by
+    dsimp [D_C, assembledWilsonDiracChemPotComplexMatrix]
+    exact (RingHom.map_det FQCDGaussRat.toComplex (D_Q z)).symm
+  have h_map_zinv : (D_C z⁻¹).det = FQCDGaussRat.toComplex (D_Q z⁻¹).det := by
+    dsimp [D_C, assembledWilsonDiracChemPotComplexMatrix]
+    exact (RingHom.map_det FQCDGaussRat.toComplex (D_Q z⁻¹)).symm
+  have h_det_inv_C : (D_C z⁻¹).det = star (D_C z).det := by
+    rw [h_map_zinv, h_det_inv, FQCDGaussRat.toComplex_star, h_map_z]
+  have h_pq_map_C : (D_C z * D_C z⁻¹).det = FQCDGaussRat.toComplex (D_Q z * D_Q z⁻¹).det := by
+    rw [Matrix.det_mul, h_map_z, h_map_zinv, ← map_mul, ← Matrix.det_mul]
+  have h_pq_C_im : ((D_C z * D_C z⁻¹).det).im = 0 := by
+    rw [h_pq_map_C]
+    simp only [FQCDGaussRat.toComplex, RingHom.coe_mk, MonoidHom.coe_mk, OneHom.coe_mk,
+      Complex.add_im, Complex.ratCast_im, Complex.mul_im, Complex.ratCast_re,
+      Complex.I_re, mul_zero, zero_mul, Complex.I_im, mul_one, zero_add, add_zero]
+    rw [h_pq_im]
+    norm_num
+  have h_pq_C_re : 0 ≤ ((D_C z * D_C z⁻¹).det).re := by
+    rw [h_pq_map_C]
+    simp only [FQCDGaussRat.toComplex, RingHom.coe_mk, MonoidHom.coe_mk, OneHom.coe_mk,
+      Complex.add_re, Complex.ratCast_re, Complex.mul_re, Complex.ratCast_im,
+      Complex.I_re, mul_zero, Complex.I_im, mul_one, sub_self, add_zero]
+    exact Rat.cast_nonneg.mpr h_pq_nonneg
+  exact ⟨h_one, h_asym, h_int, h_det_inv, h_pq_det, h_fb, h_pq_im, h_pq_re,
+    h_pq_nonneg, h_det_inv_C, h_pq_C_im, h_pq_C_re⟩
+
+-- ============================================================================
 -- Axiom Verification Receipts
 -- ============================================================================
 
@@ -2581,5 +2859,6 @@ theorem assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivit
 #print axioms overlap_modified_chirality_matrix_square
 #print axioms overlap_modified_chirality_involution
 #print axioms assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivity
+#print axioms assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity
 
 end FQCD
