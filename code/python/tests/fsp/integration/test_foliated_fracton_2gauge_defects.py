@@ -218,3 +218,63 @@ class TestFoliatedFracton2GaugeDefects:
         with pytest.raises(ValueError):
             HingeLineonSignCertifier.permutation_sign_trivial(is_collision_free=False)
 
+        # 6. Multi-hinge Y-junction collision-free exchange vs axis conservation (Theorems 6-8)
+        yj = HingeLineonSignCertifier.verify_y_junction_collision_free_exchange()
+        assert yj["trajectory_steps"] == 6
+        assert yj["collision_free"] is True
+        assert yj["valid_y_junction_hops"] is True
+        assert yj["exchanged"] is True
+        assert yj["exchange_sign"] == -1
+        assert yj["abelian_holonomy_exchange_weight"] == -2
+        assert yj["nonabelian_holonomy_exchange_weight"] == 2
+        assert yj["axis_conserved_branch_exchange_possible"] is False
+
+    def test_noncommuting_su2_positive_commutator_trace_counterexample(self) -> None:
+        """
+        Regression test for the SU(2) non-commuting holonomy counterexample (Theorem 10):
+        A = diag(i, -i) and B = [[4/5, -3/5], [3/5, 4/5]] are both in SU(2) and do not
+        commute (AB != BA), yet Tr(A B A^-1 B^-1) = 14/25 > 0 (not -2, and not rounded to 1).
+        """
+        a_complex = np.array([[1j, 0.0], [0.0, -1j]], dtype=complex)
+        b_complex = np.array([[4.0 / 5.0, -3.0 / 5.0], [3.0 / 5.0, 4.0 / 5.0]], dtype=complex)
+        assert not np.allclose(a_complex @ b_complex, b_complex @ a_complex)
+        b_binary = np.array([[Fraction(float(x.real)) for x in row] for row in b_complex], dtype=object)
+        assert HingeLineonSignCertifier.compute_hinge_holonomy_trace(a_complex, b_complex) == HingeLineonSignCertifier.compute_hinge_holonomy_trace(a_complex, b_binary)
+        assert HingeLineonSignCertifier.compute_hinge_holonomy_trace(a_complex, b_complex) > Fraction(0, 1)
+
+        a_exact = np.array([[(Fraction(0, 1), Fraction(1, 1)), (Fraction(0, 1), Fraction(0, 1))],
+                            [(Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(-1, 1))]], dtype=object)
+        b_exact = np.array([[Fraction(4, 5), Fraction(-3, 5)],
+                            [Fraction(3, 5), Fraction(4, 5)]], dtype=object)
+        assert HingeLineonSignCertifier.compute_hinge_holonomy_trace(a_exact, b_exact) == Fraction(14, 25)
+
+
+
+
+
+def test_holonomy_preserves_small_binary_inputs():
+    tiny = float(2**-40)
+    a = np.array([[tiny, 0], [0, 1]], dtype=float)
+    assert HingeLineonSignCertifier._to_gaussian_rat(tiny) == (Fraction(tiny), Fraction(0))
+    assert HingeLineonSignCertifier.compute_hinge_holonomy_trace(a, np.eye(2)) == 2
+
+
+def test_holonomy_preserves_large_denominator_rationals():
+    q = Fraction(1, 10**12 + 39)
+    assert HingeLineonSignCertifier._to_gaussian_rat(q) == (q, Fraction(0))
+
+
+@pytest.mark.parametrize("shape", [(3, 3), (2, 3), (1, 1)])
+def test_holonomy_rejects_wrong_matrix_shape(shape):
+    with pytest.raises(ValueError, match="2x2"):
+        HingeLineonSignCertifier.compute_hinge_holonomy_trace(np.eye(*shape), np.eye(2))
+
+
+def test_holonomy_rejects_singular_matrix():
+    with pytest.raises(ValueError, match="Singular"):
+        HingeLineonSignCertifier.compute_hinge_holonomy_trace(np.zeros((2, 2)), np.eye(2))
+
+
+def test_holonomy_preserves_numpy_extended_precision():
+    value = np.longdouble("1.0000000000000000001")
+    assert HingeLineonSignCertifier._to_gaussian_rat(value) == (Fraction(*value.as_integer_ratio()), Fraction(0))

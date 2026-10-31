@@ -808,7 +808,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1216` | `FERMION_SIGN` | `OPEN_OBLIGATION` | `FSP-DIRAC-KAHLER-SPINFOAM-CLAIM` (OPEN) | - |
 | `TFQ-1217` | `FERMION_SIGN` | `IMPORTED_ASSUMPTION` | `FSP-XCUBE-FRACTON-MODEL` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-1218` | `FERMION_SIGN` | `IMPORTED_ASSUMPTION` | `FSP-FRACTON-MOBILITY` (IMPORTED_ASSUMPTION) | - |
-| `TFQ-1219` | `FERMION_SIGN` | `OPEN_OBLIGATION` | `FSP-HINGE-LINEON-SIGN-CLAIM` (OPEN) | - |
+| `TFQ-1219` | `FERMION_SIGN` | `COMPUTATIONAL_CONTROL` | `FSP-HINGE-LINEON-SIGN-CLAIM` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-1220` | `FERMION_SIGN` | `REFUTED` | `FSP-MASTER-DICHOTOMY-REFUTED` (REFUTED) | - |
 | `TFQ-1221` | `MUTUALLY_UNBIASED_BASES` | `DEFINITION` | `MUB6-QUHEX-TENSOR-CARRIER` (DEFINITION) | - |
 | `TFQ-1222` | `MUTUALLY_UNBIASED_BASES` | `IMPORTED_ASSUMPTION` | `MUB6-NO-FIELD-OF-ORDER-SIX` (IMPORTED_ASSUMPTION) | - |
@@ -10223,7 +10223,7 @@ Obligation: For a single Majorana adjoint flavor the measure is a Pfaffian whose
 
 For lattice Dirac operators with chemical potential, gamma5 D(mu) gamma5 = D(-mu*)^dagger, hence det D(mu)^* = det D(-mu*); for real mu != 0 this relates D(mu) to D(-mu) only and det D(mu) is in general complex.
 
-Obligation: Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.
+Obligation: Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast; lean4/FQCD/StrongCouplingAreaLaw.lean establishes the finite-lattice Matrix (Site x Color x WeylSpinIdx) chemical-potential wrapper D_W(z), the matrix intertwining identity Gamma_5 D_W(z) Gamma_5 = D_W(z^-1)^H, determinant conjugation det D_W(z^-1) = star (det D_W(z)), and phase-quenched determinant positivity det(D_W(z) D_W(z^-1)) = |det D_W(z)|^2 >= 0 (assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity); while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.
 
 ### TFQ-1202 Z3 center projection and baryon triality
 
@@ -10433,7 +10433,7 @@ Obligation: The claim that these constraints suppress sign-inducing braids has n
 
 - UUID: `2c3046f3-88f8-583c-9a60-957d4fca20f4`
 - Parent: `TFQ-1218`
-- Status: `OPEN_OBLIGATION`
+- Status: `COMPUTATIONAL_CONTROL`
 - DAG node: `FSP-HINGE-LINEON-SIGN-CLAIM`
 - Paper: [derivation](derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md)
 

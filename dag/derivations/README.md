@@ -950,7 +950,7 @@ These branches attach to existing finite carriers. A proved theorem has its stat
 | [TFQ-1216](./26_fsp/tfq_1216_fsp_dirac_kahler_spinfoam_claim.md) | Dirac-Kaehler tastes and spinfoam boundary signs (unsupported) | `OPEN_OBLIGATION` | [TFQ-1215](./26_fsp/tfq_1215_fsp_cdt_foliation_positivity.md) | `FSP-DIRAC-KAHLER-SPINFOAM-CLAIM` |
 | [TFQ-1217](./26_fsp/tfq_1217_fsp_xcube_fracton_model.md) | X-cube fracton model ground-state degeneracy | `IMPORTED_ASSUMPTION` | [TFQ-1210](./26_fsp/tfq_1210_fsp_bf_2group_sign_claim.md) | `FSP-XCUBE-FRACTON-MODEL` |
 | [TFQ-1218](./26_fsp/tfq_1218_fsp_fracton_mobility.md) | X-cube excitation mobility classes | `IMPORTED_ASSUMPTION` | [TFQ-1217](./26_fsp/tfq_1217_fsp_xcube_fracton_model.md) | `FSP-FRACTON-MOBILITY` |
-| [TFQ-1219](./26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md) | Hinge-lineon fermion sign elimination (unsupported) | `OPEN_OBLIGATION` | [TFQ-1218](./26_fsp/tfq_1218_fsp_fracton_mobility.md) | `FSP-HINGE-LINEON-SIGN-CLAIM` |
+| [TFQ-1219](./26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md) | Hinge-lineon fermion sign elimination (unsupported) | `COMPUTATIONAL_CONTROL` | [TFQ-1218](./26_fsp/tfq_1218_fsp_fracton_mobility.md) | `FSP-HINGE-LINEON-SIGN-CLAIM` |
 | [TFQ-1220](./26_fsp/tfq_1220_fsp_master_dichotomy_refuted.md) | Involution-or-NP-hard dichotomy for finite systems (refuted as stated) | `REFUTED` | [TFQ-1192](./26_fsp/tfq_1192_fsp_troyer_wiese_reduction.md) | `FSP-MASTER-DICHOTOMY-REFUTED` |
 
 ### TENSOR_COMPOSITION (7 derivations)

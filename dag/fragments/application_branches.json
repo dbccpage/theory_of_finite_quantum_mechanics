@@ -3648,13 +3648,16 @@
         "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_two",
         "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_half",
         "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness",
-        "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero"
+        "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_gamma5_intertwine",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_det_inv_eq_star",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity"
       ],
       "rust": [],
       "imported_structure": [
         "lattice QCD with staggered quarks at chemical potential (standard)"
       ],
-      "bottleneck": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
+      "bottleneck": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast; lean4/FQCD/StrongCouplingAreaLaw.lean establishes the finite-lattice Matrix (Site x Color x WeylSpinIdx) chemical-potential wrapper D_W(z), the matrix intertwining identity Gamma_5 D_W(z) Gamma_5 = D_W(z^-1)^H, determinant conjugation det D_W(z^-1) = star (det D_W(z)), and phase-quenched determinant positivity det(D_W(z) D_W(z^-1)) = |det D_W(z)|^2 >= 0 (assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity); while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -4186,16 +4189,33 @@
     {
       "id": "FSP-HINGE-LINEON-SIGN-CLAIM",
       "stage": "FERMION_SIGN",
-      "status": "OPEN",
-      "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-055 claims PROVED_LEAN; audited status OPEN",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-055 claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED",
       "statement": "Claimed: lineons confined to 1D hinge lines cannot exchange without collision, so their worldlines carry no nontrivial permutations and foliated fracton models are sign free; no model, path expansion or sign computation exists in this checkout.",
       "source": [
         "dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md",
+        "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py"
       ],
-      "lean": [],
-      "rust": [],
+      "lean": [
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_path_preserves_relative_order",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_path_exchange_impossible",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.discrete_ivt_zero",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_exchange_collision_obstruction",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_worldline_permutation_sign_trivial",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.nonabelian_hinge_commutator_curvature_obstruction",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_collision_free_exchange_exists",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_exchange_induces_negative_sign",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.foliated_lineon_axis_conservation_forbids_branch_exchange",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.anticommuting_mat2x2_commutator_trace_neg_two",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.noncommuting_su2_positive_commutator_trace_counterexample"
+      ],
+      "rust": [
+        "code/rust/src/fsp/foliated_fracton_lineon.rs",
+        "code/rust/tests/foliated_fracton_lineon_test.rs"
+      ],
       "imported_structure": [],
       "bottleneck": "Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading.",
       "tags": [
@@ -10160,7 +10180,7 @@
       ],
       "output": "FSP-QCD-CHEMICAL-POTENTIAL-DET",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
+      "mechanism": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast; lean4/FQCD/StrongCouplingAreaLaw.lean establishes the finite-lattice Matrix (Site x Color x WeylSpinIdx) chemical-potential wrapper D_W(z), the matrix intertwining identity Gamma_5 D_W(z) Gamma_5 = D_W(z^-1)^H, determinant conjugation det D_W(z^-1) = star (det D_W(z)), and phase-quenched determinant positivity det(D_W(z) D_W(z^-1)) = |det D_W(z)|^2 >= 0 (assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity); while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
       "source": [
         "dag/derivations/26_fsp/tfq_1201_fsp_qcd_chemical_potential_det.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -10413,7 +10433,7 @@
         "FSP-FRACTON-MOBILITY"
       ],
       "output": "FSP-HINGE-LINEON-SIGN-CLAIM",
-      "status": "GAP_NO_DERIVATION",
+      "status": "COMPUTED",
       "mechanism": "Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading.",
       "source": [
         "dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md",
@@ -16295,7 +16315,7 @@
       "parent_id": "TFQ-1200",
       "record_status": "IMPORTED_ASSUMPTION",
       "summary": "For lattice Dirac operators with chemical potential, gamma5 D(mu) gamma5 = D(-mu*)^dagger, hence det D(mu)^* = det D(-mu*); for real mu != 0 this relates D(mu) to D(-mu) only and det D(mu) is in general complex.",
-      "obligation": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
+      "obligation": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast; lean4/FQCD/StrongCouplingAreaLaw.lean establishes the finite-lattice Matrix (Site x Color x WeylSpinIdx) chemical-potential wrapper D_W(z), the matrix intertwining identity Gamma_5 D_W(z) Gamma_5 = D_W(z^-1)^H, determinant conjugation det D_W(z^-1) = star (det D_W(z)), and phase-quenched determinant positivity det(D_W(z) D_W(z^-1)) = |det D_W(z)|^2 >= 0 (assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity); while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
       "source_slice": "application_branches",
       "existing_derivation_dag_ids": [
         "FSP-QCD-CHEMICAL-POTENTIAL-DET"
@@ -16328,7 +16348,10 @@
         "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_two",
         "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_half",
         "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness",
-        "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero"
+        "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_gamma5_intertwine",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_det_inv_eq_star",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity"
       ]
     },
     {
@@ -16898,7 +16921,7 @@
       "name": "Hinge-lineon fermion sign elimination (unsupported)",
       "stage": "FERMION_SIGN",
       "parent_id": "TFQ-1218",
-      "record_status": "OPEN_OBLIGATION",
+      "record_status": "COMPUTATIONAL_CONTROL",
       "summary": "Claimed: lineons confined to 1D hinge lines cannot exchange without collision, so their worldlines carry no nontrivial permutations and foliated fracton models are sign free; no model, path expansion or sign computation exists in this checkout.",
       "obligation": "Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading.",
       "source_slice": "application_branches",
@@ -16910,11 +16933,32 @@
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md",
         "papers/core/fsp/theory_of_finite_fsp.md:762-775",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:34-34"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:34-34",
+        "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py"
       ],
-      "python": [],
-      "rust": [],
-      "lean4": []
+      "python": [
+        "code/python/src/fsp/foliated_fracton_2gauge_defects.py",
+        "code/python/tests/fsp/integration/test_foliated_fracton_2gauge_defects.py",
+        "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py"
+      ],
+      "rust": [
+        "code/rust/src/fsp/foliated_fracton_lineon.rs",
+        "code/rust/tests/foliated_fracton_lineon_test.rs"
+      ],
+      "lean4": [
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_path_preserves_relative_order",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_path_exchange_impossible",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.discrete_ivt_zero",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_exchange_collision_obstruction",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_worldline_permutation_sign_trivial",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.nonabelian_hinge_commutator_curvature_obstruction",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_collision_free_exchange_exists",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_exchange_induces_negative_sign",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.foliated_lineon_axis_conservation_forbids_branch_exchange",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.anticommuting_mat2x2_commutator_trace_neg_two",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.noncommuting_su2_positive_commutator_trace_counterexample"
+      ]
     },
     {
       "id": "TFQ-1220",

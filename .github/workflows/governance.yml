@@ -66,7 +66,9 @@ jobs:
         run: python -I -X utf8 -m pytest scripts/test_governance_policy.py scripts/test_changed_since_contracts.py scripts/test_replay_fqcd_lean.py -q -p no:cacheprovider
 
       - name: Verify FQCD replay source pins and fully qualified kernel reports
-        run: python -I -X utf8 scripts/replay_fqcd_lean.py --verify-receipt
+        run: |
+          python -I -X utf8 scripts/replay_fqcd_lean.py --verify-receipt
+          python -I -X utf8 scripts/replay_pr492_lean.py --verify-receipts
 
       - name: Rust and Python agree on the governed population
         run: |

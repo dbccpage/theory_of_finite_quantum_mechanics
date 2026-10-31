@@ -20,7 +20,7 @@ RECEIPT = "dag/research/campaign_tfq-1052_lean_replay.json"
 LOG = "dag/research/campaign_tfq-1052_lean_replay.log"
 REPORT = re.compile(r"'([^']+)' (?:depends on axioms:\s*\[([^\]]*)\]|does not depend on any axioms)")
 STANDARD_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
-PIN_PATHS = (SOURCE, "lean4/lakefile.lean", "lean4/lake-manifest.json", "lean4/lean-toolchain")
+PIN_PATHS = (SOURCE, "lean4/FermionSignWilsonDiracGamma5.lean", "lean4/lakefile.lean", "lean4/lake-manifest.json", "lean4/lean-toolchain")
 
 
 def sha(data: bytes) -> str:
@@ -28,14 +28,32 @@ def sha(data: bytes) -> str:
 
 
 def expected_anchors(source: str) -> list[str]:
-    """This module uses one namespace; reject changes to that assumption."""
-    if re.findall(r"^namespace (\S+)", source, re.M) != ["FQCD"]:
-        raise ValueError("Expected the single FQCD namespace")
-    names = re.findall(r"^#print axioms (.+)$", source, re.M)
-    if (not names or len(names) != len(set(names))
-            or any(not re.fullmatch(r"\w+", name) for name in names)):
-        raise ValueError("Missing or duplicate source audit requests")
-    return ["FQCD." + name for name in names]
+    """Resolve audit requests in the actual nested namespace context of this module."""
+    scopes: list[str] = []
+    names: list[str] = []
+    for line in re.sub(r"/\-.*?\-/|--[^\n]*", "", source, flags=re.S).splitlines():
+        line = line.strip()
+        opened = re.fullmatch(r"namespace (\w+)", line)
+        closed = re.fullmatch(r"end(?: (\w+))?", line)
+        request = re.fullmatch(r"#print axioms (\w+(?:\.\w+)*)", line)
+        if opened:
+            if not scopes and opened[1] != "FQCD":
+                raise ValueError("Unexpected root namespace")
+            scopes.append(opened[1])
+        elif closed:
+            if not scopes or (closed[1] and closed[1] != scopes[-1]):
+                raise ValueError("Unmatched namespace end")
+            scopes.pop()
+        elif request:
+            name = request[1] if "." in request[1] else ".".join([*scopes, request[1]])
+            if not name.startswith("FQCD."):
+                raise ValueError("Audit request is outside FQCD")
+            names.append(name)
+        elif line.startswith("#print axioms"):
+            raise ValueError("Unsupported audit request")
+    if scopes or not names or len(names) != len(set(names)):
+        raise ValueError("Unclosed namespace, missing or duplicate audit requests")
+    return names
 
 
 def parse_reports(output: str, anchors: list[str]) -> dict[str, list[str]]:

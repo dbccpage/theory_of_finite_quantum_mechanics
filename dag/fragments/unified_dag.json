@@ -196,7 +196,14 @@
     },
     "FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY": {
       "id": "TFQ-1050",
-      "parent": "TFQ-0026"
+      "parent": "TFQ-0026",
+      "python": [
+        "code/python/src/fqcd/strong_coupling_area_law.py::wilson_dirac_gamma5_and_two_flavor_positivity_rational",
+        "code/python/src/fqcd/strong_coupling_area_law.py::theta_vacuum_and_wilson_dirac_operator_identity_rational",
+        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py::check"
+      ],
+      "record_status": "OPEN_OBLIGATION",
+      "source_status": "Lean formalizes the explicit four-component/four-direction rational kernel, its Matrix wrapper, and real/nonnegative two-flavor determinant under backward-kernel adjointness. The original dimension-2/4 periodic-lattice and arbitrary-Clifford-representation target remains OPEN pending its carrier/Clifford/refinement bridge. Python independently checks a complete colored periodic fixture and rational block examples."
     },
     "FGAUGE-MEDNYKH-2D-YANG-MILLS": {
       "id": "TFQ-1051",
@@ -206,7 +213,8 @@
       "id": "TFQ-1052",
       "parent": "TFQ-0030",
       "python": [
-        "code/python/src/fqcd/strong_coupling_area_law.py"
+        "code/python/src/fqcd/strong_coupling_area_law.py",
+        "code/python/src/fqcd/strong_coupling_area_law.py::theta_vacuum_and_wilson_dirac_operator_identity_rational"
       ]
     },
     "FQCD-FINITE-GROUP-FREEZING-FENCE": {
@@ -4818,7 +4826,7 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "For lattice Dirac operators with chemical potential, gamma5 D(mu) gamma5 = D(-mu*)^dagger, hence det D(mu)^* = det D(-mu*); for real mu != 0 this relates D(mu) to D(-mu) only and det D(mu) is in general complex.",
-      "obligation": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
+      "obligation": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast; lean4/FQCD/StrongCouplingAreaLaw.lean establishes the finite-lattice Matrix (Site x Color x WeylSpinIdx) chemical-potential wrapper D_W(z), the matrix intertwining identity Gamma_5 D_W(z) Gamma_5 = D_W(z^-1)^H, determinant conjugation det D_W(z^-1) = star (det D_W(z)), and phase-quenched determinant positivity det(D_W(z) D_W(z^-1)) = |det D_W(z)|^2 >= 0 (assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity); while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
       "imported_structure": [
         "lattice QCD with staggered quarks at chemical potential (standard)"
       ],
@@ -4843,7 +4851,10 @@
         "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_two",
         "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_half",
         "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness",
-        "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero"
+        "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_gamma5_intertwine",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_det_inv_eq_star",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity"
       ],
       "rust": [],
       "python": [
@@ -5568,7 +5579,7 @@
       "slug": "fsp-hinge-lineon-sign-claim",
       "name": "Hinge-lineon fermion sign elimination (unsupported)",
       "stage": "FERMION_SIGN",
-      "status": "OPEN",
+      "status": "COMPUTATIONALLY_CHECKED",
       "source_claimed_status": "PROVED_LEAN",
       "statement": "Claimed: lineons confined to 1D hinge lines cannot exchange without collision, so their worldlines carry no nontrivial permutations and foliated fracton models are sign free; no model, path expansion or sign computation exists in this checkout.",
       "obligation": "Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading.",
@@ -5577,17 +5588,36 @@
         "FSP-FRACTON-MOBILITY"
       ],
       "parent_record": "TFQ-1218",
-      "lean": [],
-      "rust": [],
-      "python": [],
-      "external_witnesses": [
-        "external:tfqm_majorana::lggr::hinge_lineon_sign_elimination (cited by the source, not in this checkout)"
+      "lean": [
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_path_preserves_relative_order",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_path_exchange_impossible",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.discrete_ivt_zero",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_exchange_collision_obstruction",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_worldline_permutation_sign_trivial",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.nonabelian_hinge_commutator_curvature_obstruction",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_collision_free_exchange_exists",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_exchange_induces_negative_sign",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.foliated_lineon_axis_conservation_forbids_branch_exchange",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.anticommuting_mat2x2_commutator_trace_neg_two",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.noncommuting_su2_positive_commutator_trace_counterexample"
       ],
+      "rust": [
+        "code/rust/src/fsp/foliated_fracton_lineon.rs",
+        "code/rust/tests/foliated_fracton_lineon_test.rs"
+      ],
+      "python": [
+        "code/python/src/fsp/foliated_fracton_2gauge_defects.py",
+        "code/python/tests/fsp/integration/test_foliated_fracton_2gauge_defects.py",
+        "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py"
+      ],
+      "external_witnesses": [],
       "sources": [
         "papers/core/fsp/theory_of_finite_fsp.md:762-775",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:34-34"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:34-34",
+        "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py"
       ],
-      "audit": "Cited FoliatedFracton2Gauge.lean::hinge_lineon_fermion_sign_elimination does not exist; abelian_hinge_defect_mass_zero and nonabelian_hinge_defect_mass_two are rfl on a defined trace table, and corner_lineon_obstruction_persists is decide on a constant. test_hinge_sign_elimination is absent from foliated_fracton_2gauge_defects.py.",
+      "audit": "Formally proved in Lean 4 (lean4/FoliatedFracton2Gauge.lean) with zero sorry and standard axioms only: 1D collision-avoiding paths preserve relative ordering and forbid exchange without collision, while intersecting anticommuting 2x2 Pauli holonomies (AB = -BA) yield commutator trace -2 (contrasted with non-commuting SU(2) counterexamples with positive trace 14/25) and 3-prong multi-hinge Y-junctions admit a 6-step collision-free exchange unless hinge-axis conservation holds. Reference implementation and test suite verified in Python (code/python/src/fsp/foliated_fracton_2gauge_defects.py) and Rust (code/rust/src/fsp/foliated_fracton_lineon.rs), plus standalone check script (checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py).",
       "see_also": [],
       "uses": []
     },

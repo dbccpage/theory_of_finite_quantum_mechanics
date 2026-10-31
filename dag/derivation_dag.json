@@ -9997,14 +9997,24 @@
       "id": "FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY",
       "stage": "FINITE_QCD",
       "status": "OPEN",
-      "source_status": "Added 2026-10-27 with maintainer approval as a precisely stated target; no Lean, Rust or Python evidence exists in this checkout.",
+      "source_status": "Lean formalizes the explicit four-component/four-direction rational kernel, its Matrix wrapper, and real/nonnegative two-flavor determinant under backward-kernel adjointness. The original dimension-2/4 periodic-lattice and arbitrary-Clifford-representation target remains OPEN pending its carrier/Clifford/refinement bridge. Python independently checks a complete colored periodic fixture and rational block examples.",
       "statement": "On a finite periodic hypercubic lattice in dimension 2 or 4 with arbitrary unitary link matrices U_mu(x), Hermitian Euclidean gamma matrices and gamma5 anticommuting with each gamma_mu, the Wilson-Dirac operator D_W = m + sum_mu [gamma_mu (nabla_mu + nabla*_mu)/2 - (r/2) nabla*_mu nabla_mu] with real m and r satisfies gamma5 D_W gamma5 = D_W^dagger.",
       "source": [
         "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
-        "lean4/FermionSignWilsonDiracGamma5.lean"
+        "lean4/FermionSignWilsonDiracGamma5.lean",
+        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py"
       ],
-      "lean": [],
-      "rust": [],
+      "lean": [
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.wilson_dirac_gamma5_hermiticity_and_two_flavor_det_positivity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity"
+      ],
+      "rust": [
+        "code/rust/src/fqcd/strong_coupling_area_law.rs::wilson_dirac_gamma5_and_two_flavor_positivity",
+        "code/rust/src/fqcd/strong_coupling_area_law.rs::theta_vacuum_and_wilson_dirac_operator_identity"
+      ],
       "imported_structure": [],
       "bottleneck": "Prove the operator identity in Lean for the finite lattice. A proof would supply the hypothesis that FSP-WILSON-DIRAC-GAMMA5 now imports; lean4/FermionSignWilsonDiracGamma5.lean states only the Clifford and determinant lemmas, not this identity.",
       "tags": [
@@ -10046,10 +10056,16 @@
         "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
       ],
       "lean": [
-        "lean4/FQCD/StrongCouplingAreaLaw.lean"
+        "lean4/FQCD/StrongCouplingAreaLaw.lean",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity"
       ],
       "rust": [
-        "code/rust/src/fqcd/strong_coupling_area_law.rs"
+        "code/rust/src/fqcd/strong_coupling_area_law.rs",
+        "code/rust/src/fqcd/strong_coupling_area_law.rs::theta_vacuum_and_wilson_dirac_operator_identity"
       ],
       "imported_structure": [],
       "bottleneck": "Prove the bound by a convergent strong-coupling (cluster) expansion in the style of Osterwalder-Seiler (1978), with explicit constants. The bound would replace the declared area-law formula of TFQ-0024 by a derived inequality at strong coupling; it says nothing about weak coupling or the continuum.",
@@ -22862,13 +22878,16 @@
         "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_two",
         "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_half",
         "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness",
-        "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero"
+        "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_gamma5_intertwine",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_det_inv_eq_star",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity"
       ],
       "rust": [],
       "imported_structure": [
         "lattice QCD with staggered quarks at chemical potential (standard)"
       ],
-      "bottleneck": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
+      "bottleneck": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast; lean4/FQCD/StrongCouplingAreaLaw.lean establishes the finite-lattice Matrix (Site x Color x WeylSpinIdx) chemical-potential wrapper D_W(z), the matrix intertwining identity Gamma_5 D_W(z) Gamma_5 = D_W(z^-1)^H, determinant conjugation det D_W(z^-1) = star (det D_W(z)), and phase-quenched determinant positivity det(D_W(z) D_W(z^-1)) = |det D_W(z)|^2 >= 0 (assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity); while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
       "tags": [
         "application-branch",
         "source-corpus",
@@ -23401,7 +23420,7 @@
       "id": "FSP-HINGE-LINEON-SIGN-CLAIM",
       "stage": "FERMION_SIGN",
       "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "Formally proved in Lean 4 (lean4/FoliatedFracton2Gauge.lean) and verified in Rust and Python; collision-avoidance eliminates 1D hinge permutations, while intersecting hinges exhibit uncancelled commutator defect curvature.",
+      "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-055 claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED",
       "statement": "Claimed: lineons confined to 1D hinge lines cannot exchange without collision, so their worldlines carry no nontrivial permutations and foliated fracton models are sign free; no model, path expansion or sign computation exists in this checkout.",
       "source": [
         "dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md",
@@ -23416,10 +23435,16 @@
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_exchange_collision_obstruction",
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_worldline_permutation_sign_trivial",
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.nonabelian_hinge_commutator_curvature_obstruction",
-        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free"
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_collision_free_exchange_exists",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_exchange_induces_negative_sign",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.foliated_lineon_axis_conservation_forbids_branch_exchange",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.anticommuting_mat2x2_commutator_trace_neg_two",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.noncommuting_su2_positive_commutator_trace_counterexample"
       ],
       "rust": [
-        "code/rust/src/fsp/foliated_fracton_lineon.rs"
+        "code/rust/src/fsp/foliated_fracton_lineon.rs",
+        "code/rust/tests/foliated_fracton_lineon_test.rs"
       ],
       "imported_structure": [],
       "bottleneck": "Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading.",
@@ -39097,7 +39122,7 @@
       ],
       "output": "FSP-QCD-CHEMICAL-POTENTIAL-DET",
       "status": "CONDITIONAL_ON_IMPORT",
-      "mechanism": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
+      "mechanism": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast; lean4/FQCD/StrongCouplingAreaLaw.lean establishes the finite-lattice Matrix (Site x Color x WeylSpinIdx) chemical-potential wrapper D_W(z), the matrix intertwining identity Gamma_5 D_W(z) Gamma_5 = D_W(z^-1)^H, determinant conjugation det D_W(z^-1) = star (det D_W(z)), and phase-quenched determinant positivity det(D_W(z) D_W(z^-1)) = |det D_W(z)|^2 >= 0 (assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity); while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
       "source": [
         "dag/derivations/26_fsp/tfq_1201_fsp_qcd_chemical_potential_det.md",
         "papers/core/fsp/theory_of_finite_fsp.md",
@@ -39350,7 +39375,7 @@
         "FSP-FRACTON-MOBILITY"
       ],
       "output": "FSP-HINGE-LINEON-SIGN-CLAIM",
-      "status": "GAP_NO_DERIVATION",
+      "status": "COMPUTED",
       "mechanism": "Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading.",
       "source": [
         "dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md",
@@ -59606,17 +59631,31 @@
       "f004_refs": [
         "dag/derivations/17_finite_qcd/tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.md",
         "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
-        "lean4/FermionSignWilsonDiracGamma5.lean"
+        "lean4/FermionSignWilsonDiracGamma5.lean",
+        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py"
       ],
       "id": "TFQ-1050",
-      "lean4": [],
+      "lean4": [
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.wilson_dirac_gamma5_hermiticity_and_two_flavor_det_positivity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity"
+      ],
       "local_id": "FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY",
       "name": "fqcd-wilson-dirac-gamma5-hermiticity",
       "obligation": "Prove the operator identity in Lean for the finite lattice. A proof would supply the hypothesis that FSP-WILSON-DIRAC-GAMMA5 now imports; lean4/FermionSignWilsonDiracGamma5.lean states only the Clifford and determinant lemmas, not this identity.",
       "parent_id": "TFQ-0026",
-      "python": [],
+      "python": [
+        "code/python/src/fqcd/strong_coupling_area_law.py::wilson_dirac_gamma5_and_two_flavor_positivity_rational",
+        "code/python/src/fqcd/strong_coupling_area_law.py::theta_vacuum_and_wilson_dirac_operator_identity_rational",
+        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py::check"
+      ],
       "record_status": "OPEN_OBLIGATION",
-      "rust": [],
+      "rust": [
+        "code/rust/src/fqcd/strong_coupling_area_law.rs::wilson_dirac_gamma5_and_two_flavor_positivity",
+        "code/rust/src/fqcd/strong_coupling_area_law.rs::theta_vacuum_and_wilson_dirac_operator_identity"
+      ],
       "source_slice": "unified_dag",
       "stage": "FINITE_QCD",
       "summary": "On a finite periodic hypercubic lattice in dimension 2 or 4 with arbitrary unitary link matrices U_mu(x), Hermitian Euclidean gamma matrices and gamma5 anticommuting with each gamma_mu, the Wilson-Dirac operator D_W = m + sum_mu [gamma_mu (nabla_mu + nabla*_mu)/2 - (r/2) nabla*_mu nabla_mu] with real m and r satisfies gamma5 D_W gamma5 = D_W^dagger.",
@@ -59659,18 +59698,25 @@
       ],
       "id": "TFQ-1052",
       "lean4": [
-        "lean4/FQCD/StrongCouplingAreaLaw.lean"
+        "lean4/FQCD/StrongCouplingAreaLaw.lean",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity"
       ],
       "local_id": "FQCD-STRONG-COUPLING-AREA-LAW",
       "name": "fqcd-strong-coupling-area-law",
       "obligation": "Prove the bound by a convergent strong-coupling (cluster) expansion in the style of Osterwalder-Seiler (1978), with explicit constants. The bound would replace the declared area-law formula of TFQ-0024 by a derived inequality at strong coupling; it says nothing about weak coupling or the continuum.",
       "parent_id": "TFQ-0030",
       "python": [
-        "code/python/src/fqcd/strong_coupling_area_law.py"
+        "code/python/src/fqcd/strong_coupling_area_law.py",
+        "code/python/src/fqcd/strong_coupling_area_law.py::theta_vacuum_and_wilson_dirac_operator_identity_rational"
       ],
       "record_status": "CONDITIONAL",
       "rust": [
-        "code/rust/src/fqcd/strong_coupling_area_law.rs"
+        "code/rust/src/fqcd/strong_coupling_area_law.rs",
+        "code/rust/src/fqcd/strong_coupling_area_law.rs::theta_vacuum_and_wilson_dirac_operator_identity"
       ],
       "source_slice": "unified_dag",
       "stage": "FINITE_QCD",
@@ -67924,11 +67970,14 @@
         "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_two",
         "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_half",
         "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness",
-        "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero"
+        "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_gamma5_intertwine",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_det_inv_eq_star",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity"
       ],
       "local_id": "FSP-QCD-CHEMICAL-POTENTIAL-DET",
       "name": "Complex quark determinant at real chemical potential",
-      "obligation": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
+      "obligation": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast; lean4/FQCD/StrongCouplingAreaLaw.lean establishes the finite-lattice Matrix (Site x Color x WeylSpinIdx) chemical-potential wrapper D_W(z), the matrix intertwining identity Gamma_5 D_W(z) Gamma_5 = D_W(z^-1)^H, determinant conjugation det D_W(z^-1) = star (det D_W(z)), and phase-quenched determinant positivity det(D_W(z) D_W(z^-1)) = |det D_W(z)|^2 >= 0 (assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity); while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
       "parent_id": "TFQ-1200",
       "python": [
         "checks/independent/fsp-qcd-chemical-potential-det.py::main"
@@ -68509,7 +68558,8 @@
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md",
         "papers/core/fsp/theory_of_finite_fsp.md:762-775",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:34-34"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:34-34",
+        "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py"
       ],
       "id": "TFQ-1219",
       "lean4": [
@@ -68519,7 +68569,12 @@
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_exchange_collision_obstruction",
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_worldline_permutation_sign_trivial",
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.nonabelian_hinge_commutator_curvature_obstruction",
-        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free"
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_collision_free_exchange_exists",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_exchange_induces_negative_sign",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.foliated_lineon_axis_conservation_forbids_branch_exchange",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.anticommuting_mat2x2_commutator_trace_neg_two",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.noncommuting_su2_positive_commutator_trace_counterexample"
       ],
       "local_id": "FSP-HINGE-LINEON-SIGN-CLAIM",
       "name": "Hinge-lineon fermion sign elimination (unsupported)",
@@ -68527,11 +68582,13 @@
       "parent_id": "TFQ-1218",
       "python": [
         "code/python/src/fsp/foliated_fracton_2gauge_defects.py",
+        "code/python/tests/fsp/integration/test_foliated_fracton_2gauge_defects.py",
         "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py"
       ],
       "record_status": "COMPUTATIONAL_CONTROL",
       "rust": [
-        "code/rust/src/fsp/foliated_fracton_lineon.rs"
+        "code/rust/src/fsp/foliated_fracton_lineon.rs",
+        "code/rust/tests/foliated_fracton_lineon_test.rs"
       ],
       "source_slice": "application_branches",
       "stage": "FERMION_SIGN",

@@ -283,6 +283,29 @@ def run_checks() -> Dict[str, Any]:
     checks.append(("defect_mass_phi1_abelian_is_0", compute_defect_mass_phi1(tr_abelian.re) == 0))
     checks.append(("defect_mass_phi1_nonabelian_is_2", compute_defect_mass_phi1(tr_nonab.re) == 2))
 
+    # Non-commuting SU(2) counterexample: A = diag(i, -i), B = [[4/5, -3/5], [3/5, 4/5]]
+    # Both in SU(2), AB != BA, yet Tr(A B A^-1 B^-1) = 14/25 > 0
+    zero_c = ComplexRat(Fraction(0, 1), Fraction(0, 1))
+    one_c = ComplexRat(Fraction(1, 1), Fraction(0, 1))
+    a_su2 = Mat2x2(
+        ComplexRat(Fraction(0, 1), Fraction(1, 1)),
+        zero_c,
+        zero_c,
+        ComplexRat(Fraction(0, 1), Fraction(-1, 1)),
+    )
+    b_su2 = Mat2x2(
+        ComplexRat(Fraction(4, 5), Fraction(0, 1)),
+        ComplexRat(Fraction(-3, 5), Fraction(0, 1)),
+        ComplexRat(Fraction(3, 5), Fraction(0, 1)),
+        ComplexRat(Fraction(4, 5), Fraction(0, 1)),
+    )
+    tr_su2_ce = compute_commutator_holonomy_trace(a_su2, b_su2)
+    checks.append(("su2_counterexample_det_one", a_su2.det() == one_c and b_su2.det() == one_c))
+    checks.append(("su2_counterexample_noncommuting", a_su2.mul(b_su2) != b_su2.mul(a_su2)))
+    checks.append(("su2_counterexample_trace_re_is_14_over_25", tr_su2_ce.re == Fraction(14, 25)))
+    checks.append(("su2_counterexample_trace_im_is_zero", tr_su2_ce.im == Fraction(0, 1)))
+    checks.append(("su2_counterexample_trace_strictly_positive", tr_su2_ce.re > Fraction(0, 1)))
+
     # -------------------------------------------------------------------------
     # Family 5: Foliated categorical quantum double projection
     # -------------------------------------------------------------------------
@@ -313,6 +336,22 @@ def run_checks() -> Dict[str, Any]:
     route_corner = evaluate_terminal_routing(is_corner_lineon=True, is_nonabelian=True)
     checks.append(("terminal_route_straight_decoupled_is_exact_repair", route_straight == "EXACT_REPAIR"))
     checks.append(("terminal_route_corner_turn_is_open_sign_obstruction", route_corner == "OPEN_SIGN_OBSTRUCTION"))
+
+    # -------------------------------------------------------------------------
+    # Family 8: Multi-hinge Y-junction 6-step collision-free exchange vs axis conservation
+    # -------------------------------------------------------------------------
+    y_adj = {("0", "X"), ("X", "0"), ("0", "Y"), ("Y", "0"), ("0", "Z"), ("Z", "0")}
+    y_traj = [("X", "Y"), ("0", "Y"), ("Z", "Y"), ("Z", "0"), ("Z", "X"), ("0", "X"), ("Y", "X")]
+    y_coll_free = all(u != v for u, v in y_traj)
+    y_steps_ok = all(
+        (y_traj[t][0] == y_traj[t + 1][0] and (y_traj[t][1], y_traj[t + 1][1]) in y_adj)
+        or (y_traj[t][1] == y_traj[t + 1][1] and (y_traj[t][0], y_traj[t + 1][0]) in y_adj)
+        for t in range(len(y_traj) - 1)
+    )
+    y_exchanged = y_traj[-1][0] == y_traj[0][1] and y_traj[-1][1] == y_traj[0][0]
+    y_sign = -1 if y_exchanged else 1
+    checks.append(("y_junction_6step_collision_free_exchange", len(y_traj) - 1 == 6 and y_coll_free and y_steps_ok and y_exchanged))
+    checks.append(("y_junction_exchange_induces_negative_sign", y_sign == -1 and y_sign * tr_abelian.re == Fraction(-2, 1)))
 
     total = len(checks)
     failures = [name for name, passed in checks if not passed]

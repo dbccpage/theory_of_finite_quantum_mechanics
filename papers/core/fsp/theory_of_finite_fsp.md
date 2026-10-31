@@ -766,7 +766,7 @@ Every derivation step is backed by an exact verification triad spanning Python n
 - **Status:** `COMPUTATIONALLY_CHECKED`
 - **Parent Nodes:** `FSP-DERIV-054`
 - **Derivation Summary (~500 chars):**
-  > Analyzes the fermion sign behavior for mobile lineons moving along 1D hinge lines of orthogonal foliation leaves. Shows in this toy setting that because lineons cannot bypass each other in 1D without direct collision, their worldlines carry no non-trivial spatial permutations (trivial parity +1). At intersecting hinges, non-abelian defect sheets produce uncancelled commutator curvature Tr(M) = -2 < 0, which is restored to non-negative trace under decoupled foliated categorical projection.
+  > Analyzes the fermion sign behavior for mobile lineons moving along 1D hinge lines of orthogonal foliation leaves. Shows in this toy setting that because lineons cannot bypass each other in 1D without direct collision, their worldlines carry no non-trivial spatial permutations (trivial parity +1). At intersecting hinges, anticommuting 2x2 Pauli defect sheets ($AB = -BA$) produce uncancelled commutator curvature $\operatorname{Tr}(M) = -2 < 0$ (whereas general non-commuting $SU(2)$ holonomies need not have negative trace, e.g., $\operatorname{Tr}(ABA^{-1}B^{-1}) = 14/25 > 0$), which is restored to non-negative trace under decoupled foliated categorical projection.
 - **Verification Triad:**
   * **Python:** [`code/python/tests/fsp/integration/test_foliated_fracton_2gauge_defects.py::test_hinge_sign_elimination`](code/python/tests/fsp/integration/test_foliated_fracton_2gauge_defects.py)
   * **Rust:** [`code/rust/tests/foliated_fracton_lineon_test.rs`](code/rust/tests/foliated_fracton_lineon_test.rs)

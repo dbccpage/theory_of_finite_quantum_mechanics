@@ -49,8 +49,8 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | DAG validator | `nodes=933 routes=942 records=985 failures=0 (exit 0)` | `python -I -X utf8 dag/validate_derivation_dag.py --no-files` |
 | TFQ records | 985 | [`dag/theory_of_finite_qm.jsonl`](dag/theory_of_finite_qm.jsonl) |
 | Derivation papers | 1162 in 36 stage folders | [`dag/derivations`](dag/derivations) |
-| Lean references in DAG nodes | 3071 resolve to a file in this checkout, 0 do not (sibling or historical paths), 43 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
-| Rust references in DAG nodes | 379 resolve to a file in this checkout, 0 do not, 575 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
+| Lean references in DAG nodes | 3091 resolve to a file in this checkout, 0 do not (sibling or historical paths), 43 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
+| Rust references in DAG nodes | 384 resolve to a file in this checkout, 0 do not, 575 marked `external:` | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | PFP prompts / indexed operad collections | 933 / 933 | [`dag/prompts`](dag/prompts), [`dag/operads/index.json`](dag/operads/index.json) |
 | PFP stage per prompt | P0_MINE_OPERAD 756, P5_RECORD 177 | [`dag/operads/index.json`](dag/operads/index.json) |
 | Nodes with executed review results | 177 nodes, 208 review directories | `dag/results/*/reviews/` |
@@ -58,7 +58,7 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | P4 mutations rejected, as recorded in review records (`rejected_P4_mutations`, one value per directory) | 47271 | `dag/results/*/reviews/*/*.json` |
 | PFP review outcomes on DAG nodes | 177 nodes carry `pfp_review`; scope_effect: consistent 45, caveat_added 37, statement_narrowed 22, status_lowered 73 | [`dag/derivation_dag.json`](dag/derivation_dag.json) |
 | Outside-corpus records audited | 267 records from 9 corpora | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
-| Of those, claimed `PROVED_LEAN` by their source | 173: kept 88, refuted 2, recorded lower 83 (OPEN 37, IMPORTED_ASSUMPTION 17, COMPUTATIONALLY_CHECKED 14, PROVED_PROSE 8, DEFINITION 5, CONDITIONAL 2) | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
+| Of those, claimed `PROVED_LEAN` by their source | 173: kept 88, refuted 2, recorded lower 83 (OPEN 36, IMPORTED_ASSUMPTION 17, COMPUTATIONALLY_CHECKED 15, PROVED_PROSE 8, DEFINITION 5, CONDITIONAL 2) | [`dag/fragments/unified_dag.json`](dag/fragments/unified_dag.json) |
 | Tracked `.lean` files | lean4 1096, papers 146, code 66, dag 182, other 67 (the `dag` files are run snapshots) | `git ls-files` |
 | Lake libraries / module roots in `lean4/lakefile.lean` | 184 / 1042 | [`lean4/lakefile.lean`](lean4/lakefile.lean) |
 | Lean toolchain | `leanprover/lean4:v4.35.0` | [`lean4/lean-toolchain`](lean4/lean-toolchain) |
@@ -67,13 +67,13 @@ The table below is produced by [`scripts/build_readme_facts.py`](scripts/build_r
 | Axioms named in those receipts | propext 518, Quot.sound 450, Classical.choice 385; outside {propext, Classical.choice, Quot.sound}: none | same receipts |
 | `sorry` tokens outside comments and strings | lean4 0, papers 0, code 0 | `git ls-files '*.lean'` |
 | `admit` used as a tactic | lean4 0, papers 0, code 0 (identifiers named `admit`: 156) | `git ls-files '*.lean'` |
-| Python test functions (`def test_`) | 5752 (plus 152 in `dag/results` snapshots) | `git ls-files '*.py'` |
-| Rust test functions (`#[test]`) | 16890 (plus 113 in `dag/results` snapshots) | `git ls-files '*.rs'` |
-| Contract/score companions | combined_files = 3690, all_passed = true | `python -I -X utf8 scripts/contract_scores.py check` |
+| Python test functions (`def test_`) | 5774 (plus 152 in `dag/results` snapshots) | `git ls-files '*.py'` |
+| Rust test functions (`#[test]`) | 16904 (plus 113 in `dag/results` snapshots) | `git ls-files '*.rs'` |
+| Contract/score companions | combined_files = 3697, all_passed = true | `python -I -X utf8 scripts/contract_scores.py check` |
 
 Counts of test functions and files are inventory counts, not pass results. Status labels are the DAG's own; the legend is in `dag/derivation_dag.json` (`status_legend`).
 
-Nodes by status: PROVED_LEAN 220, COMPUTATIONALLY_CHECKED 193, OPEN 191, DEFINITION 92, SOURCE_RECORD 83, IMPORTED_ASSUMPTION 70, CONDITIONAL 38, PROVED_PROSE 37, REFUTED 6, ADMITTED_PRIMITIVE 3.
+Nodes by status: PROVED_LEAN 220, COMPUTATIONALLY_CHECKED 194, OPEN 190, DEFINITION 92, SOURCE_RECORD 83, IMPORTED_ASSUMPTION 70, CONDITIONAL 38, PROVED_PROSE 37, REFUTED 6, ADMITTED_PRIMITIVE 3.
 
 Nodes by stage: PREGENESIS 31, GENESIS 89, MSSN_SN 28, WDP 29, L1_EMERGENCE 9, L1_TO_L2 48, FINITE_QM_CORE 34, FINITE_QM_DYNAMICS 22, FINITE_QM_STRUCTURE 44, IMPLEMENTATION 10, DRESSING_FIELD 43, MUTUALLY_UNBIASED_BASES 68, FERMION_SIGN 41, TENSOR_COMPOSITION 7, FINITE_OBSTRUCTION 9, AUTHORIZATION 8, FINITE_HILBERT 8, FINITE_GAUGE 2, FINITE_QED 1, FINITE_QCD 37, FINITE_TOPOLOGICAL 9, FINITE_QG 15, CONTINUUM_INTERFACE 9, IMPLEMENTATION_CORE 41, IMPLEMENTATION_SIBLING 26, ENGINE_CUSTODY 34, MAJORANA 46, COMPUTATION 82, CONSTRUCTOR_THEORY 15, CAUSAL_QFT 14, ADS_CFT 13, LOOP_QUANTUM_GRAVITY 16, GENESIS_TO_HIGHER 12, OBSERVER_PRESHEAF 33.
 
