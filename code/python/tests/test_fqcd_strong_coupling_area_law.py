@@ -60,6 +60,10 @@ try:
         verify_fqcd_strong_coupling_area_law_witness,
         wilson_dirac_chemical_potential_and_nielsen_ninomiya_rational,
         wilson_dirac_gamma5_and_two_flavor_positivity_rational,
+        wilson_dirac_2x2_matrix,
+        wilson_dirac_2x2_det,
+        overlap_modified_chirality_sq,
+        overlap_modified_chirality_matrix_square,
     )
 except ImportError:
     from src.fqcd.strong_coupling_area_law import (
@@ -111,6 +115,10 @@ except ImportError:
         verify_fqcd_strong_coupling_area_law_witness,
         wilson_dirac_chemical_potential_and_nielsen_ninomiya_rational,
         wilson_dirac_gamma5_and_two_flavor_positivity_rational,
+        wilson_dirac_2x2_matrix,
+        wilson_dirac_2x2_det,
+        overlap_modified_chirality_sq,
+        overlap_modified_chirality_matrix_square,
     )
 
 
@@ -479,10 +487,10 @@ def test_su2_ade_and_su3_subgroup_towers_and_freezing_scales() -> None:
     assert gal["casimir_ratio_3b_over_3a"] == Fraction(6, 1)
     assert gal["casimir_ratio_4t_over_4s"] == Fraction(16, 5)
     assert gal["casimir_ratio_27_over_8a"] == Fraction(8, 3)
-    assert gal["suppression_2sp_2s"] == Fraction(1, 1000000)
-    assert gal["suppression_3b_3a"] == gal["suppression_3p_3"] == Fraction(1, 10000)
-    assert gal["suppression_4t_4s"] == Fraction(1, 1000)
-    assert gal["suppression_8b_8a"] == Fraction(1, 100)
+    assert gal["power_counting_2sp_2s"] == Fraction(1, 1000000)
+    assert gal["power_counting_3b_3a"] == gal["power_counting_3p_3"] == Fraction(1, 10000)
+    assert gal["power_counting_4t_4s"] == Fraction(1, 1000)
+    assert gal["power_counting_8b_8a"] == Fraction(1, 100)
 
     pf_med = temporal_gauge_perron_frobenius_and_2d_mednykh_pachner_rational()
     assert (
@@ -580,3 +588,73 @@ def test_master_witness_passes() -> None:
     assert receipt["dag_node"] == "FQCD-STRONG-COUPLING-AREA-LAW"
     assert receipt["all_passed"] is True
     assert receipt["total_checks"] >= 15
+
+
+def _wilson_matrix_from_links(m, r):
+    """Independent spin/link construction; no production matrix entries or determinant formula."""
+    import sympy as sp
+    m, r = sp.sympify(m), sp.sympify(r)
+    sites = [(x, y) for x in range(2) for y in range(2)]
+    gamma = [sp.Matrix([[0, 1], [1, 0]]), sp.Matrix([[0, -sp.I], [sp.I, 0]])]
+    links = [{(0, 0): 1, (0, 1): 1, (1, 0): 1, (1, 1): -1},
+             {(0, 0): 1, (0, 1): 1, (1, 0): sp.I, (1, 1): sp.I}]
+    dw = (m + 2*r) * sp.eye(8)
+    for x, site in enumerate(sites):
+        for mu in range(2):
+            neighbour = list(site)
+            neighbour[mu] = 1 - neighbour[mu]
+            neighbour = tuple(neighbour)
+            y = sites.index(neighbour)
+            hopping = ((gamma[mu] - r*sp.eye(2)) * links[mu][site]
+                       + (-gamma[mu] - r*sp.eye(2)) * sp.conjugate(links[mu][neighbour])) / 2
+            for i in range(2):
+                for j in range(2):
+                    dw[2*x+i, 2*y+j] += hopping[i, j]
+    return dw
+
+
+def test_general_wilson_determinant_symbolically_from_links():
+    import sympy as sp
+    m, r = sp.symbols("m r", real=True)
+    direct = _wilson_matrix_from_links(m, r).det(method="domain-ge")
+    assert sp.expand(direct - wilson_dirac_2x2_det(m, r)) == 0
+
+
+@pytest.mark.parametrize("m,r", [
+    (Fraction(0), Fraction(1, 2)), (Fraction(-1), Fraction(1, 2)),
+    (Fraction(1, 3), Fraction(3, 2)), (Fraction(-2), Fraction(2)),
+    (Fraction(0), Fraction(0)), (Fraction(2, 3), Fraction(-1, 2)),
+    (Fraction(-1), Fraction(1)), (Fraction(0), Fraction(1)),
+    (Fraction(-2), Fraction(1)),
+])
+def test_general_wilson_determinant_against_independent_matrix(m, r):
+    import sympy as sp
+    actual = _wilson_matrix_from_links(m, r)
+    assert actual == sp.Matrix(wilson_dirac_2x2_matrix(m, r))
+    assert actual.det() == sp.Rational(wilson_dirac_2x2_det(m, r))
+    gamma5 = sp.diag(*([1, -1] * 4))
+    assert gamma5 * actual * gamma5 == actual.conjugate().T
+    if (m, r) == (0, Fraction(1, 2)):
+        assert actual.det() == sp.Rational(15, 4)
+        assert actual.det() != (m + 2*r)**8 - 4*(m + 2*r)**4
+
+
+@pytest.mark.parametrize("a", [Fraction(1), Fraction(2, 3), Fraction(-2)])
+@pytest.mark.parametrize("c,b", [(Fraction(1), Fraction(0)),
+    (Fraction(-1), Fraction(0)), (Fraction(3, 5), Fraction(4, 5)),
+    (Fraction(5, 13), Fraction(12, 13)), (Fraction(2), Fraction(3))])
+def test_modified_chirality_actual_matrix_square(a, c, b):
+    import sympy as sp
+    gamma5 = sp.diag(1, -1)
+    epsilon = sp.Matrix([[c, b], [b, -c]])
+    dov = (sp.eye(2) + gamma5 * epsilon) / a
+    chirality = gamma5 * (sp.eye(2) - a * dov)
+    actual = chirality * chirality
+    assert actual == epsilon * epsilon == (c*c + b*b) * sp.eye(2)
+    assert sp.Matrix(overlap_modified_chirality_matrix_square(a, c, b)) == actual
+    assert overlap_modified_chirality_sq(c, b) == actual[0, 0]
+
+
+def test_overlap_zero_spacing_is_rejected():
+    with pytest.raises(ValueError, match="nonzero"):
+        overlap_modified_chirality_matrix_square(Fraction(0), Fraction(1), Fraction(0))

@@ -13,6 +13,101 @@ import sys
 from typing import Any
 
 
+def direct_wilson_determinant(m: Fraction, r: Fraction) -> Fraction:
+    """Eliminate the actual 8x8 matrix; no determinant polynomial is used."""
+    s = m + 2*r
+    a = [[Fraction(x) for x in row] for row in [
+        [s, 0, -r, 0, -r, 0, 0, 0], [0, s, 0, -r, 0, -r, 0, 0],
+        [-r, 0, s, 0, 0, 0, 0, 1], [0, -r, 0, s, 0, 0, 1, 0],
+        [-r, 0, 0, 0, s, 0, 0, 1], [0, -r, 0, 0, 0, s, -1, 0],
+        [0, 0, 0, -1, 0, 1, s, 0], [0, 0, -1, 0, -1, 0, 0, s],
+    ]]
+    det = Fraction(1)
+    for col in range(8):
+        pivot = next((row for row in range(col, 8) if a[row][col]), None)
+        if pivot is None:
+            return Fraction(0)
+        if pivot != col:
+            a[col], a[pivot] = a[pivot], a[col]
+            det = -det
+        p = a[col][col]
+        det *= p
+        for row in range(col + 1, 8):
+            q = a[row][col] / p
+            for k in range(col + 1, 8):
+                a[row][k] -= q * a[col][k]
+    return det
+
+
+
+def assembled_operator_checks() -> bool:
+    """Clifford relations and a complete 4D periodic (2,1,1,1), two-color operator over Q(i)."""
+    z = (Fraction(0), Fraction(0))
+    one = (Fraction(1), Fraction(0))
+    imag = (Fraction(0), Fraction(1))
+    def add(a,b): return (a[0]+b[0], a[1]+b[1])
+    def mul(a,b): return (a[0]*b[0]-a[1]*b[1], a[0]*b[1]+a[1]*b[0])
+    def scale(q,a): return (q*a[0], q*a[1])
+    def conj(a): return (a[0], -a[1])
+    pauli = [[[z,one],[one,z]], [[z,scale(-1,imag)],[imag,z]], [[one,z],[z,scale(-1,one)]]]
+    eye2 = [[one,z],[z,one]]
+    gamma=[]
+    for mu in range(4):
+        block = eye2 if mu==0 else pauli[mu-1]
+        g=[[z for _ in range(4)] for _ in range(4)]
+        for a in range(2):
+            for b in range(2):
+                g[a][b+2] = block[a][b] if mu==0 else mul(scale(-1,imag),block[a][b])
+                g[a+2][b] = block[a][b] if mu==0 else mul(imag,block[a][b])
+        gamma.append(g)
+    def dot(a,b):
+        value=z
+        for x,y in zip(a,b): value=add(value,mul(x,y))
+        return value
+    signs=[1,1,-1,-1]
+    for mu in range(4):
+        for a in range(4):
+            for b in range(4):
+                if gamma[mu][a][b] != conj(gamma[mu][b][a]): return False
+                if scale(signs[a]*signs[b],gamma[mu][a][b]) != scale(-1,gamma[mu][a][b]): return False
+                for nu in range(4):
+                    anti=add(dot(gamma[mu][a],[gamma[nu][k][b] for k in range(4)]),dot(gamma[nu][a],[gamma[mu][k][b] for k in range(4)]))
+                    if anti != (scale(2,one) if mu==nu and a==b else z): return False
+    def link(mu,x):
+        # A color-mixing rational orthogonal rotation times a nontrivial unit phase.
+        c,t=(Fraction(3,5),Fraction(4,5)) if (mu+x)%2 else (Fraction(5,13),Fraction(12,13))
+        phase=(Fraction(3,5),Fraction(4,5)) if x else one
+        return [[scale(c,phase),scale(-t,phase)],[scale(t,phase),scale(c,phase)]]
+    def idx(x,a,c): return (x*4+a)*2+c
+    for r in (Fraction(0),Fraction(1,2),Fraction(1),Fraction(3,2)):
+        dw=[[z for _ in range(16)] for _ in range(16)]
+        for x in range(2):
+            for a in range(4):
+                for c in range(2):
+                    row=idx(x,a,c)
+                    dw[row][row]=(Fraction(-1)+4*r,Fraction(0))
+                    for mu in range(4):
+                        y=1-x if mu==0 else x
+                        forward, reverse=link(mu,x),link(mu,y)
+                        for b in range(4):
+                            diag=scale(-r/2,one) if a==b else z
+                            minus=add(scale(Fraction(1,2),gamma[mu][a][b]),diag)
+                            plus=add(scale(Fraction(-1,2),gamma[mu][a][b]),diag)
+                            for d in range(2):
+                                col=idx(y,b,d)
+                                dw[row][col]=add(dw[row][col],add(mul(minus,forward[c][d]),mul(plus,conj(reverse[d][c]))))
+        for x in range(2):
+            for a in range(4):
+                for c in range(2):
+                    i=idx(x,a,c)
+                    for y in range(2):
+                        for b in range(4):
+                            for d in range(2):
+                                j=idx(y,b,d)
+                                if scale(signs[a]*signs[b],dw[i][j]) != conj(dw[j][i]): return False
+    return True
+
+
 def check() -> dict[str, Any]:
     """Run independent exact rational checks for FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY (TFQ-1050)."""
     checks: list[tuple[str, bool]] = []
@@ -94,12 +189,18 @@ def check() -> dict[str, Any]:
     # 4. Explicit 8x8 Wilson-Dirac operator on 2x2 periodic lattice with non-trivial gauge links
     def det_dw_2x2(m: Fraction, r: Fraction = Fraction(1, 1)) -> Fraction:
         s = m + 2 * r
-        return s ** 8 - 4 * (r ** 4) * (s ** 4)
+        return s**2 * (s**2 - 2*r**2) * (s**2 + 2) * (s**2 + 2 - 2*r**2)
 
     add_check("det_dw_2x2_m_minus_1_negative", det_dw_2x2(Fraction(-1, 1)) == Fraction(-3, 1) < Fraction(0, 1))
     add_check("det_dw_2x2_two_flavor_m_minus_1_positive", det_dw_2x2(Fraction(-1, 1)) ** 2 == Fraction(9, 1) > Fraction(0, 1))
     add_check("det_dw_2x2_m_0_positive", det_dw_2x2(Fraction(0, 1)) == Fraction(192, 1) > Fraction(0, 1))
     add_check("det_dw_2x2_m_1_positive", det_dw_2x2(Fraction(1, 1)) == Fraction(6237, 1) > Fraction(0, 1))
+
+    for r in (Fraction(0), Fraction(1,2), Fraction(1), Fraction(3,2)):
+        for m in (Fraction(-1), Fraction(0), Fraction(1,3)):
+            add_check(f"direct_matrix_determinant_m{m}_r{r}", direct_wilson_determinant(m,r) == det_dw_2x2(m,r))
+    add_check("nonunit_determinant_counterexample", direct_wilson_determinant(Fraction(0),Fraction(1,2)) == Fraction(15,4))
+    add_check("assembled_four_spin_colored_operator", assembled_operator_checks())
 
     failures = [name for name, ok in checks if not ok]
     return {

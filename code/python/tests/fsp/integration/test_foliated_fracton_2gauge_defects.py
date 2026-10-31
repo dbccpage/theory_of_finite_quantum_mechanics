@@ -238,7 +238,8 @@ class TestFoliatedFracton2GaugeDefects:
         a_complex = np.array([[1j, 0.0], [0.0, -1j]], dtype=complex)
         b_complex = np.array([[4.0 / 5.0, -3.0 / 5.0], [3.0 / 5.0, 4.0 / 5.0]], dtype=complex)
         assert not np.allclose(a_complex @ b_complex, b_complex @ a_complex)
-        assert HingeLineonSignCertifier.compute_hinge_holonomy_trace(a_complex, b_complex) == Fraction(14, 25)
+        b_binary = np.array([[Fraction(float(x.real)) for x in row] for row in b_complex], dtype=object)
+        assert HingeLineonSignCertifier.compute_hinge_holonomy_trace(a_complex, b_complex) == HingeLineonSignCertifier.compute_hinge_holonomy_trace(a_complex, b_binary)
         assert HingeLineonSignCertifier.compute_hinge_holonomy_trace(a_complex, b_complex) > Fraction(0, 1)
 
         a_exact = np.array([[(Fraction(0, 1), Fraction(1, 1)), (Fraction(0, 1), Fraction(0, 1))],
@@ -249,3 +250,31 @@ class TestFoliatedFracton2GaugeDefects:
 
 
 
+
+
+def test_holonomy_preserves_small_binary_inputs():
+    tiny = float(2**-40)
+    a = np.array([[tiny, 0], [0, 1]], dtype=float)
+    assert HingeLineonSignCertifier._to_gaussian_rat(tiny) == (Fraction(tiny), Fraction(0))
+    assert HingeLineonSignCertifier.compute_hinge_holonomy_trace(a, np.eye(2)) == 2
+
+
+def test_holonomy_preserves_large_denominator_rationals():
+    q = Fraction(1, 10**12 + 39)
+    assert HingeLineonSignCertifier._to_gaussian_rat(q) == (q, Fraction(0))
+
+
+@pytest.mark.parametrize("shape", [(3, 3), (2, 3), (1, 1)])
+def test_holonomy_rejects_wrong_matrix_shape(shape):
+    with pytest.raises(ValueError, match="2x2"):
+        HingeLineonSignCertifier.compute_hinge_holonomy_trace(np.eye(*shape), np.eye(2))
+
+
+def test_holonomy_rejects_singular_matrix():
+    with pytest.raises(ValueError, match="Singular"):
+        HingeLineonSignCertifier.compute_hinge_holonomy_trace(np.zeros((2, 2)), np.eye(2))
+
+
+def test_holonomy_preserves_numpy_extended_precision():
+    value = np.longdouble("1.0000000000000000001")
+    assert HingeLineonSignCertifier._to_gaussian_rat(value) == (Fraction(*value.as_integer_ratio()), Fraction(0))

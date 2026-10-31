@@ -1,6 +1,6 @@
 # [TFQ-1050] FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY
 
-> **Stage**: `FINITE_QCD` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` (`COMPUTATIONALLY_CHECKED`)  
+> **Stage**: `FINITE_QCD` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` (`OPEN`)  
 > **UUID**: `49f12c7b-7bef-5972-bf17-0cafaceb7633`  
 > **Parent Derivation**: [TFQ-0026](tfq_0026_add_python_and_lean_replays_of_the_declared_doubling_count_or_leave.md)
 
@@ -16,7 +16,7 @@ On a finite periodic hypercubic lattice in dimension 2 or 4 with arbitrary unita
 Prove the operator identity in Lean for the finite lattice. A proof would supply the hypothesis that FSP-WILSON-DIRAC-GAMMA5 now imports; lean4/FermionSignWilsonDiracGamma5.lean states only the Clifford and determinant lemmas, not this identity.
 
 ### Source Status
-Supporting link/onsite rational block lemmas (finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity) and the assembled 4-component Weyl-Clifford finite-lattice operator identity Gamma_5 D_W Gamma_5 = D_W^dagger (finite_lattice_assembled_wilson_dirac_gamma5_hermiticity) formalized over Q(i) in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean), and verified on finite periodic lattice fixtures in Rust, Python, and standalone check script (checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py).
+Lean formalizes the explicitly assembled four-component, four-direction rational kernel identity under backward-kernel adjointness. The original dimension-2/4 periodic-lattice, arbitrary-representation target remains OPEN pending its carrier/Clifford/refinement bridge. Python independently checks a complete colored periodic fixture and rational block examples.
 
 ---
 

@@ -20,7 +20,7 @@ Evaluates:
      nullifying defect mass (Φ₁ = 0.0, Γ₂ = 0.0) → EXACT_REPAIR.
    - Isolated Fracton Multi-Leaf Separation: Subsystem action gap ΔS = κ · R > 0 creates
      disjoint weight supports → SPLIT_BRAIN_REFUSAL.
-   - Intersecting Non-Abelian 2-Gauge Defect Sheets: 1D hinge commutator holonomy
+   - Intersecting anticommuting Pauli defect-sheet fixtures: hinge commutator holonomy
      M_hinge = B_xy B_yz B_xy⁻¹ B_yz⁻¹ with Tr(M) = -2.0 < 0 induces uncancelled
      defect mass Φ₁ = 2.0 > 0 and curvature Γ₂ = π → OPEN_SIGN_OBSTRUCTION.
    - Foliated Categorical Projection Repair (P_fol-QD): Leaf-wise 2D quantum double
@@ -451,15 +451,19 @@ class HingeLineonSignCertifier:
 
     @staticmethod
     def _to_gaussian_rat(val: object) -> Tuple[Fraction, Fraction]:
-        """Converts a scalar (int, float, Fraction, complex, or (re, im) pair) to exact (re, im) in Q(i)."""
+        """Preserve exact rationals and the exact binary values of float components.
+
+        Use Fraction or (re, im) Fraction pairs for intended rational inputs.
+        No bounded-denominator reconstruction is performed.
+        """
         def _to_frac(x: object) -> Fraction:
             if isinstance(x, Fraction):
                 return x
             if isinstance(x, (int, np.integer)):
                 return Fraction(int(x), 1)
             if isinstance(x, (float, np.floating)):
-                return Fraction(float(x)).limit_denominator(10**9)
-            return Fraction(x).limit_denominator(10**9)  # type: ignore[arg-type]
+                return Fraction(*x.as_integer_ratio())
+            return Fraction(x)  # type: ignore[arg-type]
 
         if isinstance(val, (tuple, list, np.ndarray)) and len(val) == 2:
             return (_to_frac(val[0]), _to_frac(val[1]))
@@ -479,7 +483,7 @@ class HingeLineonSignCertifier:
         Returns the exact real part of Tr(M_hinge) as a Fraction:
         - +2 for commuting sheets (AB = BA),
         - -2 for anticommuting 2x2 Pauli/quaternion sheets (AB = -BA),
-        - rational values in (-2, 2) for general non-commuting SU(2) holonomies
+        - rational values in [-2, 2] for general SU(2) holonomies
           (e.g., 14/25 for A = diag(i, -i) and B = [[4/5, -3/5], [3/5, 4/5]]).
         """
         def c_add(z: Tuple[Fraction, Fraction], w: Tuple[Fraction, Fraction]) -> Tuple[Fraction, Fraction]:
@@ -536,6 +540,10 @@ class HingeLineonSignCertifier:
                 c_mul(m[0], det_inv),
             )
 
+        for sheet in (sheet_xy, sheet_yz):
+            if np.shape(sheet) not in ((2, 2), (2, 2, 2)):
+                raise ValueError("Expected a 2x2 matrix, optionally with (real, imaginary) pairs")
+
         a = to_mat2x2(sheet_xy)
         b = to_mat2x2(sheet_yz)
         a_inv = mat_inv(a)
@@ -572,8 +580,10 @@ class HingeLineonSignCertifier:
         """
         Certifies the 6-step collision-free exchange trajectory on a 3-prong multi-hinge
         Y-junction (vertices 'center', 'X', 'Y', 'Z' with edges ('center', b) for b in {'X','Y','Z'})
-        when unconstrained branch-hopping across 'center' is allowed, vs. strict foliated
-        hinge-axis conservation which forbids cross-branch exchanges (TFQ-1219 Theorems 6-8).
+        when branch-hopping across 'center' is allowed. The sign is the supplied
+        fermionic permutation convention; the axis-conservation result assumes
+        each particle's axis label is preserved (TFQ-1219 Theorems 6-8).
+        The nonabelian_holonomy_exchange_weight key denotes the Pauli fixture only.
         """
         adj = {
             ("center", "X"), ("X", "center"),

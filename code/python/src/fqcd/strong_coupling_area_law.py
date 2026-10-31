@@ -652,7 +652,10 @@ def higher_genus_mednykh_abelianization_and_genus3_bounds_rational() -> Dict[str
 
 def finite_coupling_galois_conjugate_suppression_rational(u: Fraction = Fraction(1, 10)) -> Dict[str, Any]:
     """Exact tensor-power generation depths k(R), parent SU(2)/SU(3) quadratic Casimir ratios,
-    and single-plaquette Galois-conjugate suppression factors u^{Delta k} across 2I and Sigma(1080).
+    and power-counting estimates u^{Delta k} across 2I and Sigma(1080).
+    These monomials omit Wilson character multiplicities, factorial coefficients,
+    normalization and higher orders; they are not character-coefficient ratios.
+    The function name is retained for compatibility.
     """
     k_2i = {
         "2_s": 1,
@@ -698,18 +701,19 @@ def finite_coupling_galois_conjugate_suppression_rational(u: Fraction = Fraction
         "casimir_ratio_3b_over_3a": c2_su2["3_b_parent"] / c2_su2["3_a"],
         "casimir_ratio_4t_over_4s": c2_su2["4_t_parent"] / c2_su2["4_s"],
         "casimir_ratio_27_over_8a": c2_su3["27_parent"] / c2_su3["8_a"],
-        "suppression_2sp_2s": u ** dk_2sp_2s,
-        "suppression_3b_3a": u ** dk_3b_3a,
-        "suppression_3p_3": u ** dk_3p_3,
-        "suppression_4t_4s": u ** dk_4t_4s,
-        "suppression_8b_8a": u ** dk_8b_8a,
+        "power_counting_2sp_2s": u ** dk_2sp_2s,
+        "power_counting_3b_3a": u ** dk_3b_3a,
+        "power_counting_3p_3": u ** dk_3p_3,
+        "power_counting_4t_4s": u ** dk_4t_4s,
+        "power_counting_8b_8a": u ** dk_8b_8a,
     }
 
 
 def temporal_gauge_perron_frobenius_and_2d_mednykh_pachner_rational() -> Dict[str, Any]:
     """Exact verification for FQCD-FINITE-TRANSFER-MATRIX-GAP and FGAUGE-MEDNYKH-2D-YANG-MILLS:
     1. Universal character-defect sum identity sum_{g in G} Delta_R(g) = |G| across Q_8, 2T, 2O, 2I, Sigma(1080).
-    2. Birkhoff-Hopf projective contraction kappa_BH(w_min, w_max, P_slice) in (0, 1) and volume non-uniformity.
+    2. Values of the Birkhoff-Hopf candidate expression at (w_min,w_max)=(1,2) and P_slice=1,2,4.
+       No transfer matrix, spectrum or general spectral bound is constructed here.
     3. 2D Pachner (1 <-> 3, 2 <-> 2, polygon merge) Euler exponent invariance E - V - F = 2g - 2.
     4. Exact commutator/homomorphism counts |Hom(pi_1(Sigma_g), G)| at g=1 and g=2, including direct
        brute-force G^2 commutator table enumeration for S_3 (|G|=6) and Q_8 (|G|=8).
@@ -786,6 +790,36 @@ def temporal_gauge_perron_frobenius_and_2d_mednykh_pachner_rational() -> Dict[st
     }
 
 
+def wilson_dirac_2x2_matrix(m: Fraction, r: Fraction) -> list[list[Fraction]]:
+    """Exact D_W for U_0(1,1)=-1, U_1(1,0)=U_1(1,1)=i.
+
+    Site order is (0,0), (0,1), (1,0), (1,1), with two spins per site.
+    The conjugate link contributions cancel all imaginary entries.
+    """
+    s = m + 2 * r
+    rows = [
+        [s, 0, -r, 0, -r, 0, 0, 0],
+        [0, s, 0, -r, 0, -r, 0, 0],
+        [-r, 0, s, 0, 0, 0, 0, 1],
+        [0, -r, 0, s, 0, 0, 1, 0],
+        [-r, 0, 0, 0, s, 0, 0, 1],
+        [0, -r, 0, 0, 0, s, -1, 0],
+        [0, 0, 0, -1, 0, 1, s, 0],
+        [0, 0, -1, 0, -1, 0, 0, s],
+    ]
+    return [[Fraction(entry) for entry in row] for row in rows]
+
+
+def wilson_dirac_2x2_det(m: Fraction, r: Fraction) -> Fraction:
+    """Determinant of wilson_dirac_2x2_matrix for general rational m and r.
+
+    At r=1 this reduces to s^8-4s^4, where s=m+2r.
+    Matrix determinants, rather than repeated polynomial evaluations, test it.
+    """
+    s2 = (m + 2 * r) ** 2
+    return s2 * (s2 - 2 * r ** 2) * (s2 + 2) * (s2 + 2 - 2 * r ** 2)
+
+
 def wilson_dirac_gamma5_and_two_flavor_positivity_rational() -> Dict[str, Any]:
     """Exact verification for FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY and FSP-WILSON-DIRAC-GAMMA5:
     1. Constructs the exact 8x8 Gaussian-integer Wilson-Dirac operator D_W(m) and Gamma_5
@@ -793,7 +827,7 @@ def wilson_dirac_gamma5_and_two_flavor_positivity_rational() -> Dict[str, Any]:
        entrywise across all 64 entries that Gamma_5 D_W(m) Gamma_5 == D_W(m)^dagger and
        that H_W(m) = Gamma_5 D_W(m) is Hermitian (H_W^dagger == H_W).
     2. Verifies the universal gamma_5 spin-projector swapping P_mu^-(-g, r) = P_mu^+(g, r).
-    3. Evaluates the closed-form single-flavor determinant det D_W(m, r) = (m + 2r)^8 - 4(m + 2r)^4
+    3. Evaluates the r=1 specialization det D_W(m, 1) = (m + 2)^8 - 4(m + 2)^4
        and two-flavor determinant det(D_W)^2 >= 0 across the supercritical doubler window
        m in {-3, -2, -1} and physical positive-mass branch m in {0, 1}.
     """
@@ -865,9 +899,8 @@ def wilson_dirac_gamma5_and_two_flavor_positivity_rational() -> Dict[str, Any]:
             if hw_ij == hw_ji_conj:
                 hw_hermitian_entries += 1
 
-    def det_dw(m: Fraction, r: Fraction = Fraction(1, 1)) -> Fraction:
-        shift = m + 2 * r
-        return shift ** 8 - 4 * (shift ** 4)
+    def det_dw(m: Fraction) -> Fraction:
+        return wilson_dirac_2x2_det(m, Fraction(1))
 
     det_m_minus_3 = det_dw(Fraction(-3, 1))
     det_m_minus_2 = det_dw(Fraction(-2, 1))
@@ -1015,6 +1048,27 @@ def wilson_dirac_chemical_potential_and_nielsen_ninomiya_rational() -> Dict[str,
     }
 
 
+def overlap_modified_chirality_sq(c: Fraction, b: Fraction) -> Fraction:
+    """Diagonal entry of [Gamma_5 (I-a D_ov)]^2 = epsilon^2."""
+    return c ** 2 + b ** 2
+
+
+def overlap_modified_chirality_matrix_square(
+    a: Fraction, c: Fraction, b: Fraction,
+) -> list[list[Fraction]]:
+    """Construct D_ov=(I+Gamma_5 epsilon)/a, then multiply the chirality matrices."""
+    if a == 0:
+        raise ValueError("Overlap lattice spacing a must be nonzero")
+    gamma = (1, -1)
+    epsilon = [[c, b], [b, -c]]
+    dov = [[(int(i == j) + gamma[i] * epsilon[i][j]) / a
+            for j in range(2)] for i in range(2)]
+    chirality = [[gamma[i] * (int(i == j) - a * dov[i][j])
+                  for j in range(2)] for i in range(2)]
+    return [[sum((chirality[i][k] * chirality[k][j] for k in range(2)), Fraction(0))
+             for j in range(2)] for i in range(2)]
+
+
 def ginsparg_wilson_overlap_and_luscher_index_rational() -> Dict[str, Any]:
     """Exact verification for Ginsparg-Wilson / Neuberger overlap relation, modified lattice
     chirality, and Luscher index across the Wilson doubler mass shells:
@@ -1029,9 +1083,6 @@ def ginsparg_wilson_overlap_and_luscher_index_rational() -> Dict[str, Any]:
     def gw_residual(a: Fraction, c: Fraction, b: Fraction) -> Fraction:
         return (2 * (1 + c) - ((1 + c) ** 2 + b ** 2)) / a
 
-    def mod_chirality_sq(c: Fraction, b: Fraction) -> Fraction:
-        return (1 - c) ** 2 + b ** 2
-
     pythagorean_points = [
         (Fraction(1, 1), Fraction(0, 1)),
         (Fraction(-1, 1), Fraction(0, 1)),
@@ -1042,7 +1093,9 @@ def ginsparg_wilson_overlap_and_luscher_index_rational() -> Dict[str, Any]:
     gw_zero_count = sum(
         1 for c, b in pythagorean_points
         if gw_residual(Fraction(1, 1), c, b) == Fraction(0, 1)
-        and mod_chirality_sq(c, b) - 2 * (1 - c) + 2 * (1 - c) == 2 * (1 - c)
+        and overlap_modified_chirality_sq(c, b) == 1
+        and overlap_modified_chirality_matrix_square(Fraction(1), c, b)
+        == [[Fraction(1), Fraction(0)], [Fraction(0), Fraction(1)]]
         and (c ** 2 + b ** 2) == Fraction(1, 1)
     )
 
@@ -1455,10 +1508,10 @@ def verify_fqcd_strong_coupling_area_law_witness() -> Dict[str, Any]:
         > gal["casimir_ratio_3b_over_3a"] == Fraction(6, 1)
         > gal["casimir_ratio_4t_over_4s"] == Fraction(16, 5) > Fraction(1, 1)
         and gal["casimir_ratio_27_over_8a"] == Fraction(8, 3) > Fraction(1, 1)
-        and gal["suppression_2sp_2s"] == Fraction(1, 1000000)
-        < gal["suppression_3b_3a"] == gal["suppression_3p_3"] == Fraction(1, 10000)
-        < gal["suppression_4t_4s"] == Fraction(1, 1000)
-        < gal["suppression_8b_8a"] == Fraction(1, 100) < Fraction(1, 1)
+        and gal["power_counting_2sp_2s"] == Fraction(1, 1000000)
+        < gal["power_counting_3b_3a"] == gal["power_counting_3p_3"] == Fraction(1, 10000)
+        < gal["power_counting_4t_4s"] == Fraction(1, 1000)
+        < gal["power_counting_8b_8a"] == Fraction(1, 100) < Fraction(1, 1)
     )))
 
     # 21. Temporal-gauge Perron-Frobenius gap & 2D Pachner-invariant Mednykh formula

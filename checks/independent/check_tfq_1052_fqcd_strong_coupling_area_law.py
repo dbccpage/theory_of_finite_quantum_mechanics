@@ -30,6 +30,41 @@ import sys
 from typing import Any, Dict, List, Tuple
 
 
+def direct_wilson_determinant(m: Fraction, r: Fraction) -> Fraction:
+    """Eliminate the actual 8x8 matrix; no determinant polynomial is used."""
+    s = m + 2*r
+    a = [[Fraction(x) for x in row] for row in [
+        [s, 0, -r, 0, -r, 0, 0, 0], [0, s, 0, -r, 0, -r, 0, 0],
+        [-r, 0, s, 0, 0, 0, 0, 1], [0, -r, 0, s, 0, 0, 1, 0],
+        [-r, 0, 0, 0, s, 0, 0, 1], [0, -r, 0, 0, 0, s, -1, 0],
+        [0, 0, 0, -1, 0, 1, s, 0], [0, 0, -1, 0, -1, 0, 0, s],
+    ]]
+    det = Fraction(1)
+    for col in range(8):
+        pivot = next((row for row in range(col, 8) if a[row][col]), None)
+        if pivot is None:
+            return Fraction(0)
+        if pivot != col:
+            a[col], a[pivot] = a[pivot], a[col]
+            det = -det
+        p = a[col][col]
+        det *= p
+        for row in range(col + 1, 8):
+            q = a[row][col] / p
+            for k in range(col + 1, 8):
+                a[row][k] -= q * a[col][k]
+    return det
+
+
+def direct_modified_chirality_square(a: Fraction, c: Fraction, b: Fraction) -> list[list[Fraction]]:
+    """Build the overlap operator and multiply Gamma5(I-aD) by itself."""
+    gamma = (1, -1)
+    eps = ((c, b), (b, -c))
+    d = [[(int(i == j) + gamma[i]*eps[i][j]) / a for j in range(2)] for i in range(2)]
+    h = [[gamma[i]*(int(i == j) - a*d[i][j]) for j in range(2)] for i in range(2)]
+    return [[sum(h[i][k]*h[k][j] for k in range(2)) for j in range(2)] for i in range(2)]
+
+
 def delta_coordination(d: int) -> int:
     if d < 2:
         raise ValueError(f"d must be >= 2, got {d}")
@@ -609,7 +644,7 @@ def run_checks() -> Dict[str, Any]:
     check(
         m3_q8 - Fraction(4, 1) == Fraction(1, 4) * (m2_q8 - Fraction(4, 1))
         and m3_2i - Fraction(1, 1) < Fraction(1, 4) * (m2_2i - Fraction(1, 1)),
-        "Per-genus non-abelian 1/4 contraction bound on SU(2) ADE series (d_min = 2)",
+        "Genus-3 versus genus-2 non-abelian 1/4 comparison for the listed SU(2) examples",
     )
     check(
         m3_s1080 == Fraction(590783071, 559872000)
@@ -639,7 +674,7 @@ def run_checks() -> Dict[str, Any]:
         < u_tenth ** dk_3b_3a == u_tenth ** dk_3p_3 == Fraction(1, 10000)
         < u_tenth ** dk_4t_4s == Fraction(1, 1000)
         < u_tenth ** dk_8b_8a == Fraction(1, 100) < Fraction(1, 1),
-        "Single-plaquette Galois-conjugate suppression hierarchy u^6 < u^4 < u^3 < u^2 < 1 at u = 1/10",
+        "Power-counting monomial hierarchy (not Wilson coefficient ratios) u^6 < u^4 < u^3 < u^2 < 1 at u = 1/10",
     )
 
     # -------------------------------------------------------------------------
@@ -663,7 +698,7 @@ def run_checks() -> Dict[str, Any]:
         (def_q8, def_2t, def_2o, def_2i, def_s1080)
         == (Fraction(8, 1), Fraction(24, 1), Fraction(48, 1), Fraction(120, 1), Fraction(1080, 1))
         and Fraction(0, 1) < kbh_1 == Fraction(1, 3) < kbh_2 == Fraction(3, 5) < kbh_4 == Fraction(15, 17) < Fraction(1, 1),
-        "Character-defect sum identity sum_{g in G} Delta_R(g) = |G| and Birkhoff-Hopf contraction 0 < kappa_BH(P_slice) < 1",
+        "Five tabulated defect sums and candidate Birkhoff-Hopf values at P_slice=1,2,4",
     )
     check(
         all(((E + 3) - (V + 1) - (F + 2)) == (E - V - F) == (E - 1 - V - (F - 1)) for V, E, F in [(4, 6, 4), (6, 18, 10), (10, 36, 22)])
@@ -690,7 +725,14 @@ def run_checks() -> Dict[str, Any]:
 
     def det_dw_2x2(m: Fraction, r: Fraction = Fraction(1, 1)) -> Fraction:
         s = m + 2 * r
-        return s ** 8 - 4 * (s ** 4)
+        return s**2 * (s**2 - 2*r**2) * (s**2 + 2) * (s**2 + 2 - 2*r**2)
+
+    for r in (Fraction(0), Fraction(1, 2), Fraction(-1, 2), Fraction(1), Fraction(3, 2), Fraction(2)):
+        for m in (Fraction(-3), Fraction(-1), Fraction(0), Fraction(1, 3), Fraction(1)):
+            check(direct_wilson_determinant(m, r) == det_dw_2x2(m, r),
+                  f"Direct 8x8 matrix determinant agrees at m={m}, r={r}")
+    check(direct_wilson_determinant(Fraction(0), Fraction(1, 2)) == Fraction(15, 4),
+          "Non-unit Wilson parameter regression: det D_W(0,1/2) = 15/4, not -3")
 
     check(
         all(p_char(Fraction(k, 2)) == (Fraction(k, 2) - 1) ** 8 - 4 * ((Fraction(k, 2) - 1) ** 4) for k in range(-6, 9))
@@ -741,6 +783,13 @@ def run_checks() -> Dict[str, Any]:
     # -------------------------------------------------------------------------
     def gw_res(a: Fraction, c: Fraction, b: Fraction) -> Fraction:
         return (2 * (1 + c) - ((1 + c) ** 2 + b ** 2)) / a
+
+    for c, b in ((Fraction(1), Fraction(0)), (Fraction(3, 5), Fraction(4, 5)),
+                 (Fraction(-1), Fraction(0)), (Fraction(2), Fraction(3))):
+        for a in (Fraction(1), Fraction(2, 3), Fraction(-2)):
+            scalar = c*c + b*b
+            check(direct_modified_chirality_square(a, c, b) == [[scalar, 0], [0, scalar]],
+                  f"Actual overlap modified-chirality square at a={a}, c={c}, b={b}")
 
     binom4 = [1, 4, 6, 4, 1]
     l4d_seq = [

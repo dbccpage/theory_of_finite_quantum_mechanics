@@ -8,8 +8,8 @@
         "module": "FQCD.StrongCouplingAreaLaw",
         "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",
         "source": "lean4/FQCD/StrongCouplingAreaLaw.lean",
-        "sha256": "eb81e7b840ff8400c58e544517609cddc9f390dd15fd08fdb26c14c019c9974b",
-        "sha256_after_build": "eb81e7b840ff8400c58e544517609cddc9f390dd15fd08fdb26c14c019c9974b",
+        "sha256": "8e1680e9ecb874270d14eef7bb3ef29e29737da32e03dffa8ac1362372452c99",
+        "sha256_after_build": "8e1680e9ecb874270d14eef7bb3ef29e29737da32e03dffa8ac1362372452c99",
         "source_unchanged_during_build": true,
         "exit_code": 0,
         "admission_scan_passed": true,
@@ -42,7 +42,10 @@
           "FQCD.ginsparg_wilson_overlap_relation_and_luscher_index_across_doubler_shells",
           "FQCD.theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum",
           "FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity",
-          "FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity"
+          "FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity",
+          "FQCD.wilsonDirac2x2Det_unit_r",
+          "FQCD.overlap_modified_chirality_matrix_square",
+          "FQCD.overlap_modified_chirality_involution"
         ],
         "anchors_reported": true,
         "axioms": {
@@ -185,10 +188,37 @@
             "propext",
             "Classical.choice",
             "Quot.sound"
+          ],
+          "FQCD.wilsonDirac2x2Det_unit_r": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "FQCD.overlap_modified_chirality_matrix_square": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "FQCD.overlap_modified_chirality_involution": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
           ]
-        }
+        },
+        "output": "dag/research/campaign_tfq-1052_lean_replay.log",
+        "output_sha256": "3404ab0120e5f96117ab68f6c63415a84af435adb7f1ce3b05641f352ea9f019"
       }
     ]
   },
-  "lakefile_sha256": "f44e9e556d25bce2730157672d51e6f54f64389385e550177cd38c02695801e0"
+  "toolchain": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+  "generated_at": "2026-10-31T19:30:18.895476+00:00",
+  "mathlib_revision": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+  "source_pins": {
+    "lean4/FQCD/StrongCouplingAreaLaw.lean": "8e1680e9ecb874270d14eef7bb3ef29e29737da32e03dffa8ac1362372452c99",
+    "lean4/lakefile.lean": "f44e9e556d25bce2730157672d51e6f54f64389385e550177cd38c02695801e0",
+    "lean4/lake-manifest.json": "b196545791a687e1f07070fb9a00358bde282d952adca1af97cc4a024a2a85c1",
+    "lean4/lean-toolchain": "ca5f1f601d34c49079e38d7e7041eb0f2a9c227fbc1df0f404820069a052330c"
+  },
+  "lakefile_sha256": "f44e9e556d25bce2730157672d51e6f54f64389385e550177cd38c02695801e0",
+  "command": "python -I -X utf8 scripts/replay_fqcd_lean.py"
 }

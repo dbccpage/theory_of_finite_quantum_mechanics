@@ -264,9 +264,10 @@ theorem y_junction_collision_free_exchange_exists :
 def yJunctionExchangeSign (c_init c_final : TwoParticleYJunctionConfig) : Int :=
   if c_final.v1 = c_init.v2 ∧ c_final.v2 = c_init.v1 then -1 else 1
 
-/-- Theorem 7: Unconstrained multi-hinge Y-junction exchange induces a negative worldline
-    permutation sign (`-1 < 0`), and when combined with abelian (`+2`) or non-abelian (`-2`)
-    hinge commutator holonomy yields non-trivial signed amplitudes (`-2` vs `+2`). -/
+/-- Theorem 7: Under the supplied fermionic permutation-sign convention, the
+Y-junction swap has sign -1. Products with identity (+2) and anticommuting Pauli
+(-2) fixtures are arithmetic values; particle statistics and physical path
+amplitudes are not derived here. -/
 theorem y_junction_exchange_induces_negative_sign :
     yJunctionExchangeSign yConfigXY yConfigYX = -1 ∧
     yJunctionExchangeSign yConfigXY yConfigXY = 1 ∧
@@ -283,7 +284,8 @@ structure AxisConservedTwoLineonState where
   coord2 : Int
   deriving DecidableEq, Repr
 
-/-- Hinge-sector-conserving transition: lineons hop only along their own 1D hinge axis. -/
+/-- Assumed axis-label-preserving relation. Coordinates are unrestricted; this
+does not define local hopping or derive a dipole-conservation law. -/
 inductive AxisConservingPath : AxisConservedTwoLineonState → AxisConservedTwoLineonState → Prop where
   | refl (s : AxisConservedTwoLineonState) : AxisConservingPath s s
   | step {s1 s2 s3 : AxisConservedTwoLineonState}
@@ -300,8 +302,9 @@ theorem axis_conserving_path_preserves_axes {s_init s_final : AxisConservedTwoLi
   | step _ h_ax1 h_ax2 ih =>
     exact ⟨Eq.trans h_ax1 ih.1, Eq.trans h_ax2 ih.2⟩
 
-/-- Theorem 8: Strict foliated dipole conservation preserves each lineon's 1D hinge sector,
-    forbidding cross-branch Y-junction exchange between distinct hinge axes (`axis1 ≠ axis2`). -/
+/-- Theorem 8: The assumed axis-preserving relation forbids swapping distinct
+axis labels. No physical dipole law or connection to the Y-junction hopping
+relation is asserted here. -/
 theorem foliated_lineon_axis_conservation_forbids_branch_exchange
     {s_init s_final : AxisConservedTwoLineonState}
     (h_distinct : s_init.axis1 ≠ s_init.axis2)

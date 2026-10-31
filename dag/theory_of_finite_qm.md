@@ -521,7 +521,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1047` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `L1-IMP-TRANSITION-PROBABILITY-LAW` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-1048` | `FINITE_QM_CORE` | `IMPORTED_ASSUMPTION` | `FQ-OPERATIONAL-LOCAL-TOMOGRAPHY` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-1049` | `FINITE_QCD` | `OPEN_OBLIGATION` | `FQCD-FINITE-TRANSFER-MATRIX-GAP` (OPEN) | - |
-| `TFQ-1050` | `FINITE_QCD` | `COMPUTATIONAL_CONTROL` | `FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` (COMPUTATIONALLY_CHECKED) | - |
+| `TFQ-1050` | `FINITE_QCD` | `OPEN_OBLIGATION` | `FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` (OPEN) | - |
 | `TFQ-1051` | `FINITE_GAUGE` | `OPEN_OBLIGATION` | `FGAUGE-MEDNYKH-2D-YANG-MILLS` (OPEN) | - |
 | `TFQ-1052` | `FINITE_QCD` | `CONDITIONAL` | `FQCD-STRONG-COUPLING-AREA-LAW` (CONDITIONAL) | - |
 | `TFQ-1053` | `FINITE_QCD` | `SOURCE_RECORD` | `FQCD-FINITE-GROUP-FREEZING-FENCE` (SOURCE_RECORD) | - |
@@ -6326,8 +6326,8 @@ Obligation: Prove the statement in Lean from the Perron-Frobenius theorem for po
 
 - UUID: `49f12c7b-7bef-5972-bf17-0cafaceb7633`
 - Parent: `TFQ-0026`
-- Status: `COMPUTATIONAL_CONTROL`
-- DAG node: `FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` (`COMPUTATIONALLY_CHECKED`)
+- Status: `OPEN_OBLIGATION`
+- DAG node: `FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` (`OPEN`)
 
 On a finite periodic hypercubic lattice in dimension 2 or 4 with arbitrary unitary link matrices U_mu(x), Hermitian Euclidean gamma matrices and gamma5 anticommuting with each gamma_mu, the Wilson-Dirac operator D_W = m + sum_mu [gamma_mu (nabla_mu + nabla*_mu)/2 - (r/2) nabla*_mu nabla_mu] with real m and r satisfies gamma5 D_W gamma5 = D_W^dagger.
 

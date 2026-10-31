@@ -4,6 +4,8 @@ import Mathlib.Data.Rat.Defs
 import Mathlib.Tactic.Linarith
 import Mathlib.Tactic.Ring
 import Mathlib.Tactic.NormNum
+import Mathlib.LinearAlgebra.Matrix.Notation
+import Mathlib.Tactic.FinCases
 
 /-!
 # FQCD-STRONG-COUPLING-AREA-LAW (Record TFQ-1052)
@@ -1272,8 +1274,8 @@ theorem baryon_vs_gluon_screening_casimir_ratios_and_mednykh_2d_towers :
   norm_num
 
 -- ----------------------------------------------------------------------------
--- Main Theorem 15: Higher-Genus (g ≥ 2) Mednykh Abelianization Asymptotics
--- M_g(G) → |G/[G, G]|, Genus-3 (χ = -4) Bounds, and 1/9 Perfect-Group Contraction
+-- Main Theorem 15: Fixed Genus-3 Mednykh Sums and Comparisons with Genus 2
+-- No quantified genus or convergence theorem is asserted here.
 -- ----------------------------------------------------------------------------
 
 /-- Abelianization orders `|G/[G, G]|` (number of 1D irreducible representations) across
@@ -1311,6 +1313,9 @@ def mednykhM3_Sigma1080 : ℚ :=
   (1 / (1 ^ 4 : ℚ) + 2 * (1 / (5 ^ 4 : ℚ)) + 2 * (1 / (8 ^ 4 : ℚ)) + 1 / (9 ^ 4 : ℚ) + 1 / (10 ^ 4 : ℚ)) +
   2 * (2 * (1 / (3 ^ 4 : ℚ)) + 1 / (6 ^ 4 : ℚ) + 1 / (9 ^ 4 : ℚ) + 1 / (15 ^ 4 : ℚ))
 
+/-- Arithmetic checks of the listed genus-3 rational sums, abelianization orders,
+and comparisons with genus 2. The historical name does not assert an asymptotic
+limit or a statement for arbitrary genus. -/
 theorem higher_genus_mednykh_abelianization_asymptotics_and_genus3_bounds :
     (abelianizationOrder_2I < abelianizationOrder_2O ∧
       abelianizationOrder_2O < abelianizationOrder_2T ∧
@@ -1342,8 +1347,8 @@ theorem higher_genus_mednykh_abelianization_asymptotics_and_genus3_bounds :
   norm_num
 
 -- ----------------------------------------------------------------------------
--- Main Theorem 16: Finite-Coupling Galois-Conjugate Suppression, Tensor-Power
--- Generation Depths, and Parent Casimir Damping Across 2I and Σ(1080)
+-- Main Theorem 16: Galois-Conjugate Power Counting, Tensor-Power
+-- Generation Depths, and Parent Casimir Ratios Across 2I and Σ(1080)
 -- ----------------------------------------------------------------------------
 
 /-- Tensor-power generation depths `k(R)` under the fundamental representation `2_s` in `2I ⊂ SU(2)`:
@@ -1379,9 +1384,10 @@ def tensorDepthSigma1080_3p : Nat := 5
 /-- Parent continuum `SU(3)` quadratic Casimir `C_2(27) = 8` for `8_b, 9 ⊂ 27_{SU(3)}|_{Σ(1080)}`. -/
 def casimirSU3_27_parent : ℚ := 8
 
-/-- Single-plaquette leading strong-coupling suppression factor `u^(k_2 - k_1)` between
-Galois-conjugate or dimension-matched irreps at character-expansion parameter `u ∈ (0, 1)`. -/
-def galoisPlaquetteSuppression (u : ℚ) (k1 k2 : Nat) : ℚ := u ^ (k2 - k1)
+/-- Power-counting monomial `u^(k_2 - k_1)` between dimension-matched irreps.
+Tensor depths supply an exponent only. This omits Wilson character coefficients
+and higher orders, and is not a physical suppression ratio. -/
+def galoisPlaquettePowerCounting (u : ℚ) (k1 k2 : Nat) : ℚ := u ^ (k2 - k1)
 
 /-- `theorem finite_coupling_galois_conjugate_suppression_and_heat_kernel_damping`:
 1. In `2I ⊂ SU(2)`, Galois-conjugate / dimension-matched pairs `(2_s, 2_{s'})`, `(3_a, 3_b)`, `(4_s, 4_t)`
@@ -1392,7 +1398,7 @@ def galoisPlaquetteSuppression (u : ℚ) (k1 k2 : Nat) : ℚ := u ^ (k2 - k1)
    inside `27_{SU(3)} ⊂ 8_a ⊗ 8_a` (`Δk(8_b, 8_a) = 2`, parent Casimir ratio `C_2(27)/C_2(8_a) = 8/3`),
    and the Galois-conjugate fundamental `3'` first appears at depth `k(3') = 5` via `3̄ ⊗ 3' = 9`
    (`Δk(3', 3) = 4`).
-3. At benchmark strong-coupling parameter `u = 1/10`, the single-plaquette Galois suppression ratios satisfy
+3. At benchmark parameter `u = 1/10`, the power-counting monomials (not Wilson coefficient ratios) satisfy
    `u^6 = 1/1000000 < u^4 = 1/10000 < u^3 = 1/1000 < u^2 = 1/100 < 1`. -/
 theorem finite_coupling_galois_conjugate_suppression_and_heat_kernel_damping :
     (tensorDepth2I_2sp - tensorDepth2I_2s = 6 ∧
@@ -1408,28 +1414,28 @@ theorem finite_coupling_galois_conjugate_suppression_and_heat_kernel_damping :
       tensorDepthSigma1080_3p - tensorDepthSigma1080_3 = 4 ∧
       casimirSU3_27_parent / casimirSU3_8 = 8 / 3 ∧
       1 < casimirSU3_27_parent / casimirSU3_8) ∧
-    (galoisPlaquetteSuppression (1 / 10 : ℚ) tensorDepth2I_2s tensorDepth2I_2sp = 1 / 1000000 ∧
-      galoisPlaquetteSuppression (1 / 10 : ℚ) tensorDepth2I_3a tensorDepth2I_3b = 1 / 10000 ∧
-      galoisPlaquetteSuppression (1 / 10 : ℚ) tensorDepthSigma1080_3 tensorDepthSigma1080_3p = 1 / 10000 ∧
-      galoisPlaquetteSuppression (1 / 10 : ℚ) tensorDepth2I_4s tensorDepth2I_4t = 1 / 1000 ∧
-      galoisPlaquetteSuppression (1 / 10 : ℚ) tensorDepthSigma1080_8a tensorDepthSigma1080_8b = 1 / 100 ∧
-      galoisPlaquetteSuppression (1 / 10 : ℚ) tensorDepth2I_2s tensorDepth2I_2sp <
-        galoisPlaquetteSuppression (1 / 10 : ℚ) tensorDepth2I_3a tensorDepth2I_3b ∧
-      galoisPlaquetteSuppression (1 / 10 : ℚ) tensorDepth2I_3a tensorDepth2I_3b <
-        galoisPlaquetteSuppression (1 / 10 : ℚ) tensorDepth2I_4s tensorDepth2I_4t ∧
-      galoisPlaquetteSuppression (1 / 10 : ℚ) tensorDepth2I_4s tensorDepth2I_4t <
-        galoisPlaquetteSuppression (1 / 10 : ℚ) tensorDepthSigma1080_8a tensorDepthSigma1080_8b) := by
+    (galoisPlaquettePowerCounting (1 / 10 : ℚ) tensorDepth2I_2s tensorDepth2I_2sp = 1 / 1000000 ∧
+      galoisPlaquettePowerCounting (1 / 10 : ℚ) tensorDepth2I_3a tensorDepth2I_3b = 1 / 10000 ∧
+      galoisPlaquettePowerCounting (1 / 10 : ℚ) tensorDepthSigma1080_3 tensorDepthSigma1080_3p = 1 / 10000 ∧
+      galoisPlaquettePowerCounting (1 / 10 : ℚ) tensorDepth2I_4s tensorDepth2I_4t = 1 / 1000 ∧
+      galoisPlaquettePowerCounting (1 / 10 : ℚ) tensorDepthSigma1080_8a tensorDepthSigma1080_8b = 1 / 100 ∧
+      galoisPlaquettePowerCounting (1 / 10 : ℚ) tensorDepth2I_2s tensorDepth2I_2sp <
+        galoisPlaquettePowerCounting (1 / 10 : ℚ) tensorDepth2I_3a tensorDepth2I_3b ∧
+      galoisPlaquettePowerCounting (1 / 10 : ℚ) tensorDepth2I_3a tensorDepth2I_3b <
+        galoisPlaquettePowerCounting (1 / 10 : ℚ) tensorDepth2I_4s tensorDepth2I_4t ∧
+      galoisPlaquettePowerCounting (1 / 10 : ℚ) tensorDepth2I_4s tensorDepth2I_4t <
+        galoisPlaquettePowerCounting (1 / 10 : ℚ) tensorDepthSigma1080_8a tensorDepthSigma1080_8b) := by
   dsimp [tensorDepth2I_2s, tensorDepth2I_3a, tensorDepth2I_4s, tensorDepth2I_3b,
     tensorDepth2I_4t, tensorDepth2I_2sp, casimirSU2_2s, casimirSU2_3a, casimirSU2_4s,
     casimirSU2_3b_parent, casimirSU2_4t_parent, casimirSU2_2sp_parent,
     tensorDepthSigma1080_3, tensorDepthSigma1080_8a, tensorDepthSigma1080_8b,
-    tensorDepthSigma1080_3p, casimirSU3_8, casimirSU3_27_parent, galoisPlaquetteSuppression]
+    tensorDepthSigma1080_3p, casimirSU3_8, casimirSU3_27_parent, galoisPlaquettePowerCounting]
   norm_num
 
 -- ----------------------------------------------------------------------------
--- Main Theorem 17: Temporal-Gauge Transfer-Matrix Perron–Frobenius Spectral Gap
--- (`FQCD-FINITE-TRANSFER-MATRIX-GAP`) and 2D Pachner-Invariant Mednykh Formula
--- (`FGAUGE-MEDNYKH-2D-YANG-MILLS`)
+-- Main Theorem 17: Fixed Defect Sums, Contraction Values, and Euler Identities
+-- Arithmetic toward `FQCD-FINITE-TRANSFER-MATRIX-GAP` and
+-- `FGAUGE-MEDNYKH-2D-YANG-MILLS`; both general targets remain OPEN.
 -- ----------------------------------------------------------------------------
 
 /-- Total plaquette character-defect sums `∑_{g ∈ G} Δ_R(g) = ∑_{g ∈ G} (1 - Re χ_R(g) / dim R) = |G|`
@@ -1457,19 +1463,13 @@ def mednykhCellulationExponent (V E F : Int) : Int := E - V - F
 def homCountGenus1 (cardG numConjClasses : Nat) : Nat := cardG * numConjClasses
 def homCountGenus2 (cardG : Nat) (m2 : ℚ) : ℚ := (cardG : ℚ) ^ 3 * m2
 
-/-- `theorem temporal_gauge_perron_frobenius_gap_and_2d_pachner_mednykh_invariance`:
-1. (`FQCD-FINITE-TRANSFER-MATRIX-GAP`) Across `Q_8`, `2T`, `2O`, `2I`, and `Σ(1080)`, the character
-   defect sums satisfy `∑_{g ∈ G} Δ_R(g) = |G|`, and for any positive transfer-matrix plaquette weight
-   `0 < w_min < w_max` (exemplified at `w_min = 1, w_max = 2`) and finite spatial volume `P_slice ≥ 1`,
-   the Birkhoff–Hopf spectral contraction satisfies `0 < κ_BH(1, 2, P_slice) < 1` (strictly positive
-   finite-volume gauge-invariant gap `1 - κ_BH > 0`), while `κ_BH(1, 2, 1) = 1/3 < κ_BH(1, 2, 2) = 3/5 < κ_BH(1, 2, 4) = 15/17 < 1`
-   approaches `1` as `P_slice` grows (confirming that the automatic finite-volume gap is not a
-   volume-uniform Clay Yang–Mills gap).
-2. (`FGAUGE-MEDNYKH-2D-YANG-MILLS`) Under 2D Pachner `1 ↔ 3` triangle subdivision `(V+1, E+3, F+2)`,
-   `2 ↔ 2` bistellar flip `(V, E, F)`, and polygon merging `(V, E-1, F-1)`, the Mednykh Euler exponent
-   `E - V - F` is strictly invariant, and the exact fundamental-group homomorphism counts
-   `|Hom(π_1(Σ_g), G)|` at `g = 1` (`40, 168, 384, 1080, 18360`) and `g = 2`
-   (`2176, 53376, 335616, 3309120, 1296821016, 2100161520`) match `|G| · Z_Mednykh(G, g)`. -/
+/-- Fixed arithmetic checks: five tabulated character-defect sums, the candidate
+Birkhoff–Hopf expression at `(w_min,w_max)=(1,2)` for `P_slice=1,2,4`,
+the Euler-exponent identities for subdivision and polygon merging for all integer
+`V,E,F`, and the listed genus-1/2 count expressions. No transfer matrix,
+eigenvalues, gauge-invariant subspace, or general spectral bound occurs in the
+statement. The historical name does not close `FQCD-FINITE-TRANSFER-MATRIX-GAP`
+or the general `FGAUGE-MEDNYKH-2D-YANG-MILLS` target. -/
 theorem temporal_gauge_perron_frobenius_gap_and_2d_pachner_mednykh_invariance :
     (defectSum_Q8_2s = q8_order ∧
       defectSum_2T_2s = binaryTetrahedral_order ∧
@@ -1530,10 +1530,19 @@ def wilsonDirac2x2CharPoly (lam : ℚ) : ℚ :=
   lam ^ 8 - 8 * lam ^ 7 + 28 * lam ^ 6 - 56 * lam ^ 5 +
   66 * lam ^ 4 - 40 * lam ^ 3 + 4 * lam ^ 2 + 8 * lam - 3
 
-/-- Closed-form single-flavor determinant `det D_W(m, r) = (m + 2r)^8 - 4(m + 2r)^4`
-on the `2 × 2` periodic lattice as a polynomial in the bare mass `m` and Wilson parameter `r`. -/
+/-- General-`r` determinant polynomial for the specified `2 × 2` gauge background.
+With `s = m + 2r`, direct matrix evaluation gives
+`s²(s² - 2r²)(s² + 2)(s² + 2 - 2r²)`. Only at `r = 1` does this reduce
+to `s⁸ - 4s⁴`. The matrix comparison is replayed independently in Python;
+the theorem below proves polynomial identities and signs, not a matrix determinant. -/
 def wilsonDirac2x2Det (m r : ℚ) : ℚ :=
-  (m + 2 * r) ^ 8 - 4 * (m + 2 * r) ^ 4
+  let s2 := (m + 2 * r) ^ 2
+  s2 * (s2 - 2 * r ^ 2) * (s2 + 2) * (s2 + 2 - 2 * r ^ 2)
+
+theorem wilsonDirac2x2Det_unit_r (m : ℚ) :
+    wilsonDirac2x2Det m 1 = (m + 2) ^ 8 - 4 * (m + 2) ^ 4 := by
+  dsimp [wilsonDirac2x2Det]
+  ring
 
 /-- Exact two-flavor degenerate Wilson–Dirac determinant
 `det(D_W(m, r) ⊕ D_W(m, r)) = (det D_W(m, r))^2 ≥ 0`. -/
@@ -1547,7 +1556,7 @@ def wilsonDirac2x2TwoFlavorDet (m r : ℚ) : ℚ :=
    and `P_μ^-(g, r) - P_μ^+(g, r) = g` (naive Dirac operator).
 2. (`FSP-WILSON-DIRAC-GAMMA5`) The `8 × 8` `2 × 2`-lattice characteristic polynomial factors
    identically as `P(λ) = (λ - 1)^8 - 4(λ - 1)^4` for all `λ ∈ ℚ`, the single-flavor determinant
-   `det D_W(m, r) = (m + 2r)^8 - 4(m + 2r)^4` is reflection-symmetric about the central doubler
+   `wilsonDirac2x2Det m r` is reflection-symmetric about the central doubler
    mass `m = -2r`, exhibits the supercritical single-flavor sign problem `det D_W(-1, 1) = det D_W(-3, 1) = -3 < 0`
    inside the doubler window while remaining positive on the physical branch `det D_W(0, 1) = 192 > 0`,
    `det D_W(1, 1) = 6237 > 0`, and the two-flavor determinant satisfies `det(D_W)^2 ≥ 0` for all `m, r ∈ ℚ`
@@ -1703,11 +1712,34 @@ overlap operator `D_ov = (I_2 + Γ_5 ε) / a`. Vanishes iff `c^2 + b^2 = 1` (`ε
 def ginspargWilsonBlockResidual (a c b : ℚ) : ℚ :=
   (2 * (1 + c) - ((1 + c) ^ 2 + b ^ 2)) / a
 
-/-- Diagonal entry `((1 - c)^2 + b^2) = 1 - 2c + (c^2 + b^2)` of `(Γ_5 (I_2 - a D_ov))^2 = (-ε)^2`,
+/-- Diagonal entry `c^2 + b^2` of `(Γ_5 (I_2 - a D_ov))^2 = (-ε)^2`,
 which equals `1` whenever `c^2 + b^2 = 1` (`ε^2 = I_2`), together with the Lüscher chiral
 projection factor `1 - (a / 2) * d_ov(a, s)` on a Brillouin corner with kernel sign `s ∈ {-1, +1}`
 and overlap eigenvalue `d_ov(a, s) = (1 + s) / a`. -/
-def overlapModifiedChiralitySq (c b : ℚ) : ℚ := (1 - c) ^ 2 + b ^ 2
+def overlapModifiedChiralitySq (c b : ℚ) : ℚ := c ^ 2 + b ^ 2
+
+/-- The actual rational two-spin matrices for the declared overlap construction. -/
+def overlapGamma5 : Matrix (Fin 2) (Fin 2) ℚ := !![1, 0; 0, -1]
+def overlapSignKernel (c b : ℚ) : Matrix (Fin 2) (Fin 2) ℚ := !![c, b; b, -c]
+def overlapDiracBlock (a c b : ℚ) : Matrix (Fin 2) (Fin 2) ℚ :=
+  a⁻¹ • (1 + overlapGamma5 * overlapSignKernel c b)
+def overlapModifiedChirality (a c b : ℚ) : Matrix (Fin 2) (Fin 2) ℚ :=
+  overlapGamma5 * (1 - a • overlapDiracBlock a c b)
+
+theorem overlap_modified_chirality_matrix_square (a c b : ℚ) (ha : a ≠ 0) :
+    overlapModifiedChirality a c b * overlapModifiedChirality a c b =
+      overlapModifiedChiralitySq c b • (1 : Matrix (Fin 2) (Fin 2) ℚ) := by
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+    simp [overlapModifiedChirality, overlapDiracBlock, overlapGamma5,
+      overlapSignKernel, overlapModifiedChiralitySq, Matrix.mul_apply,
+      Fin.sum_univ_two, ha] <;> ring
+
+theorem overlap_modified_chirality_involution (a c b : ℚ) (ha : a ≠ 0)
+    (h : c ^ 2 + b ^ 2 = 1) :
+    overlapModifiedChirality a c b * overlapModifiedChirality a c b = 1 := by
+  rw [overlap_modified_chirality_matrix_square a c b ha]
+  simp [overlapModifiedChiralitySq, h]
 def overlapCornerEigenvalue (a s : ℚ) : ℚ := (1 + s) / a
 def luscherCornerChiralFactor (a s : ℚ) : ℚ := 1 - (a / 2) * overlapCornerEigenvalue a s
 
@@ -1731,7 +1763,7 @@ def luscherCornerSum4D_mNeg9 : Int := 1 * 1 + 4 * (-1) + 6 * 1 + 4 * (-1) + 1 * 
 /-- `theorem ginsparg_wilson_overlap_relation_and_luscher_index_across_doubler_shells`:
 1. (Ginsparg–Wilson Block Identity & Exact Chirality Involution) For any `a ≠ 0` and any `c, b ∈ ℚ`,
    `ginspargWilsonBlockResidual a c b = (1 - (c^2 + b^2)) / a` and
-   `overlapModifiedChiralitySq (-c) b = c^2 + b^2`, so for every rational Pythagorean triple
+   the actual matrix square is `(c^2 + b^2) • I`, so for every rational Pythagorean triple
    `(c, b)` on the unit circle `c^2 + b^2 = 1` (exemplified by `(1, 0)`, `(-1, 0)`, `(3/5, 4/5)`,
    `(5/13, 12/13)`), the Ginsparg–Wilson residual vanishes identically (`= 0`) and the modified
    lattice chirality `Γ_5(I - a D_ov) = -ε` squares to `I`.
@@ -1745,11 +1777,13 @@ def luscherCornerSum4D_mNeg9 : Int := 1 * 1 + 4 * (-1) + 6 * 1 + 4 * (-1) + 1 * 
    critical Wilson mass windows `m ∈ {+1, -1, -3, -5, -7, -9}` (`r = 1`), the Lüscher-weighted
    corner chiral sum steps through `0, +1, -3, +3, -1, 0` (selecting the single `c = 0` physical
    species of chirality `+1` inside `m ∈ (-2, 0)`), while on the `8 × 8` `2 × 2`-lattice gauged
-   Wilson kernel `H_W(m) = Γ_5 D_W(m)`, jumping from `m = 0` (`det H_W(0) = 192 > 0`, balanced
-   signature `(N_+, N_-) = (4, 4)`) to the supercritical window `m = -1` (`det H_W(-1) = -3 < 0`,
-   odd negative-eigenvalue signature `(N_+, N_-) = (5, 3)`) shifts the Lüscher index from
-   `luscherIndexHalf 4 4 = 0` to `luscherIndexHalf 5 3 = -1` (`luscherIndexFull 5 3 = -2`). -/
+   Wilson determinant polynomial the sign product is negative. The supplied count pairs
+   `(4,4)` and `(5,3)` give `luscherIndexHalf 4 4 = 0` and `luscherIndexHalf 5 3 = -1`;
+   this arithmetic does not determine the matrix spectrum or its signature. -/
 theorem ginsparg_wilson_overlap_relation_and_luscher_index_across_doubler_shells :
+    (∀ a c b : ℚ, a ≠ 0 →
+      overlapModifiedChirality a c b * overlapModifiedChirality a c b =
+        overlapModifiedChiralitySq c b • (1 : Matrix (Fin 2) (Fin 2) ℚ)) ∧
     (∀ a c b : ℚ, ginspargWilsonBlockResidual a c b = (1 - (c ^ 2 + b ^ 2)) / a) ∧
     (ginspargWilsonBlockResidual 1 1 0 = 0 ∧
       ginspargWilsonBlockResidual 1 (-1) 0 = 0 ∧
@@ -1774,7 +1808,7 @@ theorem ginsparg_wilson_overlap_relation_and_luscher_index_across_doubler_shells
       luscherIndexFull 3 5 = 2 ∧
       wilsonDirac2x2Det (-1) 1 * wilsonDirac2x2Det 0 1 = -576 ∧
       wilsonDirac2x2Det (-1) 1 * wilsonDirac2x2Det 0 1 < 0) := by
-  refine ⟨?_, ?_, ?_, ?_, ?_⟩
+  refine ⟨overlap_modified_chirality_matrix_square, ?_, ?_, ?_, ?_, ?_⟩
   · intro a c b
     dsimp [ginspargWilsonBlockResidual]
     ring
@@ -1838,7 +1872,9 @@ def thetaPartitionSumIm (c s z0 z1 z2 z3 : ℚ) : ℚ :=
   z2 * (thetaSectorPhaseIm c s 2 + thetaSectorPhaseIm c s (-2)) +
   z3 * (thetaSectorPhaseIm c s 3 + thetaSectorPhaseIm c s (-3))
 
-/-- `theorem theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum`:
+/-- Seven-sector polynomial toy partition function with supplied CP-paired weights.
+No identification with the Dirac index or a physical topological-sector measure is derived.
+`theorem theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum`:
 1. (Unit-Circle Polynomial Identities & Non-CP Complex Weights) For any `c, s ∈ ℚ`, the
    Chebyshev sector phases satisfy `thetaSectorPhaseModSq c s 1 = c^2 + s^2`,
    `thetaSectorPhaseModSq c s 2 = (c^2 + s^2)^2`, and
@@ -1908,8 +1944,8 @@ theorem theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum :
     norm_num
 
 -- ----------------------------------------------------------------------------
--- Main Theorem 22: General Finite-Lattice Operator Identity γ_5 D_W γ_5 = D_W^†
--- in Dimensions d = 2 and d = 4 for Arbitrary Unitary Link Matrix Entries
+-- Main Theorem 22: Rational Link-Entry and Onsite Identities
+-- The assembled four-component kernel identity is Theorem 23 below.
 -- (FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY / TFQ-1050)
 -- ----------------------------------------------------------------------------
 
@@ -1936,23 +1972,10 @@ def wilsonLinkBwdIm (r dSpin gRe gIm uRe uIm : ℚ) : ℚ :=
 on a `d`-dimensional hypercubic lattice (`d = 2` gives `m + 2r`, `d = 4` gives `m + 4r`). -/
 def wilsonOnsiteDiag (d : Nat) (m r : ℚ) : ℚ := m + (d : ℚ) * r
 
-/-- `theorem finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity`:
-(`FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` / `TFQ-1050`)
-On any finite periodic hypercubic lattice in dimension `d = 2` or `d = 4` with arbitrary unitary
-link matrix entries `uRe + i uIm`, real mass `m`, and real Wilson parameter `r`:
-1. (Chiral Off-Diagonal Hopping Blocks `γ_5(α) γ_5(β) = -1, dSpin = 0`) Because `γ_5` anticommutes
-   with every Hermitian Euclidean `γ_μ`, any off-diagonal chiral spinor pair `(α, β)` with
-   `γ_5(α) γ_5(β) = -1` and `dSpin = 0` satisfies the exact matrix-element identity
-   `(-1) · D_W(x, α, c; x+μ̂, β, c') = conj(D_W(x+μ̂, β, c'; x, α, c))` in both real and imaginary
-   parts (`(-1) * wilsonLinkFwdRe = wilsonLinkBwdRe` and `(-1) * wilsonLinkFwdIm = -wilsonLinkBwdIm`).
-2. (Chiral Diagonal Wilson-Laplacian Blocks `γ_5(α)^2 = +1, gRe = gIm = 0, dSpin = 1`) On every
-   same-chirality spinor pair `(α, α)` where `(γ_μ)_{α,α} = 0` and `γ_5(α)^2 = +1`, the nearest-neighbor
-   Wilson Laplacian term satisfies `(+1) · D_W(x, α, c; x+μ̂, α, c') = conj(D_W(x+μ̂, α, c'; x, α, c))`
-   for arbitrary `uRe, uIm, r ∈ ℚ`.
-3. (On-Site Diagonal Term in Dimensions `d = 2` and `d = 4`) The site-diagonal operator entry
-   `wilsonOnsiteDiag d m r` (`m + 2r` in `d = 2` and `m + 4r` in `d = 4`) is real and invariant
-   under `γ_5(α)^2 = (±1)^2 = 1`, establishing `γ_5 D_W γ_5 = D_W^†` entrywise across the entire
-   finite-lattice operator in dimensions `d = 2` and `d = 4`. -/
+/-- Rational scalar block identities for opposite-chirality hopping and diagonal
+Wilson terms, plus onsite expressions at d=2 and d=4. This statement contains
+no lattice, Clifford matrix, or assembled operator. See Theorem 23 for the
+explicit four-component/four-direction kernel identity. -/
 theorem finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity :
     (∀ r gRe gIm uRe uIm : ℚ,
       (-1) * wilsonLinkFwdRe r 0 gRe gIm uRe uIm = wilsonLinkBwdRe r 0 gRe gIm uRe uIm ∧
@@ -2274,5 +2297,8 @@ theorem finite_lattice_assembled_wilson_dirac_gamma5_hermiticity
 #print axioms theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum
 #print axioms finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity
 #print axioms finite_lattice_assembled_wilson_dirac_gamma5_hermiticity
+#print axioms wilsonDirac2x2Det_unit_r
+#print axioms overlap_modified_chirality_matrix_square
+#print axioms overlap_modified_chirality_involution
 
 end FQCD
