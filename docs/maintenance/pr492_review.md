@@ -2,7 +2,8 @@
 
 AuthorityEffect: None.
 
-Reviewed head: `cf8ea2ce7838cc934ca85ef773d2190281f2e1aa`.
+Reviewed heads: `cf8ea2ce7838cc934ca85ef773d2190281f2e1aa` and
+`51f72128aa4ee88de93bc33e628b15929d2695b7` (the concurrent Matrix-wrapper addition).
 This branch incorporates #493 (`9e2ffdeba`) so that the inherited determinant,
 chirality and replay defects are corrected together with the new material.
 Review #493 first; both pull requests remain unmerged for the maintainer.
@@ -35,8 +36,10 @@ Review #493 first; both pull requests remain unmerged for the maintainer.
 4. **Replay provenance.** All three receipts are regenerated from actual pinned
    Lean 4.35 output. FQCD requests resolve in their actual nested namespaces;
    unmatched, duplicate or unsafe reports fail. The two FQCD receipts retain all
-   31 audited declarations; the FSP receipt retains all 12. CI verifies the
+   32 audited declarations; the FSP receipt retains all 12. CI verifies the
    source/log hashes and exact declaration coverage for all three receipts.
+   The newly imported local determinant module is also source-pinned; changing it
+   invalidates the receipt even if the FQCD source itself is unchanged.
 
 The original reproductions are retained in
 `dag/research/pr492_review/reproductions.json`. Current validation logs and
@@ -46,3 +49,9 @@ snapshot; this review's validation records the combined branch.
 
 No physical sign-free theorem, general dipole law, arbitrary Clifford-carrier
 bridge, continuum limit or scientific target promotion is claimed.
+
+The concurrent Matrix-wrapper addition is preserved. It constructs finite-index
+Gaussian-rational matrices, proves the grading involution and Hermiticity, and
+composes the complex embedding with the existing two-flavor determinant lemmas.
+The remaining open bridge concerns the original periodic derivative operator,
+dimension-two carrier and arbitrary Clifford representations.

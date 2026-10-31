@@ -20,7 +20,7 @@ RECEIPT = "dag/research/campaign_tfq-1052_lean_replay.json"
 LOG = "dag/research/campaign_tfq-1052_lean_replay.log"
 REPORT = re.compile(r"'([^']+)' (?:depends on axioms:\s*\[([^\]]*)\]|does not depend on any axioms)")
 STANDARD_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
-PIN_PATHS = (SOURCE, "lean4/lakefile.lean", "lean4/lake-manifest.json", "lean4/lean-toolchain")
+PIN_PATHS = (SOURCE, "lean4/FermionSignWilsonDiracGamma5.lean", "lean4/lakefile.lean", "lean4/lake-manifest.json", "lean4/lean-toolchain")
 
 
 def sha(data: bytes) -> str:

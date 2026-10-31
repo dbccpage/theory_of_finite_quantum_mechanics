@@ -65,7 +65,7 @@ def test_valid_retained_output_verifies(retained_receipt):
     replay.verify_receipt()
 
 
-@pytest.mark.parametrize("defect", ["namespace", "missing_pin", "stale_source", "changed_log", "axioms", "exit_code"])
+@pytest.mark.parametrize("defect", ["namespace", "missing_pin", "stale_source", "changed_log", "axioms", "exit_code", "stale_local_import"])
 def test_retained_receipt_rejects_tampering(retained_receipt, defect):
     root, receipt, result = retained_receipt
     if defect == "namespace":
@@ -76,6 +76,8 @@ def test_retained_receipt_rejects_tampering(retained_receipt, defect):
         (root / replay.SOURCE).write_text((root / replay.SOURCE).read_text() + "\n")
     elif defect == "changed_log":
         (root / replay.LOG).write_text("altered log")
+    elif defect == "stale_local_import":
+        (root / "lean4/FermionSignWilsonDiracGamma5.lean").write_text("changed imported theorem")
     elif defect == "axioms":
         result["axioms"] = {"FQCD.a": []}
     else:

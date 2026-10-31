@@ -34,6 +34,7 @@ Formally proved in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean) and checked ac
 - `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum`
 - `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity`
 - `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity`
+- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivity`
 
 ### Rust Certifiers
 - `code/rust/src/fqcd/strong_coupling_area_law.rs`

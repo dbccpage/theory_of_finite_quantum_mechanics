@@ -6,6 +6,7 @@ import Mathlib.Tactic.Ring
 import Mathlib.Tactic.NormNum
 import Mathlib.LinearAlgebra.Matrix.Notation
 import Mathlib.Tactic.FinCases
+import FermionSignWilsonDiracGamma5
 
 /-!
 # FQCD-STRONG-COUPLING-AREA-LAW (Record TFQ-1052)
@@ -2266,6 +2267,285 @@ theorem finite_lattice_assembled_wilson_dirac_gamma5_hermiticity
   · linarith
 
 -- ============================================================================
+-- 22c. Matrix Wrapper & Direct Composition with FermionSignWilsonDiracGamma5
+--      Determinant Positivity (det(D_W ⊕ D_W) = (det D_W)^2 ≥ 0)
+-- ============================================================================
+
+instance : Fintype WeylSpinIdx where
+  elems := {.s0, .s1, .s2, .s3}
+  complete := by
+    intro x
+    cases x <;> decide
+
+namespace FQCDGaussRat
+
+instance instZero : Zero FQCDGaussRat := ⟨zero⟩
+instance instOne : One FQCDGaussRat := ⟨one⟩
+instance instAdd : Add FQCDGaussRat := ⟨add⟩
+instance instNeg : Neg FQCDGaussRat := ⟨neg⟩
+instance instSub : Sub FQCDGaussRat := ⟨sub⟩
+instance instMul : Mul FQCDGaussRat := ⟨mul⟩
+instance instNatSMul : SMul ℕ FQCDGaussRat := ⟨fun n z => ⟨n * z.re, n * z.im⟩⟩
+instance instIntSMul : SMul ℤ FQCDGaussRat := ⟨fun n z => ⟨n * z.re, n * z.im⟩⟩
+instance instStar : Star FQCDGaussRat := ⟨conj⟩
+instance instNatCast : NatCast FQCDGaussRat := ⟨fun n => ⟨n, 0⟩⟩
+instance instIntCast : IntCast FQCDGaussRat := ⟨fun n => ⟨n, 0⟩⟩
+
+@[simp] theorem re_zero : (0 : FQCDGaussRat).re = 0 := rfl
+@[simp] theorem im_zero : (0 : FQCDGaussRat).im = 0 := rfl
+@[simp] theorem re_one : (1 : FQCDGaussRat).re = 1 := rfl
+@[simp] theorem im_one : (1 : FQCDGaussRat).im = 0 := rfl
+@[simp] theorem re_add (z w : FQCDGaussRat) : (z + w).re = z.re + w.re := rfl
+@[simp] theorem im_add (z w : FQCDGaussRat) : (z + w).im = z.im + w.im := rfl
+@[simp] theorem re_neg (z : FQCDGaussRat) : (-z).re = -z.re := rfl
+@[simp] theorem im_neg (z : FQCDGaussRat) : (-z).im = -z.im := rfl
+@[simp] theorem re_sub (z w : FQCDGaussRat) : (z - w).re = z.re - w.re := rfl
+@[simp] theorem im_sub (z w : FQCDGaussRat) : (z - w).im = z.im - w.im := rfl
+@[simp] theorem re_mul (z w : FQCDGaussRat) : (z * w).re = z.re * w.re - z.im * w.im := rfl
+@[simp] theorem im_mul (z w : FQCDGaussRat) : (z * w).im = z.re * w.im + z.im * w.re := rfl
+@[simp] theorem re_nsmul (n : ℕ) (z : FQCDGaussRat) : (n • z).re = n * z.re := rfl
+@[simp] theorem im_nsmul (n : ℕ) (z : FQCDGaussRat) : (n • z).im = n * z.im := rfl
+@[simp] theorem re_zsmul (n : ℤ) (z : FQCDGaussRat) : (n • z).re = n * z.re := rfl
+@[simp] theorem im_zsmul (n : ℤ) (z : FQCDGaussRat) : (n • z).im = n * z.im := rfl
+@[simp] theorem re_star (z : FQCDGaussRat) : (star z).re = z.re := rfl
+@[simp] theorem im_star (z : FQCDGaussRat) : (star z).im = -z.im := rfl
+@[simp] theorem re_natCast (n : ℕ) : (n : FQCDGaussRat).re = n := rfl
+@[simp] theorem im_natCast (n : ℕ) : (n : FQCDGaussRat).im = 0 := rfl
+@[simp] theorem re_intCast (n : ℤ) : (n : FQCDGaussRat).re = n := rfl
+@[simp] theorem im_intCast (n : ℤ) : (n : FQCDGaussRat).im = 0 := rfl
+
+instance instCommRing : CommRing FQCDGaussRat where
+  add_assoc a b c := by ext <;> simp <;> ring
+  zero_add a := by ext <;> simp
+  add_zero a := by ext <;> simp
+  nsmul_zero z := by ext <;> simp
+  nsmul_succ n z := by
+    ext
+    · simp only [re_nsmul, re_add, Nat.cast_succ]; ring
+    · simp only [im_nsmul, im_add, Nat.cast_succ]; ring
+  sub_eq_add_neg a b := by ext <;> simp <;> ring
+  zsmul_zero' z := by ext <;> simp
+  zsmul_succ' n z := by
+    ext
+    · simp only [re_zsmul, re_add]; push_cast; ring
+    · simp only [im_zsmul, im_add]; push_cast; ring
+  zsmul_neg' n z := by
+    ext
+    · simp only [re_zsmul, re_neg, Int.cast_negSucc]; push_cast; ring
+    · simp only [im_zsmul, im_neg, Int.cast_negSucc]; push_cast; ring
+  neg_add_cancel a := by ext <;> simp
+  add_comm a b := by ext <;> simp <;> ring
+  left_distrib a b c := by ext <;> simp <;> ring
+  right_distrib a b c := by ext <;> simp <;> ring
+  zero_mul a := by ext <;> simp
+  mul_zero a := by ext <;> simp
+  mul_assoc a b c := by ext <;> simp <;> ring
+  one_mul a := by ext <;> simp
+  mul_one a := by ext <;> simp
+  natCast_zero := by ext <;> simp
+  natCast_succ n := by ext <;> simp
+  intCast_ofNat n := by ext <;> simp
+  intCast_negSucc n := by ext <;> simp
+  mul_comm a b := by ext <;> simp <;> ring
+
+instance instStarRing : StarRing FQCDGaussRat where
+  star_involutive z := by ext <;> simp
+  star_mul z w := by ext <;> simp <;> ring
+  star_add z w := by
+    ext
+    · rfl
+    · simp only [im_star, im_add]; ring
+
+/-- Canonical ring embedding `ℚ(i) →+* ℂ` sending `⟨a, b⟩ ↦ a + b i`. -/
+noncomputable def toComplex : FQCDGaussRat →+* ℂ where
+  toFun z := (z.re : ℂ) + (z.im : ℂ) * Complex.I
+  map_one' := by simp
+  map_mul' z w := by
+    simp only [re_mul, im_mul, Rat.cast_sub, Rat.cast_add, Rat.cast_mul]
+    calc
+      ((z.re : ℂ) * (w.re : ℂ) - (z.im : ℂ) * (w.im : ℂ)) +
+          ((z.re : ℂ) * (w.im : ℂ) + (z.im : ℂ) * (w.re : ℂ)) * Complex.I
+        = ((z.re : ℂ) * (w.re : ℂ) + (z.im : ℂ) * (w.im : ℂ) * (Complex.I * Complex.I)) +
+            ((z.re : ℂ) * (w.im : ℂ) + (z.im : ℂ) * (w.re : ℂ)) * Complex.I := by
+          rw [Complex.I_mul_I]; ring
+      _ = ((z.re : ℂ) + (z.im : ℂ) * Complex.I) * ((w.re : ℂ) + (w.im : ℂ) * Complex.I) := by
+          ring
+  map_zero' := by simp
+  map_add' z w := by
+    simp only [re_add, im_add, Rat.cast_add]
+    ring
+
+theorem toComplex_star (z : FQCDGaussRat) :
+    toComplex (star z) = star (toComplex z) := by
+  apply Complex.ext <;> simp [toComplex]
+
+end FQCDGaussRat
+
+open scoped Matrix
+
+/-- `Matrix` wrapper for the assembled finite-lattice Wilson–Dirac operator `D_W` on
+    `Site × Color × WeylSpinIdx` over `FQCDGaussRat`. -/
+def assembledWilsonDiracMatrix {Site Color : Type} [DecidableEq Site] [DecidableEq Color]
+    (m r : ℚ)
+    (uFwd uBwd : WeylSpinIdx → Site → Site → Color → Color → FQCDGaussRat) :
+    Matrix (Site × Color × WeylSpinIdx) (Site × Color × WeylSpinIdx) FQCDGaussRat :=
+  fun i j => assembledWilsonDirac m r uFwd uBwd i.1 i.2.1 i.2.2 j.1 j.2.1 j.2.2
+
+/-- `Matrix` wrapper for the lattice-color-spinor chiral grading operator
+    `Γ_5 = I_Site ⊗ I_Color ⊗ γ_5` on `Site × Color × WeylSpinIdx` over `FQCDGaussRat`. -/
+def assembledGamma5Matrix {Site Color : Type} [DecidableEq Site] [DecidableEq Color] :
+    Matrix (Site × Color × WeylSpinIdx) (Site × Color × WeylSpinIdx) FQCDGaussRat :=
+  Matrix.diagonal (fun i => ⟨chiralGamma5Sign i.2.2, 0⟩)
+
+/-- Complex-valued `Matrix` wrapper obtained by mapping `assembledWilsonDiracMatrix`
+    along `FQCDGaussRat.toComplex : FQCDGaussRat →+* ℂ`. -/
+noncomputable def assembledWilsonDiracComplexMatrix
+    {Site Color : Type} [DecidableEq Site] [DecidableEq Color]
+    (m r : ℚ)
+    (uFwd uBwd : WeylSpinIdx → Site → Site → Color → Color → FQCDGaussRat) :
+    Matrix (Site × Color × WeylSpinIdx) (Site × Color × WeylSpinIdx) ℂ :=
+  (assembledWilsonDiracMatrix m r uFwd uBwd).map FQCDGaussRat.toComplex
+
+/-- Pointwise square of the chiral sign `γ_5(α)^2 = 1` in `FQCDGaussRat`. -/
+theorem chiralGamma5Sign_gaussRat_sq (α : WeylSpinIdx) :
+    (⟨chiralGamma5Sign α, 0⟩ : FQCDGaussRat) * ⟨chiralGamma5Sign α, 0⟩ = 1 := by
+  cases α <;> ext <;> dsimp [chiralGamma5Sign] <;> norm_num
+
+/-- `Γ_5^2 = I` on `Matrix (Site × Color × WeylSpinIdx) (Site × Color × WeylSpinIdx) FQCDGaussRat`. -/
+theorem assembledGamma5Matrix_sq
+    {Site Color : Type} [Fintype Site] [DecidableEq Site] [Fintype Color] [DecidableEq Color] :
+    (assembledGamma5Matrix :
+      Matrix (Site × Color × WeylSpinIdx) (Site × Color × WeylSpinIdx) FQCDGaussRat) *
+      assembledGamma5Matrix = 1 := by
+  dsimp [assembledGamma5Matrix]
+  rw [Matrix.diagonal_mul_diagonal]
+  have hdiag :
+      (fun i : Site × Color × WeylSpinIdx =>
+        (⟨chiralGamma5Sign i.2.2, 0⟩ : FQCDGaussRat) * ⟨chiralGamma5Sign i.2.2, 0⟩) =
+      fun _ => (1 : FQCDGaussRat) := by
+    funext i
+    exact chiralGamma5Sign_gaussRat_sq i.2.2
+  rw [hdiag, Matrix.diagonal_one]
+
+/-- `Matrix` identity `Γ_5 * D_W * Γ_5 = D_Wᴴ` over `FQCDGaussRat`, derived directly from the
+    pointwise kernel identity `finite_lattice_assembled_wilson_dirac_gamma5_hermiticity`. -/
+theorem assembledWilsonDiracMatrix_gamma5_hermiticity
+    {Site Color : Type} [Fintype Site] [DecidableEq Site] [Fintype Color] [DecidableEq Color]
+    (m r : ℚ)
+    (uFwd uBwd : WeylSpinIdx → Site → Site → Color → Color → FQCDGaussRat)
+    (hLinkAdj : ∀ μ x y c1 c2, uBwd μ x y c1 c2 = FQCDGaussRat.conj (uFwd μ y x c2 c1)) :
+    assembledGamma5Matrix * assembledWilsonDiracMatrix m r uFwd uBwd * assembledGamma5Matrix =
+      (assembledWilsonDiracMatrix m r uFwd uBwd)ᴴ := by
+  funext i j
+  dsimp [assembledGamma5Matrix]
+  simp only [Matrix.mul_diagonal, Matrix.diagonal_mul]
+  have hscale :
+      (⟨chiralGamma5Sign i.2.2, 0⟩ : FQCDGaussRat) *
+        assembledWilsonDiracMatrix m r uFwd uBwd i j *
+        ⟨chiralGamma5Sign j.2.2, 0⟩ =
+      FQCDGaussRat.smul (chiralGamma5Sign i.2.2 * chiralGamma5Sign j.2.2)
+        (assembledWilsonDirac m r uFwd uBwd i.1 i.2.1 i.2.2 j.1 j.2.1 j.2.2) := by
+    ext <;>
+      dsimp [assembledWilsonDiracMatrix, FQCDGaussRat.smul] <;>
+      ring
+  rw [hscale]
+  rw [← gamma5Mat_sum4_conj
+    (fun α' β' => assembledWilsonDirac m r uFwd uBwd i.1 i.2.1 α' j.1 j.2.1 β') i.2.2 j.2.2]
+  have hpt := finite_lattice_assembled_wilson_dirac_gamma5_hermiticity
+    m r uFwd uBwd hLinkAdj i.1 i.2.1 i.2.2 j.1 j.2.1 j.2.2
+  dsimp [assembledGamma5ConjWilsonDirac] at hpt
+  rw [hpt]
+  rfl
+
+/-- From `Γ_5 * D_W * Γ_5 = D_Wᴴ` and `Γ_5 * Γ_5 = 1`, the determinant `det(D_W)` over
+    `FQCDGaussRat` is self-conjugate (`star (det D_W) = det D_W`). -/
+theorem assembledWilsonDiracMatrix_det_selfAdjoint
+    {Site Color : Type} [Fintype Site] [DecidableEq Site] [Fintype Color] [DecidableEq Color]
+    (m r : ℚ)
+    (uFwd uBwd : WeylSpinIdx → Site → Site → Color → Color → FQCDGaussRat)
+    (hLinkAdj : ∀ μ x y c1 c2, uBwd μ x y c1 c2 = FQCDGaussRat.conj (uFwd μ y x c2 c1)) :
+    star (assembledWilsonDiracMatrix m r uFwd uBwd).det =
+      (assembledWilsonDiracMatrix m r uFwd uBwd).det := by
+  let D := assembledWilsonDiracMatrix m r uFwd uBwd
+  let Γ5 : Matrix (Site × Color × WeylSpinIdx) (Site × Color × WeylSpinIdx) FQCDGaussRat :=
+    assembledGamma5Matrix
+  have h_herm : Γ5 * D * Γ5 = Dᴴ :=
+    assembledWilsonDiracMatrix_gamma5_hermiticity m r uFwd uBwd hLinkAdj
+  have h_sq : Γ5 * Γ5 = 1 := assembledGamma5Matrix_sq
+  calc
+    star D.det = (Dᴴ).det := (Matrix.det_conjTranspose D).symm
+    _ = (Γ5 * D * Γ5).det := by rw [← h_herm]
+    _ = Γ5.det * D.det * Γ5.det := by rw [Matrix.det_mul, Matrix.det_mul]
+    _ = (Γ5.det * Γ5.det) * D.det := by ring
+    _ = (Γ5 * Γ5).det * D.det := by rw [← Matrix.det_mul]
+    _ = (1 : Matrix (Site × Color × WeylSpinIdx) (Site × Color × WeylSpinIdx) FQCDGaussRat).det * D.det := by
+      rw [h_sq]
+    _ = D.det := by rw [Matrix.det_one, one_mul]
+
+/-- Main Theorem 24: Direct Composition of `assembledWilsonDirac` with
+    `FermionSignWilsonDiracGamma5` Determinant Positivity (`FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY`
+    & `FSP-WILSON-DIRAC-GAMMA5`).
+    For any finite lattice `Site` (`[Fintype Site] [DecidableEq Site]`), any finite color space
+    `Color` (`[Fintype Color] [DecidableEq Color]`), any bare mass `m ∈ ℚ` and Wilson parameter `r ∈ ℚ`,
+    and any link field `(uFwd, uBwd)` satisfying `uBwd μ x y c1 c2 = conj(uFwd μ y x c2 c1)`:
+    1. The `Matrix (Site × Color × WeylSpinIdx) (Site × Color × WeylSpinIdx) FQCDGaussRat` wrapper
+       `D_Q := assembledWilsonDiracMatrix m r uFwd uBwd` satisfies `Γ_5 * D_Q * Γ_5 = D_Qᴴ`,
+    2. Its exact Gaussian-rational determinant is real (`star D_Q.det = D_Q.det` and `D_Q.det.im = 0`),
+    3. The two-flavor block matrix `Matrix.fromBlocks D_Q 0 0 D_Q` over `FQCDGaussRat` has
+       real nonnegative determinant `(D_Q.det)^2` (`im = 0` and `0 ≤ re`), and
+    4. Its complex embedding `D_C := assembledWilsonDiracComplexMatrix m r uFwd uBwd` composes
+       directly with `FermionSignWilsonDiracGamma5.twoFlavor`, `two_flavor_det_eq_sq`, and
+       `two_flavor_det_real_nonneg` to yield `((twoFlavor D_C).det).im = 0` and
+       `0 ≤ ((twoFlavor D_C).det).re`. -/
+theorem assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivity
+    {Site Color : Type} [Fintype Site] [DecidableEq Site] [Fintype Color] [DecidableEq Color]
+    (m r : ℚ)
+    (uFwd uBwd : WeylSpinIdx → Site → Site → Color → Color → FQCDGaussRat)
+    (hLinkAdj : ∀ μ x y c1 c2, uBwd μ x y c1 c2 = FQCDGaussRat.conj (uFwd μ y x c2 c1)) :
+    let D_Q := assembledWilsonDiracMatrix m r uFwd uBwd
+    let D_C := assembledWilsonDiracComplexMatrix m r uFwd uBwd
+    assembledGamma5Matrix * D_Q * assembledGamma5Matrix = D_Qᴴ ∧
+    star D_Q.det = D_Q.det ∧
+    D_Q.det.im = 0 ∧
+    (Matrix.fromBlocks D_Q 0 0 D_Q).det = D_Q.det ^ 2 ∧
+    ((Matrix.fromBlocks D_Q 0 0 D_Q).det).im = 0 ∧
+    0 ≤ ((Matrix.fromBlocks D_Q 0 0 D_Q).det).re ∧
+    star D_C.det = D_C.det ∧
+    (FermionSignWilsonDiracGamma5.twoFlavor D_C).det = D_C.det ^ 2 ∧
+    ((FermionSignWilsonDiracGamma5.twoFlavor D_C).det).im = 0 ∧
+    0 ≤ ((FermionSignWilsonDiracGamma5.twoFlavor D_C).det).re := by
+  intro D_Q D_C
+  have h_herm : assembledGamma5Matrix * D_Q * assembledGamma5Matrix = D_Qᴴ :=
+    assembledWilsonDiracMatrix_gamma5_hermiticity m r uFwd uBwd hLinkAdj
+  have h_star_Q : star D_Q.det = D_Q.det :=
+    assembledWilsonDiracMatrix_det_selfAdjoint m r uFwd uBwd hLinkAdj
+  have h_im_Q : D_Q.det.im = 0 := by
+    have him := congrArg FQCDGaussRat.im h_star_Q
+    dsimp [FQCDGaussRat.im_star] at him
+    linarith
+  have h_fb_Q : (Matrix.fromBlocks D_Q 0 0 D_Q).det = D_Q.det ^ 2 := by
+    simp [Matrix.det_fromBlocks_zero₂₁, pow_two]
+  have h_sq_im_Q : ((Matrix.fromBlocks D_Q 0 0 D_Q).det).im = 0 := by
+    rw [h_fb_Q, sq, FQCDGaussRat.im_mul, h_im_Q]
+    ring
+  have h_sq_re_Q : 0 ≤ ((Matrix.fromBlocks D_Q 0 0 D_Q).det).re := by
+    rw [h_fb_Q, sq, FQCDGaussRat.re_mul, h_im_Q]
+    have hsq : D_Q.det.re * D_Q.det.re - 0 * 0 = D_Q.det.re ^ 2 := by ring
+    rw [hsq]
+    exact sq_nonneg D_Q.det.re
+  have h_det_map : D_C.det = FQCDGaussRat.toComplex D_Q.det := by
+    dsimp [D_C, assembledWilsonDiracComplexMatrix]
+    exact (RingHom.map_det FQCDGaussRat.toComplex D_Q).symm
+  have h_star_C : star D_C.det = D_C.det := by
+    rw [h_det_map, ← FQCDGaussRat.toComplex_star, h_star_Q]
+  have h_tf_eq : (FermionSignWilsonDiracGamma5.twoFlavor D_C).det = D_C.det ^ 2 :=
+    FermionSignWilsonDiracGamma5.two_flavor_det_eq_sq D_C
+  have h_tf_pos := FermionSignWilsonDiracGamma5.two_flavor_det_real_nonneg h_star_C
+  refine ⟨h_herm, h_star_Q, h_im_Q, h_fb_Q, h_sq_im_Q, h_sq_re_Q, h_star_C, h_tf_eq, ?_, ?_⟩
+  · rw [h_tf_eq]; exact h_tf_pos.1
+  · rw [h_tf_eq]; exact h_tf_pos.2
+
+-- ============================================================================
 -- Axiom Verification Receipts
 -- ============================================================================
 
@@ -2300,5 +2580,6 @@ theorem finite_lattice_assembled_wilson_dirac_gamma5_hermiticity
 #print axioms wilsonDirac2x2Det_unit_r
 #print axioms overlap_modified_chirality_matrix_square
 #print axioms overlap_modified_chirality_involution
+#print axioms assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivity
 
 end FQCD
