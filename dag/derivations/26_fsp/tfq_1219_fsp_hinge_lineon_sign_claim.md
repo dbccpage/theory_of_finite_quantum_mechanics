@@ -11,10 +11,10 @@
 
 ## 1. Abstract & Formal Statement
 
-In a 3D foliated lattice, lineon defects confined to 1D hinge lines cannot exchange positions without collision; consequently their worldlines carry no non-trivial permutation braids and worldline permutation parity is identically trivial (+1). At intersecting hinges, higher-form 2-gauge defect sheets produce non-abelian commutator holonomy with negative trace (-2 < 0) and positive defect mass (Phi1 = 2 > 0), which is restored to non-negative trace under decoupled foliated categorical quantum double projection.
+In a 3D foliated lattice, lineon defects confined to 1D hinge lines cannot exchange positions without collision; consequently their worldlines carry no non-trivial permutation braids and worldline permutation parity is identically trivial (+1). At intersecting hinges, anticommuting 2x2 Pauli/quaternion 2-gauge defect sheets ($AB = -BA$) produce commutator holonomy $ABA^{-1}B^{-1} = -I_2$ with negative trace (-2 < 0) and positive defect mass (Phi1 = 2 > 0), whereas general non-commuting $SU(2)$ holonomies need not have negative trace (e.g., $A = \operatorname{diag}(i,-i)$ and $B = [[4/5,-3/5],[3/5,4/5]]$ satisfy $AB \ne BA$ with $\operatorname{Tr}(ABA^{-1}B^{-1}) = 14/25 > 0$). Decoupled foliated categorical quantum double projection restores non-negative trace.
 
 ### Governing Obligation
-Formulate the 1D discrete line lattice coordinate ordering, prove collision-free order preservation and exchange obstruction (discrete IVT), certify exact commutator holonomy traces over Q(i), and verify foliated categorical projection.
+Formulate the 1D discrete line lattice coordinate ordering, prove collision-free order preservation and exchange obstruction (discrete IVT), certify exact commutator holonomy traces over Q(i) (distinguishing anticommuting Pauli pairs from general non-commuting SU(2) holonomies), and verify foliated categorical projection.
 
 ### Witness Audit
 Formally proved in Lean 4 (lean4/FoliatedFracton2Gauge.lean) with zero sorry and standard axioms only. Reference implementation and test suite verified in Python (code/python/src/fsp/foliated_fracton_2gauge_defects.py) and Rust (code/rust/src/fsp/foliated_fracton_lineon.rs). Standalone independent check script verified (checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py).
@@ -35,6 +35,11 @@ Formally proved in Lean 4 (lean4/FoliatedFracton2Gauge.lean) with zero sorry and
 - `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_worldline_permutation_sign_trivial`
 - `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.nonabelian_hinge_commutator_curvature_obstruction`
 - `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free`
+- `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_collision_free_exchange_exists`
+- `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_exchange_induces_negative_sign`
+- `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.foliated_lineon_axis_conservation_forbids_branch_exchange`
+- `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.anticommuting_mat2x2_commutator_trace_neg_two`
+- `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.noncommuting_su2_positive_commutator_trace_counterexample`
 
 ### Rust Certifiers
 - `code/rust/src/fsp/foliated_fracton_lineon.rs`

@@ -448,3 +448,44 @@ fn test_adversarial_quaternion_algebra_and_holonomy() {
     }
 }
 
+#[test]
+fn test_multi_hinge_y_junction_exchange_and_axis_conservation() {
+    let (steps, collision_free, valid_hops, exchanged, sign, ab_w, nonab_w, axis_swap_allowed) =
+        LineonHingeConfig::verify_y_junction_exchange_statistics();
+    assert_eq!(steps, 6);
+    assert!(collision_free);
+    assert!(valid_hops);
+    assert!(exchanged);
+    assert_eq!(sign, -1);
+    assert_eq!(ab_w, -2);
+    assert_eq!(nonab_w, 2);
+    assert!(!axis_swap_allowed);
+}
+
+#[test]
+fn test_noncommuting_su2_positive_commutator_trace_counterexample() {
+    // Counterexample: A = diag(i, -i) in SU(2) and B = [[4/5, -3/5], [3/5, 4/5]] in SU(2)
+    let a = Mat2x2::new(
+        ComplexRat::i(),
+        ComplexRat::zero(),
+        ComplexRat::zero(),
+        -ComplexRat::i(),
+    );
+    let b = Mat2x2::new(
+        ComplexRat::new(Rational64::new(4, 5), Rational64::zero()),
+        ComplexRat::new(Rational64::new(-3, 5), Rational64::zero()),
+        ComplexRat::new(Rational64::new(3, 5), Rational64::zero()),
+        ComplexRat::new(Rational64::new(4, 5), Rational64::zero()),
+    );
+    assert_eq!(a.det(), ComplexRat::one());
+    assert_eq!(b.det(), ComplexRat::one());
+    assert_ne!(a.mul(&b), b.mul(&a));
+
+    let tr = LineonHingeConfig::compute_defect_sheet_trace(&a, &b).unwrap();
+    assert_eq!(tr.re, Rational64::new(14, 25));
+    assert_eq!(tr.im, Rational64::zero());
+    assert!(tr.re > Rational64::zero());
+}
+
+
+

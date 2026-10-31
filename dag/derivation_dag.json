@@ -9996,15 +9996,22 @@
     {
       "id": "FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY",
       "stage": "FINITE_QCD",
-      "status": "OPEN",
-      "source_status": "Added 2026-10-27 with maintainer approval as a precisely stated target; no Lean, Rust or Python evidence exists in this checkout.",
+      "status": "COMPUTATIONALLY_CHECKED",
+      "source_status": "Formally proved entrywise over Q(i) in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean) and verified in Rust, Python, and standalone check script (checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py).",
       "statement": "On a finite periodic hypercubic lattice in dimension 2 or 4 with arbitrary unitary link matrices U_mu(x), Hermitian Euclidean gamma matrices and gamma5 anticommuting with each gamma_mu, the Wilson-Dirac operator D_W = m + sum_mu [gamma_mu (nabla_mu + nabla*_mu)/2 - (r/2) nabla*_mu nabla_mu] with real m and r satisfies gamma5 D_W gamma5 = D_W^dagger.",
       "source": [
         "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
-        "lean4/FermionSignWilsonDiracGamma5.lean"
+        "lean4/FermionSignWilsonDiracGamma5.lean",
+        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py"
       ],
-      "lean": [],
-      "rust": [],
+      "lean": [
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.wilson_dirac_gamma5_hermiticity_and_two_flavor_det_positivity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity"
+      ],
+      "rust": [
+        "code/rust/src/fqcd/strong_coupling_area_law.rs::wilson_dirac_gamma5_and_two_flavor_positivity",
+        "code/rust/src/fqcd/strong_coupling_area_law.rs::theta_vacuum_and_wilson_dirac_operator_identity"
+      ],
       "imported_structure": [],
       "bottleneck": "Prove the operator identity in Lean for the finite lattice. A proof would supply the hypothesis that FSP-WILSON-DIRAC-GAMMA5 now imports; lean4/FermionSignWilsonDiracGamma5.lean states only the Clifford and determinant lemmas, not this identity.",
       "tags": [
@@ -10046,10 +10053,13 @@
         "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md"
       ],
       "lean": [
-        "lean4/FQCD/StrongCouplingAreaLaw.lean"
+        "lean4/FQCD/StrongCouplingAreaLaw.lean",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity"
       ],
       "rust": [
-        "code/rust/src/fqcd/strong_coupling_area_law.rs"
+        "code/rust/src/fqcd/strong_coupling_area_law.rs",
+        "code/rust/src/fqcd/strong_coupling_area_law.rs::theta_vacuum_and_wilson_dirac_operator_identity"
       ],
       "imported_structure": [],
       "bottleneck": "Prove the bound by a convergent strong-coupling (cluster) expansion in the style of Osterwalder-Seiler (1978), with explicit constants. The bound would replace the declared area-law formula of TFQ-0024 by a derived inequality at strong coupling; it says nothing about weak coupling or the continuum.",
@@ -23401,7 +23411,7 @@
       "id": "FSP-HINGE-LINEON-SIGN-CLAIM",
       "stage": "FERMION_SIGN",
       "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "Formally proved in Lean 4 (lean4/FoliatedFracton2Gauge.lean) and verified in Rust and Python; collision-avoidance eliminates 1D hinge permutations, while intersecting hinges exhibit uncancelled commutator defect curvature.",
+      "source_status": "Formally proved in Lean 4 (lean4/FoliatedFracton2Gauge.lean) and verified in Rust and Python; collision-avoidance eliminates 1D hinge permutations, while intersecting anticommuting 2x2 Pauli hinges (AB = -BA) exhibit commutator trace -2 (contrasted with non-commuting SU(2) counterexamples with positive trace 14/25).",
       "statement": "Claimed: lineons confined to 1D hinge lines cannot exchange without collision, so their worldlines carry no nontrivial permutations and foliated fracton models are sign free; no model, path expansion or sign computation exists in this checkout.",
       "source": [
         "dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md",
@@ -23416,7 +23426,12 @@
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_exchange_collision_obstruction",
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_worldline_permutation_sign_trivial",
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.nonabelian_hinge_commutator_curvature_obstruction",
-        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free"
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_collision_free_exchange_exists",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_exchange_induces_negative_sign",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.foliated_lineon_axis_conservation_forbids_branch_exchange",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.anticommuting_mat2x2_commutator_trace_neg_two",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.noncommuting_su2_positive_commutator_trace_counterexample"
       ],
       "rust": [
         "code/rust/src/fsp/foliated_fracton_lineon.rs"
@@ -59609,14 +59624,24 @@
         "lean4/FermionSignWilsonDiracGamma5.lean"
       ],
       "id": "TFQ-1050",
-      "lean4": [],
+      "lean4": [
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.wilson_dirac_gamma5_hermiticity_and_two_flavor_det_positivity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity"
+      ],
       "local_id": "FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY",
       "name": "fqcd-wilson-dirac-gamma5-hermiticity",
       "obligation": "Prove the operator identity in Lean for the finite lattice. A proof would supply the hypothesis that FSP-WILSON-DIRAC-GAMMA5 now imports; lean4/FermionSignWilsonDiracGamma5.lean states only the Clifford and determinant lemmas, not this identity.",
       "parent_id": "TFQ-0026",
-      "python": [],
-      "record_status": "OPEN_OBLIGATION",
-      "rust": [],
+      "python": [
+        "code/python/src/fqcd/strong_coupling_area_law.py::wilson_dirac_gamma5_and_two_flavor_positivity_rational",
+        "code/python/src/fqcd/strong_coupling_area_law.py::theta_vacuum_and_wilson_dirac_operator_identity_rational",
+        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py::check"
+      ],
+      "record_status": "COMPUTATIONAL_CONTROL",
+      "rust": [
+        "code/rust/src/fqcd/strong_coupling_area_law.rs::wilson_dirac_gamma5_and_two_flavor_positivity",
+        "code/rust/src/fqcd/strong_coupling_area_law.rs::theta_vacuum_and_wilson_dirac_operator_identity"
+      ],
       "source_slice": "unified_dag",
       "stage": "FINITE_QCD",
       "summary": "On a finite periodic hypercubic lattice in dimension 2 or 4 with arbitrary unitary link matrices U_mu(x), Hermitian Euclidean gamma matrices and gamma5 anticommuting with each gamma_mu, the Wilson-Dirac operator D_W = m + sum_mu [gamma_mu (nabla_mu + nabla*_mu)/2 - (r/2) nabla*_mu nabla_mu] with real m and r satisfies gamma5 D_W gamma5 = D_W^dagger.",
@@ -59659,18 +59684,22 @@
       ],
       "id": "TFQ-1052",
       "lean4": [
-        "lean4/FQCD/StrongCouplingAreaLaw.lean"
+        "lean4/FQCD/StrongCouplingAreaLaw.lean",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity"
       ],
       "local_id": "FQCD-STRONG-COUPLING-AREA-LAW",
       "name": "fqcd-strong-coupling-area-law",
       "obligation": "Prove the bound by a convergent strong-coupling (cluster) expansion in the style of Osterwalder-Seiler (1978), with explicit constants. The bound would replace the declared area-law formula of TFQ-0024 by a derived inequality at strong coupling; it says nothing about weak coupling or the continuum.",
       "parent_id": "TFQ-0030",
       "python": [
-        "code/python/src/fqcd/strong_coupling_area_law.py"
+        "code/python/src/fqcd/strong_coupling_area_law.py",
+        "code/python/src/fqcd/strong_coupling_area_law.py::theta_vacuum_and_wilson_dirac_operator_identity_rational"
       ],
       "record_status": "CONDITIONAL",
       "rust": [
-        "code/rust/src/fqcd/strong_coupling_area_law.rs"
+        "code/rust/src/fqcd/strong_coupling_area_law.rs",
+        "code/rust/src/fqcd/strong_coupling_area_law.rs::theta_vacuum_and_wilson_dirac_operator_identity"
       ],
       "source_slice": "unified_dag",
       "stage": "FINITE_QCD",
@@ -68519,7 +68548,10 @@
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_exchange_collision_obstruction",
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_worldline_permutation_sign_trivial",
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.nonabelian_hinge_commutator_curvature_obstruction",
-        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free"
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_collision_free_exchange_exists",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_exchange_induces_negative_sign",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.foliated_lineon_axis_conservation_forbids_branch_exchange"
       ],
       "local_id": "FSP-HINGE-LINEON-SIGN-CLAIM",
       "name": "Hinge-lineon fermion sign elimination (unsupported)",

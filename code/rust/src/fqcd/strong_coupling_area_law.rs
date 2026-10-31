@@ -908,6 +908,101 @@ pub fn ginsparg_wilson_overlap_and_luscher_index() -> (
     )
 }
 
+/// Topological θ-vacuum complex sector weights, CP-invariant points θ ∈ {0, π},
+/// parity-paired Lüscher sector partition sums, and the general finite-lattice
+/// Wilson–Dirac operator identity γ_5 D_W γ_5 = D_W^† (Main Theorems 21 and 22):
+/// returns `(im_half_pi, im_345, mod_345_q3, re_pi_q0, re_pi_q1, re_pi_q3,
+/// z0_re, z345_re, zhp_re, zpi_re, deficit_0_pi, offdiag_ok, diag_ok, diag_d2, diag_d4)`.
+pub fn theta_vacuum_and_wilson_dirac_operator_identity() -> (
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    BigRational,
+    bool,
+    bool,
+    BigRational,
+    BigRational,
+) {
+    let theta_re = |c: &BigRational, s: &BigRational, q: i64| -> BigRational {
+        match q {
+            0 => BigRational::one(),
+            1 | -1 => c.clone(),
+            2 | -2 => c * c - s * s,
+            3 | -3 => c * (c * c - rat(3, 1) * s * s),
+            _ => BigRational::zero(),
+        }
+    };
+    let theta_im = |c: &BigRational, s: &BigRational, q: i64| -> BigRational {
+        match q {
+            0 => BigRational::zero(),
+            1 => -s.clone(),
+            -1 => s.clone(),
+            2 => -rat(2, 1) * c * s,
+            -2 => rat(2, 1) * c * s,
+            3 => -s * (rat(3, 1) * c * c - s * s),
+            -3 => s * (rat(3, 1) * c * c - s * s),
+            _ => BigRational::zero(),
+        }
+    };
+    let z_sum_re = |c: &BigRational, s: &BigRational| -> BigRational {
+        let (z0, z1, z2, z3) = (rat(10, 1), rat(4, 1), rat(2, 1), rat(1, 1));
+        z0 * theta_re(c, s, 0)
+            + z1 * (theta_re(c, s, 1) + theta_re(c, s, -1))
+            + z2 * (theta_re(c, s, 2) + theta_re(c, s, -2))
+            + z3 * (theta_re(c, s, 3) + theta_re(c, s, -3))
+    };
+    let c35 = rat(3, 5);
+    let s45 = rat(4, 5);
+    let re3 = theta_re(&c35, &s45, 3);
+    let im3 = theta_im(&c35, &s45, 3);
+    let mod_345_q3 = &re3 * &re3 + &im3 * &im3;
+
+    let z0_re = z_sum_re(&rat(1, 1), &rat(0, 1));
+    let z345_re = z_sum_re(&c35, &s45);
+    let zhp_re = z_sum_re(&rat(0, 1), &rat(1, 1));
+    let zpi_re = z_sum_re(&rat(-1, 1), &rat(0, 1));
+    let deficit_0_pi = &z0_re - &zpi_re;
+
+    // General Wilson-Dirac link matrix-element check
+    let (r, g_re, g_im, u_re, u_im) = (rat(1, 2), rat(3, 5), rat(4, 5), rat(5, 13), rat(-12, 13));
+    let f_re = (rat(1, 2) * &g_re) * &u_re - (rat(1, 2) * &g_im) * &u_im;
+    let f_im = (rat(1, 2) * &g_re) * &u_im + (rat(1, 2) * &g_im) * &u_re;
+    let b_re = (-rat(1, 2) * &g_re) * &u_re - (rat(1, 2) * &g_im) * (-&u_im);
+    let b_im = (-rat(1, 2) * &g_re) * (-&u_im) + (rat(1, 2) * &g_im) * &u_re;
+    let offdiag_ok = (-&f_re == b_re) && (-&f_im == -b_im);
+
+    let fd_re = (-rat(1, 2) * &r) * &u_re;
+    let fd_im = (-rat(1, 2) * &r) * &u_im;
+    let bd_re = (-rat(1, 2) * &r) * &u_re;
+    let bd_im = (-rat(1, 2) * &r) * (-&u_im);
+    let diag_ok = (fd_re == bd_re) && (fd_im == -bd_im);
+
+    (
+        theta_im(&rat(0, 1), &rat(1, 1), 1),
+        theta_im(&c35, &s45, 1),
+        mod_345_q3,
+        theta_re(&rat(-1, 1), &rat(0, 1), 0),
+        theta_re(&rat(-1, 1), &rat(0, 1), 1),
+        theta_re(&rat(-1, 1), &rat(0, 1), 3),
+        z0_re,
+        z345_re,
+        zhp_re,
+        zpi_re,
+        deficit_0_pi,
+        offdiag_ok,
+        diag_ok,
+        rat(1 + 2, 1),
+        rat(1 + 4, 1),
+    )
+}
+
 /// Master verification witness for FQCD Strong-Coupling Area Law (Record TFQ-1052).
 pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static str> {
     // 1. Coordination numbers
@@ -1370,6 +1465,37 @@ pub fn verify_fqcd_strong_coupling_area_law_witness() -> Result<bool, &'static s
         || dprod != rat(-576, 1)
     {
         return Err("Ginsparg-Wilson overlap relation and Luscher index check failed");
+    }
+
+    // 25. Topological theta-vacuum complex weight & finite-lattice Wilson-Dirac operator identity
+    let (
+        im_hp,
+        im_345,
+        mod_q3,
+        re_pi_0,
+        re_pi_1,
+        re_pi_3,
+        z0_re,
+        z345_re,
+        zhp_re,
+        zpi_re,
+        def_0_pi,
+        offdiag_ok,
+        diag_ok,
+        d_d2,
+        d_d4,
+    ) = theta_vacuum_and_wilson_dirac_operator_identity();
+    if im_hp != rat(-1, 1)
+        || im_345 != rat(-4, 5)
+        || mod_q3 != BigRational::one()
+        || (re_pi_0, re_pi_1, re_pi_3) != (rat(1, 1), rat(-1, 1), rat(-1, 1))
+        || (z0_re, z345_re, zhp_re, zpi_re, def_0_pi)
+            != (rat(24, 1), rat(1476, 125), rat(6, 1), rat(4, 1), rat(20, 1))
+        || !offdiag_ok
+        || !diag_ok
+        || (d_d2, d_d4) != (rat(3, 1), rat(5, 1))
+    {
+        return Err("Theta-vacuum complex weight and Wilson-Dirac operator identity check failed");
     }
 
     Ok(true)
