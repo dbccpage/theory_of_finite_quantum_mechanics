@@ -16,6 +16,9 @@ code_dir = Path(__file__).resolve().parent.parent.parent
 if str(code_dir) not in sys.path:
     sys.path.insert(0, str(code_dir))
 
+from fractions import Fraction
+import random
+
 from src.fsp.foliated_fracton_2gauge_defects import (
     FoliatedFractonConfig,
     FoliatedFractonEngine,
@@ -24,6 +27,8 @@ from src.fsp.foliated_fracton_2gauge_defects import (
     FractonDefect,
     SubsystemChargeRegistry,
     TerminalRoute,
+    HingeLineonSignCertifier,
+    Lineon1DState,
 )
 
 
@@ -129,3 +134,87 @@ class TestFoliatedFracton2GaugeDefects:
         assert res.average_sign == -1.0
         assert res.is_foliated_projection_successful is False
         assert res.details["projected_trace"] < 0.0
+
+    def test_lineon_1d_state_ordering(self) -> None:
+        """Verifies that Lineon1DState enforces strict coordinate ordering."""
+        valid_state = Lineon1DState(pos1=1, pos2=3)
+        assert valid_state.pos1 == 1 and valid_state.pos2 == 3
+
+        with pytest.raises(ValueError):
+            Lineon1DState(pos1=3, pos2=3)
+
+        with pytest.raises(ValueError):
+            Lineon1DState(pos1=4, pos2=2)
+
+    def test_hinge_sign_elimination(self) -> None:
+        """
+        Comprehensive test for TFQ-1219 (FSP-HINGE-LINEON-SIGN-CLAIM):
+        1. 1D collision avoidance invariant across 100 randomized valid hop sequences.
+        2. Discrete IVT exchange refusal: confirms that any permutation requires a collision site.
+        3. Exact trace values Tr(M) in {+2, -2} over Q(i).
+        4. 5-fold BQNF terminal routing consistency.
+        5. Trivial worldline permutation parity (+1).
+        """
+        # 1. 100 randomized valid hop sequences
+        rng = random.Random(42)
+        for _ in range(100):
+            p1 = rng.randint(-20, 0)
+            p2 = rng.randint(1, 20)
+            hops = []
+            curr1, curr2 = p1, p2
+            for _ in range(15):
+                # Choose hop delta that maintains curr1 + d1 < curr2 + d2
+                valid_hops = [
+                    (d1, d2)
+                    for d1 in [-1, 0, 1]
+                    for d2 in [-1, 0, 1]
+                    if curr1 + d1 < curr2 + d2
+                ]
+                d1, d2 = rng.choice(valid_hops)
+                hops.append((d1, d2))
+                curr1 += d1
+                curr2 += d2
+            assert HingeLineonSignCertifier.verify_1d_lineon_collision_avoidance(p1, p2, hops)
+
+        # Refusal check: hop that causes collision is rejected
+        assert not HingeLineonSignCertifier.verify_1d_lineon_collision_avoidance(0, 1, [(1, 0)])
+
+        # 2. Discrete IVT exchange refusal
+        p1, p2 = 0, 4
+        # Single-step sequential hops exchanging 0 and 4:
+        # Particle 1: 0 -> 1 -> 2 -> 3 -> 4
+        # Particle 2: 4 -> 3 -> 2 -> 1 -> 0
+        traj1 = [0, 1, 2, 2, 3, 4]
+        traj2 = [4, 4, 3, 2, 1, 0]
+        # At index t=3, traj1[3] == 2 == traj2[3] (collision site!)
+        assert HingeLineonSignCertifier.verify_discrete_ivt_collision_obstruction(p1, p2, traj1, traj2)
+
+        # 3. Exact trace values Tr(M) in {+2, -2} over Q(i)
+        # Abelian 2-gauge sheets (identity)
+        b_xy_ab = np.eye(2, dtype=complex)
+        b_yz_ab = np.eye(2, dtype=complex)
+        tr_ab = HingeLineonSignCertifier.compute_hinge_holonomy_trace(b_xy_ab, b_yz_ab)
+        assert tr_ab == Fraction(2, 1)
+
+        # Non-abelian 2-gauge sheets (Pauli matrices sigma_z, sigma_x where [z, x] anti-commute)
+        sigma_z = np.array([[1, 0], [0, -1]], dtype=complex)
+        sigma_x = np.array([[0, 1], [1, 0]], dtype=complex)
+        tr_nonab = HingeLineonSignCertifier.compute_hinge_holonomy_trace(sigma_z, sigma_x)
+        assert tr_nonab == Fraction(-2, 1)
+
+        # 4. BQNF terminal routing consistency
+        assert HingeLineonSignCertifier.evaluate_terminal_routing(
+            is_corner_lineon=False, is_nonabelian=False
+        ) == TerminalRoute.EXACT_REPAIR
+        assert HingeLineonSignCertifier.evaluate_terminal_routing(
+            is_corner_lineon=True, is_nonabelian=False
+        ) == TerminalRoute.OPEN_SIGN_OBSTRUCTION
+        assert HingeLineonSignCertifier.evaluate_terminal_routing(
+            is_corner_lineon=False, is_nonabelian=True
+        ) == TerminalRoute.OPEN_SIGN_OBSTRUCTION
+
+        # 5. Trivial worldline permutation parity (+1)
+        assert HingeLineonSignCertifier.permutation_sign_trivial(is_collision_free=True) == 1
+        with pytest.raises(ValueError):
+            HingeLineonSignCertifier.permutation_sign_trivial(is_collision_free=False)
+

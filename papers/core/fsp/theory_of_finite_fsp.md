@@ -1,4 +1,4 @@
-# Table of Contents: Complete Derivation DAG for the Theory of the Finite Fermion Sign Problem
+# Table of Contents: Derivation DAG for the Theory of the Finite Fermion Sign Problem
 
 **AuthorityEffect:** None.  
 **Document Identity:** `theory_of_finite_fsp`  
@@ -763,14 +763,14 @@ Every derivation step is backed by an exact verification triad spanning Python n
 
 - **UUID:** `692ee792-6a47-5f0f-9895-e13ab7885487`
 - **Coda Atlas EADC ID:** [`EA:004.008.072`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas)
-- **Status:** `PROVED_LEAN`
+- **Status:** `COMPUTATIONALLY_CHECKED`
 - **Parent Nodes:** `FSP-DERIV-054`
 - **Derivation Summary (~500 chars):**
-  > Analyzes the fermion sign problem for mobile lineons moving along the 1D intersection lines (hinges) of orthogonal foliation leaves. Shows in this model that because lineons cannot bypass each other in 1D without direct collision, their worldlines cannot perform non-trivial spatial permutations, proving the exact elimination of the sign problem in foliated fracton architectures.
+  > Analyzes the fermion sign behavior for mobile lineons moving along 1D hinge lines of orthogonal foliation leaves. Shows in this toy setting that because lineons cannot bypass each other in 1D without direct collision, their worldlines carry no non-trivial spatial permutations (trivial parity +1). At intersecting hinges, non-abelian defect sheets produce uncancelled commutator curvature Tr(M) = -2 < 0, which is restored to non-negative trace under decoupled foliated categorical projection.
 - **Verification Triad:**
-  * **Python:** [`sources/atlas/papers/fermion_sign_problem/code/foliated_fracton_2gauge_defects.py::test_hinge_sign_elimination`](file:///c:sources/atlas/papers/fermion_sign_problem/code/foliated_fracton_2gauge_defects.py)
-  * **Rust:** [`omega_majorana::lggr::hinge_lineon_sign_elimination`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine/crates_rs)
-  * **Lean 4:** [`FoliatedFracton2Gauge.lean::hinge_lineon_fermion_sign_elimination`](file:///c:/Users/a343o/source/repos/the_symbol_game/omega_engine_atlas/coda_atlas/F004_papers/008_fsp/lean4)
+  * **Python:** [`code/python/tests/fsp/integration/test_foliated_fracton_2gauge_defects.py::test_hinge_sign_elimination`](code/python/tests/fsp/integration/test_foliated_fracton_2gauge_defects.py)
+  * **Rust:** [`code/rust/tests/foliated_fracton_lineon_test.rs`](code/rust/tests/foliated_fracton_lineon_test.rs)
+  * **Lean 4:** [`lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_path_preserves_relative_order`](lean4/FoliatedFracton2Gauge.lean)
 
 
 ### Stage 14: Grand Synthesis: The Unified Theory of the Finite Fermion Sign Problem
