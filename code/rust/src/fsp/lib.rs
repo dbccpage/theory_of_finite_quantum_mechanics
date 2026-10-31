@@ -6,12 +6,16 @@
 
 pub mod bqnf;
 pub mod fock;
+pub mod foliated_fracton_lineon;
 pub mod gin;
 pub mod hubbard;
 pub mod normal_forms;
 pub mod witness;
 
 pub use bqnf::{route_packet, CochainComplex, SignPacketMetrics, TerminalRoute};
+pub use foliated_fracton_lineon::{
+    ComplexRat, HingeOrientation, LineonHingeConfig, Mat2x2, QuaternionRat,
+};
 pub use fock::{
     benchmark_fock_lattice_scaling, car_annihilate, car_create, car_hop,
     fock_scaling_from_canonical_json, fock_scaling_to_canonical_json, jordan_wigner_hop_sign,
@@ -58,6 +62,17 @@ pub fn fsp_crate_invariants_hold() -> Result<(), &'static str> {
     let mzm = gin::audit_kitaev_chain_majorana(4)?;
     if !mzm.is_boundary_isolated {
         return Err("MZM must be boundary isolated on Kitaev chain");
+    }
+    let lhc = foliated_fracton_lineon::LineonHingeConfig::new(
+        foliated_fracton_lineon::HingeOrientation::XAxis,
+        0,
+        2,
+    )?;
+    if lhc.can_exchange_without_collision() {
+        return Err("1D hinge lineon must forbid collision-free exchange");
+    }
+    if foliated_fracton_lineon::LineonHingeConfig::hinge_commutator_trace(true) != -2 {
+        return Err("Non-abelian hinge commutator trace must be -2");
     }
     Ok(())
 }

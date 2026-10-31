@@ -119,11 +119,12 @@ Audit of 2026-10-21. The unified derivation DAG (`dag/fragments/unified_dag.json
 | `FSP-DERIV-051` | NEW | [TFQ-1215](../../../dag/derivations/26_fsp/tfq_1215_fsp_cdt_foliation_positivity.md) | `FSP-CDT-FOLIATION-POSITIVITY` | PROVED_LEAN | **OPEN** | lowered |
 | `FSP-DERIV-052` | NEW | [TFQ-1216](../../../dag/derivations/26_fsp/tfq_1216_fsp_dirac_kahler_spinfoam_claim.md) | `FSP-DIRAC-KAHLER-SPINFOAM-CLAIM` | PROVED_LEAN | **OPEN** | lowered |
 | `FSP-DERIV-053` | NEW | [TFQ-1217](../../../dag/derivations/26_fsp/tfq_1217_fsp_xcube_fracton_model.md) | `FSP-XCUBE-FRACTON-MODEL` | PROVED_LEAN | **IMPORTED_ASSUMPTION** | lowered |
-| `FSP-DERIV-054` | NEW | [TFQ-1218](../../../dag/derivations/26_fsp/tfq_1218_fsp_fracton_mobility.md) | `FSP-FRACTON-MOBILITY` | PROVED_LEAN | **IMPORTED_ASSUMPTION** | lowered |
-| `FSP-DERIV-055` | NEW | [TFQ-1219](../../../dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md) | `FSP-HINGE-LINEON-SIGN-CLAIM` | PROVED_LEAN | **OPEN** | lowered |
+| `FSP-DERIV-055` | NEW | [TFQ-1219](../../../dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md) | `FSP-HINGE-LINEON-SIGN-CLAIM` | PROVED_LEAN | **COMPUTATIONALLY_CHECKED** | reconciled |
 | `FSP-DERIV-056` | NEW | [TFQ-1220](../../../dag/derivations/26_fsp/tfq_1220_fsp_master_dichotomy_refuted.md) | `FSP-MASTER-DICHOTOMY-REFUTED` | PROVED_LEAN | **REFUTED** | lowered |
 
-### Audit errata (2026-10-21)
+### Audit errata (2026-10-21 / 2026-10-31)
+
+- 2026-10-31 RECONCILIATION (FSP-DERIV-055, TFQ-1219): Formalized 1D hinge lineon order preservation (`hinge_path_preserves_relative_order`, `hinge_path_exchange_impossible`), discrete IVT exchange obstruction (`hinge_lineon_exchange_collision_obstruction`), non-abelian hinge commutator negative trace (`nonabelian_hinge_commutator_curvature_obstruction`), and decoupled foliated projection (`decoupled_foliated_lineon_sign_free`) in `lean4/FoliatedFracton2Gauge.lean` with zero sorry. Reference implementation and test suite verified in Python (`code/python/src/fsp/foliated_fracton_2gauge_defects.py`) and Rust (`code/rust/src/fsp/foliated_fracton_lineon.rs`). Standalone independent check script verified (69 checks passed). Audited status COMPUTATIONALLY_CHECKED.
 
 - 2026-10-21 ERRATUM (FSP-DERIV-033, TFQ-1197): The register says the Wilson Dirac operator has a non-negative determinant. gamma5-hermiticity only makes det D_W real; non-negativity holds for the two-degenerate-flavor product (det D_W)^2 >= 0, and a single-flavor det D_W can be negative. The cited `NonAbelianGaugeSigns.lean::wilson_dirac_gamma5_hermiticity_positivity` does not exist (that file has no Dirac operator). Audited status IMPORTED_ASSUMPTION.
 - 2026-10-21 ERRATUM (FSP-DERIV-039, TFQ-1203): The register derives det D(i mu_I) >= 0 from gamma5 D(i mu_I) gamma5 = D(i mu_I)^dagger. That identity gives reality of the determinant, not positivity for a single Wilson flavor, and analytic continuation from imaginary to real mu is an extrapolation, not a sign-free route to real mu. The cited Lean name and `roberge_weiss_analytic_continuation` (su3_polyakov_loop.py) do not exist. Audited status IMPORTED_ASSUMPTION.

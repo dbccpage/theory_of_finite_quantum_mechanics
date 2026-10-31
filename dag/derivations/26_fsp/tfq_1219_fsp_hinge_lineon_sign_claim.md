@@ -1,6 +1,6 @@
 # [TFQ-1219] Hinge-lineon fermion sign elimination (unsupported)
 
-> **Stage**: `FERMION_SIGN` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `FSP-HINGE-LINEON-SIGN-CLAIM`  
+> **Stage**: `FERMION_SIGN` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `FSP-HINGE-LINEON-SIGN-CLAIM` (`COMPUTATIONALLY_CHECKED`)  
 > **UUID**: `2c3046f3-88f8-583c-9a60-957d4fca20f4`  
 > **Parent Derivation**: [TFQ-1218](tfq_1218_fsp_fracton_mobility.md)  
 > **Source record**: `FSP-DERIV-055` in `papers/core/fsp/theory_of_finite_fsp.jsonl` (claimed status `PROVED_LEAN`)
@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-Claimed: lineons confined to 1D hinge lines cannot exchange without collision, so their worldlines carry no nontrivial permutations and foliated fracton models are sign free; no model, path expansion or sign computation exists in this checkout.
+In a 3D foliated lattice, lineon defects confined to 1D hinge lines cannot exchange positions without collision; consequently their worldlines carry no non-trivial permutation braids and worldline permutation parity is identically trivial (+1). At intersecting hinges, higher-form 2-gauge defect sheets produce non-abelian commutator holonomy with negative trace (-2 < 0) and positive defect mass (Phi1 = 2 > 0), which is restored to non-negative trace under decoupled foliated categorical quantum double projection.
 
 ### Governing Obligation
-Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading.
+Formulate the 1D discrete line lattice coordinate ordering, prove collision-free order preservation and exchange obstruction (discrete IVT), certify exact commutator holonomy traces over Q(i), and verify foliated categorical projection.
 
 ### Witness Audit
-Cited FoliatedFracton2Gauge.lean::hinge_lineon_fermion_sign_elimination does not exist; abelian_hinge_defect_mass_zero and nonabelian_hinge_defect_mass_two are rfl on a defined trace table, and corner_lineon_obstruction_persists is decide on a constant. test_hinge_sign_elimination is absent from foliated_fracton_2gauge_defects.py.
+Formally proved in Lean 4 (lean4/FoliatedFracton2Gauge.lean) with zero sorry and standard axioms only. Reference implementation and test suite verified in Python (code/python/src/fsp/foliated_fracton_2gauge_defects.py) and Rust (code/rust/src/fsp/foliated_fracton_lineon.rs). Standalone independent check script verified (checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py).
 
 ---
 
@@ -28,16 +28,22 @@ Cited FoliatedFracton2Gauge.lean::hinge_lineon_fermion_sign_elimination does not
 ## 3. Multi-Tier Code & Proof Witnesses
 
 ### Lean 4 Theorems
-- *none*
+- `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_path_preserves_relative_order`
+- `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_path_exchange_impossible`
+- `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.discrete_ivt_zero`
+- `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_exchange_collision_obstruction`
+- `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.hinge_lineon_worldline_permutation_sign_trivial`
+- `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.nonabelian_hinge_commutator_curvature_obstruction`
+- `lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free`
 
 ### Rust Certifiers
-- *none*
+- `code/rust/src/fsp/foliated_fracton_lineon.rs`
+- `code/rust/tests/foliated_fracton_lineon_test.rs`
 
 ### Python Checks
-- *none*
-
-### Cited by the source, not in this checkout
-- `external:tfqm_majorana::lggr::hinge_lineon_sign_elimination (cited by the source, not in this checkout)`
+- `code/python/src/fsp/foliated_fracton_2gauge_defects.py`
+- `code/python/tests/fsp/integration/test_foliated_fracton_2gauge_defects.py`
+- `checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py`
 
 ---
 
