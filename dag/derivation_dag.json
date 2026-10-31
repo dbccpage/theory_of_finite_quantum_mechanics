@@ -9997,7 +9997,7 @@
       "id": "FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY",
       "stage": "FINITE_QCD",
       "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "Formally proved entrywise over Q(i) in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean) and verified in Rust, Python, and standalone check script (checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py).",
+      "source_status": "Supporting link/onsite rational block lemmas (finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity) and the assembled 4-component Weyl-Clifford finite-lattice operator identity Gamma_5 D_W Gamma_5 = D_W^dagger (finite_lattice_assembled_wilson_dirac_gamma5_hermiticity) formalized over Q(i) in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean), and verified on finite periodic lattice fixtures in Rust, Python, and standalone check script (checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py).",
       "statement": "On a finite periodic hypercubic lattice in dimension 2 or 4 with arbitrary unitary link matrices U_mu(x), Hermitian Euclidean gamma matrices and gamma5 anticommuting with each gamma_mu, the Wilson-Dirac operator D_W = m + sum_mu [gamma_mu (nabla_mu + nabla*_mu)/2 - (r/2) nabla*_mu nabla_mu] with real m and r satisfies gamma5 D_W gamma5 = D_W^dagger.",
       "source": [
         "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
@@ -10006,7 +10006,8 @@
       ],
       "lean": [
         "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.wilson_dirac_gamma5_hermiticity_and_two_flavor_det_positivity",
-        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity"
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity"
       ],
       "rust": [
         "code/rust/src/fqcd/strong_coupling_area_law.rs::wilson_dirac_gamma5_and_two_flavor_positivity",
@@ -10055,7 +10056,8 @@
       "lean": [
         "lean4/FQCD/StrongCouplingAreaLaw.lean",
         "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum",
-        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity"
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity"
       ],
       "rust": [
         "code/rust/src/fqcd/strong_coupling_area_law.rs",
@@ -23411,7 +23413,7 @@
       "id": "FSP-HINGE-LINEON-SIGN-CLAIM",
       "stage": "FERMION_SIGN",
       "status": "COMPUTATIONALLY_CHECKED",
-      "source_status": "Formally proved in Lean 4 (lean4/FoliatedFracton2Gauge.lean) and verified in Rust and Python; collision-avoidance eliminates 1D hinge permutations, while intersecting anticommuting 2x2 Pauli hinges (AB = -BA) exhibit commutator trace -2 (contrasted with non-commuting SU(2) counterexamples with positive trace 14/25).",
+      "source_status": "papers/core/fsp/theory_of_finite_fsp.jsonl record FSP-DERIV-055 claims PROVED_LEAN; audited status COMPUTATIONALLY_CHECKED",
       "statement": "Claimed: lineons confined to 1D hinge lines cannot exchange without collision, so their worldlines carry no nontrivial permutations and foliated fracton models are sign free; no model, path expansion or sign computation exists in this checkout.",
       "source": [
         "dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md",
@@ -23434,7 +23436,8 @@
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.noncommuting_su2_positive_commutator_trace_counterexample"
       ],
       "rust": [
-        "code/rust/src/fsp/foliated_fracton_lineon.rs"
+        "code/rust/src/fsp/foliated_fracton_lineon.rs",
+        "code/rust/tests/foliated_fracton_lineon_test.rs"
       ],
       "imported_structure": [],
       "bottleneck": "Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading.",
@@ -39365,7 +39368,7 @@
         "FSP-FRACTON-MOBILITY"
       ],
       "output": "FSP-HINGE-LINEON-SIGN-CLAIM",
-      "status": "GAP_NO_DERIVATION",
+      "status": "COMPUTED",
       "mechanism": "Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading.",
       "source": [
         "dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md",
@@ -59621,12 +59624,14 @@
       "f004_refs": [
         "dag/derivations/17_finite_qcd/tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.md",
         "papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
-        "lean4/FermionSignWilsonDiracGamma5.lean"
+        "lean4/FermionSignWilsonDiracGamma5.lean",
+        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py"
       ],
       "id": "TFQ-1050",
       "lean4": [
         "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.wilson_dirac_gamma5_hermiticity_and_two_flavor_det_positivity",
-        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity"
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity"
       ],
       "local_id": "FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY",
       "name": "fqcd-wilson-dirac-gamma5-hermiticity",
@@ -59686,7 +59691,8 @@
       "lean4": [
         "lean4/FQCD/StrongCouplingAreaLaw.lean",
         "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum",
-        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity"
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity",
+        "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity"
       ],
       "local_id": "FQCD-STRONG-COUPLING-AREA-LAW",
       "name": "fqcd-strong-coupling-area-law",
@@ -68538,7 +68544,8 @@
       "f004_refs": [
         "dag/derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md",
         "papers/core/fsp/theory_of_finite_fsp.md:762-775",
-        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:34-34"
+        "papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:34-34",
+        "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py"
       ],
       "id": "TFQ-1219",
       "lean4": [
@@ -68551,7 +68558,9 @@
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.decoupled_foliated_lineon_sign_free",
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_collision_free_exchange_exists",
         "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.y_junction_exchange_induces_negative_sign",
-        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.foliated_lineon_axis_conservation_forbids_branch_exchange"
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.foliated_lineon_axis_conservation_forbids_branch_exchange",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.anticommuting_mat2x2_commutator_trace_neg_two",
+        "lean4/FoliatedFracton2Gauge.lean::FoliatedFracton2Gauge.noncommuting_su2_positive_commutator_trace_counterexample"
       ],
       "local_id": "FSP-HINGE-LINEON-SIGN-CLAIM",
       "name": "Hinge-lineon fermion sign elimination (unsupported)",
@@ -68559,11 +68568,13 @@
       "parent_id": "TFQ-1218",
       "python": [
         "code/python/src/fsp/foliated_fracton_2gauge_defects.py",
+        "code/python/tests/fsp/integration/test_foliated_fracton_2gauge_defects.py",
         "checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py"
       ],
       "record_status": "COMPUTATIONAL_CONTROL",
       "rust": [
-        "code/rust/src/fsp/foliated_fracton_lineon.rs"
+        "code/rust/src/fsp/foliated_fracton_lineon.rs",
+        "code/rust/tests/foliated_fracton_lineon_test.rs"
       ],
       "source_slice": "application_branches",
       "stage": "FERMION_SIGN",

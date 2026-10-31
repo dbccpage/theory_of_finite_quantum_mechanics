@@ -1,6 +1,6 @@
 # [TFQ-1219] Hinge-lineon fermion sign elimination (unsupported)
 
-> **Stage**: `FERMION_SIGN` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `FSP-HINGE-LINEON-SIGN-CLAIM` (`COMPUTATIONALLY_CHECKED`)  
+> **Stage**: `FERMION_SIGN` | **Status**: `COMPUTATIONAL_CONTROL` | **DAG node**: `FSP-HINGE-LINEON-SIGN-CLAIM`  
 > **UUID**: `2c3046f3-88f8-583c-9a60-957d4fca20f4`  
 > **Parent Derivation**: [TFQ-1218](tfq_1218_fsp_fracton_mobility.md)  
 > **Source record**: `FSP-DERIV-055` in `papers/core/fsp/theory_of_finite_fsp.jsonl` (claimed status `PROVED_LEAN`)
@@ -11,13 +11,13 @@
 
 ## 1. Abstract & Formal Statement
 
-In a 3D foliated lattice, lineon defects confined to 1D hinge lines cannot exchange positions without collision; consequently their worldlines carry no non-trivial permutation braids and worldline permutation parity is identically trivial (+1). At intersecting hinges, anticommuting 2x2 Pauli/quaternion 2-gauge defect sheets ($AB = -BA$) produce commutator holonomy $ABA^{-1}B^{-1} = -I_2$ with negative trace (-2 < 0) and positive defect mass (Phi1 = 2 > 0), whereas general non-commuting $SU(2)$ holonomies need not have negative trace (e.g., $A = \operatorname{diag}(i,-i)$ and $B = [[4/5,-3/5],[3/5,4/5]]$ satisfy $AB \ne BA$ with $\operatorname{Tr}(ABA^{-1}B^{-1}) = 14/25 > 0$). Decoupled foliated categorical quantum double projection restores non-negative trace.
+Claimed: lineons confined to 1D hinge lines cannot exchange without collision, so their worldlines carry no nontrivial permutations and foliated fracton models are sign free; no model, path expansion or sign computation exists in this checkout.
 
 ### Governing Obligation
-Formulate the 1D discrete line lattice coordinate ordering, prove collision-free order preservation and exchange obstruction (discrete IVT), certify exact commutator holonomy traces over Q(i) (distinguishing anticommuting Pauli pairs from general non-commuting SU(2) holonomies), and verify foliated categorical projection.
+Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading.
 
 ### Witness Audit
-Formally proved in Lean 4 (lean4/FoliatedFracton2Gauge.lean) with zero sorry and standard axioms only. Reference implementation and test suite verified in Python (code/python/src/fsp/foliated_fracton_2gauge_defects.py) and Rust (code/rust/src/fsp/foliated_fracton_lineon.rs). Standalone independent check script verified (checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py).
+Formally proved in Lean 4 (lean4/FoliatedFracton2Gauge.lean) with zero sorry and standard axioms only: 1D collision-avoiding paths preserve relative ordering and forbid exchange without collision, while intersecting anticommuting 2x2 Pauli holonomies (AB = -BA) yield commutator trace -2 (contrasted with non-commuting SU(2) counterexamples with positive trace 14/25) and 3-prong multi-hinge Y-junctions admit a 6-step collision-free exchange unless hinge-axis conservation holds. Reference implementation and test suite verified in Python (code/python/src/fsp/foliated_fracton_2gauge_defects.py) and Rust (code/rust/src/fsp/foliated_fracton_lineon.rs), plus standalone check script (checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py).
 
 ---
 
@@ -50,6 +50,9 @@ Formally proved in Lean 4 (lean4/FoliatedFracton2Gauge.lean) with zero sorry and
 - `code/python/tests/fsp/integration/test_foliated_fracton_2gauge_defects.py`
 - `checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py`
 
+### Cited by the source, not in this checkout
+- *none*
+
 ---
 
 ## 4. Downstream Derivations (Outgoing DAG Links)
@@ -63,3 +66,4 @@ Formally proved in Lean 4 (lean4/FoliatedFracton2Gauge.lean) with zero sorry and
 - **Cited Sources**:
   - `papers/core/fsp/theory_of_finite_fsp.md:762-775`
   - `papers/core/fsp/the_problem_of_the_fermion_sign_claim_ledger.md:34-34`
+  - `checks/independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py`

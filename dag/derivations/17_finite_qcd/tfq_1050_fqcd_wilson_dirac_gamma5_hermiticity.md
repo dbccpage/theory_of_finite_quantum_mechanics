@@ -16,7 +16,7 @@ On a finite periodic hypercubic lattice in dimension 2 or 4 with arbitrary unita
 Prove the operator identity in Lean for the finite lattice. A proof would supply the hypothesis that FSP-WILSON-DIRAC-GAMMA5 now imports; lean4/FermionSignWilsonDiracGamma5.lean states only the Clifford and determinant lemmas, not this identity.
 
 ### Source Status
-Formally proved entrywise over Q(i) in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean) and verified in Rust, Python, and standalone check script (checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py).
+Supporting link/onsite rational block lemmas (finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity) and the assembled 4-component Weyl-Clifford finite-lattice operator identity Gamma_5 D_W Gamma_5 = D_W^dagger (finite_lattice_assembled_wilson_dirac_gamma5_hermiticity) formalized over Q(i) in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean), and verified on finite periodic lattice fixtures in Rust, Python, and standalone check script (checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py).
 
 ---
 
@@ -33,6 +33,7 @@ Formally proved entrywise over Q(i) in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.
 ### Lean 4 Theorems
 - `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.wilson_dirac_gamma5_hermiticity_and_two_flavor_det_positivity`
 - `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity`
+- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity`
 
 ### Rust Certifiers
 - `code/rust/src/fqcd/strong_coupling_area_law.rs::wilson_dirac_gamma5_and_two_flavor_positivity`

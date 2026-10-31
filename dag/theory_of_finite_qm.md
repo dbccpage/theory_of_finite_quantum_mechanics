@@ -521,7 +521,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1047` | `L1_TO_L2` | `IMPORTED_ASSUMPTION` | `L1-IMP-TRANSITION-PROBABILITY-LAW` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-1048` | `FINITE_QM_CORE` | `IMPORTED_ASSUMPTION` | `FQ-OPERATIONAL-LOCAL-TOMOGRAPHY` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-1049` | `FINITE_QCD` | `OPEN_OBLIGATION` | `FQCD-FINITE-TRANSFER-MATRIX-GAP` (OPEN) | - |
-| `TFQ-1050` | `FINITE_QCD` | `OPEN_OBLIGATION` | `FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` (OPEN) | - |
+| `TFQ-1050` | `FINITE_QCD` | `COMPUTATIONAL_CONTROL` | `FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-1051` | `FINITE_GAUGE` | `OPEN_OBLIGATION` | `FGAUGE-MEDNYKH-2D-YANG-MILLS` (OPEN) | - |
 | `TFQ-1052` | `FINITE_QCD` | `CONDITIONAL` | `FQCD-STRONG-COUPLING-AREA-LAW` (CONDITIONAL) | - |
 | `TFQ-1053` | `FINITE_QCD` | `SOURCE_RECORD` | `FQCD-FINITE-GROUP-FREEZING-FENCE` (SOURCE_RECORD) | - |
@@ -808,7 +808,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1216` | `FERMION_SIGN` | `OPEN_OBLIGATION` | `FSP-DIRAC-KAHLER-SPINFOAM-CLAIM` (OPEN) | - |
 | `TFQ-1217` | `FERMION_SIGN` | `IMPORTED_ASSUMPTION` | `FSP-XCUBE-FRACTON-MODEL` (IMPORTED_ASSUMPTION) | - |
 | `TFQ-1218` | `FERMION_SIGN` | `IMPORTED_ASSUMPTION` | `FSP-FRACTON-MOBILITY` (IMPORTED_ASSUMPTION) | - |
-| `TFQ-1219` | `FERMION_SIGN` | `OPEN_OBLIGATION` | `FSP-HINGE-LINEON-SIGN-CLAIM` (OPEN) | - |
+| `TFQ-1219` | `FERMION_SIGN` | `COMPUTATIONAL_CONTROL` | `FSP-HINGE-LINEON-SIGN-CLAIM` (COMPUTATIONALLY_CHECKED) | - |
 | `TFQ-1220` | `FERMION_SIGN` | `REFUTED` | `FSP-MASTER-DICHOTOMY-REFUTED` (REFUTED) | - |
 | `TFQ-1221` | `MUTUALLY_UNBIASED_BASES` | `DEFINITION` | `MUB6-QUHEX-TENSOR-CARRIER` (DEFINITION) | - |
 | `TFQ-1222` | `MUTUALLY_UNBIASED_BASES` | `IMPORTED_ASSUMPTION` | `MUB6-NO-FIELD-OF-ORDER-SIX` (IMPORTED_ASSUMPTION) | - |
@@ -6326,8 +6326,8 @@ Obligation: Prove the statement in Lean from the Perron-Frobenius theorem for po
 
 - UUID: `49f12c7b-7bef-5972-bf17-0cafaceb7633`
 - Parent: `TFQ-0026`
-- Status: `OPEN_OBLIGATION`
-- DAG node: `FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` (`OPEN`)
+- Status: `COMPUTATIONAL_CONTROL`
+- DAG node: `FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY` (`COMPUTATIONALLY_CHECKED`)
 
 On a finite periodic hypercubic lattice in dimension 2 or 4 with arbitrary unitary link matrices U_mu(x), Hermitian Euclidean gamma matrices and gamma5 anticommuting with each gamma_mu, the Wilson-Dirac operator D_W = m + sum_mu [gamma_mu (nabla_mu + nabla*_mu)/2 - (r/2) nabla*_mu nabla_mu] with real m and r satisfies gamma5 D_W gamma5 = D_W^dagger.
 
@@ -10433,7 +10433,7 @@ Obligation: The claim that these constraints suppress sign-inducing braids has n
 
 - UUID: `2c3046f3-88f8-583c-9a60-957d4fca20f4`
 - Parent: `TFQ-1218`
-- Status: `OPEN_OBLIGATION`
+- Status: `COMPUTATIONAL_CONTROL`
 - DAG node: `FSP-HINGE-LINEON-SIGN-CLAIM`
 - Paper: [derivation](derivations/26_fsp/tfq_1219_fsp_hinge_lineon_sign_claim.md)
 

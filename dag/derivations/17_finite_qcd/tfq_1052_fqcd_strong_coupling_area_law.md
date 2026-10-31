@@ -31,12 +31,17 @@ Formally proved in Lean 4 (lean4/FQCD/StrongCouplingAreaLaw.lean) and checked ac
 
 ### Lean 4 Theorems
 - `lean4/FQCD/StrongCouplingAreaLaw.lean`
+- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum`
+- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity`
+- `lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity`
 
 ### Rust Certifiers
 - `code/rust/src/fqcd/strong_coupling_area_law.rs`
+- `code/rust/src/fqcd/strong_coupling_area_law.rs::theta_vacuum_and_wilson_dirac_operator_identity`
 
 ### Python Checks
 - `code/python/src/fqcd/strong_coupling_area_law.py`
+- `code/python/src/fqcd/strong_coupling_area_law.py::theta_vacuum_and_wilson_dirac_operator_identity_rational`
 
 ---
 
