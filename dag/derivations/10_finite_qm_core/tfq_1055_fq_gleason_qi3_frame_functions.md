@@ -120,6 +120,28 @@ Finite obstructions, nine-ray reductions, global 3-adic and 7-adic non-quadratic
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticComb37_isNonnegFrameFunction`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticComb37_quadratic_iff`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticComb37_archimedeanContinuousAt_tomo_e1_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_three_eq_s3`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_seven_eq_s7`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_isBoundedOnRays`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_vanishes_on_nine_rays`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.witness_p11_primitive`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_s7_sp11_dual_on_three_witnesses`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_s7_sp11_linearIndependent`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual3_7_11_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.rayProj_witness_p11_decomp`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_witness_p11_kernel_relation`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp11_witness_p11_kernel_separation`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.isFrameSqrt11_witness_p11_norms`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.three_prime_frame_partner_norm_valuations_even`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.finExoticComb_isNonnegFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.inertPrimeResidualSystem_linearIndependent`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.finExoticComb_quadratic_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.finCombResidual_coeffs_zero_of_archimedeanContinuousAt_tomo_e1`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_add_finCombResidual_archimedeanContinuousAt_tomo_e1_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.finExoticComb_archimedeanContinuousAt_tomo_e1_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.factorsThroughRayProjLinear_finCombResidual_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.joint_field_extension_eliminates_finCombResidual`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.finCombResidual_inertSystem37_eq_combResidual37`
 
 ### Rust Certifiers
 - *none cited*
@@ -134,6 +156,7 @@ Finite obstructions, nine-ray reductions, global 3-adic and 7-adic non-quadratic
 - `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_s3_global_bounded_zero_weight_residual_and_exotic_qi3`
 - `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_archimedean_discontinuity_and_field_extension_elimination`
 - `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_multi_prime_s3_s7_linear_independence_and_joint_elimination`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_uniform_sp_family_p11_and_finite_inert_residual_system`
 - `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_independent_check_scripts_pass`
 
 ---
