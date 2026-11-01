@@ -4785,6 +4785,237 @@ theorem factorsThroughRayProjLinear_combResidual37_iff (c3 c7 : ℚ) :
     intro v _
     simp [combResidual37]
 
+/-- Explicit operator-space projector relation for `witness_p7 = (1, 2, 1 + i)`:
+its rank-1 projector is an exact rational linear combination of the six real tomography
+projectors together with the two imaginary tomography projectors `tomo_e13i` and `tomo_e23i`. -/
+theorem rayProj_witness_p7_decomp :
+    rayProj witness_p7 =
+    HermForm3.add
+      (HermForm3.add
+        (HermForm3.add
+          (HermForm3.add
+            (HermForm3.add
+              (HermForm3.add
+                (HermForm3.add
+                  (HermForm3.smul (-3 / 7) (rayProj tomo_e1))
+                  (HermForm3.smul (-2 / 7) (rayProj tomo_e2)))
+                (HermForm3.smul (-4 / 7) (rayProj tomo_e3)))
+              (HermForm3.smul (4 / 7) (rayProj tomo_e12)))
+            (HermForm3.smul (2 / 7) (rayProj tomo_e13)))
+          (HermForm3.smul (4 / 7) (rayProj tomo_e23)))
+        (HermForm3.smul (2 / 7) (rayProj tomo_e13i)))
+      (HermForm3.smul (4 / 7) (rayProj tomo_e23i)) := by
+  ext <;>
+    simp [HermForm3.add, HermForm3.smul, rayProj, normSqVec, GaussRat.normSq,
+      witness_p7, tomo_e1, tomo_e2, tomo_e3, tomo_e12, tomo_e13, tomo_e23,
+      tomo_e13i, tomo_e23i, gv] <;>
+    norm_num
+
+/-- Every quadratic Rayleigh function `quadRay ρ` satisfies the 9-ray linear kernel identity
+induced by `rayProj_witness_p7_decomp`. -/
+theorem quadRay_witness_p7_kernel_relation (ρ : HermForm3) :
+    quadRay ρ witness_p7 +
+      (3 / 7) * quadRay ρ tomo_e1 + (2 / 7) * quadRay ρ tomo_e2 + (4 / 7) * quadRay ρ tomo_e3 -
+      (4 / 7) * quadRay ρ tomo_e12 - (2 / 7) * quadRay ρ tomo_e13 - (4 / 7) * quadRay ρ tomo_e23 -
+      (2 / 7) * quadRay ρ tomo_e13i - (4 / 7) * quadRay ρ tomo_e23i = 0 := by
+  simp only [← traceInner_rayProj, rayProj_witness_p7_decomp,
+    traceInner_add_right, traceInner_smul_right]
+  ring
+
+/-- Dual constructive separation of the `witness_p7` projector kernel relation:
+the formal combination in `ker(rayProj)` evaluates to `1` under `s7`, `0` under `s3`,
+and `c7` under `combResidual37 c3 c7`. -/
+theorem s7_witness_p7_kernel_separation (c3 c7 : ℚ) :
+    s7 witness_p7 +
+      (3 / 7) * s7 tomo_e1 + (2 / 7) * s7 tomo_e2 + (4 / 7) * s7 tomo_e3 -
+      (4 / 7) * s7 tomo_e12 - (2 / 7) * s7 tomo_e13 - (4 / 7) * s7 tomo_e23 -
+      (2 / 7) * s7 tomo_e13i - (4 / 7) * s7 tomo_e23i = 1 ∧
+    s3 witness_p7 +
+      (3 / 7) * s3 tomo_e1 + (2 / 7) * s3 tomo_e2 + (4 / 7) * s3 tomo_e3 -
+      (4 / 7) * s3 tomo_e12 - (2 / 7) * s3 tomo_e13 - (4 / 7) * s3 tomo_e23 -
+      (2 / 7) * s3 tomo_e13i - (4 / 7) * s3 tomo_e23i = 0 ∧
+    combResidual37 c3 c7 witness_p7 +
+      (3 / 7) * combResidual37 c3 c7 tomo_e1 + (2 / 7) * combResidual37 c3 c7 tomo_e2 +
+      (4 / 7) * combResidual37 c3 c7 tomo_e3 -
+      (4 / 7) * combResidual37 c3 c7 tomo_e12 - (2 / 7) * combResidual37 c3 c7 tomo_e13 -
+      (4 / 7) * combResidual37 c3 c7 tomo_e23 -
+      (2 / 7) * combResidual37 c3 c7 tomo_e13i - (4 / 7) * combResidual37 c3 c7 tomo_e23i = c7 := by
+  obtain ⟨he1_7, he2_7, he3_7, he12_7, he13_7, he23_7, _, he13i_7, he23i_7⟩ := s7_vanishes_on_nine_rays
+  obtain ⟨he1_3, he2_3, he3_3, he12_3, he13_3, he23_3, _, he13i_3, he23i_3⟩ := s3_vanishes_on_nine_rays
+  refine ⟨?_, ?_, ?_⟩
+  · rw [s7_witness_p7, he1_7, he2_7, he3_7, he12_7, he13_7, he23_7, he13i_7, he23i_7]
+    norm_num
+  · rw [s3_witness_p7, he1_3, he2_3, he3_3, he12_3, he13_3, he23_3, he13i_3, he23i_3]
+    norm_num
+  · simp [combResidual37, s3_witness_p7, s7_witness_p7,
+      he1_7, he2_7, he3_7, he12_7, he13_7, he23_7, he13i_7, he23i_7,
+      he1_3, he2_3, he3_3, he12_3, he13_3, he23_3, he13i_3, he23i_3]
+
+/-- Cross-prime frame norm parity: the `ℚ(i, √3)³` frame `(witness_111, frameSqrt3_p, frameSqrt3_q)`
+of norms `(3, 18, 18)` has even `7`-adic valuation (`v7Rat = 0`) on all three vectors, whereas the
+`ℚ(i, √7)³` frame `(witness_p7, frameSqrt7_p, frameSqrt7_q)` of norms `(7, 245, 245)` has even
+`3`-adic valuation (`v3Rat = 0`) on all three vectors. -/
+theorem cross_prime_frame_partner_norm_valuations_even :
+    v7Rat witness_111_sqrt3.normSqRat % 2 = 0 ∧
+    v7Rat frameSqrt3_p.normSqRat % 2 = 0 ∧
+    v7Rat frameSqrt3_q.normSqRat % 2 = 0 ∧
+    v3Rat (GVecSqrt3.normSqRatP 7 (GVecSqrt3.ofGVec witness_p7)) % 2 = 0 ∧
+    v3Rat (GVecSqrt3.normSqRatP 7 frameSqrt7_p) % 2 = 0 ∧
+    v3Rat (GVecSqrt3.normSqRatP 7 frameSqrt7_q) % 2 = 0 := by
+  obtain ⟨_, hnw3, hnp3, hnq3, _, _, _⟩ := isFrameSqrt3_witness_111_even_norms
+  obtain ⟨_, hnw7, hnp7, hnq7⟩ := isFrameSqrt7_witness_p7_norms
+  have hv7_3 : v7Rat 3 % 2 = 0 := by
+    have h3 : (3 : ℚ) = ((3 : ℕ) : ℚ) := by norm_num
+    rw [h3, v7Rat_natCast (by decide : 0 < 3)]; rfl
+  have hv7_18 : v7Rat 18 % 2 = 0 := by
+    have h18 : (18 : ℚ) = ((18 : ℕ) : ℚ) := by norm_num
+    rw [h18, v7Rat_natCast (by decide : 0 < 18)]; rfl
+  have hv3_7 : v3Rat 7 % 2 = 0 := by
+    have h7 : (7 : ℚ) = ((7 : ℕ) : ℚ) := by norm_num
+    rw [h7, v3Rat_natCast (by decide : 0 < 7)]; rfl
+  have hv3_245 : v3Rat 245 % 2 = 0 := by
+    have h245 : (245 : ℚ) = ((245 : ℕ) : ℚ) := by norm_num
+    rw [h245, v3Rat_natCast (by decide : 0 < 245)]; rfl
+  exact ⟨by rw [hnw3]; exact hv7_3,
+         by rw [hnp3]; exact hv7_18,
+         by rw [hnq3]; exact hv7_18,
+         by rw [hnw7]; exact hv3_7,
+         by rw [hnp7]; exact hv3_245,
+         by rw [hnq7]; exact hv3_245⟩
+
+/-- Two-parameter family `(1 + combResidual37 c3 c7 v) / 3` of frame functions on `ℚ(i)³`
+spanning the `ℓ¹` diamond of nonnegative non-quadratic frame functions when `|c3| + |c7| ≤ 1`. -/
+def exoticComb37 (c3 c7 : ℚ) (v : GVec) : ℚ :=
+  (1 + combResidual37 c3 c7 v) / 3
+
+theorem exoticComb37_isFrameFunction (c3 c7 : ℚ) :
+    IsFrameFunction (exoticComb37 c3 c7) := by
+  intro u v w hf
+  have hsum := combResidual37_isZeroWeightFrameFunction c3 c7 u v w hf
+  simp only [exoticComb37]
+  linarith
+
+theorem abs_combResidual37_le (c3 c7 : ℚ) (v : GVec) :
+    |combResidual37 c3 c7 v| ≤ |c3| + |c7| := by
+  have hc3 := le_abs_self c3
+  have hnc3 := neg_le_abs c3
+  have hc7 := le_abs_self c7
+  have hnc7 := neg_le_abs c7
+  have hnn3 := abs_nonneg c3
+  have hnn7 := abs_nonneg c7
+  rcases s3_values v with h3 | h3 | h3 <;>
+    rcases s7_values v with h7 | h7 | h7 <;>
+    simp only [combResidual37, h3, h7] <;>
+    rw [abs_le] <;>
+    constructor <;>
+    linarith
+
+/-- For every `(c3, c7)` in the rational `ℓ¹` diamond `|c3| + |c7| ≤ 1`,
+`exoticComb37 c3 c7` is a nonnegative frame function bounded in `[0, 2/3]`. -/
+theorem exoticComb37_isNonnegFrameFunction {c3 c7 : ℚ} (hsum : |c3| + |c7| ≤ 1) :
+    IsNonnegFrameFunction (exoticComb37 c3 c7) ∧
+    (∀ v : GVec, 0 ≤ exoticComb37 c3 c7 v ∧ exoticComb37 c3 c7 v ≤ 2 / 3) := by
+  have hbounds : ∀ v : GVec, 0 ≤ exoticComb37 c3 c7 v ∧ exoticComb37 c3 c7 v ≤ 2 / 3 := by
+    intro v
+    have habs := abs_combResidual37_le c3 c7 v
+    have hle1 : |combResidual37 c3 c7 v| ≤ 1 := le_trans habs hsum
+    obtain ⟨hlo, hhi⟩ := abs_le.mp hle1
+    simp only [exoticComb37]
+    constructor <;> linarith
+  exact ⟨⟨exoticComb37_isFrameFunction c3 c7, fun v _ => (hbounds v).1⟩, hbounds⟩
+
+/-- `exoticComb37 c3 c7` is quadratic on nonzero rays of `ℚ(i)³` if and only if `c3 = 0 ∧ c7 = 0`. -/
+theorem exoticComb37_quadratic_iff (c3 c7 : ℚ) :
+    (∃ ρ : HermForm3, ∀ v : GVec, v.NonZero → exoticComb37 c3 c7 v = quadRay ρ v) ↔
+      (c3 = 0 ∧ c7 = 0) := by
+  constructor
+  · rintro ⟨ρ, hρ⟩
+    obtain ⟨h1, h2, h3, h12, h13, h23, h12i, h13i, h23i⟩ :=
+      combResidual37_vanishes_on_nine_rays c3 c7
+    have htomo_id :
+        tomographyForm (exoticComb37 c3 c7) = ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ := by
+      ext <;>
+        simp [tomographyForm, exoticComb37, h1, h2, h3, h12, h13, h23, h12i, h13i, h23i]
+    have hm := tomography_matches_nine_rays (exoticComb37 c3 c7)
+    have hρ_eq : tomographyForm (exoticComb37 c3 c7) = ρ := by
+      apply tomography_unique (tomographyForm (exoticComb37 c3 c7)) ρ
+      · rw [hm.1, hρ tomo_e1 tomo_e1_nonZero]
+      · rw [hm.2.1, hρ tomo_e2 tomo_e2_nonZero]
+      · rw [hm.2.2.1, hρ tomo_e3 tomo_e3_nonZero]
+      · rw [hm.2.2.2.1, hρ tomo_e12 tomo_e12_nonZero]
+      · rw [hm.2.2.2.2.1, hρ tomo_e13 tomo_e13_nonZero]
+      · rw [hm.2.2.2.2.2.1, hρ tomo_e23 tomo_e23_nonZero]
+      · rw [hm.2.2.2.2.2.2.1, hρ tomo_e12i tomo_e12i_nonZero]
+      · rw [hm.2.2.2.2.2.2.2.1, hρ tomo_e13i tomo_e13i_nonZero]
+      · rw [hm.2.2.2.2.2.2.2.2, hρ tomo_e23i tomo_e23i_nonZero]
+    have hρ_id : ρ = ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ := hρ_eq.symm.trans htomo_id
+    have hw111 := hρ witness_111 witness_111_nonZero
+    have hwp7 := hρ witness_p7 witness_p7_nonZero
+    rw [hρ_id] at hw111 hwp7
+    have hq111 : quadRay ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ witness_111 = 1 / 3 := by
+      simp [quadRay, quadNum, normSqVec, GaussRat.normSq, witness_111, gv]; norm_num
+    have hqp7 : quadRay ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ witness_p7 = 1 / 3 := by
+      simp [quadRay, quadNum, normSqVec, GaussRat.normSq, witness_p7, gv]; norm_num
+    have hex111 : exoticComb37 c3 c7 witness_111 = (1 + c3) / 3 := by
+      simp [exoticComb37, combResidual37_witness_111]
+    have hexp7 : exoticComb37 c3 c7 witness_p7 = (1 + c7) / 3 := by
+      simp [exoticComb37, combResidual37_witness_p7]
+    exact ⟨by linarith, by linarith⟩
+  · rintro ⟨rfl, rfl⟩
+    refine ⟨⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩, ?_⟩
+    intro v hv
+    have hpos := normSqVec_pos_of_nonZero hv
+    have hnz : normSqVec v ≠ 0 := ne_of_gt hpos
+    have hnum : quadNum ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ v = (1 / 3) * normSqVec v := by
+      simp only [quadNum, normSqVec]
+      ring
+    simp only [exoticComb37, combResidual37, zero_mul, add_zero, quadRay, hnum,
+      mul_div_cancel_right₀ (1 / 3 : ℚ) hnz]
+
+/-- `exoticComb37 c3 c7` is archimedean-continuous at `tomo_e1 = (1, 0, 0)` if and only if
+`c3 = 0 ∧ c7 = 0`. -/
+theorem exoticComb37_archimedeanContinuousAt_tomo_e1_iff (c3 c7 : ℚ) :
+    IsArchimedeanContinuousAt (exoticComb37 c3 c7) tomo_e1 ↔ (c3 = 0 ∧ c7 = 0) := by
+  constructor
+  · intro hcont
+    have hcont3 :
+        IsArchimedeanContinuousAt
+          (fun v => (1 : ℚ) / 3 + combResidual37 (c3 / 3) (c7 / 3) v) tomo_e1 := by
+      have heq :
+          (fun v => (1 : ℚ) / 3 + combResidual37 (c3 / 3) (c7 / 3) v) = exoticComb37 c3 c7 := by
+        funext v
+        simp only [exoticComb37, combResidual37]
+        ring
+      rw [heq]
+      exact hcont
+    have hconst_cont : IsArchimedeanContinuousAt (fun _ : GVec => (1 : ℚ) / 3) tomo_e1 := by
+      intro ε hε
+      refine ⟨1, by norm_num, ?_⟩
+      intro v _ _
+      simp [hε]
+    have hsub_cont :
+        IsArchimedeanContinuousAt
+          (fun v =>
+            ((1 : ℚ) / 3 + combResidual37 (c3 / 3) (c7 / 3) v) -
+              combResidual37 (c3 / 3) (c7 / 3) v)
+          tomo_e1 := by
+      have heq :
+          (fun v =>
+            ((1 : ℚ) / 3 + combResidual37 (c3 / 3) (c7 / 3) v) -
+              combResidual37 (c3 / 3) (c7 / 3) v) =
+          (fun _ : GVec => (1 : ℚ) / 3) := by
+        funext v; ring
+      rw [heq]
+      exact hconst_cont
+    obtain ⟨hc3, hc7⟩ :=
+      combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1 hcont3 hsub_cont
+    exact ⟨by linarith, by linarith⟩
+  · rintro ⟨rfl, rfl⟩
+    intro ε hε
+    refine ⟨1, by norm_num, ?_⟩
+    intro v _ _
+    simp [exoticComb37, combResidual37, hε]
+
 end BornFinite.GaussianTomography
 
 #print axioms BornFinite.GaussianTomography.inner_applyVec_im_zero
@@ -4893,4 +5124,11 @@ end BornFinite.GaussianTomography
 #print axioms BornFinite.GaussianTomography.joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37
 #print axioms BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s7
 #print axioms BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual37_iff
+#print axioms BornFinite.GaussianTomography.rayProj_witness_p7_decomp
+#print axioms BornFinite.GaussianTomography.quadRay_witness_p7_kernel_relation
+#print axioms BornFinite.GaussianTomography.s7_witness_p7_kernel_separation
+#print axioms BornFinite.GaussianTomography.cross_prime_frame_partner_norm_valuations_even
+#print axioms BornFinite.GaussianTomography.exoticComb37_isNonnegFrameFunction
+#print axioms BornFinite.GaussianTomography.exoticComb37_quadratic_iff
+#print axioms BornFinite.GaussianTomography.exoticComb37_archimedeanContinuousAt_tomo_e1_iff
 

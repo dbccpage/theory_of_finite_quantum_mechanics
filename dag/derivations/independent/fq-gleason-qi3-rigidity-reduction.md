@@ -336,7 +336,11 @@ tomography rays):
    subspace of bounded zero-weight residuals vanishing on the 9 tomography rays
    (`combResidual37_isZeroWeightFrameFunction`,
    `combResidual37_vanishes_on_nine_rays`, `combResidual37_isBoundedOnRays`,
-   `s3_s7_linearIndependent`). Near `tomo_e1 = (1, 0, 0)`, the `3`-adic
+   `s3_s7_linearIndependent`), and `exoticComb37 c3 c7 v = (1 + combResidual37 c3 c7 v) / 3`
+   defines a 2-parameter rational diamond (`|c3| + |c7| <= 1`) of nonnegative
+   frame functions bounded in `[0, 2/3]` that are quadratic iff `c3 = 0 ∧ c7 = 0`
+   (`exoticComb37_isNonnegFrameFunction`, `exoticComb37_quadratic_iff`). Near
+   `tomo_e1 = (1, 0, 0)`, the `3`-adic
    subsequence `perturbPosRay (7*k)` / `perturbNegRay (7*k)` has norm
    `9(7k)^2 + 3 ≡ 3 (mod 7)` (`v_7 = 0`), so `s3 = +/- 1` and `s7 = 0`
    (`s7_perturbPosRay_seven_mul`, `s7_perturbNegRay_seven_mul`), whereas the
@@ -350,19 +354,24 @@ tomography rays):
    (`s3_s7_selective_oscillation_near_tomo_e1`,
    `not_archimedeanContinuousAt_s7_tomo_e1`,
    `not_archimedeanContinuousAt_exoticQi7_tomo_e1`), so
-   `quadRay rho + combResidual37 c3 c7` is archimedean-continuous at `tomo_e1`
-   if and only if `c3 = 0` and `c7 = 0`
+   `quadRay rho + combResidual37 c3 c7` (and `exoticComb37 c3 c7`) is
+   archimedean-continuous at `tomo_e1` if and only if `c3 = 0` and `c7 = 0`
    (`combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1`,
-   `quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff`). Similarly,
-   because the `Q(i, sqrt(3))^3` partner norm `18 = 2 * 3^2` and the
-   `Q(i, sqrt(7))^3` partner norm `245 = 5 * 7^2` have even valuations at both
-   `p = 3` and `p = 7`, joint even-`{v_3, v_7}` extension to both biquadratic
-   fields forces `c3 = 0` and `c7 = 0`
-   (`no_unit_norm_smul_witness_p7_in_qi3`,
+   `quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff`,
+   `exoticComb37_archimedeanContinuousAt_tomo_e1_iff`). Similarly,
+   because the `Q(i, sqrt(3))^3` frame norms `(3, 18, 18)` have even `v_7` and the
+   `Q(i, sqrt(7))^3` frame norms `(7, 245, 245)` have even `v_3`
+   (`cross_prime_frame_partner_norm_valuations_even`), neither single quadratic
+   extension alone eliminates the other prime's residual, whereas joint
+   even-`{v_3, v_7}` extension to both biquadratic fields forces `c3 = 0` and
+   `c7 = 0` (`no_unit_norm_smul_witness_p7_in_qi3`,
    `zero_on_witness_p7_of_sqrt7_even_v7_vanishing`,
    `no_s7_even_v7_extension_to_sqrt7`,
    `joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37`), as does
-   operator-space projector linearity (`not_factorsThroughRayProjLinear_s7`,
+   operator-space projector linearity together with the constructive 9-ray
+   projector expansion and kernel separation of `witness_p7`
+   (`rayProj_witness_p7_decomp`, `quadRay_witness_p7_kernel_relation`,
+   `s7_witness_p7_kernel_separation`, `not_factorsThroughRayProjLinear_s7`,
    `factorsThroughRayProjLinear_combResidual37_iff`).
 
 ## What is established (What this artifact supports)
@@ -385,10 +394,12 @@ tomography rays):
   rank-1 ray projectors (`rayProj`, `traceInner_rayProj`, `rayProj_tr`), frame
   resolution of the identity (`rayProj_frame_sum`), nine-ray projector
   spanning of `HermForm3` (`rayProj_nine_rays_span_hermForm3`), and constructive
-  7-ray projector kernel decomposition and separation
+  7-ray and 9-ray projector kernel decompositions and separations for
+  `witness_111` and `witness_p7`
   (`rayProj_witness_111_decomp`, `quadRay_witness_111_kernel_relation`,
-  `s3_witness_111_kernel_separation`) are kernel-checked in
-  `lean4/BornGaussianTomographyReduction.lean`.
+  `s3_witness_111_kernel_separation`, `rayProj_witness_p7_decomp`,
+  `quadRay_witness_p7_kernel_relation`, `s7_witness_p7_kernel_separation`) are
+  kernel-checked in `lean4/BornGaussianTomographyReduction.lean`.
 - The `(1+i)`-adic norm-parity characterization on primitive Gaussian-integer
   vectors (`gaussian_coord_norm_mod_four`,
   `primitive_gaussian_norm_mod_four_iff`, `gaussian_norm_div_four_witness`,
@@ -406,11 +417,12 @@ tomography rays):
   `exists_nonzero_bounded_zero_residual`, `s3_s7_dual_on_witnesses`,
   `s3_s7_linearIndependent`), their 2-dimensional span `combResidual37`, and the
   explicit `{0, 1/3, 2/3}`-valued nonnegative non-quadratic frame functions
-  `exoticQi3` and `exoticQi7` (`exoticQi3_isNonnegFrameFunction`,
-  `exoticQi3_not_quadratic`, `exoticQi7_isNonnegFrameFunction`,
-  `exoticQi7_not_quadratic`, `not_signed_quadratic_rigidity`,
-  `not_nonneg_quadratic_rigidity`) are kernel-checked in
-  `lean4/BornGaussianTomographyReduction.lean`.
+  `exoticQi3`, `exoticQi7`, and 2-parameter family `exoticComb37 c3 c7`
+  (`exoticQi3_isNonnegFrameFunction`, `exoticQi3_not_quadratic`,
+  `exoticQi7_isNonnegFrameFunction`, `exoticQi7_not_quadratic`,
+  `exoticComb37_isNonnegFrameFunction`, `exoticComb37_quadratic_iff`,
+  `not_signed_quadratic_rigidity`, `not_nonneg_quadratic_rigidity`) are
+  kernel-checked in `lean4/BornGaussianTomographyReduction.lean`.
 - The single-prime and multi-prime elimination mechanisms in Section 9—selective
   archimedean oscillation and discontinuity at `tomo_e1` together with
   positive-control continuity of `quadRay rho` (`s3_oscillates_near_tomo_e1`,
@@ -423,7 +435,8 @@ tomography rays):
   `combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1`,
   `archimedeanContinuousAt_quadRay_tomo_e1`,
   `quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff`,
-  `quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff`), the
+  `quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff`,
+  `exoticComb37_archimedeanContinuousAt_tomo_e1_iff`), the
   biquadratic field extension `Q(i, sqrt(p))^3` even-valuation frame obstruction
   (`no_unit_norm_smul_witness_111_in_qi3`, `no_unit_norm_smul_witness_p7_in_qi3`,
   `witness_111_unit_sqrt3_normSq`, `isFrameSqrt3_witness_111_even_norms`,
@@ -431,6 +444,7 @@ tomography rays):
   `no_s3_even_v3_extension_to_sqrt3`,
   `zero_on_witness_p7_of_sqrt7_even_v7_vanishing`,
   `no_s7_even_v7_extension_to_sqrt7`,
+  `cross_prime_frame_partner_norm_valuations_even`,
   `joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37`,
   `unit_norm_in_sqrtP_of_normSqVec_eq`,
   `fourSquarePartner_ortho_and_normSqRatP`, `isFrameSqrt7_witness_p7_norms`),

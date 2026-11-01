@@ -113,6 +113,13 @@ Finite obstructions, nine-ray reductions, global 3-adic and 7-adic non-quadratic
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s7`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual37_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.rayProj_witness_p7_decomp`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_witness_p7_kernel_relation`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s7_witness_p7_kernel_separation`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.cross_prime_frame_partner_norm_valuations_even`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticComb37_isNonnegFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticComb37_quadratic_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticComb37_archimedeanContinuousAt_tomo_e1_iff`
 
 ### Rust Certifiers
 - *none cited*

@@ -263,6 +263,23 @@ def main() -> None:
     require(zero(kernel_comb),
             "7-ray projector kernel relation vanishes identically for every HermForm3")
 
+    # Section 9D constructive 9-ray projector kernel relation on witness_p7 = (1, 2, 1 + i):
+    vp7_sp = sp.Matrix([1, 2, 1 + sp.I])
+    q_p7 = sp.expand((vp7_sp.conjugate().T * rho * vp7_sp)[0] / 7)
+    kernel_comb_p7 = (
+        q_p7
+        + sp.Rational(3, 7) * values[0]
+        + sp.Rational(2, 7) * values[1]
+        + sp.Rational(4, 7) * values[2]
+        - sp.Rational(4, 7) * values[3]
+        - sp.Rational(2, 7) * values[5]
+        - sp.Rational(4, 7) * values[7]
+        - sp.Rational(2, 7) * values[6]
+        - sp.Rational(4, 7) * values[8]
+    )
+    require(zero(kernel_comb_p7),
+            "9-ray projector kernel relation for witness_p7 vanishes identically for every HermForm3")
+
     # Section 8: Global bounded zero-weight 3-adic residual s3 and exotic_qi3.
     nine_rays_gvec = [
         gv_int(1, 0, 0, 0, 0, 0),
@@ -445,11 +462,33 @@ def main() -> None:
         )
 
     exotic_qi7 = lambda u: (Fraction(1) + sp_residual(u, 7)) / 3
+    exotic_comb_37 = lambda c3, c7, u: (Fraction(1) + c3 * s3(u) + c7 * sp_residual(u, 7)) / 3
     require(
         exotic_qi7(witness_p7) == Fraction(2, 3)
         and exotic_qi7(witness_111) == Fraction(1, 3)
-        and exotic_qi7(u7) + exotic_qi7(v7) + exotic_qi7(w7) == Fraction(1),
-        "exoticQi7 is a weight-1 nonnegative frame function separating witness_p7 from witness_111",
+        and exotic_qi7(u7) + exotic_qi7(v7) + exotic_qi7(w7) == Fraction(1)
+        and exotic_comb_37(Fraction(2, 5), Fraction(-3, 5), u7)
+        + exotic_comb_37(Fraction(2, 5), Fraction(-3, 5), v7)
+        + exotic_comb_37(Fraction(2, 5), Fraction(-3, 5), w7)
+        == Fraction(1),
+        "exoticQi7 and exoticComb37 are weight-1 nonnegative frame functions separating witness_p7 from witness_111",
+    )
+    kernel_p7_eval = lambda f: (
+        f(witness_p7)
+        + Fraction(3, 7) * f(nine_rays_gvec[0])
+        + Fraction(2, 7) * f(nine_rays_gvec[1])
+        + Fraction(4, 7) * f(nine_rays_gvec[2])
+        - Fraction(4, 7) * f(nine_rays_gvec[3])
+        - Fraction(2, 7) * f(nine_rays_gvec[4])
+        - Fraction(4, 7) * f(nine_rays_gvec[5])
+        - Fraction(2, 7) * f(nine_rays_gvec[7])
+        - Fraction(4, 7) * f(nine_rays_gvec[8])
+    )
+    require(
+        kernel_p7_eval(lambda u: sp_residual(u, 7)) == Fraction(1)
+        and kernel_p7_eval(s3) == Fraction(0)
+        and kernel_p7_eval(lambda u: Fraction(2, 5) * s3(u) - Fraction(3, 7) * sp_residual(u, 7)) == Fraction(-3, 7),
+        "s7_witness_p7_kernel_separation evaluates to 1 on s7, 0 on s3, and c7 on combResidual37 c3 c7",
     )
 
     # Section 9B: Quadratic field extension Q(i, sqrt(3))^3 and Q(i, sqrt(7))^3 frames
