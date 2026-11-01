@@ -930,6 +930,9 @@ lean_lib BornGaussianRationalNoColouring where
 lean_lib BornGaussianRationalExtensionObstruction where
   roots := #[`BornGaussianRationalExtensionObstruction]
 
+lean_lib BornGaussianTomographyReduction where
+  roots := #[`BornGaussianTomographyReduction]
+
 -- PGW-PRESENTATION-NOT-EXPRESSIVE-LIFT
 lean_lib PregenesisPresentationLift where
   roots := #[`PregenesisPresentationLift]

@@ -13,10 +13,10 @@
 Let V = Q(i)^3 with the standard Hermitian form. Decide whether every function f from the nonzero vectors of V to Q with f(u) + f(v) + f(w) = 1 for every orthogonal triple of nonzero vectors has the form f(v) = <v, rho v>/<v, v> for a Hermitian trace-one 3 x 3 matrix rho over Q(i), or exhibit one that does not; state separately the signed, nonnegative and {0,1}-valued variants, and whether the non-quadratic Q^3 frame function extends to Q(i)^3.
 
 ### Governing Obligation
-General signed and nonnegative quadratic rigidity on all Q(i)^3 rays remain open. The {0,1}-valued variant is excluded by a finite real-ray obstruction. The specific exotic Q^3 frame function has no signed extension, by an exact finite linear certificate. The remaining problem reduces in prose to vanishing of zero-weight frame functions on Q(i)^3 that vanish on nine tomography rays (all residuals for signed rigidity; bounded residuals for nonnegative rigidity). Neither finite obstruction establishes either general vanishing assertion.
+The {0,1}-valued variant is excluded by a finite real-ray obstruction. The specific exotic Q^3 frame function has no signed extension, by an exact finite linear certificate. Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, the signed and bounded nonnegative residual-reduction equivalences, the (1+i)-adic norm-parity characterization on primitive Gaussian-integer vectors, and the explicit global {-1, 0, +1}-valued 3-adic zero-weight residual s3 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame function exoticQi3 = (1 + s3) / 3 (settling both signed and nonnegative quadratic rigidity on Q(i)^3 in the negative) are formalized in lean4/BornGaussianTomographyReduction.lean. Complete classification of the space of all non-quadratic residuals across every inert prime p == 3 (mod 4) and the additional regularity hypothesis needed to eliminate them for FQ-GAP-BORN-UNIQUENESS-GLEASON remain open.
 
 ### Source Status
-Partial finite obstructions: no {0,1}-valued frame function on Q(i)^3, and no signed extension of the specified exotic Q^3 function. General signed and nonnegative quadratic rigidity remain open. Exact independent checks and scoped Lean declarations are linked; see the replay receipt for build evidence.
+Finite obstructions, nine-ray reductions, and global 3-adic non-quadratic residual: no {0,1}-valued frame function on Q(i)^3, no signed extension of the specified exotic Q^3 function, and in BornGaussianTomographyReduction.lean exact nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization on primitive Gaussian-integer vectors, and the explicit global {-1, 0, +1}-valued 3-adic zero-weight residual s3 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame function exoticQi3 = (1 + s3) / 3 settling both signed and nonnegative quadratic rigidity on Q(i)^3 in the negative. Exact independent checks, runnable pytest suite, and scoped Lean declarations are linked; see the replay receipt for build evidence.
 
 ---
 
@@ -33,9 +33,47 @@ Partial finite obstructions: no {0,1}-valued frame function on Q(i)^3, and no si
 - `lean4/BornGaussianRationalNoColouring.lean::BornFinite.GaussianFrames.NoColouring.no_zero_one_frame_function`
 - `lean4/BornGaussianRationalExtensionObstruction.lean::BornFinite.GaussianExtension.no_prescribed_frame_function`
 - `lean4/BornGaussianRationalExtensionObstruction.lean::BornFinite.GaussianExtension.no_exotic_extension`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_frame_sum`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.tomography_matches_nine_rays`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.tomography_unique`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.signed_rigidity_iff_zero_residual`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.nonneg_rigidity_iff_bounded_zero_residual`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.primitive_gaussian_norm_mod_four_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eq_quadRay_all_of_zero_at_zero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.traceInner_self_eq_zero_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.traceInner_ext`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.traceInner_rayProj`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.rayProj_frame_sum`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.rayProj_nine_rays_span_hermForm3`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.v3Rat_normSq_even`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.frame_v3Rat_sum_even`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.ortho_coord_identity_x`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_isZeroWeightFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_isBoundedOnRays`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_vanishes_on_nine_rays`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.witness_111_primitive`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.witness_div_four_shell_primitive`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.witness_div_eight_shell_primitive`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exists_nonzero_bounded_zero_residual`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_signed_quadratic_rigidity`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_nonneg_quadratic_rigidity`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticQi3_isNonnegFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticQi3_not_quadratic`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.rayProj_witness_111_decomp`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_witness_111_kernel_relation`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_witness_111_kernel_separation`
 
 ### Rust Certifiers
 - *none cited*
+
+### Python Checks
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_fq_gleason_qi3_frame_functions_end_to_end`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_nine_ray_tomography_reconstruction_and_uniqueness`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_quadray_frame_sum_on_non_unit_orthogonal_frames`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_operator_space_ray_projector_duality_and_zero_normalization`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_signed_and_nonnegative_residual_reduction_equivalences`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_one_plus_i_adic_norm_parity_witnesses_and_mod_four_iff`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_s3_global_bounded_zero_weight_residual_and_exotic_qi3`
 
 ---
 
@@ -57,3 +95,5 @@ Partial finite obstructions: no {0,1}-valued frame function on Q(i)^3, and no si
   - `checks/independent/fq-gleason-qi3-frame-functions.py`
   - `checks/independent/fq-gleason-qi3-extension.py`
   - `checks/independent/fq-gleason-qi3-tomography.py`
+  - `lean4/BornGaussianTomographyReduction.lean`
+  - `code/python/tests/test_fq_gleason_qi3_frame_functions.py`

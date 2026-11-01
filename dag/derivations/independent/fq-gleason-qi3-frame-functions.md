@@ -1,42 +1,50 @@
 Status: AI-drafted, awaiting human review.
 
-# FQ-GLEASON-QI3-FRAME-FUNCTIONS: two obstructions and the remaining rigidity problem
+# FQ-GLEASON-QI3-FRAME-FUNCTIONS: finite obstructions, nine-ray reduction, and global `3`-adic non-quadratic residual
 
 AuthorityEffect: None.
 
-Baseline: `83667d6f0bd3a52898b915a0e68dcbadf443b6c1`. The original target remains
-`OPEN`. Its signed and nonnegative quadratic-rigidity questions are not settled
-by the results below. The binary-valued and specified-extension questions have
-finite obstruction certificates.
+Baseline: `83667d6f0bd3a52898b915a0e68dcbadf443b6c1`. The original target retains
+its `OPEN` DAG status (`AuthorityEffect: None`). All four existence and
+quadratic-rigidity subquestions on `Q(i)^3` have kernel-checked Lean 4 theorems:
+the `{0,1}`-valued and specified real-exotic extension questions have finite
+obstruction certificates, and both the signed and nonnegative quadratic-rigidity
+questions are settled in the negative by an explicit global `{-1, 0, +1}`-valued
+`3`-adic zero-weight residual `s3` and the `{0, 1/3, 2/3}`-valued nonnegative
+frame function `exoticQi3 = (1 + s3) / 3`.
 
 ## 1. Carrier and scope
 
-Let (K=\mathbb Q(i)), with inner product
+Let \(K=\mathbb Q(i)\), with inner product
 \(\langle u,v\rangle=\sum_j\overline{u_j}v_j\). A frame consists of three
 nonzero pairwise orthogonal vectors. A frame function takes rational values and
 sums to one on every frame. Positivity, continuity and dependence on residue
 classes are not part of this definition.
 
 The Lean carrier is `BornFinite.GaussianFrames.GVec`; `IsFrame` and
-`IsFrameFunction` express exactly these conditions. A total function on `GVec`
-has an unconstrained value at zero, which plays no role. This is equivalent to
+`IsFrameFunction` express these conditions. A total function on `GVec`
+has an unconstrained value at zero, which plays no role on nonzero rays
+(`GaussianTomography.normalizeAtZero_isFrameFunction`,
+`GaussianTomography.eq_quadRay_all_of_zero_at_zero`). This is equivalent to
 the target's function on nonzero vectors. Existing `frameFunction_smul` in
-`BornGaussianFrameRays.lean` proves constancy on nonzero scalar multiples.
+`BornGaussianFrameRays.lean` establishes constancy on nonzero scalar multiples.
 Neither obstruction below needs to assume that property separately.
 
 | Question in the original target | Result of this work | Evidence |
 |---|---|---|
-| Must every signed rational frame function be quadratic? | Unresolved; reduced to a zero-weight residual problem | [Reduction note](fq-gleason-qi3-rigidity-reduction.md), prose only |
-| Must every nonnegative rational frame function be quadratic? | Unresolved; equivalent to vanishing of bounded residuals | Same reduction note, prose only |
+| Must every signed rational frame function be quadratic? | No (`s3` is a nonzero zero-weight residual vanishing on the 9 tomography rays) | `GaussianTomography.not_signed_quadratic_rigidity`, `GaussianTomography.exists_nonzero_bounded_zero_residual`, [Reduction note](fq-gleason-qi3-rigidity-reduction.md) |
+| Must every nonnegative rational frame function be quadratic? | No (`exoticQi3 = (1 + s3) / 3` is a `{0, 1/3, 2/3}`-valued nonnegative non-quadratic frame function) | `GaussianTomography.not_nonneg_quadratic_rigidity`, `GaussianTomography.exoticQi3_isNonnegFrameFunction`, `GaussianTomography.exoticQi3_not_quadratic` |
 | Does a \(\{0,1\}\)-valued frame function exist? | No | `NoColouring.no_zero_one_frame_function` |
 | Does the repository's specified exotic \(\mathbb Q^3\) function extend? | No, even allowing signed values | `GaussianExtension.no_exotic_extension` |
+| How does \((1+i)\)-adic norm-parity behave on primitive rays in \(\mathbb Z[i]^3\)? | Divisible by `4` iff two coordinates have odd norm and one has norm `2 (mod 4)` | `GaussianTomography.primitive_gaussian_norm_mod_four_iff`, `GaussianTomography.gaussian_norm_div_four_witness`, `GaussianTomography.gaussian_norm_eight_primitive_witness` |
 
 Lean names in the table have prefix `BornFinite.GaussianFrames` for
-`NoColouring`, and prefix `BornFinite` for `GaussianExtension`. The
+`NoColouring`, and prefix `BornFinite` for `GaussianExtension` and
+`GaussianTomography`. The
 [replay receipt](../../research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json)
 records the actual build and axiom audit; a table entry alone is not a replay.
 
-## 2. Binary values are impossible
+## 2. Binary values are excluded
 
 Take all primitive integer triples in \([-2,2]^3\), selecting the representative
 whose first nonzero coordinate is positive. There are 49 such rays, 138
@@ -52,21 +60,21 @@ follows from the binary-value hypothesis. The completing vector need not be
 inside the box. Omitting these additional pair constraints is an error:
 the internal-triples-only system has a binary solution.
 
-The resulting finite binary system is inconsistent. The checker proves this
-by exhaustive branching with unit propagation. A value one forces all
-orthogonal neighbours to zero; a triple with two zero values forces its last
-value to one; a triple already containing one forces its other values to zero.
-Conflicting assignments close a branch. Otherwise the algorithm branches on
-both values of an unassigned variable, so each branch strictly decreases the
-number of unassigned variables and all assignments are covered. It also
-independently verifies satisfying assignments for the triples-only and
+The resulting finite binary system is inconsistent. The checker shows this in
+this finite setting by exhaustive branching with unit propagation. A value one
+forces all orthogonal neighbours to zero; a triple with two zero values forces
+its last value to one; a triple already containing one forces its other values
+to zero. Conflicting assignments close a branch. Otherwise the algorithm
+branches on both values of an unassigned variable, so each branch strictly
+decreases the number of unassigned variables and all assignments are covered.
+It also independently verifies satisfying assignments for the triples-only and
 pairs-only negative controls and compares small instances with direct
 exhaustive enumeration.
 
 `BornGaussianRationalNoColouring.lean` checks the concrete nonzero vectors and
 orthogonality equations, derives the pair inequalities from actual frame
 equations, and replays a finite binary case split using rational linear
-arithmetic. Its theorem quantifies over every frame function on (K^3).
+arithmetic. Its theorem quantifies over every frame function on \(K^3\).
 All vectors used are real, so the same finite argument also rules out a binary
 frame function on all rational real rays. This does not contradict results
 about the smaller rational unit sphere: a rational ray need not have a rational
@@ -81,15 +89,15 @@ In every other parity pattern, \(s(v)=0\). This is the function defined in
 `BornRationalRayObstruction.lean`, not an arbitrary nonquadratic real frame
 function.
 
-Suppose an extension (f) existed and set \(g(v)=3f(v)-1\). Every frame
+Suppose an extension \(f\) existed and set \(g(v)=3f(v)-1\). Every frame
 then has \(g(u)+g(v)+g(w)=0\), and every real prescribed ray has
 \(g(v)=s(v)\). The
 [certificate](../../../checks/independent/data/fq_gleason_qi3_extension.json)
 lists 277 nonzero Gaussian-integer vectors, 210 orthogonal frames, and 19 real
 prescribed values, together with integer coefficients.
 
-For each frame row (t=(a,b,c)), let its coefficient be \(\lambda_t\);
-for each prescribed real ray (j), let its coefficient be \(\mu_j\).
+For each frame row \(t=(a,b,c)\), let its coefficient be \(\lambda_t\);
+for each prescribed real ray \(j\), let its coefficient be \(\mu_j\).
 The certificate has the exact identities
 
 \[
@@ -100,7 +108,7 @@ The certificate has the exact identities
 where \(\mu_k=0\) outside the prescribed real rows. Taking this linear
 combination of the frame and value equations gives \(0=32\), a contradiction.
 All cancellation uses the actual listed vectors; no identification of distinct
-vectors or symmetry assumption about (f) is needed.
+vectors or symmetry assumption about \(f\) is needed.
 
 The [independent checker](../../../checks/independent/fq-gleason-qi3-extension.py)
 recomputes Hermitian orthogonality, nonzero-ness, the real parity values, and
@@ -116,42 +124,96 @@ then expanded and reduced to equations on individual vectors. Discovery
 symmetries are absent from the final proof. A finite consistent system, such
 as the earlier smaller-box probe, never implied that an extension existed.
 
-## 4. The remaining question
+## 4. Nine-ray reduction and the global `3`-adic non-quadratic residual `s3`
 
-The [supplemental derivation](fq-gleason-qi3-rigidity-reduction.md) constructs
+The [supplemental derivation](fq-gleason-qi3-rigidity-reduction.md) and its
+Lean 4 formalization `lean4/BornGaussianTomographyReduction.lean` construct
 the unique Hermitian trace-one candidate from the values on
-\(e_j\), \(e_j+e_k\), and \(e_j+i e_k\). Subtracting its quadratic
-frame function leaves a zero-weight frame function vanishing on those nine
-rays. Signed rigidity asks whether every such residual vanishes everywhere;
-nonnegative rigidity asks the same for bounded residuals. The supplement
-proves these equivalences in prose and checks its algebra symbolically.
-It does not prove either vanishing assertion in Lean or in prose.
+\(e_j\), \(e_j+e_k\), and \(e_j+i e_k\) (`tomography_matches_nine_rays`,
+`tomography_trace_one`, `tomography_unique`, `tomographyForm_quadRay`),
+together with the operator-space Frobenius trace pairing, rank-1 ray
+projector duality, and constructive 7-ray projector kernel decomposition and
+separation (`traceInner_self_eq_zero_iff`, `traceInner_ext`,
+`traceInner_rayProj`, `rayProj_frame_sum`, `rayProj_nine_rays_span_hermForm3`,
+`rayProj_witness_111_decomp`, `quadRay_witness_111_kernel_relation`,
+`s3_witness_111_kernel_separation`).
+Subtracting its quadratic frame function (`quadRay_frame_sum`,
+`quadRay_isFrameFunction`) leaves a zero-weight frame function vanishing on
+those nine rays (`residual_is_zero_weight`, `residual_vanishes_on_nine_rays`).
+Signed rigidity is equivalent to vanishing of every such residual
+(`signed_rigidity_iff_zero_residual`); nonnegative rigidity is equivalent to
+vanishing of every bounded residual (`nonneg_rigidity_iff_bounded_zero_residual`,
+`nonneg_residual_is_bounded`, `one_sided_lower_bound_implies_upper_bound`).
 
-## What is proved
+Whereas \(2\) ramifies in \(\mathbb Z[i]\), the odd prime \(3\equiv 3\pmod 4\)
+is inert in \(\mathbb Z[i]\), so every nonzero Gaussian rational \(z\in K^\times\)
+has even \(3\)-adic squared-norm valuation \(v_3(|z|^2)\equiv 0\pmod 2\)
+(`v3Rat_normSq_even`). On any orthogonal frame \((u,v,w)\),
+\(|\det[u,v,w]|^2=N(u)N(v)N(w)\) (`detGVec_normSq_of_frame`), so
+\(v_3(N(u))+v_3(N(v))+v_3(N(w))\) is even (`frame_v3Rat_sum_even`) and either
+\(0\) or \(2\) vectors in the frame have odd \(v_3(N(\cdot))\). Using the
+Lagrange-Gram coordinate identity (`ortho_coord_identity_x`), when two
+orthogonal vectors \(u\perp v\) both have odd \(v_3(N(\cdot))\), they share the
+same \(3\)-leading coordinates and opposite \(3\)-adic unit residue signs
+(`lead3Coord_x_ortho_imp`, `s3_orthogonal_odd_cancel`). Consequently:
+
+- `s3` is a global \(\{-1,0,+1\}\)-valued zero-weight frame function on \(K^3\)
+  (`s3_isZeroWeightFrameFunction`, `s3_smul`, `s3_isBoundedOnRays`) that
+  vanishes on all nine tomography rays (`s3_vanishes_on_nine_rays`) and takes
+  nonzero values across \((1+i)\)-primitive rays in distinct \((1+i)\)-adic norm
+  shells (`witness_111_primitive`, `witness_div_four_shell_primitive`,
+  `witness_div_eight_shell_primitive`, `exists_nonzero_bounded_zero_residual`):
+  \((1,1,1)\) (norm \(3\), \(s_3=+1\)), \((1+2i,1+2i,1+i)\) (norm \(12\),
+  \(s_3=-1\)), and \((1+4i,1+2i,1+i)\) (norm \(24\), \(s_3=+1\)).
+- Both signed and nonnegative quadratic rigidity on \(K^3\) fail
+  (`not_signed_quadratic_rigidity`, `not_nonneg_quadratic_rigidity`), and
+  `exoticQi3(v) = (1 + s3(v)) / 3` is an explicit global \(\{0,1/3,2/3\}\)-valued
+  nonnegative non-quadratic frame function on \(K^3\)
+  (`exoticQi3_isNonnegFrameFunction`, `exoticQi3_not_quadratic`).
+
+## What is established (What this artifact supports)
 
 - The exact finite binary obstruction excludes \(\{0,1\}\)-valued frame
-  functions on all (K^3) rays, and the same real witness applies to
-  \(\mathbb Q^3\).
+  functions on all \(K^3\) rays, and the same real witness applies to
+  \(\mathbb Q^3\) (`NoColouring.no_zero_one_frame_function`).
 - The exact linear certificate excludes any signed extension of the specified
-  real exotic to (K^3).
-- The supplemental prose gives precise signed and bounded residual reductions.
+  real exotic to \(K^3\) (`GaussianExtension.no_exotic_extension`).
+- Nine-ray Hermitian tomography reconstruction, operator-space ray projector
+  duality and nine-ray spanning of `HermForm3`, non-unit orthogonal frame sums,
+  zero-vector normalization, the signed and bounded nonnegative
+  residual-reduction equivalences, the \((1+i)\)-adic norm-parity
+  characterization on primitive Gaussian-integer vectors, and the explicit
+  global `3`-adic zero-weight residual `s3` and nonnegative non-quadratic frame
+  function `exoticQi3` (`not_signed_quadratic_rigidity`,
+  `not_nonneg_quadratic_rigidity`) are formalized in
+  `lean4/BornGaussianTomographyReduction.lean` and tested in
+  `code/python/tests/test_fq_gleason_qi3_frame_functions.py`.
 
 ## What is assumed
 
 The supplied Gaussian-rational vector space, its standard Hermitian form,
 and frame normalization are the setting. Binary values are assumed only for
 the binary obstruction. Agreement with the specified exotic is assumed only
-for the extension obstruction. Neither proof assumes continuity or a residue
+for the extension obstruction. Neither argument assumes continuity or a residue
 class ansatz. These results do not derive the carrier from earlier DAG nodes.
 
-## What is open
+## What this artifact does not support and what remains open
 
-- General signed quadratic rigidity or a signed nonquadratic counterexample
-  on (K^3).
-- General nonnegative quadratic rigidity or a nonnegative nonquadratic
-  counterexample on (K^3).
-- Formalization of the supplemental residual-reduction equivalences.
+- **What it does not support**: This artifact does not classify the entire space
+  of non-quadratic residuals across all inert primes \(p\equiv 3\pmod 4\), nor
+  does it establish continuum Gleason or close the parent Born-rule uniqueness
+  gap `FQ-GAP-BORN-UNIQUENESS-GLEASON`.
+- **Narrowest defensible claim**: On \(K^3=\mathbb Q(i)^3\), no \(\{0,1\}\)-valued
+  frame function exists, the prescribed \(2\)-adic real exotic on \(\mathbb Q^3\)
+  has no signed extension to \(K^3\), and the \(3\)-adic residual \(s_3\) gives an
+  explicit \(\{0,1/3,2/3\}\)-valued nonnegative non-quadratic frame function
+  \(\operatorname{exoticQi3}=(1+s_3)/3\) on \(K^3\) vanishing on the nine
+  tomography rays (as a residual) and nonzero across higher \((1+i)\)-adic norm
+  shells.
+- **Next test needed**: Determine which additional regularity or field-extension
+  positivity hypothesis eliminates all inert-prime \(p\)-adic residuals on
+  \(\mathbb Q(i)^3\) for `FQ-GAP-BORN-UNIQUENESS-GLEASON`.
 
 Consequently the full target and its incoming gap route retain their original
-statuses. No result here establishes continuum Gleason or the whole Born-rule
-derivation.
+statuses (`AuthorityEffect: None`). No result here establishes continuum
+Gleason or the whole Born-rule derivation.
