@@ -7841,6 +7841,551 @@ theorem nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual :
         unfold residual at hr
         linarith⟩).2
 
+/-! #### 9G. Two-Step Piron Tangent Algebra, Kelvin-Inverted Meridian Duality, Pythagorean Sandwich Squeeze, and Equatorial-Invariance vs. Parallelogram Separation -/
+
+theorem smul_rat_smul_rat (a b : ℚ) (y : GVec) :
+    GVec.smul ⟨a, 0⟩ (GVec.smul ⟨b, 0⟩ y) = GVec.smul ⟨a * b, 0⟩ y := by
+  ext <;> simp only [GVec.smul, GaussRat.re_mul, GaussRat.im_mul] <;> ring
+
+theorem eqOrtho_smul_rat (a : ℚ) (y : GVec) :
+    eqOrtho (GVec.smul ⟨a, 0⟩ y) = GVec.smul ⟨a, 0⟩ (eqOrtho y) := by
+  ext <;>
+    simp only [eqOrtho, GVec.smul, GaussRat.re_mul, GaussRat.im_mul,
+      GaussRat.re_neg, GaussRat.im_neg, GaussRat.re_star, GaussRat.im_star,
+      GaussRat.re_zero, GaussRat.im_zero] <;>
+    ring
+
+/-- On the equatorial plane `e₁⊥ = {y | y.x = 0}`, `eqOrtho` is an anti-involution:
+`eqOrtho (eqOrtho y) = -y`. -/
+theorem eqOrtho_eqOrtho_of_x_zero {y : GVec} (hyx : y.x = 0) :
+    eqOrtho (eqOrtho y) = GVec.smul (-1) y := by
+  ext <;> simp [eqOrtho, GVec.smul, hyx]
+
+/-- At `k = 1`, the Pythagorean equatorial rotation `pythagEqRot y 1` is the exact `90°`
+equatorial partner `eqOrtho y`. -/
+theorem pythagEqRot_one_eq_eqOrtho (y : GVec) :
+    pythagEqRot y 1 = eqOrtho y := by
+  ext <;>
+    simp only [pythagEqRot, eqOrtho, GVec.add, GVec.smul,
+      GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul] <;>
+    ring
+
+/-- Applying the `k = 1` Pythagorean equatorial rotation twice on `e₁⊥` negates `y`:
+`pythagEqRot (pythagEqRot y 1) 1 = -y`. -/
+theorem pythagEqRot_one_twice_of_x_zero {y : GVec} (hyx : y.x = 0) :
+    pythagEqRot (pythagEqRot y 1) 1 = GVec.smul (-1) y := by
+  rw [pythagEqRot_one_eq_eqOrtho, pythagEqRot_one_eq_eqOrtho, eqOrtho_eqOrtho_of_x_zero hyx]
+
+/-- Rational equatorial tangent step `y + t • eqOrtho(y)` in `e₁⊥`, so that
+`pironStep y ⟨t, 0⟩ = e₁ + eqTangentStep y t`. -/
+def eqTangentStep (y : GVec) (t : ℚ) : GVec :=
+  GVec.add y (GVec.smul ⟨t, 0⟩ (eqOrtho y))
+
+theorem pironStep_eq_add_eqTangentStep (y : GVec) (t : ℚ) :
+    pironStep y ⟨t, 0⟩ = GVec.add tomo_e1 (eqTangentStep y t) := by
+  ext <;> simp [pironStep, eqTangentStep, GVec.add] <;> ring
+
+theorem eqTangentStep_x_zero {y : GVec} (hyx : y.x = 0) (t : ℚ) :
+    (eqTangentStep y t).x = 0 := by
+  simp [eqTangentStep, eqOrtho, GVec.add, GVec.smul, hyx]
+
+theorem normSqVec_eqTangentStep_of_x_zero {y : GVec} (hyx : y.x = 0) (t : ℚ) :
+    normSqVec (eqTangentStep y t) = (1 + t ^ 2) * normSqVec y := by
+  have h_ortho : GVec.inner y (GVec.smul ⟨t, 0⟩ (eqOrtho y)) = 0 := by
+    rw [inner_smul_right, inner_eqOrtho_self, mul_zero]
+  rw [eqTangentStep, (normSqVec_add_eq_normSqVec_sub_of_ortho h_ortho).1,
+    normSqVec_smul, normSqVec_eqOrtho_of_x_zero hyx]
+  simp only [GaussRat.normSq]
+  ring
+
+theorem eqTangentStep_nonZero_of_x_zero {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) (t : ℚ) :
+    (eqTangentStep y t).NonZero := by
+  apply nonZero_of_normSqVec_pos
+  rw [normSqVec_eqTangentStep_of_x_zero hyx t]
+  have hy_pos := normSqVec_pos_of_nonZero hy
+  have ht_pos : 0 < 1 + t ^ 2 := by positivity
+  exact mul_pos ht_pos hy_pos
+
+/-- Action of `eqOrtho` on an equatorial tangent step `eqTangentStep y t`. -/
+theorem eqOrtho_eqTangentStep_of_x_zero {y : GVec} (hyx : y.x = 0) (t : ℚ) :
+    eqOrtho (eqTangentStep y t) = GVec.add (eqOrtho y) (GVec.smul ⟨-t, 0⟩ y) := by
+  ext <;> simp [eqOrtho, eqTangentStep, GVec.add, GVec.smul, hyx] <;> ring
+
+/-- Exact two-step Piron tangent composition law on `e₁⊥`:
+`eqTangentStep (eqTangentStep y t1) t2 = (1 - t1 * t2) • y + (t1 + t2) • eqOrtho(y)`. -/
+theorem eqTangentStep_comp_of_x_zero {y : GVec} (hyx : y.x = 0) (t1 t2 : ℚ) :
+    eqTangentStep (eqTangentStep y t1) t2 =
+      GVec.add (GVec.smul ⟨1 - t1 * t2, 0⟩ y) (GVec.smul ⟨t1 + t2, 0⟩ (eqOrtho y)) := by
+  ext <;> simp [eqTangentStep, eqOrtho, GVec.add, GVec.smul, hyx] <;> ring
+
+/-- Opposite-tangent two-step Piron radial dilation identity on `e₁⊥`:
+`eqTangentStep (eqTangentStep y t) (-t) = (1 + t²) • y`. -/
+theorem eqTangentStep_cancel_of_x_zero {y : GVec} (hyx : y.x = 0) (t : ℚ) :
+    eqTangentStep (eqTangentStep y t) (-t) = GVec.smul ⟨1 + t ^ 2, 0⟩ y := by
+  rw [eqTangentStep_comp_of_x_zero hyx t (-t)]
+  ext <;>
+    simp only [GVec.add, GVec.smul, GaussRat.re_add, GaussRat.im_add,
+      GaussRat.re_mul, GaussRat.im_mul] <;>
+    ring
+
+/-- Unit-tangent two-step Piron `90°` rotation-dilation identity on `e₁⊥`:
+`eqTangentStep (eqTangentStep y 1) 1 = 2 • eqOrtho(y)`. -/
+theorem eqTangentStep_one_one_of_x_zero {y : GVec} (hyx : y.x = 0) :
+    eqTangentStep (eqTangentStep y 1) 1 = GVec.smul ⟨2, 0⟩ (eqOrtho y) := by
+  rw [eqTangentStep_comp_of_x_zero hyx 1 1]
+  ext <;>
+    simp only [GVec.add, GVec.smul, GaussRat.re_add, GaussRat.im_add,
+      GaussRat.re_mul, GaussRat.im_mul] <;>
+    ring
+
+/-- Outward radial meridian monotonicity from two-step Piron descent:
+for any nonnegative frame function `f` with `f tomo_e1 = 1`, any `y ∈ e₁⊥ \ {0}`, and any `t ≠ 0`,
+`f(e₁ + (1 + t²) y) ≤ f(pironStep y t) ≤ f(e₁ + y)`. -/
+theorem piron_radial_scale_le_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    (hp1 : f tomo_e1 = 1)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {t : ℚ} (ht : t ≠ 0) :
+    f (GVec.add tomo_e1 (GVec.smul ⟨1 + t ^ 2, 0⟩ y)) ≤ f (pironStep y ⟨t, 0⟩) ∧
+    f (pironStep y ⟨t, 0⟩) ≤ f (GVec.add tomo_e1 y) := by
+  have hlam : (⟨t, 0⟩ : GaussRat) ≠ 0 := fun h => ht (congrArg GaussRat.re h)
+  have hlam_neg : (⟨-t, 0⟩ : GaussRat) ≠ 0 :=
+    fun h => (neg_ne_zero.mpr ht) (congrArg GaussRat.re h)
+  have hstep1 := piron_descent_le_of_pole_one hf hp1 hyx hy hlam
+  have hstep2 :=
+    piron_descent_le_of_pole_one hf hp1
+      (eqTangentStep_x_zero hyx t)
+      (eqTangentStep_nonZero_of_x_zero hyx hy t)
+      hlam_neg
+  rw [pironStep_eq_add_eqTangentStep (eqTangentStep y t) (-t),
+      eqTangentStep_cancel_of_x_zero hyx t,
+      ← pironStep_eq_add_eqTangentStep y t] at hstep2
+  exact ⟨hstep2, hstep1⟩
+
+/-- Two-step `90°` Piron descent bound: for any nonnegative frame function `f` with `f tomo_e1 = 1`
+and any `y ∈ e₁⊥ \ {0}`, `f(e₁ + 2 • eqOrtho y) ≤ f(pironStep y 1) ≤ f(e₁ + y)`. -/
+theorem piron_two_step_eqOrtho_le_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    (hp1 : f tomo_e1 = 1)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) :
+    f (GVec.add tomo_e1 (GVec.smul ⟨2, 0⟩ (eqOrtho y))) ≤ f (pironStep y 1) ∧
+    f (pironStep y 1) ≤ f (GVec.add tomo_e1 y) := by
+  have hone : (⟨1, 0⟩ : GaussRat) = 1 := rfl
+  have hstep1 := piron_descent_le_of_pole_one hf hp1 hyx hy one_ne_zero
+  have hstep2 :=
+    piron_descent_le_of_pole_one hf hp1
+      (eqTangentStep_x_zero hyx 1)
+      (eqTangentStep_nonZero_of_x_zero hyx hy 1)
+      (by rw [hone]; exact one_ne_zero : (⟨1, 0⟩ : GaussRat) ≠ 0)
+  rw [pironStep_eq_add_eqTangentStep (eqTangentStep y 1) 1,
+      eqTangentStep_one_one_of_x_zero hyx,
+      ← pironStep_eq_add_eqTangentStep y 1,
+      hone] at hstep2
+  exact ⟨hstep2, hstep1⟩
+
+/-- Ray scale invariance for arbitrary frame functions on `ℚ(i)³`: for any nonzero vector `v`
+and nonzero scalar `l ∈ ℚ(i)`, `f (l • v) = f v`. -/
+theorem frameFunction_smul {f : GVec → ℚ} (hf : IsFrameFunction f)
+    {v : GVec} (hv : v.NonZero) {l : GaussRat} (hl : l ≠ 0) :
+    f (GVec.smul l v) = f v := by
+  obtain ⟨w, u, h1, h2⟩ := exists_frame_completion hv
+  have e1 := hf _ _ _ h1
+  have e2 := hf _ _ _ (h2 l hl)
+  linarith
+
+/-- Kelvin-inverted equatorial vector `-(1 / N(y)) • y` in `e₁⊥`. -/
+def kelvinEq (y : GVec) : GVec :=
+  GVec.smul ⟨-(1 / normSqVec y), 0⟩ y
+
+theorem kelvinEq_x_zero {y : GVec} (hyx : y.x = 0) :
+    (kelvinEq y).x = 0 := by
+  simp [kelvinEq, GVec.smul, hyx]
+
+theorem normSqVec_kelvinEq {y : GVec} (hy : y.NonZero) :
+    normSqVec (kelvinEq y) = 1 / normSqVec y := by
+  have hne := normSqVec_ne_zero_of_nonZero hy
+  have hcancel : (1 / normSqVec y) * normSqVec y = 1 := one_div_mul_cancel hne
+  rw [kelvinEq, normSqVec_smul]
+  simp only [GaussRat.normSq]
+  linear_combination (1 / normSqVec y) * hcancel
+
+theorem kelvinEq_nonZero {y : GVec} (hy : y.NonZero) :
+    (kelvinEq y).NonZero := by
+  apply nonZero_of_normSqVec_pos
+  rw [normSqVec_kelvinEq hy]
+  exact div_pos one_pos (normSqVec_pos_of_nonZero hy)
+
+/-- Rescaling the meridian partner `meridianOrtho y = -N(y) e₁ + y` by `-1 / N(y)` yields
+`e₁ + kelvinEq y`. -/
+theorem smul_meridianOrtho_eq_add_kelvinEq {y : GVec} (hy : y.NonZero) :
+    GVec.smul ⟨-(1 / normSqVec y), 0⟩ (meridianOrtho y) = GVec.add tomo_e1 (kelvinEq y) := by
+  have hne := normSqVec_ne_zero_of_nonZero hy
+  have hcancel : (1 / normSqVec y) * normSqVec y = 1 := one_div_mul_cancel hne
+  ext
+  · simp only [meridianOrtho, kelvinEq, tomo_e1, gv, GVec.add, GVec.smul,
+      GaussRat.re_add, GaussRat.re_mul]
+    linear_combination hcancel
+  · simp only [meridianOrtho, kelvinEq, tomo_e1, gv, GVec.add, GVec.smul,
+      GaussRat.im_add, GaussRat.im_mul]
+    ring
+  · simp only [meridianOrtho, kelvinEq, tomo_e1, gv, GVec.add, GVec.smul,
+      GaussRat.re_add, GaussRat.re_mul]
+    ring
+  · simp only [meridianOrtho, kelvinEq, tomo_e1, gv, GVec.add, GVec.smul,
+      GaussRat.im_add, GaussRat.im_mul]
+    ring
+  · simp only [meridianOrtho, kelvinEq, tomo_e1, gv, GVec.add, GVec.smul,
+      GaussRat.re_add, GaussRat.re_mul]
+    ring
+  · simp only [meridianOrtho, kelvinEq, tomo_e1, gv, GVec.add, GVec.smul,
+      GaussRat.im_add, GaussRat.im_mul]
+    ring
+
+/-- Kelvin-inverted meridian complement identity: for any nonnegative frame function `f` with
+`f tomo_e1 = 1` and any `y ∈ e₁⊥ \ {0}`, `f(e₁ + y) + f(e₁ + kelvinEq y) = 1`. -/
+theorem meridian_kelvin_complement_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    (hp1 : f tomo_e1 = 1)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) :
+    f (GVec.add tomo_e1 y) + f (GVec.add tomo_e1 (kelvinEq y)) = 1 := by
+  have hcomp := meridian_complement_of_pole_one hf hp1 hyx hy
+  have hm_nz : (meridianOrtho y).NonZero := (isFrame_piron_base hyx hy one_ne_zero).2.2.1
+  have hy_pos := normSqVec_pos_of_nonZero hy
+  have hl_ne : (⟨-(1 / normSqVec y), 0⟩ : GaussRat) ≠ 0 := by
+    intro h
+    have hre := congrArg GaussRat.re h
+    dsimp at hre
+    have hpos : 0 < 1 / normSqVec y := div_pos one_pos hy_pos
+    linarith
+  have hsmul := frameFunction_smul hf.1 hm_nz hl_ne
+  rw [smul_meridianOrtho_eq_add_kelvinEq hy] at hsmul
+  linarith
+
+/-- Inward radial meridian monotonicity (toward the pole `e₁`): for any nonnegative frame
+function `f` with `f tomo_e1 = 1`, any `y ∈ e₁⊥ \ {0}`, and any `t ≠ 0`,
+`f(e₁ + y) ≤ f(e₁ + (1 / (1 + t²)) y)`. -/
+theorem piron_radial_inv_scale_ge_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    (hp1 : f tomo_e1 = 1)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {t : ℚ} (ht : t ≠ 0) :
+    f (GVec.add tomo_e1 y) ≤
+      f (GVec.add tomo_e1 (GVec.smul ⟨1 / (1 + t ^ 2), 0⟩ y)) := by
+  let s : ℚ := 1 / (1 + t ^ 2)
+  let y' : GVec := GVec.smul ⟨s, 0⟩ y
+  have ht2_pos : 0 < 1 + t ^ 2 := by positivity
+  have ht2_ne : 1 + t ^ 2 ≠ 0 := ne_of_gt ht2_pos
+  have hs_pos : 0 < s := div_pos one_pos ht2_pos
+  have hsl_ne : (⟨s, 0⟩ : GaussRat) ≠ 0 := by
+    intro h
+    have hre := congrArg GaussRat.re h
+    dsimp at hre
+    linarith
+  have hy'x : y'.x = 0 := by simp [y', GVec.smul, hyx]
+  have hy' : y'.NonZero := nonZero_smul hsl_ne hy
+  obtain ⟨h1, h2⟩ := piron_radial_scale_le_of_pole_one hf hp1 hy'x hy' ht
+  have hcancel : (1 + t ^ 2) * s = 1 := mul_one_div_cancel ht2_ne
+  have hy_eq : GVec.smul ⟨1 + t ^ 2, 0⟩ y' = y := by
+    dsimp [y']
+    rw [smul_rat_smul_rat, hcancel]
+    ext <;> simp [GVec.smul]
+  rw [hy_eq] at h1
+  exact le_trans h1 h2
+
+/-- For every `k ≥ 2`, the Pythagorean equatorial rotation `pythagEqRot y k` is a single
+equatorial tangent step from the radially contracted vector `((k²-1)/(k²+1)) • y` with tangent
+parameter `t = 2k / (k²-1)`. -/
+theorem pythagEqRot_eq_eqTangentStep_of_two_le {y : GVec} {k : ℕ} (hk : 2 ≤ k) :
+    pythagEqRot y k =
+      eqTangentStep
+        (GVec.smul ⟨((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1), 0⟩ y)
+        ((2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1)) := by
+  have hk_q : (2 : ℚ) ≤ (k : ℚ) := by exact_mod_cast hk
+  have hkm1_pos : 0 < (k : ℚ) ^ 2 - 1 := by nlinarith
+  have hkm1_ne : (k : ℚ) ^ 2 - 1 ≠ 0 := ne_of_gt hkm1_pos
+  have hprod :
+      ((2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1)) * (((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1)) =
+        (2 * (k : ℚ)) / ((k : ℚ) ^ 2 + 1) :=
+    div_mul_div_cancel₀ hkm1_ne
+  unfold eqTangentStep pythagEqRot
+  rw [eqOrtho_smul_rat, smul_rat_smul_rat, hprod]
+
+/-- Applying the opposite tangent step `t = -2k / (k²-1)` to `pythagEqRot y k` (`k ≥ 2`) on `e₁⊥`
+produces the radially dilated vector `((k²+1)/(k²-1)) • y`. -/
+theorem eqTangentStep_pythagEqRot_neg_of_x_zero {y : GVec} (hyx : y.x = 0) {k : ℕ} (hk : 2 ≤ k) :
+    eqTangentStep (pythagEqRot y k) (-(2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1)) =
+      GVec.smul ⟨((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1), 0⟩ y := by
+  let a : ℚ := ((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1)
+  let t : ℚ := (2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1)
+  let r : ℚ := ((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1)
+  have hk_q : (2 : ℚ) ≤ (k : ℚ) := by exact_mod_cast hk
+  have hkm1_pos : 0 < (k : ℚ) ^ 2 - 1 := by nlinarith
+  have hkp1_pos : 0 < (k : ℚ) ^ 2 + 1 := by positivity
+  have hkm1_ne : (k : ℚ) ^ 2 - 1 ≠ 0 := ne_of_gt hkm1_pos
+  have hkp1_ne : (k : ℚ) ^ 2 + 1 ≠ 0 := ne_of_gt hkp1_pos
+  have hneg_t : -(2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1) = -t := by dsimp [t]; ring
+  have hy_lo_x : (GVec.smul ⟨a, 0⟩ y).x = 0 := by simp [GVec.smul, hyx]
+  rw [pythagEqRot_eq_eqTangentStep_of_two_le hk, hneg_t,
+      eqTangentStep_cancel_of_x_zero hy_lo_x t, smul_rat_smul_rat]
+  have h_t : t * ((k : ℚ) ^ 2 - 1) = 2 * (k : ℚ) := div_mul_cancel₀ _ hkm1_ne
+  have h_a : a * ((k : ℚ) ^ 2 + 1) = (k : ℚ) ^ 2 - 1 := div_mul_cancel₀ _ hkp1_ne
+  have h_r : r * ((k : ℚ) ^ 2 - 1) = (k : ℚ) ^ 2 + 1 := div_mul_cancel₀ _ hkm1_ne
+  have hpoly :
+      ((1 + t ^ 2) * a - r) * (((k : ℚ) ^ 2 + 1) * ((k : ℚ) ^ 2 - 1)) = 0 := by
+    linear_combination
+      (1 + t ^ 2) * ((k : ℚ) ^ 2 - 1) * h_a +
+      (t * ((k : ℚ) ^ 2 - 1) + 2 * (k : ℚ)) * h_t -
+      ((k : ℚ) ^ 2 + 1) * h_r
+  have hprod_pos : 0 < ((k : ℚ) ^ 2 + 1) * ((k : ℚ) ^ 2 - 1) := mul_pos hkp1_pos hkm1_pos
+  have hcoeff : (1 + t ^ 2) * a = r := by nlinarith
+  rw [hcoeff]
+
+/-- **Exact Piron–Pythagorean Two-Sided Sandwich Inequality**:
+for every nonnegative frame function `f` with `f tomo_e1 = 1`, every `y ∈ e₁⊥ \ {0}`, and every
+`k ≥ 2`, the Pythagorean rotated ray value `f(e₁ + pythagEqRot y k)` is sandwiched between two
+purely radial perturbations along the same meridian `(e₁, y)`:
+`f(e₁ + ((k²+1)/(k²-1)) y) ≤ f(e₁ + pythagEqRot y k) ≤ f(e₁ + ((k²-1)/(k²+1)) y)`. -/
+theorem pythagEqRot_sandwich_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    (hp1 : f tomo_e1 = 1)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {k : ℕ} (hk : 2 ≤ k) :
+    f (GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1), 0⟩ y)) ≤
+      f (GVec.add tomo_e1 (pythagEqRot y k)) ∧
+    f (GVec.add tomo_e1 (pythagEqRot y k)) ≤
+      f (GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1), 0⟩ y)) := by
+  let a : ℚ := ((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1)
+  let t : ℚ := (2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1)
+  let y_lo : GVec := GVec.smul ⟨a, 0⟩ y
+  have hk_q : (2 : ℚ) ≤ (k : ℚ) := by exact_mod_cast hk
+  have hkm1_pos : 0 < (k : ℚ) ^ 2 - 1 := by nlinarith
+  have hkp1_pos : 0 < (k : ℚ) ^ 2 + 1 := by positivity
+  have ha_pos : 0 < a := div_pos hkm1_pos hkp1_pos
+  have ht_pos : 0 < t := div_pos (by linarith) hkm1_pos
+  have ha_ne : (⟨a, 0⟩ : GaussRat) ≠ 0 := by
+    intro h
+    have hre := congrArg GaussRat.re h
+    dsimp at hre
+    linarith
+  have hy_lo_x : y_lo.x = 0 := by simp [y_lo, GVec.smul, hyx]
+  have hy_lo_nz : y_lo.NonZero := nonZero_smul ha_ne hy
+  obtain ⟨h1, h2⟩ :=
+    piron_radial_scale_le_of_pole_one hf hp1 hy_lo_x hy_lo_nz (ne_of_gt ht_pos)
+  have hpiron_rot : pironStep y_lo ⟨t, 0⟩ = GVec.add tomo_e1 (pythagEqRot y k) := by
+    rw [pironStep_eq_add_eqTangentStep, ← pythagEqRot_eq_eqTangentStep_of_two_le hk]
+  have hneg_t : -t = -(2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1) := by dsimp [t]; ring
+  have hhi_eq :
+      GVec.smul ⟨1 + t ^ 2, 0⟩ y_lo =
+        GVec.smul ⟨((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1), 0⟩ y := by
+    rw [← eqTangentStep_cancel_of_x_zero hy_lo_x t,
+        ← pythagEqRot_eq_eqTangentStep_of_two_le hk,
+        hneg_t,
+        eqTangentStep_pythagEqRot_neg_of_x_zero hyx hk]
+  rw [hpiron_rot, hhi_eq] at h1
+  rw [hpiron_rot] at h2
+  exact ⟨h1, h2⟩
+
+/-- Squared Euclidean distance of a radial perturbation `e₁ + s • y` from `e₁ + y`. -/
+theorem distSqVec_radial_scale (y : GVec) (s : ℚ) :
+    distSqVec (GVec.add tomo_e1 (GVec.smul ⟨s, 0⟩ y)) (GVec.add tomo_e1 y) =
+      (s - 1) ^ 2 * normSqVec y := by
+  simp only [distSqVec, GVec.add, GVec.smul, normSqVec, GaussRat.normSq,
+    GaussRat.re_add, GaussRat.im_add, GaussRat.re_sub, GaussRat.im_sub,
+    GaussRat.re_mul, GaussRat.im_mul]
+  ring
+
+/-- For every `y ∈ e₁⊥` and `δ > 0`, there exists `k ≥ 2` such that both radial sandwich
+endpoints `e₁ + ((k²-1)/(k²+1)) y` and `e₁ + ((k²+1)/(k²-1)) y` lie within squared distance `δ`
+of `e₁ + y`. -/
+theorem exists_pythagEqRot_radial_within_delta {y : GVec} (hyx : y.x = 0) {δ : ℚ} (hδ : 0 < δ) :
+    ∃ k : ℕ, 2 ≤ k ∧
+      distSqVec
+        (GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1), 0⟩ y))
+        (GVec.add tomo_e1 y) < δ ∧
+      distSqVec
+        (GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1), 0⟩ y))
+        (GVec.add tomo_e1 y) < δ := by
+  obtain ⟨m, hm, hlt⟩ := exists_pironStep_within_delta hyx hδ
+  rw [distSqVec_pironStep_inv_nat hyx m] at hlt
+  let k : ℕ := 2 * m
+  let s_lo : ℚ := ((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1)
+  let s_hi : ℚ := ((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1)
+  have hk : 2 ≤ k := by omega
+  have hm_q : (1 : ℚ) ≤ (m : ℚ) := by exact_mod_cast hm
+  have hm2_pos : 0 < (m : ℚ) ^ 2 := by positivity
+  have hny_lt : normSqVec y < δ * (m : ℚ) ^ 2 := (div_lt_iff₀ hm2_pos).mp hlt
+  have hk_q : (k : ℚ) = 2 * (m : ℚ) := by simp [k]
+  have hkm1_ge : 2 * (m : ℚ) ≤ (k : ℚ) ^ 2 - 1 := by nlinarith
+  have hkm1_pos : 0 < (k : ℚ) ^ 2 - 1 := by linarith
+  have hkp1_pos : 0 < (k : ℚ) ^ 2 + 1 := by positivity
+  have hkm1_ne : (k : ℚ) ^ 2 - 1 ≠ 0 := ne_of_gt hkm1_pos
+  have hkp1_ne : (k : ℚ) ^ 2 + 1 ≠ 0 := ne_of_gt hkp1_pos
+  have hkm1_sq_pos : 0 < ((k : ℚ) ^ 2 - 1) ^ 2 := sq_pos_of_pos hkm1_pos
+  have hkp1_sq_pos : 0 < ((k : ℚ) ^ 2 + 1) ^ 2 := sq_pos_of_pos hkp1_pos
+  have hkm1_sq_ge : 4 * (m : ℚ) ^ 2 ≤ ((k : ℚ) ^ 2 - 1) ^ 2 := by nlinarith
+  have hkp1_sq_ge : ((k : ℚ) ^ 2 - 1) ^ 2 ≤ ((k : ℚ) ^ 2 + 1) ^ 2 := by nlinarith
+  have hs_lo : s_lo * ((k : ℚ) ^ 2 + 1) = (k : ℚ) ^ 2 - 1 := div_mul_cancel₀ _ hkp1_ne
+  have hs_hi : s_hi * ((k : ℚ) ^ 2 - 1) = (k : ℚ) ^ 2 + 1 := div_mul_cancel₀ _ hkm1_ne
+  have hlo_sq : ((s_lo - 1) ^ 2 * normSqVec y) * ((k : ℚ) ^ 2 + 1) ^ 2 = 4 * normSqVec y := by
+    linear_combination
+      (normSqVec y * ((s_lo - 1) * ((k : ℚ) ^ 2 + 1) - 2)) * hs_lo
+  have hhi_sq : ((s_hi - 1) ^ 2 * normSqVec y) * ((k : ℚ) ^ 2 - 1) ^ 2 = 4 * normSqVec y := by
+    linear_combination
+      (normSqVec y * ((s_hi - 1) * ((k : ℚ) ^ 2 - 1) + 2)) * hs_hi
+  refine ⟨k, hk, ?_, ?_⟩
+  · rw [distSqVec_radial_scale]
+    change (s_lo - 1) ^ 2 * normSqVec y < δ
+    nlinarith
+  · rw [distSqVec_radial_scale]
+    change (s_hi - 1) ^ 2 * normSqVec y < δ
+    nlinarith
+
+/-- **Global Archimedean Continuity + Piron–Pythagorean Sandwich Squeeze**:
+if `f` is a nonnegative frame function with `f tomo_e1 = 1` that is Archimedean-continuous
+everywhere on `ℚ(i)³ \ {0}`, then for every `y ∈ e₁⊥ \ {0}` and every `ε > 0`, there exists
+`k ≥ 2` such that `|f(e₁ + pythagEqRot y k) - f(e₁ + y)| < ε` (using continuity of `f` at the
+single ray `e₁ + y` alone via the radial sandwich `pythagEqRot_sandwich_of_pole_one`). -/
+theorem pythagEqRot_archimedean_squeeze_of_pole_one
+    {f : GVec → ℚ} (hf : IsNonnegFrameFunction f) (hp1 : f tomo_e1 = 1)
+    (hcont : IsArchimedeanContinuousEverywhere f)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {ε : ℚ} (hε : 0 < ε) :
+    ∃ k : ℕ, 2 ≤ k ∧
+      |f (GVec.add tomo_e1 (pythagEqRot y k)) - f (GVec.add tomo_e1 y)| < ε := by
+  have he1y_nz : (GVec.add tomo_e1 y).NonZero := by
+    apply nonZero_of_x
+    simp [GVec.add, tomo_e1, gv, hyx]
+  obtain ⟨δ, hδ, hball⟩ := hcont (GVec.add tomo_e1 y) he1y_nz ε hε
+  obtain ⟨k, hk, hdist_lo, hdist_hi⟩ := exists_pythagEqRot_radial_within_delta hyx hδ
+  obtain ⟨hsand_lo, hsand_hi⟩ := pythagEqRot_sandwich_of_pole_one hf hp1 hyx hy hk
+  let u_lo := GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1), 0⟩ y)
+  let u_hi := GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1), 0⟩ y)
+  have hu_lo_nz : u_lo.NonZero := by
+    apply nonZero_of_x
+    simp [u_lo, GVec.add, GVec.smul, tomo_e1, gv, hyx]
+  have hu_hi_nz : u_hi.NonZero := by
+    apply nonZero_of_x
+    simp [u_hi, GVec.add, GVec.smul, tomo_e1, gv, hyx]
+  obtain ⟨_, h_lo_upper⟩ := abs_lt.mp (hball u_lo hu_lo_nz hdist_lo)
+  obtain ⟨h_hi_lower, _⟩ := abs_lt.mp (hball u_hi hu_hi_nz hdist_hi)
+  refine ⟨k, hk, abs_lt.mpr ⟨by linarith, by linarith⟩⟩
+
+/-- **Equi-Latitude Equatorial Invariance of `sp p`**:
+whenever `y, y' ∈ e₁⊥` have the same squared norm `normSqVec y' = normSqVec y` and
+`0 < vpRat p (normSqVec (e₁ + y))`, `sp p (e₁ + y') = sp p (e₁ + y)` because the `.x` coordinate
+(`1`, with `vpRat p 1 = 0`) is strictly `p`-leading in both `e₁ + y` and `e₁ + y'`. -/
+theorem sp_e1_add_eq_of_normSqVec_eq {p : ℕ} {y y' : GVec}
+    (hyx : y.x = 0) (hy'x : y'.x = 0)
+    (hnorm : normSqVec y' = normSqVec y)
+    (hpos : 0 < vpRat p (normSqVec (GVec.add tomo_e1 y))) :
+    sp p (GVec.add tomo_e1 y') = sp p (GVec.add tomo_e1 y) := by
+  have hux : (GVec.add tomo_e1 y).x = ⟨1, 0⟩ := by
+    ext <;> simp [GVec.add, tomo_e1, gv, hyx]
+  have hu'x : (GVec.add tomo_e1 y').x = ⟨1, 0⟩ := by
+    ext <;> simp [GVec.add, tomo_e1, gv, hy'x]
+  have hux_norm : (GVec.add tomo_e1 y).x.normSq = 1 := by
+    rw [hux]; simp [GaussRat.normSq]
+  have hu'x_norm : (GVec.add tomo_e1 y').x.normSq = 1 := by
+    rw [hu'x]; simp [GaussRat.normSq]
+  have hvp_one : vpRat p 1 = 0 := by
+    simp [vpRat]
+  have hnorm_u : normSqVec (GVec.add tomo_e1 y') = normSqVec (GVec.add tomo_e1 y) := by
+    rw [normSqVec_add_tomo_e1_of_x_zero hy'x, normSqVec_add_tomo_e1_of_x_zero hyx, hnorm]
+  have hlead_u : isLeadPCoord p (GVec.add tomo_e1 y).x (GVec.add tomo_e1 y) := by
+    refine ⟨by rw [hux_norm]; norm_num, ?_⟩
+    rw [hux_norm, hvp_one]
+    exact hpos
+  have hlead_u' : isLeadPCoord p (GVec.add tomo_e1 y').x (GVec.add tomo_e1 y') := by
+    refine ⟨by rw [hu'x_norm]; norm_num, ?_⟩
+    rw [hu'x_norm, hvp_one, hnorm_u]
+    exact hpos
+  have hcs :
+      coordSignP p (GVec.add tomo_e1 y').x (GVec.add tomo_e1 y') =
+        coordSignP p (GVec.add tomo_e1 y).x (GVec.add tomo_e1 y) := by
+    simp only [coordSignP, hu'x_norm, hux_norm, hnorm_u]
+  simp only [sp, hnorm_u, hlead_u, hlead_u', ↓reduceIte, hcs]
+
+/-- For every `p : ℕ` and `y ∈ e₁⊥` with `0 < vpRat p (normSqVec (e₁ + y))`, `sp p` is
+completely invariant under all Pythagorean equatorial rotations `pythagEqRot y k` (`k : ℕ`)
+and under `eqOrtho y`. -/
+theorem sp_e1_add_pythagEqRot_eq {p : ℕ} {y : GVec}
+    (hyx : y.x = 0)
+    (hpos : 0 < vpRat p (normSqVec (GVec.add tomo_e1 y))) (k : ℕ) :
+    sp p (GVec.add tomo_e1 (pythagEqRot y k)) = sp p (GVec.add tomo_e1 y) ∧
+    sp p (GVec.add tomo_e1 (eqOrtho y)) = sp p (GVec.add tomo_e1 y) :=
+  ⟨sp_e1_add_eq_of_normSqVec_eq hyx (pythagEqRot_x_zero hyx k)
+      (normSqVec_pythagEqRot hyx k).1 hpos,
+   sp_e1_add_eq_of_normSqVec_eq hyx rfl (normSqVec_eqOrtho_of_x_zero hyx) hpos⟩
+
+/-- `s3` is invariant under `pythagEqRot tomo_e23 k` for all `k : ℕ` on the exact pair
+`(tomo_e1, tomo_e23)` where `SatisfiesOrthoParallelogramZero s3` fails. -/
+theorem s3_pythagEqRot_invariant_tomo_e23 (k : ℕ) :
+    s3 (GVec.add tomo_e1 (pythagEqRot tomo_e23 k)) = s3 (GVec.add tomo_e1 tomo_e23) := by
+  rw [← sp_three_eq_s3, ← sp_three_eq_s3]
+  have hnorm : normSqVec (GVec.add tomo_e1 tomo_e23) = (3 : ℕ) := by
+    simp [normSqVec, GaussRat.normSq, GVec.add, tomo_e1, tomo_e23, gv]
+    norm_num
+  have hpos : 0 < vpRat 3 (normSqVec (GVec.add tomo_e1 tomo_e23)) := by
+    rw [hnorm, vpRat_natCast (by decide) (by decide)]
+    decide
+  exact (sp_e1_add_pythagEqRot_eq rfl hpos k).1
+
+/-- `s7` is invariant under `pythagEqRot (gv 0 0 2 0 1 1) k` for all `k : ℕ` on the exact pair
+`(tomo_e1, (0, 2, 1 + i))` where `SatisfiesOrthoParallelogramZero s7` fails. -/
+theorem s7_pythagEqRot_invariant_v7 (k : ℕ) :
+    s7 (GVec.add tomo_e1 (pythagEqRot (gv 0 0 2 0 1 1) k)) =
+      s7 (GVec.add tomo_e1 (gv 0 0 2 0 1 1)) := by
+  rw [← sp_seven_eq_s7, ← sp_seven_eq_s7]
+  have hnorm : normSqVec (GVec.add tomo_e1 (gv 0 0 2 0 1 1)) = (7 : ℕ) := by
+    simp [normSqVec, GaussRat.normSq, GVec.add, tomo_e1, gv]
+    norm_num
+  have hpos : 0 < vpRat 7 (normSqVec (GVec.add tomo_e1 (gv 0 0 2 0 1 1))) := by
+    rw [hnorm, vpRat_natCast (by decide) (by decide)]
+    decide
+  exact (sp_e1_add_pythagEqRot_eq rfl hpos k).1
+
+/-- `sp 11` is invariant under `pythagEqRot (gv 0 0 3 0 1 0) k` for all `k : ℕ` on the exact pair
+`(tomo_e1, (0, 3, 1))` where `SatisfiesOrthoParallelogramZero (sp 11)` fails. -/
+theorem sp11_pythagEqRot_invariant_v11 (k : ℕ) :
+    sp 11 (GVec.add tomo_e1 (pythagEqRot (gv 0 0 3 0 1 0) k)) =
+      sp 11 (GVec.add tomo_e1 (gv 0 0 3 0 1 0)) := by
+  have hnorm : normSqVec (GVec.add tomo_e1 (gv 0 0 3 0 1 0)) = (11 : ℕ) := by
+    simp [normSqVec, GaussRat.normSq, GVec.add, tomo_e1, gv]
+    norm_num
+  have hpos : 0 < vpRat 11 (normSqVec (GVec.add tomo_e1 (gv 0 0 3 0 1 0))) := by
+    rw [hnorm, vpRat_natCast (by decide) (by decide)]
+    decide
+  exact (sp_e1_add_pythagEqRot_eq rfl hpos k).1
+
+/-- **Why Equatorial Rotational Invariance Around `e₁` Does Not Force the Parallelogram Law**:
+if `g` is invariant under the `k = 1` Pythagorean equatorial rotation (`y ↦ eqOrtho y ↦ -y`)
+around `e₁`, then `g(e₁ - y) = g(e₁ + y)` is automatic, so the orthogonal parallelogram sum
+`g(e₁ + y) + g(e₁ - y) = 2 g(e₁ + y)` vanishes if and only if `g(e₁ + y) = 0` already vanishes! -/
+theorem orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant
+    (g : GVec → ℚ) {y : GVec} (hyx : y.x = 0)
+    (hrot1 : g (GVec.add tomo_e1 (pythagEqRot y 1)) = g (GVec.add tomo_e1 y))
+    (hrot2 : g (GVec.add tomo_e1 (pythagEqRot (pythagEqRot y 1) 1)) =
+      g (GVec.add tomo_e1 (pythagEqRot y 1))) :
+    g (GVec.sub tomo_e1 y) = g (GVec.add tomo_e1 y) ∧
+    (g (GVec.add tomo_e1 y) + g (GVec.sub tomo_e1 y) = 0 ↔
+      g (GVec.add tomo_e1 y) = 0) := by
+  have hsub_eq : GVec.add tomo_e1 (pythagEqRot (pythagEqRot y 1) 1) = GVec.sub tomo_e1 y := by
+    rw [pythagEqRot_one_twice_of_x_zero hyx]
+    ext <;> simp [GVec.add, GVec.sub, GVec.smul] <;> ring
+  have heq : g (GVec.sub tomo_e1 y) = g (GVec.add tomo_e1 y) := by
+    rw [← hsub_eq, hrot2, hrot1]
+  refine ⟨heq, ?_⟩
+  constructor <;> intro h <;> linarith
+
+/-- **Universal Pure-Pole Equatorial Vanishing**:
+if `g tomo_e1 = 0` and `quadRay (rayProj tomo_e1) + g` is a nonnegative frame function on `ℚ(i)³`,
+then `g` vanishes identically on the entire equatorial plane `e₁⊥ \ {0}` (generalizing
+`pure_pole_e1_nonneg_eliminates_combResidual3_7_11` to arbitrary residuals `g`). -/
+theorem nonneg_pole_perturbation_vanishes_on_equator
+    {g : GVec → ℚ} (hg_e1 : g tomo_e1 = 0)
+    (hf : IsNonnegFrameFunction (fun v => quadRay (rayProj tomo_e1) v + g v)) :
+    ∀ y : GVec, y.x = 0 → y.NonZero → g y = 0 := by
+  have hp1 : (fun v => quadRay (rayProj tomo_e1) v + g v) tomo_e1 = 1 := by
+    have hq1 : quadRay (rayProj tomo_e1) tomo_e1 = 1 := by
+      simp [quadRay, quadNum, rayProj, normSqVec, GaussRat.normSq, tomo_e1, gv]
+    linarith
+  intro y hyx hy
+  have hz :=
+    nonneg_eq_zero_on_perp_of_pole_one hf tomo_e1_nonZero hy (inner_tomo_e1_of_x_zero hyx) hp1
+  rw [quadRay_rayProj_tomo_e1_of_x_zero hyx, zero_add] at hz
+  exact hz
+
 end BornFinite.GaussianTomography
 
 #print axioms BornFinite.GaussianTomography.inner_applyVec_im_zero
@@ -7913,7 +8458,7 @@ end BornFinite.GaussianTomography
 #print axioms BornFinite.GaussianTomography.fourSquarePartner_ortho_and_normSqRatP
 #print axioms BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms
 #print axioms BornFinite.GaussianTomography.zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
-#print axioms BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s3
+#print axioms BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s7
 #print axioms BornFinite.GaussianTomography.quadratic_rigidity_iff_factorsThroughRayProjLinear
 #print axioms BornFinite.GaussianTomography.v7Rat_normSq_even
 #print axioms BornFinite.GaussianTomography.frame_v7Rat_sum_even
@@ -7947,7 +8492,7 @@ end BornFinite.GaussianTomography
 #print axioms BornFinite.GaussianTomography.zero_on_witness_p7_of_sqrt7_even_v7_vanishing
 #print axioms BornFinite.GaussianTomography.no_s7_even_v7_extension_to_sqrt7
 #print axioms BornFinite.GaussianTomography.joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37
-#print axioms BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s7
+#print axioms BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s3
 #print axioms BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual37_iff
 #print axioms BornFinite.GaussianTomography.rayProj_witness_p7_decomp
 #print axioms BornFinite.GaussianTomography.quadRay_witness_p7_kernel_relation
@@ -8014,3 +8559,37 @@ end BornFinite.GaussianTomography
 #print axioms BornFinite.GaussianTomography.exists_pironStep_within_delta
 #print axioms BornFinite.GaussianTomography.zero_of_nonneg_zeroWeightFrameFunction
 #print axioms BornFinite.GaussianTomography.nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual
+#print axioms BornFinite.GaussianTomography.eqOrtho_eqOrtho_of_x_zero
+#print axioms BornFinite.GaussianTomography.pythagEqRot_one_eq_eqOrtho
+#print axioms BornFinite.GaussianTomography.pythagEqRot_one_twice_of_x_zero
+#print axioms BornFinite.GaussianTomography.pironStep_eq_add_eqTangentStep
+#print axioms BornFinite.GaussianTomography.eqTangentStep_x_zero
+#print axioms BornFinite.GaussianTomography.normSqVec_eqTangentStep_of_x_zero
+#print axioms BornFinite.GaussianTomography.eqTangentStep_nonZero_of_x_zero
+#print axioms BornFinite.GaussianTomography.eqOrtho_eqTangentStep_of_x_zero
+#print axioms BornFinite.GaussianTomography.eqTangentStep_comp_of_x_zero
+#print axioms BornFinite.GaussianTomography.eqTangentStep_cancel_of_x_zero
+#print axioms BornFinite.GaussianTomography.eqTangentStep_one_one_of_x_zero
+#print axioms BornFinite.GaussianTomography.piron_radial_scale_le_of_pole_one
+#print axioms BornFinite.GaussianTomography.piron_two_step_eqOrtho_le_of_pole_one
+#print axioms BornFinite.GaussianTomography.frameFunction_smul
+#print axioms BornFinite.GaussianTomography.kelvinEq_x_zero
+#print axioms BornFinite.GaussianTomography.normSqVec_kelvinEq
+#print axioms BornFinite.GaussianTomography.kelvinEq_nonZero
+#print axioms BornFinite.GaussianTomography.smul_meridianOrtho_eq_add_kelvinEq
+#print axioms BornFinite.GaussianTomography.meridian_kelvin_complement_of_pole_one
+#print axioms BornFinite.GaussianTomography.piron_radial_inv_scale_ge_of_pole_one
+#print axioms BornFinite.GaussianTomography.pythagEqRot_eq_eqTangentStep_of_two_le
+#print axioms BornFinite.GaussianTomography.eqTangentStep_pythagEqRot_neg_of_x_zero
+#print axioms BornFinite.GaussianTomography.pythagEqRot_sandwich_of_pole_one
+#print axioms BornFinite.GaussianTomography.distSqVec_radial_scale
+#print axioms BornFinite.GaussianTomography.exists_pythagEqRot_radial_within_delta
+#print axioms BornFinite.GaussianTomography.pythagEqRot_archimedean_squeeze_of_pole_one
+#print axioms BornFinite.GaussianTomography.sp_e1_add_eq_of_normSqVec_eq
+#print axioms BornFinite.GaussianTomography.sp_e1_add_pythagEqRot_eq
+#print axioms BornFinite.GaussianTomography.s3_pythagEqRot_invariant_tomo_e23
+#print axioms BornFinite.GaussianTomography.s7_pythagEqRot_invariant_v7
+#print axioms BornFinite.GaussianTomography.sp11_pythagEqRot_invariant_v11
+#print axioms BornFinite.GaussianTomography.orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant
+#print axioms BornFinite.GaussianTomography.nonneg_pole_perturbation_vanishes_on_equator
+

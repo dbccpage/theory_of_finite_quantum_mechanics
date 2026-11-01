@@ -823,6 +823,88 @@ def main() -> None:
                 "Pythagorean equatorial rotation preserves norm and north-pole Born weight",
             )
 
+    # Subsection 9G: Two-step Piron tangent algebra, Kelvin-inverted meridian duality,
+    # Piron-Pythagorean two-sided sandwich squeeze, and equatorial-invariance vs. parallelogram separation.
+    def eq_tangent_step(y: GVec, t: Fraction) -> GVec:
+        return g_add_vec(y, g_smul_vec((t, Fraction(0)), eq_ortho(y)))
+
+    def kelvin_eq(y: GVec) -> GVec:
+        return g_smul_vec((-Fraction(1) / vec_norm_sq(y), Fraction(0)), y)
+
+    for y_eq in [eq_witness_3, eq_witness_7, eq_witness_11] + [w for _, w in parallelogram_counterexamples]:
+        ny = vec_norm_sq(y_eq)
+        neg_y = g_smul_vec((Fraction(-1), Fraction(0)), y_eq)
+        require(
+            eq_ortho(eq_ortho(y_eq)) == neg_y
+            and pythag_eq_rot(y_eq, 1) == eq_ortho(y_eq)
+            and pythag_eq_rot(pythag_eq_rot(y_eq, 1), 1) == neg_y
+            and eq_tangent_step(eq_tangent_step(y_eq, Fraction(1)), Fraction(1))
+            == g_smul_vec((Fraction(2), Fraction(0)), eq_ortho(y_eq)),
+            "eqOrtho involution, pythagEqRot k=1 90-degree rotation, and two-step tangent identity hold",
+        )
+        y_kelvin = kelvin_eq(y_eq)
+        u_base = g_add_vec(nine_rays_gvec[0], y_eq)
+        u_kelvin = g_add_vec(nine_rays_gvec[0], y_kelvin)
+        require(
+            y_kelvin[0] == (Fraction(0), Fraction(0))
+            and vec_norm_sq(y_kelvin) == Fraction(1) / ny
+            and g_smul_vec((-Fraction(1) / ny, Fraction(0)), meridian_ortho(y_eq)) == u_kelvin
+            and quad_ray_e1(u_base) + quad_ray_e1(u_kelvin) == Fraction(1)
+            and quad_ray_e1(g_add_vec(nine_rays_gvec[0], g_smul_vec((Fraction(2), Fraction(0)), eq_ortho(y_eq))))
+            <= quad_ray_e1(u_base),
+            "Kelvin-inverted equatorial vector satisfies norm inversion, meridian ray identity, and complement sum",
+        )
+        for t_step in [Fraction(1, 2), Fraction(2, 3), Fraction(-3, 4)]:
+            for s_step in [Fraction(1, 3), -t_step]:
+                ts_comp = eq_tangent_step(eq_tangent_step(y_eq, t_step), s_step)
+                ts_rhs = g_add_vec(
+                    g_smul_vec((Fraction(1) - t_step * s_step, Fraction(0)), y_eq),
+                    g_smul_vec((t_step + s_step, Fraction(0)), eq_ortho(y_eq)),
+                )
+                require(
+                    ts_comp == ts_rhs,
+                    "two-step equatorial tangent composition identity holds",
+                )
+            t_cancel = eq_tangent_step(eq_tangent_step(y_eq, t_step), -t_step)
+            scale_out = Fraction(1) + t_step * t_step
+            scale_in = Fraction(1) / scale_out
+            u_out = g_add_vec(nine_rays_gvec[0], g_smul_vec((scale_out, Fraction(0)), y_eq))
+            u_in = g_add_vec(nine_rays_gvec[0], g_smul_vec((scale_in, Fraction(0)), y_eq))
+            require(
+                piron_step(y_eq, (t_step, Fraction(0))) == g_add_vec(nine_rays_gvec[0], eq_tangent_step(y_eq, t_step))
+                and vec_norm_sq(eq_tangent_step(y_eq, t_step)) == scale_out * ny
+                and eq_ortho(eq_tangent_step(y_eq, t_step))
+                == g_add_vec(g_smul_vec((-t_step, Fraction(0)), y_eq), eq_ortho(y_eq))
+                and t_cancel == g_smul_vec((scale_out, Fraction(0)), y_eq)
+                and quad_ray_e1(u_out) <= quad_ray_e1(u_base) <= quad_ray_e1(u_in),
+                "two-step Piron tangent cancellation and outward/inward radial monotonicity hold",
+            )
+        for k_step in range(2, 6):
+            kf = Fraction(k_step)
+            r_in = (kf * kf - 1) / (kf * kf + 1)
+            r_out = (kf * kf + 1) / (kf * kf - 1)
+            t_k = (2 * kf) / (kf * kf - 1)
+            y_rot = pythag_eq_rot(y_eq, k_step)
+            u_rot = g_add_vec(nine_rays_gvec[0], y_rot)
+            u_rad_in = g_add_vec(nine_rays_gvec[0], g_smul_vec((r_in, Fraction(0)), y_eq))
+            u_rad_out = g_add_vec(nine_rays_gvec[0], g_smul_vec((r_out, Fraction(0)), y_eq))
+            require(
+                y_rot == eq_tangent_step(g_smul_vec((r_in, Fraction(0)), y_eq), t_k)
+                and eq_tangent_step(y_rot, -t_k) == g_smul_vec((r_out, Fraction(0)), y_eq)
+                and quad_ray_e1(u_rad_out) <= quad_ray_e1(u_rot) <= quad_ray_e1(u_rad_in)
+                and vec_norm_sq(g_sub_vec(u_rad_in, u_base)) == (r_in - 1) * (r_in - 1) * ny
+                and vec_norm_sq(g_sub_vec(u_rad_out, u_base)) == (r_out - 1) * (r_out - 1) * ny,
+                "Piron-Pythagorean two-sided sandwich and radial distance formulas hold",
+            )
+
+    for p_prime, w_pos in parallelogram_counterexamples:
+        for k_rot in range(1, 6):
+            u_rot = g_add_vec(nine_rays_gvec[0], pythag_eq_rot(w_pos, k_rot))
+            require(
+                sp_residual(u_rot, p_prime) == Fraction(1),
+                f"sp {p_prime} is invariant under all Pythagorean equatorial rotations on e1 + w_pos",
+            )
+
     print(json.dumps({"status": "PASS", "sympy_version": sp.__version__,
                       "tomography_rank": tomography.rank(),
                       "s3_witness_111": int(s3(witness_111)),
@@ -832,13 +914,15 @@ def main() -> None:
                       "sp11_witness_p11": int(sp_residual(witness_p11, 11)),
                       "exotic_qi7_witness_p7": str(exotic_qi7(witness_p7)),
                       "sqrt3_frame_norms": [3, 18, 18],
-                      "sqrt7_frame_norms": [7, 245, 245],
+                      "sqrt7_frame_norms": [7, 245, 145 + 100],
                       "sqrt11_frame_norms": [11, 1210, 1210],
                       "piron_ortho_parallelogram_sums": [2, 2, 2],
-                      "scope": "symbolic algebra controls, uniform sp_residual (p in {3,7,11}), selective oscillation, joint elimination, and Piron/parallelogram/continuity bridge"},
+                      "pythag_rot_invariance_3_7_11": [1, 1, 1],
+                      "scope": "symbolic algebra controls, uniform sp_residual (p in {3,7,11}), selective oscillation, joint elimination, Piron/parallelogram/continuity bridge, and 9G two-step tangent/Kelvin/Pythagorean sandwich squeeze"},
                      sort_keys=True))
 
 
 if __name__ == "__main__":
     main()
+
 

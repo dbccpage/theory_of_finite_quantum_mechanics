@@ -23,14 +23,19 @@ target:
     3D subspace combResidual3_7_11, and arbitrary finite m-prime InertPrimeResidualSystem m), Section
     9 elimination theorems (selective cross-prime archimedean discontinuity at tomo_e1, joint Q(i, sqrt(p))^3
     even-valuation frame obstruction, and operator-space projector linearity quadratic_rigidity_iff_factorsThroughRayProjLinear
-    / factorsThroughRayProjLinear_finCombResidual_iff), and Subsection 9F planar frame-rotation identities,
+    / factorsThroughRayProjLinear_finCombResidual_iff), Subsection 9F planar frame-rotation identities,
     the orthogonal parallelogram law SatisfiesOrthoParallelogramZero (refuted on s3, s7, sp11 and eliminating
     all coordinate-sign-symmetric zero-weight residuals), Piron's meridian-descent inequality and dense
     Pythagorean rational circle step (exists_pironStep_within_delta), and the nonnegativity/continuity
-    bridge (nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual) are formalized in lean4/BornGaussianTomographyReduction.lean.
-    Unconditional vanishing of all archimedean-continuous bounded zero-weight residuals on Q(i)^3 without
-    coordinate-sign symmetry or projector linearity and closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remain
-    open.
+    bridge (nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual), and Subsection 9G two-step
+    Piron tangent algebra (eqTangentStep_comp_of_x_zero, eqTangentStep_cancel_of_x_zero), Kelvin-inverted
+    meridian duality (meridian_kelvin_complement_of_pole_one), outward and inward radial monotonicity
+    (piron_radial_scale_le_of_pole_one, piron_radial_inv_scale_ge_of_pole_one), the exact two-sided Piron-Pythagorean
+    sandwich squeeze (pythagEqRot_sandwich_of_pole_one, pythagEqRot_archimedean_squeeze_of_pole_one),
+    and equatorial-invariance vs. orthogonal parallelogram separation (sp_e1_add_pythagEqRot_eq, orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant)
+    are formalized in lean4/BornGaussianTomographyReduction.lean. Unconditional vanishing of all archimedean-continuous
+    bounded zero-weight residuals on Q(i)^3 without coordinate-sign symmetry or projector linearity and
+    closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remain open.
   source_refs:
   - dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md
   - lean4/BornRationalRayObstruction.lean
@@ -51,7 +56,7 @@ target:
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md
-    sha256: 71a7487fa7b44950d07c6b6bdea5608cdc9e3f7d70e0c593b13a2f5205b25303
+    sha256: baa14cfa80b2fbf3339a5a01f75ce968f330f73be2c2584009f7e0158ada632f
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -66,7 +71,7 @@ operation_candidates:
   signature_excerpt: structure HermForm3
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
 - kind: def
   name: quadRay
@@ -74,7 +79,7 @@ operation_candidates:
   signature_excerpt: 'def quadRay (ρ : HermForm3) (v : GVec) : ℚ'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
 - kind: def
   name: quadNum
@@ -82,7 +87,7 @@ operation_candidates:
   signature_excerpt: 'def quadNum (ρ : HermForm3) (v : GVec) : ℚ'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
 - kind: def
   name: normSqVec
@@ -90,7 +95,7 @@ operation_candidates:
   signature_excerpt: 'def normSqVec (v : GVec) : ℚ'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
 - kind: def
   name: inner
@@ -98,7 +103,7 @@ operation_candidates:
   signature_excerpt: 'def inner (u v : GVecSqrt3) : GaussRatSqrt3'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
 - kind: def
   name: zero
@@ -106,7 +111,7 @@ operation_candidates:
   signature_excerpt: 'def zero : GaussRatSqrt3'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
 - kind: structure
   name: GVecSqrt3
@@ -114,7 +119,7 @@ operation_candidates:
   signature_excerpt: structure GVecSqrt3
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
 - kind: structure
   name: GaussRatSqrt3
@@ -122,7 +127,7 @@ operation_candidates:
   signature_excerpt: structure GaussRatSqrt3
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
 - kind: def
   name: add
@@ -130,7 +135,7 @@ operation_candidates:
   signature_excerpt: 'def add (z w : GaussRatSqrt3) : GaussRatSqrt3'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
 - kind: def
   name: tomographyForm
@@ -138,7 +143,7 @@ operation_candidates:
   signature_excerpt: 'def tomographyForm (f : GVec → ℚ) : HermForm3'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
 - kind: def
   name: tomo_e1
@@ -146,7 +151,7 @@ operation_candidates:
   signature_excerpt: 'def tomo_e1 : GVec'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
 - kind: def
   name: tomo_e2
@@ -154,7 +159,7 @@ operation_candidates:
   signature_excerpt: 'def tomo_e2 : GVec'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
 - kind: def
   name: tomo_e3
@@ -162,7 +167,7 @@ operation_candidates:
   signature_excerpt: 'def tomo_e3 : GVec'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
 - kind: def
   name: tomo_e12
@@ -170,7 +175,7 @@ operation_candidates:
   signature_excerpt: 'def tomo_e12 : GVec'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
 - kind: def
   name: tomo_e13
@@ -178,7 +183,7 @@ operation_candidates:
   signature_excerpt: 'def tomo_e13 : GVec'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
 - kind: def
   name: tomo_e23
@@ -186,7 +191,7 @@ operation_candidates:
   signature_excerpt: 'def tomo_e23 : GVec'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
@@ -245,7 +250,7 @@ relation_candidates:
         quadRay ρ u + quadRay ρ v + quadRay ρ w = ρ.tr
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -265,7 +270,7 @@ relation_candidates:
         quadRay (tomographyForm f) tomo_e23i = f tomo_e23i
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -286,7 +291,7 @@ relation_candidates:
         ρ = σ
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -301,7 +306,7 @@ relation_candidates:
           ∀ v : GVec, v.NonZero → g v = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -316,7 +321,7 @@ relation_candidates:
           ∀ v : GVec, v.NonZero → g v = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -332,7 +337,7 @@ relation_candidates:
           ((a ^ 2 + b ^ 2) % 4 = 2 ∧ (c ^ 2 + d ^ 2) % 2 = 1 ∧ (e ^ 2 + g ^ 2) % 2 = 1)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -346,7 +351,7 @@ relation_candidates:
         f v = quadRay ρ v
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -358,7 +363,7 @@ relation_candidates:
         traceInner ρ ρ = 0 ↔ ρ = HermForm3.zero
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -370,7 +375,7 @@ relation_candidates:
         (h : ∀ τ : HermForm3, traceInner ρ τ = traceInner σ τ) : ρ = σ
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -382,7 +387,7 @@ relation_candidates:
         traceInner ρ (rayProj v) = quadRay ρ v
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -394,7 +399,7 @@ relation_candidates:
         HermForm3.add (HermForm3.add (rayProj u) (rayProj v)) (rayProj w) = HermForm3.id
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -417,7 +422,7 @@ relation_candidates:
                     (HermForm3.smul (2 * ρ.a12) (ray
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -427,7 +432,7 @@ relation_candidates:
   signature_excerpt: 'theorem v3Rat_normSq_even (z : GaussRat) : v3Rat z.normSq % 2 = 0'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -439,7 +444,7 @@ relation_candidates:
         (v3Rat (normSqVec u) + v3Rat (normSqVec v) + v3Rat (normSqVec w)) % 2 = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -452,7 +457,7 @@ relation_candidates:
           (u.y * v.z - v.y * u.z).normSq = normSqVec u * normSqVec v
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -462,7 +467,7 @@ relation_candidates:
   signature_excerpt: 'theorem s3_isZeroWeightFrameFunction : IsZeroWeightFrameFunction s3'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -472,7 +477,7 @@ relation_candidates:
   signature_excerpt: 'theorem s3_isBoundedOnRays : IsBoundedOnRays s3'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -482,7 +487,7 @@ relation_candidates:
   signature_excerpt: 'theorem s3_vanishes_on_nine_rays : VanishesOnNineRays s3'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -492,7 +497,7 @@ relation_candidates:
   signature_excerpt: 'theorem witness_111_primitive : IsOnePlusIPrimitive 1 0 1 0 1 0'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -502,7 +507,7 @@ relation_candidates:
   signature_excerpt: 'theorem witness_div_four_shell_primitive : IsOnePlusIPrimitive 1 2 1 2 1 1'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -512,7 +517,7 @@ relation_candidates:
   signature_excerpt: 'theorem witness_div_eight_shell_primitive : IsOnePlusIPrimitive 1 4 1 2 1 1'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -525,7 +530,7 @@ relation_candidates:
             ∃ ρ : HermForm3, ρ.tr = 1 ∧ ∀ v : GVec, v.NonZero → f v = quadRay ρ v)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -538,7 +543,7 @@ relation_candidates:
             ∃ ρ : HermForm3, ρ.tr = 1 ∧ ∀ v : GVec, v.NonZero → f v = quadRay ρ v)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -548,7 +553,7 @@ relation_candidates:
   signature_excerpt: 'theorem exoticQi3_isNonnegFrameFunction : IsNonnegFrameFunction exoticQi3'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -560,7 +565,7 @@ relation_candidates:
         ¬ ∃ ρ : HermForm3, ∀ v : GVec, v.NonZero → exoticQi3 v = quadRay ρ v
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -577,7 +582,7 @@ relation_candidates:
             (HermForm3.add (HermForm3.add (rayProj tomo_e12) (rayProj tomo_e13)) (rayProj tomo_e23)))
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -591,7 +596,7 @@ relation_candidates:
           (2 / 3) * (quadRay ρ tomo_e12 + quadRay ρ tomo_e13 + quadRay ρ tomo_e23) = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -608,7 +613,7 @@ relation_candidates:
           (2 / 3) * (exoticQi3 tomo_e12 + exoticQi3 tomo_e13 + exoticQi3 tomo_e23) = 1 / 3
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -624,7 +629,7 @@ relation_candidates:
           exoticQi3 uPos = 2 / 3 ∧ exoticQi3 uNeg = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -636,7 +641,7 @@ relation_candidates:
         ¬ IsArchimedeanContinuousAt s3 tomo_e1
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -648,7 +653,7 @@ relation_candidates:
         ¬ IsArchimedeanContinuousAt exoticQi3 tomo_e1
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -663,7 +668,7 @@ relation_candidates:
         c = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -675,7 +680,7 @@ relation_candidates:
         IsArchimedeanContinuousAt (quadRay ρ) tomo_e1
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -688,7 +693,7 @@ relation_candidates:
         IsArchimedeanContinuousAt (fun v => quadRay ρ v + c * s3 v) tomo_e1 ↔ c = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -700,7 +705,7 @@ relation_candidates:
         normSqVec (GVec.smul l witness_111) ≠ 1
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -714,7 +719,7 @@ relation_candidates:
         v3Rat witness_111_unit_sqrt3.normSqRat % 2 = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -734,7 +739,7 @@ relation_candidates:
           v3Rat frameSqrt3_q.normSqRat) % 2 ≠ 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -749,7 +754,7 @@ relation_candidates:
         G witness_111_sqrt3 = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -764,7 +769,7 @@ relation_candidates:
             (∀ v : GVec, G (GVecSqrt3.ofGVec v) = s3 v)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -782,7 +787,7 @@ relation_candidates:
             (GVecSqrt3.smulP p (GaussRatSqrt3.invSqrtP p) (GVecSqrt3.ofGVec u)) = 1
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -803,7 +808,7 @@ relation_candidates:
         GVecSqrt3.norm
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -818,7 +823,7 @@ relation_candidates:
         GVecSqrt3.normSqRatP 7 frameSqrt7_q = 245
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -833,7 +838,7 @@ relation_candidates:
         ∀ v : GVec, v.NonZero → g v = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -843,7 +848,7 @@ relation_candidates:
   signature_excerpt: 'theorem not_factorsThroughRayProjLinear_s3 : ¬ FactorsThroughRayProjLinear s3'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -856,7 +861,7 @@ relation_candidates:
         ∃ ρ : HermForm3, ρ.tr = 1 ∧ ∀ v : GVec, v.NonZero → f v = quadRay ρ v
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -866,7 +871,7 @@ relation_candidates:
   signature_excerpt: 'theorem v7Rat_normSq_even (z : GaussRat) : v7Rat z.normSq % 2 = 0'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -878,7 +883,7 @@ relation_candidates:
         (v7Rat (normSqVec u) + v7Rat (normSqVec v) + v7Rat (normSqVec w)) % 2 = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -893,7 +898,7 @@ relation_candidates:
         s7 u + s7 v = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -903,7 +908,7 @@ relation_candidates:
   signature_excerpt: 'theorem s7_isZeroWeightFrameFunction : IsZeroWeightFrameFunction s7'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -915,7 +920,7 @@ relation_candidates:
         s7 (GVec.smul l v) = s7 v
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -925,7 +930,7 @@ relation_candidates:
   signature_excerpt: 'theorem s7_isBoundedOnRays : IsBoundedOnRays s7'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -935,7 +940,7 @@ relation_candidates:
   signature_excerpt: 'theorem s7_vanishes_on_nine_rays : VanishesOnNineRays s7'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -945,7 +950,7 @@ relation_candidates:
   signature_excerpt: 'theorem witness_p7_primitive : IsOnePlusIPrimitive 1 0 2 0 1 1'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -958,7 +963,7 @@ relation_candidates:
         s3 witness_p7 = 0 ∧ s7 witness_p7 = 1
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -968,7 +973,7 @@ relation_candidates:
   signature_excerpt: 'theorem exoticQi7_isNonnegFrameFunction : IsNonnegFrameFunction exoticQi7'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -980,7 +985,7 @@ relation_candidates:
         ¬ ∃ ρ : HermForm3, ∀ v : GVec, v.NonZero → exoticQi7 v = quadRay ρ v
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -992,7 +997,7 @@ relation_candidates:
         IsZeroWeightFrameFunction (combResidual37 c3 c7)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1004,7 +1009,7 @@ relation_candidates:
         VanishesOnNineRays (combResidual37 c3 c7)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1016,7 +1021,7 @@ relation_candidates:
         IsBoundedOnRays (combResidual37 c3 c7)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1028,7 +1033,7 @@ relation_candidates:
         (∀ v : GVec, v.NonZero → combResidual37 c3 c7 v = 0) ↔ (c3 = 0 ∧ c7 = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1038,7 +1043,7 @@ relation_candidates:
   signature_excerpt: 'theorem s7_perturb7PosRay {k : ℕ} (hk : 0 < k) : s7 (perturb7PosRay k) = 1'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1048,7 +1053,7 @@ relation_candidates:
   signature_excerpt: 'theorem s7_perturb7NegRay {k : ℕ} (hk : 0 < k) : s7 (perturb7NegRay k) = -1'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1058,7 +1063,7 @@ relation_candidates:
   signature_excerpt: 'theorem s3_perturb7PosRay {k : ℕ} (hk : 0 < k) : s3 (perturb7PosRay k) = 0'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1068,7 +1073,7 @@ relation_candidates:
   signature_excerpt: 'theorem s3_perturb7NegRay {k : ℕ} (hk : 0 < k) : s3 (perturb7NegRay k) = 0'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1080,7 +1085,7 @@ relation_candidates:
         s7 (perturbPosRay (7 * k)) = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1092,7 +1097,7 @@ relation_candidates:
         s7 (perturbNegRay (7 * k)) = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1104,7 +1109,7 @@ relation_candidates:
         distSqVec (perturb7PosRay k) tomo_e1 = 1 / (7 * (k : ℚ) ^ 2)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1116,7 +1121,7 @@ relation_candidates:
         distSqVec (perturb7NegRay k) tomo_e1 = 1 / (7 * (k : ℚ) ^ 2)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1128,7 +1133,7 @@ relation_candidates:
         ¬ IsArchimedeanContinuousAt s7 tomo_e1
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1140,7 +1145,7 @@ relation_candidates:
         ¬ IsArchimedeanContinuousAt exoticQi7 tomo_e1
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1155,7 +1160,7 @@ relation_candidates:
         c3 = 0 ∧ c7 = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1169,7 +1174,7 @@ relation_candidates:
           (c3 = 0 ∧ c7 = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1181,7 +1186,7 @@ relation_candidates:
         normSqVec (GVec.smul l witness_p7) ≠ 1
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1196,7 +1201,7 @@ relation_candidates:
         G (GVecSqrt3.ofGVec witness_p7) = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1211,7 +1216,7 @@ relation_candidates:
             (∀ v : GVec, G (GVecSqrt3.ofGVec v) = s7 v)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1227,7 +1232,7 @@ relation_candidates:
     \ c3 c7 v) :\n "
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1237,7 +1242,7 @@ relation_candidates:
   signature_excerpt: 'theorem not_factorsThroughRayProjLinear_s7 : ¬ FactorsThroughRayProjLinear s7'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1249,7 +1254,7 @@ relation_candidates:
         FactorsThroughRayProjLinear (combResidual37 c3 c7) ↔ (c3 = 0 ∧ c7 = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1274,7 +1279,7 @@ relation_candidates:
               (HermForm3.smul (4 / 7) (rayProj tomo_e23)))
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1289,7 +1294,7 @@ relation_candidates:
           (2 / 7) * quadRay ρ tomo_e13i - (4 / 7) * quadRay ρ tomo_e23i = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1310,7 +1315,7 @@ relation_candidates:
           (3 / 7) * combResidual37 c3 c7 tomo_
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1327,7 +1332,7 @@ relation_candidates:
         v3Rat (GVecSqrt3.normSqRatP 7 frameSqrt7_q) % 2 = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1340,7 +1345,7 @@ relation_candidates:
         (∀ v : GVec, 0 ≤ exoticComb37 c3 c7 v ∧ exoticComb37 c3 c7 v ≤ 2 / 3)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1353,7 +1358,7 @@ relation_candidates:
           (c3 = 0 ∧ c7 = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1365,7 +1370,7 @@ relation_candidates:
         IsArchimedeanContinuousAt (exoticComb37 c3 c7) tomo_e1 ↔ (c3 = 0 ∧ c7 = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1375,7 +1380,7 @@ relation_candidates:
   signature_excerpt: 'theorem sp_three_eq_s3 (u : GVec) : sp 3 u = s3 u'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1385,7 +1390,7 @@ relation_candidates:
   signature_excerpt: 'theorem sp_seven_eq_s7 (u : GVec) : sp 7 u = s7 u'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1395,7 +1400,7 @@ relation_candidates:
   signature_excerpt: 'theorem sp_isBoundedOnRays (p : ℕ) : IsBoundedOnRays (sp p)'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1405,7 +1410,7 @@ relation_candidates:
   signature_excerpt: 'theorem sp_vanishes_on_nine_rays {p : ℕ} (hp : 3 ≤ p) : VanishesOnNineRays (sp p)'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1415,7 +1420,7 @@ relation_candidates:
   signature_excerpt: 'theorem witness_p11_primitive : IsOnePlusIPrimitive 1 0 3 0 1 0'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1429,7 +1434,7 @@ relation_candidates:
         (sp 3 witness_p11 = 0 ∧ sp 7 witness_p11 = 0 ∧ sp 11 witness_p11 = 1)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1442,7 +1447,7 @@ relation_candidates:
           (c3 = 0 ∧ c7 = 0 ∧ c11 = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1455,7 +1460,7 @@ relation_candidates:
           (c3 = 0 ∧ c7 = 0 ∧ c11 = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1478,7 +1483,7 @@ relation_candidates:
           (HermForm3.smul (6 / 11) (rayProj tomo_e23))
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1493,7 +1498,7 @@ relation_candidates:
           (6 / 11) * quadRay ρ tomo_e23 = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1509,7 +1514,7 @@ relation_candidates:
     \ * sp 7 tomo_e3 -\n      (6 / 11) * "
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1524,7 +1529,7 @@ relation_candidates:
         GVecSqrt3.normSqRatP 11 frameSqrt11_q = 1210
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1538,7 +1543,7 @@ relation_candidates:
         (vpRat 3 1210 % 2 = 0 ∧ vpRat 7 1210 % 2 = 0 ∧ vpRat 11 1210 % 2 = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1554,7 +1559,7 @@ relation_candidates:
         (∀ v : GVec, 0 ≤ finExoticComb m R c v ∧ finExoticComb m R c v ≤ 2 / 3)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1567,7 +1572,7 @@ relation_candidates:
         (∀ v : GVec, v.NonZero → finCombResidual m S.R c v = 0) ↔ (∀ i : Fin m, c i = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1580,7 +1585,7 @@ relation_candidates:
           (∀ i : Fin m, c i = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1596,7 +1601,7 @@ relation_candidates:
         ∀ i : Fin m, c i = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1610,7 +1615,7 @@ relation_candidates:
           (∀ i : Fin m, c i = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1623,7 +1628,7 @@ relation_candidates:
         IsArchimedeanContinuousAt (finExoticComb m S.R c) tomo_e1 ↔ (∀ i : Fin m, c i = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1636,7 +1641,7 @@ relation_candidates:
         FactorsThroughRayProjLinear (finCombResidual m S.R c) ↔ (∀ i : Fin m, c i = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1655,7 +1660,7 @@ relation_candidates:
         ∀ i : Fin m, c i = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1667,7 +1672,7 @@ relation_candidates:
         finCombResidual 2 inertSystem37.R c v = combResidual37 (c 0) (c 1) v
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1679,7 +1684,7 @@ relation_candidates:
   signature_excerpt: 'theorem inertPrimeSpec_eleven : InertPrimeSpec 11'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1691,7 +1696,7 @@ relation_candidates:
         vpRat p z.normSq % 2 = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1703,7 +1708,7 @@ relation_candidates:
         (vpRat p (normSqVec u) + vpRat p (normSqVec v) + vpRat p (normSqVec w)) % 2 = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1718,7 +1723,7 @@ relation_candidates:
         sp p u + sp p v = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1730,7 +1735,7 @@ relation_candidates:
         IsZeroWeightFrameFunction (sp p)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1743,7 +1748,7 @@ relation_candidates:
         sp p (GVec.smul l v) = sp p v
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1753,7 +1758,7 @@ relation_candidates:
   signature_excerpt: 'theorem sp11_isZeroWeightFrameFunction : IsZeroWeightFrameFunction (sp 11)'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1765,7 +1770,7 @@ relation_candidates:
         IsZeroWeightFrameFunction (combResidual3_7_11 c3 c7 c11)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1778,7 +1783,7 @@ relation_candidates:
         GVec.inner (rotPairU u v α β) (rotPairV u v α β) = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1791,7 +1796,7 @@ relation_candidates:
         normSqVec (GVec.sub u v) = normSqVec u + normSqVec v
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1803,7 +1808,7 @@ relation_candidates:
         normSqVec (rotPairU u v α β) = α.normSq * normSqVec u + β.normSq * normSqVec v
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1816,7 +1821,7 @@ relation_candidates:
           normSqVec u * normSqVec v * normSqVec (rotPairU u v α β)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1829,7 +1834,7 @@ relation_candidates:
         IsFrame (rotPairU u v α β) (rotPairV u v α β) w
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1842,7 +1847,7 @@ relation_candidates:
         f (rotPairU u v α β) + f (rotPairV u v α β) = f u + f v
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1855,7 +1860,7 @@ relation_candidates:
         g (rotPairU u v α β) + g (rotPairV u v α β) = g u + g v
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1870,7 +1875,7 @@ relation_candidates:
           (HermForm3.smul (2 * normSqVec v / (normSqVec u + normSqVec v)) (rayProj v))
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1886,7 +1891,7 @@ relation_candidates:
           (2 * normSqVec v / (normSqVec u + normSqVec v)) * f v
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1899,7 +1904,7 @@ relation_candidates:
         SatisfiesOrthoParallelogramZero g
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1909,7 +1914,7 @@ relation_candidates:
   signature_excerpt: 'theorem sp_isCoordSignSymmetric (p : ℕ) : IsCoordSignSymmetric (sp p)'
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1921,7 +1926,7 @@ relation_candidates:
         sp p ⟨x, 0, 0⟩ = 0 ∧ sp p ⟨0, y, 0⟩ = 0 ∧ sp p ⟨0, 0, z⟩ = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1936,7 +1941,7 @@ relation_candidates:
         ∀ v : GVec, g v = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1948,7 +1953,7 @@ relation_candidates:
         ¬ SatisfiesOrthoParallelogramZero s3
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1960,7 +1965,7 @@ relation_candidates:
         ¬ SatisfiesOrthoParallelogramZero s7
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1972,7 +1977,7 @@ relation_candidates:
         ¬ SatisfiesOrthoParallelogramZero (sp 11)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1985,7 +1990,7 @@ relation_candidates:
         IsFrame u v (hermCross u v)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -1999,7 +2004,7 @@ relation_candidates:
         f z = 0
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -2012,7 +2017,7 @@ relation_candidates:
           (c3 = 0 ∧ c7 = 0 ∧ c11 = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -2027,7 +2032,7 @@ relation_candidates:
           f (GVec.add tomo_e1 y) + f (GVec.smul lam (eqOrtho y))
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -2041,7 +2046,7 @@ relation_candidates:
         f (pironStep y lam) ≤ f (GVec.add tomo_e1 y)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -2055,7 +2060,7 @@ relation_candidates:
         f (GVec.add tomo_e1 y) + f (meridianOrtho y) = 1
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -2068,7 +2073,7 @@ relation_candidates:
         normSqVec (GVec.add tomo_e1 (pythagEqRot y k)) = normSqVec (GVec.add tomo_e1 y)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -2081,7 +2086,7 @@ relation_candidates:
           quadRay (rayProj tomo_e1) (GVec.add tomo_e1 y)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -2094,7 +2099,7 @@ relation_candidates:
           normSqVec y / (k : ℚ) ^ 2
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -2106,7 +2111,7 @@ relation_candidates:
         ∃ k : ℕ, 0 < k ∧ distSqVec (pironStep y ⟨1 / (k : ℚ), 0⟩) (GVec.add tomo_e1 y) < δ
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -2120,7 +2125,7 @@ relation_candidates:
         (∀ v : GVec, v.NonZero → g v = 0) ∧ FactorsThroughRayProjLinear g
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -2136,7 +2141,452 @@ relation_candidates:
           ∀ v : GVec, v.NonZero → g v = 0)
   source: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  source_sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: eqOrtho_eqOrtho_of_x_zero
+  line: 7860
+  signature_excerpt: |-
+    theorem eqOrtho_eqOrtho_of_x_zero {y : GVec} (hyx : y.x = 0) :
+        eqOrtho (eqOrtho y) = GVec.smul (-1) y
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pythagEqRot_one_eq_eqOrtho
+  line: 7866
+  signature_excerpt: |-
+    theorem pythagEqRot_one_eq_eqOrtho (y : GVec) :
+        pythagEqRot y 1 = eqOrtho y
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pythagEqRot_one_twice_of_x_zero
+  line: 7875
+  signature_excerpt: |-
+    theorem pythagEqRot_one_twice_of_x_zero {y : GVec} (hyx : y.x = 0) :
+        pythagEqRot (pythagEqRot y 1) 1 = GVec.smul (-1) y
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pironStep_eq_add_eqTangentStep
+  line: 7884
+  signature_excerpt: |-
+    theorem pironStep_eq_add_eqTangentStep (y : GVec) (t : ℚ) :
+        pironStep y ⟨t, 0⟩ = GVec.add tomo_e1 (eqTangentStep y t)
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: eqTangentStep_x_zero
+  line: 7888
+  signature_excerpt: |-
+    theorem eqTangentStep_x_zero {y : GVec} (hyx : y.x = 0) (t : ℚ) :
+        (eqTangentStep y t).x = 0
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: normSqVec_eqTangentStep_of_x_zero
+  line: 7892
+  signature_excerpt: |-
+    theorem normSqVec_eqTangentStep_of_x_zero {y : GVec} (hyx : y.x = 0) (t : ℚ) :
+        normSqVec (eqTangentStep y t) = (1 + t ^ 2) * normSqVec y
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: eqTangentStep_nonZero_of_x_zero
+  line: 7901
+  signature_excerpt: |-
+    theorem eqTangentStep_nonZero_of_x_zero {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) (t : ℚ) :
+        (eqTangentStep y t).NonZero
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: eqOrtho_eqTangentStep_of_x_zero
+  line: 7910
+  signature_excerpt: |-
+    theorem eqOrtho_eqTangentStep_of_x_zero {y : GVec} (hyx : y.x = 0) (t : ℚ) :
+        eqOrtho (eqTangentStep y t) = GVec.add (eqOrtho y) (GVec.smul ⟨-t, 0⟩ y)
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: eqTangentStep_comp_of_x_zero
+  line: 7916
+  signature_excerpt: |-
+    theorem eqTangentStep_comp_of_x_zero {y : GVec} (hyx : y.x = 0) (t1 t2 : ℚ) :
+        eqTangentStep (eqTangentStep y t1) t2 =
+          GVec.add (GVec.smul ⟨1 - t1 * t2, 0⟩ y) (GVec.smul ⟨t1 + t2, 0⟩ (eqOrtho y))
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: eqTangentStep_cancel_of_x_zero
+  line: 7923
+  signature_excerpt: |-
+    theorem eqTangentStep_cancel_of_x_zero {y : GVec} (hyx : y.x = 0) (t : ℚ) :
+        eqTangentStep (eqTangentStep y t) (-t) = GVec.smul ⟨1 + t ^ 2, 0⟩ y
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: eqTangentStep_one_one_of_x_zero
+  line: 7933
+  signature_excerpt: |-
+    theorem eqTangentStep_one_one_of_x_zero {y : GVec} (hyx : y.x = 0) :
+        eqTangentStep (eqTangentStep y 1) 1 = GVec.smul ⟨2, 0⟩ (eqOrtho y)
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: piron_radial_scale_le_of_pole_one
+  line: 7944
+  signature_excerpt: |-
+    theorem piron_radial_scale_le_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+        (hp1 : f tomo_e1 = 1)
+        {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {t : ℚ} (ht : t ≠ 0) :
+        f (GVec.add tomo_e1 (GVec.smul ⟨1 + t ^ 2, 0⟩ y)) ≤ f (pironStep y ⟨t, 0⟩) ∧
+        f (pironStep y ⟨t, 0⟩) ≤ f (GVec.add tomo_e1 y)
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: piron_two_step_eqOrtho_le_of_pole_one
+  line: 7965
+  signature_excerpt: |-
+    theorem piron_two_step_eqOrtho_le_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+        (hp1 : f tomo_e1 = 1)
+        {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) :
+        f (GVec.add tomo_e1 (GVec.smul ⟨2, 0⟩ (eqOrtho y))) ≤ f (pironStep y 1) ∧
+        f (pironStep y 1) ≤ f (GVec.add tomo_e1 y)
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: frameFunction_smul
+  line: 7985
+  signature_excerpt: |-
+    theorem frameFunction_smul {f : GVec → ℚ} (hf : IsFrameFunction f)
+        {v : GVec} (hv : v.NonZero) {l : GaussRat} (hl : l ≠ 0) :
+        f (GVec.smul l v) = f v
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: kelvinEq_x_zero
+  line: 7997
+  signature_excerpt: |-
+    theorem kelvinEq_x_zero {y : GVec} (hyx : y.x = 0) :
+        (kelvinEq y).x = 0
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: normSqVec_kelvinEq
+  line: 8001
+  signature_excerpt: |-
+    theorem normSqVec_kelvinEq {y : GVec} (hy : y.NonZero) :
+        normSqVec (kelvinEq y) = 1 / normSqVec y
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: kelvinEq_nonZero
+  line: 8009
+  signature_excerpt: |-
+    theorem kelvinEq_nonZero {y : GVec} (hy : y.NonZero) :
+        (kelvinEq y).NonZero
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: smul_meridianOrtho_eq_add_kelvinEq
+  line: 8017
+  signature_excerpt: |-
+    theorem smul_meridianOrtho_eq_add_kelvinEq {y : GVec} (hy : y.NonZero) :
+        GVec.smul ⟨-(1 / normSqVec y), 0⟩ (meridianOrtho y) = GVec.add tomo_e1 (kelvinEq y)
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: meridian_kelvin_complement_of_pole_one
+  line: 8043
+  signature_excerpt: |-
+    theorem meridian_kelvin_complement_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+        (hp1 : f tomo_e1 = 1)
+        {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) :
+        f (GVec.add tomo_e1 y) + f (GVec.add tomo_e1 (kelvinEq y)) = 1
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: piron_radial_inv_scale_ge_of_pole_one
+  line: 8063
+  signature_excerpt: |-
+    theorem piron_radial_inv_scale_ge_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+        (hp1 : f tomo_e1 = 1)
+        {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {t : ℚ} (ht : t ≠ 0) :
+        f (GVec.add tomo_e1 y) ≤
+          f (GVec.add tomo_e1 (GVec.smul ⟨1 / (1 + t ^ 2), 0⟩ y))
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pythagEqRot_eq_eqTangentStep_of_two_le
+  line: 8092
+  signature_excerpt: |-
+    theorem pythagEqRot_eq_eqTangentStep_of_two_le {y : GVec} {k : ℕ} (hk : 2 ≤ k) :
+        pythagEqRot y k =
+          eqTangentStep
+            (GVec.smul ⟨((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1), 0⟩ y)
+            ((2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1))
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: eqTangentStep_pythagEqRot_neg_of_x_zero
+  line: 8109
+  signature_excerpt: |-
+    theorem eqTangentStep_pythagEqRot_neg_of_x_zero {y : GVec} (hyx : y.x = 0) {k : ℕ} (hk : 2 ≤ k) :
+        eqTangentStep (pythagEqRot y k) (-(2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1)) =
+          GVec.smul ⟨((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1), 0⟩ y
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pythagEqRot_sandwich_of_pole_one
+  line: 8142
+  signature_excerpt: |-
+    theorem pythagEqRot_sandwich_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+        (hp1 : f tomo_e1 = 1)
+        {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {k : ℕ} (hk : 2 ≤ k) :
+        f (GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1), 0⟩ y)) ≤
+          f (GVec.add tomo_e1 (pythagEqRot y k)) ∧
+        f (GVec.add tomo_e1 (pythagEqRot y k)) ≤
+          f (GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1), 0⟩ y))
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: distSqVec_radial_scale
+  line: 8181
+  signature_excerpt: |-
+    theorem distSqVec_radial_scale (y : GVec) (s : ℚ) :
+        distSqVec (GVec.add tomo_e1 (GVec.smul ⟨s, 0⟩ y)) (GVec.add tomo_e1 y) =
+          (s - 1) ^ 2 * normSqVec y
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: exists_pythagEqRot_radial_within_delta
+  line: 8192
+  signature_excerpt: |-
+    theorem exists_pythagEqRot_radial_within_delta {y : GVec} (hyx : y.x = 0) {δ : ℚ} (hδ : 0 < δ) :
+        ∃ k : ℕ, 2 ≤ k ∧
+          distSqVec
+            (GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1), 0⟩ y))
+            (GVec.add tomo_e1 y) < δ ∧
+          distSqVec
+            (GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1), 0⟩ y))
+            (GVec.add tomo_e1 y) < δ
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: pythagEqRot_archimedean_squeeze_of_pole_one
+  line: 8240
+  signature_excerpt: |-
+    theorem pythagEqRot_archimedean_squeeze_of_pole_one
+        {f : GVec → ℚ} (hf : IsNonnegFrameFunction f) (hp1 : f tomo_e1 = 1)
+        (hcont : IsArchimedeanContinuousEverywhere f)
+        {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {ε : ℚ} (hε : 0 < ε) :
+        ∃ k : ℕ, 2 ≤ k ∧
+          |f (GVec.add tomo_e1 (pythagEqRot y k)) - f (GVec.add tomo_e1 y)| < ε
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sp_e1_add_eq_of_normSqVec_eq
+  line: 8268
+  signature_excerpt: |-
+    theorem sp_e1_add_eq_of_normSqVec_eq {p : ℕ} {y y' : GVec}
+        (hyx : y.x = 0) (hy'x : y'.x = 0)
+        (hnorm : normSqVec y' = normSqVec y)
+        (hpos : 0 < vpRat p (normSqVec (GVec.add tomo_e1 y))) :
+        sp p (GVec.add tomo_e1 y') = sp p (GVec.add tomo_e1 y)
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sp_e1_add_pythagEqRot_eq
+  line: 8302
+  signature_excerpt: |-
+    theorem sp_e1_add_pythagEqRot_eq {p : ℕ} {y : GVec}
+        (hyx : y.x = 0)
+        (hpos : 0 < vpRat p (normSqVec (GVec.add tomo_e1 y))) (k : ℕ) :
+        sp p (GVec.add tomo_e1 (pythagEqRot y k)) = sp p (GVec.add tomo_e1 y) ∧
+        sp p (GVec.add tomo_e1 (eqOrtho y)) = sp p (GVec.add tomo_e1 y)
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: s3_pythagEqRot_invariant_tomo_e23
+  line: 8313
+  signature_excerpt: |-
+    theorem s3_pythagEqRot_invariant_tomo_e23 (k : ℕ) :
+        s3 (GVec.add tomo_e1 (pythagEqRot tomo_e23 k)) = s3 (GVec.add tomo_e1 tomo_e23)
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: s7_pythagEqRot_invariant_v7
+  line: 8326
+  signature_excerpt: |-
+    theorem s7_pythagEqRot_invariant_v7 (k : ℕ) :
+        s7 (GVec.add tomo_e1 (pythagEqRot (gv 0 0 2 0 1 1) k)) =
+          s7 (GVec.add tomo_e1 (gv 0 0 2 0 1 1))
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: sp11_pythagEqRot_invariant_v11
+  line: 8340
+  signature_excerpt: |-
+    theorem sp11_pythagEqRot_invariant_v11 (k : ℕ) :
+        sp 11 (GVec.add tomo_e1 (pythagEqRot (gv 0 0 3 0 1 0) k)) =
+          sp 11 (GVec.add tomo_e1 (gv 0 0 3 0 1 0))
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant
+  line: 8355
+  signature_excerpt: |-
+    theorem orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant
+        (g : GVec → ℚ) {y : GVec} (hyx : y.x = 0)
+        (hrot1 : g (GVec.add tomo_e1 (pythagEqRot y 1)) = g (GVec.add tomo_e1 y))
+        (hrot2 : g (GVec.add tomo_e1 (pythagEqRot (pythagEqRot y 1) 1)) =
+          g (GVec.add tomo_e1 (pythagEqRot y 1))) :
+        g (GVec.sub tomo_e1 y) = g (GVec.add tomo_e1 y) ∧
+        (g (GVec.add tomo_e1 y) + g (GVec.sub tomo_e1 y) = 0 ↔
+          g (GVec.add tomo_e1 y) = 0)
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: nonneg_pole_perturbation_vanishes_on_equator
+  line: 8375
+  signature_excerpt: |-
+    theorem nonneg_pole_perturbation_vanishes_on_equator
+        {g : GVec → ℚ} (hg_e1 : g tomo_e1 = 0)
+        (hf : IsNonnegFrameFunction (fun v => quadRay (rayProj tomo_e1) v + g v)) :
+        ∀ y : GVec, y.x = 0 → y.NonZero → g y = 0
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
@@ -2173,7 +2623,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.quadRay_frame_sum
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 404
   role: source_lead_only
@@ -2182,7 +2632,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.tomography_matches_nine_rays
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 499
   role: source_lead_only
@@ -2191,7 +2641,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.tomography_unique
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 532
   role: source_lead_only
@@ -2200,7 +2650,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.signed_rigidity_iff_zero_residual
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 606
   role: source_lead_only
@@ -2209,7 +2659,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.nonneg_rigidity_iff_bounded_zero_residual
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 802
   role: source_lead_only
@@ -2218,7 +2668,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.primitive_gaussian_norm_mod_four_iff
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 922
   role: source_lead_only
@@ -2227,7 +2677,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.eq_quadRay_all_of_zero_at_zero
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 978
   role: source_lead_only
@@ -2236,7 +2686,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.traceInner_self_eq_zero_iff
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 1051
   role: source_lead_only
@@ -2245,7 +2695,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.traceInner_ext
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 1088
   role: source_lead_only
@@ -2254,7 +2704,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.traceInner_rayProj
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 1118
   role: source_lead_only
@@ -2263,7 +2713,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.rayProj_frame_sum
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 1141
   role: source_lead_only
@@ -2272,7 +2722,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.rayProj_nine_rays_span_hermForm3
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 1152
   role: source_lead_only
@@ -2281,7 +2731,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.v3Rat_normSq_even
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 1650
   role: source_lead_only
@@ -2290,7 +2740,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.frame_v3Rat_sum_even
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 1746
   role: source_lead_only
@@ -2299,7 +2749,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.ortho_coord_identity_x
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 1758
   role: source_lead_only
@@ -2308,7 +2758,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s3_isZeroWeightFrameFunction
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2003
   role: source_lead_only
@@ -2317,7 +2767,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s3_isBoundedOnRays
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2069
   role: source_lead_only
@@ -2326,7 +2776,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s3_vanishes_on_nine_rays
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2097
   role: source_lead_only
@@ -2335,7 +2785,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.witness_111_primitive
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2127
   role: source_lead_only
@@ -2344,7 +2794,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.witness_div_four_shell_primitive
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2149
   role: source_lead_only
@@ -2353,7 +2803,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.witness_div_eight_shell_primitive
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2171
   role: source_lead_only
@@ -2362,7 +2812,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.exists_nonzero_bounded_zero_residual
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2196
   role: source_lead_only
@@ -2371,7 +2821,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.not_signed_quadratic_rigidity
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2217
   role: source_lead_only
@@ -2380,7 +2830,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.not_nonneg_quadratic_rigidity
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2230
   role: source_lead_only
@@ -2389,7 +2839,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.exoticQi3_isNonnegFrameFunction
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2257
   role: source_lead_only
@@ -2398,7 +2848,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.exoticQi3_not_quadratic
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2260
   role: source_lead_only
@@ -2407,7 +2857,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.rayProj_witness_111_decomp
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2294
   role: source_lead_only
@@ -2416,7 +2866,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.quadRay_witness_111_kernel_relation
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2308
   role: source_lead_only
@@ -2425,7 +2875,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s3_witness_111_kernel_separation
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2319
   role: source_lead_only
@@ -2434,7 +2884,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s3_oscillates_near_tomo_e1
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2531
   role: source_lead_only
@@ -2443,7 +2893,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.not_archimedeanContinuousAt_s3_tomo_e1
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2546
   role: source_lead_only
@@ -2452,7 +2902,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi3_tomo_e1
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2559
   role: source_lead_only
@@ -2461,7 +2911,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2575
   role: source_lead_only
@@ -2470,7 +2920,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.archimedeanContinuousAt_quadRay_tomo_e1
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2752
   role: source_lead_only
@@ -2479,7 +2929,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2779
   role: source_lead_only
@@ -2488,7 +2938,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.no_unit_norm_smul_witness_111_in_qi3
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2863
   role: source_lead_only
@@ -2497,7 +2947,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.witness_111_unit_sqrt3_normSq
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2884
   role: source_lead_only
@@ -2506,7 +2956,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.isFrameSqrt3_witness_111_even_norms
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2919
   role: source_lead_only
@@ -2515,7 +2965,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.zero_on_witness_111_of_sqrt3_even_v3_vanishing
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2985
   role: source_lead_only
@@ -2524,7 +2974,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.no_s3_even_v3_extension_to_sqrt3
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 2996
   role: source_lead_only
@@ -2533,7 +2983,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.unit_norm_in_sqrtP_of_normSqVec_eq
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 3034
   role: source_lead_only
@@ -2542,7 +2992,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.fourSquarePartner_ortho_and_normSqRatP
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 3095
   role: source_lead_only
@@ -2551,7 +3001,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 3172
   role: source_lead_only
@@ -2560,7 +3010,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 3230
   role: source_lead_only
@@ -2569,7 +3019,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s3
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 3251
   role: source_lead_only
@@ -2578,7 +3028,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.quadratic_rigidity_iff_factorsThroughRayProjLinear
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 3261
   role: source_lead_only
@@ -2587,7 +3037,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.v7Rat_normSq_even
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 3774
   role: source_lead_only
@@ -2596,7 +3046,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.frame_v7Rat_sum_even
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 3844
   role: source_lead_only
@@ -2605,7 +3055,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s7_orthogonal_odd_cancel
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4047
   role: source_lead_only
@@ -2614,7 +3064,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s7_isZeroWeightFrameFunction
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4078
   role: source_lead_only
@@ -2623,7 +3073,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s7_smul
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4101
   role: source_lead_only
@@ -2632,7 +3082,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s7_isBoundedOnRays
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4135
   role: source_lead_only
@@ -2641,7 +3091,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s7_vanishes_on_nine_rays
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4184
   role: source_lead_only
@@ -2650,7 +3100,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.witness_p7_primitive
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4205
   role: source_lead_only
@@ -2659,7 +3109,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s3_s7_dual_on_witnesses
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4237
   role: source_lead_only
@@ -2668,7 +3118,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.exoticQi7_isNonnegFrameFunction
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4261
   role: source_lead_only
@@ -2677,7 +3127,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.exoticQi7_not_quadratic
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4264
   role: source_lead_only
@@ -2686,7 +3136,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.combResidual37_isZeroWeightFrameFunction
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4301
   role: source_lead_only
@@ -2695,7 +3145,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.combResidual37_vanishes_on_nine_rays
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4309
   role: source_lead_only
@@ -2704,7 +3154,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.combResidual37_isBoundedOnRays
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4319
   role: source_lead_only
@@ -2713,7 +3163,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s3_s7_linearIndependent
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4346
   role: source_lead_only
@@ -2722,7 +3172,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s7_perturb7PosRay
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4479
   role: source_lead_only
@@ -2731,7 +3181,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s7_perturb7NegRay
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4484
   role: source_lead_only
@@ -2740,7 +3190,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s3_perturb7PosRay
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4513
   role: source_lead_only
@@ -2749,7 +3199,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s3_perturb7NegRay
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4518
   role: source_lead_only
@@ -2758,7 +3208,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s7_perturbPosRay_seven_mul
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4543
   role: source_lead_only
@@ -2767,7 +3217,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s7_perturbNegRay_seven_mul
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4550
   role: source_lead_only
@@ -2776,7 +3226,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.distSqVec_perturb7PosRay_tomo_e1
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4557
   role: source_lead_only
@@ -2785,7 +3235,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.distSqVec_perturb7NegRay_tomo_e1
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4563
   role: source_lead_only
@@ -2794,7 +3244,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s3_s7_selective_oscillation_near_tomo_e1
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4574
   role: source_lead_only
@@ -2803,7 +3253,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.not_archimedeanContinuousAt_s7_tomo_e1
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4607
   role: source_lead_only
@@ -2812,7 +3262,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi7_tomo_e1
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4620
   role: source_lead_only
@@ -2821,7 +3271,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4639
   role: source_lead_only
@@ -2830,7 +3280,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4688
   role: source_lead_only
@@ -2839,7 +3289,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.no_unit_norm_smul_witness_p7_in_qi3
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4707
   role: source_lead_only
@@ -2848,7 +3298,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.zero_on_witness_p7_of_sqrt7_even_v7_vanishing
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4730
   role: source_lead_only
@@ -2857,7 +3307,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.no_s7_even_v7_extension_to_sqrt7
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4747
   role: source_lead_only
@@ -2866,7 +3316,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4765
   role: source_lead_only
@@ -2875,7 +3325,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s7
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4806
   role: source_lead_only
@@ -2884,7 +3334,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual37_iff
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4815
   role: source_lead_only
@@ -2893,7 +3343,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.rayProj_witness_p7_decomp
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4830
   role: source_lead_only
@@ -2902,7 +3352,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.quadRay_witness_p7_kernel_relation
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4855
   role: source_lead_only
@@ -2911,7 +3361,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s7_witness_p7_kernel_separation
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4867
   role: source_lead_only
@@ -2920,7 +3370,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.cross_prime_frame_partner_norm_valuations_even
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4897
   role: source_lead_only
@@ -2929,7 +3379,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.exoticComb37_isNonnegFrameFunction
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4954
   role: source_lead_only
@@ -2938,7 +3388,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.exoticComb37_quadratic_iff
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 4967
   role: source_lead_only
@@ -2947,7 +3397,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.exoticComb37_archimedeanContinuousAt_tomo_e1_iff
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 5016
   role: source_lead_only
@@ -2956,7 +3406,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.sp_three_eq_s3
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 5171
   role: source_lead_only
@@ -2965,7 +3415,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.sp_seven_eq_s7
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 5175
   role: source_lead_only
@@ -2974,7 +3424,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.sp_isBoundedOnRays
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 5209
   role: source_lead_only
@@ -2983,7 +3433,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.sp_vanishes_on_nine_rays
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 5265
   role: source_lead_only
@@ -2992,7 +3442,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.witness_p11_primitive
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6125
   role: source_lead_only
@@ -3001,7 +3451,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s3_s7_sp11_dual_on_three_witnesses
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6164
   role: source_lead_only
@@ -3010,7 +3460,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s3_s7_sp11_linearIndependent
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6201
   role: source_lead_only
@@ -3019,7 +3469,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual3_7_11_iff
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6217
   role: source_lead_only
@@ -3028,7 +3478,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.rayProj_witness_p11_decomp
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6232
   role: source_lead_only
@@ -3037,7 +3487,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.quadRay_witness_p11_kernel_relation
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6252
   role: source_lead_only
@@ -3046,7 +3496,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.sp11_witness_p11_kernel_separation
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6264
   role: source_lead_only
@@ -3055,7 +3505,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.isFrameSqrt11_witness_p11_norms
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6320
   role: source_lead_only
@@ -3064,7 +3514,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.three_prime_frame_partner_norm_valuations_even
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6363
   role: source_lead_only
@@ -3073,7 +3523,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.finExoticComb_isNonnegFrameFunction
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6527
   role: source_lead_only
@@ -3082,7 +3532,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.inertPrimeResidualSystem_linearIndependent
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6568
   role: source_lead_only
@@ -3091,7 +3541,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.finExoticComb_quadratic_iff
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6581
   role: source_lead_only
@@ -3100,7 +3550,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.finCombResidual_coeffs_zero_of_archimedeanContinuousAt_tomo_e1
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6632
   role: source_lead_only
@@ -3109,7 +3559,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.quadRay_add_finCombResidual_archimedeanContinuousAt_tomo_e1_iff
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6665
   role: source_lead_only
@@ -3118,7 +3568,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.finExoticComb_archimedeanContinuousAt_tomo_e1_iff
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6687
   role: source_lead_only
@@ -3127,7 +3577,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.factorsThroughRayProjLinear_finCombResidual_iff
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6739
   role: source_lead_only
@@ -3136,7 +3586,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.joint_field_extension_eliminates_finCombResidual
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6756
   role: source_lead_only
@@ -3145,7 +3595,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.finCombResidual_inertSystem37_eq_combResidual37
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6830
   role: source_lead_only
@@ -3154,7 +3604,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.inertPrimeSpec_eleven
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 5336
   role: source_lead_only
@@ -3163,7 +3613,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.vpRat_normSq_even
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 5803
   role: source_lead_only
@@ -3172,7 +3622,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.frame_vpRat_sum_even
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 5874
   role: source_lead_only
@@ -3181,7 +3631,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.sp_orthogonal_odd_cancel
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6060
   role: source_lead_only
@@ -3190,7 +3640,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.sp_isZeroWeightFrameFunction
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6089
   role: source_lead_only
@@ -3199,7 +3649,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.sp_smul
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6113
   role: source_lead_only
@@ -3208,7 +3658,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.sp11_isZeroWeightFrameFunction
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6119
   role: source_lead_only
@@ -3217,7 +3667,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.combResidual3_7_11_isZeroWeightFrameFunction
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6177
   role: source_lead_only
@@ -3226,7 +3676,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.inner_rotPairU_rotPairV_eq_zero
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6917
   role: source_lead_only
@@ -3235,7 +3685,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.normSqVec_add_eq_normSqVec_sub_of_ortho
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6928
   role: source_lead_only
@@ -3244,7 +3694,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.normSqVec_rotPairU
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6946
   role: source_lead_only
@@ -3253,7 +3703,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.normSqVec_rotPairV
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6954
   role: source_lead_only
@@ -3262,7 +3712,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.isFrame_rotPair
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 6973
   role: source_lead_only
@@ -3271,7 +3721,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.frameFunction_rotPair_sum
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7001
   role: source_lead_only
@@ -3280,7 +3730,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.zeroWeight_rotPair_sum
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7011
   role: source_lead_only
@@ -3289,7 +3739,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.rayProj_ortho_add_sub
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7036
   role: source_lead_only
@@ -3298,7 +3748,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.factorsThroughRayProjLinear_ortho_add_sub
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7053
   role: source_lead_only
@@ -3307,7 +3757,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.satisfiesOrthoParallelogramZero_of_factorsThroughRayProjLinear
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7085
   role: source_lead_only
@@ -3316,7 +3766,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.sp_isCoordSignSymmetric
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7137
   role: source_lead_only
@@ -3325,7 +3775,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.sp_vanishes_on_coord_axes
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7154
   role: source_lead_only
@@ -3334,7 +3784,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.zero_of_coordSignSymmetric_and_orthoParallelogram
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7168
   role: source_lead_only
@@ -3343,7 +3793,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s3_not_satisfiesOrthoParallelogramZero
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7197
   role: source_lead_only
@@ -3352,7 +3802,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.s7_not_satisfiesOrthoParallelogramZero
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7218
   role: source_lead_only
@@ -3361,7 +3811,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.sp11_not_satisfiesOrthoParallelogramZero
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7242
   role: source_lead_only
@@ -3370,7 +3820,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.isFrame_hermCross
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7296
   role: source_lead_only
@@ -3379,7 +3829,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.nonneg_eq_zero_on_perp_of_pole_one
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7307
   role: source_lead_only
@@ -3388,7 +3838,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.pure_pole_e1_nonneg_eliminates_combResidual3_7_11
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7445
   role: source_lead_only
@@ -3397,7 +3847,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.piron_frame_sum_identity
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7571
   role: source_lead_only
@@ -3406,7 +3856,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.piron_descent_le_of_pole_one
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7585
   role: source_lead_only
@@ -3415,7 +3865,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.meridian_complement_of_pole_one
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7602
   role: source_lead_only
@@ -3424,7 +3874,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.normSqVec_pythagEqRot
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7626
   role: source_lead_only
@@ -3433,7 +3883,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.quadRay_rayProj_e1_pythagEqRot
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7654
   role: source_lead_only
@@ -3442,7 +3892,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.distSqVec_pironStep_inv_nat
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7666
   role: source_lead_only
@@ -3451,7 +3901,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.exists_pironStep_within_delta
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7679
   role: source_lead_only
@@ -3460,7 +3910,7 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.zero_of_nonneg_zeroWeightFrameFunction
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7698
   role: source_lead_only
@@ -3469,9 +3919,306 @@ source_bindings:
   symbol: BornFinite.GaussianTomography.nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual
   path: lean4/BornGaussianTomographyReduction.lean
   repository: this_repository
-  sha256: 2a42834c901ade5f1a8831ff0c4339a109d08f5af8dc0132c24f79fab734321f
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 7771
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eqOrtho_eqOrtho_of_x_zero
+  availability: local
+  symbol: BornFinite.GaussianTomography.eqOrtho_eqOrtho_of_x_zero
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 7860
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.pythagEqRot_one_eq_eqOrtho
+  availability: local
+  symbol: BornFinite.GaussianTomography.pythagEqRot_one_eq_eqOrtho
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 7866
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.pythagEqRot_one_twice_of_x_zero
+  availability: local
+  symbol: BornFinite.GaussianTomography.pythagEqRot_one_twice_of_x_zero
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 7875
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.pironStep_eq_add_eqTangentStep
+  availability: local
+  symbol: BornFinite.GaussianTomography.pironStep_eq_add_eqTangentStep
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 7884
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eqTangentStep_x_zero
+  availability: local
+  symbol: BornFinite.GaussianTomography.eqTangentStep_x_zero
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 7888
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.normSqVec_eqTangentStep_of_x_zero
+  availability: local
+  symbol: BornFinite.GaussianTomography.normSqVec_eqTangentStep_of_x_zero
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 7892
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eqTangentStep_nonZero_of_x_zero
+  availability: local
+  symbol: BornFinite.GaussianTomography.eqTangentStep_nonZero_of_x_zero
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 7901
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eqOrtho_eqTangentStep_of_x_zero
+  availability: local
+  symbol: BornFinite.GaussianTomography.eqOrtho_eqTangentStep_of_x_zero
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 7910
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eqTangentStep_comp_of_x_zero
+  availability: local
+  symbol: BornFinite.GaussianTomography.eqTangentStep_comp_of_x_zero
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 7916
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eqTangentStep_cancel_of_x_zero
+  availability: local
+  symbol: BornFinite.GaussianTomography.eqTangentStep_cancel_of_x_zero
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 7923
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eqTangentStep_one_one_of_x_zero
+  availability: local
+  symbol: BornFinite.GaussianTomography.eqTangentStep_one_one_of_x_zero
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 7933
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.piron_radial_scale_le_of_pole_one
+  availability: local
+  symbol: BornFinite.GaussianTomography.piron_radial_scale_le_of_pole_one
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 7944
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.piron_two_step_eqOrtho_le_of_pole_one
+  availability: local
+  symbol: BornFinite.GaussianTomography.piron_two_step_eqOrtho_le_of_pole_one
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 7965
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.frameFunction_smul
+  availability: local
+  symbol: BornFinite.GaussianTomography.frameFunction_smul
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 7985
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.kelvinEq_x_zero
+  availability: local
+  symbol: BornFinite.GaussianTomography.kelvinEq_x_zero
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 7997
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.normSqVec_kelvinEq
+  availability: local
+  symbol: BornFinite.GaussianTomography.normSqVec_kelvinEq
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8001
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.kelvinEq_nonZero
+  availability: local
+  symbol: BornFinite.GaussianTomography.kelvinEq_nonZero
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8009
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.smul_meridianOrtho_eq_add_kelvinEq
+  availability: local
+  symbol: BornFinite.GaussianTomography.smul_meridianOrtho_eq_add_kelvinEq
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8017
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.meridian_kelvin_complement_of_pole_one
+  availability: local
+  symbol: BornFinite.GaussianTomography.meridian_kelvin_complement_of_pole_one
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8043
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.piron_radial_inv_scale_ge_of_pole_one
+  availability: local
+  symbol: BornFinite.GaussianTomography.piron_radial_inv_scale_ge_of_pole_one
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8063
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.pythagEqRot_eq_eqTangentStep_of_two_le
+  availability: local
+  symbol: BornFinite.GaussianTomography.pythagEqRot_eq_eqTangentStep_of_two_le
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8092
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eqTangentStep_pythagEqRot_neg_of_x_zero
+  availability: local
+  symbol: BornFinite.GaussianTomography.eqTangentStep_pythagEqRot_neg_of_x_zero
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8109
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.pythagEqRot_sandwich_of_pole_one
+  availability: local
+  symbol: BornFinite.GaussianTomography.pythagEqRot_sandwich_of_pole_one
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8142
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.distSqVec_radial_scale
+  availability: local
+  symbol: BornFinite.GaussianTomography.distSqVec_radial_scale
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8181
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exists_pythagEqRot_radial_within_delta
+  availability: local
+  symbol: BornFinite.GaussianTomography.exists_pythagEqRot_radial_within_delta
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8192
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.pythagEqRot_archimedean_squeeze_of_pole_one
+  availability: local
+  symbol: BornFinite.GaussianTomography.pythagEqRot_archimedean_squeeze_of_pole_one
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8240
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_e1_add_eq_of_normSqVec_eq
+  availability: local
+  symbol: BornFinite.GaussianTomography.sp_e1_add_eq_of_normSqVec_eq
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8268
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_e1_add_pythagEqRot_eq
+  availability: local
+  symbol: BornFinite.GaussianTomography.sp_e1_add_pythagEqRot_eq
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8302
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_pythagEqRot_invariant_tomo_e23
+  availability: local
+  symbol: BornFinite.GaussianTomography.s3_pythagEqRot_invariant_tomo_e23
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8313
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s7_pythagEqRot_invariant_v7
+  availability: local
+  symbol: BornFinite.GaussianTomography.s7_pythagEqRot_invariant_v7
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8326
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp11_pythagEqRot_invariant_v11
+  availability: local
+  symbol: BornFinite.GaussianTomography.sp11_pythagEqRot_invariant_v11
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8340
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant
+  availability: local
+  symbol: BornFinite.GaussianTomography.orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8355
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.nonneg_pole_perturbation_vanishes_on_equator
+  availability: local
+  symbol: BornFinite.GaussianTomography.nonneg_pole_perturbation_vanishes_on_equator
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 8375
   role: source_lead_only
 presentation:
   colours: []

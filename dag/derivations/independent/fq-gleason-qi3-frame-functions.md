@@ -314,6 +314,46 @@ same \(3\)-leading coordinates and opposite \(3\)-adic unit residue signs
      Archimedean-continuous nine-ray-vanishing zero-weight residuals
      (`zero_of_nonneg_zeroWeightFrameFunction`,
      `nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual`).
+  7. **Two-step Piron tangent algebra, Kelvin-inverted meridian duality, Piron–Pythagorean two-sided sandwich squeeze, and equatorial-invariance vs. parallelogram separation (Subsection 9G)**:
+     on \(e_1^\perp\), `eqOrtho` is an anti-involution (`eqOrtho_eqOrtho_of_x_zero`),
+     `pythagEqRot y 1 = eqOrtho y` (`pythagEqRot_one_eq_eqOrtho`,
+     `pythagEqRot_one_twice_of_x_zero`), and the equatorial tangent step
+     `eqTangentStep y t = y + t eqOrtho y` satisfies
+     `pironStep_eq_add_eqTangentStep`, `eqTangentStep_x_zero`,
+     `normSqVec_eqTangentStep_of_x_zero`, `eqTangentStep_nonZero_of_x_zero`,
+     `eqOrtho_eqTangentStep_of_x_zero`, and the exact two-step composition law
+     `eqTangentStep (eqTangentStep y t) s = (1 - t s) y + (t + s) eqOrtho y`
+     (`eqTangentStep_comp_of_x_zero`); taking \(s = -t\) cancels the orthogonal
+     component to \((1 + t^2) y\) (`eqTangentStep_cancel_of_x_zero`) and yields
+     outward radial monotonicity (`piron_radial_scale_le_of_pole_one`), while
+     \(t = s = 1\) gives \(2\operatorname{eqOrtho}(y)\)
+     (`eqTangentStep_one_one_of_x_zero`, `piron_two_step_eqOrtho_le_of_pole_one`);
+     via ray scale invariance (`frameFunction_smul`), the meridian partner
+     `meridianOrtho y` rescales by \(-1/N(y)\) to \(e_1 + \operatorname{kelvinEq}(y)\)
+     where `kelvinEq y = -(1 / N(y)) y` has norm \(1/N(y)\) (`kelvinEq_x_zero`,
+     `normSqVec_kelvinEq`, `kelvinEq_nonZero`, `smul_meridianOrtho_eq_add_kelvinEq`),
+     converting meridian complement into Kelvin-inversion duality
+     `f(e_1 + y) + f(e_1 + kelvinEq y) = 1` (`meridian_kelvin_complement_of_pole_one`)
+     and dualizing outward radial descent into upward inward radial monotonicity
+     `f(e_1 + y) ≤ f(e_1 + (1 / (1 + t^2)) y)` (`piron_radial_inv_scale_ge_of_pole_one`);
+     for \(k\ge 2\), `pythagEqRot y k` is reached from the inward radial vector
+     \(((k^2 - 1)/(k^2 + 1)) y\) by tangent step \(t = 2k/(k^2 - 1)\)
+     (`pythagEqRot_eq_eqTangentStep_of_two_le`), and taking step \(-t\) from
+     `pythagEqRot y k` lands on the outward radial vector \(((k^2 + 1)/(k^2 - 1)) y\)
+     (`eqTangentStep_pythagEqRot_neg_of_x_zero`), sandwiching
+     `f(e_1 + pythagEqRot y k)` between those two radial rays
+     (`pythagEqRot_sandwich_of_pole_one`) whose distances from \(e_1 + y\) vanish at
+     rate \(O(1/k^2)\) (`distSqVec_radial_scale`,
+     `exists_pythagEqRot_radial_within_delta`,
+     `pythagEqRot_archimedean_squeeze_of_pole_one`); finally, `sp p (e_1 + y)` depends
+     only on \(N(y)\) for \(y\in e_1^\perp\) (`sp_e1_add_eq_of_normSqVec_eq`) and is
+     invariant under all Pythagorean equatorial rotations
+     (`sp_e1_add_pythagEqRot_eq`, `s3_pythagEqRot_invariant_tomo_e23`,
+     `s7_pythagEqRot_invariant_v7`, `sp11_pythagEqRot_invariant_v11`), whereas
+     \(90^\circ\) invariance (\(k=1\)) combined with `SatisfiesOrthoParallelogramZero`
+     forces \(2 g(e_1 + y) = 0\)
+     (`orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant`,
+     `nonneg_pole_perturbation_vanishes_on_equator`).
 
 ## What is established (What this artifact supports)
 
@@ -368,7 +408,7 @@ same \(3\)-leading coordinates and opposite \(3\)-adic unit residue signs
   `quadratic_rigidity_iff_factorsThroughRayProjLinear`,
   `factorsThroughRayProjLinear_combResidual37_iff`,
   `factorsThroughRayProjLinear_combResidual3_7_11_iff`,
-  `factorsThroughRayProjLinear_finCombResidual_iff`), and the Subsection 9F
+  `factorsThroughRayProjLinear_finCombResidual_iff`), the Subsection 9F
   planar frame-rotation pairs, operator-space parallelogram identity,
   coordinate-sign symmetry vs. orthogonal parallelogram zero propagation,
   pure-pole equatorial elimination, Piron monotone descent, Pythagorean
@@ -389,7 +429,29 @@ same \(3\)-leading coordinates and opposite \(3\)-adic unit residue signs
   `meridian_complement_of_pole_one`, `normSqVec_pythagEqRot`,
   `quadRay_rayProj_e1_pythagEqRot`, `distSqVec_pironStep_inv_nat`,
   `exists_pironStep_within_delta`, `zero_of_nonneg_zeroWeightFrameFunction`,
-  `nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual`) are
+  `nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual`), and the
+  Subsection 9G two-step Piron tangent algebra, Kelvin-inverted meridian
+  duality, Piron–Pythagorean two-sided sandwich squeeze, and
+  equatorial-invariance vs. orthogonal parallelogram separation
+  (`eqOrtho_eqOrtho_of_x_zero`, `pythagEqRot_one_eq_eqOrtho`,
+  `pythagEqRot_one_twice_of_x_zero`, `pironStep_eq_add_eqTangentStep`,
+  `eqTangentStep_x_zero`, `normSqVec_eqTangentStep_of_x_zero`,
+  `eqTangentStep_nonZero_of_x_zero`, `eqOrtho_eqTangentStep_of_x_zero`,
+  `eqTangentStep_comp_of_x_zero`, `eqTangentStep_cancel_of_x_zero`,
+  `eqTangentStep_one_one_of_x_zero`, `piron_radial_scale_le_of_pole_one`,
+  `piron_two_step_eqOrtho_le_of_pole_one`, `frameFunction_smul`,
+  `kelvinEq_x_zero`, `normSqVec_kelvinEq`, `kelvinEq_nonZero`,
+  `smul_meridianOrtho_eq_add_kelvinEq`, `meridian_kelvin_complement_of_pole_one`,
+  `piron_radial_inv_scale_ge_of_pole_one`,
+  `pythagEqRot_eq_eqTangentStep_of_two_le`,
+  `eqTangentStep_pythagEqRot_neg_of_x_zero`,
+  `pythagEqRot_sandwich_of_pole_one`, `distSqVec_radial_scale`,
+  `exists_pythagEqRot_radial_within_delta`,
+  `pythagEqRot_archimedean_squeeze_of_pole_one`, `sp_e1_add_eq_of_normSqVec_eq`,
+  `sp_e1_add_pythagEqRot_eq`, `s3_pythagEqRot_invariant_tomo_e23`,
+  `s7_pythagEqRot_invariant_v7`, `sp11_pythagEqRot_invariant_v11`,
+  `orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant`,
+  `nonneg_pole_perturbation_vanishes_on_equator`) are
   formalized in `lean4/BornGaussianTomographyReduction.lean` and tested in
   `code/python/tests/test_fq_gleason_qi3_frame_functions.py`.
 
@@ -423,32 +485,40 @@ earlier DAG nodes.
   `sp_isBoundedOnRays`, `sp_vanishes_on_nine_rays`, instantiated at
   \(p\in\{3,7,11\}\) via `inertPrimeSpec_eleven` and
   `sp11_isZeroWeightFrameFunction`), is coordinate-sign symmetric
-  (`sp_isCoordSignSymmetric`) while violating the operator-space orthogonal
+  (`sp_isCoordSignSymmetric`) and invariant under all Pythagorean equatorial
+  rotations on \(e_1 + y\) (`sp_e1_add_pythagEqRot_eq`,
+  `s3_pythagEqRot_invariant_tomo_e23`, `s7_pythagEqRot_invariant_v7`,
+  `sp11_pythagEqRot_invariant_v11`) while violating the operator-space orthogonal
   parallelogram zero law `SatisfiesOrthoParallelogramZero` that follows from
   `rayProj_ortho_add_sub` (`zero_of_coordSignSymmetric_and_orthoParallelogram`,
   `s3_not_satisfiesOrthoParallelogramZero`, `s7_not_satisfiesOrthoParallelogramZero`,
-  `sp11_not_satisfiesOrthoParallelogramZero`), is eliminated at a pure pole
-  `quadRay (rayProj tomo_e1)` by nonnegativity alone
-  (`pure_pole_e1_nonneg_eliminates_combResidual3_7_11`), and for any finite
+  `sp11_not_satisfiesOrthoParallelogramZero`,
+  `orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant`), is eliminated
+  at a pure pole `quadRay (rayProj tomo_e1)` by nonnegativity alone on the equator
+  (`pure_pole_e1_nonneg_eliminates_combResidual3_7_11`,
+  `nonneg_pole_perturbation_vanishes_on_equator`), and for any finite
   `InertPrimeResidualSystem m` of size \(m\) is simultaneously eliminated
   (\(\forall i, c_i=0\)) by archimedean continuity at `tomo_e1`, operator-space
   projector linearity, or joint quadratic field extension; moreover, general
   nonnegative Archimedean-continuous rigidity to `FactorsThroughRayProjLinear`
   is equivalent to vanishing of bounded Archimedean-continuous nine-ray-vanishing
   zero-weight residuals (`nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual`),
-  with constructive Piron frame-rotation monotone descent
-  (`piron_descent_le_of_pole_one`), meridian complement
-  (`meridian_complement_of_pole_one`), Pythagorean equatorial rotations
-  (`normSqVec_pythagEqRot`, `quadRay_rayProj_e1_pythagEqRot`), and step density
-  (`exists_pironStep_within_delta`) established in \(K^3\).
-- **Next test needed**: Combine the Piron monotone descent inequality
-  `piron_descent_le_of_pole_one`, meridian complement
-  `meridian_complement_of_pole_one`, and dense Pythagorean equatorial rotations
-  `pythagEqRot` with global Archimedean continuity to test whether equatorial
-  rotational invariance of extreme-point frame functions holds on \(K^3\).
+  with two-step Piron tangent composition (`eqTangentStep_comp_of_x_zero`,
+  `eqTangentStep_cancel_of_x_zero`), Kelvin-inverted meridian duality
+  (`meridian_kelvin_complement_of_pole_one`), outward and inward radial
+  monotonicity (`piron_radial_scale_le_of_pole_one`,
+  `piron_radial_inv_scale_ge_of_pole_one`), and the exact two-sided
+  Piron–Pythagorean sandwich squeeze (`pythagEqRot_sandwich_of_pole_one`,
+  `pythagEqRot_archimedean_squeeze_of_pole_one`) established in \(K^3\).
+- **Next test needed**: Combine equatorial rotational invariance around each of
+  the three coordinate axes \(e_1, e_2, e_3\) (via `pythagEqRot_archimedean_squeeze_of_pole_one`
+  and coordinate permutations) to test whether multi-axis Piron–Pythagorean
+  invariance forces radial dependence \(f(v) = F(|v_x|^2, |v_y|^2, |v_z|^2)\) and
+  vanishing of `sp p` on non-equatorial rays.
 
 Consequently the full target and its incoming gap route retain their original
 statuses (`AuthorityEffect: None`). No result here establishes continuum
 Gleason or the whole Born-rule derivation.
+
 
 

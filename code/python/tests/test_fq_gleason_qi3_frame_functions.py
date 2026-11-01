@@ -1817,6 +1817,170 @@ def test_piron_frame_rotation_parallelogram_and_continuity_bridge() -> None:
         assert f_pert(w_target) - quad_ray(tomography_form(f_pert), w_target) == c_scale != Fraction(0)
 
 
+def test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation() -> None:
+    """Verify Subsection 9G two-step Piron tangent algebra, Kelvin meridian duality, Pythagorean sandwich squeeze, and equatorial invariance vs. parallelogram separation."""
+
+    def gv(a: int, b: int, c: int, d: int, e: int, g: int) -> GVec:
+        return GVec(
+            GaussRat.of_ints(a, b),
+            GaussRat.of_ints(c, d),
+            GaussRat.of_ints(e, g),
+        )
+
+    def gvec_add(u: GVec, v: GVec) -> GVec:
+        return GVec(u.x + v.x, u.y + v.y, u.z + v.z)
+
+    def gvec_sub(u: GVec, v: GVec) -> GVec:
+        return GVec(u.x - v.x, u.y - v.y, u.z - v.z)
+
+    def gvec_smul(c: GaussRat, u: GVec) -> GVec:
+        return GVec(c * u.x, c * u.y, c * u.z)
+
+    def eq_ortho(y: GVec) -> GVec:
+        return GVec(GaussRat.of_ints(0, 0), GaussRat.of_ints(-1, 0) * y.z.conj(), y.y.conj())
+
+    def eq_tangent_step(y: GVec, t: Fraction) -> GVec:
+        return gvec_add(y, gvec_smul(GaussRat(t, Fraction(0)), eq_ortho(y)))
+
+    def piron_step(y: GVec, lam: GaussRat) -> GVec:
+        return gvec_add(gvec_add(E1, y), gvec_smul(lam, eq_ortho(y)))
+
+    def meridian_ortho(y: GVec) -> GVec:
+        return gvec_add(gvec_smul(GaussRat(-y.norm_sq(), Fraction(0)), E1), y)
+
+    def kelvin_eq(y: GVec) -> GVec:
+        return gvec_smul(GaussRat(-Fraction(1) / y.norm_sq(), Fraction(0)), y)
+
+    def pythag_eq_rot(y: GVec, k: int) -> GVec:
+        kf = Fraction(k)
+        c1 = GaussRat((kf * kf - 1) / (kf * kf + 1), Fraction(0))
+        c2 = GaussRat((2 * kf) / (kf * kf + 1), Fraction(0))
+        return gvec_add(gvec_smul(c1, y), gvec_smul(c2, eq_ortho(y)))
+
+    p_e1 = ray_proj(E1)
+    eq_witnesses = [
+        gv(0, 0, 1, 0, 1, 1),
+        gv(0, 0, 1, 1, 2, 1),
+        gv(0, 0, 3, 0, 1, 1),
+        gv(0, 0, 1, 0, 1, 0),
+        gv(0, 0, 2, 0, 1, 1),
+        gv(0, 0, 3, 0, 1, 0),
+    ]
+
+    # 1. Two-step Piron tangent algebra, 90-degree rotation at k=1, and outward/inward radial monotonicity
+    #    (eqOrtho_eqOrtho_of_x_zero, pythagEqRot_one_eq_eqOrtho, pythagEqRot_one_twice_of_x_zero,
+    #    pironStep_eq_add_eqTangentStep, eqTangentStep_x_zero, normSqVec_eqTangentStep_of_x_zero,
+    #    eqOrtho_eqTangentStep_of_x_zero, eqTangentStep_comp_of_x_zero, eqTangentStep_cancel_of_x_zero,
+    #    eqTangentStep_one_one_of_x_zero, piron_radial_scale_le_of_pole_one,
+    #    piron_two_step_eqOrtho_le_of_pole_one)
+    for y_eq in eq_witnesses:
+        ny = y_eq.norm_sq()
+        neg_y = gvec_smul(GaussRat.of_ints(-1, 0), y_eq)
+        assert eq_ortho(eq_ortho(y_eq)) == neg_y
+        assert pythag_eq_rot(y_eq, 1) == eq_ortho(y_eq)
+        assert pythag_eq_rot(pythag_eq_rot(y_eq, 1), 1) == neg_y
+        assert eq_tangent_step(eq_tangent_step(y_eq, Fraction(1)), Fraction(1)) == gvec_smul(
+            GaussRat.of_ints(2, 0), eq_ortho(y_eq)
+        )
+        u_base = gvec_add(E1, y_eq)
+        assert quad_ray(p_e1, gvec_add(E1, gvec_smul(GaussRat.of_ints(2, 0), eq_ortho(y_eq)))) <= quad_ray(
+            p_e1, u_base
+        )
+
+        # 2. Kelvin-inverted meridian duality and upward radial monotonicity
+        #    (kelvinEq_x_zero, normSqVec_kelvinEq, kelvinEq_nonZero, smul_meridianOrtho_eq_add_kelvinEq,
+        #    meridian_kelvin_complement_of_pole_one, piron_radial_inv_scale_ge_of_pole_one)
+        y_kelvin = kelvin_eq(y_eq)
+        u_kelvin = gvec_add(E1, y_kelvin)
+        assert y_kelvin.x == GaussRat.of_ints(0, 0)
+        assert y_kelvin.norm_sq() == Fraction(1) / ny
+        assert gvec_smul(GaussRat(-Fraction(1) / ny, Fraction(0)), meridian_ortho(y_eq)) == u_kelvin
+        assert quad_ray(p_e1, u_base) + quad_ray(p_e1, u_kelvin) == Fraction(1)
+
+        for t_step in (Fraction(1, 2), Fraction(2, 3), Fraction(-3, 4)):
+            for s_step in (Fraction(1, 3), -t_step, Fraction(5, 4)):
+                comp_lhs = eq_tangent_step(eq_tangent_step(y_eq, t_step), s_step)
+                comp_rhs = gvec_add(
+                    gvec_smul(GaussRat(Fraction(1) - t_step * s_step, Fraction(0)), y_eq),
+                    gvec_smul(GaussRat(t_step + s_step, Fraction(0)), eq_ortho(y_eq)),
+                )
+                assert comp_lhs == comp_rhs
+            z_step = eq_tangent_step(y_eq, t_step)
+            scale_out = Fraction(1) + t_step * t_step
+            scale_in = Fraction(1) / scale_out
+            assert piron_step(y_eq, GaussRat(t_step, Fraction(0))) == gvec_add(E1, z_step)
+            assert z_step.x == GaussRat.of_ints(0, 0)
+            assert z_step.norm_sq() == scale_out * ny
+            assert eq_ortho(z_step) == gvec_add(
+                gvec_smul(GaussRat(-t_step, Fraction(0)), y_eq), eq_ortho(y_eq)
+            )
+            assert eq_tangent_step(z_step, -t_step) == gvec_smul(GaussRat(scale_out, Fraction(0)), y_eq)
+            u_out = gvec_add(E1, gvec_smul(GaussRat(scale_out, Fraction(0)), y_eq))
+            u_in = gvec_add(E1, gvec_smul(GaussRat(scale_in, Fraction(0)), y_eq))
+            assert quad_ray(p_e1, u_out) <= quad_ray(p_e1, u_base) <= quad_ray(p_e1, u_in)
+
+        # 3. Exact Piron-Pythagorean two-sided sandwich and Archimedean squeeze
+        #    (pythagEqRot_eq_eqTangentStep_of_two_le, eqTangentStep_pythagEqRot_neg_of_x_zero,
+        #    pythagEqRot_sandwich_of_pole_one, distSqVec_radial_scale,
+        #    exists_pythagEqRot_radial_within_delta, pythagEqRot_archimedean_squeeze_of_pole_one)
+        for k_step in range(2, 7):
+            kf = Fraction(k_step)
+            r_in = (kf * kf - 1) / (kf * kf + 1)
+            r_out = (kf * kf + 1) / (kf * kf - 1)
+            t_k = (2 * kf) / (kf * kf - 1)
+            y_rot = pythag_eq_rot(y_eq, k_step)
+            u_rot = gvec_add(E1, y_rot)
+            u_rad_in = gvec_add(E1, gvec_smul(GaussRat(r_in, Fraction(0)), y_eq))
+            u_rad_out = gvec_add(E1, gvec_smul(GaussRat(r_out, Fraction(0)), y_eq))
+            assert y_rot == eq_tangent_step(gvec_smul(GaussRat(r_in, Fraction(0)), y_eq), t_k)
+            assert eq_tangent_step(y_rot, -t_k) == gvec_smul(GaussRat(r_out, Fraction(0)), y_eq)
+            assert quad_ray(p_e1, u_rad_out) <= quad_ray(p_e1, u_rot) <= quad_ray(p_e1, u_rad_in)
+            assert gvec_sub(u_rad_in, u_base).norm_sq() == (r_in - 1) * (r_in - 1) * ny
+            assert gvec_sub(u_rad_out, u_base).norm_sq() == (r_out - 1) * (r_out - 1) * ny
+
+        for delta in (Fraction(1), Fraction(1, 20), Fraction(1, 200)):
+            assert any(
+                gvec_sub(
+                    gvec_add(E1, gvec_smul(GaussRat(Fraction(k_d * k_d - 1, k_d * k_d + 1), Fraction(0)), y_eq)),
+                    u_base,
+                ).norm_sq()
+                < delta
+                and gvec_sub(
+                    gvec_add(E1, gvec_smul(GaussRat(Fraction(k_d * k_d + 1, k_d * k_d - 1), Fraction(0)), y_eq)),
+                    u_base,
+                ).norm_sq()
+                < delta
+                for k_d in range(2, 40)
+            )
+
+    # 4. Equatorial rotational invariance around e1 vs. SatisfiesOrthoParallelogramZero separation
+    #    (sp_e1_add_eq_of_normSqVec_eq, sp_e1_add_pythagEqRot_eq,
+    #    s3_pythagEqRot_invariant_tomo_e23, s7_pythagEqRot_invariant_v7,
+    #    sp11_pythagEqRot_invariant_v11, orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant,
+    #    nonneg_pole_perturbation_vanishes_on_equator)
+    parallelogram_counterexamples = [
+        (3, gv(0, 0, 1, 0, 1, 0)),
+        (7, gv(0, 0, 2, 0, 1, 1)),
+        (11, gv(0, 0, 3, 0, 1, 0)),
+    ]
+    for p_prime, y_part in parallelogram_counterexamples:
+        u_plus = gvec_add(E1, y_part)
+        u_minus = gvec_sub(E1, y_part)
+        assert vp_rat(u_plus.norm_sq(), p_prime) == 1 > 0
+        for k_rot in range(1, 7):
+            y_rot = pythag_eq_rot(y_part, k_rot)
+            assert y_rot.norm_sq() == y_part.norm_sq()
+            assert sp(gvec_add(E1, y_rot), p_prime) == sp(u_plus, p_prime) == Fraction(1)
+        # At k = 1, pythagEqRot(pythagEqRot(y, 1), 1) = -y, so rotational invariance gives
+        # g(e1 - y) = g(e1 + y) = 1, while SatisfiesOrthoParallelogramZero requires g(e1+y)+g(e1-y)=0:
+        y_90 = pythag_eq_rot(y_part, 1)
+        y_180 = pythag_eq_rot(y_90, 1)
+        assert gvec_add(E1, y_180) == u_minus
+        assert sp(gvec_add(E1, y_90), p_prime) == sp(u_plus, p_prime) == Fraction(1)
+        assert sp(gvec_add(E1, y_180), p_prime) == sp(u_minus, p_prime) == Fraction(1)
+        assert sp(u_plus, p_prime) + sp(u_minus, p_prime) == Fraction(2) != Fraction(0)
+
+
 def test_independent_check_scripts_pass(tomography_mod, frame_functions_mod) -> None:
     """Run all three independent check scripts for FQ-GLEASON-QI3-FRAME-FUNCTIONS."""
     tomography_mod.main()
@@ -2010,6 +2174,39 @@ def test_fq_gleason_qi3_frame_functions_end_to_end() -> None:
         "theorem exists_pironStep_within_delta",
         "theorem zero_of_nonneg_zeroWeightFrameFunction",
         "theorem nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual",
+        "theorem eqOrtho_eqOrtho_of_x_zero",
+        "theorem pythagEqRot_one_eq_eqOrtho",
+        "theorem pythagEqRot_one_twice_of_x_zero",
+        "theorem pironStep_eq_add_eqTangentStep",
+        "theorem eqTangentStep_x_zero",
+        "theorem normSqVec_eqTangentStep_of_x_zero",
+        "theorem eqTangentStep_nonZero_of_x_zero",
+        "theorem eqOrtho_eqTangentStep_of_x_zero",
+        "theorem eqTangentStep_comp_of_x_zero",
+        "theorem eqTangentStep_cancel_of_x_zero",
+        "theorem eqTangentStep_one_one_of_x_zero",
+        "theorem piron_radial_scale_le_of_pole_one",
+        "theorem piron_two_step_eqOrtho_le_of_pole_one",
+        "theorem frameFunction_smul",
+        "theorem kelvinEq_x_zero",
+        "theorem normSqVec_kelvinEq",
+        "theorem kelvinEq_nonZero",
+        "theorem smul_meridianOrtho_eq_add_kelvinEq",
+        "theorem meridian_kelvin_complement_of_pole_one",
+        "theorem piron_radial_inv_scale_ge_of_pole_one",
+        "theorem pythagEqRot_eq_eqTangentStep_of_two_le",
+        "theorem eqTangentStep_pythagEqRot_neg_of_x_zero",
+        "theorem pythagEqRot_sandwich_of_pole_one",
+        "theorem distSqVec_radial_scale",
+        "theorem exists_pythagEqRot_radial_within_delta",
+        "theorem pythagEqRot_archimedean_squeeze_of_pole_one",
+        "theorem sp_e1_add_eq_of_normSqVec_eq",
+        "theorem sp_e1_add_pythagEqRot_eq",
+        "theorem s3_pythagEqRot_invariant_tomo_e23",
+        "theorem s7_pythagEqRot_invariant_v7",
+        "theorem sp11_pythagEqRot_invariant_v11",
+        "theorem orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant",
+        "theorem nonneg_pole_perturbation_vanishes_on_equator",
     ]
     for decl in required_theorems:
         assert decl in content, f"Missing declaration {decl!r} in {LEAN_TOMOGRAPHY_FILE}"
