@@ -10,9 +10,9 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 Evidence grade **E4** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 21
-- cited Lean, Rust or Python symbols found in their in-repo files: 45
-- distinct cited Lean declarations covered by a current replay receipt: 45
+- counted in-repo evidence files: 26
+- cited Lean, Rust or Python symbols found in their in-repo files: 64
+- distinct cited Lean declarations covered by a current replay receipt: 64
 - counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
@@ -32,7 +32,7 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n \>= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul); and a frame function whose value on every Gaussian-integer vector with not all of a+b, c+d, e+g even depends only on ((a+b) mod 2, (c+d) mod 2, (e+g) mod 2) has the value 1/3 on all of those vectors (parity_class_function_is_third). That excludes only this (1+i)-parity-class ansatz: other parity-type constructions (for example residues modulo 2 in Z\[i\]) are not covered, the identification of the class with (1+i)-divisibility is not formalised, and the 1/3 is not stated outside those vectors. Campaign run (receipt dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json): over Q^3 the mod-4 function exotic(v) = (1 + sgn v)/3 on integer vectors not all even is a frame function on all rational rays, takes the values 0, 1/3, 2/3, and is not quadratic (BornRationalRayObstruction: exotic_frame_function, exotic_not_quadratic), so on the rational carrier frame additivity on all orthogonal triples does not select the Born form even among nonnegative frame functions; and over Q(i)^3 a frame function that is a residue-modulo-2 class function on (1+i)-primitive Gaussian-integer vectors is 1/3 there (BornGaussianMod2ClassRigidity: mod2_class_function_is_third, 56 explicit frames). Existence of a non-quadratic frame function on Q(i)^3 rays and quadraticity of all of them both remain open, as does whether the Q^3 function extends to Q(i)^3.
+The carrier (rational symmetric or Gaussian-rational Hermitian matrices with the Hermitian-form preorder) and effect additivity are supplied, not derived from primitives; the Gaussian-rational Hermitian case is kernel-checked in run 20261020T224000Z_gaussian_hermitian_carrier (BornGaussRat, BornHermitianCarrier with complex Cauchy-Schwarz and real-part trace representation, BornHermitianPsdDecomposition, BornHermitianTraceRepresentation: unique Hermitian rational-PSD trace-one rho with v(E) = re trace(rho E); exact twins code/python/src/qm/born_hermitian_valuation.py, code/rust/src/qm/born_hermitian_valuation.rs). Open: the operational justification of effect additivity and the projection-only frame-function route at n \>= 3; on rational rays the frame-function route is obstructed by the parity countermodel. Finite rational frame obstructions (Cabello 18-9, d=2 plane, d=3 rotated frame eliminating the quartic rival) remain mechanized. Gaussian-rational frame functions (Fable API run 20261022T193631Z, receipt dag/research/fable_gleason_run2_lean_replay.json): over Q(i)^3 a frame function on nonzero vectors is constant on rays (frameFunction_smul); and a frame function whose value on every Gaussian-integer vector with not all of a+b, c+d, e+g even depends only on ((a+b) mod 2, (c+d) mod 2, (e+g) mod 2) has the value 1/3 on all of those vectors (parity_class_function_is_third). That excludes only this (1+i)-parity-class ansatz: other parity-type constructions (for example residues modulo 2 in Z\[i\]) are not covered, the identification of the class with (1+i)-divisibility is not formalised, and the 1/3 is not stated outside those vectors. Campaign run (receipt dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json): over Q^3 the mod-4 function exotic(v) = (1 + sgn v)/3 on integer vectors not all even is a frame function on all rational rays, takes the values 0, 1/3, 2/3, and is not quadratic (BornRationalRayObstruction: exotic_frame_function, exotic_not_quadratic), so on the rational carrier frame additivity on all orthogonal triples does not select the Born form even among nonnegative frame functions; and over Q(i)^3 a frame function that is a residue-modulo-2 class function on (1+i)-primitive Gaussian-integer vectors is 1/3 there (BornGaussianMod2ClassRigidity: mod2_class_function_is_third, 56 explicit frames). In FQ-GLEASON-QI3-FRAME-FUNCTIONS (BornGaussianRationalNoColouring, BornGaussianRationalExtensionObstruction, BornGaussianTomographyReduction): no {0,1}-valued frame function exists on Q(i)^3; the exotic Q^3 frame function has no signed extension to Q(i)^3; nine-ray Hermitian tomography reconstructs a unique trace-1 Hermitian form; the explicit 3-adic and 7-adic bounded zero-weight residuals s3 and s7 and {0, 1/3, 2/3}-valued nonnegative frame functions exoticQi3 = (1 + s3)/3 and exoticQi7 = (1 + s7)/3 refute unregularized signed and nonnegative quadratic rigidity on Q(i)^3 and span a 2D linearly independent residual subspace combResidual37 c3 c7; and combResidual37 is jointly eliminated by archimedean continuity at tomo_e1, by {3,7}-even-valuation extension to Q(i, sqrt(3))^3 and Q(i, sqrt(7))^3, or by operator-space projector linearity (quadratic_rigidity_iff_factorsThroughRayProjLinear). Operational justification of effect additivity or projector linearity and uniform all-prime residual classification without projector linearity remain open.
 
 ## Source status
 
@@ -113,6 +113,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - counts toward the grade: yes
 
+### Lean: `lean4/BornGaussianRationalExtensionObstruction.lean`
+
+- file: [lean4/BornGaussianRationalExtensionObstruction.lean](../../../lean4/BornGaussianRationalExtensionObstruction.lean)
+- sha256 (`bytes`): `aa68f3cdf925dcbe35b7aa2d23f51bc9bf1171963f060c8540988e5c77b1fb33`
+- cited in: node.lean
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json](../../../dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json) (module `BornGaussianRationalExtensionObstruction`): recorded sha256 `aa68f3cdf925dcbe35b7aa2d23f51bc9bf1171963f060c8540988e5c77b1fb33` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build BornGaussianRationalExtensionObstruction`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `BornFinite.GaussianExtension.no_exotic_extension` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianExtension.no_exotic_extension` |
+
+- counts toward the grade: yes
+
 ### Lean: `lean4/BornGaussianRationalFrameObstruction.lean`
 
 - file: [lean4/BornGaussianRationalFrameObstruction.lean](../../../lean4/BornGaussianRationalFrameObstruction.lean)
@@ -133,6 +148,52 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `BornFinite.GaussianFrames.frame_tri_101` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianFrames.frame_tri_101` |
 | `BornFinite.GaussianFrames.frame_tri_110` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianFrames.frame_tri_110` |
 | `BornFinite.GaussianFrames.parity_class_function_is_third` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianFrames.parity_class_function_is_third` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/BornGaussianRationalNoColouring.lean`
+
+- file: [lean4/BornGaussianRationalNoColouring.lean](../../../lean4/BornGaussianRationalNoColouring.lean)
+- sha256 (`bytes`): `fffb58fbf26650d8e27fcabb2935937eda3d919dee03d9b481a21b67ea0ac778`
+- cited in: node.lean
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json](../../../dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json) (module `BornGaussianRationalNoColouring`): recorded sha256 `fffb58fbf26650d8e27fcabb2935937eda3d919dee03d9b481a21b67ea0ac778` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build BornGaussianRationalNoColouring`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `BornFinite.GaussianFrames.NoColouring.no_zero_one_frame_function` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianFrames.NoColouring.no_zero_one_frame_function` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/BornGaussianTomographyReduction.lean`
+
+- file: [lean4/BornGaussianTomographyReduction.lean](../../../lean4/BornGaussianTomographyReduction.lean)
+- sha256 (`bytes`): `8dbdae30d51c10d2d29e9855bf775d1491968d72bbfffa296f3f0e75b2b35f96`
+- cited in: node.lean, node.source
+- replay: `verified`
+  - receipt [dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json](../../../dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json) (module `BornGaussianTomographyReduction`): recorded sha256 `8dbdae30d51c10d2d29e9855bf775d1491968d72bbfffa296f3f0e75b2b35f96` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+- check: `cd lean4 && lake build BornGaussianTomographyReduction`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `BornFinite.GaussianTomography.exoticQi3_isNonnegFrameFunction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.exoticQi3_isNonnegFrameFunction` |
+| `BornFinite.GaussianTomography.exoticQi3_not_quadratic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.exoticQi3_not_quadratic` |
+| `BornFinite.GaussianTomography.exoticQi7_isNonnegFrameFunction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.exoticQi7_isNonnegFrameFunction` |
+| `BornFinite.GaussianTomography.exoticQi7_not_quadratic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.exoticQi7_not_quadratic` |
+| `BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual37_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual37_iff` |
+| `BornFinite.GaussianTomography.joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37` |
+| `BornFinite.GaussianTomography.nonneg_rigidity_iff_bounded_zero_residual` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.nonneg_rigidity_iff_bounded_zero_residual` |
+| `BornFinite.GaussianTomography.quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff` |
+| `BornFinite.GaussianTomography.quadratic_rigidity_iff_factorsThroughRayProjLinear` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.quadratic_rigidity_iff_factorsThroughRayProjLinear` |
+| `BornFinite.GaussianTomography.s3_isZeroWeightFrameFunction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_isZeroWeightFrameFunction` |
+| `BornFinite.GaussianTomography.s3_s7_dual_on_witnesses` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_s7_dual_on_witnesses` |
+| `BornFinite.GaussianTomography.s3_s7_linearIndependent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_s7_linearIndependent` |
+| `BornFinite.GaussianTomography.s3_s7_selective_oscillation_near_tomo_e1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_s7_selective_oscillation_near_tomo_e1` |
+| `BornFinite.GaussianTomography.s7_isZeroWeightFrameFunction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s7_isZeroWeightFrameFunction` |
+| `BornFinite.GaussianTomography.signed_rigidity_iff_zero_residual` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.signed_rigidity_iff_zero_residual` |
+| `BornFinite.GaussianTomography.tomography_matches_nine_rays` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.tomography_matches_nine_rays` |
+| `BornFinite.GaussianTomography.tomography_unique` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.tomography_unique` |
 
 - counts toward the grade: yes
 
@@ -355,7 +416,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `code/python/tests/test_fq_gleason_qi3_frame_functions.py`
 
 - file: [code/python/tests/test_fq_gleason_qi3_frame_functions.py](../../../code/python/tests/test_fq_gleason_qi3_frame_functions.py)
-- sha256 (`bytes`): `22014853406fc5d812c46e9b15a258dd54b80c745f14bcda03f094b7ae8696b2`
+- sha256 (`bytes`): `c04f96da05771530917d5e76e5ef4b7d629bf925b833d943ee224574f47769da`
 - cited in: node.source
 - check: `python -m pytest code/python/tests/test_fq_gleason_qi3_frame_functions.py`
 - counts toward the grade: yes
@@ -372,6 +433,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 - file: [dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md](../../../dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md)
 - sha256 (`lf-normalised`): `117b3b26afb3b5286eb706c59b1b4427e6aecc82d15289a90045cf78fd762132`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/derivations/independent/fq-gleason-qi3-frame-functions.md`
+
+- file: [dag/derivations/independent/fq-gleason-qi3-frame-functions.md](../../../dag/derivations/independent/fq-gleason-qi3-frame-functions.md)
+- sha256 (`lf-normalised`): `2b0d73fcb9d9c060b6600ce66df5ab5d2f743ce2f4c359ec2824a03bdc649bb4`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md`
+
+- file: [dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md](../../../dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md)
+- sha256 (`lf-normalised`): `2bc1789bcae3b67a2a1490d04b58c6d4661a5ecfa8d6c35f1ce08a5fe33a7eb0`
 - cited in: node.source
 - counts toward the grade: yes
 

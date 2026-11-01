@@ -3013,28 +3013,26 @@ theorem unit_norm_in_sqrtP_of_normSqVec_eq {p : ℚ} (hp : p ≠ 0) {u : GVec}
         GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
         GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul,
         GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero,
-        GaussRat.re_one, GaussRat.im_one]
+        GaussRat.re_one]
       linear_combination (p * p⁻¹ ^ 2) * hns + (p * p⁻¹ + 1) * hp_inv
     · simp only [GVecSqrt3.innerP, GVecSqrt3.smulP, GVecSqrt3.ofGVec,
         GaussRatSqrt3.invSqrtP, GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.one,
         GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
         GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul,
         GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero,
-        GaussRat.re_one, GaussRat.im_one]
+        GaussRat.im_one]
       ring
     · simp only [GVecSqrt3.innerP, GVecSqrt3.smulP, GVecSqrt3.ofGVec,
         GaussRatSqrt3.invSqrtP, GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.one,
         GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
         GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul,
-        GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero,
-        GaussRat.re_one, GaussRat.im_one]
+        GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero]
       ring
     · simp only [GVecSqrt3.innerP, GVecSqrt3.smulP, GVecSqrt3.ofGVec,
         GaussRatSqrt3.invSqrtP, GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.one,
         GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
         GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul,
-        GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero,
-        GaussRat.re_one, GaussRat.im_one]
+        GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero]
       ring
   refine ⟨h1, ?_⟩
   simp only [GVecSqrt3.normSqRatP, h1, GaussRatSqrt3.one]
@@ -3253,6 +3251,1540 @@ theorem quadratic_rigidity_iff_factorsThroughRayProjLinear (f : GVec → ℚ) :
       intro v hv
       rw [hρ v hv, traceInner_rayProj]
 
+/-! #### 9D. Multi-Prime `7`-Adic Residual `s7`, Linear Independence, and Joint Elimination -/
+
+/-- Bounded-fuel helper for the `7`-adic valuation of a natural number. -/
+def v7NatAux : ℕ → ℕ → ℕ
+  | 0, _ => 0
+  | fuel + 1, n => if 0 < n ∧ n % 7 = 0 then v7NatAux fuel (n / 7) + 1 else 0
+
+/-- Bounded-fuel helper for the prime-to-`7` part of a natural number. -/
+def p7PartNatAux : ℕ → ℕ → ℕ
+  | 0, n => n
+  | fuel + 1, n => if 0 < n ∧ n % 7 = 0 then p7PartNatAux fuel (n / 7) else n
+
+/-- Number of factors of `7` in a natural number `n` (`0` if `n = 0`). -/
+def v7Nat (n : ℕ) : ℕ := v7NatAux n n
+
+/-- Prime-to-`7` part of a natural number `n` (`0` if `n = 0`). -/
+def p7PartNat (n : ℕ) : ℕ := p7PartNatAux n n
+
+theorem v7NatAux_spec : ∀ fuel n : ℕ, 7 ^ v7NatAux fuel n * p7PartNatAux fuel n = n
+  | 0, n => by simp [v7NatAux, p7PartNatAux]
+  | fuel + 1, n => by
+      simp only [v7NatAux, p7PartNatAux]
+      split_ifs with h
+      · have heq := v7NatAux_spec fuel (n / 7)
+        have hdiv : 7 * (n / 7) = n := Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero h.2)
+        calc
+          7 ^ (v7NatAux fuel (n / 7) + 1) * p7PartNatAux fuel (n / 7)
+              = 7 * (7 ^ v7NatAux fuel (n / 7) * p7PartNatAux fuel (n / 7)) := by ring
+          _ = 7 * (n / 7) := by rw [heq]
+          _ = n := hdiv
+      · ring
+
+theorem v7Nat_spec (n : ℕ) : 7 ^ v7Nat n * p7PartNat n = n :=
+  v7NatAux_spec n n
+
+theorem p7PartNatAux_mod_seven_ne_zero :
+    ∀ fuel n : ℕ, 0 < n → n ≤ fuel → p7PartNatAux fuel n % 7 ≠ 0
+  | 0, n, hn, hle => by omega
+  | fuel + 1, n, hn, hle => by
+      simp only [p7PartNatAux]
+      split_ifs with h
+      · have hpos : 0 < n / 7 := by omega
+        have hle' : n / 7 ≤ fuel := by omega
+        exact p7PartNatAux_mod_seven_ne_zero fuel (n / 7) hpos hle'
+      · omega
+
+theorem p7PartNat_mod_seven_ne_zero {n : ℕ} (hn : 0 < n) : p7PartNat n % 7 ≠ 0 :=
+  p7PartNatAux_mod_seven_ne_zero n n hn (le_refl n)
+
+theorem p7PartNat_pos {n : ℕ} (hn : 0 < n) : 0 < p7PartNat n := by
+  have hmod := p7PartNat_mod_seven_ne_zero hn
+  omega
+
+theorem pow_seven_mul_unique :
+    ∀ a b m k : ℕ, m % 7 ≠ 0 → k % 7 ≠ 0 → 7 ^ a * m = 7 ^ b * k → a = b ∧ m = k
+  | 0, 0, m, k, _, _, heq => by
+      simp only [pow_zero, one_mul] at heq
+      exact ⟨rfl, heq⟩
+  | 0, b + 1, m, k, hm, _, heq => by
+      have hm0 : m % 7 = 0 := by
+        have h1 : m = 7 ^ b * k * 7 := by
+          simp only [pow_zero, one_mul, pow_succ] at heq
+          linarith
+        omega
+      exact False.elim (hm hm0)
+  | a + 1, 0, m, k, _, hk, heq => by
+      have hk0 : k % 7 = 0 := by
+        have h1 : k = 7 ^ a * m * 7 := by
+          simp only [pow_zero, one_mul, pow_succ] at heq
+          linarith
+        omega
+      exact False.elim (hk hk0)
+  | a + 1, b + 1, m, k, hm, hk, heq => by
+      have heq' : 7 ^ a * m = 7 ^ b * k := by
+        simp only [pow_succ] at heq
+        linarith
+      obtain ⟨hab, hmk⟩ := pow_seven_mul_unique a b m k hm hk heq'
+      exact ⟨congrArg (· + 1) hab, hmk⟩
+
+theorem v7Nat_p7PartNat_eq_of_pow_mul {n a m : ℕ} (hm : m % 7 ≠ 0) (heq : 7 ^ a * m = n) :
+    v7Nat n = a ∧ p7PartNat n = m := by
+  have hm_pos : 0 < m := by omega
+  have hpow_pos : 0 < 7 ^ a := pow_pos (by decide : 0 < 7) a
+  have hn : 0 < n := by nlinarith
+  exact pow_seven_mul_unique (v7Nat n) a (p7PartNat n) m
+    (p7PartNat_mod_seven_ne_zero hn) hm ((v7Nat_spec n).trans heq.symm)
+
+theorem mul_mod_seven_ne_zero {a b : ℕ} (ha : a % 7 ≠ 0) (hb : b % 7 ≠ 0) :
+    (a * b) % 7 ≠ 0 := by
+  rw [Nat.mul_mod]
+  have ha7 : a % 7 = 1 ∨ a % 7 = 2 ∨ a % 7 = 3 ∨ a % 7 = 4 ∨ a % 7 = 5 ∨ a % 7 = 6 := by omega
+  have hb7 : b % 7 = 1 ∨ b % 7 = 2 ∨ b % 7 = 3 ∨ b % 7 = 4 ∨ b % 7 = 5 ∨ b % 7 = 6 := by omega
+  rcases ha7 with h1 | h1 | h1 | h1 | h1 | h1 <;>
+    rcases hb7 with h2 | h2 | h2 | h2 | h2 | h2 <;>
+    simp [h1, h2]
+
+/-- Quadratic-residue predicate modulo `7` (`m % 7 ∈ {1, 2, 4}`). -/
+def isQrMod7 (m : ℕ) : Prop :=
+  m % 7 = 1 ∨ m % 7 = 2 ∨ m % 7 = 4
+
+instance (m : ℕ) : Decidable (isQrMod7 m) :=
+  inferInstanceAs (Decidable (m % 7 = 1 ∨ m % 7 = 2 ∨ m % 7 = 4))
+
+/-- Legendre symbol `(m / 7) ∈ {-1, 1}` on `ℕ` (evaluated on `m % 7`). -/
+def chi7Nat (m : ℕ) : ℚ :=
+  if isQrMod7 m then 1 else -1
+
+theorem chi7Nat_mod_seven (m : ℕ) : chi7Nat (m % 7) = chi7Nat m := by
+  have h : isQrMod7 (m % 7) ↔ isQrMod7 m := by simp [isQrMod7]
+  simp only [chi7Nat, h]
+
+theorem chi7Nat_values (m : ℕ) : chi7Nat m = 1 ∨ chi7Nat m = -1 := by
+  unfold chi7Nat
+  split_ifs with h
+  · exact Or.inl rfl
+  · exact Or.inr rfl
+
+theorem chi7Nat_sq (m : ℕ) : chi7Nat m * chi7Nat m = 1 := by
+  rcases chi7Nat_values m with h | h <;> rw [h] <;> ring
+
+theorem chi7Nat_mul {a b : ℕ} (ha : a % 7 ≠ 0) (hb : b % 7 ≠ 0) :
+    chi7Nat (a * b) = chi7Nat a * chi7Nat b := by
+  rw [← chi7Nat_mod_seven (a * b), Nat.mul_mod, ← chi7Nat_mod_seven a, ← chi7Nat_mod_seven b]
+  have ha7 : a % 7 = 1 ∨ a % 7 = 2 ∨ a % 7 = 3 ∨ a % 7 = 4 ∨ a % 7 = 5 ∨ a % 7 = 6 := by omega
+  have hb7 : b % 7 = 1 ∨ b % 7 = 2 ∨ b % 7 = 3 ∨ b % 7 = 4 ∨ b % 7 = 5 ∨ b % 7 = 6 := by omega
+  rcases ha7 with h1 | h1 | h1 | h1 | h1 | h1 <;>
+    rcases hb7 with h2 | h2 | h2 | h2 | h2 | h2 <;>
+    simp [h1, h2, chi7Nat, isQrMod7]
+
+theorem chi7Nat_eq_of_mul_eq {a b c d : ℕ}
+    (ha : a % 7 ≠ 0) (hb : b % 7 ≠ 0) (hc : c % 7 ≠ 0) (hd : d % 7 ≠ 0)
+    (heq : a * b = c * d) :
+    chi7Nat (a * d) = chi7Nat (c * b) := by
+  have hmul : chi7Nat a * chi7Nat b = chi7Nat c * chi7Nat d := by
+    rw [← chi7Nat_mul ha hb, ← chi7Nat_mul hc hd, heq]
+  have hsq_b := chi7Nat_sq b
+  have hsq_d := chi7Nat_sq d
+  rw [chi7Nat_mul ha hd, chi7Nat_mul hc hb]
+  linear_combination
+    (chi7Nat b * chi7Nat d) * hmul -
+    (chi7Nat a * chi7Nat d) * hsq_b +
+    (chi7Nat c * chi7Nat b) * hsq_d
+
+theorem chi7Nat_add_cancel {a b : ℕ} (_ha : a % 7 ≠ 0) (_hb : b % 7 ≠ 0)
+    (hsum : (a + b) % 7 = 0) :
+    chi7Nat a + chi7Nat b = 0 := by
+  rw [← chi7Nat_mod_seven a, ← chi7Nat_mod_seven b]
+  rw [Nat.add_mod] at hsum
+  have ha7 : a % 7 = 1 ∨ a % 7 = 2 ∨ a % 7 = 3 ∨ a % 7 = 4 ∨ a % 7 = 5 ∨ a % 7 = 6 := by omega
+  have hb7 : b % 7 = 1 ∨ b % 7 = 2 ∨ b % 7 = 3 ∨ b % 7 = 4 ∨ b % 7 = 5 ∨ b % 7 = 6 := by omega
+  rcases ha7 with h1 | h1 | h1 | h1 | h1 | h1 <;>
+    rcases hb7 with h2 | h2 | h2 | h2 | h2 | h2 <;>
+    simp [h1, h2, chi7Nat, isQrMod7] at hsum ⊢
+
+theorem v7Nat_p7PartNat_mul {m k : ℕ} (hm : 0 < m) (hk : 0 < k) :
+    v7Nat (m * k) = v7Nat m + v7Nat k ∧
+    p7PartNat (m * k) = p7PartNat m * p7PartNat k := by
+  apply v7Nat_p7PartNat_eq_of_pow_mul
+    (mul_mod_seven_ne_zero (p7PartNat_mod_seven_ne_zero hm) (p7PartNat_mod_seven_ne_zero hk))
+  calc
+    7 ^ (v7Nat m + v7Nat k) * (p7PartNat m * p7PartNat k)
+        = (7 ^ v7Nat m * p7PartNat m) * (7 ^ v7Nat k * p7PartNat k) := by ring
+    _ = m * k := by rw [v7Nat_spec m, v7Nat_spec k]
+
+theorem v7Nat_add_of_lt {X Y : ℕ} (hX : 0 < X) (_hY : 0 < Y) (hlt : v7Nat X < v7Nat Y) :
+    v7Nat (X + Y) = v7Nat X ∧ p7PartNat (X + Y) % 7 = p7PartNat X % 7 := by
+  let d := v7Nat Y - v7Nat X - 1
+  have hb : v7Nat Y = v7Nat X + (d + 1) := by omega
+  let m := p7PartNat X + 7 ^ (d + 1) * p7PartNat Y
+  have hm_mod : m % 7 = p7PartNat X % 7 := by
+    have hpow : (7 ^ (d + 1) * p7PartNat Y) % 7 = 0 := by
+      have h1 : 7 ^ (d + 1) * p7PartNat Y = 7 * (7 ^ d * p7PartNat Y) := by ring
+      rw [h1, Nat.mul_mod_right]
+    omega
+  have hm_ne : m % 7 ≠ 0 := by
+    rw [hm_mod]
+    exact p7PartNat_mod_seven_ne_zero hX
+  have heq : 7 ^ v7Nat X * m = X + Y := by
+    calc
+      7 ^ v7Nat X * m
+          = 7 ^ v7Nat X * p7PartNat X + 7 ^ (v7Nat X + (d + 1)) * p7PartNat Y := by
+            simp only [m, pow_add]; ring
+      _ = 7 ^ v7Nat X * p7PartNat X + 7 ^ v7Nat Y * p7PartNat Y := by rw [← hb]
+      _ = X + Y := by rw [v7Nat_spec X, v7Nat_spec Y]
+  obtain ⟨hv, hp⟩ := v7Nat_p7PartNat_eq_of_pow_mul hm_ne heq
+  exact ⟨hv, by rw [hp, hm_mod]⟩
+
+theorem v7Nat_add_gt_imp_eq_and_mod_seven {X Y : ℕ} (hX : 0 < X) (hY : 0 < Y)
+    (hgt : v7Nat X < v7Nat (X + Y)) :
+    v7Nat X = v7Nat Y ∧ (p7PartNat X + p7PartNat Y) % 7 = 0 := by
+  have heq_v : v7Nat X = v7Nat Y := by
+    rcases lt_trichotomy (v7Nat X) (v7Nat Y) with hlt | heq | hlt
+    · have h1 := (v7Nat_add_of_lt hX hY hlt).1
+      omega
+    · exact heq
+    · have h1 := (v7Nat_add_of_lt hY hX hlt).1
+      rw [Nat.add_comm Y X] at h1
+      omega
+  refine ⟨heq_v, ?_⟩
+  by_contra hmod
+  have heq_sum : 7 ^ v7Nat X * (p7PartNat X + p7PartNat Y) = X + Y := by
+    calc
+      7 ^ v7Nat X * (p7PartNat X + p7PartNat Y)
+          = 7 ^ v7Nat X * p7PartNat X + 7 ^ v7Nat Y * p7PartNat Y := by
+            rw [← heq_v]; ring
+      _ = X + Y := by rw [v7Nat_spec X, v7Nat_spec Y]
+  have hv := (v7Nat_p7PartNat_eq_of_pow_mul hmod heq_sum).1
+  omega
+
+theorem v7Nat_add_ge_min {X Y : ℕ} (hX : 0 < X) (hY : 0 < Y) :
+    min (v7Nat X) (v7Nat Y) ≤ v7Nat (X + Y) := by
+  rcases lt_trichotomy (v7Nat X) (v7Nat Y) with hlt | heq | hlt
+  · have h1 := (v7Nat_add_of_lt hX hY hlt).1
+    omega
+  · have hsum_pos : 0 < p7PartNat X + p7PartNat Y := by
+      have hpX := p7PartNat_pos hX
+      omega
+    have hpow_pos : 0 < 7 ^ v7Nat X := pow_pos (by decide : 0 < 7) (v7Nat X)
+    have heq_sum : X + Y = 7 ^ v7Nat X * (p7PartNat X + p7PartNat Y) := by
+      calc
+        X + Y = 7 ^ v7Nat X * p7PartNat X + 7 ^ v7Nat Y * p7PartNat Y := by
+          rw [v7Nat_spec X, v7Nat_spec Y]
+        _ = 7 ^ v7Nat X * (p7PartNat X + p7PartNat Y) := by
+          rw [← heq]; ring
+    have hv_pow : v7Nat (7 ^ v7Nat X) = v7Nat X := by
+      exact (v7Nat_p7PartNat_eq_of_pow_mul (m := 1) (by decide) (by ring)).1
+    have hv_mul := (v7Nat_p7PartNat_mul hpow_pos hsum_pos).1
+    rw [heq_sum, hv_mul, hv_pow]
+    omega
+  · have h1 := (v7Nat_add_of_lt hY hX hlt).1
+    rw [Nat.add_comm Y X] at h1
+    omega
+
+theorem sq_add_sq_mod_seven_eq_zero_iff (x y : ℕ) :
+    (x ^ 2 + y ^ 2) % 7 = 0 ↔ x % 7 = 0 ∧ y % 7 = 0 := by
+  simp only [sq]
+  rw [Nat.add_mod, Nat.mul_mod x x, Nat.mul_mod y y]
+  have hx : x % 7 = 0 ∨ x % 7 = 1 ∨ x % 7 = 2 ∨ x % 7 = 3 ∨
+      x % 7 = 4 ∨ x % 7 = 5 ∨ x % 7 = 6 := by omega
+  have hy : y % 7 = 0 ∨ y % 7 = 1 ∨ y % 7 = 2 ∨ y % 7 = 3 ∨
+      y % 7 = 4 ∨ y % 7 = 5 ∨ y % 7 = 6 := by omega
+  rcases hx with hx | hx | hx | hx | hx | hx | hx <;>
+    rcases hy with hy | hy | hy | hy | hy | hy | hy <;>
+    simp [hx, hy]
+
+theorem v7Nat_sq_add_sq_even (x y : ℕ) : v7Nat (x ^ 2 + y ^ 2) % 2 = 0 := by
+  have hmain : ∀ s : ℕ, ∀ a b : ℕ, a + b = s → v7Nat (a ^ 2 + b ^ 2) % 2 = 0 := by
+    intro s
+    induction s using Nat.strong_induction_on with
+    | h s ih =>
+      intro a b hab
+      by_cases h0 : a = 0 ∧ b = 0
+      · rcases h0 with ⟨rfl, rfl⟩
+        rfl
+      · have hpos : 0 < a ^ 2 + b ^ 2 := by
+          rcases not_and_or.mp h0 with ha | hb
+          · have : 0 < a := by omega
+            nlinarith
+          · have : 0 < b := by omega
+            nlinarith
+        by_cases hmod : (a ^ 2 + b ^ 2) % 7 = 0
+        · obtain ⟨ha7, hb7⟩ := (sq_add_sq_mod_seven_eq_zero_iff a b).mp hmod
+          have ha_eq : a = 7 * (a / 7) := (Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero ha7)).symm
+          have hb_eq : b = 7 * (b / 7) := (Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero hb7)).symm
+          have hsub_pos : 0 < (a / 7) ^ 2 + (b / 7) ^ 2 := by nlinarith
+          have hsq_eq : a ^ 2 + b ^ 2 = 49 * ((a / 7) ^ 2 + (b / 7) ^ 2) := by
+            calc
+              a ^ 2 + b ^ 2 = (7 * (a / 7)) ^ 2 + (7 * (b / 7)) ^ 2 := by
+                rw [← ha_eq, ← hb_eq]
+              _ = 49 * ((a / 7) ^ 2 + (b / 7) ^ 2) := by ring
+          have hv49 : v7Nat 49 = 2 := rfl
+          have hmul := (v7Nat_p7PartNat_mul (by decide : 0 < 49) hsub_pos).1
+          have hlt_s : a / 7 + b / 7 < s := by omega
+          have hrec := ih (a / 7 + b / 7) hlt_s (a / 7) (b / 7) rfl
+          rw [hsq_eq, hmul, hv49]
+          omega
+        · have hv0 :=
+            (v7Nat_p7PartNat_eq_of_pow_mul (n := a ^ 2 + b ^ 2) (a := 0) (m := a ^ 2 + b ^ 2)
+              hmod (by ring)).1
+          rw [hv0]
+  exact hmain (x + y) x y rfl
+
+/-- `7`-adic valuation of a positive rational `q` (`0` if `q ≤ 0`). -/
+def v7Rat (q : ℚ) : ℤ :=
+  if 0 < q then (v7Nat q.num.natAbs : ℤ) - (v7Nat q.den : ℤ) else 0
+
+/-- `7`-adic Legendre unit sign `∈ {-1, 1}` of a positive rational `q` (`0` if `q ≤ 0`). -/
+def u7Rat (q : ℚ) : ℚ :=
+  if 0 < q then chi7Nat (p7PartNat q.num.natAbs * p7PartNat q.den) else 0
+
+theorem v7Rat_u7Rat_of_nat_div {q : ℚ} {n d : ℕ} (hn : 0 < n) (hd : 0 < d)
+    (hq : q = (n : ℚ) / (d : ℚ)) :
+    0 < q ∧
+    v7Rat q = (v7Nat n : ℤ) - (v7Nat d : ℤ) ∧
+    u7Rat q = chi7Nat (p7PartNat n * p7PartNat d) := by
+  have hn_q : 0 < (n : ℚ) := by exact_mod_cast hn
+  have hd_q : 0 < (d : ℚ) := by exact_mod_cast hd
+  have hq_pos : 0 < q := by
+    rw [hq]
+    exact div_pos hn_q hd_q
+  obtain ⟨hnum_pos, hden_pos, hq_can⟩ := rat_pos_eq_natAbs_div_den hq_pos
+  have hden_q : (q.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hden_pos)
+  have hd_ne : (d : ℚ) ≠ 0 := ne_of_gt hd_q
+  have hcross_q : (q.num.natAbs : ℚ) * (d : ℚ) = (n : ℚ) * (q.den : ℚ) := by
+    have heq_div : (q.num.natAbs : ℚ) / (q.den : ℚ) = (n : ℚ) / (d : ℚ) :=
+      hq_can.symm.trans hq
+    exact (div_eq_div_iff hden_q hd_ne).mp heq_div
+  have hcross : q.num.natAbs * d = n * q.den := by
+    exact_mod_cast hcross_q
+  obtain ⟨hv1, hp1⟩ := v7Nat_p7PartNat_mul hnum_pos hd
+  obtain ⟨hv2, hp2⟩ := v7Nat_p7PartNat_mul hn hden_pos
+  have hv_eq : v7Nat q.num.natAbs + v7Nat d = v7Nat n + v7Nat q.den := by
+    rw [← hv1, ← hv2, hcross]
+  have hp_eq : p7PartNat q.num.natAbs * p7PartNat d = p7PartNat n * p7PartNat q.den := by
+    rw [← hp1, ← hp2, hcross]
+  have hchi_eq :
+      chi7Nat (p7PartNat q.num.natAbs * p7PartNat q.den) =
+      chi7Nat (p7PartNat n * p7PartNat d) :=
+    chi7Nat_eq_of_mul_eq
+      (p7PartNat_mod_seven_ne_zero hnum_pos)
+      (p7PartNat_mod_seven_ne_zero hd)
+      (p7PartNat_mod_seven_ne_zero hn)
+      (p7PartNat_mod_seven_ne_zero hden_pos)
+      hp_eq
+  refine ⟨hq_pos, ?_, ?_⟩
+  · simp only [v7Rat, hq_pos, ↓reduceIte]
+    omega
+  · simp only [u7Rat, hq_pos, ↓reduceIte, hchi_eq]
+
+theorem v7Rat_natCast {n : ℕ} (hn : 0 < n) : v7Rat (n : ℚ) = (v7Nat n : ℤ) := by
+  have h :=
+    (v7Rat_u7Rat_of_nat_div (q := (n : ℚ)) (n := n) (d := 1) hn (by decide : 0 < 1) (by simp)).2.1
+  have hv1 : v7Nat 1 = 0 := rfl
+  omega
+
+theorem u7Rat_natCast {n : ℕ} (hn : 0 < n) :
+    u7Rat (n : ℚ) = chi7Nat (p7PartNat n) := by
+  have h :=
+    (v7Rat_u7Rat_of_nat_div (q := (n : ℚ)) (n := n) (d := 1) hn (by decide : 0 < 1) (by simp)).2.2
+  have hp1 : p7PartNat 1 = 1 := rfl
+  simp [h, hp1]
+
+theorem u7Rat_values_of_pos {q : ℚ} (hq : 0 < q) : u7Rat q = 1 ∨ u7Rat q = -1 := by
+  simp only [u7Rat, hq, ↓reduceIte]
+  exact chi7Nat_values _
+
+theorem u7Rat_sq_of_pos {q : ℚ} (hq : 0 < q) : u7Rat q * u7Rat q = 1 := by
+  rcases u7Rat_values_of_pos hq with h | h <;> rw [h] <;> ring
+
+theorem v7Rat_mul {p q : ℚ} (hp : 0 < p) (hq : 0 < q) :
+    v7Rat (p * q) = v7Rat p + v7Rat q := by
+  obtain ⟨hnp, hdp, hp_eq⟩ := rat_pos_eq_natAbs_div_den hp
+  obtain ⟨hnq, hdq, hq_eq⟩ := rat_pos_eq_natAbs_div_den hq
+  have hmul_eq : p * q = ((p.num.natAbs * q.num.natAbs : ℕ) : ℚ) / ((p.den * q.den : ℕ) : ℚ) := by
+    push_cast
+    rw [← div_mul_div_comm, ← hp_eq, ← hq_eq]
+  have hvpq := (v7Rat_u7Rat_of_nat_div (Nat.mul_pos hnp hnq) (Nat.mul_pos hdp hdq) hmul_eq).2.1
+  have hvp := (v7Rat_u7Rat_of_nat_div hnp hdp hp_eq).2.1
+  have hvq := (v7Rat_u7Rat_of_nat_div hnq hdq hq_eq).2.1
+  have hvn := (v7Nat_p7PartNat_mul hnp hnq).1
+  have hvd := (v7Nat_p7PartNat_mul hdp hdq).1
+  rw [hvpq, hvp, hvq, hvn, hvd]
+  omega
+
+theorem u7Rat_mul {p q : ℚ} (hp : 0 < p) (hq : 0 < q) :
+    u7Rat (p * q) = u7Rat p * u7Rat q := by
+  obtain ⟨hnp, hdp, hp_eq⟩ := rat_pos_eq_natAbs_div_den hp
+  obtain ⟨hnq, hdq, hq_eq⟩ := rat_pos_eq_natAbs_div_den hq
+  have hmul_eq : p * q = ((p.num.natAbs * q.num.natAbs : ℕ) : ℚ) / ((p.den * q.den : ℕ) : ℚ) := by
+    push_cast
+    rw [← div_mul_div_comm, ← hp_eq, ← hq_eq]
+  have hupq := (v7Rat_u7Rat_of_nat_div (Nat.mul_pos hnp hnq) (Nat.mul_pos hdp hdq) hmul_eq).2.2
+  have hup := (v7Rat_u7Rat_of_nat_div hnp hdp hp_eq).2.2
+  have huq := (v7Rat_u7Rat_of_nat_div hnq hdq hq_eq).2.2
+  have hpn := (v7Nat_p7PartNat_mul hnp hnq).2
+  have hpd := (v7Nat_p7PartNat_mul hdp hdq).2
+  rw [hupq, hup, huq, hpn, hpd]
+  have hmp_ne : (p7PartNat p.num.natAbs * p7PartNat p.den) % 7 ≠ 0 :=
+    mul_mod_seven_ne_zero (p7PartNat_mod_seven_ne_zero hnp) (p7PartNat_mod_seven_ne_zero hdp)
+  have hmq_ne : (p7PartNat q.num.natAbs * p7PartNat q.den) % 7 ≠ 0 :=
+    mul_mod_seven_ne_zero (p7PartNat_mod_seven_ne_zero hnq) (p7PartNat_mod_seven_ne_zero hdq)
+  have hcomm :
+      p7PartNat p.num.natAbs * p7PartNat q.num.natAbs * (p7PartNat p.den * p7PartNat q.den) =
+      (p7PartNat p.num.natAbs * p7PartNat p.den) * (p7PartNat q.num.natAbs * p7PartNat q.den) := by
+    ring
+  rw [hcomm, chi7Nat_mul hmp_ne hmq_ne]
+
+theorem v7Rat_add_of_lt {p q : ℚ} (hp : 0 < p) (hq : 0 < q) (hlt : v7Rat p < v7Rat q) :
+    v7Rat (p + q) = v7Rat p ∧ u7Rat (p + q) = u7Rat p := by
+  obtain ⟨hnp, hdp, hp_eq⟩ := rat_pos_eq_natAbs_div_den hp
+  obtain ⟨hnq, hdq, hq_eq⟩ := rat_pos_eq_natAbs_div_den hq
+  let X := p.num.natAbs * q.den
+  let Y := q.num.natAbs * p.den
+  let D := p.den * q.den
+  have hX : 0 < X := Nat.mul_pos hnp hdq
+  have hY : 0 < Y := Nat.mul_pos hnq hdp
+  have hD : 0 < D := Nat.mul_pos hdp hdq
+  have hp_D : p = (X : ℚ) / (D : ℚ) := by
+    have hdq_ne : (q.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdq)
+    simp only [X, D, Nat.cast_mul]
+    rw [mul_div_mul_right _ _ hdq_ne, ← hp_eq]
+  have hq_D : q = (Y : ℚ) / (D : ℚ) := by
+    have hdp_ne : (p.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdp)
+    simp only [Y, D, Nat.cast_mul]
+    rw [mul_comm (p.den : ℚ) (q.den : ℚ), mul_div_mul_right _ _ hdp_ne, ← hq_eq]
+  have hpq_D : p + q = ((X + Y : ℕ) : ℚ) / (D : ℚ) := by
+    rw [hp_D, hq_D, Nat.cast_add, add_div]
+  obtain ⟨_, hvp, hup⟩ := v7Rat_u7Rat_of_nat_div hX hD hp_D
+  obtain ⟨_, hvq, _⟩ := v7Rat_u7Rat_of_nat_div hY hD hq_D
+  obtain ⟨_, hvpq, hupq⟩ := v7Rat_u7Rat_of_nat_div (Nat.add_pos_left hX Y) hD hpq_D
+  have hlt_nat : v7Nat X < v7Nat Y := by omega
+  obtain ⟨hv_add, hp_add⟩ := v7Nat_add_of_lt hX hY hlt_nat
+  refine ⟨by omega, ?_⟩
+  rw [hupq, hup, ← chi7Nat_mod_seven (p7PartNat (X + Y) * p7PartNat D),
+    ← chi7Nat_mod_seven (p7PartNat X * p7PartNat D)]
+  have hmod_mul : (p7PartNat (X + Y) * p7PartNat D) % 7 = (p7PartNat X * p7PartNat D) % 7 := by
+    rw [Nat.mul_mod, hp_add, ← Nat.mul_mod]
+  rw [hmod_mul]
+
+theorem v7Rat_add_gt_imp_eq_and_u7Rat_cancel {p q : ℚ} (hp : 0 < p) (hq : 0 < q)
+    (hgt : v7Rat p < v7Rat (p + q)) :
+    v7Rat p = v7Rat q ∧ u7Rat p + u7Rat q = 0 := by
+  obtain ⟨hnp, hdp, hp_eq⟩ := rat_pos_eq_natAbs_div_den hp
+  obtain ⟨hnq, hdq, hq_eq⟩ := rat_pos_eq_natAbs_div_den hq
+  let X := p.num.natAbs * q.den
+  let Y := q.num.natAbs * p.den
+  let D := p.den * q.den
+  have hX : 0 < X := Nat.mul_pos hnp hdq
+  have hY : 0 < Y := Nat.mul_pos hnq hdp
+  have hD : 0 < D := Nat.mul_pos hdp hdq
+  have hp_D : p = (X : ℚ) / (D : ℚ) := by
+    have hdq_ne : (q.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdq)
+    simp only [X, D, Nat.cast_mul]
+    rw [mul_div_mul_right _ _ hdq_ne, ← hp_eq]
+  have hq_D : q = (Y : ℚ) / (D : ℚ) := by
+    have hdp_ne : (p.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdp)
+    simp only [Y, D, Nat.cast_mul]
+    rw [mul_comm (p.den : ℚ) (q.den : ℚ), mul_div_mul_right _ _ hdp_ne, ← hq_eq]
+  have hpq_D : p + q = ((X + Y : ℕ) : ℚ) / (D : ℚ) := by
+    rw [hp_D, hq_D, Nat.cast_add, add_div]
+  obtain ⟨_, hvp, hup⟩ := v7Rat_u7Rat_of_nat_div hX hD hp_D
+  obtain ⟨_, hvq, huq⟩ := v7Rat_u7Rat_of_nat_div hY hD hq_D
+  obtain ⟨_, hvpq, _⟩ := v7Rat_u7Rat_of_nat_div (Nat.add_pos_left hX Y) hD hpq_D
+  have hgt_nat : v7Nat X < v7Nat (X + Y) := by omega
+  obtain ⟨hv_eq, hp_sum⟩ := v7Nat_add_gt_imp_eq_and_mod_seven hX hY hgt_nat
+  refine ⟨by omega, ?_⟩
+  rw [hup, huq]
+  have hpX_ne := p7PartNat_mod_seven_ne_zero hX
+  have hpY_ne := p7PartNat_mod_seven_ne_zero hY
+  have hpD_ne := p7PartNat_mod_seven_ne_zero hD
+  rw [chi7Nat_mul hpX_ne hpD_ne, chi7Nat_mul hpY_ne hpD_ne]
+  have hcancel := chi7Nat_add_cancel hpX_ne hpY_ne hp_sum
+  linear_combination chi7Nat (p7PartNat D) * hcancel
+
+theorem v7Rat_add_ge_min {p q : ℚ} (hp : 0 < p) (hq : 0 < q) :
+    min (v7Rat p) (v7Rat q) ≤ v7Rat (p + q) := by
+  obtain ⟨hnp, hdp, hp_eq⟩ := rat_pos_eq_natAbs_div_den hp
+  obtain ⟨hnq, hdq, hq_eq⟩ := rat_pos_eq_natAbs_div_den hq
+  let X := p.num.natAbs * q.den
+  let Y := q.num.natAbs * p.den
+  let D := p.den * q.den
+  have hX : 0 < X := Nat.mul_pos hnp hdq
+  have hY : 0 < Y := Nat.mul_pos hnq hdp
+  have hD : 0 < D := Nat.mul_pos hdp hdq
+  have hp_D : p = (X : ℚ) / (D : ℚ) := by
+    have hdq_ne : (q.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdq)
+    simp only [X, D, Nat.cast_mul]
+    rw [mul_div_mul_right _ _ hdq_ne, ← hp_eq]
+  have hq_D : q = (Y : ℚ) / (D : ℚ) := by
+    have hdp_ne : (p.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdp)
+    simp only [Y, D, Nat.cast_mul]
+    rw [mul_comm (p.den : ℚ) (q.den : ℚ), mul_div_mul_right _ _ hdp_ne, ← hq_eq]
+  have hpq_D : p + q = ((X + Y : ℕ) : ℚ) / (D : ℚ) := by
+    rw [hp_D, hq_D, Nat.cast_add, add_div]
+  obtain ⟨_, hvp, _⟩ := v7Rat_u7Rat_of_nat_div hX hD hp_D
+  obtain ⟨_, hvq, _⟩ := v7Rat_u7Rat_of_nat_div hY hD hq_D
+  obtain ⟨_, hvpq, _⟩ := v7Rat_u7Rat_of_nat_div (Nat.add_pos_left hX Y) hD hpq_D
+  have hmin := v7Nat_add_ge_min hX hY
+  omega
+
+/-- Every Gaussian rational `z ∈ ℚ(i)` has even `7`-adic squared-norm valuation `v_7(|z|²)`. -/
+theorem v7Rat_normSq_even (z : GaussRat) : v7Rat z.normSq % 2 = 0 := by
+  by_cases hpos : 0 < z.normSq
+  · let X := z.re.num.natAbs * z.im.den
+    let Y := z.im.num.natAbs * z.re.den
+    let D := z.re.den * z.im.den
+    have hD1 : 0 < D := Nat.mul_pos z.re.den_pos z.im.den_pos
+    have hD_pos : 0 < D * D := Nat.mul_pos hD1 hD1
+    have hre_den_sq_ne : ((z.re.den * z.re.den : ℕ) : ℚ) ≠ 0 :=
+      ne_of_gt (by exact_mod_cast Nat.mul_pos z.re.den_pos z.re.den_pos)
+    have him_den_sq_ne : ((z.im.den * z.im.den : ℕ) : ℚ) ≠ 0 :=
+      ne_of_gt (by exact_mod_cast Nat.mul_pos z.im.den_pos z.im.den_pos)
+    have hnorm_eq : z.normSq = ((X ^ 2 + Y ^ 2 : ℕ) : ℚ) / ((D * D : ℕ) : ℚ) := by
+      simp only [GaussRat.normSq]
+      rw [rat_sq_eq_natAbs_sq_div_den_sq z.re, rat_sq_eq_natAbs_sq_div_den_sq z.im,
+        div_add_div _ _ hre_den_sq_ne him_den_sq_ne]
+      simp only [X, Y, D]
+      push_cast
+      ring
+    have hXY_pos : 0 < X ^ 2 + Y ^ 2 := by
+      by_contra hle
+      have h0 : X ^ 2 + Y ^ 2 = 0 := by omega
+      rw [h0] at hnorm_eq
+      simp at hnorm_eq
+      linarith
+    have hv := (v7Rat_u7Rat_of_nat_div hXY_pos hD_pos hnorm_eq).2.1
+    have hvD := (v7Nat_p7PartNat_mul hD1 hD1).1
+    have heven := v7Nat_sq_add_sq_even X Y
+    rw [hv, hvD]
+    omega
+  · simp only [v7Rat, hpos, ↓reduceIte]
+    rfl
+
+theorem four_term_v7Rat_cancel {A B C D : ℚ}
+    (hA : 0 < A) (hB_nn : 0 ≤ B) (hC_nn : 0 ≤ C) (_hD : 0 < D)
+    (hsum : A + B + C = D)
+    (hA_odd : v7Rat A % 2 ≠ 0)
+    (hB_odd : 0 < B → v7Rat B % 2 ≠ 0)
+    (hC_even : v7Rat C % 2 = 0)
+    (hlt_D : v7Rat A < v7Rat D) :
+    0 < B ∧ v7Rat A = v7Rat B ∧ u7Rat A + u7Rat B = 0 := by
+  have hAB_pos : 0 < A + B := by linarith
+  have hAB_gt : v7Rat A < v7Rat (A + B) := by
+    by_contra hle
+    have hle' : v7Rat (A + B) ≤ v7Rat A := not_lt.mp hle
+    have hAB_odd : v7Rat (A + B) % 2 ≠ 0 := by
+      rcases eq_or_lt_of_le hB_nn with rfl | hB_pos
+      · simp [hA_odd]
+      · rcases lt_or_ge (v7Rat B) (v7Rat A) with hlt_BA | hge_BA
+        · have hvBA := (v7Rat_add_of_lt hB_pos hA hlt_BA).1
+          rw [add_comm] at hvBA
+          rw [hvBA]
+          exact hB_odd hB_pos
+        · have hmin := v7Rat_add_ge_min hA hB_pos
+          have heq_AB : v7Rat (A + B) = v7Rat A := by omega
+          rw [heq_AB]
+          exact hA_odd
+    have hAB_lt_D : v7Rat (A + B) < v7Rat (A + B + C) := by
+      rw [hsum]
+      omega
+    rcases eq_or_lt_of_le hC_nn with rfl | hC_pos
+    · simp at hAB_lt_D
+    · have hv_eq := (v7Rat_add_gt_imp_eq_and_u7Rat_cancel hAB_pos hC_pos hAB_lt_D).1
+      omega
+  rcases eq_or_lt_of_le hB_nn with rfl | hB_pos
+  · simp at hAB_gt
+  · obtain ⟨hv_eq, hu_sum⟩ := v7Rat_add_gt_imp_eq_and_u7Rat_cancel hA hB_pos hAB_gt
+    exact ⟨hB_pos, hv_eq, hu_sum⟩
+
+/-- On any orthogonal frame `(u, v, w)` in `ℚ(i)³`, the sum of `7`-adic squared-norm
+valuations is even. -/
+theorem frame_v7Rat_sum_even {u v w : GVec} (hf : IsFrame u v w) :
+    (v7Rat (normSqVec u) + v7Rat (normSqVec v) + v7Rat (normSqVec w)) % 2 = 0 := by
+  have hu := normSqVec_pos_of_nonZero hf.1
+  have hv := normSqVec_pos_of_nonZero hf.2.1
+  have hw := normSqVec_pos_of_nonZero hf.2.2.1
+  have hdet := detGVec_normSq_of_frame hf
+  have hmul1 := v7Rat_mul (mul_pos hu hv) hw
+  have hmul2 := v7Rat_mul hu hv
+  have heven := v7Rat_normSq_even (detGVec u v w)
+  rw [hdet, hmul1, hmul2] at heven
+  exact heven
+
+/-- Whether a coordinate `z : GaussRat` is `7`-leading in `u : GVec`. -/
+def isLead7Coord (z : GaussRat) (u : GVec) : Prop :=
+  0 < z.normSq ∧ v7Rat z.normSq < v7Rat (normSqVec u)
+
+instance (z : GaussRat) (u : GVec) : Decidable (isLead7Coord z u) :=
+  inferInstanceAs (Decidable (0 < z.normSq ∧ v7Rat z.normSq < v7Rat (normSqVec u)))
+
+/-- The `7`-adic contribution `u7Rat z.normSq * u7Rat (normSqVec u)` of a coordinate `z` in `u`. -/
+def coordSign7 (z : GaussRat) (u : GVec) : ℚ :=
+  u7Rat z.normSq * u7Rat (normSqVec u)
+
+/-- Explicit global `{-1, 0, 1}`-valued `7`-adic frame residual on `ℚ(i)³`. -/
+def s7 (u : GVec) : ℚ :=
+  if v7Rat (normSqVec u) % 2 = 0 then 0
+  else if isLead7Coord u.x u then coordSign7 u.x u
+  else if isLead7Coord u.y u then coordSign7 u.y u
+  else coordSign7 u.z u
+
+theorem pos_of_v7Rat_mod_two_ne_zero {q : ℚ} (h : v7Rat q % 2 ≠ 0) : 0 < q := by
+  by_contra hle
+  simp [v7Rat, hle] at h
+
+theorem v7Rat_add_gt_of_nonneg {a b : ℚ} {V : ℤ}
+    (ha_nn : 0 ≤ a) (hb_nn : 0 ≤ b)
+    (ha : 0 < a → V < v7Rat a) (hb : 0 < b → V < v7Rat b)
+    (hab : 0 < a + b) : V < v7Rat (a + b) := by
+  rcases eq_or_lt_of_le ha_nn with rfl | ha_pos
+  · simp at hab ⊢
+    exact hb hab
+  · rcases eq_or_lt_of_le hb_nn with rfl | hb_pos
+    · simp at hab ⊢
+      exact ha ha_pos
+    · have h1 := ha ha_pos
+      have h2 := hb hb_pos
+      have hmin := v7Rat_add_ge_min ha_pos hb_pos
+      omega
+
+theorem exists_lead7Coord_of_odd {u : GVec} (hodd : v7Rat (normSqVec u) % 2 ≠ 0) :
+    isLead7Coord u.x u ∨ isLead7Coord u.y u ∨ isLead7Coord u.z u := by
+  by_contra hnot
+  rcases not_or.mp hnot with ⟨hx_not, hyz_not⟩
+  rcases not_or.mp hyz_not with ⟨hy_not, hz_not⟩
+  have hpos : 0 < normSqVec u := pos_of_v7Rat_mod_two_ne_zero hodd
+  have hx_gt : 0 < u.x.normSq → v7Rat (normSqVec u) < v7Rat u.x.normSq := by
+    intro hx_pos
+    have hnot_lt : ¬ v7Rat u.x.normSq < v7Rat (normSqVec u) := fun hlt => hx_not ⟨hx_pos, hlt⟩
+    have heven := v7Rat_normSq_even u.x
+    omega
+  have hy_gt : 0 < u.y.normSq → v7Rat (normSqVec u) < v7Rat u.y.normSq := by
+    intro hy_pos
+    have hnot_lt : ¬ v7Rat u.y.normSq < v7Rat (normSqVec u) := fun hlt => hy_not ⟨hy_pos, hlt⟩
+    have heven := v7Rat_normSq_even u.y
+    omega
+  have hz_gt : 0 < u.z.normSq → v7Rat (normSqVec u) < v7Rat u.z.normSq := by
+    intro hz_pos
+    have hnot_lt : ¬ v7Rat u.z.normSq < v7Rat (normSqVec u) := fun hlt => hz_not ⟨hz_pos, hlt⟩
+    have heven := v7Rat_normSq_even u.z
+    omega
+  have hxy_gt : 0 < u.x.normSq + u.y.normSq →
+      v7Rat (normSqVec u) < v7Rat (u.x.normSq + u.y.normSq) :=
+    v7Rat_add_gt_of_nonneg (GaussRat.normSq_nonneg u.x) (GaussRat.normSq_nonneg u.y) hx_gt hy_gt
+  have hxyz_gt : v7Rat (normSqVec u) < v7Rat (u.x.normSq + u.y.normSq + u.z.normSq) :=
+    v7Rat_add_gt_of_nonneg
+      (add_nonneg (GaussRat.normSq_nonneg u.x) (GaussRat.normSq_nonneg u.y))
+      (GaussRat.normSq_nonneg u.z) hxy_gt hz_gt hpos
+  change v7Rat (normSqVec u) < v7Rat (normSqVec u) at hxyz_gt
+  omega
+
+theorem lead7Coord_x_ortho_imp {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v7Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v7Rat (normSqVec v) % 2 ≠ 0)
+    (hlead : isLead7Coord u.x u) :
+    isLead7Coord v.x v ∧ coordSign7 u.x u + coordSign7 v.x v = 0 := by
+  have hu_pos : 0 < normSqVec u := pos_of_v7Rat_mod_two_ne_zero hu_odd
+  have hv_pos : 0 < normSqVec v := pos_of_v7Rat_mod_two_ne_zero hv_odd
+  let A := u.x.normSq * normSqVec v
+  let B := v.x.normSq * normSqVec u
+  let C := (u.y * v.z - v.y * u.z).normSq
+  let D := normSqVec u * normSqVec v
+  have hA : 0 < A := mul_pos hlead.1 hv_pos
+  have hB_nn : 0 ≤ B := mul_nonneg (GaussRat.normSq_nonneg v.x) (le_of_lt hu_pos)
+  have hC_nn : 0 ≤ C := GaussRat.normSq_nonneg _
+  have hD : 0 < D := mul_pos hu_pos hv_pos
+  have hsum : A + B + C = D := ortho_coord_identity_x huv
+  have hvA : v7Rat A = v7Rat u.x.normSq + v7Rat (normSqVec v) := v7Rat_mul hlead.1 hv_pos
+  have hvD : v7Rat D = v7Rat (normSqVec u) + v7Rat (normSqVec v) := v7Rat_mul hu_pos hv_pos
+  have hA_odd : v7Rat A % 2 ≠ 0 := by
+    have heven := v7Rat_normSq_even u.x
+    omega
+  have hB_odd : 0 < B → v7Rat B % 2 ≠ 0 := by
+    intro hB_pos
+    have hvx_pos : 0 < v.x.normSq := by nlinarith
+    have hvB : v7Rat B = v7Rat v.x.normSq + v7Rat (normSqVec u) := v7Rat_mul hvx_pos hu_pos
+    have heven := v7Rat_normSq_even v.x
+    omega
+  have hC_even : v7Rat C % 2 = 0 := v7Rat_normSq_even _
+  have hlt_D : v7Rat A < v7Rat D := by
+    have hlt := hlead.2
+    omega
+  obtain ⟨hB_pos, hvAB, huAB⟩ :=
+    four_term_v7Rat_cancel hA hB_nn hC_nn hD hsum hA_odd hB_odd hC_even hlt_D
+  have hvx_pos : 0 < v.x.normSq := by nlinarith
+  have hvB : v7Rat B = v7Rat v.x.normSq + v7Rat (normSqVec u) := v7Rat_mul hvx_pos hu_pos
+  have hvx_lt : v7Rat v.x.normSq < v7Rat (normSqVec v) := by
+    have hlt := hlead.2
+    omega
+  refine ⟨⟨hvx_pos, hvx_lt⟩, ?_⟩
+  have huA : u7Rat A = u7Rat u.x.normSq * u7Rat (normSqVec v) := u7Rat_mul hlead.1 hv_pos
+  have huB : u7Rat B = u7Rat v.x.normSq * u7Rat (normSqVec u) := u7Rat_mul hvx_pos hu_pos
+  rw [huA, huB] at huAB
+  have hsq_u := u7Rat_sq_of_pos hu_pos
+  have hsq_v := u7Rat_sq_of_pos hv_pos
+  simp only [coordSign7]
+  linear_combination
+    (u7Rat (normSqVec u) * u7Rat (normSqVec v)) * huAB -
+    (u7Rat u.x.normSq * u7Rat (normSqVec u)) * hsq_v -
+    (u7Rat v.x.normSq * u7Rat (normSqVec v)) * hsq_u
+
+theorem lead7Coord_x_ortho_iff {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v7Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v7Rat (normSqVec v) % 2 ≠ 0) :
+    isLead7Coord u.x u ↔ isLead7Coord v.x v :=
+  ⟨fun h => (lead7Coord_x_ortho_imp huv hu_odd hv_odd h).1,
+   fun h => (lead7Coord_x_ortho_imp (inner_eq_zero_symm huv) hv_odd hu_odd h).1⟩
+
+theorem isLead7Coord_rotVec_x (u : GVec) :
+    isLead7Coord (rotVec u).x (rotVec u) ↔ isLead7Coord u.y u := by
+  unfold isLead7Coord
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem coordSign7_rotVec_x (u : GVec) :
+    coordSign7 (rotVec u).x (rotVec u) = coordSign7 u.y u := by
+  unfold coordSign7
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem isLead7Coord_rotVec_y (u : GVec) :
+    isLead7Coord (rotVec u).y (rotVec u) ↔ isLead7Coord u.z u := by
+  unfold isLead7Coord
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem coordSign7_rotVec_y (u : GVec) :
+    coordSign7 (rotVec u).y (rotVec u) = coordSign7 u.z u := by
+  unfold coordSign7
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem lead7Coord_y_ortho_imp {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v7Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v7Rat (normSqVec v) % 2 ≠ 0)
+    (hlead : isLead7Coord u.y u) :
+    isLead7Coord v.y v ∧ coordSign7 u.y u + coordSign7 v.y v = 0 := by
+  have huv' : GVec.inner (rotVec u) (rotVec v) = 0 := by rw [inner_rotVec]; exact huv
+  have hu_odd' : v7Rat (normSqVec (rotVec u)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hu_odd
+  have hv_odd' : v7Rat (normSqVec (rotVec v)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hv_odd
+  have hlead' : isLead7Coord (rotVec u).x (rotVec u) := (isLead7Coord_rotVec_x u).mpr hlead
+  obtain ⟨hv_lead, hsum⟩ := lead7Coord_x_ortho_imp huv' hu_odd' hv_odd' hlead'
+  rw [isLead7Coord_rotVec_x] at hv_lead
+  rw [coordSign7_rotVec_x, coordSign7_rotVec_x] at hsum
+  exact ⟨hv_lead, hsum⟩
+
+theorem lead7Coord_y_ortho_iff {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v7Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v7Rat (normSqVec v) % 2 ≠ 0) :
+    isLead7Coord u.y u ↔ isLead7Coord v.y v :=
+  ⟨fun h => (lead7Coord_y_ortho_imp huv hu_odd hv_odd h).1,
+   fun h => (lead7Coord_y_ortho_imp (inner_eq_zero_symm huv) hv_odd hu_odd h).1⟩
+
+theorem lead7Coord_z_ortho_imp {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v7Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v7Rat (normSqVec v) % 2 ≠ 0)
+    (hlead : isLead7Coord u.z u) :
+    isLead7Coord v.z v ∧ coordSign7 u.z u + coordSign7 v.z v = 0 := by
+  have huv' : GVec.inner (rotVec u) (rotVec v) = 0 := by rw [inner_rotVec]; exact huv
+  have hu_odd' : v7Rat (normSqVec (rotVec u)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hu_odd
+  have hv_odd' : v7Rat (normSqVec (rotVec v)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hv_odd
+  have hlead' : isLead7Coord (rotVec u).y (rotVec u) := (isLead7Coord_rotVec_y u).mpr hlead
+  obtain ⟨hv_lead, hsum⟩ := lead7Coord_y_ortho_imp huv' hu_odd' hv_odd' hlead'
+  rw [isLead7Coord_rotVec_y] at hv_lead
+  rw [coordSign7_rotVec_y, coordSign7_rotVec_y] at hsum
+  exact ⟨hv_lead, hsum⟩
+
+/-- Any two orthogonal vectors in `ℚ(i)³` with odd `7`-adic squared-norm valuation
+have opposite `s7` signs (`s7 u + s7 v = 0`). -/
+theorem s7_orthogonal_odd_cancel {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v7Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v7Rat (normSqVec v) % 2 ≠ 0) :
+    s7 u + s7 v = 0 := by
+  have hx_iff := lead7Coord_x_ortho_iff huv hu_odd hv_odd
+  have hy_iff := lead7Coord_y_ortho_iff huv hu_odd hv_odd
+  simp only [s7, hu_odd, hv_odd, ↓reduceIte]
+  by_cases hx : isLead7Coord u.x u
+  · have hvx : isLead7Coord v.x v := hx_iff.mp hx
+    simp only [hx, hvx, ↓reduceIte]
+    exact (lead7Coord_x_ortho_imp huv hu_odd hv_odd hx).2
+  · have hvx : ¬ isLead7Coord v.x v := fun h => hx (hx_iff.mpr h)
+    simp only [hx, hvx, ↓reduceIte]
+    by_cases hy : isLead7Coord u.y u
+    · have hvy : isLead7Coord v.y v := hy_iff.mp hy
+      simp only [hy, hvy, ↓reduceIte]
+      exact (lead7Coord_y_ortho_imp huv hu_odd hv_odd hy).2
+    · have hvy : ¬ isLead7Coord v.y v := fun h => hy (hy_iff.mpr h)
+      simp only [hy, hvy, ↓reduceIte]
+      have hz : isLead7Coord u.z u := by
+        rcases exists_lead7Coord_of_odd hu_odd with h1 | h2 | h3
+        · exact False.elim (hx h1)
+        · exact False.elim (hy h2)
+        · exact h3
+      exact (lead7Coord_z_ortho_imp huv hu_odd hv_odd hz).2
+
+theorem s7_eq_zero_of_even {u : GVec} (heven : v7Rat (normSqVec u) % 2 = 0) : s7 u = 0 := by
+  simp [s7, heven]
+
+/-- `s7` is a global zero-weight frame function on all orthogonal frames in `ℚ(i)³`. -/
+theorem s7_isZeroWeightFrameFunction : IsZeroWeightFrameFunction s7 := by
+  intro u v w hf
+  have hsum_even := frame_v7Rat_sum_even hf
+  obtain ⟨_, _, _, huv, huw, hvw⟩ := hf
+  by_cases hu : v7Rat (normSqVec u) % 2 = 0 <;>
+    by_cases hv : v7Rat (normSqVec v) % 2 = 0 <;>
+    by_cases hw : v7Rat (normSqVec w) % 2 = 0
+  · rw [s7_eq_zero_of_even hu, s7_eq_zero_of_even hv, s7_eq_zero_of_even hw]
+    ring
+  · omega
+  · omega
+  · have hvw_sum := s7_orthogonal_odd_cancel hvw hv hw
+    rw [s7_eq_zero_of_even hu]
+    linarith
+  · omega
+  · have huw_sum := s7_orthogonal_odd_cancel huw hu hw
+    rw [s7_eq_zero_of_even hv]
+    linarith
+  · have huv_sum := s7_orthogonal_odd_cancel huv hu hv
+    rw [s7_eq_zero_of_even hw]
+    linarith
+  · omega
+
+theorem s7_smul {v : GVec} (hv : v.NonZero) {l : GaussRat} (hl : l ≠ 0) :
+    s7 (GVec.smul l v) = s7 v :=
+  zeroWeightFrameFunction_smul s7_isZeroWeightFrameFunction hv hl
+
+theorem coordSign7_values {z : GaussRat} {u : GVec} (hz : 0 < z.normSq) (hu : 0 < normSqVec u) :
+    coordSign7 z u = 1 ∨ coordSign7 z u = -1 := by
+  simp only [coordSign7]
+  rcases u7Rat_values_of_pos hz with h1 | h1 <;>
+    rcases u7Rat_values_of_pos hu with h2 | h2 <;>
+    rw [h1, h2] <;> norm_num
+
+theorem s7_values (u : GVec) : s7 u = 0 ∨ s7 u = 1 ∨ s7 u = -1 := by
+  by_cases heven : v7Rat (normSqVec u) % 2 = 0
+  · exact Or.inl (s7_eq_zero_of_even heven)
+  · have hu : 0 < normSqVec u := pos_of_v7Rat_mod_two_ne_zero heven
+    simp only [s7, heven, ↓reduceIte]
+    by_cases hx : isLead7Coord u.x u
+    · simp only [hx, ↓reduceIte]
+      exact Or.inr (coordSign7_values hx.1 hu)
+    · simp only [hx, ↓reduceIte]
+      by_cases hy : isLead7Coord u.y u
+      · simp only [hy, ↓reduceIte]
+        exact Or.inr (coordSign7_values hy.1 hu)
+      · simp only [hy, ↓reduceIte]
+        have hz : isLead7Coord u.z u := by
+          rcases exists_lead7Coord_of_odd heven with h1 | h2 | h3
+          · exact False.elim (hx h1)
+          · exact False.elim (hy h2)
+          · exact h3
+        exact Or.inr (coordSign7_values hz.1 hu)
+
+theorem s7_abs_le_one (u : GVec) : |s7 u| ≤ 1 := by
+  rcases s7_values u with h | h | h <;> rw [h] <;> norm_num
+
+theorem s7_isBoundedOnRays : IsBoundedOnRays s7 :=
+  ⟨1, by norm_num, fun v _ => s7_abs_le_one v⟩
+
+theorem s7_eq_zero_of_normSqVec_natCast {u : GVec} {n : ℕ}
+    (hn : 0 < n) (hnorm : normSqVec u = (n : ℚ)) (heven : (v7Nat n : ℤ) % 2 = 0) :
+    s7 u = 0 := by
+  apply s7_eq_zero_of_even
+  rw [hnorm, v7Rat_natCast hn]
+  exact heven
+
+theorem s7_eq_of_lead7Coord_x {u : GVec} {n nx : ℕ}
+    (hn : 0 < n) (hnx : 0 < nx)
+    (hnorm : normSqVec u = (n : ℚ))
+    (hx : u.x.normSq = (nx : ℚ))
+    (hodd : (v7Nat n : ℤ) % 2 ≠ 0)
+    (hlt : (v7Nat nx : ℤ) < (v7Nat n : ℤ)) :
+    s7 u = chi7Nat (p7PartNat nx) * chi7Nat (p7PartNat n) := by
+  have hvn : v7Rat (normSqVec u) = (v7Nat n : ℤ) := by rw [hnorm, v7Rat_natCast hn]
+  have hvx : v7Rat u.x.normSq = (v7Nat nx : ℤ) := by rw [hx, v7Rat_natCast hnx]
+  have hun : u7Rat (normSqVec u) = chi7Nat (p7PartNat n) := by rw [hnorm, u7Rat_natCast hn]
+  have hux : u7Rat u.x.normSq = chi7Nat (p7PartNat nx) := by rw [hx, u7Rat_natCast hnx]
+  have hx_pos : 0 < u.x.normSq := by rw [hx]; exact_mod_cast hnx
+  have hlead : isLead7Coord u.x u := ⟨hx_pos, by omega⟩
+  have hodd_u : v7Rat (normSqVec u) % 2 ≠ 0 := by omega
+  simp only [s7, hodd_u, hlead, ↓reduceIte, coordSign7, hux, hun]
+
+theorem s7_eq_of_lead7Coord_y {u : GVec} {n nx ny : ℕ}
+    (hn : 0 < n) (hnx : 0 < nx) (hny : 0 < ny)
+    (hnorm : normSqVec u = (n : ℚ))
+    (hx : u.x.normSq = (nx : ℚ))
+    (hy : u.y.normSq = (ny : ℚ))
+    (hodd : (v7Nat n : ℤ) % 2 ≠ 0)
+    (hge_x : (v7Nat n : ℤ) ≤ (v7Nat nx : ℤ))
+    (hlt_y : (v7Nat ny : ℤ) < (v7Nat n : ℤ)) :
+    s7 u = chi7Nat (p7PartNat ny) * chi7Nat (p7PartNat n) := by
+  have hvn : v7Rat (normSqVec u) = (v7Nat n : ℤ) := by rw [hnorm, v7Rat_natCast hn]
+  have hvx : v7Rat u.x.normSq = (v7Nat nx : ℤ) := by rw [hx, v7Rat_natCast hnx]
+  have hvy : v7Rat u.y.normSq = (v7Nat ny : ℤ) := by rw [hy, v7Rat_natCast hny]
+  have hun : u7Rat (normSqVec u) = chi7Nat (p7PartNat n) := by rw [hnorm, u7Rat_natCast hn]
+  have huy : u7Rat u.y.normSq = chi7Nat (p7PartNat ny) := by rw [hy, u7Rat_natCast hny]
+  have hy_pos : 0 < u.y.normSq := by rw [hy]; exact_mod_cast hny
+  have hnot_x : ¬ isLead7Coord u.x u := by
+    intro ⟨_, hlt⟩
+    omega
+  have hlead_y : isLead7Coord u.y u := ⟨hy_pos, by omega⟩
+  have hodd_u : v7Rat (normSqVec u) % 2 ≠ 0 := by omega
+  simp only [s7, hodd_u, hnot_x, hlead_y, ↓reduceIte, coordSign7, huy, hun]
+
+/-- `s7` vanishes on all nine tomography rays (`N ∈ {1, 2}` has `v_7(N) = 0`). -/
+theorem s7_vanishes_on_nine_rays : VanishesOnNineRays s7 := by
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 1) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e1, gv]) rfl
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 1) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e2, gv]) rfl
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 1) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e3, gv]) rfl
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e12, gv]; norm_num) rfl
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e13, gv]; norm_num) rfl
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e23, gv]; norm_num) rfl
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e12i, gv]; norm_num) rfl
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e13i, gv]; norm_num) rfl
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e23i, gv]; norm_num) rfl
+
+theorem witness_p7_primitive : IsOnePlusIPrimitive 1 0 2 0 1 1 := by decide
+
+theorem witness_p7_nonZero : witness_p7.NonZero := by
+  left
+  intro h
+  have hre : witness_p7.x.re = 0 := by rw [h]; rfl
+  revert hre
+  decide
+
+theorem witness_p7_normSq : normSqVec witness_p7 = 7 := by
+  simp [normSqVec, GaussRat.normSq, witness_p7, gv]
+  norm_num
+
+theorem s7_witness_111 : s7 witness_111 = 0 :=
+  s7_eq_zero_of_normSqVec_natCast (n := 3) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, witness_111, gv]; norm_num) rfl
+
+theorem s3_witness_p7 : s3 witness_p7 = 0 :=
+  s3_eq_zero_of_normSqVec_natCast (n := 7) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, witness_p7, gv]; norm_num) rfl
+
+theorem s7_witness_p7 : s7 witness_p7 = 1 := by
+  rw [s7_eq_of_lead7Coord_x (n := 7) (nx := 1) (by decide) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, witness_p7, gv]; norm_num)
+    (by simp [GaussRat.normSq, witness_p7, gv])
+    (by decide) (by decide)]
+  have hp1 : p7PartNat 1 = 1 := rfl
+  have hp7 : p7PartNat 7 = 1 := rfl
+  simp [hp1, hp7, chi7Nat, isQrMod7]
+
+/-- Dual Kronecker-delta evaluation of `(s3, s7)` on `(witness_111, witness_p7)`:
+`s3(1,1,1) = 1, s7(1,1,1) = 0` and `s3(1,2,1+i) = 0, s7(1,2,1+i) = 1`. -/
+theorem s3_s7_dual_on_witnesses :
+    s3 witness_111 = 1 ∧ s7 witness_111 = 0 ∧
+    s3 witness_p7 = 0 ∧ s7 witness_p7 = 1 :=
+  ⟨s3_witness_111, s7_witness_111, s3_witness_p7, s7_witness_p7⟩
+
+/-- Second explicit `{0, 1/3, 2/3}`-valued nonnegative non-quadratic frame function `(1 + s7 v) / 3`
+on `ℚ(i)³` (which agrees with `quadRay (I/3)` on all 9 tomography rays and on `witness_111`,
+yet separates `witness_p7`). -/
+def exoticQi7 (v : GVec) : ℚ := (1 + s7 v) / 3
+
+theorem exoticQi7_values (v : GVec) :
+    exoticQi7 v = 1 / 3 ∨ exoticQi7 v = 2 / 3 ∨ exoticQi7 v = 0 := by
+  simp only [exoticQi7]
+  rcases s7_values v with h | h | h <;> rw [h] <;> norm_num
+
+theorem exoticQi7_bounds (v : GVec) : 0 ≤ exoticQi7 v ∧ exoticQi7 v ≤ 2 / 3 := by
+  rcases exoticQi7_values v with h | h | h <;> rw [h] <;> constructor <;> norm_num
+
+theorem exoticQi7_isFrameFunction : IsFrameFunction exoticQi7 := by
+  intro u v w hf
+  have hsum := s7_isZeroWeightFrameFunction u v w hf
+  simp only [exoticQi7]
+  linarith
+
+theorem exoticQi7_isNonnegFrameFunction : IsNonnegFrameFunction exoticQi7 :=
+  ⟨exoticQi7_isFrameFunction, fun v _ => (exoticQi7_bounds v).1⟩
+
+theorem exoticQi7_not_quadratic :
+    ¬ ∃ ρ : HermForm3, ∀ v : GVec, v.NonZero → exoticQi7 v = quadRay ρ v := by
+  rintro ⟨ρ, hρ⟩
+  obtain ⟨he1_s7, he2_s7, he3_s7, he12_s7, he13_s7, he23_s7, he12i_s7, he13i_s7, he23i_s7⟩ :=
+    s7_vanishes_on_nine_rays
+  have htomo_id : tomographyForm exoticQi7 = ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ := by
+    ext <;>
+      simp [tomographyForm, exoticQi7,
+        he1_s7, he2_s7, he3_s7, he12_s7, he13_s7, he23_s7, he12i_s7, he13i_s7, he23i_s7]
+  have hm := tomography_matches_nine_rays exoticQi7
+  have hρ_eq : tomographyForm exoticQi7 = ρ := by
+    apply tomography_unique (tomographyForm exoticQi7) ρ
+    · rw [hm.1, hρ tomo_e1 tomo_e1_nonZero]
+    · rw [hm.2.1, hρ tomo_e2 tomo_e2_nonZero]
+    · rw [hm.2.2.1, hρ tomo_e3 tomo_e3_nonZero]
+    · rw [hm.2.2.2.1, hρ tomo_e12 tomo_e12_nonZero]
+    · rw [hm.2.2.2.2.1, hρ tomo_e13 tomo_e13_nonZero]
+    · rw [hm.2.2.2.2.2.1, hρ tomo_e23 tomo_e23_nonZero]
+    · rw [hm.2.2.2.2.2.2.1, hρ tomo_e12i tomo_e12i_nonZero]
+    · rw [hm.2.2.2.2.2.2.2.1, hρ tomo_e13i tomo_e13i_nonZero]
+    · rw [hm.2.2.2.2.2.2.2.2, hρ tomo_e23i tomo_e23i_nonZero]
+  have hρ_id : ρ = ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ := hρ_eq.symm.trans htomo_id
+  have hp7 := hρ witness_p7 witness_p7_nonZero
+  rw [hρ_id] at hp7
+  have hq : quadRay ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ witness_p7 = 1 / 3 := by
+    simp [quadRay, quadNum, normSqVec, GaussRat.normSq, witness_p7, gv]
+    norm_num
+  have hex : exoticQi7 witness_p7 = 2 / 3 := by
+    simp [exoticQi7, s7_witness_p7]
+    norm_num
+  linarith
+
+/-- Two-parameter linear combination `c3 * s3 v + c7 * s7 v` of the `3`-adic and `7`-adic
+zero-weight residuals on `ℚ(i)³`. -/
+def combResidual37 (c3 c7 : ℚ) (v : GVec) : ℚ :=
+  c3 * s3 v + c7 * s7 v
+
+theorem combResidual37_isZeroWeightFrameFunction (c3 c7 : ℚ) :
+    IsZeroWeightFrameFunction (combResidual37 c3 c7) := by
+  intro u v w hf
+  have h3 := s3_isZeroWeightFrameFunction u v w hf
+  have h7 := s7_isZeroWeightFrameFunction u v w hf
+  simp only [combResidual37]
+  linear_combination c3 * h3 + c7 * h7
+
+theorem combResidual37_vanishes_on_nine_rays (c3 c7 : ℚ) :
+    VanishesOnNineRays (combResidual37 c3 c7) := by
+  obtain ⟨h3_1, h3_2, h3_3, h3_12, h3_13, h3_23, h3_12i, h3_13i, h3_23i⟩ :=
+    s3_vanishes_on_nine_rays
+  obtain ⟨h7_1, h7_2, h7_3, h7_12, h7_13, h7_23, h7_12i, h7_13i, h7_23i⟩ :=
+    s7_vanishes_on_nine_rays
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩ <;>
+    simp [combResidual37, h3_1, h3_2, h3_3, h3_12, h3_13, h3_23, h3_12i, h3_13i, h3_23i,
+      h7_1, h7_2, h7_3, h7_12, h7_13, h7_23, h7_12i, h7_13i, h7_23i]
+
+theorem combResidual37_isBoundedOnRays (c3 c7 : ℚ) :
+    IsBoundedOnRays (combResidual37 c3 c7) := by
+  refine ⟨|c3| + |c7|, by linarith [abs_nonneg c3, abs_nonneg c7], ?_⟩
+  intro v _
+  have hc3 := le_abs_self c3
+  have hnc3 := neg_le_abs c3
+  have hc7 := le_abs_self c7
+  have hnc7 := neg_le_abs c7
+  have hnn3 := abs_nonneg c3
+  have hnn7 := abs_nonneg c7
+  rcases s3_values v with h3 | h3 | h3 <;>
+    rcases s7_values v with h7 | h7 | h7 <;>
+    simp only [combResidual37, h3, h7] <;>
+    rw [abs_le] <;>
+    constructor <;>
+    linarith
+
+theorem combResidual37_witness_111 (c3 c7 : ℚ) :
+    combResidual37 c3 c7 witness_111 = c3 := by
+  simp [combResidual37, s3_witness_111, s7_witness_111]
+
+theorem combResidual37_witness_p7 (c3 c7 : ℚ) :
+    combResidual37 c3 c7 witness_p7 = c7 := by
+  simp [combResidual37, s3_witness_p7, s7_witness_p7]
+
+/-- Linear independence of the `3`-adic and `7`-adic bounded zero-weight residuals `(s3, s7)`
+on nonzero rays of `ℚ(i)³`: `c3 * s3 + c7 * s7` vanishes on all nonzero vectors iff `c3 = 0 ∧ c7 = 0`. -/
+theorem s3_s7_linearIndependent (c3 c7 : ℚ) :
+    (∀ v : GVec, v.NonZero → combResidual37 c3 c7 v = 0) ↔ (c3 = 0 ∧ c7 = 0) := by
+  constructor
+  · intro hall
+    have h1 := hall witness_111 witness_111_nonZero
+    have h2 := hall witness_p7 witness_p7_nonZero
+    rw [combResidual37_witness_111] at h1
+    rw [combResidual37_witness_p7] at h2
+    exact ⟨h1, h2⟩
+  · rintro ⟨rfl, rfl⟩ v _
+    simp [combResidual37]
+
+/-- Unscaled positive-sign `7`-adic Gaussian-integer perturbation `(7k, 1 + i, 2 + i)` near `tomo_e1`. -/
+def perturb7PosInt (k : ℕ) : GVec :=
+  gv (7 * (k : ℤ)) 0 1 1 2 1
+
+/-- Unscaled negative-sign `7`-adic Gaussian-integer perturbation `(7k, 2 + i, 1 + i)` near `tomo_e1`. -/
+def perturb7NegInt (k : ℕ) : GVec :=
+  gv (7 * (k : ℤ)) 0 2 1 1 1
+
+/-- Normalized positive-sign `7`-adic perturbation `(1, (1+i)/(7k), (2+i)/(7k))` approaching `tomo_e1`. -/
+def perturb7PosRay (k : ℕ) : GVec :=
+  ⟨⟨1, 0⟩,
+   ⟨1 / (7 * (k : ℚ)), 1 / (7 * (k : ℚ))⟩,
+   ⟨2 / (7 * (k : ℚ)), 1 / (7 * (k : ℚ))⟩⟩
+
+/-- Normalized negative-sign `7`-adic perturbation `(1, (2+i)/(7k), (1+i)/(7k))` approaching `tomo_e1`. -/
+def perturb7NegRay (k : ℕ) : GVec :=
+  ⟨⟨1, 0⟩,
+   ⟨2 / (7 * (k : ℚ)), 1 / (7 * (k : ℚ))⟩,
+   ⟨1 / (7 * (k : ℚ)), 1 / (7 * (k : ℚ))⟩⟩
+
+theorem perturb7PosRay_nonZero (k : ℕ) : (perturb7PosRay k).NonZero := by
+  left
+  change (⟨1, 0⟩ : GaussRat) ≠ 0
+  decide
+
+theorem perturb7NegRay_nonZero (k : ℕ) : (perturb7NegRay k).NonZero := by
+  left
+  change (⟨1, 0⟩ : GaussRat) ≠ 0
+  decide
+
+theorem seven_mul_gaussRat_ne_zero {k : ℕ} (hk : 0 < k) :
+    (⟨7 * (k : ℚ), 0⟩ : GaussRat) ≠ 0 := by
+  have hk_q : 0 < (k : ℚ) := by exact_mod_cast hk
+  intro h
+  have hre : (⟨7 * (k : ℚ), 0⟩ : GaussRat).re = 0 := by rw [h]; rfl
+  simp only at hre
+  linarith
+
+theorem smul_seven_mul_perturb7PosRay {k : ℕ} (hk : 0 < k) :
+    GVec.smul ⟨7 * (k : ℚ), 0⟩ (perturb7PosRay k) = perturb7PosInt k := by
+  have hk_q : 0 < (k : ℚ) := by exact_mod_cast hk
+  have hk_ne : (k : ℚ) ≠ 0 := ne_of_gt hk_q
+  have hmul : 7 * (k : ℚ) * ((k : ℚ)⁻¹ * 7⁻¹) = 1 := by
+    calc 7 * (k : ℚ) * ((k : ℚ)⁻¹ * 7⁻¹)
+        = (k : ℚ) * (k : ℚ)⁻¹ := by ring
+      _ = 1 := mul_inv_cancel₀ hk_ne
+  have hmul2 : 7 * (k : ℚ) * (2 / (7 * (k : ℚ))) = 2 := by
+    calc 7 * (k : ℚ) * (2 / (7 * (k : ℚ)))
+        = 2 * (7 * (k : ℚ) * ((k : ℚ)⁻¹ * 7⁻¹)) := by ring
+      _ = 2 * 1 := by rw [hmul]
+      _ = 2 := by ring
+  ext <;> simp [GVec.smul, perturb7PosRay, perturb7PosInt, gv, hmul, hmul2]
+
+theorem smul_seven_mul_perturb7NegRay {k : ℕ} (hk : 0 < k) :
+    GVec.smul ⟨7 * (k : ℚ), 0⟩ (perturb7NegRay k) = perturb7NegInt k := by
+  have hk_q : 0 < (k : ℚ) := by exact_mod_cast hk
+  have hk_ne : (k : ℚ) ≠ 0 := ne_of_gt hk_q
+  have hmul : 7 * (k : ℚ) * ((k : ℚ)⁻¹ * 7⁻¹) = 1 := by
+    calc 7 * (k : ℚ) * ((k : ℚ)⁻¹ * 7⁻¹)
+        = (k : ℚ) * (k : ℚ)⁻¹ := by ring
+      _ = 1 := mul_inv_cancel₀ hk_ne
+  have hmul2 : 7 * (k : ℚ) * (2 / (7 * (k : ℚ))) = 2 := by
+    calc 7 * (k : ℚ) * (2 / (7 * (k : ℚ)))
+        = 2 * (7 * (k : ℚ) * ((k : ℚ)⁻¹ * 7⁻¹)) := by ring
+      _ = 2 * 1 := by rw [hmul]
+      _ = 2 := by ring
+  ext <;> simp [GVec.smul, perturb7NegRay, perturb7NegInt, gv, hmul, hmul2]
+
+theorem v7Nat_forty_nine_mul_sq_add_seven (k : ℕ) :
+    v7Nat (49 * k ^ 2 + 7) = 1 ∧ p7PartNat (49 * k ^ 2 + 7) = 7 * k ^ 2 + 1 := by
+  apply v7Nat_p7PartNat_eq_of_pow_mul
+  · omega
+  · ring
+
+theorem v7Nat_forty_nine_mul_sq_ge_two {k : ℕ} (hk : 0 < k) :
+    2 ≤ v7Nat (49 * k ^ 2) := by
+  have hk2 : 0 < k ^ 2 := pow_pos hk 2
+  have hmul := (v7Nat_p7PartNat_mul (by decide : 0 < 49) hk2).1
+  have hv49 : v7Nat 49 = 2 := rfl
+  omega
+
+theorem s7_perturb7PosInt {k : ℕ} (hk : 0 < k) : s7 (perturb7PosInt k) = 1 := by
+  obtain ⟨hv_n, hp_n⟩ := v7Nat_forty_nine_mul_sq_add_seven k
+  have hv_x := v7Nat_forty_nine_mul_sq_ge_two hk
+  have hv2 : v7Nat 2 = 0 := rfl
+  have hp2 : p7PartNat 2 = 2 := rfl
+  rw [s7_eq_of_lead7Coord_y (n := 49 * k ^ 2 + 7) (nx := 49 * k ^ 2) (ny := 2)
+    (by omega) (by nlinarith) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, perturb7PosInt, gv]; ring)
+    (by simp [GaussRat.normSq, perturb7PosInt, gv]; ring)
+    (by simp [GaussRat.normSq, perturb7PosInt, gv]; norm_num)
+    (by omega) (by omega) (by omega)]
+  have hchi_n : chi7Nat (p7PartNat (49 * k ^ 2 + 7)) = 1 := by
+    rw [hp_n, ← chi7Nat_mod_seven (7 * k ^ 2 + 1)]
+    have hmod : (7 * k ^ 2 + 1) % 7 = 1 := by omega
+    rw [hmod]
+    rfl
+  have hchi_y : chi7Nat (p7PartNat 2) = 1 := rfl
+  rw [hchi_y, hchi_n]
+  ring
+
+theorem s7_perturb7NegInt {k : ℕ} (hk : 0 < k) : s7 (perturb7NegInt k) = -1 := by
+  obtain ⟨hv_n, hp_n⟩ := v7Nat_forty_nine_mul_sq_add_seven k
+  have hv_x := v7Nat_forty_nine_mul_sq_ge_two hk
+  have hv5 : v7Nat 5 = 0 := rfl
+  have hp5 : p7PartNat 5 = 5 := rfl
+  rw [s7_eq_of_lead7Coord_y (n := 49 * k ^ 2 + 7) (nx := 49 * k ^ 2) (ny := 5)
+    (by omega) (by nlinarith) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, perturb7NegInt, gv]; ring)
+    (by simp [GaussRat.normSq, perturb7NegInt, gv]; ring)
+    (by simp [GaussRat.normSq, perturb7NegInt, gv]; norm_num)
+    (by omega) (by omega) (by omega)]
+  have hchi_n : chi7Nat (p7PartNat (49 * k ^ 2 + 7)) = 1 := by
+    rw [hp_n, ← chi7Nat_mod_seven (7 * k ^ 2 + 1)]
+    have hmod : (7 * k ^ 2 + 1) % 7 = 1 := by omega
+    rw [hmod]
+    rfl
+  have hchi_y : chi7Nat (p7PartNat 5) = -1 := rfl
+  rw [hchi_y, hchi_n]
+  ring
+
+theorem s7_perturb7PosRay {k : ℕ} (hk : 0 < k) : s7 (perturb7PosRay k) = 1 := by
+  rw [← s7_smul (perturb7PosRay_nonZero k) (seven_mul_gaussRat_ne_zero hk),
+    smul_seven_mul_perturb7PosRay hk]
+  exact s7_perturb7PosInt hk
+
+theorem s7_perturb7NegRay {k : ℕ} (hk : 0 < k) : s7 (perturb7NegRay k) = -1 := by
+  rw [← s7_smul (perturb7NegRay_nonZero k) (seven_mul_gaussRat_ne_zero hk),
+    smul_seven_mul_perturb7NegRay hk]
+  exact s7_perturb7NegInt hk
+
+theorem forty_nine_mul_sq_add_seven_mod_three_ne_zero (k : ℕ) :
+    (49 * k ^ 2 + 7) % 3 ≠ 0 := by
+  simp only [sq]
+  rw [Nat.add_mod, Nat.mul_mod 49, Nat.mul_mod k k]
+  have hk : k % 3 = 0 ∨ k % 3 = 1 ∨ k % 3 = 2 := by omega
+  rcases hk with h | h | h <;> simp [h]
+
+theorem v3Nat_forty_nine_mul_sq_add_seven (k : ℕ) :
+    v3Nat (49 * k ^ 2 + 7) = 0 :=
+  (v3Nat_p3PartNat_eq_of_pow_mul (a := 0) (m := 49 * k ^ 2 + 7)
+    (forty_nine_mul_sq_add_seven_mod_three_ne_zero k) (by ring)).1
+
+theorem s3_perturb7PosInt (k : ℕ) : s3 (perturb7PosInt k) = 0 := by
+  apply s3_eq_zero_of_normSqVec_natCast (n := 49 * k ^ 2 + 7) (by omega)
+  · simp [normSqVec, GaussRat.normSq, perturb7PosInt, gv]; ring
+  · rw [v3Nat_forty_nine_mul_sq_add_seven k]; rfl
+
+theorem s3_perturb7NegInt (k : ℕ) : s3 (perturb7NegInt k) = 0 := by
+  apply s3_eq_zero_of_normSqVec_natCast (n := 49 * k ^ 2 + 7) (by omega)
+  · simp [normSqVec, GaussRat.normSq, perturb7NegInt, gv]; ring
+  · rw [v3Nat_forty_nine_mul_sq_add_seven k]; rfl
+
+/-- Selective cross-prime vanishing: `s3` vanishes on the `7`-adic perturbation rays
+`perturb7PosRay k` and `perturb7NegRay k` for every `k ≥ 1`. -/
+theorem s3_perturb7PosRay {k : ℕ} (hk : 0 < k) : s3 (perturb7PosRay k) = 0 := by
+  rw [← s3_smul (perturb7PosRay_nonZero k) (seven_mul_gaussRat_ne_zero hk),
+    smul_seven_mul_perturb7PosRay hk]
+  exact s3_perturb7PosInt k
+
+theorem s3_perturb7NegRay {k : ℕ} (hk : 0 < k) : s3 (perturb7NegRay k) = 0 := by
+  rw [← s3_smul (perturb7NegRay_nonZero k) (seven_mul_gaussRat_ne_zero hk),
+    smul_seven_mul_perturb7NegRay hk]
+  exact s3_perturb7NegInt k
+
+theorem v7Nat_nine_mul_seven_mul_sq_add_three (k : ℕ) :
+    v7Nat (9 * (7 * k) ^ 2 + 3) = 0 :=
+  (v7Nat_p7PartNat_eq_of_pow_mul (a := 0) (m := 9 * (7 * k) ^ 2 + 3)
+    (by
+      have h : 9 * (7 * k) ^ 2 + 3 = 7 * (63 * k ^ 2) + 3 := by ring
+      omega)
+    (by ring)).1
+
+theorem s7_perturbPosInt_seven_mul (k : ℕ) : s7 (perturbPosInt (7 * k)) = 0 := by
+  apply s7_eq_zero_of_normSqVec_natCast (n := 9 * (7 * k) ^ 2 + 3) (by omega)
+  · simp [normSqVec, GaussRat.normSq, perturbPosInt, gv]; ring
+  · rw [v7Nat_nine_mul_seven_mul_sq_add_three k]; rfl
+
+theorem s7_perturbNegInt_seven_mul (k : ℕ) : s7 (perturbNegInt (7 * k)) = 0 := by
+  apply s7_eq_zero_of_normSqVec_natCast (n := 9 * (7 * k) ^ 2 + 3) (by omega)
+  · simp [normSqVec, GaussRat.normSq, perturbNegInt, gv]; ring
+  · rw [v7Nat_nine_mul_seven_mul_sq_add_three k]; rfl
+
+/-- Selective cross-prime vanishing: `s7` vanishes on the `3`-adic subsequence
+`perturbPosRay (7 * k)` and `perturbNegRay (7 * k)` for every `k ≥ 1`. -/
+theorem s7_perturbPosRay_seven_mul {k : ℕ} (hk : 0 < k) :
+    s7 (perturbPosRay (7 * k)) = 0 := by
+  have hk7 : 0 < 7 * k := by omega
+  rw [← s7_smul (perturbPosRay_nonZero (7 * k)) (three_mul_gaussRat_ne_zero hk7),
+    smul_three_mul_perturbPosRay hk7]
+  exact s7_perturbPosInt_seven_mul k
+
+theorem s7_perturbNegRay_seven_mul {k : ℕ} (hk : 0 < k) :
+    s7 (perturbNegRay (7 * k)) = 0 := by
+  have hk7 : 0 < 7 * k := by omega
+  rw [← s7_smul (perturbNegRay_nonZero (7 * k)) (three_mul_gaussRat_ne_zero hk7),
+    smul_three_mul_perturbNegRay hk7]
+  exact s7_perturbNegInt_seven_mul k
+
+theorem distSqVec_perturb7PosRay_tomo_e1 (k : ℕ) :
+    distSqVec (perturb7PosRay k) tomo_e1 = 1 / (7 * (k : ℚ) ^ 2) := by
+  simp only [distSqVec, perturb7PosRay, tomo_e1, gv,
+    normSqVec, GaussRat.normSq, GaussRat.re_sub, GaussRat.im_sub]
+  ring
+
+theorem distSqVec_perturb7NegRay_tomo_e1 (k : ℕ) :
+    distSqVec (perturb7NegRay k) tomo_e1 = 1 / (7 * (k : ℚ) ^ 2) := by
+  simp only [distSqVec, perturb7NegRay, tomo_e1, gv,
+    normSqVec, GaussRat.normSq, GaussRat.re_sub, GaussRat.im_sub]
+  ring
+
+/-- In every archimedean neighborhood `distSqVec v tomo_e1 < δ` of `tomo_e1 = (1, 0, 0)`,
+there exist four nonzero Gaussian-rational rays `u3Pos, u3Neg, u7Pos, u7Neg ∈ ℚ(i)³`
+that selectively oscillate `s3` and `s7` independently:
+- `s3 u3Pos = 1, s7 u3Pos = 0` and `s3 u3Neg = -1, s7 u3Neg = 0`,
+- `s3 u7Pos = 0, s7 u7Pos = 1` and `s3 u7Neg = 0, s7 u7Neg = -1`. -/
+theorem s3_s7_selective_oscillation_near_tomo_e1 (δ : ℚ) (hδ : 0 < δ) :
+    ∃ u3Pos u3Neg u7Pos u7Neg : GVec,
+      u3Pos.NonZero ∧ u3Neg.NonZero ∧ u7Pos.NonZero ∧ u7Neg.NonZero ∧
+      distSqVec u3Pos tomo_e1 < δ ∧ distSqVec u3Neg tomo_e1 < δ ∧
+      distSqVec u7Pos tomo_e1 < δ ∧ distSqVec u7Neg tomo_e1 < δ ∧
+      s3 u3Pos = 1 ∧ s7 u3Pos = 0 ∧
+      s3 u3Neg = -1 ∧ s7 u3Neg = 0 ∧
+      s3 u7Pos = 0 ∧ s7 u7Pos = 1 ∧
+      s3 u7Neg = 0 ∧ s7 u7Neg = -1 := by
+  obtain ⟨k, hk, hlt⟩ := exists_nat_pos_inv_three_sq_lt hδ
+  have hk7 : 0 < 7 * k := by omega
+  have hk_ge_one : (1 : ℚ) ≤ (k : ℚ) := by exact_mod_cast hk
+  have h3k2_pos : 0 < 3 * (k : ℚ) ^ 2 := by nlinarith
+  have hpos : 0 < 1 / (3 * (k : ℚ) ^ 2) := div_pos (by norm_num) h3k2_pos
+  have h3_eq : 1 / (3 * ((7 * k : ℕ) : ℚ) ^ 2) = (1 / 49) * (1 / (3 * (k : ℚ) ^ 2)) := by
+    push_cast; ring
+  have h7_eq : 1 / (7 * (k : ℚ) ^ 2) = (3 / 7) * (1 / (3 * (k : ℚ) ^ 2)) := by ring
+  have hlt3 : 1 / (3 * ((7 * k : ℕ) : ℚ) ^ 2) < δ := by linarith
+  have hlt7 : 1 / (7 * (k : ℚ) ^ 2) < δ := by linarith
+  refine ⟨perturbPosRay (7 * k), perturbNegRay (7 * k), perturb7PosRay k, perturb7NegRay k,
+    perturbPosRay_nonZero (7 * k), perturbNegRay_nonZero (7 * k),
+    perturb7PosRay_nonZero k, perturb7NegRay_nonZero k,
+    ?_, ?_, ?_, ?_,
+    s3_perturbPosRay hk7, s7_perturbPosRay_seven_mul hk,
+    s3_perturbNegRay hk7, s7_perturbNegRay_seven_mul hk,
+    s3_perturb7PosRay hk, s7_perturb7PosRay hk,
+    s3_perturb7NegRay hk, s7_perturb7NegRay hk⟩
+  · rw [distSqVec_perturbPosRay_tomo_e1 (7 * k)]; exact hlt3
+  · rw [distSqVec_perturbNegRay_tomo_e1 (7 * k)]; exact hlt3
+  · rw [distSqVec_perturb7PosRay_tomo_e1 k]; exact hlt7
+  · rw [distSqVec_perturb7NegRay_tomo_e1 k]; exact hlt7
+
+/-- The `7`-adic zero-weight residual `s7` is not archimedean-continuous at `tomo_e1 = (1, 0, 0)`. -/
+theorem not_archimedeanContinuousAt_s7_tomo_e1 :
+    ¬ IsArchimedeanContinuousAt s7 tomo_e1 := by
+  intro hcont
+  obtain ⟨δ, hδ, hball⟩ := hcont (1 / 2) (by norm_num)
+  obtain ⟨_, _, u7Pos, _, _, _, hu7Pos_nz, _, _, _, hu7Pos_dist, _, _, _, _, _, _, hu7Pos_s7, _, _⟩ :=
+    s3_s7_selective_oscillation_near_tomo_e1 δ hδ
+  have hlt := hball u7Pos hu7Pos_nz hu7Pos_dist
+  have he1 : s7 tomo_e1 = 0 := s7_vanishes_on_nine_rays.1
+  rw [hu7Pos_s7, he1] at hlt
+  norm_num at hlt
+
+/-- The `7`-adic nonnegative non-quadratic frame function `exoticQi7` is not archimedean-continuous
+at `tomo_e1 = (1, 0, 0)`. -/
+theorem not_archimedeanContinuousAt_exoticQi7_tomo_e1 :
+    ¬ IsArchimedeanContinuousAt exoticQi7 tomo_e1 := by
+  intro hcont
+  obtain ⟨δ, hδ, hball⟩ := hcont (1 / 6) (by norm_num)
+  obtain ⟨_, _, u7Pos, _, _, _, hu7Pos_nz, _, _, _, hu7Pos_dist, _, _, _, _, _, _, hu7Pos_s7, _, _⟩ :=
+    s3_s7_selective_oscillation_near_tomo_e1 δ hδ
+  have hlt := hball u7Pos hu7Pos_nz hu7Pos_dist
+  have he1 : exoticQi7 tomo_e1 = 1 / 3 := by
+    simp only [exoticQi7, s7_vanishes_on_nine_rays.1]
+    norm_num
+  have hu7 : exoticQi7 u7Pos = 2 / 3 := by
+    simp only [exoticQi7, hu7Pos_s7]
+    norm_num
+  rw [hu7, he1] at hlt
+  norm_num at hlt
+
+/-- Joint Archimedean continuity elimination of `combResidual37 c3 c7`: if `f` and
+`f - combResidual37 c3 c7` are both archimedean-continuous at `tomo_e1 = (1, 0, 0)`, then
+both inert-prime residual coefficients vanish (`c3 = 0 ∧ c7 = 0`). -/
+theorem combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1
+    {f : GVec → ℚ} {c3 c7 : ℚ}
+    (hf_cont : IsArchimedeanContinuousAt f tomo_e1)
+    (hq_cont : IsArchimedeanContinuousAt (fun v => f v - combResidual37 c3 c7 v) tomo_e1) :
+    c3 = 0 ∧ c7 = 0 := by
+  have he1_3 : s3 tomo_e1 = 0 := s3_vanishes_on_nine_rays.1
+  have he1_7 : s7 tomo_e1 = 0 := s7_vanishes_on_nine_rays.1
+  constructor
+  · by_contra hc3
+    have hc3_pos : 0 < |c3| := abs_pos.mpr hc3
+    obtain ⟨δ1, hδ1, hb1⟩ := hf_cont (|c3| / 3) (by linarith)
+    obtain ⟨δ2, hδ2, hb2⟩ := hq_cont (|c3| / 3) (by linarith)
+    let δ := min δ1 δ2
+    have hδ : 0 < δ := lt_min hδ1 hδ2
+    obtain ⟨u3Pos, _, _, _, hu3Pos_nz, _, _, _, hu3Pos_dist, _, _, _,
+      hu3Pos_s3, hu3Pos_s7, _, _, _, _, _, _⟩ :=
+      s3_s7_selective_oscillation_near_tomo_e1 δ hδ
+    have h1 := hb1 u3Pos hu3Pos_nz (lt_of_lt_of_le hu3Pos_dist (min_le_left δ1 δ2))
+    have h2 := hb2 u3Pos hu3Pos_nz (lt_of_lt_of_le hu3Pos_dist (min_le_right δ1 δ2))
+    simp only [combResidual37, hu3Pos_s3, hu3Pos_s7, he1_3, he1_7,
+      mul_one, mul_zero, add_zero, sub_zero] at h2
+    have htri : |c3| ≤ |f u3Pos - f tomo_e1| + |f u3Pos - c3 - f tomo_e1| := by
+      calc |c3| = |(f u3Pos - f tomo_e1) - (f u3Pos - c3 - f tomo_e1)| := by ring_nf
+        _ ≤ |f u3Pos - f tomo_e1| + |f u3Pos - c3 - f tomo_e1| :=
+          abs_sub (f u3Pos - f tomo_e1) (f u3Pos - c3 - f tomo_e1)
+    linarith
+  · by_contra hc7
+    have hc7_pos : 0 < |c7| := abs_pos.mpr hc7
+    obtain ⟨δ1, hδ1, hb1⟩ := hf_cont (|c7| / 3) (by linarith)
+    obtain ⟨δ2, hδ2, hb2⟩ := hq_cont (|c7| / 3) (by linarith)
+    let δ := min δ1 δ2
+    have hδ : 0 < δ := lt_min hδ1 hδ2
+    obtain ⟨_, _, u7Pos, _, _, _, hu7Pos_nz, _, _, _, hu7Pos_dist, _,
+      _, _, _, _, hu7Pos_s3, hu7Pos_s7, _, _⟩ :=
+      s3_s7_selective_oscillation_near_tomo_e1 δ hδ
+    have h1 := hb1 u7Pos hu7Pos_nz (lt_of_lt_of_le hu7Pos_dist (min_le_left δ1 δ2))
+    have h2 := hb2 u7Pos hu7Pos_nz (lt_of_lt_of_le hu7Pos_dist (min_le_right δ1 δ2))
+    simp only [combResidual37, hu7Pos_s3, hu7Pos_s7, he1_3, he1_7,
+      mul_one, mul_zero, zero_add, add_zero, sub_zero] at h2
+    have htri : |c7| ≤ |f u7Pos - f tomo_e1| + |f u7Pos - c7 - f tomo_e1| := by
+      calc |c7| = |(f u7Pos - f tomo_e1) - (f u7Pos - c7 - f tomo_e1)| := by ring_nf
+        _ ≤ |f u7Pos - f tomo_e1| + |f u7Pos - c7 - f tomo_e1| :=
+          abs_sub (f u7Pos - f tomo_e1) (f u7Pos - c7 - f tomo_e1)
+    linarith
+
+/-- Unconditional joint Archimedean continuity elimination theorem for `(s3, s7)`:
+for any `ρ : HermForm3` and `c3, c7 : ℚ`, the perturbed ray function
+`quadRay ρ + c3 • s3 + c7 • s7` is archimedean-continuous at `tomo_e1 = (1, 0, 0)`
+if and only if `c3 = 0 ∧ c7 = 0`. -/
+theorem quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff
+    (ρ : HermForm3) (c3 c7 : ℚ) :
+    IsArchimedeanContinuousAt (fun v => quadRay ρ v + combResidual37 c3 c7 v) tomo_e1 ↔
+      (c3 = 0 ∧ c7 = 0) := by
+  constructor
+  · intro hf_cont
+    apply combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1 hf_cont
+    have heq : (fun v => (quadRay ρ v + combResidual37 c3 c7 v) - combResidual37 c3 c7 v) =
+        quadRay ρ := by
+      funext v; ring
+    rw [heq]
+    exact archimedeanContinuousAt_quadRay_tomo_e1 ρ
+  · rintro ⟨rfl, rfl⟩
+    have heq : (fun v => quadRay ρ v + combResidual37 0 0 v) = quadRay ρ := by
+      funext v; simp [combResidual37]
+    rw [heq]
+    exact archimedeanContinuousAt_quadRay_tomo_e1 ρ
+
+/-- Over `ℚ(i)³`, no scalar multiple of `witness_p7 = (1, 2, 1 + i)` can have unit squared norm `1`. -/
+theorem no_unit_norm_smul_witness_p7_in_qi3 (l : GaussRat) :
+    normSqVec (GVec.smul l witness_p7) ≠ 1 := by
+  intro h1
+  have hl_pos : 0 < l.normSq := by
+    by_contra hle
+    have h0 : l.normSq = 0 := le_antisymm (not_lt.mp hle) (GaussRat.normSq_nonneg l)
+    rw [normSqVec_smul, h0, zero_mul] at h1
+    norm_num at h1
+  rw [normSqVec_smul, witness_p7_normSq] at h1
+  have hv := congrArg v7Rat h1
+  rw [v7Rat_mul hl_pos (by norm_num : (0 : ℚ) < 7)] at hv
+  have hv1 : v7Rat 1 = 0 := rfl
+  have hv7 : v7Rat 7 = 1 := rfl
+  have heven := v7Rat_normSq_even l
+  omega
+
+/-- Zero-weight frame functions on `ℚ(i, √p)³`. -/
+def IsZeroWeightFrameFunctionSqrtP (p : ℚ) (G : GVecSqrt3 → ℚ) : Prop :=
+  ∀ u v w : GVecSqrt3, IsFrameSqrtP p u v w → G u + G v + G w = 0
+
+/-- Any zero-weight frame function `G` on `ℚ(i, √7)³` that vanishes on vectors whose rational
+squared norm has even `7`-adic valuation must vanish on `witness_p7 = (1, 2, 1 + i)`, so `s7`
+cannot extend to `ℚ(i, √7)³` under the even-`v_7` vanishing rule. -/
+theorem zero_on_witness_p7_of_sqrt7_even_v7_vanishing
+    {G : GVecSqrt3 → ℚ}
+    (hG : IsZeroWeightFrameFunctionSqrtP 7 G)
+    (heven : ∀ u : GVecSqrt3, v7Rat (GVecSqrt3.normSqRatP 7 u) % 2 = 0 → G u = 0) :
+    G (GVecSqrt3.ofGVec witness_p7) = 0 := by
+  obtain ⟨hfr, _, hnp, hnq⟩ := isFrameSqrt7_witness_p7_norms
+  have hsum := hG (GVecSqrt3.ofGVec witness_p7) frameSqrt7_p frameSqrt7_q hfr
+  have hv245 : v7Rat 245 % 2 = 0 := by
+    have h245 : (245 : ℚ) = ((245 : ℕ) : ℚ) := by norm_num
+    rw [h245, v7Rat_natCast (by decide : 0 < 245)]
+    rfl
+  have hp_even : v7Rat (GVecSqrt3.normSqRatP 7 frameSqrt7_p) % 2 = 0 := by rw [hnp]; exact hv245
+  have hq_even : v7Rat (GVecSqrt3.normSqRatP 7 frameSqrt7_q) % 2 = 0 := by rw [hnq]; exact hv245
+  have hp0 := heven frameSqrt7_p hp_even
+  have hq0 := heven frameSqrt7_q hq_even
+  linarith
+
+theorem no_s7_even_v7_extension_to_sqrt7 :
+    ¬ ∃ G : GVecSqrt3 → ℚ,
+        IsZeroWeightFrameFunctionSqrtP 7 G ∧
+        (∀ u : GVecSqrt3, v7Rat (GVecSqrt3.normSqRatP 7 u) % 2 = 0 → G u = 0) ∧
+        (∀ v : GVec, G (GVecSqrt3.ofGVec v) = s7 v) := by
+  rintro ⟨G, hG, heven, hext⟩
+  have h0 := zero_on_witness_p7_of_sqrt7_even_v7_vanishing hG heven
+  have h1 := hext witness_p7
+  rw [s7_witness_p7] at h1
+  linarith
+
+/-- Joint field-extension elimination of `combResidual37 c3 c7` over `ℚ(i, √3)³` and `ℚ(i, √7)³`:
+because the orthogonal partners `frameSqrt3_p, frameSqrt3_q` (norm `18 = 2 × 3²`) and
+`frameSqrt7_p, frameSqrt7_q` (norm `245 = 5 × 7²`) have even `3`-adic AND even `7`-adic
+valuations simultaneously (`v3Rat 18 = 2, v7Rat 18 = 0` and `v3Rat 245 = 0, v7Rat 245 = 2`),
+any linear combination `combResidual37 c3 c7` that extends to zero-weight frame functions on
+`ℚ(i, √3)³` and `ℚ(i, √7)³` vanishing on rays with jointly `{3, 7}`-even rational squared norm
+must have `c3 = 0 ∧ c7 = 0`. -/
+theorem joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37
+    {c3 c7 : ℚ}
+    {G3 G7 : GVecSqrt3 → ℚ}
+    (hG3 : IsZeroWeightFrameFunctionSqrt3 G3)
+    (hG7 : IsZeroWeightFrameFunctionSqrtP 7 G7)
+    (heven3 : ∀ u : GVecSqrt3,
+      v3Rat u.normSqRat % 2 = 0 ∧ v7Rat u.normSqRat % 2 = 0 → G3 u = 0)
+    (heven7 : ∀ u : GVecSqrt3,
+      v3Rat (GVecSqrt3.normSqRatP 7 u) % 2 = 0 ∧
+      v7Rat (GVecSqrt3.normSqRatP 7 u) % 2 = 0 → G7 u = 0)
+    (hext3 : ∀ v : GVec, G3 (GVecSqrt3.ofGVec v) = combResidual37 c3 c7 v)
+    (hext7 : ∀ v : GVec, G7 (GVecSqrt3.ofGVec v) = combResidual37 c3 c7 v) :
+    c3 = 0 ∧ c7 = 0 := by
+  obtain ⟨hfr3, _, hnp3, hnq3, hp3_v3, hq3_v3, _⟩ := isFrameSqrt3_witness_111_even_norms
+  obtain ⟨hfr7, _, hnp7, hnq7⟩ := isFrameSqrt7_witness_p7_norms
+  have hv7_18 : v7Rat 18 % 2 = 0 := by
+    have h18 : (18 : ℚ) = ((18 : ℕ) : ℚ) := by norm_num
+    rw [h18, v7Rat_natCast (by decide : 0 < 18)]
+    rfl
+  have hv3_245 : v3Rat 245 % 2 = 0 := by
+    have h245 : (245 : ℚ) = ((245 : ℕ) : ℚ) := by norm_num
+    rw [h245, v3Rat_natCast (by decide : 0 < 245)]
+    rfl
+  have hv7_245 : v7Rat 245 % 2 = 0 := by
+    have h245 : (245 : ℚ) = ((245 : ℕ) : ℚ) := by norm_num
+    rw [h245, v7Rat_natCast (by decide : 0 < 245)]
+    rfl
+  have hsum3 := hG3 witness_111_sqrt3 frameSqrt3_p frameSqrt3_q hfr3
+  have hp3_0 := heven3 frameSqrt3_p ⟨hp3_v3, by rw [hnp3]; exact hv7_18⟩
+  have hq3_0 := heven3 frameSqrt3_q ⟨hq3_v3, by rw [hnq3]; exact hv7_18⟩
+  have hw111_0 : G3 (GVecSqrt3.ofGVec witness_111) = 0 := by
+    change G3 witness_111_sqrt3 = 0
+    linarith
+  rw [hext3 witness_111, combResidual37_witness_111] at hw111_0
+  have hsum7 := hG7 (GVecSqrt3.ofGVec witness_p7) frameSqrt7_p frameSqrt7_q hfr7
+  have hp7_0 := heven7 frameSqrt7_p ⟨by rw [hnp7]; exact hv3_245, by rw [hnp7]; exact hv7_245⟩
+  have hq7_0 := heven7 frameSqrt7_q ⟨by rw [hnq7]; exact hv3_245, by rw [hnq7]; exact hv7_245⟩
+  have hwp7_0 : G7 (GVecSqrt3.ofGVec witness_p7) = 0 := by linarith
+  rw [hext7 witness_p7, combResidual37_witness_p7] at hwp7_0
+  exact ⟨hw111_0, hwp7_0⟩
+
+theorem not_factorsThroughRayProjLinear_s7 : ¬ FactorsThroughRayProjLinear s7 := by
+  intro hlin
+  have h0 := zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
+    s7_vanishes_on_nine_rays hlin witness_p7 witness_p7_nonZero
+  rw [s7_witness_p7] at h0
+  norm_num at h0
+
+/-- A linear combination `combResidual37 c3 c7` factors linearly through `rayProj`
+if and only if `c3 = 0 ∧ c7 = 0`. -/
+theorem factorsThroughRayProjLinear_combResidual37_iff (c3 c7 : ℚ) :
+    FactorsThroughRayProjLinear (combResidual37 c3 c7) ↔ (c3 = 0 ∧ c7 = 0) := by
+  constructor
+  · intro hlin
+    exact (s3_s7_linearIndependent c3 c7).mp
+      (zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
+        (combResidual37_vanishes_on_nine_rays c3 c7) hlin)
+  · rintro ⟨rfl, rfl⟩
+    refine ⟨fun _ => 0, ⟨by intro _ _; ring, by intro _ _; ring⟩, ?_⟩
+    intro v _
+    simp [combResidual37]
+
 end BornFinite.GaussianTomography
 
 #print axioms BornFinite.GaussianTomography.inner_applyVec_im_zero
@@ -3327,4 +4859,38 @@ end BornFinite.GaussianTomography
 #print axioms BornFinite.GaussianTomography.zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
 #print axioms BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s3
 #print axioms BornFinite.GaussianTomography.quadratic_rigidity_iff_factorsThroughRayProjLinear
+#print axioms BornFinite.GaussianTomography.v7Rat_normSq_even
+#print axioms BornFinite.GaussianTomography.frame_v7Rat_sum_even
+#print axioms BornFinite.GaussianTomography.s7_orthogonal_odd_cancel
+#print axioms BornFinite.GaussianTomography.s7_isZeroWeightFrameFunction
+#print axioms BornFinite.GaussianTomography.s7_smul
+#print axioms BornFinite.GaussianTomography.s7_isBoundedOnRays
+#print axioms BornFinite.GaussianTomography.s7_vanishes_on_nine_rays
+#print axioms BornFinite.GaussianTomography.witness_p7_primitive
+#print axioms BornFinite.GaussianTomography.s3_s7_dual_on_witnesses
+#print axioms BornFinite.GaussianTomography.exoticQi7_isNonnegFrameFunction
+#print axioms BornFinite.GaussianTomography.exoticQi7_not_quadratic
+#print axioms BornFinite.GaussianTomography.combResidual37_isZeroWeightFrameFunction
+#print axioms BornFinite.GaussianTomography.combResidual37_vanishes_on_nine_rays
+#print axioms BornFinite.GaussianTomography.combResidual37_isBoundedOnRays
+#print axioms BornFinite.GaussianTomography.s3_s7_linearIndependent
+#print axioms BornFinite.GaussianTomography.s7_perturb7PosRay
+#print axioms BornFinite.GaussianTomography.s7_perturb7NegRay
+#print axioms BornFinite.GaussianTomography.s3_perturb7PosRay
+#print axioms BornFinite.GaussianTomography.s3_perturb7NegRay
+#print axioms BornFinite.GaussianTomography.s7_perturbPosRay_seven_mul
+#print axioms BornFinite.GaussianTomography.s7_perturbNegRay_seven_mul
+#print axioms BornFinite.GaussianTomography.distSqVec_perturb7PosRay_tomo_e1
+#print axioms BornFinite.GaussianTomography.distSqVec_perturb7NegRay_tomo_e1
+#print axioms BornFinite.GaussianTomography.s3_s7_selective_oscillation_near_tomo_e1
+#print axioms BornFinite.GaussianTomography.not_archimedeanContinuousAt_s7_tomo_e1
+#print axioms BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi7_tomo_e1
+#print axioms BornFinite.GaussianTomography.combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1
+#print axioms BornFinite.GaussianTomography.quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff
+#print axioms BornFinite.GaussianTomography.no_unit_norm_smul_witness_p7_in_qi3
+#print axioms BornFinite.GaussianTomography.zero_on_witness_p7_of_sqrt7_even_v7_vanishing
+#print axioms BornFinite.GaussianTomography.no_s7_even_v7_extension_to_sqrt7
+#print axioms BornFinite.GaussianTomography.joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37
+#print axioms BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s7
+#print axioms BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual37_iff
 

@@ -317,6 +317,53 @@ tomography rays):
    `not_factorsThroughRayProjLinear_s3`), and a frame function on `Q(i)^3` has
    the quadratic Born form `quadRay rho` (`tr rho = 1`) if and only if it factors
    linearly through `rayProj` (`quadratic_rigidity_iff_factorsThroughRayProjLinear`).
+4. **Multi-Prime `7`-Adic Residual `s7`, Linear Independence, and Joint Elimination (Suite 9D)**:
+   Since `7 ≡ 3 (mod 4)` is inert in `Z[i]`, every nonzero `z in Q(i)^x` has
+   even `7`-adic norm valuation (`v7Rat_normSq_even`), every orthogonal frame in
+   `Q(i)^3` has even `v_7`-sum (`frame_v7Rat_sum_even`), and the Legendre
+   character `u7Rat` mod `7` (`isQrMod7`, `chi7Nat`) defines a second global
+   `{-1, 0, +1}`-valued bounded zero-weight residual `s7 : GVec -> Q`
+   (`s7_orthogonal_odd_cancel`, `s7_isZeroWeightFrameFunction`, `s7_smul`,
+   `s7_isBoundedOnRays`, `s7_vanishes_on_nine_rays`) and a second `{0, 1/3, 2/3}`-valued
+   nonnegative non-quadratic frame function `exoticQi7(v) = (1 + s7(v)) / 3`
+   (`exoticQi7_isNonnegFrameFunction`, `exoticQi7_not_quadratic`). On the
+   `(1+i)`-primitive witnesses `witness_111 = (1, 1, 1)` (norm `3`) and
+   `witness_p7 = (1, 2, 1 + i)` (norm `7`, `witness_p7_primitive`), `(s3, s7)`
+   satisfies Kronecker-delta duality (`s3_s7_dual_on_witnesses`):
+   `s3(witness_111) = 1, s7(witness_111) = 0` and
+   `s3(witness_p7) = 0, s7(witness_p7) = 1`. Thus the two-parameter combination
+   `combResidual37 c3 c7 v = c3 * s3 v + c7 * s7 v` spans a 2-dimensional
+   subspace of bounded zero-weight residuals vanishing on the 9 tomography rays
+   (`combResidual37_isZeroWeightFrameFunction`,
+   `combResidual37_vanishes_on_nine_rays`, `combResidual37_isBoundedOnRays`,
+   `s3_s7_linearIndependent`). Near `tomo_e1 = (1, 0, 0)`, the `3`-adic
+   subsequence `perturbPosRay (7*k)` / `perturbNegRay (7*k)` has norm
+   `9(7k)^2 + 3 ≡ 3 (mod 7)` (`v_7 = 0`), so `s3 = +/- 1` and `s7 = 0`
+   (`s7_perturbPosRay_seven_mul`, `s7_perturbNegRay_seven_mul`), whereas the
+   `7`-adic perturbation `perturb7PosRay k` / `perturb7NegRay k` from
+   `(7k, 1 + i, 2 + i)` and `(7k, 2 + i, 1 + i)` has norm
+   `49k^2 + 7 ≡ k^2 + 1 != 0 (mod 3)` (`v_3 = 0`, `v_7 = 1`), so `s3 = 0` and
+   `s7 = +/- 1` (`s7_perturb7PosRay`, `s7_perturb7NegRay`, `s3_perturb7PosRay`,
+   `s3_perturb7NegRay`, `distSqVec_perturb7PosRay_tomo_e1`,
+   `distSqVec_perturb7NegRay_tomo_e1`). These four ray sequences selectively
+   oscillate `s3` and `s7` in every archimedean neighborhood of `tomo_e1`
+   (`s3_s7_selective_oscillation_near_tomo_e1`,
+   `not_archimedeanContinuousAt_s7_tomo_e1`,
+   `not_archimedeanContinuousAt_exoticQi7_tomo_e1`), so
+   `quadRay rho + combResidual37 c3 c7` is archimedean-continuous at `tomo_e1`
+   if and only if `c3 = 0` and `c7 = 0`
+   (`combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1`,
+   `quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff`). Similarly,
+   because the `Q(i, sqrt(3))^3` partner norm `18 = 2 * 3^2` and the
+   `Q(i, sqrt(7))^3` partner norm `245 = 5 * 7^2` have even valuations at both
+   `p = 3` and `p = 7`, joint even-`{v_3, v_7}` extension to both biquadratic
+   fields forces `c3 = 0` and `c7 = 0`
+   (`no_unit_norm_smul_witness_p7_in_qi3`,
+   `zero_on_witness_p7_of_sqrt7_even_v7_vanishing`,
+   `no_s7_even_v7_extension_to_sqrt7`,
+   `joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37`), as does
+   operator-space projector linearity (`not_factorsThroughRayProjLinear_s7`,
+   `factorsThroughRayProjLinear_combResidual37_iff`).
 
 ## What is established (What this artifact supports)
 
@@ -347,34 +394,50 @@ tomography rays):
   `primitive_gaussian_norm_mod_four_iff`, `gaussian_norm_div_four_witness`,
   `gaussian_norm_eight_primitive_witness`) is kernel-checked in
   `lean4/BornGaussianTomographyReduction.lean`.
-- The global bounded `{-1, 0, +1}`-valued `3`-adic zero-weight residual `s3`
-  (`v3Rat_normSq_even`, `detGVec_normSq_of_frame`, `frame_v3Rat_sum_even`,
-  `ortho_coord_identity_x`, `s3_orthogonal_odd_cancel`,
-  `s3_isZeroWeightFrameFunction`, `s3_smul`, `s3_isBoundedOnRays`,
-  `s3_vanishes_on_nine_rays`, `witness_111_primitive`,
+- The global bounded `{-1, 0, +1}`-valued `3`-adic and `7`-adic zero-weight
+  residuals `s3` and `s7` (`v3Rat_normSq_even`, `v7Rat_normSq_even`,
+  `detGVec_normSq_of_frame`, `frame_v3Rat_sum_even`, `frame_v7Rat_sum_even`,
+  `ortho_coord_identity_x`, `s3_orthogonal_odd_cancel`, `s7_orthogonal_odd_cancel`,
+  `s3_isZeroWeightFrameFunction`, `s7_isZeroWeightFrameFunction`, `s3_smul`,
+  `s7_smul`, `s3_isBoundedOnRays`, `s7_isBoundedOnRays`,
+  `s3_vanishes_on_nine_rays`, `s7_vanishes_on_nine_rays`,
+  `witness_111_primitive`, `witness_p7_primitive`,
   `witness_div_four_shell_primitive`, `witness_div_eight_shell_primitive`,
-  `exists_nonzero_bounded_zero_residual`) and the explicit `{0, 1/3, 2/3}`-valued
-  nonnegative non-quadratic frame function `exoticQi3`
-  (`exoticQi3_isNonnegFrameFunction`, `exoticQi3_not_quadratic`,
-  `not_signed_quadratic_rigidity`, `not_nonneg_quadratic_rigidity`) are
-  kernel-checked in `lean4/BornGaussianTomographyReduction.lean`.
-- The three elimination mechanisms in Section 9—archimedean oscillation and
-  discontinuity at `tomo_e1` together with positive-control continuity of
-  `quadRay rho` (`s3_oscillates_near_tomo_e1`,
+  `exists_nonzero_bounded_zero_residual`, `s3_s7_dual_on_witnesses`,
+  `s3_s7_linearIndependent`), their 2-dimensional span `combResidual37`, and the
+  explicit `{0, 1/3, 2/3}`-valued nonnegative non-quadratic frame functions
+  `exoticQi3` and `exoticQi7` (`exoticQi3_isNonnegFrameFunction`,
+  `exoticQi3_not_quadratic`, `exoticQi7_isNonnegFrameFunction`,
+  `exoticQi7_not_quadratic`, `not_signed_quadratic_rigidity`,
+  `not_nonneg_quadratic_rigidity`) are kernel-checked in
+  `lean4/BornGaussianTomographyReduction.lean`.
+- The single-prime and multi-prime elimination mechanisms in Section 9—selective
+  archimedean oscillation and discontinuity at `tomo_e1` together with
+  positive-control continuity of `quadRay rho` (`s3_oscillates_near_tomo_e1`,
+  `s3_s7_selective_oscillation_near_tomo_e1`,
   `not_archimedeanContinuousAt_s3_tomo_e1`,
   `not_archimedeanContinuousAt_exoticQi3_tomo_e1`,
+  `not_archimedeanContinuousAt_s7_tomo_e1`,
+  `not_archimedeanContinuousAt_exoticQi7_tomo_e1`,
   `s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`,
+  `combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1`,
   `archimedeanContinuousAt_quadRay_tomo_e1`,
-  `quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff`), the biquadratic
-  field extension `Q(i, sqrt(p))^3` even-valuation frame obstruction
-  (`no_unit_norm_smul_witness_111_in_qi3`, `witness_111_unit_sqrt3_normSq`,
-  `isFrameSqrt3_witness_111_even_norms`,
+  `quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff`,
+  `quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff`), the
+  biquadratic field extension `Q(i, sqrt(p))^3` even-valuation frame obstruction
+  (`no_unit_norm_smul_witness_111_in_qi3`, `no_unit_norm_smul_witness_p7_in_qi3`,
+  `witness_111_unit_sqrt3_normSq`, `isFrameSqrt3_witness_111_even_norms`,
   `zero_on_witness_111_of_sqrt3_even_v3_vanishing`,
-  `no_s3_even_v3_extension_to_sqrt3`, `unit_norm_in_sqrtP_of_normSqVec_eq`,
+  `no_s3_even_v3_extension_to_sqrt3`,
+  `zero_on_witness_p7_of_sqrt7_even_v7_vanishing`,
+  `no_s7_even_v7_extension_to_sqrt7`,
+  `joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37`,
+  `unit_norm_in_sqrtP_of_normSqVec_eq`,
   `fourSquarePartner_ortho_and_normSqRatP`, `isFrameSqrt7_witness_p7_norms`),
   and general operator-space projector linearity
   (`zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear`,
-  `not_factorsThroughRayProjLinear_s3`,
+  `not_factorsThroughRayProjLinear_s3`, `not_factorsThroughRayProjLinear_s7`,
+  `factorsThroughRayProjLinear_combResidual37_iff`,
   `quadratic_rigidity_iff_factorsThroughRayProjLinear`)—are kernel-checked in
   `lean4/BornGaussianTomographyReduction.lean`.
 
@@ -382,33 +445,37 @@ tomography rays):
 
 The stated field, Hermitian form, and all-frame equations are supplied by the
 target. The Lean 4 theorems use rational linear, polynomial, biquadratic
-(`Q(i, sqrt(p))`), and `3`-adic valuation arithmetic over `Q` and `Q(i)`.
-Constructive separation of the projector kernel in Section 5 uses the explicit
-bounded `3`-adic functional `s3` (`s3_witness_111_kernel_separation`), requiring
-no infinite-dimensional basis extension. No continuum Gleason theorem is used.
+(`Q(i, sqrt(p))`), and `3`-adic / `7`-adic valuation arithmetic over `Q` and
+`Q(i)`. Constructive separation of the projector kernel in Section 5 uses the
+explicit bounded `3`-adic functional `s3` (`s3_witness_111_kernel_separation`),
+requiring no infinite-dimensional basis extension. No continuum Gleason theorem
+is used.
 
 ## What this artifact does not support and what remains open
 
-- **What it does not support**: This artifact does not classify the full vector
-  space of all non-quadratic zero-weight residuals across every inert prime
-  `p ≡ 3 (mod 4)` simultaneously without projector linearity, nor does it
-  establish that archimedean continuity alone (without projector linearity or
-  continuum completeness) eliminates every infinite linear combination of
-  inert-prime residuals, nor does it close `FQ-GAP-BORN-UNIQUENESS-GLEASON`.
-- **Narrowest defensible claim**: On `Q(i)^3`, the `3`-adic residual `s3` and
-  `exoticQi3 = (1 + s3) / 3` settle both signed and nonnegative pure-frame
-  quadratic rigidity in the negative, while `s3` is eliminated at `p = 3` by
-  archimedean continuity at `tomo_e1`
-  (`quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff`) or by even-`v_3`
-  extension to `Q(i, sqrt(3))^3` (`no_s3_even_v3_extension_to_sqrt3`), the
-  parameterized `Q(i, sqrt(p))^3` four-square SU(2) completion shifts partner
-  norms from `p * N(v_0)` to `p^2 * N(v_0)` (`fourSquarePartner_ortho_and_normSqRatP`,
-  `isFrameSqrt7_witness_p7_norms`), and all nine-ray-vanishing residuals are
-  eliminated iff the frame function factors linearly through `rayProj`
-  (`quadratic_rigidity_iff_factorsThroughRayProjLinear`).
-- **Next test needed**: Formalize the parameterized inert-prime residual family
-  `s_p` for general `p ≡ 3 (mod 4)` in Lean 4 and test whether archimedean
-  continuity on `Q(i)^3` (without assuming `FactorsThroughRayProjLinear` a
-  priori) suffices to force every bounded zero-weight residual on `Q(i)^3` to
-  vanish.
+- **What it does not support**: This artifact does not classify the full
+  infinite-dimensional vector space of all non-quadratic zero-weight residuals
+  across every inert prime `p ≡ 3 (mod 4)` simultaneously without projector
+  linearity, nor does it establish that archimedean continuity alone (without
+  projector linearity or continuum completeness) eliminates arbitrary finite or
+  infinite linear combinations of non-quadratic residuals beyond the formalized
+  `{3, 7}` two-prime family, nor does it close `FQ-GAP-BORN-UNIQUENESS-GLEASON`.
+- **Narrowest defensible claim**: On `Q(i)^3`, the `3`-adic and `7`-adic
+  residuals `(s3, s7)` span a 2-dimensional space `combResidual37 c3 c7` of
+  bounded zero-weight residuals vanishing on the 9 tomography rays (giving two
+  distinct `{0, 1/3, 2/3}`-valued nonnegative non-quadratic frame functions
+  `exoticQi3` and `exoticQi7`), every linear combination `c3 * s3 + c7 * s7` is
+  jointly eliminated (`c3 = 0 ∧ c7 = 0`) by archimedean continuity at `tomo_e1`
+  (`quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff`), by joint
+  even-`{v_3, v_7}` extension to `Q(i, sqrt(3))^3` and `Q(i, sqrt(7))^3`
+  (`joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37`), or by
+  operator-space projector linearity (`factorsThroughRayProjLinear_combResidual37_iff`),
+  and all nine-ray-vanishing residuals are eliminated iff the frame function
+  factors linearly through `rayProj` (`quadratic_rigidity_iff_factorsThroughRayProjLinear`).
+- **Next test needed**: Formalize a finite-family inert-prime residual sum
+  `sum_(p in F) c_p s_p` over arbitrary finite subsets `F` of inert primes
+  `p ≡ 3 (mod 4)` in Lean 4 using Chinese-remainder / coprime perturbation
+  subsequences near `tomo_e1`, and test whether archimedean continuity on
+  `Q(i)^3` eliminates arbitrary finite inert-prime combinations or leaves
+  non-adic bounded zero-weight residuals outside the inert-prime span.
 

@@ -11,9 +11,9 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `OPEN`. Evidence g
 Evidence grade **E4** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 13
-- cited Lean, Rust or Python symbols found in their in-repo files: 82
-- distinct cited Lean declarations covered by a current replay receipt: 75
-- counted in-repo runnable tests: 8
+- cited Lean, Rust or Python symbols found in their in-repo files: 119
+- distinct cited Lean declarations covered by a current replay receipt: 109
+- counted in-repo runnable tests: 11
 - counted in-repo Rust or Python files that are not tests: 3
 - recorded statement-match reviews that qualify: 1
 - next step to raise the grade: none: all E4 conditions hold
@@ -28,18 +28,18 @@ None recorded.
 
 ## Bottleneck
 
-The {0,1}-valued variant is excluded by a finite real-ray obstruction. The specific exotic Q^3 frame function has no signed extension, by an exact finite linear certificate. Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, the signed and bounded nonnegative residual-reduction equivalences, the (1+i)-adic norm-parity characterization on primitive Gaussian-integer vectors, the explicit global {-1, 0, +1}-valued 3-adic zero-weight residual s3 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame function exoticQi3 = (1 + s3) / 3 (settling both signed and nonnegative quadratic rigidity on Q(i)^3 in the negative), and Section 9 elimination theorems (archimedean discontinuity at tomo_e1, Q(i, sqrt(3))^3 even-v3 frame obstruction, and operator-space projector linearity quadratic_rigidity_iff_factorsThroughRayProjLinear) are formalized in lean4/BornGaussianTomographyReduction.lean. Parameterized formalization of s_p for all inert primes p == 3 (mod 4) without projector linearity and closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remain open.
+The {0,1}-valued variant is excluded by a finite real-ray obstruction. The specific exotic Q^3 frame function has no signed extension, by an exact finite linear certificate. Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, the signed and bounded nonnegative residual-reduction equivalences, the (1+i)-adic norm-parity characterization on primitive Gaussian-integer vectors, the explicit global {-1, 0, +1}-valued 3-adic and 7-adic zero-weight residuals s3 and s7 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame functions exoticQi3 = (1 + s3) / 3 and exoticQi7 = (1 + s7) / 3 (settling both signed and nonnegative quadratic rigidity on Q(i)^3 in the negative), their dual Kronecker-delta evaluation on (witness_111, witness_p7) and 2D linear independence (combResidual37), and Section 9 elimination theorems (selective cross-prime archimedean discontinuity at tomo_e1, joint Q(i, sqrt(3))^3 and Q(i, sqrt(7))^3 even-valuation frame obstruction, and operator-space projector linearity quadratic_rigidity_iff_factorsThroughRayProjLinear / factorsThroughRayProjLinear_combResidual37_iff) are formalized in lean4/BornGaussianTomographyReduction.lean. Uniform prime-indexed formalization of s_p for all inert primes p == 3 (mod 4) without projector linearity and closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remain open.
 
 ## Source status
 
-Finite obstructions, nine-ray reductions, global 3-adic non-quadratic residual, and Section 9 regularity/extension elimination: no {0,1}-valued frame function on Q(i)^3, no signed extension of the specified exotic Q^3 function, and in BornGaussianTomographyReduction.lean exact nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization on primitive Gaussian-integer vectors, the explicit global {-1, 0, +1}-valued 3-adic zero-weight residual s3 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame function exoticQi3 = (1 + s3) / 3 (settling both signed and nonnegative quadratic rigidity on Q(i)^3 in the negative), and three elimination mechanisms (archimedean oscillation and discontinuity at tomo_e1, Q(i, sqrt(3))^3 even-v3 frame obstruction, and operator-space projector linearity quadratic_rigidity_iff_factorsThroughRayProjLinear). Exact independent checks, runnable pytest suite, and scoped Lean declarations are linked; see the replay receipt for build evidence.
+Finite obstructions, nine-ray reductions, global 3-adic and 7-adic non-quadratic residuals (s3, s7), 2D linear independence (combResidual37), and Section 9 regularity/extension/projector-linearity elimination: no {0,1}-valued frame function on Q(i)^3, no signed extension of the specified exotic Q^3 function, and in BornGaussianTomographyReduction.lean exact nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization on primitive Gaussian-integer vectors, the explicit global {-1, 0, +1}-valued 3-adic and 7-adic zero-weight residuals s3 and s7 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame functions exoticQi3 = (1 + s3) / 3 and exoticQi7 = (1 + s7) / 3 (settling both signed and nonnegative quadratic rigidity on Q(i)^3 in the negative), their dual evaluation on (witness_111, witness_p7) and 2D linearly independent subspace combResidual37 c3 c7, and three joint elimination mechanisms (selective cross-prime archimedean oscillation and discontinuity at tomo_e1, joint Q(i, sqrt(3))^3 and Q(i, sqrt(7))^3 even-valuation frame obstruction, and operator-space projector linearity quadratic_rigidity_iff_factorsThroughRayProjLinear / factorsThroughRayProjLinear_combResidual37_iff). Exact independent checks, runnable pytest suite, and scoped Lean declarations are linked; see the replay receipt for build evidence.
 
 ## Review
 
 - PFP review: [dag/research/fq_gleason_qi3_assessment.json](../../../dag/research/fq_gleason_qi3_assessment.json); file present and sha256 matches the node's record: yes; verdict `scoped_obstructions_and_tomography_reduction_reviewed`; scope effect `consistent`; prior status `OPEN`; qualifies for E4: yes.
-  - narrowest claim: No {0,1}-valued frame function exists on all Q(i)^3 rays; the specified exotic Q^3 frame function has no signed extension to Q(i)^3; nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, the explicit global {-1, 0, +1}-valued 3-adic zero-weight residual s3 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame function exoticQi3 = (1 + s3) / 3, and Section 9 elimination mechanisms (archimedean discontinuity at tomo_e1, Q(i, sqrt(3))^3 even-v3 frame obstruction, and operator-space projector linearity) are kernel-checked in Lean 4.
-  - does not support: Parameterized classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) without projector linearity, continuum Gleason, or closure of FQ-GAP-BORN-UNIQUENESS-GLEASON.
-  - next test: Formalize the parameterized inert-prime residual family s_p for general p == 3 (mod 4) in Lean 4 and test whether archimedean continuity on Q(i)^3 without assuming projector linearity a priori forces every bounded zero-weight residual on Q(i)^3 to vanish.
+  - narrowest claim: No {0,1}-valued frame function exists on all Q(i)^3 rays; the specified exotic Q^3 frame function has no signed extension to Q(i)^3; nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, the explicit global {-1, 0, +1}-valued 3-adic and 7-adic zero-weight residuals s3 and s7 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame functions exoticQi3 = (1 + s3) / 3 and exoticQi7 = (1 + s7) / 3, their dual witness evaluation and 2D linear independence (combResidual37), and Section 9 elimination mechanisms (selective cross-prime archimedean discontinuity at tomo_e1, joint Q(i, sqrt(3))^3 and Q(i, sqrt(7))^3 even-valuation frame obstruction, and operator-space projector linearity) are kernel-checked in Lean 4.
+  - does not support: Uniform parameterized classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) without projector linearity, continuum Gleason, or closure of FQ-GAP-BORN-UNIQUENESS-GLEASON.
+  - next test: Formalize a uniform prime-indexed inert residual family s_p for arbitrary p == 3 (mod 4) in Lean 4 and test whether archimedean continuity on Q(i)^3 without assuming projector linearity a priori forces every bounded zero-weight residual on Q(i)^3 to vanish.
 
 ## Evidence items
 
@@ -89,25 +89,35 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/BornGaussianTomographyReduction.lean`
 
 - file: [lean4/BornGaussianTomographyReduction.lean](../../../lean4/BornGaussianTomographyReduction.lean)
-- sha256 (`bytes`): `78656d778239f67669dc7dfcc91e4b0275ae2b5eaf9bdd0437a51205096629b7`
+- sha256 (`bytes`): `8dbdae30d51c10d2d29e9855bf775d1491968d72bbfffa296f3f0e75b2b35f96`
 - cited in: node.lean, node.source, receipt dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json (BornGaussianTomographyReduction), record TFQ-1055
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json](../../../dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json) (module `BornGaussianTomographyReduction`): recorded sha256 `78656d778239f67669dc7dfcc91e4b0275ae2b5eaf9bdd0437a51205096629b7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json](../../../dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json) (module `BornGaussianTomographyReduction`): recorded sha256 `8dbdae30d51c10d2d29e9855bf775d1491968d72bbfffa296f3f0e75b2b35f96` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornGaussianTomographyReduction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `BornFinite.GaussianTomography.abs_quadRay_le` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.abs_quadRay_le` |
 | `BornFinite.GaussianTomography.archimedeanContinuousAt_quadRay_tomo_e1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.archimedeanContinuousAt_quadRay_tomo_e1` |
+| `BornFinite.GaussianTomography.combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1` |
+| `BornFinite.GaussianTomography.combResidual37_isBoundedOnRays` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.combResidual37_isBoundedOnRays` |
+| `BornFinite.GaussianTomography.combResidual37_isZeroWeightFrameFunction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.combResidual37_isZeroWeightFrameFunction` |
+| `BornFinite.GaussianTomography.combResidual37_vanishes_on_nine_rays` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.combResidual37_vanishes_on_nine_rays` |
 | `BornFinite.GaussianTomography.detGVec_normSq_of_frame` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.detGVec_normSq_of_frame` |
+| `BornFinite.GaussianTomography.distSqVec_perturb7NegRay_tomo_e1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.distSqVec_perturb7NegRay_tomo_e1` |
+| `BornFinite.GaussianTomography.distSqVec_perturb7PosRay_tomo_e1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.distSqVec_perturb7PosRay_tomo_e1` |
 | `BornFinite.GaussianTomography.distSqVec_perturbNegRay_tomo_e1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.distSqVec_perturbNegRay_tomo_e1` |
 | `BornFinite.GaussianTomography.distSqVec_perturbPosRay_tomo_e1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.distSqVec_perturbPosRay_tomo_e1` |
 | `BornFinite.GaussianTomography.eq_quadRay_all_of_zero_at_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.eq_quadRay_all_of_zero_at_zero` |
 | `BornFinite.GaussianTomography.exists_nonzero_bounded_zero_residual` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.exists_nonzero_bounded_zero_residual` |
 | `BornFinite.GaussianTomography.exoticQi3_isNonnegFrameFunction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.exoticQi3_isNonnegFrameFunction` |
 | `BornFinite.GaussianTomography.exoticQi3_not_quadratic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.exoticQi3_not_quadratic` |
+| `BornFinite.GaussianTomography.exoticQi7_isNonnegFrameFunction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.exoticQi7_isNonnegFrameFunction` |
+| `BornFinite.GaussianTomography.exoticQi7_not_quadratic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.exoticQi7_not_quadratic` |
+| `BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual37_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual37_iff` |
 | `BornFinite.GaussianTomography.fourSquarePartner_ortho_and_normSqRatP` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.fourSquarePartner_ortho_and_normSqRatP` |
 | `BornFinite.GaussianTomography.frame_v3Rat_sum_even` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.frame_v3Rat_sum_even` |
+| `BornFinite.GaussianTomography.frame_v7Rat_sum_even` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.frame_v7Rat_sum_even` |
 | `BornFinite.GaussianTomography.gaussian_coord_norm_mod_four` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.gaussian_coord_norm_mod_four` |
 | `BornFinite.GaussianTomography.gaussian_norm_div_four_witness` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.gaussian_norm_div_four_witness` |
 | `BornFinite.GaussianTomography.gaussian_norm_eight_primitive_witness` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.gaussian_norm_eight_primitive_witness` |
@@ -115,20 +125,27 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `BornFinite.GaussianTomography.inner_applyVec_re_eq_quadNum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.inner_applyVec_re_eq_quadNum` |
 | `BornFinite.GaussianTomography.isFrameSqrt3_witness_111_even_norms` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.isFrameSqrt3_witness_111_even_norms` |
 | `BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms` |
+| `BornFinite.GaussianTomography.joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37` |
 | `BornFinite.GaussianTomography.no_s3_even_v3_extension_to_sqrt3` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.no_s3_even_v3_extension_to_sqrt3` |
+| `BornFinite.GaussianTomography.no_s7_even_v7_extension_to_sqrt7` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.no_s7_even_v7_extension_to_sqrt7` |
 | `BornFinite.GaussianTomography.no_unit_norm_smul_witness_111_in_qi3` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.no_unit_norm_smul_witness_111_in_qi3` |
+| `BornFinite.GaussianTomography.no_unit_norm_smul_witness_p7_in_qi3` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.no_unit_norm_smul_witness_p7_in_qi3` |
 | `BornFinite.GaussianTomography.nonneg_frameFunction_bounds` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.nonneg_frameFunction_bounds` |
 | `BornFinite.GaussianTomography.nonneg_residual_is_bounded` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.nonneg_residual_is_bounded` |
 | `BornFinite.GaussianTomography.nonneg_rigidity_iff_bounded_zero_residual` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.nonneg_rigidity_iff_bounded_zero_residual` |
 | `BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi3_tomo_e1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi3_tomo_e1` |
+| `BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi7_tomo_e1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi7_tomo_e1` |
 | `BornFinite.GaussianTomography.not_archimedeanContinuousAt_s3_tomo_e1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.not_archimedeanContinuousAt_s3_tomo_e1` |
+| `BornFinite.GaussianTomography.not_archimedeanContinuousAt_s7_tomo_e1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.not_archimedeanContinuousAt_s7_tomo_e1` |
 | `BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s3` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s3` |
+| `BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s7` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s7` |
 | `BornFinite.GaussianTomography.not_nonneg_quadratic_rigidity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.not_nonneg_quadratic_rigidity` |
 | `BornFinite.GaussianTomography.not_signed_quadratic_rigidity` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.not_signed_quadratic_rigidity` |
 | `BornFinite.GaussianTomography.one_sided_lower_bound_implies_upper_bound` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.one_sided_lower_bound_implies_upper_bound` |
 | `BornFinite.GaussianTomography.ortho_coord_identity_x` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.ortho_coord_identity_x` |
 | `BornFinite.GaussianTomography.primitive_gaussian_norm_mod_four_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.primitive_gaussian_norm_mod_four_iff` |
 | `BornFinite.GaussianTomography.quadNum_orthogonal_weighted_sum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.quadNum_orthogonal_weighted_sum` |
+| `BornFinite.GaussianTomography.quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff` |
 | `BornFinite.GaussianTomography.quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff` |
 | `BornFinite.GaussianTomography.quadRay_frame_sum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.quadRay_frame_sum` |
 | `BornFinite.GaussianTomography.quadRay_isFrameFunction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.quadRay_isFrameFunction` |
@@ -147,11 +164,25 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `BornFinite.GaussianTomography.s3_isZeroWeightFrameFunction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_isZeroWeightFrameFunction` |
 | `BornFinite.GaussianTomography.s3_orthogonal_odd_cancel` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_orthogonal_odd_cancel` |
 | `BornFinite.GaussianTomography.s3_oscillates_near_tomo_e1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_oscillates_near_tomo_e1` |
+| `BornFinite.GaussianTomography.s3_perturb7NegRay` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_perturb7NegRay` |
+| `BornFinite.GaussianTomography.s3_perturb7PosRay` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_perturb7PosRay` |
 | `BornFinite.GaussianTomography.s3_perturbNegRay` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_perturbNegRay` |
 | `BornFinite.GaussianTomography.s3_perturbPosRay` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_perturbPosRay` |
+| `BornFinite.GaussianTomography.s3_s7_dual_on_witnesses` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_s7_dual_on_witnesses` |
+| `BornFinite.GaussianTomography.s3_s7_linearIndependent` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_s7_linearIndependent` |
+| `BornFinite.GaussianTomography.s3_s7_selective_oscillation_near_tomo_e1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_s7_selective_oscillation_near_tomo_e1` |
 | `BornFinite.GaussianTomography.s3_smul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_smul` |
 | `BornFinite.GaussianTomography.s3_vanishes_on_nine_rays` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_vanishes_on_nine_rays` |
 | `BornFinite.GaussianTomography.s3_witness_111_kernel_separation` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s3_witness_111_kernel_separation` |
+| `BornFinite.GaussianTomography.s7_isBoundedOnRays` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s7_isBoundedOnRays` |
+| `BornFinite.GaussianTomography.s7_isZeroWeightFrameFunction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s7_isZeroWeightFrameFunction` |
+| `BornFinite.GaussianTomography.s7_orthogonal_odd_cancel` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s7_orthogonal_odd_cancel` |
+| `BornFinite.GaussianTomography.s7_perturb7NegRay` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s7_perturb7NegRay` |
+| `BornFinite.GaussianTomography.s7_perturb7PosRay` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s7_perturb7PosRay` |
+| `BornFinite.GaussianTomography.s7_perturbNegRay_seven_mul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s7_perturbNegRay_seven_mul` |
+| `BornFinite.GaussianTomography.s7_perturbPosRay_seven_mul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s7_perturbPosRay_seven_mul` |
+| `BornFinite.GaussianTomography.s7_smul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s7_smul` |
+| `BornFinite.GaussianTomography.s7_vanishes_on_nine_rays` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.s7_vanishes_on_nine_rays` |
 | `BornFinite.GaussianTomography.signed_rigidity_iff_zero_residual` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.signed_rigidity_iff_zero_residual` |
 | `BornFinite.GaussianTomography.tomographyForm_quadRay` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.tomographyForm_quadRay` |
 | `BornFinite.GaussianTomography.tomography_isFrameFunction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.tomography_isFrameFunction` |
@@ -163,12 +194,15 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `BornFinite.GaussianTomography.traceInner_self_eq_zero_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.traceInner_self_eq_zero_iff` |
 | `BornFinite.GaussianTomography.unit_norm_in_sqrtP_of_normSqVec_eq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.unit_norm_in_sqrtP_of_normSqVec_eq` |
 | `BornFinite.GaussianTomography.v3Rat_normSq_even` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.v3Rat_normSq_even` |
+| `BornFinite.GaussianTomography.v7Rat_normSq_even` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.v7Rat_normSq_even` |
 | `BornFinite.GaussianTomography.witness_111_primitive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.witness_111_primitive` |
 | `BornFinite.GaussianTomography.witness_111_unit_sqrt3_normSq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.witness_111_unit_sqrt3_normSq` |
 | `BornFinite.GaussianTomography.witness_div_eight_shell_primitive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.witness_div_eight_shell_primitive` |
 | `BornFinite.GaussianTomography.witness_div_four_shell_primitive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.witness_div_four_shell_primitive` |
+| `BornFinite.GaussianTomography.witness_p7_primitive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.witness_p7_primitive` |
 | `BornFinite.GaussianTomography.zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear` |
 | `BornFinite.GaussianTomography.zero_on_witness_111_of_sqrt3_even_v3_vanishing` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.zero_on_witness_111_of_sqrt3_even_v3_vanishing` |
+| `BornFinite.GaussianTomography.zero_on_witness_p7_of_sqrt7_even_v7_vanishing` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.zero_on_witness_p7_of_sqrt7_even_v7_vanishing` |
 
 - counts toward the grade: yes
 
@@ -199,19 +233,22 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/fq-gleason-qi3-tomography.py`
 
 - file: [checks/independent/fq-gleason-qi3-tomography.py](../../../checks/independent/fq-gleason-qi3-tomography.py)
-- sha256 (`bytes`): `c7a4d0e81b3c38b426fc33a3e18b2f4eaac450a77dc86b0ab7b239ae365e3dc8`
+- sha256 (`bytes`): `92b26cb46b943ec28888f027bfcd2f8a29840e87a22f584f1fa90550f6918aeb`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Python: `code/python/tests/test_fq_gleason_qi3_frame_functions.py`
 
 - file: [code/python/tests/test_fq_gleason_qi3_frame_functions.py](../../../code/python/tests/test_fq_gleason_qi3_frame_functions.py)
-- sha256 (`bytes`): `22014853406fc5d812c46e9b15a258dd54b80c745f14bcda03f094b7ae8696b2`
+- sha256 (`bytes`): `c04f96da05771530917d5e76e5ef4b7d629bf925b833d943ee224574f47769da`
 - cited in: node.source, record TFQ-1055
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
+| `test_archimedean_discontinuity_and_field_extension_elimination` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_archimedean_discontinuity_and_field_extension_elimination` |
 | `test_fq_gleason_qi3_frame_functions_end_to_end` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_fq_gleason_qi3_frame_functions_end_to_end` |
+| `test_independent_check_scripts_pass` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_independent_check_scripts_pass` |
+| `test_multi_prime_s3_s7_linear_independence_and_joint_elimination` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_multi_prime_s3_s7_linear_independence_and_joint_elimination` |
 | `test_nine_ray_tomography_reconstruction_and_uniqueness` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_nine_ray_tomography_reconstruction_and_uniqueness` |
 | `test_one_plus_i_adic_norm_parity_witnesses_and_mod_four_iff` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_one_plus_i_adic_norm_parity_witnesses_and_mod_four_iff` |
 | `test_operator_space_ray_projector_duality_and_zero_normalization` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_operator_space_ray_projector_duality_and_zero_normalization` |
@@ -231,7 +268,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md](../../../dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md)
-- sha256 (`lf-normalised`): `fd864be7b2aa25c9a2ffd462bfa1f248004a9e50ebb7f31fe7ad29a6ba41066f`
+- sha256 (`lf-normalised`): `433ef97286b7dfae092c982047d2e494027a229448fe8753496c91209ea45640`
 - generated view: listed, not counted
 - cited in: record TFQ-1055
 - counts toward the grade: no
@@ -246,14 +283,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fq-gleason-qi3-frame-functions.md`
 
 - file: [dag/derivations/independent/fq-gleason-qi3-frame-functions.md](../../../dag/derivations/independent/fq-gleason-qi3-frame-functions.md)
-- sha256 (`lf-normalised`): `17716de5369a75261b8ebb179cc537cd2bcb9e5d11acb9607baf916e9720da8c`
+- sha256 (`lf-normalised`): `2b0d73fcb9d9c060b6600ce66df5ab5d2f743ce2f4c359ec2824a03bdc649bb4`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md`
 
 - file: [dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md](../../../dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md)
-- sha256 (`lf-normalised`): `42d61be71e5a2c33d3e029d5e229eab3e056148f1a104ac0a960f941282be2df`
+- sha256 (`lf-normalised`): `2bc1789bcae3b67a2a1490d04b58c6d4661a5ecfa8d6c35f1ce08a5fe33a7eb0`
 - cited in: node.source
 - counts toward the grade: yes
 
