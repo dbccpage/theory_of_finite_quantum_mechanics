@@ -2272,6 +2272,566 @@ theorem s3_witness_111_kernel_separation :
   · simp only [exoticQi3, s3_witness_111, he1, he2, he3, he12, he13, he23]
     norm_num
 
+/-! ### 9. Regularity, Continuity, and Field-Extension Hypotheses Eliminating `3`-Adic Residuals -/
+
+/-- Squared Euclidean/Hermitian distance `‖u - v‖²` on `ℚ(i)³`. -/
+def distSqVec (u v : GVec) : ℚ :=
+  normSqVec ⟨u.x - v.x, u.y - v.y, u.z - v.z⟩
+
+/-- Archimedean continuity of a ray function `g : GVec → ℚ` at a nonzero vector `v₀ ∈ ℚ(i)³`. -/
+def IsArchimedeanContinuousAt (g : GVec → ℚ) (v₀ : GVec) : Prop :=
+  ∀ ε : ℚ, 0 < ε → ∃ δ : ℚ, 0 < δ ∧
+    ∀ v : GVec, v.NonZero → distSqVec v v₀ < δ → |g v - g v₀| < ε
+
+/-- Unscaled positive-sign `3`-adic Gaussian-integer perturbation `(3k, 1, 1 + i)` near `tomo_e1`. -/
+def perturbPosInt (k : ℕ) : GVec :=
+  gv (3 * (k : ℤ)) 0 1 0 1 1
+
+/-- Unscaled negative-sign `3`-adic Gaussian-integer perturbation `(3k, 1 + i, 1)` near `tomo_e1`. -/
+def perturbNegInt (k : ℕ) : GVec :=
+  gv (3 * (k : ℤ)) 0 1 1 1 0
+
+/-- Normalized positive-sign perturbation `(1, 1/(3k), (1+i)/(3k))` approaching `tomo_e1`. -/
+def perturbPosRay (k : ℕ) : GVec :=
+  ⟨⟨1, 0⟩, ⟨1 / (3 * (k : ℚ)), 0⟩, ⟨1 / (3 * (k : ℚ)), 1 / (3 * (k : ℚ))⟩⟩
+
+/-- Normalized negative-sign perturbation `(1, (1+i)/(3k), 1/(3k))` approaching `tomo_e1`. -/
+def perturbNegRay (k : ℕ) : GVec :=
+  ⟨⟨1, 0⟩, ⟨1 / (3 * (k : ℚ)), 1 / (3 * (k : ℚ))⟩, ⟨1 / (3 * (k : ℚ)), 0⟩⟩
+
+theorem v3Nat_nine_mul_sq_add_three (k : ℕ) :
+    v3Nat (9 * k ^ 2 + 3) = 1 ∧ p3PartNat (9 * k ^ 2 + 3) = 3 * k ^ 2 + 1 := by
+  apply v3Nat_p3PartNat_eq_of_pow_mul
+  · omega
+  · ring
+
+theorem v3Nat_nine_mul_sq_ge_two {k : ℕ} (hk : 0 < k) :
+    2 ≤ v3Nat (9 * k ^ 2) := by
+  have hk2 : 0 < k ^ 2 := pow_pos hk 2
+  have hmul := (v3Nat_p3PartNat_mul (by decide : 0 < 9) hk2).1
+  have hv9 : v3Nat 9 = 2 := rfl
+  omega
+
+theorem s3_eq_of_lead3Coord_y {u : GVec} {n nx ny : ℕ}
+    (hn : 0 < n) (hnx : 0 < nx) (hny : 0 < ny)
+    (hnorm : normSqVec u = (n : ℚ))
+    (hx : u.x.normSq = (nx : ℚ))
+    (hy : u.y.normSq = (ny : ℚ))
+    (hodd : (v3Nat n : ℤ) % 2 ≠ 0)
+    (hge_x : (v3Nat n : ℤ) ≤ (v3Nat nx : ℤ))
+    (hlt_y : (v3Nat ny : ℤ) < (v3Nat n : ℤ)) :
+    s3 u = (if p3PartNat ny % 3 = 1 then 1 else -1) *
+      (if p3PartNat n % 3 = 1 then 1 else -1) := by
+  have hvn : v3Rat (normSqVec u) = (v3Nat n : ℤ) := by rw [hnorm, v3Rat_natCast hn]
+  have hvx : v3Rat u.x.normSq = (v3Nat nx : ℤ) := by rw [hx, v3Rat_natCast hnx]
+  have hvy : v3Rat u.y.normSq = (v3Nat ny : ℤ) := by rw [hy, v3Rat_natCast hny]
+  have hun : u3Rat (normSqVec u) = if p3PartNat n % 3 = 1 then 1 else -1 := by
+    rw [hnorm, u3Rat_natCast hn]
+  have huy : u3Rat u.y.normSq = if p3PartNat ny % 3 = 1 then 1 else -1 := by
+    rw [hy, u3Rat_natCast hny]
+  have hy_pos : 0 < u.y.normSq := by rw [hy]; exact_mod_cast hny
+  have hnot_x : ¬ isLead3Coord u.x u := by
+    intro ⟨_, hlt⟩
+    omega
+  have hlead_y : isLead3Coord u.y u := ⟨hy_pos, by omega⟩
+  have hodd_u : v3Rat (normSqVec u) % 2 ≠ 0 := by omega
+  simp only [s3, hodd_u, hnot_x, hlead_y, ↓reduceIte, coordSign3, huy, hun]
+
+theorem perturbPosRay_nonZero (k : ℕ) : (perturbPosRay k).NonZero := by
+  left
+  change (⟨1, 0⟩ : GaussRat) ≠ 0
+  decide
+
+theorem perturbNegRay_nonZero (k : ℕ) : (perturbNegRay k).NonZero := by
+  left
+  change (⟨1, 0⟩ : GaussRat) ≠ 0
+  decide
+
+@[ext]
+theorem GVec_ext {u v : GVec} (hx : u.x = v.x) (hy : u.y = v.y) (hz : u.z = v.z) : u = v := by
+  cases u; cases v; simp_all
+
+theorem three_mul_gaussRat_ne_zero {k : ℕ} (hk : 0 < k) :
+    (⟨3 * (k : ℚ), 0⟩ : GaussRat) ≠ 0 := by
+  have hk_q : 0 < (k : ℚ) := by exact_mod_cast hk
+  intro h
+  have hre : (⟨3 * (k : ℚ), 0⟩ : GaussRat).re = 0 := by rw [h]; rfl
+  simp only at hre
+  linarith
+
+theorem smul_three_mul_perturbPosRay {k : ℕ} (hk : 0 < k) :
+    GVec.smul ⟨3 * (k : ℚ), 0⟩ (perturbPosRay k) = perturbPosInt k := by
+  have hk_q : 0 < (k : ℚ) := by exact_mod_cast hk
+  have hk_ne : (k : ℚ) ≠ 0 := ne_of_gt hk_q
+  have hmul : 3 * (k : ℚ) * ((k : ℚ)⁻¹ * 3⁻¹) = 1 := by
+    calc 3 * (k : ℚ) * ((k : ℚ)⁻¹ * 3⁻¹)
+        = (k : ℚ) * (k : ℚ)⁻¹ := by ring
+      _ = 1 := mul_inv_cancel₀ hk_ne
+  ext <;> simp [GVec.smul, perturbPosRay, perturbPosInt, gv, hmul]
+
+theorem smul_three_mul_perturbNegRay {k : ℕ} (hk : 0 < k) :
+    GVec.smul ⟨3 * (k : ℚ), 0⟩ (perturbNegRay k) = perturbNegInt k := by
+  have hk_q : 0 < (k : ℚ) := by exact_mod_cast hk
+  have hk_ne : (k : ℚ) ≠ 0 := ne_of_gt hk_q
+  have hmul : 3 * (k : ℚ) * ((k : ℚ)⁻¹ * 3⁻¹) = 1 := by
+    calc 3 * (k : ℚ) * ((k : ℚ)⁻¹ * 3⁻¹)
+        = (k : ℚ) * (k : ℚ)⁻¹ := by ring
+      _ = 1 := mul_inv_cancel₀ hk_ne
+  ext <;> simp [GVec.smul, perturbNegRay, perturbNegInt, gv, hmul]
+
+theorem s3_perturbPosInt {k : ℕ} (hk : 0 < k) : s3 (perturbPosInt k) = 1 := by
+  obtain ⟨hv_n, hp_n⟩ := v3Nat_nine_mul_sq_add_three k
+  have hv_x := v3Nat_nine_mul_sq_ge_two hk
+  have hv1 : v3Nat 1 = 0 := rfl
+  have hp1 : p3PartNat 1 = 1 := rfl
+  rw [s3_eq_of_lead3Coord_y (n := 9 * k ^ 2 + 3) (nx := 9 * k ^ 2) (ny := 1)
+    (by omega) (by nlinarith) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, perturbPosInt, gv]; ring)
+    (by simp [GaussRat.normSq, perturbPosInt, gv]; ring)
+    (by simp [GaussRat.normSq, perturbPosInt, gv])
+    (by omega) (by omega) (by omega)]
+  have hmod_n : p3PartNat (9 * k ^ 2 + 3) % 3 = 1 := by rw [hp_n]; omega
+  have hmod_y : p3PartNat 1 % 3 = 1 := rfl
+  simp [hmod_n, hmod_y]
+
+theorem s3_perturbNegInt {k : ℕ} (hk : 0 < k) : s3 (perturbNegInt k) = -1 := by
+  obtain ⟨hv_n, hp_n⟩ := v3Nat_nine_mul_sq_add_three k
+  have hv_x := v3Nat_nine_mul_sq_ge_two hk
+  have hv2 : v3Nat 2 = 0 := rfl
+  have hp2 : p3PartNat 2 = 2 := rfl
+  rw [s3_eq_of_lead3Coord_y (n := 9 * k ^ 2 + 3) (nx := 9 * k ^ 2) (ny := 2)
+    (by omega) (by nlinarith) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, perturbNegInt, gv]; ring)
+    (by simp [GaussRat.normSq, perturbNegInt, gv]; ring)
+    (by simp [GaussRat.normSq, perturbNegInt, gv]; norm_num)
+    (by omega) (by omega) (by omega)]
+  have hmod_n : p3PartNat (9 * k ^ 2 + 3) % 3 = 1 := by rw [hp_n]; omega
+  have hmod_y : p3PartNat 2 % 3 = 2 := rfl
+  simp [hmod_n, hmod_y]
+
+theorem s3_perturbPosRay {k : ℕ} (hk : 0 < k) : s3 (perturbPosRay k) = 1 := by
+  rw [← s3_smul (perturbPosRay_nonZero k) (three_mul_gaussRat_ne_zero hk),
+    smul_three_mul_perturbPosRay hk]
+  exact s3_perturbPosInt hk
+
+theorem s3_perturbNegRay {k : ℕ} (hk : 0 < k) : s3 (perturbNegRay k) = -1 := by
+  rw [← s3_smul (perturbNegRay_nonZero k) (three_mul_gaussRat_ne_zero hk),
+    smul_three_mul_perturbNegRay hk]
+  exact s3_perturbNegInt hk
+
+theorem exoticQi3_perturbPosRay {k : ℕ} (hk : 0 < k) :
+    exoticQi3 (perturbPosRay k) = 2 / 3 := by
+  simp only [exoticQi3, s3_perturbPosRay hk]
+  norm_num
+
+theorem exoticQi3_perturbNegRay {k : ℕ} (hk : 0 < k) :
+    exoticQi3 (perturbNegRay k) = 0 := by
+  simp only [exoticQi3, s3_perturbNegRay hk]
+  norm_num
+
+theorem distSqVec_perturbPosRay_tomo_e1 (k : ℕ) :
+    distSqVec (perturbPosRay k) tomo_e1 = 1 / (3 * (k : ℚ) ^ 2) := by
+  simp only [distSqVec, perturbPosRay, tomo_e1, gv,
+    normSqVec, GaussRat.normSq, GaussRat.re_sub, GaussRat.im_sub]
+  ring
+
+theorem distSqVec_perturbNegRay_tomo_e1 (k : ℕ) :
+    distSqVec (perturbNegRay k) tomo_e1 = 1 / (3 * (k : ℚ) ^ 2) := by
+  simp only [distSqVec, perturbNegRay, tomo_e1, gv,
+    normSqVec, GaussRat.normSq, GaussRat.re_sub, GaussRat.im_sub]
+  ring
+
+theorem exists_nat_pos_inv_three_sq_lt {δ : ℚ} (hδ : 0 < δ) :
+    ∃ k : ℕ, 0 < k ∧ 1 / (3 * (k : ℚ) ^ 2) < δ := by
+  let k : ℕ := (1 / δ).num.natAbs + 1
+  have hk_pos : 0 < k := Nat.succ_pos _
+  refine ⟨k, hk_pos, ?_⟩
+  have hk_ge_one : (1 : ℚ) ≤ (k : ℚ) := by exact_mod_cast hk_pos
+  have hnum_le : (1 / δ).num ≤ ((1 / δ).num.natAbs : ℤ) := Int.le_natAbs
+  have hnum_q : ((1 / δ).num : ℚ) ≤ ((1 / δ).num.natAbs : ℚ) := by
+    simpa only [Int.cast_natCast] using (Int.cast_le (R := ℚ)).mpr hnum_le
+  have hden_pos : (0 : ℚ) < ((1 / δ).den : ℚ) := by exact_mod_cast (1 / δ).den_pos
+  have hden_ge : (1 : ℚ) ≤ ((1 / δ).den : ℚ) := by exact_mod_cast (1 / δ).den_pos
+  have hnn : (0 : ℚ) ≤ ((1 / δ).num.natAbs : ℚ) := by positivity
+  have hdiv_le : 1 / δ ≤ ((1 / δ).num.natAbs : ℚ) := by
+    have hmul : ((1 / δ).num : ℚ) ≤ ((1 / δ).num.natAbs : ℚ) * ((1 / δ).den : ℚ) := by nlinarith
+    have hdiv : ((1 / δ).num : ℚ) / ((1 / δ).den : ℚ) ≤ ((1 / δ).num.natAbs : ℚ) :=
+      (div_le_iff₀ hden_pos).mpr hmul
+    rwa [Rat.num_div_den (1 / δ)] at hdiv
+  have hk_gt : 1 / δ < (k : ℚ) := by
+    simp only [k, Nat.cast_add, Nat.cast_one]
+    linarith
+  have h3k2_gt : 1 / δ < 3 * (k : ℚ) ^ 2 := by nlinarith
+  have h3k2_pos : 0 < 3 * (k : ℚ) ^ 2 := by positivity
+  exact (div_lt_iff₀ h3k2_pos).mpr (by
+    have hmul := (div_lt_iff₀ hδ).mp h3k2_gt
+    linarith)
+
+/-- In every archimedean neighborhood `distSqVec v tomo_e1 < δ` of `tomo_e1 = (1, 0, 0)`,
+there exist nonzero Gaussian-rational vectors `uPos, uNeg ∈ ℚ(i)³` on which `s3` attains `+1` and `-1`
+(while `s3 tomo_e1 = 0`), and `exoticQi3` attains `2/3` and `0` (while `exoticQi3 tomo_e1 = 1/3`). -/
+theorem s3_oscillates_near_tomo_e1 (δ : ℚ) (hδ : 0 < δ) :
+    ∃ uPos uNeg : GVec,
+      uPos.NonZero ∧ uNeg.NonZero ∧
+      distSqVec uPos tomo_e1 < δ ∧ distSqVec uNeg tomo_e1 < δ ∧
+      s3 uPos = 1 ∧ s3 uNeg = -1 ∧
+      exoticQi3 uPos = 2 / 3 ∧ exoticQi3 uNeg = 0 := by
+  obtain ⟨k, hk, hlt⟩ := exists_nat_pos_inv_three_sq_lt hδ
+  refine ⟨perturbPosRay k, perturbNegRay k,
+    perturbPosRay_nonZero k, perturbNegRay_nonZero k, ?_, ?_,
+    s3_perturbPosRay hk, s3_perturbNegRay hk,
+    exoticQi3_perturbPosRay hk, exoticQi3_perturbNegRay hk⟩
+  · rw [distSqVec_perturbPosRay_tomo_e1 k]; exact hlt
+  · rw [distSqVec_perturbNegRay_tomo_e1 k]; exact hlt
+
+/-- The `3`-adic zero-weight residual `s3` is not archimedean-continuous at `tomo_e1 = (1, 0, 0)`. -/
+theorem not_archimedeanContinuousAt_s3_tomo_e1 :
+    ¬ IsArchimedeanContinuousAt s3 tomo_e1 := by
+  intro hcont
+  obtain ⟨δ, hδ, hball⟩ := hcont (1 / 2) (by norm_num)
+  obtain ⟨uPos, _, huPos_nz, _, huPos_dist, _, huPos_s3, _, _, _⟩ :=
+    s3_oscillates_near_tomo_e1 δ hδ
+  have hlt := hball uPos huPos_nz huPos_dist
+  have he1 : s3 tomo_e1 = 0 := s3_vanishes_on_nine_rays.1
+  rw [huPos_s3, he1] at hlt
+  norm_num at hlt
+
+/-- The nonnegative non-quadratic frame function `exoticQi3` is not archimedean-continuous
+at `tomo_e1 = (1, 0, 0)`. -/
+theorem not_archimedeanContinuousAt_exoticQi3_tomo_e1 :
+    ¬ IsArchimedeanContinuousAt exoticQi3 tomo_e1 := by
+  intro hcont
+  obtain ⟨δ, hδ, hball⟩ := hcont (1 / 6) (by norm_num)
+  obtain ⟨uPos, _, huPos_nz, _, huPos_dist, _, _, _, huPos_ex, _⟩ :=
+    s3_oscillates_near_tomo_e1 δ hδ
+  have hlt := hball uPos huPos_nz huPos_dist
+  have he1 : exoticQi3 tomo_e1 = 1 / 3 := by
+    simp only [exoticQi3, s3_vanishes_on_nine_rays.1]
+    norm_num
+  rw [huPos_ex, he1] at hlt
+  norm_num at hlt
+
+/-- Any perturbation `f(v) = quadRay ρ v + c * s3 v` cannot be archimedean-continuous at `tomo_e1`
+unless the `3`-adic residual coefficient `c` vanishes (`c = 0`), provided `quadRay ρ` is
+archimedean-continuous at `tomo_e1`. -/
+theorem s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1
+    {f : GVec → ℚ} {c : ℚ}
+    (hf_cont : IsArchimedeanContinuousAt f tomo_e1)
+    (hq_cont : IsArchimedeanContinuousAt (fun v => f v - c * s3 v) tomo_e1) :
+    c = 0 := by
+  by_contra hc
+  have hc_pos : 0 < |c| := abs_pos.mpr hc
+  obtain ⟨δ1, hδ1, hb1⟩ := hf_cont (|c| / 3) (by linarith)
+  obtain ⟨δ2, hδ2, hb2⟩ := hq_cont (|c| / 3) (by linarith)
+  let δ := min δ1 δ2
+  have hδ : 0 < δ := lt_min hδ1 hδ2
+  obtain ⟨uPos, _, huPos_nz, _, huPos_dist, _, huPos_s3, _, _, _⟩ :=
+    s3_oscillates_near_tomo_e1 δ hδ
+  have h1 := hb1 uPos huPos_nz (lt_of_lt_of_le huPos_dist (min_le_left δ1 δ2))
+  have h2 := hb2 uPos huPos_nz (lt_of_lt_of_le huPos_dist (min_le_right δ1 δ2))
+  have he1 : s3 tomo_e1 = 0 := s3_vanishes_on_nine_rays.1
+  simp only [huPos_s3, he1, mul_one, mul_zero, sub_zero] at h2
+  have htri : |c| ≤ |f uPos - f tomo_e1| + |f uPos - c - f tomo_e1| := by
+    calc |c| = |(f uPos - f tomo_e1) - (f uPos - c - f tomo_e1)| := by ring_nf
+      _ ≤ |f uPos - f tomo_e1| + |f uPos - c - f tomo_e1| :=
+        abs_sub (f uPos - f tomo_e1) (f uPos - c - f tomo_e1)
+  linarith
+
+/-! #### 9B. Quadratic Field Extension `ℚ(i, √3)³` Obstruction Eliminating `s3` -/
+
+/-- Elements `a + b √3` of the biquadratic field `ℚ(i, √3)` with `a, b ∈ ℚ(i)`. -/
+@[ext]
+structure GaussRatSqrt3 where
+  a : GaussRat
+  b : GaussRat
+  deriving DecidableEq
+
+namespace GaussRatSqrt3
+
+def zero : GaussRatSqrt3 := ⟨0, 0⟩
+def one : GaussRatSqrt3 := ⟨1, 0⟩
+def invSqrt3 : GaussRatSqrt3 := ⟨0, ⟨1 / 3, 0⟩⟩
+
+def ofGaussRat (z : GaussRat) : GaussRatSqrt3 := ⟨z, 0⟩
+
+def add (z w : GaussRatSqrt3) : GaussRatSqrt3 :=
+  ⟨z.a + w.a, z.b + w.b⟩
+
+def mul (z w : GaussRatSqrt3) : GaussRatSqrt3 :=
+  ⟨z.a * w.a + ⟨3, 0⟩ * (z.b * w.b), z.a * w.b + z.b * w.a⟩
+
+/-- Complex conjugation on `ℚ(i, √3) ⊂ ℂ` fixes `√3 ∈ ℝ` and conjugates `a, b ∈ ℚ(i)`. -/
+def conj (z : GaussRatSqrt3) : GaussRatSqrt3 :=
+  ⟨star z.a, star z.b⟩
+
+end GaussRatSqrt3
+
+/-- Three-component vectors over `ℚ(i, √3)`. -/
+@[ext]
+structure GVecSqrt3 where
+  x : GaussRatSqrt3
+  y : GaussRatSqrt3
+  z : GaussRatSqrt3
+  deriving DecidableEq
+
+namespace GVecSqrt3
+
+def ofGVec (v : GVec) : GVecSqrt3 :=
+  ⟨GaussRatSqrt3.ofGaussRat v.x, GaussRatSqrt3.ofGaussRat v.y, GaussRatSqrt3.ofGaussRat v.z⟩
+
+def smul (c : GaussRatSqrt3) (v : GVecSqrt3) : GVecSqrt3 :=
+  ⟨c.mul v.x, c.mul v.y, c.mul v.z⟩
+
+def inner (u v : GVecSqrt3) : GaussRatSqrt3 :=
+  ((u.x.conj.mul v.x).add (u.y.conj.mul v.y)).add (u.z.conj.mul v.z)
+
+def normSqRat (u : GVecSqrt3) : ℚ :=
+  (inner u u).a.re
+
+def NonZero (u : GVecSqrt3) : Prop :=
+  u.x ≠ GaussRatSqrt3.zero ∨ u.y ≠ GaussRatSqrt3.zero ∨ u.z ≠ GaussRatSqrt3.zero
+
+end GVecSqrt3
+
+/-- Orthogonal frames in `ℚ(i, √3)³`. -/
+def IsFrameSqrt3 (u v w : GVecSqrt3) : Prop :=
+  u.NonZero ∧ v.NonZero ∧ w.NonZero ∧
+  GVecSqrt3.inner u v = GaussRatSqrt3.zero ∧
+  GVecSqrt3.inner u w = GaussRatSqrt3.zero ∧
+  GVecSqrt3.inner v w = GaussRatSqrt3.zero
+
+/-- Zero-weight frame functions on `ℚ(i, √3)³`. -/
+def IsZeroWeightFrameFunctionSqrt3 (G : GVecSqrt3 → ℚ) : Prop :=
+  ∀ u v w : GVecSqrt3, IsFrameSqrt3 u v w → G u + G v + G w = 0
+
+/-- Over `ℚ(i)³`, no scalar multiple of `witness_111 = (1, 1, 1)` can have unit squared norm `1`. -/
+theorem no_unit_norm_smul_witness_111_in_qi3 (l : GaussRat) :
+    normSqVec (GVec.smul l witness_111) ≠ 1 := by
+  intro h1
+  have hl_pos : 0 < l.normSq := by
+    by_contra hle
+    have h0 : l.normSq = 0 := le_antisymm (not_lt.mp hle) (GaussRat.normSq_nonneg l)
+    rw [normSqVec_smul, h0, zero_mul] at h1
+    norm_num at h1
+  rw [normSqVec_smul, witness_111_normSq] at h1
+  have hv := congrArg v3Rat h1
+  rw [v3Rat_mul hl_pos (by norm_num : (0 : ℚ) < 3)] at hv
+  have hv1 : v3Rat 1 = 0 := rfl
+  have hv3 : v3Rat 3 = 1 := rfl
+  have heven := v3Rat_normSq_even l
+  omega
+
+/-- Over `ℚ(i, √3)³`, scaling `witness_111 = (1, 1, 1)` by `1 / √3` produces a unit-norm vector
+on the same ray whose squared norm `1` has even `3`-adic valuation `v_3(1) = 0`. -/
+def witness_111_unit_sqrt3 : GVecSqrt3 :=
+  GVecSqrt3.smul GaussRatSqrt3.invSqrt3 (GVecSqrt3.ofGVec witness_111)
+
+theorem witness_111_unit_sqrt3_normSq :
+    GVecSqrt3.inner witness_111_unit_sqrt3 witness_111_unit_sqrt3 = GaussRatSqrt3.one ∧
+    witness_111_unit_sqrt3.normSqRat = 1 ∧
+    v3Rat witness_111_unit_sqrt3.normSqRat % 2 = 0 := by
+  refine ⟨?_, ?_, ?_⟩
+  · (ext <;>
+      simp [witness_111_unit_sqrt3, GVecSqrt3.inner, GVecSqrt3.smul, GVecSqrt3.ofGVec,
+        GaussRatSqrt3.invSqrt3, GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.one,
+        GaussRatSqrt3.add, GaussRatSqrt3.mul, GaussRatSqrt3.conj, witness_111, gv]);
+    norm_num
+  · simp [GVecSqrt3.normSqRat, witness_111_unit_sqrt3, GVecSqrt3.inner, GVecSqrt3.smul,
+      GVecSqrt3.ofGVec, GaussRatSqrt3.invSqrt3, GaussRatSqrt3.ofGaussRat,
+      GaussRatSqrt3.add, GaussRatSqrt3.mul, GaussRatSqrt3.conj, witness_111, gv]
+    norm_num
+  · have h1 : witness_111_unit_sqrt3.normSqRat = 1 := by
+      simp [GVecSqrt3.normSqRat, witness_111_unit_sqrt3, GVecSqrt3.inner, GVecSqrt3.smul,
+        GVecSqrt3.ofGVec, GaussRatSqrt3.invSqrt3, GaussRatSqrt3.ofGaussRat,
+        GaussRatSqrt3.add, GaussRatSqrt3.mul, GaussRatSqrt3.conj, witness_111, gv]
+      norm_num
+    rw [h1]
+    rfl
+
+/-- Embedded witness `(1, 1, 1)` in `ℚ(i, √3)³`. -/
+def witness_111_sqrt3 : GVecSqrt3 := GVecSqrt3.ofGVec witness_111
+
+/-- First orthogonal partner `(1 + i + √3, 1 + i - √3, -2 - 2i)` of `witness_111` in `ℚ(i, √3)³`,
+with rational squared norm `18 = 2 × 3²` (`v_3(18) = 2`, even). -/
+def frameSqrt3_p : GVecSqrt3 :=
+  ⟨⟨⟨1, 1⟩, ⟨1, 0⟩⟩, ⟨⟨1, 1⟩, ⟨-1, 0⟩⟩, ⟨⟨-2, -2⟩, ⟨0, 0⟩⟩⟩
+
+/-- Second orthogonal partner `(-1 + (1 - i)√3, -1 - (1 - i)√3, 2)` of `witness_111` in `ℚ(i, √3)³`,
+with rational squared norm `18 = 2 × 3²` (`v_3(18) = 2`, even). -/
+def frameSqrt3_q : GVecSqrt3 :=
+  ⟨⟨⟨-1, 0⟩, ⟨1, -1⟩⟩, ⟨⟨-1, 0⟩, ⟨-1, 1⟩⟩, ⟨⟨2, 0⟩, ⟨0, 0⟩⟩⟩
+
+theorem isFrameSqrt3_witness_111_even_norms :
+    IsFrameSqrt3 witness_111_sqrt3 frameSqrt3_p frameSqrt3_q ∧
+    witness_111_sqrt3.normSqRat = 3 ∧
+    frameSqrt3_p.normSqRat = 18 ∧
+    frameSqrt3_q.normSqRat = 18 ∧
+    v3Rat frameSqrt3_p.normSqRat % 2 = 0 ∧
+    v3Rat frameSqrt3_q.normSqRat % 2 = 0 ∧
+    (v3Rat witness_111_sqrt3.normSqRat +
+      v3Rat frameSqrt3_p.normSqRat +
+      v3Rat frameSqrt3_q.normSqRat) % 2 ≠ 0 := by
+  have hnz_u : witness_111_sqrt3.NonZero := by
+    left; decide
+  have hnz_p : frameSqrt3_p.NonZero := by
+    left; decide
+  have hnz_q : frameSqrt3_q.NonZero := by
+    left; decide
+  have huv : GVecSqrt3.inner witness_111_sqrt3 frameSqrt3_p = GaussRatSqrt3.zero := by
+    ext <;>
+      simp [witness_111_sqrt3, frameSqrt3_p, GVecSqrt3.ofGVec, GaussRatSqrt3.ofGaussRat,
+        GVecSqrt3.inner, GaussRatSqrt3.add, GaussRatSqrt3.mul, GaussRatSqrt3.conj,
+        GaussRatSqrt3.zero, witness_111, gv] <;>
+      norm_num
+  have huw : GVecSqrt3.inner witness_111_sqrt3 frameSqrt3_q = GaussRatSqrt3.zero := by
+    (ext <;>
+      simp [witness_111_sqrt3, frameSqrt3_q, GVecSqrt3.ofGVec, GaussRatSqrt3.ofGaussRat,
+        GVecSqrt3.inner, GaussRatSqrt3.add, GaussRatSqrt3.mul, GaussRatSqrt3.conj,
+        GaussRatSqrt3.zero, witness_111, gv]);
+    norm_num
+  have hvw : GVecSqrt3.inner frameSqrt3_p frameSqrt3_q = GaussRatSqrt3.zero := by
+    ext <;>
+      simp [frameSqrt3_p, frameSqrt3_q, GVecSqrt3.inner, GaussRatSqrt3.add,
+        GaussRatSqrt3.mul, GaussRatSqrt3.conj, GaussRatSqrt3.zero] <;>
+      norm_num
+  have hnu : witness_111_sqrt3.normSqRat = ((3 : ℕ) : ℚ) := by
+    simp [GVecSqrt3.normSqRat, witness_111_sqrt3, GVecSqrt3.ofGVec, GaussRatSqrt3.ofGaussRat,
+      GVecSqrt3.inner, GaussRatSqrt3.add, GaussRatSqrt3.mul, GaussRatSqrt3.conj,
+      witness_111, gv]
+    norm_num
+  have hnp : frameSqrt3_p.normSqRat = ((18 : ℕ) : ℚ) := by
+    simp [GVecSqrt3.normSqRat, frameSqrt3_p, GVecSqrt3.inner, GaussRatSqrt3.add,
+      GaussRatSqrt3.mul, GaussRatSqrt3.conj]
+    norm_num
+  have hnq : frameSqrt3_q.normSqRat = ((18 : ℕ) : ℚ) := by
+    simp [GVecSqrt3.normSqRat, frameSqrt3_q, GVecSqrt3.inner, GaussRatSqrt3.add,
+      GaussRatSqrt3.mul, GaussRatSqrt3.conj]
+    norm_num
+  have hv3 : v3Rat witness_111_sqrt3.normSqRat = 1 := by
+    rw [hnu, v3Rat_natCast (by decide : 0 < 3)]
+    rfl
+  have hv18_p : v3Rat frameSqrt3_p.normSqRat = 2 := by
+    rw [hnp, v3Rat_natCast (by decide : 0 < 18)]
+    rfl
+  have hv18_q : v3Rat frameSqrt3_q.normSqRat = 2 := by
+    rw [hnq, v3Rat_natCast (by decide : 0 < 18)]
+    rfl
+  refine ⟨⟨hnz_u, hnz_p, hnz_q, huv, huw, hvw⟩, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · exact_mod_cast hnu
+  · exact_mod_cast hnp
+  · exact_mod_cast hnq
+  · rw [hv18_p]; rfl
+  · rw [hv18_q]; rfl
+  · rw [hv3, hv18_p, hv18_q]; decide
+
+/-- Any zero-weight frame function `G` on `ℚ(i, √3)³` that vanishes on vectors whose rational
+squared norm has even `3`-adic valuation must vanish on `witness_111 = (1, 1, 1)`, so `s3`
+cannot extend to `ℚ(i, √3)³` under the even-`v_3` vanishing rule. -/
+theorem zero_on_witness_111_of_sqrt3_even_v3_vanishing
+    {G : GVecSqrt3 → ℚ}
+    (hG : IsZeroWeightFrameFunctionSqrt3 G)
+    (heven : ∀ u : GVecSqrt3, v3Rat u.normSqRat % 2 = 0 → G u = 0) :
+    G witness_111_sqrt3 = 0 := by
+  obtain ⟨hfr, _, _, _, hp_even, hq_even, _⟩ := isFrameSqrt3_witness_111_even_norms
+  have hsum := hG witness_111_sqrt3 frameSqrt3_p frameSqrt3_q hfr
+  have hp0 := heven frameSqrt3_p hp_even
+  have hq0 := heven frameSqrt3_q hq_even
+  linarith
+
+theorem no_s3_even_v3_extension_to_sqrt3 :
+    ¬ ∃ G : GVecSqrt3 → ℚ,
+        IsZeroWeightFrameFunctionSqrt3 G ∧
+        (∀ u : GVecSqrt3, v3Rat u.normSqRat % 2 = 0 → G u = 0) ∧
+        (∀ v : GVec, G (GVecSqrt3.ofGVec v) = s3 v) := by
+  rintro ⟨G, hG, heven, hext⟩
+  have h0 := zero_on_witness_111_of_sqrt3_even_v3_vanishing hG heven
+  have h1 := hext witness_111
+  rw [s3_witness_111] at h1
+  change G witness_111_sqrt3 = 1 at h1
+  linarith
+
+/-! #### 9C. Universal Operator-Space Projector-Linearity Criterion Eliminating All Residuals -/
+
+/-- A functional `L : HermForm3 → ℚ` is `ℚ`-linear on `HermForm3`. -/
+def IsLinearOnHermForm3 (L : HermForm3 → ℚ) : Prop :=
+  (∀ ρ σ : HermForm3, L (HermForm3.add ρ σ) = L ρ + L σ) ∧
+  (∀ (c : ℚ) (ρ : HermForm3), L (HermForm3.smul c ρ) = c * L ρ)
+
+/-- A ray function `f : GVec → ℚ` factors linearly through the rank-1 projector map `rayProj`. -/
+def FactorsThroughRayProjLinear (f : GVec → ℚ) : Prop :=
+  ∃ L : HermForm3 → ℚ, IsLinearOnHermForm3 L ∧ ∀ v : GVec, v.NonZero → f v = L (rayProj v)
+
+theorem quadRay_factorsThroughRayProjLinear (ρ : HermForm3) :
+    FactorsThroughRayProjLinear (quadRay ρ) := by
+  refine ⟨traceInner ρ, ⟨traceInner_add_right ρ, fun c σ => traceInner_smul_right c ρ σ⟩, ?_⟩
+  intro v _
+  exact (traceInner_rayProj ρ v).symm
+
+/-- Every residual that vanishes on the nine tomography rays and factors linearly through `rayProj`
+vanishes identically on all nonzero rays in `ℚ(i)³` (eliminating `s_p` for all inert primes `p`). -/
+theorem zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
+    {g : GVec → ℚ}
+    (hvan : VanishesOnNineRays g)
+    (hlin : FactorsThroughRayProjLinear g) :
+    ∀ v : GVec, v.NonZero → g v = 0 := by
+  obtain ⟨L, ⟨hadd, hsmul⟩, hL⟩ := hlin
+  obtain ⟨he1, he2, he3, he12, he13, he23, he12i, he13i, he23i⟩ := hvan
+  have hLe1 : L (rayProj tomo_e1) = 0 := by rw [← hL tomo_e1 tomo_e1_nonZero, he1]
+  have hLe2 : L (rayProj tomo_e2) = 0 := by rw [← hL tomo_e2 tomo_e2_nonZero, he2]
+  have hLe3 : L (rayProj tomo_e3) = 0 := by rw [← hL tomo_e3 tomo_e3_nonZero, he3]
+  have hLe12 : L (rayProj tomo_e12) = 0 := by rw [← hL tomo_e12 tomo_e12_nonZero, he12]
+  have hLe13 : L (rayProj tomo_e13) = 0 := by rw [← hL tomo_e13 tomo_e13_nonZero, he13]
+  have hLe23 : L (rayProj tomo_e23) = 0 := by rw [← hL tomo_e23 tomo_e23_nonZero, he23]
+  have hLe12i : L (rayProj tomo_e12i) = 0 := by rw [← hL tomo_e12i tomo_e12i_nonZero, he12i]
+  have hLe13i : L (rayProj tomo_e13i) = 0 := by rw [← hL tomo_e13i tomo_e13i_nonZero, he13i]
+  have hLe23i : L (rayProj tomo_e23i) = 0 := by rw [← hL tomo_e23i tomo_e23i_nonZero, he23i]
+  intro v hv
+  rw [hL v hv, rayProj_nine_rays_span_hermForm3 (rayProj v)]
+  simp only [hadd, hsmul, hLe1, hLe2, hLe3, hLe12, hLe13, hLe23, hLe12i, hLe13i, hLe23i]
+  ring
+
+theorem not_factorsThroughRayProjLinear_s3 : ¬ FactorsThroughRayProjLinear s3 := by
+  intro hlin
+  have h0 := zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
+    s3_vanishes_on_nine_rays hlin witness_111 witness_111_nonZero
+  rw [s3_witness_111] at h0
+  norm_num at h0
+
+/-- Exact quadratic rigidity theorem on `ℚ(i)³` under operator-space projector linearity:
+a frame function `f` on `ℚ(i)³` is of the Born form `quadRay ρ` (`tr ρ = 1`) if and only if
+it factors linearly through `rayProj`. -/
+theorem quadratic_rigidity_iff_factorsThroughRayProjLinear (f : GVec → ℚ) :
+    (IsFrameFunction f ∧ FactorsThroughRayProjLinear f) ↔
+    ∃ ρ : HermForm3, ρ.tr = 1 ∧ ∀ v : GVec, v.NonZero → f v = quadRay ρ v := by
+  constructor
+  · rintro ⟨hf, L, ⟨hadd, hsmul⟩, hL⟩
+    refine ⟨tomographyForm f, tomography_trace_one hf, ?_⟩
+    intro v hv
+    let ρ := tomographyForm f
+    have hres_lin : FactorsThroughRayProjLinear (residual f) := by
+      refine ⟨fun σ => L σ - traceInner ρ σ, ⟨?_, ?_⟩, ?_⟩
+      · intro σ τ
+        simp only [hadd, traceInner_add_right]
+        ring
+      · intro c σ
+        simp only [hsmul, traceInner_smul_right]
+        ring
+      · intro u hu
+        unfold residual
+        rw [hL u hu, ← traceInner_rayProj]
+    have h0 := zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
+      (residual_vanishes_on_nine_rays f) hres_lin v hv
+    unfold residual at h0
+    linarith
+  · rintro ⟨ρ, htr, hρ⟩
+    refine ⟨?_, ?_⟩
+    · intro u v w hfr
+      rw [hρ u hfr.1, hρ v hfr.2.1, hρ w hfr.2.2.1]
+      exact quadRay_isFrameFunction ρ htr u v w hfr
+    · refine ⟨traceInner ρ, ⟨traceInner_add_right ρ, fun c σ => traceInner_smul_right c ρ σ⟩, ?_⟩
+      intro v hv
+      rw [hρ v hv, traceInner_rayProj]
+
 end BornFinite.GaussianTomography
 
 #print axioms BornFinite.GaussianTomography.inner_applyVec_im_zero
@@ -2314,6 +2874,9 @@ end BornFinite.GaussianTomography
 #print axioms BornFinite.GaussianTomography.s3_smul
 #print axioms BornFinite.GaussianTomography.s3_isBoundedOnRays
 #print axioms BornFinite.GaussianTomography.s3_vanishes_on_nine_rays
+#print axioms BornFinite.GaussianTomography.witness_111_primitive
+#print axioms BornFinite.GaussianTomography.witness_div_four_shell_primitive
+#print axioms BornFinite.GaussianTomography.witness_div_eight_shell_primitive
 #print axioms BornFinite.GaussianTomography.exists_nonzero_bounded_zero_residual
 #print axioms BornFinite.GaussianTomography.not_signed_quadratic_rigidity
 #print axioms BornFinite.GaussianTomography.not_nonneg_quadratic_rigidity
@@ -2322,4 +2885,19 @@ end BornFinite.GaussianTomography
 #print axioms BornFinite.GaussianTomography.rayProj_witness_111_decomp
 #print axioms BornFinite.GaussianTomography.quadRay_witness_111_kernel_relation
 #print axioms BornFinite.GaussianTomography.s3_witness_111_kernel_separation
-
+#print axioms BornFinite.GaussianTomography.s3_perturbPosRay
+#print axioms BornFinite.GaussianTomography.s3_perturbNegRay
+#print axioms BornFinite.GaussianTomography.distSqVec_perturbPosRay_tomo_e1
+#print axioms BornFinite.GaussianTomography.distSqVec_perturbNegRay_tomo_e1
+#print axioms BornFinite.GaussianTomography.s3_oscillates_near_tomo_e1
+#print axioms BornFinite.GaussianTomography.not_archimedeanContinuousAt_s3_tomo_e1
+#print axioms BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi3_tomo_e1
+#print axioms BornFinite.GaussianTomography.s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1
+#print axioms BornFinite.GaussianTomography.no_unit_norm_smul_witness_111_in_qi3
+#print axioms BornFinite.GaussianTomography.witness_111_unit_sqrt3_normSq
+#print axioms BornFinite.GaussianTomography.isFrameSqrt3_witness_111_even_norms
+#print axioms BornFinite.GaussianTomography.zero_on_witness_111_of_sqrt3_even_v3_vanishing
+#print axioms BornFinite.GaussianTomography.no_s3_even_v3_extension_to_sqrt3
+#print axioms BornFinite.GaussianTomography.zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
+#print axioms BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s3
+#print axioms BornFinite.GaussianTomography.quadratic_rigidity_iff_factorsThroughRayProjLinear

@@ -897,6 +897,88 @@ def test_s3_global_bounded_zero_weight_residual_and_exotic_qi3() -> None:
     ) % 2 == 1
 
 
+def test_archimedean_discontinuity_and_field_extension_elimination() -> None:
+    """Verify Section 9 archimedean oscillation near tomo_e1, Q(i, sqrt(3))^3 even-norm frame, and projector linearity."""
+    for k in range(1, 15):
+        inv3k = Fraction(1, 3 * k)
+        pos_int = GVec(GaussRat.of_ints(3 * k, 0), GaussRat.of_ints(1, 0), GaussRat.of_ints(1, 1))
+        neg_int = GVec(GaussRat.of_ints(3 * k, 0), GaussRat.of_ints(1, 1), GaussRat.of_ints(1, 0))
+        pos_ray = GVec(GaussRat.of_ints(1, 0), GaussRat(inv3k, Fraction(0)), GaussRat(inv3k, inv3k))
+        neg_ray = GVec(GaussRat.of_ints(1, 0), GaussRat(inv3k, inv3k), GaussRat(inv3k, Fraction(0)))
+
+        assert pos_int.norm_sq() == Fraction(9 * k * k + 3)
+        assert neg_int.norm_sq() == Fraction(9 * k * k + 3)
+        assert v3_rat(pos_int.norm_sq()) == 1
+        assert u3_rat(pos_int.norm_sq()) == Fraction(1)
+        assert s3(pos_int) == Fraction(1) and s3(pos_ray) == Fraction(1)
+        assert s3(neg_int) == Fraction(-1) and s3(neg_ray) == Fraction(-1)
+        assert exotic_qi3(pos_ray) == Fraction(2, 3)
+        assert exotic_qi3(neg_ray) == Fraction(0)
+
+        dist_pos = (
+            (pos_ray.x - E1.x).norm_sq()
+            + (pos_ray.y - E1.y).norm_sq()
+            + (pos_ray.z - E1.z).norm_sq()
+        )
+        dist_neg = (
+            (neg_ray.x - E1.x).norm_sq()
+            + (neg_ray.y - E1.y).norm_sq()
+            + (neg_ray.z - E1.z).norm_sq()
+        )
+        assert dist_pos == Fraction(1, 3 * k * k)
+        assert dist_neg == Fraction(1, 3 * k * k)
+
+    # Exact biquadratic arithmetic over Q(i, sqrt(3)) matching GaussRatSqrt3 / GVecSqrt3 in Lean 4
+    def gr3_add(z, w):
+        return (z[0] + w[0], z[1] + w[1])
+
+    def gr3_mul(z, w):
+        three = GaussRat.of_ints(3, 0)
+        return (z[0] * w[0] + three * (z[1] * w[1]), z[0] * w[1] + z[1] * w[0])
+
+    def gr3_conj(z):
+        return (z[0].conj(), z[1].conj())
+
+    def gv3_inner(u, v):
+        acc = (GaussRat.of_ints(0, 0), GaussRat.of_ints(0, 0))
+        for cu, cv in zip(u, v):
+            acc = gr3_add(acc, gr3_mul(gr3_conj(cu), cv))
+        return acc
+
+    zero_gr3 = (GaussRat.of_ints(0, 0), GaussRat.of_ints(0, 0))
+    one_gr3 = (GaussRat.of_ints(1, 0), GaussRat.of_ints(0, 0))
+    inv_sqrt3 = (GaussRat.of_ints(0, 0), GaussRat(Fraction(1, 3), Fraction(0)))
+
+    u_111_s3 = (
+        (GaussRat.of_ints(1, 0), GaussRat.of_ints(0, 0)),
+        (GaussRat.of_ints(1, 0), GaussRat.of_ints(0, 0)),
+        (GaussRat.of_ints(1, 0), GaussRat.of_ints(0, 0)),
+    )
+    u_111_unit = tuple(gr3_mul(inv_sqrt3, c) for c in u_111_s3)
+    assert gv3_inner(u_111_unit, u_111_unit) == one_gr3
+    assert v3_rat(gv3_inner(u_111_unit, u_111_unit)[0].re) % 2 == 0
+
+    p_s3 = (
+        (GaussRat.of_ints(1, 1), GaussRat.of_ints(1, 0)),
+        (GaussRat.of_ints(1, 1), GaussRat.of_ints(-1, 0)),
+        (GaussRat.of_ints(-2, -2), GaussRat.of_ints(0, 0)),
+    )
+    q_s3 = (
+        (GaussRat.of_ints(-1, 0), GaussRat.of_ints(1, -1)),
+        (GaussRat.of_ints(-1, 0), GaussRat.of_ints(-1, 1)),
+        (GaussRat.of_ints(2, 0), GaussRat.of_ints(0, 0)),
+    )
+    assert gv3_inner(u_111_s3, p_s3) == zero_gr3
+    assert gv3_inner(u_111_s3, q_s3) == zero_gr3
+    assert gv3_inner(p_s3, q_s3) == zero_gr3
+    assert gv3_inner(u_111_s3, u_111_s3) == (GaussRat.of_ints(3, 0), GaussRat.of_ints(0, 0))
+    assert gv3_inner(p_s3, p_s3) == (GaussRat.of_ints(18, 0), GaussRat.of_ints(0, 0))
+    assert gv3_inner(q_s3, q_s3) == (GaussRat.of_ints(18, 0), GaussRat.of_ints(0, 0))
+    assert v3_rat(Fraction(3)) == 1
+    assert v3_rat(Fraction(18)) == 2
+    assert (v3_rat(Fraction(3)) + v3_rat(Fraction(18)) + v3_rat(Fraction(18))) % 2 == 1
+
+
 def test_independent_check_scripts_pass(tomography_mod, frame_functions_mod) -> None:
     """Run all three independent check scripts for FQ-GLEASON-QI3-FRAME-FUNCTIONS."""
     tomography_mod.main()
@@ -970,6 +1052,22 @@ def test_fq_gleason_qi3_frame_functions_end_to_end() -> None:
         "theorem rayProj_witness_111_decomp",
         "theorem quadRay_witness_111_kernel_relation",
         "theorem s3_witness_111_kernel_separation",
+        "theorem s3_perturbPosRay",
+        "theorem s3_perturbNegRay",
+        "theorem distSqVec_perturbPosRay_tomo_e1",
+        "theorem distSqVec_perturbNegRay_tomo_e1",
+        "theorem s3_oscillates_near_tomo_e1",
+        "theorem not_archimedeanContinuousAt_s3_tomo_e1",
+        "theorem not_archimedeanContinuousAt_exoticQi3_tomo_e1",
+        "theorem s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1",
+        "theorem no_unit_norm_smul_witness_111_in_qi3",
+        "theorem witness_111_unit_sqrt3_normSq",
+        "theorem isFrameSqrt3_witness_111_even_norms",
+        "theorem zero_on_witness_111_of_sqrt3_even_v3_vanishing",
+        "theorem no_s3_even_v3_extension_to_sqrt3",
+        "theorem zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear",
+        "theorem not_factorsThroughRayProjLinear_s3",
+        "theorem quadratic_rigidity_iff_factorsThroughRayProjLinear",
     ]
     for decl in required_theorems:
         assert decl in content, f"Missing declaration {decl!r} in {LEAN_TOMOGRAPHY_FILE}"

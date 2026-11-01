@@ -37,6 +37,7 @@ Neither obstruction below needs to assume that property separately.
 | Does a \(\{0,1\}\)-valued frame function exist? | No | `NoColouring.no_zero_one_frame_function` |
 | Does the repository's specified exotic \(\mathbb Q^3\) function extend? | No, even allowing signed values | `GaussianExtension.no_exotic_extension` |
 | How does \((1+i)\)-adic norm-parity behave on primitive rays in \(\mathbb Z[i]^3\)? | Divisible by `4` iff two coordinates have odd norm and one has norm `2 (mod 4)` | `GaussianTomography.primitive_gaussian_norm_mod_four_iff`, `GaussianTomography.gaussian_norm_div_four_witness`, `GaussianTomography.gaussian_norm_eight_primitive_witness` |
+| Which regularity, continuity, or field-extension hypotheses eliminate `s3`? | Archimedean continuity at `tomo_e1`, even-\(v_3\) extension to \(\mathbb Q(i,\sqrt{3})^3\), or operator-space projector linearity (`FactorsThroughRayProjLinear`) | `GaussianTomography.s3_oscillates_near_tomo_e1`, `GaussianTomography.s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`, `GaussianTomography.no_s3_even_v3_extension_to_sqrt3`, `GaussianTomography.quadratic_rigidity_iff_factorsThroughRayProjLinear` |
 
 Lean names in the table have prefix `BornFinite.GaussianFrames` for
 `NoColouring`, and prefix `BornFinite` for `GaussianExtension` and
@@ -124,7 +125,7 @@ then expanded and reduced to equations on individual vectors. Discovery
 symmetries are absent from the final proof. A finite consistent system, such
 as the earlier smaller-box probe, never implied that an extension existed.
 
-## 4. Nine-ray reduction and the global `3`-adic non-quadratic residual `s3`
+## 4. Nine-ray reduction, the global `3`-adic non-quadratic residual `s3`, and regularity/extension elimination
 
 The [supplemental derivation](fq-gleason-qi3-rigidity-reduction.md) and its
 Lean 4 formalization `lean4/BornGaussianTomographyReduction.lean` construct
@@ -170,6 +171,34 @@ same \(3\)-leading coordinates and opposite \(3\)-adic unit residue signs
   `exoticQi3(v) = (1 + s3(v)) / 3` is an explicit global \(\{0,1/3,2/3\}\)-valued
   nonnegative non-quadratic frame function on \(K^3\)
   (`exoticQi3_isNonnegFrameFunction`, `exoticQi3_not_quadratic`).
+- Section 9 of `lean4/BornGaussianTomographyReduction.lean` establishes three
+  mechanisms that eliminate `s3` (and, under projector linearity, every
+  nine-ray-vanishing residual):
+  1. **Archimedean discontinuity at `tomo_e1 = (1, 0, 0)`**: the normalized
+     rays \((1,\frac{1}{3k},\frac{1+i}{3k})\) and \((1,\frac{1+i}{3k},\frac{1}{3k})\)
+     lie at squared distance \(\frac{1}{3k^2}\to 0\) from \(e_1\) while
+     evaluating to \(s_3=+1\) and \(s_3=-1\) (`s3_oscillates_near_tomo_e1`), so
+     neither `s3` nor `exoticQi3` is archimedean-continuous at `tomo_e1`
+     (`not_archimedeanContinuousAt_s3_tomo_e1`,
+     `not_archimedeanContinuousAt_exoticQi3_tomo_e1`), and archimedean continuity
+     at `tomo_e1` forces the `s3` coefficient \(c=0\)
+     (`s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`).
+  2. **Biquadratic field extension \(\mathbb Q(i,\sqrt{3})^3\)**: adjoining
+     \(\sqrt{3}\) provides a unit-norm representative \(\frac{1}{\sqrt{3}}(1,1,1)\)
+     (`witness_111_unit_sqrt3_normSq`, excluded over \(\mathbb Q(i)^3\) by
+     `no_unit_norm_smul_witness_111_in_qi3`) and an orthogonal frame around
+     \((1,1,1)\) whose two orthogonal partners have rational squared norm
+     \(18=2\cdot 3^2\) with even valuation \(v_3(18)=2\)
+     (`isFrameSqrt3_witness_111_even_norms`), forcing any zero-weight frame
+     function on \(\mathbb Q(i,\sqrt{3})^3\) that vanishes on even-\(v_3\) norm
+     rays to vanish on \((1,1,1)\) (`zero_on_witness_111_of_sqrt3_even_v3_vanishing`,
+     `no_s3_even_v3_extension_to_sqrt3`).
+  3. **Operator-space projector linearity**: a frame function on \(K^3\) has the
+     quadratic Born form `quadRay ρ` (\(\operatorname{tr}\rho=1\)) if and only if
+     it factors linearly through `rayProj : GVec → HermForm3`
+     (`zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear`,
+     `not_factorsThroughRayProjLinear_s3`,
+     `quadratic_rigidity_iff_factorsThroughRayProjLinear`).
 
 ## What is established (What this artifact supports)
 
@@ -182,10 +211,14 @@ same \(3\)-leading coordinates and opposite \(3\)-adic unit residue signs
   duality and nine-ray spanning of `HermForm3`, non-unit orthogonal frame sums,
   zero-vector normalization, the signed and bounded nonnegative
   residual-reduction equivalences, the \((1+i)\)-adic norm-parity
-  characterization on primitive Gaussian-integer vectors, and the explicit
-  global `3`-adic zero-weight residual `s3` and nonnegative non-quadratic frame
+  characterization on primitive Gaussian-integer vectors, the explicit global
+  `3`-adic zero-weight residual `s3` and nonnegative non-quadratic frame
   function `exoticQi3` (`not_signed_quadratic_rigidity`,
-  `not_nonneg_quadratic_rigidity`) are formalized in
+  `not_nonneg_quadratic_rigidity`), and the three Section 9 elimination
+  theorems (`s3_oscillates_near_tomo_e1`,
+  `s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`,
+  `no_s3_even_v3_extension_to_sqrt3`,
+  `quadratic_rigidity_iff_factorsThroughRayProjLinear`) are formalized in
   `lean4/BornGaussianTomographyReduction.lean` and tested in
   `code/python/tests/test_fq_gleason_qi3_frame_functions.py`.
 
@@ -194,26 +227,35 @@ same \(3\)-leading coordinates and opposite \(3\)-adic unit residue signs
 The supplied Gaussian-rational vector space, its standard Hermitian form,
 and frame normalization are the setting. Binary values are assumed only for
 the binary obstruction. Agreement with the specified exotic is assumed only
-for the extension obstruction. Neither argument assumes continuity or a residue
-class ansatz. These results do not derive the carrier from earlier DAG nodes.
+for the extension obstruction. In Section 9, archimedean continuity at
+`tomo_e1`, even-\(v_3\) extension to \(\mathbb Q(i,\sqrt{3})^3\), and
+operator-space projector linearity (`FactorsThroughRayProjLinear`) are
+analyzed as explicit hypotheses. These results do not derive the carrier from
+earlier DAG nodes.
 
 ## What this artifact does not support and what remains open
 
 - **What it does not support**: This artifact does not classify the entire space
-  of non-quadratic residuals across all inert primes \(p\equiv 3\pmod 4\), nor
-  does it establish continuum Gleason or close the parent Born-rule uniqueness
-  gap `FQ-GAP-BORN-UNIQUENESS-GLEASON`.
+  of non-quadratic residuals across all inert primes \(p\equiv 3\pmod 4\)
+  without projector linearity, nor does it establish that archimedean continuity
+  alone (without projector linearity or continuum completeness) eliminates every
+  infinite linear combination of inert-prime residuals, nor does it close the
+  parent Born-rule uniqueness gap `FQ-GAP-BORN-UNIQUENESS-GLEASON`.
 - **Narrowest defensible claim**: On \(K^3=\mathbb Q(i)^3\), no \(\{0,1\}\)-valued
   frame function exists, the prescribed \(2\)-adic real exotic on \(\mathbb Q^3\)
-  has no signed extension to \(K^3\), and the \(3\)-adic residual \(s_3\) gives an
+  has no signed extension to \(K^3\), the \(3\)-adic residual \(s_3\) gives an
   explicit \(\{0,1/3,2/3\}\)-valued nonnegative non-quadratic frame function
-  \(\operatorname{exoticQi3}=(1+s_3)/3\) on \(K^3\) vanishing on the nine
-  tomography rays (as a residual) and nonzero across higher \((1+i)\)-adic norm
-  shells.
-- **Next test needed**: Determine which additional regularity or field-extension
-  positivity hypothesis eliminates all inert-prime \(p\)-adic residuals on
-  \(\mathbb Q(i)^3\) for `FQ-GAP-BORN-UNIQUENESS-GLEASON`.
+  \(\operatorname{exoticQi3}=(1+s_3)/3\) on \(K^3\), and \(s_3\) is eliminated by
+  archimedean continuity at `tomo_e1`, by even-\(v_3\) extension to
+  \(\mathbb Q(i,\sqrt{3})^3\), or generally (for all nine-ray-vanishing
+  residuals) by operator-space projector linearity (`FactorsThroughRayProjLinear`).
+- **Next test needed**: Formalize the parameterized inert-prime residual family
+  \(s_p\) for general \(p\equiv 3\pmod 4\) in Lean 4 and test whether archimedean
+  continuity on \(\mathbb Q(i)^3\) (without assuming `FactorsThroughRayProjLinear`
+  a priori) suffices to force every bounded zero-weight residual on
+  \(\mathbb Q(i)^3\) to vanish.
 
 Consequently the full target and its incoming gap route retain their original
 statuses (`AuthorityEffect: None`). No result here establishes continuum
 Gleason or the whole Born-rule derivation.
+
