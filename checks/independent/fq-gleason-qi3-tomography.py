@@ -130,7 +130,7 @@ def is_one_plus_i_primitive_gvec(u: GVec) -> bool:
 
 def vp_int(n: int, p: int) -> int:
     n = abs(n)
-    if n == 0:
+    if n == 0 or p < 2:
         return 0
     k = 0
     while n % p == 0:
@@ -141,8 +141,8 @@ def vp_int(n: int, p: int) -> int:
 
 def pp_part_int(n: int, p: int) -> int:
     n = abs(n)
-    if n == 0:
-        return 0
+    if n == 0 or p < 2:
+        return n
     while n % p == 0:
         n //= p
     return n
@@ -166,11 +166,14 @@ def sp_residual(u: GVec, p: int) -> Fraction:
     vn = vec_norm_sq(u)
     if vp_rat(vn, p) % 2 == 0:
         return Fraction(0)
-    for coord in u:
-        cn = g_norm_sq(coord)
-        if cn > 0 and vp_rat(cn, p) < vp_rat(vn, p):
-            return up_rat_legendre(cn, p) * up_rat_legendre(vn, p)
-    return Fraction(0)
+    nx = g_norm_sq(u[0])
+    if nx > 0 and vp_rat(nx, p) < vp_rat(vn, p):
+        return up_rat_legendre(nx, p) * up_rat_legendre(vn, p)
+    ny = g_norm_sq(u[1])
+    if ny > 0 and vp_rat(ny, p) < vp_rat(vn, p):
+        return up_rat_legendre(ny, p) * up_rat_legendre(vn, p)
+    nz = g_norm_sq(u[2])
+    return up_rat_legendre(nz, p) * up_rat_legendre(vn, p)
 
 
 def main() -> None:

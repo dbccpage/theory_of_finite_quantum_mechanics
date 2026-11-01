@@ -5265,6 +5265,839 @@ theorem sp_vanishes_on_nine_rays {p : ℕ} (hp : 3 ≤ p) : VanishesOnNineRays (
   · exact sp_eq_zero_of_normSqVec_natCast hp2 (by decide)
       (by simp [normSqVec, GaussRat.normSq, tomo_e23i, gv]; norm_num) hv2
 
+/-- Boolean Euler-criterion quadratic-residue test modulo `p`. -/
+def isQrModP (p m : ℕ) : Bool :=
+  (m % p) ^ ((p - 1) / 2) % p == 1
+
+theorem isQrModP_mod (p m : ℕ) : isQrModP p (m % p) = isQrModP p m := by
+  simp [isQrModP]
+
+theorem chiPNat_eq_ite_isQrModP (p m : ℕ) :
+    chiPNat p m = if isQrModP p m = true then 1 else -1 := by
+  simp [chiPNat, isQrModP]
+
+theorem chiPNat_mod_p (p m : ℕ) : chiPNat p (m % p) = chiPNat p m := by
+  simp [chiPNat]
+
+/-- Decidable finite modular specification for an inert prime `p ≡ 3 (mod 4)`:
+(1) `3 ≤ p`,
+(2) `ℤ/pℤ` has no nonzero zero divisors,
+(3) the Euler-criterion character `isQrModP p` is multiplicative on `(ℤ/pℤ)ˣ`,
+(4) additive inverses in `(ℤ/pℤ)ˣ` have opposite character (`(-1 / p) = -1`), and
+(5) `x² + y² ≡ 0 (mod p)` has only the trivial solution `x ≡ y ≡ 0 (mod p)`. -/
+structure InertPrimeSpec (p : ℕ) : Prop where
+  ge_three : 3 ≤ p
+  mul_mod_ne_zero :
+    ∀ a : Fin p, ∀ b : Fin p, a.val ≠ 0 → b.val ≠ 0 → (a.val * b.val) % p ≠ 0
+  qr_mul :
+    ∀ a : Fin p, ∀ b : Fin p, a.val ≠ 0 → b.val ≠ 0 →
+      isQrModP p (a.val * b.val) = (isQrModP p a.val == isQrModP p b.val)
+  qr_neg :
+    ∀ a : Fin p, ∀ b : Fin p, a.val ≠ 0 → b.val ≠ 0 → (a.val + b.val) % p = 0 →
+      isQrModP p a.val = !isQrModP p b.val
+  sq_add_sq_mod_eq_zero :
+    ∀ x : Fin p, ∀ y : Fin p, (x.val ^ 2 + y.val ^ 2) % p = 0 → x.val = 0 ∧ y.val = 0
+
+instance (p : ℕ) : Decidable (InertPrimeSpec p) :=
+  decidable_of_iff
+    (3 ≤ p ∧
+     (∀ a : Fin p, ∀ b : Fin p, a.val ≠ 0 → b.val ≠ 0 → (a.val * b.val) % p ≠ 0) ∧
+     (∀ a : Fin p, ∀ b : Fin p, a.val ≠ 0 → b.val ≠ 0 →
+       isQrModP p (a.val * b.val) = (isQrModP p a.val == isQrModP p b.val)) ∧
+     (∀ a : Fin p, ∀ b : Fin p, a.val ≠ 0 → b.val ≠ 0 → (a.val + b.val) % p = 0 →
+       isQrModP p a.val = !isQrModP p b.val) ∧
+     (∀ x : Fin p, ∀ y : Fin p, (x.val ^ 2 + y.val ^ 2) % p = 0 → x.val = 0 ∧ y.val = 0))
+    ⟨fun ⟨h1, h2, h3, h4, h5⟩ => ⟨h1, h2, h3, h4, h5⟩,
+     fun h => ⟨h.1, h.2, h.3, h.4, h.5⟩⟩
+
+theorem inertPrimeSpec_three : InertPrimeSpec 3 := by decide
+theorem inertPrimeSpec_seven : InertPrimeSpec 7 := by decide
+theorem inertPrimeSpec_eleven : InertPrimeSpec 11 := by decide
+
+theorem inertPrimeSpec_pos {p : ℕ} (hP : InertPrimeSpec p) : 0 < p := by
+  have := hP.ge_three; omega
+
+theorem inertPrimeSpec_ge_two {p : ℕ} (hP : InertPrimeSpec p) : 2 ≤ p := by
+  have := hP.ge_three; omega
+
+theorem vpNatAux_spec (p : ℕ) : ∀ fuel n : ℕ, p ^ vpNatAux p fuel n * ppPartNatAux p fuel n = n
+  | 0, n => by simp [vpNatAux, ppPartNatAux]
+  | fuel + 1, n => by
+      simp only [vpNatAux, ppPartNatAux]
+      split_ifs with h
+      · have heq := vpNatAux_spec p fuel (n / p)
+        have hdiv : p * (n / p) = n := Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero h.2)
+        calc
+          p ^ (vpNatAux p fuel (n / p) + 1) * ppPartNatAux p fuel (n / p)
+              = p * (p ^ vpNatAux p fuel (n / p) * ppPartNatAux p fuel (n / p)) := by ring
+          _ = p * (n / p) := by rw [heq]
+          _ = n := hdiv
+      · ring
+
+theorem vpNat_spec (p n : ℕ) : p ^ vpNat p n * ppPartNat p n = n :=
+  vpNatAux_spec p n n
+
+theorem ppPartNatAux_mod_p_ne_zero {p : ℕ} (hp : 2 ≤ p) :
+    ∀ fuel n : ℕ, 0 < n → n ≤ fuel → ppPartNatAux p fuel n % p ≠ 0
+  | 0, n, hn, hle => by omega
+  | fuel + 1, n, hn, hle => by
+      simp only [ppPartNatAux]
+      split_ifs with h
+      · have hle_p : p ≤ n := Nat.le_of_dvd h.1 (Nat.dvd_of_mod_eq_zero h.2)
+        have hpos : 0 < n / p := Nat.div_pos hle_p (by omega)
+        have hlt : n / p < n := Nat.div_lt_self h.1 hp
+        exact ppPartNatAux_mod_p_ne_zero hp fuel (n / p) hpos (by omega)
+      · omega
+
+theorem ppPartNat_mod_p_ne_zero {p n : ℕ} (hp : 2 ≤ p) (hn : 0 < n) : ppPartNat p n % p ≠ 0 :=
+  ppPartNatAux_mod_p_ne_zero hp n n hn (le_refl n)
+
+theorem ppPartNat_pos {p n : ℕ} (hp : 2 ≤ p) (hn : 0 < n) : 0 < ppPartNat p n := by
+  have hmod := ppPartNat_mod_p_ne_zero hp hn
+  by_contra h0
+  have hz : ppPartNat p n = 0 := by omega
+  simp [hz] at hmod
+
+theorem pow_p_mul_unique {p : ℕ} (hp : 2 ≤ p) :
+    ∀ a b m k : ℕ, m % p ≠ 0 → k % p ≠ 0 → p ^ a * m = p ^ b * k → a = b ∧ m = k
+  | 0, 0, m, k, _, _, heq => by
+      simp only [pow_zero, one_mul] at heq
+      exact ⟨rfl, heq⟩
+  | 0, b + 1, m, k, hm, _, heq => by
+      have hm0 : m % p = 0 := by
+        have h1 : m = p * (p ^ b * k) := by
+          simp only [pow_zero, one_mul, pow_succ] at heq
+          linarith
+        rw [h1, Nat.mul_mod_right]
+      exact False.elim (hm hm0)
+  | a + 1, 0, m, k, _, hk, heq => by
+      have hk0 : k % p = 0 := by
+        have h1 : k = p * (p ^ a * m) := by
+          simp only [pow_zero, one_mul, pow_succ] at heq
+          linarith
+        rw [h1, Nat.mul_mod_right]
+      exact False.elim (hk hk0)
+  | a + 1, b + 1, m, k, hm, hk, heq => by
+      have heq_mul : p * (p ^ a * m) = p * (p ^ b * k) := by
+        simp only [pow_succ] at heq
+        linarith
+      have heq' : p ^ a * m = p ^ b * k :=
+        Nat.eq_of_mul_eq_mul_left (by omega : 0 < p) heq_mul
+      obtain ⟨hab, hmk⟩ := pow_p_mul_unique hp a b m k hm hk heq'
+      exact ⟨congrArg (· + 1) hab, hmk⟩
+
+theorem vpNat_ppPartNat_eq_of_pow_mul {p n a m : ℕ} (hp : 2 ≤ p)
+    (hm : m % p ≠ 0) (heq : p ^ a * m = n) :
+    vpNat p n = a ∧ ppPartNat p n = m := by
+  have hm_pos : 0 < m := by
+    by_contra h0
+    have hz : m = 0 := by omega
+    simp [hz] at hm
+  have hpow_pos : 0 < p ^ a := pow_pos (by omega : 0 < p) a
+  have hn : 0 < n := by nlinarith
+  exact pow_p_mul_unique hp (vpNat p n) a (ppPartNat p n) m
+    (ppPartNat_mod_p_ne_zero hp hn) hm ((vpNat_spec p n).trans heq.symm)
+
+theorem mul_mod_p_ne_zero {p : ℕ} (hP : InertPrimeSpec p) {a b : ℕ}
+    (ha : a % p ≠ 0) (hb : b % p ≠ 0) :
+    (a * b) % p ≠ 0 := by
+  have hp : 0 < p := inertPrimeSpec_pos hP
+  rw [Nat.mul_mod]
+  exact hP.mul_mod_ne_zero ⟨a % p, Nat.mod_lt a hp⟩ ⟨b % p, Nat.mod_lt b hp⟩ ha hb
+
+theorem chiPNat_sq (p m : ℕ) : chiPNat p m * chiPNat p m = 1 := by
+  rcases chiPNat_values p m with h | h <;> rw [h] <;> ring
+
+theorem chiPNat_mul {p : ℕ} (hP : InertPrimeSpec p) {a b : ℕ}
+    (ha : a % p ≠ 0) (hb : b % p ≠ 0) :
+    chiPNat p (a * b) = chiPNat p a * chiPNat p b := by
+  have hp : 0 < p := inertPrimeSpec_pos hP
+  have hqr := hP.qr_mul ⟨a % p, Nat.mod_lt a hp⟩ ⟨b % p, Nat.mod_lt b hp⟩ ha hb
+  dsimp only at hqr
+  have h1 : isQrModP p (a * b) = isQrModP p (a % p * (b % p)) := by
+    simp [isQrModP, -Nat.mul_mod]
+  rw [chiPNat_eq_ite_isQrModP p (a * b), chiPNat_eq_ite_isQrModP p a, chiPNat_eq_ite_isQrModP p b,
+    h1, hqr, isQrModP_mod p a, isQrModP_mod p b]
+  cases isQrModP p a <;> cases isQrModP p b <;> norm_num
+
+theorem chiPNat_eq_of_mul_eq {p : ℕ} (hP : InertPrimeSpec p) {a b c d : ℕ}
+    (ha : a % p ≠ 0) (hb : b % p ≠ 0) (hc : c % p ≠ 0) (hd : d % p ≠ 0)
+    (heq : a * b = c * d) :
+    chiPNat p (a * d) = chiPNat p (c * b) := by
+  have hmul : chiPNat p a * chiPNat p b = chiPNat p c * chiPNat p d := by
+    rw [← chiPNat_mul hP ha hb, ← chiPNat_mul hP hc hd, heq]
+  have hsq_b := chiPNat_sq p b
+  have hsq_d := chiPNat_sq p d
+  rw [chiPNat_mul hP ha hd, chiPNat_mul hP hc hb]
+  linear_combination
+    (chiPNat p b * chiPNat p d) * hmul -
+    (chiPNat p a * chiPNat p d) * hsq_b +
+    (chiPNat p c * chiPNat p b) * hsq_d
+
+theorem chiPNat_add_cancel {p : ℕ} (hP : InertPrimeSpec p) {a b : ℕ}
+    (ha : a % p ≠ 0) (hb : b % p ≠ 0) (hsum : (a + b) % p = 0) :
+    chiPNat p a + chiPNat p b = 0 := by
+  have hp : 0 < p := inertPrimeSpec_pos hP
+  have hsum_mod : (a % p + b % p) % p = 0 := by rw [← Nat.add_mod, hsum]
+  have hqr := hP.qr_neg ⟨a % p, Nat.mod_lt a hp⟩ ⟨b % p, Nat.mod_lt b hp⟩ ha hb hsum_mod
+  dsimp only at hqr
+  rw [isQrModP_mod p a, isQrModP_mod p b] at hqr
+  rw [chiPNat_eq_ite_isQrModP p a, chiPNat_eq_ite_isQrModP p b, hqr]
+  cases isQrModP p b <;> norm_num
+
+theorem vpNat_ppPartNat_mul {p : ℕ} (hP : InertPrimeSpec p) {m k : ℕ} (hm : 0 < m) (hk : 0 < k) :
+    vpNat p (m * k) = vpNat p m + vpNat p k ∧
+    ppPartNat p (m * k) = ppPartNat p m * ppPartNat p k := by
+  have hp2 := inertPrimeSpec_ge_two hP
+  apply vpNat_ppPartNat_eq_of_pow_mul hp2
+    (mul_mod_p_ne_zero hP (ppPartNat_mod_p_ne_zero hp2 hm) (ppPartNat_mod_p_ne_zero hp2 hk))
+  calc
+    p ^ (vpNat p m + vpNat p k) * (ppPartNat p m * ppPartNat p k)
+        = (p ^ vpNat p m * ppPartNat p m) * (p ^ vpNat p k * ppPartNat p k) := by ring
+    _ = m * k := by rw [vpNat_spec p m, vpNat_spec p k]
+
+theorem vpNat_add_of_lt {p X Y : ℕ} (hp : 2 ≤ p) (hX : 0 < X) (_hY : 0 < Y)
+    (hlt : vpNat p X < vpNat p Y) :
+    vpNat p (X + Y) = vpNat p X ∧ ppPartNat p (X + Y) % p = ppPartNat p X % p := by
+  let d := vpNat p Y - vpNat p X - 1
+  have hb : vpNat p Y = vpNat p X + (d + 1) := by omega
+  let m := ppPartNat p X + p ^ (d + 1) * ppPartNat p Y
+  have hm_mod : m % p = ppPartNat p X % p := by
+    have hpow : (p ^ (d + 1) * ppPartNat p Y) % p = 0 := by
+      have h1 : p ^ (d + 1) * ppPartNat p Y = p * (p ^ d * ppPartNat p Y) := by ring
+      rw [h1, Nat.mul_mod_right]
+    rw [Nat.add_mod, hpow, add_zero, Nat.mod_mod]
+  have hm_ne : m % p ≠ 0 := by
+    rw [hm_mod]
+    exact ppPartNat_mod_p_ne_zero hp hX
+  have heq : p ^ vpNat p X * m = X + Y := by
+    calc
+      p ^ vpNat p X * m
+          = p ^ vpNat p X * ppPartNat p X + p ^ (vpNat p X + (d + 1)) * ppPartNat p Y := by
+            simp only [m, pow_add]; ring
+      _ = p ^ vpNat p X * ppPartNat p X + p ^ vpNat p Y * ppPartNat p Y := by rw [← hb]
+      _ = X + Y := by rw [vpNat_spec p X, vpNat_spec p Y]
+  obtain ⟨hv, hpp⟩ := vpNat_ppPartNat_eq_of_pow_mul hp hm_ne heq
+  exact ⟨hv, by rw [hpp, hm_mod]⟩
+
+theorem vpNat_add_gt_imp_eq_and_mod_p {p X Y : ℕ} (hp : 2 ≤ p) (hX : 0 < X) (hY : 0 < Y)
+    (hgt : vpNat p X < vpNat p (X + Y)) :
+    vpNat p X = vpNat p Y ∧ (ppPartNat p X + ppPartNat p Y) % p = 0 := by
+  have heq_v : vpNat p X = vpNat p Y := by
+    rcases lt_trichotomy (vpNat p X) (vpNat p Y) with hlt | heq | hlt
+    · have h1 := (vpNat_add_of_lt hp hX hY hlt).1
+      omega
+    · exact heq
+    · have h1 := (vpNat_add_of_lt hp hY hX hlt).1
+      rw [Nat.add_comm Y X] at h1
+      omega
+  refine ⟨heq_v, ?_⟩
+  by_contra hmod
+  have heq_sum : p ^ vpNat p X * (ppPartNat p X + ppPartNat p Y) = X + Y := by
+    calc
+      p ^ vpNat p X * (ppPartNat p X + ppPartNat p Y)
+          = p ^ vpNat p X * ppPartNat p X + p ^ vpNat p Y * ppPartNat p Y := by
+            rw [← heq_v]; ring
+      _ = X + Y := by rw [vpNat_spec p X, vpNat_spec p Y]
+  have hv := (vpNat_ppPartNat_eq_of_pow_mul hp hmod heq_sum).1
+  omega
+
+theorem vpNat_add_ge_min {p X Y : ℕ} (hP : InertPrimeSpec p) (hX : 0 < X) (hY : 0 < Y) :
+    min (vpNat p X) (vpNat p Y) ≤ vpNat p (X + Y) := by
+  have hp2 := inertPrimeSpec_ge_two hP
+  rcases lt_trichotomy (vpNat p X) (vpNat p Y) with hlt | heq | hlt
+  · have h1 := (vpNat_add_of_lt hp2 hX hY hlt).1
+    omega
+  · have hsum_pos : 0 < ppPartNat p X + ppPartNat p Y := by
+      have hpX := ppPartNat_pos hp2 hX
+      omega
+    have hpow_pos : 0 < p ^ vpNat p X := pow_pos (inertPrimeSpec_pos hP) (vpNat p X)
+    have heq_sum : X + Y = p ^ vpNat p X * (ppPartNat p X + ppPartNat p Y) := by
+      calc
+        X + Y = p ^ vpNat p X * ppPartNat p X + p ^ vpNat p Y * ppPartNat p Y := by
+          rw [vpNat_spec p X, vpNat_spec p Y]
+        _ = p ^ vpNat p X * (ppPartNat p X + ppPartNat p Y) := by
+          rw [← heq]; ring
+    have h1_mod : 1 % p ≠ 0 := by
+      rw [Nat.mod_eq_of_lt (by omega : 1 < p)]
+      decide
+    have hv_pow : vpNat p (p ^ vpNat p X) = vpNat p X :=
+      (vpNat_ppPartNat_eq_of_pow_mul hp2 (m := 1) h1_mod (by ring)).1
+    have hv_mul := (vpNat_ppPartNat_mul hP hpow_pos hsum_pos).1
+    rw [heq_sum, hv_mul, hv_pow]
+    omega
+  · have h1 := (vpNat_add_of_lt hp2 hY hX hlt).1
+    rw [Nat.add_comm Y X] at h1
+    omega
+
+theorem sq_add_sq_mod_p_eq_zero_iff {p : ℕ} (hP : InertPrimeSpec p) (x y : ℕ) :
+    (x ^ 2 + y ^ 2) % p = 0 ↔ x % p = 0 ∧ y % p = 0 := by
+  have hp : 0 < p := inertPrimeSpec_pos hP
+  constructor
+  · intro h
+    have hmod : ((x % p) ^ 2 + (y % p) ^ 2) % p = 0 := by
+      simpa [sq, Nat.add_mod, Nat.mul_mod] using h
+    exact hP.sq_add_sq_mod_eq_zero ⟨x % p, Nat.mod_lt x hp⟩ ⟨y % p, Nat.mod_lt y hp⟩ hmod
+  · rintro ⟨hx, hy⟩
+    simp [sq, Nat.add_mod, Nat.mul_mod x x, Nat.mul_mod y y, hx, hy]
+
+theorem vpNat_sq_add_sq_even {p : ℕ} (hP : InertPrimeSpec p) (x y : ℕ) :
+    vpNat p (x ^ 2 + y ^ 2) % 2 = 0 := by
+  have hp2 := inertPrimeSpec_ge_two hP
+  have hp_pos := inertPrimeSpec_pos hP
+  have h1_mod : 1 % p ≠ 0 := by
+    rw [Nat.mod_eq_of_lt (by omega : 1 < p)]
+    decide
+  have hvp2 : vpNat p (p ^ 2) = 2 :=
+    (vpNat_ppPartNat_eq_of_pow_mul hp2 (m := 1) h1_mod (by ring)).1
+  have hp2_pos : 0 < p ^ 2 := pow_pos hp_pos 2
+  have hmain : ∀ s : ℕ, ∀ a b : ℕ, a + b = s → vpNat p (a ^ 2 + b ^ 2) % 2 = 0 := by
+    intro s
+    induction s using Nat.strong_induction_on with
+    | h s ih =>
+      intro a b hab
+      by_cases h0 : a = 0 ∧ b = 0
+      · rcases h0 with ⟨rfl, rfl⟩
+        simp [vpNat, vpNatAux]
+      · by_cases hmod : (a ^ 2 + b ^ 2) % p = 0
+        · obtain ⟨hap, hbp⟩ := (sq_add_sq_mod_p_eq_zero_iff hP a b).mp hmod
+          have ha_eq : a = p * (a / p) := (Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero hap)).symm
+          have hb_eq : b = p * (b / p) := (Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero hbp)).symm
+          have hlt_s : a / p + b / p < s := by
+            have ha_le : a / p ≤ a := Nat.div_le_self a p
+            have hb_le : b / p ≤ b := Nat.div_le_self b p
+            rcases not_and_or.mp h0 with ha_nz | hb_nz
+            · have ha_lt : a / p < a := Nat.div_lt_self (by omega) hp2
+              omega
+            · have hb_lt : b / p < b := Nat.div_lt_self (by omega) hp2
+              omega
+          have hsub_pos : 0 < (a / p) ^ 2 + (b / p) ^ 2 := by
+            rcases not_and_or.mp h0 with ha_nz | hb_nz
+            · have ha_pos : 0 < a / p := Nat.div_pos (Nat.le_of_dvd (by omega) (Nat.dvd_of_mod_eq_zero hap)) hp_pos
+              nlinarith
+            · have hb_pos : 0 < b / p := Nat.div_pos (Nat.le_of_dvd (by omega) (Nat.dvd_of_mod_eq_zero hbp)) hp_pos
+              nlinarith
+          have hsq_eq : a ^ 2 + b ^ 2 = p ^ 2 * ((a / p) ^ 2 + (b / p) ^ 2) := by
+            calc
+              a ^ 2 + b ^ 2 = (p * (a / p)) ^ 2 + (p * (b / p)) ^ 2 := by
+                rw [← ha_eq, ← hb_eq]
+              _ = p ^ 2 * ((a / p) ^ 2 + (b / p) ^ 2) := by ring
+          have hmul := (vpNat_ppPartNat_mul hP hp2_pos hsub_pos).1
+          have hrec := ih (a / p + b / p) hlt_s (a / p) (b / p) rfl
+          rw [hsq_eq, hmul, hvp2]
+          omega
+        · have hv0 :=
+            (vpNat_ppPartNat_eq_of_pow_mul hp2 (n := a ^ 2 + b ^ 2) (a := 0) (m := a ^ 2 + b ^ 2)
+              hmod (by ring)).1
+          rw [hv0]
+  exact hmain (x + y) x y rfl
+
+theorem vpRat_upRat_of_nat_div {p : ℕ} (hP : InertPrimeSpec p) {q : ℚ} {n d : ℕ}
+    (hn : 0 < n) (hd : 0 < d) (hq : q = (n : ℚ) / (d : ℚ)) :
+    0 < q ∧
+    vpRat p q = (vpNat p n : ℤ) - (vpNat p d : ℤ) ∧
+    upRat p q = chiPNat p (ppPartNat p n * ppPartNat p d) := by
+  have hp2 := inertPrimeSpec_ge_two hP
+  have hn_q : 0 < (n : ℚ) := by exact_mod_cast hn
+  have hd_q : 0 < (d : ℚ) := by exact_mod_cast hd
+  have hq_pos : 0 < q := by
+    rw [hq]
+    exact div_pos hn_q hd_q
+  obtain ⟨hnum_pos, hden_pos, hq_can⟩ := rat_pos_eq_natAbs_div_den hq_pos
+  have hden_q : (q.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hden_pos)
+  have hd_ne : (d : ℚ) ≠ 0 := ne_of_gt hd_q
+  have hcross_q : (q.num.natAbs : ℚ) * (d : ℚ) = (n : ℚ) * (q.den : ℚ) := by
+    have heq_div : (q.num.natAbs : ℚ) / (q.den : ℚ) = (n : ℚ) / (d : ℚ) :=
+      hq_can.symm.trans hq
+    exact (div_eq_div_iff hden_q hd_ne).mp heq_div
+  have hcross : q.num.natAbs * d = n * q.den := by
+    exact_mod_cast hcross_q
+  obtain ⟨hv1, hp1⟩ := vpNat_ppPartNat_mul hP hnum_pos hd
+  obtain ⟨hv2, hp2_mul⟩ := vpNat_ppPartNat_mul hP hn hden_pos
+  have hv_eq : vpNat p q.num.natAbs + vpNat p d = vpNat p n + vpNat p q.den := by
+    rw [← hv1, ← hv2, hcross]
+  have hp_eq : ppPartNat p q.num.natAbs * ppPartNat p d = ppPartNat p n * ppPartNat p q.den := by
+    rw [← hp1, ← hp2_mul, hcross]
+  have hchi_eq :
+      chiPNat p (ppPartNat p q.num.natAbs * ppPartNat p q.den) =
+      chiPNat p (ppPartNat p n * ppPartNat p d) :=
+    chiPNat_eq_of_mul_eq hP
+      (ppPartNat_mod_p_ne_zero hp2 hnum_pos)
+      (ppPartNat_mod_p_ne_zero hp2 hd)
+      (ppPartNat_mod_p_ne_zero hp2 hn)
+      (ppPartNat_mod_p_ne_zero hp2 hden_pos)
+      hp_eq
+  refine ⟨hq_pos, ?_, ?_⟩
+  · simp only [vpRat, hq_pos, ↓reduceIte]
+    omega
+  · simp only [upRat, hq_pos, ↓reduceIte, hchi_eq]
+
+theorem upRat_values_of_pos (p : ℕ) {q : ℚ} (hq : 0 < q) : upRat p q = 1 ∨ upRat p q = -1 := by
+  simp only [upRat, hq, ↓reduceIte]
+  exact chiPNat_values p _
+
+theorem upRat_sq_of_pos (p : ℕ) {q : ℚ} (hq : 0 < q) : upRat p q * upRat p q = 1 := by
+  rcases upRat_values_of_pos p hq with h | h <;> rw [h] <;> ring
+
+theorem vpRat_mul {p : ℕ} (hP : InertPrimeSpec p) {a b : ℚ} (ha : 0 < a) (hb : 0 < b) :
+    vpRat p (a * b) = vpRat p a + vpRat p b := by
+  obtain ⟨hna, hda, ha_eq⟩ := rat_pos_eq_natAbs_div_den ha
+  obtain ⟨hnb, hdb, hb_eq⟩ := rat_pos_eq_natAbs_div_den hb
+  have hmul_eq : a * b = ((a.num.natAbs * b.num.natAbs : ℕ) : ℚ) / ((a.den * b.den : ℕ) : ℚ) := by
+    push_cast
+    rw [← div_mul_div_comm, ← ha_eq, ← hb_eq]
+  have hvab := (vpRat_upRat_of_nat_div hP (Nat.mul_pos hna hnb) (Nat.mul_pos hda hdb) hmul_eq).2.1
+  have hva := (vpRat_upRat_of_nat_div hP hna hda ha_eq).2.1
+  have hvb := (vpRat_upRat_of_nat_div hP hnb hdb hb_eq).2.1
+  have hvn := (vpNat_ppPartNat_mul hP hna hnb).1
+  have hvd := (vpNat_ppPartNat_mul hP hda hdb).1
+  rw [hvab, hva, hvb, hvn, hvd]
+  omega
+
+theorem upRat_mul {p : ℕ} (hP : InertPrimeSpec p) {a b : ℚ} (ha : 0 < a) (hb : 0 < b) :
+    upRat p (a * b) = upRat p a * upRat p b := by
+  have hp2 := inertPrimeSpec_ge_two hP
+  obtain ⟨hna, hda, ha_eq⟩ := rat_pos_eq_natAbs_div_den ha
+  obtain ⟨hnb, hdb, hb_eq⟩ := rat_pos_eq_natAbs_div_den hb
+  have hmul_eq : a * b = ((a.num.natAbs * b.num.natAbs : ℕ) : ℚ) / ((a.den * b.den : ℕ) : ℚ) := by
+    push_cast
+    rw [← div_mul_div_comm, ← ha_eq, ← hb_eq]
+  have huab := (vpRat_upRat_of_nat_div hP (Nat.mul_pos hna hnb) (Nat.mul_pos hda hdb) hmul_eq).2.2
+  have hua := (vpRat_upRat_of_nat_div hP hna hda ha_eq).2.2
+  have hub := (vpRat_upRat_of_nat_div hP hnb hdb hb_eq).2.2
+  have hpn := (vpNat_ppPartNat_mul hP hna hnb).2
+  have hpd := (vpNat_ppPartNat_mul hP hda hdb).2
+  rw [huab, hua, hub, hpn, hpd]
+  have hma_ne : (ppPartNat p a.num.natAbs * ppPartNat p a.den) % p ≠ 0 :=
+    mul_mod_p_ne_zero hP (ppPartNat_mod_p_ne_zero hp2 hna) (ppPartNat_mod_p_ne_zero hp2 hda)
+  have hmb_ne : (ppPartNat p b.num.natAbs * ppPartNat p b.den) % p ≠ 0 :=
+    mul_mod_p_ne_zero hP (ppPartNat_mod_p_ne_zero hp2 hnb) (ppPartNat_mod_p_ne_zero hp2 hdb)
+  have hcomm :
+      ppPartNat p a.num.natAbs * ppPartNat p b.num.natAbs *
+        (ppPartNat p a.den * ppPartNat p b.den) =
+      (ppPartNat p a.num.natAbs * ppPartNat p a.den) *
+        (ppPartNat p b.num.natAbs * ppPartNat p b.den) := by
+    ring
+  rw [hcomm, chiPNat_mul hP hma_ne hmb_ne]
+
+theorem vpRat_add_of_lt {p : ℕ} (hP : InertPrimeSpec p) {a b : ℚ}
+    (ha : 0 < a) (hb : 0 < b) (hlt : vpRat p a < vpRat p b) :
+    vpRat p (a + b) = vpRat p a ∧ upRat p (a + b) = upRat p a := by
+  have hp2 := inertPrimeSpec_ge_two hP
+  obtain ⟨hna, hda, ha_eq⟩ := rat_pos_eq_natAbs_div_den ha
+  obtain ⟨hnb, hdb, hb_eq⟩ := rat_pos_eq_natAbs_div_den hb
+  let X := a.num.natAbs * b.den
+  let Y := b.num.natAbs * a.den
+  let D := a.den * b.den
+  have hX : 0 < X := Nat.mul_pos hna hdb
+  have hY : 0 < Y := Nat.mul_pos hnb hda
+  have hD : 0 < D := Nat.mul_pos hda hdb
+  have ha_D : a = (X : ℚ) / (D : ℚ) := by
+    have hdb_ne : (b.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdb)
+    simp only [X, D, Nat.cast_mul]
+    rw [mul_div_mul_right _ _ hdb_ne, ← ha_eq]
+  have hb_D : b = (Y : ℚ) / (D : ℚ) := by
+    have hda_ne : (a.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hda)
+    simp only [Y, D, Nat.cast_mul]
+    rw [mul_comm (a.den : ℚ) (b.den : ℚ), mul_div_mul_right _ _ hda_ne, ← hb_eq]
+  have hab_D : a + b = ((X + Y : ℕ) : ℚ) / (D : ℚ) := by
+    rw [ha_D, hb_D, Nat.cast_add, add_div]
+  obtain ⟨_, hva, hua⟩ := vpRat_upRat_of_nat_div hP hX hD ha_D
+  obtain ⟨_, hvb, _⟩ := vpRat_upRat_of_nat_div hP hY hD hb_D
+  obtain ⟨_, hvab, huab⟩ := vpRat_upRat_of_nat_div hP (Nat.add_pos_left hX Y) hD hab_D
+  have hlt_nat : vpNat p X < vpNat p Y := by omega
+  obtain ⟨hv_add, hp_add⟩ := vpNat_add_of_lt hp2 hX hY hlt_nat
+  refine ⟨by omega, ?_⟩
+  rw [huab, hua, ← chiPNat_mod_p p (ppPartNat p (X + Y) * ppPartNat p D),
+    ← chiPNat_mod_p p (ppPartNat p X * ppPartNat p D)]
+  have hmod_mul :
+      (ppPartNat p (X + Y) * ppPartNat p D) % p = (ppPartNat p X * ppPartNat p D) % p := by
+    rw [Nat.mul_mod, hp_add, ← Nat.mul_mod]
+  rw [hmod_mul]
+
+theorem vpRat_add_gt_imp_eq_and_upRat_cancel {p : ℕ} (hP : InertPrimeSpec p) {a b : ℚ}
+    (ha : 0 < a) (hb : 0 < b) (hgt : vpRat p a < vpRat p (a + b)) :
+    vpRat p a = vpRat p b ∧ upRat p a + upRat p b = 0 := by
+  have hp2 := inertPrimeSpec_ge_two hP
+  obtain ⟨hna, hda, ha_eq⟩ := rat_pos_eq_natAbs_div_den ha
+  obtain ⟨hnb, hdb, hb_eq⟩ := rat_pos_eq_natAbs_div_den hb
+  let X := a.num.natAbs * b.den
+  let Y := b.num.natAbs * a.den
+  let D := a.den * b.den
+  have hX : 0 < X := Nat.mul_pos hna hdb
+  have hY : 0 < Y := Nat.mul_pos hnb hda
+  have hD : 0 < D := Nat.mul_pos hda hdb
+  have ha_D : a = (X : ℚ) / (D : ℚ) := by
+    have hdb_ne : (b.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdb)
+    simp only [X, D, Nat.cast_mul]
+    rw [mul_div_mul_right _ _ hdb_ne, ← ha_eq]
+  have hb_D : b = (Y : ℚ) / (D : ℚ) := by
+    have hda_ne : (a.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hda)
+    simp only [Y, D, Nat.cast_mul]
+    rw [mul_comm (a.den : ℚ) (b.den : ℚ), mul_div_mul_right _ _ hda_ne, ← hb_eq]
+  have hab_D : a + b = ((X + Y : ℕ) : ℚ) / (D : ℚ) := by
+    rw [ha_D, hb_D, Nat.cast_add, add_div]
+  obtain ⟨_, hva, hua⟩ := vpRat_upRat_of_nat_div hP hX hD ha_D
+  obtain ⟨_, hvb, hub⟩ := vpRat_upRat_of_nat_div hP hY hD hb_D
+  obtain ⟨_, hvab, _⟩ := vpRat_upRat_of_nat_div hP (Nat.add_pos_left hX Y) hD hab_D
+  have hgt_nat : vpNat p X < vpNat p (X + Y) := by omega
+  obtain ⟨hv_eq, hp_sum⟩ := vpNat_add_gt_imp_eq_and_mod_p hp2 hX hY hgt_nat
+  refine ⟨by omega, ?_⟩
+  rw [hua, hub]
+  have hpX_ne := ppPartNat_mod_p_ne_zero hp2 hX
+  have hpY_ne := ppPartNat_mod_p_ne_zero hp2 hY
+  have hpD_ne := ppPartNat_mod_p_ne_zero hp2 hD
+  rw [chiPNat_mul hP hpX_ne hpD_ne, chiPNat_mul hP hpY_ne hpD_ne]
+  have hcancel := chiPNat_add_cancel hP hpX_ne hpY_ne hp_sum
+  linear_combination chiPNat p (ppPartNat p D) * hcancel
+
+theorem vpRat_add_ge_min {p : ℕ} (hP : InertPrimeSpec p) {a b : ℚ} (ha : 0 < a) (hb : 0 < b) :
+    min (vpRat p a) (vpRat p b) ≤ vpRat p (a + b) := by
+  obtain ⟨hna, hda, ha_eq⟩ := rat_pos_eq_natAbs_div_den ha
+  obtain ⟨hnb, hdb, hb_eq⟩ := rat_pos_eq_natAbs_div_den hb
+  let X := a.num.natAbs * b.den
+  let Y := b.num.natAbs * a.den
+  let D := a.den * b.den
+  have hX : 0 < X := Nat.mul_pos hna hdb
+  have hY : 0 < Y := Nat.mul_pos hnb hda
+  have hD : 0 < D := Nat.mul_pos hda hdb
+  have ha_D : a = (X : ℚ) / (D : ℚ) := by
+    have hdb_ne : (b.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdb)
+    simp only [X, D, Nat.cast_mul]
+    rw [mul_div_mul_right _ _ hdb_ne, ← ha_eq]
+  have hb_D : b = (Y : ℚ) / (D : ℚ) := by
+    have hda_ne : (a.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hda)
+    simp only [Y, D, Nat.cast_mul]
+    rw [mul_comm (a.den : ℚ) (b.den : ℚ), mul_div_mul_right _ _ hda_ne, ← hb_eq]
+  have hab_D : a + b = ((X + Y : ℕ) : ℚ) / (D : ℚ) := by
+    rw [ha_D, hb_D, Nat.cast_add, add_div]
+  obtain ⟨_, hva, _⟩ := vpRat_upRat_of_nat_div hP hX hD ha_D
+  obtain ⟨_, hvb, _⟩ := vpRat_upRat_of_nat_div hP hY hD hb_D
+  obtain ⟨_, hvab, _⟩ := vpRat_upRat_of_nat_div hP (Nat.add_pos_left hX Y) hD hab_D
+  have hmin := vpNat_add_ge_min hP hX hY
+  omega
+
+/-- For any inert prime `p` (`InertPrimeSpec p`), every Gaussian rational `z ∈ ℚ(i)` has even
+`p`-adic squared-norm valuation `vpRat p z.normSq % 2 = 0`. -/
+theorem vpRat_normSq_even {p : ℕ} (hP : InertPrimeSpec p) (z : GaussRat) :
+    vpRat p z.normSq % 2 = 0 := by
+  by_cases hpos : 0 < z.normSq
+  · let X := z.re.num.natAbs * z.im.den
+    let Y := z.im.num.natAbs * z.re.den
+    let D := z.re.den * z.im.den
+    have hD1 : 0 < D := Nat.mul_pos z.re.den_pos z.im.den_pos
+    have hD_pos : 0 < D * D := Nat.mul_pos hD1 hD1
+    have hre_den_sq_ne : ((z.re.den * z.re.den : ℕ) : ℚ) ≠ 0 :=
+      ne_of_gt (by exact_mod_cast Nat.mul_pos z.re.den_pos z.re.den_pos)
+    have him_den_sq_ne : ((z.im.den * z.im.den : ℕ) : ℚ) ≠ 0 :=
+      ne_of_gt (by exact_mod_cast Nat.mul_pos z.im.den_pos z.im.den_pos)
+    have hnorm_eq : z.normSq = ((X ^ 2 + Y ^ 2 : ℕ) : ℚ) / ((D * D : ℕ) : ℚ) := by
+      simp only [GaussRat.normSq]
+      rw [rat_sq_eq_natAbs_sq_div_den_sq z.re, rat_sq_eq_natAbs_sq_div_den_sq z.im,
+        div_add_div _ _ hre_den_sq_ne him_den_sq_ne]
+      simp only [X, Y, D]
+      push_cast
+      ring
+    have hXY_pos : 0 < X ^ 2 + Y ^ 2 := by
+      by_contra hle
+      have h0 : X ^ 2 + Y ^ 2 = 0 := by omega
+      rw [h0] at hnorm_eq
+      simp at hnorm_eq
+      linarith
+    have hv := (vpRat_upRat_of_nat_div hP hXY_pos hD_pos hnorm_eq).2.1
+    have hvD := (vpNat_ppPartNat_mul hP hD1 hD1).1
+    have heven := vpNat_sq_add_sq_even hP X Y
+    rw [hv, hvD]
+    omega
+  · simp only [vpRat, hpos, ↓reduceIte]
+    rfl
+
+theorem four_term_vpRat_cancel {p : ℕ} (hP : InertPrimeSpec p) {A B C D : ℚ}
+    (hA : 0 < A) (hB_nn : 0 ≤ B) (hC_nn : 0 ≤ C) (_hD : 0 < D)
+    (hsum : A + B + C = D)
+    (hA_odd : vpRat p A % 2 ≠ 0)
+    (hB_odd : 0 < B → vpRat p B % 2 ≠ 0)
+    (hC_even : vpRat p C % 2 = 0)
+    (hlt_D : vpRat p A < vpRat p D) :
+    0 < B ∧ vpRat p A = vpRat p B ∧ upRat p A + upRat p B = 0 := by
+  have hAB_pos : 0 < A + B := by linarith
+  have hAB_gt : vpRat p A < vpRat p (A + B) := by
+    by_contra hle
+    have hle' : vpRat p (A + B) ≤ vpRat p A := not_lt.mp hle
+    have hAB_odd : vpRat p (A + B) % 2 ≠ 0 := by
+      rcases eq_or_lt_of_le hB_nn with rfl | hB_pos
+      · simp [hA_odd]
+      · rcases lt_or_ge (vpRat p B) (vpRat p A) with hlt_BA | hge_BA
+        · have hvBA := (vpRat_add_of_lt hP hB_pos hA hlt_BA).1
+          rw [add_comm] at hvBA
+          rw [hvBA]
+          exact hB_odd hB_pos
+        · have hmin := vpRat_add_ge_min hP hA hB_pos
+          have heq_AB : vpRat p (A + B) = vpRat p A := by omega
+          rw [heq_AB]
+          exact hA_odd
+    have hAB_lt_D : vpRat p (A + B) < vpRat p (A + B + C) := by
+      rw [hsum]
+      omega
+    rcases eq_or_lt_of_le hC_nn with rfl | hC_pos
+    · simp at hAB_lt_D
+    · have hv_eq := (vpRat_add_gt_imp_eq_and_upRat_cancel hP hAB_pos hC_pos hAB_lt_D).1
+      omega
+  rcases eq_or_lt_of_le hB_nn with rfl | hB_pos
+  · simp at hAB_gt
+  · obtain ⟨hv_eq, hu_sum⟩ := vpRat_add_gt_imp_eq_and_upRat_cancel hP hA hB_pos hAB_gt
+    exact ⟨hB_pos, hv_eq, hu_sum⟩
+
+/-- On any orthogonal frame `(u, v, w)` in `ℚ(i)³`, the sum of `p`-adic squared-norm
+valuations is even for every inert prime `p` (`InertPrimeSpec p`). -/
+theorem frame_vpRat_sum_even {p : ℕ} (hP : InertPrimeSpec p) {u v w : GVec} (hf : IsFrame u v w) :
+    (vpRat p (normSqVec u) + vpRat p (normSqVec v) + vpRat p (normSqVec w)) % 2 = 0 := by
+  have hu := normSqVec_pos_of_nonZero hf.1
+  have hv := normSqVec_pos_of_nonZero hf.2.1
+  have hw := normSqVec_pos_of_nonZero hf.2.2.1
+  have hdet := detGVec_normSq_of_frame hf
+  have hmul1 := vpRat_mul hP (mul_pos hu hv) hw
+  have hmul2 := vpRat_mul hP hu hv
+  have heven := vpRat_normSq_even hP (detGVec u v w)
+  rw [hdet, hmul1, hmul2] at heven
+  exact heven
+
+theorem pos_of_vpRat_mod_two_ne_zero {p : ℕ} {q : ℚ} (h : vpRat p q % 2 ≠ 0) : 0 < q := by
+  by_contra hle
+  simp [vpRat, hle] at h
+
+theorem vpRat_add_gt_of_nonneg {p : ℕ} (hP : InertPrimeSpec p) {a b : ℚ} {V : ℤ}
+    (ha_nn : 0 ≤ a) (hb_nn : 0 ≤ b)
+    (ha : 0 < a → V < vpRat p a) (hb : 0 < b → V < vpRat p b)
+    (hab : 0 < a + b) : V < vpRat p (a + b) := by
+  rcases eq_or_lt_of_le ha_nn with rfl | ha_pos
+  · simp at hab ⊢
+    exact hb hab
+  · rcases eq_or_lt_of_le hb_nn with rfl | hb_pos
+    · simp at hab ⊢
+      exact ha ha_pos
+    · have h1 := ha ha_pos
+      have h2 := hb hb_pos
+      have hmin := vpRat_add_ge_min hP ha_pos hb_pos
+      omega
+
+theorem exists_leadPCoord_of_odd {p : ℕ} (hP : InertPrimeSpec p) {u : GVec}
+    (hodd : vpRat p (normSqVec u) % 2 ≠ 0) :
+    isLeadPCoord p u.x u ∨ isLeadPCoord p u.y u ∨ isLeadPCoord p u.z u := by
+  by_contra hnot
+  rcases not_or.mp hnot with ⟨hx_not, hyz_not⟩
+  rcases not_or.mp hyz_not with ⟨hy_not, hz_not⟩
+  have hpos : 0 < normSqVec u := pos_of_vpRat_mod_two_ne_zero hodd
+  have hx_gt : 0 < u.x.normSq → vpRat p (normSqVec u) < vpRat p u.x.normSq := by
+    intro hx_pos
+    have hnot_lt : ¬ vpRat p u.x.normSq < vpRat p (normSqVec u) := fun hlt => hx_not ⟨hx_pos, hlt⟩
+    have heven := vpRat_normSq_even hP u.x
+    omega
+  have hy_gt : 0 < u.y.normSq → vpRat p (normSqVec u) < vpRat p u.y.normSq := by
+    intro hy_pos
+    have hnot_lt : ¬ vpRat p u.y.normSq < vpRat p (normSqVec u) := fun hlt => hy_not ⟨hy_pos, hlt⟩
+    have heven := vpRat_normSq_even hP u.y
+    omega
+  have hz_gt : 0 < u.z.normSq → vpRat p (normSqVec u) < vpRat p u.z.normSq := by
+    intro hz_pos
+    have hnot_lt : ¬ vpRat p u.z.normSq < vpRat p (normSqVec u) := fun hlt => hz_not ⟨hz_pos, hlt⟩
+    have heven := vpRat_normSq_even hP u.z
+    omega
+  have hxy_gt : 0 < u.x.normSq + u.y.normSq →
+      vpRat p (normSqVec u) < vpRat p (u.x.normSq + u.y.normSq) :=
+    vpRat_add_gt_of_nonneg hP (GaussRat.normSq_nonneg u.x) (GaussRat.normSq_nonneg u.y) hx_gt hy_gt
+  have hxyz_gt : vpRat p (normSqVec u) < vpRat p (u.x.normSq + u.y.normSq + u.z.normSq) :=
+    vpRat_add_gt_of_nonneg hP
+      (add_nonneg (GaussRat.normSq_nonneg u.x) (GaussRat.normSq_nonneg u.y))
+      (GaussRat.normSq_nonneg u.z) hxy_gt hz_gt hpos
+  change vpRat p (normSqVec u) < vpRat p (normSqVec u) at hxyz_gt
+  omega
+
+theorem leadPCoord_x_ortho_imp {p : ℕ} (hP : InertPrimeSpec p) {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : vpRat p (normSqVec u) % 2 ≠ 0)
+    (hv_odd : vpRat p (normSqVec v) % 2 ≠ 0)
+    (hlead : isLeadPCoord p u.x u) :
+    isLeadPCoord p v.x v ∧ coordSignP p u.x u + coordSignP p v.x v = 0 := by
+  have hu_pos : 0 < normSqVec u := pos_of_vpRat_mod_two_ne_zero hu_odd
+  have hv_pos : 0 < normSqVec v := pos_of_vpRat_mod_two_ne_zero hv_odd
+  let A := u.x.normSq * normSqVec v
+  let B := v.x.normSq * normSqVec u
+  let C := (u.y * v.z - v.y * u.z).normSq
+  let D := normSqVec u * normSqVec v
+  have hA : 0 < A := mul_pos hlead.1 hv_pos
+  have hB_nn : 0 ≤ B := mul_nonneg (GaussRat.normSq_nonneg v.x) (le_of_lt hu_pos)
+  have hC_nn : 0 ≤ C := GaussRat.normSq_nonneg _
+  have hD : 0 < D := mul_pos hu_pos hv_pos
+  have hsum : A + B + C = D := ortho_coord_identity_x huv
+  have hvA : vpRat p A = vpRat p u.x.normSq + vpRat p (normSqVec v) := vpRat_mul hP hlead.1 hv_pos
+  have hvD : vpRat p D = vpRat p (normSqVec u) + vpRat p (normSqVec v) := vpRat_mul hP hu_pos hv_pos
+  have hA_odd : vpRat p A % 2 ≠ 0 := by
+    have heven := vpRat_normSq_even hP u.x
+    omega
+  have hB_odd : 0 < B → vpRat p B % 2 ≠ 0 := by
+    intro hB_pos
+    have hvx_pos : 0 < v.x.normSq := by nlinarith
+    have hvB : vpRat p B = vpRat p v.x.normSq + vpRat p (normSqVec u) := vpRat_mul hP hvx_pos hu_pos
+    have heven := vpRat_normSq_even hP v.x
+    omega
+  have hC_even : vpRat p C % 2 = 0 := vpRat_normSq_even hP _
+  have hlt_D : vpRat p A < vpRat p D := by
+    have hlt := hlead.2
+    omega
+  obtain ⟨hB_pos, hvAB, huAB⟩ :=
+    four_term_vpRat_cancel hP hA hB_nn hC_nn hD hsum hA_odd hB_odd hC_even hlt_D
+  have hvx_pos : 0 < v.x.normSq := by nlinarith
+  have hvB : vpRat p B = vpRat p v.x.normSq + vpRat p (normSqVec u) := vpRat_mul hP hvx_pos hu_pos
+  have hvx_lt : vpRat p v.x.normSq < vpRat p (normSqVec v) := by
+    have hlt := hlead.2
+    omega
+  refine ⟨⟨hvx_pos, hvx_lt⟩, ?_⟩
+  have huA : upRat p A = upRat p u.x.normSq * upRat p (normSqVec v) := upRat_mul hP hlead.1 hv_pos
+  have huB : upRat p B = upRat p v.x.normSq * upRat p (normSqVec u) := upRat_mul hP hvx_pos hu_pos
+  rw [huA, huB] at huAB
+  have hsq_u := upRat_sq_of_pos p hu_pos
+  have hsq_v := upRat_sq_of_pos p hv_pos
+  simp only [coordSignP]
+  linear_combination
+    (upRat p (normSqVec u) * upRat p (normSqVec v)) * huAB -
+    (upRat p u.x.normSq * upRat p (normSqVec u)) * hsq_v -
+    (upRat p v.x.normSq * upRat p (normSqVec v)) * hsq_u
+
+theorem leadPCoord_x_ortho_iff {p : ℕ} (hP : InertPrimeSpec p) {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : vpRat p (normSqVec u) % 2 ≠ 0)
+    (hv_odd : vpRat p (normSqVec v) % 2 ≠ 0) :
+    isLeadPCoord p u.x u ↔ isLeadPCoord p v.x v :=
+  ⟨fun h => (leadPCoord_x_ortho_imp hP huv hu_odd hv_odd h).1,
+   fun h => (leadPCoord_x_ortho_imp hP (inner_eq_zero_symm huv) hv_odd hu_odd h).1⟩
+
+theorem isLeadPCoord_rotVec_x (p : ℕ) (u : GVec) :
+    isLeadPCoord p (rotVec u).x (rotVec u) ↔ isLeadPCoord p u.y u := by
+  unfold isLeadPCoord
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem coordSignP_rotVec_x (p : ℕ) (u : GVec) :
+    coordSignP p (rotVec u).x (rotVec u) = coordSignP p u.y u := by
+  unfold coordSignP
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem isLeadPCoord_rotVec_y (p : ℕ) (u : GVec) :
+    isLeadPCoord p (rotVec u).y (rotVec u) ↔ isLeadPCoord p u.z u := by
+  unfold isLeadPCoord
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem coordSignP_rotVec_y (p : ℕ) (u : GVec) :
+    coordSignP p (rotVec u).y (rotVec u) = coordSignP p u.z u := by
+  unfold coordSignP
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem leadPCoord_y_ortho_imp {p : ℕ} (hP : InertPrimeSpec p) {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : vpRat p (normSqVec u) % 2 ≠ 0)
+    (hv_odd : vpRat p (normSqVec v) % 2 ≠ 0)
+    (hlead : isLeadPCoord p u.y u) :
+    isLeadPCoord p v.y v ∧ coordSignP p u.y u + coordSignP p v.y v = 0 := by
+  have huv' : GVec.inner (rotVec u) (rotVec v) = 0 := by rw [inner_rotVec]; exact huv
+  have hu_odd' : vpRat p (normSqVec (rotVec u)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hu_odd
+  have hv_odd' : vpRat p (normSqVec (rotVec v)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hv_odd
+  have hlead' : isLeadPCoord p (rotVec u).x (rotVec u) := (isLeadPCoord_rotVec_x p u).mpr hlead
+  obtain ⟨hv_lead, hsum⟩ := leadPCoord_x_ortho_imp hP huv' hu_odd' hv_odd' hlead'
+  rw [isLeadPCoord_rotVec_x] at hv_lead
+  rw [coordSignP_rotVec_x, coordSignP_rotVec_x] at hsum
+  exact ⟨hv_lead, hsum⟩
+
+theorem leadPCoord_y_ortho_iff {p : ℕ} (hP : InertPrimeSpec p) {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : vpRat p (normSqVec u) % 2 ≠ 0)
+    (hv_odd : vpRat p (normSqVec v) % 2 ≠ 0) :
+    isLeadPCoord p u.y u ↔ isLeadPCoord p v.y v :=
+  ⟨fun h => (leadPCoord_y_ortho_imp hP huv hu_odd hv_odd h).1,
+   fun h => (leadPCoord_y_ortho_imp hP (inner_eq_zero_symm huv) hv_odd hu_odd h).1⟩
+
+theorem leadPCoord_z_ortho_imp {p : ℕ} (hP : InertPrimeSpec p) {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : vpRat p (normSqVec u) % 2 ≠ 0)
+    (hv_odd : vpRat p (normSqVec v) % 2 ≠ 0)
+    (hlead : isLeadPCoord p u.z u) :
+    isLeadPCoord p v.z v ∧ coordSignP p u.z u + coordSignP p v.z v = 0 := by
+  have huv' : GVec.inner (rotVec u) (rotVec v) = 0 := by rw [inner_rotVec]; exact huv
+  have hu_odd' : vpRat p (normSqVec (rotVec u)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hu_odd
+  have hv_odd' : vpRat p (normSqVec (rotVec v)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hv_odd
+  have hlead' : isLeadPCoord p (rotVec u).y (rotVec u) := (isLeadPCoord_rotVec_y p u).mpr hlead
+  obtain ⟨hv_lead, hsum⟩ := leadPCoord_y_ortho_imp hP huv' hu_odd' hv_odd' hlead'
+  rw [isLeadPCoord_rotVec_y] at hv_lead
+  rw [coordSignP_rotVec_y, coordSignP_rotVec_y] at hsum
+  exact ⟨hv_lead, hsum⟩
+
+/-- For any inert prime `p` (`InertPrimeSpec p`), any two orthogonal vectors in `ℚ(i)³`
+with odd `p`-adic squared-norm valuation have opposite `sp p` signs (`sp p u + sp p v = 0`). -/
+theorem sp_orthogonal_odd_cancel {p : ℕ} (hP : InertPrimeSpec p) {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : vpRat p (normSqVec u) % 2 ≠ 0)
+    (hv_odd : vpRat p (normSqVec v) % 2 ≠ 0) :
+    sp p u + sp p v = 0 := by
+  have hx_iff := leadPCoord_x_ortho_iff hP huv hu_odd hv_odd
+  have hy_iff := leadPCoord_y_ortho_iff hP huv hu_odd hv_odd
+  simp only [sp, hu_odd, hv_odd, ↓reduceIte]
+  by_cases hx : isLeadPCoord p u.x u
+  · have hvx : isLeadPCoord p v.x v := hx_iff.mp hx
+    simp only [hx, hvx, ↓reduceIte]
+    exact (leadPCoord_x_ortho_imp hP huv hu_odd hv_odd hx).2
+  · have hvx : ¬ isLeadPCoord p v.x v := fun h => hx (hx_iff.mpr h)
+    simp only [hx, hvx, ↓reduceIte]
+    by_cases hy : isLeadPCoord p u.y u
+    · have hvy : isLeadPCoord p v.y v := hy_iff.mp hy
+      simp only [hy, hvy, ↓reduceIte]
+      exact (leadPCoord_y_ortho_imp hP huv hu_odd hv_odd hy).2
+    · have hvy : ¬ isLeadPCoord p v.y v := fun h => hy (hy_iff.mpr h)
+      simp only [hy, hvy, ↓reduceIte]
+      have hz : isLeadPCoord p u.z u := by
+        rcases exists_leadPCoord_of_odd hP hu_odd with h1 | h2 | h3
+        · exact False.elim (hx h1)
+        · exact False.elim (hy h2)
+        · exact h3
+      exact (leadPCoord_z_ortho_imp hP huv hu_odd hv_odd hz).2
+
+/-- Uniform zero-weight frame residual theorem: for every inert prime `p` satisfying
+`InertPrimeSpec p`, `sp p` is a global zero-weight frame function on all orthogonal frames in `ℚ(i)³`. -/
+theorem sp_isZeroWeightFrameFunction {p : ℕ} (hP : InertPrimeSpec p) :
+    IsZeroWeightFrameFunction (sp p) := by
+  intro u v w hf
+  have hsum_even := frame_vpRat_sum_even hP hf
+  obtain ⟨_, _, _, huv, huw, hvw⟩ := hf
+  by_cases hu : vpRat p (normSqVec u) % 2 = 0 <;>
+    by_cases hv : vpRat p (normSqVec v) % 2 = 0 <;>
+    by_cases hw : vpRat p (normSqVec w) % 2 = 0
+  · rw [sp_eq_zero_of_even hu, sp_eq_zero_of_even hv, sp_eq_zero_of_even hw]
+    ring
+  · omega
+  · omega
+  · have hvw_sum := sp_orthogonal_odd_cancel hP hvw hv hw
+    rw [sp_eq_zero_of_even hu]
+    linarith
+  · omega
+  · have huw_sum := sp_orthogonal_odd_cancel hP huw hu hw
+    rw [sp_eq_zero_of_even hv]
+    linarith
+  · have huv_sum := sp_orthogonal_odd_cancel hP huv hu hv
+    rw [sp_eq_zero_of_even hw]
+    linarith
+  · omega
+
+theorem sp_smul {p : ℕ} (hP : InertPrimeSpec p) {v : GVec} (hv : v.NonZero)
+    {l : GaussRat} (hl : l ≠ 0) :
+    sp p (GVec.smul l v) = sp p v :=
+  zeroWeightFrameFunction_smul (sp_isZeroWeightFrameFunction hP) hv hl
+
+/-- Specialization of `sp_isZeroWeightFrameFunction` to the third inert prime `p = 11 ≡ 3 (mod 4)`. -/
+theorem sp11_isZeroWeightFrameFunction : IsZeroWeightFrameFunction (sp 11) :=
+  sp_isZeroWeightFrameFunction inertPrimeSpec_eleven
+
 /-- Third inert-prime witness `witness_p11 = (1, 3, 1)` of norm `1 + 9 + 1 = 11` for `p = 11 ≡ 3 (mod 4)`. -/
 def witness_p11 : GVec := gv 1 0 3 0 1 0
 
@@ -5319,6 +6152,15 @@ theorem s3_s7_sp11_dual_on_three_witnesses :
 /-- Three-prime linear combination `c3 * sp 3 v + c7 * sp 7 v + c11 * sp 11 v`. -/
 def combResidual3_7_11 (c3 c7 c11 : ℚ) (v : GVec) : ℚ :=
   c3 * sp 3 v + c7 * sp 7 v + c11 * sp 11 v
+
+theorem combResidual3_7_11_isZeroWeightFrameFunction (c3 c7 c11 : ℚ) :
+    IsZeroWeightFrameFunction (combResidual3_7_11 c3 c7 c11) := by
+  intro u v w hf
+  have h3 := sp_isZeroWeightFrameFunction inertPrimeSpec_three u v w hf
+  have h7 := sp_isZeroWeightFrameFunction inertPrimeSpec_seven u v w hf
+  have h11 := sp11_isZeroWeightFrameFunction u v w hf
+  simp only [combResidual3_7_11]
+  linear_combination c3 * h3 + c7 * h7 + c11 * h11
 
 theorem combResidual3_7_11_vanishes_on_nine_rays (c3 c7 c11 : ℚ) :
     VanishesOnNineRays (combResidual3_7_11 c3 c7 c11) := by
@@ -6087,6 +6929,14 @@ end BornFinite.GaussianTomography
 #print axioms BornFinite.GaussianTomography.sp_seven_eq_s7
 #print axioms BornFinite.GaussianTomography.sp_isBoundedOnRays
 #print axioms BornFinite.GaussianTomography.sp_vanishes_on_nine_rays
+#print axioms BornFinite.GaussianTomography.inertPrimeSpec_eleven
+#print axioms BornFinite.GaussianTomography.vpRat_normSq_even
+#print axioms BornFinite.GaussianTomography.frame_vpRat_sum_even
+#print axioms BornFinite.GaussianTomography.sp_orthogonal_odd_cancel
+#print axioms BornFinite.GaussianTomography.sp_isZeroWeightFrameFunction
+#print axioms BornFinite.GaussianTomography.sp_smul
+#print axioms BornFinite.GaussianTomography.sp11_isZeroWeightFrameFunction
+#print axioms BornFinite.GaussianTomography.combResidual3_7_11_isZeroWeightFrameFunction
 #print axioms BornFinite.GaussianTomography.witness_p11_primitive
 #print axioms BornFinite.GaussianTomography.s3_s7_sp11_dual_on_three_witnesses
 #print axioms BornFinite.GaussianTomography.s3_s7_sp11_linearIndependent

@@ -1362,6 +1362,31 @@ def test_uniform_sp_family_p11_and_finite_inert_residual_system() -> None:
         for ray in NINE_RAYS:
             assert sp(ray, p) == Fraction(0)
 
+    def is_qr_mod_p(p: int, m: int) -> bool:
+        return pow(m % p, (p - 1) // 2, p) == 1
+
+    def check_inert_prime_spec(p: int) -> bool:
+        if p < 3:
+            return False
+        for a in range(1, p):
+            for b in range(1, p):
+                if (a * b) % p == 0:
+                    return False
+                if is_qr_mod_p(p, a * b) != (is_qr_mod_p(p, a) == is_qr_mod_p(p, b)):
+                    return False
+                if (a + b) % p == 0 and is_qr_mod_p(p, a) != (not is_qr_mod_p(p, b)):
+                    return False
+        for x in range(p):
+            for y in range(p):
+                if (x * x + y * y) % p == 0 and (x != 0 or y != 0):
+                    return False
+        return True
+
+    for p_inert in (3, 7, 11, 19, 23):
+        assert check_inert_prime_spec(p_inert)
+    for p_bad in (2, 4, 5, 9, 13, 15, 17):
+        assert not check_inert_prime_spec(p_bad)
+
     # 2. Third inert prime p = 11 == 3 (mod 4): witness_p11 = (1, 3, 1) of norm 11
     #    and 3x3 Kronecker-delta duality (witness_p11_primitive, s3_s7_sp11_dual_on_three_witnesses)
     assert is_one_plus_i_primitive(1, 0, 3, 0, 1, 0)
@@ -1372,7 +1397,8 @@ def test_uniform_sp_family_p11_and_finite_inert_residual_system() -> None:
         for j, w_j in enumerate(witnesses_3):
             assert sp(w_j, p_i) == (Fraction(1) if i == j else Fraction(0))
 
-    # Verify odd-v11 orthogonal frame cancellation for sp(u, 11)
+    # Verify odd-v11 orthogonal frame cancellation and scalar invariance for sp(u, 11)
+    # (sp_orthogonal_odd_cancel, sp_isZeroWeightFrameFunction, sp_smul, sp11_isZeroWeightFrameFunction)
     for v11_ortho in (gv(3, 0, -1, 0, 0, 0), gv(1, 0, 0, 0, -1, 0), gv(3, 0, -2, 0, 3, 0)):
         w11 = herm_cross(witness_p11, v11_ortho)
         assert witness_p11.dot(v11_ortho) == GaussRat.of_ints(0, 0)
@@ -1382,6 +1408,9 @@ def test_uniform_sp_family_p11_and_finite_inert_residual_system() -> None:
             + vp_rat(w11.norm_sq(), 11)
         ) % 2 == 0
         assert sp(witness_p11, 11) + sp(v11_ortho, 11) + sp(w11, 11) == Fraction(0)
+        for scalar in (GaussRat.of_ints(2, 3), GaussRat.of_ints(-1, 4)):
+            scaled_w11 = GVec(scalar * witness_p11.x, scalar * witness_p11.y, scalar * witness_p11.z)
+            assert sp(scaled_w11, 11) == sp(witness_p11, 11)
 
     # 3. Constructive 7-ray projector expansion for purely real witness_p11 = (1, 3, 1)
     #    (rayProj_witness_p11_decomp, quadRay_witness_p11_kernel_relation, sp11_witness_p11_kernel_separation)
@@ -1678,6 +1707,14 @@ def test_fq_gleason_qi3_frame_functions_end_to_end() -> None:
         "theorem sp_seven_eq_s7",
         "theorem sp_isBoundedOnRays",
         "theorem sp_vanishes_on_nine_rays",
+        "theorem inertPrimeSpec_eleven",
+        "theorem vpRat_normSq_even",
+        "theorem frame_vpRat_sum_even",
+        "theorem sp_orthogonal_odd_cancel",
+        "theorem sp_isZeroWeightFrameFunction",
+        "theorem sp_smul",
+        "theorem sp11_isZeroWeightFrameFunction",
+        "theorem combResidual3_7_11_isZeroWeightFrameFunction",
         "theorem witness_p11_primitive",
         "theorem s3_s7_sp11_dual_on_three_witnesses",
         "theorem s3_s7_sp11_linearIndependent",

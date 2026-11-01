@@ -295,14 +295,19 @@ same \(3\)-leading coordinates and opposite \(3\)-adic unit residue signs
   zero-vector normalization, the signed and bounded nonnegative
   residual-reduction equivalences, the \((1+i)\)-adic norm-parity
   characterization on primitive Gaussian-integer vectors, the uniform
-  prime-indexed residual family `sp p` (`sp_three_eq_s3`, `sp_seven_eq_s7`,
-  `sp_isBoundedOnRays`, `sp_vanishes_on_nine_rays`), the explicit global
-  `3`-adic and `7`-adic zero-weight residuals `s3`, `s7` and nonnegative
-  non-quadratic frame functions `exoticQi3`, `exoticQi7`, the third inert prime
-  \(p=11\equiv 3\pmod 4\) witness `witness_p11 = (1, 3, 1)` (`witness_p11_primitive`,
-  `s3_s7_sp11_dual_on_three_witnesses`, `s3_s7_sp11_linearIndependent`,
-  `rayProj_witness_p11_decomp`, `quadRay_witness_p11_kernel_relation`,
-  `sp11_witness_p11_kernel_separation`, `isFrameSqrt11_witness_p11_norms`,
+  prime-indexed residual family `sp p` and its decidable modular specification
+  `InertPrimeSpec p` (`sp_three_eq_s3`, `sp_seven_eq_s7`, `sp_isBoundedOnRays`,
+  `sp_vanishes_on_nine_rays`, `inertPrimeSpec_eleven`, `vpRat_normSq_even`,
+  `frame_vpRat_sum_even`, `sp_orthogonal_odd_cancel`,
+  `sp_isZeroWeightFrameFunction`, `sp_smul`, `sp11_isZeroWeightFrameFunction`,
+  `combResidual3_7_11_isZeroWeightFrameFunction`), the explicit global
+  `3`-adic, `7`-adic, and `11`-adic zero-weight residuals `s3`, `s7`, `sp 11`
+  and nonnegative non-quadratic frame functions `exoticQi3`, `exoticQi7`, the
+  third inert prime \(p=11\equiv 3\pmod 4\) witness `witness_p11 = (1, 3, 1)`
+  (`witness_p11_primitive`, `s3_s7_sp11_dual_on_three_witnesses`,
+  `s3_s7_sp11_linearIndependent`, `rayProj_witness_p11_decomp`,
+  `quadRay_witness_p11_kernel_relation`, `sp11_witness_p11_kernel_separation`,
+  `isFrameSqrt11_witness_p11_norms`,
   `three_prime_frame_partner_norm_valuations_even`), the 2-dimensional and
   arbitrary-\(m\) finite combinations `combResidual37 c3 c7`,
   `finCombResidual m R c` and \(\ell^1\)-cross-polytope families
@@ -351,22 +356,26 @@ earlier DAG nodes.
 - **What it does not support**: This artifact does not classify the entire
   infinite-dimensional space of non-quadratic residuals across all inert primes
   \(p\equiv 3\pmod 4\) simultaneously without projector linearity, nor does it
-  establish uniform prime-generic frame-additivity
-  (`IsZeroWeightFrameFunction (sp p)`) for arbitrary symbolic prime
-  \(p\equiv 3\pmod 4\) beyond the explicit \(p\in\{3,7\}\) proofs and finite
-  `InertPrimeResidualSystem m` interface, nor does it close the parent Born-rule
-  uniqueness gap `FQ-GAP-BORN-UNIQUENESS-GLEASON`.
+  bridge `Nat.Prime p ∧ p % 4 = 3` to the decidable finite modular specification
+  `InertPrimeSpec p` for symbolic prime \(p\) without instantiating `p`, nor
+  does it close the parent Born-rule uniqueness gap
+  `FQ-GAP-BORN-UNIQUENESS-GLEASON`.
 - **Narrowest defensible claim**: On \(K^3=\mathbb Q(i)^3\), no \(\{0,1\}\)-valued
   frame function exists, the prescribed \(2\)-adic real exotic on \(\mathbb Q^3\)
   has no signed extension to \(K^3\), the uniform prime-indexed family `sp p`
-  recovers `s3` and `s7` (`sp_three_eq_s3`, `sp_seven_eq_s7`), is
-  \(\{-1,0,+1\}\)-valued and vanishes on the 9 tomography rays for all \(p\ge 3\)
-  (`sp_isBoundedOnRays`, `sp_vanishes_on_nine_rays`), yields \(3\times 3\)
-  Kronecker-delta duality and 3D \(\mathbb Q\)-linear independence at
-  \(p\in\{3,7,11\}\) via \(\operatorname{witness\_p11}=(1,3,1)\)
+  recovers `s3` and `s7` (`sp_three_eq_s3`, `sp_seven_eq_s7`), is a global
+  \(\{-1,0,+1\}\)-valued zero-weight frame residual vanishing on the 9 tomography
+  rays for every `p` satisfying the decidable modular specification
+  `InertPrimeSpec p` (`sp_isZeroWeightFrameFunction`, `sp_smul`,
+  `sp_isBoundedOnRays`, `sp_vanishes_on_nine_rays`, instantiated at
+  \(p\in\{3,7,11\}\) via `inertPrimeSpec_eleven` and
+  `sp11_isZeroWeightFrameFunction`), yields \(3\times 3\) Kronecker-delta duality
+  and 3D \(\mathbb Q\)-linear independence at \(p\in\{3,7,11\}\) via
+  \(\operatorname{witness\_p11}=(1,3,1)\)
   (`s3_s7_sp11_dual_on_three_witnesses`, `s3_s7_sp11_linearIndependent`,
-  `rayProj_witness_p11_decomp`, `isFrameSqrt11_witness_p11_norms`), and for any
-  finite `InertPrimeResidualSystem m` of size \(m\), every finite combination
+  `combResidual3_7_11_isZeroWeightFrameFunction`, `rayProj_witness_p11_decomp`,
+  `isFrameSqrt11_witness_p11_norms`), and for any finite
+  `InertPrimeResidualSystem m` of size \(m\), every finite combination
   `finCombResidual m S.R c` and \(m\)-parameter \(\ell^1\)-cross-polytope family
   `finExoticComb m S.R c` (`finExoticComb_isNonnegFrameFunction`,
   `inertPrimeResidualSystem_linearIndependent`, `finExoticComb_quadratic_iff`)
@@ -375,11 +384,10 @@ earlier DAG nodes.
   `finExoticComb_archimedeanContinuousAt_tomo_e1_iff`), by operator-space
   projector linearity (`factorsThroughRayProjLinear_finCombResidual_iff`), or by
   joint quadratic field extension (`joint_field_extension_eliminates_finCombResidual`).
-- **Next test needed**: Formalize the prime-generic Legendre-symbol multiplicativity
-  and odd-\(v_p\) orthogonal frame cancellation `IsZeroWeightFrameFunction (sp p)`
-  for arbitrary symbolic prime \(p\equiv 3\pmod 4\) in Lean 4 using Mathlib's
-  `ZMod p` quadratic character theory, and test whether non-adic bounded
-  zero-weight residuals exist outside the inert-prime span on \(\mathbb Q(i)^3\).
+- **Next test needed**: Formalize the implication from symbolic primality
+  `Nat.Prime p ∧ p % 4 = 3` to `InertPrimeSpec p` in Lean 4 (using Euler's
+  criterion in `ZMod p`) and instantiate `inertSystem3_7_11 : InertPrimeResidualSystem 3`
+  with product-scaled `231 * k` selective perturbation rays in Lean 4.
 
 Consequently the full target and its incoming gap route retain their original
 statuses (`AuthorityEffect: None`). No result here establishes continuum
