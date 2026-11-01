@@ -227,7 +227,22 @@
     },
     "FQ-GLEASON-QI3-FRAME-FUNCTIONS": {
       "id": "TFQ-1055",
-      "parent": "TFQ-0307"
+      "parent": "TFQ-0307",
+      "python": [
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_fq_gleason_qi3_frame_functions_end_to_end",
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_nine_ray_tomography_reconstruction_and_uniqueness",
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_quadray_frame_sum_on_non_unit_orthogonal_frames",
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_operator_space_ray_projector_duality_and_zero_normalization",
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_signed_and_nonnegative_residual_reduction_equivalences",
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_one_plus_i_adic_norm_parity_witnesses_and_mod_four_iff",
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_s3_global_bounded_zero_weight_residual_and_exotic_qi3",
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_archimedean_discontinuity_and_field_extension_elimination",
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_multi_prime_s3_s7_linear_independence_and_joint_elimination",
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_uniform_sp_family_p11_and_finite_inert_residual_system",
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_piron_frame_rotation_parallelogram_and_continuity_bridge",
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation",
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_independent_check_scripts_pass"
+      ]
     }
   },
   "packet_crosswalk": {
@@ -9049,7 +9064,7 @@
       "status": "CONDITIONAL",
       "source_claimed_status": "CONDITIONAL",
       "statement": "If the mark type has a Primcodable structure and startWord is computable, the normal-form reachability problem on words of the fixed regime is not a computable predicate.",
-      "obligation": "The antecedent is a Primcodable instance for Sym G1 (TM1to0.Λ' M1) and Computable startWord. That antecedent is not constructed in this module. The standing claim is the implication from that antecedent to non-computability of the word predicate for Rules M0.",
+      "obligation": "The antecedent is a Primcodable instance for Sym G1 (TM1to0.\u039b' M1) and Computable startWord. That antecedent is not constructed in this module. The standing claim is the implication from that antecedent to non-computability of the word predicate for Rules M0.",
       "imported_structure": [
         "Primcodable structure on the mark type and Computable startWord (open lemma startWord_computable)"
       ],
@@ -9069,7 +9084,7 @@
         "lean4/GenesisCompUniv.lean:329-339",
         "lean4/ComputationC7EncodedInstanceReduction.lean:13-17"
       ],
-      "audit": "encoded_instance_reduction has the same type as reach_problem_not_computable. Each takes a Primcodable instance on Sym G1 (TM1to0.Λ' M1) and Computable startWord, and the conclusion is that the word predicate for Rules M0 is not ComputablePred. Printed axioms are propext, Classical.choice, and Quot.sound. The antecedent is a hypothesis of that implication. Review retains CONDITIONAL status because the named operational antecedents have not been constructed; the replay certifies the implication only.",
+      "audit": "encoded_instance_reduction has the same type as reach_problem_not_computable. Each takes a Primcodable instance on Sym G1 (TM1to0.\u039b' M1) and Computable startWord, and the conclusion is that the word predicate for Rules M0 is not ComputablePred. Printed axioms are propext, Classical.choice, and Quot.sound. The antecedent is a hypothesis of that implication. Review retains CONDITIONAL status because the named operational antecedents have not been constructed; the replay certifies the implication only.",
       "see_also": [],
       "uses": []
     },
@@ -10244,10 +10259,10 @@
       "status": "IMPORTED_ASSUMPTION",
       "source_claimed_status": "cited; local formalization open",
       "statement": "No total computable procedure is sound and complete for a nontrivial extensional property of the programs of a Turing-complete language (Rice 1953); the source cites the theorem with its hypotheses and does not formalize it.",
-      "obligation": "Rice's theorem for the programs of a Turing-complete language stays a citation. No declaration here states that no total computable procedure is sound and complete for a nontrivial extensional property. Mathlib ComputablePred.rice and rice₂ are not instantiated, and no semantic property of Nat.Partrec.Code is named. This three-code table does not decide an infinite language.",
+      "obligation": "Rice's theorem for the programs of a Turing-complete language stays a citation. No declaration here states that no total computable procedure is sound and complete for a nontrivial extensional property. Mathlib ComputablePred.rice and rice\u2082 are not instantiated, and no semantic property of Nat.Partrec.Code is named. This three-code table does not decide an infinite language.",
       "imported_structure": [
         "Rice theorem for the programs of a Turing-complete language",
-        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice₂"
+        "Mathlib Nat.Partrec.Code with ComputablePred.rice and rice\u2082"
       ],
       "parent_nodes": [
         "AUTH-G5B-CARRIER-ADMISSION-GATE"
@@ -10272,7 +10287,7 @@
         "checks/independent/auth-rice-theorem-import.py::check"
       ],
       "external_witnesses": [
-        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice₂ (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
+        "external:Mathlib/Computability/Halting.lean::ComputablePred.rice\u2082 (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)",
         "external:Mathlib/Computability/Halting.lean::ComputablePred.halting_problem (Mathlib v4.33.1 checkout under lean4/.lake/packages of the shared main checkout; v4.35.0 not checked)"
       ],
       "sources": [
@@ -10297,7 +10312,7 @@
       "status": "OPEN",
       "source_claimed_status": "open",
       "statement": "For an admitted program carrier and a nontrivial extensional property, a total computable sound and complete authorizer would decide that property; the lift is a stated target in the source and has no local theorem.",
-      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice₂ and halting_problem.",
+      "obligation": "Choose the carrier, define the property by program behavior, give the satisfying and failing programs, prove the many-one reduction and the closure of the decision class, and cite rice\u2082 and halting_problem.",
       "imported_structure": [
         "admitted program carrier",
         "nontrivial extensional property"

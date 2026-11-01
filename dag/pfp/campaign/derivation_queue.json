@@ -1,7 +1,7 @@
 {
  "generated_from": "dag/derivation_dag.json at HEAD",
  "rule": "Run from the repository root: python -I -X utf8 dag/pfp/campaign/make_queue.py\n\nWrite the derivation-campaign queue: unattempted OPEN/CONDITIONAL/IMPORTED nodes with a mathematical statement, ranked by\ndownstream impact (trunk weighted x3). Coordination/custody records are excluded by stage and by statement shape.",
- "count": 209,
+ "count": 208,
  "queue": [
   {
    "node_id": "PG-WDP-GENESIS-BRIDGE-OBLIGATIONS",
@@ -769,7 +769,7 @@
    "downstream_nodes": 18,
    "score": 18,
    "statement": "For lattice Dirac operators with chemical potential, gamma5 D(mu) gamma5 = D(-mu*)^dagger, hence det D(mu)^* = det D(-mu*); for real mu != 0 this relates D(mu) to D(-mu) only and det D(mu) is in general complex.",
-   "bottleneck": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast, while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
+   "bottleneck": "Standard continuum/thermodynamic QCD chemical-potential sign-problem framework imported; lean4/FermionSignQcdChemicalPotentialDet.lean establishes the exact gamma_5-chemical-potential determinant conjugation identity (det D(mu))* = det D(-mu*), reality at mu = 0 and purely imaginary mu = i mu_I, the Hasenfratz-Karsch and Kogut-Susskind staggered operator identities, the explicit SU(3) clock link U = diag(i,i,-1) with Im Tr(U) = 2 != 0, the 6x6 chiral SU(3) determinant witness det D_SU3(2) = 63/8 - 27i and det D_SU3(1/2) = 63/8 + 27i, and the diagonal SU(2) reality contrast; lean4/FQCD/StrongCouplingAreaLaw.lean establishes the finite-lattice Matrix (Site x Color x WeylSpinIdx) chemical-potential wrapper D_W(z), the matrix intertwining identity Gamma_5 D_W(z) Gamma_5 = D_W(z^-1)^H, determinant conjugation det D_W(z^-1) = star (det D_W(z)), and phase-quenched determinant positivity det(D_W(z) D_W(z^-1)) = |det D_W(z)|^2 >= 0 (assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity); while checks/independent/fsp-qcd-chemical-potential-det.py checks 1D and 2D staggered SU(3) vs SU(2) lattices.",
    "imported_structure": [
     "lattice QCD with staggered quarks at chemical potential (standard)"
    ],
@@ -790,7 +790,10 @@
     "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_two",
     "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_det_at_half",
     "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su3FugacityDirac_complex_det_witness",
-    "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero"
+    "lean4/FermionSignQcdChemicalPotentialDet.lean::FermionSignQcdChemicalPotentialDet.su2DiagLink_block_det_im_zero",
+    "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_gamma5_intertwine",
+    "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_det_inv_eq_star",
+    "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity"
    ],
    "rust": [],
    "python": [],
@@ -2317,20 +2320,6 @@
    "rank": 92
   },
   {
-   "node_id": "FSP-HINGE-LINEON-SIGN-CLAIM",
-   "stage": "FERMION_SIGN",
-   "status": "OPEN",
-   "downstream_nodes": 1,
-   "score": 1,
-   "statement": "Claimed: lineons confined to 1D hinge lines cannot exchange without collision, so their worldlines carry no nontrivial permutations and foliated fracton models are sign free; no model, path expansion or sign computation exists in this checkout.",
-   "bottleneck": "Give a fermionic fracton Hamiltonian, its declared representation and show all path weights nonnegative, including lineons on intersecting hinges; ledger GIN-C24 withdraws the fixture reading.",
-   "imported_structure": [],
-   "lean": [],
-   "rust": [],
-   "python": [],
-   "rank": 93
-  },
-  {
    "node_id": "FSP-TROYER-WIESE-REDUCTION",
    "stage": "FERMION_SIGN",
    "status": "IMPORTED_ASSUMPTION",
@@ -2345,7 +2334,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 94
+   "rank": 93
   },
   {
    "node_id": "LQG-PR-ASYMPTOTICS-IMPORT",
@@ -2361,7 +2350,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 95
+   "rank": 94
   },
   {
    "node_id": "LQG-SPIN-NETWORK-STATES-IMPORT",
@@ -2378,7 +2367,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 96
+   "rank": 95
   },
   {
    "node_id": "MAJ-OPEN-LIEB-ROBINSON-LOCALITY",
@@ -2392,7 +2381,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 97
+   "rank": 96
   },
   {
    "node_id": "MAJ-OPEN-MULTITERMINAL-ENVELOPE",
@@ -2415,7 +2404,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 98
+   "rank": 97
   },
   {
    "node_id": "MUB6-CONJECTURE2-PREMISE",
@@ -2431,7 +2420,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 99
+   "rank": 98
   },
   {
    "node_id": "MUB6-KRAWCZYK-GLOBAL-COVER-CLAIM",
@@ -2445,7 +2434,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 100
+   "rank": 99
   },
   {
    "node_id": "MUB6-NO-QUARTET-D6",
@@ -2459,7 +2448,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 101
+   "rank": 100
   },
   {
    "node_id": "MUB6-POSITIVSTELLENSATZ-CLAIM",
@@ -2473,7 +2462,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 102
+   "rank": 101
   },
   {
    "node_id": "MUB6-PSI-GLUING-CLAIM",
@@ -2487,7 +2476,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 103
+   "rank": 102
   },
   {
    "node_id": "MUB6-ROUTE-C-CONDITIONAL",
@@ -2508,7 +2497,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 104
+   "rank": 103
   },
   {
    "node_id": "MUB6-WEYL-HEISENBERG-D6",
@@ -2534,7 +2523,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 105
+   "rank": 104
   },
   {
    "node_id": "OPS-AXIS2-META-CARRIER",
@@ -2551,7 +2540,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 106
+   "rank": 105
   },
   {
    "node_id": "OPS-OBSERVER-DECLARATION-REFUSAL",
@@ -2567,7 +2556,7 @@
     "code/rust/src/sheaf_theory/empirical_presheaf/observer.rs::evaluate_l1_claim"
    ],
    "python": [],
-   "rank": 107
+   "rank": 106
   },
   {
    "node_id": "OPS-RUST-RECEIPTS-AND-LIMITS",
@@ -2598,7 +2587,7 @@
     "code/rust/src/sheaf_theory/empirical_presheaf/lp.rs::verify_l1_defect_receipt"
    ],
    "python": [],
-   "rank": 108
+   "rank": 107
   },
   {
    "node_id": "TFQ-0011",
@@ -2631,7 +2620,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 109
+   "rank": 108
   },
   {
    "node_id": "TFQ-0039",
@@ -2647,7 +2636,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 110
+   "rank": 109
   },
   {
    "node_id": "TFQ-0050",
@@ -2666,7 +2655,7 @@
     "code/rust/src/fusion_categories/su2_level.rs"
    ],
    "python": [],
-   "rank": 111
+   "rank": 110
   },
   {
    "node_id": "TFQ-0106",
@@ -2684,7 +2673,7 @@
     "code/rust/src/general_relativity/cosmological_constant.rs"
    ],
    "python": [],
-   "rank": 112
+   "rank": 111
   },
   {
    "node_id": "ADS-HAPPY-TOY-NOT-DUALITY-GAP",
@@ -2714,7 +2703,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 113
+   "rank": 112
   },
   {
    "node_id": "ADS-REGGE-AREA-RT-GAP",
@@ -2741,7 +2730,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 114
+   "rank": 113
   },
   {
    "node_id": "CT-GENESIS-SEPARATION-TASK-ANALOGY",
@@ -2755,7 +2744,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 115
+   "rank": 114
   },
   {
    "node_id": "CT-REFUSAL-OBSTRUCTION-ANALOGY",
@@ -2769,7 +2758,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 116
+   "rank": 115
   },
   {
    "node_id": "DFM-CKM-PHYSICS-FENCE",
@@ -2798,7 +2787,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 117
+   "rank": 116
   },
   {
    "node_id": "DFM-GRIBOV-CONTINUUM-FENCE",
@@ -2821,7 +2810,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 118
+   "rank": 117
   },
   {
    "node_id": "DFM-REGGE-GRAVITY-FENCE",
@@ -2842,7 +2831,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 119
+   "rank": 118
   },
   {
    "node_id": "DFM-RELATIONAL-TIME-FENCE",
@@ -2872,7 +2861,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 120
+   "rank": 119
   },
   {
    "node_id": "DFM-SYMANZIK-QED-AE-FENCE",
@@ -2893,7 +2882,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 121
+   "rank": 120
   },
   {
    "node_id": "DFM-Z1-Z2-COUNTERTERM-FENCE",
@@ -2916,7 +2905,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 122
+   "rank": 121
   },
   {
    "node_id": "DS-QM030-PROJECTION-POSTULATE-AND-BORN-PAIRING-IMPORT",
@@ -2941,7 +2930,7 @@
     "external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
    ],
    "python": [],
-   "rank": 123
+   "rank": 122
   },
   {
    "node_id": "DS-QM033-064-074-083-QHELD-CONTINUUM",
@@ -2964,7 +2953,7 @@
     "external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness"
    ],
    "python": [],
-   "rank": 124
+   "rank": 123
   },
   {
    "node_id": "DS-QM034-035-050-051-095-RESERVED-STUBS",
@@ -2989,7 +2978,7 @@
     "external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
    ],
    "python": [],
-   "rank": 125
+   "rank": 124
   },
   {
    "node_id": "DS-QM073-BELL-THEOREM-OBSTRUCTED",
@@ -3015,7 +3004,7 @@
     "sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness"
    ],
    "python": [],
-   "rank": 126
+   "rank": 125
   },
   {
    "node_id": "DS-QM080-081-TRACE-NORM-CONDITIONAL-SELECTION",
@@ -3040,7 +3029,7 @@
     "external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche13_ds_qm_final_16_second_witness_closure_witness"
    ],
    "python": [],
-   "rank": 127
+   "rank": 126
   },
   {
    "node_id": "DS-QM090-093-QM-UNIQUENESS-TIER3",
@@ -3066,7 +3055,7 @@
     "sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche20_ds_qm032_033_073_090_207_feynman_schrodinger_exchange_and_five_import_cascade_witness"
    ],
    "python": [],
-   "rank": 128
+   "rank": 127
   },
   {
    "node_id": "FGAUGE-MEDNYKH-2D-YANG-MILLS",
@@ -3080,7 +3069,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 129
+   "rank": 128
   },
   {
    "node_id": "FQ-GAP-C500-ORIGINAL-TARGETS",
@@ -3107,7 +3096,7 @@
     "external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche6_conditional_and_open_boundary_certificates_witness"
    ],
    "python": [],
-   "rank": 130
+   "rank": 129
   },
   {
    "node_id": "FQ-GAP-CORPUS-REWRITE",
@@ -3127,7 +3116,7 @@
     "external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche6_conditional_and_open_boundary_certificates_witness"
    ],
    "python": [],
-   "rank": 131
+   "rank": 130
   },
   {
    "node_id": "FQ-GAP-CUSTODY-AND-RECEIPTS",
@@ -3148,7 +3137,7 @@
     "external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche6_conditional_and_open_boundary_certificates_witness"
    ],
    "python": [],
-   "rank": 132
+   "rank": 131
   },
   {
    "node_id": "FQ-GLEASON-QI3-FRAME-FUNCTIONS",
@@ -3157,16 +3146,62 @@
    "downstream_nodes": 0,
    "score": 0,
    "statement": "Let V = Q(i)^3 with the standard Hermitian form. Decide whether every function f from the nonzero vectors of V to Q with f(u) + f(v) + f(w) = 1 for every orthogonal triple of nonzero vectors has the form f(v) = <v, rho v>/<v, v> for a Hermitian trace-one 3 x 3 matrix rho over Q(i), or exhibit one that does not; state separately the signed, nonnegative and {0,1}-valued variants, and whether the non-quadratic Q^3 frame function extends to Q(i)^3.",
-   "bottleneck": "General signed and nonnegative quadratic rigidity on all Q(i)^3 rays remain open. The {0,1}-valued variant is excluded by a finite real-ray obstruction. The specific exotic Q^3 frame function has no signed extension, by an exact finite linear certificate. The remaining problem reduces in prose to vanishing of zero-weight frame functions on Q(i)^3 that vanish on nine tomography rays (all residuals for signed rigidity; bounded residuals for nonnegative rigidity). Neither finite obstruction establishes either general vanishing assertion.",
+   "bottleneck": "The {0,1}-valued variant is excluded by a finite real-ray obstruction. The specific exotic Q^3 frame function has no signed extension, by an exact finite linear certificate. Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, the signed and bounded nonnegative residual-reduction equivalences, the (1+i)-adic norm-parity characterization on primitive Gaussian-integer vectors, the explicit global {-1, 0, +1}-valued 3-adic zero-weight residual s3 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame function exoticQi3 = (1 + s3) / 3 (settling both signed and nonnegative quadratic rigidity on Q(i)^3 in the negative), and Section 9 elimination theorems (archimedean discontinuity at tomo_e1, Q(i, sqrt(3))^3 even-v3 frame obstruction, and operator-space projector linearity quadratic_rigidity_iff_factorsThroughRayProjLinear) are formalized in lean4/BornGaussianTomographyReduction.lean. Parameterized formalization of s_p for all inert primes p == 3 (mod 4) without projector linearity and closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remain open.",
    "imported_structure": [],
    "lean": [
     "lean4/BornGaussianRationalNoColouring.lean::BornFinite.GaussianFrames.NoColouring.no_zero_one_frame_function",
     "lean4/BornGaussianRationalExtensionObstruction.lean::BornFinite.GaussianExtension.no_prescribed_frame_function",
-    "lean4/BornGaussianRationalExtensionObstruction.lean::BornFinite.GaussianExtension.no_exotic_extension"
+    "lean4/BornGaussianRationalExtensionObstruction.lean::BornFinite.GaussianExtension.no_exotic_extension",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_frame_sum",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.tomography_matches_nine_rays",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.tomography_unique",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.signed_rigidity_iff_zero_residual",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.nonneg_rigidity_iff_bounded_zero_residual",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.primitive_gaussian_norm_mod_four_iff",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eq_quadRay_all_of_zero_at_zero",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.traceInner_self_eq_zero_iff",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.traceInner_ext",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.traceInner_rayProj",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.rayProj_frame_sum",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.rayProj_nine_rays_span_hermForm3",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.v3Rat_normSq_even",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.frame_v3Rat_sum_even",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.ortho_coord_identity_x",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_isZeroWeightFrameFunction",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_isBoundedOnRays",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_vanishes_on_nine_rays",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.witness_111_primitive",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.witness_div_four_shell_primitive",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.witness_div_eight_shell_primitive",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exists_nonzero_bounded_zero_residual",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_signed_quadratic_rigidity",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_nonneg_quadratic_rigidity",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticQi3_isNonnegFrameFunction",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticQi3_not_quadratic",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.rayProj_witness_111_decomp",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_witness_111_kernel_relation",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_witness_111_kernel_separation",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_oscillates_near_tomo_e1",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_archimedeanContinuousAt_s3_tomo_e1",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi3_tomo_e1",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.archimedeanContinuousAt_quadRay_tomo_e1",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.no_unit_norm_smul_witness_111_in_qi3",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.witness_111_unit_sqrt3_normSq",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.isFrameSqrt3_witness_111_even_norms",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.zero_on_witness_111_of_sqrt3_even_v3_vanishing",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.no_s3_even_v3_extension_to_sqrt3",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.unit_norm_in_sqrtP_of_normSqVec_eq",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.fourSquarePartner_ortho_and_normSqRatP",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s3",
+    "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadratic_rigidity_iff_factorsThroughRayProjLinear"
    ],
    "rust": [],
    "python": [],
-   "rank": 133
+   "rank": 132
   },
   {
    "node_id": "FQ-OPERATIONAL-LOCAL-TOMOGRAPHY",
@@ -3196,7 +3231,7 @@
     "code/rust/src/finite_probability/operational_filters.rs"
    ],
    "python": [],
-   "rank": 134
+   "rank": 133
   },
   {
    "node_id": "FQ-PRIM-TO-QM-SELECTION-OPEN",
@@ -3224,7 +3259,7 @@
     "external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche15_gap_nonderivation_countermodels_and_conditional_route_bridges_witness"
    ],
    "python": [],
-   "rank": 135
+   "rank": 134
   },
   {
    "node_id": "FQCD-FINITE-TRANSFER-MATRIX-GAP",
@@ -3238,21 +3273,31 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 136
+   "rank": 135
   },
   {
    "node_id": "FQCD-STRONG-COUPLING-AREA-LAW",
    "stage": "FINITE_QCD",
-   "status": "OPEN",
+   "status": "CONDITIONAL",
    "downstream_nodes": 0,
    "score": 0,
    "statement": "For a finite gauge group G, a nontrivial irreducible unitary representation R and dimension d >= 2, there are explicit beta_0 > 0, K and sigma > 0 depending on G, R and d such that for 0 <= beta < beta_0 the Wilson-action expectation of the R-character of every rectangular Wilson loop C on a finite periodic lattice much larger than C satisfies |<W_R(C)>| <= K exp(-sigma Area(C)), with Area(C) the minimal spanning area.",
    "bottleneck": "Prove the bound by a convergent strong-coupling (cluster) expansion in the style of Osterwalder-Seiler (1978), with explicit constants. The bound would replace the declared area-law formula of TFQ-0024 by a derived inequality at strong coupling; it says nothing about weak coupling or the continuum.",
    "imported_structure": [],
-   "lean": [],
-   "rust": [],
+   "lean": [
+    "lean4/FQCD/StrongCouplingAreaLaw.lean",
+    "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.theta_vacuum_cp_symmetry_and_luscher_sector_partition_sum",
+    "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity",
+    "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity",
+    "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivity",
+    "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity"
+   ],
+   "rust": [
+    "code/rust/src/fqcd/strong_coupling_area_law.rs",
+    "code/rust/src/fqcd/strong_coupling_area_law.rs::theta_vacuum_and_wilson_dirac_operator_identity"
+   ],
    "python": [],
-   "rank": 137
+   "rank": 136
   },
   {
    "node_id": "FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY",
@@ -3263,10 +3308,19 @@
    "statement": "On a finite periodic hypercubic lattice in dimension 2 or 4 with arbitrary unitary link matrices U_mu(x), Hermitian Euclidean gamma matrices and gamma5 anticommuting with each gamma_mu, the Wilson-Dirac operator D_W = m + sum_mu [gamma_mu (nabla_mu + nabla*_mu)/2 - (r/2) nabla*_mu nabla_mu] with real m and r satisfies gamma5 D_W gamma5 = D_W^dagger.",
    "bottleneck": "Prove the operator identity in Lean for the finite lattice. A proof would supply the hypothesis that FSP-WILSON-DIRAC-GAMMA5 now imports; lean4/FermionSignWilsonDiracGamma5.lean states only the Clifford and determinant lemmas, not this identity.",
    "imported_structure": [],
-   "lean": [],
-   "rust": [],
+   "lean": [
+    "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.wilson_dirac_gamma5_hermiticity_and_two_flavor_det_positivity",
+    "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_wilson_dirac_operator_gamma5_hermiticity_identity",
+    "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.finite_lattice_assembled_wilson_dirac_gamma5_hermiticity",
+    "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDirac_composes_fermionSignWilsonDiracGamma5_det_positivity",
+    "lean4/FQCD/StrongCouplingAreaLaw.lean::FQCD.assembledWilsonDiracChemPotMatrix_intertwining_and_phase_quenched_positivity"
+   ],
+   "rust": [
+    "code/rust/src/fqcd/strong_coupling_area_law.rs::wilson_dirac_gamma5_and_two_flavor_positivity",
+    "code/rust/src/fqcd/strong_coupling_area_law.rs::theta_vacuum_and_wilson_dirac_operator_identity"
+   ],
    "python": [],
-   "rank": 138
+   "rank": 137
   },
   {
    "node_id": "FSP-FIBONACCI-ANYON-DATA",
@@ -3282,7 +3336,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 139
+   "rank": 138
   },
   {
    "node_id": "FSP-NICOLAI-MAP-CLAIM",
@@ -3296,7 +3350,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 140
+   "rank": 139
   },
   {
    "node_id": "FSP-THETA-TERM-COMPLEX-WEIGHT",
@@ -3338,7 +3392,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 141
+   "rank": 140
   },
   {
    "node_id": "FSP-TRIALITY-CENTER-PROJECTION",
@@ -3352,7 +3406,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 142
+   "rank": 141
   },
   {
    "node_id": "GP-IMPORT-CONTINUUM-HILBERT",
@@ -3386,7 +3440,7 @@
     "external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness"
    ],
    "python": [],
-   "rank": 143
+   "rank": 142
   },
   {
    "node_id": "GTH-IMPORT-INFTY-1-CATEGORY",
@@ -3402,7 +3456,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 144
+   "rank": 143
   },
   {
    "node_id": "GTH-IMPORT-INFTY-GROUPOID",
@@ -3418,7 +3472,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 145
+   "rank": 144
   },
   {
    "node_id": "GTH-IMPORT-UNIVALENT-UNIVERSE",
@@ -3434,7 +3488,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 146
+   "rank": 145
   },
   {
    "node_id": "L1-GS001-GAUGE-L1",
@@ -3466,7 +3520,7 @@
     "sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness"
    ],
    "python": [],
-   "rank": 147
+   "rank": 146
   },
   {
    "node_id": "L1-QM020-C10-BRANCH-LOCALIZATION",
@@ -3491,7 +3545,7 @@
     "sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness"
    ],
    "python": [],
-   "rank": 148
+   "rank": 147
   },
   {
    "node_id": "L1-QM020-THM2B-MINKOWSKI",
@@ -3520,7 +3574,7 @@
     "external:sha256:63dc3909386d4a32498607106a9027513733615c73a0d0bc7985b4cf48f1c7f4::verify_tranche10_chsh_tsirelson_pr_box_tier3_uniqueness_edgewise_l1_and_import_boundaries_witness"
    ],
    "python": [],
-   "rank": 149
+   "rank": 148
   },
   {
    "node_id": "L1-QM122-LEFTOVER-MNC-NOT-RECOVERED",
@@ -3548,7 +3602,7 @@
     "sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche21_pg_wdp_bridge_sector_weights_qm122_finish_embedding_and_baker_witness"
    ],
    "python": [],
-   "rank": 150
+   "rank": 149
   },
   {
    "node_id": "L1-U1-SELECTOR-OTHER-SEGMENT",
@@ -3589,7 +3643,7 @@
     "sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche19_ds_qm062_094_101_206_u1_selector_everett_threshold_and_boundary_synthesis_witness"
    ],
    "python": [],
-   "rank": 151
+   "rank": 150
   },
   {
    "node_id": "L1-WDP-CH08-C01-REPLICA-L1",
@@ -3625,7 +3679,7 @@
     "sources/atlas/papers/finite_quantum_mechanics/native/src/derivation_dag_witnesses.rs::verify_tranche17_l1_emergence_gs000_gs001_replica_and_c10_branch_closure_witness"
    ],
    "python": [],
-   "rank": 152
+   "rank": 151
   },
   {
    "node_id": "MAJ-DISTANCE-WEIGHT-CORRECTION",
@@ -3644,7 +3698,7 @@
     "code/rust/src/majorana/repair_capacity.rs::assert_repair_capacity_invariant"
    ],
    "python": [],
-   "rank": 153
+   "rank": 152
   },
   {
    "node_id": "MAJ-ISING-BRAID-EXACT-OPEN",
@@ -3658,7 +3712,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 154
+   "rank": 153
   },
   {
    "node_id": "MAJ-LEGACY-CARRIER-RETRACTION",
@@ -3680,7 +3734,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 155
+   "rank": 154
   },
   {
    "node_id": "MAJ-OPEN-DISTANCE-FAMILY",
@@ -3694,7 +3748,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 156
+   "rank": 155
   },
   {
    "node_id": "MAJ-OPEN-EVIDENCE-ADEQUACY",
@@ -3712,7 +3766,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 157
+   "rank": 156
   },
   {
    "node_id": "MAJ-OPEN-LP-DUAL-CERTIFIED-CEILING",
@@ -3726,7 +3780,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 158
+   "rank": 157
   },
   {
    "node_id": "MAJ-OPEN-NON-MARKOVIAN-ENVELOPE",
@@ -3748,7 +3802,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 159
+   "rank": 158
   },
   {
    "node_id": "MAJ-OPEN-POISSON-SCHRODINGER",
@@ -3762,7 +3816,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 160
+   "rank": 159
   },
   {
    "node_id": "MUB-PRIME-POWER-CHARACTERISTIC-TWO",
@@ -3776,7 +3830,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 161
+   "rank": 160
   },
   {
    "node_id": "MUB6-COMMUTATIVITY-DEFECT-CLAIM",
@@ -3790,7 +3844,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 162
+   "rank": 161
   },
   {
    "node_id": "MUB6-CUSP-PUISEUX-CLAIM",
@@ -3804,7 +3858,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 163
+   "rank": 162
   },
   {
    "node_id": "MUB6-DEGREE2-SDP-GAP-CLAIM",
@@ -3818,7 +3872,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 164
+   "rank": 163
   },
   {
    "node_id": "MUB6-FINITE-CORNER-REDUCTION",
@@ -3840,7 +3894,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 165
+   "rank": 164
   },
   {
    "node_id": "MUB6-GRAM-NULLSTELLENSATZ-CLAIM",
@@ -3854,7 +3908,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 166
+   "rank": 165
   },
   {
    "node_id": "MUB6-GROEBNER-ELIMINATION-CLAIM",
@@ -3868,7 +3922,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 167
+   "rank": 166
   },
   {
    "node_id": "MUB6-MAX-MUB-SIX-EQUALS-THREE",
@@ -3882,7 +3936,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 168
+   "rank": 167
   },
   {
    "node_id": "MUB6-NO-FIELD-OF-ORDER-SIX",
@@ -3898,7 +3952,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 169
+   "rank": 168
   },
   {
    "node_id": "MUB6-OPENAI-FAMILY-LE-FIVE",
@@ -3914,7 +3968,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 170
+   "rank": 169
   },
   {
    "node_id": "MUB6-PHI1-CIRCULATION-CLAIM",
@@ -3928,7 +3982,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 171
+   "rank": 170
   },
   {
    "node_id": "MUB6-RATIONAL-LDL-CLAIM",
@@ -3942,7 +3996,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 172
+   "rank": 171
   },
   {
    "node_id": "MUB6-RESIDUAL-FENCE-CLAIM",
@@ -3956,7 +4010,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 173
+   "rank": 172
   },
   {
    "node_id": "MUB6-ROUTE-C-LANDING-CLAIM",
@@ -3970,7 +4024,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 174
+   "rank": 173
   },
   {
    "node_id": "MUB6-SMALE-ALPHA-CLAIM",
@@ -3984,7 +4038,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 175
+   "rank": 174
   },
   {
    "node_id": "MUB6-TORUS-CAD-EMPTINESS-CLAIM",
@@ -3998,7 +4052,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 176
+   "rank": 175
   },
   {
    "node_id": "MUB6-WEYL-STABILIZER-BOUND",
@@ -4012,7 +4066,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 177
+   "rank": 176
   },
   {
    "node_id": "OPS-AXIS1-WELLFOUNDED-ADMISSION",
@@ -4028,7 +4082,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 178
+   "rank": 177
   },
   {
    "node_id": "OPS-LEAN-GAP",
@@ -4042,7 +4096,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 179
+   "rank": 178
   },
   {
    "node_id": "OPS-NO-SIGNALLING-SIGNED-SECTION",
@@ -4058,7 +4112,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 180
+   "rank": 179
   },
   {
    "node_id": "OPS-REGRESS-COROLLARY",
@@ -4072,7 +4126,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 181
+   "rank": 180
   },
   {
    "node_id": "OPS-Z2-WITNESS-FALSE-NEGATIVES",
@@ -4088,7 +4142,7 @@
    "lean": [],
    "rust": [],
    "python": [],
-   "rank": 182
+   "rank": 181
   },
   {
    "node_id": "PGW-CONTEXT-FIDELITY",
@@ -4108,7 +4162,7 @@
     "atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/certification.rs::certifies"
    ],
    "python": [],
-   "rank": 183
+   "rank": 182
   },
   {
    "node_id": "PGW-DECLARED-INPUT-FLOOR",
@@ -4131,7 +4185,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 184
+   "rank": 183
   },
   {
    "node_id": "PGW-DRIVER-B-SEVENTH-EVENT",
@@ -4160,7 +4214,7 @@
     "atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/event.rs::Event"
    ],
    "python": [],
-   "rank": 185
+   "rank": 184
   },
   {
    "node_id": "PGW-ISOMORPHISM-SOUNDNESS-IN-LEAN",
@@ -4184,7 +4238,7 @@
     "atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/canonical.rs::canonical_bruteforce"
    ],
    "python": [],
-   "rank": 186
+   "rank": 185
   },
   {
    "node_id": "PGW-PYTHON-LEAN-CARRIER-BRIDGE",
@@ -4209,7 +4263,7 @@
     "atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/replay.rs::replay"
    ],
    "python": [],
-   "rank": 187
+   "rank": 186
   },
   {
    "node_id": "PGW-RESPONDER-IN-LEAN",
@@ -4225,7 +4279,7 @@
     "atlas/papers/finite_obstruction_calculus/genesis/code/rust/src/minima.rs::min_responses"
    ],
    "python": [],
-   "rank": 188
+   "rank": 187
   },
   {
    "node_id": "PGW-SN-PROTECTED-ANSWER-TRANSPORT",
@@ -4254,7 +4308,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 189
+   "rank": 188
   },
   {
    "node_id": "PGW-WDP-HANDOFF-TO-L1",
@@ -4283,7 +4337,7 @@
     "external:sha256:e03d0f52eff29ce6729df9bb0833599249bd14163df72024abaf7a6289424cc0::register_stabilized_family"
    ],
    "python": [],
-   "rank": 190
+   "rank": 189
   },
   {
    "node_id": "PGW-WDP-INCIDENCE-ORIENTATION-TRANSPORT",
@@ -4308,7 +4362,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 191
+   "rank": 190
   },
   {
    "node_id": "PGW-WDP-PHI-WELL-DEFINED-L1-DUALITY",
@@ -4336,7 +4390,7 @@
     "external:sha256:fc5a04df299e671184b29b3468bd5fd18b70680beadaeaf4aebd5d809976d3e1::FenchelDualityReceipt"
    ],
    "python": [],
-   "rank": 192
+   "rank": 191
   },
   {
    "node_id": "TFQ-0010",
@@ -4368,7 +4422,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 193
+   "rank": 192
   },
   {
    "node_id": "TFQ-0038",
@@ -4394,7 +4448,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 194
+   "rank": 193
   },
   {
    "node_id": "TFQ-0040",
@@ -4431,7 +4485,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 195
+   "rank": 194
   },
   {
    "node_id": "TFQ-0042",
@@ -4458,7 +4512,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 196
+   "rank": 195
   },
   {
    "node_id": "TFQ-0090",
@@ -4474,7 +4528,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 197
+   "rank": 196
   },
   {
    "node_id": "TFQ-0107",
@@ -4493,7 +4547,7 @@
     "code/rust/src/general_relativity/hamiltonian_constraint.rs"
    ],
    "python": [],
-   "rank": 198
+   "rank": 197
   },
   {
    "node_id": "TFQ-0117",
@@ -4509,7 +4563,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 199
+   "rank": 198
   },
   {
    "node_id": "TFQ-0118",
@@ -4525,7 +4579,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 200
+   "rank": 199
   },
   {
    "node_id": "TFQ-0119",
@@ -4541,7 +4595,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 201
+   "rank": 200
   },
   {
    "node_id": "TFQ-0123",
@@ -4557,7 +4611,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 202
+   "rank": 201
   },
   {
    "node_id": "TFQ-0171",
@@ -4599,7 +4653,7 @@
     "code/rust/src/finite_probability/marginal_compatibility.rs::MarginalScenario::validate_probabilities"
    ],
    "python": [],
-   "rank": 203
+   "rank": 202
   },
   {
    "node_id": "TFQ-0183",
@@ -4634,7 +4688,7 @@
     "code/rust/src/majorana/pauli_noise.rs::LocalMajoranaNoise::from_rows"
    ],
    "python": [],
-   "rank": 204
+   "rank": 203
   },
   {
    "node_id": "TFQ-0184",
@@ -4669,7 +4723,7 @@
     "code/rust/src/wdp/lib.rs::to_homology_carrier"
    ],
    "python": [],
-   "rank": 205
+   "rank": 204
   },
   {
    "node_id": "TFQ-0191",
@@ -4697,7 +4751,7 @@
     "code/rust/src/wdp/lib.rs::evaluate_exactness_fraud_criterion"
    ],
    "python": [],
-   "rank": 206
+   "rank": 205
   },
   {
    "node_id": "TFQ-0199",
@@ -4729,7 +4783,7 @@
     "code/rust/src/majorana/holonomy.rs::holonomy_receipt_gf2"
    ],
    "python": [],
-   "rank": 207
+   "rank": 206
   },
   {
    "node_id": "TFQ-0376",
@@ -4763,7 +4817,7 @@
     "code/rust/src/wdp/finite_cost_report.rs::FiniteCostReport::new"
    ],
    "python": [],
-   "rank": 208
+   "rank": 207
   },
   {
    "node_id": "TFQ-0396",
@@ -4786,7 +4840,7 @@
    ],
    "rust": [],
    "python": [],
-   "rank": 209
+   "rank": 208
   }
  ]
 }

@@ -13,10 +13,10 @@
 Let V = Q(i)^3 with the standard Hermitian form. Decide whether every function f from the nonzero vectors of V to Q with f(u) + f(v) + f(w) = 1 for every orthogonal triple of nonzero vectors has the form f(v) = <v, rho v>/<v, v> for a Hermitian trace-one 3 x 3 matrix rho over Q(i), or exhibit one that does not; state separately the signed, nonnegative and {0,1}-valued variants, and whether the non-quadratic Q^3 frame function extends to Q(i)^3.
 
 ### Governing Obligation
-General signed and nonnegative quadratic rigidity on all Q(i)^3 rays remain open. The {0,1}-valued variant is excluded by a finite real-ray obstruction. The specific exotic Q^3 frame function has no signed extension, by an exact finite linear certificate. The remaining problem reduces in prose to vanishing of zero-weight frame functions on Q(i)^3 that vanish on nine tomography rays (all residuals for signed rigidity; bounded residuals for nonnegative rigidity). Neither finite obstruction establishes either general vanishing assertion.
+The {0,1}-valued variant is excluded by a finite real-ray obstruction. The specific exotic Q^3 frame function has no signed extension, by an exact finite linear certificate. Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, the signed and bounded nonnegative residual-reduction equivalences, the (1+i)-adic norm-parity characterization on primitive Gaussian-integer vectors, the explicit global {-1, 0, +1}-valued 3-adic and 7-adic zero-weight residuals s3 and s7 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame functions exoticQi3 = (1 + s3) / 3 and exoticQi7 = (1 + s7) / 3 (settling both signed and nonnegative quadratic rigidity on Q(i)^3 in the negative), their dual Kronecker-delta evaluation on (witness_111, witness_p7) and 2D linear independence (combResidual37), the uniform prime-indexed inert residual family sp p (with InertPrimeSpec p, p = 11 instance sp11, 3D subspace combResidual3_7_11, and arbitrary finite m-prime InertPrimeResidualSystem m), Section 9 elimination theorems (selective cross-prime archimedean discontinuity at tomo_e1, joint Q(i, sqrt(p))^3 even-valuation frame obstruction, and operator-space projector linearity quadratic_rigidity_iff_factorsThroughRayProjLinear / factorsThroughRayProjLinear_finCombResidual_iff), Subsection 9F planar frame-rotation identities, the orthogonal parallelogram law SatisfiesOrthoParallelogramZero (refuted on s3, s7, sp11 and eliminating all coordinate-sign-symmetric zero-weight residuals), Piron's meridian-descent inequality and dense Pythagorean rational circle step (exists_pironStep_within_delta), and the nonnegativity/continuity bridge (nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual), and Subsection 9G two-step Piron tangent algebra (eqTangentStep_comp_of_x_zero, eqTangentStep_cancel_of_x_zero), Kelvin-inverted meridian duality (meridian_kelvin_complement_of_pole_one), outward and inward radial monotonicity (piron_radial_scale_le_of_pole_one, piron_radial_inv_scale_ge_of_pole_one), the exact two-sided Piron-Pythagorean sandwich squeeze (pythagEqRot_sandwich_of_pole_one, pythagEqRot_archimedean_squeeze_of_pole_one), and equatorial-invariance vs. orthogonal parallelogram separation (sp_e1_add_pythagEqRot_eq, orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant) are formalized in lean4/BornGaussianTomographyReduction.lean. Unconditional vanishing of all archimedean-continuous bounded zero-weight residuals on Q(i)^3 without coordinate-sign symmetry or projector linearity and closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remain open.
 
 ### Source Status
-Partial finite obstructions: no {0,1}-valued frame function on Q(i)^3, and no signed extension of the specified exotic Q^3 function. General signed and nonnegative quadratic rigidity remain open. Exact independent checks and scoped Lean declarations are linked; see the replay receipt for build evidence.
+Finite obstructions, nine-ray reductions, global 3-adic and 7-adic non-quadratic residuals (s3, s7), 2D linear independence (combResidual37), uniform prime-indexed inert residual family sp p (with InertPrimeSpec p, p = 11 instance sp11, 3D subspace combResidual3_7_11, and arbitrary finite m-prime InertPrimeResidualSystem m), and Section 9 regularity/extension/projector-linearity/parallelogram/Piron/Kelvin/Pythagorean-sandwich elimination: no {0,1}-valued frame function on Q(i)^3, no signed extension of the specified exotic Q^3 function, and in BornGaussianTomographyReduction.lean exact nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization on primitive Gaussian-integer vectors, the explicit global {-1, 0, +1}-valued 3-adic, 7-adic, and uniform p-adic zero-weight residuals s3, s7, sp p and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame functions exoticQi3 = (1 + s3) / 3 and exoticQi7 = (1 + s7) / 3 (settling both signed and nonnegative quadratic rigidity on Q(i)^3 in the negative), Kronecker-delta evaluation and linear independence across arbitrary finite m-prime systems (inertPrimeResidualSystem_linearIndependent), joint elimination mechanisms (selective cross-prime archimedean oscillation and discontinuity at tomo_e1, joint Q(i, sqrt(p))^3 even-valuation frame obstruction, and operator-space projector linearity quadratic_rigidity_iff_factorsThroughRayProjLinear / factorsThroughRayProjLinear_finCombResidual_iff), Subsection 9F planar frame-rotation identities, orthogonal parallelogram law SatisfiesOrthoParallelogramZero (refuted on s3, s7, sp11 and eliminating all coordinate-sign-symmetric zero-weight residuals), Piron's meridian-descent inequality and dense Pythagorean rational circle step (exists_pironStep_within_delta), and the nonnegativity/continuity bridge (nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual), and Subsection 9G two-step Piron tangent algebra (eqTangentStep_comp_of_x_zero, eqTangentStep_cancel_of_x_zero), Kelvin-inverted meridian duality (meridian_kelvin_complement_of_pole_one), outward and inward radial monotonicity (piron_radial_scale_le_of_pole_one, piron_radial_inv_scale_ge_of_pole_one), the exact two-sided Piron-Pythagorean sandwich squeeze (pythagEqRot_sandwich_of_pole_one, pythagEqRot_archimedean_squeeze_of_pole_one), and equatorial-invariance vs. orthogonal parallelogram separation (sp_e1_add_pythagEqRot_eq, orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant). Exact independent checks, runnable pytest suite, and scoped Lean declarations are linked; see the replay receipt for build evidence.
 
 ---
 
@@ -33,9 +33,202 @@ Partial finite obstructions: no {0,1}-valued frame function on Q(i)^3, and no si
 - `lean4/BornGaussianRationalNoColouring.lean::BornFinite.GaussianFrames.NoColouring.no_zero_one_frame_function`
 - `lean4/BornGaussianRationalExtensionObstruction.lean::BornFinite.GaussianExtension.no_prescribed_frame_function`
 - `lean4/BornGaussianRationalExtensionObstruction.lean::BornFinite.GaussianExtension.no_exotic_extension`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_frame_sum`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.tomography_matches_nine_rays`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.tomography_unique`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.signed_rigidity_iff_zero_residual`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.nonneg_rigidity_iff_bounded_zero_residual`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.primitive_gaussian_norm_mod_four_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eq_quadRay_all_of_zero_at_zero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.traceInner_self_eq_zero_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.traceInner_ext`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.traceInner_rayProj`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.rayProj_frame_sum`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.rayProj_nine_rays_span_hermForm3`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.v3Rat_normSq_even`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.frame_v3Rat_sum_even`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.ortho_coord_identity_x`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_isZeroWeightFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_isBoundedOnRays`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_vanishes_on_nine_rays`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.witness_111_primitive`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.witness_div_four_shell_primitive`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.witness_div_eight_shell_primitive`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exists_nonzero_bounded_zero_residual`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_signed_quadratic_rigidity`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_nonneg_quadratic_rigidity`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticQi3_isNonnegFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticQi3_not_quadratic`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.rayProj_witness_111_decomp`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_witness_111_kernel_relation`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_witness_111_kernel_separation`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_oscillates_near_tomo_e1`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_archimedeanContinuousAt_s3_tomo_e1`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi3_tomo_e1`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.archimedeanContinuousAt_quadRay_tomo_e1`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.no_unit_norm_smul_witness_111_in_qi3`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.witness_111_unit_sqrt3_normSq`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.isFrameSqrt3_witness_111_even_norms`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.zero_on_witness_111_of_sqrt3_even_v3_vanishing`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.no_s3_even_v3_extension_to_sqrt3`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.unit_norm_in_sqrtP_of_normSqVec_eq`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.fourSquarePartner_ortho_and_normSqRatP`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s3`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadratic_rigidity_iff_factorsThroughRayProjLinear`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.v7Rat_normSq_even`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.frame_v7Rat_sum_even`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s7_orthogonal_odd_cancel`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s7_isZeroWeightFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s7_smul`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s7_isBoundedOnRays`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s7_vanishes_on_nine_rays`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.witness_p7_primitive`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_s7_dual_on_witnesses`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticQi7_isNonnegFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticQi7_not_quadratic`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.combResidual37_isZeroWeightFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.combResidual37_vanishes_on_nine_rays`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.combResidual37_isBoundedOnRays`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_s7_linearIndependent`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s7_perturb7PosRay`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s7_perturb7NegRay`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_perturb7PosRay`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_perturb7NegRay`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s7_perturbPosRay_seven_mul`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s7_perturbNegRay_seven_mul`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.distSqVec_perturb7PosRay_tomo_e1`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.distSqVec_perturb7NegRay_tomo_e1`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_s7_selective_oscillation_near_tomo_e1`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_archimedeanContinuousAt_s7_tomo_e1`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi7_tomo_e1`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.no_unit_norm_smul_witness_p7_in_qi3`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.zero_on_witness_p7_of_sqrt7_even_v7_vanishing`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.no_s7_even_v7_extension_to_sqrt7`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s7`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual37_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.rayProj_witness_p7_decomp`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_witness_p7_kernel_relation`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s7_witness_p7_kernel_separation`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.cross_prime_frame_partner_norm_valuations_even`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticComb37_isNonnegFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticComb37_quadratic_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exoticComb37_archimedeanContinuousAt_tomo_e1_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_three_eq_s3`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_seven_eq_s7`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_isBoundedOnRays`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_vanishes_on_nine_rays`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.witness_p11_primitive`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_s7_sp11_dual_on_three_witnesses`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_s7_sp11_linearIndependent`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual3_7_11_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.rayProj_witness_p11_decomp`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_witness_p11_kernel_relation`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp11_witness_p11_kernel_separation`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.isFrameSqrt11_witness_p11_norms`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.three_prime_frame_partner_norm_valuations_even`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.finExoticComb_isNonnegFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.inertPrimeResidualSystem_linearIndependent`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.finExoticComb_quadratic_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.finCombResidual_coeffs_zero_of_archimedeanContinuousAt_tomo_e1`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_add_finCombResidual_archimedeanContinuousAt_tomo_e1_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.finExoticComb_archimedeanContinuousAt_tomo_e1_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.factorsThroughRayProjLinear_finCombResidual_iff`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.joint_field_extension_eliminates_finCombResidual`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.finCombResidual_inertSystem37_eq_combResidual37`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.inertPrimeSpec_eleven`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.vpRat_normSq_even`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.frame_vpRat_sum_even`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_orthogonal_odd_cancel`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_isZeroWeightFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_smul`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp11_isZeroWeightFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.combResidual3_7_11_isZeroWeightFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.inner_rotPairU_rotPairV_eq_zero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.normSqVec_add_eq_normSqVec_sub_of_ortho`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.normSqVec_rotPairU`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.normSqVec_rotPairV`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.isFrame_rotPair`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.frameFunction_rotPair_sum`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.zeroWeight_rotPair_sum`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.rayProj_ortho_add_sub`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.factorsThroughRayProjLinear_ortho_add_sub`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.satisfiesOrthoParallelogramZero_of_factorsThroughRayProjLinear`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_isCoordSignSymmetric`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_vanishes_on_coord_axes`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.zero_of_coordSignSymmetric_and_orthoParallelogram`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_not_satisfiesOrthoParallelogramZero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s7_not_satisfiesOrthoParallelogramZero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp11_not_satisfiesOrthoParallelogramZero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.isFrame_hermCross`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.nonneg_eq_zero_on_perp_of_pole_one`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.pure_pole_e1_nonneg_eliminates_combResidual3_7_11`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.piron_frame_sum_identity`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.piron_descent_le_of_pole_one`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.meridian_complement_of_pole_one`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.normSqVec_pythagEqRot`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_rayProj_e1_pythagEqRot`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.distSqVec_pironStep_inv_nat`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exists_pironStep_within_delta`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.zero_of_nonneg_zeroWeightFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eqOrtho_eqOrtho_of_x_zero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.pythagEqRot_one_eq_eqOrtho`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.pythagEqRot_one_twice_of_x_zero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.pironStep_eq_add_eqTangentStep`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eqTangentStep_x_zero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.normSqVec_eqTangentStep_of_x_zero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eqTangentStep_nonZero_of_x_zero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eqOrtho_eqTangentStep_of_x_zero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eqTangentStep_comp_of_x_zero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eqTangentStep_cancel_of_x_zero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eqTangentStep_one_one_of_x_zero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.piron_radial_scale_le_of_pole_one`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.piron_two_step_eqOrtho_le_of_pole_one`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.frameFunction_smul`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.kelvinEq_x_zero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.normSqVec_kelvinEq`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.kelvinEq_nonZero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.smul_meridianOrtho_eq_add_kelvinEq`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.meridian_kelvin_complement_of_pole_one`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.piron_radial_inv_scale_ge_of_pole_one`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.pythagEqRot_eq_eqTangentStep_of_two_le`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.eqTangentStep_pythagEqRot_neg_of_x_zero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.pythagEqRot_sandwich_of_pole_one`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.distSqVec_radial_scale`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exists_pythagEqRot_radial_within_delta`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.pythagEqRot_archimedean_squeeze_of_pole_one`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_e1_add_eq_of_normSqVec_eq`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_e1_add_pythagEqRot_eq`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_pythagEqRot_invariant_tomo_e23`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s7_pythagEqRot_invariant_v7`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp11_pythagEqRot_invariant_v11`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.nonneg_pole_perturbation_vanishes_on_equator`
 
 ### Rust Certifiers
 - *none cited*
+
+### Python Checks
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_fq_gleason_qi3_frame_functions_end_to_end`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_nine_ray_tomography_reconstruction_and_uniqueness`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_quadray_frame_sum_on_non_unit_orthogonal_frames`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_operator_space_ray_projector_duality_and_zero_normalization`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_signed_and_nonnegative_residual_reduction_equivalences`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_one_plus_i_adic_norm_parity_witnesses_and_mod_four_iff`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_s3_global_bounded_zero_weight_residual_and_exotic_qi3`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_archimedean_discontinuity_and_field_extension_elimination`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_multi_prime_s3_s7_linear_independence_and_joint_elimination`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_uniform_sp_family_p11_and_finite_inert_residual_system`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_piron_frame_rotation_parallelogram_and_continuity_bridge`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_independent_check_scripts_pass`
 
 ---
 
@@ -57,3 +250,5 @@ Partial finite obstructions: no {0,1}-valued frame function on Q(i)^3, and no si
   - `checks/independent/fq-gleason-qi3-frame-functions.py`
   - `checks/independent/fq-gleason-qi3-extension.py`
   - `checks/independent/fq-gleason-qi3-tomography.py`
+  - `lean4/BornGaussianTomographyReduction.lean`
+  - `code/python/tests/test_fq_gleason_qi3_frame_functions.py`
