@@ -445,7 +445,7 @@ tomography rays):
    meridian complement `f(e₁ + y) + f(meridianOrtho y) = 1` (`meridian_complement_of_pole_one`),
    Pythagorean equatorial rotation norm and Born-weight invariance (`normSqVec_pythagEqRot`,
    `quadRay_rayProj_e1_pythagEqRot`), and Archimedean step density (`distSqVec_pironStep_inv_nat`,
-      (`exists_pironStep_within_delta`). Finally, every nonnegative zero-weight frame residual
+   `exists_pironStep_within_delta`). Finally, every nonnegative zero-weight frame residual
    vanishes identically (`zero_of_nonneg_zeroWeightFrameFunction`), and nonnegative
    Archimedean-continuous frame rigidity to `FactorsThroughRayProjLinear` is equivalent to
    vanishing of bounded Archimedean-continuous nine-ray-vanishing zero-weight residuals

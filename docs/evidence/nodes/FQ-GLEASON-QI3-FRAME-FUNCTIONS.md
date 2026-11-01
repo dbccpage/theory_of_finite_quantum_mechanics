@@ -11,9 +11,9 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `OPEN`. Evidence g
 Evidence grade **E4** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 13
-- cited Lean, Rust or Python symbols found in their in-repo files: 219
+- cited Lean, Rust or Python symbols found in their in-repo files: 220
 - distinct cited Lean declarations covered by a current replay receipt: 207
-- counted in-repo runnable tests: 13
+- counted in-repo runnable tests: 14
 - counted in-repo Rust or Python files that are not tests: 3
 - recorded statement-match reviews that qualify: 1
 - next step to raise the grade: none: all E4 conditions hold
@@ -331,14 +331,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `checks/independent/fq-gleason-qi3-tomography.py`
 
 - file: [checks/independent/fq-gleason-qi3-tomography.py](../../../checks/independent/fq-gleason-qi3-tomography.py)
-- sha256 (`bytes`): `8ed503c514bde1affcee93a47950f2306327e7cafbfe6c0b7c45dd3fef169e0d`
+- sha256 (`bytes`): `15f391680b1e0ee48ac5665665022a330190527a75fef8caacb0bf6e784f567c`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Python: `code/python/tests/test_fq_gleason_qi3_frame_functions.py`
 
 - file: [code/python/tests/test_fq_gleason_qi3_frame_functions.py](../../../code/python/tests/test_fq_gleason_qi3_frame_functions.py)
-- sha256 (`bytes`): `6bc487a0f904155b7165107ea745e7d999890785b4100934fe17f6d912402c55`
+- sha256 (`bytes`): `b4a861575be98a3c565ea4ee34810dac0e44032cea85a0294b33af89f9b15feb`
 - cited in: node.source, record TFQ-1055
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -354,6 +354,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `test_quadray_frame_sum_on_non_unit_orthogonal_frames` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_quadray_frame_sum_on_non_unit_orthogonal_frames` |
 | `test_s3_global_bounded_zero_weight_residual_and_exotic_qi3` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_s3_global_bounded_zero_weight_residual_and_exotic_qi3` |
 | `test_signed_and_nonnegative_residual_reduction_equivalences` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_signed_and_nonnegative_residual_reduction_equivalences` |
+| `test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation` |
 | `test_uniform_sp_family_p11_and_finite_inert_residual_system` (python_test) | yes | yes | yes | - | `python -m pytest code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_uniform_sp_family_p11_and_finite_inert_residual_system` |
 
 - counts toward the grade: yes
@@ -368,7 +369,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md](../../../dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md)
-- sha256 (`lf-normalised`): `baa14cfa80b2fbf3339a5a01f75ce968f330f73be2c2584009f7e0158ada632f`
+- sha256 (`lf-normalised`): `7470a257945b734eab0d153f689b3e139b7a803c1f53d02e5c34feef84e5be91`
 - generated view: listed, not counted
 - cited in: record TFQ-1055
 - counts toward the grade: no
@@ -390,7 +391,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md`
 
 - file: [dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md](../../../dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md)
-- sha256 (`lf-normalised`): `8617cdaf6a3da451e33af96eaf515fe78436e3fc0859425f1155598f57d8f515`
+- sha256 (`lf-normalised`): `d730fbb970a204a50dacaa21c7f430335b8daabcdcd97fb488761d224cefcc49`
 - cited in: node.source
 - counts toward the grade: yes
 

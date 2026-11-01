@@ -845,14 +845,15 @@ def main() -> None:
         y_kelvin = kelvin_eq(y_eq)
         u_base = g_add_vec(nine_rays_gvec[0], y_eq)
         u_kelvin = g_add_vec(nine_rays_gvec[0], y_kelvin)
+        u_step1 = piron_step(y_eq, (Fraction(1), Fraction(0)))
+        u_2eq = g_add_vec(nine_rays_gvec[0], g_smul_vec((Fraction(2), Fraction(0)), eq_ortho(y_eq)))
         require(
             y_kelvin[0] == (Fraction(0), Fraction(0))
             and vec_norm_sq(y_kelvin) == Fraction(1) / ny
             and g_smul_vec((-Fraction(1) / ny, Fraction(0)), meridian_ortho(y_eq)) == u_kelvin
             and quad_ray_e1(u_base) + quad_ray_e1(u_kelvin) == Fraction(1)
-            and quad_ray_e1(g_add_vec(nine_rays_gvec[0], g_smul_vec((Fraction(2), Fraction(0)), eq_ortho(y_eq))))
-            <= quad_ray_e1(u_base),
-            "Kelvin-inverted equatorial vector satisfies norm inversion, meridian ray identity, and complement sum",
+            and quad_ray_e1(u_2eq) <= quad_ray_e1(u_step1) <= quad_ray_e1(u_base),
+            "Kelvin-inverted equatorial vector satisfies norm inversion, meridian ray identity, and two-step descent",
         )
         for t_step in [Fraction(1, 2), Fraction(2, 3), Fraction(-3, 4)]:
             for s_step in [Fraction(1, 3), -t_step]:
@@ -868,15 +869,16 @@ def main() -> None:
             t_cancel = eq_tangent_step(eq_tangent_step(y_eq, t_step), -t_step)
             scale_out = Fraction(1) + t_step * t_step
             scale_in = Fraction(1) / scale_out
+            u_tstep = piron_step(y_eq, (t_step, Fraction(0)))
             u_out = g_add_vec(nine_rays_gvec[0], g_smul_vec((scale_out, Fraction(0)), y_eq))
             u_in = g_add_vec(nine_rays_gvec[0], g_smul_vec((scale_in, Fraction(0)), y_eq))
             require(
-                piron_step(y_eq, (t_step, Fraction(0))) == g_add_vec(nine_rays_gvec[0], eq_tangent_step(y_eq, t_step))
+                u_tstep == g_add_vec(nine_rays_gvec[0], eq_tangent_step(y_eq, t_step))
                 and vec_norm_sq(eq_tangent_step(y_eq, t_step)) == scale_out * ny
                 and eq_ortho(eq_tangent_step(y_eq, t_step))
                 == g_add_vec(g_smul_vec((-t_step, Fraction(0)), y_eq), eq_ortho(y_eq))
                 and t_cancel == g_smul_vec((scale_out, Fraction(0)), y_eq)
-                and quad_ray_e1(u_out) <= quad_ray_e1(u_base) <= quad_ray_e1(u_in),
+                and quad_ray_e1(u_out) <= quad_ray_e1(u_tstep) <= quad_ray_e1(u_base) <= quad_ray_e1(u_in),
                 "two-step Piron tangent cancellation and outward/inward radial monotonicity hold",
             )
         for k_step in range(2, 6):
@@ -896,14 +898,57 @@ def main() -> None:
                 and vec_norm_sq(g_sub_vec(u_rad_out, u_base)) == (r_out - 1) * (r_out - 1) * ny,
                 "Piron-Pythagorean two-sided sandwich and radial distance formulas hold",
             )
+        for eps in [Fraction(1, 5), Fraction(1, 25), Fraction(1, 100)]:
+            require(
+                any(
+                    quad_ray_e1(
+                        g_add_vec(
+                            nine_rays_gvec[0],
+                            g_smul_vec((Fraction(k_e * k_e - 1, k_e * k_e + 1), Fraction(0)), y_eq),
+                        )
+                    )
+                    - quad_ray_e1(
+                        g_add_vec(
+                            nine_rays_gvec[0],
+                            g_smul_vec((Fraction(k_e * k_e + 1, k_e * k_e - 1), Fraction(0)), y_eq),
+                        )
+                    )
+                    < eps
+                    and abs(quad_ray_e1(g_add_vec(nine_rays_gvec[0], pythag_eq_rot(y_eq, k_e))) - quad_ray_e1(u_base))
+                    < eps
+                    for k_e in range(2, 40)
+                ),
+                "Archimedean radial continuity squeeze forces Pythagorean equatorial rotation gap below epsilon",
+            )
+        require(
+            quad_ray_e1(y_eq) == Fraction(0) and quad_ray_e1(eq_ortho(y_eq)) == Fraction(0),
+            "Pure north-pole Born weight vanishes on equatorial frame vectors (e1, y, eqOrtho y)",
+        )
 
     for p_prime, w_pos in parallelogram_counterexamples:
+        w_swap = ((Fraction(0), Fraction(0)), w_pos[2], w_pos[1])
+        require(
+            vec_norm_sq(w_swap) == vec_norm_sq(w_pos)
+            and sp_residual(g_add_vec(nine_rays_gvec[0], w_swap), p_prime)
+            == sp_residual(g_add_vec(nine_rays_gvec[0], w_pos), p_prime)
+            == Fraction(1),
+            f"sp {p_prime} depends only on equatorial norm on e1 + y",
+        )
         for k_rot in range(1, 6):
             u_rot = g_add_vec(nine_rays_gvec[0], pythag_eq_rot(w_pos, k_rot))
             require(
                 sp_residual(u_rot, p_prime) == Fraction(1),
                 f"sp {p_prime} is invariant under all Pythagorean equatorial rotations on e1 + w_pos",
             )
+        w_90 = pythag_eq_rot(w_pos, 1)
+        w_180 = pythag_eq_rot(w_90, 1)
+        require(
+            w_180 == g_smul_vec((Fraction(-1), Fraction(0)), w_pos)
+            and sp_residual(g_add_vec(nine_rays_gvec[0], w_pos), p_prime)
+            + sp_residual(g_add_vec(nine_rays_gvec[0], w_180), p_prime)
+            == Fraction(2),
+            f"sp {p_prime} is 90-degree rotationally invariant yet violates SatisfiesOrthoParallelogramZero at e1",
+        )
 
     print(json.dumps({"status": "PASS", "sympy_version": sp.__version__,
                       "tomography_rank": tomography.rank(),

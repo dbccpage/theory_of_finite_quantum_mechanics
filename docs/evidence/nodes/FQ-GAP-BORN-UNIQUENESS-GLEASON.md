@@ -514,7 +514,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `code/python/tests/test_fq_gleason_qi3_frame_functions.py`
 
 - file: [code/python/tests/test_fq_gleason_qi3_frame_functions.py](../../../code/python/tests/test_fq_gleason_qi3_frame_functions.py)
-- sha256 (`bytes`): `6bc487a0f904155b7165107ea745e7d999890785b4100934fe17f6d912402c55`
+- sha256 (`bytes`): `b4a861575be98a3c565ea4ee34810dac0e44032cea85a0294b33af89f9b15feb`
 - cited in: node.source
 - check: `python -m pytest code/python/tests/test_fq_gleason_qi3_frame_functions.py`
 - counts toward the grade: yes
@@ -544,7 +544,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md`
 
 - file: [dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md](../../../dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md)
-- sha256 (`lf-normalised`): `8617cdaf6a3da451e33af96eaf515fe78436e3fc0859425f1155598f57d8f515`
+- sha256 (`lf-normalised`): `d730fbb970a204a50dacaa21c7f430335b8daabcdcd97fb488761d224cefcc49`
 - cited in: node.source
 - counts toward the grade: yes
 

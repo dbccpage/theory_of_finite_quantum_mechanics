@@ -1883,9 +1883,9 @@ def test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation() 
             GaussRat.of_ints(2, 0), eq_ortho(y_eq)
         )
         u_base = gvec_add(E1, y_eq)
-        assert quad_ray(p_e1, gvec_add(E1, gvec_smul(GaussRat.of_ints(2, 0), eq_ortho(y_eq)))) <= quad_ray(
-            p_e1, u_base
-        )
+        u_step1 = piron_step(y_eq, GaussRat.of_ints(1, 0))
+        u_2eq = gvec_add(E1, gvec_smul(GaussRat.of_ints(2, 0), eq_ortho(y_eq)))
+        assert quad_ray(p_e1, u_2eq) <= quad_ray(p_e1, u_step1) <= quad_ray(p_e1, u_base)
 
         # 2. Kelvin-inverted meridian duality and upward radial monotonicity
         #    (kelvinEq_x_zero, normSqVec_kelvinEq, kelvinEq_nonZero, smul_meridianOrtho_eq_add_kelvinEq,
@@ -1908,7 +1908,8 @@ def test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation() 
             z_step = eq_tangent_step(y_eq, t_step)
             scale_out = Fraction(1) + t_step * t_step
             scale_in = Fraction(1) / scale_out
-            assert piron_step(y_eq, GaussRat(t_step, Fraction(0))) == gvec_add(E1, z_step)
+            u_tstep = piron_step(y_eq, GaussRat(t_step, Fraction(0)))
+            assert u_tstep == gvec_add(E1, z_step)
             assert z_step.x == GaussRat.of_ints(0, 0)
             assert z_step.norm_sq() == scale_out * ny
             assert eq_ortho(z_step) == gvec_add(
@@ -1917,7 +1918,7 @@ def test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation() 
             assert eq_tangent_step(z_step, -t_step) == gvec_smul(GaussRat(scale_out, Fraction(0)), y_eq)
             u_out = gvec_add(E1, gvec_smul(GaussRat(scale_out, Fraction(0)), y_eq))
             u_in = gvec_add(E1, gvec_smul(GaussRat(scale_in, Fraction(0)), y_eq))
-            assert quad_ray(p_e1, u_out) <= quad_ray(p_e1, u_base) <= quad_ray(p_e1, u_in)
+            assert quad_ray(p_e1, u_out) <= quad_ray(p_e1, u_tstep) <= quad_ray(p_e1, u_base) <= quad_ray(p_e1, u_in)
 
         # 3. Exact Piron-Pythagorean two-sided sandwich and Archimedean squeeze
         #    (pythagEqRot_eq_eqTangentStep_of_two_le, eqTangentStep_pythagEqRot_neg_of_x_zero,
@@ -1952,6 +1953,32 @@ def test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation() 
                 < delta
                 for k_d in range(2, 40)
             )
+        for eps in (Fraction(1, 5), Fraction(1, 25), Fraction(1, 100)):
+            assert any(
+                quad_ray(
+                    p_e1,
+                    gvec_add(E1, gvec_smul(GaussRat(Fraction(k_e * k_e - 1, k_e * k_e + 1), Fraction(0)), y_eq)),
+                )
+                - quad_ray(
+                    p_e1,
+                    gvec_add(E1, gvec_smul(GaussRat(Fraction(k_e * k_e + 1, k_e * k_e - 1), Fraction(0)), y_eq)),
+                )
+                < eps
+                and abs(quad_ray(p_e1, gvec_add(E1, pythag_eq_rot(y_eq, k_e))) - quad_ray(p_e1, u_base)) < eps
+                for k_e in range(2, 40)
+            )
+
+        # Equatorial frame (E1, y_eq, eq_ortho(y_eq)) forces any nonnegative pole perturbation to vanish on e1^perp:
+        y_perp = eq_ortho(y_eq)
+        assert E1.dot(y_eq) == GaussRat.of_ints(0, 0)
+        assert E1.dot(y_perp) == GaussRat.of_ints(0, 0)
+        assert y_eq.dot(y_perp) == GaussRat.of_ints(0, 0)
+        assert quad_ray(p_e1, E1) == Fraction(1)
+        assert quad_ray(p_e1, y_eq) == Fraction(0)
+        assert quad_ray(p_e1, y_perp) == Fraction(0)
+        for g_y in (Fraction(1, 7), Fraction(-1, 7), Fraction(1)):
+            g_perp = -g_y  # since g(E1) = 0 and g(E1) + g(y_eq) + g(y_perp) = 0 on the frame
+            assert min(quad_ray(p_e1, y_eq) + g_y, quad_ray(p_e1, y_perp) + g_perp) < Fraction(0)
 
     # 4. Equatorial rotational invariance around e1 vs. SatisfiesOrthoParallelogramZero separation
     #    (sp_e1_add_eq_of_normSqVec_eq, sp_e1_add_pythagEqRot_eq,
@@ -1967,6 +1994,10 @@ def test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation() 
         u_plus = gvec_add(E1, y_part)
         u_minus = gvec_sub(E1, y_part)
         assert vp_rat(u_plus.norm_sq(), p_prime) == 1 > 0
+        # Equi-latitude non-rotation vector y_swap with the same equatorial norm:
+        y_swap = GVec(GaussRat.of_ints(0, 0), y_part.z, y_part.y)
+        assert y_swap.norm_sq() == y_part.norm_sq()
+        assert sp(gvec_add(E1, y_swap), p_prime) == sp(u_plus, p_prime) == Fraction(1)
         for k_rot in range(1, 7):
             y_rot = pythag_eq_rot(y_part, k_rot)
             assert y_rot.norm_sq() == y_part.norm_sq()
@@ -2210,5 +2241,33 @@ def test_fq_gleason_qi3_frame_functions_end_to_end() -> None:
     ]
     for decl in required_theorems:
         assert decl in content, f"Missing declaration {decl!r} in {LEAN_TOMOGRAPHY_FILE}"
+
+    import hashlib
+    import json
+
+    def file_sha256(rel_path: str) -> str:
+        return hashlib.sha256((REPO_ROOT / rel_path).read_bytes()).hexdigest()
+
+    replay_json = json.loads(
+        (REPO_ROOT / "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    for res in replay_json["lean_replay"]["results"]:
+        assert res["sha256"] == file_sha256(res["source"])
+
+    validation_json = json.loads(
+        (REPO_ROOT / "dag/research/fq_gleason_qi3_validation.json").read_text(encoding="utf-8")
+    )
+    for rel_path, expected_sha in validation_json["source_sha256"].items():
+        assert file_sha256(rel_path) == expected_sha, f"Stale SHA-256 for {rel_path} in fq_gleason_qi3_validation.json"
+
+    assessment_json = json.loads(
+        (REPO_ROOT / "dag/research/fq_gleason_qi3_assessment.json").read_text(encoding="utf-8")
+    )
+    for ev in assessment_json["evidence"]:
+        assert file_sha256(ev["path"]) == ev["sha256"], f"Stale SHA-256 for {ev['path']} in fq_gleason_qi3_assessment.json"
+    for art in assessment_json["reviewed_artifacts"]:
+        assert file_sha256(art["artifact"]["path"]) == art["artifact"]["sha256"]
 
 

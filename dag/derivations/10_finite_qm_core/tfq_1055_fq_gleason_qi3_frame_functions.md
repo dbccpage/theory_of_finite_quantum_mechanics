@@ -227,6 +227,7 @@ Finite obstructions, nine-ray reductions, global 3-adic and 7-adic non-quadratic
 - `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_multi_prime_s3_s7_linear_independence_and_joint_elimination`
 - `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_uniform_sp_family_p11_and_finite_inert_residual_system`
 - `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_piron_frame_rotation_parallelogram_and_continuity_bridge`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation`
 - `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_independent_check_scripts_pass`
 
 ---
