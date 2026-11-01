@@ -609,6 +609,78 @@ def exotic_qi3(u: GVec) -> Fraction:
     return (Fraction(1) + s3(u)) / 3
 
 
+def _v7_int(n: int) -> int:
+    n = abs(n)
+    if n == 0:
+        return 0
+    k = 0
+    while n % 7 == 0:
+        n //= 7
+        k += 1
+    return k
+
+
+def _p7_part_int(n: int) -> int:
+    n = abs(n)
+    if n == 0:
+        return 0
+    while n % 7 == 0:
+        n //= 7
+    return n
+
+
+def v7_rat(q: Fraction) -> int:
+    """Exact 7-adic valuation v_7(q) on Q matching v7Rat in Lean 4."""
+    if q <= 0:
+        return 0
+    return _v7_int(q.numerator) - _v7_int(q.denominator)
+
+
+def u7_rat(q: Fraction) -> Fraction:
+    """Exact 7-adic unit Legendre residue sign (q / 7) in {-1, +1} for q > 0 matching u7Rat in Lean 4."""
+    if q <= 0:
+        return Fraction(0)
+    rem = (_p7_part_int(q.numerator) * _p7_part_int(q.denominator)) % 7
+    return Fraction(1) if rem in (1, 2, 4) else Fraction(-1)
+
+
+def is_lead7_coord(c_norm: Fraction, vec_norm: Fraction) -> bool:
+    """Whether c_norm > 0 and v_7(c_norm) < v_7(vec_norm) (isLead7Coord in Lean 4)."""
+    return c_norm > 0 and v7_rat(c_norm) < v7_rat(vec_norm)
+
+
+def coord_sign7(c_norm: Fraction, vec_norm: Fraction) -> Fraction:
+    """The 7-adic contribution u7Rat(c_norm) * u7Rat(vec_norm) matching coordSign7 in Lean 4."""
+    return u7_rat(c_norm) * u7_rat(vec_norm)
+
+
+def s7(u: GVec) -> Fraction:
+    """Global {-1, 0, +1}-valued zero-weight 7-adic residual frame function matching s7 in Lean 4."""
+    vn = u.norm_sq()
+    if v7_rat(vn) % 2 == 0:
+        return Fraction(0)
+    if is_lead7_coord(u.x.norm_sq(), vn):
+        return coord_sign7(u.x.norm_sq(), vn)
+    if is_lead7_coord(u.y.norm_sq(), vn):
+        return coord_sign7(u.y.norm_sq(), vn)
+    return coord_sign7(u.z.norm_sq(), vn)
+
+
+def exotic_qi7(u: GVec) -> Fraction:
+    """Global {0, 1/3, 2/3}-valued nonnegative non-quadratic frame function (1 + s7(u)) / 3 matching exoticQi7."""
+    return (Fraction(1) + s7(u)) / 3
+
+
+def comb_residual_37(c3: Fraction, c7: Fraction, u: GVec) -> Fraction:
+    """Two-parameter linear combination c3 * s3(u) + c7 * s7(u) matching combResidual37 in Lean 4."""
+    return c3 * s3(u) + c7 * s7(u)
+
+
+def exotic_comb_37(c3: Fraction, c7: Fraction, u: GVec) -> Fraction:
+    """Two-parameter frame function (1 + combResidual37(c3, c7, u)) / 3 matching exoticComb37 in Lean 4."""
+    return (Fraction(1) + comb_residual_37(c3, c7, u)) / 3
+
+
 def herm_cross(u: GVec, v: GVec) -> GVec:
     """Hermitian cross product conj(u x v) orthogonal to both u and v in Q(i)^3."""
     return GVec(
@@ -809,45 +881,6 @@ def test_s3_global_bounded_zero_weight_residual_and_exotic_qi3() -> None:
 
     # 6. Multi-prime inert residual s7 (p = 7 == 3 mod 4 via Legendre symbol (./7)):
     #    linearly independent of s3 and vanishes on all 49 real primitive rays in [-2, 2]^3
-    def v7_int(n: int) -> int:
-        n = abs(n)
-        if n == 0:
-            return 0
-        k = 0
-        while n % 7 == 0:
-            n //= 7
-            k += 1
-        return k
-
-    def p7_part_int(n: int) -> int:
-        n = abs(n)
-        if n == 0:
-            return 0
-        while n % 7 == 0:
-            n //= 7
-        return n
-
-    def v7_rat(q: Fraction) -> int:
-        if q <= 0:
-            return 0
-        return v7_int(q.numerator) - v7_int(q.denominator)
-
-    def u7_rat(q: Fraction) -> Fraction:
-        if q <= 0:
-            return Fraction(0)
-        rem = (p7_part_int(q.numerator) * p7_part_int(q.denominator)) % 7
-        return Fraction(1) if rem in (1, 2, 4) else Fraction(-1)
-
-    def s7(u: GVec) -> Fraction:
-        vn = u.norm_sq()
-        if v7_rat(vn) % 2 == 0:
-            return Fraction(0)
-        for coord in (u.x, u.y, u.z):
-            cn = coord.norm_sq()
-            if cn > 0 and v7_rat(cn) < v7_rat(vn):
-                return u7_rat(cn) * u7_rat(vn)
-        return Fraction(0)
-
     witness_p7 = gv(1, 0, 2, 0, 1, 1)  # norm 1 + 4 + 2 = 7
     assert is_one_plus_i_primitive(1, 0, 2, 0, 1, 1)
     assert witness_p7.norm_sq() == Fraction(7)
@@ -1051,75 +1084,8 @@ def test_archimedean_discontinuity_and_field_extension_elimination() -> None:
     assert gv_p_inner(7, q_s7, q_s7) == (GaussRat.of_ints(245, 0), GaussRat.of_ints(0, 0))
 
 
-def _v7_int(n: int) -> int:
-    n = abs(n)
-    if n == 0:
-        return 0
-    k = 0
-    while n % 7 == 0:
-        n //= 7
-        k += 1
-    return k
-
-
-def _p7_part_int(n: int) -> int:
-    n = abs(n)
-    if n == 0:
-        return 0
-    while n % 7 == 0:
-        n //= 7
-    return n
-
-
-def v7_rat(q: Fraction) -> int:
-    """Exact 7-adic valuation v_7(q) on Q matching v7Rat in Lean 4."""
-    if q <= 0:
-        return 0
-    return _v7_int(q.numerator) - _v7_int(q.denominator)
-
-
-def u7_rat(q: Fraction) -> Fraction:
-    """Exact 7-adic unit Legendre residue sign (q / 7) in {-1, +1} for q > 0 matching u7Rat in Lean 4."""
-    if q <= 0:
-        return Fraction(0)
-    rem = (_p7_part_int(q.numerator) * _p7_part_int(q.denominator)) % 7
-    return Fraction(1) if rem in (1, 2, 4) else Fraction(-1)
-
-
-def is_lead7_coord(c_norm: Fraction, vec_norm: Fraction) -> bool:
-    """Whether c_norm > 0 and v_7(c_norm) < v_7(vec_norm) (isLead7Coord in Lean 4)."""
-    return c_norm > 0 and v7_rat(c_norm) < v7_rat(vec_norm)
-
-
-def coord_sign7(c_norm: Fraction, vec_norm: Fraction) -> Fraction:
-    """The 7-adic contribution u7Rat(c_norm) * u7Rat(vec_norm) matching coordSign7 in Lean 4."""
-    return u7_rat(c_norm) * u7_rat(vec_norm)
-
-
-def s7(u: GVec) -> Fraction:
-    """Global {-1, 0, +1}-valued zero-weight 7-adic residual frame function matching s7 in Lean 4."""
-    vn = u.norm_sq()
-    if v7_rat(vn) % 2 == 0:
-        return Fraction(0)
-    if is_lead7_coord(u.x.norm_sq(), vn):
-        return coord_sign7(u.x.norm_sq(), vn)
-    if is_lead7_coord(u.y.norm_sq(), vn):
-        return coord_sign7(u.y.norm_sq(), vn)
-    return coord_sign7(u.z.norm_sq(), vn)
-
-
-def exotic_qi7(u: GVec) -> Fraction:
-    """Global {0, 1/3, 2/3}-valued nonnegative non-quadratic frame function (1 + s7(u)) / 3 matching exoticQi7."""
-    return (Fraction(1) + s7(u)) / 3
-
-
-def comb_residual_37(c3: Fraction, c7: Fraction, u: GVec) -> Fraction:
-    """Two-parameter linear combination c3 * s3(u) + c7 * s7(u) matching combResidual37 in Lean 4."""
-    return c3 * s3(u) + c7 * s7(u)
-
-
 def test_multi_prime_s3_s7_linear_independence_and_joint_elimination() -> None:
-    """Verify Subsection 9D: s7, exoticQi7, combResidual37, selective oscillation near tomo_e1, and joint elimination."""
+    """Verify Subsection 9D: s7, exoticQi7, combResidual37, exoticComb37, witness_p7 projector kernel, selective oscillation near tomo_e1, and joint elimination."""
 
     def gv(a: int, b: int, c: int, d: int, e: int, g: int) -> GVec:
         return GVec(
@@ -1141,13 +1107,73 @@ def test_multi_prime_s3_s7_linear_independence_and_joint_elimination() -> None:
     assert reconstructed_exotic7 == herm_smul(Fraction(1, 3), HERM_ID)
     assert exotic_qi7(witness_p7) != quad_ray(reconstructed_exotic7, witness_p7)
 
-    # 2. 2D space combResidual37: zero-weight on orthogonal frames, 9-ray vanishing, boundedness, linear independence
+    # 2. Constructive 9-ray projector expansion for witness_p7 = (1, 2, 1 + i)
+    #    (rayProj_witness_p7_decomp, quadRay_witness_p7_kernel_relation, s7_witness_p7_kernel_separation)
+    def witness_p7_kernel_eval(f) -> Fraction:
+        return (
+            f(witness_p7)
+            + Fraction(3, 7) * f(E1)
+            + Fraction(2, 7) * f(E2)
+            + Fraction(4, 7) * f(E3)
+            - Fraction(4, 7) * f(U12_PLUS)
+            - Fraction(2, 7) * f(U13_PLUS)
+            - Fraction(4, 7) * f(U23_PLUS)
+            - Fraction(2, 7) * f(U13_I)
+            - Fraction(4, 7) * f(U23_I)
+        )
+
+    p_wp7 = ray_proj(witness_p7)
+    p_wp7_rhs = herm_add(
+        herm_add(
+            herm_add(
+                herm_add(
+                    herm_smul(Fraction(-3, 7), ray_proj(E1)),
+                    herm_smul(Fraction(-2, 7), ray_proj(E2)),
+                ),
+                herm_add(
+                    herm_smul(Fraction(-4, 7), ray_proj(E3)),
+                    herm_smul(Fraction(4, 7), ray_proj(U12_PLUS)),
+                ),
+            ),
+            herm_add(
+                herm_smul(Fraction(2, 7), ray_proj(U13_PLUS)),
+                herm_smul(Fraction(4, 7), ray_proj(U23_PLUS)),
+            ),
+        ),
+        herm_add(
+            herm_smul(Fraction(2, 7), ray_proj(U13_I)),
+            herm_smul(Fraction(4, 7), ray_proj(U23_I)),
+        ),
+    )
+    assert p_wp7 == p_wp7_rhs
+
+    rho_sample = HermForm3(
+        d1=Fraction(2, 5),
+        d2=Fraction(1, 5),
+        d3=Fraction(2, 5),
+        a12=Fraction(1, 7),
+        b12=Fraction(-1, 9),
+        a13=Fraction(2, 11),
+        b13=Fraction(-1, 13),
+        a23=Fraction(1, 6),
+        b23=Fraction(1, 8),
+    )
+    assert witness_p7_kernel_eval(lambda u: quad_ray(rho_sample, u)) == Fraction(0)
+    assert witness_p7_kernel_eval(s7) == Fraction(1)
+    assert witness_p7_kernel_eval(s3) == Fraction(0)
+
+    # 3. 2D space combResidual37 and 2-parameter nonnegative family exoticComb37
+    #    (exoticComb37_isNonnegFrameFunction, exoticComb37_quadratic_iff)
     coeff_samples = [
         (Fraction(0), Fraction(0)),
         (Fraction(1), Fraction(0)),
         (Fraction(0), Fraction(1)),
+        (Fraction(-1), Fraction(0)),
+        (Fraction(0), Fraction(-1)),
         (Fraction(2, 5), Fraction(-3, 7)),
         (Fraction(-4, 9), Fraction(5, 11)),
+        (Fraction(1, 2), Fraction(1, 2)),
+        (Fraction(-1, 3), Fraction(2, 3)),
     ]
     ortho_pairs = [
         (E1, E2),
@@ -1157,21 +1183,34 @@ def test_multi_prime_s3_s7_linear_independence_and_joint_elimination() -> None:
         (gv(1, 1, 2, 1, 0, 0), gv(2, -1, -1, -1, 0, 0)),
     ]
     for c3, c7 in coeff_samples:
+        assert abs(c3) + abs(c7) <= Fraction(1)
+        assert witness_p7_kernel_eval(lambda u: comb_residual_37(c3, c7, u)) == c7
         for ray in NINE_RAYS:
             assert comb_residual_37(c3, c7, ray) == Fraction(0)
+            assert exotic_comb_37(c3, c7, ray) == Fraction(1, 3)
         for u, v in ortho_pairs:
             w = herm_cross(u, v)
             assert comb_residual_37(c3, c7, u) + comb_residual_37(c3, c7, v) + comb_residual_37(c3, c7, w) == Fraction(0)
+            assert exotic_comb_37(c3, c7, u) + exotic_comb_37(c3, c7, v) + exotic_comb_37(c3, c7, w) == Fraction(1)
             for vec in (u, v, w):
                 assert abs(comb_residual_37(c3, c7, vec)) <= abs(c3) + abs(c7)
-        # Linear independence (s3_s7_linearIndependent)
+                assert Fraction(0) <= exotic_comb_37(c3, c7, vec) <= Fraction(2, 3)
+        # Linear independence (s3_s7_linearIndependent) and quadratic iff (exoticComb37_quadratic_iff)
         vanishes_on_both = (
             comb_residual_37(c3, c7, witness_111) == Fraction(0)
             and comb_residual_37(c3, c7, witness_p7) == Fraction(0)
         )
         assert vanishes_on_both == (c3 == Fraction(0) and c7 == Fraction(0))
+        reconstructed = tomography_form(lambda u: exotic_comb_37(c3, c7, u))
+        assert reconstructed == herm_smul(Fraction(1, 3), HERM_ID)
+        matches_reconstructed = (
+            exotic_comb_37(c3, c7, witness_111) == quad_ray(reconstructed, witness_111)
+            and exotic_comb_37(c3, c7, witness_p7) == quad_ray(reconstructed, witness_p7)
+        )
+        assert matches_reconstructed == (c3 == Fraction(0) and c7 == Fraction(0))
 
-    # 3. Selective cross-prime oscillation near tomo_e1 = (1, 0, 0) (s3_s7_selective_oscillation_near_tomo_e1)
+    # 4. Selective cross-prime oscillation near tomo_e1 = (1, 0, 0)
+    #    (s3_s7_selective_oscillation_near_tomo_e1, exoticComb37_archimedeanContinuousAt_tomo_e1_iff)
     for k in range(1, 12):
         inv21k = Fraction(1, 21 * k)
         u3_pos = GVec(GaussRat.of_ints(1, 0), GaussRat(inv21k, Fraction(0)), GaussRat(inv21k, inv21k))
@@ -1197,15 +1236,22 @@ def test_multi_prime_s3_s7_linear_independence_and_joint_elimination() -> None:
         assert s3(u7_pos) == Fraction(0) and s7(u7_pos) == Fraction(1)
         assert s3(u7_neg) == Fraction(0) and s7(u7_neg) == Fraction(-1)
         assert exotic_qi7(u7_pos) == Fraction(2, 3) and exotic_qi7(u7_neg) == Fraction(0)
+        for c3, c7 in coeff_samples:
+            assert exotic_comb_37(c3, c7, u3_pos) - exotic_comb_37(c3, c7, u3_neg) == Fraction(2, 3) * c3
+            assert exotic_comb_37(c3, c7, u7_pos) - exotic_comb_37(c3, c7, u7_neg) == Fraction(2, 3) * c7
 
-    # 4. Joint {3, 7}-even-valuation partner norms in Q(i, sqrt(3))^3 and Q(i, sqrt(7))^3
-    #    (joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37)
+    # 5. Joint {3, 7}-even-valuation partner norms in Q(i, sqrt(3))^3 and Q(i, sqrt(7))^3
+    #    (cross_prime_frame_partner_norm_valuations_even, joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37)
+    for norm_s3 in (Fraction(3), Fraction(18)):
+        assert v7_rat(norm_s3) == 0 and v7_rat(norm_s3) % 2 == 0
+    for norm_s7 in (Fraction(7), Fraction(245)):
+        assert v3_rat(norm_s7) == 0 and v3_rat(norm_s7) % 2 == 0
     assert v3_rat(Fraction(18)) == 2 and v7_rat(Fraction(18)) == 0
     assert v3_rat(Fraction(245)) == 0 and v7_rat(Fraction(245)) == 2
     assert v3_rat(Fraction(18)) % 2 == 0 and v7_rat(Fraction(18)) % 2 == 0
     assert v3_rat(Fraction(245)) % 2 == 0 and v7_rat(Fraction(245)) % 2 == 0
 
-    # 5. Negative control: a residual that only vanishes on even-v3 vectors (e.g. c3=0, c7=1)
+    # 6. Negative control: a residual that only vanishes on even-v3 vectors (e.g. c3=0, c7=1)
     #    vanishes on witness_111 and its Q(i, sqrt(3))^3 partners (norms 3, 18, 18 have v7 = 0),
     #    requiring the second extension Q(i, sqrt(7))^3 to eliminate c7!
     assert comb_residual_37(Fraction(0), Fraction(1), witness_111) == Fraction(0)
@@ -1340,6 +1386,13 @@ def test_fq_gleason_qi3_frame_functions_end_to_end() -> None:
         "theorem joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37",
         "theorem not_factorsThroughRayProjLinear_s7",
         "theorem factorsThroughRayProjLinear_combResidual37_iff",
+        "theorem rayProj_witness_p7_decomp",
+        "theorem quadRay_witness_p7_kernel_relation",
+        "theorem s7_witness_p7_kernel_separation",
+        "theorem cross_prime_frame_partner_norm_valuations_even",
+        "theorem exoticComb37_isNonnegFrameFunction",
+        "theorem exoticComb37_quadratic_iff",
+        "theorem exoticComb37_archimedeanContinuousAt_tomo_e1_iff",
     ]
     for decl in required_theorems:
         assert decl in content, f"Missing declaration {decl!r} in {LEAN_TOMOGRAPHY_FILE}"
