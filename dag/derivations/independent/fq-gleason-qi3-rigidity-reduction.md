@@ -275,31 +275,36 @@ tomography rays):
    `2/3` and `0` (`s3_oscillates_near_tomo_e1`). Consequently neither `s3` nor
    `exoticQi3` is archimedean-continuous at `tomo_e1`
    (`not_archimedeanContinuousAt_s3_tomo_e1`,
-   `not_archimedeanContinuousAt_exoticQi3_tomo_e1`), and any archimedean-continuous
-   perturbation `f(v) = q_rho(v) + c * s3(v)` at `tomo_e1` forces `c = 0`
-   (`s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`). The independent Python
-   checks verify the analogous local oscillation at `tomo_e1` for `p = 7` via
-   `(7k, 1 + i, 2 + i)` and `(7k, 2 + i, 1 + i)` of norm `49k^2 + 7 = 7(7k^2 + 1)`.
-2. **Quadratic Field Extension `Q(i, sqrt(3))^3` Obstruction (Suite 9B)**:
+   `not_archimedeanContinuousAt_exoticQi3_tomo_e1`), whereas every Hermitian
+   Rayleigh quotient `quadRay rho` is archimedean-continuous at `tomo_e1`
+   (`archimedeanContinuousAt_quadRay_tomo_e1`), so any perturbation
+   `f(v) = quadRay rho v + c * s3(v)` is archimedean-continuous at `tomo_e1`
+   if and only if `c = 0` (`s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`,
+   `quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff`). The independent
+   Python checks verify the analogous local oscillation at `tomo_e1` for `p = 7`
+   via `(7k, 1 + i, 2 + i)` and `(7k, 2 + i, 1 + i)` of norm `49k^2 + 7 = 7(7k^2 + 1)`.
+2. **Quadratic Field Extension `Q(i, sqrt(p))^3` Obstruction (Suite 9B)**:
    Over `Q(i)^3`, no scalar multiple of `witness_111 = (1, 1, 1)` has unit
    squared norm (`no_unit_norm_smul_witness_111_in_qi3`), and every orthogonal
    frame has even `v_3`-sum (`frame_v3Rat_sum_even`). Over the biquadratic
-   extension `Q(i, sqrt(3))^3` (`GaussRatSqrt3`, `GVecSqrt3`), scaling
-   `witness_111` by `1 / sqrt(3)` yields a unit-norm vector with even valuation
-   `v_3(1) = 0` (`witness_111_unit_sqrt3_normSq`), and the embedded ray
-   `witness_111_sqrt3 = (1, 1, 1)` (norm `3`, `v_3 = 1` odd) completes to an
-   exact orthogonal frame (`isFrameSqrt3_witness_111_even_norms`) with
-   `frameSqrt3_p = (1 + i + sqrt(3), 1 + i - sqrt(3), -2 - 2i)` (rational norm
-   `18`, `v_3(18) = 2` even) and
-   `frameSqrt3_q = (-1 + (1 - i)sqrt(3), -1 - (1 - i)sqrt(3), 2)` (rational norm
-   `18`, `v_3(18) = 2` even), whose `v_3`-sum is `1 + 2 + 2 = 5` (odd). Hence
-   any zero-weight frame function on `Q(i, sqrt(3))^3` that vanishes on vectors
-   whose rational squared norm has even `v_3` must vanish on `witness_111`
-   (`zero_on_witness_111_of_sqrt3_even_v3_vanishing`), and `s3` admits no such
-   extension to `Q(i, sqrt(3))^3` (`no_s3_even_v3_extension_to_sqrt3`). The
-   independent Python checks also verify the analogous `Q(i, sqrt(7))^3`
-   orthogonal frame around `(1, 2, 1 + i)` with rational norms `(7, 245, 245)`
-   and `7`-adic valuations `(1, 2, 2)`.
+   extension `Q(i, sqrt(p))^3` (`GaussRatSqrt3`, `GVecSqrt3`), scaling any vector
+   `u` of squared norm `p != 0` by `1 / sqrt(p)` yields a unit-norm vector with
+   even valuation `v_p(1) = 0` (`unit_norm_in_sqrtP_of_normSqVec_eq`,
+   `witness_111_unit_sqrt3_normSq`), and the parameterized four-square SU(2)
+   partner formula (`fourSquarePartner_ortho_and_normSqRatP`) completes `u`
+   using `alpha, beta in Q(i)` with `|alpha|^2 + |beta|^2 = p` to orthogonal
+   partners of rational squared norm `p^2 * N(v_0)` (shifting `v_p` from `1` to
+   `2`). At `p = 3`, `witness_111_sqrt3 = (1, 1, 1)` completes to an exact
+   orthogonal frame (`isFrameSqrt3_witness_111_even_norms`) with
+   `frameSqrt3_p = (1 + i + sqrt(3), 1 + i - sqrt(3), -2 - 2i)` and
+   `frameSqrt3_q = (-1 + (1 - i)sqrt(3), -1 - (1 - i)sqrt(3), 2)` of rational
+   norms `(3, 18, 18)` (`v_3 = (1, 2, 2)`), forcing any zero-weight frame
+   function on `Q(i, sqrt(3))^3` that vanishes on even-`v_3` rational norms to
+   vanish on `witness_111` (`zero_on_witness_111_of_sqrt3_even_v3_vanishing`,
+   `no_s3_even_v3_extension_to_sqrt3`). At `p = 7`, `witness_p7 = (1, 2, 1 + i)`
+   completes to an exact orthogonal frame in `Q(i, sqrt(7))^3` with rational
+   norms `(7, 245, 245)` and `7`-adic valuations `(1, 2, 2)`
+   (`isFrameSqrt7_witness_p7_norms`).
 3. **General Operator-Space Projector-Linearity Criterion (Suite 9C)**:
    A ray function `f : GVec -> Q` factors linearly through the rank-1 projector
    map `rayProj : GVec -> HermForm3` (`FactorsThroughRayProjLinear`) if
@@ -354,16 +359,21 @@ tomography rays):
   `not_signed_quadratic_rigidity`, `not_nonneg_quadratic_rigidity`) are
   kernel-checked in `lean4/BornGaussianTomographyReduction.lean`.
 - The three elimination mechanisms in Section 9—archimedean oscillation and
-  discontinuity at `tomo_e1` (`s3_oscillates_near_tomo_e1`,
+  discontinuity at `tomo_e1` together with positive-control continuity of
+  `quadRay rho` (`s3_oscillates_near_tomo_e1`,
   `not_archimedeanContinuousAt_s3_tomo_e1`,
   `not_archimedeanContinuousAt_exoticQi3_tomo_e1`,
-  `s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`), the biquadratic field
-  extension `Q(i, sqrt(3))^3` even-valuation frame obstruction
+  `s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`,
+  `archimedeanContinuousAt_quadRay_tomo_e1`,
+  `quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff`), the biquadratic
+  field extension `Q(i, sqrt(p))^3` even-valuation frame obstruction
   (`no_unit_norm_smul_witness_111_in_qi3`, `witness_111_unit_sqrt3_normSq`,
   `isFrameSqrt3_witness_111_even_norms`,
   `zero_on_witness_111_of_sqrt3_even_v3_vanishing`,
-  `no_s3_even_v3_extension_to_sqrt3`), and general operator-space projector
-  linearity (`zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear`,
+  `no_s3_even_v3_extension_to_sqrt3`, `unit_norm_in_sqrtP_of_normSqVec_eq`,
+  `fourSquarePartner_ortho_and_normSqRatP`, `isFrameSqrt7_witness_p7_norms`),
+  and general operator-space projector linearity
+  (`zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear`,
   `not_factorsThroughRayProjLinear_s3`,
   `quadratic_rigidity_iff_factorsThroughRayProjLinear`)—are kernel-checked in
   `lean4/BornGaussianTomographyReduction.lean`.
@@ -372,7 +382,7 @@ tomography rays):
 
 The stated field, Hermitian form, and all-frame equations are supplied by the
 target. The Lean 4 theorems use rational linear, polynomial, biquadratic
-(`Q(i, sqrt(3))`), and `3`-adic valuation arithmetic over `Q` and `Q(i)`.
+(`Q(i, sqrt(p))`), and `3`-adic valuation arithmetic over `Q` and `Q(i)`.
 Constructive separation of the projector kernel in Section 5 uses the explicit
 bounded `3`-adic functional `s3` (`s3_witness_111_kernel_separation`), requiring
 no infinite-dimensional basis extension. No continuum Gleason theorem is used.
@@ -389,10 +399,12 @@ no infinite-dimensional basis extension. No continuum Gleason theorem is used.
   `exoticQi3 = (1 + s3) / 3` settle both signed and nonnegative pure-frame
   quadratic rigidity in the negative, while `s3` is eliminated at `p = 3` by
   archimedean continuity at `tomo_e1`
-  (`s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`) or by even-`v_3`
-  extension to `Q(i, sqrt(3))^3` (`no_s3_even_v3_extension_to_sqrt3`), and all
-  nine-ray-vanishing residuals are eliminated iff the frame function factors
-  linearly through `rayProj`
+  (`quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff`) or by even-`v_3`
+  extension to `Q(i, sqrt(3))^3` (`no_s3_even_v3_extension_to_sqrt3`), the
+  parameterized `Q(i, sqrt(p))^3` four-square SU(2) completion shifts partner
+  norms from `p * N(v_0)` to `p^2 * N(v_0)` (`fourSquarePartner_ortho_and_normSqRatP`,
+  `isFrameSqrt7_witness_p7_norms`), and all nine-ray-vanishing residuals are
+  eliminated iff the frame function factors linearly through `rayProj`
   (`quadratic_rigidity_iff_factorsThroughRayProjLinear`).
 - **Next test needed**: Formalize the parameterized inert-prime residual family
   `s_p` for general `p ≡ 3 (mod 4)` in Lean 4 and test whether archimedean

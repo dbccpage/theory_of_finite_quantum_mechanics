@@ -66,11 +66,16 @@ Finite obstructions, nine-ray reductions, global 3-adic non-quadratic residual, 
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_archimedeanContinuousAt_s3_tomo_e1`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi3_tomo_e1`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.archimedeanContinuousAt_quadRay_tomo_e1`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.no_unit_norm_smul_witness_111_in_qi3`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.witness_111_unit_sqrt3_normSq`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.isFrameSqrt3_witness_111_even_norms`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.zero_on_witness_111_of_sqrt3_even_v3_vanishing`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.no_s3_even_v3_extension_to_sqrt3`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.unit_norm_in_sqrtP_of_normSqVec_eq`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.fourSquarePartner_ortho_and_normSqRatP`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s3`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadratic_rigidity_iff_factorsThroughRayProjLinear`
