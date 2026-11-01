@@ -357,13 +357,118 @@ def main() -> None:
     require(abs(s3(u0)) + abs(s3(v0)) + abs(s3(w0)) == 2,
             "negative control: unsigned 3-adic parity fails zero-weight sum")
 
+    # Section 9A: Archimedean discontinuity perturbations near e1 = (1, 0, 0) for p = 3 and p = 7.
+    for k in range(1, 8):
+        scale3 = Fraction(1, 3 * k)
+        pos3_int = gv_int(3 * k, 0, 1, 0, 1, 1)
+        neg3_int = gv_int(3 * k, 0, 1, 1, 1, 0)
+        pos3_ray = (
+            (scale3 * pos3_int[0][0], scale3 * pos3_int[0][1]),
+            (scale3 * pos3_int[1][0], scale3 * pos3_int[1][1]),
+            (scale3 * pos3_int[2][0], scale3 * pos3_int[2][1]),
+        )
+        neg3_ray = (
+            (scale3 * neg3_int[0][0], scale3 * neg3_int[0][1]),
+            (scale3 * neg3_int[1][0], scale3 * neg3_int[1][1]),
+            (scale3 * neg3_int[2][0], scale3 * neg3_int[2][1]),
+        )
+        dist_pos3 = (
+            g_norm_sq((pos3_ray[0][0] - 1, pos3_ray[0][1]))
+            + g_norm_sq(pos3_ray[1])
+            + g_norm_sq(pos3_ray[2])
+        )
+        dist_neg3 = (
+            g_norm_sq((neg3_ray[0][0] - 1, neg3_ray[0][1]))
+            + g_norm_sq(neg3_ray[1])
+            + g_norm_sq(neg3_ray[2])
+        )
+        require(
+            s3(pos3_int) == 1
+            and s3(pos3_ray) == 1
+            and exotic_qi3(pos3_ray) == Fraction(2, 3)
+            and dist_pos3 == Fraction(1, 3 * k * k),
+            "positive 3-adic perturbation ray approaches e1 with s3 == +1",
+        )
+        require(
+            s3(neg3_int) == -1
+            and s3(neg3_ray) == -1
+            and exotic_qi3(neg3_ray) == Fraction(0)
+            and dist_neg3 == Fraction(1, 3 * k * k),
+            "negative 3-adic perturbation ray approaches e1 with s3 == -1",
+        )
+
+        scale7 = Fraction(1, 7 * k)
+        pos7_int = gv_int(7 * k, 0, 1, 1, 2, 1)  # y norm 2 ((2/7)=+1), z norm 5 ((5/7)=-1), total 49k^2+7
+        neg7_int = gv_int(7 * k, 0, 2, 1, 1, 1)
+        pos7_ray = (
+            (scale7 * pos7_int[0][0], scale7 * pos7_int[0][1]),
+            (scale7 * pos7_int[1][0], scale7 * pos7_int[1][1]),
+            (scale7 * pos7_int[2][0], scale7 * pos7_int[2][1]),
+        )
+        neg7_ray = (
+            (scale7 * neg7_int[0][0], scale7 * neg7_int[0][1]),
+            (scale7 * neg7_int[1][0], scale7 * neg7_int[1][1]),
+            (scale7 * neg7_int[2][0], scale7 * neg7_int[2][1]),
+        )
+        dist_pos7 = (
+            g_norm_sq((pos7_ray[0][0] - 1, pos7_ray[0][1]))
+            + g_norm_sq(pos7_ray[1])
+            + g_norm_sq(pos7_ray[2])
+        )
+        require(
+            sp_residual(pos7_ray, 7) == 1
+            and sp_residual(neg7_ray, 7) == -1
+            and dist_pos7 == Fraction(1, 7 * k * k),
+            "7-adic perturbation rays approach e1 with s7 == +1 and -1",
+        )
+
+    # Section 9B: Quadratic field extension Q(i, sqrt(3))^3 and Q(i, sqrt(7))^3 frames
+    # breaking even-vp parity and forcing G(witness) == 0.
+    sqrt3 = sp.sqrt(3)
+    u_s3 = sp.Matrix([1, 1, 1])
+    p_s3 = sp.Matrix([1 + sp.I + sqrt3, 1 + sp.I - sqrt3, -2 - 2 * sp.I])
+    q_s3 = sp.Matrix([-1 + (1 - sp.I) * sqrt3, -1 - (1 - sp.I) * sqrt3, 2])
+    require(
+        zero((u_s3.conjugate().T * p_s3)[0])
+        and zero((u_s3.conjugate().T * q_s3)[0])
+        and zero((p_s3.conjugate().T * q_s3)[0]),
+        "Q(i, sqrt(3))^3 frame (witness_111, p_s3, q_s3) is pairwise orthogonal",
+    )
+    require(
+        sp.expand((u_s3.conjugate().T * u_s3)[0]) == 3
+        and sp.expand((p_s3.conjugate().T * p_s3)[0]) == 18
+        and sp.expand((q_s3.conjugate().T * q_s3)[0]) == 18,
+        "Q(i, sqrt(3))^3 frame has rational squared norms (3, 18, 18) with v3 = (1, 2, 2)",
+    )
+
+    sqrt7 = sp.sqrt(7)
+    u_s7 = sp.Matrix([1, 2, 1 + sp.I])
+    v_s7_tilde = sqrt7 * sp.Matrix([2, -1, 0])
+    w_s7 = sp.Matrix([1 - sp.I, 2 - 2 * sp.I, -5])
+    p_s7 = (1 + sp.I) * v_s7_tilde + (2 + sp.I) * w_s7
+    q_s7 = (2 - sp.I) * v_s7_tilde - (1 - sp.I) * w_s7
+    require(
+        zero((u_s7.conjugate().T * p_s7)[0])
+        and zero((u_s7.conjugate().T * q_s7)[0])
+        and zero((p_s7.conjugate().T * q_s7)[0]),
+        "Q(i, sqrt(7))^3 frame (witness_p7, p_s7, q_s7) is pairwise orthogonal",
+    )
+    require(
+        sp.expand((u_s7.conjugate().T * u_s7)[0]) == 7
+        and sp.expand((p_s7.conjugate().T * p_s7)[0]) == 245
+        and sp.expand((q_s7.conjugate().T * q_s7)[0]) == 245,
+        "Q(i, sqrt(7))^3 frame has rational squared norms (7, 245, 245) with v7 = (1, 2, 2)",
+    )
+
     print(json.dumps({"status": "PASS", "sympy_version": sp.__version__,
                       "tomography_rank": tomography.rank(),
                       "s3_witness_111": int(s3(witness_111)),
                       "s3_witness_div4": int(s3(witness_div4)),
                       "s3_witness_div8": int(s3(witness_div8)),
                       "s7_witness_p7": int(sp_residual(witness_p7, 7)),
-                      "scope": "symbolic algebra controls and exact 3-adic global residual s3"},
+                      "sqrt3_frame_norms": [3, 18, 18],
+                      "sqrt7_frame_norms": [7, 245, 245],
+                      "scope": "symbolic algebra controls, 3-adic/7-adic residuals, and continuity/field-extension elimination"},
                      sort_keys=True))
 
 

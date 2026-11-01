@@ -251,6 +251,68 @@ establishes both `not_signed_quadratic_rigidity` and
 nonnegative non-quadratic frame function `exoticQi3(v) = (1 + s3(v)) / 3`
 (`exoticQi3_isNonnegFrameFunction`, `exoticQi3_not_quadratic`).
 
+## 8. Regularity, Continuity, and Field-Extension Hypotheses Eliminating `3`-Adic Residuals
+
+Section 9 of `lean4/BornGaussianTomographyReduction.lean` formalizes three
+complementary regularity and field-extension mechanisms that eliminate `s3`
+(and, for projector linearity, every zero-weight residual vanishing on the nine
+tomography rays):
+
+1. **Archimedean Discontinuity / Local Oscillation at `tomo_e1 = (1, 0, 0)` (Suite 9A)**:
+   For every integer `k >= 1`, the Gaussian-integer vectors
+   `perturbPosInt k = (3k, 1, 1 + i)` and `perturbNegInt k = (3k, 1 + i, 1)`
+   have squared norm `9k^2 + 3 = 3(3k^2 + 1)` (`v_3 = 1`, `u_3 = +1`), while
+   their first `3`-leading coordinate `y` has norm `1` (`u_3 = +1`) and `2`
+   (`u_3 = -1`) respectively (`s3_perturbPosInt`, `s3_perturbNegInt`). Their
+   rescaled rays `perturbPosRay k = (1, 1/(3k), (1+i)/(3k))` and
+   `perturbNegRay k = (1, (1+i)/(3k), 1/(3k))` have squared Euclidean/Hermitian
+   distance `distSqVec (perturbPosRay k) tomo_e1 = 1 / (3k^2)` from
+   `tomo_e1 = (1, 0, 0)` (`distSqVec_perturbPosRay_tomo_e1`,
+   `distSqVec_perturbNegRay_tomo_e1`), yet evaluate to `s3 = +1` and `s3 = -1`
+   (`s3_perturbPosRay`, `s3_perturbNegRay`) while `s3(tomo_e1) = 0`. Thus in
+   every archimedean neighborhood `distSqVec v tomo_e1 < delta` (`delta > 0`),
+   `s3` oscillates between `+1` and `-1` and `exoticQi3` oscillates between
+   `2/3` and `0` (`s3_oscillates_near_tomo_e1`). Consequently neither `s3` nor
+   `exoticQi3` is archimedean-continuous at `tomo_e1`
+   (`not_archimedeanContinuousAt_s3_tomo_e1`,
+   `not_archimedeanContinuousAt_exoticQi3_tomo_e1`), and any archimedean-continuous
+   perturbation `f(v) = q_rho(v) + c * s3(v)` at `tomo_e1` forces `c = 0`
+   (`s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`). The independent Python
+   checks verify the analogous local oscillation at `tomo_e1` for `p = 7` via
+   `(7k, 1 + i, 2 + i)` and `(7k, 2 + i, 1 + i)` of norm `49k^2 + 7 = 7(7k^2 + 1)`.
+2. **Quadratic Field Extension `Q(i, sqrt(3))^3` Obstruction (Suite 9B)**:
+   Over `Q(i)^3`, no scalar multiple of `witness_111 = (1, 1, 1)` has unit
+   squared norm (`no_unit_norm_smul_witness_111_in_qi3`), and every orthogonal
+   frame has even `v_3`-sum (`frame_v3Rat_sum_even`). Over the biquadratic
+   extension `Q(i, sqrt(3))^3` (`GaussRatSqrt3`, `GVecSqrt3`), scaling
+   `witness_111` by `1 / sqrt(3)` yields a unit-norm vector with even valuation
+   `v_3(1) = 0` (`witness_111_unit_sqrt3_normSq`), and the embedded ray
+   `witness_111_sqrt3 = (1, 1, 1)` (norm `3`, `v_3 = 1` odd) completes to an
+   exact orthogonal frame (`isFrameSqrt3_witness_111_even_norms`) with
+   `frameSqrt3_p = (1 + i + sqrt(3), 1 + i - sqrt(3), -2 - 2i)` (rational norm
+   `18`, `v_3(18) = 2` even) and
+   `frameSqrt3_q = (-1 + (1 - i)sqrt(3), -1 - (1 - i)sqrt(3), 2)` (rational norm
+   `18`, `v_3(18) = 2` even), whose `v_3`-sum is `1 + 2 + 2 = 5` (odd). Hence
+   any zero-weight frame function on `Q(i, sqrt(3))^3` that vanishes on vectors
+   whose rational squared norm has even `v_3` must vanish on `witness_111`
+   (`zero_on_witness_111_of_sqrt3_even_v3_vanishing`), and `s3` admits no such
+   extension to `Q(i, sqrt(3))^3` (`no_s3_even_v3_extension_to_sqrt3`). The
+   independent Python checks also verify the analogous `Q(i, sqrt(7))^3`
+   orthogonal frame around `(1, 2, 1 + i)` with rational norms `(7, 245, 245)`
+   and `7`-adic valuations `(1, 2, 2)`.
+3. **General Operator-Space Projector-Linearity Criterion (Suite 9C)**:
+   A ray function `f : GVec -> Q` factors linearly through the rank-1 projector
+   map `rayProj : GVec -> HermForm3` (`FactorsThroughRayProjLinear`) if
+   `f(v) = L(rayProj v)` for a `Q`-linear functional `L : HermForm3 -> Q`
+   (`IsLinearOnHermForm3`). Since the nine tomography ray projectors span
+   `HermForm3` (`rayProj_nine_rays_span_hermForm3`), every residual that vanishes
+   on the nine tomography rays and factors linearly through `rayProj` vanishes
+   identically on all nonzero vectors in `Q(i)^3`
+   (`zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear`,
+   `not_factorsThroughRayProjLinear_s3`), and a frame function on `Q(i)^3` has
+   the quadratic Born form `quadRay rho` (`tr rho = 1`) if and only if it factors
+   linearly through `rayProj` (`quadratic_rigidity_iff_factorsThroughRayProjLinear`).
+
 ## What is established (What this artifact supports)
 
 - Nine-ray Hermitian tomography reconstruction (`tomography_matches_nine_rays`,
@@ -291,31 +353,50 @@ nonnegative non-quadratic frame function `exoticQi3(v) = (1 + s3(v)) / 3`
   (`exoticQi3_isNonnegFrameFunction`, `exoticQi3_not_quadratic`,
   `not_signed_quadratic_rigidity`, `not_nonneg_quadratic_rigidity`) are
   kernel-checked in `lean4/BornGaussianTomographyReduction.lean`.
+- The three elimination mechanisms in Section 9—archimedean oscillation and
+  discontinuity at `tomo_e1` (`s3_oscillates_near_tomo_e1`,
+  `not_archimedeanContinuousAt_s3_tomo_e1`,
+  `not_archimedeanContinuousAt_exoticQi3_tomo_e1`,
+  `s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`), the biquadratic field
+  extension `Q(i, sqrt(3))^3` even-valuation frame obstruction
+  (`no_unit_norm_smul_witness_111_in_qi3`, `witness_111_unit_sqrt3_normSq`,
+  `isFrameSqrt3_witness_111_even_norms`,
+  `zero_on_witness_111_of_sqrt3_even_v3_vanishing`,
+  `no_s3_even_v3_extension_to_sqrt3`), and general operator-space projector
+  linearity (`zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear`,
+  `not_factorsThroughRayProjLinear_s3`,
+  `quadratic_rigidity_iff_factorsThroughRayProjLinear`)—are kernel-checked in
+  `lean4/BornGaussianTomographyReduction.lean`.
 
 ## What is assumed
 
 The stated field, Hermitian form, and all-frame equations are supplied by the
-target. The Lean 4 theorems use rational linear, polynomial, and `3`-adic
-valuation arithmetic over `Q` and `Q(i)`. Constructive separation of the
-projector kernel in Section 5 uses the explicit bounded `3`-adic functional `s3`
-(`s3_witness_111_kernel_separation`), requiring no infinite-dimensional basis
-extension. These are explicit mathematical proof methods, not added measurement
-axioms or effect additivity. No continuum Gleason theorem is used.
+target. The Lean 4 theorems use rational linear, polynomial, biquadratic
+(`Q(i, sqrt(3))`), and `3`-adic valuation arithmetic over `Q` and `Q(i)`.
+Constructive separation of the projector kernel in Section 5 uses the explicit
+bounded `3`-adic functional `s3` (`s3_witness_111_kernel_separation`), requiring
+no infinite-dimensional basis extension. No continuum Gleason theorem is used.
 
 ## What this artifact does not support and what remains open
 
-- **What it does not support**: This artifact does not classify the entire vector
+- **What it does not support**: This artifact does not classify the full vector
   space of all non-quadratic zero-weight residuals across every inert prime
-  `p ≡ 3 (mod 4)`, nor does it derive continuum Gleason or close
-  `FQ-GAP-BORN-UNIQUENESS-GLEASON`.
-- **Narrowest defensible claim**: On `Q(i)^3`, nine-ray Hermitian tomography
-  reconstructs a unique candidate Hermitian form `ρ_f`, and the `3`-adic
-  residual `s3` is an explicit global `{-1, 0, +1}`-valued zero-weight frame
-  function vanishing on the nine tomography rays and nonzero on `(1, 1, 1)`
-  (norm `3`), `(1+2i, 1+2i, 1+i)` (norm `12`), and `(1+4i, 1+2i, 1+i)` (norm
-  `24`), so `exoticQi3 = (1 + s3) / 3` is a `{0, 1/3, 2/3}`-valued nonnegative
-  non-quadratic frame function on `Q(i)^3`.
-- **Next test needed**: Determine whether adjoining archimedean continuity or
-  positivity over algebraic extensions where inert primes `p ≡ 3 (mod 4)` split
-  eliminates all `p`-adic zero-weight residuals on `Q(i)^3` for
-  `FQ-GAP-BORN-UNIQUENESS-GLEASON`.
+  `p ≡ 3 (mod 4)` simultaneously without projector linearity, nor does it
+  establish that archimedean continuity alone (without projector linearity or
+  continuum completeness) eliminates every infinite linear combination of
+  inert-prime residuals, nor does it close `FQ-GAP-BORN-UNIQUENESS-GLEASON`.
+- **Narrowest defensible claim**: On `Q(i)^3`, the `3`-adic residual `s3` and
+  `exoticQi3 = (1 + s3) / 3` settle both signed and nonnegative pure-frame
+  quadratic rigidity in the negative, while `s3` is eliminated at `p = 3` by
+  archimedean continuity at `tomo_e1`
+  (`s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`) or by even-`v_3`
+  extension to `Q(i, sqrt(3))^3` (`no_s3_even_v3_extension_to_sqrt3`), and all
+  nine-ray-vanishing residuals are eliminated iff the frame function factors
+  linearly through `rayProj`
+  (`quadratic_rigidity_iff_factorsThroughRayProjLinear`).
+- **Next test needed**: Formalize the parameterized inert-prime residual family
+  `s_p` for general `p ≡ 3 (mod 4)` in Lean 4 and test whether archimedean
+  continuity on `Q(i)^3` (without assuming `FactorsThroughRayProjLinear` a
+  priori) suffices to force every bounded zero-weight residual on `Q(i)^3` to
+  vanish.
+
