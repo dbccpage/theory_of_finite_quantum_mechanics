@@ -180,19 +180,25 @@ same \(3\)-leading coordinates and opposite \(3\)-adic unit residue signs
      evaluating to \(s_3=+1\) and \(s_3=-1\) (`s3_oscillates_near_tomo_e1`), so
      neither `s3` nor `exoticQi3` is archimedean-continuous at `tomo_e1`
      (`not_archimedeanContinuousAt_s3_tomo_e1`,
-     `not_archimedeanContinuousAt_exoticQi3_tomo_e1`), and archimedean continuity
-     at `tomo_e1` forces the `s3` coefficient \(c=0\)
-     (`s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`).
-  2. **Biquadratic field extension \(\mathbb Q(i,\sqrt{3})^3\)**: adjoining
-     \(\sqrt{3}\) provides a unit-norm representative \(\frac{1}{\sqrt{3}}(1,1,1)\)
-     (`witness_111_unit_sqrt3_normSq`, excluded over \(\mathbb Q(i)^3\) by
-     `no_unit_norm_smul_witness_111_in_qi3`) and an orthogonal frame around
-     \((1,1,1)\) whose two orthogonal partners have rational squared norm
-     \(18=2\cdot 3^2\) with even valuation \(v_3(18)=2\)
+     `not_archimedeanContinuousAt_exoticQi3_tomo_e1`), whereas every Hermitian
+     Rayleigh quotient `quadRay ρ` is archimedean-continuous at `tomo_e1`
+     (`archimedeanContinuousAt_quadRay_tomo_e1`), so `quadRay ρ + c • s3` is
+     archimedean-continuous at `tomo_e1` if and only if \(c=0\)
+     (`s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`,
+     `quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff`).
+  2. **Biquadratic field extension \(\mathbb Q(i,\sqrt{p})^3\)**: adjoining
+     \(\sqrt{p}\) rescales any vector \(u\in\mathbb Q(i)^3\) of norm \(p\neq 0\)
+     to unit norm \(\frac{1}{\sqrt{p}}u\) (`unit_norm_in_sqrtP_of_normSqVec_eq`,
+     `witness_111_unit_sqrt3_normSq`, excluded over \(\mathbb Q(i)^3\) at \(p=3\)
+     by `no_unit_norm_smul_witness_111_in_qi3`) and completes \(u\) via the
+     parameterized four-square SU(2) partner formula (`fourSquarePartner_ortho_and_normSqRatP`)
+     to orthogonal partners of rational norm \(p^2 N(v_0)\) (`v_p = 2`). At
+     \(p=3\), \((1,1,1)\) completes to partners of norm \(18=2\cdot 3^2\)
      (`isFrameSqrt3_witness_111_even_norms`), forcing any zero-weight frame
      function on \(\mathbb Q(i,\sqrt{3})^3\) that vanishes on even-\(v_3\) norm
      rays to vanish on \((1,1,1)\) (`zero_on_witness_111_of_sqrt3_even_v3_vanishing`,
-     `no_s3_even_v3_extension_to_sqrt3`).
+     `no_s3_even_v3_extension_to_sqrt3`); at \(p=7\), \((1,2,1+i)\) completes to
+     partners of norm \(245=5\cdot 7^2\) (`isFrameSqrt7_witness_p7_norms`).
   3. **Operator-space projector linearity**: a frame function on \(K^3\) has the
      quadratic Born form `quadRay ρ` (\(\operatorname{tr}\rho=1\)) if and only if
      it factors linearly through `rayProj : GVec → HermForm3`
@@ -216,8 +222,10 @@ same \(3\)-leading coordinates and opposite \(3\)-adic unit residue signs
   function `exoticQi3` (`not_signed_quadratic_rigidity`,
   `not_nonneg_quadratic_rigidity`), and the three Section 9 elimination
   theorems (`s3_oscillates_near_tomo_e1`,
-  `s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`,
-  `no_s3_even_v3_extension_to_sqrt3`,
+  `archimedeanContinuousAt_quadRay_tomo_e1`,
+  `quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff`,
+  `no_s3_even_v3_extension_to_sqrt3`, `unit_norm_in_sqrtP_of_normSqVec_eq`,
+  `fourSquarePartner_ortho_and_normSqRatP`, `isFrameSqrt7_witness_p7_norms`,
   `quadratic_rigidity_iff_factorsThroughRayProjLinear`) are formalized in
   `lean4/BornGaussianTomographyReduction.lean` and tested in
   `code/python/tests/test_fq_gleason_qi3_frame_functions.py`.
@@ -228,7 +236,7 @@ The supplied Gaussian-rational vector space, its standard Hermitian form,
 and frame normalization are the setting. Binary values are assumed only for
 the binary obstruction. Agreement with the specified exotic is assumed only
 for the extension obstruction. In Section 9, archimedean continuity at
-`tomo_e1`, even-\(v_3\) extension to \(\mathbb Q(i,\sqrt{3})^3\), and
+`tomo_e1`, even-\(v_p\) extension to \(\mathbb Q(i,\sqrt{p})^3\), and
 operator-space projector linearity (`FactorsThroughRayProjLinear`) are
 analyzed as explicit hypotheses. These results do not derive the carrier from
 earlier DAG nodes.

@@ -928,22 +928,70 @@ def test_archimedean_discontinuity_and_field_extension_elimination() -> None:
         assert dist_pos == Fraction(1, 3 * k * k)
         assert dist_neg == Fraction(1, 3 * k * k)
 
-    # Exact biquadratic arithmetic over Q(i, sqrt(3)) matching GaussRatSqrt3 / GVecSqrt3 in Lean 4
-    def gr3_add(z, w):
+    # Positive control (archimedeanContinuousAt_quadRay_tomo_e1):
+    # Every Hermitian form quad_ray(rho, v) converges to quad_ray(rho, E1) == rho.d1 at O(1/k^2).
+    rho_sample = HermForm3(
+        d1=Fraction(2, 5),
+        d2=Fraction(1, 5),
+        d3=Fraction(2, 5),
+        a12=Fraction(1, 7),
+        b12=Fraction(-1, 9),
+        a13=Fraction(2, 11),
+        b13=Fraction(-1, 13),
+        a23=Fraction(1, 6),
+        b23=Fraction(1, 8),
+    )
+    coeff_norm = (
+        abs(rho_sample.d1)
+        + abs(rho_sample.d2)
+        + abs(rho_sample.d3)
+        + abs(rho_sample.a12)
+        + abs(rho_sample.b12)
+        + abs(rho_sample.a13)
+        + abs(rho_sample.b13)
+        + abs(rho_sample.a23)
+        + abs(rho_sample.b23)
+    )
+    assert quad_ray(rho_sample, E1) == rho_sample.d1
+    for k in range(1, 15):
+        inv3k = Fraction(1, 3 * k)
+        pos_ray = GVec(GaussRat.of_ints(1, 0), GaussRat(inv3k, Fraction(0)), GaussRat(inv3k, inv3k))
+        neg_ray = GVec(GaussRat.of_ints(1, 0), GaussRat(inv3k, inv3k), GaussRat(inv3k, Fraction(0)))
+        theta = Fraction(1, 3 * k * k)
+        assert abs(quad_ray(rho_sample, pos_ray) - rho_sample.d1) <= 8 * coeff_norm * theta
+        assert abs(quad_ray(rho_sample, neg_ray) - rho_sample.d1) <= 8 * coeff_norm * theta
+
+    # Exact biquadratic arithmetic over Q(i, sqrt(p)) matching GaussRatSqrt3 / GVecSqrt3 in Lean 4
+    def gr_p_add(z, w):
         return (z[0] + w[0], z[1] + w[1])
 
-    def gr3_mul(z, w):
-        three = GaussRat.of_ints(3, 0)
-        return (z[0] * w[0] + three * (z[1] * w[1]), z[0] * w[1] + z[1] * w[0])
+    def gr_p_mul(p_val: int, z, w):
+        p_gr = GaussRat.of_ints(p_val, 0)
+        return (z[0] * w[0] + p_gr * (z[1] * w[1]), z[0] * w[1] + z[1] * w[0])
 
-    def gr3_conj(z):
+    def gr_p_conj(z):
         return (z[0].conj(), z[1].conj())
 
-    def gv3_inner(u, v):
+    def gv_p_inner(p_val: int, u, v):
         acc = (GaussRat.of_ints(0, 0), GaussRat.of_ints(0, 0))
         for cu, cv in zip(u, v):
-            acc = gr3_add(acc, gr3_mul(gr3_conj(cu), cv))
+            acc = gr_p_add(acc, gr_p_mul(p_val, gr_p_conj(cu), cv))
         return acc
+
+    def four_square_partner_p(v0: GVec, w0: GVec, alpha: GaussRat, beta: GaussRat):
+        return (
+            (beta * w0.x, alpha * v0.x),
+            (beta * w0.y, alpha * v0.y),
+            (beta * w0.z, alpha * v0.z),
+        )
+
+    def four_square_partner_q(v0: GVec, w0: GVec, alpha: GaussRat, beta: GaussRat):
+        neg_one = GaussRat.of_ints(-1, 0)
+        return (
+            (neg_one * (alpha.conj() * w0.x), beta.conj() * v0.x),
+            (neg_one * (alpha.conj() * w0.y), beta.conj() * v0.y),
+            (neg_one * (alpha.conj() * w0.z), beta.conj() * v0.z),
+        )
 
     zero_gr3 = (GaussRat.of_ints(0, 0), GaussRat.of_ints(0, 0))
     one_gr3 = (GaussRat.of_ints(1, 0), GaussRat.of_ints(0, 0))
@@ -954,9 +1002,9 @@ def test_archimedean_discontinuity_and_field_extension_elimination() -> None:
         (GaussRat.of_ints(1, 0), GaussRat.of_ints(0, 0)),
         (GaussRat.of_ints(1, 0), GaussRat.of_ints(0, 0)),
     )
-    u_111_unit = tuple(gr3_mul(inv_sqrt3, c) for c in u_111_s3)
-    assert gv3_inner(u_111_unit, u_111_unit) == one_gr3
-    assert v3_rat(gv3_inner(u_111_unit, u_111_unit)[0].re) % 2 == 0
+    u_111_unit = tuple(gr_p_mul(3, inv_sqrt3, c) for c in u_111_s3)
+    assert gv_p_inner(3, u_111_unit, u_111_unit) == one_gr3
+    assert v3_rat(gv_p_inner(3, u_111_unit, u_111_unit)[0].re) % 2 == 0
 
     p_s3 = (
         (GaussRat.of_ints(1, 1), GaussRat.of_ints(1, 0)),
@@ -968,15 +1016,39 @@ def test_archimedean_discontinuity_and_field_extension_elimination() -> None:
         (GaussRat.of_ints(-1, 0), GaussRat.of_ints(-1, 1)),
         (GaussRat.of_ints(2, 0), GaussRat.of_ints(0, 0)),
     )
-    assert gv3_inner(u_111_s3, p_s3) == zero_gr3
-    assert gv3_inner(u_111_s3, q_s3) == zero_gr3
-    assert gv3_inner(p_s3, q_s3) == zero_gr3
-    assert gv3_inner(u_111_s3, u_111_s3) == (GaussRat.of_ints(3, 0), GaussRat.of_ints(0, 0))
-    assert gv3_inner(p_s3, p_s3) == (GaussRat.of_ints(18, 0), GaussRat.of_ints(0, 0))
-    assert gv3_inner(q_s3, q_s3) == (GaussRat.of_ints(18, 0), GaussRat.of_ints(0, 0))
+    assert gv_p_inner(3, u_111_s3, p_s3) == zero_gr3
+    assert gv_p_inner(3, u_111_s3, q_s3) == zero_gr3
+    assert gv_p_inner(3, p_s3, q_s3) == zero_gr3
+    assert gv_p_inner(3, u_111_s3, u_111_s3) == (GaussRat.of_ints(3, 0), GaussRat.of_ints(0, 0))
+    assert gv_p_inner(3, p_s3, p_s3) == (GaussRat.of_ints(18, 0), GaussRat.of_ints(0, 0))
+    assert gv_p_inner(3, q_s3, q_s3) == (GaussRat.of_ints(18, 0), GaussRat.of_ints(0, 0))
     assert v3_rat(Fraction(3)) == 1
     assert v3_rat(Fraction(18)) == 2
     assert (v3_rat(Fraction(3)) + v3_rat(Fraction(18)) + v3_rat(Fraction(18))) % 2 == 1
+
+    # Parameterized four-square SU(2) completion at p = 7 matching isFrameSqrt7_witness_p7_norms in Lean 4:
+    u7_vec = GVec(GaussRat.of_ints(1, 0), GaussRat.of_ints(2, 0), GaussRat.of_ints(1, 1))
+    v7_0 = GVec(GaussRat.of_ints(2, 0), GaussRat.of_ints(-1, 0), GaussRat.of_ints(0, 0))
+    w7_0 = GVec(GaussRat.of_ints(1, -1), GaussRat.of_ints(2, -2), GaussRat.of_ints(-5, 0))
+    alpha7 = GaussRat.of_ints(1, 1)
+    beta7 = GaussRat.of_ints(2, 1)
+    assert alpha7.norm_sq() + beta7.norm_sq() == Fraction(7)
+    u7_s7 = (
+        (u7_vec.x, GaussRat.of_ints(0, 0)),
+        (u7_vec.y, GaussRat.of_ints(0, 0)),
+        (u7_vec.z, GaussRat.of_ints(0, 0)),
+    )
+    inv_sqrt7 = (GaussRat.of_ints(0, 0), GaussRat(Fraction(1, 7), Fraction(0)))
+    u7_unit = tuple(gr_p_mul(7, inv_sqrt7, c) for c in u7_s7)
+    assert gv_p_inner(7, u7_unit, u7_unit) == one_gr3
+    p_s7 = four_square_partner_p(v7_0, w7_0, alpha7, beta7)
+    q_s7 = four_square_partner_q(v7_0, w7_0, alpha7, beta7)
+    assert gv_p_inner(7, u7_s7, p_s7) == zero_gr3
+    assert gv_p_inner(7, u7_s7, q_s7) == zero_gr3
+    assert gv_p_inner(7, p_s7, q_s7) == zero_gr3
+    assert gv_p_inner(7, u7_s7, u7_s7) == (GaussRat.of_ints(7, 0), GaussRat.of_ints(0, 0))
+    assert gv_p_inner(7, p_s7, p_s7) == (GaussRat.of_ints(245, 0), GaussRat.of_ints(0, 0))
+    assert gv_p_inner(7, q_s7, q_s7) == (GaussRat.of_ints(245, 0), GaussRat.of_ints(0, 0))
 
 
 def test_independent_check_scripts_pass(tomography_mod, frame_functions_mod) -> None:
@@ -1060,11 +1132,16 @@ def test_fq_gleason_qi3_frame_functions_end_to_end() -> None:
         "theorem not_archimedeanContinuousAt_s3_tomo_e1",
         "theorem not_archimedeanContinuousAt_exoticQi3_tomo_e1",
         "theorem s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1",
+        "theorem archimedeanContinuousAt_quadRay_tomo_e1",
+        "theorem quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff",
         "theorem no_unit_norm_smul_witness_111_in_qi3",
         "theorem witness_111_unit_sqrt3_normSq",
         "theorem isFrameSqrt3_witness_111_even_norms",
         "theorem zero_on_witness_111_of_sqrt3_even_v3_vanishing",
         "theorem no_s3_even_v3_extension_to_sqrt3",
+        "theorem unit_norm_in_sqrtP_of_normSqVec_eq",
+        "theorem fourSquarePartner_ortho_and_normSqRatP",
+        "theorem isFrameSqrt7_witness_p7_norms",
         "theorem zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear",
         "theorem not_factorsThroughRayProjLinear_s3",
         "theorem quadratic_rigidity_iff_factorsThroughRayProjLinear",

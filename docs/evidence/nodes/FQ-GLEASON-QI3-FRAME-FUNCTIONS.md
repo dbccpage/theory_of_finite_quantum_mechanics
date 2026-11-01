@@ -11,8 +11,8 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `OPEN`. Evidence g
 Evidence grade **E4** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
 - counted in-repo evidence files: 13
-- cited Lean, Rust or Python symbols found in their in-repo files: 77
-- distinct cited Lean declarations covered by a current replay receipt: 70
+- cited Lean, Rust or Python symbols found in their in-repo files: 82
+- distinct cited Lean declarations covered by a current replay receipt: 75
 - counted in-repo runnable tests: 8
 - counted in-repo Rust or Python files that are not tests: 3
 - recorded statement-match reviews that qualify: 1
@@ -89,15 +89,16 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/BornGaussianTomographyReduction.lean`
 
 - file: [lean4/BornGaussianTomographyReduction.lean](../../../lean4/BornGaussianTomographyReduction.lean)
-- sha256 (`bytes`): `174c83a5e46eebf997b781adb086ef2b8c0b0b66ff61e5bc40f348d241595107`
+- sha256 (`bytes`): `78656d778239f67669dc7dfcc91e4b0275ae2b5eaf9bdd0437a51205096629b7`
 - cited in: node.lean, node.source, receipt dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json (BornGaussianTomographyReduction), record TFQ-1055
 - replay: `verified`
-  - receipt [dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json](../../../dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json) (module `BornGaussianTomographyReduction`): recorded sha256 `174c83a5e46eebf997b781adb086ef2b8c0b0b66ff61e5bc40f348d241595107` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
+  - receipt [dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json](../../../dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json) (module `BornGaussianTomographyReduction`): recorded sha256 `78656d778239f67669dc7dfcc91e4b0275ae2b5eaf9bdd0437a51205096629b7` matches the current file; exit code 0; Lean 4.35.0; Mathlib `56a005855ea1`; axiom audit passed: yes; axioms recorded: Classical.choice, Quot.sound, propext; only standard axioms: yes
 - check: `cd lean4 && lake build BornGaussianTomographyReduction`
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `BornFinite.GaussianTomography.abs_quadRay_le` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.abs_quadRay_le` |
+| `BornFinite.GaussianTomography.archimedeanContinuousAt_quadRay_tomo_e1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.archimedeanContinuousAt_quadRay_tomo_e1` |
 | `BornFinite.GaussianTomography.detGVec_normSq_of_frame` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.detGVec_normSq_of_frame` |
 | `BornFinite.GaussianTomography.distSqVec_perturbNegRay_tomo_e1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.distSqVec_perturbNegRay_tomo_e1` |
 | `BornFinite.GaussianTomography.distSqVec_perturbPosRay_tomo_e1` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.distSqVec_perturbPosRay_tomo_e1` |
@@ -105,6 +106,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `BornFinite.GaussianTomography.exists_nonzero_bounded_zero_residual` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.exists_nonzero_bounded_zero_residual` |
 | `BornFinite.GaussianTomography.exoticQi3_isNonnegFrameFunction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.exoticQi3_isNonnegFrameFunction` |
 | `BornFinite.GaussianTomography.exoticQi3_not_quadratic` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.exoticQi3_not_quadratic` |
+| `BornFinite.GaussianTomography.fourSquarePartner_ortho_and_normSqRatP` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.fourSquarePartner_ortho_and_normSqRatP` |
 | `BornFinite.GaussianTomography.frame_v3Rat_sum_even` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.frame_v3Rat_sum_even` |
 | `BornFinite.GaussianTomography.gaussian_coord_norm_mod_four` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.gaussian_coord_norm_mod_four` |
 | `BornFinite.GaussianTomography.gaussian_norm_div_four_witness` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.gaussian_norm_div_four_witness` |
@@ -112,6 +114,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `BornFinite.GaussianTomography.inner_applyVec_im_zero` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.inner_applyVec_im_zero` |
 | `BornFinite.GaussianTomography.inner_applyVec_re_eq_quadNum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.inner_applyVec_re_eq_quadNum` |
 | `BornFinite.GaussianTomography.isFrameSqrt3_witness_111_even_norms` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.isFrameSqrt3_witness_111_even_norms` |
+| `BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms` |
 | `BornFinite.GaussianTomography.no_s3_even_v3_extension_to_sqrt3` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.no_s3_even_v3_extension_to_sqrt3` |
 | `BornFinite.GaussianTomography.no_unit_norm_smul_witness_111_in_qi3` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.no_unit_norm_smul_witness_111_in_qi3` |
 | `BornFinite.GaussianTomography.nonneg_frameFunction_bounds` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.nonneg_frameFunction_bounds` |
@@ -126,6 +129,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `BornFinite.GaussianTomography.ortho_coord_identity_x` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.ortho_coord_identity_x` |
 | `BornFinite.GaussianTomography.primitive_gaussian_norm_mod_four_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.primitive_gaussian_norm_mod_four_iff` |
 | `BornFinite.GaussianTomography.quadNum_orthogonal_weighted_sum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.quadNum_orthogonal_weighted_sum` |
+| `BornFinite.GaussianTomography.quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff` |
 | `BornFinite.GaussianTomography.quadRay_frame_sum` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.quadRay_frame_sum` |
 | `BornFinite.GaussianTomography.quadRay_isFrameFunction` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.quadRay_isFrameFunction` |
 | `BornFinite.GaussianTomography.quadRay_smul` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.quadRay_smul` |
@@ -157,6 +161,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | `BornFinite.GaussianTomography.traceInner_ext` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.traceInner_ext` |
 | `BornFinite.GaussianTomography.traceInner_rayProj` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.traceInner_rayProj` |
 | `BornFinite.GaussianTomography.traceInner_self_eq_zero_iff` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.traceInner_self_eq_zero_iff` |
+| `BornFinite.GaussianTomography.unit_norm_in_sqrtP_of_normSqVec_eq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.unit_norm_in_sqrtP_of_normSqVec_eq` |
 | `BornFinite.GaussianTomography.v3Rat_normSq_even` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.v3Rat_normSq_even` |
 | `BornFinite.GaussianTomography.witness_111_primitive` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.witness_111_primitive` |
 | `BornFinite.GaussianTomography.witness_111_unit_sqrt3_normSq` | yes | yes | yes | Classical.choice, Quot.sound, propext | `#print axioms BornFinite.GaussianTomography.witness_111_unit_sqrt3_normSq` |
@@ -201,7 +206,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Python: `code/python/tests/test_fq_gleason_qi3_frame_functions.py`
 
 - file: [code/python/tests/test_fq_gleason_qi3_frame_functions.py](../../../code/python/tests/test_fq_gleason_qi3_frame_functions.py)
-- sha256 (`bytes`): `aca7a111e7e2e5cc500ebe17467e5eca14701a8852ba36a9b18690b494ea7d6a`
+- sha256 (`bytes`): `22014853406fc5d812c46e9b15a258dd54b80c745f14bcda03f094b7ae8696b2`
 - cited in: node.source, record TFQ-1055
 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
@@ -226,7 +231,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md](../../../dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md)
-- sha256 (`lf-normalised`): `7bef39711e9fc8aaa8f2764d684e97c8efe374d1730f5a59da10fa99d6ea0bc3`
+- sha256 (`lf-normalised`): `fd864be7b2aa25c9a2ffd462bfa1f248004a9e50ebb7f31fe7ad29a6ba41066f`
 - generated view: listed, not counted
 - cited in: record TFQ-1055
 - counts toward the grade: no
@@ -241,14 +246,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/independent/fq-gleason-qi3-frame-functions.md`
 
 - file: [dag/derivations/independent/fq-gleason-qi3-frame-functions.md](../../../dag/derivations/independent/fq-gleason-qi3-frame-functions.md)
-- sha256 (`lf-normalised`): `36f7d02c09997e84140fad473b92bf23086e5b20e4eb7269796eff2d76bae19b`
+- sha256 (`lf-normalised`): `17716de5369a75261b8ebb179cc537cd2bcb9e5d11acb9607baf916e9720da8c`
 - cited in: node.source
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md`
 
 - file: [dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md](../../../dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md)
-- sha256 (`lf-normalised`): `f0db066d635e12e928dd528c4099af78b4aa961462db387998fed05132cea229`
+- sha256 (`lf-normalised`): `42d61be71e5a2c33d3e029d5e229eab3e056148f1a104ac0a960f941282be2df`
 - cited in: node.source
 - counts toward the grade: yes
 

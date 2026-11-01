@@ -64,6 +64,25 @@ together with the `(1+i)`-adic norm-parity structure of `ℚ(i)³` rays.
   `exoticQi3_isNonnegFrameFunction`, `exoticQi3_not_quadratic`: negative resolution of both signed
   and nonnegative quadratic frame-function rigidity on `ℚ(i)³`, with `exoticQi3 v = (1 + s3 v) / 3`
   providing an explicit global `{0, 1/3, 2/3}`-valued nonnegative non-quadratic frame function.
+* `IsArchimedeanContinuousAt`, `s3_oscillates_near_tomo_e1`, `not_archimedeanContinuousAt_s3_tomo_e1`,
+  `not_archimedeanContinuousAt_exoticQi3_tomo_e1`, `s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`,
+  `archimedeanContinuousAt_quadRay_tomo_e1`,
+  `quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff`: Section 9A Archimedean continuity
+  elimination at `tomo_e1`, proving both that `s3` and `exoticQi3` oscillate discontinuously on rays
+  approaching `tomo_e1` and that `quadRay ρ` is Archimedean-continuous at `tomo_e1`, so
+  `quadRay ρ + c • s3` is Archimedean-continuous at `tomo_e1` iff `c = 0`.
+* `no_unit_norm_smul_witness_111_in_qi3`, `GaussRatSqrt3`, `GVecSqrt3`, `witness_111_unit_sqrt3_normSq`,
+  `isFrameSqrt3_witness_111_even_norms`, `zero_on_witness_111_of_sqrt3_even_v3_vanishing`,
+  `no_s3_even_v3_extension_to_sqrt3`, `unit_norm_in_sqrtP_of_normSqVec_eq`,
+  `fourSquarePartner_ortho_and_normSqRatP`, `isFrameSqrt7_witness_p7_norms`: Section 9B quadratic
+  field extension `ℚ(i, √p)³` elimination via universal unit-norm rescaling (`(1/√p) u` has norm `1`)
+  and universal four-square SU(2) orthogonal partner completion (shifting partner norms from `m p`
+  to `m p²` with even `v_p = 2`), instantiated explicitly for `p = 3` (`(3, 18, 18)`) and `p = 7`
+  (`(7, 245, 245)`).
+* `FactorsThroughRayProjLinear`, `zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear`,
+  `not_factorsThroughRayProjLinear_s3`, `quadratic_rigidity_iff_factorsThroughRayProjLinear`:
+  Section 9C operator-space projector-linearity (`T(v) = rayProj v`) characterization of quadratic
+  rigidity over `ℚ(i)³`.
 -/
 
 namespace BornFinite.GaussianTomography
@@ -2537,6 +2556,203 @@ theorem s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1
         abs_sub (f uPos - f tomo_e1) (f uPos - c - f tomo_e1)
   linarith
 
+theorem distSqVec_tomo_e1_eq (v : GVec) :
+    distSqVec v tomo_e1 = (v.x.re - 1) ^ 2 + v.x.im ^ 2 + v.y.normSq + v.z.normSq := by
+  simp only [distSqVec, tomo_e1, gv, normSqVec, GaussRat.normSq,
+    GaussRat.re_sub, GaussRat.im_sub, Int.cast_one, Int.cast_zero]
+  ring
+
+theorem normSqVec_add_distSqVec_tomo_e1_ge_half (v : GVec) :
+    (1 / 2 : ℚ) ≤ normSqVec v + distSqVec v tomo_e1 := by
+  have hid : normSqVec v + distSqVec v tomo_e1 =
+      2 * (v.x.re - 1 / 2) ^ 2 + 2 * v.x.im ^ 2 + 2 * v.y.normSq + 2 * v.z.normSq + 1 / 2 := by
+    rw [distSqVec_tomo_e1_eq]
+    simp only [normSqVec, GaussRat.normSq]
+    ring
+  linarith [sq_nonneg (v.x.re - 1 / 2), sq_nonneg v.x.im,
+    GaussRat.normSq_nonneg v.y, GaussRat.normSq_nonneg v.z, hid]
+
+theorem y_z_normSq_le_distSqVec_tomo_e1 (v : GVec) :
+    v.y.normSq + v.z.normSq ≤ distSqVec v tomo_e1 := by
+  have heq := distSqVec_tomo_e1_eq v
+  linarith [sq_nonneg (v.x.re - 1), sq_nonneg v.x.im, heq]
+
+theorem mul_abs_two_mul_le_weighted_sq (θ a b : ℚ) :
+    2 * θ * |2 * (a * b)| ≤ 4 * θ ^ 2 * a ^ 2 + b ^ 2 := by
+  have h1 : 0 ≤ (2 * θ * a - b) ^ 2 := sq_nonneg (2 * θ * a - b)
+  have h2 : 0 ≤ (2 * θ * a + b) ^ 2 := sq_nonneg (2 * θ * a + b)
+  rcases le_total 0 (2 * (a * b)) with h | h
+  · rw [abs_of_nonneg h]; nlinarith
+  · rw [abs_of_nonpos h]; nlinarith
+
+theorem mul_abs_two_re_inner_le_weighted (θ : ℚ) (hθ : 0 ≤ θ) (x y : GaussRat) :
+    2 * θ * |2 * (x.re * y.re + x.im * y.im)| ≤ 4 * θ ^ 2 * x.normSq + y.normSq := by
+  have h1 := mul_abs_two_mul_le_weighted_sq θ x.re y.re
+  have h2 := mul_abs_two_mul_le_weighted_sq θ x.im y.im
+  have htri : |2 * (x.re * y.re + x.im * y.im)| ≤ |2 * (x.re * y.re)| + |2 * (x.im * y.im)| := by
+    have heq : 2 * (x.re * y.re + x.im * y.im) = 2 * (x.re * y.re) + 2 * (x.im * y.im) := by ring
+    rw [heq]
+    exact abs_add_le _ _
+  simp only [GaussRat.normSq]
+  nlinarith
+
+theorem mul_abs_two_im_inner_le_weighted (θ : ℚ) (hθ : 0 ≤ θ) (x y : GaussRat) :
+    2 * θ * |2 * (x.re * y.im - x.im * y.re)| ≤ 4 * θ ^ 2 * x.normSq + y.normSq := by
+  have h1 := mul_abs_two_mul_le_weighted_sq θ x.re y.im
+  have h2 := mul_abs_two_mul_le_weighted_sq θ x.im y.re
+  have htri : |2 * (x.re * y.im - x.im * y.re)| ≤ |2 * (x.re * y.im)| + |2 * (x.im * y.re)| := by
+    have heq : 2 * (x.re * y.im - x.im * y.re) = 2 * (x.re * y.im) - 2 * (x.im * y.re) := by ring
+    rw [heq]
+    exact abs_sub _ _
+  simp only [GaussRat.normSq]
+  nlinarith
+
+theorem abs_quadNum_sub_d1_mul_normSqVec_le (ρ : HermForm3) {v : GVec} {θ : ℚ}
+    (hθ_pos : 0 < θ) (hθ_half : θ ≤ 1 / 2)
+    (hdist : distSqVec v tomo_e1 < θ ^ 2) :
+    1 / 4 < normSqVec v ∧
+    |quadNum ρ v - ρ.d1 * normSqVec v| ≤ 8 * ρ.coeffNorm * θ * normSqVec v := by
+  have hθ_nn : 0 ≤ θ := le_of_lt hθ_pos
+  have hθ_sq_le : θ ^ 2 ≤ 1 / 4 := by nlinarith
+  have hN_dist := normSqVec_add_distSqVec_tomo_e1_ge_half v
+  have hN_gt : 1 / 4 < normSqVec v := by linarith
+  have hyz_le := y_z_normSq_le_distSqVec_tomo_e1 v
+  have hx_nn := GaussRat.normSq_nonneg v.x
+  have hy_nn := GaussRat.normSq_nonneg v.y
+  have hz_nn := GaussRat.normSq_nonneg v.z
+  have hx_le_N : v.x.normSq ≤ normSqVec v := by unfold normSqVec; linarith
+  have hyz_lt_sq : v.y.normSq + v.z.normSq < 4 * θ ^ 2 * normSqVec v := by nlinarith
+  have hyz_le_M : v.y.normSq + v.z.normSq ≤ 4 * θ * normSqVec v := by nlinarith
+  have hy_le_M : v.y.normSq ≤ 4 * θ * normSqVec v := by linarith
+  have hz_le_M : v.z.normSq ≤ 4 * θ * normSqVec v := by linarith
+  let M := 4 * θ * normSqVec v
+  have hM_nn : 0 ≤ M := by change 0 ≤ 4 * θ * normSqVec v; positivity
+  have h_re_xy : |2 * (v.x.re * v.y.re + v.x.im * v.y.im)| ≤ M := by
+    have hw := mul_abs_two_re_inner_le_weighted θ hθ_nn v.x v.y
+    change |2 * (v.x.re * v.y.re + v.x.im * v.y.im)| ≤ 4 * θ * normSqVec v
+    nlinarith
+  have h_re_xz : |2 * (v.x.re * v.z.re + v.x.im * v.z.im)| ≤ M := by
+    have hw := mul_abs_two_re_inner_le_weighted θ hθ_nn v.x v.z
+    change |2 * (v.x.re * v.z.re + v.x.im * v.z.im)| ≤ 4 * θ * normSqVec v
+    nlinarith
+  have h_im_xy : |2 * (v.x.re * v.y.im - v.x.im * v.y.re)| ≤ M := by
+    have hw := mul_abs_two_im_inner_le_weighted θ hθ_nn v.x v.y
+    change |2 * (v.x.re * v.y.im - v.x.im * v.y.re)| ≤ 4 * θ * normSqVec v
+    nlinarith
+  have h_im_xz : |2 * (v.x.re * v.z.im - v.x.im * v.z.re)| ≤ M := by
+    have hw := mul_abs_two_im_inner_le_weighted θ hθ_nn v.x v.z
+    change |2 * (v.x.re * v.z.im - v.x.im * v.z.re)| ≤ 4 * θ * normSqVec v
+    nlinarith
+  have h_re_yz : |2 * (v.y.re * v.z.re + v.y.im * v.z.im)| ≤ M := by
+    change |2 * (v.y.re * v.z.re + v.y.im * v.z.im)| ≤ 4 * θ * normSqVec v
+    linarith [abs_two_re_inner_le v.y v.z]
+  have h_im_yz : |2 * (v.y.re * v.z.im - v.y.im * v.z.re)| ≤ M := by
+    change |2 * (v.y.re * v.z.im - v.y.im * v.z.re)| ≤ 4 * θ * normSqVec v
+    linarith [abs_two_im_inner_le v.y v.z]
+  have hd2 : |(ρ.d2 - ρ.d1) * v.y.normSq| ≤ (|ρ.d2| + |ρ.d1|) * M := by
+    have h1 := abs_mul_nonneg_le (c := ρ.d2 - ρ.d1) hy_nn hy_le_M
+    have h2 : |ρ.d2 - ρ.d1| * M ≤ (|ρ.d2| + |ρ.d1|) * M :=
+      mul_le_mul_of_nonneg_right (abs_sub ρ.d2 ρ.d1) hM_nn
+    linarith
+  have hd3 : |(ρ.d3 - ρ.d1) * v.z.normSq| ≤ (|ρ.d3| + |ρ.d1|) * M := by
+    have h1 := abs_mul_nonneg_le (c := ρ.d3 - ρ.d1) hz_nn hz_le_M
+    have h2 : |ρ.d3 - ρ.d1| * M ≤ (|ρ.d3| + |ρ.d1|) * M :=
+      mul_le_mul_of_nonneg_right (abs_sub ρ.d3 ρ.d1) hM_nn
+    linarith
+  have ha12 : |2 * ρ.a12 * (v.x.re * v.y.re + v.x.im * v.y.im)| ≤ 2 * |ρ.a12| * M :=
+    abs_two_coeff_mul_le h_re_xy hM_nn
+  have ha13 : |2 * ρ.a13 * (v.x.re * v.z.re + v.x.im * v.z.im)| ≤ 2 * |ρ.a13| * M :=
+    abs_two_coeff_mul_le h_re_xz hM_nn
+  have ha23 : |2 * ρ.a23 * (v.y.re * v.z.re + v.y.im * v.z.im)| ≤ 2 * |ρ.a23| * M :=
+    abs_two_coeff_mul_le h_re_yz hM_nn
+  have hb12 : |-(2 * ρ.b12 * (v.x.re * v.y.im - v.x.im * v.y.re))| ≤ 2 * |ρ.b12| * M := by
+    rw [abs_neg]; exact abs_two_coeff_mul_le h_im_xy hM_nn
+  have hb13 : |-(2 * ρ.b13 * (v.x.re * v.z.im - v.x.im * v.z.re))| ≤ 2 * |ρ.b13| * M := by
+    rw [abs_neg]; exact abs_two_coeff_mul_le h_im_xz hM_nn
+  have hb23 : |-(2 * ρ.b23 * (v.y.re * v.z.im - v.y.im * v.z.re))| ≤ 2 * |ρ.b23| * M := by
+    rw [abs_neg]; exact abs_two_coeff_mul_le h_im_yz hM_nn
+  let t2 := (ρ.d2 - ρ.d1) * v.y.normSq
+  let t3 := (ρ.d3 - ρ.d1) * v.z.normSq
+  let t4 := 2 * ρ.a12 * (v.x.re * v.y.re + v.x.im * v.y.im)
+  let t5 := 2 * ρ.a13 * (v.x.re * v.z.re + v.x.im * v.z.im)
+  let t6 := 2 * ρ.a23 * (v.y.re * v.z.re + v.y.im * v.z.im)
+  let t7 := -(2 * ρ.b12 * (v.x.re * v.y.im - v.x.im * v.y.re))
+  let t8 := -(2 * ρ.b13 * (v.x.re * v.z.im - v.x.im * v.z.re))
+  let t9 := -(2 * ρ.b23 * (v.y.re * v.z.im - v.y.im * v.z.re))
+  have hrew : quadNum ρ v - ρ.d1 * normSqVec v = t2 + t3 + t4 + t5 + t6 + t7 + t8 + t9 := by
+    simp only [quadNum, normSqVec, t2, t3, t4, t5, t6, t7, t8, t9]
+    ring
+  have s1 := abs_add_le (t2 + t3 + t4 + t5 + t6 + t7 + t8) t9
+  have s2 := abs_add_le (t2 + t3 + t4 + t5 + t6 + t7) t8
+  have s3 := abs_add_le (t2 + t3 + t4 + t5 + t6) t7
+  have s4 := abs_add_le (t2 + t3 + t4 + t5) t6
+  have s5 := abs_add_le (t2 + t3 + t4) t5
+  have s6 := abs_add_le (t2 + t3) t4
+  have s7 := abs_add_le t2 t3
+  have hsum_M : |t2 + t3 + t4 + t5 + t6 + t7 + t8 + t9| ≤
+      (2 * |ρ.d1| + |ρ.d2| + |ρ.d3| + 2 * |ρ.a12| + 2 * |ρ.a13| + 2 * |ρ.a23| +
+        2 * |ρ.b12| + 2 * |ρ.b13| + 2 * |ρ.b23|) * M := by
+    linarith [s1, s2, s3, s4, s5, s6, s7, hd2, hd3, ha12, ha13, ha23, hb12, hb13, hb23]
+  have hle_coeff :
+      (2 * |ρ.d1| + |ρ.d2| + |ρ.d3| + 2 * |ρ.a12| + 2 * |ρ.a13| + 2 * |ρ.a23| +
+        2 * |ρ.b12| + 2 * |ρ.b13| + 2 * |ρ.b23|) ≤ 2 * ρ.coeffNorm := by
+    unfold HermForm3.coeffNorm
+    linarith [abs_nonneg ρ.d2, abs_nonneg ρ.d3,
+      abs_nonneg ρ.a12, abs_nonneg ρ.a13, abs_nonneg ρ.a23,
+      abs_nonneg ρ.b12, abs_nonneg ρ.b13, abs_nonneg ρ.b23]
+  have hmul_coeff := mul_le_mul_of_nonneg_right hle_coeff hM_nn
+  have h2M : 2 * ρ.coeffNorm * M = 8 * ρ.coeffNorm * θ * normSqVec v := by
+    change 2 * ρ.coeffNorm * (4 * θ * normSqVec v) = 8 * ρ.coeffNorm * θ * normSqVec v
+    ring
+  refine ⟨hN_gt, ?_⟩
+  rw [hrew, ← h2M]
+  linarith [hsum_M, hmul_coeff]
+
+/-- Positive control for Suite 9A: every quadratic Born-rule Rayleigh function `quadRay ρ`
+is archimedean-continuous at `tomo_e1 = (1, 0, 0)`. -/
+theorem archimedeanContinuousAt_quadRay_tomo_e1 (ρ : HermForm3) :
+    IsArchimedeanContinuousAt (quadRay ρ) tomo_e1 := by
+  intro ε hε
+  have hC_nn : 0 ≤ ρ.coeffNorm := coeffNorm_nonneg ρ
+  have hdenom_pos : 0 < 8 * ρ.coeffNorm + 1 := by linarith
+  let θ := min (1 / 2) (ε / (8 * ρ.coeffNorm + 1))
+  have hθ_pos : 0 < θ := lt_min (by norm_num) (div_pos hε hdenom_pos)
+  have hθ_half : θ ≤ 1 / 2 := min_le_left _ _
+  have hθ_eps : θ ≤ ε / (8 * ρ.coeffNorm + 1) := min_le_right _ _
+  refine ⟨θ ^ 2, sq_pos_of_pos hθ_pos, ?_⟩
+  intro v _ hdist
+  obtain ⟨hN_gt, hnum_le⟩ := abs_quadNum_sub_d1_mul_normSqVec_le ρ hθ_pos hθ_half hdist
+  have hN_pos : 0 < normSqVec v := by linarith
+  have hN_ne : normSqVec v ≠ 0 := ne_of_gt hN_pos
+  have hmul : (quadRay ρ v - quadRay ρ tomo_e1) * normSqVec v =
+      quadNum ρ v - ρ.d1 * normSqVec v := by
+    rw [quadRay_tomo_e1, quadRay, sub_mul, div_mul_cancel₀ _ hN_ne]
+  obtain ⟨hl, hu⟩ := abs_le.mp hnum_le
+  rw [← hmul] at hl hu
+  have hmul_eps : (8 * ρ.coeffNorm + 1) * θ ≤ ε := by
+    have h1 := (le_div_iff₀ hdenom_pos).mp hθ_eps
+    linarith
+  exact abs_lt.mpr ⟨by nlinarith, by nlinarith⟩
+
+/-- Unconditional Archimedean continuity elimination theorem for `s3`: for any `ρ : HermForm3`
+and `c : ℚ`, the perturbed ray function `quadRay ρ + c • s3` is archimedean-continuous at
+`tomo_e1 = (1, 0, 0)` if and only if `c = 0`. -/
+theorem quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff
+    (ρ : HermForm3) (c : ℚ) :
+    IsArchimedeanContinuousAt (fun v => quadRay ρ v + c * s3 v) tomo_e1 ↔ c = 0 := by
+  constructor
+  · intro hf_cont
+    apply s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1 hf_cont
+    have heq : (fun v => (quadRay ρ v + c * s3 v) - c * s3 v) = quadRay ρ := by
+      funext v; ring
+    rw [heq]
+    exact archimedeanContinuousAt_quadRay_tomo_e1 ρ
+  · rintro rfl
+    have heq : (fun v => quadRay ρ v + 0 * s3 v) = quadRay ρ := by
+      funext v; ring
+    rw [heq]
+    exact archimedeanContinuousAt_quadRay_tomo_e1 ρ
+
 /-! #### 9B. Quadratic Field Extension `ℚ(i, √3)³` Obstruction Eliminating `s3` -/
 
 /-- Elements `a + b √3` of the biquadratic field `ℚ(i, √3)` with `a, b ∈ ℚ(i)`. -/
@@ -2750,6 +2966,211 @@ theorem no_s3_even_v3_extension_to_sqrt3 :
   change G witness_111_sqrt3 = 1 at h1
   linarith
 
+/-- Parameterized biquadratic operations on `ℚ(i, √p)³` for general `p : ℚ` (including all
+inert primes `p ≡ 3 (mod 4)` such as `p = 3, 7, 11, 19, ...`). -/
+def GaussRatSqrt3.invSqrtP (p : ℚ) : GaussRatSqrt3 := ⟨0, ⟨1 / p, 0⟩⟩
+
+def GaussRatSqrt3.mulP (p : ℚ) (z w : GaussRatSqrt3) : GaussRatSqrt3 :=
+  ⟨z.a * w.a + ⟨p, 0⟩ * (z.b * w.b), z.a * w.b + z.b * w.a⟩
+
+def GVecSqrt3.smulP (p : ℚ) (c : GaussRatSqrt3) (v : GVecSqrt3) : GVecSqrt3 :=
+  ⟨GaussRatSqrt3.mulP p c v.x, GaussRatSqrt3.mulP p c v.y, GaussRatSqrt3.mulP p c v.z⟩
+
+def GVecSqrt3.innerP (p : ℚ) (u v : GVecSqrt3) : GaussRatSqrt3 :=
+  ((GaussRatSqrt3.mulP p u.x.conj v.x).add (GaussRatSqrt3.mulP p u.y.conj v.y)).add
+    (GaussRatSqrt3.mulP p u.z.conj v.z)
+
+def GVecSqrt3.normSqRatP (p : ℚ) (u : GVecSqrt3) : ℚ :=
+  (GVecSqrt3.innerP p u u).a.re
+
+def IsFrameSqrtP (p : ℚ) (u v w : GVecSqrt3) : Prop :=
+  u.NonZero ∧ v.NonZero ∧ w.NonZero ∧
+  GVecSqrt3.innerP p u v = GaussRatSqrt3.zero ∧
+  GVecSqrt3.innerP p u w = GaussRatSqrt3.zero ∧
+  GVecSqrt3.innerP p v w = GaussRatSqrt3.zero
+
+/-- Universal unit-norm rescaling theorem in `ℚ(i, √p)³`: for any `p ≠ 0` and any vector
+`u ∈ ℚ(i)³` with `normSqVec u = p`, scaling `u` by `1 / √p` in `ℚ(i, √p)³` produces a vector
+with `innerP p = 1` and rational squared norm `normSqRatP p = 1`. -/
+theorem unit_norm_in_sqrtP_of_normSqVec_eq {p : ℚ} (hp : p ≠ 0) {u : GVec}
+    (hu : normSqVec u = p) :
+    GVecSqrt3.innerP p
+        (GVecSqrt3.smulP p (GaussRatSqrt3.invSqrtP p) (GVecSqrt3.ofGVec u))
+        (GVecSqrt3.smulP p (GaussRatSqrt3.invSqrtP p) (GVecSqrt3.ofGVec u)) =
+      GaussRatSqrt3.one ∧
+    GVecSqrt3.normSqRatP p
+        (GVecSqrt3.smulP p (GaussRatSqrt3.invSqrtP p) (GVecSqrt3.ofGVec u)) = 1 := by
+  have hns : u.x.re ^ 2 + u.x.im ^ 2 + u.y.re ^ 2 + u.y.im ^ 2 + u.z.re ^ 2 + u.z.im ^ 2 = p := by
+    simpa [normSqVec, GaussRat.normSq, add_assoc] using hu
+  have hp_inv : p * p⁻¹ = 1 := mul_inv_cancel₀ hp
+  have h1 : GVecSqrt3.innerP p
+      (GVecSqrt3.smulP p (GaussRatSqrt3.invSqrtP p) (GVecSqrt3.ofGVec u))
+      (GVecSqrt3.smulP p (GaussRatSqrt3.invSqrtP p) (GVecSqrt3.ofGVec u)) =
+      GaussRatSqrt3.one := by
+    ext
+    · simp only [GVecSqrt3.innerP, GVecSqrt3.smulP, GVecSqrt3.ofGVec,
+        GaussRatSqrt3.invSqrtP, GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.one,
+        GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+        GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul,
+        GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero,
+        GaussRat.re_one, GaussRat.im_one]
+      linear_combination (p * p⁻¹ ^ 2) * hns + (p * p⁻¹ + 1) * hp_inv
+    · simp only [GVecSqrt3.innerP, GVecSqrt3.smulP, GVecSqrt3.ofGVec,
+        GaussRatSqrt3.invSqrtP, GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.one,
+        GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+        GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul,
+        GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero,
+        GaussRat.re_one, GaussRat.im_one]
+      ring
+    · simp only [GVecSqrt3.innerP, GVecSqrt3.smulP, GVecSqrt3.ofGVec,
+        GaussRatSqrt3.invSqrtP, GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.one,
+        GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+        GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul,
+        GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero,
+        GaussRat.re_one, GaussRat.im_one]
+      ring
+    · simp only [GVecSqrt3.innerP, GVecSqrt3.smulP, GVecSqrt3.ofGVec,
+        GaussRatSqrt3.invSqrtP, GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.one,
+        GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+        GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul,
+        GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero,
+        GaussRat.re_one, GaussRat.im_one]
+      ring
+  refine ⟨h1, ?_⟩
+  simp only [GVecSqrt3.normSqRatP, h1, GaussRatSqrt3.one]
+  rfl
+
+/-- First universal four-square SU(2) partner `α (√p v₀) + β w₀` in `ℚ(i, √p)³`. -/
+def fourSquarePartnerP (v₀ w₀ : GVec) (α β : GaussRat) : GVecSqrt3 :=
+  ⟨⟨β * w₀.x, α * v₀.x⟩, ⟨β * w₀.y, α * v₀.y⟩, ⟨β * w₀.z, α * v₀.z⟩⟩
+
+/-- Second universal four-square SU(2) partner `(star β) (√p v₀) - (star α) w₀` in `ℚ(i, √p)³`. -/
+def fourSquarePartnerQ (v₀ w₀ : GVec) (α β : GaussRat) : GVecSqrt3 :=
+  ⟨⟨-(star α * w₀.x), star β * v₀.x⟩,
+   ⟨-(star α * w₀.y), star β * v₀.y⟩,
+   ⟨-(star α * w₀.z), star β * v₀.z⟩⟩
+
+/-- Universal four-square SU(2) orthogonal partner theorem in `ℚ(i, √p)³`: whenever `(u, v₀, w₀)`
+are pairwise orthogonal in `ℚ(i)³` with `normSqVec w₀ = p * normSqVec v₀` and `α, β ∈ ℚ(i)` satisfy
+the four-square norm identity `α.normSq + β.normSq = p`, the vectors `fourSquarePartnerP v₀ w₀ α β`
+and `fourSquarePartnerQ v₀ w₀ α β` are orthogonal to `u` and to each other in `ℚ(i, √p)³` and both
+have rational squared norm `p ^ 2 * normSqVec v₀` (shifting `p`-adic valuation from `1` to `2`). -/
+theorem fourSquarePartner_ortho_and_normSqRatP {p : ℚ} {u v₀ w₀ : GVec} {α β : GaussRat}
+    (huv : GVec.inner u v₀ = 0)
+    (huw : GVec.inner u w₀ = 0)
+    (hvw : GVec.inner v₀ w₀ = 0)
+    (hnorm_w : normSqVec w₀ = p * normSqVec v₀)
+    (hab : α.normSq + β.normSq = p) :
+    GVecSqrt3.innerP p (GVecSqrt3.ofGVec u) (fourSquarePartnerP v₀ w₀ α β) = GaussRatSqrt3.zero ∧
+    GVecSqrt3.innerP p (GVecSqrt3.ofGVec u) (fourSquarePartnerQ v₀ w₀ α β) = GaussRatSqrt3.zero ∧
+    GVecSqrt3.innerP p (fourSquarePartnerP v₀ w₀ α β) (fourSquarePartnerQ v₀ w₀ α β) =
+      GaussRatSqrt3.zero ∧
+    GVecSqrt3.normSqRatP p (fourSquarePartnerP v₀ w₀ α β) = p ^ 2 * normSqVec v₀ ∧
+    GVecSqrt3.normSqRatP p (fourSquarePartnerQ v₀ w₀ α β) = p ^ 2 * normSqVec v₀ := by
+  have hwv : GVec.inner w₀ v₀ = 0 := inner_eq_zero_symm hvw
+  have h1 : GVecSqrt3.innerP p (GVecSqrt3.ofGVec u) (fourSquarePartnerP v₀ w₀ α β) =
+      ⟨β * GVec.inner u w₀, α * GVec.inner u v₀⟩ := by
+    ext <;>
+      simp only [GVecSqrt3.innerP, GVecSqrt3.ofGVec, fourSquarePartnerP,
+        GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+        GVec.inner, GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul,
+        GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero] <;>
+      ring
+  have h2 : GVecSqrt3.innerP p (GVecSqrt3.ofGVec u) (fourSquarePartnerQ v₀ w₀ α β) =
+      ⟨-(star α * GVec.inner u w₀), star β * GVec.inner u v₀⟩ := by
+    ext <;>
+      simp only [GVecSqrt3.innerP, GVecSqrt3.ofGVec, fourSquarePartnerQ,
+        GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+        GVec.inner, GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul,
+        GaussRat.re_neg, GaussRat.im_neg, GaussRat.re_star, GaussRat.im_star,
+        GaussRat.re_zero, GaussRat.im_zero] <;>
+      ring
+  have h3 : GVecSqrt3.innerP p (fourSquarePartnerP v₀ w₀ α β) (fourSquarePartnerQ v₀ w₀ α β) =
+      ⟨-(star β * star α * GVec.inner w₀ w₀) + ⟨p, 0⟩ * (star α * star β * GVec.inner v₀ v₀),
+       star β * star β * GVec.inner w₀ v₀ - star α * star α * GVec.inner v₀ w₀⟩ := by
+    ext <;>
+      simp only [GVecSqrt3.innerP, fourSquarePartnerP, fourSquarePartnerQ,
+        GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+        GVec.inner, GaussRat.re_add, GaussRat.im_add, GaussRat.re_sub, GaussRat.im_sub,
+        GaussRat.re_mul, GaussRat.im_mul, GaussRat.re_neg, GaussRat.im_neg,
+        GaussRat.re_star, GaussRat.im_star] <;>
+      ring
+  have h4 : GVecSqrt3.normSqRatP p (fourSquarePartnerP v₀ w₀ α β) =
+      β.normSq * normSqVec w₀ + p * α.normSq * normSqVec v₀ := by
+    simp only [GVecSqrt3.normSqRatP, GVecSqrt3.innerP, fourSquarePartnerP,
+      GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+      normSqVec, GaussRat.normSq, GaussRat.re_add, GaussRat.re_mul, GaussRat.im_mul,
+      GaussRat.re_star, GaussRat.im_star]
+    ring
+  have h5 : GVecSqrt3.normSqRatP p (fourSquarePartnerQ v₀ w₀ α β) =
+      α.normSq * normSqVec w₀ + p * β.normSq * normSqVec v₀ := by
+    simp only [GVecSqrt3.normSqRatP, GVecSqrt3.innerP, fourSquarePartnerQ,
+      GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+      normSqVec, GaussRat.normSq, GaussRat.re_add, GaussRat.re_mul, GaussRat.im_mul,
+      GaussRat.re_neg, GaussRat.im_neg, GaussRat.re_star, GaussRat.im_star]
+    ring
+  refine ⟨?_, ?_, ?_, ?_, ?_⟩
+  · rw [h1, huw, huv, mul_zero, mul_zero]; rfl
+  · rw [h2, huw, huv, mul_zero, mul_zero, neg_zero]; rfl
+  · rw [h3, hwv, hvw, inner_self_eq_normSqVec w₀, inner_self_eq_normSqVec v₀, hnorm_w]
+    ext <;>
+      simp only [GaussRatSqrt3.zero, GaussRat.re_add, GaussRat.im_add, GaussRat.re_sub,
+        GaussRat.im_sub, GaussRat.re_mul, GaussRat.im_mul, GaussRat.re_neg, GaussRat.im_neg,
+        GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero] <;>
+      ring
+  · rw [h4, hnorm_w]
+    linear_combination (p * normSqVec v₀) * hab
+  · rw [h5, hnorm_w]
+    linear_combination (p * normSqVec v₀) * hab
+
+/-- Explicit `p = 7` (`7 ≡ 3 (mod 4)`) witness `(1, 2, 1 + i)` of squared norm `7` in `ℚ(i)³`
+and its `ℚ(i, √7)³` four-square SU(2) orthogonal frame completion with rational squared norms
+`(7, 245, 245) = (7, 5 × 7², 5 × 7²)`. -/
+def witness_p7 : GVec := gv 1 0 2 0 1 1
+def witness_p7_v0 : GVec := gv 2 0 (-1) 0 0 0
+def witness_p7_w0 : GVec := gv 1 (-1) 2 (-2) (-5) 0
+def frameSqrt7_p : GVecSqrt3 := fourSquarePartnerP witness_p7_v0 witness_p7_w0 ⟨1, 1⟩ ⟨2, 1⟩
+def frameSqrt7_q : GVecSqrt3 := fourSquarePartnerQ witness_p7_v0 witness_p7_w0 ⟨1, 1⟩ ⟨2, 1⟩
+
+theorem isFrameSqrt7_witness_p7_norms :
+    IsFrameSqrtP 7 (GVecSqrt3.ofGVec witness_p7) frameSqrt7_p frameSqrt7_q ∧
+    GVecSqrt3.normSqRatP 7 (GVecSqrt3.ofGVec witness_p7) = 7 ∧
+    GVecSqrt3.normSqRatP 7 frameSqrt7_p = 245 ∧
+    GVecSqrt3.normSqRatP 7 frameSqrt7_q = 245 := by
+  have hnz_u : (GVecSqrt3.ofGVec witness_p7).NonZero := by
+    left; intro h
+    have hre : (GVecSqrt3.ofGVec witness_p7).x.a.re = 0 := by rw [h]; rfl
+    revert hre; simp [GVecSqrt3.ofGVec, GaussRatSqrt3.ofGaussRat, witness_p7, gv]
+  have hnz_p : frameSqrt7_p.NonZero := by
+    left; intro h
+    have hre : frameSqrt7_p.x.a.re = 0 := by rw [h]; rfl
+    revert hre; simp [frameSqrt7_p, fourSquarePartnerP, witness_p7_w0, gv]; norm_num
+  have hnz_q : frameSqrt7_q.NonZero := by
+    left; intro h
+    have hre : frameSqrt7_q.x.b.re = 0 := by rw [h]; rfl
+    revert hre; simp [frameSqrt7_q, fourSquarePartnerQ, witness_p7_v0, gv]
+  have huv : GVec.inner witness_p7 witness_p7_v0 = 0 := by
+    simp only [witness_p7, witness_p7_v0]; gauss_arith
+  have huw : GVec.inner witness_p7 witness_p7_w0 = 0 := by
+    simp only [witness_p7, witness_p7_w0]; gauss_arith
+  have hvw : GVec.inner witness_p7_v0 witness_p7_w0 = 0 := by
+    simp only [witness_p7_v0, witness_p7_w0]; gauss_arith
+  have hnv : normSqVec witness_p7_v0 = 5 := by
+    simp [normSqVec, GaussRat.normSq, witness_p7_v0, gv]; norm_num
+  have hnw : normSqVec witness_p7_w0 = 7 * normSqVec witness_p7_v0 := by
+    simp [normSqVec, GaussRat.normSq, witness_p7_v0, witness_p7_w0, gv]; norm_num
+  have hab : (⟨1, 1⟩ : GaussRat).normSq + (⟨2, 1⟩ : GaussRat).normSq = 7 := by
+    simp [GaussRat.normSq]; norm_num
+  obtain ⟨h1, h2, h3, hnp, hnq⟩ :=
+    fourSquarePartner_ortho_and_normSqRatP (p := 7) huv huw hvw hnw hab
+  have hnu : GVecSqrt3.normSqRatP 7 (GVecSqrt3.ofGVec witness_p7) = 7 := by
+    simp [GVecSqrt3.normSqRatP, GVecSqrt3.innerP, GVecSqrt3.ofGVec, GaussRatSqrt3.ofGaussRat,
+      GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj, witness_p7, gv]
+    norm_num
+  rw [hnv] at hnp hnq
+  norm_num at hnp hnq
+  exact ⟨⟨hnz_u, hnz_p, hnz_q, h1, h2, h3⟩, hnu, hnp, hnq⟩
+
 /-! #### 9C. Universal Operator-Space Projector-Linearity Criterion Eliminating All Residuals -/
 
 /-- A functional `L : HermForm3 → ℚ` is `ℚ`-linear on `HermForm3`. -/
@@ -2893,11 +3314,17 @@ end BornFinite.GaussianTomography
 #print axioms BornFinite.GaussianTomography.not_archimedeanContinuousAt_s3_tomo_e1
 #print axioms BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi3_tomo_e1
 #print axioms BornFinite.GaussianTomography.s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1
+#print axioms BornFinite.GaussianTomography.archimedeanContinuousAt_quadRay_tomo_e1
+#print axioms BornFinite.GaussianTomography.quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff
 #print axioms BornFinite.GaussianTomography.no_unit_norm_smul_witness_111_in_qi3
 #print axioms BornFinite.GaussianTomography.witness_111_unit_sqrt3_normSq
 #print axioms BornFinite.GaussianTomography.isFrameSqrt3_witness_111_even_norms
 #print axioms BornFinite.GaussianTomography.zero_on_witness_111_of_sqrt3_even_v3_vanishing
 #print axioms BornFinite.GaussianTomography.no_s3_even_v3_extension_to_sqrt3
+#print axioms BornFinite.GaussianTomography.unit_norm_in_sqrtP_of_normSqVec_eq
+#print axioms BornFinite.GaussianTomography.fourSquarePartner_ortho_and_normSqRatP
+#print axioms BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms
 #print axioms BornFinite.GaussianTomography.zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
 #print axioms BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s3
 #print axioms BornFinite.GaussianTomography.quadratic_rigidity_iff_factorsThroughRayProjLinear
+
