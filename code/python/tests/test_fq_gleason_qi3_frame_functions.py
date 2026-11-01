@@ -681,6 +681,74 @@ def exotic_comb_37(c3: Fraction, c7: Fraction, u: GVec) -> Fraction:
     return (Fraction(1) + comb_residual_37(c3, c7, u)) / 3
 
 
+def _vp_int(n: int, p: int) -> int:
+    n = abs(n)
+    if n == 0 or p < 2:
+        return 0
+    k = 0
+    while n % p == 0:
+        n //= p
+        k += 1
+    return k
+
+
+def _pp_part_int(n: int, p: int) -> int:
+    n = abs(n)
+    if n == 0 or p < 2:
+        return 0
+    while n % p == 0:
+        n //= p
+    return n
+
+
+def vp_rat(q: Fraction, p: int) -> int:
+    """Exact p-adic valuation v_p(q) on Q matching vpRat in Lean 4."""
+    if q <= 0:
+        return 0
+    return _vp_int(q.numerator, p) - _vp_int(q.denominator, p)
+
+
+def up_rat(q: Fraction, p: int) -> Fraction:
+    """Exact p-adic unit Euler-criterion Legendre sign (q / p) in {-1, +1} for q > 0 matching upRat in Lean 4."""
+    if q <= 0:
+        return Fraction(0)
+    rem = (_pp_part_int(q.numerator, p) * _pp_part_int(q.denominator, p)) % p
+    return Fraction(1) if pow(rem, (p - 1) // 2, p) == 1 else Fraction(-1)
+
+
+def is_leadp_coord(c_norm: Fraction, vec_norm: Fraction, p: int) -> bool:
+    """Whether c_norm > 0 and v_p(c_norm) < v_p(vec_norm) (isLeadPCoord in Lean 4)."""
+    return c_norm > 0 and vp_rat(c_norm, p) < vp_rat(vec_norm, p)
+
+
+def coord_signp(c_norm: Fraction, vec_norm: Fraction, p: int) -> Fraction:
+    """The p-adic contribution upRat(c_norm, p) * upRat(vec_norm, p) matching coordSignP in Lean 4."""
+    return up_rat(c_norm, p) * up_rat(vec_norm, p)
+
+
+def sp(u: GVec, p: int) -> Fraction:
+    """Uniform prime-indexed {-1, 0, +1}-valued residual s_p(u) matching sp p u in Lean 4."""
+    vn = u.norm_sq()
+    if vp_rat(vn, p) % 2 == 0:
+        return Fraction(0)
+    if is_leadp_coord(u.x.norm_sq(), vn, p):
+        return coord_signp(u.x.norm_sq(), vn, p)
+    if is_leadp_coord(u.y.norm_sq(), vn, p):
+        return coord_signp(u.y.norm_sq(), vn, p)
+    return coord_signp(u.z.norm_sq(), vn, p)
+
+
+def fin_comb_residual(primes: list[int], coeffs: list[Fraction], u: GVec) -> Fraction:
+    """Finite m-prime residual linear combination sum_i c_i * s_{p_i}(u) matching finCombResidual in Lean 4."""
+    return sum((c * sp(u, p) for p, c in zip(primes, coeffs)), Fraction(0))
+
+
+def fin_exotic_comb(primes: list[int], coeffs: list[Fraction], u: GVec) -> Fraction:
+    """Finite m-parameter frame function (1 + finCombResidual) / 3 matching finExoticComb in Lean 4."""
+    return (Fraction(1) + fin_comb_residual(primes, coeffs, u)) / 3
+
+
+
 def herm_cross(u: GVec, v: GVec) -> GVec:
     """Hermitian cross product conj(u x v) orthogonal to both u and v in Q(i)^3."""
     return GVec(
@@ -1258,6 +1326,219 @@ def test_multi_prime_s3_s7_linear_independence_and_joint_elimination() -> None:
     assert comb_residual_37(Fraction(0), Fraction(1), witness_p7) == Fraction(1) != Fraction(0)
 
 
+def test_uniform_sp_family_p11_and_finite_inert_residual_system() -> None:
+    """Verify Subsection 9E: uniform prime-indexed sp family, p = 11 == 3 (mod 4) witness_p11 = (1, 3, 1), 3x3 Kronecker-delta duality, 7-ray projector kernel, Q(i, sqrt(11))^3 four-square frame, and m-prime InertPrimeResidualSystem theorems."""
+
+    def gv(a: int, b: int, c: int, d: int, e: int, g: int) -> GVec:
+        return GVec(
+            GaussRat.of_ints(a, b),
+            GaussRat.of_ints(c, d),
+            GaussRat.of_ints(e, g),
+        )
+
+    witness_111 = gv(1, 0, 1, 0, 1, 0)
+    witness_p7 = gv(1, 0, 2, 0, 1, 1)
+    witness_p11 = gv(1, 0, 3, 0, 1, 0)
+
+    # 1. Exact agreement sp(u, 3) == s3(u) and sp(u, 7) == s7(u) (sp_three_eq_s3, sp_seven_eq_s7)
+    probe_vecs = [
+         *NINE_RAYS,
+        witness_111,
+        witness_p7,
+        witness_p11,
+        gv(1, 2, 1, 2, 1, 1),
+        gv(1, 4, 1, 2, 1, 1),
+        gv(3, 0, -1, 0, 0, 0),
+        gv(1, 0, 3, 0, -10, 0),
+    ]
+    for u in probe_vecs:
+        assert sp(u, 3) == s3(u)
+        assert sp(u, 7) == s7(u)
+        for p in (3, 7, 11, 19, 23):
+            assert sp(u, p) in (Fraction(-1), Fraction(0), Fraction(1))
+            assert abs(sp(u, p)) <= Fraction(1)
+
+    for p in (3, 7, 11, 19, 23):
+        for ray in NINE_RAYS:
+            assert sp(ray, p) == Fraction(0)
+
+    # 2. Third inert prime p = 11 == 3 (mod 4): witness_p11 = (1, 3, 1) of norm 11
+    #    and 3x3 Kronecker-delta duality (witness_p11_primitive, s3_s7_sp11_dual_on_three_witnesses)
+    assert is_one_plus_i_primitive(1, 0, 3, 0, 1, 0)
+    assert witness_p11.norm_sq() == Fraction(11)
+    primes_3 = [3, 7, 11]
+    witnesses_3 = [witness_111, witness_p7, witness_p11]
+    for i, p_i in enumerate(primes_3):
+        for j, w_j in enumerate(witnesses_3):
+            assert sp(w_j, p_i) == (Fraction(1) if i == j else Fraction(0))
+
+    # Verify odd-v11 orthogonal frame cancellation for sp(u, 11)
+    for v11_ortho in (gv(3, 0, -1, 0, 0, 0), gv(1, 0, 0, 0, -1, 0), gv(3, 0, -2, 0, 3, 0)):
+        w11 = herm_cross(witness_p11, v11_ortho)
+        assert witness_p11.dot(v11_ortho) == GaussRat.of_ints(0, 0)
+        assert (
+            vp_rat(witness_p11.norm_sq(), 11)
+            + vp_rat(v11_ortho.norm_sq(), 11)
+            + vp_rat(w11.norm_sq(), 11)
+        ) % 2 == 0
+        assert sp(witness_p11, 11) + sp(v11_ortho, 11) + sp(w11, 11) == Fraction(0)
+
+    # 3. Constructive 7-ray projector expansion for purely real witness_p11 = (1, 3, 1)
+    #    (rayProj_witness_p11_decomp, quadRay_witness_p11_kernel_relation, sp11_witness_p11_kernel_separation)
+    def witness_p11_kernel_eval(f) -> Fraction:
+        return (
+            f(witness_p11)
+            + Fraction(3, 11) * f(E1)
+            - Fraction(3, 11) * f(E2)
+            + Fraction(3, 11) * f(E3)
+            - Fraction(6, 11) * f(U12_PLUS)
+            - Fraction(2, 11) * f(U13_PLUS)
+            - Fraction(6, 11) * f(U23_PLUS)
+        )
+
+    p_wp11_rhs = herm_add(
+        herm_add(
+            herm_add(
+                herm_smul(Fraction(-3, 11), ray_proj(E1)),
+                herm_smul(Fraction(3, 11), ray_proj(E2)),
+            ),
+            herm_add(
+                herm_smul(Fraction(-3, 11), ray_proj(E3)),
+                herm_smul(Fraction(6, 11), ray_proj(U12_PLUS)),
+            ),
+        ),
+        herm_add(
+            herm_smul(Fraction(2, 11), ray_proj(U13_PLUS)),
+            herm_smul(Fraction(6, 11), ray_proj(U23_PLUS)),
+        ),
+    )
+    assert ray_proj(witness_p11) == p_wp11_rhs
+
+    rho_sample = HermForm3(
+        d1=Fraction(2, 5),
+        d2=Fraction(1, 5),
+        d3=Fraction(2, 5),
+        a12=Fraction(1, 7),
+        b12=Fraction(-1, 9),
+        a13=Fraction(2, 11),
+        b13=Fraction(-1, 13),
+        a23=Fraction(1, 6),
+        b23=Fraction(1, 8),
+    )
+    assert witness_p11_kernel_eval(lambda u: quad_ray(rho_sample, u)) == Fraction(0)
+    assert witness_p11_kernel_eval(lambda u: sp(u, 11)) == Fraction(1)
+    assert witness_p11_kernel_eval(s3) == Fraction(0)
+    assert witness_p11_kernel_eval(s7) == Fraction(0)
+
+    # 4. General m-prime finite combinations finCombResidual and finExoticComb
+    #    (finExoticComb_isNonnegFrameFunction, inertPrimeResidualSystem_linearIndependent,
+    #     finExoticComb_quadratic_iff, factorsThroughRayProjLinear_finCombResidual_iff)
+    coeff_triples = [
+        [Fraction(0), Fraction(0), Fraction(0)],
+        [Fraction(1), Fraction(0), Fraction(0)],
+        [Fraction(0), Fraction(1), Fraction(0)],
+        [Fraction(0), Fraction(0), Fraction(1)],
+        [Fraction(1, 4), Fraction(-1, 3), Fraction(5, 12)],
+        [Fraction(-2, 9), Fraction(4, 9), Fraction(-1, 3)],
+        [Fraction(1, 5), Fraction(2, 5), Fraction(-2, 5)],
+    ]
+    ortho_pairs_3 = [
+        (E1, E2),
+        (witness_111, gv(1, 0, -1, 0, 0, 0)),
+        (witness_p7, gv(2, 0, -1, 0, 0, 0)),
+        (witness_p11, gv(3, 0, -1, 0, 0, 0)),
+        (witness_p11, gv(1, 0, 3, 0, -10, 0)),
+    ]
+    for c_vec in coeff_triples:
+        assert sum(abs(c) for c in c_vec) <= Fraction(1)
+        assert witness_p11_kernel_eval(lambda u: fin_comb_residual(primes_3, c_vec, u)) == c_vec[2]
+        for ray in NINE_RAYS:
+            assert fin_comb_residual(primes_3, c_vec, ray) == Fraction(0)
+            assert fin_exotic_comb(primes_3, c_vec, ray) == Fraction(1, 3)
+        for u, v in ortho_pairs_3:
+            w = herm_cross(u, v)
+            assert (
+                fin_comb_residual(primes_3, c_vec, u)
+                + fin_comb_residual(primes_3, c_vec, v)
+                + fin_comb_residual(primes_3, c_vec, w)
+                == Fraction(0)
+            )
+            assert (
+                fin_exotic_comb(primes_3, c_vec, u)
+                + fin_exotic_comb(primes_3, c_vec, v)
+                + fin_exotic_comb(primes_3, c_vec, w)
+                == Fraction(1)
+            )
+            for vec in (u, v, w):
+                assert abs(fin_comb_residual(primes_3, c_vec, vec)) <= sum(abs(c) for c in c_vec)
+                assert Fraction(0) <= fin_exotic_comb(primes_3, c_vec, vec) <= Fraction(2, 3)
+
+        vanishes_on_all_three = all(
+            fin_comb_residual(primes_3, c_vec, w_j) == Fraction(0) for w_j in witnesses_3
+        )
+        assert vanishes_on_all_three == all(c == Fraction(0) for c in c_vec)
+        reconstructed = tomography_form(lambda u: fin_exotic_comb(primes_3, c_vec, u))
+        assert reconstructed == herm_smul(Fraction(1, 3), HERM_ID)
+        matches_reconstructed = all(
+            fin_exotic_comb(primes_3, c_vec, w_j) == quad_ray(reconstructed, w_j)
+            for w_j in witnesses_3
+        )
+        assert matches_reconstructed == all(c == Fraction(0) for c in c_vec)
+
+    # 5. Selective 3-prime product-scaled oscillation near tomo_e1 = (1, 0, 0)
+    #    (finCombResidual_coeffs_zero_of_archimedeanContinuousAt_tomo_e1,
+    #     quadRay_add_finCombResidual_archimedeanContinuousAt_tomo_e1_iff,
+    #     finExoticComb_archimedeanContinuousAt_tomo_e1_iff)
+    for k in range(1, 8):
+        inv231k = Fraction(1, 231 * k)
+        u3_pos_11 = GVec(GaussRat.of_ints(1, 0), GaussRat(inv231k, Fraction(0)), GaussRat(inv231k, inv231k))
+        u3_neg_11 = GVec(GaussRat.of_ints(1, 0), GaussRat(inv231k, inv231k), GaussRat(inv231k, Fraction(0)))
+        u7_pos_11 = GVec(GaussRat.of_ints(1, 0), GaussRat(inv231k, inv231k), GaussRat(2 * inv231k, inv231k))
+        u7_neg_11 = GVec(GaussRat.of_ints(1, 0), GaussRat(2 * inv231k, inv231k), GaussRat(inv231k, inv231k))
+        u11_pos = GVec(GaussRat.of_ints(1, 0), GaussRat(3 * inv231k, Fraction(0)), GaussRat(inv231k, inv231k))
+        u11_neg = GVec(GaussRat.of_ints(1, 0), GaussRat(inv231k, inv231k), GaussRat(3 * inv231k, Fraction(0)))
+
+        assert [sp(u3_pos_11, p) for p in primes_3] == [Fraction(1), Fraction(0), Fraction(0)]
+        assert [sp(u3_neg_11, p) for p in primes_3] == [Fraction(-1), Fraction(0), Fraction(0)]
+        assert [sp(u7_pos_11, p) for p in primes_3] == [Fraction(0), Fraction(1), Fraction(0)]
+        assert [sp(u7_neg_11, p) for p in primes_3] == [Fraction(0), Fraction(-1), Fraction(0)]
+        assert [sp(u11_pos, p) for p in primes_3] == [Fraction(0), Fraction(0), Fraction(1)]
+        assert [sp(u11_neg, p) for p in primes_3] == [Fraction(0), Fraction(0), Fraction(-1)]
+
+        for c_vec in coeff_triples:
+            assert (
+                fin_exotic_comb(primes_3, c_vec, u3_pos_11)
+                - fin_exotic_comb(primes_3, c_vec, u3_neg_11)
+                == Fraction(2, 3) * c_vec[0]
+            )
+            assert (
+                fin_exotic_comb(primes_3, c_vec, u7_pos_11)
+                - fin_exotic_comb(primes_3, c_vec, u7_neg_11)
+                == Fraction(2, 3) * c_vec[1]
+            )
+            assert (
+                fin_exotic_comb(primes_3, c_vec, u11_pos)
+                - fin_exotic_comb(primes_3, c_vec, u11_neg)
+                == Fraction(2, 3) * c_vec[2]
+            )
+
+    # 6. Parameterized four-square SU(2) completion at p = 11 in Q(i, sqrt(11))^3
+    #    matching isFrameSqrt11_witness_p11_norms and three_prime_frame_partner_norm_valuations_even
+    v11_0 = gv(3, 0, -1, 0, 0, 0)  # norm 10
+    w11_0 = gv(1, 0, 3, 0, -10, 0)  # norm 110
+    alpha11 = GaussRat.of_ints(3, 0)
+    beta11 = GaussRat.of_ints(1, 1)
+    assert alpha11.norm_sq() + beta11.norm_sq() == Fraction(11)
+    assert v11_0.norm_sq() == Fraction(10) and w11_0.norm_sq() == Fraction(110)
+    partner_norm_11 = Fraction(1210)  # 10 * 11^2
+    for norm_val in (Fraction(18), Fraction(245), partner_norm_11):
+        for p in primes_3:
+            assert vp_rat(norm_val, p) % 2 == 0
+    assert vp_rat(partner_norm_11, 3) == 0
+    assert vp_rat(partner_norm_11, 7) == 0
+    assert vp_rat(partner_norm_11, 11) == 2
+
+
 def test_independent_check_scripts_pass(tomography_mod, frame_functions_mod) -> None:
     """Run all three independent check scripts for FQ-GLEASON-QI3-FRAME-FUNCTIONS."""
     tomography_mod.main()
@@ -1393,6 +1674,28 @@ def test_fq_gleason_qi3_frame_functions_end_to_end() -> None:
         "theorem exoticComb37_isNonnegFrameFunction",
         "theorem exoticComb37_quadratic_iff",
         "theorem exoticComb37_archimedeanContinuousAt_tomo_e1_iff",
+        "theorem sp_three_eq_s3",
+        "theorem sp_seven_eq_s7",
+        "theorem sp_isBoundedOnRays",
+        "theorem sp_vanishes_on_nine_rays",
+        "theorem witness_p11_primitive",
+        "theorem s3_s7_sp11_dual_on_three_witnesses",
+        "theorem s3_s7_sp11_linearIndependent",
+        "theorem factorsThroughRayProjLinear_combResidual3_7_11_iff",
+        "theorem rayProj_witness_p11_decomp",
+        "theorem quadRay_witness_p11_kernel_relation",
+        "theorem sp11_witness_p11_kernel_separation",
+        "theorem isFrameSqrt11_witness_p11_norms",
+        "theorem three_prime_frame_partner_norm_valuations_even",
+        "theorem finExoticComb_isNonnegFrameFunction",
+        "theorem inertPrimeResidualSystem_linearIndependent",
+        "theorem finExoticComb_quadratic_iff",
+        "theorem finCombResidual_coeffs_zero_of_archimedeanContinuousAt_tomo_e1",
+        "theorem quadRay_add_finCombResidual_archimedeanContinuousAt_tomo_e1_iff",
+        "theorem finExoticComb_archimedeanContinuousAt_tomo_e1_iff",
+        "theorem factorsThroughRayProjLinear_finCombResidual_iff",
+        "theorem joint_field_extension_eliminates_finCombResidual",
+        "theorem finCombResidual_inertSystem37_eq_combResidual37",
     ]
     for decl in required_theorems:
         assert decl in content, f"Missing declaration {decl!r} in {LEAN_TOMOGRAPHY_FILE}"

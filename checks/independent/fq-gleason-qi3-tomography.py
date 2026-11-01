@@ -529,8 +529,125 @@ def main() -> None:
         and sp.expand((p_s7.conjugate().T * p_s7)[0]) == 245
         and sp.expand((q_s7.conjugate().T * q_s7)[0]) == 245
         and vp_rat(Fraction(245), 3) == 0
-        and vp_rat(Fraction(245), 7) == 2,
-        "Q(i, sqrt(7))^3 frame has rational squared norms (7, 245, 245) with even v3 and v7 on partners",
+        and vp_rat(Fraction(245), 7) == 2
+        and vp_rat(Fraction(245), 11) == 0,
+        "Q(i, sqrt(7))^3 frame has rational squared norms (7, 245, 245) with even v3, v7, and v11 on partners",
+    )
+
+    # Section 9E: Uniform prime-indexed sp_residual, third inert prime p = 11 == 3 (mod 4),
+    # 3x3 Kronecker-delta witness duality, 7-ray witness_p11 projector kernel separation,
+    # selective 3-prime oscillation near e1 = (1, 0, 0), and Q(i, sqrt(11))^3 frame completion.
+    vp11_sp = sp.Matrix([1, 3, 1])
+    q_p11 = sp.expand((vp11_sp.conjugate().T * rho * vp11_sp)[0] / 11)
+    kernel_comb_p11 = (
+        q_p11
+        + sp.Rational(3, 11) * values[0]
+        - sp.Rational(3, 11) * values[1]
+        + sp.Rational(3, 11) * values[2]
+        - sp.Rational(6, 11) * values[3]
+        - sp.Rational(2, 11) * values[5]
+        - sp.Rational(6, 11) * values[7]
+    )
+    require(zero(kernel_comb_p11),
+            "7-ray projector kernel relation for witness_p11 = (1, 3, 1) vanishes identically for every HermForm3")
+
+    witness_p11 = gv_int(1, 0, 3, 0, 1, 0)  # norm 1 + 9 + 1 = 11
+    require(
+        is_one_plus_i_primitive_gvec(witness_p11)
+        and vec_norm_sq(witness_p11) == 11
+        and all(sp_residual(r, 11) == 0 for r in nine_rays_gvec),
+        "witness_p11 = (1, 3, 1) is (1+i)-primitive of norm 11 and sp 11 vanishes on all nine tomography rays",
+    )
+    primes_3_7_11 = (3, 7, 11)
+    witnesses_3_7_11 = (witness_111, witness_p7, witness_p11)
+    for i_idx, p_i in enumerate(primes_3_7_11):
+        for j_idx, w_j in enumerate(witnesses_3_7_11):
+            expected_delta = Fraction(1 if i_idx == j_idx else 0)
+            require(
+                sp_residual(w_j, p_i) == expected_delta,
+                f"3x3 Kronecker-delta duality failed at p={p_i}, witness index={j_idx}",
+            )
+
+    u11, v11 = witness_p11, gv_int(3, 0, -1, 0, 0, 0)
+    w11 = herm_cross(u11, v11)
+    require(
+        g_inner(u11, v11) == (0, 0)
+        and (vp_rat(vec_norm_sq(u11), 11) + vp_rat(vec_norm_sq(v11), 11) + vp_rat(vec_norm_sq(w11), 11)) % 2 == 0
+        and sp_residual(u11, 11) + sp_residual(v11, 11) + sp_residual(w11, 11) == 0,
+        "sp 11 satisfies zero-weight additivity on odd-v11 orthogonal frame",
+    )
+
+    kernel_p11_eval = lambda f: (
+        f(witness_p11)
+        + Fraction(3, 11) * f(nine_rays_gvec[0])
+        - Fraction(3, 11) * f(nine_rays_gvec[1])
+        + Fraction(3, 11) * f(nine_rays_gvec[2])
+        - Fraction(6, 11) * f(nine_rays_gvec[3])
+        - Fraction(2, 11) * f(nine_rays_gvec[4])
+        - Fraction(6, 11) * f(nine_rays_gvec[5])
+    )
+    require(
+        kernel_p11_eval(lambda u: sp_residual(u, 11)) == Fraction(1)
+        and kernel_p11_eval(lambda u: sp_residual(u, 3)) == Fraction(0)
+        and kernel_p11_eval(lambda u: sp_residual(u, 7)) == Fraction(0)
+        and kernel_p11_eval(
+            lambda u: Fraction(1, 5) * sp_residual(u, 3)
+            - Fraction(2, 7) * sp_residual(u, 7)
+            + Fraction(4, 11) * sp_residual(u, 11)
+        )
+        == Fraction(4, 11),
+        "sp11_witness_p11_kernel_separation evaluates to 1 on sp 11, 0 on sp 3 and sp 7, and c11 on combResidual3_7_11",
+    )
+
+    for k in range(1, 5):
+        # Product-scaled selective perturbation rays for p in {3, 7, 11}:
+        # p = 3: scale 3 * 77 * k = 231 * k
+        s_3 = Fraction(1, 231 * k)
+        u3_p = ((Fraction(1), Fraction(0)), (s_3, Fraction(0)), (s_3, s_3))
+        u3_n = ((Fraction(1), Fraction(0)), (s_3, s_3), (s_3, Fraction(0)))
+        # p = 7: scale 7 * 33 * k = 231 * k
+        s_7 = Fraction(1, 231 * k)
+        u7_p = ((Fraction(1), Fraction(0)), (s_7, s_7), (2 * s_7, s_7))
+        u7_n = ((Fraction(1), Fraction(0)), (2 * s_7, s_7), (s_7, s_7))
+        # p = 11: scale 11 * 21 * k = 231 * k, y = 3 (norm 9, (9/11)=+1), z = 1+i (norm 2, (2/11)=-1)
+        s_11 = Fraction(1, 231 * k)
+        u11_p = ((Fraction(1), Fraction(0)), (3 * s_11, Fraction(0)), (s_11, s_11))
+        u11_n = ((Fraction(1), Fraction(0)), (s_11, s_11), (3 * s_11, Fraction(0)))
+        selective_rays = [(3, u3_p, u3_n), (7, u7_p, u7_n), (11, u11_p, u11_n)]
+        for p_target, r_pos, r_neg in selective_rays:
+            for q_prime in primes_3_7_11:
+                if q_prime == p_target:
+                    require(
+                        sp_residual(r_pos, q_prime) == 1 and sp_residual(r_neg, q_prime) == -1,
+                        f"selective oscillation diagonal failed at p={p_target}",
+                    )
+                else:
+                    require(
+                        sp_residual(r_pos, q_prime) == 0 and sp_residual(r_neg, q_prime) == 0,
+                        f"selective oscillation off-diagonal failed at p={p_target}, q={q_prime}",
+                    )
+
+    sqrt11 = sp.sqrt(11)
+    u_s11 = sp.Matrix([1, 3, 1])
+    v_s11_tilde = sqrt11 * sp.Matrix([3, -1, 0])
+    w_s11 = sp.Matrix([1, 3, -10])
+    p_s11 = 3 * v_s11_tilde + (1 + sp.I) * w_s11
+    q_s11 = (1 - sp.I) * v_s11_tilde - 3 * w_s11
+    require(
+        zero((u_s11.conjugate().T * p_s11)[0])
+        and zero((u_s11.conjugate().T * q_s11)[0])
+        and zero((p_s11.conjugate().T * q_s11)[0]),
+        "Q(i, sqrt(11))^3 frame (witness_p11, p_s11, q_s11) is pairwise orthogonal",
+    )
+    require(
+        sp.expand((u_s11.conjugate().T * u_s11)[0]) == 11
+        and sp.expand((p_s11.conjugate().T * p_s11)[0]) == 1210
+        and sp.expand((q_s11.conjugate().T * q_s11)[0]) == 1210
+        and vp_rat(Fraction(18), 11) == 0
+        and vp_rat(Fraction(1210), 3) == 0
+        and vp_rat(Fraction(1210), 7) == 0
+        and vp_rat(Fraction(1210), 11) == 2,
+        "Q(i, sqrt(11))^3 frame has rational squared norms (11, 1210, 1210) with even v3, v7, and v11 on partners",
     )
 
     print(json.dumps({"status": "PASS", "sympy_version": sp.__version__,
@@ -539,10 +656,12 @@ def main() -> None:
                       "s3_witness_div4": int(s3(witness_div4)),
                       "s3_witness_div8": int(s3(witness_div8)),
                       "s7_witness_p7": int(sp_residual(witness_p7, 7)),
+                      "sp11_witness_p11": int(sp_residual(witness_p11, 11)),
                       "exotic_qi7_witness_p7": str(exotic_qi7(witness_p7)),
                       "sqrt3_frame_norms": [3, 18, 18],
                       "sqrt7_frame_norms": [7, 245, 245],
-                      "scope": "symbolic algebra controls, 3-adic/7-adic residuals, selective oscillation, and joint elimination"},
+                      "sqrt11_frame_norms": [11, 1210, 1210],
+                      "scope": "symbolic algebra controls, uniform sp_residual (p in {3,7,11}), selective oscillation, and joint elimination"},
                      sort_keys=True))
 
 
