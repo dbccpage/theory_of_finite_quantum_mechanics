@@ -1691,6 +1691,22 @@ def test_piron_frame_rotation_parallelogram_and_continuity_bridge() -> None:
     #     zero_of_coordSignSymmetric_and_orthoParallelogram,
     #     s3_not_satisfiesOrthoParallelogramZero, s7_not_satisfiesOrthoParallelogramZero,
     #     sp11_not_satisfiesOrthoParallelogramZero)
+    for p_prime in (3, 7, 11, 19, 23):
+        for coord_val in (
+            GaussRat.of_ints(0, 0),
+            GaussRat.of_ints(1, 0),
+            GaussRat.of_ints(2, -1),
+            GaussRat(Fraction(3, 5), Fraction(-1, 5)),
+        ):
+            assert sp(GVec(coord_val, GaussRat.of_ints(0, 0), GaussRat.of_ints(0, 0)), p_prime) == Fraction(0)
+            assert sp(GVec(GaussRat.of_ints(0, 0), coord_val, GaussRat.of_ints(0, 0)), p_prime) == Fraction(0)
+            assert sp(GVec(GaussRat.of_ints(0, 0), GaussRat.of_ints(0, 0), coord_val), p_prime) == Fraction(0)
+        for sample_u in (witness_111, witness_p7, witness_p11, gv(1, 2, 1, 2, 1, 1)):
+            neg_y = GVec(sample_u.x, GaussRat.of_ints(-1, 0) * sample_u.y, sample_u.z)
+            neg_z = GVec(sample_u.x, sample_u.y, GaussRat.of_ints(-1, 0) * sample_u.z)
+            assert sp(neg_y, p_prime) == sp(sample_u, p_prime)
+            assert sp(neg_z, p_prime) == sp(sample_u, p_prime)
+
     parallelogram_counterexamples = [
         (3, gv(0, 0, 1, 0, 1, 0)),
         (7, gv(0, 0, 2, 0, 1, 1)),
@@ -1751,8 +1767,18 @@ def test_piron_frame_rotation_parallelogram_and_continuity_bridge() -> None:
     # 5. Piron frame-rotation sum, monotone descent, meridian complement, step distance,
     #    and Pythagorean equatorial rotations (piron_frame_sum_identity,
     #    piron_descent_le_of_pole_one, meridian_complement_of_pole_one,
-    #    normSqVec_pythagEqRot, quadRay_rayProj_e1_pythagEqRot, distSqVec_pironStep_inv_nat)
+    #    normSqVec_pythagEqRot, quadRay_rayProj_e1_pythagEqRot, distSqVec_pironStep_inv_nat,
+    #    exists_pironStep_within_delta)
     for y_eq, _ in eq_witness_table[:3]:
+        for delta in (Fraction(1), Fraction(1, 10), Fraction(1, 50)):
+            assert any(
+                gvec_sub(
+                    piron_step(y_eq, GaussRat(Fraction(1, k_d), Fraction(0))),
+                    gvec_add(E1, y_eq),
+                ).norm_sq()
+                < delta
+                for k_d in range(1, 30)
+            )
         for k_step in range(1, 6):
             lam = GaussRat(Fraction(1, k_step), Fraction(0))
             u_base = gvec_add(E1, y_eq)
@@ -1778,6 +1804,17 @@ def test_piron_frame_rotation_parallelogram_and_continuity_bridge() -> None:
             assert y_rot.norm_sq() == y_eq.norm_sq()
             assert gvec_add(E1, y_rot).norm_sq() == u_base.norm_sq()
             assert quad_ray(p_e1, gvec_add(E1, y_rot)) == quad_ray(p_e1, u_base)
+
+    # 6. Nonnegativity + Archimedean Continuity Bridge (zero_of_nonneg_zeroWeightFrameFunction,
+    #    nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual)
+    bound_b = Fraction(1)
+    c_scale = Fraction(1, 3) / (bound_b + Fraction(1))  # 1 / (3 * (B + 1)) = 1/6
+    for p_prime, w_target in ((3, witness_111), (7, witness_p7), (11, witness_p11)):
+        f_pert = lambda x, p=p_prime: Fraction(1, 3) + c_scale * sp(x, p)
+        assert tomography_form(f_pert) == herm_smul(Fraction(1, 3), HERM_ID)
+        for sample_v in (*NINE_RAYS, witness_111, witness_p7, witness_p11):
+            assert Fraction(0) < Fraction(1, 6) <= f_pert(sample_v) <= Fraction(1, 2)
+        assert f_pert(w_target) - quad_ray(tomography_form(f_pert), w_target) == c_scale != Fraction(0)
 
 
 def test_independent_check_scripts_pass(tomography_mod, frame_functions_mod) -> None:

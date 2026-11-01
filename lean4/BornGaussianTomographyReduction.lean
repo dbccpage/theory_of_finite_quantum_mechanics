@@ -7197,38 +7197,68 @@ and `v = tomo_e23 = (0, 1, 1)`: `s3 u = s3 v = 0`, while `s3(u + v) + s3(u - v) 
 theorem s3_not_satisfiesOrthoParallelogramZero :
     ¬ SatisfiesOrthoParallelogramZero s3 := by
   intro hpara
-  have h0 := zero_of_coordSignSymmetric_and_orthoParallelogram
-    s3_isCoordSignSymmetric hpara
-    (fun x y z => by
-      simp only [← sp_three_eq_s3]
-      exact sp_vanishes_on_coord_axes inertPrimeSpec_three x y z)
-    witness_111
-  rw [s3_witness_111] at h0
-  norm_num at h0
+  have huv : GVec.inner tomo_e1 tomo_e23 = 0 := by
+    ext <;> simp [GVec.inner, tomo_e1, tomo_e23, gv]
+  have hsum := hpara tomo_e1 tomo_e23 huv
+    s3_vanishes_on_nine_rays.1 s3_vanishes_on_nine_rays.2.2.2.2.2.1
+  have hadd : GVec.add tomo_e1 tomo_e23 = witness_111 := by
+    ext <;> simp [GVec.add, tomo_e1, tomo_e23, witness_111, gv]
+  have hsub : GVec.sub tomo_e1 tomo_e23 = ⟨witness_111.x, -witness_111.y, -witness_111.z⟩ := by
+    ext <;> simp [GVec.sub, tomo_e1, tomo_e23, witness_111, gv]
+  have hw : (⟨witness_111.x, witness_111.y, witness_111.z⟩ : GVec) = witness_111 := rfl
+  rw [hadd, hsub,
+      (s3_isCoordSignSymmetric witness_111.x witness_111.y (-witness_111.z)).1,
+      (s3_isCoordSignSymmetric witness_111.x witness_111.y witness_111.z).2,
+      hw, s3_witness_111] at hsum
+  norm_num at hsum
 
-/-- Explicit two-point orthogonal parallelogram refutation of `s7` (`witness_p7 = (1, 2, 1 + i)`). -/
+/-- Explicit two-point orthogonal parallelogram refutation of `s7` on `u = tomo_e1 = (1, 0, 0)`
+and `v = gv 0 0 2 0 1 1 = (0, 2, 1 + i)` (`witness_p7 = u + v`): `s7 u = s7 v = 0`, while
+`s7(u + v) + s7(u - v) = 1 + 1 = 2 ≠ 0`. -/
 theorem s7_not_satisfiesOrthoParallelogramZero :
     ¬ SatisfiesOrthoParallelogramZero s7 := by
   intro hpara
-  have h0 := zero_of_coordSignSymmetric_and_orthoParallelogram
-    s7_isCoordSignSymmetric hpara
-    (fun x y z => by
-      simp only [← sp_seven_eq_s7]
-      exact sp_vanishes_on_coord_axes inertPrimeSpec_seven x y z)
-    witness_p7
-  rw [s7_witness_p7] at h0
-  norm_num at h0
+  let v7 : GVec := gv 0 0 2 0 1 1
+  have huv : GVec.inner tomo_e1 v7 = 0 := by
+    ext <;> simp [GVec.inner, tomo_e1, v7, gv]
+  have hv7_zero : s7 v7 = 0 :=
+    s7_eq_zero_of_normSqVec_natCast (n := 6) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, v7, gv]; norm_num) rfl
+  have hsum := hpara tomo_e1 v7 huv s7_vanishes_on_nine_rays.1 hv7_zero
+  have hadd : GVec.add tomo_e1 v7 = witness_p7 := by
+    ext <;> simp [GVec.add, tomo_e1, v7, witness_p7, gv]
+  have hsub : GVec.sub tomo_e1 v7 = ⟨witness_p7.x, -witness_p7.y, -witness_p7.z⟩ := by
+    ext <;> simp [GVec.sub, tomo_e1, v7, witness_p7, gv]
+  have hw : (⟨witness_p7.x, witness_p7.y, witness_p7.z⟩ : GVec) = witness_p7 := rfl
+  rw [hadd, hsub,
+      (s7_isCoordSignSymmetric witness_p7.x witness_p7.y (-witness_p7.z)).1,
+      (s7_isCoordSignSymmetric witness_p7.x witness_p7.y witness_p7.z).2,
+      hw, s7_witness_p7] at hsum
+  norm_num at hsum
 
-/-- Explicit two-point orthogonal parallelogram refutation of `sp 11` (`witness_p11 = (1, 3, 1)`). -/
+/-- Explicit two-point orthogonal parallelogram refutation of `sp 11` on `u = tomo_e1 = (1, 0, 0)`
+and `v = gv 0 0 3 0 1 0 = (0, 3, 1)` (`witness_p11 = u + v`): `sp 11 u = sp 11 v = 0`, while
+`sp 11 (u + v) + sp 11 (u - v) = 1 + 1 = 2 ≠ 0`. -/
 theorem sp11_not_satisfiesOrthoParallelogramZero :
     ¬ SatisfiesOrthoParallelogramZero (sp 11) := by
   intro hpara
-  have h0 := zero_of_coordSignSymmetric_and_orthoParallelogram
-    (sp_isCoordSignSymmetric 11) hpara
-    (sp_vanishes_on_coord_axes inertPrimeSpec_eleven)
-    witness_p11
-  rw [sp11_witness_p11] at h0
-  norm_num at h0
+  let v11 : GVec := gv 0 0 3 0 1 0
+  have huv : GVec.inner tomo_e1 v11 = 0 := by
+    ext <;> simp [GVec.inner, tomo_e1, v11, gv]
+  have hv11_zero : sp 11 v11 = 0 :=
+    sp_eq_zero_of_normSqVec_natCast (p := 11) (n := 10) (by decide) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, v11, gv]; norm_num) rfl
+  have hsum := hpara tomo_e1 v11 huv (sp_vanishes_on_nine_rays (p := 11) (by decide)).1 hv11_zero
+  have hadd : GVec.add tomo_e1 v11 = witness_p11 := by
+    ext <;> simp [GVec.add, tomo_e1, v11, witness_p11, gv]
+  have hsub : GVec.sub tomo_e1 v11 = ⟨witness_p11.x, -witness_p11.y, -witness_p11.z⟩ := by
+    ext <;> simp [GVec.sub, tomo_e1, v11, witness_p11, gv]
+  have hw : (⟨witness_p11.x, witness_p11.y, witness_p11.z⟩ : GVec) = witness_p11 := rfl
+  rw [hadd, hsub,
+      (sp_isCoordSignSymmetric 11 witness_p11.x witness_p11.y (-witness_p11.z)).1,
+      (sp_isCoordSignSymmetric 11 witness_p11.x witness_p11.y witness_p11.z).2,
+      hw, sp11_witness_p11] at hsum
+  norm_num at hsum
 
 /-- Hermitian cross product `star (u × v)` orthogonal to both `u` and `v` in `ℚ(i)³`. -/
 def hermCross (u v : GVec) : GVec :=

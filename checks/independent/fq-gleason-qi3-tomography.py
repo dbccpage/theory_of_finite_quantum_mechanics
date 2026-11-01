@@ -731,6 +731,41 @@ def main() -> None:
             "equatorial witness table isolates (sp 3, sp 7, sp 11) with +-1 in e1^perp",
         )
 
+    # Symbolic operator-space two-point orthogonal parallelogram identity (rayProj_ortho_add_sub):
+    for u_p, v_p in [(witness_111, gv_int(1, 0, -1, 0, 0, 0)), (witness_p7, gv_int(2, 0, -1, 0, 0, 0)), (witness_p11, gv_int(3, 0, -1, 0, 0, 0))]:
+        u_sp = sp.Matrix([c[0] + sp.I * c[1] for c in u_p])
+        v_sp = sp.Matrix([c[0] + sp.I * v_c[1] for v_c in v_p for c in [v_c]])
+        nu_sp = sp.expand((u_sp.conjugate().T * u_sp)[0])
+        nv_sp = sp.expand((v_sp.conjugate().T * v_sp)[0])
+        u_add_sp = u_sp + v_sp
+        u_sub_sp = u_sp - v_sp
+        q_add = sp.expand((u_add_sp.conjugate().T * rho * u_add_sp)[0]) / (nu_sp + nv_sp)
+        q_sub = sp.expand((u_sub_sp.conjugate().T * rho * u_sub_sp)[0]) / (nu_sp + nv_sp)
+        q_u = sp.expand((u_sp.conjugate().T * rho * u_sp)[0]) / nu_sp
+        q_v = sp.expand((v_sp.conjugate().T * rho * v_sp)[0]) / nv_sp
+        require(
+            zero(q_add + q_sub - (2 * nu_sp / (nu_sp + nv_sp)) * q_u - (2 * nv_sp / (nu_sp + nv_sp)) * q_v),
+            "symbolic operator-space orthogonal parallelogram identity holds for every HermForm3",
+        )
+        for alpha_c, beta_c in [
+            ((Fraction(2), Fraction(-1)), (Fraction(1), Fraction(2))),
+            ((Fraction(1, 3), Fraction(-2, 3)), (Fraction(3, 5), Fraction(0))),
+        ]:
+            ru_c = rot_pair_u(u_p, v_p, alpha_c, beta_c)
+            rv_c = rot_pair_v(u_p, v_p, alpha_c, beta_c)
+            require(
+                g_inner(ru_c, rv_c) == (Fraction(0), Fraction(0))
+                and vec_norm_sq(ru_c) == g_norm_sq(alpha_c) * vec_norm_sq(u_p) + g_norm_sq(beta_c) * vec_norm_sq(v_p)
+                and vec_norm_sq(rv_c) == vec_norm_sq(u_p) * vec_norm_sq(v_p) * vec_norm_sq(ru_c)
+                and quad_ray_e1(ru_c) + quad_ray_e1(rv_c) == quad_ray_e1(u_p) + quad_ray_e1(v_p)
+                and all(
+                    sp_residual(ru_c, p_chk) + sp_residual(rv_c, p_chk)
+                    == sp_residual(u_p, p_chk) + sp_residual(v_p, p_chk)
+                    for p_chk in (3, 7, 11)
+                ),
+                "planar frame-rotation pairs preserve orthogonality, norm identities, and 2D subspace sums",
+            )
+
     # Verify failure of orthogonal parallelogram law for s3, s7, sp 11:
     # e1 + (0, 1, 1) = witness_111 (norm 3, s3 = +1),
     # e1 + (0, 2, 1+i) = witness_p7 (norm 7, s7 = +1),
@@ -746,6 +781,8 @@ def main() -> None:
         u_minus = g_sub_vec(nine_rays_gvec[0], w_pos)
         require(
             g_inner(nine_rays_gvec[0], w_pos) == (Fraction(0), Fraction(0))
+            and sp_residual(nine_rays_gvec[0], p_prime) == Fraction(0)
+            and sp_residual(w_pos, p_prime) == Fraction(0)
             and sp_residual(u_plus, p_prime) == Fraction(1)
             and sp_residual(u_minus, p_prime) == Fraction(1)
             and sp_residual(u_plus, p_prime) + sp_residual(u_minus, p_prime) == Fraction(2),
