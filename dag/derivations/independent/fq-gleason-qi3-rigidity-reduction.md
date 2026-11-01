@@ -416,6 +416,40 @@ tomography rays):
      (`factorsThroughRayProjLinear_finCombResidual_iff`) or joint quadratic field
      extension (`joint_field_extension_eliminates_finCombResidual`), with concrete
      instantiation `inertSystem37` (`finCombResidual_inertSystem37_eq_combResidual37`).
+6. **Dense-frame Piron / Cooke–Keane–Moran frame-rotation approximation, planar
+   parallelogram law, and Nonnegativity + Archimedean Continuity Bridge (Subsection 9F)**:
+   On `Q(i)^3`, any orthogonal pair `u ⊥ v` in a frame `(u, v, w)` generates a
+   two-parameter family of rotated orthogonal frames `(rotPairU u v α β, rotPairV u v α β, w)`
+   (`inner_rotPairU_rotPairV_eq_zero`, `normSqVec_rotPairU`, `normSqVec_rotPairV`,
+   `isFrame_rotPair`) along which every frame function and zero-weight residual has
+   invariant 2D subspace sum (`frameFunction_rotPair_sum`, `zeroWeight_rotPair_sum`).
+   In operator space `HermForm3`, rank-1 ray projectors satisfy the exact two-point
+   orthogonal parallelogram / convex-combination identity
+   `T(u + v) + T(u - v) = (2 N(u) / (N(u) + N(v))) T(u) + (2 N(v) / (N(u) + N(v))) T(v)`
+   (`rayProj_ortho_add_sub`, `factorsThroughRayProjLinear_ortho_add_sub`,
+   `satisfiesOrthoParallelogramZero_of_factorsThroughRayProjLinear`). Every prime-indexed
+   residual `sp p` is coordinate-sign symmetric (`sp_isCoordSignSymmetric`) and vanishes
+   on all coordinate axes (`sp_vanishes_on_coord_axes`), whereas any coordinate-sign
+   symmetric function vanishing on coordinate axes that also satisfies the orthogonal
+   parallelogram zero law `SatisfiesOrthoParallelogramZero` vanishes on all of `Q(i)^3`
+   in three steps (`zero_of_coordSignSymmetric_and_orthoParallelogram`); consequently
+   `s3`, `s7`, and `sp 11` each explicitly violate `SatisfiesOrthoParallelogramZero`
+   (`s3_not_satisfiesOrthoParallelogramZero`, `s7_not_satisfiesOrthoParallelogramZero`,
+   `sp11_not_satisfiesOrthoParallelogramZero`). At a pure north-pole state (`f tomo_e1 = 1`),
+   nonnegativity alone forces `f = 0` on the equatorial plane `e₁⊥`
+   (`isFrame_hermCross`, `nonneg_eq_zero_on_perp_of_pole_one`), eliminating all
+   `combResidual3_7_11 c3 c7 c11` perturbations of `quadRay (rayProj tomo_e1)` without
+   continuity (`pure_pole_e1_nonneg_eliminates_combResidual3_7_11`), and yields the
+   constructive Piron frame-rotation sum identity (`piron_frame_sum_identity`),
+   Piron monotone descent `f(pironStep y lam) ≤ f(e₁ + y)` (`piron_descent_le_of_pole_one`),
+   meridian complement `f(e₁ + y) + f(meridianOrtho y) = 1` (`meridian_complement_of_pole_one`),
+   Pythagorean equatorial rotation norm and Born-weight invariance (`normSqVec_pythagEqRot`,
+   `quadRay_rayProj_e1_pythagEqRot`), and Archimedean step density (`distSqVec_pironStep_inv_nat`,
+   `exists_pironStep_within_delta`). Finally, every nonnegative zero-weight frame residual
+   vanishes identically (`zero_of_nonneg_zeroWeightFrameFunction`), and nonnegative
+   Archimedean-continuous frame rigidity to `FactorsThroughRayProjLinear` is equivalent to
+   vanishing of bounded Archimedean-continuous nine-ray-vanishing zero-weight residuals
+   (`nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual`).
 
 ## What is established (What this artifact supports)
 
@@ -508,14 +542,35 @@ tomography rays):
   `joint_field_extension_eliminates_finCombResidual`,
   `unit_norm_in_sqrtP_of_normSqVec_eq`,
   `fourSquarePartner_ortho_and_normSqRatP`, `isFrameSqrt7_witness_p7_norms`,
-  `isFrameSqrt11_witness_p11_norms`), and general operator-space projector
+  `isFrameSqrt11_witness_p11_norms`), general operator-space projector
   linearity (`zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear`,
   `not_factorsThroughRayProjLinear_s3`, `not_factorsThroughRayProjLinear_s7`,
   `factorsThroughRayProjLinear_combResidual37_iff`,
   `factorsThroughRayProjLinear_combResidual3_7_11_iff`,
   `factorsThroughRayProjLinear_finCombResidual_iff`,
-  `quadratic_rigidity_iff_factorsThroughRayProjLinear`)—are kernel-checked in
-  `lean4/BornGaussianTomographyReduction.lean`.
+  `quadratic_rigidity_iff_factorsThroughRayProjLinear`), and the Subsection 9F
+  planar frame-rotation pairs, operator-space parallelogram identity,
+  coordinate-sign symmetry vs. orthogonal parallelogram zero propagation,
+  pure-pole equatorial elimination, Piron monotone descent, Pythagorean
+  equatorial rotations, and Nonnegativity + Archimedean Continuity Bridge
+  (`inner_rotPairU_rotPairV_eq_zero`, `normSqVec_add_eq_normSqVec_sub_of_ortho`,
+  `normSqVec_rotPairU`, `normSqVec_rotPairV`, `isFrame_rotPair`,
+  `frameFunction_rotPair_sum`, `zeroWeight_rotPair_sum`,
+  `rayProj_ortho_add_sub`, `factorsThroughRayProjLinear_ortho_add_sub`,
+  `satisfiesOrthoParallelogramZero_of_factorsThroughRayProjLinear`,
+  `sp_isCoordSignSymmetric`, `sp_vanishes_on_coord_axes`,
+  `zero_of_coordSignSymmetric_and_orthoParallelogram`,
+  `s3_not_satisfiesOrthoParallelogramZero`,
+  `s7_not_satisfiesOrthoParallelogramZero`,
+  `sp11_not_satisfiesOrthoParallelogramZero`, `isFrame_hermCross`,
+  `nonneg_eq_zero_on_perp_of_pole_one`,
+  `pure_pole_e1_nonneg_eliminates_combResidual3_7_11`,
+  `piron_frame_sum_identity`, `piron_descent_le_of_pole_one`,
+  `meridian_complement_of_pole_one`, `normSqVec_pythagEqRot`,
+  `quadRay_rayProj_e1_pythagEqRot`, `distSqVec_pironStep_inv_nat`,
+  `exists_pironStep_within_delta`, `zero_of_nonneg_zeroWeightFrameFunction`,
+  `nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual`)—are
+  kernel-checked in `lean4/BornGaussianTomographyReduction.lean`.
 
 ## What is assumed
 
@@ -533,32 +588,40 @@ extension. No continuum Gleason theorem is used.
 - **What it does not support**: This artifact does not classify the full
   infinite-dimensional vector space of all non-quadratic zero-weight residuals
   across every inert prime `p ≡ 3 (mod 4)` simultaneously without projector
-  linearity, nor does it bridge `Nat.Prime p ∧ p % 4 = 3` to the decidable
-  modular specification `InertPrimeSpec p` for symbolic prime `p` without
-  instantiating `p`, nor does it close `FQ-GAP-BORN-UNIQUENESS-GLEASON`.
+  linearity, nor does it establish that every bounded Archimedean-continuous
+  nine-ray-vanishing zero-weight residual on `Q(i)^3` vanishes identically
+  without an additional regularity or parallelogram hypothesis, nor does it
+  close `FQ-GAP-BORN-UNIQUENESS-GLEASON`.
 - **Narrowest defensible claim**: On `Q(i)^3`, the uniform prime-indexed family
   `sp p` recovers `s3` and `s7` (`sp_three_eq_s3`, `sp_seven_eq_s7`), is a
   global `{-1, 0, +1}`-valued zero-weight frame residual vanishing on the 9
   tomography rays for every `p` satisfying `InertPrimeSpec p`
   (`sp_isZeroWeightFrameFunction`, `sp_smul`, `sp_isBoundedOnRays`,
   `sp_vanishes_on_nine_rays`, instantiated at `p ∈ {3, 7, 11}` via
-  `inertPrimeSpec_eleven` and `sp11_isZeroWeightFrameFunction`), yields 3D
-  Kronecker-delta duality and `Q`-linear independence at `p ∈ {3, 7, 11}` via
-  `witness_p11 = (1, 3, 1)` (`s3_s7_sp11_dual_on_three_witnesses`,
-  `s3_s7_sp11_linearIndependent`, `combResidual3_7_11_isZeroWeightFrameFunction`,
-  `rayProj_witness_p11_decomp`, `isFrameSqrt11_witness_p11_norms`), and for any
-  finite `InertPrimeResidualSystem m` of size `m`, the `m`-parameter combination
-  `finCombResidual m S.R c` and nonnegative `ell^1`-cross-polytope family
-  `finExoticComb m S.R c` (`finExoticComb_isNonnegFrameFunction`,
-  `inertPrimeResidualSystem_linearIndependent`, `finExoticComb_quadratic_iff`)
-  are simultaneously eliminated (`forall i, c i = 0`) by archimedean continuity
-  at `tomo_e1` (`quadRay_add_finCombResidual_archimedeanContinuousAt_tomo_e1_iff`,
-  `finExoticComb_archimedeanContinuousAt_tomo_e1_iff`), by operator-space
-  projector linearity (`factorsThroughRayProjLinear_finCombResidual_iff`), or by
-  joint quadratic field extension (`joint_field_extension_eliminates_finCombResidual`).
-- **Next test needed**: Formalize the implication from symbolic primality
-  `Nat.Prime p ∧ p % 4 = 3` to `InertPrimeSpec p` in Lean 4 (using Euler's
-  criterion in `ZMod p`) and instantiate `inertSystem3_7_11 : InertPrimeResidualSystem 3`
-  with product-scaled `231 * k` selective perturbation rays in Lean 4.
+  `inertPrimeSpec_eleven` and `sp11_isZeroWeightFrameFunction`), is coordinate-sign
+  symmetric (`sp_isCoordSignSymmetric`) while violating the operator-space
+  orthogonal parallelogram zero law `SatisfiesOrthoParallelogramZero` that follows
+  from `rayProj_ortho_add_sub` (`zero_of_coordSignSymmetric_and_orthoParallelogram`,
+  `s3_not_satisfiesOrthoParallelogramZero`, `s7_not_satisfiesOrthoParallelogramZero`,
+  `sp11_not_satisfiesOrthoParallelogramZero`), is eliminated at a pure pole
+  `quadRay (rayProj tomo_e1)` by nonnegativity alone
+  (`pure_pole_e1_nonneg_eliminates_combResidual3_7_11`), and for any finite
+  `InertPrimeResidualSystem m` is simultaneously eliminated (`forall i, c i = 0`)
+  by archimedean continuity at `tomo_e1`, operator-space projector linearity, or
+  joint quadratic field extension; moreover, general nonnegative
+  Archimedean-continuous rigidity to `FactorsThroughRayProjLinear` is equivalent
+  to vanishing of bounded Archimedean-continuous nine-ray-vanishing zero-weight
+  residuals (`nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual`),
+  with constructive Piron frame-rotation monotone descent
+  (`piron_descent_le_of_pole_one`), meridian complement
+  (`meridian_complement_of_pole_one`), Pythagorean equatorial rotations
+  (`normSqVec_pythagEqRot`, `quadRay_rayProj_e1_pythagEqRot`), and step density
+  (`exists_pironStep_within_delta`) established in `Q(i)^3`.
+- **Next test needed**: Combine the Piron monotone descent inequality
+  `piron_descent_le_of_pole_one`, meridian complement
+  `meridian_complement_of_pole_one`, and dense Pythagorean equatorial rotations
+  `pythagEqRot` with global Archimedean continuity to test whether equatorial
+  rotational invariance of extreme-point frame functions holds on `Q(i)^3`.
+
 
 

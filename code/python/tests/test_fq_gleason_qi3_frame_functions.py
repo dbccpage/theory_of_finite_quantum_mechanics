@@ -1568,6 +1568,218 @@ def test_uniform_sp_family_p11_and_finite_inert_residual_system() -> None:
     assert vp_rat(partner_norm_11, 11) == 2
 
 
+def test_piron_frame_rotation_parallelogram_and_continuity_bridge() -> None:
+    """Verify Subsection 9F: planar frame-rotation pairs (rotPairU/rotPairV), operator-space parallelogram identity (rayProj_ortho_add_sub), coordinate-sign symmetry vs. orthogonal parallelogram zero law, six equatorial pole witnesses eliminating combResidual3_7_11 at tomo_e1, Piron frame-rotation / monotone descent / meridian complement identities, Pythagorean equatorial rotations, and the Nonnegativity + Archimedean Continuity Bridge."""
+
+    def gv(a: int, b: int, c: int, d: int, e: int, g: int) -> GVec:
+        return GVec(
+            GaussRat.of_ints(a, b),
+            GaussRat.of_ints(c, d),
+            GaussRat.of_ints(e, g),
+        )
+
+    def gvec_add(u: GVec, v: GVec) -> GVec:
+        return GVec(u.x + v.x, u.y + v.y, u.z + v.z)
+
+    def gvec_sub(u: GVec, v: GVec) -> GVec:
+        return GVec(u.x - v.x, u.y - v.y, u.z - v.z)
+
+    def gvec_smul(c: GaussRat, u: GVec) -> GVec:
+        return GVec(c * u.x, c * u.y, c * u.z)
+
+    def rot_pair_u(u: GVec, v: GVec, alpha: GaussRat, beta: GaussRat) -> GVec:
+        return gvec_add(gvec_smul(alpha, u), gvec_smul(beta, v))
+
+    def rot_pair_v(u: GVec, v: GVec, alpha: GaussRat, beta: GaussRat) -> GVec:
+        c1 = GaussRat(-v.norm_sq()) * beta.conj()
+        c2 = GaussRat(u.norm_sq()) * alpha.conj()
+        return gvec_add(gvec_smul(c1, u), gvec_smul(c2, v))
+
+    def eq_ortho(y: GVec) -> GVec:
+        return GVec(
+            GaussRat.of_ints(0, 0),
+            GaussRat(-y.z.re, y.z.im),
+            y.y.conj(),
+        )
+
+    def piron_step(y: GVec, lam: GaussRat) -> GVec:
+        return gvec_add(gvec_add(E1, y), gvec_smul(lam, eq_ortho(y)))
+
+    def piron_partner(y: GVec, lam: GaussRat) -> GVec:
+        ny = y.norm_sq()
+        c1 = GaussRat(-lam.norm_sq() * ny)
+        c2 = GaussRat(Fraction(1) + ny) * lam
+        return gvec_add(gvec_smul(c1, gvec_add(E1, y)), gvec_smul(c2, eq_ortho(y)))
+
+    def meridian_ortho(y: GVec) -> GVec:
+        return gvec_add(gvec_smul(GaussRat(-y.norm_sq()), E1), y)
+
+    def pythag_eq_rot(y: GVec, k: int) -> GVec:
+        kf = Fraction(k)
+        c1 = GaussRat((kf * kf - 1) / (kf * kf + 1))
+        c2 = GaussRat((2 * kf) / (kf * kf + 1))
+        return gvec_add(gvec_smul(c1, y), gvec_smul(c2, eq_ortho(y)))
+
+    witness_111 = gv(1, 0, 1, 0, 1, 0)
+    witness_p7 = gv(1, 0, 2, 0, 1, 1)
+    witness_p11 = gv(1, 0, 3, 0, 1, 0)
+
+    # 1. Planar frame-rotation closure (inner_rotPairU_rotPairV_eq_zero, normSqVec_rotPairU,
+    #    normSqVec_rotPairV, isFrame_rotPair, frameFunction_rotPair_sum, zeroWeight_rotPair_sum)
+    ortho_pairs = [
+        (E1, E2),
+        (witness_111, gv(1, 0, -1, 0, 0, 0)),
+        (witness_p7, gv(2, 0, -1, 0, 0, 0)),
+        (witness_p11, gv(3, 0, -1, 0, 0, 0)),
+    ]
+    alpha_beta_samples = [
+        (GaussRat.of_ints(1, 0), GaussRat.of_ints(1, 0)),
+        (GaussRat.of_ints(2, -1), GaussRat.of_ints(1, 2)),
+        (GaussRat(Fraction(1, 3), Fraction(-2, 3)), GaussRat(Fraction(3, 5), Fraction(0))),
+    ]
+    rho_sample = HermForm3(
+        d1=Fraction(2, 5),
+        d2=Fraction(1, 5),
+        d3=Fraction(2, 5),
+        a12=Fraction(1, 7),
+        b12=Fraction(-1, 9),
+        a13=Fraction(2, 11),
+        b13=Fraction(-1, 13),
+        a23=Fraction(1, 6),
+        b23=Fraction(1, 8),
+    )
+    for u, v in ortho_pairs:
+        w = herm_cross(u, v)
+        assert u.dot(v) == GaussRat.of_ints(0, 0)
+        assert u.dot(w) == GaussRat.of_ints(0, 0)
+        assert v.dot(w) == GaussRat.of_ints(0, 0)
+        assert w.norm_sq() == u.norm_sq() * v.norm_sq()
+        for alpha, beta in alpha_beta_samples:
+            ru = rot_pair_u(u, v, alpha, beta)
+            rv = rot_pair_v(u, v, alpha, beta)
+            assert ru.dot(rv) == GaussRat.of_ints(0, 0)
+            assert ru.dot(w) == GaussRat.of_ints(0, 0)
+            assert rv.dot(w) == GaussRat.of_ints(0, 0)
+            assert ru.norm_sq() == alpha.norm_sq() * u.norm_sq() + beta.norm_sq() * v.norm_sq()
+            assert rv.norm_sq() == u.norm_sq() * v.norm_sq() * ru.norm_sq()
+            assert quad_ray(rho_sample, ru) + quad_ray(rho_sample, rv) == (
+                quad_ray(rho_sample, u) + quad_ray(rho_sample, v)
+            )
+            for p_prime in (3, 7, 11):
+                assert sp(ru, p_prime) + sp(rv, p_prime) == (
+                    sp(u, p_prime) + sp(v, p_prime)
+                )
+
+    # 2. Exact operator-space parallelogram identity (rayProj_ortho_add_sub,
+    #    factorsThroughRayProjLinear_ortho_add_sub, satisfiesOrthoParallelogramZero_of_factorsThroughRayProjLinear)
+    for u, v in ortho_pairs:
+        u_plus_v = gvec_add(u, v)
+        u_minus_v = gvec_sub(u, v)
+        assert u_plus_v.norm_sq() == u.norm_sq() + v.norm_sq()
+        assert u_minus_v.norm_sq() == u.norm_sq() + v.norm_sq()
+        lhs_op = herm_add(ray_proj(u_plus_v), ray_proj(u_minus_v))
+        w_u = (2 * u.norm_sq()) / (u.norm_sq() + v.norm_sq())
+        w_v = (2 * v.norm_sq()) / (u.norm_sq() + v.norm_sq())
+        rhs_op = herm_add(herm_smul(w_u, ray_proj(u)), herm_smul(w_v, ray_proj(v)))
+        assert lhs_op == rhs_op
+        assert quad_ray(rho_sample, u_plus_v) + quad_ray(rho_sample, u_minus_v) == (
+            w_u * quad_ray(rho_sample, u) + w_v * quad_ray(rho_sample, v)
+        )
+
+    # 3. Coordinate-sign symmetry and violation of SatisfiesOrthoParallelogramZero by s3, s7, sp 11
+    #    (sp_isCoordSignSymmetric, sp_vanishes_on_coord_axes,
+    #     zero_of_coordSignSymmetric_and_orthoParallelogram,
+    #     s3_not_satisfiesOrthoParallelogramZero, s7_not_satisfiesOrthoParallelogramZero,
+    #     sp11_not_satisfiesOrthoParallelogramZero)
+    parallelogram_counterexamples = [
+        (3, gv(0, 0, 1, 0, 1, 0)),
+        (7, gv(0, 0, 2, 0, 1, 1)),
+        (11, gv(0, 0, 3, 0, 1, 0)),
+    ]
+    for p_prime, y_part in parallelogram_counterexamples:
+        assert E1.dot(y_part) == GaussRat.of_ints(0, 0)
+        assert sp(E1, p_prime) == Fraction(0)
+        assert sp(y_part, p_prime) == Fraction(0)
+        u_plus = gvec_add(E1, y_part)
+        u_minus = gvec_sub(E1, y_part)
+        assert sp(u_plus, p_prime) == Fraction(1)
+        assert sp(u_minus, p_prime) == Fraction(1)
+        assert sp(u_plus, p_prime) + sp(u_minus, p_prime) == Fraction(2) != Fraction(0)
+
+    # 4. Six equatorial witnesses in e1^perp isolating (sp 3, sp 7, sp 11) with +-1
+    #    and pure-state nonnegativity eliminating combResidual3_7_11 at north pole tomo_e1
+    #    (sp_eqWitness_values, pure_pole_e1_nonneg_eliminates_combResidual3_7_11)
+    eq_witness_3 = gv(0, 0, 1, 0, 1, 1)
+    eq_witness_3_neg = gv(0, 0, 1, 1, 1, 0)
+    eq_witness_7 = gv(0, 0, 1, 1, 2, 1)
+    eq_witness_7_neg = gv(0, 0, 2, 1, 1, 1)
+    eq_witness_11 = gv(0, 0, 3, 0, 1, 1)
+    eq_witness_11_neg = gv(0, 0, 1, 1, 3, 0)
+    eq_witness_table = [
+        (eq_witness_3, (Fraction(1), Fraction(0), Fraction(0))),
+        (eq_witness_3_neg, (Fraction(-1), Fraction(0), Fraction(0))),
+        (eq_witness_7, (Fraction(0), Fraction(1), Fraction(0))),
+        (eq_witness_7_neg, (Fraction(0), Fraction(-1), Fraction(0))),
+        (eq_witness_11, (Fraction(0), Fraction(0), Fraction(1))),
+        (eq_witness_11_neg, (Fraction(0), Fraction(0), Fraction(-1))),
+    ]
+    p_e1 = ray_proj(E1)
+    for w_vec, (e3, e7, e11) in eq_witness_table:
+        assert w_vec.x == GaussRat.of_ints(0, 0)
+        assert quad_ray(p_e1, w_vec) == Fraction(0)
+        assert sp(w_vec, 3) == e3
+        assert sp(w_vec, 7) == e7
+        assert sp(w_vec, 11) == e11
+
+    for c3, c7, c11 in [
+        (Fraction(0), Fraction(0), Fraction(0)),
+        (Fraction(1, 5), Fraction(0), Fraction(0)),
+        (Fraction(0), Fraction(-1, 7), Fraction(0)),
+        (Fraction(0), Fraction(0), Fraction(1, 11)),
+        (Fraction(1, 9), Fraction(-1, 9), Fraction(1, 9)),
+    ]:
+        all_nonneg_on_equator = all(
+            quad_ray(p_e1, w_vec)
+            + c3 * sp(w_vec, 3)
+            + c7 * sp(w_vec, 7)
+            + c11 * sp(w_vec, 11)
+            >= Fraction(0)
+            for w_vec, _ in eq_witness_table
+        )
+        assert all_nonneg_on_equator == (c3 == 0 and c7 == 0 and c11 == 0)
+
+    # 5. Piron frame-rotation sum, monotone descent, meridian complement, step distance,
+    #    and Pythagorean equatorial rotations (piron_frame_sum_identity,
+    #    piron_descent_le_of_pole_one, meridian_complement_of_pole_one,
+    #    normSqVec_pythagEqRot, quadRay_rayProj_e1_pythagEqRot, distSqVec_pironStep_inv_nat)
+    for y_eq, _ in eq_witness_table[:3]:
+        for k_step in range(1, 6):
+            lam = GaussRat(Fraction(1, k_step), Fraction(0))
+            u_base = gvec_add(E1, y_eq)
+            v_base = gvec_smul(lam, eq_ortho(y_eq))
+            w_mer = meridian_ortho(y_eq)
+            p_step = piron_step(y_eq, lam)
+            p_part = piron_partner(y_eq, lam)
+            assert p_step == rot_pair_u(u_base, v_base, GaussRat.of_ints(1, 0), GaussRat.of_ints(1, 0))
+            assert p_part == rot_pair_v(u_base, v_base, GaussRat.of_ints(1, 0), GaussRat.of_ints(1, 0))
+            assert u_base.dot(v_base) == GaussRat.of_ints(0, 0)
+            assert u_base.dot(w_mer) == GaussRat.of_ints(0, 0)
+            assert v_base.dot(w_mer) == GaussRat.of_ints(0, 0)
+            assert p_step.dot(p_part) == GaussRat.of_ints(0, 0)
+            assert quad_ray(p_e1, p_step) + quad_ray(p_e1, p_part) == (
+                quad_ray(p_e1, u_base) + quad_ray(p_e1, v_base)
+            )
+            assert quad_ray(p_e1, p_step) <= quad_ray(p_e1, u_base)
+            assert quad_ray(p_e1, u_base) + quad_ray(p_e1, w_mer) == Fraction(1)
+            assert gvec_sub(p_step, u_base).norm_sq() == y_eq.norm_sq() / Fraction(k_step * k_step)
+
+            y_rot = pythag_eq_rot(y_eq, k_step)
+            assert y_rot.x == GaussRat.of_ints(0, 0)
+            assert y_rot.norm_sq() == y_eq.norm_sq()
+            assert gvec_add(E1, y_rot).norm_sq() == u_base.norm_sq()
+            assert quad_ray(p_e1, gvec_add(E1, y_rot)) == quad_ray(p_e1, u_base)
+
+
 def test_independent_check_scripts_pass(tomography_mod, frame_functions_mod) -> None:
     """Run all three independent check scripts for FQ-GLEASON-QI3-FRAME-FUNCTIONS."""
     tomography_mod.main()
@@ -1733,6 +1945,34 @@ def test_fq_gleason_qi3_frame_functions_end_to_end() -> None:
         "theorem factorsThroughRayProjLinear_finCombResidual_iff",
         "theorem joint_field_extension_eliminates_finCombResidual",
         "theorem finCombResidual_inertSystem37_eq_combResidual37",
+        "theorem inner_rotPairU_rotPairV_eq_zero",
+        "theorem normSqVec_add_eq_normSqVec_sub_of_ortho",
+        "theorem normSqVec_rotPairU",
+        "theorem normSqVec_rotPairV",
+        "theorem isFrame_rotPair",
+        "theorem frameFunction_rotPair_sum",
+        "theorem zeroWeight_rotPair_sum",
+        "theorem rayProj_ortho_add_sub",
+        "theorem factorsThroughRayProjLinear_ortho_add_sub",
+        "theorem satisfiesOrthoParallelogramZero_of_factorsThroughRayProjLinear",
+        "theorem sp_isCoordSignSymmetric",
+        "theorem sp_vanishes_on_coord_axes",
+        "theorem zero_of_coordSignSymmetric_and_orthoParallelogram",
+        "theorem s3_not_satisfiesOrthoParallelogramZero",
+        "theorem s7_not_satisfiesOrthoParallelogramZero",
+        "theorem sp11_not_satisfiesOrthoParallelogramZero",
+        "theorem isFrame_hermCross",
+        "theorem nonneg_eq_zero_on_perp_of_pole_one",
+        "theorem pure_pole_e1_nonneg_eliminates_combResidual3_7_11",
+        "theorem piron_frame_sum_identity",
+        "theorem piron_descent_le_of_pole_one",
+        "theorem meridian_complement_of_pole_one",
+        "theorem normSqVec_pythagEqRot",
+        "theorem quadRay_rayProj_e1_pythagEqRot",
+        "theorem distSqVec_pironStep_inv_nat",
+        "theorem exists_pironStep_within_delta",
+        "theorem zero_of_nonneg_zeroWeightFrameFunction",
+        "theorem nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual",
     ]
     for decl in required_theorems:
         assert decl in content, f"Missing declaration {decl!r} in {LEAN_TOMOGRAPHY_FILE}"

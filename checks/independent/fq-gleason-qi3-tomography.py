@@ -653,6 +653,139 @@ def main() -> None:
         "Q(i, sqrt(11))^3 frame has rational squared norms (11, 1210, 1210) with even v3, v7, and v11 on partners",
     )
 
+    # Section 9F: Planar frame-rotation pairs, operator parallelogram law,
+    # coordinate-sign symmetry vs. orthogonal parallelogram law, equatorial pole
+    # witnesses, and Piron / Pythagorean equatorial rotations on Q(i)^3.
+    def g_mul_c(a: tuple[Fraction, Fraction], b: tuple[Fraction, Fraction]) -> tuple[Fraction, Fraction]:
+        return (a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0])
+
+    def g_conj_c(a: tuple[Fraction, Fraction]) -> tuple[Fraction, Fraction]:
+        return (a[0], -a[1])
+
+    def g_add_vec(u: GVec, v: GVec) -> GVec:
+        return tuple((a[0] + b[0], a[1] + b[1]) for a, b in zip(u, v))  # type: ignore[return-value]
+
+    def g_sub_vec(u: GVec, v: GVec) -> GVec:
+        return tuple((a[0] - b[0], a[1] - b[1]) for a, b in zip(u, v))  # type: ignore[return-value]
+
+    def g_smul_vec(c: tuple[Fraction, Fraction], u: GVec) -> GVec:
+        return tuple(g_mul_c(c, a) for a in u)  # type: ignore[return-value]
+
+    def rot_pair_u(u: GVec, v: GVec, a: tuple[Fraction, Fraction], b: tuple[Fraction, Fraction]) -> GVec:
+        return g_add_vec(g_smul_vec(a, u), g_smul_vec(b, v))
+
+    def rot_pair_v(u: GVec, v: GVec, a: tuple[Fraction, Fraction], b: tuple[Fraction, Fraction]) -> GVec:
+        nu = (vec_norm_sq(u), Fraction(0))
+        nv = (vec_norm_sq(v), Fraction(0))
+        c1 = g_mul_c((-nv[0], Fraction(0)), g_conj_c(b))
+        c2 = g_mul_c(nu, g_conj_c(a))
+        return g_add_vec(g_smul_vec(c1, u), g_smul_vec(c2, v))
+
+    def eq_ortho(y: GVec) -> GVec:
+        return ((Fraction(0), Fraction(0)), (-y[2][0], y[2][1]), (y[1][0], -y[1][1]))
+
+    def piron_step(y: GVec, lam: tuple[Fraction, Fraction]) -> GVec:
+        return g_add_vec(g_add_vec(nine_rays_gvec[0], y), g_smul_vec(lam, eq_ortho(y)))
+
+    def piron_partner(y: GVec, lam: tuple[Fraction, Fraction]) -> GVec:
+        ny = vec_norm_sq(y)
+        c1 = (-g_norm_sq(lam) * ny, Fraction(0))
+        c2 = g_mul_c((Fraction(1) + ny, Fraction(0)), lam)
+        return g_add_vec(
+            g_smul_vec(c1, g_add_vec(nine_rays_gvec[0], y)),
+            g_smul_vec(c2, eq_ortho(y)),
+        )
+
+    def meridian_ortho(y: GVec) -> GVec:
+        return g_add_vec(g_smul_vec((-vec_norm_sq(y), Fraction(0)), nine_rays_gvec[0]), y)
+
+    def pythag_eq_rot(y: GVec, k: int) -> GVec:
+        kf = Fraction(k)
+        c1 = ((kf * kf - 1) / (kf * kf + 1), Fraction(0))
+        c2 = ((2 * kf) / (kf * kf + 1), Fraction(0))
+        return g_add_vec(g_smul_vec(c1, y), g_smul_vec(c2, eq_ortho(y)))
+
+    def quad_ray_e1(u: GVec) -> Fraction:
+        return g_norm_sq(u[0]) / vec_norm_sq(u)
+
+    eq_witness_3 = gv_int(0, 0, 1, 0, 1, 1)
+    eq_witness_3_neg = gv_int(0, 0, 1, 1, 1, 0)
+    eq_witness_7 = gv_int(0, 0, 1, 1, 2, 1)
+    eq_witness_7_neg = gv_int(0, 0, 2, 1, 1, 1)
+    eq_witness_11 = gv_int(0, 0, 3, 0, 1, 1)
+    eq_witness_11_neg = gv_int(0, 0, 1, 1, 3, 0)
+    eq_witness_table = [
+        (eq_witness_3, (1, 0, 0)),
+        (eq_witness_3_neg, (-1, 0, 0)),
+        (eq_witness_7, (0, 1, 0)),
+        (eq_witness_7_neg, (0, -1, 0)),
+        (eq_witness_11, (0, 0, 1)),
+        (eq_witness_11_neg, (0, 0, -1)),
+    ]
+    for w_vec, (e3, e7, e11) in eq_witness_table:
+        require(
+            quad_ray_e1(w_vec) == 0
+            and sp_residual(w_vec, 3) == e3
+            and sp_residual(w_vec, 7) == e7
+            and sp_residual(w_vec, 11) == e11,
+            "equatorial witness table isolates (sp 3, sp 7, sp 11) with +-1 in e1^perp",
+        )
+
+    # Verify failure of orthogonal parallelogram law for s3, s7, sp 11:
+    # e1 + (0, 1, 1) = witness_111 (norm 3, s3 = +1),
+    # e1 + (0, 2, 1+i) = witness_p7 (norm 7, s7 = +1),
+    # e1 + (0, 3, 1) = witness_p11 (norm 11, sp 11 = +1),
+    # and by coordinate-sign symmetry sp p (e1 + y) + sp p (e1 - y) = 2 != 0.
+    parallelogram_counterexamples = [
+        (3, gv_int(0, 0, 1, 0, 1, 0)),
+        (7, gv_int(0, 0, 2, 0, 1, 1)),
+        (11, gv_int(0, 0, 3, 0, 1, 0)),
+    ]
+    for p_prime, w_pos in parallelogram_counterexamples:
+        u_plus = g_add_vec(nine_rays_gvec[0], w_pos)
+        u_minus = g_sub_vec(nine_rays_gvec[0], w_pos)
+        require(
+            g_inner(nine_rays_gvec[0], w_pos) == (Fraction(0), Fraction(0))
+            and sp_residual(u_plus, p_prime) == Fraction(1)
+            and sp_residual(u_minus, p_prime) == Fraction(1)
+            and sp_residual(u_plus, p_prime) + sp_residual(u_minus, p_prime) == Fraction(2),
+            f"sp {p_prime} violates orthogonal parallelogram zero law on (e1, w_pos)",
+        )
+
+    # Verify Piron step / partner / meridian identities and Pythagorean equatorial rotations:
+    for y_eq in [eq_witness_3, eq_witness_7, eq_witness_11]:
+        for k_step in range(1, 5):
+            lam_step = (Fraction(1, k_step), Fraction(0))
+            u_base = g_add_vec(nine_rays_gvec[0], y_eq)
+            v_base = g_smul_vec(lam_step, eq_ortho(y_eq))
+            w_mer = meridian_ortho(y_eq)
+            p_step = piron_step(y_eq, lam_step)
+            p_part = piron_partner(y_eq, lam_step)
+            require(
+                p_step == rot_pair_u(u_base, v_base, (Fraction(1), Fraction(0)), (Fraction(1), Fraction(0)))
+                and p_part == rot_pair_v(u_base, v_base, (Fraction(1), Fraction(0)), (Fraction(1), Fraction(0)))
+                and g_inner(u_base, v_base) == (Fraction(0), Fraction(0))
+                and g_inner(u_base, w_mer) == (Fraction(0), Fraction(0))
+                and g_inner(v_base, w_mer) == (Fraction(0), Fraction(0))
+                and g_inner(p_step, p_part) == (Fraction(0), Fraction(0)),
+                "Piron base and rotated frames are pairwise orthogonal",
+            )
+            require(
+                quad_ray_e1(p_step) + quad_ray_e1(p_part) == quad_ray_e1(u_base) + quad_ray_e1(v_base)
+                and quad_ray_e1(p_step) <= quad_ray_e1(u_base)
+                and quad_ray_e1(u_base) + quad_ray_e1(w_mer) == Fraction(1)
+                and vec_norm_sq(g_sub_vec(p_step, u_base)) == vec_norm_sq(y_eq) / Fraction(k_step * k_step),
+                "Piron frame-rotation sum, monotone descent, meridian complement, and step distance hold",
+            )
+            y_rot = pythag_eq_rot(y_eq, k_step)
+            require(
+                y_rot[0] == (Fraction(0), Fraction(0))
+                and vec_norm_sq(y_rot) == vec_norm_sq(y_eq)
+                and vec_norm_sq(g_add_vec(nine_rays_gvec[0], y_rot)) == vec_norm_sq(u_base)
+                and quad_ray_e1(g_add_vec(nine_rays_gvec[0], y_rot)) == quad_ray_e1(u_base),
+                "Pythagorean equatorial rotation preserves norm and north-pole Born weight",
+            )
+
     print(json.dumps({"status": "PASS", "sympy_version": sp.__version__,
                       "tomography_rank": tomography.rank(),
                       "s3_witness_111": int(s3(witness_111)),
@@ -664,9 +797,11 @@ def main() -> None:
                       "sqrt3_frame_norms": [3, 18, 18],
                       "sqrt7_frame_norms": [7, 245, 245],
                       "sqrt11_frame_norms": [11, 1210, 1210],
-                      "scope": "symbolic algebra controls, uniform sp_residual (p in {3,7,11}), selective oscillation, and joint elimination"},
+                      "piron_ortho_parallelogram_sums": [2, 2, 2],
+                      "scope": "symbolic algebra controls, uniform sp_residual (p in {3,7,11}), selective oscillation, joint elimination, and Piron/parallelogram/continuity bridge"},
                      sort_keys=True))
 
 
 if __name__ == "__main__":
     main()
+

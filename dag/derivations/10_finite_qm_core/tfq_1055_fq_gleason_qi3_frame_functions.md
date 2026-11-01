@@ -150,6 +150,34 @@ Finite obstructions, nine-ray reductions, global 3-adic and 7-adic non-quadratic
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_smul`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp11_isZeroWeightFrameFunction`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.combResidual3_7_11_isZeroWeightFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.inner_rotPairU_rotPairV_eq_zero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.normSqVec_add_eq_normSqVec_sub_of_ortho`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.normSqVec_rotPairU`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.normSqVec_rotPairV`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.isFrame_rotPair`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.frameFunction_rotPair_sum`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.zeroWeight_rotPair_sum`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.rayProj_ortho_add_sub`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.factorsThroughRayProjLinear_ortho_add_sub`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.satisfiesOrthoParallelogramZero_of_factorsThroughRayProjLinear`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_isCoordSignSymmetric`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_vanishes_on_coord_axes`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.zero_of_coordSignSymmetric_and_orthoParallelogram`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s3_not_satisfiesOrthoParallelogramZero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.s7_not_satisfiesOrthoParallelogramZero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp11_not_satisfiesOrthoParallelogramZero`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.isFrame_hermCross`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.nonneg_eq_zero_on_perp_of_pole_one`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.pure_pole_e1_nonneg_eliminates_combResidual3_7_11`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.piron_frame_sum_identity`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.piron_descent_le_of_pole_one`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.meridian_complement_of_pole_one`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.normSqVec_pythagEqRot`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.quadRay_rayProj_e1_pythagEqRot`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.distSqVec_pironStep_inv_nat`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.exists_pironStep_within_delta`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.zero_of_nonneg_zeroWeightFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual`
 
 ### Rust Certifiers
 - *none cited*
@@ -165,6 +193,7 @@ Finite obstructions, nine-ray reductions, global 3-adic and 7-adic non-quadratic
 - `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_archimedean_discontinuity_and_field_extension_elimination`
 - `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_multi_prime_s3_s7_linear_independence_and_joint_elimination`
 - `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_uniform_sp_family_p11_and_finite_inert_residual_system`
+- `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_piron_frame_rotation_parallelogram_and_continuity_bridge`
 - `code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_independent_check_scripts_pass`
 
 ---
