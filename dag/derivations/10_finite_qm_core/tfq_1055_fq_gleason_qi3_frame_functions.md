@@ -142,6 +142,14 @@ Finite obstructions, nine-ray reductions, global 3-adic and 7-adic non-quadratic
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.factorsThroughRayProjLinear_finCombResidual_iff`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.joint_field_extension_eliminates_finCombResidual`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.finCombResidual_inertSystem37_eq_combResidual37`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.inertPrimeSpec_eleven`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.vpRat_normSq_even`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.frame_vpRat_sum_even`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_orthogonal_odd_cancel`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_isZeroWeightFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp_smul`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.sp11_isZeroWeightFrameFunction`
+- `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.combResidual3_7_11_isZeroWeightFrameFunction`
 
 ### Rust Certifiers
 - *none cited*

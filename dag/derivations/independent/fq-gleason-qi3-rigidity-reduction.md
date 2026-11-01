@@ -450,15 +450,19 @@ tomography rays):
   `primitive_gaussian_norm_mod_four_iff`, `gaussian_norm_div_four_witness`,
   `gaussian_norm_eight_primitive_witness`) is kernel-checked in
   `lean4/BornGaussianTomographyReduction.lean`.
-- The uniform prime-indexed residual family `sp p` (`sp_three_eq_s3`,
-  `sp_seven_eq_s7`, `sp_isBoundedOnRays`, `sp_vanishes_on_nine_rays`), the global
-  bounded `{-1, 0, +1}`-valued `3`-adic and `7`-adic zero-weight residuals `s3`
-  and `s7` (`v3Rat_normSq_even`, `v7Rat_normSq_even`, `detGVec_normSq_of_frame`,
-  `frame_v3Rat_sum_even`, `frame_v7Rat_sum_even`, `ortho_coord_identity_x`,
-  `s3_orthogonal_odd_cancel`, `s7_orthogonal_odd_cancel`,
-  `s3_isZeroWeightFrameFunction`, `s7_isZeroWeightFrameFunction`, `s3_smul`,
-  `s7_smul`, `s3_isBoundedOnRays`, `s7_isBoundedOnRays`,
-  `s3_vanishes_on_nine_rays`, `s7_vanishes_on_nine_rays`,
+- The uniform prime-indexed residual family `sp p` and its decidable modular
+  specification `InertPrimeSpec p` (`sp_three_eq_s3`, `sp_seven_eq_s7`,
+  `sp_isBoundedOnRays`, `sp_vanishes_on_nine_rays`, `inertPrimeSpec_eleven`,
+  `vpRat_normSq_even`, `frame_vpRat_sum_even`, `sp_orthogonal_odd_cancel`,
+  `sp_isZeroWeightFrameFunction`, `sp_smul`, `sp11_isZeroWeightFrameFunction`,
+  `combResidual3_7_11_isZeroWeightFrameFunction`), the global bounded
+  `{-1, 0, +1}`-valued `3`-adic, `7`-adic, and `11`-adic zero-weight residuals
+  `s3`, `s7`, and `sp 11` (`v3Rat_normSq_even`, `v7Rat_normSq_even`,
+  `detGVec_normSq_of_frame`, `frame_v3Rat_sum_even`, `frame_v7Rat_sum_even`,
+  `ortho_coord_identity_x`, `s3_orthogonal_odd_cancel`,
+  `s7_orthogonal_odd_cancel`, `s3_isZeroWeightFrameFunction`,
+  `s7_isZeroWeightFrameFunction`, `s3_smul`, `s7_smul`, `s3_isBoundedOnRays`,
+  `s7_isBoundedOnRays`, `s3_vanishes_on_nine_rays`, `s7_vanishes_on_nine_rays`,
   `witness_111_primitive`, `witness_p7_primitive`, `witness_p11_primitive`,
   `witness_div_four_shell_primitive`, `witness_div_eight_shell_primitive`,
   `exists_nonzero_bounded_zero_residual`, `s3_s7_dual_on_witnesses`,
@@ -529,16 +533,19 @@ extension. No continuum Gleason theorem is used.
 - **What it does not support**: This artifact does not classify the full
   infinite-dimensional vector space of all non-quadratic zero-weight residuals
   across every inert prime `p ≡ 3 (mod 4)` simultaneously without projector
-  linearity, nor does it establish uniform prime-generic frame-additivity
-  (`IsZeroWeightFrameFunction (sp p)`) for arbitrary symbolic prime `p ≡ 3 (mod 4)`
-  beyond the explicit `p ∈ {3, 7}` proof and finite `InertPrimeResidualSystem m`
-  interface, nor does it close `FQ-GAP-BORN-UNIQUENESS-GLEASON`.
+  linearity, nor does it bridge `Nat.Prime p ∧ p % 4 = 3` to the decidable
+  modular specification `InertPrimeSpec p` for symbolic prime `p` without
+  instantiating `p`, nor does it close `FQ-GAP-BORN-UNIQUENESS-GLEASON`.
 - **Narrowest defensible claim**: On `Q(i)^3`, the uniform prime-indexed family
-  `sp p` recovers `s3` and `s7` (`sp_three_eq_s3`, `sp_seven_eq_s7`), is
-  `{-1, 0, +1}`-valued and vanishes on the 9 tomography rays for all `p >= 3`
-  (`sp_isBoundedOnRays`, `sp_vanishes_on_nine_rays`), yields 3D Kronecker-delta
-  duality and `Q`-linear independence at `p ∈ {3, 7, 11}` via `witness_p11 = (1, 3, 1)`
-  (`s3_s7_sp11_dual_on_three_witnesses`, `s3_s7_sp11_linearIndependent`,
+  `sp p` recovers `s3` and `s7` (`sp_three_eq_s3`, `sp_seven_eq_s7`), is a
+  global `{-1, 0, +1}`-valued zero-weight frame residual vanishing on the 9
+  tomography rays for every `p` satisfying `InertPrimeSpec p`
+  (`sp_isZeroWeightFrameFunction`, `sp_smul`, `sp_isBoundedOnRays`,
+  `sp_vanishes_on_nine_rays`, instantiated at `p ∈ {3, 7, 11}` via
+  `inertPrimeSpec_eleven` and `sp11_isZeroWeightFrameFunction`), yields 3D
+  Kronecker-delta duality and `Q`-linear independence at `p ∈ {3, 7, 11}` via
+  `witness_p11 = (1, 3, 1)` (`s3_s7_sp11_dual_on_three_witnesses`,
+  `s3_s7_sp11_linearIndependent`, `combResidual3_7_11_isZeroWeightFrameFunction`,
   `rayProj_witness_p11_decomp`, `isFrameSqrt11_witness_p11_norms`), and for any
   finite `InertPrimeResidualSystem m` of size `m`, the `m`-parameter combination
   `finCombResidual m S.R c` and nonnegative `ell^1`-cross-polytope family
@@ -549,10 +556,9 @@ extension. No continuum Gleason theorem is used.
   `finExoticComb_archimedeanContinuousAt_tomo_e1_iff`), by operator-space
   projector linearity (`factorsThroughRayProjLinear_finCombResidual_iff`), or by
   joint quadratic field extension (`joint_field_extension_eliminates_finCombResidual`).
-- **Next test needed**: Formalize the prime-generic Legendre-symbol multiplicativity
-  and odd-`v_p` orthogonal frame cancellation `IsZeroWeightFrameFunction (sp p)`
-  for arbitrary symbolic prime `p ≡ 3 (mod 4)` in Lean 4 using Mathlib's
-  `ZMod p` quadratic character theory, and test whether non-adic bounded
-  zero-weight residuals exist outside the inert-prime span on `Q(i)^3`.
+- **Next test needed**: Formalize the implication from symbolic primality
+  `Nat.Prime p ∧ p % 4 = 3` to `InertPrimeSpec p` in Lean 4 (using Euler's
+  criterion in `ZMod p`) and instantiate `inertSystem3_7_11 : InertPrimeResidualSystem 3`
+  with product-scaled `231 * k` selective perturbation rays in Lean 4.
 
 
