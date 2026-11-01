@@ -7,34 +7,34 @@
     "artifact": {
       "language": "Lean 4",
       "path": "lean4/BornGaussianTomographyReduction.lean",
-      "sha256": "78656d778239f67669dc7dfcc91e4b0275ae2b5eaf9bdd0437a51205096629b7"
+      "sha256": "8dbdae30d51c10d2d29e9855bf775d1491968d72bbfffa296f3f0e75b2b35f96"
     },
     "boundaries": [
       "Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.",
       "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN."
     ],
-    "claim": "Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, the global {-1, 0, +1}-valued 3-adic zero-weight residual s3 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame function exoticQi3 = (1 + s3) / 3, and Section 9 regularity/continuity/field-extension elimination theorems.",
+    "claim": "Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, the global {-1, 0, +1}-valued 3-adic and 7-adic zero-weight residuals s3 and s7 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame functions exoticQi3 = (1 + s3) / 3 and exoticQi7 = (1 + s7) / 3, their 2D linearly independent subspace combResidual37, and Section 9 regularity/continuity/field-extension/projector-linearity elimination theorems.",
     "contract_urn": "urn:tfqm:fq-gleason-qi3:borngaussiantomo",
     "evidence": [
       {
         "path": "dag/research/fq_gleason_qi3_assessment.json",
-        "sha256": "da2584d3bd8f9d5ba57c77168eafd091a9f9b629ca467869c99510cbea3e908f"
+        "sha256": "447172e7a9264926c40efb3225afd16f1b124af5e428916104980ee2dd996241"
       },
       {
         "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
-        "sha256": "79b45de4fb757b509f12facf6f9d30a986a637e3cb86ed26e54dee56d54e34c6"
+        "sha256": "f1d084b9a7ae74bfbc4b5a7a97ab684c671651f3e8a3b8111e0fc40f859e44a8"
       },
       {
         "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
-        "sha256": "17716de5369a75261b8ebb179cc537cd2bcb9e5d11acb9607baf916e9720da8c"
+        "sha256": "2b0d73fcb9d9c060b6600ce66df5ab5d2f743ce2f4c359ec2824a03bdc649bb4"
       },
       {
         "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
-        "sha256": "42d61be71e5a2c33d3e029d5e229eab3e056148f1a104ac0a960f941282be2df"
+        "sha256": "2bc1789bcae3b67a2a1490d04b58c6d4661a5ecfa8d6c35f1ce08a5fe33a7eb0"
       }
     ],
     "owned_invariants": [
-      "Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, the global {-1, 0, +1}-valued 3-adic zero-weight residual s3 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame function exoticQi3 = (1 + s3) / 3, and Section 9 regularity/continuity/field-extension elimination theorems.",
+      "Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, the global {-1, 0, +1}-valued 3-adic and 7-adic zero-weight residuals s3 and s7 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame functions exoticQi3 = (1 + s3) / 3 and exoticQi7 = (1 + s7) / 3, their 2D linearly independent subspace combResidual37, and Section 9 regularity/continuity/field-extension/projector-linearity elimination theorems.",
       "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status."
     ],
     "schema_id": "tfqm.source-contract.v1",
@@ -84,49 +84,83 @@
       "BornFinite.GaussianTomography.quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff",
       "BornFinite.GaussianTomography.unit_norm_in_sqrtP_of_normSqVec_eq",
       "BornFinite.GaussianTomography.fourSquarePartner_ortho_and_normSqRatP",
-      "BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms"
+      "BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms",
+      "BornFinite.GaussianTomography.v7Rat_normSq_even",
+      "BornFinite.GaussianTomography.frame_v7Rat_sum_even",
+      "BornFinite.GaussianTomography.s7_orthogonal_odd_cancel",
+      "BornFinite.GaussianTomography.s7_isZeroWeightFrameFunction",
+      "BornFinite.GaussianTomography.s7_smul",
+      "BornFinite.GaussianTomography.s7_isBoundedOnRays",
+      "BornFinite.GaussianTomography.s7_vanishes_on_nine_rays",
+      "BornFinite.GaussianTomography.witness_p7_primitive",
+      "BornFinite.GaussianTomography.s3_s7_dual_on_witnesses",
+      "BornFinite.GaussianTomography.exoticQi7_isNonnegFrameFunction",
+      "BornFinite.GaussianTomography.exoticQi7_not_quadratic",
+      "BornFinite.GaussianTomography.combResidual37_isZeroWeightFrameFunction",
+      "BornFinite.GaussianTomography.combResidual37_vanishes_on_nine_rays",
+      "BornFinite.GaussianTomography.combResidual37_isBoundedOnRays",
+      "BornFinite.GaussianTomography.s3_s7_linearIndependent",
+      "BornFinite.GaussianTomography.s7_perturb7PosRay",
+      "BornFinite.GaussianTomography.s7_perturb7NegRay",
+      "BornFinite.GaussianTomography.s3_perturb7PosRay",
+      "BornFinite.GaussianTomography.s3_perturb7NegRay",
+      "BornFinite.GaussianTomography.s7_perturbPosRay_seven_mul",
+      "BornFinite.GaussianTomography.s7_perturbNegRay_seven_mul",
+      "BornFinite.GaussianTomography.distSqVec_perturb7PosRay_tomo_e1",
+      "BornFinite.GaussianTomography.distSqVec_perturb7NegRay_tomo_e1",
+      "BornFinite.GaussianTomography.s3_s7_selective_oscillation_near_tomo_e1",
+      "BornFinite.GaussianTomography.not_archimedeanContinuousAt_s7_tomo_e1",
+      "BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi7_tomo_e1",
+      "BornFinite.GaussianTomography.combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1",
+      "BornFinite.GaussianTomography.quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff",
+      "BornFinite.GaussianTomography.no_unit_norm_smul_witness_p7_in_qi3",
+      "BornFinite.GaussianTomography.zero_on_witness_p7_of_sqrt7_even_v7_vanishing",
+      "BornFinite.GaussianTomography.no_s7_even_v7_extension_to_sqrt7",
+      "BornFinite.GaussianTomography.joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37",
+      "BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s7",
+      "BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual37_iff"
     ]
   },
   "contract_history": [
     {
-      "bytes": 5628,
+      "bytes": 8212,
       "original_paths": [
         "lean4/BornGaussianTomographyReduction.contract.score.yaml#fq-gleason-qi3-2026-11-01"
       ],
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/BornGaussianTomographyReduction.lean\",\n    \"sha256\": \"78656d778239f67669dc7dfcc91e4b0275ae2b5eaf9bdd0437a51205096629b7\"\n  },\n  \"boundaries\": [\n    \"Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.\",\n    \"Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN.\"\n  ],\n  \"claim\": \"Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, the global {-1, 0, +1}-valued 3-adic zero-weight residual s3 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame function exoticQi3 = (1 + s3) / 3, and Section 9 regularity/continuity/field-extension elimination theorems.\",\n  \"contract_urn\": \"urn:tfqm:fq-gleason-qi3:borngaussiantomo\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/fq_gleason_qi3_assessment.json\",\n      \"sha256\": \"da2584d3bd8f9d5ba57c77168eafd091a9f9b629ca467869c99510cbea3e908f\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json\",\n      \"sha256\": \"79b45de4fb757b509f12facf6f9d30a986a637e3cb86ed26e54dee56d54e34c6\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-frame-functions.md\",\n      \"sha256\": \"17716de5369a75261b8ebb179cc537cd2bcb9e5d11acb9607baf916e9720da8c\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md\",\n      \"sha256\": \"42d61be71e5a2c33d3e029d5e229eab3e056148f1a104ac0a960f941282be2df\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, the global {-1, 0, +1}-valued 3-adic zero-weight residual s3 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame function exoticQi3 = (1 + s3) / 3, and Section 9 regularity/continuity/field-extension elimination theorems.\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status.\"\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"BornFinite.GaussianTomography.quadRay_frame_sum\",\n    \"BornFinite.GaussianTomography.tomography_matches_nine_rays\",\n    \"BornFinite.GaussianTomography.tomography_unique\",\n    \"BornFinite.GaussianTomography.signed_rigidity_iff_zero_residual\",\n    \"BornFinite.GaussianTomography.nonneg_rigidity_iff_bounded_zero_residual\",\n    \"BornFinite.GaussianTomography.primitive_gaussian_norm_mod_four_iff\",\n    \"BornFinite.GaussianTomography.eq_quadRay_all_of_zero_at_zero\",\n    \"BornFinite.GaussianTomography.traceInner_self_eq_zero_iff\",\n    \"BornFinite.GaussianTomography.traceInner_ext\",\n    \"BornFinite.GaussianTomography.traceInner_rayProj\",\n    \"BornFinite.GaussianTomography.rayProj_frame_sum\",\n    \"BornFinite.GaussianTomography.rayProj_nine_rays_span_hermForm3\",\n    \"BornFinite.GaussianTomography.v3Rat_normSq_even\",\n    \"BornFinite.GaussianTomography.frame_v3Rat_sum_even\",\n    \"BornFinite.GaussianTomography.ortho_coord_identity_x\",\n    \"BornFinite.GaussianTomography.s3_isZeroWeightFrameFunction\",\n    \"BornFinite.GaussianTomography.s3_isBoundedOnRays\",\n    \"BornFinite.GaussianTomography.s3_vanishes_on_nine_rays\",\n    \"BornFinite.GaussianTomography.witness_111_primitive\",\n    \"BornFinite.GaussianTomography.witness_div_four_shell_primitive\",\n    \"BornFinite.GaussianTomography.witness_div_eight_shell_primitive\",\n    \"BornFinite.GaussianTomography.exists_nonzero_bounded_zero_residual\",\n    \"BornFinite.GaussianTomography.not_signed_quadratic_rigidity\",\n    \"BornFinite.GaussianTomography.not_nonneg_quadratic_rigidity\",\n    \"BornFinite.GaussianTomography.exoticQi3_isNonnegFrameFunction\",\n    \"BornFinite.GaussianTomography.exoticQi3_not_quadratic\",\n    \"BornFinite.GaussianTomography.rayProj_witness_111_decomp\",\n    \"BornFinite.GaussianTomography.quadRay_witness_111_kernel_relation\",\n    \"BornFinite.GaussianTomography.s3_witness_111_kernel_separation\",\n    \"BornFinite.GaussianTomography.s3_oscillates_near_tomo_e1\",\n    \"BornFinite.GaussianTomography.not_archimedeanContinuousAt_s3_tomo_e1\",\n    \"BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi3_tomo_e1\",\n    \"BornFinite.GaussianTomography.s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1\",\n    \"BornFinite.GaussianTomography.no_unit_norm_smul_witness_111_in_qi3\",\n    \"BornFinite.GaussianTomography.witness_111_unit_sqrt3_normSq\",\n    \"BornFinite.GaussianTomography.isFrameSqrt3_witness_111_even_norms\",\n    \"BornFinite.GaussianTomography.zero_on_witness_111_of_sqrt3_even_v3_vanishing\",\n    \"BornFinite.GaussianTomography.no_s3_even_v3_extension_to_sqrt3\",\n    \"BornFinite.GaussianTomography.zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear\",\n    \"BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s3\",\n    \"BornFinite.GaussianTomography.quadratic_rigidity_iff_factorsThroughRayProjLinear\",\n    \"BornFinite.GaussianTomography.archimedeanContinuousAt_quadRay_tomo_e1\",\n    \"BornFinite.GaussianTomography.quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff\",\n    \"BornFinite.GaussianTomography.unit_norm_in_sqrtP_of_normSqVec_eq\",\n    \"BornFinite.GaussianTomography.fourSquarePartner_ortho_and_normSqRatP\",\n    \"BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms\"\n  ]\n}\n",
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/BornGaussianTomographyReduction.lean\",\n    \"sha256\": \"8dbdae30d51c10d2d29e9855bf775d1491968d72bbfffa296f3f0e75b2b35f96\"\n  },\n  \"boundaries\": [\n    \"Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.\",\n    \"Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN.\"\n  ],\n  \"claim\": \"Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, the global {-1, 0, +1}-valued 3-adic and 7-adic zero-weight residuals s3 and s7 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame functions exoticQi3 = (1 + s3) / 3 and exoticQi7 = (1 + s7) / 3, their 2D linearly independent subspace combResidual37, and Section 9 regularity/continuity/field-extension/projector-linearity elimination theorems.\",\n  \"contract_urn\": \"urn:tfqm:fq-gleason-qi3:borngaussiantomo\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/fq_gleason_qi3_assessment.json\",\n      \"sha256\": \"447172e7a9264926c40efb3225afd16f1b124af5e428916104980ee2dd996241\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json\",\n      \"sha256\": \"f1d084b9a7ae74bfbc4b5a7a97ab684c671651f3e8a3b8111e0fc40f859e44a8\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-frame-functions.md\",\n      \"sha256\": \"2b0d73fcb9d9c060b6600ce66df5ab5d2f743ce2f4c359ec2824a03bdc649bb4\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md\",\n      \"sha256\": \"2bc1789bcae3b67a2a1490d04b58c6d4661a5ecfa8d6c35f1ce08a5fe33a7eb0\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, the global {-1, 0, +1}-valued 3-adic and 7-adic zero-weight residuals s3 and s7 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame functions exoticQi3 = (1 + s3) / 3 and exoticQi7 = (1 + s7) / 3, their 2D linearly independent subspace combResidual37, and Section 9 regularity/continuity/field-extension/projector-linearity elimination theorems.\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status.\"\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"BornFinite.GaussianTomography.quadRay_frame_sum\",\n    \"BornFinite.GaussianTomography.tomography_matches_nine_rays\",\n    \"BornFinite.GaussianTomography.tomography_unique\",\n    \"BornFinite.GaussianTomography.signed_rigidity_iff_zero_residual\",\n    \"BornFinite.GaussianTomography.nonneg_rigidity_iff_bounded_zero_residual\",\n    \"BornFinite.GaussianTomography.primitive_gaussian_norm_mod_four_iff\",\n    \"BornFinite.GaussianTomography.eq_quadRay_all_of_zero_at_zero\",\n    \"BornFinite.GaussianTomography.traceInner_self_eq_zero_iff\",\n    \"BornFinite.GaussianTomography.traceInner_ext\",\n    \"BornFinite.GaussianTomography.traceInner_rayProj\",\n    \"BornFinite.GaussianTomography.rayProj_frame_sum\",\n    \"BornFinite.GaussianTomography.rayProj_nine_rays_span_hermForm3\",\n    \"BornFinite.GaussianTomography.v3Rat_normSq_even\",\n    \"BornFinite.GaussianTomography.frame_v3Rat_sum_even\",\n    \"BornFinite.GaussianTomography.ortho_coord_identity_x\",\n    \"BornFinite.GaussianTomography.s3_isZeroWeightFrameFunction\",\n    \"BornFinite.GaussianTomography.s3_isBoundedOnRays\",\n    \"BornFinite.GaussianTomography.s3_vanishes_on_nine_rays\",\n    \"BornFinite.GaussianTomography.witness_111_primitive\",\n    \"BornFinite.GaussianTomography.witness_div_four_shell_primitive\",\n    \"BornFinite.GaussianTomography.witness_div_eight_shell_primitive\",\n    \"BornFinite.GaussianTomography.exists_nonzero_bounded_zero_residual\",\n    \"BornFinite.GaussianTomography.not_signed_quadratic_rigidity\",\n    \"BornFinite.GaussianTomography.not_nonneg_quadratic_rigidity\",\n    \"BornFinite.GaussianTomography.exoticQi3_isNonnegFrameFunction\",\n    \"BornFinite.GaussianTomography.exoticQi3_not_quadratic\",\n    \"BornFinite.GaussianTomography.rayProj_witness_111_decomp\",\n    \"BornFinite.GaussianTomography.quadRay_witness_111_kernel_relation\",\n    \"BornFinite.GaussianTomography.s3_witness_111_kernel_separation\",\n    \"BornFinite.GaussianTomography.s3_oscillates_near_tomo_e1\",\n    \"BornFinite.GaussianTomography.not_archimedeanContinuousAt_s3_tomo_e1\",\n    \"BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi3_tomo_e1\",\n    \"BornFinite.GaussianTomography.s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1\",\n    \"BornFinite.GaussianTomography.no_unit_norm_smul_witness_111_in_qi3\",\n    \"BornFinite.GaussianTomography.witness_111_unit_sqrt3_normSq\",\n    \"BornFinite.GaussianTomography.isFrameSqrt3_witness_111_even_norms\",\n    \"BornFinite.GaussianTomography.zero_on_witness_111_of_sqrt3_even_v3_vanishing\",\n    \"BornFinite.GaussianTomography.no_s3_even_v3_extension_to_sqrt3\",\n    \"BornFinite.GaussianTomography.zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear\",\n    \"BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s3\",\n    \"BornFinite.GaussianTomography.quadratic_rigidity_iff_factorsThroughRayProjLinear\",\n    \"BornFinite.GaussianTomography.archimedeanContinuousAt_quadRay_tomo_e1\",\n    \"BornFinite.GaussianTomography.quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff\",\n    \"BornFinite.GaussianTomography.unit_norm_in_sqrtP_of_normSqVec_eq\",\n    \"BornFinite.GaussianTomography.fourSquarePartner_ortho_and_normSqRatP\",\n    \"BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms\",\n    \"BornFinite.GaussianTomography.v7Rat_normSq_even\",\n    \"BornFinite.GaussianTomography.frame_v7Rat_sum_even\",\n    \"BornFinite.GaussianTomography.s7_orthogonal_odd_cancel\",\n    \"BornFinite.GaussianTomography.s7_isZeroWeightFrameFunction\",\n    \"BornFinite.GaussianTomography.s7_smul\",\n    \"BornFinite.GaussianTomography.s7_isBoundedOnRays\",\n    \"BornFinite.GaussianTomography.s7_vanishes_on_nine_rays\",\n    \"BornFinite.GaussianTomography.witness_p7_primitive\",\n    \"BornFinite.GaussianTomography.s3_s7_dual_on_witnesses\",\n    \"BornFinite.GaussianTomography.exoticQi7_isNonnegFrameFunction\",\n    \"BornFinite.GaussianTomography.exoticQi7_not_quadratic\",\n    \"BornFinite.GaussianTomography.combResidual37_isZeroWeightFrameFunction\",\n    \"BornFinite.GaussianTomography.combResidual37_vanishes_on_nine_rays\",\n    \"BornFinite.GaussianTomography.combResidual37_isBoundedOnRays\",\n    \"BornFinite.GaussianTomography.s3_s7_linearIndependent\",\n    \"BornFinite.GaussianTomography.s7_perturb7PosRay\",\n    \"BornFinite.GaussianTomography.s7_perturb7NegRay\",\n    \"BornFinite.GaussianTomography.s3_perturb7PosRay\",\n    \"BornFinite.GaussianTomography.s3_perturb7NegRay\",\n    \"BornFinite.GaussianTomography.s7_perturbPosRay_seven_mul\",\n    \"BornFinite.GaussianTomography.s7_perturbNegRay_seven_mul\",\n    \"BornFinite.GaussianTomography.distSqVec_perturb7PosRay_tomo_e1\",\n    \"BornFinite.GaussianTomography.distSqVec_perturb7NegRay_tomo_e1\",\n    \"BornFinite.GaussianTomography.s3_s7_selective_oscillation_near_tomo_e1\",\n    \"BornFinite.GaussianTomography.not_archimedeanContinuousAt_s7_tomo_e1\",\n    \"BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi7_tomo_e1\",\n    \"BornFinite.GaussianTomography.combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1\",\n    \"BornFinite.GaussianTomography.quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff\",\n    \"BornFinite.GaussianTomography.no_unit_norm_smul_witness_p7_in_qi3\",\n    \"BornFinite.GaussianTomography.zero_on_witness_p7_of_sqrt7_even_v7_vanishing\",\n    \"BornFinite.GaussianTomography.no_s7_even_v7_extension_to_sqrt7\",\n    \"BornFinite.GaussianTomography.joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37\",\n    \"BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s7\",\n    \"BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual37_iff\"\n  ]\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "language": "Lean 4",
           "path": "lean4/BornGaussianTomographyReduction.lean",
-          "sha256": "78656d778239f67669dc7dfcc91e4b0275ae2b5eaf9bdd0437a51205096629b7"
+          "sha256": "8dbdae30d51c10d2d29e9855bf775d1491968d72bbfffa296f3f0e75b2b35f96"
         },
         "boundaries": [
           "Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.",
           "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN."
         ],
-        "claim": "Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, the global {-1, 0, +1}-valued 3-adic zero-weight residual s3 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame function exoticQi3 = (1 + s3) / 3, and Section 9 regularity/continuity/field-extension elimination theorems.",
+        "claim": "Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, the global {-1, 0, +1}-valued 3-adic and 7-adic zero-weight residuals s3 and s7 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame functions exoticQi3 = (1 + s3) / 3 and exoticQi7 = (1 + s7) / 3, their 2D linearly independent subspace combResidual37, and Section 9 regularity/continuity/field-extension/projector-linearity elimination theorems.",
         "contract_urn": "urn:tfqm:fq-gleason-qi3:borngaussiantomo",
         "evidence": [
           {
             "path": "dag/research/fq_gleason_qi3_assessment.json",
-            "sha256": "da2584d3bd8f9d5ba57c77168eafd091a9f9b629ca467869c99510cbea3e908f"
+            "sha256": "447172e7a9264926c40efb3225afd16f1b124af5e428916104980ee2dd996241"
           },
           {
             "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
-            "sha256": "79b45de4fb757b509f12facf6f9d30a986a637e3cb86ed26e54dee56d54e34c6"
+            "sha256": "f1d084b9a7ae74bfbc4b5a7a97ab684c671651f3e8a3b8111e0fc40f859e44a8"
           },
           {
             "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
-            "sha256": "17716de5369a75261b8ebb179cc537cd2bcb9e5d11acb9607baf916e9720da8c"
+            "sha256": "2b0d73fcb9d9c060b6600ce66df5ab5d2f743ce2f4c359ec2824a03bdc649bb4"
           },
           {
             "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
-            "sha256": "42d61be71e5a2c33d3e029d5e229eab3e056148f1a104ac0a960f941282be2df"
+            "sha256": "2bc1789bcae3b67a2a1490d04b58c6d4661a5ecfa8d6c35f1ce08a5fe33a7eb0"
           }
         ],
         "owned_invariants": [
-          "Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, the global {-1, 0, +1}-valued 3-adic zero-weight residual s3 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame function exoticQi3 = (1 + s3) / 3, and Section 9 regularity/continuity/field-extension elimination theorems.",
+          "Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, the global {-1, 0, +1}-valued 3-adic and 7-adic zero-weight residuals s3 and s7 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame functions exoticQi3 = (1 + s3) / 3 and exoticQi7 = (1 + s7) / 3, their 2D linearly independent subspace combResidual37, and Section 9 regularity/continuity/field-extension/projector-linearity elimination theorems.",
           "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status."
         ],
         "schema_id": "tfqm.source-contract.v1",
@@ -176,57 +210,91 @@
           "BornFinite.GaussianTomography.quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff",
           "BornFinite.GaussianTomography.unit_norm_in_sqrtP_of_normSqVec_eq",
           "BornFinite.GaussianTomography.fourSquarePartner_ortho_and_normSqRatP",
-          "BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms"
+          "BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms",
+          "BornFinite.GaussianTomography.v7Rat_normSq_even",
+          "BornFinite.GaussianTomography.frame_v7Rat_sum_even",
+          "BornFinite.GaussianTomography.s7_orthogonal_odd_cancel",
+          "BornFinite.GaussianTomography.s7_isZeroWeightFrameFunction",
+          "BornFinite.GaussianTomography.s7_smul",
+          "BornFinite.GaussianTomography.s7_isBoundedOnRays",
+          "BornFinite.GaussianTomography.s7_vanishes_on_nine_rays",
+          "BornFinite.GaussianTomography.witness_p7_primitive",
+          "BornFinite.GaussianTomography.s3_s7_dual_on_witnesses",
+          "BornFinite.GaussianTomography.exoticQi7_isNonnegFrameFunction",
+          "BornFinite.GaussianTomography.exoticQi7_not_quadratic",
+          "BornFinite.GaussianTomography.combResidual37_isZeroWeightFrameFunction",
+          "BornFinite.GaussianTomography.combResidual37_vanishes_on_nine_rays",
+          "BornFinite.GaussianTomography.combResidual37_isBoundedOnRays",
+          "BornFinite.GaussianTomography.s3_s7_linearIndependent",
+          "BornFinite.GaussianTomography.s7_perturb7PosRay",
+          "BornFinite.GaussianTomography.s7_perturb7NegRay",
+          "BornFinite.GaussianTomography.s3_perturb7PosRay",
+          "BornFinite.GaussianTomography.s3_perturb7NegRay",
+          "BornFinite.GaussianTomography.s7_perturbPosRay_seven_mul",
+          "BornFinite.GaussianTomography.s7_perturbNegRay_seven_mul",
+          "BornFinite.GaussianTomography.distSqVec_perturb7PosRay_tomo_e1",
+          "BornFinite.GaussianTomography.distSqVec_perturb7NegRay_tomo_e1",
+          "BornFinite.GaussianTomography.s3_s7_selective_oscillation_near_tomo_e1",
+          "BornFinite.GaussianTomography.not_archimedeanContinuousAt_s7_tomo_e1",
+          "BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi7_tomo_e1",
+          "BornFinite.GaussianTomography.combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1",
+          "BornFinite.GaussianTomography.quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff",
+          "BornFinite.GaussianTomography.no_unit_norm_smul_witness_p7_in_qi3",
+          "BornFinite.GaussianTomography.zero_on_witness_p7_of_sqrt7_even_v7_vanishing",
+          "BornFinite.GaussianTomography.no_s7_even_v7_extension_to_sqrt7",
+          "BornFinite.GaussianTomography.joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37",
+          "BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s7",
+          "BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual37_iff"
         ]
       },
-      "sha256": "260d7e1dfaacb9de39f81414402742ca69c37d1fc343811cba6ade872d1b9a00"
+      "sha256": "610ba0cb0d38758f3684e942b36121e4180a1d51d6926ed5aa008d397a220bc1"
     }
   ],
-  "current_contract": "260d7e1dfaacb9de39f81414402742ca69c37d1fc343811cba6ade872d1b9a00",
-  "current_scoring": "211ed7e6bf14ce00a6208cd1372c9e2e0bf971a352a8e4e3de0bf9f1c6876ca6",
+  "current_contract": "610ba0cb0d38758f3684e942b36121e4180a1d51d6926ed5aa008d397a220bc1",
+  "current_scoring": "5227f737713d60ae8db36ec4dcecba4353c028471696cef4b67c344b78e75423",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {},
   "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
     {
-      "bytes": 2422,
+      "bytes": 2441,
       "original_paths": [
         "lean4/BornGaussianTomographyReduction.contract.score.yaml#fq-gleason-qi3-2026-11-01"
       ],
-      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/BornGaussianTomographyReduction.lean\",\n    \"sha256\": \"78656d778239f67669dc7dfcc91e4b0275ae2b5eaf9bdd0437a51205096629b7\"\n  },\n  \"assessment_id\": \"fq-gleason-qi3-2026-11-01\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and named symbols are bound to the partial claims and DAG node FQ-GLEASON-QI3-FRAME-FUNCTIONS with AuthorityEffect None.\",\n    \"G2\": \"Only exact integer, rational, 3-adic valuation, and Gaussian-rational arithmetic are used; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and axiom audit use only propext, Classical.choice, and Quot.sound.\",\n    \"G4\": \"Verified by 9 pytest test functions including negative controls and 3 independent check scripts.\",\n    \"G5\": \"Predictable polynomial, linear modular, and 3-adic valuation arithmetic with zero custom axioms.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-11-01T07:45:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/fq_gleason_qi3_assessment.json\",\n      \"sha256\": \"da2584d3bd8f9d5ba57c77168eafd091a9f9b629ca467869c99510cbea3e908f\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json\",\n      \"sha256\": \"79b45de4fb757b509f12facf6f9d30a986a637e3cb86ed26e54dee56d54e34c6\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-frame-functions.md\",\n      \"sha256\": \"17716de5369a75261b8ebb179cc537cd2bcb9e5d11acb9607baf916e9720da8c\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md\",\n      \"sha256\": \"42d61be71e5a2c33d3e029d5e229eab3e056148f1a104ac0a960f941282be2df\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development and exact rational pytest verification with explicit negative controls and replay receipts.\",\n  \"limitations\": [\n    \"Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.\",\n    \"Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/BornGaussianTomographyReduction.lean\",\n    \"sha256\": \"8dbdae30d51c10d2d29e9855bf775d1491968d72bbfffa296f3f0e75b2b35f96\"\n  },\n  \"assessment_id\": \"fq-gleason-qi3-2026-11-01\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and named symbols are bound to the partial claims and DAG node FQ-GLEASON-QI3-FRAME-FUNCTIONS with AuthorityEffect None.\",\n    \"G2\": \"Only exact integer, rational, 3-adic and 7-adic valuation, and Gaussian-rational arithmetic are used; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and axiom audit use only propext, Classical.choice, and Quot.sound.\",\n    \"G4\": \"Verified by 10 pytest test functions including negative controls and 3 independent check scripts.\",\n    \"G5\": \"Predictable polynomial, linear modular, and 3-adic/7-adic valuation arithmetic with zero custom axioms.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-11-01T07:45:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/fq_gleason_qi3_assessment.json\",\n      \"sha256\": \"447172e7a9264926c40efb3225afd16f1b124af5e428916104980ee2dd996241\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json\",\n      \"sha256\": \"f1d084b9a7ae74bfbc4b5a7a97ab684c671651f3e8a3b8111e0fc40f859e44a8\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-frame-functions.md\",\n      \"sha256\": \"2b0d73fcb9d9c060b6600ce66df5ab5d2f743ce2f4c359ec2824a03bdc649bb4\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md\",\n      \"sha256\": \"2bc1789bcae3b67a2a1490d04b58c6d4661a5ecfa8d6c35f1ce08a5fe33a7eb0\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development and exact rational pytest verification with explicit negative controls and replay receipts.\",\n  \"limitations\": [\n    \"Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.\",\n    \"Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
       "record": {
         "AuthorityEffect": "None",
         "artifact": {
           "language": "Lean 4",
           "path": "lean4/BornGaussianTomographyReduction.lean",
-          "sha256": "78656d778239f67669dc7dfcc91e4b0275ae2b5eaf9bdd0437a51205096629b7"
+          "sha256": "8dbdae30d51c10d2d29e9855bf775d1491968d72bbfffa296f3f0e75b2b35f96"
         },
         "assessment_id": "fq-gleason-qi3-2026-11-01",
         "basis": {
           "G1": "Exact source identity and named symbols are bound to the partial claims and DAG node FQ-GLEASON-QI3-FRAME-FUNCTIONS with AuthorityEffect None.",
-          "G2": "Only exact integer, rational, 3-adic valuation, and Gaussian-rational arithmetic are used; no floating-point approximation occurs.",
+          "G2": "Only exact integer, rational, 3-adic and 7-adic valuation, and Gaussian-rational arithmetic are used; no floating-point approximation occurs.",
           "G3": "Lean 4.35 kernel build and axiom audit use only propext, Classical.choice, and Quot.sound.",
-          "G4": "Verified by 9 pytest test functions including negative controls and 3 independent check scripts.",
-          "G5": "Predictable polynomial, linear modular, and 3-adic valuation arithmetic with zero custom axioms."
+          "G4": "Verified by 10 pytest test functions including negative controls and 3 independent check scripts.",
+          "G5": "Predictable polynomial, linear modular, and 3-adic/7-adic valuation arithmetic with zero custom axioms."
         },
         "composite_grade": "D",
         "evaluation_timestamp": "2026-11-01T07:45:00+00:00",
         "evidence": [
           {
             "path": "dag/research/fq_gleason_qi3_assessment.json",
-            "sha256": "da2584d3bd8f9d5ba57c77168eafd091a9f9b629ca467869c99510cbea3e908f"
+            "sha256": "447172e7a9264926c40efb3225afd16f1b124af5e428916104980ee2dd996241"
           },
           {
             "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
-            "sha256": "79b45de4fb757b509f12facf6f9d30a986a637e3cb86ed26e54dee56d54e34c6"
+            "sha256": "f1d084b9a7ae74bfbc4b5a7a97ab684c671651f3e8a3b8111e0fc40f859e44a8"
           },
           {
             "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
-            "sha256": "17716de5369a75261b8ebb179cc537cd2bcb9e5d11acb9607baf916e9720da8c"
+            "sha256": "2b0d73fcb9d9c060b6600ce66df5ab5d2f743ce2f4c359ec2824a03bdc649bb4"
           },
           {
             "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
-            "sha256": "42d61be71e5a2c33d3e029d5e229eab3e056148f1a104ac0a960f941282be2df"
+            "sha256": "2bc1789bcae3b67a2a1490d04b58c6d4661a5ecfa8d6c35f1ce08a5fe33a7eb0"
           }
         ],
         "gates": {
@@ -252,7 +320,7 @@
         "schema_version": "2.0.0",
         "score_token": "L4D"
       },
-      "sha256": "211ed7e6bf14ce00a6208cd1372c9e2e0bf971a352a8e4e3de0bf9f1c6876ca6"
+      "sha256": "5227f737713d60ae8db36ec4dcecba4353c028471696cef4b67c344b78e75423"
     }
   ]
 }

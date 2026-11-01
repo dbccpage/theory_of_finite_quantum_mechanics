@@ -10,7 +10,7 @@
   "evidence": [
     {
       "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
-      "sha256": "79b45de4fb757b509f12facf6f9d30a986a637e3cb86ed26e54dee56d54e34c6"
+      "sha256": "f1d084b9a7ae74bfbc4b5a7a97ab684c671651f3e8a3b8111e0fc40f859e44a8"
     },
     {
       "path": "dag/research/fq_gleason_qi3_validation.json",
@@ -18,14 +18,14 @@
     },
     {
       "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
-      "sha256": "17716de5369a75261b8ebb179cc537cd2bcb9e5d11acb9607baf916e9720da8c"
+      "sha256": "2b0d73fcb9d9c060b6600ce66df5ab5d2f743ce2f4c359ec2824a03bdc649bb4"
     },
     {
       "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
-      "sha256": "42d61be71e5a2c33d3e029d5e229eab3e056148f1a104ac0a960f941282be2df"
+      "sha256": "2bc1789bcae3b67a2a1490d04b58c6d4661a5ecfa8d6c35f1ce08a5fe33a7eb0"
     }
   ],
-  "scope": "Source and statement review of two partial obstruction proofs, the nine-ray tomography reduction and global 3-adic residual module, and their Lake registration. Full inert-prime residual classification and FQ-GAP-BORN-UNIQUENESS-GLEASON remain OPEN.",
+  "scope": "Source and statement review of two partial obstruction proofs, the nine-ray tomography reduction, global 3-adic and 7-adic residuals (s3, s7) and their 2D linearly independent subspace and joint elimination theorems, and their Lake registration. Uniform all-prime residual classification and FQ-GAP-BORN-UNIQUENESS-GLEASON remain OPEN.",
   "baseline_verification": "The referenced final Lean replay, including fresh-import axiom audit, and independent exact checks are the baseline evidence. Historical failed elaborations are not completed-proof evidence.",
   "governance_boundary": "Completed source assessments below the default L4/D capability floor; this record neither changes policy nor authorizes merge.",
   "reviewed_artifacts": [
@@ -167,10 +167,10 @@
     {
       "artifact": {
         "path": "lean4/BornGaussianTomographyReduction.lean",
-        "sha256": "78656d778239f67669dc7dfcc91e4b0275ae2b5eaf9bdd0437a51205096629b7",
+        "sha256": "8dbdae30d51c10d2d29e9855bf775d1491968d72bbfffa296f3f0e75b2b35f96",
         "language": "Lean 4"
       },
-      "claim": "Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, constructive 7-ray projector kernel separation, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, the explicit global {-1, 0, +1}-valued 3-adic zero-weight residual s3 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame function exoticQi3 = (1 + s3) / 3, and Section 9 regularity/continuity/field-extension elimination theorems (archimedean discontinuity at tomo_e1, Q(i, sqrt(3))^3 even-v3 frame obstruction, and operator-space projector linearity characterization).",
+      "claim": "Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, constructive 7-ray projector kernel separation, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, the explicit global {-1, 0, +1}-valued 3-adic and 7-adic zero-weight residuals s3 and s7 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame functions exoticQi3 = (1 + s3) / 3 and exoticQi7 = (1 + s7) / 3, their dual witness evaluation and 2D linear independence (combResidual37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination theorems (selective cross-prime archimedean oscillation at tomo_e1, joint Q(i, sqrt(3))^3 and Q(i, sqrt(7))^3 even-valuation frame obstruction, and operator-space projector linearity characterization).",
       "symbols": [
         "BornFinite.GaussianTomography.quadRay_frame_sum",
         "BornFinite.GaussianTomography.tomography_matches_nine_rays",
@@ -221,10 +221,44 @@
         "BornFinite.GaussianTomography.quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff",
         "BornFinite.GaussianTomography.unit_norm_in_sqrtP_of_normSqVec_eq",
         "BornFinite.GaussianTomography.fourSquarePartner_ortho_and_normSqRatP",
-        "BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms"
+        "BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms",
+        "BornFinite.GaussianTomography.v7Rat_normSq_even",
+        "BornFinite.GaussianTomography.frame_v7Rat_sum_even",
+        "BornFinite.GaussianTomography.s7_orthogonal_odd_cancel",
+        "BornFinite.GaussianTomography.s7_isZeroWeightFrameFunction",
+        "BornFinite.GaussianTomography.s7_smul",
+        "BornFinite.GaussianTomography.s7_isBoundedOnRays",
+        "BornFinite.GaussianTomography.s7_vanishes_on_nine_rays",
+        "BornFinite.GaussianTomography.witness_p7_primitive",
+        "BornFinite.GaussianTomography.s3_s7_dual_on_witnesses",
+        "BornFinite.GaussianTomography.exoticQi7_isNonnegFrameFunction",
+        "BornFinite.GaussianTomography.exoticQi7_not_quadratic",
+        "BornFinite.GaussianTomography.combResidual37_isZeroWeightFrameFunction",
+        "BornFinite.GaussianTomography.combResidual37_vanishes_on_nine_rays",
+        "BornFinite.GaussianTomography.combResidual37_isBoundedOnRays",
+        "BornFinite.GaussianTomography.s3_s7_linearIndependent",
+        "BornFinite.GaussianTomography.s7_perturb7PosRay",
+        "BornFinite.GaussianTomography.s7_perturb7NegRay",
+        "BornFinite.GaussianTomography.s3_perturb7PosRay",
+        "BornFinite.GaussianTomography.s3_perturb7NegRay",
+        "BornFinite.GaussianTomography.s7_perturbPosRay_seven_mul",
+        "BornFinite.GaussianTomography.s7_perturbNegRay_seven_mul",
+        "BornFinite.GaussianTomography.distSqVec_perturb7PosRay_tomo_e1",
+        "BornFinite.GaussianTomography.distSqVec_perturb7NegRay_tomo_e1",
+        "BornFinite.GaussianTomography.s3_s7_selective_oscillation_near_tomo_e1",
+        "BornFinite.GaussianTomography.not_archimedeanContinuousAt_s7_tomo_e1",
+        "BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi7_tomo_e1",
+        "BornFinite.GaussianTomography.combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1",
+        "BornFinite.GaussianTomography.quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff",
+        "BornFinite.GaussianTomography.no_unit_norm_smul_witness_p7_in_qi3",
+        "BornFinite.GaussianTomography.zero_on_witness_p7_of_sqrt7_even_v7_vanishing",
+        "BornFinite.GaussianTomography.no_s7_even_v7_extension_to_sqrt7",
+        "BornFinite.GaussianTomography.joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37",
+        "BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s7",
+        "BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual37_iff"
       ],
       "level": "L3",
-      "level_basis": "Bounded exact-domain formal development: nine-ray Hermitian tomography reconstruction, residual-reduction equivalences, (1+i)-adic norm-parity characterization, and the global 3-adic zero-weight residual s3 and nonnegative non-quadratic frame function exoticQi3.",
+      "level_basis": "Bounded exact-domain formal development: nine-ray Hermitian tomography reconstruction, residual-reduction equivalences, (1+i)-adic norm-parity characterization, and the global 3-adic and 7-adic zero-weight residuals s3, s7 and nonnegative non-quadratic frame functions exoticQi3, exoticQi7 with joint elimination theorems.",
       "profile": "Symbolic/Formal",
       "gates": {
         "G1": "C",
@@ -244,11 +278,11 @@
       "score_token": "L3D",
       "is_complete": true,
       "metrics": {
-        "source_lines": 3330,
-        "theorem_declarations": 212,
+        "source_lines": 4896,
+        "theorem_declarations": 322,
         "gauss_arith_uses": 3,
         "linarith_only_uses": 0,
-        "linarith_uses": 40,
+        "linarith_uses": 103,
         "structural_parser": "Text metrics only; no imperative complexity metric assigned to Lean."
       },
       "does_not_support": [

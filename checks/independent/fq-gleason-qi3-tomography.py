@@ -418,9 +418,39 @@ def main() -> None:
         require(
             sp_residual(pos7_ray, 7) == 1
             and sp_residual(neg7_ray, 7) == -1
+            and s3(pos7_ray) == 0
+            and s3(neg7_ray) == 0
             and dist_pos7 == Fraction(1, 7 * k * k),
-            "7-adic perturbation rays approach e1 with s7 == +1 and -1",
+            "7-adic perturbation rays approach e1 with s7 == +/-1 and s3 == 0",
         )
+        scale3_7k = Fraction(1, 21 * k)
+        pos3_7k_int = gv_int(21 * k, 0, 1, 0, 1, 1)
+        neg3_7k_int = gv_int(21 * k, 0, 1, 1, 1, 0)
+        pos3_7k_ray = (
+            (scale3_7k * pos3_7k_int[0][0], scale3_7k * pos3_7k_int[0][1]),
+            (scale3_7k * pos3_7k_int[1][0], scale3_7k * pos3_7k_int[1][1]),
+            (scale3_7k * pos3_7k_int[2][0], scale3_7k * pos3_7k_int[2][1]),
+        )
+        neg3_7k_ray = (
+            (scale3_7k * neg3_7k_int[0][0], scale3_7k * neg3_7k_int[0][1]),
+            (scale3_7k * neg3_7k_int[1][0], scale3_7k * neg3_7k_int[1][1]),
+            (scale3_7k * neg3_7k_int[2][0], scale3_7k * neg3_7k_int[2][1]),
+        )
+        require(
+            s3(pos3_7k_ray) == 1
+            and s3(neg3_7k_ray) == -1
+            and sp_residual(pos3_7k_ray, 7) == 0
+            and sp_residual(neg3_7k_ray, 7) == 0,
+            "subsequence 3-adic perturbation rays (7*k) have s3 == +/-1 and s7 == 0",
+        )
+
+    exotic_qi7 = lambda u: (Fraction(1) + sp_residual(u, 7)) / 3
+    require(
+        exotic_qi7(witness_p7) == Fraction(2, 3)
+        and exotic_qi7(witness_111) == Fraction(1, 3)
+        and exotic_qi7(u7) + exotic_qi7(v7) + exotic_qi7(w7) == Fraction(1),
+        "exoticQi7 is a weight-1 nonnegative frame function separating witness_p7 from witness_111",
+    )
 
     # Section 9B: Quadratic field extension Q(i, sqrt(3))^3 and Q(i, sqrt(7))^3 frames
     # breaking even-vp parity and forcing G(witness) == 0.
@@ -437,8 +467,10 @@ def main() -> None:
     require(
         sp.expand((u_s3.conjugate().T * u_s3)[0]) == 3
         and sp.expand((p_s3.conjugate().T * p_s3)[0]) == 18
-        and sp.expand((q_s3.conjugate().T * q_s3)[0]) == 18,
-        "Q(i, sqrt(3))^3 frame has rational squared norms (3, 18, 18) with v3 = (1, 2, 2)",
+        and sp.expand((q_s3.conjugate().T * q_s3)[0]) == 18
+        and vp_rat(Fraction(18), 3) == 2
+        and vp_rat(Fraction(18), 7) == 0,
+        "Q(i, sqrt(3))^3 frame has rational squared norms (3, 18, 18) with even v3 and v7 on partners",
     )
 
     sqrt7 = sp.sqrt(7)
@@ -456,8 +488,10 @@ def main() -> None:
     require(
         sp.expand((u_s7.conjugate().T * u_s7)[0]) == 7
         and sp.expand((p_s7.conjugate().T * p_s7)[0]) == 245
-        and sp.expand((q_s7.conjugate().T * q_s7)[0]) == 245,
-        "Q(i, sqrt(7))^3 frame has rational squared norms (7, 245, 245) with v7 = (1, 2, 2)",
+        and sp.expand((q_s7.conjugate().T * q_s7)[0]) == 245
+        and vp_rat(Fraction(245), 3) == 0
+        and vp_rat(Fraction(245), 7) == 2,
+        "Q(i, sqrt(7))^3 frame has rational squared norms (7, 245, 245) with even v3 and v7 on partners",
     )
 
     print(json.dumps({"status": "PASS", "sympy_version": sp.__version__,
@@ -466,9 +500,10 @@ def main() -> None:
                       "s3_witness_div4": int(s3(witness_div4)),
                       "s3_witness_div8": int(s3(witness_div8)),
                       "s7_witness_p7": int(sp_residual(witness_p7, 7)),
+                      "exotic_qi7_witness_p7": str(exotic_qi7(witness_p7)),
                       "sqrt3_frame_norms": [3, 18, 18],
                       "sqrt7_frame_norms": [7, 245, 245],
-                      "scope": "symbolic algebra controls, 3-adic/7-adic residuals, and continuity/field-extension elimination"},
+                      "scope": "symbolic algebra controls, 3-adic/7-adic residuals, selective oscillation, and joint elimination"},
                      sort_keys=True))
 
 
