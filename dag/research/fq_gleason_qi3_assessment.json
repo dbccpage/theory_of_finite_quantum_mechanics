@@ -10,18 +10,22 @@
   "evidence": [
     {
       "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
-      "sha256": "87e059b9a0849439e5cefb84bbb59597d0777e6f2ad2a9c310fc3dd59bb76773"
+      "sha256": "09ab9f3e194618aaab594f38f32537b6367e27fbb20004e9f5b3cdec7ae4b59c"
     },
     {
       "path": "dag/research/fq_gleason_qi3_validation.json",
-      "sha256": "bdac5a91b48aea469fa795c1c96d708c6a03c7a3b959e5b968687337b1969b32"
+      "sha256": "6692bbd502c619726dd950db2c17adef58541fa6a2adcf948f6d87db3bdc1d14"
     },
     {
       "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
-      "sha256": "7bd2d063e88b4921a02925352ba3bd788820007d1a2a8cbc2fec5f48931ecf05"
+      "sha256": "c5d95e03644e6033ab24f68cdf164048026d4bd3cf3221539d201aef8e6969cb"
+    },
+    {
+      "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
+      "sha256": "fb1a4e802342a4a82b67af06675a09cadd412eaa44bbbc95a55bc40012cb9129"
     }
   ],
-  "scope": "Source and statement review of two partial obstruction proofs and their Lake registration. General signed and nonnegative quadratic rigidity remains OPEN.",
+  "scope": "Source and statement review of two partial obstruction proofs, the nine-ray tomography reduction and global 3-adic residual module, and their Lake registration. Full inert-prime residual classification and FQ-GAP-BORN-UNIQUENESS-GLEASON remain OPEN.",
   "baseline_verification": "The referenced final Lean replay, including fresh-import axiom audit, and independent exact checks are the baseline evidence. Historical failed elaborations are not completed-proof evidence.",
   "governance_boundary": "Completed source assessments below the default L4/D capability floor; this record neither changes policy nor authorizes merge.",
   "reviewed_artifacts": [
@@ -117,13 +121,14 @@
     {
       "artifact": {
         "path": "lean4/lakefile.lean",
-        "sha256": "ab075cf29cda55286b2a188a1982adbe946e3273c438a58d8ad1ed9818a56bcc",
+        "sha256": "90c2fde1461422326c04bb35ce205070f860aa0532b681e981276485ac6817a4",
         "language": "Lean 4"
       },
-      "claim": "Register the two new obstruction modules as explicit non-default Lake libraries in the existing build configuration.",
+      "claim": "Register the two obstruction modules and the nine-ray tomography reduction module as explicit non-default Lake libraries in the existing build configuration.",
       "symbols": [
         "BornGaussianRationalNoColouring",
-        "BornGaussianRationalExtensionObstruction"
+        "BornGaussianRationalExtensionObstruction",
+        "BornGaussianTomographyReduction"
       ],
       "level": "L1",
       "level_basis": "Declarative build registration and root tables; no mathematical theorem or production runtime is supplied by this configuration.",
@@ -137,9 +142,9 @@
       },
       "basis": {
         "G1": "Exact source identity and named symbols are bound to the partial claims and statement-versus-theorem table. AuthorityEffect is None; the original target is not promoted.",
-        "G2": "The existing Mathlib and Lean versions are retained; only two explicit non-default library roots are added. Targeted builds parse and use this configuration.",
-        "G3": "Configuration elaboration and both explicit targets succeed. This static registration makes no service-lifecycle or deployment-safety claim.",
-        "G4": "Both changed targets are exercised and existing configuration declarations are retained. There is no full default-library replay or systematic invalid-configuration test campaign; this is scoped registration evidence.",
+        "G2": "The existing Mathlib and Lean versions are retained; three explicit non-default library roots are registered. Targeted builds parse and use this configuration.",
+        "G3": "Configuration elaboration and all three explicit targets succeed. This static registration makes no service-lifecycle or deployment-safety claim.",
+        "G4": "All three targets are exercised and existing configuration declarations are retained. There is no full default-library replay or systematic invalid-configuration test campaign; this is scoped registration evidence.",
         "G5": "The Lake file is a static registration table with predictable declarative flow. No whole-build performance or graph-wide resource bound is claimed."
       },
       "composite_grade": "D",
@@ -155,6 +160,79 @@
       "does_not_support": [
         "General signed quadratic rigidity",
         "General nonnegative quadratic rigidity",
+        "Production-level capability or repository acceptance"
+      ],
+      "evaluation_timestamp": "2026-10-28T20:55:37.551662+00:00"
+    },
+    {
+      "artifact": {
+        "path": "lean4/BornGaussianTomographyReduction.lean",
+        "sha256": "9c3e48586cf5f004a4cfa8ca1fe00eef793debac1da236a4487d4a3cc344545d",
+        "language": "Lean 4"
+      },
+      "claim": "Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, constructive 7-ray projector kernel separation, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization, and the explicit global {-1, 0, +1}-valued 3-adic zero-weight residual s3 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame function exoticQi3 = (1 + s3) / 3.",
+      "symbols": [
+        "BornFinite.GaussianTomography.quadRay_frame_sum",
+        "BornFinite.GaussianTomography.tomography_matches_nine_rays",
+        "BornFinite.GaussianTomography.tomography_unique",
+        "BornFinite.GaussianTomography.signed_rigidity_iff_zero_residual",
+        "BornFinite.GaussianTomography.nonneg_rigidity_iff_bounded_zero_residual",
+        "BornFinite.GaussianTomography.primitive_gaussian_norm_mod_four_iff",
+        "BornFinite.GaussianTomography.eq_quadRay_all_of_zero_at_zero",
+        "BornFinite.GaussianTomography.traceInner_self_eq_zero_iff",
+        "BornFinite.GaussianTomography.traceInner_ext",
+        "BornFinite.GaussianTomography.traceInner_rayProj",
+        "BornFinite.GaussianTomography.rayProj_frame_sum",
+        "BornFinite.GaussianTomography.rayProj_nine_rays_span_hermForm3",
+        "BornFinite.GaussianTomography.v3Rat_normSq_even",
+        "BornFinite.GaussianTomography.frame_v3Rat_sum_even",
+        "BornFinite.GaussianTomography.ortho_coord_identity_x",
+        "BornFinite.GaussianTomography.s3_isZeroWeightFrameFunction",
+        "BornFinite.GaussianTomography.s3_isBoundedOnRays",
+        "BornFinite.GaussianTomography.s3_vanishes_on_nine_rays",
+        "BornFinite.GaussianTomography.witness_111_primitive",
+        "BornFinite.GaussianTomography.witness_div_four_shell_primitive",
+        "BornFinite.GaussianTomography.witness_div_eight_shell_primitive",
+        "BornFinite.GaussianTomography.exists_nonzero_bounded_zero_residual",
+        "BornFinite.GaussianTomography.not_signed_quadratic_rigidity",
+        "BornFinite.GaussianTomography.not_nonneg_quadratic_rigidity",
+        "BornFinite.GaussianTomography.exoticQi3_isNonnegFrameFunction",
+        "BornFinite.GaussianTomography.exoticQi3_not_quadratic",
+        "BornFinite.GaussianTomography.rayProj_witness_111_decomp",
+        "BornFinite.GaussianTomography.quadRay_witness_111_kernel_relation",
+        "BornFinite.GaussianTomography.s3_witness_111_kernel_separation"
+      ],
+      "level": "L3",
+      "level_basis": "Bounded exact-domain formal development: nine-ray Hermitian tomography reconstruction, residual-reduction equivalences, (1+i)-adic norm-parity characterization, and the global 3-adic zero-weight residual s3 and nonnegative non-quadratic frame function exoticQi3.",
+      "profile": "Symbolic/Formal",
+      "gates": {
+        "G1": "C",
+        "G2": "C",
+        "G3": "C",
+        "G4": "D",
+        "G5": "D"
+      },
+      "basis": {
+        "G1": "Exact source identity and named symbols are bound to the partial claims and statement-versus-theorem table. AuthorityEffect is None; the original target is not promoted.",
+        "G2": "Only exact integer, rational and Gaussian-rational expressions are used; the final kernel replay and independent arithmetic check support the stated equivalences.",
+        "G3": "Final build and axiom audit use only propext, Classical.choice and Quot.sound; no unfinished proof assumption is admitted.",
+        "G4": "Successful full theorem replay, exported-statement review and independent exact verification are available.",
+        "G5": "Structural line count is recorded; no unsupported imperative complexity score, heartbeat bound or production-performance claim is inferred."
+      },
+      "composite_grade": "D",
+      "score_token": "L3D",
+      "is_complete": true,
+      "metrics": {
+        "source_lines": 2325,
+        "theorem_declarations": 169,
+        "gauss_arith_uses": 3,
+        "linarith_only_uses": 0,
+        "linarith_uses": 40,
+        "structural_parser": "Text metrics only; no imperative complexity metric assigned to Lean."
+      },
+      "does_not_support": [
+        "Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4)",
+        "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON or continuum Gleason",
         "Production-level capability or repository acceptance"
       ],
       "evaluation_timestamp": "2026-10-28T20:55:37.551662+00:00"

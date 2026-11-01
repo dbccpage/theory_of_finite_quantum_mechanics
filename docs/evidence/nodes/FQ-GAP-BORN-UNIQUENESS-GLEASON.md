@@ -1,6 +1,6 @@
 # FQ-GAP-BORN-UNIQUENESS-GLEASON
 
-Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evidence grade: **E4**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -8,15 +8,15 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 ## Grade
 
-Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
+Evidence grade **E4** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 20
+- counted in-repo evidence files: 21
 - cited Lean, Rust or Python symbols found in their in-repo files: 45
 - distinct cited Lean declarations covered by a current replay receipt: 45
-- counted in-repo runnable tests: 0
+- counted in-repo runnable tests: 1
 - counted in-repo Rust or Python files that are not tests: 0
 - recorded statement-match reviews that qualify: 1
-- next step to raise the grade: add an in-repo Rust or Python runnable test (0 in-repo Rust or Python file(s) cited, none a test)
+- next step to raise the grade: none: all E4 conditions hold
 
 ## Flags
 
@@ -350,6 +350,14 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 |---|---|---|---|---|---|
 | `frames_equinorm` | yes | yes | yes | none | `#print axioms frames_equinorm` |
 
+- counts toward the grade: yes
+
+### Python: `code/python/tests/test_fq_gleason_qi3_frame_functions.py`
+
+- file: [code/python/tests/test_fq_gleason_qi3_frame_functions.py](../../../code/python/tests/test_fq_gleason_qi3_frame_functions.py)
+- sha256 (`bytes`): `ebaa82946274762a57870c9429d6e2c26ee7fa2c9bd71ea1e5a17c6493ae5134`
+- cited in: node.source
+- check: `python -m pytest code/python/tests/test_fq_gleason_qi3_frame_functions.py`
 - counts toward the grade: yes
 
 ### Documents and data: `dag/derivations/09_finite_hilbert/tfq_0307_gleason_route_for_dimension_at_least_three.md`
