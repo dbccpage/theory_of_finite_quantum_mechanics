@@ -59,7 +59,7 @@ $$\text{height}=(\text{push}_1)^2+(\text{push}_2)^2+2\,(\text{push}_1)(\text{pus
 
 Tag overlap $1$: Move 2. Tag overlap $0$: Move 1. A measurement is the tag overlap going to zero, whatever the tag is made of: a detector, a stray air molecule, a scattered photon, a student's eye. No mind is required, and no disturbance story is required either.
 
-The twist students love: the tag can be "erased" only in a bookkeeping sense. Sort the dots by what the tag later says, and each sorted subset shows stripes, shifted so that the two subsets add up to no stripes. The full pile never shows stripes again, and nothing travels backward in time.
+The twist students love: sort the dots by what the tag later says, and each sorted subset shows stripes, shifted so that the two subsets add up to no stripes. Sorting does not change the full pile, and nothing travels backward in time. A different operation, coherently undoing the tagging interactions before the dots land, can restore interference in the full pile. That becomes impractical once tags have spread into air, light and heat; it is not forbidden by unitary evolution.
 
 > **Teacher box.** The cross term is multiplied by the overlap $\gamma=\langle E_1|E_2\rangle$ of the two tag states, equation (E2); visibility and distinguishability obey $V^2+D^2=1$. The speaker analogy is exact in this sense: the two tags are the two time profiles, and the overlap is their correlation over the listening window. Decoherence is not collapse: the directions still exist in the marble-plus-tag system, and a joint test recovers them (the recoherence witness $(1+\cos\varphi)/2$ in the math note). Eraser: $|x+y|^2+|x-y|^2=2(|x|^2+|y|^2)$.
 
@@ -84,7 +84,7 @@ And the test nobody can run: the pile heights are computed from the ledger the s
 
 What **would** exclude it: directions fading on their own, with no tag anywhere, not even an air molecule. Then the ledger rule itself is wrong, and so is every theory that keeps it (Everett, Bohm, and textbook quantum mechanics between measurements). Experiments keep raising the size at which this has been checked. So far, directions fade only when something tags.
 
-> **Teacher box.** Equation (E3), $\Psi=\sum_i c_i\,|i\rangle|E_i\rangle|O_i\rangle$. The predicate "the terms are worlds" is not an argument of $\mathrm{Tr}(\rho F)$, so it changes no prediction. What would show up instead is non-unitary fading of the cross term, e.g. $\rho_{01}\mapsto(3/5)^k\rho_{01}$ (kernel-checked phase damping). Branch count versus weight: `RationalSector.lean`.
+> **Teacher box.** Equation (E3), $\Psi=\sum_i c_i\,|i\rangle|E_i\rangle|O_i\rangle$. The predicate "the terms are worlds" is not an argument of $\mathrm{Tr}(\rho F)$, so it changes no prediction. The reduced-system decay $\rho_{01}\mapsto(3/5)^k\rho_{01}$ (kernel-checked phase damping) also arises from unitary coupling to fresh environment qubits. It is not by itself evidence for fundamental collapse: that would require a specified closed-system model and exclusion of environmental and technical explanations. Branch count versus weight: `RationalSector.lean`.
 
 ## The ladder, as witnesses
 

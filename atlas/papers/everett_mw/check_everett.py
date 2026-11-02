@@ -51,11 +51,12 @@ for _ in range(100):
     rhoS=np.diag([abs(a)**2,abs(b)**2]); Q,_=np.linalg.qr(rng.normal(size=(2,2))+1j*rng.normal(size=(2,2)))
     Pk=np.real(np.diag(Q@rhoS@Q.conj().T)); assert np.allclose(Pk,np.abs(Q)**2@np.array([abs(a)**2,abs(b)**2]))
 print("3.5 G=I: readout = |U_ki|² w_i for every unitary OK")
-# 3.6 V²+D²=1 pure records
+# 3.4 V²+D²=1 for equal path priors and pure records.
+# Unequal priors are covered by test_measurement_boundaries.py.
 for _ in range(100):
     E1,E2=ket(4),ket(4); g=abs(np.vdot(E1,E2)); D=np.sum(np.abs(np.linalg.eigvalsh(0.5*(np.outer(E1,E1.conj())-np.outer(E2,E2.conj())))))
     assert np.isclose(g**2+D**2,1)
-print("3.6 V²+D²=1 OK")
+print("3.4 equal path priors, pure records: V²+D²=1 OK")
 # 3.7 decoherence ≠ collapse
 E0,E1=np.array([1,0]),np.array([0,1])
 psi0=(np.kron([1,0],E0)+np.kron([0,1],E1))/np.sqrt(2)

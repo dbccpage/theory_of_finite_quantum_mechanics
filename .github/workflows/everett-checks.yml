@@ -1,0 +1,38 @@
+name: everett-checks
+
+on:
+  pull_request:
+    paths:
+      - 'atlas/papers/everett_mw/**'
+      - '.github/workflows/everett-checks.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'atlas/papers/everett_mw/**'
+      - '.github/workflows/everett-checks.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  measurement-boundaries:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install numerical check dependencies
+        run: python -m pip install --disable-pip-version-check numpy scipy
+      - name: Check measurement boundaries and existing examples
+        working-directory: atlas/papers/everett_mw
+        run: |
+          python -I -X utf8 test_measurement_boundaries.py
+          python -I -X utf8 check_math.py
+          python -I -X utf8 check_everett.py
+          python -I -X utf8 check_conjugate_measure.py
+          python -I -X utf8 count_many_worlds.py
+          python -I -X utf8 count_replies.py
+          python -I -X utf8 count_threads_safe.py
