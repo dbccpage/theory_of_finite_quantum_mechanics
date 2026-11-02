@@ -1,0 +1,8595 @@
+import BornGaussianFrameRays
+import Mathlib.Tactic.LinearCombination
+
+/-!
+# Nine-Ray Tomography Reconstruction and Residual Reduction on `ℚ(i)³`
+
+AuthorityEffect: None.
+
+This module formalizes the nine-ray Hermitian tomography reconstruction and the signed
+and nonnegative residual-reduction equivalences for rational-valued frame functions on
+`ℚ(i)³` (from `dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md`),
+together with the `(1+i)`-adic norm-parity structure of `ℚ(i)³` rays.
+
+## Main Definitions and Results
+
+* `HermForm3`: 9-parameter rational representation of a `3 × 3` Hermitian matrix `ρ` over `ℚ(i)`,
+  with diagonal entries `d1, d2, d3 : ℚ` and off-diagonal entries `a_rs + i b_rs` (`r < s`).
+* `HermForm3.applyVec`, `inner_applyVec_im_zero`, `inner_applyVec_re_eq_quadNum`: the matrix action
+  `ρ v` on `v ∈ ℚ(i)³` has purely rational inner product `⟨v, ρ v⟩ = quadNum ρ v`.
+* `quadRay ρ v`: the normalized Rayleigh quotient `⟨v, ρ v⟩ / ⟨v, v⟩`.
+* `quadRay_smul`: scale invariance `quadRay ρ (l • v) = quadRay ρ v` for `l ≠ 0`.
+* `quadRay_frame_sum`: for any orthogonal triple `(u, v, w)` of nonzero vectors in `ℚ(i)³`
+  (without assuming unit-norm representatives),
+  `quadRay ρ u + quadRay ρ v + quadRay ρ w = ρ.tr`.
+* `quadRay_isFrameFunction`: if `ρ.tr = 1`, then `quadRay ρ` is a frame function on `ℚ(i)³`.
+* `tomographyForm f`: the unique `3 × 3` Hermitian form reconstructed from the values of `f` on
+  the nine tomography vectors `e_r` (`1 ≤ r ≤ 3`), `e_r + e_s`, and `e_r + i e_s` (`1 ≤ r < s ≤ 3`).
+* `tomography_matches_nine_rays`, `tomography_trace_one`, `tomography_unique`: exact reproduction
+  of `f` on all nine tomography rays, trace-one normalization when `f` is a frame function, and
+  uniqueness of `ρ` from its Rayleigh quotients on the nine rays.
+* `signed_rigidity_iff_zero_residual`: every frame function `f : GVec → ℚ` equals `quadRay ρ` for
+  a trace-one Hermitian form `ρ` on all nonzero vectors if and only if every zero-weight frame
+  function `g` vanishing on the nine tomography rays vanishes on all nonzero vectors.
+* `nonneg_rigidity_iff_bounded_zero_residual`: every nonnegative frame function `f` equals
+  `quadRay ρ` for a trace-one Hermitian form `ρ` on all nonzero vectors if and only if every
+  bounded zero-weight frame function `g` vanishing on the nine tomography rays vanishes on all
+  nonzero vectors.
+* `normSqVec_zero`, `quadNum_zero`, `quadRay_zero`, `normalizeAtZero`, `eq_quadRay_all_of_zero_at_zero`:
+  explicit zero-vector behavior and canonical zero-normalized extension eliminating the junk-value
+  caveat at `0`.
+* `traceInner`, `traceInner_self_nonneg`, `traceInner_self_eq_zero_iff`, `traceInner_ext`,
+  `rayProj`, `traceInner_rayProj`, `rayProj_frame_sum`, `rayProj_nine_rays_span_hermForm3`,
+  `rayProj_witness_111_decomp`, `quadRay_witness_111_kernel_relation`,
+  `s3_witness_111_kernel_separation`: Section 5 operator-space formulation on `HermForm3`,
+  nondegenerate rational Frobenius trace pairing `tr(ρ σ)`, rank-1 ray projector map
+  `T(v) = v v* / N(v)` satisfying `tr(ρ T(v)) = quadRay ρ v`, exact frame resolution of the
+  identity `T(u) + T(v) + T(w) = I₃` on all orthogonal frames, explicit spanning of `HermForm3`
+  by the nine tomography ray projectors, and constructive 7-ray projector kernel decomposition and
+  separation without basis extension.
+* `gaussian_norm_div_four_witness`, `gaussian_norm_eight_primitive_witness`, and
+  `primitive_gaussian_norm_mod_four_iff`: `(1+i)`-primitive vectors in `ℤ[i]³` can have norm
+  divisible by `4` or `8`, and `4 ∣ ⟨u, u⟩` on a `(1+i)`-primitive vector iff two coordinates are
+  `(1+i)`-odd and one coordinate has `(1+i)`-valuation `1`.
+* `v3Rat`, `u3Rat`, `v3Rat_normSq_even`, `detGVec_normSq_of_frame`, `frame_v3Rat_sum_even`,
+  `ortho_coord_identity_x`: `3`-adic valuation parity on `ℚ(i)³` rays and orthogonal frames.
+* `s3`, `s3_orthogonal_odd_cancel`, `s3_isZeroWeightFrameFunction`, `s3_smul`, `s3_isBoundedOnRays`,
+  `s3_vanishes_on_nine_rays`, `witness_111_primitive`, `witness_div_four_shell_primitive`,
+  `witness_div_eight_shell_primitive`, `exists_nonzero_bounded_zero_residual`: explicit global
+  bounded (`{-1, 0, +1}`-valued) zero-weight residual frame function on `ℚ(i)³` vanishing on all
+  nine tomography rays and nonzero across `(1+i)`-primitive rays in distinct `(1+i)`-adic norm
+  shells (`witness_111` of norm `3`, `witness_div_four_shell` of norm `12`, and
+  `witness_div_eight_shell` of norm `24`).
+* `not_signed_quadratic_rigidity`, `not_nonneg_quadratic_rigidity`, `exoticQi3`,
+  `exoticQi3_isNonnegFrameFunction`, `exoticQi3_not_quadratic`: negative resolution of both signed
+  and nonnegative quadratic frame-function rigidity on `ℚ(i)³`, with `exoticQi3 v = (1 + s3 v) / 3`
+  providing an explicit global `{0, 1/3, 2/3}`-valued nonnegative non-quadratic frame function.
+* `IsArchimedeanContinuousAt`, `s3_oscillates_near_tomo_e1`, `not_archimedeanContinuousAt_s3_tomo_e1`,
+  `not_archimedeanContinuousAt_exoticQi3_tomo_e1`, `s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`,
+  `archimedeanContinuousAt_quadRay_tomo_e1`,
+  `quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff`: Section 9A Archimedean continuity
+  elimination at `tomo_e1`, proving both that `s3` and `exoticQi3` oscillate discontinuously on rays
+  approaching `tomo_e1` and that `quadRay ρ` is Archimedean-continuous at `tomo_e1`, so
+  `quadRay ρ + c • s3` is Archimedean-continuous at `tomo_e1` iff `c = 0`.
+* `no_unit_norm_smul_witness_111_in_qi3`, `GaussRatSqrt3`, `GVecSqrt3`, `witness_111_unit_sqrt3_normSq`,
+  `isFrameSqrt3_witness_111_even_norms`, `zero_on_witness_111_of_sqrt3_even_v3_vanishing`,
+  `no_s3_even_v3_extension_to_sqrt3`, `unit_norm_in_sqrtP_of_normSqVec_eq`,
+  `fourSquarePartner_ortho_and_normSqRatP`, `isFrameSqrt7_witness_p7_norms`: Section 9B quadratic
+  field extension `ℚ(i, √p)³` elimination via universal unit-norm rescaling (`(1/√p) u` has norm `1`)
+  and universal four-square SU(2) orthogonal partner completion (shifting partner norms from `m p`
+  to `m p²` with even `v_p = 2`), instantiated explicitly for `p = 3` (`(3, 18, 18)`) and `p = 7`
+  (`(7, 245, 245)`).
+* `FactorsThroughRayProjLinear`, `zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear`,
+  `not_factorsThroughRayProjLinear_s3`, `quadratic_rigidity_iff_factorsThroughRayProjLinear`:
+  Section 9C operator-space projector-linearity (`T(v) = rayProj v`) characterization of quadratic
+  rigidity over `ℚ(i)³`.
+* `v7Rat`, `u7Rat`, `s7`, `witness_p7`, `s3_s7_dual_on_witnesses`, `combResidual37`, `exoticComb37`,
+  `s3_s7_linearIndependent`, `s3_s7_selective_oscillation_near_tomo_e1`,
+  `quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff`,
+  `exoticComb37_archimedeanContinuousAt_tomo_e1_iff`, `rayProj_witness_p7_decomp`,
+  `cross_prime_frame_partner_norm_valuations_even`: Section 9D second inert prime `p = 7 ≡ 3 (mod 4)`
+  residual `s7`, `2`-parameter `ℓ¹`-diamond nonnegative family `exoticComb37`, and joint elimination.
+* `vpRat`, `upRat`, `sp`, `sp_three_eq_s3`, `sp_seven_eq_s7`, `witness_p11`,
+  `s3_s7_sp11_dual_on_three_witnesses`, `s3_s7_sp11_linearIndependent`,
+  `rayProj_witness_p11_decomp`, `isFrameSqrt11_witness_p11_norms`,
+  `three_prime_frame_partner_norm_valuations_even`, `finCombResidual`, `finL1Norm`, `finExoticComb`,
+  `InertPrimeResidualSystem`, `finExoticComb_isNonnegFrameFunction`,
+  `inertPrimeResidualSystem_linearIndependent`, `finExoticComb_quadratic_iff`,
+  `quadRay_add_finCombResidual_archimedeanContinuousAt_tomo_e1_iff`,
+  `finExoticComb_archimedeanContinuousAt_tomo_e1_iff`,
+  `factorsThroughRayProjLinear_finCombResidual_iff`,
+  `joint_field_extension_eliminates_finCombResidual`: Section 9E uniform prime-indexed `sp p`
+  residual family, third inert prime `p = 11 ≡ 3 (mod 4)` (`witness_p11 = (1, 3, 1)` of norm `11`),
+  and arbitrary-`m` finite-family linear independence and simultaneous elimination theorems.
+* `rotPairU`, `rotPairV`, `inner_rotPairU_rotPairV_eq_zero`, `normSqVec_rotPairU`,
+  `normSqVec_rotPairV`, `isFrame_rotPair`, `frameFunction_rotPair_sum`, `zeroWeight_rotPair_sum`,
+  `normSqVec_add_eq_normSqVec_sub_of_ortho`, `rayProj_ortho_add_sub`,
+  `factorsThroughRayProjLinear_ortho_add_sub`, `SatisfiesOrthoParallelogramZero`,
+  `satisfiesOrthoParallelogramZero_of_factorsThroughRayProjLinear`,
+  `IsCoordSignSymmetric`, `sp_isCoordSignSymmetric`, `sp_vanishes_on_coord_axes`,
+  `zero_of_coordSignSymmetric_and_orthoParallelogram`,
+  `s3_not_satisfiesOrthoParallelogramZero`, `s7_not_satisfiesOrthoParallelogramZero`,
+  `sp11_not_satisfiesOrthoParallelogramZero`,
+  `hermCross`, `isFrame_hermCross`, `nonneg_eq_zero_on_perp_of_pole_one`,
+  `pure_pole_e1_nonneg_eliminates_combResidual3_7_11`,
+  `eqOrtho`, `pironStep`, `pironPartner`, `meridianOrtho`,
+  `piron_frame_sum_identity`, `piron_descent_le_of_pole_one`, `meridian_complement_of_pole_one`,
+  `pythagEqRot`, `normSqVec_pythagEqRot`, `quadRay_rayProj_e1_pythagEqRot`,
+  `distSqVec_pironStep_inv_nat`, `exists_pironStep_within_delta`,
+  `zero_of_nonneg_zeroWeightFrameFunction`, `IsArchimedeanContinuousEverywhere`,
+  `nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual`: Section 9F planar
+  frame-rotation algebra, two-point operator-space parallelogram law, all-prime coordinate-norm
+  symmetry elimination, constructive Piron/Cooke–Keane–Moran frame-rotation descent, dense
+  Pythagorean equi-latitude rotation, and exact nonnegativity + Archimedean continuity bridge to
+  `FactorsThroughRayProjLinear`.
+-/
+
+namespace BornFinite.GaussianTomography
+
+open BornFinite
+open BornFinite.GaussRat
+open BornFinite.GaussianFrames
+
+/-! ### 1. Hermitian Forms and Rayleigh Quotients on `ℚ(i)³` -/
+
+/-- A `3 × 3` Hermitian matrix over `ℚ(i)` parameterized by its three rational diagonal entries
+`d1, d2, d3` and three Gaussian-rational upper-triangular entries `a12 + i b12`, `a13 + i b13`,
+`a23 + i b23`. -/
+structure HermForm3 where
+  d1 : ℚ
+  d2 : ℚ
+  d3 : ℚ
+  a12 : ℚ
+  a13 : ℚ
+  a23 : ℚ
+  b12 : ℚ
+  b13 : ℚ
+  b23 : ℚ
+  deriving DecidableEq, Repr
+
+@[ext]
+theorem HermForm3.ext {ρ σ : HermForm3}
+    (hd1 : ρ.d1 = σ.d1) (hd2 : ρ.d2 = σ.d2) (hd3 : ρ.d3 = σ.d3)
+    (ha12 : ρ.a12 = σ.a12) (ha13 : ρ.a13 = σ.a13) (ha23 : ρ.a23 = σ.a23)
+    (hb12 : ρ.b12 = σ.b12) (hb13 : ρ.b13 = σ.b13) (hb23 : ρ.b23 = σ.b23) :
+    ρ = σ := by
+  cases ρ; cases σ; simp_all
+
+/-- Trace of the `3 × 3` Hermitian matrix `ρ`. -/
+def HermForm3.tr (ρ : HermForm3) : ℚ :=
+  ρ.d1 + ρ.d2 + ρ.d3
+
+/-- Absolute-value coefficient norm bounding `|quadRay ρ v|` on all nonzero rays. -/
+def HermForm3.coeffNorm (ρ : HermForm3) : ℚ :=
+  |ρ.d1| + |ρ.d2| + |ρ.d3| +
+  2 * |ρ.a12| + 2 * |ρ.a13| + 2 * |ρ.a23| +
+  2 * |ρ.b12| + 2 * |ρ.b13| + 2 * |ρ.b23|
+
+/-- Upper-triangular Gaussian-rational entries of `ρ`. -/
+def HermForm3.entry12 (ρ : HermForm3) : GaussRat := ⟨ρ.a12, ρ.b12⟩
+def HermForm3.entry13 (ρ : HermForm3) : GaussRat := ⟨ρ.a13, ρ.b13⟩
+def HermForm3.entry23 (ρ : HermForm3) : GaussRat := ⟨ρ.a23, ρ.b23⟩
+
+/-- Linear action `v ↦ ρ v` of the `3 × 3` Hermitian matrix `ρ` on `v ∈ ℚ(i)³`. -/
+def HermForm3.applyVec (ρ : HermForm3) (v : GVec) : GVec :=
+  ⟨⟨ρ.d1, 0⟩ * v.x + ρ.entry12 * v.y + ρ.entry13 * v.z,
+   star ρ.entry12 * v.x + ⟨ρ.d2, 0⟩ * v.y + ρ.entry23 * v.z,
+   star ρ.entry13 * v.x + star ρ.entry23 * v.y + ⟨ρ.d3, 0⟩ * v.z⟩
+
+/-- Unnormalized Hermitian quadratic form `⟨v, ρ v⟩` evaluated on `v ∈ ℚ(i)³`. -/
+def quadNum (ρ : HermForm3) (v : GVec) : ℚ :=
+  ρ.d1 * v.x.normSq + ρ.d2 * v.y.normSq + ρ.d3 * v.z.normSq +
+  2 * ρ.a12 * (v.x.re * v.y.re + v.x.im * v.y.im) +
+  2 * ρ.a13 * (v.x.re * v.z.re + v.x.im * v.z.im) +
+  2 * ρ.a23 * (v.y.re * v.z.re + v.y.im * v.z.im) -
+  2 * ρ.b12 * (v.x.re * v.y.im - v.x.im * v.y.re) -
+  2 * ρ.b13 * (v.x.re * v.z.im - v.x.im * v.z.re) -
+  2 * ρ.b23 * (v.y.re * v.z.im - v.y.im * v.z.re)
+
+/-- Squared Hermitian norm `⟨v, v⟩` of `v ∈ ℚ(i)³`. -/
+def normSqVec (v : GVec) : ℚ :=
+  v.x.normSq + v.y.normSq + v.z.normSq
+
+/-- Normalized Hermitian Rayleigh quotient `⟨v, ρ v⟩ / ⟨v, v⟩`. -/
+def quadRay (ρ : HermForm3) (v : GVec) : ℚ :=
+  quadNum ρ v / normSqVec v
+
+/-- The Hermitian inner product `⟨v, ρ v⟩` has zero imaginary part. -/
+theorem inner_applyVec_im_zero (ρ : HermForm3) (v : GVec) :
+    (GVec.inner v (ρ.applyVec v)).im = 0 := by
+  simp only [GVec.inner, HermForm3.applyVec, HermForm3.entry12, HermForm3.entry13,
+    HermForm3.entry23, re_add, im_add, re_mul, im_mul, re_star, im_star]
+  ring
+
+/-- The real part of `⟨v, ρ v⟩` equals `quadNum ρ v`. -/
+theorem inner_applyVec_re_eq_quadNum (ρ : HermForm3) (v : GVec) :
+    (GVec.inner v (ρ.applyVec v)).re = quadNum ρ v := by
+  simp only [GVec.inner, HermForm3.applyVec, HermForm3.entry12, HermForm3.entry13,
+    HermForm3.entry23, quadNum, GaussRat.normSq, re_add, im_add, re_mul, im_mul, re_star, im_star]
+  ring
+
+theorem inner_self_eq_normSqVec (v : GVec) :
+    GVec.inner v v = ⟨normSqVec v, 0⟩ := by
+  ext
+  · simp only [GVec.inner, normSqVec, GaussRat.normSq, re_add, re_mul, re_star, im_star]
+    ring
+  · simp only [GVec.inner, im_add, im_mul, re_star, im_star]
+    ring
+
+theorem normSqVec_nonneg (v : GVec) : 0 ≤ normSqVec v := by
+  unfold normSqVec
+  linarith [normSq_nonneg v.x, normSq_nonneg v.y, normSq_nonneg v.z]
+
+theorem normSqVec_pos_of_nonZero {v : GVec} (hv : v.NonZero) : 0 < normSqVec v := by
+  rcases hv with hx | hy | hz
+  · have h1 : 0 < v.x.normSq :=
+      lt_of_le_of_ne (normSq_nonneg v.x) (fun h => hx ((normSq_eq_zero_iff v.x).mp h.symm))
+    unfold normSqVec
+    linarith [normSq_nonneg v.y, normSq_nonneg v.z]
+  · have h1 : 0 < v.y.normSq :=
+      lt_of_le_of_ne (normSq_nonneg v.y) (fun h => hy ((normSq_eq_zero_iff v.y).mp h.symm))
+    unfold normSqVec
+    linarith [normSq_nonneg v.x, normSq_nonneg v.z]
+  · have h1 : 0 < v.z.normSq :=
+      lt_of_le_of_ne (normSq_nonneg v.z) (fun h => hz ((normSq_eq_zero_iff v.z).mp h.symm))
+    unfold normSqVec
+    linarith [normSq_nonneg v.x, normSq_nonneg v.y]
+
+theorem normSqVec_ne_zero_of_nonZero {v : GVec} (hv : v.NonZero) : normSqVec v ≠ 0 :=
+  ne_of_gt (normSqVec_pos_of_nonZero hv)
+
+theorem quadNum_smul (ρ : HermForm3) (l : GaussRat) (v : GVec) :
+    quadNum ρ (GVec.smul l v) = l.normSq * quadNum ρ v := by
+  simp only [quadNum, GVec.smul, GaussRat.normSq, re_mul, im_mul]
+  ring
+
+theorem normSqVec_smul (l : GaussRat) (v : GVec) :
+    normSqVec (GVec.smul l v) = l.normSq * normSqVec v := by
+  simp only [normSqVec, GVec.smul, GaussRat.normSq, re_mul, im_mul]
+  ring
+
+/-- The Rayleigh quotient `quadRay ρ` is invariant under nonzero Gaussian-rational scaling. -/
+theorem quadRay_smul (ρ : HermForm3) {l : GaussRat} (hl : l ≠ 0) (v : GVec) :
+    quadRay ρ (GVec.smul l v) = quadRay ρ v := by
+  have hln : l.normSq ≠ 0 := fun h0 => hl ((normSq_eq_zero_iff l).mp h0)
+  simp only [quadRay, quadNum_smul, normSqVec_smul]
+  exact mul_div_mul_left (quadNum ρ v) (normSqVec v) hln
+
+/-! ### 2. Orthogonal Frame Sum via Gram Adjugate Identity -/
+
+/-- Cyclic coordinate rotation `(x, y, z) ↦ (y, z, x)`. -/
+def rotVec (v : GVec) : GVec := ⟨v.y, v.z, v.x⟩
+
+/-- Coordinate swap `(x, y, z) ↦ (y, x, z)`. -/
+def swapXYVec (v : GVec) : GVec := ⟨v.y, v.x, v.z⟩
+
+theorem inner_rotVec (u v : GVec) : GVec.inner (rotVec u) (rotVec v) = GVec.inner u v := by
+  simp only [GVec.inner, rotVec]
+  ring
+
+theorem inner_swapXYVec (u v : GVec) : GVec.inner (swapXYVec u) (swapXYVec v) = GVec.inner u v := by
+  simp only [GVec.inner, swapXYVec]
+  ring
+
+theorem inner_eq_zero_symm {u v : GVec} (h : GVec.inner u v = 0) : GVec.inner v u = 0 := by
+  have hstar : star (GVec.inner u v) = GVec.inner v u := by
+    simp only [GVec.inner, star_add, star_mul, star_star]
+  rw [← hstar, h, star_zero]
+
+theorem u_adjG_ud_diag (u v w : GVec)
+    (huv : GVec.inner u v = 0) (huw : GVec.inner u w = 0) (hvw : GVec.inner v w = 0)
+    (hvu : GVec.inner v u = 0) (hwu : GVec.inner w u = 0) (hwv : GVec.inner w v = 0) :
+    GVec.inner v v * GVec.inner w w * (u.x * star u.x) +
+    GVec.inner u u * GVec.inner w w * (v.x * star v.x) +
+    GVec.inner u u * GVec.inner v v * (w.x * star w.x) =
+    GVec.inner u u * GVec.inner v v * GVec.inner w w := by
+  have id_general :
+      (GVec.inner v v * GVec.inner w w - GVec.inner v w * GVec.inner w v) * (u.x * star u.x) +
+      (GVec.inner u w * GVec.inner w v - GVec.inner u v * GVec.inner w w) * (u.x * star v.x) +
+      (GVec.inner u v * GVec.inner v w - GVec.inner u w * GVec.inner v v) * (u.x * star w.x) +
+      (GVec.inner v w * GVec.inner w u - GVec.inner v u * GVec.inner w w) * (v.x * star u.x) +
+      (GVec.inner u u * GVec.inner w w - GVec.inner u w * GVec.inner w u) * (v.x * star v.x) +
+      (GVec.inner u w * GVec.inner v u - GVec.inner u u * GVec.inner v w) * (v.x * star w.x) +
+      (GVec.inner v u * GVec.inner w v - GVec.inner v v * GVec.inner w u) * (w.x * star u.x) +
+      (GVec.inner u v * GVec.inner w u - GVec.inner u u * GVec.inner w v) * (w.x * star v.x) +
+      (GVec.inner u u * GVec.inner v v - GVec.inner u v * GVec.inner v u) * (w.x * star w.x) =
+      GVec.inner u u * (GVec.inner v v * GVec.inner w w - GVec.inner v w * GVec.inner w v) -
+      GVec.inner u v * (GVec.inner v u * GVec.inner w w - GVec.inner v w * GVec.inner w u) +
+      GVec.inner u w * (GVec.inner v u * GVec.inner w v - GVec.inner v v * GVec.inner w u) := by
+    simp only [GVec.inner]
+    ring
+  rw [huv, huw, hvw, hvu, hwu, hwv] at id_general
+  linear_combination id_general
+
+theorem u_adjG_ud_offdiag (u v w : GVec)
+    (huv : GVec.inner u v = 0) (huw : GVec.inner u w = 0) (hvw : GVec.inner v w = 0)
+    (hvu : GVec.inner v u = 0) (hwu : GVec.inner w u = 0) (hwv : GVec.inner w v = 0) :
+    GVec.inner v v * GVec.inner w w * (u.x * star u.y) +
+    GVec.inner u u * GVec.inner w w * (v.x * star v.y) +
+    GVec.inner u u * GVec.inner v v * (w.x * star w.y) = 0 := by
+  have id_general :
+      (GVec.inner v v * GVec.inner w w - GVec.inner v w * GVec.inner w v) * (u.x * star u.y) +
+      (GVec.inner u w * GVec.inner w v - GVec.inner u v * GVec.inner w w) * (u.x * star v.y) +
+      (GVec.inner u v * GVec.inner v w - GVec.inner u w * GVec.inner v v) * (u.x * star w.y) +
+      (GVec.inner v w * GVec.inner w u - GVec.inner v u * GVec.inner w w) * (v.x * star u.y) +
+      (GVec.inner u u * GVec.inner w w - GVec.inner u w * GVec.inner w u) * (v.x * star v.y) +
+      (GVec.inner u w * GVec.inner v u - GVec.inner u u * GVec.inner v w) * (v.x * star w.y) +
+      (GVec.inner v u * GVec.inner w v - GVec.inner v v * GVec.inner w u) * (w.x * star u.y) +
+      (GVec.inner u v * GVec.inner w u - GVec.inner u u * GVec.inner w v) * (w.x * star v.y) +
+      (GVec.inner u u * GVec.inner v v - GVec.inner u v * GVec.inner v u) * (w.x * star w.y) = 0 := by
+    simp only [GVec.inner]
+    ring
+  rw [huv, huw, hvw, hvu, hwu, hwv] at id_general
+  linear_combination id_general
+
+theorem inner_applyVec_orthogonal_weighted_sum (ρ : HermForm3) {u v w : GVec}
+    (huv : GVec.inner u v = 0) (huw : GVec.inner u w = 0) (hvw : GVec.inner v w = 0) :
+    GVec.inner v v * GVec.inner w w * GVec.inner u (ρ.applyVec u) +
+    GVec.inner u u * GVec.inner w w * GVec.inner v (ρ.applyVec v) +
+    GVec.inner u u * GVec.inner v v * GVec.inner w (ρ.applyVec w) =
+    GVec.inner u u * GVec.inner v v * GVec.inner w w *
+      (⟨ρ.d1, 0⟩ + ⟨ρ.d2, 0⟩ + ⟨ρ.d3, 0⟩) := by
+  have hvu := inner_eq_zero_symm huv
+  have hwu := inner_eq_zero_symm huw
+  have hwv := inner_eq_zero_symm hvw
+  have hxx := u_adjG_ud_diag u v w huv huw hvw hvu hwu hwv
+  have hyy := u_adjG_ud_diag (rotVec u) (rotVec v) (rotVec w)
+    (by rw [inner_rotVec]; exact huv) (by rw [inner_rotVec]; exact huw)
+    (by rw [inner_rotVec]; exact hvw) (by rw [inner_rotVec]; exact hvu)
+    (by rw [inner_rotVec]; exact hwu) (by rw [inner_rotVec]; exact hwv)
+  have hzz := u_adjG_ud_diag (rotVec (rotVec u)) (rotVec (rotVec v)) (rotVec (rotVec w))
+    (by rw [inner_rotVec, inner_rotVec]; exact huv) (by rw [inner_rotVec, inner_rotVec]; exact huw)
+    (by rw [inner_rotVec, inner_rotVec]; exact hvw) (by rw [inner_rotVec, inner_rotVec]; exact hvu)
+    (by rw [inner_rotVec, inner_rotVec]; exact hwu) (by rw [inner_rotVec, inner_rotVec]; exact hwv)
+  have hxy := u_adjG_ud_offdiag u v w huv huw hvw hvu hwu hwv
+  have hyx := u_adjG_ud_offdiag (swapXYVec u) (swapXYVec v) (swapXYVec w)
+    (by rw [inner_swapXYVec]; exact huv) (by rw [inner_swapXYVec]; exact huw)
+    (by rw [inner_swapXYVec]; exact hvw) (by rw [inner_swapXYVec]; exact hvu)
+    (by rw [inner_swapXYVec]; exact hwu) (by rw [inner_swapXYVec]; exact hwv)
+  have hyz := u_adjG_ud_offdiag (rotVec u) (rotVec v) (rotVec w)
+    (by rw [inner_rotVec]; exact huv) (by rw [inner_rotVec]; exact huw)
+    (by rw [inner_rotVec]; exact hvw) (by rw [inner_rotVec]; exact hvu)
+    (by rw [inner_rotVec]; exact hwu) (by rw [inner_rotVec]; exact hwv)
+  have hzy := u_adjG_ud_offdiag (swapXYVec (rotVec u)) (swapXYVec (rotVec v)) (swapXYVec (rotVec w))
+    (by rw [inner_swapXYVec, inner_rotVec]; exact huv)
+    (by rw [inner_swapXYVec, inner_rotVec]; exact huw)
+    (by rw [inner_swapXYVec, inner_rotVec]; exact hvw)
+    (by rw [inner_swapXYVec, inner_rotVec]; exact hvu)
+    (by rw [inner_swapXYVec, inner_rotVec]; exact hwu)
+    (by rw [inner_swapXYVec, inner_rotVec]; exact hwv)
+  have hzx := u_adjG_ud_offdiag (rotVec (rotVec u)) (rotVec (rotVec v)) (rotVec (rotVec w))
+    (by rw [inner_rotVec, inner_rotVec]; exact huv) (by rw [inner_rotVec, inner_rotVec]; exact huw)
+    (by rw [inner_rotVec, inner_rotVec]; exact hvw) (by rw [inner_rotVec, inner_rotVec]; exact hvu)
+    (by rw [inner_rotVec, inner_rotVec]; exact hwu) (by rw [inner_rotVec, inner_rotVec]; exact hwv)
+  have hxz := u_adjG_ud_offdiag (swapXYVec (rotVec (rotVec u)))
+    (swapXYVec (rotVec (rotVec v))) (swapXYVec (rotVec (rotVec w)))
+    (by rw [inner_swapXYVec, inner_rotVec, inner_rotVec]; exact huv)
+    (by rw [inner_swapXYVec, inner_rotVec, inner_rotVec]; exact huw)
+    (by rw [inner_swapXYVec, inner_rotVec, inner_rotVec]; exact hvw)
+    (by rw [inner_swapXYVec, inner_rotVec, inner_rotVec]; exact hvu)
+    (by rw [inner_swapXYVec, inner_rotVec, inner_rotVec]; exact hwu)
+    (by rw [inner_swapXYVec, inner_rotVec, inner_rotVec]; exact hwv)
+  simp only [inner_rotVec, inner_swapXYVec] at hyy hzz hyx hyz hzy hzx hxz
+  simp only [rotVec, swapXYVec] at hyy hzz hyx hyz hzy hzx hxz
+  have hexp (q : GVec) :
+      GVec.inner q (ρ.applyVec q) =
+      ⟨ρ.d1, 0⟩ * (q.x * star q.x) + ⟨ρ.d2, 0⟩ * (q.y * star q.y) + ⟨ρ.d3, 0⟩ * (q.z * star q.z) +
+      ρ.entry12 * (q.y * star q.x) + star ρ.entry12 * (q.x * star q.y) +
+      ρ.entry13 * (q.z * star q.x) + star ρ.entry13 * (q.x * star q.z) +
+      ρ.entry23 * (q.z * star q.y) + star ρ.entry23 * (q.y * star q.z) := by
+    simp only [GVec.inner, HermForm3.applyVec]
+    ring
+  rw [hexp u, hexp v, hexp w]
+  linear_combination
+    ⟨ρ.d1, 0⟩ * hxx + ⟨ρ.d2, 0⟩ * hyy + ⟨ρ.d3, 0⟩ * hzz +
+    ρ.entry12 * hyx + star ρ.entry12 * hxy +
+    ρ.entry13 * hzx + star ρ.entry13 * hxz +
+    ρ.entry23 * hzy + star ρ.entry23 * hyz
+
+/-- Rational Gram-adjugate identity for orthogonal triples in `ℚ(i)³`. -/
+theorem quadNum_orthogonal_weighted_sum (ρ : HermForm3) {u v w : GVec}
+    (huv : GVec.inner u v = 0) (huw : GVec.inner u w = 0) (hvw : GVec.inner v w = 0) :
+    normSqVec v * normSqVec w * quadNum ρ u +
+    normSqVec u * normSqVec w * quadNum ρ v +
+    normSqVec u * normSqVec v * quadNum ρ w =
+    normSqVec u * normSqVec v * normSqVec w * ρ.tr := by
+  have h := congrArg GaussRat.re (inner_applyVec_orthogonal_weighted_sum ρ huv huw hvw)
+  simp only [inner_self_eq_normSqVec, re_add, im_add, re_mul, im_mul,
+    inner_applyVec_re_eq_quadNum, inner_applyVec_im_zero] at h
+  unfold HermForm3.tr
+  linarith
+
+/-- On every orthogonal frame `(u, v, w)` in `ℚ(i)³` (without assuming unit-norm representatives),
+the Rayleigh quotients of `ρ` sum to `tr(ρ)`. -/
+theorem quadRay_frame_sum (ρ : HermForm3) {u v w : GVec} (hfr : IsFrame u v w) :
+    quadRay ρ u + quadRay ρ v + quadRay ρ w = ρ.tr := by
+  rcases hfr with ⟨hu, hv, hw, huv, huw, hvw⟩
+  have hnu := normSqVec_ne_zero_of_nonZero hu
+  have hnv := normSqVec_ne_zero_of_nonZero hv
+  have hnw := normSqVec_ne_zero_of_nonZero hw
+  have hsum := quadNum_orthogonal_weighted_sum ρ huv huw hvw
+  unfold quadRay
+  rw [div_add_div _ _ hnu hnv, div_add_div _ _ (mul_ne_zero hnu hnv) hnw,
+    div_eq_iff (mul_ne_zero (mul_ne_zero hnu hnv) hnw)]
+  linarith
+
+/-- Every trace-one `3 × 3` Hermitian form `ρ` defines a frame function `quadRay ρ` on `ℚ(i)³`. -/
+theorem quadRay_isFrameFunction (ρ : HermForm3) (htr : ρ.tr = 1) :
+    IsFrameFunction (quadRay ρ) := by
+  intro u v w hfr
+  rw [quadRay_frame_sum ρ hfr, htr]
+
+/-! ### 3. Nine-Ray Tomography Reconstruction and Uniqueness -/
+
+/-- The nine tomography vectors `e₁, e₂, e₃, e₁+e₂, e₁+e₃, e₂+e₃, e₁+ie₂, e₁+ie₃, e₂+ie₃`. -/
+def tomo_e1 : GVec := gv 1 0 0 0 0 0
+def tomo_e2 : GVec := gv 0 0 1 0 0 0
+def tomo_e3 : GVec := gv 0 0 0 0 1 0
+def tomo_e12 : GVec := gv 1 0 1 0 0 0
+def tomo_e13 : GVec := gv 1 0 0 0 1 0
+def tomo_e23 : GVec := gv 0 0 1 0 1 0
+def tomo_e12i : GVec := gv 1 0 0 1 0 0
+def tomo_e13i : GVec := gv 1 0 0 0 0 1
+def tomo_e23i : GVec := gv 0 0 1 0 0 1
+
+theorem frame_tomo_std : IsFrame tomo_e1 tomo_e2 tomo_e3 :=
+  ⟨nonZero_of_x (by norm_num [tomo_e1, gv]),
+   nonZero_of_y (by norm_num [tomo_e2, gv]),
+   nonZero_of_z (by norm_num [tomo_e3, gv]),
+   by simp only [tomo_e1, tomo_e2]; gauss_arith,
+   by simp only [tomo_e1, tomo_e3]; gauss_arith,
+   by simp only [tomo_e2, tomo_e3]; gauss_arith⟩
+
+theorem tomo_e1_nonZero : tomo_e1.NonZero := frame_tomo_std.1
+theorem tomo_e2_nonZero : tomo_e2.NonZero := frame_tomo_std.2.1
+theorem tomo_e3_nonZero : tomo_e3.NonZero := frame_tomo_std.2.2.1
+theorem tomo_e12_nonZero : tomo_e12.NonZero := nonZero_of_x (by norm_num [tomo_e12, gv])
+theorem tomo_e13_nonZero : tomo_e13.NonZero := nonZero_of_x (by norm_num [tomo_e13, gv])
+theorem tomo_e23_nonZero : tomo_e23.NonZero := nonZero_of_y (by norm_num [tomo_e23, gv])
+theorem tomo_e12i_nonZero : tomo_e12i.NonZero := nonZero_of_x (by norm_num [tomo_e12i, gv])
+theorem tomo_e13i_nonZero : tomo_e13i.NonZero := nonZero_of_x (by norm_num [tomo_e13i, gv])
+theorem tomo_e23i_nonZero : tomo_e23i.NonZero := nonZero_of_y (by norm_num [tomo_e23i, gv])
+
+theorem quadRay_tomo_e1 (ρ : HermForm3) : quadRay ρ tomo_e1 = ρ.d1 := by
+  simp [quadRay, quadNum, normSqVec, GaussRat.normSq, tomo_e1, gv]
+
+theorem quadRay_tomo_e2 (ρ : HermForm3) : quadRay ρ tomo_e2 = ρ.d2 := by
+  simp [quadRay, quadNum, normSqVec, GaussRat.normSq, tomo_e2, gv]
+
+theorem quadRay_tomo_e3 (ρ : HermForm3) : quadRay ρ tomo_e3 = ρ.d3 := by
+  simp [quadRay, quadNum, normSqVec, GaussRat.normSq, tomo_e3, gv]
+
+theorem quadRay_tomo_e12 (ρ : HermForm3) : quadRay ρ tomo_e12 = (ρ.d1 + ρ.d2 + 2 * ρ.a12) / 2 := by
+  simp [quadRay, quadNum, normSqVec, GaussRat.normSq, tomo_e12, gv]
+  ring
+
+theorem quadRay_tomo_e13 (ρ : HermForm3) : quadRay ρ tomo_e13 = (ρ.d1 + ρ.d3 + 2 * ρ.a13) / 2 := by
+  simp [quadRay, quadNum, normSqVec, GaussRat.normSq, tomo_e13, gv]
+  ring
+
+theorem quadRay_tomo_e23 (ρ : HermForm3) : quadRay ρ tomo_e23 = (ρ.d2 + ρ.d3 + 2 * ρ.a23) / 2 := by
+  simp [quadRay, quadNum, normSqVec, GaussRat.normSq, tomo_e23, gv]
+  ring
+
+theorem quadRay_tomo_e12i (ρ : HermForm3) : quadRay ρ tomo_e12i = (ρ.d1 + ρ.d2 - 2 * ρ.b12) / 2 := by
+  simp [quadRay, quadNum, normSqVec, GaussRat.normSq, tomo_e12i, gv]
+  ring
+
+theorem quadRay_tomo_e13i (ρ : HermForm3) : quadRay ρ tomo_e13i = (ρ.d1 + ρ.d3 - 2 * ρ.b13) / 2 := by
+  simp [quadRay, quadNum, normSqVec, GaussRat.normSq, tomo_e13i, gv]
+  ring
+
+theorem quadRay_tomo_e23i (ρ : HermForm3) : quadRay ρ tomo_e23i = (ρ.d2 + ρ.d3 - 2 * ρ.b23) / 2 := by
+  simp [quadRay, quadNum, normSqVec, GaussRat.normSq, tomo_e23i, gv]
+  ring
+
+/-- Reconstruct the unique `3 × 3` Hermitian form matching `f` on the nine tomography rays. -/
+def tomographyForm (f : GVec → ℚ) : HermForm3 where
+  d1 := f tomo_e1
+  d2 := f tomo_e2
+  d3 := f tomo_e3
+  a12 := f tomo_e12 - (f tomo_e1 + f tomo_e2) / 2
+  a13 := f tomo_e13 - (f tomo_e1 + f tomo_e3) / 2
+  a23 := f tomo_e23 - (f tomo_e2 + f tomo_e3) / 2
+  b12 := (f tomo_e1 + f tomo_e2) / 2 - f tomo_e12i
+  b13 := (f tomo_e1 + f tomo_e3) / 2 - f tomo_e13i
+  b23 := (f tomo_e2 + f tomo_e3) / 2 - f tomo_e23i
+
+/-- `quadRay (tomographyForm f)` reproduces `f` on all nine tomography rays. -/
+theorem tomography_matches_nine_rays (f : GVec → ℚ) :
+    quadRay (tomographyForm f) tomo_e1 = f tomo_e1 ∧
+    quadRay (tomographyForm f) tomo_e2 = f tomo_e2 ∧
+    quadRay (tomographyForm f) tomo_e3 = f tomo_e3 ∧
+    quadRay (tomographyForm f) tomo_e12 = f tomo_e12 ∧
+    quadRay (tomographyForm f) tomo_e13 = f tomo_e13 ∧
+    quadRay (tomographyForm f) tomo_e23 = f tomo_e23 ∧
+    quadRay (tomographyForm f) tomo_e12i = f tomo_e12i ∧
+    quadRay (tomographyForm f) tomo_e13i = f tomo_e13i ∧
+    quadRay (tomographyForm f) tomo_e23i = f tomo_e23i := by
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · rw [quadRay_tomo_e1]; rfl
+  · rw [quadRay_tomo_e2]; rfl
+  · rw [quadRay_tomo_e3]; rfl
+  · rw [quadRay_tomo_e12]; simp only [tomographyForm]; ring
+  · rw [quadRay_tomo_e13]; simp only [tomographyForm]; ring
+  · rw [quadRay_tomo_e23]; simp only [tomographyForm]; ring
+  · rw [quadRay_tomo_e12i]; simp only [tomographyForm]; ring
+  · rw [quadRay_tomo_e13i]; simp only [tomographyForm]; ring
+  · rw [quadRay_tomo_e23i]; simp only [tomographyForm]; ring
+
+/-- If `f` is a frame function, its tomography form has trace `1`. -/
+theorem tomography_trace_one {f : GVec → ℚ} (hf : IsFrameFunction f) :
+    (tomographyForm f).tr = 1 := by
+  unfold HermForm3.tr tomographyForm
+  exact hf tomo_e1 tomo_e2 tomo_e3 frame_tomo_std
+
+/-- If `f` is a frame function, `quadRay (tomographyForm f)` is itself a frame function. -/
+theorem tomography_isFrameFunction {f : GVec → ℚ} (hf : IsFrameFunction f) :
+    IsFrameFunction (quadRay (tomographyForm f)) :=
+  quadRay_isFrameFunction (tomographyForm f) (tomography_trace_one hf)
+
+/-- A `3 × 3` Hermitian form is uniquely determined by its Rayleigh quotients on the nine rays. -/
+theorem tomography_unique (ρ σ : HermForm3)
+    (he1 : quadRay ρ tomo_e1 = quadRay σ tomo_e1)
+    (he2 : quadRay ρ tomo_e2 = quadRay σ tomo_e2)
+    (he3 : quadRay ρ tomo_e3 = quadRay σ tomo_e3)
+    (he12 : quadRay ρ tomo_e12 = quadRay σ tomo_e12)
+    (he13 : quadRay ρ tomo_e13 = quadRay σ tomo_e13)
+    (he23 : quadRay ρ tomo_e23 = quadRay σ tomo_e23)
+    (he12i : quadRay ρ tomo_e12i = quadRay σ tomo_e12i)
+    (he13i : quadRay ρ tomo_e13i = quadRay σ tomo_e13i)
+    (he23i : quadRay ρ tomo_e23i = quadRay σ tomo_e23i) :
+    ρ = σ := by
+  rw [quadRay_tomo_e1, quadRay_tomo_e1] at he1
+  rw [quadRay_tomo_e2, quadRay_tomo_e2] at he2
+  rw [quadRay_tomo_e3, quadRay_tomo_e3] at he3
+  rw [quadRay_tomo_e12, quadRay_tomo_e12] at he12
+  rw [quadRay_tomo_e13, quadRay_tomo_e13] at he13
+  rw [quadRay_tomo_e23, quadRay_tomo_e23] at he23
+  rw [quadRay_tomo_e12i, quadRay_tomo_e12i] at he12i
+  rw [quadRay_tomo_e13i, quadRay_tomo_e13i] at he13i
+  rw [quadRay_tomo_e23i, quadRay_tomo_e23i] at he23i
+  ext <;> linarith
+
+theorem tomographyForm_quadRay (ρ : HermForm3) :
+    tomographyForm (quadRay ρ) = ρ := by
+  have hm := tomography_matches_nine_rays (quadRay ρ)
+  exact tomography_unique (tomographyForm (quadRay ρ)) ρ
+    hm.1 hm.2.1 hm.2.2.1 hm.2.2.2.1 hm.2.2.2.2.1 hm.2.2.2.2.2.1
+    hm.2.2.2.2.2.2.1 hm.2.2.2.2.2.2.2.1 hm.2.2.2.2.2.2.2.2
+
+/-! ### 4. Zero-Weight Residual and Signed Rigidity Equivalence -/
+
+/-- A zero-weight frame function sums to `0` on every orthogonal frame in `ℚ(i)³`. -/
+def IsZeroWeightFrameFunction (g : GVec → ℚ) : Prop :=
+  ∀ u v w : GVec, IsFrame u v w → g u + g v + g w = 0
+
+/-- `g` vanishes on all nine tomography vectors. -/
+def VanishesOnNineRays (g : GVec → ℚ) : Prop :=
+  g tomo_e1 = 0 ∧ g tomo_e2 = 0 ∧ g tomo_e3 = 0 ∧
+  g tomo_e12 = 0 ∧ g tomo_e13 = 0 ∧ g tomo_e23 = 0 ∧
+  g tomo_e12i = 0 ∧ g tomo_e13i = 0 ∧ g tomo_e23i = 0
+
+/-- The tomography residual `g = f - quadRay (tomographyForm f)`. -/
+def residual (f : GVec → ℚ) (v : GVec) : ℚ :=
+  f v - quadRay (tomographyForm f) v
+
+theorem zeroWeight_smul {g : GVec → ℚ} (hg : IsZeroWeightFrameFunction g)
+    {v : GVec} (hv : v.NonZero) {l : GaussRat} (hl : l ≠ 0) :
+    g (GVec.smul l v) = g v := by
+  obtain ⟨w, u, h1, h2⟩ := exists_frame_completion hv
+  have e1 := hg _ _ _ h1
+  have e2 := hg _ _ _ (h2 l hl)
+  linarith
+
+theorem residual_is_zero_weight {f : GVec → ℚ} (hf : IsFrameFunction f) :
+    IsZeroWeightFrameFunction (residual f) := by
+  intro u v w hfr
+  unfold residual
+  have h1 := hf u v w hfr
+  have h2 := tomography_isFrameFunction hf u v w hfr
+  linarith
+
+theorem residual_vanishes_on_nine_rays (f : GVec → ℚ) :
+    VanishesOnNineRays (residual f) := by
+  have hm := tomography_matches_nine_rays f
+  unfold VanishesOnNineRays residual
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩ <;> linarith
+
+theorem tomographyForm_eq_zero_of_vanishes {g : GVec → ℚ} (hg : VanishesOnNineRays g) :
+    tomographyForm g = ⟨0, 0, 0, 0, 0, 0, 0, 0, 0⟩ := by
+  rcases hg with ⟨h1, h2, h3, h12, h13, h23, h12i, h13i, h23i⟩
+  ext <;> simp [tomographyForm, h1, h2, h3, h12, h13, h23, h12i, h13i, h23i]
+
+/-- Signed quadratic rigidity on `ℚ(i)³` is equivalent to the vanishing of all zero-weight
+frame functions that vanish on the nine tomography rays. -/
+theorem signed_rigidity_iff_zero_residual :
+    (∀ f : GVec → ℚ, IsFrameFunction f →
+      ∃ ρ : HermForm3, ρ.tr = 1 ∧ ∀ v : GVec, v.NonZero → f v = quadRay ρ v) ↔
+    (∀ g : GVec → ℚ, IsZeroWeightFrameFunction g → VanishesOnNineRays g →
+      ∀ v : GVec, v.NonZero → g v = 0) := by
+  constructor
+  · intro hrig g hg hvan v hv
+    let f : GVec → ℚ := fun x => 1 / 3 + g x
+    have hf : IsFrameFunction f := by
+      intro x y z hfr
+      have hsum := hg x y z hfr
+      simp only [f]
+      linarith
+    obtain ⟨ρ, _, hρ⟩ := hrig f hf
+    have hm : tomographyForm f = ρ := by
+      apply tomography_unique (tomographyForm f) ρ
+      · rw [(tomography_matches_nine_rays f).1, hρ tomo_e1 tomo_e1_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.1, hρ tomo_e2 tomo_e2_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.1, hρ tomo_e3 tomo_e3_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.1, hρ tomo_e12 tomo_e12_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.2.1, hρ tomo_e13 tomo_e13_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.2.2.1, hρ tomo_e23 tomo_e23_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.2.2.2.1, hρ tomo_e12i tomo_e12i_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.2.2.2.2.1, hρ tomo_e13i tomo_e13i_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.2.2.2.2.2, hρ tomo_e23i tomo_e23i_nonZero]
+    rcases hvan with ⟨h1, h2, h3, h12, h13, h23, h12i, h13i, h23i⟩
+    have hρ_id : ρ = ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ := by
+      rw [← hm]
+      ext <;> simp [tomographyForm, f, h1, h2, h3, h12, h13, h23, h12i, h13i, h23i]
+    have hfv := hρ v hv
+    rw [hρ_id] at hfv
+    have hq_third : quadRay ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ v = 1 / 3 := by
+      have hnz := normSqVec_ne_zero_of_nonZero hv
+      have hnum : quadNum ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ v = (1 / 3) * normSqVec v := by
+        simp only [quadNum, normSqVec]
+        ring
+      rw [quadRay, hnum, mul_div_cancel_right₀ (1 / 3) hnz]
+    simp only [f] at hfv
+    linarith
+  · intro hzero f hf
+    refine ⟨tomographyForm f, tomography_trace_one hf, ?_⟩
+    intro v hv
+    have hr := hzero (residual f) (residual_is_zero_weight hf) (residual_vanishes_on_nine_rays f) v hv
+    unfold residual at hr
+    linarith
+
+/-! ### 5. Bounded Residual and Nonnegative Rigidity Equivalence -/
+
+/-- A nonnegative frame function is a frame function taking values `≥ 0` on all nonzero vectors. -/
+def IsNonnegFrameFunction (f : GVec → ℚ) : Prop :=
+  IsFrameFunction f ∧ ∀ v : GVec, v.NonZero → 0 ≤ f v
+
+/-- `g` is bounded in absolute value on all nonzero vectors in `ℚ(i)³`. -/
+def IsBoundedOnRays (g : GVec → ℚ) : Prop :=
+  ∃ B : ℚ, 0 ≤ B ∧ ∀ v : GVec, v.NonZero → |g v| ≤ B
+
+/-- Every nonnegative frame function takes values in `[0, 1]` on all nonzero vectors. -/
+theorem nonneg_frameFunction_bounds {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    {v : GVec} (hv : v.NonZero) : 0 ≤ f v ∧ f v ≤ 1 := by
+  obtain ⟨w, u, hfr, _⟩ := exists_frame_completion hv
+  have hsum := hf.1 v w u hfr
+  have hfv := hf.2 v hv
+  have hfw := hf.2 w hfr.2.1
+  have hfu := hf.2 u hfr.2.2.1
+  exact ⟨hfv, by linarith⟩
+
+theorem abs_two_mul_le_sum_sq (a b : ℚ) : |2 * (a * b)| ≤ a ^ 2 + b ^ 2 := by
+  have h1 : 0 ≤ (a - b) ^ 2 := sq_nonneg (a - b)
+  have h2 : 0 ≤ (a + b) ^ 2 := sq_nonneg (a + b)
+  exact abs_le.mpr ⟨by nlinarith, by nlinarith⟩
+
+theorem abs_two_re_inner_le (x y : GaussRat) :
+    |2 * (x.re * y.re + x.im * y.im)| ≤ x.normSq + y.normSq := by
+  have h1 := abs_two_mul_le_sum_sq x.re y.re
+  have h2 := abs_two_mul_le_sum_sq x.im y.im
+  obtain ⟨h1l, h1u⟩ := abs_le.mp h1
+  obtain ⟨h2l, h2u⟩ := abs_le.mp h2
+  simp only [GaussRat.normSq]
+  exact abs_le.mpr ⟨by linarith, by linarith⟩
+
+theorem abs_two_im_inner_le (x y : GaussRat) :
+    |2 * (x.re * y.im - x.im * y.re)| ≤ x.normSq + y.normSq := by
+  have h1 := abs_two_mul_le_sum_sq x.re y.im
+  have h2 := abs_two_mul_le_sum_sq x.im y.re
+  obtain ⟨h1l, h1u⟩ := abs_le.mp h1
+  obtain ⟨h2l, h2u⟩ := abs_le.mp h2
+  simp only [GaussRat.normSq]
+  exact abs_le.mpr ⟨by linarith, by linarith⟩
+
+theorem abs_mul_nonneg_le {c x M : ℚ} (hx0 : 0 ≤ x) (hxM : x ≤ M) :
+    |c * x| ≤ |c| * M := by
+  have hc1 := le_abs_self c
+  have hc2 := neg_abs_le c
+  have h0 : 0 ≤ |c| := abs_nonneg c
+  exact abs_le.mpr ⟨by nlinarith, by nlinarith⟩
+
+theorem abs_two_coeff_mul_le {a t M : ℚ} (ht : |2 * t| ≤ M) (hM : 0 ≤ M) :
+    |2 * a * t| ≤ 2 * |a| * M := by
+  have ha1 := le_abs_self a
+  have ha2 := neg_abs_le a
+  have ha0 : 0 ≤ |a| := abs_nonneg a
+  obtain ⟨htl, htu⟩ := abs_le.mp ht
+  exact abs_le.mpr ⟨by nlinarith, by nlinarith⟩
+
+theorem abs_quadNum_le (ρ : HermForm3) (v : GVec) :
+    |quadNum ρ v| ≤ ρ.coeffNorm * normSqVec v := by
+  have hx := normSq_nonneg v.x
+  have hy := normSq_nonneg v.y
+  have hz := normSq_nonneg v.z
+  have hN : 0 ≤ normSqVec v := normSqVec_nonneg v
+  have hd1 : |ρ.d1 * v.x.normSq| ≤ |ρ.d1| * normSqVec v :=
+    abs_mul_nonneg_le hx (by unfold normSqVec; linarith)
+  have hd2 : |ρ.d2 * v.y.normSq| ≤ |ρ.d2| * normSqVec v :=
+    abs_mul_nonneg_le hy (by unfold normSqVec; linarith)
+  have hd3 : |ρ.d3 * v.z.normSq| ≤ |ρ.d3| * normSqVec v :=
+    abs_mul_nonneg_le hz (by unfold normSqVec; linarith)
+  have ha12 : |2 * ρ.a12 * (v.x.re * v.y.re + v.x.im * v.y.im)| ≤ 2 * |ρ.a12| * normSqVec v :=
+    abs_two_coeff_mul_le (by unfold normSqVec; linarith [abs_two_re_inner_le v.x v.y]) hN
+  have ha13 : |2 * ρ.a13 * (v.x.re * v.z.re + v.x.im * v.z.im)| ≤ 2 * |ρ.a13| * normSqVec v :=
+    abs_two_coeff_mul_le (by unfold normSqVec; linarith [abs_two_re_inner_le v.x v.z]) hN
+  have ha23 : |2 * ρ.a23 * (v.y.re * v.z.re + v.y.im * v.z.im)| ≤ 2 * |ρ.a23| * normSqVec v :=
+    abs_two_coeff_mul_le (by unfold normSqVec; linarith [abs_two_re_inner_le v.y v.z]) hN
+  have hb12 : |-(2 * ρ.b12 * (v.x.re * v.y.im - v.x.im * v.y.re))| ≤ 2 * |ρ.b12| * normSqVec v := by
+    rw [abs_neg]
+    exact abs_two_coeff_mul_le (by unfold normSqVec; linarith [abs_two_im_inner_le v.x v.y]) hN
+  have hb13 : |-(2 * ρ.b13 * (v.x.re * v.z.im - v.x.im * v.z.re))| ≤ 2 * |ρ.b13| * normSqVec v := by
+    rw [abs_neg]
+    exact abs_two_coeff_mul_le (by unfold normSqVec; linarith [abs_two_im_inner_le v.x v.z]) hN
+  have hb23 : |-(2 * ρ.b23 * (v.y.re * v.z.im - v.y.im * v.z.re))| ≤ 2 * |ρ.b23| * normSqVec v := by
+    rw [abs_neg]
+    exact abs_two_coeff_mul_le (by unfold normSqVec; linarith [abs_two_im_inner_le v.y v.z]) hN
+  let t1 := ρ.d1 * v.x.normSq
+  let t2 := ρ.d2 * v.y.normSq
+  let t3 := ρ.d3 * v.z.normSq
+  let t4 := 2 * ρ.a12 * (v.x.re * v.y.re + v.x.im * v.y.im)
+  let t5 := 2 * ρ.a13 * (v.x.re * v.z.re + v.x.im * v.z.im)
+  let t6 := 2 * ρ.a23 * (v.y.re * v.z.re + v.y.im * v.z.im)
+  let t7 := -(2 * ρ.b12 * (v.x.re * v.y.im - v.x.im * v.y.re))
+  let t8 := -(2 * ρ.b13 * (v.x.re * v.z.im - v.x.im * v.z.re))
+  let t9 := -(2 * ρ.b23 * (v.y.re * v.z.im - v.y.im * v.z.re))
+  have hrew : quadNum ρ v = t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8 + t9 := by
+    simp only [quadNum, t1, t2, t3, t4, t5, t6, t7, t8, t9]
+    ring
+  rw [hrew]
+  have s1 := abs_add_le (t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8) t9
+  have s2 := abs_add_le (t1 + t2 + t3 + t4 + t5 + t6 + t7) t8
+  have s3 := abs_add_le (t1 + t2 + t3 + t4 + t5 + t6) t7
+  have s4 := abs_add_le (t1 + t2 + t3 + t4 + t5) t6
+  have s5 := abs_add_le (t1 + t2 + t3 + t4) t5
+  have s6 := abs_add_le (t1 + t2 + t3) t4
+  have s7 := abs_add_le (t1 + t2) t3
+  have s8 := abs_add_le t1 t2
+  unfold HermForm3.coeffNorm
+  linarith
+
+/-- On every nonzero vector `v`, `|quadRay ρ v| ≤ ρ.coeffNorm`. -/
+theorem abs_quadRay_le (ρ : HermForm3) {v : GVec} (hv : v.NonZero) :
+    |quadRay ρ v| ≤ ρ.coeffNorm := by
+  have hpos := normSqVec_pos_of_nonZero hv
+  have hmul : quadRay ρ v * normSqVec v = quadNum ρ v :=
+    div_mul_cancel₀ (quadNum ρ v) (ne_of_gt hpos)
+  obtain ⟨hl, hu⟩ := abs_le.mp (abs_quadNum_le ρ v)
+  exact abs_le.mpr ⟨by nlinarith, by nlinarith⟩
+
+theorem coeffNorm_nonneg (ρ : HermForm3) : 0 ≤ ρ.coeffNorm := by
+  unfold HermForm3.coeffNorm
+  linarith [abs_nonneg ρ.d1, abs_nonneg ρ.d2, abs_nonneg ρ.d3,
+    abs_nonneg ρ.a12, abs_nonneg ρ.a13, abs_nonneg ρ.a23,
+    abs_nonneg ρ.b12, abs_nonneg ρ.b13, abs_nonneg ρ.b23]
+
+/-- If `f` is a nonnegative frame function, its tomography residual `residual f` is bounded on all rays. -/
+theorem nonneg_residual_is_bounded {f : GVec → ℚ} (hf : IsNonnegFrameFunction f) :
+    IsBoundedOnRays (residual f) := by
+  refine ⟨1 + (tomographyForm f).coeffNorm, by linarith [coeffNorm_nonneg (tomographyForm f)], ?_⟩
+  intro v hv
+  unfold residual
+  have hfb := nonneg_frameFunction_bounds hf hv
+  have hfv_abs : |f v| ≤ 1 := abs_le.mpr ⟨by linarith [hfb.1], hfb.2⟩
+  have hqb := abs_quadRay_le (tomographyForm f) hv
+  have htri := abs_sub (f v) (quadRay (tomographyForm f) v)
+  linarith
+
+/-- For a zero-weight frame function `g`, a one-sided lower bound `g ≥ -M` on all nonzero vectors
+forces the upper bound `g ≤ 2 M` on all nonzero vectors. -/
+theorem one_sided_lower_bound_implies_upper_bound {g : GVec → ℚ}
+    (hg : IsZeroWeightFrameFunction g) {M : ℚ}
+    (hlow : ∀ v : GVec, v.NonZero → -M ≤ g v) {v : GVec} (hv : v.NonZero) :
+    g v ≤ 2 * M := by
+  obtain ⟨w, u, hfr, _⟩ := exists_frame_completion hv
+  have hsum := hg v w u hfr
+  have hw := hlow w hfr.2.1
+  have hu := hlow u hfr.2.2.1
+  linarith
+
+/-- Nonnegative quadratic rigidity on `ℚ(i)³` is equivalent to the vanishing of all bounded
+zero-weight frame functions that vanish on the nine tomography rays. -/
+theorem nonneg_rigidity_iff_bounded_zero_residual :
+    (∀ f : GVec → ℚ, IsNonnegFrameFunction f →
+      ∃ ρ : HermForm3, ρ.tr = 1 ∧ ∀ v : GVec, v.NonZero → f v = quadRay ρ v) ↔
+    (∀ g : GVec → ℚ, IsZeroWeightFrameFunction g → VanishesOnNineRays g → IsBoundedOnRays g →
+      ∀ v : GVec, v.NonZero → g v = 0) := by
+  constructor
+  · intro hrig g hg hvan ⟨B, hB, hbound⟩ v hv
+    let c : ℚ := 1 / (3 * (B + 1))
+    have hB1 : 0 < B + 1 := by linarith
+    have h3B1 : 0 < 3 * (B + 1) := by linarith
+    have hc_ne : c ≠ 0 := div_ne_zero one_ne_zero (ne_of_gt h3B1)
+    have hc_mul : 3 * (B + 1) * c = 1 := mul_one_div_cancel (ne_of_gt h3B1)
+    let f : GVec → ℚ := fun x => 1 / 3 + c * g x
+    have hf_frame : IsFrameFunction f := by
+      intro x y z hfr
+      have hsum := hg x y z hfr
+      simp only [f]
+      linear_combination c * hsum
+    have hf_nonneg : IsNonnegFrameFunction f := by
+      refine ⟨hf_frame, ?_⟩
+      intro x hx
+      have hgx : -B ≤ g x := (abs_le.mp (hbound x hx)).1
+      have hprod : 3 * (B + 1) * f x = B + 1 + g x := by
+        simp only [f]
+        linear_combination g x * hc_mul
+      have hprod_nonneg : 0 ≤ 3 * (B + 1) * f x := by linarith
+      nlinarith
+    obtain ⟨ρ, _, hρ⟩ := hrig f hf_nonneg
+    have hm : tomographyForm f = ρ := by
+      apply tomography_unique (tomographyForm f) ρ
+      · rw [(tomography_matches_nine_rays f).1, hρ tomo_e1 tomo_e1_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.1, hρ tomo_e2 tomo_e2_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.1, hρ tomo_e3 tomo_e3_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.1, hρ tomo_e12 tomo_e12_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.2.1, hρ tomo_e13 tomo_e13_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.2.2.1, hρ tomo_e23 tomo_e23_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.2.2.2.1, hρ tomo_e12i tomo_e12i_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.2.2.2.2.1, hρ tomo_e13i tomo_e13i_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.2.2.2.2.2, hρ tomo_e23i tomo_e23i_nonZero]
+    rcases hvan with ⟨h1, h2, h3, h12, h13, h23, h12i, h13i, h23i⟩
+    have hρ_id : ρ = ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ := by
+      rw [← hm]
+      ext <;> simp [tomographyForm, f, h1, h2, h3, h12, h13, h23, h12i, h13i, h23i]
+    have hfv := hρ v hv
+    rw [hρ_id] at hfv
+    have hq_third : quadRay ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ v = 1 / 3 := by
+      have hnz := normSqVec_ne_zero_of_nonZero hv
+      have hnum : quadNum ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ v = (1 / 3) * normSqVec v := by
+        simp only [quadNum, normSqVec]
+        ring
+      rw [quadRay, hnum, mul_div_cancel_right₀ (1 / 3) hnz]
+    rw [hq_third] at hfv
+    simp only [f] at hfv
+    have hcg : c * g v = 0 := by linarith
+    exact (mul_eq_zero.mp hcg).resolve_left hc_ne
+  · intro hzero f hf
+    refine ⟨tomographyForm f, tomography_trace_one hf.1, ?_⟩
+    intro v hv
+    have hr := hzero (residual f) (residual_is_zero_weight hf.1)
+      (residual_vanishes_on_nine_rays f) (nonneg_residual_is_bounded hf) v hv
+    unfold residual at hr
+    linarith
+
+/-! ### 6. `(1+i)`-Adic Norm-Parity Structure on `ℚ(i)³` -/
+
+/-- A Gaussian-integer vector `(a+bi, c+di, e+gi)` is `(1+i)`-primitive when not all three
+coordinates are divisible by `1 + i` (equivalently, not all of `a+b, c+d, e+g` are even). -/
+abbrev IsOnePlusIPrimitive (a b c d e g : ℤ) : Prop :=
+  ¬ ((a + b) % 2 = 0 ∧ (c + d) % 2 = 0 ∧ (e + g) % 2 = 0)
+
+/-- Unlike primitive integer vectors in `ℤ³` where `a² + b² + c² ≢ 0 (mod 4)`, the
+`(1+i)`-primitive vector `(1, 1, 1+i)` in `ℤ[i]³` has Hermitian norm `4`. -/
+theorem gaussian_norm_div_four_witness :
+    IsOnePlusIPrimitive 1 0 1 0 1 1 ∧ normSqVec (gv 1 0 1 0 1 1) = 4 := by
+  refine ⟨by decide, ?_⟩
+  simp [normSqVec, GaussRat.normSq, gv]
+  norm_num
+
+/-- The `(1+i)`-primitive vector `(1+2i, 1, 1+i)` in `ℤ[i]³` has Hermitian norm `8`,
+witnessing `2`-adic isotropy of the 6-variable Gaussian Hermitian norm modulo `8`. -/
+theorem gaussian_norm_eight_primitive_witness :
+    IsOnePlusIPrimitive 1 2 1 0 1 1 ∧ normSqVec (gv 1 2 1 0 1 1) = 8 := by
+  refine ⟨by decide, ?_⟩
+  simp [normSqVec, GaussRat.normSq, gv]
+  norm_num
+
+theorem sq_emod_four (x : ℤ) : x ^ 2 % 4 = x % 2 := by
+  have hxx := Int.mul_emod x x 4
+  have hx4 : x % 4 = 0 ∨ x % 4 = 1 ∨ x % 4 = 2 ∨ x % 4 = 3 := by omega
+  rcases hx4 with hx4 | hx4 | hx4 | hx4 <;> simp only [sq, hx4] at hxx ⊢ <;> omega
+
+theorem sq_add_sq_emod_four (x y : ℤ) : (x ^ 2 + y ^ 2) % 4 = x % 2 + y % 2 := by
+  have hx := sq_emod_four x
+  have hy := sq_emod_four y
+  have hadd := Int.add_emod (x ^ 2) (y ^ 2) 4
+  omega
+
+theorem sq_add_sq_emod_two (x y : ℤ) : (x ^ 2 + y ^ 2) % 2 = (x + y) % 2 := by
+  have h4 := sq_add_sq_emod_four x y
+  omega
+
+/-- For a Gaussian integer `x + y i`, `(1+i)`-divisibility controls `x² + y² (mod 4)`:
+* `(x² + y²) % 4 ∈ {0, 1, 2}` (a sum of two squares is never `3 (mod 4)`);
+* `(x + y) % 2 = 0 ↔ (x² + y²) % 2 = 0`;
+* `(x² + y²) % 2 = 1 ↔ (x² + y²) % 4 = 1`;
+* `x % 2 = 0 ∧ y % 2 = 0 ↔ (x² + y²) % 4 = 0`;
+* `x % 2 ≠ 0 ∧ y % 2 ≠ 0 ↔ (x² + y²) % 4 = 2`. -/
+theorem gaussian_coord_norm_mod_four (x y : ℤ) :
+    ((x ^ 2 + y ^ 2) % 4 = 0 ∨ (x ^ 2 + y ^ 2) % 4 = 1 ∨ (x ^ 2 + y ^ 2) % 4 = 2) ∧
+    ((x + y) % 2 = 0 ↔ (x ^ 2 + y ^ 2) % 2 = 0) ∧
+    ((x ^ 2 + y ^ 2) % 2 = 1 ↔ (x ^ 2 + y ^ 2) % 4 = 1) ∧
+    (x % 2 = 0 ∧ y % 2 = 0 ↔ (x ^ 2 + y ^ 2) % 4 = 0) ∧
+    (x % 2 ≠ 0 ∧ y % 2 ≠ 0 ↔ (x ^ 2 + y ^ 2) % 4 = 2) := by
+  rw [sq_add_sq_emod_four x y, sq_add_sq_emod_two x y]
+  omega
+
+/-- On a `(1+i)`-primitive vector `(a+bi, c+di, e+gi) ∈ ℤ[i]³`, the Hermitian norm
+`a² + b² + c² + d² + e² + g²` is divisible by `4` if and only if two coordinates are
+`(1+i)`-odd (`norm % 2 = 1`) and the remaining coordinate has `(1+i)`-valuation `1`
+(`norm % 4 = 2`). -/
+theorem primitive_gaussian_norm_mod_four_iff (a b c d e g : ℤ)
+    (hprim : IsOnePlusIPrimitive a b c d e g) :
+    (a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 + e ^ 2 + g ^ 2) % 4 = 0 ↔
+      ((a ^ 2 + b ^ 2) % 2 = 1 ∧ (c ^ 2 + d ^ 2) % 2 = 1 ∧ (e ^ 2 + g ^ 2) % 4 = 2) ∨
+      ((a ^ 2 + b ^ 2) % 2 = 1 ∧ (c ^ 2 + d ^ 2) % 4 = 2 ∧ (e ^ 2 + g ^ 2) % 2 = 1) ∨
+      ((a ^ 2 + b ^ 2) % 4 = 2 ∧ (c ^ 2 + d ^ 2) % 2 = 1 ∧ (e ^ 2 + g ^ 2) % 2 = 1) := by
+  have hsum : (a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 + e ^ 2 + g ^ 2) % 4 =
+      ((a ^ 2 + b ^ 2) % 4 + (c ^ 2 + d ^ 2) % 4 + (e ^ 2 + g ^ 2) % 4) % 4 := by
+    have h1 : a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 + e ^ 2 + g ^ 2 =
+        ((a ^ 2 + b ^ 2) + (c ^ 2 + d ^ 2)) + (e ^ 2 + g ^ 2) := by ring
+    rw [h1]
+    omega
+  rw [hsum,
+    sq_add_sq_emod_four a b, sq_add_sq_emod_four c d, sq_add_sq_emod_four e g,
+    sq_add_sq_emod_two a b, sq_add_sq_emod_two c d, sq_add_sq_emod_two e g]
+  unfold IsOnePlusIPrimitive at hprim
+  omega
+
+/-! ### 7. Zero-Vector Normalization and Operator-Space Projector Duality (Section 5) -/
+
+theorem normSqVec_zero : normSqVec ⟨0, 0, 0⟩ = 0 := by
+  simp [normSqVec, GaussRat.normSq]
+
+theorem quadNum_zero (ρ : HermForm3) : quadNum ρ ⟨0, 0, 0⟩ = 0 := by
+  simp [quadNum, GaussRat.normSq]
+
+theorem quadRay_zero (ρ : HermForm3) : quadRay ρ ⟨0, 0, 0⟩ = 0 := by
+  simp [quadRay, quadNum_zero, normSqVec_zero]
+
+/-- Canonical zero-normalized extension of `f : GVec → ℚ` taking value `0` at `⟨0, 0, 0⟩`. -/
+def normalizeAtZero (f : GVec → ℚ) (v : GVec) : ℚ :=
+  if v.x = 0 ∧ v.y = 0 ∧ v.z = 0 then 0 else f v
+
+theorem normalizeAtZero_zero (f : GVec → ℚ) : normalizeAtZero f ⟨0, 0, 0⟩ = 0 := by
+  simp [normalizeAtZero]
+
+theorem normalizeAtZero_of_nonZero (f : GVec → ℚ) {v : GVec} (hv : v.NonZero) :
+    normalizeAtZero f v = f v := by
+  unfold normalizeAtZero
+  rw [if_neg]
+  rintro ⟨hx, hy, hz⟩
+  rcases hv with h | h | h
+  · exact h hx
+  · exact h hy
+  · exact h hz
+
+theorem normalizeAtZero_isFrameFunction {f : GVec → ℚ} (hf : IsFrameFunction f) :
+    IsFrameFunction (normalizeAtZero f) := by
+  intro u v w hfr
+  rw [normalizeAtZero_of_nonZero f hfr.1,
+      normalizeAtZero_of_nonZero f hfr.2.1,
+      normalizeAtZero_of_nonZero f hfr.2.2.1]
+  exact hf u v w hfr
+
+/-- If `f ⟨0, 0, 0⟩ = 0` and `f v = quadRay ρ v` on all nonzero vectors, then `f v = quadRay ρ v`
+holds for every `v : GVec` without any `v.NonZero` precondition. -/
+theorem eq_quadRay_all_of_zero_at_zero {f : GVec → ℚ} {ρ : HermForm3}
+    (hf0 : f ⟨0, 0, 0⟩ = 0)
+    (h : ∀ v : GVec, v.NonZero → f v = quadRay ρ v) (v : GVec) :
+    f v = quadRay ρ v := by
+  by_cases hz : v.x = 0 ∧ v.y = 0 ∧ v.z = 0
+  · rcases v with ⟨x, y, z⟩
+    rcases hz with ⟨rfl, rfl, rfl⟩
+    rw [hf0, quadRay_zero]
+  · apply h v
+    unfold GVec.NonZero
+    tauto
+
+/-- The zero `3 × 3` Hermitian matrix. -/
+def HermForm3.zero : HermForm3 := ⟨0, 0, 0, 0, 0, 0, 0, 0, 0⟩
+
+/-- The `3 × 3` identity matrix `I₃` as a Hermitian form. -/
+def HermForm3.id : HermForm3 := ⟨1, 1, 1, 0, 0, 0, 0, 0, 0⟩
+
+/-- Addition of `3 × 3` Hermitian matrices. -/
+def HermForm3.add (ρ σ : HermForm3) : HermForm3 :=
+  ⟨ρ.d1 + σ.d1, ρ.d2 + σ.d2, ρ.d3 + σ.d3,
+   ρ.a12 + σ.a12, ρ.a13 + σ.a13, ρ.a23 + σ.a23,
+   ρ.b12 + σ.b12, ρ.b13 + σ.b13, ρ.b23 + σ.b23⟩
+
+/-- Subtraction of `3 × 3` Hermitian matrices. -/
+def HermForm3.sub (ρ σ : HermForm3) : HermForm3 :=
+  ⟨ρ.d1 - σ.d1, ρ.d2 - σ.d2, ρ.d3 - σ.d3,
+   ρ.a12 - σ.a12, ρ.a13 - σ.a13, ρ.a23 - σ.a23,
+   ρ.b12 - σ.b12, ρ.b13 - σ.b13, ρ.b23 - σ.b23⟩
+
+/-- Rational scalar multiplication on `3 × 3` Hermitian matrices. -/
+def HermForm3.smul (c : ℚ) (ρ : HermForm3) : HermForm3 :=
+  ⟨c * ρ.d1, c * ρ.d2, c * ρ.d3,
+   c * ρ.a12, c * ρ.a13, c * ρ.a23,
+   c * ρ.b12, c * ρ.b13, c * ρ.b23⟩
+
+/-- Rational Frobenius / Hilbert-Schmidt trace pairing `tr(ρ σ)` on `HermForm3`. -/
+def traceInner (ρ σ : HermForm3) : ℚ :=
+  ρ.d1 * σ.d1 + ρ.d2 * σ.d2 + ρ.d3 * σ.d3 +
+  2 * (ρ.a12 * σ.a12 + ρ.a13 * σ.a13 + ρ.a23 * σ.a23 +
+       ρ.b12 * σ.b12 + ρ.b13 * σ.b13 + ρ.b23 * σ.b23)
+
+theorem traceInner_comm (ρ σ : HermForm3) : traceInner ρ σ = traceInner σ ρ := by
+  simp only [traceInner]
+  ring
+
+theorem traceInner_add_right (ρ σ τ : HermForm3) :
+    traceInner ρ (HermForm3.add σ τ) = traceInner ρ σ + traceInner ρ τ := by
+  simp only [traceInner, HermForm3.add]
+  ring
+
+theorem traceInner_sub_left (ρ σ τ : HermForm3) :
+    traceInner (HermForm3.sub ρ σ) τ = traceInner ρ τ - traceInner σ τ := by
+  simp only [traceInner, HermForm3.sub]
+  ring
+
+theorem traceInner_smul_right (c : ℚ) (ρ σ : HermForm3) :
+    traceInner ρ (HermForm3.smul c σ) = c * traceInner ρ σ := by
+  simp only [traceInner, HermForm3.smul]
+  ring
+
+theorem traceInner_id_right (ρ : HermForm3) :
+    traceInner ρ HermForm3.id = ρ.tr := by
+  simp only [traceInner, HermForm3.id, HermForm3.tr]
+  ring
+
+theorem traceInner_self_nonneg (ρ : HermForm3) : 0 ≤ traceInner ρ ρ := by
+  unfold traceInner
+  linarith [sq_nonneg ρ.d1, sq_nonneg ρ.d2, sq_nonneg ρ.d3,
+    sq_nonneg ρ.a12, sq_nonneg ρ.a13, sq_nonneg ρ.a23,
+    sq_nonneg ρ.b12, sq_nonneg ρ.b13, sq_nonneg ρ.b23]
+
+/-- The Frobenius trace pairing `traceInner` is positive-definite on `HermForm3`. -/
+theorem traceInner_self_eq_zero_iff (ρ : HermForm3) :
+    traceInner ρ ρ = 0 ↔ ρ = HermForm3.zero := by
+  constructor
+  · intro h
+    unfold traceInner at h
+    have hd1 := sq_nonneg ρ.d1
+    have hd2 := sq_nonneg ρ.d2
+    have hd3 := sq_nonneg ρ.d3
+    have ha12 := sq_nonneg ρ.a12
+    have ha13 := sq_nonneg ρ.a13
+    have ha23 := sq_nonneg ρ.a23
+    have hb12 := sq_nonneg ρ.b12
+    have hb13 := sq_nonneg ρ.b13
+    have hb23 := sq_nonneg ρ.b23
+    have ed1 : ρ.d1 * ρ.d1 = 0 := by nlinarith
+    have ed2 : ρ.d2 * ρ.d2 = 0 := by nlinarith
+    have ed3 : ρ.d3 * ρ.d3 = 0 := by nlinarith
+    have ea12 : ρ.a12 * ρ.a12 = 0 := by nlinarith
+    have ea13 : ρ.a13 * ρ.a13 = 0 := by nlinarith
+    have ea23 : ρ.a23 * ρ.a23 = 0 := by nlinarith
+    have eb12 : ρ.b12 * ρ.b12 = 0 := by nlinarith
+    have eb13 : ρ.b13 * ρ.b13 = 0 := by nlinarith
+    have eb23 : ρ.b23 * ρ.b23 = 0 := by nlinarith
+    ext
+    · exact mul_self_eq_zero.mp ed1
+    · exact mul_self_eq_zero.mp ed2
+    · exact mul_self_eq_zero.mp ed3
+    · exact mul_self_eq_zero.mp ea12
+    · exact mul_self_eq_zero.mp ea13
+    · exact mul_self_eq_zero.mp ea23
+    · exact mul_self_eq_zero.mp eb12
+    · exact mul_self_eq_zero.mp eb13
+    · exact mul_self_eq_zero.mp eb23
+  · rintro rfl
+    simp [traceInner, HermForm3.zero]
+
+/-- Nondegeneracy of the Frobenius trace pairing: if `tr(ρ τ) = tr(σ τ)` for all `τ`, then `ρ = σ`. -/
+theorem traceInner_ext {ρ σ : HermForm3}
+    (h : ∀ τ : HermForm3, traceInner ρ τ = traceInner σ τ) : ρ = σ := by
+  have hsub : traceInner (HermForm3.sub ρ σ) (HermForm3.sub ρ σ) = 0 := by
+    rw [traceInner_sub_left, h (HermForm3.sub ρ σ), sub_self]
+  have hz := (traceInner_self_eq_zero_iff (HermForm3.sub ρ σ)).mp hsub
+  have hd1 := congrArg HermForm3.d1 hz
+  have hd2 := congrArg HermForm3.d2 hz
+  have hd3 := congrArg HermForm3.d3 hz
+  have ha12 := congrArg HermForm3.a12 hz
+  have ha13 := congrArg HermForm3.a13 hz
+  have ha23 := congrArg HermForm3.a23 hz
+  have hb12 := congrArg HermForm3.b12 hz
+  have hb13 := congrArg HermForm3.b13 hz
+  have hb23 := congrArg HermForm3.b23 hz
+  simp only [HermForm3.sub, HermForm3.zero] at hd1 hd2 hd3 ha12 ha13 ha23 hb12 hb13 hb23
+  ext <;> linarith
+
+/-- The normalized rank-1 Hermitian ray projector `T(v) = v v* / ⟨v, v⟩ ∈ HermForm3`. -/
+def rayProj (v : GVec) : HermForm3 where
+  d1 := v.x.normSq / normSqVec v
+  d2 := v.y.normSq / normSqVec v
+  d3 := v.z.normSq / normSqVec v
+  a12 := (v.x.re * v.y.re + v.x.im * v.y.im) / normSqVec v
+  a13 := (v.x.re * v.z.re + v.x.im * v.z.im) / normSqVec v
+  a23 := (v.y.re * v.z.re + v.y.im * v.z.im) / normSqVec v
+  b12 := -(v.x.re * v.y.im - v.x.im * v.y.re) / normSqVec v
+  b13 := -(v.x.re * v.z.im - v.x.im * v.z.re) / normSqVec v
+  b23 := -(v.y.re * v.z.im - v.y.im * v.z.re) / normSqVec v
+
+/-- Operator-space duality (`Section 5`): `tr(ρ T(v)) = quadRay ρ v` for all `ρ` and `v`. -/
+theorem traceInner_rayProj (ρ : HermForm3) (v : GVec) :
+    traceInner ρ (rayProj v) = quadRay ρ v := by
+  simp only [traceInner, rayProj, quadRay, quadNum]
+  ring
+
+/-- The ray projector `rayProj v` is invariant under nonzero Gaussian-rational scaling. -/
+theorem rayProj_smul {l : GaussRat} (hl : l ≠ 0) (v : GVec) :
+    rayProj (GVec.smul l v) = rayProj v := by
+  apply traceInner_ext
+  intro τ
+  rw [traceInner_comm, traceInner_rayProj, traceInner_comm, traceInner_rayProj,
+    quadRay_smul τ hl v]
+
+/-- Every nonzero vector `v` has trace-one projector `tr(T(v)) = 1`. -/
+theorem rayProj_tr {v : GVec} (hv : v.NonZero) : (rayProj v).tr = 1 := by
+  have hnz := normSqVec_ne_zero_of_nonZero hv
+  unfold HermForm3.tr rayProj normSqVec
+  dsimp
+  rw [← add_div, ← add_div]
+  exact div_self hnz
+
+/-- Exact matrix resolution of the identity (`Section 5`): for every orthogonal frame `(u, v, w)`
+in `ℚ(i)³` (without assuming unit-norm representatives), `T(u) + T(v) + T(w) = I₃`. -/
+theorem rayProj_frame_sum {u v w : GVec} (hfr : IsFrame u v w) :
+    HermForm3.add (HermForm3.add (rayProj u) (rayProj v)) (rayProj w) = HermForm3.id := by
+  apply traceInner_ext
+  intro τ
+  rw [traceInner_comm, traceInner_add_right, traceInner_add_right,
+    traceInner_rayProj, traceInner_rayProj, traceInner_rayProj,
+    quadRay_frame_sum τ hfr, traceInner_comm, traceInner_id_right]
+
+/-- Explicit 9-ray basis expansion (`Section 5`): every `ρ ∈ HermForm3` is a `ℚ`-linear
+combination of the nine tomography ray projectors `rayProj tomo_e1`, ..., `rayProj tomo_e23i`,
+establishing surjectivity of the projector map `T` onto `HermForm3`. -/
+theorem rayProj_nine_rays_span_hermForm3 (ρ : HermForm3) :
+    ρ = HermForm3.add
+      (HermForm3.add
+        (HermForm3.add
+          (HermForm3.add
+            (HermForm3.add
+              (HermForm3.add
+                (HermForm3.add
+                  (HermForm3.add
+                    (HermForm3.smul (ρ.d1 - ρ.a12 - ρ.a13 + ρ.b12 + ρ.b13) (rayProj tomo_e1))
+                    (HermForm3.smul (ρ.d2 - ρ.a12 - ρ.a23 + ρ.b12 + ρ.b23) (rayProj tomo_e2)))
+                  (HermForm3.smul (ρ.d3 - ρ.a13 - ρ.a23 + ρ.b13 + ρ.b23) (rayProj tomo_e3)))
+                (HermForm3.smul (2 * ρ.a12) (rayProj tomo_e12)))
+              (HermForm3.smul (2 * ρ.a13) (rayProj tomo_e13)))
+            (HermForm3.smul (2 * ρ.a23) (rayProj tomo_e23)))
+          (HermForm3.smul (-2 * ρ.b12) (rayProj tomo_e12i)))
+        (HermForm3.smul (-2 * ρ.b13) (rayProj tomo_e13i)))
+      (HermForm3.smul (-2 * ρ.b23) (rayProj tomo_e23i)) := by
+  ext <;>
+    simp [HermForm3.add, HermForm3.smul, rayProj, normSqVec, GaussRat.normSq,
+      tomo_e1, tomo_e2, tomo_e3, tomo_e12, tomo_e13, tomo_e23,
+      tomo_e12i, tomo_e13i, tomo_e23i, gv] <;>
+    ring
+
+/-! ### 8. Explicit Global Bounded Residual and Non-Quadratic Frame Function on `ℚ(i)³` -/
+
+/-- Bounded-fuel helper for the `3`-adic valuation of a natural number. -/
+def v3NatAux : ℕ → ℕ → ℕ
+  | 0, _ => 0
+  | fuel + 1, n => if 0 < n ∧ n % 3 = 0 then v3NatAux fuel (n / 3) + 1 else 0
+
+/-- Bounded-fuel helper for the prime-to-`3` part of a natural number. -/
+def p3PartNatAux : ℕ → ℕ → ℕ
+  | 0, n => n
+  | fuel + 1, n => if 0 < n ∧ n % 3 = 0 then p3PartNatAux fuel (n / 3) else n
+
+/-- Number of factors of `3` in a natural number `n` (`0` if `n = 0`). -/
+def v3Nat (n : ℕ) : ℕ := v3NatAux n n
+
+/-- Prime-to-`3` part of a natural number `n` (`0` if `n = 0`). -/
+def p3PartNat (n : ℕ) : ℕ := p3PartNatAux n n
+
+theorem v3NatAux_spec : ∀ fuel n : ℕ, 3 ^ v3NatAux fuel n * p3PartNatAux fuel n = n
+  | 0, n => by simp [v3NatAux, p3PartNatAux]
+  | fuel + 1, n => by
+      simp only [v3NatAux, p3PartNatAux]
+      split_ifs with h
+      · have heq := v3NatAux_spec fuel (n / 3)
+        have hdiv : 3 * (n / 3) = n := Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero h.2)
+        calc
+          3 ^ (v3NatAux fuel (n / 3) + 1) * p3PartNatAux fuel (n / 3)
+              = 3 * (3 ^ v3NatAux fuel (n / 3) * p3PartNatAux fuel (n / 3)) := by ring
+          _ = 3 * (n / 3) := by rw [heq]
+          _ = n := hdiv
+      · ring
+
+theorem v3Nat_spec (n : ℕ) : 3 ^ v3Nat n * p3PartNat n = n :=
+  v3NatAux_spec n n
+
+theorem p3PartNatAux_mod_three_ne_zero :
+    ∀ fuel n : ℕ, 0 < n → n ≤ fuel → p3PartNatAux fuel n % 3 ≠ 0
+  | 0, n, hn, hle => by omega
+  | fuel + 1, n, hn, hle => by
+      simp only [p3PartNatAux]
+      split_ifs with h
+      · have hpos : 0 < n / 3 := by omega
+        have hle' : n / 3 ≤ fuel := by omega
+        exact p3PartNatAux_mod_three_ne_zero fuel (n / 3) hpos hle'
+      · omega
+
+theorem p3PartNat_mod_three_ne_zero {n : ℕ} (hn : 0 < n) : p3PartNat n % 3 ≠ 0 :=
+  p3PartNatAux_mod_three_ne_zero n n hn (le_refl n)
+
+theorem p3PartNat_pos {n : ℕ} (hn : 0 < n) : 0 < p3PartNat n := by
+  have hmod := p3PartNat_mod_three_ne_zero hn
+  omega
+
+theorem pow_three_mul_unique :
+    ∀ a b m k : ℕ, m % 3 ≠ 0 → k % 3 ≠ 0 → 3 ^ a * m = 3 ^ b * k → a = b ∧ m = k
+  | 0, 0, m, k, _, _, heq => by
+      simp only [pow_zero, one_mul] at heq
+      exact ⟨rfl, heq⟩
+  | 0, b + 1, m, k, hm, _, heq => by
+      have hm0 : m % 3 = 0 := by
+        have h1 : m = 3 ^ b * k * 3 := by
+          simp only [pow_zero, one_mul, pow_succ] at heq
+          linarith
+        omega
+      exact False.elim (hm hm0)
+  | a + 1, 0, m, k, _, hk, heq => by
+      have hk0 : k % 3 = 0 := by
+        have h1 : k = 3 ^ a * m * 3 := by
+          simp only [pow_zero, one_mul, pow_succ] at heq
+          linarith
+        omega
+      exact False.elim (hk hk0)
+  | a + 1, b + 1, m, k, hm, hk, heq => by
+      have heq' : 3 ^ a * m = 3 ^ b * k := by
+        simp only [pow_succ] at heq
+        linarith
+      obtain ⟨hab, hmk⟩ := pow_three_mul_unique a b m k hm hk heq'
+      exact ⟨congrArg (· + 1) hab, hmk⟩
+
+theorem v3Nat_p3PartNat_eq_of_pow_mul {n a m : ℕ} (hm : m % 3 ≠ 0) (heq : 3 ^ a * m = n) :
+    v3Nat n = a ∧ p3PartNat n = m := by
+  have hm_pos : 0 < m := by omega
+  have hpow_pos : 0 < 3 ^ a := pow_pos (by decide : 0 < 3) a
+  have hn : 0 < n := by nlinarith
+  exact pow_three_mul_unique (v3Nat n) a (p3PartNat n) m
+    (p3PartNat_mod_three_ne_zero hn) hm ((v3Nat_spec n).trans heq.symm)
+
+theorem mul_mod_three_ne_zero {a b : ℕ} (ha : a % 3 ≠ 0) (hb : b % 3 ≠ 0) :
+    (a * b) % 3 ≠ 0 := by
+  rw [Nat.mul_mod]
+  have ha3 : a % 3 = 1 ∨ a % 3 = 2 := by omega
+  have hb3 : b % 3 = 1 ∨ b % 3 = 2 := by omega
+  rcases ha3 with h1 | h1 <;> rcases hb3 with h2 | h2 <;> simp [h1, h2]
+
+theorem sq_mod_three_eq_one {a : ℕ} (ha : a % 3 ≠ 0) : (a * a) % 3 = 1 := by
+  rw [Nat.mul_mod]
+  have ha3 : a % 3 = 1 ∨ a % 3 = 2 := by omega
+  rcases ha3 with h1 | h1 <;> simp [h1]
+
+theorem mod_three_eq_of_mul_eq {a b c d : ℕ} (hb : b % 3 ≠ 0) (hd : d % 3 ≠ 0)
+    (heq : a * b = c * d) : (a * d) % 3 = (c * b) % 3 := by
+  have hb3 : b % 3 = 1 ∨ b % 3 = 2 := by omega
+  have hd3 : d % 3 = 1 ∨ d % 3 = 2 := by omega
+  have ha3 : a % 3 = 0 ∨ a % 3 = 1 ∨ a % 3 = 2 := by omega
+  have hc3 : c % 3 = 0 ∨ c % 3 = 1 ∨ c % 3 = 2 := by omega
+  have hmod : (a * b) % 3 = (c * d) % 3 := congrArg (· % 3) heq
+  rw [Nat.mul_mod a b, Nat.mul_mod c d] at hmod
+  rw [Nat.mul_mod a d, Nat.mul_mod c b]
+  rcases ha3 with ha | ha | ha <;> rcases hb3 with hb | hb <;>
+    rcases hc3 with hc | hc | hc <;> rcases hd3 with hd | hd <;>
+    simp [ha, hb, hc, hd] at hmod ⊢
+
+theorem v3Nat_p3PartNat_mul {m k : ℕ} (hm : 0 < m) (hk : 0 < k) :
+    v3Nat (m * k) = v3Nat m + v3Nat k ∧
+    p3PartNat (m * k) = p3PartNat m * p3PartNat k := by
+  apply v3Nat_p3PartNat_eq_of_pow_mul
+    (mul_mod_three_ne_zero (p3PartNat_mod_three_ne_zero hm) (p3PartNat_mod_three_ne_zero hk))
+  calc
+    3 ^ (v3Nat m + v3Nat k) * (p3PartNat m * p3PartNat k)
+        = (3 ^ v3Nat m * p3PartNat m) * (3 ^ v3Nat k * p3PartNat k) := by ring
+    _ = m * k := by rw [v3Nat_spec m, v3Nat_spec k]
+
+theorem v3Nat_add_of_lt {X Y : ℕ} (hX : 0 < X) (_hY : 0 < Y) (hlt : v3Nat X < v3Nat Y) :
+    v3Nat (X + Y) = v3Nat X ∧ p3PartNat (X + Y) % 3 = p3PartNat X % 3 := by
+  let d := v3Nat Y - v3Nat X - 1
+  have hb : v3Nat Y = v3Nat X + (d + 1) := by omega
+  let m := p3PartNat X + 3 ^ (d + 1) * p3PartNat Y
+  have hm_mod : m % 3 = p3PartNat X % 3 := by
+    have hpow : (3 ^ (d + 1) * p3PartNat Y) % 3 = 0 := by
+      have h1 : 3 ^ (d + 1) * p3PartNat Y = 3 * (3 ^ d * p3PartNat Y) := by ring
+      rw [h1, Nat.mul_mod_right]
+    omega
+  have hm_ne : m % 3 ≠ 0 := by
+    rw [hm_mod]
+    exact p3PartNat_mod_three_ne_zero hX
+  have heq : 3 ^ v3Nat X * m = X + Y := by
+    calc
+      3 ^ v3Nat X * m
+          = 3 ^ v3Nat X * p3PartNat X + 3 ^ (v3Nat X + (d + 1)) * p3PartNat Y := by
+            simp only [m, pow_add]; ring
+      _ = 3 ^ v3Nat X * p3PartNat X + 3 ^ v3Nat Y * p3PartNat Y := by rw [← hb]
+      _ = X + Y := by rw [v3Nat_spec X, v3Nat_spec Y]
+  obtain ⟨hv, hp⟩ := v3Nat_p3PartNat_eq_of_pow_mul hm_ne heq
+  exact ⟨hv, by rw [hp, hm_mod]⟩
+
+theorem v3Nat_add_gt_imp_eq_and_mod_three {X Y : ℕ} (hX : 0 < X) (hY : 0 < Y)
+    (hgt : v3Nat X < v3Nat (X + Y)) :
+    v3Nat X = v3Nat Y ∧ (p3PartNat X + p3PartNat Y) % 3 = 0 := by
+  have heq_v : v3Nat X = v3Nat Y := by
+    rcases lt_trichotomy (v3Nat X) (v3Nat Y) with hlt | heq | hlt
+    · have h1 := (v3Nat_add_of_lt hX hY hlt).1
+      omega
+    · exact heq
+    · have h1 := (v3Nat_add_of_lt hY hX hlt).1
+      rw [Nat.add_comm Y X] at h1
+      omega
+  refine ⟨heq_v, ?_⟩
+  by_contra hmod
+  have heq_sum : 3 ^ v3Nat X * (p3PartNat X + p3PartNat Y) = X + Y := by
+    calc
+      3 ^ v3Nat X * (p3PartNat X + p3PartNat Y)
+          = 3 ^ v3Nat X * p3PartNat X + 3 ^ v3Nat Y * p3PartNat Y := by
+            rw [← heq_v]; ring
+      _ = X + Y := by rw [v3Nat_spec X, v3Nat_spec Y]
+  have hv := (v3Nat_p3PartNat_eq_of_pow_mul hmod heq_sum).1
+  omega
+
+theorem v3Nat_add_ge_min {X Y : ℕ} (hX : 0 < X) (hY : 0 < Y) :
+    min (v3Nat X) (v3Nat Y) ≤ v3Nat (X + Y) := by
+  rcases lt_trichotomy (v3Nat X) (v3Nat Y) with hlt | heq | hlt
+  · have h1 := (v3Nat_add_of_lt hX hY hlt).1
+    omega
+  · have hsum_pos : 0 < p3PartNat X + p3PartNat Y := by
+      have hpX := p3PartNat_pos hX
+      omega
+    have hpow_pos : 0 < 3 ^ v3Nat X := pow_pos (by decide : 0 < 3) (v3Nat X)
+    have heq_sum : X + Y = 3 ^ v3Nat X * (p3PartNat X + p3PartNat Y) := by
+      calc
+        X + Y = 3 ^ v3Nat X * p3PartNat X + 3 ^ v3Nat Y * p3PartNat Y := by
+          rw [v3Nat_spec X, v3Nat_spec Y]
+        _ = 3 ^ v3Nat X * (p3PartNat X + p3PartNat Y) := by
+          rw [← heq]; ring
+    have hv_pow : v3Nat (3 ^ v3Nat X) = v3Nat X := by
+      exact (v3Nat_p3PartNat_eq_of_pow_mul (m := 1) (by decide) (by ring)).1
+    have hv_mul := (v3Nat_p3PartNat_mul hpow_pos hsum_pos).1
+    rw [heq_sum, hv_mul, hv_pow]
+    omega
+  · have h1 := (v3Nat_add_of_lt hY hX hlt).1
+    rw [Nat.add_comm Y X] at h1
+    omega
+
+theorem sq_add_sq_mod_three_eq_zero_iff (x y : ℕ) :
+    (x ^ 2 + y ^ 2) % 3 = 0 ↔ x % 3 = 0 ∧ y % 3 = 0 := by
+  simp only [sq]
+  rw [Nat.add_mod, Nat.mul_mod x x, Nat.mul_mod y y]
+  have hx : x % 3 = 0 ∨ x % 3 = 1 ∨ x % 3 = 2 := by omega
+  have hy : y % 3 = 0 ∨ y % 3 = 1 ∨ y % 3 = 2 := by omega
+  rcases hx with hx | hx | hx <;> rcases hy with hy | hy | hy <;> simp [hx, hy]
+
+theorem v3Nat_sq_add_sq_even (x y : ℕ) : v3Nat (x ^ 2 + y ^ 2) % 2 = 0 := by
+  have hmain : ∀ s : ℕ, ∀ a b : ℕ, a + b = s → v3Nat (a ^ 2 + b ^ 2) % 2 = 0 := by
+    intro s
+    induction s using Nat.strong_induction_on with
+    | h s ih =>
+      intro a b hab
+      by_cases h0 : a = 0 ∧ b = 0
+      · rcases h0 with ⟨rfl, rfl⟩
+        rfl
+      · have hpos : 0 < a ^ 2 + b ^ 2 := by
+          rcases not_and_or.mp h0 with ha | hb
+          · have : 0 < a := by omega
+            nlinarith
+          · have : 0 < b := by omega
+            nlinarith
+        by_cases hmod : (a ^ 2 + b ^ 2) % 3 = 0
+        · obtain ⟨ha3, hb3⟩ := (sq_add_sq_mod_three_eq_zero_iff a b).mp hmod
+          have ha_eq : a = 3 * (a / 3) := (Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero ha3)).symm
+          have hb_eq : b = 3 * (b / 3) := (Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero hb3)).symm
+          have hsub_pos : 0 < (a / 3) ^ 2 + (b / 3) ^ 2 := by nlinarith
+          have hsq_eq : a ^ 2 + b ^ 2 = 9 * ((a / 3) ^ 2 + (b / 3) ^ 2) := by
+            calc
+              a ^ 2 + b ^ 2 = (3 * (a / 3)) ^ 2 + (3 * (b / 3)) ^ 2 := by
+                rw [← ha_eq, ← hb_eq]
+              _ = 9 * ((a / 3) ^ 2 + (b / 3) ^ 2) := by ring
+          have hv9 : v3Nat 9 = 2 := rfl
+          have hmul := (v3Nat_p3PartNat_mul (by decide : 0 < 9) hsub_pos).1
+          have hlt_s : a / 3 + b / 3 < s := by omega
+          have hrec := ih (a / 3 + b / 3) hlt_s (a / 3) (b / 3) rfl
+          rw [hsq_eq, hmul, hv9]
+          omega
+        · have hv0 :=
+            (v3Nat_p3PartNat_eq_of_pow_mul (n := a ^ 2 + b ^ 2) (a := 0) (m := a ^ 2 + b ^ 2)
+              hmod (by ring)).1
+          rw [hv0]
+  exact hmain (x + y) x y rfl
+
+/-- `3`-adic valuation of a positive rational `q` (`0` if `q ≤ 0`). -/
+def v3Rat (q : ℚ) : ℤ :=
+  if 0 < q then (v3Nat q.num.natAbs : ℤ) - (v3Nat q.den : ℤ) else 0
+
+/-- `3`-adic unit residue sign `∈ {-1, 1}` of a positive rational `q` (`0` if `q ≤ 0`). -/
+def u3Rat (q : ℚ) : ℚ :=
+  if 0 < q then
+    if (p3PartNat q.num.natAbs * p3PartNat q.den) % 3 = 1 then 1 else -1
+  else 0
+
+theorem rat_pos_eq_natAbs_div_den {q : ℚ} (hq : 0 < q) :
+    0 < q.num.natAbs ∧ 0 < q.den ∧ q = (q.num.natAbs : ℚ) / (q.den : ℚ) := by
+  have hnum_pos : 0 < q.num := Rat.num_pos.mpr hq
+  have hnat_pos : 0 < q.num.natAbs := Int.natAbs_pos.mpr (ne_of_gt hnum_pos)
+  have hden_pos : 0 < q.den := q.den_pos
+  have hint : (q.num.natAbs : ℤ) = q.num := Int.natAbs_of_nonneg (le_of_lt hnum_pos)
+  have hcast : (q.num.natAbs : ℚ) = (q.num : ℚ) := by
+    simpa using congrArg (Int.cast : ℤ → ℚ) hint
+  refine ⟨hnat_pos, hden_pos, ?_⟩
+  rw [hcast, Rat.num_div_den]
+
+theorem v3Rat_u3Rat_of_nat_div {q : ℚ} {n d : ℕ} (hn : 0 < n) (hd : 0 < d)
+    (hq : q = (n : ℚ) / (d : ℚ)) :
+    0 < q ∧
+    v3Rat q = (v3Nat n : ℤ) - (v3Nat d : ℤ) ∧
+    u3Rat q = (if (p3PartNat n * p3PartNat d) % 3 = 1 then 1 else -1) := by
+  have hn_q : 0 < (n : ℚ) := by exact_mod_cast hn
+  have hd_q : 0 < (d : ℚ) := by exact_mod_cast hd
+  have hq_pos : 0 < q := by
+    rw [hq]
+    exact div_pos hn_q hd_q
+  obtain ⟨hnum_pos, hden_pos, hq_can⟩ := rat_pos_eq_natAbs_div_den hq_pos
+  have hden_q : (q.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hden_pos)
+  have hd_ne : (d : ℚ) ≠ 0 := ne_of_gt hd_q
+  have hcross_q : (q.num.natAbs : ℚ) * (d : ℚ) = (n : ℚ) * (q.den : ℚ) := by
+    have heq_div : (q.num.natAbs : ℚ) / (q.den : ℚ) = (n : ℚ) / (d : ℚ) :=
+      hq_can.symm.trans hq
+    exact (div_eq_div_iff hden_q hd_ne).mp heq_div
+  have hcross : q.num.natAbs * d = n * q.den := by
+    exact_mod_cast hcross_q
+  obtain ⟨hv1, hp1⟩ := v3Nat_p3PartNat_mul hnum_pos hd
+  obtain ⟨hv2, hp2⟩ := v3Nat_p3PartNat_mul hn hden_pos
+  have hv_eq : v3Nat q.num.natAbs + v3Nat d = v3Nat n + v3Nat q.den := by
+    rw [← hv1, ← hv2, hcross]
+  have hp_eq : p3PartNat q.num.natAbs * p3PartNat d = p3PartNat n * p3PartNat q.den := by
+    rw [← hp1, ← hp2, hcross]
+  have hmod_eq :
+      (p3PartNat q.num.natAbs * p3PartNat q.den) % 3 = (p3PartNat n * p3PartNat d) % 3 :=
+    mod_three_eq_of_mul_eq (p3PartNat_mod_three_ne_zero hd)
+      (p3PartNat_mod_three_ne_zero hden_pos) hp_eq
+  refine ⟨hq_pos, ?_, ?_⟩
+  · simp only [v3Rat, hq_pos, ↓reduceIte]
+    omega
+  · simp only [u3Rat, hq_pos, ↓reduceIte, hmod_eq]
+
+theorem v3Rat_natCast {n : ℕ} (hn : 0 < n) : v3Rat (n : ℚ) = (v3Nat n : ℤ) := by
+  have h :=
+    (v3Rat_u3Rat_of_nat_div (q := (n : ℚ)) (n := n) (d := 1) hn (by decide : 0 < 1) (by simp)).2.1
+  have hv1 : v3Nat 1 = 0 := rfl
+  omega
+
+theorem u3Rat_natCast {n : ℕ} (hn : 0 < n) :
+    u3Rat (n : ℚ) = if p3PartNat n % 3 = 1 then 1 else -1 := by
+  have h :=
+    (v3Rat_u3Rat_of_nat_div (q := (n : ℚ)) (n := n) (d := 1) hn (by decide : 0 < 1) (by simp)).2.2
+  have hp1 : p3PartNat 1 = 1 := rfl
+  simp [h, hp1]
+
+theorem u3Rat_values_of_pos {q : ℚ} (hq : 0 < q) : u3Rat q = 1 ∨ u3Rat q = -1 := by
+  simp only [u3Rat, hq, ↓reduceIte]
+  split_ifs with h
+  · exact Or.inl rfl
+  · exact Or.inr rfl
+
+theorem u3Rat_sq_of_pos {q : ℚ} (hq : 0 < q) : u3Rat q * u3Rat q = 1 := by
+  rcases u3Rat_values_of_pos hq with h | h <;> rw [h] <;> ring
+
+theorem u3Rat_ne_zero_of_pos {q : ℚ} (hq : 0 < q) : u3Rat q ≠ 0 := by
+  rcases u3Rat_values_of_pos hq with h | h <;> rw [h] <;> norm_num
+
+theorem v3Rat_mul {p q : ℚ} (hp : 0 < p) (hq : 0 < q) :
+    v3Rat (p * q) = v3Rat p + v3Rat q := by
+  obtain ⟨hnp, hdp, hp_eq⟩ := rat_pos_eq_natAbs_div_den hp
+  obtain ⟨hnq, hdq, hq_eq⟩ := rat_pos_eq_natAbs_div_den hq
+  have hmul_eq : p * q = ((p.num.natAbs * q.num.natAbs : ℕ) : ℚ) / ((p.den * q.den : ℕ) : ℚ) := by
+    push_cast
+    rw [← div_mul_div_comm, ← hp_eq, ← hq_eq]
+  have hvpq := (v3Rat_u3Rat_of_nat_div (Nat.mul_pos hnp hnq) (Nat.mul_pos hdp hdq) hmul_eq).2.1
+  have hvp := (v3Rat_u3Rat_of_nat_div hnp hdp hp_eq).2.1
+  have hvq := (v3Rat_u3Rat_of_nat_div hnq hdq hq_eq).2.1
+  have hvn := (v3Nat_p3PartNat_mul hnp hnq).1
+  have hvd := (v3Nat_p3PartNat_mul hdp hdq).1
+  rw [hvpq, hvp, hvq, hvn, hvd]
+  omega
+
+theorem u3Rat_mul {p q : ℚ} (hp : 0 < p) (hq : 0 < q) :
+    u3Rat (p * q) = u3Rat p * u3Rat q := by
+  obtain ⟨hnp, hdp, hp_eq⟩ := rat_pos_eq_natAbs_div_den hp
+  obtain ⟨hnq, hdq, hq_eq⟩ := rat_pos_eq_natAbs_div_den hq
+  have hmul_eq : p * q = ((p.num.natAbs * q.num.natAbs : ℕ) : ℚ) / ((p.den * q.den : ℕ) : ℚ) := by
+    push_cast
+    rw [← div_mul_div_comm, ← hp_eq, ← hq_eq]
+  have hupq := (v3Rat_u3Rat_of_nat_div (Nat.mul_pos hnp hnq) (Nat.mul_pos hdp hdq) hmul_eq).2.2
+  have hup := (v3Rat_u3Rat_of_nat_div hnp hdp hp_eq).2.2
+  have huq := (v3Rat_u3Rat_of_nat_div hnq hdq hq_eq).2.2
+  have hpn := (v3Nat_p3PartNat_mul hnp hnq).2
+  have hpd := (v3Nat_p3PartNat_mul hdp hdq).2
+  rw [hupq, hup, huq, hpn, hpd]
+  have hmp_ne : (p3PartNat p.num.natAbs * p3PartNat p.den) % 3 ≠ 0 :=
+    mul_mod_three_ne_zero (p3PartNat_mod_three_ne_zero hnp) (p3PartNat_mod_three_ne_zero hdp)
+  have hmq_ne : (p3PartNat q.num.natAbs * p3PartNat q.den) % 3 ≠ 0 :=
+    mul_mod_three_ne_zero (p3PartNat_mod_three_ne_zero hnq) (p3PartNat_mod_three_ne_zero hdq)
+  have hcomm :
+      p3PartNat p.num.natAbs * p3PartNat q.num.natAbs * (p3PartNat p.den * p3PartNat q.den) =
+      (p3PartNat p.num.natAbs * p3PartNat p.den) * (p3PartNat q.num.natAbs * p3PartNat q.den) := by
+    ring
+  rw [hcomm, Nat.mul_mod]
+  have hmp3 :
+      (p3PartNat p.num.natAbs * p3PartNat p.den) % 3 = 1 ∨
+      (p3PartNat p.num.natAbs * p3PartNat p.den) % 3 = 2 := by omega
+  have hmq3 :
+      (p3PartNat q.num.natAbs * p3PartNat q.den) % 3 = 1 ∨
+      (p3PartNat q.num.natAbs * p3PartNat q.den) % 3 = 2 := by omega
+  rcases hmp3 with h1 | h1 <;> rcases hmq3 with h2 | h2 <;> simp [h1, h2]
+
+theorem v3Rat_add_of_lt {p q : ℚ} (hp : 0 < p) (hq : 0 < q) (hlt : v3Rat p < v3Rat q) :
+    v3Rat (p + q) = v3Rat p ∧ u3Rat (p + q) = u3Rat p := by
+  obtain ⟨hnp, hdp, hp_eq⟩ := rat_pos_eq_natAbs_div_den hp
+  obtain ⟨hnq, hdq, hq_eq⟩ := rat_pos_eq_natAbs_div_den hq
+  let X := p.num.natAbs * q.den
+  let Y := q.num.natAbs * p.den
+  let D := p.den * q.den
+  have hX : 0 < X := Nat.mul_pos hnp hdq
+  have hY : 0 < Y := Nat.mul_pos hnq hdp
+  have hD : 0 < D := Nat.mul_pos hdp hdq
+  have hp_D : p = (X : ℚ) / (D : ℚ) := by
+    have hdq_ne : (q.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdq)
+    simp only [X, D, Nat.cast_mul]
+    rw [mul_div_mul_right _ _ hdq_ne, ← hp_eq]
+  have hq_D : q = (Y : ℚ) / (D : ℚ) := by
+    have hdp_ne : (p.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdp)
+    simp only [Y, D, Nat.cast_mul]
+    rw [mul_comm (p.den : ℚ) (q.den : ℚ), mul_div_mul_right _ _ hdp_ne, ← hq_eq]
+  have hpq_D : p + q = ((X + Y : ℕ) : ℚ) / (D : ℚ) := by
+    rw [hp_D, hq_D, Nat.cast_add, add_div]
+  obtain ⟨_, hvp, hup⟩ := v3Rat_u3Rat_of_nat_div hX hD hp_D
+  obtain ⟨_, hvq, _⟩ := v3Rat_u3Rat_of_nat_div hY hD hq_D
+  obtain ⟨_, hvpq, hupq⟩ := v3Rat_u3Rat_of_nat_div (Nat.add_pos_left hX Y) hD hpq_D
+  have hlt_nat : v3Nat X < v3Nat Y := by omega
+  obtain ⟨hv_add, hp_add⟩ := v3Nat_add_of_lt hX hY hlt_nat
+  refine ⟨by omega, ?_⟩
+  rw [hupq, hup]
+  have hmod_mul : (p3PartNat (X + Y) * p3PartNat D) % 3 = (p3PartNat X * p3PartNat D) % 3 := by
+    rw [Nat.mul_mod, hp_add, ← Nat.mul_mod]
+  rw [hmod_mul]
+
+theorem v3Rat_add_gt_imp_eq_and_u3Rat_cancel {p q : ℚ} (hp : 0 < p) (hq : 0 < q)
+    (hgt : v3Rat p < v3Rat (p + q)) :
+    v3Rat p = v3Rat q ∧ u3Rat p + u3Rat q = 0 := by
+  obtain ⟨hnp, hdp, hp_eq⟩ := rat_pos_eq_natAbs_div_den hp
+  obtain ⟨hnq, hdq, hq_eq⟩ := rat_pos_eq_natAbs_div_den hq
+  let X := p.num.natAbs * q.den
+  let Y := q.num.natAbs * p.den
+  let D := p.den * q.den
+  have hX : 0 < X := Nat.mul_pos hnp hdq
+  have hY : 0 < Y := Nat.mul_pos hnq hdp
+  have hD : 0 < D := Nat.mul_pos hdp hdq
+  have hp_D : p = (X : ℚ) / (D : ℚ) := by
+    have hdq_ne : (q.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdq)
+    simp only [X, D, Nat.cast_mul]
+    rw [mul_div_mul_right _ _ hdq_ne, ← hp_eq]
+  have hq_D : q = (Y : ℚ) / (D : ℚ) := by
+    have hdp_ne : (p.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdp)
+    simp only [Y, D, Nat.cast_mul]
+    rw [mul_comm (p.den : ℚ) (q.den : ℚ), mul_div_mul_right _ _ hdp_ne, ← hq_eq]
+  have hpq_D : p + q = ((X + Y : ℕ) : ℚ) / (D : ℚ) := by
+    rw [hp_D, hq_D, Nat.cast_add, add_div]
+  obtain ⟨_, hvp, hup⟩ := v3Rat_u3Rat_of_nat_div hX hD hp_D
+  obtain ⟨_, hvq, huq⟩ := v3Rat_u3Rat_of_nat_div hY hD hq_D
+  obtain ⟨_, hvpq, _⟩ := v3Rat_u3Rat_of_nat_div (Nat.add_pos_left hX Y) hD hpq_D
+  have hgt_nat : v3Nat X < v3Nat (X + Y) := by omega
+  obtain ⟨hv_eq, hp_sum⟩ := v3Nat_add_gt_imp_eq_and_mod_three hX hY hgt_nat
+  refine ⟨by omega, ?_⟩
+  rw [hup, huq]
+  have hpX_ne := p3PartNat_mod_three_ne_zero hX
+  have hpY_ne := p3PartNat_mod_three_ne_zero hY
+  have hpD_ne := p3PartNat_mod_three_ne_zero hD
+  have hpX3 : p3PartNat X % 3 = 1 ∨ p3PartNat X % 3 = 2 := by omega
+  have hpY3 : p3PartNat Y % 3 = 1 ∨ p3PartNat Y % 3 = 2 := by omega
+  have hpD3 : p3PartNat D % 3 = 1 ∨ p3PartNat D % 3 = 2 := by omega
+  rw [Nat.add_mod] at hp_sum
+  rw [Nat.mul_mod (p3PartNat X), Nat.mul_mod (p3PartNat Y)]
+  rcases hpX3 with hx | hx <;> rcases hpY3 with hy | hy <;> rcases hpD3 with hd | hd <;>
+    simp [hx, hy, hd] at hp_sum ⊢
+
+theorem v3Rat_add_ge_min {p q : ℚ} (hp : 0 < p) (hq : 0 < q) :
+    min (v3Rat p) (v3Rat q) ≤ v3Rat (p + q) := by
+  obtain ⟨hnp, hdp, hp_eq⟩ := rat_pos_eq_natAbs_div_den hp
+  obtain ⟨hnq, hdq, hq_eq⟩ := rat_pos_eq_natAbs_div_den hq
+  let X := p.num.natAbs * q.den
+  let Y := q.num.natAbs * p.den
+  let D := p.den * q.den
+  have hX : 0 < X := Nat.mul_pos hnp hdq
+  have hY : 0 < Y := Nat.mul_pos hnq hdp
+  have hD : 0 < D := Nat.mul_pos hdp hdq
+  have hp_D : p = (X : ℚ) / (D : ℚ) := by
+    have hdq_ne : (q.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdq)
+    simp only [X, D, Nat.cast_mul]
+    rw [mul_div_mul_right _ _ hdq_ne, ← hp_eq]
+  have hq_D : q = (Y : ℚ) / (D : ℚ) := by
+    have hdp_ne : (p.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdp)
+    simp only [Y, D, Nat.cast_mul]
+    rw [mul_comm (p.den : ℚ) (q.den : ℚ), mul_div_mul_right _ _ hdp_ne, ← hq_eq]
+  have hpq_D : p + q = ((X + Y : ℕ) : ℚ) / (D : ℚ) := by
+    rw [hp_D, hq_D, Nat.cast_add, add_div]
+  obtain ⟨_, hvp, _⟩ := v3Rat_u3Rat_of_nat_div hX hD hp_D
+  obtain ⟨_, hvq, _⟩ := v3Rat_u3Rat_of_nat_div hY hD hq_D
+  obtain ⟨_, hvpq, _⟩ := v3Rat_u3Rat_of_nat_div (Nat.add_pos_left hX Y) hD hpq_D
+  have hmin := v3Nat_add_ge_min hX hY
+  omega
+
+theorem rat_sq_eq_natAbs_sq_div_den_sq (r : ℚ) :
+    r ^ 2 = ((r.num.natAbs ^ 2 : ℕ) : ℚ) / ((r.den * r.den : ℕ) : ℚ) := by
+  have hnum_sq : (r.num.natAbs : ℚ) * (r.num.natAbs : ℚ) = (r.num : ℚ) * (r.num : ℚ) := by
+    rcases le_total 0 r.num with h | h
+    · have h1 : (r.num.natAbs : ℤ) = r.num := Int.natAbs_of_nonneg h
+      have hq : (r.num.natAbs : ℚ) = (r.num : ℚ) := by
+        simpa using congrArg (Int.cast : ℤ → ℚ) h1
+      rw [hq]
+    · have h1 : (r.num.natAbs : ℤ) = -r.num := by omega
+      have hq : (r.num.natAbs : ℚ) = -(r.num : ℚ) := by
+        simpa using congrArg (Int.cast : ℤ → ℚ) h1
+      rw [hq]
+      ring
+  have hdiv := (Rat.num_div_den r).symm
+  push_cast
+  rw [sq r, sq (r.num.natAbs : ℚ), hnum_sq, ← div_mul_div_comm, ← hdiv]
+
+theorem v3Rat_normSq_even (z : GaussRat) : v3Rat z.normSq % 2 = 0 := by
+  by_cases hpos : 0 < z.normSq
+  · let X := z.re.num.natAbs * z.im.den
+    let Y := z.im.num.natAbs * z.re.den
+    let D := z.re.den * z.im.den
+    have hD1 : 0 < D := Nat.mul_pos z.re.den_pos z.im.den_pos
+    have hD_pos : 0 < D * D := Nat.mul_pos hD1 hD1
+    have hre_den_sq_ne : ((z.re.den * z.re.den : ℕ) : ℚ) ≠ 0 :=
+      ne_of_gt (by exact_mod_cast Nat.mul_pos z.re.den_pos z.re.den_pos)
+    have him_den_sq_ne : ((z.im.den * z.im.den : ℕ) : ℚ) ≠ 0 :=
+      ne_of_gt (by exact_mod_cast Nat.mul_pos z.im.den_pos z.im.den_pos)
+    have hnorm_eq : z.normSq = ((X ^ 2 + Y ^ 2 : ℕ) : ℚ) / ((D * D : ℕ) : ℚ) := by
+      simp only [GaussRat.normSq]
+      rw [rat_sq_eq_natAbs_sq_div_den_sq z.re, rat_sq_eq_natAbs_sq_div_den_sq z.im,
+        div_add_div _ _ hre_den_sq_ne him_den_sq_ne]
+      simp only [X, Y, D]
+      push_cast
+      ring
+    have hXY_pos : 0 < X ^ 2 + Y ^ 2 := by
+      by_contra hle
+      have h0 : X ^ 2 + Y ^ 2 = 0 := by omega
+      rw [h0] at hnorm_eq
+      simp at hnorm_eq
+      linarith
+    have hv := (v3Rat_u3Rat_of_nat_div hXY_pos hD_pos hnorm_eq).2.1
+    have hvD := (v3Nat_p3PartNat_mul hD1 hD1).1
+    have heven := v3Nat_sq_add_sq_even X Y
+    rw [hv, hvD]
+    omega
+  · simp only [v3Rat, hpos, ↓reduceIte]
+    rfl
+
+theorem four_term_v3Rat_cancel {A B C D : ℚ}
+    (hA : 0 < A) (hB_nn : 0 ≤ B) (hC_nn : 0 ≤ C) (_hD : 0 < D)
+    (hsum : A + B + C = D)
+    (hA_odd : v3Rat A % 2 ≠ 0)
+    (hB_odd : 0 < B → v3Rat B % 2 ≠ 0)
+    (hC_even : v3Rat C % 2 = 0)
+    (hlt_D : v3Rat A < v3Rat D) :
+    0 < B ∧ v3Rat A = v3Rat B ∧ u3Rat A + u3Rat B = 0 := by
+  have hAB_pos : 0 < A + B := by linarith
+  have hAB_gt : v3Rat A < v3Rat (A + B) := by
+    by_contra hle
+    have hle' : v3Rat (A + B) ≤ v3Rat A := not_lt.mp hle
+    have hAB_odd : v3Rat (A + B) % 2 ≠ 0 := by
+      rcases eq_or_lt_of_le hB_nn with rfl | hB_pos
+      · simp [hA_odd]
+      · rcases lt_or_ge (v3Rat B) (v3Rat A) with hlt_BA | hge_BA
+        · have hvBA := (v3Rat_add_of_lt hB_pos hA hlt_BA).1
+          rw [add_comm] at hvBA
+          rw [hvBA]
+          exact hB_odd hB_pos
+        · have hmin := v3Rat_add_ge_min hA hB_pos
+          have heq_AB : v3Rat (A + B) = v3Rat A := by omega
+          rw [heq_AB]
+          exact hA_odd
+    have hAB_lt_D : v3Rat (A + B) < v3Rat (A + B + C) := by
+      rw [hsum]
+      omega
+    rcases eq_or_lt_of_le hC_nn with rfl | hC_pos
+    · simp at hAB_lt_D
+    · have hv_eq := (v3Rat_add_gt_imp_eq_and_u3Rat_cancel hAB_pos hC_pos hAB_lt_D).1
+      omega
+  rcases eq_or_lt_of_le hB_nn with rfl | hB_pos
+  · simp at hAB_gt
+  · obtain ⟨hv_eq, hu_sum⟩ := v3Rat_add_gt_imp_eq_and_u3Rat_cancel hA hB_pos hAB_gt
+    exact ⟨hB_pos, hv_eq, hu_sum⟩
+
+/-- Determinant of three vectors in `ℚ(i)³`. -/
+def detGVec (u v w : GVec) : GaussRat :=
+  u.x * (v.y * w.z - v.z * w.y) -
+  u.y * (v.x * w.z - v.z * w.x) +
+  u.z * (v.x * w.y - v.y * w.x)
+
+theorem detGVec_normSq_of_frame {u v w : GVec} (hf : IsFrame u v w) :
+    (detGVec u v w).normSq = normSqVec u * normSqVec v * normSqVec w := by
+  obtain ⟨_, _, _, huv, huw, hvw⟩ := hf
+  have hvu := inner_eq_zero_symm huv
+  have hwu := inner_eq_zero_symm huw
+  have hwv := inner_eq_zero_symm hvw
+  have id_det :
+      star (detGVec u v w) * detGVec u v w =
+      GVec.inner u u * (GVec.inner v v * GVec.inner w w - GVec.inner v w * GVec.inner w v) -
+      GVec.inner u v * (GVec.inner v u * GVec.inner w w - GVec.inner v w * GVec.inner w u) +
+      GVec.inner u w * (GVec.inner v u * GVec.inner w v - GVec.inner v v * GVec.inner w u) := by
+    simp only [detGVec, GVec.inner, star_add, star_sub, star_mul]
+    ring
+  rw [huv, huw, hvw, hvu, hwu, hwv] at id_det
+  have hre := congrArg GaussRat.re id_det
+  rw [GaussRat.re_star_mul_self, inner_self_eq_normSqVec u, inner_self_eq_normSqVec v,
+    inner_self_eq_normSqVec w] at hre
+  simp only [GaussRat.re_add, GaussRat.re_sub, GaussRat.re_mul,
+    GaussRat.im_sub, GaussRat.im_mul,
+    GaussRat.re_zero, GaussRat.im_zero] at hre
+  linarith
+
+theorem frame_v3Rat_sum_even {u v w : GVec} (hf : IsFrame u v w) :
+    (v3Rat (normSqVec u) + v3Rat (normSqVec v) + v3Rat (normSqVec w)) % 2 = 0 := by
+  have hu := normSqVec_pos_of_nonZero hf.1
+  have hv := normSqVec_pos_of_nonZero hf.2.1
+  have hw := normSqVec_pos_of_nonZero hf.2.2.1
+  have hdet := detGVec_normSq_of_frame hf
+  have hmul1 := v3Rat_mul (mul_pos hu hv) hw
+  have hmul2 := v3Rat_mul hu hv
+  have heven := v3Rat_normSq_even (detGVec u v w)
+  rw [hdet, hmul1, hmul2] at heven
+  exact heven
+
+theorem ortho_coord_identity_x {u v : GVec} (huv : GVec.inner u v = 0) :
+    u.x.normSq * normSqVec v + v.x.normSq * normSqVec u +
+      (u.y * v.z - v.y * u.z).normSq = normSqVec u * normSqVec v := by
+  have hre : (GVec.inner u v).re = 0 := by rw [huv]; rfl
+  have him : (GVec.inner u v).im = 0 := by rw [huv]; rfl
+  have hns : (GVec.inner u v).normSq = 0 := by
+    rw [huv]
+    exact (GaussRat.normSq_eq_zero_iff 0).mpr rfl
+  have hid :
+      u.x.normSq * normSqVec v + v.x.normSq * normSqVec u +
+        (u.y * v.z - v.y * u.z).normSq - normSqVec u * normSqVec v =
+      2 * (u.x.re * v.x.re + u.x.im * v.x.im) * (GVec.inner u v).re +
+      2 * (u.x.re * v.x.im - u.x.im * v.x.re) * (GVec.inner u v).im -
+      (GVec.inner u v).normSq := by
+    simp only [GVec.inner, normSqVec, GaussRat.normSq,
+      GaussRat.re_add, GaussRat.im_add, GaussRat.re_sub, GaussRat.im_sub,
+      GaussRat.re_mul, GaussRat.im_mul, GaussRat.re_star, GaussRat.im_star]
+    ring
+  rw [hre, him, hns] at hid
+  linarith
+
+theorem normSqVec_rotVec (u : GVec) : normSqVec (rotVec u) = normSqVec u := by
+  simp only [normSqVec, rotVec]
+  ring
+
+/-- Whether a coordinate `z : GaussRat` is `3`-leading in `u : GVec`. -/
+def isLead3Coord (z : GaussRat) (u : GVec) : Prop :=
+  0 < z.normSq ∧ v3Rat z.normSq < v3Rat (normSqVec u)
+
+instance (z : GaussRat) (u : GVec) : Decidable (isLead3Coord z u) :=
+  inferInstanceAs (Decidable (0 < z.normSq ∧ v3Rat z.normSq < v3Rat (normSqVec u)))
+
+/-- The `3`-adic contribution `u3Rat z.normSq * u3Rat (normSqVec u)` of a coordinate `z` in `u`. -/
+def coordSign3 (z : GaussRat) (u : GVec) : ℚ :=
+  u3Rat z.normSq * u3Rat (normSqVec u)
+
+/-- Explicit global `{-1, 0, 1}`-valued `3`-adic frame residual on `ℚ(i)³`. -/
+def s3 (u : GVec) : ℚ :=
+  if v3Rat (normSqVec u) % 2 = 0 then 0
+  else if isLead3Coord u.x u then coordSign3 u.x u
+  else if isLead3Coord u.y u then coordSign3 u.y u
+  else coordSign3 u.z u
+
+theorem pos_of_v3Rat_mod_two_ne_zero {q : ℚ} (h : v3Rat q % 2 ≠ 0) : 0 < q := by
+  by_contra hle
+  simp [v3Rat, hle] at h
+
+theorem v3Rat_add_gt_of_nonneg {a b : ℚ} {V : ℤ}
+    (ha_nn : 0 ≤ a) (hb_nn : 0 ≤ b)
+    (ha : 0 < a → V < v3Rat a) (hb : 0 < b → V < v3Rat b)
+    (hab : 0 < a + b) : V < v3Rat (a + b) := by
+  rcases eq_or_lt_of_le ha_nn with rfl | ha_pos
+  · simp at hab ⊢
+    exact hb hab
+  · rcases eq_or_lt_of_le hb_nn with rfl | hb_pos
+    · simp at hab ⊢
+      exact ha ha_pos
+    · have h1 := ha ha_pos
+      have h2 := hb hb_pos
+      have hmin := v3Rat_add_ge_min ha_pos hb_pos
+      omega
+
+theorem exists_lead3Coord_of_odd {u : GVec} (hodd : v3Rat (normSqVec u) % 2 ≠ 0) :
+    isLead3Coord u.x u ∨ isLead3Coord u.y u ∨ isLead3Coord u.z u := by
+  by_contra hnot
+  rcases not_or.mp hnot with ⟨hx_not, hyz_not⟩
+  rcases not_or.mp hyz_not with ⟨hy_not, hz_not⟩
+  have hpos : 0 < normSqVec u := pos_of_v3Rat_mod_two_ne_zero hodd
+  have hx_gt : 0 < u.x.normSq → v3Rat (normSqVec u) < v3Rat u.x.normSq := by
+    intro hx_pos
+    have hnot_lt : ¬ v3Rat u.x.normSq < v3Rat (normSqVec u) := fun hlt => hx_not ⟨hx_pos, hlt⟩
+    have heven := v3Rat_normSq_even u.x
+    omega
+  have hy_gt : 0 < u.y.normSq → v3Rat (normSqVec u) < v3Rat u.y.normSq := by
+    intro hy_pos
+    have hnot_lt : ¬ v3Rat u.y.normSq < v3Rat (normSqVec u) := fun hlt => hy_not ⟨hy_pos, hlt⟩
+    have heven := v3Rat_normSq_even u.y
+    omega
+  have hz_gt : 0 < u.z.normSq → v3Rat (normSqVec u) < v3Rat u.z.normSq := by
+    intro hz_pos
+    have hnot_lt : ¬ v3Rat u.z.normSq < v3Rat (normSqVec u) := fun hlt => hz_not ⟨hz_pos, hlt⟩
+    have heven := v3Rat_normSq_even u.z
+    omega
+  have hxy_gt : 0 < u.x.normSq + u.y.normSq →
+      v3Rat (normSqVec u) < v3Rat (u.x.normSq + u.y.normSq) :=
+    v3Rat_add_gt_of_nonneg (GaussRat.normSq_nonneg u.x) (GaussRat.normSq_nonneg u.y) hx_gt hy_gt
+  have hxyz_gt : v3Rat (normSqVec u) < v3Rat (u.x.normSq + u.y.normSq + u.z.normSq) :=
+    v3Rat_add_gt_of_nonneg
+      (add_nonneg (GaussRat.normSq_nonneg u.x) (GaussRat.normSq_nonneg u.y))
+      (GaussRat.normSq_nonneg u.z) hxy_gt hz_gt hpos
+  change v3Rat (normSqVec u) < v3Rat (normSqVec u) at hxyz_gt
+  omega
+
+theorem lead3Coord_x_ortho_imp {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v3Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v3Rat (normSqVec v) % 2 ≠ 0)
+    (hlead : isLead3Coord u.x u) :
+    isLead3Coord v.x v ∧ coordSign3 u.x u + coordSign3 v.x v = 0 := by
+  have hu_pos : 0 < normSqVec u := pos_of_v3Rat_mod_two_ne_zero hu_odd
+  have hv_pos : 0 < normSqVec v := pos_of_v3Rat_mod_two_ne_zero hv_odd
+  let A := u.x.normSq * normSqVec v
+  let B := v.x.normSq * normSqVec u
+  let C := (u.y * v.z - v.y * u.z).normSq
+  let D := normSqVec u * normSqVec v
+  have hA : 0 < A := mul_pos hlead.1 hv_pos
+  have hB_nn : 0 ≤ B := mul_nonneg (GaussRat.normSq_nonneg v.x) (le_of_lt hu_pos)
+  have hC_nn : 0 ≤ C := GaussRat.normSq_nonneg _
+  have hD : 0 < D := mul_pos hu_pos hv_pos
+  have hsum : A + B + C = D := ortho_coord_identity_x huv
+  have hvA : v3Rat A = v3Rat u.x.normSq + v3Rat (normSqVec v) := v3Rat_mul hlead.1 hv_pos
+  have hvD : v3Rat D = v3Rat (normSqVec u) + v3Rat (normSqVec v) := v3Rat_mul hu_pos hv_pos
+  have hA_odd : v3Rat A % 2 ≠ 0 := by
+    have heven := v3Rat_normSq_even u.x
+    omega
+  have hB_odd : 0 < B → v3Rat B % 2 ≠ 0 := by
+    intro hB_pos
+    have hvx_pos : 0 < v.x.normSq := by nlinarith
+    have hvB : v3Rat B = v3Rat v.x.normSq + v3Rat (normSqVec u) := v3Rat_mul hvx_pos hu_pos
+    have heven := v3Rat_normSq_even v.x
+    omega
+  have hC_even : v3Rat C % 2 = 0 := v3Rat_normSq_even _
+  have hlt_D : v3Rat A < v3Rat D := by
+    have hlt := hlead.2
+    omega
+  obtain ⟨hB_pos, hvAB, huAB⟩ :=
+    four_term_v3Rat_cancel hA hB_nn hC_nn hD hsum hA_odd hB_odd hC_even hlt_D
+  have hvx_pos : 0 < v.x.normSq := by nlinarith
+  have hvB : v3Rat B = v3Rat v.x.normSq + v3Rat (normSqVec u) := v3Rat_mul hvx_pos hu_pos
+  have hvx_lt : v3Rat v.x.normSq < v3Rat (normSqVec v) := by
+    have hlt := hlead.2
+    omega
+  refine ⟨⟨hvx_pos, hvx_lt⟩, ?_⟩
+  have huA : u3Rat A = u3Rat u.x.normSq * u3Rat (normSqVec v) := u3Rat_mul hlead.1 hv_pos
+  have huB : u3Rat B = u3Rat v.x.normSq * u3Rat (normSqVec u) := u3Rat_mul hvx_pos hu_pos
+  rw [huA, huB] at huAB
+  have hsq_u := u3Rat_sq_of_pos hu_pos
+  have hsq_v := u3Rat_sq_of_pos hv_pos
+  simp only [coordSign3]
+  linear_combination
+    (u3Rat (normSqVec u) * u3Rat (normSqVec v)) * huAB -
+    (u3Rat u.x.normSq * u3Rat (normSqVec u)) * hsq_v -
+    (u3Rat v.x.normSq * u3Rat (normSqVec v)) * hsq_u
+
+theorem lead3Coord_x_ortho_iff {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v3Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v3Rat (normSqVec v) % 2 ≠ 0) :
+    isLead3Coord u.x u ↔ isLead3Coord v.x v :=
+  ⟨fun h => (lead3Coord_x_ortho_imp huv hu_odd hv_odd h).1,
+   fun h => (lead3Coord_x_ortho_imp (inner_eq_zero_symm huv) hv_odd hu_odd h).1⟩
+
+theorem isLead3Coord_rotVec_x (u : GVec) :
+    isLead3Coord (rotVec u).x (rotVec u) ↔ isLead3Coord u.y u := by
+  unfold isLead3Coord
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem coordSign3_rotVec_x (u : GVec) :
+    coordSign3 (rotVec u).x (rotVec u) = coordSign3 u.y u := by
+  unfold coordSign3
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem isLead3Coord_rotVec_y (u : GVec) :
+    isLead3Coord (rotVec u).y (rotVec u) ↔ isLead3Coord u.z u := by
+  unfold isLead3Coord
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem coordSign3_rotVec_y (u : GVec) :
+    coordSign3 (rotVec u).y (rotVec u) = coordSign3 u.z u := by
+  unfold coordSign3
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem lead3Coord_y_ortho_imp {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v3Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v3Rat (normSqVec v) % 2 ≠ 0)
+    (hlead : isLead3Coord u.y u) :
+    isLead3Coord v.y v ∧ coordSign3 u.y u + coordSign3 v.y v = 0 := by
+  have huv' : GVec.inner (rotVec u) (rotVec v) = 0 := by rw [inner_rotVec]; exact huv
+  have hu_odd' : v3Rat (normSqVec (rotVec u)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hu_odd
+  have hv_odd' : v3Rat (normSqVec (rotVec v)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hv_odd
+  have hlead' : isLead3Coord (rotVec u).x (rotVec u) := (isLead3Coord_rotVec_x u).mpr hlead
+  obtain ⟨hv_lead, hsum⟩ := lead3Coord_x_ortho_imp huv' hu_odd' hv_odd' hlead'
+  rw [isLead3Coord_rotVec_x] at hv_lead
+  rw [coordSign3_rotVec_x, coordSign3_rotVec_x] at hsum
+  exact ⟨hv_lead, hsum⟩
+
+theorem lead3Coord_y_ortho_iff {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v3Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v3Rat (normSqVec v) % 2 ≠ 0) :
+    isLead3Coord u.y u ↔ isLead3Coord v.y v :=
+  ⟨fun h => (lead3Coord_y_ortho_imp huv hu_odd hv_odd h).1,
+   fun h => (lead3Coord_y_ortho_imp (inner_eq_zero_symm huv) hv_odd hu_odd h).1⟩
+
+theorem lead3Coord_z_ortho_imp {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v3Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v3Rat (normSqVec v) % 2 ≠ 0)
+    (hlead : isLead3Coord u.z u) :
+    isLead3Coord v.z v ∧ coordSign3 u.z u + coordSign3 v.z v = 0 := by
+  have huv' : GVec.inner (rotVec u) (rotVec v) = 0 := by rw [inner_rotVec]; exact huv
+  have hu_odd' : v3Rat (normSqVec (rotVec u)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hu_odd
+  have hv_odd' : v3Rat (normSqVec (rotVec v)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hv_odd
+  have hlead' : isLead3Coord (rotVec u).y (rotVec u) := (isLead3Coord_rotVec_y u).mpr hlead
+  obtain ⟨hv_lead, hsum⟩ := lead3Coord_y_ortho_imp huv' hu_odd' hv_odd' hlead'
+  rw [isLead3Coord_rotVec_y] at hv_lead
+  rw [coordSign3_rotVec_y, coordSign3_rotVec_y] at hsum
+  exact ⟨hv_lead, hsum⟩
+
+theorem s3_orthogonal_odd_cancel {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v3Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v3Rat (normSqVec v) % 2 ≠ 0) :
+    s3 u + s3 v = 0 := by
+  have hx_iff := lead3Coord_x_ortho_iff huv hu_odd hv_odd
+  have hy_iff := lead3Coord_y_ortho_iff huv hu_odd hv_odd
+  simp only [s3, hu_odd, hv_odd, ↓reduceIte]
+  by_cases hx : isLead3Coord u.x u
+  · have hvx : isLead3Coord v.x v := hx_iff.mp hx
+    simp only [hx, hvx, ↓reduceIte]
+    exact (lead3Coord_x_ortho_imp huv hu_odd hv_odd hx).2
+  · have hvx : ¬ isLead3Coord v.x v := fun h => hx (hx_iff.mpr h)
+    simp only [hx, hvx, ↓reduceIte]
+    by_cases hy : isLead3Coord u.y u
+    · have hvy : isLead3Coord v.y v := hy_iff.mp hy
+      simp only [hy, hvy, ↓reduceIte]
+      exact (lead3Coord_y_ortho_imp huv hu_odd hv_odd hy).2
+    · have hvy : ¬ isLead3Coord v.y v := fun h => hy (hy_iff.mpr h)
+      simp only [hy, hvy, ↓reduceIte]
+      have hz : isLead3Coord u.z u := by
+        rcases exists_lead3Coord_of_odd hu_odd with h1 | h2 | h3
+        · exact False.elim (hx h1)
+        · exact False.elim (hy h2)
+        · exact h3
+      exact (lead3Coord_z_ortho_imp huv hu_odd hv_odd hz).2
+
+theorem s3_eq_zero_of_even {u : GVec} (heven : v3Rat (normSqVec u) % 2 = 0) : s3 u = 0 := by
+  simp [s3, heven]
+
+/-- `s3` is a global zero-weight frame function on all orthogonal frames in `ℚ(i)³`. -/
+theorem s3_isZeroWeightFrameFunction : IsZeroWeightFrameFunction s3 := by
+  intro u v w hf
+  have hsum_even := frame_v3Rat_sum_even hf
+  obtain ⟨_, _, _, huv, huw, hvw⟩ := hf
+  by_cases hu : v3Rat (normSqVec u) % 2 = 0 <;>
+    by_cases hv : v3Rat (normSqVec v) % 2 = 0 <;>
+    by_cases hw : v3Rat (normSqVec w) % 2 = 0
+  · rw [s3_eq_zero_of_even hu, s3_eq_zero_of_even hv, s3_eq_zero_of_even hw]
+    ring
+  · omega
+  · omega
+  · have hvw_sum := s3_orthogonal_odd_cancel hvw hv hw
+    rw [s3_eq_zero_of_even hu]
+    linarith
+  · omega
+  · have huw_sum := s3_orthogonal_odd_cancel huw hu hw
+    rw [s3_eq_zero_of_even hv]
+    linarith
+  · have huv_sum := s3_orthogonal_odd_cancel huv hu hv
+    rw [s3_eq_zero_of_even hw]
+    linarith
+  · omega
+
+/-- Every zero-weight frame function on `ℚ(i)³` is constant along rays. -/
+theorem zeroWeightFrameFunction_smul {δ : GVec → ℚ} (hZ : IsZeroWeightFrameFunction δ)
+    {v : GVec} (hv : v.NonZero) {l : GaussRat} (hl : l ≠ 0) :
+    δ (GVec.smul l v) = δ v := by
+  obtain ⟨w, u, h1, h2⟩ := exists_frame_completion hv
+  have e1 := hZ _ _ _ h1
+  have e2 := hZ _ _ _ (h2 l hl)
+  linarith
+
+theorem s3_smul {v : GVec} (hv : v.NonZero) {l : GaussRat} (hl : l ≠ 0) :
+    s3 (GVec.smul l v) = s3 v :=
+  zeroWeightFrameFunction_smul s3_isZeroWeightFrameFunction hv hl
+
+theorem coordSign3_values {z : GaussRat} {u : GVec} (hz : 0 < z.normSq) (hu : 0 < normSqVec u) :
+    coordSign3 z u = 1 ∨ coordSign3 z u = -1 := by
+  simp only [coordSign3]
+  rcases u3Rat_values_of_pos hz with h1 | h1 <;>
+    rcases u3Rat_values_of_pos hu with h2 | h2 <;>
+    rw [h1, h2] <;> norm_num
+
+theorem s3_values (u : GVec) : s3 u = 0 ∨ s3 u = 1 ∨ s3 u = -1 := by
+  by_cases heven : v3Rat (normSqVec u) % 2 = 0
+  · exact Or.inl (s3_eq_zero_of_even heven)
+  · have hu : 0 < normSqVec u := pos_of_v3Rat_mod_two_ne_zero heven
+    simp only [s3, heven, ↓reduceIte]
+    by_cases hx : isLead3Coord u.x u
+    · simp only [hx, ↓reduceIte]
+      exact Or.inr (coordSign3_values hx.1 hu)
+    · simp only [hx, ↓reduceIte]
+      by_cases hy : isLead3Coord u.y u
+      · simp only [hy, ↓reduceIte]
+        exact Or.inr (coordSign3_values hy.1 hu)
+      · simp only [hy, ↓reduceIte]
+        have hz : isLead3Coord u.z u := by
+          rcases exists_lead3Coord_of_odd heven with h1 | h2 | h3
+          · exact False.elim (hx h1)
+          · exact False.elim (hy h2)
+          · exact h3
+        exact Or.inr (coordSign3_values hz.1 hu)
+
+theorem s3_abs_le_one (u : GVec) : |s3 u| ≤ 1 := by
+  rcases s3_values u with h | h | h <;> rw [h] <;> norm_num
+
+theorem s3_isBoundedOnRays : IsBoundedOnRays s3 :=
+  ⟨1, by norm_num, fun v _ => s3_abs_le_one v⟩
+
+theorem s3_eq_zero_of_normSqVec_natCast {u : GVec} {n : ℕ}
+    (hn : 0 < n) (hnorm : normSqVec u = (n : ℚ)) (heven : (v3Nat n : ℤ) % 2 = 0) :
+    s3 u = 0 := by
+  apply s3_eq_zero_of_even
+  rw [hnorm, v3Rat_natCast hn]
+  exact heven
+
+theorem s3_eq_of_lead3Coord_x {u : GVec} {n nx : ℕ}
+    (hn : 0 < n) (hnx : 0 < nx)
+    (hnorm : normSqVec u = (n : ℚ))
+    (hx : u.x.normSq = (nx : ℚ))
+    (hodd : (v3Nat n : ℤ) % 2 ≠ 0)
+    (hlt : (v3Nat nx : ℤ) < (v3Nat n : ℤ)) :
+    s3 u = (if p3PartNat nx % 3 = 1 then 1 else -1) * (if p3PartNat n % 3 = 1 then 1 else -1) := by
+  have hvn : v3Rat (normSqVec u) = (v3Nat n : ℤ) := by rw [hnorm, v3Rat_natCast hn]
+  have hvx : v3Rat u.x.normSq = (v3Nat nx : ℤ) := by rw [hx, v3Rat_natCast hnx]
+  have hun : u3Rat (normSqVec u) = if p3PartNat n % 3 = 1 then 1 else -1 := by
+    rw [hnorm, u3Rat_natCast hn]
+  have hux : u3Rat u.x.normSq = if p3PartNat nx % 3 = 1 then 1 else -1 := by
+    rw [hx, u3Rat_natCast hnx]
+  have hx_pos : 0 < u.x.normSq := by rw [hx]; exact_mod_cast hnx
+  have hlead : isLead3Coord u.x u := ⟨hx_pos, by omega⟩
+  have hodd_u : v3Rat (normSqVec u) % 2 ≠ 0 := by omega
+  simp only [s3, hodd_u, hlead, ↓reduceIte, coordSign3, hux, hun]
+
+theorem s3_vanishes_on_nine_rays : VanishesOnNineRays s3 := by
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · exact s3_eq_zero_of_normSqVec_natCast (n := 1) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e1, gv]) rfl
+  · exact s3_eq_zero_of_normSqVec_natCast (n := 1) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e2, gv]) rfl
+  · exact s3_eq_zero_of_normSqVec_natCast (n := 1) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e3, gv]) rfl
+  · exact s3_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e12, gv]; norm_num) rfl
+  · exact s3_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e13, gv]; norm_num) rfl
+  · exact s3_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e23, gv]; norm_num) rfl
+  · exact s3_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e12i, gv]; norm_num) rfl
+  · exact s3_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e13i, gv]; norm_num) rfl
+  · exact s3_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e23i, gv]; norm_num) rfl
+
+/-- Norm-`3` witness `(1, 1, 1)` where `s3 = 1`. -/
+def witness_111 : GVec := gv 1 0 1 0 1 0
+
+/-- Norm-`12 = 4 * 3` `(1+i)`-primitive witness `(1+2i, 1+2i, 1+i)` where `s3 = -1`. -/
+def witness_div_four_shell : GVec := gv 1 2 1 2 1 1
+
+/-- Norm-`24 = 8 * 3` `(1+i)`-primitive witness `(1+4i, 1+2i, 1+i)` where `s3 = 1`. -/
+def witness_div_eight_shell : GVec := gv 1 4 1 2 1 1
+
+theorem witness_111_primitive : IsOnePlusIPrimitive 1 0 1 0 1 0 := by decide
+
+theorem witness_111_nonZero : witness_111.NonZero := by
+  left
+  intro h
+  have hre : witness_111.x.re = 0 := by rw [h]; rfl
+  revert hre
+  decide
+
+theorem witness_111_normSq : normSqVec witness_111 = 3 := by
+  simp [normSqVec, GaussRat.normSq, witness_111, gv]
+  norm_num
+
+theorem s3_witness_111 : s3 witness_111 = 1 := by
+  rw [s3_eq_of_lead3Coord_x (n := 3) (nx := 1) (by decide) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, witness_111, gv]; norm_num)
+    (by simp [GaussRat.normSq, witness_111, gv])
+    (by decide) (by decide)]
+  have hp1 : p3PartNat 1 % 3 = 1 := rfl
+  have hp3 : p3PartNat 3 % 3 = 1 := rfl
+  simp [hp1, hp3]
+
+theorem witness_div_four_shell_primitive : IsOnePlusIPrimitive 1 2 1 2 1 1 := by decide
+
+theorem witness_div_four_shell_nonZero : witness_div_four_shell.NonZero := by
+  left
+  intro h
+  have hre : witness_div_four_shell.x.re = 0 := by rw [h]; rfl
+  revert hre
+  decide
+
+theorem witness_div_four_shell_normSq : normSqVec witness_div_four_shell = 12 := by
+  simp [normSqVec, GaussRat.normSq, witness_div_four_shell, gv]
+  norm_num
+
+theorem s3_witness_div_four_shell : s3 witness_div_four_shell = -1 := by
+  rw [s3_eq_of_lead3Coord_x (n := 12) (nx := 5) (by decide) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, witness_div_four_shell, gv]; norm_num)
+    (by simp [GaussRat.normSq, witness_div_four_shell, gv]; norm_num)
+    (by decide) (by decide)]
+  have hp5 : p3PartNat 5 % 3 = 2 := rfl
+  have hp12 : p3PartNat 12 % 3 = 1 := rfl
+  simp [hp5, hp12]
+
+theorem witness_div_eight_shell_primitive : IsOnePlusIPrimitive 1 4 1 2 1 1 := by decide
+
+theorem witness_div_eight_shell_nonZero : witness_div_eight_shell.NonZero := by
+  left
+  intro h
+  have hre : witness_div_eight_shell.x.re = 0 := by rw [h]; rfl
+  revert hre
+  decide
+
+theorem witness_div_eight_shell_normSq : normSqVec witness_div_eight_shell = 24 := by
+  simp [normSqVec, GaussRat.normSq, witness_div_eight_shell, gv]
+  norm_num
+
+theorem s3_witness_div_eight_shell : s3 witness_div_eight_shell = 1 := by
+  rw [s3_eq_of_lead3Coord_x (n := 24) (nx := 17) (by decide) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, witness_div_eight_shell, gv]; norm_num)
+    (by simp [GaussRat.normSq, witness_div_eight_shell, gv]; norm_num)
+    (by decide) (by decide)]
+  have hp17 : p3PartNat 17 % 3 = 2 := rfl
+  have hp24 : p3PartNat 24 % 3 = 2 := rfl
+  simp [hp17, hp24]
+
+/-- There exists an explicit global bounded zero-weight frame function on `ℚ(i)³`
+vanishing on all nine tomography rays and nonzero across higher `(1+i)`-adic ray shells
+(certified both by norm shells `3, 12, 24` and by `(1+i)`-primitivity `IsOnePlusIPrimitive`). -/
+theorem exists_nonzero_bounded_zero_residual :
+    ∃ δ : GVec → ℚ,
+      IsZeroWeightFrameFunction δ ∧
+      VanishesOnNineRays δ ∧
+      IsBoundedOnRays δ ∧
+      (IsOnePlusIPrimitive 1 0 1 0 1 0 ∧ normSqVec witness_111 = 3 ∧ δ witness_111 = 1) ∧
+      (IsOnePlusIPrimitive 1 2 1 2 1 1 ∧ normSqVec witness_div_four_shell = 12 ∧
+        δ witness_div_four_shell = -1) ∧
+      (IsOnePlusIPrimitive 1 4 1 2 1 1 ∧ normSqVec witness_div_eight_shell = 24 ∧
+        δ witness_div_eight_shell = 1) ∧
+      ∃ v : GVec, v.NonZero ∧ δ v ≠ 0 := by
+  refine ⟨s3, s3_isZeroWeightFrameFunction, s3_vanishes_on_nine_rays, s3_isBoundedOnRays,
+    ⟨witness_111_primitive, witness_111_normSq, s3_witness_111⟩,
+    ⟨witness_div_four_shell_primitive, witness_div_four_shell_normSq, s3_witness_div_four_shell⟩,
+    ⟨witness_div_eight_shell_primitive, witness_div_eight_shell_normSq, s3_witness_div_eight_shell⟩,
+    witness_111, witness_111_nonZero, ?_⟩
+  rw [s3_witness_111]
+  norm_num
+
+/-- Signed quadratic rigidity fails globally on `ℚ(i)³`: not every rational-valued frame
+function on `ℚ(i)³` is the normalized Rayleigh quotient `quadRay ρ` of a Hermitian form. -/
+theorem not_signed_quadratic_rigidity :
+    ¬ (∀ f : GVec → ℚ, IsFrameFunction f →
+        ∃ ρ : HermForm3, ρ.tr = 1 ∧ ∀ v : GVec, v.NonZero → f v = quadRay ρ v) := by
+  rw [signed_rigidity_iff_zero_residual]
+  intro hall
+  have h0 := hall s3 s3_isZeroWeightFrameFunction s3_vanishes_on_nine_rays
+    witness_111 witness_111_nonZero
+  rw [s3_witness_111] at h0
+  norm_num at h0
+
+/-- Nonnegative quadratic rigidity also fails globally on `ℚ(i)³`: not every nonnegative
+rational-valued frame function on `ℚ(i)³` is the normalized Rayleigh quotient `quadRay ρ`
+of a Hermitian form. -/
+theorem not_nonneg_quadratic_rigidity :
+    ¬ (∀ f : GVec → ℚ, IsNonnegFrameFunction f →
+        ∃ ρ : HermForm3, ρ.tr = 1 ∧ ∀ v : GVec, v.NonZero → f v = quadRay ρ v) := by
+  rw [nonneg_rigidity_iff_bounded_zero_residual]
+  intro hall
+  have h0 := hall s3 s3_isZeroWeightFrameFunction s3_vanishes_on_nine_rays s3_isBoundedOnRays
+    witness_111 witness_111_nonZero
+  rw [s3_witness_111] at h0
+  norm_num at h0
+
+/-- Explicit global `{0, 1/3, 2/3}`-valued nonnegative non-quadratic frame function on `ℚ(i)³`. -/
+def exoticQi3 (v : GVec) : ℚ := (1 + s3 v) / 3
+
+theorem exoticQi3_values (v : GVec) :
+    exoticQi3 v = 1 / 3 ∨ exoticQi3 v = 2 / 3 ∨ exoticQi3 v = 0 := by
+  simp only [exoticQi3]
+  rcases s3_values v with h | h | h <;> rw [h] <;> norm_num
+
+theorem exoticQi3_bounds (v : GVec) : 0 ≤ exoticQi3 v ∧ exoticQi3 v ≤ 2 / 3 := by
+  rcases exoticQi3_values v with h | h | h <;> rw [h] <;> constructor <;> norm_num
+
+theorem exoticQi3_isFrameFunction : IsFrameFunction exoticQi3 := by
+  intro u v w hf
+  have hsum := s3_isZeroWeightFrameFunction u v w hf
+  simp only [exoticQi3]
+  linarith
+
+theorem exoticQi3_isNonnegFrameFunction : IsNonnegFrameFunction exoticQi3 :=
+  ⟨exoticQi3_isFrameFunction, fun v _ => (exoticQi3_bounds v).1⟩
+
+theorem exoticQi3_not_quadratic :
+    ¬ ∃ ρ : HermForm3, ∀ v : GVec, v.NonZero → exoticQi3 v = quadRay ρ v := by
+  rintro ⟨ρ, hρ⟩
+  obtain ⟨he1_s3, he2_s3, he3_s3, he12_s3, he13_s3, he23_s3, he12i_s3, he13i_s3, he23i_s3⟩ :=
+    s3_vanishes_on_nine_rays
+  have htomo_id : tomographyForm exoticQi3 = ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ := by
+    ext <;>
+      simp [tomographyForm, exoticQi3,
+        he1_s3, he2_s3, he3_s3, he12_s3, he13_s3, he23_s3, he12i_s3, he13i_s3, he23i_s3]
+  have hm := tomography_matches_nine_rays exoticQi3
+  have hρ_eq : tomographyForm exoticQi3 = ρ := by
+    apply tomography_unique (tomographyForm exoticQi3) ρ
+    · rw [hm.1, hρ tomo_e1 tomo_e1_nonZero]
+    · rw [hm.2.1, hρ tomo_e2 tomo_e2_nonZero]
+    · rw [hm.2.2.1, hρ tomo_e3 tomo_e3_nonZero]
+    · rw [hm.2.2.2.1, hρ tomo_e12 tomo_e12_nonZero]
+    · rw [hm.2.2.2.2.1, hρ tomo_e13 tomo_e13_nonZero]
+    · rw [hm.2.2.2.2.2.1, hρ tomo_e23 tomo_e23_nonZero]
+    · rw [hm.2.2.2.2.2.2.1, hρ tomo_e12i tomo_e12i_nonZero]
+    · rw [hm.2.2.2.2.2.2.2.1, hρ tomo_e13i tomo_e13i_nonZero]
+    · rw [hm.2.2.2.2.2.2.2.2, hρ tomo_e23i tomo_e23i_nonZero]
+  have hρ_id : ρ = ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ := hρ_eq.symm.trans htomo_id
+  have h111 := hρ witness_111 witness_111_nonZero
+  rw [hρ_id] at h111
+  have hq : quadRay ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ witness_111 = 1 / 3 := by
+    simp [quadRay, quadNum, normSqVec, GaussRat.normSq, witness_111, gv]
+    norm_num
+  have hex : exoticQi3 witness_111 = 2 / 3 := by
+    simp [exoticQi3, s3_witness_111]
+    norm_num
+  linarith
+
+/-- Explicit operator-space projector relation (`Section 5`): the rank-1 projector of
+`witness_111 = (1, 1, 1)` is a rational linear combination of the six real tomography projectors. -/
+theorem rayProj_witness_111_decomp :
+    rayProj witness_111 =
+    HermForm3.add
+      (HermForm3.smul (-1 / 3)
+        (HermForm3.add (HermForm3.add (rayProj tomo_e1) (rayProj tomo_e2)) (rayProj tomo_e3)))
+      (HermForm3.smul (2 / 3)
+        (HermForm3.add (HermForm3.add (rayProj tomo_e12) (rayProj tomo_e13)) (rayProj tomo_e23))) := by
+  ext <;>
+    simp [HermForm3.add, HermForm3.smul, rayProj, normSqVec, GaussRat.normSq,
+      witness_111, tomo_e1, tomo_e2, tomo_e3, tomo_e12, tomo_e13, tomo_e23, gv] <;>
+    norm_num
+
+/-- Every quadratic Rayleigh function `quadRay ρ` satisfies the 7-ray linear kernel identity
+induced by `rayProj_witness_111_decomp`. -/
+theorem quadRay_witness_111_kernel_relation (ρ : HermForm3) :
+    quadRay ρ witness_111 +
+      (1 / 3) * (quadRay ρ tomo_e1 + quadRay ρ tomo_e2 + quadRay ρ tomo_e3) -
+      (2 / 3) * (quadRay ρ tomo_e12 + quadRay ρ tomo_e13 + quadRay ρ tomo_e23) = 0 := by
+  simp only [← traceInner_rayProj, rayProj_witness_111_decomp,
+    traceInner_add_right, traceInner_smul_right]
+  ring
+
+/-- Constructive separation of the projector kernel (`Section 5`) without basis extension:
+the 7-ray formal combination in `ker(rayProj)` evaluates to `1 ≠ 0` under `s3` (and `1/3 ≠ 0`
+under `exoticQi3`). -/
+theorem s3_witness_111_kernel_separation :
+    s3 witness_111 +
+      (1 / 3) * (s3 tomo_e1 + s3 tomo_e2 + s3 tomo_e3) -
+      (2 / 3) * (s3 tomo_e12 + s3 tomo_e13 + s3 tomo_e23) = 1 ∧
+    exoticQi3 witness_111 +
+      (1 / 3) * (exoticQi3 tomo_e1 + exoticQi3 tomo_e2 + exoticQi3 tomo_e3) -
+      (2 / 3) * (exoticQi3 tomo_e12 + exoticQi3 tomo_e13 + exoticQi3 tomo_e23) = 1 / 3 := by
+  obtain ⟨he1, he2, he3, he12, he13, he23, _, _, _⟩ := s3_vanishes_on_nine_rays
+  refine ⟨?_, ?_⟩
+  · rw [s3_witness_111, he1, he2, he3, he12, he13, he23]
+    norm_num
+  · simp only [exoticQi3, s3_witness_111, he1, he2, he3, he12, he13, he23]
+    norm_num
+
+/-! ### 9. Regularity, Continuity, and Field-Extension Hypotheses Eliminating `3`-Adic Residuals -/
+
+/-- Squared Euclidean/Hermitian distance `‖u - v‖²` on `ℚ(i)³`. -/
+def distSqVec (u v : GVec) : ℚ :=
+  normSqVec ⟨u.x - v.x, u.y - v.y, u.z - v.z⟩
+
+/-- Archimedean continuity of a ray function `g : GVec → ℚ` at a nonzero vector `v₀ ∈ ℚ(i)³`. -/
+def IsArchimedeanContinuousAt (g : GVec → ℚ) (v₀ : GVec) : Prop :=
+  ∀ ε : ℚ, 0 < ε → ∃ δ : ℚ, 0 < δ ∧
+    ∀ v : GVec, v.NonZero → distSqVec v v₀ < δ → |g v - g v₀| < ε
+
+/-- Unscaled positive-sign `3`-adic Gaussian-integer perturbation `(3k, 1, 1 + i)` near `tomo_e1`. -/
+def perturbPosInt (k : ℕ) : GVec :=
+  gv (3 * (k : ℤ)) 0 1 0 1 1
+
+/-- Unscaled negative-sign `3`-adic Gaussian-integer perturbation `(3k, 1 + i, 1)` near `tomo_e1`. -/
+def perturbNegInt (k : ℕ) : GVec :=
+  gv (3 * (k : ℤ)) 0 1 1 1 0
+
+/-- Normalized positive-sign perturbation `(1, 1/(3k), (1+i)/(3k))` approaching `tomo_e1`. -/
+def perturbPosRay (k : ℕ) : GVec :=
+  ⟨⟨1, 0⟩, ⟨1 / (3 * (k : ℚ)), 0⟩, ⟨1 / (3 * (k : ℚ)), 1 / (3 * (k : ℚ))⟩⟩
+
+/-- Normalized negative-sign perturbation `(1, (1+i)/(3k), 1/(3k))` approaching `tomo_e1`. -/
+def perturbNegRay (k : ℕ) : GVec :=
+  ⟨⟨1, 0⟩, ⟨1 / (3 * (k : ℚ)), 1 / (3 * (k : ℚ))⟩, ⟨1 / (3 * (k : ℚ)), 0⟩⟩
+
+theorem v3Nat_nine_mul_sq_add_three (k : ℕ) :
+    v3Nat (9 * k ^ 2 + 3) = 1 ∧ p3PartNat (9 * k ^ 2 + 3) = 3 * k ^ 2 + 1 := by
+  apply v3Nat_p3PartNat_eq_of_pow_mul
+  · omega
+  · ring
+
+theorem v3Nat_nine_mul_sq_ge_two {k : ℕ} (hk : 0 < k) :
+    2 ≤ v3Nat (9 * k ^ 2) := by
+  have hk2 : 0 < k ^ 2 := pow_pos hk 2
+  have hmul := (v3Nat_p3PartNat_mul (by decide : 0 < 9) hk2).1
+  have hv9 : v3Nat 9 = 2 := rfl
+  omega
+
+theorem s3_eq_of_lead3Coord_y {u : GVec} {n nx ny : ℕ}
+    (hn : 0 < n) (hnx : 0 < nx) (hny : 0 < ny)
+    (hnorm : normSqVec u = (n : ℚ))
+    (hx : u.x.normSq = (nx : ℚ))
+    (hy : u.y.normSq = (ny : ℚ))
+    (hodd : (v3Nat n : ℤ) % 2 ≠ 0)
+    (hge_x : (v3Nat n : ℤ) ≤ (v3Nat nx : ℤ))
+    (hlt_y : (v3Nat ny : ℤ) < (v3Nat n : ℤ)) :
+    s3 u = (if p3PartNat ny % 3 = 1 then 1 else -1) *
+      (if p3PartNat n % 3 = 1 then 1 else -1) := by
+  have hvn : v3Rat (normSqVec u) = (v3Nat n : ℤ) := by rw [hnorm, v3Rat_natCast hn]
+  have hvx : v3Rat u.x.normSq = (v3Nat nx : ℤ) := by rw [hx, v3Rat_natCast hnx]
+  have hvy : v3Rat u.y.normSq = (v3Nat ny : ℤ) := by rw [hy, v3Rat_natCast hny]
+  have hun : u3Rat (normSqVec u) = if p3PartNat n % 3 = 1 then 1 else -1 := by
+    rw [hnorm, u3Rat_natCast hn]
+  have huy : u3Rat u.y.normSq = if p3PartNat ny % 3 = 1 then 1 else -1 := by
+    rw [hy, u3Rat_natCast hny]
+  have hy_pos : 0 < u.y.normSq := by rw [hy]; exact_mod_cast hny
+  have hnot_x : ¬ isLead3Coord u.x u := by
+    intro ⟨_, hlt⟩
+    omega
+  have hlead_y : isLead3Coord u.y u := ⟨hy_pos, by omega⟩
+  have hodd_u : v3Rat (normSqVec u) % 2 ≠ 0 := by omega
+  simp only [s3, hodd_u, hnot_x, hlead_y, ↓reduceIte, coordSign3, huy, hun]
+
+theorem perturbPosRay_nonZero (k : ℕ) : (perturbPosRay k).NonZero := by
+  left
+  change (⟨1, 0⟩ : GaussRat) ≠ 0
+  decide
+
+theorem perturbNegRay_nonZero (k : ℕ) : (perturbNegRay k).NonZero := by
+  left
+  change (⟨1, 0⟩ : GaussRat) ≠ 0
+  decide
+
+@[ext]
+theorem GVec_ext {u v : GVec} (hx : u.x = v.x) (hy : u.y = v.y) (hz : u.z = v.z) : u = v := by
+  cases u; cases v; simp_all
+
+theorem three_mul_gaussRat_ne_zero {k : ℕ} (hk : 0 < k) :
+    (⟨3 * (k : ℚ), 0⟩ : GaussRat) ≠ 0 := by
+  have hk_q : 0 < (k : ℚ) := by exact_mod_cast hk
+  intro h
+  have hre : (⟨3 * (k : ℚ), 0⟩ : GaussRat).re = 0 := by rw [h]; rfl
+  simp only at hre
+  linarith
+
+theorem smul_three_mul_perturbPosRay {k : ℕ} (hk : 0 < k) :
+    GVec.smul ⟨3 * (k : ℚ), 0⟩ (perturbPosRay k) = perturbPosInt k := by
+  have hk_q : 0 < (k : ℚ) := by exact_mod_cast hk
+  have hk_ne : (k : ℚ) ≠ 0 := ne_of_gt hk_q
+  have hmul : 3 * (k : ℚ) * ((k : ℚ)⁻¹ * 3⁻¹) = 1 := by
+    calc 3 * (k : ℚ) * ((k : ℚ)⁻¹ * 3⁻¹)
+        = (k : ℚ) * (k : ℚ)⁻¹ := by ring
+      _ = 1 := mul_inv_cancel₀ hk_ne
+  ext <;> simp [GVec.smul, perturbPosRay, perturbPosInt, gv, hmul]
+
+theorem smul_three_mul_perturbNegRay {k : ℕ} (hk : 0 < k) :
+    GVec.smul ⟨3 * (k : ℚ), 0⟩ (perturbNegRay k) = perturbNegInt k := by
+  have hk_q : 0 < (k : ℚ) := by exact_mod_cast hk
+  have hk_ne : (k : ℚ) ≠ 0 := ne_of_gt hk_q
+  have hmul : 3 * (k : ℚ) * ((k : ℚ)⁻¹ * 3⁻¹) = 1 := by
+    calc 3 * (k : ℚ) * ((k : ℚ)⁻¹ * 3⁻¹)
+        = (k : ℚ) * (k : ℚ)⁻¹ := by ring
+      _ = 1 := mul_inv_cancel₀ hk_ne
+  ext <;> simp [GVec.smul, perturbNegRay, perturbNegInt, gv, hmul]
+
+theorem s3_perturbPosInt {k : ℕ} (hk : 0 < k) : s3 (perturbPosInt k) = 1 := by
+  obtain ⟨hv_n, hp_n⟩ := v3Nat_nine_mul_sq_add_three k
+  have hv_x := v3Nat_nine_mul_sq_ge_two hk
+  have hv1 : v3Nat 1 = 0 := rfl
+  have hp1 : p3PartNat 1 = 1 := rfl
+  rw [s3_eq_of_lead3Coord_y (n := 9 * k ^ 2 + 3) (nx := 9 * k ^ 2) (ny := 1)
+    (by omega) (by nlinarith) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, perturbPosInt, gv]; ring)
+    (by simp [GaussRat.normSq, perturbPosInt, gv]; ring)
+    (by simp [GaussRat.normSq, perturbPosInt, gv])
+    (by omega) (by omega) (by omega)]
+  have hmod_n : p3PartNat (9 * k ^ 2 + 3) % 3 = 1 := by rw [hp_n]; omega
+  have hmod_y : p3PartNat 1 % 3 = 1 := rfl
+  simp [hmod_n, hmod_y]
+
+theorem s3_perturbNegInt {k : ℕ} (hk : 0 < k) : s3 (perturbNegInt k) = -1 := by
+  obtain ⟨hv_n, hp_n⟩ := v3Nat_nine_mul_sq_add_three k
+  have hv_x := v3Nat_nine_mul_sq_ge_two hk
+  have hv2 : v3Nat 2 = 0 := rfl
+  have hp2 : p3PartNat 2 = 2 := rfl
+  rw [s3_eq_of_lead3Coord_y (n := 9 * k ^ 2 + 3) (nx := 9 * k ^ 2) (ny := 2)
+    (by omega) (by nlinarith) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, perturbNegInt, gv]; ring)
+    (by simp [GaussRat.normSq, perturbNegInt, gv]; ring)
+    (by simp [GaussRat.normSq, perturbNegInt, gv]; norm_num)
+    (by omega) (by omega) (by omega)]
+  have hmod_n : p3PartNat (9 * k ^ 2 + 3) % 3 = 1 := by rw [hp_n]; omega
+  have hmod_y : p3PartNat 2 % 3 = 2 := rfl
+  simp [hmod_n, hmod_y]
+
+theorem s3_perturbPosRay {k : ℕ} (hk : 0 < k) : s3 (perturbPosRay k) = 1 := by
+  rw [← s3_smul (perturbPosRay_nonZero k) (three_mul_gaussRat_ne_zero hk),
+    smul_three_mul_perturbPosRay hk]
+  exact s3_perturbPosInt hk
+
+theorem s3_perturbNegRay {k : ℕ} (hk : 0 < k) : s3 (perturbNegRay k) = -1 := by
+  rw [← s3_smul (perturbNegRay_nonZero k) (three_mul_gaussRat_ne_zero hk),
+    smul_three_mul_perturbNegRay hk]
+  exact s3_perturbNegInt hk
+
+theorem exoticQi3_perturbPosRay {k : ℕ} (hk : 0 < k) :
+    exoticQi3 (perturbPosRay k) = 2 / 3 := by
+  simp only [exoticQi3, s3_perturbPosRay hk]
+  norm_num
+
+theorem exoticQi3_perturbNegRay {k : ℕ} (hk : 0 < k) :
+    exoticQi3 (perturbNegRay k) = 0 := by
+  simp only [exoticQi3, s3_perturbNegRay hk]
+  norm_num
+
+theorem distSqVec_perturbPosRay_tomo_e1 (k : ℕ) :
+    distSqVec (perturbPosRay k) tomo_e1 = 1 / (3 * (k : ℚ) ^ 2) := by
+  simp only [distSqVec, perturbPosRay, tomo_e1, gv,
+    normSqVec, GaussRat.normSq, GaussRat.re_sub, GaussRat.im_sub]
+  ring
+
+theorem distSqVec_perturbNegRay_tomo_e1 (k : ℕ) :
+    distSqVec (perturbNegRay k) tomo_e1 = 1 / (3 * (k : ℚ) ^ 2) := by
+  simp only [distSqVec, perturbNegRay, tomo_e1, gv,
+    normSqVec, GaussRat.normSq, GaussRat.re_sub, GaussRat.im_sub]
+  ring
+
+theorem exists_nat_pos_inv_three_sq_lt {δ : ℚ} (hδ : 0 < δ) :
+    ∃ k : ℕ, 0 < k ∧ 1 / (3 * (k : ℚ) ^ 2) < δ := by
+  let k : ℕ := (1 / δ).num.natAbs + 1
+  have hk_pos : 0 < k := Nat.succ_pos _
+  refine ⟨k, hk_pos, ?_⟩
+  have hk_ge_one : (1 : ℚ) ≤ (k : ℚ) := by exact_mod_cast hk_pos
+  have hnum_le : (1 / δ).num ≤ ((1 / δ).num.natAbs : ℤ) := Int.le_natAbs
+  have hnum_q : ((1 / δ).num : ℚ) ≤ ((1 / δ).num.natAbs : ℚ) := by
+    simpa only [Int.cast_natCast] using (Int.cast_le (R := ℚ)).mpr hnum_le
+  have hden_pos : (0 : ℚ) < ((1 / δ).den : ℚ) := by exact_mod_cast (1 / δ).den_pos
+  have hden_ge : (1 : ℚ) ≤ ((1 / δ).den : ℚ) := by exact_mod_cast (1 / δ).den_pos
+  have hnn : (0 : ℚ) ≤ ((1 / δ).num.natAbs : ℚ) := by positivity
+  have hdiv_le : 1 / δ ≤ ((1 / δ).num.natAbs : ℚ) := by
+    have hmul : ((1 / δ).num : ℚ) ≤ ((1 / δ).num.natAbs : ℚ) * ((1 / δ).den : ℚ) := by nlinarith
+    have hdiv : ((1 / δ).num : ℚ) / ((1 / δ).den : ℚ) ≤ ((1 / δ).num.natAbs : ℚ) :=
+      (div_le_iff₀ hden_pos).mpr hmul
+    rwa [Rat.num_div_den (1 / δ)] at hdiv
+  have hk_gt : 1 / δ < (k : ℚ) := by
+    simp only [k, Nat.cast_add, Nat.cast_one]
+    linarith
+  have h3k2_gt : 1 / δ < 3 * (k : ℚ) ^ 2 := by nlinarith
+  have h3k2_pos : 0 < 3 * (k : ℚ) ^ 2 := by positivity
+  exact (div_lt_iff₀ h3k2_pos).mpr (by
+    have hmul := (div_lt_iff₀ hδ).mp h3k2_gt
+    linarith)
+
+/-- In every archimedean neighborhood `distSqVec v tomo_e1 < δ` of `tomo_e1 = (1, 0, 0)`,
+there exist nonzero Gaussian-rational vectors `uPos, uNeg ∈ ℚ(i)³` on which `s3` attains `+1` and `-1`
+(while `s3 tomo_e1 = 0`), and `exoticQi3` attains `2/3` and `0` (while `exoticQi3 tomo_e1 = 1/3`). -/
+theorem s3_oscillates_near_tomo_e1 (δ : ℚ) (hδ : 0 < δ) :
+    ∃ uPos uNeg : GVec,
+      uPos.NonZero ∧ uNeg.NonZero ∧
+      distSqVec uPos tomo_e1 < δ ∧ distSqVec uNeg tomo_e1 < δ ∧
+      s3 uPos = 1 ∧ s3 uNeg = -1 ∧
+      exoticQi3 uPos = 2 / 3 ∧ exoticQi3 uNeg = 0 := by
+  obtain ⟨k, hk, hlt⟩ := exists_nat_pos_inv_three_sq_lt hδ
+  refine ⟨perturbPosRay k, perturbNegRay k,
+    perturbPosRay_nonZero k, perturbNegRay_nonZero k, ?_, ?_,
+    s3_perturbPosRay hk, s3_perturbNegRay hk,
+    exoticQi3_perturbPosRay hk, exoticQi3_perturbNegRay hk⟩
+  · rw [distSqVec_perturbPosRay_tomo_e1 k]; exact hlt
+  · rw [distSqVec_perturbNegRay_tomo_e1 k]; exact hlt
+
+/-- The `3`-adic zero-weight residual `s3` is not archimedean-continuous at `tomo_e1 = (1, 0, 0)`. -/
+theorem not_archimedeanContinuousAt_s3_tomo_e1 :
+    ¬ IsArchimedeanContinuousAt s3 tomo_e1 := by
+  intro hcont
+  obtain ⟨δ, hδ, hball⟩ := hcont (1 / 2) (by norm_num)
+  obtain ⟨uPos, _, huPos_nz, _, huPos_dist, _, huPos_s3, _, _, _⟩ :=
+    s3_oscillates_near_tomo_e1 δ hδ
+  have hlt := hball uPos huPos_nz huPos_dist
+  have he1 : s3 tomo_e1 = 0 := s3_vanishes_on_nine_rays.1
+  rw [huPos_s3, he1] at hlt
+  norm_num at hlt
+
+/-- The nonnegative non-quadratic frame function `exoticQi3` is not archimedean-continuous
+at `tomo_e1 = (1, 0, 0)`. -/
+theorem not_archimedeanContinuousAt_exoticQi3_tomo_e1 :
+    ¬ IsArchimedeanContinuousAt exoticQi3 tomo_e1 := by
+  intro hcont
+  obtain ⟨δ, hδ, hball⟩ := hcont (1 / 6) (by norm_num)
+  obtain ⟨uPos, _, huPos_nz, _, huPos_dist, _, _, _, huPos_ex, _⟩ :=
+    s3_oscillates_near_tomo_e1 δ hδ
+  have hlt := hball uPos huPos_nz huPos_dist
+  have he1 : exoticQi3 tomo_e1 = 1 / 3 := by
+    simp only [exoticQi3, s3_vanishes_on_nine_rays.1]
+    norm_num
+  rw [huPos_ex, he1] at hlt
+  norm_num at hlt
+
+/-- Any perturbation `f(v) = quadRay ρ v + c * s3 v` cannot be archimedean-continuous at `tomo_e1`
+unless the `3`-adic residual coefficient `c` vanishes (`c = 0`), provided `quadRay ρ` is
+archimedean-continuous at `tomo_e1`. -/
+theorem s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1
+    {f : GVec → ℚ} {c : ℚ}
+    (hf_cont : IsArchimedeanContinuousAt f tomo_e1)
+    (hq_cont : IsArchimedeanContinuousAt (fun v => f v - c * s3 v) tomo_e1) :
+    c = 0 := by
+  by_contra hc
+  have hc_pos : 0 < |c| := abs_pos.mpr hc
+  obtain ⟨δ1, hδ1, hb1⟩ := hf_cont (|c| / 3) (by linarith)
+  obtain ⟨δ2, hδ2, hb2⟩ := hq_cont (|c| / 3) (by linarith)
+  let δ := min δ1 δ2
+  have hδ : 0 < δ := lt_min hδ1 hδ2
+  obtain ⟨uPos, _, huPos_nz, _, huPos_dist, _, huPos_s3, _, _, _⟩ :=
+    s3_oscillates_near_tomo_e1 δ hδ
+  have h1 := hb1 uPos huPos_nz (lt_of_lt_of_le huPos_dist (min_le_left δ1 δ2))
+  have h2 := hb2 uPos huPos_nz (lt_of_lt_of_le huPos_dist (min_le_right δ1 δ2))
+  have he1 : s3 tomo_e1 = 0 := s3_vanishes_on_nine_rays.1
+  simp only [huPos_s3, he1, mul_one, mul_zero, sub_zero] at h2
+  have htri : |c| ≤ |f uPos - f tomo_e1| + |f uPos - c - f tomo_e1| := by
+    calc |c| = |(f uPos - f tomo_e1) - (f uPos - c - f tomo_e1)| := by ring_nf
+      _ ≤ |f uPos - f tomo_e1| + |f uPos - c - f tomo_e1| :=
+        abs_sub (f uPos - f tomo_e1) (f uPos - c - f tomo_e1)
+  linarith
+
+theorem distSqVec_tomo_e1_eq (v : GVec) :
+    distSqVec v tomo_e1 = (v.x.re - 1) ^ 2 + v.x.im ^ 2 + v.y.normSq + v.z.normSq := by
+  simp only [distSqVec, tomo_e1, gv, normSqVec, GaussRat.normSq,
+    GaussRat.re_sub, GaussRat.im_sub, Int.cast_one, Int.cast_zero]
+  ring
+
+theorem normSqVec_add_distSqVec_tomo_e1_ge_half (v : GVec) :
+    (1 / 2 : ℚ) ≤ normSqVec v + distSqVec v tomo_e1 := by
+  have hid : normSqVec v + distSqVec v tomo_e1 =
+      2 * (v.x.re - 1 / 2) ^ 2 + 2 * v.x.im ^ 2 + 2 * v.y.normSq + 2 * v.z.normSq + 1 / 2 := by
+    rw [distSqVec_tomo_e1_eq]
+    simp only [normSqVec, GaussRat.normSq]
+    ring
+  linarith [sq_nonneg (v.x.re - 1 / 2), sq_nonneg v.x.im,
+    GaussRat.normSq_nonneg v.y, GaussRat.normSq_nonneg v.z, hid]
+
+theorem y_z_normSq_le_distSqVec_tomo_e1 (v : GVec) :
+    v.y.normSq + v.z.normSq ≤ distSqVec v tomo_e1 := by
+  have heq := distSqVec_tomo_e1_eq v
+  linarith [sq_nonneg (v.x.re - 1), sq_nonneg v.x.im, heq]
+
+theorem mul_abs_two_mul_le_weighted_sq (θ a b : ℚ) :
+    2 * θ * |2 * (a * b)| ≤ 4 * θ ^ 2 * a ^ 2 + b ^ 2 := by
+  have h1 : 0 ≤ (2 * θ * a - b) ^ 2 := sq_nonneg (2 * θ * a - b)
+  have h2 : 0 ≤ (2 * θ * a + b) ^ 2 := sq_nonneg (2 * θ * a + b)
+  rcases le_total 0 (2 * (a * b)) with h | h
+  · rw [abs_of_nonneg h]; nlinarith
+  · rw [abs_of_nonpos h]; nlinarith
+
+theorem mul_abs_two_re_inner_le_weighted (θ : ℚ) (hθ : 0 ≤ θ) (x y : GaussRat) :
+    2 * θ * |2 * (x.re * y.re + x.im * y.im)| ≤ 4 * θ ^ 2 * x.normSq + y.normSq := by
+  have h1 := mul_abs_two_mul_le_weighted_sq θ x.re y.re
+  have h2 := mul_abs_two_mul_le_weighted_sq θ x.im y.im
+  have htri : |2 * (x.re * y.re + x.im * y.im)| ≤ |2 * (x.re * y.re)| + |2 * (x.im * y.im)| := by
+    have heq : 2 * (x.re * y.re + x.im * y.im) = 2 * (x.re * y.re) + 2 * (x.im * y.im) := by ring
+    rw [heq]
+    exact abs_add_le _ _
+  simp only [GaussRat.normSq]
+  nlinarith
+
+theorem mul_abs_two_im_inner_le_weighted (θ : ℚ) (hθ : 0 ≤ θ) (x y : GaussRat) :
+    2 * θ * |2 * (x.re * y.im - x.im * y.re)| ≤ 4 * θ ^ 2 * x.normSq + y.normSq := by
+  have h1 := mul_abs_two_mul_le_weighted_sq θ x.re y.im
+  have h2 := mul_abs_two_mul_le_weighted_sq θ x.im y.re
+  have htri : |2 * (x.re * y.im - x.im * y.re)| ≤ |2 * (x.re * y.im)| + |2 * (x.im * y.re)| := by
+    have heq : 2 * (x.re * y.im - x.im * y.re) = 2 * (x.re * y.im) - 2 * (x.im * y.re) := by ring
+    rw [heq]
+    exact abs_sub _ _
+  simp only [GaussRat.normSq]
+  nlinarith
+
+theorem abs_quadNum_sub_d1_mul_normSqVec_le (ρ : HermForm3) {v : GVec} {θ : ℚ}
+    (hθ_pos : 0 < θ) (hθ_half : θ ≤ 1 / 2)
+    (hdist : distSqVec v tomo_e1 < θ ^ 2) :
+    1 / 4 < normSqVec v ∧
+    |quadNum ρ v - ρ.d1 * normSqVec v| ≤ 8 * ρ.coeffNorm * θ * normSqVec v := by
+  have hθ_nn : 0 ≤ θ := le_of_lt hθ_pos
+  have hθ_sq_le : θ ^ 2 ≤ 1 / 4 := by nlinarith
+  have hN_dist := normSqVec_add_distSqVec_tomo_e1_ge_half v
+  have hN_gt : 1 / 4 < normSqVec v := by linarith
+  have hyz_le := y_z_normSq_le_distSqVec_tomo_e1 v
+  have hx_nn := GaussRat.normSq_nonneg v.x
+  have hy_nn := GaussRat.normSq_nonneg v.y
+  have hz_nn := GaussRat.normSq_nonneg v.z
+  have hx_le_N : v.x.normSq ≤ normSqVec v := by unfold normSqVec; linarith
+  have hyz_lt_sq : v.y.normSq + v.z.normSq < 4 * θ ^ 2 * normSqVec v := by nlinarith
+  have hyz_le_M : v.y.normSq + v.z.normSq ≤ 4 * θ * normSqVec v := by nlinarith
+  have hy_le_M : v.y.normSq ≤ 4 * θ * normSqVec v := by linarith
+  have hz_le_M : v.z.normSq ≤ 4 * θ * normSqVec v := by linarith
+  let M := 4 * θ * normSqVec v
+  have hM_nn : 0 ≤ M := by change 0 ≤ 4 * θ * normSqVec v; positivity
+  have h_re_xy : |2 * (v.x.re * v.y.re + v.x.im * v.y.im)| ≤ M := by
+    have hw := mul_abs_two_re_inner_le_weighted θ hθ_nn v.x v.y
+    change |2 * (v.x.re * v.y.re + v.x.im * v.y.im)| ≤ 4 * θ * normSqVec v
+    nlinarith
+  have h_re_xz : |2 * (v.x.re * v.z.re + v.x.im * v.z.im)| ≤ M := by
+    have hw := mul_abs_two_re_inner_le_weighted θ hθ_nn v.x v.z
+    change |2 * (v.x.re * v.z.re + v.x.im * v.z.im)| ≤ 4 * θ * normSqVec v
+    nlinarith
+  have h_im_xy : |2 * (v.x.re * v.y.im - v.x.im * v.y.re)| ≤ M := by
+    have hw := mul_abs_two_im_inner_le_weighted θ hθ_nn v.x v.y
+    change |2 * (v.x.re * v.y.im - v.x.im * v.y.re)| ≤ 4 * θ * normSqVec v
+    nlinarith
+  have h_im_xz : |2 * (v.x.re * v.z.im - v.x.im * v.z.re)| ≤ M := by
+    have hw := mul_abs_two_im_inner_le_weighted θ hθ_nn v.x v.z
+    change |2 * (v.x.re * v.z.im - v.x.im * v.z.re)| ≤ 4 * θ * normSqVec v
+    nlinarith
+  have h_re_yz : |2 * (v.y.re * v.z.re + v.y.im * v.z.im)| ≤ M := by
+    change |2 * (v.y.re * v.z.re + v.y.im * v.z.im)| ≤ 4 * θ * normSqVec v
+    linarith [abs_two_re_inner_le v.y v.z]
+  have h_im_yz : |2 * (v.y.re * v.z.im - v.y.im * v.z.re)| ≤ M := by
+    change |2 * (v.y.re * v.z.im - v.y.im * v.z.re)| ≤ 4 * θ * normSqVec v
+    linarith [abs_two_im_inner_le v.y v.z]
+  have hd2 : |(ρ.d2 - ρ.d1) * v.y.normSq| ≤ (|ρ.d2| + |ρ.d1|) * M := by
+    have h1 := abs_mul_nonneg_le (c := ρ.d2 - ρ.d1) hy_nn hy_le_M
+    have h2 : |ρ.d2 - ρ.d1| * M ≤ (|ρ.d2| + |ρ.d1|) * M :=
+      mul_le_mul_of_nonneg_right (abs_sub ρ.d2 ρ.d1) hM_nn
+    linarith
+  have hd3 : |(ρ.d3 - ρ.d1) * v.z.normSq| ≤ (|ρ.d3| + |ρ.d1|) * M := by
+    have h1 := abs_mul_nonneg_le (c := ρ.d3 - ρ.d1) hz_nn hz_le_M
+    have h2 : |ρ.d3 - ρ.d1| * M ≤ (|ρ.d3| + |ρ.d1|) * M :=
+      mul_le_mul_of_nonneg_right (abs_sub ρ.d3 ρ.d1) hM_nn
+    linarith
+  have ha12 : |2 * ρ.a12 * (v.x.re * v.y.re + v.x.im * v.y.im)| ≤ 2 * |ρ.a12| * M :=
+    abs_two_coeff_mul_le h_re_xy hM_nn
+  have ha13 : |2 * ρ.a13 * (v.x.re * v.z.re + v.x.im * v.z.im)| ≤ 2 * |ρ.a13| * M :=
+    abs_two_coeff_mul_le h_re_xz hM_nn
+  have ha23 : |2 * ρ.a23 * (v.y.re * v.z.re + v.y.im * v.z.im)| ≤ 2 * |ρ.a23| * M :=
+    abs_two_coeff_mul_le h_re_yz hM_nn
+  have hb12 : |-(2 * ρ.b12 * (v.x.re * v.y.im - v.x.im * v.y.re))| ≤ 2 * |ρ.b12| * M := by
+    rw [abs_neg]; exact abs_two_coeff_mul_le h_im_xy hM_nn
+  have hb13 : |-(2 * ρ.b13 * (v.x.re * v.z.im - v.x.im * v.z.re))| ≤ 2 * |ρ.b13| * M := by
+    rw [abs_neg]; exact abs_two_coeff_mul_le h_im_xz hM_nn
+  have hb23 : |-(2 * ρ.b23 * (v.y.re * v.z.im - v.y.im * v.z.re))| ≤ 2 * |ρ.b23| * M := by
+    rw [abs_neg]; exact abs_two_coeff_mul_le h_im_yz hM_nn
+  let t2 := (ρ.d2 - ρ.d1) * v.y.normSq
+  let t3 := (ρ.d3 - ρ.d1) * v.z.normSq
+  let t4 := 2 * ρ.a12 * (v.x.re * v.y.re + v.x.im * v.y.im)
+  let t5 := 2 * ρ.a13 * (v.x.re * v.z.re + v.x.im * v.z.im)
+  let t6 := 2 * ρ.a23 * (v.y.re * v.z.re + v.y.im * v.z.im)
+  let t7 := -(2 * ρ.b12 * (v.x.re * v.y.im - v.x.im * v.y.re))
+  let t8 := -(2 * ρ.b13 * (v.x.re * v.z.im - v.x.im * v.z.re))
+  let t9 := -(2 * ρ.b23 * (v.y.re * v.z.im - v.y.im * v.z.re))
+  have hrew : quadNum ρ v - ρ.d1 * normSqVec v = t2 + t3 + t4 + t5 + t6 + t7 + t8 + t9 := by
+    simp only [quadNum, normSqVec, t2, t3, t4, t5, t6, t7, t8, t9]
+    ring
+  have s1 := abs_add_le (t2 + t3 + t4 + t5 + t6 + t7 + t8) t9
+  have s2 := abs_add_le (t2 + t3 + t4 + t5 + t6 + t7) t8
+  have s3 := abs_add_le (t2 + t3 + t4 + t5 + t6) t7
+  have s4 := abs_add_le (t2 + t3 + t4 + t5) t6
+  have s5 := abs_add_le (t2 + t3 + t4) t5
+  have s6 := abs_add_le (t2 + t3) t4
+  have s7 := abs_add_le t2 t3
+  have hsum_M : |t2 + t3 + t4 + t5 + t6 + t7 + t8 + t9| ≤
+      (2 * |ρ.d1| + |ρ.d2| + |ρ.d3| + 2 * |ρ.a12| + 2 * |ρ.a13| + 2 * |ρ.a23| +
+        2 * |ρ.b12| + 2 * |ρ.b13| + 2 * |ρ.b23|) * M := by
+    linarith [s1, s2, s3, s4, s5, s6, s7, hd2, hd3, ha12, ha13, ha23, hb12, hb13, hb23]
+  have hle_coeff :
+      (2 * |ρ.d1| + |ρ.d2| + |ρ.d3| + 2 * |ρ.a12| + 2 * |ρ.a13| + 2 * |ρ.a23| +
+        2 * |ρ.b12| + 2 * |ρ.b13| + 2 * |ρ.b23|) ≤ 2 * ρ.coeffNorm := by
+    unfold HermForm3.coeffNorm
+    linarith [abs_nonneg ρ.d2, abs_nonneg ρ.d3,
+      abs_nonneg ρ.a12, abs_nonneg ρ.a13, abs_nonneg ρ.a23,
+      abs_nonneg ρ.b12, abs_nonneg ρ.b13, abs_nonneg ρ.b23]
+  have hmul_coeff := mul_le_mul_of_nonneg_right hle_coeff hM_nn
+  have h2M : 2 * ρ.coeffNorm * M = 8 * ρ.coeffNorm * θ * normSqVec v := by
+    change 2 * ρ.coeffNorm * (4 * θ * normSqVec v) = 8 * ρ.coeffNorm * θ * normSqVec v
+    ring
+  refine ⟨hN_gt, ?_⟩
+  rw [hrew, ← h2M]
+  linarith [hsum_M, hmul_coeff]
+
+/-- Positive control for Suite 9A: every quadratic Born-rule Rayleigh function `quadRay ρ`
+is archimedean-continuous at `tomo_e1 = (1, 0, 0)`. -/
+theorem archimedeanContinuousAt_quadRay_tomo_e1 (ρ : HermForm3) :
+    IsArchimedeanContinuousAt (quadRay ρ) tomo_e1 := by
+  intro ε hε
+  have hC_nn : 0 ≤ ρ.coeffNorm := coeffNorm_nonneg ρ
+  have hdenom_pos : 0 < 8 * ρ.coeffNorm + 1 := by linarith
+  let θ := min (1 / 2) (ε / (8 * ρ.coeffNorm + 1))
+  have hθ_pos : 0 < θ := lt_min (by norm_num) (div_pos hε hdenom_pos)
+  have hθ_half : θ ≤ 1 / 2 := min_le_left _ _
+  have hθ_eps : θ ≤ ε / (8 * ρ.coeffNorm + 1) := min_le_right _ _
+  refine ⟨θ ^ 2, sq_pos_of_pos hθ_pos, ?_⟩
+  intro v _ hdist
+  obtain ⟨hN_gt, hnum_le⟩ := abs_quadNum_sub_d1_mul_normSqVec_le ρ hθ_pos hθ_half hdist
+  have hN_pos : 0 < normSqVec v := by linarith
+  have hN_ne : normSqVec v ≠ 0 := ne_of_gt hN_pos
+  have hmul : (quadRay ρ v - quadRay ρ tomo_e1) * normSqVec v =
+      quadNum ρ v - ρ.d1 * normSqVec v := by
+    rw [quadRay_tomo_e1, quadRay, sub_mul, div_mul_cancel₀ _ hN_ne]
+  obtain ⟨hl, hu⟩ := abs_le.mp hnum_le
+  rw [← hmul] at hl hu
+  have hmul_eps : (8 * ρ.coeffNorm + 1) * θ ≤ ε := by
+    have h1 := (le_div_iff₀ hdenom_pos).mp hθ_eps
+    linarith
+  exact abs_lt.mpr ⟨by nlinarith, by nlinarith⟩
+
+/-- Unconditional Archimedean continuity elimination theorem for `s3`: for any `ρ : HermForm3`
+and `c : ℚ`, the perturbed ray function `quadRay ρ + c • s3` is archimedean-continuous at
+`tomo_e1 = (1, 0, 0)` if and only if `c = 0`. -/
+theorem quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff
+    (ρ : HermForm3) (c : ℚ) :
+    IsArchimedeanContinuousAt (fun v => quadRay ρ v + c * s3 v) tomo_e1 ↔ c = 0 := by
+  constructor
+  · intro hf_cont
+    apply s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1 hf_cont
+    have heq : (fun v => (quadRay ρ v + c * s3 v) - c * s3 v) = quadRay ρ := by
+      funext v; ring
+    rw [heq]
+    exact archimedeanContinuousAt_quadRay_tomo_e1 ρ
+  · rintro rfl
+    have heq : (fun v => quadRay ρ v + 0 * s3 v) = quadRay ρ := by
+      funext v; ring
+    rw [heq]
+    exact archimedeanContinuousAt_quadRay_tomo_e1 ρ
+
+/-! #### 9B. Quadratic Field Extension `ℚ(i, √3)³` Obstruction Eliminating `s3` -/
+
+/-- Elements `a + b √3` of the biquadratic field `ℚ(i, √3)` with `a, b ∈ ℚ(i)`. -/
+@[ext]
+structure GaussRatSqrt3 where
+  a : GaussRat
+  b : GaussRat
+  deriving DecidableEq
+
+namespace GaussRatSqrt3
+
+def zero : GaussRatSqrt3 := ⟨0, 0⟩
+def one : GaussRatSqrt3 := ⟨1, 0⟩
+def invSqrt3 : GaussRatSqrt3 := ⟨0, ⟨1 / 3, 0⟩⟩
+
+def ofGaussRat (z : GaussRat) : GaussRatSqrt3 := ⟨z, 0⟩
+
+def add (z w : GaussRatSqrt3) : GaussRatSqrt3 :=
+  ⟨z.a + w.a, z.b + w.b⟩
+
+def mul (z w : GaussRatSqrt3) : GaussRatSqrt3 :=
+  ⟨z.a * w.a + ⟨3, 0⟩ * (z.b * w.b), z.a * w.b + z.b * w.a⟩
+
+/-- Complex conjugation on `ℚ(i, √3) ⊂ ℂ` fixes `√3 ∈ ℝ` and conjugates `a, b ∈ ℚ(i)`. -/
+def conj (z : GaussRatSqrt3) : GaussRatSqrt3 :=
+  ⟨star z.a, star z.b⟩
+
+end GaussRatSqrt3
+
+/-- Three-component vectors over `ℚ(i, √3)`. -/
+@[ext]
+structure GVecSqrt3 where
+  x : GaussRatSqrt3
+  y : GaussRatSqrt3
+  z : GaussRatSqrt3
+  deriving DecidableEq
+
+namespace GVecSqrt3
+
+def ofGVec (v : GVec) : GVecSqrt3 :=
+  ⟨GaussRatSqrt3.ofGaussRat v.x, GaussRatSqrt3.ofGaussRat v.y, GaussRatSqrt3.ofGaussRat v.z⟩
+
+def smul (c : GaussRatSqrt3) (v : GVecSqrt3) : GVecSqrt3 :=
+  ⟨c.mul v.x, c.mul v.y, c.mul v.z⟩
+
+def inner (u v : GVecSqrt3) : GaussRatSqrt3 :=
+  ((u.x.conj.mul v.x).add (u.y.conj.mul v.y)).add (u.z.conj.mul v.z)
+
+def normSqRat (u : GVecSqrt3) : ℚ :=
+  (inner u u).a.re
+
+def NonZero (u : GVecSqrt3) : Prop :=
+  u.x ≠ GaussRatSqrt3.zero ∨ u.y ≠ GaussRatSqrt3.zero ∨ u.z ≠ GaussRatSqrt3.zero
+
+end GVecSqrt3
+
+/-- Orthogonal frames in `ℚ(i, √3)³`. -/
+def IsFrameSqrt3 (u v w : GVecSqrt3) : Prop :=
+  u.NonZero ∧ v.NonZero ∧ w.NonZero ∧
+  GVecSqrt3.inner u v = GaussRatSqrt3.zero ∧
+  GVecSqrt3.inner u w = GaussRatSqrt3.zero ∧
+  GVecSqrt3.inner v w = GaussRatSqrt3.zero
+
+/-- Zero-weight frame functions on `ℚ(i, √3)³`. -/
+def IsZeroWeightFrameFunctionSqrt3 (G : GVecSqrt3 → ℚ) : Prop :=
+  ∀ u v w : GVecSqrt3, IsFrameSqrt3 u v w → G u + G v + G w = 0
+
+/-- Over `ℚ(i)³`, no scalar multiple of `witness_111 = (1, 1, 1)` can have unit squared norm `1`. -/
+theorem no_unit_norm_smul_witness_111_in_qi3 (l : GaussRat) :
+    normSqVec (GVec.smul l witness_111) ≠ 1 := by
+  intro h1
+  have hl_pos : 0 < l.normSq := by
+    by_contra hle
+    have h0 : l.normSq = 0 := le_antisymm (not_lt.mp hle) (GaussRat.normSq_nonneg l)
+    rw [normSqVec_smul, h0, zero_mul] at h1
+    norm_num at h1
+  rw [normSqVec_smul, witness_111_normSq] at h1
+  have hv := congrArg v3Rat h1
+  rw [v3Rat_mul hl_pos (by norm_num : (0 : ℚ) < 3)] at hv
+  have hv1 : v3Rat 1 = 0 := rfl
+  have hv3 : v3Rat 3 = 1 := rfl
+  have heven := v3Rat_normSq_even l
+  omega
+
+/-- Over `ℚ(i, √3)³`, scaling `witness_111 = (1, 1, 1)` by `1 / √3` produces a unit-norm vector
+on the same ray whose squared norm `1` has even `3`-adic valuation `v_3(1) = 0`. -/
+def witness_111_unit_sqrt3 : GVecSqrt3 :=
+  GVecSqrt3.smul GaussRatSqrt3.invSqrt3 (GVecSqrt3.ofGVec witness_111)
+
+theorem witness_111_unit_sqrt3_normSq :
+    GVecSqrt3.inner witness_111_unit_sqrt3 witness_111_unit_sqrt3 = GaussRatSqrt3.one ∧
+    witness_111_unit_sqrt3.normSqRat = 1 ∧
+    v3Rat witness_111_unit_sqrt3.normSqRat % 2 = 0 := by
+  refine ⟨?_, ?_, ?_⟩
+  · (ext <;>
+      simp [witness_111_unit_sqrt3, GVecSqrt3.inner, GVecSqrt3.smul, GVecSqrt3.ofGVec,
+        GaussRatSqrt3.invSqrt3, GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.one,
+        GaussRatSqrt3.add, GaussRatSqrt3.mul, GaussRatSqrt3.conj, witness_111, gv]);
+    norm_num
+  · simp [GVecSqrt3.normSqRat, witness_111_unit_sqrt3, GVecSqrt3.inner, GVecSqrt3.smul,
+      GVecSqrt3.ofGVec, GaussRatSqrt3.invSqrt3, GaussRatSqrt3.ofGaussRat,
+      GaussRatSqrt3.add, GaussRatSqrt3.mul, GaussRatSqrt3.conj, witness_111, gv]
+    norm_num
+  · have h1 : witness_111_unit_sqrt3.normSqRat = 1 := by
+      simp [GVecSqrt3.normSqRat, witness_111_unit_sqrt3, GVecSqrt3.inner, GVecSqrt3.smul,
+        GVecSqrt3.ofGVec, GaussRatSqrt3.invSqrt3, GaussRatSqrt3.ofGaussRat,
+        GaussRatSqrt3.add, GaussRatSqrt3.mul, GaussRatSqrt3.conj, witness_111, gv]
+      norm_num
+    rw [h1]
+    rfl
+
+/-- Embedded witness `(1, 1, 1)` in `ℚ(i, √3)³`. -/
+def witness_111_sqrt3 : GVecSqrt3 := GVecSqrt3.ofGVec witness_111
+
+/-- First orthogonal partner `(1 + i + √3, 1 + i - √3, -2 - 2i)` of `witness_111` in `ℚ(i, √3)³`,
+with rational squared norm `18 = 2 × 3²` (`v_3(18) = 2`, even). -/
+def frameSqrt3_p : GVecSqrt3 :=
+  ⟨⟨⟨1, 1⟩, ⟨1, 0⟩⟩, ⟨⟨1, 1⟩, ⟨-1, 0⟩⟩, ⟨⟨-2, -2⟩, ⟨0, 0⟩⟩⟩
+
+/-- Second orthogonal partner `(-1 + (1 - i)√3, -1 - (1 - i)√3, 2)` of `witness_111` in `ℚ(i, √3)³`,
+with rational squared norm `18 = 2 × 3²` (`v_3(18) = 2`, even). -/
+def frameSqrt3_q : GVecSqrt3 :=
+  ⟨⟨⟨-1, 0⟩, ⟨1, -1⟩⟩, ⟨⟨-1, 0⟩, ⟨-1, 1⟩⟩, ⟨⟨2, 0⟩, ⟨0, 0⟩⟩⟩
+
+theorem isFrameSqrt3_witness_111_even_norms :
+    IsFrameSqrt3 witness_111_sqrt3 frameSqrt3_p frameSqrt3_q ∧
+    witness_111_sqrt3.normSqRat = 3 ∧
+    frameSqrt3_p.normSqRat = 18 ∧
+    frameSqrt3_q.normSqRat = 18 ∧
+    v3Rat frameSqrt3_p.normSqRat % 2 = 0 ∧
+    v3Rat frameSqrt3_q.normSqRat % 2 = 0 ∧
+    (v3Rat witness_111_sqrt3.normSqRat +
+      v3Rat frameSqrt3_p.normSqRat +
+      v3Rat frameSqrt3_q.normSqRat) % 2 ≠ 0 := by
+  have hnz_u : witness_111_sqrt3.NonZero := by
+    left; decide
+  have hnz_p : frameSqrt3_p.NonZero := by
+    left; decide
+  have hnz_q : frameSqrt3_q.NonZero := by
+    left; decide
+  have huv : GVecSqrt3.inner witness_111_sqrt3 frameSqrt3_p = GaussRatSqrt3.zero := by
+    ext <;>
+      simp [witness_111_sqrt3, frameSqrt3_p, GVecSqrt3.ofGVec, GaussRatSqrt3.ofGaussRat,
+        GVecSqrt3.inner, GaussRatSqrt3.add, GaussRatSqrt3.mul, GaussRatSqrt3.conj,
+        GaussRatSqrt3.zero, witness_111, gv] <;>
+      norm_num
+  have huw : GVecSqrt3.inner witness_111_sqrt3 frameSqrt3_q = GaussRatSqrt3.zero := by
+    (ext <;>
+      simp [witness_111_sqrt3, frameSqrt3_q, GVecSqrt3.ofGVec, GaussRatSqrt3.ofGaussRat,
+        GVecSqrt3.inner, GaussRatSqrt3.add, GaussRatSqrt3.mul, GaussRatSqrt3.conj,
+        GaussRatSqrt3.zero, witness_111, gv]);
+    norm_num
+  have hvw : GVecSqrt3.inner frameSqrt3_p frameSqrt3_q = GaussRatSqrt3.zero := by
+    ext <;>
+      simp [frameSqrt3_p, frameSqrt3_q, GVecSqrt3.inner, GaussRatSqrt3.add,
+        GaussRatSqrt3.mul, GaussRatSqrt3.conj, GaussRatSqrt3.zero] <;>
+      norm_num
+  have hnu : witness_111_sqrt3.normSqRat = ((3 : ℕ) : ℚ) := by
+    simp [GVecSqrt3.normSqRat, witness_111_sqrt3, GVecSqrt3.ofGVec, GaussRatSqrt3.ofGaussRat,
+      GVecSqrt3.inner, GaussRatSqrt3.add, GaussRatSqrt3.mul, GaussRatSqrt3.conj,
+      witness_111, gv]
+    norm_num
+  have hnp : frameSqrt3_p.normSqRat = ((18 : ℕ) : ℚ) := by
+    simp [GVecSqrt3.normSqRat, frameSqrt3_p, GVecSqrt3.inner, GaussRatSqrt3.add,
+      GaussRatSqrt3.mul, GaussRatSqrt3.conj]
+    norm_num
+  have hnq : frameSqrt3_q.normSqRat = ((18 : ℕ) : ℚ) := by
+    simp [GVecSqrt3.normSqRat, frameSqrt3_q, GVecSqrt3.inner, GaussRatSqrt3.add,
+      GaussRatSqrt3.mul, GaussRatSqrt3.conj]
+    norm_num
+  have hv3 : v3Rat witness_111_sqrt3.normSqRat = 1 := by
+    rw [hnu, v3Rat_natCast (by decide : 0 < 3)]
+    rfl
+  have hv18_p : v3Rat frameSqrt3_p.normSqRat = 2 := by
+    rw [hnp, v3Rat_natCast (by decide : 0 < 18)]
+    rfl
+  have hv18_q : v3Rat frameSqrt3_q.normSqRat = 2 := by
+    rw [hnq, v3Rat_natCast (by decide : 0 < 18)]
+    rfl
+  refine ⟨⟨hnz_u, hnz_p, hnz_q, huv, huw, hvw⟩, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · exact_mod_cast hnu
+  · exact_mod_cast hnp
+  · exact_mod_cast hnq
+  · rw [hv18_p]; rfl
+  · rw [hv18_q]; rfl
+  · rw [hv3, hv18_p, hv18_q]; decide
+
+/-- Any zero-weight frame function `G` on `ℚ(i, √3)³` that vanishes on vectors whose rational
+squared norm has even `3`-adic valuation must vanish on `witness_111 = (1, 1, 1)`, so `s3`
+cannot extend to `ℚ(i, √3)³` under the even-`v_3` vanishing rule. -/
+theorem zero_on_witness_111_of_sqrt3_even_v3_vanishing
+    {G : GVecSqrt3 → ℚ}
+    (hG : IsZeroWeightFrameFunctionSqrt3 G)
+    (heven : ∀ u : GVecSqrt3, v3Rat u.normSqRat % 2 = 0 → G u = 0) :
+    G witness_111_sqrt3 = 0 := by
+  obtain ⟨hfr, _, _, _, hp_even, hq_even, _⟩ := isFrameSqrt3_witness_111_even_norms
+  have hsum := hG witness_111_sqrt3 frameSqrt3_p frameSqrt3_q hfr
+  have hp0 := heven frameSqrt3_p hp_even
+  have hq0 := heven frameSqrt3_q hq_even
+  linarith
+
+theorem no_s3_even_v3_extension_to_sqrt3 :
+    ¬ ∃ G : GVecSqrt3 → ℚ,
+        IsZeroWeightFrameFunctionSqrt3 G ∧
+        (∀ u : GVecSqrt3, v3Rat u.normSqRat % 2 = 0 → G u = 0) ∧
+        (∀ v : GVec, G (GVecSqrt3.ofGVec v) = s3 v) := by
+  rintro ⟨G, hG, heven, hext⟩
+  have h0 := zero_on_witness_111_of_sqrt3_even_v3_vanishing hG heven
+  have h1 := hext witness_111
+  rw [s3_witness_111] at h1
+  change G witness_111_sqrt3 = 1 at h1
+  linarith
+
+/-- Parameterized biquadratic operations on `ℚ(i, √p)³` for general `p : ℚ` (including all
+inert primes `p ≡ 3 (mod 4)` such as `p = 3, 7, 11, 19, ...`). -/
+def GaussRatSqrt3.invSqrtP (p : ℚ) : GaussRatSqrt3 := ⟨0, ⟨1 / p, 0⟩⟩
+
+def GaussRatSqrt3.mulP (p : ℚ) (z w : GaussRatSqrt3) : GaussRatSqrt3 :=
+  ⟨z.a * w.a + ⟨p, 0⟩ * (z.b * w.b), z.a * w.b + z.b * w.a⟩
+
+def GVecSqrt3.smulP (p : ℚ) (c : GaussRatSqrt3) (v : GVecSqrt3) : GVecSqrt3 :=
+  ⟨GaussRatSqrt3.mulP p c v.x, GaussRatSqrt3.mulP p c v.y, GaussRatSqrt3.mulP p c v.z⟩
+
+def GVecSqrt3.innerP (p : ℚ) (u v : GVecSqrt3) : GaussRatSqrt3 :=
+  ((GaussRatSqrt3.mulP p u.x.conj v.x).add (GaussRatSqrt3.mulP p u.y.conj v.y)).add
+    (GaussRatSqrt3.mulP p u.z.conj v.z)
+
+def GVecSqrt3.normSqRatP (p : ℚ) (u : GVecSqrt3) : ℚ :=
+  (GVecSqrt3.innerP p u u).a.re
+
+def IsFrameSqrtP (p : ℚ) (u v w : GVecSqrt3) : Prop :=
+  u.NonZero ∧ v.NonZero ∧ w.NonZero ∧
+  GVecSqrt3.innerP p u v = GaussRatSqrt3.zero ∧
+  GVecSqrt3.innerP p u w = GaussRatSqrt3.zero ∧
+  GVecSqrt3.innerP p v w = GaussRatSqrt3.zero
+
+/-- Universal unit-norm rescaling theorem in `ℚ(i, √p)³`: for any `p ≠ 0` and any vector
+`u ∈ ℚ(i)³` with `normSqVec u = p`, scaling `u` by `1 / √p` in `ℚ(i, √p)³` produces a vector
+with `innerP p = 1` and rational squared norm `normSqRatP p = 1`. -/
+theorem unit_norm_in_sqrtP_of_normSqVec_eq {p : ℚ} (hp : p ≠ 0) {u : GVec}
+    (hu : normSqVec u = p) :
+    GVecSqrt3.innerP p
+        (GVecSqrt3.smulP p (GaussRatSqrt3.invSqrtP p) (GVecSqrt3.ofGVec u))
+        (GVecSqrt3.smulP p (GaussRatSqrt3.invSqrtP p) (GVecSqrt3.ofGVec u)) =
+      GaussRatSqrt3.one ∧
+    GVecSqrt3.normSqRatP p
+        (GVecSqrt3.smulP p (GaussRatSqrt3.invSqrtP p) (GVecSqrt3.ofGVec u)) = 1 := by
+  have hns : u.x.re ^ 2 + u.x.im ^ 2 + u.y.re ^ 2 + u.y.im ^ 2 + u.z.re ^ 2 + u.z.im ^ 2 = p := by
+    simpa [normSqVec, GaussRat.normSq, add_assoc] using hu
+  have hp_inv : p * p⁻¹ = 1 := mul_inv_cancel₀ hp
+  have h1 : GVecSqrt3.innerP p
+      (GVecSqrt3.smulP p (GaussRatSqrt3.invSqrtP p) (GVecSqrt3.ofGVec u))
+      (GVecSqrt3.smulP p (GaussRatSqrt3.invSqrtP p) (GVecSqrt3.ofGVec u)) =
+      GaussRatSqrt3.one := by
+    ext
+    · simp only [GVecSqrt3.innerP, GVecSqrt3.smulP, GVecSqrt3.ofGVec,
+        GaussRatSqrt3.invSqrtP, GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.one,
+        GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+        GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul,
+        GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero,
+        GaussRat.re_one]
+      linear_combination (p * p⁻¹ ^ 2) * hns + (p * p⁻¹ + 1) * hp_inv
+    · simp only [GVecSqrt3.innerP, GVecSqrt3.smulP, GVecSqrt3.ofGVec,
+        GaussRatSqrt3.invSqrtP, GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.one,
+        GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+        GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul,
+        GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero,
+        GaussRat.im_one]
+      ring
+    · simp only [GVecSqrt3.innerP, GVecSqrt3.smulP, GVecSqrt3.ofGVec,
+        GaussRatSqrt3.invSqrtP, GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.one,
+        GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+        GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul,
+        GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero]
+      ring
+    · simp only [GVecSqrt3.innerP, GVecSqrt3.smulP, GVecSqrt3.ofGVec,
+        GaussRatSqrt3.invSqrtP, GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.one,
+        GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+        GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul,
+        GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero]
+      ring
+  refine ⟨h1, ?_⟩
+  simp only [GVecSqrt3.normSqRatP, h1, GaussRatSqrt3.one]
+  rfl
+
+/-- First universal four-square SU(2) partner `α (√p v₀) + β w₀` in `ℚ(i, √p)³`. -/
+def fourSquarePartnerP (v₀ w₀ : GVec) (α β : GaussRat) : GVecSqrt3 :=
+  ⟨⟨β * w₀.x, α * v₀.x⟩, ⟨β * w₀.y, α * v₀.y⟩, ⟨β * w₀.z, α * v₀.z⟩⟩
+
+/-- Second universal four-square SU(2) partner `(star β) (√p v₀) - (star α) w₀` in `ℚ(i, √p)³`. -/
+def fourSquarePartnerQ (v₀ w₀ : GVec) (α β : GaussRat) : GVecSqrt3 :=
+  ⟨⟨-(star α * w₀.x), star β * v₀.x⟩,
+   ⟨-(star α * w₀.y), star β * v₀.y⟩,
+   ⟨-(star α * w₀.z), star β * v₀.z⟩⟩
+
+/-- Universal four-square SU(2) orthogonal partner theorem in `ℚ(i, √p)³`: whenever `(u, v₀, w₀)`
+are pairwise orthogonal in `ℚ(i)³` with `normSqVec w₀ = p * normSqVec v₀` and `α, β ∈ ℚ(i)` satisfy
+the four-square norm identity `α.normSq + β.normSq = p`, the vectors `fourSquarePartnerP v₀ w₀ α β`
+and `fourSquarePartnerQ v₀ w₀ α β` are orthogonal to `u` and to each other in `ℚ(i, √p)³` and both
+have rational squared norm `p ^ 2 * normSqVec v₀` (shifting `p`-adic valuation from `1` to `2`). -/
+theorem fourSquarePartner_ortho_and_normSqRatP {p : ℚ} {u v₀ w₀ : GVec} {α β : GaussRat}
+    (huv : GVec.inner u v₀ = 0)
+    (huw : GVec.inner u w₀ = 0)
+    (hvw : GVec.inner v₀ w₀ = 0)
+    (hnorm_w : normSqVec w₀ = p * normSqVec v₀)
+    (hab : α.normSq + β.normSq = p) :
+    GVecSqrt3.innerP p (GVecSqrt3.ofGVec u) (fourSquarePartnerP v₀ w₀ α β) = GaussRatSqrt3.zero ∧
+    GVecSqrt3.innerP p (GVecSqrt3.ofGVec u) (fourSquarePartnerQ v₀ w₀ α β) = GaussRatSqrt3.zero ∧
+    GVecSqrt3.innerP p (fourSquarePartnerP v₀ w₀ α β) (fourSquarePartnerQ v₀ w₀ α β) =
+      GaussRatSqrt3.zero ∧
+    GVecSqrt3.normSqRatP p (fourSquarePartnerP v₀ w₀ α β) = p ^ 2 * normSqVec v₀ ∧
+    GVecSqrt3.normSqRatP p (fourSquarePartnerQ v₀ w₀ α β) = p ^ 2 * normSqVec v₀ := by
+  have hwv : GVec.inner w₀ v₀ = 0 := inner_eq_zero_symm hvw
+  have h1 : GVecSqrt3.innerP p (GVecSqrt3.ofGVec u) (fourSquarePartnerP v₀ w₀ α β) =
+      ⟨β * GVec.inner u w₀, α * GVec.inner u v₀⟩ := by
+    ext <;>
+      simp only [GVecSqrt3.innerP, GVecSqrt3.ofGVec, fourSquarePartnerP,
+        GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+        GVec.inner, GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul,
+        GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero] <;>
+      ring
+  have h2 : GVecSqrt3.innerP p (GVecSqrt3.ofGVec u) (fourSquarePartnerQ v₀ w₀ α β) =
+      ⟨-(star α * GVec.inner u w₀), star β * GVec.inner u v₀⟩ := by
+    ext <;>
+      simp only [GVecSqrt3.innerP, GVecSqrt3.ofGVec, fourSquarePartnerQ,
+        GaussRatSqrt3.ofGaussRat, GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+        GVec.inner, GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul,
+        GaussRat.re_neg, GaussRat.im_neg, GaussRat.re_star, GaussRat.im_star,
+        GaussRat.re_zero, GaussRat.im_zero] <;>
+      ring
+  have h3 : GVecSqrt3.innerP p (fourSquarePartnerP v₀ w₀ α β) (fourSquarePartnerQ v₀ w₀ α β) =
+      ⟨-(star β * star α * GVec.inner w₀ w₀) + ⟨p, 0⟩ * (star α * star β * GVec.inner v₀ v₀),
+       star β * star β * GVec.inner w₀ v₀ - star α * star α * GVec.inner v₀ w₀⟩ := by
+    ext <;>
+      simp only [GVecSqrt3.innerP, fourSquarePartnerP, fourSquarePartnerQ,
+        GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+        GVec.inner, GaussRat.re_add, GaussRat.im_add, GaussRat.re_sub, GaussRat.im_sub,
+        GaussRat.re_mul, GaussRat.im_mul, GaussRat.re_neg, GaussRat.im_neg,
+        GaussRat.re_star, GaussRat.im_star] <;>
+      ring
+  have h4 : GVecSqrt3.normSqRatP p (fourSquarePartnerP v₀ w₀ α β) =
+      β.normSq * normSqVec w₀ + p * α.normSq * normSqVec v₀ := by
+    simp only [GVecSqrt3.normSqRatP, GVecSqrt3.innerP, fourSquarePartnerP,
+      GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+      normSqVec, GaussRat.normSq, GaussRat.re_add, GaussRat.re_mul, GaussRat.im_mul,
+      GaussRat.re_star, GaussRat.im_star]
+    ring
+  have h5 : GVecSqrt3.normSqRatP p (fourSquarePartnerQ v₀ w₀ α β) =
+      α.normSq * normSqVec w₀ + p * β.normSq * normSqVec v₀ := by
+    simp only [GVecSqrt3.normSqRatP, GVecSqrt3.innerP, fourSquarePartnerQ,
+      GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj,
+      normSqVec, GaussRat.normSq, GaussRat.re_add, GaussRat.re_mul, GaussRat.im_mul,
+      GaussRat.re_neg, GaussRat.im_neg, GaussRat.re_star, GaussRat.im_star]
+    ring
+  refine ⟨?_, ?_, ?_, ?_, ?_⟩
+  · rw [h1, huw, huv, mul_zero, mul_zero]; rfl
+  · rw [h2, huw, huv, mul_zero, mul_zero, neg_zero]; rfl
+  · rw [h3, hwv, hvw, inner_self_eq_normSqVec w₀, inner_self_eq_normSqVec v₀, hnorm_w]
+    ext <;>
+      simp only [GaussRatSqrt3.zero, GaussRat.re_add, GaussRat.im_add, GaussRat.re_sub,
+        GaussRat.im_sub, GaussRat.re_mul, GaussRat.im_mul, GaussRat.re_neg, GaussRat.im_neg,
+        GaussRat.re_star, GaussRat.im_star, GaussRat.re_zero, GaussRat.im_zero] <;>
+      ring
+  · rw [h4, hnorm_w]
+    linear_combination (p * normSqVec v₀) * hab
+  · rw [h5, hnorm_w]
+    linear_combination (p * normSqVec v₀) * hab
+
+/-- Explicit `p = 7` (`7 ≡ 3 (mod 4)`) witness `(1, 2, 1 + i)` of squared norm `7` in `ℚ(i)³`
+and its `ℚ(i, √7)³` four-square SU(2) orthogonal frame completion with rational squared norms
+`(7, 245, 245) = (7, 5 × 7², 5 × 7²)`. -/
+def witness_p7 : GVec := gv 1 0 2 0 1 1
+def witness_p7_v0 : GVec := gv 2 0 (-1) 0 0 0
+def witness_p7_w0 : GVec := gv 1 (-1) 2 (-2) (-5) 0
+def frameSqrt7_p : GVecSqrt3 := fourSquarePartnerP witness_p7_v0 witness_p7_w0 ⟨1, 1⟩ ⟨2, 1⟩
+def frameSqrt7_q : GVecSqrt3 := fourSquarePartnerQ witness_p7_v0 witness_p7_w0 ⟨1, 1⟩ ⟨2, 1⟩
+
+theorem isFrameSqrt7_witness_p7_norms :
+    IsFrameSqrtP 7 (GVecSqrt3.ofGVec witness_p7) frameSqrt7_p frameSqrt7_q ∧
+    GVecSqrt3.normSqRatP 7 (GVecSqrt3.ofGVec witness_p7) = 7 ∧
+    GVecSqrt3.normSqRatP 7 frameSqrt7_p = 245 ∧
+    GVecSqrt3.normSqRatP 7 frameSqrt7_q = 245 := by
+  have hnz_u : (GVecSqrt3.ofGVec witness_p7).NonZero := by
+    left; intro h
+    have hre : (GVecSqrt3.ofGVec witness_p7).x.a.re = 0 := by rw [h]; rfl
+    revert hre; simp [GVecSqrt3.ofGVec, GaussRatSqrt3.ofGaussRat, witness_p7, gv]
+  have hnz_p : frameSqrt7_p.NonZero := by
+    left; intro h
+    have hre : frameSqrt7_p.x.a.re = 0 := by rw [h]; rfl
+    revert hre; simp [frameSqrt7_p, fourSquarePartnerP, witness_p7_w0, gv]; norm_num
+  have hnz_q : frameSqrt7_q.NonZero := by
+    left; intro h
+    have hre : frameSqrt7_q.x.b.re = 0 := by rw [h]; rfl
+    revert hre; simp [frameSqrt7_q, fourSquarePartnerQ, witness_p7_v0, gv]
+  have huv : GVec.inner witness_p7 witness_p7_v0 = 0 := by
+    simp only [witness_p7, witness_p7_v0]; gauss_arith
+  have huw : GVec.inner witness_p7 witness_p7_w0 = 0 := by
+    simp only [witness_p7, witness_p7_w0]; gauss_arith
+  have hvw : GVec.inner witness_p7_v0 witness_p7_w0 = 0 := by
+    simp only [witness_p7_v0, witness_p7_w0]; gauss_arith
+  have hnv : normSqVec witness_p7_v0 = 5 := by
+    simp [normSqVec, GaussRat.normSq, witness_p7_v0, gv]; norm_num
+  have hnw : normSqVec witness_p7_w0 = 7 * normSqVec witness_p7_v0 := by
+    simp [normSqVec, GaussRat.normSq, witness_p7_v0, witness_p7_w0, gv]; norm_num
+  have hab : (⟨1, 1⟩ : GaussRat).normSq + (⟨2, 1⟩ : GaussRat).normSq = 7 := by
+    simp [GaussRat.normSq]; norm_num
+  obtain ⟨h1, h2, h3, hnp, hnq⟩ :=
+    fourSquarePartner_ortho_and_normSqRatP (p := 7) huv huw hvw hnw hab
+  have hnu : GVecSqrt3.normSqRatP 7 (GVecSqrt3.ofGVec witness_p7) = 7 := by
+    simp [GVecSqrt3.normSqRatP, GVecSqrt3.innerP, GVecSqrt3.ofGVec, GaussRatSqrt3.ofGaussRat,
+      GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj, witness_p7, gv]
+    norm_num
+  rw [hnv] at hnp hnq
+  norm_num at hnp hnq
+  exact ⟨⟨hnz_u, hnz_p, hnz_q, h1, h2, h3⟩, hnu, hnp, hnq⟩
+
+/-! #### 9C. Universal Operator-Space Projector-Linearity Criterion Eliminating All Residuals -/
+
+/-- A functional `L : HermForm3 → ℚ` is `ℚ`-linear on `HermForm3`. -/
+def IsLinearOnHermForm3 (L : HermForm3 → ℚ) : Prop :=
+  (∀ ρ σ : HermForm3, L (HermForm3.add ρ σ) = L ρ + L σ) ∧
+  (∀ (c : ℚ) (ρ : HermForm3), L (HermForm3.smul c ρ) = c * L ρ)
+
+/-- A ray function `f : GVec → ℚ` factors linearly through the rank-1 projector map `rayProj`. -/
+def FactorsThroughRayProjLinear (f : GVec → ℚ) : Prop :=
+  ∃ L : HermForm3 → ℚ, IsLinearOnHermForm3 L ∧ ∀ v : GVec, v.NonZero → f v = L (rayProj v)
+
+theorem quadRay_factorsThroughRayProjLinear (ρ : HermForm3) :
+    FactorsThroughRayProjLinear (quadRay ρ) := by
+  refine ⟨traceInner ρ, ⟨traceInner_add_right ρ, fun c σ => traceInner_smul_right c ρ σ⟩, ?_⟩
+  intro v _
+  exact (traceInner_rayProj ρ v).symm
+
+/-- Every residual that vanishes on the nine tomography rays and factors linearly through `rayProj`
+vanishes identically on all nonzero rays in `ℚ(i)³` (eliminating `s_p` for all inert primes `p`). -/
+theorem zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
+    {g : GVec → ℚ}
+    (hvan : VanishesOnNineRays g)
+    (hlin : FactorsThroughRayProjLinear g) :
+    ∀ v : GVec, v.NonZero → g v = 0 := by
+  obtain ⟨L, ⟨hadd, hsmul⟩, hL⟩ := hlin
+  obtain ⟨he1, he2, he3, he12, he13, he23, he12i, he13i, he23i⟩ := hvan
+  have hLe1 : L (rayProj tomo_e1) = 0 := by rw [← hL tomo_e1 tomo_e1_nonZero, he1]
+  have hLe2 : L (rayProj tomo_e2) = 0 := by rw [← hL tomo_e2 tomo_e2_nonZero, he2]
+  have hLe3 : L (rayProj tomo_e3) = 0 := by rw [← hL tomo_e3 tomo_e3_nonZero, he3]
+  have hLe12 : L (rayProj tomo_e12) = 0 := by rw [← hL tomo_e12 tomo_e12_nonZero, he12]
+  have hLe13 : L (rayProj tomo_e13) = 0 := by rw [← hL tomo_e13 tomo_e13_nonZero, he13]
+  have hLe23 : L (rayProj tomo_e23) = 0 := by rw [← hL tomo_e23 tomo_e23_nonZero, he23]
+  have hLe12i : L (rayProj tomo_e12i) = 0 := by rw [← hL tomo_e12i tomo_e12i_nonZero, he12i]
+  have hLe13i : L (rayProj tomo_e13i) = 0 := by rw [← hL tomo_e13i tomo_e13i_nonZero, he13i]
+  have hLe23i : L (rayProj tomo_e23i) = 0 := by rw [← hL tomo_e23i tomo_e23i_nonZero, he23i]
+  intro v hv
+  rw [hL v hv, rayProj_nine_rays_span_hermForm3 (rayProj v)]
+  simp only [hadd, hsmul, hLe1, hLe2, hLe3, hLe12, hLe13, hLe23, hLe12i, hLe13i, hLe23i]
+  ring
+
+theorem not_factorsThroughRayProjLinear_s3 : ¬ FactorsThroughRayProjLinear s3 := by
+  intro hlin
+  have h0 := zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
+    s3_vanishes_on_nine_rays hlin witness_111 witness_111_nonZero
+  rw [s3_witness_111] at h0
+  norm_num at h0
+
+/-- Exact quadratic rigidity theorem on `ℚ(i)³` under operator-space projector linearity:
+a frame function `f` on `ℚ(i)³` is of the Born form `quadRay ρ` (`tr ρ = 1`) if and only if
+it factors linearly through `rayProj`. -/
+theorem quadratic_rigidity_iff_factorsThroughRayProjLinear (f : GVec → ℚ) :
+    (IsFrameFunction f ∧ FactorsThroughRayProjLinear f) ↔
+    ∃ ρ : HermForm3, ρ.tr = 1 ∧ ∀ v : GVec, v.NonZero → f v = quadRay ρ v := by
+  constructor
+  · rintro ⟨hf, L, ⟨hadd, hsmul⟩, hL⟩
+    refine ⟨tomographyForm f, tomography_trace_one hf, ?_⟩
+    intro v hv
+    let ρ := tomographyForm f
+    have hres_lin : FactorsThroughRayProjLinear (residual f) := by
+      refine ⟨fun σ => L σ - traceInner ρ σ, ⟨?_, ?_⟩, ?_⟩
+      · intro σ τ
+        simp only [hadd, traceInner_add_right]
+        ring
+      · intro c σ
+        simp only [hsmul, traceInner_smul_right]
+        ring
+      · intro u hu
+        unfold residual
+        rw [hL u hu, ← traceInner_rayProj]
+    have h0 := zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
+      (residual_vanishes_on_nine_rays f) hres_lin v hv
+    unfold residual at h0
+    linarith
+  · rintro ⟨ρ, htr, hρ⟩
+    refine ⟨?_, ?_⟩
+    · intro u v w hfr
+      rw [hρ u hfr.1, hρ v hfr.2.1, hρ w hfr.2.2.1]
+      exact quadRay_isFrameFunction ρ htr u v w hfr
+    · refine ⟨traceInner ρ, ⟨traceInner_add_right ρ, fun c σ => traceInner_smul_right c ρ σ⟩, ?_⟩
+      intro v hv
+      rw [hρ v hv, traceInner_rayProj]
+
+/-! #### 9D. Multi-Prime `7`-Adic Residual `s7`, Linear Independence, and Joint Elimination -/
+
+/-- Bounded-fuel helper for the `7`-adic valuation of a natural number. -/
+def v7NatAux : ℕ → ℕ → ℕ
+  | 0, _ => 0
+  | fuel + 1, n => if 0 < n ∧ n % 7 = 0 then v7NatAux fuel (n / 7) + 1 else 0
+
+/-- Bounded-fuel helper for the prime-to-`7` part of a natural number. -/
+def p7PartNatAux : ℕ → ℕ → ℕ
+  | 0, n => n
+  | fuel + 1, n => if 0 < n ∧ n % 7 = 0 then p7PartNatAux fuel (n / 7) else n
+
+/-- Number of factors of `7` in a natural number `n` (`0` if `n = 0`). -/
+def v7Nat (n : ℕ) : ℕ := v7NatAux n n
+
+/-- Prime-to-`7` part of a natural number `n` (`0` if `n = 0`). -/
+def p7PartNat (n : ℕ) : ℕ := p7PartNatAux n n
+
+theorem v7NatAux_spec : ∀ fuel n : ℕ, 7 ^ v7NatAux fuel n * p7PartNatAux fuel n = n
+  | 0, n => by simp [v7NatAux, p7PartNatAux]
+  | fuel + 1, n => by
+      simp only [v7NatAux, p7PartNatAux]
+      split_ifs with h
+      · have heq := v7NatAux_spec fuel (n / 7)
+        have hdiv : 7 * (n / 7) = n := Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero h.2)
+        calc
+          7 ^ (v7NatAux fuel (n / 7) + 1) * p7PartNatAux fuel (n / 7)
+              = 7 * (7 ^ v7NatAux fuel (n / 7) * p7PartNatAux fuel (n / 7)) := by ring
+          _ = 7 * (n / 7) := by rw [heq]
+          _ = n := hdiv
+      · ring
+
+theorem v7Nat_spec (n : ℕ) : 7 ^ v7Nat n * p7PartNat n = n :=
+  v7NatAux_spec n n
+
+theorem p7PartNatAux_mod_seven_ne_zero :
+    ∀ fuel n : ℕ, 0 < n → n ≤ fuel → p7PartNatAux fuel n % 7 ≠ 0
+  | 0, n, hn, hle => by omega
+  | fuel + 1, n, hn, hle => by
+      simp only [p7PartNatAux]
+      split_ifs with h
+      · have hpos : 0 < n / 7 := by omega
+        have hle' : n / 7 ≤ fuel := by omega
+        exact p7PartNatAux_mod_seven_ne_zero fuel (n / 7) hpos hle'
+      · omega
+
+theorem p7PartNat_mod_seven_ne_zero {n : ℕ} (hn : 0 < n) : p7PartNat n % 7 ≠ 0 :=
+  p7PartNatAux_mod_seven_ne_zero n n hn (le_refl n)
+
+theorem p7PartNat_pos {n : ℕ} (hn : 0 < n) : 0 < p7PartNat n := by
+  have hmod := p7PartNat_mod_seven_ne_zero hn
+  omega
+
+theorem pow_seven_mul_unique :
+    ∀ a b m k : ℕ, m % 7 ≠ 0 → k % 7 ≠ 0 → 7 ^ a * m = 7 ^ b * k → a = b ∧ m = k
+  | 0, 0, m, k, _, _, heq => by
+      simp only [pow_zero, one_mul] at heq
+      exact ⟨rfl, heq⟩
+  | 0, b + 1, m, k, hm, _, heq => by
+      have hm0 : m % 7 = 0 := by
+        have h1 : m = 7 ^ b * k * 7 := by
+          simp only [pow_zero, one_mul, pow_succ] at heq
+          linarith
+        omega
+      exact False.elim (hm hm0)
+  | a + 1, 0, m, k, _, hk, heq => by
+      have hk0 : k % 7 = 0 := by
+        have h1 : k = 7 ^ a * m * 7 := by
+          simp only [pow_zero, one_mul, pow_succ] at heq
+          linarith
+        omega
+      exact False.elim (hk hk0)
+  | a + 1, b + 1, m, k, hm, hk, heq => by
+      have heq' : 7 ^ a * m = 7 ^ b * k := by
+        simp only [pow_succ] at heq
+        linarith
+      obtain ⟨hab, hmk⟩ := pow_seven_mul_unique a b m k hm hk heq'
+      exact ⟨congrArg (· + 1) hab, hmk⟩
+
+theorem v7Nat_p7PartNat_eq_of_pow_mul {n a m : ℕ} (hm : m % 7 ≠ 0) (heq : 7 ^ a * m = n) :
+    v7Nat n = a ∧ p7PartNat n = m := by
+  have hm_pos : 0 < m := by omega
+  have hpow_pos : 0 < 7 ^ a := pow_pos (by decide : 0 < 7) a
+  have hn : 0 < n := by nlinarith
+  exact pow_seven_mul_unique (v7Nat n) a (p7PartNat n) m
+    (p7PartNat_mod_seven_ne_zero hn) hm ((v7Nat_spec n).trans heq.symm)
+
+theorem mul_mod_seven_ne_zero {a b : ℕ} (ha : a % 7 ≠ 0) (hb : b % 7 ≠ 0) :
+    (a * b) % 7 ≠ 0 := by
+  rw [Nat.mul_mod]
+  have ha7 : a % 7 = 1 ∨ a % 7 = 2 ∨ a % 7 = 3 ∨ a % 7 = 4 ∨ a % 7 = 5 ∨ a % 7 = 6 := by omega
+  have hb7 : b % 7 = 1 ∨ b % 7 = 2 ∨ b % 7 = 3 ∨ b % 7 = 4 ∨ b % 7 = 5 ∨ b % 7 = 6 := by omega
+  rcases ha7 with h1 | h1 | h1 | h1 | h1 | h1 <;>
+    rcases hb7 with h2 | h2 | h2 | h2 | h2 | h2 <;>
+    simp [h1, h2]
+
+/-- Quadratic-residue predicate modulo `7` (`m % 7 ∈ {1, 2, 4}`). -/
+def isQrMod7 (m : ℕ) : Prop :=
+  m % 7 = 1 ∨ m % 7 = 2 ∨ m % 7 = 4
+
+instance (m : ℕ) : Decidable (isQrMod7 m) :=
+  inferInstanceAs (Decidable (m % 7 = 1 ∨ m % 7 = 2 ∨ m % 7 = 4))
+
+/-- Legendre symbol `(m / 7) ∈ {-1, 1}` on `ℕ` (evaluated on `m % 7`). -/
+def chi7Nat (m : ℕ) : ℚ :=
+  if isQrMod7 m then 1 else -1
+
+theorem chi7Nat_mod_seven (m : ℕ) : chi7Nat (m % 7) = chi7Nat m := by
+  have h : isQrMod7 (m % 7) ↔ isQrMod7 m := by simp [isQrMod7]
+  simp only [chi7Nat, h]
+
+theorem chi7Nat_values (m : ℕ) : chi7Nat m = 1 ∨ chi7Nat m = -1 := by
+  unfold chi7Nat
+  split_ifs with h
+  · exact Or.inl rfl
+  · exact Or.inr rfl
+
+theorem chi7Nat_sq (m : ℕ) : chi7Nat m * chi7Nat m = 1 := by
+  rcases chi7Nat_values m with h | h <;> rw [h] <;> ring
+
+theorem chi7Nat_mul {a b : ℕ} (ha : a % 7 ≠ 0) (hb : b % 7 ≠ 0) :
+    chi7Nat (a * b) = chi7Nat a * chi7Nat b := by
+  rw [← chi7Nat_mod_seven (a * b), Nat.mul_mod, ← chi7Nat_mod_seven a, ← chi7Nat_mod_seven b]
+  have ha7 : a % 7 = 1 ∨ a % 7 = 2 ∨ a % 7 = 3 ∨ a % 7 = 4 ∨ a % 7 = 5 ∨ a % 7 = 6 := by omega
+  have hb7 : b % 7 = 1 ∨ b % 7 = 2 ∨ b % 7 = 3 ∨ b % 7 = 4 ∨ b % 7 = 5 ∨ b % 7 = 6 := by omega
+  rcases ha7 with h1 | h1 | h1 | h1 | h1 | h1 <;>
+    rcases hb7 with h2 | h2 | h2 | h2 | h2 | h2 <;>
+    simp [h1, h2, chi7Nat, isQrMod7]
+
+theorem chi7Nat_eq_of_mul_eq {a b c d : ℕ}
+    (ha : a % 7 ≠ 0) (hb : b % 7 ≠ 0) (hc : c % 7 ≠ 0) (hd : d % 7 ≠ 0)
+    (heq : a * b = c * d) :
+    chi7Nat (a * d) = chi7Nat (c * b) := by
+  have hmul : chi7Nat a * chi7Nat b = chi7Nat c * chi7Nat d := by
+    rw [← chi7Nat_mul ha hb, ← chi7Nat_mul hc hd, heq]
+  have hsq_b := chi7Nat_sq b
+  have hsq_d := chi7Nat_sq d
+  rw [chi7Nat_mul ha hd, chi7Nat_mul hc hb]
+  linear_combination
+    (chi7Nat b * chi7Nat d) * hmul -
+    (chi7Nat a * chi7Nat d) * hsq_b +
+    (chi7Nat c * chi7Nat b) * hsq_d
+
+theorem chi7Nat_add_cancel {a b : ℕ} (_ha : a % 7 ≠ 0) (_hb : b % 7 ≠ 0)
+    (hsum : (a + b) % 7 = 0) :
+    chi7Nat a + chi7Nat b = 0 := by
+  rw [← chi7Nat_mod_seven a, ← chi7Nat_mod_seven b]
+  rw [Nat.add_mod] at hsum
+  have ha7 : a % 7 = 1 ∨ a % 7 = 2 ∨ a % 7 = 3 ∨ a % 7 = 4 ∨ a % 7 = 5 ∨ a % 7 = 6 := by omega
+  have hb7 : b % 7 = 1 ∨ b % 7 = 2 ∨ b % 7 = 3 ∨ b % 7 = 4 ∨ b % 7 = 5 ∨ b % 7 = 6 := by omega
+  rcases ha7 with h1 | h1 | h1 | h1 | h1 | h1 <;>
+    rcases hb7 with h2 | h2 | h2 | h2 | h2 | h2 <;>
+    simp [h1, h2, chi7Nat, isQrMod7] at hsum ⊢
+
+theorem v7Nat_p7PartNat_mul {m k : ℕ} (hm : 0 < m) (hk : 0 < k) :
+    v7Nat (m * k) = v7Nat m + v7Nat k ∧
+    p7PartNat (m * k) = p7PartNat m * p7PartNat k := by
+  apply v7Nat_p7PartNat_eq_of_pow_mul
+    (mul_mod_seven_ne_zero (p7PartNat_mod_seven_ne_zero hm) (p7PartNat_mod_seven_ne_zero hk))
+  calc
+    7 ^ (v7Nat m + v7Nat k) * (p7PartNat m * p7PartNat k)
+        = (7 ^ v7Nat m * p7PartNat m) * (7 ^ v7Nat k * p7PartNat k) := by ring
+    _ = m * k := by rw [v7Nat_spec m, v7Nat_spec k]
+
+theorem v7Nat_add_of_lt {X Y : ℕ} (hX : 0 < X) (_hY : 0 < Y) (hlt : v7Nat X < v7Nat Y) :
+    v7Nat (X + Y) = v7Nat X ∧ p7PartNat (X + Y) % 7 = p7PartNat X % 7 := by
+  let d := v7Nat Y - v7Nat X - 1
+  have hb : v7Nat Y = v7Nat X + (d + 1) := by omega
+  let m := p7PartNat X + 7 ^ (d + 1) * p7PartNat Y
+  have hm_mod : m % 7 = p7PartNat X % 7 := by
+    have hpow : (7 ^ (d + 1) * p7PartNat Y) % 7 = 0 := by
+      have h1 : 7 ^ (d + 1) * p7PartNat Y = 7 * (7 ^ d * p7PartNat Y) := by ring
+      rw [h1, Nat.mul_mod_right]
+    omega
+  have hm_ne : m % 7 ≠ 0 := by
+    rw [hm_mod]
+    exact p7PartNat_mod_seven_ne_zero hX
+  have heq : 7 ^ v7Nat X * m = X + Y := by
+    calc
+      7 ^ v7Nat X * m
+          = 7 ^ v7Nat X * p7PartNat X + 7 ^ (v7Nat X + (d + 1)) * p7PartNat Y := by
+            simp only [m, pow_add]; ring
+      _ = 7 ^ v7Nat X * p7PartNat X + 7 ^ v7Nat Y * p7PartNat Y := by rw [← hb]
+      _ = X + Y := by rw [v7Nat_spec X, v7Nat_spec Y]
+  obtain ⟨hv, hp⟩ := v7Nat_p7PartNat_eq_of_pow_mul hm_ne heq
+  exact ⟨hv, by rw [hp, hm_mod]⟩
+
+theorem v7Nat_add_gt_imp_eq_and_mod_seven {X Y : ℕ} (hX : 0 < X) (hY : 0 < Y)
+    (hgt : v7Nat X < v7Nat (X + Y)) :
+    v7Nat X = v7Nat Y ∧ (p7PartNat X + p7PartNat Y) % 7 = 0 := by
+  have heq_v : v7Nat X = v7Nat Y := by
+    rcases lt_trichotomy (v7Nat X) (v7Nat Y) with hlt | heq | hlt
+    · have h1 := (v7Nat_add_of_lt hX hY hlt).1
+      omega
+    · exact heq
+    · have h1 := (v7Nat_add_of_lt hY hX hlt).1
+      rw [Nat.add_comm Y X] at h1
+      omega
+  refine ⟨heq_v, ?_⟩
+  by_contra hmod
+  have heq_sum : 7 ^ v7Nat X * (p7PartNat X + p7PartNat Y) = X + Y := by
+    calc
+      7 ^ v7Nat X * (p7PartNat X + p7PartNat Y)
+          = 7 ^ v7Nat X * p7PartNat X + 7 ^ v7Nat Y * p7PartNat Y := by
+            rw [← heq_v]; ring
+      _ = X + Y := by rw [v7Nat_spec X, v7Nat_spec Y]
+  have hv := (v7Nat_p7PartNat_eq_of_pow_mul hmod heq_sum).1
+  omega
+
+theorem v7Nat_add_ge_min {X Y : ℕ} (hX : 0 < X) (hY : 0 < Y) :
+    min (v7Nat X) (v7Nat Y) ≤ v7Nat (X + Y) := by
+  rcases lt_trichotomy (v7Nat X) (v7Nat Y) with hlt | heq | hlt
+  · have h1 := (v7Nat_add_of_lt hX hY hlt).1
+    omega
+  · have hsum_pos : 0 < p7PartNat X + p7PartNat Y := by
+      have hpX := p7PartNat_pos hX
+      omega
+    have hpow_pos : 0 < 7 ^ v7Nat X := pow_pos (by decide : 0 < 7) (v7Nat X)
+    have heq_sum : X + Y = 7 ^ v7Nat X * (p7PartNat X + p7PartNat Y) := by
+      calc
+        X + Y = 7 ^ v7Nat X * p7PartNat X + 7 ^ v7Nat Y * p7PartNat Y := by
+          rw [v7Nat_spec X, v7Nat_spec Y]
+        _ = 7 ^ v7Nat X * (p7PartNat X + p7PartNat Y) := by
+          rw [← heq]; ring
+    have hv_pow : v7Nat (7 ^ v7Nat X) = v7Nat X := by
+      exact (v7Nat_p7PartNat_eq_of_pow_mul (m := 1) (by decide) (by ring)).1
+    have hv_mul := (v7Nat_p7PartNat_mul hpow_pos hsum_pos).1
+    rw [heq_sum, hv_mul, hv_pow]
+    omega
+  · have h1 := (v7Nat_add_of_lt hY hX hlt).1
+    rw [Nat.add_comm Y X] at h1
+    omega
+
+theorem sq_add_sq_mod_seven_eq_zero_iff (x y : ℕ) :
+    (x ^ 2 + y ^ 2) % 7 = 0 ↔ x % 7 = 0 ∧ y % 7 = 0 := by
+  simp only [sq]
+  rw [Nat.add_mod, Nat.mul_mod x x, Nat.mul_mod y y]
+  have hx : x % 7 = 0 ∨ x % 7 = 1 ∨ x % 7 = 2 ∨ x % 7 = 3 ∨
+      x % 7 = 4 ∨ x % 7 = 5 ∨ x % 7 = 6 := by omega
+  have hy : y % 7 = 0 ∨ y % 7 = 1 ∨ y % 7 = 2 ∨ y % 7 = 3 ∨
+      y % 7 = 4 ∨ y % 7 = 5 ∨ y % 7 = 6 := by omega
+  rcases hx with hx | hx | hx | hx | hx | hx | hx <;>
+    rcases hy with hy | hy | hy | hy | hy | hy | hy <;>
+    simp [hx, hy]
+
+theorem v7Nat_sq_add_sq_even (x y : ℕ) : v7Nat (x ^ 2 + y ^ 2) % 2 = 0 := by
+  have hmain : ∀ s : ℕ, ∀ a b : ℕ, a + b = s → v7Nat (a ^ 2 + b ^ 2) % 2 = 0 := by
+    intro s
+    induction s using Nat.strong_induction_on with
+    | h s ih =>
+      intro a b hab
+      by_cases h0 : a = 0 ∧ b = 0
+      · rcases h0 with ⟨rfl, rfl⟩
+        rfl
+      · have hpos : 0 < a ^ 2 + b ^ 2 := by
+          rcases not_and_or.mp h0 with ha | hb
+          · have : 0 < a := by omega
+            nlinarith
+          · have : 0 < b := by omega
+            nlinarith
+        by_cases hmod : (a ^ 2 + b ^ 2) % 7 = 0
+        · obtain ⟨ha7, hb7⟩ := (sq_add_sq_mod_seven_eq_zero_iff a b).mp hmod
+          have ha_eq : a = 7 * (a / 7) := (Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero ha7)).symm
+          have hb_eq : b = 7 * (b / 7) := (Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero hb7)).symm
+          have hsub_pos : 0 < (a / 7) ^ 2 + (b / 7) ^ 2 := by nlinarith
+          have hsq_eq : a ^ 2 + b ^ 2 = 49 * ((a / 7) ^ 2 + (b / 7) ^ 2) := by
+            calc
+              a ^ 2 + b ^ 2 = (7 * (a / 7)) ^ 2 + (7 * (b / 7)) ^ 2 := by
+                rw [← ha_eq, ← hb_eq]
+              _ = 49 * ((a / 7) ^ 2 + (b / 7) ^ 2) := by ring
+          have hv49 : v7Nat 49 = 2 := rfl
+          have hmul := (v7Nat_p7PartNat_mul (by decide : 0 < 49) hsub_pos).1
+          have hlt_s : a / 7 + b / 7 < s := by omega
+          have hrec := ih (a / 7 + b / 7) hlt_s (a / 7) (b / 7) rfl
+          rw [hsq_eq, hmul, hv49]
+          omega
+        · have hv0 :=
+            (v7Nat_p7PartNat_eq_of_pow_mul (n := a ^ 2 + b ^ 2) (a := 0) (m := a ^ 2 + b ^ 2)
+              hmod (by ring)).1
+          rw [hv0]
+  exact hmain (x + y) x y rfl
+
+/-- `7`-adic valuation of a positive rational `q` (`0` if `q ≤ 0`). -/
+def v7Rat (q : ℚ) : ℤ :=
+  if 0 < q then (v7Nat q.num.natAbs : ℤ) - (v7Nat q.den : ℤ) else 0
+
+/-- `7`-adic Legendre unit sign `∈ {-1, 1}` of a positive rational `q` (`0` if `q ≤ 0`). -/
+def u7Rat (q : ℚ) : ℚ :=
+  if 0 < q then chi7Nat (p7PartNat q.num.natAbs * p7PartNat q.den) else 0
+
+theorem v7Rat_u7Rat_of_nat_div {q : ℚ} {n d : ℕ} (hn : 0 < n) (hd : 0 < d)
+    (hq : q = (n : ℚ) / (d : ℚ)) :
+    0 < q ∧
+    v7Rat q = (v7Nat n : ℤ) - (v7Nat d : ℤ) ∧
+    u7Rat q = chi7Nat (p7PartNat n * p7PartNat d) := by
+  have hn_q : 0 < (n : ℚ) := by exact_mod_cast hn
+  have hd_q : 0 < (d : ℚ) := by exact_mod_cast hd
+  have hq_pos : 0 < q := by
+    rw [hq]
+    exact div_pos hn_q hd_q
+  obtain ⟨hnum_pos, hden_pos, hq_can⟩ := rat_pos_eq_natAbs_div_den hq_pos
+  have hden_q : (q.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hden_pos)
+  have hd_ne : (d : ℚ) ≠ 0 := ne_of_gt hd_q
+  have hcross_q : (q.num.natAbs : ℚ) * (d : ℚ) = (n : ℚ) * (q.den : ℚ) := by
+    have heq_div : (q.num.natAbs : ℚ) / (q.den : ℚ) = (n : ℚ) / (d : ℚ) :=
+      hq_can.symm.trans hq
+    exact (div_eq_div_iff hden_q hd_ne).mp heq_div
+  have hcross : q.num.natAbs * d = n * q.den := by
+    exact_mod_cast hcross_q
+  obtain ⟨hv1, hp1⟩ := v7Nat_p7PartNat_mul hnum_pos hd
+  obtain ⟨hv2, hp2⟩ := v7Nat_p7PartNat_mul hn hden_pos
+  have hv_eq : v7Nat q.num.natAbs + v7Nat d = v7Nat n + v7Nat q.den := by
+    rw [← hv1, ← hv2, hcross]
+  have hp_eq : p7PartNat q.num.natAbs * p7PartNat d = p7PartNat n * p7PartNat q.den := by
+    rw [← hp1, ← hp2, hcross]
+  have hchi_eq :
+      chi7Nat (p7PartNat q.num.natAbs * p7PartNat q.den) =
+      chi7Nat (p7PartNat n * p7PartNat d) :=
+    chi7Nat_eq_of_mul_eq
+      (p7PartNat_mod_seven_ne_zero hnum_pos)
+      (p7PartNat_mod_seven_ne_zero hd)
+      (p7PartNat_mod_seven_ne_zero hn)
+      (p7PartNat_mod_seven_ne_zero hden_pos)
+      hp_eq
+  refine ⟨hq_pos, ?_, ?_⟩
+  · simp only [v7Rat, hq_pos, ↓reduceIte]
+    omega
+  · simp only [u7Rat, hq_pos, ↓reduceIte, hchi_eq]
+
+theorem v7Rat_natCast {n : ℕ} (hn : 0 < n) : v7Rat (n : ℚ) = (v7Nat n : ℤ) := by
+  have h :=
+    (v7Rat_u7Rat_of_nat_div (q := (n : ℚ)) (n := n) (d := 1) hn (by decide : 0 < 1) (by simp)).2.1
+  have hv1 : v7Nat 1 = 0 := rfl
+  omega
+
+theorem u7Rat_natCast {n : ℕ} (hn : 0 < n) :
+    u7Rat (n : ℚ) = chi7Nat (p7PartNat n) := by
+  have h :=
+    (v7Rat_u7Rat_of_nat_div (q := (n : ℚ)) (n := n) (d := 1) hn (by decide : 0 < 1) (by simp)).2.2
+  have hp1 : p7PartNat 1 = 1 := rfl
+  simp [h, hp1]
+
+theorem u7Rat_values_of_pos {q : ℚ} (hq : 0 < q) : u7Rat q = 1 ∨ u7Rat q = -1 := by
+  simp only [u7Rat, hq, ↓reduceIte]
+  exact chi7Nat_values _
+
+theorem u7Rat_sq_of_pos {q : ℚ} (hq : 0 < q) : u7Rat q * u7Rat q = 1 := by
+  rcases u7Rat_values_of_pos hq with h | h <;> rw [h] <;> ring
+
+theorem v7Rat_mul {p q : ℚ} (hp : 0 < p) (hq : 0 < q) :
+    v7Rat (p * q) = v7Rat p + v7Rat q := by
+  obtain ⟨hnp, hdp, hp_eq⟩ := rat_pos_eq_natAbs_div_den hp
+  obtain ⟨hnq, hdq, hq_eq⟩ := rat_pos_eq_natAbs_div_den hq
+  have hmul_eq : p * q = ((p.num.natAbs * q.num.natAbs : ℕ) : ℚ) / ((p.den * q.den : ℕ) : ℚ) := by
+    push_cast
+    rw [← div_mul_div_comm, ← hp_eq, ← hq_eq]
+  have hvpq := (v7Rat_u7Rat_of_nat_div (Nat.mul_pos hnp hnq) (Nat.mul_pos hdp hdq) hmul_eq).2.1
+  have hvp := (v7Rat_u7Rat_of_nat_div hnp hdp hp_eq).2.1
+  have hvq := (v7Rat_u7Rat_of_nat_div hnq hdq hq_eq).2.1
+  have hvn := (v7Nat_p7PartNat_mul hnp hnq).1
+  have hvd := (v7Nat_p7PartNat_mul hdp hdq).1
+  rw [hvpq, hvp, hvq, hvn, hvd]
+  omega
+
+theorem u7Rat_mul {p q : ℚ} (hp : 0 < p) (hq : 0 < q) :
+    u7Rat (p * q) = u7Rat p * u7Rat q := by
+  obtain ⟨hnp, hdp, hp_eq⟩ := rat_pos_eq_natAbs_div_den hp
+  obtain ⟨hnq, hdq, hq_eq⟩ := rat_pos_eq_natAbs_div_den hq
+  have hmul_eq : p * q = ((p.num.natAbs * q.num.natAbs : ℕ) : ℚ) / ((p.den * q.den : ℕ) : ℚ) := by
+    push_cast
+    rw [← div_mul_div_comm, ← hp_eq, ← hq_eq]
+  have hupq := (v7Rat_u7Rat_of_nat_div (Nat.mul_pos hnp hnq) (Nat.mul_pos hdp hdq) hmul_eq).2.2
+  have hup := (v7Rat_u7Rat_of_nat_div hnp hdp hp_eq).2.2
+  have huq := (v7Rat_u7Rat_of_nat_div hnq hdq hq_eq).2.2
+  have hpn := (v7Nat_p7PartNat_mul hnp hnq).2
+  have hpd := (v7Nat_p7PartNat_mul hdp hdq).2
+  rw [hupq, hup, huq, hpn, hpd]
+  have hmp_ne : (p7PartNat p.num.natAbs * p7PartNat p.den) % 7 ≠ 0 :=
+    mul_mod_seven_ne_zero (p7PartNat_mod_seven_ne_zero hnp) (p7PartNat_mod_seven_ne_zero hdp)
+  have hmq_ne : (p7PartNat q.num.natAbs * p7PartNat q.den) % 7 ≠ 0 :=
+    mul_mod_seven_ne_zero (p7PartNat_mod_seven_ne_zero hnq) (p7PartNat_mod_seven_ne_zero hdq)
+  have hcomm :
+      p7PartNat p.num.natAbs * p7PartNat q.num.natAbs * (p7PartNat p.den * p7PartNat q.den) =
+      (p7PartNat p.num.natAbs * p7PartNat p.den) * (p7PartNat q.num.natAbs * p7PartNat q.den) := by
+    ring
+  rw [hcomm, chi7Nat_mul hmp_ne hmq_ne]
+
+theorem v7Rat_add_of_lt {p q : ℚ} (hp : 0 < p) (hq : 0 < q) (hlt : v7Rat p < v7Rat q) :
+    v7Rat (p + q) = v7Rat p ∧ u7Rat (p + q) = u7Rat p := by
+  obtain ⟨hnp, hdp, hp_eq⟩ := rat_pos_eq_natAbs_div_den hp
+  obtain ⟨hnq, hdq, hq_eq⟩ := rat_pos_eq_natAbs_div_den hq
+  let X := p.num.natAbs * q.den
+  let Y := q.num.natAbs * p.den
+  let D := p.den * q.den
+  have hX : 0 < X := Nat.mul_pos hnp hdq
+  have hY : 0 < Y := Nat.mul_pos hnq hdp
+  have hD : 0 < D := Nat.mul_pos hdp hdq
+  have hp_D : p = (X : ℚ) / (D : ℚ) := by
+    have hdq_ne : (q.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdq)
+    simp only [X, D, Nat.cast_mul]
+    rw [mul_div_mul_right _ _ hdq_ne, ← hp_eq]
+  have hq_D : q = (Y : ℚ) / (D : ℚ) := by
+    have hdp_ne : (p.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdp)
+    simp only [Y, D, Nat.cast_mul]
+    rw [mul_comm (p.den : ℚ) (q.den : ℚ), mul_div_mul_right _ _ hdp_ne, ← hq_eq]
+  have hpq_D : p + q = ((X + Y : ℕ) : ℚ) / (D : ℚ) := by
+    rw [hp_D, hq_D, Nat.cast_add, add_div]
+  obtain ⟨_, hvp, hup⟩ := v7Rat_u7Rat_of_nat_div hX hD hp_D
+  obtain ⟨_, hvq, _⟩ := v7Rat_u7Rat_of_nat_div hY hD hq_D
+  obtain ⟨_, hvpq, hupq⟩ := v7Rat_u7Rat_of_nat_div (Nat.add_pos_left hX Y) hD hpq_D
+  have hlt_nat : v7Nat X < v7Nat Y := by omega
+  obtain ⟨hv_add, hp_add⟩ := v7Nat_add_of_lt hX hY hlt_nat
+  refine ⟨by omega, ?_⟩
+  rw [hupq, hup, ← chi7Nat_mod_seven (p7PartNat (X + Y) * p7PartNat D),
+    ← chi7Nat_mod_seven (p7PartNat X * p7PartNat D)]
+  have hmod_mul : (p7PartNat (X + Y) * p7PartNat D) % 7 = (p7PartNat X * p7PartNat D) % 7 := by
+    rw [Nat.mul_mod, hp_add, ← Nat.mul_mod]
+  rw [hmod_mul]
+
+theorem v7Rat_add_gt_imp_eq_and_u7Rat_cancel {p q : ℚ} (hp : 0 < p) (hq : 0 < q)
+    (hgt : v7Rat p < v7Rat (p + q)) :
+    v7Rat p = v7Rat q ∧ u7Rat p + u7Rat q = 0 := by
+  obtain ⟨hnp, hdp, hp_eq⟩ := rat_pos_eq_natAbs_div_den hp
+  obtain ⟨hnq, hdq, hq_eq⟩ := rat_pos_eq_natAbs_div_den hq
+  let X := p.num.natAbs * q.den
+  let Y := q.num.natAbs * p.den
+  let D := p.den * q.den
+  have hX : 0 < X := Nat.mul_pos hnp hdq
+  have hY : 0 < Y := Nat.mul_pos hnq hdp
+  have hD : 0 < D := Nat.mul_pos hdp hdq
+  have hp_D : p = (X : ℚ) / (D : ℚ) := by
+    have hdq_ne : (q.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdq)
+    simp only [X, D, Nat.cast_mul]
+    rw [mul_div_mul_right _ _ hdq_ne, ← hp_eq]
+  have hq_D : q = (Y : ℚ) / (D : ℚ) := by
+    have hdp_ne : (p.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdp)
+    simp only [Y, D, Nat.cast_mul]
+    rw [mul_comm (p.den : ℚ) (q.den : ℚ), mul_div_mul_right _ _ hdp_ne, ← hq_eq]
+  have hpq_D : p + q = ((X + Y : ℕ) : ℚ) / (D : ℚ) := by
+    rw [hp_D, hq_D, Nat.cast_add, add_div]
+  obtain ⟨_, hvp, hup⟩ := v7Rat_u7Rat_of_nat_div hX hD hp_D
+  obtain ⟨_, hvq, huq⟩ := v7Rat_u7Rat_of_nat_div hY hD hq_D
+  obtain ⟨_, hvpq, _⟩ := v7Rat_u7Rat_of_nat_div (Nat.add_pos_left hX Y) hD hpq_D
+  have hgt_nat : v7Nat X < v7Nat (X + Y) := by omega
+  obtain ⟨hv_eq, hp_sum⟩ := v7Nat_add_gt_imp_eq_and_mod_seven hX hY hgt_nat
+  refine ⟨by omega, ?_⟩
+  rw [hup, huq]
+  have hpX_ne := p7PartNat_mod_seven_ne_zero hX
+  have hpY_ne := p7PartNat_mod_seven_ne_zero hY
+  have hpD_ne := p7PartNat_mod_seven_ne_zero hD
+  rw [chi7Nat_mul hpX_ne hpD_ne, chi7Nat_mul hpY_ne hpD_ne]
+  have hcancel := chi7Nat_add_cancel hpX_ne hpY_ne hp_sum
+  linear_combination chi7Nat (p7PartNat D) * hcancel
+
+theorem v7Rat_add_ge_min {p q : ℚ} (hp : 0 < p) (hq : 0 < q) :
+    min (v7Rat p) (v7Rat q) ≤ v7Rat (p + q) := by
+  obtain ⟨hnp, hdp, hp_eq⟩ := rat_pos_eq_natAbs_div_den hp
+  obtain ⟨hnq, hdq, hq_eq⟩ := rat_pos_eq_natAbs_div_den hq
+  let X := p.num.natAbs * q.den
+  let Y := q.num.natAbs * p.den
+  let D := p.den * q.den
+  have hX : 0 < X := Nat.mul_pos hnp hdq
+  have hY : 0 < Y := Nat.mul_pos hnq hdp
+  have hD : 0 < D := Nat.mul_pos hdp hdq
+  have hp_D : p = (X : ℚ) / (D : ℚ) := by
+    have hdq_ne : (q.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdq)
+    simp only [X, D, Nat.cast_mul]
+    rw [mul_div_mul_right _ _ hdq_ne, ← hp_eq]
+  have hq_D : q = (Y : ℚ) / (D : ℚ) := by
+    have hdp_ne : (p.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdp)
+    simp only [Y, D, Nat.cast_mul]
+    rw [mul_comm (p.den : ℚ) (q.den : ℚ), mul_div_mul_right _ _ hdp_ne, ← hq_eq]
+  have hpq_D : p + q = ((X + Y : ℕ) : ℚ) / (D : ℚ) := by
+    rw [hp_D, hq_D, Nat.cast_add, add_div]
+  obtain ⟨_, hvp, _⟩ := v7Rat_u7Rat_of_nat_div hX hD hp_D
+  obtain ⟨_, hvq, _⟩ := v7Rat_u7Rat_of_nat_div hY hD hq_D
+  obtain ⟨_, hvpq, _⟩ := v7Rat_u7Rat_of_nat_div (Nat.add_pos_left hX Y) hD hpq_D
+  have hmin := v7Nat_add_ge_min hX hY
+  omega
+
+/-- Every Gaussian rational `z ∈ ℚ(i)` has even `7`-adic squared-norm valuation `v_7(|z|²)`. -/
+theorem v7Rat_normSq_even (z : GaussRat) : v7Rat z.normSq % 2 = 0 := by
+  by_cases hpos : 0 < z.normSq
+  · let X := z.re.num.natAbs * z.im.den
+    let Y := z.im.num.natAbs * z.re.den
+    let D := z.re.den * z.im.den
+    have hD1 : 0 < D := Nat.mul_pos z.re.den_pos z.im.den_pos
+    have hD_pos : 0 < D * D := Nat.mul_pos hD1 hD1
+    have hre_den_sq_ne : ((z.re.den * z.re.den : ℕ) : ℚ) ≠ 0 :=
+      ne_of_gt (by exact_mod_cast Nat.mul_pos z.re.den_pos z.re.den_pos)
+    have him_den_sq_ne : ((z.im.den * z.im.den : ℕ) : ℚ) ≠ 0 :=
+      ne_of_gt (by exact_mod_cast Nat.mul_pos z.im.den_pos z.im.den_pos)
+    have hnorm_eq : z.normSq = ((X ^ 2 + Y ^ 2 : ℕ) : ℚ) / ((D * D : ℕ) : ℚ) := by
+      simp only [GaussRat.normSq]
+      rw [rat_sq_eq_natAbs_sq_div_den_sq z.re, rat_sq_eq_natAbs_sq_div_den_sq z.im,
+        div_add_div _ _ hre_den_sq_ne him_den_sq_ne]
+      simp only [X, Y, D]
+      push_cast
+      ring
+    have hXY_pos : 0 < X ^ 2 + Y ^ 2 := by
+      by_contra hle
+      have h0 : X ^ 2 + Y ^ 2 = 0 := by omega
+      rw [h0] at hnorm_eq
+      simp at hnorm_eq
+      linarith
+    have hv := (v7Rat_u7Rat_of_nat_div hXY_pos hD_pos hnorm_eq).2.1
+    have hvD := (v7Nat_p7PartNat_mul hD1 hD1).1
+    have heven := v7Nat_sq_add_sq_even X Y
+    rw [hv, hvD]
+    omega
+  · simp only [v7Rat, hpos, ↓reduceIte]
+    rfl
+
+theorem four_term_v7Rat_cancel {A B C D : ℚ}
+    (hA : 0 < A) (hB_nn : 0 ≤ B) (hC_nn : 0 ≤ C) (_hD : 0 < D)
+    (hsum : A + B + C = D)
+    (hA_odd : v7Rat A % 2 ≠ 0)
+    (hB_odd : 0 < B → v7Rat B % 2 ≠ 0)
+    (hC_even : v7Rat C % 2 = 0)
+    (hlt_D : v7Rat A < v7Rat D) :
+    0 < B ∧ v7Rat A = v7Rat B ∧ u7Rat A + u7Rat B = 0 := by
+  have hAB_pos : 0 < A + B := by linarith
+  have hAB_gt : v7Rat A < v7Rat (A + B) := by
+    by_contra hle
+    have hle' : v7Rat (A + B) ≤ v7Rat A := not_lt.mp hle
+    have hAB_odd : v7Rat (A + B) % 2 ≠ 0 := by
+      rcases eq_or_lt_of_le hB_nn with rfl | hB_pos
+      · simp [hA_odd]
+      · rcases lt_or_ge (v7Rat B) (v7Rat A) with hlt_BA | hge_BA
+        · have hvBA := (v7Rat_add_of_lt hB_pos hA hlt_BA).1
+          rw [add_comm] at hvBA
+          rw [hvBA]
+          exact hB_odd hB_pos
+        · have hmin := v7Rat_add_ge_min hA hB_pos
+          have heq_AB : v7Rat (A + B) = v7Rat A := by omega
+          rw [heq_AB]
+          exact hA_odd
+    have hAB_lt_D : v7Rat (A + B) < v7Rat (A + B + C) := by
+      rw [hsum]
+      omega
+    rcases eq_or_lt_of_le hC_nn with rfl | hC_pos
+    · simp at hAB_lt_D
+    · have hv_eq := (v7Rat_add_gt_imp_eq_and_u7Rat_cancel hAB_pos hC_pos hAB_lt_D).1
+      omega
+  rcases eq_or_lt_of_le hB_nn with rfl | hB_pos
+  · simp at hAB_gt
+  · obtain ⟨hv_eq, hu_sum⟩ := v7Rat_add_gt_imp_eq_and_u7Rat_cancel hA hB_pos hAB_gt
+    exact ⟨hB_pos, hv_eq, hu_sum⟩
+
+/-- On any orthogonal frame `(u, v, w)` in `ℚ(i)³`, the sum of `7`-adic squared-norm
+valuations is even. -/
+theorem frame_v7Rat_sum_even {u v w : GVec} (hf : IsFrame u v w) :
+    (v7Rat (normSqVec u) + v7Rat (normSqVec v) + v7Rat (normSqVec w)) % 2 = 0 := by
+  have hu := normSqVec_pos_of_nonZero hf.1
+  have hv := normSqVec_pos_of_nonZero hf.2.1
+  have hw := normSqVec_pos_of_nonZero hf.2.2.1
+  have hdet := detGVec_normSq_of_frame hf
+  have hmul1 := v7Rat_mul (mul_pos hu hv) hw
+  have hmul2 := v7Rat_mul hu hv
+  have heven := v7Rat_normSq_even (detGVec u v w)
+  rw [hdet, hmul1, hmul2] at heven
+  exact heven
+
+/-- Whether a coordinate `z : GaussRat` is `7`-leading in `u : GVec`. -/
+def isLead7Coord (z : GaussRat) (u : GVec) : Prop :=
+  0 < z.normSq ∧ v7Rat z.normSq < v7Rat (normSqVec u)
+
+instance (z : GaussRat) (u : GVec) : Decidable (isLead7Coord z u) :=
+  inferInstanceAs (Decidable (0 < z.normSq ∧ v7Rat z.normSq < v7Rat (normSqVec u)))
+
+/-- The `7`-adic contribution `u7Rat z.normSq * u7Rat (normSqVec u)` of a coordinate `z` in `u`. -/
+def coordSign7 (z : GaussRat) (u : GVec) : ℚ :=
+  u7Rat z.normSq * u7Rat (normSqVec u)
+
+/-- Explicit global `{-1, 0, 1}`-valued `7`-adic frame residual on `ℚ(i)³`. -/
+def s7 (u : GVec) : ℚ :=
+  if v7Rat (normSqVec u) % 2 = 0 then 0
+  else if isLead7Coord u.x u then coordSign7 u.x u
+  else if isLead7Coord u.y u then coordSign7 u.y u
+  else coordSign7 u.z u
+
+theorem pos_of_v7Rat_mod_two_ne_zero {q : ℚ} (h : v7Rat q % 2 ≠ 0) : 0 < q := by
+  by_contra hle
+  simp [v7Rat, hle] at h
+
+theorem v7Rat_add_gt_of_nonneg {a b : ℚ} {V : ℤ}
+    (ha_nn : 0 ≤ a) (hb_nn : 0 ≤ b)
+    (ha : 0 < a → V < v7Rat a) (hb : 0 < b → V < v7Rat b)
+    (hab : 0 < a + b) : V < v7Rat (a + b) := by
+  rcases eq_or_lt_of_le ha_nn with rfl | ha_pos
+  · simp at hab ⊢
+    exact hb hab
+  · rcases eq_or_lt_of_le hb_nn with rfl | hb_pos
+    · simp at hab ⊢
+      exact ha ha_pos
+    · have h1 := ha ha_pos
+      have h2 := hb hb_pos
+      have hmin := v7Rat_add_ge_min ha_pos hb_pos
+      omega
+
+theorem exists_lead7Coord_of_odd {u : GVec} (hodd : v7Rat (normSqVec u) % 2 ≠ 0) :
+    isLead7Coord u.x u ∨ isLead7Coord u.y u ∨ isLead7Coord u.z u := by
+  by_contra hnot
+  rcases not_or.mp hnot with ⟨hx_not, hyz_not⟩
+  rcases not_or.mp hyz_not with ⟨hy_not, hz_not⟩
+  have hpos : 0 < normSqVec u := pos_of_v7Rat_mod_two_ne_zero hodd
+  have hx_gt : 0 < u.x.normSq → v7Rat (normSqVec u) < v7Rat u.x.normSq := by
+    intro hx_pos
+    have hnot_lt : ¬ v7Rat u.x.normSq < v7Rat (normSqVec u) := fun hlt => hx_not ⟨hx_pos, hlt⟩
+    have heven := v7Rat_normSq_even u.x
+    omega
+  have hy_gt : 0 < u.y.normSq → v7Rat (normSqVec u) < v7Rat u.y.normSq := by
+    intro hy_pos
+    have hnot_lt : ¬ v7Rat u.y.normSq < v7Rat (normSqVec u) := fun hlt => hy_not ⟨hy_pos, hlt⟩
+    have heven := v7Rat_normSq_even u.y
+    omega
+  have hz_gt : 0 < u.z.normSq → v7Rat (normSqVec u) < v7Rat u.z.normSq := by
+    intro hz_pos
+    have hnot_lt : ¬ v7Rat u.z.normSq < v7Rat (normSqVec u) := fun hlt => hz_not ⟨hz_pos, hlt⟩
+    have heven := v7Rat_normSq_even u.z
+    omega
+  have hxy_gt : 0 < u.x.normSq + u.y.normSq →
+      v7Rat (normSqVec u) < v7Rat (u.x.normSq + u.y.normSq) :=
+    v7Rat_add_gt_of_nonneg (GaussRat.normSq_nonneg u.x) (GaussRat.normSq_nonneg u.y) hx_gt hy_gt
+  have hxyz_gt : v7Rat (normSqVec u) < v7Rat (u.x.normSq + u.y.normSq + u.z.normSq) :=
+    v7Rat_add_gt_of_nonneg
+      (add_nonneg (GaussRat.normSq_nonneg u.x) (GaussRat.normSq_nonneg u.y))
+      (GaussRat.normSq_nonneg u.z) hxy_gt hz_gt hpos
+  change v7Rat (normSqVec u) < v7Rat (normSqVec u) at hxyz_gt
+  omega
+
+theorem lead7Coord_x_ortho_imp {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v7Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v7Rat (normSqVec v) % 2 ≠ 0)
+    (hlead : isLead7Coord u.x u) :
+    isLead7Coord v.x v ∧ coordSign7 u.x u + coordSign7 v.x v = 0 := by
+  have hu_pos : 0 < normSqVec u := pos_of_v7Rat_mod_two_ne_zero hu_odd
+  have hv_pos : 0 < normSqVec v := pos_of_v7Rat_mod_two_ne_zero hv_odd
+  let A := u.x.normSq * normSqVec v
+  let B := v.x.normSq * normSqVec u
+  let C := (u.y * v.z - v.y * u.z).normSq
+  let D := normSqVec u * normSqVec v
+  have hA : 0 < A := mul_pos hlead.1 hv_pos
+  have hB_nn : 0 ≤ B := mul_nonneg (GaussRat.normSq_nonneg v.x) (le_of_lt hu_pos)
+  have hC_nn : 0 ≤ C := GaussRat.normSq_nonneg _
+  have hD : 0 < D := mul_pos hu_pos hv_pos
+  have hsum : A + B + C = D := ortho_coord_identity_x huv
+  have hvA : v7Rat A = v7Rat u.x.normSq + v7Rat (normSqVec v) := v7Rat_mul hlead.1 hv_pos
+  have hvD : v7Rat D = v7Rat (normSqVec u) + v7Rat (normSqVec v) := v7Rat_mul hu_pos hv_pos
+  have hA_odd : v7Rat A % 2 ≠ 0 := by
+    have heven := v7Rat_normSq_even u.x
+    omega
+  have hB_odd : 0 < B → v7Rat B % 2 ≠ 0 := by
+    intro hB_pos
+    have hvx_pos : 0 < v.x.normSq := by nlinarith
+    have hvB : v7Rat B = v7Rat v.x.normSq + v7Rat (normSqVec u) := v7Rat_mul hvx_pos hu_pos
+    have heven := v7Rat_normSq_even v.x
+    omega
+  have hC_even : v7Rat C % 2 = 0 := v7Rat_normSq_even _
+  have hlt_D : v7Rat A < v7Rat D := by
+    have hlt := hlead.2
+    omega
+  obtain ⟨hB_pos, hvAB, huAB⟩ :=
+    four_term_v7Rat_cancel hA hB_nn hC_nn hD hsum hA_odd hB_odd hC_even hlt_D
+  have hvx_pos : 0 < v.x.normSq := by nlinarith
+  have hvB : v7Rat B = v7Rat v.x.normSq + v7Rat (normSqVec u) := v7Rat_mul hvx_pos hu_pos
+  have hvx_lt : v7Rat v.x.normSq < v7Rat (normSqVec v) := by
+    have hlt := hlead.2
+    omega
+  refine ⟨⟨hvx_pos, hvx_lt⟩, ?_⟩
+  have huA : u7Rat A = u7Rat u.x.normSq * u7Rat (normSqVec v) := u7Rat_mul hlead.1 hv_pos
+  have huB : u7Rat B = u7Rat v.x.normSq * u7Rat (normSqVec u) := u7Rat_mul hvx_pos hu_pos
+  rw [huA, huB] at huAB
+  have hsq_u := u7Rat_sq_of_pos hu_pos
+  have hsq_v := u7Rat_sq_of_pos hv_pos
+  simp only [coordSign7]
+  linear_combination
+    (u7Rat (normSqVec u) * u7Rat (normSqVec v)) * huAB -
+    (u7Rat u.x.normSq * u7Rat (normSqVec u)) * hsq_v -
+    (u7Rat v.x.normSq * u7Rat (normSqVec v)) * hsq_u
+
+theorem lead7Coord_x_ortho_iff {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v7Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v7Rat (normSqVec v) % 2 ≠ 0) :
+    isLead7Coord u.x u ↔ isLead7Coord v.x v :=
+  ⟨fun h => (lead7Coord_x_ortho_imp huv hu_odd hv_odd h).1,
+   fun h => (lead7Coord_x_ortho_imp (inner_eq_zero_symm huv) hv_odd hu_odd h).1⟩
+
+theorem isLead7Coord_rotVec_x (u : GVec) :
+    isLead7Coord (rotVec u).x (rotVec u) ↔ isLead7Coord u.y u := by
+  unfold isLead7Coord
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem coordSign7_rotVec_x (u : GVec) :
+    coordSign7 (rotVec u).x (rotVec u) = coordSign7 u.y u := by
+  unfold coordSign7
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem isLead7Coord_rotVec_y (u : GVec) :
+    isLead7Coord (rotVec u).y (rotVec u) ↔ isLead7Coord u.z u := by
+  unfold isLead7Coord
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem coordSign7_rotVec_y (u : GVec) :
+    coordSign7 (rotVec u).y (rotVec u) = coordSign7 u.z u := by
+  unfold coordSign7
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem lead7Coord_y_ortho_imp {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v7Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v7Rat (normSqVec v) % 2 ≠ 0)
+    (hlead : isLead7Coord u.y u) :
+    isLead7Coord v.y v ∧ coordSign7 u.y u + coordSign7 v.y v = 0 := by
+  have huv' : GVec.inner (rotVec u) (rotVec v) = 0 := by rw [inner_rotVec]; exact huv
+  have hu_odd' : v7Rat (normSqVec (rotVec u)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hu_odd
+  have hv_odd' : v7Rat (normSqVec (rotVec v)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hv_odd
+  have hlead' : isLead7Coord (rotVec u).x (rotVec u) := (isLead7Coord_rotVec_x u).mpr hlead
+  obtain ⟨hv_lead, hsum⟩ := lead7Coord_x_ortho_imp huv' hu_odd' hv_odd' hlead'
+  rw [isLead7Coord_rotVec_x] at hv_lead
+  rw [coordSign7_rotVec_x, coordSign7_rotVec_x] at hsum
+  exact ⟨hv_lead, hsum⟩
+
+theorem lead7Coord_y_ortho_iff {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v7Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v7Rat (normSqVec v) % 2 ≠ 0) :
+    isLead7Coord u.y u ↔ isLead7Coord v.y v :=
+  ⟨fun h => (lead7Coord_y_ortho_imp huv hu_odd hv_odd h).1,
+   fun h => (lead7Coord_y_ortho_imp (inner_eq_zero_symm huv) hv_odd hu_odd h).1⟩
+
+theorem lead7Coord_z_ortho_imp {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v7Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v7Rat (normSqVec v) % 2 ≠ 0)
+    (hlead : isLead7Coord u.z u) :
+    isLead7Coord v.z v ∧ coordSign7 u.z u + coordSign7 v.z v = 0 := by
+  have huv' : GVec.inner (rotVec u) (rotVec v) = 0 := by rw [inner_rotVec]; exact huv
+  have hu_odd' : v7Rat (normSqVec (rotVec u)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hu_odd
+  have hv_odd' : v7Rat (normSqVec (rotVec v)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hv_odd
+  have hlead' : isLead7Coord (rotVec u).y (rotVec u) := (isLead7Coord_rotVec_y u).mpr hlead
+  obtain ⟨hv_lead, hsum⟩ := lead7Coord_y_ortho_imp huv' hu_odd' hv_odd' hlead'
+  rw [isLead7Coord_rotVec_y] at hv_lead
+  rw [coordSign7_rotVec_y, coordSign7_rotVec_y] at hsum
+  exact ⟨hv_lead, hsum⟩
+
+/-- Any two orthogonal vectors in `ℚ(i)³` with odd `7`-adic squared-norm valuation
+have opposite `s7` signs (`s7 u + s7 v = 0`). -/
+theorem s7_orthogonal_odd_cancel {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : v7Rat (normSqVec u) % 2 ≠ 0)
+    (hv_odd : v7Rat (normSqVec v) % 2 ≠ 0) :
+    s7 u + s7 v = 0 := by
+  have hx_iff := lead7Coord_x_ortho_iff huv hu_odd hv_odd
+  have hy_iff := lead7Coord_y_ortho_iff huv hu_odd hv_odd
+  simp only [s7, hu_odd, hv_odd, ↓reduceIte]
+  by_cases hx : isLead7Coord u.x u
+  · have hvx : isLead7Coord v.x v := hx_iff.mp hx
+    simp only [hx, hvx, ↓reduceIte]
+    exact (lead7Coord_x_ortho_imp huv hu_odd hv_odd hx).2
+  · have hvx : ¬ isLead7Coord v.x v := fun h => hx (hx_iff.mpr h)
+    simp only [hx, hvx, ↓reduceIte]
+    by_cases hy : isLead7Coord u.y u
+    · have hvy : isLead7Coord v.y v := hy_iff.mp hy
+      simp only [hy, hvy, ↓reduceIte]
+      exact (lead7Coord_y_ortho_imp huv hu_odd hv_odd hy).2
+    · have hvy : ¬ isLead7Coord v.y v := fun h => hy (hy_iff.mpr h)
+      simp only [hy, hvy, ↓reduceIte]
+      have hz : isLead7Coord u.z u := by
+        rcases exists_lead7Coord_of_odd hu_odd with h1 | h2 | h3
+        · exact False.elim (hx h1)
+        · exact False.elim (hy h2)
+        · exact h3
+      exact (lead7Coord_z_ortho_imp huv hu_odd hv_odd hz).2
+
+theorem s7_eq_zero_of_even {u : GVec} (heven : v7Rat (normSqVec u) % 2 = 0) : s7 u = 0 := by
+  simp [s7, heven]
+
+/-- `s7` is a global zero-weight frame function on all orthogonal frames in `ℚ(i)³`. -/
+theorem s7_isZeroWeightFrameFunction : IsZeroWeightFrameFunction s7 := by
+  intro u v w hf
+  have hsum_even := frame_v7Rat_sum_even hf
+  obtain ⟨_, _, _, huv, huw, hvw⟩ := hf
+  by_cases hu : v7Rat (normSqVec u) % 2 = 0 <;>
+    by_cases hv : v7Rat (normSqVec v) % 2 = 0 <;>
+    by_cases hw : v7Rat (normSqVec w) % 2 = 0
+  · rw [s7_eq_zero_of_even hu, s7_eq_zero_of_even hv, s7_eq_zero_of_even hw]
+    ring
+  · omega
+  · omega
+  · have hvw_sum := s7_orthogonal_odd_cancel hvw hv hw
+    rw [s7_eq_zero_of_even hu]
+    linarith
+  · omega
+  · have huw_sum := s7_orthogonal_odd_cancel huw hu hw
+    rw [s7_eq_zero_of_even hv]
+    linarith
+  · have huv_sum := s7_orthogonal_odd_cancel huv hu hv
+    rw [s7_eq_zero_of_even hw]
+    linarith
+  · omega
+
+theorem s7_smul {v : GVec} (hv : v.NonZero) {l : GaussRat} (hl : l ≠ 0) :
+    s7 (GVec.smul l v) = s7 v :=
+  zeroWeightFrameFunction_smul s7_isZeroWeightFrameFunction hv hl
+
+theorem coordSign7_values {z : GaussRat} {u : GVec} (hz : 0 < z.normSq) (hu : 0 < normSqVec u) :
+    coordSign7 z u = 1 ∨ coordSign7 z u = -1 := by
+  simp only [coordSign7]
+  rcases u7Rat_values_of_pos hz with h1 | h1 <;>
+    rcases u7Rat_values_of_pos hu with h2 | h2 <;>
+    rw [h1, h2] <;> norm_num
+
+theorem s7_values (u : GVec) : s7 u = 0 ∨ s7 u = 1 ∨ s7 u = -1 := by
+  by_cases heven : v7Rat (normSqVec u) % 2 = 0
+  · exact Or.inl (s7_eq_zero_of_even heven)
+  · have hu : 0 < normSqVec u := pos_of_v7Rat_mod_two_ne_zero heven
+    simp only [s7, heven, ↓reduceIte]
+    by_cases hx : isLead7Coord u.x u
+    · simp only [hx, ↓reduceIte]
+      exact Or.inr (coordSign7_values hx.1 hu)
+    · simp only [hx, ↓reduceIte]
+      by_cases hy : isLead7Coord u.y u
+      · simp only [hy, ↓reduceIte]
+        exact Or.inr (coordSign7_values hy.1 hu)
+      · simp only [hy, ↓reduceIte]
+        have hz : isLead7Coord u.z u := by
+          rcases exists_lead7Coord_of_odd heven with h1 | h2 | h3
+          · exact False.elim (hx h1)
+          · exact False.elim (hy h2)
+          · exact h3
+        exact Or.inr (coordSign7_values hz.1 hu)
+
+theorem s7_abs_le_one (u : GVec) : |s7 u| ≤ 1 := by
+  rcases s7_values u with h | h | h <;> rw [h] <;> norm_num
+
+theorem s7_isBoundedOnRays : IsBoundedOnRays s7 :=
+  ⟨1, by norm_num, fun v _ => s7_abs_le_one v⟩
+
+theorem s7_eq_zero_of_normSqVec_natCast {u : GVec} {n : ℕ}
+    (hn : 0 < n) (hnorm : normSqVec u = (n : ℚ)) (heven : (v7Nat n : ℤ) % 2 = 0) :
+    s7 u = 0 := by
+  apply s7_eq_zero_of_even
+  rw [hnorm, v7Rat_natCast hn]
+  exact heven
+
+theorem s7_eq_of_lead7Coord_x {u : GVec} {n nx : ℕ}
+    (hn : 0 < n) (hnx : 0 < nx)
+    (hnorm : normSqVec u = (n : ℚ))
+    (hx : u.x.normSq = (nx : ℚ))
+    (hodd : (v7Nat n : ℤ) % 2 ≠ 0)
+    (hlt : (v7Nat nx : ℤ) < (v7Nat n : ℤ)) :
+    s7 u = chi7Nat (p7PartNat nx) * chi7Nat (p7PartNat n) := by
+  have hvn : v7Rat (normSqVec u) = (v7Nat n : ℤ) := by rw [hnorm, v7Rat_natCast hn]
+  have hvx : v7Rat u.x.normSq = (v7Nat nx : ℤ) := by rw [hx, v7Rat_natCast hnx]
+  have hun : u7Rat (normSqVec u) = chi7Nat (p7PartNat n) := by rw [hnorm, u7Rat_natCast hn]
+  have hux : u7Rat u.x.normSq = chi7Nat (p7PartNat nx) := by rw [hx, u7Rat_natCast hnx]
+  have hx_pos : 0 < u.x.normSq := by rw [hx]; exact_mod_cast hnx
+  have hlead : isLead7Coord u.x u := ⟨hx_pos, by omega⟩
+  have hodd_u : v7Rat (normSqVec u) % 2 ≠ 0 := by omega
+  simp only [s7, hodd_u, hlead, ↓reduceIte, coordSign7, hux, hun]
+
+theorem s7_eq_of_lead7Coord_y {u : GVec} {n nx ny : ℕ}
+    (hn : 0 < n) (hnx : 0 < nx) (hny : 0 < ny)
+    (hnorm : normSqVec u = (n : ℚ))
+    (hx : u.x.normSq = (nx : ℚ))
+    (hy : u.y.normSq = (ny : ℚ))
+    (hodd : (v7Nat n : ℤ) % 2 ≠ 0)
+    (hge_x : (v7Nat n : ℤ) ≤ (v7Nat nx : ℤ))
+    (hlt_y : (v7Nat ny : ℤ) < (v7Nat n : ℤ)) :
+    s7 u = chi7Nat (p7PartNat ny) * chi7Nat (p7PartNat n) := by
+  have hvn : v7Rat (normSqVec u) = (v7Nat n : ℤ) := by rw [hnorm, v7Rat_natCast hn]
+  have hvx : v7Rat u.x.normSq = (v7Nat nx : ℤ) := by rw [hx, v7Rat_natCast hnx]
+  have hvy : v7Rat u.y.normSq = (v7Nat ny : ℤ) := by rw [hy, v7Rat_natCast hny]
+  have hun : u7Rat (normSqVec u) = chi7Nat (p7PartNat n) := by rw [hnorm, u7Rat_natCast hn]
+  have huy : u7Rat u.y.normSq = chi7Nat (p7PartNat ny) := by rw [hy, u7Rat_natCast hny]
+  have hy_pos : 0 < u.y.normSq := by rw [hy]; exact_mod_cast hny
+  have hnot_x : ¬ isLead7Coord u.x u := by
+    intro ⟨_, hlt⟩
+    omega
+  have hlead_y : isLead7Coord u.y u := ⟨hy_pos, by omega⟩
+  have hodd_u : v7Rat (normSqVec u) % 2 ≠ 0 := by omega
+  simp only [s7, hodd_u, hnot_x, hlead_y, ↓reduceIte, coordSign7, huy, hun]
+
+/-- `s7` vanishes on all nine tomography rays (`N ∈ {1, 2}` has `v_7(N) = 0`). -/
+theorem s7_vanishes_on_nine_rays : VanishesOnNineRays s7 := by
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 1) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e1, gv]) rfl
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 1) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e2, gv]) rfl
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 1) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e3, gv]) rfl
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e12, gv]; norm_num) rfl
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e13, gv]; norm_num) rfl
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e23, gv]; norm_num) rfl
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e12i, gv]; norm_num) rfl
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e13i, gv]; norm_num) rfl
+  · exact s7_eq_zero_of_normSqVec_natCast (n := 2) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e23i, gv]; norm_num) rfl
+
+theorem witness_p7_primitive : IsOnePlusIPrimitive 1 0 2 0 1 1 := by decide
+
+theorem witness_p7_nonZero : witness_p7.NonZero := by
+  left
+  intro h
+  have hre : witness_p7.x.re = 0 := by rw [h]; rfl
+  revert hre
+  decide
+
+theorem witness_p7_normSq : normSqVec witness_p7 = 7 := by
+  simp [normSqVec, GaussRat.normSq, witness_p7, gv]
+  norm_num
+
+theorem s7_witness_111 : s7 witness_111 = 0 :=
+  s7_eq_zero_of_normSqVec_natCast (n := 3) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, witness_111, gv]; norm_num) rfl
+
+theorem s3_witness_p7 : s3 witness_p7 = 0 :=
+  s3_eq_zero_of_normSqVec_natCast (n := 7) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, witness_p7, gv]; norm_num) rfl
+
+theorem s7_witness_p7 : s7 witness_p7 = 1 := by
+  rw [s7_eq_of_lead7Coord_x (n := 7) (nx := 1) (by decide) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, witness_p7, gv]; norm_num)
+    (by simp [GaussRat.normSq, witness_p7, gv])
+    (by decide) (by decide)]
+  have hp1 : p7PartNat 1 = 1 := rfl
+  have hp7 : p7PartNat 7 = 1 := rfl
+  simp [hp1, hp7, chi7Nat, isQrMod7]
+
+/-- Dual Kronecker-delta evaluation of `(s3, s7)` on `(witness_111, witness_p7)`:
+`s3(1,1,1) = 1, s7(1,1,1) = 0` and `s3(1,2,1+i) = 0, s7(1,2,1+i) = 1`. -/
+theorem s3_s7_dual_on_witnesses :
+    s3 witness_111 = 1 ∧ s7 witness_111 = 0 ∧
+    s3 witness_p7 = 0 ∧ s7 witness_p7 = 1 :=
+  ⟨s3_witness_111, s7_witness_111, s3_witness_p7, s7_witness_p7⟩
+
+/-- Second explicit `{0, 1/3, 2/3}`-valued nonnegative non-quadratic frame function `(1 + s7 v) / 3`
+on `ℚ(i)³` (which agrees with `quadRay (I/3)` on all 9 tomography rays and on `witness_111`,
+yet separates `witness_p7`). -/
+def exoticQi7 (v : GVec) : ℚ := (1 + s7 v) / 3
+
+theorem exoticQi7_values (v : GVec) :
+    exoticQi7 v = 1 / 3 ∨ exoticQi7 v = 2 / 3 ∨ exoticQi7 v = 0 := by
+  simp only [exoticQi7]
+  rcases s7_values v with h | h | h <;> rw [h] <;> norm_num
+
+theorem exoticQi7_bounds (v : GVec) : 0 ≤ exoticQi7 v ∧ exoticQi7 v ≤ 2 / 3 := by
+  rcases exoticQi7_values v with h | h | h <;> rw [h] <;> constructor <;> norm_num
+
+theorem exoticQi7_isFrameFunction : IsFrameFunction exoticQi7 := by
+  intro u v w hf
+  have hsum := s7_isZeroWeightFrameFunction u v w hf
+  simp only [exoticQi7]
+  linarith
+
+theorem exoticQi7_isNonnegFrameFunction : IsNonnegFrameFunction exoticQi7 :=
+  ⟨exoticQi7_isFrameFunction, fun v _ => (exoticQi7_bounds v).1⟩
+
+theorem exoticQi7_not_quadratic :
+    ¬ ∃ ρ : HermForm3, ∀ v : GVec, v.NonZero → exoticQi7 v = quadRay ρ v := by
+  rintro ⟨ρ, hρ⟩
+  obtain ⟨he1_s7, he2_s7, he3_s7, he12_s7, he13_s7, he23_s7, he12i_s7, he13i_s7, he23i_s7⟩ :=
+    s7_vanishes_on_nine_rays
+  have htomo_id : tomographyForm exoticQi7 = ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ := by
+    ext <;>
+      simp [tomographyForm, exoticQi7,
+        he1_s7, he2_s7, he3_s7, he12_s7, he13_s7, he23_s7, he12i_s7, he13i_s7, he23i_s7]
+  have hm := tomography_matches_nine_rays exoticQi7
+  have hρ_eq : tomographyForm exoticQi7 = ρ := by
+    apply tomography_unique (tomographyForm exoticQi7) ρ
+    · rw [hm.1, hρ tomo_e1 tomo_e1_nonZero]
+    · rw [hm.2.1, hρ tomo_e2 tomo_e2_nonZero]
+    · rw [hm.2.2.1, hρ tomo_e3 tomo_e3_nonZero]
+    · rw [hm.2.2.2.1, hρ tomo_e12 tomo_e12_nonZero]
+    · rw [hm.2.2.2.2.1, hρ tomo_e13 tomo_e13_nonZero]
+    · rw [hm.2.2.2.2.2.1, hρ tomo_e23 tomo_e23_nonZero]
+    · rw [hm.2.2.2.2.2.2.1, hρ tomo_e12i tomo_e12i_nonZero]
+    · rw [hm.2.2.2.2.2.2.2.1, hρ tomo_e13i tomo_e13i_nonZero]
+    · rw [hm.2.2.2.2.2.2.2.2, hρ tomo_e23i tomo_e23i_nonZero]
+  have hρ_id : ρ = ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ := hρ_eq.symm.trans htomo_id
+  have hp7 := hρ witness_p7 witness_p7_nonZero
+  rw [hρ_id] at hp7
+  have hq : quadRay ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ witness_p7 = 1 / 3 := by
+    simp [quadRay, quadNum, normSqVec, GaussRat.normSq, witness_p7, gv]
+    norm_num
+  have hex : exoticQi7 witness_p7 = 2 / 3 := by
+    simp [exoticQi7, s7_witness_p7]
+    norm_num
+  linarith
+
+/-- Two-parameter linear combination `c3 * s3 v + c7 * s7 v` of the `3`-adic and `7`-adic
+zero-weight residuals on `ℚ(i)³`. -/
+def combResidual37 (c3 c7 : ℚ) (v : GVec) : ℚ :=
+  c3 * s3 v + c7 * s7 v
+
+theorem combResidual37_isZeroWeightFrameFunction (c3 c7 : ℚ) :
+    IsZeroWeightFrameFunction (combResidual37 c3 c7) := by
+  intro u v w hf
+  have h3 := s3_isZeroWeightFrameFunction u v w hf
+  have h7 := s7_isZeroWeightFrameFunction u v w hf
+  simp only [combResidual37]
+  linear_combination c3 * h3 + c7 * h7
+
+theorem combResidual37_vanishes_on_nine_rays (c3 c7 : ℚ) :
+    VanishesOnNineRays (combResidual37 c3 c7) := by
+  obtain ⟨h3_1, h3_2, h3_3, h3_12, h3_13, h3_23, h3_12i, h3_13i, h3_23i⟩ :=
+    s3_vanishes_on_nine_rays
+  obtain ⟨h7_1, h7_2, h7_3, h7_12, h7_13, h7_23, h7_12i, h7_13i, h7_23i⟩ :=
+    s7_vanishes_on_nine_rays
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩ <;>
+    simp [combResidual37, h3_1, h3_2, h3_3, h3_12, h3_13, h3_23, h3_12i, h3_13i, h3_23i,
+      h7_1, h7_2, h7_3, h7_12, h7_13, h7_23, h7_12i, h7_13i, h7_23i]
+
+theorem combResidual37_isBoundedOnRays (c3 c7 : ℚ) :
+    IsBoundedOnRays (combResidual37 c3 c7) := by
+  refine ⟨|c3| + |c7|, by linarith [abs_nonneg c3, abs_nonneg c7], ?_⟩
+  intro v _
+  have hc3 := le_abs_self c3
+  have hnc3 := neg_le_abs c3
+  have hc7 := le_abs_self c7
+  have hnc7 := neg_le_abs c7
+  have hnn3 := abs_nonneg c3
+  have hnn7 := abs_nonneg c7
+  rcases s3_values v with h3 | h3 | h3 <;>
+    rcases s7_values v with h7 | h7 | h7 <;>
+    simp only [combResidual37, h3, h7] <;>
+    rw [abs_le] <;>
+    constructor <;>
+    linarith
+
+theorem combResidual37_witness_111 (c3 c7 : ℚ) :
+    combResidual37 c3 c7 witness_111 = c3 := by
+  simp [combResidual37, s3_witness_111, s7_witness_111]
+
+theorem combResidual37_witness_p7 (c3 c7 : ℚ) :
+    combResidual37 c3 c7 witness_p7 = c7 := by
+  simp [combResidual37, s3_witness_p7, s7_witness_p7]
+
+/-- Linear independence of the `3`-adic and `7`-adic bounded zero-weight residuals `(s3, s7)`
+on nonzero rays of `ℚ(i)³`: `c3 * s3 + c7 * s7` vanishes on all nonzero vectors iff `c3 = 0 ∧ c7 = 0`. -/
+theorem s3_s7_linearIndependent (c3 c7 : ℚ) :
+    (∀ v : GVec, v.NonZero → combResidual37 c3 c7 v = 0) ↔ (c3 = 0 ∧ c7 = 0) := by
+  constructor
+  · intro hall
+    have h1 := hall witness_111 witness_111_nonZero
+    have h2 := hall witness_p7 witness_p7_nonZero
+    rw [combResidual37_witness_111] at h1
+    rw [combResidual37_witness_p7] at h2
+    exact ⟨h1, h2⟩
+  · rintro ⟨rfl, rfl⟩ v _
+    simp [combResidual37]
+
+/-- Unscaled positive-sign `7`-adic Gaussian-integer perturbation `(7k, 1 + i, 2 + i)` near `tomo_e1`. -/
+def perturb7PosInt (k : ℕ) : GVec :=
+  gv (7 * (k : ℤ)) 0 1 1 2 1
+
+/-- Unscaled negative-sign `7`-adic Gaussian-integer perturbation `(7k, 2 + i, 1 + i)` near `tomo_e1`. -/
+def perturb7NegInt (k : ℕ) : GVec :=
+  gv (7 * (k : ℤ)) 0 2 1 1 1
+
+/-- Normalized positive-sign `7`-adic perturbation `(1, (1+i)/(7k), (2+i)/(7k))` approaching `tomo_e1`. -/
+def perturb7PosRay (k : ℕ) : GVec :=
+  ⟨⟨1, 0⟩,
+   ⟨1 / (7 * (k : ℚ)), 1 / (7 * (k : ℚ))⟩,
+   ⟨2 / (7 * (k : ℚ)), 1 / (7 * (k : ℚ))⟩⟩
+
+/-- Normalized negative-sign `7`-adic perturbation `(1, (2+i)/(7k), (1+i)/(7k))` approaching `tomo_e1`. -/
+def perturb7NegRay (k : ℕ) : GVec :=
+  ⟨⟨1, 0⟩,
+   ⟨2 / (7 * (k : ℚ)), 1 / (7 * (k : ℚ))⟩,
+   ⟨1 / (7 * (k : ℚ)), 1 / (7 * (k : ℚ))⟩⟩
+
+theorem perturb7PosRay_nonZero (k : ℕ) : (perturb7PosRay k).NonZero := by
+  left
+  change (⟨1, 0⟩ : GaussRat) ≠ 0
+  decide
+
+theorem perturb7NegRay_nonZero (k : ℕ) : (perturb7NegRay k).NonZero := by
+  left
+  change (⟨1, 0⟩ : GaussRat) ≠ 0
+  decide
+
+theorem seven_mul_gaussRat_ne_zero {k : ℕ} (hk : 0 < k) :
+    (⟨7 * (k : ℚ), 0⟩ : GaussRat) ≠ 0 := by
+  have hk_q : 0 < (k : ℚ) := by exact_mod_cast hk
+  intro h
+  have hre : (⟨7 * (k : ℚ), 0⟩ : GaussRat).re = 0 := by rw [h]; rfl
+  simp only at hre
+  linarith
+
+theorem smul_seven_mul_perturb7PosRay {k : ℕ} (hk : 0 < k) :
+    GVec.smul ⟨7 * (k : ℚ), 0⟩ (perturb7PosRay k) = perturb7PosInt k := by
+  have hk_q : 0 < (k : ℚ) := by exact_mod_cast hk
+  have hk_ne : (k : ℚ) ≠ 0 := ne_of_gt hk_q
+  have hmul : 7 * (k : ℚ) * ((k : ℚ)⁻¹ * 7⁻¹) = 1 := by
+    calc 7 * (k : ℚ) * ((k : ℚ)⁻¹ * 7⁻¹)
+        = (k : ℚ) * (k : ℚ)⁻¹ := by ring
+      _ = 1 := mul_inv_cancel₀ hk_ne
+  have hmul2 : 7 * (k : ℚ) * (2 / (7 * (k : ℚ))) = 2 := by
+    calc 7 * (k : ℚ) * (2 / (7 * (k : ℚ)))
+        = 2 * (7 * (k : ℚ) * ((k : ℚ)⁻¹ * 7⁻¹)) := by ring
+      _ = 2 * 1 := by rw [hmul]
+      _ = 2 := by ring
+  ext <;> simp [GVec.smul, perturb7PosRay, perturb7PosInt, gv, hmul, hmul2]
+
+theorem smul_seven_mul_perturb7NegRay {k : ℕ} (hk : 0 < k) :
+    GVec.smul ⟨7 * (k : ℚ), 0⟩ (perturb7NegRay k) = perturb7NegInt k := by
+  have hk_q : 0 < (k : ℚ) := by exact_mod_cast hk
+  have hk_ne : (k : ℚ) ≠ 0 := ne_of_gt hk_q
+  have hmul : 7 * (k : ℚ) * ((k : ℚ)⁻¹ * 7⁻¹) = 1 := by
+    calc 7 * (k : ℚ) * ((k : ℚ)⁻¹ * 7⁻¹)
+        = (k : ℚ) * (k : ℚ)⁻¹ := by ring
+      _ = 1 := mul_inv_cancel₀ hk_ne
+  have hmul2 : 7 * (k : ℚ) * (2 / (7 * (k : ℚ))) = 2 := by
+    calc 7 * (k : ℚ) * (2 / (7 * (k : ℚ)))
+        = 2 * (7 * (k : ℚ) * ((k : ℚ)⁻¹ * 7⁻¹)) := by ring
+      _ = 2 * 1 := by rw [hmul]
+      _ = 2 := by ring
+  ext <;> simp [GVec.smul, perturb7NegRay, perturb7NegInt, gv, hmul, hmul2]
+
+theorem v7Nat_forty_nine_mul_sq_add_seven (k : ℕ) :
+    v7Nat (49 * k ^ 2 + 7) = 1 ∧ p7PartNat (49 * k ^ 2 + 7) = 7 * k ^ 2 + 1 := by
+  apply v7Nat_p7PartNat_eq_of_pow_mul
+  · omega
+  · ring
+
+theorem v7Nat_forty_nine_mul_sq_ge_two {k : ℕ} (hk : 0 < k) :
+    2 ≤ v7Nat (49 * k ^ 2) := by
+  have hk2 : 0 < k ^ 2 := pow_pos hk 2
+  have hmul := (v7Nat_p7PartNat_mul (by decide : 0 < 49) hk2).1
+  have hv49 : v7Nat 49 = 2 := rfl
+  omega
+
+theorem s7_perturb7PosInt {k : ℕ} (hk : 0 < k) : s7 (perturb7PosInt k) = 1 := by
+  obtain ⟨hv_n, hp_n⟩ := v7Nat_forty_nine_mul_sq_add_seven k
+  have hv_x := v7Nat_forty_nine_mul_sq_ge_two hk
+  have hv2 : v7Nat 2 = 0 := rfl
+  have hp2 : p7PartNat 2 = 2 := rfl
+  rw [s7_eq_of_lead7Coord_y (n := 49 * k ^ 2 + 7) (nx := 49 * k ^ 2) (ny := 2)
+    (by omega) (by nlinarith) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, perturb7PosInt, gv]; ring)
+    (by simp [GaussRat.normSq, perturb7PosInt, gv]; ring)
+    (by simp [GaussRat.normSq, perturb7PosInt, gv]; norm_num)
+    (by omega) (by omega) (by omega)]
+  have hchi_n : chi7Nat (p7PartNat (49 * k ^ 2 + 7)) = 1 := by
+    rw [hp_n, ← chi7Nat_mod_seven (7 * k ^ 2 + 1)]
+    have hmod : (7 * k ^ 2 + 1) % 7 = 1 := by omega
+    rw [hmod]
+    rfl
+  have hchi_y : chi7Nat (p7PartNat 2) = 1 := rfl
+  rw [hchi_y, hchi_n]
+  ring
+
+theorem s7_perturb7NegInt {k : ℕ} (hk : 0 < k) : s7 (perturb7NegInt k) = -1 := by
+  obtain ⟨hv_n, hp_n⟩ := v7Nat_forty_nine_mul_sq_add_seven k
+  have hv_x := v7Nat_forty_nine_mul_sq_ge_two hk
+  have hv5 : v7Nat 5 = 0 := rfl
+  have hp5 : p7PartNat 5 = 5 := rfl
+  rw [s7_eq_of_lead7Coord_y (n := 49 * k ^ 2 + 7) (nx := 49 * k ^ 2) (ny := 5)
+    (by omega) (by nlinarith) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, perturb7NegInt, gv]; ring)
+    (by simp [GaussRat.normSq, perturb7NegInt, gv]; ring)
+    (by simp [GaussRat.normSq, perturb7NegInt, gv]; norm_num)
+    (by omega) (by omega) (by omega)]
+  have hchi_n : chi7Nat (p7PartNat (49 * k ^ 2 + 7)) = 1 := by
+    rw [hp_n, ← chi7Nat_mod_seven (7 * k ^ 2 + 1)]
+    have hmod : (7 * k ^ 2 + 1) % 7 = 1 := by omega
+    rw [hmod]
+    rfl
+  have hchi_y : chi7Nat (p7PartNat 5) = -1 := rfl
+  rw [hchi_y, hchi_n]
+  ring
+
+theorem s7_perturb7PosRay {k : ℕ} (hk : 0 < k) : s7 (perturb7PosRay k) = 1 := by
+  rw [← s7_smul (perturb7PosRay_nonZero k) (seven_mul_gaussRat_ne_zero hk),
+    smul_seven_mul_perturb7PosRay hk]
+  exact s7_perturb7PosInt hk
+
+theorem s7_perturb7NegRay {k : ℕ} (hk : 0 < k) : s7 (perturb7NegRay k) = -1 := by
+  rw [← s7_smul (perturb7NegRay_nonZero k) (seven_mul_gaussRat_ne_zero hk),
+    smul_seven_mul_perturb7NegRay hk]
+  exact s7_perturb7NegInt hk
+
+theorem forty_nine_mul_sq_add_seven_mod_three_ne_zero (k : ℕ) :
+    (49 * k ^ 2 + 7) % 3 ≠ 0 := by
+  simp only [sq]
+  rw [Nat.add_mod, Nat.mul_mod 49, Nat.mul_mod k k]
+  have hk : k % 3 = 0 ∨ k % 3 = 1 ∨ k % 3 = 2 := by omega
+  rcases hk with h | h | h <;> simp [h]
+
+theorem v3Nat_forty_nine_mul_sq_add_seven (k : ℕ) :
+    v3Nat (49 * k ^ 2 + 7) = 0 :=
+  (v3Nat_p3PartNat_eq_of_pow_mul (a := 0) (m := 49 * k ^ 2 + 7)
+    (forty_nine_mul_sq_add_seven_mod_three_ne_zero k) (by ring)).1
+
+theorem s3_perturb7PosInt (k : ℕ) : s3 (perturb7PosInt k) = 0 := by
+  apply s3_eq_zero_of_normSqVec_natCast (n := 49 * k ^ 2 + 7) (by omega)
+  · simp [normSqVec, GaussRat.normSq, perturb7PosInt, gv]; ring
+  · rw [v3Nat_forty_nine_mul_sq_add_seven k]; rfl
+
+theorem s3_perturb7NegInt (k : ℕ) : s3 (perturb7NegInt k) = 0 := by
+  apply s3_eq_zero_of_normSqVec_natCast (n := 49 * k ^ 2 + 7) (by omega)
+  · simp [normSqVec, GaussRat.normSq, perturb7NegInt, gv]; ring
+  · rw [v3Nat_forty_nine_mul_sq_add_seven k]; rfl
+
+/-- Selective cross-prime vanishing: `s3` vanishes on the `7`-adic perturbation rays
+`perturb7PosRay k` and `perturb7NegRay k` for every `k ≥ 1`. -/
+theorem s3_perturb7PosRay {k : ℕ} (hk : 0 < k) : s3 (perturb7PosRay k) = 0 := by
+  rw [← s3_smul (perturb7PosRay_nonZero k) (seven_mul_gaussRat_ne_zero hk),
+    smul_seven_mul_perturb7PosRay hk]
+  exact s3_perturb7PosInt k
+
+theorem s3_perturb7NegRay {k : ℕ} (hk : 0 < k) : s3 (perturb7NegRay k) = 0 := by
+  rw [← s3_smul (perturb7NegRay_nonZero k) (seven_mul_gaussRat_ne_zero hk),
+    smul_seven_mul_perturb7NegRay hk]
+  exact s3_perturb7NegInt k
+
+theorem v7Nat_nine_mul_seven_mul_sq_add_three (k : ℕ) :
+    v7Nat (9 * (7 * k) ^ 2 + 3) = 0 :=
+  (v7Nat_p7PartNat_eq_of_pow_mul (a := 0) (m := 9 * (7 * k) ^ 2 + 3)
+    (by
+      have h : 9 * (7 * k) ^ 2 + 3 = 7 * (63 * k ^ 2) + 3 := by ring
+      omega)
+    (by ring)).1
+
+theorem s7_perturbPosInt_seven_mul (k : ℕ) : s7 (perturbPosInt (7 * k)) = 0 := by
+  apply s7_eq_zero_of_normSqVec_natCast (n := 9 * (7 * k) ^ 2 + 3) (by omega)
+  · simp [normSqVec, GaussRat.normSq, perturbPosInt, gv]; ring
+  · rw [v7Nat_nine_mul_seven_mul_sq_add_three k]; rfl
+
+theorem s7_perturbNegInt_seven_mul (k : ℕ) : s7 (perturbNegInt (7 * k)) = 0 := by
+  apply s7_eq_zero_of_normSqVec_natCast (n := 9 * (7 * k) ^ 2 + 3) (by omega)
+  · simp [normSqVec, GaussRat.normSq, perturbNegInt, gv]; ring
+  · rw [v7Nat_nine_mul_seven_mul_sq_add_three k]; rfl
+
+/-- Selective cross-prime vanishing: `s7` vanishes on the `3`-adic subsequence
+`perturbPosRay (7 * k)` and `perturbNegRay (7 * k)` for every `k ≥ 1`. -/
+theorem s7_perturbPosRay_seven_mul {k : ℕ} (hk : 0 < k) :
+    s7 (perturbPosRay (7 * k)) = 0 := by
+  have hk7 : 0 < 7 * k := by omega
+  rw [← s7_smul (perturbPosRay_nonZero (7 * k)) (three_mul_gaussRat_ne_zero hk7),
+    smul_three_mul_perturbPosRay hk7]
+  exact s7_perturbPosInt_seven_mul k
+
+theorem s7_perturbNegRay_seven_mul {k : ℕ} (hk : 0 < k) :
+    s7 (perturbNegRay (7 * k)) = 0 := by
+  have hk7 : 0 < 7 * k := by omega
+  rw [← s7_smul (perturbNegRay_nonZero (7 * k)) (three_mul_gaussRat_ne_zero hk7),
+    smul_three_mul_perturbNegRay hk7]
+  exact s7_perturbNegInt_seven_mul k
+
+theorem distSqVec_perturb7PosRay_tomo_e1 (k : ℕ) :
+    distSqVec (perturb7PosRay k) tomo_e1 = 1 / (7 * (k : ℚ) ^ 2) := by
+  simp only [distSqVec, perturb7PosRay, tomo_e1, gv,
+    normSqVec, GaussRat.normSq, GaussRat.re_sub, GaussRat.im_sub]
+  ring
+
+theorem distSqVec_perturb7NegRay_tomo_e1 (k : ℕ) :
+    distSqVec (perturb7NegRay k) tomo_e1 = 1 / (7 * (k : ℚ) ^ 2) := by
+  simp only [distSqVec, perturb7NegRay, tomo_e1, gv,
+    normSqVec, GaussRat.normSq, GaussRat.re_sub, GaussRat.im_sub]
+  ring
+
+/-- In every archimedean neighborhood `distSqVec v tomo_e1 < δ` of `tomo_e1 = (1, 0, 0)`,
+there exist four nonzero Gaussian-rational rays `u3Pos, u3Neg, u7Pos, u7Neg ∈ ℚ(i)³`
+that selectively oscillate `s3` and `s7` independently:
+- `s3 u3Pos = 1, s7 u3Pos = 0` and `s3 u3Neg = -1, s7 u3Neg = 0`,
+- `s3 u7Pos = 0, s7 u7Pos = 1` and `s3 u7Neg = 0, s7 u7Neg = -1`. -/
+theorem s3_s7_selective_oscillation_near_tomo_e1 (δ : ℚ) (hδ : 0 < δ) :
+    ∃ u3Pos u3Neg u7Pos u7Neg : GVec,
+      u3Pos.NonZero ∧ u3Neg.NonZero ∧ u7Pos.NonZero ∧ u7Neg.NonZero ∧
+      distSqVec u3Pos tomo_e1 < δ ∧ distSqVec u3Neg tomo_e1 < δ ∧
+      distSqVec u7Pos tomo_e1 < δ ∧ distSqVec u7Neg tomo_e1 < δ ∧
+      s3 u3Pos = 1 ∧ s7 u3Pos = 0 ∧
+      s3 u3Neg = -1 ∧ s7 u3Neg = 0 ∧
+      s3 u7Pos = 0 ∧ s7 u7Pos = 1 ∧
+      s3 u7Neg = 0 ∧ s7 u7Neg = -1 := by
+  obtain ⟨k, hk, hlt⟩ := exists_nat_pos_inv_three_sq_lt hδ
+  have hk7 : 0 < 7 * k := by omega
+  have hk_ge_one : (1 : ℚ) ≤ (k : ℚ) := by exact_mod_cast hk
+  have h3k2_pos : 0 < 3 * (k : ℚ) ^ 2 := by nlinarith
+  have hpos : 0 < 1 / (3 * (k : ℚ) ^ 2) := div_pos (by norm_num) h3k2_pos
+  have h3_eq : 1 / (3 * ((7 * k : ℕ) : ℚ) ^ 2) = (1 / 49) * (1 / (3 * (k : ℚ) ^ 2)) := by
+    push_cast; ring
+  have h7_eq : 1 / (7 * (k : ℚ) ^ 2) = (3 / 7) * (1 / (3 * (k : ℚ) ^ 2)) := by ring
+  have hlt3 : 1 / (3 * ((7 * k : ℕ) : ℚ) ^ 2) < δ := by linarith
+  have hlt7 : 1 / (7 * (k : ℚ) ^ 2) < δ := by linarith
+  refine ⟨perturbPosRay (7 * k), perturbNegRay (7 * k), perturb7PosRay k, perturb7NegRay k,
+    perturbPosRay_nonZero (7 * k), perturbNegRay_nonZero (7 * k),
+    perturb7PosRay_nonZero k, perturb7NegRay_nonZero k,
+    ?_, ?_, ?_, ?_,
+    s3_perturbPosRay hk7, s7_perturbPosRay_seven_mul hk,
+    s3_perturbNegRay hk7, s7_perturbNegRay_seven_mul hk,
+    s3_perturb7PosRay hk, s7_perturb7PosRay hk,
+    s3_perturb7NegRay hk, s7_perturb7NegRay hk⟩
+  · rw [distSqVec_perturbPosRay_tomo_e1 (7 * k)]; exact hlt3
+  · rw [distSqVec_perturbNegRay_tomo_e1 (7 * k)]; exact hlt3
+  · rw [distSqVec_perturb7PosRay_tomo_e1 k]; exact hlt7
+  · rw [distSqVec_perturb7NegRay_tomo_e1 k]; exact hlt7
+
+/-- The `7`-adic zero-weight residual `s7` is not archimedean-continuous at `tomo_e1 = (1, 0, 0)`. -/
+theorem not_archimedeanContinuousAt_s7_tomo_e1 :
+    ¬ IsArchimedeanContinuousAt s7 tomo_e1 := by
+  intro hcont
+  obtain ⟨δ, hδ, hball⟩ := hcont (1 / 2) (by norm_num)
+  obtain ⟨_, _, u7Pos, _, _, _, hu7Pos_nz, _, _, _, hu7Pos_dist, _, _, _, _, _, _, hu7Pos_s7, _, _⟩ :=
+    s3_s7_selective_oscillation_near_tomo_e1 δ hδ
+  have hlt := hball u7Pos hu7Pos_nz hu7Pos_dist
+  have he1 : s7 tomo_e1 = 0 := s7_vanishes_on_nine_rays.1
+  rw [hu7Pos_s7, he1] at hlt
+  norm_num at hlt
+
+/-- The `7`-adic nonnegative non-quadratic frame function `exoticQi7` is not archimedean-continuous
+at `tomo_e1 = (1, 0, 0)`. -/
+theorem not_archimedeanContinuousAt_exoticQi7_tomo_e1 :
+    ¬ IsArchimedeanContinuousAt exoticQi7 tomo_e1 := by
+  intro hcont
+  obtain ⟨δ, hδ, hball⟩ := hcont (1 / 6) (by norm_num)
+  obtain ⟨_, _, u7Pos, _, _, _, hu7Pos_nz, _, _, _, hu7Pos_dist, _, _, _, _, _, _, hu7Pos_s7, _, _⟩ :=
+    s3_s7_selective_oscillation_near_tomo_e1 δ hδ
+  have hlt := hball u7Pos hu7Pos_nz hu7Pos_dist
+  have he1 : exoticQi7 tomo_e1 = 1 / 3 := by
+    simp only [exoticQi7, s7_vanishes_on_nine_rays.1]
+    norm_num
+  have hu7 : exoticQi7 u7Pos = 2 / 3 := by
+    simp only [exoticQi7, hu7Pos_s7]
+    norm_num
+  rw [hu7, he1] at hlt
+  norm_num at hlt
+
+/-- Joint Archimedean continuity elimination of `combResidual37 c3 c7`: if `f` and
+`f - combResidual37 c3 c7` are both archimedean-continuous at `tomo_e1 = (1, 0, 0)`, then
+both inert-prime residual coefficients vanish (`c3 = 0 ∧ c7 = 0`). -/
+theorem combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1
+    {f : GVec → ℚ} {c3 c7 : ℚ}
+    (hf_cont : IsArchimedeanContinuousAt f tomo_e1)
+    (hq_cont : IsArchimedeanContinuousAt (fun v => f v - combResidual37 c3 c7 v) tomo_e1) :
+    c3 = 0 ∧ c7 = 0 := by
+  have he1_3 : s3 tomo_e1 = 0 := s3_vanishes_on_nine_rays.1
+  have he1_7 : s7 tomo_e1 = 0 := s7_vanishes_on_nine_rays.1
+  constructor
+  · by_contra hc3
+    have hc3_pos : 0 < |c3| := abs_pos.mpr hc3
+    obtain ⟨δ1, hδ1, hb1⟩ := hf_cont (|c3| / 3) (by linarith)
+    obtain ⟨δ2, hδ2, hb2⟩ := hq_cont (|c3| / 3) (by linarith)
+    let δ := min δ1 δ2
+    have hδ : 0 < δ := lt_min hδ1 hδ2
+    obtain ⟨u3Pos, _, _, _, hu3Pos_nz, _, _, _, hu3Pos_dist, _, _, _,
+      hu3Pos_s3, hu3Pos_s7, _, _, _, _, _, _⟩ :=
+      s3_s7_selective_oscillation_near_tomo_e1 δ hδ
+    have h1 := hb1 u3Pos hu3Pos_nz (lt_of_lt_of_le hu3Pos_dist (min_le_left δ1 δ2))
+    have h2 := hb2 u3Pos hu3Pos_nz (lt_of_lt_of_le hu3Pos_dist (min_le_right δ1 δ2))
+    simp only [combResidual37, hu3Pos_s3, hu3Pos_s7, he1_3, he1_7,
+      mul_one, mul_zero, add_zero, sub_zero] at h2
+    have htri : |c3| ≤ |f u3Pos - f tomo_e1| + |f u3Pos - c3 - f tomo_e1| := by
+      calc |c3| = |(f u3Pos - f tomo_e1) - (f u3Pos - c3 - f tomo_e1)| := by ring_nf
+        _ ≤ |f u3Pos - f tomo_e1| + |f u3Pos - c3 - f tomo_e1| :=
+          abs_sub (f u3Pos - f tomo_e1) (f u3Pos - c3 - f tomo_e1)
+    linarith
+  · by_contra hc7
+    have hc7_pos : 0 < |c7| := abs_pos.mpr hc7
+    obtain ⟨δ1, hδ1, hb1⟩ := hf_cont (|c7| / 3) (by linarith)
+    obtain ⟨δ2, hδ2, hb2⟩ := hq_cont (|c7| / 3) (by linarith)
+    let δ := min δ1 δ2
+    have hδ : 0 < δ := lt_min hδ1 hδ2
+    obtain ⟨_, _, u7Pos, _, _, _, hu7Pos_nz, _, _, _, hu7Pos_dist, _,
+      _, _, _, _, hu7Pos_s3, hu7Pos_s7, _, _⟩ :=
+      s3_s7_selective_oscillation_near_tomo_e1 δ hδ
+    have h1 := hb1 u7Pos hu7Pos_nz (lt_of_lt_of_le hu7Pos_dist (min_le_left δ1 δ2))
+    have h2 := hb2 u7Pos hu7Pos_nz (lt_of_lt_of_le hu7Pos_dist (min_le_right δ1 δ2))
+    simp only [combResidual37, hu7Pos_s3, hu7Pos_s7, he1_3, he1_7,
+      mul_one, mul_zero, zero_add, add_zero, sub_zero] at h2
+    have htri : |c7| ≤ |f u7Pos - f tomo_e1| + |f u7Pos - c7 - f tomo_e1| := by
+      calc |c7| = |(f u7Pos - f tomo_e1) - (f u7Pos - c7 - f tomo_e1)| := by ring_nf
+        _ ≤ |f u7Pos - f tomo_e1| + |f u7Pos - c7 - f tomo_e1| :=
+          abs_sub (f u7Pos - f tomo_e1) (f u7Pos - c7 - f tomo_e1)
+    linarith
+
+/-- Unconditional joint Archimedean continuity elimination theorem for `(s3, s7)`:
+for any `ρ : HermForm3` and `c3, c7 : ℚ`, the perturbed ray function
+`quadRay ρ + c3 • s3 + c7 • s7` is archimedean-continuous at `tomo_e1 = (1, 0, 0)`
+if and only if `c3 = 0 ∧ c7 = 0`. -/
+theorem quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff
+    (ρ : HermForm3) (c3 c7 : ℚ) :
+    IsArchimedeanContinuousAt (fun v => quadRay ρ v + combResidual37 c3 c7 v) tomo_e1 ↔
+      (c3 = 0 ∧ c7 = 0) := by
+  constructor
+  · intro hf_cont
+    apply combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1 hf_cont
+    have heq : (fun v => (quadRay ρ v + combResidual37 c3 c7 v) - combResidual37 c3 c7 v) =
+        quadRay ρ := by
+      funext v; ring
+    rw [heq]
+    exact archimedeanContinuousAt_quadRay_tomo_e1 ρ
+  · rintro ⟨rfl, rfl⟩
+    have heq : (fun v => quadRay ρ v + combResidual37 0 0 v) = quadRay ρ := by
+      funext v; simp [combResidual37]
+    rw [heq]
+    exact archimedeanContinuousAt_quadRay_tomo_e1 ρ
+
+/-- Over `ℚ(i)³`, no scalar multiple of `witness_p7 = (1, 2, 1 + i)` can have unit squared norm `1`. -/
+theorem no_unit_norm_smul_witness_p7_in_qi3 (l : GaussRat) :
+    normSqVec (GVec.smul l witness_p7) ≠ 1 := by
+  intro h1
+  have hl_pos : 0 < l.normSq := by
+    by_contra hle
+    have h0 : l.normSq = 0 := le_antisymm (not_lt.mp hle) (GaussRat.normSq_nonneg l)
+    rw [normSqVec_smul, h0, zero_mul] at h1
+    norm_num at h1
+  rw [normSqVec_smul, witness_p7_normSq] at h1
+  have hv := congrArg v7Rat h1
+  rw [v7Rat_mul hl_pos (by norm_num : (0 : ℚ) < 7)] at hv
+  have hv1 : v7Rat 1 = 0 := rfl
+  have hv7 : v7Rat 7 = 1 := rfl
+  have heven := v7Rat_normSq_even l
+  omega
+
+/-- Zero-weight frame functions on `ℚ(i, √p)³`. -/
+def IsZeroWeightFrameFunctionSqrtP (p : ℚ) (G : GVecSqrt3 → ℚ) : Prop :=
+  ∀ u v w : GVecSqrt3, IsFrameSqrtP p u v w → G u + G v + G w = 0
+
+/-- Any zero-weight frame function `G` on `ℚ(i, √7)³` that vanishes on vectors whose rational
+squared norm has even `7`-adic valuation must vanish on `witness_p7 = (1, 2, 1 + i)`, so `s7`
+cannot extend to `ℚ(i, √7)³` under the even-`v_7` vanishing rule. -/
+theorem zero_on_witness_p7_of_sqrt7_even_v7_vanishing
+    {G : GVecSqrt3 → ℚ}
+    (hG : IsZeroWeightFrameFunctionSqrtP 7 G)
+    (heven : ∀ u : GVecSqrt3, v7Rat (GVecSqrt3.normSqRatP 7 u) % 2 = 0 → G u = 0) :
+    G (GVecSqrt3.ofGVec witness_p7) = 0 := by
+  obtain ⟨hfr, _, hnp, hnq⟩ := isFrameSqrt7_witness_p7_norms
+  have hsum := hG (GVecSqrt3.ofGVec witness_p7) frameSqrt7_p frameSqrt7_q hfr
+  have hv245 : v7Rat 245 % 2 = 0 := by
+    have h245 : (245 : ℚ) = ((245 : ℕ) : ℚ) := by norm_num
+    rw [h245, v7Rat_natCast (by decide : 0 < 245)]
+    rfl
+  have hp_even : v7Rat (GVecSqrt3.normSqRatP 7 frameSqrt7_p) % 2 = 0 := by rw [hnp]; exact hv245
+  have hq_even : v7Rat (GVecSqrt3.normSqRatP 7 frameSqrt7_q) % 2 = 0 := by rw [hnq]; exact hv245
+  have hp0 := heven frameSqrt7_p hp_even
+  have hq0 := heven frameSqrt7_q hq_even
+  linarith
+
+theorem no_s7_even_v7_extension_to_sqrt7 :
+    ¬ ∃ G : GVecSqrt3 → ℚ,
+        IsZeroWeightFrameFunctionSqrtP 7 G ∧
+        (∀ u : GVecSqrt3, v7Rat (GVecSqrt3.normSqRatP 7 u) % 2 = 0 → G u = 0) ∧
+        (∀ v : GVec, G (GVecSqrt3.ofGVec v) = s7 v) := by
+  rintro ⟨G, hG, heven, hext⟩
+  have h0 := zero_on_witness_p7_of_sqrt7_even_v7_vanishing hG heven
+  have h1 := hext witness_p7
+  rw [s7_witness_p7] at h1
+  linarith
+
+/-- Joint field-extension elimination of `combResidual37 c3 c7` over `ℚ(i, √3)³` and `ℚ(i, √7)³`:
+because the orthogonal partners `frameSqrt3_p, frameSqrt3_q` (norm `18 = 2 × 3²`) and
+`frameSqrt7_p, frameSqrt7_q` (norm `245 = 5 × 7²`) have even `3`-adic AND even `7`-adic
+valuations simultaneously (`v3Rat 18 = 2, v7Rat 18 = 0` and `v3Rat 245 = 0, v7Rat 245 = 2`),
+any linear combination `combResidual37 c3 c7` that extends to zero-weight frame functions on
+`ℚ(i, √3)³` and `ℚ(i, √7)³` vanishing on rays with jointly `{3, 7}`-even rational squared norm
+must have `c3 = 0 ∧ c7 = 0`. -/
+theorem joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37
+    {c3 c7 : ℚ}
+    {G3 G7 : GVecSqrt3 → ℚ}
+    (hG3 : IsZeroWeightFrameFunctionSqrt3 G3)
+    (hG7 : IsZeroWeightFrameFunctionSqrtP 7 G7)
+    (heven3 : ∀ u : GVecSqrt3,
+      v3Rat u.normSqRat % 2 = 0 ∧ v7Rat u.normSqRat % 2 = 0 → G3 u = 0)
+    (heven7 : ∀ u : GVecSqrt3,
+      v3Rat (GVecSqrt3.normSqRatP 7 u) % 2 = 0 ∧
+      v7Rat (GVecSqrt3.normSqRatP 7 u) % 2 = 0 → G7 u = 0)
+    (hext3 : ∀ v : GVec, G3 (GVecSqrt3.ofGVec v) = combResidual37 c3 c7 v)
+    (hext7 : ∀ v : GVec, G7 (GVecSqrt3.ofGVec v) = combResidual37 c3 c7 v) :
+    c3 = 0 ∧ c7 = 0 := by
+  obtain ⟨hfr3, _, hnp3, hnq3, hp3_v3, hq3_v3, _⟩ := isFrameSqrt3_witness_111_even_norms
+  obtain ⟨hfr7, _, hnp7, hnq7⟩ := isFrameSqrt7_witness_p7_norms
+  have hv7_18 : v7Rat 18 % 2 = 0 := by
+    have h18 : (18 : ℚ) = ((18 : ℕ) : ℚ) := by norm_num
+    rw [h18, v7Rat_natCast (by decide : 0 < 18)]
+    rfl
+  have hv3_245 : v3Rat 245 % 2 = 0 := by
+    have h245 : (245 : ℚ) = ((245 : ℕ) : ℚ) := by norm_num
+    rw [h245, v3Rat_natCast (by decide : 0 < 245)]
+    rfl
+  have hv7_245 : v7Rat 245 % 2 = 0 := by
+    have h245 : (245 : ℚ) = ((245 : ℕ) : ℚ) := by norm_num
+    rw [h245, v7Rat_natCast (by decide : 0 < 245)]
+    rfl
+  have hsum3 := hG3 witness_111_sqrt3 frameSqrt3_p frameSqrt3_q hfr3
+  have hp3_0 := heven3 frameSqrt3_p ⟨hp3_v3, by rw [hnp3]; exact hv7_18⟩
+  have hq3_0 := heven3 frameSqrt3_q ⟨hq3_v3, by rw [hnq3]; exact hv7_18⟩
+  have hw111_0 : G3 (GVecSqrt3.ofGVec witness_111) = 0 := by
+    change G3 witness_111_sqrt3 = 0
+    linarith
+  rw [hext3 witness_111, combResidual37_witness_111] at hw111_0
+  have hsum7 := hG7 (GVecSqrt3.ofGVec witness_p7) frameSqrt7_p frameSqrt7_q hfr7
+  have hp7_0 := heven7 frameSqrt7_p ⟨by rw [hnp7]; exact hv3_245, by rw [hnp7]; exact hv7_245⟩
+  have hq7_0 := heven7 frameSqrt7_q ⟨by rw [hnq7]; exact hv3_245, by rw [hnq7]; exact hv7_245⟩
+  have hwp7_0 : G7 (GVecSqrt3.ofGVec witness_p7) = 0 := by linarith
+  rw [hext7 witness_p7, combResidual37_witness_p7] at hwp7_0
+  exact ⟨hw111_0, hwp7_0⟩
+
+theorem not_factorsThroughRayProjLinear_s7 : ¬ FactorsThroughRayProjLinear s7 := by
+  intro hlin
+  have h0 := zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
+    s7_vanishes_on_nine_rays hlin witness_p7 witness_p7_nonZero
+  rw [s7_witness_p7] at h0
+  norm_num at h0
+
+/-- A linear combination `combResidual37 c3 c7` factors linearly through `rayProj`
+if and only if `c3 = 0 ∧ c7 = 0`. -/
+theorem factorsThroughRayProjLinear_combResidual37_iff (c3 c7 : ℚ) :
+    FactorsThroughRayProjLinear (combResidual37 c3 c7) ↔ (c3 = 0 ∧ c7 = 0) := by
+  constructor
+  · intro hlin
+    exact (s3_s7_linearIndependent c3 c7).mp
+      (zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
+        (combResidual37_vanishes_on_nine_rays c3 c7) hlin)
+  · rintro ⟨rfl, rfl⟩
+    refine ⟨fun _ => 0, ⟨by intro _ _; ring, by intro _ _; ring⟩, ?_⟩
+    intro v _
+    simp [combResidual37]
+
+/-- Explicit operator-space projector relation for `witness_p7 = (1, 2, 1 + i)`:
+its rank-1 projector is an exact rational linear combination of the six real tomography
+projectors together with the two imaginary tomography projectors `tomo_e13i` and `tomo_e23i`. -/
+theorem rayProj_witness_p7_decomp :
+    rayProj witness_p7 =
+    HermForm3.add
+      (HermForm3.add
+        (HermForm3.add
+          (HermForm3.add
+            (HermForm3.add
+              (HermForm3.add
+                (HermForm3.add
+                  (HermForm3.smul (-3 / 7) (rayProj tomo_e1))
+                  (HermForm3.smul (-2 / 7) (rayProj tomo_e2)))
+                (HermForm3.smul (-4 / 7) (rayProj tomo_e3)))
+              (HermForm3.smul (4 / 7) (rayProj tomo_e12)))
+            (HermForm3.smul (2 / 7) (rayProj tomo_e13)))
+          (HermForm3.smul (4 / 7) (rayProj tomo_e23)))
+        (HermForm3.smul (2 / 7) (rayProj tomo_e13i)))
+      (HermForm3.smul (4 / 7) (rayProj tomo_e23i)) := by
+  ext <;>
+    simp [HermForm3.add, HermForm3.smul, rayProj, normSqVec, GaussRat.normSq,
+      witness_p7, tomo_e1, tomo_e2, tomo_e3, tomo_e12, tomo_e13, tomo_e23,
+      tomo_e13i, tomo_e23i, gv] <;>
+    norm_num
+
+/-- Every quadratic Rayleigh function `quadRay ρ` satisfies the 9-ray linear kernel identity
+induced by `rayProj_witness_p7_decomp`. -/
+theorem quadRay_witness_p7_kernel_relation (ρ : HermForm3) :
+    quadRay ρ witness_p7 +
+      (3 / 7) * quadRay ρ tomo_e1 + (2 / 7) * quadRay ρ tomo_e2 + (4 / 7) * quadRay ρ tomo_e3 -
+      (4 / 7) * quadRay ρ tomo_e12 - (2 / 7) * quadRay ρ tomo_e13 - (4 / 7) * quadRay ρ tomo_e23 -
+      (2 / 7) * quadRay ρ tomo_e13i - (4 / 7) * quadRay ρ tomo_e23i = 0 := by
+  simp only [← traceInner_rayProj, rayProj_witness_p7_decomp,
+    traceInner_add_right, traceInner_smul_right]
+  ring
+
+/-- Dual constructive separation of the `witness_p7` projector kernel relation:
+the formal combination in `ker(rayProj)` evaluates to `1` under `s7`, `0` under `s3`,
+and `c7` under `combResidual37 c3 c7`. -/
+theorem s7_witness_p7_kernel_separation (c3 c7 : ℚ) :
+    s7 witness_p7 +
+      (3 / 7) * s7 tomo_e1 + (2 / 7) * s7 tomo_e2 + (4 / 7) * s7 tomo_e3 -
+      (4 / 7) * s7 tomo_e12 - (2 / 7) * s7 tomo_e13 - (4 / 7) * s7 tomo_e23 -
+      (2 / 7) * s7 tomo_e13i - (4 / 7) * s7 tomo_e23i = 1 ∧
+    s3 witness_p7 +
+      (3 / 7) * s3 tomo_e1 + (2 / 7) * s3 tomo_e2 + (4 / 7) * s3 tomo_e3 -
+      (4 / 7) * s3 tomo_e12 - (2 / 7) * s3 tomo_e13 - (4 / 7) * s3 tomo_e23 -
+      (2 / 7) * s3 tomo_e13i - (4 / 7) * s3 tomo_e23i = 0 ∧
+    combResidual37 c3 c7 witness_p7 +
+      (3 / 7) * combResidual37 c3 c7 tomo_e1 + (2 / 7) * combResidual37 c3 c7 tomo_e2 +
+      (4 / 7) * combResidual37 c3 c7 tomo_e3 -
+      (4 / 7) * combResidual37 c3 c7 tomo_e12 - (2 / 7) * combResidual37 c3 c7 tomo_e13 -
+      (4 / 7) * combResidual37 c3 c7 tomo_e23 -
+      (2 / 7) * combResidual37 c3 c7 tomo_e13i - (4 / 7) * combResidual37 c3 c7 tomo_e23i = c7 := by
+  obtain ⟨he1_7, he2_7, he3_7, he12_7, he13_7, he23_7, _, he13i_7, he23i_7⟩ := s7_vanishes_on_nine_rays
+  obtain ⟨he1_3, he2_3, he3_3, he12_3, he13_3, he23_3, _, he13i_3, he23i_3⟩ := s3_vanishes_on_nine_rays
+  refine ⟨?_, ?_, ?_⟩
+  · rw [s7_witness_p7, he1_7, he2_7, he3_7, he12_7, he13_7, he23_7, he13i_7, he23i_7]
+    norm_num
+  · rw [s3_witness_p7, he1_3, he2_3, he3_3, he12_3, he13_3, he23_3, he13i_3, he23i_3]
+    norm_num
+  · simp [combResidual37, s3_witness_p7, s7_witness_p7,
+      he1_7, he2_7, he3_7, he12_7, he13_7, he23_7, he13i_7, he23i_7,
+      he1_3, he2_3, he3_3, he12_3, he13_3, he23_3, he13i_3, he23i_3]
+
+/-- Cross-prime frame norm parity: the `ℚ(i, √3)³` frame `(witness_111, frameSqrt3_p, frameSqrt3_q)`
+of norms `(3, 18, 18)` has even `7`-adic valuation (`v7Rat = 0`) on all three vectors, whereas the
+`ℚ(i, √7)³` frame `(witness_p7, frameSqrt7_p, frameSqrt7_q)` of norms `(7, 245, 245)` has even
+`3`-adic valuation (`v3Rat = 0`) on all three vectors. -/
+theorem cross_prime_frame_partner_norm_valuations_even :
+    v7Rat witness_111_sqrt3.normSqRat % 2 = 0 ∧
+    v7Rat frameSqrt3_p.normSqRat % 2 = 0 ∧
+    v7Rat frameSqrt3_q.normSqRat % 2 = 0 ∧
+    v3Rat (GVecSqrt3.normSqRatP 7 (GVecSqrt3.ofGVec witness_p7)) % 2 = 0 ∧
+    v3Rat (GVecSqrt3.normSqRatP 7 frameSqrt7_p) % 2 = 0 ∧
+    v3Rat (GVecSqrt3.normSqRatP 7 frameSqrt7_q) % 2 = 0 := by
+  obtain ⟨_, hnw3, hnp3, hnq3, _, _, _⟩ := isFrameSqrt3_witness_111_even_norms
+  obtain ⟨_, hnw7, hnp7, hnq7⟩ := isFrameSqrt7_witness_p7_norms
+  have hv7_3 : v7Rat 3 % 2 = 0 := by
+    have h3 : (3 : ℚ) = ((3 : ℕ) : ℚ) := by norm_num
+    rw [h3, v7Rat_natCast (by decide : 0 < 3)]; rfl
+  have hv7_18 : v7Rat 18 % 2 = 0 := by
+    have h18 : (18 : ℚ) = ((18 : ℕ) : ℚ) := by norm_num
+    rw [h18, v7Rat_natCast (by decide : 0 < 18)]; rfl
+  have hv3_7 : v3Rat 7 % 2 = 0 := by
+    have h7 : (7 : ℚ) = ((7 : ℕ) : ℚ) := by norm_num
+    rw [h7, v3Rat_natCast (by decide : 0 < 7)]; rfl
+  have hv3_245 : v3Rat 245 % 2 = 0 := by
+    have h245 : (245 : ℚ) = ((245 : ℕ) : ℚ) := by norm_num
+    rw [h245, v3Rat_natCast (by decide : 0 < 245)]; rfl
+  exact ⟨by rw [hnw3]; exact hv7_3,
+         by rw [hnp3]; exact hv7_18,
+         by rw [hnq3]; exact hv7_18,
+         by rw [hnw7]; exact hv3_7,
+         by rw [hnp7]; exact hv3_245,
+         by rw [hnq7]; exact hv3_245⟩
+
+/-- Two-parameter family `(1 + combResidual37 c3 c7 v) / 3` of frame functions on `ℚ(i)³`
+spanning the `ℓ¹` diamond of nonnegative non-quadratic frame functions when `|c3| + |c7| ≤ 1`. -/
+def exoticComb37 (c3 c7 : ℚ) (v : GVec) : ℚ :=
+  (1 + combResidual37 c3 c7 v) / 3
+
+theorem exoticComb37_isFrameFunction (c3 c7 : ℚ) :
+    IsFrameFunction (exoticComb37 c3 c7) := by
+  intro u v w hf
+  have hsum := combResidual37_isZeroWeightFrameFunction c3 c7 u v w hf
+  simp only [exoticComb37]
+  linarith
+
+theorem abs_combResidual37_le (c3 c7 : ℚ) (v : GVec) :
+    |combResidual37 c3 c7 v| ≤ |c3| + |c7| := by
+  have hc3 := le_abs_self c3
+  have hnc3 := neg_le_abs c3
+  have hc7 := le_abs_self c7
+  have hnc7 := neg_le_abs c7
+  have hnn3 := abs_nonneg c3
+  have hnn7 := abs_nonneg c7
+  rcases s3_values v with h3 | h3 | h3 <;>
+    rcases s7_values v with h7 | h7 | h7 <;>
+    simp only [combResidual37, h3, h7] <;>
+    rw [abs_le] <;>
+    constructor <;>
+    linarith
+
+/-- For every `(c3, c7)` in the rational `ℓ¹` diamond `|c3| + |c7| ≤ 1`,
+`exoticComb37 c3 c7` is a nonnegative frame function bounded in `[0, 2/3]`. -/
+theorem exoticComb37_isNonnegFrameFunction {c3 c7 : ℚ} (hsum : |c3| + |c7| ≤ 1) :
+    IsNonnegFrameFunction (exoticComb37 c3 c7) ∧
+    (∀ v : GVec, 0 ≤ exoticComb37 c3 c7 v ∧ exoticComb37 c3 c7 v ≤ 2 / 3) := by
+  have hbounds : ∀ v : GVec, 0 ≤ exoticComb37 c3 c7 v ∧ exoticComb37 c3 c7 v ≤ 2 / 3 := by
+    intro v
+    have habs := abs_combResidual37_le c3 c7 v
+    have hle1 : |combResidual37 c3 c7 v| ≤ 1 := le_trans habs hsum
+    obtain ⟨hlo, hhi⟩ := abs_le.mp hle1
+    simp only [exoticComb37]
+    constructor <;> linarith
+  exact ⟨⟨exoticComb37_isFrameFunction c3 c7, fun v _ => (hbounds v).1⟩, hbounds⟩
+
+/-- `exoticComb37 c3 c7` is quadratic on nonzero rays of `ℚ(i)³` if and only if `c3 = 0 ∧ c7 = 0`. -/
+theorem exoticComb37_quadratic_iff (c3 c7 : ℚ) :
+    (∃ ρ : HermForm3, ∀ v : GVec, v.NonZero → exoticComb37 c3 c7 v = quadRay ρ v) ↔
+      (c3 = 0 ∧ c7 = 0) := by
+  constructor
+  · rintro ⟨ρ, hρ⟩
+    obtain ⟨h1, h2, h3, h12, h13, h23, h12i, h13i, h23i⟩ :=
+      combResidual37_vanishes_on_nine_rays c3 c7
+    have htomo_id :
+        tomographyForm (exoticComb37 c3 c7) = ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ := by
+      ext <;>
+        simp [tomographyForm, exoticComb37, h1, h2, h3, h12, h13, h23, h12i, h13i, h23i]
+    have hm := tomography_matches_nine_rays (exoticComb37 c3 c7)
+    have hρ_eq : tomographyForm (exoticComb37 c3 c7) = ρ := by
+      apply tomography_unique (tomographyForm (exoticComb37 c3 c7)) ρ
+      · rw [hm.1, hρ tomo_e1 tomo_e1_nonZero]
+      · rw [hm.2.1, hρ tomo_e2 tomo_e2_nonZero]
+      · rw [hm.2.2.1, hρ tomo_e3 tomo_e3_nonZero]
+      · rw [hm.2.2.2.1, hρ tomo_e12 tomo_e12_nonZero]
+      · rw [hm.2.2.2.2.1, hρ tomo_e13 tomo_e13_nonZero]
+      · rw [hm.2.2.2.2.2.1, hρ tomo_e23 tomo_e23_nonZero]
+      · rw [hm.2.2.2.2.2.2.1, hρ tomo_e12i tomo_e12i_nonZero]
+      · rw [hm.2.2.2.2.2.2.2.1, hρ tomo_e13i tomo_e13i_nonZero]
+      · rw [hm.2.2.2.2.2.2.2.2, hρ tomo_e23i tomo_e23i_nonZero]
+    have hρ_id : ρ = ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ := hρ_eq.symm.trans htomo_id
+    have hw111 := hρ witness_111 witness_111_nonZero
+    have hwp7 := hρ witness_p7 witness_p7_nonZero
+    rw [hρ_id] at hw111 hwp7
+    have hq111 : quadRay ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ witness_111 = 1 / 3 := by
+      simp [quadRay, quadNum, normSqVec, GaussRat.normSq, witness_111, gv]; norm_num
+    have hqp7 : quadRay ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ witness_p7 = 1 / 3 := by
+      simp [quadRay, quadNum, normSqVec, GaussRat.normSq, witness_p7, gv]; norm_num
+    have hex111 : exoticComb37 c3 c7 witness_111 = (1 + c3) / 3 := by
+      simp [exoticComb37, combResidual37_witness_111]
+    have hexp7 : exoticComb37 c3 c7 witness_p7 = (1 + c7) / 3 := by
+      simp [exoticComb37, combResidual37_witness_p7]
+    exact ⟨by linarith, by linarith⟩
+  · rintro ⟨rfl, rfl⟩
+    refine ⟨⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩, ?_⟩
+    intro v hv
+    have hpos := normSqVec_pos_of_nonZero hv
+    have hnz : normSqVec v ≠ 0 := ne_of_gt hpos
+    have hnum : quadNum ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ v = (1 / 3) * normSqVec v := by
+      simp only [quadNum, normSqVec]
+      ring
+    simp only [exoticComb37, combResidual37, zero_mul, add_zero, quadRay, hnum,
+      mul_div_cancel_right₀ (1 / 3 : ℚ) hnz]
+
+/-- `exoticComb37 c3 c7` is archimedean-continuous at `tomo_e1 = (1, 0, 0)` if and only if
+`c3 = 0 ∧ c7 = 0`. -/
+theorem exoticComb37_archimedeanContinuousAt_tomo_e1_iff (c3 c7 : ℚ) :
+    IsArchimedeanContinuousAt (exoticComb37 c3 c7) tomo_e1 ↔ (c3 = 0 ∧ c7 = 0) := by
+  constructor
+  · intro hcont
+    have hcont3 :
+        IsArchimedeanContinuousAt
+          (fun v => (1 : ℚ) / 3 + combResidual37 (c3 / 3) (c7 / 3) v) tomo_e1 := by
+      have heq :
+          (fun v => (1 : ℚ) / 3 + combResidual37 (c3 / 3) (c7 / 3) v) = exoticComb37 c3 c7 := by
+        funext v
+        simp only [exoticComb37, combResidual37]
+        ring
+      rw [heq]
+      exact hcont
+    have hconst_cont : IsArchimedeanContinuousAt (fun _ : GVec => (1 : ℚ) / 3) tomo_e1 := by
+      intro ε hε
+      refine ⟨1, by norm_num, ?_⟩
+      intro v _ _
+      simp [hε]
+    have hsub_cont :
+        IsArchimedeanContinuousAt
+          (fun v =>
+            ((1 : ℚ) / 3 + combResidual37 (c3 / 3) (c7 / 3) v) -
+              combResidual37 (c3 / 3) (c7 / 3) v)
+          tomo_e1 := by
+      have heq :
+          (fun v =>
+            ((1 : ℚ) / 3 + combResidual37 (c3 / 3) (c7 / 3) v) -
+              combResidual37 (c3 / 3) (c7 / 3) v) =
+          (fun _ : GVec => (1 : ℚ) / 3) := by
+        funext v; ring
+      rw [heq]
+      exact hconst_cont
+    obtain ⟨hc3, hc7⟩ :=
+      combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1 hcont3 hsub_cont
+    exact ⟨by linarith, by linarith⟩
+  · rintro ⟨rfl, rfl⟩
+    intro ε hε
+    refine ⟨1, by norm_num, ?_⟩
+    intro v _ _
+    simp [exoticComb37, combResidual37, hε]
+
+/-! #### 9E. Uniform Prime-Indexed Residual Family `sp`, Third Inert Prime `p = 11`, and Arbitrary Finite `InertPrimeResidualSystem` Elimination -/
+
+/-- Bounded-fuel helper for the uniform `p`-adic valuation of a natural number `n`. -/
+def vpNatAux (p : ℕ) : ℕ → ℕ → ℕ
+  | 0, _ => 0
+  | fuel + 1, n => if 0 < n ∧ n % p = 0 then vpNatAux p fuel (n / p) + 1 else 0
+
+/-- Bounded-fuel helper for the uniform prime-to-`p` part of a natural number `n`. -/
+def ppPartNatAux (p : ℕ) : ℕ → ℕ → ℕ
+  | 0, n => n
+  | fuel + 1, n => if 0 < n ∧ n % p = 0 then ppPartNatAux p fuel (n / p) else n
+
+/-- Uniform prime-indexed `p`-adic valuation of a natural number `n` (`0` if `n = 0`). -/
+def vpNat (p n : ℕ) : ℕ := vpNatAux p n n
+
+/-- Uniform prime-indexed prime-to-`p` part of a natural number `n` (`0` if `n = 0`). -/
+def ppPartNat (p n : ℕ) : ℕ := ppPartNatAux p n n
+
+/-- Uniform Euler-criterion Legendre residue sign `(m / p) ∈ {-1, 1}` modulo `p`. -/
+def chiPNat (p m : ℕ) : ℚ :=
+  if (m % p) ^ ((p - 1) / 2) % p = 1 then 1 else -1
+
+/-- Uniform prime-indexed `p`-adic valuation of a positive rational `q` (`0` if `q ≤ 0`). -/
+def vpRat (p : ℕ) (q : ℚ) : ℤ :=
+  if 0 < q then (vpNat p q.num.natAbs : ℤ) - (vpNat p q.den : ℤ) else 0
+
+/-- Uniform prime-indexed Legendre unit sign `∈ {-1, 1}` of a positive rational `q` (`0` if `q ≤ 0`). -/
+def upRat (p : ℕ) (q : ℚ) : ℚ :=
+  if 0 < q then chiPNat p (ppPartNat p q.num.natAbs * ppPartNat p q.den) else 0
+
+/-- Whether a coordinate `z : GaussRat` is `p`-leading in `u : GVec`. -/
+def isLeadPCoord (p : ℕ) (z : GaussRat) (u : GVec) : Prop :=
+  0 < z.normSq ∧ vpRat p z.normSq < vpRat p (normSqVec u)
+
+instance (p : ℕ) (z : GaussRat) (u : GVec) : Decidable (isLeadPCoord p z u) :=
+  inferInstanceAs (Decidable (0 < z.normSq ∧ vpRat p z.normSq < vpRat p (normSqVec u)))
+
+/-- The `p`-adic contribution `upRat p z.normSq * upRat p (normSqVec u)` of a coordinate `z` in `u`. -/
+def coordSignP (p : ℕ) (z : GaussRat) (u : GVec) : ℚ :=
+  upRat p z.normSq * upRat p (normSqVec u)
+
+/-- Uniform prime-indexed `{-1, 0, 1}`-valued `p`-adic ray residual `sp p` on `ℚ(i)³`. -/
+def sp (p : ℕ) (u : GVec) : ℚ :=
+  if vpRat p (normSqVec u) % 2 = 0 then 0
+  else if isLeadPCoord p u.x u then coordSignP p u.x u
+  else if isLeadPCoord p u.y u then coordSignP p u.y u
+  else coordSignP p u.z u
+
+theorem vpNatAux_three : ∀ fuel n : ℕ, vpNatAux 3 fuel n = v3NatAux fuel n
+  | 0, _ => rfl
+  | fuel + 1, n => by simp only [vpNatAux, v3NatAux, vpNatAux_three fuel (n / 3)]
+
+theorem ppPartNatAux_three : ∀ fuel n : ℕ, ppPartNatAux 3 fuel n = p3PartNatAux fuel n
+  | 0, _ => rfl
+  | fuel + 1, n => by simp only [ppPartNatAux, p3PartNatAux, ppPartNatAux_three fuel (n / 3)]
+
+theorem vpNat_three (n : ℕ) : vpNat 3 n = v3Nat n := vpNatAux_three n n
+
+theorem ppPartNat_three (n : ℕ) : ppPartNat 3 n = p3PartNat n := ppPartNatAux_three n n
+
+theorem vpNatAux_seven : ∀ fuel n : ℕ, vpNatAux 7 fuel n = v7NatAux fuel n
+  | 0, _ => rfl
+  | fuel + 1, n => by simp only [vpNatAux, v7NatAux, vpNatAux_seven fuel (n / 7)]
+
+theorem ppPartNatAux_seven : ∀ fuel n : ℕ, ppPartNatAux 7 fuel n = p7PartNatAux fuel n
+  | 0, _ => rfl
+  | fuel + 1, n => by simp only [ppPartNatAux, p7PartNatAux, ppPartNatAux_seven fuel (n / 7)]
+
+theorem vpNat_seven (n : ℕ) : vpNat 7 n = v7Nat n := vpNatAux_seven n n
+
+theorem ppPartNat_seven (n : ℕ) : ppPartNat 7 n = p7PartNat n := ppPartNatAux_seven n n
+
+theorem chiPNat_three (m : ℕ) : chiPNat 3 m = if m % 3 = 1 then 1 else -1 := by
+  have h : (m % 3) ^ ((3 - 1) / 2) % 3 = m % 3 := by
+    have hm : m % 3 = 0 ∨ m % 3 = 1 ∨ m % 3 = 2 := by omega
+    rcases hm with h | h | h <;> simp [h]
+  simp only [chiPNat, h]
+
+theorem chiPNat_seven (m : ℕ) : chiPNat 7 m = chi7Nat m := by
+  have hm : m % 7 = 0 ∨ m % 7 = 1 ∨ m % 7 = 2 ∨ m % 7 = 3 ∨
+      m % 7 = 4 ∨ m % 7 = 5 ∨ m % 7 = 6 := by omega
+  rcases hm with h | h | h | h | h | h | h <;>
+    simp [chiPNat, chi7Nat, isQrMod7, h]
+
+theorem vpRat_three (q : ℚ) : vpRat 3 q = v3Rat q := by
+  simp only [vpRat, v3Rat, vpNat_three]
+
+theorem upRat_three (q : ℚ) : upRat 3 q = u3Rat q := by
+  simp only [upRat, u3Rat, ppPartNat_three, chiPNat_three]
+
+theorem vpRat_seven (q : ℚ) : vpRat 7 q = v7Rat q := by
+  simp only [vpRat, v7Rat, vpNat_seven]
+
+theorem upRat_seven (q : ℚ) : upRat 7 q = u7Rat q := by
+  simp only [upRat, u7Rat, ppPartNat_seven, chiPNat_seven]
+
+theorem isLeadPCoord_three (z : GaussRat) (u : GVec) :
+    isLeadPCoord 3 z u ↔ isLead3Coord z u := by
+  simp only [isLeadPCoord, isLead3Coord, vpRat_three]
+
+theorem coordSignP_three (z : GaussRat) (u : GVec) :
+    coordSignP 3 z u = coordSign3 z u := by
+  simp only [coordSignP, coordSign3, upRat_three]
+
+theorem isLeadPCoord_seven (z : GaussRat) (u : GVec) :
+    isLeadPCoord 7 z u ↔ isLead7Coord z u := by
+  simp only [isLeadPCoord, isLead7Coord, vpRat_seven]
+
+theorem coordSignP_seven (z : GaussRat) (u : GVec) :
+    coordSignP 7 z u = coordSign7 z u := by
+  simp only [coordSignP, coordSign7, upRat_seven]
+
+/-- Exact specialization: `sp 3` coincides identically with `s3` on all vectors in `ℚ(i)³`. -/
+theorem sp_three_eq_s3 (u : GVec) : sp 3 u = s3 u := by
+  simp only [sp, s3, vpRat_three, isLeadPCoord_three, coordSignP_three]
+
+/-- Exact specialization: `sp 7` coincides identically with `s7` on all vectors in `ℚ(i)³`. -/
+theorem sp_seven_eq_s7 (u : GVec) : sp 7 u = s7 u := by
+  simp only [sp, s7, vpRat_seven, isLeadPCoord_seven, coordSignP_seven]
+
+theorem chiPNat_values (p m : ℕ) : chiPNat p m = 1 ∨ chiPNat p m = -1 := by
+  unfold chiPNat
+  split_ifs with h
+  · exact Or.inl rfl
+  · exact Or.inr rfl
+
+theorem upRat_values (p : ℕ) (q : ℚ) : upRat p q = 0 ∨ upRat p q = 1 ∨ upRat p q = -1 := by
+  unfold upRat
+  split_ifs with h
+  · exact Or.inr (chiPNat_values p _)
+  · exact Or.inl rfl
+
+theorem coordSignP_values (p : ℕ) (z : GaussRat) (u : GVec) :
+    coordSignP p z u = 0 ∨ coordSignP p z u = 1 ∨ coordSignP p z u = -1 := by
+  unfold coordSignP
+  rcases upRat_values p z.normSq with h1 | h1 | h1 <;>
+    rcases upRat_values p (normSqVec u) with h2 | h2 | h2 <;>
+    rw [h1, h2] <;> norm_num
+
+theorem sp_values (p : ℕ) (u : GVec) : sp p u = 0 ∨ sp p u = 1 ∨ sp p u = -1 := by
+  unfold sp
+  split_ifs
+  · exact Or.inl rfl
+  · exact coordSignP_values p u.x u
+  · exact coordSignP_values p u.y u
+  · exact coordSignP_values p u.z u
+
+theorem sp_abs_le_one (p : ℕ) (u : GVec) : |sp p u| ≤ 1 := by
+  rcases sp_values p u with h | h | h <;> rw [h] <;> norm_num
+
+/-- For every prime index `p : ℕ`, `sp p` is bounded by `1` on all rays in `ℚ(i)³`. -/
+theorem sp_isBoundedOnRays (p : ℕ) : IsBoundedOnRays (sp p) :=
+  ⟨1, by norm_num, fun v _ => sp_abs_le_one p v⟩
+
+theorem vpNat_one_of_ge_two {p : ℕ} (hp : 2 ≤ p) : vpNat p 1 = 0 := by
+  have hmod : 1 % p = 1 := Nat.mod_eq_of_lt (by omega : 1 < p)
+  simp [vpNat, vpNatAux, hmod]
+
+theorem ppPartNat_one_of_ge_two {p : ℕ} (hp : 2 ≤ p) : ppPartNat p 1 = 1 := by
+  have hmod : 1 % p = 1 := Nat.mod_eq_of_lt (by omega : 1 < p)
+  simp [ppPartNat, ppPartNatAux, hmod]
+
+theorem vpNat_two_of_ge_three {p : ℕ} (hp : 3 ≤ p) : vpNat p 2 = 0 := by
+  have hmod : 2 % p = 2 := Nat.mod_eq_of_lt (by omega : 2 < p)
+  simp [vpNat, vpNatAux, hmod]
+
+theorem vpRat_natCast {p n : ℕ} (hp : 2 ≤ p) (hn : 0 < n) :
+    vpRat p (n : ℚ) = (vpNat p n : ℤ) := by
+  have hn_q : 0 < (n : ℚ) := by exact_mod_cast hn
+  simp [vpRat, hn_q, vpNat_one_of_ge_two hp]
+
+theorem upRat_natCast {p n : ℕ} (hp : 2 ≤ p) (hn : 0 < n) :
+    upRat p (n : ℚ) = chiPNat p (ppPartNat p n) := by
+  have hn_q : 0 < (n : ℚ) := by exact_mod_cast hn
+  simp [upRat, hn_q, ppPartNat_one_of_ge_two hp]
+
+theorem sp_eq_zero_of_even {p : ℕ} {u : GVec} (heven : vpRat p (normSqVec u) % 2 = 0) :
+    sp p u = 0 := by
+  simp [sp, heven]
+
+theorem sp_eq_zero_of_normSqVec_natCast {p n : ℕ} {u : GVec}
+    (hp : 2 ≤ p) (hn : 0 < n)
+    (hnorm : normSqVec u = (n : ℚ))
+    (heven : (vpNat p n : ℤ) % 2 = 0) :
+    sp p u = 0 := by
+  apply sp_eq_zero_of_even
+  rw [hnorm, vpRat_natCast hp hn]
+  exact heven
+
+theorem sp_eq_of_leadPCoord_x {p n nx : ℕ} {u : GVec}
+    (hp : 2 ≤ p) (hn : 0 < n) (hnx : 0 < nx)
+    (hnorm : normSqVec u = (n : ℚ))
+    (hx : u.x.normSq = (nx : ℚ))
+    (hodd : (vpNat p n : ℤ) % 2 ≠ 0)
+    (hlt : (vpNat p nx : ℤ) < (vpNat p n : ℤ)) :
+    sp p u = chiPNat p (ppPartNat p nx) * chiPNat p (ppPartNat p n) := by
+  have hvn : vpRat p (normSqVec u) = (vpNat p n : ℤ) := by rw [hnorm, vpRat_natCast hp hn]
+  have hvx : vpRat p u.x.normSq = (vpNat p nx : ℤ) := by rw [hx, vpRat_natCast hp hnx]
+  have hun : upRat p (normSqVec u) = chiPNat p (ppPartNat p n) := by rw [hnorm, upRat_natCast hp hn]
+  have hux : upRat p u.x.normSq = chiPNat p (ppPartNat p nx) := by rw [hx, upRat_natCast hp hnx]
+  have hx_pos : 0 < u.x.normSq := by rw [hx]; exact_mod_cast hnx
+  have hlead : isLeadPCoord p u.x u := ⟨hx_pos, by omega⟩
+  have hodd_u : vpRat p (normSqVec u) % 2 ≠ 0 := by omega
+  simp only [sp, hodd_u, hlead, ↓reduceIte, coordSignP, hux, hun]
+
+/-- Universal tomography-ray vanishing: for every `p ≥ 3`, `sp p` vanishes on all nine
+tomography rays (`N ∈ {1, 2}` has `vpNat p N = 0`). -/
+theorem sp_vanishes_on_nine_rays {p : ℕ} (hp : 3 ≤ p) : VanishesOnNineRays (sp p) := by
+  have hp2 : 2 ≤ p := by omega
+  have hv1 : (vpNat p 1 : ℤ) % 2 = 0 := by simp [vpNat_one_of_ge_two hp2]
+  have hv2 : (vpNat p 2 : ℤ) % 2 = 0 := by simp [vpNat_two_of_ge_three hp]
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · exact sp_eq_zero_of_normSqVec_natCast hp2 (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e1, gv]) hv1
+  · exact sp_eq_zero_of_normSqVec_natCast hp2 (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e2, gv]) hv1
+  · exact sp_eq_zero_of_normSqVec_natCast hp2 (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e3, gv]) hv1
+  · exact sp_eq_zero_of_normSqVec_natCast hp2 (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e12, gv]; norm_num) hv2
+  · exact sp_eq_zero_of_normSqVec_natCast hp2 (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e13, gv]; norm_num) hv2
+  · exact sp_eq_zero_of_normSqVec_natCast hp2 (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e23, gv]; norm_num) hv2
+  · exact sp_eq_zero_of_normSqVec_natCast hp2 (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e12i, gv]; norm_num) hv2
+  · exact sp_eq_zero_of_normSqVec_natCast hp2 (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e13i, gv]; norm_num) hv2
+  · exact sp_eq_zero_of_normSqVec_natCast hp2 (by decide)
+      (by simp [normSqVec, GaussRat.normSq, tomo_e23i, gv]; norm_num) hv2
+
+/-- Boolean Euler-criterion quadratic-residue test modulo `p`. -/
+def isQrModP (p m : ℕ) : Bool :=
+  (m % p) ^ ((p - 1) / 2) % p == 1
+
+theorem isQrModP_mod (p m : ℕ) : isQrModP p (m % p) = isQrModP p m := by
+  simp [isQrModP]
+
+theorem chiPNat_eq_ite_isQrModP (p m : ℕ) :
+    chiPNat p m = if isQrModP p m = true then 1 else -1 := by
+  simp [chiPNat, isQrModP]
+
+theorem chiPNat_mod_p (p m : ℕ) : chiPNat p (m % p) = chiPNat p m := by
+  simp [chiPNat]
+
+/-- Decidable finite modular specification for an inert prime `p ≡ 3 (mod 4)`:
+(1) `3 ≤ p`,
+(2) `ℤ/pℤ` has no nonzero zero divisors,
+(3) the Euler-criterion character `isQrModP p` is multiplicative on `(ℤ/pℤ)ˣ`,
+(4) additive inverses in `(ℤ/pℤ)ˣ` have opposite character (`(-1 / p) = -1`), and
+(5) `x² + y² ≡ 0 (mod p)` has only the trivial solution `x ≡ y ≡ 0 (mod p)`. -/
+structure InertPrimeSpec (p : ℕ) : Prop where
+  ge_three : 3 ≤ p
+  mul_mod_ne_zero :
+    ∀ a : Fin p, ∀ b : Fin p, a.val ≠ 0 → b.val ≠ 0 → (a.val * b.val) % p ≠ 0
+  qr_mul :
+    ∀ a : Fin p, ∀ b : Fin p, a.val ≠ 0 → b.val ≠ 0 →
+      isQrModP p (a.val * b.val) = (isQrModP p a.val == isQrModP p b.val)
+  qr_neg :
+    ∀ a : Fin p, ∀ b : Fin p, a.val ≠ 0 → b.val ≠ 0 → (a.val + b.val) % p = 0 →
+      isQrModP p a.val = !isQrModP p b.val
+  sq_add_sq_mod_eq_zero :
+    ∀ x : Fin p, ∀ y : Fin p, (x.val ^ 2 + y.val ^ 2) % p = 0 → x.val = 0 ∧ y.val = 0
+
+instance (p : ℕ) : Decidable (InertPrimeSpec p) :=
+  decidable_of_iff
+    (3 ≤ p ∧
+     (∀ a : Fin p, ∀ b : Fin p, a.val ≠ 0 → b.val ≠ 0 → (a.val * b.val) % p ≠ 0) ∧
+     (∀ a : Fin p, ∀ b : Fin p, a.val ≠ 0 → b.val ≠ 0 →
+       isQrModP p (a.val * b.val) = (isQrModP p a.val == isQrModP p b.val)) ∧
+     (∀ a : Fin p, ∀ b : Fin p, a.val ≠ 0 → b.val ≠ 0 → (a.val + b.val) % p = 0 →
+       isQrModP p a.val = !isQrModP p b.val) ∧
+     (∀ x : Fin p, ∀ y : Fin p, (x.val ^ 2 + y.val ^ 2) % p = 0 → x.val = 0 ∧ y.val = 0))
+    ⟨fun ⟨h1, h2, h3, h4, h5⟩ => ⟨h1, h2, h3, h4, h5⟩,
+     fun h => ⟨h.1, h.2, h.3, h.4, h.5⟩⟩
+
+theorem inertPrimeSpec_three : InertPrimeSpec 3 := by decide
+theorem inertPrimeSpec_seven : InertPrimeSpec 7 := by decide
+theorem inertPrimeSpec_eleven : InertPrimeSpec 11 := by decide
+
+theorem inertPrimeSpec_pos {p : ℕ} (hP : InertPrimeSpec p) : 0 < p := by
+  have := hP.ge_three; omega
+
+theorem inertPrimeSpec_ge_two {p : ℕ} (hP : InertPrimeSpec p) : 2 ≤ p := by
+  have := hP.ge_three; omega
+
+theorem vpNatAux_spec (p : ℕ) : ∀ fuel n : ℕ, p ^ vpNatAux p fuel n * ppPartNatAux p fuel n = n
+  | 0, n => by simp [vpNatAux, ppPartNatAux]
+  | fuel + 1, n => by
+      simp only [vpNatAux, ppPartNatAux]
+      split_ifs with h
+      · have heq := vpNatAux_spec p fuel (n / p)
+        have hdiv : p * (n / p) = n := Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero h.2)
+        calc
+          p ^ (vpNatAux p fuel (n / p) + 1) * ppPartNatAux p fuel (n / p)
+              = p * (p ^ vpNatAux p fuel (n / p) * ppPartNatAux p fuel (n / p)) := by ring
+          _ = p * (n / p) := by rw [heq]
+          _ = n := hdiv
+      · ring
+
+theorem vpNat_spec (p n : ℕ) : p ^ vpNat p n * ppPartNat p n = n :=
+  vpNatAux_spec p n n
+
+theorem ppPartNatAux_mod_p_ne_zero {p : ℕ} (hp : 2 ≤ p) :
+    ∀ fuel n : ℕ, 0 < n → n ≤ fuel → ppPartNatAux p fuel n % p ≠ 0
+  | 0, n, hn, hle => by omega
+  | fuel + 1, n, hn, hle => by
+      simp only [ppPartNatAux]
+      split_ifs with h
+      · have hle_p : p ≤ n := Nat.le_of_dvd h.1 (Nat.dvd_of_mod_eq_zero h.2)
+        have hpos : 0 < n / p := Nat.div_pos hle_p (by omega)
+        have hlt : n / p < n := Nat.div_lt_self h.1 hp
+        exact ppPartNatAux_mod_p_ne_zero hp fuel (n / p) hpos (by omega)
+      · omega
+
+theorem ppPartNat_mod_p_ne_zero {p n : ℕ} (hp : 2 ≤ p) (hn : 0 < n) : ppPartNat p n % p ≠ 0 :=
+  ppPartNatAux_mod_p_ne_zero hp n n hn (le_refl n)
+
+theorem ppPartNat_pos {p n : ℕ} (hp : 2 ≤ p) (hn : 0 < n) : 0 < ppPartNat p n := by
+  have hmod := ppPartNat_mod_p_ne_zero hp hn
+  by_contra h0
+  have hz : ppPartNat p n = 0 := by omega
+  simp [hz] at hmod
+
+theorem pow_p_mul_unique {p : ℕ} (hp : 2 ≤ p) :
+    ∀ a b m k : ℕ, m % p ≠ 0 → k % p ≠ 0 → p ^ a * m = p ^ b * k → a = b ∧ m = k
+  | 0, 0, m, k, _, _, heq => by
+      simp only [pow_zero, one_mul] at heq
+      exact ⟨rfl, heq⟩
+  | 0, b + 1, m, k, hm, _, heq => by
+      have hm0 : m % p = 0 := by
+        have h1 : m = p * (p ^ b * k) := by
+          simp only [pow_zero, one_mul, pow_succ] at heq
+          linarith
+        rw [h1, Nat.mul_mod_right]
+      exact False.elim (hm hm0)
+  | a + 1, 0, m, k, _, hk, heq => by
+      have hk0 : k % p = 0 := by
+        have h1 : k = p * (p ^ a * m) := by
+          simp only [pow_zero, one_mul, pow_succ] at heq
+          linarith
+        rw [h1, Nat.mul_mod_right]
+      exact False.elim (hk hk0)
+  | a + 1, b + 1, m, k, hm, hk, heq => by
+      have heq_mul : p * (p ^ a * m) = p * (p ^ b * k) := by
+        simp only [pow_succ] at heq
+        linarith
+      have heq' : p ^ a * m = p ^ b * k :=
+        Nat.eq_of_mul_eq_mul_left (by omega : 0 < p) heq_mul
+      obtain ⟨hab, hmk⟩ := pow_p_mul_unique hp a b m k hm hk heq'
+      exact ⟨congrArg (· + 1) hab, hmk⟩
+
+theorem vpNat_ppPartNat_eq_of_pow_mul {p n a m : ℕ} (hp : 2 ≤ p)
+    (hm : m % p ≠ 0) (heq : p ^ a * m = n) :
+    vpNat p n = a ∧ ppPartNat p n = m := by
+  have hm_pos : 0 < m := by
+    by_contra h0
+    have hz : m = 0 := by omega
+    simp [hz] at hm
+  have hpow_pos : 0 < p ^ a := pow_pos (by omega : 0 < p) a
+  have hn : 0 < n := by nlinarith
+  exact pow_p_mul_unique hp (vpNat p n) a (ppPartNat p n) m
+    (ppPartNat_mod_p_ne_zero hp hn) hm ((vpNat_spec p n).trans heq.symm)
+
+theorem mul_mod_p_ne_zero {p : ℕ} (hP : InertPrimeSpec p) {a b : ℕ}
+    (ha : a % p ≠ 0) (hb : b % p ≠ 0) :
+    (a * b) % p ≠ 0 := by
+  have hp : 0 < p := inertPrimeSpec_pos hP
+  rw [Nat.mul_mod]
+  exact hP.mul_mod_ne_zero ⟨a % p, Nat.mod_lt a hp⟩ ⟨b % p, Nat.mod_lt b hp⟩ ha hb
+
+theorem chiPNat_sq (p m : ℕ) : chiPNat p m * chiPNat p m = 1 := by
+  rcases chiPNat_values p m with h | h <;> rw [h] <;> ring
+
+theorem chiPNat_mul {p : ℕ} (hP : InertPrimeSpec p) {a b : ℕ}
+    (ha : a % p ≠ 0) (hb : b % p ≠ 0) :
+    chiPNat p (a * b) = chiPNat p a * chiPNat p b := by
+  have hp : 0 < p := inertPrimeSpec_pos hP
+  have hqr := hP.qr_mul ⟨a % p, Nat.mod_lt a hp⟩ ⟨b % p, Nat.mod_lt b hp⟩ ha hb
+  dsimp only at hqr
+  have h1 : isQrModP p (a * b) = isQrModP p (a % p * (b % p)) := by
+    simp [isQrModP, -Nat.mul_mod]
+  rw [chiPNat_eq_ite_isQrModP p (a * b), chiPNat_eq_ite_isQrModP p a, chiPNat_eq_ite_isQrModP p b,
+    h1, hqr, isQrModP_mod p a, isQrModP_mod p b]
+  cases isQrModP p a <;> cases isQrModP p b <;> norm_num
+
+theorem chiPNat_eq_of_mul_eq {p : ℕ} (hP : InertPrimeSpec p) {a b c d : ℕ}
+    (ha : a % p ≠ 0) (hb : b % p ≠ 0) (hc : c % p ≠ 0) (hd : d % p ≠ 0)
+    (heq : a * b = c * d) :
+    chiPNat p (a * d) = chiPNat p (c * b) := by
+  have hmul : chiPNat p a * chiPNat p b = chiPNat p c * chiPNat p d := by
+    rw [← chiPNat_mul hP ha hb, ← chiPNat_mul hP hc hd, heq]
+  have hsq_b := chiPNat_sq p b
+  have hsq_d := chiPNat_sq p d
+  rw [chiPNat_mul hP ha hd, chiPNat_mul hP hc hb]
+  linear_combination
+    (chiPNat p b * chiPNat p d) * hmul -
+    (chiPNat p a * chiPNat p d) * hsq_b +
+    (chiPNat p c * chiPNat p b) * hsq_d
+
+theorem chiPNat_add_cancel {p : ℕ} (hP : InertPrimeSpec p) {a b : ℕ}
+    (ha : a % p ≠ 0) (hb : b % p ≠ 0) (hsum : (a + b) % p = 0) :
+    chiPNat p a + chiPNat p b = 0 := by
+  have hp : 0 < p := inertPrimeSpec_pos hP
+  have hsum_mod : (a % p + b % p) % p = 0 := by rw [← Nat.add_mod, hsum]
+  have hqr := hP.qr_neg ⟨a % p, Nat.mod_lt a hp⟩ ⟨b % p, Nat.mod_lt b hp⟩ ha hb hsum_mod
+  dsimp only at hqr
+  rw [isQrModP_mod p a, isQrModP_mod p b] at hqr
+  rw [chiPNat_eq_ite_isQrModP p a, chiPNat_eq_ite_isQrModP p b, hqr]
+  cases isQrModP p b <;> norm_num
+
+theorem vpNat_ppPartNat_mul {p : ℕ} (hP : InertPrimeSpec p) {m k : ℕ} (hm : 0 < m) (hk : 0 < k) :
+    vpNat p (m * k) = vpNat p m + vpNat p k ∧
+    ppPartNat p (m * k) = ppPartNat p m * ppPartNat p k := by
+  have hp2 := inertPrimeSpec_ge_two hP
+  apply vpNat_ppPartNat_eq_of_pow_mul hp2
+    (mul_mod_p_ne_zero hP (ppPartNat_mod_p_ne_zero hp2 hm) (ppPartNat_mod_p_ne_zero hp2 hk))
+  calc
+    p ^ (vpNat p m + vpNat p k) * (ppPartNat p m * ppPartNat p k)
+        = (p ^ vpNat p m * ppPartNat p m) * (p ^ vpNat p k * ppPartNat p k) := by ring
+    _ = m * k := by rw [vpNat_spec p m, vpNat_spec p k]
+
+theorem vpNat_add_of_lt {p X Y : ℕ} (hp : 2 ≤ p) (hX : 0 < X) (_hY : 0 < Y)
+    (hlt : vpNat p X < vpNat p Y) :
+    vpNat p (X + Y) = vpNat p X ∧ ppPartNat p (X + Y) % p = ppPartNat p X % p := by
+  let d := vpNat p Y - vpNat p X - 1
+  have hb : vpNat p Y = vpNat p X + (d + 1) := by omega
+  let m := ppPartNat p X + p ^ (d + 1) * ppPartNat p Y
+  have hm_mod : m % p = ppPartNat p X % p := by
+    have hpow : (p ^ (d + 1) * ppPartNat p Y) % p = 0 := by
+      have h1 : p ^ (d + 1) * ppPartNat p Y = p * (p ^ d * ppPartNat p Y) := by ring
+      rw [h1, Nat.mul_mod_right]
+    rw [Nat.add_mod, hpow, add_zero, Nat.mod_mod]
+  have hm_ne : m % p ≠ 0 := by
+    rw [hm_mod]
+    exact ppPartNat_mod_p_ne_zero hp hX
+  have heq : p ^ vpNat p X * m = X + Y := by
+    calc
+      p ^ vpNat p X * m
+          = p ^ vpNat p X * ppPartNat p X + p ^ (vpNat p X + (d + 1)) * ppPartNat p Y := by
+            simp only [m, pow_add]; ring
+      _ = p ^ vpNat p X * ppPartNat p X + p ^ vpNat p Y * ppPartNat p Y := by rw [← hb]
+      _ = X + Y := by rw [vpNat_spec p X, vpNat_spec p Y]
+  obtain ⟨hv, hpp⟩ := vpNat_ppPartNat_eq_of_pow_mul hp hm_ne heq
+  exact ⟨hv, by rw [hpp, hm_mod]⟩
+
+theorem vpNat_add_gt_imp_eq_and_mod_p {p X Y : ℕ} (hp : 2 ≤ p) (hX : 0 < X) (hY : 0 < Y)
+    (hgt : vpNat p X < vpNat p (X + Y)) :
+    vpNat p X = vpNat p Y ∧ (ppPartNat p X + ppPartNat p Y) % p = 0 := by
+  have heq_v : vpNat p X = vpNat p Y := by
+    rcases lt_trichotomy (vpNat p X) (vpNat p Y) with hlt | heq | hlt
+    · have h1 := (vpNat_add_of_lt hp hX hY hlt).1
+      omega
+    · exact heq
+    · have h1 := (vpNat_add_of_lt hp hY hX hlt).1
+      rw [Nat.add_comm Y X] at h1
+      omega
+  refine ⟨heq_v, ?_⟩
+  by_contra hmod
+  have heq_sum : p ^ vpNat p X * (ppPartNat p X + ppPartNat p Y) = X + Y := by
+    calc
+      p ^ vpNat p X * (ppPartNat p X + ppPartNat p Y)
+          = p ^ vpNat p X * ppPartNat p X + p ^ vpNat p Y * ppPartNat p Y := by
+            rw [← heq_v]; ring
+      _ = X + Y := by rw [vpNat_spec p X, vpNat_spec p Y]
+  have hv := (vpNat_ppPartNat_eq_of_pow_mul hp hmod heq_sum).1
+  omega
+
+theorem vpNat_add_ge_min {p X Y : ℕ} (hP : InertPrimeSpec p) (hX : 0 < X) (hY : 0 < Y) :
+    min (vpNat p X) (vpNat p Y) ≤ vpNat p (X + Y) := by
+  have hp2 := inertPrimeSpec_ge_two hP
+  rcases lt_trichotomy (vpNat p X) (vpNat p Y) with hlt | heq | hlt
+  · have h1 := (vpNat_add_of_lt hp2 hX hY hlt).1
+    omega
+  · have hsum_pos : 0 < ppPartNat p X + ppPartNat p Y := by
+      have hpX := ppPartNat_pos hp2 hX
+      omega
+    have hpow_pos : 0 < p ^ vpNat p X := pow_pos (inertPrimeSpec_pos hP) (vpNat p X)
+    have heq_sum : X + Y = p ^ vpNat p X * (ppPartNat p X + ppPartNat p Y) := by
+      calc
+        X + Y = p ^ vpNat p X * ppPartNat p X + p ^ vpNat p Y * ppPartNat p Y := by
+          rw [vpNat_spec p X, vpNat_spec p Y]
+        _ = p ^ vpNat p X * (ppPartNat p X + ppPartNat p Y) := by
+          rw [← heq]; ring
+    have h1_mod : 1 % p ≠ 0 := by
+      rw [Nat.mod_eq_of_lt (by omega : 1 < p)]
+      decide
+    have hv_pow : vpNat p (p ^ vpNat p X) = vpNat p X :=
+      (vpNat_ppPartNat_eq_of_pow_mul hp2 (m := 1) h1_mod (by ring)).1
+    have hv_mul := (vpNat_ppPartNat_mul hP hpow_pos hsum_pos).1
+    rw [heq_sum, hv_mul, hv_pow]
+    omega
+  · have h1 := (vpNat_add_of_lt hp2 hY hX hlt).1
+    rw [Nat.add_comm Y X] at h1
+    omega
+
+theorem sq_add_sq_mod_p_eq_zero_iff {p : ℕ} (hP : InertPrimeSpec p) (x y : ℕ) :
+    (x ^ 2 + y ^ 2) % p = 0 ↔ x % p = 0 ∧ y % p = 0 := by
+  have hp : 0 < p := inertPrimeSpec_pos hP
+  constructor
+  · intro h
+    have hmod : ((x % p) ^ 2 + (y % p) ^ 2) % p = 0 := by
+      simpa [sq, Nat.add_mod, Nat.mul_mod] using h
+    exact hP.sq_add_sq_mod_eq_zero ⟨x % p, Nat.mod_lt x hp⟩ ⟨y % p, Nat.mod_lt y hp⟩ hmod
+  · rintro ⟨hx, hy⟩
+    simp [sq, Nat.add_mod, Nat.mul_mod x x, Nat.mul_mod y y, hx, hy]
+
+theorem vpNat_sq_add_sq_even {p : ℕ} (hP : InertPrimeSpec p) (x y : ℕ) :
+    vpNat p (x ^ 2 + y ^ 2) % 2 = 0 := by
+  have hp2 := inertPrimeSpec_ge_two hP
+  have hp_pos := inertPrimeSpec_pos hP
+  have h1_mod : 1 % p ≠ 0 := by
+    rw [Nat.mod_eq_of_lt (by omega : 1 < p)]
+    decide
+  have hvp2 : vpNat p (p ^ 2) = 2 :=
+    (vpNat_ppPartNat_eq_of_pow_mul hp2 (m := 1) h1_mod (by ring)).1
+  have hp2_pos : 0 < p ^ 2 := pow_pos hp_pos 2
+  have hmain : ∀ s : ℕ, ∀ a b : ℕ, a + b = s → vpNat p (a ^ 2 + b ^ 2) % 2 = 0 := by
+    intro s
+    induction s using Nat.strong_induction_on with
+    | h s ih =>
+      intro a b hab
+      by_cases h0 : a = 0 ∧ b = 0
+      · rcases h0 with ⟨rfl, rfl⟩
+        simp [vpNat, vpNatAux]
+      · by_cases hmod : (a ^ 2 + b ^ 2) % p = 0
+        · obtain ⟨hap, hbp⟩ := (sq_add_sq_mod_p_eq_zero_iff hP a b).mp hmod
+          have ha_eq : a = p * (a / p) := (Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero hap)).symm
+          have hb_eq : b = p * (b / p) := (Nat.mul_div_cancel' (Nat.dvd_of_mod_eq_zero hbp)).symm
+          have hlt_s : a / p + b / p < s := by
+            have ha_le : a / p ≤ a := Nat.div_le_self a p
+            have hb_le : b / p ≤ b := Nat.div_le_self b p
+            rcases not_and_or.mp h0 with ha_nz | hb_nz
+            · have ha_lt : a / p < a := Nat.div_lt_self (by omega) hp2
+              omega
+            · have hb_lt : b / p < b := Nat.div_lt_self (by omega) hp2
+              omega
+          have hsub_pos : 0 < (a / p) ^ 2 + (b / p) ^ 2 := by
+            rcases not_and_or.mp h0 with ha_nz | hb_nz
+            · have ha_pos : 0 < a / p := Nat.div_pos (Nat.le_of_dvd (by omega) (Nat.dvd_of_mod_eq_zero hap)) hp_pos
+              nlinarith
+            · have hb_pos : 0 < b / p := Nat.div_pos (Nat.le_of_dvd (by omega) (Nat.dvd_of_mod_eq_zero hbp)) hp_pos
+              nlinarith
+          have hsq_eq : a ^ 2 + b ^ 2 = p ^ 2 * ((a / p) ^ 2 + (b / p) ^ 2) := by
+            calc
+              a ^ 2 + b ^ 2 = (p * (a / p)) ^ 2 + (p * (b / p)) ^ 2 := by
+                rw [← ha_eq, ← hb_eq]
+              _ = p ^ 2 * ((a / p) ^ 2 + (b / p) ^ 2) := by ring
+          have hmul := (vpNat_ppPartNat_mul hP hp2_pos hsub_pos).1
+          have hrec := ih (a / p + b / p) hlt_s (a / p) (b / p) rfl
+          rw [hsq_eq, hmul, hvp2]
+          omega
+        · have hv0 :=
+            (vpNat_ppPartNat_eq_of_pow_mul hp2 (n := a ^ 2 + b ^ 2) (a := 0) (m := a ^ 2 + b ^ 2)
+              hmod (by ring)).1
+          rw [hv0]
+  exact hmain (x + y) x y rfl
+
+theorem vpRat_upRat_of_nat_div {p : ℕ} (hP : InertPrimeSpec p) {q : ℚ} {n d : ℕ}
+    (hn : 0 < n) (hd : 0 < d) (hq : q = (n : ℚ) / (d : ℚ)) :
+    0 < q ∧
+    vpRat p q = (vpNat p n : ℤ) - (vpNat p d : ℤ) ∧
+    upRat p q = chiPNat p (ppPartNat p n * ppPartNat p d) := by
+  have hp2 := inertPrimeSpec_ge_two hP
+  have hn_q : 0 < (n : ℚ) := by exact_mod_cast hn
+  have hd_q : 0 < (d : ℚ) := by exact_mod_cast hd
+  have hq_pos : 0 < q := by
+    rw [hq]
+    exact div_pos hn_q hd_q
+  obtain ⟨hnum_pos, hden_pos, hq_can⟩ := rat_pos_eq_natAbs_div_den hq_pos
+  have hden_q : (q.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hden_pos)
+  have hd_ne : (d : ℚ) ≠ 0 := ne_of_gt hd_q
+  have hcross_q : (q.num.natAbs : ℚ) * (d : ℚ) = (n : ℚ) * (q.den : ℚ) := by
+    have heq_div : (q.num.natAbs : ℚ) / (q.den : ℚ) = (n : ℚ) / (d : ℚ) :=
+      hq_can.symm.trans hq
+    exact (div_eq_div_iff hden_q hd_ne).mp heq_div
+  have hcross : q.num.natAbs * d = n * q.den := by
+    exact_mod_cast hcross_q
+  obtain ⟨hv1, hp1⟩ := vpNat_ppPartNat_mul hP hnum_pos hd
+  obtain ⟨hv2, hp2_mul⟩ := vpNat_ppPartNat_mul hP hn hden_pos
+  have hv_eq : vpNat p q.num.natAbs + vpNat p d = vpNat p n + vpNat p q.den := by
+    rw [← hv1, ← hv2, hcross]
+  have hp_eq : ppPartNat p q.num.natAbs * ppPartNat p d = ppPartNat p n * ppPartNat p q.den := by
+    rw [← hp1, ← hp2_mul, hcross]
+  have hchi_eq :
+      chiPNat p (ppPartNat p q.num.natAbs * ppPartNat p q.den) =
+      chiPNat p (ppPartNat p n * ppPartNat p d) :=
+    chiPNat_eq_of_mul_eq hP
+      (ppPartNat_mod_p_ne_zero hp2 hnum_pos)
+      (ppPartNat_mod_p_ne_zero hp2 hd)
+      (ppPartNat_mod_p_ne_zero hp2 hn)
+      (ppPartNat_mod_p_ne_zero hp2 hden_pos)
+      hp_eq
+  refine ⟨hq_pos, ?_, ?_⟩
+  · simp only [vpRat, hq_pos, ↓reduceIte]
+    omega
+  · simp only [upRat, hq_pos, ↓reduceIte, hchi_eq]
+
+theorem upRat_values_of_pos (p : ℕ) {q : ℚ} (hq : 0 < q) : upRat p q = 1 ∨ upRat p q = -1 := by
+  simp only [upRat, hq, ↓reduceIte]
+  exact chiPNat_values p _
+
+theorem upRat_sq_of_pos (p : ℕ) {q : ℚ} (hq : 0 < q) : upRat p q * upRat p q = 1 := by
+  rcases upRat_values_of_pos p hq with h | h <;> rw [h] <;> ring
+
+theorem vpRat_mul {p : ℕ} (hP : InertPrimeSpec p) {a b : ℚ} (ha : 0 < a) (hb : 0 < b) :
+    vpRat p (a * b) = vpRat p a + vpRat p b := by
+  obtain ⟨hna, hda, ha_eq⟩ := rat_pos_eq_natAbs_div_den ha
+  obtain ⟨hnb, hdb, hb_eq⟩ := rat_pos_eq_natAbs_div_den hb
+  have hmul_eq : a * b = ((a.num.natAbs * b.num.natAbs : ℕ) : ℚ) / ((a.den * b.den : ℕ) : ℚ) := by
+    push_cast
+    rw [← div_mul_div_comm, ← ha_eq, ← hb_eq]
+  have hvab := (vpRat_upRat_of_nat_div hP (Nat.mul_pos hna hnb) (Nat.mul_pos hda hdb) hmul_eq).2.1
+  have hva := (vpRat_upRat_of_nat_div hP hna hda ha_eq).2.1
+  have hvb := (vpRat_upRat_of_nat_div hP hnb hdb hb_eq).2.1
+  have hvn := (vpNat_ppPartNat_mul hP hna hnb).1
+  have hvd := (vpNat_ppPartNat_mul hP hda hdb).1
+  rw [hvab, hva, hvb, hvn, hvd]
+  omega
+
+theorem upRat_mul {p : ℕ} (hP : InertPrimeSpec p) {a b : ℚ} (ha : 0 < a) (hb : 0 < b) :
+    upRat p (a * b) = upRat p a * upRat p b := by
+  have hp2 := inertPrimeSpec_ge_two hP
+  obtain ⟨hna, hda, ha_eq⟩ := rat_pos_eq_natAbs_div_den ha
+  obtain ⟨hnb, hdb, hb_eq⟩ := rat_pos_eq_natAbs_div_den hb
+  have hmul_eq : a * b = ((a.num.natAbs * b.num.natAbs : ℕ) : ℚ) / ((a.den * b.den : ℕ) : ℚ) := by
+    push_cast
+    rw [← div_mul_div_comm, ← ha_eq, ← hb_eq]
+  have huab := (vpRat_upRat_of_nat_div hP (Nat.mul_pos hna hnb) (Nat.mul_pos hda hdb) hmul_eq).2.2
+  have hua := (vpRat_upRat_of_nat_div hP hna hda ha_eq).2.2
+  have hub := (vpRat_upRat_of_nat_div hP hnb hdb hb_eq).2.2
+  have hpn := (vpNat_ppPartNat_mul hP hna hnb).2
+  have hpd := (vpNat_ppPartNat_mul hP hda hdb).2
+  rw [huab, hua, hub, hpn, hpd]
+  have hma_ne : (ppPartNat p a.num.natAbs * ppPartNat p a.den) % p ≠ 0 :=
+    mul_mod_p_ne_zero hP (ppPartNat_mod_p_ne_zero hp2 hna) (ppPartNat_mod_p_ne_zero hp2 hda)
+  have hmb_ne : (ppPartNat p b.num.natAbs * ppPartNat p b.den) % p ≠ 0 :=
+    mul_mod_p_ne_zero hP (ppPartNat_mod_p_ne_zero hp2 hnb) (ppPartNat_mod_p_ne_zero hp2 hdb)
+  have hcomm :
+      ppPartNat p a.num.natAbs * ppPartNat p b.num.natAbs *
+        (ppPartNat p a.den * ppPartNat p b.den) =
+      (ppPartNat p a.num.natAbs * ppPartNat p a.den) *
+        (ppPartNat p b.num.natAbs * ppPartNat p b.den) := by
+    ring
+  rw [hcomm, chiPNat_mul hP hma_ne hmb_ne]
+
+theorem vpRat_add_of_lt {p : ℕ} (hP : InertPrimeSpec p) {a b : ℚ}
+    (ha : 0 < a) (hb : 0 < b) (hlt : vpRat p a < vpRat p b) :
+    vpRat p (a + b) = vpRat p a ∧ upRat p (a + b) = upRat p a := by
+  have hp2 := inertPrimeSpec_ge_two hP
+  obtain ⟨hna, hda, ha_eq⟩ := rat_pos_eq_natAbs_div_den ha
+  obtain ⟨hnb, hdb, hb_eq⟩ := rat_pos_eq_natAbs_div_den hb
+  let X := a.num.natAbs * b.den
+  let Y := b.num.natAbs * a.den
+  let D := a.den * b.den
+  have hX : 0 < X := Nat.mul_pos hna hdb
+  have hY : 0 < Y := Nat.mul_pos hnb hda
+  have hD : 0 < D := Nat.mul_pos hda hdb
+  have ha_D : a = (X : ℚ) / (D : ℚ) := by
+    have hdb_ne : (b.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdb)
+    simp only [X, D, Nat.cast_mul]
+    rw [mul_div_mul_right _ _ hdb_ne, ← ha_eq]
+  have hb_D : b = (Y : ℚ) / (D : ℚ) := by
+    have hda_ne : (a.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hda)
+    simp only [Y, D, Nat.cast_mul]
+    rw [mul_comm (a.den : ℚ) (b.den : ℚ), mul_div_mul_right _ _ hda_ne, ← hb_eq]
+  have hab_D : a + b = ((X + Y : ℕ) : ℚ) / (D : ℚ) := by
+    rw [ha_D, hb_D, Nat.cast_add, add_div]
+  obtain ⟨_, hva, hua⟩ := vpRat_upRat_of_nat_div hP hX hD ha_D
+  obtain ⟨_, hvb, _⟩ := vpRat_upRat_of_nat_div hP hY hD hb_D
+  obtain ⟨_, hvab, huab⟩ := vpRat_upRat_of_nat_div hP (Nat.add_pos_left hX Y) hD hab_D
+  have hlt_nat : vpNat p X < vpNat p Y := by omega
+  obtain ⟨hv_add, hp_add⟩ := vpNat_add_of_lt hp2 hX hY hlt_nat
+  refine ⟨by omega, ?_⟩
+  rw [huab, hua, ← chiPNat_mod_p p (ppPartNat p (X + Y) * ppPartNat p D),
+    ← chiPNat_mod_p p (ppPartNat p X * ppPartNat p D)]
+  have hmod_mul :
+      (ppPartNat p (X + Y) * ppPartNat p D) % p = (ppPartNat p X * ppPartNat p D) % p := by
+    rw [Nat.mul_mod, hp_add, ← Nat.mul_mod]
+  rw [hmod_mul]
+
+theorem vpRat_add_gt_imp_eq_and_upRat_cancel {p : ℕ} (hP : InertPrimeSpec p) {a b : ℚ}
+    (ha : 0 < a) (hb : 0 < b) (hgt : vpRat p a < vpRat p (a + b)) :
+    vpRat p a = vpRat p b ∧ upRat p a + upRat p b = 0 := by
+  have hp2 := inertPrimeSpec_ge_two hP
+  obtain ⟨hna, hda, ha_eq⟩ := rat_pos_eq_natAbs_div_den ha
+  obtain ⟨hnb, hdb, hb_eq⟩ := rat_pos_eq_natAbs_div_den hb
+  let X := a.num.natAbs * b.den
+  let Y := b.num.natAbs * a.den
+  let D := a.den * b.den
+  have hX : 0 < X := Nat.mul_pos hna hdb
+  have hY : 0 < Y := Nat.mul_pos hnb hda
+  have hD : 0 < D := Nat.mul_pos hda hdb
+  have ha_D : a = (X : ℚ) / (D : ℚ) := by
+    have hdb_ne : (b.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdb)
+    simp only [X, D, Nat.cast_mul]
+    rw [mul_div_mul_right _ _ hdb_ne, ← ha_eq]
+  have hb_D : b = (Y : ℚ) / (D : ℚ) := by
+    have hda_ne : (a.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hda)
+    simp only [Y, D, Nat.cast_mul]
+    rw [mul_comm (a.den : ℚ) (b.den : ℚ), mul_div_mul_right _ _ hda_ne, ← hb_eq]
+  have hab_D : a + b = ((X + Y : ℕ) : ℚ) / (D : ℚ) := by
+    rw [ha_D, hb_D, Nat.cast_add, add_div]
+  obtain ⟨_, hva, hua⟩ := vpRat_upRat_of_nat_div hP hX hD ha_D
+  obtain ⟨_, hvb, hub⟩ := vpRat_upRat_of_nat_div hP hY hD hb_D
+  obtain ⟨_, hvab, _⟩ := vpRat_upRat_of_nat_div hP (Nat.add_pos_left hX Y) hD hab_D
+  have hgt_nat : vpNat p X < vpNat p (X + Y) := by omega
+  obtain ⟨hv_eq, hp_sum⟩ := vpNat_add_gt_imp_eq_and_mod_p hp2 hX hY hgt_nat
+  refine ⟨by omega, ?_⟩
+  rw [hua, hub]
+  have hpX_ne := ppPartNat_mod_p_ne_zero hp2 hX
+  have hpY_ne := ppPartNat_mod_p_ne_zero hp2 hY
+  have hpD_ne := ppPartNat_mod_p_ne_zero hp2 hD
+  rw [chiPNat_mul hP hpX_ne hpD_ne, chiPNat_mul hP hpY_ne hpD_ne]
+  have hcancel := chiPNat_add_cancel hP hpX_ne hpY_ne hp_sum
+  linear_combination chiPNat p (ppPartNat p D) * hcancel
+
+theorem vpRat_add_ge_min {p : ℕ} (hP : InertPrimeSpec p) {a b : ℚ} (ha : 0 < a) (hb : 0 < b) :
+    min (vpRat p a) (vpRat p b) ≤ vpRat p (a + b) := by
+  obtain ⟨hna, hda, ha_eq⟩ := rat_pos_eq_natAbs_div_den ha
+  obtain ⟨hnb, hdb, hb_eq⟩ := rat_pos_eq_natAbs_div_den hb
+  let X := a.num.natAbs * b.den
+  let Y := b.num.natAbs * a.den
+  let D := a.den * b.den
+  have hX : 0 < X := Nat.mul_pos hna hdb
+  have hY : 0 < Y := Nat.mul_pos hnb hda
+  have hD : 0 < D := Nat.mul_pos hda hdb
+  have ha_D : a = (X : ℚ) / (D : ℚ) := by
+    have hdb_ne : (b.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hdb)
+    simp only [X, D, Nat.cast_mul]
+    rw [mul_div_mul_right _ _ hdb_ne, ← ha_eq]
+  have hb_D : b = (Y : ℚ) / (D : ℚ) := by
+    have hda_ne : (a.den : ℚ) ≠ 0 := ne_of_gt (by exact_mod_cast hda)
+    simp only [Y, D, Nat.cast_mul]
+    rw [mul_comm (a.den : ℚ) (b.den : ℚ), mul_div_mul_right _ _ hda_ne, ← hb_eq]
+  have hab_D : a + b = ((X + Y : ℕ) : ℚ) / (D : ℚ) := by
+    rw [ha_D, hb_D, Nat.cast_add, add_div]
+  obtain ⟨_, hva, _⟩ := vpRat_upRat_of_nat_div hP hX hD ha_D
+  obtain ⟨_, hvb, _⟩ := vpRat_upRat_of_nat_div hP hY hD hb_D
+  obtain ⟨_, hvab, _⟩ := vpRat_upRat_of_nat_div hP (Nat.add_pos_left hX Y) hD hab_D
+  have hmin := vpNat_add_ge_min hP hX hY
+  omega
+
+/-- For any inert prime `p` (`InertPrimeSpec p`), every Gaussian rational `z ∈ ℚ(i)` has even
+`p`-adic squared-norm valuation `vpRat p z.normSq % 2 = 0`. -/
+theorem vpRat_normSq_even {p : ℕ} (hP : InertPrimeSpec p) (z : GaussRat) :
+    vpRat p z.normSq % 2 = 0 := by
+  by_cases hpos : 0 < z.normSq
+  · let X := z.re.num.natAbs * z.im.den
+    let Y := z.im.num.natAbs * z.re.den
+    let D := z.re.den * z.im.den
+    have hD1 : 0 < D := Nat.mul_pos z.re.den_pos z.im.den_pos
+    have hD_pos : 0 < D * D := Nat.mul_pos hD1 hD1
+    have hre_den_sq_ne : ((z.re.den * z.re.den : ℕ) : ℚ) ≠ 0 :=
+      ne_of_gt (by exact_mod_cast Nat.mul_pos z.re.den_pos z.re.den_pos)
+    have him_den_sq_ne : ((z.im.den * z.im.den : ℕ) : ℚ) ≠ 0 :=
+      ne_of_gt (by exact_mod_cast Nat.mul_pos z.im.den_pos z.im.den_pos)
+    have hnorm_eq : z.normSq = ((X ^ 2 + Y ^ 2 : ℕ) : ℚ) / ((D * D : ℕ) : ℚ) := by
+      simp only [GaussRat.normSq]
+      rw [rat_sq_eq_natAbs_sq_div_den_sq z.re, rat_sq_eq_natAbs_sq_div_den_sq z.im,
+        div_add_div _ _ hre_den_sq_ne him_den_sq_ne]
+      simp only [X, Y, D]
+      push_cast
+      ring
+    have hXY_pos : 0 < X ^ 2 + Y ^ 2 := by
+      by_contra hle
+      have h0 : X ^ 2 + Y ^ 2 = 0 := by omega
+      rw [h0] at hnorm_eq
+      simp at hnorm_eq
+      linarith
+    have hv := (vpRat_upRat_of_nat_div hP hXY_pos hD_pos hnorm_eq).2.1
+    have hvD := (vpNat_ppPartNat_mul hP hD1 hD1).1
+    have heven := vpNat_sq_add_sq_even hP X Y
+    rw [hv, hvD]
+    omega
+  · simp only [vpRat, hpos, ↓reduceIte]
+    rfl
+
+theorem four_term_vpRat_cancel {p : ℕ} (hP : InertPrimeSpec p) {A B C D : ℚ}
+    (hA : 0 < A) (hB_nn : 0 ≤ B) (hC_nn : 0 ≤ C) (_hD : 0 < D)
+    (hsum : A + B + C = D)
+    (hA_odd : vpRat p A % 2 ≠ 0)
+    (hB_odd : 0 < B → vpRat p B % 2 ≠ 0)
+    (hC_even : vpRat p C % 2 = 0)
+    (hlt_D : vpRat p A < vpRat p D) :
+    0 < B ∧ vpRat p A = vpRat p B ∧ upRat p A + upRat p B = 0 := by
+  have hAB_pos : 0 < A + B := by linarith
+  have hAB_gt : vpRat p A < vpRat p (A + B) := by
+    by_contra hle
+    have hle' : vpRat p (A + B) ≤ vpRat p A := not_lt.mp hle
+    have hAB_odd : vpRat p (A + B) % 2 ≠ 0 := by
+      rcases eq_or_lt_of_le hB_nn with rfl | hB_pos
+      · simp [hA_odd]
+      · rcases lt_or_ge (vpRat p B) (vpRat p A) with hlt_BA | hge_BA
+        · have hvBA := (vpRat_add_of_lt hP hB_pos hA hlt_BA).1
+          rw [add_comm] at hvBA
+          rw [hvBA]
+          exact hB_odd hB_pos
+        · have hmin := vpRat_add_ge_min hP hA hB_pos
+          have heq_AB : vpRat p (A + B) = vpRat p A := by omega
+          rw [heq_AB]
+          exact hA_odd
+    have hAB_lt_D : vpRat p (A + B) < vpRat p (A + B + C) := by
+      rw [hsum]
+      omega
+    rcases eq_or_lt_of_le hC_nn with rfl | hC_pos
+    · simp at hAB_lt_D
+    · have hv_eq := (vpRat_add_gt_imp_eq_and_upRat_cancel hP hAB_pos hC_pos hAB_lt_D).1
+      omega
+  rcases eq_or_lt_of_le hB_nn with rfl | hB_pos
+  · simp at hAB_gt
+  · obtain ⟨hv_eq, hu_sum⟩ := vpRat_add_gt_imp_eq_and_upRat_cancel hP hA hB_pos hAB_gt
+    exact ⟨hB_pos, hv_eq, hu_sum⟩
+
+/-- On any orthogonal frame `(u, v, w)` in `ℚ(i)³`, the sum of `p`-adic squared-norm
+valuations is even for every inert prime `p` (`InertPrimeSpec p`). -/
+theorem frame_vpRat_sum_even {p : ℕ} (hP : InertPrimeSpec p) {u v w : GVec} (hf : IsFrame u v w) :
+    (vpRat p (normSqVec u) + vpRat p (normSqVec v) + vpRat p (normSqVec w)) % 2 = 0 := by
+  have hu := normSqVec_pos_of_nonZero hf.1
+  have hv := normSqVec_pos_of_nonZero hf.2.1
+  have hw := normSqVec_pos_of_nonZero hf.2.2.1
+  have hdet := detGVec_normSq_of_frame hf
+  have hmul1 := vpRat_mul hP (mul_pos hu hv) hw
+  have hmul2 := vpRat_mul hP hu hv
+  have heven := vpRat_normSq_even hP (detGVec u v w)
+  rw [hdet, hmul1, hmul2] at heven
+  exact heven
+
+theorem pos_of_vpRat_mod_two_ne_zero {p : ℕ} {q : ℚ} (h : vpRat p q % 2 ≠ 0) : 0 < q := by
+  by_contra hle
+  simp [vpRat, hle] at h
+
+theorem vpRat_add_gt_of_nonneg {p : ℕ} (hP : InertPrimeSpec p) {a b : ℚ} {V : ℤ}
+    (ha_nn : 0 ≤ a) (hb_nn : 0 ≤ b)
+    (ha : 0 < a → V < vpRat p a) (hb : 0 < b → V < vpRat p b)
+    (hab : 0 < a + b) : V < vpRat p (a + b) := by
+  rcases eq_or_lt_of_le ha_nn with rfl | ha_pos
+  · simp at hab ⊢
+    exact hb hab
+  · rcases eq_or_lt_of_le hb_nn with rfl | hb_pos
+    · simp at hab ⊢
+      exact ha ha_pos
+    · have h1 := ha ha_pos
+      have h2 := hb hb_pos
+      have hmin := vpRat_add_ge_min hP ha_pos hb_pos
+      omega
+
+theorem exists_leadPCoord_of_odd {p : ℕ} (hP : InertPrimeSpec p) {u : GVec}
+    (hodd : vpRat p (normSqVec u) % 2 ≠ 0) :
+    isLeadPCoord p u.x u ∨ isLeadPCoord p u.y u ∨ isLeadPCoord p u.z u := by
+  by_contra hnot
+  rcases not_or.mp hnot with ⟨hx_not, hyz_not⟩
+  rcases not_or.mp hyz_not with ⟨hy_not, hz_not⟩
+  have hpos : 0 < normSqVec u := pos_of_vpRat_mod_two_ne_zero hodd
+  have hx_gt : 0 < u.x.normSq → vpRat p (normSqVec u) < vpRat p u.x.normSq := by
+    intro hx_pos
+    have hnot_lt : ¬ vpRat p u.x.normSq < vpRat p (normSqVec u) := fun hlt => hx_not ⟨hx_pos, hlt⟩
+    have heven := vpRat_normSq_even hP u.x
+    omega
+  have hy_gt : 0 < u.y.normSq → vpRat p (normSqVec u) < vpRat p u.y.normSq := by
+    intro hy_pos
+    have hnot_lt : ¬ vpRat p u.y.normSq < vpRat p (normSqVec u) := fun hlt => hy_not ⟨hy_pos, hlt⟩
+    have heven := vpRat_normSq_even hP u.y
+    omega
+  have hz_gt : 0 < u.z.normSq → vpRat p (normSqVec u) < vpRat p u.z.normSq := by
+    intro hz_pos
+    have hnot_lt : ¬ vpRat p u.z.normSq < vpRat p (normSqVec u) := fun hlt => hz_not ⟨hz_pos, hlt⟩
+    have heven := vpRat_normSq_even hP u.z
+    omega
+  have hxy_gt : 0 < u.x.normSq + u.y.normSq →
+      vpRat p (normSqVec u) < vpRat p (u.x.normSq + u.y.normSq) :=
+    vpRat_add_gt_of_nonneg hP (GaussRat.normSq_nonneg u.x) (GaussRat.normSq_nonneg u.y) hx_gt hy_gt
+  have hxyz_gt : vpRat p (normSqVec u) < vpRat p (u.x.normSq + u.y.normSq + u.z.normSq) :=
+    vpRat_add_gt_of_nonneg hP
+      (add_nonneg (GaussRat.normSq_nonneg u.x) (GaussRat.normSq_nonneg u.y))
+      (GaussRat.normSq_nonneg u.z) hxy_gt hz_gt hpos
+  change vpRat p (normSqVec u) < vpRat p (normSqVec u) at hxyz_gt
+  omega
+
+theorem leadPCoord_x_ortho_imp {p : ℕ} (hP : InertPrimeSpec p) {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : vpRat p (normSqVec u) % 2 ≠ 0)
+    (hv_odd : vpRat p (normSqVec v) % 2 ≠ 0)
+    (hlead : isLeadPCoord p u.x u) :
+    isLeadPCoord p v.x v ∧ coordSignP p u.x u + coordSignP p v.x v = 0 := by
+  have hu_pos : 0 < normSqVec u := pos_of_vpRat_mod_two_ne_zero hu_odd
+  have hv_pos : 0 < normSqVec v := pos_of_vpRat_mod_two_ne_zero hv_odd
+  let A := u.x.normSq * normSqVec v
+  let B := v.x.normSq * normSqVec u
+  let C := (u.y * v.z - v.y * u.z).normSq
+  let D := normSqVec u * normSqVec v
+  have hA : 0 < A := mul_pos hlead.1 hv_pos
+  have hB_nn : 0 ≤ B := mul_nonneg (GaussRat.normSq_nonneg v.x) (le_of_lt hu_pos)
+  have hC_nn : 0 ≤ C := GaussRat.normSq_nonneg _
+  have hD : 0 < D := mul_pos hu_pos hv_pos
+  have hsum : A + B + C = D := ortho_coord_identity_x huv
+  have hvA : vpRat p A = vpRat p u.x.normSq + vpRat p (normSqVec v) := vpRat_mul hP hlead.1 hv_pos
+  have hvD : vpRat p D = vpRat p (normSqVec u) + vpRat p (normSqVec v) := vpRat_mul hP hu_pos hv_pos
+  have hA_odd : vpRat p A % 2 ≠ 0 := by
+    have heven := vpRat_normSq_even hP u.x
+    omega
+  have hB_odd : 0 < B → vpRat p B % 2 ≠ 0 := by
+    intro hB_pos
+    have hvx_pos : 0 < v.x.normSq := by nlinarith
+    have hvB : vpRat p B = vpRat p v.x.normSq + vpRat p (normSqVec u) := vpRat_mul hP hvx_pos hu_pos
+    have heven := vpRat_normSq_even hP v.x
+    omega
+  have hC_even : vpRat p C % 2 = 0 := vpRat_normSq_even hP _
+  have hlt_D : vpRat p A < vpRat p D := by
+    have hlt := hlead.2
+    omega
+  obtain ⟨hB_pos, hvAB, huAB⟩ :=
+    four_term_vpRat_cancel hP hA hB_nn hC_nn hD hsum hA_odd hB_odd hC_even hlt_D
+  have hvx_pos : 0 < v.x.normSq := by nlinarith
+  have hvB : vpRat p B = vpRat p v.x.normSq + vpRat p (normSqVec u) := vpRat_mul hP hvx_pos hu_pos
+  have hvx_lt : vpRat p v.x.normSq < vpRat p (normSqVec v) := by
+    have hlt := hlead.2
+    omega
+  refine ⟨⟨hvx_pos, hvx_lt⟩, ?_⟩
+  have huA : upRat p A = upRat p u.x.normSq * upRat p (normSqVec v) := upRat_mul hP hlead.1 hv_pos
+  have huB : upRat p B = upRat p v.x.normSq * upRat p (normSqVec u) := upRat_mul hP hvx_pos hu_pos
+  rw [huA, huB] at huAB
+  have hsq_u := upRat_sq_of_pos p hu_pos
+  have hsq_v := upRat_sq_of_pos p hv_pos
+  simp only [coordSignP]
+  linear_combination
+    (upRat p (normSqVec u) * upRat p (normSqVec v)) * huAB -
+    (upRat p u.x.normSq * upRat p (normSqVec u)) * hsq_v -
+    (upRat p v.x.normSq * upRat p (normSqVec v)) * hsq_u
+
+theorem leadPCoord_x_ortho_iff {p : ℕ} (hP : InertPrimeSpec p) {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : vpRat p (normSqVec u) % 2 ≠ 0)
+    (hv_odd : vpRat p (normSqVec v) % 2 ≠ 0) :
+    isLeadPCoord p u.x u ↔ isLeadPCoord p v.x v :=
+  ⟨fun h => (leadPCoord_x_ortho_imp hP huv hu_odd hv_odd h).1,
+   fun h => (leadPCoord_x_ortho_imp hP (inner_eq_zero_symm huv) hv_odd hu_odd h).1⟩
+
+theorem isLeadPCoord_rotVec_x (p : ℕ) (u : GVec) :
+    isLeadPCoord p (rotVec u).x (rotVec u) ↔ isLeadPCoord p u.y u := by
+  unfold isLeadPCoord
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem coordSignP_rotVec_x (p : ℕ) (u : GVec) :
+    coordSignP p (rotVec u).x (rotVec u) = coordSignP p u.y u := by
+  unfold coordSignP
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem isLeadPCoord_rotVec_y (p : ℕ) (u : GVec) :
+    isLeadPCoord p (rotVec u).y (rotVec u) ↔ isLeadPCoord p u.z u := by
+  unfold isLeadPCoord
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem coordSignP_rotVec_y (p : ℕ) (u : GVec) :
+    coordSignP p (rotVec u).y (rotVec u) = coordSignP p u.z u := by
+  unfold coordSignP
+  rw [normSqVec_rotVec]
+  rfl
+
+theorem leadPCoord_y_ortho_imp {p : ℕ} (hP : InertPrimeSpec p) {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : vpRat p (normSqVec u) % 2 ≠ 0)
+    (hv_odd : vpRat p (normSqVec v) % 2 ≠ 0)
+    (hlead : isLeadPCoord p u.y u) :
+    isLeadPCoord p v.y v ∧ coordSignP p u.y u + coordSignP p v.y v = 0 := by
+  have huv' : GVec.inner (rotVec u) (rotVec v) = 0 := by rw [inner_rotVec]; exact huv
+  have hu_odd' : vpRat p (normSqVec (rotVec u)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hu_odd
+  have hv_odd' : vpRat p (normSqVec (rotVec v)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hv_odd
+  have hlead' : isLeadPCoord p (rotVec u).x (rotVec u) := (isLeadPCoord_rotVec_x p u).mpr hlead
+  obtain ⟨hv_lead, hsum⟩ := leadPCoord_x_ortho_imp hP huv' hu_odd' hv_odd' hlead'
+  rw [isLeadPCoord_rotVec_x] at hv_lead
+  rw [coordSignP_rotVec_x, coordSignP_rotVec_x] at hsum
+  exact ⟨hv_lead, hsum⟩
+
+theorem leadPCoord_y_ortho_iff {p : ℕ} (hP : InertPrimeSpec p) {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : vpRat p (normSqVec u) % 2 ≠ 0)
+    (hv_odd : vpRat p (normSqVec v) % 2 ≠ 0) :
+    isLeadPCoord p u.y u ↔ isLeadPCoord p v.y v :=
+  ⟨fun h => (leadPCoord_y_ortho_imp hP huv hu_odd hv_odd h).1,
+   fun h => (leadPCoord_y_ortho_imp hP (inner_eq_zero_symm huv) hv_odd hu_odd h).1⟩
+
+theorem leadPCoord_z_ortho_imp {p : ℕ} (hP : InertPrimeSpec p) {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : vpRat p (normSqVec u) % 2 ≠ 0)
+    (hv_odd : vpRat p (normSqVec v) % 2 ≠ 0)
+    (hlead : isLeadPCoord p u.z u) :
+    isLeadPCoord p v.z v ∧ coordSignP p u.z u + coordSignP p v.z v = 0 := by
+  have huv' : GVec.inner (rotVec u) (rotVec v) = 0 := by rw [inner_rotVec]; exact huv
+  have hu_odd' : vpRat p (normSqVec (rotVec u)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hu_odd
+  have hv_odd' : vpRat p (normSqVec (rotVec v)) % 2 ≠ 0 := by rw [normSqVec_rotVec]; exact hv_odd
+  have hlead' : isLeadPCoord p (rotVec u).y (rotVec u) := (isLeadPCoord_rotVec_y p u).mpr hlead
+  obtain ⟨hv_lead, hsum⟩ := leadPCoord_y_ortho_imp hP huv' hu_odd' hv_odd' hlead'
+  rw [isLeadPCoord_rotVec_y] at hv_lead
+  rw [coordSignP_rotVec_y, coordSignP_rotVec_y] at hsum
+  exact ⟨hv_lead, hsum⟩
+
+/-- For any inert prime `p` (`InertPrimeSpec p`), any two orthogonal vectors in `ℚ(i)³`
+with odd `p`-adic squared-norm valuation have opposite `sp p` signs (`sp p u + sp p v = 0`). -/
+theorem sp_orthogonal_odd_cancel {p : ℕ} (hP : InertPrimeSpec p) {u v : GVec}
+    (huv : GVec.inner u v = 0)
+    (hu_odd : vpRat p (normSqVec u) % 2 ≠ 0)
+    (hv_odd : vpRat p (normSqVec v) % 2 ≠ 0) :
+    sp p u + sp p v = 0 := by
+  have hx_iff := leadPCoord_x_ortho_iff hP huv hu_odd hv_odd
+  have hy_iff := leadPCoord_y_ortho_iff hP huv hu_odd hv_odd
+  simp only [sp, hu_odd, hv_odd, ↓reduceIte]
+  by_cases hx : isLeadPCoord p u.x u
+  · have hvx : isLeadPCoord p v.x v := hx_iff.mp hx
+    simp only [hx, hvx, ↓reduceIte]
+    exact (leadPCoord_x_ortho_imp hP huv hu_odd hv_odd hx).2
+  · have hvx : ¬ isLeadPCoord p v.x v := fun h => hx (hx_iff.mpr h)
+    simp only [hx, hvx, ↓reduceIte]
+    by_cases hy : isLeadPCoord p u.y u
+    · have hvy : isLeadPCoord p v.y v := hy_iff.mp hy
+      simp only [hy, hvy, ↓reduceIte]
+      exact (leadPCoord_y_ortho_imp hP huv hu_odd hv_odd hy).2
+    · have hvy : ¬ isLeadPCoord p v.y v := fun h => hy (hy_iff.mpr h)
+      simp only [hy, hvy, ↓reduceIte]
+      have hz : isLeadPCoord p u.z u := by
+        rcases exists_leadPCoord_of_odd hP hu_odd with h1 | h2 | h3
+        · exact False.elim (hx h1)
+        · exact False.elim (hy h2)
+        · exact h3
+      exact (leadPCoord_z_ortho_imp hP huv hu_odd hv_odd hz).2
+
+/-- Uniform zero-weight frame residual theorem: for every inert prime `p` satisfying
+`InertPrimeSpec p`, `sp p` is a global zero-weight frame function on all orthogonal frames in `ℚ(i)³`. -/
+theorem sp_isZeroWeightFrameFunction {p : ℕ} (hP : InertPrimeSpec p) :
+    IsZeroWeightFrameFunction (sp p) := by
+  intro u v w hf
+  have hsum_even := frame_vpRat_sum_even hP hf
+  obtain ⟨_, _, _, huv, huw, hvw⟩ := hf
+  by_cases hu : vpRat p (normSqVec u) % 2 = 0 <;>
+    by_cases hv : vpRat p (normSqVec v) % 2 = 0 <;>
+    by_cases hw : vpRat p (normSqVec w) % 2 = 0
+  · rw [sp_eq_zero_of_even hu, sp_eq_zero_of_even hv, sp_eq_zero_of_even hw]
+    ring
+  · omega
+  · omega
+  · have hvw_sum := sp_orthogonal_odd_cancel hP hvw hv hw
+    rw [sp_eq_zero_of_even hu]
+    linarith
+  · omega
+  · have huw_sum := sp_orthogonal_odd_cancel hP huw hu hw
+    rw [sp_eq_zero_of_even hv]
+    linarith
+  · have huv_sum := sp_orthogonal_odd_cancel hP huv hu hv
+    rw [sp_eq_zero_of_even hw]
+    linarith
+  · omega
+
+theorem sp_smul {p : ℕ} (hP : InertPrimeSpec p) {v : GVec} (hv : v.NonZero)
+    {l : GaussRat} (hl : l ≠ 0) :
+    sp p (GVec.smul l v) = sp p v :=
+  zeroWeightFrameFunction_smul (sp_isZeroWeightFrameFunction hP) hv hl
+
+/-- Specialization of `sp_isZeroWeightFrameFunction` to the third inert prime `p = 11 ≡ 3 (mod 4)`. -/
+theorem sp11_isZeroWeightFrameFunction : IsZeroWeightFrameFunction (sp 11) :=
+  sp_isZeroWeightFrameFunction inertPrimeSpec_eleven
+
+/-- Third inert-prime witness `witness_p11 = (1, 3, 1)` of norm `1 + 9 + 1 = 11` for `p = 11 ≡ 3 (mod 4)`. -/
+def witness_p11 : GVec := gv 1 0 3 0 1 0
+
+theorem witness_p11_primitive : IsOnePlusIPrimitive 1 0 3 0 1 0 := by decide
+
+theorem witness_p11_nonZero : witness_p11.NonZero := by
+  left
+  intro h
+  have hre : witness_p11.x.re = 0 := by rw [h]; rfl
+  revert hre
+  decide
+
+theorem witness_p11_normSq : normSqVec witness_p11 = 11 := by
+  simp [normSqVec, GaussRat.normSq, witness_p11, gv]
+  norm_num
+
+theorem s3_witness_p11 : s3 witness_p11 = 0 :=
+  s3_eq_zero_of_normSqVec_natCast (n := 11) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, witness_p11, gv]; norm_num) rfl
+
+theorem s7_witness_p11 : s7 witness_p11 = 0 :=
+  s7_eq_zero_of_normSqVec_natCast (n := 11) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, witness_p11, gv]; norm_num) rfl
+
+theorem sp11_witness_111 : sp 11 witness_111 = 0 :=
+  sp_eq_zero_of_normSqVec_natCast (p := 11) (n := 3) (by decide) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, witness_111, gv]; norm_num) rfl
+
+theorem sp11_witness_p7 : sp 11 witness_p7 = 0 :=
+  sp_eq_zero_of_normSqVec_natCast (p := 11) (n := 7) (by decide) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, witness_p7, gv]; norm_num) rfl
+
+theorem sp11_witness_p11 : sp 11 witness_p11 = 1 := by
+  rw [sp_eq_of_leadPCoord_x (p := 11) (n := 11) (nx := 1) (by decide) (by decide) (by decide)
+    (by simp [normSqVec, GaussRat.normSq, witness_p11, gv]; norm_num)
+    (by simp [GaussRat.normSq, witness_p11, gv])
+    (by decide) (by decide)]
+  have hp1 : ppPartNat 11 1 = 1 := rfl
+  have hp11 : ppPartNat 11 11 = 1 := rfl
+  simp [hp1, hp11, chiPNat]
+
+/-- Exact `3 × 3` Kronecker-delta duality of `(sp 3, sp 7, sp 11)` on `(witness_111, witness_p7, witness_p11)`. -/
+theorem s3_s7_sp11_dual_on_three_witnesses :
+    (sp 3 witness_111 = 1 ∧ sp 7 witness_111 = 0 ∧ sp 11 witness_111 = 0) ∧
+    (sp 3 witness_p7 = 0 ∧ sp 7 witness_p7 = 1 ∧ sp 11 witness_p7 = 0) ∧
+    (sp 3 witness_p11 = 0 ∧ sp 7 witness_p11 = 0 ∧ sp 11 witness_p11 = 1) := by
+  simp only [sp_three_eq_s3, sp_seven_eq_s7]
+  exact ⟨⟨s3_witness_111, s7_witness_111, sp11_witness_111⟩,
+         ⟨s3_witness_p7, s7_witness_p7, sp11_witness_p7⟩,
+         ⟨s3_witness_p11, s7_witness_p11, sp11_witness_p11⟩⟩
+
+/-- Three-prime linear combination `c3 * sp 3 v + c7 * sp 7 v + c11 * sp 11 v`. -/
+def combResidual3_7_11 (c3 c7 c11 : ℚ) (v : GVec) : ℚ :=
+  c3 * sp 3 v + c7 * sp 7 v + c11 * sp 11 v
+
+theorem combResidual3_7_11_isZeroWeightFrameFunction (c3 c7 c11 : ℚ) :
+    IsZeroWeightFrameFunction (combResidual3_7_11 c3 c7 c11) := by
+  intro u v w hf
+  have h3 := sp_isZeroWeightFrameFunction inertPrimeSpec_three u v w hf
+  have h7 := sp_isZeroWeightFrameFunction inertPrimeSpec_seven u v w hf
+  have h11 := sp11_isZeroWeightFrameFunction u v w hf
+  simp only [combResidual3_7_11]
+  linear_combination c3 * h3 + c7 * h7 + c11 * h11
+
+theorem combResidual3_7_11_vanishes_on_nine_rays (c3 c7 c11 : ℚ) :
+    VanishesOnNineRays (combResidual3_7_11 c3 c7 c11) := by
+  obtain ⟨h3_1, h3_2, h3_3, h3_12, h3_13, h3_23, h3_12i, h3_13i, h3_23i⟩ :=
+    sp_vanishes_on_nine_rays (p := 3) (by decide)
+  obtain ⟨h7_1, h7_2, h7_3, h7_12, h7_13, h7_23, h7_12i, h7_13i, h7_23i⟩ :=
+    sp_vanishes_on_nine_rays (p := 7) (by decide)
+  obtain ⟨h11_1, h11_2, h11_3, h11_12, h11_13, h11_23, h11_12i, h11_13i, h11_23i⟩ :=
+    sp_vanishes_on_nine_rays (p := 11) (by decide)
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩ <;>
+    simp [combResidual3_7_11,
+      h3_1, h3_2, h3_3, h3_12, h3_13, h3_23, h3_12i, h3_13i, h3_23i,
+      h7_1, h7_2, h7_3, h7_12, h7_13, h7_23, h7_12i, h7_13i, h7_23i,
+      h11_1, h11_2, h11_3, h11_12, h11_13, h11_23, h11_12i, h11_13i, h11_23i]
+
+/-- Linear independence of the three inert-prime residuals `(sp 3, sp 7, sp 11)` on nonzero rays of `ℚ(i)³`. -/
+theorem s3_s7_sp11_linearIndependent (c3 c7 c11 : ℚ) :
+    (∀ v : GVec, v.NonZero → combResidual3_7_11 c3 c7 c11 v = 0) ↔
+      (c3 = 0 ∧ c7 = 0 ∧ c11 = 0) := by
+  obtain ⟨⟨h11, h12, h13⟩, ⟨h21, h22, h23⟩, ⟨h31, h32, h33⟩⟩ :=
+    s3_s7_sp11_dual_on_three_witnesses
+  constructor
+  · intro hall
+    have hw1 := hall witness_111 witness_111_nonZero
+    have hw2 := hall witness_p7 witness_p7_nonZero
+    have hw3 := hall witness_p11 witness_p11_nonZero
+    simp only [combResidual3_7_11, h11, h12, h13, h21, h22, h23, h31, h32, h33] at hw1 hw2 hw3
+    exact ⟨by linarith, by linarith, by linarith⟩
+  · rintro ⟨rfl, rfl, rfl⟩ v _
+    simp [combResidual3_7_11]
+
+/-- Operator-space projector-linearity elimination for `combResidual3_7_11 c3 c7 c11`. -/
+theorem factorsThroughRayProjLinear_combResidual3_7_11_iff (c3 c7 c11 : ℚ) :
+    FactorsThroughRayProjLinear (combResidual3_7_11 c3 c7 c11) ↔
+      (c3 = 0 ∧ c7 = 0 ∧ c11 = 0) := by
+  constructor
+  · intro hlin
+    exact (s3_s7_sp11_linearIndependent c3 c7 c11).mp
+      (zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
+        (combResidual3_7_11_vanishes_on_nine_rays c3 c7 c11) hlin)
+  · rintro ⟨rfl, rfl, rfl⟩
+    refine ⟨fun _ => 0, ⟨by intro _ _; ring, by intro _ _; ring⟩, ?_⟩
+    intro v _
+    simp [combResidual3_7_11]
+
+/-- Explicit 7-ray operator-space projector decomposition for `witness_p11 = (1, 3, 1)` over the
+six real tomography ray projectors. -/
+theorem rayProj_witness_p11_decomp :
+    rayProj witness_p11 =
+    HermForm3.add
+      (HermForm3.add
+        (HermForm3.add
+          (HermForm3.add
+            (HermForm3.add
+              (HermForm3.smul (-3 / 11) (rayProj tomo_e1))
+              (HermForm3.smul (3 / 11) (rayProj tomo_e2)))
+            (HermForm3.smul (-3 / 11) (rayProj tomo_e3)))
+          (HermForm3.smul (6 / 11) (rayProj tomo_e12)))
+        (HermForm3.smul (2 / 11) (rayProj tomo_e13)))
+      (HermForm3.smul (6 / 11) (rayProj tomo_e23)) := by
+  ext <;>
+    simp [HermForm3.add, HermForm3.smul, rayProj, normSqVec, GaussRat.normSq,
+      witness_p11, tomo_e1, tomo_e2, tomo_e3, tomo_e12, tomo_e13, tomo_e23, gv] <;>
+    norm_num
+
+/-- Every quadratic Rayleigh function `quadRay ρ` satisfies the 7-ray linear kernel identity
+induced by `rayProj_witness_p11_decomp`. -/
+theorem quadRay_witness_p11_kernel_relation (ρ : HermForm3) :
+    quadRay ρ witness_p11 +
+      (3 / 11) * quadRay ρ tomo_e1 - (3 / 11) * quadRay ρ tomo_e2 + (3 / 11) * quadRay ρ tomo_e3 -
+      (6 / 11) * quadRay ρ tomo_e12 - (2 / 11) * quadRay ρ tomo_e13 -
+      (6 / 11) * quadRay ρ tomo_e23 = 0 := by
+  simp only [← traceInner_rayProj, rayProj_witness_p11_decomp,
+    traceInner_add_right, traceInner_smul_right]
+  ring
+
+/-- Dual constructive separation of the `witness_p11` projector kernel relation:
+the formal combination in `ker(rayProj)` evaluates to `1` under `sp 11`, `0` under `sp 3` and `sp 7`,
+and `c11` under `combResidual3_7_11 c3 c7 c11`. -/
+theorem sp11_witness_p11_kernel_separation (c3 c7 c11 : ℚ) :
+    sp 11 witness_p11 +
+      (3 / 11) * sp 11 tomo_e1 - (3 / 11) * sp 11 tomo_e2 + (3 / 11) * sp 11 tomo_e3 -
+      (6 / 11) * sp 11 tomo_e12 - (2 / 11) * sp 11 tomo_e13 -
+      (6 / 11) * sp 11 tomo_e23 = 1 ∧
+    sp 3 witness_p11 +
+      (3 / 11) * sp 3 tomo_e1 - (3 / 11) * sp 3 tomo_e2 + (3 / 11) * sp 3 tomo_e3 -
+      (6 / 11) * sp 3 tomo_e12 - (2 / 11) * sp 3 tomo_e13 -
+      (6 / 11) * sp 3 tomo_e23 = 0 ∧
+    sp 7 witness_p11 +
+      (3 / 11) * sp 7 tomo_e1 - (3 / 11) * sp 7 tomo_e2 + (3 / 11) * sp 7 tomo_e3 -
+      (6 / 11) * sp 7 tomo_e12 - (2 / 11) * sp 7 tomo_e13 -
+      (6 / 11) * sp 7 tomo_e23 = 0 ∧
+    combResidual3_7_11 c3 c7 c11 witness_p11 +
+      (3 / 11) * combResidual3_7_11 c3 c7 c11 tomo_e1 -
+      (3 / 11) * combResidual3_7_11 c3 c7 c11 tomo_e2 +
+      (3 / 11) * combResidual3_7_11 c3 c7 c11 tomo_e3 -
+      (6 / 11) * combResidual3_7_11 c3 c7 c11 tomo_e12 -
+      (2 / 11) * combResidual3_7_11 c3 c7 c11 tomo_e13 -
+      (6 / 11) * combResidual3_7_11 c3 c7 c11 tomo_e23 = c11 := by
+  obtain ⟨h11_1, h11_2, h11_3, h11_12, h11_13, h11_23, _, _, _⟩ :=
+    sp_vanishes_on_nine_rays (p := 11) (by decide)
+  obtain ⟨h3_1, h3_2, h3_3, h3_12, h3_13, h3_23, _, _, _⟩ :=
+    sp_vanishes_on_nine_rays (p := 3) (by decide)
+  obtain ⟨h7_1, h7_2, h7_3, h7_12, h7_13, h7_23, _, _, _⟩ :=
+    sp_vanishes_on_nine_rays (p := 7) (by decide)
+  obtain ⟨_, _, ⟨hw3, hw7, hw11⟩⟩ := s3_s7_sp11_dual_on_three_witnesses
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · rw [hw11, h11_1, h11_2, h11_3, h11_12, h11_13, h11_23]; norm_num
+  · rw [hw3, h3_1, h3_2, h3_3, h3_12, h3_13, h3_23]; norm_num
+  · rw [hw7, h7_1, h7_2, h7_3, h7_12, h7_13, h7_23]; norm_num
+  · simp [combResidual3_7_11, hw3, hw7, hw11,
+      h11_1, h11_2, h11_3, h11_12, h11_13, h11_23,
+      h3_1, h3_2, h3_3, h3_12, h3_13, h3_23,
+      h7_1, h7_2, h7_3, h7_12, h7_13, h7_23]
+
+/-- Orthogonal partner `v₀ = (3, -1, 0)` of `witness_p11 = (1, 3, 1)` in `ℚ(i)³` (norm `10`). -/
+def witness_p11_v0 : GVec := gv 3 0 (-1) 0 0 0
+
+/-- Cross-product partner `w₀ = (1, 3, -10)` of `(witness_p11, witness_p11_v0)` in `ℚ(i)³`
+(norm `110 = 11 × 10`). -/
+def witness_p11_w0 : GVec := gv 1 0 3 0 (-10) 0
+
+/-- First orthogonal partner of `witness_p11` in `ℚ(i, √11)³` constructed via
+`fourSquarePartnerP` with `α = 3, β = 1 + i` (`|α|² + |β|² = 9 + 2 = 11`). -/
+def frameSqrt11_p : GVecSqrt3 :=
+  fourSquarePartnerP witness_p11_v0 witness_p11_w0 ⟨3, 0⟩ ⟨1, 1⟩
+
+/-- Second orthogonal partner of `witness_p11` in `ℚ(i, √11)³` constructed via
+`fourSquarePartnerQ` with `α = 3, β = 1 + i` (`|α|² + |β|² = 9 + 2 = 11`). -/
+def frameSqrt11_q : GVecSqrt3 :=
+  fourSquarePartnerQ witness_p11_v0 witness_p11_w0 ⟨3, 0⟩ ⟨1, 1⟩
+
+/-- Explicit instantiation of the parameterized four-square `SU(2)` completion at the third inert
+prime `p = 11 ≡ 3 (mod 4)`: `(witness_p11, frameSqrt11_p, frameSqrt11_q)` is an orthogonal frame
+in `ℚ(i, √11)³` with rational squared norms `(11, 1210, 1210)` (`1210 = 10 × 11²`). -/
+theorem isFrameSqrt11_witness_p11_norms :
+    IsFrameSqrtP 11 (GVecSqrt3.ofGVec witness_p11) frameSqrt11_p frameSqrt11_q ∧
+    GVecSqrt3.normSqRatP 11 (GVecSqrt3.ofGVec witness_p11) = 11 ∧
+    GVecSqrt3.normSqRatP 11 frameSqrt11_p = 1210 ∧
+    GVecSqrt3.normSqRatP 11 frameSqrt11_q = 1210 := by
+  have hnz_u : (GVecSqrt3.ofGVec witness_p11).NonZero := by
+    left; intro h
+    have hre : (GVecSqrt3.ofGVec witness_p11).x.a.re = 0 := by rw [h]; rfl
+    revert hre; simp [GVecSqrt3.ofGVec, GaussRatSqrt3.ofGaussRat, witness_p11, gv]
+  have hnz_p : frameSqrt11_p.NonZero := by
+    left; intro h
+    have hre : frameSqrt11_p.x.a.re = 0 := by rw [h]; rfl
+    revert hre; simp [frameSqrt11_p, fourSquarePartnerP, witness_p11_w0, gv]
+  have hnz_q : frameSqrt11_q.NonZero := by
+    left; intro h
+    have hre : frameSqrt11_q.x.b.re = 0 := by rw [h]; rfl
+    revert hre; simp [frameSqrt11_q, fourSquarePartnerQ, witness_p11_v0, gv]
+  have huv : GVec.inner witness_p11 witness_p11_v0 = 0 := by
+    simp only [witness_p11, witness_p11_v0]; gauss_arith
+  have huw : GVec.inner witness_p11 witness_p11_w0 = 0 := by
+    simp only [witness_p11, witness_p11_w0]; gauss_arith
+  have hvw : GVec.inner witness_p11_v0 witness_p11_w0 = 0 := by
+    simp only [witness_p11_v0, witness_p11_w0]; gauss_arith
+  have hnv : normSqVec witness_p11_v0 = 10 := by
+    simp [normSqVec, GaussRat.normSq, witness_p11_v0, gv]; norm_num
+  have hnw : normSqVec witness_p11_w0 = 11 * normSqVec witness_p11_v0 := by
+    simp [normSqVec, GaussRat.normSq, witness_p11_v0, witness_p11_w0, gv]; norm_num
+  have hab : (⟨3, 0⟩ : GaussRat).normSq + (⟨1, 1⟩ : GaussRat).normSq = 11 := by
+    simp [GaussRat.normSq]; norm_num
+  obtain ⟨h1, h2, h3, hnp, hnq⟩ :=
+    fourSquarePartner_ortho_and_normSqRatP (p := 11) huv huw hvw hnw hab
+  have hnu : GVecSqrt3.normSqRatP 11 (GVecSqrt3.ofGVec witness_p11) = 11 := by
+    simp [GVecSqrt3.normSqRatP, GVecSqrt3.innerP, GVecSqrt3.ofGVec, GaussRatSqrt3.ofGaussRat,
+      GaussRatSqrt3.add, GaussRatSqrt3.mulP, GaussRatSqrt3.conj, witness_p11, gv]
+    norm_num
+  rw [hnv] at hnp hnq
+  norm_num at hnp hnq
+  exact ⟨⟨hnz_u, hnz_p, hnz_q, h1, h2, h3⟩, hnu, hnp, hnq⟩
+
+/-- Three-prime partner norm valuation parity across `p ∈ {3, 7, 11}`:
+the partner norms `18 = 2 × 3²` (in `ℚ(i, √3)³`), `245 = 5 × 7²` (in `ℚ(i, √7)³`),
+and `1210 = 10 × 11²` (in `ℚ(i, √11)³`) have even `p`-adic valuation `vpRat p N % 2 = 0`
+for all three inert primes `p ∈ {3, 7, 11}` simultaneously. -/
+theorem three_prime_frame_partner_norm_valuations_even :
+    (vpRat 3 18 % 2 = 0 ∧ vpRat 7 18 % 2 = 0 ∧ vpRat 11 18 % 2 = 0) ∧
+    (vpRat 3 245 % 2 = 0 ∧ vpRat 7 245 % 2 = 0 ∧ vpRat 11 245 % 2 = 0) ∧
+    (vpRat 3 1210 % 2 = 0 ∧ vpRat 7 1210 % 2 = 0 ∧ vpRat 11 1210 % 2 = 0) := by
+  have h18 : (18 : ℚ) = ((18 : ℕ) : ℚ) := by norm_num
+  have h245 : (245 : ℚ) = ((245 : ℕ) : ℚ) := by norm_num
+  have h1210 : (1210 : ℚ) = ((1210 : ℕ) : ℚ) := by norm_num
+  refine ⟨⟨?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩⟩
+  · rw [h18, vpRat_natCast (by decide) (by decide)]; rfl
+  · rw [h18, vpRat_natCast (by decide) (by decide)]; rfl
+  · rw [h18, vpRat_natCast (by decide) (by decide)]; rfl
+  · rw [h245, vpRat_natCast (by decide) (by decide)]; rfl
+  · rw [h245, vpRat_natCast (by decide) (by decide)]; rfl
+  · rw [h245, vpRat_natCast (by decide) (by decide)]; rfl
+  · rw [h1210, vpRat_natCast (by decide) (by decide)]; rfl
+  · rw [h1210, vpRat_natCast (by decide) (by decide)]; rfl
+  · rw [h1210, vpRat_natCast (by decide) (by decide)]; rfl
+
+/-- Finite rational linear combination `∑_{i < m} c i * R i v` of `m` ray functions `R : Fin m → GVec → ℚ`. -/
+def finCombResidual : (m : ℕ) → (Fin m → GVec → ℚ) → (Fin m → ℚ) → GVec → ℚ
+  | 0, _, _, _ => 0
+  | m + 1, R, c, v =>
+      finCombResidual m (fun i => R i.castSucc) (fun i => c i.castSucc) v +
+        c (Fin.last m) * R (Fin.last m) v
+
+/-- Finite `ℓ¹` norm `∑_{i < m} |c i|` of a rational coefficient vector `c : Fin m → ℚ`. -/
+def finL1Norm : (m : ℕ) → (Fin m → ℚ) → ℚ
+  | 0, _ => 0
+  | m + 1, c => finL1Norm m (fun i => c i.castSucc) + |c (Fin.last m)|
+
+/-- Finite `m`-parameter family `(1 + finCombResidual m R c v) / 3` of frame functions on `ℚ(i)³`. -/
+def finExoticComb (m : ℕ) (R : Fin m → GVec → ℚ) (c : Fin m → ℚ) (v : GVec) : ℚ :=
+  (1 + finCombResidual m R c v) / 3
+
+theorem finL1Norm_nonneg : ∀ (m : ℕ) (c : Fin m → ℚ), 0 ≤ finL1Norm m c
+  | 0, _ => le_refl 0
+  | m + 1, c => add_nonneg (finL1Norm_nonneg m _) (abs_nonneg _)
+
+theorem finCombResidual_eq_zero_of_all_zero :
+    ∀ (m : ℕ) (R : Fin m → GVec → ℚ) (c : Fin m → ℚ) (v : GVec),
+      (∀ i : Fin m, R i v = 0) → finCombResidual m R c v = 0
+  | 0, _, _, _, _ => rfl
+  | m + 1, R, c, v, hall => by
+      simp only [finCombResidual,
+        finCombResidual_eq_zero_of_all_zero m _ _ v (fun i => hall i.castSucc),
+        hall (Fin.last m), mul_zero, add_zero]
+
+theorem finCombResidual_eq_zero_of_coeffs_zero :
+    ∀ (m : ℕ) (R : Fin m → GVec → ℚ) (c : Fin m → ℚ) (v : GVec),
+      (∀ i : Fin m, c i = 0) → finCombResidual m R c v = 0
+  | 0, _, _, _, _ => rfl
+  | m + 1, R, c, v, hall => by
+      simp only [finCombResidual,
+        finCombResidual_eq_zero_of_coeffs_zero m _ _ v (fun i => hall i.castSucc),
+        hall (Fin.last m), zero_mul, add_zero]
+
+theorem finCombResidual_smul_coeffs :
+    ∀ (m : ℕ) (R : Fin m → GVec → ℚ) (a : ℚ) (c : Fin m → ℚ) (v : GVec),
+      finCombResidual m R (fun i => a * c i) v = a * finCombResidual m R c v
+  | 0, _, a, _, _ => by simp [finCombResidual]
+  | m + 1, R, a, c, v => by
+      simp only [finCombResidual, finCombResidual_smul_coeffs m _ a _ v]
+      ring
+
+theorem finCombResidual_eq_coeff_of_single_one :
+    ∀ (m : ℕ) (R : Fin m → GVec → ℚ) (c : Fin m → ℚ) (v : GVec) (j : Fin m),
+      R j v = 1 → (∀ i : Fin m, i ≠ j → R i v = 0) → finCombResidual m R c v = c j
+  | 0, _, _, _, j, _, _ => Fin.elim0 j
+  | m + 1, R, c, v, j, hj1, hne => by
+      simp only [finCombResidual]
+      by_cases hlast : j = Fin.last m
+      · subst hlast
+        have hz : finCombResidual m (fun i => R i.castSucc) (fun i => c i.castSucc) v = 0 := by
+          apply finCombResidual_eq_zero_of_all_zero
+          intro i
+          apply hne i.castSucc
+          intro heq
+          have hval : i.val = m := congrArg Fin.val heq
+          exact Nat.ne_of_lt i.isLt hval
+        rw [hz, hj1]
+        ring
+      · have hj_lt : j.val < m := by
+          have hle : j.val ≤ m := Nat.le_of_lt_succ j.isLt
+          have hne_val : j.val ≠ m := fun heq => hlast (Fin.ext heq)
+          omega
+        let j' : Fin m := ⟨j.val, hj_lt⟩
+        have hj_eq : j'.castSucc = j := Fin.ext rfl
+        have hih := finCombResidual_eq_coeff_of_single_one m
+          (fun i => R i.castSucc) (fun i => c i.castSucc) v j'
+          (by rw [hj_eq]; exact hj1)
+          (by
+            intro i hi
+            apply hne i.castSucc
+            intro heq
+            apply hi
+            exact Fin.ext (by simpa [hj_eq] using congrArg Fin.val heq))
+        have hlast0 : R (Fin.last m) v = 0 := hne (Fin.last m) (Ne.symm hlast)
+        rw [hih, hlast0, hj_eq]
+        ring
+
+theorem finCombResidual_isZeroWeightFrameFunction :
+    ∀ (m : ℕ) (R : Fin m → GVec → ℚ) (c : Fin m → ℚ),
+      (∀ i : Fin m, IsZeroWeightFrameFunction (R i)) →
+      IsZeroWeightFrameFunction (finCombResidual m R c)
+  | 0, _, _, _, _, _, _, _ => by simp [finCombResidual]
+  | m + 1, R, c, hZ, u, v, w, hf => by
+      have hih := finCombResidual_isZeroWeightFrameFunction m
+        (fun i => R i.castSucc) (fun i => c i.castSucc) (fun i => hZ i.castSucc) u v w hf
+      have hlast := hZ (Fin.last m) u v w hf
+      simp only [finCombResidual]
+      linear_combination hih + c (Fin.last m) * hlast
+
+theorem finCombResidual_vanishes_on_nine_rays (m : ℕ) (R : Fin m → GVec → ℚ) (c : Fin m → ℚ)
+    (hvan : ∀ i : Fin m, VanishesOnNineRays (R i)) :
+    VanishesOnNineRays (finCombResidual m R c) := by
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · exact finCombResidual_eq_zero_of_all_zero m R c tomo_e1 (fun i => (hvan i).1)
+  · exact finCombResidual_eq_zero_of_all_zero m R c tomo_e2 (fun i => (hvan i).2.1)
+  · exact finCombResidual_eq_zero_of_all_zero m R c tomo_e3 (fun i => (hvan i).2.2.1)
+  · exact finCombResidual_eq_zero_of_all_zero m R c tomo_e12 (fun i => (hvan i).2.2.2.1)
+  · exact finCombResidual_eq_zero_of_all_zero m R c tomo_e13 (fun i => (hvan i).2.2.2.2.1)
+  · exact finCombResidual_eq_zero_of_all_zero m R c tomo_e23 (fun i => (hvan i).2.2.2.2.2.1)
+  · exact finCombResidual_eq_zero_of_all_zero m R c tomo_e12i (fun i => (hvan i).2.2.2.2.2.2.1)
+  · exact finCombResidual_eq_zero_of_all_zero m R c tomo_e13i (fun i => (hvan i).2.2.2.2.2.2.2.1)
+  · exact finCombResidual_eq_zero_of_all_zero m R c tomo_e23i (fun i => (hvan i).2.2.2.2.2.2.2.2)
+
+theorem abs_finCombResidual_le_finL1Norm :
+    ∀ (m : ℕ) (R : Fin m → GVec → ℚ) (c : Fin m → ℚ),
+      (∀ (i : Fin m) (v : GVec), |R i v| ≤ 1) →
+      ∀ v : GVec, |finCombResidual m R c v| ≤ finL1Norm m c
+  | 0, _, _, _, _ => by simp [finCombResidual, finL1Norm]
+  | m + 1, R, c, hb, v => by
+      simp only [finCombResidual, finL1Norm]
+      have hih := abs_finCombResidual_le_finL1Norm m
+        (fun i => R i.castSucc) (fun i => c i.castSucc) (fun i u => hb i.castSucc u) v
+      have hlast := hb (Fin.last m) v
+      obtain ⟨hih_lo, hih_hi⟩ := abs_le.mp hih
+      obtain ⟨hr_lo, hr_hi⟩ := abs_le.mp hlast
+      have hcr :
+          -|c (Fin.last m)| ≤ c (Fin.last m) * R (Fin.last m) v ∧
+            c (Fin.last m) * R (Fin.last m) v ≤ |c (Fin.last m)| := by
+        rcases le_total 0 (c (Fin.last m)) with hc | hc
+        · rw [abs_of_nonneg hc]
+          constructor <;> nlinarith
+        · rw [abs_of_nonpos hc]
+          constructor <;> nlinarith
+      rw [abs_le]
+      constructor <;> linarith
+
+theorem finCombResidual_isBoundedOnRays (m : ℕ) (R : Fin m → GVec → ℚ) (c : Fin m → ℚ)
+    (hb : ∀ (i : Fin m) (v : GVec), |R i v| ≤ 1) :
+    IsBoundedOnRays (finCombResidual m R c) :=
+  ⟨finL1Norm m c, finL1Norm_nonneg m c, fun v _ => abs_finCombResidual_le_finL1Norm m R c hb v⟩
+
+theorem finExoticComb_isFrameFunction (m : ℕ) (R : Fin m → GVec → ℚ) (c : Fin m → ℚ)
+    (hZ : ∀ i : Fin m, IsZeroWeightFrameFunction (R i)) :
+    IsFrameFunction (finExoticComb m R c) := by
+  intro u v w hf
+  have hsum := finCombResidual_isZeroWeightFrameFunction m R c hZ u v w hf
+  simp only [finExoticComb]
+  linarith
+
+/-- For every `c : Fin m → ℚ` in the `m`-dimensional rational `ℓ¹` cross-polytope `finL1Norm m c ≤ 1`,
+`finExoticComb m R c` is a nonnegative frame function on `ℚ(i)³` taking values in `[0, 2/3]`. -/
+theorem finExoticComb_isNonnegFrameFunction (m : ℕ) (R : Fin m → GVec → ℚ) (c : Fin m → ℚ)
+    (hZ : ∀ i : Fin m, IsZeroWeightFrameFunction (R i))
+    (hb : ∀ (i : Fin m) (v : GVec), |R i v| ≤ 1)
+    (hsum : finL1Norm m c ≤ 1) :
+    IsNonnegFrameFunction (finExoticComb m R c) ∧
+    (∀ v : GVec, 0 ≤ finExoticComb m R c v ∧ finExoticComb m R c v ≤ 2 / 3) := by
+  have hbounds : ∀ v : GVec, 0 ≤ finExoticComb m R c v ∧ finExoticComb m R c v ≤ 2 / 3 := by
+    intro v
+    have habs := abs_finCombResidual_le_finL1Norm m R c hb v
+    have hle1 : |finCombResidual m R c v| ≤ 1 := le_trans habs hsum
+    obtain ⟨hlo, hhi⟩ := abs_le.mp hle1
+    simp only [finExoticComb]
+    constructor <;> linarith
+  exact ⟨⟨finExoticComb_isFrameFunction m R c hZ, fun v _ => (hbounds v).1⟩, hbounds⟩
+
+/-- Abstract finite system of `m` inert-prime zero-weight residuals on `ℚ(i)³` equipped with
+dual witness rays and selective cross-prime archimedean perturbation rays near `tomo_e1 = (1, 0, 0)`. -/
+structure InertPrimeResidualSystem (m : ℕ) where
+  R : Fin m → GVec → ℚ
+  witness : Fin m → GVec
+  isZeroWeight : ∀ i : Fin m, IsZeroWeightFrameFunction (R i)
+  vanishesNine : ∀ i : Fin m, VanishesOnNineRays (R i)
+  abs_le_one : ∀ (i : Fin m) (v : GVec), |R i v| ≤ 1
+  witness_nonZero : ∀ i : Fin m, (witness i).NonZero
+  witness_diag : ∀ i : Fin m, R i (witness i) = 1
+  witness_offDiag : ∀ i j : Fin m, i ≠ j → R i (witness j) = 0
+  selective_oscillation :
+    ∀ (δ : ℚ), 0 < δ → ∀ i : Fin m,
+      ∃ uPos uNeg : GVec,
+        uPos.NonZero ∧ uNeg.NonZero ∧
+        distSqVec uPos tomo_e1 < δ ∧ distSqVec uNeg tomo_e1 < δ ∧
+        R i uPos = 1 ∧ R i uNeg = -1 ∧
+        (∀ j : Fin m, j ≠ i → R j uPos = 0 ∧ R j uNeg = 0)
+
+theorem finCombResidual_witness {m : ℕ} (S : InertPrimeResidualSystem m) (c : Fin m → ℚ) (j : Fin m) :
+    finCombResidual m S.R c (S.witness j) = c j :=
+  finCombResidual_eq_coeff_of_single_one m S.R c (S.witness j) j
+    (S.witness_diag j) (fun i hij => S.witness_offDiag i j hij)
+
+/-- Any finite system `S : InertPrimeResidualSystem m` of inert-prime residuals is linearly
+independent over `ℚ` on nonzero rays of `ℚ(i)³`: `∑_{i < m} c_i R_i = 0 ↔ ∀ i, c_i = 0`. -/
+theorem inertPrimeResidualSystem_linearIndependent {m : ℕ} (S : InertPrimeResidualSystem m)
+    (c : Fin m → ℚ) :
+    (∀ v : GVec, v.NonZero → finCombResidual m S.R c v = 0) ↔ (∀ i : Fin m, c i = 0) := by
+  constructor
+  · intro hall i
+    have h := hall (S.witness i) (S.witness_nonZero i)
+    rw [finCombResidual_witness S c i] at h
+    exact h
+  · intro hzero v _
+    exact finCombResidual_eq_zero_of_coeffs_zero m S.R c v hzero
+
+/-- For any `S : InertPrimeResidualSystem m` and `c : Fin m → ℚ`, the `m`-parameter frame function
+`finExoticComb m S.R c` is quadratic on nonzero rays of `ℚ(i)³` if and only if `∀ i, c i = 0`. -/
+theorem finExoticComb_quadratic_iff {m : ℕ} (S : InertPrimeResidualSystem m) (c : Fin m → ℚ) :
+    (∃ ρ : HermForm3, ∀ v : GVec, v.NonZero → finExoticComb m S.R c v = quadRay ρ v) ↔
+      (∀ i : Fin m, c i = 0) := by
+  constructor
+  · rintro ⟨ρ, hρ⟩
+    obtain ⟨h1, h2, h3, h12, h13, h23, h12i, h13i, h23i⟩ :=
+      finCombResidual_vanishes_on_nine_rays m S.R c S.vanishesNine
+    have htomo_id :
+        tomographyForm (finExoticComb m S.R c) = ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ := by
+      ext <;>
+        simp [tomographyForm, finExoticComb, h1, h2, h3, h12, h13, h23, h12i, h13i, h23i]
+    have hm := tomography_matches_nine_rays (finExoticComb m S.R c)
+    have hρ_eq : tomographyForm (finExoticComb m S.R c) = ρ := by
+      apply tomography_unique (tomographyForm (finExoticComb m S.R c)) ρ
+      · rw [hm.1, hρ tomo_e1 tomo_e1_nonZero]
+      · rw [hm.2.1, hρ tomo_e2 tomo_e2_nonZero]
+      · rw [hm.2.2.1, hρ tomo_e3 tomo_e3_nonZero]
+      · rw [hm.2.2.2.1, hρ tomo_e12 tomo_e12_nonZero]
+      · rw [hm.2.2.2.2.1, hρ tomo_e13 tomo_e13_nonZero]
+      · rw [hm.2.2.2.2.2.1, hρ tomo_e23 tomo_e23_nonZero]
+      · rw [hm.2.2.2.2.2.2.1, hρ tomo_e12i tomo_e12i_nonZero]
+      · rw [hm.2.2.2.2.2.2.2.1, hρ tomo_e13i tomo_e13i_nonZero]
+      · rw [hm.2.2.2.2.2.2.2.2, hρ tomo_e23i tomo_e23i_nonZero]
+    have hρ_id : ρ = ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ := hρ_eq.symm.trans htomo_id
+    intro i
+    have hwi := hρ (S.witness i) (S.witness_nonZero i)
+    rw [hρ_id] at hwi
+    have hpos := normSqVec_pos_of_nonZero (S.witness_nonZero i)
+    have hnz : normSqVec (S.witness i) ≠ 0 := ne_of_gt hpos
+    have hnum : quadNum ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ (S.witness i) =
+        (1 / 3) * normSqVec (S.witness i) := by
+      simp only [quadNum, normSqVec]; ring
+    have hq : quadRay ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ (S.witness i) = 1 / 3 := by
+      simp only [quadRay, hnum, mul_div_cancel_right₀ (1 / 3 : ℚ) hnz]
+    have hex : finExoticComb m S.R c (S.witness i) = (1 + c i) / 3 := by
+      simp [finExoticComb, finCombResidual_witness S c i]
+    linarith
+  · intro hzero
+    refine ⟨⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩, ?_⟩
+    intro v hv
+    have hpos := normSqVec_pos_of_nonZero hv
+    have hnz : normSqVec v ≠ 0 := ne_of_gt hpos
+    have hnum : quadNum ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ v = (1 / 3) * normSqVec v := by
+      simp only [quadNum, normSqVec]; ring
+    have hz := finCombResidual_eq_zero_of_coeffs_zero m S.R c v hzero
+    simp only [finExoticComb, hz, add_zero, quadRay, hnum,
+      mul_div_cancel_right₀ (1 / 3 : ℚ) hnz]
+
+/-- Joint Archimedean continuity elimination for any finite system `S : InertPrimeResidualSystem m`:
+if `f` and `f - finCombResidual m S.R c` are both archimedean-continuous at `tomo_e1 = (1, 0, 0)`,
+then `c i = 0` for all `i : Fin m`. -/
+theorem finCombResidual_coeffs_zero_of_archimedeanContinuousAt_tomo_e1
+    {m : ℕ} (S : InertPrimeResidualSystem m)
+    {f : GVec → ℚ} {c : Fin m → ℚ}
+    (hf_cont : IsArchimedeanContinuousAt f tomo_e1)
+    (hq_cont : IsArchimedeanContinuousAt (fun v => f v - finCombResidual m S.R c v) tomo_e1) :
+    ∀ i : Fin m, c i = 0 := by
+  intro i
+  by_contra hci
+  have hci_pos : 0 < |c i| := abs_pos.mpr hci
+  obtain ⟨δ1, hδ1, hb1⟩ := hf_cont (|c i| / 3) (by linarith)
+  obtain ⟨δ2, hδ2, hb2⟩ := hq_cont (|c i| / 3) (by linarith)
+  let δ := min δ1 δ2
+  have hδ : 0 < δ := lt_min hδ1 hδ2
+  obtain ⟨uPos, _, huPos_nz, _, huPos_dist, _, huPos_diag, _, huPos_off⟩ :=
+    S.selective_oscillation δ hδ i
+  have h1 := hb1 uPos huPos_nz (lt_of_lt_of_le huPos_dist (min_le_left δ1 δ2))
+  have h2 := hb2 uPos huPos_nz (lt_of_lt_of_le huPos_dist (min_le_right δ1 δ2))
+  have huPos_comb : finCombResidual m S.R c uPos = c i :=
+    finCombResidual_eq_coeff_of_single_one m S.R c uPos i huPos_diag
+      (fun j hj => (huPos_off j hj).1)
+  have he1_comb : finCombResidual m S.R c tomo_e1 = 0 :=
+    (finCombResidual_vanishes_on_nine_rays m S.R c S.vanishesNine).1
+  dsimp only at h2
+  rw [huPos_comb, he1_comb, sub_zero] at h2
+  have htri : |c i| ≤ |f uPos - f tomo_e1| + |f uPos - c i - f tomo_e1| := by
+    calc |c i| = |(f uPos - f tomo_e1) - (f uPos - c i - f tomo_e1)| := by ring_nf
+      _ ≤ |f uPos - f tomo_e1| + |f uPos - c i - f tomo_e1| :=
+        abs_sub (f uPos - f tomo_e1) (f uPos - c i - f tomo_e1)
+  linarith
+
+/-- Unconditional Archimedean continuity elimination for any finite combination of inert-prime
+residuals: `quadRay ρ + finCombResidual m S.R c` is archimedean-continuous at `tomo_e1 = (1, 0, 0)`
+if and only if `c i = 0` for all `i : Fin m`. -/
+theorem quadRay_add_finCombResidual_archimedeanContinuousAt_tomo_e1_iff
+    {m : ℕ} (S : InertPrimeResidualSystem m) (ρ : HermForm3) (c : Fin m → ℚ) :
+    IsArchimedeanContinuousAt (fun v => quadRay ρ v + finCombResidual m S.R c v) tomo_e1 ↔
+      (∀ i : Fin m, c i = 0) := by
+  constructor
+  · intro hf_cont
+    apply finCombResidual_coeffs_zero_of_archimedeanContinuousAt_tomo_e1 S hf_cont
+    have heq :
+        (fun v => (quadRay ρ v + finCombResidual m S.R c v) - finCombResidual m S.R c v) =
+          quadRay ρ := by
+      funext v; ring
+    rw [heq]
+    exact archimedeanContinuousAt_quadRay_tomo_e1 ρ
+  · intro hzero
+    have heq : (fun v => quadRay ρ v + finCombResidual m S.R c v) = quadRay ρ := by
+      funext v
+      rw [finCombResidual_eq_zero_of_coeffs_zero m S.R c v hzero, add_zero]
+    rw [heq]
+    exact archimedeanContinuousAt_quadRay_tomo_e1 ρ
+
+/-- `finExoticComb m S.R c` is archimedean-continuous at `tomo_e1 = (1, 0, 0)` if and only if
+`c i = 0` for all `i : Fin m`. -/
+theorem finExoticComb_archimedeanContinuousAt_tomo_e1_iff
+    {m : ℕ} (S : InertPrimeResidualSystem m) (c : Fin m → ℚ) :
+    IsArchimedeanContinuousAt (finExoticComb m S.R c) tomo_e1 ↔ (∀ i : Fin m, c i = 0) := by
+  constructor
+  · intro hcont
+    have hcont3 :
+        IsArchimedeanContinuousAt
+          (fun v => (1 : ℚ) / 3 + finCombResidual m S.R (fun i => c i / 3) v) tomo_e1 := by
+      have heq :
+          (fun v => (1 : ℚ) / 3 + finCombResidual m S.R (fun i => c i / 3) v) =
+            finExoticComb m S.R c := by
+        funext v
+        have hsmul := finCombResidual_smul_coeffs m S.R (1 / 3) c v
+        have hfun : (fun i => (1 / 3 : ℚ) * c i) = (fun i => c i / 3) := by funext i; ring
+        rw [hfun] at hsmul
+        simp only [finExoticComb, hsmul]
+        ring
+      rw [heq]
+      exact hcont
+    have hconst_cont : IsArchimedeanContinuousAt (fun _ : GVec => (1 : ℚ) / 3) tomo_e1 := by
+      intro ε hε
+      refine ⟨1, by norm_num, ?_⟩
+      intro v _ _
+      simp [hε]
+    have hsub_cont :
+        IsArchimedeanContinuousAt
+          (fun v =>
+            ((1 : ℚ) / 3 + finCombResidual m S.R (fun i => c i / 3) v) -
+              finCombResidual m S.R (fun i => c i / 3) v)
+          tomo_e1 := by
+      have heq :
+          (fun v =>
+            ((1 : ℚ) / 3 + finCombResidual m S.R (fun i => c i / 3) v) -
+              finCombResidual m S.R (fun i => c i / 3) v) =
+            (fun _ : GVec => (1 : ℚ) / 3) := by
+        funext v; ring
+      rw [heq]
+      exact hconst_cont
+    have hzero3 :=
+      finCombResidual_coeffs_zero_of_archimedeanContinuousAt_tomo_e1 S hcont3 hsub_cont
+    intro i
+    have hi := hzero3 i
+    linarith
+  · intro hzero ε hε
+    refine ⟨1, by norm_num, ?_⟩
+    intro v _ _
+    have hz1 := finCombResidual_eq_zero_of_coeffs_zero m S.R c v hzero
+    have hz2 := finCombResidual_eq_zero_of_coeffs_zero m S.R c tomo_e1 hzero
+    simp [finExoticComb, hz1, hz2, hε]
+
+/-- Operator-space projector-linearity elimination for any finite combination of inert-prime
+residuals: `finCombResidual m S.R c` factors linearly through `rayProj` iff `∀ i, c i = 0`. -/
+theorem factorsThroughRayProjLinear_finCombResidual_iff
+    {m : ℕ} (S : InertPrimeResidualSystem m) (c : Fin m → ℚ) :
+    FactorsThroughRayProjLinear (finCombResidual m S.R c) ↔ (∀ i : Fin m, c i = 0) := by
+  constructor
+  · intro hlin
+    exact (inertPrimeResidualSystem_linearIndependent S c).mp
+      (zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
+        (finCombResidual_vanishes_on_nine_rays m S.R c S.vanishesNine) hlin)
+  · intro hzero
+    refine ⟨fun _ => 0, ⟨by intro _ _; ring, by intro _ _; ring⟩, ?_⟩
+    intro v _
+    exact finCombResidual_eq_zero_of_coeffs_zero m S.R c v hzero
+
+/-- Joint quadratic field-extension elimination for any finite combination `finCombResidual m S.R c`:
+if for each `i : Fin m`, `finCombResidual m S.R c` extends to a zero-weight frame function `G i`
+on `ℚ(i, √(p i))³` that vanishes on the orthogonal frame partners `(P i, Q i)` of `S.witness i`,
+then `c i = 0` for all `i : Fin m`. -/
+theorem joint_field_extension_eliminates_finCombResidual
+    {m : ℕ} (S : InertPrimeResidualSystem m) {c : Fin m → ℚ}
+    {p : Fin m → ℚ} {G : Fin m → GVecSqrt3 → ℚ}
+    {P Q : Fin m → GVecSqrt3}
+    (hG : ∀ i : Fin m, IsZeroWeightFrameFunctionSqrtP (p i) (G i))
+    (hfr : ∀ i : Fin m, IsFrameSqrtP (p i) (GVecSqrt3.ofGVec (S.witness i)) (P i) (Q i))
+    (hPQ : ∀ i : Fin m, G i (P i) = 0 ∧ G i (Q i) = 0)
+    (hext : ∀ (i : Fin m) (v : GVec), G i (GVecSqrt3.ofGVec v) = finCombResidual m S.R c v) :
+    ∀ i : Fin m, c i = 0 := by
+  intro i
+  have hsum := hG i (GVecSqrt3.ofGVec (S.witness i)) (P i) (Q i) (hfr i)
+  obtain ⟨hp0, hq0⟩ := hPQ i
+  have hw0 : G i (GVecSqrt3.ofGVec (S.witness i)) = 0 := by linarith
+  rw [hext i (S.witness i), finCombResidual_witness S c i] at hw0
+  exact hw0
+
+/-- Concrete instantiation of `InertPrimeResidualSystem 2` by the `3`-adic and `7`-adic
+residuals `(s3, s7)` and dual witnesses `(witness_111, witness_p7)`. -/
+def inertSystem37 : InertPrimeResidualSystem 2 where
+  R i := if i.val = 0 then s3 else s7
+  witness i := if i.val = 0 then witness_111 else witness_p7
+  isZeroWeight i := by
+    by_cases h : i.val = 0 <;> simp only [h, ↓reduceIte]
+    · exact s3_isZeroWeightFrameFunction
+    · exact s7_isZeroWeightFrameFunction
+  vanishesNine i := by
+    by_cases h : i.val = 0 <;> simp only [h, ↓reduceIte]
+    · exact s3_vanishes_on_nine_rays
+    · exact s7_vanishes_on_nine_rays
+  abs_le_one i v := by
+    by_cases h : i.val = 0 <;> simp only [h, ↓reduceIte]
+    · exact s3_abs_le_one v
+    · exact s7_abs_le_one v
+  witness_nonZero i := by
+    by_cases h : i.val = 0 <;> simp only [h, ↓reduceIte]
+    · exact witness_111_nonZero
+    · exact witness_p7_nonZero
+  witness_diag i := by
+    by_cases h : i.val = 0 <;> simp only [h, ↓reduceIte]
+    · exact s3_witness_111
+    · exact s7_witness_p7
+  witness_offDiag i j hij := by
+    have hij_val : i.val ≠ j.val := fun heq => hij (Fin.ext heq)
+    have hi : i.val = 0 ∨ i.val = 1 := by omega
+    have hj : j.val = 0 ∨ j.val = 1 := by omega
+    rcases hi with hi0 | hi1 <;> rcases hj with hj0 | hj1
+    · omega
+    · simp only [hi0, hj1, (by decide : (1 : ℕ) ≠ 0), ↓reduceIte]; exact s3_witness_p7
+    · simp only [hi1, hj0, (by decide : (1 : ℕ) ≠ 0), ↓reduceIte]; exact s7_witness_111
+    · omega
+  selective_oscillation δ hδ i := by
+    obtain ⟨u3Pos, u3Neg, u7Pos, u7Neg,
+      hu3Pos_nz, hu3Neg_nz, hu7Pos_nz, hu7Neg_nz,
+      hu3Pos_d, hu3Neg_d, hu7Pos_d, hu7Neg_d,
+      hu3Pos_3, hu3Pos_7, hu3Neg_3, hu3Neg_7,
+      hu7Pos_3, hu7Pos_7, hu7Neg_3, hu7Neg_7⟩ :=
+      s3_s7_selective_oscillation_near_tomo_e1 δ hδ
+    have hi : i.val = 0 ∨ i.val = 1 := by omega
+    rcases hi with hi0 | hi1
+    · refine ⟨u3Pos, u3Neg, hu3Pos_nz, hu3Neg_nz, hu3Pos_d, hu3Neg_d,
+        by simp [hi0, hu3Pos_3], by simp [hi0, hu3Neg_3], ?_⟩
+      intro j hj
+      have hj_val : j.val ≠ 0 := fun h0 => hj (Fin.ext (by omega))
+      simp only [hj_val, ↓reduceIte]
+      exact ⟨hu3Pos_7, hu3Neg_7⟩
+    · refine ⟨u7Pos, u7Neg, hu7Pos_nz, hu7Neg_nz, hu7Pos_d, hu7Neg_d,
+        by simp [hi1, hu7Pos_7], by simp [hi1, hu7Neg_7], ?_⟩
+      intro j hj
+      have hj_val : j.val = 0 := by
+        have hne1 : j.val ≠ 1 := fun h1 => hj (Fin.ext (by omega))
+        omega
+      simp only [hj_val, ↓reduceIte]
+      exact ⟨hu7Pos_3, hu7Neg_3⟩
+
+theorem finCombResidual_inertSystem37_eq_combResidual37 (c : Fin 2 → ℚ) (v : GVec) :
+    finCombResidual 2 inertSystem37.R c v = combResidual37 (c 0) (c 1) v := by
+  simp [finCombResidual, inertSystem37, combResidual37]
+
+/-! #### 9F. Dense-Frame Piron/Cooke–Keane–Moran Frame-Rotation Approximation, Planar Parallelogram Law, and Nonnegativity/Continuity Bridge on ℚ(i)³ -/
+
+instance : Zero GVec := ⟨⟨0, 0, 0⟩⟩
+
+/-- Componentwise addition `u + v` in `ℚ(i)³`. -/
+def GVec.add (u v : GVec) : GVec :=
+  ⟨u.x + v.x, u.y + v.y, u.z + v.z⟩
+
+/-- Componentwise subtraction `u - v` in `ℚ(i)³`. -/
+def GVec.sub (u v : GVec) : GVec :=
+  ⟨u.x - v.x, u.y - v.y, u.z - v.z⟩
+
+theorem inner_add_left (u v w : GVec) :
+    GVec.inner (GVec.add u v) w = GVec.inner u w + GVec.inner v w := by
+  simp only [GVec.inner, GVec.add, star_add]
+  ring
+
+theorem inner_add_right (u v w : GVec) :
+    GVec.inner u (GVec.add v w) = GVec.inner u v + GVec.inner u w := by
+  simp only [GVec.inner, GVec.add]
+  ring
+
+theorem inner_sub_left (u v w : GVec) :
+    GVec.inner (GVec.sub u v) w = GVec.inner u w - GVec.inner v w := by
+  simp only [GVec.inner, GVec.sub, star_sub]
+  ring
+
+theorem inner_sub_right (u v w : GVec) :
+    GVec.inner u (GVec.sub v w) = GVec.inner u v - GVec.inner u w := by
+  simp only [GVec.inner, GVec.sub]
+  ring
+
+theorem inner_smul_right (l : GaussRat) (u v : GVec) :
+    GVec.inner u (GVec.smul l v) = l * GVec.inner u v := by
+  simp only [GVec.inner, GVec.smul]
+  ring
+
+@[simp] theorem zero_x : (0 : GVec).x = 0 := rfl
+@[simp] theorem zero_y : (0 : GVec).y = 0 := rfl
+@[simp] theorem zero_z : (0 : GVec).z = 0 := rfl
+
+theorem gvec_eq_zero_of_not_nonZero {v : GVec} (hnot : ¬ v.NonZero) : v = 0 := by
+  unfold GVec.NonZero at hnot
+  rcases not_or.mp hnot with ⟨hx, hyz⟩
+  rcases not_or.mp hyz with ⟨hy, hz⟩
+  have hx0 : v.x = 0 := not_ne_iff.mp hx
+  have hy0 : v.y = 0 := not_ne_iff.mp hy
+  have hz0 : v.z = 0 := not_ne_iff.mp hz
+  cases v
+  dsimp at hx0 hy0 hz0
+  subst hx0; subst hy0; subst hz0
+  rfl
+
+theorem nonZero_of_normSqVec_pos {v : GVec} (h : 0 < normSqVec v) : v.NonZero := by
+  by_contra hnot
+  have hv0 : v = 0 := gvec_eq_zero_of_not_nonZero hnot
+  subst hv0
+  have h0 : normSqVec (0 : GVec) = 0 := normSqVec_zero
+  linarith
+
+theorem gaussRat_normSq_pos_of_ne_zero {z : GaussRat} (hz : z ≠ 0) : 0 < z.normSq :=
+  lt_of_le_of_ne (GaussRat.normSq_nonneg z)
+    (fun h => hz ((GaussRat.normSq_eq_zero_iff z).mp h.symm))
+
+theorem gaussRat_normSq_star (z : GaussRat) : (star z).normSq = z.normSq := by
+  simp only [GaussRat.normSq, GaussRat.re_star, GaussRat.im_star]
+  ring
+
+theorem gaussRat_normSq_neg (z : GaussRat) : (-z).normSq = z.normSq := by
+  simp only [GaussRat.normSq, GaussRat.re_neg, GaussRat.im_neg]
+  ring
+
+/-- General `ℚ(i)`-planar linear combination `α u + β v` in `span(u, v)`. -/
+def rotPairU (u v : GVec) (α β : GaussRat) : GVec :=
+  GVec.add (GVec.smul α u) (GVec.smul β v)
+
+/-- Orthogonal planar rotation partner `-(star β * N(v)) u + (star α * N(u)) v` in `span(u, v)`. -/
+def rotPairV (u v : GVec) (α β : GaussRat) : GVec :=
+  GVec.add (GVec.smul (-(star β * ⟨normSqVec v, 0⟩)) u)
+           (GVec.smul (star α * ⟨normSqVec u, 0⟩) v)
+
+/-- For any orthogonal pair `u, v ∈ ℚ(i)³` and any `α, β ∈ ℚ(i)`, `rotPairU u v α β` and
+`rotPairV u v α β` are orthogonal. -/
+theorem inner_rotPairU_rotPairV_eq_zero {u v : GVec} (huv : GVec.inner u v = 0)
+    (α β : GaussRat) :
+    GVec.inner (rotPairU u v α β) (rotPairV u v α β) = 0 := by
+  have hvu := inner_eq_zero_symm huv
+  simp only [rotPairU, rotPairV, inner_add_left, inner_add_right,
+    inner_smul_left, inner_smul_right, huv, hvu,
+    inner_self_eq_normSqVec u, inner_self_eq_normSqVec v]
+  ring
+
+/-- Pythagorean identity on `ℚ(i)³`: if `GVec.inner u v = 0`, then both `u + v` and `u - v`
+have squared norm `normSqVec u + normSqVec v`. -/
+theorem normSqVec_add_eq_normSqVec_sub_of_ortho {u v : GVec} (huv : GVec.inner u v = 0) :
+    normSqVec (GVec.add u v) = normSqVec u + normSqVec v ∧
+    normSqVec (GVec.sub u v) = normSqVec u + normSqVec v := by
+  have hvu := inner_eq_zero_symm huv
+  have hadd_inner :
+      GVec.inner (GVec.add u v) (GVec.add u v) = GVec.inner u u + GVec.inner v v := by
+    simp only [inner_add_left, inner_add_right, huv, hvu]
+    ring
+  have hsub_inner :
+      GVec.inner (GVec.sub u v) (GVec.sub u v) = GVec.inner u u + GVec.inner v v := by
+    simp only [inner_sub_left, inner_sub_right, huv, hvu]
+    ring
+  have hadd_re := congrArg GaussRat.re hadd_inner
+  have hsub_re := congrArg GaussRat.re hsub_inner
+  simp only [inner_self_eq_normSqVec, GaussRat.re_add] at hadd_re hsub_re
+  exact ⟨hadd_re, hsub_re⟩
+
+/-- Squared norm of `rotPairU u v α β` for orthogonal `u, v`. -/
+theorem normSqVec_rotPairU {u v : GVec} (huv : GVec.inner u v = 0) (α β : GaussRat) :
+    normSqVec (rotPairU u v α β) = α.normSq * normSqVec u + β.normSq * normSqVec v := by
+  have h_ortho : GVec.inner (GVec.smul α u) (GVec.smul β v) = 0 := by
+    rw [inner_smul_left, inner_smul_right, huv, mul_zero, mul_zero]
+  rw [rotPairU, (normSqVec_add_eq_normSqVec_sub_of_ortho h_ortho).1,
+    normSqVec_smul, normSqVec_smul]
+
+/-- Squared norm of `rotPairV u v α β` for orthogonal `u, v`. -/
+theorem normSqVec_rotPairV {u v : GVec} (huv : GVec.inner u v = 0) (α β : GaussRat) :
+    normSqVec (rotPairV u v α β) =
+      normSqVec u * normSqVec v * normSqVec (rotPairU u v α β) := by
+  have h_ortho :
+      GVec.inner (GVec.smul (-(star β * ⟨normSqVec v, 0⟩)) u)
+        (GVec.smul (star α * ⟨normSqVec u, 0⟩) v) = 0 := by
+    rw [inner_smul_left, inner_smul_right, huv, mul_zero, mul_zero]
+  rw [rotPairV, (normSqVec_add_eq_normSqVec_sub_of_ortho h_ortho).1,
+    normSqVec_smul, normSqVec_smul, normSqVec_rotPairU huv α β]
+  simp only [gaussRat_normSq_neg, GaussRat.normSq_mul, gaussRat_normSq_star]
+  have hnu : (⟨normSqVec u, 0⟩ : GaussRat).normSq = normSqVec u ^ 2 := by
+    simp [GaussRat.normSq]
+  have hnv : (⟨normSqVec v, 0⟩ : GaussRat).normSq = normSqVec v ^ 2 := by
+    simp [GaussRat.normSq]
+  rw [hnu, hnv]
+  ring
+
+/-- Planar frame-rotation closure: if `(u, v, w)` is an orthogonal frame in `ℚ(i)³` and
+`α ≠ 0 ∨ β ≠ 0`, then `(rotPairU u v α β, rotPairV u v α β, w)` is also an orthogonal frame. -/
+theorem isFrame_rotPair {u v w : GVec} (hfr : IsFrame u v w) {α β : GaussRat}
+    (hαβ : α ≠ 0 ∨ β ≠ 0) :
+    IsFrame (rotPairU u v α β) (rotPairV u v α β) w := by
+  obtain ⟨hu, hv, hw, huv, huw, hvw⟩ := hfr
+  have hnu_pos := normSqVec_pos_of_nonZero hu
+  have hnv_pos := normSqVec_pos_of_nonZero hv
+  have hrotU_pos : 0 < normSqVec (rotPairU u v α β) := by
+    rw [normSqVec_rotPairU huv]
+    rcases hαβ with hα | hβ
+    · have hα_pos := gaussRat_normSq_pos_of_ne_zero hα
+      have hβ_nn := GaussRat.normSq_nonneg β
+      nlinarith
+    · have hβ_pos := gaussRat_normSq_pos_of_ne_zero hβ
+      have hα_nn := GaussRat.normSq_nonneg α
+      nlinarith
+  have hrotV_pos : 0 < normSqVec (rotPairV u v α β) := by
+    rw [normSqVec_rotPairV huv]
+    exact mul_pos (mul_pos hnu_pos hnv_pos) hrotU_pos
+  refine ⟨nonZero_of_normSqVec_pos hrotU_pos,
+    nonZero_of_normSqVec_pos hrotV_pos,
+    hw,
+    inner_rotPairU_rotPairV_eq_zero huv α β,
+    ?_, ?_⟩
+  · simp only [rotPairU, inner_add_left, inner_smul_left, huw, hvw, mul_zero, add_zero]
+  · simp only [rotPairV, inner_add_left, inner_smul_left, huw, hvw, mul_zero, add_zero]
+
+/-- Two-dimensional subspace sum invariance for frame functions: on any frame `(u, v, w)` and
+any nonzero planar rotation `(α, β)`, `f (rotPairU u v α β) + f (rotPairV u v α β) = f u + f v`. -/
+theorem frameFunction_rotPair_sum {f : GVec → ℚ} (hf : IsFrameFunction f)
+    {u v w : GVec} (hfr : IsFrame u v w) {α β : GaussRat} (hαβ : α ≠ 0 ∨ β ≠ 0) :
+    f (rotPairU u v α β) + f (rotPairV u v α β) = f u + f v := by
+  have h1 := hf u v w hfr
+  have h2 := hf (rotPairU u v α β) (rotPairV u v α β) w (isFrame_rotPair hfr hαβ)
+  linarith
+
+/-- Two-dimensional subspace sum invariance for zero-weight frame residuals: on any frame
+`(u, v, w)` and any nonzero planar rotation `(α, β)`,
+`g (rotPairU u v α β) + g (rotPairV u v α β) = g u + g v`. -/
+theorem zeroWeight_rotPair_sum {g : GVec → ℚ} (hg : IsZeroWeightFrameFunction g)
+    {u v w : GVec} (hfr : IsFrame u v w) {α β : GaussRat} (hαβ : α ≠ 0 ∨ β ≠ 0) :
+    g (rotPairU u v α β) + g (rotPairV u v α β) = g u + g v := by
+  have h1 := hg u v w hfr
+  have h2 := hg (rotPairU u v α β) (rotPairV u v α β) w (isFrame_rotPair hfr hαβ)
+  linarith
+
+theorem quadNum_add_quadNum_sub (ρ : HermForm3) (u v : GVec) :
+    quadNum ρ (GVec.add u v) + quadNum ρ (GVec.sub u v) =
+      2 * quadNum ρ u + 2 * quadNum ρ v := by
+  simp only [quadNum, GVec.add, GVec.sub, GaussRat.normSq,
+    GaussRat.re_add, GaussRat.im_add, GaussRat.re_sub, GaussRat.im_sub]
+  ring
+
+theorem normSqVec_mul_quadRay (ρ : HermForm3) (v : GVec) :
+    normSqVec v * quadRay ρ v = quadNum ρ v := by
+  by_cases hv : v.NonZero
+  · exact mul_div_cancel₀ (quadNum ρ v) (normSqVec_ne_zero_of_nonZero hv)
+  · rw [gvec_eq_zero_of_not_nonZero hv]
+    change normSqVec ⟨0, 0, 0⟩ * quadRay ρ ⟨0, 0, 0⟩ = quadNum ρ ⟨0, 0, 0⟩
+    rw [normSqVec_zero, quadNum_zero, zero_mul]
+
+/-- Exact operator-space two-point parallelogram / convex-combination identity for `rayProj`:
+for any orthogonal pair `u, v ∈ ℚ(i)³`,
+`T(u + v) + T(u - v) = (2 N(u) / (N(u) + N(v))) T(u) + (2 N(v) / (N(u) + N(v))) T(v)`. -/
+theorem rayProj_ortho_add_sub {u v : GVec} (huv : GVec.inner u v = 0) :
+    HermForm3.add (rayProj (GVec.add u v)) (rayProj (GVec.sub u v)) =
+    HermForm3.add
+      (HermForm3.smul (2 * normSqVec u / (normSqVec u + normSqVec v)) (rayProj u))
+      (HermForm3.smul (2 * normSqVec v / (normSqVec u + normSqVec v)) (rayProj v)) := by
+  apply traceInner_ext
+  intro τ
+  obtain ⟨hadd_norm, hsub_norm⟩ := normSqVec_add_eq_normSqVec_sub_of_ortho huv
+  rw [traceInner_comm, traceInner_add_right, traceInner_rayProj, traceInner_rayProj,
+      traceInner_comm _ τ, traceInner_add_right, traceInner_smul_right, traceInner_smul_right,
+      traceInner_rayProj, traceInner_rayProj]
+  rw [quadRay, quadRay, hadd_norm, hsub_norm, ← add_div, quadNum_add_quadNum_sub,
+      ← normSqVec_mul_quadRay τ u, ← normSqVec_mul_quadRay τ v]
+  ring
+
+/-- Every ray function `f` factoring linearly through `rayProj` satisfies the two-point
+orthogonal parallelogram law on nonzero orthogonal vectors `u, v ∈ ℚ(i)³`. -/
+theorem factorsThroughRayProjLinear_ortho_add_sub {f : GVec → ℚ}
+    (hlin : FactorsThroughRayProjLinear f)
+    {u v : GVec} (hu : u.NonZero) (hv : v.NonZero) (huv : GVec.inner u v = 0) :
+    f (GVec.add u v) + f (GVec.sub u v) =
+      (2 * normSqVec u / (normSqVec u + normSqVec v)) * f u +
+      (2 * normSqVec v / (normSqVec u + normSqVec v)) * f v := by
+  obtain ⟨L, ⟨hadd, hsmul⟩, hL⟩ := hlin
+  obtain ⟨hadd_norm, hsub_norm⟩ := normSqVec_add_eq_normSqVec_sub_of_ortho huv
+  have hsum_pos : 0 < normSqVec u + normSqVec v :=
+    add_pos (normSqVec_pos_of_nonZero hu) (normSqVec_pos_of_nonZero hv)
+  have hadd_nz : (GVec.add u v).NonZero :=
+    nonZero_of_normSqVec_pos (by linarith [hadd_norm])
+  have hsub_nz : (GVec.sub u v).NonZero :=
+    nonZero_of_normSqVec_pos (by linarith [hsub_norm])
+  rw [hL (GVec.add u v) hadd_nz, hL (GVec.sub u v) hsub_nz, ← hadd,
+      rayProj_ortho_add_sub huv, hadd, hsmul, hsmul, ← hL u hu, ← hL v hv]
+
+theorem factorsThroughRayProjLinear_smul {f : GVec → ℚ}
+    (hlin : FactorsThroughRayProjLinear f)
+    {v : GVec} (hv : v.NonZero) {l : GaussRat} (hl : l ≠ 0) :
+    f (GVec.smul l v) = f v := by
+  obtain ⟨L, _, hL⟩ := hlin
+  rw [hL (GVec.smul l v) (nonZero_smul hl hv), hL v hv, rayProj_smul hl v]
+
+/-- Two-point orthogonal parallelogram zero-propagation property: whenever `u ⊥ v` and
+`g u = g v = 0`, `g(u + v) + g(u - v) = 0`. -/
+def SatisfiesOrthoParallelogramZero (g : GVec → ℚ) : Prop :=
+  ∀ u v : GVec, GVec.inner u v = 0 → g u = 0 → g v = 0 →
+    g (GVec.add u v) + g (GVec.sub u v) = 0
+
+/-- Every function `g : GVec → ℚ` that factors linearly through `rayProj` and satisfies `g 0 = 0`
+satisfies `SatisfiesOrthoParallelogramZero g`. -/
+theorem satisfiesOrthoParallelogramZero_of_factorsThroughRayProjLinear {g : GVec → ℚ}
+    (hlin : FactorsThroughRayProjLinear g) (hg0 : g 0 = 0) :
+    SatisfiesOrthoParallelogramZero g := by
+  intro u v huv hgu hgv
+  by_cases hu : u.NonZero
+  · by_cases hv : v.NonZero
+    · rw [factorsThroughRayProjLinear_ortho_add_sub hlin hu hv huv, hgu, hgv]
+      ring
+    · rw [gvec_eq_zero_of_not_nonZero hv]
+      have hadd0 : GVec.add u 0 = u := by ext <;> simp [GVec.add]
+      have hsub0 : GVec.sub u 0 = u := by ext <;> simp [GVec.sub]
+      rw [hadd0, hsub0, hgu]
+      ring
+  · rw [gvec_eq_zero_of_not_nonZero hu]
+    have hadd0 : GVec.add 0 v = v := by ext <;> simp [GVec.add]
+    have hsub0 : GVec.sub 0 v = GVec.smul (-1) v := by ext <;> simp [GVec.sub, GVec.smul]
+    rw [hadd0, hsub0]
+    by_cases hv : v.NonZero
+    · have hneg1 : (-1 : GaussRat) ≠ 0 := by decide
+      rw [factorsThroughRayProjLinear_smul hlin hv hneg1, hgv]
+      ring
+    · rw [gvec_eq_zero_of_not_nonZero hv]
+      have hsmul0 : GVec.smul (-1) (0 : GVec) = 0 := by ext <;> simp [GVec.smul]
+      rw [hsmul0, hg0]
+      ring
+
+/-- A ray function `g : GVec → ℚ` is coordinate-sign symmetric if negating its `y` or `z`
+coordinate preserves `g` (satisfied by any function of coordinate norms `(|x|², |y|², |z|²)`). -/
+def IsCoordSignSymmetric (g : GVec → ℚ) : Prop :=
+  ∀ x y z : GaussRat, g ⟨x, -y, z⟩ = g ⟨x, y, z⟩ ∧ g ⟨x, y, -z⟩ = g ⟨x, y, z⟩
+
+theorem sp_eq_of_coord_normSq_eq (p : ℕ) {u v : GVec}
+    (hx : u.x.normSq = v.x.normSq)
+    (hy : u.y.normSq = v.y.normSq)
+    (hz : u.z.normSq = v.z.normSq) :
+    sp p u = sp p v := by
+  have hnorm : normSqVec u = normSqVec v := by
+    simp only [normSqVec, hx, hy, hz]
+  have hlx : isLeadPCoord p u.x u ↔ isLeadPCoord p v.x v := by
+    simp only [isLeadPCoord, hx, hnorm]
+  have hly : isLeadPCoord p u.y u ↔ isLeadPCoord p v.y v := by
+    simp only [isLeadPCoord, hy, hnorm]
+  have hcx : coordSignP p u.x u = coordSignP p v.x v := by
+    simp only [coordSignP, hx, hnorm]
+  have hcy : coordSignP p u.y u = coordSignP p v.y v := by
+    simp only [coordSignP, hy, hnorm]
+  have hcz : coordSignP p u.z u = coordSignP p v.z v := by
+    simp only [coordSignP, hz, hnorm]
+  simp only [sp, hnorm, hlx, hly, hcx, hcy, hcz]
+
+/-- For every prime index `p : ℕ`, `sp p` is coordinate-sign symmetric since it depends only
+on the squared coordinate norms `(u.x.normSq, u.y.normSq, u.z.normSq)`. -/
+theorem sp_isCoordSignSymmetric (p : ℕ) : IsCoordSignSymmetric (sp p) := by
+  intro x y z
+  exact ⟨sp_eq_of_coord_normSq_eq p rfl (gaussRat_normSq_neg y) rfl,
+         sp_eq_of_coord_normSq_eq p rfl rfl (gaussRat_normSq_neg z)⟩
+
+theorem s3_isCoordSignSymmetric : IsCoordSignSymmetric s3 := by
+  intro x y z
+  rw [← sp_three_eq_s3, ← sp_three_eq_s3, ← sp_three_eq_s3]
+  exact sp_isCoordSignSymmetric 3 x y z
+
+theorem s7_isCoordSignSymmetric : IsCoordSignSymmetric s7 := by
+  intro x y z
+  rw [← sp_seven_eq_s7, ← sp_seven_eq_s7, ← sp_seven_eq_s7]
+  exact sp_isCoordSignSymmetric 7 x y z
+
+/-- For every inert prime `p` (`InertPrimeSpec p`), `sp p` vanishes on all vectors supported on
+a single coordinate axis (`⟨x, 0, 0⟩`, `⟨0, y, 0⟩`, `⟨0, 0, z⟩`). -/
+theorem sp_vanishes_on_coord_axes {p : ℕ} (hP : InertPrimeSpec p) (x y z : GaussRat) :
+    sp p ⟨x, 0, 0⟩ = 0 ∧ sp p ⟨0, y, 0⟩ = 0 ∧ sp p ⟨0, 0, z⟩ = 0 := by
+  have hx : normSqVec ⟨x, 0, 0⟩ = x.normSq := by simp [normSqVec, GaussRat.normSq]
+  have hy : normSqVec ⟨0, y, 0⟩ = y.normSq := by simp [normSqVec, GaussRat.normSq]
+  have hz : normSqVec ⟨0, 0, z⟩ = z.normSq := by simp [normSqVec, GaussRat.normSq]
+  refine ⟨sp_eq_zero_of_even (by rw [hx]; exact vpRat_normSq_even hP x),
+          sp_eq_zero_of_even (by rw [hy]; exact vpRat_normSq_even hP y),
+          sp_eq_zero_of_even (by rw [hz]; exact vpRat_normSq_even hP z)⟩
+
+/-- All-prime coordinate-norm symmetry elimination theorem: any function `g : GVec → ℚ` that is
+coordinate-sign symmetric, satisfies the two-point orthogonal parallelogram zero-propagation law
+`SatisfiesOrthoParallelogramZero g`, and vanishes on the three coordinate axes vanishes
+identically on all of `ℚ(i)³` (eliminating `sp p` for all inert primes `p` and any linear or
+nonlinear combination of coordinate-norm functions in two orthogonal parallelogram steps). -/
+theorem zero_of_coordSignSymmetric_and_orthoParallelogram {g : GVec → ℚ}
+    (hsym : IsCoordSignSymmetric g)
+    (hpara : SatisfiesOrthoParallelogramZero g)
+    (haxes : ∀ x y z : GaussRat, g ⟨x, 0, 0⟩ = 0 ∧ g ⟨0, y, 0⟩ = 0 ∧ g ⟨0, 0, z⟩ = 0) :
+    ∀ v : GVec, g v = 0 := by
+  have hplane : ∀ y z : GaussRat, g ⟨0, y, z⟩ = 0 := by
+    intro y z
+    have h_ortho : GVec.inner ⟨0, y, 0⟩ ⟨0, 0, z⟩ = 0 := by
+      simp [GVec.inner]
+    have hsum := hpara ⟨0, y, 0⟩ ⟨0, 0, z⟩ h_ortho (haxes 0 y 0).2.1 (haxes 0 0 z).2.2
+    have hadd : GVec.add ⟨0, y, 0⟩ ⟨0, 0, z⟩ = ⟨0, y, z⟩ := by
+      ext <;> simp [GVec.add]
+    have hsub : GVec.sub ⟨0, y, 0⟩ ⟨0, 0, z⟩ = ⟨0, y, -z⟩ := by
+      ext <;> simp [GVec.sub]
+    rw [hadd, hsub, (hsym 0 y z).2] at hsum
+    linarith
+  intro ⟨x, y, z⟩
+  have h_ortho : GVec.inner ⟨x, 0, 0⟩ ⟨0, y, z⟩ = 0 := by
+    simp [GVec.inner]
+  have hsum := hpara ⟨x, 0, 0⟩ ⟨0, y, z⟩ h_ortho (haxes x 0 0).1 (hplane y z)
+  have hadd : GVec.add ⟨x, 0, 0⟩ ⟨0, y, z⟩ = ⟨x, y, z⟩ := by
+    ext <;> simp [GVec.add]
+  have hsub : GVec.sub ⟨x, 0, 0⟩ ⟨0, y, z⟩ = ⟨x, -y, -z⟩ := by
+    ext <;> simp [GVec.sub]
+  rw [hadd, hsub, (hsym x y (-z)).1, (hsym x y z).2] at hsum
+  linarith
+
+/-- Explicit two-point orthogonal parallelogram refutation of `s3` on `u = tomo_e1 = (1, 0, 0)`
+and `v = tomo_e23 = (0, 1, 1)`: `s3 u = s3 v = 0`, while `s3(u + v) + s3(u - v) = 1 + 1 = 2 ≠ 0`. -/
+theorem s3_not_satisfiesOrthoParallelogramZero :
+    ¬ SatisfiesOrthoParallelogramZero s3 := by
+  intro hpara
+  have huv : GVec.inner tomo_e1 tomo_e23 = 0 := by
+    ext <;> simp [GVec.inner, tomo_e1, tomo_e23, gv]
+  have hsum := hpara tomo_e1 tomo_e23 huv
+    s3_vanishes_on_nine_rays.1 s3_vanishes_on_nine_rays.2.2.2.2.2.1
+  have hadd : GVec.add tomo_e1 tomo_e23 = witness_111 := by
+    ext <;> simp [GVec.add, tomo_e1, tomo_e23, witness_111, gv]
+  have hsub : GVec.sub tomo_e1 tomo_e23 = ⟨witness_111.x, -witness_111.y, -witness_111.z⟩ := by
+    ext <;> simp [GVec.sub, tomo_e1, tomo_e23, witness_111, gv]
+  have hw : (⟨witness_111.x, witness_111.y, witness_111.z⟩ : GVec) = witness_111 := rfl
+  rw [hadd, hsub,
+      (s3_isCoordSignSymmetric witness_111.x witness_111.y (-witness_111.z)).1,
+      (s3_isCoordSignSymmetric witness_111.x witness_111.y witness_111.z).2,
+      hw, s3_witness_111] at hsum
+  norm_num at hsum
+
+/-- Explicit two-point orthogonal parallelogram refutation of `s7` on `u = tomo_e1 = (1, 0, 0)`
+and `v = gv 0 0 2 0 1 1 = (0, 2, 1 + i)` (`witness_p7 = u + v`): `s7 u = s7 v = 0`, while
+`s7(u + v) + s7(u - v) = 1 + 1 = 2 ≠ 0`. -/
+theorem s7_not_satisfiesOrthoParallelogramZero :
+    ¬ SatisfiesOrthoParallelogramZero s7 := by
+  intro hpara
+  let v7 : GVec := gv 0 0 2 0 1 1
+  have huv : GVec.inner tomo_e1 v7 = 0 := by
+    ext <;> simp [GVec.inner, tomo_e1, v7, gv]
+  have hv7_zero : s7 v7 = 0 :=
+    s7_eq_zero_of_normSqVec_natCast (n := 6) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, v7, gv]; norm_num) rfl
+  have hsum := hpara tomo_e1 v7 huv s7_vanishes_on_nine_rays.1 hv7_zero
+  have hadd : GVec.add tomo_e1 v7 = witness_p7 := by
+    ext <;> simp [GVec.add, tomo_e1, v7, witness_p7, gv]
+  have hsub : GVec.sub tomo_e1 v7 = ⟨witness_p7.x, -witness_p7.y, -witness_p7.z⟩ := by
+    ext <;> simp [GVec.sub, tomo_e1, v7, witness_p7, gv]
+  have hw : (⟨witness_p7.x, witness_p7.y, witness_p7.z⟩ : GVec) = witness_p7 := rfl
+  rw [hadd, hsub,
+      (s7_isCoordSignSymmetric witness_p7.x witness_p7.y (-witness_p7.z)).1,
+      (s7_isCoordSignSymmetric witness_p7.x witness_p7.y witness_p7.z).2,
+      hw, s7_witness_p7] at hsum
+  norm_num at hsum
+
+/-- Explicit two-point orthogonal parallelogram refutation of `sp 11` on `u = tomo_e1 = (1, 0, 0)`
+and `v = gv 0 0 3 0 1 0 = (0, 3, 1)` (`witness_p11 = u + v`): `sp 11 u = sp 11 v = 0`, while
+`sp 11 (u + v) + sp 11 (u - v) = 1 + 1 = 2 ≠ 0`. -/
+theorem sp11_not_satisfiesOrthoParallelogramZero :
+    ¬ SatisfiesOrthoParallelogramZero (sp 11) := by
+  intro hpara
+  let v11 : GVec := gv 0 0 3 0 1 0
+  have huv : GVec.inner tomo_e1 v11 = 0 := by
+    ext <;> simp [GVec.inner, tomo_e1, v11, gv]
+  have hv11_zero : sp 11 v11 = 0 :=
+    sp_eq_zero_of_normSqVec_natCast (p := 11) (n := 10) (by decide) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, v11, gv]; norm_num) rfl
+  have hsum := hpara tomo_e1 v11 huv (sp_vanishes_on_nine_rays (p := 11) (by decide)).1 hv11_zero
+  have hadd : GVec.add tomo_e1 v11 = witness_p11 := by
+    ext <;> simp [GVec.add, tomo_e1, v11, witness_p11, gv]
+  have hsub : GVec.sub tomo_e1 v11 = ⟨witness_p11.x, -witness_p11.y, -witness_p11.z⟩ := by
+    ext <;> simp [GVec.sub, tomo_e1, v11, witness_p11, gv]
+  have hw : (⟨witness_p11.x, witness_p11.y, witness_p11.z⟩ : GVec) = witness_p11 := rfl
+  rw [hadd, hsub,
+      (sp_isCoordSignSymmetric 11 witness_p11.x witness_p11.y (-witness_p11.z)).1,
+      (sp_isCoordSignSymmetric 11 witness_p11.x witness_p11.y witness_p11.z).2,
+      hw, sp11_witness_p11] at hsum
+  norm_num at hsum
+
+/-- Hermitian cross product `star (u × v)` orthogonal to both `u` and `v` in `ℚ(i)³`. -/
+def hermCross (u v : GVec) : GVec :=
+  ⟨star (u.y * v.z - u.z * v.y),
+   star (u.z * v.x - u.x * v.z),
+   star (u.x * v.y - u.y * v.x)⟩
+
+theorem inner_hermCross_left (u v : GVec) :
+    GVec.inner u (hermCross u v) = 0 := by
+  simp only [GVec.inner, hermCross, star_sub, star_mul]
+  ring
+
+theorem inner_hermCross_right (u v : GVec) :
+    GVec.inner v (hermCross u v) = 0 := by
+  simp only [GVec.inner, hermCross, star_sub, star_mul]
+  ring
+
+theorem normSqVec_hermCross_of_ortho {u v : GVec} (huv : GVec.inner u v = 0) :
+    normSqVec (hermCross u v) = normSqVec u * normSqVec v := by
+  have hre : (GVec.inner u v).re = 0 := by rw [huv]; rfl
+  have him : (GVec.inner u v).im = 0 := by rw [huv]; rfl
+  have hlagrange :
+      normSqVec (hermCross u v) +
+        ((GVec.inner u v).re ^ 2 + (GVec.inner u v).im ^ 2) =
+      normSqVec u * normSqVec v := by
+    simp only [normSqVec, hermCross, GVec.inner, GaussRat.normSq,
+      GaussRat.re_add, GaussRat.im_add, GaussRat.re_sub, GaussRat.im_sub,
+      GaussRat.re_mul, GaussRat.im_mul, GaussRat.re_star, GaussRat.im_star]
+    ring
+  rw [hre, him] at hlagrange
+  linarith
+
+/-- Any two nonzero orthogonal vectors `u, v ∈ ℚ(i)³` complete canonically to an orthogonal
+frame `(u, v, hermCross u v)` in `ℚ(i)³`. -/
+theorem isFrame_hermCross {u v : GVec} (hu : u.NonZero) (hv : v.NonZero)
+    (huv : GVec.inner u v = 0) :
+    IsFrame u v (hermCross u v) := by
+  have hcross_pos : 0 < normSqVec (hermCross u v) := by
+    rw [normSqVec_hermCross_of_ortho huv]
+    exact mul_pos (normSqVec_pos_of_nonZero hu) (normSqVec_pos_of_nonZero hv)
+  exact ⟨hu, hv, nonZero_of_normSqVec_pos hcross_pos,
+    huv, inner_hermCross_left u v, inner_hermCross_right u v⟩
+
+/-- Equatorial vanishing at a pole: if `f` is a nonnegative frame function with `f p = 1` at
+a nonzero pole `p`, then `f z = 0` on every nonzero vector `z` orthogonal to `p`. -/
+theorem nonneg_eq_zero_on_perp_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    {p z : GVec} (hp : p.NonZero) (hz : z.NonZero) (hpz : GVec.inner p z = 0)
+    (hp1 : f p = 1) :
+    f z = 0 := by
+  have hfr := isFrame_hermCross hp hz hpz
+  have hsum := hf.1 p z (hermCross p z) hfr
+  have hfz := hf.2 z hz
+  have hfw := hf.2 (hermCross p z) hfr.2.2.1
+  linarith
+
+theorem sp_eq_of_x_zero_leadPCoord_y {p n ny : ℕ} {u : GVec}
+    (hp : 2 ≤ p) (hn : 0 < n) (hny : 0 < ny)
+    (hx0 : u.x = 0)
+    (hnorm : normSqVec u = (n : ℚ))
+    (hy : u.y.normSq = (ny : ℚ))
+    (hodd : (vpNat p n : ℤ) % 2 ≠ 0)
+    (hlt_y : (vpNat p ny : ℤ) < (vpNat p n : ℤ)) :
+    sp p u = chiPNat p (ppPartNat p ny) * chiPNat p (ppPartNat p n) := by
+  have hvn : vpRat p (normSqVec u) = (vpNat p n : ℤ) := by rw [hnorm, vpRat_natCast hp hn]
+  have hvy : vpRat p u.y.normSq = (vpNat p ny : ℤ) := by rw [hy, vpRat_natCast hp hny]
+  have hun : upRat p (normSqVec u) = chiPNat p (ppPartNat p n) := by rw [hnorm, upRat_natCast hp hn]
+  have huy : upRat p u.y.normSq = chiPNat p (ppPartNat p ny) := by rw [hy, upRat_natCast hp hny]
+  have hy_pos : 0 < u.y.normSq := by rw [hy]; exact_mod_cast hny
+  have hnot_x : ¬ isLeadPCoord p u.x u := by
+    intro ⟨hx_pos, _⟩
+    rw [hx0] at hx_pos
+    simp [GaussRat.normSq] at hx_pos
+  have hlead_y : isLeadPCoord p u.y u := ⟨hy_pos, by omega⟩
+  have hodd_u : vpRat p (normSqVec u) % 2 ≠ 0 := by omega
+  simp only [sp, hodd_u, hnot_x, hlead_y, ↓reduceIte, coordSignP, huy, hun]
+
+/-- Six equatorial witnesses in `e₁⊥ = {u | u.x = 0}` isolating `(sp 3, sp 7, sp 11)` with
+both signs `±1` while `quadRay (rayProj tomo_e1) = 0`. -/
+def eqWitness3 : GVec := gv 0 0 1 0 1 1
+def eqWitness3Neg : GVec := gv 0 0 1 1 1 0
+def eqWitness7 : GVec := gv 0 0 1 1 2 1
+def eqWitness7Neg : GVec := gv 0 0 2 1 1 1
+def eqWitness11 : GVec := gv 0 0 3 0 1 1
+def eqWitness11Neg : GVec := gv 0 0 1 1 3 0
+
+theorem eqWitness_nonZero :
+    eqWitness3.NonZero ∧ eqWitness3Neg.NonZero ∧
+    eqWitness7.NonZero ∧ eqWitness7Neg.NonZero ∧
+    eqWitness11.NonZero ∧ eqWitness11Neg.NonZero :=
+  ⟨nonZero_of_y (by norm_num [eqWitness3, gv]),
+   nonZero_of_y (by norm_num [eqWitness3Neg, gv]),
+   nonZero_of_y (by norm_num [eqWitness7, gv]),
+   nonZero_of_y (by norm_num [eqWitness7Neg, gv]),
+   nonZero_of_y (by norm_num [eqWitness11, gv]),
+   nonZero_of_y (by norm_num [eqWitness11Neg, gv])⟩
+
+theorem quadRay_rayProj_tomo_e1_of_x_zero {u : GVec} (hx0 : u.x = 0) :
+    quadRay (rayProj tomo_e1) u = 0 := by
+  simp [quadRay, quadNum, rayProj, normSqVec, GaussRat.normSq, tomo_e1, gv, hx0]
+
+theorem quadRay_rayProj_tomo_e1_isNonnegFrameFunction :
+    IsNonnegFrameFunction (quadRay (rayProj tomo_e1)) := by
+  refine ⟨quadRay_isFrameFunction (rayProj tomo_e1) (rayProj_tr tomo_e1_nonZero), ?_⟩
+  intro v hv
+  have hpos := normSqVec_pos_of_nonZero hv
+  have hnum : quadNum (rayProj tomo_e1) v = v.x.normSq := by
+    simp [quadNum, rayProj, normSqVec, GaussRat.normSq, tomo_e1, gv]
+  rw [quadRay, hnum]
+  exact div_nonneg (GaussRat.normSq_nonneg v.x) (le_of_lt hpos)
+
+theorem sp_eqWitness_values :
+    (sp 3 eqWitness3 = 1 ∧ sp 7 eqWitness3 = 0 ∧ sp 11 eqWitness3 = 0) ∧
+    (sp 3 eqWitness3Neg = -1 ∧ sp 7 eqWitness3Neg = 0 ∧ sp 11 eqWitness3Neg = 0) ∧
+    (sp 3 eqWitness7 = 0 ∧ sp 7 eqWitness7 = 1 ∧ sp 11 eqWitness7 = 0) ∧
+    (sp 3 eqWitness7Neg = 0 ∧ sp 7 eqWitness7Neg = -1 ∧ sp 11 eqWitness7Neg = 0) ∧
+    (sp 3 eqWitness11 = 0 ∧ sp 7 eqWitness11 = 0 ∧ sp 11 eqWitness11 = 1) ∧
+    (sp 3 eqWitness11Neg = 0 ∧ sp 7 eqWitness11Neg = 0 ∧ sp 11 eqWitness11Neg = -1) := by
+  refine ⟨⟨?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩⟩
+  · rw [sp_eq_of_x_zero_leadPCoord_y (p := 3) (n := 3) (ny := 1) (by decide) (by decide) (by decide)
+      rfl (by simp [normSqVec, GaussRat.normSq, eqWitness3, gv]; norm_num)
+      (by simp [GaussRat.normSq, eqWitness3, gv]) (by decide) (by decide)]
+    have hp1 : ppPartNat 3 1 = 1 := rfl
+    have hp2 : ppPartNat 3 3 = 1 := rfl
+    simp [hp1, hp2, chiPNat]
+  · exact sp_eq_zero_of_normSqVec_natCast (p := 7) (n := 3) (by decide) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, eqWitness3, gv]; norm_num) rfl
+  · exact sp_eq_zero_of_normSqVec_natCast (p := 11) (n := 3) (by decide) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, eqWitness3, gv]; norm_num) rfl
+  · rw [sp_eq_of_x_zero_leadPCoord_y (p := 3) (n := 3) (ny := 2) (by decide) (by decide) (by decide)
+      rfl (by simp [normSqVec, GaussRat.normSq, eqWitness3Neg, gv]; norm_num)
+      (by simp [GaussRat.normSq, eqWitness3Neg, gv]; norm_num) (by decide) (by decide)]
+    have hp1 : ppPartNat 3 2 = 2 := rfl
+    have hp2 : ppPartNat 3 3 = 1 := rfl
+    simp [hp1, hp2, chiPNat]
+  · exact sp_eq_zero_of_normSqVec_natCast (p := 7) (n := 3) (by decide) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, eqWitness3Neg, gv]; norm_num) rfl
+  · exact sp_eq_zero_of_normSqVec_natCast (p := 11) (n := 3) (by decide) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, eqWitness3Neg, gv]; norm_num) rfl
+  · exact sp_eq_zero_of_normSqVec_natCast (p := 3) (n := 7) (by decide) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, eqWitness7, gv]; norm_num) rfl
+  · rw [sp_eq_of_x_zero_leadPCoord_y (p := 7) (n := 7) (ny := 2) (by decide) (by decide) (by decide)
+      rfl (by simp [normSqVec, GaussRat.normSq, eqWitness7, gv]; norm_num)
+      (by simp [GaussRat.normSq, eqWitness7, gv]; norm_num) (by decide) (by decide)]
+    have hp1 : ppPartNat 7 2 = 2 := rfl
+    have hp2 : ppPartNat 7 7 = 1 := rfl
+    simp [hp1, hp2, chiPNat]
+  · exact sp_eq_zero_of_normSqVec_natCast (p := 11) (n := 7) (by decide) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, eqWitness7, gv]; norm_num) rfl
+  · exact sp_eq_zero_of_normSqVec_natCast (p := 3) (n := 7) (by decide) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, eqWitness7Neg, gv]; norm_num) rfl
+  · rw [sp_eq_of_x_zero_leadPCoord_y (p := 7) (n := 7) (ny := 5) (by decide) (by decide) (by decide)
+      rfl (by simp [normSqVec, GaussRat.normSq, eqWitness7Neg, gv]; norm_num)
+      (by simp [GaussRat.normSq, eqWitness7Neg, gv]; norm_num) (by decide) (by decide)]
+    have hp1 : ppPartNat 7 5 = 5 := rfl
+    have hp2 : ppPartNat 7 7 = 1 := rfl
+    simp [hp1, hp2, chiPNat]
+  · exact sp_eq_zero_of_normSqVec_natCast (p := 11) (n := 7) (by decide) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, eqWitness7Neg, gv]; norm_num) rfl
+  · exact sp_eq_zero_of_normSqVec_natCast (p := 3) (n := 11) (by decide) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, eqWitness11, gv]; norm_num) rfl
+  · exact sp_eq_zero_of_normSqVec_natCast (p := 7) (n := 11) (by decide) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, eqWitness11, gv]; norm_num) rfl
+  · rw [sp_eq_of_x_zero_leadPCoord_y (p := 11) (n := 11) (ny := 9) (by decide) (by decide) (by decide)
+      rfl (by simp [normSqVec, GaussRat.normSq, eqWitness11, gv]; norm_num)
+      (by simp [GaussRat.normSq, eqWitness11, gv]; norm_num) (by decide) (by decide)]
+    have hp1 : ppPartNat 11 9 = 9 := rfl
+    have hp2 : ppPartNat 11 11 = 1 := rfl
+    simp [hp1, hp2, chiPNat]
+  · exact sp_eq_zero_of_normSqVec_natCast (p := 3) (n := 11) (by decide) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, eqWitness11Neg, gv]; norm_num) rfl
+  · exact sp_eq_zero_of_normSqVec_natCast (p := 7) (n := 11) (by decide) (by decide)
+      (by simp [normSqVec, GaussRat.normSq, eqWitness11Neg, gv]; norm_num) rfl
+  · rw [sp_eq_of_x_zero_leadPCoord_y (p := 11) (n := 11) (ny := 2) (by decide) (by decide) (by decide)
+      rfl (by simp [normSqVec, GaussRat.normSq, eqWitness11Neg, gv]; norm_num)
+      (by simp [GaussRat.normSq, eqWitness11Neg, gv]; norm_num) (by decide) (by decide)]
+    have hp1 : ppPartNat 11 2 = 2 := rfl
+    have hp2 : ppPartNat 11 11 = 1 := rfl
+    simp [hp1, hp2, chiPNat]
+
+/-- Pure-state nonnegativity alone (without Archimedean continuity) eliminates `s3`, `s7`, and
+`sp 11` perturbations of the north-pole pure state `quadRay (rayProj tomo_e1)`:
+`quadRay (rayProj tomo_e1) + combResidual3_7_11 c3 c7 c11` is a nonnegative frame function
+on `ℚ(i)³` if and only if `c3 = 0 ∧ c7 = 0 ∧ c11 = 0`. -/
+theorem pure_pole_e1_nonneg_eliminates_combResidual3_7_11 (c3 c7 c11 : ℚ) :
+    IsNonnegFrameFunction (fun v => quadRay (rayProj tomo_e1) v + combResidual3_7_11 c3 c7 c11 v) ↔
+      (c3 = 0 ∧ c7 = 0 ∧ c11 = 0) := by
+  obtain ⟨⟨h3p_3, h3p_7, h3p_11⟩, ⟨h3n_3, h3n_7, h3n_11⟩,
+          ⟨h7p_3, h7p_7, h7p_11⟩, ⟨h7n_3, h7n_7, h7n_11⟩,
+          ⟨h11p_3, h11p_7, h11p_11⟩, ⟨h11n_3, h11n_7, h11n_11⟩⟩ := sp_eqWitness_values
+  obtain ⟨hnz3p, hnz3n, hnz7p, hnz7n, hnz11p, hnz11n⟩ := eqWitness_nonZero
+  constructor
+  · intro ⟨_, hnn⟩
+    have hq3p := quadRay_rayProj_tomo_e1_of_x_zero (u := eqWitness3) rfl
+    have hq3n := quadRay_rayProj_tomo_e1_of_x_zero (u := eqWitness3Neg) rfl
+    have hq7p := quadRay_rayProj_tomo_e1_of_x_zero (u := eqWitness7) rfl
+    have hq7n := quadRay_rayProj_tomo_e1_of_x_zero (u := eqWitness7Neg) rfl
+    have hq11p := quadRay_rayProj_tomo_e1_of_x_zero (u := eqWitness11) rfl
+    have hq11n := quadRay_rayProj_tomo_e1_of_x_zero (u := eqWitness11Neg) rfl
+    have i3p := hnn eqWitness3 hnz3p
+    have i3n := hnn eqWitness3Neg hnz3n
+    have i7p := hnn eqWitness7 hnz7p
+    have i7n := hnn eqWitness7Neg hnz7n
+    have i11p := hnn eqWitness11 hnz11p
+    have i11n := hnn eqWitness11Neg hnz11n
+    simp only [combResidual3_7_11,
+      hq3p, hq3n, hq7p, hq7n, hq11p, hq11n,
+      h3p_3, h3p_7, h3p_11, h3n_3, h3n_7, h3n_11,
+      h7p_3, h7p_7, h7p_11, h7n_3, h7n_7, h7n_11,
+      h11p_3, h11p_7, h11p_11, h11n_3, h11n_7, h11n_11] at i3p i3n i7p i7n i11p i11n
+    exact ⟨by linarith, by linarith, by linarith⟩
+  · rintro ⟨rfl, rfl, rfl⟩
+    have heq :
+        (fun v => quadRay (rayProj tomo_e1) v + combResidual3_7_11 0 0 0 v) =
+          quadRay (rayProj tomo_e1) := by
+      funext v
+      simp [combResidual3_7_11]
+    rw [heq]
+    exact quadRay_rayProj_tomo_e1_isNonnegFrameFunction
+
+/-- Canonical equatorial orthogonal partner `(0, -star y.z, star y.y)` of `y ∈ e₁⊥`. -/
+def eqOrtho (y : GVec) : GVec :=
+  ⟨0, -star y.z, star y.y⟩
+
+/-- Piron / Cooke–Keane–Moran equatorial perturbation `e₁ + y + lam • eqOrtho(y)` of `e₁ + y`. -/
+def pironStep (y : GVec) (lam : GaussRat) : GVec :=
+  GVec.add (GVec.add tomo_e1 y) (GVec.smul lam (eqOrtho y))
+
+/-- Orthogonal planar rotation partner of `pironStep y lam` in `span(e₁ + y, eqOrtho y)`. -/
+def pironPartner (y : GVec) (lam : GaussRat) : GVec :=
+  GVec.add
+    (GVec.smul (-(star lam * lam * ⟨normSqVec y, 0⟩)) (GVec.add tomo_e1 y))
+    (GVec.smul (⟨1 + normSqVec y, 0⟩ * lam) (eqOrtho y))
+
+/-- Meridian orthogonal partner `-N(y) e₁ + y` of `e₁ + y` in the meridian plane `span(e₁, y)`. -/
+def meridianOrtho (y : GVec) : GVec :=
+  GVec.add (GVec.smul ⟨-normSqVec y, 0⟩ tomo_e1) y
+
+theorem inner_tomo_e1_of_x_zero {y : GVec} (hyx : y.x = 0) :
+    GVec.inner tomo_e1 y = 0 := by
+  ext <;> simp [GVec.inner, tomo_e1, gv, hyx]
+
+theorem normSqVec_eqOrtho_of_x_zero {y : GVec} (hyx : y.x = 0) :
+    normSqVec (eqOrtho y) = normSqVec y := by
+  simp only [normSqVec, eqOrtho, hyx, gaussRat_normSq_neg, gaussRat_normSq_star]
+  simp [GaussRat.normSq]
+  ring
+
+theorem inner_eqOrtho_self (y : GVec) :
+    GVec.inner y (eqOrtho y) = 0 := by
+  simp only [GVec.inner, eqOrtho]
+  ring
+
+theorem normSqVec_add_tomo_e1_of_x_zero {y : GVec} (hyx : y.x = 0) :
+    normSqVec (GVec.add tomo_e1 y) = 1 + normSqVec y := by
+  rw [(normSqVec_add_eq_normSqVec_sub_of_ortho (inner_tomo_e1_of_x_zero hyx)).1]
+  have he1 : normSqVec tomo_e1 = 1 := by simp [normSqVec, GaussRat.normSq, tomo_e1, gv]
+  rw [he1]
+
+theorem isFrame_piron_base {y : GVec} (hyx : y.x = 0) (hy : y.NonZero)
+    {lam : GaussRat} (hlam : lam ≠ 0) :
+    IsFrame (GVec.add tomo_e1 y) (GVec.smul lam (eqOrtho y)) (meridianOrtho y) := by
+  have hy_pos := normSqVec_pos_of_nonZero hy
+  have hu_pos : 0 < normSqVec (GVec.add tomo_e1 y) := by
+    rw [normSqVec_add_tomo_e1_of_x_zero hyx]
+    linarith
+  have hv_pos : 0 < normSqVec (GVec.smul lam (eqOrtho y)) := by
+    rw [normSqVec_smul, normSqVec_eqOrtho_of_x_zero hyx]
+    exact mul_pos (gaussRat_normSq_pos_of_ne_zero hlam) hy_pos
+  have hw_nz : (meridianOrtho y).NonZero := by
+    apply nonZero_of_x
+    simp [meridianOrtho, GVec.add, GVec.smul, tomo_e1, gv, hyx, ne_of_gt hy_pos]
+  have huv : GVec.inner (GVec.add tomo_e1 y) (GVec.smul lam (eqOrtho y)) = 0 := by
+    rw [inner_add_left, inner_smul_right, inner_smul_right,
+      inner_tomo_e1_of_x_zero rfl, inner_eqOrtho_self]
+    ring
+  have huw : GVec.inner (GVec.add tomo_e1 y) (meridianOrtho y) = 0 := by
+    have he1y := inner_tomo_e1_of_x_zero hyx
+    have hye1 := inner_eq_zero_symm he1y
+    simp only [meridianOrtho, inner_add_left, inner_add_right, inner_smul_right,
+      he1y, hye1, inner_self_eq_normSqVec tomo_e1, inner_self_eq_normSqVec y]
+    have he1 : normSqVec tomo_e1 = 1 := by simp [normSqVec, GaussRat.normSq, tomo_e1, gv]
+    rw [he1]
+    ext <;> simp
+  have hvw : GVec.inner (GVec.smul lam (eqOrtho y)) (meridianOrtho y) = 0 := by
+    have heq_e1 : GVec.inner (eqOrtho y) tomo_e1 = 0 :=
+      inner_eq_zero_symm (inner_tomo_e1_of_x_zero rfl)
+    have heq_y : GVec.inner (eqOrtho y) y = 0 :=
+      inner_eq_zero_symm (inner_eqOrtho_self y)
+    simp only [meridianOrtho, inner_smul_left, inner_add_right, inner_smul_right,
+      heq_e1, heq_y, mul_zero, add_zero]
+  exact ⟨nonZero_of_normSqVec_pos hu_pos, nonZero_of_normSqVec_pos hv_pos, hw_nz, huv, huw, hvw⟩
+
+theorem pironStep_eq_rotPairU (y : GVec) (lam : GaussRat) :
+    pironStep y lam = rotPairU (GVec.add tomo_e1 y) (GVec.smul lam (eqOrtho y)) 1 1 := by
+  ext <;> simp [pironStep, rotPairU, GVec.add, GVec.smul]
+
+theorem pironPartner_eq_rotPairV {y : GVec} (hyx : y.x = 0) (lam : GaussRat) :
+    pironPartner y lam = rotPairV (GVec.add tomo_e1 y) (GVec.smul lam (eqOrtho y)) 1 1 := by
+  have hu_norm := normSqVec_add_tomo_e1_of_x_zero hyx
+  have hv_norm : normSqVec (GVec.smul lam (eqOrtho y)) = lam.normSq * normSqVec y := by
+    rw [normSqVec_smul, normSqVec_eqOrtho_of_x_zero hyx]
+  have hlam_sq : star lam * lam = ⟨lam.normSq, 0⟩ := GaussRat.star_mul_self lam
+  unfold pironPartner rotPairV
+  rw [hu_norm, hv_norm, hlam_sq]
+  ext <;> simp [GVec.add, GVec.smul] <;> ring
+
+/-- Exact Piron frame-rotation sum identity: for every `y ∈ e₁⊥ \ {0}`, every `lam ≠ 0`,
+and every frame function `f` on `ℚ(i)³`,
+`f(pironStep y lam) + f(pironPartner y lam) = f(e₁ + y) + f(lam • eqOrtho y)`. -/
+theorem piron_frame_sum_identity {f : GVec → ℚ} (hf : IsFrameFunction f)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {lam : GaussRat} (hlam : lam ≠ 0) :
+    GVec.inner (GVec.add tomo_e1 y) (GVec.smul lam (eqOrtho y)) = 0 ∧
+    f (pironStep y lam) + f (pironPartner y lam) =
+      f (GVec.add tomo_e1 y) + f (GVec.smul lam (eqOrtho y)) := by
+  have hfr := isFrame_piron_base hyx hy hlam
+  refine ⟨hfr.2.2.2.1, ?_⟩
+  rw [pironStep_eq_rotPairU, pironPartner_eq_rotPairV hyx]
+  exact frameFunction_rotPair_sum hf hfr (Or.inl one_ne_zero)
+
+/-- Constructive Piron monotone descent inequality on `ℚ(i)³`: if `f` is a nonnegative frame
+function with `f tomo_e1 = 1`, then for every `y ∈ e₁⊥ \ {0}` and `lam ≠ 0`,
+`f(pironStep y lam) ≤ f(e₁ + y)` (so moving away from the pole along an orthogonal equatorial
+tangent direction never increases `f`). -/
+theorem piron_descent_le_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    (hp1 : f tomo_e1 = 1)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {lam : GaussRat} (hlam : lam ≠ 0) :
+    f (pironStep y lam) ≤ f (GVec.add tomo_e1 y) := by
+  have hfr := isFrame_piron_base hyx hy hlam
+  have hsum := (piron_frame_sum_identity hf.1 hyx hy hlam).2
+  have heq_ortho : GVec.inner tomo_e1 (GVec.smul lam (eqOrtho y)) = 0 := by
+    rw [inner_smul_right, inner_tomo_e1_of_x_zero rfl, mul_zero]
+  have heq_zero := nonneg_eq_zero_on_perp_of_pole_one hf tomo_e1_nonZero hfr.2.1 heq_ortho hp1
+  have hpart_nz : (pironPartner y lam).NonZero := by
+    rw [pironPartner_eq_rotPairV hyx]
+    exact (isFrame_rotPair hfr (Or.inl one_ne_zero)).2.1
+  have hpart_nn := hf.2 (pironPartner y lam) hpart_nz
+  linarith
+
+/-- Meridian complement identity at a pole: if `f` is a nonnegative frame function with
+`f tomo_e1 = 1`, then for every `y ∈ e₁⊥ \ {0}`, `f(e₁ + y) + f(meridianOrtho y) = 1`. -/
+theorem meridian_complement_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    (hp1 : f tomo_e1 = 1)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) :
+    f (GVec.add tomo_e1 y) + f (meridianOrtho y) = 1 := by
+  have hfr := isFrame_piron_base hyx hy one_ne_zero
+  have hsum := hf.1 (GVec.add tomo_e1 y) (GVec.smul 1 (eqOrtho y)) (meridianOrtho y) hfr
+  have heq_ortho : GVec.inner tomo_e1 (GVec.smul 1 (eqOrtho y)) = 0 := by
+    rw [inner_smul_right, inner_tomo_e1_of_x_zero rfl, mul_zero]
+  have heq_zero := nonneg_eq_zero_on_perp_of_pole_one hf tomo_e1_nonZero hfr.2.1 heq_ortho hp1
+  linarith
+
+/-- Dense Pythagorean equatorial rotation `((k²-1)/(k²+1)) y + (2k/(k²+1)) eqOrtho(y)` in `e₁⊥`. -/
+def pythagEqRot (y : GVec) (k : ℕ) : GVec :=
+  GVec.add
+    (GVec.smul ⟨((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1), 0⟩ y)
+    (GVec.smul ⟨(2 * (k : ℚ)) / ((k : ℚ) ^ 2 + 1), 0⟩ (eqOrtho y))
+
+theorem pythagEqRot_x_zero {y : GVec} (hyx : y.x = 0) (k : ℕ) :
+    (pythagEqRot y k).x = 0 := by
+  simp [pythagEqRot, eqOrtho, GVec.add, GVec.smul, hyx]
+
+/-- Exact equi-latitude preservation of `pythagEqRot`: for every `y ∈ e₁⊥` and `k : ℕ`,
+`pythagEqRot y k` has the same squared norm as `y`, and `e₁ + pythagEqRot y k` has the same
+squared norm `1 + N(y)` as `e₁ + y`. -/
+theorem normSqVec_pythagEqRot {y : GVec} (hyx : y.x = 0) (k : ℕ) :
+    normSqVec (pythagEqRot y k) = normSqVec y ∧
+    normSqVec (GVec.add tomo_e1 (pythagEqRot y k)) = normSqVec (GVec.add tomo_e1 y) := by
+  have h_ortho :
+      GVec.inner
+        (GVec.smul ⟨((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1), 0⟩ y)
+        (GVec.smul ⟨(2 * (k : ℚ)) / ((k : ℚ) ^ 2 + 1), 0⟩ (eqOrtho y)) = 0 := by
+    rw [inner_smul_left, inner_smul_right, inner_eqOrtho_self, mul_zero, mul_zero]
+  have hdenom_pos : 0 < (k : ℚ) ^ 2 + 1 := by positivity
+  have hdenom_sq_ne : ((k : ℚ) ^ 2 + 1) ^ 2 ≠ 0 := ne_of_gt (sq_pos_of_pos hdenom_pos)
+  have hnorm_rot : normSqVec (pythagEqRot y k) = normSqVec y := by
+    rw [pythagEqRot, (normSqVec_add_eq_normSqVec_sub_of_ortho h_ortho).1,
+      normSqVec_smul, normSqVec_smul, normSqVec_eqOrtho_of_x_zero hyx]
+    simp only [GaussRat.normSq]
+    have hpyth :
+        (((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1)) ^ 2 +
+          (2 * (k : ℚ) / ((k : ℚ) ^ 2 + 1)) ^ 2 = 1 := by
+      rw [div_pow, div_pow, ← add_div]
+      have hnum : ((k : ℚ) ^ 2 - 1) ^ 2 + (2 * (k : ℚ)) ^ 2 = ((k : ℚ) ^ 2 + 1) ^ 2 := by ring
+      rw [hnum]
+      exact div_self hdenom_sq_ne
+    linear_combination normSqVec y * hpyth
+  refine ⟨hnorm_rot, ?_⟩
+  rw [normSqVec_add_tomo_e1_of_x_zero (pythagEqRot_x_zero hyx k),
+      normSqVec_add_tomo_e1_of_x_zero hyx, hnorm_rot]
+
+/-- Exact north-pole Born weight invariance under Pythagorean equatorial rotations:
+`quadRay (rayProj tomo_e1) (e₁ + pythagEqRot y k) = quadRay (rayProj tomo_e1) (e₁ + y)`. -/
+theorem quadRay_rayProj_e1_pythagEqRot {y : GVec} (hyx : y.x = 0) (k : ℕ) :
+    quadRay (rayProj tomo_e1) (GVec.add tomo_e1 (pythagEqRot y k)) =
+      quadRay (rayProj tomo_e1) (GVec.add tomo_e1 y) := by
+  have hrot_x := pythagEqRot_x_zero hyx k
+  have hnorm_eq := (normSqVec_pythagEqRot hyx k).2
+  have hnum_rot : quadNum (rayProj tomo_e1) (GVec.add tomo_e1 (pythagEqRot y k)) = 1 := by
+    simp [quadNum, rayProj, normSqVec, GaussRat.normSq, tomo_e1, gv, GVec.add, hrot_x]
+  have hnum_y : quadNum (rayProj tomo_e1) (GVec.add tomo_e1 y) = 1 := by
+    simp [quadNum, rayProj, normSqVec, GaussRat.normSq, tomo_e1, gv, GVec.add, hyx]
+  simp only [quadRay, hnum_rot, hnum_y, hnorm_eq]
+
+/-- Squared Euclidean distance of the `1/k` Piron step `pironStep y (1/k)` from `e₁ + y`. -/
+theorem distSqVec_pironStep_inv_nat {y : GVec} (hyx : y.x = 0) (k : ℕ) :
+    distSqVec (pironStep y ⟨1 / (k : ℚ), 0⟩) (GVec.add tomo_e1 y) =
+      normSqVec y / (k : ℚ) ^ 2 := by
+  have hdiff :
+      distSqVec (pironStep y ⟨1 / (k : ℚ), 0⟩) (GVec.add tomo_e1 y) =
+        normSqVec (GVec.smul ⟨1 / (k : ℚ), 0⟩ (eqOrtho y)) := by
+    simp only [distSqVec, pironStep, GVec.add, add_sub_cancel_left]
+  rw [hdiff, normSqVec_smul, normSqVec_eqOrtho_of_x_zero hyx]
+  simp only [GaussRat.normSq]
+  ring
+
+/-- Archimedean density of Piron steps: for every `y ∈ e₁⊥` and every `δ > 0`, there exists
+`k ≥ 1` such that `pironStep y (1/k)` lies within squared distance `δ` of `e₁ + y`. -/
+theorem exists_pironStep_within_delta {y : GVec} (hyx : y.x = 0) {δ : ℚ} (hδ : 0 < δ) :
+    ∃ k : ℕ, 0 < k ∧ distSqVec (pironStep y ⟨1 / (k : ℚ), 0⟩) (GVec.add tomo_e1 y) < δ := by
+  rcases eq_or_lt_of_le (normSqVec_nonneg y) with h0 | hy_pos
+  · refine ⟨1, by decide, ?_⟩
+    rw [distSqVec_pironStep_inv_nat hyx 1, ← h0]
+    simp [hδ]
+  · have hδ' : 0 < δ / (3 * normSqVec y) := div_pos hδ (by linarith)
+    obtain ⟨k, hk, hlt⟩ := exists_nat_pos_inv_three_sq_lt hδ'
+    refine ⟨k, hk, ?_⟩
+    rw [distSqVec_pironStep_inv_nat hyx k]
+    have hk_q : 0 < (k : ℚ) := by exact_mod_cast hk
+    have hk2 : 0 < (k : ℚ) ^ 2 := sq_pos_of_pos hk_q
+    have h3k2 : 0 < 3 * (k : ℚ) ^ 2 := by positivity
+    have h3y : 0 < 3 * normSqVec y := by linarith
+    have hmul := (div_lt_div_iff₀ h3k2 h3y).mp hlt
+    exact (div_lt_iff₀ hk2).mpr (by nlinarith)
+
+/-- Every nonnegative zero-weight frame function on `ℚ(i)³` vanishes on all nonzero vectors
+and factors linearly through `rayProj`. -/
+theorem zero_of_nonneg_zeroWeightFrameFunction {g : GVec → ℚ}
+    (hg : IsZeroWeightFrameFunction g)
+    (hnn : ∀ v : GVec, v.NonZero → 0 ≤ g v) :
+    (∀ v : GVec, v.NonZero → g v = 0) ∧ FactorsThroughRayProjLinear g := by
+  have hzero : ∀ v : GVec, v.NonZero → g v = 0 := by
+    intro v hv
+    obtain ⟨w, u, hfr, _⟩ := exists_frame_completion hv
+    have hsum := hg v w u hfr
+    have hgv := hnn v hv
+    have hgw := hnn w hfr.2.1
+    have hgu := hnn u hfr.2.2.1
+    linarith
+  refine ⟨hzero, ⟨fun _ => 0, ⟨by intro _ _; ring, by intro _ _; ring⟩, ?_⟩⟩
+  intro v hv
+  exact hzero v hv
+
+/-- Global Archimedean continuity on all nonzero rays in `ℚ(i)³`. -/
+def IsArchimedeanContinuousEverywhere (g : GVec → ℚ) : Prop :=
+  ∀ v₀ : GVec, v₀.NonZero → IsArchimedeanContinuousAt g v₀
+
+theorem archimedeanContinuousAt_const (c : ℚ) (v₀ : GVec) :
+    IsArchimedeanContinuousAt (fun _ => c) v₀ := by
+  intro ε hε
+  refine ⟨1, by norm_num, ?_⟩
+  intro _ _ _
+  simp [hε]
+
+theorem archimedeanContinuousAt_smul_pos {g : GVec → ℚ} {v₀ : GVec} {c : ℚ} (hc : 0 < c)
+    (hg : IsArchimedeanContinuousAt g v₀) :
+    IsArchimedeanContinuousAt (fun v => c * g v) v₀ := by
+  intro ε hε
+  obtain ⟨δ, hδ, hb⟩ := hg (ε / c) (div_pos hε hc)
+  refine ⟨δ, hδ, ?_⟩
+  intro v hv hdist
+  obtain ⟨hl, hu⟩ := abs_lt.mp (hb v hv hdist)
+  have hu' : (g v - g v₀) * c < ε := (lt_div_iff₀ hc).mp hu
+  have hl' : -ε < (g v - g v₀) * c := by
+    have hneg : (-ε) / c < g v - g v₀ := by linarith [neg_div c ε]
+    exact (div_lt_iff₀ hc).mp hneg
+  exact abs_lt.mpr ⟨by linarith, by linarith⟩
+
+theorem archimedeanContinuousAt_add {f g : GVec → ℚ} {v₀ : GVec}
+    (hf : IsArchimedeanContinuousAt f v₀)
+    (hg : IsArchimedeanContinuousAt g v₀) :
+    IsArchimedeanContinuousAt (fun v => f v + g v) v₀ := by
+  intro ε hε
+  obtain ⟨δ1, hδ1, hb1⟩ := hf (ε / 2) (by linarith)
+  obtain ⟨δ2, hδ2, hb2⟩ := hg (ε / 2) (by linarith)
+  refine ⟨min δ1 δ2, lt_min hδ1 hδ2, ?_⟩
+  intro v hv hdist
+  obtain ⟨hl1, hu1⟩ := abs_lt.mp (hb1 v hv (lt_of_lt_of_le hdist (min_le_left δ1 δ2)))
+  obtain ⟨hl2, hu2⟩ := abs_lt.mp (hb2 v hv (lt_of_lt_of_le hdist (min_le_right δ1 δ2)))
+  exact abs_lt.mpr ⟨by linarith, by linarith⟩
+
+theorem archimedeanContinuousAt_sub {f g : GVec → ℚ} {v₀ : GVec}
+    (hf : IsArchimedeanContinuousAt f v₀)
+    (hg : IsArchimedeanContinuousAt g v₀) :
+    IsArchimedeanContinuousAt (fun v => f v - g v) v₀ := by
+  intro ε hε
+  obtain ⟨δ1, hδ1, hb1⟩ := hf (ε / 2) (by linarith)
+  obtain ⟨δ2, hδ2, hb2⟩ := hg (ε / 2) (by linarith)
+  refine ⟨min δ1 δ2, lt_min hδ1 hδ2, ?_⟩
+  intro v hv hdist
+  obtain ⟨hl1, hu1⟩ := abs_lt.mp (hb1 v hv (lt_of_lt_of_le hdist (min_le_left δ1 δ2)))
+  obtain ⟨hl2, hu2⟩ := abs_lt.mp (hb2 v hv (lt_of_lt_of_le hdist (min_le_right δ1 δ2)))
+  exact abs_lt.mpr ⟨by linarith, by linarith⟩
+
+/-- Exact characterization of the Nonnegativity + Archimedean Continuity Bridge to
+`FactorsThroughRayProjLinear` on `ℚ(i)³`:
+Every nonnegative frame function `f` on `ℚ(i)³` that is Archimedean-continuous at `tomo_e1`
+satisfies `FactorsThroughRayProjLinear f` (and hence `f = quadRay ρ` for `ρ = tomographyForm f`)
+**if and only if** every bounded zero-weight frame residual `g` vanishing on the nine tomography
+rays and Archimedean-continuous at `tomo_e1` vanishes on all nonzero vectors in `ℚ(i)³`. -/
+theorem nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual :
+    (∀ f : GVec → ℚ, IsNonnegFrameFunction f → IsArchimedeanContinuousAt f tomo_e1 →
+      FactorsThroughRayProjLinear f) ↔
+    (∀ g : GVec → ℚ, IsZeroWeightFrameFunction g → VanishesOnNineRays g →
+      IsBoundedOnRays g → IsArchimedeanContinuousAt g tomo_e1 →
+      ∀ v : GVec, v.NonZero → g v = 0) := by
+  constructor
+  · intro hrig g hg hvan ⟨B, hB, hbound⟩ hcont v hv
+    let c : ℚ := 1 / (3 * (B + 1))
+    have h3B1 : 0 < 3 * (B + 1) := by linarith
+    have hc_pos : 0 < c := div_pos one_pos h3B1
+    have hc_ne : c ≠ 0 := ne_of_gt hc_pos
+    have hc_mul : 3 * (B + 1) * c = 1 := mul_one_div_cancel (ne_of_gt h3B1)
+    let f : GVec → ℚ := fun x => 1 / 3 + c * g x
+    have hf_frame : IsFrameFunction f := by
+      intro x y z hfr
+      have hsum := hg x y z hfr
+      simp only [f]
+      linear_combination c * hsum
+    have hf_nonneg : IsNonnegFrameFunction f := by
+      refine ⟨hf_frame, ?_⟩
+      intro x hx
+      have hgx : -B ≤ g x := (abs_le.mp (hbound x hx)).1
+      have hprod : 3 * (B + 1) * f x = B + 1 + g x := by
+        simp only [f]
+        linear_combination g x * hc_mul
+      have hprod_nonneg : 0 ≤ 3 * (B + 1) * f x := by linarith
+      nlinarith
+    have hf_cont : IsArchimedeanContinuousAt f tomo_e1 :=
+      archimedeanContinuousAt_add
+        (archimedeanContinuousAt_const (1 / 3) tomo_e1)
+        (archimedeanContinuousAt_smul_pos hc_pos hcont)
+    have hf_lin := hrig f hf_nonneg hf_cont
+    obtain ⟨ρ, _, hρ⟩ :=
+      (quadratic_rigidity_iff_factorsThroughRayProjLinear f).mp ⟨hf_frame, hf_lin⟩
+    have hm : tomographyForm f = ρ := by
+      apply tomography_unique (tomographyForm f) ρ
+      · rw [(tomography_matches_nine_rays f).1, hρ tomo_e1 tomo_e1_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.1, hρ tomo_e2 tomo_e2_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.1, hρ tomo_e3 tomo_e3_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.1, hρ tomo_e12 tomo_e12_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.2.1, hρ tomo_e13 tomo_e13_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.2.2.1, hρ tomo_e23 tomo_e23_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.2.2.2.1, hρ tomo_e12i tomo_e12i_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.2.2.2.2.1, hρ tomo_e13i tomo_e13i_nonZero]
+      · rw [(tomography_matches_nine_rays f).2.2.2.2.2.2.2.2, hρ tomo_e23i tomo_e23i_nonZero]
+    rcases hvan with ⟨h1, h2, h3, h12, h13, h23, h12i, h13i, h23i⟩
+    have hρ_id : ρ = ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ := by
+      rw [← hm]
+      ext <;> simp [tomographyForm, f, h1, h2, h3, h12, h13, h23, h12i, h13i, h23i]
+    have hfv := hρ v hv
+    rw [hρ_id] at hfv
+    have hq_third : quadRay ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ v = 1 / 3 := by
+      have hnz := normSqVec_ne_zero_of_nonZero hv
+      have hnum : quadNum ⟨1 / 3, 1 / 3, 1 / 3, 0, 0, 0, 0, 0, 0⟩ v = (1 / 3) * normSqVec v := by
+        simp only [quadNum, normSqVec]
+        ring
+      rw [quadRay, hnum, mul_div_cancel_right₀ (1 / 3) hnz]
+    rw [hq_third] at hfv
+    simp only [f] at hfv
+    have hcg : c * g v = 0 := by linarith
+    exact (mul_eq_zero.mp hcg).resolve_left hc_ne
+  · intro hzero f hf hf_cont
+    have hres_cont : IsArchimedeanContinuousAt (residual f) tomo_e1 :=
+      archimedeanContinuousAt_sub hf_cont (archimedeanContinuousAt_quadRay_tomo_e1 (tomographyForm f))
+    have hres_zero := hzero (residual f) (residual_is_zero_weight hf.1)
+      (residual_vanishes_on_nine_rays f) (nonneg_residual_is_bounded hf) hres_cont
+    exact ((quadratic_rigidity_iff_factorsThroughRayProjLinear f).mpr
+      ⟨tomographyForm f, tomography_trace_one hf.1, fun v hv => by
+        have hr := hres_zero v hv
+        unfold residual at hr
+        linarith⟩).2
+
+/-! #### 9G. Two-Step Piron Tangent Algebra, Kelvin-Inverted Meridian Duality, Pythagorean Sandwich Squeeze, and Equatorial-Invariance vs. Parallelogram Separation -/
+
+theorem smul_rat_smul_rat (a b : ℚ) (y : GVec) :
+    GVec.smul ⟨a, 0⟩ (GVec.smul ⟨b, 0⟩ y) = GVec.smul ⟨a * b, 0⟩ y := by
+  ext <;> simp only [GVec.smul, GaussRat.re_mul, GaussRat.im_mul] <;> ring
+
+theorem eqOrtho_smul_rat (a : ℚ) (y : GVec) :
+    eqOrtho (GVec.smul ⟨a, 0⟩ y) = GVec.smul ⟨a, 0⟩ (eqOrtho y) := by
+  ext <;>
+    simp only [eqOrtho, GVec.smul, GaussRat.re_mul, GaussRat.im_mul,
+      GaussRat.re_neg, GaussRat.im_neg, GaussRat.re_star, GaussRat.im_star,
+      GaussRat.re_zero, GaussRat.im_zero] <;>
+    ring
+
+/-- On the equatorial plane `e₁⊥ = {y | y.x = 0}`, `eqOrtho` is an anti-involution:
+`eqOrtho (eqOrtho y) = -y`. -/
+theorem eqOrtho_eqOrtho_of_x_zero {y : GVec} (hyx : y.x = 0) :
+    eqOrtho (eqOrtho y) = GVec.smul (-1) y := by
+  ext <;> simp [eqOrtho, GVec.smul, hyx]
+
+/-- At `k = 1`, the Pythagorean equatorial rotation `pythagEqRot y 1` is the exact `90°`
+equatorial partner `eqOrtho y`. -/
+theorem pythagEqRot_one_eq_eqOrtho (y : GVec) :
+    pythagEqRot y 1 = eqOrtho y := by
+  ext <;>
+    simp only [pythagEqRot, eqOrtho, GVec.add, GVec.smul,
+      GaussRat.re_add, GaussRat.im_add, GaussRat.re_mul, GaussRat.im_mul] <;>
+    ring
+
+/-- Applying the `k = 1` Pythagorean equatorial rotation twice on `e₁⊥` negates `y`:
+`pythagEqRot (pythagEqRot y 1) 1 = -y`. -/
+theorem pythagEqRot_one_twice_of_x_zero {y : GVec} (hyx : y.x = 0) :
+    pythagEqRot (pythagEqRot y 1) 1 = GVec.smul (-1) y := by
+  rw [pythagEqRot_one_eq_eqOrtho, pythagEqRot_one_eq_eqOrtho, eqOrtho_eqOrtho_of_x_zero hyx]
+
+/-- Rational equatorial tangent step `y + t • eqOrtho(y)` in `e₁⊥`, so that
+`pironStep y ⟨t, 0⟩ = e₁ + eqTangentStep y t`. -/
+def eqTangentStep (y : GVec) (t : ℚ) : GVec :=
+  GVec.add y (GVec.smul ⟨t, 0⟩ (eqOrtho y))
+
+theorem pironStep_eq_add_eqTangentStep (y : GVec) (t : ℚ) :
+    pironStep y ⟨t, 0⟩ = GVec.add tomo_e1 (eqTangentStep y t) := by
+  ext <;> simp [pironStep, eqTangentStep, GVec.add] <;> ring
+
+theorem eqTangentStep_x_zero {y : GVec} (hyx : y.x = 0) (t : ℚ) :
+    (eqTangentStep y t).x = 0 := by
+  simp [eqTangentStep, eqOrtho, GVec.add, GVec.smul, hyx]
+
+theorem normSqVec_eqTangentStep_of_x_zero {y : GVec} (hyx : y.x = 0) (t : ℚ) :
+    normSqVec (eqTangentStep y t) = (1 + t ^ 2) * normSqVec y := by
+  have h_ortho : GVec.inner y (GVec.smul ⟨t, 0⟩ (eqOrtho y)) = 0 := by
+    rw [inner_smul_right, inner_eqOrtho_self, mul_zero]
+  rw [eqTangentStep, (normSqVec_add_eq_normSqVec_sub_of_ortho h_ortho).1,
+    normSqVec_smul, normSqVec_eqOrtho_of_x_zero hyx]
+  simp only [GaussRat.normSq]
+  ring
+
+theorem eqTangentStep_nonZero_of_x_zero {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) (t : ℚ) :
+    (eqTangentStep y t).NonZero := by
+  apply nonZero_of_normSqVec_pos
+  rw [normSqVec_eqTangentStep_of_x_zero hyx t]
+  have hy_pos := normSqVec_pos_of_nonZero hy
+  have ht_pos : 0 < 1 + t ^ 2 := by positivity
+  exact mul_pos ht_pos hy_pos
+
+/-- Action of `eqOrtho` on an equatorial tangent step `eqTangentStep y t`. -/
+theorem eqOrtho_eqTangentStep_of_x_zero {y : GVec} (hyx : y.x = 0) (t : ℚ) :
+    eqOrtho (eqTangentStep y t) = GVec.add (eqOrtho y) (GVec.smul ⟨-t, 0⟩ y) := by
+  ext <;> simp [eqOrtho, eqTangentStep, GVec.add, GVec.smul, hyx] <;> ring
+
+/-- Exact two-step Piron tangent composition law on `e₁⊥`:
+`eqTangentStep (eqTangentStep y t1) t2 = (1 - t1 * t2) • y + (t1 + t2) • eqOrtho(y)`. -/
+theorem eqTangentStep_comp_of_x_zero {y : GVec} (hyx : y.x = 0) (t1 t2 : ℚ) :
+    eqTangentStep (eqTangentStep y t1) t2 =
+      GVec.add (GVec.smul ⟨1 - t1 * t2, 0⟩ y) (GVec.smul ⟨t1 + t2, 0⟩ (eqOrtho y)) := by
+  ext <;> simp [eqTangentStep, eqOrtho, GVec.add, GVec.smul, hyx] <;> ring
+
+/-- Opposite-tangent two-step Piron radial dilation identity on `e₁⊥`:
+`eqTangentStep (eqTangentStep y t) (-t) = (1 + t²) • y`. -/
+theorem eqTangentStep_cancel_of_x_zero {y : GVec} (hyx : y.x = 0) (t : ℚ) :
+    eqTangentStep (eqTangentStep y t) (-t) = GVec.smul ⟨1 + t ^ 2, 0⟩ y := by
+  rw [eqTangentStep_comp_of_x_zero hyx t (-t)]
+  ext <;>
+    simp only [GVec.add, GVec.smul, GaussRat.re_add, GaussRat.im_add,
+      GaussRat.re_mul, GaussRat.im_mul] <;>
+    ring
+
+/-- Unit-tangent two-step Piron `90°` rotation-dilation identity on `e₁⊥`:
+`eqTangentStep (eqTangentStep y 1) 1 = 2 • eqOrtho(y)`. -/
+theorem eqTangentStep_one_one_of_x_zero {y : GVec} (hyx : y.x = 0) :
+    eqTangentStep (eqTangentStep y 1) 1 = GVec.smul ⟨2, 0⟩ (eqOrtho y) := by
+  rw [eqTangentStep_comp_of_x_zero hyx 1 1]
+  ext <;>
+    simp only [GVec.add, GVec.smul, GaussRat.re_add, GaussRat.im_add,
+      GaussRat.re_mul, GaussRat.im_mul] <;>
+    ring
+
+/-- Outward radial meridian monotonicity from two-step Piron descent:
+for any nonnegative frame function `f` with `f tomo_e1 = 1`, any `y ∈ e₁⊥ \ {0}`, and any `t ≠ 0`,
+`f(e₁ + (1 + t²) y) ≤ f(pironStep y t) ≤ f(e₁ + y)`. -/
+theorem piron_radial_scale_le_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    (hp1 : f tomo_e1 = 1)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {t : ℚ} (ht : t ≠ 0) :
+    f (GVec.add tomo_e1 (GVec.smul ⟨1 + t ^ 2, 0⟩ y)) ≤ f (pironStep y ⟨t, 0⟩) ∧
+    f (pironStep y ⟨t, 0⟩) ≤ f (GVec.add tomo_e1 y) := by
+  have hlam : (⟨t, 0⟩ : GaussRat) ≠ 0 := fun h => ht (congrArg GaussRat.re h)
+  have hlam_neg : (⟨-t, 0⟩ : GaussRat) ≠ 0 :=
+    fun h => (neg_ne_zero.mpr ht) (congrArg GaussRat.re h)
+  have hstep1 := piron_descent_le_of_pole_one hf hp1 hyx hy hlam
+  have hstep2 :=
+    piron_descent_le_of_pole_one hf hp1
+      (eqTangentStep_x_zero hyx t)
+      (eqTangentStep_nonZero_of_x_zero hyx hy t)
+      hlam_neg
+  rw [pironStep_eq_add_eqTangentStep (eqTangentStep y t) (-t),
+      eqTangentStep_cancel_of_x_zero hyx t,
+      ← pironStep_eq_add_eqTangentStep y t] at hstep2
+  exact ⟨hstep2, hstep1⟩
+
+/-- Two-step `90°` Piron descent bound: for any nonnegative frame function `f` with `f tomo_e1 = 1`
+and any `y ∈ e₁⊥ \ {0}`, `f(e₁ + 2 • eqOrtho y) ≤ f(pironStep y 1) ≤ f(e₁ + y)`. -/
+theorem piron_two_step_eqOrtho_le_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    (hp1 : f tomo_e1 = 1)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) :
+    f (GVec.add tomo_e1 (GVec.smul ⟨2, 0⟩ (eqOrtho y))) ≤ f (pironStep y 1) ∧
+    f (pironStep y 1) ≤ f (GVec.add tomo_e1 y) := by
+  have hone : (⟨1, 0⟩ : GaussRat) = 1 := rfl
+  have hstep1 := piron_descent_le_of_pole_one hf hp1 hyx hy one_ne_zero
+  have hstep2 :=
+    piron_descent_le_of_pole_one hf hp1
+      (eqTangentStep_x_zero hyx 1)
+      (eqTangentStep_nonZero_of_x_zero hyx hy 1)
+      (by rw [hone]; exact one_ne_zero : (⟨1, 0⟩ : GaussRat) ≠ 0)
+  rw [pironStep_eq_add_eqTangentStep (eqTangentStep y 1) 1,
+      eqTangentStep_one_one_of_x_zero hyx,
+      ← pironStep_eq_add_eqTangentStep y 1,
+      hone] at hstep2
+  exact ⟨hstep2, hstep1⟩
+
+/-- Ray scale invariance for arbitrary frame functions on `ℚ(i)³`: for any nonzero vector `v`
+and nonzero scalar `l ∈ ℚ(i)`, `f (l • v) = f v`. -/
+theorem frameFunction_smul {f : GVec → ℚ} (hf : IsFrameFunction f)
+    {v : GVec} (hv : v.NonZero) {l : GaussRat} (hl : l ≠ 0) :
+    f (GVec.smul l v) = f v := by
+  obtain ⟨w, u, h1, h2⟩ := exists_frame_completion hv
+  have e1 := hf _ _ _ h1
+  have e2 := hf _ _ _ (h2 l hl)
+  linarith
+
+/-- Kelvin-inverted equatorial vector `-(1 / N(y)) • y` in `e₁⊥`. -/
+def kelvinEq (y : GVec) : GVec :=
+  GVec.smul ⟨-(1 / normSqVec y), 0⟩ y
+
+theorem kelvinEq_x_zero {y : GVec} (hyx : y.x = 0) :
+    (kelvinEq y).x = 0 := by
+  simp [kelvinEq, GVec.smul, hyx]
+
+theorem normSqVec_kelvinEq {y : GVec} (hy : y.NonZero) :
+    normSqVec (kelvinEq y) = 1 / normSqVec y := by
+  have hne := normSqVec_ne_zero_of_nonZero hy
+  have hcancel : (1 / normSqVec y) * normSqVec y = 1 := one_div_mul_cancel hne
+  rw [kelvinEq, normSqVec_smul]
+  simp only [GaussRat.normSq]
+  linear_combination (1 / normSqVec y) * hcancel
+
+theorem kelvinEq_nonZero {y : GVec} (hy : y.NonZero) :
+    (kelvinEq y).NonZero := by
+  apply nonZero_of_normSqVec_pos
+  rw [normSqVec_kelvinEq hy]
+  exact div_pos one_pos (normSqVec_pos_of_nonZero hy)
+
+/-- Rescaling the meridian partner `meridianOrtho y = -N(y) e₁ + y` by `-1 / N(y)` yields
+`e₁ + kelvinEq y`. -/
+theorem smul_meridianOrtho_eq_add_kelvinEq {y : GVec} (hy : y.NonZero) :
+    GVec.smul ⟨-(1 / normSqVec y), 0⟩ (meridianOrtho y) = GVec.add tomo_e1 (kelvinEq y) := by
+  have hne := normSqVec_ne_zero_of_nonZero hy
+  have hcancel : (1 / normSqVec y) * normSqVec y = 1 := one_div_mul_cancel hne
+  ext
+  · simp only [meridianOrtho, kelvinEq, tomo_e1, gv, GVec.add, GVec.smul,
+      GaussRat.re_add, GaussRat.re_mul]
+    linear_combination hcancel
+  · simp only [meridianOrtho, kelvinEq, tomo_e1, gv, GVec.add, GVec.smul,
+      GaussRat.im_add, GaussRat.im_mul]
+    ring
+  · simp only [meridianOrtho, kelvinEq, tomo_e1, gv, GVec.add, GVec.smul,
+      GaussRat.re_add, GaussRat.re_mul]
+    ring
+  · simp only [meridianOrtho, kelvinEq, tomo_e1, gv, GVec.add, GVec.smul,
+      GaussRat.im_add, GaussRat.im_mul]
+    ring
+  · simp only [meridianOrtho, kelvinEq, tomo_e1, gv, GVec.add, GVec.smul,
+      GaussRat.re_add, GaussRat.re_mul]
+    ring
+  · simp only [meridianOrtho, kelvinEq, tomo_e1, gv, GVec.add, GVec.smul,
+      GaussRat.im_add, GaussRat.im_mul]
+    ring
+
+/-- Kelvin-inverted meridian complement identity: for any nonnegative frame function `f` with
+`f tomo_e1 = 1` and any `y ∈ e₁⊥ \ {0}`, `f(e₁ + y) + f(e₁ + kelvinEq y) = 1`. -/
+theorem meridian_kelvin_complement_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    (hp1 : f tomo_e1 = 1)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) :
+    f (GVec.add tomo_e1 y) + f (GVec.add tomo_e1 (kelvinEq y)) = 1 := by
+  have hcomp := meridian_complement_of_pole_one hf hp1 hyx hy
+  have hm_nz : (meridianOrtho y).NonZero := (isFrame_piron_base hyx hy one_ne_zero).2.2.1
+  have hy_pos := normSqVec_pos_of_nonZero hy
+  have hl_ne : (⟨-(1 / normSqVec y), 0⟩ : GaussRat) ≠ 0 := by
+    intro h
+    have hre := congrArg GaussRat.re h
+    dsimp at hre
+    have hpos : 0 < 1 / normSqVec y := div_pos one_pos hy_pos
+    linarith
+  have hsmul := frameFunction_smul hf.1 hm_nz hl_ne
+  rw [smul_meridianOrtho_eq_add_kelvinEq hy] at hsmul
+  linarith
+
+/-- Inward radial meridian monotonicity (toward the pole `e₁`): for any nonnegative frame
+function `f` with `f tomo_e1 = 1`, any `y ∈ e₁⊥ \ {0}`, and any `t ≠ 0`,
+`f(e₁ + y) ≤ f(e₁ + (1 / (1 + t²)) y)`. -/
+theorem piron_radial_inv_scale_ge_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    (hp1 : f tomo_e1 = 1)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {t : ℚ} (ht : t ≠ 0) :
+    f (GVec.add tomo_e1 y) ≤
+      f (GVec.add tomo_e1 (GVec.smul ⟨1 / (1 + t ^ 2), 0⟩ y)) := by
+  let s : ℚ := 1 / (1 + t ^ 2)
+  let y' : GVec := GVec.smul ⟨s, 0⟩ y
+  have ht2_pos : 0 < 1 + t ^ 2 := by positivity
+  have ht2_ne : 1 + t ^ 2 ≠ 0 := ne_of_gt ht2_pos
+  have hs_pos : 0 < s := div_pos one_pos ht2_pos
+  have hsl_ne : (⟨s, 0⟩ : GaussRat) ≠ 0 := by
+    intro h
+    have hre := congrArg GaussRat.re h
+    dsimp at hre
+    linarith
+  have hy'x : y'.x = 0 := by simp [y', GVec.smul, hyx]
+  have hy' : y'.NonZero := nonZero_smul hsl_ne hy
+  obtain ⟨h1, h2⟩ := piron_radial_scale_le_of_pole_one hf hp1 hy'x hy' ht
+  have hcancel : (1 + t ^ 2) * s = 1 := mul_one_div_cancel ht2_ne
+  have hy_eq : GVec.smul ⟨1 + t ^ 2, 0⟩ y' = y := by
+    dsimp [y']
+    rw [smul_rat_smul_rat, hcancel]
+    ext <;> simp [GVec.smul]
+  rw [hy_eq] at h1
+  exact le_trans h1 h2
+
+/-- For every `k ≥ 2`, the Pythagorean equatorial rotation `pythagEqRot y k` is a single
+equatorial tangent step from the radially contracted vector `((k²-1)/(k²+1)) • y` with tangent
+parameter `t = 2k / (k²-1)`. -/
+theorem pythagEqRot_eq_eqTangentStep_of_two_le {y : GVec} {k : ℕ} (hk : 2 ≤ k) :
+    pythagEqRot y k =
+      eqTangentStep
+        (GVec.smul ⟨((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1), 0⟩ y)
+        ((2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1)) := by
+  have hk_q : (2 : ℚ) ≤ (k : ℚ) := by exact_mod_cast hk
+  have hkm1_pos : 0 < (k : ℚ) ^ 2 - 1 := by nlinarith
+  have hkm1_ne : (k : ℚ) ^ 2 - 1 ≠ 0 := ne_of_gt hkm1_pos
+  have hprod :
+      ((2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1)) * (((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1)) =
+        (2 * (k : ℚ)) / ((k : ℚ) ^ 2 + 1) :=
+    div_mul_div_cancel₀ hkm1_ne
+  unfold eqTangentStep pythagEqRot
+  rw [eqOrtho_smul_rat, smul_rat_smul_rat, hprod]
+
+/-- Applying the opposite tangent step `t = -2k / (k²-1)` to `pythagEqRot y k` (`k ≥ 2`) on `e₁⊥`
+produces the radially dilated vector `((k²+1)/(k²-1)) • y`. -/
+theorem eqTangentStep_pythagEqRot_neg_of_x_zero {y : GVec} (hyx : y.x = 0) {k : ℕ} (hk : 2 ≤ k) :
+    eqTangentStep (pythagEqRot y k) (-(2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1)) =
+      GVec.smul ⟨((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1), 0⟩ y := by
+  let a : ℚ := ((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1)
+  let t : ℚ := (2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1)
+  let r : ℚ := ((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1)
+  have hk_q : (2 : ℚ) ≤ (k : ℚ) := by exact_mod_cast hk
+  have hkm1_pos : 0 < (k : ℚ) ^ 2 - 1 := by nlinarith
+  have hkp1_pos : 0 < (k : ℚ) ^ 2 + 1 := by positivity
+  have hkm1_ne : (k : ℚ) ^ 2 - 1 ≠ 0 := ne_of_gt hkm1_pos
+  have hkp1_ne : (k : ℚ) ^ 2 + 1 ≠ 0 := ne_of_gt hkp1_pos
+  have hneg_t : -(2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1) = -t := by dsimp [t]; ring
+  have hy_lo_x : (GVec.smul ⟨a, 0⟩ y).x = 0 := by simp [GVec.smul, hyx]
+  rw [pythagEqRot_eq_eqTangentStep_of_two_le hk, hneg_t,
+      eqTangentStep_cancel_of_x_zero hy_lo_x t, smul_rat_smul_rat]
+  have h_t : t * ((k : ℚ) ^ 2 - 1) = 2 * (k : ℚ) := div_mul_cancel₀ _ hkm1_ne
+  have h_a : a * ((k : ℚ) ^ 2 + 1) = (k : ℚ) ^ 2 - 1 := div_mul_cancel₀ _ hkp1_ne
+  have h_r : r * ((k : ℚ) ^ 2 - 1) = (k : ℚ) ^ 2 + 1 := div_mul_cancel₀ _ hkm1_ne
+  have hpoly :
+      ((1 + t ^ 2) * a - r) * (((k : ℚ) ^ 2 + 1) * ((k : ℚ) ^ 2 - 1)) = 0 := by
+    linear_combination
+      (1 + t ^ 2) * ((k : ℚ) ^ 2 - 1) * h_a +
+      (t * ((k : ℚ) ^ 2 - 1) + 2 * (k : ℚ)) * h_t -
+      ((k : ℚ) ^ 2 + 1) * h_r
+  have hprod_pos : 0 < ((k : ℚ) ^ 2 + 1) * ((k : ℚ) ^ 2 - 1) := mul_pos hkp1_pos hkm1_pos
+  have hcoeff : (1 + t ^ 2) * a = r := by nlinarith
+  rw [hcoeff]
+
+/-- **Exact Piron–Pythagorean Two-Sided Sandwich Inequality**:
+for every nonnegative frame function `f` with `f tomo_e1 = 1`, every `y ∈ e₁⊥ \ {0}`, and every
+`k ≥ 2`, the Pythagorean rotated ray value `f(e₁ + pythagEqRot y k)` is sandwiched between two
+purely radial perturbations along the same meridian `(e₁, y)`:
+`f(e₁ + ((k²+1)/(k²-1)) y) ≤ f(e₁ + pythagEqRot y k) ≤ f(e₁ + ((k²-1)/(k²+1)) y)`. -/
+theorem pythagEqRot_sandwich_of_pole_one {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    (hp1 : f tomo_e1 = 1)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {k : ℕ} (hk : 2 ≤ k) :
+    f (GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1), 0⟩ y)) ≤
+      f (GVec.add tomo_e1 (pythagEqRot y k)) ∧
+    f (GVec.add tomo_e1 (pythagEqRot y k)) ≤
+      f (GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1), 0⟩ y)) := by
+  let a : ℚ := ((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1)
+  let t : ℚ := (2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1)
+  let y_lo : GVec := GVec.smul ⟨a, 0⟩ y
+  have hk_q : (2 : ℚ) ≤ (k : ℚ) := by exact_mod_cast hk
+  have hkm1_pos : 0 < (k : ℚ) ^ 2 - 1 := by nlinarith
+  have hkp1_pos : 0 < (k : ℚ) ^ 2 + 1 := by positivity
+  have ha_pos : 0 < a := div_pos hkm1_pos hkp1_pos
+  have ht_pos : 0 < t := div_pos (by linarith) hkm1_pos
+  have ha_ne : (⟨a, 0⟩ : GaussRat) ≠ 0 := by
+    intro h
+    have hre := congrArg GaussRat.re h
+    dsimp at hre
+    linarith
+  have hy_lo_x : y_lo.x = 0 := by simp [y_lo, GVec.smul, hyx]
+  have hy_lo_nz : y_lo.NonZero := nonZero_smul ha_ne hy
+  obtain ⟨h1, h2⟩ :=
+    piron_radial_scale_le_of_pole_one hf hp1 hy_lo_x hy_lo_nz (ne_of_gt ht_pos)
+  have hpiron_rot : pironStep y_lo ⟨t, 0⟩ = GVec.add tomo_e1 (pythagEqRot y k) := by
+    rw [pironStep_eq_add_eqTangentStep, ← pythagEqRot_eq_eqTangentStep_of_two_le hk]
+  have hneg_t : -t = -(2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1) := by dsimp [t]; ring
+  have hhi_eq :
+      GVec.smul ⟨1 + t ^ 2, 0⟩ y_lo =
+        GVec.smul ⟨((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1), 0⟩ y := by
+    rw [← eqTangentStep_cancel_of_x_zero hy_lo_x t,
+        ← pythagEqRot_eq_eqTangentStep_of_two_le hk,
+        hneg_t,
+        eqTangentStep_pythagEqRot_neg_of_x_zero hyx hk]
+  rw [hpiron_rot, hhi_eq] at h1
+  rw [hpiron_rot] at h2
+  exact ⟨h1, h2⟩
+
+/-- Squared Euclidean distance of a radial perturbation `e₁ + s • y` from `e₁ + y`. -/
+theorem distSqVec_radial_scale (y : GVec) (s : ℚ) :
+    distSqVec (GVec.add tomo_e1 (GVec.smul ⟨s, 0⟩ y)) (GVec.add tomo_e1 y) =
+      (s - 1) ^ 2 * normSqVec y := by
+  simp only [distSqVec, GVec.add, GVec.smul, normSqVec, GaussRat.normSq,
+    GaussRat.re_add, GaussRat.im_add, GaussRat.re_sub, GaussRat.im_sub,
+    GaussRat.re_mul, GaussRat.im_mul]
+  ring
+
+/-- For every `y ∈ e₁⊥` and `δ > 0`, there exists `k ≥ 2` such that both radial sandwich
+endpoints `e₁ + ((k²-1)/(k²+1)) y` and `e₁ + ((k²+1)/(k²-1)) y` lie within squared distance `δ`
+of `e₁ + y`. -/
+theorem exists_pythagEqRot_radial_within_delta {y : GVec} (hyx : y.x = 0) {δ : ℚ} (hδ : 0 < δ) :
+    ∃ k : ℕ, 2 ≤ k ∧
+      distSqVec
+        (GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1), 0⟩ y))
+        (GVec.add tomo_e1 y) < δ ∧
+      distSqVec
+        (GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1), 0⟩ y))
+        (GVec.add tomo_e1 y) < δ := by
+  obtain ⟨m, hm, hlt⟩ := exists_pironStep_within_delta hyx hδ
+  rw [distSqVec_pironStep_inv_nat hyx m] at hlt
+  let k : ℕ := 2 * m
+  let s_lo : ℚ := ((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1)
+  let s_hi : ℚ := ((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1)
+  have hk : 2 ≤ k := by omega
+  have hm_q : (1 : ℚ) ≤ (m : ℚ) := by exact_mod_cast hm
+  have hm2_pos : 0 < (m : ℚ) ^ 2 := by positivity
+  have hny_lt : normSqVec y < δ * (m : ℚ) ^ 2 := (div_lt_iff₀ hm2_pos).mp hlt
+  have hk_q : (k : ℚ) = 2 * (m : ℚ) := by simp [k]
+  have hkm1_ge : 2 * (m : ℚ) ≤ (k : ℚ) ^ 2 - 1 := by nlinarith
+  have hkm1_pos : 0 < (k : ℚ) ^ 2 - 1 := by linarith
+  have hkp1_pos : 0 < (k : ℚ) ^ 2 + 1 := by positivity
+  have hkm1_ne : (k : ℚ) ^ 2 - 1 ≠ 0 := ne_of_gt hkm1_pos
+  have hkp1_ne : (k : ℚ) ^ 2 + 1 ≠ 0 := ne_of_gt hkp1_pos
+  have hkm1_sq_pos : 0 < ((k : ℚ) ^ 2 - 1) ^ 2 := sq_pos_of_pos hkm1_pos
+  have hkp1_sq_pos : 0 < ((k : ℚ) ^ 2 + 1) ^ 2 := sq_pos_of_pos hkp1_pos
+  have hkm1_sq_ge : 4 * (m : ℚ) ^ 2 ≤ ((k : ℚ) ^ 2 - 1) ^ 2 := by nlinarith
+  have hkp1_sq_ge : ((k : ℚ) ^ 2 - 1) ^ 2 ≤ ((k : ℚ) ^ 2 + 1) ^ 2 := by nlinarith
+  have hs_lo : s_lo * ((k : ℚ) ^ 2 + 1) = (k : ℚ) ^ 2 - 1 := div_mul_cancel₀ _ hkp1_ne
+  have hs_hi : s_hi * ((k : ℚ) ^ 2 - 1) = (k : ℚ) ^ 2 + 1 := div_mul_cancel₀ _ hkm1_ne
+  have hlo_sq : ((s_lo - 1) ^ 2 * normSqVec y) * ((k : ℚ) ^ 2 + 1) ^ 2 = 4 * normSqVec y := by
+    linear_combination
+      (normSqVec y * ((s_lo - 1) * ((k : ℚ) ^ 2 + 1) - 2)) * hs_lo
+  have hhi_sq : ((s_hi - 1) ^ 2 * normSqVec y) * ((k : ℚ) ^ 2 - 1) ^ 2 = 4 * normSqVec y := by
+    linear_combination
+      (normSqVec y * ((s_hi - 1) * ((k : ℚ) ^ 2 - 1) + 2)) * hs_hi
+  refine ⟨k, hk, ?_, ?_⟩
+  · rw [distSqVec_radial_scale]
+    change (s_lo - 1) ^ 2 * normSqVec y < δ
+    nlinarith
+  · rw [distSqVec_radial_scale]
+    change (s_hi - 1) ^ 2 * normSqVec y < δ
+    nlinarith
+
+/-- **Global Archimedean Continuity + Piron–Pythagorean Sandwich Squeeze**:
+if `f` is a nonnegative frame function with `f tomo_e1 = 1` that is Archimedean-continuous
+everywhere on `ℚ(i)³ \ {0}`, then for every `y ∈ e₁⊥ \ {0}` and every `ε > 0`, there exists
+`k ≥ 2` such that `|f(e₁ + pythagEqRot y k) - f(e₁ + y)| < ε` (using continuity of `f` at the
+single ray `e₁ + y` alone via the radial sandwich `pythagEqRot_sandwich_of_pole_one`). -/
+theorem pythagEqRot_archimedean_squeeze_of_pole_one
+    {f : GVec → ℚ} (hf : IsNonnegFrameFunction f) (hp1 : f tomo_e1 = 1)
+    (hcont : IsArchimedeanContinuousEverywhere f)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {ε : ℚ} (hε : 0 < ε) :
+    ∃ k : ℕ, 2 ≤ k ∧
+      |f (GVec.add tomo_e1 (pythagEqRot y k)) - f (GVec.add tomo_e1 y)| < ε := by
+  have he1y_nz : (GVec.add tomo_e1 y).NonZero := by
+    apply nonZero_of_x
+    simp [GVec.add, tomo_e1, gv, hyx]
+  obtain ⟨δ, hδ, hball⟩ := hcont (GVec.add tomo_e1 y) he1y_nz ε hε
+  obtain ⟨k, hk, hdist_lo, hdist_hi⟩ := exists_pythagEqRot_radial_within_delta hyx hδ
+  obtain ⟨hsand_lo, hsand_hi⟩ := pythagEqRot_sandwich_of_pole_one hf hp1 hyx hy hk
+  let u_lo := GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1), 0⟩ y)
+  let u_hi := GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1), 0⟩ y)
+  have hu_lo_nz : u_lo.NonZero := by
+    apply nonZero_of_x
+    simp [u_lo, GVec.add, GVec.smul, tomo_e1, gv, hyx]
+  have hu_hi_nz : u_hi.NonZero := by
+    apply nonZero_of_x
+    simp [u_hi, GVec.add, GVec.smul, tomo_e1, gv, hyx]
+  obtain ⟨_, h_lo_upper⟩ := abs_lt.mp (hball u_lo hu_lo_nz hdist_lo)
+  obtain ⟨h_hi_lower, _⟩ := abs_lt.mp (hball u_hi hu_hi_nz hdist_hi)
+  refine ⟨k, hk, abs_lt.mpr ⟨by linarith, by linarith⟩⟩
+
+/-- **Equi-Latitude Equatorial Invariance of `sp p`**:
+whenever `y, y' ∈ e₁⊥` have the same squared norm `normSqVec y' = normSqVec y` and
+`0 < vpRat p (normSqVec (e₁ + y))`, `sp p (e₁ + y') = sp p (e₁ + y)` because the `.x` coordinate
+(`1`, with `vpRat p 1 = 0`) is strictly `p`-leading in both `e₁ + y` and `e₁ + y'`. -/
+theorem sp_e1_add_eq_of_normSqVec_eq {p : ℕ} {y y' : GVec}
+    (hyx : y.x = 0) (hy'x : y'.x = 0)
+    (hnorm : normSqVec y' = normSqVec y)
+    (hpos : 0 < vpRat p (normSqVec (GVec.add tomo_e1 y))) :
+    sp p (GVec.add tomo_e1 y') = sp p (GVec.add tomo_e1 y) := by
+  have hux : (GVec.add tomo_e1 y).x = ⟨1, 0⟩ := by
+    ext <;> simp [GVec.add, tomo_e1, gv, hyx]
+  have hu'x : (GVec.add tomo_e1 y').x = ⟨1, 0⟩ := by
+    ext <;> simp [GVec.add, tomo_e1, gv, hy'x]
+  have hux_norm : (GVec.add tomo_e1 y).x.normSq = 1 := by
+    rw [hux]; simp [GaussRat.normSq]
+  have hu'x_norm : (GVec.add tomo_e1 y').x.normSq = 1 := by
+    rw [hu'x]; simp [GaussRat.normSq]
+  have hvp_one : vpRat p 1 = 0 := by
+    simp [vpRat]
+  have hnorm_u : normSqVec (GVec.add tomo_e1 y') = normSqVec (GVec.add tomo_e1 y) := by
+    rw [normSqVec_add_tomo_e1_of_x_zero hy'x, normSqVec_add_tomo_e1_of_x_zero hyx, hnorm]
+  have hlead_u : isLeadPCoord p (GVec.add tomo_e1 y).x (GVec.add tomo_e1 y) := by
+    refine ⟨by rw [hux_norm]; norm_num, ?_⟩
+    rw [hux_norm, hvp_one]
+    exact hpos
+  have hlead_u' : isLeadPCoord p (GVec.add tomo_e1 y').x (GVec.add tomo_e1 y') := by
+    refine ⟨by rw [hu'x_norm]; norm_num, ?_⟩
+    rw [hu'x_norm, hvp_one, hnorm_u]
+    exact hpos
+  have hcs :
+      coordSignP p (GVec.add tomo_e1 y').x (GVec.add tomo_e1 y') =
+        coordSignP p (GVec.add tomo_e1 y).x (GVec.add tomo_e1 y) := by
+    simp only [coordSignP, hu'x_norm, hux_norm, hnorm_u]
+  simp only [sp, hnorm_u, hlead_u, hlead_u', ↓reduceIte, hcs]
+
+/-- For every `p : ℕ` and `y ∈ e₁⊥` with `0 < vpRat p (normSqVec (e₁ + y))`, `sp p` is
+completely invariant under all Pythagorean equatorial rotations `pythagEqRot y k` (`k : ℕ`)
+and under `eqOrtho y`. -/
+theorem sp_e1_add_pythagEqRot_eq {p : ℕ} {y : GVec}
+    (hyx : y.x = 0)
+    (hpos : 0 < vpRat p (normSqVec (GVec.add tomo_e1 y))) (k : ℕ) :
+    sp p (GVec.add tomo_e1 (pythagEqRot y k)) = sp p (GVec.add tomo_e1 y) ∧
+    sp p (GVec.add tomo_e1 (eqOrtho y)) = sp p (GVec.add tomo_e1 y) :=
+  ⟨sp_e1_add_eq_of_normSqVec_eq hyx (pythagEqRot_x_zero hyx k)
+      (normSqVec_pythagEqRot hyx k).1 hpos,
+   sp_e1_add_eq_of_normSqVec_eq hyx rfl (normSqVec_eqOrtho_of_x_zero hyx) hpos⟩
+
+/-- `s3` is invariant under `pythagEqRot tomo_e23 k` for all `k : ℕ` on the exact pair
+`(tomo_e1, tomo_e23)` where `SatisfiesOrthoParallelogramZero s3` fails. -/
+theorem s3_pythagEqRot_invariant_tomo_e23 (k : ℕ) :
+    s3 (GVec.add tomo_e1 (pythagEqRot tomo_e23 k)) = s3 (GVec.add tomo_e1 tomo_e23) := by
+  rw [← sp_three_eq_s3, ← sp_three_eq_s3]
+  have hnorm : normSqVec (GVec.add tomo_e1 tomo_e23) = (3 : ℕ) := by
+    simp [normSqVec, GaussRat.normSq, GVec.add, tomo_e1, tomo_e23, gv]
+    norm_num
+  have hpos : 0 < vpRat 3 (normSqVec (GVec.add tomo_e1 tomo_e23)) := by
+    rw [hnorm, vpRat_natCast (by decide) (by decide)]
+    decide
+  exact (sp_e1_add_pythagEqRot_eq rfl hpos k).1
+
+/-- `s7` is invariant under `pythagEqRot (gv 0 0 2 0 1 1) k` for all `k : ℕ` on the exact pair
+`(tomo_e1, (0, 2, 1 + i))` where `SatisfiesOrthoParallelogramZero s7` fails. -/
+theorem s7_pythagEqRot_invariant_v7 (k : ℕ) :
+    s7 (GVec.add tomo_e1 (pythagEqRot (gv 0 0 2 0 1 1) k)) =
+      s7 (GVec.add tomo_e1 (gv 0 0 2 0 1 1)) := by
+  rw [← sp_seven_eq_s7, ← sp_seven_eq_s7]
+  have hnorm : normSqVec (GVec.add tomo_e1 (gv 0 0 2 0 1 1)) = (7 : ℕ) := by
+    simp [normSqVec, GaussRat.normSq, GVec.add, tomo_e1, gv]
+    norm_num
+  have hpos : 0 < vpRat 7 (normSqVec (GVec.add tomo_e1 (gv 0 0 2 0 1 1))) := by
+    rw [hnorm, vpRat_natCast (by decide) (by decide)]
+    decide
+  exact (sp_e1_add_pythagEqRot_eq rfl hpos k).1
+
+/-- `sp 11` is invariant under `pythagEqRot (gv 0 0 3 0 1 0) k` for all `k : ℕ` on the exact pair
+`(tomo_e1, (0, 3, 1))` where `SatisfiesOrthoParallelogramZero (sp 11)` fails. -/
+theorem sp11_pythagEqRot_invariant_v11 (k : ℕ) :
+    sp 11 (GVec.add tomo_e1 (pythagEqRot (gv 0 0 3 0 1 0) k)) =
+      sp 11 (GVec.add tomo_e1 (gv 0 0 3 0 1 0)) := by
+  have hnorm : normSqVec (GVec.add tomo_e1 (gv 0 0 3 0 1 0)) = (11 : ℕ) := by
+    simp [normSqVec, GaussRat.normSq, GVec.add, tomo_e1, gv]
+    norm_num
+  have hpos : 0 < vpRat 11 (normSqVec (GVec.add tomo_e1 (gv 0 0 3 0 1 0))) := by
+    rw [hnorm, vpRat_natCast (by decide) (by decide)]
+    decide
+  exact (sp_e1_add_pythagEqRot_eq rfl hpos k).1
+
+/-- **Why Equatorial Rotational Invariance Around `e₁` Does Not Force the Parallelogram Law**:
+if `g` is invariant under the `k = 1` Pythagorean equatorial rotation (`y ↦ eqOrtho y ↦ -y`)
+around `e₁`, then `g(e₁ - y) = g(e₁ + y)` is automatic, so the orthogonal parallelogram sum
+`g(e₁ + y) + g(e₁ - y) = 2 g(e₁ + y)` vanishes if and only if `g(e₁ + y) = 0` already vanishes! -/
+theorem orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant
+    (g : GVec → ℚ) {y : GVec} (hyx : y.x = 0)
+    (hrot1 : g (GVec.add tomo_e1 (pythagEqRot y 1)) = g (GVec.add tomo_e1 y))
+    (hrot2 : g (GVec.add tomo_e1 (pythagEqRot (pythagEqRot y 1) 1)) =
+      g (GVec.add tomo_e1 (pythagEqRot y 1))) :
+    g (GVec.sub tomo_e1 y) = g (GVec.add tomo_e1 y) ∧
+    (g (GVec.add tomo_e1 y) + g (GVec.sub tomo_e1 y) = 0 ↔
+      g (GVec.add tomo_e1 y) = 0) := by
+  have hsub_eq : GVec.add tomo_e1 (pythagEqRot (pythagEqRot y 1) 1) = GVec.sub tomo_e1 y := by
+    rw [pythagEqRot_one_twice_of_x_zero hyx]
+    ext <;> simp [GVec.add, GVec.sub, GVec.smul] <;> ring
+  have heq : g (GVec.sub tomo_e1 y) = g (GVec.add tomo_e1 y) := by
+    rw [← hsub_eq, hrot2, hrot1]
+  refine ⟨heq, ?_⟩
+  constructor <;> intro h <;> linarith
+
+/-- **Universal Pure-Pole Equatorial Vanishing**:
+if `g tomo_e1 = 0` and `quadRay (rayProj tomo_e1) + g` is a nonnegative frame function on `ℚ(i)³`,
+then `g` vanishes identically on the entire equatorial plane `e₁⊥ \ {0}` (generalizing
+`pure_pole_e1_nonneg_eliminates_combResidual3_7_11` to arbitrary residuals `g`). -/
+theorem nonneg_pole_perturbation_vanishes_on_equator
+    {g : GVec → ℚ} (hg_e1 : g tomo_e1 = 0)
+    (hf : IsNonnegFrameFunction (fun v => quadRay (rayProj tomo_e1) v + g v)) :
+    ∀ y : GVec, y.x = 0 → y.NonZero → g y = 0 := by
+  have hp1 : (fun v => quadRay (rayProj tomo_e1) v + g v) tomo_e1 = 1 := by
+    have hq1 : quadRay (rayProj tomo_e1) tomo_e1 = 1 := by
+      simp [quadRay, quadNum, rayProj, normSqVec, GaussRat.normSq, tomo_e1, gv]
+    linarith
+  intro y hyx hy
+  have hz :=
+    nonneg_eq_zero_on_perp_of_pole_one hf tomo_e1_nonZero hy (inner_tomo_e1_of_x_zero hyx) hp1
+  rw [quadRay_rayProj_tomo_e1_of_x_zero hyx, zero_add] at hz
+  exact hz
+
+end BornFinite.GaussianTomography
+
+#print axioms BornFinite.GaussianTomography.inner_applyVec_im_zero
+#print axioms BornFinite.GaussianTomography.inner_applyVec_re_eq_quadNum
+#print axioms BornFinite.GaussianTomography.quadRay_smul
+#print axioms BornFinite.GaussianTomography.quadNum_orthogonal_weighted_sum
+#print axioms BornFinite.GaussianTomography.quadRay_frame_sum
+#print axioms BornFinite.GaussianTomography.quadRay_isFrameFunction
+#print axioms BornFinite.GaussianTomography.tomography_matches_nine_rays
+#print axioms BornFinite.GaussianTomography.tomography_trace_one
+#print axioms BornFinite.GaussianTomography.tomography_isFrameFunction
+#print axioms BornFinite.GaussianTomography.tomography_unique
+#print axioms BornFinite.GaussianTomography.tomographyForm_quadRay
+#print axioms BornFinite.GaussianTomography.residual_is_zero_weight
+#print axioms BornFinite.GaussianTomography.residual_vanishes_on_nine_rays
+#print axioms BornFinite.GaussianTomography.signed_rigidity_iff_zero_residual
+#print axioms BornFinite.GaussianTomography.nonneg_frameFunction_bounds
+#print axioms BornFinite.GaussianTomography.abs_quadRay_le
+#print axioms BornFinite.GaussianTomography.nonneg_residual_is_bounded
+#print axioms BornFinite.GaussianTomography.one_sided_lower_bound_implies_upper_bound
+#print axioms BornFinite.GaussianTomography.nonneg_rigidity_iff_bounded_zero_residual
+#print axioms BornFinite.GaussianTomography.gaussian_norm_div_four_witness
+#print axioms BornFinite.GaussianTomography.gaussian_norm_eight_primitive_witness
+#print axioms BornFinite.GaussianTomography.gaussian_coord_norm_mod_four
+#print axioms BornFinite.GaussianTomography.primitive_gaussian_norm_mod_four_iff
+#print axioms BornFinite.GaussianTomography.eq_quadRay_all_of_zero_at_zero
+#print axioms BornFinite.GaussianTomography.traceInner_self_eq_zero_iff
+#print axioms BornFinite.GaussianTomography.traceInner_ext
+#print axioms BornFinite.GaussianTomography.traceInner_rayProj
+#print axioms BornFinite.GaussianTomography.rayProj_smul
+#print axioms BornFinite.GaussianTomography.rayProj_tr
+#print axioms BornFinite.GaussianTomography.rayProj_frame_sum
+#print axioms BornFinite.GaussianTomography.rayProj_nine_rays_span_hermForm3
+#print axioms BornFinite.GaussianTomography.v3Rat_normSq_even
+#print axioms BornFinite.GaussianTomography.detGVec_normSq_of_frame
+#print axioms BornFinite.GaussianTomography.frame_v3Rat_sum_even
+#print axioms BornFinite.GaussianTomography.ortho_coord_identity_x
+#print axioms BornFinite.GaussianTomography.s3_orthogonal_odd_cancel
+#print axioms BornFinite.GaussianTomography.s3_isZeroWeightFrameFunction
+#print axioms BornFinite.GaussianTomography.s3_smul
+#print axioms BornFinite.GaussianTomography.s3_isBoundedOnRays
+#print axioms BornFinite.GaussianTomography.s3_vanishes_on_nine_rays
+#print axioms BornFinite.GaussianTomography.witness_111_primitive
+#print axioms BornFinite.GaussianTomography.witness_div_four_shell_primitive
+#print axioms BornFinite.GaussianTomography.witness_div_eight_shell_primitive
+#print axioms BornFinite.GaussianTomography.exists_nonzero_bounded_zero_residual
+#print axioms BornFinite.GaussianTomography.not_signed_quadratic_rigidity
+#print axioms BornFinite.GaussianTomography.not_nonneg_quadratic_rigidity
+#print axioms BornFinite.GaussianTomography.exoticQi3_isNonnegFrameFunction
+#print axioms BornFinite.GaussianTomography.exoticQi3_not_quadratic
+#print axioms BornFinite.GaussianTomography.rayProj_witness_111_decomp
+#print axioms BornFinite.GaussianTomography.quadRay_witness_111_kernel_relation
+#print axioms BornFinite.GaussianTomography.s3_witness_111_kernel_separation
+#print axioms BornFinite.GaussianTomography.s3_perturbPosRay
+#print axioms BornFinite.GaussianTomography.s3_perturbNegRay
+#print axioms BornFinite.GaussianTomography.distSqVec_perturbPosRay_tomo_e1
+#print axioms BornFinite.GaussianTomography.distSqVec_perturbNegRay_tomo_e1
+#print axioms BornFinite.GaussianTomography.s3_oscillates_near_tomo_e1
+#print axioms BornFinite.GaussianTomography.not_archimedeanContinuousAt_s3_tomo_e1
+#print axioms BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi3_tomo_e1
+#print axioms BornFinite.GaussianTomography.s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1
+#print axioms BornFinite.GaussianTomography.archimedeanContinuousAt_quadRay_tomo_e1
+#print axioms BornFinite.GaussianTomography.quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff
+#print axioms BornFinite.GaussianTomography.no_unit_norm_smul_witness_111_in_qi3
+#print axioms BornFinite.GaussianTomography.witness_111_unit_sqrt3_normSq
+#print axioms BornFinite.GaussianTomography.isFrameSqrt3_witness_111_even_norms
+#print axioms BornFinite.GaussianTomography.zero_on_witness_111_of_sqrt3_even_v3_vanishing
+#print axioms BornFinite.GaussianTomography.no_s3_even_v3_extension_to_sqrt3
+#print axioms BornFinite.GaussianTomography.unit_norm_in_sqrtP_of_normSqVec_eq
+#print axioms BornFinite.GaussianTomography.fourSquarePartner_ortho_and_normSqRatP
+#print axioms BornFinite.GaussianTomography.isFrameSqrt7_witness_p7_norms
+#print axioms BornFinite.GaussianTomography.zero_of_vanishesOnNineRays_and_factorsThroughRayProjLinear
+#print axioms BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s7
+#print axioms BornFinite.GaussianTomography.quadratic_rigidity_iff_factorsThroughRayProjLinear
+#print axioms BornFinite.GaussianTomography.v7Rat_normSq_even
+#print axioms BornFinite.GaussianTomography.frame_v7Rat_sum_even
+#print axioms BornFinite.GaussianTomography.s7_orthogonal_odd_cancel
+#print axioms BornFinite.GaussianTomography.s7_isZeroWeightFrameFunction
+#print axioms BornFinite.GaussianTomography.s7_smul
+#print axioms BornFinite.GaussianTomography.s7_isBoundedOnRays
+#print axioms BornFinite.GaussianTomography.s7_vanishes_on_nine_rays
+#print axioms BornFinite.GaussianTomography.witness_p7_primitive
+#print axioms BornFinite.GaussianTomography.s3_s7_dual_on_witnesses
+#print axioms BornFinite.GaussianTomography.exoticQi7_isNonnegFrameFunction
+#print axioms BornFinite.GaussianTomography.exoticQi7_not_quadratic
+#print axioms BornFinite.GaussianTomography.combResidual37_isZeroWeightFrameFunction
+#print axioms BornFinite.GaussianTomography.combResidual37_vanishes_on_nine_rays
+#print axioms BornFinite.GaussianTomography.combResidual37_isBoundedOnRays
+#print axioms BornFinite.GaussianTomography.s3_s7_linearIndependent
+#print axioms BornFinite.GaussianTomography.s7_perturb7PosRay
+#print axioms BornFinite.GaussianTomography.s7_perturb7NegRay
+#print axioms BornFinite.GaussianTomography.s3_perturb7PosRay
+#print axioms BornFinite.GaussianTomography.s3_perturb7NegRay
+#print axioms BornFinite.GaussianTomography.s7_perturbPosRay_seven_mul
+#print axioms BornFinite.GaussianTomography.s7_perturbNegRay_seven_mul
+#print axioms BornFinite.GaussianTomography.distSqVec_perturb7PosRay_tomo_e1
+#print axioms BornFinite.GaussianTomography.distSqVec_perturb7NegRay_tomo_e1
+#print axioms BornFinite.GaussianTomography.s3_s7_selective_oscillation_near_tomo_e1
+#print axioms BornFinite.GaussianTomography.not_archimedeanContinuousAt_s7_tomo_e1
+#print axioms BornFinite.GaussianTomography.not_archimedeanContinuousAt_exoticQi7_tomo_e1
+#print axioms BornFinite.GaussianTomography.combResidual37_coeffs_zero_of_archimedeanContinuousAt_tomo_e1
+#print axioms BornFinite.GaussianTomography.quadRay_add_combResidual37_archimedeanContinuousAt_tomo_e1_iff
+#print axioms BornFinite.GaussianTomography.no_unit_norm_smul_witness_p7_in_qi3
+#print axioms BornFinite.GaussianTomography.zero_on_witness_p7_of_sqrt7_even_v7_vanishing
+#print axioms BornFinite.GaussianTomography.no_s7_even_v7_extension_to_sqrt7
+#print axioms BornFinite.GaussianTomography.joint_sqrt3_sqrt7_even_valuation_eliminates_combResidual37
+#print axioms BornFinite.GaussianTomography.not_factorsThroughRayProjLinear_s3
+#print axioms BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual37_iff
+#print axioms BornFinite.GaussianTomography.rayProj_witness_p7_decomp
+#print axioms BornFinite.GaussianTomography.quadRay_witness_p7_kernel_relation
+#print axioms BornFinite.GaussianTomography.s7_witness_p7_kernel_separation
+#print axioms BornFinite.GaussianTomography.cross_prime_frame_partner_norm_valuations_even
+#print axioms BornFinite.GaussianTomography.exoticComb37_isNonnegFrameFunction
+#print axioms BornFinite.GaussianTomography.exoticComb37_quadratic_iff
+#print axioms BornFinite.GaussianTomography.exoticComb37_archimedeanContinuousAt_tomo_e1_iff
+#print axioms BornFinite.GaussianTomography.sp_three_eq_s3
+#print axioms BornFinite.GaussianTomography.sp_seven_eq_s7
+#print axioms BornFinite.GaussianTomography.sp_isBoundedOnRays
+#print axioms BornFinite.GaussianTomography.sp_vanishes_on_nine_rays
+#print axioms BornFinite.GaussianTomography.inertPrimeSpec_eleven
+#print axioms BornFinite.GaussianTomography.vpRat_normSq_even
+#print axioms BornFinite.GaussianTomography.frame_vpRat_sum_even
+#print axioms BornFinite.GaussianTomography.sp_orthogonal_odd_cancel
+#print axioms BornFinite.GaussianTomography.sp_isZeroWeightFrameFunction
+#print axioms BornFinite.GaussianTomography.sp_smul
+#print axioms BornFinite.GaussianTomography.sp11_isZeroWeightFrameFunction
+#print axioms BornFinite.GaussianTomography.combResidual3_7_11_isZeroWeightFrameFunction
+#print axioms BornFinite.GaussianTomography.witness_p11_primitive
+#print axioms BornFinite.GaussianTomography.s3_s7_sp11_dual_on_three_witnesses
+#print axioms BornFinite.GaussianTomography.s3_s7_sp11_linearIndependent
+#print axioms BornFinite.GaussianTomography.factorsThroughRayProjLinear_combResidual3_7_11_iff
+#print axioms BornFinite.GaussianTomography.rayProj_witness_p11_decomp
+#print axioms BornFinite.GaussianTomography.quadRay_witness_p11_kernel_relation
+#print axioms BornFinite.GaussianTomography.sp11_witness_p11_kernel_separation
+#print axioms BornFinite.GaussianTomography.isFrameSqrt11_witness_p11_norms
+#print axioms BornFinite.GaussianTomography.three_prime_frame_partner_norm_valuations_even
+#print axioms BornFinite.GaussianTomography.finExoticComb_isNonnegFrameFunction
+#print axioms BornFinite.GaussianTomography.inertPrimeResidualSystem_linearIndependent
+#print axioms BornFinite.GaussianTomography.finExoticComb_quadratic_iff
+#print axioms BornFinite.GaussianTomography.finCombResidual_coeffs_zero_of_archimedeanContinuousAt_tomo_e1
+#print axioms BornFinite.GaussianTomography.quadRay_add_finCombResidual_archimedeanContinuousAt_tomo_e1_iff
+#print axioms BornFinite.GaussianTomography.finExoticComb_archimedeanContinuousAt_tomo_e1_iff
+#print axioms BornFinite.GaussianTomography.factorsThroughRayProjLinear_finCombResidual_iff
+#print axioms BornFinite.GaussianTomography.joint_field_extension_eliminates_finCombResidual
+#print axioms BornFinite.GaussianTomography.finCombResidual_inertSystem37_eq_combResidual37
+#print axioms BornFinite.GaussianTomography.inner_rotPairU_rotPairV_eq_zero
+#print axioms BornFinite.GaussianTomography.normSqVec_add_eq_normSqVec_sub_of_ortho
+#print axioms BornFinite.GaussianTomography.normSqVec_rotPairU
+#print axioms BornFinite.GaussianTomography.normSqVec_rotPairV
+#print axioms BornFinite.GaussianTomography.isFrame_rotPair
+#print axioms BornFinite.GaussianTomography.frameFunction_rotPair_sum
+#print axioms BornFinite.GaussianTomography.zeroWeight_rotPair_sum
+#print axioms BornFinite.GaussianTomography.rayProj_ortho_add_sub
+#print axioms BornFinite.GaussianTomography.factorsThroughRayProjLinear_ortho_add_sub
+#print axioms BornFinite.GaussianTomography.satisfiesOrthoParallelogramZero_of_factorsThroughRayProjLinear
+#print axioms BornFinite.GaussianTomography.sp_isCoordSignSymmetric
+#print axioms BornFinite.GaussianTomography.sp_vanishes_on_coord_axes
+#print axioms BornFinite.GaussianTomography.zero_of_coordSignSymmetric_and_orthoParallelogram
+#print axioms BornFinite.GaussianTomography.s3_not_satisfiesOrthoParallelogramZero
+#print axioms BornFinite.GaussianTomography.s7_not_satisfiesOrthoParallelogramZero
+#print axioms BornFinite.GaussianTomography.sp11_not_satisfiesOrthoParallelogramZero
+#print axioms BornFinite.GaussianTomography.isFrame_hermCross
+#print axioms BornFinite.GaussianTomography.nonneg_eq_zero_on_perp_of_pole_one
+#print axioms BornFinite.GaussianTomography.pure_pole_e1_nonneg_eliminates_combResidual3_7_11
+#print axioms BornFinite.GaussianTomography.piron_frame_sum_identity
+#print axioms BornFinite.GaussianTomography.piron_descent_le_of_pole_one
+#print axioms BornFinite.GaussianTomography.meridian_complement_of_pole_one
+#print axioms BornFinite.GaussianTomography.normSqVec_pythagEqRot
+#print axioms BornFinite.GaussianTomography.quadRay_rayProj_e1_pythagEqRot
+#print axioms BornFinite.GaussianTomography.distSqVec_pironStep_inv_nat
+#print axioms BornFinite.GaussianTomography.exists_pironStep_within_delta
+#print axioms BornFinite.GaussianTomography.zero_of_nonneg_zeroWeightFrameFunction
+#print axioms BornFinite.GaussianTomography.nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual
+#print axioms BornFinite.GaussianTomography.eqOrtho_eqOrtho_of_x_zero
+#print axioms BornFinite.GaussianTomography.pythagEqRot_one_eq_eqOrtho
+#print axioms BornFinite.GaussianTomography.pythagEqRot_one_twice_of_x_zero
+#print axioms BornFinite.GaussianTomography.pironStep_eq_add_eqTangentStep
+#print axioms BornFinite.GaussianTomography.eqTangentStep_x_zero
+#print axioms BornFinite.GaussianTomography.normSqVec_eqTangentStep_of_x_zero
+#print axioms BornFinite.GaussianTomography.eqTangentStep_nonZero_of_x_zero
+#print axioms BornFinite.GaussianTomography.eqOrtho_eqTangentStep_of_x_zero
+#print axioms BornFinite.GaussianTomography.eqTangentStep_comp_of_x_zero
+#print axioms BornFinite.GaussianTomography.eqTangentStep_cancel_of_x_zero
+#print axioms BornFinite.GaussianTomography.eqTangentStep_one_one_of_x_zero
+#print axioms BornFinite.GaussianTomography.piron_radial_scale_le_of_pole_one
+#print axioms BornFinite.GaussianTomography.piron_two_step_eqOrtho_le_of_pole_one
+#print axioms BornFinite.GaussianTomography.frameFunction_smul
+#print axioms BornFinite.GaussianTomography.kelvinEq_x_zero
+#print axioms BornFinite.GaussianTomography.normSqVec_kelvinEq
+#print axioms BornFinite.GaussianTomography.kelvinEq_nonZero
+#print axioms BornFinite.GaussianTomography.smul_meridianOrtho_eq_add_kelvinEq
+#print axioms BornFinite.GaussianTomography.meridian_kelvin_complement_of_pole_one
+#print axioms BornFinite.GaussianTomography.piron_radial_inv_scale_ge_of_pole_one
+#print axioms BornFinite.GaussianTomography.pythagEqRot_eq_eqTangentStep_of_two_le
+#print axioms BornFinite.GaussianTomography.eqTangentStep_pythagEqRot_neg_of_x_zero
+#print axioms BornFinite.GaussianTomography.pythagEqRot_sandwich_of_pole_one
+#print axioms BornFinite.GaussianTomography.distSqVec_radial_scale
+#print axioms BornFinite.GaussianTomography.exists_pythagEqRot_radial_within_delta
+#print axioms BornFinite.GaussianTomography.pythagEqRot_archimedean_squeeze_of_pole_one
+#print axioms BornFinite.GaussianTomography.sp_e1_add_eq_of_normSqVec_eq
+#print axioms BornFinite.GaussianTomography.sp_e1_add_pythagEqRot_eq
+#print axioms BornFinite.GaussianTomography.s3_pythagEqRot_invariant_tomo_e23
+#print axioms BornFinite.GaussianTomography.s7_pythagEqRot_invariant_v7
+#print axioms BornFinite.GaussianTomography.sp11_pythagEqRot_invariant_v11
+#print axioms BornFinite.GaussianTomography.orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant
+#print axioms BornFinite.GaussianTomography.nonneg_pole_perturbation_vanishes_on_equator
+

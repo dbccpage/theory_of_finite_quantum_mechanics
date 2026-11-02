@@ -31,7 +31,7 @@ def verify() -> None:
     pins = (FSP_SOURCE, "lean4/lakefile.lean", "lean4/lake-manifest.json", "lean4/lean-toolchain")
     if set(d["source_pins"]) != set(pins) or r["anchors"] != anchors:
         raise ValueError("FSP input/anchor coverage differs")
-    if any(fqcd.sha((ROOT / p).read_bytes()) != h for p, h in d["source_pins"].items()):
+    if not all(fqcd.pin_matches(p, h, ("FoliatedFracton2Gauge",)) for p, h in d["source_pins"].items()):
         raise ValueError("Stale FSP source pin")
     raw = (ROOT / FSP_LOG).read_bytes()
     if r["output_sha256"] != fqcd.sha(raw) or r["axioms"] != fqcd.parse_reports(raw.decode(), anchors):

@@ -3,20 +3,45 @@
   "artifact": "lean4/lakefile.lean",
   "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
   "contract": {
-    "schema_id": "tfqm.source-contract.v1",
-    "authority_effect": "None",
+    "AuthorityEffect": "None",
     "artifact": {
+      "language": "Lean 4",
       "path": "lean4/lakefile.lean",
-      "sha256": "f44e9e556d25bce2730157672d51e6f54f64389385e550177cd38c02695801e0",
-      "language": "Lean 4"
+      "sha256": "90c2fde1461422326c04bb35ce205070f860aa0532b681e981276485ac6817a4"
     },
-    "contract_urn": "urn:tfqm:fqcd-strong-coupling-area-law:lakefile",
-    "symbols": [
-      "FQCD-STRONG-COUPLING-AREA-LAW"
+    "boundaries": [
+      "Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.",
+      "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN."
+    ],
+    "claim": "Register BornGaussianTomographyReduction in the Lake build configuration for FQ-GLEASON-QI3-FRAME-FUNCTIONS.",
+    "contract_urn": "urn:tfqm:fq-gleason-qi3:lakefile",
+    "evidence": [
+      {
+        "path": "dag/research/fq_gleason_qi3_assessment.json",
+        "sha256": "f59ee78411fc4ab403e1c7651a9114258786714dab61f9295bab84de767d86ae"
+      },
+      {
+        "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
+        "sha256": "09ab9f3e194618aaab594f38f32537b6367e27fbb20004e9f5b3cdec7ae4b59c"
+      },
+      {
+        "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+        "sha256": "c5d95e03644e6033ab24f68cdf164048026d4bd3cf3221539d201aef8e6969cb"
+      },
+      {
+        "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
+        "sha256": "fb1a4e802342a4a82b67af06675a09cadd412eaa44bbbc95a55bc40012cb9129"
+      }
     ],
     "owned_invariants": [
-      "Exact finite-group strong-coupling area-law and screening bounds for TFQ-1052.",
-      "AuthorityEffect None; scoped to CONDITIONAL DAG status."
+      "Register BornGaussianTomographyReduction in the Lake build configuration for FQ-GLEASON-QI3-FRAME-FUNCTIONS.",
+      "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status."
+    ],
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "BornGaussianRationalNoColouring",
+      "BornGaussianRationalExtensionObstruction",
+      "BornGaussianTomographyReduction"
     ]
   },
   "contract_history": [
@@ -14950,33 +14975,83 @@
       "sha256": "a006429183c26b9c6d79a6b435d3568d408b3b7c0f647df1ebd30810c89ad45a"
     },
     {
-      "sha256": "df869f8a4dba9502e4a30087ca3637a32fbf463137c386c2db853094da35737e",
       "bytes": 540,
+      "original_paths": [
+        "lean4/lakefile.lean#tfq1052-contract"
+      ],
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"authority_effect\": \"None\",\n  \"artifact\": {\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"f44e9e556d25bce2730157672d51e6f54f64389385e550177cd38c02695801e0\",\n    \"language\": \"Lean 4\"\n  },\n  \"contract_urn\": \"urn:tfqm:fqcd-strong-coupling-area-law:lakefile\",\n  \"symbols\": [\n    \"FQCD-STRONG-COUPLING-AREA-LAW\"\n  ],\n  \"owned_invariants\": [\n    \"Exact finite-group strong-coupling area-law and screening bounds for TFQ-1052.\",\n    \"AuthorityEffect None; scoped to CONDITIONAL DAG status.\"\n  ]\n}\n",
       "record": {
-        "schema_id": "tfqm.source-contract.v1",
-        "authority_effect": "None",
         "artifact": {
+          "language": "Lean 4",
           "path": "lean4/lakefile.lean",
-          "sha256": "f44e9e556d25bce2730157672d51e6f54f64389385e550177cd38c02695801e0",
-          "language": "Lean 4"
+          "sha256": "f44e9e556d25bce2730157672d51e6f54f64389385e550177cd38c02695801e0"
         },
+        "authority_effect": "None",
         "contract_urn": "urn:tfqm:fqcd-strong-coupling-area-law:lakefile",
-        "symbols": [
-          "FQCD-STRONG-COUPLING-AREA-LAW"
-        ],
         "owned_invariants": [
           "Exact finite-group strong-coupling area-law and screening bounds for TFQ-1052.",
           "AuthorityEffect None; scoped to CONDITIONAL DAG status."
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "FQCD-STRONG-COUPLING-AREA-LAW"
         ]
       },
-      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"authority_effect\": \"None\",\n  \"artifact\": {\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"f44e9e556d25bce2730157672d51e6f54f64389385e550177cd38c02695801e0\",\n    \"language\": \"Lean 4\"\n  },\n  \"contract_urn\": \"urn:tfqm:fqcd-strong-coupling-area-law:lakefile\",\n  \"symbols\": [\n    \"FQCD-STRONG-COUPLING-AREA-LAW\"\n  ],\n  \"owned_invariants\": [\n    \"Exact finite-group strong-coupling area-law and screening bounds for TFQ-1052.\",\n    \"AuthorityEffect None; scoped to CONDITIONAL DAG status.\"\n  ]\n}\n",
+      "sha256": "df869f8a4dba9502e4a30087ca3637a32fbf463137c386c2db853094da35737e"
+    },
+    {
+      "bytes": 1735,
       "original_paths": [
-        "lean4/lakefile.lean#tfq1052-contract"
-      ]
+        "lean4/lakefile.contract.score.yaml#fq-gleason-qi3-2026-11-01"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"90c2fde1461422326c04bb35ce205070f860aa0532b681e981276485ac6817a4\"\n  },\n  \"boundaries\": [\n    \"Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.\",\n    \"Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN.\"\n  ],\n  \"claim\": \"Register BornGaussianTomographyReduction in the Lake build configuration for FQ-GLEASON-QI3-FRAME-FUNCTIONS.\",\n  \"contract_urn\": \"urn:tfqm:fq-gleason-qi3:lakefile\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/fq_gleason_qi3_assessment.json\",\n      \"sha256\": \"f59ee78411fc4ab403e1c7651a9114258786714dab61f9295bab84de767d86ae\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json\",\n      \"sha256\": \"09ab9f3e194618aaab594f38f32537b6367e27fbb20004e9f5b3cdec7ae4b59c\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-frame-functions.md\",\n      \"sha256\": \"c5d95e03644e6033ab24f68cdf164048026d4bd3cf3221539d201aef8e6969cb\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md\",\n      \"sha256\": \"fb1a4e802342a4a82b67af06675a09cadd412eaa44bbbc95a55bc40012cb9129\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Register BornGaussianTomographyReduction in the Lake build configuration for FQ-GLEASON-QI3-FRAME-FUNCTIONS.\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status.\"\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"BornGaussianRationalNoColouring\",\n    \"BornGaussianRationalExtensionObstruction\",\n    \"BornGaussianTomographyReduction\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "90c2fde1461422326c04bb35ce205070f860aa0532b681e981276485ac6817a4"
+        },
+        "boundaries": [
+          "Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.",
+          "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN."
+        ],
+        "claim": "Register BornGaussianTomographyReduction in the Lake build configuration for FQ-GLEASON-QI3-FRAME-FUNCTIONS.",
+        "contract_urn": "urn:tfqm:fq-gleason-qi3:lakefile",
+        "evidence": [
+          {
+            "path": "dag/research/fq_gleason_qi3_assessment.json",
+            "sha256": "f59ee78411fc4ab403e1c7651a9114258786714dab61f9295bab84de767d86ae"
+          },
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
+            "sha256": "09ab9f3e194618aaab594f38f32537b6367e27fbb20004e9f5b3cdec7ae4b59c"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+            "sha256": "c5d95e03644e6033ab24f68cdf164048026d4bd3cf3221539d201aef8e6969cb"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
+            "sha256": "fb1a4e802342a4a82b67af06675a09cadd412eaa44bbbc95a55bc40012cb9129"
+          }
+        ],
+        "owned_invariants": [
+          "Register BornGaussianTomographyReduction in the Lake build configuration for FQ-GLEASON-QI3-FRAME-FUNCTIONS.",
+          "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status."
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "BornGaussianRationalNoColouring",
+          "BornGaussianRationalExtensionObstruction",
+          "BornGaussianTomographyReduction"
+        ]
+      },
+      "sha256": "48886fe0e90fca0d91a57608b2c5349e08a57f5ed3836f93c567a2b0e87e0c57"
     }
   ],
-  "current_contract": "df869f8a4dba9502e4a30087ca3637a32fbf463137c386c2db853094da35737e",
-  "current_scoring": "97e75bba6f294ddb7c419a1790b4f3e5f6481295b894246312e594be293b55f4",
+  "current_contract": "48886fe0e90fca0d91a57608b2c5349e08a57f5ed3836f93c567a2b0e87e0c57",
+  "current_scoring": "317fbc3d3f27cd44e90ab10cfcdc5048e06696d61d9322560badcec41c627f94",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {
     "#merge-ads-cft-registration": "c684dedc0291c59c6e13a95fbc502a5f1069995a4925787fd01d37ae575d6ad1",
@@ -15036,10 +15111,10 @@
     "lean4/lakefile.contract.score.yaml#pr237-scoring": "8e1fc538e15e1475818fd91b77256866612cebf57ea731dc64316a8ad57a5c63",
     "lean4/lakefile.contract.score.yaml#pr237-symanzik-contract": "4e6c0f8ce4b31356f2d5c888f89e84eef9b70962d714f3e32da3b5b987962633",
     "lean4/lakefile.contract.score.yaml#pr237-symanzik-scoring": "041fb1fac3f40ee393437b85aa88ada6058432ab83196188b3177584511128df",
-    "lean4/lakefile.lean.contract.yaml": "4fc4cae88a7859e634ffa98d3262cdeb996ab97c2f28d937d8316a3c0b1e38b4",
-    "lean4/lakefile.lean.score.yaml": "c1353e438ef2122aead352a844a2521cd9986693086cc6a85be45a59faa5d046",
     "lean4/lakefile.lean#tfq1052-contract": "df869f8a4dba9502e4a30087ca3637a32fbf463137c386c2db853094da35737e",
-    "lean4/lakefile.lean#tfq1052-scoring": "97e75bba6f294ddb7c419a1790b4f3e5f6481295b894246312e594be293b55f4"
+    "lean4/lakefile.lean#tfq1052-scoring": "97e75bba6f294ddb7c419a1790b4f3e5f6481295b894246312e594be293b55f4",
+    "lean4/lakefile.lean.contract.yaml": "4fc4cae88a7859e634ffa98d3262cdeb996ab97c2f28d937d8316a3c0b1e38b4",
+    "lean4/lakefile.lean.score.yaml": "c1353e438ef2122aead352a844a2521cd9986693086cc6a85be45a59faa5d046"
   },
   "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
@@ -27968,17 +28043,19 @@
       "sha256": "891dc2904772e4f248cc6892f7a7598d04a1cf11f729fa58e86991e1e42c0e8b"
     },
     {
-      "sha256": "97e75bba6f294ddb7c419a1790b4f3e5f6481295b894246312e594be293b55f4",
       "bytes": 407,
+      "original_paths": [
+        "lean4/lakefile.lean#tfq1052-scoring"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"authority_effect\": \"None\",\n  \"artifact\": {\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"f44e9e556d25bce2730157672d51e6f54f64389385e550177cd38c02695801e0\",\n    \"language\": \"Lean 4\"\n  },\n  \"level\": \"L4\",\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"is_complete\": true\n}\n",
       "record": {
-        "schema_version": "2.0.0",
-        "authority_effect": "None",
         "artifact": {
+          "language": "Lean 4",
           "path": "lean4/lakefile.lean",
-          "sha256": "f44e9e556d25bce2730157672d51e6f54f64389385e550177cd38c02695801e0",
-          "language": "Lean 4"
+          "sha256": "f44e9e556d25bce2730157672d51e6f54f64389385e550177cd38c02695801e0"
         },
-        "level": "L4",
+        "authority_effect": "None",
+        "composite_grade": "D",
         "gates": {
           "G1": "D",
           "G2": "D",
@@ -27986,14 +28063,78 @@
           "G4": "D",
           "G5": "D"
         },
-        "composite_grade": "D",
-        "score_token": "L4D",
-        "is_complete": true
+        "is_complete": true,
+        "level": "L4",
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"authority_effect\": \"None\",\n  \"artifact\": {\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"f44e9e556d25bce2730157672d51e6f54f64389385e550177cd38c02695801e0\",\n    \"language\": \"Lean 4\"\n  },\n  \"level\": \"L4\",\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L4D\",\n  \"is_complete\": true\n}\n",
+      "sha256": "97e75bba6f294ddb7c419a1790b4f3e5f6481295b894246312e594be293b55f4"
+    },
+    {
+      "bytes": 2358,
       "original_paths": [
-        "lean4/lakefile.lean#tfq1052-scoring"
-      ]
+        "lean4/lakefile.contract.score.yaml#fq-gleason-qi3-2026-11-01"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"90c2fde1461422326c04bb35ce205070f860aa0532b681e981276485ac6817a4\"\n  },\n  \"assessment_id\": \"fq-gleason-qi3-2026-11-01\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and named symbols are bound to the partial claims and DAG node FQ-GLEASON-QI3-FRAME-FUNCTIONS with AuthorityEffect None.\",\n    \"G2\": \"Only exact integer, rational, and Gaussian-rational arithmetic are used; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and axiom audit use only propext, Classical.choice, and Quot.sound.\",\n    \"G4\": \"Verified by 8 pytest test functions including negative controls and 3 independent check scripts.\",\n    \"G5\": \"Predictable polynomial and linear modular arithmetic with zero custom axioms.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-11-01T06:12:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/fq_gleason_qi3_assessment.json\",\n      \"sha256\": \"f59ee78411fc4ab403e1c7651a9114258786714dab61f9295bab84de767d86ae\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json\",\n      \"sha256\": \"09ab9f3e194618aaab594f38f32537b6367e27fbb20004e9f5b3cdec7ae4b59c\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-frame-functions.md\",\n      \"sha256\": \"c5d95e03644e6033ab24f68cdf164048026d4bd3cf3221539d201aef8e6969cb\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md\",\n      \"sha256\": \"fb1a4e802342a4a82b67af06675a09cadd412eaa44bbbc95a55bc40012cb9129\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development and exact rational pytest verification with explicit negative controls and replay receipts.\",\n  \"limitations\": [\n    \"Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.\",\n    \"Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "90c2fde1461422326c04bb35ce205070f860aa0532b681e981276485ac6817a4"
+        },
+        "assessment_id": "fq-gleason-qi3-2026-11-01",
+        "basis": {
+          "G1": "Exact source identity and named symbols are bound to the partial claims and DAG node FQ-GLEASON-QI3-FRAME-FUNCTIONS with AuthorityEffect None.",
+          "G2": "Only exact integer, rational, and Gaussian-rational arithmetic are used; no floating-point approximation occurs.",
+          "G3": "Lean 4.35 kernel build and axiom audit use only propext, Classical.choice, and Quot.sound.",
+          "G4": "Verified by 8 pytest test functions including negative controls and 3 independent check scripts.",
+          "G5": "Predictable polynomial and linear modular arithmetic with zero custom axioms."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-11-01T06:12:00+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/fq_gleason_qi3_assessment.json",
+            "sha256": "f59ee78411fc4ab403e1c7651a9114258786714dab61f9295bab84de767d86ae"
+          },
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
+            "sha256": "09ab9f3e194618aaab594f38f32537b6367e27fbb20004e9f5b3cdec7ae4b59c"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+            "sha256": "c5d95e03644e6033ab24f68cdf164048026d4bd3cf3221539d201aef8e6969cb"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
+            "sha256": "fb1a4e802342a4a82b67af06675a09cadd412eaa44bbbc95a55bc40012cb9129"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Exact kernel-checked Lean 4 development and exact rational pytest verification with explicit negative controls and replay receipts.",
+        "limitations": [
+          "Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.",
+          "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "317fbc3d3f27cd44e90ab10cfcdc5048e06696d61d9322560badcec41c627f94"
     }
   ]
 }

@@ -1,0 +1,585 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "code/python/tests/test_fq_gleason_qi3_frame_functions.py",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Python",
+      "path": "code/python/tests/test_fq_gleason_qi3_frame_functions.py",
+      "sha256": "211315601e5f6caf0cc6e96a08cc7a79e70a9de9f86756068bccfb0a3495d9b0"
+    },
+    "boundaries": [
+      "Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.",
+      "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN."
+    ],
+    "claim": "Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.",
+    "contract_urn": "urn:tfqm:fq-gleason-qi3:test-fq-gleason-qi3-frame-functions",
+    "evidence": [
+      {
+        "path": "dag/research/fq_gleason_qi3_assessment.json",
+        "sha256": "8950df08d718f687c5e8ba4b1bcf15e7b1a98d2b9bc4609abdf42c24c219e918"
+      },
+      {
+        "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
+        "sha256": "1405ac5deb39a9733df9e2a2b2950a985f6e9b2943b47ac670c46ff689c07bff"
+      },
+      {
+        "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+        "sha256": "d9646057b4548d5f4cc1dbf13424899e28394032d8e87c8d8ddd5ae41f8c1350"
+      },
+      {
+        "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
+        "sha256": "042907fdd43bc397580b09a8f9f5e98294ce0fdc5e3f5632cfc863b50c8be797"
+      },
+      {
+        "path": "docs/maintenance/pr496_review.md",
+        "sha256": "bb2f54a5ce66303acdeb231505ffc47e822c9ae9069a39ad3aa21fa6331608b4"
+      }
+    ],
+    "owned_invariants": [
+      "Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.",
+      "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status."
+    ],
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "test_nine_ray_tomography_reconstruction_and_uniqueness",
+      "test_quadray_frame_sum_on_non_unit_orthogonal_frames",
+      "test_operator_space_ray_projector_duality_and_zero_normalization",
+      "test_signed_and_nonnegative_residual_reduction_equivalences",
+      "test_one_plus_i_adic_norm_parity_witnesses_and_mod_four_iff",
+      "test_s3_global_bounded_zero_weight_residual_and_exotic_qi3",
+      "test_archimedean_discontinuity_and_field_extension_elimination",
+      "test_multi_prime_s3_s7_linear_independence_and_joint_elimination",
+      "test_independent_check_scripts_pass",
+      "test_fq_gleason_qi3_frame_functions_end_to_end",
+      "test_uniform_sp_family_p11_and_finite_inert_residual_system",
+      "test_piron_frame_rotation_parallelogram_and_continuity_bridge",
+      "test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 3409,
+      "original_paths": [
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.contract.score.yaml#fq-gleason-qi3-2026-11-01"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_fq_gleason_qi3_frame_functions.py\",\n    \"sha256\": \"b4a861575be98a3c565ea4ee34810dac0e44032cea85a0294b33af89f9b15feb\"\n  },\n  \"boundaries\": [\n    \"Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.\",\n    \"Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN.\"\n  ],\n  \"claim\": \"Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.\",\n  \"contract_urn\": \"urn:tfqm:fq-gleason-qi3:test-fq-gleason-qi3-frame-functions\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/fq_gleason_qi3_assessment.json\",\n      \"sha256\": \"c3b230e022ac04da80a47c9d533e2fe8ecc9760697e6ae4bbf7a3b53b2dd9aca\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json\",\n      \"sha256\": \"ed0b3e5804564d8e41086fbe1eff22358e467128a0c8f5d60850183b57e49e86\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-frame-functions.md\",\n      \"sha256\": \"cf9240852008d2612bb08e1864a048785ac967d0471680447869ae94100b9329\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md\",\n      \"sha256\": \"d730fbb970a204a50dacaa21c7f430335b8daabcdcd97fb488761d224cefcc49\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status.\"\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"test_nine_ray_tomography_reconstruction_and_uniqueness\",\n    \"test_quadray_frame_sum_on_non_unit_orthogonal_frames\",\n    \"test_operator_space_ray_projector_duality_and_zero_normalization\",\n    \"test_signed_and_nonnegative_residual_reduction_equivalences\",\n    \"test_one_plus_i_adic_norm_parity_witnesses_and_mod_four_iff\",\n    \"test_s3_global_bounded_zero_weight_residual_and_exotic_qi3\",\n    \"test_archimedean_discontinuity_and_field_extension_elimination\",\n    \"test_multi_prime_s3_s7_linear_independence_and_joint_elimination\",\n    \"test_independent_check_scripts_pass\",\n    \"test_fq_gleason_qi3_frame_functions_end_to_end\",\n    \"test_uniform_sp_family_p11_and_finite_inert_residual_system\",\n    \"test_piron_frame_rotation_parallelogram_and_continuity_bridge\",\n    \"test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_fq_gleason_qi3_frame_functions.py",
+          "sha256": "b4a861575be98a3c565ea4ee34810dac0e44032cea85a0294b33af89f9b15feb"
+        },
+        "boundaries": [
+          "Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.",
+          "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN."
+        ],
+        "claim": "Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.",
+        "contract_urn": "urn:tfqm:fq-gleason-qi3:test-fq-gleason-qi3-frame-functions",
+        "evidence": [
+          {
+            "path": "dag/research/fq_gleason_qi3_assessment.json",
+            "sha256": "c3b230e022ac04da80a47c9d533e2fe8ecc9760697e6ae4bbf7a3b53b2dd9aca"
+          },
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
+            "sha256": "ed0b3e5804564d8e41086fbe1eff22358e467128a0c8f5d60850183b57e49e86"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+            "sha256": "cf9240852008d2612bb08e1864a048785ac967d0471680447869ae94100b9329"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
+            "sha256": "d730fbb970a204a50dacaa21c7f430335b8daabcdcd97fb488761d224cefcc49"
+          }
+        ],
+        "owned_invariants": [
+          "Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.",
+          "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status."
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "test_nine_ray_tomography_reconstruction_and_uniqueness",
+          "test_quadray_frame_sum_on_non_unit_orthogonal_frames",
+          "test_operator_space_ray_projector_duality_and_zero_normalization",
+          "test_signed_and_nonnegative_residual_reduction_equivalences",
+          "test_one_plus_i_adic_norm_parity_witnesses_and_mod_four_iff",
+          "test_s3_global_bounded_zero_weight_residual_and_exotic_qi3",
+          "test_archimedean_discontinuity_and_field_extension_elimination",
+          "test_multi_prime_s3_s7_linear_independence_and_joint_elimination",
+          "test_independent_check_scripts_pass",
+          "test_fq_gleason_qi3_frame_functions_end_to_end",
+          "test_uniform_sp_family_p11_and_finite_inert_residual_system",
+          "test_piron_frame_rotation_parallelogram_and_continuity_bridge",
+          "test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation"
+        ]
+      },
+      "sha256": "f8942c39af6827a4d96bf538de20948f2a9c88f5224c526421c1ba798228a43b"
+    },
+    {
+      "bytes": 3409,
+      "original_paths": [
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.contract.score.yaml#fq-gleason-qi3-2026-11-02-review-fixes"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_fq_gleason_qi3_frame_functions.py\",\n    \"sha256\": \"211315601e5f6caf0cc6e96a08cc7a79e70a9de9f86756068bccfb0a3495d9b0\"\n  },\n  \"boundaries\": [\n    \"Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.\",\n    \"Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN.\"\n  ],\n  \"claim\": \"Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.\",\n  \"contract_urn\": \"urn:tfqm:fq-gleason-qi3:test-fq-gleason-qi3-frame-functions\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/fq_gleason_qi3_assessment.json\",\n      \"sha256\": \"669bcf86891e33ec6bf7874e46d6f70484f6736263dae2680da97c35010fd7fb\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json\",\n      \"sha256\": \"ed0b3e5804564d8e41086fbe1eff22358e467128a0c8f5d60850183b57e49e86\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-frame-functions.md\",\n      \"sha256\": \"e0cd13b462fb0793a8af5d7767aebcdb1f6e8409691c097bc9fb943948cf661f\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md\",\n      \"sha256\": \"739e9c16c60333cce1a7a28063bbcc5f68fbbb324ea7914925b1d6d0246eb0dc\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status.\"\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"test_nine_ray_tomography_reconstruction_and_uniqueness\",\n    \"test_quadray_frame_sum_on_non_unit_orthogonal_frames\",\n    \"test_operator_space_ray_projector_duality_and_zero_normalization\",\n    \"test_signed_and_nonnegative_residual_reduction_equivalences\",\n    \"test_one_plus_i_adic_norm_parity_witnesses_and_mod_four_iff\",\n    \"test_s3_global_bounded_zero_weight_residual_and_exotic_qi3\",\n    \"test_archimedean_discontinuity_and_field_extension_elimination\",\n    \"test_multi_prime_s3_s7_linear_independence_and_joint_elimination\",\n    \"test_independent_check_scripts_pass\",\n    \"test_fq_gleason_qi3_frame_functions_end_to_end\",\n    \"test_uniform_sp_family_p11_and_finite_inert_residual_system\",\n    \"test_piron_frame_rotation_parallelogram_and_continuity_bridge\",\n    \"test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_fq_gleason_qi3_frame_functions.py",
+          "sha256": "211315601e5f6caf0cc6e96a08cc7a79e70a9de9f86756068bccfb0a3495d9b0"
+        },
+        "boundaries": [
+          "Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.",
+          "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN."
+        ],
+        "claim": "Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.",
+        "contract_urn": "urn:tfqm:fq-gleason-qi3:test-fq-gleason-qi3-frame-functions",
+        "evidence": [
+          {
+            "path": "dag/research/fq_gleason_qi3_assessment.json",
+            "sha256": "669bcf86891e33ec6bf7874e46d6f70484f6736263dae2680da97c35010fd7fb"
+          },
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
+            "sha256": "ed0b3e5804564d8e41086fbe1eff22358e467128a0c8f5d60850183b57e49e86"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+            "sha256": "e0cd13b462fb0793a8af5d7767aebcdb1f6e8409691c097bc9fb943948cf661f"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
+            "sha256": "739e9c16c60333cce1a7a28063bbcc5f68fbbb324ea7914925b1d6d0246eb0dc"
+          }
+        ],
+        "owned_invariants": [
+          "Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.",
+          "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status."
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "test_nine_ray_tomography_reconstruction_and_uniqueness",
+          "test_quadray_frame_sum_on_non_unit_orthogonal_frames",
+          "test_operator_space_ray_projector_duality_and_zero_normalization",
+          "test_signed_and_nonnegative_residual_reduction_equivalences",
+          "test_one_plus_i_adic_norm_parity_witnesses_and_mod_four_iff",
+          "test_s3_global_bounded_zero_weight_residual_and_exotic_qi3",
+          "test_archimedean_discontinuity_and_field_extension_elimination",
+          "test_multi_prime_s3_s7_linear_independence_and_joint_elimination",
+          "test_independent_check_scripts_pass",
+          "test_fq_gleason_qi3_frame_functions_end_to_end",
+          "test_uniform_sp_family_p11_and_finite_inert_residual_system",
+          "test_piron_frame_rotation_parallelogram_and_continuity_bridge",
+          "test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation"
+        ]
+      },
+      "sha256": "3af5e69fb2205c6f697ed3af34ef326ad077055b7b4910a9a60ea862f6a9ce30"
+    },
+    {
+      "bytes": 3409,
+      "original_paths": [
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.contract.score.yaml#fq-gleason-qi3-2026-11-02-codex-review-fixes"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_fq_gleason_qi3_frame_functions.py\",\n    \"sha256\": \"211315601e5f6caf0cc6e96a08cc7a79e70a9de9f86756068bccfb0a3495d9b0\"\n  },\n  \"boundaries\": [\n    \"Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.\",\n    \"Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN.\"\n  ],\n  \"claim\": \"Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.\",\n  \"contract_urn\": \"urn:tfqm:fq-gleason-qi3:test-fq-gleason-qi3-frame-functions\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/fq_gleason_qi3_assessment.json\",\n      \"sha256\": \"a6452053e7d662cfbe2df267b404217ffca5d1809f7438c3b5f2547d2a4b6e3b\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json\",\n      \"sha256\": \"1405ac5deb39a9733df9e2a2b2950a985f6e9b2943b47ac670c46ff689c07bff\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-frame-functions.md\",\n      \"sha256\": \"6e11cbd4c2afb1924a1c6223d639bab1eb929d88f259d5e4ddf9137606476a00\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md\",\n      \"sha256\": \"739e9c16c60333cce1a7a28063bbcc5f68fbbb324ea7914925b1d6d0246eb0dc\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status.\"\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"test_nine_ray_tomography_reconstruction_and_uniqueness\",\n    \"test_quadray_frame_sum_on_non_unit_orthogonal_frames\",\n    \"test_operator_space_ray_projector_duality_and_zero_normalization\",\n    \"test_signed_and_nonnegative_residual_reduction_equivalences\",\n    \"test_one_plus_i_adic_norm_parity_witnesses_and_mod_four_iff\",\n    \"test_s3_global_bounded_zero_weight_residual_and_exotic_qi3\",\n    \"test_archimedean_discontinuity_and_field_extension_elimination\",\n    \"test_multi_prime_s3_s7_linear_independence_and_joint_elimination\",\n    \"test_independent_check_scripts_pass\",\n    \"test_fq_gleason_qi3_frame_functions_end_to_end\",\n    \"test_uniform_sp_family_p11_and_finite_inert_residual_system\",\n    \"test_piron_frame_rotation_parallelogram_and_continuity_bridge\",\n    \"test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_fq_gleason_qi3_frame_functions.py",
+          "sha256": "211315601e5f6caf0cc6e96a08cc7a79e70a9de9f86756068bccfb0a3495d9b0"
+        },
+        "boundaries": [
+          "Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.",
+          "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN."
+        ],
+        "claim": "Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.",
+        "contract_urn": "urn:tfqm:fq-gleason-qi3:test-fq-gleason-qi3-frame-functions",
+        "evidence": [
+          {
+            "path": "dag/research/fq_gleason_qi3_assessment.json",
+            "sha256": "a6452053e7d662cfbe2df267b404217ffca5d1809f7438c3b5f2547d2a4b6e3b"
+          },
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
+            "sha256": "1405ac5deb39a9733df9e2a2b2950a985f6e9b2943b47ac670c46ff689c07bff"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+            "sha256": "6e11cbd4c2afb1924a1c6223d639bab1eb929d88f259d5e4ddf9137606476a00"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
+            "sha256": "739e9c16c60333cce1a7a28063bbcc5f68fbbb324ea7914925b1d6d0246eb0dc"
+          }
+        ],
+        "owned_invariants": [
+          "Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.",
+          "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status."
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "test_nine_ray_tomography_reconstruction_and_uniqueness",
+          "test_quadray_frame_sum_on_non_unit_orthogonal_frames",
+          "test_operator_space_ray_projector_duality_and_zero_normalization",
+          "test_signed_and_nonnegative_residual_reduction_equivalences",
+          "test_one_plus_i_adic_norm_parity_witnesses_and_mod_four_iff",
+          "test_s3_global_bounded_zero_weight_residual_and_exotic_qi3",
+          "test_archimedean_discontinuity_and_field_extension_elimination",
+          "test_multi_prime_s3_s7_linear_independence_and_joint_elimination",
+          "test_independent_check_scripts_pass",
+          "test_fq_gleason_qi3_frame_functions_end_to_end",
+          "test_uniform_sp_family_p11_and_finite_inert_residual_system",
+          "test_piron_frame_rotation_parallelogram_and_continuity_bridge",
+          "test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation"
+        ]
+      },
+      "sha256": "e1a2d3e665d1473e3293f28cd1844fcc82795e0983887233358cf3779751e5b6"
+    },
+    {
+      "sha256": "fa16920ff7091ffbd4377580a5f4a649b06159f5b3ca266cfa0e32d030880caf",
+      "bytes": 3555,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_fq_gleason_qi3_frame_functions.py",
+          "sha256": "211315601e5f6caf0cc6e96a08cc7a79e70a9de9f86756068bccfb0a3495d9b0"
+        },
+        "boundaries": [
+          "Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.",
+          "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN."
+        ],
+        "claim": "Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.",
+        "contract_urn": "urn:tfqm:fq-gleason-qi3:test-fq-gleason-qi3-frame-functions",
+        "evidence": [
+          {
+            "path": "dag/research/fq_gleason_qi3_assessment.json",
+            "sha256": "8950df08d718f687c5e8ba4b1bcf15e7b1a98d2b9bc4609abdf42c24c219e918"
+          },
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
+            "sha256": "1405ac5deb39a9733df9e2a2b2950a985f6e9b2943b47ac670c46ff689c07bff"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+            "sha256": "d9646057b4548d5f4cc1dbf13424899e28394032d8e87c8d8ddd5ae41f8c1350"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
+            "sha256": "042907fdd43bc397580b09a8f9f5e98294ce0fdc5e3f5632cfc863b50c8be797"
+          },
+          {
+            "path": "docs/maintenance/pr496_review.md",
+            "sha256": "bb2f54a5ce66303acdeb231505ffc47e822c9ae9069a39ad3aa21fa6331608b4"
+          }
+        ],
+        "owned_invariants": [
+          "Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.",
+          "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status."
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "test_nine_ray_tomography_reconstruction_and_uniqueness",
+          "test_quadray_frame_sum_on_non_unit_orthogonal_frames",
+          "test_operator_space_ray_projector_duality_and_zero_normalization",
+          "test_signed_and_nonnegative_residual_reduction_equivalences",
+          "test_one_plus_i_adic_norm_parity_witnesses_and_mod_four_iff",
+          "test_s3_global_bounded_zero_weight_residual_and_exotic_qi3",
+          "test_archimedean_discontinuity_and_field_extension_elimination",
+          "test_multi_prime_s3_s7_linear_independence_and_joint_elimination",
+          "test_independent_check_scripts_pass",
+          "test_fq_gleason_qi3_frame_functions_end_to_end",
+          "test_uniform_sp_family_p11_and_finite_inert_residual_system",
+          "test_piron_frame_rotation_parallelogram_and_continuity_bridge",
+          "test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation"
+        ]
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_fq_gleason_qi3_frame_functions.py\",\n    \"sha256\": \"211315601e5f6caf0cc6e96a08cc7a79e70a9de9f86756068bccfb0a3495d9b0\"\n  },\n  \"boundaries\": [\n    \"Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.\",\n    \"Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN.\"\n  ],\n  \"claim\": \"Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.\",\n  \"contract_urn\": \"urn:tfqm:fq-gleason-qi3:test-fq-gleason-qi3-frame-functions\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/fq_gleason_qi3_assessment.json\",\n      \"sha256\": \"8950df08d718f687c5e8ba4b1bcf15e7b1a98d2b9bc4609abdf42c24c219e918\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json\",\n      \"sha256\": \"1405ac5deb39a9733df9e2a2b2950a985f6e9b2943b47ac670c46ff689c07bff\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-frame-functions.md\",\n      \"sha256\": \"d9646057b4548d5f4cc1dbf13424899e28394032d8e87c8d8ddd5ae41f8c1350\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md\",\n      \"sha256\": \"042907fdd43bc397580b09a8f9f5e98294ce0fdc5e3f5632cfc863b50c8be797\"\n    },\n    {\n      \"path\": \"docs/maintenance/pr496_review.md\",\n      \"sha256\": \"bb2f54a5ce66303acdeb231505ffc47e822c9ae9069a39ad3aa21fa6331608b4\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Exact rational Fraction and integer tests for nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and zero-vector normalization, non-unit orthogonal frame sums, residual equivalences, (1+i)-adic norm-parity witnesses, the global 3-adic and 7-adic zero-weight residuals s3 and s7 and nonnegative non-quadratic frame functions exotic_qi3 and exotic_qi7, their 2D linear independence (comb_residual_37), and Section 9 regularity/continuity/field-extension/projector-linearity elimination for FQ-GLEASON-QI3-FRAME-FUNCTIONS.\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status.\"\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"test_nine_ray_tomography_reconstruction_and_uniqueness\",\n    \"test_quadray_frame_sum_on_non_unit_orthogonal_frames\",\n    \"test_operator_space_ray_projector_duality_and_zero_normalization\",\n    \"test_signed_and_nonnegative_residual_reduction_equivalences\",\n    \"test_one_plus_i_adic_norm_parity_witnesses_and_mod_four_iff\",\n    \"test_s3_global_bounded_zero_weight_residual_and_exotic_qi3\",\n    \"test_archimedean_discontinuity_and_field_extension_elimination\",\n    \"test_multi_prime_s3_s7_linear_independence_and_joint_elimination\",\n    \"test_independent_check_scripts_pass\",\n    \"test_fq_gleason_qi3_frame_functions_end_to_end\",\n    \"test_uniform_sp_family_p11_and_finite_inert_residual_system\",\n    \"test_piron_frame_rotation_parallelogram_and_continuity_bridge\",\n    \"test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation\"\n  ]\n}\n",
+      "original_paths": [
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.contract.score.yaml#pr496-replay-migration-repair-contract"
+      ]
+    }
+  ],
+  "current_contract": "fa16920ff7091ffbd4377580a5f4a649b06159f5b3ca266cfa0e32d030880caf",
+  "current_scoring": "8ef457b4314e173391d3b10c1cdecdbcae4731c9b8bb188a580f87e4d5000d0e",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "code/python/tests/test_fq_gleason_qi3_frame_functions.contract.score.yaml#pr496-replay-migration-repair-contract": "fa16920ff7091ffbd4377580a5f4a649b06159f5b3ca266cfa0e32d030880caf",
+    "code/python/tests/test_fq_gleason_qi3_frame_functions.contract.score.yaml#pr496-replay-migration-repair-scoring": "8ef457b4314e173391d3b10c1cdecdbcae4731c9b8bb188a580f87e4d5000d0e"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2445,
+      "original_paths": [
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.contract.score.yaml#fq-gleason-qi3-2026-11-01"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_fq_gleason_qi3_frame_functions.py\",\n    \"sha256\": \"b4a861575be98a3c565ea4ee34810dac0e44032cea85a0294b33af89f9b15feb\"\n  },\n  \"assessment_id\": \"fq-gleason-qi3-2026-11-01\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and named symbols are bound to the partial claims and DAG node FQ-GLEASON-QI3-FRAME-FUNCTIONS with AuthorityEffect None.\",\n    \"G2\": \"Only exact integer, rational, 3-adic and 7-adic valuation, and Gaussian-rational arithmetic are used; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and axiom audit use only propext, Classical.choice, and Quot.sound.\",\n    \"G4\": \"Verified by 13 pytest test functions including negative controls and 3 independent check scripts.\",\n    \"G5\": \"Predictable polynomial, linear modular, and 3-adic/7-adic valuation arithmetic with zero custom axioms.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-11-01T07:45:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/fq_gleason_qi3_assessment.json\",\n      \"sha256\": \"c3b230e022ac04da80a47c9d533e2fe8ecc9760697e6ae4bbf7a3b53b2dd9aca\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json\",\n      \"sha256\": \"ed0b3e5804564d8e41086fbe1eff22358e467128a0c8f5d60850183b57e49e86\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-frame-functions.md\",\n      \"sha256\": \"cf9240852008d2612bb08e1864a048785ac967d0471680447869ae94100b9329\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md\",\n      \"sha256\": \"d730fbb970a204a50dacaa21c7f430335b8daabcdcd97fb488761d224cefcc49\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development and exact rational pytest verification with explicit negative controls and replay receipts.\",\n  \"limitations\": [\n    \"Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.\",\n    \"Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN.\"\n  ],\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_fq_gleason_qi3_frame_functions.py",
+          "sha256": "b4a861575be98a3c565ea4ee34810dac0e44032cea85a0294b33af89f9b15feb"
+        },
+        "assessment_id": "fq-gleason-qi3-2026-11-01",
+        "basis": {
+          "G1": "Exact source identity and named symbols are bound to the partial claims and DAG node FQ-GLEASON-QI3-FRAME-FUNCTIONS with AuthorityEffect None.",
+          "G2": "Only exact integer, rational, 3-adic and 7-adic valuation, and Gaussian-rational arithmetic are used; no floating-point approximation occurs.",
+          "G3": "Lean 4.35 kernel build and axiom audit use only propext, Classical.choice, and Quot.sound.",
+          "G4": "Verified by 13 pytest test functions including negative controls and 3 independent check scripts.",
+          "G5": "Predictable polynomial, linear modular, and 3-adic/7-adic valuation arithmetic with zero custom axioms."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-11-01T07:45:00+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/fq_gleason_qi3_assessment.json",
+            "sha256": "c3b230e022ac04da80a47c9d533e2fe8ecc9760697e6ae4bbf7a3b53b2dd9aca"
+          },
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
+            "sha256": "ed0b3e5804564d8e41086fbe1eff22358e467128a0c8f5d60850183b57e49e86"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+            "sha256": "cf9240852008d2612bb08e1864a048785ac967d0471680447869ae94100b9329"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
+            "sha256": "d730fbb970a204a50dacaa21c7f430335b8daabcdcd97fb488761d224cefcc49"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Exact kernel-checked Lean 4 development and exact rational pytest verification with explicit negative controls and replay receipts.",
+        "limitations": [
+          "Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.",
+          "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN."
+        ],
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "afef674e89fcf3fbffd104e3f34e235f8f1c7450faf1c603c62e62eb1b9cde5f"
+    },
+    {
+      "bytes": 2458,
+      "original_paths": [
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.contract.score.yaml#fq-gleason-qi3-2026-11-02-review-fixes"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_fq_gleason_qi3_frame_functions.py\",\n    \"sha256\": \"211315601e5f6caf0cc6e96a08cc7a79e70a9de9f86756068bccfb0a3495d9b0\"\n  },\n  \"assessment_id\": \"fq-gleason-qi3-2026-11-02-review-fixes\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and named symbols are bound to the partial claims and DAG node FQ-GLEASON-QI3-FRAME-FUNCTIONS with AuthorityEffect None.\",\n    \"G2\": \"Only exact integer, rational, 3-adic and 7-adic valuation, and Gaussian-rational arithmetic are used; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and axiom audit use only propext, Classical.choice, and Quot.sound.\",\n    \"G4\": \"Verified by 13 pytest test functions including negative controls and 3 independent check scripts.\",\n    \"G5\": \"Predictable polynomial, linear modular, and 3-adic/7-adic valuation arithmetic with zero custom axioms.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-11-02T23:00:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/fq_gleason_qi3_assessment.json\",\n      \"sha256\": \"669bcf86891e33ec6bf7874e46d6f70484f6736263dae2680da97c35010fd7fb\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json\",\n      \"sha256\": \"ed0b3e5804564d8e41086fbe1eff22358e467128a0c8f5d60850183b57e49e86\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-frame-functions.md\",\n      \"sha256\": \"e0cd13b462fb0793a8af5d7767aebcdb1f6e8409691c097bc9fb943948cf661f\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md\",\n      \"sha256\": \"739e9c16c60333cce1a7a28063bbcc5f68fbbb324ea7914925b1d6d0246eb0dc\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development and exact rational pytest verification with explicit negative controls and replay receipts.\",\n  \"limitations\": [\n    \"Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.\",\n    \"Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN.\"\n  ],\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_fq_gleason_qi3_frame_functions.py",
+          "sha256": "211315601e5f6caf0cc6e96a08cc7a79e70a9de9f86756068bccfb0a3495d9b0"
+        },
+        "assessment_id": "fq-gleason-qi3-2026-11-02-review-fixes",
+        "basis": {
+          "G1": "Exact source identity and named symbols are bound to the partial claims and DAG node FQ-GLEASON-QI3-FRAME-FUNCTIONS with AuthorityEffect None.",
+          "G2": "Only exact integer, rational, 3-adic and 7-adic valuation, and Gaussian-rational arithmetic are used; no floating-point approximation occurs.",
+          "G3": "Lean 4.35 kernel build and axiom audit use only propext, Classical.choice, and Quot.sound.",
+          "G4": "Verified by 13 pytest test functions including negative controls and 3 independent check scripts.",
+          "G5": "Predictable polynomial, linear modular, and 3-adic/7-adic valuation arithmetic with zero custom axioms."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-11-02T23:00:00+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/fq_gleason_qi3_assessment.json",
+            "sha256": "669bcf86891e33ec6bf7874e46d6f70484f6736263dae2680da97c35010fd7fb"
+          },
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
+            "sha256": "ed0b3e5804564d8e41086fbe1eff22358e467128a0c8f5d60850183b57e49e86"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+            "sha256": "e0cd13b462fb0793a8af5d7767aebcdb1f6e8409691c097bc9fb943948cf661f"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
+            "sha256": "739e9c16c60333cce1a7a28063bbcc5f68fbbb324ea7914925b1d6d0246eb0dc"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Exact kernel-checked Lean 4 development and exact rational pytest verification with explicit negative controls and replay receipts.",
+        "limitations": [
+          "Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.",
+          "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN."
+        ],
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "243088935ca402b61699267f48660fe63a163288d4a56346fdc6b1a8103d75ed"
+    },
+    {
+      "bytes": 2464,
+      "original_paths": [
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.contract.score.yaml#fq-gleason-qi3-2026-11-02-codex-review-fixes"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_fq_gleason_qi3_frame_functions.py\",\n    \"sha256\": \"211315601e5f6caf0cc6e96a08cc7a79e70a9de9f86756068bccfb0a3495d9b0\"\n  },\n  \"assessment_id\": \"fq-gleason-qi3-2026-11-02-codex-review-fixes\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and named symbols are bound to the partial claims and DAG node FQ-GLEASON-QI3-FRAME-FUNCTIONS with AuthorityEffect None.\",\n    \"G2\": \"Only exact integer, rational, 3-adic and 7-adic valuation, and Gaussian-rational arithmetic are used; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and axiom audit use only propext, Classical.choice, and Quot.sound.\",\n    \"G4\": \"Verified by 13 pytest test functions including negative controls and 3 independent check scripts.\",\n    \"G5\": \"Predictable polynomial, linear modular, and 3-adic/7-adic valuation arithmetic with zero custom axioms.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-11-02T23:45:00+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/fq_gleason_qi3_assessment.json\",\n      \"sha256\": \"a6452053e7d662cfbe2df267b404217ffca5d1809f7438c3b5f2547d2a4b6e3b\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json\",\n      \"sha256\": \"1405ac5deb39a9733df9e2a2b2950a985f6e9b2943b47ac670c46ff689c07bff\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-frame-functions.md\",\n      \"sha256\": \"6e11cbd4c2afb1924a1c6223d639bab1eb929d88f259d5e4ddf9137606476a00\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md\",\n      \"sha256\": \"739e9c16c60333cce1a7a28063bbcc5f68fbbb324ea7914925b1d6d0246eb0dc\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development and exact rational pytest verification with explicit negative controls and replay receipts.\",\n  \"limitations\": [\n    \"Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.\",\n    \"Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN.\"\n  ],\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_fq_gleason_qi3_frame_functions.py",
+          "sha256": "211315601e5f6caf0cc6e96a08cc7a79e70a9de9f86756068bccfb0a3495d9b0"
+        },
+        "assessment_id": "fq-gleason-qi3-2026-11-02-codex-review-fixes",
+        "basis": {
+          "G1": "Exact source identity and named symbols are bound to the partial claims and DAG node FQ-GLEASON-QI3-FRAME-FUNCTIONS with AuthorityEffect None.",
+          "G2": "Only exact integer, rational, 3-adic and 7-adic valuation, and Gaussian-rational arithmetic are used; no floating-point approximation occurs.",
+          "G3": "Lean 4.35 kernel build and axiom audit use only propext, Classical.choice, and Quot.sound.",
+          "G4": "Verified by 13 pytest test functions including negative controls and 3 independent check scripts.",
+          "G5": "Predictable polynomial, linear modular, and 3-adic/7-adic valuation arithmetic with zero custom axioms."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-11-02T23:45:00+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/fq_gleason_qi3_assessment.json",
+            "sha256": "a6452053e7d662cfbe2df267b404217ffca5d1809f7438c3b5f2547d2a4b6e3b"
+          },
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
+            "sha256": "1405ac5deb39a9733df9e2a2b2950a985f6e9b2943b47ac670c46ff689c07bff"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+            "sha256": "6e11cbd4c2afb1924a1c6223d639bab1eb929d88f259d5e4ddf9137606476a00"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
+            "sha256": "739e9c16c60333cce1a7a28063bbcc5f68fbbb324ea7914925b1d6d0246eb0dc"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Exact kernel-checked Lean 4 development and exact rational pytest verification with explicit negative controls and replay receipts.",
+        "limitations": [
+          "Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.",
+          "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN."
+        ],
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "6d5c8f33d20d9c5ffadb1b0dea736b84386f35d5d0fb2e1b096c5d053b5d616e"
+    },
+    {
+      "sha256": "8ef457b4314e173391d3b10c1cdecdbcae4731c9b8bb188a580f87e4d5000d0e",
+      "bytes": 2696,
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "code/python/tests/test_fq_gleason_qi3_frame_functions.py",
+          "sha256": "211315601e5f6caf0cc6e96a08cc7a79e70a9de9f86756068bccfb0a3495d9b0"
+        },
+        "assessment_id": "pr496-replay-migration-repair",
+        "basis": {
+          "G1": "Exact source identity and named symbols are bound to the partial claims and DAG node FQ-GLEASON-QI3-FRAME-FUNCTIONS with AuthorityEffect None.",
+          "G2": "Only exact integer, rational, 3-adic and 7-adic valuation, and Gaussian-rational arithmetic are used; no floating-point approximation occurs.",
+          "G3": "Lean 4.35 kernel build and axiom audit use only propext, Classical.choice, and Quot.sound.",
+          "G4": "66 focused tests passed, including LF/CRLF preservation, protected root alias and ancestor rejection, and unrelated-prefix acceptance; retained FQCD/FSP reports and atlas verification passed.",
+          "G5": "Predictable polynomial, linear modular, and 3-adic/7-adic valuation arithmetic with zero custom axioms."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-11-02T23:37:19.240321+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/fq_gleason_qi3_assessment.json",
+            "sha256": "8950df08d718f687c5e8ba4b1bcf15e7b1a98d2b9bc4609abdf42c24c219e918"
+          },
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
+            "sha256": "1405ac5deb39a9733df9e2a2b2950a985f6e9b2943b47ac670c46ff689c07bff"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+            "sha256": "d9646057b4548d5f4cc1dbf13424899e28394032d8e87c8d8ddd5ae41f8c1350"
+          },
+          {
+            "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
+            "sha256": "042907fdd43bc397580b09a8f9f5e98294ce0fdc5e3f5632cfc863b50c8be797"
+          },
+          {
+            "path": "docs/maintenance/pr496_review.md",
+            "sha256": "bb2f54a5ce66303acdeb231505ffc47e822c9ae9069a39ad3aa21fa6331608b4"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Exact kernel-checked Lean 4 development and exact rational pytest verification with explicit negative controls and replay receipts.",
+        "limitations": [
+          "Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.",
+          "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN."
+        ],
+        "profile": "Exact",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"code/python/tests/test_fq_gleason_qi3_frame_functions.py\",\n    \"sha256\": \"211315601e5f6caf0cc6e96a08cc7a79e70a9de9f86756068bccfb0a3495d9b0\"\n  },\n  \"assessment_id\": \"pr496-replay-migration-repair\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and named symbols are bound to the partial claims and DAG node FQ-GLEASON-QI3-FRAME-FUNCTIONS with AuthorityEffect None.\",\n    \"G2\": \"Only exact integer, rational, 3-adic and 7-adic valuation, and Gaussian-rational arithmetic are used; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and axiom audit use only propext, Classical.choice, and Quot.sound.\",\n    \"G4\": \"66 focused tests passed, including LF/CRLF preservation, protected root alias and ancestor rejection, and unrelated-prefix acceptance; retained FQCD/FSP reports and atlas verification passed.\",\n    \"G5\": \"Predictable polynomial, linear modular, and 3-adic/7-adic valuation arithmetic with zero custom axioms.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-11-02T23:37:19.240321+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/fq_gleason_qi3_assessment.json\",\n      \"sha256\": \"8950df08d718f687c5e8ba4b1bcf15e7b1a98d2b9bc4609abdf42c24c219e918\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json\",\n      \"sha256\": \"1405ac5deb39a9733df9e2a2b2950a985f6e9b2943b47ac670c46ff689c07bff\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-frame-functions.md\",\n      \"sha256\": \"d9646057b4548d5f4cc1dbf13424899e28394032d8e87c8d8ddd5ae41f8c1350\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md\",\n      \"sha256\": \"042907fdd43bc397580b09a8f9f5e98294ce0fdc5e3f5632cfc863b50c8be797\"\n    },\n    {\n      \"path\": \"docs/maintenance/pr496_review.md\",\n      \"sha256\": \"bb2f54a5ce66303acdeb231505ffc47e822c9ae9069a39ad3aa21fa6331608b4\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development and exact rational pytest verification with explicit negative controls and replay receipts.\",\n  \"limitations\": [\n    \"Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.\",\n    \"Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN.\"\n  ],\n  \"profile\": \"Exact\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "original_paths": [
+        "code/python/tests/test_fq_gleason_qi3_frame_functions.contract.score.yaml#pr496-replay-migration-repair-scoring"
+      ]
+    }
+  ]
+}
