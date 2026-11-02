@@ -283,7 +283,11 @@ tomography rays):
    `quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff`). The independent
    Python checks verify the analogous local oscillation at `tomo_e1` for `p = 7`
    via `(7k, 1 + i, 2 + i)` and `(7k, 2 + i, 1 + i)` of norm `49k^2 + 7 = 7(7k^2 + 1)`.
-2. **Quadratic Field Extension `Q(i, sqrt(p))^3` Obstruction (Suite 9B)**:
+2. **Quadratic Field Extension `Q(i, sqrt(p))^3` Obstruction (Suite 9B)**
+   (`GVecSqrt3.normSqRat` keeps only the rational part of the Hermitian norm, so the
+   even-valuation hypotheses constrain `G` through that rational part; it equals the
+   norm on the frames used here, whose norms `3, 18, 245, 1210` are rational, but not
+   on a general vector of `Q(i, sqrt(p))^3`):
    Over `Q(i)^3`, no scalar multiple of `witness_111 = (1, 1, 1)` has unit
    squared norm (`no_unit_norm_smul_witness_111_in_qi3`), and every orthogonal
    frame has even `v_3`-sum (`frame_v3Rat_sum_even`). Over the biquadratic
@@ -395,7 +399,9 @@ tomography rays):
    orthogonal frame (`isFrameSqrt11_witness_p11_norms`) with partner norms
    `1210 = 10 * 11^2` (`v_3 = 0, v_7 = 0, v_11 = 2`,
    `three_prime_frame_partner_norm_valuations_even`). More generally, for any `m : ℕ`
-   and any finite system `InertPrimeResidualSystem m` of zero-weight bounded
+   and any finite system `InertPrimeResidualSystem m` (taken as a hypothesis; Lean
+   instantiates it only for `m = 2` as `inertSystem37`, with no instance for
+   `(s3, s7, sp11)` or for the general `sp p` family) of zero-weight bounded
    nine-ray-vanishing residuals `R : Fin m -> GVec -> Q` equipped with dual witnesses
    and selective oscillation ray pairs near `tomo_e1`, the finite linear combination
    `finCombResidual m R c` and `m`-parameter `ell^1`-cross-polytope family
@@ -413,9 +419,12 @@ tomography rays):
      `finExoticComb_archimedeanContinuousAt_tomo_e1_iff`);
    - `finCombResidual m S.R c` is simultaneously eliminated iff `forall i, c i = 0`
      under operator-space projector linearity
-     (`factorsThroughRayProjLinear_finCombResidual_iff`) or joint quadratic field
-     extension (`joint_field_extension_eliminates_finCombResidual`), with concrete
-     instantiation `inertSystem37` (`finCombResidual_inertSystem37_eq_combResidual37`).
+     (`factorsThroughRayProjLinear_finCombResidual_iff`), with concrete
+     instantiation `inertSystem37` (`finCombResidual_inertSystem37_eq_combResidual37`);
+   - `joint_field_extension_eliminates_finCombResidual` gives `forall i, c i = 0`
+     from assumed extensions `G i`, assumed orthogonal frames `(u_i, P i, Q i)` and
+     assumed vanishing `G i (P i) = G i (Q i) = 0` by the frame sum alone; it does not
+     construct the frames and does not tie `p i : Q` to the primes of the system.
 6. **Dense-frame Piron / Cooke–Keane–Moran frame-rotation approximation, planar
    parallelogram law, and Nonnegativity + Archimedean Continuity Bridge (Subsection 9F)**:
    On `Q(i)^3`, any orthogonal pair `u ⊥ v` in a frame `(u, v, w)` generates a
@@ -488,9 +497,14 @@ tomography rays):
    (`pythagEqRot_sandwich_of_pole_one`). Since both radial factors converge to `1` at rate
    `O(1 / k^2)` (`distSqVec_radial_scale`, `exists_pythagEqRot_radial_within_delta`),
    Archimedean continuity at `e₁ + y` squeezes both radial bounds to `f(e₁ + y)`
-   (`pythagEqRot_archimedean_squeeze_of_pole_one`). Finally, `sp p (e₁ + y)` depends only
-   on `N(y)` for `y ∈ e₁⊥` (`sp_e1_add_eq_of_normSqVec_eq`) and is invariant under all
-   Pythagorean equatorial rotations (`sp_e1_add_pythagEqRot_eq`,
+   (`pythagEqRot_archimedean_squeeze_of_pole_one`). The conclusion is approximate:
+   for each `ε > 0` some `k` gives `|f(e₁ + pythagEqRot y k) - f(e₁ + y)| < ε`.
+   Because `e₁ + pythagEqRot y k` is itself within distance `O(1 / k)` of `e₁ + y`,
+   continuity at `e₁ + y` alone already gives this; it does not give exact invariance
+   at any fixed `k`. Finally, for `y ∈ e₁⊥` with
+   `v_p(N(e₁ + y)) > 0`, `sp p (e₁ + y)` depends only on `N(y)`
+   (`sp_e1_add_eq_of_normSqVec_eq`) and is invariant under all Pythagorean equatorial
+   rotations (`sp_e1_add_pythagEqRot_eq`,
    `s3_pythagEqRot_invariant_tomo_e23`, `s7_pythagEqRot_invariant_v7`,
    `sp11_pythagEqRot_invariant_v11`), whereas `90°` rotational invariance (`k = 1`, whose
    square maps `e₁ + y` to `e₁ - y`) together with `SatisfiesOrthoParallelogramZero`
@@ -669,7 +683,7 @@ extension. No continuum Gleason theorem is used.
   `sp_vanishes_on_nine_rays`, instantiated at `p ∈ {3, 7, 11}` via
   `inertPrimeSpec_eleven` and `sp11_isZeroWeightFrameFunction`), is coordinate-sign
   symmetric (`sp_isCoordSignSymmetric`) and invariant under all Pythagorean
-  equatorial rotations on `e₁ + y` (`sp_e1_add_pythagEqRot_eq`,
+  equatorial rotations on `e₁ + y` whenever `v_p(N(e₁ + y)) > 0` (`sp_e1_add_pythagEqRot_eq`,
   `s3_pythagEqRot_invariant_tomo_e23`, `s7_pythagEqRot_invariant_v7`,
   `sp11_pythagEqRot_invariant_v11`) while violating the operator-space
   orthogonal parallelogram zero law `SatisfiesOrthoParallelogramZero` that follows
@@ -680,9 +694,10 @@ extension. No continuum Gleason theorem is used.
   at a pure pole `quadRay (rayProj tomo_e1)` by nonnegativity alone on the equator
   (`pure_pole_e1_nonneg_eliminates_combResidual3_7_11`,
   `nonneg_pole_perturbation_vanishes_on_equator`), and for any finite
-  `InertPrimeResidualSystem m` is simultaneously eliminated (`forall i, c i = 0`)
+  `InertPrimeResidualSystem m` (supplied as a hypothesis; instantiated in Lean only
+  for `m = 2`) is simultaneously eliminated (`forall i, c i = 0`)
   by archimedean continuity at `tomo_e1`, operator-space projector linearity, or
-  joint quadratic field extension; moreover, general nonnegative
+  vanishing on supplied extension partner frames; moreover, general nonnegative
   Archimedean-continuous rigidity to `FactorsThroughRayProjLinear` is equivalent
   to vanishing of bounded Archimedean-continuous nine-ray-vanishing zero-weight
   residuals (`nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual`),

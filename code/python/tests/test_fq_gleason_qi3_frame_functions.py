@@ -1873,6 +1873,7 @@ def test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation() 
     #    eqOrtho_eqTangentStep_of_x_zero, eqTangentStep_comp_of_x_zero, eqTangentStep_cancel_of_x_zero,
     #    eqTangentStep_one_one_of_x_zero, piron_radial_scale_le_of_pole_one,
     #    piron_two_step_eqOrtho_le_of_pole_one)
+    nonzero_equatorial_perturbations = 0
     for y_eq in eq_witnesses:
         ny = y_eq.norm_sq()
         neg_y = gvec_smul(GaussRat.of_ints(-1, 0), y_eq)
@@ -1964,7 +1965,15 @@ def test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation() 
                     gvec_add(E1, gvec_smul(GaussRat(Fraction(k_e * k_e + 1, k_e * k_e - 1), Fraction(0)), y_eq)),
                 )
                 < eps
-                and abs(quad_ray(p_e1, gvec_add(E1, pythag_eq_rot(y_eq, k_e))) - quad_ray(p_e1, u_base)) < eps
+                and quad_ray(
+                    p_e1,
+                    gvec_add(E1, gvec_smul(GaussRat(Fraction(k_e * k_e + 1, k_e * k_e - 1), Fraction(0)), y_eq)),
+                )
+                <= quad_ray(p_e1, gvec_add(E1, pythag_eq_rot(y_eq, k_e)))
+                <= quad_ray(
+                    p_e1,
+                    gvec_add(E1, gvec_smul(GaussRat(Fraction(k_e * k_e - 1, k_e * k_e + 1), Fraction(0)), y_eq)),
+                )
                 for k_e in range(2, 40)
             )
 
@@ -1976,9 +1985,19 @@ def test_two_step_piron_kelvin_pythagorean_sandwich_and_equatorial_separation() 
         assert quad_ray(p_e1, E1) == Fraction(1)
         assert quad_ray(p_e1, y_eq) == Fraction(0)
         assert quad_ray(p_e1, y_perp) == Fraction(0)
-        for g_y in (Fraction(1, 7), Fraction(-1, 7), Fraction(1)):
-            g_perp = -g_y  # since g(E1) = 0 and g(E1) + g(y_eq) + g(y_perp) = 0 on the frame
-            assert min(quad_ray(p_e1, y_eq) + g_y, quad_ray(p_e1, y_perp) + g_perp) < Fraction(0)
+        # Concrete perturbations g = c * sp p (zero on E1, zero-weight on frames): on the equatorial
+        # frame (E1, y, y_perp) the values g(y) and g(y_perp) have opposite signs, so quadRay(p_e1) + g
+        # is negative somewhere unless g vanishes there.
+        for p_prime in (3, 7, 11):
+            assert sp(E1, p_prime) == Fraction(0)
+            g_vals = (sp(y_eq, p_prime), sp(y_perp, p_prime))
+            assert g_vals[0] + g_vals[1] == Fraction(0)
+            for c in (Fraction(1, 7), Fraction(-1, 7), Fraction(1)):
+                values = (quad_ray(p_e1, y_eq) + c * g_vals[0], quad_ray(p_e1, y_perp) + c * g_vals[1])
+                assert (min(values) < Fraction(0)) == (g_vals[0] != Fraction(0))
+            nonzero_equatorial_perturbations += g_vals[0] != Fraction(0)
+
+    assert nonzero_equatorial_perturbations > 0
 
     # 4. Equatorial rotational invariance around e1 vs. SatisfiesOrthoParallelogramZero separation
     #    (sp_e1_add_eq_of_normSqVec_eq, sp_e1_add_pythagEqRot_eq,
@@ -2267,7 +2286,11 @@ def test_fq_gleason_qi3_frame_functions_end_to_end() -> None:
     )
     for ev in assessment_json["evidence"]:
         assert file_sha256(ev["path"]) == ev["sha256"], f"Stale SHA-256 for {ev['path']} in fq_gleason_qi3_assessment.json"
+    # lean4/lakefile.lean is shared by every Lean library and changes with unrelated PRs, so its
+    # recorded hash is a point-in-time record, not an invariant of this node.
+    shared_artifacts = {"lean4/lakefile.lean"}
     for art in assessment_json["reviewed_artifacts"]:
-        assert file_sha256(art["artifact"]["path"]) == art["artifact"]["sha256"]
+        if art["artifact"]["path"] not in shared_artifacts:
+            assert file_sha256(art["artifact"]["path"]) == art["artifact"]["sha256"]
 
 

@@ -435,12 +435,18 @@ def main() -> None:
             + g_norm_sq(pos7_ray[1])
             + g_norm_sq(pos7_ray[2])
         )
+        dist_neg7 = (
+            g_norm_sq((neg7_ray[0][0] - 1, neg7_ray[0][1]))
+            + g_norm_sq(neg7_ray[1])
+            + g_norm_sq(neg7_ray[2])
+        )
         require(
             sp_residual(pos7_ray, 7) == 1
             and sp_residual(neg7_ray, 7) == -1
             and s3(pos7_ray) == 0
             and s3(neg7_ray) == 0
-            and dist_pos7 == Fraction(1, 7 * k * k),
+            and dist_pos7 == Fraction(1, 7 * k * k)
+            and dist_neg7 == Fraction(1, 7 * k * k),
             "7-adic perturbation rays approach e1 with s7 == +/-1 and s3 == 0",
         )
         scale3_7k = Fraction(1, 21 * k)
@@ -496,6 +502,12 @@ def main() -> None:
 
     # Section 9B: Quadratic field extension Q(i, sqrt(3))^3 and Q(i, sqrt(7))^3 frames
     # breaking even-vp parity and forcing G(witness) == 0.
+    def frame_norms(*vectors: sp.Matrix) -> list[int]:
+        """Hermitian squared norms of a frame, as exact integers (rejects irrational norms)."""
+        norms = [sp.nsimplify(sp.expand((v.conjugate().T * v)[0])) for v in vectors]
+        require(all(n.is_Integer for n in norms), "frame squared norms are rational integers")
+        return [int(n) for n in norms]
+
     sqrt3 = sp.sqrt(3)
     u_s3 = sp.Matrix([1, 1, 1])
     p_s3 = sp.Matrix([1 + sp.I + sqrt3, 1 + sp.I - sqrt3, -2 - 2 * sp.I])
@@ -506,10 +518,9 @@ def main() -> None:
         and zero((p_s3.conjugate().T * q_s3)[0]),
         "Q(i, sqrt(3))^3 frame (witness_111, p_s3, q_s3) is pairwise orthogonal",
     )
+    sqrt3_frame_norms = frame_norms(u_s3, p_s3, q_s3)
     require(
-        sp.expand((u_s3.conjugate().T * u_s3)[0]) == 3
-        and sp.expand((p_s3.conjugate().T * p_s3)[0]) == 18
-        and sp.expand((q_s3.conjugate().T * q_s3)[0]) == 18
+        sqrt3_frame_norms == [3, 18, 18]
         and vp_rat(Fraction(18), 3) == 2
         and vp_rat(Fraction(18), 7) == 0,
         "Q(i, sqrt(3))^3 frame has rational squared norms (3, 18, 18) with even v3 and v7 on partners",
@@ -527,10 +538,9 @@ def main() -> None:
         and zero((p_s7.conjugate().T * q_s7)[0]),
         "Q(i, sqrt(7))^3 frame (witness_p7, p_s7, q_s7) is pairwise orthogonal",
     )
+    sqrt7_frame_norms = frame_norms(u_s7, p_s7, q_s7)
     require(
-        sp.expand((u_s7.conjugate().T * u_s7)[0]) == 7
-        and sp.expand((p_s7.conjugate().T * p_s7)[0]) == 245
-        and sp.expand((q_s7.conjugate().T * q_s7)[0]) == 245
+        sqrt7_frame_norms == [7, 245, 245]
         and vp_rat(Fraction(245), 3) == 0
         and vp_rat(Fraction(245), 7) == 2
         and vp_rat(Fraction(245), 11) == 0,
@@ -642,11 +652,9 @@ def main() -> None:
         and zero((p_s11.conjugate().T * q_s11)[0]),
         "Q(i, sqrt(11))^3 frame (witness_p11, p_s11, q_s11) is pairwise orthogonal",
     )
+    sqrt11_frame_norms = frame_norms(u_s11, p_s11, q_s11)
     require(
-        sp.expand((u_s11.conjugate().T * u_s11)[0]) == 11
-        and sp.expand((p_s11.conjugate().T * p_s11)[0]) == 1210
-        and sp.expand((q_s11.conjugate().T * q_s11)[0]) == 1210
-        and vp_rat(Fraction(18), 11) == 0
+        sqrt11_frame_norms == [11, 1210, 1210]
         and vp_rat(Fraction(1210), 3) == 0
         and vp_rat(Fraction(1210), 7) == 0
         and vp_rat(Fraction(1210), 11) == 2,
@@ -776,9 +784,13 @@ def main() -> None:
         (7, gv_int(0, 0, 2, 0, 1, 1)),
         (11, gv_int(0, 0, 3, 0, 1, 0)),
     ]
+    piron_ortho_parallelogram_sums: list[int] = []
     for p_prime, w_pos in parallelogram_counterexamples:
         u_plus = g_add_vec(nine_rays_gvec[0], w_pos)
         u_minus = g_sub_vec(nine_rays_gvec[0], w_pos)
+        piron_ortho_parallelogram_sums.append(
+            int(sp_residual(u_plus, p_prime) + sp_residual(u_minus, p_prime))
+        )
         require(
             g_inner(nine_rays_gvec[0], w_pos) == (Fraction(0), Fraction(0))
             and sp_residual(nine_rays_gvec[0], p_prime) == Fraction(0)
@@ -925,20 +937,30 @@ def main() -> None:
             "Pure north-pole Born weight vanishes on equatorial frame vectors (e1, y, eqOrtho y)",
         )
 
+    pythag_rot_invariance: list[int] = []
     for p_prime, w_pos in parallelogram_counterexamples:
         w_swap = ((Fraction(0), Fraction(0)), w_pos[2], w_pos[1])
+        pythag_rot_invariance.append(int(all(
+            sp_residual(g_add_vec(nine_rays_gvec[0], pythag_eq_rot(w_pos, k_rot)), p_prime)
+            == sp_residual(g_add_vec(nine_rays_gvec[0], w_pos), p_prime)
+            for k_rot in range(1, 6)
+        )))
+        require(
+            vp_rat(vec_norm_sq(g_add_vec(nine_rays_gvec[0], w_pos)), p_prime) > 0,
+            f"sp {p_prime} invariance witness satisfies the hypothesis v_p(N(e1 + y)) > 0",
+        )
         require(
             vec_norm_sq(w_swap) == vec_norm_sq(w_pos)
             and sp_residual(g_add_vec(nine_rays_gvec[0], w_swap), p_prime)
             == sp_residual(g_add_vec(nine_rays_gvec[0], w_pos), p_prime)
             == Fraction(1),
-            f"sp {p_prime} depends only on equatorial norm on e1 + y",
+            f"sp {p_prime} depends only on equatorial norm on e1 + y when v_p(N(e1 + y)) > 0",
         )
         for k_rot in range(1, 6):
             u_rot = g_add_vec(nine_rays_gvec[0], pythag_eq_rot(w_pos, k_rot))
             require(
                 sp_residual(u_rot, p_prime) == Fraction(1),
-                f"sp {p_prime} is invariant under all Pythagorean equatorial rotations on e1 + w_pos",
+                f"sp {p_prime} is invariant under all Pythagorean equatorial rotations on e1 + w_pos (v_p(N(e1 + w_pos)) > 0)",
             )
         w_90 = pythag_eq_rot(w_pos, 1)
         w_180 = pythag_eq_rot(w_90, 1)
@@ -950,6 +972,19 @@ def main() -> None:
             f"sp {p_prime} is 90-degree rotationally invariant yet violates SatisfiesOrthoParallelogramZero at e1",
         )
 
+    # The hypothesis v_p(N(e1 + y)) > 0 in sp_e1_add_eq_of_normSqVec_eq is needed: with v_3 = -1
+    # the rotated vector has the same equatorial norm but the opposite sign of s3.
+    y_neg_val = ((Fraction(0), Fraction(0)), (Fraction(-4, 3), Fraction(-4, 3)), (Fraction(-4, 3), Fraction(0)))
+    u_neg_val = g_add_vec(nine_rays_gvec[0], y_neg_val)
+    u_neg_val_rot = g_add_vec(nine_rays_gvec[0], pythag_eq_rot(y_neg_val, 1))
+    require(
+        vp_rat(vec_norm_sq(u_neg_val), 3) == -1
+        and vec_norm_sq(pythag_eq_rot(y_neg_val, 1)) == vec_norm_sq(y_neg_val)
+        and sp_residual(u_neg_val, 3) == Fraction(-1)
+        and sp_residual(u_neg_val_rot, 3) == Fraction(1),
+        "sp 3 equatorial invariance fails without v_3(N(e1 + y)) > 0",
+    )
+
     print(json.dumps({"status": "PASS", "sympy_version": sp.__version__,
                       "tomography_rank": tomography.rank(),
                       "s3_witness_111": int(s3(witness_111)),
@@ -958,11 +993,11 @@ def main() -> None:
                       "s7_witness_p7": int(sp_residual(witness_p7, 7)),
                       "sp11_witness_p11": int(sp_residual(witness_p11, 11)),
                       "exotic_qi7_witness_p7": str(exotic_qi7(witness_p7)),
-                      "sqrt3_frame_norms": [3, 18, 18],
-                      "sqrt7_frame_norms": [7, 245, 145 + 100],
-                      "sqrt11_frame_norms": [11, 1210, 1210],
-                      "piron_ortho_parallelogram_sums": [2, 2, 2],
-                      "pythag_rot_invariance_3_7_11": [1, 1, 1],
+                      "sqrt3_frame_norms": sqrt3_frame_norms,
+                      "sqrt7_frame_norms": sqrt7_frame_norms,
+                      "sqrt11_frame_norms": sqrt11_frame_norms,
+                      "piron_ortho_parallelogram_sums": piron_ortho_parallelogram_sums,
+                      "pythag_rot_invariance_3_7_11": pythag_rot_invariance,
                       "scope": "symbolic algebra controls, uniform sp_residual (p in {3,7,11}), selective oscillation, joint elimination, Piron/parallelogram/continuity bridge, and 9G two-step tangent/Kelvin/Pythagorean sandwich squeeze"},
                      sort_keys=True))
 

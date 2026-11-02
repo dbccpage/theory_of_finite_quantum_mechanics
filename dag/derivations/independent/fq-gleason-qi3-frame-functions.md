@@ -186,7 +186,11 @@ same \(3\)-leading coordinates and opposite \(3\)-adic unit residue signs
      archimedean-continuous at `tomo_e1` if and only if \(c=0\)
      (`s3_coeff_zero_of_archimedeanContinuousAt_tomo_e1`,
      `quadRay_add_smul_s3_archimedeanContinuousAt_tomo_e1_iff`).
-  2. **Biquadratic field extension \(\mathbb Q(i,\sqrt{p})^3\)**: adjoining
+  2. **Biquadratic field extension \(\mathbb Q(i,\sqrt{p})^3\)** (`GVecSqrt3.normSqRat`
+     keeps only the rational part of the Hermitian norm in \(\mathbb Q(i,\sqrt{p})\), so
+     the even-valuation hypotheses below constrain \(G\) through that rational part;
+     it equals the norm on the frames used here, whose norms \(3, 18, 245, 1210\) are
+     rational, but not on a general vector of \(\mathbb Q(i,\sqrt{p})^3\)): adjoining
      \(\sqrt{p}\) rescales any vector \(u\in\mathbb Q(i)^3\) of norm \(p\neq 0\)
      to unit norm \(\frac{1}{\sqrt{p}}u\) (`unit_norm_in_sqrtP_of_normSqVec_eq`,
      `witness_111_unit_sqrt3_normSq`, excluded over \(\mathbb Q(i)^3\) at \(p=3\)
@@ -267,7 +271,11 @@ same \(3\)-leading coordinates and opposite \(3\)-adic unit residue signs
      `sp11_witness_p11_kernel_separation`), and a \(\mathbb Q(i,\sqrt{11})^3\)
      four-square SU(2) orthogonal frame (`isFrameSqrt11_witness_p11_norms`) with
      partner norms \(1210=10\cdot 11^2\) (`three_prime_frame_partner_norm_valuations_even`).
-     More generally, for any \(m\in\mathbb N\) and any `InertPrimeResidualSystem m`,
+     More generally, for any \(m\in\mathbb N\) and any `InertPrimeResidualSystem m`
+     (a structure taken as a hypothesis: Lean instantiates it only for \(m=2\) as
+     `inertSystem37`; no instance for \((s_3, s_7, s_{11})\) or for the general `sp p`
+     family is constructed, and the three-prime oscillation is checked in Python only
+     for \(k\in\{1,\dots,4\}\)),
      the finite linear combination `finCombResidual m R c` and \(m\)-parameter
      \(\ell^1\)-cross-polytope family `finExoticComb m R c` (\(\sum_i |c_i|\le 1\))
      are nonnegative frame functions bounded in \([0,2/3]\) that are quadratic iff
@@ -279,9 +287,13 @@ same \(3\)-leading coordinates and opposite \(3\)-adic unit residue signs
      `quadRay_add_finCombResidual_archimedeanContinuousAt_tomo_e1_iff`,
      `finExoticComb_archimedeanContinuousAt_tomo_e1_iff`), by operator-space
      projector linearity (`factorsThroughRayProjLinear_finCombResidual_iff`), or
-     by joint quadratic field extension
+     by the frame-sum identity over supplied extension frames
      (`joint_field_extension_eliminates_finCombResidual`,
-     `finCombResidual_inertSystem37_eq_combResidual37`).
+     `finCombResidual_inertSystem37_eq_combResidual37`). That theorem assumes the
+     extension \(G_i\), the orthogonal frames \((u_i, P_i, Q_i)\) and the vanishing
+     \(G_i(P_i)=G_i(Q_i)=0\); it does not construct the frames, and its parameters
+     \(p_i\in\mathbb Q\) are not tied to the primes of the system, so it carries no
+     field-extension content beyond the frame sum.
   6. **Dense-frame Piron / Cooke–Keane–Moran frame-rotation approximation, planar parallelogram law, and Nonnegativity + Archimedean Continuity Bridge (Subsection 9F)**:
      planar rotations `(rotPairU u v α β, rotPairV u v α β, w)` preserve frame
      orthogonality and 2D subspace sums (`inner_rotPairU_rotPairV_eq_zero`,
@@ -345,9 +357,13 @@ same \(3\)-leading coordinates and opposite \(3\)-adic unit residue signs
      (`pythagEqRot_sandwich_of_pole_one`) whose distances from \(e_1 + y\) vanish at
      rate \(O(1/k^2)\) (`distSqVec_radial_scale`,
      `exists_pythagEqRot_radial_within_delta`,
-     `pythagEqRot_archimedean_squeeze_of_pole_one`); finally, `sp p (e_1 + y)` depends
-     only on \(N(y)\) for \(y\in e_1^\perp\) (`sp_e1_add_eq_of_normSqVec_eq`) and is
-     invariant under all Pythagorean equatorial rotations
+     `pythagEqRot_archimedean_squeeze_of_pole_one`; the conclusion is that some \(k\)
+     brings \(f(e_1 + \mathrm{pythagEqRot}\,y\,k)\) within \(\varepsilon\) of \(f(e_1+y)\),
+     which continuity at \(e_1+y\) alone already gives, not exact invariance at a fixed
+     \(k\)); finally, for \(y\in e_1^\perp\) with
+     \(v_p(N(e_1 + y)) > 0\), `sp p (e_1 + y)` depends only on \(N(y)\)
+     (`sp_e1_add_eq_of_normSqVec_eq`) and is invariant under all Pythagorean
+     equatorial rotations
      (`sp_e1_add_pythagEqRot_eq`, `s3_pythagEqRot_invariant_tomo_e23`,
      `s7_pythagEqRot_invariant_v7`, `sp11_pythagEqRot_invariant_v11`), whereas
      \(90^\circ\) invariance (\(k=1\)) combined with `SatisfiesOrthoParallelogramZero`
@@ -486,7 +502,7 @@ earlier DAG nodes.
   \(p\in\{3,7,11\}\) via `inertPrimeSpec_eleven` and
   `sp11_isZeroWeightFrameFunction`), is coordinate-sign symmetric
   (`sp_isCoordSignSymmetric`) and invariant under all Pythagorean equatorial
-  rotations on \(e_1 + y\) (`sp_e1_add_pythagEqRot_eq`,
+  rotations on \(e_1 + y\) whenever \(v_p(N(e_1 + y)) > 0\) (`sp_e1_add_pythagEqRot_eq`,
   `s3_pythagEqRot_invariant_tomo_e23`, `s7_pythagEqRot_invariant_v7`,
   `sp11_pythagEqRot_invariant_v11`) while violating the operator-space orthogonal
   parallelogram zero law `SatisfiesOrthoParallelogramZero` that follows from
@@ -497,9 +513,10 @@ earlier DAG nodes.
   at a pure pole `quadRay (rayProj tomo_e1)` by nonnegativity alone on the equator
   (`pure_pole_e1_nonneg_eliminates_combResidual3_7_11`,
   `nonneg_pole_perturbation_vanishes_on_equator`), and for any finite
-  `InertPrimeResidualSystem m` of size \(m\) is simultaneously eliminated
+  `InertPrimeResidualSystem m` of size \(m\) (supplied as a hypothesis; instantiated
+  in Lean only for \(m=2\)) is simultaneously eliminated
   (\(\forall i, c_i=0\)) by archimedean continuity at `tomo_e1`, operator-space
-  projector linearity, or joint quadratic field extension; moreover, general
+  projector linearity, or vanishing on supplied extension partner frames; moreover, general
   nonnegative Archimedean-continuous rigidity to `FactorsThroughRayProjLinear`
   is equivalent to vanishing of bounded Archimedean-continuous nine-ray-vanishing
   zero-weight residuals (`nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual`),
