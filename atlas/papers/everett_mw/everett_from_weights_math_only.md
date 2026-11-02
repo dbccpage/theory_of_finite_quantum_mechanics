@@ -24,7 +24,7 @@ $$\pi^{-1}(w)=\{(\sqrt{w_i}\,e^{i\theta_i})_i\}\cong T^{|\operatorname{supp}w|};
 $$\dim_{\mathbb{R}}\big(S/U(1)\big)-\dim\Delta_n=(2n-2)-(n-1)=n-1\quad(\text{relative phases: invisible to }w). \tag{1.4}$$ **[D]**; **[L]** `PhaseFiber.global_phase_in_fiber`, `PhaseFiber.phase_fiber`, `QuotientFiber.fiber_exceeds_global_gauge_orbit` (the fiber is strictly larger than the global-phase orbit).
 
 Exponent is not selected by the weight algebra, and is selected by linear norm-preserving mixing:
-$$p^{(q)}_i=\frac{|z_i|^q}{\sum_j|z_j|^q}\in\Delta_n\ \ \forall q>0;\qquad z=(1,2):\ p^{(1)}=(\tfrac13,\tfrac23)\neq p^{(2)}=(\tfrac15,\tfrac45). \tag{1.5}$$ **[A]** $q=2$. Repository status: `GP-IMPORT-GLEASON` = IMPORTED_ASSUMPTION; `FQ-GAP-BORN-UNIQUENESS-GLEASON` = CONDITIONAL; $d=2$ non-Born frame functions exist, **[L]** `GleasonTheorem.d2_binary_non_bornian_obstruction`.
+$$p^{(q)}_i=\frac{|z_i|^q}{\sum_j|z_j|^q}\in\Delta_n\ \ \forall q>0;\qquad z=(1,2):\ p^{(1)}=(\tfrac13,\tfrac23)\neq p^{(2)}=(\tfrac15,\tfrac45). \tag{1.5}$$ **[A]** $q=2$. Repository status: `GP-IMPORT-GLEASON` = IMPORTED_ASSUMPTION; `FQ-GAP-BORN-UNIQUENESS-GLEASON` = CONDITIONAL; in $d=2$ Gleason's theorem fails and non-Born frame functions exist (standard, **[A]**: any $f$ on unit vectors of $\mathbb R^2$ with $f(u)+f(u^\perp)=1$ is a frame function). The repository's `GleasonTheorem.d2_binary_non_bornian_obstruction` is a narrower statement (an integer quadratic frame function with $f(e_0)=1$, $f(e_1)=0$ cannot take the value $0$ or $2$ on $(1,1)$); it does not prove that existence.
 
 $$q\ne2:\quad \Big\{A\in M_n(\mathbb C):\ \textstyle\sum_i|(Az)_i|^q=\sum_i|z_i|^q\ \forall z\Big\}=\{\text{phased permutations}\}\quad\Rightarrow\quad\text{no cross term in (2.2)}. \tag{1.6}$$ **[A]** (isometries of $\ell^q_n$, $1\le q<\infty$, $q\ne2$: Lamperti 1958; Li–So 1994). Hence *linear mixing that preserves normalization and interferes* exists only for $q=2$; this is the conditional sense in which the exponent is forced (it is conditional on linearity and norm preservation, both **[A]**).
 
@@ -47,7 +47,7 @@ $$\big(\exists!\ g:\operatorname{im}r\to D,\ g\circ r=d\big)\iff\big(r(x)=r(y)\R
 $$I_2=P(\{1,2\})-P(\{1\})-P(\{2\})=2\,\mathrm{Re}(\overline{c_1}c_2)\ne0\ \text{generically}, \tag{2.6a}$$
 $$I_3=P(123)-P(12)-P(13)-P(23)+P(1)+P(2)+P(3)=0. \tag{2.6b}$$ **[D]**; **[L]** `Superposition.sorkin_third_order_interference_vanishes`.
 
-**Exactly when descent fails.** For $A\in M_n(\mathbb C)$:
+**Exactly when descent fails.** For $A\in M_n(\mathbb C)$, with $\pi(z)_i=|z_i|^2$ extended to unnormalized $z$:
 $$\big(\exists f:\ \pi(Az)=f(\pi(z))\ \forall z\in\mathbb C^n\big)\iff\text{every row of }A\text{ has at most one nonzero entry}. \tag{2.7}$$ **[D]**, **[L]** ($\Leftarrow$: $|(Az)_b|^2=|A_{bj}|^2|z_j|^2$. $\Rightarrow$: a row with $A_{bj}A_{bk}\ne0$ and $z(\theta)=e_j+e^{i\theta}e_k$ gives constant $\pi(z(\theta))$ but $|(Az)_b|^2=|A_{bj}|^2+|A_{bk}|^2+2\,\mathrm{Re}(A_{bj}\overline{A_{bk}}e^{-i\theta})$.) This is the repository's own theorem: `qm_020` Thm 3 (Strict Row-Sparsity, MECHANIZED finite rational) and `qm_122` Thm 3.2 (Row-Intensity Descent Characterization, written proof for $\mathbb C^n\to\mathbb C^m$); **[L]** $2\times2$ real instance `BornRedundancy.descent_compatible_iff_row_sparse` (0 `sorry`). The DeepSeek draft restates it; verified here numerically; (2.4) is the case $A=H$.
 
 **Conclusion 1.** $w\mapsto c$ is *necessary* exactly when the mixing matrix has a row with two nonzero entries (every beam splitter): (2.4)–(2.5), (2.7) show no function of $w$ reproduces the readouts; (2.6) shows the added data is the pairwise relative phases and nothing beyond.
@@ -86,7 +86,7 @@ $$|E\rangle_{\text{rel }i}=\frac{(\langle i|\otimes 1)\Psi}{\|(\langle i|\otimes
 $$\Psi'=\sum_ic_i\,|i\rangle|E_i\rangle|O_i\rangle,\qquad R:=\sum_i i\,|O_i\rangle\langle O_i|,\qquad (1\otimes1\otimes R)\big(c_i|i\rangle|E_i\rangle|O_i\rangle\big)=i\cdot c_i|i\rangle|E_i\rangle|O_i\rangle. \tag{4.3}$$ **[D]** — each term is an eigenvector of the record observable with one definite value; no term records "all $i$".
 
 **Local observables do not see other terms.** For $F$ on $S$ alone:
-$$\langle\Psi'|F\otimes1\otimes1|\Psi'\rangle=\sum_{i,j}c_i\overline{c_j}F_{ji}\,G_{ij}\langle O_j|O_i\rangle\ \xrightarrow{\ G=I\ }\ \sum_iw_iF_{ii}. \tag{4.4}$$ **[D]** — cross terms between branches are suppressed by the record overlaps; (3.6) shows a *joint* observable still sees them.
+$$\langle\Psi'|F\otimes1\otimes1|\Psi'\rangle=\sum_{i,j}c_i\overline{c_j}F_{ji}\,G_{ij}\langle O_j|O_i\rangle\ \xrightarrow{\ \langle O_j|O_i\rangle=\delta_{ij}\ }\ \sum_iw_iF_{ii}. \tag{4.4}$$ **[D]** — cross terms between branches carry the factor $G_{ij}\langle O_j|O_i\rangle$, so either orthogonal records ($G=I$) or orthogonal observer states suffice to suppress them; (3.6) shows a *joint* observable still sees them.
 
 **Weights conserved under refinement.** If branch $i$ splits, $|E_i\rangle\mapsto\sum_\alpha r_{i\alpha}|E_{i\alpha}\rangle$, $\sum_\alpha|r_{i\alpha}|^2=1$:
 $$w_{i\alpha}=|c_i r_{i\alpha}|^2,\qquad \sum_\alpha w_{i\alpha}=w_i. \tag{4.5}$$ **[D]**
@@ -94,10 +94,10 @@ $$w_{i\alpha}=|c_i r_{i\alpha}|^2,\qquad \sum_\alpha w_{i\alpha}=w_i. \tag{4.5}$
 **Branch counting $\ne$ Born weight.** Counting works iff weights are rational:
 $$w=\big(\tfrac{p_0}{D},\tfrac{p_1}{D}\big)\ \Rightarrow\ \exists\ \text{equal-weight fine-graining into }D\text{ cells}; \tag{4.6}$$
 $$w=\Big(\tfrac{5+\sqrt5}{10},\tfrac{5-\sqrt5}{10}\Big)\ \text{are the roots of}\ 5x^2-5x+1=0;\quad \text{candidates }\pm1,\pm\tfrac15\text{ all fail} \tag{4.7a}$$
-$$\Rightarrow\ w\notin\mathbb{Q}^2\ \Rightarrow\ \nexists\ \text{finite equal-weight count reproducing }w. \tag{4.7b}$$ **[L]** `RationalSector.rational_finegraining_exists`, `RationalSector.witness_poly_has_no_candidate_rational_root` (+ rational root theorem **[A]**); DAG `FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY` COMPUTATIONALLY_CHECKED. **[O]** deriving $w=|c|^2$ as the branch measure without assuming it (Deutsch–Wallace decision theory is outside this document).
+$$\Rightarrow\ w\notin\mathbb{Q}^2\ \Rightarrow\ \nexists\ \text{finite equal-weight count reproducing }w. \tag{4.7b}$$ **[L]** `RationalSector.rational_finegraining_exists`, `RationalSector.witness_poly_has_no_candidate_rational_root` (+ rational root theorem **[A]**); DAG `FQ-EVERETT-RATIONAL-SECTOR-BOUNDARY` COMPUTATIONALLY_CHECKED. What the kernel checks: the fine-graining construction (4.6), and that none of the four candidates $\pm1,\pm\tfrac15$ is a root (4.7a). The step to (4.7b) uses the rational root theorem, which is not formalized here. Everettians do not claim that weights are counts (Wallace 2012 denies that the number of branches is defined), so (4.7) refutes naive branch counting only, not Everett. **[O]** deriving $w=|c|^2$ as the branch measure without assuming it (Deutsch–Wallace decision theory is outside this document).
 
 **Decomposition is not canonical.**
-$$\tfrac{1}{\sqrt2}\big(|0\rangle|0\rangle+|1\rangle|1\rangle\big)=\tfrac{1}{\sqrt2}\big(|+\rangle|+\rangle+|-\rangle|-\rangle\big),\qquad |\pm\rangle=\tfrac{1}{\sqrt2}(|0\rangle\pm|1\rangle). \tag{4.8}$$ **[D]** — "which terms are the branches" is fixed only by a dynamical condition $G\approx I$ (record orthogonality), which is approximate: generically $0<|G_{ij}|\ll1$. **[O]** exact preferred basis.
+$$\tfrac{1}{\sqrt2}\big(|0\rangle|0\rangle+|1\rangle|1\rangle\big)=\tfrac{1}{\sqrt2}\big(|+\rangle|+\rangle+|-\rangle|-\rangle\big),\qquad |\pm\rangle=\tfrac{1}{\sqrt2}(|0\rangle\pm|1\rangle). \tag{4.8}$$ **[D]** — "which terms are the branches" is fixed only by a dynamical condition $G\approx I$ (record orthogonality), which is approximate: generically $0<|G_{ij}|\ll1$. **[O]** exact preferred basis. The Everettian reply (Wallace 2012) is that emergent, approximate branches are all the theory needs; the claim here is only that the bare formula does not make the choice.
 
 **Inputs Everett declares.** Reading (4.3) literally requires, beyond (5.1):
 $$\mathcal H=\mathcal H_S\otimes\mathcal H_E\otimes\mathcal H_O\ \text{(a chosen factorization)},\qquad \langle O_i|O_j\rangle=\delta_{ij}\ \text{persisting under later dynamics (stable records)},\qquad w\ \text{(the branch measure)},\qquad \{|i\rangle\}\ \text{(the basis)}. \tag{4.9}$$ **[A]** factorization, stable records; **[O]** measure, exact basis. Agent-level notions (evaluation, policy, authority) are not arguments of (5.1) and have the same status as $\mathcal W$ below: they change no prediction.
@@ -112,10 +112,10 @@ $$\mathcal W\notin\operatorname{args}(\mathrm{Pred})\quad\Rightarrow\quad \mathr
 
 **Subsystem dephasing changes the readout, but does not establish fundamental non-unitarity.** A reduced-system channel can damp coherence:
 $$\rho_{ij}\mapsto e^{-\lambda t}\rho_{ij}\ (i\ne j)\quad\text{or}\quad K_0=\begin{pmatrix}1&0\\0&\tfrac35\end{pmatrix},\ K_1=\begin{pmatrix}0&0\\0&\tfrac45\end{pmatrix},\ K_0^\dagger K_0+K_1^\dagger K_1=I,\qquad \rho_{01}:\ \tfrac12\to\tfrac{3}{10}\to\tfrac{9}{50}\to\tfrac{27}{250}, \tag{5.3}$$
-$$P_1^{(k)}=\tfrac12\big(1+2\rho_{01}^{(k)}\big)=\tfrac12\big(1+(\tfrac35)^k\big)\ \ne\ 1. \tag{5.4}$$ **[L]** `FiniteQFTAndGravity.phase_damping_coherence_three_steps`; **[D]** (5.4). Visibility decay $(3/5)^k$ is compatible with universal unitary evolution. In the ordered basis $|00\rangle,|01\rangle,|10\rangle,|11\rangle$, the joint unitary $U=I_2\oplus\begin{pmatrix}3/5&-4/5\\4/5&3/5\end{pmatrix}$ with a fresh environment qubit in $|0\rangle$ at each step gives exactly these Kraus operators after tracing out the environment. `test_measurement_boundaries.py` checks the dilation and the three-step sequence with rational arithmetic. A test of **fundamental** non-unitarity needs a specified closed-system collapse model and exclusion of environmental and technical explanations; (5.3)–(5.4) alone do not supply that test.
+$$P_1^{(k)}=\tfrac12\big(1+2\rho_{01}^{(k)}\big)=\tfrac12\big(1+(\tfrac35)^k\big)\ <\ 1\quad(k\ge1). \tag{5.4}$$ **[L]** `FiniteQFTAndGravity.phase_damping_coherence_three_steps`; **[D]** (5.4). Visibility decay $(3/5)^k$ is compatible with universal unitary evolution. In the ordered basis $|00\rangle,|01\rangle,|10\rangle,|11\rangle$, the joint unitary $U=I_2\oplus\begin{pmatrix}3/5&-4/5\\4/5&3/5\end{pmatrix}$ with a fresh environment qubit in $|0\rangle$ at each step gives exactly these Kraus operators after tracing out the environment. `test_measurement_boundaries.py` checks the dilation and the three-step sequence with rational arithmetic. A test of **fundamental** non-unitarity needs a specified closed-system collapse model and exclusion of environmental and technical explanations; (5.3)–(5.4) alone do not supply that test.
 
 **Description size vs readout size.** $n$ qubits: $2^n$ complex amplitudes; accessible classical information per copy $\le n$ bits (Holevo **[A]**):
-$$\dim_{\mathbb C}\mathcal H=2^n,\qquad I_{\text{acc}}\le S(\rho)\le n. \tag{5.5}$$ **[D]** — the $2^n$ is a size of the *description* that the formula requires; whether a description's size entails ontological multiplicity is $\mathcal W$ again (Deutsch's "where was the computation done?" is a question about (5.5), and (5.2) says the formula does not answer it).
+$$\dim_{\mathbb C}\mathcal H=2^n,\qquad I_{\text{acc}}\le S(\rho)\le n. \tag{5.5}$$ **[D]** — the $2^n$ is a size of the *description* that the formula requires; whether a description's size counts copies of anything is $\mathcal W$ again (Deutsch's "where was the computation done?" is a question about (5.5), and (5.2) says the formula does not answer it).
 
 **Verdict (three lifts).**
 
@@ -123,7 +123,7 @@ $$\dim_{\mathbb C}\mathcal H=2^n,\qquad I_{\text{acc}}\le S(\rho)\le n. \tag{5.5
 |------|---------|--------|
 | $w\to c$ (weights to amplitudes) | **needed** | (2.4)–(2.6): changes predictions after mixing |
 | $c\to\Psi=\sum_ic_i\lvert i\rangle\lvert E_i\rangle\lvert O_i\rangle$ (amplitudes to records) | **needed** | (3.2)–(3.7), (4.1): changes predictions when records exist |
-| terms $\to$ worlds ($\mathcal W$) | **not needed, not excluded** | (5.2): changes no prediction; (5.3)–(5.4): rivals differ elsewhere |
+| terms $\to$ worlds ($\mathcal W$) | **not needed, not excluded** | (5.2): changes no prediction; only a rival that changes Pred (a closed-system collapse model) can differ, and (5.3)–(5.4) alone is not such a rival |
 
 Table (5.6).
 
@@ -131,7 +131,7 @@ Table (5.6).
 
 # 6. Minimal skeleton for the intuitive model
 
-$$\text{(E1)}\qquad P=w_1+w_2+2\sqrt{w_1w_2}\,\cos\theta$$ no record: the relative phase $\theta$ is in the answer.
+$$\text{(E1)}\qquad P=w_1+w_2+2\sqrt{w_1w_2}\,\cos\theta$$ (an unnormalized intensity; (2.3) is this times $\tfrac12$) no record: the relative phase $\theta$ is in the answer.
 
 $$\text{(E2)}\qquad P=w_1+w_2+2\sqrt{w_1w_2}\,|\gamma|\cos(\theta+\arg\gamma),\qquad |\gamma|=|\langle E_1|E_2\rangle|\in[0,1]$$ a record with overlap $\gamma$: one dial from full fringes ($|\gamma|=1$) to none ($|\gamma|=0$).
 
