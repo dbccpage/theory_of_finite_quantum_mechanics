@@ -21,10 +21,49 @@ LOG = "dag/research/campaign_tfq-1052_lean_replay.log"
 REPORT = re.compile(r"'([^']+)' (?:depends on axioms:\s*\[([^\]]*)\]|does not depend on any axioms)")
 STANDARD_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
 PIN_PATHS = (SOURCE, "lean4/FermionSignWilsonDiracGamma5.lean", "lean4/lakefile.lean", "lean4/lake-manifest.json", "lean4/lean-toolchain")
+# Recorded edits to pinned build configuration made after a replay ran. A migration is not a replay:
+# it lets a receipt keep its original pins and log while the verifier proves, from the current bytes,
+# that the only change is the recorded addition of whole lean_lib stanzas for other modules.
+PIN_MIGRATIONS = "dag/research/lean_replay_pin_migrations.json"
+MIGRATABLE_PATHS = {"lean4/lakefile.lean"}
+LEAN_LIB_STANZAS = re.compile(r"(?:lean_lib (\w+) where\n  roots := #\[`\w+(?:\.\w+)*\]\n\n)+")
 
 
 def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def load_migrations() -> list[dict]:
+    path = ROOT / PIN_MIGRATIONS
+    if not path.exists():
+        return []
+    return json.loads(path.read_text(encoding="utf-8"))["migrations"]
+
+
+def pin_matches(path: str, pinned: str, protected_modules: tuple[str, ...] = ()) -> bool:
+    """True when the current bytes of path equal the pin, or reduce to it by undoing recorded migrations.
+
+    Each migration must name this path, start from the current bytes (current_sha256), and remove
+    exactly one occurrence of whole lean_lib stanzas (added_text) to reach replayed_sha256. A stanza
+    that declares one of protected_modules is refused, so a replayed library is never redefined.
+    """
+    data = (ROOT / path).read_bytes()
+    if sha(data) == pinned:
+        return True
+    if path not in MIGRATABLE_PATHS:
+        return False
+    for migration in reversed([m for m in load_migrations() if m["path"] == path]):
+        added = migration["added_text"]
+        names = re.findall(r"lean_lib (\w+) where", added)
+        if (sha(data) != migration["current_sha256"] or not LEAN_LIB_STANZAS.fullmatch(added)
+                or data.count(added.encode()) != 1 or set(names) & set(protected_modules)):
+            return False
+        data = data.replace(added.encode(), b"", 1)
+        if sha(data) != migration["replayed_sha256"]:
+            return False
+        if sha(data) == pinned:
+            return True
+    return False
 
 
 def expected_anchors(source: str) -> list[str]:
@@ -85,7 +124,7 @@ def verify_receipt() -> None:
     if result["axioms"] != parse_reports(log.decode("utf-8"), anchors):
         raise ValueError("Receipt axioms differ from actual Lean output")
     for path, digest in receipt["source_pins"].items():
-        if sha((ROOT / path).read_bytes()) != digest:
+        if not pin_matches(path, digest, ("FQCD", "FermionSignWilsonDiracGamma5")):
             raise ValueError("Stale replay pin: " + path)
     if result["sha256"] != sha((ROOT / SOURCE).read_bytes()):
         raise ValueError("Stale source hash")

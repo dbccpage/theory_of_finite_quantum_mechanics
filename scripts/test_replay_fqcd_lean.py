@@ -95,3 +95,37 @@ def test_nested_namespace_audits_resolve_exactly():
 def test_unclosed_namespace_is_rejected():
     with pytest.raises(ValueError):
         replay.expected_anchors("namespace FQCD\n#print axioms a\n")
+
+
+STANZA = "lean_lib Other where\n  roots := #[`Other]\n\n"
+
+
+def _migrate(root, added, current_bytes):
+    lakefile = root / "lean4/lakefile.lean"
+    replayed = lakefile.read_bytes()
+    lakefile.write_bytes(current_bytes)
+    migration = dict(path="lean4/lakefile.lean", added_text=added,
+                     replayed_sha256=replay.sha(replayed), current_sha256=replay.sha(current_bytes))
+    (root / replay.PIN_MIGRATIONS).write_text(json.dumps({"migrations": [migration]}))
+
+
+def test_recorded_lean_lib_addition_keeps_original_pin(retained_receipt):
+    root, _, _ = retained_receipt
+    _migrate(root, STANZA, b"fixture\n" + STANZA.encode())
+    replay.verify_receipt()
+
+
+@pytest.mark.parametrize("defect", ["unrecorded_edit", "not_a_stanza", "redeclares_replayed_lib"])
+def test_pin_migration_rejects_anything_but_recorded_stanzas(retained_receipt, defect):
+    root, _, _ = retained_receipt
+    if defect == "unrecorded_edit":
+        _migrate(root, STANZA, b"fixture\n" + STANZA.encode())
+        (root / "lean4/lakefile.lean").write_bytes(b"fixture changed\n" + STANZA.encode())
+    elif defect == "not_a_stanza":
+        added = "require extra from git \"x\"\n"
+        _migrate(root, added, b"fixture\n" + added.encode())
+    else:
+        added = "lean_lib FQCD where\n  roots := #[`FQCD.Other]\n\n"
+        _migrate(root, added, b"fixture\n" + added.encode())
+    with pytest.raises(ValueError):
+        replay.verify_receipt()

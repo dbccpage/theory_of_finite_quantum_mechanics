@@ -1,0 +1,21 @@
+{
+  "schema_version": "lean_replay_pin_migrations.v1",
+  "authority_effect": "None",
+  "note": "A migration records an edit to pinned build configuration made after the listed receipts were replayed. It is not a replay: the receipts keep their original pins, timestamps and logs. The verifiers in scripts/replay_fqcd_lean.py and scripts/replay_pr492_lean.py accept a migrated pin only when removing added_text from the current file reproduces replayed_sha256 exactly, and added_text consists solely of whole lean_lib stanzas that do not redeclare a replayed library. A fresh replay supersedes these entries.",
+  "migrations": [
+    {
+      "path": "lean4/lakefile.lean",
+      "replayed_sha256": "f44e9e556d25bce2730157672d51e6f54f64389385e550177cd38c02695801e0",
+      "current_sha256": "90c2fde1461422326c04bb35ce205070f860aa0532b681e981276485ac6817a4",
+      "added_text": "lean_lib BornGaussianTomographyReduction where\n  roots := #[`BornGaussianTomographyReduction]\n\n",
+      "receipts": [
+        "dag/research/campaign_tfq-1050_lean_replay.json",
+        "dag/research/campaign_tfq-1052_lean_replay.json",
+        "dag/research/campaign_tfq-1219_lean_replay.json"
+      ],
+      "reason": "TFQ-1055 (PR #496) adds the lean_lib BornGaussianTomographyReduction. The replayed FQCD.StrongCouplingAreaLaw and FoliatedFracton2Gauge libraries, their dependencies and options are unchanged.",
+      "replayed_after_change": false,
+      "recorded_at": "2026-11-02"
+    }
+  ]
+}
