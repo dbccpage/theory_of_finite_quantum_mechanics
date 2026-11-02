@@ -26,10 +26,11 @@ jobs:
           python-version: '3.12'
       - name: Install numerical check dependencies
         run: python -m pip install --disable-pip-version-check numpy scipy
-      - name: Check measurement boundaries and existing examples
+      - name: Check measurement boundaries, post counters, and examples
         working-directory: atlas/papers/everett_mw
         run: |
           python -I -X utf8 test_measurement_boundaries.py
+          python -I -X utf8 test_post_counters.py
           python -I -X utf8 check_math.py
           python -I -X utf8 check_everett.py
           python -I -X utf8 check_conjugate_measure.py
