@@ -12,7 +12,8 @@ Working notes, 2026-11-02. Every **[D]** claim is checked numerically by the scr
 | [where_to_contest_multiverse_realism.md](where_to_contest_multiverse_realism.md) | Where Deutsch's multiverse realism can be contested |
 | [refuting_everett_assessment.md](refuting_everett_assessment.md) | What a decisive result against Everett would have to be; Deutsch–Wallace core classified by scalar field (checks: `check_conjugate_measure.py`) |
 | [referee_report_2026-11-02.md](referee_report_2026-11-02.md) | Independent referee report on revision 2 of the assessment |
-| [threads_replies.md](threads_replies.md), [threads_many_worlds.md](threads_many_worlds.md) | Short public replies (≤ 500 characters; counts by `count_*.py`) |
+| [threads_replies.md](threads_replies.md), [threads_many_worlds.md](threads_many_worlds.md) | Short public replies (≤ 500 characters; counts by `count_*.py`, which fail above 500). `threads_replies.md` is kept as posted; `threads_many_worlds.md` is a draft |
+| [review_2026-11-02.md](review_2026-11-02.md) | Pre-publication review of every file in this folder: findings and what changed |
 | [test_measurement_boundaries.py](test_measurement_boundaries.py) | Regression witnesses: unequal-weight visibility, exact unitary dilation of dephasing, and coherent reversal of distributed records |
 
 Run checks from this folder with `python -I -X utf8`, e.g. `python -I -X utf8 test_measurement_boundaries.py`. Install NumPy for the numerical scripts and SciPy to include the optional linear-program check in `check_everett.py`: `python -m pip install numpy scipy`. The `everett-checks` workflow runs the seven regression tests and all six existing scripts, including the SciPy check.

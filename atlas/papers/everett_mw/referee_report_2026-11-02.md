@@ -1,6 +1,6 @@
 # Independent referee report on "Can Everett be refuted?" (revision 2)
 
-Referee: Sakana `fugu-ultra-v2` (via OpenRouter), 2026-11-02, run once on revision 2 of [refuting_everett_assessment.md](refuting_everett_assessment.md) together with [everett_from_weights_math_only.md](everett_from_weights_math_only.md). Text below is the referee's, unedited except for headings. Revision 3 of the assessment adopts sections 1, 3 and 4; the ℚ(√2) witness is checked exactly in `check_conjugate_measure.py`. Claims marked UNSURE are the referee's own.
+Referee: Sakana `fugu-ultra-v2` (via OpenRouter), 2026-11-02, run once on revision 2 of [refuting_everett_assessment.md](refuting_everett_assessment.md) together with [everett_from_weights_math_only.md](everett_from_weights_math_only.md). Text below is the referee's, unedited except for headings and three word substitutions to the project's vocabulary (marked †). Revision 3 of the assessment adopts sections 1, 3 and 4; the ℚ(√2) witness is checked exactly in `check_conjugate_measure.py`. Claims marked UNSURE are the referee's own.
 
 ## 1. Errors
 
@@ -31,7 +31,7 @@ False. Positivity and probabilities require an ordered $*$-field or an appropria
 
 > "W can only be refuted by showing it is ill-defined or self-undermining"
 
-Not exhaustive. A precise $\mathcal W$ could be inconsistent with Lorentz covariance, an independently justified ontology of records or persons, an AQFT subsystem structure, or another accepted constraint.
+Not exhaustive. A precise $\mathcal W$ could be inconsistent with Lorentz covariance, an independently justified account† of records or persons, an AQFT subsystem structure, or another accepted constraint.
 
 > "every decohered term is an actual world"
 
@@ -66,7 +66,7 @@ The no-go is not yet a theorem statement ("branch", "stable", "generic", "symmet
 
 ### 1.5 Route C and the conclusion
 
-Holevo ($I_{\rm acc}\le\chi\le n$) is correct but does not support the ontological inference or explain speedup. Howard et al. make contextuality necessary for magic-state advantage in specified models, not a complete account. "W-structure is a gauge" is unsupported: branch-mixing maps change record observables and are physical. Non-unitarity eliminates universal-unitary Everett, not every many-worlds ontology. "No mathematics can refute Everett" is false for any precise theory; what cannot be refuted is an indefinitely revisable interpretation defined to add no predictive content.
+Holevo ($I_{\rm acc}\le\chi\le n$) is correct but does not support the inference from description size to many copies† or explain speedup. Howard et al. make contextuality necessary for magic-state advantage in specified models, not a complete account. "W-structure is a gauge" is unsupported: branch-mixing maps change record observables and are physical. Non-unitarity eliminates universal-unitary Everett, not every many-worlds theory†. "No mathematics can refute Everett" is false for any precise theory; what cannot be refuted is an indefinitely revisable interpretation defined to add no predictive content.
 
 ## 2. Missed routes
 

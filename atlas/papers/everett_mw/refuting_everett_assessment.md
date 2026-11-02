@@ -17,7 +17,7 @@ Finiteness plays no role in any of this.
 | Component | What would refute it | State of play |
 |---|---|---|
 | (i) unitarity, closed systems | A closed-system collapse generator (CSL with (λ, r_C), regularized Diósi–Penrose) confirmed against all environmental noise | Matter-wave interference to ~25 kDa (Fein et al., Nat. Phys. 2019); DP regularization constrained to R_0 ≳ 0.54 Å (Donadi et al., Nat. Phys. 2021); CSL squeezed, not closed |
-| (i) unitarity, gravity | Fundamentally classical gravity coupled to quantum matter (Oppenheim, PRX 2023; decoherence–diffusion trade-off, Nat. Commun. 2023) | Testable; would refute *universal-unitary* Everett. A non-unitary branching ontology could still call itself many-worlds |
+| (i) unitarity, gravity | Fundamentally classical gravity coupled to quantum matter (Oppenheim, PRX 2023; decoherence–diffusion trade-off, Nat. Commun. 2023) | Testable; would refute *universal-unitary* Everett. A non-unitary branching theory could still call itself many-worlds |
 | (ii) Born map | Statistically robust Born-rule deviations | Would refute Everett+Born without touching unitarity (non-equilibrium Bohm shows the logical space) |
 | (iii) selection rule | A uniqueness theorem for observer-selection kernels p(o \| Ψ, observer data) that excludes Everett's | Open; Sebens–Carroll, Greaves–Myrvold, Saunders, Kent, Vaidman give incompatible rules. Mathematical, and **could change Pred** |
 
@@ -29,7 +29,7 @@ The Nobel pattern (Aspect–Clauser–Zeilinger 2022) is: theory turns a dispute
 
 **B1. Exact branches.** A no-go for exact, permanently stable, covariant branch maps would refute only exact-branch Everett, which no one defends (Wallace's branches are emergent and approximate). The statement still needs definitions of "branch", "stable", "generic"; exact permanence fails trivially in finite closed systems by recurrence. Dowker–Kent (1996) gave set-selection problems for consistent histories, not this theorem. Cotler–Penington–Ranard (2019) fix a local factorization from the spectrum only under a local-Hamiltonian ansatz and genericity. Related: quantum-Darwinism uniqueness and Lorentz-covariant branching in type-III AQFT; no accepted no-go exists for either.
 
-**B2. Probability: settled in its core form (this revision).** In the measure-theoretic core of Deutsch–Wallace over a conjugation-closed field K ⊆ ℂ (certainty/nullity, positivity, finite additivity / branching indifference, K-unitary covariance, measurement neutrality with K-ancillas, multiplicative composition; **no continuity axiom**):
+**B2. Probability: classified in its core form (this revision).** *Status: argument sketch from the referee exchange (referee report §3). Only the item-5 witness is machine-checked (`check_conjugate_measure.py`); items 1–4 are not yet written out in full or formalized.* In the measure-theoretic core of Deutsch–Wallace over a conjugation-closed field K ⊆ ℂ (certainty/nullity, positivity, finite additivity / branching indifference, K-unitary covariance, measurement neutrality with K-ancillas, multiplicative composition; **no continuity axiom**):
 
 1. **Equivalence is derived.** Equal Hilbert weight ⇒ equal value, by Witt extension of Gram-preserving isometries plus covariance.
 2. **Rational weights are forced to Born** by exact equal-cell fine-graining (the rational lemma; cf. EW(4.6) and `RationalSector.rational_finegraining_exists`).
@@ -37,7 +37,7 @@ The Nobel pattern (Aspect–Clauser–Zeilinger 2022) is: theory turns a dispute
 4. **K real closed (e.g. real algebraic numbers) or its complexification: Born is forced without continuity**, by a rational order squeeze (unique ordering).
 5. **K with a second real embedding: Born is not forced.** Over ℚ(√2), μ_ψ(P) = σ(⟨ψ,Pψ⟩) with σ: √2 ↦ −√2 satisfies every axiom and is non-Born. Witness a = (−3−8√2)/17, c = (12−2√2)/17, a² + c² = 1, a² ≈ 0.709 but σ(a²) ≈ 0.239. Realizable weights are exactly the totally positive ones (sums of squares), so σ never goes negative. Checked exactly: `check_conjugate_measure.py`.
 
-**What this means.** The exotic ℚ³ frame function is not a counterexample: it never takes the value 1, so it fails pure-state certainty, and 0/1 colourings fail the rational lemma. The suspicion that "Born enters through continuity" is **false** over ℚ, ℚ(i) and real-closed fields. The physically contestable premise is **branching indifference / measurement neutrality**. Item 5 is the genuine residue: Born uniqueness needs one extra datum, *which real embedding (order) of the scalar field is physical*. The conjugate measure is Born in the conjugate embedding, so it is a Galois relabelling rather than new physics. It bears on every symmetry-based derivation of Born (Gleason included), not on Everett specifically.
+**What this means.** The exotic ℚ³ frame function is not a counterexample: it never takes the value 1, so it fails pure-state certainty, and 0/1 colourings fail the rational lemma. If items 3–4 hold as sketched, the suspicion that "Born enters through continuity" is **false** over ℚ, ℚ(i) and real-closed fields. The physically contestable premise is **branching indifference / measurement neutrality**. Item 5 is the genuine residue: Born uniqueness needs one extra datum, *which real embedding (order) of the scalar field is physical*. The conjugate measure is Born in the conjugate embedding, so it is a Galois relabelling rather than new physics. It bears on every symmetry-based derivation of Born (Gleason included), not on Everett specifically.
 
 Honest verdict on B2: **it does not refute Everett. Its core supports Everett's probability derivation**, given branching indifference. What remains to attack is branching indifference itself, which is a normative premise about rational agents, not a mathematical one.
 
@@ -66,7 +66,7 @@ EW(5.2) already shows W is idle in Pred. Redundancy is Occam, not refutation. Co
 
 **What survives (and is already Route B1).** The precise kernel is the **factorization problem**: Everett needs a declared tensor split (system / apparatus / observer) and a branch criterion, and $(\Psi,H)$ alone do not obviously supply either (Schwindt 2012; partial answer Cotler–Penington–Ranard 2019: the spectrum generically fixes a *local* factorization if one exists). That is a sharp mathematical target. The six-layer vocabulary adds no content beyond it.
 
-**DeepSeek's final verdict ("reclassification: MW is an undischarged presentation claim, not an ontology") equals EW(5.2) in other words**, and applies to every interpretation equally, as DeepSeek admits. It is consistent with this note. It is not a refutation, and DeepSeek does not claim one.
+**DeepSeek's final verdict ("reclassification: MW is an undischarged presentation claim […]") equals EW(5.2) in other words**, and applies to every interpretation equally, as DeepSeek admits. It is consistent with this note. It is not a refutation, and DeepSeek does not claim one.
 
 ## 5. Verdict
 
@@ -75,7 +75,7 @@ EW(5.2) already shows W is idle in Pred. Redundancy is Occam, not refutation. Co
 | A. Non-unitarity or Born violation found | Universal-unitary Everett, yes | No; needs experiment. The repository can supply a closed-system collapse model and exclusion bounds |
 | A(iii). Selection-kernel uniqueness theorem | Possibly, and it changes Pred | Yes in principle; open, hard |
 | B1. Exact-branch no-go | Only exact-branch Everett | Yes, once the statement is made precise |
-| B2. Deutsch–Wallace core | **No: core forces Born over ℚ, ℚ(i), real-closed fields** | Yes. Field-dependent classification is Lean-suitable |
+| B2. Deutsch–Wallace core | **No: core forces Born over ℚ, ℚ(i), real-closed fields (sketch)** | Yes. Field-dependent classification is Lean-suitable |
 | C. Redundancy | No | Already done (EW(5.2)) |
 
 **Bottom line.** No small team will eliminate every reasonable Everett formulation in 12 months. The realistic outputs are (1) a Lean classification theorem for the Deutsch–Wallace core by field (forced over ℚ, ℚ(i), real-closed; conjugate counterexample over ℚ(√2)), and (2) a parameterized closed-system collapse analysis against published data. The sharpest *open* target that could change predictions is A(iii): a uniqueness theorem for observer-selection rules. Everett's real exposure is empirical (unitarity, gravity) and normative (branching indifference). It is not formal.
