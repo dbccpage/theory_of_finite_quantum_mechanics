@@ -1,7 +1,7 @@
 {
   "schema_version": "lean_replay_pin_migrations.v1",
   "authority_effect": "None",
-  "note": "A migration records an edit to pinned build configuration made after the listed receipts were replayed. It is not a replay: the receipts keep their original pins, timestamps and logs. The verifiers in scripts/replay_fqcd_lean.py and scripts/replay_pr492_lean.py accept a migrated pin only when removing added_text from the current file reproduces replayed_sha256 exactly, and added_text consists solely of whole lean_lib stanzas that do not redeclare a replayed library. A fresh replay supersedes these entries.",
+  "note": "A migration records an edit to pinned build configuration made after the listed receipts were replayed. It is not a replay: the receipts keep their original pins, timestamps and logs. The verifiers in scripts/replay_fqcd_lean.py and scripts/replay_pr492_lean.py accept a migrated pin only when removing added_text from the current file reproduces replayed_sha256 exactly, and added_text consists solely of whole lean_lib stanzas whose library names and module roots do not overlap a replayed library or module namespace. A fresh replay supersedes these entries.",
   "migrations": [
     {
       "path": "lean4/lakefile.lean",

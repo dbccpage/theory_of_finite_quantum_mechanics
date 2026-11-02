@@ -27,6 +27,7 @@ PIN_PATHS = (SOURCE, "lean4/FermionSignWilsonDiracGamma5.lean", "lean4/lakefile.
 PIN_MIGRATIONS = "dag/research/lean_replay_pin_migrations.json"
 MIGRATABLE_PATHS = {"lean4/lakefile.lean"}
 LEAN_LIB_STANZAS = re.compile(r"(?:lean_lib (\w+) where\n  roots := #\[`\w+(?:\.\w+)*\]\n\n)+")
+LEAN_LIB_ROOTS = re.compile(r"lean_lib (\w+) where\n  roots := #\[`(\w+(?:\.\w+)*)\]\n\n")
 
 
 def sha(data: bytes) -> str:
@@ -45,7 +46,8 @@ def pin_matches(path: str, pinned: str, protected_modules: tuple[str, ...] = ())
 
     Each migration must name this path, start from the current bytes (current_sha256), and remove
     exactly one occurrence of whole lean_lib stanzas (added_text) to reach replayed_sha256. A stanza
-    that declares one of protected_modules is refused, so a replayed library is never redefined.
+    whose library name or root overlaps a protected module is refused. Renaming a library cannot
+    make a stanza that claims a replayed module (or its namespace) an unrelated addition.
     """
     data = (ROOT / path).read_bytes()
     if sha(data) == pinned:
@@ -54,9 +56,13 @@ def pin_matches(path: str, pinned: str, protected_modules: tuple[str, ...] = ())
         return False
     for migration in reversed([m for m in load_migrations() if m["path"] == path]):
         added = migration["added_text"]
-        names = re.findall(r"lean_lib (\w+) where", added)
+        declarations = LEAN_LIB_ROOTS.findall(added)
+        overlaps = any(name == protected or name.startswith(protected + ".")
+                       or protected.startswith(name + ".")
+                       for declaration in declarations for name in declaration
+                       for protected in protected_modules)
         if (sha(data) != migration["current_sha256"] or not LEAN_LIB_STANZAS.fullmatch(added)
-                or data.count(added.encode()) != 1 or set(names) & set(protected_modules)):
+                or data.count(added.encode()) != 1 or overlaps):
             return False
         data = data.replace(added.encode(), b"", 1)
         if sha(data) != migration["replayed_sha256"]:

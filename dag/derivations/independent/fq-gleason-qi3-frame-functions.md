@@ -530,11 +530,12 @@ earlier DAG nodes.
   `piron_radial_inv_scale_ge_of_pole_one`), and the exact two-sided
   Piron–Pythagorean sandwich squeeze (`pythagEqRot_sandwich_of_pole_one`,
   `pythagEqRot_archimedean_squeeze_of_pole_one`) established in \(K^3\).
-- **Next test needed**: Combine equatorial rotational invariance around each of
-  the three coordinate axes \(e_1, e_2, e_3\) (via `pythagEqRot_archimedean_squeeze_of_pole_one`
-  and coordinate permutations) to test whether multi-axis Piron–Pythagorean
-  invariance forces radial dependence \(f(v) = F(|v_x|^2, |v_y|^2, |v_z|^2)\) and
-  vanishing of `sp p` on non-equatorial rays.
+- **Next test needed**: Establish exact invariance at a fixed nontrivial rotation
+  under explicitly stated hypotheses. `pythagEqRot_archimedean_squeeze_of_pole_one`
+  gives only an arbitrarily small value difference for some near-identity rotation;
+  it does not establish that invariance. Any subsequent multi-axis argument must
+  also justify its pole-one hypotheses: coordinate permutations alone do not make
+  one normalized frame function equal to one at all three coordinate axes.
 
 Consequently the full target and its incoming gap route retain their original
 statuses (`AuthorityEffect: None`). No result here establishes continuum
