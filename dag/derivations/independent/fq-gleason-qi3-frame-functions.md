@@ -276,12 +276,15 @@ same \(3\)-leading coordinates and opposite \(3\)-adic unit residue signs
      `inertSystem37`; no instance for \((s_3, s_7, s_{11})\) or for the general `sp p`
      family is constructed, and the three-prime oscillation is checked in Python only
      for \(k\in\{1,\dots,4\}\)),
-     the finite linear combination `finCombResidual m R c` and \(m\)-parameter
-     \(\ell^1\)-cross-polytope family `finExoticComb m R c` (\(\sum_i |c_i|\le 1\))
-     are nonnegative frame functions bounded in \([0,2/3]\) that are quadratic iff
-     \(\forall i, c_i=0\) (`finExoticComb_isNonnegFrameFunction`,
-     `inertPrimeResidualSystem_linearIndependent`, `finExoticComb_quadratic_iff`),
-     and are simultaneously eliminated (\(\forall i, c_i=0\)) by archimedean
+     the finite linear combination `finCombResidual m R c` is a signed zero-weight
+     residual (for `inertSystem37` with \(c=(1,0)\) it is \(s_3\), which takes the value
+     \(-1\) at \((3, 1+i, 1)\) and \(+1\) at \((1,1,1)\)), while the \(m\)-parameter
+     \(\ell^1\)-cross-polytope family `finExoticComb m R c = (1 + finCombResidual m R c) / 3`
+     (\(\sum_i |c_i|\le 1\)) is a nonnegative frame function bounded in \([0,2/3]\)
+     (`finExoticComb_isNonnegFrameFunction`); the residuals are linearly independent and
+     `finExoticComb m R c` is quadratic iff \(\forall i, c_i=0\)
+     (`inertPrimeResidualSystem_linearIndependent`, `finExoticComb_quadratic_iff`),
+     and both are simultaneously eliminated (\(\forall i, c_i=0\)) by archimedean
      continuity at `tomo_e1`
      (`finCombResidual_coeffs_zero_of_archimedeanContinuousAt_tomo_e1`,
      `quadRay_add_finCombResidual_archimedeanContinuousAt_tomo_e1_iff`,
@@ -527,11 +530,12 @@ earlier DAG nodes.
   `piron_radial_inv_scale_ge_of_pole_one`), and the exact two-sided
   Piron–Pythagorean sandwich squeeze (`pythagEqRot_sandwich_of_pole_one`,
   `pythagEqRot_archimedean_squeeze_of_pole_one`) established in \(K^3\).
-- **Next test needed**: Combine equatorial rotational invariance around each of
-  the three coordinate axes \(e_1, e_2, e_3\) (via `pythagEqRot_archimedean_squeeze_of_pole_one`
-  and coordinate permutations) to test whether multi-axis Piron–Pythagorean
-  invariance forces radial dependence \(f(v) = F(|v_x|^2, |v_y|^2, |v_z|^2)\) and
-  vanishing of `sp p` on non-equatorial rays.
+- **Next test needed**: Establish exact invariance at a fixed nontrivial rotation
+  under explicitly stated hypotheses. `pythagEqRot_archimedean_squeeze_of_pole_one`
+  gives only an arbitrarily small value difference for some near-identity rotation;
+  it does not establish that invariance. Any subsequent multi-axis argument must
+  also justify its pole-one hypotheses: coordinate permutations alone do not make
+  one normalized frame function equal to one at all three coordinate axes.
 
 Consequently the full target and its incoming gap route retain their original
 statuses (`AuthorityEffect: None`). No result here establishes continuum

@@ -95,3 +95,69 @@ def test_nested_namespace_audits_resolve_exactly():
 def test_unclosed_namespace_is_rejected():
     with pytest.raises(ValueError):
         replay.expected_anchors("namespace FQCD\n#print axioms a\n")
+
+
+STANZA = "lean_lib Other where\n  roots := #[`Other]\n\n"
+
+
+def _migrate(root, added, current_bytes=None):
+    lakefile = root / "lean4/lakefile.lean"
+    replayed = lakefile.read_bytes()
+    if current_bytes is None:
+        current_bytes = replayed + added.encode()
+    lakefile.write_bytes(current_bytes)
+    migration = dict(path="lean4/lakefile.lean", added_text=added,
+                     replayed_sha256=replay.sha(replayed), current_sha256=replay.sha(current_bytes))
+    (root / replay.PIN_MIGRATIONS).write_text(json.dumps({"migrations": [migration]}))
+
+
+@pytest.mark.parametrize("line_ending", [b"\n", b"\r\n"])
+def test_recorded_lean_lib_addition_keeps_original_pin(retained_receipt, line_ending):
+    root, receipt, _ = retained_receipt
+    lakefile = root / "lean4/lakefile.lean"
+    lakefile.write_bytes(b"fixture" + line_ending)
+    receipt["source_pins"]["lean4/lakefile.lean"] = replay.sha(lakefile.read_bytes())
+    (root / replay.RECEIPT).write_text(json.dumps(receipt))
+    _migrate(root, STANZA)
+    replay.verify_receipt()
+
+
+@pytest.mark.parametrize("defect", ["unrecorded_edit", "not_a_stanza", "redeclares_replayed_lib"])
+def test_pin_migration_rejects_anything_but_recorded_stanzas(retained_receipt, defect):
+    root, _, _ = retained_receipt
+    if defect == "unrecorded_edit":
+        _migrate(root, STANZA)
+        (root / "lean4/lakefile.lean").write_bytes(b"fixture changed\n" + STANZA.encode())
+    elif defect == "not_a_stanza":
+        added = "require extra from git \"x\"\n"
+        _migrate(root, added)
+    else:
+        added = "lean_lib FQCD where\n  roots := #[`FQCD.Other]\n\n"
+        _migrate(root, added)
+    with pytest.raises(ValueError):
+        replay.verify_receipt()
+
+
+@pytest.mark.parametrize("module", ["FQCD", "FQCD.StrongCouplingAreaLaw",
+                                  "FermionSignWilsonDiracGamma5"])
+def test_pin_migration_rejects_protected_root_under_another_library(retained_receipt, module):
+    root, _, _ = retained_receipt
+    added = f"lean_lib Other where\n  roots := #[`{module}]\n\n"
+    _migrate(root, added)
+    with pytest.raises(ValueError, match="Stale replay pin"):
+        replay.verify_receipt()
+
+
+def test_pin_migration_rejects_ancestor_of_protected_module(retained_receipt):
+    root, receipt, _ = retained_receipt
+    added = "lean_lib Other where\n  roots := #[`FQCD]\n\n"
+    _migrate(root, added)
+    assert not replay.pin_matches("lean4/lakefile.lean", receipt["source_pins"]["lean4/lakefile.lean"],
+                                  ("FQCD.StrongCouplingAreaLaw",))
+
+
+def test_pin_migration_allows_distinct_namespace_with_shared_prefix(retained_receipt):
+    root, _, _ = retained_receipt
+    added = "lean_lib FQCDExtra where\n  roots := #[`FQCDExtra]\n\n"
+    _migrate(root, added)
+    replay.verify_receipt()
