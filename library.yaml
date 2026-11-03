@@ -4,8 +4,8 @@
 # nest: a tier folder is its own book and also sits inside the whole-DAG book.
 # File counts are not stored here; the catalog checker computes them from git.
 #
-# This catalog lists only this repository's own books. It names no other
-# repository, so it is safe to publish.
+# This catalog uses paths within this repository. Path validation does not
+# certify publication safety or the claims made in the referenced material.
 catalog:
   schema: omega-library-catalog/1
   repo: theory_of_finite_quantum_mechanics
@@ -14,6 +14,7 @@ catalog:
   nonclaims:
   - A book entry records where a body of work lives. It is not a proof, a status, or an admission.
   - Node statuses in dag/derivation_dag.json govern; nothing here changes or restates them.
+  - Lifecycle labels describe editorial organization, not proof completion or byte integrity.
 
 shelves:
 - key: papers
@@ -479,8 +480,9 @@ shelves:
     path: lean4/FQCD
     kind: lean_project
     title: Finite QCD in Lean
-    lifecycle: scaffold
-    why_here: Lean start on finite QCD.
+    lifecycle: active
+    why_here: Finite-QCD Lean development, including the conditional strong-coupling area-law results.
+    entry_points: [lean4/FQCD/StrongCouplingAreaLaw.lean]
   - key: checks_independent
     path: checks/independent
     kind: evidence
@@ -580,18 +582,18 @@ shelves:
     why_here: Problems, solutions and graded results.
 
 - key: sources
-  title: Source archives
-  why_here: Copied source texts kept byte for byte, with provenance.
+  title: Source archives and research notes
+  why_here: Imported texts with provenance, alongside active notes. Import records identify original bytes and subsequent edits.
   books:
   - key: atlas
     path: atlas
     kind: source_archive
-    title: Atlas of copied paper folders
+    title: Atlas of imported papers and active notes
     lifecycle: copied_source
-    why_here: Paper folders copied from an earlier research repository; their claims are the sources' own wording.
+    why_here: Imported paper folders with recorded edits, plus active Everett notes. PROVENANCE.json covers the imported files, not every later addition.
     entry_points: [atlas/README.md, atlas/PROVENANCE.json]
     nonclaims:
-    - Files here are source texts. Nothing they say is a status in this repository.
+    - Imported claims retain their source wording; active notes have their own checks. Neither changes a DAG status.
   - key: atlas_finite_obstruction_calculus
     path: atlas/papers/finite_obstruction_calculus
     kind: source_archive
