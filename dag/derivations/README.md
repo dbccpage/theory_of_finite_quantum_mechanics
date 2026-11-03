@@ -383,7 +383,7 @@ Folder: [`10_finite_qm_core/`](./10_finite_qm_core/)
 | [`TFQ-1057`](./10_finite_qm_core/tfq_1057_fq_gleason_qi3_pointwise_to_uniform.md) | fq-gleason-qi3-pointwise-to-uniform | `OPEN_OBLIGATION` | [`TFQ-1055`](./10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md) |
 | [`TFQ-1058`](./10_finite_qm_core/tfq_1058_fq_gleason_frame_carriers.md) | fq-gleason-frame-carriers | `DEFINITION` | [`TFQ-0307`](./09_finite_hilbert/tfq_0307_gleason_route_for_dimension_at_least_three.md) |
 | [`TFQ-1059`](./10_finite_qm_core/tfq_1059_fq_gleason_c3_continuous_frame_functions.md) | fq-gleason-c3-continuous-frame-functions | `CONDITIONAL` | [`TFQ-1058`](./10_finite_qm_core/tfq_1058_fq_gleason_frame_carriers.md) |
-| [`TFQ-1060`](./10_finite_qm_core/tfq_1060_fq_born_qi3_continuum_completion.md) | fq-born-qi3-continuum-completion | `OPEN_OBLIGATION` | [`TFQ-1056`](./10_finite_qm_core/tfq_1056_fq_gleason_qi3_uniform_ray_continuity.md) |
+| [`TFQ-1060`](./10_finite_qm_core/tfq_1060_fq_born_qi3_continuum_completion.md) | fq-born-qi3-continuum-completion | `CONDITIONAL` | [`TFQ-1056`](./10_finite_qm_core/tfq_1056_fq_gleason_qi3_uniform_ray_continuity.md) |
 
 ### FINITE_QM_DYNAMICS (18 derivations)
 

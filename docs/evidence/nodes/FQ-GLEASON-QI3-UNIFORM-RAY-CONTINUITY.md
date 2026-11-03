@@ -10,8 +10,8 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 8
-- cited Lean, Rust or Python symbols found in their in-repo files: 8
+- counted in-repo evidence files: 9
+- cited Lean, Rust or Python symbols found in their in-repo files: 9
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
 - counted in-repo Rust or Python files that are not tests: 0
@@ -30,11 +30,11 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Bottleneck
 
-Uniform ray continuity remains a declared hypothesis. Pointwise-to-uniform for rational frame functions is TFQ-1057, with signed and nonnegative cases separate. A finite instrument at one tolerance supplies only one epsilon-delta pair. The review checks a constant-function instance, but general uniform continuity of quadRay and a single packaged unique complex PSD extension theorem remain to be formalized (FQ-BORN-QI3-CONTINUUM-COMPLETION). TFQ-1055 asks about unrestricted frame functions and its unrestricted assertion is REFUTED; TFQ-0307 remains CONDITIONAL.
+Uniform ray continuity remains a declared hypothesis. Pointwise-to-uniform for rational frame functions is TFQ-1057, with signed and nonnegative cases separate. A finite instrument at one tolerance supplies only one epsilon-delta pair. General uniform continuity of quadRay and the packaged unique complex PSD trace-one extension are kernel-checked in FQ-BORN-QI3-CONTINUUM-COMPLETION, which is CONDITIONAL on the same declared input. TFQ-1055 asks about unrestricted frame functions and its unrestricted assertion is REFUTED; TFQ-0307 remains CONDITIONAL.
 
 ## Source status
 
-Kernel-checked signed implication born_of_uniformlyRayContinuous, with uniform ray continuity supplied as a hypothesis. Independently rebuilt the eight-module project import closure and audited all 302 named declarations in the four new modules at PR #500 head 45b0b093921aa0281969f92da18694e2e89c3cc4; only propext, Classical.choice and Quot.sound occur. The continuum backend is the continuous-C^3 theorem, not automatic continuity from positivity. A review lemma instantiates the uniform hypothesis with f = 1/3. Original analytic receipt retained; independent raw audit and dependency pins are recorded separately.
+Kernel-checked signed implication born_of_uniformlyRayContinuous, with uniform ray continuity supplied as a hypothesis. Independently rebuilt the eight-module project import closure and audited all 302 named declarations in the four new modules at PR #500 head 45b0b093921aa0281969f92da18694e2e89c3cc4; only propext, Classical.choice and Quot.sound occur. The continuum backend is the continuous-C^3 theorem, not automatic continuity from positivity. A review lemma instantiates the uniform hypothesis with f = 1/3. Original analytic receipt retained; independent raw audit and dependency pins are recorded separately. GleasonBornCompletion (FQ-BORN-QI3-CONTINUUM-COMPLETION) adds the general converse isUniformlyRayContinuous_quadRay and the characterization uniformlyRayContinuous_frameFunction_iff: the hypothesis class is exactly the trace-one rational Hermitian Rayleigh quotients.
 
 ## Review
 
@@ -47,7 +47,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Lean: `lean4/BornGaussianParallelogramRigidity.lean`
 
 - file: [lean4/BornGaussianParallelogramRigidity.lean](../../../lean4/BornGaussianParallelogramRigidity.lean)
-- sha256 (`bytes`): `c384e1993ba8ecc2e9abbe75503b71b6e563c2ebd98f6a42d06310a23644733c`
+- sha256 (`bytes`): `58d5caf7a34808fddd8abd67eee6c8ae659f942ccaa7febf1cfdcb0da24be6d2`
 - cited in: node.lean, node.source, record TFQ-1056
 - replay: `none`
 - check: `cd lean4 && lake build BornGaussianParallelogramRigidity`
@@ -55,6 +55,20 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 | Symbol | Counts | Found | Declaration form | Audited axioms | Check |
 |---|---|---|---|---|---|
 | `BornFinite.GaussianTomography.signed_rigidity_of_orthoParallelogramZero_residual` | yes | yes | yes | - | `#print axioms BornFinite.GaussianTomography.signed_rigidity_of_orthoParallelogramZero_residual` |
+
+- counts toward the grade: yes
+
+### Lean: `lean4/GleasonBornCompletion.lean`
+
+- file: [lean4/GleasonBornCompletion.lean](../../../lean4/GleasonBornCompletion.lean)
+- sha256 (`bytes`): `e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646`
+- cited in: node.lean, node.source, record TFQ-1056
+- replay: `none`
+- check: `cd lean4 && lake build GleasonBornCompletion`
+
+| Symbol | Counts | Found | Declaration form | Audited axioms | Check |
+|---|---|---|---|---|---|
+| `BornFinite.BornCompletion.isUniformlyRayContinuous_quadRay` | yes | yes | yes | - | `#print axioms BornFinite.BornCompletion.isUniformlyRayContinuous_quadRay` |
 
 - counts toward the grade: yes
 
@@ -107,7 +121,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1056_fq_gleason_qi3_uniform_ray_continuity.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1056_fq_gleason_qi3_uniform_ray_continuity.md](../../../dag/derivations/10_finite_qm_core/tfq_1056_fq_gleason_qi3_uniform_ray_continuity.md)
-- sha256 (`lf-normalised`): `9895401a8b556c2ec9cc4dd2dd1191babe3fe30c531ed6ac1324cc3865374516`
+- sha256 (`lf-normalised`): `5a196e4b9b8c0713e97b4a7814bd8043954b8ff58ce80d00ff30b7f1136136be`
 - generated view: listed, not counted
 - cited in: record TFQ-1056
 - counts toward the grade: no
@@ -122,7 +136,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/pointwise_vs_uniform_note.md`
 
 - file: [dag/research/pointwise_vs_uniform_note.md](../../../dag/research/pointwise_vs_uniform_note.md)
-- sha256 (`lf-normalised`): `ac49c873e8cd47a87f580e2fac57b37771c4c4911690bd8f90b25257eae08f1a`
+- sha256 (`lf-normalised`): `9794356d43b714c238d1a49b55e3e10b153e1baccfae11683b1c1891de99980f`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -148,4 +162,4 @@ Incoming (1):
 
 Outgoing (1):
 
-- `FQ-R-BORN-QI3-CONTINUUM-COMPLETION` `GAP_NO_DERIVATION`: [FQ-BORN-QI3-CONTINUUM-COMPLETION](FQ-BORN-QI3-CONTINUUM-COMPLETION.md) (OPEN)
+- `FQ-R-BORN-QI3-CONTINUUM-COMPLETION` `CONDITIONAL_ON_IMPORT`: [FQ-BORN-QI3-CONTINUUM-COMPLETION](FQ-BORN-QI3-CONTINUUM-COMPLETION.md) (CONDITIONAL)

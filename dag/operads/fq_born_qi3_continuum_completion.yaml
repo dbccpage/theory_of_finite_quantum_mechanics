@@ -13,25 +13,31 @@ target:
   - uniform ray continuity
   - nonnegativity
   - complex completion and rational density
-  source_bottleneck: 'Formalize the matrix embedding, PSD by density, equality and uniqueness of the continuous
-    extension, and a quantitative modulus for quadRay. Rational-valued data reconstruct only Gaussian-rational
-    coefficients: covering arbitrary complex density matrices needs real-valued data or a separate approximation
-    theorem. Higher dimensions require compatible three-dimensional gluing; infinite dimensions additionally
-    need suitable normality/countable additivity and control of trace in limits.'
+  source_bottleneck: 'The modulus in isUniformlyRayContinuous_quadRay is existential (Heine-Cantor on
+    the compact unit sphere), not a quantitative delta in the coefficient norm; the paper estimate |q(u)
+    - q(v)| <= 2 ||rho|| sqrt(2 raySinSq u v) is not formalized. Rational-valued data reconstruct only
+    Gaussian-rational coefficients: covering arbitrary complex density matrices needs real-valued data
+    or a separate approximation theorem. Higher dimensions require compatible three-dimensional gluing;
+    infinite dimensions additionally need suitable normality/countable additivity and control of trace
+    in limits. Pointwise-to-uniform remains FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN).'
   source_refs:
   - dag/research/pr500_review/review.md
   - lean4/GleasonGaussianBridge.lean
   - lean4/BornGaussianTomographyReduction.lean
   - dag/research/pr500_review/manifest.json
+  - lean4/GleasonBornCompletion.lean
+  - dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json
+  - dag/research/gleason_lean_audit.json
+  - dag/research/pointwise_vs_uniform_note.md
   paper_refs:
   - dag/derivations/10_finite_qm_core/tfq_1060_fq_born_qi3_continuum_completion.md
-  source_claim_label: OPEN
+  source_claim_label: CONDITIONAL
   label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
     before reusing a result.
   unavailable_paper_refs: []
   paper_source_pins:
   - path: dag/derivations/10_finite_qm_core/tfq_1060_fq_born_qi3_continuum_completion.md
-    sha256: 85de6f465fe6b2556943ab3aff3187d6c1105c6ab6a9aaa66ab6ebfd8d5b6a57
+    sha256: 5803aa1490d88b1d8aa1a1529031c4c1af96a840e2a730435977134af50e7846
 source_provenance:
   repository: this_repository
   generator: dag/pfp/generate_prompts.py
@@ -40,6 +46,14 @@ source_provenance:
   path: dag/prompts/finite_qm_core_fq_born_qi3_continuum_completion_open.yaml
   external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
 operation_candidates:
+- kind: def
+  name: toMatrix
+  line: 49
+  signature_excerpt: 'def toMatrix (ρ : HermForm3) : Matrix (Fin 3) (Fin 3) ℂ'
+  source: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  source_sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  status: source_candidate_requires_semantic_review
 - kind: def
   name: IsUniformlyRayContinuous
   line: 151
@@ -160,14 +174,6 @@ operation_candidates:
   repository: this_repository
   source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   status: source_candidate_requires_semantic_review
-- kind: def
-  name: tomo_e13i
-  line: 432
-  signature_excerpt: 'def tomo_e13i : GVec'
-  source: lean4/BornGaussianTomographyReduction.lean
-  repository: this_repository
-  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
-  status: source_candidate_requires_semantic_review
 relation_candidates:
 - kind: theorem
   name: F_ι
@@ -251,6 +257,128 @@ relation_candidates:
   status: source_candidate_requires_semantic_review
   scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
     proof.
+- kind: lemma
+  name: toMatrix_isHermitian
+  line: 54
+  signature_excerpt: 'lemma toMatrix_isHermitian (ρ : HermForm3) : (toMatrix ρ).IsHermitian'
+  source: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  source_sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: lemma
+  name: trace_toMatrix
+  line: 58
+  signature_excerpt: 'lemma trace_toMatrix (ρ : HermForm3) : (toMatrix ρ).trace = ((ρ.tr : ℝ) : ℂ)'
+  source: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  source_sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: toMatrix_posSemidef
+  line: 181
+  signature_excerpt: |-
+    theorem toMatrix_posSemidef {ρ : HermForm3} (h : ∀ g : GVec, g.NonZero → 0 ≤ quadNum ρ g) :
+        (toMatrix ρ).PosSemidef
+  source: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  source_sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: eq_on_nonzero_of_eq_on_ι
+  line: 126
+  signature_excerpt: |-
+    theorem eq_on_nonzero_of_eq_on_ι {G H : (Fin 3 → ℂ) → ℝ}
+        (hG : ContinuousOn G {v | v ≠ 0}) (hH : ContinuousOn H {v | v ≠ 0})
+        (hGs : ∀ v : Fin 3 → ℂ, v ≠ 0 → ∀ c : ℂ, c ≠ 0 → G (c • v) = G v)
+        (hHs : ∀ v : Fin 3 → ℂ, v ≠ 0 → ∀ c : ℂ, c ≠ 0 → H (c • v) = H v)
+        (h : ∀ g : GVec, g.NonZero → G (ι g) = H (ι g)) :
+        ∀ v : Fin 3 → ℂ, v ≠ 0 → G v = H v
+  source: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  source_sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: F_eq_QcRay
+  line: 153
+  signature_excerpt: |-
+    theorem F_eq_QcRay {f : GVec → ℚ} (hf : IsFrameFunction f) (hu : IsUniformlyRayContinuous f) :
+        ∀ v : Fin 3 → ℂ, v ≠ 0 → F f v = QcRay (tomographyForm f) v
+  source: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  source_sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: eq_of_re_dotC_mulVec_self
+  line: 196
+  signature_excerpt: |-
+    theorem eq_of_re_dotC_mulVec_self {A B : Matrix (Fin 3) (Fin 3) ℂ}
+        (hA : A.IsHermitian) (hB : B.IsHermitian)
+        (h : ∀ v : Fin 3 → ℂ, v ≠ 0 → (dotC v (A *ᵥ v)).re = (dotC v (B *ᵥ v)).re) : A = B
+  source: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  source_sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: born_density_matrix_of_uniformlyRayContinuous
+  line: 237
+  signature_excerpt: |-
+    theorem born_density_matrix_of_uniformlyRayContinuous {f : GVec → ℚ}
+        (hf : IsNonnegFrameFunction f) (hu : IsUniformlyRayContinuous f) :
+        ∃ ρC : Matrix (Fin 3) (Fin 3) ℂ, ρC.PosSemidef ∧ ρC.trace = 1 ∧
+          (∀ v : Fin 3 → ℂ, v ≠ 0 → F f v = (star v ⬝ᵥ (ρC *ᵥ v)).re / nsq v) ∧
+          (∀ g : GVec, g.NonZero → (f g : ℝ) = (star (ι g) ⬝ᵥ (ρC *ᵥ ι g)).re / nsq (ι g)) ∧
+          (∀ σC : Matrix (Fin 3) (Fin 3) ℂ, σC.IsHermitian →
+            (∀ v : Fin 3 → ℂ, v ≠ 0 → F f v = (star v ⬝ᵥ (σC *ᵥ v)).re / nsq v) → σC = ρC)
+  source: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  source_sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+  bounded_domain_warning: This declaration includes a fixed finite enumeration; no unbounded conclusion
+    follows automatically.
+- kind: theorem
+  name: isUniformlyRayContinuous_quadRay
+  line: 295
+  signature_excerpt: 'theorem isUniformlyRayContinuous_quadRay (ρ : HermForm3) : IsUniformlyRayContinuous
+    (quadRay ρ)'
+  source: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  source_sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: uniformlyRayContinuous_frameFunction_iff
+  line: 356
+  signature_excerpt: |-
+    theorem uniformlyRayContinuous_frameFunction_iff (f : GVec → ℚ) :
+        (IsFrameFunction f ∧ IsUniformlyRayContinuous f) ↔
+          ∃ ρ : HermForm3, ρ.tr = 1 ∧ ∀ v : GVec, v.NonZero → f v = quadRay ρ v
+  source: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  source_sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
 source_bindings:
 - original_ref: lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.F_ι
   availability: local
@@ -305,6 +433,96 @@ source_bindings:
   sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
   declaration_status: declaration_found_not_proof_checked
   line: 532
+  role: source_lead_only
+- original_ref: lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.toMatrix
+  availability: local
+  symbol: BornFinite.BornCompletion.toMatrix
+  path: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  declaration_status: declaration_found_not_proof_checked
+  line: 49
+  role: source_lead_only
+- original_ref: lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.toMatrix_isHermitian
+  availability: local
+  symbol: BornFinite.BornCompletion.toMatrix_isHermitian
+  path: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  declaration_status: declaration_found_not_proof_checked
+  line: 54
+  role: source_lead_only
+- original_ref: lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.trace_toMatrix
+  availability: local
+  symbol: BornFinite.BornCompletion.trace_toMatrix
+  path: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  declaration_status: declaration_found_not_proof_checked
+  line: 58
+  role: source_lead_only
+- original_ref: lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.toMatrix_posSemidef
+  availability: local
+  symbol: BornFinite.BornCompletion.toMatrix_posSemidef
+  path: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  declaration_status: declaration_found_not_proof_checked
+  line: 181
+  role: source_lead_only
+- original_ref: lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.eq_on_nonzero_of_eq_on_ι
+  availability: local
+  symbol: BornFinite.BornCompletion.eq_on_nonzero_of_eq_on_ι
+  path: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  declaration_status: declaration_found_not_proof_checked
+  line: 126
+  role: source_lead_only
+- original_ref: lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.F_eq_QcRay
+  availability: local
+  symbol: BornFinite.BornCompletion.F_eq_QcRay
+  path: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  declaration_status: declaration_found_not_proof_checked
+  line: 153
+  role: source_lead_only
+- original_ref: lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.eq_of_re_dotC_mulVec_self
+  availability: local
+  symbol: BornFinite.BornCompletion.eq_of_re_dotC_mulVec_self
+  path: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  declaration_status: declaration_found_not_proof_checked
+  line: 196
+  role: source_lead_only
+- original_ref: lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.born_density_matrix_of_uniformlyRayContinuous
+  availability: local
+  symbol: BornFinite.BornCompletion.born_density_matrix_of_uniformlyRayContinuous
+  path: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  declaration_status: declaration_found_not_proof_checked
+  line: 237
+  role: source_lead_only
+- original_ref: lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.isUniformlyRayContinuous_quadRay
+  availability: local
+  symbol: BornFinite.BornCompletion.isUniformlyRayContinuous_quadRay
+  path: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  declaration_status: declaration_found_not_proof_checked
+  line: 295
+  role: source_lead_only
+- original_ref: lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.uniformlyRayContinuous_frameFunction_iff
+  availability: local
+  symbol: BornFinite.BornCompletion.uniformlyRayContinuous_frameFunction_iff
+  path: lean4/GleasonBornCompletion.lean
+  repository: this_repository
+  sha256: e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646
+  declaration_status: declaration_found_not_proof_checked
+  line: 356
   role: source_lead_only
 presentation:
   colours: []

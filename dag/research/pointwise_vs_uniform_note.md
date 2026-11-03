@@ -48,10 +48,17 @@ the four new modules, four supporting results, and two review lemmas.
 Uniform continuity is supplied, not derived. A finite instrument's resolution at one
 tolerance gives one epsilon-delta pair, not the for-all-epsilon guarantee. The review
 formally instantiates the hypothesis with the constant frame function 1/3. The general
-instance for every Hermitian `quadRay rho` remains to be formalized. On paper, phase-aligning
-unit representatives gives
+instance for every Hermitian `quadRay rho` is kernel-checked in `GleasonBornCompletion`
+(`isUniformlyRayContinuous_quadRay`): after phase-aligning unit representatives, the Rayleigh
+quotient is uniformly continuous on the compact unit sphere of `C^3`, and the squared distance of
+the aligned representatives is at most `2 raySinSq(u,v)`. The modulus obtained this way is
+existential. On paper, the same alignment gives the quantitative bound
 `|q_rho(u)-q_rho(v)| <= 2 ||rho|| sqrt(2 raySinSq(u,v))`, hence a rational delta from a
-rational coefficient bound. The constant instance does not replace this general converse.
+rational coefficient bound; that quantitative form is not formalized. The same module packages
+the extension of a nonnegative uniformly ray-continuous frame function as a unique positive
+semidefinite trace-one complex matrix (`born_density_matrix_of_uniformlyRayContinuous`) and
+characterizes the uniformly ray-continuous frame functions on `Q(i)^3` as exactly the trace-one
+rational Hermitian Rayleigh quotients (`uniformlyRayContinuous_frameFunction_iff`).
 
 ## The remaining pointwise question
 

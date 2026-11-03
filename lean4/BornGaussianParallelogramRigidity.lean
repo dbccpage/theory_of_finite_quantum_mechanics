@@ -18,9 +18,9 @@ Write `R_u` for the map `v ↦ u + v, u − v` on vectors orthogonal to a zero r
 `g (u + v) + g (u − v) = 0` at a pair of zero rays `(u, v)` says that `g` is odd under the
 reflection through `u` inside the plane spanned by `u` and `v`.
 
-* In the coordinate plane `x = 0` there are three zero poles with equal norms, `e₂`, `e₂ + e₃`
-  and `e₂ + i e₃`, whose in-plane orthogonal partners `e₃`, `e₂ − e₃` and `e₂ − i e₃` are zero
-  rays by the frame relation with `e₁`. The three reflections are
+* In the coordinate plane `x = 0` there are three zero poles `e₂`, `e₂ + e₃` and `e₂ + i e₃`
+  (squared norms `1`, `2`, `2`), each paired with an in-plane orthogonal zero partner of the same
+  norm, `e₃`, `e₂ − e₃` and `e₂ − i e₃`; the partners are zero rays by the frame relation with `e₁`. The three reflections are
   `(y, z) ↦ (y, −z)`, `(y, z) ↦ (z, y)` and `(y, z) ↦ (z, −y)` on rays; their composite is
   the identity on rays, so `g = −g` on the plane (`plane_x_zero_of_orthoParallelogram`).
 * The other two coordinate planes follow by composing `g` with a coordinate permutation, which
@@ -41,10 +41,10 @@ analytic half of the hinge only needs to supply the law at those pairs.
 * `zero_of_orthoParallelogramZero_and_vanishesOnNineRays`: every zero-weight frame function on
   `ℚ(i)³` that vanishes on the nine tomography rays and satisfies
   `SatisfiesOrthoParallelogramZero` vanishes on all nonzero vectors.
-* `signed_rigidity_of_orthoParallelogramZero_residuals`,
-  `nonneg_rigidity_of_orthoParallelogramZero_residuals`: the corresponding closures of the signed
-  and nonnegative quadratic-rigidity statements, via the residual reductions of
-  `BornGaussianTomographyReduction`.
+* `signed_rigidity_of_orthoParallelogramZero_residual`: a frame function whose residual
+  `f - quadRay (tomographyForm f)` satisfies `SatisfiesOrthoParallelogramZero` equals
+  `quadRay (tomographyForm f)` on every nonzero vector. No sign condition is assumed, so a
+  nonnegative frame function is covered as a special case; there is no separate nonnegative export.
 -/
 
 namespace BornFinite.GaussianTomography

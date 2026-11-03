@@ -15,11 +15,11 @@ The DAG has 938 nodes in 36 stages. Evidence grades: E0 70, E1 267, E2 51, E3 54
 | Proved in this repository, kernel-checked Lean | `PROVED_LEAN` | 220 | Lean declarations are cited as stating the node. Whether they lie in this repository and have a current replay receipt is in the grade table. |
 | Proved in prose | `PROVED_PROSE` | 37 | A written proof exists; no machine check is claimed. |
 | Checked by computation | `COMPUTATIONALLY_CHECKED` | 194 | An exact finite computation is recorded. |
-| Conditional on named hypotheses | `CONDITIONAL` | 40 | Holds given hypotheses that the node names; the hypotheses are not derived. |
+| Conditional on named hypotheses | `CONDITIONAL` | 41 | Holds given hypotheses that the node names; the hypotheses are not derived. |
 | Definitions | `DEFINITION` | 93 | A definition or construction, not a claim of truth. |
 | Imported or admitted, not derived here | `IMPORTED_ASSUMPTION`, `ADMITTED_PRIMITIVE` | 73 | Taken in from outside the finite construction. Admitted as a starting object. |
 | External results recorded, not audited here | `SOURCE_RECORD` | 83 | An external result is recorded; nothing here audits it. |
-| Open | `OPEN` | 191 | No derivation is recorded. |
+| Open | `OPEN` | 190 | No derivation is recorded. |
 | Refuted | `REFUTED` | 7 | A counterexample is recorded. |
 
 Of the 220 `PROVED_LEAN` nodes, 220 reach grade E3 or E4 (100 percent); 0 do not. The second group is listed in [mismatches](mismatches.md).
@@ -28,7 +28,7 @@ Grade E4 needs an in-repo runnable test and a recorded review as well as a repla
 
 ### Where the Lean evidence stands
 
-The `lean` fields of nodes cite 2925 distinct Lean declarations that lie in files of this checkout. 2842 of them are in a file whose current sha256 matches a passing replay receipt; 61 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches; 22 are in files whose current-hash receipt failed the build or axiom audit. The `PROVED_LEAN` nodes cite 1141 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
+The `lean` fields of nodes cite 2935 distinct Lean declarations that lie in files of this checkout. 2842 of them are in a file whose current sha256 matches a passing replay receipt; 71 are in files with no receipt in `dag/research/`; 0 are in files whose receipt no longer matches; 22 are in files whose current-hash receipt failed the build or axiom audit. The `PROVED_LEAN` nodes cite 1141 Lean references; 0 (0 percent) lie in sibling-atlas paths or do not exist in this checkout. 0 `PROVED_LEAN` nodes cite no Lean file that this checkout holds.
 
 ### Status by evidence grade
 
@@ -37,12 +37,12 @@ The `lean` fields of nodes cite 2925 distinct Lean declarations that lie in file
 | `PROVED_LEAN` | 0 | 0 | 0 | 220 | 0 | 220 |
 | `PROVED_PROSE` | 3 | 15 | 10 | 9 | 0 | 37 |
 | `COMPUTATIONALLY_CHECKED` | 5 | 88 | 23 | 78 | 0 | 194 |
-| `CONDITIONAL` | 0 | 11 | 2 | 26 | 1 | 40 |
+| `CONDITIONAL` | 0 | 11 | 2 | 27 | 1 | 41 |
 | `DEFINITION` | 4 | 27 | 8 | 54 | 0 | 93 |
 | `IMPORTED_ASSUMPTION` | 4 | 13 | 0 | 53 | 0 | 70 |
 | `ADMITTED_PRIMITIVE` | 0 | 0 | 0 | 3 | 0 | 3 |
 | `SOURCE_RECORD` | 39 | 43 | 0 | 1 | 0 | 83 |
-| `OPEN` | 15 | 66 | 7 | 103 | 0 | 191 |
+| `OPEN` | 15 | 66 | 7 | 102 | 0 | 190 |
 | `REFUTED` | 0 | 4 | 1 | 2 | 0 | 7 |
 | Total | 70 | 267 | 51 | 549 | 1 | 938 |
 

@@ -83,7 +83,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/pointwise_vs_uniform_note.md`
 
 - file: [dag/research/pointwise_vs_uniform_note.md](../../../dag/research/pointwise_vs_uniform_note.md)
-- sha256 (`lf-normalised`): `ac49c873e8cd47a87f580e2fac57b37771c4c4911690bd8f90b25257eae08f1a`
+- sha256 (`lf-normalised`): `9794356d43b714c238d1a49b55e3e10b153e1baccfae11683b1c1891de99980f`
 - cited in: node.source
 - counts toward the grade: yes
 

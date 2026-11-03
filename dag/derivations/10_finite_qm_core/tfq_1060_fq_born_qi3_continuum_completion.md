@@ -1,6 +1,6 @@
 # [TFQ-1060] FQ-BORN-QI3-CONTINUUM-COMPLETION
 
-> **Stage**: `FINITE_QM_CORE` | **Status**: `OPEN_OBLIGATION` | **DAG node**: `FQ-BORN-QI3-CONTINUUM-COMPLETION` (`OPEN`)  
+> **Stage**: `FINITE_QM_CORE` | **Status**: `CONDITIONAL` | **DAG node**: `FQ-BORN-QI3-CONTINUUM-COMPLETION` (`CONDITIONAL`)  
 > **UUID**: `b547e7d8-4517-59cb-b8cc-4e3a4979216c`  
 > **Parent Derivation**: [TFQ-1056](tfq_1056_fq_gleason_qi3_uniform_ray_continuity.md)
 
@@ -13,10 +13,10 @@
 Package a unique continuous extension of a uniformly ray-continuous nonnegative rational frame function on Q(i)^3 to all complex rays, represented by the embedded tomography matrix with Hermitian symmetry, trace one and complex positive semidefiniteness. Also prove the general converse instance IsUniformlyRayContinuous (quadRay rho). This target retains uniform continuity; it is not the pointwise-to-uniform problem.
 
 ### Governing Obligation
-Formalize the matrix embedding, PSD by density, equality and uniqueness of the continuous extension, and a quantitative modulus for quadRay. Rational-valued data reconstruct only Gaussian-rational coefficients: covering arbitrary complex density matrices needs real-valued data or a separate approximation theorem. Higher dimensions require compatible three-dimensional gluing; infinite dimensions additionally need suitable normality/countable additivity and control of trace in limits.
+The modulus in isUniformlyRayContinuous_quadRay is existential (Heine-Cantor on the compact unit sphere), not a quantitative delta in the coefficient norm; the paper estimate |q(u) - q(v)| <= 2 ||rho|| sqrt(2 raySinSq u v) is not formalized. Rational-valued data reconstruct only Gaussian-rational coefficients: covering arbitrary complex density matrices needs real-valued data or a separate approximation theorem. Higher dimensions require compatible three-dimensional gluing; infinite dimensions additionally need suitable normality/countable additivity and control of trace in limits. Pointwise-to-uniform remains FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN).
 
 ### Source Status
-Existing extension, scale-invariance, continuity, frame, rational Born, trace and uniqueness lemmas supply the main ingredients. The independent review checks constant-function nonvacuity and nonnegativity of the rational quadratic numerator; no complete complex PSD/unique-extension wrapper is claimed.
+Kernel-checked in lean4/GleasonBornCompletion.lean. born_density_matrix_of_uniformlyRayContinuous packages the extension F f of a nonnegative frame function that is uniformly continuous on rays as Re <v, rhoC v>/<v, v> on every nonzero v in C^3 (and f g = Re <g, rhoC g>/<g, g> on every nonzero g in Q(i)^3) for the positive semidefinite trace-one complex matrix rhoC = toMatrix (tomographyForm f), unique among Hermitian matrices with that property (eq_of_re_dotC_mulVec_self, polarization). F_eq_QcRay is the signed version without positivity. isUniformlyRayContinuous_quadRay is the general converse instance for every rational Hermitian form by compactness of the unit sphere of C^3 after phase alignment of unit representatives; uniformlyRayContinuous_frameFunction_iff then characterizes the uniformly ray-continuous frame functions on Q(i)^3 as exactly the trace-one rational Hermitian Rayleigh quotients. All 339 named declarations of the five Gleason modules carry #print axioms reports with only propext, Classical.choice and Quot.sound (dag/research/gleason_lean_audit.json, verified fail-closed by scripts/gleason_lean_audit.py and the hosted workflow lean-gleason). The declared uniform premise is retained, so the node is CONDITIONAL.
 
 ---
 
@@ -26,6 +26,11 @@ Existing extension, scale-invariance, continuity, frame, rational Born, trace an
 - **Admitted**: `uniform ray continuity`
 - **Admitted**: `nonnegativity`
 - **Admitted**: `complex completion and rational density`
+
+### See Also
+- `FQ-GLEASON-QI3-FRAME-FUNCTIONS`
+- `FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM`
+- `FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY`
 
 ---
 
@@ -38,6 +43,16 @@ Existing extension, scale-invariance, continuity, frame, rational Born, trace an
 - `lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.born_of_uniformlyRayContinuous`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.tomography_trace_one`
 - `lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.tomography_unique`
+- `lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.toMatrix`
+- `lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.toMatrix_isHermitian`
+- `lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.trace_toMatrix`
+- `lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.toMatrix_posSemidef`
+- `lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.eq_on_nonzero_of_eq_on_ι`
+- `lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.F_eq_QcRay`
+- `lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.eq_of_re_dotC_mulVec_self`
+- `lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.born_density_matrix_of_uniformlyRayContinuous`
+- `lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.isUniformlyRayContinuous_quadRay`
+- `lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.uniformlyRayContinuous_frameFunction_iff`
 
 ### Rust Certifiers
 - *none cited*
@@ -57,3 +72,7 @@ Existing extension, scale-invariance, continuity, frame, rational Born, trace an
   - `lean4/GleasonGaussianBridge.lean`
   - `lean4/BornGaussianTomographyReduction.lean`
   - `dag/research/pr500_review/manifest.json`
+  - `lean4/GleasonBornCompletion.lean`
+  - `dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json`
+  - `dag/research/gleason_lean_audit.json`
+  - `dag/research/pointwise_vs_uniform_note.md`

@@ -13,10 +13,10 @@
 Let f : GVec -> Q be a signed frame function on Q(i)^3 (IsFrameFunction f: f(u) + f(v) + f(w) = 1 for every triple of nonzero pairwise orthogonal vectors; no sign condition). Suppose f is uniformly continuous on rays (IsUniformlyRayContinuous f): for every rational epsilon > 0 there is a rational delta > 0 such that |f(u) - f(v)| < epsilon whenever u, v are nonzero and raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>) < delta, where raySinSq is a squared ray distance (phase and scale invariant) whose square root is the corresponding metric on rays. Then f(v) = quadRay (tomographyForm f) v = <v, rho v>/<v, v> for every nonzero v, with rho the Hermitian trace-one matrix reconstructed from the nine tomography rays. The nonnegative version (IsNonnegFrameFunction f) is the special case of a nonnegative f.
 
 ### Governing Obligation
-Uniform ray continuity remains a declared hypothesis. Pointwise-to-uniform for rational frame functions is TFQ-1057, with signed and nonnegative cases separate. A finite instrument at one tolerance supplies only one epsilon-delta pair. The review checks a constant-function instance, but general uniform continuity of quadRay and a single packaged unique complex PSD extension theorem remain to be formalized (FQ-BORN-QI3-CONTINUUM-COMPLETION). TFQ-1055 asks about unrestricted frame functions and its unrestricted assertion is REFUTED; TFQ-0307 remains CONDITIONAL.
+Uniform ray continuity remains a declared hypothesis. Pointwise-to-uniform for rational frame functions is TFQ-1057, with signed and nonnegative cases separate. A finite instrument at one tolerance supplies only one epsilon-delta pair. General uniform continuity of quadRay and the packaged unique complex PSD trace-one extension are kernel-checked in FQ-BORN-QI3-CONTINUUM-COMPLETION, which is CONDITIONAL on the same declared input. TFQ-1055 asks about unrestricted frame functions and its unrestricted assertion is REFUTED; TFQ-0307 remains CONDITIONAL.
 
 ### Source Status
-Kernel-checked signed implication born_of_uniformlyRayContinuous, with uniform ray continuity supplied as a hypothesis. Independently rebuilt the eight-module project import closure and audited all 302 named declarations in the four new modules at PR #500 head 45b0b093921aa0281969f92da18694e2e89c3cc4; only propext, Classical.choice and Quot.sound occur. The continuum backend is the continuous-C^3 theorem, not automatic continuity from positivity. A review lemma instantiates the uniform hypothesis with f = 1/3. Original analytic receipt retained; independent raw audit and dependency pins are recorded separately.
+Kernel-checked signed implication born_of_uniformlyRayContinuous, with uniform ray continuity supplied as a hypothesis. Independently rebuilt the eight-module project import closure and audited all 302 named declarations in the four new modules at PR #500 head 45b0b093921aa0281969f92da18694e2e89c3cc4; only propext, Classical.choice and Quot.sound occur. The continuum backend is the continuous-C^3 theorem, not automatic continuity from positivity. A review lemma instantiates the uniform hypothesis with f = 1/3. Original analytic receipt retained; independent raw audit and dependency pins are recorded separately. GleasonBornCompletion (FQ-BORN-QI3-CONTINUUM-COMPLETION) adds the general converse isUniformlyRayContinuous_quadRay and the characterization uniformlyRayContinuous_frameFunction_iff: the hypothesis class is exactly the trace-one rational Hermitian Rayleigh quotients.
 
 ---
 
@@ -47,6 +47,7 @@ Kernel-checked signed implication born_of_uniformlyRayContinuous, with uniform r
 - `lean4/GleasonComplexSphere.lean::GleasonComplex.gleason_complex`
 - `lean4/GleasonRealSphere.lean::GleasonReal.gleason_real`
 - `lean4/BornGaussianParallelogramRigidity.lean::BornFinite.GaussianTomography.signed_rigidity_of_orthoParallelogramZero_residual`
+- `lean4/GleasonBornCompletion.lean::BornFinite.BornCompletion.isUniformlyRayContinuous_quadRay`
 
 ### Rust Certifiers
 - *none cited*
@@ -70,3 +71,4 @@ Kernel-checked signed implication born_of_uniformlyRayContinuous, with uniform r
   - `dag/research/pointwise_vs_uniform_note.md`
   - `dag/research/pr500_review/review.md`
   - `dag/research/pr500_review/manifest.json`
+  - `lean4/GleasonBornCompletion.lean`

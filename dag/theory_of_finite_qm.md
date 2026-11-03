@@ -531,7 +531,7 @@ The Review column names the verdict and scope effect of the PFP review of each r
 | `TFQ-1057` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM` (OPEN) | - |
 | `TFQ-1058` | `FINITE_QM_CORE` | `DEFINITION` | `FQ-GLEASON-FRAME-CARRIERS` (DEFINITION) | - |
 | `TFQ-1059` | `FINITE_QM_CORE` | `CONDITIONAL` | `FQ-GLEASON-C3-CONTINUOUS-FRAME-FUNCTIONS` (CONDITIONAL) | - |
-| `TFQ-1060` | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `FQ-BORN-QI3-CONTINUUM-COMPLETION` (OPEN) | - |
+| `TFQ-1060` | `FINITE_QM_CORE` | `CONDITIONAL` | `FQ-BORN-QI3-CONTINUUM-COMPLETION` (CONDITIONAL) | - |
 | `TFQ-0417` | `PREGENESIS` | `DEFINITION` | `PGW-PREGENESIS-GRAMMAR` (DEFINITION) | - |
 | `TFQ-0418` | `PREGENESIS` | `DEFINITION` | `PGW-NO-TRANSITION-QUIESCENCE` (DEFINITION) | - |
 | `TFQ-0419` | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0419` (SOURCE_RECORD) | - |
@@ -4687,7 +4687,7 @@ Obligation: The stated unrestricted decision problem has negative answers to qua
 
 Let f : GVec -> Q be a signed frame function on Q(i)^3 (IsFrameFunction f: f(u) + f(v) + f(w) = 1 for every triple of nonzero pairwise orthogonal vectors; no sign condition). Suppose f is uniformly continuous on rays (IsUniformlyRayContinuous f): for every rational epsilon > 0 there is a rational delta > 0 such that |f(u) - f(v)| < epsilon whenever u, v are nonzero and raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>) < delta, where raySinSq is a squared ray distance (phase and scale invariant) whose square root is the corresponding metric on rays. Then f(v) = quadRay (tomographyForm f) v = <v, rho v>/<v, v> for every nonzero v, with rho the Hermitian trace-one matrix reconstructed from the nine tomography rays. The nonnegative version (IsNonnegFrameFunction f) is the special case of a nonnegative f.
 
-Obligation: Uniform ray continuity remains a declared hypothesis. Pointwise-to-uniform for rational frame functions is TFQ-1057, with signed and nonnegative cases separate. A finite instrument at one tolerance supplies only one epsilon-delta pair. The review checks a constant-function instance, but general uniform continuity of quadRay and a single packaged unique complex PSD extension theorem remain to be formalized (FQ-BORN-QI3-CONTINUUM-COMPLETION). TFQ-1055 asks about unrestricted frame functions and its unrestricted assertion is REFUTED; TFQ-0307 remains CONDITIONAL.
+Obligation: Uniform ray continuity remains a declared hypothesis. Pointwise-to-uniform for rational frame functions is TFQ-1057, with signed and nonnegative cases separate. A finite instrument at one tolerance supplies only one epsilon-delta pair. General uniform continuity of quadRay and the packaged unique complex PSD trace-one extension are kernel-checked in FQ-BORN-QI3-CONTINUUM-COMPLETION, which is CONDITIONAL on the same declared input. TFQ-1055 asks about unrestricted frame functions and its unrestricted assertion is REFUTED; TFQ-0307 remains CONDITIONAL.
 
 ### TFQ-1057 fq-gleason-qi3-pointwise-to-uniform
 
@@ -4726,12 +4726,12 @@ Obligation: Automatic continuity from nonnegativity, arbitrary finite dimension,
 
 - UUID: `b547e7d8-4517-59cb-b8cc-4e3a4979216c`
 - Parent: `TFQ-1056`
-- Status: `OPEN_OBLIGATION`
-- DAG node: `FQ-BORN-QI3-CONTINUUM-COMPLETION` (`OPEN`)
+- Status: `CONDITIONAL`
+- DAG node: `FQ-BORN-QI3-CONTINUUM-COMPLETION` (`CONDITIONAL`)
 
 Package a unique continuous extension of a uniformly ray-continuous nonnegative rational frame function on Q(i)^3 to all complex rays, represented by the embedded tomography matrix with Hermitian symmetry, trace one and complex positive semidefiniteness. Also prove the general converse instance IsUniformlyRayContinuous (quadRay rho). This target retains uniform continuity; it is not the pointwise-to-uniform problem.
 
-Obligation: Formalize the matrix embedding, PSD by density, equality and uniqueness of the continuous extension, and a quantitative modulus for quadRay. Rational-valued data reconstruct only Gaussian-rational coefficients: covering arbitrary complex density matrices needs real-valued data or a separate approximation theorem. Higher dimensions require compatible three-dimensional gluing; infinite dimensions additionally need suitable normality/countable additivity and control of trace in limits.
+Obligation: The modulus in isUniformlyRayContinuous_quadRay is existential (Heine-Cantor on the compact unit sphere), not a quantitative delta in the coefficient norm; the paper estimate |q(u) - q(v)| <= 2 ||rho|| sqrt(2 raySinSq u v) is not formalized. Rational-valued data reconstruct only Gaussian-rational coefficients: covering arbitrary complex density matrices needs real-valued data or a separate approximation theorem. Higher dimensions require compatible three-dimensional gluing; infinite dimensions additionally need suitable normality/countable additivity and control of trace in limits. Pointwise-to-uniform remains FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN).
 <!-- unified-dag:rows:FINITE_QM_CORE:end -->
 
 ## FINITE_QM_DYNAMICS
