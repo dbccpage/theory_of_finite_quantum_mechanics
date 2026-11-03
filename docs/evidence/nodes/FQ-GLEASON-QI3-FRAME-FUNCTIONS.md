@@ -1,6 +1,6 @@
 # FQ-GLEASON-QI3-FRAME-FUNCTIONS
 
-Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `OPEN`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
+Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `REFUTED`. Evidence grade: **E3**. [Evidence map overview](../README.md). AuthorityEffect: None.
 
 ## Statement
 
@@ -10,7 +10,7 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `OPEN`. Evidence g
 
 Evidence grade **E3** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 13
+- counted in-repo evidence files: 15
 - cited Lean, Rust or Python symbols found in their in-repo files: 220
 - distinct cited Lean declarations covered by a current replay receipt: 207
 - counted in-repo runnable tests: 14
@@ -28,11 +28,11 @@ None recorded.
 
 ## Bottleneck
 
-The {0,1}-valued variant is excluded by a finite real-ray obstruction. The specific exotic Q^3 frame function has no signed extension, by an exact finite linear certificate. Nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, the signed and bounded nonnegative residual-reduction equivalences, the (1+i)-adic norm-parity characterization on primitive Gaussian-integer vectors, the explicit global {-1, 0, +1}-valued 3-adic and 7-adic zero-weight residuals s3 and s7 and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame functions exoticQi3 = (1 + s3) / 3 and exoticQi7 = (1 + s7) / 3 (settling both signed and nonnegative quadratic rigidity on Q(i)^3 in the negative), their dual Kronecker-delta evaluation on (witness_111, witness_p7) and 2D linear independence (combResidual37), the uniform prime-indexed inert residual family sp p (with InertPrimeSpec p, p = 11 instance sp11, 3D subspace combResidual3_7_11, and finite m-prime InertPrimeResidualSystem m, supplied as a hypothesis and instantiated in Lean only for m = 2), Section 9 elimination theorems (selective cross-prime archimedean discontinuity at tomo_e1, joint Q(i, sqrt(p))^3 frame-sum elimination assuming supplied orthogonal partner frames on which each extension vanishes, and operator-space projector linearity quadratic_rigidity_iff_factorsThroughRayProjLinear / factorsThroughRayProjLinear_finCombResidual_iff), Subsection 9F planar frame-rotation identities, the orthogonal parallelogram law SatisfiesOrthoParallelogramZero (refuted on s3, s7, sp11 and eliminating all coordinate-sign-symmetric zero-weight residuals), Piron's meridian-descent inequality and dense Pythagorean rational circle step (exists_pironStep_within_delta), and the nonnegativity/continuity bridge (nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual), and Subsection 9G two-step Piron tangent algebra (eqTangentStep_comp_of_x_zero, eqTangentStep_cancel_of_x_zero), Kelvin-inverted meridian duality (meridian_kelvin_complement_of_pole_one), outward and inward radial monotonicity (piron_radial_scale_le_of_pole_one, piron_radial_inv_scale_ge_of_pole_one), the exact two-sided Piron-Pythagorean sandwich squeeze (pythagEqRot_sandwich_of_pole_one, pythagEqRot_archimedean_squeeze_of_pole_one), and equatorial-invariance vs. orthogonal parallelogram separation (sp_e1_add_pythagEqRot_eq, orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant) are formalized in lean4/BornGaussianTomographyReduction.lean. Unconditional vanishing of all archimedean-continuous bounded zero-weight residuals on Q(i)^3 without coordinate-sign symmetry or projector linearity and closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remain open.
+The stated unrestricted decision problem has negative answers to quadratic rigidity even for nonnegative frame functions, to existence of a zero-one frame function, and to extension of the specified exotic Q^3 example. REFUTED labels the unrestricted quadratic-rigidity assertion, not the validity of the counterexample theorems. Uniform prime-indexed residuals sp p under InertPrimeSpec p are already formalized; arbitrary finite systems retain their stated InertPrimeResidualSystem hypotheses. The separate pointwise-continuity question is TFQ-1057; the proved uniform-continuity implication is TFQ-1056. These do not close the broader operational Born-uniqueness target TFQ-0307.
 
 ## Source status
 
-Finite obstructions, nine-ray reductions, global 3-adic and 7-adic non-quadratic residuals (s3, s7), 2D linear independence (combResidual37), uniform prime-indexed inert residual family sp p (with InertPrimeSpec p, p = 11 instance sp11, 3D subspace combResidual3_7_11, and finite m-prime InertPrimeResidualSystem m, supplied as a hypothesis and instantiated in Lean only for m = 2), and Section 9 regularity/extension/projector-linearity/parallelogram/Piron/Kelvin/Pythagorean-sandwich elimination: no {0,1}-valued frame function on Q(i)^3, no signed extension of the specified exotic Q^3 function, and in BornGaussianTomographyReduction.lean exact nine-ray Hermitian tomography reconstruction, operator-space ray projector duality and nine-ray spanning of HermForm3, non-unit orthogonal frame sums, zero-vector normalization, signed and bounded nonnegative residual-reduction equivalences, (1+i)-adic norm-parity characterization on primitive Gaussian-integer vectors, the explicit global {-1, 0, +1}-valued 3-adic, 7-adic, and uniform p-adic zero-weight residuals s3, s7, sp p and {0, 1/3, 2/3}-valued nonnegative non-quadratic frame functions exoticQi3 = (1 + s3) / 3 and exoticQi7 = (1 + s7) / 3 (settling both signed and nonnegative quadratic rigidity on Q(i)^3 in the negative), Kronecker-delta evaluation and linear independence across arbitrary finite m-prime systems (inertPrimeResidualSystem_linearIndependent), joint elimination mechanisms (selective cross-prime archimedean oscillation and discontinuity at tomo_e1, joint Q(i, sqrt(p))^3 frame-sum elimination assuming supplied orthogonal partner frames on which each extension vanishes, and operator-space projector linearity quadratic_rigidity_iff_factorsThroughRayProjLinear / factorsThroughRayProjLinear_finCombResidual_iff), Subsection 9F planar frame-rotation identities, orthogonal parallelogram law SatisfiesOrthoParallelogramZero (refuted on s3, s7, sp11 and eliminating all coordinate-sign-symmetric zero-weight residuals), Piron's meridian-descent inequality and dense Pythagorean rational circle step (exists_pironStep_within_delta), and the nonnegativity/continuity bridge (nonneg_continuous_rigidity_iff_continuous_bounded_zero_residual), and Subsection 9G two-step Piron tangent algebra (eqTangentStep_comp_of_x_zero, eqTangentStep_cancel_of_x_zero), Kelvin-inverted meridian duality (meridian_kelvin_complement_of_pole_one), outward and inward radial monotonicity (piron_radial_scale_le_of_pole_one, piron_radial_inv_scale_ge_of_pole_one), the exact two-sided Piron-Pythagorean sandwich squeeze (pythagEqRot_sandwich_of_pole_one, pythagEqRot_archimedean_squeeze_of_pole_one), and equatorial-invariance vs. orthogonal parallelogram separation (sp_e1_add_pythagEqRot_eq, orthoParallelogram_at_e1_iff_zero_of_pythagEqRot_one_invariant). Exact independent checks, runnable pytest suite, and scoped Lean declarations are linked; see the replay receipt for build evidence.
+The unrestricted quadratic-rigidity assertion in this original decision question is refuted, including its nonnegative variant: exoticQi3_isNonnegFrameFunction and exoticQi3_not_quadratic are kernel-checked counterexample results. The signed variant is therefore refuted too. The zero-one variant is excluded by no_zero_one_frame_function, and the specified exotic Q^3 function has no signed extension by no_exotic_extension. The original statement is retained verbatim; it contains no continuity assumption. Pointwise regularity is a separate OPEN question, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM. Independent PR #500 audit rebuilt the project proof chain and rechecked the two exoticQi3 declarations at 45b0b093921aa0281969f92da18694e2e89c3cc4.
 
 ## Review
 
@@ -366,7 +366,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md](../../../dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md)
-- sha256 (`lf-normalised`): `5c39c19bba88748fca8e580906ee9c016ec701717a7a040b9165549f4233399f`
+- sha256 (`lf-normalised`): `eac895901d128dfbba7b54b0be7652bbc0f525d280f825affc941b1a22e57d65`
 - generated view: listed, not counted
 - cited in: record TFQ-1055
 - counts toward the grade: no
@@ -392,11 +392,25 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 - cited in: node.source
 - counts toward the grade: yes
 
+### Documents and data: `dag/research/pr500_review/manifest.json`
+
+- file: [dag/research/pr500_review/manifest.json](../../../dag/research/pr500_review/manifest.json)
+- sha256 (`lf-normalised`): `c32d8f516a5d51ea49c8a18535dc4423363527c2a7fcbe27681c2bf269ff2e5f`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/pr500_review/review.md`
+
+- file: [dag/research/pr500_review/review.md](../../../dag/research/pr500_review/review.md)
+- sha256 (`lf-normalised`): `ba7c9cce9598da12b30e194be375b1c48bfd9df89ee5f3f7f95aed943d689e26`
+- cited in: node.source
+- counts toward the grade: yes
+
 ## Routes
 
 Incoming (1):
 
-- `FQ-R-GLEASON-QI3-FRAME-FUNCTIONS` `GAP_NO_DERIVATION`: [FQ-GAP-BORN-UNIQUENESS-GLEASON](FQ-GAP-BORN-UNIQUENESS-GLEASON.md) (CONDITIONAL)
+- `FQ-R-GLEASON-QI3-FRAME-FUNCTIONS` `DERIVED_LEAN`: [FQ-GLEASON-FRAME-CARRIERS](FQ-GLEASON-FRAME-CARRIERS.md) (DEFINITION)
 
 Outgoing (0):
 

@@ -1583,3 +1583,6 @@ lean_lib GleasonComplexSphere where
 lean_lib GleasonGaussianBridge where
   roots := #[`GleasonGaussianBridge]
 
+lean_lib GleasonBornCompletion where
+  roots := #[`GleasonBornCompletion]
+

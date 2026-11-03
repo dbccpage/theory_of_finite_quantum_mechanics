@@ -10,15 +10,19 @@
       "sha256": "72f3eaf6b95f5efaaca94bf90fb639b6849659b869c74ae6df03b3c912743ccc"
     },
     "boundaries": [
-      "The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq), a mathematical input that requires justification and is not derived here; recorded as DAG node FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is the named open sub-question FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN); signed and nonnegative versions are distinguished there.",
-      "The pointwise-continuity targets of FQ-GLEASON-QI3-FRAME-FUNCTIONS (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statements and statuses; neither the conditional theorem nor the unsuccessful attempts settle them. No Lean declaration instantiates IsUniformlyRayContinuous (non-vacuity is argued on paper only in dag/research/pointwise_vs_uniform_note.md)."
+      "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.",
+      "FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered."
     ],
     "claim": "Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> C) that are continuous away from the origin: F v = (M |<p,v>|^2 + a |<q,v>|^2 + m |<r,v>|^2)/<v,v> in a complex orthonormal frame. Real-subspace pullback to GleasonRealSphere, a two-dimensional phase lemma at a maximiser, and assembly with p a global maximiser, q a maximiser on the orthogonal complement of p, r the conjugated cross product.",
     "contract_urn": "urn:tfqm:fq-gleason-qi3:gleasoncomplexsphere",
     "evidence": [
       {
-        "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json",
-        "sha256": "d9c75240cb29d1d523acdaf6f0876935dc36014c2967f73994b68c89470cd78c"
+        "path": "dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json",
+        "sha256": "d0019f55515b978b94d127467e5ece00baa85dc968bbc50f60b11422529c5660"
+      },
+      {
+        "path": "dag/research/gleason_lean_audit.json",
+        "sha256": "e4d40511530afe7735d1fa2a73fca294366d08de1634f7cb5e4dab41c2ded7ab"
       },
       {
         "path": "lean4/GleasonComplexSphere.lean",
@@ -27,63 +31,63 @@
     ],
     "owned_invariants": [
       "Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> C) that are continuous away from the origin: F v = (M |<p,v>|^2 + a |<q,v>|^2 + m |<r,v>|^2)/<v,v> in a complex orthonormal frame. Real-subspace pullback to GleasonRealSphere, a two-dimensional phase lemma at a maximiser, and assembly with p a global maximiser, q a maximiser on the orthogonal complement of p, r the conjugated cross product.",
-      "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL."
+      "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays REFUTED, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL."
     ],
     "schema_id": "tfqm.source-contract.v1",
     "symbols": [
-      "dotC",
-      "nsq",
-      "ccross",
-      "IsFrameFunctionC",
-      "IsOrthonormalC",
-      "dotC_self_eq_nsq",
-      "nsq_nonneg",
-      "nsq_eq_zero_iff",
-      "nsq_pos",
-      "ne_zero_of_nsq_pos",
-      "nsq_smul",
-      "dotC_smul_left",
-      "dotC_smul_right",
-      "dotC_add_left",
-      "dotC_add_right",
-      "dotC_sub_left",
-      "dotC_sub_right",
-      "dotC_conj_symm",
-      "dotC_ccross_left",
-      "dotC_ccross_right",
-      "nsq_ccross",
-      "smul_real_eq",
-      "exists_unit_perp",
-      "isOrthonormalC_ccross",
-      "completenessC",
-      "ofFrameC",
-      "ofFrameC_apply",
-      "dotC_ofFrameC",
-      "nsq_ofFrameC",
-      "ofFrameC_smul",
-      "ofFrameC_ne_zero",
-      "continuous_ofFrameC",
-      "ofFrameC_e1",
-      "ofFrameC_e2",
-      "IsFrameFunctionC.pullback",
-      "continuousOn_pullback",
-      "cross_term_zero",
-      "two_dim_real",
-      "two_dim",
-      "continuous_nsq",
-      "sphereC",
-      "normSq_le_nsq",
-      "isCompact_sphereC",
-      "sphereC_subset",
-      "e1C_mem_sphereC",
-      "exists_unit_smulC",
-      "exists_max_unitC",
-      "exists_max_perpC",
-      "dotC_combo",
-      "nsq_combo",
-      "nsq_combo2",
-      "dotC_combo2",
-      "gleason_complex"
+      "GleasonComplex.dotC",
+      "GleasonComplex.nsq",
+      "GleasonComplex.ccross",
+      "GleasonComplex.IsFrameFunctionC",
+      "GleasonComplex.IsOrthonormalC",
+      "GleasonComplex.dotC_self_eq_nsq",
+      "GleasonComplex.nsq_nonneg",
+      "GleasonComplex.nsq_eq_zero_iff",
+      "GleasonComplex.nsq_pos",
+      "GleasonComplex.ne_zero_of_nsq_pos",
+      "GleasonComplex.nsq_smul",
+      "GleasonComplex.dotC_smul_left",
+      "GleasonComplex.dotC_smul_right",
+      "GleasonComplex.dotC_add_left",
+      "GleasonComplex.dotC_add_right",
+      "GleasonComplex.dotC_sub_left",
+      "GleasonComplex.dotC_sub_right",
+      "GleasonComplex.dotC_conj_symm",
+      "GleasonComplex.dotC_ccross_left",
+      "GleasonComplex.dotC_ccross_right",
+      "GleasonComplex.nsq_ccross",
+      "GleasonComplex.smul_real_eq",
+      "GleasonComplex.exists_unit_perp",
+      "GleasonComplex.isOrthonormalC_ccross",
+      "GleasonComplex.completenessC",
+      "GleasonComplex.ofFrameC",
+      "GleasonComplex.ofFrameC_apply",
+      "GleasonComplex.dotC_ofFrameC",
+      "GleasonComplex.nsq_ofFrameC",
+      "GleasonComplex.ofFrameC_smul",
+      "GleasonComplex.ofFrameC_ne_zero",
+      "GleasonComplex.continuous_ofFrameC",
+      "GleasonComplex.ofFrameC_e1",
+      "GleasonComplex.ofFrameC_e2",
+      "GleasonComplex.IsFrameFunctionC.pullback",
+      "GleasonComplex.continuousOn_pullback",
+      "GleasonComplex.cross_term_zero",
+      "GleasonComplex.two_dim_real",
+      "GleasonComplex.two_dim",
+      "GleasonComplex.continuous_nsq",
+      "GleasonComplex.sphereC",
+      "GleasonComplex.normSq_le_nsq",
+      "GleasonComplex.isCompact_sphereC",
+      "GleasonComplex.sphereC_subset",
+      "GleasonComplex.e1C_mem_sphereC",
+      "GleasonComplex.exists_unit_smulC",
+      "GleasonComplex.exists_max_unitC",
+      "GleasonComplex.exists_max_perpC",
+      "GleasonComplex.dotC_combo",
+      "GleasonComplex.nsq_combo",
+      "GleasonComplex.nsq_combo2",
+      "GleasonComplex.dotC_combo2",
+      "GleasonComplex.gleason_complex"
     ]
   },
   "contract_history": [
@@ -362,10 +366,106 @@
         ]
       },
       "sha256": "6168507779cbf6739ffd4a92caece88797cfa9d4eda2c5012e23b9d1499e689d"
+    },
+    {
+      "bytes": 5140,
+      "original_paths": [
+        "lean4/GleasonComplexSphere.contract.score.yaml#fq-born-qi3-continuum-completion-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/GleasonComplexSphere.lean\",\n    \"sha256\": \"72f3eaf6b95f5efaaca94bf90fb639b6849659b869c74ae6df03b3c912743ccc\"\n  },\n  \"boundaries\": [\n    \"The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.\",\n    \"FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered.\"\n  ],\n  \"claim\": \"Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> C) that are continuous away from the origin: F v = (M |<p,v>|^2 + a |<q,v>|^2 + m |<r,v>|^2)/<v,v> in a complex orthonormal frame. Real-subspace pullback to GleasonRealSphere, a two-dimensional phase lemma at a maximiser, and assembly with p a global maximiser, q a maximiser on the orthogonal complement of p, r the conjugated cross product.\",\n  \"contract_urn\": \"urn:tfqm:fq-gleason-qi3:gleasoncomplexsphere\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json\",\n      \"sha256\": \"d0019f55515b978b94d127467e5ece00baa85dc968bbc50f60b11422529c5660\"\n    },\n    {\n      \"path\": \"dag/research/gleason_lean_audit.json\",\n      \"sha256\": \"e4d40511530afe7735d1fa2a73fca294366d08de1634f7cb5e4dab41c2ded7ab\"\n    },\n    {\n      \"path\": \"lean4/GleasonComplexSphere.lean\",\n      \"sha256\": \"72f3eaf6b95f5efaaca94bf90fb639b6849659b869c74ae6df03b3c912743ccc\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> C) that are continuous away from the origin: F v = (M |<p,v>|^2 + a |<q,v>|^2 + m |<r,v>|^2)/<v,v> in a complex orthonormal frame. Real-subspace pullback to GleasonRealSphere, a two-dimensional phase lemma at a maximiser, and assembly with p a global maximiser, q a maximiser on the orthogonal complement of p, r the conjugated cross product.\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays REFUTED, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL.\"\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"GleasonComplex.dotC\",\n    \"GleasonComplex.nsq\",\n    \"GleasonComplex.ccross\",\n    \"GleasonComplex.IsFrameFunctionC\",\n    \"GleasonComplex.IsOrthonormalC\",\n    \"GleasonComplex.dotC_self_eq_nsq\",\n    \"GleasonComplex.nsq_nonneg\",\n    \"GleasonComplex.nsq_eq_zero_iff\",\n    \"GleasonComplex.nsq_pos\",\n    \"GleasonComplex.ne_zero_of_nsq_pos\",\n    \"GleasonComplex.nsq_smul\",\n    \"GleasonComplex.dotC_smul_left\",\n    \"GleasonComplex.dotC_smul_right\",\n    \"GleasonComplex.dotC_add_left\",\n    \"GleasonComplex.dotC_add_right\",\n    \"GleasonComplex.dotC_sub_left\",\n    \"GleasonComplex.dotC_sub_right\",\n    \"GleasonComplex.dotC_conj_symm\",\n    \"GleasonComplex.dotC_ccross_left\",\n    \"GleasonComplex.dotC_ccross_right\",\n    \"GleasonComplex.nsq_ccross\",\n    \"GleasonComplex.smul_real_eq\",\n    \"GleasonComplex.exists_unit_perp\",\n    \"GleasonComplex.isOrthonormalC_ccross\",\n    \"GleasonComplex.completenessC\",\n    \"GleasonComplex.ofFrameC\",\n    \"GleasonComplex.ofFrameC_apply\",\n    \"GleasonComplex.dotC_ofFrameC\",\n    \"GleasonComplex.nsq_ofFrameC\",\n    \"GleasonComplex.ofFrameC_smul\",\n    \"GleasonComplex.ofFrameC_ne_zero\",\n    \"GleasonComplex.continuous_ofFrameC\",\n    \"GleasonComplex.ofFrameC_e1\",\n    \"GleasonComplex.ofFrameC_e2\",\n    \"GleasonComplex.IsFrameFunctionC.pullback\",\n    \"GleasonComplex.continuousOn_pullback\",\n    \"GleasonComplex.cross_term_zero\",\n    \"GleasonComplex.two_dim_real\",\n    \"GleasonComplex.two_dim\",\n    \"GleasonComplex.continuous_nsq\",\n    \"GleasonComplex.sphereC\",\n    \"GleasonComplex.normSq_le_nsq\",\n    \"GleasonComplex.isCompact_sphereC\",\n    \"GleasonComplex.sphereC_subset\",\n    \"GleasonComplex.e1C_mem_sphereC\",\n    \"GleasonComplex.exists_unit_smulC\",\n    \"GleasonComplex.exists_max_unitC\",\n    \"GleasonComplex.exists_max_perpC\",\n    \"GleasonComplex.dotC_combo\",\n    \"GleasonComplex.nsq_combo\",\n    \"GleasonComplex.nsq_combo2\",\n    \"GleasonComplex.dotC_combo2\",\n    \"GleasonComplex.gleason_complex\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/GleasonComplexSphere.lean",
+          "sha256": "72f3eaf6b95f5efaaca94bf90fb639b6849659b869c74ae6df03b3c912743ccc"
+        },
+        "boundaries": [
+          "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.",
+          "FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered."
+        ],
+        "claim": "Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> C) that are continuous away from the origin: F v = (M |<p,v>|^2 + a |<q,v>|^2 + m |<r,v>|^2)/<v,v> in a complex orthonormal frame. Real-subspace pullback to GleasonRealSphere, a two-dimensional phase lemma at a maximiser, and assembly with p a global maximiser, q a maximiser on the orthogonal complement of p, r the conjugated cross product.",
+        "contract_urn": "urn:tfqm:fq-gleason-qi3:gleasoncomplexsphere",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json",
+            "sha256": "d0019f55515b978b94d127467e5ece00baa85dc968bbc50f60b11422529c5660"
+          },
+          {
+            "path": "dag/research/gleason_lean_audit.json",
+            "sha256": "e4d40511530afe7735d1fa2a73fca294366d08de1634f7cb5e4dab41c2ded7ab"
+          },
+          {
+            "path": "lean4/GleasonComplexSphere.lean",
+            "sha256": "72f3eaf6b95f5efaaca94bf90fb639b6849659b869c74ae6df03b3c912743ccc"
+          }
+        ],
+        "owned_invariants": [
+          "Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> C) that are continuous away from the origin: F v = (M |<p,v>|^2 + a |<q,v>|^2 + m |<r,v>|^2)/<v,v> in a complex orthonormal frame. Real-subspace pullback to GleasonRealSphere, a two-dimensional phase lemma at a maximiser, and assembly with p a global maximiser, q a maximiser on the orthogonal complement of p, r the conjugated cross product.",
+          "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays REFUTED, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL."
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "GleasonComplex.dotC",
+          "GleasonComplex.nsq",
+          "GleasonComplex.ccross",
+          "GleasonComplex.IsFrameFunctionC",
+          "GleasonComplex.IsOrthonormalC",
+          "GleasonComplex.dotC_self_eq_nsq",
+          "GleasonComplex.nsq_nonneg",
+          "GleasonComplex.nsq_eq_zero_iff",
+          "GleasonComplex.nsq_pos",
+          "GleasonComplex.ne_zero_of_nsq_pos",
+          "GleasonComplex.nsq_smul",
+          "GleasonComplex.dotC_smul_left",
+          "GleasonComplex.dotC_smul_right",
+          "GleasonComplex.dotC_add_left",
+          "GleasonComplex.dotC_add_right",
+          "GleasonComplex.dotC_sub_left",
+          "GleasonComplex.dotC_sub_right",
+          "GleasonComplex.dotC_conj_symm",
+          "GleasonComplex.dotC_ccross_left",
+          "GleasonComplex.dotC_ccross_right",
+          "GleasonComplex.nsq_ccross",
+          "GleasonComplex.smul_real_eq",
+          "GleasonComplex.exists_unit_perp",
+          "GleasonComplex.isOrthonormalC_ccross",
+          "GleasonComplex.completenessC",
+          "GleasonComplex.ofFrameC",
+          "GleasonComplex.ofFrameC_apply",
+          "GleasonComplex.dotC_ofFrameC",
+          "GleasonComplex.nsq_ofFrameC",
+          "GleasonComplex.ofFrameC_smul",
+          "GleasonComplex.ofFrameC_ne_zero",
+          "GleasonComplex.continuous_ofFrameC",
+          "GleasonComplex.ofFrameC_e1",
+          "GleasonComplex.ofFrameC_e2",
+          "GleasonComplex.IsFrameFunctionC.pullback",
+          "GleasonComplex.continuousOn_pullback",
+          "GleasonComplex.cross_term_zero",
+          "GleasonComplex.two_dim_real",
+          "GleasonComplex.two_dim",
+          "GleasonComplex.continuous_nsq",
+          "GleasonComplex.sphereC",
+          "GleasonComplex.normSq_le_nsq",
+          "GleasonComplex.isCompact_sphereC",
+          "GleasonComplex.sphereC_subset",
+          "GleasonComplex.e1C_mem_sphereC",
+          "GleasonComplex.exists_unit_smulC",
+          "GleasonComplex.exists_max_unitC",
+          "GleasonComplex.exists_max_perpC",
+          "GleasonComplex.dotC_combo",
+          "GleasonComplex.nsq_combo",
+          "GleasonComplex.nsq_combo2",
+          "GleasonComplex.dotC_combo2",
+          "GleasonComplex.gleason_complex"
+        ]
+      },
+      "sha256": "ce7f58e60657dcae96b6e2c0079a0d495742576f6668dce351e6731a37aee670"
     }
   ],
-  "current_contract": "6168507779cbf6739ffd4a92caece88797cfa9d4eda2c5012e23b9d1499e689d",
-  "current_scoring": "42072e2d2f752482005a6d1b8dea5e6101b22c9c94ee71b7fe3d1b8ce22a4471",
+  "current_contract": "ce7f58e60657dcae96b6e2c0079a0d495742576f6668dce351e6731a37aee670",
+  "current_scoring": "991de4ed6da9dc40f4a856006b7b8a5b7c7b032affd864a1e4a418ea516d7dd0",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {},
   "schema_version": "tfqm.contract-score.v1",
@@ -531,6 +631,64 @@
         "score_token": "L4D"
       },
       "sha256": "42072e2d2f752482005a6d1b8dea5e6101b22c9c94ee71b7fe3d1b8ce22a4471"
+    },
+    {
+      "bytes": 3704,
+      "original_paths": [
+        "lean4/GleasonComplexSphere.contract.score.yaml#fq-born-qi3-continuum-completion-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/GleasonComplexSphere.lean\",\n    \"sha256\": \"72f3eaf6b95f5efaaca94bf90fb639b6849659b869c74ae6df03b3c912743ccc\"\n  },\n  \"assessment_id\": \"fq-born-qi3-continuum-completion-2026-11-03\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and the complete Lean identifiers of every named declaration are bound to the stated claim and to DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY and FQ-BORN-QI3-CONTINUUM-COMPLETION (CONDITIONAL) with AuthorityEffect None; FQ-GLEASON-QI3-FRAME-FUNCTIONS (REFUTED), FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statuses.\",\n    \"G2\": \"Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and per-declaration axiom audit (dag/research/gleason_lean_audit.json) use only propext, Classical.choice and Quot.sound; 0 sorry.\",\n    \"G4\": \"Kernel-checked by lake build; every named declaration has a #print axioms report verified by scripts/gleason_lean_audit.py against the pinned expectation; the main theorems are listed by name in the replay receipt.\",\n    \"G5\": \"Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target and under the lean-gleason hosted workflow.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-11-03T04:08:37+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json\",\n      \"sha256\": \"d0019f55515b978b94d127467e5ece00baa85dc968bbc50f60b11422529c5660\"\n    },\n    {\n      \"path\": \"dag/research/gleason_lean_audit.json\",\n      \"sha256\": \"e4d40511530afe7735d1fa2a73fca294366d08de1634f7cb5e4dab41c2ded7ab\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and a fail-closed per-declaration axiom audit.\",\n  \"limitations\": [\n    \"The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.\",\n    \"FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/GleasonComplexSphere.lean",
+          "sha256": "72f3eaf6b95f5efaaca94bf90fb639b6849659b869c74ae6df03b3c912743ccc"
+        },
+        "assessment_id": "fq-born-qi3-continuum-completion-2026-11-03",
+        "basis": {
+          "G1": "Exact source identity and the complete Lean identifiers of every named declaration are bound to the stated claim and to DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY and FQ-BORN-QI3-CONTINUUM-COMPLETION (CONDITIONAL) with AuthorityEffect None; FQ-GLEASON-QI3-FRAME-FUNCTIONS (REFUTED), FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statuses.",
+          "G2": "Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.",
+          "G3": "Lean 4.35 kernel build and per-declaration axiom audit (dag/research/gleason_lean_audit.json) use only propext, Classical.choice and Quot.sound; 0 sorry.",
+          "G4": "Kernel-checked by lake build; every named declaration has a #print axioms report verified by scripts/gleason_lean_audit.py against the pinned expectation; the main theorems are listed by name in the replay receipt.",
+          "G5": "Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target and under the lean-gleason hosted workflow."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-11-03T04:08:37+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-born-qi3-continuum-completion_lean_replay.json",
+            "sha256": "d0019f55515b978b94d127467e5ece00baa85dc968bbc50f60b11422529c5660"
+          },
+          {
+            "path": "dag/research/gleason_lean_audit.json",
+            "sha256": "e4d40511530afe7735d1fa2a73fca294366d08de1634f7cb5e4dab41c2ded7ab"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and a fail-closed per-declaration axiom audit.",
+        "limitations": [
+          "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.",
+          "FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "991de4ed6da9dc40f4a856006b7b8a5b7c7b032affd864a1e4a418ea516d7dd0"
     }
   ]
 }
