@@ -1,0 +1,322 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/GleasonGaussianBridge.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/GleasonGaussianBridge.lean",
+      "sha256": "951b86317ed9402866b881855b66b0633c6596c096647257102258799d1ff79f"
+    },
+    "boundaries": [
+      "The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays). Whether pointwise Archimedean continuity on rays already implies it is a separate, open sub-question.",
+      "DAG node statuses are unchanged by this module: FQ-GAP-BORN-UNIQUENESS-GLEASON and FQ-GLEASON-QI3-FRAME-FUNCTIONS remain OPEN until the maintainer decides how the declared input is recorded."
+    ],
+    "claim": "Under the declared input IsUniformlyRayContinuous f (rational epsilon-delta uniform continuity in the phase-invariant ray metric raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>)), every frame function f on Q(i)^3 equals quadRay (tomographyForm f) on all nonzero vectors (born_of_uniformlyRayContinuous). Method: push f along iota : Q(i)^3 -> C^3, extend by uniform continuity to a frame function F on C^3 continuous away from 0 (density of rational points in {|v|^2 >= 1}, scale invariance by density of Q(i) scalars, frame property by density of rational pairs), apply gleason_complex, and read off the orthogonal parallelogram law of the residual for BornGaussianParallelogramRigidity.",
+    "contract_urn": "urn:tfqm:fq-gleason-qi3:gleasongaussianbridge",
+    "evidence": [
+      {
+        "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json",
+        "sha256": "de1fe83df155e3de37e68d6f2ea57ec580a0f44350188acdf36e13d8e8f822d4"
+      },
+      {
+        "path": "lean4/GleasonGaussianBridge.lean",
+        "sha256": "951b86317ed9402866b881855b66b0633c6596c096647257102258799d1ff79f"
+      }
+    ],
+    "owned_invariants": [
+      "Under the declared input IsUniformlyRayContinuous f (rational epsilon-delta uniform continuity in the phase-invariant ray metric raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>)), every frame function f on Q(i)^3 equals quadRay (tomographyForm f) on all nonzero vectors (born_of_uniformlyRayContinuous). Method: push f along iota : Q(i)^3 -> C^3, extend by uniform continuity to a frame function F on C^3 continuous away from 0 (density of rational points in {|v|^2 >= 1}, scale invariance by density of Q(i) scalars, frame property by density of rational pairs), apply gleason_complex, and read off the orthogonal parallelogram law of the residual for BornGaussianParallelogramRigidity.",
+      "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status."
+    ],
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "toC",
+      "toC_add",
+      "toC_sub",
+      "toC_neg",
+      "toC_mul",
+      "toC_star",
+      "toC_ratCast",
+      "toC_natCast",
+      "toC_injective",
+      "toC_eq_zero_iff",
+      "normSq_toC",
+      "nonZero_of_",
+      "dotC_",
+      "nsq_",
+      "cross",
+      "inner_cross_left",
+      "inner_cross_right",
+      "normSqVec_cross",
+      "raySinSq",
+      "IsUniformlyRayContinuous",
+      "raySinSq_cast",
+      "ccross_self",
+      "ccross_sub_right",
+      "raySinSq_le_nsq_sub",
+      "nsq_sub_le_dist",
+      "exists_toC_near",
+      "exists_",
+      "S",
+      "S_ne_zero",
+      "smul_mem_S",
+      "D",
+      "isOpen_gt_one",
+      "dense_D",
+      "f",
+      "f",
+      "uniformContinuous_f",
+      "h_e",
+      "h_dense",
+      "ext",
+      "uniformContinuous_ext",
+      "continuous_ext",
+      "ext_eq_of_eq_",
+      "C",
+      "R",
+      "dense_R",
+      "ext_smul_rat",
+      "ext_smul",
+      "normalize",
+      "nsq_normalize",
+      "normalize_mem_S",
+      "sqrt_smul_normalize",
+      "F",
+      "F_eq",
+      "F_eq_ext",
+      "F_",
+      "F_smul",
+      "continuous_normalize_restrict",
+      "continuousOn_F",
+      "ccross_smul_right",
+      "ccross_smul_left",
+      "ccross_zero_right",
+      "continuous_ccross_pair",
+      "continuous_dotC_pair",
+      "proj",
+      "dotC_proj",
+      "ccross_proj",
+      "proj_of_dotC_zero",
+      "continuous_proj_pair",
+      "T",
+      "isOpen_T",
+      "RT",
+      "dense_RT",
+      "inner_smul_right",
+      "inner_sub_right",
+      "F_frame_proj",
+      "F_frame_cross",
+      "eq_smul_ccross",
+      "isFrameFunctionC_F",
+      "hermNum",
+      "hermNum_parallelogram",
+      "exists_hermitian",
+      "quadNum_add_sub",
+      "normSqVec_add_of_inner_zero",
+      "normSqVec_sub_of_inner_zero",
+      "eq_zero_of_not_nonZero",
+      "add_zero'",
+      "sub_zero'",
+      "zero_add'",
+      "zero_sub'",
+      "residual_neg",
+      "residual_orthoParallelogram",
+      "born_of_uniformlyRayContinuous"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 4465,
+      "original_paths": [
+        "lean4/GleasonGaussianBridge.contract.score.yaml#fq-gleason-qi3-analytic-bridge-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/GleasonGaussianBridge.lean\",\n    \"sha256\": \"951b86317ed9402866b881855b66b0633c6596c096647257102258799d1ff79f\"\n  },\n  \"boundaries\": [\n    \"The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays). Whether pointwise Archimedean continuity on rays already implies it is a separate, open sub-question.\",\n    \"DAG node statuses are unchanged by this module: FQ-GAP-BORN-UNIQUENESS-GLEASON and FQ-GLEASON-QI3-FRAME-FUNCTIONS remain OPEN until the maintainer decides how the declared input is recorded.\"\n  ],\n  \"claim\": \"Under the declared input IsUniformlyRayContinuous f (rational epsilon-delta uniform continuity in the phase-invariant ray metric raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>)), every frame function f on Q(i)^3 equals quadRay (tomographyForm f) on all nonzero vectors (born_of_uniformlyRayContinuous). Method: push f along iota : Q(i)^3 -> C^3, extend by uniform continuity to a frame function F on C^3 continuous away from 0 (density of rational points in {|v|^2 >= 1}, scale invariance by density of Q(i) scalars, frame property by density of rational pairs), apply gleason_complex, and read off the orthogonal parallelogram law of the residual for BornGaussianParallelogramRigidity.\",\n  \"contract_urn\": \"urn:tfqm:fq-gleason-qi3:gleasongaussianbridge\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json\",\n      \"sha256\": \"de1fe83df155e3de37e68d6f2ea57ec580a0f44350188acdf36e13d8e8f822d4\"\n    },\n    {\n      \"path\": \"lean4/GleasonGaussianBridge.lean\",\n      \"sha256\": \"951b86317ed9402866b881855b66b0633c6596c096647257102258799d1ff79f\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Under the declared input IsUniformlyRayContinuous f (rational epsilon-delta uniform continuity in the phase-invariant ray metric raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>)), every frame function f on Q(i)^3 equals quadRay (tomographyForm f) on all nonzero vectors (born_of_uniformlyRayContinuous). Method: push f along iota : Q(i)^3 -> C^3, extend by uniform continuity to a frame function F on C^3 continuous away from 0 (density of rational points in {|v|^2 >= 1}, scale invariance by density of Q(i) scalars, frame property by density of rational pairs), apply gleason_complex, and read off the orthogonal parallelogram law of the residual for BornGaussianParallelogramRigidity.\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status.\"\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"toC\",\n    \"toC_add\",\n    \"toC_sub\",\n    \"toC_neg\",\n    \"toC_mul\",\n    \"toC_star\",\n    \"toC_ratCast\",\n    \"toC_natCast\",\n    \"toC_injective\",\n    \"toC_eq_zero_iff\",\n    \"normSq_toC\",\n    \"nonZero_of_\",\n    \"dotC_\",\n    \"nsq_\",\n    \"cross\",\n    \"inner_cross_left\",\n    \"inner_cross_right\",\n    \"normSqVec_cross\",\n    \"raySinSq\",\n    \"IsUniformlyRayContinuous\",\n    \"raySinSq_cast\",\n    \"ccross_self\",\n    \"ccross_sub_right\",\n    \"raySinSq_le_nsq_sub\",\n    \"nsq_sub_le_dist\",\n    \"exists_toC_near\",\n    \"exists_\",\n    \"S\",\n    \"S_ne_zero\",\n    \"smul_mem_S\",\n    \"D\",\n    \"isOpen_gt_one\",\n    \"dense_D\",\n    \"f\",\n    \"f\",\n    \"uniformContinuous_f\",\n    \"h_e\",\n    \"h_dense\",\n    \"ext\",\n    \"uniformContinuous_ext\",\n    \"continuous_ext\",\n    \"ext_eq_of_eq_\",\n    \"C\",\n    \"R\",\n    \"dense_R\",\n    \"ext_smul_rat\",\n    \"ext_smul\",\n    \"normalize\",\n    \"nsq_normalize\",\n    \"normalize_mem_S\",\n    \"sqrt_smul_normalize\",\n    \"F\",\n    \"F_eq\",\n    \"F_eq_ext\",\n    \"F_\",\n    \"F_smul\",\n    \"continuous_normalize_restrict\",\n    \"continuousOn_F\",\n    \"ccross_smul_right\",\n    \"ccross_smul_left\",\n    \"ccross_zero_right\",\n    \"continuous_ccross_pair\",\n    \"continuous_dotC_pair\",\n    \"proj\",\n    \"dotC_proj\",\n    \"ccross_proj\",\n    \"proj_of_dotC_zero\",\n    \"continuous_proj_pair\",\n    \"T\",\n    \"isOpen_T\",\n    \"RT\",\n    \"dense_RT\",\n    \"inner_smul_right\",\n    \"inner_sub_right\",\n    \"F_frame_proj\",\n    \"F_frame_cross\",\n    \"eq_smul_ccross\",\n    \"isFrameFunctionC_F\",\n    \"hermNum\",\n    \"hermNum_parallelogram\",\n    \"exists_hermitian\",\n    \"quadNum_add_sub\",\n    \"normSqVec_add_of_inner_zero\",\n    \"normSqVec_sub_of_inner_zero\",\n    \"eq_zero_of_not_nonZero\",\n    \"add_zero'\",\n    \"sub_zero'\",\n    \"zero_add'\",\n    \"zero_sub'\",\n    \"residual_neg\",\n    \"residual_orthoParallelogram\",\n    \"born_of_uniformlyRayContinuous\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/GleasonGaussianBridge.lean",
+          "sha256": "951b86317ed9402866b881855b66b0633c6596c096647257102258799d1ff79f"
+        },
+        "boundaries": [
+          "The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays). Whether pointwise Archimedean continuity on rays already implies it is a separate, open sub-question.",
+          "DAG node statuses are unchanged by this module: FQ-GAP-BORN-UNIQUENESS-GLEASON and FQ-GLEASON-QI3-FRAME-FUNCTIONS remain OPEN until the maintainer decides how the declared input is recorded."
+        ],
+        "claim": "Under the declared input IsUniformlyRayContinuous f (rational epsilon-delta uniform continuity in the phase-invariant ray metric raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>)), every frame function f on Q(i)^3 equals quadRay (tomographyForm f) on all nonzero vectors (born_of_uniformlyRayContinuous). Method: push f along iota : Q(i)^3 -> C^3, extend by uniform continuity to a frame function F on C^3 continuous away from 0 (density of rational points in {|v|^2 >= 1}, scale invariance by density of Q(i) scalars, frame property by density of rational pairs), apply gleason_complex, and read off the orthogonal parallelogram law of the residual for BornGaussianParallelogramRigidity.",
+        "contract_urn": "urn:tfqm:fq-gleason-qi3:gleasongaussianbridge",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json",
+            "sha256": "de1fe83df155e3de37e68d6f2ea57ec580a0f44350188acdf36e13d8e8f822d4"
+          },
+          {
+            "path": "lean4/GleasonGaussianBridge.lean",
+            "sha256": "951b86317ed9402866b881855b66b0633c6596c096647257102258799d1ff79f"
+          }
+        ],
+        "owned_invariants": [
+          "Under the declared input IsUniformlyRayContinuous f (rational epsilon-delta uniform continuity in the phase-invariant ray metric raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>)), every frame function f on Q(i)^3 equals quadRay (tomographyForm f) on all nonzero vectors (born_of_uniformlyRayContinuous). Method: push f along iota : Q(i)^3 -> C^3, extend by uniform continuity to a frame function F on C^3 continuous away from 0 (density of rational points in {|v|^2 >= 1}, scale invariance by density of Q(i) scalars, frame property by density of rational pairs), apply gleason_complex, and read off the orthogonal parallelogram law of the residual for BornGaussianParallelogramRigidity.",
+          "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status."
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "toC",
+          "toC_add",
+          "toC_sub",
+          "toC_neg",
+          "toC_mul",
+          "toC_star",
+          "toC_ratCast",
+          "toC_natCast",
+          "toC_injective",
+          "toC_eq_zero_iff",
+          "normSq_toC",
+          "nonZero_of_",
+          "dotC_",
+          "nsq_",
+          "cross",
+          "inner_cross_left",
+          "inner_cross_right",
+          "normSqVec_cross",
+          "raySinSq",
+          "IsUniformlyRayContinuous",
+          "raySinSq_cast",
+          "ccross_self",
+          "ccross_sub_right",
+          "raySinSq_le_nsq_sub",
+          "nsq_sub_le_dist",
+          "exists_toC_near",
+          "exists_",
+          "S",
+          "S_ne_zero",
+          "smul_mem_S",
+          "D",
+          "isOpen_gt_one",
+          "dense_D",
+          "f",
+          "f",
+          "uniformContinuous_f",
+          "h_e",
+          "h_dense",
+          "ext",
+          "uniformContinuous_ext",
+          "continuous_ext",
+          "ext_eq_of_eq_",
+          "C",
+          "R",
+          "dense_R",
+          "ext_smul_rat",
+          "ext_smul",
+          "normalize",
+          "nsq_normalize",
+          "normalize_mem_S",
+          "sqrt_smul_normalize",
+          "F",
+          "F_eq",
+          "F_eq_ext",
+          "F_",
+          "F_smul",
+          "continuous_normalize_restrict",
+          "continuousOn_F",
+          "ccross_smul_right",
+          "ccross_smul_left",
+          "ccross_zero_right",
+          "continuous_ccross_pair",
+          "continuous_dotC_pair",
+          "proj",
+          "dotC_proj",
+          "ccross_proj",
+          "proj_of_dotC_zero",
+          "continuous_proj_pair",
+          "T",
+          "isOpen_T",
+          "RT",
+          "dense_RT",
+          "inner_smul_right",
+          "inner_sub_right",
+          "F_frame_proj",
+          "F_frame_cross",
+          "eq_smul_ccross",
+          "isFrameFunctionC_F",
+          "hermNum",
+          "hermNum_parallelogram",
+          "exists_hermitian",
+          "quadNum_add_sub",
+          "normSqVec_add_of_inner_zero",
+          "normSqVec_sub_of_inner_zero",
+          "eq_zero_of_not_nonZero",
+          "add_zero'",
+          "sub_zero'",
+          "zero_add'",
+          "zero_sub'",
+          "residual_neg",
+          "residual_orthoParallelogram",
+          "born_of_uniformlyRayContinuous"
+        ]
+      },
+      "sha256": "020f598a7af120ace6117580e1fb1541fe94aef50df50eaff49730192585cfd4"
+    }
+  ],
+  "current_contract": "020f598a7af120ace6117580e1fb1541fe94aef50df50eaff49730192585cfd4",
+  "current_scoring": "54d9c69e0c05d354077f30571c4bcf7b0cd6d85c7c75d7ec28347f492f11a4c2",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2251,
+      "original_paths": [
+        "lean4/GleasonGaussianBridge.contract.score.yaml#fq-gleason-qi3-analytic-bridge-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/GleasonGaussianBridge.lean\",\n    \"sha256\": \"951b86317ed9402866b881855b66b0633c6596c096647257102258799d1ff79f\"\n  },\n  \"assessment_id\": \"fq-gleason-qi3-analytic-bridge-2026-11-03\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and named symbols are bound to the stated claim and to DAG nodes FQ-GLEASON-QI3-FRAME-FUNCTIONS / FQ-GAP-BORN-UNIQUENESS-GLEASON with AuthorityEffect None; both nodes stay OPEN.\",\n    \"G2\": \"Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and axiom audit use only propext, Classical.choice and Quot.sound; 0 sorry.\",\n    \"G4\": \"Kernel-checked by lake build with #print axioms audit recorded in the replay receipt; the main theorems are listed there by name.\",\n    \"G5\": \"Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-11-03T01:38:11+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json\",\n      \"sha256\": \"de1fe83df155e3de37e68d6f2ea57ec580a0f44350188acdf36e13d8e8f822d4\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and the axiom audit.\",\n  \"limitations\": [\n    \"The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays). Whether pointwise Archimedean continuity on rays already implies it is a separate, open sub-question.\",\n    \"DAG node statuses are unchanged by this module: FQ-GAP-BORN-UNIQUENESS-GLEASON and FQ-GLEASON-QI3-FRAME-FUNCTIONS remain OPEN until the maintainer decides how the declared input is recorded.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/GleasonGaussianBridge.lean",
+          "sha256": "951b86317ed9402866b881855b66b0633c6596c096647257102258799d1ff79f"
+        },
+        "assessment_id": "fq-gleason-qi3-analytic-bridge-2026-11-03",
+        "basis": {
+          "G1": "Exact source identity and named symbols are bound to the stated claim and to DAG nodes FQ-GLEASON-QI3-FRAME-FUNCTIONS / FQ-GAP-BORN-UNIQUENESS-GLEASON with AuthorityEffect None; both nodes stay OPEN.",
+          "G2": "Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.",
+          "G3": "Lean 4.35 kernel build and axiom audit use only propext, Classical.choice and Quot.sound; 0 sorry.",
+          "G4": "Kernel-checked by lake build with #print axioms audit recorded in the replay receipt; the main theorems are listed there by name.",
+          "G5": "Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-11-03T01:38:11+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json",
+            "sha256": "de1fe83df155e3de37e68d6f2ea57ec580a0f44350188acdf36e13d8e8f822d4"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and the axiom audit.",
+        "limitations": [
+          "The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays). Whether pointwise Archimedean continuity on rays already implies it is a separate, open sub-question.",
+          "DAG node statuses are unchanged by this module: FQ-GAP-BORN-UNIQUENESS-GLEASON and FQ-GLEASON-QI3-FRAME-FUNCTIONS remain OPEN until the maintainer decides how the declared input is recorded."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "54d9c69e0c05d354077f30571c4bcf7b0cd6d85c7c75d7ec28347f492f11a4c2"
+    }
+  ]
+}
