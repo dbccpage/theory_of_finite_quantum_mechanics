@@ -1,8 +1,8 @@
 {
   "schema_version": "campaign_lean_replay.v1",
   "authority_effect": "None",
-  "checked_at": "2026-11-03T04:01:08+00:00",
-  "source_base": "b72fad2cb34e183ef0c58aba4f252424cd3c18c9",
+  "checked_at": "2026-11-03T04:08:37+00:00",
+  "source_base": "34c5d351b7ad07bb0a38085b13e1b8b291651991",
   "source_state": "Work branch claude/project-thread-mgyaz1 restarted from PR #502 head b72fad2cb34e183ef0c58aba4f252424cd3c18c9 (codex/pr500-deep-audit); exact source identities bound below. The FQCD/FSP receipts and the earlier analytic receipt dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json are untouched; the lakefile change is recorded as a chained migration in dag/research/lean_replay_pin_migrations.json. The full-identifier declaration inventory and per-declaration axiom reports of all five modules are pinned in dag/research/gleason_lean_audit.json (scripts/gleason_lean_audit.py).",
   "result": "Kernel-checked, with 0 sorry and only the axioms propext, Classical.choice and Quot.sound, in 339 declarations across five non-default targets: (1) BornGaussianParallelogramRigidity (header corrected: poles e2, e2 + e3, e2 + i e3 of squared norms 1, 2, 2; single signed export); (2) GleasonRealSphere; (3) GleasonComplexSphere; (4) GleasonGaussianBridge: born_of_uniformlyRayContinuous; (5) GleasonBornCompletion: born_density_matrix_of_uniformlyRayContinuous (unique positive semidefinite trace-one complex matrix representing the extension F f of a nonnegative, uniformly ray-continuous frame function on all of C^3 minus 0 and f itself on Q(i)^3 minus 0), eq_of_re_dotC_mulVec_self (Hermitian 3 x 3 matrices are determined by their real quadratic form away from 0), isUniformlyRayContinuous_quadRay (every rational Hermitian Rayleigh quotient is uniformly continuous on rays) and uniformlyRayContinuous_frameFunction_iff (uniformly ray-continuous frame functions on Q(i)^3 are exactly the trace-one rational Hermitian Rayleigh quotients).",
   "proof_boundary": "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there. FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered.",
@@ -22,6 +22,314 @@
       "path": "dag/research/gleason_lean_audit.json",
       "sha256": "e4d40511530afe7735d1fa2a73fca294366d08de1634f7cb5e4dab41c2ded7ab"
     },
+    "results": [
+      {
+        "module": "BornGaussianParallelogramRigidity",
+        "dag_node": "FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY",
+        "source": "lean4/BornGaussianParallelogramRigidity.lean",
+        "sha256": "58d5caf7a34808fddd8abd67eee6c8ae659f942ccaa7febf1cfdcb0da24be6d2",
+        "sha256_after_build": "58d5caf7a34808fddd8abd67eee6c8ae659f942ccaa7febf1cfdcb0da24be6d2",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "BornFinite.GaussianTomography.plane_z_zero_of_orthoParallelogram",
+          "BornFinite.GaussianTomography.zero_of_orthoParallelogramZero_and_vanishesOnNineRays",
+          "BornFinite.GaussianTomography.signed_rigidity_of_orthoParallelogramZero_residual"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "BornFinite.GaussianTomography.plane_z_zero_of_orthoParallelogram": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GaussianTomography.zero_of_orthoParallelogramZero_and_vanishesOnNineRays": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GaussianTomography.signed_rigidity_of_orthoParallelogramZero_residual": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "declarations_audited": 23
+      },
+      {
+        "module": "GleasonRealSphere",
+        "dag_node": "FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY",
+        "source": "lean4/GleasonRealSphere.lean",
+        "sha256": "ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb",
+        "sha256_after_build": "ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "GleasonReal.prop1",
+          "GleasonReal.exists_min_perp",
+          "GleasonReal.sum_phat",
+          "GleasonReal.sum_rhat",
+          "GleasonReal.eq_stdQuad_on_six_circles",
+          "GleasonReal.eq_zero_of_vanishes_on_six_circles",
+          "GleasonReal.gleason_real"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "GleasonReal.prop1": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonReal.exists_min_perp": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonReal.sum_phat": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonReal.sum_rhat": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonReal.eq_stdQuad_on_six_circles": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonReal.eq_zero_of_vanishes_on_six_circles": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonReal.gleason_real": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "declarations_audited": 127
+      },
+      {
+        "module": "GleasonComplexSphere",
+        "dag_node": "FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY",
+        "source": "lean4/GleasonComplexSphere.lean",
+        "sha256": "72f3eaf6b95f5efaaca94bf90fb639b6849659b869c74ae6df03b3c912743ccc",
+        "sha256_after_build": "72f3eaf6b95f5efaaca94bf90fb639b6849659b869c74ae6df03b3c912743ccc",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "GleasonComplex.completenessC",
+          "GleasonComplex.IsFrameFunctionC.pullback",
+          "GleasonComplex.two_dim_real",
+          "GleasonComplex.two_dim",
+          "GleasonComplex.exists_max_unitC",
+          "GleasonComplex.exists_max_perpC",
+          "GleasonComplex.gleason_complex"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "GleasonComplex.completenessC": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonComplex.IsFrameFunctionC.pullback": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonComplex.two_dim_real": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonComplex.two_dim": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonComplex.exists_max_unitC": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonComplex.exists_max_perpC": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonComplex.gleason_complex": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "declarations_audited": 53
+      },
+      {
+        "module": "GleasonGaussianBridge",
+        "dag_node": "FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY",
+        "source": "lean4/GleasonGaussianBridge.lean",
+        "sha256": "14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f",
+        "sha256_after_build": "14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "BornFinite.GleasonBridge.uniformContinuous_f₀",
+          "BornFinite.GleasonBridge.ext_smul",
+          "BornFinite.GleasonBridge.F_ι",
+          "BornFinite.GleasonBridge.F_smul",
+          "BornFinite.GleasonBridge.continuousOn_F",
+          "BornFinite.GleasonBridge.F_frame_proj",
+          "BornFinite.GleasonBridge.isFrameFunctionC_F",
+          "BornFinite.GleasonBridge.residual_orthoParallelogram",
+          "BornFinite.GleasonBridge.born_of_uniformlyRayContinuous"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "BornFinite.GleasonBridge.uniformContinuous_f₀": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GleasonBridge.ext_smul": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GleasonBridge.F_ι": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GleasonBridge.F_smul": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GleasonBridge.continuousOn_F": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GleasonBridge.F_frame_proj": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GleasonBridge.isFrameFunctionC_F": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GleasonBridge.residual_orthoParallelogram": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GleasonBridge.born_of_uniformlyRayContinuous": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "declarations_audited": 106
+      },
+      {
+        "module": "GleasonBornCompletion",
+        "dag_node": "FQ-BORN-QI3-CONTINUUM-COMPLETION",
+        "source": "lean4/GleasonBornCompletion.lean",
+        "sha256": "e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646",
+        "sha256_after_build": "e5cf793ba4626826123d8d8b0207b01dcca765e316e0c602985769c07b971646",
+        "source_unchanged_during_build": true,
+        "exit_code": 0,
+        "admission_scan_passed": true,
+        "axiom_audit_passed": true,
+        "built_successfully": true,
+        "anchors": [
+          "BornFinite.BornCompletion.toMatrix_isHermitian",
+          "BornFinite.BornCompletion.trace_toMatrix",
+          "BornFinite.BornCompletion.mulVec_ι",
+          "BornFinite.BornCompletion.eq_on_nonzero_of_eq_on_ι",
+          "BornFinite.BornCompletion.F_eq_QcRay",
+          "BornFinite.BornCompletion.toMatrix_posSemidef",
+          "BornFinite.BornCompletion.eq_of_re_dotC_mulVec_self",
+          "BornFinite.BornCompletion.born_density_matrix_of_uniformlyRayContinuous",
+          "BornFinite.BornCompletion.isUniformlyRayContinuous_quadRay",
+          "BornFinite.BornCompletion.uniformlyRayContinuous_frameFunction_iff"
+        ],
+        "anchors_reported": true,
+        "axioms": {
+          "BornFinite.BornCompletion.toMatrix_isHermitian": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.BornCompletion.trace_toMatrix": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.BornCompletion.mulVec_ι": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.BornCompletion.eq_on_nonzero_of_eq_on_ι": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.BornCompletion.F_eq_QcRay": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.BornCompletion.toMatrix_posSemidef": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.BornCompletion.eq_of_re_dotC_mulVec_self": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.BornCompletion.born_density_matrix_of_uniformlyRayContinuous": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.BornCompletion.isUniformlyRayContinuous_quadRay": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.BornCompletion.uniformlyRayContinuous_frameFunction_iff": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "declarations_audited": 30
+      }
+    ],
     "modules": [
       {
         "path": "lean4/BornGaussianParallelogramRigidity.lean",
