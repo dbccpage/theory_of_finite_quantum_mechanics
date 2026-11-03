@@ -11,8 +11,10 @@ This module connects the two halves of the Gleason hinge for frame functions on 
 * Input (declared): a frame function `f : GVec → ℚ` (`IsFrameFunction`, sums to `1` on every
   orthogonal frame) that is **uniformly continuous on rays**: for every rational `ε > 0` there is a
   rational `δ > 0` such that `|f u - f v| < ε` whenever the rays of `u` and `v` are `δ`-close in the
-  phase-invariant ray metric `raySinSq u v = 1 - |⟨u,v⟩|² / (⟨u,u⟩⟨v,v⟩)` (the squared sine of the
-  angle between the rays).
+  phase-invariant squared ray distance `raySinSq u v = 1 - |⟨u,v⟩|² / (⟨u,u⟩⟨v,v⟩)` (the squared
+  sine of the angle between the rays; its square root is the corresponding metric on rays).
+  The hypothesis is a mathematical input: nothing in this repository derives it from pointwise
+  continuity, and whether it follows for frame functions is a separate open question.
 * Method: `f` is pushed forward along `ι : ℚ(i)³ → ℂ³` and extended by uniform continuity to a
   frame function `F` on `ℂ³ \ {0}` that is continuous away from the origin; `GleasonComplexSphere`
   gives `F` as the degree-zero form of a Hermitian form; pulled back to `ℚ(i)³` the residual
@@ -137,15 +139,15 @@ lemma normSqVec_cross (u v : GVec) :
   rw [← ι_cross, nsq_ι, nsq_ι, nsq_ι, dotC_ι, normSq_toC] at this
   exact_mod_cast this
 
-/-! ### The ray metric and uniform ray continuity -/
+/-! ### The squared ray distance and uniform ray continuity -/
 
-/-- The squared sine of the angle between the rays of `u` and `v`; phase- and
-scale-invariant, rational-valued. -/
+/-- Squared ray distance: the squared sine of the angle between the rays of `u` and `v`; phase- and
+scale-invariant, rational-valued. Its square root is the corresponding metric on rays. -/
 def raySinSq (u v : GVec) : ℚ :=
   1 - (GVec.inner u v).normSq / (normSqVec u * normSqVec v)
 
-/-- **Declared input.**  Uniform continuity of `f` on rays: a rational `ε`-`δ` statement in the ray
-metric `raySinSq`. -/
+/-- **Declared input.**  Uniform continuity of `f` on rays: a rational `ε`-`δ` statement in the squared
+ray distance `raySinSq`. -/
 def IsUniformlyRayContinuous (f : GVec → ℚ) : Prop :=
   ∀ ε : ℚ, 0 < ε → ∃ δ : ℚ, 0 < δ ∧
     ∀ u v : GVec, u.NonZero → v.NonZero → raySinSq u v < δ → |f u - f v| < ε
@@ -831,11 +833,16 @@ theorem residual_orthoParallelogram {f : GVec → ℚ} (hf : IsFrameFunction f)
         apply GVec_ext <;> simp [GVec.smul] <;> rfl
       rw [this, hgv]; ring
 
-/-- **Main theorem.**  A frame function on `ℚ(i)³` that is uniformly continuous on rays is the
-Born quadratic form of its nine-ray tomography reconstruction, on every nonzero vector. -/
+/-- **Main theorem (conditional on the declared input).**  A signed frame function on `ℚ(i)³`
+that is uniformly continuous on rays equals the quadratic form of its nine-ray tomography
+reconstruction on every nonzero vector. No sign condition on `f` is assumed. -/
 theorem born_of_uniformlyRayContinuous {f : GVec → ℚ} (hf : IsFrameFunction f)
     (hu : IsUniformlyRayContinuous f) :
     ∀ v : GVec, v.NonZero → f v = quadRay (tomographyForm f) v :=
   signed_rigidity_of_orthoParallelogramZero_residual hf (residual_orthoParallelogram hf hu)
+
+#print axioms BornFinite.GleasonBridge.isFrameFunctionC_F
+#print axioms BornFinite.GleasonBridge.residual_orthoParallelogram
+#print axioms BornFinite.GleasonBridge.born_of_uniformlyRayContinuous
 
 end BornFinite.GleasonBridge

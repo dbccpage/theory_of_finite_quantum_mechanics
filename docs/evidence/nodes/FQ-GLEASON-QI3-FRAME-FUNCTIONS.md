@@ -366,7 +366,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md](../../../dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md)
-- sha256 (`lf-normalised`): `6b9bb3762dfbba2939639437fd122873b31d5325b1e56846e1a015bcd70f1d9a`
+- sha256 (`lf-normalised`): `5c39c19bba88748fca8e580906ee9c016ec701717a7a040b9165549f4233399f`
 - generated view: listed, not counted
 - cited in: record TFQ-1055
 - counts toward the grade: no

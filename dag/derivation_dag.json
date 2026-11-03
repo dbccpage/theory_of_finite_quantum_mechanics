@@ -10453,6 +10453,72 @@
       ]
     },
     {
+      "id": "FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY",
+      "stage": "FINITE_QM_CORE",
+      "status": "CONDITIONAL",
+      "source_status": "Kernel-checked implication born_of_uniformlyRayContinuous in lean4/GleasonGaussianBridge.lean (0 sorry; axioms propext, Classical.choice, Quot.sound), built on Gleason's theorem for frame functions continuous away from the origin on the real sphere (lean4/GleasonRealSphere.lean) and on the complex sphere (lean4/GleasonComplexSphere.lean) and on the orthogonal parallelogram rigidity of lean4/BornGaussianParallelogramRigidity.lean. The hypothesis IsUniformlyRayContinuous f is declared, not derived: it is a mathematical input that requires justification before the theorem applies to a given f. Replay receipt: dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json. Recorded 2026-11-03 as a separate conditional result; the pointwise-continuity targets of FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON keep their statements and statuses.",
+      "statement": "Let f : GVec -> Q be a signed frame function on Q(i)^3 (IsFrameFunction f: f(u) + f(v) + f(w) = 1 for every triple of nonzero pairwise orthogonal vectors; no sign condition). Suppose f is uniformly continuous on rays (IsUniformlyRayContinuous f): for every rational epsilon > 0 there is a rational delta > 0 such that |f(u) - f(v)| < epsilon whenever u, v are nonzero and raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>) < delta, where raySinSq is a squared ray distance (phase and scale invariant) whose square root is the corresponding metric on rays. Then f(v) = quadRay (tomographyForm f) v = <v, rho v>/<v, v> for every nonzero v, with rho the Hermitian trace-one matrix reconstructed from the nine tomography rays. The nonnegative version (IsNonnegFrameFunction f) is the special case of a nonnegative f.",
+      "source": [
+        "lean4/GleasonGaussianBridge.lean",
+        "lean4/GleasonComplexSphere.lean",
+        "lean4/GleasonRealSphere.lean",
+        "lean4/BornGaussianParallelogramRigidity.lean",
+        "dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json",
+        "dag/research/pointwise_vs_uniform_note.md"
+      ],
+      "lean": [
+        "lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.born_of_uniformlyRayContinuous",
+        "lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.IsUniformlyRayContinuous",
+        "lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.raySinSq",
+        "lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.isFrameFunctionC_F",
+        "lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.residual_orthoParallelogram",
+        "lean4/GleasonComplexSphere.lean::GleasonComplex.gleason_complex",
+        "lean4/GleasonRealSphere.lean::GleasonReal.gleason_real",
+        "lean4/BornGaussianParallelogramRigidity.lean::BornFinite.GaussianTomography.signed_rigidity_of_orthoParallelogramZero_residual"
+      ],
+      "rust": [],
+      "imported_structure": [
+        "uniform continuity of f on rays (IsUniformlyRayContinuous f): declared input, not derived"
+      ],
+      "bottleneck": "The result is conditional on the declared hypothesis IsUniformlyRayContinuous f. Whether Archimedean continuity at every nonzero rational vector (IsArchimedeanContinuousEverywhere, the pointwise notion used by the existing BornGaussianTomographyReduction results) implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN); until that is settled the pointwise targets remain unresolved. A finite instrument's resolution at one tolerance supplies one (epsilon, delta) pair, not the for-all-epsilon-exists-delta guarantee. This node changes no status of FQ-GLEASON-QI3-FRAME-FUNCTIONS or FQ-GAP-BORN-UNIQUENESS-GLEASON.",
+      "tags": [
+        "born-gleason-targets"
+      ],
+      "see_also": [
+        "FQ-GLEASON-QI3-FRAME-FUNCTIONS",
+        "FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM",
+        "FQ-GAP-BORN-UNIQUENESS-GLEASON"
+      ]
+    },
+    {
+      "id": "FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM",
+      "stage": "FINITE_QM_CORE",
+      "status": "OPEN",
+      "source_status": "Named open sub-question recorded 2026-11-03 after a bounded-time attempt (dag/research/pointwise_vs_uniform_note.md): the epsilon-version of the Cooke-Keane-Moran descent from a rational near-maximiser did not close because the per-step loss accumulates over unboundedly many Piron steps near equal latitudes; the two-step Piron multiplier products (1 + ti)(1 + si) are not dense in C; no counterexample is established. Proof exploration paused by the maintainer.",
+      "statement": "Let f : GVec -> Q be a frame function on Q(i)^3 (IsFrameFunction f). Decide whether Archimedean continuity of f at every nonzero vector (IsArchimedeanContinuousEverywhere f: pointwise epsilon-delta continuity in the Euclidean squared distance distSqVec) implies uniform continuity on rays (IsUniformlyRayContinuous f: one rational delta per rational epsilon in the squared ray distance raySinSq). State separately the signed version (all frame functions) and the nonnegative version (IsNonnegFrameFunction f) needed by the original targets; the signed version implies the nonnegative one.",
+      "source": [
+        "dag/research/pointwise_vs_uniform_note.md",
+        "lean4/GleasonGaussianBridge.lean",
+        "lean4/BornGaussianTomographyReduction.lean"
+      ],
+      "lean": [
+        "lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.IsUniformlyRayContinuous",
+        "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.IsArchimedeanContinuousEverywhere",
+        "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.IsArchimedeanContinuousAt"
+      ],
+      "rust": [],
+      "imported_structure": [],
+      "bottleneck": "For arbitrary functions on a dense non-compact domain the implication fails (h(q) = 1 for q > sqrt(2)/2 and 0 otherwise, on Q intersected with [0,1], is continuous at every point of its domain and not uniformly continuous; a topological illustration only, not a frame function). Known: a zero-weight residual supported in a cap of angular radius below 45 degrees vanishes on the cap, assuming each ray of the cap completes to an admissible rational orthogonal frame, so that particular localized construction is ruled out; the valuation-defined residuals s3, s7, sp are nowhere Archimedean continuous and are not candidates. Not known: whether a counterexample must be global, whether one exists at all, or an epsilon-free rigidity argument that fixes a pole. A positive answer would make FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY apply to every pointwise-continuous frame function; a negative answer would be a pointwise-continuous non-quadratic frame function. Neither the unsuccessful attempts nor the conditional theorem settle the pointwise targets.",
+      "tags": [
+        "born-gleason-targets"
+      ],
+      "see_also": [
+        "FQ-GLEASON-QI3-FRAME-FUNCTIONS",
+        "FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY",
+        "FQ-GAP-BORN-UNIQUENESS-GLEASON"
+      ]
+    },
+    {
       "id": "TFQ-0003",
       "stage": "FINITE_OBSTRUCTION",
       "status": "OPEN",
@@ -32022,6 +32088,22 @@
       "source": [
         "lean4/quantum_mechanics/DerivationDagQMClosure.lean",
         "sources/atlas/papers/quantum_foundations/dag_pregenesis_to_finite_qm/derivation_dag_operads.binding.yaml"
+      ]
+    },
+    {
+      "id": "FQ-R-GLEASON-QI3-UNIFORM-RAY-CONTINUITY",
+      "inputs": [
+        "FQ-DECLARED-QUANTUM-INTERFACE"
+      ],
+      "output": "FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY",
+      "status": "CONDITIONAL_ON_IMPORT",
+      "mechanism": "Kernel-checked implication born_of_uniformlyRayContinuous. The declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq) is supplied, not derived; given it, every signed frame function on Q(i)^3 equals quadRay (tomographyForm f) on nonzero vectors, through extension to a continuous frame function on C^3, the complex-sphere Gleason theorem and orthogonal parallelogram rigidity.",
+      "source": [
+        "lean4/GleasonGaussianBridge.lean",
+        "lean4/GleasonComplexSphere.lean",
+        "lean4/GleasonRealSphere.lean",
+        "lean4/BornGaussianParallelogramRigidity.lean",
+        "dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json"
       ]
     },
     {
@@ -60304,6 +60386,74 @@
       "stage": "FINITE_QM_CORE",
       "summary": "Let V = Q(i)^3 with the standard Hermitian form. Decide whether every function f from the nonzero vectors of V to Q with f(u) + f(v) + f(w) = 1 for every orthogonal triple of nonzero vectors has the form f(v) = <v, rho v>/<v, v> for a Hermitian trace-one 3 x 3 matrix rho over Q(i), or exhibit one that does not; state separately the signed, nonnegative and {0,1}-valued variants, and whether the non-quadratic Q^3 frame function extends to Q(i)^3.",
       "uuid": "bda39be8-54ab-569d-9349-5581eaa94c17"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY"
+      ],
+      "f004_refs": [
+        "dag/derivations/10_finite_qm_core/tfq_1056_fq_gleason_qi3_uniform_ray_continuity.md",
+        "lean4/GleasonGaussianBridge.lean",
+        "lean4/GleasonComplexSphere.lean",
+        "lean4/GleasonRealSphere.lean",
+        "lean4/BornGaussianParallelogramRigidity.lean",
+        "dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json",
+        "dag/research/pointwise_vs_uniform_note.md"
+      ],
+      "id": "TFQ-1056",
+      "lean4": [
+        "lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.born_of_uniformlyRayContinuous",
+        "lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.IsUniformlyRayContinuous",
+        "lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.raySinSq",
+        "lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.isFrameFunctionC_F",
+        "lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.residual_orthoParallelogram",
+        "lean4/GleasonComplexSphere.lean::GleasonComplex.gleason_complex",
+        "lean4/GleasonRealSphere.lean::GleasonReal.gleason_real",
+        "lean4/BornGaussianParallelogramRigidity.lean::BornFinite.GaussianTomography.signed_rigidity_of_orthoParallelogramZero_residual"
+      ],
+      "local_id": "FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY",
+      "name": "fq-gleason-qi3-uniform-ray-continuity",
+      "obligation": "The result is conditional on the declared hypothesis IsUniformlyRayContinuous f. Whether Archimedean continuity at every nonzero rational vector (IsArchimedeanContinuousEverywhere, the pointwise notion used by the existing BornGaussianTomographyReduction results) implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN); until that is settled the pointwise targets remain unresolved. A finite instrument's resolution at one tolerance supplies one (epsilon, delta) pair, not the for-all-epsilon-exists-delta guarantee. This node changes no status of FQ-GLEASON-QI3-FRAME-FUNCTIONS or FQ-GAP-BORN-UNIQUENESS-GLEASON.",
+      "parent_id": "TFQ-1055",
+      "python": [],
+      "record_status": "CONDITIONAL",
+      "rust": [],
+      "source_slice": "unified_dag",
+      "stage": "FINITE_QM_CORE",
+      "summary": "Let f : GVec -> Q be a signed frame function on Q(i)^3 (IsFrameFunction f: f(u) + f(v) + f(w) = 1 for every triple of nonzero pairwise orthogonal vectors; no sign condition). Suppose f is uniformly continuous on rays (IsUniformlyRayContinuous f): for every rational epsilon > 0 there is a rational delta > 0 such that |f(u) - f(v)| < epsilon whenever u, v are nonzero and raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>) < delta, where raySinSq is a squared ray distance (phase and scale invariant) whose square root is the corresponding metric on rays. Then f(v) = quadRay (tomographyForm f) v = <v, rho v>/<v, v> for every nonzero v, with rho the Hermitian trace-one matrix reconstructed from the nine tomography rays. The nonnegative version (IsNonnegFrameFunction f) is the special case of a nonnegative f.",
+      "uuid": "98f548da-ed3f-5700-8f3f-4909ae3be3b6"
+    },
+    {
+      "coda_atlas_ids": [],
+      "coda_atlas_paths": [],
+      "existing_derivation_dag_ids": [
+        "FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM"
+      ],
+      "f004_refs": [
+        "dag/derivations/10_finite_qm_core/tfq_1057_fq_gleason_qi3_pointwise_to_uniform.md",
+        "dag/research/pointwise_vs_uniform_note.md",
+        "lean4/GleasonGaussianBridge.lean",
+        "lean4/BornGaussianTomographyReduction.lean"
+      ],
+      "id": "TFQ-1057",
+      "lean4": [
+        "lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.IsUniformlyRayContinuous",
+        "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.IsArchimedeanContinuousEverywhere",
+        "lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.IsArchimedeanContinuousAt"
+      ],
+      "local_id": "FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM",
+      "name": "fq-gleason-qi3-pointwise-to-uniform",
+      "obligation": "For arbitrary functions on a dense non-compact domain the implication fails (h(q) = 1 for q > sqrt(2)/2 and 0 otherwise, on Q intersected with [0,1], is continuous at every point of its domain and not uniformly continuous; a topological illustration only, not a frame function). Known: a zero-weight residual supported in a cap of angular radius below 45 degrees vanishes on the cap, assuming each ray of the cap completes to an admissible rational orthogonal frame, so that particular localized construction is ruled out; the valuation-defined residuals s3, s7, sp are nowhere Archimedean continuous and are not candidates. Not known: whether a counterexample must be global, whether one exists at all, or an epsilon-free rigidity argument that fixes a pole. A positive answer would make FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY apply to every pointwise-continuous frame function; a negative answer would be a pointwise-continuous non-quadratic frame function. Neither the unsuccessful attempts nor the conditional theorem settle the pointwise targets.",
+      "parent_id": "TFQ-1055",
+      "python": [],
+      "record_status": "OPEN_OBLIGATION",
+      "rust": [],
+      "source_slice": "unified_dag",
+      "stage": "FINITE_QM_CORE",
+      "summary": "Let f : GVec -> Q be a frame function on Q(i)^3 (IsFrameFunction f). Decide whether Archimedean continuity of f at every nonzero vector (IsArchimedeanContinuousEverywhere f: pointwise epsilon-delta continuity in the Euclidean squared distance distSqVec) implies uniform continuity on rays (IsUniformlyRayContinuous f: one rational delta per rational epsilon in the squared ray distance raySinSq). State separately the signed version (all frame functions) and the nonnegative version (IsNonnegFrameFunction f) needed by the original targets; the signed version implies the nonnegative one.",
+      "uuid": "36db21ab-123c-5088-bebf-52292e7b6b32"
     },
     {
       "coda_atlas_ids": [],

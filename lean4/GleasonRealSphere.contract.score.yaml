@@ -10,15 +10,15 @@
       "sha256": "ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb"
     },
     "boundaries": [
-      "The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays). Whether pointwise Archimedean continuity on rays already implies it is a separate, open sub-question.",
-      "DAG node statuses are unchanged by this module: FQ-GAP-BORN-UNIQUENESS-GLEASON and FQ-GLEASON-QI3-FRAME-FUNCTIONS remain OPEN until the maintainer decides how the declared input is recorded."
+      "The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq), a mathematical input that requires justification and is not derived here; recorded as DAG node FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is the named open sub-question FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN); signed and nonnegative versions are distinguished there.",
+      "The pointwise-continuity targets of FQ-GLEASON-QI3-FRAME-FUNCTIONS (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statements and statuses; neither the conditional theorem nor the unsuccessful attempts settle them. No Lean declaration instantiates IsUniformlyRayContinuous (non-vacuity is argued on paper only in dag/research/pointwise_vs_uniform_note.md)."
     ],
     "claim": "Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> R) that are continuous away from the origin (Cooke-Keane-Moran with continuity): f v = (M <v,p>^2 + a <v,q>^2 + m <v,r>^2)/<v,v> in an orthonormal frame (p,q,r). Latitude constancy from continuity, Piron chains as multiplier products, quarter-turn identities, six-circle agreement, and a tight-frame identity over the six circle normals in place of zero counting.",
     "contract_urn": "urn:tfqm:fq-gleason-qi3:gleasonrealsphere",
     "evidence": [
       {
         "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json",
-        "sha256": "de1fe83df155e3de37e68d6f2ea57ec580a0f44350188acdf36e13d8e8f822d4"
+        "sha256": "d9c75240cb29d1d523acdaf6f0876935dc36014c2967f73994b68c89470cd78c"
       },
       {
         "path": "lean4/GleasonRealSphere.lean",
@@ -27,7 +27,7 @@
     ],
     "owned_invariants": [
       "Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> R) that are continuous away from the origin (Cooke-Keane-Moran with continuity): f v = (M <v,p>^2 + a <v,q>^2 + m <v,r>^2)/<v,v> in an orthonormal frame (p,q,r). Latitude constancy from continuity, Piron chains as multiplier products, quarter-turn identities, six-circle agreement, and a tight-frame identity over the six circle normals in place of zero counting.",
-      "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status."
+      "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL."
     ],
     "schema_id": "tfqm.source-contract.v1",
     "symbols": [
@@ -492,10 +492,176 @@
         ]
       },
       "sha256": "05cf442dc2a21dbea73e43e57ceff51814b28cb921c7125b2a890c7cc08046eb"
+    },
+    {
+      "bytes": 5442,
+      "original_paths": [
+        "lean4/GleasonRealSphere.contract.score.yaml#fq-gleason-qi3-analytic-bridge-reviewed-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/GleasonRealSphere.lean\",\n    \"sha256\": \"ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb\"\n  },\n  \"boundaries\": [\n    \"The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq), a mathematical input that requires justification and is not derived here; recorded as DAG node FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is the named open sub-question FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN); signed and nonnegative versions are distinguished there.\",\n    \"The pointwise-continuity targets of FQ-GLEASON-QI3-FRAME-FUNCTIONS (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statements and statuses; neither the conditional theorem nor the unsuccessful attempts settle them. No Lean declaration instantiates IsUniformlyRayContinuous (non-vacuity is argued on paper only in dag/research/pointwise_vs_uniform_note.md).\"\n  ],\n  \"claim\": \"Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> R) that are continuous away from the origin (Cooke-Keane-Moran with continuity): f v = (M <v,p>^2 + a <v,q>^2 + m <v,r>^2)/<v,v> in an orthonormal frame (p,q,r). Latitude constancy from continuity, Piron chains as multiplier products, quarter-turn identities, six-circle agreement, and a tight-frame identity over the six circle normals in place of zero counting.\",\n  \"contract_urn\": \"urn:tfqm:fq-gleason-qi3:gleasonrealsphere\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json\",\n      \"sha256\": \"d9c75240cb29d1d523acdaf6f0876935dc36014c2967f73994b68c89470cd78c\"\n    },\n    {\n      \"path\": \"lean4/GleasonRealSphere.lean\",\n      \"sha256\": \"ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> R) that are continuous away from the origin (Cooke-Keane-Moran with continuity): f v = (M <v,p>^2 + a <v,q>^2 + m <v,r>^2)/<v,v> in an orthonormal frame (p,q,r). Latitude constancy from continuity, Piron chains as multiplier products, quarter-turn identities, six-circle agreement, and a tight-frame identity over the six circle normals in place of zero counting.\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL.\"\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"dot3\",\n    \"cross3\",\n    \"e1\",\n    \"e3\",\n    \"lat\",\n    \"IsFrameFunction\",\n    \"dot3_comm\",\n    \"dot3_self_nonneg\",\n    \"ne_zero_iff_dot3_self_pos\",\n    \"dot3_self_pos\",\n    \"ne_zero_of_dot3_self_pos\",\n    \"ne_zero_of_apply_ne\",\n    \"ne_zero_of_transverse_ne\",\n    \"e1_ne_zero\",\n    \"e3_ne_zero\",\n    \"dot3_e3_self\",\n    \"dot3_e1_self\",\n    \"lat_e1\",\n    \"lat_nonneg\",\n    \"lat_le_one\",\n    \"lat_smul\",\n    \"lat_lt_iff\",\n    \"lat_eq_iff\",\n    \"pair_sum_eq_of_common_normal\",\n    \"tangentDir\",\n    \"tangentStep\",\n    \"tangentStep_apply\",\n    \"tangentStep_le\",\n    \"pt\",\n    \"pt_ne_zero_of_ne\",\n    \"pt_transverse_ne\",\n    \"tangentStep_pt\",\n    \"chain_le\",\n    \"one_add_tan_mul_I\",\n    \"exists_chain_eq\",\n    \"pt_eq_self\",\n    \"norm_sq_transverse\",\n    \"le_of_lat_lt\",\n    \"lat_lt_lat_add_smul_e1\",\n    \"eq_of_lat_eq\",\n    \"sphere3\",\n    \"sq_le_dot3_self\",\n    \"continuous_dot3_self\",\n    \"isCompact_sphere3\",\n    \"e1_mem_sphere3\",\n    \"sphere3_subset\",\n    \"dot3_smul_smul\",\n    \"dot3_smul_left\",\n    \"dot3_smul_right\",\n    \"exists_unit_smul\",\n    \"exists_min\",\n    \"exists_max\",\n    \"equator_const_is_min\",\n    \"refPt\",\n    \"refPt_dot3\",\n    \"refPt_ne_zero\",\n    \"lat_refPt\",\n    \"refPt_zero\",\n    \"refPt_one\",\n    \"linear_of_monotone_additive\",\n    \"exists_frame_with_lat\",\n    \"prop1_pole\",\n    \"IsOrthonormal\",\n    \"ofFrame\",\n    \"toFrame\",\n    \"ofFrame_apply\",\n    \"dot3_ofFrame\",\n    \"ofFrame_smul\",\n    \"ofFrame_ne_zero\",\n    \"continuous_ofFrame\",\n    \"dot3_ofFrame_left\",\n    \"toFrame_ofFrame\",\n    \"completeness\",\n    \"completeness'\",\n    \"ofFrame_toFrame\",\n    \"toFrame_ne_zero\",\n    \"dot3_toFrame_self\",\n    \"IsFrameFunction.comp_ofFrame\",\n    \"continuousOn_comp_ofFrame\",\n    \"exists_orthonormal_completion\",\n    \"isOrthonormal_cross\",\n    \"ofFrame_e1\",\n    \"ofFrame_e3\",\n    \"sum_sq_dot3_eq\",\n    \"sq_div_dot3_smul\",\n    \"sum_lat_eq\",\n    \"prop1\",\n    \"exists_min_on_equator_pole\",\n    \"exists_min_perp\",\n    \"phat\",\n    \"rhat\",\n    \"dot3_phat\",\n    \"dot3_rhat\",\n    \"phat_smul\",\n    \"rhat_smul\",\n    \"phat_ne_zero\",\n    \"rhat_ne_zero\",\n    \"continuous_phat\",\n    \"continuous_rhat\",\n    \"phat_e1\",\n    \"rhat_e3\",\n    \"IsFrameFunction.add\",\n    \"IsFrameFunction.neg\",\n    \"IsFrameFunction.sub\",\n    \"IsFrameFunction.comp_phat\",\n    \"IsFrameFunction.comp_rhat\",\n    \"continuousOn_comp_phat\",\n    \"continuousOn_comp_rhat\",\n    \"sum_phat\",\n    \"sum_rhat\",\n    \"stdQuad\",\n    \"isFrameFunction_stdQuad\",\n    \"continuousOn_stdQuad\",\n    \"stdQuad_add_phat\",\n    \"stdQuad_add_rhat\",\n    \"stdQuad_e1\",\n    \"stdQuad_e3\",\n    \"eq_stdQuad_on_six_circles\",\n    \"dot3_add_left\",\n    \"dot3_sub_left\",\n    \"dot3_cross3_left\",\n    \"dot3_cross3_right\",\n    \"dot3_cross3_self\",\n    \"exists_max_unit\",\n    \"six_normals_tight\",\n    \"eq_zero_of_vanishes_on_six_circles\",\n    \"gleason_real\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/GleasonRealSphere.lean",
+          "sha256": "ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb"
+        },
+        "boundaries": [
+          "The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq), a mathematical input that requires justification and is not derived here; recorded as DAG node FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is the named open sub-question FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN); signed and nonnegative versions are distinguished there.",
+          "The pointwise-continuity targets of FQ-GLEASON-QI3-FRAME-FUNCTIONS (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statements and statuses; neither the conditional theorem nor the unsuccessful attempts settle them. No Lean declaration instantiates IsUniformlyRayContinuous (non-vacuity is argued on paper only in dag/research/pointwise_vs_uniform_note.md)."
+        ],
+        "claim": "Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> R) that are continuous away from the origin (Cooke-Keane-Moran with continuity): f v = (M <v,p>^2 + a <v,q>^2 + m <v,r>^2)/<v,v> in an orthonormal frame (p,q,r). Latitude constancy from continuity, Piron chains as multiplier products, quarter-turn identities, six-circle agreement, and a tight-frame identity over the six circle normals in place of zero counting.",
+        "contract_urn": "urn:tfqm:fq-gleason-qi3:gleasonrealsphere",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json",
+            "sha256": "d9c75240cb29d1d523acdaf6f0876935dc36014c2967f73994b68c89470cd78c"
+          },
+          {
+            "path": "lean4/GleasonRealSphere.lean",
+            "sha256": "ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb"
+          }
+        ],
+        "owned_invariants": [
+          "Gleason's theorem for frame functions on nonzero vectors of (Fin 3 -> R) that are continuous away from the origin (Cooke-Keane-Moran with continuity): f v = (M <v,p>^2 + a <v,q>^2 + m <v,r>^2)/<v,v> in an orthonormal frame (p,q,r). Latitude constancy from continuity, Piron chains as multiplier products, quarter-turn identities, six-circle agreement, and a tight-frame identity over the six circle normals in place of zero counting.",
+          "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL."
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "dot3",
+          "cross3",
+          "e1",
+          "e3",
+          "lat",
+          "IsFrameFunction",
+          "dot3_comm",
+          "dot3_self_nonneg",
+          "ne_zero_iff_dot3_self_pos",
+          "dot3_self_pos",
+          "ne_zero_of_dot3_self_pos",
+          "ne_zero_of_apply_ne",
+          "ne_zero_of_transverse_ne",
+          "e1_ne_zero",
+          "e3_ne_zero",
+          "dot3_e3_self",
+          "dot3_e1_self",
+          "lat_e1",
+          "lat_nonneg",
+          "lat_le_one",
+          "lat_smul",
+          "lat_lt_iff",
+          "lat_eq_iff",
+          "pair_sum_eq_of_common_normal",
+          "tangentDir",
+          "tangentStep",
+          "tangentStep_apply",
+          "tangentStep_le",
+          "pt",
+          "pt_ne_zero_of_ne",
+          "pt_transverse_ne",
+          "tangentStep_pt",
+          "chain_le",
+          "one_add_tan_mul_I",
+          "exists_chain_eq",
+          "pt_eq_self",
+          "norm_sq_transverse",
+          "le_of_lat_lt",
+          "lat_lt_lat_add_smul_e1",
+          "eq_of_lat_eq",
+          "sphere3",
+          "sq_le_dot3_self",
+          "continuous_dot3_self",
+          "isCompact_sphere3",
+          "e1_mem_sphere3",
+          "sphere3_subset",
+          "dot3_smul_smul",
+          "dot3_smul_left",
+          "dot3_smul_right",
+          "exists_unit_smul",
+          "exists_min",
+          "exists_max",
+          "equator_const_is_min",
+          "refPt",
+          "refPt_dot3",
+          "refPt_ne_zero",
+          "lat_refPt",
+          "refPt_zero",
+          "refPt_one",
+          "linear_of_monotone_additive",
+          "exists_frame_with_lat",
+          "prop1_pole",
+          "IsOrthonormal",
+          "ofFrame",
+          "toFrame",
+          "ofFrame_apply",
+          "dot3_ofFrame",
+          "ofFrame_smul",
+          "ofFrame_ne_zero",
+          "continuous_ofFrame",
+          "dot3_ofFrame_left",
+          "toFrame_ofFrame",
+          "completeness",
+          "completeness'",
+          "ofFrame_toFrame",
+          "toFrame_ne_zero",
+          "dot3_toFrame_self",
+          "IsFrameFunction.comp_ofFrame",
+          "continuousOn_comp_ofFrame",
+          "exists_orthonormal_completion",
+          "isOrthonormal_cross",
+          "ofFrame_e1",
+          "ofFrame_e3",
+          "sum_sq_dot3_eq",
+          "sq_div_dot3_smul",
+          "sum_lat_eq",
+          "prop1",
+          "exists_min_on_equator_pole",
+          "exists_min_perp",
+          "phat",
+          "rhat",
+          "dot3_phat",
+          "dot3_rhat",
+          "phat_smul",
+          "rhat_smul",
+          "phat_ne_zero",
+          "rhat_ne_zero",
+          "continuous_phat",
+          "continuous_rhat",
+          "phat_e1",
+          "rhat_e3",
+          "IsFrameFunction.add",
+          "IsFrameFunction.neg",
+          "IsFrameFunction.sub",
+          "IsFrameFunction.comp_phat",
+          "IsFrameFunction.comp_rhat",
+          "continuousOn_comp_phat",
+          "continuousOn_comp_rhat",
+          "sum_phat",
+          "sum_rhat",
+          "stdQuad",
+          "isFrameFunction_stdQuad",
+          "continuousOn_stdQuad",
+          "stdQuad_add_phat",
+          "stdQuad_add_rhat",
+          "stdQuad_e1",
+          "stdQuad_e3",
+          "eq_stdQuad_on_six_circles",
+          "dot3_add_left",
+          "dot3_sub_left",
+          "dot3_cross3_left",
+          "dot3_cross3_right",
+          "dot3_cross3_self",
+          "exists_max_unit",
+          "six_normals_tight",
+          "eq_zero_of_vanishes_on_six_circles",
+          "gleason_real"
+        ]
+      },
+      "sha256": "29be71239c8eda8045863307ab8454b6c671cdbc367431a3c81b72eec6dad883"
     }
   ],
-  "current_contract": "05cf442dc2a21dbea73e43e57ceff51814b28cb921c7125b2a890c7cc08046eb",
-  "current_scoring": "2f0872795f347c6b9e624cc4b59dad351c0410f04e5b196d4660b698c8c23d9f",
+  "current_contract": "29be71239c8eda8045863307ab8454b6c671cdbc367431a3c81b72eec6dad883",
+  "current_scoring": "9d8feb92b90bd8f34ea6b5f17fff0dc392105ade92f88b4559e5f5536ae4bf25",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {},
   "schema_version": "tfqm.contract-score.v1",
@@ -607,6 +773,60 @@
         "score_token": "L4D"
       },
       "sha256": "2f0872795f347c6b9e624cc4b59dad351c0410f04e5b196d4660b698c8c23d9f"
+    },
+    {
+      "bytes": 2804,
+      "original_paths": [
+        "lean4/GleasonRealSphere.contract.score.yaml#fq-gleason-qi3-analytic-bridge-reviewed-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/GleasonRealSphere.lean\",\n    \"sha256\": \"ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb\"\n  },\n  \"assessment_id\": \"fq-gleason-qi3-analytic-bridge-reviewed-2026-11-03\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and named symbols are bound to the stated claim and to DAG node FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (CONDITIONAL) with AuthorityEffect None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON keep their statuses.\",\n    \"G2\": \"Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and axiom audit use only propext, Classical.choice and Quot.sound; 0 sorry.\",\n    \"G4\": \"Kernel-checked by lake build with #print axioms audit recorded in the replay receipt; the main theorems are listed there by name.\",\n    \"G5\": \"Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-11-03T02:31:16+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json\",\n      \"sha256\": \"d9c75240cb29d1d523acdaf6f0876935dc36014c2967f73994b68c89470cd78c\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and the axiom audit.\",\n  \"limitations\": [\n    \"The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq), a mathematical input that requires justification and is not derived here; recorded as DAG node FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is the named open sub-question FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN); signed and nonnegative versions are distinguished there.\",\n    \"The pointwise-continuity targets of FQ-GLEASON-QI3-FRAME-FUNCTIONS (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statements and statuses; neither the conditional theorem nor the unsuccessful attempts settle them. No Lean declaration instantiates IsUniformlyRayContinuous (non-vacuity is argued on paper only in dag/research/pointwise_vs_uniform_note.md).\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/GleasonRealSphere.lean",
+          "sha256": "ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb"
+        },
+        "assessment_id": "fq-gleason-qi3-analytic-bridge-reviewed-2026-11-03",
+        "basis": {
+          "G1": "Exact source identity and named symbols are bound to the stated claim and to DAG node FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (CONDITIONAL) with AuthorityEffect None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON keep their statuses.",
+          "G2": "Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.",
+          "G3": "Lean 4.35 kernel build and axiom audit use only propext, Classical.choice and Quot.sound; 0 sorry.",
+          "G4": "Kernel-checked by lake build with #print axioms audit recorded in the replay receipt; the main theorems are listed there by name.",
+          "G5": "Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-11-03T02:31:16+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json",
+            "sha256": "d9c75240cb29d1d523acdaf6f0876935dc36014c2967f73994b68c89470cd78c"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and the axiom audit.",
+        "limitations": [
+          "The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq), a mathematical input that requires justification and is not derived here; recorded as DAG node FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is the named open sub-question FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN); signed and nonnegative versions are distinguished there.",
+          "The pointwise-continuity targets of FQ-GLEASON-QI3-FRAME-FUNCTIONS (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statements and statuses; neither the conditional theorem nor the unsuccessful attempts settle them. No Lean declaration instantiates IsUniformlyRayContinuous (non-vacuity is argued on paper only in dag/research/pointwise_vs_uniform_note.md)."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "9d8feb92b90bd8f34ea6b5f17fff0dc392105ade92f88b4559e5f5536ae4bf25"
     }
   ]
 }

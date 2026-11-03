@@ -7,27 +7,27 @@
     "artifact": {
       "language": "Lean 4",
       "path": "lean4/lakefile.lean",
-      "sha256": "3762870a4f23cfc018e75233a29f28091eacf473b0661974a5bed081073e36ac"
+      "sha256": "4dfc2ebab505124991820fc3aee50b77346fef9d13980720d7e6ecfb4c9b8e15"
     },
     "boundaries": [
-      "The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays). Whether pointwise Archimedean continuity on rays already implies it is a separate, open sub-question.",
-      "DAG node statuses are unchanged by this module: FQ-GAP-BORN-UNIQUENESS-GLEASON and FQ-GLEASON-QI3-FRAME-FUNCTIONS remain OPEN until the maintainer decides how the declared input is recorded."
+      "The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq), a mathematical input that requires justification and is not derived here; recorded as DAG node FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is the named open sub-question FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN); signed and nonnegative versions are distinguished there.",
+      "The pointwise-continuity targets of FQ-GLEASON-QI3-FRAME-FUNCTIONS (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statements and statuses; neither the conditional theorem nor the unsuccessful attempts settle them. No Lean declaration instantiates IsUniformlyRayContinuous (non-vacuity is argued on paper only in dag/research/pointwise_vs_uniform_note.md)."
     ],
-    "claim": "Register BornGaussianParallelogramRigidity, GleasonRealSphere, GleasonComplexSphere and GleasonGaussianBridge as non-default Lake targets for FQ-GLEASON-QI3-FRAME-FUNCTIONS, in addition to the previously registered BornGaussianTomographyReduction.",
+    "claim": "Register BornGaussianParallelogramRigidity, GleasonRealSphere, GleasonComplexSphere and GleasonGaussianBridge as non-default Lake targets (four whole lean_lib stanzas appended to the main lakefile, recorded as a replay-pin migration in dag/research/lean_replay_pin_migrations.json so the FQCD/FSP receipts keep their original pins).",
     "contract_urn": "urn:tfqm:fq-gleason-qi3:lakefile",
     "evidence": [
       {
         "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json",
-        "sha256": "de1fe83df155e3de37e68d6f2ea57ec580a0f44350188acdf36e13d8e8f822d4"
+        "sha256": "d9c75240cb29d1d523acdaf6f0876935dc36014c2967f73994b68c89470cd78c"
       },
       {
         "path": "lean4/lakefile.lean",
-        "sha256": "3762870a4f23cfc018e75233a29f28091eacf473b0661974a5bed081073e36ac"
+        "sha256": "4dfc2ebab505124991820fc3aee50b77346fef9d13980720d7e6ecfb4c9b8e15"
       }
     ],
     "owned_invariants": [
-      "Register BornGaussianParallelogramRigidity, GleasonRealSphere, GleasonComplexSphere and GleasonGaussianBridge as non-default Lake targets for FQ-GLEASON-QI3-FRAME-FUNCTIONS, in addition to the previously registered BornGaussianTomographyReduction.",
-      "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status."
+      "Register BornGaussianParallelogramRigidity, GleasonRealSphere, GleasonComplexSphere and GleasonGaussianBridge as non-default Lake targets (four whole lean_lib stanzas appended to the main lakefile, recorded as a replay-pin migration in dag/research/lean_replay_pin_migrations.json so the FQCD/FSP receipts keep their original pins).",
+      "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL."
     ],
     "schema_id": "tfqm.source-contract.v1",
     "symbols": [
@@ -15126,10 +15126,53 @@
         ]
       },
       "sha256": "ee9f6a5907ce9fec26d7aaea89217fb47e3668f6c224ab0e3eb36fa2a0e0f36d"
+    },
+    {
+      "bytes": 2551,
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#fq-gleason-qi3-analytic-bridge-reviewed-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"4dfc2ebab505124991820fc3aee50b77346fef9d13980720d7e6ecfb4c9b8e15\"\n  },\n  \"boundaries\": [\n    \"The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq), a mathematical input that requires justification and is not derived here; recorded as DAG node FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is the named open sub-question FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN); signed and nonnegative versions are distinguished there.\",\n    \"The pointwise-continuity targets of FQ-GLEASON-QI3-FRAME-FUNCTIONS (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statements and statuses; neither the conditional theorem nor the unsuccessful attempts settle them. No Lean declaration instantiates IsUniformlyRayContinuous (non-vacuity is argued on paper only in dag/research/pointwise_vs_uniform_note.md).\"\n  ],\n  \"claim\": \"Register BornGaussianParallelogramRigidity, GleasonRealSphere, GleasonComplexSphere and GleasonGaussianBridge as non-default Lake targets (four whole lean_lib stanzas appended to the main lakefile, recorded as a replay-pin migration in dag/research/lean_replay_pin_migrations.json so the FQCD/FSP receipts keep their original pins).\",\n  \"contract_urn\": \"urn:tfqm:fq-gleason-qi3:lakefile\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json\",\n      \"sha256\": \"d9c75240cb29d1d523acdaf6f0876935dc36014c2967f73994b68c89470cd78c\"\n    },\n    {\n      \"path\": \"lean4/lakefile.lean\",\n      \"sha256\": \"4dfc2ebab505124991820fc3aee50b77346fef9d13980720d7e6ecfb4c9b8e15\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Register BornGaussianParallelogramRigidity, GleasonRealSphere, GleasonComplexSphere and GleasonGaussianBridge as non-default Lake targets (four whole lean_lib stanzas appended to the main lakefile, recorded as a replay-pin migration in dag/research/lean_replay_pin_migrations.json so the FQCD/FSP receipts keep their original pins).\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL.\"\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"BornGaussianParallelogramRigidity\",\n    \"GleasonRealSphere\",\n    \"GleasonComplexSphere\",\n    \"GleasonGaussianBridge\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "4dfc2ebab505124991820fc3aee50b77346fef9d13980720d7e6ecfb4c9b8e15"
+        },
+        "boundaries": [
+          "The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq), a mathematical input that requires justification and is not derived here; recorded as DAG node FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is the named open sub-question FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN); signed and nonnegative versions are distinguished there.",
+          "The pointwise-continuity targets of FQ-GLEASON-QI3-FRAME-FUNCTIONS (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statements and statuses; neither the conditional theorem nor the unsuccessful attempts settle them. No Lean declaration instantiates IsUniformlyRayContinuous (non-vacuity is argued on paper only in dag/research/pointwise_vs_uniform_note.md)."
+        ],
+        "claim": "Register BornGaussianParallelogramRigidity, GleasonRealSphere, GleasonComplexSphere and GleasonGaussianBridge as non-default Lake targets (four whole lean_lib stanzas appended to the main lakefile, recorded as a replay-pin migration in dag/research/lean_replay_pin_migrations.json so the FQCD/FSP receipts keep their original pins).",
+        "contract_urn": "urn:tfqm:fq-gleason-qi3:lakefile",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json",
+            "sha256": "d9c75240cb29d1d523acdaf6f0876935dc36014c2967f73994b68c89470cd78c"
+          },
+          {
+            "path": "lean4/lakefile.lean",
+            "sha256": "4dfc2ebab505124991820fc3aee50b77346fef9d13980720d7e6ecfb4c9b8e15"
+          }
+        ],
+        "owned_invariants": [
+          "Register BornGaussianParallelogramRigidity, GleasonRealSphere, GleasonComplexSphere and GleasonGaussianBridge as non-default Lake targets (four whole lean_lib stanzas appended to the main lakefile, recorded as a replay-pin migration in dag/research/lean_replay_pin_migrations.json so the FQCD/FSP receipts keep their original pins).",
+          "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL."
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "BornGaussianParallelogramRigidity",
+          "GleasonRealSphere",
+          "GleasonComplexSphere",
+          "GleasonGaussianBridge"
+        ]
+      },
+      "sha256": "e7fb34672784e65c2679a4ab194bcc664948844a7963fa218c8cf2f6b8cf9635"
     }
   ],
-  "current_contract": "ee9f6a5907ce9fec26d7aaea89217fb47e3668f6c224ab0e3eb36fa2a0e0f36d",
-  "current_scoring": "2e947b487e6513442bcc56154c3490aacd4a8ccf9011091f127d3206b81842c2",
+  "current_contract": "e7fb34672784e65c2679a4ab194bcc664948844a7963fa218c8cf2f6b8cf9635",
+  "current_scoring": "5970919f7435a8c0de839dfb1bc9ea798796fceacacf5178506381433453f67f",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {
     "#merge-ads-cft-registration": "c684dedc0291c59c6e13a95fbc502a5f1069995a4925787fd01d37ae575d6ad1",
@@ -28321,6 +28364,60 @@
         "score_token": "L4D"
       },
       "sha256": "2e947b487e6513442bcc56154c3490aacd4a8ccf9011091f127d3206b81842c2"
+    },
+    {
+      "bytes": 2741,
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#fq-gleason-qi3-analytic-bridge-reviewed-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"4dfc2ebab505124991820fc3aee50b77346fef9d13980720d7e6ecfb4c9b8e15\"\n  },\n  \"assessment_id\": \"fq-gleason-qi3-analytic-bridge-reviewed-2026-11-03\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and named symbols are bound to the stated claim and to DAG node FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (CONDITIONAL) with AuthorityEffect None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON keep their statuses.\",\n    \"G2\": \"Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and axiom audit use only propext, Classical.choice and Quot.sound; 0 sorry.\",\n    \"G4\": \"The four registered targets build successfully; recorded in the replay receipt.\",\n    \"G5\": \"Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-11-03T02:31:16+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json\",\n      \"sha256\": \"d9c75240cb29d1d523acdaf6f0876935dc36014c2967f73994b68c89470cd78c\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and the axiom audit.\",\n  \"limitations\": [\n    \"The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq), a mathematical input that requires justification and is not derived here; recorded as DAG node FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is the named open sub-question FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN); signed and nonnegative versions are distinguished there.\",\n    \"The pointwise-continuity targets of FQ-GLEASON-QI3-FRAME-FUNCTIONS (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statements and statuses; neither the conditional theorem nor the unsuccessful attempts settle them. No Lean declaration instantiates IsUniformlyRayContinuous (non-vacuity is argued on paper only in dag/research/pointwise_vs_uniform_note.md).\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "4dfc2ebab505124991820fc3aee50b77346fef9d13980720d7e6ecfb4c9b8e15"
+        },
+        "assessment_id": "fq-gleason-qi3-analytic-bridge-reviewed-2026-11-03",
+        "basis": {
+          "G1": "Exact source identity and named symbols are bound to the stated claim and to DAG node FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (CONDITIONAL) with AuthorityEffect None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON keep their statuses.",
+          "G2": "Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.",
+          "G3": "Lean 4.35 kernel build and axiom audit use only propext, Classical.choice and Quot.sound; 0 sorry.",
+          "G4": "The four registered targets build successfully; recorded in the replay receipt.",
+          "G5": "Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-11-03T02:31:16+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json",
+            "sha256": "d9c75240cb29d1d523acdaf6f0876935dc36014c2967f73994b68c89470cd78c"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and the axiom audit.",
+        "limitations": [
+          "The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq), a mathematical input that requires justification and is not derived here; recorded as DAG node FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is the named open sub-question FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN); signed and nonnegative versions are distinguished there.",
+          "The pointwise-continuity targets of FQ-GLEASON-QI3-FRAME-FUNCTIONS (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statements and statuses; neither the conditional theorem nor the unsuccessful attempts settle them. No Lean declaration instantiates IsUniformlyRayContinuous (non-vacuity is argued on paper only in dag/research/pointwise_vs_uniform_note.md)."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "5970919f7435a8c0de839dfb1bc9ea798796fceacacf5178506381433453f67f"
     }
   ]
 }

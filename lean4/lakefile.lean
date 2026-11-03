@@ -1571,10 +1571,6 @@ lean_lib NativeHistory where
 lean_lib FQCD where
   roots := #[`FQCD.StrongCouplingAreaLaw]
 
-
--- FQ-GLEASON-QI3-FRAME-FUNCTIONS: parallelogram rigidity and the analytic half
--- (continuous frame functions on the real and complex spheres) and the bridge back to
--- `ℚ(i)³` under uniform ray continuity. Non-default targets.
 lean_lib BornGaussianParallelogramRigidity where
   roots := #[`BornGaussianParallelogramRigidity]
 
@@ -1586,3 +1582,4 @@ lean_lib GleasonComplexSphere where
 
 lean_lib GleasonGaussianBridge where
   roots := #[`GleasonGaussianBridge]
+
