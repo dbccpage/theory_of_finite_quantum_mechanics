@@ -1,0 +1,702 @@
+# Table of contents for this repository: where each body of work lives and why.
+#
+# A book is a folder (or one file) that holds a coherent piece of work. Books may
+# nest: a tier folder is its own book and also sits inside the whole-DAG book.
+# File counts are not stored here; the catalog checker computes them from git.
+#
+# This catalog lists only this repository's own books. It names no other
+# repository, so it is safe to publish.
+catalog:
+  schema: omega-library-catalog/1
+  repo: theory_of_finite_quantum_mechanics
+  title: Theory of Finite Quantum Mechanics
+  authority_effect: None
+  nonclaims:
+  - A book entry records where a body of work lives. It is not a proof, a status, or an admission.
+  - Node statuses in dag/derivation_dag.json govern; nothing here changes or restates them.
+
+shelves:
+- key: papers
+  title: Papers
+  why_here: Written papers (Markdown, TeX, PDF) with their Lean sources and claim ledgers.
+  books:
+  - key: papers
+    path: papers
+    kind: paper
+    title: Papers (whole)
+    lifecycle: active
+    why_here: Every paper folder below, plus the proof notes for computation and genesis and the dressing-field dossier.
+    entry_points: [papers/ravera_dfm_dossier.md, papers/computation/computation_proofs.md, papers/genesis/genesis_proofs.md]
+  - key: papers_core
+    path: papers/core
+    kind: paper
+    title: Finite Quantum Mechanics (core paper and companions)
+    lifecycle: active
+    why_here: The main paper plus the MUB(6), fermion sign, Majorana, constraint-closure and sign-problem companions.
+    entry_points:
+    - papers/core/finite_quantum_mechanics.md
+    - papers/core/finite_quantum_mechanics.pdf
+    - papers/core/finite_qm_guide_map.md
+    - papers/core/master_derivation_ledger.md
+    - papers/core/finite_quantum_mechanics_claim_ledger.md
+    related: [dag, lean4_root]
+  - key: paper_mub6
+    path: papers/core/mub6
+    kind: paper
+    title: Mutually unbiased bases in dimension 6
+    lifecycle: active
+    why_here: The MUB(6) paper, its completion supplement and artifacts.
+    entry_points: [papers/core/mub6/mub6.md, papers/core/mub6/mub6.pdf, papers/core/mub6_proofs.md]
+    related: [dag_25_mub]
+  - key: paper_fsp
+    path: papers/core/fsp
+    kind: paper
+    title: The fermion sign problem
+    lifecycle: active
+    why_here: Finite treatment of the fermion sign problem.
+    entry_points: [papers/core/fsp/the_problem_of_the_fermion_sign.md, papers/core/fsp/theory_of_finite_fsp.md]
+    related: [dag_26_fsp]
+  - key: paper_majorana
+    path: papers/core/majorana
+    kind: paper
+    title: The Majorana problem
+    lifecycle: active
+    why_here: Majorana fermions in the finite setting.
+    entry_points: [papers/core/majorana/the_majorana_problem.md, papers/core/fermion_sign_and_majorana_proofs.md]
+    related: [dag_28_majorana]
+  - key: paper_constraint_closure
+    path: papers/core/constraint_closure
+    kind: paper
+    title: Constraint closure and the l1 structure of physical law
+    lifecycle: active
+    why_here: Constraint-closure paper.
+    entry_points: [papers/core/constraint_closure/constraint_closure_and_the_l1structure_of_physical_law.md]
+  - key: paper_meron_sign
+    path: papers/core/000_meron_sign_problem
+    kind: paper
+    title: The meron sign problem
+    lifecycle: active
+    why_here: Sign-problem paper on merons.
+    entry_points: [papers/core/000_meron_sign_problem/paper.md]
+  - key: paper_hubbard_sign
+    path: papers/core/001_hubbard_sign_problem
+    kind: paper
+    title: The Hubbard sign problem
+    lifecycle: active
+    why_here: Sign-problem paper on the Hubbard model.
+    entry_points: [papers/core/001_hubbard_sign_problem/paper.md]
+  - key: paper_000_projection_obstruction
+    path: papers/000_projection_obstruction
+    kind: paper
+    title: Projection Obstruction anchor (PO-000)
+    lifecycle: consolidated
+    why_here: The projection-obstruction anchor paper and its Lean census.
+    entry_points: [papers/000_projection_obstruction/projection_obstruction.md]
+  - key: paper_006_observer_geometries
+    path: papers/006_vector_and_quantum_observer_geometries
+    kind: paper
+    title: Vector and quantum observer geometries
+    lifecycle: consolidated
+    why_here: Observer geometries paper.
+    entry_points: [papers/006_vector_and_quantum_observer_geometries/vector_and_quantum_observer_geometries.md]
+  - key: paper_007_m_compatible_gauge
+    path: papers/007_m_compatible_gauge_classification
+    kind: paper
+    title: M-compatible gauge classification (GS-001)
+    lifecycle: consolidated
+    why_here: Gauge classification paper.
+    entry_points: [papers/007_m_compatible_gauge_classification/m_compatible_gauge_classification.md]
+  - key: paper_008_so_k_gauge
+    path: papers/008_so_k_invariant_gauge_classification
+    kind: paper
+    title: SO(k)-invariant gauge rigidity (GS-002)
+    lifecycle: consolidated
+    why_here: Gauge rigidity for declared Euclidean stalks.
+    entry_points: [papers/008_so_k_invariant_gauge_classification/so_k_invariant_gauge_classification.md]
+  - key: paper_009_density_lift
+    path: papers/009_conditional_density_lift_and_dual_witness_xi_functional
+    kind: paper
+    title: Conditional density lifts and the dual witness functional
+    lifecycle: consolidated
+    why_here: Density-lift paper with its primal-dual alignment statistic.
+    entry_points: [papers/009_conditional_density_lift_and_dual_witness_xi_functional/density_lift.md]
+  - key: paper_009_coordinate_additivity
+    path: papers/009_coordinate_wise_additivity
+    kind: paper
+    title: Coordinate-wise additivity (GS-000)
+    lifecycle: consolidated
+    why_here: Coordinate-wise additivity paper.
+    entry_points: [papers/009_coordinate_wise_additivity/coordinate_wise_additivity.md]
+  - key: paper_032_distinction_carriers
+    path: papers/032_witnessed_difference_finite_distinction_carriers_and_history_escape
+    kind: paper
+    title: Finite distinction carriers and history escape
+    lifecycle: consolidated
+    why_here: Witnessed-difference paper on distinction carriers.
+    entry_points: [papers/032_witnessed_difference_finite_distinction_carriers_and_history_escape/wd2_finite_distinction_carriers_and_history_escape.md]
+  - key: paper_034_higher_cell_retractions
+    path: papers/034_higher_cell_cochain_projection_and_retraction_dynamics
+    kind: paper
+    title: Higher-cell product retractions and finite retraction dynamics (PO-034)
+    lifecycle: consolidated
+    why_here: Higher-cell cochain projection paper.
+    entry_points: [papers/034_higher_cell_cochain_projection_and_retraction_dynamics/034_higher_cell_cochain_projection_and_retraction_dynamics.md]
+  - key: paper_035_relational_spacetime
+    path: papers/035_zero_container_relational_spacetime_and_witness_holonomy
+    kind: paper
+    title: Zero-container relational spacetime and witness holonomy (PO-035)
+    lifecycle: active
+    why_here: Relational spacetime paper.
+    entry_points: [papers/035_zero_container_relational_spacetime_and_witness_holonomy/zero_container_relational_spacetime_and_witness_holonomy.md]
+    related: [dag_35_observer_presheaf]
+  - key: papers_foundations
+    path: papers/foundations
+    kind: paper
+    title: Quantum foundations notes (QM-002 onward)
+    lifecycle: active
+    why_here: Shorter foundations papers on quotient bridges, residual densities and obstruction management.
+  - key: paper_complexity
+    path: papers/complexity
+    kind: paper
+    title: Complexity notes
+    lifecycle: scaffold
+    why_here: Notes relating complexity questions to the finite programme.
+  - key: papers_drafts
+    path: papers/drafts
+    kind: paper
+    title: Drafts
+    lifecycle: scaffold
+    why_here: Early drafts, currently finite lattice gauge theory.
+  - key: paper_ravera_dossier_log
+    path: papers/ravera_dfm_dossier_change_log.md
+    kind: ledger
+    title: Dressing-field dossier change log
+    lifecycle: active
+    why_here: Change log for the dressing-field method dossier.
+    related: [dag_24_dressing_field]
+
+- key: dag
+  title: Derivation DAG
+  why_here: The derivation graph, its tiered derivation notes, results and campaign records.
+  books:
+  - key: dag
+    path: dag
+    kind: derivation_set
+    title: Derivation DAG (whole)
+    lifecycle: active
+    why_here: The DAG, its validators and sync scripts, and every folder below.
+    entry_points:
+    - dag/derivation_dag.json
+    - dag/derivation_dag_reading_note.md
+    - dag/theory_of_finite_qm.md
+    - dag/derivations/README.md
+    - dag/derivations/MASTER_DERIVATION_LEDGER.md
+  - key: dag_01_pregenesis
+    path: dag/derivations/01_pregenesis
+    kind: derivation_set
+    title: Tier 01, Pregenesis
+    lifecycle: active
+    why_here: Inert inscription up to the first admitted distinctions.
+    entry_points: [dag/derivations/PREGENESIS_TO_WDP_ROUTE.md]
+  - key: dag_02_genesis
+    path: dag/derivations/02_genesis
+    kind: derivation_set
+    title: Tier 02, Genesis
+    lifecycle: active
+    why_here: Genesis regime events and admission records.
+  - key: dag_03_finite_obstruction
+    path: dag/derivations/03_finite_obstruction
+    kind: derivation_set
+    title: Tier 03, Finite obstruction
+    lifecycle: active
+    why_here: Finite obstruction calculus.
+  - key: dag_04_authorization
+    path: dag/derivations/04_authorization
+    kind: derivation_set
+    title: Tier 04, Authorization
+    lifecycle: active
+    why_here: Authorization and incompleteness.
+  - key: dag_05_mssn_sn
+    path: dag/derivations/05_mssn_sn
+    kind: derivation_set
+    title: Tier 05, Minimal symbol systems and S(n)
+    lifecycle: active
+    why_here: Minimal symbol systems and symmetric-group presentations.
+  - key: dag_06_wdp
+    path: dag/derivations/06_wdp
+    kind: derivation_set
+    title: Tier 06, Witnessed Difference Programme
+    lifecycle: active
+    why_here: Witnessed-difference derivations.
+  - key: dag_07_l1_emergence
+    path: dag/derivations/07_l1_emergence
+    kind: derivation_set
+    title: Tier 07, L1 emergence
+    lifecycle: active
+    why_here: Emergence of the l1 layer.
+  - key: dag_08_l1_to_l2
+    path: dag/derivations/08_l1_to_l2
+    kind: derivation_set
+    title: Tier 08, L1 to L2
+    lifecycle: active
+    why_here: From the l1 layer to the l2 layer.
+  - key: dag_09_finite_hilbert
+    path: dag/derivations/09_finite_hilbert
+    kind: derivation_set
+    title: Tier 09, Finite Hilbert space
+    lifecycle: active
+    why_here: Finite Hilbert carriers and inner products.
+  - key: dag_10_finite_qm_core
+    path: dag/derivations/10_finite_qm_core
+    kind: derivation_set
+    title: Tier 10, Finite QM core
+    lifecycle: active
+    why_here: Core finite quantum mechanics.
+  - key: dag_11_finite_qm_dynamics
+    path: dag/derivations/11_finite_qm_dynamics
+    kind: derivation_set
+    title: Tier 11, Finite QM dynamics
+    lifecycle: active
+    why_here: Finite dynamics.
+  - key: dag_12_finite_qm_structure
+    path: dag/derivations/12_finite_qm_structure
+    kind: derivation_set
+    title: Tier 12, Finite QM structure
+    lifecycle: active
+    why_here: Structural results.
+  - key: dag_13_finite_qm_information
+    path: dag/derivations/13_finite_qm_information
+    kind: derivation_set
+    title: Tier 13, Finite quantum information
+    lifecycle: active
+    why_here: Information-theoretic results.
+  - key: dag_14_finite_gauge
+    path: dag/derivations/14_finite_gauge
+    kind: derivation_set
+    title: Tier 14, Finite gauge theory
+    lifecycle: active
+    why_here: Finite gauge structure.
+  - key: dag_15_finite_qed
+    path: dag/derivations/15_finite_qed
+    kind: derivation_set
+    title: Tier 15, Finite QED
+    lifecycle: active
+    why_here: Finite quantum electrodynamics.
+  - key: dag_16_finite_electroweak
+    path: dag/derivations/16_finite_electroweak
+    kind: derivation_set
+    title: Tier 16, Finite electroweak
+    lifecycle: active
+    why_here: Finite electroweak theory.
+  - key: dag_17_finite_qcd
+    path: dag/derivations/17_finite_qcd
+    kind: derivation_set
+    title: Tier 17, Finite QCD
+    lifecycle: active
+    why_here: Finite quantum chromodynamics.
+  - key: dag_18_finite_topological
+    path: dag/derivations/18_finite_topological
+    kind: derivation_set
+    title: Tier 18, Finite topological
+    lifecycle: active
+    why_here: Topological structure.
+  - key: dag_19_finite_qg
+    path: dag/derivations/19_finite_qg
+    kind: derivation_set
+    title: Tier 19, Finite quantum gravity
+    lifecycle: active
+    why_here: Finite quantum gravity.
+  - key: dag_20_continuum_interface
+    path: dag/derivations/20_continuum_interface
+    kind: derivation_set
+    title: Tier 20, Continuum interface
+    lifecycle: active
+    why_here: Controlled passage to the continuum.
+  - key: dag_21_implementation_core
+    path: dag/derivations/21_implementation_core
+    kind: derivation_set
+    title: Tier 21, Implementation core
+    lifecycle: active
+    why_here: Implementation-facing derivations.
+  - key: dag_22_implementation_sibling
+    path: dag/derivations/22_implementation_sibling
+    kind: derivation_set
+    title: Tier 22, Implementation sibling
+    lifecycle: active
+    why_here: Sibling implementation derivations.
+  - key: dag_23_engine_custody
+    path: dag/derivations/23_engine_custody
+    kind: derivation_set
+    title: Tier 23, Engine custody
+    lifecycle: active
+    why_here: Custody records for imported results.
+  - key: dag_24_dressing_field
+    path: dag/derivations/24_dressing_field
+    kind: derivation_set
+    title: Tier 24, Dressing-field method
+    lifecycle: active
+    why_here: Dressing-field derivations.
+  - key: dag_25_mub
+    path: dag/derivations/25_mub
+    kind: derivation_set
+    title: Tier 25, Mutually unbiased bases
+    lifecycle: active
+    why_here: MUB derivations.
+  - key: dag_26_fsp
+    path: dag/derivations/26_fsp
+    kind: derivation_set
+    title: Tier 26, Fermion sign problem
+    lifecycle: active
+    why_here: Fermion sign derivations.
+  - key: dag_27_tensor_composition
+    path: dag/derivations/27_tensor_composition
+    kind: derivation_set
+    title: Tier 27, Tensor composition
+    lifecycle: active
+    why_here: Tensor-product composition.
+  - key: dag_28_majorana
+    path: dag/derivations/28_majorana
+    kind: derivation_set
+    title: Tier 28, Majorana
+    lifecycle: active
+    why_here: Majorana derivations.
+  - key: dag_29_computation
+    path: dag/derivations/29_computation
+    kind: derivation_set
+    title: Tier 29, Computation
+    lifecycle: active
+    why_here: Computational derivations.
+  - key: dag_30_constructor_theory
+    path: dag/derivations/30_constructor_theory
+    kind: derivation_set
+    title: Tier 30, Constructor theory
+    lifecycle: active
+    why_here: Constructor-theory comparisons.
+  - key: dag_31_causal_qft
+    path: dag/derivations/31_causal_qft
+    kind: derivation_set
+    title: Tier 31, Causal QFT
+    lifecycle: active
+    why_here: Causal quantum field theory.
+  - key: dag_32_ads_cft
+    path: dag/derivations/32_ads_cft
+    kind: derivation_set
+    title: Tier 32, AdS/CFT
+    lifecycle: active
+    why_here: AdS/CFT interfaces.
+  - key: dag_33_loop_quantum_gravity
+    path: dag/derivations/33_loop_quantum_gravity
+    kind: derivation_set
+    title: Tier 33, Loop quantum gravity
+    lifecycle: active
+    why_here: Loop quantum gravity interfaces.
+  - key: dag_34_genesis_to_higher
+    path: dag/derivations/34_genesis_to_higher
+    kind: derivation_set
+    title: Tier 34, Genesis to higher structure
+    lifecycle: active
+    why_here: From genesis to higher categorical structure.
+  - key: dag_35_observer_presheaf
+    path: dag/derivations/35_foc035_observer_presheaf
+    kind: derivation_set
+    title: Tier 35, Observer presheaf (FOC-035)
+    lifecycle: active
+    why_here: Observer-presheaf derivations.
+  - key: dag_independent
+    path: dag/derivations/independent
+    kind: derivation_set
+    title: Independent derivations
+    lifecycle: active
+    why_here: Derivations outside the numbered tiers.
+  - key: dag_results
+    path: dag/results
+    kind: evidence
+    title: DAG results
+    lifecycle: active
+    why_here: Per-node result folders, batches and custody records.
+  - key: dag_operads
+    path: dag/operads
+    kind: evidence
+    title: DAG operad records
+    lifecycle: active
+    why_here: Operad bindings and per-prompt operad collections.
+  - key: dag_prompts
+    path: dag/prompts
+    kind: ledger
+    title: DAG prompts
+    lifecycle: active
+    why_here: Prompts generated for derivation campaigns.
+  - key: dag_research
+    path: dag/research
+    kind: ledger
+    title: Finite-QM roadmaps and research records
+    lifecycle: active
+    why_here: Roadmaps, source inventories and campaign logs.
+  - key: dag_pfp
+    path: dag/pfp
+    kind: ledger
+    title: Staged PFP research
+    lifecycle: active
+    why_here: Staged PFP research and per-prompt operad collection.
+  - key: dag_evidence
+    path: dag/evidence
+    kind: evidence
+    title: DAG evidence
+    lifecycle: active
+    why_here: Evidence files referenced from the DAG.
+  - key: dag_fragments
+    path: dag/fragments
+    kind: derivation_set
+    title: DAG fragments
+    lifecycle: active
+    why_here: Fragments joined into the unified DAG.
+
+- key: formal
+  title: Formal proofs
+  why_here: Lean 4 sources and independent checks.
+  books:
+  - key: lean4_root
+    path: lean4
+    kind: lean_project
+    title: Lean 4 project
+    lifecycle: active
+    why_here: The repository's Lean project, including imported and native modules.
+    entry_points: [lean4/provenance.md, lean4/lakefile.lean]
+  - key: lean4_imported
+    path: lean4/Imported
+    kind: lean_project
+    title: Imported Lean modules
+    lifecycle: copied_source
+    why_here: Lean modules imported from the genesis and witnessed-difference sources.
+    entry_points: [lean4/Imported/import_manifest.json]
+  - key: lean4_auth_incompleteness
+    path: lean4/AuthIncompleteness
+    kind: lean_project
+    title: Authorization incompleteness in Lean
+    lifecycle: active
+    why_here: Lean development of authorization incompleteness.
+  - key: lean4_fqcd
+    path: lean4/FQCD
+    kind: lean_project
+    title: Finite QCD in Lean
+    lifecycle: scaffold
+    why_here: Lean start on finite QCD.
+  - key: checks_independent
+    path: checks/independent
+    kind: evidence
+    title: Independent checks
+    lifecycle: active
+    why_here: Checks written apart from the repository code to recheck its results.
+
+- key: code
+  title: Code
+  why_here: Implementations in Python and Rust.
+  books:
+  - key: code
+    path: code
+    kind: code
+    title: Code (whole)
+    lifecycle: active
+    why_here: Both implementations and the shared deposit-path helper.
+  - key: code_python
+    path: code/python
+    kind: code
+    title: Python implementation
+    lifecycle: active
+    why_here: Python sources, tests and operations.
+  - key: code_rust
+    path: code/rust
+    kind: code
+    title: Rust implementation
+    lifecycle: active
+    why_here: Rust crates, quality records and tests.
+    entry_points: [code/rust/Cargo.toml]
+  - key: normal_forms
+    path: normal_forms
+    kind: dataset
+    title: Normal-form contracts
+    lifecycle: active
+    why_here: Normal-form contracts and a relational SQL slice.
+    entry_points: [normal_forms/README.md, normal_forms/contracts/index.yaml]
+
+- key: education
+  title: Education
+  why_here: Courses and reading notes that teach the programme from the ground up.
+  books:
+  - key: education
+    path: education
+    kind: course
+    title: Education (whole)
+    lifecycle: active
+    why_here: All courses below and their import provenance.
+    entry_points: [education/README.md, education/IMPORT_PROVENANCE.json]
+  - key: edu_minimal_symbol_systems
+    path: education/minimal_symbol_systems
+    kind: course
+    title: Minimal Symbol System specification atlas
+    lifecycle: active
+    why_here: Level-by-level course on minimal symbol systems.
+    entry_points: [education/minimal_symbol_systems/README.md]
+  - key: edu_witnessed_difference
+    path: education/witnessed_difference_programme
+    kind: course
+    title: The Witnessed Difference Programme
+    lifecycle: active
+    why_here: Course on the witnessed-difference programme.
+    entry_points: [education/witnessed_difference_programme/README.md]
+  - key: edu_genesis_primitives
+    path: education/genesis_primitives
+    kind: course
+    title: Genesis foundational primitives
+    lifecycle: active
+    why_here: Genesis primitives and seed architectures.
+    entry_points: [education/genesis_primitives/README.md]
+  - key: edu_symmetric_groups
+    path: education/symmetric_group_presentations
+    kind: course
+    title: S(n) presentations and finite examples
+    lifecycle: active
+    why_here: Symmetric-group presentations.
+    entry_points: [education/symmetric_group_presentations/README.md]
+  - key: edu_genesis_reading_notes
+    path: education/genesis_reading_notes
+    kind: course
+    title: Genesis reading notes
+    lifecycle: active
+    why_here: Reading notes on the genesis sources.
+    entry_points: [education/genesis_reading_notes/README.md]
+  - key: edu_pregenesis_empty_mark
+    path: education/pregenesis_empty_mark
+    kind: course
+    title: What a language model does with an empty mark
+    lifecycle: active
+    why_here: Pregenesis lesson on the empty mark.
+    entry_points: [education/pregenesis_empty_mark/README.md]
+  - key: problem_sets
+    path: problem_sets
+    kind: course
+    title: Problem sets
+    lifecycle: active
+    why_here: Problems, solutions and graded results.
+
+- key: sources
+  title: Source archives
+  why_here: Copied source texts kept byte for byte, with provenance.
+  books:
+  - key: atlas
+    path: atlas
+    kind: source_archive
+    title: Atlas of copied paper folders
+    lifecycle: copied_source
+    why_here: Paper folders copied from an earlier research repository; their claims are the sources' own wording.
+    entry_points: [atlas/README.md, atlas/PROVENANCE.json]
+    nonclaims:
+    - Files here are source texts. Nothing they say is a status in this repository.
+  - key: atlas_finite_obstruction_calculus
+    path: atlas/papers/finite_obstruction_calculus
+    kind: source_archive
+    title: Finite obstruction calculus sources
+    lifecycle: copied_source
+    why_here: Genesis, genesis-ongoing, witnessed-difference, local-green-global-red and symbol-system source folders.
+  - key: atlas_projection_obstruction
+    path: atlas/papers/projection_obstruction
+    kind: source_archive
+    title: Projection obstruction sources
+    lifecycle: copied_source
+    why_here: Source folder for the projection-obstruction paper.
+    related: [paper_000_projection_obstruction]
+  - key: atlas_everett
+    path: atlas/papers/everett_mw
+    kind: paper
+    title: Everett and double-slit notes
+    lifecycle: active
+    why_here: Double-slit measurement and Everett interpretation drafts and audits.
+    entry_points: [atlas/papers/everett_mw/double_slit_measurement_and_interpretation.md]
+  - key: sources_atlas
+    path: sources/atlas
+    kind: source_archive
+    title: Source paper atlas
+    lifecycle: copied_source
+    why_here: Source papers cited by the DAG.
+  - key: research_genesis
+    path: research
+    kind: ledger
+    title: Genesis foundations research notes
+    lifecycle: active
+    why_here: Notes on genesis foundations and the genesis language spec.
+
+- key: evidence
+  title: Evidence, reviews and governance
+  why_here: How claims are backed, audited and gated.
+  books:
+  - key: docs_site
+    path: docs
+    kind: evidence
+    title: Documentation site
+    lifecycle: active
+    why_here: The published site, evidence map and reviewer notes.
+    entry_points: [docs/index.md, docs/QM_PROBLEM_AND_PROOF_ATLAS.md, docs/reviewers.md]
+  - key: docs_evidence
+    path: docs/evidence
+    kind: evidence
+    title: Evidence map of the derivation DAG
+    lifecycle: active
+    why_here: One page per node and stage saying what backs its status.
+  - key: docs_overclaim
+    path: docs/overclaim
+    kind: evidence
+    title: Overclaim reviews
+    lifecycle: active
+    why_here: Reviews of claims against proofs.
+  - key: evidence_quality
+    path: evidence
+    kind: evidence
+    title: Quality and governance evidence
+    lifecycle: active
+    why_here: Quality runs, dossiers and governance evidence.
+  - key: governance
+    path: governance
+    kind: governance
+    title: Build-time governance
+    lifecycle: active
+    why_here: Policy, baseline and the build hooks that enforce them.
+    entry_points: [governance/README.md, governance/policy.json]
+  - key: rules
+    path: rules
+    kind: governance
+    title: Repository rules
+    lifecycle: active
+    why_here: Machine-readable rules.
+  - key: scripts
+    path: scripts
+    kind: tooling
+    title: Scripts
+    lifecycle: active
+    why_here: Audit and maintenance scripts.
+
+- key: estate
+  title: Agent estate and CI
+  why_here: Agent skills, pattern cards and CI workflows.
+  books:
+  - key: agents_patterns
+    path: .agents
+    kind: tooling
+    title: Pattern cards
+    lifecycle: active
+    why_here: Anti-pattern catalog used by the lint and the hunters.
+  - key: claude_skills
+    path: .claude
+    kind: tooling
+    title: Skills
+    lifecycle: active
+    why_here: Repository skills such as the audit and overclaim hunter.
+  - key: ci
+    path: .github
+    kind: tooling
+    title: CI workflows and issue templates
+    lifecycle: active
+    why_here: GitHub workflows.
+
+excluded:
+- path: vendor
+  reason: Third-party code, not this repository's work.
