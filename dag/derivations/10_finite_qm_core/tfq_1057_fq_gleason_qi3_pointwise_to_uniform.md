@@ -10,13 +10,13 @@
 
 ## 1. Abstract & Formal Statement
 
-Let f : GVec -> Q be a frame function on Q(i)^3 (IsFrameFunction f). Decide whether Archimedean continuity of f at every nonzero vector (IsArchimedeanContinuousEverywhere f: pointwise epsilon-delta continuity in the Euclidean squared distance distSqVec) implies uniform continuity on rays (IsUniformlyRayContinuous f: one rational delta per rational epsilon in the squared ray distance raySinSq). State separately the signed version (all frame functions) and the nonnegative version (IsNonnegFrameFunction f) needed by the original targets; the signed version implies the nonnegative one.
+Let f : GVec -> Q be a frame function on Q(i)^3 (IsFrameFunction f). Decide whether Archimedean continuity of f at every nonzero vector (IsArchimedeanContinuousEverywhere f: pointwise epsilon-delta continuity in the Euclidean squared distance distSqVec) implies uniform continuity on rays (IsUniformlyRayContinuous f: one rational delta per rational epsilon in the squared ray distance raySinSq). State separately the signed version (all frame functions) and the nonnegative version (IsNonnegFrameFunction f) needed for probability-valued Born reconstruction; the signed version implies the nonnegative one.
 
 ### Governing Obligation
-For arbitrary functions on a dense non-compact domain the implication fails (h(q) = 1 for q > sqrt(2)/2 and 0 otherwise, on Q intersected with [0,1], is continuous at every point of its domain and not uniformly continuous; a topological illustration only, not a frame function). Known: a zero-weight residual supported in a cap of angular radius below 45 degrees vanishes on the cap, assuming each ray of the cap completes to an admissible rational orthogonal frame, so that particular localized construction is ruled out; the valuation-defined residuals s3, s7, sp are nowhere Archimedean continuous and are not candidates. Not known: whether a counterexample must be global, whether one exists at all, or an epsilon-free rigidity argument that fixes a pole. A positive answer would make FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY apply to every pointwise-continuous frame function; a negative answer would be a pointwise-continuous non-quadratic frame function. Neither the unsuccessful attempts nor the conditional theorem settle the pointwise targets.
+Prove pointwise-to-uniform for signed or, first, nonnegative rational frame functions, or give a counterexample satisfying the full frame identity and continuity everywhere. Nonnegative functions are bounded by frame completion; boundedness for the general signed pointwise case is not supplied. Existing selective-oscillation theorems exclude the cited nonzero finite valuation combinations by discontinuity at tomo_e1 under their stated hypotheses; they do not certify nowhere continuity of every sp. The small-cap argument rules out only that support construction. Suggested research: fixed-ray oscillation propagation or exact finite frame certificates with coefficients uniformly bounded as auxiliary rays approach fixed tomography anchors. Neither finite search failure nor arbitrary-chain approximation settles this node.
 
 ### Source Status
-Named open sub-question recorded 2026-11-03 after a bounded-time attempt (dag/research/pointwise_vs_uniform_note.md): the epsilon-version of the Cooke-Keane-Moran descent from a rational near-maximiser did not close because the per-step loss accumulates over unboundedly many Piron steps near equal latitudes; the two-step Piron multiplier products (1 + ti)(1 + si) are not dense in C; no counterexample is established. Proof exploration paused by the maintainer.
+Open regularity question in this repository. The bounded/nonnegative near-supremum descent attempt has no controlled accumulated-error argument when the pole varies and chains lengthen. Two-step products are not dense, but arbitrary finite rational Piron products approximate every complex multiplier of modulus greater than one by the real-chain theorem and finite-product continuity (paper argument in the review, not a new Lean theorem). This does not close the regularity argument. No pointwise-continuous non-quadratic counterexample is established by this review.
 
 ---
 
@@ -53,3 +53,5 @@ Named open sub-question recorded 2026-11-03 after a bounded-time attempt (dag/re
   - `dag/research/pointwise_vs_uniform_note.md`
   - `lean4/GleasonGaussianBridge.lean`
   - `lean4/BornGaussianTomographyReduction.lean`
+  - `dag/research/pr500_review/review.md`
+  - `dag/research/pr500_review/manifest.json`

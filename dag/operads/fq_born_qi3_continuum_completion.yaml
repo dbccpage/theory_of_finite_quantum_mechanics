@@ -1,0 +1,356 @@
+schema_id: omega.pfp.finite-qm.operad-collection.v1
+node_id: FQ-BORN-QI3-CONTINUUM-COMPLETION
+authority_effect: None
+collection_status: source_candidates_collected_semantic_mining_open
+target:
+  source_statement: Package a unique continuous extension of a uniformly ray-continuous nonnegative rational
+    frame function on Q(i)^3 to all complex rays, represented by the embedded tomography matrix with Hermitian
+    symmetry, trace one and complex positive semidefiniteness. Also prove the general converse instance
+    IsUniformlyRayContinuous (quadRay rho). This target retains uniform continuity; it is not the pointwise-to-uniform
+    problem.
+  statement_status: source_claim_to_scope_check_not_accepted_result
+  declared_assumptions:
+  - uniform ray continuity
+  - nonnegativity
+  - complex completion and rational density
+  source_bottleneck: 'Formalize the matrix embedding, PSD by density, equality and uniqueness of the continuous
+    extension, and a quantitative modulus for quadRay. Rational-valued data reconstruct only Gaussian-rational
+    coefficients: covering arbitrary complex density matrices needs real-valued data or a separate approximation
+    theorem. Higher dimensions require compatible three-dimensional gluing; infinite dimensions additionally
+    need suitable normality/countable additivity and control of trace in limits.'
+  source_refs:
+  - dag/research/pr500_review/review.md
+  - lean4/GleasonGaussianBridge.lean
+  - lean4/BornGaussianTomographyReduction.lean
+  - dag/research/pr500_review/manifest.json
+  paper_refs:
+  - dag/derivations/10_finite_qm_core/tfq_1060_fq_born_qi3_continuum_completion.md
+  source_claim_label: OPEN
+  label_rule: Historical status is a source annotation. Check the exact theorem scope and remaining imports
+    before reusing a result.
+  unavailable_paper_refs: []
+  paper_source_pins:
+  - path: dag/derivations/10_finite_qm_core/tfq_1060_fq_born_qi3_continuum_completion.md
+    sha256: 85de6f465fe6b2556943ab3aff3187d6c1105c6ab6a9aaa66ab6ebfd8d5b6a57
+source_provenance:
+  repository: this_repository
+  generator: dag/pfp/generate_prompts.py
+  generator_version: 1
+  dag_source_commit: b5d79b1990eb122943295d203ccdb16dcbcf6f86
+  path: dag/prompts/finite_qm_core_fq_born_qi3_continuum_completion_open.yaml
+  external_repository_commit: 727bf06ef98a8ac75652cdf2348843ed7f34b208
+operation_candidates:
+- kind: def
+  name: IsUniformlyRayContinuous
+  line: 151
+  signature_excerpt: 'def IsUniformlyRayContinuous (f : GVec → ℚ) : Prop'
+  source: lean4/GleasonGaussianBridge.lean
+  repository: this_repository
+  source_sha256: 14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: F
+  line: 445
+  signature_excerpt: 'noncomputable def F (f : GVec → ℚ) (v : Fin 3 → ℂ) : ℝ'
+  source: lean4/GleasonGaussianBridge.lean
+  repository: this_repository
+  source_sha256: 14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: raySinSq
+  line: 146
+  signature_excerpt: 'def raySinSq (u v : GVec) : ℚ'
+  source: lean4/GleasonGaussianBridge.lean
+  repository: this_repository
+  source_sha256: 14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: ext
+  line: 327
+  signature_excerpt: 'noncomputable def ext (f : GVec → ℚ) : S → ℝ'
+  source: lean4/GleasonGaussianBridge.lean
+  repository: this_repository
+  source_sha256: 14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: normalize
+  line: 426
+  signature_excerpt: 'noncomputable def normalize (v : Fin 3 → ℂ) : Fin 3 → ℂ'
+  source: lean4/GleasonGaussianBridge.lean
+  repository: this_repository
+  source_sha256: 14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: S
+  line: 225
+  signature_excerpt: 'def S : Set (Fin 3 → ℂ)'
+  source: lean4/GleasonGaussianBridge.lean
+  repository: this_repository
+  source_sha256: 14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tomographyForm
+  line: 487
+  signature_excerpt: 'def tomographyForm (f : GVec → ℚ) : HermForm3'
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+- kind: structure
+  name: HermForm3
+  line: 138
+  signature_excerpt: structure HermForm3
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tomo_e1
+  line: 425
+  signature_excerpt: 'def tomo_e1 : GVec'
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tomo_e2
+  line: 426
+  signature_excerpt: 'def tomo_e2 : GVec'
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tomo_e3
+  line: 427
+  signature_excerpt: 'def tomo_e3 : GVec'
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tomo_e12
+  line: 428
+  signature_excerpt: 'def tomo_e12 : GVec'
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tomo_e13
+  line: 429
+  signature_excerpt: 'def tomo_e13 : GVec'
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tomo_e23
+  line: 430
+  signature_excerpt: 'def tomo_e23 : GVec'
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tomo_e12i
+  line: 431
+  signature_excerpt: 'def tomo_e12i : GVec'
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+- kind: def
+  name: tomo_e13i
+  line: 432
+  signature_excerpt: 'def tomo_e13i : GVec'
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+relation_candidates:
+- kind: theorem
+  name: F_ι
+  line: 465
+  signature_excerpt: |-
+    theorem F_ι {f : GVec → ℚ} (hf : IsFrameFunction f) (hu : IsUniformlyRayContinuous f)
+        {g : GVec} (hg : g.NonZero) : F f (ι g) = f g
+  source: lean4/GleasonGaussianBridge.lean
+  repository: this_repository
+  source_sha256: 14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: continuousOn_F
+  line: 518
+  signature_excerpt: |-
+    theorem continuousOn_F {f : GVec → ℚ} (hu : IsUniformlyRayContinuous f) :
+        ContinuousOn (F f) {v | v ≠ 0}
+  source: lean4/GleasonGaussianBridge.lean
+  repository: this_repository
+  source_sha256: 14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: isFrameFunctionC_F
+  line: 710
+  signature_excerpt: |-
+    theorem isFrameFunctionC_F {f : GVec → ℚ} (hf : IsFrameFunction f)
+        (hu : IsUniformlyRayContinuous f) : IsFrameFunctionC (F f) 1
+  source: lean4/GleasonGaussianBridge.lean
+  repository: this_repository
+  source_sha256: 14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: born_of_uniformlyRayContinuous
+  line: 839
+  signature_excerpt: |-
+    theorem born_of_uniformlyRayContinuous {f : GVec → ℚ} (hf : IsFrameFunction f)
+        (hu : IsUniformlyRayContinuous f) :
+        ∀ v : GVec, v.NonZero → f v = quadRay (tomographyForm f) v
+  source: lean4/GleasonGaussianBridge.lean
+  repository: this_repository
+  source_sha256: 14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tomography_trace_one
+  line: 521
+  signature_excerpt: |-
+    theorem tomography_trace_one {f : GVec → ℚ} (hf : IsFrameFunction f) :
+        (tomographyForm f).tr = 1
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+- kind: theorem
+  name: tomography_unique
+  line: 532
+  signature_excerpt: |-
+    theorem tomography_unique (ρ σ : HermForm3)
+        (he1 : quadRay ρ tomo_e1 = quadRay σ tomo_e1)
+        (he2 : quadRay ρ tomo_e2 = quadRay σ tomo_e2)
+        (he3 : quadRay ρ tomo_e3 = quadRay σ tomo_e3)
+        (he12 : quadRay ρ tomo_e12 = quadRay σ tomo_e12)
+        (he13 : quadRay ρ tomo_e13 = quadRay σ tomo_e13)
+        (he23 : quadRay ρ tomo_e23 = quadRay σ tomo_e23)
+        (he12i : quadRay ρ tomo_e12i = quadRay σ tomo_e12i)
+        (he13i : quadRay ρ tomo_e13i = quadRay σ tomo_e13i)
+        (he23i : quadRay ρ tomo_e23i = quadRay σ tomo_e23i) :
+        ρ = σ
+  source: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  source_sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  status: source_candidate_requires_semantic_review
+  scope_obligation: Compare this declaration with the full target; existence in a file is not a discharged
+    proof.
+source_bindings:
+- original_ref: lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.F_ι
+  availability: local
+  symbol: BornFinite.GleasonBridge.F_ι
+  path: lean4/GleasonGaussianBridge.lean
+  repository: this_repository
+  sha256: 14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f
+  declaration_status: declaration_found_not_proof_checked
+  line: 465
+  role: source_lead_only
+- original_ref: lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.continuousOn_F
+  availability: local
+  symbol: BornFinite.GleasonBridge.continuousOn_F
+  path: lean4/GleasonGaussianBridge.lean
+  repository: this_repository
+  sha256: 14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f
+  declaration_status: declaration_found_not_proof_checked
+  line: 518
+  role: source_lead_only
+- original_ref: lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.isFrameFunctionC_F
+  availability: local
+  symbol: BornFinite.GleasonBridge.isFrameFunctionC_F
+  path: lean4/GleasonGaussianBridge.lean
+  repository: this_repository
+  sha256: 14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f
+  declaration_status: declaration_found_not_proof_checked
+  line: 710
+  role: source_lead_only
+- original_ref: lean4/GleasonGaussianBridge.lean::BornFinite.GleasonBridge.born_of_uniformlyRayContinuous
+  availability: local
+  symbol: BornFinite.GleasonBridge.born_of_uniformlyRayContinuous
+  path: lean4/GleasonGaussianBridge.lean
+  repository: this_repository
+  sha256: 14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f
+  declaration_status: declaration_found_not_proof_checked
+  line: 839
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.tomography_trace_one
+  availability: local
+  symbol: BornFinite.GaussianTomography.tomography_trace_one
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 521
+  role: source_lead_only
+- original_ref: lean4/BornGaussianTomographyReduction.lean::BornFinite.GaussianTomography.tomography_unique
+  availability: local
+  symbol: BornFinite.GaussianTomography.tomography_unique
+  path: lean4/BornGaussianTomographyReduction.lean
+  repository: this_repository
+  sha256: 745cd957f5d93e9bcb10f2f28154d779a152f9718caf4fcc788d7a714c3a371a
+  declaration_status: declaration_found_not_proof_checked
+  line: 532
+  role: source_lead_only
+presentation:
+  colours: []
+  generators: []
+  relations: []
+  compositions: []
+  identities: []
+  symmetric_actions: []
+  coherence_obligations:
+  - identity_operations
+  - unit_laws
+  - partial_composition_associativity
+  - symmetric_action_if_claimed
+  - relations_stable_under_grafting
+operad_slots:
+  slot_m1_layer0_ambient_carrier:
+    mining_status: UNREVIEWED
+    carrier: null
+    coefficient_ring: null
+    assumptions:
+    - uniform ray continuity
+    - nonnegativity
+    - complex completion and rational density
+    source_pins: []
+    public_input: {}
+  slot_m2_layer1_forward_morphisms:
+    mining_status: UNREVIEWED
+    operations: []
+    composition_plan: []
+  slot_m3_layer2_ideals_and_annihilators:
+    mining_status: UNREVIEWED
+    algebraic_relations: []
+    rejection_predicates: []
+    negative_control_plan: []
+  slot_m4_tri_language_witness_anchors:
+    mining_status: UNREVIEWED
+    certificate_predicates: []
+    anchors: []
+    unpaid_imports:
+    - uniform ray continuity
+    - nonnegativity
+    - complex completion and rational density
+stage_history: []
+open_obligations:
+- Match the exact source theorem to this target, including quantifiers and imported hypotheses.
+- Select and semantically check the generators needed by one useful next step.
+- Record actual typed compositions, identity/unit/associativity obligations, and justified relations.
+- Bind independent certificate predicates and real checker anchors before P1.
+excluded_relation_leads: []

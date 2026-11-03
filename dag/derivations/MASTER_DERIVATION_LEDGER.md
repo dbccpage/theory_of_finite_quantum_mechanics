@@ -24,7 +24,7 @@ In strict adherence to the **Claim Hygiene Rule** and `AuthorityEffect: None`:
 
 ## 2. Derivation Stage Census & Status Taxonomy
 
-The derivation tree comprises **987 primary derivation steps** structured across **33 sequential stages** and **13 problem domains** (`Q01`–`Q65`):
+The derivation tree comprises **990 primary derivation steps** structured across **33 sequential stages** and **13 problem domains** (`Q01`–`Q65`):
 
 | Stage Index | Stage Name | Derivation Step Count | Core Physical & Mathematical Focus | Primary DAG Range |
 | :--- | :--- | :---: | :--- | :--- |
@@ -37,7 +37,7 @@ The derivation tree comprises **987 primary derivation steps** structured across
 | §07 | `L1_EMERGENCE` | 12 | $\ell^1$ quotient repair seminorm $\Phi_1([x])$, $\Gamma_2$ obstruction, replica extensivity | [`TFQ-0005`..`TFQ-0359`] |
 | §08 | `L1_TO_L2` | 40 | Conditional finite Hilbert lift, square-root coordinate field, phase-blind quotient | [`TFQ-0006`..`TFQ-1047`] |
 | §09 | `FINITE_HILBERT` | 15 | Exact density operators, rational ray representation, Gleason boundary in $d=3$ | [`TFQ-0289`..`TFQ-0318`] |
-| §10 | `FINITE_QM_CORE` | 23 | Supplied Hilbert carrier, exact algebraic state spaces over $K = \mathbb{Q}(\zeta_n)$ | [`TFQ-0007`..`TFQ-1057`] |
+| §10 | `FINITE_QM_CORE` | 26 | Supplied Hilbert carrier, exact algebraic state spaces over $K = \mathbb{Q}(\zeta_n)$ | [`TFQ-0007`..`TFQ-1060`] |
 | §11 | `FINITE_QM_DYNAMICS` | 18 | Selective measurement updates, graded Feynman path sums, Cayley stepping | [`TFQ-0008`..`TFQ-1040`] |
 | §12 | `FINITE_QM_STRUCTURE` | 29 | Superposition fibers, Mermin-Peres contextuality, product non-factorization | [`TFQ-0249`..`TFQ-1043`] |
 | §13 | `FINITE_QM_INFORMATION` | 9 | Von Neumann entropy interface, repair capacity certificates, interpretation shadows | [`TFQ-0268`..`TFQ-0278`] |
@@ -524,9 +524,12 @@ The Review column gives the PFP review verdict and scope effect of each reviewed
 | **`TFQ-1052`** | fqcd-strong-coupling-area-law | `FINITE_QCD` | `CONDITIONAL` | `TFQ-0030` | `FQCD-STRONG-COUPLING-AREA-LAW` (CONDITIONAL) | - | [`TFQ-1052.md`](../../dag/derivations/17_finite_qcd/tfq_1052_fqcd_strong_coupling_area_law.md) | Lean: `6`, Rust: `2`, Py: `2` |
 | **`TFQ-1053`** | fqcd-finite-group-freezing-fence | `FINITE_QCD` | `SOURCE_RECORD` | `TFQ-0031` | `FQCD-FINITE-GROUP-FREEZING-FENCE` (SOURCE_RECORD) | - | [`TFQ-1053.md`](../../dag/derivations/17_finite_qcd/tfq_1053_fqcd_finite_group_freezing_fence.md) | Declarative / Formal Spec |
 | **`TFQ-1054`** | fqcd-continuum-existence-announcement | `FINITE_QCD` | `SOURCE_RECORD` | `TFQ-0031` | `FQCD-CONTINUUM-EXISTENCE-ANNOUNCEMENT` (SOURCE_RECORD) | - | [`TFQ-1054.md`](../../dag/derivations/17_finite_qcd/tfq_1054_fqcd_continuum_existence_announcement.md) | Declarative / Formal Spec |
-| **`TFQ-1055`** | fq-gleason-qi3-frame-functions | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `TFQ-0307` | `FQ-GLEASON-QI3-FRAME-FUNCTIONS` (OPEN) | - | [`TFQ-1055.md`](../../dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md) | Lean: `181`, Py: `13` |
+| **`TFQ-1055`** | fq-gleason-qi3-frame-functions | `FINITE_QM_CORE` | `REFUTED` | `TFQ-0307` | `FQ-GLEASON-QI3-FRAME-FUNCTIONS` (REFUTED) | - | [`TFQ-1055.md`](../../dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md) | Lean: `181`, Py: `13` |
 | **`TFQ-1056`** | fq-gleason-qi3-uniform-ray-continuity | `FINITE_QM_CORE` | `CONDITIONAL` | `TFQ-1055` | `FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY` (CONDITIONAL) | - | [`TFQ-1056.md`](../../dag/derivations/10_finite_qm_core/tfq_1056_fq_gleason_qi3_uniform_ray_continuity.md) | Lean: `8` |
 | **`TFQ-1057`** | fq-gleason-qi3-pointwise-to-uniform | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `TFQ-1055` | `FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM` (OPEN) | - | [`TFQ-1057.md`](../../dag/derivations/10_finite_qm_core/tfq_1057_fq_gleason_qi3_pointwise_to_uniform.md) | Lean: `3` |
+| **`TFQ-1058`** | fq-gleason-frame-carriers | `FINITE_QM_CORE` | `DEFINITION` | `TFQ-0307` | `FQ-GLEASON-FRAME-CARRIERS` (DEFINITION) | - | [`TFQ-1058.md`](../../dag/derivations/10_finite_qm_core/tfq_1058_fq_gleason_frame_carriers.md) | Lean: `4` |
+| **`TFQ-1059`** | fq-gleason-c3-continuous-frame-functions | `FINITE_QM_CORE` | `CONDITIONAL` | `TFQ-1058` | `FQ-GLEASON-C3-CONTINUOUS-FRAME-FUNCTIONS` (CONDITIONAL) | - | [`TFQ-1059.md`](../../dag/derivations/10_finite_qm_core/tfq_1059_fq_gleason_c3_continuous_frame_functions.md) | Lean: `2` |
+| **`TFQ-1060`** | fq-born-qi3-continuum-completion | `FINITE_QM_CORE` | `OPEN_OBLIGATION` | `TFQ-1056` | `FQ-BORN-QI3-CONTINUUM-COMPLETION` (OPEN) | - | [`TFQ-1060.md`](../../dag/derivations/10_finite_qm_core/tfq_1060_fq_born_qi3_continuum_completion.md) | Lean: `6` |
 | **`TFQ-0417`** | pregenesis-grammar | `PREGENESIS` | `DEFINITION` | `TFQ-0362` | `PGW-PREGENESIS-GRAMMAR` (DEFINITION) | - | [`TFQ-0417.md`](../../dag/derivations/01_pregenesis/tfq_0417_pregenesis_grammar.md) | Lean: `1`, Rust: `1`, Py: `2` |
 | **`TFQ-0418`** | no-transition-quiescence | `PREGENESIS` | `DEFINITION` | `TFQ-0417` | `PGW-NO-TRANSITION-QUIESCENCE` (DEFINITION) | - | [`TFQ-0418.md`](../../dag/derivations/01_pregenesis/tfq_0418_no_transition_quiescence.md) | Lean: `1`, Rust: `1`, Py: `1` |
 | **`TFQ-0419`** | successor-not-unique | `PREGENESIS` | `SOURCE_RECORD` | `TFQ-0418` | `TFQ-0419` (SOURCE_RECORD) | - | [`TFQ-0419.md`](../../dag/derivations/01_pregenesis/tfq_0419_successor_not_unique.md) | Lean: `1`, Rust: `1`, Py: `1` |
@@ -1064,7 +1067,7 @@ The Review column gives the PFP review verdict and scope effect of each reviewed
 
 ## 3b. One Derivation Graph
 
-`dag/derivation_dag.json` (935 nodes, 943 routes) and `dag/theory_of_finite_qm.jsonl` (987 records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`papers/ravera_dfm_dossier.md`) are folded in as 267 new records; 90 of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.
+`dag/derivation_dag.json` (938 nodes, 946 routes) and `dag/theory_of_finite_qm.jsonl` (990 records) are one graph, kept joined by `dag/sync_unified_dag.py`: every record names a DAG node and every node is named by a record. The audited source corpora of the fermion sign problem (`papers/core/fsp/`), dimension-six MUBs (`papers/core/mub6/`), the Majorana problem (`papers/core/majorana/`) and the Dressing Field Method (`papers/ravera_dfm_dossier.md`) are folded in as 267 new records; 90 of their records restate trunk steps and are carried as `alias:` tags on the trunk nodes. The packet crosswalk in section 4 is carried as `packet:` tags on the nodes. A corpus record's status is the audited status, which is at or below the status its source claims.
 
 ---
 
@@ -1141,7 +1144,7 @@ The eight classic textbook problems formalized in Lean 4 and certified in Rust a
 ## 6. Claim Hygiene Assessment
 
 ### 6.1 What this Master Ledger Supports
-- Complete, un-truncated mathematical cataloging of all 987 derivations in `dag/derivations/` from `<>` (`TFQ-0000`) through Quantum Gravity (`TFQ-0111`) to the Continuum Interface (`TFQ-0124`).
+- Complete, un-truncated mathematical cataloging of all 990 derivations in `dag/derivations/` from `<>` (`TFQ-0000`) through Quantum Gravity (`TFQ-0111`) to the Continuum Interface (`TFQ-0124`).
 - Exact 1-to-1 bijection between ledger rows, standalone Markdown papers, and cryptographic contract score sidecars.
 - Complete mapping of the 43 foundational packets in `theory_of_finite_quantum_foundations.md` and the 65 atlas questions in `docs/QM_PROBLEM_AND_PROOF_ATLAS.md`.
 - Verification that every derivation carries explicitly declared premises, boundary fences, and multi-language implementation witnesses.
@@ -1152,7 +1155,7 @@ The eight classic textbook problems formalized in Lean 4 and certified in Rust a
 - Does not assert that passing computational and formal verification replaces experimental laboratory observation.
 
 ### 6.3 The Narrowest Defensible Claim
-Under the declared rules of `SCORING.md` and the `AuthorityEffect: None` protocol, this repository maintains a parent-linked chain of 987 finite derivation records from `<>` to quantum gravity. Each record declares its premises, boundary fence and witness slots; a record whose Lean, Rust or Python witness is absent says so, and open obligations stay recorded as open rather than certified.
+Under the declared rules of `SCORING.md` and the `AuthorityEffect: None` protocol, this repository maintains a parent-linked chain of 990 finite derivation records from `<>` to quantum gravity. Each record declares its premises, boundary fence and witness slots; a record whose Lean, Rust or Python witness is absent says so, and open obligations stay recorded as open rather than certified.
 
 ### 6.4 The Next Test Needed
 Run `python scripts/contract_scores.py check` to certify cryptographic integrity of all companion score sidecars, followed by `python scripts/verify_qm_atlas_loc.py` to confirm zero line-range drift across the repository.

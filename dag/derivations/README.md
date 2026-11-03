@@ -352,7 +352,7 @@ Folder: [`09_finite_hilbert/`](./09_finite_hilbert/)
 | [`TFQ-0317`](./09_finite_hilbert/tfq_0317_three_lean_files_stay_on_a_narrow_carrier.md) | Three Lean files stay on a narrow carrier | `OPEN_OBLIGATION` | [`TFQ-0316`](./09_finite_hilbert/tfq_0316_package_chapter_states_a_conditional_lift.md) |
 | [`TFQ-0318`](./09_finite_hilbert/tfq_0318_float_lift_helper_is_not_the_exact_embedding.md) | Float lift helper is not the exact embedding | `OPEN_OBLIGATION` | [`TFQ-0317`](./09_finite_hilbert/tfq_0317_three_lean_files_stay_on_a_narrow_carrier.md) |
 
-### FINITE_QM_CORE (23 derivations)
+### FINITE_QM_CORE (26 derivations)
 
 Folder: [`10_finite_qm_core/`](./10_finite_qm_core/)
 
@@ -378,9 +378,12 @@ Folder: [`10_finite_qm_core/`](./10_finite_qm_core/)
 | [`TFQ-1037`](./10_finite_qm_core/tfq_1037_gp_fin_gauss_matrix_algebra.md) | gp-fin-gauss-matrix-algebra | `PROVED_LEAN` | [`TFQ-0293`](./08_l1_to_l2/tfq_0293_complex_field_as_a_declared_carrier.md) |
 | [`TFQ-1038`](./10_finite_qm_core/tfq_1038_gp_drop_one_census.md) | gp-drop-one-census | `PROVED_LEAN` | [`TFQ-1029`](./08_l1_to_l2/tfq_1029_gp_import_complex_field.md) |
 | [`TFQ-1048`](./10_finite_qm_core/tfq_1048_fq_operational_local_tomography.md) | fq-operational-local-tomography | `IMPORTED_ASSUMPTION` | [`TFQ-1019`](./10_finite_qm_core/tfq_1019_fq_gap_tensor_uniqueness.md) |
-| [`TFQ-1055`](./10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md) | fq-gleason-qi3-frame-functions | `OPEN_OBLIGATION` | [`TFQ-0307`](./09_finite_hilbert/tfq_0307_gleason_route_for_dimension_at_least_three.md) |
+| [`TFQ-1055`](./10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md) | fq-gleason-qi3-frame-functions | `REFUTED` | [`TFQ-0307`](./09_finite_hilbert/tfq_0307_gleason_route_for_dimension_at_least_three.md) |
 | [`TFQ-1056`](./10_finite_qm_core/tfq_1056_fq_gleason_qi3_uniform_ray_continuity.md) | fq-gleason-qi3-uniform-ray-continuity | `CONDITIONAL` | [`TFQ-1055`](./10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md) |
 | [`TFQ-1057`](./10_finite_qm_core/tfq_1057_fq_gleason_qi3_pointwise_to_uniform.md) | fq-gleason-qi3-pointwise-to-uniform | `OPEN_OBLIGATION` | [`TFQ-1055`](./10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md) |
+| [`TFQ-1058`](./10_finite_qm_core/tfq_1058_fq_gleason_frame_carriers.md) | fq-gleason-frame-carriers | `DEFINITION` | [`TFQ-0307`](./09_finite_hilbert/tfq_0307_gleason_route_for_dimension_at_least_three.md) |
+| [`TFQ-1059`](./10_finite_qm_core/tfq_1059_fq_gleason_c3_continuous_frame_functions.md) | fq-gleason-c3-continuous-frame-functions | `CONDITIONAL` | [`TFQ-1058`](./10_finite_qm_core/tfq_1058_fq_gleason_frame_carriers.md) |
+| [`TFQ-1060`](./10_finite_qm_core/tfq_1060_fq_born_qi3_continuum_completion.md) | fq-born-qi3-continuum-completion | `OPEN_OBLIGATION` | [`TFQ-1056`](./10_finite_qm_core/tfq_1056_fq_gleason_qi3_uniform_ray_continuity.md) |
 
 ### FINITE_QM_DYNAMICS (18 derivations)
 

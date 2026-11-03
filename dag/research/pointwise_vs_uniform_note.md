@@ -1,93 +1,113 @@
-# Pointwise versus uniform ray continuity for frame functions on ℚ(i)³
+# Pointwise versus uniform ray continuity for frame functions on Q(i)^3
 
-Bounded-time assessment, 2026-11-03, corrected the same day after maintainer review. AuthorityEffect: None.
+Assessment updated 2026-11-03 after independent review of PR #500 at
+`45b0b093921aa0281969f92da18694e2e89c3cc4`. AuthorityEffect: None.
 
-Companion to the DAG nodes `FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY` (CONDITIONAL) and
-`FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM` (OPEN). The original pointwise-continuity targets and their statuses on
-`TFQ-0307` / `FQ-GAP-BORN-UNIQUENESS-GLEASON` and `TFQ-1055` / `FQ-GLEASON-QI3-FRAME-FUNCTIONS` are unchanged.
+Full findings, independent rebuild evidence, and the handoff to Claude are in
+[the review](pr500_review/review.md) and [its manifest](pr500_review/manifest.json).
 
-## What is proved (PR #500)
+## Distinct questions and statuses
 
-`BornFinite.GleasonBridge.born_of_uniformlyRayContinuous` in `lean4/GleasonGaussianBridge.lean`.
-Kernel-checked, 0 sorry, axioms `propext`, `Classical.choice`, `Quot.sound`. Hypotheses, recorded literally:
+- **TFQ-1055 / FQ-GLEASON-QI3-FRAME-FUNCTIONS:** the original statement has **no continuity
+  hypothesis**. Its universal quadratic-rigidity assertion is REFUTED, even for nonnegative
+  functions, by `exoticQi3_isNonnegFrameFunction` and `exoticQi3_not_quadratic`. The original
+  decision question is retained verbatim; the zero-one and specified-extension alternatives
+  have their separate negative answers. This is not an open pointwise-continuity statement.
+- **TFQ-1056 / FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY:** CONDITIONAL on uniform ray continuity.
+- **TFQ-1057 / FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM:** OPEN; signed and nonnegative cases separate.
+- **TFQ-1058 / FQ-GLEASON-FRAME-CARRIERS:** the supplied carriers and frame definitions only.
+- **TFQ-1059 / FQ-GLEASON-C3-CONTINUOUS-FRAME-FUNCTIONS:** the proved continuous signed C^3
+  theorem, CONDITIONAL on continuity away from zero.
+- **TFQ-1060 / FQ-BORN-QI3-CONTINUUM-COMPLETION:** OPEN packaging of the existing extension
+  lemmas into a unique complex density-matrix extension and the general quadratic converse.
 
-- `IsFrameFunction f`: `f : GVec → ℚ` with `f u + f v + f w = 1` for every triple `u, v, w` of nonzero,
-  pairwise orthogonal vectors of ℚ(i)³. This is the **signed** version: no sign condition on `f`.
-- `IsUniformlyRayContinuous f`: for every rational `ε > 0` there is a rational `δ > 0` such that
-  `|f u − f v| < ε` for all nonzero `u, v` with `raySinSq u v < δ`, where
-  `raySinSq u v = 1 − |⟨u,v⟩|² / (⟨u,u⟩⟨v,v⟩)`. `raySinSq` is a **squared ray distance** (phase and scale
-  invariant, rational-valued); its square root is the corresponding metric on rays.
+TFQ-0307 remains CONDITIONAL. Its broad Born-uniqueness/operational target is not the literal
+pointwise statement either. None of these results derives the Hilbert carrier or regularity
+premise from finite operational data.
 
-Conclusion: `f v = quadRay (tomographyForm f) v` for every nonzero `v`, that is `f(v) = ⟨v, ρ v⟩ / ⟨v, v⟩` with
-`ρ` the Hermitian trace-one matrix reconstructed from the nine tomography rays.
+## What is proved
 
-The **nonnegative** version (`IsNonnegFrameFunction f`, the one the original targets need) is the special case
-of a nonnegative `f`; the theorem as proved covers all signed frame functions.
+`BornFinite.GleasonBridge.born_of_uniformlyRayContinuous` assumes:
 
-## Uniform continuity is a declared input
+- `IsFrameFunction f`: `f : GVec -> Q`, with sum one on every nonzero orthogonal triple in
+  Q(i)^3. This is signed; no positivity is assumed.
+- `IsUniformlyRayContinuous f`: for every rational epsilon > 0, a rational delta > 0 works
+  for **all** nonzero u,v with `raySinSq u v < delta`, where
+  `raySinSq u v = 1 - |<u,v>|^2 / (<u,u><v,v>)`.
 
-`IsUniformlyRayContinuous f` is not derived from anything in the repository. It is a mathematical input that
-requires justification before the theorem applies to a given `f`. In particular, a finite instrument whose
-resolution is known at one tolerance supplies one `(ε, δ)` pair; it does not by itself supply the `∀ε ∃δ`
-guarantee the hypothesis demands.
+It concludes `f v = quadRay (tomographyForm f) v` for every nonzero v. The tomography
+trace-one and uniqueness results are already available separately. Nonnegative inputs are
+a special case and imply nonnegativity of the rational quadratic numerator.
 
-The hypothesis is not vacuous: on paper, every `quadRay ρ` (any Hermitian `ρ`) is uniformly ray continuous, since
-with unit representatives `|⟨û,ρû⟩ − ⟨v̂,ρv̂⟩| ≤ 2‖ρ‖·√(2·raySinSq u v)`, which gives a rational `δ` from the
-coefficient bound of `ρ`. This instance is not formalized in the repository; no Lean declaration instantiates
-`IsUniformlyRayContinuous` (noted by the 2026-11-03 review, left for later work).
+`raySinSq` is a squared ray distance; its square root is the metric on rays. The proof
+extends f to a continuous frame function on C^3 and applies the continuous complex theorem.
+The independent eight-module rebuild and 308-report axiom audit pass with only `propext`,
+`Classical.choice`, and `Quot.sound`. Of the reports, 302 cover all named declarations in
+the four new modules, four supporting results, and two review lemmas.
 
-## The remaining question (`FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM`)
+Uniform continuity is supplied, not derived. A finite instrument's resolution at one
+tolerance gives one epsilon-delta pair, not the for-all-epsilon guarantee. The review
+formally instantiates the hypothesis with the constant frame function 1/3. The general
+instance for every Hermitian `quadRay rho` remains to be formalized. On paper, phase-aligning
+unit representatives gives
+`|q_rho(u)-q_rho(v)| <= 2 ||rho|| sqrt(2 raySinSq(u,v))`, hence a rational delta from a
+rational coefficient bound. The constant instance does not replace this general converse.
 
-Does Archimedean continuity at every nonzero rational vector (`IsArchimedeanContinuousEverywhere f`: for each
-nonzero `v₀` and each `ε > 0` some `δ > 0` with `|f v − f v₀| < ε` whenever `distSqVec v v₀ < δ`) imply
-`IsUniformlyRayContinuous f` when `f` is a frame function? Two versions are to be distinguished:
+## The remaining pointwise question
 
-- for all signed frame functions (`IsFrameFunction f`);
-- for nonnegative frame functions only (`IsNonnegFrameFunction f`), which is what the original targets need.
+Does `IsArchimedeanContinuousEverywhere f` (pointwise epsilon-delta continuity at each
+nonzero rational vector, using `distSqVec`) imply uniform ray continuity for a frame
+function? The signed version implies the nonnegative version, which is enough for the
+probability-valued target. Neither is settled by this review.
 
-The signed version implies the nonnegative one. Neither is settled.
+For arbitrary functions on a dense noncompact domain, no: on Q intersected with [0,1],
+take h(q)=1 above sqrt(2)/2 and h(q)=0 below it. It is locally constant at every rational
+point but not uniformly continuous. This is a topological illustration, not a frame function.
 
-For arbitrary functions on a dense, non-compact domain the implication fails. A topological illustration only,
-not a frame function: `h(q) = 1` if `q > √2/2` and `h(q) = 0` otherwise, on `q ∈ ℚ ∩ [0,1]`. Since `√2/2` is
-irrational, `h` is constant near every point of its domain, so it is continuous at every point, and it is not
-uniformly continuous because rationals on both sides of `√2/2` come arbitrarily close.
+## What the near-maximum argument does and does not show
 
-## Why the ε-version of Cooke–Keane–Moran did not close
+First restrict to a bounded-above frame function before choosing a rational p with
+`f(p) > sup f - epsilon`. Nonnegative frame functions satisfy 0 <= f <= 1 by completion
+of each ray to a frame. Such boundedness is not supplied for the general signed,
+pointwise-continuous rational case.
 
-With pointwise continuity the maximiser of `f` cannot be placed at a rational ray; one works with a rational
-pole `p` where `f(p) > sup f − ε`. The descent lemma along slope circles then only gives `f(a) ≥ f(b) − ε` per
-step. The latitude-constancy proposition needs chains of Piron steps from latitude `l(a)` down to latitude
-`l(b)`, and the number of steps grows like `1 / (l(a)/l(b) − 1)`: comparing two rays of nearly equal latitude
-costs unboundedly many steps, each losing `ε`. The accumulated error `n·ε` is therefore not small exactly where
-latitude constancy is needed. Uniform continuity lets `ε → 0` with the pole fixed; pointwise continuity at
-rational rays does not pin the pole. Several variants of this route were tried on 2026-11-02 and 2026-11-03 with
-the same outcome.
+The known near-maximum descent gives an epsilon loss per step. The constructed chains
+lengthen near equal latitudes, and no argument controls the accumulated loss while the
+rational near-maximizing pole changes with epsilon. This is a failure of the attempted
+proof, not a lower bound on every possible argument. The uniform bridge avoids it by
+extension and compactness: an actual maximum exists on the complex sphere and may be at
+an irrational ray. Uniform continuity does not make a fixed rational pole a maximizer.
 
-A separate obstruction remains in the rational chains themselves. Two-step Piron multiplier products
-`(1 + ti)(1 + si)` with `t, s` real (so in particular rational) are **not** dense in ℂ: writing
-`(1 + ti)(1 + si) = a + bi` gives `a = 1 − ts`, `b = t + s`, hence `b² + 4(a − 1) = (t − s)² ≥ 0`, so every such
-product lies in the closed region `a ≥ 1 − b²/4`, which excludes a neighbourhood of `0`. An earlier draft of
-this note claimed these products were dense and that this bridged the reachability gap; that claim was false and
-is withdrawn. No multiplier result that restores reachability is established here. This observation does not
-affect the uniform-continuity theorem above, which does not use rational Piron chains.
+Two-step products `(1+ti)(1+si)=a+bi` obey `b^2+4(a-1)=(t-s)^2 >= 0`, even with real
+parameters, so they are not dense in C. The earlier two-step density claim remains withdrawn.
+However, this is not a new obstruction to arbitrary finite-chain approximation:
+`GleasonReal.exists_chain_eq` expresses every m with |m|>1 as a finite real-parameter
+product. For that fixed length N, the product is continuous in R^N and Q^N is dense, so
+rational products approximate m. All factors have modulus >=1, and approximation from
+outside reaches the unit circle in the closure. Thus the closure of **all finite** rational
+products is exactly {|m|>=1}, not C. This paragraph is a paper deduction from the checked
+real theorem, not a new Lean declaration. It gives neither a uniform length bound nor
+the required accumulated-error control.
 
-## What is known about counterexamples
+## Counterexamples and a constructive search target
 
-Cap argument. A zero-weight residual `g` (frame sum `0`) supported inside a cap of angular radius below 45°
-vanishes on the cap, provided each ray of the cap can be completed to an admissible rational orthogonal frame:
-such a frame has pairwise orthogonal members, so it meets the cap in at most one ray, and the frame identity
-forces `g = 0` there. This rules out that particular localized construction, a perturbation of a Born form
-supported in a small cap. It does not show that every counterexample must be global, that one would need
-Zorn/Hamel methods, that it would lack a finite description, or that it could not be found by finite
-computation. No global counterexample has been established, and none has been excluded.
+A zero-weight residual supported in an angular cap of radius <45 degrees vanishes if
+each ray completes to an admissible rational orthogonal frame: a frame can meet that cap
+in at most one ray, and the frame identity forces its value to zero. This excludes that
+support construction only. It proves neither that a counterexample must be a Zorn/Hamel
+object nor that a finite description or finite search could never discover one.
 
-The known residuals `s3`, `s7`, `sp` are valuation-defined and nowhere Archimedean continuous, so they are not
-candidates.
+The existing selective-oscillation results at `tomo_e1` rule out continuity everywhere
+for the cited nonzero finite valuation combinations under their explicit prime/system
+hypotheses. The cited declarations do not prove that every `sp` is discontinuous at every
+ray; “nowhere continuous” is therefore not used as a formal result here.
 
-## Record
-
-- Conditional theorem: `FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY` (CONDITIONAL), hypotheses as listed above.
-- Open sub-question: `FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM` (OPEN). What would settle it: an `ε`-free rigidity
-  argument that fixes a pole, or a pointwise-continuous non-quadratic frame function.
-- The pointwise targets in `TFQ-0307` / `TFQ-1055` remain unresolved. Neither the unsuccessful proof attempts
-  nor the conditional theorem settle them.
+For the nonnegative case, try fixed-ray oscillation propagation or exact rational frame
+certificates which bound a residual value at x by values near the fixed tomography anchors
+with coefficients bounded independently of the approximation tolerance. The full review
+states a sufficient certificate inequality. Finite exact search can suggest and verify
+individual certificates; a global theorem needs a symbolic family with the coefficient
+bound proved. Projector linearity must not be silently assumed, since it already implies
+the desired rigidity. The review also gives a separate effect-additive route and the
+additional obligations for arbitrary complex states, higher finite dimensions, and
+infinite-dimensional trace-class states.

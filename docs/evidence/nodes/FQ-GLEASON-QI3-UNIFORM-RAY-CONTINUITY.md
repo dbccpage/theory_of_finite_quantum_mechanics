@@ -10,7 +10,7 @@ Stage: [FINITE_QM_CORE](../stages/FINITE_QM_CORE.md). Status: `CONDITIONAL`. Evi
 
 Evidence grade **E2** (rules in the [overview](../README.md#evidence-grades)). The grade rates the evidence this checkout holds; it is separate from the status.
 
-- counted in-repo evidence files: 6
+- counted in-repo evidence files: 8
 - cited Lean, Rust or Python symbols found in their in-repo files: 8
 - distinct cited Lean declarations covered by a current replay receipt: 0
 - counted in-repo runnable tests: 0
@@ -24,15 +24,17 @@ None. Status and evidence are consistent under the rules in the overview.
 
 ## Imported structure
 
+- Q(i)^3 with its standard Hermitian form and the normalized orthogonal-frame identity (signed values permitted)
 - uniform continuity of f on rays (IsUniformlyRayContinuous f): declared input, not derived
+- real/complex completeness and compactness in the continuous-C^3 proof backend; no Born pairing, dynamics or tensor axiom is an input
 
 ## Bottleneck
 
-The result is conditional on the declared hypothesis IsUniformlyRayContinuous f. Whether Archimedean continuity at every nonzero rational vector (IsArchimedeanContinuousEverywhere, the pointwise notion used by the existing BornGaussianTomographyReduction results) implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN); until that is settled the pointwise targets remain unresolved. A finite instrument's resolution at one tolerance supplies one (epsilon, delta) pair, not the for-all-epsilon-exists-delta guarantee. This node changes no status of FQ-GLEASON-QI3-FRAME-FUNCTIONS or FQ-GAP-BORN-UNIQUENESS-GLEASON.
+Uniform ray continuity remains a declared hypothesis. Pointwise-to-uniform for rational frame functions is TFQ-1057, with signed and nonnegative cases separate. A finite instrument at one tolerance supplies only one epsilon-delta pair. The review checks a constant-function instance, but general uniform continuity of quadRay and a single packaged unique complex PSD extension theorem remain to be formalized (FQ-BORN-QI3-CONTINUUM-COMPLETION). TFQ-1055 asks about unrestricted frame functions and its unrestricted assertion is REFUTED; TFQ-0307 remains CONDITIONAL.
 
 ## Source status
 
-Kernel-checked implication born_of_uniformlyRayContinuous in lean4/GleasonGaussianBridge.lean (0 sorry; axioms propext, Classical.choice, Quot.sound), built on Gleason's theorem for frame functions continuous away from the origin on the real sphere (lean4/GleasonRealSphere.lean) and on the complex sphere (lean4/GleasonComplexSphere.lean) and on the orthogonal parallelogram rigidity of lean4/BornGaussianParallelogramRigidity.lean. The hypothesis IsUniformlyRayContinuous f is declared, not derived: it is a mathematical input that requires justification before the theorem applies to a given f. Replay receipt: dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json. Recorded 2026-11-03 as a separate conditional result; the pointwise-continuity targets of FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON keep their statements and statuses.
+Kernel-checked signed implication born_of_uniformlyRayContinuous, with uniform ray continuity supplied as a hypothesis. Independently rebuilt the eight-module project import closure and audited all 302 named declarations in the four new modules at PR #500 head 45b0b093921aa0281969f92da18694e2e89c3cc4; only propext, Classical.choice and Quot.sound occur. The continuum backend is the continuous-C^3 theorem, not automatic continuity from positivity. A review lemma instantiates the uniform hypothesis with f = 1/3. Original analytic receipt retained; independent raw audit and dependency pins are recorded separately.
 
 ## Review
 
@@ -105,7 +107,7 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/derivations/10_finite_qm_core/tfq_1056_fq_gleason_qi3_uniform_ray_continuity.md`
 
 - file: [dag/derivations/10_finite_qm_core/tfq_1056_fq_gleason_qi3_uniform_ray_continuity.md](../../../dag/derivations/10_finite_qm_core/tfq_1056_fq_gleason_qi3_uniform_ray_continuity.md)
-- sha256 (`lf-normalised`): `094a178fa9350272c5f887ad8f391924b914b220447980616f649a35776cfbaf`
+- sha256 (`lf-normalised`): `9895401a8b556c2ec9cc4dd2dd1191babe3fe30c531ed6ac1324cc3865374516`
 - generated view: listed, not counted
 - cited in: record TFQ-1056
 - counts toward the grade: no
@@ -120,7 +122,21 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 ### Documents and data: `dag/research/pointwise_vs_uniform_note.md`
 
 - file: [dag/research/pointwise_vs_uniform_note.md](../../../dag/research/pointwise_vs_uniform_note.md)
-- sha256 (`lf-normalised`): `c8316ac1e62c6d8dc9ab90112a33bea973294dd4d3e85f257729e8d6500e7b7e`
+- sha256 (`lf-normalised`): `ac49c873e8cd47a87f580e2fac57b37771c4c4911690bd8f90b25257eae08f1a`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/pr500_review/manifest.json`
+
+- file: [dag/research/pr500_review/manifest.json](../../../dag/research/pr500_review/manifest.json)
+- sha256 (`lf-normalised`): `c32d8f516a5d51ea49c8a18535dc4423363527c2a7fcbe27681c2bf269ff2e5f`
+- cited in: node.source
+- counts toward the grade: yes
+
+### Documents and data: `dag/research/pr500_review/review.md`
+
+- file: [dag/research/pr500_review/review.md](../../../dag/research/pr500_review/review.md)
+- sha256 (`lf-normalised`): `ba7c9cce9598da12b30e194be375b1c48bfd9df89ee5f3f7f95aed943d689e26`
 - cited in: node.source
 - counts toward the grade: yes
 
@@ -128,7 +144,8 @@ Items are grouped by file. "Counts" means the item counts toward the grade: the 
 
 Incoming (1):
 
-- `FQ-R-GLEASON-QI3-UNIFORM-RAY-CONTINUITY` `CONDITIONAL_ON_IMPORT`: [FQ-DECLARED-QUANTUM-INTERFACE](FQ-DECLARED-QUANTUM-INTERFACE.md) (IMPORTED_ASSUMPTION)
+- `FQ-R-GLEASON-QI3-UNIFORM-RAY-CONTINUITY` `CONDITIONAL_ON_IMPORT`: [FQ-GLEASON-FRAME-CARRIERS](FQ-GLEASON-FRAME-CARRIERS.md) (DEFINITION), [FQ-GLEASON-C3-CONTINUOUS-FRAME-FUNCTIONS](FQ-GLEASON-C3-CONTINUOUS-FRAME-FUNCTIONS.md) (CONDITIONAL)
 
-Outgoing (0):
+Outgoing (1):
 
+- `FQ-R-BORN-QI3-CONTINUUM-COMPLETION` `GAP_NO_DERIVATION`: [FQ-BORN-QI3-CONTINUUM-COMPLETION](FQ-BORN-QI3-CONTINUUM-COMPLETION.md) (OPEN)
