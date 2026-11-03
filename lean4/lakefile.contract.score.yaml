@@ -7,41 +7,33 @@
     "artifact": {
       "language": "Lean 4",
       "path": "lean4/lakefile.lean",
-      "sha256": "90c2fde1461422326c04bb35ce205070f860aa0532b681e981276485ac6817a4"
+      "sha256": "7315139437372e406a9cdced73f575f4bbad720c883bbd9db97722a8d422b3b7"
     },
     "boundaries": [
-      "Complete classification of all non-quadratic residuals across every inert prime p == 3 (mod 4) remains OPEN.",
-      "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN."
+      "The transfer from continuous frame functions on C^3 back to Q(i)^3 rays under a declared uniform-continuity hypothesis is not yet formalized.",
+      "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN; FQ-GLEASON-QI3-FRAME-FUNCTIONS remains OPEN."
     ],
-    "claim": "Register BornGaussianTomographyReduction in the Lake build configuration for FQ-GLEASON-QI3-FRAME-FUNCTIONS.",
+    "claim": "Register BornGaussianParallelogramRigidity, GleasonRealSphere and GleasonComplexSphere as non-default Lake targets for FQ-GLEASON-QI3-FRAME-FUNCTIONS, in addition to the previously registered BornGaussianTomographyReduction.",
     "contract_urn": "urn:tfqm:fq-gleason-qi3:lakefile",
     "evidence": [
       {
-        "path": "dag/research/fq_gleason_qi3_assessment.json",
-        "sha256": "f59ee78411fc4ab403e1c7651a9114258786714dab61f9295bab84de767d86ae"
+        "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json",
+        "sha256": "43a6b6d5281e3dc68cf135e921462543a941fa131a340512ae75c272e37efa7b"
       },
       {
-        "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_lean_replay.json",
-        "sha256": "09ab9f3e194618aaab594f38f32537b6367e27fbb20004e9f5b3cdec7ae4b59c"
-      },
-      {
-        "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
-        "sha256": "c5d95e03644e6033ab24f68cdf164048026d4bd3cf3221539d201aef8e6969cb"
-      },
-      {
-        "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
-        "sha256": "fb1a4e802342a4a82b67af06675a09cadd412eaa44bbbc95a55bc40012cb9129"
+        "path": "lean4/lakefile.lean",
+        "sha256": "7315139437372e406a9cdced73f575f4bbad720c883bbd9db97722a8d422b3b7"
       }
     ],
     "owned_invariants": [
-      "Register BornGaussianTomographyReduction in the Lake build configuration for FQ-GLEASON-QI3-FRAME-FUNCTIONS.",
+      "Register BornGaussianParallelogramRigidity, GleasonRealSphere and GleasonComplexSphere as non-default Lake targets for FQ-GLEASON-QI3-FRAME-FUNCTIONS, in addition to the previously registered BornGaussianTomographyReduction.",
       "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status."
     ],
     "schema_id": "tfqm.source-contract.v1",
     "symbols": [
-      "BornGaussianRationalNoColouring",
-      "BornGaussianRationalExtensionObstruction",
-      "BornGaussianTomographyReduction"
+      "BornGaussianParallelogramRigidity",
+      "GleasonRealSphere",
+      "GleasonComplexSphere"
     ]
   },
   "contract_history": [
@@ -15048,10 +15040,52 @@
         ]
       },
       "sha256": "48886fe0e90fca0d91a57608b2c5349e08a57f5ed3836f93c567a2b0e87e0c57"
+    },
+    {
+      "bytes": 1645,
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#fq-gleason-qi3-analytic-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"7315139437372e406a9cdced73f575f4bbad720c883bbd9db97722a8d422b3b7\"\n  },\n  \"boundaries\": [\n    \"The transfer from continuous frame functions on C^3 back to Q(i)^3 rays under a declared uniform-continuity hypothesis is not yet formalized.\",\n    \"Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN; FQ-GLEASON-QI3-FRAME-FUNCTIONS remains OPEN.\"\n  ],\n  \"claim\": \"Register BornGaussianParallelogramRigidity, GleasonRealSphere and GleasonComplexSphere as non-default Lake targets for FQ-GLEASON-QI3-FRAME-FUNCTIONS, in addition to the previously registered BornGaussianTomographyReduction.\",\n  \"contract_urn\": \"urn:tfqm:fq-gleason-qi3:lakefile\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json\",\n      \"sha256\": \"43a6b6d5281e3dc68cf135e921462543a941fa131a340512ae75c272e37efa7b\"\n    },\n    {\n      \"path\": \"lean4/lakefile.lean\",\n      \"sha256\": \"7315139437372e406a9cdced73f575f4bbad720c883bbd9db97722a8d422b3b7\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Register BornGaussianParallelogramRigidity, GleasonRealSphere and GleasonComplexSphere as non-default Lake targets for FQ-GLEASON-QI3-FRAME-FUNCTIONS, in addition to the previously registered BornGaussianTomographyReduction.\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status.\"\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"BornGaussianParallelogramRigidity\",\n    \"GleasonRealSphere\",\n    \"GleasonComplexSphere\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "7315139437372e406a9cdced73f575f4bbad720c883bbd9db97722a8d422b3b7"
+        },
+        "boundaries": [
+          "The transfer from continuous frame functions on C^3 back to Q(i)^3 rays under a declared uniform-continuity hypothesis is not yet formalized.",
+          "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN; FQ-GLEASON-QI3-FRAME-FUNCTIONS remains OPEN."
+        ],
+        "claim": "Register BornGaussianParallelogramRigidity, GleasonRealSphere and GleasonComplexSphere as non-default Lake targets for FQ-GLEASON-QI3-FRAME-FUNCTIONS, in addition to the previously registered BornGaussianTomographyReduction.",
+        "contract_urn": "urn:tfqm:fq-gleason-qi3:lakefile",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json",
+            "sha256": "43a6b6d5281e3dc68cf135e921462543a941fa131a340512ae75c272e37efa7b"
+          },
+          {
+            "path": "lean4/lakefile.lean",
+            "sha256": "7315139437372e406a9cdced73f575f4bbad720c883bbd9db97722a8d422b3b7"
+          }
+        ],
+        "owned_invariants": [
+          "Register BornGaussianParallelogramRigidity, GleasonRealSphere and GleasonComplexSphere as non-default Lake targets for FQ-GLEASON-QI3-FRAME-FUNCTIONS, in addition to the previously registered BornGaussianTomographyReduction.",
+          "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS and FQ-GAP-BORN-UNIQUENESS-GLEASON retain OPEN status."
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "BornGaussianParallelogramRigidity",
+          "GleasonRealSphere",
+          "GleasonComplexSphere"
+        ]
+      },
+      "sha256": "e98408bf5538e29f7a672940e7960a0b6c5ca2bcf23e79b59871751dd0ed0ceb"
     }
   ],
-  "current_contract": "48886fe0e90fca0d91a57608b2c5349e08a57f5ed3836f93c567a2b0e87e0c57",
-  "current_scoring": "317fbc3d3f27cd44e90ab10cfcdc5048e06696d61d9322560badcec41c627f94",
+  "current_contract": "e98408bf5538e29f7a672940e7960a0b6c5ca2bcf23e79b59871751dd0ed0ceb",
+  "current_scoring": "484568a5deafb4a0fcfda80d46d3dac226420fb7f6e676d933d3ebc658fdc8fb",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {
     "#merge-ads-cft-registration": "c684dedc0291c59c6e13a95fbc502a5f1069995a4925787fd01d37ae575d6ad1",
@@ -28135,6 +28169,60 @@
         "score_token": "L4D"
       },
       "sha256": "317fbc3d3f27cd44e90ab10cfcdc5048e06696d61d9322560badcec41c627f94"
+    },
+    {
+      "bytes": 2023,
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#fq-gleason-qi3-analytic-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"7315139437372e406a9cdced73f575f4bbad720c883bbd9db97722a8d422b3b7\"\n  },\n  \"assessment_id\": \"fq-gleason-qi3-analytic-2026-11-03\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and named symbols are bound to the stated claim and to DAG nodes FQ-GLEASON-QI3-FRAME-FUNCTIONS / FQ-GAP-BORN-UNIQUENESS-GLEASON with AuthorityEffect None; both nodes stay OPEN.\",\n    \"G2\": \"Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and axiom audit use only propext, Classical.choice and Quot.sound; 0 sorry.\",\n    \"G4\": \"The three registered targets build successfully; recorded in the replay receipt.\",\n    \"G5\": \"Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-11-03T01:19:15+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json\",\n      \"sha256\": \"43a6b6d5281e3dc68cf135e921462543a941fa131a340512ae75c272e37efa7b\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and the axiom audit.\",\n  \"limitations\": [\n    \"The transfer from continuous frame functions on C^3 back to Q(i)^3 rays under a declared uniform-continuity hypothesis is not yet formalized.\",\n    \"Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN; FQ-GLEASON-QI3-FRAME-FUNCTIONS remains OPEN.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "7315139437372e406a9cdced73f575f4bbad720c883bbd9db97722a8d422b3b7"
+        },
+        "assessment_id": "fq-gleason-qi3-analytic-2026-11-03",
+        "basis": {
+          "G1": "Exact source identity and named symbols are bound to the stated claim and to DAG nodes FQ-GLEASON-QI3-FRAME-FUNCTIONS / FQ-GAP-BORN-UNIQUENESS-GLEASON with AuthorityEffect None; both nodes stay OPEN.",
+          "G2": "Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.",
+          "G3": "Lean 4.35 kernel build and axiom audit use only propext, Classical.choice and Quot.sound; 0 sorry.",
+          "G4": "The three registered targets build successfully; recorded in the replay receipt.",
+          "G5": "Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-11-03T01:19:15+00:00",
+        "evidence": [
+          {
+            "path": "dag/research/campaign_fq-gleason-qi3-frame-functions_analytic_lean_replay.json",
+            "sha256": "43a6b6d5281e3dc68cf135e921462543a941fa131a340512ae75c272e37efa7b"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and the axiom audit.",
+        "limitations": [
+          "The transfer from continuous frame functions on C^3 back to Q(i)^3 rays under a declared uniform-continuity hypothesis is not yet formalized.",
+          "Closure of FQ-GAP-BORN-UNIQUENESS-GLEASON remains OPEN; FQ-GLEASON-QI3-FRAME-FUNCTIONS remains OPEN."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "484568a5deafb4a0fcfda80d46d3dac226420fb7f6e676d933d3ebc658fdc8fb"
     }
   ]
 }
