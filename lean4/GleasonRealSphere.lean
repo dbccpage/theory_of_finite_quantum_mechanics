@@ -40,6 +40,9 @@ def cross3 (u v : Fin 3 → ℝ) : Fin 3 → ℝ :=
 /-- The pole. -/
 def e1 : Fin 3 → ℝ := ![1, 0, 0]
 
+/-- The third basis vector. -/
+def e3 : Fin 3 → ℝ := ![0, 0, 1]
+
 /-- Latitude of a nonzero vector with respect to the pole `e1`. -/
 noncomputable def lat (v : Fin 3 → ℝ) : ℝ := (v 0) ^ 2 / dot3 v v
 
@@ -80,6 +83,10 @@ lemma ne_zero_of_transverse_ne {v : Fin 3 → ℝ} (hr : v 1 ^ 2 + v 2 ^ 2 ≠ 0
   fun h => hr (by simp [h])
 
 lemma e1_ne_zero : e1 ≠ 0 := ne_zero_of_apply_ne (i := 0) (by simp [e1])
+
+lemma e3_ne_zero : e3 ≠ 0 := ne_zero_of_apply_ne (i := 2) (by simp [e3])
+
+lemma dot3_e3_self : dot3 e3 e3 = 1 := by simp [dot3, e3]
 
 lemma dot3_e1_self : dot3 e1 e1 = 1 := by simp [dot3, e1]
 
@@ -501,6 +508,12 @@ lemma sphere3_subset : sphere3 ⊆ {v : Fin 3 → ℝ | v ≠ 0} := fun v hv =>
 lemma dot3_smul_smul (c : ℝ) (v : Fin 3 → ℝ) : dot3 (c • v) (c • v) = c ^ 2 * dot3 v v := by
   simp [dot3]; ring
 
+lemma dot3_smul_left (c : ℝ) (u v : Fin 3 → ℝ) : dot3 (c • u) v = c * dot3 u v := by
+  simp [dot3]; ring
+
+lemma dot3_smul_right (c : ℝ) (u v : Fin 3 → ℝ) : dot3 u (c • v) = c * dot3 u v := by
+  simp [dot3]; ring
+
 /-- Normalisation: every nonzero vector is a positive multiple of a unit vector. -/
 lemma exists_unit_smul {v : Fin 3 → ℝ} (hv : v ≠ 0) :
     ∃ c : ℝ, c ≠ 0 ∧ c • v ∈ sphere3 := by
@@ -763,5 +776,777 @@ theorem prop1_pole {f : (Fin 3 → ℝ) → ℝ} {W m : ℝ} (hf : IsFrameFuncti
   simp only [hψ, hφ1] at h
   rw [hprof v hv]
   linarith
+
+
+/-! ### Orthonormal frames and transport of frame functions -/
+
+/-- Orthonormality of a triple. -/
+structure IsOrthonormal (p q r : Fin 3 → ℝ) : Prop where
+  pp : dot3 p p = 1
+  qq : dot3 q q = 1
+  rr : dot3 r r = 1
+  pq : dot3 p q = 0
+  pr : dot3 p r = 0
+  qr : dot3 q r = 0
+
+/-- Coordinates `v` in the frame `(p, q, r)` to the vector `v 0 • p + v 1 • q + v 2 • r`. -/
+def ofFrame (p q r : Fin 3 → ℝ) (v : Fin 3 → ℝ) : Fin 3 → ℝ := v 0 • p + v 1 • q + v 2 • r
+
+/-- The coordinates of `w` in the frame `(p, q, r)`. -/
+def toFrame (p q r : Fin 3 → ℝ) (w : Fin 3 → ℝ) : Fin 3 → ℝ := ![dot3 w p, dot3 w q, dot3 w r]
+
+lemma ofFrame_apply (p q r v : Fin 3 → ℝ) (i : Fin 3) :
+    ofFrame p q r v i = v 0 * p i + v 1 * q i + v 2 * r i := by
+  simp [ofFrame]
+
+lemma dot3_ofFrame {p q r : Fin 3 → ℝ} (h : IsOrthonormal p q r) (u v : Fin 3 → ℝ) :
+    dot3 (ofFrame p q r u) (ofFrame p q r v) = dot3 u v := by
+  have hpp := h.pp; have hqq := h.qq; have hrr := h.rr
+  have hpq := h.pq; have hpr := h.pr; have hqr := h.qr
+  simp only [dot3, ofFrame_apply] at *
+  linear_combination (u 0 * v 0) * hpp + (u 1 * v 1) * hqq + (u 2 * v 2) * hrr +
+    (u 0 * v 1 + u 1 * v 0) * hpq + (u 0 * v 2 + u 2 * v 0) * hpr + (u 1 * v 2 + u 2 * v 1) * hqr
+
+lemma ofFrame_smul (p q r : Fin 3 → ℝ) (c : ℝ) (v : Fin 3 → ℝ) :
+    ofFrame p q r (c • v) = c • ofFrame p q r v := by
+  ext i; simp [ofFrame_apply]; ring
+
+lemma ofFrame_ne_zero {p q r : Fin 3 → ℝ} (h : IsOrthonormal p q r) {v : Fin 3 → ℝ}
+    (hv : v ≠ 0) : ofFrame p q r v ≠ 0 :=
+  ne_zero_of_dot3_self_pos (by rw [dot3_ofFrame h]; exact dot3_self_pos hv)
+
+lemma continuous_ofFrame (p q r : Fin 3 → ℝ) : Continuous (ofFrame p q r) := by
+  unfold ofFrame; fun_prop
+
+lemma dot3_ofFrame_left {p q r : Fin 3 → ℝ} (h : IsOrthonormal p q r) (v : Fin 3 → ℝ) :
+    dot3 (ofFrame p q r v) p = v 0 ∧ dot3 (ofFrame p q r v) q = v 1 ∧
+      dot3 (ofFrame p q r v) r = v 2 := by
+  have hpp := h.pp; have hqq := h.qq; have hrr := h.rr
+  have hpq := h.pq; have hpr := h.pr; have hqr := h.qr
+  simp only [dot3, ofFrame_apply] at *
+  refine ⟨?_, ?_, ?_⟩
+  · linear_combination (v 0) * hpp + (v 1) * hpq + (v 2) * hpr
+  · linear_combination (v 0) * hpq + (v 1) * hqq + (v 2) * hqr
+  · linear_combination (v 0) * hpr + (v 1) * hqr + (v 2) * hrr
+
+lemma toFrame_ofFrame {p q r : Fin 3 → ℝ} (h : IsOrthonormal p q r) (v : Fin 3 → ℝ) :
+    toFrame p q r (ofFrame p q r v) = v := by
+  obtain ⟨h0, h1, h2⟩ := dot3_ofFrame_left h v
+  ext i; fin_cases i <;> simp [toFrame, h0, h1, h2]
+
+/-- Completeness: the columns of an orthogonal matrix are orthonormal, hence so are the rows. -/
+lemma completeness {p q r : Fin 3 → ℝ} (h : IsOrthonormal p q r) (j k : Fin 3) :
+    p j * p k + q j * q k + r j * r k = if j = k then 1 else 0 := by
+  let M : Matrix (Fin 3) (Fin 3) ℝ := Matrix.of fun i l => (![p, q, r] l) i
+  have h1 : Matrix.transpose M * M = 1 := by
+    have hpp := h.pp; have hqq := h.qq; have hrr := h.rr
+    have hpq := h.pq; have hpr := h.pr; have hqr := h.qr
+    simp only [dot3] at hpp hqq hrr hpq hpr hqr
+    ext a b
+    fin_cases a <;> fin_cases b <;>
+      simp [M, Matrix.mul_apply, Fin.sum_univ_three] <;> linarith
+  have h2 : M * Matrix.transpose M = 1 := mul_eq_one_comm.1 h1
+  have := congrFun (congrFun h2 j) k
+  simpa [M, Matrix.mul_apply, Fin.sum_univ_three, Matrix.one_apply] using this
+
+/-- The six completeness identities, spelled out. -/
+lemma completeness' {p q r : Fin 3 → ℝ} (h : IsOrthonormal p q r) :
+    (p 0 * p 0 + q 0 * q 0 + r 0 * r 0 = 1) ∧ (p 1 * p 1 + q 1 * q 1 + r 1 * r 1 = 1) ∧
+    (p 2 * p 2 + q 2 * q 2 + r 2 * r 2 = 1) ∧ (p 0 * p 1 + q 0 * q 1 + r 0 * r 1 = 0) ∧
+    (p 0 * p 2 + q 0 * q 2 + r 0 * r 2 = 0) ∧ (p 1 * p 2 + q 1 * q 2 + r 1 * r 2 = 0) := by
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
+  · simpa using completeness h 0 0
+  · simpa using completeness h 1 1
+  · simpa using completeness h 2 2
+  · simpa using completeness h 0 1
+  · simpa using completeness h 0 2
+  · simpa using completeness h 1 2
+
+lemma ofFrame_toFrame {p q r : Fin 3 → ℝ} (h : IsOrthonormal p q r) (w : Fin 3 → ℝ) :
+    ofFrame p q r (toFrame p q r w) = w := by
+  obtain ⟨c00, c11, c22, c01, c02, c12⟩ := completeness' h
+  ext i
+  fin_cases i
+  · simp [ofFrame_apply, toFrame, dot3]
+    linear_combination (w 0) * c00 + (w 1) * c01 + (w 2) * c02
+  · simp [ofFrame_apply, toFrame, dot3]
+    linear_combination (w 0) * c01 + (w 1) * c11 + (w 2) * c12
+  · simp [ofFrame_apply, toFrame, dot3]
+    linear_combination (w 0) * c02 + (w 1) * c12 + (w 2) * c22
+
+lemma toFrame_ne_zero {p q r : Fin 3 → ℝ} (h : IsOrthonormal p q r) {w : Fin 3 → ℝ}
+    (hw : w ≠ 0) : toFrame p q r w ≠ 0 := by
+  intro h0; apply hw; rw [← ofFrame_toFrame h w, h0]; ext i; simp [ofFrame_apply]
+
+lemma dot3_toFrame_self {p q r : Fin 3 → ℝ} (h : IsOrthonormal p q r) (w : Fin 3 → ℝ) :
+    dot3 (toFrame p q r w) (toFrame p q r w) = dot3 w w := by
+  conv_rhs => rw [← ofFrame_toFrame h w]
+  rw [dot3_ofFrame h]
+
+/-- Transport of frame functions along an orthonormal frame. -/
+theorem IsFrameFunction.comp_ofFrame {f : (Fin 3 → ℝ) → ℝ} {W : ℝ} (hf : IsFrameFunction f W)
+    {p q r : Fin 3 → ℝ} (h : IsOrthonormal p q r) :
+    IsFrameFunction (fun v => f (ofFrame p q r v)) W where
+  scale v hv c hc := by
+    rw [ofFrame_smul, hf.scale _ (ofFrame_ne_zero h hv) c hc]
+  frame u v w hu hv hw huv huw hvw := by
+    exact hf.frame _ _ _ (ofFrame_ne_zero h hu) (ofFrame_ne_zero h hv) (ofFrame_ne_zero h hw)
+      (by rw [dot3_ofFrame h]; exact huv) (by rw [dot3_ofFrame h]; exact huw)
+      (by rw [dot3_ofFrame h]; exact hvw)
+
+theorem continuousOn_comp_ofFrame {f : (Fin 3 → ℝ) → ℝ} (hc : ContinuousOn f {v | v ≠ 0})
+    {p q r : Fin 3 → ℝ} (h : IsOrthonormal p q r) :
+    ContinuousOn (fun v => f (ofFrame p q r v)) {v | v ≠ 0} :=
+  hc.comp (continuous_ofFrame p q r).continuousOn (fun _ hv => ofFrame_ne_zero h hv)
+
+/-- Every unit vector is part of an orthonormal frame (Householder completion). -/
+theorem exists_orthonormal_completion {p : Fin 3 → ℝ} (hp : dot3 p p = 1) :
+    ∃ q r : Fin 3 → ℝ, IsOrthonormal p q r := by
+  have hp' : p 0 * p 0 + p 1 * p 1 + p 2 * p 2 = 1 := hp
+  by_cases h1 : p 0 = 1
+  · have h10 : p 1 = 0 := by nlinarith [mul_self_nonneg (p 1), mul_self_nonneg (p 2)]
+    have h20 : p 2 = 0 := by nlinarith [mul_self_nonneg (p 1), mul_self_nonneg (p 2)]
+    exact ⟨![0, 1, 0], ![0, 0, 1], ⟨hp, by simp [dot3], by simp [dot3], by simp [dot3, h10],
+      by simp [dot3, h20], by simp [dot3]⟩⟩
+  · have hle : p 0 ≤ 1 := by nlinarith [mul_self_nonneg (p 1), mul_self_nonneg (p 2)]
+    have hc : 0 < 1 - p 0 := by
+      rcases lt_or_eq_of_le hle with h | h
+      · linarith
+      · exact absurd h h1
+    set c := 1 - p 0 with hcdef
+    set x : Fin 3 → ℝ := ![p 1 * c, c - p 1 ^ 2, -(p 1 * p 2)] with hx
+    set y : Fin 3 → ℝ := ![p 2 * c, -(p 1 * p 2), c - p 2 ^ 2] with hy
+    have hxx : dot3 x x = c ^ 2 := by
+      simp [dot3, hx, hcdef]; linear_combination (p 1 ^ 2) * hp'
+    have hyy : dot3 y y = c ^ 2 := by
+      simp [dot3, hy, hcdef]; linear_combination (p 2 ^ 2) * hp'
+    have hpx : dot3 p x = 0 := by
+      simp [dot3, hx, hcdef]; linear_combination (-(p 1)) * hp'
+    have hpy : dot3 p y = 0 := by
+      simp [dot3, hy, hcdef]; linear_combination (-(p 2)) * hp'
+    have hxy : dot3 x y = 0 := by
+      simp [dot3, hx, hy, hcdef]; linear_combination (p 1 * p 2) * hp'
+    refine ⟨(1 / c) • x, (1 / c) • y, ⟨hp, ?_, ?_, ?_, ?_, ?_⟩⟩
+    · rw [dot3_smul_smul, hxx]; field_simp
+    · rw [dot3_smul_smul, hyy]; field_simp
+    · rw [dot3_smul_right, hpx, mul_zero]
+    · rw [dot3_smul_right, hpy, mul_zero]
+    · rw [dot3_smul_left, dot3_smul_right, hxy, mul_zero, mul_zero]
+
+/-- An orthonormal pair extends by the cross product. -/
+theorem isOrthonormal_cross {p r : Fin 3 → ℝ} (hp : dot3 p p = 1) (hr : dot3 r r = 1)
+    (hpr : dot3 p r = 0) : IsOrthonormal p (cross3 p r) r := by
+  have hp' : p 0 * p 0 + p 1 * p 1 + p 2 * p 2 = 1 := hp
+  have hr' : r 0 * r 0 + r 1 * r 1 + r 2 * r 2 = 1 := hr
+  have hpr' : p 0 * r 0 + p 1 * r 1 + p 2 * r 2 = 0 := hpr
+  refine ⟨hp, ?_, hr, by simp [dot3, cross3]; ring, hpr, by simp [dot3, cross3]; ring⟩
+  simp [dot3, cross3]
+  linear_combination (r 0 * r 0 + r 1 * r 1 + r 2 * r 2) * hp' + hr' -
+    (p 0 * r 0 + p 1 * r 1 + p 2 * r 2) * hpr'
+
+
+lemma ofFrame_e1 (p q r : Fin 3 → ℝ) : ofFrame p q r e1 = p := by
+  ext i; simp [ofFrame_apply, e1]
+
+lemma ofFrame_e3 (p q r : Fin 3 → ℝ) : ofFrame p q r e3 = r := by
+  ext i; simp [ofFrame_apply, e3]
+
+/-- Parseval for an orthonormal frame. -/
+lemma sum_sq_dot3_eq {p q r : Fin 3 → ℝ} (h : IsOrthonormal p q r) (x : Fin 3 → ℝ) :
+    dot3 x p ^ 2 + dot3 x q ^ 2 + dot3 x r ^ 2 = dot3 x x := by
+  obtain ⟨c00, c11, c22, c01, c02, c12⟩ := completeness' h
+  simp only [dot3]
+  linear_combination (x 0 * x 0) * c00 + (x 1 * x 1) * c11 + (x 2 * x 2) * c22 +
+    (2 * x 0 * x 1) * c01 + (2 * x 0 * x 2) * c02 + (2 * x 1 * x 2) * c12
+
+lemma sq_div_dot3_smul {c : ℝ} (hc : c ≠ 0) (u p : Fin 3 → ℝ) :
+    dot3 (c • u) p ^ 2 / dot3 (c • u) (c • u) = dot3 u p ^ 2 / dot3 u u := by
+  rw [dot3_smul_left, dot3_smul_smul, mul_pow, mul_div_mul_left _ _ (pow_ne_zero 2 hc)]
+
+/-- The latitudes of an orthogonal triple with respect to any direction `p` sum to `⟨p, p⟩`. -/
+theorem sum_lat_eq {u v w : Fin 3 → ℝ} (hu : u ≠ 0) (hv : v ≠ 0) (hw : w ≠ 0)
+    (huv : dot3 u v = 0) (huw : dot3 u w = 0) (hvw : dot3 v w = 0) (p : Fin 3 → ℝ) :
+    dot3 u p ^ 2 / dot3 u u + dot3 v p ^ 2 / dot3 v v + dot3 w p ^ 2 / dot3 w w = dot3 p p := by
+  obtain ⟨cu, hcu, hcuu⟩ := exists_unit_smul hu
+  obtain ⟨cv, hcv, hcvv⟩ := exists_unit_smul hv
+  obtain ⟨cw, hcw, hcww⟩ := exists_unit_smul hw
+  have h : IsOrthonormal (cu • u) (cv • v) (cw • w) :=
+    ⟨hcuu, hcvv, hcww, by rw [dot3_smul_left, dot3_smul_right, huv]; ring,
+      by rw [dot3_smul_left, dot3_smul_right, huw]; ring,
+      by rw [dot3_smul_left, dot3_smul_right, hvw]; ring⟩
+  have key := sum_sq_dot3_eq h p
+  have eu := sq_div_dot3_smul hcu u p
+  have ev := sq_div_dot3_smul hcv v p
+  have ew := sq_div_dot3_smul hcw w p
+  rw [show dot3 (cu • u) (cu • u) = 1 from hcuu, div_one] at eu
+  rw [show dot3 (cv • v) (cv • v) = 1 from hcvv, div_one] at ev
+  rw [show dot3 (cw • w) (cw • w) = 1 from hcww, div_one] at ew
+  rw [← eu, ← ev, ← ew, dot3_comm (cu • u), dot3_comm (cv • v), dot3_comm (cw • w)]
+  exact key
+
+/-- **Proposition 1 at an arbitrary unit pole.** -/
+theorem prop1 {f : (Fin 3 → ℝ) → ℝ} {W m : ℝ} (hf : IsFrameFunction f W)
+    (hc : ContinuousOn f {v | v ≠ 0}) {p : Fin 3 → ℝ} (hp : dot3 p p = 1)
+    (hmax : ∀ v : Fin 3 → ℝ, v ≠ 0 → f v ≤ f p)
+    (heq : ∀ v : Fin 3 → ℝ, v ≠ 0 → dot3 v p = 0 → f v = m) :
+    ∀ v : Fin 3 → ℝ, v ≠ 0 → f v = m + (f p - m) * (dot3 v p ^ 2 / dot3 v v) := by
+  obtain ⟨q, r, h⟩ := exists_orthonormal_completion hp
+  have hF := hf.comp_ofFrame h
+  have hcF := continuousOn_comp_ofFrame hc h
+  have hmaxF : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (fun v => f (ofFrame p q r v)) v ≤ (fun v => f (ofFrame p q r v)) e1 := by
+    intro v hv
+    simp only [ofFrame_e1]
+    exact hmax _ (ofFrame_ne_zero h hv)
+  have heqF : ∀ v : Fin 3 → ℝ, v ≠ 0 → v 0 = 0 → (fun v => f (ofFrame p q r v)) v = m := by
+    intro v hv hv0
+    exact heq _ (ofFrame_ne_zero h hv) (by rw [(dot3_ofFrame_left h v).1]; exact hv0)
+  have key := prop1_pole hF hcF hmaxF heqF
+  intro w hw
+  have := key (toFrame p q r w) (toFrame_ne_zero h hw)
+  simp only [ofFrame_e1, ofFrame_toFrame h] at this
+  rw [this, lat, dot3_toFrame_self h]
+  simp [toFrame]
+
+/-- Lemma 1(iv) at the pole: when the maximum is at `e1`, the minimum is attained on the
+equator. -/
+theorem exists_min_on_equator_pole {f : (Fin 3 → ℝ) → ℝ} {W : ℝ} (hf : IsFrameFunction f W)
+    (hc : ContinuousOn f {v | v ≠ 0}) (hmax : ∀ v : Fin 3 → ℝ, v ≠ 0 → f v ≤ f e1) :
+    ∃ r : Fin 3 → ℝ, r ≠ 0 ∧ r 0 = 0 ∧ ∀ v : Fin 3 → ℝ, v ≠ 0 → f r ≤ f v := by
+  obtain ⟨s, hs, hmin⟩ := exists_min hf hc
+  by_cases hrs : s 1 ^ 2 + s 2 ^ 2 = 0
+  · -- `s` is a multiple of the pole, so `f` is constant
+    have hs1 : s 1 = 0 := by nlinarith [sq_nonneg (s 1), sq_nonneg (s 2)]
+    have hs2 : s 2 = 0 := by nlinarith [sq_nonneg (s 1), sq_nonneg (s 2)]
+    have hs0 : s 0 ≠ 0 := by
+      intro h0; apply hs; ext i; fin_cases i <;> simp [h0, hs1, hs2]
+    have hse : s = (s 0) • e1 := by ext i; fin_cases i <;> simp [e1, hs1, hs2]
+    have he2 : (![0, 1, 0] : Fin 3 → ℝ) ≠ 0 := ne_zero_of_apply_ne (i := 1) (by simp)
+    refine ⟨![0, 1, 0], he2, by simp, fun v hv => ?_⟩
+    have h1 := hmax ![0, 1, 0] he2
+    have h2 := hmin v hv
+    rw [hse, hf.scale e1 e1_ne_zero (s 0) hs0] at h2
+    have h3 := hmax v hv
+    linarith
+  · let s' : Fin 3 → ℝ := ![0, s 1, s 2]
+    let s'' : Fin 3 → ℝ := ![s 1 ^ 2 + s 2 ^ 2, -(s 0 * s 1), -(s 0 * s 2)]
+    let n : Fin 3 → ℝ := ![0, -(s 2), s 1]
+    have hs' : s' ≠ 0 := ne_zero_of_transverse_ne (by simpa [s'] using hrs)
+    have hs'' : s'' ≠ 0 := ne_zero_of_apply_ne (i := 0) (by simpa [s''] using hrs)
+    have hn : n ≠ 0 := ne_zero_of_transverse_ne (by simp [n]; intro h; apply hrs; linarith)
+    have key := pair_sum_eq_of_common_normal hf e1_ne_zero hs' hs hs'' hn
+      (by simp [dot3, e1, s']) (by simp [dot3, e1, n]) (by simp [dot3, s', n]; ring)
+      (by simp [dot3, s'']; ring) (by simp [dot3, n]; ring) (by simp [dot3, s'', n]; ring)
+    have h2 := hmax s'' hs''
+    refine ⟨s', hs', by simp [s'], fun v hv => ?_⟩
+    have := hmin v hv
+    linarith
+
+/-- Lemma 1(iv): when the maximum is at the unit vector `p`, the minimum is attained at a unit
+vector orthogonal to `p`. -/
+theorem exists_min_perp {f : (Fin 3 → ℝ) → ℝ} {W : ℝ} (hf : IsFrameFunction f W)
+    (hc : ContinuousOn f {v | v ≠ 0}) {p : Fin 3 → ℝ} (hp : dot3 p p = 1)
+    (hmax : ∀ v : Fin 3 → ℝ, v ≠ 0 → f v ≤ f p) :
+    ∃ r : Fin 3 → ℝ, dot3 r r = 1 ∧ dot3 p r = 0 ∧ ∀ v : Fin 3 → ℝ, v ≠ 0 → f r ≤ f v := by
+  obtain ⟨q, r, h⟩ := exists_orthonormal_completion hp
+  have hF := hf.comp_ofFrame h
+  have hcF := continuousOn_comp_ofFrame hc h
+  have hmaxF : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (fun v => f (ofFrame p q r v)) v ≤ (fun v => f (ofFrame p q r v)) e1 := by
+    intro v hv
+    simp only [ofFrame_e1]
+    exact hmax _ (ofFrame_ne_zero h hv)
+  obtain ⟨r₀, hr₀, hr₀0, hminF⟩ := exists_min_on_equator_pole hF hcF hmaxF
+  have hw : ofFrame p q r r₀ ≠ 0 := ofFrame_ne_zero h hr₀
+  obtain ⟨c, hc0, hcu⟩ := exists_unit_smul hw
+  refine ⟨c • ofFrame p q r r₀, hcu, ?_, fun v hv => ?_⟩
+  · rw [dot3_smul_right, dot3_comm, (dot3_ofFrame_left h r₀).1, hr₀0, mul_zero]
+  · rw [hf.scale _ hw c hc0]
+    have := hminF (toFrame p q r v) (toFrame_ne_zero h hv)
+    simpa only [ofFrame_toFrame h] using this
+
+
+/-! ### §4.4: quarter turns, the identities (4.5) and (4.6), and the six circles -/
+
+/-- Quarter turn about `e1`: `(x, y, z) ↦ (x, -z, y)`. -/
+def phat (v : Fin 3 → ℝ) : Fin 3 → ℝ := ![v 0, -(v 2), v 1]
+
+/-- Quarter turn about `e3`: `(x, y, z) ↦ (-y, x, z)`. -/
+def rhat (v : Fin 3 → ℝ) : Fin 3 → ℝ := ![-(v 1), v 0, v 2]
+
+lemma dot3_phat (u v : Fin 3 → ℝ) : dot3 (phat u) (phat v) = dot3 u v := by
+  simp [dot3, phat]; ring
+
+lemma dot3_rhat (u v : Fin 3 → ℝ) : dot3 (rhat u) (rhat v) = dot3 u v := by
+  simp [dot3, rhat]; ring
+
+lemma phat_smul (c : ℝ) (v : Fin 3 → ℝ) : phat (c • v) = c • phat v := by
+  ext i; fin_cases i <;> simp [phat]
+
+lemma rhat_smul (c : ℝ) (v : Fin 3 → ℝ) : rhat (c • v) = c • rhat v := by
+  ext i; fin_cases i <;> simp [rhat]
+
+lemma phat_ne_zero {v : Fin 3 → ℝ} (hv : v ≠ 0) : phat v ≠ 0 :=
+  ne_zero_of_dot3_self_pos (by rw [dot3_phat]; exact dot3_self_pos hv)
+
+lemma rhat_ne_zero {v : Fin 3 → ℝ} (hv : v ≠ 0) : rhat v ≠ 0 :=
+  ne_zero_of_dot3_self_pos (by rw [dot3_rhat]; exact dot3_self_pos hv)
+
+lemma continuous_phat : Continuous phat := by
+  unfold phat; fun_prop
+
+lemma continuous_rhat : Continuous rhat := by
+  unfold rhat; fun_prop
+
+lemma phat_e1 : phat e1 = e1 := by ext i; fin_cases i <;> simp [phat, e1]
+
+lemma rhat_e3 : rhat e3 = e3 := by ext i; fin_cases i <;> simp [rhat, e3]
+
+/-- Algebra of frame functions. -/
+theorem IsFrameFunction.add {f g : (Fin 3 → ℝ) → ℝ} {W W' : ℝ} (hf : IsFrameFunction f W)
+    (hg : IsFrameFunction g W') : IsFrameFunction (fun v => f v + g v) (W + W') where
+  scale v hv c hc := by
+    show f (c • v) + g (c • v) = f v + g v
+    rw [hf.scale v hv c hc, hg.scale v hv c hc]
+  frame u v w hu hv hw huv huw hvw := by
+    have := hf.frame u v w hu hv hw huv huw hvw
+    have := hg.frame u v w hu hv hw huv huw hvw
+    show f u + g u + (f v + g v) + (f w + g w) = W + W'
+    linarith
+
+theorem IsFrameFunction.neg {f : (Fin 3 → ℝ) → ℝ} {W : ℝ} (hf : IsFrameFunction f W) :
+    IsFrameFunction (fun v => -f v) (-W) where
+  scale v hv c hc := by
+    show -f (c • v) = -f v
+    rw [hf.scale v hv c hc]
+  frame u v w hu hv hw huv huw hvw := by
+    have := hf.frame u v w hu hv hw huv huw hvw
+    show -f u + -f v + -f w = -W
+    linarith
+
+theorem IsFrameFunction.sub {f g : (Fin 3 → ℝ) → ℝ} {W W' : ℝ} (hf : IsFrameFunction f W)
+    (hg : IsFrameFunction g W') : IsFrameFunction (fun v => f v - g v) (W - W') where
+  scale v hv c hc := by
+    show f (c • v) - g (c • v) = f v - g v
+    rw [hf.scale v hv c hc, hg.scale v hv c hc]
+  frame u v w hu hv hw huv huw hvw := by
+    have := hf.frame u v w hu hv hw huv huw hvw
+    have := hg.frame u v w hu hv hw huv huw hvw
+    show f u - g u + (f v - g v) + (f w - g w) = W - W'
+    linarith
+
+theorem IsFrameFunction.comp_phat {f : (Fin 3 → ℝ) → ℝ} {W : ℝ} (hf : IsFrameFunction f W) :
+    IsFrameFunction (fun v => f (phat v)) W where
+  scale v hv c hc := by
+    show f (phat (c • v)) = f (phat v)
+    rw [phat_smul, hf.scale _ (phat_ne_zero hv) c hc]
+  frame u v w hu hv hw huv huw hvw :=
+    hf.frame _ _ _ (phat_ne_zero hu) (phat_ne_zero hv) (phat_ne_zero hw)
+      (by rw [dot3_phat]; exact huv) (by rw [dot3_phat]; exact huw) (by rw [dot3_phat]; exact hvw)
+
+theorem IsFrameFunction.comp_rhat {f : (Fin 3 → ℝ) → ℝ} {W : ℝ} (hf : IsFrameFunction f W) :
+    IsFrameFunction (fun v => f (rhat v)) W where
+  scale v hv c hc := by
+    show f (rhat (c • v)) = f (rhat v)
+    rw [rhat_smul, hf.scale _ (rhat_ne_zero hv) c hc]
+  frame u v w hu hv hw huv huw hvw :=
+    hf.frame _ _ _ (rhat_ne_zero hu) (rhat_ne_zero hv) (rhat_ne_zero hw)
+      (by rw [dot3_rhat]; exact huv) (by rw [dot3_rhat]; exact huw) (by rw [dot3_rhat]; exact hvw)
+
+theorem continuousOn_comp_phat {f : (Fin 3 → ℝ) → ℝ} (hc : ContinuousOn f {v | v ≠ 0}) :
+    ContinuousOn (fun v => f (phat v)) {v | v ≠ 0} :=
+  hc.comp continuous_phat.continuousOn (fun _ hv => phat_ne_zero hv)
+
+theorem continuousOn_comp_rhat {f : (Fin 3 → ℝ) → ℝ} (hc : ContinuousOn f {v | v ≠ 0}) :
+    ContinuousOn (fun v => f (rhat v)) {v | v ≠ 0} :=
+  hc.comp continuous_rhat.continuousOn (fun _ hv => rhat_ne_zero hv)
+
+/-- (4.5): with the maximum at `e1`, `f + f ∘ phat` is an explicit function of the latitude. -/
+theorem sum_phat {f : (Fin 3 → ℝ) → ℝ} {W : ℝ} (hf : IsFrameFunction f W)
+    (hc : ContinuousOn f {v | v ≠ 0}) (hmax : ∀ v : Fin 3 → ℝ, v ≠ 0 → f v ≤ f e1) :
+    ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      f v + f (phat v) = (W - f e1) + (3 * f e1 - W) * lat v := by
+  have hF : IsFrameFunction (fun v => f v + f (phat v)) (W + W) := hf.add hf.comp_phat
+  have hcF : ContinuousOn (fun v => f v + f (phat v)) {v | v ≠ 0} :=
+    hc.add (continuousOn_comp_phat hc)
+  have hmaxF : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (fun v => f v + f (phat v)) v ≤ (fun v => f v + f (phat v)) e1 := by
+    intro v hv; simp only [phat_e1]
+    linarith [hmax v hv, hmax (phat v) (phat_ne_zero hv)]
+  have heqF : ∀ v : Fin 3 → ℝ, v ≠ 0 → v 0 = 0 →
+      (fun v => f v + f (phat v)) v = W - f e1 := by
+    intro v hv hv0
+    have := hf.frame e1 v (phat v) e1_ne_zero hv (phat_ne_zero hv)
+      (by simp [dot3, e1, hv0]) (by simp [dot3, e1, phat, hv0]) (by simp [dot3, phat, hv0]; ring)
+    show f v + f (phat v) = W - f e1
+    linarith
+  have key := prop1_pole hF hcF hmaxF heqF
+  intro v hv
+  have := key v hv
+  simp only [phat_e1] at this
+  rw [this]; ring
+
+/-- (4.6): with the minimum at `e3`, `f + f ∘ rhat` is an explicit function of `v 2 ^ 2`. -/
+theorem sum_rhat {f : (Fin 3 → ℝ) → ℝ} {W : ℝ} (hf : IsFrameFunction f W)
+    (hc : ContinuousOn f {v | v ≠ 0}) (hmin : ∀ v : Fin 3 → ℝ, v ≠ 0 → f e3 ≤ f v) :
+    ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      f v + f (rhat v) = (W - f e3) + (3 * f e3 - W) * (v 2 ^ 2 / dot3 v v) := by
+  have hG : IsFrameFunction (fun v => -(f v + f (rhat v))) (-(W + W)) := (hf.add hf.comp_rhat).neg
+  have hcG : ContinuousOn (fun v => -(f v + f (rhat v))) {v | v ≠ 0} :=
+    (hc.add (continuousOn_comp_rhat hc)).neg
+  have hmaxG : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (fun v => -(f v + f (rhat v))) v ≤ (fun v => -(f v + f (rhat v))) e3 := by
+    intro v hv; simp only [rhat_e3]
+    linarith [hmin v hv, hmin (rhat v) (rhat_ne_zero hv)]
+  have heqG : ∀ v : Fin 3 → ℝ, v ≠ 0 → dot3 v e3 = 0 →
+      (fun v => -(f v + f (rhat v))) v = -(W - f e3) := by
+    intro v hv hv2
+    have hv2' : v 2 = 0 := by simpa [dot3, e3] using hv2
+    have := hf.frame e3 v (rhat v) e3_ne_zero hv (rhat_ne_zero hv)
+      (by simp [dot3, e3, hv2']) (by simp [dot3, e3, rhat, hv2']) (by simp [dot3, rhat, hv2']; ring)
+    show -(f v + f (rhat v)) = -(W - f e3)
+    linarith
+  have key := prop1 hG hcG dot3_e3_self hmaxG heqG
+  intro v hv
+  have := key v hv
+  simp only [rhat_e3] at this
+  have e : dot3 v e3 = v 2 := by simp [dot3, e3]
+  rw [e] at this
+  linarith
+
+/-- The quadratic frame function with values `M, α, m` on `e1, e2, e3`. -/
+noncomputable def stdQuad (M α m : ℝ) (v : Fin 3 → ℝ) : ℝ :=
+  (M * v 0 ^ 2 + α * v 1 ^ 2 + m * v 2 ^ 2) / dot3 v v
+
+theorem isFrameFunction_stdQuad (M α m : ℝ) : IsFrameFunction (stdQuad M α m) (M + α + m) where
+  scale v hv c hc := by
+    simp only [stdQuad, dot3_smul_smul, Pi.smul_apply, smul_eq_mul]
+    have := dot3_self_pos hv
+    field_simp
+  frame u v w hu hv hw huv huw hvw := by
+    have h1 := sum_lat_eq hu hv hw huv huw hvw e1
+    have h2 := sum_lat_eq hu hv hw huv huw hvw ![0, 1, 0]
+    have h3 := sum_lat_eq hu hv hw huv huw hvw e3
+    simp [dot3, e1, e3] at h1 h2 h3
+    have hu' := dot3_self_pos hu
+    have hv' := dot3_self_pos hv
+    have hw' := dot3_self_pos hw
+    simp only [stdQuad]
+    simp only [dot3] at *
+    rw [add_div, add_div, add_div, add_div, add_div, add_div]
+    linear_combination M * h1 + α * h2 + m * h3
+
+theorem continuousOn_stdQuad (M α m : ℝ) : ContinuousOn (stdQuad M α m) {v | v ≠ 0} := by
+  apply ContinuousOn.div
+  · fun_prop
+  · exact continuous_dot3_self.continuousOn
+  · intro v hv; exact (dot3_self_pos hv).ne'
+
+lemma stdQuad_add_phat (M α m : ℝ) {v : Fin 3 → ℝ} (hv : v ≠ 0) :
+    stdQuad M α m v + stdQuad M α m (phat v) = (α + m) + (2 * M - α - m) * lat v := by
+  have hD : v 0 ^ 2 + v 1 ^ 2 + v 2 ^ 2 ≠ 0 := by
+    have := dot3_self_pos hv; simp only [dot3] at this; nlinarith
+  simp only [stdQuad, lat, dot3_phat]
+  have e0 : phat v 0 = v 0 := by simp [phat]
+  have e1' : phat v 1 = -(v 2) := by simp [phat]
+  have e2 : phat v 2 = v 1 := by simp [phat]
+  rw [e0, e1', e2]
+  simp only [dot3]
+  field_simp
+  ring
+
+lemma stdQuad_add_rhat (M α m : ℝ) {v : Fin 3 → ℝ} (hv : v ≠ 0) :
+    stdQuad M α m v + stdQuad M α m (rhat v) = (M + α) + (2 * m - M - α) * (v 2 ^ 2 / dot3 v v) := by
+  have hD : v 0 ^ 2 + v 1 ^ 2 + v 2 ^ 2 ≠ 0 := by
+    have := dot3_self_pos hv; simp only [dot3] at this; nlinarith
+  simp only [stdQuad, dot3_rhat]
+  have e0 : rhat v 0 = -(v 1) := by simp [rhat]
+  have e1' : rhat v 1 = v 0 := by simp [rhat]
+  have e2 : rhat v 2 = v 2 := by simp [rhat]
+  rw [e0, e1', e2]
+  simp only [dot3]
+  field_simp
+  ring
+
+lemma stdQuad_e1 (M α m : ℝ) : stdQuad M α m e1 = M := by simp [stdQuad, e1, dot3]
+lemma stdQuad_e3 (M α m : ℝ) : stdQuad M α m e3 = m := by simp [stdQuad, e3, dot3]
+
+/-- Lemma 8 (standard position): with the maximum at `e1` and the minimum at `e3`, `f` agrees
+with the quadratic `stdQuad (f e1) (W - f e1 - f e3) (f e3)` on the six great circles
+`x = ±y`, `x = ±z`, `y = ±z`. -/
+theorem eq_stdQuad_on_six_circles {f : (Fin 3 → ℝ) → ℝ} {W : ℝ} (hf : IsFrameFunction f W)
+    (hc : ContinuousOn f {v | v ≠ 0}) (hmax : ∀ v : Fin 3 → ℝ, v ≠ 0 → f v ≤ f e1)
+    (hmin : ∀ v : Fin 3 → ℝ, v ≠ 0 → f e3 ≤ f v) :
+    ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (v 0 = v 1 ∨ v 0 = -v 1 ∨ v 0 = v 2 ∨ v 0 = -v 2 ∨ v 1 = v 2 ∨ v 1 = -v 2) →
+      f v = stdQuad (f e1) (W - f e1 - f e3) (f e3) v := by
+  set M := f e1 with hM
+  set m := f e3 with hm
+  set α := W - M - m with hα
+  set g := stdQuad M α m with hg
+  set h : (Fin 3 → ℝ) → ℝ := fun v => f v - g v with hh
+  have hhf : IsFrameFunction h 0 := by
+    have := hf.sub (isFrameFunction_stdQuad M α m)
+    rwa [show W - (M + α + m) = 0 by rw [hα]; ring] at this
+  -- the two sign-flip identities
+  have hp : ∀ v : Fin 3 → ℝ, v ≠ 0 → h (phat v) = -h v := by
+    intro v hv
+    have h1 := sum_phat hf hc hmax v hv
+    have h2 := stdQuad_add_phat M α m hv
+    simp only [hh, hg]
+    rw [← hM] at h1
+    linarith
+  have hr : ∀ v : Fin 3 → ℝ, v ≠ 0 → h (rhat v) = -h v := by
+    intro v hv
+    have h1 := sum_rhat hf hc hmin v hv
+    have h2 := stdQuad_add_rhat M α m hv
+    simp only [hh, hg]
+    rw [← hm] at h1
+    linarith
+  have hneg : ∀ v : Fin 3 → ℝ, v ≠ 0 → h ((-1 : ℝ) • v) = h v :=
+    fun v hv => hhf.scale v hv (-1) (by norm_num)
+  -- an odd word sending `v` to `-v` forces `h v = 0`
+  intro v hv hcirc
+  suffices hz : h v = 0 by simp only [hh, hg] at hz; linarith
+  rcases hcirc with h01 | h01 | h02 | h02 | h12 | h12
+  · -- x = y: phat (phat (rhat v)) = -v
+    have e : phat (phat (rhat v)) = (-1 : ℝ) • v := by
+      ext i; fin_cases i <;> simp [phat, rhat, h01]
+    have := hp _ (phat_ne_zero (rhat_ne_zero hv))
+    rw [e, hneg v hv, hp _ (rhat_ne_zero hv), hr v hv] at this
+    linarith
+  · -- x = -y: rhat (phat (phat v)) = -v
+    have e : rhat (phat (phat v)) = (-1 : ℝ) • v := by
+      ext i; fin_cases i <;> simp [phat, rhat, h01]
+    have := hr _ (phat_ne_zero (phat_ne_zero hv))
+    rw [e, hneg v hv, hp _ (phat_ne_zero hv), hp v hv] at this
+    linarith
+  · -- x = z: rhat (phat (phat (phat (rhat v)))) = -v
+    have e : rhat (phat (phat (phat (rhat v)))) = (-1 : ℝ) • v := by
+      ext i; fin_cases i <;> simp [phat, rhat, h02]
+    have := hr _ (phat_ne_zero (phat_ne_zero (phat_ne_zero (rhat_ne_zero hv))))
+    rw [e, hneg v hv, hp _ (phat_ne_zero (phat_ne_zero (rhat_ne_zero hv))),
+      hp _ (phat_ne_zero (rhat_ne_zero hv)), hp _ (rhat_ne_zero hv), hr v hv] at this
+    linarith
+  · -- x = -z: phat (rhat (phat v)) = -v
+    have e : phat (rhat (phat v)) = (-1 : ℝ) • v := by
+      ext i; fin_cases i <;> simp [phat, rhat, h02]
+    have := hp _ (rhat_ne_zero (phat_ne_zero hv))
+    rw [e, hneg v hv, hr _ (phat_ne_zero hv), hp v hv] at this
+    linarith
+  · -- y = z: phat (rhat (rhat v)) = -v
+    have e : phat (rhat (rhat v)) = (-1 : ℝ) • v := by
+      ext i; fin_cases i <;> simp [phat, rhat, h12]
+    have := hp _ (rhat_ne_zero (rhat_ne_zero hv))
+    rw [e, hneg v hv, hr _ (rhat_ne_zero hv), hr v hv] at this
+    linarith
+  · -- y = -z: rhat (rhat (phat v)) = -v
+    have e : rhat (rhat (phat v)) = (-1 : ℝ) • v := by
+      ext i; fin_cases i <;> simp [phat, rhat, h12]
+    have := hr _ (rhat_ne_zero (phat_ne_zero hv))
+    rw [e, hneg v hv, hr _ (phat_ne_zero hv), hp v hv] at this
+    linarith
+
+
+/-! ### Zero counting by a tight frame, and the real Gleason theorem -/
+
+lemma dot3_add_left (u v w : Fin 3 → ℝ) : dot3 (u + v) w = dot3 u w + dot3 v w := by
+  simp [dot3]; ring
+
+lemma dot3_sub_left (u v w : Fin 3 → ℝ) : dot3 (u - v) w = dot3 u w - dot3 v w := by
+  simp [dot3]; ring
+
+lemma dot3_cross3_left (a b : Fin 3 → ℝ) : dot3 a (cross3 a b) = 0 := by
+  simp [dot3, cross3]; ring
+
+lemma dot3_cross3_right (a b : Fin 3 → ℝ) : dot3 b (cross3 a b) = 0 := by
+  simp [dot3, cross3]; ring
+
+lemma dot3_cross3_self (a b : Fin 3 → ℝ) :
+    dot3 (cross3 a b) (cross3 a b) = dot3 a a * dot3 b b - dot3 a b ^ 2 := by
+  simp [dot3, cross3]; ring
+
+theorem exists_max_unit {f : (Fin 3 → ℝ) → ℝ} {W : ℝ} (hf : IsFrameFunction f W)
+    (hc : ContinuousOn f {v | v ≠ 0}) :
+    ∃ p : Fin 3 → ℝ, dot3 p p = 1 ∧ ∀ v : Fin 3 → ℝ, v ≠ 0 → f v ≤ f p := by
+  obtain ⟨p, hp, hmax⟩ := exists_max hf hc
+  obtain ⟨c, hc0, hcu⟩ := exists_unit_smul hp
+  exact ⟨c • p, hcu, fun v hv => by rw [hf.scale p hp c hc0]; exact hmax v hv⟩
+
+/-- The six normals `(1,∓1,0), (1,0,∓1), (0,1,∓1)` form a tight frame. -/
+lemma six_normals_tight (x : Fin 3 → ℝ) :
+    dot3 x ![1, -1, 0] ^ 2 + dot3 x ![1, 1, 0] ^ 2 + dot3 x ![1, 0, -1] ^ 2 +
+      dot3 x ![1, 0, 1] ^ 2 + dot3 x ![0, 1, -1] ^ 2 + dot3 x ![0, 1, 1] ^ 2 = 4 * dot3 x x := by
+  simp [dot3]; ring
+
+/-- **Zero counting.**  A continuous frame function of weight zero vanishing on the six great
+circles `x = ±y`, `x = ±z`, `y = ±z` vanishes identically. -/
+theorem eq_zero_of_vanishes_on_six_circles {h : (Fin 3 → ℝ) → ℝ} (hh : IsFrameFunction h 0)
+    (hc : ContinuousOn h {v | v ≠ 0})
+    (h6 : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (v 0 = v 1 ∨ v 0 = -v 1 ∨ v 0 = v 2 ∨ v 0 = -v 2 ∨ v 1 = v 2 ∨ v 1 = -v 2) → h v = 0) :
+    ∀ v : Fin 3 → ℝ, v ≠ 0 → h v = 0 := by
+  obtain ⟨p, hp, hmax⟩ := exists_max_unit hh hc
+  obtain ⟨r, hr, hpr, hmin⟩ := exists_min_perp hh hc hp hmax
+  set q := cross3 p r with hq
+  have hfr : IsOrthonormal p q r := isOrthonormal_cross hp hr hpr
+  have hp0 : p ≠ 0 := ne_zero_of_dot3_self_pos (by rw [hp]; exact one_pos)
+  have hq0 : q ≠ 0 := ne_zero_of_dot3_self_pos (by rw [hfr.qq]; exact one_pos)
+  have hr0 : r ≠ 0 := ne_zero_of_dot3_self_pos (by rw [hr]; exact one_pos)
+  have hsum : h p + h q + h r = 0 := hh.frame p q r hp0 hq0 hr0 hfr.pq hfr.pr hfr.qr
+  -- Lemma 8 for `h` in the frame `(p, q, r)`
+  have hH := hh.comp_ofFrame hfr
+  have hcH := continuousOn_comp_ofFrame hc hfr
+  have hmaxH : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (fun v => h (ofFrame p q r v)) v ≤ (fun v => h (ofFrame p q r v)) e1 := by
+    intro v hv; simp only [ofFrame_e1]; exact hmax _ (ofFrame_ne_zero hfr hv)
+  have hminH : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (fun v => h (ofFrame p q r v)) e3 ≤ (fun v => h (ofFrame p q r v)) v := by
+    intro v hv; simp only [ofFrame_e3]; exact hmin _ (ofFrame_ne_zero hfr hv)
+  have hL8 := eq_stdQuad_on_six_circles hH hcH hmaxH hminH
+  simp only [ofFrame_e1, ofFrame_e3] at hL8
+  -- `h q` is the maximum of `h` on the equator of `p` and the minimum on the equator of `r`
+  have hEp : ∀ e : Fin 3 → ℝ, e ≠ 0 → dot3 e p = 0 → h e ≤ h q := by
+    intro e he hep
+    have he' : cross3 p e ≠ 0 := ne_zero_of_dot3_self_pos (by
+      rw [dot3_cross3_self, hp, dot3_comm p e, hep, one_mul]; simpa using dot3_self_pos he)
+    have h1 := hh.frame p e (cross3 p e) hp0 he he' (by rw [dot3_comm]; exact hep)
+      (dot3_cross3_left p e) (dot3_cross3_right p e)
+    have h2 := hmin _ he'
+    linarith
+  have hEr : ∀ e : Fin 3 → ℝ, e ≠ 0 → dot3 e r = 0 → h q ≤ h e := by
+    intro e he her
+    have he' : cross3 r e ≠ 0 := ne_zero_of_dot3_self_pos (by
+      rw [dot3_cross3_self, hr, dot3_comm r e, her, one_mul]; simpa using dot3_self_pos he)
+    have h1 := hh.frame r e (cross3 r e) hr0 he he' (by rw [dot3_comm]; exact her)
+      (dot3_cross3_left r e) (dot3_cross3_right r e)
+    have h2 := hmax _ he'
+    linarith
+  -- the circle `x = y` meets both equators in zeros of `h`
+  have hzero_perp : ∀ s : Fin 3 → ℝ, ∃ e : Fin 3 → ℝ, e ≠ 0 ∧ dot3 e s = 0 ∧ h e = 0 := by
+    intro s
+    by_cases hcr : cross3 s ![1, -1, 0] = 0
+    · have hs2 : s 2 = 0 := by have := congrFun hcr 0; simpa [cross3] using this
+      exact ⟨e3, e3_ne_zero, by simp [dot3, e3, hs2], h6 e3 e3_ne_zero (Or.inl (by simp [e3]))⟩
+    · refine ⟨cross3 s ![1, -1, 0], hcr, by rw [dot3_comm]; exact dot3_cross3_left _ _,
+        h6 _ hcr (Or.inl ?_)⟩
+      simp [cross3]
+  obtain ⟨ep, hep0, hep, hepz⟩ := hzero_perp p
+  obtain ⟨er, her0, her, herz⟩ := hzero_perp r
+  have hα0 : h q = 0 :=
+    le_antisymm (by have := hEr er her0 her; linarith) (by have := hEp ep hep0 hep; linarith)
+  have hm0 : h r = -h p := by linarith
+  -- tight-frame counting on the circle `x' = y'` of the frame `(p, q, r)`
+  set a := p + q with ha
+  have hap : dot3 a p = 1 := by rw [ha, dot3_add_left, hp, dot3_comm q p, hfr.pq]; ring
+  have haq : dot3 a q = 1 := by rw [ha, dot3_add_left, hfr.pq, hfr.qq]; ring
+  have har : dot3 a r = 0 := by rw [ha, dot3_add_left, hfr.pr, hfr.qr]; ring
+  have haa : dot3 a a = 2 := by
+    rw [ha, dot3_add_left, dot3_comm p, dot3_comm q, dot3_add_left, dot3_add_left, hp, hfr.qq,
+      hfr.pq, dot3_comm q p, hfr.pq]; ring
+  have key : ∀ n : Fin 3 → ℝ, (∀ v : Fin 3 → ℝ, v ≠ 0 → dot3 v n = 0 → h v = 0) →
+      h p * (dot3 r n ^ 2 - dot3 a n ^ 2) = 0 := by
+    intro n hn
+    set β := dot3 r n with hβ
+    set γ := dot3 a n with hγ
+    set vi := β • a - γ • r with hvi
+    have hvin : dot3 vi n = 0 := by
+      rw [hvi, dot3_sub_left, dot3_smul_left, dot3_smul_left, ← hβ, ← hγ]; ring
+    have hvp : dot3 vi p = β := by
+      rw [hvi, dot3_sub_left, dot3_smul_left, dot3_smul_left, hap, dot3_comm r p, hpr]; ring
+    have hvq : dot3 vi q = β := by
+      rw [hvi, dot3_sub_left, dot3_smul_left, dot3_smul_left, haq, dot3_comm r q, hfr.qr]; ring
+    have hvr : dot3 vi r = -γ := by
+      rw [hvi, dot3_sub_left, dot3_smul_left, dot3_smul_left, har, hr]; ring
+    by_cases hv0 : vi = 0
+    · have hβ0 : β = 0 := by rw [← hvp, hv0]; simp [dot3]
+      have hγ0 : γ = 0 := by
+        have := hvr; rw [hv0] at this; simp [dot3] at this; linarith
+      rw [hβ0, hγ0]; ring
+    · have h1 : h vi = 0 := hn vi hv0 hvin
+      have htf : toFrame p q r vi = ![β, β, -γ] := by
+        simp [toFrame, hvp, hvq, hvr]
+      have h2 := hL8 (toFrame p q r vi) (toFrame_ne_zero hfr hv0)
+        (Or.inl (by rw [htf]; simp))
+      rw [ofFrame_toFrame hfr, h1, htf] at h2
+      have hD : (β ^ 2 + β ^ 2 + γ ^ 2) ≠ 0 := by
+        have := dot3_self_pos (toFrame_ne_zero hfr hv0)
+        rw [htf] at this; simp [dot3] at this; nlinarith
+      simp only [stdQuad, dot3] at h2
+      simp at h2
+      rw [eq_comm, div_eq_zero_iff] at h2
+      rcases h2 with h2 | h2
+      · rw [hm0] at h2; linear_combination h2
+      · exfalso; apply hD; linarith
+  have k1 := key ![1, -1, 0] (fun v hv hvn => h6 v hv (Or.inl (by simp [dot3] at hvn; linarith)))
+  have k2 := key ![1, 1, 0] (fun v hv hvn => h6 v hv (Or.inr (Or.inl (by simp [dot3] at hvn; linarith))))
+  have k3 := key ![1, 0, -1] (fun v hv hvn => h6 v hv (Or.inr (Or.inr (Or.inl (by simp [dot3] at hvn; linarith)))))
+  have k4 := key ![1, 0, 1] (fun v hv hvn => h6 v hv (Or.inr (Or.inr (Or.inr (Or.inl (by simp [dot3] at hvn; linarith))))))
+  have k5 := key ![0, 1, -1] (fun v hv hvn => h6 v hv (Or.inr (Or.inr (Or.inr (Or.inr (Or.inl (by simp [dot3] at hvn; linarith)))))))
+  have k6 := key ![0, 1, 1] (fun v hv hvn => h6 v hv (Or.inr (Or.inr (Or.inr (Or.inr (Or.inr (by simp [dot3] at hvn; linarith)))))))
+  have htr := six_normals_tight r
+  have hta := six_normals_tight a
+  have hM0 : h p = 0 := by
+    have : h p * (4 * dot3 r r - 4 * dot3 a a) = 0 := by
+      linear_combination k1 + k2 + k3 + k4 + k5 + k6 - h p * htr + h p * hta
+    rw [hr, haa] at this
+    linarith
+  -- `h ≤ 0` and weight zero force `h = 0`
+  intro v hv
+  obtain ⟨c, hc0, hcu⟩ := exists_unit_smul hv
+  obtain ⟨q', r', hfr'⟩ := exists_orthonormal_completion hcu
+  have hu0 : c • v ≠ 0 := ne_zero_of_dot3_self_pos (by rw [show dot3 (c • v) (c • v) = 1 from hcu]; exact one_pos)
+  have hq'0 : q' ≠ 0 := ne_zero_of_dot3_self_pos (by rw [hfr'.qq]; exact one_pos)
+  have hr'0 : r' ≠ 0 := ne_zero_of_dot3_self_pos (by rw [hfr'.rr]; exact one_pos)
+  have hfs := hh.frame _ q' r' hu0 hq'0 hr'0 hfr'.pq hfr'.pr hfr'.qr
+  have h1 := hmax _ hu0
+  have h2 := hmax _ hq'0
+  have h3 := hmax _ hr'0
+  rw [← hh.scale v hv c hc0]
+  linarith
+
+/-- **Gleason's theorem on the real sphere.**  Every continuous frame function on nonzero
+vectors of `ℝ³` is a quadratic form divided by `⟨v, v⟩`, diagonal in an orthonormal frame. -/
+theorem gleason_real {f : (Fin 3 → ℝ) → ℝ} {W : ℝ} (hf : IsFrameFunction f W)
+    (hc : ContinuousOn f {v | v ≠ 0}) :
+    ∃ p q r : Fin 3 → ℝ, IsOrthonormal p q r ∧ ∃ M α m : ℝ, ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      f v = (M * dot3 v p ^ 2 + α * dot3 v q ^ 2 + m * dot3 v r ^ 2) / dot3 v v := by
+  obtain ⟨p, hp, hmax⟩ := exists_max_unit hf hc
+  obtain ⟨r, hr, hpr, hmin⟩ := exists_min_perp hf hc hp hmax
+  set q := cross3 p r with hq
+  have hfr : IsOrthonormal p q r := isOrthonormal_cross hp hr hpr
+  refine ⟨p, q, r, hfr, f p, W - f p - f r, f r, ?_⟩
+  have hF := hf.comp_ofFrame hfr
+  have hcF := continuousOn_comp_ofFrame hc hfr
+  have hmaxF : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (fun v => f (ofFrame p q r v)) v ≤ (fun v => f (ofFrame p q r v)) e1 := by
+    intro v hv; simp only [ofFrame_e1]; exact hmax _ (ofFrame_ne_zero hfr hv)
+  have hminF : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (fun v => f (ofFrame p q r v)) e3 ≤ (fun v => f (ofFrame p q r v)) v := by
+    intro v hv; simp only [ofFrame_e3]; exact hmin _ (ofFrame_ne_zero hfr hv)
+  have hg := isFrameFunction_stdQuad (f p) (W - f p - f r) (f r)
+  have hhf : IsFrameFunction
+      (fun v => (fun v => f (ofFrame p q r v)) v - stdQuad (f p) (W - f p - f r) (f r) v) 0 := by
+    have := hF.sub hg
+    rwa [show W - (f p + (W - f p - f r) + f r) = 0 by ring] at this
+  have hhc : ContinuousOn
+      (fun v => (fun v => f (ofFrame p q r v)) v - stdQuad (f p) (W - f p - f r) (f r) v)
+      {v | v ≠ 0} :=
+    hcF.sub (continuousOn_stdQuad _ _ _)
+  have h6 : ∀ v : Fin 3 → ℝ, v ≠ 0 →
+      (v 0 = v 1 ∨ v 0 = -v 1 ∨ v 0 = v 2 ∨ v 0 = -v 2 ∨ v 1 = v 2 ∨ v 1 = -v 2) →
+      (fun v => (fun v => f (ofFrame p q r v)) v - stdQuad (f p) (W - f p - f r) (f r) v) v = 0 := by
+    intro v hv hcirc
+    have := eq_stdQuad_on_six_circles hF hcF hmaxF hminF v hv hcirc
+    simp only [ofFrame_e1, ofFrame_e3] at this
+    simp only
+    rw [this, sub_self]
+  have hz := eq_zero_of_vanishes_on_six_circles hhf hhc h6
+  intro w hw
+  have := hz (toFrame p q r w) (toFrame_ne_zero hfr hw)
+  simp only [ofFrame_toFrame hfr] at this
+  rw [sub_eq_zero] at this
+  rw [this, stdQuad, dot3_toFrame_self hfr]
+  simp [toFrame]
 
 end GleasonReal
