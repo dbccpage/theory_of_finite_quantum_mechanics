@@ -234,7 +234,8 @@ Finite obstructions, nine-ray reductions, global 3-adic and 7-adic non-quadratic
 
 ## 4. Downstream Derivations (Outgoing DAG Links)
 
-*None (Leaf or Terminal derivation in current tree)*
+- `TFQ-1056`
+- `TFQ-1057`
 
 ---
 

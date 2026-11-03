@@ -1,0 +1,197 @@
+{
+  "schema_version": "campaign_lean_replay.v1",
+  "authority_effect": "None",
+  "checked_at": "2026-11-03T02:31:16+00:00",
+  "source_base": "439c041c42cf96605a88ad43e802a7cfddc60300",
+  "source_state": "Work branch claude/project-thread-mgyaz1 (PR #500) merged with main after PR #496; exact source identities bound below. The FQCD/FSP receipts are untouched; the lakefile change is recorded as a migration in dag/research/lean_replay_pin_migrations.json.",
+  "result": "Kernel-checked, with 0 sorry and only the axioms propext, Classical.choice and Quot.sound: (1) BornGaussianParallelogramRigidity: zero-weight residuals on Q(i)^3 that vanish on the nine tomography rays and satisfy the orthogonal parallelogram law vanish identically, so such frame functions equal quadRay (tomographyForm f); (2) GleasonRealSphere: Gleason's theorem for continuous frame functions on the real sphere in three dimensions; (3) GleasonComplexSphere: Gleason's theorem for continuous frame functions on the complex sphere in three dimensions, derived from (2) on fully real subspaces; (4) GleasonGaussianBridge: born_of_uniformlyRayContinuous, every frame function on Q(i)^3 that is uniformly continuous on rays (declared input IsUniformlyRayContinuous) equals quadRay (tomographyForm f) on all nonzero vectors.",
+  "proof_boundary": "The result is conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq), a mathematical input that requires justification and is not derived here; recorded as DAG node FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is the named open sub-question FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN); signed and nonnegative versions are distinguished there. The pointwise-continuity targets of FQ-GLEASON-QI3-FRAME-FUNCTIONS (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statements and statuses; neither the conditional theorem nor the unsuccessful attempts settle them. No Lean declaration instantiates IsUniformlyRayContinuous (non-vacuity is argued on paper only in dag/research/pointwise_vs_uniform_note.md).",
+  "lean_replay": {
+    "lean_version": "Lean (version 4.35.0, x86_64-unknown-linux-gnu, commit eb6cafb7290e8bd5f2937522d8d804f58f02bafc, Release)",
+    "lake_version": "Lake version 5.0.0-src+eb6cafb (Lean version 4.35.0)",
+    "mathlib_source_sha": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+    "mathlib_cache": "cache.mathlib.org unreachable from the build container; the Mathlib closure was compiled from source.",
+    "lakefile_sha256": "4dfc2ebab505124991820fc3aee50b77346fef9d13980720d7e6ecfb4c9b8e15",
+    "build_commands": [
+      "cd lean4 && lake build BornGaussianParallelogramRigidity",
+      "cd lean4 && lake build GleasonRealSphere",
+      "cd lean4 && lake build GleasonComplexSphere",
+      "cd lean4 && lake build GleasonGaussianBridge"
+    ],
+    "build_result": "Build completed successfully for all four non-default targets.",
+    "modules": [
+      {
+        "path": "lean4/BornGaussianParallelogramRigidity.lean",
+        "sha256": "c384e1993ba8ecc2e9abbe75503b71b6e563c2ebd98f6a42d06310a23644733c",
+        "namespace": "BornFinite.GaussianTomography",
+        "sorry_count": 0,
+        "axiom_audit": {
+          "BornFinite.GaussianTomography.plane_z_zero_of_orthoParallelogram": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GaussianTomography.zero_of_orthoParallelogramZero_and_vanishesOnNineRays": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GaussianTomography.signed_rigidity_of_orthoParallelogramZero_residual": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "axiom_audit_note": "Printed with #print axioms for the listed theorems; every declaration in the module is a theorem, lemma, def or structure with no axiom or sorry."
+      },
+      {
+        "path": "lean4/GleasonRealSphere.lean",
+        "sha256": "ecd7c942cfa705269182348b834edc16e89165c4c4a05aaba7368ae401f85efb",
+        "namespace": "GleasonReal",
+        "sorry_count": 0,
+        "axiom_audit": {
+          "GleasonReal.prop1": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonReal.exists_min_perp": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonReal.sum_phat": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonReal.sum_rhat": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonReal.eq_stdQuad_on_six_circles": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonReal.eq_zero_of_vanishes_on_six_circles": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonReal.gleason_real": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "axiom_audit_note": "Printed with #print axioms for the listed theorems; every declaration in the module is a theorem, lemma, def or structure with no axiom or sorry."
+      },
+      {
+        "path": "lean4/GleasonComplexSphere.lean",
+        "sha256": "72f3eaf6b95f5efaaca94bf90fb639b6849659b869c74ae6df03b3c912743ccc",
+        "namespace": "GleasonComplex",
+        "sorry_count": 0,
+        "axiom_audit": {
+          "GleasonComplex.completenessC": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonComplex.IsFrameFunctionC.pullback": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonComplex.two_dim_real": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonComplex.two_dim": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonComplex.exists_max_unitC": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonComplex.exists_max_perpC": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "GleasonComplex.gleason_complex": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "axiom_audit_note": "Printed with #print axioms for the listed theorems; every declaration in the module is a theorem, lemma, def or structure with no axiom or sorry."
+      },
+      {
+        "path": "lean4/GleasonGaussianBridge.lean",
+        "sha256": "14f8dcb078c889c6acd220703697eea784d9d65b95c442972b63476f7c17e55f",
+        "namespace": "BornFinite.GleasonBridge",
+        "sorry_count": 0,
+        "axiom_audit": {
+          "BornFinite.GleasonBridge.uniformContinuous_f\u2080": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GleasonBridge.ext_smul": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GleasonBridge.F_\u03b9": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GleasonBridge.F_smul": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GleasonBridge.continuousOn_F": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GleasonBridge.F_frame_proj": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GleasonBridge.isFrameFunctionC_F": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GleasonBridge.residual_orthoParallelogram": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ],
+          "BornFinite.GleasonBridge.born_of_uniformlyRayContinuous": [
+            "propext",
+            "Classical.choice",
+            "Quot.sound"
+          ]
+        },
+        "axiom_audit_note": "Printed with #print axioms for the listed theorems; every declaration in the module is a theorem, lemma, def or structure with no axiom or sorry."
+      }
+    ]
+  },
+  "rejected_attempts": [],
+  "limits": [
+    "The real-sphere and complex-sphere results take continuity on nonzero vectors as a hypothesis (ContinuousOn f {v | v != 0}).",
+    "The bridge theorem is conditional on IsUniformlyRayContinuous f (signed frame functions; the nonnegative case is the special case); pointwise continuity is not shown to imply it, and no instance of IsUniformlyRayContinuous is formalized.",
+    "No DAG node status is changed by this receipt."
+  ]
+}

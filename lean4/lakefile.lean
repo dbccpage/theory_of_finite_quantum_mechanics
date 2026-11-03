@@ -1571,3 +1571,15 @@ lean_lib NativeHistory where
 lean_lib FQCD where
   roots := #[`FQCD.StrongCouplingAreaLaw]
 
+lean_lib BornGaussianParallelogramRigidity where
+  roots := #[`BornGaussianParallelogramRigidity]
+
+lean_lib GleasonRealSphere where
+  roots := #[`GleasonRealSphere]
+
+lean_lib GleasonComplexSphere where
+  roots := #[`GleasonComplexSphere]
+
+lean_lib GleasonGaussianBridge where
+  roots := #[`GleasonGaussianBridge]
+
