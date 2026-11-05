@@ -89,7 +89,7 @@ The tree example came up in our first reply, so its words are listed first. "Lad
 | observer | Nothing in B's post or in the paper. | B: "consciousness", with no presentation, memory, evaluator or policy declared. Paper: a "quantum mind" whose four needed steps (register, decipher, decide, encode) roughly track ladder levels 2 to 5, none of them modelled. | Open: no layer is declared |
 | simulation | Nothing. | B first says "not a giant computer", then "our consciousness". | Open |
 | render | Nothing. | A screen, a viewer, and a rule for what counts as on screen. | Open |
-| offscreen | Nothing. | A viewpoint. Note that in a video game the offscreen world *is* computed: positions and physics keep running, and only the drawing is skipped. So the analogy supplies an offscreen world, which is the opposite of what B claims. | Supplied, against B |
+| offscreen | Nothing. | A viewpoint. A video game can skip three different jobs offscreen: drawing, simulating, and keeping state. Many games skip only the drawing. Some also pause or drop the simulation and rebuild it later. The analogy does not say which job the universe skips, or what record would show it. | Supplied, underspecified |
 
 ### 1a. "Did the tree make a sound?" on the ladder
 
@@ -104,9 +104,11 @@ The tree example came up in our first reply, so its words are listed first. "Lad
 
 ### 1b. "The universe does not render what is offscreen", checked against the blind-spot theorem
 
-"Offscreen" means that no presentation in use reports it. Take two worlds that differ only offscreen: one rendered there, one not. By definition, every presentation in use reports them identically. The blind-spot theorem then gives every evaluator the same verdict on both. So no observer, conscious or not, can tell the two worlds apart. That is C1's Bayes factor of 1, now as a proved statement rather than an argument. The claim is not false. It is unevaluable *by construction*.
+"Offscreen" means that no presentation in use reports it. Take two worlds that differ only offscreen: one rendered there, one not. By definition, every presentation in use reports them identically. The blind-spot theorem then gives every evaluator that reads only those reports the same verdict on both. So no observer *using these presentations* can tell the two worlds apart. That is claim (a). It does not give (b), that no possible observation could tell them apart, and (b) would not give (c), that they are the same world. For two fixed worlds and a deterministic report, the likelihoods of the report are equal, which is C1's Bayes factor of 1 *on this channel*. As stated, the claim cannot be evaluated with the presentations in use. It becomes evaluable once she names a channel on which the worlds differ.
 
-A second proved fact sharpens this. An observer whose report grammar has fewer values than the states it looks at must report two different states identically (pigeonhole). So every finite observer has an offscreen: the states it cannot tell apart. "Offscreen" is the normal condition of any finite observer, not a special feature of a simulated world.
+A second proved fact sharpens this. An observer whose report grammar has fewer values than the states it looks at must report two different states identically (pigeonhole). So *when states outnumber reports*, the observer has an offscreen: states it cannot tell apart. An observer of a small enough domain can report every state. For a tree, the air or a brain, the condition is supplied, not proved. Even so, an offscreen is a normal feature of an observer with limited reports, not a special sign of a simulated world.
+
+(Repaired 2026-11-05 after review. See [board_repair_log.md](board_repair_log.md).)
 
 ## 2. The exchange
 
@@ -122,7 +124,7 @@ A second proved fact sharpens this. An observer whose report grammar has fewer v
 | C4 | C | Define simulation, a simulated observer, and an observer. | Request for definitions | Unanswered. Our own answer is in Section 0. |
 | B2 | B | "The simulation ... is our consciousness." | Open | Two undefined words joined by "is". |
 | B3 | B | Human observer vs. measurement device is "missing the point." | Supplied (a dismissal) | This is the one distinction that experiments can separate, and B sets it aside. |
-| B4 | B | "The universe does not render what is offscreen." | Unevaluable by construction | See §1b. |
+| B4 | B | "The universe does not render what is offscreen." | Not evaluable with the presentations in use | See §1b. It would become evaluable if B named a channel on which the two worlds differ. |
 | B5 | B | The link (holographic brain paper). | Cited | The paper makes no rendering claim (Section 4 below). |
 
 ## 3. The paper: what each part supplies
@@ -132,11 +134,11 @@ A second proved fact sharpens this. An observer whose report grammar has fewer v
 | Carriers | Water conformational states modelled as non-relativistic charged bosons; photons. | — | Cited only: [39], [40], [49], [73]. |
 | Super-radiance (Sec. 2, App. A) | Two-level states, $N$, $\Omega$, $J_{10}$ real, real $\mathcal{A}$, a loss term $\mathcal{A}/L_3$ added by hand in (A42). | The standard Dicke sech pulse (A45)–(A47), from those inputs. | Nothing. No values are given for $N$, $\Omega$ or $g$, so no pulse length or wavelength is predicted. |
 | Hologram (App. B) | The $M^2$ term ("we have added"), the input $\tilde A_i$ "as coherent super-radiant waves", the reference $r$ set equal to the input (A50), and the interference pattern itself, "we shall then consider the case" (A51). | The $|r|^2o$ reconstruction term, given all of the above. | Nothing. The object wave $o$ has no source in the model. |
-| Capacity (Sec. 3) | The bound $4/\lambda^2$ from [63], the whole 2 mm cortex as one uniform optical medium, $n_r = 1.3$, $\lambda = 500$ nm "as an example". | (3)–(5): the arithmetic checks (8.3e10 bit/mm², 2.6 PB, 31 TB). | Nothing. One assumed bound is compared with one assumed bit-per-synapse figure. |
+| Capacity (Sec. 3) | The bound $4/\lambda^2$ from [63], the whole 2 mm cortex as one uniform optical medium, $n_r = 1.3$, $\lambda = 500$ nm "as an example". | (3)–(5): the paper states 8e10 bit/mm², 2.5 PB and 30 TB. Recomputed from its own inputs: 8.32e10 bit/mm², 2.6 PB and 31.25 TB. The difference is rounding. | Nothing. One assumed bound is compared with one assumed bit-per-synapse figure. |
 | Landauer remark (Sec. 5) | — | 2.48 eV photon, $k_BT\ln2$ = 18.5 meV, $\lambda_{max}$ ≈ 67 µm (paper: 60 µm). | — The step from "photon energy ≫ $k_BT\ln 2$" to "no risk of thermal degradation" does not follow. Landauer bounds erasure cost; it says nothing about how long a stored pattern lasts. |
 | Control (Sec. 4, App. C) | Every layer (scalp, skull, dura, CSF, cortex) is the same boson field with the same $e, m, M^2, \gamma$, coupled by $v$. Targets, damping and input decay are chosen. | The inputs come from inverting the static equations with time derivatives and the $e^2\lvert\bar\varphi\rvert^2/m$ term dropped (A88)–(A89). | One numerical run. The output "approaches the target ... due to damping term" (their words). No error measure. Density dips of 1.3% to 21%. |
 | Observer | A "quantum mind" (Discussion), and a one-to-one link between holograms and experience, stated conditionally ("Once our subjective experiences ... are manipulated"). | — | Nothing. The paper says perception by a quantum mind is "yet another mystery altogether". |
-| Outside world | Concluding remarks: "the outside world of the observable phenomena" and "the image of the outside world formed inside the brain". | — | — This supplies a world that exists offscreen, against B4. |
+| Outside world | Concluding remarks: "the outside world of the observable phenomena" and "the image of the outside world formed inside the brain". | — | — This assumes a world that exists offscreen. It does not establish one, so it neither supports B4 nor refutes it. |
 
 ## 4. Printed equations that look wrong (kept as printed in paper.md)
 
