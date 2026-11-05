@@ -1,6 +1,6 @@
 # Learning boards: what each line rests on
 
-Companion to `learning_boards.html` (artifact https://claude.ai/artifact/JaQXLc9z5s13ipw6P7GDzb). The boards are written for readers, so they name no files, proofs or scripts. This file lists, board by board, the check behind each line. Paths are relative to this folder's parent, `threads_simulation_and_consciousness/`.
+Companion to `learning_boards.html`. The boards are written for readers, so they name no files, proofs or scripts. This file lists, board by board, the check behind each line. Paths are relative to this folder's parent, `threads_simulation_and_consciousness/`.
 
 Tags are the same as on the boards: Witnessed, Derived, Numerical, Cited, Supplied, Open. The repairs made before the first publish are logged in `04_self_audit/self_audit.md`, section G.
 

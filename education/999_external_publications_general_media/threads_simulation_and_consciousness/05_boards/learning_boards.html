@@ -1,5 +1,4 @@
 <title>Does the Universe Render?</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: one board at a time, a numbered strip of six boards plus the method; each board = claim, picture, tagged steps, result, your turn, back page */
@@ -451,36 +450,6 @@ footer{font-size:13px;color:var(--mute);max-width:70ch}
   document.querySelectorAll("button.flip").forEach(b=>{b.dataset.label=b.textContent;});
   show(location.hash.slice(1),false);
 
-  // Review marks: shown only to people who can edit this page (the author). Everyone else sees the boards alone.
-  (async()=>{
-    let user=null, db=null;
-    try{ user=(window.claude&&window.claude.use)?await window.claude.use("user"):null; }catch(e){ user=null; }
-    let canEdit=false; try{ canEdit=user?await user.canEdit():false; }catch(e){ canEdit=false; }
-    if(!canEdit) return;
-    try{ db=await window.claude.use("db"); }catch(e){ db=null; }
-    if(!db) return;
-    const state={};
-    ids.forEach(id=>{
-      const sec=document.getElementById(id);
-      const box=document.createElement("div"); box.className="review";
-      box.innerHTML=`<p class="lab">Your review of this board (only editors see this)</p>
-        <div class="btns"><button type="button" data-v="right" aria-pressed="false">Right</button><button type="button" data-v="wrong" aria-pressed="false">Wrong</button><button type="button" data-v="unsure" aria-pressed="false">Unsure</button><span class="saved" aria-live="polite"></span></div>
-        <textarea id="note-${id}" aria-label="Note on this board" placeholder="What is wrong, or what to change"></textarea>`;
-      sec.appendChild(box);
-      const saved=box.querySelector(".saved"), ta=box.querySelector("textarea");
-      const paint=()=>{ const s=state[id]||{}; box.querySelectorAll("[data-v]").forEach(x=>x.setAttribute("aria-pressed",x.dataset.v===s.verdict?"true":"false")); if(document.activeElement!==ta) ta.value=s.note||""; };
-      const save=async()=>{ const s=state[id]||{}; saved.textContent="saving…";
-        try{ await db.collection("marks").doc(id).set({verdict:s.verdict||"",note:s.note||"",updatedAt:new Date().toISOString()}); saved.textContent="saved"; }
-        catch(e){ saved.textContent="not saved ("+(e&&e.code||"error")+")"; } };
-      box.querySelectorAll("[data-v]").forEach(x=>x.addEventListener("click",()=>{ const s=state[id]=state[id]||{}; s.verdict=(s.verdict===x.dataset.v?"":x.dataset.v); paint(); save(); }));
-      let t=null; ta.addEventListener("input",()=>{ const s=state[id]=state[id]||{}; s.note=ta.value; clearTimeout(t); t=setTimeout(save,700); });
-      box._paint=paint;
-    });
-    const timer=setTimeout(()=>{},10000);
-    db.collection("marks").onSnapshot(snap=>{
-      clearTimeout(timer);
-      snap.docs.forEach(d=>{ const v=d.data()||{}; state[d.id]={verdict:v.verdict||"",note:v.note||""}; const sec=document.getElementById(d.id); const box=sec&&sec.querySelector(".review"); if(box&&box._paint) box._paint(); });
-    },()=>{ clearTimeout(timer); });
-  })();
+
 })();
 </script>

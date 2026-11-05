@@ -49,7 +49,7 @@ Two rules run through every file:
 | | `board_repair_log.md` | The board repairs after the card-by-card review | record |
 | `05_boards/` | `markup_board.html` | The reply board: three pictures (tree, rendering claim, paper chain), supporting cards, final posts | live |
 | | `audit_board.html` | The paper-audit board: 16 cards | live |
-| | `learning_boards.html` | Six boards for readers, in plain logic: sort, split, channels, chances, source, math, plus the method. Artifact https://claude.ai/artifact/JaQXLc9z5s13ipw6P7GDzb | **live** |
+| | `learning_boards.html` | Six boards for readers, in plain logic: sort, split, channels, chances, source, math, plus the method. | **live** |
 | | `learning_boards_references.md` | What each board line rests on: quotes, checks and proofs (the boards themselves name none) | **live** |
 | `06_reference/` | `sources.md` | Where the observer definitions live in this repository | reference |
 | | `observer_article_2026-05-23.md` | Excerpts from "What the Hell Is an Observer?" (2026-05-23) | reference |

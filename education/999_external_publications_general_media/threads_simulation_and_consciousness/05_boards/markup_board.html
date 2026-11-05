@@ -1,5 +1,4 @@
 <title>What You Owe Me</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: a markup board of picture cards, two columns on wide screens, one on phones; each card = picture, math, one line, verdict bar */
@@ -346,16 +345,5 @@ document.querySelectorAll("[data-ch]").forEach(b=>b.onclick=()=>{ch=b.dataset.ch
 drawRender();
 
 
-(async()=>{
-  let d=null; try{ d = window.claude && window.claude.use ? await window.claude.use("db") : null; }catch(e){ d=null; }
-  if(!d){ statusEl.textContent="Marks are saved in this browser only (shared marks unavailable here)."; return; }
-  db=d; statusEl.textContent="Loading shared marks…";
-  const t=setTimeout(()=>{statusEl.textContent="Shared marks are slow to load; your marks still save.";},10000);
-  db.collection("marks").onSnapshot(snap=>{
-    clearTimeout(t);
-    snap.docs.forEach(doc=>{ const v=doc.data()||{}; state[doc.id]={verdict:v.verdict||"",note:v.note||"",objection:v.objection||""}; paint(doc.id); });
-    const n=snap.docs.filter(x=>(x.data()||{}).verdict).length;
-    statusEl.textContent = `Shared marks: ${n} of ${CARDS.length} cards marked. They are read back by the author.`;
-  }, err=>{ clearTimeout(t); statusEl.textContent="Could not load shared marks ("+(err&&err.code||"error")+"). Your marks save in this browser."; db=null; });
-})();
+statusEl.textContent="Marks are saved in this browser only.";
 </script>
