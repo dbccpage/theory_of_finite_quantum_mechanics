@@ -1589,3 +1589,6 @@ lean_lib GleasonBornCompletion where
 lean_lib BornGaussianFiniteModel where
   roots := #[`BornGaussianFiniteModel]
 
+lean_lib GleasonContinuumShadow where
+  roots := #[`GleasonContinuumShadow]
+
