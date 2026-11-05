@@ -1,0 +1,332 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/dfm-hierarchical-borel.py": {
+      "role": "Bounded exact rooted Borel-tree dressing application with immutable topology/labels, complete cycle and identifier admission, Railway transport/residual operations and fixed symbolic algebra controls",
+      "origin": "lean4/DressingFieldHierarchicalBorel.lean",
+      "profile": "Exact",
+      "cost": "Flat2x2 exact rational inputs/components and every shared matrix product/dot sum/determinant/output have4096-bit numerator/denominator budgets. Native dict/mappingproxy inputs have<=1024 entries; vertex identifiers are exact integers0..2^31-1. Topology validation/order construction visits each nonroot vertex once, O(N) work/storage; off-root cycles terminate by a visiting-set refusal before label arithmetic. Transport usesN-1 fixed2x2 products; edge residual recomputes one full transport plus two products and one inverse. Each product has8 scalar products and8 checked accumulations. Returned maps are immutable snapshots. Fixed SymPy controls use2x2 expressions, three factorization unknowns and a fixed commutative incidence identity; arbitrary symbolic input and a general bounded-time CAS service are outside scope. Default93 obligations =7 symbolic factorization+75 path/diamond+4 curvature+7 anchoring.",
+      "groups": [
+        {
+          "requirement": "Admit exact int/Fraction flat2 matrices, exclude bool/float/foreign values, and compose arithmetic into bounded RationalMatrix. Inversion always stays rational even for raw integer tuples and requires invertible upper-triangular inputs. Torus projection admits singular upper-triangular matrices; unipotent/stage-one factors require B2(Q). Predicates validate shape and examine all defining entries. Dress validates all three operands before arithmetic; its edge label may be singular upper-triangular.",
+          "symbols": [
+            "M",
+            "mul",
+            "_upper",
+            "inv",
+            "eye",
+            "torus",
+            "unipotent",
+            "is_torus",
+            "is_unipotent",
+            "stage_one_field",
+            "dress"
+          ],
+          "tests": [
+            "HierarchicalBorelTests.test_borel_algebra_and_two_stage_factors",
+            "HierarchicalBorelTests.test_noncommuting_integer_regression",
+            "HierarchicalBorelTests.test_matrix_admission_and_singular_fences",
+            "HierarchicalBorelTests.test_full_resource_limits_and_conservative_arithmetic",
+            "HierarchicalBorelTests.test_preflight_and_unexpected_errors"
+          ],
+          "requirement_id": "TFQM-HIERARCHICAL-REVIEW-DFM-HIERARCHICAL-BOREL-1"
+        },
+        {
+          "requirement": "Own native bounded parent/label mappings and validate every root/key/parent as an exact nonnegative31-bit integer, including label keys that could otherwise alias integers via bool/float. Require one fixed root, complete parent membership and exactly non-root labels. Compute parent-before-child order with finite cycle detection before admitting invertible labels. Freeze all stored topology/label data.",
+          "symbols": [
+            "_vertex",
+            "_mapping",
+            "_tree_order",
+            "BorelTree",
+            "BorelTree.__init__"
+          ],
+          "tests": [
+            "HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases",
+            "HierarchicalBorelTests.test_tree_snapshot_ownership_and_railway_refusals",
+            "HierarchicalBorelTests.test_full_resource_limits_and_conservative_arithmetic",
+            "HierarchicalBorelTests.test_preflight_and_unexpected_errors",
+            "HierarchicalBorelTests.test_cycle_detection_lookup_bound",
+            "HierarchicalBorelTests.test_trees_against_independent_path_products"
+          ],
+          "requirement_id": "TFQM-HIERARCHICAL-REVIEW-DFM-HIERARCHICAL-BOREL-2"
+        },
+        {
+          "requirement": "Start rooted transport at identity and multiply each child label on the left of its parent transport. Return immutable snapshots through Outcome, or a detached dict from the legacy helper. Validate residual endpoints and label before any transport, then compute inverse(target transport)*edge*source transport. Expected refusals stay typed and cancellation/programming errors propagate.",
+          "symbols": [
+            "BorelTree._transport",
+            "BorelTree.transport",
+            "BorelTree._edge_residual",
+            "BorelTree.edge_residual",
+            "transport_of"
+          ],
+          "tests": [
+            "HierarchicalBorelTests.test_trees_against_independent_path_products",
+            "HierarchicalBorelTests.test_noncommuting_integer_regression",
+            "HierarchicalBorelTests.test_tree_snapshot_ownership_and_railway_refusals",
+            "HierarchicalBorelTests.test_full_resource_limits_and_conservative_arithmetic",
+            "HierarchicalBorelTests.test_preflight_and_unexpected_errors"
+          ],
+          "requirement_id": "TFQM-HIERARCHICAL-REVIEW-DFM-HIERARCHICAL-BOREL-3"
+        },
+        {
+          "requirement": "Require per-run Cases, and test the supplied path/diamond vertices, tree edges and chords through small helpers: Borel factorization, conjugate stage-one field, quotient preservation, two-stage inverse/residual, pure-gauge and non-pure-gauge chords. Retain explicit transport/chord/singular counterexamples and anchoring necessity through right multiplication by a constant.",
+          "symbols": [
+            "_cases",
+            "_check_vertex",
+            "_check_tree_edge",
+            "_check_chord",
+            "_path_tree",
+            "_diamond_tree",
+            "check_path_and_diamond",
+            "check_anchored_uniqueness"
+          ],
+          "tests": [
+            "HierarchicalBorelTests.test_fixed_control_sections_and_counts",
+            "HierarchicalBorelTests.test_noncommuting_integer_regression",
+            "HierarchicalBorelTests.test_borel_algebra_and_two_stage_factors",
+            "HierarchicalBorelTests.test_trees_against_independent_path_products"
+          ],
+          "requirement_id": "TFQM-HIERARCHICAL-REVIEW-DFM-HIERARCHICAL-BOREL-4"
+        },
+        {
+          "requirement": "For fixed symbolic2x2 inputs, verify factorization, the entire unique-solution list, normality and both the correct torus projection homomorphism and bad-projection counterexample. Off-diagonal b is arbitrary, not assumed nonzero. Check commutative incidence covariance/Bianchi, source-only failure and a computed finite endpoint witness. SymPy is a pinned symbolic dependency for these fixed expressions; separate symbolic matrix calculations test the concrete rational matrix and tree algorithms.",
+          "symbols": [
+            "check_symbolic_factorization",
+            "check_curvature"
+          ],
+          "tests": [
+            "HierarchicalBorelTests.test_fixed_control_sections_and_counts",
+            "HierarchicalBorelTests.test_symbolic_failure_and_executable_exit"
+          ],
+          "requirement_id": "TFQM-HIERARCHICAL-REVIEW-DFM-HIERARCHICAL-BOREL-5"
+        },
+        {
+          "requirement": "Emit93 actual mathematical obligations through typed CLI and nonzero failure exit. Retire seven literal/source-substring checks; preserve their original99-count receipt and source. Source provenance is in contracts, not claimed proved by substring absence, and no continuum result is asserted.",
+          "symbols": [
+            "main"
+          ],
+          "tests": [
+            "HierarchicalBorelTests.test_fixed_control_sections_and_counts",
+            "HierarchicalBorelTests.test_symbolic_failure_and_executable_exit"
+          ],
+          "requirement_id": "TFQM-HIERARCHICAL-REVIEW-DFM-HIERARCHICAL-BOREL-6"
+        }
+      ],
+      "nested_declarations": {
+        "check_symbolic_factorization.bad": {
+          "owned_by": "check_symbolic_factorization",
+          "requirements_via": "check_symbolic_factorization"
+        },
+        "check_curvature.entry": {
+          "owned_by": "check_curvature",
+          "requirements_via": "check_curvature"
+        },
+        "check_curvature.curv": {
+          "owned_by": "check_curvature",
+          "requirements_via": "check_curvature"
+        }
+      },
+      "source_sha256": "0c756ef227684efbaea2244f0bb85bcea37dd535219ebd524b34ae3115a27c82",
+      "symbols": [
+        "BorelTree",
+        "BorelTree.__init__",
+        "BorelTree._edge_residual",
+        "BorelTree._transport",
+        "BorelTree.edge_residual",
+        "BorelTree.transport",
+        "M",
+        "_cases",
+        "_check_chord",
+        "_check_tree_edge",
+        "_check_vertex",
+        "_diamond_tree",
+        "_mapping",
+        "_path_tree",
+        "_tree_order",
+        "_upper",
+        "_vertex",
+        "check_anchored_uniqueness",
+        "check_curvature",
+        "check_path_and_diamond",
+        "check_symbolic_factorization",
+        "dress",
+        "eye",
+        "inv",
+        "is_torus",
+        "is_unipotent",
+        "main",
+        "mul",
+        "stage_one_field",
+        "torus",
+        "transport_of",
+        "unipotent"
+      ],
+      "origin_sha256": "d5366519d454b57ed1a436eb257ff615fd94998cdc4fdf9cd7e15ec355ef117e",
+      "consumers": [
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/application_branches.json",
+          "sha256": "7569bc0053202d28d9d8d6c7cc9328884fd2ccfe0dc1c0a3e1770f4eb4a9d684",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/stages/DRESSING_FIELD.md",
+          "sha256": "83ac7ddd7480d115aadfe42ddeb3bd78094fb68c4f34a95916643351180adcb2",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/operads/dfm_hierarchical_borel.yaml",
+          "sha256": "5442afb1d332b369caa2e5d6465ad63841366a11d8ae734427b08dc6d8e1a983",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivations/24_dressing_field/tfq_0400_dfm_hierarchical_borel.md",
+          "sha256": "97cce5adfa884fce52e55214ad462ce5e0e74d7f905cf186a5ab8d0a34884cb7",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/nodes/DFM-HIERARCHICAL-BOREL.md",
+          "sha256": "480fcdb68758c9c297edb366817a16aadfb0d2efdaf7a46ed0615f1e5791d652",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/campaign_dfm-hierarchical-borel_review_validation.json",
+          "sha256": "4a7ae1a49d59ba8e8833475190ab69e5936f281139f88784f354b878eb5b9e44",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/campaign_dfm-hierarchical-borel_review_pipeline.json",
+          "sha256": "b2dc80fa1fa7491b5f7bc4329fa7854e19dc8628ba3dd3074567a212247cfeee",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/campaign_dfm-hierarchical-borel_review_integration.json",
+          "sha256": "54dbff796c59e6d3c76a918562f836391c973d4c2c1b4574e5fa9ba111cd0a91",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/tests/test_hierarchical_borel.py",
+          "sha256": "41f4cab654580a40ad9862fdc3259ec38a98297470d92433bdc1ecfda4c33ae6",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "315809275e24512ff871d70e1c731aac193a2e84c760bad604570546c96da9b1",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable and matrix/transport helper names remain, with immutable flat2 and detached dict exports. Graph TypedDict and duplicate arithmetic/guard code are composed into BorelTree plus shared independent support. Controls require Cases; check_dimension_and_source is retired because literal2!=3 and lexical scans supply no mathematical/proof admission evidence. The new93-count JSON receipt replaces prose:99 old obligations minus7 retired sentinels plus1 general torus homomorphism. No external Python consumers of changed control signatures or prose output were found. Unipotent/stage-one APIs now explicitly require B2(Q); torus still supports singular upper matrices for the counterexample. The finite constructor checks acyclicity instead of accepting an unbounded abstract Lean depth witness. No new Lean build or scientific DAG status is claimed; historical hashes remain historical."
+    },
+    "checks/tests/test_hierarchical_borel.py": {
+      "role": "Independent Borel transport verification application with symbolic matrix oracles, un-memoized path products, generated rooted trees, finite cycle-lookup sentinel and executable failure integration",
+      "origin": "SCORING.md",
+      "profile": "Exact",
+      "cost": "12 groups;80 deterministic examples per property. Generated B2(Q) inputs have small rational entries, trees<=9 vertices and independent O(N^2) path-product oracles. Full chain/resource tests use1024 vertices and at most4097-bit inputs. Cycle sentinel permits at most3 lookups and requires refusal after2, detecting guard removal without a harness timeout. Executable child timeout30 seconds; runpy, captures and mocks are scoped.",
+      "groups": [
+        {
+          "requirement": "Cross-check symbolic conversions and independent backward path products. Challenge exact integer inversion, noncommuting order, Borel factors, arbitrary tree insertion order, label/root/key bool aliases, missing topology, off-root cycles, one-root/full-budget carriers, immutable snapshots, conservative inverse/factor/transport budgets, preflight ordering and cancellation/programming errors. Verify all93 controls, symbolic solve refusal and actual executable failure exit. The fixed constant-path loader does not accept external paths.",
+          "symbols": [
+            "load",
+            "_symbolic",
+            "_flat",
+            "_transport",
+            "HierarchicalBorelTests",
+            "HierarchicalBorelTests.refused",
+            "HierarchicalBorelTests.test_oracles_and_import_lifecycle",
+            "HierarchicalBorelTests.test_borel_algebra_and_two_stage_factors",
+            "HierarchicalBorelTests.test_trees_against_independent_path_products",
+            "HierarchicalBorelTests.test_noncommuting_integer_regression",
+            "HierarchicalBorelTests.test_matrix_admission_and_singular_fences",
+            "HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases",
+            "HierarchicalBorelTests.test_tree_snapshot_ownership_and_railway_refusals",
+            "HierarchicalBorelTests.test_full_resource_limits_and_conservative_arithmetic",
+            "HierarchicalBorelTests.test_preflight_and_unexpected_errors",
+            "HierarchicalBorelTests.test_cycle_detection_lookup_bound",
+            "HierarchicalBorelTests.test_fixed_control_sections_and_counts",
+            "HierarchicalBorelTests.test_symbolic_failure_and_executable_exit"
+          ],
+          "tests": [
+            "HierarchicalBorelTests.test_oracles_and_import_lifecycle",
+            "HierarchicalBorelTests.test_borel_algebra_and_two_stage_factors",
+            "HierarchicalBorelTests.test_trees_against_independent_path_products",
+            "HierarchicalBorelTests.test_noncommuting_integer_regression",
+            "HierarchicalBorelTests.test_matrix_admission_and_singular_fences",
+            "HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases",
+            "HierarchicalBorelTests.test_tree_snapshot_ownership_and_railway_refusals",
+            "HierarchicalBorelTests.test_full_resource_limits_and_conservative_arithmetic",
+            "HierarchicalBorelTests.test_preflight_and_unexpected_errors",
+            "HierarchicalBorelTests.test_cycle_detection_lookup_bound",
+            "HierarchicalBorelTests.test_fixed_control_sections_and_counts",
+            "HierarchicalBorelTests.test_symbolic_failure_and_executable_exit"
+          ],
+          "requirement_id": "TFQM-HIERARCHICAL-REVIEW-TEST-HIERARCHICAL-BOREL-1"
+        }
+      ],
+      "nested_declarations": {
+        "HierarchicalBorelTests.test_cycle_detection_lookup_bound.lookup": {
+          "owned_by": "HierarchicalBorelTests.test_cycle_detection_lookup_bound",
+          "requirements_via": "HierarchicalBorelTests"
+        }
+      },
+      "source_sha256": "41f4cab654580a40ad9862fdc3259ec38a98297470d92433bdc1ecfda4c33ae6",
+      "symbols": [
+        "HierarchicalBorelTests",
+        "HierarchicalBorelTests.refused",
+        "HierarchicalBorelTests.test_borel_algebra_and_two_stage_factors",
+        "HierarchicalBorelTests.test_cycle_detection_lookup_bound",
+        "HierarchicalBorelTests.test_fixed_control_sections_and_counts",
+        "HierarchicalBorelTests.test_full_resource_limits_and_conservative_arithmetic",
+        "HierarchicalBorelTests.test_matrix_admission_and_singular_fences",
+        "HierarchicalBorelTests.test_noncommuting_integer_regression",
+        "HierarchicalBorelTests.test_oracles_and_import_lifecycle",
+        "HierarchicalBorelTests.test_preflight_and_unexpected_errors",
+        "HierarchicalBorelTests.test_symbolic_failure_and_executable_exit",
+        "HierarchicalBorelTests.test_tree_domains_cycles_and_boolean_aliases",
+        "HierarchicalBorelTests.test_tree_snapshot_ownership_and_railway_refusals",
+        "HierarchicalBorelTests.test_trees_against_independent_path_products",
+        "_flat",
+        "_symbolic",
+        "_transport",
+        "load"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/independent/dfm-hierarchical-borel.py",
+          "sha256": "0c756ef227684efbaea2244f0bb85bcea37dd535219ebd524b34ae3115a27c82",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "315809275e24512ff871d70e1c731aac193a2e84c760bad604570546c96da9b1",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable and matrix/transport helper names remain, with immutable flat2 and detached dict exports. Graph TypedDict and duplicate arithmetic/guard code are composed into BorelTree plus shared independent support. Controls require Cases; check_dimension_and_source is retired because literal2!=3 and lexical scans supply no mathematical/proof admission evidence. The new93-count JSON receipt replaces prose:99 old obligations minus7 retired sentinels plus1 general torus homomorphism. No external Python consumers of changed control signatures or prose output were found. Unipotent/stage-one APIs now explicitly require B2(Q); torus still supports singular upper matrices for the counterexample. The finite constructor checks acyclicity instead of accepting an unbounded abstract Lean depth witness. No new Lean build or scientific DAG status is claimed; historical hashes remain historical."
+    }
+  }
+}

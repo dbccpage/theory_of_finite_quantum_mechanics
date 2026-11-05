@@ -1,0 +1,242 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/ds-continuous-time-exp-generator.py": {
+      "role": "Finite-map dynamics verification application with owned total maps, exact finite square-root search/iteration, composed Gaussian integer witnesses, bounded branch/polynomial arithmetic and explicit continuous-time scope limits",
+      "origin": "lean4/ContinuousTimeExpGenerator.lean",
+      "profile": "Exact",
+      "cost": "Map carrier N1..4; each owned image/state exact0..N-1. Composition O(N); exponent0..4096 uses at most13 loop iterations and25 compositions. Root search enumerates at most4^4=256 candidate maps, O(N*N^N) time and at most256 owned results. Integer inputs/results and each polynomial square/product/prefix bounded to4096 bits; raw integer multiply/add at most8192/4097 bits. Shared Gaussian arithmetic admits each result component<=4096 bits with raw rational intermediate ceiling4B+1 numerator/4B denominator. Matrix operations fixed2x2; nilpotent candidate checks use shared bounded RationalMatrix. Default355 obligations replace679 by retiring1 duplicate nilpotent,25 reflexive energy pairs and300 reverse pairs, and adding2 scaled-unitarity checks.",
+      "groups": [
+        {
+          "requirement": "FiniteEndomap owns an immutable nonempty table of1..4 exact integer images in its own indexed carrier. Apply admits exact states; composition requires the same owned type/carrier and computes self after other. Powers admit integer0..4096, preserve the identity at zero and use bounded binary iteration. Return public operations through Outcome, preserving successful values versus input/resource refusals.",
+          "symbols": [
+            "_state",
+            "FiniteEndomap",
+            "FiniteEndomap.__init__",
+            "FiniteEndomap.apply",
+            "FiniteEndomap._compose",
+            "FiniteEndomap.compose",
+            "FiniteEndomap._power",
+            "FiniteEndomap.power"
+          ],
+          "tests": [
+            "ContinuousTimeCheckerTests.test_generated_composition_action_and_power",
+            "ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget",
+            "ContinuousTimeCheckerTests.test_composition_refuses_carrier_loss",
+            "ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation"
+          ],
+          "requirement_id": "TFQM-CONTINUOUS-TIME-REVIEW-DS-CONTINUOUS-TIME-EXP-GENERATOR-1"
+        },
+        {
+          "requirement": "Enumerate every total map on the same finite carrier in lexicographic image order and return exactly those whose square is the target. An empty successful root tuple means exhaustive finite nonexistence. maps returns all four owned Boolean-carrier tables; toggle requires actual bool and refuses integer/text aliases.",
+          "symbols": [
+            "FiniteEndomap._square_roots",
+            "FiniteEndomap.square_roots",
+            "toggle",
+            "maps"
+          ],
+          "tests": [
+            "ContinuousTimeCheckerTests.test_complete_small_root_censuses_and_four_state_witness",
+            "ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget",
+            "ContinuousTimeCheckerTests.test_oracles_and_pure_import",
+            "ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation"
+          ],
+          "requirement_id": "TFQM-CONTINUOUS-TIME-REVIEW-DS-CONTINUOUS-TIME-EXP-GENERATOR-2"
+        },
+        {
+          "requirement": "Gaussian helpers admit exact bounded integer pairs and exactly four flat matrix entries, snapshot all inputs and compose shared GaussianRational/GaussianMatrix2 arithmetic. Return immutable integer pairs/flat matrices; numerator export is valid because admitted inputs and ring operations stay Gaussian integral. Invalid shapes/types refuse before multiplication.",
+          "symbols": [
+            "_bounded",
+            "_gaussian",
+            "_pair",
+            "gadd",
+            "gmul",
+            "_matrix",
+            "mmul"
+          ],
+          "tests": [
+            "ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle",
+            "ContinuousTimeCheckerTests.test_scaled_roots_are_distinct_unitary_half_steps",
+            "ContinuousTimeCheckerTests.test_exact_gaussian_domains_and_preflight",
+            "ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries"
+          ],
+          "requirement_id": "TFQM-CONTINUOUS-TIME-REVIEW-DS-CONTINUOUS-TIME-EXP-GENERATOR-3"
+        },
+        {
+          "requirement": "Evaluate the integer Cayley polynomial with checked square, plus/minus, products and sums. Energy is the exact bounded odd integer2k+1, accepting negative branches. The nilpotent predicate tests I+N=swap and N^2=0 via owned rational matrices after admitting all four bounded integers; it is only the square-zero logarithm candidate, not a general matrix-log theorem.",
+          "symbols": [
+            "cayley",
+            "energy",
+            "nilpotent"
+          ],
+          "tests": [
+            "ContinuousTimeCheckerTests.test_cayley_and_odd_branch_oracles",
+            "ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries",
+            "ContinuousTimeCheckerTests.test_nilpotent_forced_candidate_against_matrix_oracle"
+          ],
+          "requirement_id": "TFQM-CONTINUOUS-TIME-REVIEW-DS-CONTINUOUS-TIME-EXP-GENERATOR-4"
+        },
+        {
+          "requirement": "Require Cases, remain silent on import and allocate per-run counters. Preserve Boolean obstruction, both scaled squares/distinctness, Gaussian examples,41 Cayley values,two branch values,300 distinct unordered branch pairs and the forced candidate corner/non-nilpotence; add both scaled-unitarity checks. Emit355 actual checks/4 Boolean maps and exit nonzero on expected failure; propagate cancellation/programming errors.",
+          "symbols": [
+            "_map_controls",
+            "_matrix_controls",
+            "verify",
+            "main"
+          ],
+          "tests": [
+            "ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation",
+            "ContinuousTimeCheckerTests.test_executable_receipt_and_failure_exit",
+            "ContinuousTimeCheckerTests.test_oracles_and_pure_import",
+            "ContinuousTimeCheckerTests.test_scaled_roots_are_distinct_unitary_half_steps"
+          ],
+          "requirement_id": "TFQM-CONTINUOUS-TIME-REVIEW-DS-CONTINUOUS-TIME-EXP-GENERATOR-5"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "dadff15a6f3de2ae8edd82d0c1eff4fd0817f43a1509a7e6fae0fcd2c50fc7de",
+      "symbols": [
+        "FiniteEndomap",
+        "FiniteEndomap.__init__",
+        "FiniteEndomap._compose",
+        "FiniteEndomap._power",
+        "FiniteEndomap._square_roots",
+        "FiniteEndomap.apply",
+        "FiniteEndomap.compose",
+        "FiniteEndomap.power",
+        "FiniteEndomap.square_roots",
+        "_bounded",
+        "_gaussian",
+        "_map_controls",
+        "_matrix",
+        "_matrix_controls",
+        "_pair",
+        "_state",
+        "cayley",
+        "energy",
+        "gadd",
+        "gmul",
+        "main",
+        "maps",
+        "mmul",
+        "nilpotent",
+        "toggle",
+        "verify"
+      ],
+      "origin_sha256": "03d58f4e60ab3368f101da133736a9ee3355d00973ffe3b90ca99bc1908f2da6",
+      "consumers": [
+        {
+          "path": "docs/overclaim/reviews/2026-10-26_campaign-ds-continuous-time-exp-generator-precommit.md",
+          "sha256": "ba24ac763b8de8d369b11c3c85558e34d9c8bbf641f089c57e097d1b1fbd8bfc",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/tests/test_continuous_time_checker.py",
+          "sha256": "4eb6d70c09fff644cd45475f1cc30107d745522a15d69bc34279d21ca26dc332",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "2e5acfdf40ab7515c7765bf33d71810f9063c745acaab7057132be744290ddf4",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and toggle/gadd/gmul/mmul/cayley/energy/nilpotent names remain, with explicit exact domains and budgets. maps now yields a tuple of immutable finite maps rather than callable Boolean closures; no external Python caller was found. Import no longer executes679 checks or prints; main uses per-run Cases and355 actual obligations. Exact original source/output and count migration preserve evidence for1 duplicate nilpotent+25 reflexive+300 reverse energy checks retired and2 unitarity checks added. Owned maps for N<=4 extend the finite executable beyond the Lean Boolean theorem, with complete bounded enumeration and independent matrix tests; no universal finite-to-continuum lift follows. Full Lean source and derivation note reviewed: real/complex time, exp/log, convergence, generator selection and a path measure remain imported. Scientific DAG status is unchanged and historical receipts keep original hashes."
+    },
+    "checks/tests/test_continuous_time_checker.py": {
+      "role": "Independent finite-map verification application using column-action matrices, full small root censuses, symbolic Gaussian products/unitarity, rational Cayley phase and exact branch/resource/lifecycle oracles",
+      "origin": "SCORING.md",
+      "profile": "Exact",
+      "cost": "13 groups;80 deterministic examples per generated property. Exhaustive root targets for N1..3 and two N4 witnesses; each reference map is squared as an at-most3x3 symbolic operator. Generated map compositions/powers use4x4 matrices and exponent0..30, with explicit4096 boundary. All16 carrier-size pairs use valid constant maps to isolate carrier preservation. Gaussian oracles fixed2x2 with small integer components; Cayley/branch samples-1000..1000. Nilpotent census81 matrices;2048/4096-bit resource boundaries. Executable timeout30s and scoped runpy/mocks/captures/subprocess.",
+      "groups": [
+        {
+          "requirement": "Cross-check distinct row/column orientation and symbolic operator powers; exhaust every small root target and assert two4-state boundary witnesses. Compare generated map composition/action/iteration and Gaussian arithmetic independently, normalize both scaled square roots and check unitarity, derive Cayley norm via rational complex phase, invert the odd-branch parametrization and check the forced nilpotent candidate by actual matrix products. Test full resource/exact-input domains, snapshots, eager preflight, import silence, per-run counts and failure/cancellation exits.",
+          "symbols": [
+            "load",
+            "_operator",
+            "_matrix",
+            "_root_index",
+            "ContinuousTimeCheckerTests",
+            "ContinuousTimeCheckerTests.refused",
+            "ContinuousTimeCheckerTests.test_oracles_and_pure_import",
+            "ContinuousTimeCheckerTests.test_complete_small_root_censuses_and_four_state_witness",
+            "ContinuousTimeCheckerTests.test_composition_refuses_carrier_loss",
+            "ContinuousTimeCheckerTests.test_generated_composition_action_and_power",
+            "ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget",
+            "ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle",
+            "ContinuousTimeCheckerTests.test_scaled_roots_are_distinct_unitary_half_steps",
+            "ContinuousTimeCheckerTests.test_exact_gaussian_domains_and_preflight",
+            "ContinuousTimeCheckerTests.test_cayley_and_odd_branch_oracles",
+            "ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries",
+            "ContinuousTimeCheckerTests.test_nilpotent_forced_candidate_against_matrix_oracle",
+            "ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation",
+            "ContinuousTimeCheckerTests.test_executable_receipt_and_failure_exit"
+          ],
+          "tests": [
+            "ContinuousTimeCheckerTests.test_oracles_and_pure_import",
+            "ContinuousTimeCheckerTests.test_complete_small_root_censuses_and_four_state_witness",
+            "ContinuousTimeCheckerTests.test_composition_refuses_carrier_loss",
+            "ContinuousTimeCheckerTests.test_generated_composition_action_and_power",
+            "ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget",
+            "ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle",
+            "ContinuousTimeCheckerTests.test_scaled_roots_are_distinct_unitary_half_steps",
+            "ContinuousTimeCheckerTests.test_exact_gaussian_domains_and_preflight",
+            "ContinuousTimeCheckerTests.test_cayley_and_odd_branch_oracles",
+            "ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries",
+            "ContinuousTimeCheckerTests.test_nilpotent_forced_candidate_against_matrix_oracle",
+            "ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation",
+            "ContinuousTimeCheckerTests.test_executable_receipt_and_failure_exit"
+          ],
+          "requirement_id": "TFQM-CONTINUOUS-TIME-REVIEW-TEST-CONTINUOUS-TIME-CHECKER-1"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "4eb6d70c09fff644cd45475f1cc30107d745522a15d69bc34279d21ca26dc332",
+      "symbols": [
+        "ContinuousTimeCheckerTests",
+        "ContinuousTimeCheckerTests.refused",
+        "ContinuousTimeCheckerTests.test_cayley_and_odd_branch_oracles",
+        "ContinuousTimeCheckerTests.test_complete_small_root_censuses_and_four_state_witness",
+        "ContinuousTimeCheckerTests.test_composition_refuses_carrier_loss",
+        "ContinuousTimeCheckerTests.test_exact_gaussian_domains_and_preflight",
+        "ContinuousTimeCheckerTests.test_executable_receipt_and_failure_exit",
+        "ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget",
+        "ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle",
+        "ContinuousTimeCheckerTests.test_generated_composition_action_and_power",
+        "ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries",
+        "ContinuousTimeCheckerTests.test_nilpotent_forced_candidate_against_matrix_oracle",
+        "ContinuousTimeCheckerTests.test_oracles_and_pure_import",
+        "ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation",
+        "ContinuousTimeCheckerTests.test_scaled_roots_are_distinct_unitary_half_steps",
+        "_matrix",
+        "_operator",
+        "_root_index",
+        "load"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/independent/ds-continuous-time-exp-generator.py",
+          "sha256": "dadff15a6f3de2ae8edd82d0c1eff4fd0817f43a1509a7e6fae0fcd2c50fc7de",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "2e5acfdf40ab7515c7765bf33d71810f9063c745acaab7057132be744290ddf4",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and toggle/gadd/gmul/mmul/cayley/energy/nilpotent names remain, with explicit exact domains and budgets. maps now yields a tuple of immutable finite maps rather than callable Boolean closures; no external Python caller was found. Import no longer executes679 checks or prints; main uses per-run Cases and355 actual obligations. Exact original source/output and count migration preserve evidence for1 duplicate nilpotent+25 reflexive+300 reverse energy checks retired and2 unitarity checks added. Owned maps for N<=4 extend the finite executable beyond the Lean Boolean theorem, with complete bounded enumeration and independent matrix tests; no universal finite-to-continuum lift follows. Full Lean source and derivation note reviewed: real/complex time, exp/log, convergence, generator selection and a path measure remain imported. Scientific DAG status is unchanged and historical receipts keep original hashes."
+    }
+  }
+}

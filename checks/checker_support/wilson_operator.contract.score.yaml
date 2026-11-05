@@ -1,0 +1,563 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "checks/checker_support/wilson_operator.py",
+  "assurance": "Completed L4B assessment for these exact source bytes and declared finite boundary, with historical records retained.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Python",
+      "path": "checks/checker_support/wilson_operator.py",
+      "sha256": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015"
+    },
+    "audited_consumers": [
+      {
+        "line": 220,
+        "path": "checks/tests/test_review_repairs.py",
+        "sha256": "4ee6fe26c56b18955571713cdf43a64e2ca2c93f0618e32afed1783701faf827"
+      },
+      {
+        "line": 35,
+        "path": "checks/tests/test_checker_support.py",
+        "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+      },
+      {
+        "line": 36,
+        "path": "checks/tests/test_checker_support.py",
+        "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+      },
+      {
+        "line": 45,
+        "path": "checks/independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+        "sha256": "717559beb95ab183d83fd1a0775ddf0558cbcac652101346d5560a43b683dc86"
+      },
+      {
+        "line": 23,
+        "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+        "sha256": "67772155cc8e6ea4e0cc0f0c01042165190084b1214b183736d19d797067c843"
+      },
+      {
+        "line": 26,
+        "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+        "sha256": "67772155cc8e6ea4e0cc0f0c01042165190084b1214b183736d19d797067c843"
+      }
+    ],
+    "boundaries": [
+      "Finite fixture checks do not establish continuum or physical theorems.",
+      "Shared helper use is not independent mathematical confirmation; the separately implemented oracles supply that check.",
+      "Source/test versions and bounded populations in the receipts delimit the assessment; no hosted-CI run or higher engineering grade is inferred.",
+      "Callbacks and mutation recipes are trusted synchronous repository code, not an untrusted-code security boundary."
+    ],
+    "bounded_context": "Independent finite checking and verification; no production implementation or scientific authority is imported.",
+    "contract_urn": "urn:tfqm:checker-review:2026-11-03:wilson_operator",
+    "evidence": [
+      {
+        "path": "reviews/repository_file_review/2026-11-03-checker-infrastructure.md",
+        "sha256": "513c66bcb4425d16dfcca24c6a0d70cc1eca9fc5e8d38d5c3a716419af73584b"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-support-requirements.json",
+        "sha256": "f35bc30bc1c7251fa92dae0adfddd6c7d694781fc3eb4bcbbeeba3db5847cafd"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+        "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-support-mutations-composed.json",
+        "sha256": "90fe9ad62d24997d73c0062bcf90ed8490a8096754308b9af5db9b75a9567961"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+        "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-wilson-swap-equivalence.md",
+        "sha256": "737f0bb2b6f63cc40181ccefc569ab55b473e08db23dce0d7a61fb27f46f2a24"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+      }
+    ],
+    "failure_policy": "Input/resource/duplicate/check refusals are explicit; public evaluation returns Outcome. Internal Violation transfers validated Failure. Unexpected programming exceptions and cancellation propagate; the admitted finite computations have validated indexing and bounded loops. Test-owned filesystem/process resources use context-managed cleanup.",
+    "operational_cost": "Fixed dimensions 4/16 and bounded site/spin/color/direction indices; O(16^2) validation and fixed-size hopping assembly. The separate 8-by-8 determinant fixture uses O(8^3) rational elimination.",
+    "owned_invariants": [
+      "Current source and the completed score bind exactly the artifact SHA-256.",
+      "Requirements map to every declared top-level function/class and class method; verification and consumers are named.",
+      "No production assert is used, no module has multiple classes, and pinned strict mypy succeeds.",
+      "Exact paths exclude bool/float inputs; deliberate invalid-input tests do not relax admission.",
+      "Generated and independent-oracle tests run in normal and optimized Python; mutation accounting retains every explicit candidate."
+    ],
+    "requirements": [
+      {
+        "requirement": "Snapshot square Gaussian matrices and admit exactly four actual integer chirality signs in {-1,+1}.",
+        "requirement_id": "TFQM-CHECKER-WILSON-OPERATOR-1",
+        "symbols": [
+          "_matrix",
+          "_entry",
+          "_signs"
+        ],
+        "tests": [
+          "CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries"
+        ]
+      },
+      {
+        "requirement": "Construct the declared chiral representation; independently test Hermiticity, Clifford anticommutation and gamma5 grading.",
+        "requirement_id": "TFQM-CHECKER-WILSON-OPERATOR-2",
+        "symbols": [
+          "gamma_matrices",
+          "_entry_product",
+          "clifford_relations"
+        ],
+        "tests": [
+          "CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries",
+          "CheckerSupportTests.test_wilson_operator_independent_block_construction"
+        ]
+      },
+      {
+        "requirement": "Admit exact parameter and indices; assemble correctly signed, conjugated forward/backward hopping on the fixed two-site torus.",
+        "requirement_id": "TFQM-CHECKER-WILSON-OPERATOR-3",
+        "symbols": [
+          "color_link",
+          "spin_color_index",
+          "_add_hop",
+          "assembled_operator"
+        ],
+        "tests": [
+          "CheckerSupportTests.test_wilson_operator_independent_block_construction",
+          "CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries"
+        ]
+      },
+      {
+        "requirement": "Reject malformed operators and detect broken gamma5 Hermiticity; failed Clifford admission cannot pass the composed check.",
+        "requirement_id": "TFQM-CHECKER-WILSON-OPERATOR-4",
+        "symbols": [
+          "gamma5_hermitian",
+          "assembled_operator_checks"
+        ],
+        "tests": [
+          "CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries"
+        ]
+      },
+      {
+        "requirement": "Eliminate the declared 8-by-8 fixture independently of its determinant polynomial; exact input admission, pivoting and singular return zero agree with a separate Bareiss implementation.",
+        "requirement_id": "TFQM-CHECKER-WILSON-OPERATOR-5",
+        "symbols": [
+          "direct_wilson_determinant"
+        ],
+        "tests": [
+          "CheckerSupportTests.test_wilson_determinant_independent_symbolic_elimination"
+        ]
+      }
+    ],
+    "role": "Finite lattice operator construction and admission",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "_add_hop",
+      "_entry",
+      "_entry_product",
+      "_matrix",
+      "_signs",
+      "assembled_operator",
+      "assembled_operator_checks",
+      "clifford_relations",
+      "color_link",
+      "direct_wilson_determinant",
+      "gamma5_hermitian",
+      "gamma_matrices",
+      "spin_color_index"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 2550,
+      "original_paths": [
+        "review-repair-2026-11-02"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/checker_support/wilson_operator.py\",\n    \"sha256\": \"5cc3fd5a3e97e35cf0778035c83f78ed973ca7456fccf6ca0bc8423c4451beb1\"\n  },\n  \"boundaries\": [\n    \"Finite supplied models do not discharge unimplemented general, continuum or physical statements.\",\n    \"Shared checker helpers are not independent confirmation of one another; regression oracles are separately constructed.\",\n    \"This contract does not establish the requested L4B acceptance floor or hosted-CI success.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review-repair:2026-11-02:wilson_operator\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-repairs.md\",\n      \"sha256\": \"82db030642db352aca1fd3ab9677515df96ec207e3dd6b9096cd06886aee55ca\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-repair-retest.json\",\n      \"sha256\": \"ef357c98fbe380729b1099dfa61a677845c51adcf74edc1ff3c897f534a38b34\"\n    },\n    {\n      \"path\": \"checks/tests/test_review_repairs.py\",\n      \"sha256\": \"d88864962ba4fe0e6a25cb9b2c6c2ba83b4d0dc687efcf5093c838eb162dfac5\"\n    },\n    {\n      \"path\": \"checks/checker_support/README.md\",\n      \"sha256\": \"96cb7a9253e8f0578b022554272ba596f5daff0be2b9af92566016e1d28d44a7\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"imports\": [\n    \"domains\",\n    \"fractions\",\n    \"gaussian_rational\",\n    \"itertools\"\n  ],\n  \"owned_invariants\": [\n    \"Current source identity and callable scope are bound by this contract and the exact retest receipt.\",\n    \"Expected independent-checker input failures are represented by Failure/Outcome at the evaluate boundary; CLI refusals exit nonzero.\",\n    \"No executable assertions are relied on; regression verifies normal and optimized Python.\",\n    \"Exact numerical paths reject unadmitted floats and booleans at the repaired input boundaries.\"\n  ],\n  \"purpose\": \"Independent four-spin, two-color Wilson fixture on a (2,1,1,1) torus.\\n\\nBounded context: exact lattice checking. Matrices have fixed sizes 4 or 16;\\nthe construction is not an arbitrary-dimension Clifford implementation.\",\n  \"role\": \"independent checker support\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"gamma_matrices\",\n    \"matrix_entry_product\",\n    \"clifford_relations\",\n    \"color_link\",\n    \"spin_color_index\",\n    \"add_hop\",\n    \"assembled_operator\",\n    \"gamma5_hermitian\",\n    \"assembled_operator_checks\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/checker_support/wilson_operator.py",
+          "sha256": "5cc3fd5a3e97e35cf0778035c83f78ed973ca7456fccf6ca0bc8423c4451beb1"
+        },
+        "boundaries": [
+          "Finite supplied models do not discharge unimplemented general, continuum or physical statements.",
+          "Shared checker helpers are not independent confirmation of one another; regression oracles are separately constructed.",
+          "This contract does not establish the requested L4B acceptance floor or hosted-CI success."
+        ],
+        "contract_urn": "urn:tfqm:review-repair:2026-11-02:wilson_operator",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-repairs.md",
+            "sha256": "82db030642db352aca1fd3ab9677515df96ec207e3dd6b9096cd06886aee55ca"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-repair-retest.json",
+            "sha256": "ef357c98fbe380729b1099dfa61a677845c51adcf74edc1ff3c897f534a38b34"
+          },
+          {
+            "path": "checks/tests/test_review_repairs.py",
+            "sha256": "d88864962ba4fe0e6a25cb9b2c6c2ba83b4d0dc687efcf5093c838eb162dfac5"
+          },
+          {
+            "path": "checks/checker_support/README.md",
+            "sha256": "96cb7a9253e8f0578b022554272ba596f5daff0be2b9af92566016e1d28d44a7"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "imports": [
+          "domains",
+          "fractions",
+          "gaussian_rational",
+          "itertools"
+        ],
+        "owned_invariants": [
+          "Current source identity and callable scope are bound by this contract and the exact retest receipt.",
+          "Expected independent-checker input failures are represented by Failure/Outcome at the evaluate boundary; CLI refusals exit nonzero.",
+          "No executable assertions are relied on; regression verifies normal and optimized Python.",
+          "Exact numerical paths reject unadmitted floats and booleans at the repaired input boundaries."
+        ],
+        "purpose": "Independent four-spin, two-color Wilson fixture on a (2,1,1,1) torus.\n\nBounded context: exact lattice checking. Matrices have fixed sizes 4 or 16;\nthe construction is not an arbitrary-dimension Clifford implementation.",
+        "role": "independent checker support",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "gamma_matrices",
+          "matrix_entry_product",
+          "clifford_relations",
+          "color_link",
+          "spin_color_index",
+          "add_hop",
+          "assembled_operator",
+          "gamma5_hermitian",
+          "assembled_operator_checks"
+        ]
+      },
+      "sha256": "3c1f30a588b5280d656c210b114ff1516ba63db28ddc83a56e49f500e91fbcc6"
+    },
+    {
+      "bytes": 7187,
+      "original_paths": [
+        "checker-infrastructure-review-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/checker_support/wilson_operator.py\",\n    \"sha256\": \"6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015\"\n  },\n  \"audited_consumers\": [\n    {\n      \"line\": 220,\n      \"path\": \"checks/tests/test_review_repairs.py\",\n      \"sha256\": \"4ee6fe26c56b18955571713cdf43a64e2ca2c93f0618e32afed1783701faf827\"\n    },\n    {\n      \"line\": 35,\n      \"path\": \"checks/tests/test_checker_support.py\",\n      \"sha256\": \"cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee\"\n    },\n    {\n      \"line\": 36,\n      \"path\": \"checks/tests/test_checker_support.py\",\n      \"sha256\": \"cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee\"\n    },\n    {\n      \"line\": 45,\n      \"path\": \"checks/independent/check_tfq_1052_fqcd_strong_coupling_area_law.py\",\n      \"sha256\": \"717559beb95ab183d83fd1a0775ddf0558cbcac652101346d5560a43b683dc86\"\n    },\n    {\n      \"line\": 23,\n      \"path\": \"checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n      \"sha256\": \"67772155cc8e6ea4e0cc0f0c01042165190084b1214b183736d19d797067c843\"\n    },\n    {\n      \"line\": 26,\n      \"path\": \"checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n      \"sha256\": \"67772155cc8e6ea4e0cc0f0c01042165190084b1214b183736d19d797067c843\"\n    }\n  ],\n  \"boundaries\": [\n    \"Finite fixture checks do not establish continuum or physical theorems.\",\n    \"Shared helper use is not independent mathematical confirmation; the separately implemented oracles supply that check.\",\n    \"Source/test versions and bounded populations in the receipts delimit the assessment; no hosted-CI run or higher engineering grade is inferred.\",\n    \"Callbacks and mutation recipes are trusted synchronous repository code, not an untrusted-code security boundary.\"\n  ],\n  \"bounded_context\": \"Independent finite checking and verification; no production implementation or scientific authority is imported.\",\n  \"contract_urn\": \"urn:tfqm:checker-review:2026-11-03:wilson_operator\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-checker-infrastructure.md\",\n      \"sha256\": \"513c66bcb4425d16dfcca24c6a0d70cc1eca9fc5e8d38d5c3a716419af73584b\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-requirements.json\",\n      \"sha256\": \"f35bc30bc1c7251fa92dae0adfddd6c7d694781fc3eb4bcbbeeba3db5847cafd\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-quality-complete.json\",\n      \"sha256\": \"3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-mutations-composed.json\",\n      \"sha256\": \"90fe9ad62d24997d73c0062bcf90ed8490a8096754308b9af5db9b75a9567961\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json\",\n      \"sha256\": \"a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-wilson-swap-equivalence.md\",\n      \"sha256\": \"737f0bb2b6f63cc40181ccefc569ab55b473e08db23dce0d7a61fb27f46f2a24\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"failure_policy\": \"Input/resource/duplicate/check refusals are explicit; public evaluation returns Outcome. Internal Violation transfers validated Failure. Unexpected programming exceptions and cancellation propagate; the admitted finite computations have validated indexing and bounded loops. Test-owned filesystem/process resources use context-managed cleanup.\",\n  \"operational_cost\": \"Fixed dimensions 4/16 and bounded site/spin/color/direction indices; O(16^2) validation and fixed-size hopping assembly. The separate 8-by-8 determinant fixture uses O(8^3) rational elimination.\",\n  \"owned_invariants\": [\n    \"Current source and the completed score bind exactly the artifact SHA-256.\",\n    \"Requirements map to every declared top-level function/class and class method; verification and consumers are named.\",\n    \"No production assert is used, no module has multiple classes, and pinned strict mypy succeeds.\",\n    \"Exact paths exclude bool/float inputs; deliberate invalid-input tests do not relax admission.\",\n    \"Generated and independent-oracle tests run in normal and optimized Python; mutation accounting retains every explicit candidate.\"\n  ],\n  \"requirements\": [\n    {\n      \"requirement\": \"Snapshot square Gaussian matrices and admit exactly four actual integer chirality signs in {-1,+1}.\",\n      \"requirement_id\": \"TFQM-CHECKER-WILSON-OPERATOR-1\",\n      \"symbols\": [\n        \"_matrix\",\n        \"_entry\",\n        \"_signs\"\n      ],\n      \"tests\": [\n        \"CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries\"\n      ]\n    },\n    {\n      \"requirement\": \"Construct the declared chiral representation; independently test Hermiticity, Clifford anticommutation and gamma5 grading.\",\n      \"requirement_id\": \"TFQM-CHECKER-WILSON-OPERATOR-2\",\n      \"symbols\": [\n        \"gamma_matrices\",\n        \"_entry_product\",\n        \"clifford_relations\"\n      ],\n      \"tests\": [\n        \"CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries\",\n        \"CheckerSupportTests.test_wilson_operator_independent_block_construction\"\n      ]\n    },\n    {\n      \"requirement\": \"Admit exact parameter and indices; assemble correctly signed, conjugated forward/backward hopping on the fixed two-site torus.\",\n      \"requirement_id\": \"TFQM-CHECKER-WILSON-OPERATOR-3\",\n      \"symbols\": [\n        \"color_link\",\n        \"spin_color_index\",\n        \"_add_hop\",\n        \"assembled_operator\"\n      ],\n      \"tests\": [\n        \"CheckerSupportTests.test_wilson_operator_independent_block_construction\",\n        \"CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries\"\n      ]\n    },\n    {\n      \"requirement\": \"Reject malformed operators and detect broken gamma5 Hermiticity; failed Clifford admission cannot pass the composed check.\",\n      \"requirement_id\": \"TFQM-CHECKER-WILSON-OPERATOR-4\",\n      \"symbols\": [\n        \"gamma5_hermitian\",\n        \"assembled_operator_checks\"\n      ],\n      \"tests\": [\n        \"CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries\"\n      ]\n    },\n    {\n      \"requirement\": \"Eliminate the declared 8-by-8 fixture independently of its determinant polynomial; exact input admission, pivoting and singular return zero agree with a separate Bareiss implementation.\",\n      \"requirement_id\": \"TFQM-CHECKER-WILSON-OPERATOR-5\",\n      \"symbols\": [\n        \"direct_wilson_determinant\"\n      ],\n      \"tests\": [\n        \"CheckerSupportTests.test_wilson_determinant_independent_symbolic_elimination\"\n      ]\n    }\n  ],\n  \"role\": \"Finite lattice operator construction and admission\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"_add_hop\",\n    \"_entry\",\n    \"_entry_product\",\n    \"_matrix\",\n    \"_signs\",\n    \"assembled_operator\",\n    \"assembled_operator_checks\",\n    \"clifford_relations\",\n    \"color_link\",\n    \"direct_wilson_determinant\",\n    \"gamma5_hermitian\",\n    \"gamma_matrices\",\n    \"spin_color_index\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/checker_support/wilson_operator.py",
+          "sha256": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015"
+        },
+        "audited_consumers": [
+          {
+            "line": 220,
+            "path": "checks/tests/test_review_repairs.py",
+            "sha256": "4ee6fe26c56b18955571713cdf43a64e2ca2c93f0618e32afed1783701faf827"
+          },
+          {
+            "line": 35,
+            "path": "checks/tests/test_checker_support.py",
+            "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+          },
+          {
+            "line": 36,
+            "path": "checks/tests/test_checker_support.py",
+            "sha256": "cc586df1f71db0c1bd41256d7dff20329bf511ced831e6dcf6c9adbafb0648ee"
+          },
+          {
+            "line": 45,
+            "path": "checks/independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+            "sha256": "717559beb95ab183d83fd1a0775ddf0558cbcac652101346d5560a43b683dc86"
+          },
+          {
+            "line": 23,
+            "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+            "sha256": "67772155cc8e6ea4e0cc0f0c01042165190084b1214b183736d19d797067c843"
+          },
+          {
+            "line": 26,
+            "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+            "sha256": "67772155cc8e6ea4e0cc0f0c01042165190084b1214b183736d19d797067c843"
+          }
+        ],
+        "boundaries": [
+          "Finite fixture checks do not establish continuum or physical theorems.",
+          "Shared helper use is not independent mathematical confirmation; the separately implemented oracles supply that check.",
+          "Source/test versions and bounded populations in the receipts delimit the assessment; no hosted-CI run or higher engineering grade is inferred.",
+          "Callbacks and mutation recipes are trusted synchronous repository code, not an untrusted-code security boundary."
+        ],
+        "bounded_context": "Independent finite checking and verification; no production implementation or scientific authority is imported.",
+        "contract_urn": "urn:tfqm:checker-review:2026-11-03:wilson_operator",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-03-checker-infrastructure.md",
+            "sha256": "513c66bcb4425d16dfcca24c6a0d70cc1eca9fc5e8d38d5c3a716419af73584b"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-requirements.json",
+            "sha256": "f35bc30bc1c7251fa92dae0adfddd6c7d694781fc3eb4bcbbeeba3db5847cafd"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+            "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-mutations-composed.json",
+            "sha256": "90fe9ad62d24997d73c0062bcf90ed8490a8096754308b9af5db9b75a9567961"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+            "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-wilson-swap-equivalence.md",
+            "sha256": "737f0bb2b6f63cc40181ccefc569ab55b473e08db23dce0d7a61fb27f46f2a24"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "failure_policy": "Input/resource/duplicate/check refusals are explicit; public evaluation returns Outcome. Internal Violation transfers validated Failure. Unexpected programming exceptions and cancellation propagate; the admitted finite computations have validated indexing and bounded loops. Test-owned filesystem/process resources use context-managed cleanup.",
+        "operational_cost": "Fixed dimensions 4/16 and bounded site/spin/color/direction indices; O(16^2) validation and fixed-size hopping assembly. The separate 8-by-8 determinant fixture uses O(8^3) rational elimination.",
+        "owned_invariants": [
+          "Current source and the completed score bind exactly the artifact SHA-256.",
+          "Requirements map to every declared top-level function/class and class method; verification and consumers are named.",
+          "No production assert is used, no module has multiple classes, and pinned strict mypy succeeds.",
+          "Exact paths exclude bool/float inputs; deliberate invalid-input tests do not relax admission.",
+          "Generated and independent-oracle tests run in normal and optimized Python; mutation accounting retains every explicit candidate."
+        ],
+        "requirements": [
+          {
+            "requirement": "Snapshot square Gaussian matrices and admit exactly four actual integer chirality signs in {-1,+1}.",
+            "requirement_id": "TFQM-CHECKER-WILSON-OPERATOR-1",
+            "symbols": [
+              "_matrix",
+              "_entry",
+              "_signs"
+            ],
+            "tests": [
+              "CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries"
+            ]
+          },
+          {
+            "requirement": "Construct the declared chiral representation; independently test Hermiticity, Clifford anticommutation and gamma5 grading.",
+            "requirement_id": "TFQM-CHECKER-WILSON-OPERATOR-2",
+            "symbols": [
+              "gamma_matrices",
+              "_entry_product",
+              "clifford_relations"
+            ],
+            "tests": [
+              "CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries",
+              "CheckerSupportTests.test_wilson_operator_independent_block_construction"
+            ]
+          },
+          {
+            "requirement": "Admit exact parameter and indices; assemble correctly signed, conjugated forward/backward hopping on the fixed two-site torus.",
+            "requirement_id": "TFQM-CHECKER-WILSON-OPERATOR-3",
+            "symbols": [
+              "color_link",
+              "spin_color_index",
+              "_add_hop",
+              "assembled_operator"
+            ],
+            "tests": [
+              "CheckerSupportTests.test_wilson_operator_independent_block_construction",
+              "CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries"
+            ]
+          },
+          {
+            "requirement": "Reject malformed operators and detect broken gamma5 Hermiticity; failed Clifford admission cannot pass the composed check.",
+            "requirement_id": "TFQM-CHECKER-WILSON-OPERATOR-4",
+            "symbols": [
+              "gamma5_hermitian",
+              "assembled_operator_checks"
+            ],
+            "tests": [
+              "CheckerSupportTests.test_wilson_shapes_and_chirality_boundaries"
+            ]
+          },
+          {
+            "requirement": "Eliminate the declared 8-by-8 fixture independently of its determinant polynomial; exact input admission, pivoting and singular return zero agree with a separate Bareiss implementation.",
+            "requirement_id": "TFQM-CHECKER-WILSON-OPERATOR-5",
+            "symbols": [
+              "direct_wilson_determinant"
+            ],
+            "tests": [
+              "CheckerSupportTests.test_wilson_determinant_independent_symbolic_elimination"
+            ]
+          }
+        ],
+        "role": "Finite lattice operator construction and admission",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "_add_hop",
+          "_entry",
+          "_entry_product",
+          "_matrix",
+          "_signs",
+          "assembled_operator",
+          "assembled_operator_checks",
+          "clifford_relations",
+          "color_link",
+          "direct_wilson_determinant",
+          "gamma5_hermitian",
+          "gamma_matrices",
+          "spin_color_index"
+        ]
+      },
+      "sha256": "4c909450b309f516340764112b3d0c834281943a13c2a281e8cbc3dd0f889d7b"
+    }
+  ],
+  "current_contract": "4c909450b309f516340764112b3d0c834281943a13c2a281e8cbc3dd0f889d7b",
+  "current_scoring": "cea6db49a7dadb3bbc1fdd5687518b145b1bbd971ed4cff2927ffbeef21bfafa",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2833,
+      "original_paths": [
+        "review-repair-2026-11-02"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/checker_support/wilson_operator.py\",\n    \"sha256\": \"5cc3fd5a3e97e35cf0778035c83f78ed973ca7456fccf6ca0bc8423c4451beb1\"\n  },\n  \"assessment_id\": \"review-repair-retest-2026-11-02\",\n  \"basis\": {\n    \"G1\": \"Source identity, concrete role, imports and scope are declared; fresh evidence replaces stale current bindings while history is retained.\",\n    \"G2\": \"Reported semantic and exact-input defects are repaired; the bounded normal/optimized regression and independent oracles pass.\",\n    \"G3\": \"Known optimization bypasses and invalid-domain successes are repaired; typed evaluation and nonzero CLI failures are exercised.\",\n    \"G4\": \"24 regression groups pass in each interpreter mode, with four specified mutants killed; complete per-artifact branch and mutation evidence for B is not established.\",\n    \"G5\": \"Maximum Radon cyclomatic complexity 8; no assertion-dependent checks and at most one class per checker/support source. Full cognitive complexity, static typing and operational assessment remains unassessed.\"\n  },\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-11-03T04:29:31.916482+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-repairs.md\",\n      \"sha256\": \"82db030642db352aca1fd3ab9677515df96ec207e3dd6b9096cd06886aee55ca\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-repair-retest.json\",\n      \"sha256\": \"ef357c98fbe380729b1099dfa61a677845c51adcf74edc1ff3c897f534a38b34\"\n    },\n    {\n      \"path\": \"checks/tests/test_review_repairs.py\",\n      \"sha256\": \"d88864962ba4fe0e6a25cb9b2c6c2ba83b4d0dc687efcf5093c838eb162dfac5\"\n    },\n    {\n      \"path\": \"checks/checker_support/README.md\",\n      \"sha256\": \"96cb7a9253e8f0578b022554272ba596f5daff0be2b9af92566016e1d28d44a7\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"C\",\n  \"is_complete\": false,\n  \"level\": \"L3\",\n  \"level_basis\": \"Capability remains scoped to the delivered finite checker, helper or test harness; repairs do not automatically promote a literal fixture or utility to L4.\",\n  \"open_findings\": [\n    \"Complete five-gate assessment and the user-requested L4B floor remain unmet; no completed score token is asserted.\"\n  ],\n  \"profile\": \"Exact\",\n  \"refusal_reason\": \"The full B-level assessment is incomplete and some delivered utilities/fixtures have capability below L4. Do not promote these bytes by relabeling.\",\n  \"resolved_findings\": [\n    \"New support/harness source has a matching current contract and shared source-bound retest evidence.\"\n  ],\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "checks/checker_support/wilson_operator.py",
+          "sha256": "5cc3fd5a3e97e35cf0778035c83f78ed973ca7456fccf6ca0bc8423c4451beb1"
+        },
+        "assessment_id": "review-repair-retest-2026-11-02",
+        "basis": {
+          "G1": "Source identity, concrete role, imports and scope are declared; fresh evidence replaces stale current bindings while history is retained.",
+          "G2": "Reported semantic and exact-input defects are repaired; the bounded normal/optimized regression and independent oracles pass.",
+          "G3": "Known optimization bypasses and invalid-domain successes are repaired; typed evaluation and nonzero CLI failures are exercised.",
+          "G4": "24 regression groups pass in each interpreter mode, with four specified mutants killed; complete per-artifact branch and mutation evidence for B is not established.",
+          "G5": "Maximum Radon cyclomatic complexity 8; no assertion-dependent checks and at most one class per checker/support source. Full cognitive complexity, static typing and operational assessment remains unassessed."
+        },
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-11-03T04:29:31.916482+00:00",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-repairs.md",
+            "sha256": "82db030642db352aca1fd3ab9677515df96ec207e3dd6b9096cd06886aee55ca"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-repair-retest.json",
+            "sha256": "ef357c98fbe380729b1099dfa61a677845c51adcf74edc1ff3c897f534a38b34"
+          },
+          {
+            "path": "checks/tests/test_review_repairs.py",
+            "sha256": "d88864962ba4fe0e6a25cb9b2c6c2ba83b4d0dc687efcf5093c838eb162dfac5"
+          },
+          {
+            "path": "checks/checker_support/README.md",
+            "sha256": "96cb7a9253e8f0578b022554272ba596f5daff0be2b9af92566016e1d28d44a7"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "C",
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Capability remains scoped to the delivered finite checker, helper or test harness; repairs do not automatically promote a literal fixture or utility to L4.",
+        "open_findings": [
+          "Complete five-gate assessment and the user-requested L4B floor remain unmet; no completed score token is asserted."
+        ],
+        "profile": "Exact",
+        "refusal_reason": "The full B-level assessment is incomplete and some delivered utilities/fixtures have capability below L4. Do not promote these bytes by relabeling.",
+        "resolved_findings": [
+          "New support/harness source has a matching current contract and shared source-bound retest evidence."
+        ],
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "f667c4d92aaf26922c17ceaf1f58c6712f646bc7fda4e164adcfe1c7a8495fe3"
+    },
+    {
+      "bytes": 4270,
+      "original_paths": [
+        "checker-infrastructure-review-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/checker_support/wilson_operator.py\",\n    \"sha256\": \"6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015\"\n  },\n  \"assessment_id\": \"checker-infrastructure-production-review-2026-11-03\",\n  \"basis\": {\n    \"G1\": \"Complete source-bound contract, bidirectional symbol/requirement/test mapping, named origins, dependencies and audited consumer boundaries. AuthorityEffect None; fixture scope retained.\",\n    \"G2\": \"Runtime schema/value-object admission, exact arithmetic or explicitly nonnumeric protocol semantics, immutable snapshots and tested endpoint/invalid-type handling. Independent oracles and generated properties cover the declared finite models.\",\n    \"G3\": \"Enumerated input, budget, duplicate, check and OS failures; typed Railway translation and nonzero CLI refusal, validated indexing and finite loop bounds, preserved cancellation and context-managed process/file cleanup. Unexpected programmer failures are not hidden.\",\n    \"G4\": \"Complete normal/optimized contract and integration runs, pinned strict typing, negative paths and generated properties. 70 source mutants executed: 69 killed, one domain-proven equivalent with raw survivor retained. Five separate accounting-replacement mutants are killed. The assertion-only final test amendment is source-hash reconstructed and retested.\",\n    \"G5\": \"CCN maximum 10, cognitive maximum 15, nesting maximum 3; one class or fewer, no production asserts. Fixed dimensions 4/16 and bounded site/spin/color/direction indices; O(16^2) validation and fixed-size hopping assembly. The separate 8-by-8 determinant fixture uses O(8^3) rational elimination.\"\n  },\n  \"composite_grade\": \"B\",\n  \"evaluation_timestamp\": \"2026-11-03T05:46:43.538873+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-checker-infrastructure.md\",\n      \"sha256\": \"513c66bcb4425d16dfcca24c6a0d70cc1eca9fc5e8d38d5c3a716419af73584b\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-requirements.json\",\n      \"sha256\": \"f35bc30bc1c7251fa92dae0adfddd6c7d694781fc3eb4bcbbeeba3db5847cafd\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-quality-complete.json\",\n      \"sha256\": \"3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-mutations-composed.json\",\n      \"sha256\": \"90fe9ad62d24997d73c0062bcf90ed8490a8096754308b9af5db9b75a9567961\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json\",\n      \"sha256\": \"a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-wilson-swap-equivalence.md\",\n      \"sha256\": \"737f0bb2b6f63cc40181ccefc569ab55b473e08db23dce0d7a61fb27f46f2a24\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"B\",\n    \"G3\": \"B\",\n    \"G4\": \"B\",\n    \"G5\": \"B\"\n  },\n  \"grade_ceiling\": \"B\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Finite lattice operator construction and admission: Snapshot square Gaussian matrices and admit exactly four actual integer chirality signs in {-1,+1}. Construct the declared chiral representation; independently test Hermiticity, Clifford anticommutation and gamma5 grading. Admit exact parameter and indices; assemble correctly signed, conjugated forward/backward hopping on the fixed two-site torus. Reject malformed operators and detect broken gamma5 Hermiticity; failed Clifford admission cannot pass the composed check. Eliminate the declared 8-by-8 fixture independently of its determinant polynomial; exact input admission, pivoting and singular return zero agree with a separate Bareiss implementation. These are the delivered validated interfaces, state/lifecycle ownership and composition mechanisms; the score does not derive from the mathematical topic or test count. Standalone helper-only wrappers were composed and removed.\",\n  \"open_findings\": [],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4B\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/checker_support/wilson_operator.py",
+          "sha256": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015"
+        },
+        "assessment_id": "checker-infrastructure-production-review-2026-11-03",
+        "basis": {
+          "G1": "Complete source-bound contract, bidirectional symbol/requirement/test mapping, named origins, dependencies and audited consumer boundaries. AuthorityEffect None; fixture scope retained.",
+          "G2": "Runtime schema/value-object admission, exact arithmetic or explicitly nonnumeric protocol semantics, immutable snapshots and tested endpoint/invalid-type handling. Independent oracles and generated properties cover the declared finite models.",
+          "G3": "Enumerated input, budget, duplicate, check and OS failures; typed Railway translation and nonzero CLI refusal, validated indexing and finite loop bounds, preserved cancellation and context-managed process/file cleanup. Unexpected programmer failures are not hidden.",
+          "G4": "Complete normal/optimized contract and integration runs, pinned strict typing, negative paths and generated properties. 70 source mutants executed: 69 killed, one domain-proven equivalent with raw survivor retained. Five separate accounting-replacement mutants are killed. The assertion-only final test amendment is source-hash reconstructed and retested.",
+          "G5": "CCN maximum 10, cognitive maximum 15, nesting maximum 3; one class or fewer, no production asserts. Fixed dimensions 4/16 and bounded site/spin/color/direction indices; O(16^2) validation and fixed-size hopping assembly. The separate 8-by-8 determinant fixture uses O(8^3) rational elimination."
+        },
+        "composite_grade": "B",
+        "evaluation_timestamp": "2026-11-03T05:46:43.538873+00:00",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-03-checker-infrastructure.md",
+            "sha256": "513c66bcb4425d16dfcca24c6a0d70cc1eca9fc5e8d38d5c3a716419af73584b"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-requirements.json",
+            "sha256": "f35bc30bc1c7251fa92dae0adfddd6c7d694781fc3eb4bcbbeeba3db5847cafd"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+            "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-mutations-composed.json",
+            "sha256": "90fe9ad62d24997d73c0062bcf90ed8490a8096754308b9af5db9b75a9567961"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+            "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-wilson-swap-equivalence.md",
+            "sha256": "737f0bb2b6f63cc40181ccefc569ab55b473e08db23dce0d7a61fb27f46f2a24"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "gates": {
+          "G1": "B",
+          "G2": "B",
+          "G3": "B",
+          "G4": "B",
+          "G5": "B"
+        },
+        "grade_ceiling": "B",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Finite lattice operator construction and admission: Snapshot square Gaussian matrices and admit exactly four actual integer chirality signs in {-1,+1}. Construct the declared chiral representation; independently test Hermiticity, Clifford anticommutation and gamma5 grading. Admit exact parameter and indices; assemble correctly signed, conjugated forward/backward hopping on the fixed two-site torus. Reject malformed operators and detect broken gamma5 Hermiticity; failed Clifford admission cannot pass the composed check. Eliminate the declared 8-by-8 fixture independently of its determinant polynomial; exact input admission, pivoting and singular return zero agree with a separate Bareiss implementation. These are the delivered validated interfaces, state/lifecycle ownership and composition mechanisms; the score does not derive from the mathematical topic or test count. Standalone helper-only wrappers were composed and removed.",
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L4B"
+      },
+      "sha256": "cea6db49a7dadb3bbc1fdd5687518b145b1bbd971ed4cff2927ffbeef21bfafa"
+    }
+  ]
+}

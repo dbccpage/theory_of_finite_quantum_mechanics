@@ -1,0 +1,25 @@
+{
+  "AuthorityEffect": "None",
+  "test_before_sha256": "386df4c3415bce26c0fe4a8767bb28c95979ebd5a9c15e895f17712e35f8e8e3",
+  "test_after_sha256": "24d77bbe62c19f9d4b087f6bd8a4f29623c651ea1f4ff964a5a7e2717b46013e",
+  "prior_test_reconstructed": true,
+  "manifest_before_sha256": "bae26ff4492039d723db887086aa257b917150a9063cca32b21ca703f15c25a6",
+  "manifest_after_sha256": "d54934e1263dc146243b7d09ff6520adf4c8094f6da66cc21938f366b8223e6f",
+  "added_candidate": {
+    "identity": "refusal-recorder-swallowed",
+    "source": "independent/check_tfq_1052_fqcd_strong_coupling_area_law.py",
+    "before": "    refusal = evaluate(lambda: delta_coordination(1))\n    check(not refusal.ok and refusal.error is not None and refusal.error.kind == \"input\",\n          \"delta_coordination(1) refused\")",
+    "after": "    try:\n        delta_coordination(1)\n        check(False, \"delta_coordination(1) should fail\")\n    except ValueError:\n        check(True, \"delta_coordination(1) refused\")",
+    "tests": [
+      "test_railway_faults_and_recorder_errors_are_not_swallowed"
+    ]
+  },
+  "outcome": "killed",
+  "baseline": {
+    "returncode": 0,
+    "output": "test_railway_faults_and_recorder_errors_are_not_swallowed (__main__.StrongCouplingCheckerTests.test_railway_faults_and_recorder_errors_are_not_swallowed) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.040s\n\nOK\n"
+  },
+  "returncode": 1,
+  "output": "test_railway_faults_and_recorder_errors_are_not_swallowed (__main__.StrongCouplingCheckerTests.test_railway_faults_and_recorder_errors_are_not_swallowed) ... FAIL\n\n======================================================================\nFAIL: test_railway_faults_and_recorder_errors_are_not_swallowed (__main__.StrongCouplingCheckerTests.test_railway_faults_and_recorder_errors_are_not_swallowed)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\strong-recorder-fkxt81ni\\tests\\test_strong_coupling_checker.py\", line 287, in test_railway_faults_and_recorder_errors_are_not_swallowed\n    with self.assertRaisesRegex(ValueError, \"failed-check recorder error\"):\n         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.018s\n\nFAILED (failures=1)\n",
+  "mutant_sha256": "21b3fc8144b4f87000dcec657d2dae6b1aac4a58f3ad2ebce9c2c211d9ecb4ee"
+}

@@ -1,0 +1,263 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/dfm-gribov-continuum-fence.py": {
+      "role": "Bounded rational3x3 weighted-trace verification application with owned weight aggregate, exact shape/resource admission, Railway value/difference operations and finite witness controls",
+      "origin": "lean4/DressingFieldGribovContinuumFence.lean",
+      "profile": "Exact",
+      "cost": "Exactly3x3 matrices, each of9 entries an int/Fraction admitted to4096-bit numerator/denominator. All rows are shape-validated before entries are converted. A product uses27 bounded scalar products and27 bounded accumulations; trace uses3 bounded additions. A form value uses two products and one trace; a difference uses two form values and one bounded subtraction. Both difference operands are admitted before either evaluation. Work/storage are constant-size apart from bounded exact arithmetic. Default10 obligations split the former combined predicates; no enumeration or continuum construction.",
+      "groups": [
+        {
+          "requirement": "Admit only exact int/Fraction values and exactly3x3 list/tuple matrices; reject bool/float/foreign values, oversized rational inputs and malformed shapes before dependent arithmetic. Own all rows and compose multiplication through the shared bounded RationalMatrix, preserving legacy row-tuple output.",
+          "symbols": [
+            "exact",
+            "_matrix",
+            "mat",
+            "mul",
+            "diag"
+          ],
+          "tests": [
+            "GribovCheckerTests.test_matrix_helpers_against_symbolic_algebra",
+            "GribovCheckerTests.test_nonsymmetric_fixed_oracle",
+            "GribovCheckerTests.test_shape_type_and_exact_scalar_boundaries",
+            "GribovCheckerTests.test_owned_snapshots_and_railway_refusals",
+            "GribovCheckerTests.test_exact_product_trace_and_difference_budgets",
+            "GribovCheckerTests.test_preflight_precedes_arithmetic"
+          ],
+          "requirement_id": "TFQM-GRIBOV-REVIEW-DFM-GRIBOV-CONTINUUM-FENCE-1"
+        },
+        {
+          "requirement": "Compute the diagonal sum with a4096-bit check after every addition, including refusal of an oversized prefix even if a later negative term would cancel it. Validate public trace input as3x3 first.",
+          "symbols": [
+            "_trace",
+            "trace"
+          ],
+          "tests": [
+            "GribovCheckerTests.test_matrix_helpers_against_symbolic_algebra",
+            "GribovCheckerTests.test_nonsymmetric_fixed_oracle",
+            "GribovCheckerTests.test_exact_product_trace_and_difference_budgets",
+            "GribovCheckerTests.test_shape_type_and_exact_scalar_boundaries"
+          ],
+          "requirement_id": "TFQM-GRIBOV-REVIEW-DFM-GRIBOV-CONTINUUM-FENCE-2"
+        },
+        {
+          "requirement": "TraceQuadraticForm owns an immutable rational3x3 weight and evaluates Tr(weight*H^2) for any admitted rational3x3 generator, without symmetry or positivity assumptions. Return Outcome for expected input/resource failures; unexpected programming errors and cancellation propagate.",
+          "symbols": [
+            "TraceQuadraticForm",
+            "TraceQuadraticForm.__init__",
+            "TraceQuadraticForm._on",
+            "TraceQuadraticForm._value",
+            "TraceQuadraticForm.value"
+          ],
+          "tests": [
+            "GribovCheckerTests.test_weighted_forms_and_differences",
+            "GribovCheckerTests.test_nonsymmetric_fixed_oracle",
+            "GribovCheckerTests.test_owned_snapshots_and_railway_refusals",
+            "GribovCheckerTests.test_exact_product_trace_and_difference_budgets",
+            "GribovCheckerTests.test_injected_failures_and_cancellation"
+          ],
+          "requirement_id": "TFQM-GRIBOV-REVIEW-DFM-GRIBOV-CONTINUUM-FENCE-3"
+        },
+        {
+          "requirement": "Admit both generators before evaluating their weighted forms, then return the exact left-minus-right difference with a bounded output through Outcome. Resource refusal is distinct from a zero difference.",
+          "symbols": [
+            "TraceQuadraticForm._difference",
+            "TraceQuadraticForm.difference"
+          ],
+          "tests": [
+            "GribovCheckerTests.test_weighted_forms_and_differences",
+            "GribovCheckerTests.test_nonsymmetric_fixed_oracle",
+            "GribovCheckerTests.test_owned_snapshots_and_railway_refusals",
+            "GribovCheckerTests.test_exact_product_trace_and_difference_budgets",
+            "GribovCheckerTests.test_preflight_precedes_arithmetic"
+          ],
+          "requirement_id": "TFQM-GRIBOV-REVIEW-DFM-GRIBOV-CONTINUUM-FENCE-4"
+        },
+        {
+          "requirement": "Preserve both generator squares, weight involution/diagonal determinant, two traces, three form values and their unequal difference as10 counted obligations. Require an explicit Cases recorder, emit a per-run JSON receipt and exit nonzero on failed verification. Claims remain finite rational matrix identities.",
+          "symbols": [
+            "run_checks",
+            "main"
+          ],
+          "tests": [
+            "GribovCheckerTests.test_original_witnesses_and_counts",
+            "GribovCheckerTests.test_injected_failures_and_cancellation",
+            "GribovCheckerTests.test_executable_cli"
+          ],
+          "requirement_id": "TFQM-GRIBOV-REVIEW-DFM-GRIBOV-CONTINUUM-FENCE-5"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "0c002a142eb5b80fda598f127763dd9a2ade4345578c2cd3b73cee23713e6638",
+      "symbols": [
+        "TraceQuadraticForm",
+        "TraceQuadraticForm.__init__",
+        "TraceQuadraticForm._difference",
+        "TraceQuadraticForm._on",
+        "TraceQuadraticForm._value",
+        "TraceQuadraticForm.difference",
+        "TraceQuadraticForm.value",
+        "_matrix",
+        "_trace",
+        "diag",
+        "exact",
+        "main",
+        "mat",
+        "mul",
+        "run_checks",
+        "trace"
+      ],
+      "origin_sha256": "5fc39e796df35b9b985b8b6371a866c117a3c61f9671ee8a25f98b60a04b12b7",
+      "consumers": [
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/stages/DRESSING_FIELD.md",
+          "sha256": "83ac7ddd7480d115aadfe42ddeb3bd78094fb68c4f34a95916643351180adcb2",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/nodes/DFM-GRIBOV-CONTINUUM-FENCE.md",
+          "sha256": "c81943754b8d6c512d8fb7e2aed7d3a2eaf0d5bc3ecb492dd3112e64e3636ac6",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr237_review_validation.json",
+          "sha256": "a644944088de51f9654710014df396a8165f194feee71e5c2dc77844fad31402",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/application_branches.json",
+          "sha256": "7569bc0053202d28d9d8d6c7cc9328884fd2ccfe0dc1c0a3e1770f4eb4a9d684",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/unified_dag.json",
+          "sha256": "c7845b4f150f45fece1c97988789f0c2ea458b088cfa20db09f43bc6fff0d753",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/operads/dfm_gribov_continuum_fence.yaml",
+          "sha256": "c79a8907a918bfcbff11221975ab00f2b8b2b24b9395ca828c874e246fac2e88",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivations/24_dressing_field/tfq_1132_dfm_gribov_continuum_fence.md",
+          "sha256": "7f7425954513a295a37033ef3c506605a91ce37f2ba406db7d3a33cf1c6c43aa",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/tests/test_gribov_checker.py",
+          "sha256": "9f62d7b97ed0ceeefc234ebb21c4abbf9a445a38770446d6aca73b5a984f01fd",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "10d712c5aed979dd978d089da3e8e637e8360ef6f34299e899c8f7504475b852",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and exact/mat/mul/trace/diag helper names and immutable row-tuple outputs remain. Previously unchecked3x3 assumptions become explicit shape/scalar/resource refusals. Arithmetic is composed into shared independent-checker RationalMatrix rather than duplicated. TraceQuadraticForm owns supplied weights and provides typed value/difference operations with no positivity claim. The prose-only CLI becomes a10-obligation JSON receipt with nonzero failure exit; no external Python consumers of prose output were found. Separate nonsymmetric SymPy controls challenge algebra beyond the fixed symmetric Lean witnesses. No continuum operator or scientific DAG status is promoted; historical receipts retain their source hashes."
+    },
+    "checks/tests/test_gribov_checker.py": {
+      "role": "Independent symbolic weighted-trace verification application with nonsymmetric matrix oracles, generated rational data, conservative resource challenges and actual executable failure tests",
+      "origin": "SCORING.md",
+      "profile": "Exact",
+      "cost": "11 test groups;80 deterministic examples per property over3x3 exact matrices with small rational entries. Fixed nonsymmetric matrices detect order/transposition faults without relying on symmetric source fixtures. Resource tests use at most4097-bit values. Executable subprocess has30-second timeout; captures, runpy registration and mocks have scoped lifetimes.",
+      "groups": [
+        {
+          "requirement": "Cross-check symbolic conversions, compare3x3 products/traces/diagonals and weighted-square differences against SymPy, use nonsymmetric fixed fixtures, test all shape/type/size refusals, ownership, per-prefix arithmetic budgets, preflight ordering, zero versus failure, exact counts, CLI exit and cancellation/programming-error propagation. The loader executes one constant path through runpy and has no external path input.",
+          "symbols": [
+            "load",
+            "_symbolic",
+            "_rows",
+            "GribovCheckerTests",
+            "GribovCheckerTests.refused",
+            "GribovCheckerTests.test_oracles_import_and_refusal_helper",
+            "GribovCheckerTests.test_matrix_helpers_against_symbolic_algebra",
+            "GribovCheckerTests.test_weighted_forms_and_differences",
+            "GribovCheckerTests.test_nonsymmetric_fixed_oracle",
+            "GribovCheckerTests.test_shape_type_and_exact_scalar_boundaries",
+            "GribovCheckerTests.test_owned_snapshots_and_railway_refusals",
+            "GribovCheckerTests.test_exact_product_trace_and_difference_budgets",
+            "GribovCheckerTests.test_preflight_precedes_arithmetic",
+            "GribovCheckerTests.test_original_witnesses_and_counts",
+            "GribovCheckerTests.test_injected_failures_and_cancellation",
+            "GribovCheckerTests.test_executable_cli"
+          ],
+          "tests": [
+            "GribovCheckerTests.test_oracles_import_and_refusal_helper",
+            "GribovCheckerTests.test_matrix_helpers_against_symbolic_algebra",
+            "GribovCheckerTests.test_weighted_forms_and_differences",
+            "GribovCheckerTests.test_nonsymmetric_fixed_oracle",
+            "GribovCheckerTests.test_shape_type_and_exact_scalar_boundaries",
+            "GribovCheckerTests.test_owned_snapshots_and_railway_refusals",
+            "GribovCheckerTests.test_exact_product_trace_and_difference_budgets",
+            "GribovCheckerTests.test_preflight_precedes_arithmetic",
+            "GribovCheckerTests.test_original_witnesses_and_counts",
+            "GribovCheckerTests.test_injected_failures_and_cancellation",
+            "GribovCheckerTests.test_executable_cli"
+          ],
+          "requirement_id": "TFQM-GRIBOV-REVIEW-TEST-GRIBOV-CHECKER-1"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "9f62d7b97ed0ceeefc234ebb21c4abbf9a445a38770446d6aca73b5a984f01fd",
+      "symbols": [
+        "GribovCheckerTests",
+        "GribovCheckerTests.refused",
+        "GribovCheckerTests.test_exact_product_trace_and_difference_budgets",
+        "GribovCheckerTests.test_executable_cli",
+        "GribovCheckerTests.test_injected_failures_and_cancellation",
+        "GribovCheckerTests.test_matrix_helpers_against_symbolic_algebra",
+        "GribovCheckerTests.test_nonsymmetric_fixed_oracle",
+        "GribovCheckerTests.test_oracles_import_and_refusal_helper",
+        "GribovCheckerTests.test_original_witnesses_and_counts",
+        "GribovCheckerTests.test_owned_snapshots_and_railway_refusals",
+        "GribovCheckerTests.test_preflight_precedes_arithmetic",
+        "GribovCheckerTests.test_shape_type_and_exact_scalar_boundaries",
+        "GribovCheckerTests.test_weighted_forms_and_differences",
+        "_rows",
+        "_symbolic",
+        "load"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/independent/dfm-gribov-continuum-fence.py",
+          "sha256": "0c002a142eb5b80fda598f127763dd9a2ade4345578c2cd3b73cee23713e6638",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "10d712c5aed979dd978d089da3e8e637e8360ef6f34299e899c8f7504475b852",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and exact/mat/mul/trace/diag helper names and immutable row-tuple outputs remain. Previously unchecked3x3 assumptions become explicit shape/scalar/resource refusals. Arithmetic is composed into shared independent-checker RationalMatrix rather than duplicated. TraceQuadraticForm owns supplied weights and provides typed value/difference operations with no positivity claim. The prose-only CLI becomes a10-obligation JSON receipt with nonzero failure exit; no external Python consumers of prose output were found. Separate nonsymmetric SymPy controls challenge algebra beyond the fixed symmetric Lean witnesses. No continuum operator or scientific DAG status is promoted; historical receipts retain their source hashes."
+    }
+  }
+}

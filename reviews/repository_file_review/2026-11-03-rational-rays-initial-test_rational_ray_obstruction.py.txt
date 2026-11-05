@@ -1,0 +1,218 @@
+"""Independent projective, residue and symbolic witnesses for rational rays."""
+from __future__ import annotations
+
+import contextlib
+from dataclasses import FrozenInstanceError
+from fractions import Fraction as Q
+from itertools import combinations, product
+import io
+import json
+from math import gcd
+from pathlib import Path
+import runpy
+import subprocess
+import sys
+from types import SimpleNamespace
+from typing import TypeVar, cast
+import unittest
+from unittest.mock import patch
+
+from hypothesis import assume, given, settings, strategies as st
+import sympy as sp
+
+CHECKS=Path(__file__).resolve().parents[1]
+APP=CHECKS/'independent/fq-gap-born-uniqueness-gleason-rational-rays.py'
+sys.path.insert(0,str(CHECKS))
+from checker_support.boundary import Violation, cli, evaluate
+from checker_support.cases import Cases
+from checker_support.outcome import Outcome
+from checker_support.rational_matrix import RationalMatrix
+
+T=TypeVar('T')
+Coordinates=tuple[int,int,int]
+PROPERTY=settings(max_examples=80,derandomize=True,deadline=None,database=None)
+VECTOR=st.tuples(st.integers(-16,16),st.integers(-16,16),st.integers(-16,16))
+
+
+def load() -> SimpleNamespace:
+    return SimpleNamespace(**runpy.run_path(str(APP)))
+
+
+def projective(vector: tuple[int,...]) -> tuple[Q,...]:
+    leading=next(x for x in vector if x)
+    return tuple(Q(x,leading) for x in vector)
+
+
+def reference_value(vector: tuple[int,...]) -> Q:
+    # Test-only nonzero integer vectors. Remove powers of two, retain odd content.
+    shift=min((abs(x)&-abs(x)).bit_length()-1 for x in vector if x)
+    reduced=tuple(x//(1<<shift) for x in vector)
+    odd=[x % 4 for x in reduced if x % 2]
+    signs={(1,1):-1,(1,3):1,(3,1):1,(3,3):-1}
+    return Q(1+signs[(odd[0],odd[1])],3) if len(odd)==2 else Q(1,3)
+
+
+class RationalRayObstructionTests(unittest.TestCase):
+    def accepted(self,result: Outcome[T]) -> T:
+        self.assertIsNone(result.error)
+        return cast(T,result.value)
+
+    def refused(self,result: Outcome[T],kind: str='input') -> None:
+        self.assertIsNotNone(result.error)
+        if result.error is None:self.fail('missing refusal')
+        self.assertEqual(result.error.kind,kind)
+
+    @PROPERTY
+    @given(VECTOR,st.integers(-20,20))
+    def test_generated_canonical_ray_and_independent_residue_value(self,vector: Coordinates,scale: int) -> None:
+        assume(any(vector));assume(scale!=0)
+        module=load();ray=module.IntegerRay3(vector)
+        self.assertEqual(projective(ray.coordinates),projective(vector))
+        self.assertEqual(gcd(*ray.coordinates),1)
+        self.assertGreater(next(x for x in ray.coordinates if x),0)
+        self.assertEqual(ray.value,reference_value(vector))
+        self.assertEqual(self.accepted(ray.scale(scale)),ray)
+        self.assertEqual(self.accepted(module.exotic(tuple(scale*x for x in vector))),reference_value(vector))
+
+    @PROPERTY
+    @given(VECTOR,VECTOR)
+    def test_generated_completion_against_symbolic_cross_product(self,left: Coordinates,seed: Coordinates) -> None:
+        assume(any(left))
+        first=sp.Matrix(left);second=first.cross(sp.Matrix(seed));assume(any(second))
+        module=load();a=module.IntegerRay3(left);b=module.IntegerRay3(tuple(int(x) for x in second))
+        result=self.accepted(a.complete(b))
+        oracle=sp.Matrix(a.coordinates).cross(sp.Matrix(b.coordinates))
+        self.assertEqual(projective(result.coordinates),projective(tuple(int(x) for x in oracle)))
+        self.assertEqual(self.accepted(a.dot(b)),0)
+        self.assertEqual(self.accepted(a.dot(result)),0);self.assertEqual(self.accepted(b.dot(result)),0)
+        self.assertEqual(a.value+b.value+result.value,1)
+
+    @PROPERTY
+    @given(VECTOR)
+    def test_generated_quadratic_rows_against_symbolic_polynomial(self,vector: Coordinates) -> None:
+        assume(any(vector));module=load();ray=module.IntegerRay3(vector)
+        a,b,c=ray.coordinates
+        symbols=sp.symbols('d0 d1 d2 c01 c02 c12')
+        matrix=sp.Matrix(((symbols[0],symbols[3],symbols[4]),(symbols[3],symbols[1],symbols[5]),(symbols[4],symbols[5],symbols[2])))
+        point=sp.Matrix((a,b,c));expression=(point.T*matrix*point)[0].expand()
+        expected=tuple(Q(expression.coeff(symbol)) for symbol in symbols)+(reference_value(ray.coordinates)*sum(x*x for x in ray.coordinates),)
+        self.assertEqual(self.accepted(ray.quadratic_row()),expected)
+
+    def test_all_small_box_rays_and_frame_pairs_against_raw_enumeration(self) -> None:
+        module=load()
+        for bound in (1,2,3):
+            raw=[v for v in product(range(-bound,bound+1),repeat=3) if any(v)]
+            expected={projective(v) for v in raw}
+            pairs={tuple(sorted((projective(a),projective(b)))) for a,b in combinations(raw,2) if sum(x*y for x,y in zip(a,b))==0}
+            rays=self.accepted(module.ray_box(bound))
+            self.assertEqual({projective(ray.coordinates) for ray in rays},expected)
+            self.assertEqual(len(rays),len(expected))
+            cases=Cases();self.assertEqual(module._frames(rays,cases),len(pairs))
+            self.assertEqual(cases.checks,3*len(pairs))
+
+    def test_original_raw_domain_and_full_mod4_congruence(self) -> None:
+        module=load()
+        for vector in product(range(-6,7),repeat=3):
+            if any(x % 2 for x in vector):
+                self.assertEqual(self.accepted(module.exotic(vector)),reference_value(vector))
+        compatible=0
+        for values in product(range(4),repeat=6):
+            a,b,c,d,e,f=values
+            if all(x % 2 for x in (a,b,c,d)) and not (e % 2 or f % 2) and (a*c+b*d+e*f) % 4==0:
+                first=-1 if Q(a-b,4).denominator==1 else 1
+                second=-1 if Q(c-d,4).denominator==1 else 1
+                self.assertEqual(self.accepted(module.pair_sign(a,b)),first)
+                self.assertEqual(first+second,0);compatible+=1
+        self.assertEqual(compatible,32)
+        cases=Cases();self.assertEqual(module._congruence(cases),compatible);self.assertEqual(cases.checks,33)
+
+    def test_seven_ray_independent_rank_nullspace_and_residual(self) -> None:
+        module=load();points=((1,0,0),(0,1,0),(0,0,1),(1,1,0),(1,0,1),(0,1,1),(1,1,1))
+        rows=[(a*a,b*b,c*c,2*a*b,2*a*c,2*b*c) for a,b,c in points]
+        target=sp.Matrix([sp.Rational(reference_value(v))*sum(x*x for x in v) for v in points])
+        matrix=sp.Matrix(rows)
+        self.assertEqual(matrix.rank(),6);self.assertEqual(matrix.row_join(target).rank(),7)
+        witness=matrix.T.nullspace()[0]
+        self.assertNotEqual((witness.T*target)[0],0)
+        solution=matrix[:6,:].inv()*target[:6,:]
+        self.assertEqual(solution,sp.Matrix([sp.Rational(1,3)]*3+[sp.Rational(-1,3)]*3))
+        self.assertEqual((matrix*solution)[6],-1);self.assertEqual(target[6],1)
+        cases=Cases();module._obstruction(cases);self.assertEqual(cases.checks,8)
+        with patch.dict(module._obstruction.__globals__,_inverse=lambda _:RationalMatrix.eye(6)):
+            self.refused(evaluate(module._obstruction,Cases()),'check')
+
+    def test_exact_domains_zero_even_representatives_and_ownership(self) -> None:
+        module=load()
+        for invalid in (None,(),(1,0),(1,0,0,9),[True,0,0],[1.0,0,0],[Q(1),0,0],iter((1,0,0)),(0,0,0)):
+            self.assertFalse(evaluate(module.IntegerRay3,invalid).ok)
+            self.assertFalse(module.exotic(invalid).ok)
+        self.assertEqual(module.IntegerRay3((0,-6,9)).coordinates,(0,2,-3))
+        self.assertEqual(self.accepted(module.exotic((2,2,0))),0)
+        self.assertEqual(self.accepted(module.exotic((2,-2,0))),Q(2,3))
+        values=[-6,9,0];ray=module.IntegerRay3(values);values.clear()
+        self.assertEqual(ray.coordinates,(2,-3,0))
+        with self.assertRaises(FrozenInstanceError):ray.coordinates=(1,0,0)
+        self.assertEqual(len({ray,module.IntegerRay3((4,-6,0))}),1)
+        for bad in (True,0,2,Q(1),1.0,None):
+            self.assertFalse(module.pair_sign(bad,1).ok)
+        self.assertEqual(self.accepted(module.pair_sign(-3,1)),-1)
+        self.assertEqual(self.accepted(module.pair_sign(-1,1)),1)
+
+    def test_operand_and_scaling_domains_and_preflight(self) -> None:
+        module=load();ray=module.IntegerRay3((1,2,3))
+        for invalid in (None,(1,0,0),True):
+            self.refused(ray.dot(invalid));self.refused(ray.complete(invalid))
+        self.refused(ray.complete(ray))
+        for scalar in (0,True,1.0,Q(1),None):self.refused(ray.scale(scalar))
+        namespace=module._verify.__globals__
+        with patch.dict(namespace,_box=lambda _: (_ for _ in ()).throw(AssertionError('recorder must preflight'))):
+            self.refused(module.verify(None,1))
+        with patch.dict(namespace,product=lambda *args,**kwargs: (_ for _ in ()).throw(AssertionError('radius must preflight'))):
+            for radius in (0,-1,True,1.5,None,7):
+                self.assertFalse(module.ray_box(radius).ok)
+
+    def test_input_product_prefix_and_scaling_resource_limits(self) -> None:
+        module=load();huge=1<<4095;medium=1<<2048
+        ray=module.IntegerRay3((huge,1,0))
+        self.assertEqual(self.accepted(ray.dot(module.IntegerRay3((1,0,0)))),huge)
+        self.refused(evaluate(module.IntegerRay3,(1<<4096,0,0)),'resource')
+        self.refused(module.pair_sign((1<<4096)+1,1),'resource')
+        self.refused(module.IntegerRay3((2,1,0)).scale(huge),'resource')
+        self.refused(module.IntegerRay3((1,0,0)).scale(1<<4096),'resource')
+        first=module.IntegerRay3((medium,1,0));second=module.IntegerRay3((medium,-1,0))
+        self.refused(first.dot(second),'resource')
+        self.refused(module.IntegerRay3((huge,huge,-huge+1)).dot(module.IntegerRay3((1,1,1))),'resource')
+        self.refused(ray.quadratic_row(),'resource')
+        self.refused(ray.complete(module.IntegerRay3((1,-huge,0))),'resource')
+        self.refused(evaluate(module._cross,(medium,medium-1,1),(medium+1,medium,1)),'resource')
+        self.assertEqual(module.IntegerRay3((huge,0,0)),module.IntegerRay3((1,0,0)))
+
+    def test_completion_orientation_and_quadratic_intermediate_preflight(self) -> None:
+        module=load();left=module.IntegerRay3((1,2,3));right=module.IntegerRay3((2,-1,0))
+        self.assertEqual(self.accepted(left.complete(right)).coordinates,(3,6,-5))
+        self.assertEqual(self.accepted(right.complete(left)),self.accepted(left.complete(right)))
+        large=(1<<2048)-1;ray=module.IntegerRay3((large,large,1))
+        with patch.dict(module._dot.__globals__,_dot=lambda *args: (_ for _ in ()).throw(AssertionError('cross terms must preflight'))):
+            self.refused(ray.quadratic_row(),'resource')
+
+    def test_import_reentrant_counts_and_cli_failure_lifecycle(self) -> None:
+        stream=io.StringIO()
+        with contextlib.redirect_stdout(stream):module=load()
+        self.assertEqual(stream.getvalue(),'');self.assertNotIn('checked',vars(module))
+        expected={'checks':20872,'distinct_box_rays':865,'completed_orthogonal_pairs':5502,'compatible_mod4_tuples':32}
+        for _ in range(2):self.assertEqual(self.accepted(module.verify(Cases())),expected)
+        namespace=module._verify.__globals__
+        for error in (KeyboardInterrupt(),RuntimeError('unexpected')):
+            with patch.dict(namespace,_box=lambda _,error=error: (_ for _ in ()).throw(error)),self.assertRaises(type(error)):
+                module.verify(Cases())
+        with patch.dict(namespace,_box=lambda _: (_ for _ in ()).throw(OSError('resource'))):
+            self.refused(module.verify(Cases()),'resource')
+        with patch.dict(namespace,_verify=lambda _: (_ for _ in ()).throw(Violation('check','injected'))),contextlib.redirect_stderr(io.StringIO()):
+            self.assertEqual(cli(module.main),1)
+        result=subprocess.run([sys.executable,'-I','-B',str(APP)],capture_output=True,text=True,timeout=30)
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.assertEqual(json.loads(result.stdout),{'status':'passed',**expected})
+
+
+if __name__=='__main__':
+    unittest.main(verbosity=2)

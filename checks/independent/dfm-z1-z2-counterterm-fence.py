@@ -1,200 +1,234 @@
-"""Independent check for DFM-Z1-Z2-COUNTERTERM-FENCE.
+"""Bounded exact Dirac kernels and the supplied lowered vertex contraction.
 
-Recomputes the Dirac matrices, one inverse-propagator difference, and one
-lowered vertex contraction with fractions.Fraction. This file imports no
-repository code. It does not evaluate a counterterm ratio.
+AuthorityEffect: None. Minkowski signature(+---), immutable Gaussian entries.
+No loop integral, regularization prescription or counterterm ratio is computed.
 """
+from __future__ import annotations
 
-from fractions import Fraction
+from dataclasses import dataclass
+from fractions import Fraction as Q
+from itertools import product
+import json
+from pathlib import Path as _Path
+import sys as _sys
+
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
+from checker_support.boundary import Violation, cli, evaluate
+from checker_support.cases import Cases
+from checker_support.domains import integer, rational, sequence
+from checker_support.gaussian_rational import GaussianRational as G
+from checker_support.outcome import Outcome
+
+Matrix = tuple[tuple[G, ...], ...]
+Momentum = tuple[Q, Q, Q, Q]
+ETA = (Q(1), Q(-1), Q(-1), Q(-1))
 
 
-def exact(value):
-    if isinstance(value, Fraction):
+def _matrix(value: object) -> Matrix:
+    rows = tuple(sequence(row, "Dirac row", 4) for row in sequence(value, "Dirac matrix", 4))
+    return tuple(tuple(_entry(entry) for entry in row) for row in rows)
+
+
+def _entry(value: object) -> G:
+    if type(value) is not G:
+        raise Violation("input", "Dirac entries require GaussianRational")
+    return value
+
+
+def _momentum(value: object) -> Momentum:
+    t, x, y, z = sequence(value, "four-momentum", 4)
+    return rational(t), rational(x), rational(y), rational(z)
+
+
+def _index(value: object) -> int:
+    direction = integer(value, "Lorentz index", 0)
+    if direction > 3:
+        raise Violation("input", "Lorentz index must be0..3")
+    return direction
+
+
+def zero_matrix() -> Matrix:
+    return tuple(tuple(G(0) for _ in range(4)) for _ in range(4))
+
+
+def eye() -> Matrix:
+    return tuple(tuple(G(int(row == column)) for column in range(4)) for row in range(4))
+
+
+def _gamma(direction: int) -> Matrix:
+    if direction == 0:
+        return tuple(tuple(G((1 if row < 2 else -1) if row == column else 0) for column in range(4)) for row in range(4))
+    pauli = (((G(0), G(1)), (G(1), G(0))), ((G(0), G(0, -1)), (G(0, 1), G(0))),
+             ((G(1), G(0)), (G(0), G(-1))))[direction-1]
+    rows = [[G(0) for _ in range(4)] for _ in range(4)]
+    for row, column in product(range(2), repeat=2):
+        rows[row][column+2] = pauli[row][column]
+        rows[row+2][column] = G(-1)*pauli[row][column]
+    return tuple(tuple(row) for row in rows)
+
+
+GAMMAS = tuple(_gamma(direction) for direction in range(4))
+
+
+def _combine(left: Matrix, right: Matrix, sign: int) -> Matrix:
+    factor = G(sign)
+    return tuple(tuple(a+factor*b for a, b in zip(row, other)) for row, other in zip(left, right))
+
+
+def madd(left: object, right: object) -> Matrix:
+    return _combine(_matrix(left), _matrix(right), 1)
+
+
+def msub(left: object, right: object) -> Matrix:
+    return _combine(_matrix(left), _matrix(right), -1)
+
+
+def _scale(scalar: Q, matrix: Matrix) -> Matrix:
+    factor = G(scalar)
+    return tuple(tuple(factor*entry for entry in row) for row in matrix)
+
+
+def mscale(scalar: object, matrix: object) -> Matrix:
+    return _scale(rational(scalar), _matrix(matrix))
+
+
+def _dot(row: tuple[G, ...], column: tuple[G, ...]) -> G:
+    value = G(0)
+    for first, second in zip(row, column):
+        value = value+first*second
+    return value
+
+
+def _multiply(left: Matrix, right: Matrix) -> Matrix:
+    columns = tuple(zip(*right))
+    return tuple(tuple(_dot(row, column) for column in columns) for row in left)
+
+
+def mmul(left: object, right: object) -> Matrix:
+    return _multiply(_matrix(left), _matrix(right))
+
+
+def _slash(momentum: Momentum) -> Matrix:
+    value = zero_matrix()
+    for component, metric, gamma in zip(momentum, ETA, GAMMAS):
+        value = _combine(value, _scale(component*metric, gamma), 1)
+    return value
+
+
+def slash(momentum: object) -> Matrix:
+    return _slash(_momentum(momentum))
+
+
+@dataclass(frozen=True, slots=True, init=False)
+class DiracKernel:
+    """Owns exact momentum and mass; a propagator additionally requires off-shell data."""
+    momentum: Momentum
+    mass: Q
+
+    def __init__(self, momentum: object, mass: object) -> None:
+        owned = _momentum(momentum)
+        admitted_mass = rational(mass, "mass")
+        object.__setattr__(self, "momentum", owned)
+        object.__setattr__(self, "mass", admitted_mass)
+
+    def _inverse_operator(self) -> Matrix:
+        return _combine(_slash(self.momentum), _scale(self.mass, eye()), -1)
+
+    def inverse_operator(self) -> Outcome[Matrix]:
+        return evaluate(self._inverse_operator)
+
+    def _denominator(self) -> Q:
+        value = Q(0)
+        for component, sign in zip(self.momentum+(self.mass,), ETA+(Q(-1),)):
+            square = rational(component*component, "mass-shell square")
+            value = rational(value+sign*square, "mass-shell prefix")
+        if value == 0:
+            raise Violation("input", "singular propagator")
         return value
-    if type(value) is int:
-        return Fraction(value)
-    raise TypeError("expected an int or Fraction (not bool, float, or text)")
+
+    def _propagator(self) -> Matrix:
+        denominator = self._denominator()
+        numerator = _combine(_slash(self.momentum), _scale(self.mass, eye()), 1)
+        return _scale(Q(1)/denominator, numerator)
+
+    def propagator(self) -> Outcome[Matrix]:
+        return evaluate(self._propagator)
 
 
-def g(re, im=0):
-    return (exact(re), exact(im))
+def prop_inv(momentum: object, mass: object) -> Matrix:
+    return DiracKernel(momentum, mass)._inverse_operator()
 
 
-def add(a, b):
-    return (a[0] + b[0], a[1] + b[1])
+def prop(momentum: object, mass: object) -> Matrix:
+    return DiracKernel(momentum, mass)._propagator()
 
 
-def sub(a, b):
-    return (a[0] - b[0], a[1] - b[1])
+def _dirac(matrix: Matrix) -> Matrix:
+    total = zero_matrix()
+    for sign, gamma in zip(ETA, GAMMAS):
+        total = _combine(total, _multiply(gamma, _multiply(matrix, _scale(sign, gamma))), 1)
+    return total
 
 
-def mul(a, b):
-    return (a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0])
+def dirac(matrix: object) -> Matrix:
+    return _dirac(_matrix(matrix))
 
 
-def scale(s, a):
-    s = exact(s)
-    return (s * a[0], s * a[1])
+def _vertex(direction: int, left: Matrix, right: Matrix) -> Matrix:
+    return _dirac(_multiply(left, _multiply(GAMMAS[direction], right)))
 
 
-def madd(a, b):
-    return [[add(a[i][j], b[i][j]) for j in range(4)] for i in range(4)]
+def vertex(direction: object, left: object, right: object) -> Matrix:
+    return _vertex(_index(direction), _matrix(left), _matrix(right))
 
 
-def msub(a, b):
-    return [[sub(a[i][j], b[i][j]) for j in range(4)] for i in range(4)]
+def contract(momentum: object, left: object, right: object) -> Matrix:
+    vector, first, second = _momentum(momentum), _matrix(left), _matrix(right)
+    total = zero_matrix()
+    for direction, (component, sign) in enumerate(zip(vector, ETA)):
+        total = _combine(total, _scale(component*sign, _vertex(direction, first, second)), 1)
+    return total
 
 
-def mscale(s, a):
-    return [[scale(s, a[i][j]) for j in range(4)] for i in range(4)]
+def _basis_controls(cases: Cases) -> None:
+    for mu, nu in product(range(4), repeat=2):
+        actual = madd(mmul(GAMMAS[mu], GAMMAS[nu]), mmul(GAMMAS[nu], GAMMAS[mu]))
+        expected = mscale(2*ETA[mu] if mu == nu else 0, eye())
+        cases.require(actual == expected, "Minkowski Clifford pair")
 
 
-def mmul(a, b):
-    zero = g(0)
-    out = [[zero for _ in range(4)] for _ in range(4)]
-    for i in range(4):
-        for j in range(4):
-            acc = zero
-            for k in range(4):
-                acc = add(acc, mul(a[i][k], b[k][j]))
-            out[i][j] = acc
-    return out
+def _inverse_difference(p: Momentum, q: Momentum, mass: Q, cases: Cases) -> None:
+    shifted = tuple(rational(a+b) for a, b in zip(p, q))
+    cases.require(msub(prop_inv(shifted, mass), prop_inv(p, mass)) == slash(q), "inverse difference")
 
 
-def zero_matrix():
-    return [[g(0) for _ in range(4)] for _ in range(4)]
+def verify(cases: Cases) -> None:
+    if type(cases) is not Cases:
+        raise Violation("input", "Cases recorder required")
+    _basis_controls(cases)
+    p, q, mass = _momentum((2, 0, 0, 0)), _momentum((1, 0, 0, 1)), Q(1)
+    _inverse_difference(p, q, mass, cases)
+    _inverse_difference(_momentum((4, -1, 2, 3)), _momentum((-2, 5, 0, 1)), Q(6), cases)
+    shifted = tuple(a+b for a, b in zip(p, q))
+    first, second = prop(p, mass), prop(shifted, mass)
+    for momentum, propagator in ((p, first), (shifted, second)):
+        inverse = prop_inv(momentum, mass)
+        cases.require(mmul(inverse, propagator) == eye(), "left inverse")
+        cases.require(mmul(propagator, inverse) == eye(), "right inverse")
+    cases.require(mmul(second, mmul(slash(q), first)) == msub(first, second), "sandwich")
+    contracted = contract(q, second, first)
+    cases.require(contracted == msub(dirac(first), dirac(second)), "lowered contraction")
+    expected = ((Q(2, 7), 0, Q(-2, 7), 0), (0, Q(2, 7), 0, Q(2, 7)),
+                (Q(2, 7), 0, Q(26, 21), 0), (0, Q(-2, 7), 0, Q(26, 21)))
+    cases.require(contracted == tuple(tuple(G(value) for value in row) for row in expected), "witness entries")
 
 
-def eye():
-    out = zero_matrix()
-    for i in range(4):
-        out[i][i] = g(1)
-    return out
-
-
-def g0():
-    out = zero_matrix()
-    out[0][0] = g(1)
-    out[1][1] = g(1)
-    out[2][2] = g(-1)
-    out[3][3] = g(-1)
-    return out
-
-
-def g1():
-    out = zero_matrix()
-    out[0][3] = g(1)
-    out[1][2] = g(1)
-    out[2][1] = g(-1)
-    out[3][0] = g(-1)
-    return out
-
-
-def g2():
-    out = zero_matrix()
-    out[0][3] = g(0, -1)
-    out[1][2] = g(0, 1)
-    out[2][1] = g(0, 1)
-    out[3][0] = g(0, -1)
-    return out
-
-
-def g3():
-    out = zero_matrix()
-    out[0][2] = g(1)
-    out[1][3] = g(-1)
-    out[2][0] = g(-1)
-    out[3][1] = g(1)
-    return out
-
-
-GAMMAS = (g0(), g1(), g2(), g3())
-ETA = (Fraction(1), Fraction(-1), Fraction(-1), Fraction(-1))
-
-
-def slash(v):
-    out = mscale(v[0], GAMMAS[0])
-    for j in range(1, 4):
-        out = msub(out, mscale(v[j], GAMMAS[j]))
-    return out
-
-
-def prop_inv(v, mass):
-    return msub(slash(v), mscale(mass, eye()))
-
-
-def prop(v, mass):
-    denom = v[0] * v[0] - v[1] * v[1] - v[2] * v[2] - v[3] * v[3] - mass * mass
-    if denom == 0:
-        raise SystemExit("singular propagator")
-    return mscale(1 / denom, madd(slash(v), mscale(mass, eye())))
-
-
-def dirac(matrix):
-    acc = None
-    for nu in range(4):
-        term = mmul(GAMMAS[nu], mmul(matrix, mscale(ETA[nu], GAMMAS[nu])))
-        acc = term if acc is None else madd(acc, term)
-    return acc
-
-
-def vertex(mu, left, right):
-    acc = None
-    for nu in range(4):
-        term = mmul(
-            GAMMAS[nu],
-            mmul(left, mmul(GAMMAS[mu], mmul(right, mscale(ETA[nu], GAMMAS[nu])))),
-        )
-        acc = term if acc is None else madd(acc, term)
-    return acc
-
-
-def require(condition, message):
-    if not condition:
-        raise SystemExit(message)
-
-
-def main():
-    p = (exact(2), exact(0), exact(0), exact(0))
-    q = (exact(1), exact(0), exact(0), exact(1))
-    mass = exact(1)
-    pq = tuple(p[i] + q[i] for i in range(4))
-    require(msub(prop_inv(pq, mass), prop_inv(p, mass)) == slash(q), "inverse difference")
-    sample_p = (exact(4), exact(-1), exact(2), exact(3))
-    sample_q = (exact(-2), exact(5), exact(0), exact(1))
-    sample_m = exact(6)
-    sample_pq = tuple(sample_p[i] + sample_q[i] for i in range(4))
-    require(
-        msub(prop_inv(sample_pq, sample_m), prop_inv(sample_p, sample_m)) == slash(sample_q),
-        "sample inverse difference",
-    )
-    sp = prop(p, mass)
-    spq = prop(pq, mass)
-    qslash = slash(q)
-    require(mmul(spq, mmul(qslash, sp)) == msub(sp, spq), "sandwich")
-    q_cov = (q[0], -q[1], -q[2], -q[3])
-    contracted = None
-    for mu in range(4):
-        term = mscale(q_cov[mu], vertex(mu, spq, sp))
-        contracted = term if contracted is None else madd(contracted, term)
-    sigma = msub(dirac(sp), dirac(spq))
-    require(contracted == sigma, "contraction")
-    expected = zero_matrix()
-    expected[0][0] = g(Fraction(2, 7))
-    expected[0][2] = g(Fraction(-2, 7))
-    expected[1][1] = g(Fraction(2, 7))
-    expected[1][3] = g(Fraction(2, 7))
-    expected[2][0] = g(Fraction(2, 7))
-    expected[2][2] = g(Fraction(26, 21))
-    expected[3][1] = g(Fraction(-2, 7))
-    expected[3][3] = g(Fraction(26, 21))
-    require(contracted == expected, "entries")
-    print("inverse difference: slash(p+q)-mI minus slash(p)-mI equals slash(q)")
-    print("at p=(2,0,0,0), q=(1,0,0,1), k=0, m=1 the contraction equals the witness")
-    print("diagonal 2/7, 2/7, 26/21, 26/21")
-    print("off-diagonal (0,2)=-2/7, (1,3)=2/7, (2,0)=2/7, (3,1)=-2/7")
-    print("checked: sandwich, lowered contraction, witness entries; Z1/Z2 not computed")
+def main() -> None:
+    cases = Cases()
+    verify(cases)
+    print(json.dumps({"status": "passed", "checks": cases.checks,
+                      "scope": "exact finite Dirac contraction; Z1/Z2 not computed"}))
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(cli(main))

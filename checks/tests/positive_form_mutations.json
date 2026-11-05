@@ -1,0 +1,389 @@
+[
+  {
+    "identity": "integer-coercion",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "number = integer(value, \"Gram integer\")",
+    "after": "number = int(value)",
+    "tests": [
+      "test_input_shapes_scalars_and_full_budgets"
+    ]
+  },
+  {
+    "identity": "integer-bit-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if number.bit_length() > 4096:",
+    "after": "if False:",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "negative-scale",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if number < 0:",
+    "after": "if False:",
+    "tests": [
+      "test_input_shapes_scalars_and_full_budgets"
+    ]
+  },
+  {
+    "identity": "dot-product-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "total = _bounded(total+_bounded(first*second))",
+    "after": "total = _bounded(total+first*second)",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "dot-prefix-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "total = _bounded(total+_bounded(first*second))",
+    "after": "total = total+_bounded(first*second)",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "dot-sign",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "total+_bounded(first*second)",
+    "after": "total-_bounded(first*second)",
+    "tests": [
+      "test_fixed_nondiagonal_and_multifeature_examples"
+    ]
+  },
+  {
+    "identity": "normalizer-zero",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if denominator <= 0:",
+    "after": "if denominator < 0:",
+    "tests": [
+      "test_admission_precedes_dependent_arithmetic"
+    ]
+  },
+  {
+    "identity": "normalizer-square",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return _bounded(denominator*denominator)",
+    "after": "return denominator",
+    "tests": [
+      "test_distinct_normalization_witnesses"
+    ]
+  },
+  {
+    "identity": "normalizer-square-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return _bounded(denominator*denominator)",
+    "after": "return denominator*denominator",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "feature-row-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "sequence(features, \"feature rows\", maximum=16)",
+    "after": "sequence(features, \"feature rows\", maximum=17)",
+    "tests": [
+      "test_input_shapes_scalars_and_full_budgets"
+    ]
+  },
+  {
+    "identity": "dimension-selector",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return len(self.features[0])",
+    "after": "return len(self.features)",
+    "tests": [
+      "test_fixed_nondiagonal_and_multifeature_examples"
+    ]
+  },
+  {
+    "identity": "vector-arity",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "sequence(value, \"Gram vector\", self.dimension, 16)",
+    "after": "sequence(value, \"Gram vector\", maximum=16)",
+    "tests": [
+      "test_vectors_events_and_denominator_refusals"
+    ]
+  },
+  {
+    "identity": "bilinear-right-vector",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "self._coordinates(first), self._coordinates(second)",
+    "after": "self._coordinates(first), self._coordinates(first)",
+    "tests": [
+      "test_fixed_nondiagonal_and_multifeature_examples"
+    ]
+  },
+  {
+    "identity": "bilinear-scale",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return _bounded(self.scale*_dot(self._coordinates(first), self._coordinates(second)))",
+    "after": "return _bounded(_dot(self._coordinates(first), self._coordinates(second)))",
+    "tests": [
+      "test_fixed_nondiagonal_and_multifeature_examples"
+    ]
+  },
+  {
+    "identity": "bilinear-result-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return _bounded(self.scale*_dot(self._coordinates(first), self._coordinates(second)))",
+    "after": "return self.scale*_dot(self._coordinates(first), self._coordinates(second))",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "quadratic-scale",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return _bounded(self.scale*_dot(coordinates, coordinates))",
+    "after": "return _bounded(_dot(coordinates, coordinates))",
+    "tests": [
+      "test_fixed_nondiagonal_and_multifeature_examples"
+    ]
+  },
+  {
+    "identity": "quadratic-result-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return _bounded(self.scale*_dot(coordinates, coordinates))",
+    "after": "return self.scale*_dot(coordinates, coordinates)",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "gram-column-orientation",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "columns = tuple(zip(*self.features))",
+    "after": "columns = self.features",
+    "tests": [
+      "test_fixed_nondiagonal_and_multifeature_examples"
+    ]
+  },
+  {
+    "identity": "gram-scale",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "_bounded(self.scale*_dot(left, right))",
+    "after": "_bounded(_dot(left, right))",
+    "tests": [
+      "test_fixed_nondiagonal_and_multifeature_examples"
+    ]
+  },
+  {
+    "identity": "gram-result-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "_bounded(self.scale*_dot(left, right))",
+    "after": "self.scale*_dot(left, right)",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "event-negative",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "integer(entry, \"event index\", 0)",
+    "after": "integer(entry, \"event index\")",
+    "tests": [
+      "test_vectors_events_and_denominator_refusals"
+    ]
+  },
+  {
+    "identity": "event-upper",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if any(index >= self.dimension for index in indices):",
+    "after": "if False:",
+    "tests": [
+      "test_vectors_events_and_denominator_refusals"
+    ]
+  },
+  {
+    "identity": "event-duplicate",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if len(set(indices)) != len(indices):",
+    "after": "if False:",
+    "tests": [
+      "test_vectors_events_and_denominator_refusals"
+    ]
+  },
+  {
+    "identity": "event-canonical-order",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return tuple(sorted(indices))",
+    "after": "return indices",
+    "tests": [
+      "test_partition_refusals_and_canonical_group_order"
+    ]
+  },
+  {
+    "identity": "event-selector",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "int(index in indices)",
+    "after": "int(index not in indices)",
+    "tests": [
+      "test_distinct_normalization_witnesses"
+    ]
+  },
+  {
+    "identity": "event-normalization",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return Q(self._quadratic(selector), divisor)",
+    "after": "return Q(self._quadratic(selector))",
+    "tests": [
+      "test_distinct_normalization_witnesses"
+    ]
+  },
+  {
+    "identity": "diagonal-sum-prefix",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "total = _bounded(total+_dot(row, row))",
+    "after": "total = total+_dot(row, row)",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "diagonal-scale",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return Q(_bounded(self.scale*total), divisor)",
+    "after": "return Q(_bounded(total), divisor)",
+    "tests": [
+      "test_gram_bilinear_quadratic_and_normalized_weights"
+    ]
+  },
+  {
+    "identity": "diagonal-result-budget",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return Q(_bounded(self.scale*total), divisor)",
+    "after": "return Q(self.scale*total, divisor)",
+    "tests": [
+      "test_resource_boundaries_and_later_cancellation"
+    ]
+  },
+  {
+    "identity": "partition-empty-group",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if not groups or any(not group for group in groups):",
+    "after": "if not groups:",
+    "tests": [
+      "test_partition_refusals_and_canonical_group_order"
+    ]
+  },
+  {
+    "identity": "partition-overlap",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if len(set(flattened)) != len(flattened):",
+    "after": "if False:",
+    "tests": [
+      "test_partition_refusals_and_canonical_group_order"
+    ]
+  },
+  {
+    "identity": "partition-coverage",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "if set(flattened) != set(range(self.dimension)):",
+    "after": "if False:",
+    "tests": [
+      "test_partition_refusals_and_canonical_group_order"
+    ]
+  },
+  {
+    "identity": "coarse-scale",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return IntegerGramForm(rows, self.scale)",
+    "after": "return IntegerGramForm(rows)",
+    "tests": [
+      "test_snapshot_ownership"
+    ]
+  },
+  {
+    "identity": "coarse-sum",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "(1,)*len(group)",
+    "after": "(0,)*len(group)",
+    "tests": [
+      "test_fixed_nondiagonal_and_multifeature_examples"
+    ]
+  },
+  {
+    "identity": "negative-pair-vector",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "vector = (1, -1)",
+    "after": "vector = (1, 1)",
+    "tests": [
+      "test_negative_pairing_and_nonnegative_products"
+    ]
+  },
+  {
+    "identity": "nonnegative-product",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "return _bounded(left*right)",
+    "after": "return _bounded(left+right)",
+    "tests": [
+      "test_negative_pairing_and_nonnegative_products"
+    ]
+  },
+  {
+    "identity": "omit-bell-case",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "run.require(IntegerGramForm(((1, 1),), scale)._quadratic((x, w)) >= 0, \"scaled Bell square\")",
+    "after": "pass",
+    "tests": [
+      "test_counts_faults_and_programming_error_lifecycle"
+    ]
+  },
+  {
+    "identity": "omit-global-witness",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "cases.require(global_weight == expected_global, \"global weight\")",
+    "after": "pass",
+    "tests": [
+      "test_counts_faults_and_programming_error_lifecycle"
+    ]
+  },
+  {
+    "identity": "false-success-exit",
+    "source": "independent/ds-positive-form-controls.py",
+    "before": "raise SystemExit(cli(main))",
+    "after": "cli(main)",
+    "tests": [
+      "test_executable_receipt_and_failure_exit"
+    ]
+  },
+  {
+    "identity": "oracle-row-order",
+    "source": "tests/test_positive_form_controls.py",
+    "before": "values[row*columns+column]",
+    "after": "values[column*rows+row]",
+    "tests": [
+      "test_oracles_and_import_lifecycle"
+    ]
+  },
+  {
+    "identity": "oracle-partition-order",
+    "source": "tests/test_positive_form_controls.py",
+    "before": "used = sorted(set(labels[:size]))",
+    "after": "used = sorted(set(labels[:size]), reverse=True)",
+    "tests": [
+      "test_oracles_and_import_lifecycle"
+    ]
+  },
+  {
+    "identity": "oracle-selector-inversion",
+    "source": "tests/test_positive_form_controls.py",
+    "before": "int(row in groups[column])",
+    "after": "int(row not in groups[column])",
+    "tests": [
+      "test_oracles_and_import_lifecycle"
+    ]
+  },
+  {
+    "identity": "refusal-helper-polarity",
+    "source": "tests/test_positive_form_controls.py",
+    "before": "self.assertFalse(result.ok)",
+    "after": "self.assertTrue(result.ok)",
+    "tests": [
+      "test_input_shapes_scalars_and_full_budgets"
+    ]
+  }
+]

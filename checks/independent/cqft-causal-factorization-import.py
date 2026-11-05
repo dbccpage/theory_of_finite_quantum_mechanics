@@ -2,10 +2,11 @@
 """Independent verification script for CQFT-CAUSAL-FACTORIZATION-IMPORT (TFQ-2109).
 
 AuthorityEffect: None.
-Verifies all three finite/algebraic components and non-equivalence fences in
-lean4/CausalFactorizationImport.lean from first principles:
-1. Abstract Bogoliubov relative S-matrix algebra V(g, h) = S(g)^{-1} S(g + h) over GL(2, Z)
-   and SL(2, Z) matrix models, telescoping cocycle identity V(g, h1) V(g + h1, h2) = V(g, h1 + h2),
+Checks finite matrix/poset instances of the three components in
+lean4/CausalFactorizationImport.lean; the general group theorem remains there.
+1. Integer unimodular operations and two supplied SL(2, Z) families for the
+   relative matrix V(g, h) = S(g)^{-1} S(g + h), the telescoping identity
+   V(g, h1) V(g + h1, h2) = V(g, h1 + h2),
    equivalence between causal factorization V(g, h1 + h2) = V(g, h1) V(g, h2) and background-shift
    invariance V(g + h1, h2) = V(g, h2), and Epstein-Glaser causal separation asymmetry on C2.
 2. Complete enumeration of all 24 permutations of {0, 1, 2, 3} on the 4-element N poset
@@ -13,7 +14,7 @@ lean4/CausalFactorizationImport.lean from first principles:
    connectivity across all 5 linear extensions, and ordered-product equality for commuting 2x2 integer
    matrices vs. exact sign flip for anticommuting Pauli matrices on (0, 3).
 3. Coincident-diagonal renormalization ambiguity fence: irreflexivity of spacelike separation on the
-   diagonal, 4D Epstein-Glaser polynomial counterterm dimensions binom(omega + 4, 4) for omega = 0..10,
+   diagonal, 4D Epstein-Glaser polynomial counterterm dimensions binom(omega + 4, 4) for omega = 0..6,
    and invariance of off-diagonal factorized two-point kernels under diagonal contact counterterms.
 """
 
@@ -22,6 +23,16 @@ from __future__ import annotations
 import itertools
 import math
 import sys
+from pathlib import Path
+
+# Shared checker infrastructure only; no production implementation is imported.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from checker_support.boundary import cli, Violation
+from checker_support.cases import Cases
+from checker_support.rational_matrix import RationalMatrix
+from collections.abc import Callable
+from typing import cast
+from checker_support.domains import integer, sequence
 
 
 Mat2 = tuple[tuple[int, int], tuple[int, int]]
@@ -31,59 +42,66 @@ X2: Mat2 = ((0, 1), (1, 0))
 Z2: Mat2 = ((1, 0), (0, -1))
 
 
+def _matrix2(value: object) -> RationalMatrix:
+    return RationalMatrix.from_integers(value).require_shape(2, 2)
+
+
+def _mat2_rows(value: RationalMatrix) -> Mat2:
+    rows = value.require_shape(2, 2).integer_rows()
+    return ((rows[0][0], rows[0][1]), (rows[1][0], rows[1][1]))
+
+
 def mat2_mul(a: Mat2, b: Mat2) -> Mat2:
-    return (
-        (a[0][0] * b[0][0] + a[0][1] * b[1][0], a[0][0] * b[0][1] + a[0][1] * b[1][1]),
-        (a[1][0] * b[0][0] + a[1][1] * b[1][0], a[1][0] * b[0][1] + a[1][1] * b[1][1]),
-    )
+    return _mat2_rows(_matrix2(a).mul(_matrix2(b)))
 
 
 def mat2_neg(a: Mat2) -> Mat2:
-    return ((-a[0][0], -a[0][1]), (-a[1][0], -a[1][1]))
+    return _mat2_rows(_matrix2(a).neg())
 
 
 def mat2_det(a: Mat2) -> int:
-    return a[0][0] * a[1][1] - a[0][1] * a[1][0]
+    return _matrix2(a).det2().numerator
 
 
 def mat2_inv_unimodular(a: Mat2) -> Mat2:
-    det = mat2_det(a)
-    assert det in (-1, 1), f"Expected unimodular 2x2 matrix, got det={det}"
-    return (
-        (det * a[1][1], -det * a[0][1]),
-        (-det * a[1][0], det * a[0][0]),
-    )
+    matrix = _matrix2(a)
+    if matrix.det2() not in (-1, 1):
+        raise Violation("input", "inverse requires an integer unimodular matrix")
+    return _mat2_rows(matrix.inverse2())
 
 
 def ordered_prod(assign: dict[int, Mat2], seq: list[int] | tuple[int, ...]) -> Mat2:
-    acc = I2
-    for x in seq:
-        acc = mat2_mul(acc, assign[x])
-    return acc
+    if type(assign) is not dict or len(assign) > 64:
+        raise Violation("input", "operator assignment requires a dict with at most 64 points")
+    raw = cast(dict[object, object], assign)
+    operators = {integer(point, "operator point", 0, 63): _matrix2(matrix)
+                 for point, matrix in tuple(raw.items())}
+    points = tuple(integer(point, "ordered point", 0, 63) for point in sequence(seq, "ordered points", maximum=64))
+    if any(point not in operators for point in points):
+        raise Violation("input", "ordered product has an unassigned point")
+    result = RationalMatrix.eye(2)
+    for point in points:
+        result = result.mul(operators[point])
+    return _mat2_rows(result)
 
 
 def verify_bogoliubov_and_c2_asymmetry() -> tuple[int, int]:
-    checks = 0
-    failures = 0
+    cases = Cases()
 
     def check(cond: bool, msg: str) -> None:
-        nonlocal checks, failures
-        checks += 1
-        if not cond:
-            failures += 1
-            print(f"FAIL [bogoliubov]: {msg}", file=sys.stderr)
+        cases.append((f"bogoliubov.{len(cases)}:{msg}", cond))
 
     # Unimodular 2x2 integer matrix family S(g1, g2) = [[1, g1], [0, 1]] * [[1, 0], [g2, 1]]
     def s_nonfactor(g: tuple[int, int]) -> Mat2:
         g1, g2 = g
         return mat2_mul(((1, g1), (0, 1)), ((1, 0), (g2, 1)))
 
-    # Factorizing sheer family S_comm(g1, g2) = [[1, g1 + 2*g2], [0, 1]]
+    # Factorizing shear family S_comm(g1, g2) = [[1, g1 + 2*g2], [0, 1]]
     def s_factor(g: tuple[int, int]) -> Mat2:
         g1, g2 = g
         return ((1, g1 + 2 * g2), (0, 1))
 
-    def bogoliubov_v(s_fn, g: tuple[int, int], h: tuple[int, int]) -> Mat2:
+    def bogoliubov_v(s_fn: Callable[[tuple[int, int]], Mat2], g: tuple[int, int], h: tuple[int, int]) -> Mat2:
         gh = (g[0] + h[0], g[1] + h[1])
         return mat2_mul(mat2_inv_unimodular(s_fn(g)), s_fn(gh))
 
@@ -95,10 +113,12 @@ def verify_bogoliubov_and_c2_asymmetry() -> tuple[int, int]:
             for h2 in coords[:4]:
                 gh1 = (g[0] + h1[0], g[1] + h1[1])
                 h12 = (h1[0] + h2[0], h1[1] + h2[1])
-                # Telescoping cocycle identity holds unconditionally in both models
+                # Telescoping cocycle identity in the nonfactorizing model; the shear family is checked below
                 lhs_nf = mat2_mul(bogoliubov_v(s_nonfactor, g, h1), bogoliubov_v(s_nonfactor, gh1, h2))
                 rhs_nf = bogoliubov_v(s_nonfactor, g, h12)
                 check(lhs_nf == rhs_nf, f"Cocycle telescoping failed at g={g}, h1={h1}, h2={h2}")
+                check(mat2_mul(bogoliubov_v(s_factor, g, h1), bogoliubov_v(s_factor, gh1, h2))
+                      == bogoliubov_v(s_factor, g, h12), "Shear-family cocycle telescoping")
 
                 # Equivalence: V(g, h1 + h2) == V(g, h1) V(g, h2) <=> V(g + h1, h2) == V(g, h2)
                 fac_nf = bogoliubov_v(s_nonfactor, g, h12) == mat2_mul(
@@ -126,6 +146,11 @@ def verify_bogoliubov_and_c2_asymmetry() -> tuple[int, int]:
     def all_spacelike_between(rel: set[tuple[int, int]], l1: list[int], l2: list[int]) -> bool:
         return all(is_spacelike(rel, x, y) for x in l1 for y in l2)
 
+    levels = (0, 1, 1, 2)
+    for x, y in itertools.product(range(4), repeat=2):
+        check(((x, y) in c2_rel) == (levels[x] < levels[y])
+              and is_spacelike(c2_rel, x, y) == (x != y and levels[x] == levels[y]),
+              f"C2 relation and separation at {x},{y}")
     check(all_spacelike_between(c2_rel, [1], [2]) is True, "C2 [1], [2] spacelike")
     check(no_in_causal_past(c2_rel, [1], [2]) is True, "C2 noInCausalPast [1], [2]")
     check(no_in_causal_past(c2_rel, [2], [1]) is True, "C2 noInCausalPast [2], [1]")
@@ -133,19 +158,14 @@ def verify_bogoliubov_and_c2_asymmetry() -> tuple[int, int]:
     check(all_spacelike_between(c2_rel, [1, 2, 3], [0]) is False, "C2 [1,2,3], [0] not spacelike")
     check(no_in_causal_past(c2_rel, [0], [1, 2, 3]) is False, "C2 past-before-future [0], [1,2,3]")
 
-    return checks, failures
+    return len(cases), sum(not passed for _, passed in cases)
 
 
 def verify_poset_n_swap_connectivity() -> tuple[int, int]:
-    checks = 0
-    failures = 0
+    cases = Cases()
 
     def check(cond: bool, msg: str) -> None:
-        nonlocal checks, failures
-        checks += 1
-        if not cond:
-            failures += 1
-            print(f"FAIL [posetN]: {msg}", file=sys.stderr)
+        cases.append((f"posetN.{len(cases)}:{msg}", cond))
 
     # N poset: 0 < 2, 1 < 2, 1 < 3
     n_rel = {(0, 2), (1, 2), (1, 3)}
@@ -163,11 +183,7 @@ def verify_poset_n_swap_connectivity() -> tuple[int, int]:
             )
 
     def is_linear_ext_n(perm: tuple[int, ...]) -> bool:
-        for i in range(len(perm)):
-            for j in range(i + 1, len(perm)):
-                if (perm[j], perm[i]) in n_rel:
-                    return False
-        return True
+        return all((perm[j], perm[i]) not in n_rel for i, j in itertools.combinations(range(4), 2))
 
     all_perms = list(itertools.permutations(range(4)))
     check(len(all_perms) == 24, "24 permutations of Fin 4")
@@ -222,19 +238,14 @@ def verify_poset_n_swap_connectivity() -> tuple[int, int]:
     check(p3 == mat2_neg(p4), "extN3 == -extN4 for anticommuting X, Z on (0, 3)")
     check(p3 != p4, "extN3 != extN4 for anticommuting X, Z on (0, 3)")
 
-    return checks, failures
+    return len(cases), sum(not passed for _, passed in cases)
 
 
 def verify_diagonal_counterterm_fence() -> tuple[int, int]:
-    checks = 0
-    failures = 0
+    cases = Cases()
 
     def check(cond: bool, msg: str) -> None:
-        nonlocal checks, failures
-        checks += 1
-        if not cond:
-            failures += 1
-            print(f"FAIL [diagonal]: {msg}", file=sys.stderr)
+        cases.append((f"diagonal.{len(cases)}:{msg}", cond))
 
     # 4D Epstein-Glaser polynomial counterterm dimension binom(omega + 4, 4)
     expected_dims = {0: 1, 1: 5, 2: 15, 3: 35, 4: 70, 5: 126, 6: 210}
@@ -248,22 +259,16 @@ def verify_diagonal_counterterm_fence() -> tuple[int, int]:
     def kernel(c: int, x: int, y: int) -> int:
         return t1[x] * t1[x] + c if x == y else t1[x] * t1[y]
 
-    for c1 in (-5, -1, 0, 2, 9):
-        for c2 in (-5, -1, 0, 2, 9):
-            for x in range(4):
-                for y in range(4):
-                    if x != y:
-                        check(
-                            kernel(c1, x, y) == kernel(c2, x, y) == t1[x] * t1[y],
-                            f"Off-diagonal kernel must be independent of c at ({x},{y})",
-                        )
-                    else:
-                        check(
-                            kernel(c1, x, x) - kernel(c2, x, x) == c1 - c2,
-                            f"Diagonal kernel difference must equal c1 - c2 at x={x}",
-                        )
+    for c1, c2 in itertools.product((-5, -1, 0, 2, 9), repeat=2):
+        for x, y in itertools.product(range(4), repeat=2):
+            if x != y:
+                check(kernel(c1, x, y) == kernel(c2, x, y) == t1[x] * t1[y],
+                      f"Off-diagonal kernel must be independent of c at ({x},{y})")
+            else:
+                check(kernel(c1, x, x) - kernel(c2, x, x) == c1 - c2,
+                      f"Diagonal kernel difference must equal c1 - c2 at x={x}")
 
-    return checks, failures
+    return len(cases), sum(not passed for _, passed in cases)
 
 
 def main() -> int:
@@ -279,4 +284,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(cli(main))

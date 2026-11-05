@@ -1,0 +1,626 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "test_cayley_and_odd_branch_oracles (__main__.ContinuousTimeCheckerTests.test_cayley_and_odd_branch_oracles) ... ok\ntest_complete_small_root_censuses_and_four_state_witness (__main__.ContinuousTimeCheckerTests.test_complete_small_root_censuses_and_four_state_witness) ... ok\ntest_composition_refuses_carrier_loss (__main__.ContinuousTimeCheckerTests.test_composition_refuses_carrier_loss) ... ok\ntest_exact_gaussian_domains_and_preflight (__main__.ContinuousTimeCheckerTests.test_exact_gaussian_domains_and_preflight) ... ok\ntest_executable_receipt_and_failure_exit (__main__.ContinuousTimeCheckerTests.test_executable_receipt_and_failure_exit) ... ok\ntest_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget) ... ok\ntest_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots) ... ok\ntest_gaussian_products_against_symbolic_oracle (__main__.ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle) ... ok\ntest_generated_composition_action_and_power (__main__.ContinuousTimeCheckerTests.test_generated_composition_action_and_power) ... ok\ntest_integer_domains_and_polynomial_resource_boundaries (__main__.ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries) ... ok\ntest_integer_matrix_product_against_symbolic_oracle (__main__.ContinuousTimeCheckerTests.test_integer_matrix_product_against_symbolic_oracle) ... ok\ntest_nilpotent_forced_candidate_against_matrix_oracle (__main__.ContinuousTimeCheckerTests.test_nilpotent_forced_candidate_against_matrix_oracle) ... ok\ntest_oracles_and_pure_import (__main__.ContinuousTimeCheckerTests.test_oracles_and_pure_import) ... ok\ntest_quarter_turn_powers_against_matrix_and_cycle (__main__.ContinuousTimeCheckerTests.test_quarter_turn_powers_against_matrix_and_cycle) ... ok\ntest_reentrant_counts_faults_and_cancellation (__main__.ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation) ... ok\ntest_residue_control_counts_and_injected_fault (__main__.ContinuousTimeCheckerTests.test_residue_control_counts_and_injected_fault) ... ok\ntest_residue_exact_domains_and_resource_limits (__main__.ContinuousTimeCheckerTests.test_residue_exact_domains_and_resource_limits) ... ok\ntest_residue_preflight_before_multiplication (__main__.ContinuousTimeCheckerTests.test_residue_preflight_before_multiplication) ... ok\ntest_scaled_roots_are_distinct_unitary_half_steps (__main__.ContinuousTimeCheckerTests.test_scaled_roots_are_distinct_unitary_half_steps) ... ok\n\n----------------------------------------------------------------------\nRan 19 tests in 3.974s\n\nOK\n",
+    "returncode": 0
+  },
+  "inputs_sha256": {
+    ".review_work\\run_discrete_dynamics_mutations.py": "afd974bf9a3811c29a080c90a0fbdb379c27abbde1e597d7a4d77cf434c1899c",
+    "checks\\checker_support\\boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks\\checker_support\\cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks\\checker_support\\domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks\\checker_support\\gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks\\checker_support\\gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks\\checker_support\\happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks\\checker_support\\mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks\\checker_support\\outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks\\checker_support\\rational_matrix.py": "91a6d2d7ac3cdf7693ff863075046fc8dc9a6843fcc9c564a890b942c076b1ce",
+    "checks\\checker_support\\wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks\\independent\\ds-continuous-time-exp-generator.py": "3eb3a651e3b66c927c0599ab40f839fc23e7a55a58c0ec2bfd769271d4f0de90",
+    "checks\\tests\\discrete_dynamics_mutations.json": "d660b49334cb554f3343d2b921acb48abdc6f32babf2ab5ccef58f3fff818939",
+    "checks\\tests\\run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks\\tests\\test_continuous_time_checker.py": "901541967a37f171d173fdeb8f4d9419c2031321006eec90d7d5688ead89760a",
+    "checks\\tests\\test_review_repairs.py": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4"
+  },
+  "mutants": [
+    {
+      "identity": "state-bool",
+      "mutant_sha256": "88abab87a1167ef1b563fc3628155f7a8794913e10f5d32de45a9ce48457d946",
+      "outcome": "killed",
+      "output": "test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget) ... FAIL\n\n======================================================================\nFAIL: test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 124, in test_finite_map_ownership_domains_and_full_power_budget\n    self.refused(module.FiniteEndomap, invalid)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_finite_map_ownership_domains_and_full_power_budget"
+      ]
+    },
+    {
+      "identity": "state-negative",
+      "mutant_sha256": "fc715fe2d0209ffcef56193ff5aa2906c8c7223a84d5f793e988df4c560ace66",
+      "outcome": "killed",
+      "output": "test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget) ... FAIL\n\n======================================================================\nFAIL: test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 124, in test_finite_map_ownership_domains_and_full_power_budget\n    self.refused(module.FiniteEndomap, invalid)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_finite_map_ownership_domains_and_full_power_budget"
+      ]
+    },
+    {
+      "identity": "state-outside",
+      "mutant_sha256": "98ced6412cd531f5d58e3302da83e048a2c711c23cc16b765a77df37d4d5412d",
+      "outcome": "killed",
+      "output": "test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget) ... FAIL\n\n======================================================================\nFAIL: test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 124, in test_finite_map_ownership_domains_and_full_power_budget\n    self.refused(module.FiniteEndomap, invalid)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_finite_map_ownership_domains_and_full_power_budget"
+      ]
+    },
+    {
+      "identity": "empty-carrier",
+      "mutant_sha256": "61f60f9eeb87f7274a092fc930a6a20ec75b383b61b28cbd446707d98305e377",
+      "outcome": "killed",
+      "output": "test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget) ... FAIL\n\n======================================================================\nFAIL: test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 124, in test_finite_map_ownership_domains_and_full_power_budget\n    self.refused(module.FiniteEndomap, invalid)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_finite_map_ownership_domains_and_full_power_budget"
+      ]
+    },
+    {
+      "identity": "carrier-budget",
+      "mutant_sha256": "381eee41ecb9a5cc89ca64712556e1379f96df67fe47b65aa348c9c87d8b136f",
+      "outcome": "killed",
+      "output": "test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget) ... FAIL\n\n======================================================================\nFAIL: test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 125, in test_finite_map_ownership_domains_and_full_power_budget\n    self.refused(module.FiniteEndomap, (0,)*5, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_finite_map_ownership_domains_and_full_power_budget"
+      ]
+    },
+    {
+      "identity": "application-state",
+      "mutant_sha256": "2cd8a1b99b0f4ba991a2d08aad26689b48e288454c342b613b799d71a8d0f8b5",
+      "outcome": "killed",
+      "output": "test_generated_composition_action_and_power (__main__.ContinuousTimeCheckerTests.test_generated_composition_action_and_power) ... FAIL\ntest_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget) ... ERROR\n\n======================================================================\nERROR: test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 127, in test_finite_map_ownership_domains_and_full_power_budget\n    self.assertEqual(value.apply(invalid_state).error.kind, \"input\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n======================================================================\nFAIL: test_generated_composition_action_and_power (__main__.ContinuousTimeCheckerTests.test_generated_composition_action_and_power)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 102, in test_generated_composition_action_and_power\n    @given(TABLE, TABLE, st.integers(0, 30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 113, in test_generated_composition_action_and_power\n    self.assertEqual(a.apply(state).value, first[state])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\nFailing test case: test_generated_composition_action_and_power(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.ContinuousTimeCheckerTests testMethod=test_generated_composition_action_and_power>,\n    first=[0, 0, 0, 1],\n    second=[0, 0, 0, 0],  # or any other generated value\n    exponent=0,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 2 tests in 3.273s\n\nFAILED (failures=1, errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_generated_composition_action_and_power",
+        "test_finite_map_ownership_domains_and_full_power_budget"
+      ]
+    },
+    {
+      "identity": "composition-order",
+      "mutant_sha256": "3acc6e4efab79548179a31f3fbecf256e4d63f9a6e747382daac90751c774e86",
+      "outcome": "killed",
+      "output": "test_generated_composition_action_and_power (__main__.ContinuousTimeCheckerTests.test_generated_composition_action_and_power) ... FAIL\n\n======================================================================\nFAIL: test_generated_composition_action_and_power (__main__.ContinuousTimeCheckerTests.test_generated_composition_action_and_power)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 102, in test_generated_composition_action_and_power\n    @given(TABLE, TABLE, st.integers(0, 30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 108, in test_generated_composition_action_and_power\n    self.assertEqual(_operator(composed.value.images), _operator(tuple(first))*_operator(tuple(second)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 0, 0, 0],\n[1, 1, 1, 1],\n[0, 0, 0, 0],\n[0, 0, 0, 0]]) != Matrix([\n[1, 1, 1, 1],\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, 0]])\nFailing test case: test_generated_composition_action_and_power(\n    self=<__main__.ContinuousTimeCheckerTests testMethod=test_generated_composition_action_and_power>,\n    first=[0, 0, 0, 0],\n    second=[1, 0, 0, 0],\n    exponent=0,  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:303\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\str.py:678\n\n----------------------------------------------------------------------\nRan 1 test in 0.860s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_generated_composition_action_and_power"
+      ]
+    },
+    {
+      "identity": "composition-carrier",
+      "mutant_sha256": "fd1a2120eb96efd0727410d347d9a34f1d80948e861a51ef93e1d096fc589ba9",
+      "outcome": "killed",
+      "output": "test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget) ... ok\ntest_composition_refuses_carrier_loss (__main__.ContinuousTimeCheckerTests.test_composition_refuses_carrier_loss) ... FAIL\n\n======================================================================\nFAIL: test_composition_refuses_carrier_loss (__main__.ContinuousTimeCheckerTests.test_composition_refuses_carrier_loss)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 97, in test_composition_refuses_carrier_loss\n    self.assertEqual(result.ok, left_size == right_size)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True != False\n\n----------------------------------------------------------------------\nRan 2 tests in 0.012s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_finite_map_ownership_domains_and_full_power_budget",
+        "test_composition_refuses_carrier_loss"
+      ]
+    },
+    {
+      "identity": "power-bool",
+      "mutant_sha256": "06b037d4893869948fc767afc8d06e4e605a24154ee6945148fa7e647161622b",
+      "outcome": "killed",
+      "output": "test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget) ... ERROR\n\n======================================================================\nERROR: test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 129, in test_finite_map_ownership_domains_and_full_power_budget\n    self.assertEqual(value.power(exponent).error.kind, \"input\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_finite_map_ownership_domains_and_full_power_budget"
+      ]
+    },
+    {
+      "identity": "power-budget",
+      "mutant_sha256": "5e35d6545a5fdb1d3055b3cd3394127d637bbf7cddc032bd04d5d8b28c19cab4",
+      "outcome": "killed",
+      "output": "test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget) ... ERROR\n\n======================================================================\nERROR: test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 130, in test_finite_map_ownership_domains_and_full_power_budget\n    self.assertEqual(value.power(4097).error.kind, \"resource\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_finite_map_ownership_domains_and_full_power_budget"
+      ]
+    },
+    {
+      "identity": "power-zero-identity",
+      "mutant_sha256": "a10549bf8520a342ed8c28cc04c79a376906cef7163af471ca135195bf50b5be",
+      "outcome": "killed",
+      "output": "test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget) ... FAIL\n\n======================================================================\nFAIL: test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 131, in test_finite_map_ownership_domains_and_full_power_budget\n    self.assertEqual(value.power(4096).value.images, (1, 2, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (2, 0, 1) != (1, 2, 0)\n\nFirst differing element 0:\n2\n1\n\n- (2, 0, 1)\n+ (1, 2, 0)\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_finite_map_ownership_domains_and_full_power_budget"
+      ]
+    },
+    {
+      "identity": "power-binary-digit",
+      "mutant_sha256": "e4f18ca7b1070dea5024cef6957e45f4ab70c11fdd3edd465f9440146ea24d2c",
+      "outcome": "killed",
+      "output": "test_generated_composition_action_and_power (__main__.ContinuousTimeCheckerTests.test_generated_composition_action_and_power) ... FAIL\n\n======================================================================\nFAIL: test_generated_composition_action_and_power (__main__.ContinuousTimeCheckerTests.test_generated_composition_action_and_power)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 102, in test_generated_composition_action_and_power\n    @given(TABLE, TABLE, st.integers(0, 30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 111, in test_generated_composition_action_and_power\n    self.assertEqual(_operator(power.value.images), _operator(tuple(first))**exponent)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[1, 0, 0, 0],\n[0, 1, 0, 0],\n[0, 0, 1, 0],\n[0, 0, 0, 1]]) != Matrix([\n[1, 1, 1, 1],\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, 0]])\nFailing test case: test_generated_composition_action_and_power(\n    self=<__main__.ContinuousTimeCheckerTests testMethod=test_generated_composition_action_and_power>,\n    first=[0, 0, 0, 0],\n    second=[0, 0, 0, 0],  # or any other generated value\n    exponent=2,\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3735\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5109\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5110\n        (and 4 more with settings.verbosity >= verbose)\n\n----------------------------------------------------------------------\nRan 1 test in 1.916s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_generated_composition_action_and_power"
+      ]
+    },
+    {
+      "identity": "power-bit-condition",
+      "mutant_sha256": "58b400fa82ef6526da9f95621d1f8474851b89aa7bb7138f31e3e2a6fdbc2bd7",
+      "outcome": "killed",
+      "output": "test_generated_composition_action_and_power (__main__.ContinuousTimeCheckerTests.test_generated_composition_action_and_power) ... FAIL\n\n======================================================================\nFAIL: test_generated_composition_action_and_power (__main__.ContinuousTimeCheckerTests.test_generated_composition_action_and_power)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 102, in test_generated_composition_action_and_power\n    @given(TABLE, TABLE, st.integers(0, 30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 111, in test_generated_composition_action_and_power\n    self.assertEqual(_operator(power.value.images), _operator(tuple(first))**exponent)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[1, 0, 0, 0],\n[0, 1, 0, 0],\n[0, 0, 1, 0],\n[0, 0, 0, 1]]) != Matrix([\n[1, 1, 1, 1],\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, 0]])\nFailing test case: test_generated_composition_action_and_power(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.ContinuousTimeCheckerTests testMethod=test_generated_composition_action_and_power>,\n    first=[0, 0, 0, 0],  # or any other generated value\n    second=[0, 0, 0, 0],  # or any other generated value\n    exponent=1,\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3735\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5109\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5110\n        (and 4 more with settings.verbosity >= verbose)\n\n----------------------------------------------------------------------\nRan 1 test in 4.776s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_generated_composition_action_and_power"
+      ]
+    },
+    {
+      "identity": "power-squaring",
+      "mutant_sha256": "ce9a99bfbf64007fbac696e3aa7c3782a702d43bb9156d8a250e0e81eb1a6095",
+      "outcome": "killed",
+      "output": "test_generated_composition_action_and_power (__main__.ContinuousTimeCheckerTests.test_generated_composition_action_and_power) ... FAIL\n\n======================================================================\nFAIL: test_generated_composition_action_and_power (__main__.ContinuousTimeCheckerTests.test_generated_composition_action_and_power)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 102, in test_generated_composition_action_and_power\n    @given(TABLE, TABLE, st.integers(0, 30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 111, in test_generated_composition_action_and_power\n    self.assertEqual(_operator(power.value.images), _operator(tuple(first))**exponent)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[1, 1, 1, 0],\n[0, 0, 0, 1],\n[0, 0, 0, 0],\n[0, 0, 0, 0]]) != Matrix([\n[1, 1, 1, 1],\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, 0]])\nFailing test case: test_generated_composition_action_and_power(\n    self=<__main__.ContinuousTimeCheckerTests testMethod=test_generated_composition_action_and_power>,\n    first=[0, 0, 0, 1],\n    second=[0, 0, 0, 0],  # or any other generated value\n    exponent=2,\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3735\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5109\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5110\n        (and 4 more with settings.verbosity >= verbose)\n\n----------------------------------------------------------------------\nRan 1 test in 1.678s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_generated_composition_action_and_power"
+      ]
+    },
+    {
+      "identity": "root-square-test",
+      "mutant_sha256": "6d754ec57085b73842421a5f38cedfe53337861a6943af30ceb045e4385fa656",
+      "outcome": "killed",
+      "output": "test_complete_small_root_censuses_and_four_state_witness (__main__.ContinuousTimeCheckerTests.test_complete_small_root_censuses_and_four_state_witness) ... FAIL\n\n======================================================================\nFAIL: test_complete_small_root_censuses_and_four_state_witness (__main__.ContinuousTimeCheckerTests.test_complete_small_root_censuses_and_four_state_witness)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 85, in test_complete_small_root_censuses_and_four_state_witness\n    self.assertEqual(tuple(root.images for root in result.value), reference.get(images, ()))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((0, 1),) != ((0, 1), (1, 0))\n\nSecond tuple contains 1 additional elements.\nFirst extra element 1:\n(1, 0)\n\n- ((0, 1),)\n+ ((0, 1), (1, 0))\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_complete_small_root_censuses_and_four_state_witness"
+      ]
+    },
+    {
+      "identity": "root-enumeration-order",
+      "mutant_sha256": "e59e787df18aaf76ffe7ca8c8902803747ef09f617ce1e2abc4bfbdf492503bf",
+      "outcome": "killed",
+      "output": "test_complete_small_root_censuses_and_four_state_witness (__main__.ContinuousTimeCheckerTests.test_complete_small_root_censuses_and_four_state_witness) ... FAIL\n\n======================================================================\nFAIL: test_complete_small_root_censuses_and_four_state_witness (__main__.ContinuousTimeCheckerTests.test_complete_small_root_censuses_and_four_state_witness)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 85, in test_complete_small_root_censuses_and_four_state_witness\n    self.assertEqual(tuple(root.images for root in result.value), reference.get(images, ()))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((1, 0), (0, 1)) != ((0, 1), (1, 0))\n\nFirst differing element 0:\n(1, 0)\n(0, 1)\n\n- ((1, 0), (0, 1))\n+ ((0, 1), (1, 0))\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_complete_small_root_censuses_and_four_state_witness"
+      ]
+    },
+    {
+      "identity": "toggle-domain",
+      "mutant_sha256": "000f77f4f5879d989a08108a25a4a57972ebc953f254133e96d4a18042991c24",
+      "outcome": "killed",
+      "output": "test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget) ... FAIL\n\n======================================================================\nFAIL: test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 138, in test_finite_map_ownership_domains_and_full_power_budget\n    self.refused(module.toggle, invalid_boolean)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_finite_map_ownership_domains_and_full_power_budget"
+      ]
+    },
+    {
+      "identity": "toggle-inversion",
+      "mutant_sha256": "baaa873e5239884ec05872d5e042f848b5bb3d0efeefbdea02c9e52202224a00",
+      "outcome": "killed",
+      "output": "test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget) ... FAIL\n\n======================================================================\nFAIL: test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 135, in test_finite_map_ownership_domains_and_full_power_budget\n    self.assertIs(module.toggle(False), True)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not True\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_finite_map_ownership_domains_and_full_power_budget"
+      ]
+    },
+    {
+      "identity": "integer-coercion",
+      "mutant_sha256": "9649ae3775f0e5a22822e322771ec59c238a01615836d538c2294616430a4054",
+      "outcome": "killed",
+      "output": "test_integer_domains_and_polynomial_resource_boundaries (__main__.ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_integer_domains_and_polynomial_resource_boundaries (__main__.ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 193, in test_integer_domains_and_polynomial_resource_boundaries\n    self.refused(module.energy, value)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_integer_domains_and_polynomial_resource_boundaries"
+      ]
+    },
+    {
+      "identity": "integer-budget",
+      "mutant_sha256": "7d1e46a3b83a02afff493cef3f682f96a9c7bd8d1d7ff5757bd94f3501e1bfb9",
+      "outcome": "killed",
+      "output": "test_integer_domains_and_polynomial_resource_boundaries (__main__.ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_integer_domains_and_polynomial_resource_boundaries (__main__.ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 196, in test_integer_domains_and_polynomial_resource_boundaries\n    self.refused(module.energy, 2**4095, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_integer_domains_and_polynomial_resource_boundaries"
+      ]
+    },
+    {
+      "identity": "gaussian-export-imaginary",
+      "mutant_sha256": "bdd3f0a56bb4c5e7acef5dc1e600c63ef38d5f43736fdb69ebe4094988f8fa57",
+      "outcome": "killed",
+      "output": "test_gaussian_products_against_symbolic_oracle (__main__.ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_products_against_symbolic_oracle (__main__.ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 141, in test_gaussian_products_against_symbolic_oracle\n    @given(PAIRS, PAIRS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 149, in test_gaussian_products_against_symbolic_oracle\n    self.assertEqual(addition[0]+sp.I*addition[1], first+second)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != I\nFailing test case: test_gaussian_products_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.ContinuousTimeCheckerTests testMethod=test_gaussian_products_against_symbolic_oracle>,\n    left=[(0, 0), (0, 0), (0, 0), (0, 0)],  # or any other generated value\n    right=[(0, 1), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     )],\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:303\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:336\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\str.py:678\n\n----------------------------------------------------------------------\nRan 1 test in 6.864s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_gaussian_products_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "gaussian-add-sign",
+      "mutant_sha256": "e83fbe8b0d3e118a3c08b4af00082318701d120498e6543eb6b5b1a6df1e12b9",
+      "outcome": "killed",
+      "output": "test_gaussian_products_against_symbolic_oracle (__main__.ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_products_against_symbolic_oracle (__main__.ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 141, in test_gaussian_products_against_symbolic_oracle\n    @given(PAIRS, PAIRS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 149, in test_gaussian_products_against_symbolic_oracle\n    self.assertEqual(addition[0]+sp.I*addition[1], first+second)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: -I != I\nFailing test case: test_gaussian_products_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.ContinuousTimeCheckerTests testMethod=test_gaussian_products_against_symbolic_oracle>,\n    left=[(0, 0), (0, 0), (0, 0), (0, 0)],  # or any other generated value\n    right=[(\n         0,  # or any other generated value\n         1,\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     )],\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:303\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:336\n\n----------------------------------------------------------------------\nRan 1 test in 6.559s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_gaussian_products_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "gaussian-multiply-conjugate",
+      "mutant_sha256": "57ae1200337e57098547b128fd4d4ab7b475b2f50259406f1d08bb891f5880ea",
+      "outcome": "killed",
+      "output": "test_gaussian_products_against_symbolic_oracle (__main__.ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_products_against_symbolic_oracle (__main__.ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 141, in test_gaussian_products_against_symbolic_oracle\n    @given(PAIRS, PAIRS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 150, in test_gaussian_products_against_symbolic_oracle\n    self.assertEqual(multiply[0]+sp.I*multiply[1], sp.expand(first*second))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != -1\nFailing test case: test_gaussian_products_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.ContinuousTimeCheckerTests testMethod=test_gaussian_products_against_symbolic_oracle>,\n    left=[(\n         0,  # or any other generated value\n         1,\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     )],\n    right=[(\n         0,  # or any other generated value\n         1,\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     )],\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:303\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:336\n\n----------------------------------------------------------------------\nRan 1 test in 6.350s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_gaussian_products_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "matrix-row-order",
+      "mutant_sha256": "dd57a261bf6f746be336d3e2a4a5d788724e901ec7bc4815f8a356e7065950b5",
+      "outcome": "killed",
+      "output": "test_gaussian_products_against_symbolic_oracle (__main__.ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_products_against_symbolic_oracle (__main__.ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 141, in test_gaussian_products_against_symbolic_oracle\n    @given(PAIRS, PAIRS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 145, in test_gaussian_products_against_symbolic_oracle\n    self.assertEqual(_matrix(module.mmul(left, right)), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 0],\n[0, 0]]) != Matrix([\n[ 0, 0],\n[-1, 0]])\nFailing test case: test_gaussian_products_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.ContinuousTimeCheckerTests testMethod=test_gaussian_products_against_symbolic_oracle>,\n    left=[(\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         1,\n     )],\n    right=[(\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,\n     ), (\n         0,  # or any other generated value\n         1,\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     )],\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3735\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5109\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5110\n        (and 4 more with settings.verbosity >= verbose)\n\n----------------------------------------------------------------------\nRan 1 test in 6.398s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_gaussian_products_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "matrix-multiplication-order",
+      "mutant_sha256": "34242ecba4e527eec1b6d3dd5af25199d53b158ced0c43fda2f5f1c4e62dff1f",
+      "outcome": "killed",
+      "output": "test_gaussian_products_against_symbolic_oracle (__main__.ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_products_against_symbolic_oracle (__main__.ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 141, in test_gaussian_products_against_symbolic_oracle\n    @given(PAIRS, PAIRS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 145, in test_gaussian_products_against_symbolic_oracle\n    self.assertEqual(_matrix(module.mmul(left, right)), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 0],\n[0, 0]]) != Matrix([\n[ 0, 0],\n[-1, 0]])\nFailing test case: test_gaussian_products_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.ContinuousTimeCheckerTests testMethod=test_gaussian_products_against_symbolic_oracle>,\n    left=[(\n         0,  # or any other generated value\n         0,\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         1,\n     )],\n    right=[(\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         1,\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     )],\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3735\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5109\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5110\n        (and 4 more with settings.verbosity >= verbose)\n\n----------------------------------------------------------------------\nRan 1 test in 6.197s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_gaussian_products_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "cayley-cross-coefficient",
+      "mutant_sha256": "0f1daa40029094517a9f37a9ea3f3a7237445da195e9b67d19f73556cd236cf0",
+      "outcome": "killed",
+      "output": "test_cayley_and_odd_branch_oracles (__main__.ContinuousTimeCheckerTests.test_cayley_and_odd_branch_oracles) ... FAIL\n\n======================================================================\nFAIL: test_cayley_and_odd_branch_oracles (__main__.ContinuousTimeCheckerTests.test_cayley_and_odd_branch_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 179, in test_cayley_and_odd_branch_oracles\n    @given(st.integers(-1000, 1000), st.integers(-1000, 1000))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 184, in test_cayley_and_odd_branch_oracles\n    self.assertTrue(module.cayley(parameter))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\nFailing test case: test_cayley_and_odd_branch_oracles(\n    self=<__main__.ContinuousTimeCheckerTests testMethod=test_cayley_and_odd_branch_oracles>,\n    parameter=1,\n    branch=0,  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\add.py:593\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\add.py:595\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\add.py:601\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\add.py:1134\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\add.py:1196\n        (and 186 more with settings.verbosity >= verbose)\n\n----------------------------------------------------------------------\nRan 1 test in 2.396s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_cayley_and_odd_branch_oracles"
+      ]
+    },
+    {
+      "identity": "energy-offset",
+      "mutant_sha256": "a76b0d90cf696c5cec58abac3e649abc095c4913a244839cae78f0d493ecbbc6",
+      "outcome": "killed",
+      "output": "test_cayley_and_odd_branch_oracles (__main__.ContinuousTimeCheckerTests.test_cayley_and_odd_branch_oracles) ... FAIL\n\n======================================================================\nFAIL: test_cayley_and_odd_branch_oracles (__main__.ContinuousTimeCheckerTests.test_cayley_and_odd_branch_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 179, in test_cayley_and_odd_branch_oracles\n    @given(st.integers(-1000, 1000), st.integers(-1000, 1000))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 186, in test_cayley_and_odd_branch_oracles\n    self.assertEqual((result-1)//2, branch)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: -1 != 0\nFailing test case: test_cayley_and_odd_branch_oracles(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.ContinuousTimeCheckerTests testMethod=test_cayley_and_odd_branch_oracles>,\n    parameter=0,  # or any other generated value\n    branch=0,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 9.236s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_cayley_and_odd_branch_oracles"
+      ]
+    },
+    {
+      "identity": "energy-output-budget",
+      "mutant_sha256": "f45148e1e8ca3275b5640270b3ae7b578f08df4ce5848071d55826285425a324",
+      "outcome": "killed",
+      "output": "test_integer_domains_and_polynomial_resource_boundaries (__main__.ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_integer_domains_and_polynomial_resource_boundaries (__main__.ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 196, in test_integer_domains_and_polynomial_resource_boundaries\n    self.refused(module.energy, 2**4095, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_integer_domains_and_polynomial_resource_boundaries"
+      ]
+    },
+    {
+      "identity": "nilpotent-square-condition",
+      "mutant_sha256": "4ef65682d49d66a05f0047e2224762a6eb311f9b4bfff892cb7e33e1ffcfb274",
+      "outcome": "killed",
+      "output": "test_nilpotent_forced_candidate_against_matrix_oracle (__main__.ContinuousTimeCheckerTests.test_nilpotent_forced_candidate_against_matrix_oracle) ... FAIL\n\n======================================================================\nFAIL: test_nilpotent_forced_candidate_against_matrix_oracle (__main__.ContinuousTimeCheckerTests.test_nilpotent_forced_candidate_against_matrix_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 213, in test_nilpotent_forced_candidate_against_matrix_oracle\n    self.assertEqual(module.nilpotent(*entries), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True != False\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_nilpotent_forced_candidate_against_matrix_oracle"
+      ]
+    },
+    {
+      "identity": "omit-branch-obligation",
+      "mutant_sha256": "addf3291a5b840af73a527be70ede5386c73c12c94cbf7c1349b94b5fe747107",
+      "outcome": "killed",
+      "output": "test_reentrant_counts_faults_and_cancellation (__main__.ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation) ... FAIL\n\n======================================================================\nFAIL: test_reentrant_counts_faults_and_cancellation (__main__.ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 221, in test_reentrant_counts_faults_and_cancellation\n    self.assertEqual(cases.checks, 355)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: 55 != 355\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_reentrant_counts_faults_and_cancellation"
+      ]
+    },
+    {
+      "identity": "omit-unitarity-obligation",
+      "mutant_sha256": "d04dcc742afe256c6ea24654341d729efa07569a46cc58ca9b59644cfd261455",
+      "outcome": "killed",
+      "output": "test_reentrant_counts_faults_and_cancellation (__main__.ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation) ... FAIL\n\n======================================================================\nFAIL: test_reentrant_counts_faults_and_cancellation (__main__.ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 221, in test_reentrant_counts_faults_and_cancellation\n    self.assertEqual(cases.checks, 355)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: 353 != 355\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_reentrant_counts_faults_and_cancellation"
+      ]
+    },
+    {
+      "identity": "false-success-exit",
+      "mutant_sha256": "67444b3d2be921e8be90191e922008712cec253e6c50b6a4cf6e6b1915f5b90a",
+      "outcome": "killed",
+      "output": "test_executable_receipt_and_failure_exit (__main__.ContinuousTimeCheckerTests.test_executable_receipt_and_failure_exit) ... FAIL\n\n======================================================================\nFAIL: test_executable_receipt_and_failure_exit (__main__.ContinuousTimeCheckerTests.test_executable_receipt_and_failure_exit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 306, in test_executable_receipt_and_failure_exit\n    with self.assertRaises(SystemExit) as failure:\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: SystemExit not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.190s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_executable_receipt_and_failure_exit"
+      ]
+    },
+    {
+      "identity": "oracle-operator-transpose",
+      "mutant_sha256": "550c1bacbe11a3a350fd9408d1affb18227becea2c578e14c676520c1ecffc15",
+      "outcome": "killed",
+      "output": "test_oracles_and_pure_import (__main__.ContinuousTimeCheckerTests.test_oracles_and_pure_import) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_pure_import (__main__.ContinuousTimeCheckerTests.test_oracles_and_pure_import)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 68, in test_oracles_and_pure_import\n    self.assertEqual(_operator((1, 1)), sp.ImmutableMatrix(((0, 0), (1, 1))))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 1],\n[0, 1]]) != Matrix([\n[0, 0],\n[1, 1]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_continuous_time_checker.py",
+      "tests": [
+        "test_oracles_and_pure_import"
+      ]
+    },
+    {
+      "identity": "oracle-root-power",
+      "mutant_sha256": "35560dcf0eabca6362d59c7cc781123cfe5674ff0b3f4473b052a379a70ded7a",
+      "outcome": "killed",
+      "output": "test_oracles_and_pure_import (__main__.ContinuousTimeCheckerTests.test_oracles_and_pure_import) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_pure_import (__main__.ContinuousTimeCheckerTests.test_oracles_and_pure_import)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 71, in test_oracles_and_pure_import\n    self.assertEqual(_root_index(2)[(0, 1)], ((0, 1), (1, 0)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((0, 1),) != ((0, 1), (1, 0))\n\nSecond tuple contains 1 additional elements.\nFirst extra element 1:\n(1, 0)\n\n- ((0, 1),)\n+ ((0, 1), (1, 0))\n\n----------------------------------------------------------------------\nRan 1 test in 0.021s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_continuous_time_checker.py",
+      "tests": [
+        "test_oracles_and_pure_import"
+      ]
+    },
+    {
+      "identity": "oracle-matrix-conjugate",
+      "mutant_sha256": "a5b8c0e4624d505cbb21be7b1c5d7a41b8dccc928277807035faab9df3e8ecec",
+      "outcome": "killed",
+      "output": "test_oracles_and_pure_import (__main__.ContinuousTimeCheckerTests.test_oracles_and_pure_import) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_pure_import (__main__.ContinuousTimeCheckerTests.test_oracles_and_pure_import)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 69, in test_oracles_and_pure_import\n    self.assertEqual(_matrix([(1, 2), (3, 4), (5, 6), (7, 8)])[1, 0], 5+6*sp.I)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 5 - 6*I != 5 + 6*I\n\n----------------------------------------------------------------------\nRan 1 test in 0.024s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_continuous_time_checker.py",
+      "tests": [
+        "test_oracles_and_pure_import"
+      ]
+    },
+    {
+      "identity": "refusal-helper-polarity",
+      "mutant_sha256": "034d4a0a01dbb55ff6e7ca8d13415830c77a736f94c1c65720b48fbacebc39fb",
+      "outcome": "killed",
+      "output": "test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget) ... FAIL\n\n======================================================================\nFAIL: test_finite_map_ownership_domains_and_full_power_budget (__main__.ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 124, in test_finite_map_ownership_domains_and_full_power_budget\n    self.refused(module.FiniteEndomap, invalid)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 60, in refused\n    self.assertTrue(result.ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_continuous_time_checker.py",
+      "tests": [
+        "test_finite_map_ownership_domains_and_full_power_budget"
+      ]
+    },
+    {
+      "identity": "real-matrix-component",
+      "mutant_sha256": "2439fa7865ab4892321d02024c98f0b6acf8840e45aa4dacf7511fcd27bf178d",
+      "outcome": "killed",
+      "output": "test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 254, in test_fixed_nonsymmetric_integer_products_and_snapshots\n    self.assertEqual(result, (4, 5, 10, 9))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (8, 1, 17, -1) != (4, 5, 10, 9)\n\nFirst differing element 0:\n8\n4\n\n- (8, 1, 17, -1)\n+ (4, 5, 10, 9)\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_fixed_nonsymmetric_integer_products_and_snapshots"
+      ]
+    },
+    {
+      "identity": "real-export-coordinates",
+      "mutant_sha256": "27509205bf8682d726a78b14fd37a6b2219ef60b3ebd30b3eff841234c2d2f56",
+      "outcome": "killed",
+      "output": "test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 254, in test_fixed_nonsymmetric_integer_products_and_snapshots\n    self.assertEqual(result, (4, 5, 10, 9))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (4, 10, 5, 9) != (4, 5, 10, 9)\n\nFirst differing element 1:\n10\n5\n\n- (4, 10, 5, 9)\n?         ---\n\n+ (4, 5, 10, 9)\n?     +++\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.014s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_fixed_nonsymmetric_integer_products_and_snapshots"
+      ]
+    },
+    {
+      "identity": "real-export-integer-domain",
+      "mutant_sha256": "170323e624e6b3a8bd03a6af74854548044718bec5c5810549356ff5c2b7b9b8",
+      "outcome": "killed",
+      "output": "test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots) ... FAIL\ntest_residue_exact_domains_and_resource_limits (__main__.ContinuousTimeCheckerTests.test_residue_exact_domains_and_resource_limits) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 255, in test_fixed_nonsymmetric_integer_products_and_snapshots\n    self.assertTrue(all(type(entry) is int for entry in result))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n======================================================================\nFAIL: test_residue_exact_domains_and_resource_limits (__main__.ContinuousTimeCheckerTests.test_residue_exact_domains_and_resource_limits)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 274, in test_residue_exact_domains_and_resource_limits\n    self.refused(module._real_flat, RationalMatrix(((Q(1, 2), 0), (0, 1))))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 2 tests in 0.012s\n\nFAILED (failures=2)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_fixed_nonsymmetric_integer_products_and_snapshots",
+        "test_residue_exact_domains_and_resource_limits"
+      ]
+    },
+    {
+      "identity": "real-multiplication-order",
+      "mutant_sha256": "6de8a177fce6c6f5c2c22ff4b384f2eebab67529d7ad3e4eec8632b36ad284c1",
+      "outcome": "killed",
+      "output": "test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 254, in test_fixed_nonsymmetric_integer_products_and_snapshots\n    self.assertEqual(result, (4, 5, 10, 9))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (-1, 0, 10, 14) != (4, 5, 10, 9)\n\nFirst differing element 0:\n-1\n4\n\n- (-1, 0, 10, 14)\n+ (4, 5, 10, 9)\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_fixed_nonsymmetric_integer_products_and_snapshots"
+      ]
+    },
+    {
+      "identity": "quarter-exponent-bool",
+      "mutant_sha256": "883b5e1a99d167c5aeda307bdc73a8a72bbc7d263a9721c6657de56d857dad31",
+      "outcome": "killed",
+      "output": "test_residue_preflight_before_multiplication (__main__.ContinuousTimeCheckerTests.test_residue_preflight_before_multiplication) ... ERROR\n\n======================================================================\nERROR: test_residue_preflight_before_multiplication (__main__.ContinuousTimeCheckerTests.test_residue_preflight_before_multiplication)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 279, in test_residue_preflight_before_multiplication\n    self.refused(module.powj, -1)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 59, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 59, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\independent\\ds-continuous-time-exp-generator.py\", line 177, in powj\n    value = value.mul(power)\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: must not multiply\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_residue_preflight_before_multiplication"
+      ]
+    },
+    {
+      "identity": "quarter-exponent-negative",
+      "mutant_sha256": "3ba5d84ff165401dcb4b3389e290fbcbee6586a2b6188fa71ad0290e84e3ce6d",
+      "outcome": "killed",
+      "output": "test_residue_preflight_before_multiplication (__main__.ContinuousTimeCheckerTests.test_residue_preflight_before_multiplication) ... ERROR\n\n======================================================================\nERROR: test_residue_preflight_before_multiplication (__main__.ContinuousTimeCheckerTests.test_residue_preflight_before_multiplication)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 279, in test_residue_preflight_before_multiplication\n    self.refused(module.powj, -1)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 59, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 59, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\independent\\ds-continuous-time-exp-generator.py\", line 177, in powj\n    value = value.mul(power)\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: must not multiply\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_residue_preflight_before_multiplication"
+      ]
+    },
+    {
+      "identity": "quarter-exponent-budget",
+      "mutant_sha256": "0b87a199315b6cf4dee5a679b206cab6ca11444769945425ab28696062ec6430",
+      "outcome": "killed",
+      "output": "test_residue_exact_domains_and_resource_limits (__main__.ContinuousTimeCheckerTests.test_residue_exact_domains_and_resource_limits) ... FAIL\n\n======================================================================\nFAIL: test_residue_exact_domains_and_resource_limits (__main__.ContinuousTimeCheckerTests.test_residue_exact_domains_and_resource_limits)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 267, in test_residue_exact_domains_and_resource_limits\n    self.refused(module.powj, 4097, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 60, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_residue_exact_domains_and_resource_limits"
+      ]
+    },
+    {
+      "identity": "quarter-zero-identity",
+      "mutant_sha256": "1ea69ef1308984cb964ec752b4153d817ef163802431791224e0a43bf993b551",
+      "outcome": "killed",
+      "output": "test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 260, in test_fixed_nonsymmetric_integer_products_and_snapshots\n    self.assertEqual(tuple(module.powj(exponent) for exponent in range(5)), (module.EYE, module.JAY, module.JAY2, module.JAY3, module.EYE))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((0, -1, 1, 0), (-1, 0, 0, -1), (0, 1, -1, 0), (1, 0, 0, 1), (0, -1, 1, 0)) != ((1, 0, 0, 1), (0, -1, 1, 0), (-1, 0, 0, -1), (0, 1, -1, 0), (1, 0, 0, 1))\n\nFirst differing element 0:\n(0, -1, 1, 0)\n(1, 0, 0, 1)\n\n- ((0, -1, 1, 0), (-1, 0, 0, -1), (0, 1, -1, 0), (1, 0, 0, 1), (0, -1, 1, 0))\n?                                                            -------------- -\n\n+ ((1, 0, 0, 1), (0, -1, 1, 0), (-1, 0, 0, -1), (0, 1, -1, 0), (1, 0, 0, 1))\n?  ++++++++++++++\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_fixed_nonsymmetric_integer_products_and_snapshots"
+      ]
+    },
+    {
+      "identity": "quarter-binary-digit",
+      "mutant_sha256": "d33135054f2e58d1e4415166d197627dd3edede055bd641b1c46ec16348848f9",
+      "outcome": "killed",
+      "output": "test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 260, in test_fixed_nonsymmetric_integer_products_and_snapshots\n    self.assertEqual(tuple(module.powj(exponent) for exponent in range(5)), (module.EYE, module.JAY, module.JAY2, module.JAY3, module.EYE))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((1, 0, 0, 1), (0, -1, 1, 0), (1, 0, 0, 1), (0, -1, 1, 0), (-1, 0, 0, -1)) != ((1, 0, 0, 1), (0, -1, 1, 0), (-1, 0, 0, -1), (0, 1, -1, 0), (1, 0, 0, 1))\n\nFirst differing element 2:\n(1, 0, 0, 1)\n(-1, 0, 0, -1)\n\n- ((1, 0, 0, 1), (0, -1, 1, 0), (1, 0, 0, 1), (0, -1, 1, 0), (-1, 0, 0, -1))\n+ ((1, 0, 0, 1), (0, -1, 1, 0), (-1, 0, 0, -1), (0, 1, -1, 0), (1, 0, 0, 1))\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_fixed_nonsymmetric_integer_products_and_snapshots"
+      ]
+    },
+    {
+      "identity": "quarter-bit-condition",
+      "mutant_sha256": "7afa6b4e4fe4aa13e7f888da975bc4667ca0e9861ad5dbba1c8d0c6c2dfa4a48",
+      "outcome": "killed",
+      "output": "test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 260, in test_fixed_nonsymmetric_integer_products_and_snapshots\n    self.assertEqual(tuple(module.powj(exponent) for exponent in range(5)), (module.EYE, module.JAY, module.JAY2, module.JAY3, module.EYE))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((1, 0, 0, 1), (1, 0, 0, 1), (0, -1, 1, 0), (1, 0, 0, 1), (0, 1, -1, 0)) != ((1, 0, 0, 1), (0, -1, 1, 0), (-1, 0, 0, -1), (0, 1, -1, 0), (1, 0, 0, 1))\n\nFirst differing element 1:\n(1, 0, 0, 1)\n(0, -1, 1, 0)\n\n- ((1, 0, 0, 1), (1, 0, 0, 1), (0, -1, 1, 0), (1, 0, 0, 1), (0, 1, -1, 0))\n+ ((1, 0, 0, 1), (0, -1, 1, 0), (-1, 0, 0, -1), (0, 1, -1, 0), (1, 0, 0, 1))\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_fixed_nonsymmetric_integer_products_and_snapshots"
+      ]
+    },
+    {
+      "identity": "quarter-power-squaring",
+      "mutant_sha256": "29706c4f888b367faccc4ab5de44597052e073e47d280594341d32715f685f1d",
+      "outcome": "killed",
+      "output": "test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 260, in test_fixed_nonsymmetric_integer_products_and_snapshots\n    self.assertEqual(tuple(module.powj(exponent) for exponent in range(5)), (module.EYE, module.JAY, module.JAY2, module.JAY3, module.EYE))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((1, 0, 0, 1), (0, -1, 1, 0), (0, -1, 1, 0), (-1, 0, 0, -1), (0, -1, 1, 0)) != ((1, 0, 0, 1), (0, -1, 1, 0), (-1, 0, 0, -1), (0, 1, -1, 0), (1, 0, 0, 1))\n\nFirst differing element 2:\n(0, -1, 1, 0)\n(-1, 0, 0, -1)\n\n- ((1, 0, 0, 1), (0, -1, 1, 0), (0, -1, 1, 0), (-1, 0, 0, -1), (0, -1, 1, 0))\n?                              ---------------\n\n+ ((1, 0, 0, 1), (0, -1, 1, 0), (-1, 0, 0, -1), (0, 1, -1, 0), (1, 0, 0, 1))\n?                                                   +++    +++++    ++++++\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_fixed_nonsymmetric_integer_products_and_snapshots"
+      ]
+    },
+    {
+      "identity": "quarter-result-selection",
+      "mutant_sha256": "231efca182b6bb73df58e560f82f06e0ee56e341ad62eebefc9e0bfab39a6142",
+      "outcome": "killed",
+      "output": "test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots) ... FAIL\n\n======================================================================\nFAIL: test_fixed_nonsymmetric_integer_products_and_snapshots (__main__.ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 260, in test_fixed_nonsymmetric_integer_products_and_snapshots\n    self.assertEqual(tuple(module.powj(exponent) for exponent in range(5)), (module.EYE, module.JAY, module.JAY2, module.JAY3, module.EYE))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((0, -1, 1, 0), (0, -1, 1, 0), (-1, 0, 0, -1), (-1, 0, 0, -1), (1, 0, 0, 1)) != ((1, 0, 0, 1), (0, -1, 1, 0), (-1, 0, 0, -1), (0, 1, -1, 0), (1, 0, 0, 1))\n\nFirst differing element 0:\n(0, -1, 1, 0)\n(1, 0, 0, 1)\n\n- ((0, -1, 1, 0), (0, -1, 1, 0), (-1, 0, 0, -1), (-1, 0, 0, -1), (1, 0, 0, 1))\n+ ((1, 0, 0, 1), (0, -1, 1, 0), (-1, 0, 0, -1), (0, 1, -1, 0), (1, 0, 0, 1))\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_fixed_nonsymmetric_integer_products_and_snapshots"
+      ]
+    },
+    {
+      "identity": "residue-representative-order",
+      "mutant_sha256": "b24e7774570bdbe12051eb2f1d61e756d73b92625e87c6824a80c5b5b231ab72",
+      "outcome": "killed",
+      "output": "test_quarter_turn_powers_against_matrix_and_cycle (__main__.ContinuousTimeCheckerTests.test_quarter_turn_powers_against_matrix_and_cycle) ... FAIL\n\n======================================================================\nFAIL: test_quarter_turn_powers_against_matrix_and_cycle (__main__.ContinuousTimeCheckerTests.test_quarter_turn_powers_against_matrix_and_cycle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 240, in test_quarter_turn_powers_against_matrix_and_cycle\n    @given(st.integers(0, 4096))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 248, in test_quarter_turn_powers_against_matrix_and_cycle\n    self.assertEqual(module.powj(exponent), module.REPS[exponent % 4])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (-1, 0, 0, -1) != (0, 1, -1, 0)\n\nFirst differing element 0:\n-1\n0\n\n- (-1, 0, 0, -1)\n+ (0, 1, -1, 0)\nFailing test case: test_quarter_turn_powers_against_matrix_and_cycle(\n    self=<__main__.ContinuousTimeCheckerTests testMethod=test_quarter_turn_powers_against_matrix_and_cycle>,\n    exponent=2,\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.272s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_quarter_turn_powers_against_matrix_and_cycle"
+      ]
+    },
+    {
+      "identity": "residue-census-endpoint",
+      "mutant_sha256": "a3617886bb1c58c94a3b6a98697fa33754b514f639ebe1d9ad573aa0a8de5a1a",
+      "outcome": "killed",
+      "output": "test_residue_control_counts_and_injected_fault (__main__.ContinuousTimeCheckerTests.test_residue_control_counts_and_injected_fault) ... FAIL\n\n======================================================================\nFAIL: test_residue_control_counts_and_injected_fault (__main__.ContinuousTimeCheckerTests.test_residue_control_counts_and_injected_fault)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 291, in test_residue_control_counts_and_injected_fault\n    self.assertEqual(cases.checks, 257)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: 251 != 257\n\n----------------------------------------------------------------------\nRan 1 test in 0.030s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_residue_control_counts_and_injected_fault"
+      ]
+    },
+    {
+      "identity": "omit-residue-step",
+      "mutant_sha256": "6ae03f4ea5abe0db0b17a00ee421eeffd38760e5d52501a2afa7fe05fc8154d8",
+      "outcome": "killed",
+      "output": "test_residue_control_counts_and_injected_fault (__main__.ContinuousTimeCheckerTests.test_residue_control_counts_and_injected_fault) ... FAIL\n\n======================================================================\nFAIL: test_residue_control_counts_and_injected_fault (__main__.ContinuousTimeCheckerTests.test_residue_control_counts_and_injected_fault)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 291, in test_residue_control_counts_and_injected_fault\n    self.assertEqual(cases.checks, 257)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: 217 != 257\n\n----------------------------------------------------------------------\nRan 1 test in 0.029s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_residue_control_counts_and_injected_fault"
+      ]
+    },
+    {
+      "identity": "residue-successor",
+      "mutant_sha256": "fe6948635b528ffb1083bab6a21d9b251b312277b50defc11443218146605363",
+      "outcome": "killed",
+      "output": "test_residue_control_counts_and_injected_fault (__main__.ContinuousTimeCheckerTests.test_residue_control_counts_and_injected_fault) ... ERROR\n\n======================================================================\nERROR: test_residue_control_counts_and_injected_fault (__main__.ContinuousTimeCheckerTests.test_residue_control_counts_and_injected_fault)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 290, in test_residue_control_counts_and_injected_fault\n    module.verify_residues(cases)\n    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\independent\\ds-continuous-time-exp-generator.py\", line 201, in verify_residues\n    cases.require((exponent+1) % 4 == (residue+2) % 4, \"residue successor\")\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: residue successor\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_residue_control_counts_and_injected_fault"
+      ]
+    },
+    {
+      "identity": "omit-residue-main",
+      "mutant_sha256": "2ac0d7acc834adeaea8e6dd8aa7e56bd1062ac2a182d905d797c244172334104",
+      "outcome": "killed",
+      "output": "test_executable_receipt_and_failure_exit (__main__.ContinuousTimeCheckerTests.test_executable_receipt_and_failure_exit) ... FAIL\n\n======================================================================\nFAIL: test_executable_receipt_and_failure_exit (__main__.ContinuousTimeCheckerTests.test_executable_receipt_and_failure_exit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\continuous-time-mutation-vihfuvub\\tests\\test_continuous_time_checker.py\", line 303, in test_executable_receipt_and_failure_exit\n    self.assertEqual((receipt[\"status\"], receipt[\"checks\"], receipt[\"Boolean_maps\"]), (\"passed\", 612, 4))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ('passed', 355, 4) != ('passed', 612, 4)\n\nFirst differing element 1:\n355\n612\n\n- ('passed', 355, 4)\n?            ^^^\n\n+ ('passed', 612, 4)\n?            ^^^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.150s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/ds-continuous-time-exp-generator.py",
+      "tests": [
+        "test_executable_receipt_and_failure_exit"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 53,
+      "survived": 0,
+      "unrun": 0
+    },
+    "detected_fraction": 1.0,
+    "eligible": 53
+  }
+}

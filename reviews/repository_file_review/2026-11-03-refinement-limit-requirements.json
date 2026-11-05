@@ -1,0 +1,343 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/dfm-continuum-refinement-limit.py": {
+      "role": "Bounded exact dyadic-cell transport verification application with an owned word value object, checked scalar/permutation callbacks, Railway operations and factored geometric/covariance controls",
+      "origin": "lean4/DressingFieldRefinementLimit.lean",
+      "profile": "Exact",
+      "cost": "Input words<=64 bool bits; depth0..12 and total word length<=64. Refinement creates<=4096 immutable words, O(2^depth*(word_length+depth)) work/storage. Scalar/ordered transport invoke a trusted synchronous callback once per leaf, at most4096 times; callback execution cost is external to this bound. Exact scalar edges and every accumulation have<=4096-bit numerator/denominator; S3 operations use exactly three integer labels. Fixed fixture words have length<=3, scalar depths<=9, S3 depths<=6. Default14642 obligations =14336 scalar+306 noncommutative; no convergence search is performed.",
+      "groups": [
+        {
+          "requirement": "Own a little-endian bool word of at most64 bits, compute exact rational endpoints, and enumerate its binary descendants in increasing interval order. Preflight exact depth0..12 and combined64-bit length before allocating leaves. Return Outcome from refinement and preserve the legacy detached list-of-tuples export.",
+          "symbols": [
+            "DyadicCell",
+            "DyadicCell.__init__",
+            "DyadicCell.endpoints",
+            "DyadicCell._refined_words",
+            "DyadicCell.refine",
+            "endpoints",
+            "leaves"
+          ],
+          "tests": [
+            "RefinementLimitTests.test_cells_partition_against_recursive_oracle",
+            "RefinementLimitTests.test_cell_ownership_and_resource_boundaries",
+            "RefinementLimitTests.test_word_depth_and_callback_preflight",
+            "RefinementLimitTests.test_railway_callbacks_recorders_and_cancellation"
+          ],
+          "requirement_id": "TFQM-REFINEMENT-REVIEW-DFM-CONTINUUM-REFINEMENT-LIMIT-1"
+        },
+        {
+          "requirement": "Require a callable edge assignment, validate words/depth before invoking it, and call each leaf once. Scalar transport accepts only exact int/Fraction callback results and bounds each accumulation. Ordered transport validates each S3 callback result and multiplies later factors on the left. Aggregate methods return Outcome; expected failures/cancellation retain their declared behavior.",
+          "symbols": [
+            "_callback",
+            "DyadicCell._scalar",
+            "DyadicCell.scalar",
+            "DyadicCell._ordered",
+            "DyadicCell.ordered",
+            "scalar_transport",
+            "ordered_transport"
+          ],
+          "tests": [
+            "RefinementLimitTests.test_scalar_transport_against_recursive_oracle",
+            "RefinementLimitTests.test_ordered_transport_against_recursive_action",
+            "RefinementLimitTests.test_scalar_edge_exactness_and_accumulator_budget",
+            "RefinementLimitTests.test_ordered_edge_refusal_and_callback_snapshot",
+            "RefinementLimitTests.test_word_depth_and_callback_preflight",
+            "RefinementLimitTests.test_railway_callbacks_recorders_and_cancellation"
+          ],
+          "requirement_id": "TFQM-REFINEMENT-REVIEW-DFM-CONTINUUM-REFINEMENT-LIMIT-2"
+        },
+        {
+          "requirement": "Admit each permutation as exactly the three integer labels0,1,2, excluding bool/float/duplicates. Implement composition as function composition and inverse as the inverse permutation.",
+          "symbols": [
+            "mul",
+            "inv"
+          ],
+          "tests": [
+            "RefinementLimitTests.test_permutation_full_census_and_domains",
+            "RefinementLimitTests.test_ordered_transport_against_recursive_action",
+            "RefinementLimitTests.test_ordered_edge_refusal_and_callback_snapshot"
+          ],
+          "requirement_id": "TFQM-REFINEMENT-REVIEW-DFM-CONTINUUM-REFINEMENT-LIMIT-3"
+        },
+        {
+          "requirement": "Use the fixed15-word fixture population and explicit Cases recorders. Factor the original geometric grid into word/depth checks without changing obligations. Check exact leaf sums, split envelopes, binary2q accumulation and endpoint-gauge telescoping; preserve alternating perturbations, the omitted-binary-factor negative control and the excluded q=1/2 threshold. Private fixture parameters/callbacks are trusted exact values, not a new general convergence API.",
+          "symbols": [
+            "_cases",
+            "_words",
+            "_scalar_gauge",
+            "_geometric_edge",
+            "_scalar_dressed",
+            "_check_geometric_depth",
+            "_check_geometric_word",
+            "_check_geometric_family",
+            "_alternating_edge",
+            "_check_alternating_word",
+            "_critical_edge",
+            "_check_threshold",
+            "scalar_controls"
+          ],
+          "tests": [
+            "RefinementLimitTests.test_geometric_and_threshold_closed_forms",
+            "RefinementLimitTests.test_scalar_transport_against_recursive_oracle",
+            "RefinementLimitTests.test_fixed_controls_counts_receipt_and_negative_challenges",
+            "RefinementLimitTests.test_railway_callbacks_recorders_and_cancellation"
+          ],
+          "requirement_id": "TFQM-REFINEMENT-REVIEW-DFM-CONTINUUM-REFINEMENT-LIMIT-4"
+        },
+        {
+          "requirement": "Use the declared finite S3 endpoint and edge assignments to verify all216 associativity triples, six inverses,75 covariance cases, two explicit order/inverse counterexample detectors and seven zero-defect coherent-tower controls. Main counts14642 executed obligations and declares supplied analytic hypotheses rather than claiming finite tests prove completeness/continuity.",
+          "symbols": [
+            "_permutation_gauge",
+            "_permutation_edge",
+            "_permutation_dressed",
+            "_coherent_edge",
+            "_check_noncommutative_word",
+            "noncommutative_controls",
+            "main"
+          ],
+          "tests": [
+            "RefinementLimitTests.test_ordered_transport_against_recursive_action",
+            "RefinementLimitTests.test_permutation_full_census_and_domains",
+            "RefinementLimitTests.test_coherent_fixture_with_noninvolutive_start_gauge",
+            "RefinementLimitTests.test_fixed_controls_counts_receipt_and_negative_challenges",
+            "RefinementLimitTests.test_railway_callbacks_recorders_and_cancellation"
+          ],
+          "requirement_id": "TFQM-REFINEMENT-REVIEW-DFM-CONTINUUM-REFINEMENT-LIMIT-5"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "e61e1c31a0a2b6732464f85eccdebc86bcdd7ad9847cd8e5b867f4594ac633db",
+      "symbols": [
+        "DyadicCell",
+        "DyadicCell.__init__",
+        "DyadicCell._ordered",
+        "DyadicCell._refined_words",
+        "DyadicCell._scalar",
+        "DyadicCell.endpoints",
+        "DyadicCell.ordered",
+        "DyadicCell.refine",
+        "DyadicCell.scalar",
+        "_alternating_edge",
+        "_callback",
+        "_cases",
+        "_check_alternating_word",
+        "_check_geometric_depth",
+        "_check_geometric_family",
+        "_check_geometric_word",
+        "_check_noncommutative_word",
+        "_check_threshold",
+        "_coherent_edge",
+        "_critical_edge",
+        "_geometric_edge",
+        "_permutation_dressed",
+        "_permutation_edge",
+        "_permutation_gauge",
+        "_scalar_dressed",
+        "_scalar_gauge",
+        "_words",
+        "endpoints",
+        "inv",
+        "leaves",
+        "main",
+        "mul",
+        "noncommutative_controls",
+        "ordered_transport",
+        "scalar_controls",
+        "scalar_transport"
+      ],
+      "origin_sha256": "19ff11d132d403af3df0b05d760411a9394d25fc0b36b4e8b7fdb1f06309f1af",
+      "consumers": [
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/tests/README.md",
+          "sha256": "46471db4ce83c200a66b7a264ced617826ee7ce9e96a3501bd9bbb4425dadfe5",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/maintenance/pr433_independent_review_20261026.json",
+          "sha256": "ca1f18d0b60587272f4a65e44f30f9fb8885f57c3f03dfbc30b3231528bb6179",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/maintenance/pr433_exact_source_approval_20261026.json",
+          "sha256": "fd75807fd3142ff9dd712dfffec09caf28cb43097168238ade7b901845eddb74",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/stages/DRESSING_FIELD.md",
+          "sha256": "83ac7ddd7480d115aadfe42ddeb3bd78094fb68c4f34a95916643351180adcb2",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/application_branches.json",
+          "sha256": "7569bc0053202d28d9d8d6c7cc9328884fd2ccfe0dc1c0a3e1770f4eb4a9d684",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/nodes/DFM-CONTINUUM-INTERFACE.md",
+          "sha256": "852b3ba0ac6cd036a3e95caf778c7cb21b5eee1f3a2421d70f3a1a3fb0d333a9",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/operads/dfm_continuum_interface.yaml",
+          "sha256": "b556a8824e430d86d9e6c49b90ffc68a55861a800b3ccf6c7b1c4c04d5cd56b0",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivations/independent/dfm-continuum-refinement-limit.md",
+          "sha256": "fbcba7e57b6eddd5b53eaf9bac795fd4e3d5153eeb11786abf84e0a2e6dca493",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/campaign_dfm-continuum-refinement-limit_lean_replay.json",
+          "sha256": "900745fe5193694ae7595e86b5c563b88c48ba31a6cac90225e458937a4435ee",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/approved_pr_433_continuum_acceptance_2026_10_26.json",
+          "sha256": "6fbc773e41daaf8f6a6ff6435a30b551912c9908aa9dfbe26056a87479e561fa",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/tests/test_refinement_limit.py",
+          "sha256": "06ed40ed3e65d156ab14fe76dd04132d9a502726b147dc8b75a220cf8329bb5f",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "176d4963a8b105acd0ce145ed477370fbb08de3269fd5f82f3811cf2ed2d3bd3",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and all prior callable entry points remain. Legacy leaf ordering and list format, little-endian words, permutation order and14642-obligation receipt remain. Scalar callbacks now exclude bool/float/foreign values and every exact accumulation has a4096-bit budget. DyadicCell owns immutable words and adds Outcome operations. Deep scalar/control loops are factored into small functions; fixed fixture generation has no arbitrary size argument. Callbacks are trusted synchronous repository functions, not untrusted code or a bounded-time service. The Lean origin supplies completeness, metric and geometric-decay hypotheses; no scientific DAG status is promoted."
+    },
+    "checks/tests/test_refinement_limit.py": {
+      "role": "Independent exact refinement verification application using recursive binary partitions/sums/group actions, exhaustive S3 operations and explicit callback/resource/lifecycle challenges",
+      "origin": "SCORING.md",
+      "profile": "Exact",
+      "cost": "13 groups,80 deterministic examples per generated property. Recursive oracles use words<=8 bits and depth<=5; geometric increment checks reach depth6. Full resource tests use4096 leaves and64-bit words. Scalar budget challenge stops at its second4096-bit term. Fixed controls preserve14642 obligations; two additional endpoint-gauge fixtures explicitly use a non-involutive start. No callback is launched concurrently; scoped mocks/captures/import registration are restored.",
+      "groups": [
+        {
+          "requirement": "Verify independent interval digit parsing, recursive left/right partitions, scalar sums and ordered point actions; cross-check oracle helpers and every S3 pair/inverse. Challenge snapshot ownership, exact callback outputs, accumulator/preflight refusal, full resource bounds, cancellation/unexpected errors, preserved counts and both mandatory negative controls.",
+          "symbols": [
+            "_interval",
+            "_leaves",
+            "_scalar",
+            "_ordered",
+            "RefinementLimitTests",
+            "RefinementLimitTests.refused",
+            "RefinementLimitTests.test_oracles_and_refusal_helper",
+            "RefinementLimitTests.test_cells_partition_against_recursive_oracle",
+            "RefinementLimitTests.test_scalar_transport_against_recursive_oracle",
+            "RefinementLimitTests.test_ordered_transport_against_recursive_action",
+            "RefinementLimitTests.test_permutation_full_census_and_domains",
+            "RefinementLimitTests.test_cell_ownership_and_resource_boundaries",
+            "RefinementLimitTests.test_word_depth_and_callback_preflight",
+            "RefinementLimitTests.test_scalar_edge_exactness_and_accumulator_budget",
+            "RefinementLimitTests.test_ordered_edge_refusal_and_callback_snapshot",
+            "RefinementLimitTests.test_geometric_and_threshold_closed_forms",
+            "RefinementLimitTests.test_fixed_controls_counts_receipt_and_negative_challenges",
+            "RefinementLimitTests.test_coherent_fixture_with_noninvolutive_start_gauge",
+            "RefinementLimitTests.test_railway_callbacks_recorders_and_cancellation"
+          ],
+          "tests": [
+            "RefinementLimitTests.test_oracles_and_refusal_helper",
+            "RefinementLimitTests.test_cells_partition_against_recursive_oracle",
+            "RefinementLimitTests.test_scalar_transport_against_recursive_oracle",
+            "RefinementLimitTests.test_ordered_transport_against_recursive_action",
+            "RefinementLimitTests.test_permutation_full_census_and_domains",
+            "RefinementLimitTests.test_cell_ownership_and_resource_boundaries",
+            "RefinementLimitTests.test_word_depth_and_callback_preflight",
+            "RefinementLimitTests.test_scalar_edge_exactness_and_accumulator_budget",
+            "RefinementLimitTests.test_ordered_edge_refusal_and_callback_snapshot",
+            "RefinementLimitTests.test_geometric_and_threshold_closed_forms",
+            "RefinementLimitTests.test_fixed_controls_counts_receipt_and_negative_challenges",
+            "RefinementLimitTests.test_coherent_fixture_with_noninvolutive_start_gauge",
+            "RefinementLimitTests.test_railway_callbacks_recorders_and_cancellation"
+          ],
+          "requirement_id": "TFQM-REFINEMENT-REVIEW-TEST-REFINEMENT-LIMIT-1"
+        }
+      ],
+      "nested_declarations": {
+        "RefinementLimitTests.test_word_depth_and_callback_preflight.edge": {
+          "owned_by": "RefinementLimitTests.test_word_depth_and_callback_preflight",
+          "requirements_via": "RefinementLimitTests"
+        },
+        "RefinementLimitTests.test_scalar_edge_exactness_and_accumulator_budget.cancel_after_overflow": {
+          "owned_by": "RefinementLimitTests.test_scalar_edge_exactness_and_accumulator_budget",
+          "requirements_via": "RefinementLimitTests"
+        },
+        "RefinementLimitTests.test_ordered_edge_refusal_and_callback_snapshot.edge": {
+          "owned_by": "RefinementLimitTests.test_ordered_edge_refusal_and_callback_snapshot",
+          "requirements_via": "RefinementLimitTests"
+        }
+      },
+      "source_sha256": "06ed40ed3e65d156ab14fe76dd04132d9a502726b147dc8b75a220cf8329bb5f",
+      "symbols": [
+        "RefinementLimitTests",
+        "RefinementLimitTests.refused",
+        "RefinementLimitTests.test_cell_ownership_and_resource_boundaries",
+        "RefinementLimitTests.test_cells_partition_against_recursive_oracle",
+        "RefinementLimitTests.test_coherent_fixture_with_noninvolutive_start_gauge",
+        "RefinementLimitTests.test_fixed_controls_counts_receipt_and_negative_challenges",
+        "RefinementLimitTests.test_geometric_and_threshold_closed_forms",
+        "RefinementLimitTests.test_oracles_and_refusal_helper",
+        "RefinementLimitTests.test_ordered_edge_refusal_and_callback_snapshot",
+        "RefinementLimitTests.test_ordered_transport_against_recursive_action",
+        "RefinementLimitTests.test_permutation_full_census_and_domains",
+        "RefinementLimitTests.test_railway_callbacks_recorders_and_cancellation",
+        "RefinementLimitTests.test_scalar_edge_exactness_and_accumulator_budget",
+        "RefinementLimitTests.test_scalar_transport_against_recursive_oracle",
+        "RefinementLimitTests.test_word_depth_and_callback_preflight",
+        "_interval",
+        "_leaves",
+        "_ordered",
+        "_scalar"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/independent/dfm-continuum-refinement-limit.py",
+          "sha256": "e61e1c31a0a2b6732464f85eccdebc86bcdd7ad9847cd8e5b867f4594ac633db",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "176d4963a8b105acd0ce145ed477370fbb08de3269fd5f82f3811cf2ed2d3bd3",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and all prior callable entry points remain. Legacy leaf ordering and list format, little-endian words, permutation order and14642-obligation receipt remain. Scalar callbacks now exclude bool/float/foreign values and every exact accumulation has a4096-bit budget. DyadicCell owns immutable words and adds Outcome operations. Deep scalar/control loops are factored into small functions; fixed fixture generation has no arbitrary size argument. Callbacks are trusted synchronous repository functions, not untrusted code or a bounded-time service. The Lean origin supplies completeness, metric and geometric-decay hypotheses; no scientific DAG status is promoted."
+    }
+  }
+}

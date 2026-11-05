@@ -1,0 +1,384 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/checker_support/exact_json_document.py": {
+      "profile": "Exact",
+      "role": "Owned bounded exact-JSON document and resource-safe file admission boundary",
+      "cost": "At most1MiB raw bytes and16 nested containers. One linear byte scan before decoding; JSON integers have at most1234 decimal digits and4096 bits. Bounded read requests1MiB+1 to detect truncation. Parse creates a fresh tree in O(bytes) work/storage; duplicate object names refuse. Host JSON decoder is a declared dependency; expected recursion/encoding/syntax/IO errors are typed and unexpected failures propagate.",
+      "groups": [
+        {
+          "requirement": "Track JSON quoted strings and escapes before enforcing depth16; reject oversized decimal tokens before integer conversion, then check actual4096-bit size. Reject float/exponent/NaN/Infinity tokens and duplicate object names.",
+          "symbols": [
+            "_depth",
+            "_integer",
+            "_inexact",
+            "_object"
+          ],
+          "tests": [
+            "GaussianExtensionTests.test_exact_json_numbers_duplicates_unicode_and_syntax",
+            "GaussianExtensionTests.test_document_depth_size_hash_and_ownership",
+            "GaussianExtensionTests.test_isolated_admission_terms_prescriptions_and_parser_guards"
+          ],
+          "test_source": "checks/tests/test_gaussian_extension_certificate.py",
+          "requirement_id": "TFQM-EXTENSION-REVIEW-EXACT-JSON-DOCUMENT-1"
+        },
+        {
+          "requirement": "Own exact immutable bytes, admit at most1MiB before scanning, expose SHA256 of those bytes without claiming authentication. Parse fresh caller-owned values with strictUTF8 and exact-number hooks; recursion refusal is resource, malformed syntax/encoding input. Read only Path objects and close streams on every exit; read1MiB+1 rather than silently truncate. Public reads/parse use Outcome.",
+          "symbols": [
+            "ExactJsonDocument",
+            "ExactJsonDocument.__init__",
+            "ExactJsonDocument.sha256",
+            "ExactJsonDocument._parse",
+            "ExactJsonDocument.parse",
+            "ExactJsonDocument._read",
+            "ExactJsonDocument.read"
+          ],
+          "tests": [
+            "GaussianExtensionTests.test_document_depth_size_hash_and_ownership",
+            "GaussianExtensionTests.test_document_file_lifecycle_and_read_limit",
+            "GaussianExtensionTests.test_expected_failure_and_cancellation_propagation",
+            "GaussianExtensionTests.test_exact_json_numbers_duplicates_unicode_and_syntax"
+          ],
+          "test_source": "checks/tests/test_gaussian_extension_certificate.py",
+          "requirement_id": "TFQM-EXTENSION-REVIEW-EXACT-JSON-DOCUMENT-2"
+        }
+      ],
+      "source_sha256": "e162590c25fab02fe87d73bc50f1e52e8083580b9faafae14ba4c50b8efb9f8c",
+      "symbols": [
+        "ExactJsonDocument",
+        "ExactJsonDocument.__init__",
+        "ExactJsonDocument._parse",
+        "ExactJsonDocument._read",
+        "ExactJsonDocument.parse",
+        "ExactJsonDocument.read",
+        "ExactJsonDocument.sha256",
+        "_depth",
+        "_inexact",
+        "_integer",
+        "_object"
+      ],
+      "nested_declarations": {},
+      "origins": [
+        {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        {
+          "path": "checks/checker_support/boundary.py",
+          "sha256": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708"
+        }
+      ],
+      "consumers": [
+        {
+          "path": "checks/independent/fq-gleason-qi3-extension.py",
+          "sha256": "3659d64137f730882d6f8eb5a0c8fee8664d87bba11585ea34332537b9f820f3",
+          "state": "current direct consumer"
+        },
+        {
+          "path": "checks/tests/test_gaussian_extension_certificate.py",
+          "sha256": "87508354fdff5456a1829011f9b7d3ff008ba707583ffed1623bbe596491003c",
+          "state": "current direct consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "2cb2c5f603eb0b964abb7300017261cc38dcb2bae2b77c16f498ee30b004f134",
+          "state": "current direct consumer"
+        }
+      ],
+      "consumer_boundary": "Nine original path consumers audited; one executable consumer in code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_independent_check_scripts_pass asserts default subprocess success and two retained stdout fragments. No function-level extension caller found. Default277/210/19/RHS32 JSON and allfour negative-control labels retained; raw verify/self_test now use explicit owned state and typed results. The derivation dependency sentence is corrected from no repository imports to shared independent-checking adapters, without changing scientific claims. Historical producer receipts remain historical; no new Lean build or hosted CI claim. Data bytes and all literal vector identities stay unchanged."
+    },
+    "checks/independent/fq-gleason-qi3-extension.py": {
+      "profile": "Exact",
+      "role": "Owned Gaussian extension certificate aggregate and exact geometric/algebraic replay application",
+      "cost": "Closed7-field schema; at most512 rays of6 exact integers,1024 frames of4 integers and512 prescriptions of3 integers. All inputs, individual products, Hermitian terms/prefixes and certificate accumulators remain within4096 bits; temporary products at most8192bits before admission. O(rays+frames+prescriptions) fixed-width arithmetic work/storage, bounded gcd/hashing and three Hermitian products per frame. CLI file admission additionally uses1MiB/depth16 limits. Four negative controls use detached bounded records; no solver or model imports.",
+      "groups": [
+        {
+          "requirement": "Admit the closed native schema, exact target/normalization, syntactic40-lowercase-hex commit identifier and claimed RHS32. Primitive nonzero literal Gaussian integer6-vectors must be distinct. Preflight all constraint shapes, nonzero weights and indices before geometry; enforce finite collection and4096-bit bounds. No projective or symmetry identification is used.",
+          "symbols": [
+            "_bounded",
+            "_row",
+            "_schema",
+            "_rays",
+            "_records",
+            "GaussianExtensionCertificate",
+            "GaussianExtensionCertificate.__init__",
+            "GaussianExtensionCertificate.to_record"
+          ],
+          "tests": [
+            "GaussianExtensionTests.test_closed_schema_metadata_and_exact_numbers",
+            "GaussianExtensionTests.test_whole_schema_admission_precedes_geometry",
+            "GaussianExtensionTests.test_owned_immutable_snapshot_and_detached_exports",
+            "GaussianExtensionTests.test_integer_products_prefixes_and_aggregate_budgets",
+            "GaussianExtensionTests.test_isolated_admission_terms_prescriptions_and_parser_guards"
+          ],
+          "test_source": "checks/tests/test_gaussian_extension_certificate.py",
+          "requirement_id": "TFQM-EXTENSION-REVIEW-FQ-GLEASON-QI3-EXTENSION-1"
+        },
+        {
+          "requirement": "Compute conjugate-left Hermitian product with separately bounded products, terms and prefixes. For each owned primitive real ray, use the two-odd-coordinate modulo-four sign or zero. Replay all three orthogonality constraints per frame and exact prescribed exotic signs; accumulate literal-vector coefficients, constraint weight totals and weighted RHS.",
+          "symbols": [
+            "_inner",
+            "_sign",
+            "GaussianExtensionCertificate._frames",
+            "GaussianExtensionCertificate._prescriptions"
+          ],
+          "tests": [
+            "GaussianExtensionTests.test_generated_hermitian_inner_matches_symbolic_algebra",
+            "GaussianExtensionTests.test_generated_real_sign_matches_residue_table",
+            "GaussianExtensionTests.test_full_symbolic_linear_certificate_and_geometry",
+            "GaussianExtensionTests.test_geometric_and_algebraic_forgery_refusals",
+            "GaussianExtensionTests.test_integer_products_prefixes_and_aggregate_budgets",
+            "GaussianExtensionTests.test_isolated_admission_terms_prescriptions_and_parser_guards"
+          ],
+          "test_source": "checks/tests/test_gaussian_extension_certificate.py",
+          "requirement_id": "TFQM-EXTENSION-REVIEW-FQ-GLEASON-QI3-EXTENSION-2"
+        },
+        {
+          "requirement": "Require all literal-vector coefficients to cancel, RHS32, cancellation of the f-to-g constant term and allthree exotic signs. Verify using fresh per-call state and typed Outcome; independently compare every JSON frame,prescription and integer coefficient to Lean. The certificate proves only exclusion of the prescribed exotic extension, including signed functions.",
+          "symbols": [
+            "GaussianExtensionCertificate._verify",
+            "GaussianExtensionCertificate.verify",
+            "verify"
+          ],
+          "tests": [
+            "GaussianExtensionTests.test_full_symbolic_linear_certificate_and_geometry",
+            "GaussianExtensionTests.test_all_lean_frame_prescription_and_weight_rows_match",
+            "GaussianExtensionTests.test_reindex_reorder_and_canceling_constraint_metamorphisms",
+            "GaussianExtensionTests.test_geometric_and_algebraic_forgery_refusals",
+            "GaussianExtensionTests.test_owned_immutable_snapshot_and_detached_exports"
+          ],
+          "test_source": "checks/tests/test_gaussian_extension_certificate.py",
+          "requirement_id": "TFQM-EXTENSION-REVIEW-FQ-GLEASON-QI3-EXTENSION-3"
+        },
+        {
+          "requirement": "Compose bounded document read, exact parse and schema admission. Preserve CLIdefault/--certificate/--self-test and the four legacy rejection labels; all controls operate on detached copies and must refuse. Quiet import, repeatable invocation, nonzero expected failure, scoped file/capture/subprocess lifecycle and propagation of programming errors and cancellation.",
+          "symbols": [
+            "read_certificate",
+            "_negative_controls",
+            "_self_test",
+            "self_test",
+            "_main",
+            "main"
+          ],
+          "tests": [
+            "GaussianExtensionTests.test_cli_legacy_fragments_repeated_runs_and_fail_closed",
+            "GaussianExtensionTests.test_expected_failure_and_cancellation_propagation",
+            "GaussianExtensionTests.test_owned_immutable_snapshot_and_detached_exports",
+            "GaussianExtensionTests.test_geometric_and_algebraic_forgery_refusals"
+          ],
+          "test_source": "checks/tests/test_gaussian_extension_certificate.py",
+          "requirement_id": "TFQM-EXTENSION-REVIEW-FQ-GLEASON-QI3-EXTENSION-4"
+        }
+      ],
+      "source_sha256": "3659d64137f730882d6f8eb5a0c8fee8664d87bba11585ea34332537b9f820f3",
+      "symbols": [
+        "GaussianExtensionCertificate",
+        "GaussianExtensionCertificate.__init__",
+        "GaussianExtensionCertificate._frames",
+        "GaussianExtensionCertificate._prescriptions",
+        "GaussianExtensionCertificate._verify",
+        "GaussianExtensionCertificate.to_record",
+        "GaussianExtensionCertificate.verify",
+        "_bounded",
+        "_inner",
+        "_main",
+        "_negative_controls",
+        "_rays",
+        "_records",
+        "_row",
+        "_schema",
+        "_self_test",
+        "_sign",
+        "main",
+        "read_certificate",
+        "self_test",
+        "verify"
+      ],
+      "nested_declarations": {},
+      "origins": [
+        {
+          "path": "lean4/BornGaussianRationalExtensionObstruction.lean",
+          "sha256": "aa68f3cdf925dcbe35b7aa2d23f51bc9bf1171963f060c8540988e5c77b1fb33"
+        },
+        {
+          "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+          "sha256": "0be4a26228d9d9291768f79efd128dbe918e7254a3919963d48a52696af4a9d0"
+        },
+        {
+          "path": "checks/independent/data/fq_gleason_qi3_extension.json",
+          "sha256": "fd0fd770fd92f7cb60203c2b813936717db74707e9e3ac5954fab3eaed0f226b"
+        }
+      ],
+      "consumers": [
+        {
+          "path": "checks/tests/test_gaussian_extension_certificate.py",
+          "sha256": "87508354fdff5456a1829011f9b7d3ff008ba707583ffed1623bbe596491003c",
+          "state": "current direct consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "2cb2c5f603eb0b964abb7300017261cc38dcb2bae2b77c16f498ee30b004f134",
+          "state": "current direct consumer"
+        },
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+          "sha256": "cf9240852008d2612bb08e1864a048785ac967d0471680447869ae94100b9329",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "dag/operads/fq_gleason_qi3_frame_functions.yaml",
+          "sha256": "002193e2d66a95dd807854dc9c44130e8332bb106c5c38219d709702376c05ef",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "docs/evidence/nodes/FQ-GLEASON-QI3-FRAME-FUNCTIONS.md",
+          "sha256": "66dc3b0007d4650bd52b3b21000e78a7f5ef2755b5fcb863436a9c1eae34b98c",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md",
+          "sha256": "7470a257945b734eab0d153f689b3e139b7a803c1f53d02e5c34feef84e5be91",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "dag/research/fq_gleason_qi3_validation.json",
+          "sha256": "e8ab6e03a174dad46faa160b2de50792fca5101a8fd7bf0da737ebb0b498f362",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "code/python/tests/test_fq_gleason_qi3_frame_functions.py",
+          "sha256": "b4a861575be98a3c565ea4ee34810dac0e44032cea85a0294b33af89f9b15feb",
+          "state": "historical receipt or unchanged path consumer"
+        },
+        {
+          "path": "dag/derivations/independent/fq-gleason-qi3-frame-functions.md",
+          "sha256": "0be4a26228d9d9291768f79efd128dbe918e7254a3919963d48a52696af4a9d0",
+          "state": "targeted dependency sentence correction prepared from guarded source bytes"
+        }
+      ],
+      "consumer_boundary": "Nine original path consumers audited; one executable consumer in code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_independent_check_scripts_pass asserts default subprocess success and two retained stdout fragments. No function-level extension caller found. Default277/210/19/RHS32 JSON and allfour negative-control labels retained; raw verify/self_test now use explicit owned state and typed results. The derivation dependency sentence is corrected from no repository imports to shared independent-checking adapters, without changing scientific claims. Historical producer receipts remain historical; no new Lean build or hosted CI claim. Data bytes and all literal vector identities stay unchanged."
+    },
+    "checks/tests/test_gaussian_extension_certificate.py": {
+      "profile": "Exact",
+      "role": "Independent symbolic and source-table certificate verification harness with malformed-input and resource-lifecycle challenges",
+      "cost": "16unittest groups,60 deterministic generated Gaussian inner products and real residue samples;20 finite reindex/reorder/canceling-row samples. Independent SymPy229x277 linear witness,630Hermitian orthogonality checks, and all210Lean frames/19prescriptions/229weights. Bounds include4096-bit arithmetic,1MiB/16depth/5000-digit JSON, ownership, cancellation and30-second subprocess timeouts. Temporary directories, mocks and captured streams are context managed.",
+      "groups": [
+        {
+          "requirement": "Reconstruct the exact linear witness and geometry with symbolic arithmetic, parse all literal Lean vectors and coefficient rows, generate independent residue/algebra/metamorphic samples, and challenge schema, arithmetic, ownership, parser, lifecycle and compatibleCLI boundaries. Deliberate malformed float/bool inputs are negative tests, not admitted numeric paths.",
+          "symbols": [
+            "load",
+            "record",
+            "rows",
+            "complex_vector",
+            "lean_vectors",
+            "GaussianExtensionTests",
+            "GaussianExtensionTests.accepted",
+            "GaussianExtensionTests.refused",
+            "GaussianExtensionTests.test_full_symbolic_linear_certificate_and_geometry",
+            "GaussianExtensionTests.test_all_lean_frame_prescription_and_weight_rows_match",
+            "GaussianExtensionTests.test_generated_hermitian_inner_matches_symbolic_algebra",
+            "GaussianExtensionTests.test_generated_real_sign_matches_residue_table",
+            "GaussianExtensionTests.test_reindex_reorder_and_canceling_constraint_metamorphisms",
+            "GaussianExtensionTests.test_closed_schema_metadata_and_exact_numbers",
+            "GaussianExtensionTests.test_owned_immutable_snapshot_and_detached_exports",
+            "GaussianExtensionTests.test_whole_schema_admission_precedes_geometry",
+            "GaussianExtensionTests.test_geometric_and_algebraic_forgery_refusals",
+            "GaussianExtensionTests.test_integer_products_prefixes_and_aggregate_budgets",
+            "GaussianExtensionTests.test_exact_json_numbers_duplicates_unicode_and_syntax",
+            "GaussianExtensionTests.test_document_depth_size_hash_and_ownership",
+            "GaussianExtensionTests.test_document_file_lifecycle_and_read_limit",
+            "GaussianExtensionTests.test_expected_failure_and_cancellation_propagation",
+            "GaussianExtensionTests.test_cli_legacy_fragments_repeated_runs_and_fail_closed",
+            "GaussianExtensionTests.test_isolated_admission_terms_prescriptions_and_parser_guards"
+          ],
+          "tests": [
+            "GaussianExtensionTests.test_full_symbolic_linear_certificate_and_geometry",
+            "GaussianExtensionTests.test_all_lean_frame_prescription_and_weight_rows_match",
+            "GaussianExtensionTests.test_generated_hermitian_inner_matches_symbolic_algebra",
+            "GaussianExtensionTests.test_generated_real_sign_matches_residue_table",
+            "GaussianExtensionTests.test_reindex_reorder_and_canceling_constraint_metamorphisms",
+            "GaussianExtensionTests.test_closed_schema_metadata_and_exact_numbers",
+            "GaussianExtensionTests.test_owned_immutable_snapshot_and_detached_exports",
+            "GaussianExtensionTests.test_whole_schema_admission_precedes_geometry",
+            "GaussianExtensionTests.test_geometric_and_algebraic_forgery_refusals",
+            "GaussianExtensionTests.test_integer_products_prefixes_and_aggregate_budgets",
+            "GaussianExtensionTests.test_exact_json_numbers_duplicates_unicode_and_syntax",
+            "GaussianExtensionTests.test_document_depth_size_hash_and_ownership",
+            "GaussianExtensionTests.test_document_file_lifecycle_and_read_limit",
+            "GaussianExtensionTests.test_expected_failure_and_cancellation_propagation",
+            "GaussianExtensionTests.test_cli_legacy_fragments_repeated_runs_and_fail_closed",
+            "GaussianExtensionTests.test_isolated_admission_terms_prescriptions_and_parser_guards"
+          ],
+          "test_source": "checks/tests/test_gaussian_extension_certificate.py",
+          "requirement_id": "TFQM-EXTENSION-REVIEW-TEST-GAUSSIAN-EXTENSION-CERTIFICATE-1"
+        }
+      ],
+      "source_sha256": "87508354fdff5456a1829011f9b7d3ff008ba707583ffed1623bbe596491003c",
+      "symbols": [
+        "GaussianExtensionTests",
+        "GaussianExtensionTests.accepted",
+        "GaussianExtensionTests.refused",
+        "GaussianExtensionTests.test_all_lean_frame_prescription_and_weight_rows_match",
+        "GaussianExtensionTests.test_cli_legacy_fragments_repeated_runs_and_fail_closed",
+        "GaussianExtensionTests.test_closed_schema_metadata_and_exact_numbers",
+        "GaussianExtensionTests.test_document_depth_size_hash_and_ownership",
+        "GaussianExtensionTests.test_document_file_lifecycle_and_read_limit",
+        "GaussianExtensionTests.test_exact_json_numbers_duplicates_unicode_and_syntax",
+        "GaussianExtensionTests.test_expected_failure_and_cancellation_propagation",
+        "GaussianExtensionTests.test_full_symbolic_linear_certificate_and_geometry",
+        "GaussianExtensionTests.test_generated_hermitian_inner_matches_symbolic_algebra",
+        "GaussianExtensionTests.test_generated_real_sign_matches_residue_table",
+        "GaussianExtensionTests.test_geometric_and_algebraic_forgery_refusals",
+        "GaussianExtensionTests.test_integer_products_prefixes_and_aggregate_budgets",
+        "GaussianExtensionTests.test_isolated_admission_terms_prescriptions_and_parser_guards",
+        "GaussianExtensionTests.test_owned_immutable_snapshot_and_detached_exports",
+        "GaussianExtensionTests.test_reindex_reorder_and_canceling_constraint_metamorphisms",
+        "GaussianExtensionTests.test_whole_schema_admission_precedes_geometry",
+        "complex_vector",
+        "lean_vectors",
+        "load",
+        "record",
+        "rows"
+      ],
+      "nested_declarations": {},
+      "origins": [
+        {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        {
+          "path": "checks/checker_support/boundary.py",
+          "sha256": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708"
+        }
+      ],
+      "consumers": [
+        {
+          "path": "checks/independent/fq-gleason-qi3-extension.py",
+          "sha256": "3659d64137f730882d6f8eb5a0c8fee8664d87bba11585ea34332537b9f820f3",
+          "state": "current direct consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "2cb2c5f603eb0b964abb7300017261cc38dcb2bae2b77c16f498ee30b004f134",
+          "state": "current direct consumer"
+        }
+      ],
+      "consumer_boundary": "Nine original path consumers audited; one executable consumer in code/python/tests/test_fq_gleason_qi3_frame_functions.py::test_independent_check_scripts_pass asserts default subprocess success and two retained stdout fragments. No function-level extension caller found. Default277/210/19/RHS32 JSON and allfour negative-control labels retained; raw verify/self_test now use explicit owned state and typed results. The derivation dependency sentence is corrected from no repository imports to shared independent-checking adapters, without changing scientific claims. Historical producer receipts remain historical; no new Lean build or hosted CI claim. Data bytes and all literal vector identities stay unchanged."
+    }
+  }
+}

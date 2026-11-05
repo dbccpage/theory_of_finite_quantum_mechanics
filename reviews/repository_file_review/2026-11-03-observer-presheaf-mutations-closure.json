@@ -1,0 +1,1076 @@
+{
+  "AuthorityEffect": "None",
+  "initial_receipt_sha256": "706313a260c8b8b89f5d917256695e1b2c5ddf4903576ea1849a81c335a9f5cd",
+  "manifest_sha256": "a3e333ecc9218878e41cd506f87418cda02b3aa95e33cc8e5b1eb899c8847940",
+  "test_amendments": [
+    {
+      "path": "checks/tests/test_exact_linear_program.py",
+      "before_sha256": "e507a1f559be57af5252a2d6bfb9bd81305dc70f348eb003c1d46d0780801e71",
+      "after_sha256": "4264ab18c203c5efd06583fa853c6e0a4fa37d8415074df2e68cb2db780005d4",
+      "added_text": "    def test_certificate_conditions_refuse_without_other_failed_checks(self) -> None:\n        cases = (\n            (ExactLinearProgram((1, 1), ((1, 1),), (3,)), LinearProgramCertificate(\"optimal\", (-1, 4), (1,))),\n            (ExactLinearProgram((1, 2), ((1, 1),), (3,)), LinearProgramCertificate(\"optimal\", (0, 3), (2,))),\n            (ExactLinearProgram((-1, 0), ((1, 1),), (1,)), LinearProgramCertificate(\"unbounded\", primal=(1, 0), ray=(1, 0))),\n        )\n        for program, certificate in cases:\n            refused = program.verify(certificate)\n            self.assertEqual(refused.error.kind if refused.error else None, \"check\")\n\n\n"
+    },
+    {
+      "path": "checks/tests/test_cech_complex.py",
+      "before_sha256": "843003ea90f873df2aa0445a879c13cfc70b09c591aea82a70cd310510202e8a",
+      "after_sha256": "38c5a34d32b6b77d404900c3288c5ea25074c0eb4dc13dddf1043b7516d96228",
+      "added_text": "    def test_primal_norm_budget_is_not_masked_by_dual_overflow(self) -> None:\n        complex_, omega, zero, _ = bell_witness()\n        omega[(0, 1)] = (Q(2**4095), Q(2**4095))\n        dual = {edge: (Q(0), Q(0)) for edge in complex_.edges}\n        refused = complex_.quotient_value(omega, zero, dual)\n        self.assertEqual(refused.error.kind if refused.error else None, \"resource\")\n\n\n"
+    }
+  ],
+  "reason": "Original LP negative primal and infeasible dual examples also had an objective gap; the original non-kernel ray also failed descent. Add certificates satisfying every other condition. Original Cech oversized primal norm also overflowed its dual pairing; a zero dual isolates the primal resource check before the eventual gap check. Only two exactly additive test methods are permitted.",
+  "mutants": [
+    {
+      "identity": "lp-primal-sign",
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_certificate_conditions_refuse_without_other_failed_checks"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks) ... FAIL\n\n======================================================================\nFAIL: test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-followup-e1eusqoz\\tests\\test_exact_linear_program.py\", line 184, in test_certificate_conditions_refuse_without_other_failed_checks\n    self.assertEqual(refused.error.kind if refused.error else None, \"check\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None != 'check'\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "4e2aec2ca9ad209c208d09ded041019e418065c613f71789c6441cf4c8d67c9a",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+      }
+    },
+    {
+      "identity": "lp-dual-inequalities",
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_certificate_conditions_refuse_without_other_failed_checks"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks) ... FAIL\n\n======================================================================\nFAIL: test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-followup-e1eusqoz\\tests\\test_exact_linear_program.py\", line 184, in test_certificate_conditions_refuse_without_other_failed_checks\n    self.assertEqual(refused.error.kind if refused.error else None, \"check\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None != 'check'\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "e2ea13268edc598464a89d926de44e3236b4459033b83657faa8ba2ad97ffa33",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+      }
+    },
+    {
+      "identity": "lp-ray-kernel",
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_certificate_conditions_refuse_without_other_failed_checks"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks) ... FAIL\n\n======================================================================\nFAIL: test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-followup-e1eusqoz\\tests\\test_exact_linear_program.py\", line 184, in test_certificate_conditions_refuse_without_other_failed_checks\n    self.assertEqual(refused.error.kind if refused.error else None, \"check\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None != 'check'\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "23a4ff1cc803b25a7737116d938075953ae9d0fb56dc46d019f690e5080d26a2",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+      }
+    },
+    {
+      "identity": "cech-norm-sum-bound",
+      "source": "checker_support/cech_complex.py",
+      "suite": "test_cech_complex.py",
+      "tests": [
+        "test_primal_norm_budget_is_not_masked_by_dual_overflow"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_primal_norm_budget_is_not_masked_by_dual_overflow (__main__.CechComplexTests.test_primal_norm_budget_is_not_masked_by_dual_overflow) ... FAIL\n\n======================================================================\nFAIL: test_primal_norm_budget_is_not_masked_by_dual_overflow (__main__.CechComplexTests.test_primal_norm_budget_is_not_masked_by_dual_overflow)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-followup-e1eusqoz\\tests\\test_cech_complex.py\", line 144, in test_primal_norm_budget_is_not_masked_by_dual_overflow\n    self.assertEqual(refused.error.kind if refused.error else None, \"resource\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'check' != 'resource'\n- check\n+ resource\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "60cb79bb7d468c40e771f236018297b0e4d355c17244ebc35051b38642a973de",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_primal_norm_budget_is_not_masked_by_dual_overflow (__main__.CechComplexTests.test_primal_norm_budget_is_not_masked_by_dual_overflow) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n"
+      }
+    }
+  ],
+  "adjudicated_mutants": [
+    {
+      "identity": "lp-exact-cost",
+      "mutant_sha256": "fe2d4ef7f6e91e0ef51f9b56977928412dc719c844e06b8e4fa24ab9bad9c607",
+      "outcome": "killed",
+      "output": "test_exact_admission_shapes_and_certificate_variants (__main__.ExactLinearProgramTests.test_exact_admission_shapes_and_certificate_variants) ... FAIL\n\n======================================================================\nFAIL: test_exact_admission_shapes_and_certificate_variants (__main__.ExactLinearProgramTests.test_exact_admission_shapes_and_certificate_variants)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 111, in test_exact_admission_shapes_and_certificate_variants\n    self.assertFalse(evaluate(ExactLinearProgram, (value,), ((1,),), (1,)).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_exact_admission_shapes_and_certificate_variants"
+      ]
+    },
+    {
+      "identity": "lp-negative-rhs",
+      "mutant_sha256": "e5c5373b55be8be8f48432b8a82f45118755c474737e1ad4e5567846988bd59f",
+      "outcome": "killed",
+      "output": "test_exact_admission_shapes_and_certificate_variants (__main__.ExactLinearProgramTests.test_exact_admission_shapes_and_certificate_variants) ... FAIL\n\n======================================================================\nFAIL: test_exact_admission_shapes_and_certificate_variants (__main__.ExactLinearProgramTests.test_exact_admission_shapes_and_certificate_variants)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 116, in test_exact_admission_shapes_and_certificate_variants\n    self.assertFalse(evaluate(ExactLinearProgram, cost, rows, rhs).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_exact_admission_shapes_and_certificate_variants"
+      ]
+    },
+    {
+      "identity": "lp-width",
+      "mutant_sha256": "d86cecbd2e38e44fc1641c7324adb380d27a27424f2686af40b642ae9088daa7",
+      "outcome": "killed",
+      "output": "test_sizes_bits_and_pivot_exhaustion_are_resource_refusals (__main__.ExactLinearProgramTests.test_sizes_bits_and_pivot_exhaustion_are_resource_refusals) ... ERROR\n\n======================================================================\nERROR: test_sizes_bits_and_pivot_exhaustion_are_resource_refusals (__main__.ExactLinearProgramTests.test_sizes_bits_and_pivot_exhaustion_are_resource_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 146, in test_sizes_bits_and_pivot_exhaustion_are_resource_refusals\n    full = ExactLinearProgram((0,)*64, ((0,)*64,)*32, (0,)*32)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\exact_linear_program.py\", line 40, in __init__\n    cost = sequence(objective, \"LP objective\", maximum=63)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\domains.py\", line 94, in sequence\n    raise _violation(\"resource\", f\"{name} exceeds {maximum} entries\")\nchecker_support.boundary.Violation: LP objective exceeds 63 entries\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_sizes_bits_and_pivot_exhaustion_are_resource_refusals"
+      ]
+    },
+    {
+      "identity": "lp-row-budget",
+      "mutant_sha256": "7ba4dee2a66652430dcc532bb417e7faadbdfc3785e12c893e55754304cbb7bd",
+      "outcome": "killed",
+      "output": "test_sizes_bits_and_pivot_exhaustion_are_resource_refusals (__main__.ExactLinearProgramTests.test_sizes_bits_and_pivot_exhaustion_are_resource_refusals) ... ERROR\n\n======================================================================\nERROR: test_sizes_bits_and_pivot_exhaustion_are_resource_refusals (__main__.ExactLinearProgramTests.test_sizes_bits_and_pivot_exhaustion_are_resource_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 146, in test_sizes_bits_and_pivot_exhaustion_are_resource_refusals\n    full = ExactLinearProgram((0,)*64, ((0,)*64,)*32, (0,)*32)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\exact_linear_program.py\", line 41, in __init__\n    rows = sequence(coefficients, \"LP rows\", maximum=31)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\domains.py\", line 94, in sequence\n    raise _violation(\"resource\", f\"{name} exceeds {maximum} entries\")\nchecker_support.boundary.Violation: LP rows exceeds 31 entries\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_sizes_bits_and_pivot_exhaustion_are_resource_refusals"
+      ]
+    },
+    {
+      "identity": "lp-dot-product-bound",
+      "mutant_sha256": "d353d8ffbafbc984e6587fa0ac6943e66350eeecdc796db5e20f540d8f1e0a08",
+      "outcome": "killed",
+      "output": "test_sizes_bits_and_pivot_exhaustion_are_resource_refusals (__main__.ExactLinearProgramTests.test_sizes_bits_and_pivot_exhaustion_are_resource_refusals) ... FAIL\n\n======================================================================\nFAIL: test_sizes_bits_and_pivot_exhaustion_are_resource_refusals (__main__.ExactLinearProgramTests.test_sizes_bits_and_pivot_exhaustion_are_resource_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 159, in test_sizes_bits_and_pivot_exhaustion_are_resource_refusals\n    self.assertEqual(dot_refusal.error.kind if dot_refusal.error else None, \"resource\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None != 'resource'\n\n----------------------------------------------------------------------\nRan 1 test in 0.017s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_sizes_bits_and_pivot_exhaustion_are_resource_refusals"
+      ]
+    },
+    {
+      "identity": "lp-dot-prefix-bound",
+      "mutant_sha256": "5bd269a556bcb15e613b340cc211ff136bff887433745e6163be0e77201ea62d",
+      "outcome": "killed",
+      "output": "test_sizes_bits_and_pivot_exhaustion_are_resource_refusals (__main__.ExactLinearProgramTests.test_sizes_bits_and_pivot_exhaustion_are_resource_refusals) ... FAIL\n\n======================================================================\nFAIL: test_sizes_bits_and_pivot_exhaustion_are_resource_refusals (__main__.ExactLinearProgramTests.test_sizes_bits_and_pivot_exhaustion_are_resource_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 159, in test_sizes_bits_and_pivot_exhaustion_are_resource_refusals\n    self.assertEqual(dot_refusal.error.kind if dot_refusal.error else None, \"resource\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None != 'resource'\n\n----------------------------------------------------------------------\nRan 1 test in 0.017s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_sizes_bits_and_pivot_exhaustion_are_resource_refusals"
+      ]
+    },
+    {
+      "identity": "lp-primal-sign",
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_certificate_conditions_refuse_without_other_failed_checks"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks) ... FAIL\n\n======================================================================\nFAIL: test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-followup-e1eusqoz\\tests\\test_exact_linear_program.py\", line 184, in test_certificate_conditions_refuse_without_other_failed_checks\n    self.assertEqual(refused.error.kind if refused.error else None, \"check\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None != 'check'\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "4e2aec2ca9ad209c208d09ded041019e418065c613f71789c6441cf4c8d67c9a",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+      }
+    },
+    {
+      "identity": "lp-primal-equations",
+      "mutant_sha256": "67e2a8d4eab88cb879d94f78ff9c6266abe6f5faeb60860ec166a87ddf4c543c",
+      "outcome": "killed",
+      "output": "test_certificate_tampering_and_wrong_program (__main__.ExactLinearProgramTests.test_certificate_tampering_and_wrong_program) ... FAIL\n\n======================================================================\nFAIL: test_certificate_tampering_and_wrong_program (__main__.ExactLinearProgramTests.test_certificate_tampering_and_wrong_program)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 103, in test_certificate_tampering_and_wrong_program\n    self.assertFalse(program.verify(candidate).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_certificate_tampering_and_wrong_program"
+      ]
+    },
+    {
+      "identity": "lp-dual-inequalities",
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_certificate_conditions_refuse_without_other_failed_checks"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks) ... FAIL\n\n======================================================================\nFAIL: test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-followup-e1eusqoz\\tests\\test_exact_linear_program.py\", line 184, in test_certificate_conditions_refuse_without_other_failed_checks\n    self.assertEqual(refused.error.kind if refused.error else None, \"check\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None != 'check'\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "e2ea13268edc598464a89d926de44e3236b4459033b83657faa8ba2ad97ffa33",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+      }
+    },
+    {
+      "identity": "lp-gap",
+      "mutant_sha256": "93bd06daf38ce609ff905187ef8ea52ebbe1a54094670807b2c107c52da880b4",
+      "outcome": "killed",
+      "output": "test_certificate_tampering_and_wrong_program (__main__.ExactLinearProgramTests.test_certificate_tampering_and_wrong_program) ... FAIL\n\n======================================================================\nFAIL: test_certificate_tampering_and_wrong_program (__main__.ExactLinearProgramTests.test_certificate_tampering_and_wrong_program)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 103, in test_certificate_tampering_and_wrong_program\n    self.assertFalse(program.verify(candidate).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_certificate_tampering_and_wrong_program"
+      ]
+    },
+    {
+      "identity": "lp-farkas-columns",
+      "mutant_sha256": "c92b8e8169c14f6b0e1ba0ef19c857b324d298309820f01df8d84287aa036bdf",
+      "outcome": "killed",
+      "output": "test_certificate_tampering_and_wrong_program (__main__.ExactLinearProgramTests.test_certificate_tampering_and_wrong_program) ... FAIL\n\n======================================================================\nFAIL: test_certificate_tampering_and_wrong_program (__main__.ExactLinearProgramTests.test_certificate_tampering_and_wrong_program)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 103, in test_certificate_tampering_and_wrong_program\n    self.assertFalse(program.verify(candidate).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_certificate_tampering_and_wrong_program"
+      ]
+    },
+    {
+      "identity": "lp-farkas-positive",
+      "mutant_sha256": "cbbab3708c908ffbcd9c923c987fb55fd14c71b2af0ae2e954777de36d2d241a",
+      "outcome": "killed",
+      "output": "test_certificate_tampering_and_wrong_program (__main__.ExactLinearProgramTests.test_certificate_tampering_and_wrong_program) ... FAIL\n\n======================================================================\nFAIL: test_certificate_tampering_and_wrong_program (__main__.ExactLinearProgramTests.test_certificate_tampering_and_wrong_program)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 103, in test_certificate_tampering_and_wrong_program\n    self.assertFalse(program.verify(candidate).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_certificate_tampering_and_wrong_program"
+      ]
+    },
+    {
+      "identity": "lp-ray-sign",
+      "mutant_sha256": "be300907916d732fbc73c19aa632b35b812bd17fbf15db405b722e66f4b81a35",
+      "outcome": "killed",
+      "output": "test_certificate_tampering_and_wrong_program (__main__.ExactLinearProgramTests.test_certificate_tampering_and_wrong_program) ... FAIL\n\n======================================================================\nFAIL: test_certificate_tampering_and_wrong_program (__main__.ExactLinearProgramTests.test_certificate_tampering_and_wrong_program)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 103, in test_certificate_tampering_and_wrong_program\n    self.assertFalse(program.verify(candidate).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_certificate_tampering_and_wrong_program"
+      ]
+    },
+    {
+      "identity": "lp-ray-kernel",
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_certificate_conditions_refuse_without_other_failed_checks"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks) ... FAIL\n\n======================================================================\nFAIL: test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-followup-e1eusqoz\\tests\\test_exact_linear_program.py\", line 184, in test_certificate_conditions_refuse_without_other_failed_checks\n    self.assertEqual(refused.error.kind if refused.error else None, \"check\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None != 'check'\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "23a4ff1cc803b25a7737116d938075953ae9d0fb56dc46d019f690e5080d26a2",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_certificate_conditions_refuse_without_other_failed_checks (__main__.ExactLinearProgramTests.test_certificate_conditions_refuse_without_other_failed_checks) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+      }
+    },
+    {
+      "identity": "lp-ray-descent",
+      "mutant_sha256": "d64048f08d18686317827dc8616d4b0a85f7bf76f0939d7aec746de5e4afa80f",
+      "outcome": "killed",
+      "output": "test_certificate_tampering_and_wrong_program (__main__.ExactLinearProgramTests.test_certificate_tampering_and_wrong_program) ... FAIL\n\n======================================================================\nFAIL: test_certificate_tampering_and_wrong_program (__main__.ExactLinearProgramTests.test_certificate_tampering_and_wrong_program)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 103, in test_certificate_tampering_and_wrong_program\n    self.assertFalse(program.verify(candidate).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_certificate_tampering_and_wrong_program"
+      ]
+    },
+    {
+      "identity": "lp-solver-replay",
+      "mutant_sha256": "ae4e108f609c0780c7f6a94d1ebb92803f9fb921d456f1ec8bdd03aa388d00d9",
+      "outcome": "killed",
+      "output": "test_solver_must_replay_certificate_and_propagate_interruptions (__main__.ExactLinearProgramTests.test_solver_must_replay_certificate_and_propagate_interruptions) ... ERROR\n\n======================================================================\nERROR: test_solver_must_replay_certificate_and_propagate_interruptions (__main__.ExactLinearProgramTests.test_solver_must_replay_certificate_and_propagate_interruptions)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 167, in test_solver_must_replay_certificate_and_propagate_interruptions\n    self.assertEqual(program.solve().error.kind, \"check\")  # type: ignore[union-attr]\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_solver_must_replay_certificate_and_propagate_interruptions"
+      ]
+    },
+    {
+      "identity": "certificate-status",
+      "mutant_sha256": "f6979ae279f75ebe18fc4647a0e69075cf3ade7bee397af03787e28b054a1a62",
+      "outcome": "killed",
+      "output": "test_exact_admission_shapes_and_certificate_variants (__main__.ExactLinearProgramTests.test_exact_admission_shapes_and_certificate_variants) ... ERROR\n\n======================================================================\nERROR: test_exact_admission_shapes_and_certificate_variants (__main__.ExactLinearProgramTests.test_exact_admission_shapes_and_certificate_variants)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 118, in test_exact_admission_shapes_and_certificate_variants\n    self.assertFalse(evaluate(LinearProgramCertificate, status, primal, dual, ray).ok)\n                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\linear_program_certificate.py\", line 34, in __init__\n    if not shapes[status]:\n           ~~~~~~^^^^^^^^\nKeyError: 'unknown'\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/linear_program_certificate.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_exact_admission_shapes_and_certificate_variants"
+      ]
+    },
+    {
+      "identity": "certificate-variant-shape",
+      "mutant_sha256": "4704a101aa92bcab733bd10282987eb72d4d68c3e8d7210c7a3a344909041f8b",
+      "outcome": "killed",
+      "output": "test_exact_admission_shapes_and_certificate_variants (__main__.ExactLinearProgramTests.test_exact_admission_shapes_and_certificate_variants) ... FAIL\n\n======================================================================\nFAIL: test_exact_admission_shapes_and_certificate_variants (__main__.ExactLinearProgramTests.test_exact_admission_shapes_and_certificate_variants)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 118, in test_exact_admission_shapes_and_certificate_variants\n    self.assertFalse(evaluate(LinearProgramCertificate, status, primal, dual, ray).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/linear_program_certificate.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_exact_admission_shapes_and_certificate_variants"
+      ]
+    },
+    {
+      "identity": "tableau-pivot-budget",
+      "mutant_sha256": "603334bed0d21c84fdefa033dbe612a1170fa9c91396c3a166521ef617516430",
+      "outcome": "killed",
+      "output": "test_sizes_bits_and_pivot_exhaustion_are_resource_refusals (__main__.ExactLinearProgramTests.test_sizes_bits_and_pivot_exhaustion_are_resource_refusals) ... FAIL\n\n======================================================================\nFAIL: test_sizes_bits_and_pivot_exhaustion_are_resource_refusals (__main__.ExactLinearProgramTests.test_sizes_bits_and_pivot_exhaustion_are_resource_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 150, in test_sizes_bits_and_pivot_exhaustion_are_resource_refusals\n    self.assertEqual(result.error.kind if result.error else None, \"resource\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None != 'resource'\n\n----------------------------------------------------------------------\nRan 1 test in 0.020s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/simplex_tableau.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_sizes_bits_and_pivot_exhaustion_are_resource_refusals"
+      ]
+    },
+    {
+      "identity": "tableau-rhs-column",
+      "mutant_sha256": "b34046eb4adbc8986fe91593636f2020eca9d464abd5761444f899b97c74027b",
+      "outcome": "killed",
+      "output": "test_oracle_and_three_certificate_kinds (__main__.ExactLinearProgramTests.test_oracle_and_three_certificate_kinds) ... FAIL\n\n======================================================================\nFAIL: test_oracle_and_three_certificate_kinds (__main__.ExactLinearProgramTests.test_oracle_and_three_certificate_kinds)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 63, in test_oracle_and_three_certificate_kinds\n    certificate = self.accepted(program.solve())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 46, in accepted\n    self.fail(str(result.error))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='LP primal equalities fail')\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/simplex_tableau.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_oracle_and_three_certificate_kinds"
+      ]
+    },
+    {
+      "identity": "tableau-pivot-normalization",
+      "mutant_sha256": "89e60e4b5e011f7c9bf0f78560c5ea2a1029d968a2d46ef40e15d9989c01ed79",
+      "outcome": "killed",
+      "output": "test_generated_one_row_minimum (__main__.ExactLinearProgramTests.test_generated_one_row_minimum) ... FAIL\n\n======================================================================\nFAIL: test_generated_one_row_minimum (__main__.ExactLinearProgramTests.test_generated_one_row_minimum)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 68, in test_generated_one_row_minimum\n    @given(st.integers(1, 7), st.integers(1, 7), st.integers(0, 12), st.integers(-7, 7), st.integers(-7, 7))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 71, in test_generated_one_row_minimum\n    certificate = self.accepted(program.solve())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 46, in accepted\n    self.fail(str(result.error))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: Failure(kind='resource', message='pivot quotient exceeds the 4096-bit rational budget')\nFailing test case: test_generated_one_row_minimum(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.ExactLinearProgramTests testMethod=test_generated_one_row_minimum>,\n    a=2,\n    b=1,  # or any other generated value\n    total=0,  # or any other generated value\n    c=1,\n    d=0,  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\boundary.py:17\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\boundary.py:31\n\n----------------------------------------------------------------------\nRan 1 test in 1.248s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/simplex_tableau.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_generated_one_row_minimum"
+      ]
+    },
+    {
+      "identity": "tableau-elimination-sign",
+      "mutant_sha256": "0467c5ac611733d9334c67e1bcdff3d8f9667ba06e243b23d2af8e02a7ae398a",
+      "outcome": "killed",
+      "output": "test_oracle_and_three_certificate_kinds (__main__.ExactLinearProgramTests.test_oracle_and_three_certificate_kinds) ... FAIL\n\n======================================================================\nFAIL: test_oracle_and_three_certificate_kinds (__main__.ExactLinearProgramTests.test_oracle_and_three_certificate_kinds)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 63, in test_oracle_and_three_certificate_kinds\n    certificate = self.accepted(program.solve())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 46, in accepted\n    self.fail(str(result.error))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: Failure(kind='resource', message='pivot subtraction exceeds the 4096-bit rational budget')\n\n----------------------------------------------------------------------\nRan 1 test in 0.125s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/simplex_tableau.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_oracle_and_three_certificate_kinds"
+      ]
+    },
+    {
+      "identity": "tableau-reduced-sign",
+      "mutant_sha256": "b543194ab198e2b91842b43e192384c576fc533357edd349a5be7ce7472cb31a",
+      "outcome": "killed",
+      "output": "test_oracle_and_three_certificate_kinds (__main__.ExactLinearProgramTests.test_oracle_and_three_certificate_kinds) ... FAIL\n\n======================================================================\nFAIL: test_oracle_and_three_certificate_kinds (__main__.ExactLinearProgramTests.test_oracle_and_three_certificate_kinds)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 63, in test_oracle_and_three_certificate_kinds\n    certificate = self.accepted(program.solve())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 46, in accepted\n    self.fail(str(result.error))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='Farkas separating objective must be positive')\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/simplex_tableau.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_oracle_and_three_certificate_kinds"
+      ]
+    },
+    {
+      "identity": "tableau-entering-sign",
+      "mutant_sha256": "056a4858cb6060e1bc34ab199f81916d52fdb3736abb5dce8fd66e5c2e0b75f1",
+      "outcome": "killed",
+      "output": "test_oracle_and_three_certificate_kinds (__main__.ExactLinearProgramTests.test_oracle_and_three_certificate_kinds) ... FAIL\n\n======================================================================\nFAIL: test_oracle_and_three_certificate_kinds (__main__.ExactLinearProgramTests.test_oracle_and_three_certificate_kinds)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 63, in test_oracle_and_three_certificate_kinds\n    certificate = self.accepted(program.solve())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 46, in accepted\n    self.fail(str(result.error))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='Farkas dual inequalities fail')\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/simplex_tableau.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_oracle_and_three_certificate_kinds"
+      ]
+    },
+    {
+      "identity": "tableau-ratio-leaving-order",
+      "mutant_sha256": "c2960ff55234a715cdf3c1dbee9ae3d51174624dbf55cc1dd7c9813a3e47e1a8",
+      "outcome": "killed",
+      "output": "test_generated_two_row_minimum_against_vertices (__main__.ExactLinearProgramTests.test_generated_two_row_minimum_against_vertices) ... FAIL\n\n======================================================================\nFAIL: test_generated_two_row_minimum_against_vertices (__main__.ExactLinearProgramTests.test_generated_two_row_minimum_against_vertices)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 76, in test_generated_two_row_minimum_against_vertices\n    @given(st.lists(st.integers(1, 5), min_size=4, max_size=4), st.lists(st.integers(-5, 5), min_size=4, max_size=4), st.lists(st.integers(0, 4), min_size=4, max_size=4))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 81, in test_generated_two_row_minimum_against_vertices\n    certificate = self.accepted(program.solve())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 46, in accepted\n    self.fail(str(result.error))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='negative auxiliary objective violates feasibility')\nFailing test case: test_generated_two_row_minimum_against_vertices(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.ExactLinearProgramTests testMethod=test_generated_two_row_minimum_against_vertices>,\n    values=[1, 1, 1, 1],  # or any other generated value\n    costs=[0, 0, 0, 0],  # or any other generated value\n    weights=[0, 0, 0, 1],\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\simplex_tableau.py:102\n\n----------------------------------------------------------------------\nRan 1 test in 2.151s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/simplex_tableau.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_generated_two_row_minimum_against_vertices"
+      ]
+    },
+    {
+      "identity": "tableau-dual-sign",
+      "mutant_sha256": "d82679c603206f3b49eaea61baaa4bdb239d1c7fa22542ba0642b8f3867deafb",
+      "outcome": "killed",
+      "output": "test_oracle_and_three_certificate_kinds (__main__.ExactLinearProgramTests.test_oracle_and_three_certificate_kinds) ... FAIL\n\n======================================================================\nFAIL: test_oracle_and_three_certificate_kinds (__main__.ExactLinearProgramTests.test_oracle_and_three_certificate_kinds)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 63, in test_oracle_and_three_certificate_kinds\n    certificate = self.accepted(program.solve())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 46, in accepted\n    self.fail(str(result.error))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='LP objectives have a nonzero gap')\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/simplex_tableau.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_oracle_and_three_certificate_kinds"
+      ]
+    },
+    {
+      "identity": "tableau-ray-sign",
+      "mutant_sha256": "5e68af1d66162431bd47fe477d1527efc388254f1af4b67ef64ff8f178825a01",
+      "outcome": "killed",
+      "output": "test_oracle_and_three_certificate_kinds (__main__.ExactLinearProgramTests.test_oracle_and_three_certificate_kinds) ... FAIL\n\n======================================================================\nFAIL: test_oracle_and_three_certificate_kinds (__main__.ExactLinearProgramTests.test_oracle_and_three_certificate_kinds)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 63, in test_oracle_and_three_certificate_kinds\n    certificate = self.accepted(program.solve())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 46, in accepted\n    self.fail(str(result.error))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='unbounded ray must be nonnegative')\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/simplex_tableau.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_oracle_and_three_certificate_kinds"
+      ]
+    },
+    {
+      "identity": "tableau-farkas-offset",
+      "mutant_sha256": "bb924019fb067f1fb5aa2e641ae340d2b23152f6449d0f7e226d810a0a99a5fa",
+      "outcome": "killed",
+      "output": "test_oracle_and_three_certificate_kinds (__main__.ExactLinearProgramTests.test_oracle_and_three_certificate_kinds) ... FAIL\n\n======================================================================\nFAIL: test_oracle_and_three_certificate_kinds (__main__.ExactLinearProgramTests.test_oracle_and_three_certificate_kinds)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 63, in test_oracle_and_three_certificate_kinds\n    certificate = self.accepted(program.solve())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 46, in accepted\n    self.fail(str(result.error))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='Farkas separating objective must be positive')\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/simplex_tableau.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_oracle_and_three_certificate_kinds"
+      ]
+    },
+    {
+      "identity": "scenario-bool-carrier",
+      "mutant_sha256": "bf94f60287f0908dd3fdb55f866a6e8c727326c5eb282ce72923682fe501e180",
+      "outcome": "killed",
+      "output": "test_scenario_exact_domains_and_context_invariants (__main__.EmpiricalModelTests.test_scenario_exact_domains_and_context_invariants) ... FAIL\n\n======================================================================\nFAIL: test_scenario_exact_domains_and_context_invariants (__main__.EmpiricalModelTests.test_scenario_exact_domains_and_context_invariants)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 97, in test_scenario_exact_domains_and_context_invariants\n    self.assertFalse(evaluate(MeasurementScenario, size, ((0,),)).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/measurement_scenario.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_scenario_exact_domains_and_context_invariants"
+      ]
+    },
+    {
+      "identity": "scenario-duplicate-context",
+      "mutant_sha256": "ae2b041fd8cb070a5356a1ecb8d2ad305e69c0dfcb5cf9558bce06e068d3f905",
+      "outcome": "killed",
+      "output": "test_scenario_exact_domains_and_context_invariants (__main__.EmpiricalModelTests.test_scenario_exact_domains_and_context_invariants) ... FAIL\n\n======================================================================\nFAIL: test_scenario_exact_domains_and_context_invariants (__main__.EmpiricalModelTests.test_scenario_exact_domains_and_context_invariants)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 99, in test_scenario_exact_domains_and_context_invariants\n    self.assertFalse(evaluate(MeasurementScenario, 2, contexts).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/measurement_scenario.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_scenario_exact_domains_and_context_invariants"
+      ]
+    },
+    {
+      "identity": "scenario-cover-carrier",
+      "mutant_sha256": "529d6450ea814b98fec1d80c36c83e58f5255099e5a8bcf562ea54bb03507689",
+      "outcome": "killed",
+      "output": "test_scenario_exact_domains_and_context_invariants (__main__.EmpiricalModelTests.test_scenario_exact_domains_and_context_invariants) ... FAIL\n\n======================================================================\nFAIL: test_scenario_exact_domains_and_context_invariants (__main__.EmpiricalModelTests.test_scenario_exact_domains_and_context_invariants)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 99, in test_scenario_exact_domains_and_context_invariants\n    self.assertFalse(evaluate(MeasurementScenario, 2, contexts).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/measurement_scenario.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_scenario_exact_domains_and_context_invariants"
+      ]
+    },
+    {
+      "identity": "scenario-ordered-context",
+      "mutant_sha256": "00e5e0af968b9485063b07c1fc87dcd4ca0a4803f4135dbba184b3cc0914cd4c",
+      "outcome": "killed",
+      "output": "test_scenario_exact_domains_and_context_invariants (__main__.EmpiricalModelTests.test_scenario_exact_domains_and_context_invariants) ... FAIL\n\n======================================================================\nFAIL: test_scenario_exact_domains_and_context_invariants (__main__.EmpiricalModelTests.test_scenario_exact_domains_and_context_invariants)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 99, in test_scenario_exact_domains_and_context_invariants\n    self.assertFalse(evaluate(MeasurementScenario, 2, contexts).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/measurement_scenario.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_scenario_exact_domains_and_context_invariants"
+      ]
+    },
+    {
+      "identity": "scenario-duplicate-position",
+      "mutant_sha256": "5e4bd67997efc31edd8112154d86e5fe9e650f0968983b15b9ade31b1ac341f4",
+      "outcome": "killed",
+      "output": "test_scenario_exact_domains_and_context_invariants (__main__.EmpiricalModelTests.test_scenario_exact_domains_and_context_invariants) ... FAIL\n\n======================================================================\nFAIL: test_scenario_exact_domains_and_context_invariants (__main__.EmpiricalModelTests.test_scenario_exact_domains_and_context_invariants)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 104, in test_scenario_exact_domains_and_context_invariants\n    self.assertFalse(scenario.sections(positions).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/measurement_scenario.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_scenario_exact_domains_and_context_invariants"
+      ]
+    },
+    {
+      "identity": "scenario-index-upper",
+      "mutant_sha256": "3e182b2960c8b6d0d1de1e95a88ec931dabd4990f5f7f030027d2b8a7e185f8f",
+      "outcome": "killed",
+      "output": "test_scenario_exact_domains_and_context_invariants (__main__.EmpiricalModelTests.test_scenario_exact_domains_and_context_invariants) ... FAIL\n\n======================================================================\nFAIL: test_scenario_exact_domains_and_context_invariants (__main__.EmpiricalModelTests.test_scenario_exact_domains_and_context_invariants)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 104, in test_scenario_exact_domains_and_context_invariants\n    self.assertFalse(scenario.sections(positions).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/measurement_scenario.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_scenario_exact_domains_and_context_invariants"
+      ]
+    },
+    {
+      "identity": "scenario-bit-domain",
+      "mutant_sha256": "5782ed29a4792f201013608e61b7f8894ac5aad6fcf452172a44be89d5081cca",
+      "outcome": "killed",
+      "output": "test_scenario_exact_domains_and_context_invariants (__main__.EmpiricalModelTests.test_scenario_exact_domains_and_context_invariants) ... FAIL\n\n======================================================================\nFAIL: test_scenario_exact_domains_and_context_invariants (__main__.EmpiricalModelTests.test_scenario_exact_domains_and_context_invariants)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 102, in test_scenario_exact_domains_and_context_invariants\n    self.assertFalse(scenario.restrict(value, (0,)).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/measurement_scenario.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_scenario_exact_domains_and_context_invariants"
+      ]
+    },
+    {
+      "identity": "scenario-incidence-budget",
+      "mutant_sha256": "fde29f875f74f70862a9b1300a1b744d211e64614e03a10fb13c96d7936dd569",
+      "outcome": "killed",
+      "output": "test_incidence_family_and_rational_resource_boundaries (__main__.EmpiricalModelTests.test_incidence_family_and_rational_resource_boundaries) ... ERROR\n\n======================================================================\nERROR: test_incidence_family_and_rational_resource_boundaries (__main__.EmpiricalModelTests.test_incidence_family_and_rational_resource_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 152, in test_incidence_family_and_rational_resource_boundaries\n    self.assertEqual(excessive.incidence().error.kind, \"resource\")  # type: ignore[union-attr]\n                     ~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\measurement_scenario.py\", line 111, in incidence\n    return evaluate(self._incidence)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\measurement_scenario.py\", line 106, in _incidence\n    assignments = self.globals\n                  ^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\measurement_scenario.py\", line 82, in globals\n    return sections(self.n)\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: must not enumerate\n\n----------------------------------------------------------------------\nRan 1 test in 0.019s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/measurement_scenario.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_incidence_family_and_rational_resource_boundaries"
+      ]
+    },
+    {
+      "identity": "scenario-incidence-complement",
+      "mutant_sha256": "0da3a336b8266f0b936d5d7d35ff3c6f4279aa0a66b5af4504e72ed2bd2d7446",
+      "outcome": "killed",
+      "output": "test_generated_marginals_incidence_and_mixtures (__main__.EmpiricalModelTests.test_generated_marginals_incidence_and_mixtures) ... FAIL\n\n======================================================================\nFAIL: test_generated_marginals_incidence_and_mixtures (__main__.EmpiricalModelTests.test_generated_marginals_incidence_and_mixtures)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 57, in test_generated_marginals_incidence_and_mixtures\n    @given(st.lists(st.integers(0, 8), min_size=8, max_size=8), st.lists(st.integers(0, 8), min_size=8, max_size=8))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 74, in test_generated_marginals_incidence_and_mixtures\n    self.assertEqual(row, expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(0, 1), Fraction(1, 1), Fr[72 chars], 1)) != (Fraction(1, 1), Fraction(1, 1), Fraction(0, 1), Fr[72 chars], 1))\n\nFirst differing element 0:\nFraction(0, 1)\nFraction(1, 1)\n\n- (Fraction(0, 1),\n?           ^\n\n+ (Fraction(1, 1),\n?           ^\n\n+  Fraction(1, 1),\n   Fraction(0, 1),\n-  Fraction(1, 1),\n?           ^\n\n+  Fraction(0, 1),\n?           ^\n\n-  Fraction(1, 1),\n?           ^\n\n+  Fraction(0, 1),\n?           ^\n\n-  Fraction(1, 1),\n?           ^\n\n+  Fraction(0, 1),\n?           ^\n\n-  Fraction(1, 1),\n?           ^\n\n+  Fraction(0, 1),\n?           ^\n\n-  Fraction(1, 1),\n-  Fraction(1, 1))\n?           ^\n\n+  Fraction(0, 1))\n?           ^\n\nFailing test case: test_generated_marginals_incidence_and_mixtures(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.EmpiricalModelTests testMethod=test_generated_marginals_incidence_and_mixtures>,\n    left=[0, 0, 0, 0, 0, 0, 0, 0],  # or any other generated value\n    right=[0, 0, 0, 0, 0, 0, 0, 0],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 3.884s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/measurement_scenario.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_generated_marginals_incidence_and_mixtures"
+      ]
+    },
+    {
+      "identity": "cochain-complete-shape",
+      "mutant_sha256": "1d6d8ecbd31682a21dea1be9ced4b6d6102b1bc79589e5183b6efbc4c760a546",
+      "outcome": "killed",
+      "output": "test_cochain_whole_shape_and_probability_refusals (__main__.EmpiricalModelTests.test_cochain_whole_shape_and_probability_refusals) ... ERROR\n\n======================================================================\nERROR: test_cochain_whole_shape_and_probability_refusals (__main__.EmpiricalModelTests.test_cochain_whole_shape_and_probability_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 114, in test_cochain_whole_shape_and_probability_refusals\n    self.assertFalse(evaluate(cochain, value, 1).ok)\n                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\measurement_scenario.py\", line 47, in cochain\n    return tuple(rational(mapping[key], \"cochain weight\") for key in keys)\n           ^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\measurement_scenario.py\", line 47, in <genexpr>\n    return tuple(rational(mapping[key], \"cochain weight\") for key in keys)\n                          ~~~~~~~^^^^^\nKeyError: (0,)\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/measurement_scenario.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_cochain_whole_shape_and_probability_refusals"
+      ]
+    },
+    {
+      "identity": "cochain-bool-key",
+      "mutant_sha256": "43d7ef4ec093c5b1aa9608ccdd6e7af7ea865d76257c45b77180c80fce3bdfff",
+      "outcome": "killed",
+      "output": "test_cochain_whole_shape_and_probability_refusals (__main__.EmpiricalModelTests.test_cochain_whole_shape_and_probability_refusals) ... FAIL\n\n======================================================================\nFAIL: test_cochain_whole_shape_and_probability_refusals (__main__.EmpiricalModelTests.test_cochain_whole_shape_and_probability_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 114, in test_cochain_whole_shape_and_probability_refusals\n    self.assertFalse(evaluate(cochain, value, 1).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/measurement_scenario.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_cochain_whole_shape_and_probability_refusals"
+      ]
+    },
+    {
+      "identity": "marginal-prefix-bound",
+      "mutant_sha256": "d4f711ea76e08de4f47902c37fb7a6bac5d9a950916fe0bc46978c2a9a568e31",
+      "outcome": "killed",
+      "output": "test_incidence_family_and_rational_resource_boundaries (__main__.EmpiricalModelTests.test_incidence_family_and_rational_resource_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_incidence_family_and_rational_resource_boundaries (__main__.EmpiricalModelTests.test_incidence_family_and_rational_resource_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 164, in test_incidence_family_and_rational_resource_boundaries\n    self.assertEqual(refused.error.kind if refused.error else None, \"resource\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None != 'resource'\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/measurement_scenario.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_incidence_family_and_rational_resource_boundaries"
+      ]
+    },
+    {
+      "identity": "marginal-coordinate-order",
+      "mutant_sha256": "c1fa45c591a87ab2666658db73e82730d59209395e0518d4e58e4fcbe39b1d0e",
+      "outcome": "killed",
+      "output": "test_generated_marginals_incidence_and_mixtures (__main__.EmpiricalModelTests.test_generated_marginals_incidence_and_mixtures) ... FAIL\n\n======================================================================\nFAIL: test_generated_marginals_incidence_and_mixtures (__main__.EmpiricalModelTests.test_generated_marginals_incidence_and_mixtures)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 57, in test_generated_marginals_incidence_and_mixtures\n    @given(st.lists(st.integers(0, 8), min_size=8, max_size=8), st.lists(st.integers(0, 8), min_size=8, max_size=8))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 78, in test_generated_marginals_incidence_and_mixtures\n    self.assertEqual(self.accepted(scenario.marginal(middle, (2, 1), (1,))), direct)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {(0,): Fraction(1, 1), (1,): Fraction(0, 1)} != {(0,): Fraction(1, 2), (1,): Fraction(1, 2)}\n- {(0,): Fraction(1, 1), (1,): Fraction(0, 1)}\n?                    ^                  ^  ^\n\n+ {(0,): Fraction(1, 2), (1,): Fraction(1, 2)}\n?                    ^                  ^  ^\n\nFailing test case: test_generated_marginals_incidence_and_mixtures(\n    self=<__main__.EmpiricalModelTests testMethod=test_generated_marginals_incidence_and_mixtures>,\n    left=[0, 0, 0, 0, 0, 0, 1, 0],\n    right=[0, 0, 0, 0, 0, 0, 0, 0],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.416s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/measurement_scenario.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_generated_marginals_incidence_and_mixtures"
+      ]
+    },
+    {
+      "identity": "empirical-negative-weight",
+      "mutant_sha256": "de48ea74dfa578f79d2f48209cc24c8b50cc42acf73e9e56f1a699d9ec1cbc0b",
+      "outcome": "killed",
+      "output": "test_cochain_whole_shape_and_probability_refusals (__main__.EmpiricalModelTests.test_cochain_whole_shape_and_probability_refusals) ... FAIL\n\n======================================================================\nFAIL: test_cochain_whole_shape_and_probability_refusals (__main__.EmpiricalModelTests.test_cochain_whole_shape_and_probability_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 117, in test_cochain_whole_shape_and_probability_refusals\n    self.assertFalse(evaluate(EmpiricalModel, scenario, tables).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/empirical_model.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_cochain_whole_shape_and_probability_refusals"
+      ]
+    },
+    {
+      "identity": "empirical-total-mass",
+      "mutant_sha256": "356d3ee61852fab0a2fb07130dee4016cf59596e1ebf4f20655c3973704ce960",
+      "outcome": "killed",
+      "output": "test_cochain_whole_shape_and_probability_refusals (__main__.EmpiricalModelTests.test_cochain_whole_shape_and_probability_refusals) ... FAIL\n\n======================================================================\nFAIL: test_cochain_whole_shape_and_probability_refusals (__main__.EmpiricalModelTests.test_cochain_whole_shape_and_probability_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 117, in test_cochain_whole_shape_and_probability_refusals\n    self.assertFalse(evaluate(EmpiricalModel, scenario, tables).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/empirical_model.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_cochain_whole_shape_and_probability_refusals"
+      ]
+    },
+    {
+      "identity": "empirical-support-zero",
+      "mutant_sha256": "609dbd319828f0ef4cb508e060ec7cbe1149dd3cb57808f427326d351eb74ddd",
+      "outcome": "killed",
+      "output": "test_oracles_and_fixed_contextual_descent (__main__.EmpiricalModelTests.test_oracles_and_fixed_contextual_descent) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_fixed_contextual_descent (__main__.EmpiricalModelTests.test_oracles_and_fixed_contextual_descent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 46, in test_oracles_and_fixed_contextual_descent\n    self.assertEqual(self.accepted(pr.support_globals()), ())\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((0, 0, 0, 0), (0, 0, 0, 1), (0, 0, 1, 0),[177 chars], 1)) != ()\n\nFirst tuple contains 16 additional elements.\nFirst extra element 0:\n(0, 0, 0, 0)\n\n+ ()\n- ((0, 0, 0, 0),\n-  (0, 0, 0, 1),\n-  (0, 0, 1, 0),\n-  (0, 0, 1, 1),\n-  (0, 1, 0, 0),\n-  (0, 1, 0, 1),\n-  (0, 1, 1, 0),\n-  (0, 1, 1, 1),\n-  (1, 0, 0, 0),\n-  (1, 0, 0, 1),\n-  (1, 0, 1, 0),\n-  (1, 0, 1, 1),\n-  (1, 1, 0, 0),\n-  (1, 1, 0, 1),\n-  (1, 1, 1, 0),\n-  (1, 1, 1, 1))\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/empirical_model.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_oracles_and_fixed_contextual_descent"
+      ]
+    },
+    {
+      "identity": "empirical-mixture-normalization",
+      "mutant_sha256": "f371d8efe11bf84b178e8053ba77f2b19d3f127e2e84985e02178f48e4828399",
+      "outcome": "killed",
+      "output": "test_generated_marginals_incidence_and_mixtures (__main__.EmpiricalModelTests.test_generated_marginals_incidence_and_mixtures) ... FAIL\n\n======================================================================\nFAIL: test_generated_marginals_incidence_and_mixtures (__main__.EmpiricalModelTests.test_generated_marginals_incidence_and_mixtures)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 57, in test_generated_marginals_incidence_and_mixtures\n    @given(st.lists(st.integers(0, 8), min_size=8, max_size=8), st.lists(st.integers(0, 8), min_size=8, max_size=8))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 68, in test_generated_marginals_incidence_and_mixtures\n    mixture = self.accepted(first.mixture(second))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 36, in accepted\n    self.fail(str(result.error))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: Failure(kind='input', message='each empirical row must be a nonnegative distribution of mass1')\nFailing test case: test_generated_marginals_incidence_and_mixtures(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.EmpiricalModelTests testMethod=test_generated_marginals_incidence_and_mixtures>,\n    left=[0, 0, 0, 0, 0, 0, 0, 0],  # or any other generated value\n    right=[0, 0, 0, 0, 0, 0, 0, 0],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 2.019s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/empirical_model.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_generated_marginals_incidence_and_mixtures"
+      ]
+    },
+    {
+      "identity": "matching-cover-union",
+      "mutant_sha256": "da88d3074204ad7f040b616c11e9e310891e427b469a42d172fba2d802ff3da1",
+      "outcome": "killed",
+      "output": "test_cover_preflight_and_runtime_error_propagation (__main__.EmpiricalModelTests.test_cover_preflight_and_runtime_error_propagation) ... ERROR\n\n======================================================================\nERROR: test_cover_preflight_and_runtime_error_propagation (__main__.EmpiricalModelTests.test_cover_preflight_and_runtime_error_propagation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 172, in test_cover_preflight_and_runtime_error_propagation\n    self.assertFalse(model.matching_families(cover).ok)\n                     ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\empirical_model.py\", line 116, in matching_families\n    return evaluate(self._matching_families, cover)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\empirical_model.py\", line 99, in _matching_families\n    supports = self._supports()\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: must not inspect supports\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/empirical_model.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_cover_preflight_and_runtime_error_propagation"
+      ]
+    },
+    {
+      "identity": "matching-cover-duplicate",
+      "mutant_sha256": "fe41272c3a1e135171141c1625ac4935c45c91b8b306f6296b43ced813551cb4",
+      "outcome": "killed",
+      "output": "test_cover_preflight_and_runtime_error_propagation (__main__.EmpiricalModelTests.test_cover_preflight_and_runtime_error_propagation) ... ERROR\n\n======================================================================\nERROR: test_cover_preflight_and_runtime_error_propagation (__main__.EmpiricalModelTests.test_cover_preflight_and_runtime_error_propagation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 172, in test_cover_preflight_and_runtime_error_propagation\n    self.assertFalse(model.matching_families(cover).ok)\n                     ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\empirical_model.py\", line 116, in matching_families\n    return evaluate(self._matching_families, cover)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\empirical_model.py\", line 99, in _matching_families\n    supports = self._supports()\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: must not inspect supports\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/empirical_model.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_cover_preflight_and_runtime_error_propagation"
+      ]
+    },
+    {
+      "identity": "matching-budget",
+      "mutant_sha256": "ded5e2a61a2e8a8eb36a1997bbcd8415e1d18ba18a4a0cbd009c210366c3059c",
+      "outcome": "killed",
+      "output": "test_incidence_family_and_rational_resource_boundaries (__main__.EmpiricalModelTests.test_incidence_family_and_rational_resource_boundaries) ... ERROR\n\n======================================================================\nERROR: test_incidence_family_and_rational_resource_boundaries (__main__.EmpiricalModelTests.test_incidence_family_and_rational_resource_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 157, in test_incidence_family_and_rational_resource_boundaries\n    refusal = model.matching_families(tuple(combinations(range(6), 2)))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\empirical_model.py\", line 116, in matching_families\n    return evaluate(self._matching_families, cover)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\empirical_model.py\", line 108, in _matching_families\n    for choices in product(*local):\n                   ~~~~~~~^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: must not form candidates\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/empirical_model.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_incidence_family_and_rational_resource_boundaries"
+      ]
+    },
+    {
+      "identity": "matching-agreement",
+      "mutant_sha256": "ca383a5d5becd5dd2e0f53fc191f9948f6b1abad3c2eab8d49372671493c5185",
+      "outcome": "killed",
+      "output": "test_oracles_and_fixed_contextual_descent (__main__.EmpiricalModelTests.test_oracles_and_fixed_contextual_descent) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_fixed_contextual_descent (__main__.EmpiricalModelTests.test_oracles_and_fixed_contextual_descent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 47, in test_oracles_and_fixed_contextual_descent\n    self.assertEqual(self.accepted(pr.matching_families(scenario.contexts)), (0, 0, 0, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (16, 0, 0, 16) != (0, 0, 0, 0)\n\nFirst differing element 0:\n16\n0\n\n- (16, 0, 0, 16)\n+ (0, 0, 0, 0)\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/empirical_model.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_oracles_and_fixed_contextual_descent"
+      ]
+    },
+    {
+      "identity": "matching-local-constraint-inclusion",
+      "mutant_sha256": "aad9fdc4e75768678dac60ab81389f5ba22d0ef4388a1a1d6581ea22ce90f888",
+      "outcome": "killed",
+      "output": "test_oracles_and_fixed_contextual_descent (__main__.EmpiricalModelTests.test_oracles_and_fixed_contextual_descent) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_fixed_contextual_descent (__main__.EmpiricalModelTests.test_oracles_and_fixed_contextual_descent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 54, in test_oracles_and_fixed_contextual_descent\n    self.assertEqual(self.accepted(mixture.matching_families(((0, 1, 2), (1, 2, 3)))), (4, 2, 0, 2))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (16, 2, 0, 14) != (4, 2, 0, 2)\n\nFirst differing element 0:\n16\n4\n\n- (16, 2, 0, 14)\n?  ^^        ^^\n\n+ (4, 2, 0, 2)\n?  ^        ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/empirical_model.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_oracles_and_fixed_contextual_descent"
+      ]
+    },
+    {
+      "identity": "matching-missing-global",
+      "mutant_sha256": "59c86f4a1d609dec5e73a0dac8d2c1b503c148182ec31f197bf151245a6eec9f",
+      "outcome": "killed",
+      "output": "test_oracles_and_fixed_contextual_descent (__main__.EmpiricalModelTests.test_oracles_and_fixed_contextual_descent) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_fixed_contextual_descent (__main__.EmpiricalModelTests.test_oracles_and_fixed_contextual_descent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 48, in test_oracles_and_fixed_contextual_descent\n    self.assertEqual(self.accepted(uniform.matching_families(scenario.contexts)), (16, 16, 0, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (16, 16, 0, 16) != (16, 16, 0, 0)\n\nFirst differing element 3:\n16\n0\n\n- (16, 16, 0, 16)\n?             ^^\n\n+ (16, 16, 0, 0)\n?             ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/empirical_model.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_oracles_and_fixed_contextual_descent"
+      ]
+    },
+    {
+      "identity": "cech-edge-zero-shape",
+      "mutant_sha256": "06575342ac9ae3d550ceba48909551205c0d3c1f51833759e8b00b43163c04c7",
+      "outcome": "killed",
+      "output": "test_whole_shape_validation_even_without_incidence (__main__.CechComplexTests.test_whole_shape_validation_even_without_incidence) ... FAIL\n\n======================================================================\nFAIL: test_whole_shape_validation_even_without_incidence (__main__.CechComplexTests.test_whole_shape_validation_even_without_incidence)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py\", line 112, in test_whole_shape_validation_even_without_incidence\n    self.assertFalse(disconnected.delta0(malformed_zero).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/cech_complex.py",
+      "suite": "test_cech_complex.py",
+      "tests": [
+        "test_whole_shape_validation_even_without_incidence"
+      ]
+    },
+    {
+      "identity": "cech-edge-map-shape",
+      "mutant_sha256": "6c0ba603f53b4bf85d78f974642f3a8e2890b3385ae89766c0f1891a654e3393",
+      "outcome": "killed",
+      "output": "test_whole_shape_validation_even_without_incidence (__main__.CechComplexTests.test_whole_shape_validation_even_without_incidence) ... FAIL\n\n======================================================================\nFAIL: test_whole_shape_validation_even_without_incidence (__main__.CechComplexTests.test_whole_shape_validation_even_without_incidence)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py\", line 114, in test_whole_shape_validation_even_without_incidence\n    self.assertFalse(disconnected.delta1({(0, 1): (0, 0)}).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/cech_complex.py",
+      "suite": "test_cech_complex.py",
+      "tests": [
+        "test_whole_shape_validation_even_without_incidence"
+      ]
+    },
+    {
+      "identity": "cech-edge-key-exactness",
+      "mutant_sha256": "d3882f02b1f2d8a70c5359cfcd959263633c1ef29b6b88601caba4d824e2308b",
+      "outcome": "killed",
+      "output": "test_whole_shape_validation_even_without_incidence (__main__.CechComplexTests.test_whole_shape_validation_even_without_incidence) ... FAIL\n\n======================================================================\nFAIL: test_whole_shape_validation_even_without_incidence (__main__.CechComplexTests.test_whole_shape_validation_even_without_incidence)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py\", line 117, in test_whole_shape_validation_even_without_incidence\n    self.assertFalse(complex_.delta1(one).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/cech_complex.py",
+      "suite": "test_cech_complex.py",
+      "tests": [
+        "test_whole_shape_validation_even_without_incidence"
+      ]
+    },
+    {
+      "identity": "cech-delta0-sign",
+      "mutant_sha256": "720dbf8bb848b72ea5dc8e72685ea4a294fd8580bf5c14605b9a942d87bdbad6",
+      "outcome": "killed",
+      "output": "test_generated_coboundary_against_direct_shared_coordinate_sums (__main__.CechComplexTests.test_generated_coboundary_against_direct_shared_coordinate_sums) ... FAIL\n\n======================================================================\nFAIL: test_generated_coboundary_against_direct_shared_coordinate_sums (__main__.CechComplexTests.test_generated_coboundary_against_direct_shared_coordinate_sums)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py\", line 45, in test_generated_coboundary_against_direct_shared_coordinate_sums\n    @given(st.lists(st.integers(-8, 8), min_size=12, max_size=12))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py\", line 52, in test_generated_coboundary_against_direct_shared_coordinate_sums\n    self.assertEqual(row, expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(1, 1)) != (Fraction(0, 1), Fraction(-1, 1))\n\nFirst differing element 1:\nFraction(1, 1)\nFraction(-1, 1)\n\n- (Fraction(0, 1), Fraction(1, 1))\n+ (Fraction(0, 1), Fraction(-1, 1))\n?                           +\n\nFailing test case: test_generated_coboundary_against_direct_shared_coordinate_sums(\n    self=<__main__.CechComplexTests testMethod=test_generated_coboundary_against_direct_shared_coordinate_sums>,\n    values=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.431s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/cech_complex.py",
+      "suite": "test_cech_complex.py",
+      "tests": [
+        "test_generated_coboundary_against_direct_shared_coordinate_sums"
+      ]
+    },
+    {
+      "identity": "cech-delta1-orientation",
+      "mutant_sha256": "ea0fd2e7aff242f627b2c39479963cbbea9ed755a4da3a1f72229dc1b0d63753",
+      "outcome": "killed",
+      "output": "test_oracle_orientation_non_cocycle_and_nerves (__main__.CechComplexTests.test_oracle_orientation_non_cocycle_and_nerves) ... FAIL\n\n======================================================================\nFAIL: test_oracle_orientation_non_cocycle_and_nerves (__main__.CechComplexTests.test_oracle_orientation_non_cocycle_and_nerves)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py\", line 61, in test_oracle_orientation_non_cocycle_and_nerves\n    self.assertEqual(self.accepted(complex_.delta1(values)), {(0, 1, 2): (Q(3), Q(4))})\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {(0, 1, 2): (Fraction(9, 1), Fraction(12, 1))} != {(0, 1, 2): (Fraction(3, 1), Fraction(4, 1))}\n- {(0, 1, 2): (Fraction(9, 1), Fraction(12, 1))}\n?                       ^               ^^\n\n+ {(0, 1, 2): (Fraction(3, 1), Fraction(4, 1))}\n?                       ^               ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/cech_complex.py",
+      "suite": "test_cech_complex.py",
+      "tests": [
+        "test_oracle_orientation_non_cocycle_and_nerves"
+      ]
+    },
+    {
+      "identity": "cech-dual-norm",
+      "mutant_sha256": "99fe6c9ca8371aecf0bcb7aee26ecd104b4de75ea637d59b576533b35427d65f",
+      "outcome": "killed",
+      "output": "test_dual_norm_annihilation_and_gap_are_independent_conditions (__main__.CechComplexTests.test_dual_norm_annihilation_and_gap_are_independent_conditions) ... FAIL\n\n======================================================================\nFAIL: test_dual_norm_annihilation_and_gap_are_independent_conditions (__main__.CechComplexTests.test_dual_norm_annihilation_and_gap_are_independent_conditions)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py\", line 95, in test_dual_norm_annihilation_and_gap_are_independent_conditions\n    self.assertFalse(complex_.quotient_value(empty_omega, zero, doubled).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/cech_complex.py",
+      "suite": "test_cech_complex.py",
+      "tests": [
+        "test_dual_norm_annihilation_and_gap_are_independent_conditions"
+      ]
+    },
+    {
+      "identity": "cech-dual-annihilator",
+      "mutant_sha256": "ac368fa9793e2c168604beb54bb0c62800caa40536bb90c3320a27c24e0f55c3",
+      "outcome": "killed",
+      "output": "test_dual_norm_annihilation_and_gap_are_independent_conditions (__main__.CechComplexTests.test_dual_norm_annihilation_and_gap_are_independent_conditions) ... FAIL\n\n======================================================================\nFAIL: test_dual_norm_annihilation_and_gap_are_independent_conditions (__main__.CechComplexTests.test_dual_norm_annihilation_and_gap_are_independent_conditions)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py\", line 98, in test_dual_norm_annihilation_and_gap_are_independent_conditions\n    self.assertFalse(complex_.quotient_value(omega, zero, nonannihilating).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/cech_complex.py",
+      "suite": "test_cech_complex.py",
+      "tests": [
+        "test_dual_norm_annihilation_and_gap_are_independent_conditions"
+      ]
+    },
+    {
+      "identity": "cech-primal-gap",
+      "mutant_sha256": "c99132db7e42b68e6834a377e5f945b94f1a293ce29eeced3beedf1e4e4f3622",
+      "outcome": "killed",
+      "output": "test_dual_norm_annihilation_and_gap_are_independent_conditions (__main__.CechComplexTests.test_dual_norm_annihilation_and_gap_are_independent_conditions) ... FAIL\n\n======================================================================\nFAIL: test_dual_norm_annihilation_and_gap_are_independent_conditions (__main__.CechComplexTests.test_dual_norm_annihilation_and_gap_are_independent_conditions)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py\", line 100, in test_dual_norm_annihilation_and_gap_are_independent_conditions\n    self.assertFalse(complex_.quotient_value(omega, zero, zero_dual).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/cech_complex.py",
+      "suite": "test_cech_complex.py",
+      "tests": [
+        "test_dual_norm_annihilation_and_gap_are_independent_conditions"
+      ]
+    },
+    {
+      "identity": "cech-primal-shift",
+      "mutant_sha256": "d5bd203767a906f394e0845cc82f92318f2bcded736a15b993b74b699f2a0bf2",
+      "outcome": "killed",
+      "output": "test_generated_quotient_bound_and_gauge_shift (__main__.CechComplexTests.test_generated_quotient_bound_and_gauge_shift) ... FAIL\n\n======================================================================\nFAIL: test_generated_quotient_bound_and_gauge_shift (__main__.CechComplexTests.test_generated_quotient_bound_and_gauge_shift)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py\", line 80, in test_generated_quotient_bound_and_gauge_shift\n    @given(st.lists(st.integers(-5, 5), min_size=16, max_size=16), st.integers(0, 5))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py\", line 88, in test_generated_quotient_bound_and_gauge_shift\n    self.assertEqual(self.accepted(complex_.quotient_value(shifted, beta, phi)), 2*scale)\n                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py\", line 41, in accepted\n    self.fail(str(result.error))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='quotient primal and dual bounds disagree')\nFailing test case: test_generated_quotient_bound_and_gauge_shift(\n    self=<__main__.CechComplexTests testMethod=test_generated_quotient_bound_and_gauge_shift>,\n    values=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],\n    scale=0,  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\boundary.py:46\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py:41\n\n----------------------------------------------------------------------\nRan 1 test in 0.470s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/cech_complex.py",
+      "suite": "test_cech_complex.py",
+      "tests": [
+        "test_generated_quotient_bound_and_gauge_shift"
+      ]
+    },
+    {
+      "identity": "cech-norm-sum-bound",
+      "source": "checker_support/cech_complex.py",
+      "suite": "test_cech_complex.py",
+      "tests": [
+        "test_primal_norm_budget_is_not_masked_by_dual_overflow"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_primal_norm_budget_is_not_masked_by_dual_overflow (__main__.CechComplexTests.test_primal_norm_budget_is_not_masked_by_dual_overflow) ... FAIL\n\n======================================================================\nFAIL: test_primal_norm_budget_is_not_masked_by_dual_overflow (__main__.CechComplexTests.test_primal_norm_budget_is_not_masked_by_dual_overflow)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-followup-e1eusqoz\\tests\\test_cech_complex.py\", line 144, in test_primal_norm_budget_is_not_masked_by_dual_overflow\n    self.assertEqual(refused.error.kind if refused.error else None, \"resource\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'check' != 'resource'\n- check\n+ resource\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "60cb79bb7d468c40e771f236018297b0e4d355c17244ebc35051b38642a973de",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_primal_norm_budget_is_not_masked_by_dual_overflow (__main__.CechComplexTests.test_primal_norm_budget_is_not_masked_by_dual_overflow) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nOK\n"
+      }
+    },
+    {
+      "identity": "cech-annihilator-orientation",
+      "mutant_sha256": "70ec98940a3d8b321bace6c396b53783e359721508038b5b57f28326c3b8959f",
+      "outcome": "killed",
+      "output": "test_generated_quotient_bound_and_gauge_shift (__main__.CechComplexTests.test_generated_quotient_bound_and_gauge_shift) ... FAIL\n\n======================================================================\nFAIL: test_generated_quotient_bound_and_gauge_shift (__main__.CechComplexTests.test_generated_quotient_bound_and_gauge_shift)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py\", line 80, in test_generated_quotient_bound_and_gauge_shift\n    @given(st.lists(st.integers(-5, 5), min_size=16, max_size=16), st.integers(0, 5))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py\", line 84, in test_generated_quotient_bound_and_gauge_shift\n    self.assertEqual(self.accepted(complex_.quotient_value(omega, zero, phi)), 2*scale)\n                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py\", line 41, in accepted\n    self.fail(str(result.error))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='quotient dual does not annihilate coboundaries')\nFailing test case: test_generated_quotient_bound_and_gauge_shift(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CechComplexTests testMethod=test_generated_quotient_bound_and_gauge_shift>,\n    values=[0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0,\n     0],  # or any other generated value\n    scale=0,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.329s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/cech_complex.py",
+      "suite": "test_cech_complex.py",
+      "tests": [
+        "test_generated_quotient_bound_and_gauge_shift"
+      ]
+    },
+    {
+      "identity": "observer-noise-domain",
+      "mutant_sha256": "2fc2f54f782b4f667dae975c19ee4127a6266e9dc1af194ab4359999b392beda",
+      "outcome": "killed",
+      "output": "test_legacy_lp_adapter_and_probability_input_refusals (__main__.ObserverPresheafTests.test_legacy_lp_adapter_and_probability_input_refusals) ... FAIL\n\n======================================================================\nFAIL: test_legacy_lp_adapter_and_probability_input_refusals (__main__.ObserverPresheafTests.test_legacy_lp_adapter_and_probability_input_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 74, in test_legacy_lp_adapter_and_probability_input_refusals\n    self.refused(module.noisy_pr, value)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.023s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/foc035_observer_presheaf.py",
+      "suite": "test_observer_presheaf.py",
+      "tests": [
+        "test_legacy_lp_adapter_and_probability_input_refusals"
+      ]
+    },
+    {
+      "identity": "observer-noise-mixture",
+      "mutant_sha256": "cdc9cd73d753263b5bb90ae42ebf545a0c1cb2e5b86822037aae6ac05cd4f5c2",
+      "outcome": "killed",
+      "output": "test_bell_ncf_distance_and_signed_section_oracles (__main__.ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles) ... ERROR\n\n======================================================================\nERROR: test_bell_ncf_distance_and_signed_section_oracles (__main__.ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 87, in test_bell_ncf_distance_and_signed_section_oracles\n    self.assertEqual(module.ncf(module.BELL, model), fraction)\n                     ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\independent\\foc035_observer_presheaf.py\", line 98, in ncf\n    model = EmpiricalModel(scen, dists)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\empirical_model.py\", line 48, in __init__\n    raise Violation(\"input\", \"each empirical row must be a nonnegative distribution of mass1\")\nchecker_support.boundary.Violation: each empirical row must be a nonnegative distribution of mass1\n\n----------------------------------------------------------------------\nRan 1 test in 0.022s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/foc035_observer_presheaf.py",
+      "suite": "test_observer_presheaf.py",
+      "tests": [
+        "test_bell_ncf_distance_and_signed_section_oracles"
+      ]
+    },
+    {
+      "identity": "observer-ncf-sign",
+      "mutant_sha256": "2655070d1a3279b24bd9cc7ad4e4b367bd6193186bc336e0787074496f19f08f",
+      "outcome": "killed",
+      "output": "test_bell_ncf_distance_and_signed_section_oracles (__main__.ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles) ... ERROR\n\n======================================================================\nERROR: test_bell_ncf_distance_and_signed_section_oracles (__main__.ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 87, in test_bell_ncf_distance_and_signed_section_oracles\n    self.assertEqual(module.ncf(module.BELL, model), fraction)\n                     ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\independent\\foc035_observer_presheaf.py\", line 107, in ncf\n    require(0 <= value <= 1, \"noncontextual fraction outside0..1\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: noncontextual fraction outside0..1\n\n----------------------------------------------------------------------\nRan 1 test in 0.160s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/foc035_observer_presheaf.py",
+      "suite": "test_observer_presheaf.py",
+      "tests": [
+        "test_bell_ncf_distance_and_signed_section_oracles"
+      ]
+    },
+    {
+      "identity": "observer-distance-residual",
+      "mutant_sha256": "c0be2873ae24ba599bff84d7fd88054ec0985e75ace33088f8b9e7c080872640",
+      "outcome": "killed",
+      "output": "test_bell_ncf_distance_and_signed_section_oracles (__main__.ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles) ... ERROR\n\n======================================================================\nERROR: test_bell_ncf_distance_and_signed_section_oracles (__main__.ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 88, in test_bell_ncf_distance_and_signed_section_oracles\n    self.assertEqual(module.l1_defect(module.BELL, model), distance)\n                     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\independent\\foc035_observer_presheaf.py\", line 125, in l1_defect\n    require(dot(tuple(abs(entry) for entry in residual), (F(1),)*m) == value and sum(p) == 1, \"distance primal residual mismatch\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: distance primal residual mismatch\n\n----------------------------------------------------------------------\nRan 1 test in 0.122s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/foc035_observer_presheaf.py",
+      "suite": "test_observer_presheaf.py",
+      "tests": [
+        "test_bell_ncf_distance_and_signed_section_oracles"
+      ]
+    },
+    {
+      "identity": "observer-ncf-preflight",
+      "mutant_sha256": "297ffcf9af642043475d65017cbbdbe4808c838869a78f774b14084584e940e2",
+      "outcome": "killed",
+      "output": "test_gluing_zero_overlap_mismatch_and_lp_size_preflight (__main__.ObserverPresheafTests.test_gluing_zero_overlap_mismatch_and_lp_size_preflight) ... ERROR\n\n======================================================================\nERROR: test_gluing_zero_overlap_mismatch_and_lp_size_preflight (__main__.ObserverPresheafTests.test_gluing_zero_overlap_mismatch_and_lp_size_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 149, in test_gluing_zero_overlap_mismatch_and_lp_size_preflight\n    self.refused(module.ncf, scenario, distributions)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 48, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 48, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\independent\\foc035_observer_presheaf.py\", line 102, in ncf\n    A = scen._incidence()\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: must not allocate\n\n----------------------------------------------------------------------\nRan 1 test in 0.026s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/foc035_observer_presheaf.py",
+      "suite": "test_observer_presheaf.py",
+      "tests": [
+        "test_gluing_zero_overlap_mismatch_and_lp_size_preflight"
+      ]
+    },
+    {
+      "identity": "observer-distance-preflight",
+      "mutant_sha256": "fe0a283f3c77e7cff228ead6b5b7e3e1cea765d5dd6b3f123a2c12d0fb831ff1",
+      "outcome": "killed",
+      "output": "test_gluing_zero_overlap_mismatch_and_lp_size_preflight (__main__.ObserverPresheafTests.test_gluing_zero_overlap_mismatch_and_lp_size_preflight) ... ERROR\n\n======================================================================\nERROR: test_gluing_zero_overlap_mismatch_and_lp_size_preflight (__main__.ObserverPresheafTests.test_gluing_zero_overlap_mismatch_and_lp_size_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 150, in test_gluing_zero_overlap_mismatch_and_lp_size_preflight\n    self.refused(module.l1_defect, scenario, distributions)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 48, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 48, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\independent\\foc035_observer_presheaf.py\", line 117, in l1_defect\n    A = scen._incidence()\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: must not allocate\n\n----------------------------------------------------------------------\nRan 1 test in 0.026s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/foc035_observer_presheaf.py",
+      "suite": "test_observer_presheaf.py",
+      "tests": [
+        "test_gluing_zero_overlap_mismatch_and_lp_size_preflight"
+      ]
+    },
+    {
+      "identity": "observer-signed-preflight",
+      "mutant_sha256": "10f2a62322e839cec67cb5ce3d83c017c681e5727b21c3c80086497d253f5836",
+      "outcome": "killed",
+      "output": "test_gluing_zero_overlap_mismatch_and_lp_size_preflight (__main__.ObserverPresheafTests.test_gluing_zero_overlap_mismatch_and_lp_size_preflight) ... ERROR\n\n======================================================================\nERROR: test_gluing_zero_overlap_mismatch_and_lp_size_preflight (__main__.ObserverPresheafTests.test_gluing_zero_overlap_mismatch_and_lp_size_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 151, in test_gluing_zero_overlap_mismatch_and_lp_size_preflight\n    self.refused(module._signed_section, module.EmpiricalModel(scenario, distributions))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 48, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 48, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\independent\\foc035_observer_presheaf.py\", line 192, in _signed_section\n    incidence = scenario._incidence()\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: must not allocate\n\n----------------------------------------------------------------------\nRan 1 test in 0.025s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/foc035_observer_presheaf.py",
+      "suite": "test_observer_presheaf.py",
+      "tests": [
+        "test_gluing_zero_overlap_mismatch_and_lp_size_preflight"
+      ]
+    },
+    {
+      "identity": "observer-signed-composition",
+      "mutant_sha256": "c911b8d24ab40081b46f349000a4d3bb8eca9f8331cf0430166935c2bd025189",
+      "outcome": "killed",
+      "output": "test_bell_ncf_distance_and_signed_section_oracles (__main__.ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles) ... FAIL\n\n======================================================================\nFAIL: test_bell_ncf_distance_and_signed_section_oracles (__main__.ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 92, in test_bell_ncf_distance_and_signed_section_oracles\n    self.assertEqual(matrix*sp.ImmutableMatrix(signed), sp.ImmutableMatrix(model.stacked()))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[1/2],\n[  1],\n[  0],\n[1/2],\n[3/2],\n[  0],\n[  0],\n[1[56 chars] 0]]) != Matrix([\n[1/2],\n[  0],\n[  0],\n[1/2],\n[1/2],\n[  0],\n[  0],\n[1[56 chars] 0]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.519s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/foc035_observer_presheaf.py",
+      "suite": "test_observer_presheaf.py",
+      "tests": [
+        "test_bell_ncf_distance_and_signed_section_oracles"
+      ]
+    },
+    {
+      "identity": "observer-gyo-containment",
+      "mutant_sha256": "6a80f345d7f6406fb8c7c2f66a96c53a06f303e023515c0b7944ed162d726d70",
+      "outcome": "killed",
+      "output": "test_gyo_exhaustive_graph_oracle_and_domains (__main__.ObserverPresheafTests.test_gyo_exhaustive_graph_oracle_and_domains) ... FAIL\n\n======================================================================\nFAIL: test_gyo_exhaustive_graph_oracle_and_domains (__main__.ObserverPresheafTests.test_gyo_exhaustive_graph_oracle_and_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 112, in test_gyo_exhaustive_graph_oracle_and_domains\n    self.assertEqual(module.gyo(edges), is_forest(edges, 4))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False != True\n\n----------------------------------------------------------------------\nRan 1 test in 0.022s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/foc035_observer_presheaf.py",
+      "suite": "test_observer_presheaf.py",
+      "tests": [
+        "test_gyo_exhaustive_graph_oracle_and_domains"
+      ]
+    },
+    {
+      "identity": "observer-gyo-ear",
+      "mutant_sha256": "890b30d790aae0b8f50fb6a290897ca381ea9c956c89227ed2ca122706605f48",
+      "outcome": "killed",
+      "output": "test_gyo_exhaustive_graph_oracle_and_domains (__main__.ObserverPresheafTests.test_gyo_exhaustive_graph_oracle_and_domains) ... FAIL\n\n======================================================================\nFAIL: test_gyo_exhaustive_graph_oracle_and_domains (__main__.ObserverPresheafTests.test_gyo_exhaustive_graph_oracle_and_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 112, in test_gyo_exhaustive_graph_oracle_and_domains\n    self.assertEqual(module.gyo(edges), is_forest(edges, 4))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True != False\n\n----------------------------------------------------------------------\nRan 1 test in 0.023s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/foc035_observer_presheaf.py",
+      "suite": "test_observer_presheaf.py",
+      "tests": [
+        "test_gyo_exhaustive_graph_oracle_and_domains"
+      ]
+    },
+    {
+      "identity": "observer-path-gluing-denominator",
+      "mutant_sha256": "70c4b0f0297c95946c478318ef4cf1bbe3dbf288ea1e335fe8743be566bba581",
+      "outcome": "killed",
+      "output": "test_path_gluing_against_independent_marginals (__main__.ObserverPresheafTests.test_path_gluing_against_independent_marginals) ... FAIL\n\n======================================================================\nFAIL: test_path_gluing_against_independent_marginals (__main__.ObserverPresheafTests.test_path_gluing_against_independent_marginals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 121, in test_path_gluing_against_independent_marginals\n    @given(st.lists(st.integers(0, 8), min_size=8, max_size=8))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 130, in test_path_gluing_against_independent_marginals\n    self.assertEqual(sum(joint.values()), 1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(1, 2) != 1\nFailing test case: test_path_gluing_against_independent_marginals(\n    self=<__main__.ObserverPresheafTests testMethod=test_path_gluing_against_independent_marginals>,\n    weights=[0, 0, 0, 0, 0, 0, 0, 1],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.530s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/foc035_observer_presheaf.py",
+      "suite": "test_observer_presheaf.py",
+      "tests": [
+        "test_path_gluing_against_independent_marginals"
+      ]
+    },
+    {
+      "identity": "observer-path-overlap",
+      "mutant_sha256": "8d020e65b319011e4491b565862e6d2c0d064f46b6fcb51baa2fc61b16f50237",
+      "outcome": "killed",
+      "output": "test_gluing_zero_overlap_mismatch_and_lp_size_preflight (__main__.ObserverPresheafTests.test_gluing_zero_overlap_mismatch_and_lp_size_preflight) ... FAIL\n\n======================================================================\nFAIL: test_gluing_zero_overlap_mismatch_and_lp_size_preflight (__main__.ObserverPresheafTests.test_gluing_zero_overlap_mismatch_and_lp_size_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 145, in test_gluing_zero_overlap_mismatch_and_lp_size_preflight\n    self.refused(module._glue_pair, left, incompatible)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 49, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.022s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/foc035_observer_presheaf.py",
+      "suite": "test_observer_presheaf.py",
+      "tests": [
+        "test_gluing_zero_overlap_mismatch_and_lp_size_preflight"
+      ]
+    },
+    {
+      "identity": "observer-parity-census",
+      "mutant_sha256": "19db58f4da445ca6d7dcb80ffd9d090564f20eaebb8fcaf14c746a2e38a5fc92",
+      "outcome": "killed",
+      "output": "test_executable_groups_and_failure_exit (__main__.ObserverPresheafTests.test_executable_groups_and_failure_exit) ... FAIL\n\n======================================================================\nFAIL: test_executable_groups_and_failure_exit (__main__.ObserverPresheafTests.test_executable_groups_and_failure_exit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 156, in test_executable_groups_and_failure_exit\n    self.assertEqual(result.returncode, 0, result.stderr)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 0 : {\"status\": \"failed\", \"kind\": \"check\", \"message\": \"Parity cycle size3: all8 targets match support, descent and NCF\"}\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.702s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/foc035_observer_presheaf.py",
+      "suite": "test_observer_presheaf.py",
+      "tests": [
+        "test_executable_groups_and_failure_exit"
+      ]
+    },
+    {
+      "identity": "observer-cli-exit",
+      "mutant_sha256": "e1ea392ad6dd4a608a78b7eb80c6a58811399869273619ebc2e8d0a77fd5f5b3",
+      "outcome": "killed",
+      "output": "test_executable_groups_and_failure_exit (__main__.ObserverPresheafTests.test_executable_groups_and_failure_exit) ... FAIL\n\n======================================================================\nFAIL: test_executable_groups_and_failure_exit (__main__.ObserverPresheafTests.test_executable_groups_and_failure_exit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 161, in test_executable_groups_and_failure_exit\n    with self.assertRaises(SystemExit) as failure:\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: SystemExit not raised\n\n----------------------------------------------------------------------\nRan 1 test in 6.638s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/foc035_observer_presheaf.py",
+      "suite": "test_observer_presheaf.py",
+      "tests": [
+        "test_executable_groups_and_failure_exit"
+      ]
+    },
+    {
+      "identity": "lp-oracle-minimum",
+      "mutant_sha256": "c5806d0b9354f97850ad3b11fb02d40c259be3dfab8732b47856b9cff3fb8b16",
+      "outcome": "killed",
+      "output": "test_oracle_and_three_certificate_kinds (__main__.ExactLinearProgramTests.test_oracle_and_three_certificate_kinds) ... FAIL\n\n======================================================================\nFAIL: test_oracle_and_three_certificate_kinds (__main__.ExactLinearProgramTests.test_oracle_and_three_certificate_kinds)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_exact_linear_program.py\", line 50, in test_oracle_and_three_certificate_kinds\n    self.assertEqual(vertex_minimum(((1, 1, 1),), (3,), (2, -1, 4)), -3)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(12, 1) != -3\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_exact_linear_program.py",
+      "suite": "test_exact_linear_program.py",
+      "tests": [
+        "test_oracle_and_three_certificate_kinds"
+      ]
+    },
+    {
+      "identity": "empirical-oracle-bit-order",
+      "mutant_sha256": "1a5fbbd9f94100c20052916f8cadc258e7b043a2afdb3fb0e9c9845ab4243c5c",
+      "outcome": "killed",
+      "output": "test_oracles_and_fixed_contextual_descent (__main__.EmpiricalModelTests.test_oracles_and_fixed_contextual_descent) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_fixed_contextual_descent (__main__.EmpiricalModelTests.test_oracles_and_fixed_contextual_descent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_empirical_model.py\", line 41, in test_oracles_and_fixed_contextual_descent\n    self.assertEqual(binary_digits(6, 3), (1, 1, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (0, 1, 1) != (1, 1, 0)\n\nFirst differing element 0:\n0\n1\n\n- (0, 1, 1)\n+ (1, 1, 0)\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_empirical_model.py",
+      "suite": "test_empirical_model.py",
+      "tests": [
+        "test_oracles_and_fixed_contextual_descent"
+      ]
+    },
+    {
+      "identity": "cech-oracle-row-offset",
+      "mutant_sha256": "bf120a86d73c099e348644c0a8ece3f2fac9ee85443f5673d111b881ee1c7228",
+      "outcome": "killed",
+      "output": "test_oracle_orientation_non_cocycle_and_nerves (__main__.CechComplexTests.test_oracle_orientation_non_cocycle_and_nerves) ... FAIL\n\n======================================================================\nFAIL: test_oracle_orientation_non_cocycle_and_nerves (__main__.CechComplexTests.test_oracle_orientation_non_cocycle_and_nerves)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_cech_complex.py\", line 58, in test_oracle_orientation_non_cocycle_and_nerves\n    self.assertEqual(star_cochain(list(range(12)))[1][(1, 0)], 6)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(5, 1) != 6\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_cech_complex.py",
+      "suite": "test_cech_complex.py",
+      "tests": [
+        "test_oracle_orientation_non_cocycle_and_nerves"
+      ]
+    },
+    {
+      "identity": "observer-oracle-graph-cycle",
+      "mutant_sha256": "c028f55cdb9d5a26a84e67166f52d9e5e63d640f80ff6d80d23bc2ecb7e228d7",
+      "outcome": "killed",
+      "output": "test_import_oracles_and_per_run_recorder (__main__.ObserverPresheafTests.test_import_oracles_and_per_run_recorder) ... FAIL\n\n======================================================================\nFAIL: test_import_oracles_and_per_run_recorder (__main__.ObserverPresheafTests.test_import_oracles_and_per_run_recorder)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\observer-mutants-tkrcp630\\tests\\test_observer_presheaf.py\", line 57, in test_import_oracles_and_per_run_recorder\n    self.assertTrue(is_forest(((0, 1), (1, 2)), 3))\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.022s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_observer_presheaf.py",
+      "suite": "test_observer_presheaf.py",
+      "tests": [
+        "test_import_oracles_and_per_run_recorder"
+      ]
+    }
+  ],
+  "summary": {
+    "counts": {
+      "killed": 80,
+      "survived": 0,
+      "equivalent": 0,
+      "invalid": 0,
+      "inconclusive": 0,
+      "unrun": 0
+    },
+    "eligible": 80,
+    "detected_fraction": 1.0
+  }
+}

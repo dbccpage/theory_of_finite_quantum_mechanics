@@ -1,0 +1,995 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "checks/independent/cqft-causal-factorization-import.py",
+  "assurance": "Completed L4B assessment of the exact source and finite interfaces; previous records remain intact.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Python",
+      "path": "checks/independent/cqft-causal-factorization-import.py",
+      "sha256": "b58f2f35f740f4fb081fcab8da2a8724f02f94c0b71b4c6a0076dc2616039833"
+    },
+    "audited_consumers": [
+      {
+        "path": "dag/theory_of_finite_qm.jsonl",
+        "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "docs/overclaim/reviews/2026-10-24_campaign-cqft-causal-factorization-import-precommit.md",
+        "sha256": "ddff5930f937d23c428e9fd2280fbf9b651f208b0f6a77f2727c111765e8c97c",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "docs/evidence/stages/CAUSAL_QFT.md",
+        "sha256": "54228f53f34b836b0b4a7aa6649e07fd1a14adb2b65eb58d8e4710a5c6ffb846",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "docs/evidence/nodes/CQFT-CAUSAL-FACTORIZATION-IMPORT.md",
+        "sha256": "c90b42383892f736bcd5ac778016c172e5bc5cffac477557f25f329f93eb785e",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/pfp/campaign/LOG.md",
+        "sha256": "3bb6fbbb26486f3c70b44e42e045dc7c2b3dbf93c87a32b9f6c9e23e2e8b8e74",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/fragments/frontier_branches.json",
+        "sha256": "ab83607806c0663345c7d43eee646989486cd2156ff8c8831e0c7c8d500bd1b7",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/evidence/evidence_map.json",
+        "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/derivation_dag.json",
+        "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/derivations/independent/cqft-causal-factorization-import.md",
+        "sha256": "974823cce62b50e4f40c4fd8ad9a62195885c4e531b1e2045b27802813dc6a6d",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/derivations/31_causal_qft/tfq_2109_cqft_causal_factorization_import.md",
+        "sha256": "a9715b1e35eff39d89f7ac0ebd74486d4216ed57ab23c307fe80547eb73cb858",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/operads/cqft_causal_factorization_import.yaml",
+        "sha256": "9e6bf854b4822f74d7b670db6c0afc25282e66412eda27a912fa39bd9adf8667",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/research/campaign_cqft-causal-factorization-import_independent.json",
+        "sha256": "19c321367f561844ae66fa948beabf696dde1c3c9ab13d87d38e325d30054f64",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "dag/research/pr_320_campaign_pipeline.json",
+        "sha256": "fd0a9f64ce3b08d51a6d057b9c6bb4a02f4cae605734f9d5a3d27c70d3e260ef",
+        "state": "pre-change consumer/provenance audit"
+      },
+      {
+        "path": "checks/independent/cqft-local-net-axioms-import.py",
+        "sha256": "5824ee27a9ad830d0d59d10e1169236885346238543e5b69124e9b25658b7675",
+        "state": "current local consumer"
+      },
+      {
+        "path": "checks/independent/cqft-reeh-schlieder-theorem-import.py",
+        "sha256": "2a639082e9bfe78086ae46a4be4ea5d5cfb79e9f009a55522b1210614bbe4cd8",
+        "state": "current local consumer"
+      },
+      {
+        "path": "checks/tests/test_cqft_checkers.py",
+        "sha256": "3a04c1f2be6a651622da75b13f025a8d751ee0a7f43644969fccc513430d983f",
+        "state": "current local consumer"
+      },
+      {
+        "path": "checks/tests/test_review_repairs.py",
+        "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+        "state": "current local consumer"
+      },
+      {
+        "path": ".github/workflows/reviewed-checkers.yml",
+        "sha256": "d09d2bcff3a9d932e07f11f77da18e41cf83892e4eb5b7eaac176c773cda6534",
+        "state": "current local consumer"
+      }
+    ],
+    "boundaries": [
+      "Shared exact matrix operations are dependencies; independent test oracles use SymPy and bit-list insertion.",
+      "No general group/continuum local-net/analytic continuation theorem is inferred from finite instances. State representatives are unnormalized.",
+      "No Lean build or hosted CI run is claimed; all preserved historical receipts keep their own hashes and counts.",
+      "Retention label5 is not perfection. B-level verification does not claim exhaustive correctness."
+    ],
+    "bounded_context": "Independent finite causal-order, local-operator and qubit-unfolding verification with owned exact rational matrix values; no continuum AQFT construction.",
+    "consumer_boundary": "Three executable paths and tested matrix/site helper interfaces are retained. Local-net CLI now emits an explicit84-case JSON receipt; causal total grows795->923 for112 second-family cocycles and16 C2 pair cases; Reeh total remains252. Internal local-net fixture helpers are composed; no external code callers were found. Integer matrices now have explicit64-dimension/4096-bit budgets. Local flat2 rational input remains supported. Historical scientific receipts retain their original source hashes and counts; no DAG status is promoted.",
+    "contract_urn": "urn:tfqm:checker-review:2026-11-03:cqft-causal-factorization-import",
+    "evidence": [
+      {
+        "path": "reviews/repository_file_review/2026-11-03-cqft-checkers.md",
+        "sha256": "9141c355c371962b89b2fe116ea104130bca1d240c8f39609718661e3f9fec85"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-cqft-closure-tests.py.txt",
+        "sha256": "b4fff4cbed9d5d013e42371ab34b2d64ca132aed4e530cff7357da6ca9be24d7"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-cqft-initial-causal.py.txt",
+        "sha256": "9d49281ea6e3ac9d003f8520e836f40e4c3343bbe8ae589408b0c37c43b32b90"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-cqft-initial-tests.py.txt",
+        "sha256": "9e436f096cd854883604ca2dbfe5907ea9fd91156c831c5a36a38049d83dc344"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-cqft-mutations-adjudicated.json",
+        "sha256": "0112582c49fb176de79174d6a19af63fea21ff5c7e0eff55d25a34b04d879d95"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-cqft-mutations-closure.json",
+        "sha256": "f8297f6cd212ce6fc896111ea50e55fda636a87a5271d8325c4f5e9cc04c97d8"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-cqft-mutations-initial-manifest.json",
+        "sha256": "35fc6162eea86d4b09adaa06abcf72a37a7d55813a9d82978189ff0b5679cc8e"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-cqft-mutations.json",
+        "sha256": "f53475c99c3b8c2aff7e467596f99a1f9aced3932275385e00c8ebad1895e6a8"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-cqft-quality-annotation-failure.json",
+        "sha256": "b0409e553350aaa446cde94c3e265f62ffb41196bdc9d20aad97d1e1c61d55dd"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-cqft-quality-initial.json",
+        "sha256": "724be9b4d444e6e22eb60ec260157191b49b66324caa1f2dd106830c9a214894"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-cqft-quality.json",
+        "sha256": "f531f9e11189a053da9fa1abe238e169a50008eee8681df7bd2935b746da7a37"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-cqft-requirements.json",
+        "sha256": "000a9dfbc2d0735ca03dad016cd3aa23f640ae7ffee421b2b9f0f2c929c39273"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+        "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+        "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+      },
+      {
+        "path": "checks/tests/cqft_mutations.json",
+        "sha256": "82b7e8ae9acf3c7909d5772b316b229b521ea0e835c5b6f5ef20aaa0f76389f1"
+      }
+    ],
+    "failure_policy": "Matrix/point/shape domains are admitted before dependent arithmetic and use detached snapshots. Expected input/resource/check/duplicate failures use Violation, Outcome/evaluate and the nonzero CLI boundary. Resource refusal is distinct from a false mathematical obligation; Cases rejects non-bool/duplicate status rows. Callback recorders are trusted typed interfaces, not untrusted plugin code. Cancellation and unexpected programming errors propagate; tests restore import/mock/capture state.",
+    "nested_declaration_ownership": {
+      "verify_bogoliubov_and_c2_asymmetry.all_spacelike_between": {
+        "owned_by": "verify_bogoliubov_and_c2_asymmetry",
+        "requirements_via": "verify_bogoliubov_and_c2_asymmetry"
+      },
+      "verify_bogoliubov_and_c2_asymmetry.bogoliubov_v": {
+        "owned_by": "verify_bogoliubov_and_c2_asymmetry",
+        "requirements_via": "verify_bogoliubov_and_c2_asymmetry"
+      },
+      "verify_bogoliubov_and_c2_asymmetry.check": {
+        "owned_by": "verify_bogoliubov_and_c2_asymmetry",
+        "requirements_via": "verify_bogoliubov_and_c2_asymmetry"
+      },
+      "verify_bogoliubov_and_c2_asymmetry.is_spacelike": {
+        "owned_by": "verify_bogoliubov_and_c2_asymmetry",
+        "requirements_via": "verify_bogoliubov_and_c2_asymmetry"
+      },
+      "verify_bogoliubov_and_c2_asymmetry.no_in_causal_past": {
+        "owned_by": "verify_bogoliubov_and_c2_asymmetry",
+        "requirements_via": "verify_bogoliubov_and_c2_asymmetry"
+      },
+      "verify_bogoliubov_and_c2_asymmetry.s_factor": {
+        "owned_by": "verify_bogoliubov_and_c2_asymmetry",
+        "requirements_via": "verify_bogoliubov_and_c2_asymmetry"
+      },
+      "verify_bogoliubov_and_c2_asymmetry.s_nonfactor": {
+        "owned_by": "verify_bogoliubov_and_c2_asymmetry",
+        "requirements_via": "verify_bogoliubov_and_c2_asymmetry"
+      },
+      "verify_diagonal_counterterm_fence.check": {
+        "owned_by": "verify_diagonal_counterterm_fence",
+        "requirements_via": "verify_diagonal_counterterm_fence"
+      },
+      "verify_diagonal_counterterm_fence.kernel": {
+        "owned_by": "verify_diagonal_counterterm_fence",
+        "requirements_via": "verify_diagonal_counterterm_fence"
+      },
+      "verify_poset_n_swap_connectivity.adj_spacelike_swap": {
+        "owned_by": "verify_poset_n_swap_connectivity",
+        "requirements_via": "verify_poset_n_swap_connectivity"
+      },
+      "verify_poset_n_swap_connectivity.check": {
+        "owned_by": "verify_poset_n_swap_connectivity",
+        "requirements_via": "verify_poset_n_swap_connectivity"
+      },
+      "verify_poset_n_swap_connectivity.is_linear_ext_n": {
+        "owned_by": "verify_poset_n_swap_connectivity",
+        "requirements_via": "verify_poset_n_swap_connectivity"
+      },
+      "verify_poset_n_swap_connectivity.is_spacelike_n": {
+        "owned_by": "verify_poset_n_swap_connectivity",
+        "requirements_via": "verify_poset_n_swap_connectivity"
+      }
+    },
+    "operational_cost": "All matrix operations use the bounded matrix value. Ordered products validate <=64 assigned points and <=64 factors. Default controls: 7 background coordinates, 4x4 perturbations, two families; 24 four-point permutations and five-vertex swap graph; 25 counterterm pairs times16 point pairs. 923 obligations =484+32+407.",
+    "origin": {
+      "path": "lean4/CausalFactorizationImport.lean",
+      "sha256": "2fed601873ae5ac48008d255f5e1e4c3d0273b5c4cfa82e4aed6bc059b994efc"
+    },
+    "owned_invariants": [
+      "RationalMatrix is the sole immutable matrix value object in its file; rectangular rows and exact values are admitted and owned.",
+      "Each matrix dimension <=64, each stored rational component <=4096 bits; dot products admit each product and accumulator; tensor dimensions checked before output allocation.",
+      "Causal operations require integer2x2 matrices and ordered products have <=64 assigned points/factors; local flat2 operations preserve exact rational input.",
+      "Qubit coefficient snapshots have8 integers, site0..2, bit0..1, complement0..3; no raw caller list is used after validation.",
+      "Default causal/local/Reeh obligations are923/84/252; all are finite controls, one count per executed conjunction."
+    ],
+    "requirements": [
+      {
+        "requirement": "Admit exact 2x2 integer matrices and return detached integer tuples. Inverse requires determinant +1 or -1. Ordered-product assignment is a dict of <=64 exact point keys in 0..63; validate every assigned matrix even for an empty product, snapshot <=64 factors, reject missing keys and multiply in the specified order.",
+        "requirement_id": "TFQM-CQFT-REVIEW-CQFT-CAUSAL-FACTORIZATION-IMPORT-1",
+        "symbols": [
+          "_matrix2",
+          "_mat2_rows",
+          "mat2_mul",
+          "mat2_neg",
+          "mat2_det",
+          "mat2_inv_unimodular",
+          "ordered_prod"
+        ],
+        "tests": [
+          "CqftCheckerTests.test_unimodular_inverse_and_ordered_products",
+          "CqftCheckerTests.test_ordered_product_and_unimodular_refusals",
+          "CqftCheckerTests.test_matrix_owns_snapshots_and_exports_are_detached"
+        ]
+      },
+      {
+        "requirement": "Check the two supplied SL2 integer families, zero-perturbation identity, direct cocycle in each, factorization/shift equivalence and fixed C2 support asymmetry. Cross-check all16 C2 point pairs against the independent height-order description, including diagonal irreflexivity and causal orientation. These are finite instances of the Lean group statements.",
+        "requirement_id": "TFQM-CQFT-REVIEW-CQFT-CAUSAL-FACTORIZATION-IMPORT-2",
+        "symbols": [
+          "verify_bogoliubov_and_c2_asymmetry"
+        ],
+        "tests": [
+          "CqftCheckerTests.test_all_finite_sections_and_default_counts",
+          "CqftCheckerTests.test_injected_faults_cli_and_cancellation"
+        ]
+      },
+      {
+        "requirement": "Enumerate all24 permutations of the fixed N order, identify its five extensions, check adjacent spacelike swaps and finite connectivity, and compare commuting/anticommuting ordered products. All point/carrier data inside this section are fixed trusted fixtures.",
+        "requirement_id": "TFQM-CQFT-REVIEW-CQFT-CAUSAL-FACTORIZATION-IMPORT-3",
+        "symbols": [
+          "verify_poset_n_swap_connectivity"
+        ],
+        "tests": [
+          "CqftCheckerTests.test_all_finite_sections_and_default_counts",
+          "CqftCheckerTests.test_unimodular_inverse_and_ordered_products"
+        ]
+      },
+      {
+        "requirement": "Compare seven literal binomial counterterm dimensions and400 kernel obligations; report actual executed Cases counts and failures for each finite section and a nonzero CLI on failure. Recorder conditions are exact bool and state is per invocation.",
+        "requirement_id": "TFQM-CQFT-REVIEW-CQFT-CAUSAL-FACTORIZATION-IMPORT-4",
+        "symbols": [
+          "verify_diagonal_counterterm_fence",
+          "main"
+        ],
+        "tests": [
+          "CqftCheckerTests.test_all_finite_sections_and_default_counts",
+          "CqftCheckerTests.test_injected_faults_cli_and_cancellation"
+        ]
+      }
+    ],
+    "role": "Finite causal-factorization verification application with admitted integer operators, bounded ordered-product ownership, two group-model controls, finite swap connectivity, diagonal ambiguity controls and typed run accounting",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "_mat2_rows",
+      "_matrix2",
+      "main",
+      "mat2_det",
+      "mat2_inv_unimodular",
+      "mat2_mul",
+      "mat2_neg",
+      "ordered_prod",
+      "verify_bogoliubov_and_c2_asymmetry",
+      "verify_diagonal_counterterm_fence",
+      "verify_poset_n_swap_connectivity"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 1610,
+      "original_paths": [
+        "checks/independent/cqft-causal-factorization-import.contract.score.yaml#systematic-file-review-cqft-2026-11-02"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/cqft-causal-factorization-import.py\",\n    \"sha256\": \"2fe15214807bfaa155a3d0fc71d60e5f126c836010c680f841bb7ab960f84f6e\"\n  },\n  \"boundaries\": [\n    \"The finite examples do not establish the imported continuum quantum-field-theory results.\",\n    \"No repository implementation is imported by this checker.\",\n    \"This record documents requirements and findings; it is not proof that every requirement is satisfied.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:file-review:2026-11-02:cqft-causal-factorization-import\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-cqft.md\",\n      \"sha256\": \"697d9f96cd8d22a281bcff2b2b058784602bb2a6d8a2b4b451ac498a04902efa\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"The CLI reports bounded finite-example outcomes and exits nonzero on detected failure.\",\n    \"Matrix shapes, carrier membership and algebraic preconditions require explicit typed validation regardless of Python optimization.\",\n    \"Observed deviations are recorded in the review.\"\n  ],\n  \"purpose\": \"Finite cocycle, poset connectivity and diagonal-kernel examples.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"mat2_mul\",\n    \"mat2_neg\",\n    \"mat2_det\",\n    \"mat2_inv_unimodular\",\n    \"ordered_prod\",\n    \"verify_bogoliubov_and_c2_asymmetry\",\n    \"verify_poset_n_swap_connectivity\",\n    \"verify_diagonal_counterterm_fence\",\n    \"main\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/cqft-causal-factorization-import.py",
+          "sha256": "2fe15214807bfaa155a3d0fc71d60e5f126c836010c680f841bb7ab960f84f6e"
+        },
+        "boundaries": [
+          "The finite examples do not establish the imported continuum quantum-field-theory results.",
+          "No repository implementation is imported by this checker.",
+          "This record documents requirements and findings; it is not proof that every requirement is satisfied."
+        ],
+        "contract_urn": "urn:tfqm:file-review:2026-11-02:cqft-causal-factorization-import",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-cqft.md",
+            "sha256": "697d9f96cd8d22a281bcff2b2b058784602bb2a6d8a2b4b451ac498a04902efa"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "owned_invariants": [
+          "The CLI reports bounded finite-example outcomes and exits nonzero on detected failure.",
+          "Matrix shapes, carrier membership and algebraic preconditions require explicit typed validation regardless of Python optimization.",
+          "Observed deviations are recorded in the review."
+        ],
+        "purpose": "Finite cocycle, poset connectivity and diagonal-kernel examples.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "mat2_mul",
+          "mat2_neg",
+          "mat2_det",
+          "mat2_inv_unimodular",
+          "ordered_prod",
+          "verify_bogoliubov_and_c2_asymmetry",
+          "verify_poset_n_swap_connectivity",
+          "verify_diagonal_counterterm_fence",
+          "main"
+        ]
+      },
+      "sha256": "43828fe8dbfbb16f5f80c27473b4d950285373e284bcd99f8bb6cfe2b7c89218"
+    },
+    {
+      "bytes": 3754,
+      "original_paths": [
+        "review-repair-2026-11-02"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/cqft-causal-factorization-import.py\",\n    \"sha256\": \"3215e24a50f528ec6298d68511a7f2a7ed8180a89c6ceac0ce64c816740c5da4\"\n  },\n  \"boundaries\": [\n    \"Finite supplied models do not discharge unimplemented general, continuum or physical statements.\",\n    \"Shared checker helpers are not independent confirmation of one another; regression oracles are separately constructed.\",\n    \"This contract does not establish the requested L4B acceptance floor or hosted-CI success.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review-repair:2026-11-02:cqft-causal-factorization-import\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-repairs.md\",\n      \"sha256\": \"82db030642db352aca1fd3ab9677515df96ec207e3dd6b9096cd06886aee55ca\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-repair-retest.json\",\n      \"sha256\": \"ef357c98fbe380729b1099dfa61a677845c51adcf74edc1ff3c897f534a38b34\"\n    },\n    {\n      \"path\": \"checks/tests/test_review_repairs.py\",\n      \"sha256\": \"d88864962ba4fe0e6a25cb9b2c6c2ba83b4d0dc687efcf5093c838eb162dfac5\"\n    },\n    {\n      \"path\": \"checks/checker_support/README.md\",\n      \"sha256\": \"96cb7a9253e8f0578b022554272ba596f5daff0be2b9af92566016e1d28d44a7\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"imports\": [\n    \"__future__\",\n    \"checker_support.boundary\",\n    \"checker_support.domains\",\n    \"itertools\",\n    \"math\",\n    \"pathlib\",\n    \"sys\"\n  ],\n  \"owned_invariants\": [\n    \"Current source identity and callable scope are bound by this contract and the exact retest receipt.\",\n    \"Expected independent-checker input failures are represented by Failure/Outcome at the evaluate boundary; CLI refusals exit nonzero.\",\n    \"No executable assertions are relied on; regression verifies normal and optimized Python.\",\n    \"Exact numerical paths reject unadmitted floats and booleans at the repaired input boundaries.\"\n  ],\n  \"purpose\": \"Independent verification script for CQFT-CAUSAL-FACTORIZATION-IMPORT (TFQ-2109).\\n\\nAuthorityEffect: None.\\nVerifies all three finite/algebraic components and non-equivalence fences in\\nlean4/CausalFactorizationImport.lean from first principles:\\n1. Abstract Bogoliubov relative S-matrix algebra V(g, h) = S(g)^{-1} S(g + h) over GL(2, Z)\\n   and SL(2, Z) matrix models, telescoping cocycle identity V(g, h1) V(g + h1, h2) = V(g, h1 + h2),\\n   equivalence between causal factorization V(g, h1 + h2) = V(g, h1) V(g, h2) and background-shift\\n   invariance V(g + h1, h2) = V(g, h2), and Epstein-Glaser causal separation asymmetry on C2.\\n2. Complete enumeration of all 24 permutations of {0, 1, 2, 3} on the 4-element N poset\\n   (0 < 2, 1 < 2, 1 < 3), exact identification of its 5 linear extensions, explicit adjacent-spacelike-swap\\n   connectivity across all 5 linear extensions, and ordered-product equality for commuting 2x2 integer\\n   matrices vs. exact sign flip for anticommuting Pauli matrices on (0, 3).\\n3. Coincident-diagonal renormalization ambiguity fence: irreflexivity of spacelike separation on the\\n   diagonal, 4D Epstein-Glaser polynomial counterterm dimensions binom(omega + 4, 4) for omega = 0..6,\\n   and invariance of off-diagonal factorized two-point kernels under diagonal contact counterterms.\",\n  \"role\": \"independent finite checker\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"mat2_mul\",\n    \"mat2_neg\",\n    \"mat2_det\",\n    \"mat2_inv_unimodular\",\n    \"ordered_prod\",\n    \"verify_bogoliubov_and_c2_asymmetry\",\n    \"verify_poset_n_swap_connectivity\",\n    \"verify_diagonal_counterterm_fence\",\n    \"main\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/cqft-causal-factorization-import.py",
+          "sha256": "3215e24a50f528ec6298d68511a7f2a7ed8180a89c6ceac0ce64c816740c5da4"
+        },
+        "boundaries": [
+          "Finite supplied models do not discharge unimplemented general, continuum or physical statements.",
+          "Shared checker helpers are not independent confirmation of one another; regression oracles are separately constructed.",
+          "This contract does not establish the requested L4B acceptance floor or hosted-CI success."
+        ],
+        "contract_urn": "urn:tfqm:review-repair:2026-11-02:cqft-causal-factorization-import",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-repairs.md",
+            "sha256": "82db030642db352aca1fd3ab9677515df96ec207e3dd6b9096cd06886aee55ca"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-repair-retest.json",
+            "sha256": "ef357c98fbe380729b1099dfa61a677845c51adcf74edc1ff3c897f534a38b34"
+          },
+          {
+            "path": "checks/tests/test_review_repairs.py",
+            "sha256": "d88864962ba4fe0e6a25cb9b2c6c2ba83b4d0dc687efcf5093c838eb162dfac5"
+          },
+          {
+            "path": "checks/checker_support/README.md",
+            "sha256": "96cb7a9253e8f0578b022554272ba596f5daff0be2b9af92566016e1d28d44a7"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "imports": [
+          "__future__",
+          "checker_support.boundary",
+          "checker_support.domains",
+          "itertools",
+          "math",
+          "pathlib",
+          "sys"
+        ],
+        "owned_invariants": [
+          "Current source identity and callable scope are bound by this contract and the exact retest receipt.",
+          "Expected independent-checker input failures are represented by Failure/Outcome at the evaluate boundary; CLI refusals exit nonzero.",
+          "No executable assertions are relied on; regression verifies normal and optimized Python.",
+          "Exact numerical paths reject unadmitted floats and booleans at the repaired input boundaries."
+        ],
+        "purpose": "Independent verification script for CQFT-CAUSAL-FACTORIZATION-IMPORT (TFQ-2109).\n\nAuthorityEffect: None.\nVerifies all three finite/algebraic components and non-equivalence fences in\nlean4/CausalFactorizationImport.lean from first principles:\n1. Abstract Bogoliubov relative S-matrix algebra V(g, h) = S(g)^{-1} S(g + h) over GL(2, Z)\n   and SL(2, Z) matrix models, telescoping cocycle identity V(g, h1) V(g + h1, h2) = V(g, h1 + h2),\n   equivalence between causal factorization V(g, h1 + h2) = V(g, h1) V(g, h2) and background-shift\n   invariance V(g + h1, h2) = V(g, h2), and Epstein-Glaser causal separation asymmetry on C2.\n2. Complete enumeration of all 24 permutations of {0, 1, 2, 3} on the 4-element N poset\n   (0 < 2, 1 < 2, 1 < 3), exact identification of its 5 linear extensions, explicit adjacent-spacelike-swap\n   connectivity across all 5 linear extensions, and ordered-product equality for commuting 2x2 integer\n   matrices vs. exact sign flip for anticommuting Pauli matrices on (0, 3).\n3. Coincident-diagonal renormalization ambiguity fence: irreflexivity of spacelike separation on the\n   diagonal, 4D Epstein-Glaser polynomial counterterm dimensions binom(omega + 4, 4) for omega = 0..6,\n   and invariance of off-diagonal factorized two-point kernels under diagonal contact counterterms.",
+        "role": "independent finite checker",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "mat2_mul",
+          "mat2_neg",
+          "mat2_det",
+          "mat2_inv_unimodular",
+          "ordered_prod",
+          "verify_bogoliubov_and_c2_asymmetry",
+          "verify_poset_n_swap_connectivity",
+          "verify_diagonal_counterterm_fence",
+          "main"
+        ]
+      },
+      "sha256": "abd3e2a9646830b15dd08f81759e59013f6cdb401b42a5f6dcac197bb57d489f"
+    },
+    {
+      "bytes": 15803,
+      "original_paths": [
+        "cqft-review-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/cqft-causal-factorization-import.py\",\n    \"sha256\": \"b58f2f35f740f4fb081fcab8da2a8724f02f94c0b71b4c6a0076dc2616039833\"\n  },\n  \"audited_consumers\": [\n    {\n      \"path\": \"dag/theory_of_finite_qm.jsonl\",\n      \"sha256\": \"3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-24_campaign-cqft-causal-factorization-import-precommit.md\",\n      \"sha256\": \"ddff5930f937d23c428e9fd2280fbf9b651f208b0f6a77f2727c111765e8c97c\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"docs/evidence/stages/CAUSAL_QFT.md\",\n      \"sha256\": \"54228f53f34b836b0b4a7aa6649e07fd1a14adb2b65eb58d8e4710a5c6ffb846\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/CQFT-CAUSAL-FACTORIZATION-IMPORT.md\",\n      \"sha256\": \"c90b42383892f736bcd5ac778016c172e5bc5cffac477557f25f329f93eb785e\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/pfp/campaign/LOG.md\",\n      \"sha256\": \"3bb6fbbb26486f3c70b44e42e045dc7c2b3dbf93c87a32b9f6c9e23e2e8b8e74\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/fragments/frontier_branches.json\",\n      \"sha256\": \"ab83607806c0663345c7d43eee646989486cd2156ff8c8831e0c7c8d500bd1b7\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/evidence/evidence_map.json\",\n      \"sha256\": \"6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/derivation_dag.json\",\n      \"sha256\": \"7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/derivations/independent/cqft-causal-factorization-import.md\",\n      \"sha256\": \"974823cce62b50e4f40c4fd8ad9a62195885c4e531b1e2045b27802813dc6a6d\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/derivations/31_causal_qft/tfq_2109_cqft_causal_factorization_import.md\",\n      \"sha256\": \"a9715b1e35eff39d89f7ac0ebd74486d4216ed57ab23c307fe80547eb73cb858\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/operads/cqft_causal_factorization_import.yaml\",\n      \"sha256\": \"9e6bf854b4822f74d7b670db6c0afc25282e66412eda27a912fa39bd9adf8667\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/research/campaign_cqft-causal-factorization-import_independent.json\",\n      \"sha256\": \"19c321367f561844ae66fa948beabf696dde1c3c9ab13d87d38e325d30054f64\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"dag/research/pr_320_campaign_pipeline.json\",\n      \"sha256\": \"fd0a9f64ce3b08d51a6d057b9c6bb4a02f4cae605734f9d5a3d27c70d3e260ef\",\n      \"state\": \"pre-change consumer/provenance audit\"\n    },\n    {\n      \"path\": \"checks/independent/cqft-local-net-axioms-import.py\",\n      \"sha256\": \"5824ee27a9ad830d0d59d10e1169236885346238543e5b69124e9b25658b7675\",\n      \"state\": \"current local consumer\"\n    },\n    {\n      \"path\": \"checks/independent/cqft-reeh-schlieder-theorem-import.py\",\n      \"sha256\": \"2a639082e9bfe78086ae46a4be4ea5d5cfb79e9f009a55522b1210614bbe4cd8\",\n      \"state\": \"current local consumer\"\n    },\n    {\n      \"path\": \"checks/tests/test_cqft_checkers.py\",\n      \"sha256\": \"3a04c1f2be6a651622da75b13f025a8d751ee0a7f43644969fccc513430d983f\",\n      \"state\": \"current local consumer\"\n    },\n    {\n      \"path\": \"checks/tests/test_review_repairs.py\",\n      \"sha256\": \"6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4\",\n      \"state\": \"current local consumer\"\n    },\n    {\n      \"path\": \".github/workflows/reviewed-checkers.yml\",\n      \"sha256\": \"d09d2bcff3a9d932e07f11f77da18e41cf83892e4eb5b7eaac176c773cda6534\",\n      \"state\": \"current local consumer\"\n    }\n  ],\n  \"boundaries\": [\n    \"Shared exact matrix operations are dependencies; independent test oracles use SymPy and bit-list insertion.\",\n    \"No general group/continuum local-net/analytic continuation theorem is inferred from finite instances. State representatives are unnormalized.\",\n    \"No Lean build or hosted CI run is claimed; all preserved historical receipts keep their own hashes and counts.\",\n    \"Retention label5 is not perfection. B-level verification does not claim exhaustive correctness.\"\n  ],\n  \"bounded_context\": \"Independent finite causal-order, local-operator and qubit-unfolding verification with owned exact rational matrix values; no continuum AQFT construction.\",\n  \"consumer_boundary\": \"Three executable paths and tested matrix/site helper interfaces are retained. Local-net CLI now emits an explicit84-case JSON receipt; causal total grows795->923 for112 second-family cocycles and16 C2 pair cases; Reeh total remains252. Internal local-net fixture helpers are composed; no external code callers were found. Integer matrices now have explicit64-dimension/4096-bit budgets. Local flat2 rational input remains supported. Historical scientific receipts retain their original source hashes and counts; no DAG status is promoted.\",\n  \"contract_urn\": \"urn:tfqm:checker-review:2026-11-03:cqft-causal-factorization-import\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-checkers.md\",\n      \"sha256\": \"9141c355c371962b89b2fe116ea104130bca1d240c8f39609718661e3f9fec85\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-closure-tests.py.txt\",\n      \"sha256\": \"b4fff4cbed9d5d013e42371ab34b2d64ca132aed4e530cff7357da6ca9be24d7\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-initial-causal.py.txt\",\n      \"sha256\": \"9d49281ea6e3ac9d003f8520e836f40e4c3343bbe8ae589408b0c37c43b32b90\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-initial-tests.py.txt\",\n      \"sha256\": \"9e436f096cd854883604ca2dbfe5907ea9fd91156c831c5a36a38049d83dc344\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-mutations-adjudicated.json\",\n      \"sha256\": \"0112582c49fb176de79174d6a19af63fea21ff5c7e0eff55d25a34b04d879d95\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-mutations-closure.json\",\n      \"sha256\": \"f8297f6cd212ce6fc896111ea50e55fda636a87a5271d8325c4f5e9cc04c97d8\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-mutations-initial-manifest.json\",\n      \"sha256\": \"35fc6162eea86d4b09adaa06abcf72a37a7d55813a9d82978189ff0b5679cc8e\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-mutations.json\",\n      \"sha256\": \"f53475c99c3b8c2aff7e467596f99a1f9aced3932275385e00c8ebad1895e6a8\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-quality-annotation-failure.json\",\n      \"sha256\": \"b0409e553350aaa446cde94c3e265f62ffb41196bdc9d20aad97d1e1c61d55dd\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-quality-initial.json\",\n      \"sha256\": \"724be9b4d444e6e22eb60ec260157191b49b66324caa1f2dd106830c9a214894\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-quality.json\",\n      \"sha256\": \"f531f9e11189a053da9fa1abe238e169a50008eee8681df7bd2935b746da7a37\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-requirements.json\",\n      \"sha256\": \"000a9dfbc2d0735ca03dad016cd3aa23f640ae7ffee421b2b9f0f2c929c39273\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-quality-complete.json\",\n      \"sha256\": \"3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json\",\n      \"sha256\": \"a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    },\n    {\n      \"path\": \"checks/tests/cqft_mutations.json\",\n      \"sha256\": \"82b7e8ae9acf3c7909d5772b316b229b521ea0e835c5b6f5ef20aaa0f76389f1\"\n    }\n  ],\n  \"failure_policy\": \"Matrix/point/shape domains are admitted before dependent arithmetic and use detached snapshots. Expected input/resource/check/duplicate failures use Violation, Outcome/evaluate and the nonzero CLI boundary. Resource refusal is distinct from a false mathematical obligation; Cases rejects non-bool/duplicate status rows. Callback recorders are trusted typed interfaces, not untrusted plugin code. Cancellation and unexpected programming errors propagate; tests restore import/mock/capture state.\",\n  \"nested_declaration_ownership\": {\n    \"verify_bogoliubov_and_c2_asymmetry.all_spacelike_between\": {\n      \"owned_by\": \"verify_bogoliubov_and_c2_asymmetry\",\n      \"requirements_via\": \"verify_bogoliubov_and_c2_asymmetry\"\n    },\n    \"verify_bogoliubov_and_c2_asymmetry.bogoliubov_v\": {\n      \"owned_by\": \"verify_bogoliubov_and_c2_asymmetry\",\n      \"requirements_via\": \"verify_bogoliubov_and_c2_asymmetry\"\n    },\n    \"verify_bogoliubov_and_c2_asymmetry.check\": {\n      \"owned_by\": \"verify_bogoliubov_and_c2_asymmetry\",\n      \"requirements_via\": \"verify_bogoliubov_and_c2_asymmetry\"\n    },\n    \"verify_bogoliubov_and_c2_asymmetry.is_spacelike\": {\n      \"owned_by\": \"verify_bogoliubov_and_c2_asymmetry\",\n      \"requirements_via\": \"verify_bogoliubov_and_c2_asymmetry\"\n    },\n    \"verify_bogoliubov_and_c2_asymmetry.no_in_causal_past\": {\n      \"owned_by\": \"verify_bogoliubov_and_c2_asymmetry\",\n      \"requirements_via\": \"verify_bogoliubov_and_c2_asymmetry\"\n    },\n    \"verify_bogoliubov_and_c2_asymmetry.s_factor\": {\n      \"owned_by\": \"verify_bogoliubov_and_c2_asymmetry\",\n      \"requirements_via\": \"verify_bogoliubov_and_c2_asymmetry\"\n    },\n    \"verify_bogoliubov_and_c2_asymmetry.s_nonfactor\": {\n      \"owned_by\": \"verify_bogoliubov_and_c2_asymmetry\",\n      \"requirements_via\": \"verify_bogoliubov_and_c2_asymmetry\"\n    },\n    \"verify_diagonal_counterterm_fence.check\": {\n      \"owned_by\": \"verify_diagonal_counterterm_fence\",\n      \"requirements_via\": \"verify_diagonal_counterterm_fence\"\n    },\n    \"verify_diagonal_counterterm_fence.kernel\": {\n      \"owned_by\": \"verify_diagonal_counterterm_fence\",\n      \"requirements_via\": \"verify_diagonal_counterterm_fence\"\n    },\n    \"verify_poset_n_swap_connectivity.adj_spacelike_swap\": {\n      \"owned_by\": \"verify_poset_n_swap_connectivity\",\n      \"requirements_via\": \"verify_poset_n_swap_connectivity\"\n    },\n    \"verify_poset_n_swap_connectivity.check\": {\n      \"owned_by\": \"verify_poset_n_swap_connectivity\",\n      \"requirements_via\": \"verify_poset_n_swap_connectivity\"\n    },\n    \"verify_poset_n_swap_connectivity.is_linear_ext_n\": {\n      \"owned_by\": \"verify_poset_n_swap_connectivity\",\n      \"requirements_via\": \"verify_poset_n_swap_connectivity\"\n    },\n    \"verify_poset_n_swap_connectivity.is_spacelike_n\": {\n      \"owned_by\": \"verify_poset_n_swap_connectivity\",\n      \"requirements_via\": \"verify_poset_n_swap_connectivity\"\n    }\n  },\n  \"operational_cost\": \"All matrix operations use the bounded matrix value. Ordered products validate <=64 assigned points and <=64 factors. Default controls: 7 background coordinates, 4x4 perturbations, two families; 24 four-point permutations and five-vertex swap graph; 25 counterterm pairs times16 point pairs. 923 obligations =484+32+407.\",\n  \"origin\": {\n    \"path\": \"lean4/CausalFactorizationImport.lean\",\n    \"sha256\": \"2fed601873ae5ac48008d255f5e1e4c3d0273b5c4cfa82e4aed6bc059b994efc\"\n  },\n  \"owned_invariants\": [\n    \"RationalMatrix is the sole immutable matrix value object in its file; rectangular rows and exact values are admitted and owned.\",\n    \"Each matrix dimension <=64, each stored rational component <=4096 bits; dot products admit each product and accumulator; tensor dimensions checked before output allocation.\",\n    \"Causal operations require integer2x2 matrices and ordered products have <=64 assigned points/factors; local flat2 operations preserve exact rational input.\",\n    \"Qubit coefficient snapshots have8 integers, site0..2, bit0..1, complement0..3; no raw caller list is used after validation.\",\n    \"Default causal/local/Reeh obligations are923/84/252; all are finite controls, one count per executed conjunction.\"\n  ],\n  \"requirements\": [\n    {\n      \"requirement\": \"Admit exact 2x2 integer matrices and return detached integer tuples. Inverse requires determinant +1 or -1. Ordered-product assignment is a dict of <=64 exact point keys in 0..63; validate every assigned matrix even for an empty product, snapshot <=64 factors, reject missing keys and multiply in the specified order.\",\n      \"requirement_id\": \"TFQM-CQFT-REVIEW-CQFT-CAUSAL-FACTORIZATION-IMPORT-1\",\n      \"symbols\": [\n        \"_matrix2\",\n        \"_mat2_rows\",\n        \"mat2_mul\",\n        \"mat2_neg\",\n        \"mat2_det\",\n        \"mat2_inv_unimodular\",\n        \"ordered_prod\"\n      ],\n      \"tests\": [\n        \"CqftCheckerTests.test_unimodular_inverse_and_ordered_products\",\n        \"CqftCheckerTests.test_ordered_product_and_unimodular_refusals\",\n        \"CqftCheckerTests.test_matrix_owns_snapshots_and_exports_are_detached\"\n      ]\n    },\n    {\n      \"requirement\": \"Check the two supplied SL2 integer families, zero-perturbation identity, direct cocycle in each, factorization/shift equivalence and fixed C2 support asymmetry. Cross-check all16 C2 point pairs against the independent height-order description, including diagonal irreflexivity and causal orientation. These are finite instances of the Lean group statements.\",\n      \"requirement_id\": \"TFQM-CQFT-REVIEW-CQFT-CAUSAL-FACTORIZATION-IMPORT-2\",\n      \"symbols\": [\n        \"verify_bogoliubov_and_c2_asymmetry\"\n      ],\n      \"tests\": [\n        \"CqftCheckerTests.test_all_finite_sections_and_default_counts\",\n        \"CqftCheckerTests.test_injected_faults_cli_and_cancellation\"\n      ]\n    },\n    {\n      \"requirement\": \"Enumerate all24 permutations of the fixed N order, identify its five extensions, check adjacent spacelike swaps and finite connectivity, and compare commuting/anticommuting ordered products. All point/carrier data inside this section are fixed trusted fixtures.\",\n      \"requirement_id\": \"TFQM-CQFT-REVIEW-CQFT-CAUSAL-FACTORIZATION-IMPORT-3\",\n      \"symbols\": [\n        \"verify_poset_n_swap_connectivity\"\n      ],\n      \"tests\": [\n        \"CqftCheckerTests.test_all_finite_sections_and_default_counts\",\n        \"CqftCheckerTests.test_unimodular_inverse_and_ordered_products\"\n      ]\n    },\n    {\n      \"requirement\": \"Compare seven literal binomial counterterm dimensions and400 kernel obligations; report actual executed Cases counts and failures for each finite section and a nonzero CLI on failure. Recorder conditions are exact bool and state is per invocation.\",\n      \"requirement_id\": \"TFQM-CQFT-REVIEW-CQFT-CAUSAL-FACTORIZATION-IMPORT-4\",\n      \"symbols\": [\n        \"verify_diagonal_counterterm_fence\",\n        \"main\"\n      ],\n      \"tests\": [\n        \"CqftCheckerTests.test_all_finite_sections_and_default_counts\",\n        \"CqftCheckerTests.test_injected_faults_cli_and_cancellation\"\n      ]\n    }\n  ],\n  \"role\": \"Finite causal-factorization verification application with admitted integer operators, bounded ordered-product ownership, two group-model controls, finite swap connectivity, diagonal ambiguity controls and typed run accounting\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"_mat2_rows\",\n    \"_matrix2\",\n    \"main\",\n    \"mat2_det\",\n    \"mat2_inv_unimodular\",\n    \"mat2_mul\",\n    \"mat2_neg\",\n    \"ordered_prod\",\n    \"verify_bogoliubov_and_c2_asymmetry\",\n    \"verify_diagonal_counterterm_fence\",\n    \"verify_poset_n_swap_connectivity\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/cqft-causal-factorization-import.py",
+          "sha256": "b58f2f35f740f4fb081fcab8da2a8724f02f94c0b71b4c6a0076dc2616039833"
+        },
+        "audited_consumers": [
+          {
+            "path": "dag/theory_of_finite_qm.jsonl",
+            "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-24_campaign-cqft-causal-factorization-import-precommit.md",
+            "sha256": "ddff5930f937d23c428e9fd2280fbf9b651f208b0f6a77f2727c111765e8c97c",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "docs/evidence/stages/CAUSAL_QFT.md",
+            "sha256": "54228f53f34b836b0b4a7aa6649e07fd1a14adb2b65eb58d8e4710a5c6ffb846",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "docs/evidence/nodes/CQFT-CAUSAL-FACTORIZATION-IMPORT.md",
+            "sha256": "c90b42383892f736bcd5ac778016c172e5bc5cffac477557f25f329f93eb785e",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/pfp/campaign/LOG.md",
+            "sha256": "3bb6fbbb26486f3c70b44e42e045dc7c2b3dbf93c87a32b9f6c9e23e2e8b8e74",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/fragments/frontier_branches.json",
+            "sha256": "ab83607806c0663345c7d43eee646989486cd2156ff8c8831e0c7c8d500bd1b7",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/evidence/evidence_map.json",
+            "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/derivation_dag.json",
+            "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/derivations/independent/cqft-causal-factorization-import.md",
+            "sha256": "974823cce62b50e4f40c4fd8ad9a62195885c4e531b1e2045b27802813dc6a6d",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/derivations/31_causal_qft/tfq_2109_cqft_causal_factorization_import.md",
+            "sha256": "a9715b1e35eff39d89f7ac0ebd74486d4216ed57ab23c307fe80547eb73cb858",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/operads/cqft_causal_factorization_import.yaml",
+            "sha256": "9e6bf854b4822f74d7b670db6c0afc25282e66412eda27a912fa39bd9adf8667",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/research/campaign_cqft-causal-factorization-import_independent.json",
+            "sha256": "19c321367f561844ae66fa948beabf696dde1c3c9ab13d87d38e325d30054f64",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "dag/research/pr_320_campaign_pipeline.json",
+            "sha256": "fd0a9f64ce3b08d51a6d057b9c6bb4a02f4cae605734f9d5a3d27c70d3e260ef",
+            "state": "pre-change consumer/provenance audit"
+          },
+          {
+            "path": "checks/independent/cqft-local-net-axioms-import.py",
+            "sha256": "5824ee27a9ad830d0d59d10e1169236885346238543e5b69124e9b25658b7675",
+            "state": "current local consumer"
+          },
+          {
+            "path": "checks/independent/cqft-reeh-schlieder-theorem-import.py",
+            "sha256": "2a639082e9bfe78086ae46a4be4ea5d5cfb79e9f009a55522b1210614bbe4cd8",
+            "state": "current local consumer"
+          },
+          {
+            "path": "checks/tests/test_cqft_checkers.py",
+            "sha256": "3a04c1f2be6a651622da75b13f025a8d751ee0a7f43644969fccc513430d983f",
+            "state": "current local consumer"
+          },
+          {
+            "path": "checks/tests/test_review_repairs.py",
+            "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+            "state": "current local consumer"
+          },
+          {
+            "path": ".github/workflows/reviewed-checkers.yml",
+            "sha256": "d09d2bcff3a9d932e07f11f77da18e41cf83892e4eb5b7eaac176c773cda6534",
+            "state": "current local consumer"
+          }
+        ],
+        "boundaries": [
+          "Shared exact matrix operations are dependencies; independent test oracles use SymPy and bit-list insertion.",
+          "No general group/continuum local-net/analytic continuation theorem is inferred from finite instances. State representatives are unnormalized.",
+          "No Lean build or hosted CI run is claimed; all preserved historical receipts keep their own hashes and counts.",
+          "Retention label5 is not perfection. B-level verification does not claim exhaustive correctness."
+        ],
+        "bounded_context": "Independent finite causal-order, local-operator and qubit-unfolding verification with owned exact rational matrix values; no continuum AQFT construction.",
+        "consumer_boundary": "Three executable paths and tested matrix/site helper interfaces are retained. Local-net CLI now emits an explicit84-case JSON receipt; causal total grows795->923 for112 second-family cocycles and16 C2 pair cases; Reeh total remains252. Internal local-net fixture helpers are composed; no external code callers were found. Integer matrices now have explicit64-dimension/4096-bit budgets. Local flat2 rational input remains supported. Historical scientific receipts retain their original source hashes and counts; no DAG status is promoted.",
+        "contract_urn": "urn:tfqm:checker-review:2026-11-03:cqft-causal-factorization-import",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-checkers.md",
+            "sha256": "9141c355c371962b89b2fe116ea104130bca1d240c8f39609718661e3f9fec85"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-closure-tests.py.txt",
+            "sha256": "b4fff4cbed9d5d013e42371ab34b2d64ca132aed4e530cff7357da6ca9be24d7"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-initial-causal.py.txt",
+            "sha256": "9d49281ea6e3ac9d003f8520e836f40e4c3343bbe8ae589408b0c37c43b32b90"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-initial-tests.py.txt",
+            "sha256": "9e436f096cd854883604ca2dbfe5907ea9fd91156c831c5a36a38049d83dc344"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-mutations-adjudicated.json",
+            "sha256": "0112582c49fb176de79174d6a19af63fea21ff5c7e0eff55d25a34b04d879d95"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-mutations-closure.json",
+            "sha256": "f8297f6cd212ce6fc896111ea50e55fda636a87a5271d8325c4f5e9cc04c97d8"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-mutations-initial-manifest.json",
+            "sha256": "35fc6162eea86d4b09adaa06abcf72a37a7d55813a9d82978189ff0b5679cc8e"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-mutations.json",
+            "sha256": "f53475c99c3b8c2aff7e467596f99a1f9aced3932275385e00c8ebad1895e6a8"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-quality-annotation-failure.json",
+            "sha256": "b0409e553350aaa446cde94c3e265f62ffb41196bdc9d20aad97d1e1c61d55dd"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-quality-initial.json",
+            "sha256": "724be9b4d444e6e22eb60ec260157191b49b66324caa1f2dd106830c9a214894"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-quality.json",
+            "sha256": "f531f9e11189a053da9fa1abe238e169a50008eee8681df7bd2935b746da7a37"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-requirements.json",
+            "sha256": "000a9dfbc2d0735ca03dad016cd3aa23f640ae7ffee421b2b9f0f2c929c39273"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+            "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+            "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          },
+          {
+            "path": "checks/tests/cqft_mutations.json",
+            "sha256": "82b7e8ae9acf3c7909d5772b316b229b521ea0e835c5b6f5ef20aaa0f76389f1"
+          }
+        ],
+        "failure_policy": "Matrix/point/shape domains are admitted before dependent arithmetic and use detached snapshots. Expected input/resource/check/duplicate failures use Violation, Outcome/evaluate and the nonzero CLI boundary. Resource refusal is distinct from a false mathematical obligation; Cases rejects non-bool/duplicate status rows. Callback recorders are trusted typed interfaces, not untrusted plugin code. Cancellation and unexpected programming errors propagate; tests restore import/mock/capture state.",
+        "nested_declaration_ownership": {
+          "verify_bogoliubov_and_c2_asymmetry.all_spacelike_between": {
+            "owned_by": "verify_bogoliubov_and_c2_asymmetry",
+            "requirements_via": "verify_bogoliubov_and_c2_asymmetry"
+          },
+          "verify_bogoliubov_and_c2_asymmetry.bogoliubov_v": {
+            "owned_by": "verify_bogoliubov_and_c2_asymmetry",
+            "requirements_via": "verify_bogoliubov_and_c2_asymmetry"
+          },
+          "verify_bogoliubov_and_c2_asymmetry.check": {
+            "owned_by": "verify_bogoliubov_and_c2_asymmetry",
+            "requirements_via": "verify_bogoliubov_and_c2_asymmetry"
+          },
+          "verify_bogoliubov_and_c2_asymmetry.is_spacelike": {
+            "owned_by": "verify_bogoliubov_and_c2_asymmetry",
+            "requirements_via": "verify_bogoliubov_and_c2_asymmetry"
+          },
+          "verify_bogoliubov_and_c2_asymmetry.no_in_causal_past": {
+            "owned_by": "verify_bogoliubov_and_c2_asymmetry",
+            "requirements_via": "verify_bogoliubov_and_c2_asymmetry"
+          },
+          "verify_bogoliubov_and_c2_asymmetry.s_factor": {
+            "owned_by": "verify_bogoliubov_and_c2_asymmetry",
+            "requirements_via": "verify_bogoliubov_and_c2_asymmetry"
+          },
+          "verify_bogoliubov_and_c2_asymmetry.s_nonfactor": {
+            "owned_by": "verify_bogoliubov_and_c2_asymmetry",
+            "requirements_via": "verify_bogoliubov_and_c2_asymmetry"
+          },
+          "verify_diagonal_counterterm_fence.check": {
+            "owned_by": "verify_diagonal_counterterm_fence",
+            "requirements_via": "verify_diagonal_counterterm_fence"
+          },
+          "verify_diagonal_counterterm_fence.kernel": {
+            "owned_by": "verify_diagonal_counterterm_fence",
+            "requirements_via": "verify_diagonal_counterterm_fence"
+          },
+          "verify_poset_n_swap_connectivity.adj_spacelike_swap": {
+            "owned_by": "verify_poset_n_swap_connectivity",
+            "requirements_via": "verify_poset_n_swap_connectivity"
+          },
+          "verify_poset_n_swap_connectivity.check": {
+            "owned_by": "verify_poset_n_swap_connectivity",
+            "requirements_via": "verify_poset_n_swap_connectivity"
+          },
+          "verify_poset_n_swap_connectivity.is_linear_ext_n": {
+            "owned_by": "verify_poset_n_swap_connectivity",
+            "requirements_via": "verify_poset_n_swap_connectivity"
+          },
+          "verify_poset_n_swap_connectivity.is_spacelike_n": {
+            "owned_by": "verify_poset_n_swap_connectivity",
+            "requirements_via": "verify_poset_n_swap_connectivity"
+          }
+        },
+        "operational_cost": "All matrix operations use the bounded matrix value. Ordered products validate <=64 assigned points and <=64 factors. Default controls: 7 background coordinates, 4x4 perturbations, two families; 24 four-point permutations and five-vertex swap graph; 25 counterterm pairs times16 point pairs. 923 obligations =484+32+407.",
+        "origin": {
+          "path": "lean4/CausalFactorizationImport.lean",
+          "sha256": "2fed601873ae5ac48008d255f5e1e4c3d0273b5c4cfa82e4aed6bc059b994efc"
+        },
+        "owned_invariants": [
+          "RationalMatrix is the sole immutable matrix value object in its file; rectangular rows and exact values are admitted and owned.",
+          "Each matrix dimension <=64, each stored rational component <=4096 bits; dot products admit each product and accumulator; tensor dimensions checked before output allocation.",
+          "Causal operations require integer2x2 matrices and ordered products have <=64 assigned points/factors; local flat2 operations preserve exact rational input.",
+          "Qubit coefficient snapshots have8 integers, site0..2, bit0..1, complement0..3; no raw caller list is used after validation.",
+          "Default causal/local/Reeh obligations are923/84/252; all are finite controls, one count per executed conjunction."
+        ],
+        "requirements": [
+          {
+            "requirement": "Admit exact 2x2 integer matrices and return detached integer tuples. Inverse requires determinant +1 or -1. Ordered-product assignment is a dict of <=64 exact point keys in 0..63; validate every assigned matrix even for an empty product, snapshot <=64 factors, reject missing keys and multiply in the specified order.",
+            "requirement_id": "TFQM-CQFT-REVIEW-CQFT-CAUSAL-FACTORIZATION-IMPORT-1",
+            "symbols": [
+              "_matrix2",
+              "_mat2_rows",
+              "mat2_mul",
+              "mat2_neg",
+              "mat2_det",
+              "mat2_inv_unimodular",
+              "ordered_prod"
+            ],
+            "tests": [
+              "CqftCheckerTests.test_unimodular_inverse_and_ordered_products",
+              "CqftCheckerTests.test_ordered_product_and_unimodular_refusals",
+              "CqftCheckerTests.test_matrix_owns_snapshots_and_exports_are_detached"
+            ]
+          },
+          {
+            "requirement": "Check the two supplied SL2 integer families, zero-perturbation identity, direct cocycle in each, factorization/shift equivalence and fixed C2 support asymmetry. Cross-check all16 C2 point pairs against the independent height-order description, including diagonal irreflexivity and causal orientation. These are finite instances of the Lean group statements.",
+            "requirement_id": "TFQM-CQFT-REVIEW-CQFT-CAUSAL-FACTORIZATION-IMPORT-2",
+            "symbols": [
+              "verify_bogoliubov_and_c2_asymmetry"
+            ],
+            "tests": [
+              "CqftCheckerTests.test_all_finite_sections_and_default_counts",
+              "CqftCheckerTests.test_injected_faults_cli_and_cancellation"
+            ]
+          },
+          {
+            "requirement": "Enumerate all24 permutations of the fixed N order, identify its five extensions, check adjacent spacelike swaps and finite connectivity, and compare commuting/anticommuting ordered products. All point/carrier data inside this section are fixed trusted fixtures.",
+            "requirement_id": "TFQM-CQFT-REVIEW-CQFT-CAUSAL-FACTORIZATION-IMPORT-3",
+            "symbols": [
+              "verify_poset_n_swap_connectivity"
+            ],
+            "tests": [
+              "CqftCheckerTests.test_all_finite_sections_and_default_counts",
+              "CqftCheckerTests.test_unimodular_inverse_and_ordered_products"
+            ]
+          },
+          {
+            "requirement": "Compare seven literal binomial counterterm dimensions and400 kernel obligations; report actual executed Cases counts and failures for each finite section and a nonzero CLI on failure. Recorder conditions are exact bool and state is per invocation.",
+            "requirement_id": "TFQM-CQFT-REVIEW-CQFT-CAUSAL-FACTORIZATION-IMPORT-4",
+            "symbols": [
+              "verify_diagonal_counterterm_fence",
+              "main"
+            ],
+            "tests": [
+              "CqftCheckerTests.test_all_finite_sections_and_default_counts",
+              "CqftCheckerTests.test_injected_faults_cli_and_cancellation"
+            ]
+          }
+        ],
+        "role": "Finite causal-factorization verification application with admitted integer operators, bounded ordered-product ownership, two group-model controls, finite swap connectivity, diagonal ambiguity controls and typed run accounting",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "_mat2_rows",
+          "_matrix2",
+          "main",
+          "mat2_det",
+          "mat2_inv_unimodular",
+          "mat2_mul",
+          "mat2_neg",
+          "ordered_prod",
+          "verify_bogoliubov_and_c2_asymmetry",
+          "verify_diagonal_counterterm_fence",
+          "verify_poset_n_swap_connectivity"
+        ]
+      },
+      "sha256": "c2a857e4591cc5b4bea57857f9fea30c07c787cf27de96799d13a9965652b374"
+    }
+  ],
+  "current_contract": "c2a857e4591cc5b4bea57857f9fea30c07c787cf27de96799d13a9965652b374",
+  "current_scoring": "db9a79d16df4503cba86135341acb1956996e19ae734e8c0d48b1de849e98e51",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 1826,
+      "original_paths": [
+        "checks/independent/cqft-causal-factorization-import.contract.score.yaml#systematic-file-review-cqft-2026-11-02"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/cqft-causal-factorization-import.py\",\n    \"sha256\": \"2fe15214807bfaa155a3d0fc71d60e5f126c836010c680f841bb7ab960f84f6e\"\n  },\n  \"assessment_id\": \"systematic-file-review-cqft-2026-11-02\",\n  \"basis\": {\n    \"G1\": \"Claim and evidence mapping are discussed in the review.\",\n    \"G2\": \"Exact input boundaries and shape validation are discussed in the review.\",\n    \"G3\": \"Optimization-dependent preconditions and failure behavior are discussed in the review.\",\n    \"G4\": \"Finite script runs and selected adversarial probes were observed; complete verification and mutation evidence remains unassessed.\",\n    \"G5\": \"Measured Radon complexity and unassessed structure are recorded in the review.\"\n  },\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-11-03T03:54:54.367091+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-cqft.md\",\n      \"sha256\": \"697d9f96cd8d22a281bcff2b2b058784602bb2a6d8a2b4b451ac498a04902efa\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": null,\n    \"G3\": \"E\",\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"E\",\n  \"is_complete\": false,\n  \"level\": \"L3\",\n  \"level_basis\": \"Bounded finite matrix and poset calculations; production-level input handling and verification are not established.\",\n  \"open_findings\": [\n    \"Unimodular inverse input check disappears under optimized Python; the source header overstates the checked omega range.\"\n  ],\n  \"profile\": \"Exact\",\n  \"refusal_reason\": \"At least one gate is unassessed. The requested L4B floor is not established; no completed token is asserted.\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/cqft-causal-factorization-import.py",
+          "sha256": "2fe15214807bfaa155a3d0fc71d60e5f126c836010c680f841bb7ab960f84f6e"
+        },
+        "assessment_id": "systematic-file-review-cqft-2026-11-02",
+        "basis": {
+          "G1": "Claim and evidence mapping are discussed in the review.",
+          "G2": "Exact input boundaries and shape validation are discussed in the review.",
+          "G3": "Optimization-dependent preconditions and failure behavior are discussed in the review.",
+          "G4": "Finite script runs and selected adversarial probes were observed; complete verification and mutation evidence remains unassessed.",
+          "G5": "Measured Radon complexity and unassessed structure are recorded in the review."
+        },
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-11-03T03:54:54.367091+00:00",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-cqft.md",
+            "sha256": "697d9f96cd8d22a281bcff2b2b058784602bb2a6d8a2b4b451ac498a04902efa"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": null,
+          "G3": "E",
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "E",
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Bounded finite matrix and poset calculations; production-level input handling and verification are not established.",
+        "open_findings": [
+          "Unimodular inverse input check disappears under optimized Python; the source header overstates the checked omega range."
+        ],
+        "profile": "Exact",
+        "refusal_reason": "At least one gate is unassessed. The requested L4B floor is not established; no completed token is asserted.",
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "f38e7d34b8581a8f65f41980716758353bef82063ed3a77ae94b0e437d693261"
+    },
+    {
+      "bytes": 2860,
+      "original_paths": [
+        "review-repair-2026-11-02"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/cqft-causal-factorization-import.py\",\n    \"sha256\": \"3215e24a50f528ec6298d68511a7f2a7ed8180a89c6ceac0ce64c816740c5da4\"\n  },\n  \"assessment_id\": \"review-repair-retest-2026-11-02\",\n  \"basis\": {\n    \"G1\": \"Source identity, concrete role, imports and scope are declared; fresh evidence replaces stale current bindings while history is retained.\",\n    \"G2\": \"Reported semantic and exact-input defects are repaired; the bounded normal/optimized regression and independent oracles pass.\",\n    \"G3\": \"Known optimization bypasses and invalid-domain successes are repaired; typed evaluation and nonzero CLI failures are exercised.\",\n    \"G4\": \"24 regression groups pass in each interpreter mode, with four specified mutants killed; complete per-artifact branch and mutation evidence for B is not established.\",\n    \"G5\": \"Maximum Radon cyclomatic complexity 11; no assertion-dependent checks and at most one class per checker/support source. Full cognitive complexity, static typing and operational assessment remains unassessed.\"\n  },\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-11-03T04:29:31.855461+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-repairs.md\",\n      \"sha256\": \"82db030642db352aca1fd3ab9677515df96ec207e3dd6b9096cd06886aee55ca\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-repair-retest.json\",\n      \"sha256\": \"ef357c98fbe380729b1099dfa61a677845c51adcf74edc1ff3c897f534a38b34\"\n    },\n    {\n      \"path\": \"checks/tests/test_review_repairs.py\",\n      \"sha256\": \"d88864962ba4fe0e6a25cb9b2c6c2ba83b4d0dc687efcf5093c838eb162dfac5\"\n    },\n    {\n      \"path\": \"checks/checker_support/README.md\",\n      \"sha256\": \"96cb7a9253e8f0578b022554272ba596f5daff0be2b9af92566016e1d28d44a7\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"C\",\n  \"is_complete\": false,\n  \"level\": \"L3\",\n  \"level_basis\": \"Capability remains scoped to the delivered finite checker, helper or test harness; repairs do not automatically promote a literal fixture or utility to L4.\",\n  \"open_findings\": [\n    \"Complete five-gate assessment and the user-requested L4B floor remain unmet; no completed score token is asserted.\"\n  ],\n  \"profile\": \"Exact\",\n  \"refusal_reason\": \"The full B-level assessment is incomplete and some delivered utilities/fixtures have capability below L4. Do not promote these bytes by relabeling.\",\n  \"resolved_findings\": [\n    \"Unimodular inverse and matrix shapes are checked in both interpreter modes. Counterterm range corrected to 0..6.\"\n  ],\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/cqft-causal-factorization-import.py",
+          "sha256": "3215e24a50f528ec6298d68511a7f2a7ed8180a89c6ceac0ce64c816740c5da4"
+        },
+        "assessment_id": "review-repair-retest-2026-11-02",
+        "basis": {
+          "G1": "Source identity, concrete role, imports and scope are declared; fresh evidence replaces stale current bindings while history is retained.",
+          "G2": "Reported semantic and exact-input defects are repaired; the bounded normal/optimized regression and independent oracles pass.",
+          "G3": "Known optimization bypasses and invalid-domain successes are repaired; typed evaluation and nonzero CLI failures are exercised.",
+          "G4": "24 regression groups pass in each interpreter mode, with four specified mutants killed; complete per-artifact branch and mutation evidence for B is not established.",
+          "G5": "Maximum Radon cyclomatic complexity 11; no assertion-dependent checks and at most one class per checker/support source. Full cognitive complexity, static typing and operational assessment remains unassessed."
+        },
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-11-03T04:29:31.855461+00:00",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-repairs.md",
+            "sha256": "82db030642db352aca1fd3ab9677515df96ec207e3dd6b9096cd06886aee55ca"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-repair-retest.json",
+            "sha256": "ef357c98fbe380729b1099dfa61a677845c51adcf74edc1ff3c897f534a38b34"
+          },
+          {
+            "path": "checks/tests/test_review_repairs.py",
+            "sha256": "d88864962ba4fe0e6a25cb9b2c6c2ba83b4d0dc687efcf5093c838eb162dfac5"
+          },
+          {
+            "path": "checks/checker_support/README.md",
+            "sha256": "96cb7a9253e8f0578b022554272ba596f5daff0be2b9af92566016e1d28d44a7"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "C",
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Capability remains scoped to the delivered finite checker, helper or test harness; repairs do not automatically promote a literal fixture or utility to L4.",
+        "open_findings": [
+          "Complete five-gate assessment and the user-requested L4B floor remain unmet; no completed score token is asserted."
+        ],
+        "profile": "Exact",
+        "refusal_reason": "The full B-level assessment is incomplete and some delivered utilities/fixtures have capability below L4. Do not promote these bytes by relabeling.",
+        "resolved_findings": [
+          "Unimodular inverse and matrix shapes are checked in both interpreter modes. Counterterm range corrected to 0..6."
+        ],
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "9d339265899b8f8484a1c2092ec03f0948e8a087a7ed152f600104897e4b4ddc"
+    },
+    {
+      "bytes": 5335,
+      "original_paths": [
+        "cqft-review-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/cqft-causal-factorization-import.py\",\n    \"sha256\": \"b58f2f35f740f4fb081fcab8da2a8724f02f94c0b71b4c6a0076dc2616039833\"\n  },\n  \"assessment_id\": \"cqft-production-review-2026-11-03\",\n  \"basis\": {\n    \"G1\": \"Every declaration, including nested ownership, maps to requirements/tests. Three exact Lean origins and historical/current consumer references audited; finite model and unnormalized-state boundaries are explicit.\",\n    \"G2\": \"Exact rational matrix operations with retained integer-only boundaries, full carrier-pair checks and bit-placement domain validation; independent symbolic products/inverses/tensors and bit-insertion oracles.\",\n    \"G3\": \"Owned immutable matrix/coefficient snapshots, shape/key/range validation, conservative intermediate and dimension budgets, explicit refusal versus false controls, cancellation propagation and scoped test lifecycle.\",\n    \"G4\": \"Strict pinned typing,15 CQFT groups and24 integration groups pass normal/optimized runs;80 deterministic cases per property. All69 candidates retained: final67 killed plus2 independently justified equivalent bypasses. Initial outcomes, strengthened challenges, full rerun and runtime-neutral annotation custody are preserved.\",\n    \"G5\": \"CCN 12, cognitive 16, nesting 3; one class at most. All matrix operations use the bounded matrix value. Ordered products validate <=64 assigned points and <=64 factors. Default controls: 7 background coordinates, 4x4 perturbations, two families; 24 four-point permutations and five-vertex swap graph; 25 counterterm pairs times16 point pairs. 923 obligations =484+32+407.\"\n  },\n  \"composite_grade\": \"B\",\n  \"evaluation_timestamp\": \"2026-11-03T08:20:26.415682+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-checkers.md\",\n      \"sha256\": \"9141c355c371962b89b2fe116ea104130bca1d240c8f39609718661e3f9fec85\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-closure-tests.py.txt\",\n      \"sha256\": \"b4fff4cbed9d5d013e42371ab34b2d64ca132aed4e530cff7357da6ca9be24d7\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-initial-causal.py.txt\",\n      \"sha256\": \"9d49281ea6e3ac9d003f8520e836f40e4c3343bbe8ae589408b0c37c43b32b90\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-initial-tests.py.txt\",\n      \"sha256\": \"9e436f096cd854883604ca2dbfe5907ea9fd91156c831c5a36a38049d83dc344\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-mutations-adjudicated.json\",\n      \"sha256\": \"0112582c49fb176de79174d6a19af63fea21ff5c7e0eff55d25a34b04d879d95\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-mutations-closure.json\",\n      \"sha256\": \"f8297f6cd212ce6fc896111ea50e55fda636a87a5271d8325c4f5e9cc04c97d8\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-mutations-initial-manifest.json\",\n      \"sha256\": \"35fc6162eea86d4b09adaa06abcf72a37a7d55813a9d82978189ff0b5679cc8e\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-mutations.json\",\n      \"sha256\": \"f53475c99c3b8c2aff7e467596f99a1f9aced3932275385e00c8ebad1895e6a8\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-quality-annotation-failure.json\",\n      \"sha256\": \"b0409e553350aaa446cde94c3e265f62ffb41196bdc9d20aad97d1e1c61d55dd\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-quality-initial.json\",\n      \"sha256\": \"724be9b4d444e6e22eb60ec260157191b49b66324caa1f2dd106830c9a214894\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-quality.json\",\n      \"sha256\": \"f531f9e11189a053da9fa1abe238e169a50008eee8681df7bd2935b746da7a37\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-cqft-requirements.json\",\n      \"sha256\": \"000a9dfbc2d0735ca03dad016cd3aa23f640ae7ffee421b2b9f0f2c929c39273\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-quality-complete.json\",\n      \"sha256\": \"3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json\",\n      \"sha256\": \"a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    },\n    {\n      \"path\": \"checks/tests/cqft_mutations.json\",\n      \"sha256\": \"82b7e8ae9acf3c7909d5772b316b229b521ea0e835c5b6f5ef20aaa0f76389f1\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"B\",\n    \"G3\": \"B\",\n    \"G4\": \"B\",\n    \"G5\": \"B\"\n  },\n  \"grade_ceiling\": \"B\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Finite causal-factorization verification application with admitted integer operators, bounded ordered-product ownership, two group-model controls, finite swap connectivity, diagonal ambiguity controls and typed run accounting. Concrete bounded API grain, detached state ownership, typed resource/domain failure, independently verified integration and reproducible evidence support this capability, without topic-based promotion.\",\n  \"open_findings\": [],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4B\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/cqft-causal-factorization-import.py",
+          "sha256": "b58f2f35f740f4fb081fcab8da2a8724f02f94c0b71b4c6a0076dc2616039833"
+        },
+        "assessment_id": "cqft-production-review-2026-11-03",
+        "basis": {
+          "G1": "Every declaration, including nested ownership, maps to requirements/tests. Three exact Lean origins and historical/current consumer references audited; finite model and unnormalized-state boundaries are explicit.",
+          "G2": "Exact rational matrix operations with retained integer-only boundaries, full carrier-pair checks and bit-placement domain validation; independent symbolic products/inverses/tensors and bit-insertion oracles.",
+          "G3": "Owned immutable matrix/coefficient snapshots, shape/key/range validation, conservative intermediate and dimension budgets, explicit refusal versus false controls, cancellation propagation and scoped test lifecycle.",
+          "G4": "Strict pinned typing,15 CQFT groups and24 integration groups pass normal/optimized runs;80 deterministic cases per property. All69 candidates retained: final67 killed plus2 independently justified equivalent bypasses. Initial outcomes, strengthened challenges, full rerun and runtime-neutral annotation custody are preserved.",
+          "G5": "CCN 12, cognitive 16, nesting 3; one class at most. All matrix operations use the bounded matrix value. Ordered products validate <=64 assigned points and <=64 factors. Default controls: 7 background coordinates, 4x4 perturbations, two families; 24 four-point permutations and five-vertex swap graph; 25 counterterm pairs times16 point pairs. 923 obligations =484+32+407."
+        },
+        "composite_grade": "B",
+        "evaluation_timestamp": "2026-11-03T08:20:26.415682+00:00",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-checkers.md",
+            "sha256": "9141c355c371962b89b2fe116ea104130bca1d240c8f39609718661e3f9fec85"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-closure-tests.py.txt",
+            "sha256": "b4fff4cbed9d5d013e42371ab34b2d64ca132aed4e530cff7357da6ca9be24d7"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-initial-causal.py.txt",
+            "sha256": "9d49281ea6e3ac9d003f8520e836f40e4c3343bbe8ae589408b0c37c43b32b90"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-initial-tests.py.txt",
+            "sha256": "9e436f096cd854883604ca2dbfe5907ea9fd91156c831c5a36a38049d83dc344"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-mutations-adjudicated.json",
+            "sha256": "0112582c49fb176de79174d6a19af63fea21ff5c7e0eff55d25a34b04d879d95"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-mutations-closure.json",
+            "sha256": "f8297f6cd212ce6fc896111ea50e55fda636a87a5271d8325c4f5e9cc04c97d8"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-mutations-initial-manifest.json",
+            "sha256": "35fc6162eea86d4b09adaa06abcf72a37a7d55813a9d82978189ff0b5679cc8e"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-mutations.json",
+            "sha256": "f53475c99c3b8c2aff7e467596f99a1f9aced3932275385e00c8ebad1895e6a8"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-quality-annotation-failure.json",
+            "sha256": "b0409e553350aaa446cde94c3e265f62ffb41196bdc9d20aad97d1e1c61d55dd"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-quality-initial.json",
+            "sha256": "724be9b4d444e6e22eb60ec260157191b49b66324caa1f2dd106830c9a214894"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-quality.json",
+            "sha256": "f531f9e11189a053da9fa1abe238e169a50008eee8681df7bd2935b746da7a37"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-cqft-requirements.json",
+            "sha256": "000a9dfbc2d0735ca03dad016cd3aa23f640ae7ffee421b2b9f0f2c929c39273"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+            "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+            "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          },
+          {
+            "path": "checks/tests/cqft_mutations.json",
+            "sha256": "82b7e8ae9acf3c7909d5772b316b229b521ea0e835c5b6f5ef20aaa0f76389f1"
+          }
+        ],
+        "gates": {
+          "G1": "B",
+          "G2": "B",
+          "G3": "B",
+          "G4": "B",
+          "G5": "B"
+        },
+        "grade_ceiling": "B",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Finite causal-factorization verification application with admitted integer operators, bounded ordered-product ownership, two group-model controls, finite swap connectivity, diagonal ambiguity controls and typed run accounting. Concrete bounded API grain, detached state ownership, typed resource/domain failure, independently verified integration and reproducible evidence support this capability, without topic-based promotion.",
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L4B"
+      },
+      "sha256": "db9a79d16df4503cba86135341acb1956996e19ae734e8c0d48b1de849e98e51"
+    }
+  ]
+}

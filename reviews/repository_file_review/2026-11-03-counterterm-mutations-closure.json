@@ -1,0 +1,459 @@
+{
+  "AuthorityEffect": "None",
+  "initial_receipt_sha256": "81e22e5e6d4365aa4e3ca00ad6c4e8712ed06b4d8e43c96626e3c9a8a358c90e",
+  "manifest_sha256": "976083a5358982b205a4f845dda2a1905c19b0a9ef3730e5dd387625da339148",
+  "test_before_sha256": "1958093ce6e1b1d414e5b0446713097340d46f3be5b866c52da47bbac44c9341",
+  "test_after_sha256": "f89120f14ed07ffc06f43a8d57ae4cc91978f47371e8766958024fb675389908",
+  "added_text": "    def test_ordered_oracle_rows_and_inverse_operator_sign(self) -> None:\n        module = load()\n        self.assertEqual(_rows([(index, -index) for index in range(16)])[1][2], G(6, -6))\n        expected = sp.diag(1, 1, -3, -3)\n        self.assertEqual(_symbolic(module.DiracKernel((2, 0, 0, 0), 1).inverse_operator().value), expected)\n        self.assertEqual(_symbolic(module.prop_inv((2, 0, 0, 0), 1)), expected)\n\n",
+  "reason": "The selected original-witness group checked successful inverse-operator availability but not its sign; the full generated inversion group covered it. The row oracle fed both production and reference with the same transposed data and lacked a distinct-index fixture. Add one explicit row-major mapping and exact diagonal inverse-operator fixture, preserving all old tests.",
+  "mutants": [
+    {
+      "identity": "kernel-mass-sign",
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_ordered_oracle_rows_and_inverse_operator_sign"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_ordered_oracle_rows_and_inverse_operator_sign (__main__.CountertermCheckerTests.test_ordered_oracle_rows_and_inverse_operator_sign) ... FAIL\n\n======================================================================\nFAIL: test_ordered_oracle_rows_and_inverse_operator_sign (__main__.CountertermCheckerTests.test_ordered_oracle_rows_and_inverse_operator_sign)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-followup-at69g9ga\\tests\\test_counterterm_checker.py\", line 90, in test_ordered_oracle_rows_and_inverse_operator_sign\n    self.assertEqual(_symbolic(module.DiracKernel((2, 0, 0, 0), 1).inverse_operator().value), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[3, 0,  0,  0],\n[0, 3,  0,  0],\n[0, 0, -1,  0],\n[0, 0,  0, -1]]) != Matrix([\n[1, 0,  0,  0],\n[0, 1,  0,  0],\n[0, 0, -3,  0],\n[0, 0,  0, -3]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "d65618ba12bf18fb75bec8022278a8652d530c75f34524ddf662f558e51e7d64",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_ordered_oracle_rows_and_inverse_operator_sign (__main__.CountertermCheckerTests.test_ordered_oracle_rows_and_inverse_operator_sign) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nOK\n"
+      }
+    },
+    {
+      "identity": "test-oracle-row-index",
+      "source": "tests/test_counterterm_checker.py",
+      "tests": [
+        "test_ordered_oracle_rows_and_inverse_operator_sign"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_ordered_oracle_rows_and_inverse_operator_sign (__main__.CountertermCheckerTests.test_ordered_oracle_rows_and_inverse_operator_sign) ... FAIL\n\n======================================================================\nFAIL: test_ordered_oracle_rows_and_inverse_operator_sign (__main__.CountertermCheckerTests.test_ordered_oracle_rows_and_inverse_operator_sign)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-followup-at69g9ga\\tests\\test_counterterm_checker.py\", line 88, in test_ordered_oracle_rows_and_inverse_operator_sign\n    self.assertEqual(_rows([(index, -index) for index in range(16)])[1][2], G(6, -6))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: GaussianRational(re=Fraction(9, 1), im=Fraction(-9, 1)) != GaussianRational(re=Fraction(6, 1), im=Fraction(-6, 1))\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "ebff0c123dfd34dc2e5fb7cedd3ae27d74ebff8b0433c741d17b5f0d5c04c267",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_ordered_oracle_rows_and_inverse_operator_sign (__main__.CountertermCheckerTests.test_ordered_oracle_rows_and_inverse_operator_sign) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nOK\n"
+      }
+    }
+  ],
+  "adjudicated_mutants": [
+    {
+      "identity": "entry-preflight",
+      "mutant_sha256": "57797fe6c2ee8eda8faaf18c80c4c12efb99eb52b1cda735ae1b225f675fb2c1",
+      "outcome": "killed",
+      "output": "test_matrix_preflight_before_arithmetic (__main__.CountertermCheckerTests.test_matrix_preflight_before_arithmetic) ... ERROR\n\n======================================================================\nERROR: test_matrix_preflight_before_arithmetic (__main__.CountertermCheckerTests.test_matrix_preflight_before_arithmetic)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 221, in test_matrix_preflight_before_arithmetic\n    self.refused(module.mmul, module.eye(), ((0,)*4,)*4)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 62, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 62, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\independent\\dfm-z1-z2-counterterm-fence.py\", line 108, in mmul\n    return _multiply(_matrix(left), _matrix(right))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\independent\\dfm-z1-z2-counterterm-fence.py\", line 104, in _multiply\n    return tuple(tuple(_dot(row, column) for column in columns) for row in left)\n           ^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\independent\\dfm-z1-z2-counterterm-fence.py\", line 104, in <genexpr>\n    return tuple(tuple(_dot(row, column) for column in columns) for row in left)\n                 ^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\independent\\dfm-z1-z2-counterterm-fence.py\", line 104, in <genexpr>\n    return tuple(tuple(_dot(row, column) for column in columns) for row in left)\n                       ~~~~^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\independent\\dfm-z1-z2-counterterm-fence.py\", line 98, in _dot\n    value = value+first*second\n                  ~~~~~^~~~~~~\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: must not multiply\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_matrix_preflight_before_arithmetic"
+      ]
+    },
+    {
+      "identity": "momentum-bool",
+      "mutant_sha256": "99cd83545ee6dd72fb892af841c9f091f46c73b837d6b80dd8cf9c04edf6efcc",
+      "outcome": "killed",
+      "output": "test_kernel_ownership_and_scalar_vector_domains (__main__.CountertermCheckerTests.test_kernel_ownership_and_scalar_vector_domains) ... FAIL\n\n======================================================================\nFAIL: test_kernel_ownership_and_scalar_vector_domains (__main__.CountertermCheckerTests.test_kernel_ownership_and_scalar_vector_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 169, in test_kernel_ownership_and_scalar_vector_domains\n    self.refused(module.DiracKernel, bad_vector, 1)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 63, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_kernel_ownership_and_scalar_vector_domains"
+      ]
+    },
+    {
+      "identity": "momentum-component",
+      "mutant_sha256": "0527ef489efd43da5cd2d98354fc4d20fc9e9b0f4f99a7e0e19b256122a44a6a",
+      "outcome": "killed",
+      "output": "test_kernel_inverse_against_matrix_inversion (__main__.CountertermCheckerTests.test_kernel_inverse_against_matrix_inversion) ... FAIL\n\n======================================================================\nFAIL: test_kernel_inverse_against_matrix_inversion (__main__.CountertermCheckerTests.test_kernel_inverse_against_matrix_inversion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 98, in test_kernel_inverse_against_matrix_inversion\n    @given(VECTOR, RATIONAL)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 104, in test_kernel_inverse_against_matrix_inversion\n    self.assertEqual(_symbolic(kernel.inverse_operator().value), operator)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, 0]]) != Matrix([\n[0,  0, -1, 0],\n[0,  0,  0, 1],\n[1,  0,  0, 0],\n[0, -1,  0, 0]])\nFailing test case: test_kernel_inverse_against_matrix_inversion(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CountertermCheckerTests testMethod=test_kernel_inverse_against_matrix_inversion>,\n    vector=(\n        Fraction(0, 1),  # or any other generated value\n        Fraction(0, 1),  # or any other generated value\n        Fraction(\n            0,\n            1,  # or any other generated value\n        ),\n        Fraction(\n            1,\n            1,  # or any other generated value\n        ),\n    ),\n    mass=Fraction(0, 1),  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3735\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5109\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5110\n        (and 4 more with settings.verbosity >= verbose)\n\n----------------------------------------------------------------------\nRan 1 test in 7.838s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_kernel_inverse_against_matrix_inversion"
+      ]
+    },
+    {
+      "identity": "index-bool",
+      "mutant_sha256": "fb3d5fa0f7208c932281d09755776347002019211cde62cc1b856ff442d66575",
+      "outcome": "killed",
+      "output": "test_matrix_index_domains_and_snapshot (__main__.CountertermCheckerTests.test_matrix_index_domains_and_snapshot) ... FAIL\n\n======================================================================\nFAIL: test_matrix_index_domains_and_snapshot (__main__.CountertermCheckerTests.test_matrix_index_domains_and_snapshot)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 190, in test_matrix_index_domains_and_snapshot\n    self.refused(module.vertex, direction, module.eye(), module.eye())\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 63, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.011s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_matrix_index_domains_and_snapshot"
+      ]
+    },
+    {
+      "identity": "index-negative",
+      "mutant_sha256": "dc15609ca1333b0a0f77492ded410ac30cc3f443b705bfff1b48f090fcd0d57e",
+      "outcome": "killed",
+      "output": "test_matrix_index_domains_and_snapshot (__main__.CountertermCheckerTests.test_matrix_index_domains_and_snapshot) ... FAIL\n\n======================================================================\nFAIL: test_matrix_index_domains_and_snapshot (__main__.CountertermCheckerTests.test_matrix_index_domains_and_snapshot)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 190, in test_matrix_index_domains_and_snapshot\n    self.refused(module.vertex, direction, module.eye(), module.eye())\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 63, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.011s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_matrix_index_domains_and_snapshot"
+      ]
+    },
+    {
+      "identity": "index-high",
+      "mutant_sha256": "e70694c9cd285eaa49c9e4d806efe2baaea913bd0752e168fc758aead82c7c77",
+      "outcome": "killed",
+      "output": "test_matrix_index_domains_and_snapshot (__main__.CountertermCheckerTests.test_matrix_index_domains_and_snapshot) ... ERROR\n\n======================================================================\nERROR: test_matrix_index_domains_and_snapshot (__main__.CountertermCheckerTests.test_matrix_index_domains_and_snapshot)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 190, in test_matrix_index_domains_and_snapshot\n    self.refused(module.vertex, direction, module.eye(), module.eye())\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 62, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 62, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\independent\\dfm-z1-z2-counterterm-fence.py\", line 182, in vertex\n    return _vertex(_index(direction), _matrix(left), _matrix(right))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\independent\\dfm-z1-z2-counterterm-fence.py\", line 178, in _vertex\n    return _dirac(_multiply(left, _multiply(GAMMAS[direction], right)))\n                                            ~~~~~~^^^^^^^^^^^\nIndexError: tuple index out of range\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_matrix_index_domains_and_snapshot"
+      ]
+    },
+    {
+      "identity": "identity-diagonal",
+      "mutant_sha256": "66309c529261a810060b94144f5e4dfe7cbe632cc038053182a38831c236e312",
+      "outcome": "killed",
+      "output": "test_oracles_and_basis (__main__.CountertermCheckerTests.test_oracles_and_basis) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_basis (__main__.CountertermCheckerTests.test_oracles_and_basis)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 72, in test_oracles_and_basis\n    self.assertEqual(_symbolic(module.eye()), sp.eye(4))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 1, 1, 1],\n[1, 0, 1, 1],\n[1, 1, 0, 1],\n[1, 1, 1, 0]]) != Matrix([\n[1, 0, 0, 0],\n[0, 1, 0, 0],\n[0, 0, 1, 0],\n[0, 0, 0, 1]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_oracles_and_basis"
+      ]
+    },
+    {
+      "identity": "gamma-time-sign",
+      "mutant_sha256": "7a5ab2c2835e6778523e8fff16a8649baa9a1d5743bdd812fe9d7177af086b69",
+      "outcome": "killed",
+      "output": "test_oracles_and_basis (__main__.CountertermCheckerTests.test_oracles_and_basis) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_basis (__main__.CountertermCheckerTests.test_oracles_and_basis)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 77, in test_oracles_and_basis\n    self.assertEqual(_symbolic(module.GAMMAS[index]), gamma)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[1, 0, 0, 0],\n[0, 1, 0, 0],\n[0, 0, 1, 0],\n[0, 0, 0, 1]]) != Matrix([\n[1, 0,  0,  0],\n[0, 1,  0,  0],\n[0, 0, -1,  0],\n[0, 0,  0, -1]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.028s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_oracles_and_basis"
+      ]
+    },
+    {
+      "identity": "gamma-spatial-sign",
+      "mutant_sha256": "d22a0ff87ac58d042b85ec3193f57b8a19030bee5a396527867cbee2158422de",
+      "outcome": "killed",
+      "output": "test_oracles_and_basis (__main__.CountertermCheckerTests.test_oracles_and_basis) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_basis (__main__.CountertermCheckerTests.test_oracles_and_basis)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 77, in test_oracles_and_basis\n    self.assertEqual(_symbolic(module.GAMMAS[index]), gamma)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 0, 0, 1],\n[0, 0, 1, 0],\n[0, 1, 0, 0],\n[1, 0, 0, 0]]) != Matrix([\n[ 0,  0, 0, 1],\n[ 0,  0, 1, 0],\n[ 0, -1, 0, 0],\n[-1,  0, 0, 0]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.036s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_oracles_and_basis"
+      ]
+    },
+    {
+      "identity": "gamma-y-conjugate",
+      "mutant_sha256": "9b760339bea1bcc70018d5efe4cbe02dc861b04f2c73dc541c9b154a32e1f385",
+      "outcome": "killed",
+      "output": "test_oracles_and_basis (__main__.CountertermCheckerTests.test_oracles_and_basis) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_basis (__main__.CountertermCheckerTests.test_oracles_and_basis)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 77, in test_oracles_and_basis\n    self.assertEqual(_symbolic(module.GAMMAS[index]), gamma)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0,  0,  0, I],\n[0,  0, -I, 0],\n[0, -I,  0, 0],\n[I,  0,  0, 0]]) != Matrix([\n[ 0, 0, 0, -I],\n[ 0, 0, I,  0],\n[ 0, I, 0,  0],\n[-I, 0, 0,  0]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.032s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_oracles_and_basis"
+      ]
+    },
+    {
+      "identity": "matrix-add-sign",
+      "mutant_sha256": "ff835c8f66701423135431666ea9a1ee2a0d65b4fdc4ea9715f655b523a5fcf3",
+      "outcome": "killed",
+      "output": "test_gaussian_matrix_arithmetic_against_symbolic_oracle (__main__.CountertermCheckerTests.test_gaussian_matrix_arithmetic_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_matrix_arithmetic_against_symbolic_oracle (__main__.CountertermCheckerTests.test_gaussian_matrix_arithmetic_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 87, in test_gaussian_matrix_arithmetic_against_symbolic_oracle\n    @given(PAIRS, PAIRS, RATIONAL)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 92, in test_gaussian_matrix_arithmetic_against_symbolic_oracle\n    self.assertEqual(_symbolic(module.madd(left, right)), a+b)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 0, 0,  0],\n[0, 0, 0,  0],\n[0, 0, 0,  0],\n[0, 0, 0, -I]]) != Matrix([\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, I]])\nFailing test case: test_gaussian_matrix_arithmetic_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CountertermCheckerTests testMethod=test_gaussian_matrix_arithmetic_against_symbolic_oracle>,\n    first=[(0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0)],  # or any other generated value\n    second=[(\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         1,\n     )],\n    scalar=Fraction(0, 1),  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:303\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:336\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\str.py:678\n\n----------------------------------------------------------------------\nRan 1 test in 13.572s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_gaussian_matrix_arithmetic_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "matrix-sub-sign",
+      "mutant_sha256": "877221f570b59b0dc9c176f6ef9d467412f51b730cf8364adf9618789e2649da",
+      "outcome": "killed",
+      "output": "test_gaussian_matrix_arithmetic_against_symbolic_oracle (__main__.CountertermCheckerTests.test_gaussian_matrix_arithmetic_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_matrix_arithmetic_against_symbolic_oracle (__main__.CountertermCheckerTests.test_gaussian_matrix_arithmetic_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 87, in test_gaussian_matrix_arithmetic_against_symbolic_oracle\n    @given(PAIRS, PAIRS, RATIONAL)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 93, in test_gaussian_matrix_arithmetic_against_symbolic_oracle\n    self.assertEqual(_symbolic(module.msub(left, right)), a-b)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, I]]) != Matrix([\n[0, 0, 0,  0],\n[0, 0, 0,  0],\n[0, 0, 0,  0],\n[0, 0, 0, -I]])\nFailing test case: test_gaussian_matrix_arithmetic_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CountertermCheckerTests testMethod=test_gaussian_matrix_arithmetic_against_symbolic_oracle>,\n    first=[(0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0)],  # or any other generated value\n    second=[(\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         1,\n     )],\n    scalar=Fraction(0, 1),  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\matrices\\sdm.py:1450\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\matrices\\sdm.py:1453\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:303\n        (and 2 more with settings.verbosity >= verbose)\n\n----------------------------------------------------------------------\nRan 1 test in 14.434s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_gaussian_matrix_arithmetic_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "matrix-scale-coefficient",
+      "mutant_sha256": "ba1cf91c4676017b8f36abb1646af35f9f9fa1da8d2f1a39473a3e0ef7fcd839",
+      "outcome": "killed",
+      "output": "test_gaussian_matrix_arithmetic_against_symbolic_oracle (__main__.CountertermCheckerTests.test_gaussian_matrix_arithmetic_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_matrix_arithmetic_against_symbolic_oracle (__main__.CountertermCheckerTests.test_gaussian_matrix_arithmetic_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 87, in test_gaussian_matrix_arithmetic_against_symbolic_oracle\n    @given(PAIRS, PAIRS, RATIONAL)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 94, in test_gaussian_matrix_arithmetic_against_symbolic_oracle\n    self.assertEqual(_symbolic(module.mscale(scalar, left)), scalar*a)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, I]]) != Matrix([\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, 0]])\nFailing test case: test_gaussian_matrix_arithmetic_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CountertermCheckerTests testMethod=test_gaussian_matrix_arithmetic_against_symbolic_oracle>,\n    first=[(\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         1,\n     )],\n    second=[(0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0),\n     (0, 0)],  # or any other generated value\n    scalar=Fraction(\n        0,\n        1,  # or any other generated value\n    ),\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\_print_helpers.py:28\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:303\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\printer.py:336\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\printing\\str.py:678\n\n----------------------------------------------------------------------\nRan 1 test in 11.327s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_gaussian_matrix_arithmetic_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "matrix-product-columns",
+      "mutant_sha256": "155bdc15a91c3de05a7f7937c3406795c05fa92059c494f415bf32d201c9fe88",
+      "outcome": "killed",
+      "output": "test_gaussian_matrix_arithmetic_against_symbolic_oracle (__main__.CountertermCheckerTests.test_gaussian_matrix_arithmetic_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_matrix_arithmetic_against_symbolic_oracle (__main__.CountertermCheckerTests.test_gaussian_matrix_arithmetic_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 87, in test_gaussian_matrix_arithmetic_against_symbolic_oracle\n    @given(PAIRS, PAIRS, RATIONAL)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 95, in test_gaussian_matrix_arithmetic_against_symbolic_oracle\n    self.assertEqual(_symbolic(module.mmul(left, right)).applyfunc(sp.expand), (a*b).applyfunc(sp.expand))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, 0]]) != Matrix([\n[0, 0,  0, 0],\n[0, 0,  0, 0],\n[0, 0,  0, 0],\n[0, 0, -1, 0]])\nFailing test case: test_gaussian_matrix_arithmetic_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CountertermCheckerTests testMethod=test_gaussian_matrix_arithmetic_against_symbolic_oracle>,\n    first=[(\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         1,\n     )],\n    second=[(\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         1,\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     )],\n    scalar=Fraction(0, 1),  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3735\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5109\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5110\n        (and 4 more with settings.verbosity >= verbose)\n\n----------------------------------------------------------------------\nRan 1 test in 22.186s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_gaussian_matrix_arithmetic_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "matrix-dot-add",
+      "mutant_sha256": "5ea80dc14e320cb44514cbec9da94e433b2a71212295449f4887c625eea084e4",
+      "outcome": "killed",
+      "output": "test_gaussian_matrix_arithmetic_against_symbolic_oracle (__main__.CountertermCheckerTests.test_gaussian_matrix_arithmetic_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_gaussian_matrix_arithmetic_against_symbolic_oracle (__main__.CountertermCheckerTests.test_gaussian_matrix_arithmetic_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 87, in test_gaussian_matrix_arithmetic_against_symbolic_oracle\n    @given(PAIRS, PAIRS, RATIONAL)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 95, in test_gaussian_matrix_arithmetic_against_symbolic_oracle\n    self.assertEqual(_symbolic(module.mmul(left, right)).applyfunc(sp.expand), (a*b).applyfunc(sp.expand))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, 0],\n[0, 0, 0, 0]]) != Matrix([\n[0, 0, 0, -1],\n[0, 0, 0,  0],\n[0, 0, 0,  0],\n[0, 0, 0,  0]])\nFailing test case: test_gaussian_matrix_arithmetic_against_symbolic_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CountertermCheckerTests testMethod=test_gaussian_matrix_arithmetic_against_symbolic_oracle>,\n    first=[(\n         0,  # or any other generated value\n         1,\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     )],\n    second=[(\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         1,\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     ), (\n         0,  # or any other generated value\n         0,  # or any other generated value\n     )],\n    scalar=Fraction(0, 1),  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3735\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5109\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5110\n        (and 6 more with settings.verbosity >= verbose)\n\n----------------------------------------------------------------------\nRan 1 test in 20.853s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_gaussian_matrix_arithmetic_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "slash-spatial-lowering",
+      "mutant_sha256": "78f228d2897bf542f1520ec6fb13b0c21a67be90d9ac452362d7b706e225aaf3",
+      "outcome": "killed",
+      "output": "test_kernel_inverse_against_matrix_inversion (__main__.CountertermCheckerTests.test_kernel_inverse_against_matrix_inversion) ... FAIL\n\n======================================================================\nFAIL: test_kernel_inverse_against_matrix_inversion (__main__.CountertermCheckerTests.test_kernel_inverse_against_matrix_inversion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 98, in test_kernel_inverse_against_matrix_inversion\n    @given(VECTOR, RATIONAL)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 104, in test_kernel_inverse_against_matrix_inversion\n    self.assertEqual(_symbolic(kernel.inverse_operator().value), operator)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[ 0, 0, 1,  0],\n[ 0, 0, 0, -1],\n[-1, 0, 0,  0],\n[ 0, 1, 0,  0]]) != Matrix([\n[0,  0, -1, 0],\n[0,  0,  0, 1],\n[1,  0,  0, 0],\n[0, -1,  0, 0]])\nFailing test case: test_kernel_inverse_against_matrix_inversion(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.CountertermCheckerTests testMethod=test_kernel_inverse_against_matrix_inversion>,\n    vector=(\n        Fraction(0, 1),  # or any other generated value\n        Fraction(0, 1),  # or any other generated value\n        Fraction(0, 1),  # or any other generated value\n        Fraction(\n            1,\n            1,  # or any other generated value\n        ),\n    ),\n    mass=Fraction(0, 1),  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3733\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:3735\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5106\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5109\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\matrices\\matrixbase.py:5110\n        (and 4 more with settings.verbosity >= verbose)\n\n----------------------------------------------------------------------\nRan 1 test in 9.234s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_kernel_inverse_against_matrix_inversion"
+      ]
+    },
+    {
+      "identity": "kernel-mass-sign",
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_ordered_oracle_rows_and_inverse_operator_sign"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_ordered_oracle_rows_and_inverse_operator_sign (__main__.CountertermCheckerTests.test_ordered_oracle_rows_and_inverse_operator_sign) ... FAIL\n\n======================================================================\nFAIL: test_ordered_oracle_rows_and_inverse_operator_sign (__main__.CountertermCheckerTests.test_ordered_oracle_rows_and_inverse_operator_sign)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-followup-at69g9ga\\tests\\test_counterterm_checker.py\", line 90, in test_ordered_oracle_rows_and_inverse_operator_sign\n    self.assertEqual(_symbolic(module.DiracKernel((2, 0, 0, 0), 1).inverse_operator().value), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[3, 0,  0,  0],\n[0, 3,  0,  0],\n[0, 0, -1,  0],\n[0, 0,  0, -1]]) != Matrix([\n[1, 0,  0,  0],\n[0, 1,  0,  0],\n[0, 0, -3,  0],\n[0, 0,  0, -3]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "d65618ba12bf18fb75bec8022278a8652d530c75f34524ddf662f558e51e7d64",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_ordered_oracle_rows_and_inverse_operator_sign (__main__.CountertermCheckerTests.test_ordered_oracle_rows_and_inverse_operator_sign) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nOK\n"
+      }
+    },
+    {
+      "identity": "mass-shell-sign",
+      "mutant_sha256": "b2eaaadcb75aea6af2c18e6959c9ce2abfaf7abd3524674d64c13ff3c13cd53d",
+      "outcome": "killed",
+      "output": "test_integer_inputs_original_witness_and_mass_shell (__main__.CountertermCheckerTests.test_integer_inputs_original_witness_and_mass_shell) ... FAIL\n\n======================================================================\nFAIL: test_integer_inputs_original_witness_and_mass_shell (__main__.CountertermCheckerTests.test_integer_inputs_original_witness_and_mass_shell)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 143, in test_integer_inputs_original_witness_and_mass_shell\n    self.assertEqual(_symbolic(first), sp.diag(1, 1, sp.Rational(-1, 3), sp.Rational(-1, 3)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[3/5,   0,    0,    0],\n[  0, 3/5,    0,  [49 chars]/5]]) != Matrix([\n[1, 0,    0,    0],\n[0, 1,    0,    0],\n[0[33 chars]/3]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_integer_inputs_original_witness_and_mass_shell"
+      ]
+    },
+    {
+      "identity": "mass-shell-square-budget",
+      "mutant_sha256": "96fc9678a465118cd75be8ea9f8559beff98837e2affd798b3d1e0315cd158de",
+      "outcome": "killed",
+      "output": "test_resource_budgets_and_cancellation (__main__.CountertermCheckerTests.test_resource_budgets_and_cancellation) ... ERROR\n\n======================================================================\nERROR: test_resource_budgets_and_cancellation (__main__.CountertermCheckerTests.test_resource_budgets_and_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 199, in test_resource_budgets_and_cancellation\n    self.assertEqual(kernel.propagator().error.kind, \"resource\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_resource_budgets_and_cancellation"
+      ]
+    },
+    {
+      "identity": "mass-shell-prefix-budget",
+      "mutant_sha256": "d3216de1a39d20b469291b396b4366e98b0f513b4d72a8959d6dadcb31a1f114",
+      "outcome": "killed",
+      "output": "test_resource_budgets_and_cancellation (__main__.CountertermCheckerTests.test_resource_budgets_and_cancellation) ... FAIL\n\n======================================================================\nFAIL: test_resource_budgets_and_cancellation (__main__.CountertermCheckerTests.test_resource_budgets_and_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 204, in test_resource_budgets_and_cancellation\n    self.refused(oversized_sum._denominator, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 63, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_resource_budgets_and_cancellation"
+      ]
+    },
+    {
+      "identity": "singular-explicit-refusal",
+      "mutant_sha256": "32fc0d3e2ba115048bce54f927475d2b11ef6c48b8591a61d863b93e648d15b8",
+      "outcome": "killed",
+      "output": "test_integer_inputs_original_witness_and_mass_shell (__main__.CountertermCheckerTests.test_integer_inputs_original_witness_and_mass_shell) ... FAIL\n\n======================================================================\nFAIL: test_integer_inputs_original_witness_and_mass_shell (__main__.CountertermCheckerTests.test_integer_inputs_original_witness_and_mass_shell)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 152, in test_integer_inputs_original_witness_and_mass_shell\n    self.assertEqual(kernel.propagator().error.message, \"singular propagator\")\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'Fraction(1, 0)' != 'singular propagator'\n- Fraction(1, 0)\n+ singular propagator\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.032s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_integer_inputs_original_witness_and_mass_shell"
+      ]
+    },
+    {
+      "identity": "propagator-numerator-sign",
+      "mutant_sha256": "35d51e0c0f79e5724c2be10077bdc057ae78241076cfa4b6b720988d3c12b9b9",
+      "outcome": "killed",
+      "output": "test_integer_inputs_original_witness_and_mass_shell (__main__.CountertermCheckerTests.test_integer_inputs_original_witness_and_mass_shell) ... FAIL\n\n======================================================================\nFAIL: test_integer_inputs_original_witness_and_mass_shell (__main__.CountertermCheckerTests.test_integer_inputs_original_witness_and_mass_shell)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 143, in test_integer_inputs_original_witness_and_mass_shell\n    self.assertEqual(_symbolic(first), sp.diag(1, 1, sp.Rational(-1, 3), sp.Rational(-1, 3)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[1/3,   0,  0,  0],\n[  0, 1/3,  0,  0],\n[  [32 chars]-1]]) != Matrix([\n[1, 0,    0,    0],\n[0, 1,    0,    0],\n[0,[32 chars]/3]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_integer_inputs_original_witness_and_mass_shell"
+      ]
+    },
+    {
+      "identity": "propagator-reciprocal",
+      "mutant_sha256": "30809b0643f01fd3d3cbe79a3d1995b786455e140b8566667733321db55b6669",
+      "outcome": "killed",
+      "output": "test_integer_inputs_original_witness_and_mass_shell (__main__.CountertermCheckerTests.test_integer_inputs_original_witness_and_mass_shell) ... FAIL\n\n======================================================================\nFAIL: test_integer_inputs_original_witness_and_mass_shell (__main__.CountertermCheckerTests.test_integer_inputs_original_witness_and_mass_shell)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 143, in test_integer_inputs_original_witness_and_mass_shell\n    self.assertEqual(_symbolic(first), sp.diag(1, 1, sp.Rational(-1, 3), sp.Rational(-1, 3)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[9, 0,  0,  0],\n[0, 9,  0,  0],\n[0, 0, -3,[17 chars]-3]]) != Matrix([\n[1, 0,    0,    0],\n[0, 1,    0,    0],\n[0[33 chars]/3]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_integer_inputs_original_witness_and_mass_shell"
+      ]
+    },
+    {
+      "identity": "dirac-lowered-sign",
+      "mutant_sha256": "e9e46bc91032ef85efddb4d56d67bb883019330044dbeae7c5f951d328d41331",
+      "outcome": "killed",
+      "output": "test_nonreal_dirac_vertex_and_lowered_contraction (__main__.CountertermCheckerTests.test_nonreal_dirac_vertex_and_lowered_contraction) ... FAIL\n\n======================================================================\nFAIL: test_nonreal_dirac_vertex_and_lowered_contraction (__main__.CountertermCheckerTests.test_nonreal_dirac_vertex_and_lowered_contraction)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 132, in test_nonreal_dirac_vertex_and_lowered_contraction\n    self.assertEqual(_symbolic(module.dirac(left)), expected_dirac)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[1 + 4*I,       1,     -5*I,       2],\n[1 [109 chars]*I]]) != Matrix([\n[-3 - 8*I,       -1,  -2 + I,      2*I],\n[[117 chars]*I]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.038s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_nonreal_dirac_vertex_and_lowered_contraction"
+      ]
+    },
+    {
+      "identity": "vertex-insertion-order",
+      "mutant_sha256": "9d5a3c7d22ad8cedfd0004448062a27e677af9a230e20f67fe8d67ff53d557c2",
+      "outcome": "killed",
+      "output": "test_nonreal_dirac_vertex_and_lowered_contraction (__main__.CountertermCheckerTests.test_nonreal_dirac_vertex_and_lowered_contraction) ... FAIL\n\n======================================================================\nFAIL: test_nonreal_dirac_vertex_and_lowered_contraction (__main__.CountertermCheckerTests.test_nonreal_dirac_vertex_and_lowered_contraction)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 135, in test_nonreal_dirac_vertex_and_lowered_contraction\n    self.assertEqual(_symbolic(module.vertex(direction, left, right)), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[  -3 + 5*I,   4 - 4*I,    2 - 8*I,        1[143 chars]*I]]) != Matrix([\n[   -1 + I,  -4 - 6*I, 20 + 2*I,   6 + 6*I],[131 chars]*I]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.141s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_nonreal_dirac_vertex_and_lowered_contraction"
+      ]
+    },
+    {
+      "identity": "vertex-direction",
+      "mutant_sha256": "62ff8b02b61596b742c7e1c663834b0e017b891f3e9750163e07464debf56aef",
+      "outcome": "killed",
+      "output": "test_nonreal_dirac_vertex_and_lowered_contraction (__main__.CountertermCheckerTests.test_nonreal_dirac_vertex_and_lowered_contraction) ... FAIL\n\n======================================================================\nFAIL: test_nonreal_dirac_vertex_and_lowered_contraction (__main__.CountertermCheckerTests.test_nonreal_dirac_vertex_and_lowered_contraction)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 135, in test_nonreal_dirac_vertex_and_lowered_contraction\n    self.assertEqual(_symbolic(module.vertex(direction, left, right)), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[   -1 + I,  -4 - 6*I, 20 + 2*I,   6 + 6*I][132 chars]*I]]) != Matrix([\n[ -4 - 5*I,   2 + 6*I,  4 - 18*I, -3 - 6*I][132 chars]*I]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.145s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_nonreal_dirac_vertex_and_lowered_contraction"
+      ]
+    },
+    {
+      "identity": "contraction-lowering",
+      "mutant_sha256": "362e92b5acd4556b0a6a8bd97e7d1cd5273eba5ca06a7a7252731c4b0be0b836",
+      "outcome": "killed",
+      "output": "test_nonreal_dirac_vertex_and_lowered_contraction (__main__.CountertermCheckerTests.test_nonreal_dirac_vertex_and_lowered_contraction) ... FAIL\n\n======================================================================\nFAIL: test_nonreal_dirac_vertex_and_lowered_contraction (__main__.CountertermCheckerTests.test_nonreal_dirac_vertex_and_lowered_contraction)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 138, in test_nonreal_dirac_vertex_and_lowered_contraction\n    self.assertEqual(_symbolic(module.contract(q, left, right)), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[1463/60 + 599*I/30,     163/30 - 10*I,   [273 chars]/3]]) != Matrix([\n[-1543/60 - 559*I/30,      -323/30 + 2*I, [281 chars]/3]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.176s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_nonreal_dirac_vertex_and_lowered_contraction"
+      ]
+    },
+    {
+      "identity": "contraction-sides",
+      "mutant_sha256": "47585eb1c33a3ea522cc319be85fbf49d81e4b155bfd34d367f54e10e6db3a19",
+      "outcome": "killed",
+      "output": "test_nonreal_dirac_vertex_and_lowered_contraction (__main__.CountertermCheckerTests.test_nonreal_dirac_vertex_and_lowered_contraction) ... FAIL\n\n======================================================================\nFAIL: test_nonreal_dirac_vertex_and_lowered_contraction (__main__.CountertermCheckerTests.test_nonreal_dirac_vertex_and_lowered_contraction)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 138, in test_nonreal_dirac_vertex_and_lowered_contraction\n    self.assertEqual(_symbolic(module.contract(q, left, right)), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[   -83/12 + 25*I/2,  -183/20 + 19*I/3, -2[277 chars]15]]) != Matrix([\n[-1543/60 - 559*I/30,      -323/30 + 2*I, [281 chars]/3]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.172s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_nonreal_dirac_vertex_and_lowered_contraction"
+      ]
+    },
+    {
+      "identity": "omit-clifford-obligation",
+      "mutant_sha256": "04e7473589d9edcf590f89eeb2a478cc294942619d0d129425fb2103cc7a9187",
+      "outcome": "killed",
+      "output": "test_counts_faults_and_lifecycle (__main__.CountertermCheckerTests.test_counts_faults_and_lifecycle) ... FAIL\n\n======================================================================\nFAIL: test_counts_faults_and_lifecycle (__main__.CountertermCheckerTests.test_counts_faults_and_lifecycle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 227, in test_counts_faults_and_lifecycle\n    self.assertEqual(cases.checks, 25)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: 9 != 25\n\n----------------------------------------------------------------------\nRan 1 test in 0.053s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_counts_faults_and_lifecycle"
+      ]
+    },
+    {
+      "identity": "omit-right-inverse-obligation",
+      "mutant_sha256": "cb7227fa130415f0b164c3263fcd732cb82e596c471f9f636c5095ea09814d40",
+      "outcome": "killed",
+      "output": "test_counts_faults_and_lifecycle (__main__.CountertermCheckerTests.test_counts_faults_and_lifecycle) ... FAIL\n\n======================================================================\nFAIL: test_counts_faults_and_lifecycle (__main__.CountertermCheckerTests.test_counts_faults_and_lifecycle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 227, in test_counts_faults_and_lifecycle\n    self.assertEqual(cases.checks, 25)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: 23 != 25\n\n----------------------------------------------------------------------\nRan 1 test in 0.052s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_counts_faults_and_lifecycle"
+      ]
+    },
+    {
+      "identity": "omit-contraction-obligation",
+      "mutant_sha256": "771d2708f8c4a1623e32dfe2c4b7c13289788db8d0efb8feafe8c476f1d9bd40",
+      "outcome": "killed",
+      "output": "test_counts_faults_and_lifecycle (__main__.CountertermCheckerTests.test_counts_faults_and_lifecycle) ... FAIL\n\n======================================================================\nFAIL: test_counts_faults_and_lifecycle (__main__.CountertermCheckerTests.test_counts_faults_and_lifecycle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 227, in test_counts_faults_and_lifecycle\n    self.assertEqual(cases.checks, 25)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: 24 != 25\n\n----------------------------------------------------------------------\nRan 1 test in 0.046s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_counts_faults_and_lifecycle"
+      ]
+    },
+    {
+      "identity": "false-success-exit",
+      "mutant_sha256": "30593ca6bdd9530bf4a536267918daa10e34c5931c4cbc5ba5462b6c1dd596fa",
+      "outcome": "killed",
+      "output": "test_executable_receipt_and_failure_exit (__main__.CountertermCheckerTests.test_executable_receipt_and_failure_exit) ... FAIL\n\n======================================================================\nFAIL: test_executable_receipt_and_failure_exit (__main__.CountertermCheckerTests.test_executable_receipt_and_failure_exit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 248, in test_executable_receipt_and_failure_exit\n    with self.assertRaises(SystemExit) as failure:\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: SystemExit not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.196s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-z1-z2-counterterm-fence.py",
+      "tests": [
+        "test_executable_receipt_and_failure_exit"
+      ]
+    },
+    {
+      "identity": "test-oracle-imaginary-sign",
+      "mutant_sha256": "d2457f1dc956a6f7dbeee4833dcdbdd32ec53a8dd5006daace80ebd4493b3dd6",
+      "outcome": "killed",
+      "output": "test_oracles_and_basis (__main__.CountertermCheckerTests.test_oracles_and_basis) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_basis (__main__.CountertermCheckerTests.test_oracles_and_basis)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 75, in test_oracles_and_basis\n    self.assertEqual(_symbolic(((G(Q(1, 2), Q(-2, 3)),),)), sp.ImmutableMatrix([[sp.Rational(1, 2)-2*sp.I/3]]))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([[1/2 + 2*I/3]]) != Matrix([[1/2 - 2*I/3]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.027s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_counterterm_checker.py",
+      "tests": [
+        "test_oracles_and_basis"
+      ]
+    },
+    {
+      "identity": "test-oracle-mass-sign",
+      "mutant_sha256": "3e899c26c283843705d176942fff11eaaa0547609dd5dff8e2a73e4f52322ab3",
+      "outcome": "killed",
+      "output": "test_oracles_and_basis (__main__.CountertermCheckerTests.test_oracles_and_basis) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_basis (__main__.CountertermCheckerTests.test_oracles_and_basis)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 81, in test_oracles_and_basis\n    self.assertEqual(_inverse_operator((Q(2), Q(0), Q(0), Q(0)), Q(1)), sp.diag(1, 1, -3, -3))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[3, 0,  0,  0],\n[0, 3,  0,  0],\n[0, 0, -1,  0],\n[0, 0,  0, -1]]) != Matrix([\n[1, 0,  0,  0],\n[0, 1,  0,  0],\n[0, 0, -3,  0],\n[0, 0,  0, -3]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.036s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_counterterm_checker.py",
+      "tests": [
+        "test_oracles_and_basis"
+      ]
+    },
+    {
+      "identity": "test-oracle-row-index",
+      "source": "tests/test_counterterm_checker.py",
+      "tests": [
+        "test_ordered_oracle_rows_and_inverse_operator_sign"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_ordered_oracle_rows_and_inverse_operator_sign (__main__.CountertermCheckerTests.test_ordered_oracle_rows_and_inverse_operator_sign) ... FAIL\n\n======================================================================\nFAIL: test_ordered_oracle_rows_and_inverse_operator_sign (__main__.CountertermCheckerTests.test_ordered_oracle_rows_and_inverse_operator_sign)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-followup-at69g9ga\\tests\\test_counterterm_checker.py\", line 88, in test_ordered_oracle_rows_and_inverse_operator_sign\n    self.assertEqual(_rows([(index, -index) for index in range(16)])[1][2], G(6, -6))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: GaussianRational(re=Fraction(9, 1), im=Fraction(-9, 1)) != GaussianRational(re=Fraction(6, 1), im=Fraction(-6, 1))\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "ebff0c123dfd34dc2e5fb7cedd3ae27d74ebff8b0433c741d17b5f0d5c04c267",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_ordered_oracle_rows_and_inverse_operator_sign (__main__.CountertermCheckerTests.test_ordered_oracle_rows_and_inverse_operator_sign) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nOK\n"
+      }
+    },
+    {
+      "identity": "test-refusal-helper-polarity",
+      "mutant_sha256": "060042633cb0647d5809ebb26c825f5a3f8028631f7723d4af50ed895880a024",
+      "outcome": "killed",
+      "output": "test_kernel_ownership_and_scalar_vector_domains (__main__.CountertermCheckerTests.test_kernel_ownership_and_scalar_vector_domains) ... FAIL\n\n======================================================================\nFAIL: test_kernel_ownership_and_scalar_vector_domains (__main__.CountertermCheckerTests.test_kernel_ownership_and_scalar_vector_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 166, in test_kernel_ownership_and_scalar_vector_domains\n    self.refused(module.DiracKernel, (2, 0, 0, 0), bad)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\counterterm-mutation-elvxb3_6\\tests\\test_counterterm_checker.py\", line 63, in refused\n    self.assertTrue(result.ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_counterterm_checker.py",
+      "tests": [
+        "test_kernel_ownership_and_scalar_vector_domains"
+      ]
+    }
+  ],
+  "summary": {
+    "counts": {
+      "killed": 36,
+      "survived": 0,
+      "equivalent": 0,
+      "invalid": 0,
+      "inconclusive": 0,
+      "unrun": 0
+    },
+    "eligible": 36,
+    "detected_fraction": 1.0
+  }
+}

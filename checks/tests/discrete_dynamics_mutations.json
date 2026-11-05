@@ -1,0 +1,482 @@
+[
+  {
+    "identity": "state-bool",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "state = integer(value, \"finite state\", 0)",
+    "after": "state = int(value)",
+    "tests": [
+      "test_finite_map_ownership_domains_and_full_power_budget"
+    ]
+  },
+  {
+    "identity": "state-negative",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "integer(value, \"finite state\", 0)",
+    "after": "integer(value, \"finite state\")",
+    "tests": [
+      "test_finite_map_ownership_domains_and_full_power_budget"
+    ]
+  },
+  {
+    "identity": "state-outside",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "if state >= size:",
+    "after": "if False:",
+    "tests": [
+      "test_finite_map_ownership_domains_and_full_power_budget"
+    ]
+  },
+  {
+    "identity": "empty-carrier",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "if not values:",
+    "after": "if False:",
+    "tests": [
+      "test_finite_map_ownership_domains_and_full_power_budget"
+    ]
+  },
+  {
+    "identity": "carrier-budget",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "sequence(images, \"endomap images\", maximum=4)",
+    "after": "sequence(images, \"endomap images\", maximum=5)",
+    "tests": [
+      "test_finite_map_ownership_domains_and_full_power_budget"
+    ]
+  },
+  {
+    "identity": "application-state",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "self.images[_state(state, len(self.images))]",
+    "after": "self.images[0]",
+    "tests": [
+      "test_generated_composition_action_and_power",
+      "test_finite_map_ownership_domains_and_full_power_budget"
+    ]
+  },
+  {
+    "identity": "composition-order",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "tuple(self.images[value] for value in other.images)",
+    "after": "tuple(other.images[value] for value in self.images)",
+    "tests": [
+      "test_generated_composition_action_and_power"
+    ]
+  },
+  {
+    "identity": "composition-carrier",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": " or len(other.images) != len(self.images)",
+    "after": "",
+    "tests": [
+      "test_finite_map_ownership_domains_and_full_power_budget",
+      "test_composition_refuses_carrier_loss"
+    ]
+  },
+  {
+    "identity": "power-bool",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "remaining = integer(exponent, \"iterate exponent\", 0, 4096)",
+    "after": "remaining = int(exponent)",
+    "tests": [
+      "test_finite_map_ownership_domains_and_full_power_budget"
+    ]
+  },
+  {
+    "identity": "power-budget",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "integer(exponent, \"iterate exponent\", 0, 4096)",
+    "after": "integer(exponent, \"iterate exponent\", 0, 4097)",
+    "tests": [
+      "test_finite_map_ownership_domains_and_full_power_budget"
+    ]
+  },
+  {
+    "identity": "power-zero-identity",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "value, power = FiniteEndomap(tuple(range(len(self.images)))), self",
+    "after": "value, power = self, self",
+    "tests": [
+      "test_finite_map_ownership_domains_and_full_power_budget"
+    ]
+  },
+  {
+    "identity": "power-binary-digit",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "\n            remaining >>= 1\n",
+    "after": "\n            remaining >>= 2\n",
+    "tests": [
+      "test_generated_composition_action_and_power"
+    ]
+  },
+  {
+    "identity": "power-bit-condition",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "\n            if remaining & 1:\n",
+    "after": "\n            if remaining & 1 == 0:\n",
+    "tests": [
+      "test_generated_composition_action_and_power"
+    ]
+  },
+  {
+    "identity": "power-squaring",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "power = power._compose(power)",
+    "after": "power = self",
+    "tests": [
+      "test_generated_composition_action_and_power"
+    ]
+  },
+  {
+    "identity": "root-square-test",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "candidate._compose(candidate).images == self.images",
+    "after": "candidate.images == self.images",
+    "tests": [
+      "test_complete_small_root_censuses_and_four_state_witness"
+    ]
+  },
+  {
+    "identity": "root-enumeration-order",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "return tuple(roots)",
+    "after": "return tuple(reversed(roots))",
+    "tests": [
+      "test_complete_small_root_censuses_and_four_state_witness"
+    ]
+  },
+  {
+    "identity": "toggle-domain",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "if type(value) is not bool:",
+    "after": "if False:",
+    "tests": [
+      "test_finite_map_ownership_domains_and_full_power_budget"
+    ]
+  },
+  {
+    "identity": "toggle-inversion",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "return not value",
+    "after": "return value",
+    "tests": [
+      "test_finite_map_ownership_domains_and_full_power_budget"
+    ]
+  },
+  {
+    "identity": "integer-coercion",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "exact = integer(value, \"exact integer\")",
+    "after": "exact = int(value)",
+    "tests": [
+      "test_integer_domains_and_polynomial_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "integer-budget",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "if exact.bit_length() > 4096:",
+    "after": "if False:",
+    "tests": [
+      "test_integer_domains_and_polynomial_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "gaussian-export-imaginary",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "return value.re.numerator, value.im.numerator",
+    "after": "return value.re.numerator, value.re.numerator",
+    "tests": [
+      "test_gaussian_products_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "gaussian-add-sign",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "_gaussian(left)+_gaussian(right)",
+    "after": "_gaussian(left)-_gaussian(right)",
+    "tests": [
+      "test_gaussian_products_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "gaussian-multiply-conjugate",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "_gaussian(left)*_gaussian(right)",
+    "after": "_gaussian(left)*_gaussian(right).conj()",
+    "tests": [
+      "test_gaussian_products_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "matrix-row-order",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "GaussianMatrix2(_gaussian(a), _gaussian(b), _gaussian(c), _gaussian(d))",
+    "after": "GaussianMatrix2(_gaussian(a), _gaussian(c), _gaussian(b), _gaussian(d))",
+    "tests": [
+      "test_gaussian_products_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "matrix-multiplication-order",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "result = _matrix(left).mul(_matrix(right))",
+    "after": "result = _matrix(right).mul(_matrix(left))",
+    "tests": [
+      "test_gaussian_products_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "cayley-cross-coefficient",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "_bounded(4*square)",
+    "after": "_bounded(2*square)",
+    "tests": [
+      "test_cayley_and_odd_branch_oracles"
+    ]
+  },
+  {
+    "identity": "energy-offset",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "2*_bounded(branch)+1",
+    "after": "2*_bounded(branch)-1",
+    "tests": [
+      "test_cayley_and_odd_branch_oracles"
+    ]
+  },
+  {
+    "identity": "energy-output-budget",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "return _bounded(2*_bounded(branch)+1)",
+    "after": "return 2*_bounded(branch)+1",
+    "tests": [
+      "test_integer_domains_and_polynomial_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "nilpotent-square-condition",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": " and value.mul(value).rows == zero.rows",
+    "after": "",
+    "tests": [
+      "test_nilpotent_forced_candidate_against_matrix_oracle"
+    ]
+  },
+  {
+    "identity": "omit-branch-obligation",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "cases.require(energy(first) != energy(second), \"distinct branch energies\")",
+    "after": "pass",
+    "tests": [
+      "test_reentrant_counts_faults_and_cancellation"
+    ]
+  },
+  {
+    "identity": "omit-unitarity-obligation",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "cases.require(matrix.adjoint().mul(matrix) == four_identity, \"scaled unitarity\")",
+    "after": "pass",
+    "tests": [
+      "test_reentrant_counts_faults_and_cancellation"
+    ]
+  },
+  {
+    "identity": "false-success-exit",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "raise SystemExit(cli(main))",
+    "after": "cli(main)",
+    "tests": [
+      "test_executable_receipt_and_failure_exit"
+    ]
+  },
+  {
+    "identity": "oracle-operator-transpose",
+    "source": "tests/test_continuous_time_checker.py",
+    "before": "int(row == images[column])",
+    "after": "int(column == images[row])",
+    "tests": [
+      "test_oracles_and_pure_import"
+    ]
+  },
+  {
+    "identity": "oracle-root-power",
+    "source": "tests/test_continuous_time_checker.py",
+    "before": "squared = _operator(images)**2",
+    "after": "squared = _operator(images)",
+    "tests": [
+      "test_oracles_and_pure_import"
+    ]
+  },
+  {
+    "identity": "oracle-matrix-conjugate",
+    "source": "tests/test_continuous_time_checker.py",
+    "before": "real+sp.I*imaginary",
+    "after": "real-sp.I*imaginary",
+    "tests": [
+      "test_oracles_and_pure_import"
+    ]
+  },
+  {
+    "identity": "refusal-helper-polarity",
+    "source": "tests/test_continuous_time_checker.py",
+    "before": "self.assertFalse(result.ok)",
+    "after": "self.assertTrue(result.ok)",
+    "tests": [
+      "test_finite_map_ownership_domains_and_full_power_budget"
+    ]
+  },
+  {
+    "identity": "real-matrix-component",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "RationalMatrix(((_bounded(a), _bounded(b)), (_bounded(c), _bounded(d))))\n\n\ndef _real_flat",
+    "after": "RationalMatrix(((_bounded(a), _bounded(b)), (_bounded(d), _bounded(c))))\n\n\ndef _real_flat",
+    "tests": [
+      "test_fixed_nonsymmetric_integer_products_and_snapshots"
+    ]
+  },
+  {
+    "identity": "real-export-coordinates",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "return rows[0][0], rows[0][1], rows[1][0], rows[1][1]",
+    "after": "return rows[0][0], rows[1][0], rows[0][1], rows[1][1]",
+    "tests": [
+      "test_fixed_nonsymmetric_integer_products_and_snapshots"
+    ]
+  },
+  {
+    "identity": "real-export-integer-domain",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "rows = matrix.require_shape(2, 2).integer_rows()",
+    "after": "rows = matrix.require_shape(2, 2).rows",
+    "tests": [
+      "test_fixed_nonsymmetric_integer_products_and_snapshots",
+      "test_residue_exact_domains_and_resource_limits"
+    ]
+  },
+  {
+    "identity": "real-multiplication-order",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "return _real_flat(first.mul(second))",
+    "after": "return _real_flat(second.mul(first))",
+    "tests": [
+      "test_fixed_nonsymmetric_integer_products_and_snapshots"
+    ]
+  },
+  {
+    "identity": "quarter-exponent-bool",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "remaining = integer(exponent, \"quarter-turn exponent\", 0, 4096)",
+    "after": "remaining = int(exponent)",
+    "tests": [
+      "test_residue_preflight_before_multiplication"
+    ]
+  },
+  {
+    "identity": "quarter-exponent-negative",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "integer(exponent, \"quarter-turn exponent\", 0, 4096)",
+    "after": "integer(exponent, \"quarter-turn exponent\", maximum=4096)",
+    "tests": [
+      "test_residue_preflight_before_multiplication"
+    ]
+  },
+  {
+    "identity": "quarter-exponent-budget",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "integer(exponent, \"quarter-turn exponent\", 0, 4096)",
+    "after": "integer(exponent, \"quarter-turn exponent\", 0, 4097)",
+    "tests": [
+      "test_residue_exact_domains_and_resource_limits"
+    ]
+  },
+  {
+    "identity": "quarter-zero-identity",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "value, power = RationalMatrix.eye(2), _real_matrix(JAY)",
+    "after": "value, power = _real_matrix(JAY), _real_matrix(JAY)",
+    "tests": [
+      "test_fixed_nonsymmetric_integer_products_and_snapshots"
+    ]
+  },
+  {
+    "identity": "quarter-binary-digit",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "\n        remaining >>= 1\n",
+    "after": "\n        remaining >>= 2\n",
+    "tests": [
+      "test_fixed_nonsymmetric_integer_products_and_snapshots"
+    ]
+  },
+  {
+    "identity": "quarter-bit-condition",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "\n        if remaining & 1:\n",
+    "after": "\n        if remaining & 1 == 0:\n",
+    "tests": [
+      "test_fixed_nonsymmetric_integer_products_and_snapshots"
+    ]
+  },
+  {
+    "identity": "quarter-power-squaring",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "power = power.mul(power)",
+    "after": "power = _real_matrix(JAY)",
+    "tests": [
+      "test_fixed_nonsymmetric_integer_products_and_snapshots"
+    ]
+  },
+  {
+    "identity": "quarter-result-selection",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "return _real_flat(value)",
+    "after": "return _real_flat(power)",
+    "tests": [
+      "test_fixed_nonsymmetric_integer_products_and_snapshots"
+    ]
+  },
+  {
+    "identity": "residue-representative-order",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "(EYE, JAY, JAY2, JAY3)",
+    "after": "(EYE, JAY, JAY3, JAY2)",
+    "tests": [
+      "test_quarter_turn_powers_against_matrix_and_cycle"
+    ]
+  },
+  {
+    "identity": "residue-census-endpoint",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "for exponent in range(40):",
+    "after": "for exponent in range(39):",
+    "tests": [
+      "test_residue_control_counts_and_injected_fault"
+    ]
+  },
+  {
+    "identity": "omit-residue-step",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "cases.require(mm(REPS[residue], JAY) == REPS[(residue+1) % 4], \"representative step\")",
+    "after": "pass",
+    "tests": [
+      "test_residue_control_counts_and_injected_fault"
+    ]
+  },
+  {
+    "identity": "residue-successor",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "(residue+1) % 4, \"residue successor\"",
+    "after": "(residue+2) % 4, \"residue successor\"",
+    "tests": [
+      "test_residue_control_counts_and_injected_fault"
+    ]
+  },
+  {
+    "identity": "omit-residue-main",
+    "source": "independent/ds-continuous-time-exp-generator.py",
+    "before": "    verify_residues(cases)\n    print(json.dumps",
+    "after": "    print(json.dumps",
+    "tests": [
+      "test_executable_receipt_and_failure_exit"
+    ]
+  }
+]

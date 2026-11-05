@@ -1,0 +1,427 @@
+{
+  "AuthorityEffect": "None",
+  "source_sha256": "15f391680b1e0ee48ac5665665022a330190527a75fef8caacb0bf6e784f567c",
+  "companion_sha256": null,
+  "probes": [
+    {
+      "name": "boolean integer coordinate",
+      "value_repr": "((Fraction(1, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)), (Fraction(0, 1), Fraction(0, 1)))",
+      "refused": false
+    },
+    {
+      "name": "floating Gaussian norm",
+      "value_repr": "0.010000000000000002",
+      "refused": false
+    },
+    {
+      "name": "floating valuation",
+      "value_repr": "2",
+      "refused": false
+    },
+    {
+      "name": "truncated nonintegral primitive ray",
+      "value_repr": "False",
+      "refused": false
+    },
+    {
+      "name": "ragged Hermitian vector",
+      "value_repr": "(Fraction(1, 1), Fraction(0, 1))",
+      "refused": false
+    },
+    {
+      "name": "nonprime residual",
+      "value_repr": "Fraction(0, 1)",
+      "refused": false
+    },
+    {
+      "name": "zero prime residual",
+      "value_repr": "Fraction(0, 1)",
+      "refused": false
+    },
+    {
+      "name": "zero prime unit character",
+      "error_type": "ZeroDivisionError",
+      "message": "division by zero",
+      "refused": true
+    },
+    {
+      "name": "truthy require",
+      "value_repr": "None",
+      "refused": false
+    }
+  ],
+  "original_run": {
+    "returncode": 0,
+    "stdout": "{\"exotic_qi7_witness_p7\": \"2/3\", \"piron_ortho_parallelogram_sums\": [2, 2, 2], \"pythag_rot_invariance_3_7_11\": [1, 1, 1], \"s3_witness_111\": 1, \"s3_witness_div4\": -1, \"s3_witness_div8\": 1, \"s7_witness_p7\": 1, \"scope\": \"symbolic algebra controls, uniform sp_residual (p in {3,7,11}), selective oscillation, joint elimination, Piron/parallelogram/continuity bridge, and 9G two-step tangent/Kelvin/Pythagorean sandwich squeeze\", \"sp11_witness_p11\": 1, \"sqrt11_frame_norms\": [11, 1210, 1210], \"sqrt3_frame_norms\": [3, 18, 18], \"sqrt7_frame_norms\": [7, 245, 245], \"status\": \"PASS\", \"sympy_version\": \"1.14.0\", \"tomography_rank\": 9}\n",
+    "stderr": ""
+  },
+  "original_metrics": {
+    "max_ccn": 148,
+    "max_cognitive": 82
+  },
+  "original_obligations": [
+    {
+      "line": 189,
+      "condition": "rho == rho.conjugate().T",
+      "label": "'candidate is Hermitian'"
+    },
+    {
+      "line": 201,
+      "condition": "all((zero(x - y) for x, y in zip(values, expected)))",
+      "label": "'all nine evaluations, including imaginary signs'"
+    },
+    {
+      "line": 205,
+      "condition": "tomography.det() != 0",
+      "label": "'tomography has exact rank nine'"
+    },
+    {
+      "line": 217,
+      "condition": "all((zero(value.subs(substitution) - measurement) for value, measurement in zip(values, measurements)))",
+      "label": "'candidate recovers arbitrary rational measurements'"
+    },
+    {
+      "line": 229,
+      "condition": "zero(numerator - expansion)",
+      "label": "'generic quadratic expansion'"
+    },
+    {
+      "line": 230,
+      "condition": "zero(sp.im(numerator))",
+      "label": "'quadratic numerator is rational over Q(i)'"
+    },
+    {
+      "line": 238,
+      "condition": "all((zero(entry) for entry in identity_residual))",
+      "label": "'generic three by three adjugate identity'"
+    },
+    {
+      "line": 243,
+      "condition": "sp.cancel(sp.Rational(1, 3) - epsilon * bound - epsilon) == 0",
+      "label": "'rescaled lower bound'"
+    },
+    {
+      "line": 245,
+      "condition": "sp.cancel(sp.Rational(1, 3) + epsilon * bound - (2 * bound + 1) / (3 * (bound + 1))) == 0",
+      "label": "'rescaled upper bound'"
+    },
+    {
+      "line": 248,
+      "condition": "sp.cancel(sp.Rational(2, 3) - (2 * bound + 1) / (3 * (bound + 1)) - epsilon) == 0",
+      "label": "'upper bound is strictly below two thirds'"
+    },
+    {
+      "line": 251,
+      "condition": "epsilon.is_positive is True",
+      "label": "'rescaling is positive, including B=0'"
+    },
+    {
+      "line": 252,
+      "condition": "epsilon.subs(bound, 0) == sp.Rational(1, 3)",
+      "label": "'zero-bound control'"
+    },
+    {
+      "line": 255,
+      "condition": "not zero(values[4] - ((diagonal[0] + diagonal[1]) / 2 + imag_part[0]))",
+      "label": "'negative control rejects reversed imaginary sign'"
+    },
+    {
+      "line": 266,
+      "condition": "zero(kernel_comb)",
+      "label": "'7-ray projector kernel relation vanishes identically for every HermForm3'"
+    },
+    {
+      "line": 283,
+      "condition": "zero(kernel_comb_p7)",
+      "label": "'9-ray projector kernel relation for witness_p7 vanishes identically for every HermForm3'"
+    },
+    {
+      "line": 298,
+      "condition": "all((s3(r) == 0 for r in nine_rays_gvec))",
+      "label": "'s3 vanishes on all nine tomography rays'"
+    },
+    {
+      "line": 299,
+      "condition": "all((exotic_qi3(r) == Fraction(1, 3) for r in nine_rays_gvec))",
+      "label": "'exotic_qi3 equals 1/3 on all nine tomography rays'"
+    },
+    {
+      "line": 305,
+      "condition": "is_one_plus_i_primitive_gvec(witness_111) and vec_norm_sq(witness_111) == 3 and (s3(witness_111) == 1)",
+      "label": "'s3(1, 1, 1) == 1 on (1+i)-primitive norm-3 witness'"
+    },
+    {
+      "line": 311,
+      "condition": "is_one_plus_i_primitive_gvec(witness_div4) and vec_norm_sq(witness_div4) == 12 and (s3(witness_div4) == -1)",
+      "label": "'s3 == -1 on (1+i)-primitive norm-12 (4|N) witness'"
+    },
+    {
+      "line": 317,
+      "condition": "is_one_plus_i_primitive_gvec(witness_div8) and vec_norm_sq(witness_div8) == 24 and (s3(witness_div8) == 1)",
+      "label": "'s3 == 1 on (1+i)-primitive norm-24 (8|N) witness'"
+    },
+    {
+      "line": 337,
+      "condition": "s3_kernel_eval == 1 and exotic_kernel_eval == Fraction(1, 3)",
+      "label": "'s3 and exotic_qi3 constructively separate the 7-ray projector kernel'"
+    },
+    {
+      "line": 349,
+      "condition": "g_inner(u, v) == (0, 0) and g_inner(u, w) == (0, 0) and (g_inner(v, w) == (0, 0))",
+      "label": "'orthogonal completion via Hermitian cross product'"
+    },
+    {
+      "line": 351,
+      "condition": "(v3_rat(vec_norm_sq(u)) + v3_rat(vec_norm_sq(v)) + v3_rat(vec_norm_sq(w))) % 2 == 0",
+      "label": "'sum of 3-adic norm valuations on orthogonal frame is even'"
+    },
+    {
+      "line": 353,
+      "condition": "s3(u) + s3(v) + s3(w) == 0",
+      "label": "'s3 is a zero-weight frame function'"
+    },
+    {
+      "line": 354,
+      "condition": "exotic_qi3(u) + exotic_qi3(v) + exotic_qi3(w) == 1",
+      "label": "'exotic_qi3 is a weight-1 frame function'"
+    },
+    {
+      "line": 359,
+      "condition": "is_one_plus_i_primitive_gvec(witness_p7) and vec_norm_sq(witness_p7) == 7 and (s3(witness_p7) == 0) and (sp_residual(witness_p7, 7) == 1) and (sp_residual(witness_111, 7) == 0)",
+      "label": "'s3 and s7 are linearly independent bounded zero-weight residuals'"
+    },
+    {
+      "line": 367,
+      "condition": "all((sp_residual(r, 7) == 0 for r in nine_rays_gvec))",
+      "label": "'s7 vanishes on all nine tomography rays'"
+    },
+    {
+      "line": 371,
+      "condition": "sp_residual(u7, 7) + sp_residual(v7, 7) + sp_residual(w7, 7) == 0",
+      "label": "'s7 satisfies zero-weight additivity on odd-v7 orthogonal frame'"
+    },
+    {
+      "line": 377,
+      "condition": "abs(s3(u0)) + abs(s3(v0)) + abs(s3(w0)) == 2",
+      "label": "'negative control: unsigned 3-adic parity fails zero-weight sum'"
+    },
+    {
+      "line": 405,
+      "condition": "s3(pos3_int) == 1 and s3(pos3_ray) == 1 and (exotic_qi3(pos3_ray) == Fraction(2, 3)) and (dist_pos3 == Fraction(1, 3 * k * k))",
+      "label": "'positive 3-adic perturbation ray approaches e1 with s3 == +1'"
+    },
+    {
+      "line": 412,
+      "condition": "s3(neg3_int) == -1 and s3(neg3_ray) == -1 and (exotic_qi3(neg3_ray) == Fraction(0)) and (dist_neg3 == Fraction(1, 3 * k * k))",
+      "label": "'negative 3-adic perturbation ray approaches e1 with s3 == -1'"
+    },
+    {
+      "line": 438,
+      "condition": "sp_residual(pos7_ray, 7) == 1 and sp_residual(neg7_ray, 7) == -1 and (s3(pos7_ray) == 0) and (s3(neg7_ray) == 0) and (dist_pos7 == Fraction(1, 7 * k * k))",
+      "label": "'7-adic perturbation rays approach e1 with s7 == +/-1 and s3 == 0'"
+    },
+    {
+      "line": 459,
+      "condition": "s3(pos3_7k_ray) == 1 and s3(neg3_7k_ray) == -1 and (sp_residual(pos3_7k_ray, 7) == 0) and (sp_residual(neg3_7k_ray, 7) == 0)",
+      "label": "'subsequence 3-adic perturbation rays (7*k) have s3 == +/-1 and s7 == 0'"
+    },
+    {
+      "line": 469,
+      "condition": "exotic_qi7(witness_p7) == Fraction(2, 3) and exotic_qi7(witness_111) == Fraction(1, 3) and (exotic_qi7(u7) + exotic_qi7(v7) + exotic_qi7(w7) == Fraction(1)) and (exotic_comb_37(Fraction(2, 5), Fraction(-3, 5), u7) + exotic_comb_37(Fraction(2, 5), Fraction(-3, 5), v7) + exotic_comb_37(Fraction(2, 5), Fraction(-3, 5), w7) == Fraction(1))",
+      "label": "'exoticQi7 and exoticComb37 are weight-1 nonnegative frame functions separating witness_p7 from witness_111'"
+    },
+    {
+      "line": 490,
+      "condition": "kernel_p7_eval(lambda u: sp_residual(u, 7)) == Fraction(1) and kernel_p7_eval(s3) == Fraction(0) and (kernel_p7_eval(lambda u: Fraction(2, 5) * s3(u) - Fraction(3, 7) * sp_residual(u, 7)) == Fraction(-3, 7))",
+      "label": "'s7_witness_p7_kernel_separation evaluates to 1 on s7, 0 on s3, and c7 on combResidual37 c3 c7'"
+    },
+    {
+      "line": 503,
+      "condition": "zero((u_s3.conjugate().T * p_s3)[0]) and zero((u_s3.conjugate().T * q_s3)[0]) and zero((p_s3.conjugate().T * q_s3)[0])",
+      "label": "'Q(i, sqrt(3))^3 frame (witness_111, p_s3, q_s3) is pairwise orthogonal'"
+    },
+    {
+      "line": 509,
+      "condition": "sp.expand((u_s3.conjugate().T * u_s3)[0]) == 3 and sp.expand((p_s3.conjugate().T * p_s3)[0]) == 18 and (sp.expand((q_s3.conjugate().T * q_s3)[0]) == 18) and (vp_rat(Fraction(18), 3) == 2) and (vp_rat(Fraction(18), 7) == 0)",
+      "label": "'Q(i, sqrt(3))^3 frame has rational squared norms (3, 18, 18) with even v3 and v7 on partners'"
+    },
+    {
+      "line": 524,
+      "condition": "zero((u_s7.conjugate().T * p_s7)[0]) and zero((u_s7.conjugate().T * q_s7)[0]) and zero((p_s7.conjugate().T * q_s7)[0])",
+      "label": "'Q(i, sqrt(7))^3 frame (witness_p7, p_s7, q_s7) is pairwise orthogonal'"
+    },
+    {
+      "line": 530,
+      "condition": "sp.expand((u_s7.conjugate().T * u_s7)[0]) == 7 and sp.expand((p_s7.conjugate().T * p_s7)[0]) == 245 and (sp.expand((q_s7.conjugate().T * q_s7)[0]) == 245) and (vp_rat(Fraction(245), 3) == 0) and (vp_rat(Fraction(245), 7) == 2) and (vp_rat(Fraction(245), 11) == 0)",
+      "label": "'Q(i, sqrt(7))^3 frame has rational squared norms (7, 245, 245) with even v3, v7, and v11 on partners'"
+    },
+    {
+      "line": 554,
+      "condition": "zero(kernel_comb_p11)",
+      "label": "'7-ray projector kernel relation for witness_p11 = (1, 3, 1) vanishes identically for every HermForm3'"
+    },
+    {
+      "line": 558,
+      "condition": "is_one_plus_i_primitive_gvec(witness_p11) and vec_norm_sq(witness_p11) == 11 and all((sp_residual(r, 11) == 0 for r in nine_rays_gvec))",
+      "label": "'witness_p11 = (1, 3, 1) is (1+i)-primitive of norm 11 and sp 11 vanishes on all nine tomography rays'"
+    },
+    {
+      "line": 569,
+      "condition": "sp_residual(w_j, p_i) == expected_delta",
+      "label": "f'3x3 Kronecker-delta duality failed at p={p_i}, witness index={j_idx}'"
+    },
+    {
+      "line": 576,
+      "condition": "g_inner(u11, v11) == (0, 0) and (vp_rat(vec_norm_sq(u11), 11) + vp_rat(vec_norm_sq(v11), 11) + vp_rat(vec_norm_sq(w11), 11)) % 2 == 0 and (sp_residual(u11, 11) + sp_residual(v11, 11) + sp_residual(w11, 11) == 0)",
+      "label": "'sp 11 satisfies zero-weight additivity on odd-v11 orthogonal frame'"
+    },
+    {
+      "line": 592,
+      "condition": "kernel_p11_eval(lambda u: sp_residual(u, 11)) == Fraction(1) and kernel_p11_eval(lambda u: sp_residual(u, 3)) == Fraction(0) and (kernel_p11_eval(lambda u: sp_residual(u, 7)) == Fraction(0)) and (kernel_p11_eval(lambda u: Fraction(1, 5) * sp_residual(u, 3) - Fraction(2, 7) * sp_residual(u, 7) + Fraction(4, 11) * sp_residual(u, 11)) == Fraction(4, 11))",
+      "label": "'sp11_witness_p11_kernel_separation evaluates to 1 on sp 11, 0 on sp 3 and sp 7, and c11 on combResidual3_7_11'"
+    },
+    {
+      "line": 623,
+      "condition": "sp_residual(r_pos, q_prime) == 1 and sp_residual(r_neg, q_prime) == -1",
+      "label": "f'selective oscillation diagonal failed at p={p_target}'"
+    },
+    {
+      "line": 628,
+      "condition": "sp_residual(r_pos, q_prime) == 0 and sp_residual(r_neg, q_prime) == 0",
+      "label": "f'selective oscillation off-diagonal failed at p={p_target}, q={q_prime}'"
+    },
+    {
+      "line": 639,
+      "condition": "zero((u_s11.conjugate().T * p_s11)[0]) and zero((u_s11.conjugate().T * q_s11)[0]) and zero((p_s11.conjugate().T * q_s11)[0])",
+      "label": "'Q(i, sqrt(11))^3 frame (witness_p11, p_s11, q_s11) is pairwise orthogonal'"
+    },
+    {
+      "line": 645,
+      "condition": "sp.expand((u_s11.conjugate().T * u_s11)[0]) == 11 and sp.expand((p_s11.conjugate().T * p_s11)[0]) == 1210 and (sp.expand((q_s11.conjugate().T * q_s11)[0]) == 1210) and (vp_rat(Fraction(18), 11) == 0) and (vp_rat(Fraction(1210), 3) == 0) and (vp_rat(Fraction(1210), 7) == 0) and (vp_rat(Fraction(1210), 11) == 2)",
+      "label": "'Q(i, sqrt(11))^3 frame has rational squared norms (11, 1210, 1210) with even v3, v7, and v11 on partners'"
+    },
+    {
+      "line": 726,
+      "condition": "quad_ray_e1(w_vec) == 0 and sp_residual(w_vec, 3) == e3 and (sp_residual(w_vec, 7) == e7) and (sp_residual(w_vec, 11) == e11)",
+      "label": "'equatorial witness table isolates (sp 3, sp 7, sp 11) with +-1 in e1^perp'"
+    },
+    {
+      "line": 746,
+      "condition": "zero(q_add + q_sub - 2 * nu_sp / (nu_sp + nv_sp) * q_u - 2 * nv_sp / (nu_sp + nv_sp) * q_v)",
+      "label": "'symbolic operator-space orthogonal parallelogram identity holds for every HermForm3'"
+    },
+    {
+      "line": 756,
+      "condition": "g_inner(ru_c, rv_c) == (Fraction(0), Fraction(0)) and vec_norm_sq(ru_c) == g_norm_sq(alpha_c) * vec_norm_sq(u_p) + g_norm_sq(beta_c) * vec_norm_sq(v_p) and (vec_norm_sq(rv_c) == vec_norm_sq(u_p) * vec_norm_sq(v_p) * vec_norm_sq(ru_c)) and (quad_ray_e1(ru_c) + quad_ray_e1(rv_c) == quad_ray_e1(u_p) + quad_ray_e1(v_p)) and all((sp_residual(ru_c, p_chk) + sp_residual(rv_c, p_chk) == sp_residual(u_p, p_chk) + sp_residual(v_p, p_chk) for p_chk in (3, 7, 11)))",
+      "label": "'planar frame-rotation pairs preserve orthogonality, norm identities, and 2D subspace sums'"
+    },
+    {
+      "line": 782,
+      "condition": "g_inner(nine_rays_gvec[0], w_pos) == (Fraction(0), Fraction(0)) and sp_residual(nine_rays_gvec[0], p_prime) == Fraction(0) and (sp_residual(w_pos, p_prime) == Fraction(0)) and (sp_residual(u_plus, p_prime) == Fraction(1)) and (sp_residual(u_minus, p_prime) == Fraction(1)) and (sp_residual(u_plus, p_prime) + sp_residual(u_minus, p_prime) == Fraction(2))",
+      "label": "f'sp {p_prime} violates orthogonal parallelogram zero law on (e1, w_pos)'"
+    },
+    {
+      "line": 801,
+      "condition": "p_step == rot_pair_u(u_base, v_base, (Fraction(1), Fraction(0)), (Fraction(1), Fraction(0))) and p_part == rot_pair_v(u_base, v_base, (Fraction(1), Fraction(0)), (Fraction(1), Fraction(0))) and (g_inner(u_base, v_base) == (Fraction(0), Fraction(0))) and (g_inner(u_base, w_mer) == (Fraction(0), Fraction(0))) and (g_inner(v_base, w_mer) == (Fraction(0), Fraction(0))) and (g_inner(p_step, p_part) == (Fraction(0), Fraction(0)))",
+      "label": "'Piron base and rotated frames are pairwise orthogonal'"
+    },
+    {
+      "line": 810,
+      "condition": "quad_ray_e1(p_step) + quad_ray_e1(p_part) == quad_ray_e1(u_base) + quad_ray_e1(v_base) and quad_ray_e1(p_step) <= quad_ray_e1(u_base) and (quad_ray_e1(u_base) + quad_ray_e1(w_mer) == Fraction(1)) and (vec_norm_sq(g_sub_vec(p_step, u_base)) == vec_norm_sq(y_eq) / Fraction(k_step * k_step))",
+      "label": "'Piron frame-rotation sum, monotone descent, meridian complement, and step distance hold'"
+    },
+    {
+      "line": 818,
+      "condition": "y_rot[0] == (Fraction(0), Fraction(0)) and vec_norm_sq(y_rot) == vec_norm_sq(y_eq) and (vec_norm_sq(g_add_vec(nine_rays_gvec[0], y_rot)) == vec_norm_sq(u_base)) and (quad_ray_e1(g_add_vec(nine_rays_gvec[0], y_rot)) == quad_ray_e1(u_base))",
+      "label": "'Pythagorean equatorial rotation preserves norm and north-pole Born weight'"
+    },
+    {
+      "line": 837,
+      "condition": "eq_ortho(eq_ortho(y_eq)) == neg_y and pythag_eq_rot(y_eq, 1) == eq_ortho(y_eq) and (pythag_eq_rot(pythag_eq_rot(y_eq, 1), 1) == neg_y) and (eq_tangent_step(eq_tangent_step(y_eq, Fraction(1)), Fraction(1)) == g_smul_vec((Fraction(2), Fraction(0)), eq_ortho(y_eq)))",
+      "label": "'eqOrtho involution, pythagEqRot k=1 90-degree rotation, and two-step tangent identity hold'"
+    },
+    {
+      "line": 850,
+      "condition": "y_kelvin[0] == (Fraction(0), Fraction(0)) and vec_norm_sq(y_kelvin) == Fraction(1) / ny and (g_smul_vec((-Fraction(1) / ny, Fraction(0)), meridian_ortho(y_eq)) == u_kelvin) and (quad_ray_e1(u_base) + quad_ray_e1(u_kelvin) == Fraction(1)) and (quad_ray_e1(u_2eq) <= quad_ray_e1(u_step1) <= quad_ray_e1(u_base))",
+      "label": "'Kelvin-inverted equatorial vector satisfies norm inversion, meridian ray identity, and two-step descent'"
+    },
+    {
+      "line": 865,
+      "condition": "ts_comp == ts_rhs",
+      "label": "'two-step equatorial tangent composition identity holds'"
+    },
+    {
+      "line": 875,
+      "condition": "u_tstep == g_add_vec(nine_rays_gvec[0], eq_tangent_step(y_eq, t_step)) and vec_norm_sq(eq_tangent_step(y_eq, t_step)) == scale_out * ny and (eq_ortho(eq_tangent_step(y_eq, t_step)) == g_add_vec(g_smul_vec((-t_step, Fraction(0)), y_eq), eq_ortho(y_eq))) and (t_cancel == g_smul_vec((scale_out, Fraction(0)), y_eq)) and (quad_ray_e1(u_out) <= quad_ray_e1(u_tstep) <= quad_ray_e1(u_base) <= quad_ray_e1(u_in))",
+      "label": "'two-step Piron tangent cancellation and outward/inward radial monotonicity hold'"
+    },
+    {
+      "line": 893,
+      "condition": "y_rot == eq_tangent_step(g_smul_vec((r_in, Fraction(0)), y_eq), t_k) and eq_tangent_step(y_rot, -t_k) == g_smul_vec((r_out, Fraction(0)), y_eq) and (quad_ray_e1(u_rad_out) <= quad_ray_e1(u_rot) <= quad_ray_e1(u_rad_in)) and (vec_norm_sq(g_sub_vec(u_rad_in, u_base)) == (r_in - 1) * (r_in - 1) * ny) and (vec_norm_sq(g_sub_vec(u_rad_out, u_base)) == (r_out - 1) * (r_out - 1) * ny)",
+      "label": "'Piron-Pythagorean two-sided sandwich and radial distance formulas hold'"
+    },
+    {
+      "line": 902,
+      "condition": "any((quad_ray_e1(g_add_vec(nine_rays_gvec[0], g_smul_vec((Fraction(k_e * k_e - 1, k_e * k_e + 1), Fraction(0)), y_eq))) - quad_ray_e1(g_add_vec(nine_rays_gvec[0], g_smul_vec((Fraction(k_e * k_e + 1, k_e * k_e - 1), Fraction(0)), y_eq))) < eps and abs(quad_ray_e1(g_add_vec(nine_rays_gvec[0], pythag_eq_rot(y_eq, k_e))) - quad_ray_e1(u_base)) < eps for k_e in range(2, 40)))",
+      "label": "'Archimedean radial continuity squeeze forces Pythagorean equatorial rotation gap below epsilon'"
+    },
+    {
+      "line": 923,
+      "condition": "quad_ray_e1(y_eq) == Fraction(0) and quad_ray_e1(eq_ortho(y_eq)) == Fraction(0)",
+      "label": "'Pure north-pole Born weight vanishes on equatorial frame vectors (e1, y, eqOrtho y)'"
+    },
+    {
+      "line": 930,
+      "condition": "vec_norm_sq(w_swap) == vec_norm_sq(w_pos) and sp_residual(g_add_vec(nine_rays_gvec[0], w_swap), p_prime) == sp_residual(g_add_vec(nine_rays_gvec[0], w_pos), p_prime) == Fraction(1)",
+      "label": "f'sp {p_prime} depends only on equatorial norm on e1 + y'"
+    },
+    {
+      "line": 939,
+      "condition": "sp_residual(u_rot, p_prime) == Fraction(1)",
+      "label": "f'sp {p_prime} is invariant under all Pythagorean equatorial rotations on e1 + w_pos'"
+    },
+    {
+      "line": 945,
+      "condition": "w_180 == g_smul_vec((Fraction(-1), Fraction(0)), w_pos) and sp_residual(g_add_vec(nine_rays_gvec[0], w_pos), p_prime) + sp_residual(g_add_vec(nine_rays_gvec[0], w_180), p_prime) == Fraction(2)",
+      "label": "f'sp {p_prime} is 90-degree rotationally invariant yet violates SatisfiesOrthoParallelogramZero at e1'"
+    }
+  ],
+  "consumers": [
+    {
+      "path": "dag/theory_of_finite_qm.jsonl",
+      "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57"
+    },
+    {
+      "path": "code/python/tests/test_fq_gleason_qi3_frame_functions.py",
+      "sha256": "b4a861575be98a3c565ea4ee34810dac0e44032cea85a0294b33af89f9b15feb"
+    },
+    {
+      "path": "docs/evidence/nodes/FQ-GLEASON-QI3-FRAME-FUNCTIONS.md",
+      "sha256": "66dc3b0007d4650bd52b3b21000e78a7f5ef2755b5fcb863436a9c1eae34b98c"
+    },
+    {
+      "path": "dag/evidence/evidence_map.json",
+      "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f"
+    },
+    {
+      "path": "dag/derivation_dag.json",
+      "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586"
+    },
+    {
+      "path": "dag/derivations/independent/fq-gleason-qi3-rigidity-reduction.md",
+      "sha256": "d730fbb970a204a50dacaa21c7f430335b8daabcdcd97fb488761d224cefcc49"
+    },
+    {
+      "path": "dag/operads/fq_gleason_qi3_frame_functions.yaml",
+      "sha256": "002193e2d66a95dd807854dc9c44130e8332bb106c5c38219d709702376c05ef"
+    },
+    {
+      "path": "dag/derivations/10_finite_qm_core/tfq_1055_fq_gleason_qi3_frame_functions.md",
+      "sha256": "7470a257945b734eab0d153f689b3e139b7a803c1f53d02e5c34feef84e5be91"
+    },
+    {
+      "path": "dag/research/fq_gleason_qi3_validation.json",
+      "sha256": "e8ab6e03a174dad46faa160b2de50792fca5101a8fd7bf0da737ebb0b498f362"
+    }
+  ]
+}

@@ -1,0 +1,893 @@
+[
+  {
+    "identity": "v-three-shape",
+    "source": "checker_support/gaussian_vector3.py",
+    "before": "'Gaussian three-vector', 3",
+    "after": "'Gaussian three-vector', 2",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_exact_shape_scalar_domains_and_eager_admission"
+    ]
+  },
+  {
+    "identity": "v-component-norm",
+    "source": "checker_support/gaussian_vector3.py",
+    "before": "rational(x.norm_sq(), 'component squared norm')",
+    "after": "Q(0)",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_generated_vector_operations_match_symbolic_geometry"
+    ]
+  },
+  {
+    "identity": "v-norm-prefix-admission",
+    "source": "checker_support/gaussian_vector3.py",
+    "before": "rational(total+norm, 'squared norm prefix')",
+    "after": "total+norm",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_norm_and_integer_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "v-coordinate-order",
+    "source": "checker_support/gaussian_vector3.py",
+    "before": "(values[i], values[i+1])",
+    "after": "(values[i+1], values[i])",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_ownership_zero_and_integer_primitivity"
+    ]
+  },
+  {
+    "identity": "v-integer-boundary",
+    "source": "checker_support/gaussian_vector3.py",
+    "before": "integer(x, 'integer coordinate')",
+    "after": "rational(x, 'integer coordinate')",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_exact_shape_scalar_domains_and_eager_admission"
+    ]
+  },
+  {
+    "identity": "v-operand-admission",
+    "source": "checker_support/gaussian_vector3.py",
+    "before": "if type(value) is not GaussianVector3:",
+    "after": "if False:",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_exact_shape_scalar_domains_and_eager_admission"
+    ]
+  },
+  {
+    "identity": "v-add-sign",
+    "source": "checker_support/gaussian_vector3.py",
+    "before": "tuple(a+b for a, b",
+    "after": "tuple(a-b for a, b",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_generated_vector_operations_match_symbolic_geometry"
+    ]
+  },
+  {
+    "identity": "v-sub-sign",
+    "source": "checker_support/gaussian_vector3.py",
+    "before": "tuple(a-b for a, b",
+    "after": "tuple(a+b for a, b",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_generated_vector_operations_match_symbolic_geometry"
+    ]
+  },
+  {
+    "identity": "v-scale-ignore",
+    "source": "checker_support/gaussian_vector3.py",
+    "before": "tuple(factor*x for x",
+    "after": "tuple(x for x",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_generated_vector_operations_match_symbolic_geometry"
+    ]
+  },
+  {
+    "identity": "v-inner-conjugate",
+    "source": "checker_support/gaussian_vector3.py",
+    "before": "left.conj()*right",
+    "after": "left*right",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_generated_vector_operations_match_symbolic_geometry"
+    ]
+  },
+  {
+    "identity": "v-inner-truncate",
+    "source": "checker_support/gaussian_vector3.py",
+    "before": "zip(self.entries, rhs.entries):",
+    "after": "zip(self.entries[:2], rhs.entries[:2]):",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_generated_vector_operations_match_symbolic_geometry"
+    ]
+  },
+  {
+    "identity": "v-cross-conjugate",
+    "source": "checker_support/gaussian_vector3.py",
+    "before": "(left[i]*rhs[j]-left[j]*rhs[i]).conj()",
+    "after": "(left[i]*rhs[j]-left[j]*rhs[i])",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_generated_vector_operations_match_symbolic_geometry"
+    ]
+  },
+  {
+    "identity": "v-cross-sign",
+    "source": "checker_support/gaussian_vector3.py",
+    "before": "left[i]*rhs[j]-left[j]*rhs[i]",
+    "after": "left[i]*rhs[j]+left[j]*rhs[i]",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_generated_vector_operations_match_symbolic_geometry"
+    ]
+  },
+  {
+    "identity": "v-fraction-primitivity",
+    "source": "checker_support/gaussian_vector3.py",
+    "before": "if any(part.denominator != 1 for part in parts):",
+    "after": "if False:",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_ownership_zero_and_integer_primitivity"
+    ]
+  },
+  {
+    "identity": "v-parity-primitivity",
+    "source": "checker_support/gaussian_vector3.py",
+    "before": "% 2 != 0 for part",
+    "after": "% 2 == 0 for part",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_ownership_zero_and_integer_primitivity"
+    ]
+  },
+  {
+    "identity": "v-pairs-swap",
+    "source": "checker_support/gaussian_vector3.py",
+    "before": "tuple((x.re, x.im) for x",
+    "after": "tuple((x.im, x.re) for x",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_ownership_zero_and_integer_primitivity"
+    ]
+  },
+  {
+    "identity": "r-inert-prime",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "if prime % 4 != 3:",
+    "after": "if False:",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_prime_admission_matches_independent_primality"
+    ]
+  },
+  {
+    "identity": "r-actual-prime",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "if any(prime % divisor == 0 for divisor in range(3, isqrt(prime)+1, 2)):",
+    "after": "if False:",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_prime_admission_matches_independent_primality"
+    ]
+  },
+  {
+    "identity": "r-square-divisor",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "isqrt(prime)+1",
+    "after": "isqrt(prime)",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_prime_admission_matches_independent_primality"
+    ]
+  },
+  {
+    "identity": "r-prime-budget",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "3, 65535)",
+    "after": "3, 65539)",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_prime_admission_matches_independent_primality"
+    ]
+  },
+  {
+    "identity": "r-integer-absolute",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "abs(integer(value, 'integer valuation input'))",
+    "after": "integer(value, 'integer valuation input')",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_generated_valuation_and_unit_character"
+    ]
+  },
+  {
+    "identity": "r-integer-budget",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "if number.bit_length() > 4096:",
+    "after": "if number.bit_length() > 4097:",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_norm_and_integer_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "r-inclusive-budget",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "if number.bit_length() > 4096:",
+    "after": "if number.bit_length() >= 4096:",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_norm_and_integer_resource_boundaries"
+    ]
+  },
+  {
+    "identity": "r-zero-integer",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "return 0, 0",
+    "after": "return 1, 0",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_expected_scalar_refusals_and_zero_conventions"
+    ]
+  },
+  {
+    "identity": "r-valuation-step",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "valuation += 1",
+    "after": "valuation += 2",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_generated_valuation_and_unit_character"
+    ]
+  },
+  {
+    "identity": "r-valuation-ratio",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "return numerator-denominator",
+    "after": "return numerator+denominator",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_generated_valuation_and_unit_character"
+    ]
+  },
+  {
+    "identity": "r-unit-zero",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "if norm == 0:\n            return Q(0)",
+    "after": "if norm == 0:\n            return Q(1)",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_expected_scalar_refusals_and_zero_conventions"
+    ]
+  },
+  {
+    "identity": "r-unit-denominator",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "((numerator % self.prime)*(denominator % self.prime))",
+    "after": "(numerator % self.prime)",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_generated_valuation_and_unit_character"
+    ]
+  },
+  {
+    "identity": "r-unit-exponent",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "(self.prime-1)//2",
+    "after": "(self.prime+1)//2",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_generated_valuation_and_unit_character"
+    ]
+  },
+  {
+    "identity": "r-unit-guard",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "require(sign in (1, self.prime-1)",
+    "after": "require(True",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_internal_algebra_guards_and_unexpected_failure_propagation"
+    ]
+  },
+  {
+    "identity": "r-unit-sign",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "return Q(1 if sign == 1 else -1)",
+    "after": "return Q(-1 if sign == 1 else 1)",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_generated_valuation_and_unit_character"
+    ]
+  },
+  {
+    "identity": "r-residual-even",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "if total_valuation % 2 == 0:",
+    "after": "if total_valuation % 2 != 0:",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_original_witness_values_and_selective_duality"
+    ]
+  },
+  {
+    "identity": "r-leading-valuation",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "self._valuation(component) < total_valuation",
+    "after": "self._valuation(component) > total_valuation",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_original_witness_values_and_selective_duality"
+    ]
+  },
+  {
+    "identity": "r-leading-character",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "self._unit_character(component)*self._unit_character(norm)",
+    "after": "self._unit_character(norm)",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_generated_residual_matches_factorization_and_residue_oracle"
+    ]
+  },
+  {
+    "identity": "r-missing-leading",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "raise Violation('check', 'odd norm valuation has no leading coordinate')",
+    "after": "return Q(0)",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_internal_algebra_guards_and_unexpected_failure_propagation"
+    ]
+  },
+  {
+    "identity": "r-exotic-scale",
+    "source": "checker_support/inert_prime_residual.py",
+    "before": "return (1+self._residual(value))/3",
+    "after": "return (1+self._residual(value))/2",
+    "tests": [
+      "test_inert_prime_geometry.py:InertPrimeGeometryTests.test_generated_frames_and_nonzero_complex_scaling"
+    ]
+  },
+  {
+    "identity": "p-first-zero",
+    "source": "checker_support/orthogonal_gaussian_pair.py",
+    "before": "if u.squared_norm == 0 or v.squared_norm == 0:",
+    "after": "if v.squared_norm == 0:",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_pair_and_equator_admission_zero_and_ownership"
+    ]
+  },
+  {
+    "identity": "p-second-zero",
+    "source": "checker_support/orthogonal_gaussian_pair.py",
+    "before": "if u.squared_norm == 0 or v.squared_norm == 0:",
+    "after": "if u.squared_norm == 0:",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_pair_and_equator_admission_zero_and_ownership"
+    ]
+  },
+  {
+    "identity": "p-orthogonality",
+    "source": "checker_support/orthogonal_gaussian_pair.py",
+    "before": "if u._inner(v) != G(0):",
+    "after": "if False:",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_pair_and_equator_admission_zero_and_ownership"
+    ]
+  },
+  {
+    "identity": "p-completion",
+    "source": "checker_support/orthogonal_gaussian_pair.py",
+    "before": "return self.first._cross(self.second)",
+    "after": "return self.first",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_orthogonal_pair_rotation_and_completion"
+    ]
+  },
+  {
+    "identity": "p-zero-coefficients",
+    "source": "checker_support/orthogonal_gaussian_pair.py",
+    "before": "if a == b == G(0):",
+    "after": "if a == G(0) or b == G(0):",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_orthogonal_pair_rotation_and_completion"
+    ]
+  },
+  {
+    "identity": "p-rotation-first",
+    "source": "checker_support/orthogonal_gaussian_pair.py",
+    "before": "u._scale(a)._add(v._scale(b))",
+    "after": "u._scale(b)._add(v._scale(a))",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_orthogonal_pair_rotation_and_completion"
+    ]
+  },
+  {
+    "identity": "p-rotation-sign",
+    "source": "checker_support/orthogonal_gaussian_pair.py",
+    "before": "G(-v.squared_norm)*b.conj()",
+    "after": "G(v.squared_norm)*b.conj()",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_orthogonal_pair_rotation_and_completion"
+    ]
+  },
+  {
+    "identity": "p-rotation-norm",
+    "source": "checker_support/orthogonal_gaussian_pair.py",
+    "before": "G(u.squared_norm)*a.conj()",
+    "after": "G(v.squared_norm)*a.conj()",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_orthogonal_pair_rotation_and_completion"
+    ]
+  },
+  {
+    "identity": "p-rotation-conjugate",
+    "source": "checker_support/orthogonal_gaussian_pair.py",
+    "before": "G(u.squared_norm)*a.conj()",
+    "after": "G(u.squared_norm)*a",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_orthogonal_pair_rotation_and_completion"
+    ]
+  },
+  {
+    "identity": "e-equator-plane",
+    "source": "checker_support/equatorial_ray_geometry.py",
+    "before": "if vector.entries[0] != G(0) or vector.squared_norm == 0:",
+    "after": "if vector.squared_norm == 0:",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_pair_and_equator_admission_zero_and_ownership"
+    ]
+  },
+  {
+    "identity": "e-equator-nonzero",
+    "source": "checker_support/equatorial_ray_geometry.py",
+    "before": "if vector.entries[0] != G(0) or vector.squared_norm == 0:",
+    "after": "if vector.entries[0] != G(0):",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_pair_and_equator_admission_zero_and_ownership"
+    ]
+  },
+  {
+    "identity": "e-quarter-conjugate",
+    "source": "checker_support/equatorial_ray_geometry.py",
+    "before": "G(-z.re, z.im), y.conj()",
+    "after": "G(-z.re, -z.im), y",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_equatorial_tangent_and_two_step_identity"
+    ]
+  },
+  {
+    "identity": "e-quarter-sign",
+    "source": "checker_support/equatorial_ray_geometry.py",
+    "before": "G(-z.re, z.im)",
+    "after": "G(z.re, z.im)",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_equatorial_tangent_and_two_step_identity"
+    ]
+  },
+  {
+    "identity": "e-base",
+    "source": "checker_support/equatorial_ray_geometry.py",
+    "before": "base = NORTH._add(vector)",
+    "after": "base = vector",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_piron_meridian_and_kelvin"
+    ]
+  },
+  {
+    "identity": "e-born-denominator",
+    "source": "checker_support/equatorial_ray_geometry.py",
+    "before": "vector.component_norms[0]/vector.squared_norm",
+    "after": "vector.component_norms[0]",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_piron_meridian_and_kelvin"
+    ]
+  },
+  {
+    "identity": "e-born-zero",
+    "source": "checker_support/equatorial_ray_geometry.py",
+    "before": "if vector.squared_norm == 0:",
+    "after": "if False:",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_pair_and_equator_admission_zero_and_ownership"
+    ]
+  },
+  {
+    "identity": "e-tangent-sign",
+    "source": "checker_support/equatorial_ray_geometry.py",
+    "before": "return self.vector._add(self.quarter_turn._scale(G(t)))",
+    "after": "return self.vector._sub(self.quarter_turn._scale(G(t)))",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_equatorial_tangent_and_two_step_identity"
+    ]
+  },
+  {
+    "identity": "e-pythagorean-denominator",
+    "source": "checker_support/equatorial_ray_geometry.py",
+    "before": "rational(square+1,",
+    "after": "rational(square-1,",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_parameter_and_arithmetic_budgets_and_special_rotations"
+    ]
+  },
+  {
+    "identity": "e-pythagorean-cosine",
+    "source": "checker_support/equatorial_ray_geometry.py",
+    "before": "(square-1)/denominator",
+    "after": "(square+1)/denominator",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_pythagorean_sandwich_and_distances"
+    ]
+  },
+  {
+    "identity": "e-pythagorean-sine",
+    "source": "checker_support/equatorial_ray_geometry.py",
+    "before": "rational(2*k,",
+    "after": "rational(k,",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_pythagorean_sandwich_and_distances"
+    ]
+  },
+  {
+    "identity": "e-kelvin-sign",
+    "source": "checker_support/equatorial_ray_geometry.py",
+    "before": "G(-1/self.vector.squared_norm)",
+    "after": "G(1/self.vector.squared_norm)",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_piron_meridian_and_kelvin"
+    ]
+  },
+  {
+    "identity": "e-meridian-norm",
+    "source": "checker_support/equatorial_ray_geometry.py",
+    "before": "G(-self.vector.squared_norm)",
+    "after": "G(-1)",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_piron_meridian_and_kelvin"
+    ]
+  },
+  {
+    "identity": "e-piron-partner",
+    "source": "checker_support/equatorial_ray_geometry.py",
+    "before": "partner = self.quarter_turn._scale(scalar)",
+    "after": "partner = self.vector._scale(scalar)",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_piron_meridian_and_kelvin"
+    ]
+  },
+  {
+    "identity": "e-piron-rotation",
+    "source": "checker_support/equatorial_ray_geometry.py",
+    "before": "return pair._rotate(G(1), G(1))",
+    "after": "return pair",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_piron_meridian_and_kelvin"
+    ]
+  },
+  {
+    "identity": "h-form-hermitian",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "form[k, j] = a-sp.I*b",
+    "after": "form[k, j] = a+sp.I*b",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_symbolic_tomography_complete_certificate_and_immutability"
+    ]
+  },
+  {
+    "identity": "h-form-imaginary",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "form[j, k] = a+sp.I*b",
+    "after": "form[j, k] = a-sp.I*b",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_tomography_evaluation_against_numeric_hermitian_form"
+    ]
+  },
+  {
+    "identity": "h-normalized-evaluation",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "*self.form*symbolic)[0]/norm",
+    "after": "*self.form*symbolic)[0]",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_tomography_evaluation_against_numeric_hermitian_form"
+    ]
+  },
+  {
+    "identity": "h-evaluate-conjugation",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "symbolic.conjugate().T*self.form",
+    "after": "symbolic.T*self.form",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_generated_tomography_evaluation_against_numeric_hermitian_form"
+    ]
+  },
+  {
+    "identity": "h-evaluate-zero",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "if vector.squared_norm == 0:",
+    "after": "if False:",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_parallelogram_against_projectors_and_exact_domains"
+    ]
+  },
+  {
+    "identity": "h-reconstruction-imaginary",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "(diagonal[j]+diagonal[k])/2-b",
+    "after": "(diagonal[j]+diagonal[k])/2+b",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_symbolic_tomography_complete_certificate_and_immutability"
+    ]
+  },
+  {
+    "identity": "h-inverse-imaginary",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "imags.append(mean-measurements[4+2*index])",
+    "after": "imags.append(measurements[4+2*index]-mean)",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_symbolic_tomography_complete_certificate_and_immutability"
+    ]
+  },
+  {
+    "identity": "h-expansion-sign",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "-2*b*(x[j]*y[k]-y[j]*x[k])",
+    "after": "+2*b*(x[j]*y[k]-y[j]*x[k])",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_symbolic_tomography_complete_certificate_and_immutability"
+    ]
+  },
+  {
+    "identity": "h-adjugate",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "matrix*matrix.adjugate()-matrix.det()*sp.eye(3)",
+    "after": "matrix*matrix.adjugate()+matrix.det()*sp.eye(3)",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_symbolic_tomography_complete_certificate_and_immutability"
+    ]
+  },
+  {
+    "identity": "h-rescaling",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "epsilon = 1/(3*(bound+1))",
+    "after": "epsilon = 1/(2*(bound+1))",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_symbolic_tomography_complete_certificate_and_immutability"
+    ]
+  },
+  {
+    "identity": "h-kernel-add",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "expression += sp.Rational",
+    "after": "expression -= sp.Rational",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_kernel_relations_against_operator_matrices_and_wrong_sign"
+    ]
+  },
+  {
+    "identity": "h-kernel-coefficients",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "'nine coefficients', 9",
+    "after": "'nine coefficients', 8",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_parallelogram_against_projectors_and_exact_domains"
+    ]
+  },
+  {
+    "identity": "h-kernel-truncate",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "zip(weights, self.values):",
+    "after": "zip(weights[:2], self.values[:2]):",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_kernel_relations_against_operator_matrices_and_wrong_sign"
+    ]
+  },
+  {
+    "identity": "h-parallelogram-admission",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "if type(value) is not OrthogonalGaussianPair:",
+    "after": "if False:",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_parallelogram_against_projectors_and_exact_domains"
+    ]
+  },
+  {
+    "identity": "h-parallelogram-weight",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "rational(2*x/total",
+    "after": "rational(x/total",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_parallelogram_against_projectors_and_exact_domains"
+    ]
+  },
+  {
+    "identity": "h-reported-rank",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "return int(matrix.rank())",
+    "after": "return 8",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_symbolic_tomography_complete_certificate_and_immutability"
+    ]
+  },
+  {
+    "identity": "h-counter",
+    "source": "checker_support/hermitian_tomography.py",
+    "before": "'checks': cases.checks",
+    "after": "'checks': 0",
+    "tests": [
+      "test_tomography_geometry.py:TomographyGeometryTests.test_symbolic_tomography_complete_certificate_and_immutability"
+    ]
+  },
+  {
+    "identity": "a-kernel-term",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "weight*function(ray)",
+    "after": "-weight*function(ray)",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_fixed_witnesses_kernels_and_owned_state"
+    ]
+  },
+  {
+    "identity": "a-mixed-residual",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "weight*residual._residual(vector)",
+    "after": "-weight*residual._residual(vector)",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_original_report_values_and_observed_per_run_counter"
+    ]
+  },
+  {
+    "identity": "a-oscillation-grid",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "self._oscillation(0, 21*k, cases)",
+    "after": "self._oscillation(0, 3*k, cases)",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_retained_oscillation_grid_and_cross_prime_selectivity"
+    ]
+  },
+  {
+    "identity": "a-oscillation-distance",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "Q(residual.prime, denominator*denominator)",
+    "after": "Q(1, denominator*denominator)",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_retained_oscillation_grid_and_cross_prime_selectivity"
+    ]
+  },
+  {
+    "identity": "a-radical-partner",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "q = alpha*v+beta*w, sp.conjugate(beta)*v-sp.conjugate(alpha)*w",
+    "after": "q = alpha*v+beta*w, sp.conjugate(beta)*v+sp.conjugate(alpha)*w",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_radical_extension_and_symmetry_report_values_are_calculated"
+    ]
+  },
+  {
+    "identity": "a-radical-guard",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "all(_zero((a.conjugate().T*b)[0]) for a, b in ((u, p), (u, q), (p, q)))",
+    "after": "True",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_isolated_symbolic_and_arithmetic_failure_guards"
+    ]
+  },
+  {
+    "identity": "a-kernel-guard",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "cases.require(self.model._kernel_relation(vector, weights),",
+    "after": "cases.require(True,",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_isolated_symbolic_and_arithmetic_failure_guards"
+    ]
+  },
+  {
+    "identity": "a-projector-guard",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "cases.require(self.model._parallelogram(pair),",
+    "after": "cases.require(True,",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_isolated_symbolic_and_arithmetic_failure_guards"
+    ]
+  },
+  {
+    "identity": "a-mixture-guard",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "cases.require(residual._exotic(self.witnesses[1]) == Q(2, 3),",
+    "after": "cases.require(True,",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_isolated_symbolic_and_arithmetic_failure_guards"
+    ]
+  },
+  {
+    "identity": "a-squeeze-result",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "return gap < epsilon and rotated_gap < epsilon",
+    "after": "return True",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_geometric_sample_populations_and_finite_squeeze"
+    ]
+  },
+  {
+    "identity": "a-squeeze-existential",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "any(self._squeeze_sample(geometry, k, epsilon) for k in range(2, 40))",
+    "after": "True",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_geometric_sample_populations_and_finite_squeeze"
+    ]
+  },
+  {
+    "identity": "a-sample-tangent-grid",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "(Q(1, 2), Q(2, 3), Q(-3, 4))",
+    "after": "(Q(1, 2), Q(2, 3))",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_geometric_sample_populations_and_finite_squeeze"
+    ]
+  },
+  {
+    "identity": "a-sample-piron-grid",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "for k in range(1, 5):\n                self._piron_sample",
+    "after": "for k in range(1, 4):\n                self._piron_sample",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_geometric_sample_populations_and_finite_squeeze"
+    ]
+  },
+  {
+    "identity": "a-sample-sandwich-grid",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "for k in range(2, 6):",
+    "after": "for k in range(2, 5):",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_geometric_sample_populations_and_finite_squeeze"
+    ]
+  },
+  {
+    "identity": "a-sample-frame-population",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "for pair in pairs+extras:",
+    "after": "for pair in pairs:",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_six_original_frames_are_executed_and_match_independent_oracle"
+    ]
+  },
+  {
+    "identity": "a-counter-fixed",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "cases.checks+symbolic['checks']",
+    "after": "315",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_original_report_values_and_observed_per_run_counter"
+    ]
+  },
+  {
+    "identity": "a-counter-missing-symbolic",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "cases.checks+symbolic['checks']",
+    "after": "cases.checks",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_original_report_values_and_observed_per_run_counter"
+    ]
+  },
+  {
+    "identity": "a-skip-frames",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "self._fixture_values(cases); self._frames(cases); self._kernel_controls(cases)",
+    "after": "self._fixture_values(cases); self._kernel_controls(cases)",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_original_report_values_and_observed_per_run_counter"
+    ]
+  },
+  {
+    "identity": "a-skip-equator-witnesses",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "self._equator_witnesses(cases); self._rotation_controls(cases)",
+    "after": "self._rotation_controls(cases)",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_original_report_values_and_observed_per_run_counter"
+    ]
+  },
+  {
+    "identity": "a-skip-oscillations",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "self._mixture_controls(cases); self._oscillations(cases)",
+    "after": "self._mixture_controls(cases)",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_original_report_values_and_observed_per_run_counter"
+    ]
+  },
+  {
+    "identity": "a-cli-failure-status",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "return cli(_main)",
+    "after": "cli(_main)\n    return 0",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_railway_cli_failure_and_unexpected_cancellation"
+    ]
+  },
+  {
+    "identity": "a-report-norms",
+    "source": "independent/fq-gleason-qi3-tomography.py",
+    "before": "'sqrt7_frame_norms': list(extensions[1])",
+    "after": "'sqrt7_frame_norms': list(extensions[0])",
+    "tests": [
+      "test_gaussian_tomography_controls.py:GaussianTomographyControlTests.test_original_report_values_and_observed_per_run_counter"
+    ]
+  }
+]

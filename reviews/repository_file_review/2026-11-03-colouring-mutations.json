@@ -1,0 +1,489 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "............\n----------------------------------------------------------------------\nRan 12 tests in 0.860s\n\nOK\n",
+    "returncode": 0
+  },
+  "inputs_sha256": {
+    ".review_work\\run_colouring_mutations.py": "13d9fdad90f07b8e623738ce3159e880b4e907f8fed065aecca3021ebdab3e2b",
+    "checks\\checker_support\\binary_frame_system.py": "843503239990f18ad076a7c5078fd084d73be12cd8314a5e9ae8f20bd6a77eb8",
+    "checks\\checker_support\\boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks\\checker_support\\cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks\\checker_support\\cech_complex.py": "6f973fc65d6fa66ebb9078c6cc1af60683a5150b97b5510ca853517b650227dd",
+    "checks\\checker_support\\domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks\\checker_support\\empirical_model.py": "612562ec192efe40b5b9a0bb151486d4e77caf399bd853d2da712f5ca465172c",
+    "checks\\checker_support\\exact_json_document.py": "e162590c25fab02fe87d73bc50f1e52e8083580b9faafae14ba4c50b8efb9f8c",
+    "checks\\checker_support\\exact_linear_program.py": "c771280ccd6473deaa011e37ca22c3e1856ccb9fbd2025580c81b87a0513f65f",
+    "checks\\checker_support\\gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks\\checker_support\\gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks\\checker_support\\happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks\\checker_support\\linear_program_certificate.py": "cfe2167737de71125118fb749a6e9ba5a2501cbee49ebc7828d2d55cc81636dc",
+    "checks\\checker_support\\measurement_scenario.py": "c441ba2036eca8083869d4b0fb4a49fdbc84638ca29b3cd2e90f8a07b5d71a3c",
+    "checks\\checker_support\\mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks\\checker_support\\outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks\\checker_support\\rational_inverse.py": "4eadfd4b793e62a415d7d2da05964e4af8c46edfd7e59d54f86b93f29f326b9b",
+    "checks\\checker_support\\rational_matrix.py": "91a6d2d7ac3cdf7693ff863075046fc8dc9a6843fcc9c564a890b942c076b1ce",
+    "checks\\checker_support\\simplex_tableau.py": "c5254540e60b3bd68f8bd7776162878d6a919724f88b2098f9874bb980d2c145",
+    "checks\\checker_support\\wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks\\independent\\fq-gleason-qi3-frame-functions.py": "095c7807d4e52b2b87bbc05645d905b56cc175285fdb6ee0493b69df30def5e2",
+    "checks\\tests\\colouring_mutations.json": "c7f00f9494b08e13c9f18fe23293889145e1e59782dd96527c9f4f6f8acfe8d0",
+    "checks\\tests\\run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks\\tests\\test_binary_colouring.py": "1686d0177c3d384e39bc0bb5e1858683ead5052eb7428f3d59873451d41e37d0",
+    "checks\\tests\\test_review_repairs.py": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4"
+  },
+  "mutants": [
+    {
+      "identity": "carrier-lower-bound",
+      "mutant_sha256": "efff71bb685d53516a64338b58268a23d3ef6ed9fddd64a0fd77f994797256b0",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_carrier_constraint_domains_and_whole_preflight (__main__.BinaryColouringTests.test_carrier_constraint_domains_and_whole_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 138, in test_carrier_constraint_domains_and_whole_preflight\n    self.refused(evaluate(BinaryFrameSystem, invalid, (), ()), 'input')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 64, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_carrier_constraint_domains_and_whole_preflight"
+      ]
+    },
+    {
+      "identity": "carrier-upper-bound",
+      "mutant_sha256": "710891129a19523d02d30c44377054841d592a07718615e0e4442d88ebb9f5b6",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_carrier_constraint_domains_and_whole_preflight (__main__.BinaryColouringTests.test_carrier_constraint_domains_and_whole_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 139, in test_carrier_constraint_domains_and_whole_preflight\n    self.refused(evaluate(BinaryFrameSystem, 65, (), ()), 'resource')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 64, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_carrier_constraint_domains_and_whole_preflight"
+      ]
+    },
+    {
+      "identity": "constraint-budget",
+      "mutant_sha256": "d157ef0d36d11923f3c152749de5e0f75b7747008c8f08168fb479993dfd6ac0",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_carrier_constraint_domains_and_whole_preflight (__main__.BinaryColouringTests.test_carrier_constraint_domains_and_whole_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 145, in test_carrier_constraint_domains_and_whole_preflight\n    self.refused(evaluate(BinaryFrameSystem, 3, p, t), kind)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 66, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'resource' != 'duplicate'\n- resource\n+ duplicate\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_carrier_constraint_domains_and_whole_preflight"
+      ]
+    },
+    {
+      "identity": "constraint-negative-index",
+      "mutant_sha256": "9ef820306596c1ad5ffff181cf14f3aa97677eaf29777974f4c2a78c35ca4200",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_carrier_constraint_domains_and_whole_preflight (__main__.BinaryColouringTests.test_carrier_constraint_domains_and_whole_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 145, in test_carrier_constraint_domains_and_whole_preflight\n    self.refused(evaluate(BinaryFrameSystem, 3, p, t), kind)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 64, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_carrier_constraint_domains_and_whole_preflight"
+      ]
+    },
+    {
+      "identity": "constraint-upper-index",
+      "mutant_sha256": "8404c4d1bc995b5b5d99afff7d7db55f60270125386d72d1348d0c062c87317a",
+      "outcome": "killed",
+      "output": "E\n======================================================================\nERROR: test_carrier_constraint_domains_and_whole_preflight (__main__.BinaryColouringTests.test_carrier_constraint_domains_and_whole_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 145, in test_carrier_constraint_domains_and_whole_preflight\n    self.refused(evaluate(BinaryFrameSystem, 3, p, t), kind)\n                 ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\checker_support\\binary_frame_system.py\", line 58, in __init__\n    neighbours[j].append(i)\n    ~~~~~~~~~~^^^\nIndexError: list index out of range\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_carrier_constraint_domains_and_whole_preflight"
+      ]
+    },
+    {
+      "identity": "constraint-distinct-positions",
+      "mutant_sha256": "20a631e22ea8bb14b1a15d805fc6b91329cc6cbb63e48e6a4659275c27d06096",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_carrier_constraint_domains_and_whole_preflight (__main__.BinaryColouringTests.test_carrier_constraint_domains_and_whole_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 145, in test_carrier_constraint_domains_and_whole_preflight\n    self.refused(evaluate(BinaryFrameSystem, 3, p, t), kind)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 64, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_carrier_constraint_domains_and_whole_preflight"
+      ]
+    },
+    {
+      "identity": "constraint-duplicate-rows",
+      "mutant_sha256": "4fe18c197dc66fb2e95be298aa4ede41e7cfb623d9bfb8538edafb99a607d694",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_carrier_constraint_domains_and_whole_preflight (__main__.BinaryColouringTests.test_carrier_constraint_domains_and_whole_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 145, in test_carrier_constraint_domains_and_whole_preflight\n    self.refused(evaluate(BinaryFrameSystem, 3, p, t), kind)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 64, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_carrier_constraint_domains_and_whole_preflight"
+      ]
+    },
+    {
+      "identity": "constraint-canonical-order",
+      "mutant_sha256": "d2a5decf6ed71d6fd9df272934d0c5f29079630ae1001ba6433b956cb647e1da",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_ownership_canonical_constraints_and_reentrant_results (__main__.BinaryColouringTests.test_ownership_canonical_constraints_and_reentrant_results)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 165, in test_ownership_canonical_constraints_and_reentrant_results\n    self.assertEqual(system.pairs, ((0, 1),)); self.assertEqual(system.triples, ((0, 1, 2),))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((1, 0),) != ((0, 1),)\n\nFirst differing element 0:\n(1, 0)\n(0, 1)\n\n- ((1, 0),)\n+ ((0, 1),)\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_ownership_canonical_constraints_and_reentrant_results"
+      ]
+    },
+    {
+      "identity": "model-upper-value",
+      "mutant_sha256": "28776519ce4aba7f1c6f21388dd1b5a09e5c12fea5598213e44c29db0420a633",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_binary_model_admission_and_nonmodels (__main__.BinaryColouringTests.test_binary_model_admission_and_nonmodels)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 157, in test_binary_model_admission_and_nonmodels\n    self.refused(system.check_assignment(invalid), 'input')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 64, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_binary_model_admission_and_nonmodels"
+      ]
+    },
+    {
+      "identity": "model-negative-value",
+      "mutant_sha256": "4e995cad43bf953ede6067b3bbcf665a0bef1bef76ee530ef51f70fb83f43cd4",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_binary_model_admission_and_nonmodels (__main__.BinaryColouringTests.test_binary_model_admission_and_nonmodels)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 157, in test_binary_model_admission_and_nonmodels\n    self.refused(system.check_assignment(invalid), 'input')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 64, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_binary_model_admission_and_nonmodels"
+      ]
+    },
+    {
+      "identity": "model-pair-inequality",
+      "mutant_sha256": "a5b316f4d698a9ccc180ac7234fbba4a5927b1b4b390c64e117100bdb014a23f",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_four_variable_constraint_systems_against_exhaustion (__main__.BinaryColouringTests.test_all_four_variable_constraint_systems_against_exhaustion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 80, in test_all_four_variable_constraint_systems_against_exhaustion\n    self.assertEqual(self.accepted(system.check_assignment(values)), values in expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True != False\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_all_four_variable_constraint_systems_against_exhaustion"
+      ]
+    },
+    {
+      "identity": "model-frame-normalization",
+      "mutant_sha256": "89bba1936d954aa9ea60fdbd0305bf61cde67eb94e72db6ea1fe2b6d41871963",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_four_variable_constraint_systems_against_exhaustion (__main__.BinaryColouringTests.test_all_four_variable_constraint_systems_against_exhaustion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 80, in test_all_four_variable_constraint_systems_against_exhaustion\n    self.assertEqual(self.accepted(system.check_assignment(values)), values in expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True != False\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_all_four_variable_constraint_systems_against_exhaustion"
+      ]
+    },
+    {
+      "identity": "pair-conflict",
+      "mutant_sha256": "3e3c88a355cc0ac86bf0df696a998f8112799392656e8295b1b15c5fc9c9791d",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_propagation_forces_only_necessary_values_and_detects_conflicts (__main__.BinaryColouringTests.test_propagation_forces_only_necessary_values_and_detects_conflicts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 194, in test_propagation_forces_only_necessary_values_and_detects_conflicts\n    self.assertFalse(pair._propagate([1, 1]))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+      ]
+    },
+    {
+      "identity": "forward-pair-propagation",
+      "mutant_sha256": "ead54b15378a0ba9936e877ce466ac375ec7a3196436446279387617c7192d13",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_propagation_forces_only_necessary_values_and_detects_conflicts (__main__.BinaryColouringTests.test_propagation_forces_only_necessary_values_and_detects_conflicts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 193, in test_propagation_forces_only_necessary_values_and_detects_conflicts\n    self.assertTrue(pair._propagate(values)); self.assertEqual(values, expected)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+      ]
+    },
+    {
+      "identity": "reverse-pair-propagation",
+      "mutant_sha256": "60bc6a1ceb671a195246fa3a4d614914b233e156d866cbeb054940e03f5f2667",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_propagation_forces_only_necessary_values_and_detects_conflicts (__main__.BinaryColouringTests.test_propagation_forces_only_necessary_values_and_detects_conflicts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 193, in test_propagation_forces_only_necessary_values_and_detects_conflicts\n    self.assertTrue(pair._propagate(values)); self.assertEqual(values, expected)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+      ]
+    },
+    {
+      "identity": "triple-ones-conflict",
+      "mutant_sha256": "71e0549e463dbc34a487977f4ad97427a251cb9702bde06d0f83ef70407db76f",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_propagation_forces_only_necessary_values_and_detects_conflicts (__main__.BinaryColouringTests.test_propagation_forces_only_necessary_values_and_detects_conflicts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 198, in test_propagation_forces_only_necessary_values_and_detects_conflicts\n    self.assertFalse(triple._propagate([0, 0, 0])); self.assertFalse(triple._propagate([1, 1, -1]))\n                                                    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+      ]
+    },
+    {
+      "identity": "triple-zero-conflict",
+      "mutant_sha256": "ee5a2199d68b6fd3d61be2eb9f60ae341bdf279ac33f2432fc3912926a627cc6",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_propagation_forces_only_necessary_values_and_detects_conflicts (__main__.BinaryColouringTests.test_propagation_forces_only_necessary_values_and_detects_conflicts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 198, in test_propagation_forces_only_necessary_values_and_detects_conflicts\n    self.assertFalse(triple._propagate([0, 0, 0])); self.assertFalse(triple._propagate([1, 1, -1]))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+      ]
+    },
+    {
+      "identity": "triple-singleton-force",
+      "mutant_sha256": "c0f6e514c6aa372a8bd5258b8b3a7b341886ce63db304f19d9d15d48c568d3f7",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_propagation_forces_only_necessary_values_and_detects_conflicts (__main__.BinaryColouringTests.test_propagation_forces_only_necessary_values_and_detects_conflicts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 197, in test_propagation_forces_only_necessary_values_and_detects_conflicts\n    self.assertTrue(triple._propagate(values)); self.assertEqual(values, expected)\n                                                ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [0, 0, -1] != [0, 0, 1]\n\nFirst differing element 2:\n-1\n1\n\n- [0, 0, -1]\n?        -\n\n+ [0, 0, 1]\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+      ]
+    },
+    {
+      "identity": "triple-saturated-force",
+      "mutant_sha256": "dc720bf7c0b8210579a4886136d5a98995fff6f07956fc25d0d89f01e1071ea3",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_propagation_forces_only_necessary_values_and_detects_conflicts (__main__.BinaryColouringTests.test_propagation_forces_only_necessary_values_and_detects_conflicts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 197, in test_propagation_forces_only_necessary_values_and_detects_conflicts\n    self.assertTrue(triple._propagate(values)); self.assertEqual(values, expected)\n                                                ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: Lists differ: [1, -1, -1] != [1, 0, 0]\n\nFirst differing element 1:\n-1\n0\n\n- [1, -1, -1]\n+ [1, 0, 0]\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+      ]
+    },
+    {
+      "identity": "triple-forced-value",
+      "mutant_sha256": "ba0159fc79916edb23795c5d159304ab0c2b8d4d0729f8dcf8ab2c05a2d4867e",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_propagation_forces_only_necessary_values_and_detects_conflicts (__main__.BinaryColouringTests.test_propagation_forces_only_necessary_values_and_detects_conflicts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 197, in test_propagation_forces_only_necessary_values_and_detects_conflicts\n    self.assertTrue(triple._propagate(values)); self.assertEqual(values, expected)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+      ]
+    },
+    {
+      "identity": "propagation-fixed-point",
+      "mutant_sha256": "b0f2083af1372aa9975151c8698cec8ec2930c236c4a33c384d1969f81685931",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_four_variable_constraint_systems_against_exhaustion (__main__.BinaryColouringTests.test_all_four_variable_constraint_systems_against_exhaustion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 74, in test_all_four_variable_constraint_systems_against_exhaustion\n    result, nodes = self.accepted(system.search())\n                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 60, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='search returned an invalid binary model') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_all_four_variable_constraint_systems_against_exhaustion"
+      ]
+    },
+    {
+      "identity": "propagation-composition",
+      "mutant_sha256": "31e60315e29f991a3f023625104c509e3352ccc187e221bb384c0a0bf4f8d4dc",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_four_variable_constraint_systems_against_exhaustion (__main__.BinaryColouringTests.test_all_four_variable_constraint_systems_against_exhaustion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 74, in test_all_four_variable_constraint_systems_against_exhaustion\n    result, nodes = self.accepted(system.search())\n                    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 60, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='search returned an invalid binary model') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_all_four_variable_constraint_systems_against_exhaustion"
+      ]
+    },
+    {
+      "identity": "node-budget-unsat-confusion",
+      "mutant_sha256": "274174d0b32138a154110f2f5125af4accd4108e3f41a22d7e025c084c3beb9e",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_search_budget_is_not_unsat_and_boundaries_are_inclusive (__main__.BinaryColouringTests.test_search_budget_is_not_unsat_and_boundaries_are_inclusive)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 181, in test_search_budget_is_not_unsat_and_boundaries_are_inclusive\n    self.refused(system.search(64), 'resource')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 64, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_search_budget_is_not_unsat_and_boundaries_are_inclusive"
+      ]
+    },
+    {
+      "identity": "node-budget-inclusive",
+      "mutant_sha256": "f30b36f2dbd226591bce873d625fb324d823386d77c2ee2c9cbe28a3a3ad1d9a",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_search_budget_is_not_unsat_and_boundaries_are_inclusive (__main__.BinaryColouringTests.test_search_budget_is_not_unsat_and_boundaries_are_inclusive)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 182, in test_search_budget_is_not_unsat_and_boundaries_are_inclusive\n    model, nodes = self.accepted(system.search(65))\n                   ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 60, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='resource', message='binary search node budget exhausted') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_search_budget_is_not_unsat_and_boundaries_are_inclusive"
+      ]
+    },
+    {
+      "identity": "node-budget-upper",
+      "mutant_sha256": "ea844e2bcf63a925847d8bc03f4e2d8b22b632cf9a2de8927e60df449754d79e",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_search_budget_is_not_unsat_and_boundaries_are_inclusive (__main__.BinaryColouringTests.test_search_budget_is_not_unsat_and_boundaries_are_inclusive)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 178, in test_search_budget_is_not_unsat_and_boundaries_are_inclusive\n    self.refused(empty.search(65537), 'resource')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 64, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_search_budget_is_not_unsat_and_boundaries_are_inclusive"
+      ]
+    },
+    {
+      "identity": "node-counter",
+      "mutant_sha256": "45ab2e8a8a126e177be66a4343e71591980511973a14d6f4d7bbf211731963f5",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_search_budget_is_not_unsat_and_boundaries_are_inclusive (__main__.BinaryColouringTests.test_search_budget_is_not_unsat_and_boundaries_are_inclusive)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 179, in test_search_budget_is_not_unsat_and_boundaries_are_inclusive\n    self.assertEqual(self.accepted(empty.search(65536)), ((), 1))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((), 2) != ((), 1)\n\nFirst differing element 1:\n2\n1\n\n- ((), 2)\n?      ^\n\n+ ((), 1)\n?      ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_search_budget_is_not_unsat_and_boundaries_are_inclusive"
+      ]
+    },
+    {
+      "identity": "search-both-branches",
+      "mutant_sha256": "28b25a6d4e8e69144cbc795c8d8e92f5bd4ba6f2fce7eefa2146be945dac03fa",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_four_variable_constraint_systems_against_exhaustion (__main__.BinaryColouringTests.test_all_four_variable_constraint_systems_against_exhaustion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 75, in test_all_four_variable_constraint_systems_against_exhaustion\n    self.assertEqual(result is not None, bool(expected))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False != True\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_all_four_variable_constraint_systems_against_exhaustion"
+      ]
+    },
+    {
+      "identity": "search-branch-ownership",
+      "mutant_sha256": "80cc9964110d7937cddf3685e0bc40b682073849a59ea2d75cc1929c11d0da1c",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_four_variable_constraint_systems_against_exhaustion (__main__.BinaryColouringTests.test_all_four_variable_constraint_systems_against_exhaustion)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 75, in test_all_four_variable_constraint_systems_against_exhaustion\n    self.assertEqual(result is not None, bool(expected))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False != True\n\n----------------------------------------------------------------------\nRan 1 test in 0.002s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_all_four_variable_constraint_systems_against_exhaustion"
+      ]
+    },
+    {
+      "identity": "returned-model-replay",
+      "mutant_sha256": "fedc867130df3e6cbfbb4e84bbb1fd9ef0a000b3c1b91746ddb3c029fee5b438",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_propagation_forces_only_necessary_values_and_detects_conflicts (__main__.BinaryColouringTests.test_propagation_forces_only_necessary_values_and_detects_conflicts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 201, in test_propagation_forces_only_necessary_values_and_detects_conflicts\n    self.refused(BinaryFrameSystem(0, (), ()).search(), 'check')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 64, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/binary_frame_system.py",
+      "tests": [
+        "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+      ]
+    },
+    {
+      "identity": "witness-ray-domain",
+      "mutant_sha256": "998815679524ff79a24eeeb5492f754e856fc47263313fd490f1ceb39f6de4dd",
+      "outcome": "killed",
+      "output": "E\n======================================================================\nERROR: test_full_projective_geometry_and_completions (__main__.BinaryColouringTests.test_full_projective_geometry_and_completions)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 119, in test_full_projective_geometry_and_completions\n    witness = load().RationalColouringWitness(); rays = witness.rays\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\independent\\fq-gleason-qi3-frame-functions.py\", line 68, in __init__\n    object.__setattr__(self, 'system', _constraints(rays))\n                                       ~~~~~~~~~~~~^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\independent\\fq-gleason-qi3-frame-functions.py\", line 45, in _constraints\n    return BinaryFrameSystem(len(rays), pairs, triples)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\checker_support\\binary_frame_system.py\", line 52, in __init__\n    count = integer(size, 'binary carrier size', 0, 64)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\checker_support\\domains.py\", line 59, in integer\n    raise _violation(\"resource\", f\"{name} must be <= {maximum}\")\nchecker_support.boundary.Violation: binary carrier size must be <= 64\n\n----------------------------------------------------------------------\nRan 1 test in 0.026s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-frame-functions.py",
+      "tests": [
+        "test_full_projective_geometry_and_completions"
+      ]
+    },
+    {
+      "identity": "witness-orthogonality-enumeration",
+      "mutant_sha256": "72852568efeb8fe3ac35aa8875ef7b7bc4787f2b63007ef1d4a779acd9f5c4d7",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_full_projective_geometry_and_completions (__main__.BinaryColouringTests.test_full_projective_geometry_and_completions)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 124, in test_full_projective_geometry_and_completions\n    self.assertEqual(witness.system.pairs, expected_pairs)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((0, 4), (0, 7), (0, 11), (0, 16), (0, 21), (0[1751 chars] 46)) != ((0, 3), (0, 10), (0, 15), (0, 20), (0, 25), ([1264 chars] 47))\n\nFirst differing element 0:\n(0, 4)\n(0, 3)\n\nFirst tuple contains 50 additional elements.\nFirst extra element 138:\n(20, 31)\n\nDiff is 6106 characters long. Set self.maxDiff to None to see it.\n\n----------------------------------------------------------------------\nRan 1 test in 0.090s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-frame-functions.py",
+      "tests": [
+        "test_full_projective_geometry_and_completions"
+      ]
+    },
+    {
+      "identity": "witness-triple-cliques",
+      "mutant_sha256": "a6c3a363bfb7f18f6742956b1d6d01a73adf85e3f005f20785e59012879d9fb0",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_full_projective_geometry_and_completions (__main__.BinaryColouringTests.test_full_projective_geometry_and_completions)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 127, in test_full_projective_geometry_and_completions\n    self.assertEqual(witness.system.triples, expected_triples)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((0, 3, 10), (0, 3, 15), (0, 3, 20), (0, 3, 25), [3645 chars] 42)) != ((0, 3, 20), (0, 10, 44), (0, 15, 25), (0, 30, 37[290 chars] 42))\n\nFirst differing element 0:\n(0, 3, 10)\n(0, 3, 20)\n\nFirst tuple contains 252 additional elements.\nFirst extra element 26:\n(0, 30, 44)\n\nDiff is 4591 characters long. Set self.maxDiff to None to see it.\n\n----------------------------------------------------------------------\nRan 1 test in 0.110s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-frame-functions.py",
+      "tests": [
+        "test_full_projective_geometry_and_completions"
+      ]
+    },
+    {
+      "identity": "completion-cross-sign",
+      "mutant_sha256": "a243135855d8ce2dcb729d80967f583549fd3c2b30d351abddc74ba5d3a5bc8f",
+      "outcome": "killed",
+      "output": "E\n======================================================================\nERROR: test_full_projective_geometry_and_completions (__main__.BinaryColouringTests.test_full_projective_geometry_and_completions)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 133, in test_full_projective_geometry_and_completions\n    self.assertEqual(witness._completions(), outside)\n                     ~~~~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\independent\\fq-gleason-qi3-frame-functions.py\", line 76, in _completions\n    require(_dot(u, v) == _dot(u, w) == _dot(v, w) == 0, 'nonorthogonal completion')\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: nonorthogonal completion\n\n----------------------------------------------------------------------\nRan 1 test in 0.128s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-frame-functions.py",
+      "tests": [
+        "test_full_projective_geometry_and_completions"
+      ]
+    },
+    {
+      "identity": "completion-nonzero",
+      "mutant_sha256": "13c2a8fa86417f3cc3e18b2a8498aefe343d2bf93756bf00976e66d921908f31",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_witness_geometric_guards_and_constraint_deletion_controls (__main__.BinaryColouringTests.test_witness_geometric_guards_and_constraint_deletion_controls)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 207, in test_witness_geometric_guards_and_constraint_deletion_controls\n    self.refused(witness.verify(), 'check')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 64, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-frame-functions.py",
+      "tests": [
+        "test_witness_geometric_guards_and_constraint_deletion_controls"
+      ]
+    },
+    {
+      "identity": "completion-orthogonality",
+      "mutant_sha256": "ffbbc4d5533d7082f1406dfac007be538eef988fa3a3e4a35a48c8e4d18d99de",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_witness_geometric_guards_and_constraint_deletion_controls (__main__.BinaryColouringTests.test_witness_geometric_guards_and_constraint_deletion_controls)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 207, in test_witness_geometric_guards_and_constraint_deletion_controls\n    self.refused(witness.verify(), 'check')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 64, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-frame-functions.py",
+      "tests": [
+        "test_witness_geometric_guards_and_constraint_deletion_controls"
+      ]
+    },
+    {
+      "identity": "completion-outside-count",
+      "mutant_sha256": "36d4fb98f560a5d77aa452abfcb683009dc00d1c9cd44fffe9a9dbd517929c45",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_full_projective_geometry_and_completions (__main__.BinaryColouringTests.test_full_projective_geometry_and_completions)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 133, in test_full_projective_geometry_and_completions\n    self.assertEqual(witness._completions(), outside)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 129 != 90\n\n----------------------------------------------------------------------\nRan 1 test in 0.129s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-frame-functions.py",
+      "tests": [
+        "test_full_projective_geometry_and_completions"
+      ]
+    },
+    {
+      "identity": "witness-census",
+      "mutant_sha256": "878a68e9d4970f2e5c56905b2ec519509e8bf3f879a531aae6354f342dbf860d",
+      "outcome": "survived",
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/fq-gleason-qi3-frame-functions.py",
+      "tests": [
+        "test_witness_geometric_guards_and_constraint_deletion_controls"
+      ]
+    },
+    {
+      "identity": "obstruction-requires-unsat",
+      "mutant_sha256": "1d47899fef30e73c520e9999a5e88c761a768d29411a0b2767c514ca49d6f94f",
+      "outcome": "survived",
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/fq-gleason-qi3-frame-functions.py",
+      "tests": [
+        "test_witness_geometric_guards_and_constraint_deletion_controls"
+      ]
+    },
+    {
+      "identity": "deletion-requires-sat",
+      "mutant_sha256": "44b2d4f3a143cbaeab287f6d34afa6624c68e18904345baee56fa6d122417f1c",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_witness_geometric_guards_and_constraint_deletion_controls (__main__.BinaryColouringTests.test_witness_geometric_guards_and_constraint_deletion_controls)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 213, in test_witness_geometric_guards_and_constraint_deletion_controls\n    self.refused(evaluate(witness._controls), 'check')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\colouring-mutation-sc15tk76\\checks\\tests\\test_binary_colouring.py\", line 66, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'input' != 'check'\n- input\n+ check\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gleason-qi3-frame-functions.py",
+      "tests": [
+        "test_witness_geometric_guards_and_constraint_deletion_controls"
+      ]
+    },
+    {
+      "identity": "deletion-model-verification",
+      "mutant_sha256": "c17dbb9537f38ce50bbab98739f05b6bb1bb96e895cb0960ececcc3626c04997",
+      "outcome": "survived",
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/fq-gleason-qi3-frame-functions.py",
+      "tests": [
+        "test_witness_geometric_guards_and_constraint_deletion_controls"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 37,
+      "survived": 3,
+      "unrun": 0
+    },
+    "detected_fraction": 0.925,
+    "eligible": 40
+  }
+}

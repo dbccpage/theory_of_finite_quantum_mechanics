@@ -1,0 +1,300 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/checker_support/rational_inverse.py": {
+      "profile": "Exact",
+      "role": "Bounded rational inverse search and independent two-sided certificate verification composed with owned RationalMatrix values",
+      "cost": "Square dimension1..64, O(n^3) rational operations and O(n^2) workspace, at most64x128 augmented entries and64 pivots. Every normalized quotient, elimination product/difference, replay product and prefix is bounded to4096-bit numerator/denominator. Raw products/quotients at most8192 bits; addition numerator8193 and denominator8192 before reduction/admission. No recursion or input-sized unbounded loop.",
+      "groups": [
+        {
+          "requirement": "Require an already owned exact RationalMatrix and square dimensions before search. Admit a same-sized candidate; verify both full matrix identities, not only row sums or one fitted right-hand side. Return the admitted immutable candidate through Outcome; malformed/singular input, resource refusal and failed witness remain distinct.",
+          "symbols": [
+            "_square",
+            "_verify",
+            "verify_inverse"
+          ],
+          "tests": [
+            "Mod2FrameSystemTests.test_inverse_domain_shape_singular_and_certificate_tampering",
+            "Mod2FrameSystemTests.test_inverse_resource_boundaries_and_cancellation",
+            "Mod2FrameSystemTests.test_inverse_replay_and_exception_lifecycle",
+            "Mod2FrameSystemTests.test_inverse_guards_precede_dependent_elimination"
+          ],
+          "test_source": "checks/tests/test_mod2_frame_system.py",
+          "requirement_id": "TFQM-MOD2-REVIEW-RATIONAL-INVERSE-1"
+        },
+        {
+          "requirement": "Use a private augmented workspace, deterministic first nonzero pivot and complete row elimination. Bound normalization and each product/difference before later cancellation; preserve input values and replay the entire produced inverse before success. Propagate unexpected errors/cancellation.",
+          "symbols": [
+            "_eliminate",
+            "_candidate",
+            "_inverse",
+            "inverse"
+          ],
+          "tests": [
+            "Mod2FrameSystemTests.test_generated_inverse_against_symbolic_adjugate",
+            "Mod2FrameSystemTests.test_inverse_resource_boundaries_and_cancellation",
+            "Mod2FrameSystemTests.test_inverse_replay_and_exception_lifecycle",
+            "Mod2FrameSystemTests.test_inverse_guards_precede_dependent_elimination"
+          ],
+          "test_source": "checks/tests/test_mod2_frame_system.py",
+          "requirement_id": "TFQM-MOD2-REVIEW-RATIONAL-INVERSE-2"
+        }
+      ],
+      "source_sha256": "4eadfd4b793e62a415d7d2da05964e4af8c46edfd7e59d54f86b93f29f326b9b",
+      "symbols": [
+        "_candidate",
+        "_eliminate",
+        "_inverse",
+        "_square",
+        "_verify",
+        "inverse",
+        "verify_inverse"
+      ],
+      "nested_declarations": {},
+      "origins": [
+        {
+          "path": "lean4/BornGaussianMod2ClassRigidity.lean",
+          "sha256": "ab4aceb7e4aac1f76ef2c7ad3d780f422796878ab6ab8d616f73d75d05386b9d"
+        },
+        {
+          "path": "dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md",
+          "sha256": "117b3b26afb3b5286eb706c59b1b4427e6aecc82d15289a90045cf78fd762132"
+        }
+      ],
+      "consumers": [
+        {
+          "path": "checks/independent/fq-gap-born-uniqueness-gleason-mod2.py",
+          "sha256": "9e44be67dac5e88fb0ffd8b395c64522a554e0cf82891c1ba65f65893cf52ebf",
+          "state": "current direct import/path consumer"
+        },
+        {
+          "path": "checks/tests/test_mod2_frame_system.py",
+          "sha256": "84ee42c83c8729665ec53f59a039c20ecc7a98987369fb143af6148bab54fbdd",
+          "state": "current direct import/path consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "6505eee667482c64585feed090942164f8480a84dd8ce0cb07712df1e07693b8",
+          "state": "current direct import/path consumer"
+        }
+      ],
+      "consumer_boundary": "Three original consumers are Lean origin, derivation note and dated replay receipt, all referencing the unchanged executable path. No function-level external caller found. Untyped gmul/gconj/admissible/cls and import-time globals are replaced by owned frame operations and shared inverse composition. Original56 frames retained exactly; new CLI567=565 original obligations+two actual coefficient bounds. Imported scientific statements/status and historical565-count receipt remain unchanged. Complete588-line Lean origin and derivation note read; no new Lean build or universal Gleason/continuum claim."
+    },
+    "checks/independent/fq-gap-born-uniqueness-gleason-mod2.py": {
+      "profile": "Exact",
+      "role": "Owned Gaussian modulo-two frame-system aggregate and finite class-rigidity certificate application",
+      "cost": "Exactly56 frames, each3 vectors of3 Gaussian integer pairs;1008 integer coordinates. Input and each arithmetic product/term/prefix at most4096 bits; raw integer product at most8192 and addition4097 before admission. Class enumeration64 cases selects56; incidence56x56 with three multiplicity comparisons per entry. Inverse delegates to O(56^3) bounded rational operations. Default567 conditions preserve565 original checks and add inverse-entry magnitude/denominator bounds. Immutable snapshots and per-run recorder; no import execution.",
+      "groups": [
+        {
+          "requirement": "Admit exactly three Gaussian-integer pairs per vector, exact non-bool integers and4096-bit components. Compute conjugate-left Hermitian product with separate term/prefix limits; residue is ordered six-coordinate mod2. Primitive means at least one real/imaginary parity differs, without an unnecessary large sum. Public raw input operations return Outcome.",
+          "symbols": [
+            "_integer",
+            "_vector",
+            "_inner",
+            "inner",
+            "_primitive",
+            "_class",
+            "residue"
+          ],
+          "tests": [
+            "Mod2FrameSystemTests.test_generated_hermitian_product_and_residues",
+            "Mod2FrameSystemTests.test_gaussian_full_boundaries_and_no_truncation",
+            "Mod2FrameSystemTests.test_frame_exact_domains_ownership_and_nonorthogonality",
+            "Mod2FrameSystemTests.test_gaussian_component_shape_and_hidden_product_overflow"
+          ],
+          "test_source": "checks/tests/test_mod2_frame_system.py",
+          "requirement_id": "TFQM-MOD2-REVIEW-FQ-GAP-BORN-UNIQUENESS-GLEASON-MOD2-1"
+        },
+        {
+          "requirement": "Own exactly56 frames, each containing three1+i-primitive pairwise Hermitian-orthogonal vectors. Deep-copy caller containers; preserve all original1008 coordinate values in immutable FRAMES. No claim that arbitrary primitive vectors admit a frame is inferred.",
+          "symbols": [
+            "_frame",
+            "GaussianMod2FrameSystem",
+            "GaussianMod2FrameSystem.__init__"
+          ],
+          "tests": [
+            "Mod2FrameSystemTests.test_frame_exact_domains_ownership_and_nonorthogonality",
+            "Mod2FrameSystemTests.test_independent_fixture_lean_coefficients_and_symbolic_inverse",
+            "Mod2FrameSystemTests.test_generated_frame_transformations_and_multiplicities"
+          ],
+          "test_source": "checks/tests/test_mod2_frame_system.py",
+          "requirement_id": "TFQM-MOD2-REVIEW-FQ-GAP-BORN-UNIQUENESS-GLEASON-MOD2-2"
+        },
+        {
+          "requirement": "Enumerate all56 admissible classes in lexical bit order; require whole coverage before inverse search, and count multiplicities rather than set membership. Coverage alone is not rank: independently certify the56x56 inverse through the shared exact verifier. General certificate query does not require the original coefficient-size bounds.",
+          "symbols": [
+            "_classes",
+            "GaussianMod2FrameSystem._incidence",
+            "GaussianMod2FrameSystem.incidence",
+            "GaussianMod2FrameSystem.certificate"
+          ],
+          "tests": [
+            "Mod2FrameSystemTests.test_frame_coverage_and_rank_are_separate_requirements",
+            "Mod2FrameSystemTests.test_generated_frame_transformations_and_multiplicities",
+            "Mod2FrameSystemTests.test_independent_fixture_lean_coefficients_and_symbolic_inverse"
+          ],
+          "test_source": "checks/tests/test_mod2_frame_system.py",
+          "requirement_id": "TFQM-MOD2-REVIEW-FQ-GAP-BORN-UNIQUENESS-GLEASON-MOD2-3"
+        },
+        {
+          "requirement": "With a valid per-run Cases recorder, recompute nonzero/primitive/orthogonal obligations, all classes and coverage; use the certified inverse to obtain1/3 and replay all56 frame sums. For the supplied fixture also require every inverse entry magnitude<=1 and denominator dividing12. Emit567 conditions and nonzero expected-failure exits; no process exit or output occurs on import.",
+          "symbols": [
+            "GaussianMod2FrameSystem._verify",
+            "GaussianMod2FrameSystem.verify",
+            "main"
+          ],
+          "tests": [
+            "Mod2FrameSystemTests.test_import_reentrant_receipts_failure_exit_and_lifecycle",
+            "Mod2FrameSystemTests.test_independent_fixture_lean_coefficients_and_symbolic_inverse"
+          ],
+          "test_source": "checks/tests/test_mod2_frame_system.py",
+          "requirement_id": "TFQM-MOD2-REVIEW-FQ-GAP-BORN-UNIQUENESS-GLEASON-MOD2-4"
+        }
+      ],
+      "source_sha256": "9e44be67dac5e88fb0ffd8b395c64522a554e0cf82891c1ba65f65893cf52ebf",
+      "symbols": [
+        "GaussianMod2FrameSystem",
+        "GaussianMod2FrameSystem.__init__",
+        "GaussianMod2FrameSystem._incidence",
+        "GaussianMod2FrameSystem._verify",
+        "GaussianMod2FrameSystem.certificate",
+        "GaussianMod2FrameSystem.incidence",
+        "GaussianMod2FrameSystem.verify",
+        "_class",
+        "_classes",
+        "_frame",
+        "_inner",
+        "_integer",
+        "_primitive",
+        "_vector",
+        "inner",
+        "main",
+        "residue"
+      ],
+      "nested_declarations": {},
+      "origins": [
+        {
+          "path": "lean4/BornGaussianMod2ClassRigidity.lean",
+          "sha256": "ab4aceb7e4aac1f76ef2c7ad3d780f422796878ab6ab8d616f73d75d05386b9d"
+        },
+        {
+          "path": "dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md",
+          "sha256": "117b3b26afb3b5286eb706c59b1b4427e6aecc82d15289a90045cf78fd762132"
+        }
+      ],
+      "consumers": [
+        {
+          "path": "checks/tests/test_mod2_frame_system.py",
+          "sha256": "84ee42c83c8729665ec53f59a039c20ecc7a98987369fb143af6148bab54fbdd",
+          "state": "current direct import/path consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "6505eee667482c64585feed090942164f8480a84dd8ce0cb07712df1e07693b8",
+          "state": "current direct import/path consumer"
+        },
+        {
+          "path": "lean4/BornGaussianMod2ClassRigidity.lean",
+          "sha256": "ab4aceb7e4aac1f76ef2c7ad3d780f422796878ab6ab8d616f73d75d05386b9d",
+          "state": "unchanged historical source/path consumer"
+        },
+        {
+          "path": "dag/research/campaign_fq-gap-born-uniqueness-gleason-rays_lean_replay.json",
+          "sha256": "bb7224ff87e7c0de653fb381e4f0a4f8f154ab83d5d30cacfccc89a3f4f12fbd",
+          "state": "unchanged historical source/path consumer"
+        },
+        {
+          "path": "dag/derivations/independent/fq-gap-born-uniqueness-gleason-rays.md",
+          "sha256": "117b3b26afb3b5286eb706c59b1b4427e6aecc82d15289a90045cf78fd762132",
+          "state": "unchanged historical source/path consumer"
+        }
+      ],
+      "consumer_boundary": "Three original consumers are Lean origin, derivation note and dated replay receipt, all referencing the unchanged executable path. No function-level external caller found. Untyped gmul/gconj/admissible/cls and import-time globals are replaced by owned frame operations and shared inverse composition. Original56 frames retained exactly; new CLI567=565 original obligations+two actual coefficient bounds. Imported scientific statements/status and historical565-count receipt remain unchanged. Complete588-line Lean origin and derivation note read; no new Lean build or universal Gleason/continuum claim."
+    },
+    "checks/tests/test_mod2_frame_system.py": {
+      "profile": "Exact",
+      "role": "Independent symbolic, exact-boundary and source-table verification harness for Gaussian modulo-two rigidity and bounded rational inversion",
+      "cost": "13 unittest groups;80 deterministic Hypothesis examples per generated property. Generated3x3 integer inverses use independent adjugate/determinant; Gaussian pairs range-20..20; generated odd frame scalings/coordinate permutations compare incidence multiplicities. Fixed56x56 symbolic inverse and parsed Lean linear-combination table,64x64 maximal inverse,4096-bit boundaries, scoped mocks/captures and30-second CLI timeout.",
+      "groups": [
+        {
+          "requirement": "Independently reconstruct every Lean frame and all56 rational linear-combination rows, compare with the unchanged fixture and SymPy full inverse. Challenge generated inverse, Hermitian and residue calculations, frame transformations, multiplicities, whole shapes, ownership, nonorthogonality, missing coverage versus singularity, full resource preflight and producer replay. Check silent/reentrant567-condition CLI and interruption propagation.",
+          "symbols": [
+            "load",
+            "symbolic",
+            "lean_data",
+            "Mod2FrameSystemTests",
+            "Mod2FrameSystemTests.accepted",
+            "Mod2FrameSystemTests.refused",
+            "Mod2FrameSystemTests.test_independent_fixture_lean_coefficients_and_symbolic_inverse",
+            "Mod2FrameSystemTests.test_generated_inverse_against_symbolic_adjugate",
+            "Mod2FrameSystemTests.test_generated_hermitian_product_and_residues",
+            "Mod2FrameSystemTests.test_generated_frame_transformations_and_multiplicities",
+            "Mod2FrameSystemTests.test_inverse_domain_shape_singular_and_certificate_tampering",
+            "Mod2FrameSystemTests.test_inverse_resource_boundaries_and_cancellation",
+            "Mod2FrameSystemTests.test_inverse_replay_and_exception_lifecycle",
+            "Mod2FrameSystemTests.test_frame_exact_domains_ownership_and_nonorthogonality",
+            "Mod2FrameSystemTests.test_frame_coverage_and_rank_are_separate_requirements",
+            "Mod2FrameSystemTests.test_gaussian_full_boundaries_and_no_truncation",
+            "Mod2FrameSystemTests.test_import_reentrant_receipts_failure_exit_and_lifecycle",
+            "Mod2FrameSystemTests.test_inverse_guards_precede_dependent_elimination",
+            "Mod2FrameSystemTests.test_gaussian_component_shape_and_hidden_product_overflow"
+          ],
+          "tests": [
+            "Mod2FrameSystemTests.test_independent_fixture_lean_coefficients_and_symbolic_inverse",
+            "Mod2FrameSystemTests.test_generated_inverse_against_symbolic_adjugate",
+            "Mod2FrameSystemTests.test_generated_hermitian_product_and_residues",
+            "Mod2FrameSystemTests.test_generated_frame_transformations_and_multiplicities",
+            "Mod2FrameSystemTests.test_inverse_domain_shape_singular_and_certificate_tampering",
+            "Mod2FrameSystemTests.test_inverse_resource_boundaries_and_cancellation",
+            "Mod2FrameSystemTests.test_inverse_replay_and_exception_lifecycle",
+            "Mod2FrameSystemTests.test_frame_exact_domains_ownership_and_nonorthogonality",
+            "Mod2FrameSystemTests.test_frame_coverage_and_rank_are_separate_requirements",
+            "Mod2FrameSystemTests.test_gaussian_full_boundaries_and_no_truncation",
+            "Mod2FrameSystemTests.test_import_reentrant_receipts_failure_exit_and_lifecycle",
+            "Mod2FrameSystemTests.test_inverse_guards_precede_dependent_elimination",
+            "Mod2FrameSystemTests.test_gaussian_component_shape_and_hidden_product_overflow"
+          ],
+          "test_source": "checks/tests/test_mod2_frame_system.py",
+          "requirement_id": "TFQM-MOD2-REVIEW-TEST-MOD2-FRAME-SYSTEM-1"
+        }
+      ],
+      "source_sha256": "84ee42c83c8729665ec53f59a039c20ecc7a98987369fb143af6148bab54fbdd",
+      "symbols": [
+        "Mod2FrameSystemTests",
+        "Mod2FrameSystemTests.accepted",
+        "Mod2FrameSystemTests.refused",
+        "Mod2FrameSystemTests.test_frame_coverage_and_rank_are_separate_requirements",
+        "Mod2FrameSystemTests.test_frame_exact_domains_ownership_and_nonorthogonality",
+        "Mod2FrameSystemTests.test_gaussian_component_shape_and_hidden_product_overflow",
+        "Mod2FrameSystemTests.test_gaussian_full_boundaries_and_no_truncation",
+        "Mod2FrameSystemTests.test_generated_frame_transformations_and_multiplicities",
+        "Mod2FrameSystemTests.test_generated_hermitian_product_and_residues",
+        "Mod2FrameSystemTests.test_generated_inverse_against_symbolic_adjugate",
+        "Mod2FrameSystemTests.test_import_reentrant_receipts_failure_exit_and_lifecycle",
+        "Mod2FrameSystemTests.test_independent_fixture_lean_coefficients_and_symbolic_inverse",
+        "Mod2FrameSystemTests.test_inverse_domain_shape_singular_and_certificate_tampering",
+        "Mod2FrameSystemTests.test_inverse_guards_precede_dependent_elimination",
+        "Mod2FrameSystemTests.test_inverse_replay_and_exception_lifecycle",
+        "Mod2FrameSystemTests.test_inverse_resource_boundaries_and_cancellation",
+        "lean_data",
+        "load",
+        "symbolic"
+      ],
+      "nested_declarations": {},
+      "origins": [
+        {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        }
+      ],
+      "consumers": [
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "6505eee667482c64585feed090942164f8480a84dd8ce0cb07712df1e07693b8",
+          "state": "current direct import/path consumer"
+        }
+      ],
+      "consumer_boundary": "Three original consumers are Lean origin, derivation note and dated replay receipt, all referencing the unchanged executable path. No function-level external caller found. Untyped gmul/gconj/admissible/cls and import-time globals are replaced by owned frame operations and shared inverse composition. Original56 frames retained exactly; new CLI567=565 original obligations+two actual coefficient bounds. Imported scientific statements/status and historical565-count receipt remain unchanged. Complete588-line Lean origin and derivation note read; no new Lean build or universal Gleason/continuum claim."
+    }
+  }
+}

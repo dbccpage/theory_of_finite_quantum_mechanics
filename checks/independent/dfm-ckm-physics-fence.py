@@ -1,267 +1,264 @@
-"""Independent check for DFM-CKM-PHYSICS-FENCE.
+"""Bounded Gaussian-table rephasing and declared rational counting controls.
 
-Rational counting expressions and two Gaussian-rational quartets are
-recomputed with fractions.Fraction. This file imports no repository code.
+AuthorityEffect: None. No unitary mixing matrix, measured phase or Yukawa model
+is constructed. Exact table classification concerns supplied nonzero labels.
 """
-
 from __future__ import annotations
 
 from collections.abc import Callable
+from dataclasses import dataclass
 from fractions import Fraction
 from itertools import product
+import json
+from pathlib import Path as _Path
+import sys as _sys
+
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
+from checker_support.boundary import Violation, cli, evaluate
+from checker_support.cases import Cases
+from checker_support.domains import integer, rational, sequence
+from checker_support.gaussian_rational import GaussianRational as GR
+from checker_support.outcome import Outcome
+
+Table = tuple[tuple[GR, ...], ...]
+Gauge = tuple[tuple[GR, ...], tuple[GR, ...]]
 
 
 def exact_rational(value: object) -> Fraction:
-    if isinstance(value, Fraction):
-        return value
-    if type(value) is int:
-        return Fraction(value)
-    raise TypeError("expected an int or Fraction (not bool, float, or text)")
+    return rational(value, "counting parameter")
 
 
-def cycle_count(n: int | Fraction) -> Fraction:
-    n = exact_rational(n)
-    return (n - 1) * (n - 1)
+def cycle_count(n: object) -> Fraction:
+    value = exact_rational(n)
+    return rational((value-1)*(value-1), "cycle count")
 
 
-def constraint_count(n: int | Fraction) -> Fraction:
-    n = exact_rational(n)
-    return n * (n - 1) / 2
+def constraint_count(n: object) -> Fraction:
+    value = exact_rational(n)
+    return rational(value*(value-1)/2, "constraint count")
 
 
-def cp_count(n: int | Fraction) -> Fraction:
-    n = exact_rational(n)
-    return (n - 1) * (n - 2) / 2
+def cp_count(n: object) -> Fraction:
+    value = exact_rational(n)
+    return rational((value-1)*(value-2)/2, "CP count")
 
 
-class GR:
-    def __init__(self, re: int | Fraction, im: int | Fraction = 0) -> None:
-        self.re = exact_rational(re)
-        self.im = exact_rational(im)
-
-    def conj(self) -> GR:
-        return GR(self.re, -self.im)
-
-    def mul(self, other: GR) -> GR:
-        return GR(
-            self.re * other.re - self.im * other.im,
-            self.re * other.im + self.im * other.re,
-        )
-
-    def inv(self) -> GR:
-        norm = self.re * self.re + self.im * self.im
-        if not norm:
-            raise ValueError("zero has no multiplicative inverse")
-        return GR(self.re / norm, -self.im / norm)
-
-    def div(self, other: GR) -> GR:
-        return self.mul(other.inv())
-
-    def __eq__(self, other: object) -> bool:
-        if not isinstance(other, GR):
-            return NotImplemented
-        return self.re == other.re and self.im == other.im
-
-    def __repr__(self) -> str:
-        return f"{self.re}+{self.im}i"
+def _gaussian(value: object, nonzero: bool = False) -> GR:
+    if type(value) is not GR:
+        raise Violation("input", "exact GaussianRational label required")
+    if nonzero and value == GR(0):
+        raise Violation("input", "rephasing labels must be nonzero")
+    return value
 
 
-def quartet(a: GR, b: GR, c: GR, d: GR) -> GR:
-    return a.mul(b).mul(c.conj().mul(d.conj()))
+def quartet(a: object, b: object, c: object, d: object) -> GR:
+    first, second, third, fourth = (_gaussian(value) for value in (a, b, c, d))
+    return first.mul(second).mul(third.conj().mul(fourth.conj()))
 
 
-Table = tuple[tuple[GR, ...], ...]
+def _gauges(values: object, length: int) -> tuple[GR, ...]:
+    return tuple(_gaussian(value, True) for value in sequence(values, "gauge labels", length, 64))
 
 
-def shape(matrix: Table) -> tuple[int, int]:
-    if not matrix or not matrix[0]:
-        raise ValueError("a base row and column are required")
-    width = len(matrix[0])
-    for row in matrix:
-        if len(row) != width:
-            raise ValueError("ragged table")
-        for entry in row:
-            if not isinstance(entry, GR) or entry == GR(0):
-                raise ValueError("table labels must be nonzero Gaussian rationals")
-    return len(matrix), width
+@dataclass(frozen=True, slots=True, init=False)
+class GaussianRephasingTable:
+    """Aggregate owning a nonempty rectangular table of nonzero Q(i) values."""
+    cells: Table
+
+    def __init__(self, matrix: object) -> None:
+        outer = sequence(matrix, "Gaussian table", maximum=64)
+        if not outer:
+            raise Violation("input", "a base row is required")
+        first = sequence(outer[0], "Gaussian row", maximum=64)
+        if not first:
+            raise Violation("input", "a base column is required")
+        owned = tuple(tuple(_gaussian(value, True) for value in sequence(row, "Gaussian row", len(first), 64))
+                      for row in outer)
+        object.__setattr__(self, "cells", owned)
+
+    @property
+    def shape(self) -> tuple[int, int]:
+        return len(self.cells), len(self.cells[0])
+
+    def _normalized(self) -> GaussianRephasingTable:
+        corner = self.cells[0][0]
+        return GaussianRephasingTable(tuple(tuple(entry.mul(corner).div(row[0].mul(self.cells[0][j]))
+                                                 for j, entry in enumerate(row)) for row in self.cells))
+
+    def normalized(self) -> Outcome[GaussianRephasingTable]:
+        return evaluate(self._normalized)
+
+    def _act(self, rows: object, cols: object) -> GaussianRephasingTable:
+        height, width = self.shape
+        row_gauge, col_gauge = _gauges(rows, height), _gauges(cols, width)
+        return GaussianRephasingTable(tuple(tuple(row_gauge[i].mul(value).div(col_gauge[j])
+                                                 for j, value in enumerate(row)) for i, row in enumerate(self.cells)))
+
+    def act(self, rows: object, cols: object) -> Outcome[GaussianRephasingTable]:
+        return evaluate(self._act, rows, cols)
+
+    def _witness(self, right: object) -> Gauge | None:
+        if type(right) is not GaussianRephasingTable or self.shape != right.shape:
+            raise Violation("input", "rephasing requires tables of the same shape")
+        if self._normalized() != right._normalized():
+            return None
+        rows = tuple(b[0].div(a[0]) for a, b in zip(self.cells, right.cells))
+        cols = tuple(a.div(self.cells[0][0]).div(b.div(right.cells[0][0]))
+                     for a, b in zip(self.cells[0], right.cells[0]))
+        return rows, cols
+
+    def witness(self, right: object) -> Outcome[Gauge | None]:
+        return evaluate(self._witness, right)
 
 
-def normalize(matrix: Table) -> Table:
-    shape(matrix)
-    corner = matrix[0][0]
-    return tuple(tuple(entry.mul(corner).div(row[0].mul(matrix[0][j]))
-                       for j, entry in enumerate(row)) for row in matrix)
+def shape(matrix: object) -> tuple[int, int]:
+    return GaussianRephasingTable(matrix).shape
 
 
-def act(matrix: Table, rows: tuple[GR, ...], cols: tuple[GR, ...]) -> Table:
-    height, width = shape(matrix)
-    if len(rows) != height or len(cols) != width:
-        raise ValueError("gauge dimensions differ from table")
-    if any(not isinstance(x, GR) or x == GR(0) for x in rows + cols):
-        raise ValueError("gauge labels must be nonzero Gaussian rationals")
-    return tuple(tuple(rows[i].mul(x).div(cols[j]) for j, x in enumerate(row))
-                 for i, row in enumerate(matrix))
+def normalize(matrix: object) -> Table:
+    return GaussianRephasingTable(matrix)._normalized().cells
 
 
-def witness(left: Table, right: Table) -> tuple[tuple[GR, ...], tuple[GR, ...]] | None:
-    if shape(left) != shape(right):
-        raise ValueError("table shapes differ")
-    if normalize(left) != normalize(right):
-        return None
-    rows = tuple(b[0].div(a[0]) for a, b in zip(left, right, strict=True))
-    cols = tuple(a.div(left[0][0]).div(b.div(right[0][0]))
-                 for a, b in zip(left[0], right[0], strict=True))
+def act(matrix: object, rows: object, cols: object) -> Table:
+    return GaussianRephasingTable(matrix)._act(rows, cols).cells
+
+
+def witness(left: object, right: object) -> Gauge | None:
+    return GaussianRephasingTable(left)._witness(GaussianRephasingTable(right))
+
+
+def _sign_shape(height: object, width: object) -> tuple[int, int]:
+    rows = integer(height, "table height", 1, 6)
+    cols = integer(width, "table width", 1, 6)
+    if rows*cols > 6:
+        raise Violation("resource", "sign enumeration is bounded to6 cells")
     return rows, cols
 
 
-def sign_tables(height: int, width: int) -> list[Table]:
-    return [tuple(tuple(GR(bits[i * width + j]) for j in range(width))
-                  for i in range(height))
-            for bits in product((-1, 1), repeat=height * width)]
+def sign_tables(height: object, width: object) -> list[Table]:
+    rows, cols = _sign_shape(height, width)
+    return [tuple(tuple(GR(bits[i*cols+j]) for j in range(cols)) for i in range(rows))
+            for bits in product((-1, 1), repeat=rows*cols)]
 
 
-def check_canonical(table: Table) -> Table:
+def _cases(cases: Cases | None) -> Cases:
+    if cases is None:
+        return Cases()
+    if type(cases) is not Cases:
+        raise Violation("input", "a Cases recorder is required")
+    return cases
+
+
+def check_canonical(table: object, cases: Cases | None = None) -> Table:
+    cases = _cases(cases)
     norm = normalize(table)
-    if normalize(norm) != norm:
-        raise SystemExit("normalization is not idempotent")
-    if any(x != GR(1) for x in norm[0]) or any(row[0] != GR(1) for row in norm):
-        raise SystemExit("canonical boundary is not one")
+    cases.require(normalize(norm) == norm, "normalization is idempotent")
+    cases.require(all(x == GR(1) for x in norm[0]) and all(row[0] == GR(1) for row in norm), "canonical boundary is one")
     return norm
 
 
-def check_sign_actions(table: Table, height: int, width: int) -> int:
-    norm = normalize(table)
+def check_sign_actions(table: object, height: object, width: object, cases: Cases | None = None) -> int:
+    cases = _cases(cases)
+    rows, cols = _sign_shape(height, width)
+    owned = GaussianRephasingTable(table)
+    if owned.shape != (rows, cols):
+        raise Violation("input", "enumeration dimensions differ from table")
+    norm = owned._normalized()
     checked = 0
-    for scalars in product((-1, 1), repeat=height + width):
-        rows = tuple(GR(x) for x in scalars[:height])
-        cols = tuple(GR(x) for x in scalars[height:])
-        if normalize(act(table, rows, cols)) != norm:
-            raise SystemExit("rephasing changed canonical coordinates")
+    for scalars in product((-1, 1), repeat=rows+cols):
+        row_gauge = tuple(GR(x) for x in scalars[:rows])
+        col_gauge = tuple(GR(x) for x in scalars[rows:])
+        cases.require(owned._act(row_gauge, col_gauge)._normalized() == norm, "rephasing preserves canonical coordinates")
         checked += 1
     return checked
 
 
-def check_pair(table: Table, other: Table) -> None:
-    result = witness(table, other)
-    if result is not None and act(table, *result) != other:
-        raise SystemExit("computed equivalence witness is unsound")
-    if (result is None) == (normalize(table) == normalize(other)):
-        raise SystemExit("decision and separating invariant disagree")
+def check_pair(table: object, other: object, cases: Cases | None = None) -> None:
+    cases = _cases(cases)
+    left, right = GaussianRephasingTable(table), GaussianRephasingTable(other)
+    result = left._witness(right)
+    cases.require(result is None or left._act(*result) == right, "computed equivalence witness is sound")
+    cases.require((result is not None) == (left._normalized() == right._normalized()), "decision and invariant agree")
 
 
-def check_nonreal() -> None:
+def check_nonreal(cases: Cases | None = None) -> None:
+    cases = _cases(cases)
     table = ((GR(1, 1), GR(2, -1)), (GR(Fraction(1, 3), 2), GR(-1, 3)))
     rows, cols = (GR(0, 1), GR(2)), (GR(1, -1), GR(Fraction(2, 3)))
     other = act(table, rows, cols)
     reconstructed = witness(table, other)
-    if reconstructed is None or act(table, *reconstructed) != other:
-        raise SystemExit("Gaussian-rational reconstruction failed")
+    cases.require(reconstructed is not None and act(table, *reconstructed) == other, "Gaussian-rational reconstruction")
     separated = (other[0], (other[1][0], other[1][1].mul(GR(2))))
-    if witness(table, separated) is not None:
-        raise SystemExit("different cross ratio was accepted")
+    cases.require(witness(table, separated) is None, "different cross ratio is separated")
 
 
-def check_rephasing() -> None:
-    transformations = 0
-    comparisons = 0
-    orbit_counts = []
+def check_rephasing(cases: Cases | None = None) -> None:
+    cases = _cases(cases)
+    transformations = comparisons = 0
+    orbit_counts: list[int] = []
     for height, width in ((1, 1), (1, 2), (2, 1), (2, 2), (2, 3)):
         tables = sign_tables(height, width)
-        canonical = []
+        canonical: set[Table] = set()
         for table in tables:
-            norm = check_canonical(table)
-            if norm not in canonical:
-                canonical.append(norm)
-            transformations += check_sign_actions(table, height, width)
+            canonical.add(check_canonical(table, cases))
+            transformations += check_sign_actions(table, height, width, cases)
             for other in tables:
-                check_pair(table, other)
+                check_pair(table, other, cases)
                 comparisons += 1
-        expected = 2 ** ((height - 1) * (width - 1))
-        if len(canonical) != expected:
-            raise SystemExit("independent-coordinate count failed")
+        cases.require(len(canonical) == 2**((height-1)*(width-1)), "independent-coordinate count")
         orbit_counts.append(len(canonical))
-    check_nonreal()
+    check_nonreal(cases)
     print(f"rephasing: {transformations} sign actions, {comparisons} pair decisions; orbits {orbit_counts}")
-    print("nonreal rational reconstruction and separated cross-ratio control passed")
 
 
-def check_invalid_inputs() -> None:
-    """Domain refusals use exceptions, including under optimized Python."""
-    cases: list[tuple[str, Callable[[], object], type[Exception]]] = [
-        ("bool", lambda: exact_rational(True), TypeError),
-        ("float", lambda: exact_rational(0.5), TypeError),
-        ("text", lambda: exact_rational("1"), TypeError),
-        ("zero inverse", lambda: GR(0).inv(), ValueError),
-        ("empty table", lambda: shape(()), ValueError),
-        ("empty row", lambda: shape(((),)), ValueError),
-        ("ragged", lambda: shape(((GR(1),), (GR(1), GR(1)))), ValueError),
-        ("zero label", lambda: shape(((GR(0),),)), ValueError),
-        ("bad row gauge", lambda: act(((GR(1),),), (), (GR(1),)), ValueError),
-        ("zero gauge", lambda: act(((GR(1),),), (GR(0),), (GR(1),)), ValueError),
-        ("different shapes", lambda: witness(((GR(1),),), ((GR(1), GR(1)),)), ValueError),
-    ]
-    for label, action, error in cases:
-        try:
-            action()
-        except error:
-            continue
-        raise SystemExit("invalid input was admitted: " + label)
-    print(f"{len(cases)} invalid-domain cases refused")
+def check_invalid_inputs(cases: Cases | None = None) -> None:
+    cases = _cases(cases)
+    actions: tuple[Callable[[], object], ...] = (
+        lambda: exact_rational(True), lambda: exact_rational(0.5), lambda: exact_rational("1"),
+        lambda: GR(0).inv(), lambda: shape(()), lambda: shape(((),)),
+        lambda: shape(((GR(1),), (GR(1), GR(1)))), lambda: shape(((GR(0),),)),
+        lambda: act(((GR(1),),), (), (GR(1),)),
+        lambda: act(((GR(1),),), (GR(0),), (GR(1),)),
+        lambda: witness(((GR(1),),), ((GR(1), GR(1)),)))
+    for action in actions:
+        result = evaluate(action)
+        cases.require(result.error is not None and result.error.kind == "input", "invalid-domain input refused")
 
 
-def main() -> None:
-    samples = (
-        Fraction(0),
-        Fraction(1),
-        Fraction(2),
-        Fraction(3),
-        Fraction(4),
-        Fraction(5),
-        Fraction(-1),
-        Fraction(3, 2),
-        Fraction(7, 5),
-    )
+def check_counting_examples(cases: Cases | None=None) -> None:
+    cases = _cases(cases)
+    samples = (Fraction(0), Fraction(1), Fraction(2), Fraction(3), Fraction(4), Fraction(5), Fraction(-1), Fraction(3, 2), Fraction(7, 5))
     for sample in samples:
-        if cycle_count(sample) - constraint_count(sample) != cp_count(sample):
-            raise SystemExit(f"difference failed at {sample}")
-        if cp_count(sample) + (sample - 1) != constraint_count(sample):
-            raise SystemExit(f"constraint sum failed at {sample}")
-    table = {
-        1: (0, 0),
-        2: (1, 0),
-        3: (4, 1),
-        4: (9, 3),
-    }
+        cases.require(not cycle_count(sample) - constraint_count(sample) != cp_count(sample), f'difference failed at {sample}')
+        cases.require(not cp_count(sample) + (sample - 1) != constraint_count(sample), f'constraint sum failed at {sample}')
+    table = {1: (0, 0), 2: (1, 0), 3: (4, 1), 4: (9, 3)}
     for n, (cyc, cp) in table.items():
-        if cycle_count(n) != cyc or cp_count(n) != cp:
-            raise SystemExit(f"table failed at {n}")
-    if cycle_count(1) != cp_count(1):
-        raise SystemExit("n=1 should agree")
+        cases.require(not (cycle_count(n) != cyc or cp_count(n) != cp), f'table failed at {n}')
+    cases.require(not cycle_count(1) != cp_count(1), 'n=1 should agree')
     for n in (2, 3, 4):
-        if cycle_count(n) == cp_count(n):
-            raise SystemExit(f"n={n} should differ")
-    if constraint_count(3) != 3:
-        raise SystemExit("constraint count at 3")
-    if cycle_count(3) - constraint_count(3) != 1:
-        raise SystemExit("4 - 3")
+        cases.require(not cycle_count(n) == cp_count(n), f'n={n} should differ')
+    cases.require(not constraint_count(3) != 3, 'constraint count at 3')
+    cases.require(not cycle_count(3) - constraint_count(3) != 1, '4 - 3')
+
+
+def check_quartet_examples(cases: Cases | None=None) -> None:
+    cases = _cases(cases)
     one = GR(1, 0)
     eye = GR(0, 1)
     q_real = quartet(one, one, one, one)
     q_imag = quartet(one, eye, one, one)
-    if q_real != GR(1, 0) or q_imag != GR(0, 1):
-        raise SystemExit(f"quartets {q_real} {q_imag}")
-    if q_real.im == cp_count(3) or q_imag.im != cp_count(3):
-        raise SystemExit("count match")
-    if q_real == q_imag:
-        raise SystemExit("quartets should differ")
-    print("difference identity on 9 rational samples")
-    print("table cycle/cp: n=1 -> 0,0; n=2 -> 1,0; n=3 -> 4,1; n=4 -> 9,3")
-    print("n=3 split: cycle 4, constraint 3, cp 1")
-    print("quartet imag parts 0 and 1; cpCount(3) matches only the second")
-    print("checked: counting identities, four-point table, quartet split")
-    check_rephasing()
-    check_invalid_inputs()
+    cases.require(not (q_real != GR(1, 0) or q_imag != GR(0, 1)), f'quartets {q_real} {q_imag}')
+    cases.require(not (q_real.im == cp_count(3) or q_imag.im != cp_count(3)), 'count match')
+    cases.require(not q_real == q_imag, 'quartets should differ')
+
+
+def main() -> None:
+    cases = Cases()
+    for check in (check_counting_examples, check_quartet_examples, check_rephasing, check_invalid_inputs):
+        check(cases)
+    print(json.dumps({"AuthorityEffect": "None", "status": "passed", "checks": cases.checks,
+                      "scope": "Supplied nonzero Gaussian-label rephasing and rational identities only."}, indent=2))
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(cli(main))

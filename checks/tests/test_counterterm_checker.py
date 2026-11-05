@@ -1,0 +1,262 @@
+"""Independent Dirac matrix/inverse and finite Ward-contraction verification. AuthorityEffect: None."""
+from __future__ import annotations
+
+from collections.abc import Callable
+import contextlib
+from dataclasses import FrozenInstanceError
+from fractions import Fraction as Q
+import io
+import json
+from pathlib import Path
+import runpy
+import subprocess
+import sys
+from types import SimpleNamespace
+import unittest
+from unittest.mock import patch
+
+from hypothesis import assume, given, settings, strategies as st
+import sympy as sp
+
+CHECKS = Path(__file__).resolve().parents[1]
+APP = CHECKS/"independent/dfm-z1-z2-counterterm-fence.py"
+sys.path.insert(0, str(CHECKS))
+from checker_support.boundary import Violation, cli, evaluate
+from checker_support.cases import Cases
+from checker_support.domains import Failure
+from checker_support.gaussian_rational import GaussianRational as G
+
+Matrix = tuple[tuple[G, ...], ...]
+PROPERTY = settings(max_examples=80, derandomize=True, deadline=None, database=None)
+RATIONAL = st.builds(Q, st.integers(-4, 4), st.integers(1, 4))
+VECTOR = st.tuples(RATIONAL, RATIONAL, RATIONAL, RATIONAL)
+PAIRS = st.lists(st.tuples(st.integers(-2, 2), st.integers(-2, 2)), min_size=16, max_size=16)
+
+
+def load() -> SimpleNamespace:
+    return SimpleNamespace(**runpy.run_path(str(APP)))
+
+
+def _symbolic(matrix: Matrix) -> sp.ImmutableMatrix:
+    return sp.ImmutableMatrix([[sp.Rational(entry.re)+sp.I*sp.Rational(entry.im) for entry in row] for row in matrix])
+
+
+def _rows(pairs: list[tuple[int, int]]) -> Matrix:
+    return tuple(tuple(G(*pairs[4*row+column]) for column in range(4)) for row in range(4))
+
+
+def _basis() -> tuple[sp.ImmutableMatrix, ...]:
+    x = sp.ImmutableMatrix(((0, 1), (1, 0)))
+    y = sp.ImmutableMatrix(((0, -sp.I), (sp.I, 0)))
+    z = sp.ImmutableMatrix(((1, 0), (0, -1)))
+    return (sp.kronecker_product(z, sp.eye(2)), *(sp.kronecker_product(sp.I*y, sigma) for sigma in (x, y, z)))
+
+
+def _inverse_operator(vector: tuple[Q, ...], mass: Q) -> sp.ImmutableMatrix:
+    coefficients = (vector[0], -vector[1], -vector[2], -vector[3])
+    return sp.ImmutableMatrix(sum((coefficient*gamma for coefficient, gamma in zip(coefficients, _basis())), sp.zeros(4))-mass*sp.eye(4))
+
+
+class CountertermCheckerTests(unittest.TestCase):
+    def refused(self, operation: Callable[..., object], *args: object, kind: str = "input") -> Failure:
+        result = evaluate(lambda: operation(*args))
+        self.assertFalse(result.ok)
+        self.assertIsNone(result.value)
+        if result.error is None:
+            self.fail("refusal lacks error")
+        self.assertEqual(result.error.kind, kind)
+        return result.error
+
+    def test_oracles_and_basis(self) -> None:
+        module = load()
+        self.assertEqual(_symbolic(module.eye()), sp.eye(4))
+        self.assertEqual(_symbolic(module.zero_matrix()), sp.zeros(4))
+        self.assertEqual(_rows([(1, 2)]*16)[2][3], G(1, 2))
+        self.assertEqual(_symbolic(((G(Q(1, 2), Q(-2, 3)),),)), sp.ImmutableMatrix([[sp.Rational(1, 2)-2*sp.I/3]]))
+        for index, gamma in enumerate(_basis()):
+            self.assertEqual(_symbolic(module.GAMMAS[index]), gamma)
+            for other, delta in enumerate(_basis()):
+                expected = 2*(1 if index == 0 else -1)*sp.eye(4) if index == other else sp.zeros(4)
+                self.assertEqual(gamma*delta+delta*gamma, expected)
+        self.assertEqual(_inverse_operator((Q(2), Q(0), Q(0), Q(0)), Q(1)), sp.diag(1, 1, -3, -3))
+        with contextlib.redirect_stdout(io.StringIO()) as output:
+            load()
+        self.assertEqual(output.getvalue(), "")
+
+    def test_ordered_oracle_rows_and_inverse_operator_sign(self) -> None:
+        module = load()
+        self.assertEqual(_rows([(index, -index) for index in range(16)])[1][2], G(6, -6))
+        expected = sp.diag(1, 1, -3, -3)
+        self.assertEqual(_symbolic(module.DiracKernel((2, 0, 0, 0), 1).inverse_operator().value), expected)
+        self.assertEqual(_symbolic(module.prop_inv((2, 0, 0, 0), 1)), expected)
+
+    @PROPERTY
+    @given(PAIRS, PAIRS, RATIONAL)
+    def test_gaussian_matrix_arithmetic_against_symbolic_oracle(self, first: list[tuple[int, int]], second: list[tuple[int, int]], scalar: Q) -> None:
+        module = load()
+        left, right = _rows(first), _rows(second)
+        a, b = _symbolic(left), _symbolic(right)
+        self.assertEqual(_symbolic(module.madd(left, right)), a+b)
+        self.assertEqual(_symbolic(module.msub(left, right)), a-b)
+        self.assertEqual(_symbolic(module.mscale(scalar, left)), scalar*a)
+        self.assertEqual(_symbolic(module.mmul(left, right)).applyfunc(sp.expand), (a*b).applyfunc(sp.expand))
+
+    @PROPERTY
+    @given(VECTOR, RATIONAL)
+    def test_kernel_inverse_against_matrix_inversion(self, vector: tuple[Q, Q, Q, Q], mass: Q) -> None:
+        module = load()
+        denominator = vector[0]**2-sum(value**2 for value in vector[1:])-mass**2
+        kernel = module.DiracKernel(vector, mass)
+        operator = _inverse_operator(vector, mass)
+        self.assertEqual(_symbolic(kernel.inverse_operator().value), operator)
+        self.assertEqual(_symbolic(module.prop_inv(vector, mass)), operator)
+        if denominator == 0:
+            self.assertEqual(kernel.propagator().error.kind, "input")
+            return
+        propagator = kernel.propagator()
+        self.assertTrue(propagator.ok)
+        self.assertEqual(_symbolic(propagator.value), operator.inv())
+        self.assertEqual(module.prop(vector, mass), propagator.value)
+        self.assertEqual(module.mmul(propagator.value, kernel.inverse_operator().value), module.eye())
+
+    @PROPERTY
+    @given(VECTOR, VECTOR, RATIONAL)
+    def test_generated_inverse_difference_and_sandwich(self, p: tuple[Q, Q, Q, Q], q: tuple[Q, Q, Q, Q], mass: Q) -> None:
+        module = load()
+        shifted = tuple(a+b for a, b in zip(p, q))
+        self.assertEqual(module.msub(module.prop_inv(shifted, mass), module.prop_inv(p, mass)), module.slash(q))
+        first, second = module.DiracKernel(p, mass).propagator(), module.DiracKernel(shifted, mass).propagator()
+        assume(first.ok and second.ok)
+        self.assertEqual(module.mmul(second.value, module.mmul(module.slash(q), first.value)), module.msub(first.value, second.value))
+
+    def test_nonreal_dirac_vertex_and_lowered_contraction(self) -> None:
+        module = load()
+        left = _rows([(index % 3-1, (index*2) % 5-2) for index in range(16)])
+        right = _rows([((index*3) % 7-3, (index+1) % 3-1) for index in range(16)])
+        a, b = _symbolic(left), _symbolic(right)
+        gammas, metric = _basis(), (1, -1, -1, -1)
+        expected_dirac = sum((sign*gamma*a*gamma for sign, gamma in zip(metric, gammas)), sp.zeros(4)).applyfunc(sp.expand)
+        self.assertEqual(_symbolic(module.dirac(left)), expected_dirac)
+        vertices = [sum((sign*gamma*a*insertion*b*gamma for sign, gamma in zip(metric, gammas)), sp.zeros(4)).applyfunc(sp.expand) for insertion in gammas]
+        for direction, expected in enumerate(vertices):
+            self.assertEqual(_symbolic(module.vertex(direction, left, right)), expected)
+        q = (Q(2, 3), Q(-1, 2), Q(3, 4), Q(4, 5))
+        expected = sum((coefficient*sign*matrix for coefficient, sign, matrix in zip(q, metric, vertices)), sp.zeros(4))
+        self.assertEqual(_symbolic(module.contract(q, left, right)), expected)
+
+    def test_integer_inputs_original_witness_and_mass_shell(self) -> None:
+        module = load()
+        first, second = module.prop((2, 0, 0, 0), 1), module.prop((3, 0, 0, 1), 1)
+        self.assertEqual(_symbolic(first), sp.diag(1, 1, sp.Rational(-1, 3), sp.Rational(-1, 3)))
+        contracted = module.contract((1, 0, 0, 1), second, first)
+        expected = sp.ImmutableMatrix(((sp.Rational(2, 7), 0, sp.Rational(-2, 7), 0), (0, sp.Rational(2, 7), 0, sp.Rational(2, 7)),
+                                       (sp.Rational(2, 7), 0, sp.Rational(26, 21), 0), (0, sp.Rational(-2, 7), 0, sp.Rational(26, 21))))
+        self.assertEqual(_symbolic(contracted), expected)
+        self.assertEqual(contracted, module.msub(module.dirac(first), module.dirac(second)))
+        for momentum, mass in (((1, 0, 0, 0), 1), ((1, 1, 0, 0), 0), ((0, 0, 0, 0), 0)):
+            kernel = module.DiracKernel(momentum, mass)
+            self.assertTrue(kernel.inverse_operator().ok)
+            self.assertEqual(kernel.propagator().error.message, "singular propagator")
+            self.refused(module.prop, momentum, mass)
+        self.assertEqual(module.prop((2, 0, 0, 0), -1), module.DiracKernel((2, 0, 0, 0), -1).propagator().value)
+
+    def test_kernel_ownership_and_scalar_vector_domains(self) -> None:
+        module = load()
+        momentum = [2, 0, 0, 0]
+        kernel = module.DiracKernel(momentum, 1)
+        momentum[0] = 1
+        self.assertEqual(kernel.momentum, (Q(2), Q(0), Q(0), Q(0)))
+        self.assertTrue(kernel.propagator().ok)
+        with self.assertRaises(FrozenInstanceError):
+            kernel.mass = Q(2)
+        for bad in (True, 1.0, "1", None):
+            self.refused(module.DiracKernel, (2, 0, 0, 0), bad)
+            self.refused(module.mscale, bad, module.eye())
+        for bad_vector in ((), (1, 2, 3), (1, 2, 3, 4, 5), (True, 0, 0, 0), (1.0, 0, 0, 0), "1234", None):
+            self.refused(module.DiracKernel, bad_vector, 1)
+            self.refused(module.slash, bad_vector)
+            self.refused(module.prop_inv, bad_vector, 1)
+            self.refused(module.contract, bad_vector, module.eye(), module.eye())
+
+    def test_matrix_index_domains_and_snapshot(self) -> None:
+        module = load()
+        rows = [list(row) for row in module.eye()]
+        snapshot = module.mscale(1, rows)
+        rows[0][0] = G(9)
+        self.assertEqual(snapshot, module.eye())
+        invalid = [(), "matrix", ((G(1),),)*4, ((0,)*4,)*4, ((G(0),)*4,)*3]
+        for bad in invalid:
+            self.refused(module.madd, bad, module.eye())
+            self.refused(module.msub, module.eye(), bad)
+            self.refused(module.mscale, 1, bad)
+            self.refused(module.mmul, module.eye(), bad)
+            self.refused(module.dirac, bad)
+            self.refused(module.vertex, 0, bad, module.eye())
+            self.refused(module.contract, (1, 0, 0, 0), module.eye(), bad)
+        for direction in (True, False, -1, 4, 1.0, None):
+            self.refused(module.vertex, direction, module.eye(), module.eye())
+
+    def test_resource_budgets_and_cancellation(self) -> None:
+        module = load()
+        self.refused(module.DiracKernel, (2**4096, 0, 0, 0), 0, kind="resource")
+        self.refused(module.DiracKernel, (1, 0, 0, 0), 2**4096, kind="resource")
+        large = 2**2048
+        kernel = module.DiracKernel((large-1, large, 0, 0), 0)
+        self.assertLess(((large-1)**2-large**2).bit_length(), 4096)
+        self.assertEqual(kernel.propagator().error.kind, "resource")
+        shell = module.DiracKernel((large, large, 0, 0), 0)
+        self.assertEqual(shell.propagator().error.kind, "resource")
+        summand = 2**2047
+        oversized_sum = module.DiracKernel((0, summand, summand, summand), summand)
+        self.refused(oversized_sum._denominator, kind="resource")
+        self.assertEqual(oversized_sum.propagator().error.kind, "resource")
+        matrix = tuple(tuple(G(2**4095) if row == column else G(0) for column in range(4)) for row in range(4))
+        self.refused(module.mscale, 2, matrix, kind="resource")
+        self.refused(module.madd, matrix, matrix, kind="resource")
+        self.refused(module.mmul, matrix, module.mscale(2, module.eye()), kind="resource")
+        inverse = module.DiracKernel((2**4095, 0, 0, 0), -2**4095).inverse_operator()
+        self.assertEqual(inverse.error.kind, "resource")
+
+    def test_matrix_preflight_before_arithmetic(self) -> None:
+        module = load()
+        invalid = ((G(0),)*4,)*3
+        with patch.object(G, "__mul__", side_effect=RuntimeError("must not multiply")):
+            self.refused(module.vertex, 4, module.eye(), module.eye())
+            self.refused(module.mmul, module.eye(), invalid)
+            self.refused(module.contract, (1, 0, 0, 0), module.eye(), invalid)
+            self.refused(module.mscale, 1, invalid)
+            self.refused(module.mmul, module.eye(), ((0,)*4,)*4)
+
+    def test_counts_faults_and_lifecycle(self) -> None:
+        module = load()
+        cases = Cases()
+        module.verify(cases)
+        self.assertEqual(cases.checks, 25)
+        self.refused(module.verify, None)
+        with patch.object(G, "__mul__", return_value=G(0)):
+            self.refused(module.verify, Cases(), kind="check")
+        kernel = module.DiracKernel((2, 0, 0, 0), 1)
+        with patch.object(G, "__add__", side_effect=RuntimeError("bug")):
+            with self.assertRaises(RuntimeError):
+                kernel.inverse_operator()
+        with patch.object(G, "__mul__", side_effect=KeyboardInterrupt):
+            with self.assertRaises(KeyboardInterrupt):
+                kernel.propagator()
+
+    def test_executable_receipt_and_failure_exit(self) -> None:
+        flags = [] if __debug__ else ["-O"]
+        result = subprocess.run([sys.executable, "-I", "-B", *flags, "-X", "utf8", str(APP)],
+                                capture_output=True, text=True, encoding="utf-8", timeout=30)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stderr, "")
+        receipt = json.loads(result.stdout)
+        self.assertEqual((receipt["status"], receipt["checks"]), ("passed", 25))
+        with patch.object(Cases, "require", side_effect=Violation("check", "injected")), contextlib.redirect_stderr(io.StringIO()) as output:
+            with self.assertRaises(SystemExit) as failure:
+                runpy.run_path(str(APP), run_name="__main__")
+        self.assertEqual(failure.exception.code, 1)
+        self.assertEqual(json.loads(output.getvalue())["kind"], "check")
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

@@ -1,0 +1,578 @@
+[
+  {
+    "identity": "natural-bit-budget",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if admitted.bit_length() > 4096:",
+    "after": "if False:",
+    "tests": [
+      "test_literal_helper_domains"
+    ]
+  },
+  {
+    "identity": "natural-bit-boundary",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if admitted.bit_length() > 4096:",
+    "after": "if admitted.bit_length() >= 4096:",
+    "tests": [
+      "test_literal_helper_domains"
+    ]
+  },
+  {
+    "identity": "word-exact-symbol",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "integer(token, \"word symbol\", 0, 4095)",
+    "after": "int(token)",
+    "tests": [
+      "test_model_schema_and_word_boundaries"
+    ]
+  },
+  {
+    "identity": "word-length-budget",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "sequence(value, \"word\", maximum=maximum)",
+    "after": "sequence(value, \"word\", maximum=4096)",
+    "tests": [
+      "test_model_schema_and_word_boundaries"
+    ]
+  },
+  {
+    "identity": "alphabet-size-budget",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "sequence(alphabet, \"alphabet\", maximum=32)",
+    "after": "sequence(alphabet, \"alphabet\", maximum=33)",
+    "tests": [
+      "test_model_schema_and_word_boundaries"
+    ]
+  },
+  {
+    "identity": "alphabet-empty",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if not symbols or len(set(symbols)) != len(symbols):",
+    "after": "if len(set(symbols)) != len(symbols):",
+    "tests": [
+      "test_model_schema_and_word_boundaries"
+    ]
+  },
+  {
+    "identity": "alphabet-duplicate",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if not symbols or len(set(symbols)) != len(symbols):",
+    "after": "if not symbols:",
+    "tests": [
+      "test_model_schema_and_word_boundaries"
+    ]
+  },
+  {
+    "identity": "alphabet-exact-symbol",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "integer(token, \"alphabet symbol\", 0, 4095)",
+    "after": "int(token)",
+    "tests": [
+      "test_model_schema_and_word_boundaries"
+    ]
+  },
+  {
+    "identity": "rule-count-budget",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "sequence(rules, \"rules\", maximum=32)",
+    "after": "sequence(rules, \"rules\", maximum=33)",
+    "tests": [
+      "test_model_schema_and_word_boundaries"
+    ]
+  },
+  {
+    "identity": "duplicate-rules",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if len(set(admitted)) != len(admitted):",
+    "after": "if False:",
+    "tests": [
+      "test_model_schema_and_word_boundaries"
+    ]
+  },
+  {
+    "identity": "alphabet-membership",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if any(token not in self.alphabet for token in word):",
+    "after": "if False:",
+    "tests": [
+      "test_model_schema_and_word_boundaries"
+    ]
+  },
+  {
+    "identity": "length-bound-domain",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "integer(max_length, \"word length bound\", 0, MAX_WORD_LENGTH)",
+    "after": "int(max_length)",
+    "tests": [
+      "test_model_schema_and_word_boundaries"
+    ]
+  },
+  {
+    "identity": "rules-snapshot-alias",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "object.__setattr__(self, \"rules\", tuple(admitted))",
+    "after": "object.__setattr__(self, \"rules\", rules)",
+    "tests": [
+      "test_model_owns_immutable_snapshots"
+    ]
+  },
+  {
+    "identity": "alphabet-snapshot-alias",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "object.__setattr__(self, \"alphabet\", frozenset(symbols))",
+    "after": "object.__setattr__(self, \"alphabet\", alphabet)",
+    "tests": [
+      "test_model_owns_immutable_snapshots"
+    ]
+  },
+  {
+    "identity": "aggregate-frozen",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "@dataclass(frozen=True, slots=True, init=False)",
+    "after": "@dataclass(frozen=False, slots=True, init=False)",
+    "tests": [
+      "test_model_owns_immutable_snapshots"
+    ]
+  },
+  {
+    "identity": "in-bound-endpoint",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "len(self.admit_word(value)) <= self.max_length",
+    "after": "len(self.admit_word(value)) < self.max_length",
+    "tests": [
+      "test_six_original_controls_and_cli"
+    ]
+  },
+  {
+    "identity": "rule-index-exact",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "integer(rule_index, \"rule index\", 0)",
+    "after": "int(rule_index)",
+    "tests": [
+      "test_model_schema_and_word_boundaries"
+    ]
+  },
+  {
+    "identity": "one-hole-context",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "replaced = hole(source, left, before, after, right)",
+    "after": "replaced = left + after + right",
+    "tests": [
+      "test_one_hole_replacement_uses_exact_context"
+    ]
+  },
+  {
+    "identity": "empty-rule-final-position",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "range(len(word) + 1)",
+    "after": "range(len(word))",
+    "tests": [
+      "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+    ]
+  },
+  {
+    "identity": "matching-before-word",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if word[index:index+len(before)] == before:",
+    "after": "if True:",
+    "tests": [
+      "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+    ]
+  },
+  {
+    "identity": "replacement-suffix",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "word[:index] + after + word[index+len(before):]",
+    "after": "word[:index] + after + word[index:]",
+    "tests": [
+      "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+    ]
+  },
+  {
+    "identity": "successor-length-filter",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if len(candidate) <= self.max_length:",
+    "after": "if True:",
+    "tests": [
+      "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+    ]
+  },
+  {
+    "identity": "path-order",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "return tuple(reversed(route))",
+    "after": "return tuple(route)",
+    "tests": [
+      "test_search_and_trace_budgets_never_mean_unreachable"
+    ]
+  },
+  {
+    "identity": "state-budget-domain",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "integer(max_states, \"state budget\", 1, MAX_STATES)",
+    "after": "int(max_states)",
+    "tests": [
+      "test_search_parameter_refusals"
+    ]
+  },
+  {
+    "identity": "source-length-fence",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if len(start) > self.max_length:",
+    "after": "if False:",
+    "tests": [
+      "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+    ]
+  },
+  {
+    "identity": "target-length-fence",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if len(goal) > self.max_length:\n            return None",
+    "after": "if len(goal) > self.max_length:\n            raise Violation(\"input\", \"outside\")",
+    "tests": [
+      "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+    ]
+  },
+  {
+    "identity": "reflexive-path",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if start == goal:\n            return (start,)",
+    "after": "if start == goal:\n            return None",
+    "tests": [
+      "test_search_and_trace_budgets_never_mean_unreachable"
+    ]
+  },
+  {
+    "identity": "bfs-queue-order",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "word = frontier.popleft()",
+    "after": "word = frontier.pop()",
+    "tests": [
+      "test_shortest_route_and_no_path_exhaustion"
+    ]
+  },
+  {
+    "identity": "bfs-work-cost",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "trials += len(self.rules) * (len(word) + 1)",
+    "after": "trials += len(self.rules) * len(word)",
+    "tests": [
+      "test_search_and_trace_budgets_never_mean_unreachable"
+    ]
+  },
+  {
+    "identity": "bfs-work-boundary",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if trials > trial_budget:",
+    "after": "if trials >= trial_budget:",
+    "tests": [
+      "test_search_and_trace_budgets_never_mean_unreachable"
+    ]
+  },
+  {
+    "identity": "bfs-work-refusal",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "raise Violation(\"resource\", \"bounded search exhausted its rule-trial budget\")",
+    "after": "return None",
+    "tests": [
+      "test_search_and_trace_budgets_never_mean_unreachable"
+    ]
+  },
+  {
+    "identity": "bfs-visited",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if candidate in parents:",
+    "after": "if False:",
+    "tests": [
+      "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+    ]
+  },
+  {
+    "identity": "bfs-state-boundary",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if len(parents) >= state_budget:",
+    "after": "if len(parents) > state_budget:",
+    "tests": [
+      "test_search_and_trace_budgets_never_mean_unreachable"
+    ]
+  },
+  {
+    "identity": "bfs-state-refusal",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "raise Violation(\"resource\", \"bounded search exhausted its state budget\")",
+    "after": "return None",
+    "tests": [
+      "test_search_and_trace_budgets_never_mean_unreachable"
+    ]
+  },
+  {
+    "identity": "bfs-parent-binding",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "parents[candidate] = word",
+    "after": "parents[candidate] = start",
+    "tests": [
+      "test_search_and_trace_budgets_never_mean_unreachable"
+    ]
+  },
+  {
+    "identity": "bfs-early-goal",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if candidate == goal:",
+    "after": "if False:",
+    "tests": [
+      "test_search_and_trace_budgets_never_mean_unreachable"
+    ]
+  },
+  {
+    "identity": "trace-count-budget",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "sequence(candidate, \"trace\", maximum=MAX_STATES)",
+    "after": "sequence(candidate, \"trace\", maximum=MAX_STATES+1)",
+    "tests": [
+      "test_model_schema_and_word_boundaries"
+    ]
+  },
+  {
+    "identity": "trace-empty-refusal",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if not trace or any(len(word) > self.max_length for word in trace):",
+    "after": "if any(len(word) > self.max_length for word in trace):",
+    "tests": [
+      "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+    ]
+  },
+  {
+    "identity": "trace-length-fence",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if not trace or any(len(word) > self.max_length for word in trace):",
+    "after": "if not trace:",
+    "tests": [
+      "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+    ]
+  },
+  {
+    "identity": "trace-step-validation",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if not any(word == target for word in self._successors(source)):",
+    "after": "if False:",
+    "tests": [
+      "test_empty_rules_cycles_insertion_deletion_and_trace_refusal"
+    ]
+  },
+  {
+    "identity": "trace-work-cost",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "trials += len(self.rules) * (len(source) + 1)",
+    "after": "trials += len(self.rules) * len(source)",
+    "tests": [
+      "test_search_and_trace_budgets_never_mean_unreachable"
+    ]
+  },
+  {
+    "identity": "trace-work-boundary",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if trials > budget:",
+    "after": "if trials >= budget:",
+    "tests": [
+      "test_search_and_trace_budgets_never_mean_unreachable"
+    ]
+  },
+  {
+    "identity": "trace-work-refusal",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "raise Violation(\"resource\", \"trace verification exhausted its rule-trial budget\")",
+    "after": "return trace",
+    "tests": [
+      "test_search_and_trace_budgets_never_mean_unreachable"
+    ]
+  },
+  {
+    "identity": "trace-snapshot-alias",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "        return trace\n\n    def verify_trace",
+    "after": "        return candidate\n\n    def verify_trace",
+    "tests": [
+      "test_model_owns_immutable_snapshots"
+    ]
+  },
+  {
+    "identity": "merge-symbol",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "return 0 if token == 1 else token",
+    "after": "return 0 if token == 2 else token",
+    "tests": [
+      "test_constant_writer_halt_persistence_and_natural_merge"
+    ]
+  },
+  {
+    "identity": "writer-persistence",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "return (True, current) if halted else (True, proposed)",
+    "after": "return (True, proposed)",
+    "tests": [
+      "test_constant_writer_halt_persistence_and_natural_merge"
+    ]
+  },
+  {
+    "identity": "writer-halted-flag",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "if type(halted) is not bool:",
+    "after": "if False:",
+    "tests": [
+      "test_literal_helper_domains"
+    ]
+  },
+  {
+    "identity": "constant-argument-admission",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "    _natural(argument, \"evaluation argument\")",
+    "after": "    pass",
+    "tests": [
+      "test_literal_helper_domains"
+    ]
+  },
+  {
+    "identity": "encoding-order",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "return integer(code, \"finite code\", 0, 4095), 0",
+    "after": "return 0, integer(code, \"finite code\", 0, 4095)",
+    "tests": [
+      "test_encoding_and_blank_extension"
+    ]
+  },
+  {
+    "identity": "predicate-target",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "== (1, 0)\n\n\ndef append_blank",
+    "after": "== (0, 1)\n\n\ndef append_blank",
+    "tests": [
+      "test_encoding_and_blank_extension"
+    ]
+  },
+  {
+    "identity": "blank-value",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "return [*_word(word, MAX_WORD_LENGTH - 1), 0]",
+    "after": "return [*_word(word, MAX_WORD_LENGTH - 1), 1]",
+    "tests": [
+      "test_encoding_and_blank_extension"
+    ]
+  },
+  {
+    "identity": "blank-extension-budget",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "_word(word, MAX_WORD_LENGTH - 1)",
+    "after": "_word(word, MAX_WORD_LENGTH)",
+    "tests": [
+      "test_literal_helper_domains"
+    ]
+  },
+  {
+    "identity": "receipt-count",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "\"total_checks\": len(cases)",
+    "after": "\"total_checks\": len(cases)+1",
+    "tests": [
+      "test_generated_receipt_accounting"
+    ]
+  },
+  {
+    "identity": "receipt-failures",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "[name for name, passed in cases if not passed]",
+    "after": "[name for name, passed in cases if passed]",
+    "tests": [
+      "test_generated_receipt_accounting"
+    ]
+  },
+  {
+    "identity": "receipt-status",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "\"all_passed\": not failures",
+    "after": "\"all_passed\": True",
+    "tests": [
+      "test_generated_receipt_accounting"
+    ]
+  },
+  {
+    "identity": "cli-failure-status",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "return 0 if result[\"all_passed\"] else 1",
+    "after": "return 0",
+    "tests": [
+      "test_expected_failures_cancellation_and_repeated_invocations"
+    ]
+  },
+  {
+    "identity": "search-trial-domain",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "def _find_path(self, source: object, target: object, max_states: object, max_rule_trials: object) -> tuple[Word, ...] | None:\n        state_budget = integer(max_states, \"state budget\", 1, MAX_STATES)\n        trial_budget = integer(max_rule_trials, \"rule-trial budget\", 0, MAX_RULE_TRIALS)\n        start, goal = self.admit_word(source), self.admit_word(target)\n        if len(start) > self.max_length:\n            raise Violation(\"input\", \"search source lies outside the declared length bound\")\n        if len(goal) > self.max_length:\n            return None\n        if start == goal:\n            return (start,)\n        parents: dict[Word, Word | None] = {start: None}\n        frontier = deque([start])\n        trials = 0\n        while frontier:\n            word = frontier.popleft()\n            trials += len(self.rules) * (len(word) + 1)\n            if trials > trial_budget:\n                raise Violation(\"resource\", \"bounded search exhausted its rule-trial budget\")\n            for candidate in self._successors(word):\n                if candidate in parents:\n                    continue\n                if len(parents) >= state_budget:\n                    raise Violation(\"resource\", \"bounded search exhausted its state budget\")\n                parents[candidate] = word\n                if candidate == goal:\n                    return self._path(parents, candidate)\n                frontier.append(candidate)\n        return None",
+    "after": "def _find_path(self, source: object, target: object, max_states: object, max_rule_trials: object) -> tuple[Word, ...] | None:\n        state_budget = integer(max_states, \"state budget\", 1, MAX_STATES)\n        trial_budget = int(max_rule_trials)\n        start, goal = self.admit_word(source), self.admit_word(target)\n        if len(start) > self.max_length:\n            raise Violation(\"input\", \"search source lies outside the declared length bound\")\n        if len(goal) > self.max_length:\n            return None\n        if start == goal:\n            return (start,)\n        parents: dict[Word, Word | None] = {start: None}\n        frontier = deque([start])\n        trials = 0\n        while frontier:\n            word = frontier.popleft()\n            trials += len(self.rules) * (len(word) + 1)\n            if trials > trial_budget:\n                raise Violation(\"resource\", \"bounded search exhausted its rule-trial budget\")\n            for candidate in self._successors(word):\n                if candidate in parents:\n                    continue\n                if len(parents) >= state_budget:\n                    raise Violation(\"resource\", \"bounded search exhausted its state budget\")\n                parents[candidate] = word\n                if candidate == goal:\n                    return self._path(parents, candidate)\n                frontier.append(candidate)\n        return None",
+    "tests": [
+      "test_search_parameter_refusals"
+    ]
+  },
+  {
+    "identity": "trace-trial-domain",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "def _verify_trace(self, candidate: object, max_rule_trials: object) -> tuple[Word, ...]:\n        budget = integer(max_rule_trials, \"rule-trial budget\", 0, MAX_RULE_TRIALS)\n        trace = tuple(self.admit_word(word) for word in sequence(candidate, \"trace\", maximum=MAX_STATES))\n        if not trace or any(len(word) > self.max_length for word in trace):\n            raise Violation(\"input\", \"trace must be nonempty and inside the length bound\")\n        trials = 0\n        for source, target in zip(trace, trace[1:]):\n            trials += len(self.rules) * (len(source) + 1)\n            if trials > budget:\n                raise Violation(\"resource\", \"trace verification exhausted its rule-trial budget\")\n            if not any(word == target for word in self._successors(source)):\n                raise Violation(\"check\", \"trace contains a step absent from the rewrite system\")\n        return trace",
+    "after": "def _verify_trace(self, candidate: object, max_rule_trials: object) -> tuple[Word, ...]:\n        budget = int(max_rule_trials)\n        trace = tuple(self.admit_word(word) for word in sequence(candidate, \"trace\", maximum=MAX_STATES))\n        if not trace or any(len(word) > self.max_length for word in trace):\n            raise Violation(\"input\", \"trace must be nonempty and inside the length bound\")\n        trials = 0\n        for source, target in zip(trace, trace[1:]):\n            trials += len(self.rules) * (len(source) + 1)\n            if trials > budget:\n                raise Violation(\"resource\", \"trace verification exhausted its rule-trial budget\")\n            if not any(word == target for word in self._successors(source)):\n                raise Violation(\"check\", \"trace contains a step absent from the rewrite system\")\n        return trace",
+    "tests": [
+      "test_search_parameter_refusals"
+    ]
+  },
+  {
+    "identity": "bfs-exhaustion-result",
+    "source": "independent/comp-finite-model-controls.py",
+    "before": "                frontier.append(candidate)\n        return None",
+    "after": "                frontier.append(candidate)\n        return (start,)",
+    "tests": [
+      "test_shortest_route_and_no_path_exhaustion"
+    ]
+  },
+  {
+    "identity": "oracle-bound-filter",
+    "source": "tests/test_computation_controls.py",
+    "before": "if max(len(source), len(target)) <= bound:",
+    "after": "if True:",
+    "tests": [
+      "test_graph_oracles_on_explicit_small_relations"
+    ]
+  },
+  {
+    "identity": "oracle-edge-direction",
+    "source": "tests/test_computation_controls.py",
+    "before": "edges.add((source, target))",
+    "after": "edges.add((target, source))",
+    "tests": [
+      "test_graph_oracles_on_explicit_small_relations"
+    ]
+  },
+  {
+    "identity": "oracle-distance-depth",
+    "source": "tests/test_computation_controls.py",
+    "before": "depth += 1",
+    "after": "depth += 2",
+    "tests": [
+      "test_graph_oracles_on_explicit_small_relations"
+    ]
+  },
+  {
+    "identity": "oracle-distance-seed",
+    "source": "tests/test_computation_controls.py",
+    "before": "distances = {source: 0}",
+    "after": "distances = {source: 1}",
+    "tests": [
+      "test_graph_oracles_on_explicit_small_relations"
+    ]
+  },
+  {
+    "identity": "test-refusal-helper",
+    "source": "tests/test_computation_controls.py",
+    "before": "        result = evaluate(lambda: operation(*args))",
+    "after": "        return Failure(\"input\", \"fake\")\n        result = evaluate(lambda: operation(*args))",
+    "tests": [
+      "test_refusal_helper_requires_a_failure"
+    ]
+  }
+]

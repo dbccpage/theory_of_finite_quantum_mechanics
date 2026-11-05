@@ -1,0 +1,360 @@
+[
+  {
+    "identity": "input-bool",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "return rational(value, \"counting parameter\")",
+    "after": "return rational(int(value) if isinstance(value, bool) else value, \"counting parameter\")",
+    "tests": [
+      "test_scalar_and_quartet_boundaries",
+      "test_failed_refusal_is_a_failed_check"
+    ]
+  },
+  {
+    "identity": "input-budget",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "return rational(value, \"counting parameter\")",
+    "after": "return Fraction(value)",
+    "tests": [
+      "test_scalar_and_quartet_boundaries"
+    ]
+  },
+  {
+    "identity": "cycle-polynomial",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "(value-1)*(value-1)",
+    "after": "(value-1)*(value-2)",
+    "tests": [
+      "test_counting_against_polynomial_oracles"
+    ]
+  },
+  {
+    "identity": "constraint-denominator",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "value*(value-1)/2",
+    "after": "value*(value-1)/3",
+    "tests": [
+      "test_counting_against_polynomial_oracles"
+    ]
+  },
+  {
+    "identity": "cp-shift",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "(value-1)*(value-2)/2",
+    "after": "(value-1)*(value-3)/2",
+    "tests": [
+      "test_counting_against_polynomial_oracles"
+    ]
+  },
+  {
+    "identity": "cycle-budget",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "return rational((value-1)*(value-1), \"cycle count\")",
+    "after": "return (value-1)*(value-1)",
+    "tests": [
+      "test_scalar_and_quartet_boundaries"
+    ]
+  },
+  {
+    "identity": "constraint-budget",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "return rational(value*(value-1)/2, \"constraint count\")",
+    "after": "return value*(value-1)/2",
+    "tests": [
+      "test_scalar_and_quartet_boundaries"
+    ]
+  },
+  {
+    "identity": "cp-budget",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "return rational((value-1)*(value-2)/2, \"CP count\")",
+    "after": "return (value-1)*(value-2)/2",
+    "tests": [
+      "test_scalar_and_quartet_boundaries"
+    ]
+  },
+  {
+    "identity": "zero-label",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "if nonzero and value == GR(0):",
+    "after": "if False:",
+    "tests": [
+      "test_table_gauge_and_witness_domains"
+    ]
+  },
+  {
+    "identity": "quartet-zero-domain",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "(_gaussian(value) for value in (a, b, c, d))",
+    "after": "(_gaussian(value, True) for value in (a, b, c, d))",
+    "tests": [
+      "test_quartets_against_complex_oracle",
+      "test_scalar_and_quartet_boundaries"
+    ]
+  },
+  {
+    "identity": "quartet-conjugate-c",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "third.conj().mul(fourth.conj())",
+    "after": "third.mul(fourth.conj())",
+    "tests": [
+      "test_quartets_against_complex_oracle"
+    ]
+  },
+  {
+    "identity": "quartet-conjugate-d",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "third.conj().mul(fourth.conj())",
+    "after": "third.conj().mul(fourth)",
+    "tests": [
+      "test_quartets_against_complex_oracle"
+    ]
+  },
+  {
+    "identity": "table-height",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "\"Gaussian table\", maximum=64",
+    "after": "\"Gaussian table\", maximum=65",
+    "tests": [
+      "test_table_gauge_and_witness_domains"
+    ]
+  },
+  {
+    "identity": "row-width",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "\"Gaussian row\", maximum=64",
+    "after": "\"Gaussian row\", maximum=65",
+    "tests": [
+      "test_table_gauge_and_witness_domains"
+    ]
+  },
+  {
+    "identity": "ragged-row",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "sequence(row, \"Gaussian row\", len(first), 64)",
+    "after": "sequence(row, \"Gaussian row\", maximum=64)",
+    "tests": [
+      "test_table_gauge_and_witness_domains"
+    ]
+  },
+  {
+    "identity": "retain-input-rows",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "object.__setattr__(self, \"cells\", owned)",
+    "after": "object.__setattr__(self, \"cells\", matrix)",
+    "tests": [
+      "test_table_snapshots_singletons_and_maximum"
+    ]
+  },
+  {
+    "identity": "shape-transpose",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "return len(self.cells), len(self.cells[0])",
+    "after": "return len(self.cells[0]), len(self.cells)",
+    "tests": [
+      "test_sign_census_and_enumeration_preflight",
+      "test_table_snapshots_singletons_and_maximum"
+    ]
+  },
+  {
+    "identity": "normalization-corner",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "corner = self.cells[0][0]",
+    "after": "corner = GR(1)",
+    "tests": [
+      "test_gaussian_table_action_and_normalization_oracle"
+    ]
+  },
+  {
+    "identity": "normalization-row",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "row[0].mul(self.cells[0][j])",
+    "after": "row[0].mul(row[0])",
+    "tests": [
+      "test_gaussian_table_action_and_normalization_oracle"
+    ]
+  },
+  {
+    "identity": "normalization-division",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "entry.mul(corner).div(row[0].mul(self.cells[0][j]))",
+    "after": "entry.mul(corner).mul(row[0].mul(self.cells[0][j]))",
+    "tests": [
+      "test_gaussian_table_action_and_normalization_oracle"
+    ]
+  },
+  {
+    "identity": "normalization-railway",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "return evaluate(self._normalized)",
+    "after": "return Outcome(value=self._normalized())",
+    "tests": [
+      "test_recorders_failure_and_cancellation",
+      "test_table_arithmetic_resource_failure"
+    ]
+  },
+  {
+    "identity": "gauge-length",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "sequence(values, \"gauge labels\", length, 64)",
+    "after": "sequence(values, \"gauge labels\", maximum=64)",
+    "tests": [
+      "test_table_gauge_and_witness_domains"
+    ]
+  },
+  {
+    "identity": "gauge-row-factor",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "row_gauge[i].mul(value)",
+    "after": "value",
+    "tests": [
+      "test_gaussian_table_action_and_normalization_oracle"
+    ]
+  },
+  {
+    "identity": "gauge-column-direction",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": ".div(col_gauge[j])",
+    "after": ".mul(col_gauge[j])",
+    "tests": [
+      "test_gaussian_table_action_and_normalization_oracle"
+    ]
+  },
+  {
+    "identity": "action-railway",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "return evaluate(self._act, rows, cols)",
+    "after": "return Outcome(value=self._act(rows, cols))",
+    "tests": [
+      "test_recorders_failure_and_cancellation",
+      "test_table_arithmetic_resource_failure"
+    ]
+  },
+  {
+    "identity": "shape-witness",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "or self.shape != right.shape",
+    "after": "or False",
+    "tests": [
+      "test_table_gauge_and_witness_domains"
+    ]
+  },
+  {
+    "identity": "witness-separation",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "if self._normalized() != right._normalized():",
+    "after": "if False:",
+    "tests": [
+      "test_witness_against_independent_gauge_equations"
+    ]
+  },
+  {
+    "identity": "witness-rejection",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "if self._normalized() != right._normalized():",
+    "after": "if True:",
+    "tests": [
+      "test_witness_against_independent_gauge_equations"
+    ]
+  },
+  {
+    "identity": "witness-row-ratio",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "b[0].div(a[0])",
+    "after": "a[0].div(b[0])",
+    "tests": [
+      "test_witness_against_independent_gauge_equations"
+    ]
+  },
+  {
+    "identity": "witness-column-corner",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "b.div(right.cells[0][0])",
+    "after": "b.div(self.cells[0][0])",
+    "tests": [
+      "test_witness_against_independent_gauge_equations"
+    ]
+  },
+  {
+    "identity": "witness-column-direction",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "a.div(self.cells[0][0]).div(b.div(right.cells[0][0]))",
+    "after": "b.div(right.cells[0][0]).div(a.div(self.cells[0][0]))",
+    "tests": [
+      "test_witness_against_independent_gauge_equations"
+    ]
+  },
+  {
+    "identity": "witness-railway",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "return evaluate(self._witness, right)",
+    "after": "return Outcome(value=self._witness(right))",
+    "tests": [
+      "test_recorders_failure_and_cancellation",
+      "test_table_arithmetic_resource_failure"
+    ]
+  },
+  {
+    "identity": "sign-cell-budget",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "if rows*cols > 6:",
+    "after": "if False:",
+    "tests": [
+      "test_sign_census_and_enumeration_preflight"
+    ]
+  },
+  {
+    "identity": "sign-enumeration-cells",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "repeat=rows*cols",
+    "after": "repeat=rows*cols-1",
+    "tests": [
+      "test_sign_census_and_enumeration_preflight"
+    ]
+  },
+  {
+    "identity": "sign-shape-check",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "if owned.shape != (rows, cols):",
+    "after": "if False:",
+    "tests": [
+      "test_sign_census_and_enumeration_preflight"
+    ]
+  },
+  {
+    "identity": "sign-action-count",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "checked += 1",
+    "after": "checked += 2",
+    "tests": [
+      "test_sign_census_and_enumeration_preflight",
+      "test_default_counts_and_fixed_faults"
+    ]
+  },
+  {
+    "identity": "ignored-domain-failure",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "cases.require(result.error is not None and result.error.kind == \"input\", \"invalid-domain input refused\")",
+    "after": "cases.require(True, \"invalid-domain input refused\")",
+    "tests": [
+      "test_failed_refusal_is_a_failed_check"
+    ]
+  },
+  {
+    "identity": "comparison-count",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "comparisons += 1",
+    "after": "comparisons += 2",
+    "tests": [
+      "test_default_counts_and_fixed_faults"
+    ]
+  },
+  {
+    "identity": "reported-case-count",
+    "source": "independent/dfm-ckm-physics-fence.py",
+    "before": "\"checks\": cases.checks",
+    "after": "\"checks\": cases.checks+1",
+    "tests": [
+      "test_default_counts_and_fixed_faults"
+    ]
+  }
+]

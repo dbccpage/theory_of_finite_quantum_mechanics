@@ -1,0 +1,571 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "checks/checker_support/integer_quadratic_equation.py",
+  "assurance": "L4B assessment with source and evidence bindings.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Python",
+      "path": "checks/checker_support/integer_quadratic_equation.py",
+      "sha256": "7c8ae4c920631ff105ba510ce3eea40b223e3eac9af6f30988375d53770fc9d4"
+    },
+    "audited_consumers": [
+      "checks/independent/fq-gap-continuum-hilbert-lift.py",
+      "checks/tests/test_integer_obstructions.py"
+    ],
+    "boundaries": [
+      "The computations cover the stated equations and finite censuses. Continuum completion, Stone's theorem and a circle group law are separate targets."
+    ],
+    "bounded_context": "Low-degree exact integer models and finite Hilbert, Stone and U1 sample populations.",
+    "contract_urn": "urn:tfqm:checker-review:integer-obstructions:integer_quadratic_equation",
+    "evidence": [
+      {
+        "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-closure-inputs.json",
+        "sha256": "5536c69f694f267a5855add560e2e1696db5be5aa34bfa64f8b6fb5623a371e7"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-initial-manifest.json",
+        "sha256": "37a919911ee6cb7f2224d23bbe85ee393a6f174e5a0c41de5e77160513f52e45"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-initial-quality.json",
+        "sha256": "7161cc98d75dc75d81a07289ba2b9344171c8e7fc9dcfc5ab5936d49142cbf72"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-initial-review.json",
+        "sha256": "5c4ea0df2dfaaad4bf810793de4fb44f5b53bfb04f12d6823f429e40b0fcfb83"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-initial-test_integer_obstructions.py.txt",
+        "sha256": "de4e3b040e5634f8855e69dae1526c32241832b503937cffbb9b3a3f810363b5"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-initial-typing-failure.json",
+        "sha256": "a5ea3aed921b4bc86013cb8abe1b32143dc6af3aec0a216ef1614024f01258e8"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-mutations-final.json",
+        "sha256": "8c1bbbb994a46e6c28e0778c2cb2136f374e692ad7ddf1bdea2371b1c950c4d7"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-mutations.json",
+        "sha256": "4edd8d56ee1d510a4cf7dbb9dd3d45c9798a790f5571b059dc9f4d9c8b36118c"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-continuum-hilbert-lift.contract.score.yaml.txt",
+        "sha256": "a10bd03a42bb346e3e159ddf2c2a43e047a17926fbb0f26cc57deb6b226d9a20"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-continuum-hilbert-lift.py.txt",
+        "sha256": "be8a80956d91bbabee7c04f640e5cc9afb338d255acf59353d06bbf176411cad"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-stone-continuous-time.contract.score.yaml.txt",
+        "sha256": "7920c9a78543a44ee51b984742e3aeb347b417b37e99a20fe43ce312e3a76aa8"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-stone-continuous-time.py.txt",
+        "sha256": "2b49b9776fbb92c59475e62eec8dba31a27e5439f9de78e80ff66d3761abff9c"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-u1-circle.contract.score.yaml.txt",
+        "sha256": "27d10bb10578b3eb23a4e9ae451df163dff8787a5e20789d6577fc180ab47a1a"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-u1-circle.py.txt",
+        "sha256": "3cadf9cad009a4e36b375a1119114491f2524be1d839f6546bbbccfd719c2ba7"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-quality.json",
+        "sha256": "56226602850f37d5ee02a4377e86507b1b74c3597dadfe8e86409ca0daff1763"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-requirements.json",
+        "sha256": "3a6ce80e7cf7aee02b8aff5f1aabb7e5135a4f6fded28175bedb55cb83e87013"
+      },
+      {
+        "path": "checks/tests/integer_obstructions_mutations.json",
+        "sha256": "86b91bbae749ace97655cbdfa07e3ed8198581387d995eb2cd1ef7145b312a99"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+      }
+    ],
+    "failure_policy": "Input, resource and failed-control refusals travel through Violation and Outcome. CLI refusal returns nonzero. Unexpected exceptions and cancellation propagate.",
+    "operational_cost": "A fixed number of bounded integer or rational operations, including one integer square root for a quadratic.",
+    "origins": [
+      {
+        "path": "lean4/ContinuumHilbertLiftIntegerSlice.lean",
+        "sha256": "60e69b20a0335e3481c297d6a5b6e898678d9e3d06b2fa2463c2e33ab704b177"
+      },
+      {
+        "path": "lean4/StoneContinuousTimeIntegerSlice.lean",
+        "sha256": "515389319bd41d8a4ed33375efafc1e42654552641b45a82430d30614b9bde4c"
+      },
+      {
+        "path": "lean4/U1CircleIntegerWitness.lean",
+        "sha256": "3e245462359a9d35ed183b5d58ea6ff325d026c371f64d545a9c08d3e3243dcd"
+      }
+    ],
+    "owned_invariants": [
+      "Own three exact bounded integer coefficients, reject zero polynomial, accept constant and linear cases.",
+      "Evaluate admitted rational arguments and homogeneous integer pairs. Check terms and prefixes before cancellation.",
+      "Return sorted distinct exact rational roots and filter integer roots. Replay each root and distinguish a nonsquare from an input or budget failure."
+    ],
+    "requirements": {
+      "admit": {
+        "description": "Own three exact bounded integer coefficients, reject zero polynomial, accept constant and linear cases.",
+        "symbols": [
+          "_integer",
+          "IntegerQuadraticEquation",
+          "IntegerQuadraticEquation.__init__",
+          "IntegerQuadraticEquation.coefficients"
+        ],
+        "tests": [
+          "test_exact_domains_constant_linear_and_repeated_roots",
+          "test_owned_coefficients_and_immutable_reentrant_results",
+          "test_quiet_import_cli_and_per_run_failure_state",
+          "test_isolated_admission_and_first_failure"
+        ]
+      },
+      "evaluate": {
+        "description": "Evaluate admitted rational arguments and homogeneous integer pairs. Check terms and prefixes before cancellation.",
+        "symbols": [
+          "IntegerQuadraticEquation._evaluate",
+          "IntegerQuadraticEquation.evaluate",
+          "IntegerQuadraticEquation._homogeneous_value",
+          "IntegerQuadraticEquation.homogeneous_value"
+        ],
+        "tests": [
+          "test_generated_evaluation_and_homogenization",
+          "test_resource_boundaries_cover_products_prefixes_and_arguments",
+          "test_isolated_arithmetic_prefix_budgets",
+          "test_isolated_admission_and_first_failure"
+        ]
+      },
+      "roots": {
+        "description": "Return sorted distinct exact rational roots and filter integer roots. Replay each root and distinguish a nonsquare from an input or budget failure.",
+        "symbols": [
+          "_square_root",
+          "IntegerQuadraticEquation._discriminant",
+          "IntegerQuadraticEquation.discriminant",
+          "IntegerQuadraticEquation.square_root",
+          "IntegerQuadraticEquation._rational_roots",
+          "IntegerQuadraticEquation.rational_roots",
+          "IntegerQuadraticEquation._integer_roots",
+          "IntegerQuadraticEquation.integer_roots"
+        ],
+        "tests": [
+          "test_all_small_polynomials_against_independent_factorization",
+          "test_generated_factored_roots_are_complete_sorted_and_distinct",
+          "test_square_root_boundary_and_independent_square_census",
+          "test_exact_domains_constant_linear_and_repeated_roots",
+          "test_resource_boundaries_cover_products_prefixes_and_arguments",
+          "test_root_replay_guards_and_unexpected_failures"
+        ]
+      }
+    },
+    "role": "Own exact bounded polynomial arithmetic and its finite rational root set.",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": {
+      "IntegerQuadraticEquation": [
+        "admit"
+      ],
+      "IntegerQuadraticEquation.__init__": [
+        "admit"
+      ],
+      "IntegerQuadraticEquation._discriminant": [
+        "roots"
+      ],
+      "IntegerQuadraticEquation._evaluate": [
+        "evaluate"
+      ],
+      "IntegerQuadraticEquation._homogeneous_value": [
+        "evaluate"
+      ],
+      "IntegerQuadraticEquation._integer_roots": [
+        "roots"
+      ],
+      "IntegerQuadraticEquation._rational_roots": [
+        "roots"
+      ],
+      "IntegerQuadraticEquation.coefficients": [
+        "admit"
+      ],
+      "IntegerQuadraticEquation.discriminant": [
+        "roots"
+      ],
+      "IntegerQuadraticEquation.evaluate": [
+        "evaluate"
+      ],
+      "IntegerQuadraticEquation.homogeneous_value": [
+        "evaluate"
+      ],
+      "IntegerQuadraticEquation.integer_roots": [
+        "roots"
+      ],
+      "IntegerQuadraticEquation.rational_roots": [
+        "roots"
+      ],
+      "IntegerQuadraticEquation.square_root": [
+        "roots"
+      ],
+      "_integer": [
+        "admit"
+      ],
+      "_square_root": [
+        "roots"
+      ]
+    }
+  },
+  "contract_history": [
+    {
+      "bytes": 9083,
+      "original_paths": [
+        "checker-publication-2026-11-04"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/checker_support/integer_quadratic_equation.py\",\n    \"sha256\": \"7c8ae4c920631ff105ba510ce3eea40b223e3eac9af6f30988375d53770fc9d4\"\n  },\n  \"audited_consumers\": [\n    \"checks/independent/fq-gap-continuum-hilbert-lift.py\",\n    \"checks/tests/test_integer_obstructions.py\"\n  ],\n  \"boundaries\": [\n    \"The computations cover the stated equations and finite censuses. Continuum completion, Stone's theorem and a circle group law are separate targets.\"\n  ],\n  \"bounded_context\": \"Low-degree exact integer models and finite Hilbert, Stone and U1 sample populations.\",\n  \"contract_urn\": \"urn:tfqm:checker-review:integer-obstructions:integer_quadratic_equation\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-closure-inputs.json\",\n      \"sha256\": \"5536c69f694f267a5855add560e2e1696db5be5aa34bfa64f8b6fb5623a371e7\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-initial-manifest.json\",\n      \"sha256\": \"37a919911ee6cb7f2224d23bbe85ee393a6f174e5a0c41de5e77160513f52e45\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-initial-quality.json\",\n      \"sha256\": \"7161cc98d75dc75d81a07289ba2b9344171c8e7fc9dcfc5ab5936d49142cbf72\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-initial-review.json\",\n      \"sha256\": \"5c4ea0df2dfaaad4bf810793de4fb44f5b53bfb04f12d6823f429e40b0fcfb83\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-initial-test_integer_obstructions.py.txt\",\n      \"sha256\": \"de4e3b040e5634f8855e69dae1526c32241832b503937cffbb9b3a3f810363b5\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-initial-typing-failure.json\",\n      \"sha256\": \"a5ea3aed921b4bc86013cb8abe1b32143dc6af3aec0a216ef1614024f01258e8\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-mutations-final.json\",\n      \"sha256\": \"8c1bbbb994a46e6c28e0778c2cb2136f374e692ad7ddf1bdea2371b1c950c4d7\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-mutations.json\",\n      \"sha256\": \"4edd8d56ee1d510a4cf7dbb9dd3d45c9798a790f5571b059dc9f4d9c8b36118c\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-continuum-hilbert-lift.contract.score.yaml.txt\",\n      \"sha256\": \"a10bd03a42bb346e3e159ddf2c2a43e047a17926fbb0f26cc57deb6b226d9a20\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-continuum-hilbert-lift.py.txt\",\n      \"sha256\": \"be8a80956d91bbabee7c04f640e5cc9afb338d255acf59353d06bbf176411cad\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-stone-continuous-time.contract.score.yaml.txt\",\n      \"sha256\": \"7920c9a78543a44ee51b984742e3aeb347b417b37e99a20fe43ce312e3a76aa8\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-stone-continuous-time.py.txt\",\n      \"sha256\": \"2b49b9776fbb92c59475e62eec8dba31a27e5439f9de78e80ff66d3761abff9c\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-u1-circle.contract.score.yaml.txt\",\n      \"sha256\": \"27d10bb10578b3eb23a4e9ae451df163dff8787a5e20789d6577fc180ab47a1a\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-u1-circle.py.txt\",\n      \"sha256\": \"3cadf9cad009a4e36b375a1119114491f2524be1d839f6546bbbccfd719c2ba7\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-quality.json\",\n      \"sha256\": \"56226602850f37d5ee02a4377e86507b1b74c3597dadfe8e86409ca0daff1763\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-requirements.json\",\n      \"sha256\": \"3a6ce80e7cf7aee02b8aff5f1aabb7e5135a4f6fded28175bedb55cb83e87013\"\n    },\n    {\n      \"path\": \"checks/tests/integer_obstructions_mutations.json\",\n      \"sha256\": \"86b91bbae749ace97655cbdfa07e3ed8198581387d995eb2cd1ef7145b312a99\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"failure_policy\": \"Input, resource and failed-control refusals travel through Violation and Outcome. CLI refusal returns nonzero. Unexpected exceptions and cancellation propagate.\",\n  \"operational_cost\": \"A fixed number of bounded integer or rational operations, including one integer square root for a quadratic.\",\n  \"origins\": [\n    {\n      \"path\": \"lean4/ContinuumHilbertLiftIntegerSlice.lean\",\n      \"sha256\": \"60e69b20a0335e3481c297d6a5b6e898678d9e3d06b2fa2463c2e33ab704b177\"\n    },\n    {\n      \"path\": \"lean4/StoneContinuousTimeIntegerSlice.lean\",\n      \"sha256\": \"515389319bd41d8a4ed33375efafc1e42654552641b45a82430d30614b9bde4c\"\n    },\n    {\n      \"path\": \"lean4/U1CircleIntegerWitness.lean\",\n      \"sha256\": \"3e245462359a9d35ed183b5d58ea6ff325d026c371f64d545a9c08d3e3243dcd\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Own three exact bounded integer coefficients, reject zero polynomial, accept constant and linear cases.\",\n    \"Evaluate admitted rational arguments and homogeneous integer pairs. Check terms and prefixes before cancellation.\",\n    \"Return sorted distinct exact rational roots and filter integer roots. Replay each root and distinguish a nonsquare from an input or budget failure.\"\n  ],\n  \"requirements\": {\n    \"admit\": {\n      \"description\": \"Own three exact bounded integer coefficients, reject zero polynomial, accept constant and linear cases.\",\n      \"symbols\": [\n        \"_integer\",\n        \"IntegerQuadraticEquation\",\n        \"IntegerQuadraticEquation.__init__\",\n        \"IntegerQuadraticEquation.coefficients\"\n      ],\n      \"tests\": [\n        \"test_exact_domains_constant_linear_and_repeated_roots\",\n        \"test_owned_coefficients_and_immutable_reentrant_results\",\n        \"test_quiet_import_cli_and_per_run_failure_state\",\n        \"test_isolated_admission_and_first_failure\"\n      ]\n    },\n    \"evaluate\": {\n      \"description\": \"Evaluate admitted rational arguments and homogeneous integer pairs. Check terms and prefixes before cancellation.\",\n      \"symbols\": [\n        \"IntegerQuadraticEquation._evaluate\",\n        \"IntegerQuadraticEquation.evaluate\",\n        \"IntegerQuadraticEquation._homogeneous_value\",\n        \"IntegerQuadraticEquation.homogeneous_value\"\n      ],\n      \"tests\": [\n        \"test_generated_evaluation_and_homogenization\",\n        \"test_resource_boundaries_cover_products_prefixes_and_arguments\",\n        \"test_isolated_arithmetic_prefix_budgets\",\n        \"test_isolated_admission_and_first_failure\"\n      ]\n    },\n    \"roots\": {\n      \"description\": \"Return sorted distinct exact rational roots and filter integer roots. Replay each root and distinguish a nonsquare from an input or budget failure.\",\n      \"symbols\": [\n        \"_square_root\",\n        \"IntegerQuadraticEquation._discriminant\",\n        \"IntegerQuadraticEquation.discriminant\",\n        \"IntegerQuadraticEquation.square_root\",\n        \"IntegerQuadraticEquation._rational_roots\",\n        \"IntegerQuadraticEquation.rational_roots\",\n        \"IntegerQuadraticEquation._integer_roots\",\n        \"IntegerQuadraticEquation.integer_roots\"\n      ],\n      \"tests\": [\n        \"test_all_small_polynomials_against_independent_factorization\",\n        \"test_generated_factored_roots_are_complete_sorted_and_distinct\",\n        \"test_square_root_boundary_and_independent_square_census\",\n        \"test_exact_domains_constant_linear_and_repeated_roots\",\n        \"test_resource_boundaries_cover_products_prefixes_and_arguments\",\n        \"test_root_replay_guards_and_unexpected_failures\"\n      ]\n    }\n  },\n  \"role\": \"Own exact bounded polynomial arithmetic and its finite rational root set.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": {\n    \"IntegerQuadraticEquation\": [\n      \"admit\"\n    ],\n    \"IntegerQuadraticEquation.__init__\": [\n      \"admit\"\n    ],\n    \"IntegerQuadraticEquation._discriminant\": [\n      \"roots\"\n    ],\n    \"IntegerQuadraticEquation._evaluate\": [\n      \"evaluate\"\n    ],\n    \"IntegerQuadraticEquation._homogeneous_value\": [\n      \"evaluate\"\n    ],\n    \"IntegerQuadraticEquation._integer_roots\": [\n      \"roots\"\n    ],\n    \"IntegerQuadraticEquation._rational_roots\": [\n      \"roots\"\n    ],\n    \"IntegerQuadraticEquation.coefficients\": [\n      \"admit\"\n    ],\n    \"IntegerQuadraticEquation.discriminant\": [\n      \"roots\"\n    ],\n    \"IntegerQuadraticEquation.evaluate\": [\n      \"evaluate\"\n    ],\n    \"IntegerQuadraticEquation.homogeneous_value\": [\n      \"evaluate\"\n    ],\n    \"IntegerQuadraticEquation.integer_roots\": [\n      \"roots\"\n    ],\n    \"IntegerQuadraticEquation.rational_roots\": [\n      \"roots\"\n    ],\n    \"IntegerQuadraticEquation.square_root\": [\n      \"roots\"\n    ],\n    \"_integer\": [\n      \"admit\"\n    ],\n    \"_square_root\": [\n      \"roots\"\n    ]\n  }\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/checker_support/integer_quadratic_equation.py",
+          "sha256": "7c8ae4c920631ff105ba510ce3eea40b223e3eac9af6f30988375d53770fc9d4"
+        },
+        "audited_consumers": [
+          "checks/independent/fq-gap-continuum-hilbert-lift.py",
+          "checks/tests/test_integer_obstructions.py"
+        ],
+        "boundaries": [
+          "The computations cover the stated equations and finite censuses. Continuum completion, Stone's theorem and a circle group law are separate targets."
+        ],
+        "bounded_context": "Low-degree exact integer models and finite Hilbert, Stone and U1 sample populations.",
+        "contract_urn": "urn:tfqm:checker-review:integer-obstructions:integer_quadratic_equation",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-closure-inputs.json",
+            "sha256": "5536c69f694f267a5855add560e2e1696db5be5aa34bfa64f8b6fb5623a371e7"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-initial-manifest.json",
+            "sha256": "37a919911ee6cb7f2224d23bbe85ee393a6f174e5a0c41de5e77160513f52e45"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-initial-quality.json",
+            "sha256": "7161cc98d75dc75d81a07289ba2b9344171c8e7fc9dcfc5ab5936d49142cbf72"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-initial-review.json",
+            "sha256": "5c4ea0df2dfaaad4bf810793de4fb44f5b53bfb04f12d6823f429e40b0fcfb83"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-initial-test_integer_obstructions.py.txt",
+            "sha256": "de4e3b040e5634f8855e69dae1526c32241832b503937cffbb9b3a3f810363b5"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-initial-typing-failure.json",
+            "sha256": "a5ea3aed921b4bc86013cb8abe1b32143dc6af3aec0a216ef1614024f01258e8"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-mutations-final.json",
+            "sha256": "8c1bbbb994a46e6c28e0778c2cb2136f374e692ad7ddf1bdea2371b1c950c4d7"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-mutations.json",
+            "sha256": "4edd8d56ee1d510a4cf7dbb9dd3d45c9798a790f5571b059dc9f4d9c8b36118c"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-continuum-hilbert-lift.contract.score.yaml.txt",
+            "sha256": "a10bd03a42bb346e3e159ddf2c2a43e047a17926fbb0f26cc57deb6b226d9a20"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-continuum-hilbert-lift.py.txt",
+            "sha256": "be8a80956d91bbabee7c04f640e5cc9afb338d255acf59353d06bbf176411cad"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-stone-continuous-time.contract.score.yaml.txt",
+            "sha256": "7920c9a78543a44ee51b984742e3aeb347b417b37e99a20fe43ce312e3a76aa8"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-stone-continuous-time.py.txt",
+            "sha256": "2b49b9776fbb92c59475e62eec8dba31a27e5439f9de78e80ff66d3761abff9c"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-u1-circle.contract.score.yaml.txt",
+            "sha256": "27d10bb10578b3eb23a4e9ae451df163dff8787a5e20789d6577fc180ab47a1a"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-u1-circle.py.txt",
+            "sha256": "3cadf9cad009a4e36b375a1119114491f2524be1d839f6546bbbccfd719c2ba7"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-quality.json",
+            "sha256": "56226602850f37d5ee02a4377e86507b1b74c3597dadfe8e86409ca0daff1763"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-requirements.json",
+            "sha256": "3a6ce80e7cf7aee02b8aff5f1aabb7e5135a4f6fded28175bedb55cb83e87013"
+          },
+          {
+            "path": "checks/tests/integer_obstructions_mutations.json",
+            "sha256": "86b91bbae749ace97655cbdfa07e3ed8198581387d995eb2cd1ef7145b312a99"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "failure_policy": "Input, resource and failed-control refusals travel through Violation and Outcome. CLI refusal returns nonzero. Unexpected exceptions and cancellation propagate.",
+        "operational_cost": "A fixed number of bounded integer or rational operations, including one integer square root for a quadratic.",
+        "origins": [
+          {
+            "path": "lean4/ContinuumHilbertLiftIntegerSlice.lean",
+            "sha256": "60e69b20a0335e3481c297d6a5b6e898678d9e3d06b2fa2463c2e33ab704b177"
+          },
+          {
+            "path": "lean4/StoneContinuousTimeIntegerSlice.lean",
+            "sha256": "515389319bd41d8a4ed33375efafc1e42654552641b45a82430d30614b9bde4c"
+          },
+          {
+            "path": "lean4/U1CircleIntegerWitness.lean",
+            "sha256": "3e245462359a9d35ed183b5d58ea6ff325d026c371f64d545a9c08d3e3243dcd"
+          }
+        ],
+        "owned_invariants": [
+          "Own three exact bounded integer coefficients, reject zero polynomial, accept constant and linear cases.",
+          "Evaluate admitted rational arguments and homogeneous integer pairs. Check terms and prefixes before cancellation.",
+          "Return sorted distinct exact rational roots and filter integer roots. Replay each root and distinguish a nonsquare from an input or budget failure."
+        ],
+        "requirements": {
+          "admit": {
+            "description": "Own three exact bounded integer coefficients, reject zero polynomial, accept constant and linear cases.",
+            "symbols": [
+              "_integer",
+              "IntegerQuadraticEquation",
+              "IntegerQuadraticEquation.__init__",
+              "IntegerQuadraticEquation.coefficients"
+            ],
+            "tests": [
+              "test_exact_domains_constant_linear_and_repeated_roots",
+              "test_owned_coefficients_and_immutable_reentrant_results",
+              "test_quiet_import_cli_and_per_run_failure_state",
+              "test_isolated_admission_and_first_failure"
+            ]
+          },
+          "evaluate": {
+            "description": "Evaluate admitted rational arguments and homogeneous integer pairs. Check terms and prefixes before cancellation.",
+            "symbols": [
+              "IntegerQuadraticEquation._evaluate",
+              "IntegerQuadraticEquation.evaluate",
+              "IntegerQuadraticEquation._homogeneous_value",
+              "IntegerQuadraticEquation.homogeneous_value"
+            ],
+            "tests": [
+              "test_generated_evaluation_and_homogenization",
+              "test_resource_boundaries_cover_products_prefixes_and_arguments",
+              "test_isolated_arithmetic_prefix_budgets",
+              "test_isolated_admission_and_first_failure"
+            ]
+          },
+          "roots": {
+            "description": "Return sorted distinct exact rational roots and filter integer roots. Replay each root and distinguish a nonsquare from an input or budget failure.",
+            "symbols": [
+              "_square_root",
+              "IntegerQuadraticEquation._discriminant",
+              "IntegerQuadraticEquation.discriminant",
+              "IntegerQuadraticEquation.square_root",
+              "IntegerQuadraticEquation._rational_roots",
+              "IntegerQuadraticEquation.rational_roots",
+              "IntegerQuadraticEquation._integer_roots",
+              "IntegerQuadraticEquation.integer_roots"
+            ],
+            "tests": [
+              "test_all_small_polynomials_against_independent_factorization",
+              "test_generated_factored_roots_are_complete_sorted_and_distinct",
+              "test_square_root_boundary_and_independent_square_census",
+              "test_exact_domains_constant_linear_and_repeated_roots",
+              "test_resource_boundaries_cover_products_prefixes_and_arguments",
+              "test_root_replay_guards_and_unexpected_failures"
+            ]
+          }
+        },
+        "role": "Own exact bounded polynomial arithmetic and its finite rational root set.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": {
+          "IntegerQuadraticEquation": [
+            "admit"
+          ],
+          "IntegerQuadraticEquation.__init__": [
+            "admit"
+          ],
+          "IntegerQuadraticEquation._discriminant": [
+            "roots"
+          ],
+          "IntegerQuadraticEquation._evaluate": [
+            "evaluate"
+          ],
+          "IntegerQuadraticEquation._homogeneous_value": [
+            "evaluate"
+          ],
+          "IntegerQuadraticEquation._integer_roots": [
+            "roots"
+          ],
+          "IntegerQuadraticEquation._rational_roots": [
+            "roots"
+          ],
+          "IntegerQuadraticEquation.coefficients": [
+            "admit"
+          ],
+          "IntegerQuadraticEquation.discriminant": [
+            "roots"
+          ],
+          "IntegerQuadraticEquation.evaluate": [
+            "evaluate"
+          ],
+          "IntegerQuadraticEquation.homogeneous_value": [
+            "evaluate"
+          ],
+          "IntegerQuadraticEquation.integer_roots": [
+            "roots"
+          ],
+          "IntegerQuadraticEquation.rational_roots": [
+            "roots"
+          ],
+          "IntegerQuadraticEquation.square_root": [
+            "roots"
+          ],
+          "_integer": [
+            "admit"
+          ],
+          "_square_root": [
+            "roots"
+          ]
+        }
+      },
+      "sha256": "6bb47970d6259dbfdab3919b47b0cc4a36dc60d66bae9a28000c0d12eb8fff7e"
+    }
+  ],
+  "current_contract": "6bb47970d6259dbfdab3919b47b0cc4a36dc60d66bae9a28000c0d12eb8fff7e",
+  "current_scoring": "e97038f20f3d69fc953717d999c484c654675200808184cee820510d690e692f",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 5447,
+      "original_paths": [
+        "checker-publication-2026-11-04"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/checker_support/integer_quadratic_equation.py\",\n    \"sha256\": \"7c8ae4c920631ff105ba510ce3eea40b223e3eac9af6f30988375d53770fc9d4\"\n  },\n  \"assessment_id\": \"integer-obstructions-2026-11-04\",\n  \"basis\": {\n    \"G1\": \"The requirement map records the originating Lean slices, declarations, consumers, tests and archived applications.\",\n    \"G2\": \"Exact root sets checked by independent factorization, census values by direct enumeration and counting. Signed coefficients, rational arguments, degeneracy and budget boundaries are covered.\",\n    \"G3\": \"Input, resource and failed-control refusals travel through Violation and Outcome. CLI refusal returns nonzero. Unexpected exceptions and cancellation propagate. Verified input ownership, eager preflight, arithmetic prefixes, scoped mocks and fresh counters.\",\n    \"G4\": \"Strict typing and 16 dedicated plus 24 integration groups pass in normal and optimized Python. The initial 48/53 kills are retained. Two additional tests yield 53/53 on the final run.\",\n    \"G5\": \"CCN 6, cognitive 6, nesting 2. A fixed number of bounded integer or rational operations, including one integer square root for a quadratic.\"\n  },\n  \"composite_grade\": \"B\",\n  \"evaluation_timestamp\": \"2026-11-05T01:47:28.874078+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-closure-inputs.json\",\n      \"sha256\": \"5536c69f694f267a5855add560e2e1696db5be5aa34bfa64f8b6fb5623a371e7\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-initial-manifest.json\",\n      \"sha256\": \"37a919911ee6cb7f2224d23bbe85ee393a6f174e5a0c41de5e77160513f52e45\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-initial-quality.json\",\n      \"sha256\": \"7161cc98d75dc75d81a07289ba2b9344171c8e7fc9dcfc5ab5936d49142cbf72\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-initial-review.json\",\n      \"sha256\": \"5c4ea0df2dfaaad4bf810793de4fb44f5b53bfb04f12d6823f429e40b0fcfb83\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-initial-test_integer_obstructions.py.txt\",\n      \"sha256\": \"de4e3b040e5634f8855e69dae1526c32241832b503937cffbb9b3a3f810363b5\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-initial-typing-failure.json\",\n      \"sha256\": \"a5ea3aed921b4bc86013cb8abe1b32143dc6af3aec0a216ef1614024f01258e8\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-mutations-final.json\",\n      \"sha256\": \"8c1bbbb994a46e6c28e0778c2cb2136f374e692ad7ddf1bdea2371b1c950c4d7\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-mutations.json\",\n      \"sha256\": \"4edd8d56ee1d510a4cf7dbb9dd3d45c9798a790f5571b059dc9f4d9c8b36118c\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-continuum-hilbert-lift.contract.score.yaml.txt\",\n      \"sha256\": \"a10bd03a42bb346e3e159ddf2c2a43e047a17926fbb0f26cc57deb6b226d9a20\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-continuum-hilbert-lift.py.txt\",\n      \"sha256\": \"be8a80956d91bbabee7c04f640e5cc9afb338d255acf59353d06bbf176411cad\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-stone-continuous-time.contract.score.yaml.txt\",\n      \"sha256\": \"7920c9a78543a44ee51b984742e3aeb347b417b37e99a20fe43ce312e3a76aa8\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-stone-continuous-time.py.txt\",\n      \"sha256\": \"2b49b9776fbb92c59475e62eec8dba31a27e5439f9de78e80ff66d3761abff9c\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-u1-circle.contract.score.yaml.txt\",\n      \"sha256\": \"27d10bb10578b3eb23a4e9ae451df163dff8787a5e20789d6577fc180ab47a1a\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-u1-circle.py.txt\",\n      \"sha256\": \"3cadf9cad009a4e36b375a1119114491f2524be1d839f6546bbbccfd719c2ba7\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-quality.json\",\n      \"sha256\": \"56226602850f37d5ee02a4377e86507b1b74c3597dadfe8e86409ca0daff1763\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-integer-obstructions-requirements.json\",\n      \"sha256\": \"3a6ce80e7cf7aee02b8aff5f1aabb7e5135a4f6fded28175bedb55cb83e87013\"\n    },\n    {\n      \"path\": \"checks/tests/integer_obstructions_mutations.json\",\n      \"sha256\": \"86b91bbae749ace97655cbdfa07e3ed8198581387d995eb2cd1ef7145b312a99\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"B\",\n    \"G3\": \"B\",\n    \"G4\": \"B\",\n    \"G5\": \"B\"\n  },\n  \"grade_ceiling\": \"B\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Own exact bounded polynomial arithmetic and its finite rational root set. Owns its bounded API or independent test oracle, with failure and lifecycle contracts exercised through its consumers.\",\n  \"open_findings\": [],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4B\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/checker_support/integer_quadratic_equation.py",
+          "sha256": "7c8ae4c920631ff105ba510ce3eea40b223e3eac9af6f30988375d53770fc9d4"
+        },
+        "assessment_id": "integer-obstructions-2026-11-04",
+        "basis": {
+          "G1": "The requirement map records the originating Lean slices, declarations, consumers, tests and archived applications.",
+          "G2": "Exact root sets checked by independent factorization, census values by direct enumeration and counting. Signed coefficients, rational arguments, degeneracy and budget boundaries are covered.",
+          "G3": "Input, resource and failed-control refusals travel through Violation and Outcome. CLI refusal returns nonzero. Unexpected exceptions and cancellation propagate. Verified input ownership, eager preflight, arithmetic prefixes, scoped mocks and fresh counters.",
+          "G4": "Strict typing and 16 dedicated plus 24 integration groups pass in normal and optimized Python. The initial 48/53 kills are retained. Two additional tests yield 53/53 on the final run.",
+          "G5": "CCN 6, cognitive 6, nesting 2. A fixed number of bounded integer or rational operations, including one integer square root for a quadratic."
+        },
+        "composite_grade": "B",
+        "evaluation_timestamp": "2026-11-05T01:47:28.874078+00:00",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-closure-inputs.json",
+            "sha256": "5536c69f694f267a5855add560e2e1696db5be5aa34bfa64f8b6fb5623a371e7"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-initial-manifest.json",
+            "sha256": "37a919911ee6cb7f2224d23bbe85ee393a6f174e5a0c41de5e77160513f52e45"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-initial-quality.json",
+            "sha256": "7161cc98d75dc75d81a07289ba2b9344171c8e7fc9dcfc5ab5936d49142cbf72"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-initial-review.json",
+            "sha256": "5c4ea0df2dfaaad4bf810793de4fb44f5b53bfb04f12d6823f429e40b0fcfb83"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-initial-test_integer_obstructions.py.txt",
+            "sha256": "de4e3b040e5634f8855e69dae1526c32241832b503937cffbb9b3a3f810363b5"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-initial-typing-failure.json",
+            "sha256": "a5ea3aed921b4bc86013cb8abe1b32143dc6af3aec0a216ef1614024f01258e8"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-mutations-final.json",
+            "sha256": "8c1bbbb994a46e6c28e0778c2cb2136f374e692ad7ddf1bdea2371b1c950c4d7"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-mutations.json",
+            "sha256": "4edd8d56ee1d510a4cf7dbb9dd3d45c9798a790f5571b059dc9f4d9c8b36118c"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-continuum-hilbert-lift.contract.score.yaml.txt",
+            "sha256": "a10bd03a42bb346e3e159ddf2c2a43e047a17926fbb0f26cc57deb6b226d9a20"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-continuum-hilbert-lift.py.txt",
+            "sha256": "be8a80956d91bbabee7c04f640e5cc9afb338d255acf59353d06bbf176411cad"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-stone-continuous-time.contract.score.yaml.txt",
+            "sha256": "7920c9a78543a44ee51b984742e3aeb347b417b37e99a20fe43ce312e3a76aa8"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-stone-continuous-time.py.txt",
+            "sha256": "2b49b9776fbb92c59475e62eec8dba31a27e5439f9de78e80ff66d3761abff9c"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-u1-circle.contract.score.yaml.txt",
+            "sha256": "27d10bb10578b3eb23a4e9ae451df163dff8787a5e20789d6577fc180ab47a1a"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-original-fq-gap-u1-circle.py.txt",
+            "sha256": "3cadf9cad009a4e36b375a1119114491f2524be1d839f6546bbbccfd719c2ba7"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-quality.json",
+            "sha256": "56226602850f37d5ee02a4377e86507b1b74c3597dadfe8e86409ca0daff1763"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-integer-obstructions-requirements.json",
+            "sha256": "3a6ce80e7cf7aee02b8aff5f1aabb7e5135a4f6fded28175bedb55cb83e87013"
+          },
+          {
+            "path": "checks/tests/integer_obstructions_mutations.json",
+            "sha256": "86b91bbae749ace97655cbdfa07e3ed8198581387d995eb2cd1ef7145b312a99"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "gates": {
+          "G1": "B",
+          "G2": "B",
+          "G3": "B",
+          "G4": "B",
+          "G5": "B"
+        },
+        "grade_ceiling": "B",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Own exact bounded polynomial arithmetic and its finite rational root set. Owns its bounded API or independent test oracle, with failure and lifecycle contracts exercised through its consumers.",
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L4B"
+      },
+      "sha256": "e97038f20f3d69fc953717d999c484c654675200808184cee820510d690e692f"
+    }
+  ]
+}

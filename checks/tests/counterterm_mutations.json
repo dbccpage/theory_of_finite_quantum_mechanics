@@ -1,0 +1,326 @@
+[
+  {
+    "identity": "entry-preflight",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "if type(value) is not G:",
+    "after": "if False:",
+    "tests": [
+      "test_matrix_preflight_before_arithmetic"
+    ]
+  },
+  {
+    "identity": "momentum-bool",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "return rational(t), rational(x), rational(y), rational(z)",
+    "after": "return Q(t), Q(x), Q(y), Q(z)",
+    "tests": [
+      "test_kernel_ownership_and_scalar_vector_domains"
+    ]
+  },
+  {
+    "identity": "momentum-component",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "return rational(t), rational(x), rational(y), rational(z)",
+    "after": "return rational(t), rational(x), rational(y), rational(y)",
+    "tests": [
+      "test_kernel_inverse_against_matrix_inversion"
+    ]
+  },
+  {
+    "identity": "index-bool",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "direction = integer(value, \"Lorentz index\", 0)",
+    "after": "direction = int(value)",
+    "tests": [
+      "test_matrix_index_domains_and_snapshot"
+    ]
+  },
+  {
+    "identity": "index-negative",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "integer(value, \"Lorentz index\", 0)",
+    "after": "integer(value, \"Lorentz index\")",
+    "tests": [
+      "test_matrix_index_domains_and_snapshot"
+    ]
+  },
+  {
+    "identity": "index-high",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "if direction > 3:",
+    "after": "if False:",
+    "tests": [
+      "test_matrix_index_domains_and_snapshot"
+    ]
+  },
+  {
+    "identity": "identity-diagonal",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "G(int(row == column))",
+    "after": "G(int(row != column))",
+    "tests": [
+      "test_oracles_and_basis"
+    ]
+  },
+  {
+    "identity": "gamma-time-sign",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "1 if row < 2 else -1",
+    "after": "1 if row < 2 else 1",
+    "tests": [
+      "test_oracles_and_basis"
+    ]
+  },
+  {
+    "identity": "gamma-spatial-sign",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "rows[row+2][column] = G(-1)*pauli[row][column]",
+    "after": "rows[row+2][column] = pauli[row][column]",
+    "tests": [
+      "test_oracles_and_basis"
+    ]
+  },
+  {
+    "identity": "gamma-y-conjugate",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "((G(0), G(0, -1)), (G(0, 1), G(0)))",
+    "after": "((G(0), G(0, 1)), (G(0, -1), G(0)))",
+    "tests": [
+      "test_oracles_and_basis"
+    ]
+  },
+  {
+    "identity": "matrix-add-sign",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "return _combine(_matrix(left), _matrix(right), 1)",
+    "after": "return _combine(_matrix(left), _matrix(right), -1)",
+    "tests": [
+      "test_gaussian_matrix_arithmetic_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "matrix-sub-sign",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "return _combine(_matrix(left), _matrix(right), -1)",
+    "after": "return _combine(_matrix(left), _matrix(right), 1)",
+    "tests": [
+      "test_gaussian_matrix_arithmetic_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "matrix-scale-coefficient",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "factor = G(scalar)",
+    "after": "factor = G(1)",
+    "tests": [
+      "test_gaussian_matrix_arithmetic_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "matrix-product-columns",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "columns = tuple(zip(*right))",
+    "after": "columns = right",
+    "tests": [
+      "test_gaussian_matrix_arithmetic_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "matrix-dot-add",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "value = value+first*second",
+    "after": "value = first*second",
+    "tests": [
+      "test_gaussian_matrix_arithmetic_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "slash-spatial-lowering",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "_scale(component*metric, gamma)",
+    "after": "_scale(component, gamma)",
+    "tests": [
+      "test_kernel_inverse_against_matrix_inversion"
+    ]
+  },
+  {
+    "identity": "kernel-mass-sign",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "return _combine(_slash(self.momentum), _scale(self.mass, eye()), -1)",
+    "after": "return _combine(_slash(self.momentum), _scale(self.mass, eye()), 1)",
+    "tests": [
+      "test_integer_inputs_original_witness_and_mass_shell"
+    ]
+  },
+  {
+    "identity": "mass-shell-sign",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "ETA+(Q(-1),)",
+    "after": "ETA+(Q(1),)",
+    "tests": [
+      "test_integer_inputs_original_witness_and_mass_shell"
+    ]
+  },
+  {
+    "identity": "mass-shell-square-budget",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "square = rational(component*component, \"mass-shell square\")",
+    "after": "square = component*component",
+    "tests": [
+      "test_resource_budgets_and_cancellation"
+    ]
+  },
+  {
+    "identity": "mass-shell-prefix-budget",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "value = rational(value+sign*square, \"mass-shell prefix\")",
+    "after": "value = value+sign*square",
+    "tests": [
+      "test_resource_budgets_and_cancellation"
+    ]
+  },
+  {
+    "identity": "singular-explicit-refusal",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "if value == 0:",
+    "after": "if False:",
+    "tests": [
+      "test_integer_inputs_original_witness_and_mass_shell"
+    ]
+  },
+  {
+    "identity": "propagator-numerator-sign",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "numerator = _combine(_slash(self.momentum), _scale(self.mass, eye()), 1)",
+    "after": "numerator = _combine(_slash(self.momentum), _scale(self.mass, eye()), -1)",
+    "tests": [
+      "test_integer_inputs_original_witness_and_mass_shell"
+    ]
+  },
+  {
+    "identity": "propagator-reciprocal",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "return _scale(Q(1)/denominator, numerator)",
+    "after": "return _scale(denominator, numerator)",
+    "tests": [
+      "test_integer_inputs_original_witness_and_mass_shell"
+    ]
+  },
+  {
+    "identity": "dirac-lowered-sign",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "_multiply(matrix, _scale(sign, gamma))",
+    "after": "_multiply(matrix, gamma)",
+    "tests": [
+      "test_nonreal_dirac_vertex_and_lowered_contraction"
+    ]
+  },
+  {
+    "identity": "vertex-insertion-order",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "_multiply(left, _multiply(GAMMAS[direction], right))",
+    "after": "_multiply(left, _multiply(right, GAMMAS[direction]))",
+    "tests": [
+      "test_nonreal_dirac_vertex_and_lowered_contraction"
+    ]
+  },
+  {
+    "identity": "vertex-direction",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "return _vertex(_index(direction), _matrix(left), _matrix(right))",
+    "after": "return _vertex(0, _matrix(left), _matrix(right))",
+    "tests": [
+      "test_nonreal_dirac_vertex_and_lowered_contraction"
+    ]
+  },
+  {
+    "identity": "contraction-lowering",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "_scale(component*sign, _vertex(direction, first, second))",
+    "after": "_scale(component, _vertex(direction, first, second))",
+    "tests": [
+      "test_nonreal_dirac_vertex_and_lowered_contraction"
+    ]
+  },
+  {
+    "identity": "contraction-sides",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "_vertex(direction, first, second)",
+    "after": "_vertex(direction, second, first)",
+    "tests": [
+      "test_nonreal_dirac_vertex_and_lowered_contraction"
+    ]
+  },
+  {
+    "identity": "omit-clifford-obligation",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "cases.require(actual == expected, \"Minkowski Clifford pair\")",
+    "after": "pass",
+    "tests": [
+      "test_counts_faults_and_lifecycle"
+    ]
+  },
+  {
+    "identity": "omit-right-inverse-obligation",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "cases.require(mmul(propagator, inverse) == eye(), \"right inverse\")",
+    "after": "pass",
+    "tests": [
+      "test_counts_faults_and_lifecycle"
+    ]
+  },
+  {
+    "identity": "omit-contraction-obligation",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "cases.require(contracted == msub(dirac(first), dirac(second)), \"lowered contraction\")",
+    "after": "pass",
+    "tests": [
+      "test_counts_faults_and_lifecycle"
+    ]
+  },
+  {
+    "identity": "false-success-exit",
+    "source": "independent/dfm-z1-z2-counterterm-fence.py",
+    "before": "raise SystemExit(cli(main))",
+    "after": "cli(main)",
+    "tests": [
+      "test_executable_receipt_and_failure_exit"
+    ]
+  },
+  {
+    "identity": "test-oracle-imaginary-sign",
+    "source": "tests/test_counterterm_checker.py",
+    "before": "sp.I*sp.Rational(entry.im)",
+    "after": "-sp.I*sp.Rational(entry.im)",
+    "tests": [
+      "test_oracles_and_basis"
+    ]
+  },
+  {
+    "identity": "test-oracle-mass-sign",
+    "source": "tests/test_counterterm_checker.py",
+    "before": "sp.zeros(4))-mass*sp.eye(4)",
+    "after": "sp.zeros(4))+mass*sp.eye(4)",
+    "tests": [
+      "test_oracles_and_basis"
+    ]
+  },
+  {
+    "identity": "test-oracle-row-index",
+    "source": "tests/test_counterterm_checker.py",
+    "before": "pairs[4*row+column]",
+    "after": "pairs[4*column+row]",
+    "tests": [
+      "test_nonreal_dirac_vertex_and_lowered_contraction"
+    ]
+  },
+  {
+    "identity": "test-refusal-helper-polarity",
+    "source": "tests/test_counterterm_checker.py",
+    "before": "self.assertFalse(result.ok)",
+    "after": "self.assertTrue(result.ok)",
+    "tests": [
+      "test_kernel_ownership_and_scalar_vector_domains"
+    ]
+  }
+]

@@ -1,0 +1,320 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/check_tfq_1052_fqcd_strong_coupling_area_law.py": {
+      "role": "Bounded exact strong-coupling verification application with an immutable subgroup invariant table, conservative arithmetic work admission and invocation-owned typed case/CLI protocol",
+      "profile": "Exact",
+      "origin": "lean4/FQCD/StrongCouplingAreaLaw.lean",
+      "cost": "Integer parameters <=4096; rational input components <=4096 bits; combined exponent estimates <=65536 bits; phase uses O(log |q|) integer products. Direct overlap is fixed 2x2. Invariant tables admit <=32 scalar and <=32 interval rows with <=128-character unique names. Default run has 250 named obligations and fixed independent 8x8 determinant cases.",
+      "groups": [
+        {
+          "requirement": "Validate exact scalar/interval rows, natural invariant values, unique bounded names and strict interval order; detach immutable snapshots and use distinct scalar/interval accessors with typed refusal.",
+          "symbols": [
+            "_invariant_name",
+            "SubgroupInvariantTable",
+            "SubgroupInvariantTable.__post_init__",
+            "SubgroupInvariantTable._claim_name",
+            "SubgroupInvariantTable.value",
+            "SubgroupInvariantTable.bounds"
+          ],
+          "tests": [
+            "StrongCouplingCheckerTests.test_invariant_table_refusals",
+            "StrongCouplingCheckerTests.test_invariant_table_snapshots_and_accessor_separation",
+            "StrongCouplingCheckerTests.test_supplied_tables_keep_exact_known_values"
+          ],
+          "requirement_id": "TFQM-STRONG-REVIEW-CHECK-TFQ-1052-FQCD-STRONG-COUPLING-AREA-LAW-1"
+        },
+        {
+          "requirement": "Compute the exact unit phase (c-i*s)^q using integer exponentiation by squaring. Admit |q| <= 4096 and reject combined numerator/denominator power estimates over 65536 bits before exponentiation.",
+          "symbols": [
+            "_power_budget",
+            "_complex_product",
+            "_complex_power",
+            "theta_phase"
+          ],
+          "tests": [
+            "StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products",
+            "StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries",
+            "StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic"
+          ],
+          "requirement_id": "TFQM-STRONG-REVIEW-CHECK-TFQ-1052-FQCD-STRONG-COUPLING-AREA-LAW-2"
+        },
+        {
+          "requirement": "Admit bounded integer geometry and compute coordination/area/perimeter/normal counts exactly; enclose the factor-40 Lean beta0, distinct from the factor-8 OS scale, with a rational midpoint rather than claiming an exact value of e.",
+          "symbols": [
+            "delta_coordination",
+            "spanning_area",
+            "perimeter",
+            "normal_directions",
+            "beta0_rational_bounds",
+            "beta0_rational_midpoint"
+          ],
+          "tests": [
+            "StrongCouplingCheckerTests.test_geometry_and_thresholds",
+            "StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries"
+          ],
+          "requirement_id": "TFQM-STRONG-REVIEW-CHECK-TFQ-1052-FQCD-STRONG-COUPLING-AREA-LAW-3"
+        },
+        {
+          "requirement": "Compute the geometric tail on 0<=mu<1, exact area decay, signed algebraic decimation and positive collar bounds; enforce component and combined bit budgets before powers.",
+          "symbols": [
+            "cluster_sum_rational",
+            "area_law_bound_rational",
+            "collar_contraction_rational",
+            "general_collar_contraction_rational",
+            "twod_decimation_rational",
+            "d4_multi_plaquette_collar_bound"
+          ],
+          "tests": [
+            "StrongCouplingCheckerTests.test_cluster_series_recurrence_and_partial_sums",
+            "StrongCouplingCheckerTests.test_decimation_and_collar_products",
+            "StrongCouplingCheckerTests.test_multi_plaquette_bound_from_repeated_factors",
+            "StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic",
+            "StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries"
+          ],
+          "requirement_id": "TFQM-STRONG-REVIEW-CHECK-TFQ-1052-FQCD-STRONG-COUPLING-AREA-LAW-4"
+        },
+        {
+          "requirement": "Admit exact nonzero spacing and rational c,b before constructing and squaring the two-by-two modified chirality matrix. Nonunit c,b remain valid algebraic inputs.",
+          "symbols": [
+            "direct_modified_chirality_square"
+          ],
+          "tests": [
+            "StrongCouplingCheckerTests.test_modified_chirality_square_for_nonunit_inputs",
+            "StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries"
+          ],
+          "requirement_id": "TFQM-STRONG-REVIEW-CHECK-TFQ-1052-FQCD-STRONG-COUPLING-AREA-LAW-5"
+        },
+        {
+          "requirement": "Evaluate only the supplied finite character and defect tables, retaining class-pairing explanations and exact scalar/interval fields. These functions do not construct groups, enumerate characters or prove physical screening.",
+          "symbols": [
+            "s3_cubic_sum_rational",
+            "q8_cubic_sum_rational",
+            "s4_cubic_invariants_rational",
+            "a5_cubic_invariants_rational",
+            "binary_icosahedral_2i_invariants_rational",
+            "valentiner_sigma1080_invariants_rational",
+            "freezing_plaquette_defect_rational_bounds",
+            "su2_ade_binary_polyhedral_tower_rational",
+            "su3_subgroup_tower_and_freezing_scales_rational"
+          ],
+          "tests": [
+            "StrongCouplingCheckerTests.test_supplied_tables_keep_exact_known_values",
+            "StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults"
+          ],
+          "requirement_id": "TFQM-STRONG-REVIEW-CHECK-TFQ-1052-FQCD-STRONG-COUPLING-AREA-LAW-6"
+        },
+        {
+          "requirement": "Compose trusted finite fixtures through a typed recorder; count all 250 default named obligations, retain every failure, reject malformed or duplicate rows, compare determinants through the shared independent matrix component and emit nonzero CLI failures. A conjunction is one obligation. Preserve cancellation and distinguish resource failures.",
+          "symbols": [
+            "check_coordination",
+            "check_thresholds",
+            "check_loop_geometry",
+            "check_cluster_bound",
+            "check_cubic_screening",
+            "check_decimation",
+            "check_higher_cubic_tables",
+            "check_collars",
+            "check_icosahedral_tables",
+            "check_subgroup_tables",
+            "check_freezing_separation",
+            "check_klein_table",
+            "check_quartic_tables",
+            "check_hessian_tables",
+            "check_higher_spin",
+            "check_crystal_hierarchy",
+            "check_mednykh_genus_two",
+            "check_mednykh_genus_three",
+            "check_casimir_ratios",
+            "check_pachner_counts",
+            "check_wilson_fixture",
+            "check_chemical_potential",
+            "check_overlap_fixture",
+            "check_theta_fixture",
+            "run_checks",
+            "main"
+          ],
+          "tests": [
+            "StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults",
+            "StrongCouplingCheckerTests.test_receipt_counts_every_generated_case",
+            "StrongCouplingCheckerTests.test_railway_faults_and_recorder_errors_are_not_swallowed"
+          ],
+          "requirement_id": "TFQM-STRONG-REVIEW-CHECK-TFQ-1052-FQCD-STRONG-COUPLING-AREA-LAW-7"
+        }
+      ],
+      "source_sha256": "77618e514855b104a320980f413fbd88e69eec35ce988f53b0ccb675510a4619",
+      "symbols": [
+        "SubgroupInvariantTable",
+        "SubgroupInvariantTable.__post_init__",
+        "SubgroupInvariantTable._claim_name",
+        "SubgroupInvariantTable.bounds",
+        "SubgroupInvariantTable.value",
+        "_complex_power",
+        "_complex_product",
+        "_invariant_name",
+        "_power_budget",
+        "a5_cubic_invariants_rational",
+        "area_law_bound_rational",
+        "beta0_rational_bounds",
+        "beta0_rational_midpoint",
+        "binary_icosahedral_2i_invariants_rational",
+        "check_casimir_ratios",
+        "check_chemical_potential",
+        "check_cluster_bound",
+        "check_collars",
+        "check_coordination",
+        "check_crystal_hierarchy",
+        "check_cubic_screening",
+        "check_decimation",
+        "check_freezing_separation",
+        "check_hessian_tables",
+        "check_higher_cubic_tables",
+        "check_higher_spin",
+        "check_icosahedral_tables",
+        "check_klein_table",
+        "check_loop_geometry",
+        "check_mednykh_genus_three",
+        "check_mednykh_genus_two",
+        "check_overlap_fixture",
+        "check_pachner_counts",
+        "check_quartic_tables",
+        "check_subgroup_tables",
+        "check_theta_fixture",
+        "check_thresholds",
+        "check_wilson_fixture",
+        "cluster_sum_rational",
+        "collar_contraction_rational",
+        "d4_multi_plaquette_collar_bound",
+        "delta_coordination",
+        "direct_modified_chirality_square",
+        "freezing_plaquette_defect_rational_bounds",
+        "general_collar_contraction_rational",
+        "main",
+        "normal_directions",
+        "perimeter",
+        "q8_cubic_sum_rational",
+        "run_checks",
+        "s3_cubic_sum_rational",
+        "s4_cubic_invariants_rational",
+        "spanning_area",
+        "su2_ade_binary_polyhedral_tower_rational",
+        "su3_subgroup_tower_and_freezing_scales_rational",
+        "theta_phase",
+        "twod_decimation_rational",
+        "valentiner_sigma1080_invariants_rational"
+      ],
+      "origin_sha256": "9f32c0851eac5b2326999627e68f6d35da1f73bb1f05cd001a998cc971d8108b",
+      "consumers": [
+        {
+          "path": "dag/research/campaign_tfq-1052_correction_validation.json",
+          "sha256": "1ac1bd30b6787bd4a6f9a1139f48e7b7de26aeac28820269e5ac5697c3d5e140"
+        },
+        {
+          "path": "dag/research/pr492_review/validation.json",
+          "sha256": "5c89279bb3254842e66b90270836ab537ff19a122b48ef846e6ee5288dfe6af0"
+        },
+        {
+          "path": "dag/operads/fqcd_strong_coupling_area_law.yaml",
+          "sha256": "805da66f1efa6cb0b16b4120dabb0182d933969d748c981c43c7d86c78e7bf26"
+        },
+        {
+          "path": "atlas/papers/drafts/finite_lattice_gauge_theory_yang_mills_qcd.md",
+          "sha256": "dc388eaf79ed91e73233db79e15204ea6d67ba06bc5c30867589d745af7ae5f6"
+        },
+        {
+          "path": "checks/tests/test_strong_coupling_checker.py",
+          "sha256": "24d77bbe62c19f9d4b087f6bd8a4f29623c651ea1f4ff964a5a7e2717b46013e",
+          "state": "new contract suite"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "2fab1db102e19565d3fa4d66e4c3e8f63e1ba71eff64d7715a8a484809a05eab",
+          "state": "proposed workflow"
+        }
+      ],
+      "consumer_boundary": "Standalone script path and JSON schema/count are preserved. The two mixed table APIs are now validated value objects; repository-wide callsite inspection found their consumers only inside this independent checker. Same-named code/python tests import a separate production fqcd implementation. beta0 now encloses the actual factor-40 Lean threshold; it is neither the factor-8 OS scale nor the separate beta0Rational freezing proxy. Lean expectation structures assume the physical cluster/center bounds; this Python checker does not discharge those hypotheses."
+    },
+    "checks/tests/test_strong_coupling_checker.py": {
+      "role": "Independent generated-property and adversarial verification application for exact geometry, threshold enclosures, power work admission, supplied-table snapshots and case/CLI orchestration",
+      "profile": "Exact",
+      "origin": "SCORING.md",
+      "cost": "Deterministic Hypothesis properties use 80 examples each, bounded loop/product/factorial-series oracles, fixed matrix fixtures and context-managed mocks/captures. Isolated first-25 CLI and mutation workers are time-bounded.",
+      "groups": [
+        {
+          "requirement": "Require actual typed failure, independently compute factorial enclosures and repeated products, exercise malformed/oversized candidates, snapshot ownership, failed receipts and process/cancellation behavior; test the refusal helper itself.",
+          "symbols": [
+            "StrongCouplingCheckerTests",
+            "StrongCouplingCheckerTests.refused",
+            "StrongCouplingCheckerTests.test_refusal_assertion_requires_actual_failure",
+            "StrongCouplingCheckerTests.test_geometry_and_thresholds",
+            "StrongCouplingCheckerTests.test_cluster_series_recurrence_and_partial_sums",
+            "StrongCouplingCheckerTests.test_decimation_and_collar_products",
+            "StrongCouplingCheckerTests.test_multi_plaquette_bound_from_repeated_factors",
+            "StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products",
+            "StrongCouplingCheckerTests.test_modified_chirality_square_for_nonunit_inputs",
+            "StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries",
+            "StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic",
+            "StrongCouplingCheckerTests.test_invariant_table_snapshots_and_accessor_separation",
+            "StrongCouplingCheckerTests.test_invariant_table_refusals",
+            "StrongCouplingCheckerTests.test_supplied_tables_keep_exact_known_values",
+            "StrongCouplingCheckerTests.test_receipt_counts_every_generated_case",
+            "StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults",
+            "StrongCouplingCheckerTests.test_railway_faults_and_recorder_errors_are_not_swallowed"
+          ],
+          "tests": [
+            "StrongCouplingCheckerTests.test_refusal_assertion_requires_actual_failure",
+            "StrongCouplingCheckerTests.test_geometry_and_thresholds",
+            "StrongCouplingCheckerTests.test_cluster_series_recurrence_and_partial_sums",
+            "StrongCouplingCheckerTests.test_decimation_and_collar_products",
+            "StrongCouplingCheckerTests.test_multi_plaquette_bound_from_repeated_factors",
+            "StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products",
+            "StrongCouplingCheckerTests.test_modified_chirality_square_for_nonunit_inputs",
+            "StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries",
+            "StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic",
+            "StrongCouplingCheckerTests.test_invariant_table_snapshots_and_accessor_separation",
+            "StrongCouplingCheckerTests.test_invariant_table_refusals",
+            "StrongCouplingCheckerTests.test_supplied_tables_keep_exact_known_values",
+            "StrongCouplingCheckerTests.test_receipt_counts_every_generated_case",
+            "StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults",
+            "StrongCouplingCheckerTests.test_railway_faults_and_recorder_errors_are_not_swallowed"
+          ],
+          "requirement_id": "TFQM-STRONG-REVIEW-TEST-STRONG-COUPLING-CHECKER-1"
+        }
+      ],
+      "source_sha256": "24d77bbe62c19f9d4b087f6bd8a4f29623c651ea1f4ff964a5a7e2717b46013e",
+      "symbols": [
+        "StrongCouplingCheckerTests",
+        "StrongCouplingCheckerTests.refused",
+        "StrongCouplingCheckerTests.test_all_arithmetic_input_boundaries",
+        "StrongCouplingCheckerTests.test_cluster_series_recurrence_and_partial_sums",
+        "StrongCouplingCheckerTests.test_combined_power_budget_precedes_arithmetic",
+        "StrongCouplingCheckerTests.test_decimation_and_collar_products",
+        "StrongCouplingCheckerTests.test_default_receipt_cli_and_direct_oracle_faults",
+        "StrongCouplingCheckerTests.test_geometry_and_thresholds",
+        "StrongCouplingCheckerTests.test_invariant_table_refusals",
+        "StrongCouplingCheckerTests.test_invariant_table_snapshots_and_accessor_separation",
+        "StrongCouplingCheckerTests.test_modified_chirality_square_for_nonunit_inputs",
+        "StrongCouplingCheckerTests.test_multi_plaquette_bound_from_repeated_factors",
+        "StrongCouplingCheckerTests.test_railway_faults_and_recorder_errors_are_not_swallowed",
+        "StrongCouplingCheckerTests.test_receipt_counts_every_generated_case",
+        "StrongCouplingCheckerTests.test_refusal_assertion_requires_actual_failure",
+        "StrongCouplingCheckerTests.test_supplied_tables_keep_exact_known_values",
+        "StrongCouplingCheckerTests.test_theta_phase_against_linear_complex_products"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/tests/test_strong_coupling_checker.py",
+          "sha256": "24d77bbe62c19f9d4b087f6bd8a4f29623c651ea1f4ff964a5a7e2717b46013e",
+          "state": "new contract suite"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "2fab1db102e19565d3fa4d66e4c3e8f63e1ba71eff64d7715a8a484809a05eab",
+          "state": "proposed workflow"
+        }
+      ],
+      "consumer_boundary": "Standalone script path and JSON schema/count are preserved. The two mixed table APIs are now validated value objects; repository-wide callsite inspection found their consumers only inside this independent checker. Same-named code/python tests import a separate production fqcd implementation. beta0 now encloses the actual factor-40 Lean threshold; it is neither the factor-8 OS scale nor the separate beta0Rational freezing proxy. Lean expectation structures assume the physical cluster/center bounds; this Python checker does not discharge those hypotheses."
+    }
+  }
+}

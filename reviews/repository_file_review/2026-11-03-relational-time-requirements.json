@@ -1,0 +1,320 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/dfm-relational-time-fence.py": {
+      "role": "Finite-clock verification application with owned bounded S3 schedules, chronological frames, closure/seam decisions, reversible endpoint coordinates and exact rational packed-clock controls",
+      "origin": "lean4/DressingFieldRelationalTimeFence.lean",
+      "profile": "Exact",
+      "cost": "N=0..64 owned S3 links, N+1<=65 frames/gauges/states. Constructor and each schedule operation use O(N) time/storage with constant-size permutations. Each cycle control uses12 bounded gauge choices and3 state histories, O(N). Matrices have1..64 rows/columns and4096-bit rational components/products/dot prefixes via RationalMatrix; packed clock is fixed8x8. Default6+36+216+1296=1554 schedules,259 closed and1295 nonclosing,347936 actual obligations =15 matrix+347862 cycle+1 empty-period+54 constant-power+4 incorrect-expression witnesses.",
+      "groups": [
+        {
+          "requirement": "Snapshot nonempty rectangular rational matrices through RationalMatrix, require matching dimensions and exact vector length, exclude bool/foreign scalar values and bound each component/product/dot prefix. Export immutable tuples. Fixed matrix helpers preserve rectangular semantics.",
+          "symbols": [
+            "mat",
+            "mul",
+            "transp",
+            "apply"
+          ],
+          "tests": [
+            "RelationalTimeTests.test_matrix_vector_operations_against_symbolic_oracle",
+            "RelationalTimeTests.test_packed_clock_and_fixed_control_counts",
+            "RelationalTimeTests.test_guard_faults_and_cancellation"
+          ],
+          "requirement_id": "TFQM-RELATIONAL-TIME-REVIEW-DFM-RELATIONAL-TIME-FENCE-1"
+        },
+        {
+          "requirement": "Admit exactly S3 permutations and exact integer states0..2. Compose a after b and invert bijectively. Own0..64 links before construction and chronological identity-rooted frames with later links on the left. Gauge/history inputs have exactly N+1 values, at most65.",
+          "symbols": [
+            "_compose",
+            "compose",
+            "_inverse",
+            "inverse",
+            "_state",
+            "_gauges",
+            "_history",
+            "PermutationSchedule",
+            "PermutationSchedule.__init__",
+            "frames"
+          ],
+          "tests": [
+            "RelationalTimeTests.test_full_s3_census_and_exact_domains",
+            "RelationalTimeTests.test_frames_seams_closure_and_histories",
+            "RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals",
+            "RelationalTimeTests.test_empty_boundary_and_full_period_budget",
+            "RelationalTimeTests.test_noninvolutive_endpoint_fixture"
+          ],
+          "requirement_id": "TFQM-RELATIONAL-TIME-REVIEW-DFM-RELATIONAL-TIME-FENCE-2"
+        },
+        {
+          "requirement": "Keep canonical closure tags emptyPeriod/nontrivialHolonomy/ok; closed returns the same owned schedule only for a nonempty identity holonomy. Blocks refuse an empty period and compute interior identities with final seam holonomy using cyclic frames. Nonclosing blocks remain valid values.",
+          "symbols": [
+            "PermutationSchedule.closure_tag",
+            "PermutationSchedule._closed",
+            "PermutationSchedule.closed",
+            "PermutationSchedule._blocks",
+            "PermutationSchedule.blocks",
+            "closure"
+          ],
+          "tests": [
+            "RelationalTimeTests.test_frames_seams_closure_and_histories",
+            "RelationalTimeTests.test_empty_boundary_and_full_period_budget",
+            "RelationalTimeTests.test_noninvolutive_endpoint_fixture",
+            "RelationalTimeTests.test_noninvolutive_evolution_direction"
+          ],
+          "requirement_id": "TFQM-RELATIONAL-TIME-REVIEW-DFM-RELATIONAL-TIME-FENCE-3"
+        },
+        {
+          "requirement": "Endpoint changes are target-gauge inverse * link * source gauge. Histories use frame action on an admitted initial state; evolves checks every chronological link including noninvolutions and returns successful false for valid nonevolving histories. Coordinates use inverse endpoint gauge, preserve evolution iff and yield stationary coordinates for evolving histories. Return all dependent operations through Outcome; empty algebraic histories/change remain meaningful.",
+          "symbols": [
+            "PermutationSchedule._changed",
+            "PermutationSchedule.changed",
+            "PermutationSchedule._history",
+            "PermutationSchedule.history",
+            "PermutationSchedule._evolves",
+            "PermutationSchedule.evolves",
+            "PermutationSchedule._coordinates",
+            "PermutationSchedule.coordinates"
+          ],
+          "tests": [
+            "RelationalTimeTests.test_endpoint_gauges_preserve_arbitrary_history_evolution",
+            "RelationalTimeTests.test_noninvolutive_endpoint_fixture",
+            "RelationalTimeTests.test_noninvolutive_evolution_direction",
+            "RelationalTimeTests.test_frames_seams_closure_and_histories",
+            "RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals",
+            "RelationalTimeTests.test_empty_boundary_and_full_period_budget"
+          ],
+          "requirement_id": "TFQM-RELATIONAL-TIME-REVIEW-DFM-RELATIONAL-TIME-FENCE-4"
+        },
+        {
+          "requirement": "Require Cases recorders; count every finite predicate. Separate packed8x8 D^TWD versus shift, vector recovery, all short schedules, obstruction iff, twelve gauge choices and incorrect-expression witnesses. Cycle/gauge regression wrappers refuse empty inputs before recording checks; wrapper human diagnostic text is not canonical. Cancellation/programming errors propagate and CLI failures exit nonzero.",
+          "symbols": [
+            "_cases",
+            "_vector_controls",
+            "_packed_product",
+            "matrix_regression",
+            "_gauge_controls",
+            "gauge_regression",
+            "_cycle_controls",
+            "cycle_regression",
+            "fault_regression",
+            "main"
+          ],
+          "tests": [
+            "RelationalTimeTests.test_packed_clock_and_fixed_control_counts",
+            "RelationalTimeTests.test_noninvolutive_endpoint_fixture",
+            "RelationalTimeTests.test_empty_boundary_and_full_period_budget",
+            "RelationalTimeTests.test_guard_faults_and_cancellation",
+            "RelationalTimeTests.test_full_enumeration_and_executable_failure_exit"
+          ],
+          "requirement_id": "TFQM-RELATIONAL-TIME-REVIEW-DFM-RELATIONAL-TIME-FENCE-5"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "f4e203fc55960cee6395ec6b1c873f4feef131ac388e792269dbf1ebe9e69439",
+      "symbols": [
+        "PermutationSchedule",
+        "PermutationSchedule.__init__",
+        "PermutationSchedule._blocks",
+        "PermutationSchedule._changed",
+        "PermutationSchedule._closed",
+        "PermutationSchedule._coordinates",
+        "PermutationSchedule._evolves",
+        "PermutationSchedule._history",
+        "PermutationSchedule.blocks",
+        "PermutationSchedule.changed",
+        "PermutationSchedule.closed",
+        "PermutationSchedule.closure_tag",
+        "PermutationSchedule.coordinates",
+        "PermutationSchedule.evolves",
+        "PermutationSchedule.history",
+        "_cases",
+        "_compose",
+        "_cycle_controls",
+        "_gauge_controls",
+        "_gauges",
+        "_history",
+        "_inverse",
+        "_packed_product",
+        "_state",
+        "_vector_controls",
+        "apply",
+        "closure",
+        "compose",
+        "cycle_regression",
+        "fault_regression",
+        "frames",
+        "gauge_regression",
+        "inverse",
+        "main",
+        "mat",
+        "matrix_regression",
+        "mul",
+        "transp"
+      ],
+      "origin_sha256": "0a6ce2dcad77e401ace44109d9fa453443e03a418e10d79915181ad9dd1833d5",
+      "consumers": [
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-23_pr-239-repair.md",
+          "sha256": "a22881029c4d402cc9702a501d5825d8a66c0cf442ff024f02909dac92ddd47e",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/stages/DRESSING_FIELD.md",
+          "sha256": "83ac7ddd7480d115aadfe42ddeb3bd78094fb68c4f34a95916643351180adcb2",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivations/24_dressing_field/tfq_1117_dfm_relational_time_fence.md",
+          "sha256": "4b9e4575119e5179ea7fdbd37681ff22fe28b91bff6fef8c765dae776cd79a62",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/nodes/DFM-RELATIONAL-TIME-FENCE.md",
+          "sha256": "f3b5a5b166fa1ce237c64a22d840975feea50a206ea31da95505aefb349c49d6",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/unified_dag.json",
+          "sha256": "c7845b4f150f45fece1c97988789f0c2ea458b088cfa20db09f43bc6fff0d753",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/application_branches.json",
+          "sha256": "7569bc0053202d28d9d8d6c7cc9328884fd2ccfe0dc1c0a3e1770f4eb4a9d684",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/operads/dfm_relational_time_fence.yaml",
+          "sha256": "f5bd85bfef576c2ce2b11febf15321d1bd4947fb2b7e41db13322f0675cb1e7a",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr239_independent_validation.json",
+          "sha256": "8f4280fa7074f7cc0f0d721e9d4be9121d43d3a799395559275bb5c1705d94ce",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr239_final_validation.json",
+          "sha256": "683c51b180fa6785bd28c8bbbf037e13da302ac903d8b40d92857e701d9464bc",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/tests/test_relational_time.py",
+          "sha256": "d28b3e2b3cad51869101a60a8783c24f61188fed2beb513803714784e4082950",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "14f414ad208077768c8b5b880817a25a4112778b045cf8840b2912b742e73df5",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and matrix/S3 helper names remain; exact3-permutation and bounded matrix admission replaces unchecked generic indexing. Legacy frames/closure tuples/tags are preserved. PermutationSchedule owns links/frames and exposes Railway closure, blocks, histories, coordinate and endpoint-change operations. Internal regression helpers now require Cases; no external Python caller was found. Default CLI is JSON with347936 actual obligations. Removing the outer cycle-regression empty guard is typed-boundary equivalent because _blocks still refuses before checks, modulo or products; only noncanonical wrapper human text differs. Full Lean origin states arbitrary-group results; this executable checks bounded S3 and supplied rational matrices, without constructing a continuous-time generator or promoting DAG status. Historical scientific receipts retain original hashes."
+    },
+    "checks/tests/test_relational_time.py": {
+      "role": "Independent finite-clock verification application with exhaustive S3 action census, generated histories/gauges, noninvolutive direction witnesses, a Kronecker packed-clock oracle and executable failure/cancellation tests",
+      "origin": "SCORING.md",
+      "profile": "Exact",
+      "cost": "12 groups;80 deterministic examples per generated property with at most8 links and9 endpoint values. Full36 S3 pair and6 inverse census; explicit full64-period boundary. Symbolic matrix products are fixed rectangular or8x8. One default executable run checks1554 schedules under30-second timeout. runpy, mocks, captures and subprocess resources are scoped.",
+      "groups": [
+        {
+          "requirement": "Cross-check independent inverse tables and per-point chronological transport; challenge arbitrary valid and invalid histories, endpoint covariance, stationary coordinates, noncommuting/noninvolutive direction, canonical closure tags, seam, empty/full resource boundaries, snapshot ownership, rational matrix admission and independent Kronecker oracle. Verify actual347936 receipt count, typed nonzero exits and programming/cancellation propagation.",
+          "symbols": [
+            "load",
+            "_inverse",
+            "_frames",
+            "RelationalTimeTests",
+            "RelationalTimeTests.refused",
+            "RelationalTimeTests.test_oracles_and_import_lifecycle",
+            "RelationalTimeTests.test_full_s3_census_and_exact_domains",
+            "RelationalTimeTests.test_frames_seams_closure_and_histories",
+            "RelationalTimeTests.test_endpoint_gauges_preserve_arbitrary_history_evolution",
+            "RelationalTimeTests.test_noninvolutive_endpoint_fixture",
+            "RelationalTimeTests.test_noninvolutive_evolution_direction",
+            "RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals",
+            "RelationalTimeTests.test_empty_boundary_and_full_period_budget",
+            "RelationalTimeTests.test_matrix_vector_operations_against_symbolic_oracle",
+            "RelationalTimeTests.test_packed_clock_and_fixed_control_counts",
+            "RelationalTimeTests.test_guard_faults_and_cancellation",
+            "RelationalTimeTests.test_full_enumeration_and_executable_failure_exit"
+          ],
+          "tests": [
+            "RelationalTimeTests.test_oracles_and_import_lifecycle",
+            "RelationalTimeTests.test_full_s3_census_and_exact_domains",
+            "RelationalTimeTests.test_frames_seams_closure_and_histories",
+            "RelationalTimeTests.test_endpoint_gauges_preserve_arbitrary_history_evolution",
+            "RelationalTimeTests.test_noninvolutive_endpoint_fixture",
+            "RelationalTimeTests.test_noninvolutive_evolution_direction",
+            "RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals",
+            "RelationalTimeTests.test_empty_boundary_and_full_period_budget",
+            "RelationalTimeTests.test_matrix_vector_operations_against_symbolic_oracle",
+            "RelationalTimeTests.test_packed_clock_and_fixed_control_counts",
+            "RelationalTimeTests.test_guard_faults_and_cancellation",
+            "RelationalTimeTests.test_full_enumeration_and_executable_failure_exit"
+          ],
+          "requirement_id": "TFQM-RELATIONAL-TIME-REVIEW-TEST-RELATIONAL-TIME-1"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "d28b3e2b3cad51869101a60a8783c24f61188fed2beb513803714784e4082950",
+      "symbols": [
+        "RelationalTimeTests",
+        "RelationalTimeTests.refused",
+        "RelationalTimeTests.test_empty_boundary_and_full_period_budget",
+        "RelationalTimeTests.test_endpoint_gauges_preserve_arbitrary_history_evolution",
+        "RelationalTimeTests.test_frames_seams_closure_and_histories",
+        "RelationalTimeTests.test_full_enumeration_and_executable_failure_exit",
+        "RelationalTimeTests.test_full_s3_census_and_exact_domains",
+        "RelationalTimeTests.test_guard_faults_and_cancellation",
+        "RelationalTimeTests.test_matrix_vector_operations_against_symbolic_oracle",
+        "RelationalTimeTests.test_noninvolutive_endpoint_fixture",
+        "RelationalTimeTests.test_noninvolutive_evolution_direction",
+        "RelationalTimeTests.test_oracles_and_import_lifecycle",
+        "RelationalTimeTests.test_packed_clock_and_fixed_control_counts",
+        "RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals",
+        "_frames",
+        "_inverse",
+        "load"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/independent/dfm-relational-time-fence.py",
+          "sha256": "f4e203fc55960cee6395ec6b1c873f4feef131ac388e792269dbf1ebe9e69439",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "14f414ad208077768c8b5b880817a25a4112778b045cf8840b2912b742e73df5",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and matrix/S3 helper names remain; exact3-permutation and bounded matrix admission replaces unchecked generic indexing. Legacy frames/closure tuples/tags are preserved. PermutationSchedule owns links/frames and exposes Railway closure, blocks, histories, coordinate and endpoint-change operations. Internal regression helpers now require Cases; no external Python caller was found. Default CLI is JSON with347936 actual obligations. Removing the outer cycle-regression empty guard is typed-boundary equivalent because _blocks still refuses before checks, modulo or products; only noncanonical wrapper human text differs. Full Lean origin states arbitrary-group results; this executable checks bounded S3 and supplied rational matrices, without constructing a continuous-time generator or promoting DAG status. Historical scientific receipts retain original hashes."
+    }
+  }
+}

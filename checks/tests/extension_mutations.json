@@ -1,0 +1,378 @@
+[
+  {
+    "identity": "schema-unknown-fields",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "or len(value) != len(KEYS) or set(value) != KEYS",
+    "after": "or not KEYS.issubset(value)",
+    "tests": [
+      "test_closed_schema_metadata_and_exact_numbers"
+    ]
+  },
+  {
+    "identity": "metadata-target",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "or data['target'] != TARGET",
+    "after": "or False",
+    "tests": [
+      "test_closed_schema_metadata_and_exact_numbers"
+    ]
+  },
+  {
+    "identity": "metadata-normalization",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "or data['normalization'] != NORMALIZATION",
+    "after": "or False",
+    "tests": [
+      "test_closed_schema_metadata_and_exact_numbers"
+    ]
+  },
+  {
+    "identity": "metadata-commit",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "re.fullmatch('[0-9a-f]{40}', commit) is None",
+    "after": "False",
+    "tests": [
+      "test_closed_schema_metadata_and_exact_numbers"
+    ]
+  },
+  {
+    "identity": "claimed-rhs",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "if _bounded(data['contradiction_rhs']) != 32:",
+    "after": "if _bounded(data['contradiction_rhs']) != _bounded(data['contradiction_rhs']):",
+    "tests": [
+      "test_closed_schema_metadata_and_exact_numbers"
+    ]
+  },
+  {
+    "identity": "integer-budget",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "if result.bit_length() > 4096:",
+    "after": "if False:",
+    "tests": [
+      "test_integer_products_prefixes_and_aggregate_budgets"
+    ]
+  },
+  {
+    "identity": "ray-budget",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "sequence(value, 'rays', maximum=512)",
+    "after": "sequence(value, 'rays', maximum=513)",
+    "tests": [
+      "test_whole_schema_admission_precedes_geometry"
+    ]
+  },
+  {
+    "identity": "duplicate-rays",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "if len(set(rays)) != len(rays):",
+    "after": "if False:",
+    "tests": [
+      "test_whole_schema_admission_precedes_geometry"
+    ]
+  },
+  {
+    "identity": "primitive-nonzero-rays",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "if gcd(*ray) != 1:",
+    "after": "if False:",
+    "tests": [
+      "test_whole_schema_admission_precedes_geometry",
+      "test_isolated_admission_terms_prescriptions_and_parser_guards"
+    ]
+  },
+  {
+    "identity": "frame-budget",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "_records(data['frames'], 4, 3, len(rays), 1024)",
+    "after": "_records(data['frames'], 4, 3, len(rays), 1025)",
+    "tests": [
+      "test_whole_schema_admission_precedes_geometry"
+    ]
+  },
+  {
+    "identity": "prescription-budget",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "_records(data['real_values'], 3, 1, len(rays), 512)",
+    "after": "_records(data['real_values'], 3, 1, len(rays), 513)",
+    "tests": [
+      "test_whole_schema_admission_precedes_geometry"
+    ]
+  },
+  {
+    "identity": "zero-weight",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "if row[-1] == 0:",
+    "after": "if False:",
+    "tests": [
+      "test_whole_schema_admission_precedes_geometry"
+    ]
+  },
+  {
+    "identity": "negative-index",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "i < 0 or i >= count",
+    "after": "i >= count",
+    "tests": [
+      "test_whole_schema_admission_precedes_geometry"
+    ]
+  },
+  {
+    "identity": "index-upper-bound",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "i < 0 or i >= count",
+    "after": "i < 0",
+    "tests": [
+      "test_whole_schema_admission_precedes_geometry"
+    ]
+  },
+  {
+    "identity": "real-hermitian-sign",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "_bounded(u[k]*v[k]) + _bounded(u[k+1]*v[k+1])",
+    "after": "_bounded(u[k]*v[k]) - _bounded(u[k+1]*v[k+1])",
+    "tests": [
+      "test_generated_hermitian_inner_matches_symbolic_algebra"
+    ]
+  },
+  {
+    "identity": "imag-conjugation",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "_bounded(u[k]*v[k+1]) - _bounded(u[k+1]*v[k])",
+    "after": "_bounded(u[k]*v[k+1]) + _bounded(u[k+1]*v[k])",
+    "tests": [
+      "test_generated_hermitian_inner_matches_symbolic_algebra"
+    ]
+  },
+  {
+    "identity": "real-term-budget",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "real_term = _bounded(_bounded(u[k]*v[k]) + _bounded(u[k+1]*v[k+1]))",
+    "after": "real_term = _bounded(u[k]*v[k]) + _bounded(u[k+1]*v[k+1])",
+    "tests": [
+      "test_integer_products_prefixes_and_aggregate_budgets",
+      "test_isolated_admission_terms_prescriptions_and_parser_guards"
+    ]
+  },
+  {
+    "identity": "imag-term-budget",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "imag_term = _bounded(_bounded(u[k]*v[k+1]) - _bounded(u[k+1]*v[k]))",
+    "after": "imag_term = _bounded(u[k]*v[k+1]) - _bounded(u[k+1]*v[k])",
+    "tests": [
+      "test_integer_products_prefixes_and_aggregate_budgets",
+      "test_isolated_admission_terms_prescriptions_and_parser_guards"
+    ]
+  },
+  {
+    "identity": "real-prefix-budget",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "real = _bounded(real + real_term)",
+    "after": "real = real + real_term",
+    "tests": [
+      "test_integer_products_prefixes_and_aggregate_budgets"
+    ]
+  },
+  {
+    "identity": "imag-prefix-budget",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "imag = _bounded(imag + imag_term)",
+    "after": "imag = imag + imag_term",
+    "tests": [
+      "test_integer_products_prefixes_and_aggregate_budgets"
+    ]
+  },
+  {
+    "identity": "real-prescription-domain",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "require(all(ray[k] == 0 for k in (1, 3, 5)), 'prescribed ray must be real')",
+    "after": "pass",
+    "tests": [
+      "test_geometric_and_algebraic_forgery_refusals",
+      "test_isolated_admission_terms_prescriptions_and_parser_guards"
+    ]
+  },
+  {
+    "identity": "mod4-sign",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "return -1 if (odd[0] % 4 - odd[1] % 4) % 4 == 0 else 1",
+    "after": "return 1 if (odd[0] % 4 - odd[1] % 4) % 4 == 0 else -1",
+    "tests": [
+      "test_generated_real_sign_matches_residue_table"
+    ]
+  },
+  {
+    "identity": "frame-orthogonality",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "require(_inner(u, v) == _inner(u, w) == _inner(v, w) == (0, 0),",
+    "after": "require(True,",
+    "tests": [
+      "test_geometric_and_algebraic_forgery_refusals"
+    ]
+  },
+  {
+    "identity": "frame-coefficient",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "coefficients[i] = _bounded(coefficients[i] + weight)",
+    "after": "coefficients[i] = _bounded(coefficients[i] - weight)",
+    "tests": [
+      "test_full_symbolic_linear_certificate_and_geometry"
+    ]
+  },
+  {
+    "identity": "exotic-prescription",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "require(sign == _sign(self.rays[index]), 'wrong exotic real-ray value')",
+    "after": "require(True, 'wrong exotic real-ray value')",
+    "tests": [
+      "test_geometric_and_algebraic_forgery_refusals",
+      "test_isolated_admission_terms_prescriptions_and_parser_guards"
+    ]
+  },
+  {
+    "identity": "real-coefficient",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "coefficients[index] = _bounded(coefficients[index] + weight)",
+    "after": "coefficients[index] = _bounded(coefficients[index] - weight)",
+    "tests": [
+      "test_full_symbolic_linear_certificate_and_geometry"
+    ]
+  },
+  {
+    "identity": "rhs-combination",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "rhs = _bounded(rhs + _bounded(weight * sign))",
+    "after": "rhs = _bounded(rhs - _bounded(weight * sign))",
+    "tests": [
+      "test_full_symbolic_linear_certificate_and_geometry"
+    ]
+  },
+  {
+    "identity": "variable-cancellation",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "require(not any(coefficients), 'linear combination leaves a variable')",
+    "after": "require(True, 'linear combination leaves a variable')",
+    "tests": [
+      "test_geometric_and_algebraic_forgery_refusals"
+    ]
+  },
+  {
+    "identity": "computed-rhs",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "require(rhs == 32, 'wrong contradiction right side')",
+    "after": "require(True, 'wrong contradiction right side')",
+    "tests": [
+      "test_geometric_and_algebraic_forgery_refusals"
+    ]
+  },
+  {
+    "identity": "negative-control-acceptance",
+    "source": "independent/fq-gleason-qi3-extension.py",
+    "before": "require(not verify(changed).ok, label + ': corrupted certificate was accepted')",
+    "after": "require(True, label + ': corrupted certificate was accepted')",
+    "tests": [
+      "test_geometric_and_algebraic_forgery_refusals"
+    ]
+  },
+  {
+    "identity": "document-depth",
+    "source": "checker_support/exact_json_document.py",
+    "before": "if depth>16:",
+    "after": "if depth>17:",
+    "tests": [
+      "test_document_depth_size_hash_and_ownership"
+    ]
+  },
+  {
+    "identity": "document-quote-state",
+    "source": "checker_support/exact_json_document.py",
+    "before": "quoted=True",
+    "after": "quoted=False",
+    "tests": [
+      "test_document_depth_size_hash_and_ownership"
+    ]
+  },
+  {
+    "identity": "document-escape-state",
+    "source": "checker_support/exact_json_document.py",
+    "before": "escaped=True",
+    "after": "escaped=False",
+    "tests": [
+      "test_document_depth_size_hash_and_ownership",
+      "test_isolated_admission_terms_prescriptions_and_parser_guards"
+    ]
+  },
+  {
+    "identity": "document-integer-bits",
+    "source": "checker_support/exact_json_document.py",
+    "before": "if value.bit_length()>4096:",
+    "after": "if False:",
+    "tests": [
+      "test_exact_json_numbers_duplicates_unicode_and_syntax"
+    ]
+  },
+  {
+    "identity": "document-integer-digits",
+    "source": "checker_support/exact_json_document.py",
+    "before": "if len(text.lstrip('-'))>1234:",
+    "after": "if False:",
+    "tests": [
+      "test_exact_json_numbers_duplicates_unicode_and_syntax",
+      "test_isolated_admission_terms_prescriptions_and_parser_guards"
+    ]
+  },
+  {
+    "identity": "document-inexact-numbers",
+    "source": "checker_support/exact_json_document.py",
+    "before": "raise Violation('input','exact JSON forbids floats and nonstandard numeric constants')",
+    "after": "return 0",
+    "tests": [
+      "test_exact_json_numbers_duplicates_unicode_and_syntax"
+    ]
+  },
+  {
+    "identity": "document-duplicate-members",
+    "source": "checker_support/exact_json_document.py",
+    "before": "if key in result:",
+    "after": "if False:",
+    "tests": [
+      "test_exact_json_numbers_duplicates_unicode_and_syntax"
+    ]
+  },
+  {
+    "identity": "document-byte-type",
+    "source": "checker_support/exact_json_document.py",
+    "before": "if type(raw) is not bytes:",
+    "after": "if False:",
+    "tests": [
+      "test_exact_json_numbers_duplicates_unicode_and_syntax"
+    ]
+  },
+  {
+    "identity": "document-byte-budget",
+    "source": "checker_support/exact_json_document.py",
+    "before": "if len(raw)>MAX_BYTES:",
+    "after": "if False:",
+    "tests": [
+      "test_document_depth_size_hash_and_ownership"
+    ]
+  },
+  {
+    "identity": "document-read-truncation",
+    "source": "checker_support/exact_json_document.py",
+    "before": "stream.read(MAX_BYTES+1)",
+    "after": "stream.read(MAX_BYTES)",
+    "tests": [
+      "test_document_file_lifecycle_and_read_limit"
+    ]
+  },
+  {
+    "identity": "document-recursion-refusal",
+    "source": "checker_support/exact_json_document.py",
+    "before": "raise Violation('resource','exact JSON parser recursion limit') from error",
+    "after": "raise error",
+    "tests": [
+      "test_expected_failure_and_cancellation_propagation"
+    ]
+  }
+]

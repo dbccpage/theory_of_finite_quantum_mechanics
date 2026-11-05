@@ -151,3 +151,19 @@ governance/** text eol=lf
 # Repair replay logs are exact source-bound evidence bytes.
 evidence/quality/pr215_l4_repair/** -text -whitespace
 dag/research/foc035_l4_*.json -text
+
+# These reviewed source hashes include a captured CRLF line ending. Retain
+# the tested bytes when checking out on either Linux or Windows.
+[attr]checker-reviewed-bytes -text whitespace=trailing-space,space-before-tab,cr-at-eol
+checks/checker_support/binary_frame_system.py checker-reviewed-bytes
+checks/checker_support/equatorial_ray_geometry.py checker-reviewed-bytes
+checks/checker_support/gaussian_vector3.py checker-reviewed-bytes
+checks/checker_support/inert_prime_residual.py checker-reviewed-bytes
+checks/checker_support/orthogonal_gaussian_pair.py checker-reviewed-bytes
+checks/independent/fq-gap-born-uniqueness-gleason-rational-rays.py checker-reviewed-bytes
+checks/independent/fq-gleason-qi3-extension.py checker-reviewed-bytes
+checks/independent/fq-gleason-qi3-frame-functions.py checker-reviewed-bytes
+checks/independent/fq-gleason-qi3-tomography.py checker-reviewed-bytes
+checks/tests/test_inert_prime_geometry.py checker-reviewed-bytes
+reviews/repository_file_review/** checker-reviewed-bytes
+reviews/repository_file_review/*-original-*.txt whitespace=blank-at-eol,-blank-at-eof,space-before-tab,cr-at-eol

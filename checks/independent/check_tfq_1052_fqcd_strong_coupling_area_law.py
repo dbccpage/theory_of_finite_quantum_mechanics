@@ -3,16 +3,25 @@
 
 Target node: FQCD-STRONG-COUPLING-AREA-LAW
 AuthorityEffect: None
-Zero repository imports: pure Python standard library only.
+Imports checker infrastructure only; no production implementation.
+
+Checks arithmetic conditional on supplied finite character/degree tables.
+It does not enumerate the groups, derive their tables, or prove the continuum area law.
+All uniqueness labels below concern only the displayed comparison set.
+Public arithmetic helpers admit exact int/Fraction values, integer parameters
+at most 4096, and a conservative 65536-bit combined budget before large powers.
+The check_* functions compose trusted finite fixtures through a typed recorder.
 
 Verifies:
 1. Exact coordination numbers: Delta_d = 2d(d-1) for d >= 2.
-2. Exact closed-form strong-coupling threshold: beta_0(N, d) = [8 e Delta_d (N-1)]^{-1} > 0
+2. Rational enclosure of the strong-coupling threshold: beta_0(N, d) = [40 e Delta_d (N-1)]^{-1} > 0
    and certified rational lower/upper bounds using 19/7 < e < 193/71.
-3. Exact constants: K = 1, sigma_0 = ln(4) > 0 with exact rational decay bound (1/4)^Area.
+   The distinct Osterwalder-Seiler scale uses 8 in place of 40.
+3. Exact rational decay bound (1/4)^Area; the interpretation K = 1 and sigma_0 = ln(4)
+   belongs to the formal origin, not a logarithm computation in this checker.
 4. Minimal spanning area Area(C) = L * T and perimeter Perimeter(C) = 2(L + T).
 5. Geometric cluster series area-law bound:
-   sum_{A >= Area(C)} (8 e Delta_d (N-1) beta)^A <= K exp(-sigma_0 Area(C)) for beta <= beta_0 / 5.
+   sum_{A >= Area(C)} (8 e Delta_d (N-1) beta)^A <= K exp(-sigma_0 Area(C)) for beta <= beta_0.
 6. Finite group cubic invariants & screening vs center parity protection:
    - S_3 cubic character invariant sum_{g in S_3} chi_2(g)^3 / 6 = 1.0 (exact Fraction(1, 1));
      collar tube tensor contraction c_X = 2^{-E_off} > 0 mediating screening for L >= 17.
@@ -26,91 +35,168 @@ from __future__ import annotations
 
 from fractions import Fraction
 import json
-import sys
-from typing import Any, Dict, List, Tuple
+from collections.abc import Callable
+from dataclasses import dataclass
+from math import lcm
+
+# Shared checker infrastructure only; no production implementation is imported.
+from pathlib import Path as _Path
+import sys as _sys
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
+from checker_support.boundary import cli, evaluate
+from checker_support.domains import integer, rational, sequence
+from checker_support.boundary import Violation
+from checker_support.cases import Cases
 
 
-def direct_wilson_determinant(m: Fraction, r: Fraction) -> Fraction:
-    """Eliminate the actual 8x8 matrix; no determinant polynomial is used."""
-    s = m + 2*r
-    a = [[Fraction(x) for x in row] for row in [
-        [s, 0, -r, 0, -r, 0, 0, 0], [0, s, 0, -r, 0, -r, 0, 0],
-        [-r, 0, s, 0, 0, 0, 0, 1], [0, -r, 0, s, 0, 0, 1, 0],
-        [-r, 0, 0, 0, s, 0, 0, 1], [0, -r, 0, 0, 0, s, -1, 0],
-        [0, 0, 0, -1, 0, 1, s, 0], [0, 0, -1, 0, -1, 0, 0, s],
-    ]]
-    det = Fraction(1)
-    for col in range(8):
-        pivot = next((row for row in range(col, 8) if a[row][col]), None)
-        if pivot is None:
-            return Fraction(0)
-        if pivot != col:
-            a[col], a[pivot] = a[pivot], a[col]
-            det = -det
-        p = a[col][col]
-        det *= p
-        for row in range(col + 1, 8):
-            q = a[row][col] / p
-            for k in range(col + 1, 8):
-                a[row][k] -= q * a[col][k]
-    return det
+from checker_support.wilson_operator import direct_wilson_determinant
+
+
+CheckRecorder = Callable[[bool, str], None]
+MAX_POWER_BITS = 65536
+
+
+def _power_budget(estimated_bits: int) -> None:
+    """Conservative combined numerator/denominator bound, checked before powers."""
+    if estimated_bits > MAX_POWER_BITS:
+        raise Violation("resource", "exact power exceeds the 65536-bit work budget")
+
+
+def _complex_product(left: tuple[int, int], right: tuple[int, int]) -> tuple[int, int]:
+    a, b = left
+    c, d = right
+    return a*c - b*d, a*d + b*c
+
+
+def _complex_power(base: tuple[int, int], exponent: int) -> tuple[int, int]:
+    """Internal nonnegative integer power by squaring after public admission."""
+    result = (1, 0)
+    while exponent:
+        if exponent & 1:
+            result = _complex_product(result, base)
+        exponent //= 2
+        if exponent:
+            base = _complex_product(base, base)
+    return result
+
+
+def _invariant_name(value: object) -> str:
+    if type(value) is not str or not value or len(value) > 128:
+        raise Violation("input", "invariant names require 1..128 text characters")
+    return value
+
+
+@dataclass(frozen=True, slots=True)
+class SubgroupInvariantTable:
+    """Supplied scalar invariants and strict rational intervals; not group data derivation."""
+
+    scalars: tuple[tuple[str, Fraction], ...]
+    intervals: tuple[tuple[str, tuple[Fraction, Fraction]], ...]
+
+    def __post_init__(self) -> None:
+        scalars = []
+        intervals = []
+        names: set[str] = set()
+        for entry in sequence(self.scalars, "scalar rows", maximum=32):
+            name, value = sequence(entry, "scalar row", 2)
+            key = self._claim_name(name, names)
+            scalars.append((key, rational(value, "invariant", minimum=0)))
+        for entry in sequence(self.intervals, "interval rows", maximum=32):
+            name, value = sequence(entry, "interval row", 2)
+            key = self._claim_name(name, names)
+            low, high = sequence(value, "interval bounds", 2)
+            lower, upper = rational(low, minimum=0), rational(high, minimum=0)
+            if lower >= upper:
+                raise Violation("input", "invariant interval must have lower < upper")
+            intervals.append((key, (lower, upper)))
+        if not names:
+            raise Violation("input", "invariant table must be nonempty")
+        object.__setattr__(self, "scalars", tuple(scalars))
+        object.__setattr__(self, "intervals", tuple(intervals))
+
+    @staticmethod
+    def _claim_name(value: object, names: set[str]) -> str:
+        key = _invariant_name(value)
+        if key in names:
+            raise Violation("duplicate", "invariant names must be unique across both carriers")
+        names.add(key)
+        return key
+
+    def value(self, name: str) -> Fraction:
+        key = _invariant_name(name)
+        for candidate, value in self.scalars:
+            if candidate == key:
+                return value
+        raise Violation("input", "unknown scalar invariant: " + key)
+
+    def bounds(self, name: str) -> tuple[Fraction, Fraction]:
+        key = _invariant_name(name)
+        for candidate, interval in self.intervals:
+            if candidate == key:
+                return interval
+        raise Violation("input", "unknown invariant interval: " + key)
 
 
 def direct_modified_chirality_square(a: Fraction, c: Fraction, b: Fraction) -> list[list[Fraction]]:
     """Build the overlap operator and multiply Gamma5(I-aD) by itself."""
+    a = rational(a, "a")
+    if a == 0:
+        raise Violation("input", "overlap spacing must be nonzero")
+    c = rational(c, "c")
+    b = rational(b, "b")
     gamma = (1, -1)
     eps = ((c, b), (b, -c))
     d = [[(int(i == j) + gamma[i]*eps[i][j]) / a for j in range(2)] for i in range(2)]
     h = [[gamma[i]*(int(i == j) - a*d[i][j]) for j in range(2)] for i in range(2)]
-    return [[sum(h[i][k]*h[k][j] for k in range(2)) for j in range(2)] for i in range(2)]
+    return [[sum((h[i][k]*h[k][j] for k in range(2)), Fraction(0)) for j in range(2)] for i in range(2)]
 
 
 def delta_coordination(d: int) -> int:
-    if d < 2:
-        raise ValueError(f"d must be >= 2, got {d}")
+    integer(d, "d", 2, 4096)
     return 2 * d * (d - 1)
 
 
 def beta0_rational_midpoint(n: int, d: int) -> Fraction:
-    if n < 2 or d < 2:
-        raise ValueError("Requires n >= 2 and d >= 2")
+    integer(n, "n", 2, 4096)
+    integer(d, "d", 2, 4096)
     lower, upper = beta0_rational_bounds(n, d)
     return (lower + upper) / Fraction(2, 1)
 
 
-def beta0_rational_bounds(n: int, d: int) -> Tuple[Fraction, Fraction]:
-    if n < 2 or d < 2:
-        raise ValueError("Requires n >= 2 and d >= 2")
+def beta0_rational_bounds(n: int, d: int) -> tuple[Fraction, Fraction]:
+    """Enclose Lean FQCD.beta0 (factor 40), not beta0_OS (factor 8)."""
+    integer(n, "n", 2, 4096)
+    integer(d, "d", 2, 4096)
     delta = delta_coordination(d)
-    factor = Fraction(8 * delta * (n - 1), 1)
+    factor = Fraction(40 * delta * (n - 1), 1)
     lower = Fraction(1, 1) / (factor * Fraction(193, 71))
     upper = Fraction(1, 1) / (factor * Fraction(19, 7))
     return lower, upper
 
 
 def spanning_area(l: int, t: int) -> int:
-    if l <= 0 or t <= 0:
-        raise ValueError("Dimensions must be strictly positive")
+    integer(l, "l", 1, 4096)
+    integer(t, "t", 1, 4096)
     return l * t
 
 
 def perimeter(l: int, t: int) -> int:
-    if l <= 0 or t <= 0:
-        raise ValueError("Dimensions must be strictly positive")
+    integer(l, "l", 1, 4096)
+    integer(t, "t", 1, 4096)
     return 2 * (l + t)
 
 
 def cluster_sum_rational(mu: Fraction, min_area: int) -> Fraction:
+    mu = rational(mu, "mu")
+    integer(min_area, "min_area", 1, 4096)
     if not (Fraction(0, 1) <= mu < Fraction(1, 1)):
-        raise ValueError("mu must be in [0, 1)")
-    if min_area < 1:
-        raise ValueError("min_area must be >= 1")
+        raise Violation("input", "mu must be in [0, 1)")
+    _power_budget((min_area + 1) * (mu.numerator.bit_length() + mu.denominator.bit_length()) + 2)
     return (mu ** min_area) / (Fraction(1, 1) - mu)
 
 
 def area_law_bound_rational(area: int) -> Fraction:
-    if area < 1:
-        raise ValueError("area must be >= 1")
+    integer(area, "area", 1, 4096)
     return Fraction(1, 4 ** area)
 
 
@@ -133,19 +219,20 @@ def q8_cubic_sum_rational() -> Fraction:
 
 
 def collar_contraction_rational(e_off: int) -> Fraction:
-    if e_off < 0:
-        raise ValueError("e_off must be >= 0")
+    integer(e_off, "e_off", 0, 4096)
     return Fraction(1, 2 ** e_off)
 
 
 def twod_decimation_rational(dim_r: int, activity_ratio: Fraction, area: int) -> Fraction:
-    if dim_r < 1 or area < 1:
-        raise ValueError("dim_r and area must be >= 1")
-    dim_factor = Fraction(dim_r ** (1 - area), 1) if (1 - area) >= 0 else Fraction(1, dim_r ** (area - 1))
-    return dim_factor * (activity_ratio ** area)
+    activity_ratio = rational(activity_ratio, "activity_ratio")
+    integer(dim_r, "dim_r", 1, 4096)
+    integer(area, "area", 1, 4096)
+    _power_budget(area * (activity_ratio.numerator.bit_length() + activity_ratio.denominator.bit_length())
+                  + (area - 1) * dim_r.bit_length() + 2)
+    return Fraction(1, dim_r ** (area - 1)) * activity_ratio ** area
 
 
-def s4_cubic_invariants_rational() -> Dict[str, Fraction]:
+def s4_cubic_invariants_rational() -> dict[str, Fraction]:
     order = 24
     return {
         "3": Fraction(1 * 27 + 6 * 1 + 8 * 0 + 6 * (-1) + 3 * (-1), order),
@@ -155,7 +242,7 @@ def s4_cubic_invariants_rational() -> Dict[str, Fraction]:
     }
 
 
-def a5_cubic_invariants_rational() -> Dict[str, Fraction]:
+def a5_cubic_invariants_rational() -> dict[str, Fraction]:
     order = 60
     sum_3 = 1 * 27 + 15 * (-1) + 20 * 0 + 12 * 4
     sum_4 = 1 * 64 + 15 * 0 + 20 * 1 + 12 * (-1) + 12 * (-1)
@@ -169,27 +256,36 @@ def a5_cubic_invariants_rational() -> Dict[str, Fraction]:
 
 
 def general_collar_contraction_rational(dim_r: int, e_off: int) -> Fraction:
-    if dim_r < 1 or e_off < 0:
-        raise ValueError("Requires dim_r >= 1 and e_off >= 0")
+    integer(dim_r, "dim_r", 1, 4096)
+    integer(e_off, "e_off", 0, 4096)
     return Fraction(1, dim_r ** e_off)
 
 
 def normal_directions(d: int) -> int:
-    if d < 3:
-        raise ValueError("Requires d >= 3")
+    integer(d, "d", 3, 4096)
     return 2 * (d - 2)
 
 
 def d4_multi_plaquette_collar_bound(perim: int, width_k: int, dim_r: int, beta: Fraction) -> Fraction:
-    if perim < 1 or width_k < 1 or dim_r < 2 or beta <= Fraction(0, 1):
-        raise ValueError("Invalid parameters for d=4 collar bound")
+    beta = rational(beta, "beta")
+    integer(perim, "perim", 1, 4096)
+    integer(width_k, "width_k", 1, 4096)
+    integer(dim_r, "dim_r", 2, 4096)
+    if beta <= 0:
+        raise Violation("input", "collar activity must be positive")
+    _power_budget(perim * (2 + 2 * width_k * dim_r.bit_length()
+                  + 3 * width_k * (beta.numerator.bit_length() + beta.denominator.bit_length())) + 2)
     step = Fraction(4, dim_r ** (2 * width_k)) * (beta ** (3 * width_k))
     return step ** perim
 
 
-def binary_icosahedral_2i_invariants_rational() -> Dict[str, Fraction]:
+def binary_icosahedral_2i_invariants_rational() -> dict[str, Fraction]:
+    # The omitted algebraic classes occur in +/- pairs of size 12 each. Their
+    # odd cubes cancel. The two zero contributions below each represent 24
+    # elements, so the grouped sizes are 1+1+30+20+20+24+24 = 120.
+    # Higher-spin zero invariants are supplied center-parity data, not enumeration.
     order = 120
-    sum_2s = 1 * 8 + 1 * (-8) + 30 * 0 + 20 * 1 + 20 * (-1) + 12 * 0 + 12 * 0
+    sum_2s = 1 * 8 + 1 * (-8) + 30 * 0 + 20 * 1 + 20 * (-1) + 24 * 0 + 24 * 0
     a5_invs = a5_cubic_invariants_rational()
     return {
         "2_s": Fraction(sum_2s, order),
@@ -203,7 +299,7 @@ def binary_icosahedral_2i_invariants_rational() -> Dict[str, Fraction]:
     }
 
 
-def valentiner_sigma1080_invariants_rational() -> Dict[str, Fraction]:
+def valentiner_sigma1080_invariants_rational() -> dict[str, Fraction]:
     order = 1080
     norm_sq_3a = 3 * 9 + 135 * 1 + 270 * 1 + 216 * 3
     sq_3a = 0
@@ -221,71 +317,81 @@ def valentiner_sigma1080_invariants_rational() -> Dict[str, Fraction]:
     }
 
 
-def freezing_plaquette_defect_rational_bounds() -> Dict[str, Tuple[Fraction, Fraction]]:
+def freezing_plaquette_defect_rational_bounds() -> dict[str, tuple[Fraction, Fraction]]:
     return {
         "2I_2s": (Fraction(3, 16), Fraction(1, 5)),
         "Sigma1080_3a": (Fraction(11, 24), Fraction(7, 15)),
     }
 
 
-def su2_ade_binary_polyhedral_tower_rational() -> Dict[str, Any]:
-    return {
-        "I3_2T_2s": Fraction(1 * 8 + 1 * (-8) + 6 * 0 + 4 * 1 + 4 * (-1) + 4 * 1 + 4 * (-1), 24),
-        "I3_2T_3t": Fraction(2 * (1 * 27 + 3 * (-1)), 24),
-        "I3_2O_2s": Fraction(0, 48),
-        "I3_2O_3": Fraction(2 * 24, 48),
-        "delta_min_Q8": Fraction(1, 1),
-        "delta_min_2T": Fraction(1, 2),
-        "delta_min_2O_bounds": (Fraction(7, 24), Fraction(3, 10)),
-        "delta_min_2I_bounds": (Fraction(3, 16), Fraction(1, 5)),
-    }
+def su2_ade_binary_polyhedral_tower_rational() -> SubgroupInvariantTable:
+    return SubgroupInvariantTable(
+        scalars=(
+            ("I3_2T_2s", Fraction(1 * 8 + 1 * (-8) + 6 * 0 + 4 * 1 + 4 * (-1) + 4 * 1 + 4 * (-1), 24)),
+            ("I3_2T_3t", Fraction(2 * (1 * 27 + 3 * (-1)), 24)),
+            ("I3_2O_2s", Fraction(0, 48)),
+            ("I3_2O_3", Fraction(2 * 24, 48)),
+            ("delta_min_Q8", Fraction(1, 1)),
+            ("delta_min_2T", Fraction(1, 2)),
+        ),
+        intervals=(
+            ("delta_min_2O_bounds", (Fraction(7, 24), Fraction(3, 10))),
+            ("delta_min_2I_bounds", (Fraction(3, 16), Fraction(1, 5))),
+        ),
+    )
 
 
-def su3_subgroup_tower_and_freezing_scales_rational() -> Dict[str, Any]:
+def su3_subgroup_tower_and_freezing_scales_rational() -> SubgroupInvariantTable:
     d_delta27 = Fraction(1, 1)
     d_delta54 = Fraction(5, 6)
     d_s1080_low, d_s1080_high = Fraction(11, 24), Fraction(7, 15)
-    return {
-        "I3_Delta27_3": Fraction(3 * 27, 27),
-        "I3_Delta54_3_1": Fraction(81 - 27, 54),
-        "I3_Delta54_3_2": Fraction(81 + 27, 54),
-        "delta_min_Delta27": d_delta27,
-        "delta_min_Delta54": d_delta54,
-        "delta_min_Sigma1080_bounds": (d_s1080_low, d_s1080_high),
-        "beta_freeze_proxy_Delta27": Fraction(1, 1) / d_delta27,
-        "beta_freeze_proxy_Delta54": Fraction(1, 1) / d_delta54,
-        "beta_freeze_proxy_Sigma1080_bounds": (Fraction(1, 1) / d_s1080_high, Fraction(1, 1) / d_s1080_low),
-    }
+    return SubgroupInvariantTable(
+        scalars=(
+            ("I3_Delta27_3", Fraction(3 * 27, 27)),
+            ("I3_Delta54_3_1", Fraction(81 - 27, 54)),
+            ("I3_Delta54_3_2", Fraction(81 + 27, 54)),
+            ("delta_min_Delta27", d_delta27),
+            ("delta_min_Delta54", d_delta54),
+            ("beta_freeze_proxy_Delta27", Fraction(1, 1) / d_delta27),
+            ("beta_freeze_proxy_Delta54", Fraction(1, 1) / d_delta54),
+        ),
+        intervals=(
+            ("delta_min_Sigma1080_bounds", (d_s1080_low, d_s1080_high)),
+            ("beta_freeze_proxy_Sigma1080_bounds", (Fraction(1, 1) / d_s1080_high, Fraction(1, 1) / d_s1080_low)),
+        ),
+    )
 
 
-def run_checks() -> Dict[str, Any]:
-    total_checks = 0
-    failures: List[str] = []
+def theta_phase(c: Fraction, s: Fraction, q: int) -> tuple[Fraction, Fraction]:
+    """Exact (c-i*s)^q; |q| <= 4096 and combined power work <= MAX_POWER_BITS."""
+    c, s = rational(c), rational(s)
+    integer(q, "topological charge", -4096, 4096)
+    if c*c + s*s != 1:
+        raise Violation("input", "theta phase requires c^2+s^2=1")
+    denominator = lcm(c.denominator, s.denominator)
+    _power_budget(2 * abs(q) * (denominator.bit_length() + 1) + 2)
+    real = c.numerator * (denominator // c.denominator)
+    imag = s.numerator * (denominator // s.denominator) * (-1 if q >= 0 else 1)
+    re, im = _complex_power((real, imag), abs(q))
+    divisor = denominator ** abs(q)
+    return Fraction(re, divisor), Fraction(im, divisor)
 
-    def check(condition: bool, desc: str) -> None:
-        nonlocal total_checks
-        total_checks += 1
-        if not condition:
-            failures.append(desc)
 
-    # -------------------------------------------------------------------------
+def check_coordination(check: CheckRecorder) -> None:
     # Family 1: Coordination numbers Delta_d = 2d(d-1)
-    # -------------------------------------------------------------------------
     expected_deltas = {2: 4, 3: 12, 4: 24, 5: 40, 6: 60, 7: 84, 8: 112, 10: 180}
     for d, expected in expected_deltas.items():
         val = delta_coordination(d)
         check(val == expected, f"Delta_{d} == {expected} (got {val})")
 
     # Refusal for d < 2
-    try:
-        delta_coordination(1)
-        check(False, "delta_coordination(1) should fail")
-    except ValueError:
-        check(True, "delta_coordination(1) refused")
+    refusal = evaluate(lambda: delta_coordination(1))
+    check(not refusal.ok and refusal.error is not None and refusal.error.kind == "input",
+          "delta_coordination(1) refused")
 
-    # -------------------------------------------------------------------------
+
+def check_thresholds(check: CheckRecorder) -> None:
     # Family 2: Strong coupling threshold beta_0(N, d)
-    # -------------------------------------------------------------------------
     for n in [2, 3, 4, 5, 8]:
         for d in [2, 3, 4, 5]:
             b_mid = beta0_rational_midpoint(n, d)
@@ -299,18 +405,18 @@ def run_checks() -> Dict[str, Any]:
     check(beta0_rational_midpoint(2, 2) > beta0_rational_midpoint(2, 3) > beta0_rational_midpoint(2, 4), "beta0 decreasing in dimension d")
     check(beta0_rational_midpoint(2, 4) > beta0_rational_midpoint(3, 4) > beta0_rational_midpoint(4, 4), "beta0 decreasing in group order N")
 
-    # -------------------------------------------------------------------------
+
+def check_loop_geometry(check: CheckRecorder) -> None:
     # Family 3: Minimal cellular spanning area and perimeter
-    # -------------------------------------------------------------------------
     for l, t in [(1, 1), (2, 3), (3, 5), (4, 4), (10, 20)]:
         a = spanning_area(l, t)
         p = perimeter(l, t)
         check(a == l * t, f"Area({l}, {t}) == {l * t}")
         check(p == 2 * (l + t), f"Perimeter({l}, {t}) == {2 * (l + t)}")
 
-    # -------------------------------------------------------------------------
+
+def check_cluster_bound(check: CheckRecorder) -> None:
     # Family 4: Geometric cluster series area-law bound
-    # -------------------------------------------------------------------------
     # For mu = 1/5, sum_{A >= Area} mu^A = (1/5)^Area / (4/5) = (5/4) * (1/5)^Area <= (1/4)^Area
     mu_fifth = Fraction(1, 5)
     for area in range(1, 15):
@@ -320,9 +426,9 @@ def run_checks() -> Dict[str, Any]:
         if area == 1:
             check(geom_sum == decay_bound == Fraction(1, 4), "Exact equality at Area=1: sum = 1/4")
 
-    # -------------------------------------------------------------------------
+
+def check_cubic_screening(check: CheckRecorder) -> None:
     # Family 5: Finite group cubic character sums & screening vs center protection
-    # -------------------------------------------------------------------------
     s3_sum = s3_cubic_sum_rational()
     check(s3_sum == Fraction(1, 1), f"S_3 cubic character invariant == 1/1 (got {s3_sum})")
 
@@ -340,9 +446,9 @@ def run_checks() -> Dict[str, Any]:
     center_parity = -1
     check(center_parity ** 3 == -1, "Q_8 center parity (-1)^3 == -1 forbids trivalent fusion")
 
-    # -------------------------------------------------------------------------
+
+def check_decimation(check: CheckRecorder) -> Fraction:
     # Family 6: 2D character decimation area law
-    # -------------------------------------------------------------------------
     # Abelian (dim R = 1): <W> = (activity)^Area
     act = Fraction(1, 10)
     for a in [1, 2, 3, 5]:
@@ -356,10 +462,11 @@ def run_checks() -> Dict[str, Any]:
     check(twod_decimation_rational(2, act, 2) == Fraction(1, 200), "2D decimation dim=2 Area=2")
     # Area = 3: 2^{-2} * (1/10)^3 = (1/4) * (1/1000) = 1/4000
     check(twod_decimation_rational(2, act, 3) == Fraction(1, 4000), "2D decimation dim=2 Area=3")
+    return act
 
-    # -------------------------------------------------------------------------
+
+def check_higher_cubic_tables(check: CheckRecorder) -> None:
     # Family 7: Higher-order non-abelian S_4 and A_5 cubic character invariants
-    # -------------------------------------------------------------------------
     s4_invs = s4_cubic_invariants_rational()
     check(s4_invs["3"] == Fraction(1, 1), "S_4 standard 3D irrep cubic invariant == 1")
     check(s4_invs["3_prime"] == Fraction(1, 1), "S_4 signed 3D irrep cubic invariant == 1")
@@ -372,9 +479,9 @@ def run_checks() -> Dict[str, Any]:
     check(a5_invs["4"] == Fraction(1, 1), "A_5 standard 4D irrep cubic invariant == 1")
     check(a5_invs["5"] == Fraction(2, 1), "A_5 5D irrep cubic invariant == 2")
 
-    # -------------------------------------------------------------------------
+
+def check_collars(check: CheckRecorder, act: Fraction) -> None:
     # Family 8: General d_R collar contraction and d=4 multi-plaquette collar bounds
-    # -------------------------------------------------------------------------
     check(general_collar_contraction_rational(2, 4) > general_collar_contraction_rational(3, 4), "Collar contraction stronger for dim=3 than dim=2")
     check(general_collar_contraction_rational(3, 4) > general_collar_contraction_rational(4, 4), "Collar contraction stronger for dim=4 than dim=3")
     check(general_collar_contraction_rational(4, 4) > general_collar_contraction_rational(5, 4), "Collar contraction stronger for dim=5 than dim=4")
@@ -387,9 +494,9 @@ def run_checks() -> Dict[str, Any]:
     check(Fraction(0, 1) < b_k2 < b_k1, "d=4 collar bound decays geometrically with radial width k")
     check(Fraction(0, 1) < b_k1_d3 < b_k1, "d=4 collar bound decreases with representation dimension d_R")
 
-    # -------------------------------------------------------------------------
+
+def check_icosahedral_tables(check: CheckRecorder) -> tuple[Fraction, Fraction, Fraction, Fraction, dict[str, Fraction]]:
     # Family 9: Binary icosahedral 2I and Valentiner Sigma(1080) & freezing defects
-    # -------------------------------------------------------------------------
     invs_2i = binary_icosahedral_2i_invariants_rational()
     check(invs_2i["2_s"] == Fraction(0, 1), "2I spinorial fundamental 2_s cubic invariant == 0 (Z_2 center protection)")
     check(invs_2i["2_s_prime"] == Fraction(0, 1), "2I spinorial 2_s_prime cubic invariant == 0")
@@ -413,35 +520,36 @@ def run_checks() -> Dict[str, Any]:
     ds1080_low, ds1080_high = defects["Sigma1080_3a"]
     check(Fraction(11, 5) ** 2 < Fraction(5, 1) < Fraction(9, 4) ** 2, "Rational sqrt(5) enclosure (11/5)^2 < 5 < (9/4)^2")
     check(Fraction(0, 1) < d2i_low < d2i_high < ds1080_low < ds1080_high < Fraction(1, 1), "Petcher-Weingarten and Bhanot-Rebbi defect bounds ordering")
+    return d2i_high, d2i_low, ds1080_high, ds1080_low, invs_s1080
 
-    # -------------------------------------------------------------------------
-    # Family 10: Complete SU(2) ADE and SU(3) subgroup towers & freezing proxies
-    # -------------------------------------------------------------------------
+
+def check_subgroup_tables(check: CheckRecorder, d2i_high: Fraction, d2i_low: Fraction) -> None:
+    # Family 10: Displayed SU(2) ADE and SU(3) subgroup tables & freezing proxies
     su2_tower = su2_ade_binary_polyhedral_tower_rational()
-    d2o_low, d2o_high = su2_tower["delta_min_2O_bounds"]
+    d2o_low, d2o_high = su2_tower.bounds("delta_min_2O_bounds")
     check(Fraction(7, 5) ** 2 < Fraction(2, 1) < Fraction(17, 12) ** 2, "Rational sqrt(2) enclosure (7/5)^2 < 2 < (17/12)^2")
-    check(su2_tower["I3_2T_2s"] == Fraction(0, 1), "2T spinorial 2_s cubic invariant == 0 (Z_2 center protection)")
-    check(su2_tower["I3_2T_3t"] == Fraction(2, 1), "2T tensorial tetrahedral triplet 3_t cubic invariant == 2 (epsilon_ijk and xyz)")
-    check(su2_tower["I3_2O_2s"] == Fraction(0, 1), "2O spinorial 2_s cubic invariant == 0")
-    check(su2_tower["I3_2O_3"] == Fraction(1, 1), "2O tensorial 3 cubic invariant == 1")
+    check(su2_tower.value("I3_2T_2s") == Fraction(0, 1), "2T spinorial 2_s cubic invariant == 0 (Z_2 center protection)")
+    check(su2_tower.value("I3_2T_3t") == Fraction(2, 1), "2T tensorial tetrahedral triplet 3_t cubic invariant == 2 (epsilon_ijk and xyz)")
+    check(su2_tower.value("I3_2O_2s") == Fraction(0, 1), "2O spinorial 2_s cubic invariant == 0")
+    check(su2_tower.value("I3_2O_3") == Fraction(1, 1), "2O tensorial 3 cubic invariant == 1")
     check(
-        Fraction(0, 1) < d2i_low < d2i_high < d2o_low < d2o_high < su2_tower["delta_min_2T"] < su2_tower["delta_min_Q8"],
+        Fraction(0, 1) < d2i_low < d2i_high < d2o_low < d2o_high < su2_tower.value("delta_min_2T") < su2_tower.value("delta_min_Q8"),
         "Strict monotonic decrease of minimal plaquette defect across SU(2) ADE series Q_8 -> 2T -> 2O -> 2I",
     )
 
     su3_tower = su3_subgroup_tower_and_freezing_scales_rational()
-    bf_s1080_low, bf_s1080_high = su3_tower["beta_freeze_proxy_Sigma1080_bounds"]
-    check(su3_tower["I3_Delta27_3"] == Fraction(3, 1), "Delta(27) fundamental 3 cubic invariant == 3")
-    check(su3_tower["I3_Delta54_3_1"] == Fraction(1, 1), "Delta(54) faithful 3_1 cubic invariant == 1")
-    check(su3_tower["I3_Delta54_3_2"] == Fraction(2, 1), "Delta(54) signed 3_2 cubic invariant == 2")
+    bf_s1080_low, bf_s1080_high = su3_tower.bounds("beta_freeze_proxy_Sigma1080_bounds")
+    check(su3_tower.value("I3_Delta27_3") == Fraction(3, 1), "Delta(27) fundamental 3 cubic invariant == 3")
+    check(su3_tower.value("I3_Delta54_3_1") == Fraction(1, 1), "Delta(54) faithful 3_1 cubic invariant == 1")
+    check(su3_tower.value("I3_Delta54_3_2") == Fraction(2, 1), "Delta(54) signed 3_2 cubic invariant == 2")
     check(
-        su3_tower["beta_freeze_proxy_Delta27"] < su3_tower["beta_freeze_proxy_Delta54"] < bf_s1080_low < bf_s1080_high,
+        su3_tower.value("beta_freeze_proxy_Delta27") < su3_tower.value("beta_freeze_proxy_Delta54") < bf_s1080_low < bf_s1080_high,
         "Strict monotonic increase of inverse-defect Peierls freezing scale proxy across SU(3) tower Delta(27) -> Delta(54) -> Sigma(1080)",
     )
 
-    # -------------------------------------------------------------------------
+
+def check_freezing_separation(check: CheckRecorder) -> None:
     # Family 11: Strong-coupling vs freezing regime separation & gap widening
-    # -------------------------------------------------------------------------
     g_q8 = Fraction(1, 1) - beta0_rational_midpoint(8, 4)
     g_2t = Fraction(2, 1) - beta0_rational_midpoint(24, 4)
     g_2o_low = Fraction(10, 3) - beta0_rational_midpoint(48, 4)
@@ -452,9 +560,9 @@ def run_checks() -> Dict[str, Any]:
     check(Fraction(999, 1000) < g_q8 < g_2t < g_2o_low < g_2i_low, "SU(2) ADE strong-to-freezing coupling gap > 999/1000 and widens strictly with |G|")
     check(Fraction(999, 1000) < g_d27 < g_d54 < g_s1080_low, "SU(3) crystal strong-to-freezing coupling gap > 999/1000 and widens strictly with |G|")
 
-    # -------------------------------------------------------------------------
+
+def check_klein_table(check: CheckRecorder, ds1080_high: Fraction, ds1080_low: Fraction, invs_s1080: dict[str, Fraction]) -> None:
     # Family 12: Klein Sigma(168) invariants, spurious cubic adjoint elimination, and complete SU(3) defect chain
-    # -------------------------------------------------------------------------
     order_168 = 168
     k_i11 = Fraction(1 * 9 + 21 * 1 + 42 * 1 + 48 * 2, order_168)
     k_i2 = Fraction(1 * 9 + 21 * 1 + 42 * 1 + 24 * (-3), order_168)
@@ -469,12 +577,12 @@ def run_checks() -> Dict[str, Any]:
     check(Fraction(9, 2) ** 2 < Fraction(21, 1) < Fraction(23, 5) ** 2, "Rational sqrt(21) enclosure (9/2)^2 < 21 < (23/5)^2")
     check(
         ds1080_low < ds1080_high < Fraction(8, 15) < Fraction(13, 24) < Fraction(2, 3) < Fraction(5, 6) < Fraction(1, 1),
-        "Complete 6-step SU(3) minimal plaquette defect chain across Sigma(1080), Sigma(168x3), Sigma(168), Delta(54), Delta(27)",
+        "Displayed SU(3) minimal plaquette defect chain across Sigma(1080), Sigma(168x3), Sigma(168), Delta(54), Delta(27)",
     )
 
-    # -------------------------------------------------------------------------
+
+def check_quartic_tables(check: CheckRecorder, invs_s1080: dict[str, Fraction]) -> None:
     # Family 13: Quartic character invariants I_4(G, N) and unique SU(3) continuum matching
-    # -------------------------------------------------------------------------
     i4_q8 = Fraction(2 * 16, 8)
     i4_2t = Fraction(2 * 16 + 16 * 1, 24)
     i4_2o = Fraction(2 * 16 + 16 * 1 + 12 * 4, 48)
@@ -493,12 +601,12 @@ def run_checks() -> Dict[str, Any]:
     )
     check(
         (invs_s1080["I3_3a"], i4_s1080, invs_s1080["I3_8a"]) == (Fraction(1, 1), Fraction(2, 1), Fraction(2, 1)),
-        "Sigma(1080) uniquely matches the continuum SU(3) invariant triple (I_3(3), I_4(3), I_3(8)) = (1, 2, 2)",
+        "Sigma(1080) matches in the displayed comparison set the continuum SU(3) invariant triple (I_3(3), I_4(3), I_3(8)) = (1, 2, 2)",
     )
 
-    # -------------------------------------------------------------------------
+
+def check_hessian_tables(check: CheckRecorder, invs_s1080: dict[str, Fraction]) -> tuple[Fraction, Fraction, Fraction, Fraction, Fraction, Fraction]:
     # Family 14: Principal & Hessian subgroups Sigma(72x3), Sigma(216x3) & quartic adjoint Casimir obstruction
-    # -------------------------------------------------------------------------
     i11_72 = Fraction(3 * 9 + 189 * 1, 216)
     i3_72 = Fraction(3 * 27 + 162 * 1 + 27 * (-1), 216)
     i4_72 = Fraction(3 * 81 + 189 * 1, 216)
@@ -529,10 +637,11 @@ def run_checks() -> Dict[str, Any]:
         a6_dim_sq_sum == 360 < 27 ** 2 == 729,
         "Burnside-Frobenius obstruction: |A_6| = 360 < 27^2 = 729 forces continuum 27-plet in 8x8 to split",
     )
+    return i3_72_8, i4_1080_8, i4_168_8, i4_216_8, i4_72_8, i4_su3_8
 
-    # -------------------------------------------------------------------------
+
+def check_higher_spin(check: CheckRecorder, ds1080_low: Fraction) -> None:
     # Family 15: SU(2) higher-spin Casimir obstruction & Hessian Sigma(216x3) defect enclosure
-    # -------------------------------------------------------------------------
     i4_2t_3 = Fraction(1 * 81 + 3 * 1, 12)
     i4_2o_3 = Fraction(1 * 81 + 6 * 1 + 3 * 1 + 6 * 1, 24)
     i4_2i_3 = Fraction(1 * 81 + 15 * 1 + 12 * 7, 60)
@@ -560,9 +669,9 @@ def run_checks() -> Dict[str, Any]:
         "Hessian Sigma(216x3) order-9 Cartan phase defect enclosed in (581/1350, 2860/6627) subset (43/100, 13/30) < 11/24",
     )
 
-    # -------------------------------------------------------------------------
-    # Family 16: Complete 8-group Blichfeldt-FFK SU(3) crystal hierarchy & dyadic halving laws
-    # -------------------------------------------------------------------------
+
+def check_crystal_hierarchy(check: CheckRecorder, i3_72_8: Fraction, i4_1080_8: Fraction, i4_168_8: Fraction, i4_216_8: Fraction, i4_72_8: Fraction, i4_su3_8: Fraction) -> None:
+    # Family 16: Displayed 8-group Blichfeldt-FFK SU(3) crystal hierarchy & dyadic halving laws
     i11_36 = Fraction(3 * 9 + 81 * 1, 108)
     i3_36 = Fraction(3 * 27 + 54 * 1 + 27 * (-1), 108)
     i4_36 = Fraction(3 * 81 + 81 * 1, 108)
@@ -588,9 +697,9 @@ def run_checks() -> Dict[str, Any]:
         "Strict 8-step descent of quartic adjoint invariants 456 > 228 > 114 > 70 > 57 > 25 > 21 > 13 > 8 = I_4(SU(3), 8)",
     )
 
-    # -------------------------------------------------------------------------
+
+def check_mednykh_genus_two(check: CheckRecorder) -> tuple[Fraction, Fraction, Fraction, list[int]]:
     # Family 17: Baryon-junction vs gluon-collar screening ratios, Casimir hierarchy & 2D Mednykh towers
-    # -------------------------------------------------------------------------
     c8_c3 = Fraction(3, 1) / Fraction(4, 3)
     c6_c3 = Fraction(10, 3) / Fraction(4, 3)
     c10_c3 = Fraction(6, 1) / Fraction(4, 3)
@@ -599,13 +708,13 @@ def run_checks() -> Dict[str, Any]:
     c5_c2_su2 = Fraction(6, 1) / Fraction(3, 4)
     r_3_6 = general_collar_contraction_rational(3, 4) / general_collar_contraction_rational(6, 4)
     r_3_8 = general_collar_contraction_rational(3, 4) / general_collar_contraction_rational(8, 4)
-    m2_q8 = sum(Fraction(1, d ** 2) for d in [1, 1, 1, 1, 2])
-    m2_2t = sum(Fraction(1, d ** 2) for d in [1, 1, 1, 2, 2, 2, 3])
-    m2_2o = sum(Fraction(1, d ** 2) for d in [1, 1, 2, 2, 2, 3, 3, 4])
-    m2_2i = sum(Fraction(1, d ** 2) for d in [1, 2, 2, 3, 3, 4, 4, 5, 6])
+    m2_q8 = sum((Fraction(1, d ** 2) for d in [1, 1, 1, 1, 2]), Fraction(0))
+    m2_2t = sum((Fraction(1, d ** 2) for d in [1, 1, 1, 2, 2, 2, 3]), Fraction(0))
+    m2_2o = sum((Fraction(1, d ** 2) for d in [1, 1, 2, 2, 2, 3, 3, 4]), Fraction(0))
+    m2_2i = sum((Fraction(1, d ** 2) for d in [1, 2, 2, 3, 3, 4, 4, 5, 6]), Fraction(0))
     s1080_dims = [1, 5, 5, 8, 8, 9, 10] + [3, 3, 6, 9, 15] * 2
-    m2_s1080 = sum(Fraction(1, d ** 2) for d in s1080_dims)
-    m2_s216x3 = sum(Fraction(1, d ** 2) for d in [1] * 3 + [2] * 3 + [3] * 7 + [6] * 6 + [8] * 3 + [9] * 2)
+    m2_s1080 = sum((Fraction(1, d ** 2) for d in s1080_dims), Fraction(0))
+    m2_s216x3 = sum((Fraction(1, d ** 2) for d in [1] * 3 + [2] * 3 + [3] * 7 + [6] * 6 + [8] * 3 + [9] * 2), Fraction(0))
     z2_s1080 = (1080 ** 2) * m2_s1080
     z2_s216x3 = (648 ** 2) * m2_s216x3
     check(
@@ -625,18 +734,19 @@ def run_checks() -> Dict[str, Any]:
         sum(d ** 2 for d in s1080_dims) == 1080 and m2_s1080 == Fraction(36011, 21600) < Fraction(2, 1) and z2_s1080 == 1944594 < z2_s216x3 == 2001267,
         "Sigma(1080) 17-irrep Burnside sum = 1080, M_2(Sigma(1080)) = 36011/21600 < 2, and Z_2(Sigma(1080)) = 1944594 < Z_2(Sigma(216x3)) = 2001267",
     )
+    return m2_2i, m2_q8, m2_s1080, s1080_dims
 
-    # -------------------------------------------------------------------------
+
+def check_mednykh_genus_three(check: CheckRecorder, m2_2i: Fraction, m2_q8: Fraction, m2_s1080: Fraction, s1080_dims: list[int]) -> None:
     # Family 18: Higher-genus Mednykh abelianization asymptotics & genus-3 bounds
-    # -------------------------------------------------------------------------
-    m3_q8 = sum(Fraction(1, d ** 4) for d in [1, 1, 1, 1, 2])
-    m3_2t = sum(Fraction(1, d ** 4) for d in [1, 1, 1, 2, 2, 2, 3])
-    m3_2o = sum(Fraction(1, d ** 4) for d in [1, 1, 2, 2, 2, 3, 3, 4])
-    m3_2i = sum(Fraction(1, d ** 4) for d in [1, 2, 2, 3, 3, 4, 4, 5, 6])
-    m3_d27 = sum(Fraction(1, d ** 4) for d in [1] * 9 + [3] * 2)
-    m3_d54 = sum(Fraction(1, d ** 4) for d in [1] * 2 + [2] * 4 + [3] * 4)
-    m3_s216x3 = sum(Fraction(1, d ** 4) for d in [1] * 3 + [2] * 3 + [3] * 7 + [6] * 6 + [8] * 3 + [9] * 2)
-    m3_s1080 = sum(Fraction(1, d ** 4) for d in s1080_dims)
+    m3_q8 = sum((Fraction(1, d ** 4) for d in [1, 1, 1, 1, 2]), Fraction(0))
+    m3_2t = sum((Fraction(1, d ** 4) for d in [1, 1, 1, 2, 2, 2, 3]), Fraction(0))
+    m3_2o = sum((Fraction(1, d ** 4) for d in [1, 1, 2, 2, 2, 3, 3, 4]), Fraction(0))
+    m3_2i = sum((Fraction(1, d ** 4) for d in [1, 2, 2, 3, 3, 4, 4, 5, 6]), Fraction(0))
+    m3_d27 = sum((Fraction(1, d ** 4) for d in [1] * 9 + [3] * 2), Fraction(0))
+    m3_d54 = sum((Fraction(1, d ** 4) for d in [1] * 2 + [2] * 4 + [3] * 4), Fraction(0))
+    m3_s216x3 = sum((Fraction(1, d ** 4) for d in [1] * 3 + [2] * 3 + [3] * 7 + [6] * 6 + [8] * 3 + [9] * 2), Fraction(0))
+    m3_s1080 = sum((Fraction(1, d ** 4) for d in s1080_dims), Fraction(0))
     check(
         Fraction(1, 1) < m3_2i == Fraction(2505331, 2160000) < m3_2o == Fraction(45953, 20736) < m3_2t == Fraction(4147, 1296) < m3_q8 == Fraction(65, 16),
         "Genus-3 normalized Mednykh sum M_3(G) descends strictly across SU(2) ADE series Q_8 -> 2T -> 2O -> 2I",
@@ -650,12 +760,12 @@ def run_checks() -> Dict[str, Any]:
         m3_s1080 == Fraction(590783071, 559872000)
         and Fraction(0, 1) < m3_s1080 - Fraction(1, 1) < Fraction(3, 50) < Fraction(1, 9) * (m2_s1080 - Fraction(1, 1))
         and Fraction(2, 1) < m3_d54 < m3_s216x3 < m3_d27 == Fraction(731, 81),
-        "Perfect Sigma(1080) genus-3 1/9 contraction bound M_3(Sigma(1080)) - 1 < (1/9)(M_2 - 1) < 3/50 vs solvable M_3 > 2",
+        "Perfect Sigma(1080) genus-3 1/9 contraction bound M_3(Sigma(1080)) - 1 < 3/50 < (1/9)(M_2 - 1) vs solvable M_3 > 2",
     )
 
-    # -------------------------------------------------------------------------
+
+def check_casimir_ratios(check: CheckRecorder) -> None:
     # Family 19: Finite-coupling Galois-conjugate suppression & parent Casimir ratios
-    # -------------------------------------------------------------------------
     dk_2sp_2s, dk_3b_3a, dk_4t_4s = 7 - 1, 6 - 2, 6 - 3
     dk_8b_8a, dk_3p_3 = 4 - 2, 5 - 1
     cr_2sp = Fraction(63, 4) / Fraction(3, 4)
@@ -677,9 +787,9 @@ def run_checks() -> Dict[str, Any]:
         "Power-counting monomial hierarchy (not Wilson coefficient ratios) u^6 < u^4 < u^3 < u^2 < 1 at u = 1/10",
     )
 
-    # -------------------------------------------------------------------------
+
+def check_pachner_counts(check: CheckRecorder) -> None:
     # Family 20: Temporal-gauge Perron-Frobenius gap & 2D Mednykh Pachner invariance
-    # -------------------------------------------------------------------------
     def_q8 = Fraction(1 * 0 + 1 * 2 + 6 * 1, 1)
     def_2t = Fraction(1 * 0 + 1 * 2 + 6 * 1, 1) + 8 * Fraction(1, 2) + 8 * Fraction(3, 2)
     def_2o = Fraction(1 * 0 + 1 * 2 + 18 * 1 + 12 * 1, 1) + 8 * Fraction(1, 2) + 8 * Fraction(3, 2)
@@ -707,9 +817,9 @@ def run_checks() -> Dict[str, Any]:
         "2D Pachner Euler exponent invariance E - V - F = 2g - 2 and genus-2 homomorphism counts |Hom(pi_1(Sigma_2), G)| = |G| Z_2(G)",
     )
 
-    # -------------------------------------------------------------------------
+
+def check_wilson_fixture(check: CheckRecorder) -> Callable[[Fraction, Fraction], Fraction]:
     # Family 21: Wilson-Dirac gamma5-hermiticity & two-flavor determinant positivity
-    # -------------------------------------------------------------------------
     def p_char(lam: Fraction) -> Fraction:
         return (
             lam ** 8
@@ -736,8 +846,8 @@ def run_checks() -> Dict[str, Any]:
 
     check(
         all(p_char(Fraction(k, 2)) == (Fraction(k, 2) - 1) ** 8 - 4 * ((Fraction(k, 2) - 1) ** 4) for k in range(-6, 9))
-        and all((( -g - r) / 2 == (-g - r) / 2 and ((g - r) / 2 + (-g - r) / 2 == -r)) for g in (Fraction(-1, 1), Fraction(1, 1)) for r in (Fraction(1, 2), Fraction(1, 1))),
-        "Wilson-Dirac 2x2 characteristic polynomial P(lambda) == (lambda - 1)^8 - 4(lambda - 1)^4 and gamma_5 projector swapping",
+        and all((g - r) / 2 + (-g - r) / 2 == -r for g in (Fraction(-1), Fraction(1)) for r in (Fraction(1, 2), Fraction(1))),
+        "Wilson-Dirac 2x2 characteristic polynomial P(lambda) == (lambda - 1)^8 - 4(lambda - 1)^4 and scalar forward/backward coefficient sum",
     )
     check(
         det_dw_2x2(Fraction(-1, 1)) == det_dw_2x2(Fraction(-3, 1)) == Fraction(-3, 1) < Fraction(0, 1)
@@ -747,10 +857,11 @@ def run_checks() -> Dict[str, Any]:
         and det_dw_2x2(Fraction(1, 1)) == Fraction(6237, 1) > Fraction(0, 1),
         "Supercritical single-flavor sign problem det D_W(-1) = -3 < 0 vs two-flavor positivity det(D_W)^2 = 9 > 0 and physical branch det D_W(0) = 192 > 0",
     )
+    return det_dw_2x2
 
-    # -------------------------------------------------------------------------
+
+def check_chemical_potential(check: CheckRecorder) -> None:
     # Family 22: Chemical-potential asymmetry & Nielsen-Ninomiya doubler counting
-    # -------------------------------------------------------------------------
     def su3_mu_det(z: Fraction) -> tuple[Fraction, Fraction]:
         zi = Fraction(1, 1) / z
         re_top = (1 + z) * (1 - z * z)
@@ -778,9 +889,9 @@ def run_checks() -> Dict[str, Any]:
         "Finite-torus Nielsen-Ninomiya 2^d corner chiral-charge sum == 0 and lifted doubler chiral sum == -1 across d=1..4",
     )
 
-    # -------------------------------------------------------------------------
+
+def check_overlap_fixture(check: CheckRecorder, det_dw_2x2: Callable[[Fraction, Fraction], Fraction]) -> None:
     # Family 23: Ginsparg-Wilson / Neuberger overlap & Luscher index across doubler shells
-    # -------------------------------------------------------------------------
     def gw_res(a: Fraction, c: Fraction, b: Fraction) -> Fraction:
         return (2 * (1 + c) - ((1 + c) ** 2 + b ** 2)) / a
 
@@ -803,21 +914,13 @@ def run_checks() -> Dict[str, Any]:
     )
     check(
         l4d_seq == [0, 1, -3, 3, -1, 0]
-        and det_dw_2x2(Fraction(-1, 1)) * det_dw_2x2(Fraction(0, 1)) == Fraction(-576, 1) < Fraction(0, 1),
+        and det_dw_2x2(Fraction(-1, 1), Fraction(1)) * det_dw_2x2(Fraction(0, 1), Fraction(1)) == Fraction(-576, 1) < Fraction(0, 1),
         "4D Luscher corner index sequence (0, 1, -3, 3, -1, 0) across doubler mass shells and 2x2 supercritical det sign flip -576 < 0",
     )
 
-    # -------------------------------------------------------------------------
+
+def check_theta_fixture(check: CheckRecorder) -> None:
     # Family 24: Topological theta-vacuum complex weight & Wilson-Dirac operator identity
-    # -------------------------------------------------------------------------
-    def theta_phase(c: Fraction, s: Fraction, q: int) -> tuple[Fraction, Fraction]:
-        if q == 0:
-            return (Fraction(1, 1), Fraction(0, 1))
-        if q in (1, -1):
-            return (c, -s if q == 1 else s)
-        if q in (2, -2):
-            return (c * c - s * s, -2 * c * s if q == 2 else 2 * c * s)
-        return (c * (c * c - 3 * s * s), (-s if q == 3 else s) * (3 * c * c - s * s))
 
     def z_theta_re(c: Fraction, s: Fraction) -> Fraction:
         return (
@@ -838,24 +941,53 @@ def run_checks() -> Dict[str, Any]:
         "Topological theta-vacuum complex weight (FSP-THETA-TERM-COMPLEX-WEIGHT), CP points theta in {0, pi}, and parity-paired frustration Z(0) - Z(pi) = 20",
     )
 
+
+def run_checks() -> dict[str, object]:
+    cases = Cases()
+
+    def check(condition: bool, description: str) -> None:
+        cases.append((description, condition))
+
+    check_coordination(check)
+    check_thresholds(check)
+    check_loop_geometry(check)
+    check_cluster_bound(check)
+    check_cubic_screening(check)
+    act = check_decimation(check)
+    check_higher_cubic_tables(check)
+    check_collars(check, act)
+    d2i_high, d2i_low, ds1080_high, ds1080_low, invs_s1080 = check_icosahedral_tables(check)
+    check_subgroup_tables(check, d2i_high, d2i_low)
+    check_freezing_separation(check)
+    check_klein_table(check, ds1080_high, ds1080_low, invs_s1080)
+    check_quartic_tables(check, invs_s1080)
+    i3_72_8, i4_1080_8, i4_168_8, i4_216_8, i4_72_8, i4_su3_8 = check_hessian_tables(check, invs_s1080)
+    check_higher_spin(check, ds1080_low)
+    check_crystal_hierarchy(check, i3_72_8, i4_1080_8, i4_168_8, i4_216_8, i4_72_8, i4_su3_8)
+    m2_2i, m2_q8, m2_s1080, s1080_dims = check_mednykh_genus_two(check)
+    check_mednykh_genus_three(check, m2_2i, m2_q8, m2_s1080, s1080_dims)
+    check_casimir_ratios(check)
+    check_pachner_counts(check)
+    det_dw_2x2 = check_wilson_fixture(check)
+    check_chemical_potential(check)
+    check_overlap_fixture(check, det_dw_2x2)
+    check_theta_fixture(check)
+    failures = [name for name, passed in cases if not passed]
     return {
-        "record_id": "TFQ-1052",
-        "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",
-        "authority_effect": "None",
-        "total_checks": total_checks,
-        "failed_checks": len(failures),
-        "failures": failures,
-        "all_passed": len(failures) == 0,
+        "record_id": "TFQ-1052", "dag_node": "FQCD-STRONG-COUPLING-AREA-LAW",
+        "authority_effect": "None", "total_checks": len(cases),
+        "failed_checks": len(failures), "failures": failures,
+        "all_passed": not failures,
     }
 
 
-def main() -> None:
+def main() -> int:
     receipt = run_checks()
     print(json.dumps(receipt, indent=2))
     if not receipt["all_passed"]:
-        sys.exit(1)
-    sys.exit(0)
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(cli(main))

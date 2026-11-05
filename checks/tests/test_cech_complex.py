@@ -1,0 +1,148 @@
+"""Independent cochain identities and primal/dual witness tests. AuthorityEffect: None."""
+from __future__ import annotations
+
+from fractions import Fraction as Q
+from itertools import product
+from pathlib import Path
+import sys
+from typing import TypeVar, cast
+import unittest
+from unittest.mock import patch
+
+from hypothesis import given, settings, strategies as st
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from checker_support.boundary import evaluate
+from checker_support.cech_complex import CechComplex, EdgeValues
+from checker_support.measurement_scenario import Distribution, MeasurementScenario, sections
+from checker_support.outcome import Outcome
+
+T = TypeVar("T")
+PROPERTY = settings(max_examples=80, derandomize=True, deadline=None, database=None)
+
+
+def star_cochain(values: list[int]) -> list[Distribution]:
+    keys = tuple(product((0, 1), repeat=2))
+    return [{key: Q(values[4*index+offset]) for offset, key in enumerate(keys)} for index in range(3)]
+
+
+def bell_witness() -> tuple[CechComplex, EdgeValues, list[Distribution], EdgeValues]:
+    complex_ = CechComplex(MeasurementScenario(4, ((0, 2), (0, 3), (1, 2), (1, 3))))
+    omega: EdgeValues = {edge: (Q(0), Q(0)) for edge in complex_.edges}
+    omega[(0, 1)] = (Q(1), Q(1))
+    zero = [{key: Q(0) for key in sections(2)} for _ in range(4)]
+    phi: EdgeValues = {(0, 1): (Q(1), Q(1)), (0, 2): (Q(-1), Q(-1)), (1, 3): (Q(1), Q(1)), (2, 3): (Q(-1), Q(-1))}
+    return complex_, omega, zero, phi
+
+
+class CechComplexTests(unittest.TestCase):
+    def accepted(self, result: Outcome[T]) -> T:
+        if result.error is not None:
+            self.fail(str(result.error))
+        return cast(T, result.value)
+
+    @PROPERTY
+    @given(st.lists(st.integers(-8, 8), min_size=12, max_size=12))
+    def test_generated_coboundary_against_direct_shared_coordinate_sums(self, values: list[int]) -> None:
+        complex_ = CechComplex(MeasurementScenario(4, ((0, 1), (0, 2), (0, 3))))
+        alpha = star_cochain(values)
+        result = self.accepted(complex_.delta0(alpha))
+        for (i, j), row in result.items():
+            expected = tuple(Q(values[4*i+2*bit]+values[4*i+2*bit+1]-values[4*j+2*bit]-values[4*j+2*bit+1]) for bit in (0, 1))
+            self.assertEqual(row, expected)
+        self.assertEqual(self.accepted(complex_.delta1(result)), {(0, 1, 2): (Q(0), Q(0))})
+        alpha[0].clear()
+        self.assertEqual(self.accepted(complex_.delta1(result)), {(0, 1, 2): (Q(0), Q(0))})
+
+    def test_oracle_orientation_non_cocycle_and_nerves(self) -> None:
+        self.assertEqual(star_cochain(list(range(12)))[1][(1, 0)], 6)
+        complex_ = CechComplex(MeasurementScenario(4, ((0, 1), (0, 2), (0, 3))))
+        values: EdgeValues = {(0, 1): (Q(1), Q(2)), (0, 2): (Q(3), Q(4)), (1, 2): (Q(5), Q(6))}
+        self.assertEqual(self.accepted(complex_.delta1(values)), {(0, 1, 2): (Q(3), Q(4))})
+        self.assertEqual(complex_.triangles, ((0, 1, 2),))
+        bell, _, _, _ = bell_witness()
+        self.assertEqual(bell.edges, ((0, 1), (0, 2), (1, 3), (2, 3)))
+        self.assertEqual(bell.triangles, ())
+        disconnected = CechComplex(MeasurementScenario(2, ((0,), (1,))))
+        self.assertEqual(disconnected.edges, ())
+        self.assertEqual(self.accepted(disconnected.delta0([{(0,): Q(-1), (1,): Q(2)}]*2)), {})
+
+    def test_different_edge_and_triangle_overlap_dimensions(self) -> None:
+        complex_ = CechComplex(MeasurementScenario(4, ((0, 1, 2), (0, 1, 3), (0, 2, 3))))
+        values: EdgeValues = {(0, 1): tuple(Q(value) for value in range(1, 5)),
+                             (0, 2): tuple(Q(value) for value in range(5, 9)),
+                             (1, 2): tuple(Q(value) for value in range(9, 13))}
+        self.assertEqual(self.accepted(complex_.delta1(values)), {(0, 1, 2): (Q(11), Q(15))})
+        alpha = [{key: Q(index+3*offset) for offset, key in enumerate(sections(3))} for index in range(3)]
+        self.assertEqual(self.accepted(complex_.delta1(self.accepted(complex_.delta0(alpha)))), {(0, 1, 2): (Q(0), Q(0))})
+
+    @PROPERTY
+    @given(st.lists(st.integers(-5, 5), min_size=16, max_size=16), st.integers(0, 5))
+    def test_generated_quotient_bound_and_gauge_shift(self, values: list[int], scale: int) -> None:
+        complex_, omega, zero, phi = bell_witness()
+        omega = {edge: tuple(scale*value for value in row) for edge, row in omega.items()}
+        self.assertEqual(self.accepted(complex_.quotient_value(omega, zero, phi)), 2*scale)
+        beta = [{key: Q(values[4*index+offset]) for offset, key in enumerate(sections(2))} for index in range(4)]
+        shift = self.accepted(complex_.delta0(beta))
+        shifted = {edge: tuple(a+b for a, b in zip(omega[edge], shift[edge])) for edge in complex_.edges}
+        self.assertEqual(self.accepted(complex_.quotient_value(shifted, beta, phi)), 2*scale)
+
+    def test_dual_norm_annihilation_and_gap_are_independent_conditions(self) -> None:
+        complex_, omega, zero, phi = bell_witness()
+        self.assertEqual(self.accepted(complex_.quotient_value(omega, zero, phi)), 2)
+        doubled = {edge: tuple(2*value for value in row) for edge, row in phi.items()}
+        empty_omega = {edge: (Q(0), Q(0)) for edge in complex_.edges}
+        self.assertFalse(complex_.quotient_value(empty_omega, zero, doubled).ok)
+        nonannihilating = dict(phi)
+        nonannihilating[(0, 2)] = (Q(0), Q(0))
+        self.assertFalse(complex_.quotient_value(omega, zero, nonannihilating).ok)
+        zero_dual = {edge: (Q(0), Q(0)) for edge in complex_.edges}
+        self.assertFalse(complex_.quotient_value(omega, zero, zero_dual).ok)
+        # Delta0(beta) has certified quotient0; alpha=0 is an incorrect upper witness.
+        beta = [dict(row) for row in zero]
+        beta[0][(0, 0)] = Q(1)
+        shifted = self.accepted(complex_.delta0(beta))
+        self.assertEqual(self.accepted(complex_.quotient_value(shifted, beta, zero_dual)), 0)
+        self.assertFalse(complex_.quotient_value(shifted, zero, zero_dual).ok)
+
+    def test_whole_shape_validation_even_without_incidence(self) -> None:
+        disconnected = CechComplex(MeasurementScenario(2, ((0,), (1,))))
+        malformed_zeros: tuple[object, ...] = ((), [{}, {}], [{(0,): 1}, {(0,): 1, (1,): 0}], [{(False,): 1, (1,): 0}]*2)
+        for malformed_zero in malformed_zeros:
+            self.assertFalse(disconnected.delta0(malformed_zero).ok)
+            self.assertFalse(disconnected.quotient_value({}, malformed_zero, {}).ok)
+        self.assertFalse(disconnected.delta1({(0, 1): (0, 0)}).ok)
+        complex_, omega, zero, phi = bell_witness()
+        for one in ({}, {**omega, (0, 3): (Q(0), Q(0))}, {**omega, (0, 1): ()}, {**omega, (0, 1): (True, 0)}, {**omega, (0, 1): (1.0, 0)}, {(False, 1): (0, 0), (0, 2): (0, 0), (1, 3): (0, 0), (2, 3): (0, 0)}):
+            self.assertFalse(complex_.delta1(one).ok)
+            self.assertFalse(complex_.quotient_value(one, zero, phi).ok)
+        self.assertFalse(evaluate(CechComplex, None).ok)
+
+    def test_resource_limits_and_preflight_before_incidence(self) -> None:
+        complex_, omega, zero, phi = bell_witness()
+        large = Q(2**4095)
+        oversized = {**omega, (0, 1): (large, large)}
+        refused = complex_.quotient_value(oversized, zero, phi)
+        self.assertEqual(refused.error.kind if refused.error else None, "resource")
+        oversized = {**omega, (0, 1): (Q(2**4096), Q(0))}
+        with patch.object(CechComplex, "_annihilates", side_effect=RuntimeError("must not read incidence")):
+            self.assertFalse(complex_.quotient_value(oversized, zero, phi).ok)
+            self.assertFalse(complex_.quotient_value(omega, [{}, {}, {}, {}], phi).ok)
+        with patch.object(CechComplex, "_annihilates", side_effect=RuntimeError("bug")):
+            with self.assertRaises(RuntimeError):
+                complex_.quotient_value(omega, zero, phi)
+        with patch.object(CechComplex, "_annihilates", side_effect=KeyboardInterrupt):
+            with self.assertRaises(KeyboardInterrupt):
+                complex_.quotient_value(omega, zero, phi)
+
+
+    def test_primal_norm_budget_is_not_masked_by_dual_overflow(self) -> None:
+        complex_, omega, zero, _ = bell_witness()
+        omega[(0, 1)] = (Q(2**4095), Q(2**4095))
+        dual = {edge: (Q(0), Q(0)) for edge in complex_.edges}
+        refused = complex_.quotient_value(omega, zero, dual)
+        self.assertEqual(refused.error.kind if refused.error else None, "resource")
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

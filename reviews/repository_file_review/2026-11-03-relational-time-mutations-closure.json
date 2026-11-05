@@ -1,0 +1,553 @@
+{
+  "AuthorityEffect": "None",
+  "initial_receipt_sha256": "3c844a75a468ad134548e7d00a8301f95766fb03d6559a9d6e57b29c95004e53",
+  "manifest_sha256": "ea2b1afd286850319a33b0f811b809b78ae470c833ae70dea27d67b90e152072",
+  "test_before_sha256": "763dcd1fa26df651f2dd747898c79341db1362284e87605f3899e91089bd9447",
+  "test_after_sha256": "d28b3e2b3cad51869101a60a8783c24f61188fed2beb513803714784e4082950",
+  "added_text": "    def test_noninvolutive_evolution_direction(self) -> None:\n        module = load()\n        schedule = module.PermutationSchedule(((1, 2, 0),))\n        for initial in range(3):\n            self.assertTrue(schedule.evolves((initial, (initial+1) % 3)).value)\n            self.assertFalse(schedule.evolves((initial, (initial+2) % 3)).value)\n        self.assertEqual(schedule.blocks().value, ((1, 2, 0),))\n\n",
+  "reason": "The selected endpoint fixture transformed links into involutions; add direct positive/negative histories for an original three-cycle so evolution cannot be replaced by inverse evolution.",
+  "mutants": [
+    {
+      "identity": "evolution-inverted",
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_noninvolutive_evolution_direction"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_noninvolutive_evolution_direction (__main__.RelationalTimeTests.test_noninvolutive_evolution_direction) ... FAIL\n\n======================================================================\nFAIL: test_noninvolutive_evolution_direction (__main__.RelationalTimeTests.test_noninvolutive_evolution_direction)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational-followup-p73bnezu\\tests\\test_relational_time.py\", line 153, in test_noninvolutive_evolution_direction\n    self.assertTrue(schedule.evolves((initial, (initial+1) % 3)).value)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "916b86921d520c10d38c2e937079e1ddc73c5b1ce6d4699c185ea966ebfaacd9",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_noninvolutive_evolution_direction (__main__.RelationalTimeTests.test_noninvolutive_evolution_direction) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n"
+      }
+    }
+  ],
+  "adjudicated_mutants": [
+    {
+      "identity": "matrix-constructor-transpose",
+      "mutant_sha256": "6424039be914aa0b874dd8190b0001e2050630714bc77ddf88097ad32d59bf51",
+      "outcome": "killed",
+      "output": "test_matrix_vector_operations_against_symbolic_oracle (__main__.RelationalTimeTests.test_matrix_vector_operations_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_matrix_vector_operations_against_symbolic_oracle (__main__.RelationalTimeTests.test_matrix_vector_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 208, in test_matrix_vector_operations_against_symbolic_oracle\n    self.assertEqual(snapshot, tuple(tuple(row) for row in left))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Fraction(1, 2), Fraction(4, 1)), (Fraction(-2, 1), Fracti[39 chars] 3))) != ((Fraction(1, 2), -2, 3), (4, 0, Fraction(1, 3)))\n\nFirst differing element 0:\n(Fraction(1, 2), Fraction(4, 1))\n(Fraction(1, 2), -2, 3)\n\nFirst tuple contains 1 additional elements.\nFirst extra element 2:\n(Fraction(3, 1), Fraction(1, 3))\n\n+ ((Fraction(1, 2), -2, 3), (4, 0, Fraction(1, 3)))\n- ((Fraction(1, 2), Fraction(4, 1)),\n-  (Fraction(-2, 1), Fraction(0, 1)),\n-  (Fraction(3, 1), Fraction(1, 3)))\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_matrix_vector_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "matrix-product-order",
+      "mutant_sha256": "3f07371338d487300c3e6ed2805dfe07433b29a9a25df80d5b98003f176e0310",
+      "outcome": "killed",
+      "output": "test_matrix_vector_operations_against_symbolic_oracle (__main__.RelationalTimeTests.test_matrix_vector_operations_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_matrix_vector_operations_against_symbolic_oracle (__main__.RelationalTimeTests.test_matrix_vector_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 202, in test_matrix_vector_operations_against_symbolic_oracle\n    self.assertEqual(sp.ImmutableMatrix(module.mul(left, right)), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[17/2, -2, 11/3],\n[23/2,  2,   -2],\n[   1, -4,    6]]) != Matrix([\n[17/2, -5],\n[14/3,  8]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_matrix_vector_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "matrix-transpose-omitted",
+      "mutant_sha256": "4a6f9ceea347495d538b6f3cc9cea634217e21724f65377338e2eb5d06c0ab54",
+      "outcome": "killed",
+      "output": "test_matrix_vector_operations_against_symbolic_oracle (__main__.RelationalTimeTests.test_matrix_vector_operations_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_matrix_vector_operations_against_symbolic_oracle (__main__.RelationalTimeTests.test_matrix_vector_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 203, in test_matrix_vector_operations_against_symbolic_oracle\n    self.assertEqual(sp.ImmutableMatrix(module.transp(left)), sp.ImmutableMatrix(left).T)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[1/2, -2,   3],\n[  4,  0, 1/3]]) != Matrix([\n[1/2,   4],\n[ -2,   0],\n[  3, 1/3]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_matrix_vector_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "vector-exactness",
+      "mutant_sha256": "46f95fc8f3f0d2db84ccc84ac1d8f89d8721ce9251a8af57a3146e3f8626cfe4",
+      "outcome": "killed",
+      "output": "test_matrix_vector_operations_against_symbolic_oracle (__main__.RelationalTimeTests.test_matrix_vector_operations_against_symbolic_oracle) ... FAIL\n\n======================================================================\nFAIL: test_matrix_vector_operations_against_symbolic_oracle (__main__.RelationalTimeTests.test_matrix_vector_operations_against_symbolic_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 215, in test_matrix_vector_operations_against_symbolic_oracle\n    self.refused(module.apply, left, invalid_vector)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 57, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_matrix_vector_operations_against_symbolic_oracle"
+      ]
+    },
+    {
+      "identity": "permutation-order",
+      "mutant_sha256": "974ea3c908fa5f7fd4397de4640451685fb77e7d936f629130cfa724c0af34f0",
+      "outcome": "killed",
+      "output": "test_full_s3_census_and_exact_domains (__main__.RelationalTimeTests.test_full_s3_census_and_exact_domains) ... FAIL\n\n======================================================================\nFAIL: test_full_s3_census_and_exact_domains (__main__.RelationalTimeTests.test_full_s3_census_and_exact_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 79, in test_full_s3_census_and_exact_domains\n    self.assertEqual(module.compose(first, second), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (1, 2, 0) != (2, 0, 1)\n\nFirst differing element 0:\n1\n2\n\n- (1, 2, 0)\n+ (2, 0, 1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_full_s3_census_and_exact_domains"
+      ]
+    },
+    {
+      "identity": "permutation-inverse",
+      "mutant_sha256": "a86e1fa3d720b1e24ffa73dc5a7c8f91de40af1e9dfffc1e34623ce6384e6590",
+      "outcome": "killed",
+      "output": "test_full_s3_census_and_exact_domains (__main__.RelationalTimeTests.test_full_s3_census_and_exact_domains) ... FAIL\n\n======================================================================\nFAIL: test_full_s3_census_and_exact_domains (__main__.RelationalTimeTests.test_full_s3_census_and_exact_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 76, in test_full_s3_census_and_exact_domains\n    self.assertEqual(module.inverse(first), _inverse(first))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (1, 2, 0) != (2, 0, 1)\n\nFirst differing element 0:\n1\n2\n\n- (1, 2, 0)\n+ (2, 0, 1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_full_s3_census_and_exact_domains"
+      ]
+    },
+    {
+      "identity": "compose-first-admission",
+      "mutant_sha256": "9bc4abfe550f42a1e08bf03556c1450e95148c9c2a9d56bbf1d4d520be455887",
+      "outcome": "killed",
+      "output": "test_full_s3_census_and_exact_domains (__main__.RelationalTimeTests.test_full_s3_census_and_exact_domains) ... ERROR\n\n======================================================================\nERROR: test_full_s3_census_and_exact_domains (__main__.RelationalTimeTests.test_full_s3_census_and_exact_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 82, in test_full_s3_census_and_exact_domains\n    self.refused(module.compose, bad, UNIT)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 56, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 56, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 54, in compose\n    return _compose(a, permutation3(b))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 50, in _compose\n    return a[b[0]], a[b[1]], a[b[2]]\n                             ~^^^^^^\nIndexError: tuple index out of range\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_full_s3_census_and_exact_domains"
+      ]
+    },
+    {
+      "identity": "compose-second-admission",
+      "mutant_sha256": "d2299c85c76cab1c4bb8af1eb5853744848e507b753a740a63491079a53cc4d7",
+      "outcome": "killed",
+      "output": "test_full_s3_census_and_exact_domains (__main__.RelationalTimeTests.test_full_s3_census_and_exact_domains) ... ERROR\n\n======================================================================\nERROR: test_full_s3_census_and_exact_domains (__main__.RelationalTimeTests.test_full_s3_census_and_exact_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 83, in test_full_s3_census_and_exact_domains\n    self.refused(module.compose, UNIT, bad)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 56, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 56, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 54, in compose\n    return _compose(permutation3(a), b)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 50, in _compose\n    return a[b[0]], a[b[1]], a[b[2]]\n                               ~^^^\nIndexError: tuple index out of range\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_full_s3_census_and_exact_domains"
+      ]
+    },
+    {
+      "identity": "inverse-admission",
+      "mutant_sha256": "69568bb0b00257357f7a2af2868e7a8f0d559e7fd207e7e5571080b48738e540",
+      "outcome": "killed",
+      "output": "test_full_s3_census_and_exact_domains (__main__.RelationalTimeTests.test_full_s3_census_and_exact_domains) ... FAIL\n\n======================================================================\nFAIL: test_full_s3_census_and_exact_domains (__main__.RelationalTimeTests.test_full_s3_census_and_exact_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 81, in test_full_s3_census_and_exact_domains\n    self.refused(module.inverse, bad)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 57, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_full_s3_census_and_exact_domains"
+      ]
+    },
+    {
+      "identity": "state-bool",
+      "mutant_sha256": "cedb62051c969198c345dd20f83f1925d517e24cd74ca5a111ad87d969d50602",
+      "outcome": "killed",
+      "output": "test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals) ... FAIL\n\n======================================================================\nFAIL: test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 162, in test_snapshot_ownership_and_all_railway_refusals\n    self.assertFalse(outcome.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_snapshot_ownership_and_all_railway_refusals"
+      ]
+    },
+    {
+      "identity": "state-range",
+      "mutant_sha256": "485d535b2a2c0c52edd73cb389447226403add5ffaa830e35431fae0ef3573df",
+      "outcome": "killed",
+      "output": "test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals) ... FAIL\n\n======================================================================\nFAIL: test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 162, in test_snapshot_ownership_and_all_railway_refusals\n    self.assertFalse(outcome.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_snapshot_ownership_and_all_railway_refusals"
+      ]
+    },
+    {
+      "identity": "frozen-schedule",
+      "mutant_sha256": "0ca97f7db12d0620c9a6f4c865dc7990857681d27bcc1783fb415d0f1e8d5050",
+      "outcome": "killed",
+      "output": "test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals) ... FAIL\n\n======================================================================\nFAIL: test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 158, in test_snapshot_ownership_and_all_railway_refusals\n    with self.assertRaises(FrozenInstanceError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: FrozenInstanceError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_snapshot_ownership_and_all_railway_refusals"
+      ]
+    },
+    {
+      "identity": "period-budget",
+      "mutant_sha256": "c2160e86210adc6901f9886e6359470a368adda5286646f00d9c43d5aa76fa22",
+      "outcome": "killed",
+      "output": "test_empty_boundary_and_full_period_budget (__main__.RelationalTimeTests.test_empty_boundary_and_full_period_budget) ... FAIL\n\n======================================================================\nFAIL: test_empty_boundary_and_full_period_budget (__main__.RelationalTimeTests.test_empty_boundary_and_full_period_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 192, in test_empty_boundary_and_full_period_budget\n    self.refused(module.PermutationSchedule, (UNIT,)*65, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 57, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_empty_boundary_and_full_period_budget"
+      ]
+    },
+    {
+      "identity": "root-frame",
+      "mutant_sha256": "c5534daea3a0e1c0e70c2b4dc8954e34a6c16a44856f14de984f916cbc88826b",
+      "outcome": "killed",
+      "output": "test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals) ... FAIL\n\n======================================================================\nFAIL: test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 157, in test_snapshot_ownership_and_all_railway_refusals\n    self.assertEqual(schedule.frame_values, (UNIT, (1, 0, 2)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((1, 0, 2), (0, 1, 2)) != ((0, 1, 2), (1, 0, 2))\n\nFirst differing element 0:\n(1, 0, 2)\n(0, 1, 2)\n\n- ((1, 0, 2), (0, 1, 2))\n+ ((0, 1, 2), (1, 0, 2))\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_snapshot_ownership_and_all_railway_refusals"
+      ]
+    },
+    {
+      "identity": "chronological-order",
+      "mutant_sha256": "f92296f84890fbe540d5bea06814217f450bfa01e9bc9c85463da71c8c7b11db",
+      "outcome": "killed",
+      "output": "test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture) ... ERROR\n\n======================================================================\nERROR: test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 146, in test_noninvolutive_endpoint_fixture\n    module.gauge_regression(links, gauges, run)\n    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 226, in gauge_regression\n    _gauge_controls(schedule, _gauges(gauges, len(schedule.frame_values)), run)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 208, in _gauge_controls\n    run.require(changed.frame_values[t] == expected, \"frame covariance\")\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: frame covariance\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_noninvolutive_endpoint_fixture"
+      ]
+    },
+    {
+      "identity": "empty-closure",
+      "mutant_sha256": "0a41969e519d64cbed79c1b2a05763d8e770f74c19a7a3fd660dc252fb015ea2",
+      "outcome": "killed",
+      "output": "test_empty_boundary_and_full_period_budget (__main__.RelationalTimeTests.test_empty_boundary_and_full_period_budget) ... FAIL\n\n======================================================================\nFAIL: test_empty_boundary_and_full_period_budget (__main__.RelationalTimeTests.test_empty_boundary_and_full_period_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 181, in test_empty_boundary_and_full_period_budget\n    self.assertFalse(empty.closed().ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_empty_boundary_and_full_period_budget"
+      ]
+    },
+    {
+      "identity": "nonclosing-closure",
+      "mutant_sha256": "d718552afdf4532ac5a4a127b7a7cec73d185ffa59a6bd175cd1d9d987eee420",
+      "outcome": "killed",
+      "output": "test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture) ... ERROR\n\n======================================================================\nERROR: test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 144, in test_noninvolutive_endpoint_fixture\n    self.assertEqual(schedule.closed().error.message, \"nontrivialHolonomy\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'message'\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_noninvolutive_endpoint_fixture"
+      ]
+    },
+    {
+      "identity": "closure-railway",
+      "mutant_sha256": "fb089c302b1da1104210a176e2ca3bb9294db411abec5fa4cc3b7b7a325eb979",
+      "outcome": "killed",
+      "output": "test_empty_boundary_and_full_period_budget (__main__.RelationalTimeTests.test_empty_boundary_and_full_period_budget) ... ERROR\n\n======================================================================\nERROR: test_empty_boundary_and_full_period_budget (__main__.RelationalTimeTests.test_empty_boundary_and_full_period_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 181, in test_empty_boundary_and_full_period_budget\n    self.assertFalse(empty.closed().ok)\n                     ~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 108, in closed\n    return Outcome(value=self._closed())\n                         ~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 104, in _closed\n    raise Violation(\"input\", tag)\nchecker_support.boundary.Violation: emptyPeriod\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_empty_boundary_and_full_period_budget"
+      ]
+    },
+    {
+      "identity": "blocks-empty-refusal",
+      "mutant_sha256": "9eb03b92a933d8f0ef1616912d4395a755a03223f58e441a83abd9eb7a1347c0",
+      "outcome": "killed",
+      "output": "test_empty_boundary_and_full_period_budget (__main__.RelationalTimeTests.test_empty_boundary_and_full_period_budget) ... FAIL\n\n======================================================================\nFAIL: test_empty_boundary_and_full_period_budget (__main__.RelationalTimeTests.test_empty_boundary_and_full_period_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 182, in test_empty_boundary_and_full_period_budget\n    self.assertFalse(empty.blocks().ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_empty_boundary_and_full_period_budget"
+      ]
+    },
+    {
+      "identity": "seam-erased",
+      "mutant_sha256": "0080db12e3e0ad149943778551401ac8c9357949477c663a5a4d63623190214e",
+      "outcome": "killed",
+      "output": "test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture) ... FAIL\n\n======================================================================\nFAIL: test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 143, in test_noninvolutive_endpoint_fixture\n    self.assertEqual(schedule.blocks().value[-1], (0, 2, 1))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (0, 1, 2) != (0, 2, 1)\n\nFirst differing element 1:\n1\n2\n\n- (0, 1, 2)\n+ (0, 2, 1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_noninvolutive_endpoint_fixture"
+      ]
+    },
+    {
+      "identity": "blocks-railway",
+      "mutant_sha256": "079b402414976cf15548485783ed229793359c0c466d5256d38d8e72be8525bf",
+      "outcome": "killed",
+      "output": "test_empty_boundary_and_full_period_budget (__main__.RelationalTimeTests.test_empty_boundary_and_full_period_budget) ... ERROR\n\n======================================================================\nERROR: test_empty_boundary_and_full_period_budget (__main__.RelationalTimeTests.test_empty_boundary_and_full_period_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 182, in test_empty_boundary_and_full_period_budget\n    self.assertFalse(empty.blocks().ok)\n                     ~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 117, in blocks\n    return Outcome(value=self._blocks())\n                         ~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 112, in _blocks\n    raise Violation(\"input\", \"emptyPeriod\")\nchecker_support.boundary.Violation: emptyPeriod\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_empty_boundary_and_full_period_budget"
+      ]
+    },
+    {
+      "identity": "changed-target-inverse",
+      "mutant_sha256": "0336bb733457eca809e3a0edb65ff64cc1ab1ab1b4dd78e412a0a1f950b548a5",
+      "outcome": "killed",
+      "output": "test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture) ... FAIL\n\n======================================================================\nFAIL: test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 142, in test_noninvolutive_endpoint_fixture\n    self.assertEqual(changed.frame_values[t], expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (2, 1, 0) != (0, 2, 1)\n\nFirst differing element 0:\n2\n0\n\n- (2, 1, 0)\n+ (0, 2, 1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_noninvolutive_endpoint_fixture"
+      ]
+    },
+    {
+      "identity": "changed-source-endpoint",
+      "mutant_sha256": "58966a69d7623d429851309022ab9d151ebbadf6d59a2530d22694d268f1b6dc",
+      "outcome": "killed",
+      "output": "test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture) ... FAIL\n\n======================================================================\nFAIL: test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 142, in test_noninvolutive_endpoint_fixture\n    self.assertEqual(changed.frame_values[t], expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (1, 2, 0) != (0, 2, 1)\n\nFirst differing element 0:\n1\n0\n\n- (1, 2, 0)\n?  ^     ^\n\n+ (0, 2, 1)\n?  ^     ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_noninvolutive_endpoint_fixture"
+      ]
+    },
+    {
+      "identity": "changed-railway",
+      "mutant_sha256": "8bfaf556c25f603d7c9143f2ddb487c819c87a85397d81090ae4188cd8a81558",
+      "outcome": "killed",
+      "output": "test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals) ... ERROR\n\n======================================================================\nERROR: test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 168, in test_snapshot_ownership_and_all_railway_refusals\n    self.assertFalse(schedule.changed(gauges).ok)\n                     ~~~~~~~~~~~~~~~~^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 125, in changed\n    return Outcome(value=self._changed(gauges))\n                         ~~~~~~~~~~~~~^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 120, in _changed\n    owned = _gauges(gauges, len(self.frame_values))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 73, in _gauges\n    return tuple(permutation3(value) for value in sequence(values, \"endpoint gauges\", length, 65))\n                                                  ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\domains.py\", line 97, in sequence\n    raise _violation(\"input\", f\"{name} must have {size} entries\")\nchecker_support.boundary.Violation: endpoint gauges must have 2 entries\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_snapshot_ownership_and_all_railway_refusals"
+      ]
+    },
+    {
+      "identity": "history-railway",
+      "mutant_sha256": "9dd0056a9fc72d7dd9d90d5a2796b9c94fbe516ff3be7afc1ceb68a2c0d55729",
+      "outcome": "killed",
+      "output": "test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals) ... ERROR\n\n======================================================================\nERROR: test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 161, in test_snapshot_ownership_and_all_railway_refusals\n    outcome = schedule.history(initial)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 132, in history\n    return Outcome(value=self._history(initial))\n                         ~~~~~~~~~~~~~^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 128, in _history\n    state = _state(initial)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 66, in _state\n    state = integer(value, \"S3 state\")\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\domains.py\", line 55, in integer\n    raise _violation(\"input\", f\"{name} must be an integer, excluding bool\")\nchecker_support.boundary.Violation: S3 state must be an integer, excluding bool\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_snapshot_ownership_and_all_railway_refusals"
+      ]
+    },
+    {
+      "identity": "history-transport",
+      "mutant_sha256": "e3881f7609077286aceb56b6ebf152409f4882a8d7633f9b8c475c321a8cbbc2",
+      "outcome": "killed",
+      "output": "test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals) ... ok\ntest_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture) ... ERROR\n\n======================================================================\nERROR: test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 146, in test_noninvolutive_endpoint_fixture\n    module.gauge_regression(links, gauges, run)\n    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 226, in gauge_regression\n    _gauge_controls(schedule, _gauges(gauges, len(schedule.frame_values)), run)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 213, in _gauge_controls\n    run.require(changed._evolves(coords), \"evolution covariance\")\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: evolution covariance\n\n----------------------------------------------------------------------\nRan 2 tests in 0.013s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_snapshot_ownership_and_all_railway_refusals",
+        "test_noninvolutive_endpoint_fixture"
+      ]
+    },
+    {
+      "identity": "evolution-inverted",
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_noninvolutive_evolution_direction"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_noninvolutive_evolution_direction (__main__.RelationalTimeTests.test_noninvolutive_evolution_direction) ... FAIL\n\n======================================================================\nFAIL: test_noninvolutive_evolution_direction (__main__.RelationalTimeTests.test_noninvolutive_evolution_direction)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational-followup-p73bnezu\\tests\\test_relational_time.py\", line 153, in test_noninvolutive_evolution_direction\n    self.assertTrue(schedule.evolves((initial, (initial+1) % 3)).value)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "916b86921d520c10d38c2e937079e1ddc73c5b1ce6d4699c185ea966ebfaacd9",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_noninvolutive_evolution_direction (__main__.RelationalTimeTests.test_noninvolutive_evolution_direction) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n"
+      }
+    },
+    {
+      "identity": "evolution-shortcut",
+      "mutant_sha256": "bb42da2a3f538b09cda3a7e3de01212ed9315f5c9a02f450f9e4c93048a091eb",
+      "outcome": "killed",
+      "output": "test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals) ... FAIL\n\n======================================================================\nFAIL: test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 170, in test_snapshot_ownership_and_all_railway_refusals\n    self.assertFalse(schedule.evolves((0, 0)).value)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_snapshot_ownership_and_all_railway_refusals"
+      ]
+    },
+    {
+      "identity": "evolution-railway",
+      "mutant_sha256": "a7cabfeec49208218dbef4dcf61fa43a327695f3d7d0c3e99136c30c09887f12",
+      "outcome": "killed",
+      "output": "test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals) ... ERROR\n\n======================================================================\nERROR: test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 165, in test_snapshot_ownership_and_all_railway_refusals\n    self.assertFalse(schedule.evolves(history).ok)\n                     ~~~~~~~~~~~~~~~~^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 139, in evolves\n    return Outcome(value=self._evolves(history))\n                         ~~~~~~~~~~~~~^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 135, in _evolves\n    owned = _history(history, len(self.frame_values))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 77, in _history\n    return tuple(_state(value) for value in sequence(values, \"history\", length, 65))\n                                            ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\domains.py\", line 97, in sequence\n    raise _violation(\"input\", f\"{name} must have {size} entries\")\nchecker_support.boundary.Violation: history must have 2 entries\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_snapshot_ownership_and_all_railway_refusals"
+      ]
+    },
+    {
+      "identity": "coordinates-inverse",
+      "mutant_sha256": "934343adf8bfe2e62894b653b66c80996fe4450422becbe0f07d100ac5c66c0c",
+      "outcome": "killed",
+      "output": "test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture) ... ERROR\n\n======================================================================\nERROR: test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 146, in test_noninvolutive_endpoint_fixture\n    module.gauge_regression(links, gauges, run)\n    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 226, in gauge_regression\n    _gauge_controls(schedule, _gauges(gauges, len(schedule.frame_values)), run)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 212, in _gauge_controls\n    run.require(all(gauge[state] == value for gauge, state, value in zip(gauges, coords, history)), \"history inverse\")\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: history inverse\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_noninvolutive_endpoint_fixture"
+      ]
+    },
+    {
+      "identity": "coordinates-railway",
+      "mutant_sha256": "667afda166a76c84e2b6eb7ac70d742f469b0b613507911f408836c443e81962",
+      "outcome": "killed",
+      "output": "test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals) ... ERROR\n\n======================================================================\nERROR: test_snapshot_ownership_and_all_railway_refusals (__main__.RelationalTimeTests.test_snapshot_ownership_and_all_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 166, in test_snapshot_ownership_and_all_railway_refusals\n    self.assertFalse(schedule.coordinates(history, (UNIT, UNIT)).ok)\n                     ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 147, in coordinates\n    return Outcome(value=self._coordinates(history, gauges))\n                         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 142, in _coordinates\n    states = _history(history, len(self.frame_values))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 77, in _history\n    return tuple(_state(value) for value in sequence(values, \"history\", length, 65))\n                                            ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\domains.py\", line 97, in sequence\n    raise _violation(\"input\", f\"{name} must have {size} entries\")\nchecker_support.boundary.Violation: history must have 2 entries\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_snapshot_ownership_and_all_railway_refusals"
+      ]
+    },
+    {
+      "identity": "recorder-type",
+      "mutant_sha256": "b7251d526e85a014671314a922d8391b873ba0511fbbc27155a9a9b8cb1a6e45",
+      "outcome": "killed",
+      "output": "test_guard_faults_and_cancellation (__main__.RelationalTimeTests.test_guard_faults_and_cancellation) ... ERROR\n\n======================================================================\nERROR: test_guard_faults_and_cancellation (__main__.RelationalTimeTests.test_guard_faults_and_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 245, in test_guard_faults_and_cancellation\n    self.refused(module.matrix_regression, None)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 56, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 56, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 194, in matrix_regression\n    run.require(second == minus, \"step square\")\n    ^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'require'\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_guard_faults_and_cancellation"
+      ]
+    },
+    {
+      "identity": "packed-clock-wrap",
+      "mutant_sha256": "2f855eeb6c53bbbbe5e9a9153a57168ba6588c50fc6cf5d2eb82d96fe3d98132",
+      "outcome": "killed",
+      "output": "test_packed_clock_and_fixed_control_counts (__main__.RelationalTimeTests.test_packed_clock_and_fixed_control_counts) ... FAIL\n\n======================================================================\nFAIL: test_packed_clock_and_fixed_control_counts (__main__.RelationalTimeTests.test_packed_clock_and_fixed_control_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 231, in test_packed_clock_and_fixed_control_counts\n    self.assertEqual(sp.ImmutableMatrix(packed), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[0, -1, 0,  0, 0,  0, 0,  0],\n[1,  0, 0,  0, [190 chars] 0]]) != Matrix([\n[0, 0, 0, 0, 0, 0, 1, 0],\n[0, 0, 0, 0, 0, 0, [158 chars] 0]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_packed_clock_and_fixed_control_counts"
+      ]
+    },
+    {
+      "identity": "packed-adjoint",
+      "mutant_sha256": "a385e56540d05911d706f9e24057e0c8303d6c48cce7c9de3793b939538bb51e",
+      "outcome": "killed",
+      "output": "test_packed_clock_and_fixed_control_counts (__main__.RelationalTimeTests.test_packed_clock_and_fixed_control_counts) ... FAIL\n\n======================================================================\nFAIL: test_packed_clock_and_fixed_control_counts (__main__.RelationalTimeTests.test_packed_clock_and_fixed_control_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 231, in test_packed_clock_and_fixed_control_counts\n    self.assertEqual(sp.ImmutableMatrix(packed), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Matrix([\n[ 0,  0, 0, 0,  0,  0, 1, 0],\n[ 0,  0, 0, [193 chars] 0]]) != Matrix([\n[0, 0, 0, 0, 0, 0, 1, 0],\n[0, 0, 0, 0, 0, [161 chars] 0]])\n\n----------------------------------------------------------------------\nRan 1 test in 0.011s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_packed_clock_and_fixed_control_counts"
+      ]
+    },
+    {
+      "identity": "vector-recovery-guard",
+      "mutant_sha256": "e8ddb1f305113709eb25a3918ccfd69c33b26dab40afda42b936d2769ae55279",
+      "outcome": "killed",
+      "output": "test_packed_clock_and_fixed_control_counts (__main__.RelationalTimeTests.test_packed_clock_and_fixed_control_counts) ... ERROR\n\n======================================================================\nERROR: test_packed_clock_and_fixed_control_counts (__main__.RelationalTimeTests.test_packed_clock_and_fixed_control_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 234, in test_packed_clock_and_fixed_control_counts\n    module.matrix_regression(run)\n    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 199, in matrix_regression\n    _vector_controls(powers, run)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 168, in _vector_controls\n    run.require(apply(transp(power), apply(power, psi)) != psi, \"transport recovery\")\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: transport recovery\n\n----------------------------------------------------------------------\nRan 1 test in 0.011s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_packed_clock_and_fixed_control_counts"
+      ]
+    },
+    {
+      "identity": "initial-gauge-factor",
+      "mutant_sha256": "5c53e38169392696e2a4422b0d957339e0cc9ce7853679f028a6898e92221119",
+      "outcome": "killed",
+      "output": "test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture) ... ERROR\n\n======================================================================\nERROR: test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 146, in test_noninvolutive_endpoint_fixture\n    module.gauge_regression(links, gauges, run)\n    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 226, in gauge_regression\n    _gauge_controls(schedule, _gauges(gauges, len(schedule.frame_values)), run)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 208, in _gauge_controls\n    run.require(changed.frame_values[t] == expected, \"frame covariance\")\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: frame covariance\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_noninvolutive_endpoint_fixture"
+      ]
+    },
+    {
+      "identity": "negative-history-check",
+      "mutant_sha256": "9bc2d8283a479e97845b437aa91adf18ae2a9a444735d48e360479578f73b83d",
+      "outcome": "killed",
+      "output": "test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture) ... ERROR\n\n======================================================================\nERROR: test_noninvolutive_endpoint_fixture (__main__.RelationalTimeTests.test_noninvolutive_endpoint_fixture)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 146, in test_noninvolutive_endpoint_fixture\n    module.gauge_regression(links, gauges, run)\n    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 226, in gauge_regression\n    _gauge_controls(schedule, _gauges(gauges, len(schedule.frame_values)), run)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\independent\\dfm-relational-time-fence.py\", line 218, in _gauge_controls\n    run.require(changed._evolves(bad_coords), \"nonevolving history remains nonevolving\")\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: nonevolving history remains nonevolving\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_noninvolutive_endpoint_fixture"
+      ]
+    },
+    {
+      "identity": "zero-gauge-regression",
+      "mutant_sha256": "48a85f09c2a09f71e4685c478a05aee12b2a669e5ecd805150fe515eb47688c2",
+      "outcome": "killed",
+      "output": "test_empty_boundary_and_full_period_budget (__main__.RelationalTimeTests.test_empty_boundary_and_full_period_budget) ... FAIL\n\n======================================================================\nFAIL: test_empty_boundary_and_full_period_budget (__main__.RelationalTimeTests.test_empty_boundary_and_full_period_budget)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 184, in test_empty_boundary_and_full_period_budget\n    self.refused(module.gauge_regression, (), (UNIT,), Cases())\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 61, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'check' != 'input'\n- check\n+ input\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_empty_boundary_and_full_period_budget"
+      ]
+    },
+    {
+      "identity": "zero-cycle-regression",
+      "mutant_sha256": "0692d53b680e13efc8cc4dd921a90de740cc8e11ae5739b7d3ae1b5d3c50aba8",
+      "outcome": "equivalent",
+      "output": "test_empty_boundary_and_full_period_budget (__main__.RelationalTimeTests.test_empty_boundary_and_full_period_budget) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_empty_boundary_and_full_period_budget"
+      ],
+      "raw_outcome": "survived",
+      "proof": "Removing the outer nonempty guard leaves the same constructed empty schedule. _cycle_controls executes three empty point loops without recording a check, then calls _blocks, which refuses empty links before modulo or any product. Both paths produce Failure kind input and leave Cases.checks unchanged; nonempty schedules are unchanged. The diagnostic changes from nonempty cycle regression required to emptyPeriod. Exact human text is not part of this regression-wrapper contract, unlike the canonical closure_tag/closed/blocks reason tags. The retained early guard provides caller-specific context."
+    },
+    {
+      "identity": "main-schedule-range",
+      "mutant_sha256": "155a6ece04fd60dd400d03f4477c74eebdc3e5c5a76f31b013b0953650b7ade6",
+      "outcome": "killed",
+      "output": "test_full_enumeration_and_executable_failure_exit (__main__.RelationalTimeTests.test_full_enumeration_and_executable_failure_exit) ... FAIL\n\n======================================================================\nFAIL: test_full_enumeration_and_executable_failure_exit (__main__.RelationalTimeTests.test_full_enumeration_and_executable_failure_exit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 265, in test_full_enumeration_and_executable_failure_exit\n    self.assertEqual((receipt[\"status\"], receipt[\"checks\"]), (\"passed\", 347936))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ('passed', 53744) != ('passed', 347936)\n\nFirst differing element 1:\n53744\n347936\n\n- ('passed', 53744)\n?            -  ^^\n\n+ ('passed', 347936)\n?             + ^^^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.465s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_full_enumeration_and_executable_failure_exit"
+      ]
+    },
+    {
+      "identity": "closed-counter",
+      "mutant_sha256": "8ce07ba753456f7e824bef3732a1bd037f8f70a4d29c277a333266d3c76116ff",
+      "outcome": "killed",
+      "output": "test_full_enumeration_and_executable_failure_exit (__main__.RelationalTimeTests.test_full_enumeration_and_executable_failure_exit) ... FAIL\n\n======================================================================\nFAIL: test_full_enumeration_and_executable_failure_exit (__main__.RelationalTimeTests.test_full_enumeration_and_executable_failure_exit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 266, in test_full_enumeration_and_executable_failure_exit\n    self.assertEqual((receipt[\"schedules\"], receipt[\"closed\"], receipt[\"nonclosing\"]), (1554, 259, 1295))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (1554, 1554, 0) != (1554, 259, 1295)\n\nFirst differing element 1:\n1554\n259\n\n- (1554, 1554, 0)\n+ (1554, 259, 1295)\n\n----------------------------------------------------------------------\nRan 1 test in 2.314s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_full_enumeration_and_executable_failure_exit"
+      ]
+    },
+    {
+      "identity": "receipt-count",
+      "mutant_sha256": "37573756fb98c1434f9f8f98cd319c269f6f4fbc0d87cf409124a4f2469e82a2",
+      "outcome": "killed",
+      "output": "test_full_enumeration_and_executable_failure_exit (__main__.RelationalTimeTests.test_full_enumeration_and_executable_failure_exit) ... FAIL\n\n======================================================================\nFAIL: test_full_enumeration_and_executable_failure_exit (__main__.RelationalTimeTests.test_full_enumeration_and_executable_failure_exit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 265, in test_full_enumeration_and_executable_failure_exit\n    self.assertEqual((receipt[\"status\"], receipt[\"checks\"]), (\"passed\", 347936))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ('passed', 1554) != ('passed', 347936)\n\nFirst differing element 1:\n1554\n347936\n\n- ('passed', 1554)\n?            ^^^\n\n+ ('passed', 347936)\n?            ^ ++++\n\n\n----------------------------------------------------------------------\nRan 1 test in 2.317s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_full_enumeration_and_executable_failure_exit"
+      ]
+    },
+    {
+      "identity": "failure-exit",
+      "mutant_sha256": "aae3ffea18cceb6b2935f9a6e7736daf9f37294c93e909ffd0d208d96999515b",
+      "outcome": "killed",
+      "output": "test_full_enumeration_and_executable_failure_exit (__main__.RelationalTimeTests.test_full_enumeration_and_executable_failure_exit) ... FAIL\n\n======================================================================\nFAIL: test_full_enumeration_and_executable_failure_exit (__main__.RelationalTimeTests.test_full_enumeration_and_executable_failure_exit)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 268, in test_full_enumeration_and_executable_failure_exit\n    with self.assertRaises(SystemExit) as failure:\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: SystemExit not raised\n\n----------------------------------------------------------------------\nRan 1 test in 2.363s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-relational-time-fence.py",
+      "tests": [
+        "test_full_enumeration_and_executable_failure_exit"
+      ]
+    },
+    {
+      "identity": "oracle-inverse",
+      "mutant_sha256": "0949876b24688170a066bb06d5d74cc009d1921ac2c2544ff16d6636ddf48b5c",
+      "outcome": "killed",
+      "output": "test_oracles_and_import_lifecycle (__main__.RelationalTimeTests.test_oracles_and_import_lifecycle) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_import_lifecycle (__main__.RelationalTimeTests.test_oracles_and_import_lifecycle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 65, in test_oracles_and_import_lifecycle\n    self.assertEqual(_inverse((1, 2, 0)), (2, 0, 1))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (0, 2, 1) != (2, 0, 1)\n\nFirst differing element 0:\n0\n2\n\n- (0, 2, 1)\n+ (2, 0, 1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_relational_time.py",
+      "tests": [
+        "test_oracles_and_import_lifecycle"
+      ]
+    },
+    {
+      "identity": "oracle-frame-order",
+      "mutant_sha256": "e7bea879e22b1fb59b880045a71378e6324f585ec416c80ca4b8601b2397adfa",
+      "outcome": "killed",
+      "output": "test_oracles_and_import_lifecycle (__main__.RelationalTimeTests.test_oracles_and_import_lifecycle) ... FAIL\n\n======================================================================\nFAIL: test_oracles_and_import_lifecycle (__main__.RelationalTimeTests.test_oracles_and_import_lifecycle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 66, in test_oracles_and_import_lifecycle\n    self.assertEqual(_frames([(1, 0, 2), (0, 2, 1)]), (UNIT, (1, 0, 2), (2, 0, 1)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((0, 1, 2), (1, 0, 2), (1, 2, 0)) != ((0, 1, 2), (1, 0, 2), (2, 0, 1))\n\nFirst differing element 2:\n(1, 2, 0)\n(2, 0, 1)\n\n- ((0, 1, 2), (1, 0, 2), (1, 2, 0))\n?                         ---\n\n+ ((0, 1, 2), (1, 0, 2), (2, 0, 1))\n?                             +++\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_relational_time.py",
+      "tests": [
+        "test_oracles_and_import_lifecycle"
+      ]
+    },
+    {
+      "identity": "refusal-helper",
+      "mutant_sha256": "5deaf8e15064eae8fc5257f0d810843ad82d3111512576be50cd1205400c0349",
+      "outcome": "killed",
+      "output": "test_full_s3_census_and_exact_domains (__main__.RelationalTimeTests.test_full_s3_census_and_exact_domains) ... FAIL\n\n======================================================================\nFAIL: test_full_s3_census_and_exact_domains (__main__.RelationalTimeTests.test_full_s3_census_and_exact_domains)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 81, in test_full_s3_census_and_exact_domains\n    self.refused(module.inverse, bad)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\relational_time-mutation-sp4qo5qm\\tests\\test_relational_time.py\", line 57, in refused\n    self.assertTrue(result.ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_relational_time.py",
+      "tests": [
+        "test_full_s3_census_and_exact_domains"
+      ]
+    }
+  ],
+  "summary": {
+    "counts": {
+      "killed": 45,
+      "survived": 0,
+      "equivalent": 1,
+      "invalid": 0,
+      "inconclusive": 0,
+      "unrun": 0
+    },
+    "eligible": 45,
+    "detected_fraction": 1.0
+  }
+}

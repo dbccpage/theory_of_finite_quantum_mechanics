@@ -113,8 +113,9 @@ vectors or symmetry assumption about \(f\) is needed.
 
 The [independent checker](../../../checks/independent/fq-gleason-qi3-extension.py)
 recomputes Hermitian orthogonality, nonzero-ness, the real parity values, and
-every coefficient sum using integers. It uses no search solver or repository
-imports. The Lean theorem `no_prescribed_frame_function` checks those actual
+every coefficient sum using integers. It uses no search solver. Its bounded JSON
+and typed-failure adapters come from `checks/checker_support`; its geometric
+and certificate arithmetic remains independent of the production model. The Lean theorem `no_prescribed_frame_function` checks those actual
 frame equations and combines them with the prescribed values.
 `no_exotic_extension` derives the required real values directly from the
 repository's `exotic` definition. No nonnegativity hypothesis occurs, so the

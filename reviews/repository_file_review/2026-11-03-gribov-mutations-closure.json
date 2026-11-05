@@ -1,0 +1,375 @@
+{
+  "AuthorityEffect": "None",
+  "initial_receipt_sha256": "102f33598cb4c3a374b35dfe15e218e59687107e7853297614b9bc59eb7bca24",
+  "manifest_sha256": "e6f678abb40ae7abf4204efacf9b998b46f58d767917f9e83d94d70e9265ed08",
+  "test_before_sha256": "94b077cdc0cf2f13bbb66a0e8ec47487f93fecea18bd6b40187258e175fbd334",
+  "test_after_sha256": "9f62d7b97ed0ceeefc234ebb21c4abbf9a445a38770446d6aca73b5a984f01fd",
+  "added_text": "        self.assertEqual(module.mat(left), _rows(a))\n",
+  "reason": "The original deterministic nonsymmetric selector checked multiplication/form evaluation but not the mat wrapper. Add explicit constructor preservation there; the generated helper suite already tested it.",
+  "mutants": [
+    {
+      "identity": "matrix-transpose",
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_nonsymmetric_fixed_oracle"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle) ... FAIL\n\n======================================================================\nFAIL: test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-followup-xoa3mi2q\\tests\\test_gribov_checker.py\", line 98, in test_nonsymmetric_fixed_oracle\n    self.assertEqual(module.mat(left), _rows(a))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Fra[17 chars]tion(3, 1), Fraction(-1, 1)), (Fraction(1, 1),[79 chars] 3))) != ((Fra[17 chars]tion(1, 1), Fraction(-2, 1)), (Fraction(3, 1),[79 chars] 3)))\n\nFirst differing element 0:\n(Fraction(1, 2), Fraction(3, 1), Fraction(-1, 1))\n(Fraction(1, 2), Fraction(1, 1), Fraction(-2, 1))\n\n- ((Fraction(1, 2), Fraction(3, 1), Fraction(-1, 1)),\n?                            ^                ^\n\n+ ((Fraction(1, 2), Fraction(1, 1), Fraction(-2, 1)),\n?                            ^                ^\n\n-  (Fraction(1, 1), Fraction(0, 1), Fraction(4, 1)),\n+  (Fraction(3, 1), Fraction(0, 1), Fraction(1, 1)),\n-  (Fraction(-2, 1), Fraction(1, 1), Fraction(2, 3)))\n?             ^               ^\n\n+  (Fraction(-1, 1), Fraction(4, 1), Fraction(2, 3)))\n?             ^               ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "3e7e489a38134104adbee142efe689609c2b71635227ffe114c6e6df9616efde",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n"
+      }
+    }
+  ],
+  "adjudicated_mutants": [
+    {
+      "identity": "scalar-admission",
+      "mutant_sha256": "9df7e4e680ccbaf7f75863240174432551c8b193f7dfb9618320f9e8037f7e36",
+      "outcome": "killed",
+      "output": "test_shape_type_and_exact_scalar_boundaries (__main__.GribovCheckerTests.test_shape_type_and_exact_scalar_boundaries) ... FAIL\ntest_exact_product_trace_and_difference_budgets (__main__.GribovCheckerTests.test_exact_product_trace_and_difference_budgets) ... FAIL\n\n======================================================================\nFAIL: test_shape_type_and_exact_scalar_boundaries (__main__.GribovCheckerTests.test_shape_type_and_exact_scalar_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 118, in test_shape_type_and_exact_scalar_boundaries\n    self.refused(module.exact, value)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 50, in refused\n    self.assertFalse(outcome.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: True is not false\n\n======================================================================\nFAIL: test_exact_product_trace_and_difference_budgets (__main__.GribovCheckerTests.test_exact_product_trace_and_difference_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 143, in test_exact_product_trace_and_difference_budgets\n    self.refused(module.exact, 2**4096, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 50, in refused\n    self.assertFalse(outcome.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 2 tests in 0.007s\n\nFAILED (failures=2)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_shape_type_and_exact_scalar_boundaries",
+        "test_exact_product_trace_and_difference_budgets"
+      ]
+    },
+    {
+      "identity": "outer-shape",
+      "mutant_sha256": "843bc14af748e7b8e1d110ff3831d69e91672c5607b1ce775e1b5405ef88980f",
+      "outcome": "killed",
+      "output": "test_shape_type_and_exact_scalar_boundaries (__main__.GribovCheckerTests.test_shape_type_and_exact_scalar_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_shape_type_and_exact_scalar_boundaries (__main__.GribovCheckerTests.test_shape_type_and_exact_scalar_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 112, in test_shape_type_and_exact_scalar_boundaries\n    self.refused(operation, rows)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 50, in refused\n    self.assertFalse(outcome.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_shape_type_and_exact_scalar_boundaries"
+      ]
+    },
+    {
+      "identity": "row-shape",
+      "mutant_sha256": "7888c80130a1ced46883d20894c635380ab69c2596551fd388eeae23a921bec9",
+      "outcome": "killed",
+      "output": "test_shape_type_and_exact_scalar_boundaries (__main__.GribovCheckerTests.test_shape_type_and_exact_scalar_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_shape_type_and_exact_scalar_boundaries (__main__.GribovCheckerTests.test_shape_type_and_exact_scalar_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 112, in test_shape_type_and_exact_scalar_boundaries\n    self.refused(operation, rows)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 50, in refused\n    self.assertFalse(outcome.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_shape_type_and_exact_scalar_boundaries"
+      ]
+    },
+    {
+      "identity": "matrix-transpose",
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_nonsymmetric_fixed_oracle"
+      ],
+      "outcome": "killed",
+      "returncode": 1,
+      "output": "test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle) ... FAIL\n\n======================================================================\nFAIL: test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-followup-xoa3mi2q\\tests\\test_gribov_checker.py\", line 98, in test_nonsymmetric_fixed_oracle\n    self.assertEqual(module.mat(left), _rows(a))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Fra[17 chars]tion(3, 1), Fraction(-1, 1)), (Fraction(1, 1),[79 chars] 3))) != ((Fra[17 chars]tion(1, 1), Fraction(-2, 1)), (Fraction(3, 1),[79 chars] 3)))\n\nFirst differing element 0:\n(Fraction(1, 2), Fraction(3, 1), Fraction(-1, 1))\n(Fraction(1, 2), Fraction(1, 1), Fraction(-2, 1))\n\n- ((Fraction(1, 2), Fraction(3, 1), Fraction(-1, 1)),\n?                            ^                ^\n\n+ ((Fraction(1, 2), Fraction(1, 1), Fraction(-2, 1)),\n?                            ^                ^\n\n-  (Fraction(1, 1), Fraction(0, 1), Fraction(4, 1)),\n+  (Fraction(3, 1), Fraction(0, 1), Fraction(1, 1)),\n-  (Fraction(-2, 1), Fraction(1, 1), Fraction(2, 3)))\n?             ^               ^\n\n+  (Fraction(-1, 1), Fraction(4, 1), Fraction(2, 3)))\n?             ^               ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "mutant_sha256": "3e7e489a38134104adbee142efe689609c2b71635227ffe114c6e6df9616efde",
+      "baseline": {
+        "returncode": 0,
+        "output": "test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nOK\n"
+      }
+    },
+    {
+      "identity": "multiply-order",
+      "mutant_sha256": "cfd560d3b0a5d895908a3f2be990521c324a2be959acf3940a77c5fe66d3ae20",
+      "outcome": "killed",
+      "output": "test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle) ... FAIL\n\n======================================================================\nFAIL: test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 98, in test_nonsymmetric_fixed_oracle\n    self.assertEqual(module.mul(left, right), _rows(a*b))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Fraction(3, 1), Fraction(0, 1), Fraction(1, 1)), ([98 chars] 3))) != ((Fraction(-4, 1), Fraction(-1, 2), Fraction(2, 1)),[98 chars] 3)))\n\nFirst differing element 0:\n(Fraction(3, 1), Fraction(0, 1), Fraction(1, 1))\n(Fraction(-4, 1), Fraction(-1, 2), Fraction(2, 1))\n\n- ((Fraction(3, 1), Fraction(0, 1), Fraction(1, 1)),\n?            ^               ^  ^            ^\n\n+ ((Fraction(-4, 1), Fraction(-1, 2), Fraction(2, 1)),\n?            ^^               ^^  ^            ^\n\n-  (Fraction(-6, 1), Fraction(18, 1), Fraction(-7, 3)),\n-  (Fraction(1, 2), Fraction(7, 1), Fraction(-16, 3)))\n+  (Fraction(3, 1), Fraction(3, 1), Fraction(1, 1)),\n+  (Fraction(10, 1), Fraction(-5, 1), Fraction(50, 3)))\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_nonsymmetric_fixed_oracle"
+      ]
+    },
+    {
+      "identity": "trace-index",
+      "mutant_sha256": "613429325f24f5133710f48468e1974803fedb9294e96b29ba13cf9b4657cd69",
+      "outcome": "killed",
+      "output": "test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle) ... FAIL\n\n======================================================================\nFAIL: test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 100, in test_nonsymmetric_fixed_oracle\n    self.assertEqual(form.value(left).value, Q(sp.trace(w*a*a)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(581, 12) != Fraction(-97, 4)\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_nonsymmetric_fixed_oracle"
+      ]
+    },
+    {
+      "identity": "trace-final-term",
+      "mutant_sha256": "e72e125c1dd5febbc842fd6519eaea34d8f41c6d0fb504cb83d057ecf0786330",
+      "outcome": "killed",
+      "output": "test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle) ... FAIL\n\n======================================================================\nFAIL: test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 100, in test_nonsymmetric_fixed_oracle\n    self.assertEqual(form.value(left).value, Q(sp.trace(w*a*a)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(-163, 12) != Fraction(-97, 4)\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_nonsymmetric_fixed_oracle"
+      ]
+    },
+    {
+      "identity": "trace-budget",
+      "mutant_sha256": "bfb17f2be712092981393c12762847b5b80734071536a145a4dd3bd0a96924dc",
+      "outcome": "killed",
+      "output": "test_exact_product_trace_and_difference_budgets (__main__.GribovCheckerTests.test_exact_product_trace_and_difference_budgets) ... FAIL\n\n======================================================================\nFAIL: test_exact_product_trace_and_difference_budgets (__main__.GribovCheckerTests.test_exact_product_trace_and_difference_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 146, in test_exact_product_trace_and_difference_budgets\n    self.refused(module.trace, first, kind=\"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 50, in refused\n    self.assertFalse(outcome.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_exact_product_trace_and_difference_budgets"
+      ]
+    },
+    {
+      "identity": "diagonal-placement",
+      "mutant_sha256": "4f6640650f36753d1aa6a7260c1480dc88f0d61c78c5ad8ce664cd85f02307f5",
+      "outcome": "killed",
+      "output": "test_original_witnesses_and_counts (__main__.GribovCheckerTests.test_original_witnesses_and_counts) ... FAIL\n\n======================================================================\nFAIL: test_original_witnesses_and_counts (__main__.GribovCheckerTests.test_original_witnesses_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 173, in test_original_witnesses_and_counts\n    self.assertEqual((form.value(h23).value, form.value(h12).value, form.difference(h23, h12).value), (-2, 0, -2))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(-1, 1), Fraction(0, 1), Fraction(-1, 1)) != (-2, 0, -2)\n\nFirst differing element 0:\nFraction(-1, 1)\n-2\n\n- (Fraction(-1, 1), Fraction(0, 1), Fraction(-1, 1))\n+ (-2, 0, -2)\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_original_witnesses_and_counts"
+      ]
+    },
+    {
+      "identity": "frozen-form",
+      "mutant_sha256": "3400f360208450369cbcb49e3a30517c94e458631a2581912483ec1493c81911",
+      "outcome": "killed",
+      "output": "test_owned_snapshots_and_railway_refusals (__main__.GribovCheckerTests.test_owned_snapshots_and_railway_refusals) ... FAIL\n\n======================================================================\nFAIL: test_owned_snapshots_and_railway_refusals (__main__.GribovCheckerTests.test_owned_snapshots_and_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 131, in test_owned_snapshots_and_railway_refusals\n    with self.assertRaises(FrozenInstanceError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: FrozenInstanceError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_owned_snapshots_and_railway_refusals"
+      ]
+    },
+    {
+      "identity": "weight-transpose",
+      "mutant_sha256": "e9448fbb59f5c726476034225cdbdfd82b124b0541396b25962a21ab440aa257",
+      "outcome": "killed",
+      "output": "test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle) ... FAIL\n\n======================================================================\nFAIL: test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 100, in test_nonsymmetric_fixed_oracle\n    self.assertEqual(form.value(left).value, Q(sp.trace(w*a*a)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(79, 12) != Fraction(-97, 4)\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_nonsymmetric_fixed_oracle"
+      ]
+    },
+    {
+      "identity": "square-omitted",
+      "mutant_sha256": "ec5a2dd85aa87102785f688ba1d1e471de402ad3085803b1129dfa5d0282abfd",
+      "outcome": "killed",
+      "output": "test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle) ... FAIL\n\n======================================================================\nFAIL: test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 100, in test_nonsymmetric_fixed_oracle\n    self.assertEqual(form.value(left).value, Q(sp.trace(w*a*a)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(25, 2) != Fraction(-97, 4)\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_nonsymmetric_fixed_oracle"
+      ]
+    },
+    {
+      "identity": "square-transpose",
+      "mutant_sha256": "dea12a4151a06eaae47d34915988ae638e8f3e195f90ac721cde466089fa0699",
+      "outcome": "killed",
+      "output": "test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle) ... FAIL\n\n======================================================================\nFAIL: test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 100, in test_nonsymmetric_fixed_oracle\n    self.assertEqual(form.value(left).value, Q(sp.trace(w*a*a)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(-223, 12) != Fraction(-97, 4)\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_nonsymmetric_fixed_oracle"
+      ]
+    },
+    {
+      "identity": "weight-omitted",
+      "mutant_sha256": "7510e1b32fdd52c6628f7f37eef247a4831030c2fc424e1354f90f22dc5703a9",
+      "outcome": "killed",
+      "output": "test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle) ... FAIL\n\n======================================================================\nFAIL: test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 100, in test_nonsymmetric_fixed_oracle\n    self.assertEqual(form.value(left).value, Q(sp.trace(w*a*a)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(673, 36) != Fraction(-97, 4)\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_nonsymmetric_fixed_oracle"
+      ]
+    },
+    {
+      "identity": "value-railway",
+      "mutant_sha256": "ba78ba8dedc86b8460edde68366a8b202bfb7f6c24ac5612fdff57f03d9ceca4",
+      "outcome": "killed",
+      "output": "test_owned_snapshots_and_railway_refusals (__main__.GribovCheckerTests.test_owned_snapshots_and_railway_refusals) ... ERROR\n\n======================================================================\nERROR: test_owned_snapshots_and_railway_refusals (__main__.GribovCheckerTests.test_owned_snapshots_and_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 133, in test_owned_snapshots_and_railway_refusals\n    self.assertFalse(form.value(None).ok)\n                     ~~~~~~~~~~^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\independent\\dfm-gribov-continuum-fence.py\", line 72, in value\n    return Outcome(value=self._value(generator))\n                         ~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\independent\\dfm-gribov-continuum-fence.py\", line 69, in _value\n    return self._on(_matrix(generator))\n                    ~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\independent\\dfm-gribov-continuum-fence.py\", line 27, in _matrix\n    outer = sequence(rows, \"3x3 matrix\", 3, 3)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\checker_support\\domains.py\", line 91, in sequence\n    raise _violation(\"input\", f\"{name} must be a list or tuple\")\nchecker_support.boundary.Violation: 3x3 matrix must be a list or tuple\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_owned_snapshots_and_railway_refusals"
+      ]
+    },
+    {
+      "identity": "difference-order",
+      "mutant_sha256": "6999bc41cd22d8b6f5b46594c53f88426b728a35eed957323db1ca62097693cd",
+      "outcome": "killed",
+      "output": "test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle) ... FAIL\n\n======================================================================\nFAIL: test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 101, in test_nonsymmetric_fixed_oracle\n    self.assertEqual(form.difference(left, right).value, Q(sp.trace(w*(a*a-b*b))))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(249, 4) != Fraction(-249, 4)\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_nonsymmetric_fixed_oracle"
+      ]
+    },
+    {
+      "identity": "difference-budget",
+      "mutant_sha256": "7ca1dcfc676d4b3b7e85411b265078c1542031b93df549b994d9e0e538c0e43a",
+      "outcome": "killed",
+      "output": "test_exact_product_trace_and_difference_budgets (__main__.GribovCheckerTests.test_exact_product_trace_and_difference_budgets) ... ERROR\n\n======================================================================\nERROR: test_exact_product_trace_and_difference_budgets (__main__.GribovCheckerTests.test_exact_product_trace_and_difference_budgets)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 154, in test_exact_product_trace_and_difference_budgets\n    self.assertEqual(weighted.difference(left, right).error.kind, \"resource\")\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'kind'\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_exact_product_trace_and_difference_budgets"
+      ]
+    },
+    {
+      "identity": "difference-preflight",
+      "mutant_sha256": "5da420f016ddc10d072aa8c8e633c7edb84c66fd1383bcd6e778a3fe8b367235",
+      "outcome": "killed",
+      "output": "test_preflight_precedes_arithmetic (__main__.GribovCheckerTests.test_preflight_precedes_arithmetic) ... ERROR\n\n======================================================================\nERROR: test_preflight_precedes_arithmetic (__main__.GribovCheckerTests.test_preflight_precedes_arithmetic)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 162, in test_preflight_precedes_arithmetic\n    outcome = form.difference(identity, None)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\independent\\dfm-gribov-continuum-fence.py\", line 81, in difference\n    return evaluate(self._difference, left, right)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\independent\\dfm-gribov-continuum-fence.py\", line 76, in _difference\n    value = self._on(first)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\independent\\dfm-gribov-continuum-fence.py\", line 66, in _on\n    return _trace(self.weight.mul(generator.mul(generator)))\n                                  ~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nRuntimeError: arithmetic before admission\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_preflight_precedes_arithmetic"
+      ]
+    },
+    {
+      "identity": "difference-railway",
+      "mutant_sha256": "87465d1a2638260be2d6e250cea7a3c22b07c8b490f0454f06ac3419946c50bd",
+      "outcome": "killed",
+      "output": "test_owned_snapshots_and_railway_refusals (__main__.GribovCheckerTests.test_owned_snapshots_and_railway_refusals) ... ERROR\n\n======================================================================\nERROR: test_owned_snapshots_and_railway_refusals (__main__.GribovCheckerTests.test_owned_snapshots_and_railway_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 135, in test_owned_snapshots_and_railway_refusals\n    self.assertFalse(form.difference(snapshot, None).ok)\n                     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\independent\\dfm-gribov-continuum-fence.py\", line 79, in difference\n    return Outcome(value=self._difference(left, right))\n                         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\independent\\dfm-gribov-continuum-fence.py\", line 75, in _difference\n    first, second = _matrix(left), _matrix(right)\n                                   ~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\independent\\dfm-gribov-continuum-fence.py\", line 27, in _matrix\n    outer = sequence(rows, \"3x3 matrix\", 3, 3)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\checker_support\\domains.py\", line 91, in sequence\n    raise _violation(\"input\", f\"{name} must be a list or tuple\")\nchecker_support.boundary.Violation: 3x3 matrix must be a list or tuple\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_owned_snapshots_and_railway_refusals"
+      ]
+    },
+    {
+      "identity": "recorder-type",
+      "mutant_sha256": "f013fb66b99d621ab0565ea472d178b8148d45f3c3d315d27d0ade410bfc8248",
+      "outcome": "killed",
+      "output": "test_original_witnesses_and_counts (__main__.GribovCheckerTests.test_original_witnesses_and_counts) ... ERROR\n\n======================================================================\nERROR: test_original_witnesses_and_counts (__main__.GribovCheckerTests.test_original_witnesses_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 184, in test_original_witnesses_and_counts\n    self.refused(module.run_checks, None)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 49, in refused\n    outcome = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 49, in <lambda>\n    outcome = evaluate(lambda: operation(*args))\n                               ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\independent\\dfm-gribov-continuum-fence.py\", line 88, in run_checks\n    cases.require(mul(h23, h23) == diag(0, 1, 1), \"H23 square\")\n    ^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'require'\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_original_witnesses_and_counts"
+      ]
+    },
+    {
+      "identity": "square-guard",
+      "mutant_sha256": "dc2c425cfc57e6ae99926b3fb76c46685ade8f5d8156fa955c2a476fcb3576e2",
+      "outcome": "killed",
+      "output": "test_original_witnesses_and_counts (__main__.GribovCheckerTests.test_original_witnesses_and_counts) ... ERROR\n\n======================================================================\nERROR: test_original_witnesses_and_counts (__main__.GribovCheckerTests.test_original_witnesses_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 176, in test_original_witnesses_and_counts\n    module.run_checks(run)\n    ~~~~~~~~~~~~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\independent\\dfm-gribov-continuum-fence.py\", line 88, in run_checks\n    cases.require(mul(h23, h23) != diag(0, 1, 1), \"H23 square\")\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: H23 square\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_original_witnesses_and_counts"
+      ]
+    },
+    {
+      "identity": "determinant-guard",
+      "mutant_sha256": "c2a4674c49f25242b5aff351aa094ac61d2ae0fe02f01bf648ef75dee7e099e2",
+      "outcome": "killed",
+      "output": "test_original_witnesses_and_counts (__main__.GribovCheckerTests.test_original_witnesses_and_counts) ... ERROR\n\n======================================================================\nERROR: test_original_witnesses_and_counts (__main__.GribovCheckerTests.test_original_witnesses_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 176, in test_original_witnesses_and_counts\n    module.run_checks(run)\n    ~~~~~~~~~~~~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\independent\\dfm-gribov-continuum-fence.py\", line 91, in run_checks\n    cases.require(omega[0][0]*omega[1][1]*omega[2][2] != 1, \"diagonal determinant\")\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: diagonal determinant\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_original_witnesses_and_counts"
+      ]
+    },
+    {
+      "identity": "trace-guard",
+      "mutant_sha256": "a7b6e63d2f692443b2a0ca9779c950a6785fef1a8291091739d699ccf93c0858",
+      "outcome": "killed",
+      "output": "test_original_witnesses_and_counts (__main__.GribovCheckerTests.test_original_witnesses_and_counts) ... ERROR\n\n======================================================================\nERROR: test_original_witnesses_and_counts (__main__.GribovCheckerTests.test_original_witnesses_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 176, in test_original_witnesses_and_counts\n    module.run_checks(run)\n    ~~~~~~~~~~~~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\independent\\dfm-gribov-continuum-fence.py\", line 93, in run_checks\n    cases.require(trace(omega) == 1, \"weight trace\")\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: weight trace\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_original_witnesses_and_counts"
+      ]
+    },
+    {
+      "identity": "form-guard",
+      "mutant_sha256": "12f0638db2de371c9cf23978a2cfc40056fb72220f1729aff347e63d258da10a",
+      "outcome": "killed",
+      "output": "test_original_witnesses_and_counts (__main__.GribovCheckerTests.test_original_witnesses_and_counts) ... ERROR\n\n======================================================================\nERROR: test_original_witnesses_and_counts (__main__.GribovCheckerTests.test_original_witnesses_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 176, in test_original_witnesses_and_counts\n    module.run_checks(run)\n    ~~~~~~~~~~~~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\independent\\dfm-gribov-continuum-fence.py\", line 97, in run_checks\n    cases.require(indefinite._value(h12) != 0, \"H12 weighted form\")\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: H12 weighted form\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_original_witnesses_and_counts"
+      ]
+    },
+    {
+      "identity": "counterexample-guard",
+      "mutant_sha256": "7fc4b9e8cdfc3db1b406bd5aad36e73548ecc484040862477213d969074a9f41",
+      "outcome": "killed",
+      "output": "test_original_witnesses_and_counts (__main__.GribovCheckerTests.test_original_witnesses_and_counts) ... ERROR\n\n======================================================================\nERROR: test_original_witnesses_and_counts (__main__.GribovCheckerTests.test_original_witnesses_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 176, in test_original_witnesses_and_counts\n    module.run_checks(run)\n    ~~~~~~~~~~~~~~~~~^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\independent\\dfm-gribov-continuum-fence.py\", line 98, in run_checks\n    cases.require(indefinite._difference(h23, h12) == 0, \"forms differ\")\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: forms differ\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_original_witnesses_and_counts"
+      ]
+    },
+    {
+      "identity": "missing-control",
+      "mutant_sha256": "c2209bf117cf3ff782f43a744101afbc173dd0d048a6a2a000b5cf36803ea170",
+      "outcome": "killed",
+      "output": "test_original_witnesses_and_counts (__main__.GribovCheckerTests.test_original_witnesses_and_counts) ... FAIL\n\n======================================================================\nFAIL: test_original_witnesses_and_counts (__main__.GribovCheckerTests.test_original_witnesses_and_counts)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 182, in test_original_witnesses_and_counts\n    self.assertEqual(receipt[\"checks\"], 10)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 10\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_original_witnesses_and_counts"
+      ]
+    },
+    {
+      "identity": "reported-count",
+      "mutant_sha256": "f55081952ccdaa84e4028f820e96f18b2e90498466335d0734e9e76f853d2fb5",
+      "outcome": "killed",
+      "output": "test_executable_cli (__main__.GribovCheckerTests.test_executable_cli) ... FAIL\n\n======================================================================\nFAIL: test_executable_cli (__main__.GribovCheckerTests.test_executable_cli)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 207, in test_executable_cli\n    self.assertEqual(receipt[\"checks\"], 10)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 7 != 10\n\n----------------------------------------------------------------------\nRan 1 test in 0.145s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_executable_cli"
+      ]
+    },
+    {
+      "identity": "failure-exit",
+      "mutant_sha256": "38704f094cbb48cee37f8fd62dd7a0b6effd88404798bb31c6ca67ba6fa58f55",
+      "outcome": "killed",
+      "output": "test_executable_cli (__main__.GribovCheckerTests.test_executable_cli) ... FAIL\n\n======================================================================\nFAIL: test_executable_cli (__main__.GribovCheckerTests.test_executable_cli)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 210, in test_executable_cli\n    with self.assertRaises(SystemExit) as failure:\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: SystemExit not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.155s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/dfm-gribov-continuum-fence.py",
+      "tests": [
+        "test_executable_cli"
+      ]
+    },
+    {
+      "identity": "oracle-transpose",
+      "mutant_sha256": "8281764a76c8502f2ca8d7345d00e6a7eb18baa19ee98de6770778d3f7160f89",
+      "outcome": "killed",
+      "output": "test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle) ... FAIL\n\n======================================================================\nFAIL: test_nonsymmetric_fixed_oracle (__main__.GribovCheckerTests.test_nonsymmetric_fixed_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 98, in test_nonsymmetric_fixed_oracle\n    self.assertEqual(module.mul(left, right), _rows(a*b))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((Fra[18 chars]tion(-1, 2), Fraction(2, 1)), (Fraction(3, 1),[81 chars] 3))) != ((Fra[18 chars]tion(3, 1), Fraction(10, 1)), (Fraction(-1, 2)[81 chars] 3)))\n\nFirst differing element 0:\n(Fraction(-4, 1), Fraction(-1, 2), Fraction(2, 1))\n(Fraction(-4, 1), Fraction(3, 1), Fraction(10, 1))\n\n- ((Fraction(-4, 1), Fraction(-1, 2), Fraction(2, 1)),\n?                             ^ ---            ^\n\n+ ((Fraction(-4, 1), Fraction(3, 1), Fraction(10, 1)),\n?                             ^^^             ^^\n\n-  (Fraction(3, 1), Fraction(3, 1), Fraction(1, 1)),\n+  (Fraction(-1, 2), Fraction(3, 1), Fraction(-5, 1)),\n-  (Fraction(10, 1), Fraction(-5, 1), Fraction(50, 3)))\n?            ^^               ^^\n\n+  (Fraction(2, 1), Fraction(1, 1), Fraction(50, 3)))\n?            ^               ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_gribov_checker.py",
+      "tests": [
+        "test_nonsymmetric_fixed_oracle"
+      ]
+    },
+    {
+      "identity": "refusal-helper",
+      "mutant_sha256": "b499275541293fea77ce1336b4457f72f35c2bd4b90cca36950a2c86c849752d",
+      "outcome": "killed",
+      "output": "test_shape_type_and_exact_scalar_boundaries (__main__.GribovCheckerTests.test_shape_type_and_exact_scalar_boundaries) ... FAIL\n\n======================================================================\nFAIL: test_shape_type_and_exact_scalar_boundaries (__main__.GribovCheckerTests.test_shape_type_and_exact_scalar_boundaries)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 112, in test_shape_type_and_exact_scalar_boundaries\n    self.refused(operation, rows)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\gribov-mutation-sdt5zpgm\\tests\\test_gribov_checker.py\", line 50, in refused\n    self.assertTrue(outcome.ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_gribov_checker.py",
+      "tests": [
+        "test_shape_type_and_exact_scalar_boundaries"
+      ]
+    }
+  ],
+  "summary": {
+    "counts": {
+      "killed": 30,
+      "survived": 0,
+      "equivalent": 0,
+      "invalid": 0,
+      "inconclusive": 0,
+      "unrun": 0
+    },
+    "eligible": 30,
+    "detected_fraction": 1.0
+  }
+}

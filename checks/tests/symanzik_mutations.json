@@ -1,0 +1,327 @@
+[
+  {
+    "identity": "weight-type-bool",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "exact = integer(value, \"integer weight or intermediate\")",
+    "after": "exact = int(value)",
+    "tests": [
+      "test_mask_and_weight_refusals"
+    ]
+  },
+  {
+    "identity": "weight-budget",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "if exact.bit_length() > 4096:",
+    "after": "if False:",
+    "tests": [
+      "test_input_product_and_sum_budgets_before_cancellation"
+    ]
+  },
+  {
+    "identity": "vertex-negative",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "integer(value, \"vertex\", 0)",
+    "after": "integer(value, \"vertex\")",
+    "tests": [
+      "test_constructor_domains_and_full_size_boundaries"
+    ]
+  },
+  {
+    "identity": "vertex-outside",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "if vertex >= count:",
+    "after": "if False:",
+    "tests": [
+      "test_constructor_domains_and_full_size_boundaries"
+    ]
+  },
+  {
+    "identity": "edge-second",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "return _vertex(first, count), _vertex(second, count)",
+    "after": "return _vertex(first, count), _vertex(first, count)",
+    "tests": [
+      "test_supplied_graph_all_masks_and_individual_products"
+    ]
+  },
+  {
+    "identity": "vertex-zero-carrier",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "integer(vertex_count, \"vertex count\", 1, 16)",
+    "after": "integer(vertex_count, \"vertex count\", 0, 16)",
+    "tests": [
+      "test_constructor_domains_and_full_size_boundaries"
+    ]
+  },
+  {
+    "identity": "vertex-budget",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "integer(vertex_count, \"vertex count\", 1, 16)",
+    "after": "integer(vertex_count, \"vertex count\", 1, 17)",
+    "tests": [
+      "test_constructor_domains_and_full_size_boundaries"
+    ]
+  },
+  {
+    "identity": "edge-budget",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "sequence(edges, \"edges\", maximum=12)",
+    "after": "sequence(edges, \"edges\", maximum=13)",
+    "tests": [
+      "test_constructor_domains_and_full_size_boundaries"
+    ]
+  },
+  {
+    "identity": "mask-bool",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "mask = integer(value, \"edge mask\", 0)",
+    "after": "mask = int(value)",
+    "tests": [
+      "test_mask_and_weight_refusals"
+    ]
+  },
+  {
+    "identity": "mask-negative",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "integer(value, \"edge mask\", 0)",
+    "after": "integer(value, \"edge mask\")",
+    "tests": [
+      "test_mask_and_weight_refusals"
+    ]
+  },
+  {
+    "identity": "mask-high-bits",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "if mask >= 1 << len(self.edges):",
+    "after": "if False:",
+    "tests": [
+      "test_mask_and_weight_refusals"
+    ]
+  },
+  {
+    "identity": "weight-arity",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "sequence(values, \"weights\", len(self.edges), 12)",
+    "after": "sequence(values, \"weights\", maximum=12)",
+    "tests": [
+      "test_mask_and_weight_refusals"
+    ]
+  },
+  {
+    "identity": "collapsed-components",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "labels = list(range(self.vertex_count))",
+    "after": "labels = [0]*self.vertex_count",
+    "tests": [
+      "test_supplied_graph_all_masks_and_individual_products"
+    ]
+  },
+  {
+    "identity": "components-complement",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "if mask & (1 << index):",
+    "after": "if mask & (1 << index) == 0:",
+    "tests": [
+      "test_supplied_graph_all_masks_and_individual_products"
+    ]
+  },
+  {
+    "identity": "union-identity",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "before, after = labels[second], labels[first]",
+    "after": "before, after = labels[second], labels[second]",
+    "tests": [
+      "test_supplied_graph_all_masks_and_individual_products"
+    ]
+  },
+  {
+    "identity": "component-representatives",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "return len(set(labels))",
+    "after": "return len(labels)",
+    "tests": [
+      "test_supplied_graph_all_masks_and_individual_products"
+    ]
+  },
+  {
+    "identity": "tree-edge-count",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "mask.bit_count() == self.vertex_count-1",
+    "after": "mask.bit_count() == self.vertex_count",
+    "tests": [
+      "test_supplied_graph_all_masks_and_individual_products"
+    ]
+  },
+  {
+    "identity": "tree-connectivity",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": " and self._components(mask) == 1",
+    "after": "",
+    "tests": [
+      "test_supplied_graph_all_masks_and_individual_products"
+    ]
+  },
+  {
+    "identity": "tree-zero-mask",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "range(1 << len(self.edges))",
+    "after": "range(1, 1 << len(self.edges))",
+    "tests": [
+      "test_parallel_edges_loops_zeros_signs_and_empty_products"
+    ]
+  },
+  {
+    "identity": "product-identity",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "value = 1\n        for index, weight",
+    "after": "value = 0\n        for index, weight",
+    "tests": [
+      "test_parallel_edges_loops_zeros_signs_and_empty_products"
+    ]
+  },
+  {
+    "identity": "product-selected-edges",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "if mask & (1 << index) == 0:",
+    "after": "if mask & (1 << index):",
+    "tests": [
+      "test_supplied_graph_all_masks_and_individual_products"
+    ]
+  },
+  {
+    "identity": "product-prefix-budget",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "value = _bounded(value*weight)",
+    "after": "value = value*weight",
+    "tests": [
+      "test_input_product_and_sum_budgets_before_cancellation"
+    ]
+  },
+  {
+    "identity": "sum-prefix-budget",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "total = _bounded(total+self._product(mask, owned))",
+    "after": "total = total+self._product(mask, owned)",
+    "tests": [
+      "test_input_product_and_sum_budgets_before_cancellation"
+    ]
+  },
+  {
+    "identity": "sum-empty-identity",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "total = 0\n        for mask in self._trees():",
+    "after": "total = 1\n        for mask in self._trees():",
+    "tests": [
+      "test_parallel_edges_loops_zeros_signs_and_empty_products"
+    ]
+  },
+  {
+    "identity": "preflight-disconnected",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "owned = self._weights(weights)\n        total = 0",
+    "after": "if not self._trees():\n            return 0\n        owned = self._weights(weights)\n        total = 0",
+    "tests": [
+      "test_preflight_admits_every_weight_before_enumeration"
+    ]
+  },
+  {
+    "identity": "public-components",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "return evaluate(lambda: self._components(self._mask(mask)))",
+    "after": "return evaluate(lambda: self._components(0))",
+    "tests": [
+      "test_supplied_graph_all_masks_and_individual_products",
+      "test_mask_and_weight_refusals"
+    ]
+  },
+  {
+    "identity": "public-product",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "return evaluate(self._cotree_product, mask, weights)",
+    "after": "return evaluate(self._cotree_product, 0, weights)",
+    "tests": [
+      "test_supplied_graph_all_masks_and_individual_products"
+    ]
+  },
+  {
+    "identity": "public-sum",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "return evaluate(self._cotree_sum, weights)",
+    "after": "return evaluate(lambda: 0)",
+    "tests": [
+      "test_parallel_edges_loops_zeros_signs_and_empty_products"
+    ]
+  },
+  {
+    "identity": "legacy-run-mask",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "return graph._components(graph._mask(mask))",
+    "after": "return graph._components(0)",
+    "tests": [
+      "test_supplied_graph_all_masks_and_individual_products"
+    ]
+  },
+  {
+    "identity": "legacy-product-mask",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "return CotreeGraph(4, EDGES)._cotree_product(mask, weights)",
+    "after": "return CotreeGraph(4, EDGES)._cotree_product(0, weights)",
+    "tests": [
+      "test_supplied_graph_all_masks_and_individual_products"
+    ]
+  },
+  {
+    "identity": "omit-census-obligation",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "cases.require(listed == (7, 11, 13, 14, 19, 21, 22, 25, 26, 28), \"three-edge census\")",
+    "after": "pass",
+    "tests": [
+      "test_counts_faults_cancellation_and_programming_errors"
+    ]
+  },
+  {
+    "identity": "omit-weighted-obligation",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "cases.require(graph._cotree_sum(WEIGHTS) == 247, \"weighted cotree sum\")",
+    "after": "pass",
+    "tests": [
+      "test_counts_faults_cancellation_and_programming_errors"
+    ]
+  },
+  {
+    "identity": "false-success-exit",
+    "source": "independent/dfm-symanzik-qed-ae-fence.py",
+    "before": "raise SystemExit(cli(main))",
+    "after": "cli(main)",
+    "tests": [
+      "test_executable_receipt_and_failure_exit"
+    ]
+  },
+  {
+    "identity": "oracle-connectivity",
+    "source": "tests/test_symanzik_checker.py",
+    "before": "return result\n\n\ndef _determinant_sum",
+    "after": "return 1\n\n\ndef _determinant_sum",
+    "tests": [
+      "test_oracles_and_import_lifecycle"
+    ]
+  },
+  {
+    "identity": "oracle-weighted-determinant",
+    "source": "tests/test_symanzik_checker.py",
+    "before": "return int(math.prod(weights)*(reduced*conductance*reduced.T).det())",
+    "after": "return int((reduced*conductance*reduced.T).det())",
+    "tests": [
+      "test_oracles_and_import_lifecycle"
+    ]
+  },
+  {
+    "identity": "refusal-helper-polarity",
+    "source": "tests/test_symanzik_checker.py",
+    "before": "self.assertFalse(result.ok)",
+    "after": "self.assertTrue(result.ok)",
+    "tests": [
+      "test_oracles_and_import_lifecycle"
+    ]
+  }
+]

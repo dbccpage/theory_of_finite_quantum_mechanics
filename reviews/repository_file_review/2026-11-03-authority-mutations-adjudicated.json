@@ -1,0 +1,517 @@
+{
+  "AuthorityEffect": "None",
+  "raw_receipt": {
+    "path": "reviews/repository_file_review/2026-11-03-authority-mutations-final.json",
+    "sha256": "ffe138ae67a24bb581cbaa18e1b569be7875f1c18daf2cf009e61de534ed02aa"
+  },
+  "harness_receipt": {
+    "path": "reviews/repository_file_review/2026-11-03-authority-harness-mutation.json",
+    "sha256": "48626d4386b7517e265f78cc4997522267d7364e9ffd90fc5bc905732ae1df7c"
+  },
+  "equivalence_proof": {
+    "path": "reviews/repository_file_review/2026-11-03-authority-checkers.md",
+    "sha256": "186b5d1403777bcdbc7406a28bcec4618bb0f3cf5b1c47d2ff0d8d54446e40a0"
+  },
+  "source_path_amendment": {
+    "before_sha256": "9ef6c33b28681a64994a42b69486ce82853c42ef69e2cd6742c4410c11e439e8",
+    "after_sha256": "35ba535f1d09cf4e1423a595f5ae1e054e42c3acc862241f40ca51196ed1e027",
+    "prior_source_reconstructed": true,
+    "change": "Only the current atlas source path; source record bytes are identical."
+  },
+  "test_only_amendment": {
+    "before_sha256": "0a682c3c90ac9c955fb5b5e918990abbd1be64da8d225e5e5c3355f7d448a661",
+    "after_sha256": "8ef1bc0990d3f56dbed9c370a525e3488cab336a5d2018b49daacf474543d330",
+    "prior_test_reconstructed": true,
+    "change": "Added one refusal-helper challenge and its Failure import; all old assertions remain."
+  },
+  "mutants": [
+    {
+      "identity": "request-tag",
+      "mutant_sha256": "925759d6371962a248ff19577ea80947e9536a1c5678f640097a9439cfceb0d4",
+      "outcome": "killed",
+      "output": "test_request_round_trip_and_independent_layout (__main__.AuthorityCheckerTests.test_request_round_trip_and_independent_layout) ... FAIL\n\n======================================================================\nFAIL: test_request_round_trip_and_independent_layout (__main__.AuthorityCheckerTests.test_request_round_trip_and_independent_layout)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 55, in test_request_round_trip_and_independent_layout\n    @given(fuel=st.integers(min_value=0, max_value=1 << 40), machine=WORDS, input_word=WORDS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 60, in test_request_round_trip_and_independent_layout\n    self.assertEqual(request.encode(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (2, 0, 0) != (1, 0, 0)\n\nFirst differing element 0:\n2\n1\n\n- (2, 0, 0)\n?  ^\n\n+ (1, 0, 0)\n?  ^\n\nFailing test case: test_request_round_trip_and_independent_layout(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.AuthorityCheckerTests testMethod=test_request_round_trip_and_independent_layout>,\n    fuel=0,  # or any other generated value\n    machine=[],  # or any other generated value\n    input_word=[],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 4.743s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-dtm2-input-request-planned.py",
+      "tests": [
+        "test_request_round_trip_and_independent_layout"
+      ]
+    },
+    {
+      "identity": "request-order",
+      "mutant_sha256": "dafad127aa9954e85e3313a48220ac1346315343a12e007067ebc7e1d8730754",
+      "outcome": "killed",
+      "output": "test_request_round_trip_and_independent_layout (__main__.AuthorityCheckerTests.test_request_round_trip_and_independent_layout) ... FAIL\n\n======================================================================\nFAIL: test_request_round_trip_and_independent_layout (__main__.AuthorityCheckerTests.test_request_round_trip_and_independent_layout)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 55, in test_request_round_trip_and_independent_layout\n    @given(fuel=st.integers(min_value=0, max_value=1 << 40), machine=WORDS, input_word=WORDS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 60, in test_request_round_trip_and_independent_layout\n    self.assertEqual(request.encode(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (1, 0, 1, 1, 0) != (1, 0, 1, 0, 1)\n\nFirst differing element 3:\n1\n0\n\n- (1, 0, 1, 1, 0)\n?            ---\n\n+ (1, 0, 1, 0, 1)\n?           +++\n\nFailing test case: test_request_round_trip_and_independent_layout(\n    self=<__main__.AuthorityCheckerTests testMethod=test_request_round_trip_and_independent_layout>,\n    fuel=0,  # or any other generated value\n    machine=[0],\n    input_word=[1],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.131s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-dtm2-input-request-planned.py",
+      "tests": [
+        "test_request_round_trip_and_independent_layout"
+      ]
+    },
+    {
+      "identity": "request-length",
+      "mutant_sha256": "ba33ceb863c5680fd0803a36828151f1a91127d3991b385288dea280315d76b4",
+      "outcome": "killed",
+      "output": "test_request_round_trip_and_independent_layout (__main__.AuthorityCheckerTests.test_request_round_trip_and_independent_layout) ... FAIL\n\n======================================================================\nFAIL: test_request_round_trip_and_independent_layout (__main__.AuthorityCheckerTests.test_request_round_trip_and_independent_layout)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 55, in test_request_round_trip_and_independent_layout\n    @given(fuel=st.integers(min_value=0, max_value=1 << 40), machine=WORDS, input_word=WORDS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 60, in test_request_round_trip_and_independent_layout\n    self.assertEqual(request.encode(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (1, 0, 1, 0) != (1, 0, 0, 0)\n\nFirst differing element 2:\n1\n0\n\n- (1, 0, 1, 0)\n?        ^\n\n+ (1, 0, 0, 0)\n?        ^\n\nFailing test case: test_request_round_trip_and_independent_layout(\n    self=<__main__.AuthorityCheckerTests testMethod=test_request_round_trip_and_independent_layout>,\n    fuel=0,  # or any other generated value\n    machine=[],\n    input_word=[0],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.999s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-dtm2-input-request-planned.py",
+      "tests": [
+        "test_request_round_trip_and_independent_layout"
+      ]
+    },
+    {
+      "identity": "request-combined-budget",
+      "mutant_sha256": "d3697d44c88181894a3df7ef39c55d2ed36d570945ddc11d9735936c9e9a124f",
+      "outcome": "killed",
+      "output": "test_request_snapshot_immutability_and_resource_endpoints (__main__.AuthorityCheckerTests.test_request_snapshot_immutability_and_resource_endpoints) ... FAIL\n\n======================================================================\nFAIL: test_request_snapshot_immutability_and_resource_endpoints (__main__.AuthorityCheckerTests.test_request_snapshot_immutability_and_resource_endpoints)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 78, in test_request_snapshot_immutability_and_resource_endpoints\n    self.refused(evaluate(module.RequestEnvelope, 0, [0]*4093, [0]), \"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-dtm2-input-request-planned.py",
+      "tests": [
+        "test_request_snapshot_immutability_and_resource_endpoints"
+      ]
+    },
+    {
+      "identity": "request-fuel-admission",
+      "mutant_sha256": "fe2e6006461a46a2a4bfdb28c22dbdbc16771db655732c416b6fedbc00b78949",
+      "outcome": "killed",
+      "output": "test_request_every_token_boundary (__main__.AuthorityCheckerTests.test_request_every_token_boundary) ... FAIL\n\n======================================================================\nFAIL: test_request_every_token_boundary (__main__.AuthorityCheckerTests.test_request_every_token_boundary)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 86, in test_request_every_token_boundary\n    self.refused(evaluate(module.RequestEnvelope, bad, (), ()), \"input\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-dtm2-input-request-planned.py",
+      "tests": [
+        "test_request_every_token_boundary"
+      ]
+    },
+    {
+      "identity": "request-payload-snapshot",
+      "mutant_sha256": "d0eed3090dcfae6fd082d226976e369403f390f9f0382b2fd2a654e7164b15c5",
+      "outcome": "killed",
+      "output": "test_request_snapshot_immutability_and_resource_endpoints (__main__.AuthorityCheckerTests.test_request_snapshot_immutability_and_resource_endpoints) ... ERROR\n\n======================================================================\nERROR: test_request_snapshot_immutability_and_resource_endpoints (__main__.AuthorityCheckerTests.test_request_snapshot_immutability_and_resource_endpoints)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 71, in test_request_snapshot_immutability_and_resource_endpoints\n    self.assertEqual(request.encode(), (1, 2, 1, 7, 3, 4))\n                     ~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\independent\\auth-dtm2-input-request-planned.py\", line 53, in encode\n    return (HEADER_TAG, self.fuel, len(self.machine)) + self.machine + self.input_word\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~\nTypeError: can only concatenate tuple (not \"list\") to tuple\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-dtm2-input-request-planned.py",
+      "tests": [
+        "test_request_snapshot_immutability_and_resource_endpoints"
+      ]
+    },
+    {
+      "identity": "request-short-header",
+      "mutant_sha256": "e960d223dd86f003249ec968c7cebdc5ae76e155a60134ea5d12e318ab65fc08",
+      "outcome": "killed",
+      "output": "test_request_every_token_boundary (__main__.AuthorityCheckerTests.test_request_every_token_boundary) ... ERROR\n\n======================================================================\nERROR: test_request_every_token_boundary (__main__.AuthorityCheckerTests.test_request_every_token_boundary)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 102, in test_request_every_token_boundary\n    self.refused(module.RequestEnvelope.decode(malformed), \"input\")\n                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\independent\\auth-dtm2-input-request-planned.py\", line 58, in decode\n    return evaluate(_decode, word)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\independent\\auth-dtm2-input-request-planned.py\", line 69, in _decode\n    size = integer(tokens[2], \"machine length\", 0, MAX_PAYLOAD)\n                   ~~~~~~^^^\nIndexError: tuple index out of range\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-dtm2-input-request-planned.py",
+      "tests": [
+        "test_request_every_token_boundary"
+      ]
+    },
+    {
+      "identity": "request-wrong-tag",
+      "mutant_sha256": "148f4815edc62cc29d6707b10ba2463bc0b300e3ee96dcd88473c323e69c2be5",
+      "outcome": "killed",
+      "output": "test_request_every_token_boundary (__main__.AuthorityCheckerTests.test_request_every_token_boundary) ... FAIL\n\n======================================================================\nFAIL: test_request_every_token_boundary (__main__.AuthorityCheckerTests.test_request_every_token_boundary)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 102, in test_request_every_token_boundary\n    self.refused(module.RequestEnvelope.decode(malformed), \"input\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-dtm2-input-request-planned.py",
+      "tests": [
+        "test_request_every_token_boundary"
+      ]
+    },
+    {
+      "identity": "request-length-truncation",
+      "mutant_sha256": "a072b644261fed07bf102e3ab21d3209afe3d9fa0d8a5b616dc30098ee9bfc46",
+      "outcome": "killed",
+      "output": "test_request_every_token_boundary (__main__.AuthorityCheckerTests.test_request_every_token_boundary) ... FAIL\n\n======================================================================\nFAIL: test_request_every_token_boundary (__main__.AuthorityCheckerTests.test_request_every_token_boundary)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 102, in test_request_every_token_boundary\n    self.refused(module.RequestEnvelope.decode(malformed), \"input\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-dtm2-input-request-planned.py",
+      "tests": [
+        "test_request_every_token_boundary"
+      ]
+    },
+    {
+      "identity": "request-machine-slice",
+      "mutant_sha256": "1c89599c7705728b1aa7f2fcbd12fd0712998ae6d01baa76d6161ad422d35ebe",
+      "outcome": "killed",
+      "output": "test_request_round_trip_and_independent_layout (__main__.AuthorityCheckerTests.test_request_round_trip_and_independent_layout) ... FAIL\n\n======================================================================\nFAIL: test_request_round_trip_and_independent_layout (__main__.AuthorityCheckerTests.test_request_round_trip_and_independent_layout)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 55, in test_request_round_trip_and_independent_layout\n    @given(fuel=st.integers(min_value=0, max_value=1 << 40), machine=WORDS, input_word=WORDS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 61, in test_request_round_trip_and_independent_layout\n    self.assertEqual(module.RequestEnvelope.decode(expected).value, request)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RequestEnvelope(fuel=0, machine=(), input_word=()) != RequestEnvelope(fuel=0, machine=(0,), input_word=())\nFailing test case: test_request_round_trip_and_independent_layout(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.AuthorityCheckerTests testMethod=test_request_round_trip_and_independent_layout>,\n    fuel=0,  # or any other generated value\n    machine=[0],\n    input_word=[],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 2.361s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-dtm2-input-request-planned.py",
+      "tests": [
+        "test_request_round_trip_and_independent_layout"
+      ]
+    },
+    {
+      "identity": "request-input-slice",
+      "mutant_sha256": "61beae7353f567869a221a3d792bd7361646571f14eeee77f974a76487c15baf",
+      "outcome": "killed",
+      "output": "test_request_round_trip_and_independent_layout (__main__.AuthorityCheckerTests.test_request_round_trip_and_independent_layout) ... FAIL\n\n======================================================================\nFAIL: test_request_round_trip_and_independent_layout (__main__.AuthorityCheckerTests.test_request_round_trip_and_independent_layout)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 55, in test_request_round_trip_and_independent_layout\n    @given(fuel=st.integers(min_value=0, max_value=1 << 40), machine=WORDS, input_word=WORDS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 61, in test_request_round_trip_and_independent_layout\n    self.assertEqual(module.RequestEnvelope.decode(expected).value, request)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RequestEnvelope(fuel=0, machine=(), input_word=()) != RequestEnvelope(fuel=0, machine=(), input_word=(0,))\nFailing test case: test_request_round_trip_and_independent_layout(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.AuthorityCheckerTests testMethod=test_request_round_trip_and_independent_layout>,\n    fuel=0,  # or any other generated value\n    machine=[],  # or any other generated value\n    input_word=[0],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.520s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-dtm2-input-request-planned.py",
+      "tests": [
+        "test_request_round_trip_and_independent_layout"
+      ]
+    },
+    {
+      "identity": "request-token-budget",
+      "mutant_sha256": "e629aebafda0a8959f58fb58af9ebad5e20ddd75c43315e541b0a098511af407",
+      "outcome": "killed",
+      "output": "test_request_every_token_boundary (__main__.AuthorityCheckerTests.test_request_every_token_boundary) ... FAIL\n\n======================================================================\nFAIL: test_request_every_token_boundary (__main__.AuthorityCheckerTests.test_request_every_token_boundary)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 96, in test_request_every_token_boundary\n    self.refused(module.RequestEnvelope.decode(word), \"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 52, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'input' != 'resource'\n- input\n+ resource\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-dtm2-input-request-planned.py",
+      "tests": [
+        "test_request_every_token_boundary"
+      ]
+    },
+    {
+      "identity": "behavior-empty-table",
+      "mutant_sha256": "1e7cc2b89a58197737baec16ef3538b4af99eca5b5367ceccb8933000d5b52b0",
+      "outcome": "killed",
+      "output": "test_behavior_constructor_and_property_refusals (__main__.AuthorityCheckerTests.test_behavior_constructor_and_property_refusals) ... ERROR\n\n======================================================================\nERROR: test_behavior_constructor_and_property_refusals (__main__.AuthorityCheckerTests.test_behavior_constructor_and_property_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 146, in test_behavior_constructor_and_property_refusals\n    self.refused(evaluate(module.FiniteBehaviorCarrier, invalid), \"input\")\n                 ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"<string>\", line 4, in __init__\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\independent\\auth-rice-theorem-import.py\", line 37, in __post_init__\n    first = sequence(rows[0], \"behavior row\", maximum=MAX_CARRIER)\n                     ~~~~^^^\nIndexError: tuple index out of range\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-rice-theorem-import.py",
+      "tests": [
+        "test_behavior_constructor_and_property_refusals"
+      ]
+    },
+    {
+      "identity": "behavior-empty-carrier",
+      "mutant_sha256": "a45af7c76ff256a0940930b4671b4dc55cba83c58212af430fdeaadea2726eb1",
+      "outcome": "killed",
+      "output": "test_behavior_constructor_and_property_refusals (__main__.AuthorityCheckerTests.test_behavior_constructor_and_property_refusals) ... FAIL\n\n======================================================================\nFAIL: test_behavior_constructor_and_property_refusals (__main__.AuthorityCheckerTests.test_behavior_constructor_and_property_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 146, in test_behavior_constructor_and_property_refusals\n    self.refused(evaluate(module.FiniteBehaviorCarrier, invalid), \"input\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-rice-theorem-import.py",
+      "tests": [
+        "test_behavior_constructor_and_property_refusals"
+      ]
+    },
+    {
+      "identity": "behavior-output-bound",
+      "mutant_sha256": "8bad0fe4b617aa84d84988731d67515d4d6b572ef5f5dec87d83b21cdff90101",
+      "outcome": "killed",
+      "output": "test_behavior_constructor_and_property_refusals (__main__.AuthorityCheckerTests.test_behavior_constructor_and_property_refusals) ... FAIL\n\n======================================================================\nFAIL: test_behavior_constructor_and_property_refusals (__main__.AuthorityCheckerTests.test_behavior_constructor_and_property_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 148, in test_behavior_constructor_and_property_refusals\n    self.refused(evaluate(module.FiniteBehaviorCarrier, invalid), \"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-rice-theorem-import.py",
+      "tests": [
+        "test_behavior_constructor_and_property_refusals"
+      ]
+    },
+    {
+      "identity": "behavior-code-bound",
+      "mutant_sha256": "2ce44e00fccae7ac12e61d8cc0cabaebb782e998954d15848ab2797ce749d893",
+      "outcome": "killed",
+      "output": "test_behavior_constructor_and_property_refusals (__main__.AuthorityCheckerTests.test_behavior_constructor_and_property_refusals) ... FAIL\n\n======================================================================\nFAIL: test_behavior_constructor_and_property_refusals (__main__.AuthorityCheckerTests.test_behavior_constructor_and_property_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 154, in test_behavior_constructor_and_property_refusals\n    self.refused(evaluate(carrier.behavior, invalid, 0), \"input\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-rice-theorem-import.py",
+      "tests": [
+        "test_behavior_constructor_and_property_refusals"
+      ]
+    },
+    {
+      "identity": "behavior-point-bound",
+      "mutant_sha256": "7dd2b94b2554c300e22620f2346fb24da18f2f43cc25afc246c264ed22e35886",
+      "outcome": "killed",
+      "output": "test_behavior_constructor_and_property_refusals (__main__.AuthorityCheckerTests.test_behavior_constructor_and_property_refusals) ... FAIL\n\n======================================================================\nFAIL: test_behavior_constructor_and_property_refusals (__main__.AuthorityCheckerTests.test_behavior_constructor_and_property_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 155, in test_behavior_constructor_and_property_refusals\n    self.refused(evaluate(carrier.behavior, 0, invalid), \"input\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-rice-theorem-import.py",
+      "tests": [
+        "test_behavior_constructor_and_property_refusals"
+      ]
+    },
+    {
+      "identity": "behavior-identity",
+      "mutant_sha256": "b2f764d357c0d59b607ed99898bd592e9117422615a8c89feee69793b369d17f",
+      "outcome": "killed",
+      "output": "test_generated_behavior_equivalence_and_descent (__main__.AuthorityCheckerTests.test_generated_behavior_equivalence_and_descent) ... FAIL\n\n======================================================================\nFAIL: test_generated_behavior_equivalence_and_descent (__main__.AuthorityCheckerTests.test_generated_behavior_equivalence_and_descent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 120, in test_generated_behavior_equivalence_and_descent\n    @given(width=st.integers(min_value=1, max_value=5), data=st.data())\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 140, in test_generated_behavior_equivalence_and_descent\n    self.assertEqual(carrier.identity_bits(), tuple(row == list(range(width)) for row in rows))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (False,) != (True,)\n\nFirst differing element 0:\nFalse\nTrue\n\n- (False,)\n+ (True,)\nFailing test case: test_generated_behavior_equivalence_and_descent(\n    self=<__main__.AuthorityCheckerTests testMethod=test_generated_behavior_equivalence_and_descent>,\n    width=1,\n    data=data(...),\n)\nDraw 1: [[0]]\nDraw 2: [False]  # or any other generated value\n\n----------------------------------------------------------------------\nRan 1 test in 0.618s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-rice-theorem-import.py",
+      "tests": [
+        "test_generated_behavior_equivalence_and_descent"
+      ]
+    },
+    {
+      "identity": "behavior-quotient",
+      "mutant_sha256": "2d2471f76547c530a14f44b8893fa7c8c9a27db01a0947a41544bfff6a1fc899",
+      "outcome": "killed",
+      "output": "test_generated_behavior_equivalence_and_descent (__main__.AuthorityCheckerTests.test_generated_behavior_equivalence_and_descent) ... FAIL\n\n======================================================================\nFAIL: test_generated_behavior_equivalence_and_descent (__main__.AuthorityCheckerTests.test_generated_behavior_equivalence_and_descent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 120, in test_generated_behavior_equivalence_and_descent\n    @given(width=st.integers(min_value=1, max_value=5), data=st.data())\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 130, in test_generated_behavior_equivalence_and_descent\n    self.assertEqual(same_block, rows[left] == rows[right])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False != True\nFailing test case: test_generated_behavior_equivalence_and_descent(\n    self=<__main__.AuthorityCheckerTests testMethod=test_generated_behavior_equivalence_and_descent>,\n    width=1,\n    data=data(...),\n)\nDraw 1: [[0], [0]]\n\n----------------------------------------------------------------------\nRan 1 test in 0.287s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-rice-theorem-import.py",
+      "tests": [
+        "test_generated_behavior_equivalence_and_descent"
+      ]
+    },
+    {
+      "identity": "behavior-stable-order",
+      "mutant_sha256": "c38966332b4d9e57f7605f4fc1ec942476ef6e363feba67b0e9516f0ce984d9d",
+      "outcome": "killed",
+      "output": "test_behavior_partition_and_all_three_code_predicates (__main__.AuthorityCheckerTests.test_behavior_partition_and_all_three_code_predicates) ... FAIL\n\n======================================================================\nFAIL: test_behavior_partition_and_all_three_code_predicates (__main__.AuthorityCheckerTests.test_behavior_partition_and_all_three_code_predicates)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 107, in test_behavior_partition_and_all_three_code_predicates\n    self.assertEqual(carrier.equivalence_classes(), ((0, 1), (2,)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: ((2,), (0, 1)) != ((0, 1), (2,))\n\nFirst differing element 0:\n(2,)\n(0, 1)\n\n- ((2,), (0, 1))\n+ ((0, 1), (2,))\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-rice-theorem-import.py",
+      "tests": [
+        "test_behavior_partition_and_all_three_code_predicates"
+      ]
+    },
+    {
+      "identity": "behavior-property-bool",
+      "mutant_sha256": "5f655c24864cc0bdb70391fa0f780c5a6c69ad58d22f6db08334162228f37cd7",
+      "outcome": "killed",
+      "output": "test_behavior_constructor_and_property_refusals (__main__.AuthorityCheckerTests.test_behavior_constructor_and_property_refusals) ... FAIL\n\n======================================================================\nFAIL: test_behavior_constructor_and_property_refusals (__main__.AuthorityCheckerTests.test_behavior_constructor_and_property_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 151, in test_behavior_constructor_and_property_refusals\n    self.refused(carrier.factor_property(bits), \"input\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 52, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'check' != 'input'\n- check\n+ input\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-rice-theorem-import.py",
+      "tests": [
+        "test_behavior_constructor_and_property_refusals"
+      ]
+    },
+    {
+      "identity": "behavior-property-descent",
+      "mutant_sha256": "bb3bc9495227262a09ba2564ad80539eeccdc548b530b033df20ab649e0b4845",
+      "outcome": "killed",
+      "output": "test_generated_behavior_equivalence_and_descent (__main__.AuthorityCheckerTests.test_generated_behavior_equivalence_and_descent) ... FAIL\n\n======================================================================\nFAIL: test_generated_behavior_equivalence_and_descent (__main__.AuthorityCheckerTests.test_generated_behavior_equivalence_and_descent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 120, in test_generated_behavior_equivalence_and_descent\n    @given(width=st.integers(min_value=1, max_value=5), data=st.data())\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 135, in test_generated_behavior_equivalence_and_descent\n    self.assertEqual(result.ok, expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True != False\nFailing test case: test_generated_behavior_equivalence_and_descent(\n    self=<__main__.AuthorityCheckerTests testMethod=test_generated_behavior_equivalence_and_descent>,\n    width=1,\n    data=data(...),\n)\nDraw 1: [[0], [0]]\nDraw 2: [False, True]\n\n----------------------------------------------------------------------\nRan 1 test in 0.424s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-rice-theorem-import.py",
+      "tests": [
+        "test_generated_behavior_equivalence_and_descent"
+      ]
+    },
+    {
+      "identity": "behavior-factor-invert",
+      "mutant_sha256": "c30589a1aba917624b2d1f861939eed399add1f6f3a301ae6835e2da93ed2f9f",
+      "outcome": "killed",
+      "output": "test_generated_behavior_equivalence_and_descent (__main__.AuthorityCheckerTests.test_generated_behavior_equivalence_and_descent) ... FAIL\n\n======================================================================\nFAIL: test_generated_behavior_equivalence_and_descent (__main__.AuthorityCheckerTests.test_generated_behavior_equivalence_and_descent)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 120, in test_generated_behavior_equivalence_and_descent\n    @given(width=st.integers(min_value=1, max_value=5), data=st.data())\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 137, in test_generated_behavior_equivalence_and_descent\n    self.assertEqual(result.value, tuple(bits[block[0]] for block in groups))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (True,) != (False,)\n\nFirst differing element 0:\nTrue\nFalse\n\n- (True,)\n+ (False,)\nFailing test case: test_generated_behavior_equivalence_and_descent(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.AuthorityCheckerTests testMethod=test_generated_behavior_equivalence_and_descent>,\n    width=1,  # or any other generated value\n    data=data(...),\n)\nDraw 1: [[0]]\nDraw 2: [False]  # or any other generated value\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\independent\\auth-rice-theorem-import.py:77\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py:137\n\n----------------------------------------------------------------------\nRan 1 test in 3.717s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-rice-theorem-import.py",
+      "tests": [
+        "test_generated_behavior_equivalence_and_descent"
+      ]
+    },
+    {
+      "identity": "behavior-nested-snapshot",
+      "mutant_sha256": "fbedabb73a52adc5206adb19076fa59206f0d3873eda7692ce0b0ef2b0ed5c4b",
+      "outcome": "killed",
+      "output": "test_behavior_snapshot_and_maximum_table (__main__.AuthorityCheckerTests.test_behavior_snapshot_and_maximum_table) ... FAIL\n\n======================================================================\nFAIL: test_behavior_snapshot_and_maximum_table (__main__.AuthorityCheckerTests.test_behavior_snapshot_and_maximum_table)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 167, in test_behavior_snapshot_and_maximum_table\n    self.assertEqual(carrier.rows, ((0, 1), (0, 1)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: [[1, 1], [0, 1], [1, 1]] != ((0, 1), (0, 1))\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-rice-theorem-import.py",
+      "tests": [
+        "test_behavior_snapshot_and_maximum_table"
+      ]
+    },
+    {
+      "identity": "behavior-code-ceiling",
+      "mutant_sha256": "0e9f8c829a6511df168b884a90fcb49a481ea2f32c9aa922a93de6a14b9daf44",
+      "outcome": "killed",
+      "output": "test_behavior_constructor_and_property_refusals (__main__.AuthorityCheckerTests.test_behavior_constructor_and_property_refusals) ... FAIL\n\n======================================================================\nFAIL: test_behavior_constructor_and_property_refusals (__main__.AuthorityCheckerTests.test_behavior_constructor_and_property_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 148, in test_behavior_constructor_and_property_refusals\n    self.refused(evaluate(module.FiniteBehaviorCarrier, invalid), \"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-rice-theorem-import.py",
+      "tests": [
+        "test_behavior_constructor_and_property_refusals"
+      ]
+    },
+    {
+      "identity": "behavior-carrier-ceiling",
+      "mutant_sha256": "1b0e493cb0fd11cfb4ab8843bbd818e05c82a8dca19c480c18200e52f74ecffb",
+      "outcome": "killed",
+      "output": "test_behavior_constructor_and_property_refusals (__main__.AuthorityCheckerTests.test_behavior_constructor_and_property_refusals) ... FAIL\n\n======================================================================\nFAIL: test_behavior_constructor_and_property_refusals (__main__.AuthorityCheckerTests.test_behavior_constructor_and_property_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 148, in test_behavior_constructor_and_property_refusals\n    self.refused(evaluate(module.FiniteBehaviorCarrier, invalid), \"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/auth-rice-theorem-import.py",
+      "tests": [
+        "test_behavior_constructor_and_property_refusals"
+      ]
+    },
+    {
+      "identity": "carrier-schema",
+      "mutant_sha256": "11587f9bb9825a8f03e0908cc380596263b588f5db8e19edc5784afd25f1dd6f",
+      "outcome": "killed",
+      "output": "test_candidate_schema_and_identity_refusals (__main__.AuthorityCheckerTests.test_candidate_schema_and_identity_refusals) ... FAIL\n\n======================================================================\nFAIL: test_candidate_schema_and_identity_refusals (__main__.AuthorityCheckerTests.test_candidate_schema_and_identity_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 184, in test_candidate_schema_and_identity_refusals\n    self.refused(module.DirectCandidateCeiling.from_record(record), \"input\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/authf-carrier-admission-gate.py",
+      "tests": [
+        "test_candidate_schema_and_identity_refusals"
+      ]
+    },
+    {
+      "identity": "carrier-authority",
+      "mutant_sha256": "3ea9d09d24198aeac46d818e1ba5ecbf6246928807febb389d7bc9ad4526edaf",
+      "outcome": "killed",
+      "output": "test_candidate_schema_and_identity_refusals (__main__.AuthorityCheckerTests.test_candidate_schema_and_identity_refusals) ... FAIL\n\n======================================================================\nFAIL: test_candidate_schema_and_identity_refusals (__main__.AuthorityCheckerTests.test_candidate_schema_and_identity_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 184, in test_candidate_schema_and_identity_refusals\n    self.refused(module.DirectCandidateCeiling.from_record(record), \"input\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/authf-carrier-admission-gate.py",
+      "tests": [
+        "test_candidate_schema_and_identity_refusals"
+      ]
+    },
+    {
+      "identity": "carrier-unique-id",
+      "mutant_sha256": "67c397fffd10cbb8e72d5b37b75c8b8bf7faf98bf4fdff7a7b12f9464d81183a",
+      "outcome": "killed",
+      "output": "test_candidate_schema_and_identity_refusals (__main__.AuthorityCheckerTests.test_candidate_schema_and_identity_refusals) ... FAIL\n\n======================================================================\nFAIL: test_candidate_schema_and_identity_refusals (__main__.AuthorityCheckerTests.test_candidate_schema_and_identity_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 191, in test_candidate_schema_and_identity_refusals\n    self.refused(module.DirectCandidateCeiling.from_record(record), \"input\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/authf-carrier-admission-gate.py",
+      "tests": [
+        "test_candidate_schema_and_identity_refusals"
+      ]
+    },
+    {
+      "identity": "carrier-selected-parser",
+      "mutant_sha256": "1057798439a99d2e8564743eb74a1a4ddecb0a7e35645faae40d48d89c593e30",
+      "outcome": "equivalent",
+      "output": "test_candidate_fields_and_selection_are_typed (__main__.AuthorityCheckerTests.test_candidate_fields_and_selection_are_typed) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/authf-carrier-admission-gate.py",
+      "tests": [
+        "test_candidate_fields_and_selection_are_typed"
+      ],
+      "raw_outcome": "survived",
+      "proof": "2026-11-03-authority-checkers.md#parser-bool-guard-equivalence"
+    },
+    {
+      "identity": "carrier-selected-vo",
+      "mutant_sha256": "5ab19ac07b33164515c3168b5167bc0963b38803f3c19dc79f4a7261ee80689c",
+      "outcome": "killed",
+      "output": "test_candidate_fields_and_selection_are_typed (__main__.AuthorityCheckerTests.test_candidate_fields_and_selection_are_typed) ... FAIL\n\n======================================================================\nFAIL: test_candidate_fields_and_selection_are_typed (__main__.AuthorityCheckerTests.test_candidate_fields_and_selection_are_typed)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 222, in test_candidate_fields_and_selection_are_typed\n    self.refused(evaluate(module.DirectCandidateCeiling, \"open\", \"partial\", \"partial\", \"partial\", \"open\", 0), \"input\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/authf-carrier-admission-gate.py",
+      "tests": [
+        "test_candidate_fields_and_selection_are_typed"
+      ]
+    },
+    {
+      "identity": "carrier-closed-vocabulary",
+      "mutant_sha256": "9b09eafbd223ee6987001131af634ccc2341224ae37b7bf53e649bdc6c648a2b",
+      "outcome": "killed",
+      "output": "test_candidate_fields_and_selection_are_typed (__main__.AuthorityCheckerTests.test_candidate_fields_and_selection_are_typed) ... FAIL\n\n======================================================================\nFAIL: test_candidate_fields_and_selection_are_typed (__main__.AuthorityCheckerTests.test_candidate_fields_and_selection_are_typed)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 216, in test_candidate_fields_and_selection_are_typed\n    self.refused(module.DirectCandidateCeiling.from_record(record), \"input\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/authf-carrier-admission-gate.py",
+      "tests": [
+        "test_candidate_fields_and_selection_are_typed"
+      ]
+    },
+    {
+      "identity": "carrier-ceiling",
+      "mutant_sha256": "e4329493b403bdbdb5afbee40f615ea859254c63eb7dc8d825252552ba6dc682",
+      "outcome": "killed",
+      "output": "test_candidate_promotion_cannot_become_verification (__main__.AuthorityCheckerTests.test_candidate_promotion_cannot_become_verification) ... FAIL\n\n======================================================================\nFAIL: test_candidate_promotion_cannot_become_verification (__main__.AuthorityCheckerTests.test_candidate_promotion_cannot_become_verification)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 235, in test_candidate_promotion_cannot_become_verification\n    self.refused(result, \"check\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/authf-carrier-admission-gate.py",
+      "tests": [
+        "test_candidate_promotion_cannot_become_verification"
+      ]
+    },
+    {
+      "identity": "carrier-selection-ceiling",
+      "mutant_sha256": "915a0d6794e3ea0dd7e35aef14abc9eac201bca31895dd2088849984e6761903",
+      "outcome": "killed",
+      "output": "test_candidate_promotion_cannot_become_verification (__main__.AuthorityCheckerTests.test_candidate_promotion_cannot_become_verification) ... FAIL\n\n======================================================================\nFAIL: test_candidate_promotion_cannot_become_verification (__main__.AuthorityCheckerTests.test_candidate_promotion_cannot_become_verification)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 233, in test_candidate_promotion_cannot_become_verification\n    self.assertTrue(result.ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/authf-carrier-admission-gate.py",
+      "tests": [
+        "test_candidate_promotion_cannot_become_verification"
+      ]
+    },
+    {
+      "identity": "carrier-universality-field",
+      "mutant_sha256": "a0adfae0ed42b6efd507a9dcf1e6eb9242d1c47a6af80e313ac8dc69034a73af",
+      "outcome": "killed",
+      "output": "test_current_source_cli_and_repeatability (__main__.AuthorityCheckerTests.test_current_source_cli_and_repeatability) ... ERROR\n\n======================================================================\nERROR: test_current_source_cli_and_repeatability (__main__.AuthorityCheckerTests.test_current_source_cli_and_repeatability)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 325, in test_current_source_cli_and_repeatability\n    self.assertEqual(operation(), 0)\n                     ~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\independent\\authf-carrier-admission-gate.py\", line 190, in main\n    raise Violation(result.error.kind, result.error.message)\nchecker_support.boundary.Violation: direct candidate differs from the declared open/partial ceiling\n\n----------------------------------------------------------------------\nRan 1 test in 0.011s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/authf-carrier-admission-gate.py",
+      "tests": [
+        "test_current_source_cli_and_repeatability"
+      ]
+    },
+    {
+      "identity": "carrier-duplicate-json",
+      "mutant_sha256": "6ccf04f2c439a9d980f5805cfbc7a6f470c599c35585a88f0696b159a0d65c70",
+      "outcome": "killed",
+      "output": "test_source_invalid_json_and_bounded_io (__main__.AuthorityCheckerTests.test_source_invalid_json_and_bounded_io) ... FAIL\n\n======================================================================\nFAIL: test_source_invalid_json_and_bounded_io (__main__.AuthorityCheckerTests.test_source_invalid_json_and_bounded_io)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 274, in test_source_invalid_json_and_bounded_io\n    self.refused(module.verify_source(path), kind)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 52, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'input' != 'duplicate'\n- input\n+ duplicate\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/authf-carrier-admission-gate.py",
+      "tests": [
+        "test_source_invalid_json_and_bounded_io"
+      ]
+    },
+    {
+      "identity": "carrier-json-constant",
+      "mutant_sha256": "ac735d0e7a3622dbb0199a9617ab3c1514bfec68d1007781dc97ef621c1316b2",
+      "outcome": "killed",
+      "output": "test_source_invalid_json_and_bounded_io (__main__.AuthorityCheckerTests.test_source_invalid_json_and_bounded_io) ... FAIL\n\n======================================================================\nFAIL: test_source_invalid_json_and_bounded_io (__main__.AuthorityCheckerTests.test_source_invalid_json_and_bounded_io)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 274, in test_source_invalid_json_and_bounded_io\n    self.refused(module.verify_source(path), kind)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.011s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/authf-carrier-admission-gate.py",
+      "tests": [
+        "test_source_invalid_json_and_bounded_io"
+      ]
+    },
+    {
+      "identity": "carrier-read-limit",
+      "mutant_sha256": "cafd8e3c168ee4d8ad03e7990879c20fb51b5c8aa0d399cd69de94fc6d169eb7",
+      "outcome": "killed",
+      "output": "test_source_invalid_json_and_bounded_io (__main__.AuthorityCheckerTests.test_source_invalid_json_and_bounded_io) ... FAIL\n\n======================================================================\nFAIL: test_source_invalid_json_and_bounded_io (__main__.AuthorityCheckerTests.test_source_invalid_json_and_bounded_io)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 274, in test_source_invalid_json_and_bounded_io\n    self.refused(module.verify_source(path), kind)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 52, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'input' != 'resource'\n- input\n+ resource\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.075s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/authf-carrier-admission-gate.py",
+      "tests": [
+        "test_source_invalid_json_and_bounded_io"
+      ]
+    },
+    {
+      "identity": "carrier-depth-bound",
+      "mutant_sha256": "1af2cb112c469d4b5e786390057937c527d476462d79072c670310d78d9f66d1",
+      "outcome": "killed",
+      "output": "test_json_depth_ignores_quoted_brackets_and_escapes (__main__.AuthorityCheckerTests.test_json_depth_ignores_quoted_brackets_and_escapes) ... FAIL\n\n======================================================================\nFAIL: test_json_depth_ignores_quoted_brackets_and_escapes (__main__.AuthorityCheckerTests.test_json_depth_ignores_quoted_brackets_and_escapes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 315, in test_json_depth_ignores_quoted_brackets_and_escapes\n    self.refused(module.verify_source(path), \"resource\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/authf-carrier-admission-gate.py",
+      "tests": [
+        "test_json_depth_ignores_quoted_brackets_and_escapes"
+      ]
+    },
+    {
+      "identity": "carrier-string-depth",
+      "mutant_sha256": "ff49cd7d02e7ed2f4856c9953b47e4376b62c5d20c54b0c1257769ba26809b92",
+      "outcome": "killed",
+      "output": "test_json_depth_ignores_quoted_brackets_and_escapes (__main__.AuthorityCheckerTests.test_json_depth_ignores_quoted_brackets_and_escapes) ... FAIL\n\n======================================================================\nFAIL: test_json_depth_ignores_quoted_brackets_and_escapes (__main__.AuthorityCheckerTests.test_json_depth_ignores_quoted_brackets_and_escapes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 310, in test_json_depth_ignores_quoted_brackets_and_escapes\n    self.assertTrue(module.verify_source(path).ok)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: False is not true\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/authf-carrier-admission-gate.py",
+      "tests": [
+        "test_json_depth_ignores_quoted_brackets_and_escapes"
+      ]
+    },
+    {
+      "identity": "carrier-byte-digest",
+      "mutant_sha256": "3efdef912ed635bb94e64a5eb6c4d91b93dffe486102667ee6e5b81ba2a83b32",
+      "outcome": "killed",
+      "output": "test_source_custody_rejects_changed_ceiling (__main__.AuthorityCheckerTests.test_source_custody_rejects_changed_ceiling) ... FAIL\n\n======================================================================\nFAIL: test_source_custody_rejects_changed_ceiling (__main__.AuthorityCheckerTests.test_source_custody_rejects_changed_ceiling)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 252, in test_source_custody_rejects_changed_ceiling\n    self.assertEqual(result.value[1], hashlib.sha256(raw).hexdigest())\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'a3ead5eedad5df82318c51685dbc1c147a36d1ff8584fc82de6b08d0bf63a795' != '65bf6bee0dc520f3e53d09edf5537c5f3b70bd1aa61ee36028e842d7cdb27928'\n- a3ead5eedad5df82318c51685dbc1c147a36d1ff8584fc82de6b08d0bf63a795\n+ 65bf6bee0dc520f3e53d09edf5537c5f3b70bd1aa61ee36028e842d7cdb27928\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/authf-carrier-admission-gate.py",
+      "tests": [
+        "test_source_custody_rejects_changed_ceiling"
+      ]
+    },
+    {
+      "identity": "carrier-verify-bypass",
+      "mutant_sha256": "fdabd8ab54f00792d6902167778953fee74bcfd9c1c97532a200e4cf280d21d2",
+      "outcome": "killed",
+      "output": "test_source_custody_rejects_changed_ceiling (__main__.AuthorityCheckerTests.test_source_custody_rejects_changed_ceiling) ... FAIL\n\n======================================================================\nFAIL: test_source_custody_rejects_changed_ceiling (__main__.AuthorityCheckerTests.test_source_custody_rejects_changed_ceiling)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 256, in test_source_custody_rejects_changed_ceiling\n    self.refused(module.verify_source(path), \"check\")\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-n2gtqy1m\\checks\\tests\\test_authority_checkers.py\", line 48, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/authf-carrier-admission-gate.py",
+      "tests": [
+        "test_source_custody_rejects_changed_ceiling"
+      ]
+    },
+    {
+      "identity": "refusal-helper-vacuous",
+      "mutant_sha256": "da535e32f45018a56ae4096565a6571308d91b0365a9a3334cb8660cb015a30e",
+      "outcome": "killed",
+      "output": "test_refusal_helper_rejects_success_and_wrong_failure_kind (__main__.AuthorityCheckerTests.test_refusal_helper_rejects_success_and_wrong_failure_kind) ... FAIL\n\n======================================================================\nFAIL: test_refusal_helper_rejects_success_and_wrong_failure_kind (__main__.AuthorityCheckerTests.test_refusal_helper_rejects_success_and_wrong_failure_kind)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\authority-mutation-ao53ylxr\\checks\\tests\\test_authority_checkers.py\", line 52, in test_refusal_helper_rejects_success_and_wrong_failure_kind\n    with self.assertRaises(AssertionError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\nAssertionError: AssertionError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_authority_checkers.py",
+      "tests": [
+        "test_refusal_helper_rejects_success_and_wrong_failure_kind"
+      ]
+    }
+  ],
+  "counts": {
+    "killed": 42,
+    "survived": 0,
+    "equivalent": 1,
+    "invalid": 0,
+    "inconclusive": 0,
+    "unrun": 0
+  },
+  "eligible": 42,
+  "detected_fraction_exact": [
+    42,
+    42
+  ]
+}

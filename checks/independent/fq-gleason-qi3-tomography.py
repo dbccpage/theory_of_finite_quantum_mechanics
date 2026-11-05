@@ -1,1008 +1,343 @@
-"""Exact symbolic and arithmetic controls for the nine-ray Q(i)^3 reduction and 3-adic residual.
+"""Exact nine-ray, inert-prime and equatorial-geometry controls on Q(i)^3.
 
-No repository code is imported. This checks reconstruction signs, uniqueness,
-quadratic expansion, a generic matrix inverse identity used in the paper
-proof, the rational rescaling bounds, and the global bounded zero-weight
-3-adic residual frame function s3 (plus exoticQi3 = (1 + s3) / 3).
+AuthorityEffect: None. Symbolic identities are distinguished from the explicit
+finite frame, perturbation and rotation samples. These controls do not prove
+pointwise-to-uniform continuity or classify all frame functions.
 """
-
 from __future__ import annotations
 
-from fractions import Fraction
+from collections.abc import Callable
+from dataclasses import dataclass
+from fractions import Fraction as Q
 import json
+from pathlib import Path
+import sys
 
 import sympy as sp
 
-
-def require(condition: bool, label: str) -> None:
-    if not condition:
-        raise RuntimeError(label)
-
-
-def zero(expression: sp.Expr) -> bool:
-    return sp.expand(expression) == 0
-
-
-def v3_int(n: int) -> int:
-    n = abs(n)
-    if n == 0:
-        return 0
-    k = 0
-    while n % 3 == 0:
-        n //= 3
-        k += 1
-    return k
-
-
-def p3_part_int(n: int) -> int:
-    n = abs(n)
-    if n == 0:
-        return 0
-    while n % 3 == 0:
-        n //= 3
-    return n
-
-
-def v3_rat(q: Fraction) -> int:
-    if q <= 0:
-        return 0
-    return v3_int(q.numerator) - v3_int(q.denominator)
-
-
-def u3_rat(q: Fraction) -> Fraction:
-    if q <= 0:
-        return Fraction(0)
-    rem = (p3_part_int(q.numerator) * p3_part_int(q.denominator)) % 3
-    return Fraction(1) if rem == 1 else Fraction(-1)
-
-
-def is_lead3_coord(c_norm: Fraction, vec_norm: Fraction) -> bool:
-    return c_norm > 0 and v3_rat(c_norm) < v3_rat(vec_norm)
-
-
-def coord_sign3(c_norm: Fraction, vec_norm: Fraction) -> Fraction:
-    return u3_rat(c_norm) * u3_rat(vec_norm)
-
-
-GVec = tuple[tuple[Fraction, Fraction], tuple[Fraction, Fraction], tuple[Fraction, Fraction]]
-
-
-def g_norm_sq(z: tuple[Fraction, Fraction]) -> Fraction:
-    return z[0] * z[0] + z[1] * z[1]
-
-
-def vec_norm_sq(u: GVec) -> Fraction:
-    return g_norm_sq(u[0]) + g_norm_sq(u[1]) + g_norm_sq(u[2])
-
-
-def g_inner(u: GVec, v: GVec) -> tuple[Fraction, Fraction]:
-    re = sum(a[0] * b[0] + a[1] * b[1] for a, b in zip(u, v))
-    im = sum(a[0] * b[1] - a[1] * b[0] for a, b in zip(u, v))
-    return (re, im)
-
-
-def herm_cross(u: GVec, v: GVec) -> GVec:
-    def g_mul(a: tuple[Fraction, Fraction], b: tuple[Fraction, Fraction]) -> tuple[Fraction, Fraction]:
-        return (a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0])
-
-    def g_sub(a: tuple[Fraction, Fraction], b: tuple[Fraction, Fraction]) -> tuple[Fraction, Fraction]:
-        return (a[0] - b[0], a[1] - b[1])
-
-    def g_conj(a: tuple[Fraction, Fraction]) -> tuple[Fraction, Fraction]:
-        return (a[0], -a[1])
-
-    return (
-        g_conj(g_sub(g_mul(u[1], v[2]), g_mul(u[2], v[1]))),
-        g_conj(g_sub(g_mul(u[2], v[0]), g_mul(u[0], v[2]))),
-        g_conj(g_sub(g_mul(u[0], v[1]), g_mul(u[1], v[0]))),
-    )
-
-
-def s3(u: GVec) -> Fraction:
-    vn = vec_norm_sq(u)
-    if v3_rat(vn) % 2 == 0:
-        return Fraction(0)
-    if is_lead3_coord(g_norm_sq(u[0]), vn):
-        return coord_sign3(g_norm_sq(u[0]), vn)
-    if is_lead3_coord(g_norm_sq(u[1]), vn):
-        return coord_sign3(g_norm_sq(u[1]), vn)
-    return coord_sign3(g_norm_sq(u[2]), vn)
-
-
-def exotic_qi3(u: GVec) -> Fraction:
-    return (Fraction(1) + s3(u)) / 3
-
-
-def gv_int(a: int, b: int, c: int, d: int, e: int, g: int) -> GVec:
-    return (
-        (Fraction(a), Fraction(b)),
-        (Fraction(c), Fraction(d)),
-        (Fraction(e), Fraction(g)),
-    )
-
-
-def is_one_plus_i_primitive_gvec(u: GVec) -> bool:
-    a, b = int(u[0][0]), int(u[0][1])
-    c, d = int(u[1][0]), int(u[1][1])
-    e, g = int(u[2][0]), int(u[2][1])
-    return not ((a + b) % 2 == 0 and (c + d) % 2 == 0 and (e + g) % 2 == 0)
-
-
-def vp_int(n: int, p: int) -> int:
-    n = abs(n)
-    if n == 0 or p < 2:
-        return 0
-    k = 0
-    while n % p == 0:
-        n //= p
-        k += 1
-    return k
-
-
-def pp_part_int(n: int, p: int) -> int:
-    n = abs(n)
-    if n == 0 or p < 2:
-        return n
-    while n % p == 0:
-        n //= p
-    return n
-
-
-def vp_rat(q: Fraction, p: int) -> int:
-    if q <= 0:
-        return 0
-    return vp_int(q.numerator, p) - vp_int(q.denominator, p)
-
-
-def up_rat_legendre(q: Fraction, p: int) -> Fraction:
-    """Legendre symbol (p'-part(q) / p) in {-1, +1} for inert prime p == 3 (mod 4)."""
-    if q <= 0:
-        return Fraction(0)
-    rem = (pp_part_int(q.numerator, p) * pp_part_int(q.denominator, p)) % p
-    return Fraction(1) if pow(rem, (p - 1) // 2, p) == 1 else Fraction(-1)
-
-
-def sp_residual(u: GVec, p: int) -> Fraction:
-    vn = vec_norm_sq(u)
-    if vp_rat(vn, p) % 2 == 0:
-        return Fraction(0)
-    nx = g_norm_sq(u[0])
-    if nx > 0 and vp_rat(nx, p) < vp_rat(vn, p):
-        return up_rat_legendre(nx, p) * up_rat_legendre(vn, p)
-    ny = g_norm_sq(u[1])
-    if ny > 0 and vp_rat(ny, p) < vp_rat(vn, p):
-        return up_rat_legendre(ny, p) * up_rat_legendre(vn, p)
-    nz = g_norm_sq(u[2])
-    return up_rat_legendre(nz, p) * up_rat_legendre(vn, p)
-
-
-def main() -> None:
-    diagonal = sp.symbols("d0:3", real=True)
-    real_part = sp.symbols("a01 a02 a12", real=True)
-    imag_part = sp.symbols("b01 b02 b12", real=True)
-    pairs = [(0, 1), (0, 2), (1, 2)]
-    rho = sp.diag(*diagonal)
-    for pair, a, b in zip(pairs, real_part, imag_part):
-        j, k = pair
-        rho[j, k] = a + sp.I * b
-        rho[k, j] = a - sp.I * b
-    require(rho == rho.conjugate().T, "candidate is Hermitian")
-
-    basis = [sp.eye(3)[:, j] for j in range(3)]
-    rays = basis[:]
-    for j, k in pairs:
-        rays.extend([basis[j] + basis[k], basis[j] + sp.I * basis[k]])
-    values = [sp.expand((v.conjugate().T * rho * v)[0]
-                        / (v.conjugate().T * v)[0]) for v in rays]
-    expected = list(diagonal)
-    for (j, k), a, b in zip(pairs, real_part, imag_part):
-        expected.extend([(diagonal[j] + diagonal[k]) / 2 + a,
-                         (diagonal[j] + diagonal[k]) / 2 - b])
-    require(all(zero(x - y) for x, y in zip(values, expected)),
-            "all nine evaluations, including imaginary signs")
-    coefficients = list(diagonal) + list(real_part) + list(imag_part)
-    tomography = sp.Matrix(values).jacobian(coefficients)
-    require(tomography.det() != 0, "tomography has exact rank nine")
-
-    measurements = sp.symbols("m0:9", real=True)
-    reconstructed = list(measurements[:3])
-    reconstructed_real = []
-    reconstructed_imag = []
-    for index, (j, k) in enumerate(pairs):
-        mean = (measurements[j] + measurements[k]) / 2
-        reconstructed_real.append(measurements[3 + 2 * index] - mean)
-        reconstructed_imag.append(mean - measurements[4 + 2 * index])
-    substitution = dict(zip(coefficients,
-                            reconstructed + reconstructed_real + reconstructed_imag))
-    require(all(zero(value.subs(substitution) - measurement)
-                for value, measurement in zip(values, measurements)),
-            "candidate recovers arbitrary rational measurements")
-
-    x = sp.symbols("x0:3", real=True)
-    y = sp.symbols("y0:3", real=True)
-    v = sp.Matrix([a + sp.I * b for a, b in zip(x, y)])
-    numerator = sp.expand((v.conjugate().T * rho * v)[0])
-    expansion = sum(diagonal[j] * (x[j] ** 2 + y[j] ** 2) for j in range(3))
-    for (j, k), a, b in zip(pairs, real_part, imag_part):
-        expansion += 2 * a * (x[j] * x[k] + y[j] * y[k])
-        expansion -= 2 * b * (x[j] * y[k] - y[j] * x[k])
-    require(zero(numerator - expansion), "generic quadratic expansion")
-    require(zero(sp.im(numerator)), "quadratic numerator is rational over Q(i)")
-
-    # Polynomial identity underlying U D^(-1) U* = I when U*U=D.
-    # The premise U*U=D and the nonzero determinant are proved in the note;
-    # this calculation does not assert those premises for arbitrary matrices.
-    entries = sp.symbols("u0:9")
-    matrix = sp.Matrix(3, 3, entries)
-    identity_residual = matrix * matrix.adjugate() - matrix.det() * sp.eye(3)
-    require(all(zero(entry) for entry in identity_residual),
-            "generic three by three adjugate identity")
-
-    bound = sp.symbols("B", nonnegative=True)
-    epsilon = 1 / (3 * (bound + 1))
-    require(sp.cancel(sp.Rational(1, 3) - epsilon * bound - epsilon) == 0,
-            "rescaled lower bound")
-    require(sp.cancel(sp.Rational(1, 3) + epsilon * bound
-                      - (2 * bound + 1) / (3 * (bound + 1))) == 0,
-            "rescaled upper bound")
-    require(sp.cancel(sp.Rational(2, 3)
-                      - (2 * bound + 1) / (3 * (bound + 1)) - epsilon) == 0,
-            "upper bound is strictly below two thirds")
-    require(epsilon.is_positive is True, "rescaling is positive, including B=0")
-    require(epsilon.subs(bound, 0) == sp.Rational(1, 3), "zero-bound control")
-
-    # A wrong sign on an imaginary off-diagonal must fail the same evaluation.
-    require(not zero(values[4] - ((diagonal[0] + diagonal[1]) / 2 + imag_part[0])),
-            "negative control rejects reversed imaginary sign")
-
-    # Section 5 constructive 7-ray projector kernel relation on (1, 1, 1):
-    v111_sp = sp.Matrix([1, 1, 1])
-    q_111 = sp.expand((v111_sp.conjugate().T * rho * v111_sp)[0] / 3)
-    kernel_comb = (
-        q_111
-        + sp.Rational(1, 3) * (values[0] + values[1] + values[2])
-        - sp.Rational(2, 3) * (values[3] + values[5] + values[7])
-    )
-    require(zero(kernel_comb),
-            "7-ray projector kernel relation vanishes identically for every HermForm3")
-
-    # Section 9D constructive 9-ray projector kernel relation on witness_p7 = (1, 2, 1 + i):
-    vp7_sp = sp.Matrix([1, 2, 1 + sp.I])
-    q_p7 = sp.expand((vp7_sp.conjugate().T * rho * vp7_sp)[0] / 7)
-    kernel_comb_p7 = (
-        q_p7
-        + sp.Rational(3, 7) * values[0]
-        + sp.Rational(2, 7) * values[1]
-        + sp.Rational(4, 7) * values[2]
-        - sp.Rational(4, 7) * values[3]
-        - sp.Rational(2, 7) * values[5]
-        - sp.Rational(4, 7) * values[7]
-        - sp.Rational(2, 7) * values[6]
-        - sp.Rational(4, 7) * values[8]
-    )
-    require(zero(kernel_comb_p7),
-            "9-ray projector kernel relation for witness_p7 vanishes identically for every HermForm3")
-
-    # Section 8: Global bounded zero-weight 3-adic residual s3 and exotic_qi3.
-    nine_rays_gvec = [
-        gv_int(1, 0, 0, 0, 0, 0),
-        gv_int(0, 0, 1, 0, 0, 0),
-        gv_int(0, 0, 0, 0, 1, 0),
-        gv_int(1, 0, 1, 0, 0, 0),
-        gv_int(1, 0, 0, 0, 1, 0),
-        gv_int(0, 0, 1, 0, 1, 0),
-        gv_int(1, 0, 0, 1, 0, 0),
-        gv_int(1, 0, 0, 0, 0, 1),
-        gv_int(0, 0, 1, 0, 0, 1),
-    ]
-    require(all(s3(r) == 0 for r in nine_rays_gvec), "s3 vanishes on all nine tomography rays")
-    require(all(exotic_qi3(r) == Fraction(1, 3) for r in nine_rays_gvec),
-            "exotic_qi3 equals 1/3 on all nine tomography rays")
-
-    witness_111 = gv_int(1, 0, 1, 0, 1, 0)
-    witness_div4 = gv_int(1, 2, 1, 2, 1, 1)
-    witness_div8 = gv_int(1, 4, 1, 2, 1, 1)
-    require(
-        is_one_plus_i_primitive_gvec(witness_111)
-        and vec_norm_sq(witness_111) == 3
-        and s3(witness_111) == 1,
-        "s3(1, 1, 1) == 1 on (1+i)-primitive norm-3 witness",
-    )
-    require(
-        is_one_plus_i_primitive_gvec(witness_div4)
-        and vec_norm_sq(witness_div4) == 12
-        and s3(witness_div4) == -1,
-        "s3 == -1 on (1+i)-primitive norm-12 (4|N) witness",
-    )
-    require(
-        is_one_plus_i_primitive_gvec(witness_div8)
-        and vec_norm_sq(witness_div8) == 24
-        and s3(witness_div8) == 1,
-        "s3 == 1 on (1+i)-primitive norm-24 (8|N) witness",
-    )
-
-    # Constructive separation of the 7-ray projector kernel by s3 and exotic_qi3:
-    s3_kernel_eval = (
-        s3(witness_111)
-        + Fraction(1, 3) * (s3(nine_rays_gvec[0]) + s3(nine_rays_gvec[1]) + s3(nine_rays_gvec[2]))
-        - Fraction(2, 3) * (s3(nine_rays_gvec[3]) + s3(nine_rays_gvec[4]) + s3(nine_rays_gvec[5]))
-    )
-    exotic_kernel_eval = (
-        exotic_qi3(witness_111)
-        + Fraction(1, 3)
-        * (exotic_qi3(nine_rays_gvec[0]) + exotic_qi3(nine_rays_gvec[1]) + exotic_qi3(nine_rays_gvec[2]))
-        - Fraction(2, 3)
-        * (exotic_qi3(nine_rays_gvec[3]) + exotic_qi3(nine_rays_gvec[4]) + exotic_qi3(nine_rays_gvec[5]))
-    )
-    require(s3_kernel_eval == 1 and exotic_kernel_eval == Fraction(1, 3),
-            "s3 and exotic_qi3 constructively separate the 7-ray projector kernel")
-
-    # Check frame additivity across orthogonal frames with odd-v3 rays across shells.
-    ortho_pairs = [
-        (witness_111, gv_int(1, 0, -1, 0, 0, 0)),
-        (witness_111, gv_int(1, 0, 1, 0, -2, 0)),
-        (witness_div4, gv_int(1, 0, -1, 0, 0, 0)),
-        (witness_div8, gv_int(0, 0, 2, 4, -5, -5)),
-    ]
-    for u, v in ortho_pairs:
-        w = herm_cross(u, v)
-        require(g_inner(u, v) == (0, 0) and g_inner(u, w) == (0, 0) and g_inner(v, w) == (0, 0),
-                "orthogonal completion via Hermitian cross product")
-        require((v3_rat(vec_norm_sq(u)) + v3_rat(vec_norm_sq(v)) + v3_rat(vec_norm_sq(w))) % 2 == 0,
-                "sum of 3-adic norm valuations on orthogonal frame is even")
-        require(s3(u) + s3(v) + s3(w) == 0, "s3 is a zero-weight frame function")
-        require(exotic_qi3(u) + exotic_qi3(v) + exotic_qi3(w) == 1,
-                "exotic_qi3 is a weight-1 frame function")
-
-    # Second inert prime p = 7 == 3 (mod 4): s7 is linearly independent of s3.
-    witness_p7 = gv_int(1, 0, 2, 0, 1, 1)  # norm 1 + 4 + 2 = 7
-    require(
-        is_one_plus_i_primitive_gvec(witness_p7)
-        and vec_norm_sq(witness_p7) == 7
-        and s3(witness_p7) == 0
-        and sp_residual(witness_p7, 7) == 1
-        and sp_residual(witness_111, 7) == 0,
-        "s3 and s7 are linearly independent bounded zero-weight residuals",
-    )
-    require(all(sp_residual(r, 7) == 0 for r in nine_rays_gvec),
-            "s7 vanishes on all nine tomography rays")
-    u7, v7 = witness_p7, gv_int(2, 0, -1, 0, 0, 0)
-    w7 = herm_cross(u7, v7)
-    require(sp_residual(u7, 7) + sp_residual(v7, 7) + sp_residual(w7, 7) == 0,
-            "s7 satisfies zero-weight additivity on odd-v7 orthogonal frame")
-
-    # Negative control: flipping the u3 == 2 (mod 3) sign breaks frame additivity.
-    u0, v0 = ortho_pairs[0]
-    w0 = herm_cross(u0, v0)
-    require(abs(s3(u0)) + abs(s3(v0)) + abs(s3(w0)) == 2,
-            "negative control: unsigned 3-adic parity fails zero-weight sum")
-
-    # Section 9A: Archimedean discontinuity perturbations near e1 = (1, 0, 0) for p = 3 and p = 7.
-    for k in range(1, 8):
-        scale3 = Fraction(1, 3 * k)
-        pos3_int = gv_int(3 * k, 0, 1, 0, 1, 1)
-        neg3_int = gv_int(3 * k, 0, 1, 1, 1, 0)
-        pos3_ray = (
-            (scale3 * pos3_int[0][0], scale3 * pos3_int[0][1]),
-            (scale3 * pos3_int[1][0], scale3 * pos3_int[1][1]),
-            (scale3 * pos3_int[2][0], scale3 * pos3_int[2][1]),
-        )
-        neg3_ray = (
-            (scale3 * neg3_int[0][0], scale3 * neg3_int[0][1]),
-            (scale3 * neg3_int[1][0], scale3 * neg3_int[1][1]),
-            (scale3 * neg3_int[2][0], scale3 * neg3_int[2][1]),
-        )
-        dist_pos3 = (
-            g_norm_sq((pos3_ray[0][0] - 1, pos3_ray[0][1]))
-            + g_norm_sq(pos3_ray[1])
-            + g_norm_sq(pos3_ray[2])
-        )
-        dist_neg3 = (
-            g_norm_sq((neg3_ray[0][0] - 1, neg3_ray[0][1]))
-            + g_norm_sq(neg3_ray[1])
-            + g_norm_sq(neg3_ray[2])
-        )
-        require(
-            s3(pos3_int) == 1
-            and s3(pos3_ray) == 1
-            and exotic_qi3(pos3_ray) == Fraction(2, 3)
-            and dist_pos3 == Fraction(1, 3 * k * k),
-            "positive 3-adic perturbation ray approaches e1 with s3 == +1",
-        )
-        require(
-            s3(neg3_int) == -1
-            and s3(neg3_ray) == -1
-            and exotic_qi3(neg3_ray) == Fraction(0)
-            and dist_neg3 == Fraction(1, 3 * k * k),
-            "negative 3-adic perturbation ray approaches e1 with s3 == -1",
-        )
-
-        scale7 = Fraction(1, 7 * k)
-        pos7_int = gv_int(7 * k, 0, 1, 1, 2, 1)  # y norm 2 ((2/7)=+1), z norm 5 ((5/7)=-1), total 49k^2+7
-        neg7_int = gv_int(7 * k, 0, 2, 1, 1, 1)
-        pos7_ray = (
-            (scale7 * pos7_int[0][0], scale7 * pos7_int[0][1]),
-            (scale7 * pos7_int[1][0], scale7 * pos7_int[1][1]),
-            (scale7 * pos7_int[2][0], scale7 * pos7_int[2][1]),
-        )
-        neg7_ray = (
-            (scale7 * neg7_int[0][0], scale7 * neg7_int[0][1]),
-            (scale7 * neg7_int[1][0], scale7 * neg7_int[1][1]),
-            (scale7 * neg7_int[2][0], scale7 * neg7_int[2][1]),
-        )
-        dist_pos7 = (
-            g_norm_sq((pos7_ray[0][0] - 1, pos7_ray[0][1]))
-            + g_norm_sq(pos7_ray[1])
-            + g_norm_sq(pos7_ray[2])
-        )
-        dist_neg7 = (
-            g_norm_sq((neg7_ray[0][0] - 1, neg7_ray[0][1]))
-            + g_norm_sq(neg7_ray[1])
-            + g_norm_sq(neg7_ray[2])
-        )
-        require(
-            sp_residual(pos7_ray, 7) == 1
-            and sp_residual(neg7_ray, 7) == -1
-            and s3(pos7_ray) == 0
-            and s3(neg7_ray) == 0
-            and dist_pos7 == Fraction(1, 7 * k * k)
-            and dist_neg7 == Fraction(1, 7 * k * k),
-            "7-adic perturbation rays approach e1 with s7 == +/-1 and s3 == 0",
-        )
-        scale3_7k = Fraction(1, 21 * k)
-        pos3_7k_int = gv_int(21 * k, 0, 1, 0, 1, 1)
-        neg3_7k_int = gv_int(21 * k, 0, 1, 1, 1, 0)
-        pos3_7k_ray = (
-            (scale3_7k * pos3_7k_int[0][0], scale3_7k * pos3_7k_int[0][1]),
-            (scale3_7k * pos3_7k_int[1][0], scale3_7k * pos3_7k_int[1][1]),
-            (scale3_7k * pos3_7k_int[2][0], scale3_7k * pos3_7k_int[2][1]),
-        )
-        neg3_7k_ray = (
-            (scale3_7k * neg3_7k_int[0][0], scale3_7k * neg3_7k_int[0][1]),
-            (scale3_7k * neg3_7k_int[1][0], scale3_7k * neg3_7k_int[1][1]),
-            (scale3_7k * neg3_7k_int[2][0], scale3_7k * neg3_7k_int[2][1]),
-        )
-        require(
-            s3(pos3_7k_ray) == 1
-            and s3(neg3_7k_ray) == -1
-            and sp_residual(pos3_7k_ray, 7) == 0
-            and sp_residual(neg3_7k_ray, 7) == 0,
-            "subsequence 3-adic perturbation rays (7*k) have s3 == +/-1 and s7 == 0",
-        )
-
-    exotic_qi7 = lambda u: (Fraction(1) + sp_residual(u, 7)) / 3
-    exotic_comb_37 = lambda c3, c7, u: (Fraction(1) + c3 * s3(u) + c7 * sp_residual(u, 7)) / 3
-    require(
-        exotic_qi7(witness_p7) == Fraction(2, 3)
-        and exotic_qi7(witness_111) == Fraction(1, 3)
-        and exotic_qi7(u7) + exotic_qi7(v7) + exotic_qi7(w7) == Fraction(1)
-        and exotic_comb_37(Fraction(2, 5), Fraction(-3, 5), u7)
-        + exotic_comb_37(Fraction(2, 5), Fraction(-3, 5), v7)
-        + exotic_comb_37(Fraction(2, 5), Fraction(-3, 5), w7)
-        == Fraction(1),
-        "exoticQi7 and exoticComb37 are weight-1 nonnegative frame functions separating witness_p7 from witness_111",
-    )
-    kernel_p7_eval = lambda f: (
-        f(witness_p7)
-        + Fraction(3, 7) * f(nine_rays_gvec[0])
-        + Fraction(2, 7) * f(nine_rays_gvec[1])
-        + Fraction(4, 7) * f(nine_rays_gvec[2])
-        - Fraction(4, 7) * f(nine_rays_gvec[3])
-        - Fraction(2, 7) * f(nine_rays_gvec[4])
-        - Fraction(4, 7) * f(nine_rays_gvec[5])
-        - Fraction(2, 7) * f(nine_rays_gvec[7])
-        - Fraction(4, 7) * f(nine_rays_gvec[8])
-    )
-    require(
-        kernel_p7_eval(lambda u: sp_residual(u, 7)) == Fraction(1)
-        and kernel_p7_eval(s3) == Fraction(0)
-        and kernel_p7_eval(lambda u: Fraction(2, 5) * s3(u) - Fraction(3, 7) * sp_residual(u, 7)) == Fraction(-3, 7),
-        "s7_witness_p7_kernel_separation evaluates to 1 on s7, 0 on s3, and c7 on combResidual37 c3 c7",
-    )
-
-    # Section 9B: Quadratic field extension Q(i, sqrt(3))^3 and Q(i, sqrt(7))^3 frames
-    # breaking even-vp parity and forcing G(witness) == 0.
-    def frame_norms(*vectors: sp.Matrix) -> list[int]:
-        """Hermitian squared norms of a frame, as exact integers (rejects irrational norms)."""
-        norms = [sp.nsimplify(sp.expand((v.conjugate().T * v)[0])) for v in vectors]
-        require(all(n.is_Integer for n in norms), "frame squared norms are rational integers")
-        return [int(n) for n in norms]
-
-    sqrt3 = sp.sqrt(3)
-    u_s3 = sp.Matrix([1, 1, 1])
-    p_s3 = sp.Matrix([1 + sp.I + sqrt3, 1 + sp.I - sqrt3, -2 - 2 * sp.I])
-    q_s3 = sp.Matrix([-1 + (1 - sp.I) * sqrt3, -1 - (1 - sp.I) * sqrt3, 2])
-    require(
-        zero((u_s3.conjugate().T * p_s3)[0])
-        and zero((u_s3.conjugate().T * q_s3)[0])
-        and zero((p_s3.conjugate().T * q_s3)[0]),
-        "Q(i, sqrt(3))^3 frame (witness_111, p_s3, q_s3) is pairwise orthogonal",
-    )
-    sqrt3_frame_norms = frame_norms(u_s3, p_s3, q_s3)
-    require(
-        sqrt3_frame_norms == [3, 18, 18]
-        and vp_rat(Fraction(18), 3) == 2
-        and vp_rat(Fraction(18), 7) == 0,
-        "Q(i, sqrt(3))^3 frame has rational squared norms (3, 18, 18) with even v3 and v7 on partners",
-    )
-
-    sqrt7 = sp.sqrt(7)
-    u_s7 = sp.Matrix([1, 2, 1 + sp.I])
-    v_s7_tilde = sqrt7 * sp.Matrix([2, -1, 0])
-    w_s7 = sp.Matrix([1 - sp.I, 2 - 2 * sp.I, -5])
-    p_s7 = (1 + sp.I) * v_s7_tilde + (2 + sp.I) * w_s7
-    q_s7 = (2 - sp.I) * v_s7_tilde - (1 - sp.I) * w_s7
-    require(
-        zero((u_s7.conjugate().T * p_s7)[0])
-        and zero((u_s7.conjugate().T * q_s7)[0])
-        and zero((p_s7.conjugate().T * q_s7)[0]),
-        "Q(i, sqrt(7))^3 frame (witness_p7, p_s7, q_s7) is pairwise orthogonal",
-    )
-    sqrt7_frame_norms = frame_norms(u_s7, p_s7, q_s7)
-    require(
-        sqrt7_frame_norms == [7, 245, 245]
-        and vp_rat(Fraction(245), 3) == 0
-        and vp_rat(Fraction(245), 7) == 2
-        and vp_rat(Fraction(245), 11) == 0,
-        "Q(i, sqrt(7))^3 frame has rational squared norms (7, 245, 245) with even v3, v7, and v11 on partners",
-    )
-
-    # Section 9E: Uniform prime-indexed sp_residual, third inert prime p = 11 == 3 (mod 4),
-    # 3x3 Kronecker-delta witness duality, 7-ray witness_p11 projector kernel separation,
-    # selective 3-prime oscillation near e1 = (1, 0, 0), and Q(i, sqrt(11))^3 frame completion.
-    vp11_sp = sp.Matrix([1, 3, 1])
-    q_p11 = sp.expand((vp11_sp.conjugate().T * rho * vp11_sp)[0] / 11)
-    kernel_comb_p11 = (
-        q_p11
-        + sp.Rational(3, 11) * values[0]
-        - sp.Rational(3, 11) * values[1]
-        + sp.Rational(3, 11) * values[2]
-        - sp.Rational(6, 11) * values[3]
-        - sp.Rational(2, 11) * values[5]
-        - sp.Rational(6, 11) * values[7]
-    )
-    require(zero(kernel_comb_p11),
-            "7-ray projector kernel relation for witness_p11 = (1, 3, 1) vanishes identically for every HermForm3")
-
-    witness_p11 = gv_int(1, 0, 3, 0, 1, 0)  # norm 1 + 9 + 1 = 11
-    require(
-        is_one_plus_i_primitive_gvec(witness_p11)
-        and vec_norm_sq(witness_p11) == 11
-        and all(sp_residual(r, 11) == 0 for r in nine_rays_gvec),
-        "witness_p11 = (1, 3, 1) is (1+i)-primitive of norm 11 and sp 11 vanishes on all nine tomography rays",
-    )
-    primes_3_7_11 = (3, 7, 11)
-    witnesses_3_7_11 = (witness_111, witness_p7, witness_p11)
-    for i_idx, p_i in enumerate(primes_3_7_11):
-        for j_idx, w_j in enumerate(witnesses_3_7_11):
-            expected_delta = Fraction(1 if i_idx == j_idx else 0)
-            require(
-                sp_residual(w_j, p_i) == expected_delta,
-                f"3x3 Kronecker-delta duality failed at p={p_i}, witness index={j_idx}",
-            )
-
-    u11, v11 = witness_p11, gv_int(3, 0, -1, 0, 0, 0)
-    w11 = herm_cross(u11, v11)
-    require(
-        g_inner(u11, v11) == (0, 0)
-        and (vp_rat(vec_norm_sq(u11), 11) + vp_rat(vec_norm_sq(v11), 11) + vp_rat(vec_norm_sq(w11), 11)) % 2 == 0
-        and sp_residual(u11, 11) + sp_residual(v11, 11) + sp_residual(w11, 11) == 0,
-        "sp 11 satisfies zero-weight additivity on odd-v11 orthogonal frame",
-    )
-
-    kernel_p11_eval = lambda f: (
-        f(witness_p11)
-        + Fraction(3, 11) * f(nine_rays_gvec[0])
-        - Fraction(3, 11) * f(nine_rays_gvec[1])
-        + Fraction(3, 11) * f(nine_rays_gvec[2])
-        - Fraction(6, 11) * f(nine_rays_gvec[3])
-        - Fraction(2, 11) * f(nine_rays_gvec[4])
-        - Fraction(6, 11) * f(nine_rays_gvec[5])
-    )
-    require(
-        kernel_p11_eval(lambda u: sp_residual(u, 11)) == Fraction(1)
-        and kernel_p11_eval(lambda u: sp_residual(u, 3)) == Fraction(0)
-        and kernel_p11_eval(lambda u: sp_residual(u, 7)) == Fraction(0)
-        and kernel_p11_eval(
-            lambda u: Fraction(1, 5) * sp_residual(u, 3)
-            - Fraction(2, 7) * sp_residual(u, 7)
-            + Fraction(4, 11) * sp_residual(u, 11)
-        )
-        == Fraction(4, 11),
-        "sp11_witness_p11_kernel_separation evaluates to 1 on sp 11, 0 on sp 3 and sp 7, and c11 on combResidual3_7_11",
-    )
-
-    for k in range(1, 5):
-        # Product-scaled selective perturbation rays for p in {3, 7, 11}:
-        # p = 3: scale 3 * 77 * k = 231 * k
-        s_3 = Fraction(1, 231 * k)
-        u3_p = ((Fraction(1), Fraction(0)), (s_3, Fraction(0)), (s_3, s_3))
-        u3_n = ((Fraction(1), Fraction(0)), (s_3, s_3), (s_3, Fraction(0)))
-        # p = 7: scale 7 * 33 * k = 231 * k
-        s_7 = Fraction(1, 231 * k)
-        u7_p = ((Fraction(1), Fraction(0)), (s_7, s_7), (2 * s_7, s_7))
-        u7_n = ((Fraction(1), Fraction(0)), (2 * s_7, s_7), (s_7, s_7))
-        # p = 11: scale 11 * 21 * k = 231 * k, y = 3 (norm 9, (9/11)=+1), z = 1+i (norm 2, (2/11)=-1)
-        s_11 = Fraction(1, 231 * k)
-        u11_p = ((Fraction(1), Fraction(0)), (3 * s_11, Fraction(0)), (s_11, s_11))
-        u11_n = ((Fraction(1), Fraction(0)), (s_11, s_11), (3 * s_11, Fraction(0)))
-        selective_rays = [(3, u3_p, u3_n), (7, u7_p, u7_n), (11, u11_p, u11_n)]
-        for p_target, r_pos, r_neg in selective_rays:
-            for q_prime in primes_3_7_11:
-                if q_prime == p_target:
-                    require(
-                        sp_residual(r_pos, q_prime) == 1 and sp_residual(r_neg, q_prime) == -1,
-                        f"selective oscillation diagonal failed at p={p_target}",
-                    )
-                else:
-                    require(
-                        sp_residual(r_pos, q_prime) == 0 and sp_residual(r_neg, q_prime) == 0,
-                        f"selective oscillation off-diagonal failed at p={p_target}, q={q_prime}",
-                    )
-
-    sqrt11 = sp.sqrt(11)
-    u_s11 = sp.Matrix([1, 3, 1])
-    v_s11_tilde = sqrt11 * sp.Matrix([3, -1, 0])
-    w_s11 = sp.Matrix([1, 3, -10])
-    p_s11 = 3 * v_s11_tilde + (1 + sp.I) * w_s11
-    q_s11 = (1 - sp.I) * v_s11_tilde - 3 * w_s11
-    require(
-        zero((u_s11.conjugate().T * p_s11)[0])
-        and zero((u_s11.conjugate().T * q_s11)[0])
-        and zero((p_s11.conjugate().T * q_s11)[0]),
-        "Q(i, sqrt(11))^3 frame (witness_p11, p_s11, q_s11) is pairwise orthogonal",
-    )
-    sqrt11_frame_norms = frame_norms(u_s11, p_s11, q_s11)
-    require(
-        sqrt11_frame_norms == [11, 1210, 1210]
-        and vp_rat(Fraction(1210), 3) == 0
-        and vp_rat(Fraction(1210), 7) == 0
-        and vp_rat(Fraction(1210), 11) == 2,
-        "Q(i, sqrt(11))^3 frame has rational squared norms (11, 1210, 1210) with even v3, v7, and v11 on partners",
-    )
-
-    # Section 9F: Planar frame-rotation pairs, operator parallelogram law,
-    # coordinate-sign symmetry vs. orthogonal parallelogram law, equatorial pole
-    # witnesses, and Piron / Pythagorean equatorial rotations on Q(i)^3.
-    def g_mul_c(a: tuple[Fraction, Fraction], b: tuple[Fraction, Fraction]) -> tuple[Fraction, Fraction]:
-        return (a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0])
-
-    def g_conj_c(a: tuple[Fraction, Fraction]) -> tuple[Fraction, Fraction]:
-        return (a[0], -a[1])
-
-    def g_add_vec(u: GVec, v: GVec) -> GVec:
-        return tuple((a[0] + b[0], a[1] + b[1]) for a, b in zip(u, v))  # type: ignore[return-value]
-
-    def g_sub_vec(u: GVec, v: GVec) -> GVec:
-        return tuple((a[0] - b[0], a[1] - b[1]) for a, b in zip(u, v))  # type: ignore[return-value]
-
-    def g_smul_vec(c: tuple[Fraction, Fraction], u: GVec) -> GVec:
-        return tuple(g_mul_c(c, a) for a in u)  # type: ignore[return-value]
-
-    def rot_pair_u(u: GVec, v: GVec, a: tuple[Fraction, Fraction], b: tuple[Fraction, Fraction]) -> GVec:
-        return g_add_vec(g_smul_vec(a, u), g_smul_vec(b, v))
-
-    def rot_pair_v(u: GVec, v: GVec, a: tuple[Fraction, Fraction], b: tuple[Fraction, Fraction]) -> GVec:
-        nu = (vec_norm_sq(u), Fraction(0))
-        nv = (vec_norm_sq(v), Fraction(0))
-        c1 = g_mul_c((-nv[0], Fraction(0)), g_conj_c(b))
-        c2 = g_mul_c(nu, g_conj_c(a))
-        return g_add_vec(g_smul_vec(c1, u), g_smul_vec(c2, v))
-
-    def eq_ortho(y: GVec) -> GVec:
-        return ((Fraction(0), Fraction(0)), (-y[2][0], y[2][1]), (y[1][0], -y[1][1]))
-
-    def piron_step(y: GVec, lam: tuple[Fraction, Fraction]) -> GVec:
-        return g_add_vec(g_add_vec(nine_rays_gvec[0], y), g_smul_vec(lam, eq_ortho(y)))
-
-    def piron_partner(y: GVec, lam: tuple[Fraction, Fraction]) -> GVec:
-        ny = vec_norm_sq(y)
-        c1 = (-g_norm_sq(lam) * ny, Fraction(0))
-        c2 = g_mul_c((Fraction(1) + ny, Fraction(0)), lam)
-        return g_add_vec(
-            g_smul_vec(c1, g_add_vec(nine_rays_gvec[0], y)),
-            g_smul_vec(c2, eq_ortho(y)),
-        )
-
-    def meridian_ortho(y: GVec) -> GVec:
-        return g_add_vec(g_smul_vec((-vec_norm_sq(y), Fraction(0)), nine_rays_gvec[0]), y)
-
-    def pythag_eq_rot(y: GVec, k: int) -> GVec:
-        kf = Fraction(k)
-        c1 = ((kf * kf - 1) / (kf * kf + 1), Fraction(0))
-        c2 = ((2 * kf) / (kf * kf + 1), Fraction(0))
-        return g_add_vec(g_smul_vec(c1, y), g_smul_vec(c2, eq_ortho(y)))
-
-    def quad_ray_e1(u: GVec) -> Fraction:
-        return g_norm_sq(u[0]) / vec_norm_sq(u)
-
-    eq_witness_3 = gv_int(0, 0, 1, 0, 1, 1)
-    eq_witness_3_neg = gv_int(0, 0, 1, 1, 1, 0)
-    eq_witness_7 = gv_int(0, 0, 1, 1, 2, 1)
-    eq_witness_7_neg = gv_int(0, 0, 2, 1, 1, 1)
-    eq_witness_11 = gv_int(0, 0, 3, 0, 1, 1)
-    eq_witness_11_neg = gv_int(0, 0, 1, 1, 3, 0)
-    eq_witness_table = [
-        (eq_witness_3, (1, 0, 0)),
-        (eq_witness_3_neg, (-1, 0, 0)),
-        (eq_witness_7, (0, 1, 0)),
-        (eq_witness_7_neg, (0, -1, 0)),
-        (eq_witness_11, (0, 0, 1)),
-        (eq_witness_11_neg, (0, 0, -1)),
-    ]
-    for w_vec, (e3, e7, e11) in eq_witness_table:
-        require(
-            quad_ray_e1(w_vec) == 0
-            and sp_residual(w_vec, 3) == e3
-            and sp_residual(w_vec, 7) == e7
-            and sp_residual(w_vec, 11) == e11,
-            "equatorial witness table isolates (sp 3, sp 7, sp 11) with +-1 in e1^perp",
-        )
-
-    # Symbolic operator-space two-point orthogonal parallelogram identity (rayProj_ortho_add_sub):
-    for u_p, v_p in [(witness_111, gv_int(1, 0, -1, 0, 0, 0)), (witness_p7, gv_int(2, 0, -1, 0, 0, 0)), (witness_p11, gv_int(3, 0, -1, 0, 0, 0))]:
-        u_sp = sp.Matrix([c[0] + sp.I * c[1] for c in u_p])
-        v_sp = sp.Matrix([c[0] + sp.I * v_c[1] for v_c in v_p for c in [v_c]])
-        nu_sp = sp.expand((u_sp.conjugate().T * u_sp)[0])
-        nv_sp = sp.expand((v_sp.conjugate().T * v_sp)[0])
-        u_add_sp = u_sp + v_sp
-        u_sub_sp = u_sp - v_sp
-        q_add = sp.expand((u_add_sp.conjugate().T * rho * u_add_sp)[0]) / (nu_sp + nv_sp)
-        q_sub = sp.expand((u_sub_sp.conjugate().T * rho * u_sub_sp)[0]) / (nu_sp + nv_sp)
-        q_u = sp.expand((u_sp.conjugate().T * rho * u_sp)[0]) / nu_sp
-        q_v = sp.expand((v_sp.conjugate().T * rho * v_sp)[0]) / nv_sp
-        require(
-            zero(q_add + q_sub - (2 * nu_sp / (nu_sp + nv_sp)) * q_u - (2 * nv_sp / (nu_sp + nv_sp)) * q_v),
-            "symbolic operator-space orthogonal parallelogram identity holds for every HermForm3",
-        )
-        for alpha_c, beta_c in [
-            ((Fraction(2), Fraction(-1)), (Fraction(1), Fraction(2))),
-            ((Fraction(1, 3), Fraction(-2, 3)), (Fraction(3, 5), Fraction(0))),
-        ]:
-            ru_c = rot_pair_u(u_p, v_p, alpha_c, beta_c)
-            rv_c = rot_pair_v(u_p, v_p, alpha_c, beta_c)
-            require(
-                g_inner(ru_c, rv_c) == (Fraction(0), Fraction(0))
-                and vec_norm_sq(ru_c) == g_norm_sq(alpha_c) * vec_norm_sq(u_p) + g_norm_sq(beta_c) * vec_norm_sq(v_p)
-                and vec_norm_sq(rv_c) == vec_norm_sq(u_p) * vec_norm_sq(v_p) * vec_norm_sq(ru_c)
-                and quad_ray_e1(ru_c) + quad_ray_e1(rv_c) == quad_ray_e1(u_p) + quad_ray_e1(v_p)
-                and all(
-                    sp_residual(ru_c, p_chk) + sp_residual(rv_c, p_chk)
-                    == sp_residual(u_p, p_chk) + sp_residual(v_p, p_chk)
-                    for p_chk in (3, 7, 11)
-                ),
-                "planar frame-rotation pairs preserve orthogonality, norm identities, and 2D subspace sums",
-            )
-
-    # Verify failure of orthogonal parallelogram law for s3, s7, sp 11:
-    # e1 + (0, 1, 1) = witness_111 (norm 3, s3 = +1),
-    # e1 + (0, 2, 1+i) = witness_p7 (norm 7, s7 = +1),
-    # e1 + (0, 3, 1) = witness_p11 (norm 11, sp 11 = +1),
-    # and by coordinate-sign symmetry sp p (e1 + y) + sp p (e1 - y) = 2 != 0.
-    parallelogram_counterexamples = [
-        (3, gv_int(0, 0, 1, 0, 1, 0)),
-        (7, gv_int(0, 0, 2, 0, 1, 1)),
-        (11, gv_int(0, 0, 3, 0, 1, 0)),
-    ]
-    piron_ortho_parallelogram_sums: list[int] = []
-    for p_prime, w_pos in parallelogram_counterexamples:
-        u_plus = g_add_vec(nine_rays_gvec[0], w_pos)
-        u_minus = g_sub_vec(nine_rays_gvec[0], w_pos)
-        piron_ortho_parallelogram_sums.append(
-            int(sp_residual(u_plus, p_prime) + sp_residual(u_minus, p_prime))
-        )
-        require(
-            g_inner(nine_rays_gvec[0], w_pos) == (Fraction(0), Fraction(0))
-            and sp_residual(nine_rays_gvec[0], p_prime) == Fraction(0)
-            and sp_residual(w_pos, p_prime) == Fraction(0)
-            and sp_residual(u_plus, p_prime) == Fraction(1)
-            and sp_residual(u_minus, p_prime) == Fraction(1)
-            and sp_residual(u_plus, p_prime) + sp_residual(u_minus, p_prime) == Fraction(2),
-            f"sp {p_prime} violates orthogonal parallelogram zero law on (e1, w_pos)",
-        )
-
-    # Verify Piron step / partner / meridian identities and Pythagorean equatorial rotations:
-    for y_eq in [eq_witness_3, eq_witness_7, eq_witness_11]:
-        for k_step in range(1, 5):
-            lam_step = (Fraction(1, k_step), Fraction(0))
-            u_base = g_add_vec(nine_rays_gvec[0], y_eq)
-            v_base = g_smul_vec(lam_step, eq_ortho(y_eq))
-            w_mer = meridian_ortho(y_eq)
-            p_step = piron_step(y_eq, lam_step)
-            p_part = piron_partner(y_eq, lam_step)
-            require(
-                p_step == rot_pair_u(u_base, v_base, (Fraction(1), Fraction(0)), (Fraction(1), Fraction(0)))
-                and p_part == rot_pair_v(u_base, v_base, (Fraction(1), Fraction(0)), (Fraction(1), Fraction(0)))
-                and g_inner(u_base, v_base) == (Fraction(0), Fraction(0))
-                and g_inner(u_base, w_mer) == (Fraction(0), Fraction(0))
-                and g_inner(v_base, w_mer) == (Fraction(0), Fraction(0))
-                and g_inner(p_step, p_part) == (Fraction(0), Fraction(0)),
-                "Piron base and rotated frames are pairwise orthogonal",
-            )
-            require(
-                quad_ray_e1(p_step) + quad_ray_e1(p_part) == quad_ray_e1(u_base) + quad_ray_e1(v_base)
-                and quad_ray_e1(p_step) <= quad_ray_e1(u_base)
-                and quad_ray_e1(u_base) + quad_ray_e1(w_mer) == Fraction(1)
-                and vec_norm_sq(g_sub_vec(p_step, u_base)) == vec_norm_sq(y_eq) / Fraction(k_step * k_step),
-                "Piron frame-rotation sum, monotone descent, meridian complement, and step distance hold",
-            )
-            y_rot = pythag_eq_rot(y_eq, k_step)
-            require(
-                y_rot[0] == (Fraction(0), Fraction(0))
-                and vec_norm_sq(y_rot) == vec_norm_sq(y_eq)
-                and vec_norm_sq(g_add_vec(nine_rays_gvec[0], y_rot)) == vec_norm_sq(u_base)
-                and quad_ray_e1(g_add_vec(nine_rays_gvec[0], y_rot)) == quad_ray_e1(u_base),
-                "Pythagorean equatorial rotation preserves norm and north-pole Born weight",
-            )
-
-    # Subsection 9G: Two-step Piron tangent algebra, Kelvin-inverted meridian duality,
-    # Piron-Pythagorean two-sided sandwich squeeze, and equatorial-invariance vs. parallelogram separation.
-    def eq_tangent_step(y: GVec, t: Fraction) -> GVec:
-        return g_add_vec(y, g_smul_vec((t, Fraction(0)), eq_ortho(y)))
-
-    def kelvin_eq(y: GVec) -> GVec:
-        return g_smul_vec((-Fraction(1) / vec_norm_sq(y), Fraction(0)), y)
-
-    for y_eq in [eq_witness_3, eq_witness_7, eq_witness_11] + [w for _, w in parallelogram_counterexamples]:
-        ny = vec_norm_sq(y_eq)
-        neg_y = g_smul_vec((Fraction(-1), Fraction(0)), y_eq)
-        require(
-            eq_ortho(eq_ortho(y_eq)) == neg_y
-            and pythag_eq_rot(y_eq, 1) == eq_ortho(y_eq)
-            and pythag_eq_rot(pythag_eq_rot(y_eq, 1), 1) == neg_y
-            and eq_tangent_step(eq_tangent_step(y_eq, Fraction(1)), Fraction(1))
-            == g_smul_vec((Fraction(2), Fraction(0)), eq_ortho(y_eq)),
-            "eqOrtho involution, pythagEqRot k=1 90-degree rotation, and two-step tangent identity hold",
-        )
-        y_kelvin = kelvin_eq(y_eq)
-        u_base = g_add_vec(nine_rays_gvec[0], y_eq)
-        u_kelvin = g_add_vec(nine_rays_gvec[0], y_kelvin)
-        u_step1 = piron_step(y_eq, (Fraction(1), Fraction(0)))
-        u_2eq = g_add_vec(nine_rays_gvec[0], g_smul_vec((Fraction(2), Fraction(0)), eq_ortho(y_eq)))
-        require(
-            y_kelvin[0] == (Fraction(0), Fraction(0))
-            and vec_norm_sq(y_kelvin) == Fraction(1) / ny
-            and g_smul_vec((-Fraction(1) / ny, Fraction(0)), meridian_ortho(y_eq)) == u_kelvin
-            and quad_ray_e1(u_base) + quad_ray_e1(u_kelvin) == Fraction(1)
-            and quad_ray_e1(u_2eq) <= quad_ray_e1(u_step1) <= quad_ray_e1(u_base),
-            "Kelvin-inverted equatorial vector satisfies norm inversion, meridian ray identity, and two-step descent",
-        )
-        for t_step in [Fraction(1, 2), Fraction(2, 3), Fraction(-3, 4)]:
-            for s_step in [Fraction(1, 3), -t_step]:
-                ts_comp = eq_tangent_step(eq_tangent_step(y_eq, t_step), s_step)
-                ts_rhs = g_add_vec(
-                    g_smul_vec((Fraction(1) - t_step * s_step, Fraction(0)), y_eq),
-                    g_smul_vec((t_step + s_step, Fraction(0)), eq_ortho(y_eq)),
-                )
-                require(
-                    ts_comp == ts_rhs,
-                    "two-step equatorial tangent composition identity holds",
-                )
-            t_cancel = eq_tangent_step(eq_tangent_step(y_eq, t_step), -t_step)
-            scale_out = Fraction(1) + t_step * t_step
-            scale_in = Fraction(1) / scale_out
-            u_tstep = piron_step(y_eq, (t_step, Fraction(0)))
-            u_out = g_add_vec(nine_rays_gvec[0], g_smul_vec((scale_out, Fraction(0)), y_eq))
-            u_in = g_add_vec(nine_rays_gvec[0], g_smul_vec((scale_in, Fraction(0)), y_eq))
-            require(
-                u_tstep == g_add_vec(nine_rays_gvec[0], eq_tangent_step(y_eq, t_step))
-                and vec_norm_sq(eq_tangent_step(y_eq, t_step)) == scale_out * ny
-                and eq_ortho(eq_tangent_step(y_eq, t_step))
-                == g_add_vec(g_smul_vec((-t_step, Fraction(0)), y_eq), eq_ortho(y_eq))
-                and t_cancel == g_smul_vec((scale_out, Fraction(0)), y_eq)
-                and quad_ray_e1(u_out) <= quad_ray_e1(u_tstep) <= quad_ray_e1(u_base) <= quad_ray_e1(u_in),
-                "two-step Piron tangent cancellation and outward/inward radial monotonicity hold",
-            )
-        for k_step in range(2, 6):
-            kf = Fraction(k_step)
-            r_in = (kf * kf - 1) / (kf * kf + 1)
-            r_out = (kf * kf + 1) / (kf * kf - 1)
-            t_k = (2 * kf) / (kf * kf - 1)
-            y_rot = pythag_eq_rot(y_eq, k_step)
-            u_rot = g_add_vec(nine_rays_gvec[0], y_rot)
-            u_rad_in = g_add_vec(nine_rays_gvec[0], g_smul_vec((r_in, Fraction(0)), y_eq))
-            u_rad_out = g_add_vec(nine_rays_gvec[0], g_smul_vec((r_out, Fraction(0)), y_eq))
-            require(
-                y_rot == eq_tangent_step(g_smul_vec((r_in, Fraction(0)), y_eq), t_k)
-                and eq_tangent_step(y_rot, -t_k) == g_smul_vec((r_out, Fraction(0)), y_eq)
-                and quad_ray_e1(u_rad_out) <= quad_ray_e1(u_rot) <= quad_ray_e1(u_rad_in)
-                and vec_norm_sq(g_sub_vec(u_rad_in, u_base)) == (r_in - 1) * (r_in - 1) * ny
-                and vec_norm_sq(g_sub_vec(u_rad_out, u_base)) == (r_out - 1) * (r_out - 1) * ny,
-                "Piron-Pythagorean two-sided sandwich and radial distance formulas hold",
-            )
-        for eps in [Fraction(1, 5), Fraction(1, 25), Fraction(1, 100)]:
-            require(
-                any(
-                    quad_ray_e1(
-                        g_add_vec(
-                            nine_rays_gvec[0],
-                            g_smul_vec((Fraction(k_e * k_e - 1, k_e * k_e + 1), Fraction(0)), y_eq),
-                        )
-                    )
-                    - quad_ray_e1(
-                        g_add_vec(
-                            nine_rays_gvec[0],
-                            g_smul_vec((Fraction(k_e * k_e + 1, k_e * k_e - 1), Fraction(0)), y_eq),
-                        )
-                    )
-                    < eps
-                    and abs(quad_ray_e1(g_add_vec(nine_rays_gvec[0], pythag_eq_rot(y_eq, k_e))) - quad_ray_e1(u_base))
-                    < eps
-                    for k_e in range(2, 40)
-                ),
-                "Archimedean radial continuity squeeze forces Pythagorean equatorial rotation gap below epsilon",
-            )
-        require(
-            quad_ray_e1(y_eq) == Fraction(0) and quad_ray_e1(eq_ortho(y_eq)) == Fraction(0),
-            "Pure north-pole Born weight vanishes on equatorial frame vectors (e1, y, eqOrtho y)",
-        )
-
-    pythag_rot_invariance: list[int] = []
-    for p_prime, w_pos in parallelogram_counterexamples:
-        w_swap = ((Fraction(0), Fraction(0)), w_pos[2], w_pos[1])
-        pythag_rot_invariance.append(int(all(
-            sp_residual(g_add_vec(nine_rays_gvec[0], pythag_eq_rot(w_pos, k_rot)), p_prime)
-            == sp_residual(g_add_vec(nine_rays_gvec[0], w_pos), p_prime)
-            for k_rot in range(1, 6)
-        )))
-        require(
-            vp_rat(vec_norm_sq(g_add_vec(nine_rays_gvec[0], w_pos)), p_prime) > 0,
-            f"sp {p_prime} invariance witness satisfies the hypothesis v_p(N(e1 + y)) > 0",
-        )
-        require(
-            vec_norm_sq(w_swap) == vec_norm_sq(w_pos)
-            and sp_residual(g_add_vec(nine_rays_gvec[0], w_swap), p_prime)
-            == sp_residual(g_add_vec(nine_rays_gvec[0], w_pos), p_prime)
-            == Fraction(1),
-            f"sp {p_prime} depends only on equatorial norm on e1 + y when v_p(N(e1 + y)) > 0",
-        )
-        for k_rot in range(1, 6):
-            u_rot = g_add_vec(nine_rays_gvec[0], pythag_eq_rot(w_pos, k_rot))
-            require(
-                sp_residual(u_rot, p_prime) == Fraction(1),
-                f"sp {p_prime} is invariant under all Pythagorean equatorial rotations on e1 + w_pos (v_p(N(e1 + w_pos)) > 0)",
-            )
-        w_90 = pythag_eq_rot(w_pos, 1)
-        w_180 = pythag_eq_rot(w_90, 1)
-        require(
-            w_180 == g_smul_vec((Fraction(-1), Fraction(0)), w_pos)
-            and sp_residual(g_add_vec(nine_rays_gvec[0], w_pos), p_prime)
-            + sp_residual(g_add_vec(nine_rays_gvec[0], w_180), p_prime)
-            == Fraction(2),
-            f"sp {p_prime} is 90-degree rotationally invariant yet violates SatisfiesOrthoParallelogramZero at e1",
-        )
-
-    # The hypothesis v_p(N(e1 + y)) > 0 in sp_e1_add_eq_of_normSqVec_eq is needed: with v_3 = -1
-    # the rotated vector has the same equatorial norm but the opposite sign of s3.
-    y_neg_val = ((Fraction(0), Fraction(0)), (Fraction(-4, 3), Fraction(-4, 3)), (Fraction(-4, 3), Fraction(0)))
-    u_neg_val = g_add_vec(nine_rays_gvec[0], y_neg_val)
-    u_neg_val_rot = g_add_vec(nine_rays_gvec[0], pythag_eq_rot(y_neg_val, 1))
-    require(
-        vp_rat(vec_norm_sq(u_neg_val), 3) == -1
-        and vec_norm_sq(pythag_eq_rot(y_neg_val, 1)) == vec_norm_sq(y_neg_val)
-        and sp_residual(u_neg_val, 3) == Fraction(-1)
-        and sp_residual(u_neg_val_rot, 3) == Fraction(1),
-        "sp 3 equatorial invariance fails without v_3(N(e1 + y)) > 0",
-    )
-
-    print(json.dumps({"status": "PASS", "sympy_version": sp.__version__,
-                      "tomography_rank": tomography.rank(),
-                      "s3_witness_111": int(s3(witness_111)),
-                      "s3_witness_div4": int(s3(witness_div4)),
-                      "s3_witness_div8": int(s3(witness_div8)),
-                      "s7_witness_p7": int(sp_residual(witness_p7, 7)),
-                      "sp11_witness_p11": int(sp_residual(witness_p11, 11)),
-                      "exotic_qi7_witness_p7": str(exotic_qi7(witness_p7)),
-                      "sqrt3_frame_norms": sqrt3_frame_norms,
-                      "sqrt7_frame_norms": sqrt7_frame_norms,
-                      "sqrt11_frame_norms": sqrt11_frame_norms,
-                      "piron_ortho_parallelogram_sums": piron_ortho_parallelogram_sums,
-                      "pythag_rot_invariance_3_7_11": pythag_rot_invariance,
-                      "scope": "symbolic algebra controls, uniform sp_residual (p in {3,7,11}), selective oscillation, joint elimination, Piron/parallelogram/continuity bridge, and 9G two-step tangent/Kelvin/Pythagorean sandwich squeeze"},
-                     sort_keys=True))
-
-
-if __name__ == "__main__":
-    main()
-
-
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from checker_support.boundary import cli, evaluate
+from checker_support.cases import Cases
+from checker_support.domains import rational
+from checker_support.equatorial_ray_geometry import EquatorialRayGeometry as E, NORTH
+from checker_support.gaussian_rational import GaussianRational as G
+from checker_support.gaussian_vector3 import GaussianVector3 as V
+from checker_support.hermitian_tomography import HermitianTomography as H, _symbolic_vector, _zero
+from checker_support.inert_prime_residual import InertPrimeResidual as R
+from checker_support.orthogonal_gaussian_pair import OrthogonalGaussianPair as P
+from checker_support.outcome import Outcome
+
+Weights = tuple[Q, ...]
+
+
+def _vector(*coordinates: int) -> V:
+    return V._integers(coordinates)
+
+
+def _swap_equator(vector: V) -> V:
+    x, y, z = vector.entries
+    return V((x, z, y))
+
+
+def _born(vector: V) -> Q:
+    return E._born_weight(vector)
+
+
+@dataclass(frozen=True, slots=True, init=False)
+class GaussianTomographyControls:
+    """Owns the fixed witness family; each verification owns its case recorder."""
+    model: H
+    residuals: tuple[R, ...]
+    witnesses: tuple[V, ...]
+    partners: tuple[V, ...]
+    equators: tuple[V, ...]
+    parallelograms: tuple[V, ...]
+    kernels: tuple[Weights, ...]
+
+    def __init__(self) -> None:
+        object.__setattr__(self, 'model', H())
+        object.__setattr__(self, 'residuals', tuple(R(p) for p in (3, 7, 11)))
+        object.__setattr__(self, 'witnesses', (_vector(1, 0, 1, 0, 1, 0), _vector(1, 0, 2, 0, 1, 1), _vector(1, 0, 3, 0, 1, 0)))
+        object.__setattr__(self, 'partners', (_vector(1, 0, -1, 0, 0, 0), _vector(2, 0, -1, 0, 0, 0), _vector(3, 0, -1, 0, 0, 0)))
+        object.__setattr__(self, 'equators', (_vector(0, 0, 1, 0, 1, 1), _vector(0, 0, 1, 1, 2, 1), _vector(0, 0, 3, 0, 1, 1)))
+        object.__setattr__(self, 'parallelograms', tuple(w._sub(NORTH) for w in self.witnesses))
+        object.__setattr__(self, 'kernels', (
+            tuple(Q(x, 3) for x in (1, 1, 1, -2, 0, -2, 0, -2, 0)),
+            tuple(Q(x, 7) for x in (3, 2, 4, -4, 0, -2, -2, -4, -4)),
+            tuple(Q(x, 11) for x in (3, -3, 3, -6, 0, -2, 0, -6, 0))))
+
+    def _fixture_values(self, cases: Cases) -> None:
+        for index, residual in enumerate(self.residuals):
+            for ray in self.model.rays:
+                cases.require(residual._residual(ray) == 0, 'residual vanishes on tomography ray')
+                cases.require(residual._exotic(ray) == Q(1, 3), 'exotic tomography value')
+            witness = self.witnesses[index]
+            cases.require(witness._integer_primitive(), 'inert-prime witness is (1+i)-primitive')
+            cases.require(witness.squared_norm == residual.prime, 'inert-prime witness norm')
+            for other, vector in enumerate(self.witnesses):
+                cases.require(residual._residual(vector) == int(index == other), 'three-prime witness duality')
+        for vector, norm, sign in ((_vector(1, 2, 1, 2, 1, 1), 12, -1), (_vector(1, 4, 1, 2, 1, 1), 24, 1)):
+            cases.require(vector._integer_primitive(), 'divisible-by-four norm witness is primitive')
+            cases.require(vector.squared_norm == norm, 'divisible-by-four/eight squared norm')
+            cases.require(self.residuals[0]._residual(vector) == sign, 'divisible-by-four/eight residual sign')
+
+    def _frame(self, pair: P, cases: Cases) -> None:
+        u, v, w = pair.first, pair.second, pair._completion()
+        cases.require(w.squared_norm > 0, 'Hermitian completion is nonzero')
+        cases.require(u._inner(v) == u._inner(w) == v._inner(w) == G(0), 'three Hermitian orthogonality equations')
+        for residual in self.residuals:
+            cases.require(sum(residual._valuation(x.squared_norm) for x in (u, v, w)) % 2 == 0, 'even frame norm-valuation sum')
+            cases.require(sum(residual._residual(x) for x in (u, v, w)) == 0, 'sampled zero-weight frame sum')
+            cases.require(sum(residual._exotic(x) for x in (u, v, w)) == 1, 'sampled exotic frame sum')
+
+    def _frames(self, cases: Cases) -> None:
+        pairs = tuple(P(u, v) for u, v in zip(self.witnesses, self.partners))
+        extras = (P(self.witnesses[0], _vector(1, 0, 1, 0, -2, 0)),
+                  P(_vector(1, 2, 1, 2, 1, 1), _vector(1, 0, -1, 0, 0, 0)),
+                  P(_vector(1, 4, 1, 2, 1, 1), _vector(0, 0, 2, 4, -5, -5)))
+        for pair in pairs+extras:
+            self._frame(pair, cases)
+        first = pairs[0]
+        cases.require(sum(abs(self.residuals[0]._residual(x)) for x in (first.first, first.second, first._completion())) == 2,
+                      'unsigned residual negative control fails zero-weight sum')
+
+    def _kernel_value(self, index: int, function: Callable[[V], Q]) -> Q:
+        total = rational(function(self.witnesses[index]), 'kernel witness value')
+        for weight, ray in zip(self.kernels[index], self.model.rays):
+            total = rational(total+rational(weight*function(ray), 'kernel term'), 'kernel prefix')
+        return total
+
+    def _combination(self, coefficients: Weights, vector: V) -> Q:
+        return sum((weight*residual._residual(vector) for weight, residual in zip(coefficients, self.residuals)), Q(0))
+
+    def _kernel_controls(self, cases: Cases) -> None:
+        for index, (vector, weights) in enumerate(zip(self.witnesses, self.kernels)):
+            cases.require(self.model._kernel_relation(vector, weights), 'symbolic projector kernel identity')
+            for other, residual in enumerate(self.residuals):
+                cases.require(self._kernel_value(index, residual._residual) == int(index == other), 'residual separates its kernel relation')
+            cases.require(self._kernel_value(index, self.residuals[index]._exotic) == Q(1, 3), 'exotic separates its kernel relation')
+        coefficients = ((Q(2, 5), Q(-3, 7), Q(0)), (Q(1, 5), Q(-2, 7), Q(4, 11)))
+        for index, weights in zip((1, 2), coefficients):
+            cases.require(self._kernel_value(index, lambda vector: self._combination(weights, vector)) == weights[index],
+                          'mixed residual kernel extracts selected coefficient')
+
+    def _mixture_controls(self, cases: Cases) -> None:
+        residual = self.residuals[1]
+        cases.require(residual._exotic(self.witnesses[1]) == Q(2, 3), 's7 exotic witness value')
+        cases.require(residual._exotic(self.witnesses[0]) == Q(1, 3), 's7 exotic at s3 witness')
+        pair = P(self.witnesses[1], self.partners[1]); frame = (pair.first, pair.second, pair._completion())
+        weights = (Q(2, 5), Q(-3, 5), Q(0))
+        values = tuple((1+self._combination(weights, vector))/3 for vector in frame)
+        cases.require(sum(values) == 1, 'mixed exotic sampled frame sum')
+        cases.require(all(0 <= value <= 1 for value in values), 'mixed exotic sampled nonnegativity')
+
+    def _oscillation(self, index: int, denominator: int, cases: Cases) -> tuple[V, V]:
+        equator = self.equators[index]; residual = self.residuals[index]
+        positive_integer = NORTH._scale(G(denominator))._add(equator)
+        negative_integer = NORTH._scale(G(denominator))._add(_swap_equator(equator))
+        positive = positive_integer._scale(G(Q(1, denominator)))
+        negative = negative_integer._scale(G(Q(1, denominator)))
+        cases.require(residual._residual(positive_integer) == residual._residual(positive) == 1, 'positive sampled oscillation and scaling')
+        cases.require(residual._residual(negative_integer) == residual._residual(negative) == -1, 'negative sampled oscillation and scaling')
+        cases.require(residual._exotic(positive) == Q(2, 3), 'positive oscillation exotic value')
+        cases.require(residual._exotic(negative) == 0, 'negative oscillation exotic value')
+        distance = Q(residual.prime, denominator*denominator)
+        cases.require(positive._sub(NORTH).squared_norm == distance, 'positive sampled oscillation distance')
+        cases.require(negative._sub(NORTH).squared_norm == distance, 'negative sampled oscillation distance')
+        return positive, negative
+
+    def _oscillations(self, cases: Cases) -> None:
+        for k in range(1, 8):
+            self._oscillation(0, 3*k, cases)
+            seven = self._oscillation(1, 7*k, cases)
+            three_subsequence = self._oscillation(0, 21*k, cases)
+            cases.require(all(self.residuals[0]._residual(v) == 0 for v in seven), 's7 oscillation is s3-null')
+            cases.require(all(self.residuals[1]._residual(v) == 0 for v in three_subsequence), 's3 subsequence is s7-null')
+        for k in range(1, 5):
+            for index in range(3):
+                rays = self._oscillation(index, 231*k, cases)
+                for other, residual in enumerate(self.residuals):
+                    expected = (Q(1), Q(-1)) if index == other else (Q(0), Q(0))
+                    cases.require(tuple(residual._residual(ray) for ray in rays) == expected, 'three-prime selective oscillation samples')
+
+    def _quadratic_extensions(self, cases: Cases) -> tuple[tuple[int, int, int], ...]:
+        coefficients = ((sp.Integer(1), 1+sp.I), (1+sp.I, 2+sp.I), (sp.Integer(3), 1+sp.I))
+        expected = (18, 245, 1210); results = []
+        for index, (alpha, beta) in enumerate(coefficients):
+            pair = P(self.witnesses[index], self.partners[index]); prime = self.residuals[index].prime
+            u = _symbolic_vector(pair.first)
+            v = sp.sqrt(prime)*_symbolic_vector(pair.second)
+            w = _symbolic_vector(pair._completion())
+            p, q = alpha*v+beta*w, sp.conjugate(beta)*v-sp.conjugate(alpha)*w
+            cases.require(all(_zero((a.conjugate().T*b)[0]) for a, b in ((u, p), (u, q), (p, q))), 'quadratic-extension frame orthogonality')
+            norms = tuple(sp.expand((x.conjugate().T*x)[0]) for x in (u, p, q))
+            cases.require(norms == (prime, expected[index], expected[index]), 'quadratic-extension exact rational norms')
+            for other, residual in enumerate(self.residuals):
+                valuation = 2 if index == other else 0
+                cases.require(residual._valuation(Q(expected[index])) == valuation, 'quadratic-extension partner exact selected valuation')
+            results.append((int(norms[0]), int(norms[1]), int(norms[2])))
+        return tuple(results)
+
+    def _equator_witnesses(self, cases: Cases) -> None:
+        for index, vector in enumerate(self.equators):
+            for sign, witness in ((1, vector), (-1, _swap_equator(vector))):
+                cases.require(_born(witness) == 0, 'equatorial witness has zero north-pole weight')
+                expected = tuple(sign if index == other else 0 for other in range(3))
+                cases.require(tuple(residual._residual(witness) for residual in self.residuals) == expected, 'signed three-prime equatorial witness table')
+
+    def _rotated_pair(self, pair: P, alpha: G, beta: G, cases: Cases) -> None:
+        rotated = pair._rotate(alpha, beta); u, v = pair.first, pair.second
+        cases.require(rotated.first._inner(rotated.second) == G(0), 'planar rotation orthogonality')
+        cases.require(rotated.first.squared_norm == alpha.norm_sq()*u.squared_norm+beta.norm_sq()*v.squared_norm, 'first rotated norm identity')
+        cases.require(rotated.second.squared_norm == u.squared_norm*v.squared_norm*rotated.first.squared_norm, 'second rotated norm identity')
+        cases.require(_born(rotated.first)+_born(rotated.second) == _born(u)+_born(v), 'planar Born subspace sum')
+        for residual in self.residuals:
+            cases.require(residual._residual(rotated.first)+residual._residual(rotated.second) == residual._residual(u)+residual._residual(v), 'sampled planar residual subspace sum')
+
+    def _rotation_controls(self, cases: Cases) -> None:
+        for u, v in zip(self.witnesses, self.partners):
+            pair = P(u, v)
+            cases.require(self.model._parallelogram(pair), 'symbolic orthogonal projector parallelogram')
+            for alpha, beta in ((G(2, -1), G(1, 2)), (G(Q(1, 3), Q(-2, 3)), G(Q(3, 5)))):
+                self._rotated_pair(pair, alpha, beta, cases)
+
+    def _parallelogram_counterexamples(self, cases: Cases) -> tuple[int, ...]:
+        results = []
+        for residual, equator in zip(self.residuals, self.parallelograms):
+            plus, minus = NORTH._add(equator), NORTH._sub(equator)
+            cases.require(NORTH._inner(equator) == G(0), 'counterexample pair is orthogonal')
+            cases.require(residual._residual(NORTH) == residual._residual(equator) == 0, 'counterexample summands are residual-null')
+            cases.require(residual._residual(plus) == residual._residual(minus) == 1, 'both counterexample sums have value one')
+            total = residual._residual(plus)+residual._residual(minus)
+            cases.require(total == 2, 'orthogonal parallelogram residual counterexample')
+            results.append(int(total))
+        return tuple(results)
+
+    def _piron_sample(self, geometry: E, k: int, cases: Cases) -> None:
+        scalar = G(Q(1, k)); v = geometry.quarter_turn._scale(scalar)
+        pair = geometry._piron(scalar); meridian = geometry._meridian()
+        cases.require(geometry.base._inner(v) == geometry.base._inner(meridian) == v._inner(meridian) == G(0), 'Piron base frame orthogonality')
+        cases.require(pair.first._inner(pair.second) == G(0), 'Piron rotated pair orthogonality')
+        cases.require(_born(pair.first)+_born(pair.second) == _born(geometry.base)+_born(v), 'Piron Born subspace sum')
+        cases.require(_born(pair.first) <= _born(geometry.base), 'Piron north-pole descent')
+        cases.require(_born(geometry.base)+_born(meridian) == 1, 'meridian complement')
+        cases.require(pair.first._sub(geometry.base).squared_norm == geometry.vector.squared_norm/Q(k*k), 'Piron step distance')
+        rotated = geometry._pythagorean(k)
+        cases.require(rotated.entries[0] == G(0), 'Pythagorean rotation stays equatorial')
+        cases.require(rotated.squared_norm == geometry.vector.squared_norm, 'Pythagorean norm preservation')
+        cases.require(E(rotated).base.squared_norm == geometry.base.squared_norm, 'rotated pole-sum norm')
+        cases.require(_born(E(rotated).base) == _born(geometry.base), 'Pythagorean north-pole weight')
+
+    def _quarter_kelvin(self, geometry: E, cases: Cases) -> None:
+        y, turned = geometry.vector, geometry.quarter_turn
+        negative = y._scale(G(-1))
+        cases.require(E(turned).quarter_turn == negative, 'equatorial quarter-turn squares to negation')
+        cases.require(geometry._pythagorean(1) == turned, 'Pythagorean k=1 is quarter-turn')
+        cases.require(E(turned)._pythagorean(1) == negative, 'two Pythagorean quarter-turns')
+        cases.require(E(geometry._tangent(Q(1)))._tangent(Q(1)) == turned._scale(G(2)), 'two unit tangent steps')
+        kelvin = geometry._kelvin()
+        cases.require(kelvin.entries[0] == G(0), 'Kelvin remains equatorial')
+        cases.require(kelvin.squared_norm == 1/y.squared_norm, 'Kelvin norm inversion')
+        cases.require(geometry._meridian()._scale(G(-1/y.squared_norm)) == E(kelvin).base, 'Kelvin meridian ray identity')
+        cases.require(_born(geometry.base)+_born(E(kelvin).base) == 1, 'Kelvin Born complement')
+        step = geometry._piron(G(1)).first
+        cases.require(_born(E(turned._scale(G(2))).base) <= _born(step) <= _born(geometry.base), 'two-step north-pole descent')
+
+    def _tangent_sample(self, geometry: E, parameter: Q, cases: Cases) -> None:
+        y = geometry.vector; t = parameter; stepped = geometry._tangent(t)
+        for s in (Q(1, 3), -t):
+            actual = E(stepped)._tangent(s)
+            expected = y._scale(G(1-t*s))._add(geometry.quarter_turn._scale(G(t+s)))
+            cases.require(actual == expected, 'two-step tangent composition')
+        outward = 1+t*t; inward = 1/outward
+        cases.require(geometry._piron(G(t)).first == E(stepped).base, 'Piron and tangent pole sums agree')
+        cases.require(stepped.squared_norm == outward*y.squared_norm, 'tangent norm identity')
+        cases.require(E(stepped).quarter_turn == y._scale(G(-t))._add(geometry.quarter_turn), 'quarter-turn of tangent step')
+        cases.require(E(stepped)._tangent(-t) == y._scale(G(outward)), 'tangent cancellation gives radial dilation')
+        weights = (_born(E(y._scale(G(outward))).base), _born(E(stepped).base), _born(geometry.base), _born(E(y._scale(G(inward))).base))
+        cases.require(all(a <= b for a, b in zip(weights, weights[1:])), 'outward/inward radial monotonicity')
+
+    def _sandwich_sample(self, geometry: E, k: int, cases: Cases) -> None:
+        inside, outside, tangent = Q(k*k-1, k*k+1), Q(k*k+1, k*k-1), Q(2*k, k*k-1)
+        inner = E(geometry.vector._scale(G(inside))); outer = E(geometry.vector._scale(G(outside)))
+        rotated = E(geometry._pythagorean(k))
+        cases.require(inner._tangent(tangent) == rotated.vector, 'inner tangent is Pythagorean rotation')
+        cases.require(rotated._tangent(-tangent) == outer.vector, 'inverse tangent is outer radius')
+        cases.require(_born(outer.base) <= _born(rotated.base) <= _born(inner.base), 'two-sided Pythagorean sandwich')
+        cases.require(inner.base._sub(geometry.base).squared_norm == (inside-1)**2*geometry.vector.squared_norm, 'inner radial distance')
+        cases.require(outer.base._sub(geometry.base).squared_norm == (outside-1)**2*geometry.vector.squared_norm, 'outer radial distance')
+
+    @staticmethod
+    def _squeeze_sample(geometry: E, k: int, epsilon: Q) -> bool:
+        inside, outside = Q(k*k-1, k*k+1), Q(k*k+1, k*k-1)
+        gap = _born(E(geometry.vector._scale(G(inside))).base)-_born(E(geometry.vector._scale(G(outside))).base)
+        rotated_gap = abs(_born(E(geometry._pythagorean(k)).base)-_born(geometry.base))
+        return gap < epsilon and rotated_gap < epsilon
+
+    def _equatorial_controls(self, cases: Cases) -> None:
+        for vector in self.equators:
+            for k in range(1, 5):
+                self._piron_sample(E(vector), k, cases)
+        for vector in self.equators+self.parallelograms:
+            geometry = E(vector); self._quarter_kelvin(geometry, cases)
+            for t in (Q(1, 2), Q(2, 3), Q(-3, 4)):
+                self._tangent_sample(geometry, t, cases)
+            for k in range(2, 6):
+                self._sandwich_sample(geometry, k, cases)
+            for epsilon in (Q(1, 5), Q(1, 25), Q(1, 100)):
+                cases.require(any(self._squeeze_sample(geometry, k, epsilon) for k in range(2, 40)), 'finite sampled epsilon sandwich')
+            cases.require(_born(vector) == _born(geometry.quarter_turn) == 0, 'equatorial north-pole weights vanish')
+
+    def _symmetry_samples(self, cases: Cases) -> tuple[int, ...]:
+        results = []
+        for residual, vector in zip(self.residuals, self.parallelograms):
+            geometry = E(vector); swapped = _swap_equator(vector)
+            cases.require(swapped.squared_norm == vector.squared_norm, 'swapped equator norm')
+            cases.require(residual._residual(E(swapped).base) == residual._residual(geometry.base) == 1, 'sampled equatorial norm invariance')
+            for k in range(1, 6):
+                cases.require(residual._residual(E(geometry._pythagorean(k)).base) == 1, 'sampled Pythagorean residual invariance')
+            twice = E(geometry._pythagorean(1))._pythagorean(1)
+            cases.require(twice == vector._scale(G(-1)), 'sampled half-turn is negation')
+            cases.require(residual._residual(geometry.base)+residual._residual(E(twice).base) == 2, 'rotation invariance does not imply residual parallelogram law')
+            results.append(int(residual._residual(E(geometry._pythagorean(1)).base)))
+        return tuple(results)
+
+    def _verify(self) -> dict[str, object]:
+        cases = Cases(); symbolic = self.model._verify()
+        self._fixture_values(cases); self._frames(cases); self._kernel_controls(cases)
+        self._mixture_controls(cases); self._oscillations(cases)
+        extensions = self._quadratic_extensions(cases)
+        self._equator_witnesses(cases); self._rotation_controls(cases)
+        sums = self._parallelogram_counterexamples(cases)
+        self._equatorial_controls(cases); symmetries = self._symmetry_samples(cases)
+        return {'status': 'PASS', 'authority_effect': 'None', 'sympy_version': sp.__version__,
+                'checks': cases.checks+symbolic['checks'], 'tomography_rank': symbolic['tomography_rank'],
+                's3_witness_111': int(self.residuals[0]._residual(self.witnesses[0])),
+                's3_witness_div4': int(self.residuals[0]._residual(_vector(1, 2, 1, 2, 1, 1))),
+                's3_witness_div8': int(self.residuals[0]._residual(_vector(1, 4, 1, 2, 1, 1))),
+                's7_witness_p7': int(self.residuals[1]._residual(self.witnesses[1])),
+                'sp11_witness_p11': int(self.residuals[2]._residual(self.witnesses[2])),
+                'exotic_qi7_witness_p7': str(self.residuals[1]._exotic(self.witnesses[1])),
+                'sqrt3_frame_norms': list(extensions[0]), 'sqrt7_frame_norms': list(extensions[1]),
+                'sqrt11_frame_norms': list(extensions[2]), 'piron_ortho_parallelogram_sums': list(sums),
+                'pythag_rot_invariance_3_7_11': list(symmetries),
+                'scope': 'Fixed symbolic algebra identities and explicit finite frame, perturbation, rotation and epsilon samples; no pointwise-to-uniform continuity implication or global rigidity conclusion.'}
+
+    def verify(self) -> Outcome[dict[str, object]]:
+        return evaluate(self._verify)
+
+
+def verify() -> Outcome[dict[str, object]]:
+    return evaluate(GaussianTomographyControls).bind(lambda controls: controls.verify())
+
+
+def _main() -> None:
+    print(json.dumps(GaussianTomographyControls()._verify(), sort_keys=True))
+
+
+def main() -> int:
+    return cli(_main)
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

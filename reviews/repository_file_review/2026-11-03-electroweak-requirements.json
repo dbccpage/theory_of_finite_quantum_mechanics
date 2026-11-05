@@ -1,0 +1,363 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/dfm-electroweak-continuum-fence.py": {
+      "role": "Bounded exact doublet normalization application with immutable aggregate ownership, supplied positive-root validation, unit-phase actions, residual covariance controls and Railway operations",
+      "origin": "lean4/DressingFieldElectroweakContinuumFence.lean",
+      "profile": "Exact",
+      "cost": "Two immutable Gaussian-rational components; each real/imaginary numerator and denominator has at most4096 bits. Each squared norm, their sum, supplied root square and returned components are admitted to4096 bits. Shared Gaussian arithmetic uses bounded temporary rational expressions (norm numerator<=4B+1 bits, denominator<=4B for B4096); stored components remain bounded. Constant-size matrices have four entries. Phase-census snapshots have0..64 unit phases; checks perform2+2n+n^2 obligations, at most4226. Default761 obligations =738 normalization/action+10 refused-input+2 unnormalized+11 witness/counterexample. No root search or continuum limit computation.",
+      "groups": [
+        {
+          "requirement": "Admit exact shared Gaussian values and int/Fraction scalars, excluding bool/float/foreign objects. Own two immutable components and validate both before arithmetic. Bound each squared norm and their sum, each root square and all produced components; return typed resource refusals instead of widening the admitted domain.",
+          "symbols": [
+            "_gaussian",
+            "exact",
+            "ElectroweakDoublet",
+            "ElectroweakDoublet.__init__",
+            "ElectroweakDoublet.components",
+            "ElectroweakDoublet._norm_squared",
+            "ElectroweakDoublet.norm_squared",
+            "v2"
+          ],
+          "tests": [
+            "ElectroweakCheckerTests.test_all_public_domain_boundaries",
+            "ElectroweakCheckerTests.test_owned_immutable_values_and_railway_paths",
+            "ElectroweakCheckerTests.test_exact_size_and_intermediate_resource_refusals",
+            "ElectroweakCheckerTests.test_preflight_and_phase_census_budget",
+            "ElectroweakCheckerTests.test_gaussian_doublet_and_dressing_symbolic"
+          ],
+          "requirement_id": "TFQM-ELECTROWEAK-REVIEW-DFM-ELECTROWEAK-CONTINUUM-FENCE-1"
+        },
+        {
+          "requirement": "Scale a doublet by any admitted Gaussian scalar; normalize only with a supplied exact positive rational root whose square matches its nonzero norm. Preserve zeroNorm, nonpositiveScale and mismatchedSquare ordering after scalar admission; do not assert roots exist for all Q(i)^2 inputs. Aggregate methods return Outcome; legacy helpers return pairs under evaluate.",
+          "symbols": [
+            "_divide",
+            "ElectroweakDoublet._scaled",
+            "ElectroweakDoublet.scaled",
+            "ElectroweakDoublet._normalized",
+            "ElectroweakDoublet.normalized",
+            "scale",
+            "checked_normalize"
+          ],
+          "tests": [
+            "ElectroweakCheckerTests.test_normalization_refusal_order_and_rational_roots",
+            "ElectroweakCheckerTests.test_normalization_and_action_on_rational_sphere",
+            "ElectroweakCheckerTests.test_gaussian_doublet_and_dressing_symbolic",
+            "ElectroweakCheckerTests.test_exact_size_and_intermediate_resource_refusals",
+            "ElectroweakCheckerTests.test_owned_immutable_values_and_railway_paths"
+          ],
+          "requirement_id": "TFQM-ELECTROWEAK-REVIEW-DFM-ELECTROWEAK-CONTINUUM-FENCE-2"
+        },
+        {
+          "requirement": "Unit-phase action requires both the phase and doublet to have squared norm1. Checked aggregate actions return Outcome, rejecting nonunit or invalid inputs; independent rational-sphere data exercise norm preservation and composition.",
+          "symbols": [
+            "_unit_phase",
+            "ElectroweakDoublet._acted",
+            "ElectroweakDoublet.acted",
+            "unit_action"
+          ],
+          "tests": [
+            "ElectroweakCheckerTests.test_normalization_and_action_on_rational_sphere",
+            "ElectroweakCheckerTests.test_all_public_domain_boundaries",
+            "ElectroweakCheckerTests.test_owned_immutable_values_and_railway_paths",
+            "ElectroweakCheckerTests.test_exact_size_and_intermediate_resource_refusals"
+          ],
+          "requirement_id": "TFQM-ELECTROWEAK-REVIEW-DFM-ELECTROWEAK-CONTINUUM-FENCE-3"
+        },
+        {
+          "requirement": "Construct the unnormalized dressing with entries conj(q),p,-conj(p),q. Admit all four matrix entries and both diagonal factors before arithmetic; multiply columns by their corresponding factor. Division uses a common supplied nonzero rational denominator and refuses component budget overflow.",
+          "symbols": [
+            "ElectroweakDoublet.dressing",
+            "U",
+            "_entries",
+            "right_diag",
+            "scale_mat"
+          ],
+          "tests": [
+            "ElectroweakCheckerTests.test_nonreal_fixed_matrix_and_doublet",
+            "ElectroweakCheckerTests.test_gaussian_doublet_and_dressing_symbolic",
+            "ElectroweakCheckerTests.test_matrix_operations_symbolic",
+            "ElectroweakCheckerTests.test_all_public_domain_boundaries",
+            "ElectroweakCheckerTests.test_exact_size_and_intermediate_resource_refusals",
+            "ElectroweakCheckerTests.test_nonunit_own_root_counterexample"
+          ],
+          "requirement_id": "TFQM-ELECTROWEAK-REVIEW-DFM-ELECTROWEAK-CONTINUUM-FENCE-4"
+        },
+        {
+          "requirement": "Validate recorder and bounded phase census before controls. Count actual obligations for unnormalized covariance/norm multiplicativity, normalization fixed points, phase covariance and composition. Evaluate every negative input and require its typed failure, so a missing guard cannot silently pass.",
+          "symbols": [
+            "_cases",
+            "check_unnormalized",
+            "check_action_case",
+            "_invalid_controls",
+            "check_normalization_api"
+          ],
+          "tests": [
+            "ElectroweakCheckerTests.test_preflight_and_phase_census_budget",
+            "ElectroweakCheckerTests.test_gaussian_doublet_and_dressing_symbolic",
+            "ElectroweakCheckerTests.test_normalization_and_action_on_rational_sphere",
+            "ElectroweakCheckerTests.test_default_counts_and_actual_failure_detection",
+            "ElectroweakCheckerTests.test_recorders_cli_and_programming_errors"
+          ],
+          "requirement_id": "TFQM-ELECTROWEAK-REVIEW-DFM-ELECTROWEAK-CONTINUUM-FENCE-5"
+        },
+        {
+          "requirement": "Retain the3/5+4/5i unit witness and the nonunit z=2 own-root counterexample. Emit761 actual obligations per independent run through the typed CLI; an injected failed invariant exits1. Finite normalization/covariance checks have no continuum dynamics authority.",
+          "symbols": [
+            "_witness_controls",
+            "main"
+          ],
+          "tests": [
+            "ElectroweakCheckerTests.test_nonunit_own_root_counterexample",
+            "ElectroweakCheckerTests.test_default_counts_and_actual_failure_detection",
+            "ElectroweakCheckerTests.test_recorders_cli_and_programming_errors",
+            "ElectroweakCheckerTests.test_executable_cli_receipt"
+          ],
+          "requirement_id": "TFQM-ELECTROWEAK-REVIEW-DFM-ELECTROWEAK-CONTINUUM-FENCE-6"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "6f54de0a97b5b1641b40a1c522ee3579e3fd74d48238c7a71d03200ddc1e368a",
+      "symbols": [
+        "ElectroweakDoublet",
+        "ElectroweakDoublet.__init__",
+        "ElectroweakDoublet._acted",
+        "ElectroweakDoublet._norm_squared",
+        "ElectroweakDoublet._normalized",
+        "ElectroweakDoublet._scaled",
+        "ElectroweakDoublet.acted",
+        "ElectroweakDoublet.components",
+        "ElectroweakDoublet.dressing",
+        "ElectroweakDoublet.norm_squared",
+        "ElectroweakDoublet.normalized",
+        "ElectroweakDoublet.scaled",
+        "U",
+        "_cases",
+        "_divide",
+        "_entries",
+        "_gaussian",
+        "_invalid_controls",
+        "_unit_phase",
+        "_witness_controls",
+        "check_action_case",
+        "check_normalization_api",
+        "check_unnormalized",
+        "checked_normalize",
+        "exact",
+        "main",
+        "right_diag",
+        "scale",
+        "scale_mat",
+        "unit_action",
+        "v2"
+      ],
+      "origin_sha256": "e41bab58fa9c70e42c75c4a1536a733ec301adbccfa7673e33b6282c13a19a89",
+      "consumers": [
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/stages/DRESSING_FIELD.md",
+          "sha256": "83ac7ddd7480d115aadfe42ddeb3bd78094fb68c4f34a95916643351180adcb2",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/evidence/nodes/DFM-ELECTROWEAK-CONTINUUM-FENCE.md",
+          "sha256": "c2a445f99d2c79de72113d36a041aada5def28d0c46e579349c1b9316762a178",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/unified_dag.json",
+          "sha256": "c7845b4f150f45fece1c97988789f0c2ea458b088cfa20db09f43bc6fff0d753",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/fragments/application_branches.json",
+          "sha256": "7569bc0053202d28d9d8d6c7cc9328884fd2ccfe0dc1c0a3e1770f4eb4a9d684",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/three_proof_l4_post230_custody.json",
+          "sha256": "7384bd1d8f48e6a23157378cb8db4c290f3017fe9775aa083c5c0d29bf0c6cac",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/three_proof_l4_final_pipeline.json",
+          "sha256": "3b8cfefb0474bb40788d1886442e905bb04654932d6b8294f02684f1fae640eb",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/three_proof_l4_custody.json",
+          "sha256": "b89fd0b01957abab8c6740f4e7dc9873f52161e798289f8266232a262ac95f1d",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr237_review_validation.json",
+          "sha256": "a644944088de51f9654710014df396a8165f194feee71e5c2dc77844fad31402",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr230_repair_integrated_validation.json",
+          "sha256": "24d6a74c37e5ed04ff5613358eb24d10708709eaee5541ec3c759c68bde7861e",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr230_repair_focused_validation.json",
+          "sha256": "9ecbb25adc0b29a1ca7afae80146d514a934be75403557444fbb8b4c2ca7fcbf",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/pr230_repair_campaign_validation.json",
+          "sha256": "81eaf588ac5b541740454f2ca570e6419048c49b2e9e827616fd9ad92282e62e",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/dfm_electroweak_l4_independent.json",
+          "sha256": "a71aa1a3d670bd4d71a2d5becc124dd6d1b9a2633da5161c78b9865806ed56a3",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/research/campaign_dfm-electroweak-continuum-fence_review_validation.json",
+          "sha256": "ba914836b7225a74cf5de7d52b14f3ba857ce2284d9ad7c3c70954bea8cfd4d7",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/derivations/24_dressing_field/tfq_1122_dfm_electroweak_continuum_fence.md",
+          "sha256": "6a0f49581ce9a46ea512eae2c0cfeeb2bfc3116cef41b7459a9dfff71ba5323c",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "dag/operads/dfm_electroweak_continuum_fence.yaml",
+          "sha256": "1c39dc2977ee5925ecefd20c3bf471f2cdb88ab265722fff91eea0cd2ca7c3e8",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/tests/test_electroweak_checker.py",
+          "sha256": "4b3b9baf37cf6f0f78dd201aed961494e0a981b291cacdc72004be16e81d0ba1",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "5287fbe86896860940d9e97ec4c3145c50d78c46eafec613ae1b198ffbd621b7",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and mathematical helper pair/four-entry formats remain. GR now aliases the shared independent GaussianRational value; private duplicated GR methods and NormalizationError are composed into shared arithmetic and typed Violation. No external Python callers of those removed classes/methods or control signatures were found. Control functions now require a per-run Cases recorder; the prior prose-only CLI becomes a761-obligation JSON receipt with nonzero failure status. Shared code belongs to the independent-checking context, not the scientific implementation used as an oracle. Lean permits total rational division at zero in algebraic theorems; this executable explicitly rejects zero denominators. The checked normalization portion matches supplied positive-root conditions. Historical scientific evidence retains its original hashes; no DAG status or continuum claim is promoted."
+    },
+    "checks/tests/test_electroweak_checker.py": {
+      "role": "Independent symbolic doublet verification application with rational-sphere generation, matrix identities, resource/preflight challenges and executable failure-path integration",
+      "origin": "SCORING.md",
+      "profile": "Exact",
+      "cost": "15 test groups;80 deterministic examples per property. SymPy expands fixed two-component/four-entry expressions with small generated rational values. Full phase census uses64 labels and4226 checks, overflow tests use at most4097-bit supplied values. Child CLI has30-second timeout with captured pipes; runpy, mocks, module registration and captures are restored. No network or persistent service.",
+      "groups": [
+        {
+          "requirement": "Independently represent Q(i) values in SymPy, compare matrix products/division and squared norms, generate rational points on the unit3-sphere and phases, and check helper oracles. Exercise all admission/refusal branches, immutable ownership, conservative resources, preflight before arithmetic, cancellation/programming-error propagation, counters and actual executable exits. Restrict dynamic imports to the single reviewed stem and restore previous/absent module registration even when import fails.",
+          "symbols": [
+            "load",
+            "_symbolic",
+            "_matrix",
+            "_sphere",
+            "_phase",
+            "ElectroweakCheckerTests",
+            "ElectroweakCheckerTests.refused",
+            "ElectroweakCheckerTests.test_oracles_and_refusal_helper",
+            "ElectroweakCheckerTests.test_gaussian_doublet_and_dressing_symbolic",
+            "ElectroweakCheckerTests.test_matrix_operations_symbolic",
+            "ElectroweakCheckerTests.test_normalization_and_action_on_rational_sphere",
+            "ElectroweakCheckerTests.test_normalization_refusal_order_and_rational_roots",
+            "ElectroweakCheckerTests.test_all_public_domain_boundaries",
+            "ElectroweakCheckerTests.test_owned_immutable_values_and_railway_paths",
+            "ElectroweakCheckerTests.test_exact_size_and_intermediate_resource_refusals",
+            "ElectroweakCheckerTests.test_preflight_and_phase_census_budget",
+            "ElectroweakCheckerTests.test_nonunit_own_root_counterexample",
+            "ElectroweakCheckerTests.test_nonreal_fixed_matrix_and_doublet",
+            "ElectroweakCheckerTests.test_default_counts_and_actual_failure_detection",
+            "ElectroweakCheckerTests.test_recorders_cli_and_programming_errors",
+            "ElectroweakCheckerTests.test_loader_registration_and_failures",
+            "ElectroweakCheckerTests.test_executable_cli_receipt"
+          ],
+          "tests": [
+            "ElectroweakCheckerTests.test_oracles_and_refusal_helper",
+            "ElectroweakCheckerTests.test_gaussian_doublet_and_dressing_symbolic",
+            "ElectroweakCheckerTests.test_matrix_operations_symbolic",
+            "ElectroweakCheckerTests.test_normalization_and_action_on_rational_sphere",
+            "ElectroweakCheckerTests.test_normalization_refusal_order_and_rational_roots",
+            "ElectroweakCheckerTests.test_all_public_domain_boundaries",
+            "ElectroweakCheckerTests.test_owned_immutable_values_and_railway_paths",
+            "ElectroweakCheckerTests.test_exact_size_and_intermediate_resource_refusals",
+            "ElectroweakCheckerTests.test_preflight_and_phase_census_budget",
+            "ElectroweakCheckerTests.test_nonunit_own_root_counterexample",
+            "ElectroweakCheckerTests.test_nonreal_fixed_matrix_and_doublet",
+            "ElectroweakCheckerTests.test_default_counts_and_actual_failure_detection",
+            "ElectroweakCheckerTests.test_recorders_cli_and_programming_errors",
+            "ElectroweakCheckerTests.test_loader_registration_and_failures",
+            "ElectroweakCheckerTests.test_executable_cli_receipt"
+          ],
+          "requirement_id": "TFQM-ELECTROWEAK-REVIEW-TEST-ELECTROWEAK-CHECKER-1"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "4b3b9baf37cf6f0f78dd201aed961494e0a981b291cacdc72004be16e81d0ba1",
+      "symbols": [
+        "ElectroweakCheckerTests",
+        "ElectroweakCheckerTests.refused",
+        "ElectroweakCheckerTests.test_all_public_domain_boundaries",
+        "ElectroweakCheckerTests.test_default_counts_and_actual_failure_detection",
+        "ElectroweakCheckerTests.test_exact_size_and_intermediate_resource_refusals",
+        "ElectroweakCheckerTests.test_executable_cli_receipt",
+        "ElectroweakCheckerTests.test_gaussian_doublet_and_dressing_symbolic",
+        "ElectroweakCheckerTests.test_loader_registration_and_failures",
+        "ElectroweakCheckerTests.test_matrix_operations_symbolic",
+        "ElectroweakCheckerTests.test_nonreal_fixed_matrix_and_doublet",
+        "ElectroweakCheckerTests.test_nonunit_own_root_counterexample",
+        "ElectroweakCheckerTests.test_normalization_and_action_on_rational_sphere",
+        "ElectroweakCheckerTests.test_normalization_refusal_order_and_rational_roots",
+        "ElectroweakCheckerTests.test_oracles_and_refusal_helper",
+        "ElectroweakCheckerTests.test_owned_immutable_values_and_railway_paths",
+        "ElectroweakCheckerTests.test_preflight_and_phase_census_budget",
+        "ElectroweakCheckerTests.test_recorders_cli_and_programming_errors",
+        "_matrix",
+        "_phase",
+        "_sphere",
+        "_symbolic",
+        "load"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/independent/dfm-electroweak-continuum-fence.py",
+          "sha256": "6f54de0a97b5b1641b40a1c522ee3579e3fd74d48238c7a71d03200ddc1e368a",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "5287fbe86896860940d9e97ec4c3145c50d78c46eafec613ae1b198ffbd621b7",
+          "state": "current local consumer"
+        }
+      ],
+      "consumer_boundary": "Executable path and mathematical helper pair/four-entry formats remain. GR now aliases the shared independent GaussianRational value; private duplicated GR methods and NormalizationError are composed into shared arithmetic and typed Violation. No external Python callers of those removed classes/methods or control signatures were found. Control functions now require a per-run Cases recorder; the prior prose-only CLI becomes a761-obligation JSON receipt with nonzero failure status. Shared code belongs to the independent-checking context, not the scientific implementation used as an oracle. Lean permits total rational division at zero in algebraic theorems; this executable explicitly rejects zero denominators. The checked normalization portion matches supplied positive-root conditions. Historical scientific evidence retains its original hashes; no DAG status or continuum claim is promoted."
+    }
+  }
+}

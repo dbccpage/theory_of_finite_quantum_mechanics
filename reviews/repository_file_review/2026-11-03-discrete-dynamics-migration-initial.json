@@ -1,0 +1,79 @@
+{
+  "AuthorityEffect": "None",
+  "prior_manifest_sha256": "c973edd0f781c9b91ff3c960b530db84cf2886796c33fe965676ed7076300dac",
+  "current_manifest_sha256": "d660b49334cb554f3343d2b921acb48abdc6f32babf2ab5ccef58f3fff818939",
+  "prior_candidate_count": 36,
+  "current_candidate_count": 53,
+  "recipe_migrations": [
+    {
+      "identity": "power-binary-digit",
+      "before": {
+        "identity": "power-binary-digit",
+        "source": "independent/ds-continuous-time-exp-generator.py",
+        "before": "remaining >>= 1",
+        "after": "remaining >>= 2",
+        "tests": [
+          "test_generated_composition_action_and_power"
+        ]
+      },
+      "after": {
+        "identity": "power-binary-digit",
+        "source": "independent/ds-continuous-time-exp-generator.py",
+        "before": "\n            remaining >>= 1\n",
+        "after": "\n            remaining >>= 2\n",
+        "tests": [
+          "test_generated_composition_action_and_power"
+        ]
+      }
+    },
+    {
+      "identity": "power-bit-condition",
+      "before": {
+        "identity": "power-bit-condition",
+        "source": "independent/ds-continuous-time-exp-generator.py",
+        "before": "if remaining & 1:",
+        "after": "if remaining & 1 == 0:",
+        "tests": [
+          "test_generated_composition_action_and_power"
+        ]
+      },
+      "after": {
+        "identity": "power-bit-condition",
+        "source": "independent/ds-continuous-time-exp-generator.py",
+        "before": "\n            if remaining & 1:\n",
+        "after": "\n            if remaining & 1 == 0:\n",
+        "tests": [
+          "test_generated_composition_action_and_power"
+        ]
+      }
+    }
+  ],
+  "source_migrations": [
+    {
+      "path": "checks/independent/ds-continuous-time-exp-generator.py",
+      "before_sha256": "dadff15a6f3de2ae8edd82d0c1eff4fd0817f43a1509a7e6fae0fcd2c50fc7de",
+      "after_sha256": "3eb3a651e3b66c927c0599ab40f839fc23e7a55a58c0ec2bfd769271d4f0de90",
+      "prior_contract_sha256": "96ea41c2cc2c7cb23f71684bd786c6f2b80fef5009a5a7ba9a380e8016c5158b",
+      "diff": "--- prior/checks/independent/ds-continuous-time-exp-generator.py\n+++ current/checks/independent/ds-continuous-time-exp-generator.py\n@@ -1,6 +1,6 @@\n-\"\"\"Owned finite maps and exact finite witnesses at the continuous-time boundary.\n-\n-AuthorityEffect: None. No real time, exponential, logarithm or measure is built.\n+\"\"\"Owned finite maps, order-four matrices and exact finite boundary witnesses.\n+\n+AuthorityEffect: None. No real time, exponential, logarithm, measure or U(1) fiber is built.\n \"\"\"\n from __future__ import annotations\n \n@@ -24,6 +24,12 @@\n SCALED: Flat = ((1, 1), (1, -1), (1, -1), (1, 1))\n NEGATIVE: Flat = ((-1, -1), (-1, 1), (-1, 1), (-1, -1))\n FOUR_SWAP: Flat = ((0, 0), (4, 0), (4, 0), (0, 0))\n+RealFlat = tuple[int, int, int, int]\n+EYE: RealFlat = (1, 0, 0, 1)\n+JAY: RealFlat = (0, -1, 1, 0)\n+JAY2: RealFlat = (-1, 0, 0, -1)\n+JAY3: RealFlat = (0, 1, -1, 0)\n+REPS: tuple[RealFlat, ...] = (EYE, JAY, JAY2, JAY3)\n \n \n def _state(value: object, size: int) -> int:\n@@ -145,6 +151,58 @@\n     swap = RationalMatrix(((0, 1), (1, 0)))\n     zero = RationalMatrix(((0, 0), (0, 0)))\n     return value.add(RationalMatrix.eye(2)).rows == swap.rows and value.mul(value).rows == zero.rows\n+\n+\n+def _real_matrix(value: object) -> RationalMatrix:\n+    a, b, c, d = sequence(value, \"flat integer matrix\", 4)\n+    return RationalMatrix(((_bounded(a), _bounded(b)), (_bounded(c), _bounded(d))))\n+\n+\n+def _real_flat(matrix: RationalMatrix) -> RealFlat:\n+    rows = matrix.require_shape(2, 2).integer_rows()\n+    return rows[0][0], rows[0][1], rows[1][0], rows[1][1]\n+\n+\n+def mm(left: object, right: object) -> RealFlat:\n+    first, second = _real_matrix(left), _real_matrix(right)\n+    return _real_flat(first.mul(second))\n+\n+\n+def powj(exponent: object) -> RealFlat:\n+    \"\"\"Actual binary matrix multiplication, independent of the residue lookup table.\"\"\"\n+    remaining = integer(exponent, \"quarter-turn exponent\", 0, 4096)\n+    value, power = RationalMatrix.eye(2), _real_matrix(JAY)\n+    while remaining:\n+        if remaining & 1:\n+            value = value.mul(power)\n+        remaining >>= 1\n+        if remaining:\n+            power = power.mul(power)\n+    return _real_flat(value)\n+\n+\n+def verify_residues(cases: Cases) -> None:\n+    if type(cases) is not Cases:\n+        raise Violation(\"input\", \"Cases recorder required\")\n+    cases.require(mm(JAY, JAY) == JAY2, \"quarter-turn square\")\n+    cases.require(mm(JAY2, JAY) == JAY3, \"quarter-turn cube\")\n+    cases.require(mm(JAY3, JAY) == EYE, \"quarter-turn fourth\")\n+    for representative in REPS[1:]:\n+        cases.require(representative != EYE, \"nonidentity representative\")\n+    cases.require(mm(JAY, JAY)[0] == -1, \"square diagonal\")\n+    cases.require(mm(JAY2, JAY2)[0] == 1, \"fourth diagonal\")\n+    for exponent, residue in ((0, 0), (1, 1), (2, 2), (3, 3), (4, 0)):\n+        cases.require(exponent % 4 == residue, \"literal residue\")\n+    for exponent, expected in enumerate((JAY, JAY2, JAY3, EYE), 1):\n+        cases.require(powj(exponent) == expected, \"first powers\")\n+    for exponent in range(40):\n+        residue = exponent % 4\n+        cases.require((exponent+4) % 4 == residue, \"residue period\")\n+        cases.require((exponent+1) % 4 == (residue+1) % 4, \"residue successor\")\n+        cases.require(powj(exponent) == REPS[residue], \"power representative\")\n+        cases.require((powj(exponent) == EYE) == (residue == 0), \"identity iff zero residue\")\n+        cases.require(powj(exponent+4) == powj(exponent), \"matrix power period\")\n+        cases.require(mm(REPS[residue], JAY) == REPS[(residue+1) % 4], \"representative step\")\n \n \n def _map_controls(cases: Cases) -> None:\n@@ -184,8 +242,11 @@\n def main() -> None:\n     cases = Cases()\n     verify(cases)\n+    first = cases.checks\n+    verify_residues(cases)\n     print(json.dumps({\"status\": \"passed\", \"checks\": cases.checks, \"Boolean_maps\": len(maps()),\n-                      \"scope\": \"finite root and branch witnesses; no continuous-time generator\"}))\n+                      \"root_and_branch\": first, \"residues\": cases.checks-first,\n+                      \"scope\": \"finite root, branch and order-four witnesses; no continuous-time generator or U(1) fiber\"}))\n \n \n if __name__ == \"__main__\":\n"
+    },
+    {
+      "path": "checks/tests/test_continuous_time_checker.py",
+      "before_sha256": "4eb6d70c09fff644cd45475f1cc30107d745522a15d69bc34279d21ca26dc332",
+      "after_sha256": "901541967a37f171d173fdeb8f4d9419c2031321006eec90d7d5688ead89760a",
+      "prior_contract_sha256": "4ab76cbd9e5ee997fa15013bf681f770de9d70f9aebd144ae486e9da1b8703aa",
+      "diff": "--- prior/checks/tests/test_continuous_time_checker.py\n+++ current/checks/tests/test_continuous_time_checker.py\n@@ -26,6 +26,7 @@\n from checker_support.cases import Cases\n from checker_support.domains import Failure\n from checker_support.gaussian_rational import GaussianRational as G\n+from checker_support.rational_matrix import RationalMatrix\n \n PROPERTY = settings(max_examples=80, derandomize=True, deadline=None, database=None)\n TABLE = st.lists(st.integers(0, 3), min_size=4, max_size=4)\n@@ -229,6 +230,69 @@\n             with self.assertRaises(KeyboardInterrupt):\n                 value.square_roots()\n \n+    @PROPERTY\n+    @given(st.lists(st.integers(-8, 8), min_size=4, max_size=4), st.lists(st.integers(-8, 8), min_size=4, max_size=4))\n+    def test_integer_matrix_product_against_symbolic_oracle(self, left: list[int], right: list[int]) -> None:\n+        module = load()\n+        self.assertEqual(sp.ImmutableMatrix(2, 2, module.mm(left, right)), sp.ImmutableMatrix(2, 2, left)*sp.ImmutableMatrix(2, 2, right))\n+\n+    @PROPERTY\n+    @given(st.integers(0, 4096))\n+    def test_quarter_turn_powers_against_matrix_and_cycle(self, exponent: int) -> None:\n+        module = load()\n+        matrix = sp.ImmutableMatrix(((0, -1), (1, 0)))\n+        self.assertEqual(sp.ImmutableMatrix(2, 2, module.powj(exponent)), matrix**exponent)\n+        cycle = module.FiniteEndomap((1, 2, 3, 0)).power(exponent).value\n+        orbit = ((1, 0), (0, 1), (-1, 0), (0, -1))\n+        self.assertEqual(tuple(matrix**exponent*sp.ImmutableMatrix((1, 0))), orbit[cycle.images[0]])\n+        self.assertEqual(module.powj(exponent), module.REPS[exponent % 4])\n+\n+    def test_fixed_nonsymmetric_integer_products_and_snapshots(self) -> None:\n+        module = load()\n+        left, right = [1, 2, 3, 4], [2, -1, 1, 3]\n+        result = module.mm(left, right)\n+        self.assertEqual(result, (4, 5, 10, 9))\n+        self.assertTrue(all(type(entry) is int for entry in result))\n+        self.assertEqual(module.mm(right, left), (-1, 0, 10, 14))\n+        left.clear()\n+        right[0] = 9\n+        self.assertEqual(result, (4, 5, 10, 9))\n+        self.assertEqual(tuple(module.powj(exponent) for exponent in range(5)), (module.EYE, module.JAY, module.JAY2, module.JAY3, module.EYE))\n+        self.assertEqual(module.powj(4096), module.EYE)\n+\n+    def test_residue_exact_domains_and_resource_limits(self) -> None:\n+        module = load()\n+        for exponent in (True, False, -1, 1.0, Q(1), \"1\", None):\n+            self.refused(module.powj, exponent)\n+        self.refused(module.powj, 4097, kind=\"resource\")\n+        for bad in ((), (1, 2, 3), (1, 2, 3, 4, 5), (True, 0, 0, 1), (1.0, 0, 0, 1), (Q(1), 0, 0, 1), \"1234\", None):\n+            self.refused(module.mm, bad, module.EYE)\n+            self.refused(module.mm, module.EYE, bad)\n+        self.refused(module.mm, (2**4096, 0, 0, 1), module.EYE, kind=\"resource\")\n+        self.refused(module.mm, (2**4095, 0, 0, 1), (2, 0, 0, 1), kind=\"resource\")\n+        self.refused(module._real_flat, RationalMatrix.eye(3))\n+        self.refused(module._real_flat, RationalMatrix(((Q(1, 2), 0), (0, 1))))\n+\n+    def test_residue_preflight_before_multiplication(self) -> None:\n+        module = load()\n+        with patch.object(RationalMatrix, \"mul\", side_effect=RuntimeError(\"must not multiply\")):\n+            self.refused(module.powj, -1)\n+            self.refused(module.powj, True)\n+            self.refused(module.mm, module.EYE, (True, 0, 0, 1))\n+        with patch.object(RationalMatrix, \"mul\", side_effect=KeyboardInterrupt):\n+            with self.assertRaises(KeyboardInterrupt):\n+                module.powj(2)\n+\n+    def test_residue_control_counts_and_injected_fault(self) -> None:\n+        module = load()\n+        for _ in range(2):\n+            cases = Cases()\n+            module.verify_residues(cases)\n+            self.assertEqual(cases.checks, 257)\n+        self.refused(module.verify_residues, None)\n+        with patch.object(RationalMatrix, \"mul\", return_value=RationalMatrix.eye(2)):\n+            self.refused(module.verify_residues, Cases(), kind=\"check\")\n+\n     def test_executable_receipt_and_failure_exit(self) -> None:\n         flags = [] if __debug__ else [\"-O\"]\n         result = subprocess.run([sys.executable, \"-I\", \"-B\", *flags, \"-X\", \"utf8\", str(APP)],\n@@ -236,7 +300,8 @@\n         self.assertEqual(result.returncode, 0, result.stderr)\n         self.assertEqual(result.stderr, \"\")\n         receipt = json.loads(result.stdout)\n-        self.assertEqual((receipt[\"status\"], receipt[\"checks\"], receipt[\"Boolean_maps\"]), (\"passed\", 355, 4))\n+        self.assertEqual((receipt[\"status\"], receipt[\"checks\"], receipt[\"Boolean_maps\"]), (\"passed\", 612, 4))\n+        self.assertEqual((receipt[\"root_and_branch\"], receipt[\"residues\"]), (355, 257))\n         with patch.object(Cases, \"require\", side_effect=Violation(\"check\", \"injected\")), contextlib.redirect_stderr(io.StringIO()) as output:\n             with self.assertRaises(SystemExit) as failure:\n                 runpy.run_path(str(APP), run_name=\"__main__\")\n"
+    }
+  ],
+  "prior_test_changes": [
+    "test_executable_receipt_and_failure_exit"
+  ],
+  "added_test_names": [
+    "test_fixed_nonsymmetric_integer_products_and_snapshots",
+    "test_integer_matrix_product_against_symbolic_oracle",
+    "test_quarter_turn_powers_against_matrix_and_cycle",
+    "test_residue_control_counts_and_injected_fault",
+    "test_residue_exact_domains_and_resource_limits",
+    "test_residue_preflight_before_multiplication"
+  ],
+  "description": "Retain all36 previous mutation faults, scope two recipes to the original class loop after adding a second matrix-power loop, retain the prior carrier-guard closure selection, and add17 residue faults. Prior13 groups remain; only executable receipt expectations expand355->612 and split355/257. Six residue groups are added."
+}

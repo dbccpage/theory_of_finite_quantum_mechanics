@@ -1,0 +1,362 @@
+[
+  {
+    "identity": "carrier-lower-bound",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "integer(size, 'binary carrier size', 0, 64)",
+    "after": "integer(size, 'binary carrier size', -1, 64)",
+    "tests": [
+      "test_carrier_constraint_domains_and_whole_preflight"
+    ]
+  },
+  {
+    "identity": "carrier-upper-bound",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "integer(size, 'binary carrier size', 0, 64)",
+    "after": "integer(size, 'binary carrier size', 0, 65)",
+    "tests": [
+      "test_carrier_constraint_domains_and_whole_preflight"
+    ]
+  },
+  {
+    "identity": "constraint-budget",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "sequence(value, 'constraints', maximum=4096)",
+    "after": "sequence(value, 'constraints', maximum=4097)",
+    "tests": [
+      "test_carrier_constraint_domains_and_whole_preflight"
+    ]
+  },
+  {
+    "identity": "constraint-negative-index",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "integer(i, 'variable index', 0)",
+    "after": "integer(i, 'variable index')",
+    "tests": [
+      "test_carrier_constraint_domains_and_whole_preflight"
+    ]
+  },
+  {
+    "identity": "constraint-upper-index",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "if any(i >= size for i in row):",
+    "after": "if False:",
+    "tests": [
+      "test_carrier_constraint_domains_and_whole_preflight"
+    ]
+  },
+  {
+    "identity": "constraint-distinct-positions",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "if len(set(row)) != width:",
+    "after": "if False:",
+    "tests": [
+      "test_carrier_constraint_domains_and_whole_preflight"
+    ]
+  },
+  {
+    "identity": "constraint-duplicate-rows",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "if len(set(result)) != len(result):",
+    "after": "if False:",
+    "tests": [
+      "test_carrier_constraint_domains_and_whole_preflight"
+    ]
+  },
+  {
+    "identity": "constraint-canonical-order",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "result.append(tuple(sorted(row)))",
+    "after": "result.append(row)",
+    "tests": [
+      "test_ownership_canonical_constraints_and_reentrant_results"
+    ]
+  },
+  {
+    "identity": "model-upper-value",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "if any(i > 1 for i in values):",
+    "after": "if False:",
+    "tests": [
+      "test_binary_model_admission_and_nonmodels"
+    ]
+  },
+  {
+    "identity": "model-negative-value",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "integer(i, 'binary value', 0)",
+    "after": "integer(i, 'binary value')",
+    "tests": [
+      "test_binary_model_admission_and_nonmodels"
+    ]
+  },
+  {
+    "identity": "model-pair-inequality",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "values[i]+values[j] <= 1",
+    "after": "values[i]+values[j] <= 2",
+    "tests": [
+      "test_all_four_variable_constraint_systems_against_exhaustion"
+    ]
+  },
+  {
+    "identity": "model-frame-normalization",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "sum(values[i] for i in row) == 1",
+    "after": "sum(values[i] for i in row) <= 1",
+    "tests": [
+      "test_all_four_variable_constraint_systems_against_exhaustion"
+    ]
+  },
+  {
+    "identity": "pair-conflict",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "if values[i] == values[j] == 1:",
+    "after": "if False:",
+    "tests": [
+      "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+    ]
+  },
+  {
+    "identity": "forward-pair-propagation",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "values[j] = 0",
+    "after": "values[j] = 1",
+    "tests": [
+      "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+    ]
+  },
+  {
+    "identity": "reverse-pair-propagation",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "values[i] = 0",
+    "after": "values[i] = 1",
+    "tests": [
+      "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+    ]
+  },
+  {
+    "identity": "triple-ones-conflict",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "if ones > 1 or (not missing and ones != 1):",
+    "after": "if (not missing and ones != 1):",
+    "tests": [
+      "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+    ]
+  },
+  {
+    "identity": "triple-zero-conflict",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "if ones > 1 or (not missing and ones != 1):",
+    "after": "if ones > 1:",
+    "tests": [
+      "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+    ]
+  },
+  {
+    "identity": "triple-singleton-force",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "if ones == 1 or len(missing) == 1:",
+    "after": "if ones == 1:",
+    "tests": [
+      "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+    ]
+  },
+  {
+    "identity": "triple-saturated-force",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "if ones == 1 or len(missing) == 1:",
+    "after": "if len(missing) == 1:",
+    "tests": [
+      "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+    ]
+  },
+  {
+    "identity": "triple-forced-value",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "values[i] = 1-ones",
+    "after": "values[i] = ones",
+    "tests": [
+      "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+    ]
+  },
+  {
+    "identity": "propagation-fixed-point",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "if values.count(-1) == before:",
+    "after": "if True:",
+    "tests": [
+      "test_all_four_variable_constraint_systems_against_exhaustion"
+    ]
+  },
+  {
+    "identity": "propagation-composition",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "if not self._pair_propagation(values) or not self._triple_propagation(values):",
+    "after": "if not self._pair_propagation(values) and not self._triple_propagation(values):",
+    "tests": [
+      "test_all_four_variable_constraint_systems_against_exhaustion"
+    ]
+  },
+  {
+    "identity": "node-budget-unsat-confusion",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "raise Violation('resource', 'binary search node budget exhausted')",
+    "after": "return None, nodes",
+    "tests": [
+      "test_search_budget_is_not_unsat_and_boundaries_are_inclusive"
+    ]
+  },
+  {
+    "identity": "node-budget-inclusive",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "if nodes == limit:",
+    "after": "if nodes+1 == limit:",
+    "tests": [
+      "test_search_budget_is_not_unsat_and_boundaries_are_inclusive"
+    ]
+  },
+  {
+    "identity": "node-budget-upper",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "integer(max_nodes, 'search node budget', 1, 65536)",
+    "after": "integer(max_nodes, 'search node budget', 1, 65537)",
+    "tests": [
+      "test_search_budget_is_not_unsat_and_boundaries_are_inclusive"
+    ]
+  },
+  {
+    "identity": "node-counter",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "nodes += 1",
+    "after": "nodes += 2",
+    "tests": [
+      "test_search_budget_is_not_unsat_and_boundaries_are_inclusive"
+    ]
+  },
+  {
+    "identity": "search-both-branches",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "for value in (1, 0):",
+    "after": "for value in (0,):",
+    "tests": [
+      "test_all_four_variable_constraint_systems_against_exhaustion"
+    ]
+  },
+  {
+    "identity": "search-branch-ownership",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "branch = values.copy()",
+    "after": "branch = values",
+    "tests": [
+      "test_all_four_variable_constraint_systems_against_exhaustion"
+    ]
+  },
+  {
+    "identity": "returned-model-replay",
+    "source": "checker_support/binary_frame_system.py",
+    "before": "require(self._check_assignment(values), 'search returned an invalid binary model')",
+    "after": "require(True, 'search returned an invalid binary model')",
+    "tests": [
+      "test_propagation_forces_only_necessary_values_and_detects_conflicts"
+    ]
+  },
+  {
+    "identity": "witness-ray-domain",
+    "source": "independent/fq-gleason-qi3-frame-functions.py",
+    "before": "if gcd(*v) == 1 and next(x for x in v if x) > 0",
+    "after": "if gcd(*v) == 1",
+    "tests": [
+      "test_full_projective_geometry_and_completions"
+    ]
+  },
+  {
+    "identity": "witness-orthogonality-enumeration",
+    "source": "independent/fq-gleason-qi3-frame-functions.py",
+    "before": "if _dot(rays[i], rays[j]) == 0",
+    "after": "if _dot(rays[i], rays[j]) == 1",
+    "tests": [
+      "test_full_projective_geometry_and_completions"
+    ]
+  },
+  {
+    "identity": "witness-triple-cliques",
+    "source": "independent/fq-gleason-qi3-frame-functions.py",
+    "before": "if {(i, j), (i, k), (j, k)} <= edges",
+    "after": "if {(i, j), (i, k)} <= edges",
+    "tests": [
+      "test_full_projective_geometry_and_completions"
+    ]
+  },
+  {
+    "identity": "completion-cross-sign",
+    "source": "independent/fq-gleason-qi3-frame-functions.py",
+    "before": "u[1]*v[2]-u[2]*v[1]",
+    "after": "u[1]*v[2]+u[2]*v[1]",
+    "tests": [
+      "test_full_projective_geometry_and_completions"
+    ]
+  },
+  {
+    "identity": "completion-nonzero",
+    "source": "independent/fq-gleason-qi3-frame-functions.py",
+    "before": "require(w != (0, 0, 0), 'degenerate completion')",
+    "after": "require(True, 'degenerate completion')",
+    "tests": [
+      "test_witness_geometric_guards_and_constraint_deletion_controls"
+    ]
+  },
+  {
+    "identity": "completion-orthogonality",
+    "source": "independent/fq-gleason-qi3-frame-functions.py",
+    "before": "require(_dot(u, v) == _dot(u, w) == _dot(v, w) == 0, 'nonorthogonal completion')",
+    "after": "require(True, 'nonorthogonal completion')",
+    "tests": [
+      "test_witness_geometric_guards_and_constraint_deletion_controls"
+    ]
+  },
+  {
+    "identity": "completion-outside-count",
+    "source": "independent/fq-gleason-qi3-frame-functions.py",
+    "before": "outside += int(max(map(abs, w)) > 2)",
+    "after": "outside += int(max(map(abs, w)) >= 2)",
+    "tests": [
+      "test_full_projective_geometry_and_completions"
+    ]
+  },
+  {
+    "identity": "witness-census",
+    "source": "independent/fq-gleason-qi3-frame-functions.py",
+    "before": "require((len(self.rays), len(self.system.pairs), len(self.system.triples)) == (49, 138, 26),",
+    "after": "require(True,",
+    "tests": [
+      "test_witness_geometric_guards_and_constraint_deletion_controls"
+    ]
+  },
+  {
+    "identity": "obstruction-requires-unsat",
+    "source": "independent/fq-gleason-qi3-frame-functions.py",
+    "before": "require(assignment is None, 'obstruction unexpectedly has a binary colouring')",
+    "after": "require(True, 'obstruction unexpectedly has a binary colouring')",
+    "tests": [
+      "test_witness_geometric_guards_and_constraint_deletion_controls"
+    ]
+  },
+  {
+    "identity": "deletion-requires-sat",
+    "source": "independent/fq-gleason-qi3-frame-functions.py",
+    "before": "require(assignment is not None, 'constraint-deletion control must be SAT')",
+    "after": "require(True, 'constraint-deletion control must be SAT')",
+    "tests": [
+      "test_witness_geometric_guards_and_constraint_deletion_controls"
+    ]
+  },
+  {
+    "identity": "deletion-model-verification",
+    "source": "independent/fq-gleason-qi3-frame-functions.py",
+    "before": "require(system._check_assignment(assignment), 'invalid constraint-deletion model')",
+    "after": "require(True, 'invalid constraint-deletion model')",
+    "tests": [
+      "test_witness_geometric_guards_and_constraint_deletion_controls"
+    ]
+  }
+]

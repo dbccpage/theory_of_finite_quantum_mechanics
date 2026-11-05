@@ -1,0 +1,7 @@
+{
+  "AuthorityEffect": "None",
+  "before_sha256": "40b72f1ba96cde7da99172e223c39ae98e675b1fe16eb040d15865415f1bdf25",
+  "after_sha256": "e953590dcfabaa561bddd6caa3294afe70198765f4609da74fd544d3e37692cd",
+  "reason": "mypy inferred values from a previous narrower tuple loop. Rename only the second independent loop variable to pair_shape; all inputs and assertions are identical. No production source or mutation recipe changes.",
+  "diff": "--- initial/tests\n+++ current/tests\n@@ -335,9 +335,9 @@\n             self.assertEqual(module.power_shares((1, 2), exponent).error.kind, \"input\")\n         for values in ((), \"12\", None):\n             self.assertEqual(module.power_shares(values, 2).error.kind, \"input\")\n-        for values in ((1,), (), \"12\", None):\n-            self.assertEqual(module.rotation(values, (1, 0)).error.kind, \"input\")\n-            self.assertEqual(module.rotation((1, 0), values).error.kind, \"input\")\n+        for pair_shape in ((1,), (), \"12\", None):\n+            self.assertEqual(module.rotation(pair_shape, (1, 0)).error.kind, \"input\")\n+            self.assertEqual(module.rotation((1, 0), pair_shape).error.kind, \"input\")\n         self.assertEqual(module.power_shares((1,)*17, 1).error.kind, \"resource\")\n         self.assertEqual(module.rotation((1, 2, 3), (1, 0)).error.kind, \"resource\")\n         self.assertEqual(module.rotation((1, 0), (1, 2, 3)).error.kind, \"resource\")\n"
+}

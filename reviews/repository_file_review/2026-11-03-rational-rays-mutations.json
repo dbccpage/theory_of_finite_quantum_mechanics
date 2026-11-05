@@ -1,0 +1,498 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "test_all_small_box_rays_and_frame_pairs_against_raw_enumeration (__main__.RationalRayObstructionTests.test_all_small_box_rays_and_frame_pairs_against_raw_enumeration) ... ok\ntest_completion_orientation_and_quadratic_intermediate_preflight (__main__.RationalRayObstructionTests.test_completion_orientation_and_quadratic_intermediate_preflight) ... ok\ntest_exact_domains_zero_even_representatives_and_ownership (__main__.RationalRayObstructionTests.test_exact_domains_zero_even_representatives_and_ownership) ... ok\ntest_generated_canonical_ray_and_independent_residue_value (__main__.RationalRayObstructionTests.test_generated_canonical_ray_and_independent_residue_value) ... ok\ntest_generated_completion_against_symbolic_cross_product (__main__.RationalRayObstructionTests.test_generated_completion_against_symbolic_cross_product) ... ok\ntest_generated_quadratic_rows_against_symbolic_polynomial (__main__.RationalRayObstructionTests.test_generated_quadratic_rows_against_symbolic_polynomial) ... ok\ntest_import_reentrant_counts_and_cli_failure_lifecycle (__main__.RationalRayObstructionTests.test_import_reentrant_counts_and_cli_failure_lifecycle) ... ok\ntest_input_product_prefix_and_scaling_resource_limits (__main__.RationalRayObstructionTests.test_input_product_prefix_and_scaling_resource_limits) ... ok\ntest_operand_and_scaling_domains_and_preflight (__main__.RationalRayObstructionTests.test_operand_and_scaling_domains_and_preflight) ... ok\ntest_original_raw_domain_and_full_mod4_congruence (__main__.RationalRayObstructionTests.test_original_raw_domain_and_full_mod4_congruence) ... ok\ntest_seven_ray_independent_rank_nullspace_and_residual (__main__.RationalRayObstructionTests.test_seven_ray_independent_rank_nullspace_and_residual) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 3.431s\n\nOK\n",
+    "returncode": 0
+  },
+  "inputs_sha256": {
+    ".review_work\\run_rational_rays_mutations.py": "1003a08decd1a136f2af230fefaf502bd8858bd7503a421cf0b9af0970f02599",
+    "checks\\checker_support\\boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks\\checker_support\\cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks\\checker_support\\cech_complex.py": "6f973fc65d6fa66ebb9078c6cc1af60683a5150b97b5510ca853517b650227dd",
+    "checks\\checker_support\\domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks\\checker_support\\empirical_model.py": "612562ec192efe40b5b9a0bb151486d4e77caf399bd853d2da712f5ca465172c",
+    "checks\\checker_support\\exact_linear_program.py": "c771280ccd6473deaa011e37ca22c3e1856ccb9fbd2025580c81b87a0513f65f",
+    "checks\\checker_support\\gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks\\checker_support\\gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks\\checker_support\\happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks\\checker_support\\linear_program_certificate.py": "cfe2167737de71125118fb749a6e9ba5a2501cbee49ebc7828d2d55cc81636dc",
+    "checks\\checker_support\\measurement_scenario.py": "c441ba2036eca8083869d4b0fb4a49fdbc84638ca29b3cd2e90f8a07b5d71a3c",
+    "checks\\checker_support\\mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks\\checker_support\\outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks\\checker_support\\rational_inverse.py": "4eadfd4b793e62a415d7d2da05964e4af8c46edfd7e59d54f86b93f29f326b9b",
+    "checks\\checker_support\\rational_matrix.py": "91a6d2d7ac3cdf7693ff863075046fc8dc9a6843fcc9c564a890b942c076b1ce",
+    "checks\\checker_support\\simplex_tableau.py": "c5254540e60b3bd68f8bd7776162878d6a919724f88b2098f9874bb980d2c145",
+    "checks\\checker_support\\wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py": "f415b56626fd832aa38ab5d3421be65b6f7f1a0ab3043a0bdadec6162d26cf56",
+    "checks\\tests\\rational_rays_mutations.json": "17353c02345159ac8560da95635236c832100c5bdfa08df96f6d56206b3b30cc",
+    "checks\\tests\\run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks\\tests\\test_rational_ray_obstruction.py": "7eb35e0964a3e6117b96816e7063005f57383311e35f7aa9ff887124bc531eb1",
+    "checks\\tests\\test_review_repairs.py": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4"
+  },
+  "mutants": [
+    {
+      "identity": "ray-exact-input",
+      "mutant_sha256": "1968ebf5ad8fd6a7072dc6d0ddd98f157ffa4178890de52429d441a029a3b4e3",
+      "outcome": "killed",
+      "output": "test_exact_domains_zero_even_representatives_and_ownership (__main__.RationalRayObstructionTests.test_exact_domains_zero_even_representatives_and_ownership) ... FAIL\n\n======================================================================\nFAIL: test_exact_domains_zero_even_representatives_and_ownership (__main__.RationalRayObstructionTests.test_exact_domains_zero_even_representatives_and_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 147, in test_exact_domains_zero_even_representatives_and_ownership\n    self.assertFalse(evaluate(module.IntegerRay3,invalid).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_exact_domains_zero_even_representatives_and_ownership"
+      ]
+    },
+    {
+      "identity": "ray-input-bits",
+      "mutant_sha256": "d90bbb923c7194ada2f6b5090faab5f7385b6227dbe1ecfada4debb5bc412ccb",
+      "outcome": "killed",
+      "output": "test_input_product_prefix_and_scaling_resource_limits (__main__.RationalRayObstructionTests.test_input_product_prefix_and_scaling_resource_limits) ... FAIL\n\n======================================================================\nFAIL: test_input_product_prefix_and_scaling_resource_limits (__main__.RationalRayObstructionTests.test_input_product_prefix_and_scaling_resource_limits)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 178, in test_input_product_prefix_and_scaling_resource_limits\n    self.refused(evaluate(module.IntegerRay3,(1<<4096,0,0)),'resource')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 61, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_input_product_prefix_and_scaling_resource_limits"
+      ]
+    },
+    {
+      "identity": "ray-vector-shape",
+      "mutant_sha256": "18c70f4c7d02127158a4c1fe2938848707315718c224e4d26a8fbf057a9f9332",
+      "outcome": "killed",
+      "output": "test_exact_domains_zero_even_representatives_and_ownership (__main__.RationalRayObstructionTests.test_exact_domains_zero_even_representatives_and_ownership) ... FAIL\n\n======================================================================\nFAIL: test_exact_domains_zero_even_representatives_and_ownership (__main__.RationalRayObstructionTests.test_exact_domains_zero_even_representatives_and_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 147, in test_exact_domains_zero_even_representatives_and_ownership\n    self.assertFalse(evaluate(module.IntegerRay3,invalid).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_exact_domains_zero_even_representatives_and_ownership"
+      ]
+    },
+    {
+      "identity": "ray-dot-product-budget",
+      "mutant_sha256": "9ff961bc432a5152239ac1f63c137be520d26944d5fe561080005015d262a568",
+      "outcome": "survived",
+      "output": "test_input_product_prefix_and_scaling_resource_limits (__main__.RationalRayObstructionTests.test_input_product_prefix_and_scaling_resource_limits) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_input_product_prefix_and_scaling_resource_limits"
+      ]
+    },
+    {
+      "identity": "ray-dot-prefix-budget",
+      "mutant_sha256": "c911eeca41924f7d338e5f326f17cb2e413bc7a6bd061c3da0e34824d88d80e8",
+      "outcome": "killed",
+      "output": "test_input_product_prefix_and_scaling_resource_limits (__main__.RationalRayObstructionTests.test_input_product_prefix_and_scaling_resource_limits) ... FAIL\n\n======================================================================\nFAIL: test_input_product_prefix_and_scaling_resource_limits (__main__.RationalRayObstructionTests.test_input_product_prefix_and_scaling_resource_limits)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 184, in test_input_product_prefix_and_scaling_resource_limits\n    self.refused(module.IntegerRay3((huge,huge,-huge+1)).dot(module.IntegerRay3((1,1,1))),'resource')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 61, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_input_product_prefix_and_scaling_resource_limits"
+      ]
+    },
+    {
+      "identity": "ray-cross-product-budget",
+      "mutant_sha256": "f465dd3254aa141427d2f27001ea8fe5bf84ca703d71b27144259f2ec82cf4da",
+      "outcome": "killed",
+      "output": "test_input_product_prefix_and_scaling_resource_limits (__main__.RationalRayObstructionTests.test_input_product_prefix_and_scaling_resource_limits) ... FAIL\n\n======================================================================\nFAIL: test_input_product_prefix_and_scaling_resource_limits (__main__.RationalRayObstructionTests.test_input_product_prefix_and_scaling_resource_limits)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 187, in test_input_product_prefix_and_scaling_resource_limits\n    self.refused(evaluate(module._cross,(medium,medium-1,1),(medium+1,medium,1)),'resource')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 61, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_input_product_prefix_and_scaling_resource_limits"
+      ]
+    },
+    {
+      "identity": "ray-cross-difference-budget",
+      "mutant_sha256": "db1de5b36cd234b00a6cd1655f5590fa52105939e860258806071932b12090f4",
+      "outcome": "survived",
+      "output": "test_input_product_prefix_and_scaling_resource_limits (__main__.RationalRayObstructionTests.test_input_product_prefix_and_scaling_resource_limits) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_input_product_prefix_and_scaling_resource_limits"
+      ]
+    },
+    {
+      "identity": "ray-cross-orientation",
+      "mutant_sha256": "703bc6ec42382e984e7aaf27ca9fe8256bc05b3f61cd74bc5b7074aa5bfb42a8",
+      "outcome": "killed",
+      "output": "test_generated_completion_against_symbolic_cross_product (__main__.RationalRayObstructionTests.test_generated_completion_against_symbolic_cross_product) ... FAIL\n\n======================================================================\nFAIL: test_generated_completion_against_symbolic_cross_product (__main__.RationalRayObstructionTests.test_generated_completion_against_symbolic_cross_product)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 78, in test_generated_completion_against_symbolic_cross_product\n    @given(VECTOR,VECTOR)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 85, in test_generated_completion_against_symbolic_cross_product\n    self.assertEqual(projective(result.coordinates),projective(tuple(int(x) for x in oracle)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1), Fraction(1, 1), Fraction(1, 1)) != (Fraction(0, 1), Fraction(1, 1), Fraction(-1, 1))\n\nFirst differing element 2:\nFraction(1, 1)\nFraction(-1, 1)\n\n- (Fraction(0, 1), Fraction(1, 1), Fraction(1, 1))\n+ (Fraction(0, 1), Fraction(1, 1), Fraction(-1, 1))\n?                                           +\n\nFailing test case: test_generated_completion_against_symbolic_cross_product(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.RationalRayObstructionTests testMethod=test_generated_completion_against_symbolic_cross_product>,\n    left=(\n        0,  # or any other generated value\n        1,  # or any other generated value\n        1,\n    ),\n    seed=(\n        0,  # or any other generated value\n        0,  # or any other generated value\n        1,  # or any other generated value\n    ),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 4.575s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_generated_completion_against_symbolic_cross_product"
+      ]
+    },
+    {
+      "identity": "ray-pair-odd-domain",
+      "mutant_sha256": "23e724595867288f007ecd89e94d5a55785180355f780c467c8654ce6c8faf32",
+      "outcome": "killed",
+      "output": "test_exact_domains_zero_even_representatives_and_ownership (__main__.RationalRayObstructionTests.test_exact_domains_zero_even_representatives_and_ownership) ... FAIL\n\n======================================================================\nFAIL: test_exact_domains_zero_even_representatives_and_ownership (__main__.RationalRayObstructionTests.test_exact_domains_zero_even_representatives_and_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 157, in test_exact_domains_zero_even_representatives_and_ownership\n    self.assertFalse(module.pair_sign(bad,1).ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_exact_domains_zero_even_representatives_and_ownership"
+      ]
+    },
+    {
+      "identity": "ray-pair-modulus",
+      "mutant_sha256": "a5bd62196405cb6ba16cd926e6679138c7eb75445e73ff67626e379a88586bd6",
+      "outcome": "killed",
+      "output": "test_original_raw_domain_and_full_mod4_congruence (__main__.RationalRayObstructionTests.test_original_raw_domain_and_full_mod4_congruence) ... FAIL\n\n======================================================================\nFAIL: test_original_raw_domain_and_full_mod4_congruence (__main__.RationalRayObstructionTests.test_original_raw_domain_and_full_mod4_congruence)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 117, in test_original_raw_domain_and_full_mod4_congruence\n    self.assertEqual(self.accepted(module.exotic(vector)),reference_value(vector))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(0, 1) != Fraction(2, 3)\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_original_raw_domain_and_full_mod4_congruence"
+      ]
+    },
+    {
+      "identity": "ray-content-normalization",
+      "mutant_sha256": "6a9cd22dfc3470b1258f4d85d4ac907abdd0ed360a1309cc57e676b35852abf0",
+      "outcome": "killed",
+      "output": "test_generated_canonical_ray_and_independent_residue_value (__main__.RationalRayObstructionTests.test_generated_canonical_ray_and_independent_residue_value) ... FAIL\n\n======================================================================\nFAIL: test_generated_canonical_ray_and_independent_residue_value (__main__.RationalRayObstructionTests.test_generated_canonical_ray_and_independent_residue_value)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 66, in test_generated_canonical_ray_and_independent_residue_value\n    @given(VECTOR,st.integers(-20,20))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 74, in test_generated_canonical_ray_and_independent_residue_value\n    self.assertEqual(self.accepted(ray.scale(scale)),ray)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: IntegerRay3(coordinates=(0, 0, 2)) != IntegerRay3(coordinates=(0, 0, 1))\nFailing test case: test_generated_canonical_ray_and_independent_residue_value(\n    self=<__main__.RationalRayObstructionTests testMethod=test_generated_canonical_ray_and_independent_residue_value>,\n    vector=(0, 0, 1),  # or any other generated value\n    scale=2,\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.325s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_generated_canonical_ray_and_independent_residue_value"
+      ]
+    },
+    {
+      "identity": "ray-zero-domain",
+      "mutant_sha256": "5bdf79d38803ca4e84f1eab04616798fce073c9b1edcbc9ff27c142a97fccff3",
+      "outcome": "killed",
+      "output": "test_exact_domains_zero_even_representatives_and_ownership (__main__.RationalRayObstructionTests.test_exact_domains_zero_even_representatives_and_ownership) ... ERROR\n\n======================================================================\nERROR: test_exact_domains_zero_even_representatives_and_ownership (__main__.RationalRayObstructionTests.test_exact_domains_zero_even_representatives_and_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 147, in test_exact_domains_zero_even_representatives_and_ownership\n    self.assertFalse(evaluate(module.IntegerRay3,invalid).ok)\n                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 74, in __init__\n    leading=next(x for x in coordinates if x)\nStopIteration\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_exact_domains_zero_even_representatives_and_ownership"
+      ]
+    },
+    {
+      "identity": "ray-representative-sign",
+      "mutant_sha256": "5bfb586f836d2ff9fd9bb6c518754aa0f8ca66683fef4a390f668455708baf31",
+      "outcome": "killed",
+      "output": "test_generated_canonical_ray_and_independent_residue_value (__main__.RationalRayObstructionTests.test_generated_canonical_ray_and_independent_residue_value) ... ERROR\n\n======================================================================\nERROR: test_generated_canonical_ray_and_independent_residue_value (__main__.RationalRayObstructionTests.test_generated_canonical_ray_and_independent_residue_value)\n----------------------------------------------------------------------\n  + Exception Group Traceback (most recent call last):\n  |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 66, in test_generated_canonical_ray_and_independent_residue_value\n  |     @given(VECTOR,st.integers(-20,20))\n  |                ^^^^^^^\n  |   File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n  |     raise the_error_hypothesis_found\n  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)\n  +-+---------------- 1 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 72, in test_generated_canonical_ray_and_independent_residue_value\n    |     self.assertGreater(next(x for x in ray.coordinates if x),0)\n    |     ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 1309, in assertGreater\n    |     self.fail(self._formatMessage(msg, standardMsg))\n    |     ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 750, in fail\n    |     raise self.failureException(msg)\n    | AssertionError: -1 not greater than 0\n    | Failing test case: test_generated_canonical_ray_and_independent_residue_value(\n    |     self=<__main__.RationalRayObstructionTests testMethod=test_generated_canonical_ray_and_independent_residue_value>,\n    |     vector=(0, 0, -1),\n    |     scale=1,  # or any other generated value\n    | )\n    +---------------- 2 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 74, in test_generated_canonical_ray_and_independent_residue_value\n    |     self.assertEqual(self.accepted(ray.scale(scale)),ray)\n    |     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 925, in assertEqual\n    |     assertion_func(first, second, msg=msg)\n    |     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 918, in _baseAssertEqual\n    |     raise self.failureException(msg)\n    | AssertionError: IntegerRay3(coordinates=(0, 0, -1)) != IntegerRay3(coordinates=(0, 0, 1))\n    | Failing test case: test_generated_canonical_ray_and_independent_residue_value(\n    |     self=<__main__.RationalRayObstructionTests testMethod=test_generated_canonical_ray_and_independent_residue_value>,\n    |     vector=(0, 0, 1),  # or any other generated value\n    |     scale=-1,\n    | )\n    +------------------------------------\n\n----------------------------------------------------------------------\nRan 1 test in 2.901s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_generated_canonical_ray_and_independent_residue_value"
+      ]
+    },
+    {
+      "identity": "ray-odd-pattern",
+      "mutant_sha256": "9083b46aaa9a0a6efff6a40ec895d48d300cf6d3a33c6e73d5bdfe75b6fda92f",
+      "outcome": "killed",
+      "output": "test_generated_canonical_ray_and_independent_residue_value (__main__.RationalRayObstructionTests.test_generated_canonical_ray_and_independent_residue_value) ... ERROR\n\n======================================================================\nERROR: test_generated_canonical_ray_and_independent_residue_value (__main__.RationalRayObstructionTests.test_generated_canonical_ray_and_independent_residue_value)\n----------------------------------------------------------------------\n  + Exception Group Traceback (most recent call last):\n  |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 66, in test_generated_canonical_ray_and_independent_residue_value\n  |     @given(VECTOR,st.integers(-20,20))\n  |                ^^^^^^^\n  |   File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n  |     raise the_error_hypothesis_found\n  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)\n  +-+---------------- 1 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 73, in test_generated_canonical_ray_and_independent_residue_value\n    |     self.assertEqual(ray.value,reference_value(vector))\n    |     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 925, in assertEqual\n    |     assertion_func(first, second, msg=msg)\n    |     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 918, in _baseAssertEqual\n    |     raise self.failureException(msg)\n    | AssertionError: Fraction(1, 3) != Fraction(0, 1)\n    | Failing test case: test_generated_canonical_ray_and_independent_residue_value(\n    |     # The test always failed when commented parts were varied together.\n    |     self=<__main__.RationalRayObstructionTests testMethod=test_generated_canonical_ray_and_independent_residue_value>,\n    |     vector=(\n    |         0,\n    |         1,  # or any other generated value\n    |         1,  # or any other generated value\n    |     ),\n    |     scale=1,  # or any other generated value\n    | )\n    +---------------- 2 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 73, in test_generated_canonical_ray_and_independent_residue_value\n    |     self.assertEqual(ray.value,reference_value(vector))\n    |                      ^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 81, in value\n    |     sign=_pair_sign(odd[0],odd[1]) if len(odd)==2 else 0\n    |          ~~~~~~~~~~^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 56, in _pair_sign\n    |     raise Violation('input','pair sign requires two odd integers')\n    | checker_support.boundary.Violation: pair sign requires two odd integers\n    | Failing test case: test_generated_canonical_ray_and_independent_residue_value(\n    |     # The test sometimes passed when commented parts were varied together.\n    |     self=<__main__.RationalRayObstructionTests testMethod=test_generated_canonical_ray_and_independent_residue_value>,\n    |     vector=(\n    |         0,  # or any other generated value\n    |         0,  # or any other generated value\n    |         1,  # or any other generated value\n    |     ),\n    |     scale=1,  # or any other generated value\n    | )\n    | Explanation:\n    |     These lines were always and only run by failing test cases:\n    |         C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py:54\n    |         C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py:55\n    +------------------------------------\n\n----------------------------------------------------------------------\nRan 1 test in 5.952s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_generated_canonical_ray_and_independent_residue_value"
+      ]
+    },
+    {
+      "identity": "ray-weight-two-condition",
+      "mutant_sha256": "a81680ab71a7ba28ce3db4c2497bc3e455bdb7cfb1aa9a920418c99ce393245d",
+      "outcome": "killed",
+      "output": "test_generated_canonical_ray_and_independent_residue_value (__main__.RationalRayObstructionTests.test_generated_canonical_ray_and_independent_residue_value) ... ERROR\n\n======================================================================\nERROR: test_generated_canonical_ray_and_independent_residue_value (__main__.RationalRayObstructionTests.test_generated_canonical_ray_and_independent_residue_value)\n----------------------------------------------------------------------\n  + Exception Group Traceback (most recent call last):\n  |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 66, in test_generated_canonical_ray_and_independent_residue_value\n  |     @given(VECTOR,st.integers(-20,20))\n  |                ^^^^^^^\n  |   File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n  |     raise the_error_hypothesis_found\n  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)\n  +-+---------------- 1 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 73, in test_generated_canonical_ray_and_independent_residue_value\n    |     self.assertEqual(ray.value,reference_value(vector))\n    |     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 925, in assertEqual\n    |     assertion_func(first, second, msg=msg)\n    |     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 918, in _baseAssertEqual\n    |     raise self.failureException(msg)\n    | AssertionError: Fraction(1, 3) != Fraction(0, 1)\n    | Failing test case: test_generated_canonical_ray_and_independent_residue_value(\n    |     # The test always failed when commented parts were varied together.\n    |     self=<__main__.RationalRayObstructionTests testMethod=test_generated_canonical_ray_and_independent_residue_value>,\n    |     vector=(\n    |         0,\n    |         1,  # or any other generated value\n    |         1,  # or any other generated value\n    |     ),\n    |     scale=1,  # or any other generated value\n    | )\n    +---------------- 2 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 73, in test_generated_canonical_ray_and_independent_residue_value\n    |     self.assertEqual(ray.value,reference_value(vector))\n    |                      ^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 81, in value\n    |     sign=_pair_sign(odd[0],odd[1]) if len(odd)==1 else 0\n    |                            ~~~^^^\n    | IndexError: tuple index out of range\n    | Failing test case: test_generated_canonical_ray_and_independent_residue_value(\n    |     # The test sometimes passed when commented parts were varied together.\n    |     self=<__main__.RationalRayObstructionTests testMethod=test_generated_canonical_ray_and_independent_residue_value>,\n    |     vector=(\n    |         0,  # or any other generated value\n    |         0,  # or any other generated value\n    |         1,  # or any other generated value\n    |     ),\n    |     scale=1,  # or any other generated value\n    | )\n    +------------------------------------\n\n----------------------------------------------------------------------\nRan 1 test in 6.225s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_generated_canonical_ray_and_independent_residue_value"
+      ]
+    },
+    {
+      "identity": "ray-value-sign",
+      "mutant_sha256": "32e9573d65b90cbe7716bf49e5d13d773f03210b748ce50ef0f801fc3f4b060c",
+      "outcome": "killed",
+      "output": "test_generated_canonical_ray_and_independent_residue_value (__main__.RationalRayObstructionTests.test_generated_canonical_ray_and_independent_residue_value) ... FAIL\n\n======================================================================\nFAIL: test_generated_canonical_ray_and_independent_residue_value (__main__.RationalRayObstructionTests.test_generated_canonical_ray_and_independent_residue_value)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 66, in test_generated_canonical_ray_and_independent_residue_value\n    @given(VECTOR,st.integers(-20,20))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 73, in test_generated_canonical_ray_and_independent_residue_value\n    self.assertEqual(ray.value,reference_value(vector))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(2, 3) != Fraction(0, 1)\nFailing test case: test_generated_canonical_ray_and_independent_residue_value(\n    self=<__main__.RationalRayObstructionTests testMethod=test_generated_canonical_ray_and_independent_residue_value>,\n    vector=(0, 1, 1),\n    scale=1,  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py:54\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py:55\n\n----------------------------------------------------------------------\nRan 1 test in 0.697s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_generated_canonical_ray_and_independent_residue_value"
+      ]
+    },
+    {
+      "identity": "ray-value-denominator",
+      "mutant_sha256": "f036f4d8c15e7ae5c93d36cf2e9fda5bdcbc69441d795ca5aae617d35ddcdb43",
+      "outcome": "killed",
+      "output": "test_generated_canonical_ray_and_independent_residue_value (__main__.RationalRayObstructionTests.test_generated_canonical_ray_and_independent_residue_value) ... FAIL\n\n======================================================================\nFAIL: test_generated_canonical_ray_and_independent_residue_value (__main__.RationalRayObstructionTests.test_generated_canonical_ray_and_independent_residue_value)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 66, in test_generated_canonical_ray_and_independent_residue_value\n    @given(VECTOR,st.integers(-20,20))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 73, in test_generated_canonical_ray_and_independent_residue_value\n    self.assertEqual(ray.value,reference_value(vector))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(1, 2) != Fraction(1, 3)\nFailing test case: test_generated_canonical_ray_and_independent_residue_value(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.RationalRayObstructionTests testMethod=test_generated_canonical_ray_and_independent_residue_value>,\n    vector=(\n        0,\n        0,\n        1,  # or any other generated value\n    ),\n    scale=1,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.768s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_generated_canonical_ray_and_independent_residue_value"
+      ]
+    },
+    {
+      "identity": "ray-operand-domain",
+      "mutant_sha256": "b0da5fabaa0ea273e44ece60a6f812da2407a394339709466f1e8fe5d5d1e048",
+      "outcome": "killed",
+      "output": "test_operand_and_scaling_domains_and_preflight (__main__.RationalRayObstructionTests.test_operand_and_scaling_domains_and_preflight) ... ERROR\n\n======================================================================\nERROR: test_operand_and_scaling_domains_and_preflight (__main__.RationalRayObstructionTests.test_operand_and_scaling_domains_and_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 164, in test_operand_and_scaling_domains_and_preflight\n    self.refused(ray.dot(invalid));self.refused(ray.complete(invalid))\n                 ~~~~~~~^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 91, in dot\n    return evaluate(lambda: _dot(self.coordinates,self._other(other).coordinates))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 91, in <lambda>\n    return evaluate(lambda: _dot(self.coordinates,self._other(other).coordinates))\n                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'coordinates'\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_operand_and_scaling_domains_and_preflight"
+      ]
+    },
+    {
+      "identity": "ray-completion-orthogonality",
+      "mutant_sha256": "3b26c48dcb6b51cc9d0f1c84f3790dcfa8d39ec989a5ac62af66a3c59f5e0de9",
+      "outcome": "survived",
+      "output": "test_operand_and_scaling_domains_and_preflight (__main__.RationalRayObstructionTests.test_operand_and_scaling_domains_and_preflight) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_operand_and_scaling_domains_and_preflight"
+      ]
+    },
+    {
+      "identity": "ray-scaling-zero",
+      "mutant_sha256": "a973be6cd486505caa0a9e44e2208319bd619574db7a392e8f46da8bbe83d564",
+      "outcome": "survived",
+      "output": "test_operand_and_scaling_domains_and_preflight (__main__.RationalRayObstructionTests.test_operand_and_scaling_domains_and_preflight) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.006s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_operand_and_scaling_domains_and_preflight"
+      ]
+    },
+    {
+      "identity": "ray-scaling-product-budget",
+      "mutant_sha256": "ce531b56b8afa9af020988dcf30f335c7ff21dbccc2c3bdb6b8a0b6111cb1828",
+      "outcome": "survived",
+      "output": "test_input_product_prefix_and_scaling_resource_limits (__main__.RationalRayObstructionTests.test_input_product_prefix_and_scaling_resource_limits) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_input_product_prefix_and_scaling_resource_limits"
+      ]
+    },
+    {
+      "identity": "ray-quadratic-square",
+      "mutant_sha256": "0babf29cd7f58e98ad28256eba7c118a1c127d9f2830364510a4b707f763ef71",
+      "outcome": "killed",
+      "output": "test_generated_quadratic_rows_against_symbolic_polynomial (__main__.RationalRayObstructionTests.test_generated_quadratic_rows_against_symbolic_polynomial) ... FAIL\n\n======================================================================\nFAIL: test_generated_quadratic_rows_against_symbolic_polynomial (__main__.RationalRayObstructionTests.test_generated_quadratic_rows_against_symbolic_polynomial)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 91, in test_generated_quadratic_rows_against_symbolic_polynomial\n    @given(VECTOR)\n               ^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 99, in test_generated_quadratic_rows_against_symbolic_polynomial\n    self.assertEqual(self.accepted(ray.quadratic_row()),expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Frac[32 chars]tion(-1, 1), Fraction(0, 1), Fraction(0, 1), F[26 chars], 3)) != (Frac[32 chars]tion(1, 1), Fraction(0, 1), Fraction(0, 1), Fr[25 chars], 3))\n\nFirst differing element 2:\nFraction(-1, 1)\nFraction(1, 1)\n\n  (Fraction(0, 1),\n   Fraction(1, 1),\n-  Fraction(-1, 1),\n?           -\n\n+  Fraction(1, 1),\n   Fraction(0, 1),\n   Fraction(0, 1),\n   Fraction(-2, 1),\n   Fraction(4, 3))\nFailing test case: test_generated_quadratic_rows_against_symbolic_polynomial(\n    self=<__main__.RationalRayObstructionTests testMethod=test_generated_quadratic_rows_against_symbolic_polynomial>,\n    vector=(\n        0,  # or any other generated value\n        1,\n        -1,\n    ),\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\expr.py:1375\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\numbers.py:1858\n\n----------------------------------------------------------------------\nRan 1 test in 1.076s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_generated_quadratic_rows_against_symbolic_polynomial"
+      ]
+    },
+    {
+      "identity": "ray-quadratic-cross-factor",
+      "mutant_sha256": "89f9cbc208a33839abfa538da4e20b7baf5c3de2ef8fc1c369dfd17bd793be85",
+      "outcome": "killed",
+      "output": "test_generated_quadratic_rows_against_symbolic_polynomial (__main__.RationalRayObstructionTests.test_generated_quadratic_rows_against_symbolic_polynomial) ... FAIL\n\n======================================================================\nFAIL: test_generated_quadratic_rows_against_symbolic_polynomial (__main__.RationalRayObstructionTests.test_generated_quadratic_rows_against_symbolic_polynomial)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 91, in test_generated_quadratic_rows_against_symbolic_polynomial\n    @given(VECTOR)\n               ^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 99, in test_generated_quadratic_rows_against_symbolic_polynomial\n    self.assertEqual(self.accepted(ray.quadratic_row()),expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Frac[44 chars]Fraction(0, 1), Fraction(0, 1), Fraction(1, 1), Fraction(0, 1)) != (Frac[44 chars]Fraction(0, 1), Fraction(0, 1), Fraction(2, 1), Fraction(0, 1))\n\nFirst differing element 5:\nFraction(1, 1)\nFraction(2, 1)\n\n  (Fraction(0, 1),\n   Fraction(1, 1),\n   Fraction(1, 1),\n   Fraction(0, 1),\n   Fraction(0, 1),\n-  Fraction(1, 1),\n?           ^\n\n+  Fraction(2, 1),\n?           ^\n\n   Fraction(0, 1))\nFailing test case: test_generated_quadratic_rows_against_symbolic_polynomial(\n    self=<__main__.RationalRayObstructionTests testMethod=test_generated_quadratic_rows_against_symbolic_polynomial>,\n    vector=(\n        0,  # or any other generated value\n        1,\n        1,\n    ),\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\basic.py:527\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\expr.py:1374\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\expr.py:1608\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\expr.py:1615\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\operations.py:472\n\n----------------------------------------------------------------------\nRan 1 test in 1.053s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_generated_quadratic_rows_against_symbolic_polynomial"
+      ]
+    },
+    {
+      "identity": "ray-quadratic-cross-budget",
+      "mutant_sha256": "96e0bad246569d211583ef57699338a62f1827a728b6c5ab0da9b3fce823b732",
+      "outcome": "killed",
+      "output": "test_completion_orientation_and_quadratic_intermediate_preflight (__main__.RationalRayObstructionTests.test_completion_orientation_and_quadratic_intermediate_preflight) ... FAIL\n\n======================================================================\nFAIL: test_completion_orientation_and_quadratic_intermediate_preflight (__main__.RationalRayObstructionTests.test_completion_orientation_and_quadratic_intermediate_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 196, in test_completion_orientation_and_quadratic_intermediate_preflight\n    self.refused(ray.quadratic_row(),'resource')\n                 ~~~~~~~~~~~~~~~~~^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 119, in quadratic_row\n    return evaluate(self._quadratic_row)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 115, in _quadratic_row\n    norm=_dot(self.coordinates,self.coordinates)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 195, in <lambda>\n    with patch.dict(module._dot.__globals__,_dot=lambda *args: (_ for _ in ()).throw(AssertionError('cross terms must preflight'))):\n                                                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 195, in <genexpr>\n    with patch.dict(module._dot.__globals__,_dot=lambda *args: (_ for _ in ()).throw(AssertionError('cross terms must preflight'))):\nAssertionError: cross terms must preflight\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_completion_orientation_and_quadratic_intermediate_preflight"
+      ]
+    },
+    {
+      "identity": "ray-quadratic-target",
+      "mutant_sha256": "f05e4fe13d9fba9dd8e7c7670c98208d072e226023e5f5e9f9a62f1df6cd5e79",
+      "outcome": "killed",
+      "output": "test_generated_quadratic_rows_against_symbolic_polynomial (__main__.RationalRayObstructionTests.test_generated_quadratic_rows_against_symbolic_polynomial) ... FAIL\n\n======================================================================\nFAIL: test_generated_quadratic_rows_against_symbolic_polynomial (__main__.RationalRayObstructionTests.test_generated_quadratic_rows_against_symbolic_polynomial)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 91, in test_generated_quadratic_rows_against_symbolic_polynomial\n    @given(VECTOR)\n               ^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 99, in test_generated_quadratic_rows_against_symbolic_polynomial\n    self.assertEqual(self.accepted(ray.quadratic_row()),expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Frac[45 chars]raction(0, 1), Fraction(0, 1), Fraction(-2, 1), Fraction(2, 3)) != (Frac[45 chars]raction(0, 1), Fraction(0, 1), Fraction(-2, 1), Fraction(4, 3))\n\nFirst differing element 6:\nFraction(2, 3)\nFraction(4, 3)\n\n  (Fraction(0, 1),\n   Fraction(1, 1),\n   Fraction(1, 1),\n   Fraction(0, 1),\n   Fraction(0, 1),\n   Fraction(-2, 1),\n-  Fraction(2, 3))\n?           ^\n\n+  Fraction(4, 3))\n?           ^\n\nFailing test case: test_generated_quadratic_rows_against_symbolic_polynomial(\n    self=<__main__.RationalRayObstructionTests testMethod=test_generated_quadratic_rows_against_symbolic_polynomial>,\n    vector=(\n        0,  # or any other generated value\n        1,\n        -1,\n    ),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.166s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_generated_quadratic_rows_against_symbolic_polynomial"
+      ]
+    },
+    {
+      "identity": "ray-box-budget",
+      "mutant_sha256": "e19607c56669302d7bdf989746faa9f3ded90f0481cced4642016a4eee154ad1",
+      "outcome": "killed",
+      "output": "test_operand_and_scaling_domains_and_preflight (__main__.RationalRayObstructionTests.test_operand_and_scaling_domains_and_preflight) ... FAIL\n\n======================================================================\nFAIL: test_operand_and_scaling_domains_and_preflight (__main__.RationalRayObstructionTests.test_operand_and_scaling_domains_and_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 172, in test_operand_and_scaling_domains_and_preflight\n    self.assertFalse(module.ray_box(radius).ok)\n                     ~~~~~~~~~~~~~~^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 134, in ray_box\n    return evaluate(_box,radius)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 129, in _box\n    rays={IntegerRay3(vector) for vector in product(range(-bound,bound+1),repeat=3) if any(vector)}\n                                            ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 170, in <lambda>\n    with patch.dict(namespace,product=lambda *args,**kwargs: (_ for _ in ()).throw(AssertionError('radius must preflight'))):\n                                                             ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 170, in <genexpr>\n    with patch.dict(namespace,product=lambda *args,**kwargs: (_ for _ in ()).throw(AssertionError('radius must preflight'))):\nAssertionError: radius must preflight\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_operand_and_scaling_domains_and_preflight"
+      ]
+    },
+    {
+      "identity": "ray-box-zero-coordinates",
+      "mutant_sha256": "4f740ad400a30a74a2923775880bea1bd51ef050a07bdf03db614694bd7d7dfd",
+      "outcome": "killed",
+      "output": "test_all_small_box_rays_and_frame_pairs_against_raw_enumeration (__main__.RationalRayObstructionTests.test_all_small_box_rays_and_frame_pairs_against_raw_enumeration) ... FAIL\n\n======================================================================\nFAIL: test_all_small_box_rays_and_frame_pairs_against_raw_enumeration (__main__.RationalRayObstructionTests.test_all_small_box_rays_and_frame_pairs_against_raw_enumeration)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 108, in test_all_small_box_rays_and_frame_pairs_against_raw_enumeration\n    self.assertEqual({projective(ray.coordinates) for ray in rays},expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Items in the second set but not the first:\n(Fraction(1, 1), Fraction(0, 1), Fraction(1, 1))\n(Fraction(1, 1), Fraction(1, 1), Fraction(0, 1))\n(Fraction(1, 1), Fraction(0, 1), Fraction(-1, 1))\n(Fraction(0, 1), Fraction(1, 1), Fraction(0, 1))\n(Fraction(1, 1), Fraction(0, 1), Fraction(0, 1))\n(Fraction(1, 1), Fraction(-1, 1), Fraction(0, 1))\n(Fraction(0, 1), Fraction(1, 1), Fraction(-1, 1))\n(Fraction(0, 1), Fraction(0, 1), Fraction(1, 1))\n(Fraction(0, 1), Fraction(1, 1), Fraction(1, 1))\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_all_small_box_rays_and_frame_pairs_against_raw_enumeration"
+      ]
+    },
+    {
+      "identity": "ray-frame-orthogonality",
+      "mutant_sha256": "c8f296852ff285ee08af350a98e00aebe176cff201c7acc72a3811af2064bd42",
+      "outcome": "killed",
+      "output": "test_all_small_box_rays_and_frame_pairs_against_raw_enumeration (__main__.RationalRayObstructionTests.test_all_small_box_rays_and_frame_pairs_against_raw_enumeration) ... ERROR\n\n======================================================================\nERROR: test_all_small_box_rays_and_frame_pairs_against_raw_enumeration (__main__.RationalRayObstructionTests.test_all_small_box_rays_and_frame_pairs_against_raw_enumeration)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 110, in test_all_small_box_rays_and_frame_pairs_against_raw_enumeration\n    cases=Cases();self.assertEqual(module._frames(rays,cases),len(pairs))\n                                   ~~~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 141, in _frames\n    third=left._complete(right)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 96, in _complete\n    raise Violation('input','frame completion requires orthogonal rays')\nchecker_support.boundary.Violation: frame completion requires orthogonal rays\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_all_small_box_rays_and_frame_pairs_against_raw_enumeration"
+      ]
+    },
+    {
+      "identity": "ray-frame-completion",
+      "mutant_sha256": "cedc54b59fb35f11694e9df7aa93b3195ccae4c2b820c4652967cdba47174215",
+      "outcome": "killed",
+      "output": "test_all_small_box_rays_and_frame_pairs_against_raw_enumeration (__main__.RationalRayObstructionTests.test_all_small_box_rays_and_frame_pairs_against_raw_enumeration) ... ERROR\n\n======================================================================\nERROR: test_all_small_box_rays_and_frame_pairs_against_raw_enumeration (__main__.RationalRayObstructionTests.test_all_small_box_rays_and_frame_pairs_against_raw_enumeration)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 110, in test_all_small_box_rays_and_frame_pairs_against_raw_enumeration\n    cases=Cases();self.assertEqual(module._frames(rays,cases),len(pairs))\n                                   ~~~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 142, in _frames\n    cases.require(_dot(left.coordinates,third.coordinates)==0,'completion perpendicular to first ray')\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: completion perpendicular to first ray\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_all_small_box_rays_and_frame_pairs_against_raw_enumeration"
+      ]
+    },
+    {
+      "identity": "ray-frame-census",
+      "mutant_sha256": "9b1aa20b9b87af373cd1da966b22b3a339a86a7dc8dba54df5ea887043adeca5",
+      "outcome": "killed",
+      "output": "test_all_small_box_rays_and_frame_pairs_against_raw_enumeration (__main__.RationalRayObstructionTests.test_all_small_box_rays_and_frame_pairs_against_raw_enumeration) ... FAIL\n\n======================================================================\nFAIL: test_all_small_box_rays_and_frame_pairs_against_raw_enumeration (__main__.RationalRayObstructionTests.test_all_small_box_rays_and_frame_pairs_against_raw_enumeration)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 110, in test_all_small_box_rays_and_frame_pairs_against_raw_enumeration\n    cases=Cases();self.assertEqual(module._frames(rays,cases),len(pairs))\n                  ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 24\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_all_small_box_rays_and_frame_pairs_against_raw_enumeration"
+      ]
+    },
+    {
+      "identity": "ray-congruence-domain",
+      "mutant_sha256": "a397052429b39cc812a7d86fb27995ca6529a9e8cf414b120eb1dd57e35b20ad",
+      "outcome": "killed",
+      "output": "test_original_raw_domain_and_full_mod4_congruence (__main__.RationalRayObstructionTests.test_original_raw_domain_and_full_mod4_congruence) ... ERROR\n\n======================================================================\nERROR: test_original_raw_domain_and_full_mod4_congruence (__main__.RationalRayObstructionTests.test_original_raw_domain_and_full_mod4_congruence)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 127, in test_original_raw_domain_and_full_mod4_congruence\n    cases=Cases();self.assertEqual(module._congruence(cases),compatible);self.assertEqual(cases.checks,33)\n                                   ~~~~~~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 156, in _congruence\n    cases.require(count==32,'all32 compatible tuples among64 parity-admitted tuples')\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: all32 compatible tuples among64 parity-admitted tuples\n\n----------------------------------------------------------------------\nRan 1 test in 0.022s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_original_raw_domain_and_full_mod4_congruence"
+      ]
+    },
+    {
+      "identity": "ray-congruence-orthogonality",
+      "mutant_sha256": "a11a7db554c0d2e9f6aa3662ebdad04e8102310e0a5d2961c78b8743f6b6b747",
+      "outcome": "killed",
+      "output": "test_original_raw_domain_and_full_mod4_congruence (__main__.RationalRayObstructionTests.test_original_raw_domain_and_full_mod4_congruence) ... ERROR\n\n======================================================================\nERROR: test_original_raw_domain_and_full_mod4_congruence (__main__.RationalRayObstructionTests.test_original_raw_domain_and_full_mod4_congruence)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 127, in test_original_raw_domain_and_full_mod4_congruence\n    cases=Cases();self.assertEqual(module._congruence(cases),compatible);self.assertEqual(cases.checks,33)\n                                   ~~~~~~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 154, in _congruence\n    cases.require(_pair_sign(a,b)+_pair_sign(c,d)==0,'modulo-four cancellation')\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: modulo-four cancellation\n\n----------------------------------------------------------------------\nRan 1 test in 0.022s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_original_raw_domain_and_full_mod4_congruence"
+      ]
+    },
+    {
+      "identity": "ray-congruence-census",
+      "mutant_sha256": "d4b58a3eff1724760973e9c98409a9f2b259c46efa986694849f3bf9ab78732a",
+      "outcome": "killed",
+      "output": "test_original_raw_domain_and_full_mod4_congruence (__main__.RationalRayObstructionTests.test_original_raw_domain_and_full_mod4_congruence) ... ERROR\n\n======================================================================\nERROR: test_original_raw_domain_and_full_mod4_congruence (__main__.RationalRayObstructionTests.test_original_raw_domain_and_full_mod4_congruence)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 127, in test_original_raw_domain_and_full_mod4_congruence\n    cases=Cases();self.assertEqual(module._congruence(cases),compatible);self.assertEqual(cases.checks,33)\n                                   ~~~~~~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 156, in _congruence\n    cases.require(count==16,'all32 compatible tuples among64 parity-admitted tuples')\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: all32 compatible tuples among64 parity-admitted tuples\n\n----------------------------------------------------------------------\nRan 1 test in 0.022s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_original_raw_domain_and_full_mod4_congruence"
+      ]
+    },
+    {
+      "identity": "ray-obstruction-inconsistency",
+      "mutant_sha256": "1de82b6c810346882086fb2659673a82d951e9cc73e74ce5744449b61caa8d1b",
+      "outcome": "killed",
+      "output": "test_seven_ray_independent_rank_nullspace_and_residual (__main__.RationalRayObstructionTests.test_seven_ray_independent_rank_nullspace_and_residual) ... ERROR\n\n======================================================================\nERROR: test_seven_ray_independent_rank_nullspace_and_residual (__main__.RationalRayObstructionTests.test_seven_ray_independent_rank_nullspace_and_residual)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 140, in test_seven_ray_independent_rank_nullspace_and_residual\n    cases=Cases();module._obstruction(cases);self.assertEqual(cases.checks,8)\n                  ~~~~~~~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 169, in _obstruction\n    cases.require(fitted.rows[6]==target.rows[6],'seventh ray contradicts quadratic interpolation')\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: seventh ray contradicts quadratic interpolation\n\n----------------------------------------------------------------------\nRan 1 test in 0.029s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_seven_ray_independent_rank_nullspace_and_residual"
+      ]
+    },
+    {
+      "identity": "ray-obstruction-null-witness",
+      "mutant_sha256": "36e84597a8cd83081d711cf60a927e484aa8e7bb70b4fdfc474d0f79b8092849",
+      "outcome": "killed",
+      "output": "test_seven_ray_independent_rank_nullspace_and_residual (__main__.RationalRayObstructionTests.test_seven_ray_independent_rank_nullspace_and_residual) ... ERROR\n\n======================================================================\nERROR: test_seven_ray_independent_rank_nullspace_and_residual (__main__.RationalRayObstructionTests.test_seven_ray_independent_rank_nullspace_and_residual)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 140, in test_seven_ray_independent_rank_nullspace_and_residual\n    cases=Cases();module._obstruction(cases);self.assertEqual(cases.checks,8)\n                  ~~~~~~~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 172, in _obstruction\n    cases.require(witness.mul(coefficients)==RationalMatrix(((0,)*6,)),'left-null certificate annihilates coefficients')\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: left-null certificate annihilates coefficients\n\n----------------------------------------------------------------------\nRan 1 test in 0.030s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_seven_ray_independent_rank_nullspace_and_residual"
+      ]
+    },
+    {
+      "identity": "ray-obstruction-target-residual",
+      "mutant_sha256": "c0969c7c7f0ed32b42c3471a7f782c136a3f9023e4635e1fdcc8c0a79eae6743",
+      "outcome": "killed",
+      "output": "test_seven_ray_independent_rank_nullspace_and_residual (__main__.RationalRayObstructionTests.test_seven_ray_independent_rank_nullspace_and_residual) ... ERROR\n\n======================================================================\nERROR: test_seven_ray_independent_rank_nullspace_and_residual (__main__.RationalRayObstructionTests.test_seven_ray_independent_rank_nullspace_and_residual)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 140, in test_seven_ray_independent_rank_nullspace_and_residual\n    cases=Cases();module._obstruction(cases);self.assertEqual(cases.checks,8)\n                  ~~~~~~~~~~~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 173, in _obstruction\n    cases.require(witness.mul(target)==RationalMatrix(((0,),)),'left-null certificate contradicts target')\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\cases.py\", line 47, in require\n    require(condition, message)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\boundary.py\", line 46, in require\n    raise Violation(\"check\", message)\nchecker_support.boundary.Violation: left-null certificate contradicts target\n\n----------------------------------------------------------------------\nRan 1 test in 0.030s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_seven_ray_independent_rank_nullspace_and_residual"
+      ]
+    },
+    {
+      "identity": "ray-range-two-thirds",
+      "mutant_sha256": "cc709d737c73e1ff7ff311a8117ee8b40f8a2f2689fd4858df9177db1e5e1810",
+      "outcome": "killed",
+      "output": "test_import_reentrant_counts_and_cli_failure_lifecycle (__main__.RationalRayObstructionTests.test_import_reentrant_counts_and_cli_failure_lifecycle) ... FAIL\n\n======================================================================\nFAIL: test_import_reentrant_counts_and_cli_failure_lifecycle (__main__.RationalRayObstructionTests.test_import_reentrant_counts_and_cli_failure_lifecycle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 203, in test_import_reentrant_counts_and_cli_failure_lifecycle\n    for _ in range(2):self.assertEqual(self.accepted(module.verify(Cases())),expected)\n                                       ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 57, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='three-valued range') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.505s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_import_reentrant_counts_and_cli_failure_lifecycle"
+      ]
+    },
+    {
+      "identity": "ray-recorder-domain",
+      "mutant_sha256": "e20b8b6ee5ac0c6a512cb8d764625788c88b5f0479384bcf912d3778a266b611",
+      "outcome": "killed",
+      "output": "test_operand_and_scaling_domains_and_preflight (__main__.RationalRayObstructionTests.test_operand_and_scaling_domains_and_preflight) ... FAIL\n\n======================================================================\nFAIL: test_operand_and_scaling_domains_and_preflight (__main__.RationalRayObstructionTests.test_operand_and_scaling_domains_and_preflight)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 169, in test_operand_and_scaling_domains_and_preflight\n    self.refused(module.verify(None,1))\n                 ~~~~~~~~~~~~~^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 199, in verify\n    return evaluate(_verify,cases,radius)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py\", line 190, in _verify\n    rays=_box(radius)\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 168, in <lambda>\n    with patch.dict(namespace,_box=lambda _: (_ for _ in ()).throw(AssertionError('recorder must preflight'))):\n                                             ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 168, in <genexpr>\n    with patch.dict(namespace,_box=lambda _: (_ for _ in ()).throw(AssertionError('recorder must preflight'))):\nAssertionError: recorder must preflight\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_operand_and_scaling_domains_and_preflight"
+      ]
+    },
+    {
+      "identity": "ray-cli-exit",
+      "mutant_sha256": "951531aebd62dc6448a7fb6dc091ea574fa289499845e2cfc8c3af4c8b459efa",
+      "outcome": "killed",
+      "output": "test_import_reentrant_counts_and_cli_failure_lifecycle (__main__.RationalRayObstructionTests.test_import_reentrant_counts_and_cli_failure_lifecycle) ... FAIL\n\n======================================================================\nFAIL: test_import_reentrant_counts_and_cli_failure_lifecycle (__main__.RationalRayObstructionTests.test_import_reentrant_counts_and_cli_failure_lifecycle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 213, in test_import_reentrant_counts_and_cli_failure_lifecycle\n    self.assertEqual(result.returncode,0,result.stderr)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 0 : \n\n----------------------------------------------------------------------\nRan 1 test in 1.184s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-born-uniqueness-gleason-rational-rays.py",
+      "tests": [
+        "test_import_reentrant_counts_and_cli_failure_lifecycle"
+      ]
+    },
+    {
+      "identity": "ray-oracle-sign",
+      "mutant_sha256": "32bcb27a91e1f61782206f36daeae90603429ed02464b74f3eb66335ae8afc2f",
+      "outcome": "killed",
+      "output": "test_generated_canonical_ray_and_independent_residue_value (__main__.RationalRayObstructionTests.test_generated_canonical_ray_and_independent_residue_value) ... FAIL\n\n======================================================================\nFAIL: test_generated_canonical_ray_and_independent_residue_value (__main__.RationalRayObstructionTests.test_generated_canonical_ray_and_independent_residue_value)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 66, in test_generated_canonical_ray_and_independent_residue_value\n    @given(VECTOR,st.integers(-20,20))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 73, in test_generated_canonical_ray_and_independent_residue_value\n    self.assertEqual(ray.value,reference_value(vector))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(0, 1) != Fraction(2, 3)\nFailing test case: test_generated_canonical_ray_and_independent_residue_value(\n    self=<__main__.RationalRayObstructionTests testMethod=test_generated_canonical_ray_and_independent_residue_value>,\n    vector=(0, 1, 1),\n    scale=1,  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py:54\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\independent\\fq-gap-born-uniqueness-gleason-rational-rays.py:55\n\n----------------------------------------------------------------------\nRan 1 test in 0.687s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_rational_ray_obstruction.py",
+      "tests": [
+        "test_generated_canonical_ray_and_independent_residue_value"
+      ]
+    },
+    {
+      "identity": "ray-oracle-symbolic-offdiagonal",
+      "mutant_sha256": "dc9d88e8a46b37fe07d2db8a560246549a6ef887c445a3721628e93a1464c445",
+      "outcome": "killed",
+      "output": "test_generated_quadratic_rows_against_symbolic_polynomial (__main__.RationalRayObstructionTests.test_generated_quadratic_rows_against_symbolic_polynomial) ... FAIL\n\n======================================================================\nFAIL: test_generated_quadratic_rows_against_symbolic_polynomial (__main__.RationalRayObstructionTests.test_generated_quadratic_rows_against_symbolic_polynomial)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 91, in test_generated_quadratic_rows_against_symbolic_polynomial\n    @given(VECTOR)\n               ^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\rational_rays-mutation-evpzmesj\\tests\\test_rational_ray_obstruction.py\", line 99, in test_generated_quadratic_rows_against_symbolic_polynomial\n    self.assertEqual(self.accepted(ray.quadratic_row()),expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Frac[44 chars]Fraction(0, 1), Fraction(2, 1), Fraction(0, 1), Fraction(0, 1)) != (Frac[44 chars]Fraction(1, 1), Fraction(1, 1), Fraction(0, 1), Fraction(0, 1))\n\nFirst differing element 3:\nFraction(0, 1)\nFraction(1, 1)\n\n  (Fraction(1, 1),\n   Fraction(0, 1),\n   Fraction(1, 1),\n-  Fraction(0, 1),\n?           ^\n\n+  Fraction(1, 1),\n?           ^\n\n-  Fraction(2, 1),\n?           ^\n\n+  Fraction(1, 1),\n?           ^\n\n   Fraction(0, 1),\n   Fraction(0, 1))\nFailing test case: test_generated_quadratic_rows_against_symbolic_polynomial(\n    self=<__main__.RationalRayObstructionTests testMethod=test_generated_quadratic_rows_against_symbolic_polynomial>,\n    vector=(1, 0, 1),\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.437s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_rational_ray_obstruction.py",
+      "tests": [
+        "test_generated_quadratic_rows_against_symbolic_polynomial"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 36,
+      "survived": 5,
+      "unrun": 0
+    },
+    "detected_fraction": 0.8780487804878049,
+    "eligible": 41
+  }
+}

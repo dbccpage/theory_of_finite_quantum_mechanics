@@ -1,0 +1,298 @@
+"""Independent symbolic, Lean-table and adversarial extension-certificate replay.
+
+AuthorityEffect: None. Tests validate this finite obstruction, not classification.
+"""
+from __future__ import annotations
+
+import contextlib
+from dataclasses import FrozenInstanceError
+from fractions import Fraction as Q
+import hashlib
+import io
+import json
+from math import gcd
+from pathlib import Path
+import re
+import runpy
+import subprocess
+import sys
+import tempfile
+from types import SimpleNamespace
+from typing import TypeVar, cast
+import unittest
+from unittest.mock import patch
+
+from hypothesis import assume, given, settings, strategies as st
+import sympy as sp
+
+CHECKS = Path(__file__).resolve().parents[1]
+APP = CHECKS / 'independent/fq-gleason-qi3-extension.py'
+DATA = CHECKS / 'independent/data/fq_gleason_qi3_extension.json'
+LEAN = CHECKS.parent / 'lean4/BornGaussianRationalExtensionObstruction.lean'
+sys.path.insert(0, str(CHECKS))
+from checker_support.boundary import Violation, evaluate
+from checker_support.exact_json_document import ExactJsonDocument, MAX_BYTES
+from checker_support.outcome import Outcome
+
+T = TypeVar('T')
+PROPERTY = settings(max_examples=60, derandomize=True, deadline=None, database=None)
+VECTOR = st.lists(st.integers(-20, 20), min_size=6, max_size=6)
+
+
+def load() -> SimpleNamespace:
+    return SimpleNamespace(**runpy.run_path(str(APP)))
+
+
+def record() -> dict[str, object]:
+    return cast(dict[str, object], json.loads(DATA.read_bytes()))
+
+
+def rows(data: dict[str, object], key: str) -> list[list[int]]:
+    return cast(list[list[int]], data[key])
+
+
+def complex_vector(values: list[int] | tuple[int, ...]) -> sp.Matrix:
+    return sp.Matrix([values[i] + sp.I * values[i+1] for i in range(0, 6, 2)])
+
+
+def lean_vectors(line: str) -> list[list[int]]:
+    return [[int(token) for token in re.findall(r'-?\d+', group)]
+            for group in re.findall(r'\(gv ((?:\(?-?\d+\)?\s*){6})\)', line)]
+
+
+class GaussianExtensionTests(unittest.TestCase):
+    def accepted(self, result: Outcome[T]) -> T:
+        self.assertIsNone(result.error)
+        return cast(T, result.value)
+
+    def refused(self, result: Outcome[T], kind: str | None = None) -> None:
+        self.assertIsNotNone(result.error)
+        if kind is not None and result.error is not None:
+            self.assertEqual(result.error.kind, kind)
+
+    def test_full_symbolic_linear_certificate_and_geometry(self) -> None:
+        module = load(); data = record(); rays = rows(data, 'rays')
+        matrix = sp.zeros(229, 277); weights = []; targets = []
+        for index, (a, b, c, weight) in enumerate(rows(data, 'frames')):
+            vectors = [complex_vector(rays[i]) for i in (a, b, c)]
+            for i, j in ((0, 1), (0, 2), (1, 2)):
+                self.assertEqual(sp.expand((vectors[i].conjugate().T * vectors[j])[0]), 0)
+            for i in (a, b, c):
+                matrix[index, i] += 1
+            weights.append(weight); targets.append(Q(0))
+        for index, (ray, sign, weight) in enumerate(rows(data, 'real_values'), 210):
+            matrix[index, ray] = 1; weights.append(weight); targets.append(Q(sign))
+        witness = sp.Matrix([weights])
+        self.assertEqual(witness * matrix, sp.zeros(1, 277))
+        self.assertEqual((witness * sp.Matrix(targets))[0], 32)
+        self.assertEqual(self.accepted(module.verify(data)),
+                         {'rays': 277, 'frames': 210, 'real_values': 19, 'contradiction_rhs': 32})
+
+    def test_all_lean_frame_prescription_and_weight_rows_match(self) -> None:
+        text = LEAN.read_text(encoding='utf-8'); data = record(); rays = rows(data, 'rays')
+        coefficients = {name: int(value) for value, name in
+                        re.findall(r'\(\(?(-?\d+)\)? : ℚ\) \* ([tr]\d+)', text)}
+        frames = [line for line in text.splitlines() if re.match(r'  have t\d+ := hF ', line)]
+        prescriptions = [line for line in text.splitlines() if re.match(r'    \(r\d+ : f ', line)]
+        self.assertEqual((len(frames), len(prescriptions), len(coefficients)), (210, 19, 229))
+        for number, (line, frame) in enumerate(zip(frames, rows(data, 'frames'))):
+            self.assertEqual(lean_vectors(line), [rays[i] for i in frame[:3]])
+            self.assertEqual(coefficients['t'+str(number)], frame[3])
+        for number, (line, (index, sign, weight)) in enumerate(zip(prescriptions, rows(data, 'real_values'))):
+            self.assertEqual(lean_vectors(line), [rays[index]])
+            match = re.search(r'= \(([^:]+) : ℚ\)', line); self.assertIsNotNone(match)
+            value = Q(cast(re.Match[str], match).group(1).replace(' ', ''))
+            self.assertEqual(3*value-1, sign)
+            self.assertEqual(coefficients['r'+str(number)], weight)
+        self.assertIn('have contradiction : (0 : ℚ) = 32 / 3', text)
+
+    @PROPERTY
+    @given(VECTOR, VECTOR)
+    def test_generated_hermitian_inner_matches_symbolic_algebra(self, u: list[int], v: list[int]) -> None:
+        expected = sp.expand((complex_vector(u).conjugate().T * complex_vector(v))[0])
+        self.assertEqual(load()._inner(tuple(u), tuple(v)), (int(sp.re(expected)), int(sp.im(expected))))
+
+    @PROPERTY
+    @given(st.tuples(st.integers(-40, 40), st.integers(-40, 40), st.integers(-40, 40)))
+    def test_generated_real_sign_matches_residue_table(self, vector: tuple[int, int, int]) -> None:
+        assume(gcd(*vector) == 1)
+        odd = [x % 4 for x in vector if x % 2]
+        residues: dict[tuple[int, ...], int] = {(1, 1): -1, (3, 3): -1, (1, 3): 1, (3, 1): 1}
+        expected = residues.get(tuple(odd), 0)
+        ray = tuple(part for value in vector for part in (value, 0))
+        self.assertEqual(load()._sign(ray), expected)
+
+    @settings(max_examples=20, derandomize=True, deadline=None, database=None)
+    @given(st.integers(0, 276), st.booleans(), st.integers(1, 100))
+    def test_reindex_reorder_and_canceling_constraint_metamorphisms(self, offset: int, reverse: bool, weight: int) -> None:
+        module = load(); data = record(); original = rows(data, 'rays')
+        order = list(range(offset, 277)) + list(range(offset)); inverse = {old: new for new, old in enumerate(order)}
+        data['rays'] = [original[i] for i in order]
+        frames = rows(data, 'frames'); real = rows(data, 'real_values')
+        data['frames'] = [[inverse[a], inverse[b], inverse[c], w] for a, b, c, w in frames]
+        data['real_values'] = [[inverse[i], s, w] for i, s, w in real]
+        frames = rows(data, 'frames'); real = rows(data, 'real_values')
+        if reverse:
+            frames.reverse(); real.reverse()
+        frames.extend([frames[0][:3]+[weight], frames[0][:3]+[-weight]])
+        real.extend([real[0][:2]+[weight], real[0][:2]+[-weight]])
+        self.assertEqual(self.accepted(module.verify(data))['contradiction_rhs'], 32)
+
+    def test_closed_schema_metadata_and_exact_numbers(self) -> None:
+        module = load()
+        invalid: object
+        value: object
+        for invalid in (None, [], (), True, 1, 'certificate'):
+            self.refused(module.verify(invalid), 'input')
+        for key in record():
+            data = record(); del data[key]; self.refused(module.verify(data), 'input')
+        for key, value in (('target', 'other'), ('target', None), ('normalization', 'g=f'),
+                           ('normalization', []), ('base_commit', 'A'*40), ('base_commit', 'a'*39),
+                           ('base_commit', 1), ('contradiction_rhs', True), ('contradiction_rhs', 32.0),
+                           ('contradiction_rhs', 31), ('extra', 1)):
+            data = record(); data[key] = value; self.refused(module.verify(data), 'input')
+        for key in ('rays', 'frames', 'real_values'):
+            for value in (True, 1.0, Q(1)):
+                data = record(); cast(list[list[object]], data[key])[0][-1] = value
+                self.refused(module.verify(data), 'input')
+
+    def test_owned_immutable_snapshot_and_detached_exports(self) -> None:
+        module = load(); data = record(); certificate = module.GaussianExtensionCertificate(data)
+        expected = certificate.to_record(); rows(data, 'rays')[0][0] = 99
+        export = certificate.to_record(); rows(export, 'frames')[0][3] += 1
+        self.assertEqual(certificate.to_record(), expected)
+        with self.assertRaises(FrozenInstanceError):
+            certificate.base_commit = '0'*40
+        first = self.accepted(certificate.verify()); first['rays'] = -1
+        self.assertEqual(self.accepted(certificate.verify())['rays'], 277)
+        self.assertEqual(self.accepted(module.self_test(certificate)),
+                         ('frame coefficient', 'nonorthogonal vector', 'exotic value', 'Boolean coordinate'))
+        self.refused(module.self_test(None), 'input')
+
+    def test_whole_schema_admission_precedes_geometry(self) -> None:
+        module = load()
+        invalids: list[tuple[str, object, str]] = [
+            ('rays', [], 'input'), ('frames', [], 'input'), ('real_values', [], 'input'),
+            ('rays', [[0]*6], 'input'), ('rays', [[2, 0, 0, 0, 0, 0]], 'input'),
+            ('rays', [[1, 0, 0, 0, 0, 0]]*2, 'duplicate'),
+            ('rays', [[1]*6]*513, 'resource'), ('frames', [[0, 1, 2, 1]]*1025, 'resource'),
+            ('real_values', [[0, 0, 1]]*513, 'resource')]
+        for key, value, kind in invalids:
+            data = record(); data[key] = value
+            with patch.dict(module.GaussianExtensionCertificate._frames.__globals__, _inner=lambda *_: self.fail('geometry before schema')):
+                self.refused(module.verify(data), kind)
+        for key, width in (('rays', 6), ('frames', 4), ('real_values', 3)):
+            data = record(); rows(data, key)[-1] = [1]*(width+1); self.refused(module.verify(data), 'input')
+        for key in ('frames', 'real_values'):
+            for index in (-1, 277):
+                data = record(); rows(data, key)[-1][0] = index; self.refused(module.verify(data), 'input')
+            data = record(); rows(data, key)[0][-1] = 0; self.refused(module.verify(data), 'input')
+
+    def test_geometric_and_algebraic_forgery_refusals(self) -> None:
+        module = load(); certificate = module.GaussianExtensionCertificate(record())
+        for _, corrupt in module._negative_controls(certificate):
+            self.refused(module.verify(corrupt))
+        data = record(); rows(data, 'frames')[0][1] = rows(data, 'frames')[0][0]
+        self.refused(module.verify(data), 'check')
+        data = record(); rows(data, 'real_values')[0][0] = 12
+        self.refused(module.verify(data), 'check')
+        data = record()
+        for constraint in rows(data, 'frames') + rows(data, 'real_values'):
+            constraint[-1] *= -1
+        self.refused(module.verify(data), 'check')
+        with patch.dict(module._self_test.__globals__, verify=lambda _: Outcome(value={})), self.assertRaises(Violation):
+            module._self_test(certificate)
+
+    def test_integer_products_prefixes_and_aggregate_budgets(self) -> None:
+        module = load(); largest = (1 << 4096)-1
+        data = record(); rows(data, 'rays').append([largest, 1, 0, 0, 0, 0])
+        self.assertEqual(self.accepted(module.verify(data))['rays'], 278)
+        for key in ('rays', 'frames', 'real_values'):
+            data = record(); rows(data, key)[-1][-1] = 1 << 4096
+            self.refused(module.verify(data), 'resource')
+        for u, v in (((largest, 0, 0, 0, 0, 0), (2, 0, 0, 0, 0, 0)),
+                     ((largest, 1, 0, 0, 0, 0), (1, 1, 0, 0, 0, 0)),
+                     ((largest, 0, 1, 0, 0, 0), (1, 0, 1, 0, 0, 0)),
+                     ((largest, 1, 0, 0, 0, 0), (-1, 1, 0, 0, 0, 0)),
+                     ((largest, 0, 1, 0, 0, 0), (0, 1, 0, 1, 0, 0))):
+            self.refused(evaluate(module._inner, u, v), 'resource')
+        data = record(); frame = rows(data, 'frames')[0][:3]
+        rows(data, 'frames')[:0] = [frame+[largest], frame+[largest]]
+        self.refused(module.verify(data), 'resource')
+
+    def test_exact_json_numbers_duplicates_unicode_and_syntax(self) -> None:
+        for raw in (b'1.0', b'1e0', b'NaN', b'Infinity', b'-Infinity', b'\xff', b'{', b'[] true'):
+            self.refused(ExactJsonDocument(raw).parse(), 'input')
+        self.refused(ExactJsonDocument(b'{"x":1,"x":2}').parse(), 'duplicate')
+        maximum = (1 << 4096)-1
+        for value in (0, maximum, -maximum):
+            self.assertEqual(self.accepted(ExactJsonDocument(str(value).encode()).parse()), value)
+        for encoded in (str(1 << 4096).encode(), b'9'*1235, b'-'+b'9'*1235):
+            self.refused(ExactJsonDocument(encoded).parse(), 'resource')
+        for invalid in ('{}', bytearray(b'{}'), None):
+            self.refused(evaluate(ExactJsonDocument, invalid), 'input')
+
+    def test_document_depth_size_hash_and_ownership(self) -> None:
+        self.accepted(ExactJsonDocument(b'['*16+b'0'+b']'*16).parse())
+        self.refused(evaluate(ExactJsonDocument, b'['*17+b'0'+b']'*17), 'resource')
+        quoted = json.dumps({'text': '"\\'*20 + '['*100 + '}'*100}).encode()
+        document = ExactJsonDocument(quoted)
+        self.assertEqual(document.sha256, hashlib.sha256(quoted).hexdigest())
+        first = cast(dict[str, object], self.accepted(document.parse())); first['text'] = 'changed'
+        self.assertEqual(self.accepted(document.parse()), json.loads(quoted))
+        with self.assertRaises(FrozenInstanceError):
+            document.raw = b'{}'  # type: ignore[misc]
+        self.accepted(ExactJsonDocument(b'0'+b' '*(MAX_BYTES-1)).parse())
+        self.refused(evaluate(ExactJsonDocument, b' '*(MAX_BYTES+1)), 'resource')
+
+    def test_document_file_lifecycle_and_read_limit(self) -> None:
+        self.refused(ExactJsonDocument.read(str(DATA)), 'input')
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder)/'candidate.json'; self.refused(ExactJsonDocument.read(path), 'resource')
+            path.write_bytes(DATA.read_bytes()); document = self.accepted(ExactJsonDocument.read(path))
+            path.unlink(); self.assertEqual(document.raw, DATA.read_bytes())
+        stream = io.BytesIO(b'0')
+        with patch.object(Path, 'open', return_value=stream):
+            self.accepted(ExactJsonDocument.read(DATA))
+        self.assertTrue(stream.closed)
+        with patch.object(Path, 'open', side_effect=PermissionError('refused')):
+            self.refused(ExactJsonDocument.read(DATA), 'resource')
+        with patch.object(Path, 'open', return_value=io.BytesIO(b'0'*(MAX_BYTES+1))):
+            self.refused(ExactJsonDocument.read(DATA), 'resource')
+
+    def test_expected_failure_and_cancellation_propagation(self) -> None:
+        module = load(); document = ExactJsonDocument(b'{}')
+        with patch('checker_support.exact_json_document.json.loads', side_effect=RecursionError):
+            self.refused(document.parse(), 'resource')
+        for exception in (RuntimeError, KeyboardInterrupt, SystemExit):
+            with patch('checker_support.exact_json_document.json.loads', side_effect=exception), self.assertRaises(exception):
+                document.parse()
+            with patch.dict(module.GaussianExtensionCertificate._verify.__globals__, _inner=lambda *_: (_ for _ in ()).throw(exception)), self.assertRaises(exception):
+                module.verify(record())
+        self.accepted(module.read_certificate(DATA))
+        self.refused(module.read_certificate(None), 'input')
+
+    def test_cli_legacy_fragments_repeated_runs_and_fail_closed(self) -> None:
+        captured = io.StringIO()
+        with contextlib.redirect_stdout(captured):
+            module = load()
+        self.assertEqual(captured.getvalue(), '')
+        for _ in range(2):
+            output = io.StringIO()
+            with patch.object(sys, 'argv', [str(APP), '--self-test']), contextlib.redirect_stdout(output):
+                self.assertEqual(module.main(), 0)
+            self.assertIn('Exact certificate: 0 = 32', output.getvalue())
+            self.assertIn('Negative control rejected: Boolean coordinate', output.getvalue())
+            self.assertEqual(json.loads(output.getvalue().splitlines()[0])['frames'], 210)
+        for args in ([], ['--self-test']):
+            result = subprocess.run([sys.executable, '-I', '-B', '-X', 'utf8', str(APP), *args], capture_output=True, text=True, timeout=30)
+            self.assertEqual(result.returncode, 0, result.stderr)
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder)/'bad.json'; path.write_text('{"rays":[]}', encoding='utf-8')
+            result = subprocess.run([sys.executable, '-I', '-B', str(APP), '--certificate', str(path)], capture_output=True, text=True, timeout=30)
+            self.assertEqual(result.returncode, 1); self.assertEqual(result.stdout, '')
+            self.assertEqual(json.loads(result.stderr)['kind'], 'input')
+
+
+if __name__ == '__main__':
+    unittest.main()

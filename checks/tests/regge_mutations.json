@@ -1,0 +1,291 @@
+[
+  {
+    "identity": "exact-admission",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "return rational(value)",
+    "after": "return Q(value)",
+    "tests": [
+      "test_invalid_domains_and_poles",
+      "test_component_square_and_prefix_budgets"
+    ]
+  },
+  {
+    "identity": "numerator-sign",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "rational(bb+cc, \"square sum\")-aa",
+    "after": "rational(bb+cc, \"square sum\")+aa",
+    "tests": [
+      "test_fixed_values_signed_domain_and_parameter_separation"
+    ]
+  },
+  {
+    "identity": "square-budget",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "rational(a*a, \"a square\")",
+    "after": "a*a",
+    "tests": [
+      "test_component_square_and_prefix_budgets"
+    ]
+  },
+  {
+    "identity": "square-sum-budget",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "rational(bb+cc, \"square sum\")",
+    "after": "(bb+cc)",
+    "tests": [
+      "test_component_square_and_prefix_budgets"
+    ]
+  },
+  {
+    "identity": "cosine-factor-two",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "rational(2*rational(second*third, \"side product\"), \"cosine denominator\")",
+    "after": "rational(rational(second*third, \"side product\"), \"cosine denominator\")",
+    "tests": [
+      "test_fixed_values_signed_domain_and_parameter_separation"
+    ]
+  },
+  {
+    "identity": "cosine-zero-preflight",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "if denominator == 0:\n        raise Violation(\"input\", \"cosine-law denominator must be nonzero\")",
+    "after": "if False:\n        raise Violation(\"input\", \"cosine-law denominator must be nonzero\")",
+    "tests": [
+      "test_component_square_and_prefix_budgets"
+    ]
+  },
+  {
+    "identity": "cosine-denominator-budget",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "rational(2*rational(second*third, \"side product\"), \"cosine denominator\")",
+    "after": "2*rational(second*third, \"side product\")",
+    "tests": [
+      "test_component_square_and_prefix_budgets"
+    ]
+  },
+  {
+    "identity": "cosine-division",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "_numerator(first, second, third)/denominator",
+    "after": "_numerator(first, second, third)*denominator",
+    "tests": [
+      "test_fixed_values_signed_domain_and_parameter_separation"
+    ]
+  },
+  {
+    "identity": "block-frozen",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "@dataclass(frozen=True, slots=True, init=False)",
+    "after": "@dataclass(slots=True, init=False)",
+    "tests": [
+      "test_owned_parameter_and_railway_paths"
+    ]
+  },
+  {
+    "identity": "parameter-square-budget",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "square = rational(parameter*parameter, \"parameter square\")",
+    "after": "square = parameter*parameter",
+    "tests": [
+      "test_component_square_and_prefix_budgets"
+    ]
+  },
+  {
+    "identity": "block-pole",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "if denominator == 0:\n            raise Violation",
+    "after": "if False:\n            raise Violation",
+    "tests": [
+      "test_invalid_domains_and_poles"
+    ]
+  },
+  {
+    "identity": "block-denominator-sign",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "denominator = rational(1-square,",
+    "after": "denominator = rational(1+square,",
+    "tests": [
+      "test_owned_parameter_and_railway_paths"
+    ]
+  },
+  {
+    "identity": "gamma-sign",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "rational(1+self.square, \"diagonal numerator\")",
+    "after": "rational(1-self.square, \"diagonal numerator\")",
+    "tests": [
+      "test_fixed_values_signed_domain_and_parameter_separation"
+    ]
+  },
+  {
+    "identity": "off-factor-two",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "rational(2*self.parameter, \"off-diagonal numerator\")",
+    "after": "rational(self.parameter, \"off-diagonal numerator\")",
+    "tests": [
+      "test_fixed_values_signed_domain_and_parameter_separation"
+    ]
+  },
+  {
+    "identity": "off-sign",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "(off, diagonal, 0, 0)",
+    "after": "(-off, diagonal, 0, 0)",
+    "tests": [
+      "test_fixed_values_signed_domain_and_parameter_separation"
+    ]
+  },
+  {
+    "identity": "spectator-identity",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "(0, 0, 0, 1)))",
+    "after": "(0, 0, 0, 0)))",
+    "tests": [
+      "test_fixed_values_signed_domain_and_parameter_separation"
+    ]
+  },
+  {
+    "identity": "matrix-railway",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "return evaluate(self._matrix)",
+    "after": "return Outcome(value=self._matrix())",
+    "tests": [
+      "test_component_square_and_prefix_budgets"
+    ]
+  },
+  {
+    "identity": "trace-one-spectator",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "for index in range(4):",
+    "after": "for index in range(3):",
+    "tests": [
+      "test_actual_trace_accumulation_and_fault_propagation"
+    ]
+  },
+  {
+    "identity": "trace-off-diagonal",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "matrix.rows[index][index]",
+    "after": "matrix.rows[index][0]",
+    "tests": [
+      "test_actual_trace_accumulation_and_fault_propagation"
+    ]
+  },
+  {
+    "identity": "trace-prefix-budget",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "total = rational(total+matrix.rows[index][index], \"block trace accumulation\")",
+    "after": "total = total+matrix.rows[index][index]",
+    "tests": [
+      "test_component_square_and_prefix_budgets"
+    ]
+  },
+  {
+    "identity": "trace-railway",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "return evaluate(self._trace)",
+    "after": "return Outcome(value=self._trace())",
+    "tests": [
+      "test_component_square_and_prefix_budgets"
+    ]
+  },
+  {
+    "identity": "recorder-type",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "if type(cases) is not Cases:",
+    "after": "if False:",
+    "tests": [
+      "test_counts_guards_and_counterexample"
+    ]
+  },
+  {
+    "identity": "symbolic-guard",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "run.require(sp.expand(residual) == 0,",
+    "after": "run.require(True,",
+    "tests": [
+      "test_counts_guards_and_counterexample"
+    ]
+  },
+  {
+    "identity": "negative-sample-sign",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "== first*first+second*second+third*third",
+    "after": "!= first*first+second*second+third*third",
+    "tests": [
+      "test_counts_guards_and_counterexample"
+    ]
+  },
+  {
+    "identity": "length-numerator-witness",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "zip(numerators, (0, 32, 18))",
+    "after": "zip(numerators, (0, 18, 32))",
+    "tests": [
+      "test_counts_guards_and_counterexample"
+    ]
+  },
+  {
+    "identity": "length-cosine-witness",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "(Q(0), Q(4, 5), Q(3, 5))",
+    "after": "(Q(0), Q(3, 5), Q(4, 5))",
+    "tests": [
+      "test_counts_guards_and_counterexample"
+    ]
+  },
+  {
+    "identity": "comparison-erased",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "run.require(trace != comparison,",
+    "after": "run.require(True,",
+    "tests": [
+      "test_counts_guards_and_counterexample"
+    ]
+  },
+  {
+    "identity": "main-missing-block",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "    check_block(cosine_sum, run)\n",
+    "after": "    pass\n",
+    "tests": [
+      "test_counts_guards_and_counterexample"
+    ]
+  },
+  {
+    "identity": "receipt-count",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "\"checks\": run.checks",
+    "after": "\"checks\": 14",
+    "tests": [
+      "test_executable_cli_and_failure_exit"
+    ]
+  },
+  {
+    "identity": "failure-exit",
+    "source": "independent/dfm-regge-gravity-fence.py",
+    "before": "raise SystemExit(cli(main))",
+    "after": "cli(main)",
+    "tests": [
+      "test_executable_cli_and_failure_exit"
+    ]
+  },
+  {
+    "identity": "oracle-cayley-denominator",
+    "source": "tests/test_regge_checker.py",
+    "before": "sp.eye(2)-parameter*generator",
+    "after": "sp.eye(2)+parameter*generator",
+    "tests": [
+      "test_oracle_and_import_lifecycle"
+    ]
+  },
+  {
+    "identity": "test-refusal-helper",
+    "source": "tests/test_regge_checker.py",
+    "before": "self.assertFalse(result.ok)",
+    "after": "self.assertTrue(result.ok)",
+    "tests": [
+      "test_invalid_domains_and_poles"
+    ]
+  }
+]

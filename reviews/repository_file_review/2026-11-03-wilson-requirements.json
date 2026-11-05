@@ -1,0 +1,169 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py": {
+      "role": "Exact finite Wilson verification application with named result ownership, validated case collection, independent matrix integration, and typed CLI failure semantics",
+      "profile": "Exact",
+      "origin": "lean4/FermionSignWilsonDiracGamma5.lean",
+      "cost": "Fixed 110 obligations: 92 chiral/link/onsite and 18 determinant/matrix cases. The imported support admits bounded exact rationals, fixed 8x8 determinants and one finite four-spin/two-color operator; there is no external input or unbounded search.",
+      "groups": [
+        {
+          "requirement": "Check only the declared chiral-sign, finite rational link grid and independently tabulated onsite coefficients; do not call the sign identities a Clifford construction.",
+          "symbols": [
+            "check_chiral_links"
+          ],
+          "tests": [
+            "WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named",
+            "WilsonCheckerTests.test_complete_receipt_and_repeatability"
+          ],
+          "requirement_id": "TFQM-WILSON-REVIEW-CHECK-TFQ-1050-FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY-1"
+        },
+        {
+          "requirement": "Compare the general-r polynomial against an independent exact matrix determinant, retain a nonunit-r counterexample and assembled four-spin colored-operator check.",
+          "symbols": [
+            "check_determinant_examples"
+          ],
+          "tests": [
+            "WilsonCheckerTests.test_direct_determinant_fault_cannot_hide_behind_polynomial",
+            "WilsonCheckerTests.test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli",
+            "WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named"
+          ],
+          "requirement_id": "TFQM-WILSON-REVIEW-CHECK-TFQ-1050-FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY-2"
+        },
+        {
+          "requirement": "Each invocation owns its Cases; reject duplicate IDs and non-bool statuses, retain every failed case and count exactly the executed named obligations.",
+          "symbols": [
+            "check"
+          ],
+          "tests": [
+            "WilsonCheckerTests.test_generated_named_cases_are_counted_without_loss",
+            "WilsonCheckerTests.test_malformed_statuses_and_duplicate_ids_are_refused",
+            "WilsonCheckerTests.test_complete_receipt_and_repeatability"
+          ],
+          "requirement_id": "TFQM-WILSON-REVIEW-CHECK-TFQ-1050-FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY-3"
+        },
+        {
+          "requirement": "Emit a truthful JSON receipt and nonzero status on failure; convert expected resource failures to typed diagnostics while cancellation propagates.",
+          "symbols": [
+            "main"
+          ],
+          "tests": [
+            "WilsonCheckerTests.test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli",
+            "WilsonCheckerTests.test_cancellation_and_resource_failures_keep_distinct_semantics",
+            "WilsonCheckerTests.test_complete_receipt_and_repeatability"
+          ],
+          "requirement_id": "TFQM-WILSON-REVIEW-CHECK-TFQ-1050-FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY-4"
+        }
+      ],
+      "source_sha256": "b5aeeb696fb4f8901e0da3ca4f220fa385ab9c52023dfb9eee2d24d567028c52",
+      "symbols": [
+        "check",
+        "check_chiral_links",
+        "check_determinant_examples",
+        "main"
+      ],
+      "origin_sha256": "ff846e497a572038d084022f188dfb1ec05affba46ff2c8c652a2c4f1cd3664e",
+      "consumers": [
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57"
+        },
+        {
+          "path": "docs/evidence/stages/FINITE_QCD.md",
+          "sha256": "6fa1a211fbea4cc6e90179510dd63fb15d9ff9178b714dc6f7c1dff3449c30b0"
+        },
+        {
+          "path": "docs/evidence/nodes/FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY.md",
+          "sha256": "e1e725161414713d4d0d9b5478879c2d36ca68126838b1ac840eae202102f3dc"
+        },
+        {
+          "path": "dag/research/pr492_review/validation.json",
+          "sha256": "5c89279bb3254842e66b90270836ab537ff19a122b48ef846e6ee5288dfe6af0"
+        },
+        {
+          "path": "dag/fragments/unified_dag.json",
+          "sha256": "c7845b4f150f45fece1c97988789f0c2ea458b088cfa20db09f43bc6fff0d753"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586"
+        },
+        {
+          "path": "dag/derivations/17_finite_qcd/tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.md",
+          "sha256": "26c1314e31904912a4dd41eeec0e0ee278da464306f364e78882cf1ecd9ae4c8"
+        },
+        {
+          "path": "checks/tests/test_wilson_checker.py",
+          "sha256": "6ea7cb0a6408ea7b9860b90c3cffc9aa4c86411128581dcd6ba45b3470bc7e90",
+          "state": "new contract suite"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "be4626109deaabccf84379728081c8b1f865fdf88eed2f2fa86e15b9b00c0a58",
+          "state": "proposed workflow"
+        }
+      ],
+      "consumer_boundary": "Preserves the standalone TFQ-1050 script and its 110-obligation JSON schema. The Lean origin supplies Clifford and polynomial/block facts and explicitly does not state gamma5 D gamma5 = D adjoint. Finite Python checks do not close the arbitrary-carrier bridge."
+    },
+    "checks/tests/test_wilson_checker.py": {
+      "role": "Generated and adversarial verification application for Wilson result accounting, independent-oracle integration, CLI and cancellation lifecycles",
+      "profile": "Exact",
+      "origin": "SCORING.md",
+      "cost": "Seven test groups including 80 deterministic generated result sequences with at most 30 cases; fixed-size exact matrix fixtures. Context-managed mocks and output captures restore imported modules after errors. The first-25 suite separately runs isolated CLIs with timeouts.",
+      "groups": [
+        {
+          "requirement": "Use explicit receipt and fixed section counts, generated list expectations, deliberate wrong determinants and injected errors to test integration without deriving expected failures from production output. Reuse the independent Bareiss and matrix oracles instead of duplicating them.",
+          "symbols": [
+            "WilsonCheckerTests",
+            "WilsonCheckerTests.test_complete_receipt_and_repeatability",
+            "WilsonCheckerTests.test_generated_named_cases_are_counted_without_loss",
+            "WilsonCheckerTests.test_malformed_statuses_and_duplicate_ids_are_refused",
+            "WilsonCheckerTests.test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli",
+            "WilsonCheckerTests.test_direct_determinant_fault_cannot_hide_behind_polynomial",
+            "WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named",
+            "WilsonCheckerTests.test_cancellation_and_resource_failures_keep_distinct_semantics"
+          ],
+          "tests": [
+            "WilsonCheckerTests.test_complete_receipt_and_repeatability",
+            "WilsonCheckerTests.test_generated_named_cases_are_counted_without_loss",
+            "WilsonCheckerTests.test_malformed_statuses_and_duplicate_ids_are_refused",
+            "WilsonCheckerTests.test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli",
+            "WilsonCheckerTests.test_direct_determinant_fault_cannot_hide_behind_polynomial",
+            "WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named",
+            "WilsonCheckerTests.test_cancellation_and_resource_failures_keep_distinct_semantics"
+          ],
+          "requirement_id": "TFQM-WILSON-REVIEW-TEST-WILSON-CHECKER-1"
+        }
+      ],
+      "source_sha256": "6ea7cb0a6408ea7b9860b90c3cffc9aa4c86411128581dcd6ba45b3470bc7e90",
+      "symbols": [
+        "WilsonCheckerTests",
+        "WilsonCheckerTests.test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli",
+        "WilsonCheckerTests.test_cancellation_and_resource_failures_keep_distinct_semantics",
+        "WilsonCheckerTests.test_complete_receipt_and_repeatability",
+        "WilsonCheckerTests.test_direct_determinant_fault_cannot_hide_behind_polynomial",
+        "WilsonCheckerTests.test_generated_named_cases_are_counted_without_loss",
+        "WilsonCheckerTests.test_malformed_statuses_and_duplicate_ids_are_refused",
+        "WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/tests/test_wilson_checker.py",
+          "sha256": "6ea7cb0a6408ea7b9860b90c3cffc9aa4c86411128581dcd6ba45b3470bc7e90",
+          "state": "new contract suite"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "be4626109deaabccf84379728081c8b1f865fdf88eed2f2fa86e15b9b00c0a58",
+          "state": "proposed workflow"
+        }
+      ],
+      "consumer_boundary": "Preserves the standalone TFQ-1050 script and its 110-obligation JSON schema. The Lean origin supplies Clifford and polynomial/block facts and explicitly does not state gamma5 D gamma5 = D adjoint. Finite Python checks do not close the arbitrary-carrier bridge."
+    }
+  }
+}

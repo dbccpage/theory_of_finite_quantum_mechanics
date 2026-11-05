@@ -1,0 +1,373 @@
+{
+  "AuthorityEffect": "None",
+  "source_requirements": {
+    "checks/independent/ds-continuous-time-exp-generator.py": {
+      "role": "Composed bounded discrete-dynamics verification application with owned finite maps, exact exhaustive roots/iteration, Gaussian branch witnesses and independent order-four integer-matrix powers/residue controls",
+      "origin": "lean4/ContinuousTimeExpGenerator.lean",
+      "profile": "Exact",
+      "cost": "Map carrier N1..4; each owned image/state exact0..N-1. Composition O(N); exponent0..4096 uses at most13 loop iterations and25 compositions. Root search enumerates at most4^4=256 candidate maps, O(N*N^N) time and at most256 owned results. Integer inputs/results and each polynomial square/product/prefix bounded to4096 bits; raw integer multiply/add at most8192/4097 bits. Shared Gaussian arithmetic admits each result component<=4096 bits with raw rational intermediate ceiling4B+1 numerator/4B denominator. Matrix operations fixed2x2; nilpotent candidate checks use shared bounded RationalMatrix. Existing355 root/branch obligations are unchanged. Additional257 order-four/residue obligations retain all original residue cases; total612. powj admits natural exponent0..4096 and uses actual2x2 rational-matrix binary multiplication, at most13 iterations/25 products per call. Flat integer matrices use4096-bit inputs and every shared product/dot-prefix bound.",
+      "groups": [
+        {
+          "requirement": "FiniteEndomap owns an immutable nonempty table of1..4 exact integer images in its own indexed carrier. Apply admits exact states; composition requires the same owned type/carrier and computes self after other. Powers admit integer0..4096, preserve the identity at zero and use bounded binary iteration. Return public operations through Outcome, preserving successful values versus input/resource refusals.",
+          "symbols": [
+            "_state",
+            "FiniteEndomap",
+            "FiniteEndomap.__init__",
+            "FiniteEndomap.apply",
+            "FiniteEndomap._compose",
+            "FiniteEndomap.compose",
+            "FiniteEndomap._power",
+            "FiniteEndomap.power"
+          ],
+          "tests": [
+            "ContinuousTimeCheckerTests.test_generated_composition_action_and_power",
+            "ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget",
+            "ContinuousTimeCheckerTests.test_composition_refuses_carrier_loss",
+            "ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation"
+          ],
+          "requirement_id": "TFQM-DISCRETE-DYNAMICS-REVIEW-DS-CONTINUOUS-TIME-EXP-GENERATOR-1"
+        },
+        {
+          "requirement": "Enumerate every total map on the same finite carrier in lexicographic image order and return exactly those whose square is the target. An empty successful root tuple means exhaustive finite nonexistence. maps returns all four owned Boolean-carrier tables; toggle requires actual bool and refuses integer/text aliases.",
+          "symbols": [
+            "FiniteEndomap._square_roots",
+            "FiniteEndomap.square_roots",
+            "toggle",
+            "maps"
+          ],
+          "tests": [
+            "ContinuousTimeCheckerTests.test_complete_small_root_censuses_and_four_state_witness",
+            "ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget",
+            "ContinuousTimeCheckerTests.test_oracles_and_pure_import",
+            "ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation"
+          ],
+          "requirement_id": "TFQM-DISCRETE-DYNAMICS-REVIEW-DS-CONTINUOUS-TIME-EXP-GENERATOR-2"
+        },
+        {
+          "requirement": "Gaussian helpers admit exact bounded integer pairs and exactly four flat matrix entries, snapshot all inputs and compose shared GaussianRational/GaussianMatrix2 arithmetic. Return immutable integer pairs/flat matrices; numerator export is valid because admitted inputs and ring operations stay Gaussian integral. Invalid shapes/types refuse before multiplication.",
+          "symbols": [
+            "_bounded",
+            "_gaussian",
+            "_pair",
+            "gadd",
+            "gmul",
+            "_matrix",
+            "mmul"
+          ],
+          "tests": [
+            "ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle",
+            "ContinuousTimeCheckerTests.test_scaled_roots_are_distinct_unitary_half_steps",
+            "ContinuousTimeCheckerTests.test_exact_gaussian_domains_and_preflight",
+            "ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries"
+          ],
+          "requirement_id": "TFQM-DISCRETE-DYNAMICS-REVIEW-DS-CONTINUOUS-TIME-EXP-GENERATOR-3"
+        },
+        {
+          "requirement": "Evaluate the integer Cayley polynomial with checked square, plus/minus, products and sums. Energy is the exact bounded odd integer2k+1, accepting negative branches. The nilpotent predicate tests I+N=swap and N^2=0 via owned rational matrices after admitting all four bounded integers; it is only the square-zero logarithm candidate, not a general matrix-log theorem.",
+          "symbols": [
+            "cayley",
+            "energy",
+            "nilpotent"
+          ],
+          "tests": [
+            "ContinuousTimeCheckerTests.test_cayley_and_odd_branch_oracles",
+            "ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries",
+            "ContinuousTimeCheckerTests.test_nilpotent_forced_candidate_against_matrix_oracle"
+          ],
+          "requirement_id": "TFQM-DISCRETE-DYNAMICS-REVIEW-DS-CONTINUOUS-TIME-EXP-GENERATOR-4"
+        },
+        {
+          "requirement": "Require Cases, remain silent on import and allocate per-run counters. Preserve Boolean obstruction, both scaled squares/distinctness, Gaussian examples,41 Cayley values,two branch values,300 distinct unordered branch pairs and the forced candidate corner/non-nilpotence; add both scaled-unitarity checks. Emit355 actual checks/4 Boolean maps and exit nonzero on expected failure; propagate cancellation/programming errors.",
+          "symbols": [
+            "_map_controls",
+            "_matrix_controls",
+            "verify",
+            "main"
+          ],
+          "tests": [
+            "ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation",
+            "ContinuousTimeCheckerTests.test_executable_receipt_and_failure_exit",
+            "ContinuousTimeCheckerTests.test_oracles_and_pure_import",
+            "ContinuousTimeCheckerTests.test_scaled_roots_are_distinct_unitary_half_steps"
+          ],
+          "requirement_id": "TFQM-DISCRETE-DYNAMICS-REVIEW-DS-CONTINUOUS-TIME-EXP-GENERATOR-5"
+        },
+        {
+          "requirement": "Admit exact flat2 integer matrices and snapshot both operands before shared RationalMatrix multiplication; export exact ints with shape/integrality checked. powj admits natural exponent0..4096 and performs actual binary matrix multiplication, independently of REPS. Preserve all257 residue obligations, use actual matrix entries for former literal scalar steps, remove the vacuous residue<4 branch, and count612 combined obligations while retaining355 root/branch checks. Negative/bool exponents refuse before multiplication; cancellation propagates.",
+          "symbols": [
+            "_real_matrix",
+            "_real_flat",
+            "mm",
+            "powj",
+            "verify_residues"
+          ],
+          "tests": [
+            "ContinuousTimeCheckerTests.test_integer_matrix_product_against_symbolic_oracle",
+            "ContinuousTimeCheckerTests.test_quarter_turn_powers_against_matrix_and_cycle",
+            "ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots",
+            "ContinuousTimeCheckerTests.test_residue_exact_domains_and_resource_limits",
+            "ContinuousTimeCheckerTests.test_residue_preflight_before_multiplication",
+            "ContinuousTimeCheckerTests.test_residue_control_counts_and_injected_fault",
+            "ContinuousTimeCheckerTests.test_executable_receipt_and_failure_exit"
+          ],
+          "requirement_id": "TFQM-DISCRETE-DYNAMICS-REVIEW-DS-CONTINUOUS-TIME-EXP-GENERATOR-6"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "3eb3a651e3b66c927c0599ab40f839fc23e7a55a58c0ec2bfd769271d4f0de90",
+      "symbols": [
+        "FiniteEndomap",
+        "FiniteEndomap.__init__",
+        "FiniteEndomap._compose",
+        "FiniteEndomap._power",
+        "FiniteEndomap._square_roots",
+        "FiniteEndomap.apply",
+        "FiniteEndomap.compose",
+        "FiniteEndomap.power",
+        "FiniteEndomap.square_roots",
+        "_bounded",
+        "_gaussian",
+        "_map_controls",
+        "_matrix",
+        "_matrix_controls",
+        "_pair",
+        "_real_flat",
+        "_real_matrix",
+        "_state",
+        "cayley",
+        "energy",
+        "gadd",
+        "gmul",
+        "main",
+        "maps",
+        "mm",
+        "mmul",
+        "nilpotent",
+        "powj",
+        "toggle",
+        "verify",
+        "verify_residues"
+      ],
+      "origin_sha256": "03d58f4e60ab3368f101da133736a9ee3355d00973ffe3b90ca99bc1908f2da6",
+      "consumers": [
+        {
+          "path": "checks/tests/continuous_time_mutations.json",
+          "sha256": "c973edd0f781c9b91ff3c960b530db84cf2886796c33fe965676ed7076300dac",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/tests/test_continuous_time_checker.py",
+          "sha256": "4eb6d70c09fff644cd45475f1cc30107d745522a15d69bc34279d21ca26dc332",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-26_campaign-ds-continuous-time-exp-generator-precommit.md",
+          "sha256": "ba24ac763b8de8d369b11c3c85558e34d9c8bbf641f089c57e097d1b1fbd8bfc",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/tests/test_continuous_time_checker.py",
+          "sha256": "901541967a37f171d173fdeb8f4d9419c2031321006eec90d7d5688ead89760a",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "df43fb4d1f7b407d4186900a33564894cad687079e1f1d9de00f3d2069f86b8a",
+          "state": "current local consumer"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-26_campaign-ds-qm062-u1-residues-import-precommit.md",
+          "sha256": "57882a490bc35e34555217a4d2d23225a4569cea96d69e95622bd3f86759bb33",
+          "state": "historical residue reference preserved through archive mapping"
+        }
+      ],
+      "consumer_boundary": "The previously assessed finite-map application and all13 prior test groups are retained; only executable receipt expectations grow355->612 with separate355/257 sections, and six residue groups are added. The unreferenced residue implementation is byte-archived and composed into this application; its sole historical precommit reference remains mapped, not rewritten. Its old powj(-1) identity alias and bool acceptance now refuse under an explicit natural0..4096 runtime budget. Flat integer multiplication composes shared RationalMatrix; actual powers remain independent of the residue lookup table. Full ContinuousTimeExpGenerator and U1ResiduesOrderFour Lean sources/notes were reviewed. The old Lean natural-number statements remain universal theorems distinct from bounded executable tests; no continuous time, circle/U1 fiber, field uniqueness, local tomography, exp/log or measure is supplied. Historical source/test/contract bytes, exact migration and old mutation manifest remain intact.",
+      "origins": [
+        {
+          "path": "lean4/ContinuousTimeExpGenerator.lean",
+          "sha256": "03d58f4e60ab3368f101da133736a9ee3355d00973ffe3b90ca99bc1908f2da6"
+        },
+        {
+          "path": "lean4/U1ResiduesOrderFour.lean",
+          "sha256": "e0cea83454141a891b39b8f1276fd453ef959066755a4bcd6a9430b01fcf9e4d"
+        }
+      ],
+      "retired_inputs": [
+        {
+          "path": "checks/independent/ds-qm062-u1-residues-import.py",
+          "sha256": "d669032e35b188a5b468b87a72fd6b9ce367b836a0e022e2e759b32beadaeb42",
+          "archive": "reviews/repository_file_review/retired_discrete_dynamics_sources/ds-qm062-u1-residues-import.py.txt"
+        }
+      ],
+      "prior_assessed_sources": [
+        {
+          "path": "checks/independent/ds-continuous-time-exp-generator.py",
+          "sha256": "dadff15a6f3de2ae8edd82d0c1eff4fd0817f43a1509a7e6fae0fcd2c50fc7de",
+          "archive": "reviews/repository_file_review/2026-11-03-discrete-dynamics-prior-ds-continuous-time-exp-generator.py.txt",
+          "contract_sha256": "96ea41c2cc2c7cb23f71684bd786c6f2b80fef5009a5a7ba9a380e8016c5158b"
+        },
+        {
+          "path": "checks/tests/test_continuous_time_checker.py",
+          "sha256": "4eb6d70c09fff644cd45475f1cc30107d745522a15d69bc34279d21ca26dc332",
+          "archive": "reviews/repository_file_review/2026-11-03-discrete-dynamics-prior-test_continuous_time_checker.py.txt",
+          "contract_sha256": "4ab76cbd9e5ee997fa15013bf681f770de9d70f9aebd144ae486e9da1b8703aa"
+        }
+      ]
+    },
+    "checks/tests/test_continuous_time_checker.py": {
+      "role": "Independent bounded dynamics verification application with complete small map-root censuses, exact Gaussian/integer matrix oracles, binary powers versus symbolic matrices/four-state cycles, domain/resource witnesses and executable lifecycle controls",
+      "origin": "SCORING.md",
+      "profile": "Exact",
+      "cost": "19 groups;80 deterministic examples per generated property. Exhaustive root targets for N1..3 and two N4 witnesses; each reference map is squared as an at-most3x3 symbolic operator. Generated map compositions/powers use4x4 matrices and exponent0..30, with explicit4096 boundary. All16 carrier-size pairs use valid constant maps to isolate carrier preservation. Gaussian oracles fixed2x2 with small integer components; Cayley/branch samples-1000..1000. Nilpotent census81 matrices;2048/4096-bit resource boundaries. Six added residue groups compare general integer matrix products, all small/final powers, generated0..4096 exponents against symbolic matrices and a four-state map cycle, exact negative/bool/resource refusals, preflight before any multiplication and injected section faults. Executable timeout30s and scoped runpy/mocks/captures/subprocess.",
+      "groups": [
+        {
+          "requirement": "Cross-check distinct row/column orientation and symbolic operator powers; exhaust every small root target and assert two4-state boundary witnesses. Compare generated map composition/action/iteration and Gaussian arithmetic independently, normalize both scaled square roots and check unitarity, derive Cayley norm via rational complex phase, invert the odd-branch parametrization and check the forced nilpotent candidate by actual matrix products. Test full resource/exact-input domains, snapshots, eager preflight, import silence, per-run counts and failure/cancellation exits.",
+          "symbols": [
+            "load",
+            "_operator",
+            "_matrix",
+            "_root_index",
+            "ContinuousTimeCheckerTests",
+            "ContinuousTimeCheckerTests.refused",
+            "ContinuousTimeCheckerTests.test_oracles_and_pure_import",
+            "ContinuousTimeCheckerTests.test_complete_small_root_censuses_and_four_state_witness",
+            "ContinuousTimeCheckerTests.test_composition_refuses_carrier_loss",
+            "ContinuousTimeCheckerTests.test_generated_composition_action_and_power",
+            "ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget",
+            "ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle",
+            "ContinuousTimeCheckerTests.test_scaled_roots_are_distinct_unitary_half_steps",
+            "ContinuousTimeCheckerTests.test_exact_gaussian_domains_and_preflight",
+            "ContinuousTimeCheckerTests.test_cayley_and_odd_branch_oracles",
+            "ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries",
+            "ContinuousTimeCheckerTests.test_nilpotent_forced_candidate_against_matrix_oracle",
+            "ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation",
+            "ContinuousTimeCheckerTests.test_integer_matrix_product_against_symbolic_oracle",
+            "ContinuousTimeCheckerTests.test_quarter_turn_powers_against_matrix_and_cycle",
+            "ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots",
+            "ContinuousTimeCheckerTests.test_residue_exact_domains_and_resource_limits",
+            "ContinuousTimeCheckerTests.test_residue_preflight_before_multiplication",
+            "ContinuousTimeCheckerTests.test_residue_control_counts_and_injected_fault",
+            "ContinuousTimeCheckerTests.test_executable_receipt_and_failure_exit"
+          ],
+          "tests": [
+            "ContinuousTimeCheckerTests.test_oracles_and_pure_import",
+            "ContinuousTimeCheckerTests.test_complete_small_root_censuses_and_four_state_witness",
+            "ContinuousTimeCheckerTests.test_composition_refuses_carrier_loss",
+            "ContinuousTimeCheckerTests.test_generated_composition_action_and_power",
+            "ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget",
+            "ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle",
+            "ContinuousTimeCheckerTests.test_scaled_roots_are_distinct_unitary_half_steps",
+            "ContinuousTimeCheckerTests.test_exact_gaussian_domains_and_preflight",
+            "ContinuousTimeCheckerTests.test_cayley_and_odd_branch_oracles",
+            "ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries",
+            "ContinuousTimeCheckerTests.test_nilpotent_forced_candidate_against_matrix_oracle",
+            "ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation",
+            "ContinuousTimeCheckerTests.test_integer_matrix_product_against_symbolic_oracle",
+            "ContinuousTimeCheckerTests.test_quarter_turn_powers_against_matrix_and_cycle",
+            "ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots",
+            "ContinuousTimeCheckerTests.test_residue_exact_domains_and_resource_limits",
+            "ContinuousTimeCheckerTests.test_residue_preflight_before_multiplication",
+            "ContinuousTimeCheckerTests.test_residue_control_counts_and_injected_fault",
+            "ContinuousTimeCheckerTests.test_executable_receipt_and_failure_exit"
+          ],
+          "requirement_id": "TFQM-DISCRETE-DYNAMICS-REVIEW-TEST-CONTINUOUS-TIME-CHECKER-1"
+        }
+      ],
+      "nested_declarations": {},
+      "source_sha256": "901541967a37f171d173fdeb8f4d9419c2031321006eec90d7d5688ead89760a",
+      "symbols": [
+        "ContinuousTimeCheckerTests",
+        "ContinuousTimeCheckerTests.refused",
+        "ContinuousTimeCheckerTests.test_cayley_and_odd_branch_oracles",
+        "ContinuousTimeCheckerTests.test_complete_small_root_censuses_and_four_state_witness",
+        "ContinuousTimeCheckerTests.test_composition_refuses_carrier_loss",
+        "ContinuousTimeCheckerTests.test_exact_gaussian_domains_and_preflight",
+        "ContinuousTimeCheckerTests.test_executable_receipt_and_failure_exit",
+        "ContinuousTimeCheckerTests.test_finite_map_ownership_domains_and_full_power_budget",
+        "ContinuousTimeCheckerTests.test_fixed_nonsymmetric_integer_products_and_snapshots",
+        "ContinuousTimeCheckerTests.test_gaussian_products_against_symbolic_oracle",
+        "ContinuousTimeCheckerTests.test_generated_composition_action_and_power",
+        "ContinuousTimeCheckerTests.test_integer_domains_and_polynomial_resource_boundaries",
+        "ContinuousTimeCheckerTests.test_integer_matrix_product_against_symbolic_oracle",
+        "ContinuousTimeCheckerTests.test_nilpotent_forced_candidate_against_matrix_oracle",
+        "ContinuousTimeCheckerTests.test_oracles_and_pure_import",
+        "ContinuousTimeCheckerTests.test_quarter_turn_powers_against_matrix_and_cycle",
+        "ContinuousTimeCheckerTests.test_reentrant_counts_faults_and_cancellation",
+        "ContinuousTimeCheckerTests.test_residue_control_counts_and_injected_fault",
+        "ContinuousTimeCheckerTests.test_residue_exact_domains_and_resource_limits",
+        "ContinuousTimeCheckerTests.test_residue_preflight_before_multiplication",
+        "ContinuousTimeCheckerTests.test_scaled_roots_are_distinct_unitary_half_steps",
+        "_matrix",
+        "_operator",
+        "_root_index",
+        "load"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/tests/README.md",
+          "sha256": "4fed963176390805fcd26f242490a0eb21aef15e8d1e666e023d40c624c9557b",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/tests/continuous_time_mutations.json",
+          "sha256": "c973edd0f781c9b91ff3c960b530db84cf2886796c33fe965676ed7076300dac",
+          "state": "pre-change consumer/provenance audit"
+        },
+        {
+          "path": "checks/independent/ds-continuous-time-exp-generator.py",
+          "sha256": "3eb3a651e3b66c927c0599ab40f839fc23e7a55a58c0ec2bfd769271d4f0de90",
+          "state": "current local consumer"
+        },
+        {
+          "path": "checks/tests/test_review_repairs.py",
+          "sha256": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4",
+          "state": "current local consumer"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "df43fb4d1f7b407d4186900a33564894cad687079e1f1d9de00f3d2069f86b8a",
+          "state": "current local consumer"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-26_campaign-ds-qm062-u1-residues-import-precommit.md",
+          "sha256": "57882a490bc35e34555217a4d2d23225a4569cea96d69e95622bd3f86759bb33",
+          "state": "historical residue reference preserved through archive mapping"
+        }
+      ],
+      "consumer_boundary": "The previously assessed finite-map application and all13 prior test groups are retained; only executable receipt expectations grow355->612 with separate355/257 sections, and six residue groups are added. The unreferenced residue implementation is byte-archived and composed into this application; its sole historical precommit reference remains mapped, not rewritten. Its old powj(-1) identity alias and bool acceptance now refuse under an explicit natural0..4096 runtime budget. Flat integer multiplication composes shared RationalMatrix; actual powers remain independent of the residue lookup table. Full ContinuousTimeExpGenerator and U1ResiduesOrderFour Lean sources/notes were reviewed. The old Lean natural-number statements remain universal theorems distinct from bounded executable tests; no continuous time, circle/U1 fiber, field uniqueness, local tomography, exp/log or measure is supplied. Historical source/test/contract bytes, exact migration and old mutation manifest remain intact.",
+      "origins": [
+        {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        }
+      ],
+      "retired_inputs": [
+        {
+          "path": "checks/independent/ds-qm062-u1-residues-import.py",
+          "sha256": "d669032e35b188a5b468b87a72fd6b9ce367b836a0e022e2e759b32beadaeb42",
+          "archive": "reviews/repository_file_review/retired_discrete_dynamics_sources/ds-qm062-u1-residues-import.py.txt"
+        }
+      ],
+      "prior_assessed_sources": [
+        {
+          "path": "checks/independent/ds-continuous-time-exp-generator.py",
+          "sha256": "dadff15a6f3de2ae8edd82d0c1eff4fd0817f43a1509a7e6fae0fcd2c50fc7de",
+          "archive": "reviews/repository_file_review/2026-11-03-discrete-dynamics-prior-ds-continuous-time-exp-generator.py.txt",
+          "contract_sha256": "96ea41c2cc2c7cb23f71684bd786c6f2b80fef5009a5a7ba9a380e8016c5158b"
+        },
+        {
+          "path": "checks/tests/test_continuous_time_checker.py",
+          "sha256": "4eb6d70c09fff644cd45475f1cc30107d745522a15d69bc34279d21ca26dc332",
+          "archive": "reviews/repository_file_review/2026-11-03-discrete-dynamics-prior-test_continuous_time_checker.py.txt",
+          "contract_sha256": "4ab76cbd9e5ee997fa15013bf681f770de9d70f9aebd144ae486e9da1b8703aa"
+        }
+      ]
+    }
+  }
+}

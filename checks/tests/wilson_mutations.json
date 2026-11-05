@@ -1,0 +1,155 @@
+[
+  {
+    "identity": "status-truthiness",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "checks.append((name, ok))",
+    "after": "checks.append((name, bool(ok)))",
+    "tests": [
+      "test_malformed_statuses_and_duplicate_ids_are_refused"
+    ]
+  },
+  {
+    "identity": "chiral-trace",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "[1 if i < half else -1 for i in range(spin_dim)]",
+    "after": "[1 for i in range(spin_dim)]",
+    "tests": [
+      "test_section_obligations_are_exact_booleans_and_named"
+    ]
+  },
+  {
+    "identity": "forward-real",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "a_re = Fraction(1, 2) * g_re - Fraction(1, 2) * r * d_spin",
+    "after": "a_re = Fraction(1, 2) * g_re + Fraction(1, 2) * r * d_spin",
+    "tests": [
+      "test_section_obligations_are_exact_booleans_and_named"
+    ]
+  },
+  {
+    "identity": "forward-imag",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "a_im = Fraction(1, 2) * g_im",
+    "after": "a_im = -Fraction(1, 2) * g_im",
+    "tests": [
+      "test_section_obligations_are_exact_booleans_and_named"
+    ]
+  },
+  {
+    "identity": "forward-complex-product",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "a_re * u_re - a_im * u_im",
+    "after": "a_re * u_re + a_im * u_im",
+    "tests": [
+      "test_section_obligations_are_exact_booleans_and_named"
+    ]
+  },
+  {
+    "identity": "backward-real",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "b_re = -Fraction(1, 2) * g_re - Fraction(1, 2) * r * d_spin",
+    "after": "b_re = Fraction(1, 2) * g_re - Fraction(1, 2) * r * d_spin",
+    "tests": [
+      "test_section_obligations_are_exact_booleans_and_named"
+    ]
+  },
+  {
+    "identity": "backward-conjugate",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "b_re * (-u_im) + b_im * u_re",
+    "after": "b_re * u_im + b_im * u_re",
+    "tests": [
+      "test_section_obligations_are_exact_booleans_and_named"
+    ]
+  },
+  {
+    "identity": "onsite-d2",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "d2_diag = m_val + 2 * r_val",
+    "after": "d2_diag = m_val + 3 * r_val",
+    "tests": [
+      "test_section_obligations_are_exact_booleans_and_named"
+    ]
+  },
+  {
+    "identity": "onsite-d4",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "d4_diag = m_val + 4 * r_val",
+    "after": "d4_diag = m_val + 3 * r_val",
+    "tests": [
+      "test_section_obligations_are_exact_booleans_and_named"
+    ]
+  },
+  {
+    "identity": "determinant-sign",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "s**2 - 2*r**2",
+    "after": "s**2 + 2*r**2",
+    "tests": [
+      "test_complete_receipt_and_repeatability"
+    ]
+  },
+  {
+    "identity": "determinant-polynomial",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "s**2 + 2 - 2*r**2",
+    "after": "s**2 + 2 - r**2",
+    "tests": [
+      "test_complete_receipt_and_repeatability"
+    ]
+  },
+  {
+    "identity": "matrix-comparison",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "direct_wilson_determinant(m,r) == det_dw_2x2(m,r)",
+    "after": "True",
+    "tests": [
+      "test_direct_determinant_fault_cannot_hide_behind_polynomial"
+    ]
+  },
+  {
+    "identity": "assembled-bypass",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "add_check(\"assembled_four_spin_colored_operator\", assembled_operator_checks())",
+    "after": "add_check(\"assembled_four_spin_colored_operator\", True)",
+    "tests": [
+      "test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli"
+    ]
+  },
+  {
+    "identity": "failed-case-loss",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "[name for name, ok in checks if not ok]",
+    "after": "[name for name, ok in checks if ok]",
+    "tests": [
+      "test_generated_named_cases_are_counted_without_loss"
+    ]
+  },
+  {
+    "identity": "count-one-off",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "\"total_checks\": len(checks)",
+    "after": "\"total_checks\": len(checks)+1",
+    "tests": [
+      "test_generated_named_cases_are_counted_without_loss"
+    ]
+  },
+  {
+    "identity": "all-passed-forged",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "\"all_passed\": len(failures) == 0",
+    "after": "\"all_passed\": True",
+    "tests": [
+      "test_generated_named_cases_are_counted_without_loss"
+    ]
+  },
+  {
+    "identity": "cli-failure-status",
+    "source": "independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+    "before": "if not receipt[\"all_passed\"]:\n        return 1",
+    "after": "if not receipt[\"all_passed\"]:\n        return 0",
+    "tests": [
+      "test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli"
+    ]
+  }
+]

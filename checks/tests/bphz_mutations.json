@@ -1,0 +1,366 @@
+[
+  {
+    "identity": "label-empty",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "or not value.strip()",
+    "after": "or False",
+    "tests": [
+      "test_forest_domains_and_unused_entries"
+    ]
+  },
+  {
+    "identity": "label-length",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "\"label characters\", 1, 64",
+    "after": "\"label characters\", 1, 65",
+    "tests": [
+      "test_forest_domains_and_unused_entries"
+    ]
+  },
+  {
+    "identity": "name-count",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "\"forest labels\", maximum=12",
+    "after": "\"forest labels\", maximum=13",
+    "tests": [
+      "test_forest_domains_and_unused_entries"
+    ]
+  },
+  {
+    "identity": "duplicate-names",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "if len(set(names)) != len(names):",
+    "after": "if False:",
+    "tests": [
+      "test_forest_domains_and_unused_entries"
+    ]
+  },
+  {
+    "identity": "edge-map-size",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "\"edge-set labels\", 0, 12",
+    "after": "\"edge-set labels\", 0, 13",
+    "tests": [
+      "test_forest_domains_and_unused_entries"
+    ]
+  },
+  {
+    "identity": "edge-carrier-size",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "\"edge carrier size\", 0, 64",
+    "after": "\"edge carrier size\", 0, 65",
+    "tests": [
+      "test_forest_domains_and_unused_entries"
+    ]
+  },
+  {
+    "identity": "edge-bool",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "integer(edge, \"edge index\", 0, 4095)",
+    "after": "integer(int(edge), \"edge index\", 0, 4095)",
+    "tests": [
+      "test_forest_domains_and_unused_entries"
+    ]
+  },
+  {
+    "identity": "edge-negative",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "\"edge index\", 0, 4095",
+    "after": "\"edge index\", -1, 4095",
+    "tests": [
+      "test_forest_domains_and_unused_entries"
+    ]
+  },
+  {
+    "identity": "edge-maximum",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "\"edge index\", 0, 4095",
+    "after": "\"edge index\", 0, 4096",
+    "tests": [
+      "test_forest_domains_and_unused_entries"
+    ]
+  },
+  {
+    "identity": "powerset-top",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "range(len(pool)+1)",
+    "after": "range(len(pool))",
+    "tests": [
+      "test_forests_against_bitmask_oracle"
+    ]
+  },
+  {
+    "identity": "live-edge-mapping",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "owned = _edge_map(edges)",
+    "after": "owned = edges",
+    "tests": [
+      "test_forest_snapshots_and_full_budget",
+      "test_forest_domains_and_unused_entries"
+    ]
+  },
+  {
+    "identity": "nested-direction",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "ea <= eb or eb <= ea",
+    "after": "ea <= eb",
+    "tests": [
+      "test_forests_against_bitmask_oracle"
+    ]
+  },
+  {
+    "identity": "disjoint-missing",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "or ea.isdisjoint(eb)",
+    "after": "or False",
+    "tests": [
+      "test_forests_against_bitmask_oracle"
+    ]
+  },
+  {
+    "identity": "overlap-admitted",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "return ea <= eb or eb <= ea or ea.isdisjoint(eb)",
+    "after": "return True",
+    "tests": [
+      "test_forests_against_bitmask_oracle"
+    ]
+  },
+  {
+    "identity": "unknown-singleton",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "        ok(label, label)",
+    "after": "        pass",
+    "tests": [
+      "test_forest_domains_and_unused_entries"
+    ]
+  },
+  {
+    "identity": "all-to-any",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "if all(ok(a, b) for a, b in combinations(subset, 2))",
+    "after": "if any(ok(a, b) for a, b in combinations(subset, 2))",
+    "tests": [
+      "test_forests_against_bitmask_oracle"
+    ]
+  },
+  {
+    "identity": "scalar-bool",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "return rational(value, \"scalar\")",
+    "after": "return rational(int(value) if isinstance(value, bool) else value, \"scalar\")",
+    "tests": [
+      "test_scalar_domains_and_derived_budgets"
+    ]
+  },
+  {
+    "identity": "scalar-budget",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "return rational(value, \"scalar\")",
+    "after": "return Q(value)",
+    "tests": [
+      "test_scalar_domains_and_derived_budgets"
+    ]
+  },
+  {
+    "identity": "numerator-cross",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "7*a*b",
+    "after": "6*a*b",
+    "tests": [
+      "test_numerator_and_sector_exact_oracles",
+      "test_fixture_counts_numerator_challenge_and_cli"
+    ]
+  },
+  {
+    "identity": "numerator-output-budget",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "return exact(2 + 3*a + 5*b + 7*a*b)",
+    "after": "return 2 + 3*a + 5*b + 7*a*b",
+    "tests": [
+      "test_scalar_domains_and_derived_budgets"
+    ]
+  },
+  {
+    "identity": "six-counterterm",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "- N(0, 0) + N(0, 0) + N(0, 0)",
+    "after": "- N(0, 0) + N(0, 0)",
+    "tests": [
+      "test_numerator_and_sector_exact_oracles"
+    ]
+  },
+  {
+    "identity": "inclusion-sign",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "return exact(N(a, b) - N(0, b) - N(a, 0) + N(0, 0))",
+    "after": "return exact(N(a, b) - N(0, b) - N(a, 0) - N(0, 0))",
+    "tests": [
+      "test_numerator_and_sector_exact_oracles"
+    ]
+  },
+  {
+    "identity": "sector-numerator",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "(1 + z*lam)/(lam*(1+lam))",
+    "after": "(1 - z*lam)/(lam*(1+lam))",
+    "tests": [
+      "test_numerator_and_sector_exact_oracles"
+    ]
+  },
+  {
+    "identity": "sector-output-budget",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "return exact((1 + z*lam)/(lam*(1+lam)))",
+    "after": "return (1 + z*lam)/(lam*(1+lam))",
+    "tests": [
+      "test_scalar_domains_and_derived_budgets"
+    ]
+  },
+  {
+    "identity": "matrix-order",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "RationalMatrix.from_flat2(a).mul(RationalMatrix.from_flat2(b))",
+    "after": "RationalMatrix.from_flat2(b).mul(RationalMatrix.from_flat2(a))",
+    "tests": [
+      "test_matrix_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "residual-sign",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "RationalMatrix.from_flat2(p).neg()",
+    "after": "RationalMatrix.from_flat2(p)",
+    "tests": [
+      "test_matrix_operations_against_symbolic_oracle"
+    ]
+  },
+  {
+    "identity": "fraction-only",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "if any(type(x) is not Q for x in entries):",
+    "after": "if False:",
+    "tests": [
+      "test_projector_domains_and_conservative_product_budget"
+    ]
+  },
+  {
+    "identity": "idempotent-admission",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "if result.mul(result) != result:",
+    "after": "if False:",
+    "tests": [
+      "test_projector_domains_and_conservative_product_budget"
+    ]
+  },
+  {
+    "identity": "family-budget",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "\"projector family\", maximum=64",
+    "after": "\"projector family\", maximum=65",
+    "tests": [
+      "test_projector_snapshots_maximum_and_empty"
+    ]
+  },
+  {
+    "identity": "commuting-admission",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "if p.mul(q) != q.mul(p):",
+    "after": "if False:",
+    "tests": [
+      "test_projector_domains_and_conservative_product_budget"
+    ]
+  },
+  {
+    "identity": "empty-reduction",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "result = RationalMatrix.eye(2)\n        for projector",
+    "after": "result = RationalMatrix.from_flat2(ZERO)\n        for projector",
+    "tests": [
+      "test_projector_reduction_and_joint_kernel",
+      "test_projector_snapshots_maximum_and_empty"
+    ]
+  },
+  {
+    "identity": "projector-remainder",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "RationalMatrix.eye(2).add(projector.neg()).mul(result)",
+    "after": "projector.mul(result)",
+    "tests": [
+      "test_projector_reduction_and_joint_kernel"
+    ]
+  },
+  {
+    "identity": "skip-first-projector",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "for projector in reversed(self.projectors):",
+    "after": "for projector in reversed(self.projectors[1:]):",
+    "tests": [
+      "test_projector_reduction_and_joint_kernel"
+    ]
+  },
+  {
+    "identity": "vector-order",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "RationalMatrix(((x,), (y,)))",
+    "after": "RationalMatrix(((y,), (x,)))",
+    "tests": [
+      "test_projector_reduction_and_joint_kernel",
+      "test_projector_snapshots_maximum_and_empty"
+    ]
+  },
+  {
+    "identity": "vector-output",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "return result.rows[0][0], result.rows[1][0]",
+    "after": "return result.rows[0][0], result.rows[0][0]",
+    "tests": [
+      "test_projector_reduction_and_joint_kernel"
+    ]
+  },
+  {
+    "identity": "railway-resource",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "return evaluate(self._reduction)",
+    "after": "return Outcome(value=self._reduction())",
+    "tests": [
+      "test_recorders_railway_and_cancellation"
+    ]
+  },
+  {
+    "identity": "vector-railway-resource",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "return evaluate(self._apply, vector)",
+    "after": "return Outcome(value=self._apply(vector))",
+    "tests": [
+      "test_recorders_railway_and_cancellation"
+    ]
+  },
+  {
+    "identity": "fixture-coefficient",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "(Q(2), Q(3), Q(5), Q(7))",
+    "after": "(Q(2), Q(3), Q(5), Q(6))",
+    "tests": [
+      "test_fixture_counts_numerator_challenge_and_cli"
+    ]
+  },
+  {
+    "identity": "fixture-census-size",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "for size in range(3):",
+    "after": "for size in range(2):",
+    "tests": [
+      "test_fixture_counts_numerator_challenge_and_cli"
+    ]
+  },
+  {
+    "identity": "reported-case-count",
+    "source": "independent/dfm-bphz-continuum-fence.py",
+    "before": "\"checks\": cases.checks",
+    "after": "\"checks\": cases.checks+1",
+    "tests": [
+      "test_fixture_counts_numerator_challenge_and_cli"
+    ]
+  }
+]

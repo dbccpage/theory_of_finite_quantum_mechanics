@@ -1,0 +1,298 @@
+"""Independent exhaustive, symbolic and geometric binary-colouring checks.
+
+AuthorityEffect: None. Search resource failure is distinct from exhausted UNSAT.
+"""
+from __future__ import annotations
+
+import contextlib
+from dataclasses import FrozenInstanceError
+from fractions import Fraction as Q
+from itertools import combinations, product
+import io
+import json
+from pathlib import Path
+import runpy
+import re
+import subprocess
+import sys
+from types import SimpleNamespace
+from typing import TypeVar, cast
+import unittest
+from unittest.mock import patch
+
+from hypothesis import given, settings, strategies as st
+import sympy as sp
+from sympy.logic.inference import satisfiable
+
+CHECKS = Path(__file__).resolve().parents[1]
+APP = CHECKS/'independent/fq-gleason-qi3-frame-functions.py'
+sys.path.insert(0, str(CHECKS))
+from checker_support.binary_frame_system import BinaryFrameSystem
+from checker_support.boundary import Violation, evaluate
+from checker_support.outcome import Outcome
+
+T = TypeVar('T')
+PROPERTY = settings(max_examples=100, derandomize=True, deadline=None, database=None)
+
+
+def load() -> SimpleNamespace:
+    return SimpleNamespace(**runpy.run_path(str(APP)))
+
+
+def models(size: int, pairs: tuple[tuple[int, ...], ...],
+           triples: tuple[tuple[int, ...], ...]) -> list[tuple[int, ...]]:
+    return [v for v in product((0, 1), repeat=size)
+            if all(v[i]*v[j] == 0 for i, j in pairs)
+            and all(tuple(v[i] for i in row) in ((1, 0, 0), (0, 1, 0), (0, 0, 1)) for row in triples)]
+
+
+def partial_models(size: int, pairs: tuple[tuple[int, ...], ...],
+                   triples: tuple[tuple[int, ...], ...], values: list[int]) -> list[tuple[int, ...]]:
+    return [v for v in models(size, pairs, triples) if all(x == -1 or x == y for x, y in zip(values, v))]
+
+
+def projective(v: tuple[int, ...]) -> tuple[Q, ...]:
+    first = next(x for x in v if x)
+    return tuple(Q(x, first) for x in v)
+
+
+def boolean_formula(size: int, pairs: tuple[tuple[int, ...], ...],
+                    triples: tuple[tuple[int, ...], ...]) -> object:
+    variables = sp.symbols('x:'+str(size))
+    clauses = [sp.Or(~variables[i], ~variables[j]) for i, j in pairs]
+    clauses += [sp.And(sp.Or(*(variables[i] for i in row)),
+                 *(sp.Or(~variables[i], ~variables[j]) for i, j in combinations(row, 2))) for row in triples]
+    return sp.And(*clauses)
+
+
+class BinaryColouringTests(unittest.TestCase):
+    def accepted(self, result: Outcome[T]) -> T:
+        self.assertIsNone(result.error)
+        return cast(T, result.value)
+
+    def refused(self, result: Outcome[T], kind: str | None = None) -> None:
+        self.assertIsNotNone(result.error)
+        if kind is not None and result.error is not None:
+            self.assertEqual(result.error.kind, kind)
+
+    def test_all_four_variable_constraint_systems_against_exhaustion(self) -> None:
+        pairs = tuple(combinations(range(4), 2)); triples = tuple(combinations(range(4), 3))
+        for selection in product((False, True), repeat=10):
+            p = tuple(row for row, yes in zip(pairs, selection[:6]) if yes)
+            t = tuple(row for row, yes in zip(triples, selection[6:]) if yes)
+            system = BinaryFrameSystem(4, p, t); expected = models(4, p, t)
+            result, nodes = self.accepted(system.search())
+            self.assertEqual(result is not None, bool(expected))
+            self.assertLessEqual(nodes, 31)
+            if result is not None:
+                self.assertIn(result, expected)
+            for values in product((0, 1), repeat=4):
+                self.assertEqual(self.accepted(system.check_assignment(values)), values in expected)
+
+    @PROPERTY
+    @given(st.integers(0, 7), st.data())
+    def test_generated_solver_and_partial_propagation(self, size: int, data: st.DataObject) -> None:
+        all_pairs = tuple(combinations(range(size), 2)); all_triples = tuple(combinations(range(size), 3))
+        pairs = tuple(data.draw(st.lists(st.sampled_from(all_pairs), unique=True))) if all_pairs else ()
+        triples = tuple(data.draw(st.lists(st.sampled_from(all_triples), unique=True))) if all_triples else ()
+        system = BinaryFrameSystem(size, pairs, triples); expected = models(size, pairs, triples)
+        model, _ = self.accepted(system.search())
+        self.assertEqual(model is not None, bool(expected))
+        if model is not None:
+            self.assertIn(model, expected)
+        partial = data.draw(st.lists(st.integers(-1, 1), min_size=size, max_size=size))
+        completions = partial_models(size, pairs, triples, partial); propagated = partial.copy()
+        success = system._propagate(propagated)
+        if success:
+            self.assertEqual(partial_models(size, pairs, triples, propagated), completions)
+        else:
+            self.assertEqual(completions, [])
+
+    def test_independent_symbolic_full_witness_and_deletion_models(self) -> None:
+        witness = load().RationalColouringWitness(); system = witness.system
+        self.assertIs(satisfiable(boolean_formula(49, system.pairs, system.triples), algorithm='dpll2'), False)
+        for deleted in (BinaryFrameSystem(49, (), system.triples), BinaryFrameSystem(49, system.pairs, ())):
+            values, _ = self.accepted(deleted.search()); self.assertIsNotNone(values)
+            model = cast(tuple[int, ...], values)
+            self.assertTrue(all(model[i]*model[j] == 0 for i, j in deleted.pairs))
+            self.assertTrue(all(sum(model[i] for i in row) == 1 for row in deleted.triples))
+        report = self.accepted(witness.verify())
+        self.assertEqual((report['rays'], report['orthogonal_pairs'], report['internal_frames'],
+                          report['raw_cross_products_outside_box'], report['binary_search_nodes']), (49, 138, 26, 90, 11))
+
+    def test_full_projective_geometry_and_completions(self) -> None:
+        witness = load().RationalColouringWitness(); rays = witness.rays
+        raw = [v for v in product(range(-2, 3), repeat=3) if any(v)]
+        self.assertEqual({projective(v) for v in rays}, {projective(v) for v in raw})
+        self.assertEqual(len({projective(v) for v in rays}), 49)
+        expected_pairs = tuple((i, j) for i, j in combinations(range(49), 2) if sp.Matrix(rays[i]).dot(sp.Matrix(rays[j])) == 0)
+        self.assertEqual(witness.system.pairs, expected_pairs)
+        expected_triples = tuple(row for row in combinations(range(49), 3)
+                                 if all(pair in expected_pairs for pair in combinations(row, 2)))
+        self.assertEqual(witness.system.triples, expected_triples)
+        outside = 0
+        for i, j in expected_pairs:
+            u, v = sp.Matrix(rays[i]), sp.Matrix(rays[j]); w = u.cross(v)
+            self.assertNotEqual(w, sp.zeros(3, 1)); self.assertEqual(u.dot(w), 0); self.assertEqual(v.dot(w), 0)
+            outside += int(bool(max(abs(x) for x in w) > 2))
+        self.assertEqual(witness._completions(), outside)
+
+    def test_carrier_constraint_domains_and_whole_preflight(self) -> None:
+        invalid: object
+        for invalid in (-1, True, 1.0, Q(3), '3', None):
+            self.refused(evaluate(BinaryFrameSystem, invalid, (), ()), 'input')
+        self.refused(evaluate(BinaryFrameSystem, 65, (), ()), 'resource')
+        for p, t, kind in (([(0, 0)], [], 'duplicate'), ([], [(0, 1, 1)], 'duplicate'),
+                            ([(0, 1), (1, 0)], [], 'duplicate'), ([], [(0, 1, 2), (2, 0, 1)], 'duplicate'),
+                            ([(-1, 0)], [], 'input'), ([(0, 3)], [], 'input'),
+                            ([(False, 1)], [], 'input'), ([], [(0, 1, 3)], 'input'),
+                            ([(0, 1, 2)], [], 'input'), ([], [(0, 1)], 'input')):
+            self.refused(evaluate(BinaryFrameSystem, 3, p, t), kind)
+        for value in (None, iter(()), 'rows'):
+            self.refused(evaluate(BinaryFrameSystem, 3, value, ()), 'input')
+            self.refused(evaluate(BinaryFrameSystem, 3, (), value), 'input')
+        for p, t in (([(0, 1)]*4097, []), ([], [(0, 1, 2)]*4097)):
+            self.refused(evaluate(BinaryFrameSystem, 3, p, t), 'resource')
+
+    def test_binary_model_admission_and_nonmodels(self) -> None:
+        system = BinaryFrameSystem(3, ((0, 1),), ((0, 1, 2),))
+        invalid: object
+        for invalid in (None, [], (0, 1), (0, 1, 0, 0), {0: 0, 1: 1, 2: 0},
+                        (True, 0, 0), (1.0, 0, 0), (Q(1), 0, 0), (-1, 1, 1), (2, 0, 0)):
+            self.refused(system.check_assignment(invalid), 'input')
+        for values in ((1, 1, 0), (0, 0, 0), (1, 1, 1)):
+            self.assertFalse(self.accepted(system.check_assignment(values)))
+        self.assertTrue(self.accepted(system.check_assignment((0, 0, 1))))
+
+    def test_ownership_canonical_constraints_and_reentrant_results(self) -> None:
+        pairs = [[1, 0]]; triples = [[2, 0, 1]]; system = BinaryFrameSystem(3, pairs, triples)
+        pairs[0][0] = 2; triples.clear()
+        self.assertEqual(system.pairs, ((0, 1),)); self.assertEqual(system.triples, ((0, 1, 2),))
+        self.assertEqual(system.neighbours, ((1,), (0,), ()))
+        with self.assertRaises(FrozenInstanceError):
+            system.size = 5  # type: ignore[misc]
+        expected = self.accepted(system.search())
+        self.assertEqual(self.accepted(system.search()), expected)
+        self.assertEqual(system.pairs, ((0, 1),))
+        self.assertEqual(self.accepted(BinaryFrameSystem(0, (), ()).search()), ((), 1))
+
+    def test_search_budget_is_not_unsat_and_boundaries_are_inclusive(self) -> None:
+        empty = BinaryFrameSystem(0, (), ())
+        for budget in (0, -1, True, 1.0, Q(1), None):
+            self.refused(empty.search(budget), 'input')
+        self.refused(empty.search(65537), 'resource')
+        self.assertEqual(self.accepted(empty.search(65536)), ((), 1))
+        system = BinaryFrameSystem(64, (), ())
+        self.refused(system.search(64), 'resource')
+        model, nodes = self.accepted(system.search(65))
+        self.assertEqual((model, nodes), ((0,)*64, 65))
+        witness = load().RationalColouringWitness()
+        self.refused(witness.system.search(10), 'resource')
+        self.assertEqual(self.accepted(witness.system.search(11)), (None, 11))
+        with patch.object(BinaryFrameSystem, '_propagate', side_effect=AssertionError('budget admission late')):
+            self.refused(system.search(0), 'input')
+
+    def test_propagation_forces_only_necessary_values_and_detects_conflicts(self) -> None:
+        pair = BinaryFrameSystem(2, ((0, 1),), ())
+        for values, expected in (([1, -1], [1, 0]), ([-1, 1], [0, 1])):
+            self.assertTrue(pair._propagate(values)); self.assertEqual(values, expected)
+        self.assertFalse(pair._propagate([1, 1]))
+        triple = BinaryFrameSystem(3, (), ((0, 1, 2),))
+        for values, expected in (([0, 0, -1], [0, 0, 1]), ([1, -1, -1], [1, 0, 0])):
+            self.assertTrue(triple._propagate(values)); self.assertEqual(values, expected)
+        self.assertFalse(triple._propagate([0, 0, 0])); self.assertFalse(triple._propagate([1, 1, -1]))
+        values = [-1, -1, -1]; self.assertTrue(triple._propagate(values)); self.assertEqual(values, [-1, -1, -1])
+        with patch.object(BinaryFrameSystem, '_check_assignment', return_value=False):
+            self.refused(BinaryFrameSystem(0, (), ()).search(), 'check')
+
+    def test_witness_geometric_guards_and_constraint_deletion_controls(self) -> None:
+        module = load(); witness = module.RationalColouringWitness()
+        for bad in ((0, 0, 0), (1, 2, 3)):
+            with patch.dict(module._cross.__globals__, _cross=lambda *_: bad):
+                self.refused(witness.verify(), 'check')
+        with patch.dict(module._rays.__globals__, _rays=lambda: ((1, 0, 0),)):
+            self.refused(module.verify(), 'check')
+        with patch.object(BinaryFrameSystem, '_search', return_value=((0,)*49, 1)):
+            self.refused(witness.verify(), 'check')
+        with patch.object(BinaryFrameSystem, '_search', return_value=(None, 1)):
+            self.refused(evaluate(witness._controls), 'check')
+        with patch.object(BinaryFrameSystem, '_search', return_value=((0,)*49, 1)):
+            self.refused(evaluate(witness._controls), 'check')
+
+    def test_unexpected_failures_and_cancellation_propagate(self) -> None:
+        system = BinaryFrameSystem(3, (), ((0, 1, 2),))
+        for failure in (RuntimeError, KeyboardInterrupt, SystemExit):
+            with patch.object(BinaryFrameSystem, '_propagate', side_effect=failure), self.assertRaises(failure):
+                system.search()
+        module = load()
+        with patch.object(BinaryFrameSystem, '_search', side_effect=Violation('resource', 'limited')):
+            self.refused(module.verify(), 'resource')
+            errors = io.StringIO(); output = io.StringIO()
+            with contextlib.redirect_stderr(errors), contextlib.redirect_stdout(output):
+                self.assertEqual(module.main(), 1)
+            self.assertEqual(output.getvalue(), '')
+            self.assertEqual(json.loads(errors.getvalue())['kind'], 'resource')
+
+    def test_quiet_import_repeatable_cli_and_external_entrypoint(self) -> None:
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            module = load()
+        self.assertEqual(output.getvalue(), '')
+        results = []
+        for _ in range(2):
+            out = io.StringIO()
+            with contextlib.redirect_stdout(out):
+                self.assertEqual(module.main(), 0)
+            results.append(json.loads(out.getvalue()))
+        self.assertEqual(results[0], results[1]); self.assertEqual(results[0]['status'], 'PASS')
+        process = subprocess.run([sys.executable, '-I', '-B', '-X', 'utf8', str(APP)], capture_output=True, text=True, timeout=30)
+        self.assertEqual(process.returncode, 0, process.stderr)
+        self.assertEqual(json.loads(process.stdout), results[0])
+
+
+    def test_isolated_witness_census_unsat_and_control_guards(self) -> None:
+        module = load()
+        with patch.dict(module._rays.__globals__, _rays=lambda: ((1, 0, 0),)), \
+                patch.object(module.RationalColouringWitness, '_controls', return_value=None), \
+                patch.object(BinaryFrameSystem, '_search', return_value=(None, 1)):
+            self.refused(module.verify(), 'check')
+        witness = module.RationalColouringWitness()
+        with patch.object(module.RationalColouringWitness, '_controls', return_value=None), \
+                patch.object(BinaryFrameSystem, '_search', return_value=((0,)*49, 1)):
+            self.refused(witness.verify(), 'check')
+        with patch.dict(module._small_controls.__globals__, _small_controls=lambda: None), \
+                patch.object(BinaryFrameSystem, '_search', return_value=((0,)*49, 1)):
+            self.refused(evaluate(witness._controls), 'check')
+
+    def test_lean_pruned_constraints_match_literal_vectors_and_remain_unsat(self) -> None:
+        text = (CHECKS.parent/'lean4/BornGaussianRationalNoColouring.lean').read_text(encoding='utf-8')
+        lines = text.splitlines(); witness = load().RationalColouringWitness()
+        def vectors(line: str) -> list[tuple[int, ...]]:
+            return [tuple(map(int, re.findall(r'-?\d+', group))) for group in
+                    re.findall(r'\(gv ((?:\(?-?\d+\)?\s*){6})\)', line)]
+        embedded = [tuple(part for x in ray for part in (x, 0)) for ray in witness.rays]
+        nonnegative = [line for line in lines if re.match(r'  have n\d+ :', line)]
+        self.assertEqual([vectors(line)[0] for line in nonnegative], embedded)
+        pairs = []; triples = []
+        for line_number, line in enumerate(lines):
+            match = re.match(r'  have p_(\d+)_(\d+) :', line)
+            if match is not None:
+                i, j = map(int, match.groups()); pairs.append((i, j))
+                self.assertEqual(vectors(line), [embedded[i], embedded[j]])
+                cross = sp.Matrix(witness.rays[i]).cross(sp.Matrix(witness.rays[j]))
+                completed = tuple(part for x in cross for part in (int(x), 0))
+                self.assertEqual(vectors(lines[line_number+1])[0], completed)
+            triple = re.match(r'  have t_(\d+)_(\d+)_(\d+) :', line)
+            if triple is not None:
+                row = tuple(map(int, triple.groups())); triples.append(row)
+                self.assertEqual(vectors(line), [embedded[i] for i in row])
+        self.assertEqual((len(pairs), len(triples)), (82, 26))
+        self.assertTrue(set(pairs) <= set(witness.system.pairs))
+        self.assertEqual(tuple(triples), witness.system.triples)
+        self.assertIs(satisfiable(boolean_formula(49, tuple(pairs), tuple(triples)), algorithm='dpll2'), False)
+        self.assertEqual(self.accepted(BinaryFrameSystem(49, pairs, triples).search()), (None, 11))
+
+
+
+if __name__ == '__main__':
+    unittest.main()

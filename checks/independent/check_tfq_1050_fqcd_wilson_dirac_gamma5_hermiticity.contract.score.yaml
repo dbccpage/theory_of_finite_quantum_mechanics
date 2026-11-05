@@ -1,76 +1,192 @@
 {
-  "schema_version": "tfqm.contract-score.v1",
   "AuthorityEffect": "None",
   "artifact": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+  "assurance": "Completed L4B assessment of the exact source and declared finite boundary; previous entries remain intact.",
   "contract": {
-    "schema_id": "tfqm.source-contract.v1",
     "AuthorityEffect": "None",
     "artifact": {
+      "language": "Python",
       "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
-      "sha256": "7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606",
-      "language": "Python"
+      "sha256": "b5aeeb696fb4f8901e0da3ca4f220fa385ab9c52023dfb9eee2d24d567028c52"
     },
-    "contract_urn": "urn:tfqm:pr492-review:checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
-    "claim": "Reviewed source-bound PR #492 correction; see the exact claim/statement mapping and retained replay evidence.",
-    "owned_invariants": [
-      "Input values are preserved on the exact holonomy path; invalid shapes/singular inputs fail explicitly.",
-      "Replay success requires exact fully qualified declaration coverage and permitted kernel axioms.",
-      "Scientific descriptions are confined to the actual declared carriers and supplied assumptions."
-    ],
-    "boundaries": [
-      "Only the declared finite carrier, explicit assumptions and retained checks are covered.",
-      "No physical fermion-statistics derivation, dipole-conservation law, general Clifford-carrier bridge or sign-free Hamiltonian theorem.",
-      "Existing classification is retained where present; support files outside code/lean4 use L3 or L1 without adding policy exceptions."
-    ],
-    "evidence": [
+    "audited_consumers": [
+      {
+        "path": "dag/theory_of_finite_qm.jsonl",
+        "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57"
+      },
+      {
+        "path": "docs/evidence/stages/FINITE_QCD.md",
+        "sha256": "6fa1a211fbea4cc6e90179510dd63fb15d9ff9178b714dc6f7c1dff3449c30b0"
+      },
+      {
+        "path": "docs/evidence/nodes/FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY.md",
+        "sha256": "e1e725161414713d4d0d9b5478879c2d36ca68126838b1ac840eae202102f3dc"
+      },
       {
         "path": "dag/research/pr492_review/validation.json",
         "sha256": "5c89279bb3254842e66b90270836ab537ff19a122b48ef846e6ee5288dfe6af0"
       },
       {
-        "path": "dag/research/campaign_tfq-1052_lean_replay.json",
-        "sha256": "a5373643d2c5691497550f6f99914aca90de910a6ec0bc98b3e468ad01d6c35c"
+        "path": "dag/fragments/unified_dag.json",
+        "sha256": "c7845b4f150f45fece1c97988789f0c2ea458b088cfa20db09f43bc6fff0d753"
       },
       {
-        "path": "dag/research/campaign_tfq-1050_lean_replay.json",
-        "sha256": "c1c5dc5e92a01d188bcab8e29f765149ce72fd2b105906159504306c8fae4ee6"
+        "path": "dag/evidence/evidence_map.json",
+        "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f"
       },
       {
-        "path": "dag/research/campaign_tfq-1219_lean_replay.json",
-        "sha256": "dc2a39c03a77ca2e8ca67568f8ffe7a75607721980f0f8a1265f4ac5b1062ef5"
+        "path": "dag/derivation_dag.json",
+        "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586"
       },
       {
-        "path": "docs/maintenance/pr492_review.md",
-        "sha256": "41335df2c2e43dd437c90d84c3bef57d86c2df1364923e23776a2e57c7388db9"
+        "path": "dag/derivations/17_finite_qcd/tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.md",
+        "sha256": "26c1314e31904912a4dd41eeec0e0ee278da464306f364e78882cf1ecd9ae4c8"
+      },
+      {
+        "path": "checks/tests/test_wilson_checker.py",
+        "sha256": "6ea7cb0a6408ea7b9860b90c3cffc9aa4c86411128581dcd6ba45b3470bc7e90",
+        "state": "new contract suite"
+      },
+      {
+        "path": ".github/workflows/reviewed-checkers.yml",
+        "sha256": "be4626109deaabccf84379728081c8b1f865fdf88eed2f2fa86e15b9b00c0a58",
+        "state": "proposed workflow"
       }
+    ],
+    "boundaries": [
+      "No continuum or arbitrary-carrier theorem, physical identification or hosted CI result is inferred.",
+      "The Lean origin supplies stated Clifford and algebraic facts; the Python finite operator check does not establish an unproved Lean theorem.",
+      "Shared helpers are dependencies; separate Bareiss/matrix oracles supply independent verification.",
+      "Historical evidence and scores retain their original bytes/scope. File label 5 is a retention decision."
+    ],
+    "bounded_context": "Finite Wilson operator verification and truthful named-obligation receipts; no arbitrary-carrier or continuum promotion.",
+    "consumer_boundary": "Preserves the standalone TFQ-1050 script and its 110-obligation JSON schema. The Lean origin supplies Clifford and polynomial/block facts and explicitly does not state gamma5 D gamma5 = D adjoint. Finite Python checks do not close the arbitrary-carrier bridge.",
+    "contract_urn": "urn:tfqm:checker-review:2026-11-03:check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity",
+    "evidence": [
+      {
+        "path": "reviews/repository_file_review/2026-11-03-wilson-checker.md",
+        "sha256": "43214f2f1c7cf7b0d649a475e439985ab9181cb2dc55c02b1f200fdc8ec85a69"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-wilson-requirements.json",
+        "sha256": "b2196232dec0ae1b00494515e472728515100a60c0a73717cce34a63caffbef0"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-wilson-quality.json",
+        "sha256": "1384b66bbff2726185424052e81a466a2220c6c9e888b24c4953d79b660959a4"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-wilson-mutations.json",
+        "sha256": "5f89c8c419c54f77db52e99a2724d70ae14844785b4d13225a504fa8cc469a95"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+        "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+        "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+      },
+      {
+        "path": "checks/tests/wilson_mutations.json",
+        "sha256": "5cf81e0b6f066dd0e42079f27c5f2bf88f8b397ca38911d410e49ba9f62da000"
+      }
+    ],
+    "failure_policy": "Cases rejects malformed status/identity and duplicate IDs. The CLI maps expected input/resource/check/duplicate failures to nonzero typed diagnostics; false mathematical cases remain named failures in the receipt. Unexpected programming errors and cancellation propagate. No persistent mutable case state or external resource is owned by the checker; test mocks/captures are context-managed.",
+    "operational_cost": "Fixed 110 obligations: 92 chiral/link/onsite and 18 determinant/matrix cases. The imported support admits bounded exact rationals, fixed 8x8 determinants and one finite four-spin/two-color operator; there is no external input or unbounded search.",
+    "origin": {
+      "path": "lean4/FermionSignWilsonDiracGamma5.lean",
+      "sha256": "ff846e497a572038d084022f188dfb1ec05affba46ff2c8c652a2c4f1cd3664e"
+    },
+    "owned_invariants": [
+      "Exactly 110 named obligations for the default finite fixtures; each conjunction is one obligation, not many.",
+      "Exact Fraction computations and validated shared rational/matrix boundaries; no float coercion.",
+      "At most one class per file, no production assert and strict pinned typing.",
+      "The d=2/4 section checks chiral-sign identities; only the separately assembled fixture constructs four-dimensional gamma matrices."
+    ],
+    "requirements": [
+      {
+        "requirement": "Check only the declared chiral-sign, finite rational link grid and independently tabulated onsite coefficients; do not call the sign identities a Clifford construction.",
+        "requirement_id": "TFQM-WILSON-REVIEW-CHECK-TFQ-1050-FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY-1",
+        "symbols": [
+          "check_chiral_links"
+        ],
+        "tests": [
+          "WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named",
+          "WilsonCheckerTests.test_complete_receipt_and_repeatability"
+        ]
+      },
+      {
+        "requirement": "Compare the general-r polynomial against an independent exact matrix determinant, retain a nonunit-r counterexample and assembled four-spin colored-operator check.",
+        "requirement_id": "TFQM-WILSON-REVIEW-CHECK-TFQ-1050-FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY-2",
+        "symbols": [
+          "check_determinant_examples"
+        ],
+        "tests": [
+          "WilsonCheckerTests.test_direct_determinant_fault_cannot_hide_behind_polynomial",
+          "WilsonCheckerTests.test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli",
+          "WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named"
+        ]
+      },
+      {
+        "requirement": "Each invocation owns its Cases; reject duplicate IDs and non-bool statuses, retain every failed case and count exactly the executed named obligations.",
+        "requirement_id": "TFQM-WILSON-REVIEW-CHECK-TFQ-1050-FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY-3",
+        "symbols": [
+          "check"
+        ],
+        "tests": [
+          "WilsonCheckerTests.test_generated_named_cases_are_counted_without_loss",
+          "WilsonCheckerTests.test_malformed_statuses_and_duplicate_ids_are_refused",
+          "WilsonCheckerTests.test_complete_receipt_and_repeatability"
+        ]
+      },
+      {
+        "requirement": "Emit a truthful JSON receipt and nonzero status on failure; convert expected resource failures to typed diagnostics while cancellation propagates.",
+        "requirement_id": "TFQM-WILSON-REVIEW-CHECK-TFQ-1050-FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY-4",
+        "symbols": [
+          "main"
+        ],
+        "tests": [
+          "WilsonCheckerTests.test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli",
+          "WilsonCheckerTests.test_cancellation_and_resource_failures_keep_distinct_semantics",
+          "WilsonCheckerTests.test_complete_receipt_and_repeatability"
+        ]
+      }
+    ],
+    "role": "Exact finite Wilson verification application with named result ownership, validated case collection, independent matrix integration, and typed CLI failure semantics",
+    "schema_id": "tfqm.source-contract.v1",
+    "symbols": [
+      "check",
+      "check_chiral_links",
+      "check_determinant_examples",
+      "main"
     ]
   },
-  "current_contract": "b7cb96fdcd8b2e00425de6375c7d7bb74de9cf237211adfa41e1e93c38a8e725",
-  "current_scoring": "9b15044eb9f598fc5d8cc109c546939aa61230a5672ff1f28b206ed7814236f8",
   "contract_history": [
     {
-      "sha256": "9675d276b5c97ec3d89763facbf871cfed5a47a085e6702778b18e870cd56da5",
       "bytes": 2075,
+      "original_paths": [
+        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py#pr492-review-contract"
+      ],
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n    \"sha256\": \"7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606\",\n    \"language\": \"Python\"\n  },\n  \"contract_urn\": \"urn:tfqm:pr492-review:checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n  \"claim\": \"Reviewed source-bound PR #492 correction; see the exact claim/statement mapping and retained replay evidence.\",\n  \"owned_invariants\": [\n    \"Input values are preserved on the exact holonomy path; invalid shapes/singular inputs fail explicitly.\",\n    \"Replay success requires exact fully qualified declaration coverage and permitted kernel axioms.\",\n    \"Scientific descriptions are confined to the actual declared carriers and supplied assumptions.\"\n  ],\n  \"boundaries\": [\n    \"Only the declared finite carrier, explicit assumptions and retained checks are covered.\",\n    \"No physical fermion-statistics derivation, dipole-conservation law, general Clifford-carrier bridge or sign-free Hamiltonian theorem.\",\n    \"Existing classification is retained where present; support files outside code/lean4 use L3 or L1 without adding policy exceptions.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr492_review/validation.json\",\n      \"sha256\": \"8d4cdf1fc3d6a852d47c81775e32095518bad7e9deeaabb67ec2eadb902ce2ad\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1052_lean_replay.json\",\n      \"sha256\": \"a936a0d6ef5dedc5acc90ec4d7398aa8be1e9a9dd6cb0b270136dc50dbdc2260\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1050_lean_replay.json\",\n      \"sha256\": \"591e2958b3a00d3f8a78ba83969a2e99dd8982778befb7f8fa0054380c029949\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1219_lean_replay.json\",\n      \"sha256\": \"de656d061fd72338134d84b2043e5a7d920d813c1c28e0e79cac2284e826e1a1\"\n    },\n    {\n      \"path\": \"docs/maintenance/pr492_review.md\",\n      \"sha256\": \"79114f6143999993ea28a7003c1c682934b971039d0e40052c606c6c8abcc551\"\n    }\n  ]\n}\n",
       "record": {
-        "schema_id": "tfqm.source-contract.v1",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Python",
           "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
-          "sha256": "7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606",
-          "language": "Python"
+          "sha256": "7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606"
         },
-        "contract_urn": "urn:tfqm:pr492-review:checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
-        "claim": "Reviewed source-bound PR #492 correction; see the exact claim/statement mapping and retained replay evidence.",
-        "owned_invariants": [
-          "Input values are preserved on the exact holonomy path; invalid shapes/singular inputs fail explicitly.",
-          "Replay success requires exact fully qualified declaration coverage and permitted kernel axioms.",
-          "Scientific descriptions are confined to the actual declared carriers and supplied assumptions."
-        ],
         "boundaries": [
           "Only the declared finite carrier, explicit assumptions and retained checks are covered.",
           "No physical fermion-statistics derivation, dipole-conservation law, general Clifford-carrier bridge or sign-free Hamiltonian theorem.",
           "Existing classification is retained where present; support files outside code/lean4 use L3 or L1 without adding policy exceptions."
         ],
+        "claim": "Reviewed source-bound PR #492 correction; see the exact claim/statement mapping and retained replay evidence.",
+        "contract_urn": "urn:tfqm:pr492-review:checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
         "evidence": [
           {
             "path": "dag/research/pr492_review/validation.json",
@@ -92,36 +208,36 @@
             "path": "docs/maintenance/pr492_review.md",
             "sha256": "79114f6143999993ea28a7003c1c682934b971039d0e40052c606c6c8abcc551"
           }
-        ]
-      },
-      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n    \"sha256\": \"7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606\",\n    \"language\": \"Python\"\n  },\n  \"contract_urn\": \"urn:tfqm:pr492-review:checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n  \"claim\": \"Reviewed source-bound PR #492 correction; see the exact claim/statement mapping and retained replay evidence.\",\n  \"owned_invariants\": [\n    \"Input values are preserved on the exact holonomy path; invalid shapes/singular inputs fail explicitly.\",\n    \"Replay success requires exact fully qualified declaration coverage and permitted kernel axioms.\",\n    \"Scientific descriptions are confined to the actual declared carriers and supplied assumptions.\"\n  ],\n  \"boundaries\": [\n    \"Only the declared finite carrier, explicit assumptions and retained checks are covered.\",\n    \"No physical fermion-statistics derivation, dipole-conservation law, general Clifford-carrier bridge or sign-free Hamiltonian theorem.\",\n    \"Existing classification is retained where present; support files outside code/lean4 use L3 or L1 without adding policy exceptions.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr492_review/validation.json\",\n      \"sha256\": \"8d4cdf1fc3d6a852d47c81775e32095518bad7e9deeaabb67ec2eadb902ce2ad\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1052_lean_replay.json\",\n      \"sha256\": \"a936a0d6ef5dedc5acc90ec4d7398aa8be1e9a9dd6cb0b270136dc50dbdc2260\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1050_lean_replay.json\",\n      \"sha256\": \"591e2958b3a00d3f8a78ba83969a2e99dd8982778befb7f8fa0054380c029949\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1219_lean_replay.json\",\n      \"sha256\": \"de656d061fd72338134d84b2043e5a7d920d813c1c28e0e79cac2284e826e1a1\"\n    },\n    {\n      \"path\": \"docs/maintenance/pr492_review.md\",\n      \"sha256\": \"79114f6143999993ea28a7003c1c682934b971039d0e40052c606c6c8abcc551\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py#pr492-review-contract"
-      ]
-    },
-    {
-      "sha256": "b7cb96fdcd8b2e00425de6375c7d7bb74de9cf237211adfa41e1e93c38a8e725",
-      "bytes": 2075,
-      "record": {
-        "schema_id": "tfqm.source-contract.v1",
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
-          "sha256": "7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606",
-          "language": "Python"
-        },
-        "contract_urn": "urn:tfqm:pr492-review:checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
-        "claim": "Reviewed source-bound PR #492 correction; see the exact claim/statement mapping and retained replay evidence.",
+        ],
         "owned_invariants": [
           "Input values are preserved on the exact holonomy path; invalid shapes/singular inputs fail explicitly.",
           "Replay success requires exact fully qualified declaration coverage and permitted kernel axioms.",
           "Scientific descriptions are confined to the actual declared carriers and supplied assumptions."
         ],
+        "schema_id": "tfqm.source-contract.v1"
+      },
+      "sha256": "9675d276b5c97ec3d89763facbf871cfed5a47a085e6702778b18e870cd56da5"
+    },
+    {
+      "bytes": 2075,
+      "original_paths": [
+        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py#pr492-review-contract"
+      ],
+      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n    \"sha256\": \"7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606\",\n    \"language\": \"Python\"\n  },\n  \"contract_urn\": \"urn:tfqm:pr492-review:checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n  \"claim\": \"Reviewed source-bound PR #492 correction; see the exact claim/statement mapping and retained replay evidence.\",\n  \"owned_invariants\": [\n    \"Input values are preserved on the exact holonomy path; invalid shapes/singular inputs fail explicitly.\",\n    \"Replay success requires exact fully qualified declaration coverage and permitted kernel axioms.\",\n    \"Scientific descriptions are confined to the actual declared carriers and supplied assumptions.\"\n  ],\n  \"boundaries\": [\n    \"Only the declared finite carrier, explicit assumptions and retained checks are covered.\",\n    \"No physical fermion-statistics derivation, dipole-conservation law, general Clifford-carrier bridge or sign-free Hamiltonian theorem.\",\n    \"Existing classification is retained where present; support files outside code/lean4 use L3 or L1 without adding policy exceptions.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr492_review/validation.json\",\n      \"sha256\": \"5c89279bb3254842e66b90270836ab537ff19a122b48ef846e6ee5288dfe6af0\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1052_lean_replay.json\",\n      \"sha256\": \"a5373643d2c5691497550f6f99914aca90de910a6ec0bc98b3e468ad01d6c35c\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1050_lean_replay.json\",\n      \"sha256\": \"c1c5dc5e92a01d188bcab8e29f765149ce72fd2b105906159504306c8fae4ee6\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1219_lean_replay.json\",\n      \"sha256\": \"dc2a39c03a77ca2e8ca67568f8ffe7a75607721980f0f8a1265f4ac5b1062ef5\"\n    },\n    {\n      \"path\": \"docs/maintenance/pr492_review.md\",\n      \"sha256\": \"41335df2c2e43dd437c90d84c3bef57d86c2df1364923e23776a2e57c7388db9\"\n    }\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+          "sha256": "7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606"
+        },
         "boundaries": [
           "Only the declared finite carrier, explicit assumptions and retained checks are covered.",
           "No physical fermion-statistics derivation, dipole-conservation law, general Clifford-carrier bridge or sign-free Hamiltonian theorem.",
           "Existing classification is retained where present; support files outside code/lean4 use L3 or L1 without adding policy exceptions."
         ],
+        "claim": "Reviewed source-bound PR #492 correction; see the exact claim/statement mapping and retained replay evidence.",
+        "contract_urn": "urn:tfqm:pr492-review:checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
         "evidence": [
           {
             "path": "dag/research/pr492_review/validation.json",
@@ -143,36 +259,329 @@
             "path": "docs/maintenance/pr492_review.md",
             "sha256": "41335df2c2e43dd437c90d84c3bef57d86c2df1364923e23776a2e57c7388db9"
           }
-        ]
+        ],
+        "owned_invariants": [
+          "Input values are preserved on the exact holonomy path; invalid shapes/singular inputs fail explicitly.",
+          "Replay success requires exact fully qualified declaration coverage and permitted kernel axioms.",
+          "Scientific descriptions are confined to the actual declared carriers and supplied assumptions."
+        ],
+        "schema_id": "tfqm.source-contract.v1"
       },
-      "raw_utf8": "{\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n    \"sha256\": \"7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606\",\n    \"language\": \"Python\"\n  },\n  \"contract_urn\": \"urn:tfqm:pr492-review:checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n  \"claim\": \"Reviewed source-bound PR #492 correction; see the exact claim/statement mapping and retained replay evidence.\",\n  \"owned_invariants\": [\n    \"Input values are preserved on the exact holonomy path; invalid shapes/singular inputs fail explicitly.\",\n    \"Replay success requires exact fully qualified declaration coverage and permitted kernel axioms.\",\n    \"Scientific descriptions are confined to the actual declared carriers and supplied assumptions.\"\n  ],\n  \"boundaries\": [\n    \"Only the declared finite carrier, explicit assumptions and retained checks are covered.\",\n    \"No physical fermion-statistics derivation, dipole-conservation law, general Clifford-carrier bridge or sign-free Hamiltonian theorem.\",\n    \"Existing classification is retained where present; support files outside code/lean4 use L3 or L1 without adding policy exceptions.\"\n  ],\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr492_review/validation.json\",\n      \"sha256\": \"5c89279bb3254842e66b90270836ab537ff19a122b48ef846e6ee5288dfe6af0\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1052_lean_replay.json\",\n      \"sha256\": \"a5373643d2c5691497550f6f99914aca90de910a6ec0bc98b3e468ad01d6c35c\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1050_lean_replay.json\",\n      \"sha256\": \"c1c5dc5e92a01d188bcab8e29f765149ce72fd2b105906159504306c8fae4ee6\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1219_lean_replay.json\",\n      \"sha256\": \"dc2a39c03a77ca2e8ca67568f8ffe7a75607721980f0f8a1265f4ac5b1062ef5\"\n    },\n    {\n      \"path\": \"docs/maintenance/pr492_review.md\",\n      \"sha256\": \"41335df2c2e43dd437c90d84c3bef57d86c2df1364923e23776a2e57c7388db9\"\n    }\n  ]\n}\n",
-      "original_paths": [
-        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py#pr492-review-contract"
-      ]
-    }
-  ],
-  "scoring_history": [
+      "sha256": "b7cb96fdcd8b2e00425de6375c7d7bb74de9cf237211adfa41e1e93c38a8e725"
+    },
     {
-      "sha256": "8fc85fbc34cd03c80c153d5d100b096cbba94da7c49e72739b60bf545c955b2a",
-      "bytes": 2758,
+      "bytes": 1579,
+      "original_paths": [
+        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.contract.score.yaml#systematic-file-review-tfq-1050-2026-11-02"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n    \"sha256\": \"7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606\"\n  },\n  \"boundaries\": [\n    \"The checker does not replay Lean axioms or validate an external holonomy-input interface.\",\n    \"The fixed finite examples do not settle the arbitrary lattice and Clifford-carrier bridge.\",\n    \"This contract records requirements, not a claim that every requirement is already satisfied.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:file-review:2026-11-02:tfq-1050\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-fqcd-1050.md\",\n      \"sha256\": \"45d08673c3843c31914d0f69827afceb9c95fa855ce736021390bf1cbccc0761\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"The CLI reports the outcomes of a finite set of declared exact rational and Gaussian-rational fixture checks.\",\n    \"A failed comparison must make all_passed false and produce a nonzero exit status.\",\n    \"A general exact-input boundary should reject floats and booleans; current deficiencies are recorded in the review.\"\n  ],\n  \"purpose\": \"Standalone finite exact Wilson–Dirac determinant and assembled four-dimensional two-color fixture checks.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"direct_wilson_determinant\",\n    \"assembled_operator_checks\",\n    \"check\",\n    \"main\"\n  ]\n}\n",
       "record": {
-        "schema_version": "2.0.0",
         "AuthorityEffect": "None",
         "artifact": {
+          "language": "Python",
           "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
-          "sha256": "7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606",
-          "language": "Python"
+          "sha256": "7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606"
         },
-        "profile": "Non-Numeric",
-        "level": "L3",
-        "level_basis": "Existing assessed level retained for reviewed modules. New support/check scripts use bounded L3 assessment outside governed populations.",
-        "gates": {
-          "G1": "D",
-          "G2": "D",
-          "G3": "D",
-          "G4": "D",
-          "G5": "D"
+        "boundaries": [
+          "The checker does not replay Lean axioms or validate an external holonomy-input interface.",
+          "The fixed finite examples do not settle the arbitrary lattice and Clifford-carrier bridge.",
+          "This contract records requirements, not a claim that every requirement is already satisfied."
+        ],
+        "contract_urn": "urn:tfqm:file-review:2026-11-02:tfq-1050",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-fqcd-1050.md",
+            "sha256": "45d08673c3843c31914d0f69827afceb9c95fa855ce736021390bf1cbccc0761"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "owned_invariants": [
+          "The CLI reports the outcomes of a finite set of declared exact rational and Gaussian-rational fixture checks.",
+          "A failed comparison must make all_passed false and produce a nonzero exit status.",
+          "A general exact-input boundary should reject floats and booleans; current deficiencies are recorded in the review."
+        ],
+        "purpose": "Standalone finite exact Wilson–Dirac determinant and assembled four-dimensional two-color fixture checks.",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "direct_wilson_determinant",
+          "assembled_operator_checks",
+          "check",
+          "main"
+        ]
+      },
+      "sha256": "8c034e6a8cf20a47f489036d2b0ec3ea1fe6ec22e5b0ee6bb9224627c475e164"
+    },
+    {
+      "bytes": 2632,
+      "original_paths": [
+        "review-repair-2026-11-02"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n    \"sha256\": \"63cae3630aeea392872baff12252b9cff3d9707992a5a6738983ce3fa168d1c7\"\n  },\n  \"boundaries\": [\n    \"Finite supplied models do not discharge unimplemented general, continuum or physical statements.\",\n    \"Shared checker helpers are not independent confirmation of one another; regression oracles are separately constructed.\",\n    \"This contract does not establish the requested L4B acceptance floor or hosted-CI success.\"\n  ],\n  \"contract_urn\": \"urn:tfqm:review-repair:2026-11-02:check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-repairs.md\",\n      \"sha256\": \"82db030642db352aca1fd3ab9677515df96ec207e3dd6b9096cd06886aee55ca\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-repair-retest.json\",\n      \"sha256\": \"ef357c98fbe380729b1099dfa61a677845c51adcf74edc1ff3c897f534a38b34\"\n    },\n    {\n      \"path\": \"checks/tests/test_review_repairs.py\",\n      \"sha256\": \"d88864962ba4fe0e6a25cb9b2c6c2ba83b4d0dc687efcf5093c838eb162dfac5\"\n    },\n    {\n      \"path\": \"checks/checker_support/README.md\",\n      \"sha256\": \"96cb7a9253e8f0578b022554272ba596f5daff0be2b9af92566016e1d28d44a7\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"imports\": [\n    \"__future__\",\n    \"checker_support.boundary\",\n    \"checker_support.cases\",\n    \"checker_support.wilson_determinant\",\n    \"checker_support.wilson_operator\",\n    \"fractions\",\n    \"itertools\",\n    \"json\",\n    \"pathlib\",\n    \"sys\",\n    \"typing\"\n  ],\n  \"owned_invariants\": [\n    \"Current source identity and callable scope are bound by this contract and the exact retest receipt.\",\n    \"Expected independent-checker input failures are represented by Failure/Outcome at the evaluate boundary; CLI refusals exit nonzero.\",\n    \"No executable assertions are relied on; regression verifies normal and optimized Python.\",\n    \"Exact numerical paths reject unadmitted floats and booleans at the repaired input boundaries.\"\n  ],\n  \"purpose\": \"Standalone independent verification script for Record TFQ-1050 (FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY).\\n\\nAuthorityEffect: None\\nImports checker infrastructure only; no production implementation.\",\n  \"role\": \"independent finite checker\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"check_chiral_links\",\n    \"check_determinant_examples\",\n    \"check\",\n    \"main\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+          "sha256": "63cae3630aeea392872baff12252b9cff3d9707992a5a6738983ce3fa168d1c7"
         },
+        "boundaries": [
+          "Finite supplied models do not discharge unimplemented general, continuum or physical statements.",
+          "Shared checker helpers are not independent confirmation of one another; regression oracles are separately constructed.",
+          "This contract does not establish the requested L4B acceptance floor or hosted-CI success."
+        ],
+        "contract_urn": "urn:tfqm:review-repair:2026-11-02:check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-repairs.md",
+            "sha256": "82db030642db352aca1fd3ab9677515df96ec207e3dd6b9096cd06886aee55ca"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-repair-retest.json",
+            "sha256": "ef357c98fbe380729b1099dfa61a677845c51adcf74edc1ff3c897f534a38b34"
+          },
+          {
+            "path": "checks/tests/test_review_repairs.py",
+            "sha256": "d88864962ba4fe0e6a25cb9b2c6c2ba83b4d0dc687efcf5093c838eb162dfac5"
+          },
+          {
+            "path": "checks/checker_support/README.md",
+            "sha256": "96cb7a9253e8f0578b022554272ba596f5daff0be2b9af92566016e1d28d44a7"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "imports": [
+          "__future__",
+          "checker_support.boundary",
+          "checker_support.cases",
+          "checker_support.wilson_determinant",
+          "checker_support.wilson_operator",
+          "fractions",
+          "itertools",
+          "json",
+          "pathlib",
+          "sys",
+          "typing"
+        ],
+        "owned_invariants": [
+          "Current source identity and callable scope are bound by this contract and the exact retest receipt.",
+          "Expected independent-checker input failures are represented by Failure/Outcome at the evaluate boundary; CLI refusals exit nonzero.",
+          "No executable assertions are relied on; regression verifies normal and optimized Python.",
+          "Exact numerical paths reject unadmitted floats and booleans at the repaired input boundaries."
+        ],
+        "purpose": "Standalone independent verification script for Record TFQ-1050 (FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY).\n\nAuthorityEffect: None\nImports checker infrastructure only; no production implementation.",
+        "role": "independent finite checker",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "check_chiral_links",
+          "check_determinant_examples",
+          "check",
+          "main"
+        ]
+      },
+      "sha256": "6c96c689a5952da505cb45e516047ff1b6095d47f6d85e483f908ea59988792a"
+    },
+    {
+      "bytes": 8344,
+      "original_paths": [
+        "wilson-checker-review-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n    \"sha256\": \"b5aeeb696fb4f8901e0da3ca4f220fa385ab9c52023dfb9eee2d24d567028c52\"\n  },\n  \"audited_consumers\": [\n    {\n      \"path\": \"dag/theory_of_finite_qm.jsonl\",\n      \"sha256\": \"3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57\"\n    },\n    {\n      \"path\": \"docs/evidence/stages/FINITE_QCD.md\",\n      \"sha256\": \"6fa1a211fbea4cc6e90179510dd63fb15d9ff9178b714dc6f7c1dff3449c30b0\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY.md\",\n      \"sha256\": \"e1e725161414713d4d0d9b5478879c2d36ca68126838b1ac840eae202102f3dc\"\n    },\n    {\n      \"path\": \"dag/research/pr492_review/validation.json\",\n      \"sha256\": \"5c89279bb3254842e66b90270836ab537ff19a122b48ef846e6ee5288dfe6af0\"\n    },\n    {\n      \"path\": \"dag/fragments/unified_dag.json\",\n      \"sha256\": \"c7845b4f150f45fece1c97988789f0c2ea458b088cfa20db09f43bc6fff0d753\"\n    },\n    {\n      \"path\": \"dag/evidence/evidence_map.json\",\n      \"sha256\": \"6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f\"\n    },\n    {\n      \"path\": \"dag/derivation_dag.json\",\n      \"sha256\": \"7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586\"\n    },\n    {\n      \"path\": \"dag/derivations/17_finite_qcd/tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.md\",\n      \"sha256\": \"26c1314e31904912a4dd41eeec0e0ee278da464306f364e78882cf1ecd9ae4c8\"\n    },\n    {\n      \"path\": \"checks/tests/test_wilson_checker.py\",\n      \"sha256\": \"6ea7cb0a6408ea7b9860b90c3cffc9aa4c86411128581dcd6ba45b3470bc7e90\",\n      \"state\": \"new contract suite\"\n    },\n    {\n      \"path\": \".github/workflows/reviewed-checkers.yml\",\n      \"sha256\": \"be4626109deaabccf84379728081c8b1f865fdf88eed2f2fa86e15b9b00c0a58\",\n      \"state\": \"proposed workflow\"\n    }\n  ],\n  \"boundaries\": [\n    \"No continuum or arbitrary-carrier theorem, physical identification or hosted CI result is inferred.\",\n    \"The Lean origin supplies stated Clifford and algebraic facts; the Python finite operator check does not establish an unproved Lean theorem.\",\n    \"Shared helpers are dependencies; separate Bareiss/matrix oracles supply independent verification.\",\n    \"Historical evidence and scores retain their original bytes/scope. File label 5 is a retention decision.\"\n  ],\n  \"bounded_context\": \"Finite Wilson operator verification and truthful named-obligation receipts; no arbitrary-carrier or continuum promotion.\",\n  \"consumer_boundary\": \"Preserves the standalone TFQ-1050 script and its 110-obligation JSON schema. The Lean origin supplies Clifford and polynomial/block facts and explicitly does not state gamma5 D gamma5 = D adjoint. Finite Python checks do not close the arbitrary-carrier bridge.\",\n  \"contract_urn\": \"urn:tfqm:checker-review:2026-11-03:check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-wilson-checker.md\",\n      \"sha256\": \"43214f2f1c7cf7b0d649a475e439985ab9181cb2dc55c02b1f200fdc8ec85a69\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-wilson-requirements.json\",\n      \"sha256\": \"b2196232dec0ae1b00494515e472728515100a60c0a73717cce34a63caffbef0\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-wilson-quality.json\",\n      \"sha256\": \"1384b66bbff2726185424052e81a466a2220c6c9e888b24c4953d79b660959a4\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-wilson-mutations.json\",\n      \"sha256\": \"5f89c8c419c54f77db52e99a2724d70ae14844785b4d13225a504fa8cc469a95\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-quality-complete.json\",\n      \"sha256\": \"3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json\",\n      \"sha256\": \"a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    },\n    {\n      \"path\": \"checks/tests/wilson_mutations.json\",\n      \"sha256\": \"5cf81e0b6f066dd0e42079f27c5f2bf88f8b397ca38911d410e49ba9f62da000\"\n    }\n  ],\n  \"failure_policy\": \"Cases rejects malformed status/identity and duplicate IDs. The CLI maps expected input/resource/check/duplicate failures to nonzero typed diagnostics; false mathematical cases remain named failures in the receipt. Unexpected programming errors and cancellation propagate. No persistent mutable case state or external resource is owned by the checker; test mocks/captures are context-managed.\",\n  \"operational_cost\": \"Fixed 110 obligations: 92 chiral/link/onsite and 18 determinant/matrix cases. The imported support admits bounded exact rationals, fixed 8x8 determinants and one finite four-spin/two-color operator; there is no external input or unbounded search.\",\n  \"origin\": {\n    \"path\": \"lean4/FermionSignWilsonDiracGamma5.lean\",\n    \"sha256\": \"ff846e497a572038d084022f188dfb1ec05affba46ff2c8c652a2c4f1cd3664e\"\n  },\n  \"owned_invariants\": [\n    \"Exactly 110 named obligations for the default finite fixtures; each conjunction is one obligation, not many.\",\n    \"Exact Fraction computations and validated shared rational/matrix boundaries; no float coercion.\",\n    \"At most one class per file, no production assert and strict pinned typing.\",\n    \"The d=2/4 section checks chiral-sign identities; only the separately assembled fixture constructs four-dimensional gamma matrices.\"\n  ],\n  \"requirements\": [\n    {\n      \"requirement\": \"Check only the declared chiral-sign, finite rational link grid and independently tabulated onsite coefficients; do not call the sign identities a Clifford construction.\",\n      \"requirement_id\": \"TFQM-WILSON-REVIEW-CHECK-TFQ-1050-FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY-1\",\n      \"symbols\": [\n        \"check_chiral_links\"\n      ],\n      \"tests\": [\n        \"WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named\",\n        \"WilsonCheckerTests.test_complete_receipt_and_repeatability\"\n      ]\n    },\n    {\n      \"requirement\": \"Compare the general-r polynomial against an independent exact matrix determinant, retain a nonunit-r counterexample and assembled four-spin colored-operator check.\",\n      \"requirement_id\": \"TFQM-WILSON-REVIEW-CHECK-TFQ-1050-FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY-2\",\n      \"symbols\": [\n        \"check_determinant_examples\"\n      ],\n      \"tests\": [\n        \"WilsonCheckerTests.test_direct_determinant_fault_cannot_hide_behind_polynomial\",\n        \"WilsonCheckerTests.test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli\",\n        \"WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named\"\n      ]\n    },\n    {\n      \"requirement\": \"Each invocation owns its Cases; reject duplicate IDs and non-bool statuses, retain every failed case and count exactly the executed named obligations.\",\n      \"requirement_id\": \"TFQM-WILSON-REVIEW-CHECK-TFQ-1050-FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY-3\",\n      \"symbols\": [\n        \"check\"\n      ],\n      \"tests\": [\n        \"WilsonCheckerTests.test_generated_named_cases_are_counted_without_loss\",\n        \"WilsonCheckerTests.test_malformed_statuses_and_duplicate_ids_are_refused\",\n        \"WilsonCheckerTests.test_complete_receipt_and_repeatability\"\n      ]\n    },\n    {\n      \"requirement\": \"Emit a truthful JSON receipt and nonzero status on failure; convert expected resource failures to typed diagnostics while cancellation propagates.\",\n      \"requirement_id\": \"TFQM-WILSON-REVIEW-CHECK-TFQ-1050-FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY-4\",\n      \"symbols\": [\n        \"main\"\n      ],\n      \"tests\": [\n        \"WilsonCheckerTests.test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli\",\n        \"WilsonCheckerTests.test_cancellation_and_resource_failures_keep_distinct_semantics\",\n        \"WilsonCheckerTests.test_complete_receipt_and_repeatability\"\n      ]\n    }\n  ],\n  \"role\": \"Exact finite Wilson verification application with named result ownership, validated case collection, independent matrix integration, and typed CLI failure semantics\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"check\",\n    \"check_chiral_links\",\n    \"check_determinant_examples\",\n    \"main\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+          "sha256": "b5aeeb696fb4f8901e0da3ca4f220fa385ab9c52023dfb9eee2d24d567028c52"
+        },
+        "audited_consumers": [
+          {
+            "path": "dag/theory_of_finite_qm.jsonl",
+            "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57"
+          },
+          {
+            "path": "docs/evidence/stages/FINITE_QCD.md",
+            "sha256": "6fa1a211fbea4cc6e90179510dd63fb15d9ff9178b714dc6f7c1dff3449c30b0"
+          },
+          {
+            "path": "docs/evidence/nodes/FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY.md",
+            "sha256": "e1e725161414713d4d0d9b5478879c2d36ca68126838b1ac840eae202102f3dc"
+          },
+          {
+            "path": "dag/research/pr492_review/validation.json",
+            "sha256": "5c89279bb3254842e66b90270836ab537ff19a122b48ef846e6ee5288dfe6af0"
+          },
+          {
+            "path": "dag/fragments/unified_dag.json",
+            "sha256": "c7845b4f150f45fece1c97988789f0c2ea458b088cfa20db09f43bc6fff0d753"
+          },
+          {
+            "path": "dag/evidence/evidence_map.json",
+            "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f"
+          },
+          {
+            "path": "dag/derivation_dag.json",
+            "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586"
+          },
+          {
+            "path": "dag/derivations/17_finite_qcd/tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.md",
+            "sha256": "26c1314e31904912a4dd41eeec0e0ee278da464306f364e78882cf1ecd9ae4c8"
+          },
+          {
+            "path": "checks/tests/test_wilson_checker.py",
+            "sha256": "6ea7cb0a6408ea7b9860b90c3cffc9aa4c86411128581dcd6ba45b3470bc7e90",
+            "state": "new contract suite"
+          },
+          {
+            "path": ".github/workflows/reviewed-checkers.yml",
+            "sha256": "be4626109deaabccf84379728081c8b1f865fdf88eed2f2fa86e15b9b00c0a58",
+            "state": "proposed workflow"
+          }
+        ],
+        "boundaries": [
+          "No continuum or arbitrary-carrier theorem, physical identification or hosted CI result is inferred.",
+          "The Lean origin supplies stated Clifford and algebraic facts; the Python finite operator check does not establish an unproved Lean theorem.",
+          "Shared helpers are dependencies; separate Bareiss/matrix oracles supply independent verification.",
+          "Historical evidence and scores retain their original bytes/scope. File label 5 is a retention decision."
+        ],
+        "bounded_context": "Finite Wilson operator verification and truthful named-obligation receipts; no arbitrary-carrier or continuum promotion.",
+        "consumer_boundary": "Preserves the standalone TFQ-1050 script and its 110-obligation JSON schema. The Lean origin supplies Clifford and polynomial/block facts and explicitly does not state gamma5 D gamma5 = D adjoint. Finite Python checks do not close the arbitrary-carrier bridge.",
+        "contract_urn": "urn:tfqm:checker-review:2026-11-03:check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-03-wilson-checker.md",
+            "sha256": "43214f2f1c7cf7b0d649a475e439985ab9181cb2dc55c02b1f200fdc8ec85a69"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-wilson-requirements.json",
+            "sha256": "b2196232dec0ae1b00494515e472728515100a60c0a73717cce34a63caffbef0"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-wilson-quality.json",
+            "sha256": "1384b66bbff2726185424052e81a466a2220c6c9e888b24c4953d79b660959a4"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-wilson-mutations.json",
+            "sha256": "5f89c8c419c54f77db52e99a2724d70ae14844785b4d13225a504fa8cc469a95"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+            "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+            "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          },
+          {
+            "path": "checks/tests/wilson_mutations.json",
+            "sha256": "5cf81e0b6f066dd0e42079f27c5f2bf88f8b397ca38911d410e49ba9f62da000"
+          }
+        ],
+        "failure_policy": "Cases rejects malformed status/identity and duplicate IDs. The CLI maps expected input/resource/check/duplicate failures to nonzero typed diagnostics; false mathematical cases remain named failures in the receipt. Unexpected programming errors and cancellation propagate. No persistent mutable case state or external resource is owned by the checker; test mocks/captures are context-managed.",
+        "operational_cost": "Fixed 110 obligations: 92 chiral/link/onsite and 18 determinant/matrix cases. The imported support admits bounded exact rationals, fixed 8x8 determinants and one finite four-spin/two-color operator; there is no external input or unbounded search.",
+        "origin": {
+          "path": "lean4/FermionSignWilsonDiracGamma5.lean",
+          "sha256": "ff846e497a572038d084022f188dfb1ec05affba46ff2c8c652a2c4f1cd3664e"
+        },
+        "owned_invariants": [
+          "Exactly 110 named obligations for the default finite fixtures; each conjunction is one obligation, not many.",
+          "Exact Fraction computations and validated shared rational/matrix boundaries; no float coercion.",
+          "At most one class per file, no production assert and strict pinned typing.",
+          "The d=2/4 section checks chiral-sign identities; only the separately assembled fixture constructs four-dimensional gamma matrices."
+        ],
+        "requirements": [
+          {
+            "requirement": "Check only the declared chiral-sign, finite rational link grid and independently tabulated onsite coefficients; do not call the sign identities a Clifford construction.",
+            "requirement_id": "TFQM-WILSON-REVIEW-CHECK-TFQ-1050-FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY-1",
+            "symbols": [
+              "check_chiral_links"
+            ],
+            "tests": [
+              "WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named",
+              "WilsonCheckerTests.test_complete_receipt_and_repeatability"
+            ]
+          },
+          {
+            "requirement": "Compare the general-r polynomial against an independent exact matrix determinant, retain a nonunit-r counterexample and assembled four-spin colored-operator check.",
+            "requirement_id": "TFQM-WILSON-REVIEW-CHECK-TFQ-1050-FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY-2",
+            "symbols": [
+              "check_determinant_examples"
+            ],
+            "tests": [
+              "WilsonCheckerTests.test_direct_determinant_fault_cannot_hide_behind_polynomial",
+              "WilsonCheckerTests.test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli",
+              "WilsonCheckerTests.test_section_obligations_are_exact_booleans_and_named"
+            ]
+          },
+          {
+            "requirement": "Each invocation owns its Cases; reject duplicate IDs and non-bool statuses, retain every failed case and count exactly the executed named obligations.",
+            "requirement_id": "TFQM-WILSON-REVIEW-CHECK-TFQ-1050-FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY-3",
+            "symbols": [
+              "check"
+            ],
+            "tests": [
+              "WilsonCheckerTests.test_generated_named_cases_are_counted_without_loss",
+              "WilsonCheckerTests.test_malformed_statuses_and_duplicate_ids_are_refused",
+              "WilsonCheckerTests.test_complete_receipt_and_repeatability"
+            ]
+          },
+          {
+            "requirement": "Emit a truthful JSON receipt and nonzero status on failure; convert expected resource failures to typed diagnostics while cancellation propagates.",
+            "requirement_id": "TFQM-WILSON-REVIEW-CHECK-TFQ-1050-FQCD-WILSON-DIRAC-GAMMA5-HERMITICITY-4",
+            "symbols": [
+              "main"
+            ],
+            "tests": [
+              "WilsonCheckerTests.test_assembled_matrix_fault_is_a_failed_case_and_nonzero_cli",
+              "WilsonCheckerTests.test_cancellation_and_resource_failures_keep_distinct_semantics",
+              "WilsonCheckerTests.test_complete_receipt_and_repeatability"
+            ]
+          }
+        ],
+        "role": "Exact finite Wilson verification application with named result ownership, validated case collection, independent matrix integration, and typed CLI failure semantics",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "check",
+          "check_chiral_links",
+          "check_determinant_examples",
+          "main"
+        ]
+      },
+      "sha256": "c6da6c008f77f4d3785a32eeed3f12c7f9e777cb3d9dcce2627c622f347b10cd"
+    }
+  ],
+  "current_contract": "c6da6c008f77f4d3785a32eeed3f12c7f9e777cb3d9dcce2627c622f347b10cd",
+  "current_scoring": "5b451489981b1c4fd9c6d4a3abdd5283e2ca738d4d50f763e89807e5e48fe401",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {
+    "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py#pr492-review-contract": "b7cb96fdcd8b2e00425de6375c7d7bb74de9cf237211adfa41e1e93c38a8e725",
+    "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py#pr492-review-scoring": "9b15044eb9f598fc5d8cc109c546939aa61230a5672ff1f28b206ed7814236f8"
+  },
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 2758,
+      "original_paths": [
+        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py#pr492-review-scoring"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n    \"sha256\": \"7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Existing assessed level retained for reviewed modules. New support/check scripts use bounded L3 assessment outside governed populations.\",\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Statement/evidence mapping narrowed; the original gamma-carrier target remains OPEN.\",\n    \"G2\": \"Exact rational/bit-preserving inputs and full matrix regressions; no rational reconstruction in the exact path.\",\n    \"G3\": \"Matrix shape and singularity boundaries checked, namespaces and axiom allowlists fail closed.\",\n    \"G4\": \"Current retained 100 Python tests, 25 Rust tests, 436 standalone checks and pinned Lean 4.35 kernel outputs; only the recorded scope is claimed.\",\n    \"G5\": \"Existing module boundaries retained, fixed-size matrix loops and managed replay temporary resources; no higher-grade performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L3D\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"D\",\n  \"assessment_id\": \"pr492-review-2026-10-31\",\n  \"evaluation_timestamp\": \"2026-10-31T19:35:24.825530+00:00\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr492_review/validation.json\",\n      \"sha256\": \"8d4cdf1fc3d6a852d47c81775e32095518bad7e9deeaabb67ec2eadb902ce2ad\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1052_lean_replay.json\",\n      \"sha256\": \"a936a0d6ef5dedc5acc90ec4d7398aa8be1e9a9dd6cb0b270136dc50dbdc2260\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1050_lean_replay.json\",\n      \"sha256\": \"591e2958b3a00d3f8a78ba83969a2e99dd8982778befb7f8fa0054380c029949\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1219_lean_replay.json\",\n      \"sha256\": \"de656d061fd72338134d84b2043e5a7d920d813c1c28e0e79cac2284e826e1a1\"\n    },\n    {\n      \"path\": \"docs/maintenance/pr492_review.md\",\n      \"sha256\": \"79114f6143999993ea28a7003c1c682934b971039d0e40052c606c6c8abcc551\"\n    }\n  ],\n  \"limitations\": [\n    \"Only the declared finite carrier, explicit assumptions and retained checks are covered.\",\n    \"No physical fermion-statistics derivation, dipole-conservation law, general Clifford-carrier bridge or sign-free Hamiltonian theorem.\",\n    \"Existing classification is retained where present; support files outside code/lean4 use L3 or L1 without adding policy exceptions.\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+          "sha256": "7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606"
+        },
+        "assessment_id": "pr492-review-2026-10-31",
         "basis": {
           "G1": "Statement/evidence mapping narrowed; the original gamma-carrier target remains OPEN.",
           "G2": "Exact rational/bit-preserving inputs and full matrix regressions; no rational reconstruction in the exact path.",
@@ -181,15 +590,7 @@
           "G5": "Existing module boundaries retained, fixed-size matrix loops and managed replay temporary resources; no higher-grade performance claim."
         },
         "composite_grade": "D",
-        "score_token": "L3D",
-        "is_complete": true,
-        "grade_ceiling": "D",
-        "assessment_id": "pr492-review-2026-10-31",
         "evaluation_timestamp": "2026-10-31T19:35:24.825530+00:00",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
-        },
         "evidence": [
           {
             "path": "dag/research/pr492_review/validation.json",
@@ -212,31 +613,6 @@
             "sha256": "79114f6143999993ea28a7003c1c682934b971039d0e40052c606c6c8abcc551"
           }
         ],
-        "limitations": [
-          "Only the declared finite carrier, explicit assumptions and retained checks are covered.",
-          "No physical fermion-statistics derivation, dipole-conservation law, general Clifford-carrier bridge or sign-free Hamiltonian theorem.",
-          "Existing classification is retained where present; support files outside code/lean4 use L3 or L1 without adding policy exceptions."
-        ]
-      },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n    \"sha256\": \"7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Existing assessed level retained for reviewed modules. New support/check scripts use bounded L3 assessment outside governed populations.\",\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Statement/evidence mapping narrowed; the original gamma-carrier target remains OPEN.\",\n    \"G2\": \"Exact rational/bit-preserving inputs and full matrix regressions; no rational reconstruction in the exact path.\",\n    \"G3\": \"Matrix shape and singularity boundaries checked, namespaces and axiom allowlists fail closed.\",\n    \"G4\": \"Current retained 100 Python tests, 25 Rust tests, 436 standalone checks and pinned Lean 4.35 kernel outputs; only the recorded scope is claimed.\",\n    \"G5\": \"Existing module boundaries retained, fixed-size matrix loops and managed replay temporary resources; no higher-grade performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L3D\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"D\",\n  \"assessment_id\": \"pr492-review-2026-10-31\",\n  \"evaluation_timestamp\": \"2026-10-31T19:35:24.825530+00:00\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr492_review/validation.json\",\n      \"sha256\": \"8d4cdf1fc3d6a852d47c81775e32095518bad7e9deeaabb67ec2eadb902ce2ad\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1052_lean_replay.json\",\n      \"sha256\": \"a936a0d6ef5dedc5acc90ec4d7398aa8be1e9a9dd6cb0b270136dc50dbdc2260\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1050_lean_replay.json\",\n      \"sha256\": \"591e2958b3a00d3f8a78ba83969a2e99dd8982778befb7f8fa0054380c029949\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1219_lean_replay.json\",\n      \"sha256\": \"de656d061fd72338134d84b2043e5a7d920d813c1c28e0e79cac2284e826e1a1\"\n    },\n    {\n      \"path\": \"docs/maintenance/pr492_review.md\",\n      \"sha256\": \"79114f6143999993ea28a7003c1c682934b971039d0e40052c606c6c8abcc551\"\n    }\n  ],\n  \"limitations\": [\n    \"Only the declared finite carrier, explicit assumptions and retained checks are covered.\",\n    \"No physical fermion-statistics derivation, dipole-conservation law, general Clifford-carrier bridge or sign-free Hamiltonian theorem.\",\n    \"Existing classification is retained where present; support files outside code/lean4 use L3 or L1 without adding policy exceptions.\"\n  ]\n}\n",
-      "original_paths": [
-        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py#pr492-review-scoring"
-      ]
-    },
-    {
-      "sha256": "9b15044eb9f598fc5d8cc109c546939aa61230a5672ff1f28b206ed7814236f8",
-      "bytes": 2758,
-      "record": {
-        "schema_version": "2.0.0",
-        "AuthorityEffect": "None",
-        "artifact": {
-          "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
-          "sha256": "7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606",
-          "language": "Python"
-        },
-        "profile": "Non-Numeric",
-        "level": "L3",
-        "level_basis": "Existing assessed level retained for reviewed modules. New support/check scripts use bounded L3 assessment outside governed populations.",
         "gates": {
           "G1": "D",
           "G2": "D",
@@ -244,6 +620,39 @@
           "G4": "D",
           "G5": "D"
         },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Existing assessed level retained for reviewed modules. New support/check scripts use bounded L3 assessment outside governed populations.",
+        "limitations": [
+          "Only the declared finite carrier, explicit assumptions and retained checks are covered.",
+          "No physical fermion-statistics derivation, dipole-conservation law, general Clifford-carrier bridge or sign-free Hamiltonian theorem.",
+          "Existing classification is retained where present; support files outside code/lean4 use L3 or L1 without adding policy exceptions."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D"
+      },
+      "sha256": "8fc85fbc34cd03c80c153d5d100b096cbba94da7c49e72739b60bf545c955b2a"
+    },
+    {
+      "bytes": 2758,
+      "original_paths": [
+        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py#pr492-review-scoring"
+      ],
+      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n    \"sha256\": \"7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Existing assessed level retained for reviewed modules. New support/check scripts use bounded L3 assessment outside governed populations.\",\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Statement/evidence mapping narrowed; the original gamma-carrier target remains OPEN.\",\n    \"G2\": \"Exact rational/bit-preserving inputs and full matrix regressions; no rational reconstruction in the exact path.\",\n    \"G3\": \"Matrix shape and singularity boundaries checked, namespaces and axiom allowlists fail closed.\",\n    \"G4\": \"Current retained 101 Python tests, 25 Rust tests, 436 standalone checks and pinned Lean 4.35 kernel outputs; only the recorded scope is claimed.\",\n    \"G5\": \"Existing module boundaries retained, fixed-size matrix loops and managed replay temporary resources; no higher-grade performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L3D\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"D\",\n  \"assessment_id\": \"pr492-review-2026-10-31\",\n  \"evaluation_timestamp\": \"2026-10-31T19:41:29.702708+00:00\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr492_review/validation.json\",\n      \"sha256\": \"5c89279bb3254842e66b90270836ab537ff19a122b48ef846e6ee5288dfe6af0\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1052_lean_replay.json\",\n      \"sha256\": \"a5373643d2c5691497550f6f99914aca90de910a6ec0bc98b3e468ad01d6c35c\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1050_lean_replay.json\",\n      \"sha256\": \"c1c5dc5e92a01d188bcab8e29f765149ce72fd2b105906159504306c8fae4ee6\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1219_lean_replay.json\",\n      \"sha256\": \"dc2a39c03a77ca2e8ca67568f8ffe7a75607721980f0f8a1265f4ac5b1062ef5\"\n    },\n    {\n      \"path\": \"docs/maintenance/pr492_review.md\",\n      \"sha256\": \"41335df2c2e43dd437c90d84c3bef57d86c2df1364923e23776a2e57c7388db9\"\n    }\n  ],\n  \"limitations\": [\n    \"Only the declared finite carrier, explicit assumptions and retained checks are covered.\",\n    \"No physical fermion-statistics derivation, dipole-conservation law, general Clifford-carrier bridge or sign-free Hamiltonian theorem.\",\n    \"Existing classification is retained where present; support files outside code/lean4 use L3 or L1 without adding policy exceptions.\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+          "sha256": "7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606"
+        },
+        "assessment_id": "pr492-review-2026-10-31",
         "basis": {
           "G1": "Statement/evidence mapping narrowed; the original gamma-carrier target remains OPEN.",
           "G2": "Exact rational/bit-preserving inputs and full matrix regressions; no rational reconstruction in the exact path.",
@@ -252,15 +661,7 @@
           "G5": "Existing module boundaries retained, fixed-size matrix loops and managed replay temporary resources; no higher-grade performance claim."
         },
         "composite_grade": "D",
-        "score_token": "L3D",
-        "is_complete": true,
-        "grade_ceiling": "D",
-        "assessment_id": "pr492-review-2026-10-31",
         "evaluation_timestamp": "2026-10-31T19:41:29.702708+00:00",
-        "rubric": {
-          "path": "SCORING.md",
-          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
-        },
         "evidence": [
           {
             "path": "dag/research/pr492_review/validation.json",
@@ -283,22 +684,224 @@
             "sha256": "41335df2c2e43dd437c90d84c3bef57d86c2df1364923e23776a2e57c7388db9"
           }
         ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L3",
+        "level_basis": "Existing assessed level retained for reviewed modules. New support/check scripts use bounded L3 assessment outside governed populations.",
         "limitations": [
           "Only the declared finite carrier, explicit assumptions and retained checks are covered.",
           "No physical fermion-statistics derivation, dipole-conservation law, general Clifford-carrier bridge or sign-free Hamiltonian theorem.",
           "Existing classification is retained where present; support files outside code/lean4 use L3 or L1 without adding policy exceptions."
-        ]
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L3D"
       },
-      "raw_utf8": "{\n  \"schema_version\": \"2.0.0\",\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"path\": \"checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n    \"sha256\": \"7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606\",\n    \"language\": \"Python\"\n  },\n  \"profile\": \"Non-Numeric\",\n  \"level\": \"L3\",\n  \"level_basis\": \"Existing assessed level retained for reviewed modules. New support/check scripts use bounded L3 assessment outside governed populations.\",\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"basis\": {\n    \"G1\": \"Statement/evidence mapping narrowed; the original gamma-carrier target remains OPEN.\",\n    \"G2\": \"Exact rational/bit-preserving inputs and full matrix regressions; no rational reconstruction in the exact path.\",\n    \"G3\": \"Matrix shape and singularity boundaries checked, namespaces and axiom allowlists fail closed.\",\n    \"G4\": \"Current retained 101 Python tests, 25 Rust tests, 436 standalone checks and pinned Lean 4.35 kernel outputs; only the recorded scope is claimed.\",\n    \"G5\": \"Existing module boundaries retained, fixed-size matrix loops and managed replay temporary resources; no higher-grade performance claim.\"\n  },\n  \"composite_grade\": \"D\",\n  \"score_token\": \"L3D\",\n  \"is_complete\": true,\n  \"grade_ceiling\": \"D\",\n  \"assessment_id\": \"pr492-review-2026-10-31\",\n  \"evaluation_timestamp\": \"2026-10-31T19:41:29.702708+00:00\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"evidence\": [\n    {\n      \"path\": \"dag/research/pr492_review/validation.json\",\n      \"sha256\": \"5c89279bb3254842e66b90270836ab537ff19a122b48ef846e6ee5288dfe6af0\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1052_lean_replay.json\",\n      \"sha256\": \"a5373643d2c5691497550f6f99914aca90de910a6ec0bc98b3e468ad01d6c35c\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1050_lean_replay.json\",\n      \"sha256\": \"c1c5dc5e92a01d188bcab8e29f765149ce72fd2b105906159504306c8fae4ee6\"\n    },\n    {\n      \"path\": \"dag/research/campaign_tfq-1219_lean_replay.json\",\n      \"sha256\": \"dc2a39c03a77ca2e8ca67568f8ffe7a75607721980f0f8a1265f4ac5b1062ef5\"\n    },\n    {\n      \"path\": \"docs/maintenance/pr492_review.md\",\n      \"sha256\": \"41335df2c2e43dd437c90d84c3bef57d86c2df1364923e23776a2e57c7388db9\"\n    }\n  ],\n  \"limitations\": [\n    \"Only the declared finite carrier, explicit assumptions and retained checks are covered.\",\n    \"No physical fermion-statistics derivation, dipole-conservation law, general Clifford-carrier bridge or sign-free Hamiltonian theorem.\",\n    \"Existing classification is retained where present; support files outside code/lean4 use L3 or L1 without adding policy exceptions.\"\n  ]\n}\n",
+      "sha256": "9b15044eb9f598fc5d8cc109c546939aa61230a5672ff1f28b206ed7814236f8"
+    },
+    {
+      "bytes": 1818,
       "original_paths": [
-        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py#pr492-review-scoring"
-      ]
+        "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.contract.score.yaml#systematic-file-review-tfq-1050-2026-11-02"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n    \"sha256\": \"7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606\"\n  },\n  \"assessment_id\": \"systematic-file-review-tfq-1050-2026-11-02\",\n  \"basis\": {\n    \"G1\": \"The prior contract describes unrelated holonomy and axiom-replay invariants, and two historical evidence pins are stale.\",\n    \"G2\": \"Float inputs are admitted by the exact-rational helper without validation; fixed CLI cases use Fractions.\",\n    \"G3\": \"The complete failure behavior and typed error boundaries remain unassessed.\",\n    \"G4\": \"110 checks, 16 determinant comparisons and one mutation were observed; comprehensive gate evidence remains unassessed.\",\n    \"G5\": \"The assembled matrix computation has seven nested loops, imposing a D ceiling under the rubric.\"\n  },\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-11-03T03:47:07.084619+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-fqcd-1050.md\",\n      \"sha256\": \"45d08673c3843c31914d0f69827afceb9c95fa855ce736021390bf1cbccc0761\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": null,\n    \"G4\": null,\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": false,\n  \"level\": \"L3\",\n  \"level_basis\": \"Nontrivial finite exact matrix and Clifford-domain computations; production-level architecture and verification have not been demonstrated.\",\n  \"profile\": \"Exact\",\n  \"refusal_reason\": \"At least one gate is unassessed. The requested L4B floor is not established; no completed token is asserted.\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+          "sha256": "7c124b96e870da0e88958ff76b1c84cc95e36957864906c510ca154527e82606"
+        },
+        "assessment_id": "systematic-file-review-tfq-1050-2026-11-02",
+        "basis": {
+          "G1": "The prior contract describes unrelated holonomy and axiom-replay invariants, and two historical evidence pins are stale.",
+          "G2": "Float inputs are admitted by the exact-rational helper without validation; fixed CLI cases use Fractions.",
+          "G3": "The complete failure behavior and typed error boundaries remain unassessed.",
+          "G4": "110 checks, 16 determinant comparisons and one mutation were observed; comprehensive gate evidence remains unassessed.",
+          "G5": "The assembled matrix computation has seven nested loops, imposing a D ceiling under the rubric."
+        },
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-11-03T03:47:07.084619+00:00",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-fqcd-1050.md",
+            "sha256": "45d08673c3843c31914d0f69827afceb9c95fa855ce736021390bf1cbccc0761"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": null,
+          "G4": null,
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Nontrivial finite exact matrix and Clifford-domain computations; production-level architecture and verification have not been demonstrated.",
+        "profile": "Exact",
+        "refusal_reason": "At least one gate is unassessed. The requested L4B floor is not established; no completed token is asserted.",
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "488c362fbe3460c547e04283a4dd3d2a5bb165b3aeb0fb6b048db4f922f4ec68"
+    },
+    {
+      "bytes": 3022,
+      "original_paths": [
+        "review-repair-2026-11-02"
+      ],
+      "raw_utf8": "{\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n    \"sha256\": \"63cae3630aeea392872baff12252b9cff3d9707992a5a6738983ce3fa168d1c7\"\n  },\n  \"assessment_id\": \"review-repair-retest-2026-11-02\",\n  \"basis\": {\n    \"G1\": \"Source identity, concrete role, imports and scope are declared; fresh evidence replaces stale current bindings while history is retained.\",\n    \"G2\": \"Reported semantic and exact-input defects are repaired; the bounded normal/optimized regression and independent oracles pass.\",\n    \"G3\": \"Known optimization bypasses and invalid-domain successes are repaired; typed evaluation and nonzero CLI failures are exercised.\",\n    \"G4\": \"24 regression groups pass in each interpreter mode, with four specified mutants killed; complete per-artifact branch and mutation evidence for B is not established.\",\n    \"G5\": \"Maximum Radon cyclomatic complexity 14; no assertion-dependent checks and at most one class per checker/support source. Full cognitive complexity, static typing and operational assessment remains unassessed.\"\n  },\n  \"composite_grade\": null,\n  \"evaluation_timestamp\": \"2026-11-03T04:29:31.829005+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-repairs.md\",\n      \"sha256\": \"82db030642db352aca1fd3ab9677515df96ec207e3dd6b9096cd06886aee55ca\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-02-checks-repair-retest.json\",\n      \"sha256\": \"ef357c98fbe380729b1099dfa61a677845c51adcf74edc1ff3c897f534a38b34\"\n    },\n    {\n      \"path\": \"checks/tests/test_review_repairs.py\",\n      \"sha256\": \"d88864962ba4fe0e6a25cb9b2c6c2ba83b4d0dc687efcf5093c838eb162dfac5\"\n    },\n    {\n      \"path\": \"checks/checker_support/README.md\",\n      \"sha256\": \"96cb7a9253e8f0578b022554272ba596f5daff0be2b9af92566016e1d28d44a7\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"C\",\n    \"G2\": \"C\",\n    \"G3\": \"C\",\n    \"G4\": null,\n    \"G5\": null\n  },\n  \"grade_ceiling\": \"C\",\n  \"is_complete\": false,\n  \"level\": \"L3\",\n  \"level_basis\": \"Capability remains scoped to the delivered finite checker, helper or test harness; repairs do not automatically promote a literal fixture or utility to L4.\",\n  \"open_findings\": [\n    \"Complete five-gate assessment and the user-requested L4B floor remain unmet; no completed score token is asserted.\"\n  ],\n  \"profile\": \"Exact\",\n  \"refusal_reason\": \"The full B-level assessment is incomplete and some delivered utilities/fixtures have capability below L4. Do not promote these bytes by relabeling.\",\n  \"resolved_findings\": [\n    \"Whole rational parameters appear in case IDs; duplicate IDs are rejected. Exact determinant inputs reject floats/bools. Clifford matrices, links, operator assembly and gamma-five checks are named components. The 2D description now says chiral-sign checks.\"\n  ],\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": null\n}\n",
+      "record": {
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+          "sha256": "63cae3630aeea392872baff12252b9cff3d9707992a5a6738983ce3fa168d1c7"
+        },
+        "assessment_id": "review-repair-retest-2026-11-02",
+        "basis": {
+          "G1": "Source identity, concrete role, imports and scope are declared; fresh evidence replaces stale current bindings while history is retained.",
+          "G2": "Reported semantic and exact-input defects are repaired; the bounded normal/optimized regression and independent oracles pass.",
+          "G3": "Known optimization bypasses and invalid-domain successes are repaired; typed evaluation and nonzero CLI failures are exercised.",
+          "G4": "24 regression groups pass in each interpreter mode, with four specified mutants killed; complete per-artifact branch and mutation evidence for B is not established.",
+          "G5": "Maximum Radon cyclomatic complexity 14; no assertion-dependent checks and at most one class per checker/support source. Full cognitive complexity, static typing and operational assessment remains unassessed."
+        },
+        "composite_grade": null,
+        "evaluation_timestamp": "2026-11-03T04:29:31.829005+00:00",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-repairs.md",
+            "sha256": "82db030642db352aca1fd3ab9677515df96ec207e3dd6b9096cd06886aee55ca"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-02-checks-repair-retest.json",
+            "sha256": "ef357c98fbe380729b1099dfa61a677845c51adcf74edc1ff3c897f534a38b34"
+          },
+          {
+            "path": "checks/tests/test_review_repairs.py",
+            "sha256": "d88864962ba4fe0e6a25cb9b2c6c2ba83b4d0dc687efcf5093c838eb162dfac5"
+          },
+          {
+            "path": "checks/checker_support/README.md",
+            "sha256": "96cb7a9253e8f0578b022554272ba596f5daff0be2b9af92566016e1d28d44a7"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "gates": {
+          "G1": "C",
+          "G2": "C",
+          "G3": "C",
+          "G4": null,
+          "G5": null
+        },
+        "grade_ceiling": "C",
+        "is_complete": false,
+        "level": "L3",
+        "level_basis": "Capability remains scoped to the delivered finite checker, helper or test harness; repairs do not automatically promote a literal fixture or utility to L4.",
+        "open_findings": [
+          "Complete five-gate assessment and the user-requested L4B floor remain unmet; no completed score token is asserted."
+        ],
+        "profile": "Exact",
+        "refusal_reason": "The full B-level assessment is incomplete and some delivered utilities/fixtures have capability below L4. Do not promote these bytes by relabeling.",
+        "resolved_findings": [
+          "Whole rational parameters appear in case IDs; duplicate IDs are rejected. Exact determinant inputs reject floats/bools. Clifford matrices, links, operator assembly and gamma-five checks are named components. The 2D description now says chiral-sign checks."
+        ],
+        "schema_version": "2.0.0",
+        "score_token": null
+      },
+      "sha256": "b13d6d280662bfe7d868b5bcfd15596d581b566a1fff505cf16ccd3241c60e55"
+    },
+    {
+      "bytes": 3588,
+      "original_paths": [
+        "wilson-checker-review-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py\",\n    \"sha256\": \"b5aeeb696fb4f8901e0da3ca4f220fa385ab9c52023dfb9eee2d24d567028c52\"\n  },\n  \"assessment_id\": \"wilson-checker-production-review-2026-11-03\",\n  \"basis\": {\n    \"G1\": \"Every declaration is mapped bidirectionally to requirements/tests; exact origins and consumer references are audited with a literal finite claim boundary.\",\n    \"G2\": \"Exact arithmetic, independent onsite values, direct matrix determinant comparison and a nonunit-r regression. Shared exact-domain refusal and independent matrix/Bareiss oracles have retained evidence.\",\n    \"G3\": \"Named cases reject malformed status/duplicate identity; mathematical failure, typed resource error and cancellation have distinct tested behavior. Fixed valid indices and finite loops are reviewed; captures and mocks restore state.\",\n    \"G4\": \"Seven contract groups including 80 deterministic generated sequences and all 24 original integration groups pass normal and optimized Python; strict pinned mypy passes. All 17 retained critical-path mutants are killed; no candidates are excluded.\",\n    \"G5\": \"CCN 14, cognitive 12, nesting 2; at most one class. Fixed 110 obligations: 92 chiral/link/onsite and 18 determinant/matrix cases. The imported support admits bounded exact rationals, fixed 8x8 determinants and one finite four-spin/two-color operator; there is no external input or unbounded search.\"\n  },\n  \"composite_grade\": \"B\",\n  \"evaluation_timestamp\": \"2026-11-03T06:55:17.680594+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-wilson-checker.md\",\n      \"sha256\": \"43214f2f1c7cf7b0d649a475e439985ab9181cb2dc55c02b1f200fdc8ec85a69\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-wilson-requirements.json\",\n      \"sha256\": \"b2196232dec0ae1b00494515e472728515100a60c0a73717cce34a63caffbef0\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-wilson-quality.json\",\n      \"sha256\": \"1384b66bbff2726185424052e81a466a2220c6c9e888b24c4953d79b660959a4\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-wilson-mutations.json\",\n      \"sha256\": \"5f89c8c419c54f77db52e99a2724d70ae14844785b4d13225a504fa8cc469a95\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-quality-complete.json\",\n      \"sha256\": \"3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json\",\n      \"sha256\": \"a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    },\n    {\n      \"path\": \"checks/tests/wilson_mutations.json\",\n      \"sha256\": \"5cf81e0b6f066dd0e42079f27c5f2bf88f8b397ca38911d410e49ba9f62da000\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"B\",\n    \"G3\": \"B\",\n    \"G4\": \"B\",\n    \"G5\": \"B\"\n  },\n  \"grade_ceiling\": \"B\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact finite Wilson verification application with named result ownership, validated case collection, independent matrix integration, and typed CLI failure semantics. Intentional finite APIs, typed refusal, invocation-owned result state and verified integration support L4; the mathematical topic and raw case count do not.\",\n  \"open_findings\": [],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4B\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py",
+          "sha256": "b5aeeb696fb4f8901e0da3ca4f220fa385ab9c52023dfb9eee2d24d567028c52"
+        },
+        "assessment_id": "wilson-checker-production-review-2026-11-03",
+        "basis": {
+          "G1": "Every declaration is mapped bidirectionally to requirements/tests; exact origins and consumer references are audited with a literal finite claim boundary.",
+          "G2": "Exact arithmetic, independent onsite values, direct matrix determinant comparison and a nonunit-r regression. Shared exact-domain refusal and independent matrix/Bareiss oracles have retained evidence.",
+          "G3": "Named cases reject malformed status/duplicate identity; mathematical failure, typed resource error and cancellation have distinct tested behavior. Fixed valid indices and finite loops are reviewed; captures and mocks restore state.",
+          "G4": "Seven contract groups including 80 deterministic generated sequences and all 24 original integration groups pass normal and optimized Python; strict pinned mypy passes. All 17 retained critical-path mutants are killed; no candidates are excluded.",
+          "G5": "CCN 14, cognitive 12, nesting 2; at most one class. Fixed 110 obligations: 92 chiral/link/onsite and 18 determinant/matrix cases. The imported support admits bounded exact rationals, fixed 8x8 determinants and one finite four-spin/two-color operator; there is no external input or unbounded search."
+        },
+        "composite_grade": "B",
+        "evaluation_timestamp": "2026-11-03T06:55:17.680594+00:00",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-03-wilson-checker.md",
+            "sha256": "43214f2f1c7cf7b0d649a475e439985ab9181cb2dc55c02b1f200fdc8ec85a69"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-wilson-requirements.json",
+            "sha256": "b2196232dec0ae1b00494515e472728515100a60c0a73717cce34a63caffbef0"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-wilson-quality.json",
+            "sha256": "1384b66bbff2726185424052e81a466a2220c6c9e888b24c4953d79b660959a4"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-wilson-mutations.json",
+            "sha256": "5f89c8c419c54f77db52e99a2724d70ae14844785b4d13225a504fa8cc469a95"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+            "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+            "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          },
+          {
+            "path": "checks/tests/wilson_mutations.json",
+            "sha256": "5cf81e0b6f066dd0e42079f27c5f2bf88f8b397ca38911d410e49ba9f62da000"
+          }
+        ],
+        "gates": {
+          "G1": "B",
+          "G2": "B",
+          "G3": "B",
+          "G4": "B",
+          "G5": "B"
+        },
+        "grade_ceiling": "B",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Exact finite Wilson verification application with named result ownership, validated case collection, independent matrix integration, and typed CLI failure semantics. Intentional finite APIs, typed refusal, invocation-owned result state and verified integration support L4; the mathematical topic and raw case count do not.",
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L4B"
+      },
+      "sha256": "5b451489981b1c4fd9c6d4a3abdd5283e2ca738d4d50f763e89807e5e48fe401"
     }
-  ],
-  "legacy_paths": {
-    "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py#pr492-review-contract": "b7cb96fdcd8b2e00425de6375c7d7bb74de9cf237211adfa41e1e93c38a8e725",
-    "checks/independent/check_tfq_1050_fqcd_wilson_dirac_gamma5_hermiticity.py#pr492-review-scoring": "9b15044eb9f598fc5d8cc109c546939aa61230a5672ff1f28b206ed7814236f8"
-  },
-  "history_order": "Import/append order; no missing assessment dates are invented.",
-  "assurance": "Append-only review assessment; historical records remain historical and are not promoted."
+  ]
 }

@@ -1,0 +1,567 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "test_commutator_against_symbolic_matrix_oracle (__main__.LineonCheckerTests.test_commutator_against_symbolic_matrix_oracle) ... ok\ntest_curvature_is_exact_bounded_symbolic_construction (__main__.LineonCheckerTests.test_curvature_is_exact_bounded_symbolic_construction) ... ok\ntest_default_receipt_and_sections_have_unique_exact_statuses (__main__.LineonCheckerTests.test_default_receipt_and_sections_have_unique_exact_statuses) ... ok\ntest_faults_fail_cli_and_preserve_cancellation (__main__.LineonCheckerTests.test_faults_fail_cli_and_preserve_cancellation) ... ok\ntest_generated_case_accounting (__main__.LineonCheckerTests.test_generated_case_accounting) ... ok\ntest_ivt_generated_swaps_have_a_valid_witness (__main__.LineonCheckerTests.test_ivt_generated_swaps_have_a_valid_witness) ... ok\ntest_ivt_site_edge_and_nonexchange_witness_semantics (__main__.LineonCheckerTests.test_ivt_site_edge_and_nonexchange_witness_semantics) ... ok\ntest_matrix_boundaries_and_singular_inverse (__main__.LineonCheckerTests.test_matrix_boundaries_and_singular_inverse) ... ok\ntest_path_domains_and_resource_extremes (__main__.LineonCheckerTests.test_path_domains_and_resource_extremes) ... ok\ntest_path_order_against_site_and_edge_oracle (__main__.LineonCheckerTests.test_path_order_against_site_and_edge_oracle) ... ok\ntest_projection_mass_and_routing_are_literal_toy_rules (__main__.LineonCheckerTests.test_projection_mass_and_routing_are_literal_toy_rules) ... ok\ntest_refusal_helper_rejects_success (__main__.LineonCheckerTests.test_refusal_helper_rejects_success) ... ok\ntest_snapshot_ownership_and_validation_use_the_same_data (__main__.LineonCheckerTests.test_snapshot_ownership_and_validation_use_the_same_data) ... ok\ntest_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching) ... ok\ntest_unit_trajectory_and_ivt_input_refusals (__main__.LineonCheckerTests.test_unit_trajectory_and_ivt_input_refusals) ... ok\n\n----------------------------------------------------------------------\nRan 15 tests in 3.593s\n\nOK\n",
+    "returncode": 0
+  },
+  "inputs_sha256": {
+    ".review_work\\run_lineon_mutations.py": "dd87ecee6835cb1475e14b538669b98fa50e0cb47c245dbac69c75b095e6b1bc",
+    "checks\\checker_support\\boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks\\checker_support\\cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks\\checker_support\\domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks\\checker_support\\gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks\\checker_support\\gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks\\checker_support\\happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks\\checker_support\\mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks\\checker_support\\outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks\\checker_support\\wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks\\independent\\check_tfq_1219_fsp_hinge_lineon_sign_claim.py": "d97d80fa3f996b81e930deffcee848d12f9841f236ff255807be811f330da244",
+    "checks\\tests\\lineon_mutations.json": "afbe8f3cfb5b30dd240ceab6261398c33586354cf8e8bb9cdcf44de42b443825",
+    "checks\\tests\\run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks\\tests\\test_lineon_checker.py": "379f6ae72f3b11f769275f8be69074d1121e4dbf24d7a4768b912dbac9baf4fa",
+    "checks\\tests\\test_review_repairs.py": "d8da6e2d1a57e6fabb85c294585296bb5c92491367e5a4c352bfbbe706603676"
+  },
+  "mutants": [
+    {
+      "identity": "position-budget-bypass",
+      "mutant_sha256": "2da4d4862594d369accca2322704271255008b5952a5d743d8801f52ca2b6cbe",
+      "outcome": "killed",
+      "output": "test_path_domains_and_resource_extremes (__main__.LineonCheckerTests.test_path_domains_and_resource_extremes) ... FAIL\n\n======================================================================\nFAIL: test_path_domains_and_resource_extremes (__main__.LineonCheckerTests.test_path_domains_and_resource_extremes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 101, in test_path_domains_and_resource_extremes\n    self.assertEqual(self.refused(module.verify_1d_lineon_collision_avoidance, initial, 1, []).kind, \"resource\")\n                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 34, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 34, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\independent\\check_tfq_1219_fsp_hinge_lineon_sign_claim.py\", line 97, in verify_1d_lineon_collision_avoidance\n    return LineonPath(pos1, pos2, hops).preserves_order()\n           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\independent\\check_tfq_1219_fsp_hinge_lineon_sign_claim.py\", line 78, in __init__\n    for hop in sequence(hops, \"hops\"):\n               ~~~~~~~~^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1176, in __call__\n    return self._mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1180, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 1241, in _execute_mock_call\n    raise effect\nAssertionError: collection before position admission\n\n----------------------------------------------------------------------\nRan 1 test in 0.014s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_path_domains_and_resource_extremes"
+      ]
+    },
+    {
+      "identity": "position-budget-boundary",
+      "mutant_sha256": "1a72017606d80d8ffc18b1312abea13afb7314a540b4119e9b305200ceca775d",
+      "outcome": "killed",
+      "output": "test_path_domains_and_resource_extremes (__main__.LineonCheckerTests.test_path_domains_and_resource_extremes) ... ERROR\n\n======================================================================\nERROR: test_path_domains_and_resource_extremes (__main__.LineonCheckerTests.test_path_domains_and_resource_extremes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 105, in test_path_domains_and_resource_extremes\n    self.assertTrue(module.LineonPath(maximum-1, maximum, [(1, 1)]).preserves_order())\n                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\independent\\check_tfq_1219_fsp_hinge_lineon_sign_claim.py\", line 76, in __init__\n    first, second = _position(first), _position(second)\n                    ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\independent\\check_tfq_1219_fsp_hinge_lineon_sign_claim.py\", line 53, in _position\n    raise Violation(\"resource\", \"lattice position exceeds 4096 bits\")\nchecker_support.boundary.Violation: lattice position exceeds 4096 bits\n\n----------------------------------------------------------------------\nRan 1 test in 0.015s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_path_domains_and_resource_extremes"
+      ]
+    },
+    {
+      "identity": "flag-coercion",
+      "mutant_sha256": "e033209827fdbe663ad08644c506cc985639c4a7d5dd46a8ee94d8501fecfa29",
+      "outcome": "killed",
+      "output": "test_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching) ... FAIL\n\n======================================================================\nFAIL: test_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 199, in test_trace_and_flag_refusals_precede_branching\n    self.refused(module.evaluate_foliated_projected_trace, bad, Q(1))\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 35, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.011s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_trace_and_flag_refusals_precede_branching"
+      ]
+    },
+    {
+      "identity": "hop-left-boundary",
+      "mutant_sha256": "d12a15406a0c8b90eea749720a0ae8016aed1ecdfe7537ecd4fd61f2fbd08fcc",
+      "outcome": "killed",
+      "output": "test_path_domains_and_resource_extremes (__main__.LineonCheckerTests.test_path_domains_and_resource_extremes) ... FAIL\n\n======================================================================\nFAIL: test_path_domains_and_resource_extremes (__main__.LineonCheckerTests.test_path_domains_and_resource_extremes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 98, in test_path_domains_and_resource_extremes\n    self.refused(module.LineonPath, first, second, hops)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 35, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_path_domains_and_resource_extremes"
+      ]
+    },
+    {
+      "identity": "hop-right-boundary",
+      "mutant_sha256": "0c474a781ec64069ab24d5dfeb48318cd131f8f61f8368b7629ac174d00b09c6",
+      "outcome": "killed",
+      "output": "test_path_domains_and_resource_extremes (__main__.LineonCheckerTests.test_path_domains_and_resource_extremes) ... FAIL\n\n======================================================================\nFAIL: test_path_domains_and_resource_extremes (__main__.LineonCheckerTests.test_path_domains_and_resource_extremes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 98, in test_path_domains_and_resource_extremes\n    self.refused(module.LineonPath, first, second, hops)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 35, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_path_domains_and_resource_extremes"
+      ]
+    },
+    {
+      "identity": "hop-exact-left",
+      "mutant_sha256": "4766516519f114e9d917814094949a04f033c7e87bc65bfb5a653a52609cf202",
+      "outcome": "killed",
+      "output": "test_path_domains_and_resource_extremes (__main__.LineonCheckerTests.test_path_domains_and_resource_extremes) ... FAIL\n\n======================================================================\nFAIL: test_path_domains_and_resource_extremes (__main__.LineonCheckerTests.test_path_domains_and_resource_extremes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 98, in test_path_domains_and_resource_extremes\n    self.refused(module.LineonPath, first, second, hops)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 35, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_path_domains_and_resource_extremes"
+      ]
+    },
+    {
+      "identity": "path-snapshot-alias",
+      "mutant_sha256": "6791808151305be23da012feb8e465d11ba00664d590e2175810c7cf28169a82",
+      "outcome": "killed",
+      "output": "test_snapshot_ownership_and_validation_use_the_same_data (__main__.LineonCheckerTests.test_snapshot_ownership_and_validation_use_the_same_data) ... FAIL\n\n======================================================================\nFAIL: test_snapshot_ownership_and_validation_use_the_same_data (__main__.LineonCheckerTests.test_snapshot_ownership_and_validation_use_the_same_data)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 65, in test_snapshot_ownership_and_validation_use_the_same_data\n    self.assertEqual(path.hops, ((1, 0), (0, -1)))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: [] != ((1, 0), (0, -1))\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_snapshot_ownership_and_validation_use_the_same_data"
+      ]
+    },
+    {
+      "identity": "path-initial-collision",
+      "mutant_sha256": "c07e2a61fca917626031097c3ec29abd66c3b474d0f3b74399aefebc06105746",
+      "outcome": "killed",
+      "output": "test_path_order_against_site_and_edge_oracle (__main__.LineonCheckerTests.test_path_order_against_site_and_edge_oracle) ... FAIL\n\n======================================================================\nFAIL: test_path_order_against_site_and_edge_oracle (__main__.LineonCheckerTests.test_path_order_against_site_and_edge_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 45, in test_path_order_against_site_and_edge_oracle\n    @given(first=st.integers(-100, 100), gap=st.integers(-3, 20), hops=HOPS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 51, in test_path_order_against_site_and_edge_oracle\n    self.assertIs(path.preserves_order(), expected)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not False\nFailing test case: test_path_order_against_site_and_edge_oracle(\n    self=<__main__.LineonCheckerTests testMethod=test_path_order_against_site_and_edge_oracle>,\n    first=0,  # or any other generated value\n    gap=0,\n    hops=[],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.146s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_path_order_against_site_and_edge_oracle"
+      ]
+    },
+    {
+      "identity": "path-site-collision",
+      "mutant_sha256": "7288dc6dc575b2c792345b99870c2f24d0549e6e13f27558fd105133af6580f0",
+      "outcome": "survived",
+      "output": "test_path_order_against_site_and_edge_oracle (__main__.LineonCheckerTests.test_path_order_against_site_and_edge_oracle) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.597s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_path_order_against_site_and_edge_oracle"
+      ]
+    },
+    {
+      "identity": "path-distance-update",
+      "mutant_sha256": "d27e238eb27e53d4d6ed729badf95ef85e3b17fcd4ad7cf1db46b71851b85212",
+      "outcome": "survived",
+      "output": "test_path_order_against_site_and_edge_oracle (__main__.LineonCheckerTests.test_path_order_against_site_and_edge_oracle) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.609s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_path_order_against_site_and_edge_oracle"
+      ]
+    },
+    {
+      "identity": "trajectory-position-budget",
+      "mutant_sha256": "5150f29389ee683d549c9a8089e3551523fb1cde801c3b3cc00a6ecf060f0e3a",
+      "outcome": "killed",
+      "output": "test_unit_trajectory_and_ivt_input_refusals (__main__.LineonCheckerTests.test_unit_trajectory_and_ivt_input_refusals) ... FAIL\n\n======================================================================\nFAIL: test_unit_trajectory_and_ivt_input_refusals (__main__.LineonCheckerTests.test_unit_trajectory_and_ivt_input_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 113, in test_unit_trajectory_and_ivt_input_refusals\n    self.refused(module.validate_unit_trajectory, trajectory)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 35, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_unit_trajectory_and_ivt_input_refusals"
+      ]
+    },
+    {
+      "identity": "trajectory-unit-gate",
+      "mutant_sha256": "8de37d2a8bfedfde2f8232d482e79e77f51ed7865d69da4577d66d867c73f7a5",
+      "outcome": "killed",
+      "output": "test_unit_trajectory_and_ivt_input_refusals (__main__.LineonCheckerTests.test_unit_trajectory_and_ivt_input_refusals) ... FAIL\n\n======================================================================\nFAIL: test_unit_trajectory_and_ivt_input_refusals (__main__.LineonCheckerTests.test_unit_trajectory_and_ivt_input_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 113, in test_unit_trajectory_and_ivt_input_refusals\n    self.refused(module.validate_unit_trajectory, trajectory)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 35, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_unit_trajectory_and_ivt_input_refusals"
+      ]
+    },
+    {
+      "identity": "trajectory-snapshot-alias",
+      "mutant_sha256": "381b976220863c0ca7165da9e60b43d88455c43c6279afec4d5736cc8533adcf",
+      "outcome": "killed",
+      "output": "test_snapshot_ownership_and_validation_use_the_same_data (__main__.LineonCheckerTests.test_snapshot_ownership_and_validation_use_the_same_data) ... FAIL\n\n======================================================================\nFAIL: test_snapshot_ownership_and_validation_use_the_same_data (__main__.LineonCheckerTests.test_snapshot_ownership_and_validation_use_the_same_data)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 72, in test_snapshot_ownership_and_validation_use_the_same_data\n    self.assertEqual(snapshot, (0, 1, 1, 0))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: [] != (0, 1, 1, 0)\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_snapshot_ownership_and_validation_use_the_same_data"
+      ]
+    },
+    {
+      "identity": "ivt-empty-shape",
+      "mutant_sha256": "33485d931977c142e3d696a12a10bf9cf641ceeeb1d2f607f480ea977f3b8197",
+      "outcome": "killed",
+      "output": "test_unit_trajectory_and_ivt_input_refusals (__main__.LineonCheckerTests.test_unit_trajectory_and_ivt_input_refusals) ... ERROR\n\n======================================================================\nERROR: test_unit_trajectory_and_ivt_input_refusals (__main__.LineonCheckerTests.test_unit_trajectory_and_ivt_input_refusals)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 117, in test_unit_trajectory_and_ivt_input_refusals\n    self.refused(module.verify_discrete_ivt_collision_site, *args)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 34, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 34, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\independent\\check_tfq_1219_fsp_hinge_lineon_sign_claim.py\", line 123, in verify_discrete_ivt_collision_site\n    if first[0] != p1 or second[0] != p2:\n       ~~~~~^^^\nIndexError: tuple index out of range\n\n----------------------------------------------------------------------\nRan 1 test in 0.011s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_unit_trajectory_and_ivt_input_refusals"
+      ]
+    },
+    {
+      "identity": "ivt-initial-order",
+      "mutant_sha256": "cbf3457c501da3aee5bd0aa24b265bc86f40d029880f252d168cc20aa32cae6a",
+      "outcome": "killed",
+      "output": "test_ivt_site_edge_and_nonexchange_witness_semantics (__main__.LineonCheckerTests.test_ivt_site_edge_and_nonexchange_witness_semantics) ... FAIL\n\n======================================================================\nFAIL: test_ivt_site_edge_and_nonexchange_witness_semantics (__main__.LineonCheckerTests.test_ivt_site_edge_and_nonexchange_witness_semantics)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 135, in test_ivt_site_edge_and_nonexchange_witness_semantics\n    self.assertEqual(module.verify_discrete_ivt_collision_site(*args), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (True, 0) != (False, -1)\n\nFirst differing element 0:\nTrue\nFalse\n\n- (True, 0)\n+ (False, -1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_ivt_site_edge_and_nonexchange_witness_semantics"
+      ]
+    },
+    {
+      "identity": "ivt-initial-binding",
+      "mutant_sha256": "1de4f7f389e8f780b0ec2b7ab45a8c75716db34eddcdb8594d640ac0f234b1cb",
+      "outcome": "killed",
+      "output": "test_ivt_site_edge_and_nonexchange_witness_semantics (__main__.LineonCheckerTests.test_ivt_site_edge_and_nonexchange_witness_semantics) ... FAIL\n\n======================================================================\nFAIL: test_ivt_site_edge_and_nonexchange_witness_semantics (__main__.LineonCheckerTests.test_ivt_site_edge_and_nonexchange_witness_semantics)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 135, in test_ivt_site_edge_and_nonexchange_witness_semantics\n    self.assertEqual(module.verify_discrete_ivt_collision_site(*args), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (True, 1) != (False, -1)\n\nFirst differing element 0:\nTrue\nFalse\n\n- (True, 1)\n+ (False, -1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_ivt_site_edge_and_nonexchange_witness_semantics"
+      ]
+    },
+    {
+      "identity": "ivt-exchange-binding",
+      "mutant_sha256": "a2e2de717b9ad178a2ecbb2ad35092481aa78021fd514590e2f1fa73170ec4ff",
+      "outcome": "killed",
+      "output": "test_ivt_site_edge_and_nonexchange_witness_semantics (__main__.LineonCheckerTests.test_ivt_site_edge_and_nonexchange_witness_semantics) ... FAIL\n\n======================================================================\nFAIL: test_ivt_site_edge_and_nonexchange_witness_semantics (__main__.LineonCheckerTests.test_ivt_site_edge_and_nonexchange_witness_semantics)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 135, in test_ivt_site_edge_and_nonexchange_witness_semantics\n    self.assertEqual(module.verify_discrete_ivt_collision_site(*args), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (True, 1) != (False, -1)\n\nFirst differing element 0:\nTrue\nFalse\n\n- (True, 1)\n+ (False, -1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_ivt_site_edge_and_nonexchange_witness_semantics"
+      ]
+    },
+    {
+      "identity": "ivt-meeting-condition",
+      "mutant_sha256": "caaa01ecda4653d5ae3d9d4a1740f1e625c47b50b87d31e23483c57950fa0bc0",
+      "outcome": "killed",
+      "output": "test_ivt_site_edge_and_nonexchange_witness_semantics (__main__.LineonCheckerTests.test_ivt_site_edge_and_nonexchange_witness_semantics) ... FAIL\n\n======================================================================\nFAIL: test_ivt_site_edge_and_nonexchange_witness_semantics (__main__.LineonCheckerTests.test_ivt_site_edge_and_nonexchange_witness_semantics)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 135, in test_ivt_site_edge_and_nonexchange_witness_semantics\n    self.assertEqual(module.verify_discrete_ivt_collision_site(*args), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (False, -1) != (True, 1)\n\nFirst differing element 0:\nFalse\nTrue\n\n- (False, -1)\n+ (True, 1)\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_ivt_site_edge_and_nonexchange_witness_semantics"
+      ]
+    },
+    {
+      "identity": "ivt-meeting-index",
+      "mutant_sha256": "f579a8a26f2c1977e26d97ba5cbf54b3b2dc235c0cebd3f3225286da65ee957a",
+      "outcome": "killed",
+      "output": "test_ivt_site_edge_and_nonexchange_witness_semantics (__main__.LineonCheckerTests.test_ivt_site_edge_and_nonexchange_witness_semantics) ... FAIL\n\n======================================================================\nFAIL: test_ivt_site_edge_and_nonexchange_witness_semantics (__main__.LineonCheckerTests.test_ivt_site_edge_and_nonexchange_witness_semantics)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 135, in test_ivt_site_edge_and_nonexchange_witness_semantics\n    self.assertEqual(module.verify_discrete_ivt_collision_site(*args), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (True, 2) != (True, 1)\n\nFirst differing element 1:\n2\n1\n\n- (True, 2)\n?        ^\n\n+ (True, 1)\n?        ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_ivt_site_edge_and_nonexchange_witness_semantics"
+      ]
+    },
+    {
+      "identity": "ivt-edge-condition",
+      "mutant_sha256": "8097af5786573f20b4f0f65628e99f77e1aed692c154d302f25ff42fc6d963e7",
+      "outcome": "killed",
+      "output": "test_ivt_site_edge_and_nonexchange_witness_semantics (__main__.LineonCheckerTests.test_ivt_site_edge_and_nonexchange_witness_semantics) ... FAIL\n\n======================================================================\nFAIL: test_ivt_site_edge_and_nonexchange_witness_semantics (__main__.LineonCheckerTests.test_ivt_site_edge_and_nonexchange_witness_semantics)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 135, in test_ivt_site_edge_and_nonexchange_witness_semantics\n    self.assertEqual(module.verify_discrete_ivt_collision_site(*args), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (False, -1) != (True, 0)\n\nFirst differing element 0:\nFalse\nTrue\n\n- (False, -1)\n+ (True, 0)\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_ivt_site_edge_and_nonexchange_witness_semantics"
+      ]
+    },
+    {
+      "identity": "ivt-edge-index",
+      "mutant_sha256": "9eb4617ba0b84b5d211211ddad4828f57adbcdaf7765bd569c3cb6fe2efca2cd",
+      "outcome": "killed",
+      "output": "test_ivt_site_edge_and_nonexchange_witness_semantics (__main__.LineonCheckerTests.test_ivt_site_edge_and_nonexchange_witness_semantics) ... FAIL\n\n======================================================================\nFAIL: test_ivt_site_edge_and_nonexchange_witness_semantics (__main__.LineonCheckerTests.test_ivt_site_edge_and_nonexchange_witness_semantics)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 135, in test_ivt_site_edge_and_nonexchange_witness_semantics\n    self.assertEqual(module.verify_discrete_ivt_collision_site(*args), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (True, 1) != (True, 0)\n\nFirst differing element 1:\n1\n0\n\n- (True, 1)\n?        ^\n\n+ (True, 0)\n?        ^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_ivt_site_edge_and_nonexchange_witness_semantics"
+      ]
+    },
+    {
+      "identity": "matrix-operand-admission",
+      "mutant_sha256": "bac664414971878f51de42e05cb5b1a5aa81f1e9dd9f8c0e7ee18daef0fa32e6",
+      "outcome": "killed",
+      "output": "test_matrix_boundaries_and_singular_inverse (__main__.LineonCheckerTests.test_matrix_boundaries_and_singular_inverse) ... ERROR\n\n======================================================================\nERROR: test_matrix_boundaries_and_singular_inverse (__main__.LineonCheckerTests.test_matrix_boundaries_and_singular_inverse)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 176, in test_matrix_boundaries_and_singular_inverse\n    self.assertEqual(self.refused(module.compute_commutator_holonomy_trace, invalid, eye).kind, \"input\")\n                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 34, in refused\n    result = evaluate(lambda: operation(*args))\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\checker_support\\boundary.py\", line 30, in evaluate\n    return Outcome(value=operation(*args, **kwargs))\n                         ~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 34, in <lambda>\n    result = evaluate(lambda: operation(*args))\n                              ~~~~~~~~~^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\independent\\check_tfq_1219_fsp_hinge_lineon_sign_claim.py\", line 140, in compute_commutator_holonomy_trace\n    inv_xy = b_xy.inv()\n             ^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'inv'\n\n----------------------------------------------------------------------\nRan 1 test in 0.017s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_matrix_boundaries_and_singular_inverse"
+      ]
+    },
+    {
+      "identity": "commutator-first-inverse",
+      "mutant_sha256": "f1548e7e44b2ef4504ae52e38bf11bc8960806439c2eec9ad6c7080f9ee5ef14",
+      "outcome": "killed",
+      "output": "test_commutator_against_symbolic_matrix_oracle (__main__.LineonCheckerTests.test_commutator_against_symbolic_matrix_oracle) ... FAIL\n\n======================================================================\nFAIL: test_commutator_against_symbolic_matrix_oracle (__main__.LineonCheckerTests.test_commutator_against_symbolic_matrix_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 159, in test_commutator_against_symbolic_matrix_oracle\n    @given(a=st.integers(-5, 5), b=st.integers(-5, 5), c=st.integers(-5, 5), d=st.integers(-5, 5))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 169, in test_commutator_against_symbolic_matrix_oracle\n    self.assertEqual(sp.Rational(actual.re.numerator, actual.re.denominator), sp.re(expected))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 4801/2401 != 4803/2401\nFailing test case: test_commutator_against_symbolic_matrix_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.LineonCheckerTests testMethod=test_commutator_against_symbolic_matrix_oracle>,\n    a=0,  # or any other generated value\n    b=1,\n    c=0,  # or any other generated value\n    d=1,\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\basic.py:904\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\numbers.py:1934\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\operations.py:477\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\operations.py:481\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\domains\\expressionrawdomain.py:37\n\n----------------------------------------------------------------------\nRan 1 test in 2.949s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_commutator_against_symbolic_matrix_oracle"
+      ]
+    },
+    {
+      "identity": "commutator-second-inverse",
+      "mutant_sha256": "6a788f721449250640c94c84aca218da27841c3acfd87af1bf11f1c3165c25e0",
+      "outcome": "killed",
+      "output": "test_commutator_against_symbolic_matrix_oracle (__main__.LineonCheckerTests.test_commutator_against_symbolic_matrix_oracle) ... FAIL\n\n======================================================================\nFAIL: test_commutator_against_symbolic_matrix_oracle (__main__.LineonCheckerTests.test_commutator_against_symbolic_matrix_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 159, in test_commutator_against_symbolic_matrix_oracle\n    @given(a=st.integers(-5, 5), b=st.integers(-5, 5), c=st.integers(-5, 5), d=st.integers(-5, 5))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 169, in test_commutator_against_symbolic_matrix_oracle\n    self.assertEqual(sp.Rational(actual.re.numerator, actual.re.denominator), sp.re(expected))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 4801/2401 != 4803/2401\nFailing test case: test_commutator_against_symbolic_matrix_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.LineonCheckerTests testMethod=test_commutator_against_symbolic_matrix_oracle>,\n    a=0,  # or any other generated value\n    b=1,\n    c=0,  # or any other generated value\n    d=1,\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\basic.py:904\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\numbers.py:1934\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\operations.py:477\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\core\\operations.py:481\n        C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\sympy\\polys\\domains\\expressionrawdomain.py:37\n\n----------------------------------------------------------------------\nRan 1 test in 3.172s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_commutator_against_symbolic_matrix_oracle"
+      ]
+    },
+    {
+      "identity": "commutator-trace-sign",
+      "mutant_sha256": "8c4d4ba4caa97c9827904ec5a65cf86dd3686d6f082efccef965d9622d97d612",
+      "outcome": "killed",
+      "output": "test_commutator_against_symbolic_matrix_oracle (__main__.LineonCheckerTests.test_commutator_against_symbolic_matrix_oracle) ... FAIL\n\n======================================================================\nFAIL: test_commutator_against_symbolic_matrix_oracle (__main__.LineonCheckerTests.test_commutator_against_symbolic_matrix_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 159, in test_commutator_against_symbolic_matrix_oracle\n    @given(a=st.integers(-5, 5), b=st.integers(-5, 5), c=st.integers(-5, 5), d=st.integers(-5, 5))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 169, in test_commutator_against_symbolic_matrix_oracle\n    self.assertEqual(sp.Rational(actual.re.numerator, actual.re.denominator), sp.re(expected))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: -2 != 2\nFailing test case: test_commutator_against_symbolic_matrix_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.LineonCheckerTests testMethod=test_commutator_against_symbolic_matrix_oracle>,\n    a=0,  # or any other generated value\n    b=0,  # or any other generated value\n    c=0,  # or any other generated value\n    d=0,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 5.566s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_commutator_against_symbolic_matrix_oracle"
+      ]
+    },
+    {
+      "identity": "projection-domain",
+      "mutant_sha256": "dbab63e393957d4aabc16bf9d6be6e0e53452bedbce507933bffc87d1c029092",
+      "outcome": "killed",
+      "output": "test_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching) ... FAIL\n\n======================================================================\nFAIL: test_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 205, in test_trace_and_flag_refusals_precede_branching\n    self.refused(module.evaluate_foliated_projected_trace, True, bad)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 35, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_trace_and_flag_refusals_precede_branching"
+      ]
+    },
+    {
+      "identity": "projection-square",
+      "mutant_sha256": "31bf109d93e8327d48c2a2c48c3e3d7f306cf2958587fb7aefc68940ff860a30",
+      "outcome": "killed",
+      "output": "test_projection_mass_and_routing_are_literal_toy_rules (__main__.LineonCheckerTests.test_projection_mass_and_routing_are_literal_toy_rules) ... FAIL\n\n======================================================================\nFAIL: test_projection_mass_and_routing_are_literal_toy_rules (__main__.LineonCheckerTests.test_projection_mass_and_routing_are_literal_toy_rules)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 184, in test_projection_mass_and_routing_are_literal_toy_rules\n    @given(numerator=st.integers(-1000, 1000), denominator=st.integers(1, 40), corner=st.booleans(), nonabelian=st.booleans())\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 189, in test_projection_mass_and_routing_are_literal_toy_rules\n    self.assertEqual(actual, trace if corner else Q(numerator*numerator, denominator*denominator))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(-1, 1) != Fraction(1, 1)\nFailing test case: test_projection_mass_and_routing_are_literal_toy_rules(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.LineonCheckerTests testMethod=test_projection_mass_and_routing_are_literal_toy_rules>,\n    numerator=-1,\n    denominator=1,  # or any other generated value\n    corner=False,\n    nonabelian=False,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.931s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_projection_mass_and_routing_are_literal_toy_rules"
+      ]
+    },
+    {
+      "identity": "projection-corner",
+      "mutant_sha256": "14378bb8f5dffae1a7ac4345f93afc4b87ed277ec106409e3a2912c170d484d2",
+      "outcome": "killed",
+      "output": "test_projection_mass_and_routing_are_literal_toy_rules (__main__.LineonCheckerTests.test_projection_mass_and_routing_are_literal_toy_rules) ... FAIL\n\n======================================================================\nFAIL: test_projection_mass_and_routing_are_literal_toy_rules (__main__.LineonCheckerTests.test_projection_mass_and_routing_are_literal_toy_rules)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 184, in test_projection_mass_and_routing_are_literal_toy_rules\n    @given(numerator=st.integers(-1000, 1000), denominator=st.integers(1, 40), corner=st.booleans(), nonabelian=st.booleans())\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 189, in test_projection_mass_and_routing_are_literal_toy_rules\n    self.assertEqual(actual, trace if corner else Q(numerator*numerator, denominator*denominator))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(-1, 1) != Fraction(1, 1)\nFailing test case: test_projection_mass_and_routing_are_literal_toy_rules(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.LineonCheckerTests testMethod=test_projection_mass_and_routing_are_literal_toy_rules>,\n    numerator=-1,\n    denominator=1,  # or any other generated value\n    corner=False,  # or any other generated value\n    nonabelian=False,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.202s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_projection_mass_and_routing_are_literal_toy_rules"
+      ]
+    },
+    {
+      "identity": "mass-exactness",
+      "mutant_sha256": "211fa6e83d720aa2cddbd44769165b210bddf614b05d569dce89c773992a147e",
+      "outcome": "killed",
+      "output": "test_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching) ... FAIL\n\n======================================================================\nFAIL: test_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 203, in test_trace_and_flag_refusals_precede_branching\n    self.refused(module.compute_defect_mass_phi1, bad)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 35, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_trace_and_flag_refusals_precede_branching"
+      ]
+    },
+    {
+      "identity": "mass-zero-sign",
+      "mutant_sha256": "451245eaa054f48277489c905bea7d7ca471a646a0f7b89ec1670a29be421c88",
+      "outcome": "killed",
+      "output": "test_projection_mass_and_routing_are_literal_toy_rules (__main__.LineonCheckerTests.test_projection_mass_and_routing_are_literal_toy_rules) ... FAIL\n\n======================================================================\nFAIL: test_projection_mass_and_routing_are_literal_toy_rules (__main__.LineonCheckerTests.test_projection_mass_and_routing_are_literal_toy_rules)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 184, in test_projection_mass_and_routing_are_literal_toy_rules\n    @given(numerator=st.integers(-1000, 1000), denominator=st.integers(1, 40), corner=st.booleans(), nonabelian=st.booleans())\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 191, in test_projection_mass_and_routing_are_literal_toy_rules\n    self.assertEqual(module.compute_defect_mass_phi1(trace), 2 if numerator < 0 else 0)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 2 != 0\nFailing test case: test_projection_mass_and_routing_are_literal_toy_rules(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.LineonCheckerTests testMethod=test_projection_mass_and_routing_are_literal_toy_rules>,\n    numerator=0,\n    denominator=1,  # or any other generated value\n    corner=False,  # or any other generated value\n    nonabelian=False,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.270s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_projection_mass_and_routing_are_literal_toy_rules"
+      ]
+    },
+    {
+      "identity": "routing-or",
+      "mutant_sha256": "3b8f9b106242ac6ab0b8948dec9c76053da7585a217169519fb4a9833a453e87",
+      "outcome": "killed",
+      "output": "test_projection_mass_and_routing_are_literal_toy_rules (__main__.LineonCheckerTests.test_projection_mass_and_routing_are_literal_toy_rules) ... FAIL\n\n======================================================================\nFAIL: test_projection_mass_and_routing_are_literal_toy_rules (__main__.LineonCheckerTests.test_projection_mass_and_routing_are_literal_toy_rules)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 184, in test_projection_mass_and_routing_are_literal_toy_rules\n    @given(numerator=st.integers(-1000, 1000), denominator=st.integers(1, 40), corner=st.booleans(), nonabelian=st.booleans())\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 194, in test_projection_mass_and_routing_are_literal_toy_rules\n    self.assertEqual(module.evaluate_terminal_routing(corner, nonabelian), table[(corner, nonabelian)])\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'EXACT_REPAIR' != 'OPEN_SIGN_OBSTRUCTION'\n- EXACT_REPAIR\n+ OPEN_SIGN_OBSTRUCTION\n\nFailing test case: test_projection_mass_and_routing_are_literal_toy_rules(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.LineonCheckerTests testMethod=test_projection_mass_and_routing_are_literal_toy_rules>,\n    numerator=0,  # or any other generated value\n    denominator=1,  # or any other generated value\n    corner=False,\n    nonabelian=True,\n)\n\n----------------------------------------------------------------------\nRan 1 test in 2.696s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_projection_mass_and_routing_are_literal_toy_rules"
+      ]
+    },
+    {
+      "identity": "routing-second-admission",
+      "mutant_sha256": "8a75047940ffbdcc96d4b53dbe86085c3895b03cc189d3c30c4fdc989b1427ed",
+      "outcome": "killed",
+      "output": "test_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching) ... FAIL\n\n======================================================================\nFAIL: test_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 201, in test_trace_and_flag_refusals_precede_branching\n    self.refused(module.evaluate_terminal_routing, True, bad)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 35, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_trace_and_flag_refusals_precede_branching"
+      ]
+    },
+    {
+      "identity": "curvature-lower",
+      "mutant_sha256": "21252ec8a90f238dcd52fdcb45082438b21438865b1881a7fdf03c35552098fa",
+      "outcome": "killed",
+      "output": "test_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching) ... FAIL\n\n======================================================================\nFAIL: test_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 208, in test_trace_and_flag_refusals_precede_branching\n    self.refused(module.compute_curvature_gamma2, outside)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 35, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_trace_and_flag_refusals_precede_branching"
+      ]
+    },
+    {
+      "identity": "curvature-upper",
+      "mutant_sha256": "4adcef78e0d2e546dada5133cbca681edb5325a7859f89708d735abf17753f38",
+      "outcome": "killed",
+      "output": "test_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching) ... FAIL\n\n======================================================================\nFAIL: test_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 208, in test_trace_and_flag_refusals_precede_branching\n    self.refused(module.compute_curvature_gamma2, outside)\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 35, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_trace_and_flag_refusals_precede_branching"
+      ]
+    },
+    {
+      "identity": "curvature-integral-negative",
+      "mutant_sha256": "0569668d9193ed4d6450a21f57523d262b472eb5ba83db4348b00c1c356e10e9",
+      "outcome": "killed",
+      "output": "test_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching) ... FAIL\n\n======================================================================\nFAIL: test_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 210, in test_trace_and_flag_refusals_precede_branching\n    self.assertEqual(module.compute_curvature_gamma2(Q(value)), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: pi/3 != 2*pi/3\n\n----------------------------------------------------------------------\nRan 1 test in 0.011s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_trace_and_flag_refusals_precede_branching"
+      ]
+    },
+    {
+      "identity": "curvature-integral-positive",
+      "mutant_sha256": "476de4c63b93a8285a4f612163e36dde255124c29c2f993cd95c9e468bf1d30c",
+      "outcome": "killed",
+      "output": "test_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching) ... FAIL\n\n======================================================================\nFAIL: test_trace_and_flag_refusals_precede_branching (__main__.LineonCheckerTests.test_trace_and_flag_refusals_precede_branching)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 210, in test_trace_and_flag_refusals_precede_branching\n    self.assertEqual(module.compute_curvature_gamma2(Q(value)), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 2*pi/3 != pi/3\n\n----------------------------------------------------------------------\nRan 1 test in 0.010s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_trace_and_flag_refusals_precede_branching"
+      ]
+    },
+    {
+      "identity": "curvature-normalization",
+      "mutant_sha256": "d90362215940a04635697bea2d999b5b4e0f99715a0c84d9eccc86e0800a17fb",
+      "outcome": "killed",
+      "output": "test_curvature_is_exact_bounded_symbolic_construction (__main__.LineonCheckerTests.test_curvature_is_exact_bounded_symbolic_construction) ... ERROR\n\n======================================================================\nERROR: test_curvature_is_exact_bounded_symbolic_construction (__main__.LineonCheckerTests.test_curvature_is_exact_bounded_symbolic_construction)\n----------------------------------------------------------------------\n  + Exception Group Traceback (most recent call last):\n  |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 213, in test_curvature_is_exact_bounded_symbolic_construction\n  |     @given(numerator=st.integers(-200, 200))\n  |                ^^^^^^^\n  |   File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n  |     raise the_error_hypothesis_found\n  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)\n  +-+---------------- 1 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 224, in test_curvature_is_exact_bounded_symbolic_construction\n    |     self.assertEqual(result.args, (sp.Rational(value.numerator, 2*value.denominator),))\n    |     ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 925, in assertEqual\n    |     assertion_func(first, second, msg=msg)\n    |     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 1142, in assertTupleEqual\n    |     self.assertSequenceEqual(tuple1, tuple2, msg, seq_type=tuple)\n    |     ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 1113, in assertSequenceEqual\n    |     self.fail(msg)\n    |     ~~~~~~~~~^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\case.py\", line 750, in fail\n    |     raise self.failureException(msg)\n    | AssertionError: Tuples differ: (1/100,) != (1/200,)\n    | \n    | First differing element 0:\n    | 1/100\n    | 1/200\n    | \n    | - (1/100,)\n    | ?    ^\n    | \n    | + (1/200,)\n    | ?    ^\n    | \n    | Failing test case: test_curvature_is_exact_bounded_symbolic_construction(\n    |     self=<__main__.LineonCheckerTests testMethod=test_curvature_is_exact_bounded_symbolic_construction>,\n    |     numerator=1,  # or any other generated value\n    | )\n    +---------------- 2 ----------------\n    | Traceback (most recent call last):\n    |   File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 227, in test_curvature_is_exact_bounded_symbolic_construction\n    |     operation.assert_called_once_with(sp.Rational(1, 6), evaluate=False)\n    |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 998, in assert_called_once_with\n    |     return self.assert_called_with(*args, **kwargs)\n    |            ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n    |   File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 986, in assert_called_with\n    |     raise AssertionError(_error_message()) from cause\n    | AssertionError: expected call not found.\n    | Expected: acos(1/6, evaluate=False)\n    |   Actual: acos(1/3, evaluate=False)\n    | Failing test case: test_curvature_is_exact_bounded_symbolic_construction(\n    |     self=<__main__.LineonCheckerTests testMethod=test_curvature_is_exact_bounded_symbolic_construction>,\n    |     numerator=0,\n    | )\n    +------------------------------------\n\n----------------------------------------------------------------------\nRan 1 test in 1.471s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_curvature_is_exact_bounded_symbolic_construction"
+      ]
+    },
+    {
+      "identity": "curvature-implicit-simplification",
+      "mutant_sha256": "4a162579cb6ceb177e66ea504f086b0e14ed1a09114705882e644607fe2a947c",
+      "outcome": "killed",
+      "output": "test_curvature_is_exact_bounded_symbolic_construction (__main__.LineonCheckerTests.test_curvature_is_exact_bounded_symbolic_construction) ... FAIL\n\n======================================================================\nFAIL: test_curvature_is_exact_bounded_symbolic_construction (__main__.LineonCheckerTests.test_curvature_is_exact_bounded_symbolic_construction)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 213, in test_curvature_is_exact_bounded_symbolic_construction\n    @given(numerator=st.integers(-200, 200))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 227, in test_curvature_is_exact_bounded_symbolic_construction\n    operation.assert_called_once_with(sp.Rational(1, 6), evaluate=False)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 998, in assert_called_once_with\n    return self.assert_called_with(*args, **kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\AppData\\Roaming\\uv\\python\\cpython-3.14-windows-x86_64-none\\Lib\\unittest\\mock.py\", line 986, in assert_called_with\n    raise AssertionError(_error_message()) from cause\nAssertionError: expected call not found.\nExpected: acos(1/6, evaluate=False)\n  Actual: acos(1/6, evaluate=True)\nFailing test case: test_curvature_is_exact_bounded_symbolic_construction(\n    self=<__main__.LineonCheckerTests testMethod=test_curvature_is_exact_bounded_symbolic_construction>,\n    numerator=0,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.464s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_curvature_is_exact_bounded_symbolic_construction"
+      ]
+    },
+    {
+      "identity": "parity-collision-refusal",
+      "mutant_sha256": "e5344c5afcd95cea5a6d1b9ca98e30aff8f44d713551aab24a93a726eb57f250",
+      "outcome": "killed",
+      "output": "test_path_order_against_site_and_edge_oracle (__main__.LineonCheckerTests.test_path_order_against_site_and_edge_oracle) ... FAIL\n\n======================================================================\nFAIL: test_path_order_against_site_and_edge_oracle (__main__.LineonCheckerTests.test_path_order_against_site_and_edge_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 45, in test_path_order_against_site_and_edge_oracle\n    @given(first=st.integers(-100, 100), gap=st.integers(-3, 20), hops=HOPS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 57, in test_path_order_against_site_and_edge_oracle\n    self.assertEqual(self.refused(module.compute_lineon_permutation_parity, first, second, hops).kind, \"input\")\n                     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 35, in refused\n    self.assertFalse(result.ok)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^\nAssertionError: True is not false\nFailing test case: test_path_order_against_site_and_edge_oracle(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.LineonCheckerTests testMethod=test_path_order_against_site_and_edge_oracle>,\n    first=0,  # or any other generated value\n    gap=0,\n    hops=[],  # or any other generated value\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\independent\\check_tfq_1219_fsp_hinge_lineon_sign_claim.py:88\n\n----------------------------------------------------------------------\nRan 1 test in 7.131s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_path_order_against_site_and_edge_oracle"
+      ]
+    },
+    {
+      "identity": "receipt-case-count",
+      "mutant_sha256": "750fb91bbde0366aaa5fe40e6861c296f3f57e617fbf09b4171359759b545c0f",
+      "outcome": "killed",
+      "output": "test_generated_case_accounting (__main__.LineonCheckerTests.test_generated_case_accounting) ... FAIL\n\n======================================================================\nFAIL: test_generated_case_accounting (__main__.LineonCheckerTests.test_generated_case_accounting)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 230, in test_generated_case_accounting\n    @given(statuses=st.lists(st.booleans(), max_size=20))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 239, in test_generated_case_accounting\n    self.assertEqual(result[\"total_checks\"], 25+len(statuses))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 26 != 25\nFailing test case: test_generated_case_accounting(\n    self=<__main__.LineonCheckerTests testMethod=test_generated_case_accounting>,\n    statuses=[],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.514s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_generated_case_accounting"
+      ]
+    },
+    {
+      "identity": "receipt-failure-list",
+      "mutant_sha256": "20e8663d8b4e7eb285189051c8c4d621585f2f6f66edb2ae60d9ecba6fdb9514",
+      "outcome": "killed",
+      "output": "test_generated_case_accounting (__main__.LineonCheckerTests.test_generated_case_accounting) ... FAIL\n\n======================================================================\nFAIL: test_generated_case_accounting (__main__.LineonCheckerTests.test_generated_case_accounting)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 230, in test_generated_case_accounting\n    @given(statuses=st.lists(st.booleans(), max_size=20))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 240, in test_generated_case_accounting\n    self.assertEqual(result[\"failed_checks\"], len(failures))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 25 != 0\nFailing test case: test_generated_case_accounting(\n    self=<__main__.LineonCheckerTests testMethod=test_generated_case_accounting>,\n    statuses=[],  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.292s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_generated_case_accounting"
+      ]
+    },
+    {
+      "identity": "receipt-false-success",
+      "mutant_sha256": "b630025614268bd96890f84eeb863c73bcf1baf8f5f950f1a09d8528e40b834a",
+      "outcome": "killed",
+      "output": "test_generated_case_accounting (__main__.LineonCheckerTests.test_generated_case_accounting) ... FAIL\n\n======================================================================\nFAIL: test_generated_case_accounting (__main__.LineonCheckerTests.test_generated_case_accounting)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 230, in test_generated_case_accounting\n    @given(statuses=st.lists(st.booleans(), max_size=20))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 242, in test_generated_case_accounting\n    self.assertIs(result[\"all_passed\"], not failures)\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: True is not False\nFailing test case: test_generated_case_accounting(\n    self=<__main__.LineonCheckerTests testMethod=test_generated_case_accounting>,\n    statuses=[False],\n)\n\n----------------------------------------------------------------------\nRan 1 test in 0.242s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_generated_case_accounting"
+      ]
+    },
+    {
+      "identity": "cli-failure-status",
+      "mutant_sha256": "18bc851b6c17ef9e92f961b3087def3037fd3bfd74adc55bceab17daa0c4843d",
+      "outcome": "killed",
+      "output": "test_faults_fail_cli_and_preserve_cancellation (__main__.LineonCheckerTests.test_faults_fail_cli_and_preserve_cancellation) ... FAIL\n\n======================================================================\nFAIL: test_faults_fail_cli_and_preserve_cancellation (__main__.LineonCheckerTests.test_faults_fail_cli_and_preserve_cancellation)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 275, in test_faults_fail_cli_and_preserve_cancellation\n    self.assertEqual(cli(module.main), 1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.013s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_faults_fail_cli_and_preserve_cancellation"
+      ]
+    },
+    {
+      "identity": "su2-counterexample-entry",
+      "mutant_sha256": "2209071c9f9331ffb880e3ae462ced2dbeedf3ccb5fb134d6059ec3c66ea1a4d",
+      "outcome": "killed",
+      "output": "test_default_receipt_and_sections_have_unique_exact_statuses (__main__.LineonCheckerTests.test_default_receipt_and_sections_have_unique_exact_statuses) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_and_sections_have_unique_exact_statuses (__main__.LineonCheckerTests.test_default_receipt_and_sections_have_unique_exact_statuses)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 248, in test_default_receipt_and_sections_have_unique_exact_statuses\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[124 chars]ks': 3, 'failures': ['su2_counterexample_unita[96 chars]alse} != {'rec[124 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FSP-HINGE-LINEON-SIGN-CLAIM',\n-  'failed_checks': 3,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n+  'failures': [],\n-  'failures': ['su2_counterexample_unitary',\n-               'su2_counterexample_det_one',\n-               'su2_counterexample_trace_re_is_14_over_25'],\n   'record_id': 'TFQ-1219',\n   'total_checks': 77}\n\n----------------------------------------------------------------------\nRan 1 test in 0.012s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_default_receipt_and_sections_have_unique_exact_statuses"
+      ]
+    },
+    {
+      "identity": "y-junction-sign-convention",
+      "mutant_sha256": "abbdc7da461a1a0c4765bb4526afe06fa73e28024ef9d6c920995d855bd056cb",
+      "outcome": "killed",
+      "output": "test_default_receipt_and_sections_have_unique_exact_statuses (__main__.LineonCheckerTests.test_default_receipt_and_sections_have_unique_exact_statuses) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_and_sections_have_unique_exact_statuses (__main__.LineonCheckerTests.test_default_receipt_and_sections_have_unique_exact_statuses)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 248, in test_default_receipt_and_sections_have_unique_exact_statuses\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[124 chars]ks': 1, 'failures': ['y_junction_exchange_sign[33 chars]alse} != {'rec[124 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FSP-HINGE-LINEON-SIGN-CLAIM',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n-  'failures': ['y_junction_exchange_sign_by_convention'],\n+  'failures': [],\n   'record_id': 'TFQ-1219',\n   'total_checks': 77}\n\n----------------------------------------------------------------------\nRan 1 test in 0.012s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_default_receipt_and_sections_have_unique_exact_statuses"
+      ]
+    },
+    {
+      "identity": "y-junction-adjacency",
+      "mutant_sha256": "cb8e59c5af28d00d11d89e61da6b2f8b5fd8957ef8394a1e2840ed0d70df7b9c",
+      "outcome": "killed",
+      "output": "test_default_receipt_and_sections_have_unique_exact_statuses (__main__.LineonCheckerTests.test_default_receipt_and_sections_have_unique_exact_statuses) ... FAIL\n\n======================================================================\nFAIL: test_default_receipt_and_sections_have_unique_exact_statuses (__main__.LineonCheckerTests.test_default_receipt_and_sections_have_unique_exact_statuses)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 248, in test_default_receipt_and_sections_have_unique_exact_statuses\n    self.assertEqual(module.run_checks(), expected)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'rec[124 chars]ks': 1, 'failures': ['y_junction_6step_collisi[35 chars]alse} != {'rec[124 chars]ks': 0, 'failures': [], 'all_passed': True}\n- {'all_passed': False,\n?                ^^^^\n\n+ {'all_passed': True,\n?                ^^^\n\n   'authority_effect': 'None',\n   'dag_node': 'FSP-HINGE-LINEON-SIGN-CLAIM',\n-  'failed_checks': 1,\n?                   ^\n\n+  'failed_checks': 0,\n?                   ^\n\n-  'failures': ['y_junction_6step_collision_free_exchange'],\n+  'failures': [],\n   'record_id': 'TFQ-1219',\n   'total_checks': 77}\n\n----------------------------------------------------------------------\nRan 1 test in 0.014s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_default_receipt_and_sections_have_unique_exact_statuses"
+      ]
+    },
+    {
+      "identity": "parity-odd-value",
+      "mutant_sha256": "87b1663ce974695949a62dfb84bc01ea51e94c4ce03f37a9734cd25b9e30ada5",
+      "outcome": "killed",
+      "output": "test_path_order_against_site_and_edge_oracle (__main__.LineonCheckerTests.test_path_order_against_site_and_edge_oracle) ... FAIL\n\n======================================================================\nFAIL: test_path_order_against_site_and_edge_oracle (__main__.LineonCheckerTests.test_path_order_against_site_and_edge_oracle)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 45, in test_path_order_against_site_and_edge_oracle\n    @given(first=st.integers(-100, 100), gap=st.integers(-3, 20), hops=HOPS)\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 55, in test_path_order_against_site_and_edge_oracle\n    self.assertEqual(module.compute_lineon_permutation_parity(first, second, hops), 0)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 0\nFailing test case: test_path_order_against_site_and_edge_oracle(\n    self=<__main__.LineonCheckerTests testMethod=test_path_order_against_site_and_edge_oracle>,\n    first=0,  # or any other generated value\n    gap=1,\n    hops=[],\n)\nExplanation:\n    These lines were always and only run by failing test cases:\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\independent\\check_tfq_1219_fsp_hinge_lineon_sign_claim.py:93\n        C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_review_repairs.py:77\n\n----------------------------------------------------------------------\nRan 1 test in 1.228s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/check_tfq_1219_fsp_hinge_lineon_sign_claim.py",
+      "tests": [
+        "test_path_order_against_site_and_edge_oracle"
+      ]
+    },
+    {
+      "identity": "test-refusal-helper",
+      "mutant_sha256": "111586880fad4b4df7015ed037c9887fde75b2532efbf88c06ef6dccdc59a195",
+      "outcome": "killed",
+      "output": "test_refusal_helper_rejects_success (__main__.LineonCheckerTests.test_refusal_helper_rejects_success) ... FAIL\n\n======================================================================\nFAIL: test_refusal_helper_rejects_success (__main__.LineonCheckerTests.test_refusal_helper_rejects_success)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\lineon-mutation-71lz0lnv\\tests\\test_lineon_checker.py\", line 42, in test_refusal_helper_rejects_success\n    with self.assertRaises(AssertionError):\n         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\nAssertionError: AssertionError not raised\n\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "tests/test_lineon_checker.py",
+      "tests": [
+        "test_refusal_helper_rejects_success"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 46,
+      "survived": 2,
+      "unrun": 0
+    },
+    "detected_fraction": 0.9583333333333334,
+    "eligible": 48
+  }
+}

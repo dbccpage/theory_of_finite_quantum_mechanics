@@ -1,0 +1,437 @@
+{
+  "AuthorityEffect": "None",
+  "source_record": {
+    "path": "atlas/papers/foundations/authorization_incompleteness/evidence/original/computability_carrier_candidates.json",
+    "sha256": "4af4d2ba26a0ea47b0f184523a2d7238d4e91d317cb526968e5ebe9bcbb1d102"
+  },
+  "source_requirements": {
+    "checks/independent/auth-dtm2-input-request-planned.py": {
+      "role": "Bounded request-envelope codec with immutable framing value object, explicit token/length budgets and Railway decoding",
+      "profile": "Exact",
+      "origin": "lean4/ComputabilityDtm2InputRequestPlanned.lean",
+      "cost": "At most 4096 encoded tokens, each at most 4096 bits. Snapshot admission, encoding and decoding take O(n) token operations/storage, with no iteration proportional to fuel and no evaluator. Header/fuel/machine length occupy three tokens; combined payload is at most 4093.",
+      "groups": [
+        {
+          "requirement": "Admit exact natural tokens, snapshot both payload segments and enforce the combined framing budget; keep one immutable request value object with explicit fuel/machine/input meanings.",
+          "symbols": [
+            "_tokens",
+            "RequestEnvelope",
+            "RequestEnvelope.__post_init__"
+          ],
+          "tests": [
+            "AuthorityCheckerTests.test_request_every_token_boundary",
+            "AuthorityCheckerTests.test_request_snapshot_immutability_and_resource_endpoints"
+          ],
+          "requirement_id": "TFQM-AUTH-REVIEW-AUTH-DTM2-INPUT-REQUEST-PLANNED-1"
+        },
+        {
+          "requirement": "Encode header 1, fuel, machine length and payload; decode all syntactically valid bounded envelopes, reject wrong/truncated/oversized/malformed framing and return typed outcomes. Empty payload segments are permitted and carry no machine-validity claim.",
+          "symbols": [
+            "RequestEnvelope.encode",
+            "RequestEnvelope.decode",
+            "_decode"
+          ],
+          "tests": [
+            "AuthorityCheckerTests.test_request_round_trip_and_independent_layout",
+            "AuthorityCheckerTests.test_request_every_token_boundary",
+            "AuthorityCheckerTests.test_request_snapshot_immutability_and_resource_endpoints"
+          ],
+          "requirement_id": "TFQM-AUTH-REVIEW-AUTH-DTM2-INPUT-REQUEST-PLANNED-2"
+        },
+        {
+          "requirement": "Replay the original closed word and malformed controls with invocation-local accounting, no import-time execution and no evaluator/authorization claim.",
+          "symbols": [
+            "main"
+          ],
+          "tests": [
+            "AuthorityCheckerTests.test_current_source_cli_and_repeatability"
+          ],
+          "requirement_id": "TFQM-AUTH-REVIEW-AUTH-DTM2-INPUT-REQUEST-PLANNED-3"
+        }
+      ],
+      "source_sha256": "e648759c992cca6af3dee4c84e7df0d07199348ed0a5784212beae659846b171",
+      "symbols": [
+        "RequestEnvelope",
+        "RequestEnvelope.__post_init__",
+        "RequestEnvelope.decode",
+        "RequestEnvelope.encode",
+        "_decode",
+        "_tokens",
+        "main"
+      ],
+      "origin_sha256": "ea4b03e69cba1c97d9af871a713235934a3e0dd40daa4506f6069cf38b3ee651",
+      "consumers": [
+        {
+          "path": "dag/research/campaign_auth-dtm2-input-request-planned_lean_replay.json",
+          "sha256": "cee67ff0da86593cb9d1bf0dde9a4bfbeec038466d2c64e0f5cb886db23187e4"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_pr-371-repair.md",
+          "sha256": "e4966a1d4cf512481c996d73ccf1d95c557ee1a3414c7e11385392a46f9ad8ec"
+        },
+        {
+          "path": "dag/research/pr_batch_source_validation.json",
+          "sha256": "e45bfda9bf85ccd098c2a2686f3e33663c8c7a9d15d8940c58f882e71df764dd"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-auth-dtm2-input-request-planned-precommit.md",
+          "sha256": "7fadba28037d9e33c167a45948d64032b1971f7d44a3adef8456e1f85edf78f6"
+        },
+        {
+          "path": "dag/research/pr_371_review_replay.json",
+          "sha256": "1bf047c71d654e63a7e5893fa3b440c8416a892bf72c75e03702e94386532d06"
+        },
+        {
+          "path": "checks/tests/test_authority_checkers.py",
+          "sha256": "8ef1bc0990d3f56dbed9c370a525e3488cab336a5d2018b49daacf474543d330",
+          "state": "new contract suite"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "7f21eb161a8286b69694898364335e0a2630aa42322894c4ffe0088e7beb6244",
+          "state": "proposed workflow"
+        }
+      ],
+      "consumer_boundary": "Existing standalone script paths and the reviewed dynamic loader are preserved. Added codec/quotient checks are Python-only bounded artifacts; historical closed Lean theorems and imported/open scientific statuses are not promoted. The carrier script now checks the actual direct-candidate slice, not the full structural validator."
+    },
+    "checks/independent/auth-rice-theorem-import.py": {
+      "role": "Finite semantics aggregate with validated immutable behavior tables, stable behavioral quotients and checked descent of Boolean code predicates",
+      "profile": "Exact",
+      "origin": "lean4/ComputabilityRiceTheoremImport.lean",
+      "cost": "At most 64 code rows and 32 carrier points; at most 2048 small integer entries. Admission and identity comparisons cost O(c*n). Stable grouping uses expected O(c*n) tuple hashing and O(c*n) storage, with a bounded O(c*c*n) worst case for hash collisions. Property descent costs O(c) after grouping. No infinite-language quantification or evaluation is implemented.",
+      "groups": [
+        {
+          "requirement": "Admit a nonempty rectangular total behavior table over its own finite carrier, rejecting bool/float/out-of-range values and oversize dimensions; snapshot nested rows.",
+          "symbols": [
+            "FiniteBehaviorCarrier",
+            "FiniteBehaviorCarrier.__post_init__",
+            "FiniteBehaviorCarrier.behavior"
+          ],
+          "tests": [
+            "AuthorityCheckerTests.test_behavior_constructor_and_property_refusals",
+            "AuthorityCheckerTests.test_behavior_snapshot_and_maximum_table"
+          ],
+          "requirement_id": "TFQM-AUTH-REVIEW-AUTH-RICE-THEOREM-IMPORT-1"
+        },
+        {
+          "requirement": "Compute identity predicates and a complete disjoint behavior partition in first-code order; descend a Boolean predicate exactly when constant on every class, returning typed refusal otherwise.",
+          "symbols": [
+            "FiniteBehaviorCarrier.identity_bits",
+            "FiniteBehaviorCarrier.equivalence_classes",
+            "FiniteBehaviorCarrier.factor_property",
+            "FiniteBehaviorCarrier._factor_property"
+          ],
+          "tests": [
+            "AuthorityCheckerTests.test_generated_behavior_equivalence_and_descent",
+            "AuthorityCheckerTests.test_behavior_partition_and_all_three_code_predicates",
+            "AuthorityCheckerTests.test_behavior_constructor_and_property_refusals"
+          ],
+          "requirement_id": "TFQM-AUTH-REVIEW-AUTH-RICE-THEOREM-IMPORT-2"
+        },
+        {
+          "requirement": "Preserve the original three-code/two-point behavior and separate identity from syntactic code-zero predicates, with validated wrapper indices.",
+          "symbols": [
+            "beh",
+            "id_bit",
+            "code_zero"
+          ],
+          "tests": [
+            "AuthorityCheckerTests.test_behavior_partition_and_all_three_code_predicates",
+            "AuthorityCheckerTests.test_behavior_constructor_and_property_refusals"
+          ],
+          "requirement_id": "TFQM-AUTH-REVIEW-AUTH-RICE-THEOREM-IMPORT-3"
+        },
+        {
+          "requirement": "Report executed finite obligations only, including identity descent and code-zero non-descent, while retaining the imported infinite Rice theorem boundary.",
+          "symbols": [
+            "check"
+          ],
+          "tests": [
+            "AuthorityCheckerTests.test_current_source_cli_and_repeatability"
+          ],
+          "requirement_id": "TFQM-AUTH-REVIEW-AUTH-RICE-THEOREM-IMPORT-4"
+        }
+      ],
+      "source_sha256": "a7ef8368ce4d3c127cc9d149e7c189996e55195d8d4cdc3381aca8482ce3d2e4",
+      "symbols": [
+        "FiniteBehaviorCarrier",
+        "FiniteBehaviorCarrier.__post_init__",
+        "FiniteBehaviorCarrier._factor_property",
+        "FiniteBehaviorCarrier.behavior",
+        "FiniteBehaviorCarrier.equivalence_classes",
+        "FiniteBehaviorCarrier.factor_property",
+        "FiniteBehaviorCarrier.identity_bits",
+        "beh",
+        "check",
+        "code_zero",
+        "id_bit"
+      ],
+      "origin_sha256": "1a62e79193d0b262983cb9daaa13817efd88b55827f6d174da820f42c06ad117",
+      "consumers": [
+        {
+          "path": "dag/theory_of_finite_qm.jsonl",
+          "sha256": "3f731a626fd2287ddb67a1ce3816cf1b897eb58eab5334950f3378d93662ae57"
+        },
+        {
+          "path": "docs/evidence/stages/COMPUTATION.md",
+          "sha256": "4312e8b1d353559171f3697c659d3c1f5604131061549a73b5510eb7ffb44414"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-26_campaign-auth-rice-theorem-import-precommit.md",
+          "sha256": "8e9d3e19937f45c6a55ec0ec9ddb9f32d5884a23c484dc78f56ccf38231b3e2b"
+        },
+        {
+          "path": "docs/evidence/nodes/AUTH-RICE-THEOREM-IMPORT.md",
+          "sha256": "214c1f0798659d9e16716cb69986784302ab97e311a947acf8681d85d6f999f5"
+        },
+        {
+          "path": "dag/fragments/unified_dag.json",
+          "sha256": "c7845b4f150f45fece1c97988789f0c2ea458b088cfa20db09f43bc6fff0d753"
+        },
+        {
+          "path": "dag/fragments/application_branches.json",
+          "sha256": "7569bc0053202d28d9d8d6c7cc9328884fd2ccfe0dc1c0a3e1770f4eb4a9d684"
+        },
+        {
+          "path": "dag/evidence/evidence_map.json",
+          "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f"
+        },
+        {
+          "path": "dag/derivation_dag.json",
+          "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586"
+        },
+        {
+          "path": "dag/derivations/29_computation/tfq_1337_auth_rice_theorem_import.md",
+          "sha256": "d625d1afc6e8aa4c9264658a44c534298f295466af154522bab2d995451be60a"
+        },
+        {
+          "path": "checks/tests/test_authority_checkers.py",
+          "sha256": "8ef1bc0990d3f56dbed9c370a525e3488cab336a5d2018b49daacf474543d330",
+          "state": "new contract suite"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "7f21eb161a8286b69694898364335e0a2630aa42322894c4ffe0088e7beb6244",
+          "state": "proposed workflow"
+        }
+      ],
+      "consumer_boundary": "Existing standalone script paths and the reviewed dynamic loader are preserved. Added codec/quotient checks are Python-only bounded artifacts; historical closed Lean theorems and imported/open scientific statuses are not promoted. The carrier script now checks the actual direct-candidate slice, not the full structural validator."
+    },
+    "checks/independent/authf-carrier-admission-gate.py": {
+      "role": "Source-bound direct-candidate ceiling verifier with schema/identity admission, immutable status value object, bounded JSON lifecycle and Railway verification",
+      "profile": "Non-Numeric",
+      "origin": "lean4/CarrierAdmissionGate.lean",
+      "cost": "Reads at most 1 MiB plus one overflow byte exactly once and scans O(bytes) with constant scanner state. JSON is bounded to 128 nested containers before parsing; candidate selection visits at most 64 entries. File handles close before record verification. SHA-256 binds the same bytes parsed, not a later file reread.",
+      "groups": [
+        {
+          "requirement": "Read required string-keyed object fields and closed status vocabulary, select exactly one AIT-DTM0 entry and reject missing/malformed schema, authority effect or ambiguous identity.",
+          "symbols": [
+            "_mapping",
+            "_required",
+            "_status",
+            "_field_status",
+            "_extract_slice"
+          ],
+          "tests": [
+            "AuthorityCheckerTests.test_candidate_schema_and_identity_refusals",
+            "AuthorityCheckerTests.test_candidate_fields_and_selection_are_typed"
+          ],
+          "requirement_id": "TFQM-AUTH-REVIEW-AUTHF-CARRIER-ADMISSION-GATE-1"
+        },
+        {
+          "requirement": "Represent the declared direct-candidate slice immutably; exact bool selection and typed statuses are validated on every constructor path. Verification preserves record=open, candidate/syntax/execution=partial, universality=open and selected=false.",
+          "symbols": [
+            "DirectCandidateCeiling",
+            "DirectCandidateCeiling.__post_init__",
+            "DirectCandidateCeiling.from_record",
+            "DirectCandidateCeiling.verify",
+            "DirectCandidateCeiling._verified"
+          ],
+          "tests": [
+            "AuthorityCheckerTests.test_candidate_fields_and_selection_are_typed",
+            "AuthorityCheckerTests.test_candidate_promotion_cannot_become_verification"
+          ],
+          "requirement_id": "TFQM-AUTH-REVIEW-AUTHF-CARRIER-ADMISSION-GATE-2"
+        },
+        {
+          "requirement": "Refuse duplicate JSON keys, nonstandard constants, malformed UTF-8/JSON and excess byte/container budgets; treat brackets and escapes inside strings correctly and preserve resource cleanup.",
+          "symbols": [
+            "_unique_object",
+            "_reject_constant",
+            "_string_state",
+            "_check_json_depth",
+            "_read_record"
+          ],
+          "tests": [
+            "AuthorityCheckerTests.test_source_invalid_json_and_bounded_io",
+            "AuthorityCheckerTests.test_json_depth_ignores_quoted_brackets_and_escapes",
+            "AuthorityCheckerTests.test_source_byte_limit_and_scope_preservation"
+          ],
+          "requirement_id": "TFQM-AUTH-REVIEW-AUTHF-CARRIER-ADMISSION-GATE-3"
+        },
+        {
+          "requirement": "Compose read, parse and ceiling verification through Outcome and bind the result to the exact source bytes. Emit nonzero typed failures for changed ceilings and no approval; unrelated candidate adequacy/evidence is outside this slice.",
+          "symbols": [
+            "verify_source",
+            "main"
+          ],
+          "tests": [
+            "AuthorityCheckerTests.test_source_custody_rejects_changed_ceiling",
+            "AuthorityCheckerTests.test_source_byte_limit_and_scope_preservation",
+            "AuthorityCheckerTests.test_current_source_cli_and_repeatability"
+          ],
+          "requirement_id": "TFQM-AUTH-REVIEW-AUTHF-CARRIER-ADMISSION-GATE-4"
+        }
+      ],
+      "source_sha256": "35ba535f1d09cf4e1423a595f5ae1e054e42c3acc862241f40ca51196ed1e027",
+      "symbols": [
+        "DirectCandidateCeiling",
+        "DirectCandidateCeiling.__post_init__",
+        "DirectCandidateCeiling._verified",
+        "DirectCandidateCeiling.from_record",
+        "DirectCandidateCeiling.verify",
+        "_check_json_depth",
+        "_extract_slice",
+        "_field_status",
+        "_mapping",
+        "_read_record",
+        "_reject_constant",
+        "_required",
+        "_status",
+        "_string_state",
+        "_unique_object",
+        "main",
+        "verify_source"
+      ],
+      "origin_sha256": "b46343a865ba097ebb45a6bbfe291846b510a69259bd4d98a5c5e64e39cc59be",
+      "consumers": [
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_pr-372-repair.md",
+          "sha256": "17a1a8ae666923a252e84e0e6b9160b23b034d31d495772b1f29f9ce665b7f66"
+        },
+        {
+          "path": "docs/overclaim/reviews/2026-10-25_campaign-authf-carrier-admission-gate-precommit.md",
+          "sha256": "6477dff9c61a1e2da11841d14b9a592b8f3d5a07d36fbd2e58f8fd908645de7c"
+        },
+        {
+          "path": "dag/research/pr_batch_source_validation.json",
+          "sha256": "e45bfda9bf85ccd098c2a2686f3e33663c8c7a9d15d8940c58f882e71df764dd"
+        },
+        {
+          "path": "dag/research/pr_372_review_replay.json",
+          "sha256": "2bf571892052fe830dc16bbefe6b46ad41ab1c4e8107706f83acd7c5dd6682ff"
+        },
+        {
+          "path": "checks/tests/test_authority_checkers.py",
+          "sha256": "8ef1bc0990d3f56dbed9c370a525e3488cab336a5d2018b49daacf474543d330",
+          "state": "new contract suite"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "7f21eb161a8286b69694898364335e0a2630aa42322894c4ffe0088e7beb6244",
+          "state": "proposed workflow"
+        }
+      ],
+      "consumer_boundary": "Existing standalone script paths and the reviewed dynamic loader are preserved. Added codec/quotient checks are Python-only bounded artifacts; historical closed Lean theorems and imported/open scientific statuses are not promoted. The carrier script now checks the actual direct-candidate slice, not the full structural validator."
+    },
+    "checks/tests/test_authority_checkers.py": {
+      "role": "Independent contract verification application for request framing, finite behavior quotients and source-bound ceiling records, with generated properties and lifecycle/fault controls",
+      "profile": "Non-Numeric",
+      "origin": "SCORING.md",
+      "cost": "80 deterministic generated examples for each property, bounded exhaustive three-code predicates, max-size fixtures and time-bounded isolated CLI/mutation integration. Temporary source records are written only in context-managed test-owned directories and removed on completion/error.",
+      "groups": [
+        {
+          "requirement": "Construct minimal explicit record fixtures and access their direct candidate for controlled malformed/promoted test cases; never derive expected values from a production validator.",
+          "symbols": [
+            "_fixture",
+            "_direct"
+          ],
+          "tests": [
+            "AuthorityCheckerTests.test_candidate_schema_and_identity_refusals",
+            "AuthorityCheckerTests.test_candidate_fields_and_selection_are_typed"
+          ],
+          "requirement_id": "TFQM-AUTH-REVIEW-TEST-AUTHORITY-CHECKERS-1"
+        },
+        {
+          "requirement": "Exercise all named schema, type, bounds, identity, mutation, resource and exactness contracts with one test suite. Independent list-layout and pairwise equivalence oracles support generated properties; filesystem contexts and typed failure assertions distinguish refusals from successes.",
+          "symbols": [
+            "AuthorityCheckerTests",
+            "AuthorityCheckerTests.refused",
+            "AuthorityCheckerTests.test_refusal_helper_rejects_success_and_wrong_failure_kind",
+            "AuthorityCheckerTests.test_request_round_trip_and_independent_layout",
+            "AuthorityCheckerTests.test_request_snapshot_immutability_and_resource_endpoints",
+            "AuthorityCheckerTests.test_request_every_token_boundary",
+            "AuthorityCheckerTests.test_behavior_partition_and_all_three_code_predicates",
+            "AuthorityCheckerTests.test_generated_behavior_equivalence_and_descent",
+            "AuthorityCheckerTests.test_behavior_constructor_and_property_refusals",
+            "AuthorityCheckerTests.test_behavior_snapshot_and_maximum_table",
+            "AuthorityCheckerTests.test_candidate_schema_and_identity_refusals",
+            "AuthorityCheckerTests.test_candidate_fields_and_selection_are_typed",
+            "AuthorityCheckerTests.test_candidate_promotion_cannot_become_verification",
+            "AuthorityCheckerTests.test_source_custody_rejects_changed_ceiling",
+            "AuthorityCheckerTests.test_source_invalid_json_and_bounded_io",
+            "AuthorityCheckerTests.test_source_byte_limit_and_scope_preservation",
+            "AuthorityCheckerTests.test_json_depth_ignores_quoted_brackets_and_escapes",
+            "AuthorityCheckerTests.test_current_source_cli_and_repeatability"
+          ],
+          "tests": [
+            "AuthorityCheckerTests.test_refusal_helper_rejects_success_and_wrong_failure_kind",
+            "AuthorityCheckerTests.test_request_round_trip_and_independent_layout",
+            "AuthorityCheckerTests.test_request_snapshot_immutability_and_resource_endpoints",
+            "AuthorityCheckerTests.test_request_every_token_boundary",
+            "AuthorityCheckerTests.test_behavior_partition_and_all_three_code_predicates",
+            "AuthorityCheckerTests.test_generated_behavior_equivalence_and_descent",
+            "AuthorityCheckerTests.test_behavior_constructor_and_property_refusals",
+            "AuthorityCheckerTests.test_behavior_snapshot_and_maximum_table",
+            "AuthorityCheckerTests.test_candidate_schema_and_identity_refusals",
+            "AuthorityCheckerTests.test_candidate_fields_and_selection_are_typed",
+            "AuthorityCheckerTests.test_candidate_promotion_cannot_become_verification",
+            "AuthorityCheckerTests.test_source_custody_rejects_changed_ceiling",
+            "AuthorityCheckerTests.test_source_invalid_json_and_bounded_io",
+            "AuthorityCheckerTests.test_source_byte_limit_and_scope_preservation",
+            "AuthorityCheckerTests.test_json_depth_ignores_quoted_brackets_and_escapes",
+            "AuthorityCheckerTests.test_current_source_cli_and_repeatability"
+          ],
+          "requirement_id": "TFQM-AUTH-REVIEW-TEST-AUTHORITY-CHECKERS-2"
+        }
+      ],
+      "source_sha256": "8ef1bc0990d3f56dbed9c370a525e3488cab336a5d2018b49daacf474543d330",
+      "symbols": [
+        "AuthorityCheckerTests",
+        "AuthorityCheckerTests.refused",
+        "AuthorityCheckerTests.test_behavior_constructor_and_property_refusals",
+        "AuthorityCheckerTests.test_behavior_partition_and_all_three_code_predicates",
+        "AuthorityCheckerTests.test_behavior_snapshot_and_maximum_table",
+        "AuthorityCheckerTests.test_candidate_fields_and_selection_are_typed",
+        "AuthorityCheckerTests.test_candidate_promotion_cannot_become_verification",
+        "AuthorityCheckerTests.test_candidate_schema_and_identity_refusals",
+        "AuthorityCheckerTests.test_current_source_cli_and_repeatability",
+        "AuthorityCheckerTests.test_generated_behavior_equivalence_and_descent",
+        "AuthorityCheckerTests.test_json_depth_ignores_quoted_brackets_and_escapes",
+        "AuthorityCheckerTests.test_refusal_helper_rejects_success_and_wrong_failure_kind",
+        "AuthorityCheckerTests.test_request_every_token_boundary",
+        "AuthorityCheckerTests.test_request_round_trip_and_independent_layout",
+        "AuthorityCheckerTests.test_request_snapshot_immutability_and_resource_endpoints",
+        "AuthorityCheckerTests.test_source_byte_limit_and_scope_preservation",
+        "AuthorityCheckerTests.test_source_custody_rejects_changed_ceiling",
+        "AuthorityCheckerTests.test_source_invalid_json_and_bounded_io",
+        "_direct",
+        "_fixture"
+      ],
+      "origin_sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a",
+      "consumers": [
+        {
+          "path": "checks/tests/test_authority_checkers.py",
+          "sha256": "8ef1bc0990d3f56dbed9c370a525e3488cab336a5d2018b49daacf474543d330",
+          "state": "new contract suite"
+        },
+        {
+          "path": ".github/workflows/reviewed-checkers.yml",
+          "sha256": "7f21eb161a8286b69694898364335e0a2630aa42322894c4ffe0088e7beb6244",
+          "state": "proposed workflow"
+        }
+      ],
+      "consumer_boundary": "Existing standalone script paths and the reviewed dynamic loader are preserved. Added codec/quotient checks are Python-only bounded artifacts; historical closed Lean theorems and imported/open scientific statuses are not promoted. The carrier script now checks the actual direct-candidate slice, not the full structural validator."
+    }
+  }
+}

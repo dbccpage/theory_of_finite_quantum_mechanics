@@ -1,44 +1,958 @@
 {
   "AuthorityEffect": "None",
   "artifact": "checks/independent/foc035_observer_presheaf.py",
+  "assurance": "Completed exact-source L4B assessment; prior historical records retained without alteration.",
   "contract": {
     "AuthorityEffect": "None",
     "artifact": {
       "language": "Python",
       "path": "checks/independent/foc035_observer_presheaf.py",
-      "sha256": "3d90a2037dad209ecb4d24638a9c362056cc9b5c6c402859e653b22bdc9f6d9d"
+      "sha256": "908bfd73fa5aabc40490f437adf3f86de6dd4d5f9453b85e58a0a29e24b47975"
     },
-    "boundaries": [
-      "User-approved regression-support exception below L4; this file is not rated as a substantive runtime or proof module.",
-      "Finite cases and selected mutants do not establish a universal mathematical statement; unrun cases remain outside this assessment."
-    ],
-    "claim": "Independent regression support for finite examples, invalid-input refusals or selected semantic mutations; no general theorem or production API is certified.",
-    "contract_urn": "urn:tfqm:pr208-repair:foc035_observer_presheaf",
-    "evidence": [
+    "audited_consumers": [
       {
-        "path": "dag/research/foc035_l4_refactor_equivalence.json",
-        "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4"
+        "path": "checks/tests/test_observer_presheaf.py",
+        "sha256": "0ca9db4e554f1f99489fa362050f3387930341cb8c0deecccf95055794dd69f7",
+        "state": "current local direct import/path consumer"
+      },
+      {
+        "path": ".github/workflows/reviewed-checkers.yml",
+        "sha256": "972a9ea4defe93ea1ed3e35d16d961f803c1456ab19ef9105930c4bb1af72210",
+        "state": "current local direct import/path consumer"
+      },
+      {
+        "path": "dag/validate_derivation_dag.py",
+        "sha256": "03bc49bfde5c437d04d8c429c6acc51681972d1126394c2230f1f610c46bf5f7",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/test_foc035_lp_certificates.py",
+        "sha256": "27173d70314e05d9762b4b180d6ceb9ccf3c7e5c55dc40a5c965cfbd9811fb79",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/sync_genesis_to_higher.py",
+        "sha256": "79debb44595ed581fcecd7ea35313d76c49136ad711c00ec04c31573ce9aea80",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/sync_frontier_branches.py",
+        "sha256": "84c94ce88005f5f9444b3c504e931aab4393159180c1de9c9fd48e3d0091bbc6",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/sync_foc035_observer_presheaf.py",
+        "sha256": "134757d5921ef700e2f8db311ebe3ca69e8b44a2b4d8fbe392e073088a4eb43f",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/sync_application_branches.py",
+        "sha256": "2dbf78d911b66642180c1da66ca5d3c8fef1eae9221b351f8ac59c591bd83463",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "evidence/quality/pr215_l4_repair/pr244_integrated_pipeline.json",
+        "sha256": "a9d07e38eacb91d918590d8a4b03eb0e996a73ed44f314f5bc1b7f19b1d7ac27",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "evidence/quality/functor_shell_pr/campaign_checks_attempt1.json",
+        "sha256": "b2fd62d5a56ead47b99c82550d9f0e974462c630ac7231a149080f17f1eccf1e",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "evidence/quality/functor_shell_pr/campaign_checks.json",
+        "sha256": "e435c67feb9ad4035bee76a5390fe08cfc0bf53257a9520e3a402772da4f61ac",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "evidence/quality/pr215_l4_repair/final_combined_pipeline.json",
+        "sha256": "5fe198b3ece9298c37330ab98940ca2f533f2e9723c9b5271abea0afabccb729",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "evidence/quality/pr215_l4_repair/final_acceptance.json",
+        "sha256": "49fe4bd5e7165a16c2c4e5474450e8f641280d0c8bbada01373d344d8045dde0",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/render_dag_views.py",
+        "sha256": "86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/fragments/foc035_observer_presheaf.json",
+        "sha256": "0701dafb31eaf958b996fe0a1eb3ecf55aa0c59ae87e37f4b5d631cb0c3a363d",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/evidence/evidence_map.json",
+        "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivation_dag_reading_note.md",
+        "sha256": "a647a90f4c8639bd47fcd5b27c583796cf8db8a778a521edbe9157d336751b47",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivation_dag.json",
+        "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/pfp/campaign/README.md",
+        "sha256": "f81ecb198204709394cf84a43917ddb5efa9e398161d221e61788d95e5eb81fb",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/pfp/batch_tools/integrate.py",
+        "sha256": "7efa3346a3adb152ced904056700fcad5b016d9651418ba5a1c87e26d1358dd8",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2532_ops_pr1050_absence.md",
+        "sha256": "75cd1380305342d6bd4e108ccc4602cb601f55b31237c2ed80bfd96231071289",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2531_ops_refuted_earlier_rust.md",
+        "sha256": "14f34d5953641e53b7d8790268320e3e6683333783bcb6c68f687963e3d37aa1",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2530_ops_refuted_earlier_gate.md",
+        "sha256": "8d929eab252d879de780b0b869595ce89562b29f1edeb3fe1fdeb0e96bdb642e",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2529_ops_refuted_nb9.md",
+        "sha256": "42cd2f9c233e19340b0c1bab9838a05b66b279fea0b6cbbcdd897d4505e08e82",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2528_ops_refuted_axis3_wide.md",
+        "sha256": "4da2d48d94bd95cafbb6363295801f04d95404e34820b99816ea5dd0fbe1151a",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2527_ops_regress_corollary.md",
+        "sha256": "e6eefa86822b4bd938b198bc414380a5a7af476a3c40cf992a0fbeb636e5ba0b",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md",
+        "sha256": "eb65609d758831aa4f4248de96a7670bd8ada4de92e933112879a68ef59d8943",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2525_ops_axis2_meta_carrier.md",
+        "sha256": "73ffe14722b92d27b4bc65dcde637cc8f6bb4bdc150fc12f539cf963b1f3bc3b",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md",
+        "sha256": "804ec8a0415a21ba89b81fb7801c1148e1d7d5ba497ecf157bf8412050c5982b",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2523_ops_ap_card_proposal.md",
+        "sha256": "b7e797f3b8cd03f716992e03474b301a23a2787287d129213dae75180dacd609",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2522_ops_self_certification_packet.md",
+        "sha256": "1d4f1853da8b96aa0b6d9ce150c8dea53ffd20914e9cc709f515636eea77fd6a",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2521_ops_three_role_gate.md",
+        "sha256": "6a63fb190231521b9f45ab19f0c4ca86f20b29b4acca9d294d5c9a60c3b6765e",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md",
+        "sha256": "6005932cabeaa8c8474dbf0420275faca9f403077a018be31015045df5527dc6",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2519_ops_rust_receipts_and_limits.md",
+        "sha256": "81b9253321a4e6c04ffa6d18dfcda030f03f7ca005ecc42a30a68fb153c3408f",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2518_ops_observer_declaration_refusal.md",
+        "sha256": "0b65f2f7622ca567ece0d9344e34a9abe2cd8ae6c49e6c5125139515d8c2bef7",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2517_ops_underdetermination.md",
+        "sha256": "695a604306e0c75854eda45928600322ccaa18934442cd3278d757c3b8e04702",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md",
+        "sha256": "9293a0fc7778f81e0288c38bccb8d7b396d19fb743c78e1cb15ee5db00e80fa9",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2515_ops_vorobev_path_instance.md",
+        "sha256": "9a6a9f38d4899b7e16b2ac78d1571f0a3d3668d8afbc3bf6a32be64988cd1f15",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2514_ops_vorobev_theorem.md",
+        "sha256": "bfd423842bbee333eb6aa6c528a27252227c5a90454fcad1328873c55877455c",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2513_ops_z2_witness_false_negatives.md",
+        "sha256": "f424c1b1ca2e8cad6578e1a74b8ae4f2bc5c46e3045f4eb59477036e9def850f",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2512_ops_no_signalling_signed_section.md",
+        "sha256": "d6f5d9bdf4cc365ce3c0b0800d8dbc20ef2ce8362571fe766553591c49b059e7",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2511_ops_parity_cycle_descent_ncf.md",
+        "sha256": "28cbfd394b73d8d25c5c201fa2624c0bb0826ff3f588ef9ce10d2ac749c7909c",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2510_ops_zero_cocycle_blind.md",
+        "sha256": "49e994810705908ecb66b30ceff8685a5ae1ff16dc10b3a794cd58f561a87725",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2509_ops_cech_coboundary.md",
+        "sha256": "d954a99f0fb5436eda90abd7f1e8d15c628e5482b55f7355c834335de5948fd6",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2508_ops_nge_not_contextuality.md",
+        "sha256": "f1c719c08f466e12a650cbe1bb6faba1c433aa8ed18d655f1c11011df09a1ebf",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2507_ops_arc_cover_nge_witness.md",
+        "sha256": "ca367cf87a3eeb26591f18aa6911256905d24fb7c06dda5d5f644c69e7ceb628",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2506_ops_maximal_cover_descent.md",
+        "sha256": "aed67ff30685eb3b5a5c387621696a89018513b56e7df3773b4e6ec6532431eb",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2505_ops_noisy_pr_ncf.md",
+        "sha256": "c146a47465ef73fc7171d602218d9975ad50d9c24d3a253cd72c91379f85d9f5",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2504_ops_strong_contextuality_ncf_zero.md",
+        "sha256": "fc99842addce846400fc7d90c690524235a01e08224329407be41d0f12f0c36c",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md",
+        "sha256": "a089c41e413ea326fb66efc61071ae8a403ddad529ac5b53db0059ff146a6c50",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md",
+        "sha256": "54f42cb65672272b910b32f3814d74b5d1f409cc882038340e563d3870de435b",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2501_ops_pushforward_functor_lean.md",
+        "sha256": "fe59c997f1d27e7209c17741fddf163a4d89378b14d479f135cc5905d2ac7ffd",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2500_ops_observer_tuple.md",
+        "sha256": "770c4324247dce8fb21772b670b5d933ef93707b34c0aaa428ff2e39642826f6",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/operads/ops_arc_cover_nge_witness.yaml",
+        "sha256": "4120f993b646c61bf957ff0f9f2f2bb201685d7f67d2abb15cd40077080ccbe4",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/operads/ops_ncf_lhv_equivalence.yaml",
+        "sha256": "7a4ae75cf0d528ad4756bcbee8b54517df2442c6c86b11db657feaf12ca98e72",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/operads/ops_maximal_cover_descent.yaml",
+        "sha256": "2bdade85a440a564eadcbbbda4f120e381f3174bc0170a611902a702ee1916d8",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/operads/ops_cech_coboundary.yaml",
+        "sha256": "b277f36134cb8f172fd19462b229471141afa92e622b405d5a6e2fe43f535cff",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/operads/ops_refuted_axis3_wide.yaml",
+        "sha256": "416cc4b7b520b15907cb69996b2e0490767e83d0dfbe1ad8ec8215cd367094fd",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/operads/ops_pushforward_functor_lean.yaml",
+        "sha256": "ad17f27ea328b523ee293f7263fccbf342980e299cb767b0bdb5856eeeb8330d",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/operads/ops_parity_cycle_descent_ncf.yaml",
+        "sha256": "b27ea67650f2a18b8197f1e349d5a164fe50c9e7b1ff3849cf7f95ab5e056ef7",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/operads/ops_no_signalling_signed_section.yaml",
+        "sha256": "882c16aba444f9bec792e45dcd5b764c5ebb5e93e4919d7690b13edc6f4441f8",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/operads/ops_noisy_pr_ncf.yaml",
+        "sha256": "d06651bc92eec484f7c57db055c9f58c12319900808566fd30b8ad9d5b3ead04",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/operads/ops_vorobev_path_instance.yaml",
+        "sha256": "7a3605bbe41e7b2f718fe772df398d2ae2a5531a623ab852cd8e534a45d35fad",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/operads/ops_underdetermination.yaml",
+        "sha256": "72577f8dcadc7d7cc9333dd684ed436f14256e46335bf72fc38ae0163e7d713e",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/operads/ops_test_482_repair.yaml",
+        "sha256": "f86e7290f09057e06fd47ab38eee44485a8feed6003cac7032d247669cbb8a02",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/operads/ops_strong_contextuality_ncf_zero.yaml",
+        "sha256": "7f871cbf9aeedac0f24265016309852ea44923b5056a57e8a8fb6e6af213b5ff",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/operads/ops_refuted_earlier_rust.yaml",
+        "sha256": "6271a65b352bf49c730a923421ac22c51e459adc2378bc44709089b6fcfb787f",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/operads/ops_refuted_earlier_gate.yaml",
+        "sha256": "6bec88204d8d01b2fd2a08be3cfe06b23cb43791779473ab68deffd430af894f",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/three_proof_l4_pipeline.json",
+        "sha256": "169e096043d0b298f1111abf9ab9b4530c49c2ad9701085ba8fb5d4e22aeb920",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/three_proof_l4_final_pipeline.json",
+        "sha256": "3b8cfefb0474bb40788d1886442e905bb04654932d6b8294f02684f1fae640eb",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr_batch_campaign_validation.json",
+        "sha256": "b39ef0c78e949023f2c40afd97e87bd61540b6183d7218bf8bcc339b7285dec9",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr_392_validator_regression.json",
+        "sha256": "c2ac4ce7b4cff4a0c557c5869a13f11eba399f18bcded131d9a2e937f691509a",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr_373_integration_merge_checks.json",
+        "sha256": "290cdd3f6af0bc6734d9815808eb07ce2d577850f64906024b9e70b1dc89d436",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr_363_regression_validation.json",
+        "sha256": "44430f68692df9a4972fb9acd8cffd795be2b9627b5981c1234ed8092ccacbb4",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr_362_regression_validation.json",
+        "sha256": "45f15a476be7296c37f2cbca6582ee7a888a77f1453b990fdb4007dc45827a65",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr_320_campaign_pipeline.json",
+        "sha256": "fd0a9f64ce3b08d51a6d057b9c6bb4a02f4cae605734f9d5a3d27c70d3e260ef",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr440_preapproval_validation_20261026.json",
+        "sha256": "ef810b27bb3fab40c22ff164c484a1f1ae31a87b261f49e4be7daa56c0fd1904",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr440_independent_review_followup_20261026.json",
+        "sha256": "752301040d04dac21137e6d9b78e37d22885db95c220cc11b39710a176a3bf19",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr440_approved_acceptance_20261026.json",
+        "sha256": "56c318ec646d42e3725019fd79df9ebcb92ee9100617036a55f91f1f1d2460da",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr439_repair_validation_20261026.json",
+        "sha256": "17c42bf7436773a802c6d04e040d7b83726fa89c9341f592b896d8b0babfd610",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr439_bottleneck_followup_20261026.json",
+        "sha256": "2726ff0e636d35aaa45bbc1ecc26fbde16667f939404ea6ae158cdb5a9d9867c",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr439_approved_acceptance_20261026.json",
+        "sha256": "5721051ce71a6ad15d5a5be3c86c13b74d48928974847276b5032dd036886b7e",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr437_current_review_20261026.json",
+        "sha256": "2fbe631f66d387c95060ef1285bcfc5d759fb950bd644c01ea2e0ca54df5e58c",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr435_repair_validation_20261026.json",
+        "sha256": "11a6be66a6b2e3d284495aadbcce338d6361c17ff759b1797e3b1f9fcaf26ffd",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr435_approved_acceptance_20261026.json",
+        "sha256": "2ab7eff3a06d014c82637f8ca38e949e56b8c847690688b6ca60b9c921d154d2",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr434_main_integration_validation_20261026.json",
+        "sha256": "bb6c5dc882a2d0055ea4c8f216ad9009d1c220fffab2b38c2aac652815dc9537",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr434_current_review_20261026.json",
+        "sha256": "64edb67185b31d5824613bc87fdce6131e3095f0097ac1eeac70aac3a6d3bbff",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr434_back_route_validation_20261026.json",
+        "sha256": "2184917065d58d522ac0d82db3bb058794d7062d9ad66755bf61d8410ba1a96e",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr375_merge_readiness.json",
+        "sha256": "17aa595b2f84790b2333e7089ea3b7a821347432a3cf544b28ee2680d5f1dcf1",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr375_hosted_review_validation.json",
+        "sha256": "6c40580cf537ecebb273f6d6f26efaff5beb7a424962b31ed3bcc7f6285e11b7",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr262_campaign_validation.json",
+        "sha256": "fbdc7d98d76d5e1582f951a6934318b035c5a297c9bdfd07d670f050ac05a724",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr247_pipeline.json",
+        "sha256": "5e628973026e26a04e97b2605a04ac708af6a89ee91840d9ecbcdbae32f25edb",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr247_followup_validation.json",
+        "sha256": "2a86e934ec76749e0a0f051581b7acacfa22eb05c3225086dd43cf8896b280f6",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/pr239_pipeline.json",
+        "sha256": "822a5bc184b13a0770f3d0aecf3f916e32d354c5845e5b45fac9698ac336c39c",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/overclaim/reviews/2026-10-22_foc035-observer-presheaf.md",
+        "sha256": "b11ca0bdbb2c0411ebcb19169ad6f9c9bbd3d93d0ccd0ca5599f7c4f82839d96",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/overclaim/baseline.json",
+        "sha256": "91a09d7e072e610de6a5f7f1ea1a8183b54075525b797f9769625c62e2e32b16",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/maintenance/pr442_preapproval_validation_20261026.json",
+        "sha256": "3094ba7b31c13a748b8c047096c7e5423a11701ae618d8e75896764f02b8229c",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/maintenance/pr442_approved_acceptance_20261026.json",
+        "sha256": "5f93f7536d7233489149754d76796f220e223f2caa3a4a11e147b8779fe57131",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/maintenance/pr441_review_20261026.json",
+        "sha256": "decab10d3542ce3e3384acf600ba2c61e36d4b613caa08f155dbae95d99d3842",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/maintenance/pr441_expanded_review_20261026.json",
+        "sha256": "435dae51b4fc836420102531fadd43e1dafaae31b5a568ef71e9ae2d8eeaae78",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/evidence/stages/OBSERVER_PRESHEAF.md",
+        "sha256": "9a0f14574cb8d7fa8d1dac8a1a188464ed31da8e9755fcb43020f47f0efccb67",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/fq_gleason_qi3_validation.json",
+        "sha256": "e8ab6e03a174dad46faa160b2de50792fca5101a8fd7bf0da737ebb0b498f362",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/foc035_observer_presheaf_review_validation.json",
+        "sha256": "deffbd36192cfee7922f6413322230ab9903c1da9c4c30ce397fb4a7c2d68d19",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/foc035_observer_presheaf_review_contract_coverage.json",
+        "sha256": "e3510af66ab128d3209fd8855c47f667812a44fa99d8bcdb0e89e5fa43aa37f9",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/foc035_observer_presheaf_pipeline_review.json",
+        "sha256": "04e726e303c43a7c917ab12ca3282adffa8d9c1c78a17ae2b00b135652e3452e",
+        "state": "pre-change source consumer; unchanged path"
       },
       {
         "path": "dag/research/foc035_l4_tests_retry.json",
-        "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1"
+        "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1",
+        "state": "pre-change source consumer; unchanged path"
       },
       {
-        "path": "dag/research/foc035_l4_gate_replay.json",
-        "sha256": "99db4d238bf4cd2b3c08550e9cd900ec24c7bc64594f2f1bf598f1909fa4a6a0"
+        "path": "dag/research/foc035_l4_tests.json",
+        "sha256": "e3d4ff0b3d5bbc6b6ffa00a6eeb61ce03116934e19a881cdeb42005673062bda",
+        "state": "pre-change source consumer; unchanged path"
       },
       {
-        "path": "dag/research/foc035_l4_checker_refactor.json",
-        "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4"
+        "path": "dag/research/foc035_l4_sync_replay.json",
+        "sha256": "b768fbd5a130c53cb7cbfdce5eeeea17897bc40fe2e4a258d7cc4eba7775fe04",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/foc035_l4_refactor_equivalence.json",
+        "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4",
+        "state": "pre-change source consumer; unchanged path"
       },
       {
         "path": "dag/research/foc035_l4_metrics.json",
-        "sha256": "bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6"
+        "sha256": "bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/foc035_l4_exact_replay.json",
+        "sha256": "0a0441cb2e673a6a7aec2c1a36a5993152e79c71f28897b3265c7fe09afdee40",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/foc035_l4_contract_coverage.json",
+        "sha256": "34b9f4a7d7863315efb891a6937cee67bd77e5bc619e6539396341b2247b91df",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/foc035_l4_checker_refactor.json",
+        "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/dfm_ckm_l4_pipeline.json",
+        "sha256": "a2d67069a4f2af8b6c5cfd0a403144d7cc1bebc9f7f953d5688fcba98d8e866b",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/dfm_ckm_l4_final_pipeline.json",
+        "sha256": "9d1d0e53100fd75db775251f3ed5364e9ffc43ba6483ac39c001fea4ac875932",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/approved_finite_proof_merge_checks.json",
+        "sha256": "19510b54880ca7a166c48c51c4b5e29468ab9e03bdf50260593ac7a880825860",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/approved_pr_434_continuum_acceptance_2026_10_26.json",
+        "sha256": "f91732d0136eff6ab7494c0e18d3cd5b417f8e3665fc153f754cae3a3d36c63a",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/approved_pr_433_continuum_acceptance_2026_10_26.json",
+        "sha256": "6fbc773e41daaf8f6a6ff6435a30b551912c9908aa9dfbe26056a87479e561fa",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/campaign_dfm-continuum-refinement-limit_integration_validation.json",
+        "sha256": "f2835df8ed0b39899efb3b9aa7a37116f924ef669849ca2ae6cbe295f30754fb",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/campaign_lqg-projective-limit_integration_validation.json",
+        "sha256": "5dc4a391f1e9f6e6933054cc603f10479aa938708563172745c5c9712fac56bb",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/campaign_fsp-imaginary-mu-real-det_checks.json",
+        "sha256": "d92acf5c50fa23f777269791c02ff5e30a5c2b8c3a6096b17fc7e17d69a2ee4b",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "dag/research/campaign_fsp-majorana-clifford-parity_checks.json",
+        "sha256": "539f84678151c051ed212aed419bcd1bcf65662d9fe8a76dbc6c121e40df3b30",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/evidence/nodes/OPS-REFUTED-EARLIER-RUST.md",
+        "sha256": "cf4e157cf0377f8d863898a609c0a991ad9128fe09ee3b2537212ddf56a902cd",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/evidence/nodes/OPS-REFUTED-EARLIER-GATE.md",
+        "sha256": "3df550f9a0f4255c612ab820cd853f8efdf724db46172e5ef397632989f65cdb",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/evidence/nodes/OPS-REFUTED-AXIS3-WIDE.md",
+        "sha256": "5882ec333806330cfad842df70afc32c5bf89ccaa3929f94261b9f31f17bf887",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/evidence/nodes/OPS-PUSHFORWARD-FUNCTOR-LEAN.md",
+        "sha256": "224776ad217f95f753d7a455246dc11293a2e58ca7dcdf16150b9da6dbbe27cc",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/evidence/nodes/OPS-PARITY-CYCLE-DESCENT-NCF.md",
+        "sha256": "db7b36a4e86db7f9080789b5cd8e4f5611c61517aeefebb991e6ac8e60f8175a",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/evidence/nodes/OPS-NOISY-PR-NCF.md",
+        "sha256": "f7d2748e2a3daca293d9c98bfec159213943c0992af2d444c53078216124ee67",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/evidence/nodes/OPS-NO-SIGNALLING-SIGNED-SECTION.md",
+        "sha256": "0a86228c48ba0a13707c8ac3d93066e35dc751f4753bbd37ba487a18a28d43ac",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/evidence/nodes/OPS-NCF-LHV-EQUIVALENCE.md",
+        "sha256": "507ac1670becd3030327ed8b23e3df91683aedd8ebd1ad72e5ab64c9b78acba0",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/evidence/nodes/OPS-MAXIMAL-COVER-DESCENT.md",
+        "sha256": "ad806a81f1fd33e14414a9fd641c266f929c3452812fd841b1629d9a97d76f3a",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/evidence/nodes/OPS-CECH-COBOUNDARY.md",
+        "sha256": "d5df8b9960b4ae67a909647af41ae23bcb8b8050e58c9c45ec90bc1baba23d72",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/evidence/nodes/OPS-ARC-COVER-NGE-WITNESS.md",
+        "sha256": "b4051d86b484dc9859c256154265faaa22a4274f0896245e4ef0e9270daf9f5f",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/evidence/nodes/OPS-VOROBEV-PATH-INSTANCE.md",
+        "sha256": "a43cb306b73fc60c57b345c1aef4c005a2e77f34166d6d8e6d8439c19e3c2d44",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/evidence/nodes/OPS-UNDERDETERMINATION.md",
+        "sha256": "68d4f37e5486a69744262519349c57becbbef257acbc077e62cd0ba6ecf2b5d4",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/evidence/nodes/OPS-TEST-482-REPAIR.md",
+        "sha256": "2616a20bd673155240c7d0f0ad6e4220c3690641abd372da1db32e4ea8c73ad7",
+        "state": "pre-change source consumer; unchanged path"
+      },
+      {
+        "path": "docs/evidence/nodes/OPS-STRONG-CONTEXTUALITY-NCF-ZERO.md",
+        "sha256": "7b2d535d5d70658fc19c62950dbcc22799cfed435eea8928c0ee84a6535b32cf",
+        "state": "pre-change source consumer; unchanged path"
       }
     ],
+    "boundaries": [
+      "Finite executable coverage and independently verified candidates are not universal mathematical proofs or claims of simplex completion within resource limits.",
+      "No continuum, general sheaf exactness, authority promotion or change of imported scientific/DAG statuses.",
+      "No new Lean/Rust build or hosted CI result is claimed. Historical Rust ceilings are arithmetic examples separate from enforced Python bounds.",
+      "Retention5 is a keep label, not perfection; B-level evidence does not claim exhaustive correctness."
+    ],
+    "bounded_context": "Exact bounded linear-program certificates and finite binary measurement/presheaf verification; owned domain values, per-query search workspace and application orchestration.",
+    "consumer_boundary": "Preserve original source path,50-check CLI and scalar verify_lp/ValueError contract exercised by20 DAG cases. Standard-form LP b>=0 is explicit; no live caller with negative RHS was found. Helpers form internal checker bounded contexts; fallible aggregate queries return Outcome. Pure immutable exports and internal adapters may return values or raise typed Violation, owned by the caller evaluation boundary. No cross-repository API promise. Original source and contract bytes archived; historical scientific statuses and imported paper origins unchanged. No new Lean build, Rust run or hosted CI result is claimed.",
+    "contract_urn": "urn:tfqm:checker-review:2026-11-03:foc035_observer_presheaf",
+    "evidence": [
+      {
+        "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-checker.md",
+        "sha256": "a009a1b2e79af01faf7157486a4094df526eb525b610a63ac9e0a0a57e802039"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-final-inputs.json",
+        "sha256": "040f984c9ad8735556883c51885938e0290e1083fbfb441508feea0074fd63c6"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-initial-application.py.txt",
+        "sha256": "a643716c6583a35fa31c1c2567beae880a95eff4f956adf5cd44b77572ea2609"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-initial-manifest.json",
+        "sha256": "a3e333ecc9218878e41cd506f87418cda02b3aa95e33cc8e5b1eb899c8847940"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-initial-review.json",
+        "sha256": "94e8ff837846f90773f0a120b4212f243089bd44df52770ca2a0a4f199798db9"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-initial-test_cech_complex.py.txt",
+        "sha256": "843003ea90f873df2aa0445a879c13cfc70b09c591aea82a70cd310510202e8a"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-initial-test_exact_linear_program.py.txt",
+        "sha256": "e507a1f559be57af5252a2d6bfb9bd81305dc70f348eb003c1d46d0780801e71"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-mutations-closure.json",
+        "sha256": "4c8dee6833fd12d184484d408030b63cb9cb9b72b72bb2b2d651ef6418cec7c7"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-mutations-final.json",
+        "sha256": "82222001a5efb8cdf7e7e2304351770c692240b31e021b26b501f85fd0ff3c20"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-mutations.json",
+        "sha256": "706313a260c8b8b89f5d917256695e1b2c5ddf4903576ea1849a81c335a9f5cd"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-original-foc035_observer_presheaf.contract.score.yaml.txt",
+        "sha256": "4d8c5fea8d54032a2e1f37c197fc51cf34903e55d2d07ab49df9e7c27ced5a4a"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-original-foc035_observer_presheaf.py.txt",
+        "sha256": "3d90a2037dad209ecb4d24638a9c362056cc9b5c6c402859e653b22bdc9f6d9d"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-quality-initial.json",
+        "sha256": "ca863cfd4392d16c50d9ef68d5ef3dbd2e16ed2dddafb068d9a9f74e998e1082"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-quality.json",
+        "sha256": "3b7fba75457434c4fba16fcc3fabea87a403ac4f589a53e71996d023628e6744"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-requirements.json",
+        "sha256": "50121bb89ed6ba432b0f84ac83c47e60f48cbbc9b850c775fcc67b3bf49fe995"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+        "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+      },
+      {
+        "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+        "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+      },
+      {
+        "path": "SCORING.md",
+        "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+      },
+      {
+        "path": "checks/tests/observer_presheaf_mutations.json",
+        "sha256": "e57420d1f665f4a60e1fb3596873b6ac48a00da15447a0a10dc566f70081a81f"
+      }
+    ],
+    "failure_policy": "Constructors and internal operations admit native bounded inputs through typed Violation. Public fallible aggregate queries use evaluate/Outcome, application adapters are owned by the CLI evaluation boundary, and the historical scalar verify_lp adapter deliberately converts expected refusal to ValueError for existing consumers. Resource refusal is distinct from an infeasible certificate or false scientific proposition. Unexpected programming errors and cancellation propagate; tests scope imports, captures, subprocess timeouts and mocks. Immutable exports are detached; mutable simplex workspace is private per solve.",
+    "nested_declaration_ownership": {
+      "check_axis_countermodel.verdict": {
+        "owned_by": "check_axis_countermodel",
+        "requirements_via": "check_axis_countermodel"
+      }
+    },
+    "operational_cost": "Default50 named groups include all56 parity targets for cycles3..5, exact Bell/noisy models and fixed countermodels. NCF, L1 and signed reconstruction preflight m<=32,n<=64 before incidence/LP allocation; LP budgets apply. GYO owns<=16 edges of<=16 vertices, total labels<=64; each deletion strictly reduces finite incidence, with bounded O(E^2*V) scans per iteration. Two-table gluing computes eight probabilities after full domain/overlap admission. Rust2^20/2^22 literal ceilings remain historical arithmetic examples, not these Python limits.",
+    "origins": [
+      {
+        "custody": "requested source checkout, read only",
+        "path": "lean4/LggrFiniteResults.lean",
+        "sha256": "ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de"
+      },
+      {
+        "custody": "requested source checkout, read only",
+        "path": "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md",
+        "sha256": "ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb"
+      },
+      {
+        "custody": "requested source checkout, read only",
+        "path": "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md",
+        "sha256": "da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4"
+      },
+      {
+        "custody": "requested source checkout, read only",
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md",
+        "sha256": "a089c41e413ea326fb66efc61071ae8a403ddad529ac5b53db0059ff146a6c50"
+      },
+      {
+        "custody": "requested source checkout, read only",
+        "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2507_ops_arc_cover_nge_witness.md",
+        "sha256": "ca367cf87a3eeb26591f18aa6911256905d24fb7c06dda5d5f644c69e7ceb628"
+      }
+    ],
+    "owned_invariants": [
+      "Exact non-bool integers/Fractions only; no float conversion. Numerator/denominator and each checked product, quotient and accumulated prefix are at most4096 bits.",
+      "LP standard form has nonnegative RHS,1..32 rows and1..64 variables. Optimal/infeasible/unbounded variants have disjoint owned shapes and must pass associated-program replay before search success.",
+      "Simplex has at most4096 pivots,32x97 tableau entries and deterministic entering/leaving choices; budget exhaustion never means infeasibility.",
+      "Measurement carrier1..6 and1..16 distinct nonempty increasing contexts cover the carrier. Full binary cochains are admitted including entries irrelevant to an empty nerve; signed cochains and probability rows have separate contracts.",
+      "Empirical rows are complete nonnegative mass-one distributions. General mixtures have equal scenarios; full-cover descent preflights4096 candidates and determines at most one joined assignment per family.",
+      "Incidence allocation<=4096 entries; each Cech degree<=4096 coordinates. Oriented coboundaries use actual overlaps. Quotient witnesses require dual norm<=1, basis annihilation and equality with actual primal residual.",
+      "Original50 named application groups and scalar DAG certificate interface remain. Per-run counters and actual parity census replace global/literal status bookkeeping."
+    ],
+    "requirements": [
+      {
+        "requirement": "Retain legacy verify_lp exact scalar/ValueError compatibility while narrowing the admitted standard form to b>=0; no existing caller supplies negative RHS. LP solver wrapper never confuses resource failure/unboundedness with infeasibility. Admit parity, point assignment and noise in[0,1]; Bell mixture is explicitly a Bell fixture adapter. General models use owned EmpiricalModel.",
+        "requirement_id": "TFQM-OBSERVER-REVIEW-FOC035-OBSERVER-PRESHEAF-1",
+        "symbols": [
+          "simplex_min",
+          "verify_lp",
+          "parity_dist",
+          "pr_box",
+          "noisy_pr",
+          "point_mass",
+          "mixture",
+          "_support",
+          "_optimal"
+        ],
+        "test_source": "checks/tests/test_observer_presheaf.py",
+        "tests": [
+          "ObserverPresheafTests.test_legacy_lp_adapter_and_probability_input_refusals",
+          "ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles"
+        ]
+      },
+      {
+        "requirement": "Preflight and independently certify noncontextual fraction and L1 distance, including objective/residual reconstruction; signed section composes positive/negative zero-objective variables and verifies exact reconstruction. Descent delegates to the full-cover model contract.",
+        "requirement_id": "TFQM-OBSERVER-REVIEW-FOC035-OBSERVER-PRESHEAF-2",
+        "symbols": [
+          "ncf",
+          "l1_defect",
+          "matching_families",
+          "_signed_section"
+        ],
+        "test_source": "checks/tests/test_observer_presheaf.py",
+        "tests": [
+          "ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles",
+          "ObserverPresheafTests.test_generated_single_context_models_are_noncontextual",
+          "ObserverPresheafTests.test_gluing_zero_overlap_mismatch_and_lp_size_preflight"
+        ]
+      },
+      {
+        "requirement": "Own finite hyperedges and reduce ears/contained edges until fixed point; never accept arbitrary iterables or aliased booleans. Glue admitted two-context probabilities only when overlap marginals agree, using the explicit zero-overlap convention and checking the reconstructed model.",
+        "requirement_id": "TFQM-OBSERVER-REVIEW-FOC035-OBSERVER-PRESHEAF-3",
+        "symbols": [
+          "_vertex",
+          "_hyperedges",
+          "_remove_ears",
+          "_remove_contained",
+          "gyo",
+          "_glue_pair"
+        ],
+        "test_source": "checks/tests/test_observer_presheaf.py",
+        "tests": [
+          "ObserverPresheafTests.test_gyo_exhaustive_graph_oracle_and_domains",
+          "ObserverPresheafTests.test_path_gluing_against_independent_marginals",
+          "ObserverPresheafTests.test_gluing_zero_overlap_mismatch_and_lp_size_preflight"
+        ]
+      },
+      {
+        "requirement": "Execute every retained finite control using per-run Cases, explicit conditions and certified component queries; parity census must check every target. Recompute actual Cech upper/dual bounds and distinguish signalling, support, contextual fraction, descent, norms, role identifiers/principals and renaming countermodel. Preserve50-check CLI with nonzero expected-failure exit, silent imports and propagated interruptions. No universal mathematical or authority claim is added.",
+        "requirement_id": "TFQM-OBSERVER-REVIEW-FOC035-OBSERVER-PRESHEAF-4",
+        "symbols": [
+          "_ok",
+          "_restriction_chains",
+          "check_functoriality",
+          "check_fixed_models",
+          "check_signed_section",
+          "check_descent",
+          "_parity_case",
+          "check_parity_cycles",
+          "_check_bell_bounds",
+          "check_bell_cech",
+          "check_triple_coboundary",
+          "check_path_gluing",
+          "check_repaired_tables",
+          "check_underdetermination",
+          "check_ceilings_and_roles",
+          "_check_role_counts",
+          "check_axis_countermodel",
+          "main"
+        ],
+        "test_source": "checks/tests/test_observer_presheaf.py",
+        "tests": [
+          "ObserverPresheafTests.test_import_oracles_and_per_run_recorder",
+          "ObserverPresheafTests.test_executable_groups_and_failure_exit",
+          "ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles"
+        ]
+      }
+    ],
+    "role": "Bounded finite observer-presheaf verification application composing certified exact LPs, owned empirical models and Cech witnesses",
     "schema_id": "tfqm.source-contract.v1",
     "symbols": [
-      "test/check entrypoints"
+      "_check_bell_bounds",
+      "_check_role_counts",
+      "_glue_pair",
+      "_hyperedges",
+      "_ok",
+      "_optimal",
+      "_parity_case",
+      "_remove_contained",
+      "_remove_ears",
+      "_restriction_chains",
+      "_signed_section",
+      "_support",
+      "_vertex",
+      "check_axis_countermodel",
+      "check_bell_cech",
+      "check_ceilings_and_roles",
+      "check_descent",
+      "check_fixed_models",
+      "check_functoriality",
+      "check_parity_cycles",
+      "check_path_gluing",
+      "check_repaired_tables",
+      "check_signed_section",
+      "check_triple_coboundary",
+      "check_underdetermination",
+      "gyo",
+      "l1_defect",
+      "main",
+      "matching_families",
+      "mixture",
+      "ncf",
+      "noisy_pr",
+      "parity_dist",
+      "point_mass",
+      "pr_box",
+      "simplex_min",
+      "verify_lp"
     ]
   },
   "contract_history": [
@@ -171,10 +1085,971 @@
         ]
       },
       "sha256": "47ac9d8bcad0364871f1a1d999ee4b8cbbaf7438b9f7d44f0e9a6035788e6c60"
+    },
+    {
+      "bytes": 45995,
+      "original_paths": [
+        "observer-presheaf-review-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/foc035_observer_presheaf.py\",\n    \"sha256\": \"908bfd73fa5aabc40490f437adf3f86de6dd4d5f9453b85e58a0a29e24b47975\"\n  },\n  \"audited_consumers\": [\n    {\n      \"path\": \"checks/tests/test_observer_presheaf.py\",\n      \"sha256\": \"0ca9db4e554f1f99489fa362050f3387930341cb8c0deecccf95055794dd69f7\",\n      \"state\": \"current local direct import/path consumer\"\n    },\n    {\n      \"path\": \".github/workflows/reviewed-checkers.yml\",\n      \"sha256\": \"972a9ea4defe93ea1ed3e35d16d961f803c1456ab19ef9105930c4bb1af72210\",\n      \"state\": \"current local direct import/path consumer\"\n    },\n    {\n      \"path\": \"dag/validate_derivation_dag.py\",\n      \"sha256\": \"03bc49bfde5c437d04d8c429c6acc51681972d1126394c2230f1f610c46bf5f7\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/test_foc035_lp_certificates.py\",\n      \"sha256\": \"27173d70314e05d9762b4b180d6ceb9ccf3c7e5c55dc40a5c965cfbd9811fb79\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/sync_genesis_to_higher.py\",\n      \"sha256\": \"79debb44595ed581fcecd7ea35313d76c49136ad711c00ec04c31573ce9aea80\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/sync_frontier_branches.py\",\n      \"sha256\": \"84c94ce88005f5f9444b3c504e931aab4393159180c1de9c9fd48e3d0091bbc6\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/sync_foc035_observer_presheaf.py\",\n      \"sha256\": \"134757d5921ef700e2f8db311ebe3ca69e8b44a2b4d8fbe392e073088a4eb43f\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/sync_application_branches.py\",\n      \"sha256\": \"2dbf78d911b66642180c1da66ca5d3c8fef1eae9221b351f8ac59c591bd83463\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/pr244_integrated_pipeline.json\",\n      \"sha256\": \"a9d07e38eacb91d918590d8a4b03eb0e996a73ed44f314f5bc1b7f19b1d7ac27\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"evidence/quality/functor_shell_pr/campaign_checks_attempt1.json\",\n      \"sha256\": \"b2fd62d5a56ead47b99c82550d9f0e974462c630ac7231a149080f17f1eccf1e\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"evidence/quality/functor_shell_pr/campaign_checks.json\",\n      \"sha256\": \"e435c67feb9ad4035bee76a5390fe08cfc0bf53257a9520e3a402772da4f61ac\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/final_combined_pipeline.json\",\n      \"sha256\": \"5fe198b3ece9298c37330ab98940ca2f533f2e9723c9b5271abea0afabccb729\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"evidence/quality/pr215_l4_repair/final_acceptance.json\",\n      \"sha256\": \"49fe4bd5e7165a16c2c4e5474450e8f641280d0c8bbada01373d344d8045dde0\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/render_dag_views.py\",\n      \"sha256\": \"86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/fragments/foc035_observer_presheaf.json\",\n      \"sha256\": \"0701dafb31eaf958b996fe0a1eb3ecf55aa0c59ae87e37f4b5d631cb0c3a363d\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/evidence/evidence_map.json\",\n      \"sha256\": \"6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivation_dag_reading_note.md\",\n      \"sha256\": \"a647a90f4c8639bd47fcd5b27c583796cf8db8a778a521edbe9157d336751b47\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivation_dag.json\",\n      \"sha256\": \"7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/pfp/campaign/README.md\",\n      \"sha256\": \"f81ecb198204709394cf84a43917ddb5efa9e398161d221e61788d95e5eb81fb\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/pfp/batch_tools/integrate.py\",\n      \"sha256\": \"7efa3346a3adb152ced904056700fcad5b016d9651418ba5a1c87e26d1358dd8\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2532_ops_pr1050_absence.md\",\n      \"sha256\": \"75cd1380305342d6bd4e108ccc4602cb601f55b31237c2ed80bfd96231071289\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2531_ops_refuted_earlier_rust.md\",\n      \"sha256\": \"14f34d5953641e53b7d8790268320e3e6683333783bcb6c68f687963e3d37aa1\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2530_ops_refuted_earlier_gate.md\",\n      \"sha256\": \"8d929eab252d879de780b0b869595ce89562b29f1edeb3fe1fdeb0e96bdb642e\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2529_ops_refuted_nb9.md\",\n      \"sha256\": \"42cd2f9c233e19340b0c1bab9838a05b66b279fea0b6cbbcdd897d4505e08e82\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2528_ops_refuted_axis3_wide.md\",\n      \"sha256\": \"4da2d48d94bd95cafbb6363295801f04d95404e34820b99816ea5dd0fbe1151a\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2527_ops_regress_corollary.md\",\n      \"sha256\": \"e6eefa86822b4bd938b198bc414380a5a7af476a3c40cf992a0fbeb636e5ba0b\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md\",\n      \"sha256\": \"eb65609d758831aa4f4248de96a7670bd8ada4de92e933112879a68ef59d8943\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2525_ops_axis2_meta_carrier.md\",\n      \"sha256\": \"73ffe14722b92d27b4bc65dcde637cc8f6bb4bdc150fc12f539cf963b1f3bc3b\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md\",\n      \"sha256\": \"804ec8a0415a21ba89b81fb7801c1148e1d7d5ba497ecf157bf8412050c5982b\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2523_ops_ap_card_proposal.md\",\n      \"sha256\": \"b7e797f3b8cd03f716992e03474b301a23a2787287d129213dae75180dacd609\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2522_ops_self_certification_packet.md\",\n      \"sha256\": \"1d4f1853da8b96aa0b6d9ce150c8dea53ffd20914e9cc709f515636eea77fd6a\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2521_ops_three_role_gate.md\",\n      \"sha256\": \"6a63fb190231521b9f45ab19f0c4ca86f20b29b4acca9d294d5c9a60c3b6765e\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md\",\n      \"sha256\": \"6005932cabeaa8c8474dbf0420275faca9f403077a018be31015045df5527dc6\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2519_ops_rust_receipts_and_limits.md\",\n      \"sha256\": \"81b9253321a4e6c04ffa6d18dfcda030f03f7ca005ecc42a30a68fb153c3408f\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2518_ops_observer_declaration_refusal.md\",\n      \"sha256\": \"0b65f2f7622ca567ece0d9344e34a9abe2cd8ae6c49e6c5125139515d8c2bef7\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2517_ops_underdetermination.md\",\n      \"sha256\": \"695a604306e0c75854eda45928600322ccaa18934442cd3278d757c3b8e04702\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md\",\n      \"sha256\": \"9293a0fc7778f81e0288c38bccb8d7b396d19fb743c78e1cb15ee5db00e80fa9\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2515_ops_vorobev_path_instance.md\",\n      \"sha256\": \"9a6a9f38d4899b7e16b2ac78d1571f0a3d3668d8afbc3bf6a32be64988cd1f15\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2514_ops_vorobev_theorem.md\",\n      \"sha256\": \"bfd423842bbee333eb6aa6c528a27252227c5a90454fcad1328873c55877455c\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2513_ops_z2_witness_false_negatives.md\",\n      \"sha256\": \"f424c1b1ca2e8cad6578e1a74b8ae4f2bc5c46e3045f4eb59477036e9def850f\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2512_ops_no_signalling_signed_section.md\",\n      \"sha256\": \"d6f5d9bdf4cc365ce3c0b0800d8dbc20ef2ce8362571fe766553591c49b059e7\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2511_ops_parity_cycle_descent_ncf.md\",\n      \"sha256\": \"28cbfd394b73d8d25c5c201fa2624c0bb0826ff3f588ef9ce10d2ac749c7909c\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2510_ops_zero_cocycle_blind.md\",\n      \"sha256\": \"49e994810705908ecb66b30ceff8685a5ae1ff16dc10b3a794cd58f561a87725\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2509_ops_cech_coboundary.md\",\n      \"sha256\": \"d954a99f0fb5436eda90abd7f1e8d15c628e5482b55f7355c834335de5948fd6\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2508_ops_nge_not_contextuality.md\",\n      \"sha256\": \"f1c719c08f466e12a650cbe1bb6faba1c433aa8ed18d655f1c11011df09a1ebf\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2507_ops_arc_cover_nge_witness.md\",\n      \"sha256\": \"ca367cf87a3eeb26591f18aa6911256905d24fb7c06dda5d5f644c69e7ceb628\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2506_ops_maximal_cover_descent.md\",\n      \"sha256\": \"aed67ff30685eb3b5a5c387621696a89018513b56e7df3773b4e6ec6532431eb\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2505_ops_noisy_pr_ncf.md\",\n      \"sha256\": \"c146a47465ef73fc7171d602218d9975ad50d9c24d3a253cd72c91379f85d9f5\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2504_ops_strong_contextuality_ncf_zero.md\",\n      \"sha256\": \"fc99842addce846400fc7d90c690524235a01e08224329407be41d0f12f0c36c\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md\",\n      \"sha256\": \"a089c41e413ea326fb66efc61071ae8a403ddad529ac5b53db0059ff146a6c50\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md\",\n      \"sha256\": \"54f42cb65672272b910b32f3814d74b5d1f409cc882038340e563d3870de435b\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2501_ops_pushforward_functor_lean.md\",\n      \"sha256\": \"fe59c997f1d27e7209c17741fddf163a4d89378b14d479f135cc5905d2ac7ffd\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2500_ops_observer_tuple.md\",\n      \"sha256\": \"770c4324247dce8fb21772b670b5d933ef93707b34c0aaa428ff2e39642826f6\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/operads/ops_arc_cover_nge_witness.yaml\",\n      \"sha256\": \"4120f993b646c61bf957ff0f9f2f2bb201685d7f67d2abb15cd40077080ccbe4\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/operads/ops_ncf_lhv_equivalence.yaml\",\n      \"sha256\": \"7a4ae75cf0d528ad4756bcbee8b54517df2442c6c86b11db657feaf12ca98e72\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/operads/ops_maximal_cover_descent.yaml\",\n      \"sha256\": \"2bdade85a440a564eadcbbbda4f120e381f3174bc0170a611902a702ee1916d8\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/operads/ops_cech_coboundary.yaml\",\n      \"sha256\": \"b277f36134cb8f172fd19462b229471141afa92e622b405d5a6e2fe43f535cff\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/operads/ops_refuted_axis3_wide.yaml\",\n      \"sha256\": \"416cc4b7b520b15907cb69996b2e0490767e83d0dfbe1ad8ec8215cd367094fd\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/operads/ops_pushforward_functor_lean.yaml\",\n      \"sha256\": \"ad17f27ea328b523ee293f7263fccbf342980e299cb767b0bdb5856eeeb8330d\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/operads/ops_parity_cycle_descent_ncf.yaml\",\n      \"sha256\": \"b27ea67650f2a18b8197f1e349d5a164fe50c9e7b1ff3849cf7f95ab5e056ef7\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/operads/ops_no_signalling_signed_section.yaml\",\n      \"sha256\": \"882c16aba444f9bec792e45dcd5b764c5ebb5e93e4919d7690b13edc6f4441f8\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/operads/ops_noisy_pr_ncf.yaml\",\n      \"sha256\": \"d06651bc92eec484f7c57db055c9f58c12319900808566fd30b8ad9d5b3ead04\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/operads/ops_vorobev_path_instance.yaml\",\n      \"sha256\": \"7a3605bbe41e7b2f718fe772df398d2ae2a5531a623ab852cd8e534a45d35fad\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/operads/ops_underdetermination.yaml\",\n      \"sha256\": \"72577f8dcadc7d7cc9333dd684ed436f14256e46335bf72fc38ae0163e7d713e\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/operads/ops_test_482_repair.yaml\",\n      \"sha256\": \"f86e7290f09057e06fd47ab38eee44485a8feed6003cac7032d247669cbb8a02\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/operads/ops_strong_contextuality_ncf_zero.yaml\",\n      \"sha256\": \"7f871cbf9aeedac0f24265016309852ea44923b5056a57e8a8fb6e6af213b5ff\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/operads/ops_refuted_earlier_rust.yaml\",\n      \"sha256\": \"6271a65b352bf49c730a923421ac22c51e459adc2378bc44709089b6fcfb787f\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/operads/ops_refuted_earlier_gate.yaml\",\n      \"sha256\": \"6bec88204d8d01b2fd2a08be3cfe06b23cb43791779473ab68deffd430af894f\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/three_proof_l4_pipeline.json\",\n      \"sha256\": \"169e096043d0b298f1111abf9ab9b4530c49c2ad9701085ba8fb5d4e22aeb920\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/three_proof_l4_final_pipeline.json\",\n      \"sha256\": \"3b8cfefb0474bb40788d1886442e905bb04654932d6b8294f02684f1fae640eb\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr_batch_campaign_validation.json\",\n      \"sha256\": \"b39ef0c78e949023f2c40afd97e87bd61540b6183d7218bf8bcc339b7285dec9\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr_392_validator_regression.json\",\n      \"sha256\": \"c2ac4ce7b4cff4a0c557c5869a13f11eba399f18bcded131d9a2e937f691509a\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr_373_integration_merge_checks.json\",\n      \"sha256\": \"290cdd3f6af0bc6734d9815808eb07ce2d577850f64906024b9e70b1dc89d436\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr_363_regression_validation.json\",\n      \"sha256\": \"44430f68692df9a4972fb9acd8cffd795be2b9627b5981c1234ed8092ccacbb4\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr_362_regression_validation.json\",\n      \"sha256\": \"45f15a476be7296c37f2cbca6582ee7a888a77f1453b990fdb4007dc45827a65\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr_320_campaign_pipeline.json\",\n      \"sha256\": \"fd0a9f64ce3b08d51a6d057b9c6bb4a02f4cae605734f9d5a3d27c70d3e260ef\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr440_preapproval_validation_20261026.json\",\n      \"sha256\": \"ef810b27bb3fab40c22ff164c484a1f1ae31a87b261f49e4be7daa56c0fd1904\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr440_independent_review_followup_20261026.json\",\n      \"sha256\": \"752301040d04dac21137e6d9b78e37d22885db95c220cc11b39710a176a3bf19\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr440_approved_acceptance_20261026.json\",\n      \"sha256\": \"56c318ec646d42e3725019fd79df9ebcb92ee9100617036a55f91f1f1d2460da\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr439_repair_validation_20261026.json\",\n      \"sha256\": \"17c42bf7436773a802c6d04e040d7b83726fa89c9341f592b896d8b0babfd610\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr439_bottleneck_followup_20261026.json\",\n      \"sha256\": \"2726ff0e636d35aaa45bbc1ecc26fbde16667f939404ea6ae158cdb5a9d9867c\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr439_approved_acceptance_20261026.json\",\n      \"sha256\": \"5721051ce71a6ad15d5a5be3c86c13b74d48928974847276b5032dd036886b7e\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr437_current_review_20261026.json\",\n      \"sha256\": \"2fbe631f66d387c95060ef1285bcfc5d759fb950bd644c01ea2e0ca54df5e58c\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr435_repair_validation_20261026.json\",\n      \"sha256\": \"11a6be66a6b2e3d284495aadbcce338d6361c17ff759b1797e3b1f9fcaf26ffd\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr435_approved_acceptance_20261026.json\",\n      \"sha256\": \"2ab7eff3a06d014c82637f8ca38e949e56b8c847690688b6ca60b9c921d154d2\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr434_main_integration_validation_20261026.json\",\n      \"sha256\": \"bb6c5dc882a2d0055ea4c8f216ad9009d1c220fffab2b38c2aac652815dc9537\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr434_current_review_20261026.json\",\n      \"sha256\": \"64edb67185b31d5824613bc87fdce6131e3095f0097ac1eeac70aac3a6d3bbff\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr434_back_route_validation_20261026.json\",\n      \"sha256\": \"2184917065d58d522ac0d82db3bb058794d7062d9ad66755bf61d8410ba1a96e\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr375_merge_readiness.json\",\n      \"sha256\": \"17aa595b2f84790b2333e7089ea3b7a821347432a3cf544b28ee2680d5f1dcf1\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr375_hosted_review_validation.json\",\n      \"sha256\": \"6c40580cf537ecebb273f6d6f26efaff5beb7a424962b31ed3bcc7f6285e11b7\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr262_campaign_validation.json\",\n      \"sha256\": \"fbdc7d98d76d5e1582f951a6934318b035c5a297c9bdfd07d670f050ac05a724\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr247_pipeline.json\",\n      \"sha256\": \"5e628973026e26a04e97b2605a04ac708af6a89ee91840d9ecbcdbae32f25edb\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr247_followup_validation.json\",\n      \"sha256\": \"2a86e934ec76749e0a0f051581b7acacfa22eb05c3225086dd43cf8896b280f6\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/pr239_pipeline.json\",\n      \"sha256\": \"822a5bc184b13a0770f3d0aecf3f916e32d354c5845e5b45fac9698ac336c39c\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/overclaim/reviews/2026-10-22_foc035-observer-presheaf.md\",\n      \"sha256\": \"b11ca0bdbb2c0411ebcb19169ad6f9c9bbd3d93d0ccd0ca5599f7c4f82839d96\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/overclaim/baseline.json\",\n      \"sha256\": \"91a09d7e072e610de6a5f7f1ea1a8183b54075525b797f9769625c62e2e32b16\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/maintenance/pr442_preapproval_validation_20261026.json\",\n      \"sha256\": \"3094ba7b31c13a748b8c047096c7e5423a11701ae618d8e75896764f02b8229c\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/maintenance/pr442_approved_acceptance_20261026.json\",\n      \"sha256\": \"5f93f7536d7233489149754d76796f220e223f2caa3a4a11e147b8779fe57131\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/maintenance/pr441_review_20261026.json\",\n      \"sha256\": \"decab10d3542ce3e3384acf600ba2c61e36d4b613caa08f155dbae95d99d3842\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/maintenance/pr441_expanded_review_20261026.json\",\n      \"sha256\": \"435dae51b4fc836420102531fadd43e1dafaae31b5a568ef71e9ae2d8eeaae78\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/evidence/stages/OBSERVER_PRESHEAF.md\",\n      \"sha256\": \"9a0f14574cb8d7fa8d1dac8a1a188464ed31da8e9755fcb43020f47f0efccb67\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/fq_gleason_qi3_validation.json\",\n      \"sha256\": \"e8ab6e03a174dad46faa160b2de50792fca5101a8fd7bf0da737ebb0b498f362\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/foc035_observer_presheaf_review_validation.json\",\n      \"sha256\": \"deffbd36192cfee7922f6413322230ab9903c1da9c4c30ce397fb4a7c2d68d19\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/foc035_observer_presheaf_review_contract_coverage.json\",\n      \"sha256\": \"e3510af66ab128d3209fd8855c47f667812a44fa99d8bcdb0e89e5fa43aa37f9\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/foc035_observer_presheaf_pipeline_review.json\",\n      \"sha256\": \"04e726e303c43a7c917ab12ca3282adffa8d9c1c78a17ae2b00b135652e3452e\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_tests_retry.json\",\n      \"sha256\": \"683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_tests.json\",\n      \"sha256\": \"e3d4ff0b3d5bbc6b6ffa00a6eeb61ce03116934e19a881cdeb42005673062bda\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_sync_replay.json\",\n      \"sha256\": \"b768fbd5a130c53cb7cbfdce5eeeea17897bc40fe2e4a258d7cc4eba7775fe04\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_refactor_equivalence.json\",\n      \"sha256\": \"c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_metrics.json\",\n      \"sha256\": \"bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_exact_replay.json\",\n      \"sha256\": \"0a0441cb2e673a6a7aec2c1a36a5993152e79c71f28897b3265c7fe09afdee40\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_contract_coverage.json\",\n      \"sha256\": \"34b9f4a7d7863315efb891a6937cee67bd77e5bc619e6539396341b2247b91df\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/foc035_l4_checker_refactor.json\",\n      \"sha256\": \"b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_pipeline.json\",\n      \"sha256\": \"a2d67069a4f2af8b6c5cfd0a403144d7cc1bebc9f7f953d5688fcba98d8e866b\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/dfm_ckm_l4_final_pipeline.json\",\n      \"sha256\": \"9d1d0e53100fd75db775251f3ed5364e9ffc43ba6483ac39c001fea4ac875932\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/approved_finite_proof_merge_checks.json\",\n      \"sha256\": \"19510b54880ca7a166c48c51c4b5e29468ab9e03bdf50260593ac7a880825860\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/approved_pr_434_continuum_acceptance_2026_10_26.json\",\n      \"sha256\": \"f91732d0136eff6ab7494c0e18d3cd5b417f8e3665fc153f754cae3a3d36c63a\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/approved_pr_433_continuum_acceptance_2026_10_26.json\",\n      \"sha256\": \"6fbc773e41daaf8f6a6ff6435a30b551912c9908aa9dfbe26056a87479e561fa\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/campaign_dfm-continuum-refinement-limit_integration_validation.json\",\n      \"sha256\": \"f2835df8ed0b39899efb3b9aa7a37116f924ef669849ca2ae6cbe295f30754fb\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/campaign_lqg-projective-limit_integration_validation.json\",\n      \"sha256\": \"5dc4a391f1e9f6e6933054cc603f10479aa938708563172745c5c9712fac56bb\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-imaginary-mu-real-det_checks.json\",\n      \"sha256\": \"d92acf5c50fa23f777269791c02ff5e30a5c2b8c3a6096b17fc7e17d69a2ee4b\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"dag/research/campaign_fsp-majorana-clifford-parity_checks.json\",\n      \"sha256\": \"539f84678151c051ed212aed419bcd1bcf65662d9fe8a76dbc6c121e40df3b30\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/OPS-REFUTED-EARLIER-RUST.md\",\n      \"sha256\": \"cf4e157cf0377f8d863898a609c0a991ad9128fe09ee3b2537212ddf56a902cd\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/OPS-REFUTED-EARLIER-GATE.md\",\n      \"sha256\": \"3df550f9a0f4255c612ab820cd853f8efdf724db46172e5ef397632989f65cdb\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/OPS-REFUTED-AXIS3-WIDE.md\",\n      \"sha256\": \"5882ec333806330cfad842df70afc32c5bf89ccaa3929f94261b9f31f17bf887\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/OPS-PUSHFORWARD-FUNCTOR-LEAN.md\",\n      \"sha256\": \"224776ad217f95f753d7a455246dc11293a2e58ca7dcdf16150b9da6dbbe27cc\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/OPS-PARITY-CYCLE-DESCENT-NCF.md\",\n      \"sha256\": \"db7b36a4e86db7f9080789b5cd8e4f5611c61517aeefebb991e6ac8e60f8175a\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/OPS-NOISY-PR-NCF.md\",\n      \"sha256\": \"f7d2748e2a3daca293d9c98bfec159213943c0992af2d444c53078216124ee67\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/OPS-NO-SIGNALLING-SIGNED-SECTION.md\",\n      \"sha256\": \"0a86228c48ba0a13707c8ac3d93066e35dc751f4753bbd37ba487a18a28d43ac\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/OPS-NCF-LHV-EQUIVALENCE.md\",\n      \"sha256\": \"507ac1670becd3030327ed8b23e3df91683aedd8ebd1ad72e5ab64c9b78acba0\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/OPS-MAXIMAL-COVER-DESCENT.md\",\n      \"sha256\": \"ad806a81f1fd33e14414a9fd641c266f929c3452812fd841b1629d9a97d76f3a\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/OPS-CECH-COBOUNDARY.md\",\n      \"sha256\": \"d5df8b9960b4ae67a909647af41ae23bcb8b8050e58c9c45ec90bc1baba23d72\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/OPS-ARC-COVER-NGE-WITNESS.md\",\n      \"sha256\": \"b4051d86b484dc9859c256154265faaa22a4274f0896245e4ef0e9270daf9f5f\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/OPS-VOROBEV-PATH-INSTANCE.md\",\n      \"sha256\": \"a43cb306b73fc60c57b345c1aef4c005a2e77f34166d6d8e6d8439c19e3c2d44\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/OPS-UNDERDETERMINATION.md\",\n      \"sha256\": \"68d4f37e5486a69744262519349c57becbbef257acbc077e62cd0ba6ecf2b5d4\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/OPS-TEST-482-REPAIR.md\",\n      \"sha256\": \"2616a20bd673155240c7d0f0ad6e4220c3690641abd372da1db32e4ea8c73ad7\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    },\n    {\n      \"path\": \"docs/evidence/nodes/OPS-STRONG-CONTEXTUALITY-NCF-ZERO.md\",\n      \"sha256\": \"7b2d535d5d70658fc19c62950dbcc22799cfed435eea8928c0ee84a6535b32cf\",\n      \"state\": \"pre-change source consumer; unchanged path\"\n    }\n  ],\n  \"boundaries\": [\n    \"Finite executable coverage and independently verified candidates are not universal mathematical proofs or claims of simplex completion within resource limits.\",\n    \"No continuum, general sheaf exactness, authority promotion or change of imported scientific/DAG statuses.\",\n    \"No new Lean/Rust build or hosted CI result is claimed. Historical Rust ceilings are arithmetic examples separate from enforced Python bounds.\",\n    \"Retention5 is a keep label, not perfection; B-level evidence does not claim exhaustive correctness.\"\n  ],\n  \"bounded_context\": \"Exact bounded linear-program certificates and finite binary measurement/presheaf verification; owned domain values, per-query search workspace and application orchestration.\",\n  \"consumer_boundary\": \"Preserve original source path,50-check CLI and scalar verify_lp/ValueError contract exercised by20 DAG cases. Standard-form LP b>=0 is explicit; no live caller with negative RHS was found. Helpers form internal checker bounded contexts; fallible aggregate queries return Outcome. Pure immutable exports and internal adapters may return values or raise typed Violation, owned by the caller evaluation boundary. No cross-repository API promise. Original source and contract bytes archived; historical scientific statuses and imported paper origins unchanged. No new Lean build, Rust run or hosted CI result is claimed.\",\n  \"contract_urn\": \"urn:tfqm:checker-review:2026-11-03:foc035_observer_presheaf\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-checker.md\",\n      \"sha256\": \"a009a1b2e79af01faf7157486a4094df526eb525b610a63ac9e0a0a57e802039\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-final-inputs.json\",\n      \"sha256\": \"040f984c9ad8735556883c51885938e0290e1083fbfb441508feea0074fd63c6\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-initial-application.py.txt\",\n      \"sha256\": \"a643716c6583a35fa31c1c2567beae880a95eff4f956adf5cd44b77572ea2609\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-initial-manifest.json\",\n      \"sha256\": \"a3e333ecc9218878e41cd506f87418cda02b3aa95e33cc8e5b1eb899c8847940\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-initial-review.json\",\n      \"sha256\": \"94e8ff837846f90773f0a120b4212f243089bd44df52770ca2a0a4f199798db9\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-initial-test_cech_complex.py.txt\",\n      \"sha256\": \"843003ea90f873df2aa0445a879c13cfc70b09c591aea82a70cd310510202e8a\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-initial-test_exact_linear_program.py.txt\",\n      \"sha256\": \"e507a1f559be57af5252a2d6bfb9bd81305dc70f348eb003c1d46d0780801e71\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-mutations-closure.json\",\n      \"sha256\": \"4c8dee6833fd12d184484d408030b63cb9cb9b72b72bb2b2d651ef6418cec7c7\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-mutations-final.json\",\n      \"sha256\": \"82222001a5efb8cdf7e7e2304351770c692240b31e021b26b501f85fd0ff3c20\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-mutations.json\",\n      \"sha256\": \"706313a260c8b8b89f5d917256695e1b2c5ddf4903576ea1849a81c335a9f5cd\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-original-foc035_observer_presheaf.contract.score.yaml.txt\",\n      \"sha256\": \"4d8c5fea8d54032a2e1f37c197fc51cf34903e55d2d07ab49df9e7c27ced5a4a\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-original-foc035_observer_presheaf.py.txt\",\n      \"sha256\": \"3d90a2037dad209ecb4d24638a9c362056cc9b5c6c402859e653b22bdc9f6d9d\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-quality-initial.json\",\n      \"sha256\": \"ca863cfd4392d16c50d9ef68d5ef3dbd2e16ed2dddafb068d9a9f74e998e1082\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-quality.json\",\n      \"sha256\": \"3b7fba75457434c4fba16fcc3fabea87a403ac4f589a53e71996d023628e6744\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-requirements.json\",\n      \"sha256\": \"50121bb89ed6ba432b0f84ac83c47e60f48cbbc9b850c775fcc67b3bf49fe995\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-quality-complete.json\",\n      \"sha256\": \"3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json\",\n      \"sha256\": \"a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    },\n    {\n      \"path\": \"checks/tests/observer_presheaf_mutations.json\",\n      \"sha256\": \"e57420d1f665f4a60e1fb3596873b6ac48a00da15447a0a10dc566f70081a81f\"\n    }\n  ],\n  \"failure_policy\": \"Constructors and internal operations admit native bounded inputs through typed Violation. Public fallible aggregate queries use evaluate/Outcome, application adapters are owned by the CLI evaluation boundary, and the historical scalar verify_lp adapter deliberately converts expected refusal to ValueError for existing consumers. Resource refusal is distinct from an infeasible certificate or false scientific proposition. Unexpected programming errors and cancellation propagate; tests scope imports, captures, subprocess timeouts and mocks. Immutable exports are detached; mutable simplex workspace is private per solve.\",\n  \"nested_declaration_ownership\": {\n    \"check_axis_countermodel.verdict\": {\n      \"owned_by\": \"check_axis_countermodel\",\n      \"requirements_via\": \"check_axis_countermodel\"\n    }\n  },\n  \"operational_cost\": \"Default50 named groups include all56 parity targets for cycles3..5, exact Bell/noisy models and fixed countermodels. NCF, L1 and signed reconstruction preflight m<=32,n<=64 before incidence/LP allocation; LP budgets apply. GYO owns<=16 edges of<=16 vertices, total labels<=64; each deletion strictly reduces finite incidence, with bounded O(E^2*V) scans per iteration. Two-table gluing computes eight probabilities after full domain/overlap admission. Rust2^20/2^22 literal ceilings remain historical arithmetic examples, not these Python limits.\",\n  \"origins\": [\n    {\n      \"custody\": \"requested source checkout, read only\",\n      \"path\": \"lean4/LggrFiniteResults.lean\",\n      \"sha256\": \"ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de\"\n    },\n    {\n      \"custody\": \"requested source checkout, read only\",\n      \"path\": \"sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md\",\n      \"sha256\": \"ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb\"\n    },\n    {\n      \"custody\": \"requested source checkout, read only\",\n      \"path\": \"sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md\",\n      \"sha256\": \"da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4\"\n    },\n    {\n      \"custody\": \"requested source checkout, read only\",\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md\",\n      \"sha256\": \"a089c41e413ea326fb66efc61071ae8a403ddad529ac5b53db0059ff146a6c50\"\n    },\n    {\n      \"custody\": \"requested source checkout, read only\",\n      \"path\": \"dag/derivations/35_foc035_observer_presheaf/tfq_2507_ops_arc_cover_nge_witness.md\",\n      \"sha256\": \"ca367cf87a3eeb26591f18aa6911256905d24fb7c06dda5d5f644c69e7ceb628\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Exact non-bool integers/Fractions only; no float conversion. Numerator/denominator and each checked product, quotient and accumulated prefix are at most4096 bits.\",\n    \"LP standard form has nonnegative RHS,1..32 rows and1..64 variables. Optimal/infeasible/unbounded variants have disjoint owned shapes and must pass associated-program replay before search success.\",\n    \"Simplex has at most4096 pivots,32x97 tableau entries and deterministic entering/leaving choices; budget exhaustion never means infeasibility.\",\n    \"Measurement carrier1..6 and1..16 distinct nonempty increasing contexts cover the carrier. Full binary cochains are admitted including entries irrelevant to an empty nerve; signed cochains and probability rows have separate contracts.\",\n    \"Empirical rows are complete nonnegative mass-one distributions. General mixtures have equal scenarios; full-cover descent preflights4096 candidates and determines at most one joined assignment per family.\",\n    \"Incidence allocation<=4096 entries; each Cech degree<=4096 coordinates. Oriented coboundaries use actual overlaps. Quotient witnesses require dual norm<=1, basis annihilation and equality with actual primal residual.\",\n    \"Original50 named application groups and scalar DAG certificate interface remain. Per-run counters and actual parity census replace global/literal status bookkeeping.\"\n  ],\n  \"requirements\": [\n    {\n      \"requirement\": \"Retain legacy verify_lp exact scalar/ValueError compatibility while narrowing the admitted standard form to b>=0; no existing caller supplies negative RHS. LP solver wrapper never confuses resource failure/unboundedness with infeasibility. Admit parity, point assignment and noise in[0,1]; Bell mixture is explicitly a Bell fixture adapter. General models use owned EmpiricalModel.\",\n      \"requirement_id\": \"TFQM-OBSERVER-REVIEW-FOC035-OBSERVER-PRESHEAF-1\",\n      \"symbols\": [\n        \"simplex_min\",\n        \"verify_lp\",\n        \"parity_dist\",\n        \"pr_box\",\n        \"noisy_pr\",\n        \"point_mass\",\n        \"mixture\",\n        \"_support\",\n        \"_optimal\"\n      ],\n      \"test_source\": \"checks/tests/test_observer_presheaf.py\",\n      \"tests\": [\n        \"ObserverPresheafTests.test_legacy_lp_adapter_and_probability_input_refusals\",\n        \"ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles\"\n      ]\n    },\n    {\n      \"requirement\": \"Preflight and independently certify noncontextual fraction and L1 distance, including objective/residual reconstruction; signed section composes positive/negative zero-objective variables and verifies exact reconstruction. Descent delegates to the full-cover model contract.\",\n      \"requirement_id\": \"TFQM-OBSERVER-REVIEW-FOC035-OBSERVER-PRESHEAF-2\",\n      \"symbols\": [\n        \"ncf\",\n        \"l1_defect\",\n        \"matching_families\",\n        \"_signed_section\"\n      ],\n      \"test_source\": \"checks/tests/test_observer_presheaf.py\",\n      \"tests\": [\n        \"ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles\",\n        \"ObserverPresheafTests.test_generated_single_context_models_are_noncontextual\",\n        \"ObserverPresheafTests.test_gluing_zero_overlap_mismatch_and_lp_size_preflight\"\n      ]\n    },\n    {\n      \"requirement\": \"Own finite hyperedges and reduce ears/contained edges until fixed point; never accept arbitrary iterables or aliased booleans. Glue admitted two-context probabilities only when overlap marginals agree, using the explicit zero-overlap convention and checking the reconstructed model.\",\n      \"requirement_id\": \"TFQM-OBSERVER-REVIEW-FOC035-OBSERVER-PRESHEAF-3\",\n      \"symbols\": [\n        \"_vertex\",\n        \"_hyperedges\",\n        \"_remove_ears\",\n        \"_remove_contained\",\n        \"gyo\",\n        \"_glue_pair\"\n      ],\n      \"test_source\": \"checks/tests/test_observer_presheaf.py\",\n      \"tests\": [\n        \"ObserverPresheafTests.test_gyo_exhaustive_graph_oracle_and_domains\",\n        \"ObserverPresheafTests.test_path_gluing_against_independent_marginals\",\n        \"ObserverPresheafTests.test_gluing_zero_overlap_mismatch_and_lp_size_preflight\"\n      ]\n    },\n    {\n      \"requirement\": \"Execute every retained finite control using per-run Cases, explicit conditions and certified component queries; parity census must check every target. Recompute actual Cech upper/dual bounds and distinguish signalling, support, contextual fraction, descent, norms, role identifiers/principals and renaming countermodel. Preserve50-check CLI with nonzero expected-failure exit, silent imports and propagated interruptions. No universal mathematical or authority claim is added.\",\n      \"requirement_id\": \"TFQM-OBSERVER-REVIEW-FOC035-OBSERVER-PRESHEAF-4\",\n      \"symbols\": [\n        \"_ok\",\n        \"_restriction_chains\",\n        \"check_functoriality\",\n        \"check_fixed_models\",\n        \"check_signed_section\",\n        \"check_descent\",\n        \"_parity_case\",\n        \"check_parity_cycles\",\n        \"_check_bell_bounds\",\n        \"check_bell_cech\",\n        \"check_triple_coboundary\",\n        \"check_path_gluing\",\n        \"check_repaired_tables\",\n        \"check_underdetermination\",\n        \"check_ceilings_and_roles\",\n        \"_check_role_counts\",\n        \"check_axis_countermodel\",\n        \"main\"\n      ],\n      \"test_source\": \"checks/tests/test_observer_presheaf.py\",\n      \"tests\": [\n        \"ObserverPresheafTests.test_import_oracles_and_per_run_recorder\",\n        \"ObserverPresheafTests.test_executable_groups_and_failure_exit\",\n        \"ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles\"\n      ]\n    }\n  ],\n  \"role\": \"Bounded finite observer-presheaf verification application composing certified exact LPs, owned empirical models and Cech witnesses\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"symbols\": [\n    \"_check_bell_bounds\",\n    \"_check_role_counts\",\n    \"_glue_pair\",\n    \"_hyperedges\",\n    \"_ok\",\n    \"_optimal\",\n    \"_parity_case\",\n    \"_remove_contained\",\n    \"_remove_ears\",\n    \"_restriction_chains\",\n    \"_signed_section\",\n    \"_support\",\n    \"_vertex\",\n    \"check_axis_countermodel\",\n    \"check_bell_cech\",\n    \"check_ceilings_and_roles\",\n    \"check_descent\",\n    \"check_fixed_models\",\n    \"check_functoriality\",\n    \"check_parity_cycles\",\n    \"check_path_gluing\",\n    \"check_repaired_tables\",\n    \"check_signed_section\",\n    \"check_triple_coboundary\",\n    \"check_underdetermination\",\n    \"gyo\",\n    \"l1_defect\",\n    \"main\",\n    \"matching_families\",\n    \"mixture\",\n    \"ncf\",\n    \"noisy_pr\",\n    \"parity_dist\",\n    \"point_mass\",\n    \"pr_box\",\n    \"simplex_min\",\n    \"verify_lp\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/foc035_observer_presheaf.py",
+          "sha256": "908bfd73fa5aabc40490f437adf3f86de6dd4d5f9453b85e58a0a29e24b47975"
+        },
+        "audited_consumers": [
+          {
+            "path": "checks/tests/test_observer_presheaf.py",
+            "sha256": "0ca9db4e554f1f99489fa362050f3387930341cb8c0deecccf95055794dd69f7",
+            "state": "current local direct import/path consumer"
+          },
+          {
+            "path": ".github/workflows/reviewed-checkers.yml",
+            "sha256": "972a9ea4defe93ea1ed3e35d16d961f803c1456ab19ef9105930c4bb1af72210",
+            "state": "current local direct import/path consumer"
+          },
+          {
+            "path": "dag/validate_derivation_dag.py",
+            "sha256": "03bc49bfde5c437d04d8c429c6acc51681972d1126394c2230f1f610c46bf5f7",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/test_foc035_lp_certificates.py",
+            "sha256": "27173d70314e05d9762b4b180d6ceb9ccf3c7e5c55dc40a5c965cfbd9811fb79",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/sync_genesis_to_higher.py",
+            "sha256": "79debb44595ed581fcecd7ea35313d76c49136ad711c00ec04c31573ce9aea80",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/sync_frontier_branches.py",
+            "sha256": "84c94ce88005f5f9444b3c504e931aab4393159180c1de9c9fd48e3d0091bbc6",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/sync_foc035_observer_presheaf.py",
+            "sha256": "134757d5921ef700e2f8db311ebe3ca69e8b44a2b4d8fbe392e073088a4eb43f",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/sync_application_branches.py",
+            "sha256": "2dbf78d911b66642180c1da66ca5d3c8fef1eae9221b351f8ac59c591bd83463",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/pr244_integrated_pipeline.json",
+            "sha256": "a9d07e38eacb91d918590d8a4b03eb0e996a73ed44f314f5bc1b7f19b1d7ac27",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "evidence/quality/functor_shell_pr/campaign_checks_attempt1.json",
+            "sha256": "b2fd62d5a56ead47b99c82550d9f0e974462c630ac7231a149080f17f1eccf1e",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "evidence/quality/functor_shell_pr/campaign_checks.json",
+            "sha256": "e435c67feb9ad4035bee76a5390fe08cfc0bf53257a9520e3a402772da4f61ac",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/final_combined_pipeline.json",
+            "sha256": "5fe198b3ece9298c37330ab98940ca2f533f2e9723c9b5271abea0afabccb729",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "evidence/quality/pr215_l4_repair/final_acceptance.json",
+            "sha256": "49fe4bd5e7165a16c2c4e5474450e8f641280d0c8bbada01373d344d8045dde0",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/render_dag_views.py",
+            "sha256": "86f4909a1eba0a90c4dbdf17186480eac4511810fb5581fc01f4f2ce275b63b9",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/fragments/foc035_observer_presheaf.json",
+            "sha256": "0701dafb31eaf958b996fe0a1eb3ecf55aa0c59ae87e37f4b5d631cb0c3a363d",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/evidence/evidence_map.json",
+            "sha256": "6cbb3bb0a72c75d5b557f508ef8cf01fea3adea16db23c3e4e14725e2022e64f",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivation_dag_reading_note.md",
+            "sha256": "a647a90f4c8639bd47fcd5b27c583796cf8db8a778a521edbe9157d336751b47",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivation_dag.json",
+            "sha256": "7b656c2fa36e943f1cf821534ea60b6a953bd0f2aed82889e7f39e6dc4e6e586",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/pfp/campaign/README.md",
+            "sha256": "f81ecb198204709394cf84a43917ddb5efa9e398161d221e61788d95e5eb81fb",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/pfp/batch_tools/integrate.py",
+            "sha256": "7efa3346a3adb152ced904056700fcad5b016d9651418ba5a1c87e26d1358dd8",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2532_ops_pr1050_absence.md",
+            "sha256": "75cd1380305342d6bd4e108ccc4602cb601f55b31237c2ed80bfd96231071289",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2531_ops_refuted_earlier_rust.md",
+            "sha256": "14f34d5953641e53b7d8790268320e3e6683333783bcb6c68f687963e3d37aa1",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2530_ops_refuted_earlier_gate.md",
+            "sha256": "8d929eab252d879de780b0b869595ce89562b29f1edeb3fe1fdeb0e96bdb642e",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2529_ops_refuted_nb9.md",
+            "sha256": "42cd2f9c233e19340b0c1bab9838a05b66b279fea0b6cbbcdd897d4505e08e82",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2528_ops_refuted_axis3_wide.md",
+            "sha256": "4da2d48d94bd95cafbb6363295801f04d95404e34820b99816ea5dd0fbe1151a",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2527_ops_regress_corollary.md",
+            "sha256": "e6eefa86822b4bd938b198bc414380a5a7af476a3c40cf992a0fbeb636e5ba0b",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2526_ops_axis3_relabeling.md",
+            "sha256": "eb65609d758831aa4f4248de96a7670bd8ada4de92e933112879a68ef59d8943",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2525_ops_axis2_meta_carrier.md",
+            "sha256": "73ffe14722b92d27b4bc65dcde637cc8f6bb4bdc150fc12f539cf963b1f3bc3b",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2524_ops_axis1_wellfounded_admission.md",
+            "sha256": "804ec8a0415a21ba89b81fb7801c1148e1d7d5ba497ecf157bf8412050c5982b",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2523_ops_ap_card_proposal.md",
+            "sha256": "b7e797f3b8cd03f716992e03474b301a23a2787287d129213dae75180dacd609",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2522_ops_self_certification_packet.md",
+            "sha256": "1d4f1853da8b96aa0b6d9ce150c8dea53ffd20914e9cc709f515636eea77fd6a",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2521_ops_three_role_gate.md",
+            "sha256": "6a63fb190231521b9f45ab19f0c4ca86f20b29b4acca9d294d5c9a60c3b6765e",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2520_ops_lean_gap.md",
+            "sha256": "6005932cabeaa8c8474dbf0420275faca9f403077a018be31015045df5527dc6",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2519_ops_rust_receipts_and_limits.md",
+            "sha256": "81b9253321a4e6c04ffa6d18dfcda030f03f7ca005ecc42a30a68fb153c3408f",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2518_ops_observer_declaration_refusal.md",
+            "sha256": "0b65f2f7622ca567ece0d9344e34a9abe2cd8ae6c49e6c5125139515d8c2bef7",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2517_ops_underdetermination.md",
+            "sha256": "695a604306e0c75854eda45928600322ccaa18934442cd3278d757c3b8e04702",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2516_ops_test_482_repair.md",
+            "sha256": "9293a0fc7778f81e0288c38bccb8d7b396d19fb743c78e1cb15ee5db00e80fa9",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2515_ops_vorobev_path_instance.md",
+            "sha256": "9a6a9f38d4899b7e16b2ac78d1571f0a3d3668d8afbc3bf6a32be64988cd1f15",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2514_ops_vorobev_theorem.md",
+            "sha256": "bfd423842bbee333eb6aa6c528a27252227c5a90454fcad1328873c55877455c",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2513_ops_z2_witness_false_negatives.md",
+            "sha256": "f424c1b1ca2e8cad6578e1a74b8ae4f2bc5c46e3045f4eb59477036e9def850f",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2512_ops_no_signalling_signed_section.md",
+            "sha256": "d6f5d9bdf4cc365ce3c0b0800d8dbc20ef2ce8362571fe766553591c49b059e7",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2511_ops_parity_cycle_descent_ncf.md",
+            "sha256": "28cbfd394b73d8d25c5c201fa2624c0bb0826ff3f588ef9ce10d2ac749c7909c",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2510_ops_zero_cocycle_blind.md",
+            "sha256": "49e994810705908ecb66b30ceff8685a5ae1ff16dc10b3a794cd58f561a87725",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2509_ops_cech_coboundary.md",
+            "sha256": "d954a99f0fb5436eda90abd7f1e8d15c628e5482b55f7355c834335de5948fd6",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2508_ops_nge_not_contextuality.md",
+            "sha256": "f1c719c08f466e12a650cbe1bb6faba1c433aa8ed18d655f1c11011df09a1ebf",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2507_ops_arc_cover_nge_witness.md",
+            "sha256": "ca367cf87a3eeb26591f18aa6911256905d24fb7c06dda5d5f644c69e7ceb628",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2506_ops_maximal_cover_descent.md",
+            "sha256": "aed67ff30685eb3b5a5c387621696a89018513b56e7df3773b4e6ec6532431eb",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2505_ops_noisy_pr_ncf.md",
+            "sha256": "c146a47465ef73fc7171d602218d9975ad50d9c24d3a253cd72c91379f85d9f5",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2504_ops_strong_contextuality_ncf_zero.md",
+            "sha256": "fc99842addce846400fc7d90c690524235a01e08224329407be41d0f12f0c36c",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md",
+            "sha256": "a089c41e413ea326fb66efc61071ae8a403ddad529ac5b53db0059ff146a6c50",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2502_ops_parity_holonomy_lean.md",
+            "sha256": "54f42cb65672272b910b32f3814d74b5d1f409cc882038340e563d3870de435b",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2501_ops_pushforward_functor_lean.md",
+            "sha256": "fe59c997f1d27e7209c17741fddf163a4d89378b14d479f135cc5905d2ac7ffd",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2500_ops_observer_tuple.md",
+            "sha256": "770c4324247dce8fb21772b670b5d933ef93707b34c0aaa428ff2e39642826f6",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/operads/ops_arc_cover_nge_witness.yaml",
+            "sha256": "4120f993b646c61bf957ff0f9f2f2bb201685d7f67d2abb15cd40077080ccbe4",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/operads/ops_ncf_lhv_equivalence.yaml",
+            "sha256": "7a4ae75cf0d528ad4756bcbee8b54517df2442c6c86b11db657feaf12ca98e72",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/operads/ops_maximal_cover_descent.yaml",
+            "sha256": "2bdade85a440a564eadcbbbda4f120e381f3174bc0170a611902a702ee1916d8",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/operads/ops_cech_coboundary.yaml",
+            "sha256": "b277f36134cb8f172fd19462b229471141afa92e622b405d5a6e2fe43f535cff",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/operads/ops_refuted_axis3_wide.yaml",
+            "sha256": "416cc4b7b520b15907cb69996b2e0490767e83d0dfbe1ad8ec8215cd367094fd",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/operads/ops_pushforward_functor_lean.yaml",
+            "sha256": "ad17f27ea328b523ee293f7263fccbf342980e299cb767b0bdb5856eeeb8330d",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/operads/ops_parity_cycle_descent_ncf.yaml",
+            "sha256": "b27ea67650f2a18b8197f1e349d5a164fe50c9e7b1ff3849cf7f95ab5e056ef7",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/operads/ops_no_signalling_signed_section.yaml",
+            "sha256": "882c16aba444f9bec792e45dcd5b764c5ebb5e93e4919d7690b13edc6f4441f8",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/operads/ops_noisy_pr_ncf.yaml",
+            "sha256": "d06651bc92eec484f7c57db055c9f58c12319900808566fd30b8ad9d5b3ead04",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/operads/ops_vorobev_path_instance.yaml",
+            "sha256": "7a3605bbe41e7b2f718fe772df398d2ae2a5531a623ab852cd8e534a45d35fad",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/operads/ops_underdetermination.yaml",
+            "sha256": "72577f8dcadc7d7cc9333dd684ed436f14256e46335bf72fc38ae0163e7d713e",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/operads/ops_test_482_repair.yaml",
+            "sha256": "f86e7290f09057e06fd47ab38eee44485a8feed6003cac7032d247669cbb8a02",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/operads/ops_strong_contextuality_ncf_zero.yaml",
+            "sha256": "7f871cbf9aeedac0f24265016309852ea44923b5056a57e8a8fb6e6af213b5ff",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/operads/ops_refuted_earlier_rust.yaml",
+            "sha256": "6271a65b352bf49c730a923421ac22c51e459adc2378bc44709089b6fcfb787f",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/operads/ops_refuted_earlier_gate.yaml",
+            "sha256": "6bec88204d8d01b2fd2a08be3cfe06b23cb43791779473ab68deffd430af894f",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/three_proof_l4_pipeline.json",
+            "sha256": "169e096043d0b298f1111abf9ab9b4530c49c2ad9701085ba8fb5d4e22aeb920",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/three_proof_l4_final_pipeline.json",
+            "sha256": "3b8cfefb0474bb40788d1886442e905bb04654932d6b8294f02684f1fae640eb",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr_batch_campaign_validation.json",
+            "sha256": "b39ef0c78e949023f2c40afd97e87bd61540b6183d7218bf8bcc339b7285dec9",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr_392_validator_regression.json",
+            "sha256": "c2ac4ce7b4cff4a0c557c5869a13f11eba399f18bcded131d9a2e937f691509a",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr_373_integration_merge_checks.json",
+            "sha256": "290cdd3f6af0bc6734d9815808eb07ce2d577850f64906024b9e70b1dc89d436",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr_363_regression_validation.json",
+            "sha256": "44430f68692df9a4972fb9acd8cffd795be2b9627b5981c1234ed8092ccacbb4",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr_362_regression_validation.json",
+            "sha256": "45f15a476be7296c37f2cbca6582ee7a888a77f1453b990fdb4007dc45827a65",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr_320_campaign_pipeline.json",
+            "sha256": "fd0a9f64ce3b08d51a6d057b9c6bb4a02f4cae605734f9d5a3d27c70d3e260ef",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr440_preapproval_validation_20261026.json",
+            "sha256": "ef810b27bb3fab40c22ff164c484a1f1ae31a87b261f49e4be7daa56c0fd1904",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr440_independent_review_followup_20261026.json",
+            "sha256": "752301040d04dac21137e6d9b78e37d22885db95c220cc11b39710a176a3bf19",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr440_approved_acceptance_20261026.json",
+            "sha256": "56c318ec646d42e3725019fd79df9ebcb92ee9100617036a55f91f1f1d2460da",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr439_repair_validation_20261026.json",
+            "sha256": "17c42bf7436773a802c6d04e040d7b83726fa89c9341f592b896d8b0babfd610",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr439_bottleneck_followup_20261026.json",
+            "sha256": "2726ff0e636d35aaa45bbc1ecc26fbde16667f939404ea6ae158cdb5a9d9867c",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr439_approved_acceptance_20261026.json",
+            "sha256": "5721051ce71a6ad15d5a5be3c86c13b74d48928974847276b5032dd036886b7e",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr437_current_review_20261026.json",
+            "sha256": "2fbe631f66d387c95060ef1285bcfc5d759fb950bd644c01ea2e0ca54df5e58c",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr435_repair_validation_20261026.json",
+            "sha256": "11a6be66a6b2e3d284495aadbcce338d6361c17ff759b1797e3b1f9fcaf26ffd",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr435_approved_acceptance_20261026.json",
+            "sha256": "2ab7eff3a06d014c82637f8ca38e949e56b8c847690688b6ca60b9c921d154d2",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr434_main_integration_validation_20261026.json",
+            "sha256": "bb6c5dc882a2d0055ea4c8f216ad9009d1c220fffab2b38c2aac652815dc9537",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr434_current_review_20261026.json",
+            "sha256": "64edb67185b31d5824613bc87fdce6131e3095f0097ac1eeac70aac3a6d3bbff",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr434_back_route_validation_20261026.json",
+            "sha256": "2184917065d58d522ac0d82db3bb058794d7062d9ad66755bf61d8410ba1a96e",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr375_merge_readiness.json",
+            "sha256": "17aa595b2f84790b2333e7089ea3b7a821347432a3cf544b28ee2680d5f1dcf1",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr375_hosted_review_validation.json",
+            "sha256": "6c40580cf537ecebb273f6d6f26efaff5beb7a424962b31ed3bcc7f6285e11b7",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr262_campaign_validation.json",
+            "sha256": "fbdc7d98d76d5e1582f951a6934318b035c5a297c9bdfd07d670f050ac05a724",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr247_pipeline.json",
+            "sha256": "5e628973026e26a04e97b2605a04ac708af6a89ee91840d9ecbcdbae32f25edb",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr247_followup_validation.json",
+            "sha256": "2a86e934ec76749e0a0f051581b7acacfa22eb05c3225086dd43cf8896b280f6",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/pr239_pipeline.json",
+            "sha256": "822a5bc184b13a0770f3d0aecf3f916e32d354c5845e5b45fac9698ac336c39c",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/overclaim/reviews/2026-10-22_foc035-observer-presheaf.md",
+            "sha256": "b11ca0bdbb2c0411ebcb19169ad6f9c9bbd3d93d0ccd0ca5599f7c4f82839d96",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/overclaim/baseline.json",
+            "sha256": "91a09d7e072e610de6a5f7f1ea1a8183b54075525b797f9769625c62e2e32b16",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/maintenance/pr442_preapproval_validation_20261026.json",
+            "sha256": "3094ba7b31c13a748b8c047096c7e5423a11701ae618d8e75896764f02b8229c",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/maintenance/pr442_approved_acceptance_20261026.json",
+            "sha256": "5f93f7536d7233489149754d76796f220e223f2caa3a4a11e147b8779fe57131",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/maintenance/pr441_review_20261026.json",
+            "sha256": "decab10d3542ce3e3384acf600ba2c61e36d4b613caa08f155dbae95d99d3842",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/maintenance/pr441_expanded_review_20261026.json",
+            "sha256": "435dae51b4fc836420102531fadd43e1dafaae31b5a568ef71e9ae2d8eeaae78",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/evidence/stages/OBSERVER_PRESHEAF.md",
+            "sha256": "9a0f14574cb8d7fa8d1dac8a1a188464ed31da8e9755fcb43020f47f0efccb67",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/fq_gleason_qi3_validation.json",
+            "sha256": "e8ab6e03a174dad46faa160b2de50792fca5101a8fd7bf0da737ebb0b498f362",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/foc035_observer_presheaf_review_validation.json",
+            "sha256": "deffbd36192cfee7922f6413322230ab9903c1da9c4c30ce397fb4a7c2d68d19",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/foc035_observer_presheaf_review_contract_coverage.json",
+            "sha256": "e3510af66ab128d3209fd8855c47f667812a44fa99d8bcdb0e89e5fa43aa37f9",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/foc035_observer_presheaf_pipeline_review.json",
+            "sha256": "04e726e303c43a7c917ab12ca3282adffa8d9c1c78a17ae2b00b135652e3452e",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/foc035_l4_tests_retry.json",
+            "sha256": "683fb1d437e14dc6be7275b0cb2ce89eb7bdcfe1166df2cee39670e7f6c49be1",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/foc035_l4_tests.json",
+            "sha256": "e3d4ff0b3d5bbc6b6ffa00a6eeb61ce03116934e19a881cdeb42005673062bda",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/foc035_l4_sync_replay.json",
+            "sha256": "b768fbd5a130c53cb7cbfdce5eeeea17897bc40fe2e4a258d7cc4eba7775fe04",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/foc035_l4_refactor_equivalence.json",
+            "sha256": "c73649ebdff4adedfb451466583ce628d2b69df6f3ef5bd160be355be089c6c4",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/foc035_l4_metrics.json",
+            "sha256": "bc85714ae399bdd9acfc990d820dd737a392157e72202d2e9c3a23e0c0f9e8b6",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/foc035_l4_exact_replay.json",
+            "sha256": "0a0441cb2e673a6a7aec2c1a36a5993152e79c71f28897b3265c7fe09afdee40",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/foc035_l4_contract_coverage.json",
+            "sha256": "34b9f4a7d7863315efb891a6937cee67bd77e5bc619e6539396341b2247b91df",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/foc035_l4_checker_refactor.json",
+            "sha256": "b024f8a8ad744efd6750a4058c41da2cd36cc53b57e61079e397dc01928b78f4",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/dfm_ckm_l4_pipeline.json",
+            "sha256": "a2d67069a4f2af8b6c5cfd0a403144d7cc1bebc9f7f953d5688fcba98d8e866b",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/dfm_ckm_l4_final_pipeline.json",
+            "sha256": "9d1d0e53100fd75db775251f3ed5364e9ffc43ba6483ac39c001fea4ac875932",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/approved_finite_proof_merge_checks.json",
+            "sha256": "19510b54880ca7a166c48c51c4b5e29468ab9e03bdf50260593ac7a880825860",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/approved_pr_434_continuum_acceptance_2026_10_26.json",
+            "sha256": "f91732d0136eff6ab7494c0e18d3cd5b417f8e3665fc153f754cae3a3d36c63a",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/approved_pr_433_continuum_acceptance_2026_10_26.json",
+            "sha256": "6fbc773e41daaf8f6a6ff6435a30b551912c9908aa9dfbe26056a87479e561fa",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/campaign_dfm-continuum-refinement-limit_integration_validation.json",
+            "sha256": "f2835df8ed0b39899efb3b9aa7a37116f924ef669849ca2ae6cbe295f30754fb",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/campaign_lqg-projective-limit_integration_validation.json",
+            "sha256": "5dc4a391f1e9f6e6933054cc603f10479aa938708563172745c5c9712fac56bb",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/campaign_fsp-imaginary-mu-real-det_checks.json",
+            "sha256": "d92acf5c50fa23f777269791c02ff5e30a5c2b8c3a6096b17fc7e17d69a2ee4b",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "dag/research/campaign_fsp-majorana-clifford-parity_checks.json",
+            "sha256": "539f84678151c051ed212aed419bcd1bcf65662d9fe8a76dbc6c121e40df3b30",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/evidence/nodes/OPS-REFUTED-EARLIER-RUST.md",
+            "sha256": "cf4e157cf0377f8d863898a609c0a991ad9128fe09ee3b2537212ddf56a902cd",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/evidence/nodes/OPS-REFUTED-EARLIER-GATE.md",
+            "sha256": "3df550f9a0f4255c612ab820cd853f8efdf724db46172e5ef397632989f65cdb",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/evidence/nodes/OPS-REFUTED-AXIS3-WIDE.md",
+            "sha256": "5882ec333806330cfad842df70afc32c5bf89ccaa3929f94261b9f31f17bf887",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/evidence/nodes/OPS-PUSHFORWARD-FUNCTOR-LEAN.md",
+            "sha256": "224776ad217f95f753d7a455246dc11293a2e58ca7dcdf16150b9da6dbbe27cc",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/evidence/nodes/OPS-PARITY-CYCLE-DESCENT-NCF.md",
+            "sha256": "db7b36a4e86db7f9080789b5cd8e4f5611c61517aeefebb991e6ac8e60f8175a",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/evidence/nodes/OPS-NOISY-PR-NCF.md",
+            "sha256": "f7d2748e2a3daca293d9c98bfec159213943c0992af2d444c53078216124ee67",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/evidence/nodes/OPS-NO-SIGNALLING-SIGNED-SECTION.md",
+            "sha256": "0a86228c48ba0a13707c8ac3d93066e35dc751f4753bbd37ba487a18a28d43ac",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/evidence/nodes/OPS-NCF-LHV-EQUIVALENCE.md",
+            "sha256": "507ac1670becd3030327ed8b23e3df91683aedd8ebd1ad72e5ab64c9b78acba0",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/evidence/nodes/OPS-MAXIMAL-COVER-DESCENT.md",
+            "sha256": "ad806a81f1fd33e14414a9fd641c266f929c3452812fd841b1629d9a97d76f3a",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/evidence/nodes/OPS-CECH-COBOUNDARY.md",
+            "sha256": "d5df8b9960b4ae67a909647af41ae23bcb8b8050e58c9c45ec90bc1baba23d72",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/evidence/nodes/OPS-ARC-COVER-NGE-WITNESS.md",
+            "sha256": "b4051d86b484dc9859c256154265faaa22a4274f0896245e4ef0e9270daf9f5f",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/evidence/nodes/OPS-VOROBEV-PATH-INSTANCE.md",
+            "sha256": "a43cb306b73fc60c57b345c1aef4c005a2e77f34166d6d8e6d8439c19e3c2d44",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/evidence/nodes/OPS-UNDERDETERMINATION.md",
+            "sha256": "68d4f37e5486a69744262519349c57becbbef257acbc077e62cd0ba6ecf2b5d4",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/evidence/nodes/OPS-TEST-482-REPAIR.md",
+            "sha256": "2616a20bd673155240c7d0f0ad6e4220c3690641abd372da1db32e4ea8c73ad7",
+            "state": "pre-change source consumer; unchanged path"
+          },
+          {
+            "path": "docs/evidence/nodes/OPS-STRONG-CONTEXTUALITY-NCF-ZERO.md",
+            "sha256": "7b2d535d5d70658fc19c62950dbcc22799cfed435eea8928c0ee84a6535b32cf",
+            "state": "pre-change source consumer; unchanged path"
+          }
+        ],
+        "boundaries": [
+          "Finite executable coverage and independently verified candidates are not universal mathematical proofs or claims of simplex completion within resource limits.",
+          "No continuum, general sheaf exactness, authority promotion or change of imported scientific/DAG statuses.",
+          "No new Lean/Rust build or hosted CI result is claimed. Historical Rust ceilings are arithmetic examples separate from enforced Python bounds.",
+          "Retention5 is a keep label, not perfection; B-level evidence does not claim exhaustive correctness."
+        ],
+        "bounded_context": "Exact bounded linear-program certificates and finite binary measurement/presheaf verification; owned domain values, per-query search workspace and application orchestration.",
+        "consumer_boundary": "Preserve original source path,50-check CLI and scalar verify_lp/ValueError contract exercised by20 DAG cases. Standard-form LP b>=0 is explicit; no live caller with negative RHS was found. Helpers form internal checker bounded contexts; fallible aggregate queries return Outcome. Pure immutable exports and internal adapters may return values or raise typed Violation, owned by the caller evaluation boundary. No cross-repository API promise. Original source and contract bytes archived; historical scientific statuses and imported paper origins unchanged. No new Lean build, Rust run or hosted CI result is claimed.",
+        "contract_urn": "urn:tfqm:checker-review:2026-11-03:foc035_observer_presheaf",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-checker.md",
+            "sha256": "a009a1b2e79af01faf7157486a4094df526eb525b610a63ac9e0a0a57e802039"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-final-inputs.json",
+            "sha256": "040f984c9ad8735556883c51885938e0290e1083fbfb441508feea0074fd63c6"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-initial-application.py.txt",
+            "sha256": "a643716c6583a35fa31c1c2567beae880a95eff4f956adf5cd44b77572ea2609"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-initial-manifest.json",
+            "sha256": "a3e333ecc9218878e41cd506f87418cda02b3aa95e33cc8e5b1eb899c8847940"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-initial-review.json",
+            "sha256": "94e8ff837846f90773f0a120b4212f243089bd44df52770ca2a0a4f199798db9"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-initial-test_cech_complex.py.txt",
+            "sha256": "843003ea90f873df2aa0445a879c13cfc70b09c591aea82a70cd310510202e8a"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-initial-test_exact_linear_program.py.txt",
+            "sha256": "e507a1f559be57af5252a2d6bfb9bd81305dc70f348eb003c1d46d0780801e71"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-mutations-closure.json",
+            "sha256": "4c8dee6833fd12d184484d408030b63cb9cb9b72b72bb2b2d651ef6418cec7c7"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-mutations-final.json",
+            "sha256": "82222001a5efb8cdf7e7e2304351770c692240b31e021b26b501f85fd0ff3c20"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-mutations.json",
+            "sha256": "706313a260c8b8b89f5d917256695e1b2c5ddf4903576ea1849a81c335a9f5cd"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-original-foc035_observer_presheaf.contract.score.yaml.txt",
+            "sha256": "4d8c5fea8d54032a2e1f37c197fc51cf34903e55d2d07ab49df9e7c27ced5a4a"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-original-foc035_observer_presheaf.py.txt",
+            "sha256": "3d90a2037dad209ecb4d24638a9c362056cc9b5c6c402859e653b22bdc9f6d9d"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-quality-initial.json",
+            "sha256": "ca863cfd4392d16c50d9ef68d5ef3dbd2e16ed2dddafb068d9a9f74e998e1082"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-quality.json",
+            "sha256": "3b7fba75457434c4fba16fcc3fabea87a403ac4f589a53e71996d023628e6744"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-requirements.json",
+            "sha256": "50121bb89ed6ba432b0f84ac83c47e60f48cbbc9b850c775fcc67b3bf49fe995"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+            "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+            "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          },
+          {
+            "path": "checks/tests/observer_presheaf_mutations.json",
+            "sha256": "e57420d1f665f4a60e1fb3596873b6ac48a00da15447a0a10dc566f70081a81f"
+          }
+        ],
+        "failure_policy": "Constructors and internal operations admit native bounded inputs through typed Violation. Public fallible aggregate queries use evaluate/Outcome, application adapters are owned by the CLI evaluation boundary, and the historical scalar verify_lp adapter deliberately converts expected refusal to ValueError for existing consumers. Resource refusal is distinct from an infeasible certificate or false scientific proposition. Unexpected programming errors and cancellation propagate; tests scope imports, captures, subprocess timeouts and mocks. Immutable exports are detached; mutable simplex workspace is private per solve.",
+        "nested_declaration_ownership": {
+          "check_axis_countermodel.verdict": {
+            "owned_by": "check_axis_countermodel",
+            "requirements_via": "check_axis_countermodel"
+          }
+        },
+        "operational_cost": "Default50 named groups include all56 parity targets for cycles3..5, exact Bell/noisy models and fixed countermodels. NCF, L1 and signed reconstruction preflight m<=32,n<=64 before incidence/LP allocation; LP budgets apply. GYO owns<=16 edges of<=16 vertices, total labels<=64; each deletion strictly reduces finite incidence, with bounded O(E^2*V) scans per iteration. Two-table gluing computes eight probabilities after full domain/overlap admission. Rust2^20/2^22 literal ceilings remain historical arithmetic examples, not these Python limits.",
+        "origins": [
+          {
+            "custody": "requested source checkout, read only",
+            "path": "lean4/LggrFiniteResults.lean",
+            "sha256": "ce736b577beb07997dba02bd7f86f83f1ecac7ce7a569e72b6350171179f34de"
+          },
+          {
+            "custody": "requested source checkout, read only",
+            "path": "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/lggr_and_the_quantum_observer_presheaf.md",
+            "sha256": "ae5564735bb6591e0f149868f83bd9f9793f297be0f8af3cc889c293ae4059cb"
+          },
+          {
+            "custody": "requested source checkout, read only",
+            "path": "sources/atlas/papers/finite_obstruction_calculus/lggr_quantum_observer_presheaf/claim_ledger.md",
+            "sha256": "da99779add73314574622d0db46ea4dfbc9b66c4938caf29ab98590033592ab4"
+          },
+          {
+            "custody": "requested source checkout, read only",
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2503_ops_ncf_lhv_equivalence.md",
+            "sha256": "a089c41e413ea326fb66efc61071ae8a403ddad529ac5b53db0059ff146a6c50"
+          },
+          {
+            "custody": "requested source checkout, read only",
+            "path": "dag/derivations/35_foc035_observer_presheaf/tfq_2507_ops_arc_cover_nge_witness.md",
+            "sha256": "ca367cf87a3eeb26591f18aa6911256905d24fb7c06dda5d5f644c69e7ceb628"
+          }
+        ],
+        "owned_invariants": [
+          "Exact non-bool integers/Fractions only; no float conversion. Numerator/denominator and each checked product, quotient and accumulated prefix are at most4096 bits.",
+          "LP standard form has nonnegative RHS,1..32 rows and1..64 variables. Optimal/infeasible/unbounded variants have disjoint owned shapes and must pass associated-program replay before search success.",
+          "Simplex has at most4096 pivots,32x97 tableau entries and deterministic entering/leaving choices; budget exhaustion never means infeasibility.",
+          "Measurement carrier1..6 and1..16 distinct nonempty increasing contexts cover the carrier. Full binary cochains are admitted including entries irrelevant to an empty nerve; signed cochains and probability rows have separate contracts.",
+          "Empirical rows are complete nonnegative mass-one distributions. General mixtures have equal scenarios; full-cover descent preflights4096 candidates and determines at most one joined assignment per family.",
+          "Incidence allocation<=4096 entries; each Cech degree<=4096 coordinates. Oriented coboundaries use actual overlaps. Quotient witnesses require dual norm<=1, basis annihilation and equality with actual primal residual.",
+          "Original50 named application groups and scalar DAG certificate interface remain. Per-run counters and actual parity census replace global/literal status bookkeeping."
+        ],
+        "requirements": [
+          {
+            "requirement": "Retain legacy verify_lp exact scalar/ValueError compatibility while narrowing the admitted standard form to b>=0; no existing caller supplies negative RHS. LP solver wrapper never confuses resource failure/unboundedness with infeasibility. Admit parity, point assignment and noise in[0,1]; Bell mixture is explicitly a Bell fixture adapter. General models use owned EmpiricalModel.",
+            "requirement_id": "TFQM-OBSERVER-REVIEW-FOC035-OBSERVER-PRESHEAF-1",
+            "symbols": [
+              "simplex_min",
+              "verify_lp",
+              "parity_dist",
+              "pr_box",
+              "noisy_pr",
+              "point_mass",
+              "mixture",
+              "_support",
+              "_optimal"
+            ],
+            "test_source": "checks/tests/test_observer_presheaf.py",
+            "tests": [
+              "ObserverPresheafTests.test_legacy_lp_adapter_and_probability_input_refusals",
+              "ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles"
+            ]
+          },
+          {
+            "requirement": "Preflight and independently certify noncontextual fraction and L1 distance, including objective/residual reconstruction; signed section composes positive/negative zero-objective variables and verifies exact reconstruction. Descent delegates to the full-cover model contract.",
+            "requirement_id": "TFQM-OBSERVER-REVIEW-FOC035-OBSERVER-PRESHEAF-2",
+            "symbols": [
+              "ncf",
+              "l1_defect",
+              "matching_families",
+              "_signed_section"
+            ],
+            "test_source": "checks/tests/test_observer_presheaf.py",
+            "tests": [
+              "ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles",
+              "ObserverPresheafTests.test_generated_single_context_models_are_noncontextual",
+              "ObserverPresheafTests.test_gluing_zero_overlap_mismatch_and_lp_size_preflight"
+            ]
+          },
+          {
+            "requirement": "Own finite hyperedges and reduce ears/contained edges until fixed point; never accept arbitrary iterables or aliased booleans. Glue admitted two-context probabilities only when overlap marginals agree, using the explicit zero-overlap convention and checking the reconstructed model.",
+            "requirement_id": "TFQM-OBSERVER-REVIEW-FOC035-OBSERVER-PRESHEAF-3",
+            "symbols": [
+              "_vertex",
+              "_hyperedges",
+              "_remove_ears",
+              "_remove_contained",
+              "gyo",
+              "_glue_pair"
+            ],
+            "test_source": "checks/tests/test_observer_presheaf.py",
+            "tests": [
+              "ObserverPresheafTests.test_gyo_exhaustive_graph_oracle_and_domains",
+              "ObserverPresheafTests.test_path_gluing_against_independent_marginals",
+              "ObserverPresheafTests.test_gluing_zero_overlap_mismatch_and_lp_size_preflight"
+            ]
+          },
+          {
+            "requirement": "Execute every retained finite control using per-run Cases, explicit conditions and certified component queries; parity census must check every target. Recompute actual Cech upper/dual bounds and distinguish signalling, support, contextual fraction, descent, norms, role identifiers/principals and renaming countermodel. Preserve50-check CLI with nonzero expected-failure exit, silent imports and propagated interruptions. No universal mathematical or authority claim is added.",
+            "requirement_id": "TFQM-OBSERVER-REVIEW-FOC035-OBSERVER-PRESHEAF-4",
+            "symbols": [
+              "_ok",
+              "_restriction_chains",
+              "check_functoriality",
+              "check_fixed_models",
+              "check_signed_section",
+              "check_descent",
+              "_parity_case",
+              "check_parity_cycles",
+              "_check_bell_bounds",
+              "check_bell_cech",
+              "check_triple_coboundary",
+              "check_path_gluing",
+              "check_repaired_tables",
+              "check_underdetermination",
+              "check_ceilings_and_roles",
+              "_check_role_counts",
+              "check_axis_countermodel",
+              "main"
+            ],
+            "test_source": "checks/tests/test_observer_presheaf.py",
+            "tests": [
+              "ObserverPresheafTests.test_import_oracles_and_per_run_recorder",
+              "ObserverPresheafTests.test_executable_groups_and_failure_exit",
+              "ObserverPresheafTests.test_bell_ncf_distance_and_signed_section_oracles"
+            ]
+          }
+        ],
+        "role": "Bounded finite observer-presheaf verification application composing certified exact LPs, owned empirical models and Cech witnesses",
+        "schema_id": "tfqm.source-contract.v1",
+        "symbols": [
+          "_check_bell_bounds",
+          "_check_role_counts",
+          "_glue_pair",
+          "_hyperedges",
+          "_ok",
+          "_optimal",
+          "_parity_case",
+          "_remove_contained",
+          "_remove_ears",
+          "_restriction_chains",
+          "_signed_section",
+          "_support",
+          "_vertex",
+          "check_axis_countermodel",
+          "check_bell_cech",
+          "check_ceilings_and_roles",
+          "check_descent",
+          "check_fixed_models",
+          "check_functoriality",
+          "check_parity_cycles",
+          "check_path_gluing",
+          "check_repaired_tables",
+          "check_signed_section",
+          "check_triple_coboundary",
+          "check_underdetermination",
+          "gyo",
+          "l1_defect",
+          "main",
+          "matching_families",
+          "mixture",
+          "ncf",
+          "noisy_pr",
+          "parity_dist",
+          "point_mass",
+          "pr_box",
+          "simplex_min",
+          "verify_lp"
+        ]
+      },
+      "sha256": "4a3218d283fb2a6eea21377e2a20ddc04bfbf2fcab34dbdfd9fd271308fcea17"
     }
   ],
-  "current_contract": "47ac9d8bcad0364871f1a1d999ee4b8cbbaf7438b9f7d44f0e9a6035788e6c60",
-  "current_scoring": "34302d119637659a419b7bbada244bf1bea6caf447a6d3ba656cac95b2841707",
+  "current_contract": "4a3218d283fb2a6eea21377e2a20ddc04bfbf2fcab34dbdfd9fd271308fcea17",
+  "current_scoring": "9f5d359f11e57300325dae2242ab430031de5a3704146febdd1f0bf05c9b8e4c",
   "legacy_paths": {},
   "schema_version": "tfqm.contract-score.v1",
   "scoring_history": [
@@ -382,6 +2257,125 @@
         "score_token": "L3D"
       },
       "sha256": "34302d119637659a419b7bbada244bf1bea6caf447a6d3ba656cac95b2841707"
+    },
+    {
+      "bytes": 6818,
+      "original_paths": [
+        "observer-presheaf-review-2026-11-03"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Python\",\n    \"path\": \"checks/independent/foc035_observer_presheaf.py\",\n    \"sha256\": \"908bfd73fa5aabc40490f437adf3f86de6dd4d5f9453b85e58a0a29e24b47975\"\n  },\n  \"assessment_id\": \"observer-presheaf-production-review-2026-11-03\",\n  \"basis\": {\n    \"G1\": \"All159 current declarations and nested ownership map to explicit requirements and test methods. Full original source, local derivation/ledger, two DAG derivations and Lean origin reviewed. Existing consumers retain executable path,50-group receipt and scalar ValueError adapter; nonnegative RHS narrowing is explicit.\",\n    \"G2\": \"Exact typed owned inputs, independently replayed three-variant LP certificates, separate signed/probability domains, complete assignment/context shapes and actual Cech primal/dual witness checks. Independent SymPy vertices/reconstruction, binary projection/marginal and graph-forest bases challenge outputs.\",\n    \"G3\": \"Eager admission and dimension/family/coordinate/pivot budgets before dependent work; per-term/prefix rational limits remain even under cancellation. Typed expected refusal, detached snapshots, per-solve workspace, per-run counters and nonzero CLI exits. Interruptions and unexpected errors propagate; test resources restore.\",\n    \"G4\": \"13 final commands pass: strict pinned mypy;33 new groups and24 existing integration groups normal/optimized;20 legacy DAG certificate cases and the DAG50-check CLI test.80 deterministic examples per generated property. Initial76/80 fault detection retained; additive independent-condition tests kill all four survivors. Final exact-source full campaign80/80 killed, all six outcome counts disclosed, no discarded candidates. Four independent test-oracle mutations are included.\",\n    \"G5\": \"CCN 15, cognitive 13, nesting 4; at most one class. Default50 named groups include all56 parity targets for cycles3..5, exact Bell/noisy models and fixed countermodels. NCF, L1 and signed reconstruction preflight m<=32,n<=64 before incidence/LP allocation; LP budgets apply. GYO owns<=16 edges of<=16 vertices, total labels<=64; each deletion strictly reduces finite incidence, with bounded O(E^2*V) scans per iteration. Two-table gluing computes eight probabilities after full domain/overlap admission. Rust2^20/2^22 literal ceilings remain historical arithmetic examples, not these Python limits.\"\n  },\n  \"composite_grade\": \"B\",\n  \"evaluation_timestamp\": \"2026-11-03T12:38:20.924474+00:00\",\n  \"evidence\": [\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-checker.md\",\n      \"sha256\": \"a009a1b2e79af01faf7157486a4094df526eb525b610a63ac9e0a0a57e802039\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-final-inputs.json\",\n      \"sha256\": \"040f984c9ad8735556883c51885938e0290e1083fbfb441508feea0074fd63c6\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-initial-application.py.txt\",\n      \"sha256\": \"a643716c6583a35fa31c1c2567beae880a95eff4f956adf5cd44b77572ea2609\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-initial-manifest.json\",\n      \"sha256\": \"a3e333ecc9218878e41cd506f87418cda02b3aa95e33cc8e5b1eb899c8847940\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-initial-review.json\",\n      \"sha256\": \"94e8ff837846f90773f0a120b4212f243089bd44df52770ca2a0a4f199798db9\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-initial-test_cech_complex.py.txt\",\n      \"sha256\": \"843003ea90f873df2aa0445a879c13cfc70b09c591aea82a70cd310510202e8a\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-initial-test_exact_linear_program.py.txt\",\n      \"sha256\": \"e507a1f559be57af5252a2d6bfb9bd81305dc70f348eb003c1d46d0780801e71\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-mutations-closure.json\",\n      \"sha256\": \"4c8dee6833fd12d184484d408030b63cb9cb9b72b72bb2b2d651ef6418cec7c7\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-mutations-final.json\",\n      \"sha256\": \"82222001a5efb8cdf7e7e2304351770c692240b31e021b26b501f85fd0ff3c20\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-mutations.json\",\n      \"sha256\": \"706313a260c8b8b89f5d917256695e1b2c5ddf4903576ea1849a81c335a9f5cd\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-original-foc035_observer_presheaf.contract.score.yaml.txt\",\n      \"sha256\": \"4d8c5fea8d54032a2e1f37c197fc51cf34903e55d2d07ab49df9e7c27ced5a4a\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-original-foc035_observer_presheaf.py.txt\",\n      \"sha256\": \"3d90a2037dad209ecb4d24638a9c362056cc9b5c6c402859e653b22bdc9f6d9d\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-quality-initial.json\",\n      \"sha256\": \"ca863cfd4392d16c50d9ef68d5ef3dbd2e16ed2dddafb068d9a9f74e998e1082\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-quality.json\",\n      \"sha256\": \"3b7fba75457434c4fba16fcc3fabea87a403ac4f589a53e71996d023628e6744\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-observer-presheaf-requirements.json\",\n      \"sha256\": \"50121bb89ed6ba432b0f84ac83c47e60f48cbbc9b850c775fcc67b3bf49fe995\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-quality-complete.json\",\n      \"sha256\": \"3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d\"\n    },\n    {\n      \"path\": \"reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json\",\n      \"sha256\": \"a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    },\n    {\n      \"path\": \"checks/tests/observer_presheaf_mutations.json\",\n      \"sha256\": \"e57420d1f665f4a60e1fb3596873b6ac48a00da15447a0a10dc566f70081a81f\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"B\",\n    \"G2\": \"B\",\n    \"G3\": \"B\",\n    \"G4\": \"B\",\n    \"G5\": \"B\"\n  },\n  \"grade_ceiling\": \"B\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Bounded finite observer-presheaf verification application composing certified exact LPs, owned empirical models and Cech witnesses. This is intentional production API grain: invariant-owning values, bounded algorithms and independently verified composition, with declared failure/lifecycle behavior. Capability is based on implemented responsibilities, not the mathematical topic or number of lines.\",\n  \"open_findings\": [],\n  \"profile\": \"Exact\",\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4B\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Python",
+          "path": "checks/independent/foc035_observer_presheaf.py",
+          "sha256": "908bfd73fa5aabc40490f437adf3f86de6dd4d5f9453b85e58a0a29e24b47975"
+        },
+        "assessment_id": "observer-presheaf-production-review-2026-11-03",
+        "basis": {
+          "G1": "All159 current declarations and nested ownership map to explicit requirements and test methods. Full original source, local derivation/ledger, two DAG derivations and Lean origin reviewed. Existing consumers retain executable path,50-group receipt and scalar ValueError adapter; nonnegative RHS narrowing is explicit.",
+          "G2": "Exact typed owned inputs, independently replayed three-variant LP certificates, separate signed/probability domains, complete assignment/context shapes and actual Cech primal/dual witness checks. Independent SymPy vertices/reconstruction, binary projection/marginal and graph-forest bases challenge outputs.",
+          "G3": "Eager admission and dimension/family/coordinate/pivot budgets before dependent work; per-term/prefix rational limits remain even under cancellation. Typed expected refusal, detached snapshots, per-solve workspace, per-run counters and nonzero CLI exits. Interruptions and unexpected errors propagate; test resources restore.",
+          "G4": "13 final commands pass: strict pinned mypy;33 new groups and24 existing integration groups normal/optimized;20 legacy DAG certificate cases and the DAG50-check CLI test.80 deterministic examples per generated property. Initial76/80 fault detection retained; additive independent-condition tests kill all four survivors. Final exact-source full campaign80/80 killed, all six outcome counts disclosed, no discarded candidates. Four independent test-oracle mutations are included.",
+          "G5": "CCN 15, cognitive 13, nesting 4; at most one class. Default50 named groups include all56 parity targets for cycles3..5, exact Bell/noisy models and fixed countermodels. NCF, L1 and signed reconstruction preflight m<=32,n<=64 before incidence/LP allocation; LP budgets apply. GYO owns<=16 edges of<=16 vertices, total labels<=64; each deletion strictly reduces finite incidence, with bounded O(E^2*V) scans per iteration. Two-table gluing computes eight probabilities after full domain/overlap admission. Rust2^20/2^22 literal ceilings remain historical arithmetic examples, not these Python limits."
+        },
+        "composite_grade": "B",
+        "evaluation_timestamp": "2026-11-03T12:38:20.924474+00:00",
+        "evidence": [
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-checker.md",
+            "sha256": "a009a1b2e79af01faf7157486a4094df526eb525b610a63ac9e0a0a57e802039"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-final-inputs.json",
+            "sha256": "040f984c9ad8735556883c51885938e0290e1083fbfb441508feea0074fd63c6"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-initial-application.py.txt",
+            "sha256": "a643716c6583a35fa31c1c2567beae880a95eff4f956adf5cd44b77572ea2609"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-initial-manifest.json",
+            "sha256": "a3e333ecc9218878e41cd506f87418cda02b3aa95e33cc8e5b1eb899c8847940"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-initial-review.json",
+            "sha256": "94e8ff837846f90773f0a120b4212f243089bd44df52770ca2a0a4f199798db9"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-initial-test_cech_complex.py.txt",
+            "sha256": "843003ea90f873df2aa0445a879c13cfc70b09c591aea82a70cd310510202e8a"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-initial-test_exact_linear_program.py.txt",
+            "sha256": "e507a1f559be57af5252a2d6bfb9bd81305dc70f348eb003c1d46d0780801e71"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-mutations-closure.json",
+            "sha256": "4c8dee6833fd12d184484d408030b63cb9cb9b72b72bb2b2d651ef6418cec7c7"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-mutations-final.json",
+            "sha256": "82222001a5efb8cdf7e7e2304351770c692240b31e021b26b501f85fd0ff3c20"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-mutations.json",
+            "sha256": "706313a260c8b8b89f5d917256695e1b2c5ddf4903576ea1849a81c335a9f5cd"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-original-foc035_observer_presheaf.contract.score.yaml.txt",
+            "sha256": "4d8c5fea8d54032a2e1f37c197fc51cf34903e55d2d07ab49df9e7c27ced5a4a"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-original-foc035_observer_presheaf.py.txt",
+            "sha256": "3d90a2037dad209ecb4d24638a9c362056cc9b5c6c402859e653b22bdc9f6d9d"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-quality-initial.json",
+            "sha256": "ca863cfd4392d16c50d9ef68d5ef3dbd2e16ed2dddafb068d9a9f74e998e1082"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-quality.json",
+            "sha256": "3b7fba75457434c4fba16fcc3fabea87a403ac4f589a53e71996d023628e6744"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-observer-presheaf-requirements.json",
+            "sha256": "50121bb89ed6ba432b0f84ac83c47e60f48cbbc9b850c775fcc67b3bf49fe995"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-quality-complete.json",
+            "sha256": "3e517dd1efc76d31b8837ceae9140b8c0aee30c133e327f62ef15ea1f6fa451d"
+          },
+          {
+            "path": "reviews/repository_file_review/2026-11-03-support-mutations-adjudicated.json",
+            "sha256": "a39e3e60d6390a792e1f2e99327a6cbbd1562a6174f26e36eda4e3078423bcb5"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          },
+          {
+            "path": "checks/tests/observer_presheaf_mutations.json",
+            "sha256": "e57420d1f665f4a60e1fb3596873b6ac48a00da15447a0a10dc566f70081a81f"
+          }
+        ],
+        "gates": {
+          "G1": "B",
+          "G2": "B",
+          "G3": "B",
+          "G4": "B",
+          "G5": "B"
+        },
+        "grade_ceiling": "B",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Bounded finite observer-presheaf verification application composing certified exact LPs, owned empirical models and Cech witnesses. This is intentional production API grain: invariant-owning values, bounded algorithms and independently verified composition, with declared failure/lifecycle behavior. Capability is based on implemented responsibilities, not the mathematical topic or number of lines.",
+        "open_findings": [],
+        "profile": "Exact",
+        "schema_version": "2.0.0",
+        "score_token": "L4B"
+      },
+      "sha256": "9f5d359f11e57300325dae2242ab430031de5a3704146febdd1f0bf05c9b8e4c"
     }
   ]
 }

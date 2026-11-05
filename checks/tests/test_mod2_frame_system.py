@@ -1,0 +1,234 @@
+"""Independent symbolic and source-custody tests for modulo-two frame rigidity."""
+from __future__ import annotations
+
+import contextlib
+from dataclasses import FrozenInstanceError
+from fractions import Fraction as Q
+import io
+from pathlib import Path
+import re
+import runpy
+import subprocess
+import sys
+from types import SimpleNamespace
+from typing import TypeVar, cast
+import unittest
+from unittest.mock import patch
+
+from hypothesis import assume, given, settings, strategies as st
+import sympy as sp
+
+CHECKS=Path(__file__).resolve().parents[1]
+APP=CHECKS/'independent/fq-gap-born-uniqueness-gleason-mod2.py'
+sys.path.insert(0,str(CHECKS))
+from checker_support.boundary import Violation, cli, evaluate
+from checker_support.cases import Cases
+from checker_support.outcome import Outcome
+from checker_support import rational_inverse as inversion
+from checker_support.rational_matrix import RationalMatrix
+
+T=TypeVar('T')
+PROPERTY=settings(max_examples=80,derandomize=True,deadline=None,database=None)
+
+
+def load() -> SimpleNamespace:
+    return SimpleNamespace(**runpy.run_path(str(APP)))
+
+
+def symbolic(value: RationalMatrix) -> sp.ImmutableMatrix:
+    return sp.ImmutableMatrix([[sp.Rational(x.numerator,x.denominator) for x in row] for row in value.rows])
+
+
+def lean_data() -> tuple[list[tuple[tuple[tuple[int,int],...],...]],list[list[Q]]]:
+    source=(CHECKS.parent/'lean4/BornGaussianMod2ClassRigidity.lean').read_text(encoding='utf-8')
+    frames=[]
+    for _,line in re.findall(r'theorem frame(\d+) : IsFrame (.*?) :=',source):
+        vectors=[]
+        for text in re.findall(r'\bgv((?:\s+(?:\(-?\d+\)|-?\d+)){6})',line):
+            values=[int(x) for x in re.findall(r'-?\d+',text)]
+            vectors.append(tuple(zip(values[::2],values[1::2])))
+        frames.append(tuple(vectors))
+    coefficients=[]
+    for expression in re.findall(r'have k\d+ : col [01 ]+ = 1 / 3 := by\s+linear_combination ([^\n]+)',source):
+        row=[Q(0)]*56
+        for value,index in re.findall(r'\(([-\d /]+) : ℚ\) \* t(\d+)',expression):
+            row[int(index)-1]+=Q(value.replace(' ',''))
+        coefficients.append(row)
+    return frames,coefficients
+
+
+class Mod2FrameSystemTests(unittest.TestCase):
+    def accepted(self,result: Outcome[T]) -> T:
+        self.assertIsNone(result.error)
+        return cast(T,result.value)
+
+    def refused(self,result: Outcome[T],kind: str='input') -> None:
+        self.assertIsNotNone(result.error)
+        if result.error is None:self.fail('missing refusal')
+        self.assertEqual(result.error.kind,kind)
+
+    def test_independent_fixture_lean_coefficients_and_symbolic_inverse(self) -> None:
+        module=load();frames,coefficients=lean_data()
+        self.assertEqual(len(frames),56);self.assertEqual(len(coefficients),56)
+        self.assertEqual(tuple(frames),module.FRAMES)
+        labels=sorted({tuple(x % 2 for pair in vector for x in pair) for frame in frames for vector in frame})
+        self.assertEqual(len(labels),56)
+        counts=[[sum(tuple(x % 2 for pair in vector for x in pair)==label for vector in frame) for label in labels] for frame in frames]
+        matrix=sp.ImmutableMatrix(counts)
+        self.assertEqual(matrix.rank(),56)
+        expected=matrix.inv(method='DM')
+        self.assertEqual(expected,sp.ImmutableMatrix([[sp.Rational(x) for x in row] for row in coefficients]))
+        system=module.GaussianMod2FrameSystem(frames)
+        self.assertEqual(symbolic(self.accepted(system.incidence())),matrix)
+        self.assertEqual(symbolic(self.accepted(system.certificate())),expected)
+        self.assertEqual(expected*sp.ones(56,1),sp.ones(56,1)/3)
+        self.assertEqual(max(abs(x) for x in expected),1)
+        self.assertTrue(all(12 % int(sp.denom(x))==0 for x in expected))
+
+    @PROPERTY
+    @given(st.lists(st.integers(-8,8),min_size=9,max_size=9))
+    def test_generated_inverse_against_symbolic_adjugate(self,values: list[int]) -> None:
+        matrix=RationalMatrix([values[index:index+3] for index in (0,3,6)])
+        oracle=symbolic(matrix);assume(oracle.det()!=0)
+        expected=oracle.adjugate()/oracle.det()
+        self.assertEqual(symbolic(self.accepted(inversion.inverse(matrix))),expected)
+        self.assertEqual(symbolic(self.accepted(inversion.verify_inverse(matrix,RationalMatrix([[Q(x) for x in row] for row in expected.tolist()])))),expected)
+
+    @PROPERTY
+    @given(st.lists(st.integers(-20,20),min_size=12,max_size=12))
+    def test_generated_hermitian_product_and_residues(self,values: list[int]) -> None:
+        module=load();left=tuple(zip(values[:6:2],values[1:6:2]));right=tuple(zip(values[6::2],values[7::2]))
+        expected=sum((sp.conjugate(a+sp.I*b)*(c+sp.I*d) for (a,b),(c,d) in zip(left,right)),sp.Integer(0)).expand()
+        self.assertEqual(self.accepted(module.inner(left,right)),(int(sp.re(expected)),int(sp.im(expected))))
+        self.assertEqual(self.accepted(module.residue(left)),tuple(x & 1 for x in values[:6]))
+        self.assertEqual(module._primitive(left),any((a+b)&1 for a,b in left))
+
+    @PROPERTY
+    @given(st.lists(st.integers(-4,4),min_size=3,max_size=3),st.permutations((0,1,2)))
+    def test_generated_frame_transformations_and_multiplicities(self,scales: list[int],order: tuple[int,...]) -> None:
+        module=load();original=module.GaussianMod2FrameSystem(module.FRAMES)
+        transformed=tuple(tuple(tuple(tuple((2*scales[index]+1)*x for x in vector[position]) for position in order) for index,vector in enumerate(frame)) for frame in module.FRAMES)
+        system=module.GaussianMod2FrameSystem(transformed)
+        matrix=self.accepted(system.incidence());old=self.accepted(original.incidence())
+        labels=module._classes();permuted=[tuple(label[2*position+offset] for position in order for offset in (0,1)) for label in labels]
+        expected=RationalMatrix(tuple(tuple(row[permuted.index(label)] for label in labels) for row in old.rows))
+        self.assertEqual(matrix,expected)
+        self.assertTrue(any(Q(2) in row for row in old.rows))
+        self.assertTrue(all(sum(row)==3 for row in matrix.rows))
+
+    def test_inverse_domain_shape_singular_and_certificate_tampering(self) -> None:
+        for invalid in (None,True,[],[[1]],RationalMatrix(((1,2),))):
+            self.refused(inversion.inverse(invalid))
+        for rows in (((0,),),((1,2),(2,4)),((0,0),(0,0))):
+            self.refused(inversion.inverse(RationalMatrix(rows)))
+        identity=RationalMatrix.eye(2)
+        for candidate in (None,identity.rows,RationalMatrix.eye(3),RationalMatrix(((2,-1),(0,1))),RationalMatrix(((0,1),(1,0)))):
+            result=inversion.verify_inverse(identity,candidate)
+            self.assertFalse(result.ok)
+        swap=RationalMatrix(((0,2),(3,0)))
+        self.assertEqual(self.accepted(inversion.inverse(swap)),RationalMatrix(((0,Q(1,3)),(Q(1,2),0))))
+        self.assertEqual(self.accepted(inversion.inverse(RationalMatrix(((Q(-2,3),),)))),RationalMatrix(((Q(-3,2),),)))
+
+    def test_inverse_resource_boundaries_and_cancellation(self) -> None:
+        huge=1<<4095
+        self.assertEqual(self.accepted(inversion.inverse(RationalMatrix(((Q(1,huge),),)))),RationalMatrix(((huge,),)))
+        self.assertEqual(self.accepted(inversion.inverse(RationalMatrix.eye(64))),RationalMatrix.eye(64))
+        self.refused(evaluate(RationalMatrix,[[1]*65]*65),'resource')
+        self.refused(evaluate(RationalMatrix,((Q(1,1<<4096),),)),'resource')
+        for rows in (((Q(1,huge),huge),(0,1)),((1,1<<2048),(1<<2048,1)),((1,-huge),(1,huge))):
+            self.refused(inversion.inverse(RationalMatrix(rows)),'resource')
+        matrix=RationalMatrix(((huge,0),(0,1)))
+        self.refused(inversion.verify_inverse(matrix,matrix),'resource')
+
+    def test_inverse_replay_and_exception_lifecycle(self) -> None:
+        original=RationalMatrix(((0,1),(1,0)))
+        with patch.object(inversion,'_candidate',return_value=RationalMatrix.eye(2)):
+            self.refused(inversion.inverse(original),'check')
+        for error in (KeyboardInterrupt(),RuntimeError('internal fault')):
+            with patch.object(inversion,'_candidate',side_effect=error),self.assertRaises(type(error)):
+                inversion.inverse(original)
+        with patch.object(inversion,'_candidate',side_effect=OSError('resource')):
+            self.refused(inversion.inverse(original),'resource')
+        self.assertEqual(self.accepted(inversion.inverse(original)),original)
+
+    def test_frame_exact_domains_ownership_and_nonorthogonality(self) -> None:
+        module=load();frame=module.FRAMES[0]
+        for invalid in (None,iter(module.FRAMES),module.FRAMES[:-1],module.FRAMES+(frame,),[True]*56):
+            self.assertFalse(evaluate(module.GaussianMod2FrameSystem,invalid).ok)
+        for invalid in (True,0.5,Q(1),None):
+            changed=[[[*pair] for pair in vector] for vector in frame];changed[0][0][0]=invalid
+            self.assertFalse(evaluate(module.GaussianMod2FrameSystem,[changed]+list(module.FRAMES[1:])).ok)
+        for replacement in (((0,0),)*3,((2,0),(0,0),(0,0)),frame[1],((1,0),)):
+            self.assertFalse(evaluate(module.GaussianMod2FrameSystem,[(replacement,frame[1],frame[2])]+list(module.FRAMES[1:])).ok)
+        caller=[[[list(pair) for pair in vector] for vector in frame] for frame in module.FRAMES]
+        system=module.GaussianMod2FrameSystem(caller);caller[0][0][0][0]=99;caller.clear()
+        self.assertEqual(system.frames,module.FRAMES)
+        with self.assertRaises(FrozenInstanceError):system.frames=()
+
+    def test_frame_coverage_and_rank_are_separate_requirements(self) -> None:
+        module=load()
+        incomplete=module.GaussianMod2FrameSystem((module.FRAMES[0],)*56)
+        self.refused(incomplete.incidence(),'check')
+        with patch.object(inversion,'_candidate',side_effect=AssertionError('must preflight')):
+            self.refused(incomplete.certificate(),'check')
+        rows=list(module.FRAMES);rows[0]=rows[1]
+        singular=module.GaussianMod2FrameSystem(rows)
+        self.assertTrue(singular.incidence().ok)
+        self.refused(singular.certificate())
+
+    def test_gaussian_full_boundaries_and_no_truncation(self) -> None:
+        module=load();unit=((1,0),(0,0),(0,0));huge=1<<4095
+        self.assertEqual(self.accepted(module.inner(((huge,0),(0,0),(0,0)),unit)),(huge,0))
+        for invalid in (True,(),((1,0),),((True,0),(0,0),(0,0)),((Q(1),0),(0,0),(0,0)),((1<<4096,0),(0,0),(0,0))):
+            self.assertFalse(module.inner(invalid,unit).ok)
+            self.assertFalse(module.residue(invalid).ok)
+        self.assertEqual(self.accepted(module.inner(((1,2),(0,0),(0,0)),((3,4),(0,0),(0,0)))),(11,-2))
+        medium=1<<2048
+        self.refused(module.inner(((medium,medium),(0,0),(0,0)),((medium,-medium),(0,0),(0,0))),'resource')
+        self.refused(module.inner(((huge,0),(huge,0),(-huge,0)),((1,0),(1,0),(1,0))),'resource')
+        self.assertEqual(self.accepted(module.residue(((-3,-2),(0,1),(4,5)))),(1,0,0,1,0,1))
+
+    def test_import_reentrant_receipts_failure_exit_and_lifecycle(self) -> None:
+        stream=io.StringIO()
+        with contextlib.redirect_stdout(stream):module=load()
+        self.assertEqual(stream.getvalue(),'');self.assertNotIn('checked',vars(module))
+        system=module.GaussianMod2FrameSystem(module.FRAMES)
+        for _ in range(2):
+            cases=Cases();self.assertTrue(system.verify(cases).ok);self.assertEqual(cases.checks,567)
+        self.refused(system.verify(None))
+        namespace=module.main.__globals__
+        with patch.dict(namespace,FRAMES=()),contextlib.redirect_stderr(io.StringIO()):
+            self.assertEqual(cli(module.main),1)
+        with patch.dict(namespace,_inverse=lambda _: (_ for _ in ()).throw(KeyboardInterrupt())),self.assertRaises(KeyboardInterrupt):
+            system.verify(Cases())
+        result=subprocess.run([sys.executable,'-I','-B',str(APP)],capture_output=True,text=True,timeout=30)
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.assertEqual(result.stdout,'checked 567 conditions, 0 failures\n')
+
+
+    def test_inverse_guards_precede_dependent_elimination(self) -> None:
+        with patch.object(inversion,'_candidate',side_effect=AssertionError('must reject shape before search')):
+            self.refused(inversion.inverse(RationalMatrix(((1,2),))))
+        huge=Q(1<<4095)
+        with patch.object(inversion,'_eliminate',side_effect=AssertionError('must admit normalized row before elimination')):
+            self.refused(inversion.inverse(RationalMatrix(((1/huge,2),(1,2)))),'resource')
+        medium=Q(1<<2048)
+        # Both inputs are admitted. The oversized product yields a fitting final difference.
+        self.refused(evaluate(inversion._eliminate,[medium,Q(1)],[Q(1),medium],0),'resource')
+        # Independent sum limit: no product exceeds the budget here.
+        self.refused(evaluate(inversion._eliminate,[Q(1),huge],[Q(1),-huge],0),'resource')
+
+    def test_gaussian_component_shape_and_hidden_product_overflow(self) -> None:
+        module=load()
+        for component in ((),(1,),(1,2,3)):
+            self.refused(module.residue((component,(0,0),(0,0))), 'resource' if len(component)>2 else 'input')
+        large=1<<2048;small=1<<2046
+        # Exact final components fit4096 bits; ac alone is4097 bits.
+        self.assertEqual((large*large-small*small).bit_length(),4096)
+        self.assertEqual((2*large*small).bit_length(),4096)
+        self.refused(module.inner(((large,-small),(0,0),(0,0)),((large,small),(0,0),(0,0))),'resource')
+
+
+
+if __name__=='__main__':
+    unittest.main(verbosity=2)

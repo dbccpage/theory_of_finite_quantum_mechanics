@@ -1,0 +1,51 @@
+{
+  "AuthorityEffect": "None",
+  "application_before_sha256": "a643716c6583a35fa31c1c2567beae880a95eff4f956adf5cd44b77572ea2609",
+  "application_after_sha256": "908bfd73fa5aabc40490f437adf3f86de6dd4d5f9453b85e58a0a29e24b47975",
+  "manifest_before_sha256": "a3e333ecc9218878e41cd506f87418cda02b3aa95e33cc8e5b1eb899c8847940",
+  "manifest_after_sha256": "e57420d1f665f4a60e1fb3596873b6ac48a00da15447a0a10dc566f70081a81f",
+  "test_selection_migrations": [
+    {
+      "identity": "lp-primal-sign",
+      "before": [
+        "test_certificate_tampering_and_wrong_program"
+      ],
+      "after": [
+        "test_certificate_tampering_and_wrong_program",
+        "test_certificate_conditions_refuse_without_other_failed_checks"
+      ]
+    },
+    {
+      "identity": "lp-dual-inequalities",
+      "before": [
+        "test_certificate_tampering_and_wrong_program"
+      ],
+      "after": [
+        "test_certificate_tampering_and_wrong_program",
+        "test_certificate_conditions_refuse_without_other_failed_checks"
+      ]
+    },
+    {
+      "identity": "lp-ray-kernel",
+      "before": [
+        "test_certificate_tampering_and_wrong_program"
+      ],
+      "after": [
+        "test_certificate_tampering_and_wrong_program",
+        "test_certificate_conditions_refuse_without_other_failed_checks"
+      ]
+    },
+    {
+      "identity": "cech-norm-sum-bound",
+      "before": [
+        "test_resource_limits_and_preflight_before_incidence"
+      ],
+      "after": [
+        "test_resource_limits_and_preflight_before_incidence",
+        "test_primal_norm_budget_is_not_masked_by_dual_overflow"
+      ]
+    }
+  ],
+  "description": "After replacing signed Gaussian elimination with the verified LP, its list-incidence adapter and two imported names had no callers. Remove exactly that unused wrapper and imports. Append the four proven closure selections to the existing80-case manifest; no faults are removed. Replay all80 on the final bytes.",
+  "application_diff": "--- initial/application\n+++ final/application\n@@ -19,7 +19,7 @@\n from checker_support.empirical_model import EmpiricalModel\n from checker_support.exact_linear_program import ExactLinearProgram, dot\n from checker_support.linear_program_certificate import LinearProgramCertificate\n-from checker_support.measurement_scenario import Assignment, Context, Distribution, MeasurementScenario, assignment, cochain, sections\n+from checker_support.measurement_scenario import Assignment, Context, Distribution, MeasurementScenario, assignment\n \n Scenario = MeasurementScenario\n BELL = Scenario(4, ((0, 2), (0, 3), (1, 2), (1, 3)))\n@@ -82,10 +82,6 @@\n \n def _support(scen: Scenario, dists: object) -> list[Assignment]:\n     return list(EmpiricalModel(scen, dists)._support_globals())\n-\n-\n-def _incidence(scen: Scenario) -> list[list[F]]:\n-    return [list(row) for row in scen._incidence()]\n \n \n def _optimal(program: ExactLinearProgram) -> LinearProgramCertificate:\n"
+}

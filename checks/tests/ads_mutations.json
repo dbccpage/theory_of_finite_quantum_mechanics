@@ -1,0 +1,614 @@
+[
+  {
+    "identity": "gkpw_mass_sq-d-admission",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "def gkpw_mass_sq(d: Fraction, delta: Fraction) -> Fraction:\n    d = rational(d, \"d\")",
+    "after": "def gkpw_mass_sq(d: Fraction, delta: Fraction) -> Fraction:\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "gkpw_mass_sq-delta-admission",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "def gkpw_mass_sq(d: Fraction, delta: Fraction) -> Fraction:\n    d = rational(d, \"d\")\n    delta = rational(delta, \"delta\")",
+    "after": "def gkpw_mass_sq(d: Fraction, delta: Fraction) -> Fraction:\n    d = rational(d, \"d\")\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "shadow_dimension-d-admission",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "def shadow_dimension(d: Fraction, delta: Fraction) -> Fraction:\n    d = rational(d, \"d\")",
+    "after": "def shadow_dimension(d: Fraction, delta: Fraction) -> Fraction:\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "shadow_dimension-delta-admission",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "def shadow_dimension(d: Fraction, delta: Fraction) -> Fraction:\n    d = rational(d, \"d\")\n    delta = rational(delta, \"delta\")",
+    "after": "def shadow_dimension(d: Fraction, delta: Fraction) -> Fraction:\n    d = rational(d, \"d\")\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "gkpw_discriminant-d-admission",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "def gkpw_discriminant(d: Fraction, m_sq: Fraction) -> Fraction:\n    d = rational(d, \"d\")",
+    "after": "def gkpw_discriminant(d: Fraction, m_sq: Fraction) -> Fraction:\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "gkpw_discriminant-m_sq-admission",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "def gkpw_discriminant(d: Fraction, m_sq: Fraction) -> Fraction:\n    d = rational(d, \"d\")\n    m_sq = rational(m_sq, \"m_sq\")",
+    "after": "def gkpw_discriminant(d: Fraction, m_sq: Fraction) -> Fraction:\n    d = rational(d, \"d\")\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "bf_bound-d-admission",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "def bf_bound(d: Fraction) -> Fraction:\n    d = rational(d, \"d\")",
+    "after": "def bf_bound(d: Fraction) -> Fraction:\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "gkpw_root_plus-d-admission",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "def gkpw_root_plus(d: Fraction, s: Fraction) -> Fraction:\n    \"\"\"Signed square-root branch; ordering is asserted only when s >= 0.\"\"\"\n    d = rational(d, \"d\")",
+    "after": "def gkpw_root_plus(d: Fraction, s: Fraction) -> Fraction:\n    \"\"\"Signed square-root branch; ordering is asserted only when s >= 0.\"\"\"\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "gkpw_root_plus-s-admission",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "def gkpw_root_plus(d: Fraction, s: Fraction) -> Fraction:\n    \"\"\"Signed square-root branch; ordering is asserted only when s >= 0.\"\"\"\n    d = rational(d, \"d\")\n    s = rational(s, \"s\")",
+    "after": "def gkpw_root_plus(d: Fraction, s: Fraction) -> Fraction:\n    \"\"\"Signed square-root branch; ordering is asserted only when s >= 0.\"\"\"\n    d = rational(d, \"d\")\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "gkpw_root_minus-d-admission",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "def gkpw_root_minus(d: Fraction, s: Fraction) -> Fraction:\n    \"\"\"The opposite signed branch; s need not be a nonnegative square root.\"\"\"\n    d = rational(d, \"d\")",
+    "after": "def gkpw_root_minus(d: Fraction, s: Fraction) -> Fraction:\n    \"\"\"The opposite signed branch; s need not be a nonnegative square root.\"\"\"\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "gkpw_root_minus-s-admission",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "def gkpw_root_minus(d: Fraction, s: Fraction) -> Fraction:\n    \"\"\"The opposite signed branch; s need not be a nonnegative square root.\"\"\"\n    d = rational(d, \"d\")\n    s = rational(s, \"s\")",
+    "after": "def gkpw_root_minus(d: Fraction, s: Fraction) -> Fraction:\n    \"\"\"The opposite signed branch; s need not be a nonnegative square root.\"\"\"\n    d = rational(d, \"d\")\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "cft_renyi_factor-n-admission",
+    "source": "independent/ads-happy-toy-not-duality-gap.py",
+    "before": "def cft_renyi_factor(n: Fraction) -> Fraction:\n    n = rational(n, \"Renyi order\", strictly_positive=True)",
+    "after": "def cft_renyi_factor(n: Fraction) -> Fraction:\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "renyi_spectrum_defect-s1-admission",
+    "source": "independent/ads-happy-toy-not-duality-gap.py",
+    "before": "def renyi_spectrum_defect(n: Fraction, s1: Fraction) -> Fraction:\n    s1 = rational(s1, \"entropy\", minimum=0)",
+    "after": "def renyi_spectrum_defect(n: Fraction, s1: Fraction) -> Fraction:\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "linear_area_subdivision_sum-area-admission",
+    "source": "independent/ads-regge-area-rt-gap.py",
+    "before": "def linear_area_subdivision_sum(area: Fraction, m: int) -> Fraction:\n    area = rational(area, \"area\", minimum=0)",
+    "after": "def linear_area_subdivision_sum(area: Fraction, m: int) -> Fraction:\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_subdivision_rejects_invalid_domain_and_budget"
+    ]
+  },
+  {
+    "identity": "sq_area_subdivision_sum-area-admission",
+    "source": "independent/ads-regge-area-rt-gap.py",
+    "before": "def sq_area_subdivision_sum(area: Fraction, m: int) -> Fraction:\n    area = rational(area, \"area\", minimum=0)",
+    "after": "def sq_area_subdivision_sum(area: Fraction, m: int) -> Fraction:\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_subdivision_rejects_invalid_domain_and_budget"
+    ]
+  },
+  {
+    "identity": "sq_area_subdivision_defect-area-admission",
+    "source": "independent/ads-regge-area-rt-gap.py",
+    "before": "def sq_area_subdivision_defect(area: Fraction, m: int) -> Fraction:\n    area = rational(area, \"area\", minimum=0)",
+    "after": "def sq_area_subdivision_defect(area: Fraction, m: int) -> Fraction:\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_subdivision_rejects_invalid_domain_and_budget"
+    ]
+  },
+  {
+    "identity": "uniform_defect_regge_action-total_area_sq-admission",
+    "source": "independent/ads-regge-area-rt-gap.py",
+    "before": "def uniform_defect_regge_action(total_area_sq: Fraction, kappa: Fraction) -> Fraction:\n    # Algebraic polynomial on Q, as in Lean; signed curvature is admitted.\n    total_area_sq = rational(total_area_sq, \"total squared area\")",
+    "after": "def uniform_defect_regge_action(total_area_sq: Fraction, kappa: Fraction) -> Fraction:\n    # Algebraic polynomial on Q, as in Lean; signed curvature is admitted.\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "uniform_defect_regge_action-kappa-admission",
+    "source": "independent/ads-regge-area-rt-gap.py",
+    "before": "def uniform_defect_regge_action(total_area_sq: Fraction, kappa: Fraction) -> Fraction:\n    # Algebraic polynomial on Q, as in Lean; signed curvature is admitted.\n    total_area_sq = rational(total_area_sq, \"total squared area\")\n    kappa = rational(kappa, \"curvature defect\")",
+    "after": "def uniform_defect_regge_action(total_area_sq: Fraction, kappa: Fraction) -> Fraction:\n    # Algebraic polynomial on Q, as in Lean; signed curvature is admitted.\n    total_area_sq = rational(total_area_sq, \"total squared area\")\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "rt_leading_entropy-area-admission",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "def rt_leading_entropy(area: Fraction, g_n: Fraction) -> Fraction:\n    area = rational(area, \"area\", minimum=0)",
+    "after": "def rt_leading_entropy(area: Fraction, g_n: Fraction) -> Fraction:\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "rt_leading_entropy-g_n-admission",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "def rt_leading_entropy(area: Fraction, g_n: Fraction) -> Fraction:\n    area = rational(area, \"area\", minimum=0)\n    g_n = rational(g_n, \"Newton constant\", strictly_positive=True)",
+    "after": "def rt_leading_entropy(area: Fraction, g_n: Fraction) -> Fraction:\n    area = rational(area, \"area\", minimum=0)\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "brown_henneaux_central_charge-r_ads-admission",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "def brown_henneaux_central_charge(r_ads: Fraction, g_n3: Fraction) -> Fraction:\n    r_ads = rational(r_ads, \"AdS radius\", strictly_positive=True)",
+    "after": "def brown_henneaux_central_charge(r_ads: Fraction, g_n3: Fraction) -> Fraction:\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "brown_henneaux_central_charge-g_n3-admission",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "def brown_henneaux_central_charge(r_ads: Fraction, g_n3: Fraction) -> Fraction:\n    r_ads = rational(r_ads, \"AdS radius\", strictly_positive=True)\n    g_n3 = rational(g_n3, \"Newton constant\", strictly_positive=True)",
+    "after": "def brown_henneaux_central_charge(r_ads: Fraction, g_n3: Fraction) -> Fraction:\n    r_ads = rational(r_ads, \"AdS radius\", strictly_positive=True)\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "ads3_geodesic_length-r_ads-admission",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "def ads3_geodesic_length(r_ads: Fraction, log_factor: Fraction) -> Fraction:\n    r_ads = rational(r_ads, \"AdS radius\", strictly_positive=True)",
+    "after": "def ads3_geodesic_length(r_ads: Fraction, log_factor: Fraction) -> Fraction:\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "ads3_geodesic_length-log_factor-admission",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "def ads3_geodesic_length(r_ads: Fraction, log_factor: Fraction) -> Fraction:\n    r_ads = rational(r_ads, \"AdS radius\", strictly_positive=True)\n    log_factor = rational(log_factor, \"log factor\", minimum=0)",
+    "after": "def ads3_geodesic_length(r_ads: Fraction, log_factor: Fraction) -> Fraction:\n    r_ads = rational(r_ads, \"AdS radius\", strictly_positive=True)\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "calabrese_cardy_coefficient-c-admission",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "def calabrese_cardy_coefficient(c: Fraction) -> Fraction:\n    c = rational(c, \"central charge\", minimum=0)",
+    "after": "def calabrese_cardy_coefficient(c: Fraction) -> Fraction:\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "cayley_menger_triangle_area_sq-s01-admission",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "def cayley_menger_triangle_area_sq(s01: Fraction, s02: Fraction, s12: Fraction) -> Fraction:\n    \"\"\"Exact polynomial on Q, not a triangle-realizability certificate.\"\"\"\n    s01 = rational(s01, \"s01\")",
+    "after": "def cayley_menger_triangle_area_sq(s01: Fraction, s02: Fraction, s12: Fraction) -> Fraction:\n    \"\"\"Exact polynomial on Q, not a triangle-realizability certificate.\"\"\"\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "cayley_menger_triangle_area_sq-s02-admission",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "def cayley_menger_triangle_area_sq(s01: Fraction, s02: Fraction, s12: Fraction) -> Fraction:\n    \"\"\"Exact polynomial on Q, not a triangle-realizability certificate.\"\"\"\n    s01 = rational(s01, \"s01\")\n    s02 = rational(s02, \"s02\")",
+    "after": "def cayley_menger_triangle_area_sq(s01: Fraction, s02: Fraction, s12: Fraction) -> Fraction:\n    \"\"\"Exact polynomial on Q, not a triangle-realizability certificate.\"\"\"\n    s01 = rational(s01, \"s01\")\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "cayley_menger_triangle_area_sq-s12-admission",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "def cayley_menger_triangle_area_sq(s01: Fraction, s02: Fraction, s12: Fraction) -> Fraction:\n    \"\"\"Exact polynomial on Q, not a triangle-realizability certificate.\"\"\"\n    s01 = rational(s01, \"s01\")\n    s02 = rational(s02, \"s02\")\n    s12 = rational(s12, \"s12\")",
+    "after": "def cayley_menger_triangle_area_sq(s01: Fraction, s02: Fraction, s12: Fraction) -> Fraction:\n    \"\"\"Exact polynomial on Q, not a triangle-realizability certificate.\"\"\"\n    s01 = rational(s01, \"s01\")\n    s02 = rational(s02, \"s02\")\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "has_rational_square_root-value-admission",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "def has_rational_square_root(value: Fraction) -> bool:\n    \"\"\"Reduced p/q is a rational square iff both p and q are integer squares.\"\"\"\n    value = rational(value, \"squared area\", minimum=0)",
+    "after": "def has_rational_square_root(value: Fraction) -> bool:\n    \"\"\"Reduced p/q is a rational square iff both p and q are integer squares.\"\"\"\n    pass  # deliberately remove exact admission",
+    "tests": [
+      "test_scalar_admission_every_parameter"
+    ]
+  },
+  {
+    "identity": "mass-sign",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "return delta * (delta - d)",
+    "after": "return delta * (delta + d)",
+    "tests": [
+      "test_gkpw_exact_polynomial_and_signed_roots"
+    ]
+  },
+  {
+    "identity": "shadow-sign",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "return d - delta",
+    "after": "return d + delta",
+    "tests": [
+      "test_gkpw_exact_polynomial_and_signed_roots"
+    ]
+  },
+  {
+    "identity": "discriminant-sign",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "return d * d + 4 * m_sq",
+    "after": "return d * d - 4 * m_sq",
+    "tests": [
+      "test_gkpw_exact_polynomial_and_signed_roots"
+    ]
+  },
+  {
+    "identity": "bf-sign",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "return -(d * d) / Fraction(4, 1)",
+    "after": "return (d * d) / Fraction(4, 1)",
+    "tests": [
+      "test_gkpw_exact_polynomial_and_signed_roots"
+    ]
+  },
+  {
+    "identity": "root-plus-sign",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "return (d + s) / Fraction(2, 1)",
+    "after": "return (d - s) / Fraction(2, 1)",
+    "tests": [
+      "test_gkpw_exact_polynomial_and_signed_roots"
+    ]
+  },
+  {
+    "identity": "root-minus-denominator",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "return (d - s) / Fraction(2, 1)",
+    "after": "return (d - s) / Fraction(3, 1)",
+    "tests": [
+      "test_gkpw_exact_polynomial_and_signed_roots"
+    ]
+  },
+  {
+    "identity": "renyi-order",
+    "source": "independent/ads-happy-toy-not-duality-gap.py",
+    "before": "return (Fraction(1) + Fraction(1) / n) / Fraction(2)",
+    "after": "return (Fraction(1) + n) / Fraction(2)",
+    "tests": [
+      "test_renyi_signed_defect"
+    ]
+  },
+  {
+    "identity": "stabilizer-flat",
+    "source": "independent/ads-happy-toy-not-duality-gap.py",
+    "before": "return Fraction(1)",
+    "after": "return Fraction(2)",
+    "tests": [
+      "test_renyi_signed_defect"
+    ]
+  },
+  {
+    "identity": "renyi-defect-sign",
+    "source": "independent/ads-happy-toy-not-duality-gap.py",
+    "before": "return stabilizer_renyi_factor(n) * s1 - cft_renyi_factor(n) * s1",
+    "after": "return cft_renyi_factor(n) * s1 - stabilizer_renyi_factor(n) * s1",
+    "tests": [
+      "test_renyi_signed_defect"
+    ]
+  },
+  {
+    "identity": "census-short",
+    "source": "independent/ads-happy-toy-not-duality-gap.py",
+    "before": "for length in range(1, 20):",
+    "after": "for length in range(1, 19):",
+    "tests": [
+      "test_runtime_counts_and_repeatable_reports"
+    ]
+  },
+  {
+    "identity": "census-deficit",
+    "source": "independent/ads-happy-toy-not-duality-gap.py",
+    "before": "8: 5, 9: 10, 10: 10, 11: 10, 12: 5",
+    "after": "8: 4, 9: 10, 10: 10, 11: 10, 12: 5",
+    "tests": [
+      "test_runtime_counts_and_repeatable_reports"
+    ]
+  },
+  {
+    "identity": "codimension-sign",
+    "source": "independent/ads-happy-toy-not-duality-gap.py",
+    "before": "codim = d_bdry - d_bulk",
+    "after": "codim = d_bdry + d_bulk",
+    "tests": [
+      "test_runtime_counts_and_repeatable_reports"
+    ]
+  },
+  {
+    "identity": "linear-subdivision",
+    "source": "independent/ads-regge-area-rt-gap.py",
+    "before": "return m * (area / m)\n",
+    "after": "return m * area\n",
+    "tests": [
+      "test_subdivision_and_regge_action"
+    ]
+  },
+  {
+    "identity": "square-subdivision",
+    "source": "independent/ads-regge-area-rt-gap.py",
+    "before": "return m * (area / m) ** 2",
+    "after": "return (m * area / m) ** 2",
+    "tests": [
+      "test_subdivision_and_regge_action"
+    ]
+  },
+  {
+    "identity": "subdivision-defect",
+    "source": "independent/ads-regge-area-rt-gap.py",
+    "before": "return area * area - sq_area_subdivision_sum(area, m)",
+    "after": "return area * area + sq_area_subdivision_sum(area, m)",
+    "tests": [
+      "test_subdivision_and_regge_action"
+    ]
+  },
+  {
+    "identity": "curvature-action",
+    "source": "independent/ads-regge-area-rt-gap.py",
+    "before": "return total_area_sq * kappa",
+    "after": "return total_area_sq + kappa",
+    "tests": [
+      "test_subdivision_and_regge_action"
+    ]
+  },
+  {
+    "identity": "carrier-distribution",
+    "source": "independent/ads-regge-area-rt-gap.py",
+    "before": "== (50, 90, 110, 100, 30)",
+    "after": "== (50, 90, 100, 110, 30)",
+    "tests": [
+      "test_runtime_counts_and_repeatable_reports"
+    ]
+  },
+  {
+    "identity": "curvature-coefficient",
+    "source": "independent/ads-regge-area-rt-gap.py",
+    "before": "Fraction(9, 2) * (k2 - k1)",
+    "after": "Fraction(8, 2) * (k2 - k1)",
+    "tests": [
+      "test_runtime_counts_and_repeatable_reports"
+    ]
+  },
+  {
+    "identity": "rt-coupling",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "return area / (4 * g_n)",
+    "after": "return area / (3 * g_n)",
+    "tests": [
+      "test_rt_coupling_properties"
+    ]
+  },
+  {
+    "identity": "central-charge",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "return (3 * r_ads) / (2 * g_n3)",
+    "after": "return (2 * r_ads) / (3 * g_n3)",
+    "tests": [
+      "test_rt_coupling_properties"
+    ]
+  },
+  {
+    "identity": "geodesic-factor",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "return 2 * r_ads * log_factor",
+    "after": "return r_ads * log_factor",
+    "tests": [
+      "test_rt_coupling_properties"
+    ]
+  },
+  {
+    "identity": "cc-coefficient",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "return c / 3",
+    "after": "return c / 2",
+    "tests": [
+      "test_rt_coupling_properties"
+    ]
+  },
+  {
+    "identity": "cayley-menger-sign",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "- (s01 * s01 + s02 * s02 + s12 * s12)",
+    "after": "+ (s01 * s01 + s02 * s02 + s12 * s12)",
+    "tests": [
+      "test_cayley_menger_against_determinant"
+    ]
+  },
+  {
+    "identity": "square-denominator",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "math.isqrt(value.denominator)**2 == value.denominator",
+    "after": "True",
+    "tests": [
+      "test_square_certificate"
+    ]
+  },
+  {
+    "identity": "square-numerator",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "math.isqrt(value.numerator)**2 == value.numerator",
+    "after": "True",
+    "tests": [
+      "test_square_certificate"
+    ]
+  },
+  {
+    "identity": "wrong-entropy-unit",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "s_bits = sp.simplify(s_nats / sp.log(2))",
+    "after": "s_bits = sp.simplify(s_nats)",
+    "tests": [
+      "test_runtime_counts_and_repeatable_reports"
+    ]
+  },
+  {
+    "identity": "hinge-count",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "right_count += 1",
+    "after": "right_count += 2",
+    "tests": [
+      "test_runtime_counts_and_repeatable_reports"
+    ]
+  },
+  {
+    "identity": "thooft-exponent",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "n_sym**(v_cnt-e_cnt+f_cnt)",
+    "after": "n_sym**(v_cnt+e_cnt+f_cnt)",
+    "tests": [
+      "test_runtime_counts_and_repeatable_reports"
+    ]
+  },
+  {
+    "identity": "isometry-column",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "[sp.Rational(3, 5), 0]",
+    "after": "[sp.Rational(2, 5), 0]",
+    "tests": [
+      "test_runtime_counts_and_repeatable_reports"
+    ]
+  },
+  {
+    "identity": "report-count",
+    "source": "independent/ads-cft-duality-import.py",
+    "before": "total = c1 + c2 + c3",
+    "after": "total = c1 + c2 + c3 + 1",
+    "tests": [
+      "test_runtime_counts_and_repeatable_reports"
+    ]
+  },
+  {
+    "identity": "1-report-count",
+    "source": "independent/ads-happy-toy-not-duality-gap.py",
+    "before": "checks = renyi.checks + mincut.checks + mi_codim.checks",
+    "after": "checks = renyi.checks + mincut.checks + mi_codim.checks + 1",
+    "tests": [
+      "test_runtime_counts_and_repeatable_reports"
+    ]
+  },
+  {
+    "identity": "2-report-count",
+    "source": "independent/ads-regge-area-rt-gap.py",
+    "before": "checks = carrier.checks + subdivision.checks + decoupling.checks",
+    "after": "checks = carrier.checks + subdivision.checks + decoupling.checks + 1",
+    "tests": [
+      "test_runtime_counts_and_repeatable_reports"
+    ]
+  },
+  {
+    "identity": "3-report-count",
+    "source": "independent/ads-rt-formula-import.py",
+    "before": "checks = coupling.checks + entropy.checks + geometry.checks",
+    "after": "checks = coupling.checks + entropy.checks + geometry.checks + 1",
+    "tests": [
+      "test_runtime_counts_and_repeatable_reports"
+    ]
+  },
+  {
+    "identity": "loader-restore",
+    "source": "tests/test_review_repairs.py",
+    "before": "sys.modules[name] = previous",
+    "after": "sys.modules.pop(name, None)",
+    "tests": [
+      "test_loader_restores_modules_on_success_failure_and_cancellation"
+    ]
+  },
+  {
+    "identity": "loader-population",
+    "source": "tests/test_review_repairs.py",
+    "before": "stem not in {source.stem for source in SOURCES}",
+    "after": "False",
+    "tests": [
+      "test_loader_restores_modules_on_success_failure_and_cancellation"
+    ]
+  },
+  {
+    "identity": "loader-spec",
+    "source": "tests/test_review_repairs.py",
+    "before": "raise Violation(\"resource\", \"checker import specification is unavailable\")",
+    "after": "raise Violation(\"input\", \"checker import specification is unavailable\")",
+    "tests": [
+      "test_loader_restores_modules_on_success_failure_and_cancellation"
+    ]
+  },
+  {
+    "identity": "silent-result",
+    "source": "tests/test_review_repairs.py",
+    "before": "return operation(*args, **kwargs)",
+    "after": "operation(*args, **kwargs)\n        return None",
+    "tests": [
+      "test_silent_preserves_result_and_propagates_error"
+    ]
+  },
+  {
+    "identity": "original-refusal-kind",
+    "source": "tests/test_review_repairs.py",
+    "before": "return result.error",
+    "after": "return Failure(\"resource\", \"mutated failure\")",
+    "tests": [
+      "test_refusal_helpers_cannot_accept_success_or_wrong_failure"
+    ]
+  },
+  {
+    "identity": "new-helper-assertion",
+    "source": "tests/test_ads_checkers.py",
+    "before": "self.assertFalse(result.ok)",
+    "after": "pass",
+    "tests": [
+      "test_refusal_helpers_cannot_accept_success_or_wrong_failure"
+    ]
+  }
+]

@@ -1,0 +1,640 @@
+{
+  "AuthorityEffect": "None",
+  "baseline": {
+    "output": "..............\n----------------------------------------------------------------------\nRan 14 tests in 0.861s\n\nOK\n",
+    "returncode": 0
+  },
+  "inputs_sha256": {
+    ".review_work\\run_integer_obstructions_mutations.py": "217f95e2fdb13042d40a988701cd14fcf247dc461c6b274a7565e759a83acec2",
+    "checks\\checker_support\\binary_frame_system.py": "843503239990f18ad076a7c5078fd084d73be12cd8314a5e9ae8f20bd6a77eb8",
+    "checks\\checker_support\\boundary.py": "80bc02d14a92fded8dffdecee50e5cafb8eebe5ac34b11c56197950f8442c708",
+    "checks\\checker_support\\cases.py": "0b49d210e9c6a80c4ec3f513a4ec75c5f9df47e407c4e7e150b228b243a3210b",
+    "checks\\checker_support\\cech_complex.py": "6f973fc65d6fa66ebb9078c6cc1af60683a5150b97b5510ca853517b650227dd",
+    "checks\\checker_support\\domains.py": "eda1a8c3119462269574e2045d1af908061db2df23a9d1dc9e8f25aa17b33c73",
+    "checks\\checker_support\\empirical_model.py": "612562ec192efe40b5b9a0bb151486d4e77caf399bd853d2da712f5ca465172c",
+    "checks\\checker_support\\equatorial_ray_geometry.py": "ae4f3583fc892bcbfa5ed5acacdc41b88c09f2f4fe0a4811a12ec48d5c503622",
+    "checks\\checker_support\\exact_json_document.py": "e162590c25fab02fe87d73bc50f1e52e8083580b9faafae14ba4c50b8efb9f8c",
+    "checks\\checker_support\\exact_linear_program.py": "c771280ccd6473deaa011e37ca22c3e1856ccb9fbd2025580c81b87a0513f65f",
+    "checks\\checker_support\\gaussian_matrix2.py": "df37dd6ab6204096f9bd154340591fc859ded52a5566ad228ec71063e12f5693",
+    "checks\\checker_support\\gaussian_rational.py": "82d19219de482a89cf5ad17b5b5d3a13dde8589705c4e8beacd6eaa083d40b76",
+    "checks\\checker_support\\gaussian_vector3.py": "7499bff94cb4a71a8dc8e4fa7ed3e08a00ac3a0e5096f925eb3e10b290f8a23e",
+    "checks\\checker_support\\happy_boundary.py": "5b5d7a13c37cdadc7272e2255c71355b0d58a69b8c94fc7fa8079746b3c7190b",
+    "checks\\checker_support\\hermitian_tomography.py": "df1760dcfb384e13a48fc572613d6d25fe051361d6ab77954dec083f498e2c69",
+    "checks\\checker_support\\inert_prime_residual.py": "55f11b7d004c29e7feb7b44461117c003821ee7781fd940e973eb8a02f3b57aa",
+    "checks\\checker_support\\integer_quadratic_equation.py": "7c8ae4c920631ff105ba510ce3eea40b223e3eac9af6f30988375d53770fc9d4",
+    "checks\\checker_support\\linear_program_certificate.py": "cfe2167737de71125118fb749a6e9ba5a2501cbee49ebc7828d2d55cc81636dc",
+    "checks\\checker_support\\measurement_scenario.py": "c441ba2036eca8083869d4b0fb4a49fdbc84638ca29b3cd2e90f8a07b5d71a3c",
+    "checks\\checker_support\\mutation_case.py": "b9e2e9e560a42cad70c9d61611d17279e5ceac7bd08d529c79f4363324d59d3a",
+    "checks\\checker_support\\orthogonal_gaussian_pair.py": "e5402c6601acc653d2958eb28e46bf0cc99e7616b2a9bcbc5f82611eba5f78d3",
+    "checks\\checker_support\\outcome.py": "b9aec1bf9505b6deb48be3bde206c8466b129dc939abe7f430830e43126bc42d",
+    "checks\\checker_support\\rational_inverse.py": "4eadfd4b793e62a415d7d2da05964e4af8c46edfd7e59d54f86b93f29f326b9b",
+    "checks\\checker_support\\rational_matrix.py": "91a6d2d7ac3cdf7693ff863075046fc8dc9a6843fcc9c564a890b942c076b1ce",
+    "checks\\checker_support\\simplex_tableau.py": "c5254540e60b3bd68f8bd7776162878d6a919724f88b2098f9874bb980d2c145",
+    "checks\\checker_support\\wilson_operator.py": "6f0778a64a1fbb68e179005643278b3322d313de98c26659d180cba1fa340015",
+    "checks\\independent\\fq-gap-continuum-hilbert-lift.py": "ac5de287d679bae9ebf16255bebb2619b5360836dcb7e4503a5614491656e503",
+    "checks\\tests\\integer_obstructions_mutations.json": "37a919911ee6cb7f2224d23bbe85ee393a6f174e5a0c41de5e77160513f52e45",
+    "checks\\tests\\run_support_mutations.py": "07492acec164220928211177329693c321aa3f3ed2903b1100bd8df3476a90bb",
+    "checks\\tests\\test_integer_obstructions.py": "de4e3b040e5634f8855e69dae1526c32241832b503937cffbb9b3a3f810363b5",
+    "checks\\tests\\test_review_repairs.py": "6bb0b7602707a2ee0c7277558cb8cb74eb6d986d2cc0ffb1be6a9df23fe0c6a4"
+  },
+  "mutants": [
+    {
+      "identity": "equation-coefficient-budget",
+      "mutant_sha256": "0b39e36972bc01831e9a91814b9caed9e0fca6e286e03daf4c280f5eac2a9590",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_resource_boundaries_cover_products_prefixes_and_arguments (__main__.IntegerObstructionTests.test_resource_boundaries_cover_products_prefixes_and_arguments)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 142, in test_resource_boundaries_cover_products_prefixes_and_arguments\n    self.refused(evaluate(Equation, (0, 0, 1 << 4096)), 'resource')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 67, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_resource_boundaries_cover_products_prefixes_and_arguments"
+      ]
+    },
+    {
+      "identity": "equation-inclusive-budget",
+      "mutant_sha256": "1ef9abdd404b6e977c50e805c126662217e061843a1c78d50773155e2d555466",
+      "outcome": "killed",
+      "output": "E\n======================================================================\nERROR: test_resource_boundaries_cover_products_prefixes_and_arguments (__main__.IntegerObstructionTests.test_resource_boundaries_cover_products_prefixes_and_arguments)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 141, in test_resource_boundaries_cover_products_prefixes_and_arguments\n    self.assertEqual(Equation((0, 0, maximum)).constant, maximum)\n                     ~~~~~~~~^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\checker_support\\integer_quadratic_equation.py\", line 46, in __init__\n    a, b, c = (_integer(x) for x in sequence(coefficients, 'three coefficients', 3))\n    ^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\checker_support\\integer_quadratic_equation.py\", line 46, in <genexpr>\n    a, b, c = (_integer(x) for x in sequence(coefficients, 'three coefficients', 3))\n               ~~~~~~~~^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\checker_support\\integer_quadratic_equation.py\", line 21, in _integer\n    raise Violation('resource', 'polynomial integer exceeds 4096 bits')\nchecker_support.boundary.Violation: polynomial integer exceeds 4096 bits\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (errors=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_resource_boundaries_cover_products_prefixes_and_arguments"
+      ]
+    },
+    {
+      "identity": "equation-integer-types",
+      "mutant_sha256": "db07bab0d281413d89481bcacf7c288fb02a0d5f408f87610e3c7b76be48e3e4",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_domains_constant_linear_and_repeated_roots (__main__.IntegerObstructionTests.test_exact_domains_constant_linear_and_repeated_roots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 118, in test_exact_domains_constant_linear_and_repeated_roots\n    self.refused(evaluate(Equation, invalid), 'input')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 67, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_exact_domains_constant_linear_and_repeated_roots",
+        "test_square_root_boundary_and_independent_square_census"
+      ]
+    },
+    {
+      "identity": "equation-zero-polynomial",
+      "mutant_sha256": "e89882cd56b68410577860dd86ac8b83830f09e11223cb97ba638200490bfd77",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_domains_constant_linear_and_repeated_roots (__main__.IntegerObstructionTests.test_exact_domains_constant_linear_and_repeated_roots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 118, in test_exact_domains_constant_linear_and_repeated_roots\n    self.refused(evaluate(Equation, invalid), 'input')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 67, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_exact_domains_constant_linear_and_repeated_roots"
+      ]
+    },
+    {
+      "identity": "equation-coefficient-swap",
+      "mutant_sha256": "4753487fd25d946567619205203091185fb453573e2e34ed3caccffcc6ee2e6e",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_owned_coefficients_and_immutable_reentrant_results (__main__.IntegerObstructionTests.test_owned_coefficients_and_immutable_reentrant_results)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 133, in test_owned_coefficients_and_immutable_reentrant_results\n    self.assertEqual(equation.coefficients, (1, -3, 2))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (1, 2, 2) != (1, -3, 2)\n\nFirst differing element 1:\n2\n-3\n\n- (1, 2, 2)\n?     ^\n\n+ (1, -3, 2)\n?     ^^\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_owned_coefficients_and_immutable_reentrant_results"
+      ]
+    },
+    {
+      "identity": "equation-negative-square",
+      "mutant_sha256": "4599d3d9bc0db7592835f48082bbc6b11591bda639259696749b9caa3380899a",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_square_root_boundary_and_independent_square_census (__main__.IntegerObstructionTests.test_square_root_boundary_and_independent_square_census)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 107, in test_square_root_boundary_and_independent_square_census\n    self.assertEqual(self.accepted(Equation.square_root(number)), squares.get(number))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_square_root_boundary_and_independent_square_census"
+      ]
+    },
+    {
+      "identity": "equation-square-floor",
+      "mutant_sha256": "e67d84c9af0374bc98300e1a7d728745048c39a97c3d2727229f63f7e7fd8749",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_square_root_boundary_and_independent_square_census (__main__.IntegerObstructionTests.test_square_root_boundary_and_independent_square_census)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 107, in test_square_root_boundary_and_independent_square_census\n    self.assertEqual(self.accepted(Equation.square_root(number)), squares.get(number))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_square_root_boundary_and_independent_square_census"
+      ]
+    },
+    {
+      "identity": "equation-zero-square",
+      "mutant_sha256": "d3f8f170379f30fc43b1d76ba3afa5dd4866cfd8d7137acd1475976664806e36",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_square_root_boundary_and_independent_square_census (__main__.IntegerObstructionTests.test_square_root_boundary_and_independent_square_census)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 107, in test_square_root_boundary_and_independent_square_census\n    self.assertEqual(self.accepted(Equation.square_root(number)), squares.get(number))\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: None != 0\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_square_root_boundary_and_independent_square_census"
+      ]
+    },
+    {
+      "identity": "equation-horner-linear",
+      "mutant_sha256": "5fc622d8ef0cc151f14fadd8e20e2cefe7bcfb54cf2c6e48a5ce4c6c2335e19d",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_generated_evaluation_and_homogenization (__main__.IntegerObstructionTests.test_generated_evaluation_and_homogenization)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 83, in test_generated_evaluation_and_homogenization\n    @given(COEFFICIENTS, st.integers(-30, 30), st.integers(1, 13), st.integers(-30, 30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 88, in test_generated_evaluation_and_homogenization\n    self.assertEqual(self.accepted(equation.evaluate(x)), a*x*x+b*x+c)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(-1, 1) != Fraction(1, 1)\nFailing test case: test_generated_evaluation_and_homogenization(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.IntegerObstructionTests testMethod=test_generated_evaluation_and_homogenization>,\n    coefficients=(\n        0,  # or any other generated value\n        1,  # or any other generated value\n        0,  # or any other generated value\n    ),\n    numerator=1,\n    denominator=1,  # or any other generated value\n    y=0,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 2.208s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_generated_evaluation_and_homogenization"
+      ]
+    },
+    {
+      "identity": "equation-horner-constant",
+      "mutant_sha256": "9e051fa79caf961e81ece8f854e6f24e9761b8e34bcdca11b05f4e8f1c0b9365",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_generated_evaluation_and_homogenization (__main__.IntegerObstructionTests.test_generated_evaluation_and_homogenization)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 83, in test_generated_evaluation_and_homogenization\n    @given(COEFFICIENTS, st.integers(-30, 30), st.integers(1, 13), st.integers(-30, 30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 88, in test_generated_evaluation_and_homogenization\n    self.assertEqual(self.accepted(equation.evaluate(x)), a*x*x+b*x+c)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fraction(-1, 1) != Fraction(1, 1)\nFailing test case: test_generated_evaluation_and_homogenization(\n    # The test sometimes passed when commented parts were varied together.\n    self=<__main__.IntegerObstructionTests testMethod=test_generated_evaluation_and_homogenization>,\n    coefficients=(\n        0,  # or any other generated value\n        0,  # or any other generated value\n        1,  # or any other generated value\n    ),\n    numerator=0,  # or any other generated value\n    denominator=1,  # or any other generated value\n    y=0,  # or any other generated value\n)\n\n----------------------------------------------------------------------\nRan 1 test in 2.759s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_generated_evaluation_and_homogenization"
+      ]
+    },
+    {
+      "identity": "equation-horner-input",
+      "mutant_sha256": "9311cdf2f686694d24891241ffa9366f016b0c9763d284a63478209c451de16e",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_exact_domains_constant_linear_and_repeated_roots (__main__.IntegerObstructionTests.test_exact_domains_constant_linear_and_repeated_roots)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 127, in test_exact_domains_constant_linear_and_repeated_roots\n    self.refused(equation.evaluate(invalid), 'input')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 67, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_exact_domains_constant_linear_and_repeated_roots",
+        "test_resource_boundaries_cover_products_prefixes_and_arguments"
+      ]
+    },
+    {
+      "identity": "equation-horner-prefix",
+      "mutant_sha256": "e311e3e50168f51d2ba8c04f8b8f6c135f6313d3aeae3614f38ab4fad8435ace",
+      "outcome": "survived",
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n",
+      "returncode": 0,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_resource_boundaries_cover_products_prefixes_and_arguments"
+      ]
+    },
+    {
+      "identity": "equation-homogeneous-cross",
+      "mutant_sha256": "8bcacb53b929f7e067f8a1f6d7aa804a8c97ac96d2990338da4aaa839bdd3282",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_generated_evaluation_and_homogenization (__main__.IntegerObstructionTests.test_generated_evaluation_and_homogenization)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 83, in test_generated_evaluation_and_homogenization\n    @given(COEFFICIENTS, st.integers(-30, 30), st.integers(1, 13), st.integers(-30, 30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 90, in test_generated_evaluation_and_homogenization\n    self.assertEqual(homogeneous, a*numerator*numerator+b*numerator*y+c*y*y)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 1 != 0\nFailing test case: test_generated_evaluation_and_homogenization(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.IntegerObstructionTests testMethod=test_generated_evaluation_and_homogenization>,\n    coefficients=(\n        0,  # or any other generated value\n        1,  # or any other generated value\n        0,  # or any other generated value\n    ),\n    numerator=1,\n    denominator=1,  # or any other generated value\n    y=0,\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.942s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_generated_evaluation_and_homogenization"
+      ]
+    },
+    {
+      "identity": "equation-homogeneous-constant",
+      "mutant_sha256": "4de2e3dae6024e50060f6d209665004d8e5175460fd3a64fa0d09b80a4d5837c",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_generated_evaluation_and_homogenization (__main__.IntegerObstructionTests.test_generated_evaluation_and_homogenization)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 83, in test_generated_evaluation_and_homogenization\n    @given(COEFFICIENTS, st.integers(-30, 30), st.integers(1, 13), st.integers(-30, 30))\n               ^^^^^^^\n  File \"C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\.venv\\Lib\\site-packages\\hypothesis\\core.py\", line 2299, in wrapped_test\n    raise the_error_hypothesis_found\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 90, in test_generated_evaluation_and_homogenization\n    self.assertEqual(homogeneous, a*numerator*numerator+b*numerator*y+c*y*y)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\nFailing test case: test_generated_evaluation_and_homogenization(\n    # The test always failed when commented parts were varied together.\n    self=<__main__.IntegerObstructionTests testMethod=test_generated_evaluation_and_homogenization>,\n    coefficients=(0, 0, 1),  # or any other generated value\n    numerator=0,\n    denominator=1,  # or any other generated value\n    y=1,\n)\n\n----------------------------------------------------------------------\nRan 1 test in 1.425s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_generated_evaluation_and_homogenization"
+      ]
+    },
+    {
+      "identity": "equation-homogeneous-prefix",
+      "mutant_sha256": "59e646527c11e3487f228e4b4bced829281499c3f8e2c107ceb9297a8cce15d9",
+      "outcome": "survived",
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n",
+      "returncode": 0,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_resource_boundaries_cover_products_prefixes_and_arguments"
+      ]
+    },
+    {
+      "identity": "equation-discriminant-sign",
+      "mutant_sha256": "5a6f7ca731008952da2af73e662fb06bb3e3ae007f820e9ed6333d4e4ec557d2",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_small_polynomials_against_independent_factorization (__main__.IntegerObstructionTests.test_all_small_polynomials_against_independent_factorization)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 80, in test_all_small_polynomials_against_independent_factorization\n    self.assertEqual(self.accepted(equation.discriminant()), b*b-4*a*c)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 45 != -27\n\n----------------------------------------------------------------------\nRan 1 test in 0.022s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_all_small_polynomials_against_independent_factorization"
+      ]
+    },
+    {
+      "identity": "equation-discriminant-factor",
+      "mutant_sha256": "7f5f7558e3292aa942dda424b8fb744f2a20073ac76094142f5bc4c43c46a78a",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_small_polynomials_against_independent_factorization (__main__.IntegerObstructionTests.test_all_small_polynomials_against_independent_factorization)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 80, in test_all_small_polynomials_against_independent_factorization\n    self.assertEqual(self.accepted(equation.discriminant()), b*b-4*a*c)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: -9 != -27\n\n----------------------------------------------------------------------\nRan 1 test in 0.023s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_all_small_polynomials_against_independent_factorization"
+      ]
+    },
+    {
+      "identity": "equation-discriminant-square",
+      "mutant_sha256": "dc82b52e223589bc3e567d6d28c7d3243b622d11999cbea91967b23212b58140",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_resource_boundaries_cover_products_prefixes_and_arguments (__main__.IntegerObstructionTests.test_resource_boundaries_cover_products_prefixes_and_arguments)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 148, in test_resource_boundaries_cover_products_prefixes_and_arguments\n    self.refused(Equation((1, 1 << 2048, 1)).discriminant(), 'resource')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 67, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_resource_boundaries_cover_products_prefixes_and_arguments"
+      ]
+    },
+    {
+      "identity": "equation-discriminant-prefix",
+      "mutant_sha256": "6f90d693586799410c440fe6d60d623c9a3c4e42b954270d4c42c19ccf1573b3",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_resource_boundaries_cover_products_prefixes_and_arguments (__main__.IntegerObstructionTests.test_resource_boundaries_cover_products_prefixes_and_arguments)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 150, in test_resource_boundaries_cover_products_prefixes_and_arguments\n    self.refused(Equation((-(1 << 2046), (1 << 2048)-1, 1 << 2046)).discriminant(), 'resource')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 67, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_resource_boundaries_cover_products_prefixes_and_arguments"
+      ]
+    },
+    {
+      "identity": "equation-linear-sign",
+      "mutant_sha256": "61900ee3dfbd34481dadaf0415c2f8c548e1e8d3a14baab6ef977bb4d6d4d7ea",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_small_polynomials_against_independent_factorization (__main__.IntegerObstructionTests.test_all_small_polynomials_against_independent_factorization)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 76, in test_all_small_polynomials_against_independent_factorization\n    self.assertEqual(self.accepted(equation.rational_roots()), expected, coefficients)\n                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 63, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='calculated root fails exact substitution') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.079s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_all_small_polynomials_against_independent_factorization"
+      ]
+    },
+    {
+      "identity": "equation-constant-root",
+      "mutant_sha256": "b6e91f4bdbc1744b12cd0a16330c593d6ca2b357b69c62076add715b724007e0",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_small_polynomials_against_independent_factorization (__main__.IntegerObstructionTests.test_all_small_polynomials_against_independent_factorization)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 76, in test_all_small_polynomials_against_independent_factorization\n    self.assertEqual(self.accepted(equation.rational_roots()), expected, coefficients)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(0, 1),) != ()\n\nFirst tuple contains 1 additional elements.\nFirst extra element 0:\nFraction(0, 1)\n\n- (Fraction(0, 1),)\n+ () : (0, 0, -3)\n\n----------------------------------------------------------------------\nRan 1 test in 0.082s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_all_small_polynomials_against_independent_factorization"
+      ]
+    },
+    {
+      "identity": "equation-root-denominator",
+      "mutant_sha256": "cb073521f186dcfe1f79e7117194a3cce4988b56815684fb58ee81b40f73c81c",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_small_polynomials_against_independent_factorization (__main__.IntegerObstructionTests.test_all_small_polynomials_against_independent_factorization)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 76, in test_all_small_polynomials_against_independent_factorization\n    self.assertEqual(self.accepted(equation.rational_roots()), expected, coefficients)\n                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 63, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='calculated root fails exact substitution') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.025s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_all_small_polynomials_against_independent_factorization"
+      ]
+    },
+    {
+      "identity": "equation-root-signs",
+      "mutant_sha256": "bb09e02993bb4d0268c2a3a4d4c536ccdff07bb31410a309d7c0a3e2e54180b3",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_small_polynomials_against_independent_factorization (__main__.IntegerObstructionTests.test_all_small_polynomials_against_independent_factorization)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 76, in test_all_small_polynomials_against_independent_factorization\n    self.assertEqual(self.accepted(equation.rational_roots()), expected, coefficients)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (Fraction(-1, 1),) != (Fraction(-1, 1), Fraction(0, 1))\n\nSecond tuple contains 1 additional elements.\nFirst extra element 1:\nFraction(0, 1)\n\n- (Fraction(-1, 1),)\n+ (Fraction(-1, 1), Fraction(0, 1)) : (-3, -3, 0)\n\n----------------------------------------------------------------------\nRan 1 test in 0.023s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_all_small_polynomials_against_independent_factorization"
+      ]
+    },
+    {
+      "identity": "equation-root-b-sign",
+      "mutant_sha256": "27d3ca0418dd1e185f4f8affc4199980b255eab8658c2597edcd228e04da7d73",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_small_polynomials_against_independent_factorization (__main__.IntegerObstructionTests.test_all_small_polynomials_against_independent_factorization)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 76, in test_all_small_polynomials_against_independent_factorization\n    self.assertEqual(self.accepted(equation.rational_roots()), expected, coefficients)\n                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 63, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='calculated root fails exact substitution') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.025s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_all_small_polynomials_against_independent_factorization"
+      ]
+    },
+    {
+      "identity": "equation-root-replay",
+      "mutant_sha256": "989fe125b4a53682802fe93712a43f885c8ffbb40187ea0aba612d62cdce17de",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_root_replay_guards_and_unexpected_failures (__main__.IntegerObstructionTests.test_root_replay_guards_and_unexpected_failures)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 157, in test_root_replay_guards_and_unexpected_failures\n    self.refused(equation.rational_roots(), 'check')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 67, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.001s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_root_replay_guards_and_unexpected_failures"
+      ]
+    },
+    {
+      "identity": "equation-integer-filter",
+      "mutant_sha256": "b059a45c6c0ea29dda1fb9038423aa9836b05261219622dadd6c7c116b2f3825",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_small_polynomials_against_independent_factorization (__main__.IntegerObstructionTests.test_all_small_polynomials_against_independent_factorization)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 78, in test_all_small_polynomials_against_independent_factorization\n    self.assertEqual(self.accepted(equation.integer_roots()), integers, coefficients)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (-2, 0) != (0,)\n\nFirst differing element 0:\n-2\n0\n\nFirst tuple contains 1 additional elements.\nFirst extra element 1:\n0\n\n- (-2, 0)\n+ (0,) : (-3, -2, 0)\n\n----------------------------------------------------------------------\nRan 1 test in 0.027s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_all_small_polynomials_against_independent_factorization"
+      ]
+    },
+    {
+      "identity": "equation-integer-numerator",
+      "mutant_sha256": "3278cadd9a05cad131c7b360f517d153736def195703f324e59f216c88c6789b",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_all_small_polynomials_against_independent_factorization (__main__.IntegerObstructionTests.test_all_small_polynomials_against_independent_factorization)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 78, in test_all_small_polynomials_against_independent_factorization\n    self.assertEqual(self.accepted(equation.integer_roots()), integers, coefficients)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Tuples differ: (1, 1) != (-1, 0)\n\nFirst differing element 0:\n1\n-1\n\n- (1, 1)\n?     ^\n\n+ (-1, 0)\n?  +   ^\n : (-3, -3, 0)\n\n----------------------------------------------------------------------\nRan 1 test in 0.024s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "checker_support/integer_quadratic_equation.py",
+      "tests": [
+        "test_all_small_polynomials_against_independent_factorization"
+      ]
+    },
+    {
+      "identity": "application-window-domain",
+      "mutant_sha256": "bda27f50947bfa61f007b3ea180c3dcf55c11860beb969d04e39bcf284c82bd6",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_policy_bounds_zero_pair_admission_and_ownership (__main__.IntegerObstructionTests.test_policy_bounds_zero_pair_admission_and_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 198, in test_policy_bounds_zero_pair_admission_and_ownership\n    self.refused(evaluate(cls, *values), 'resource' if invalid == maximum+1 else 'input')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 67, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_policy_bounds_zero_pair_admission_and_ownership"
+      ]
+    },
+    {
+      "identity": "application-pair-domain",
+      "mutant_sha256": "7aa336458a354a0bc3a793a99f99620ad6255a2e2fa521aac37aba32c803b54e",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_policy_bounds_zero_pair_admission_and_ownership (__main__.IntegerObstructionTests.test_policy_bounds_zero_pair_admission_and_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 198, in test_policy_bounds_zero_pair_admission_and_ownership\n    self.refused(evaluate(cls, *values), 'resource' if invalid == maximum+1 else 'input')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 67, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_policy_bounds_zero_pair_admission_and_ownership"
+      ]
+    },
+    {
+      "identity": "application-natural-domain",
+      "mutant_sha256": "5acaec184a9e349e856514fed2fccb43b17ded990e5f1260f7cab256d4e17985",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_policy_bounds_zero_pair_admission_and_ownership (__main__.IntegerObstructionTests.test_policy_bounds_zero_pair_admission_and_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 198, in test_policy_bounds_zero_pair_admission_and_ownership\n    self.refused(evaluate(cls, *values), 'resource' if invalid == maximum+1 else 'input')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 67, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_policy_bounds_zero_pair_admission_and_ownership"
+      ]
+    },
+    {
+      "identity": "application-box-domain",
+      "mutant_sha256": "bab059b2eb64d8dd2f62e066e5c32597346c5dde77e0bb69aedb4ba57aab2dda",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_policy_bounds_zero_pair_admission_and_ownership (__main__.IntegerObstructionTests.test_policy_bounds_zero_pair_admission_and_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 198, in test_policy_bounds_zero_pair_admission_and_ownership\n    self.refused(evaluate(cls, *values), 'resource' if invalid == maximum+1 else 'input')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 67, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_policy_bounds_zero_pair_admission_and_ownership"
+      ]
+    },
+    {
+      "identity": "application-linear-equation",
+      "mutant_sha256": "aa349f3d6c02d205043335a2d6909dd4399842433e840f9e76eb7b11c60dea4a",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_sample_populations_and_actual_per_run_counter (__main__.IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 167, in test_original_sample_populations_and_actual_per_run_counter\n    result = self.accepted(module.verify())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 63, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='linear rational root is one half') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_original_sample_populations_and_actual_per_run_counter"
+      ]
+    },
+    {
+      "identity": "application-hilbert-equation",
+      "mutant_sha256": "8e53341b3e8e6115bfc138c771d4061e3e367cbcc58f79488c8f1b22812ad298",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_sample_populations_and_actual_per_run_counter (__main__.IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 167, in test_original_sample_populations_and_actual_per_run_counter\n    result = self.accepted(module.verify())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 63, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='discriminant identity sample') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_original_sample_populations_and_actual_per_run_counter"
+      ]
+    },
+    {
+      "identity": "application-ratio-equation",
+      "mutant_sha256": "1ef50f8b0c7d236e507e0f92536ff067f5485088a50c2f474ec041b1d60beeec",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_sample_populations_and_actual_per_run_counter (__main__.IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 167, in test_original_sample_populations_and_actual_per_run_counter\n    result = self.accepted(module.verify())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 63, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='nonsquare discriminant excludes rational roots') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_original_sample_populations_and_actual_per_run_counter"
+      ]
+    },
+    {
+      "identity": "application-window-endpoint",
+      "mutant_sha256": "8e8645ce1611dcdd599c2187e35d148bd77ea23b64fbf80f4e3a63c7899fbd28",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_sample_populations_and_actual_per_run_counter (__main__.IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 168, in test_original_sample_populations_and_actual_per_run_counter\n    self.assertEqual(result['checks'], len(observed)); self.assertEqual(len(observed), 18949)\n                                                       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 18944 != 18949\n\n----------------------------------------------------------------------\nRan 1 test in 0.012s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_original_sample_populations_and_actual_per_run_counter"
+      ]
+    },
+    {
+      "identity": "application-zero-pair-natural",
+      "mutant_sha256": "388c43ff5a8b0b4629d0734fde2008c83eae14e09769aa448b52a0138a14c51f",
+      "outcome": "survived",
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.028s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_policy_bounds_zero_pair_admission_and_ownership"
+      ]
+    },
+    {
+      "identity": "application-zero-pair-equation",
+      "mutant_sha256": "8b420a33f954cc8ec2535397e6f760b937888b748774d8291f0e3156937de54e",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_policy_bounds_zero_pair_admission_and_ownership (__main__.IntegerObstructionTests.test_policy_bounds_zero_pair_admission_and_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 205, in test_policy_bounds_zero_pair_admission_and_ownership\n    self.refused(controls.zero_pair(invalid_pair), 'input')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 69, in refused\n    self.assertEqual(result.error.kind, kind)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'check' != 'input'\n- check\n+ input\n\n\n----------------------------------------------------------------------\nRan 1 test in 0.028s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_policy_bounds_zero_pair_admission_and_ownership"
+      ]
+    },
+    {
+      "identity": "application-zero-pair-invariant",
+      "mutant_sha256": "133002fde354bd21700fa4b78ae890cf220dc13dd4629b65b4e406b15f8df6dd",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_policy_bounds_zero_pair_admission_and_ownership (__main__.IntegerObstructionTests.test_policy_bounds_zero_pair_admission_and_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 209, in test_policy_bounds_zero_pair_admission_and_ownership\n    self.refused(controls.zero_pair((1, 1)), 'check')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 67, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.028s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_policy_bounds_zero_pair_admission_and_ownership"
+      ]
+    },
+    {
+      "identity": "application-residue-table",
+      "mutant_sha256": "2908376cf5cea9beed4320fc4f225fc0422aa9be68d976b0302d5888cd345328",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_sample_populations_and_actual_per_run_counter (__main__.IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 167, in test_original_sample_populations_and_actual_per_run_counter\n    result = self.accepted(module.verify())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 63, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='complete square residue table modulo five') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.005s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_original_sample_populations_and_actual_per_run_counter"
+      ]
+    },
+    {
+      "identity": "application-descent-scale-population",
+      "mutant_sha256": "567d4410ca1634c87b9e1a5186f88100b35dcdedbd1387cac0af2c36b7ec3382",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_sample_populations_and_actual_per_run_counter (__main__.IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 168, in test_original_sample_populations_and_actual_per_run_counter\n    self.assertEqual(result['checks'], len(observed)); self.assertEqual(len(observed), 18949)\n                                                       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 18947 != 18949\n\n----------------------------------------------------------------------\nRan 1 test in 0.012s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_original_sample_populations_and_actual_per_run_counter"
+      ]
+    },
+    {
+      "identity": "application-pair-count",
+      "mutant_sha256": "cd12574d8e2775d0a115b07ea5ed64b7dca7c74584ff567c1a8875d890da0975",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_sample_populations_and_actual_per_run_counter (__main__.IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 167, in test_original_sample_populations_and_actual_per_run_counter\n    result = self.accepted(module.verify())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 63, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='natural pair population count') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.007s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_original_sample_populations_and_actual_per_run_counter"
+      ]
+    },
+    {
+      "identity": "application-natural-endpoint",
+      "mutant_sha256": "ea4256d64ac2df8090cdd951ef1e7e10e8d07622070c8b663763427f3b3076ea",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_sample_populations_and_actual_per_run_counter (__main__.IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 168, in test_original_sample_populations_and_actual_per_run_counter\n    self.assertEqual(result['checks'], len(observed)); self.assertEqual(len(observed), 18949)\n                                                       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 18948 != 18949\n\n----------------------------------------------------------------------\nRan 1 test in 0.013s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_original_sample_populations_and_actual_per_run_counter"
+      ]
+    },
+    {
+      "identity": "application-square-helper-ignore",
+      "mutant_sha256": "28cff5d4f02082b00958a46f94ee51714bb1d4a4427c192fe2b5b61b615d587f",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_composition_refuses_helper_failures_without_suppressing_them (__main__.IntegerObstructionTests.test_composition_refuses_helper_failures_without_suppressing_them)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 214, in test_composition_refuses_helper_failures_without_suppressing_them\n    self.refused(controls.verify(), 'check')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 67, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_composition_refuses_helper_failures_without_suppressing_them"
+      ]
+    },
+    {
+      "identity": "application-square-helper-failure-mask",
+      "mutant_sha256": "d2641b0c52f3b66f4eda827dd8da5d81edca3f061efb709ae21c1faafcbc88fa",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_composition_refuses_helper_failures_without_suppressing_them (__main__.IntegerObstructionTests.test_composition_refuses_helper_failures_without_suppressing_them)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 214, in test_composition_refuses_helper_failures_without_suppressing_them\n    self.refused(controls.verify(), 'check')\n    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 67, in refused\n    self.assertIsNotNone(result.error)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: unexpectedly None\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_composition_refuses_helper_failures_without_suppressing_them"
+      ]
+    },
+    {
+      "identity": "application-natural-hit-guard",
+      "mutant_sha256": "636f695a80bc43f62cb0b359f9c4d9eac1250a2d85997d7fbe529b46d8100753",
+      "outcome": "survived",
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.003s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_composition_refuses_helper_failures_without_suppressing_them"
+      ]
+    },
+    {
+      "identity": "application-cleared-second-equation",
+      "mutant_sha256": "ee3a253b92651e8449d315e56b376ee856513489aafde786ef19d2be43435245",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_sample_populations_and_actual_per_run_counter (__main__.IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 167, in test_original_sample_populations_and_actual_per_run_counter\n    result = self.accepted(module.verify())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 63, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='cleared equations imply four-fifths relation') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.008s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_original_sample_populations_and_actual_per_run_counter"
+      ]
+    },
+    {
+      "identity": "application-cleared-first-equation",
+      "mutant_sha256": "5009e3be526370d6f7e255e89fc60cf97c30d7c112f63020338fe88504d57872",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_sample_populations_and_actual_per_run_counter (__main__.IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 167, in test_original_sample_populations_and_actual_per_run_counter\n    result = self.accepted(module.verify())\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 63, in accepted\n    self.assertIsNone(result.error)\n    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^\nAssertionError: Failure(kind='check', message='cleared equations imply four-fifths relation') is not None\n\n----------------------------------------------------------------------\nRan 1 test in 0.009s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_original_sample_populations_and_actual_per_run_counter"
+      ]
+    },
+    {
+      "identity": "application-cleared-box-endpoint",
+      "mutant_sha256": "52673a0928d653d35e7c95d9a57a4595a79b4cc683ae3556e2677a82bab3cac4",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_sample_populations_and_actual_per_run_counter (__main__.IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 168, in test_original_sample_populations_and_actual_per_run_counter\n    self.assertEqual(result['checks'], len(observed)); self.assertEqual(len(observed), 18949)\n                                                       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 17148 != 18949\n\n----------------------------------------------------------------------\nRan 1 test in 0.012s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_original_sample_populations_and_actual_per_run_counter"
+      ]
+    },
+    {
+      "identity": "application-skip-roots",
+      "mutant_sha256": "ebbf395ebc2fbf1527b3eebbf4971063b9ad5e328d909aa1143cd2be3399f39a",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_sample_populations_and_actual_per_run_counter (__main__.IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 168, in test_original_sample_populations_and_actual_per_run_counter\n    self.assertEqual(result['checks'], len(observed)); self.assertEqual(len(observed), 18949)\n                                                       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 18939 != 18949\n\n----------------------------------------------------------------------\nRan 1 test in 0.012s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_original_sample_populations_and_actual_per_run_counter"
+      ]
+    },
+    {
+      "identity": "application-skip-residues",
+      "mutant_sha256": "969237e09d28e412b5f7f990296cdb8999b401e9294ed7474b85d5b6b4742f3f",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_original_sample_populations_and_actual_per_run_counter (__main__.IntegerObstructionTests.test_original_sample_populations_and_actual_per_run_counter)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 168, in test_original_sample_populations_and_actual_per_run_counter\n    self.assertEqual(result['checks'], len(observed)); self.assertEqual(len(observed), 18949)\n                                                       ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 18929 != 18949\n\n----------------------------------------------------------------------\nRan 1 test in 0.013s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_original_sample_populations_and_actual_per_run_counter"
+      ]
+    },
+    {
+      "identity": "application-counter-literal",
+      "mutant_sha256": "da7d3931b63d2b4a894dd71fe98b06b08a6ac52021d88948830306b62d79ef81",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_policy_bounds_zero_pair_admission_and_ownership (__main__.IntegerObstructionTests.test_policy_bounds_zero_pair_admission_and_ownership)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 200, in test_policy_bounds_zero_pair_admission_and_ownership\n    self.assertEqual(maximum_report['checks'], 50845)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 18949 != 50845\n\n----------------------------------------------------------------------\nRan 1 test in 0.028s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_policy_bounds_zero_pair_admission_and_ownership"
+      ]
+    },
+    {
+      "identity": "application-cli-success-on-error",
+      "mutant_sha256": "9fd1b2c2b5b8271b9acd46e962973bf23a23ea2c1fae9eb4ea9d86ea1797b90c",
+      "outcome": "killed",
+      "output": "F\n======================================================================\nFAIL: test_quiet_import_cli_and_per_run_failure_state (__main__.IntegerObstructionTests.test_quiet_import_cli_and_per_run_failure_state)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\Users\\a343o\\.codex\\worktrees\\pr497-everett-fixes\\theory_of_finite_quantum_mechanics\\.review_work\\integer-obstruction-mutation-bi0x6o3h\\checks\\tests\\test_integer_obstructions.py\", line 233, in test_quiet_import_cli_and_per_run_failure_state\n    self.assertEqual(module.main(), 1)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\nAssertionError: 0 != 1\n\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nFAILED (failures=1)\n",
+      "returncode": 1,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_quiet_import_cli_and_per_run_failure_state"
+      ]
+    },
+    {
+      "identity": "application-root-control-ignore",
+      "mutant_sha256": "ac9ede3f992f48fc90e2db7a5eb3bacb42cc60f75951a2b2acbda98ec8894e30",
+      "outcome": "survived",
+      "output": ".\n----------------------------------------------------------------------\nRan 1 test in 0.004s\n\nOK\n",
+      "returncode": 0,
+      "source": "independent/fq-gap-continuum-hilbert-lift.py",
+      "tests": [
+        "test_composition_refuses_helper_failures_without_suppressing_them"
+      ]
+    }
+  ],
+  "python": "3.14.7 (main, Aug  7 2026, 02:26:22) [MSC v.1944 64 bit (AMD64)]",
+  "summary": {
+    "counts": {
+      "equivalent": 0,
+      "inconclusive": 0,
+      "invalid": 0,
+      "killed": 48,
+      "survived": 5,
+      "unrun": 0
+    },
+    "detected_fraction": 0.9056603773584906,
+    "eligible": 53
+  }
+}

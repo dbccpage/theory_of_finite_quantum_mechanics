@@ -1,124 +1,133 @@
-"""Independent check for CQFT-LOCAL-NET-AXIOMS-IMPORT.
+"""Finite four-point order and exact two-site operator controls.
 
-Pair counts on one four-point order, and products of four integer matrices,
-are recomputed with plain integers. This file imports no repository code.
+AuthorityEffect: None. Shared matrix operations are infrastructure, not an
+independent second implementation. These supplied finite matrices do not
+construct a continuum local net or verify the Haag-Kastler axioms.
 """
+from __future__ import annotations
+
+from fractions import Fraction
+import json
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from checker_support.boundary import cli
+from checker_support.cases import Cases
+from checker_support.domains import integer
+from checker_support.rational_matrix import Flat2, RationalMatrix
+
+FlatInput = tuple[int | Fraction, int | Fraction, int | Fraction, int | Fraction]
 
 
-def rel(i, j):
-    return (i == 0 and j == 2) or (i == 1 and j == 2) or (i == 1 and j == 3)
+def rel(i: int, j: int) -> bool:
+    left, right = integer(i, "carrier point", 0, 3), integer(j, "carrier point", 0, 3)
+    return (left, right) in {(0, 2), (1, 2), (1, 3)}
 
 
-def spacelike(i, j):
-    return i != j and not rel(i, j) and not rel(j, i)
+def spacelike(i: int, j: int) -> bool:
+    left, right = integer(i, "carrier point", 0, 3), integer(j, "carrier point", 0, 3)
+    return left != right and not rel(left, right) and not rel(right, left)
 
 
-def mm(x, y):
-    a, b, c, d = x
-    e, f, g, h = y
-    return (a * e + b * g, a * f + b * h, c * e + d * g, c * f + d * h)
+def mm(x: FlatInput, y: FlatInput) -> Flat2:
+    return RationalMatrix.from_flat2(x).mul(RationalMatrix.from_flat2(y)).flat2()
 
 
-def add2(x, y):
-    return tuple(p + q for p, q in zip(x, y))
+def add2(x: FlatInput, y: FlatInput) -> Flat2:
+    return RationalMatrix.from_flat2(x).add(RationalMatrix.from_flat2(y)).flat2()
 
 
-def trp(x):
-    a, b, c, d = x
-    return (a, c, b, d)
+def trp(x: FlatInput) -> Flat2:
+    return RationalMatrix.from_flat2(x).transpose().flat2()
 
 
-def det2(x):
-    a, b, c, d = x
-    return a * d - b * c
+def det2(x: FlatInput) -> Fraction:
+    return RationalMatrix.from_flat2(x).det2()
 
 
-def mm4(p, q):
-    out = []
-    for i in range(4):
-        row = []
-        for j in range(4):
-            row.append(sum(p[i][k] * q[k][j] for k in range(4)))
-        out.append(row)
-    return out
+def mm4(p: list[list[int]], q: list[list[int]]) -> list[list[int]]:
+    left = RationalMatrix.from_integers(p).require_shape(4, 4)
+    right = RationalMatrix.from_integers(q).require_shape(4, 4)
+    return [list(row) for row in left.mul(right).integer_rows()]
 
 
-def flat(m):
-    return tuple(v for row in m for v in row)
+def flat(value: list[list[int]]) -> tuple[int, ...]:
+    rows = RationalMatrix.from_integers(value).require_shape(4, 4).integer_rows()
+    return tuple(x for row in rows for x in row)
 
 
-def main():
+def kron_blocks(p: FlatInput, q: FlatInput) -> list[list[int]]:
+    """Integer tensor embedding; reject nonintegral inputs even if products cancel."""
+    left, right = RationalMatrix.from_flat2(p), RationalMatrix.from_flat2(q)
+    left.integer_rows()
+    right.integer_rows()
+    return [list(row) for row in left.kron(right).integer_rows()]
+
+
+def check_four_point_order(cases: Cases) -> None:
     points = range(4)
-    if any(rel(i, i) for i in points):
-        raise SystemExit("reflexive relation")
+    for point in points:
+        cases.append((f"order.irreflexive.{point}", not rel(point, point)))
     for x in points:
         for y in points:
             for z in points:
-                if rel(x, y) and rel(y, z) and not rel(x, z):
-                    raise SystemExit(f"transitivity {x} {y} {z}")
+                cases.append((f"order.transitive.{x}.{y}.{z}", not (rel(x, y) and rel(y, z)) or rel(x, z)))
     relations = [(i, j) for i in points for j in points if rel(i, j)]
     unordered = [(i, j) for i in points for j in points if i < j and spacelike(i, j)]
-    if relations != [(0, 2), (1, 2), (1, 3)]:
-        raise SystemExit(f"relations {relations}")
-    if unordered != [(0, 1), (0, 3), (2, 3)]:
-        raise SystemExit(f"spacelike {unordered}")
-    if not spacelike(1, 0) or spacelike(1, 3):
-        raise SystemExit("spacelike flags")
+    cases.append(("order.relations", relations == [(0, 2), (1, 2), (1, 3)]))
+    cases.append(("order.spacelike", unordered == [(0, 1), (0, 3), (2, 3)]))
+    cases.append(("order.flags", spacelike(1, 0) and not spacelike(1, 3)))
 
-    ident = (1, 0, 0, 1)
-    xmat = (0, 1, 1, 0)
-    zmat = (1, 0, 0, -1)
-    amat = (1, 2, 3, 4)
-    bmat = (5, 6, 7, 8)
-    for mat in (amat, bmat, xmat, zmat):
-        if mm(ident, mat) != mat or mm(mat, ident) != mat:
-            raise SystemExit(f"unit {mat}")
-    xz = mm(xmat, zmat)
-    zx = mm(zmat, xmat)
-    if xz != (0, -1, 1, 0) or zx != (0, 1, -1, 0):
-        raise SystemExit(f"pauli {xz} {zx}")
-    if add2(xz, zx) != (0, 0, 0, 0) or xz == zx:
-        raise SystemExit("anticommutator")
-    ab = mm(amat, bmat)
-    if trp(trp(amat)) != amat or trp(ab) != mm(trp(bmat), trp(amat)):
-        raise SystemExit("transpose")
-    dets = (det2(amat), det2(bmat), det2(xmat), det2(zmat))
-    if dets != (-2, -2, -1, -1):
-        raise SystemExit(f"dets {dets}")
 
-    eye = [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
-    # Kronecker by blocks, written out so the index formula above is not the only route.
-    def kron_blocks(p, q):
-        a, b, c, d = p
-        e, f, g, h = q
-        return [
-            [a * e, a * f, b * e, b * f],
-            [a * g, a * h, b * g, b * h],
-            [c * e, c * f, d * e, d * f],
-            [c * g, c * h, d * g, d * h],
-        ]
+def check_single_site_algebra(cases: Cases) -> None:
+    ident: FlatInput = (1, 0, 0, 1)
+    xmat: FlatInput = (0, 1, 1, 0)
+    zmat: FlatInput = (1, 0, 0, -1)
+    amat: FlatInput = (1, 2, 3, 4)
+    bmat: FlatInput = (5, 6, 7, 8)
+    for index, matrix in enumerate((amat, bmat, xmat, zmat)):
+        cases.append((f"single.unit.{index}", mm(ident, matrix) == matrix and mm(matrix, ident) == matrix))
+    xz, zx = mm(xmat, zmat), mm(zmat, xmat)
+    cases.append(("single.pauli", xz == tuple(Fraction(n) for n in (0, -1, 1, 0))
+                  and zx == tuple(Fraction(n) for n in (0, 1, -1, 0))))
+    cases.append(("single.anticommutator", add2(xz, zx) == (Fraction(0),)*4 and xz != zx))
+    cases.append(("single.transpose", trp(trp(amat)) == amat and trp(mm(amat, bmat)) == mm(trp(bmat), trp(amat))))
+    cases.append(("single.determinants", tuple(det2(m) for m in (amat, bmat, xmat, zmat))
+                  == tuple(Fraction(n) for n in (-2, -2, -1, -1))))
 
-    left = kron_blocks(amat, ident)
-    right = kron_blocks(ident, bmat)
-    both = kron_blocks(amat, bmat)
-    if mm4(left, right) != both or mm4(right, left) != both:
-        raise SystemExit("disjoint-site products differ")
-    total = sum(sum(row) for row in both)
-    if total != 260:
-        raise SystemExit(f"sum {total}")
+
+def check_two_site_products(cases: Cases) -> None:
+    ident: FlatInput = (1, 0, 0, 1)
+    amat: FlatInput = (1, 2, 3, 4)
+    bmat: FlatInput = (5, 6, 7, 8)
+    xmat: FlatInput = (0, 1, 1, 0)
+    zmat: FlatInput = (1, 0, 0, -1)
+    left, right, both = kron_blocks(amat, ident), kron_blocks(ident, bmat), kron_blocks(amat, bmat)
+    cases.append(("two.disjoint", mm4(left, right) == both and mm4(right, left) == both))
+    cases.append(("two.sum", sum(sum(row) for row in both) == 260))
     same_l = mm4(kron_blocks(xmat, ident), kron_blocks(zmat, ident))
     same_r = mm4(kron_blocks(zmat, ident), kron_blocks(xmat, ident))
-    if same_l == same_r or same_l[0][2] != -1 or same_r[0][2] != 1:
-        raise SystemExit(f"same-site {same_l[0][2]} {same_r[0][2]}")
-    if flat(both)[0] != 5 or flat(both)[-1] != 32:
-        raise SystemExit("corner entries")
-    if eye[0][0] != 1:
-        raise SystemExit("identity sentinel")
-    print("four-point order: 3 relations (0,2), (1,2), (1,3); 3 spacelike pairs (0,1), (0,3), (2,3)")
-    print("disjoint-site products equal A tensor B; entry sum 260")
-    print("same-site (0,2) entries -1 and 1; XZ+ZX is zero; dets -2, -2, -1, -1")
-    print("checked: pair counts, unit, transpose, disjoint-site commutation, same-site inequality")
+    cases.append(("two.same_site", same_l != same_r and same_l[0][2] == -1 and same_r[0][2] == 1))
+    cases.append(("two.corners", flat(both)[0] == 5 and flat(both)[-1] == 32))
+    eye = [list(row) for row in RationalMatrix.eye(4).integer_rows()]
+    cases.append(("two.identity", mm4(eye, both) == both and mm4(both, eye) == both))
+
+
+def run_checks() -> dict[str, object]:
+    cases = Cases()
+    for operation in (check_four_point_order, check_single_site_algebra, check_two_site_products):
+        operation(cases)
+    failures = [name for name, passed in cases if not passed]
+    return {"scope": "finite four-point order and two-site matrices", "authority_effect": "None",
+            "total_checks": len(cases), "failed_checks": len(failures), "failures": failures, "all_passed": not failures}
+
+
+def main() -> int:
+    result = run_checks()
+    print(json.dumps(result, indent=2))
+    return 0 if result["all_passed"] else 1
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(cli(main))

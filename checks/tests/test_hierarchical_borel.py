@@ -1,0 +1,289 @@
+"""Independent bounded Borel tree and exact factor verification. AuthorityEffect: None."""
+from __future__ import annotations
+
+from collections.abc import Callable
+import contextlib
+from dataclasses import FrozenInstanceError
+from fractions import Fraction as Q
+import io
+import json
+from pathlib import Path
+import runpy
+import subprocess
+import sys
+from types import SimpleNamespace
+from typing import Any
+import unittest
+from unittest.mock import patch
+
+from hypothesis import given, settings, strategies as st
+import sympy as sp
+
+CHECKS = Path(__file__).resolve().parents[1]
+APP = CHECKS/"independent/dfm-hierarchical-borel.py"
+sys.path.insert(0, str(CHECKS))
+from checker_support.boundary import Violation, cli, evaluate
+from checker_support.cases import Cases
+from checker_support.domains import Failure
+from checker_support.rational_matrix import RationalMatrix
+
+Mat = tuple[Q, Q, Q, Q]
+PROPERTY = settings(max_examples=80, derandomize=True, deadline=None, database=None)
+RATIONAL = st.fractions(-4, 4, max_denominator=8)
+NONZERO = RATIONAL.filter(bool)
+BOREL = st.tuples(NONZERO, RATIONAL, NONZERO).map(lambda parts: (parts[0], parts[1], Q(0), parts[2]))
+
+
+def load() -> SimpleNamespace:
+    return SimpleNamespace(**runpy.run_path(str(APP)))
+
+
+def _symbolic(flat: Mat) -> Any:
+    return sp.ImmutableMatrix(2, 2, flat)
+
+
+def _flat(matrix: Any) -> Mat:
+    return Q(matrix[0, 0]), Q(matrix[0, 1]), Q(matrix[1, 0]), Q(matrix[1, 1])
+
+
+def _transport(parent: dict[int, int], root: int, labels: dict[int, Mat]) -> dict[int, Mat]:
+    result: dict[int, Mat] = {}
+    for vertex in parent:
+        product = sp.eye(2)
+        cursor = vertex
+        while cursor != root:
+            product = product*_symbolic(labels[cursor])
+            cursor = parent[cursor]
+        result[vertex] = _flat(product)
+    return result
+
+
+class HierarchicalBorelTests(unittest.TestCase):
+    def refused(self, operation: Callable[..., object], *args: object, kind: str = "input") -> Failure:
+        result = evaluate(lambda: operation(*args))
+        self.assertFalse(result.ok)
+        self.assertIsNone(result.value)
+        if result.error is None:
+            self.fail("refusal lacks error")
+        self.assertEqual(result.error.kind, kind)
+        return result.error
+
+    def test_oracles_and_import_lifecycle(self) -> None:
+        flat = (Q(2), Q(3), Q(0), Q(5))
+        self.assertEqual(_symbolic(flat), sp.ImmutableMatrix([[2, 3], [0, 5]]))
+        self.assertEqual(_flat(sp.eye(2)), (1, 0, 0, 1))
+        self.assertEqual(_transport({7: 7, 9: 7}, 7, {9: flat}), {7: (1, 0, 0, 1), 9: flat})
+        with contextlib.redirect_stdout(io.StringIO()) as output:
+            load()
+        self.assertEqual(output.getvalue(), "")
+        with self.assertRaises(AssertionError):
+            self.refused(lambda: None)
+
+    @PROPERTY
+    @given(BOREL, BOREL, BOREL)
+    def test_borel_algebra_and_two_stage_factors(self, first: Mat, second: Mat, edge: Mat) -> None:
+        module = load()
+        a, b, c = _symbolic(first), _symbolic(second), _symbolic(edge)
+        self.assertEqual(module.M(*first), first)
+        self.assertEqual(module.mul(first, second), _flat(a*b))
+        self.assertEqual(module.inv(first), _flat(a.inv()))
+        diagonal = sp.diag(a[0, 0], a[1, 1])
+        unipotent = diagonal.inv()*a
+        field = diagonal*a.inv()
+        self.assertEqual(module.torus(first), _flat(diagonal))
+        self.assertEqual(module.unipotent(first), _flat(unipotent))
+        self.assertEqual(module.stage_one_field(first), _flat(field))
+        self.assertEqual(module.dress(first, edge, second), _flat(a*c*b.inv()))
+        self.assertTrue(module.is_torus(module.torus(first)))
+        self.assertTrue(module.is_unipotent(module.unipotent(first)))
+        self.assertEqual(module.mul(module.torus(first), module.unipotent(first)), first)
+
+    @PROPERTY
+    @given(st.lists(BOREL, max_size=8), st.integers(0, 10000), BOREL)
+    def test_trees_against_independent_path_products(self, values: list[Mat], seed: int, chord: Mat) -> None:
+        module = load()
+        parent = {0: 0, **{i: (seed+i*i) % i for i in range(1, len(values)+1)}}
+        parent = dict(reversed(tuple(parent.items())))
+        labels = {i+1: value for i, value in enumerate(values)}
+        expected = _transport(parent, 0, labels)
+        tree = module.BorelTree(parent, 0, labels)
+        outcome = tree.transport()
+        self.assertTrue(outcome.ok)
+        self.assertEqual(dict(outcome.value), expected)
+        self.assertEqual(module.transport_of(parent, 0, labels), expected)
+        last = len(values)
+        residual = tree.edge_residual(0, last, chord)
+        self.assertTrue(residual.ok)
+        self.assertEqual(residual.value, _flat(_symbolic(expected[last]).inv()*_symbolic(chord)))
+        for vertex in labels:
+            self.assertEqual(tree.edge_residual(parent[vertex], vertex, labels[vertex]).value, module.eye())
+
+    def test_noncommuting_integer_regression(self) -> None:
+        module = load()
+        first, second = (2, 6, 0, 3), (4, 1, 0, 5)
+        inverse = module.inv(first)
+        self.assertTrue(all(type(value) is Q for value in inverse))
+        self.assertEqual(inverse, (Q(1, 2), Q(-1), Q(0), Q(1, 3)))
+        self.assertEqual(module.mul(first, second), (8, 32, 0, 15))
+        self.assertEqual(module.mul(second, first), (8, 27, 0, 15))
+        oracle = _transport({0: 0, 1: 0, 2: 1}, 0,
+                            {1: (Q(2), Q(6), Q(0), Q(3)), 2: (Q(4), Q(1), Q(0), Q(5))})
+        self.assertEqual(oracle[2], (8, 27, 0, 15))
+        tree = module.BorelTree({99: 2, 2: 7, 7: 7}, 7, {2: first, 99: second})
+        self.assertEqual(tree.transport().value[99], (8, 27, 0, 15))
+        self.assertEqual(tree.edge_residual(7, 99, (1, 7, 0, 1)).value, (Q(1, 8), Q(13, 20), 0, Q(1, 15)))
+
+    def test_matrix_admission_and_singular_fences(self) -> None:
+        module = load()
+        identity = module.eye()
+        for bad in (None, (), (1, 0, 1), (1, 0, 0, 1, 0), (True, 0, 0, 1), (1, 0.5, 0, 1), "1001"):
+            for operation in (module.inv, module.torus, module.unipotent, module.stage_one_field, module.is_torus, module.is_unipotent):
+                self.refused(operation, bad)
+            self.refused(module.mul, bad, identity)
+            self.refused(module.mul, identity, bad)
+        for invalid_scalar in (True, 1.0, "1", None):
+            self.refused(module.M, invalid_scalar, 0, 0, 1)
+        for value in ((0, 1, 0, 1), (1, 1, 0, 0), (1, 0, 1, 1)):
+            for operation in (module.inv, module.unipotent, module.stage_one_field):
+                self.refused(operation, value)
+        self.refused(module.torus, (1, 0, 1, 1))
+        self.assertEqual(module.torus((0, 1, 0, 1)), (0, 0, 0, 1))
+        self.assertFalse(module.is_torus((1, 1, 0, 1)))
+        self.assertFalse(module.is_torus((1, 0, 1, 1)))
+        self.assertFalse(module.is_unipotent((2, 0, 0, 1)))
+        self.assertFalse(module.is_unipotent((1, 0, 1, 1)))
+        self.assertFalse(module.is_unipotent((1, 0, 0, 2)))
+        self.refused(module.dress, identity, identity, (1, 0, 1, 1))
+
+    def test_tree_domains_cycles_and_boolean_aliases(self) -> None:
+        module = load()
+        identity = module.eye()
+        cases: tuple[tuple[object, object, object], ...] = (({}, 0, {}), ({0: 1, 1: 0}, 0, {1: identity}), ({0: 0, 1: 9}, 0, {1: identity}),
+                 ({0: 0, 1: 1}, 0, {1: identity}), ({0: 0, 1: 2, 2: 1}, 0, {1: identity, 2: identity}),
+                 ({0: 0, 1: 0}, 0, {}), ({0: 0}, 0, {0: identity}), ({0: 0}, True, {}),
+                 ({False: 0}, 0, {}), ({0: False}, 0, {}), ({0: 0, 1: 0}, 0, {True: identity}),
+                 ({0: 0, 1: 0}, 0, {1.0: identity}), ({-1: -1}, -1, {}), ([], 0, {}), ({0: 0}, 0, []),
+                 ({0: 0, 1: 0}, 0, {1: (0, 1, 0, 1)}))
+        for parent, root, labels in cases:
+            self.refused(module.BorelTree, parent, root, labels)
+        self.refused(module.BorelTree, {2**31: 2**31}, 2**31, {}, kind="resource")
+        self.assertEqual(dict(module.BorelTree({7: 7}, 7, {}).transport().value), {7: identity})
+
+    def test_tree_snapshot_ownership_and_railway_refusals(self) -> None:
+        module = load()
+        parent, label = {0: 0, 1: 0}, [2, 6, 0, 3]
+        labels = {1: label}
+        tree = module.BorelTree(parent, 0, labels)
+        parent[1] = 1
+        label[1] = 999
+        labels.clear()
+        self.assertEqual(tree.parent[1], 0)
+        self.assertEqual(tree.labels[1], (2, 6, 0, 3))
+        with self.assertRaises(FrozenInstanceError):
+            tree.root = 1
+        with self.assertRaises(TypeError):
+            tree.parent[1] = 1
+        with self.assertRaises(TypeError):
+            tree.labels[1] = module.eye()
+        result = tree.transport()
+        self.assertTrue(result.ok)
+        with self.assertRaises(TypeError):
+            result.value[1] = module.eye()
+        for source, target, edge in ((True, 1, module.eye()), (0, 2, module.eye()), (0, 1, None)):
+            refused = tree.edge_residual(source, target, edge)
+            self.assertFalse(refused.ok)
+            self.assertEqual(refused.error.kind, "input")
+
+    def test_full_resource_limits_and_conservative_arithmetic(self) -> None:
+        module = load()
+        identity, large = module.eye(), 2**4095
+        parent = {0: 0, **{i: i-1 for i in range(1, 1024)}}
+        labels = {i: identity for i in range(1, 1024)}
+        tree = module.BorelTree(parent, 0, labels)
+        outcome = tree.transport()
+        self.assertTrue(outcome.ok)
+        self.assertEqual(len(outcome.value), 1024)
+        self.assertEqual(outcome.value[1023], identity)
+        self.refused(module.BorelTree, {i: 0 for i in range(1025)}, 0, {}, kind="resource")
+        self.refused(module.BorelTree, {0: 0}, 0, {i: identity for i in range(1025)}, kind="resource")
+        self.refused(module.M, 2**4096, 0, 0, 1, kind="resource")
+        self.refused(module.mul, (large, 0, 0, 1), (2, 0, 0, 1), kind="resource")
+        self.refused(module.inv, (2**2048, 0, 0, 2**2048), kind="resource")
+        self.refused(module.unipotent, (Q(1, 2), large, 0, 1), kind="resource")
+        self.refused(module.stage_one_field, (1, large, 0, Q(1, 2)), kind="resource")
+        overflowing = module.BorelTree({0: 0, 1: 0, 2: 1}, 0, {1: (large, 0, 0, 1), 2: (2, 0, 0, 1)})
+        self.assertEqual(overflowing.transport().error.kind, "resource")
+        self.assertEqual(overflowing.labels[1], (large, 0, 0, 1))
+
+    def test_preflight_and_unexpected_errors(self) -> None:
+        module = load()
+        identity = module.eye()
+        tree = module.BorelTree({0: 0, 1: 0}, 0, {1: identity})
+        with patch.object(RationalMatrix, "mul", side_effect=RuntimeError("arithmetic")):
+            self.refused(module.dress, identity, identity, None)
+            result = tree.edge_residual(0, 9, identity)
+            self.assertEqual(result.error.kind, "input")
+            with self.assertRaises(RuntimeError):
+                tree.transport()
+            with self.assertRaises(RuntimeError):
+                tree.edge_residual(0, 1, identity)
+        with patch.object(RationalMatrix, "mul", side_effect=KeyboardInterrupt):
+            with self.assertRaises(KeyboardInterrupt):
+                tree.transport()
+        cycle = {0: 0, 1: 2, 2: 1}
+        failure = self.refused(module.BorelTree, cycle, 0, {1: (2**4096, 0, 0, 1), 2: identity})
+        self.assertIn("cycle", failure.message)
+
+    def test_cycle_detection_lookup_bound(self) -> None:
+        module = load()
+        parent = {0: 0, 1: 2, 2: 1}
+        lookups = 0
+        def lookup(vertex: int) -> int:
+            nonlocal lookups
+            lookups += 1
+            if lookups > len(parent):
+                raise RuntimeError("cycle guard exceeded the finite lookup budget")
+            return parent[vertex]
+        from unittest.mock import MagicMock
+        carrier = MagicMock()
+        carrier.__iter__.side_effect = lambda: iter(parent)
+        carrier.__getitem__.side_effect = lookup
+        self.refused(module._tree_order, carrier, 0)
+        self.assertEqual(lookups, 2)
+
+    def test_fixed_control_sections_and_counts(self) -> None:
+        module = load()
+        for operation, expected in ((module.check_symbolic_factorization, 7), (module.check_path_and_diamond, 75),
+                                    (module.check_curvature, 4), (module.check_anchored_uniqueness, 7)):
+            run = Cases()
+            operation(run)
+            self.assertEqual(run.checks, expected)
+            self.refused(operation, None)
+        for _ in range(2):
+            with contextlib.redirect_stdout(io.StringIO()) as output:
+                module.main()
+            self.assertEqual(json.loads(output.getvalue())["checks"], 93)
+
+    def test_symbolic_failure_and_executable_exit(self) -> None:
+        module = load()
+        with patch.object(sp, "solve", return_value=[]):
+            self.refused(module.check_symbolic_factorization, Cases(), kind="check")
+        with patch.object(sp, "simplify", return_value=sp.Integer(1)), contextlib.redirect_stderr(io.StringIO()) as output:
+            self.assertEqual(cli(module.main), 1)
+        self.assertEqual(json.loads(output.getvalue())["kind"], "check")
+        flags = [] if __debug__ else ["-O"]
+        result = subprocess.run([sys.executable, "-I", "-B", *flags, "-X", "utf8", str(APP)], capture_output=True,
+                                text=True, encoding="utf-8", timeout=30)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stderr, "")
+        receipt = json.loads(result.stdout)
+        self.assertEqual((receipt["status"], receipt["checks"]), ("passed", 93))
+        with patch.object(Cases, "require", side_effect=Violation("check", "injected")), contextlib.redirect_stderr(io.StringIO()) as output:
+            with self.assertRaises(SystemExit) as failure:
+                runpy.run_path(str(APP), run_name="__main__")
+        self.assertEqual(failure.exception.code, 1)
+        self.assertEqual(json.loads(output.getvalue())["kind"], "check")
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

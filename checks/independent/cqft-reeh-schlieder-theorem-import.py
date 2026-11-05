@@ -2,14 +2,14 @@
 """Independent verification script for CQFT-REEH-SCHLIEDER-THEOREM-IMPORT (TFQ-2106).
 
 AuthorityEffect: None.
-Verifies all three finite/algebraic components and non-equivalence fences in
-lean4/ReehSchliederImport.lean from first principles:
+Checks finite matrix/state instances associated with lean4/ReehSchliederImport.lean:
 1. A recorded 2x4 integer matrix with a zero column keeps that column under left multiplication,
    and a recorded right-kernel vector is annihilated. The abstract cyclicity-to-separating proof
    stays in the Lean module.
-2. Named 3-qubit states |000>, |GHZ_3>, and |W_3>, and named 4-qubit half-system matrices for
+2. Unnormalized integer representatives of 3-qubit states |000>, |GHZ_3>, and |W_3>, and unnormalized 4-qubit half-system matrices for
    |0000>, |GHZ_4>, and the 2-Bell-pair state: zero columns, pair left inverses, and full-algebra
    left inverses.
+Nonzero rescaling preserves ranks and zero columns, but changes left inverses.
 3. The product vacuum |000> has the same single-site unfolding at every site. Modular aliasing
    remains a Lean theorem and is not repeated here. Continuum Stone and tube analyticity stay open.
 """
@@ -17,77 +17,77 @@ lean4/ReehSchliederImport.lean from first principles:
 from __future__ import annotations
 
 import sys
+from itertools import product
+from pathlib import Path
+
+# Shared checker infrastructure only; no production implementation is imported.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from checker_support.boundary import cli
+from checker_support.cases import Cases
+from checker_support.rational_matrix import RationalMatrix
+from collections.abc import Callable
+from checker_support.domains import integer, sequence
 
 
 def mat_mul(a: list[list[int]], b: list[list[int]]) -> list[list[int]]:
-    m = len(a)
-    n = len(a[0])
-    assert len(b) == n
-    p = len(b[0])
-    return [[sum(a[i][k] * b[k][j] for k in range(n)) for j in range(p)] for i in range(m)]
+    left, right = RationalMatrix.from_integers(a), RationalMatrix.from_integers(b)
+    return [list(row) for row in left.mul(right).integer_rows()]
 
 
 def mat_id(n: int) -> list[list[int]]:
-    return [[1 if i == j else 0 for j in range(n)] for i in range(n)]
+    return [list(row) for row in RationalMatrix.eye(n).integer_rows()]
+
+
+def _coefficients(psi: object) -> tuple[int, ...]:
+    values = sequence(psi, "three-qubit coefficients", 8)
+    return RationalMatrix.from_integers((values,)).integer_rows()[0]
 
 
 def combine_single_site(s: int, a: int, b: int) -> int:
+    integer(s, "site", 0, 2)
+    integer(a, "site bit", 0, 1)
+    integer(b, "complement index", 0, 3)
     b0 = b % 2
     b1 = b // 2
     bit0 = a if s == 0 else b0
     bit1 = a if s == 1 else (b0 if s == 0 else b1)
     bit2 = a if s == 2 else b1
-    return (bit0 + 2 * bit1 + 4 * bit2) % 8
+    return bit0 + 2 * bit1 + 4 * bit2
 
 
 def single_site_matrix(psi: list[int], s: int) -> list[list[int]]:
-    return [[psi[combine_single_site(s, a, b)] for b in range(4)] for a in range(2)]
+    coefficients = _coefficients(psi)
+    integer(s, "site", 0, 2)
+    return [[coefficients[combine_single_site(s, a, b)] for b in range(4)] for a in range(2)]
 
 
 def pair_site_matrix(psi: list[int], s: int) -> list[list[int]]:
-    return [[psi[combine_single_site(s, a, b)] for a in range(2)] for b in range(4)]
+    coefficients = _coefficients(psi)
+    integer(s, "site", 0, 2)
+    return [[coefficients[combine_single_site(s, a, b)] for a in range(2)] for b in range(4)]
 
 
 def verify_commutant_duality_and_kernel_obstruction() -> tuple[int, int]:
-    checks = 0
-    failures = 0
+    cases = Cases()
 
     def check(cond: bool, msg: str) -> None:
-        nonlocal checks, failures
-        checks += 1
-        if not cond:
-            failures += 1
-            print(f"FAIL [duality]: {msg}", file=sys.stderr)
+        cases.append((f"duality.{len(cases)}:{msg}", cond))
 
-    # Check associativity (X * Omega) * Y == X * (Omega * Y) on rectangular integer matrices
+    # Check the recorded kernel and its preservation, not the general associativity theorem
     omega_2x4 = [[1, 0, 2, -1], [0, 0, 1, 3]]
     v_ker = [0, 1, 0, 0]  # column 1 is zero
     for i in range(2):
         check(sum(omega_2x4[i][j] * v_ker[j] for j in range(4)) == 0, f"Row {i} right kernel")
 
     # Any X * omega_2x4 also annihilates v_ker (hence column 1 of X * omega_2x4 is always 0!)
-    for x00 in (-2, -1, 0, 1, 2):
-        for x01 in (-2, -1, 0, 1, 2):
-            for x10 in (-1, 0, 1):
-                for x11 in (-1, 0, 1):
-                    x_mat = [[x00, x01], [x10, x11]]
-                    xo = mat_mul(x_mat, omega_2x4)
-                    check(xo[0][1] == 0 and xo[1][1] == 0, "Zero column preserved under left X multiplication")
+    for x00, x01, x10, x11 in product(range(-2, 3), range(-2, 3), range(-1, 2), range(-1, 2)):
+        xo = mat_mul([[x00, x01], [x10, x11]], omega_2x4)
+        check(xo[0][1] == 0 and xo[1][1] == 0, "Zero column preserved under left X multiplication")
 
-    return checks, failures
+    return len(cases), sum(not passed for _, passed in cases)
 
 
-def verify_three_and_four_qubit_census() -> tuple[int, int]:
-    checks = 0
-    failures = 0
-
-    def check(cond: bool, msg: str) -> None:
-        nonlocal checks, failures
-        checks += 1
-        if not cond:
-            failures += 1
-            print(f"FAIL [census]: {msg}", file=sys.stderr)
-
+def check_three_qubit_unfoldings(check: Callable[[bool, str], None]) -> tuple[list[int], list[int], list[int]]:
     psi_prod3 = [1 if x == 0 else 0 for x in range(8)]
     psi_ghz3 = [1 if x in (0, 7) else 0 for x in range(8)]
     psi_w3 = [1 if x in (1, 2, 4) else 0 for x in range(8)]
@@ -111,18 +111,22 @@ def verify_three_and_four_qubit_census() -> tuple[int, int]:
         check(all(mp_prod[b][1] == 0 for b in range(4)), f"prod3 pair s={s} col 1 zero")
         check(mat_mul(left_inv_ghz, mp_ghz) == mat_id(2), f"ghz3 pair s={s} left inverse")
         check(mat_mul(left_inv_w, mp_w) == mat_id(2), f"w3 pair s={s} left inverse")
+    return psi_ghz3, psi_prod3, psi_w3
 
-    # Full 3-site (8 x 1) unfoldings have left inverses -> cyclic
-    full_prod = [[psi_prod3[i]] for i in range(8)]
-    full_ghz = [[psi_ghz3[i]] for i in range(8)]
-    full_w = [[psi_w3[i]] for i in range(8)]
+
+def check_full_system_inverses(check: Callable[[bool, str], None], psi_ghz3: list[int], psi_prod3: list[int], psi_w3: list[int]) -> None:
+    prod, ghz, wstate = _coefficients(psi_prod3), _coefficients(psi_ghz3), _coefficients(psi_w3)
+    full_prod = [[prod[i]] for i in range(8)]
+    full_ghz = [[ghz[i]] for i in range(8)]
+    full_w = [[wstate[i]] for i in range(8)]
     l_0 = [[1 if i == 0 else 0 for i in range(8)]]
     l_1 = [[1 if i == 1 else 0 for i in range(8)]]
     check(mat_mul(l_0, full_prod) == [[1]], "prod3 full 3-site left inverse")
     check(mat_mul(l_0, full_ghz) == [[1]], "ghz3 full 3-site left inverse")
     check(mat_mul(l_1, full_w) == [[1]], "w3 full 3-site left inverse")
 
-    # 4-qubit half-system (4 x 4) unfoldings
+
+def check_four_qubit_unfoldings(check: Callable[[bool, str], None]) -> None:
     half_prod4 = [[1 if (i == 0 and j == 0) else 0 for j in range(4)] for i in range(4)]
     half_ghz4 = [[1 if (i == 0 and j == 0) or (i == 3 and j == 3) else 0 for j in range(4)] for i in range(4)]
     half_bell4 = mat_id(4)
@@ -130,19 +134,29 @@ def verify_three_and_four_qubit_census() -> tuple[int, int]:
     check(all(half_ghz4[i][1] == 0 for i in range(4)), "ghz4 half-system col 1 zero")
     check(mat_mul(mat_id(4), half_bell4) == mat_id(4), "bellPair4 half-system full rank 4")
 
-    return checks, failures
+
+def verify_three_and_four_qubit_census() -> tuple[int, int]:
+    cases = Cases()
+
+    def check(cond: bool, msg: str) -> None:
+        cases.append((f"census.{len(cases)}:{msg}", cond))
+
+    psi_ghz3, psi_prod3, psi_w3 = check_three_qubit_unfoldings(check)
+
+    # Full 3-site (8 x 1) unfoldings have left inverses -> cyclic
+    check_full_system_inverses(check, psi_ghz3, psi_prod3, psi_w3)
+
+    # 4-qubit half-system (4 x 4) unfoldings
+    check_four_qubit_unfoldings(check)
+
+    return len(cases), sum(not passed for _, passed in cases)
 
 
 def verify_discrete_translation_fence() -> tuple[int, int]:
-    checks = 0
-    failures = 0
+    cases = Cases()
 
     def check(cond: bool, msg: str) -> None:
-        nonlocal checks, failures
-        checks += 1
-        if not cond:
-            failures += 1
-            print(f"FAIL [translation]: {msg}", file=sys.stderr)
+        cases.append((f"translation.{len(cases)}:{msg}", cond))
 
     # Modular aliasing and constant-vector momentum are Lean theorems. Repeating
     # (x + n) % n == x does not test them. The independent witness is the vacuum.
@@ -154,7 +168,7 @@ def verify_discrete_translation_fence() -> tuple[int, int]:
         "|000> singleSiteMatrix is translation-invariant across sites 0, 1, 2",
     )
 
-    return checks, failures
+    return len(cases), sum(not passed for _, passed in cases)
 
 
 def main() -> int:
@@ -170,4 +184,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(cli(main))
