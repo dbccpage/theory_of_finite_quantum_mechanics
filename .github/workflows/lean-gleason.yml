@@ -13,6 +13,7 @@ on:
       - "lean4/GleasonBornCompletion.lean"
       - "lean4/BornGaussianFiniteModel.lean"
       - "lean4/GleasonContinuumShadow.lean"
+      - "lean4/GleasonContinuumDevelopment.lean"
       - "lean4/BornGaussRat.lean"
       - "lean4/BornGaussianRationalFrameObstruction.lean"
       - "lean4/BornGaussianRationalNoColouring.lean"
@@ -32,9 +33,12 @@ on:
       - "scripts/test_gleason_finite_certificates.py"
       - "scripts/verify_gleason_continuum_shadow.py"
       - "scripts/test_gleason_continuum_shadow.py"
+      - "scripts/verify_gleason_continuum_development.py"
+      - "scripts/test_gleason_continuum_development.py"
       - "dag/research/gleason_lean_audit.json"
       - "dag/research/gleason_finite_model_receipt.json"
       - "dag/research/gleason_continuum_shadow_receipt.json"
+      - "dag/research/gleason_continuum_development_receipt.json"
       - ".github/workflows/lean-gleason.yml"
   push:
     branches: [main]
@@ -46,9 +50,12 @@ on:
       - "scripts/test_gleason_finite_certificates.py"
       - "scripts/verify_gleason_continuum_shadow.py"
       - "scripts/test_gleason_continuum_shadow.py"
+      - "scripts/verify_gleason_continuum_development.py"
+      - "scripts/test_gleason_continuum_development.py"
       - "dag/research/gleason_lean_audit.json"
       - "dag/research/gleason_finite_model_receipt.json"
       - "dag/research/gleason_continuum_shadow_receipt.json"
+      - "dag/research/gleason_continuum_development_receipt.json"
       - ".github/workflows/lean-gleason.yml"
   workflow_dispatch:
 
@@ -76,9 +83,10 @@ jobs:
 
       - name: Test the audit tool and finite Gleason certificate verifier
         run: |
-          python -I -X utf8 -m pytest scripts/test_gleason_lean_audit.py scripts/test_gleason_finite_certificates.py scripts/test_gleason_continuum_shadow.py -q -p no:cacheprovider
+          python -I -X utf8 -m pytest scripts/test_gleason_lean_audit.py scripts/test_gleason_finite_certificates.py scripts/test_gleason_continuum_shadow.py scripts/test_gleason_continuum_development.py -q -p no:cacheprovider
           python -I -X utf8 scripts/verify_gleason_finite_certificates.py --check
           python -I -X utf8 scripts/verify_gleason_continuum_shadow.py --check
+          python -I -X utf8 scripts/verify_gleason_continuum_development.py --check
 
       - name: Emit the audit file from the current sources
         run: python -I -X utf8 scripts/gleason_lean_audit.py emit lean4/.audit/GleasonAudit.lean
@@ -89,7 +97,7 @@ jobs:
           lake-package-directory: lean4
           auto-config: false
           build: true
-          build-args: "BornGaussianParallelogramRigidity GleasonRealSphere GleasonComplexSphere GleasonGaussianBridge GleasonBornCompletion BornGaussianFiniteModel GleasonContinuumShadow"
+          build-args: "BornGaussianParallelogramRigidity GleasonRealSphere GleasonComplexSphere GleasonGaussianBridge GleasonBornCompletion BornGaussianFiniteModel GleasonContinuumShadow GleasonContinuumDevelopment"
           test: false
           lint: false
           use-mathlib-cache: true
