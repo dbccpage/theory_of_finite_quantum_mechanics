@@ -102,7 +102,7 @@ None of these rows appears in an equation. Every mutation leaves (A1) to (A91), 
 | R1 | (A42): loss 𝒜/L₃ added "setting the length L₃" | geometry + phenomenological term → kept | No loss (L₃ → ∞); then finite L₃. | Without loss (A36)–(A38) conserve the Bloch length and θ oscillates (Rabi); with finite L₃ the field equation is a damped pendulum. The sech (A45) is obtained only as L₃ → 0 (check 2), the opposite of a thick slab. | no recovery | (A36)–(A45); check 2 (witnessed) |
 | S1 | line before (A43): ∂₀ ≪ 1/L₃ | approximation → kept | ∂₀ comparable to 1/L₃. | Second-order equation for θ; sech only in the overdamped limit. Same as R1. | no recovery | (A42)–(A43); check 2 |
 | T1 | (A41), (A44), (A47) | initial data → kept | θ₀ = 0; θ₀ = π. | θ₀ = 0: τ₀ = ∞, no pulse. θ₀ = π: τ₀ = −∞, the pulse is already past. The usual seed is θ₀ ~ 2/√N from the vacuum (cited, generic), which the paper neither states nor uses. | recovers, with a price | (A41)–(A47) |
-| U1 | after (A47): "necessary condition Ω ≥ e²\|φ̄\|²/m" | derived condition, unchecked → kept | Violate it. | ω_k ≥ √(e²\|φ̄\|²/m) for all k, so no mode is resonant at Ω: no superradiance at that Ω. With the §4 numbers the plasma term is 0.09 m; Ω is never given, so the condition cannot be checked. | no recovery | (A13), (A47) (supplied) |
+| U1 | after (A47): "necessary condition Ω ≥ e²\|φ̄\|²/m" | derived condition, unchecked → kept, and misprinted | Violate it. | ω_k ≥ √(e²\|φ̄\|²/m) for all k by (A13), so a resonant mode needs Ω² ≥ e²\|φ̄\|²/m; the printed condition compares an energy with an energy squared (correction from the revised outside review). With the §4 numbers e²\|φ̄\|²/m = 0.09 m², so Ω ≥ 0.3 m; Ω is never given, so the condition cannot be checked. | no recovery | (A13), (A47) (supplied); `../code/revised_review_checks.py` |
 
 ### 2.4 Holography and capacity (V1 to H2)
 
@@ -128,7 +128,7 @@ None of these rows appears in an equation. Every mutation leaves (A1) to (A91), 
 |---|---|---|---|---|---|---|
 | I2 | (A53)–(A55): background field gauge, ā set to 0 | formalism choice → kept | No background/fluctuation split. | The mean-field equations with ā = 0 are the same. | unchanged | (A53)–(A62) |
 | J2 | (A56)–(A61) | formal machinery → kept | Skip the 2PI action; write the classical field equations from (A1) plus M² and γ by hand. | Identical to (A76)–(A81) (check 3). The machinery does no work in §4. | unchanged | check 3 (witnessed) |
-| K2 | (A62)–(A75): Γ₂ "higher order", D¹¹ neglected | truncation → kept | Γ₂ = 0 with no M² and no γ. | Gauss's law then holds in the pure Maxwell part and nothing relaxes: the target is not reached (the paper: "due to damping"). The terms that replace Γ₂ are the ones that make §4 work, and they are also the ones that break Gauss's law: the rerun measures a residual of 1.1 to 2.3 times the charge change. | no recovery | (A75); sibling check 1a and PR #517 rerun (witnessed by another thread) |
+| K2 | (A62)–(A75): Γ₂ "higher order", D¹¹ neglected | truncation → kept | Γ₂ = 0 with no M² and no γ. | Gauss's law then holds in the pure Maxwell part and nothing relaxes: the target is not reached (the paper: "due to damping"). The terms that replace Γ₂ are the ones that make §4 work, and they are also the ones that break Gauss's law for the matter charge: ∂₀(∇·E − ρ_m) = ∇·S with S the M², γ and v terms, and the rerun measures a residual of 1.1 to 2.3 times the charge change. A medium or external charge could absorb that residual; the paper supplies none. | no recovery | (A75); sibling check 1a and PR #517 rerun (witnessed by another thread) |
 | L2 | (A75): Σ ≃ −M² − γ∂₀, "factors dependent on T and e" | effective approximation → kept | M² = 0, γ = 0; then γ larger. | As K2. A larger γ relaxes faster; the dip size under it is not in the paper and needs a rerun. | no recovery | (A75) |
 | M2 | line before (A76): A₃ = 0, homogeneity in x³ | geometry reduction → kept | Keep A₃ and x³. | The layer hierarchy of §4 is a one-cell-per-layer discretization of x³ with A₃ dropped and v as the coupling. A 3D run would also carry the ∂₃ part of the Gauss residual. Partial recovery at best. | recovers, with a price | (A76), (A82) |
 | N2 | (A76)–(A81): "we omit terms −∂_μβ/e" | simplification → kept | Keep the phase β. | A − ∂β/e is the gauge-invariant combination, so dropping β is the unitary gauge, exact when β is smooth. The run starts uniform with zero field, so no vortices. Recovers in full; the e versus e² misprint in (A76)/(A78) stays. | unchanged | (A76)–(A81); sibling check 1b (witnessed by another thread) |
@@ -155,7 +155,7 @@ None of these rows appears in an equation. Every mutation leaves (A1) to (A91), 
 4. **The petabyte is the thickness (Y1, H2).** 4/λ² over the area is 0.5 TB. The factor n_r d/λ = 5200 turns it into 2.6 PB. With a surface hologram and 4.7 bits per synapse the comparison reverses.
 5. **The external wave enters only through M² (V1).** With M² = 0 the hologram's forcing vanishes; with M² large the image vanishes. The image amplitude is bounded by the screening parameter, 0.045 at the §4 numbers.
 6. **Section 4 has a write and a retention, not only "optical algebra" (C2, U).** The classical simulation writes a supplied target into \|φ\|² and the record outlives the field. It has no read. The decoherence objection (M) does not touch it, because nothing in Appendix C is quantum (check 3).
-7. **The terms that make §4 work are the terms that break Gauss's law (K2, L2).** Without M² and γ nothing relaxes to the target; with them the charge is not conserved by the field equations, at 1.1 to 2.3 times the charge change in the rerun.
+7. **The terms that make §4 work are the terms that break the matter-charge Gauss law (K2, L2).** Without M² and γ nothing relaxes to the target; with them the matter charge is not conserved by the field equations, at 1.1 to 2.3 times the charge change in the rerun. The paper names no medium charge to take up the difference.
 8. **The 21 % is e-dependent (T2, A1).** Set e = 0 and the depression is gone. The "memory" of Figure 6 is the matter's response to the field intensity. That is a candidate for the classical comparator, not an argument against the paper.
 9. **One paper cross-reference is empty (T1).** "Definition of θ₀ is in Appendix A": Appendix A uses θ₀ and never defines it.
 
@@ -205,6 +205,12 @@ What the test can decide: whether anything in Figures 5 and 6 depends on the one
 
 ---
 
-## 7. Companion references
+## 7. Corrections after the revised outside review (2026-11-05)
+
+- Row U1: the resonance threshold is Ω² ≥ e²\|φ̄\|²/m, not Ω ≥ e²\|φ̄\|²/m; the printed form is dimensionally inconsistent and this audit had repeated it.
+- Rows K2, L2 and finding 7: "break Gauss's law" now reads "break the matter-charge Gauss law"; an unspecified medium charge could absorb the residual, and the paper specifies none.
+- Row W2 gains a fact: (A88)/(A89) as printed carry −∂₁²u₁ and −∂₂²u₂ where (A82)/(A84) give −∂₂²u₁ and −∂₁²u₂; for the paper's targets the correct inverse has no derivative terms and gives an input amplitude of 2.13, not the quoted 3.9. See `revised_review_check.md`.
+
+## 8. Companion references
 
 Checks are numbered as in `../code/critique_checks.py` (run from the folder above with `python -I code/critique_checks.py`; last output in `../code/critique_checks_output.txt`). "Sibling check 1a/1b" are in `../code/adversarial_review_checks.py`. The Appendix C rerun and its Gauss residual are in `../04_self_audit/retest_log.md` and `../04_self_audit/self_review.md` (PR #517). The projection-obstruction and observer-packet material the critique uses is in `critique_wdp_po.md`, with its own companion list. The paper's transcript used for every location check is `../02_paper/ijms-25-02399.md`; equation labels follow the published appendices. The 4.7 bits-per-synapse figure is from a published reconstruction study of hippocampal synapses and is the only number here taken from outside the paper and this folder.
