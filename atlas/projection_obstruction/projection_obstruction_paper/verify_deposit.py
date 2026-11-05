@@ -369,6 +369,11 @@ def check_archive_reproducibility(root_dir: Path = ROOT, guard: Callable[[], Non
     return problems
 
 
+def run_projection_census() -> None:
+    subprocess.run([sys.executable, "-I", "-B", "tools/replay_projection_bounds.py"],
+                   cwd=ROOT, check=True, timeout=600)
+
+
 def scan_lean_sources(root_dir: Path = ROOT) -> tuple[list[str], int]:
     problems: list[str] = []
     lean_dir = root_dir / "lean4"
@@ -377,7 +382,39 @@ def scan_lean_sources(root_dir: Path = ROOT) -> tuple[list[str], int]:
     lean_files = sorted(lean_dir.glob("*.lean"))
     for file in lean_files:
         content = file.read_text(encoding="utf-8")
-        if re.search(r"\b(?:sorry|admit)\b", content):
+        # Discard nested block comments and line comments while preserving
+        # quoted strings, so prose such as "cannot admit" is not a proof hole.
+        # This remains a lexical aid; only compilation/census checks prove scope.
+        code: list[str] = []
+        depth = 0
+        i = 0
+        while i < len(content):
+            if content.startswith("/-", i):
+                depth += 1
+                i += 2
+            elif depth and content.startswith("-/", i):
+                depth -= 1
+                i += 2
+                code.append(" ")
+            elif depth:
+                i += 1
+            elif content.startswith("--", i):
+                end = content.find("\n", i)
+                i = len(content) if end < 0 else end
+                code.append(" ")
+            elif content[i] == '"':
+                # Do not interpret comment openers inside a string as comments.
+                i += 1
+                while i < len(content) and content[i] != '"':
+                    i += 2 if content[i] == "\\" else 1
+                i += 1
+                code.append(" ")
+            else:
+                code.append(content[i])
+                i += 1
+        if depth:
+            problems.append(f"unterminated block comment in {file.name}")
+        if re.search(r"\b(?:sorry|admit)\b", "".join(code)):
             problems.append(f"placeholder proof token found in {file.name}")
     return problems, len(lean_files)
 
@@ -444,6 +481,8 @@ def verify(args: argparse.Namespace) -> int:
         guard()
         print("PARTIAL: integrity only; Python tests, replay, native integration and Lean compilation not executed.")
         return 0
+    run_projection_census()
+    guard()
     ret, summary, test_problems = run_tests(profile=args.profile)
     guard()
     if ret or test_problems:
@@ -462,7 +501,7 @@ def verify(args: argparse.Namespace) -> int:
         print(f"PASS ({args.profile} profile): repository payload, Python tests and scoped replay verified (archive verification NOT performed).")
     if args.profile == "standalone":
         print("Native measurement integration NOT VERIFIED; native tests deliberately deselected.")
-    print("Lean compilation/axiom audit and publication approval NOT established.")
+    print("Supplemental 20-theorem real/normed Lean census verified. Historical PO-000 modules and publication approval are not freshly established.")
     return 0
 
 

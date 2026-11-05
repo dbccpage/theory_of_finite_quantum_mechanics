@@ -1,0 +1,107 @@
+{
+  "record_kind": "review run summary transcribed from completed tool output",
+  "authority_effect": "None",
+  "date": "2026-11-05T23:27:19.421016+00:00",
+  "base_commit": "374eb25de257097a7ca96dc4077cbbf769453cea",
+  "python": "Python 3.14.7",
+  "packages": {
+    "projection_obstruction_paper": {
+      "cwd": "atlas/projection_obstruction/projection_obstruction_paper",
+      "commands": [
+        {
+          "command": "python -I -B verify_deposit.py --profile standalone --lean-source-scan --archive dist/projection_obstruction_v6.9.20.zip --require-archive",
+          "exit_code": 0,
+          "tests_passed": 1113,
+          "tests_deselected": 11
+        },
+        {
+          "command": "python -I -B -O -m pytest code/tests/test_projection_replay.py code/tests/test_residual_error_budget.py -q --import-mode=importlib",
+          "exit_code": 0,
+          "tests_passed": 36
+        },
+        {
+          "command": "python -I -B docs/residual_error_budget/checker.py",
+          "exit_code": 0
+        }
+      ],
+      "fresh_supplemental_lean_theorems": 20,
+      "allowed_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "additional_fresh_lean_targets": 0,
+      "native_jupyter_code_cells": 0,
+      "archive": {
+        "name": "projection_obstruction_v6.9.20.zip",
+        "sha256": "1f448632c7196a4f522ffa347d08f3cc09d6e06c4f95c2e998be883d781a7528",
+        "tracked": false
+      },
+      "bindings": {
+        "MANIFEST.sha256": "7491f2c0cd4cfce970622b4fdef55b5888a2019a674a355ef4f4454f1967bf9d",
+        "SHA256SUMS": "843d940d561c3b931615abf6c93124e7cbcd89dbaa4ac4796b807800e1215b64",
+        "lean4/projection_axiom_census.json": "fefad8fc997321fd00dda3af499a212a391fa032cadf1703a43ac136ed6a0a8a",
+        "docs/pdf_build_receipt.md": "c30e28d53bcb18b3dae92f852f29f6e606c8824a9d39462a1841e065928ac6fd"
+      }
+    },
+    "higher_cell_cochain_projection_and_retraction_dynamics": {
+      "cwd": "atlas/projection_obstruction/higher_cell_cochain_projection_and_retraction_dynamics",
+      "commands": [
+        {
+          "command": "python -I -B verify_deposit.py",
+          "exit_code": 0,
+          "tests_passed": 182,
+          "tests_deselected": 0
+        },
+        {
+          "command": "python -I -B -O -m pytest code/tests/test_projection_replay.py code/tests/test_residual_error_budget.py -q --import-mode=importlib",
+          "exit_code": 0,
+          "tests_passed": 36
+        },
+        {
+          "command": "python -I -B docs/residual_error_budget/checker.py",
+          "exit_code": 0
+        }
+      ],
+      "fresh_supplemental_lean_theorems": 20,
+      "allowed_axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "additional_fresh_lean_targets": 7,
+      "native_jupyter_code_cells": 7,
+      "archive": {
+        "name": "higher_cell_cochain_projection_and_retraction_dynamics_2026-10-23.zip",
+        "sha256": "10ad7be2b50b5ac965ea51e58600658e87c97e585b8348a0b60180043523c447",
+        "tracked": false
+      },
+      "bindings": {
+        "MANIFEST.sha256": "eb1a78a65cd8f1c99dbf63a5027b407e49bd10b81f8544aedbb41b14302f1d97",
+        "SHA256SUMS": "b81b7c6aae4e28ee1fd9f5fde5393267813c88bd3430347f26bcd296795cc6a7",
+        "lean4/projection_axiom_census.json": "fefad8fc997321fd00dda3af499a212a391fa032cadf1703a43ac136ed6a0a8a",
+        "docs/pdf_build_receipt.md": "273b5271d2f1bd24d5273d6e5f34e071cc8ada025c805c0b2974df37350cfec7"
+      }
+    }
+  },
+  "repository_checks": {
+    "dag_validation": "nodes=938 routes=946 records=990 failures=0",
+    "changed_source_scope": "passed; zero changed sources in governed top-level code/ and lean4/",
+    "contract_history": "30 changed companions passed",
+    "readme_facts": "regenerated",
+    "overclaim_scan": "exit 0; HIGH=0 MEDIUM=0 LOW=1",
+    "diff_check": "passed"
+  },
+  "limits": [
+    "Main standalone profile deliberately deselects 11 native integration tests.",
+    "Historical PO-000 Lean modules were not all freshly compiled.",
+    "Prepared dependency caches are trusted inputs, not rebuilt.",
+    "Conditional bounds do not establish physical enclosures, empirical validity, deposition or node promotion.",
+    "Code-mutation campaign not run; no L4 certification."
+  ],
+  "expected_warnings": [
+    "Deliberate duplicate ZIP member fixture",
+    "Pytest optimized-interpreter assertion warning",
+    "Windows Jupyter event-loop and local TCP transport warnings"
+  ]
+}

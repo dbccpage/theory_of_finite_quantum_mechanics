@@ -192,3 +192,11 @@ def test_post_replay_refuses_same_byte_control_type_changes(package, monkeypatch
     monkeypatch.setattr(verifier.subprocess, "run", replace_control)
     assert not verifier.run(["synthetic-replay"], "same-byte control probe", initial, None)
     assert path.read_bytes() == before
+
+
+def test_extracted_mode_is_explicit_and_still_checks_payload(package):
+    release.archive_path(package).unlink()
+    assert release.validate(package)
+    assert release.validate(package, extracted=True) == []
+    (package / "tampered.txt").write_text("not in manifest")
+    assert release.validate(package, extracted=True)

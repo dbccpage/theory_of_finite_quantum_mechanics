@@ -1,8 +1,8 @@
 # PO-034: Higher-Cell Product Retractions, Simplicial Cochains, and Finite Retraction Dynamics
 
-Technical preprint **v0.1 (0.1.0)**, dated 2026-10-10. First publication
+Technical preprint **v0.3 (0.3.0)**, dated 2026-10-23. First publication
 candidate; deposition not verified.
-The Python example package separately retains its existing 0.1.0 code version.
+The Python example package is version 0.3.0.
 
 The principal correction distinguishes the product-state complement Q from
 the highest-order component projector R_k. A two-site interaction inside a
@@ -23,7 +23,7 @@ Lean census and direct notebook replay are historical results; fresh pinned
 Lean and native Jupyter execution were explicitly excluded. Git history
 preserves the earlier archive identified by that receipt.
 
-The ledger contains thirteen claims, including six written-only lemmas.
+The ledger contains fourteen claims, including seven written-only results.
 Its seven stored Lean targets cover conditional abstract projector identities.
 
 The finite Taylor bound uses the operator norm of the **whole Hamiltonian**.
@@ -74,3 +74,15 @@ mathematical claims, confirm Zenodo publication, or grant authority.
 Manuscript, figures, and prose: CC-BY-4.0 (LICENSE).
 Code, Lean sources, notebooks, and tooling: PolyForm Noncommercial 1.0.0
 (LICENSE-CODE). License files are unchanged.
+
+## 0.3.0 — 2026-10-23
+
+Added residual uncertainty, explicit correction allowances and exact scalar budget witnesses. The new analytic statements retain their stated physical and enclosure assumptions. See `docs/residual_error_budget/claim.md` for the claim-to-evidence boundary.
+
+The October 23 test receipt in `docs/residual_error_budget/verification.json` describes that historical source state. Current review evidence is recorded in `docs/review_2026_11_05.md`. New continuous analysis is proved in the manuscript; exact scalar tests check the supplied budget assumptions.
+
+## New formal bounds
+
+Run `python tools/replay_projection_bounds.py --mathlib PATH_TO_PREPARED_MATHLIB` for the fresh 20-theorem supplemental census. See `docs/projection_formalization.md` for premises and `lean4/AXIOM_CENSUS_INDEX.md` for the complete census index. The normal verification command includes this replay.
+
+For an extracted ZIP without the outer archive beside it, run `python verify_deposit.py --extracted`. This verifies all payload hashes and full replays, and explicitly makes no outer-ZIP check. Use `--archive PATH` to bind the outer archive as well.

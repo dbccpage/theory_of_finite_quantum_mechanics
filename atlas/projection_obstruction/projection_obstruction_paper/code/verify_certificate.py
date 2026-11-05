@@ -48,6 +48,7 @@ def _claims_from_ledger() -> set[str]:
 REQUIRED_CLAIMS = _claims_from_ledger() | {
     "V68-CANCELLATION", "V68-LOCAL-ZERO", "V68-PHYSICAL",
     "V69-JORDAN", "V69-SELECTOR", "V6914-TRACE", "V6914-CENTER",
+    "NUM1",
 }
 
 # Independently pinned: a finite example must not promote these general claims.
@@ -68,7 +69,7 @@ PROSE_SUPPLEMENT_CLAIMS = (
     'V65-DENSITY', 'V65-PHASE', 'V65-PREDICTION', 'V65-OBSERVABILITY',
     'V65-EXTENSION', 'V66-ONSET', 'V66-APPLICATIONS', 'V68-CANCELLATION',
     'V68-LOCAL-ZERO', 'V68-PHYSICAL', 'V69-JORDAN', 'V69-SELECTOR',
-    'V6914-TRACE', 'V6914-CENTER',
+    'V6914-TRACE', 'V6914-CENTER', 'NUM1',
 )
 
 REQUIRED_GENERAL_UNRESOLVED = {
@@ -176,6 +177,9 @@ if _unpinned:
 # projection_factor_experiment; plus the new stdlib engine exactsym) and
 # every shipping test file, so replay.source_hashes and this set agree.
 REQUIRED_SOURCE_PATHS = {
+    "code/tests/test_projection_replay.py",
+    "code/residual_error_budget.py",
+    "code/tests/test_residual_error_budget.py",
     *(
         f"code/{name}.py"
         for name in (

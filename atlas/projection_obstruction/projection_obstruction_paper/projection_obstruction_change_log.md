@@ -1,7 +1,7 @@
 # Change Log — PO-000: Projection Obstruction Anchor
 
 **Paper:** `PO-000`
-**Canonical manuscript/release version:** `v6.9.18`
+**Canonical manuscript/release version:** `v6.9.20`
 **Python code version:** `6.9.6`
 **Legacy filename:** `000_projection_obstruction_v5_6.md`
 **Status:** Canonical repository changelog
@@ -1326,7 +1326,7 @@ Author-invoked final artifact build (; no Zenodo mint).
   `omega_engine/research/published/_kits/obstruction_paper_kit/obstruction_preamble.tex`;
   pandoc + dual `pdflatex` exit 0; **39 pages**.
 - **Release zip:**
-  `build_artifacts/000_projection_obstruction_2026-07-30.zip`
+  `build_artifacts/projection_obstruction_paper_2026-07-30.zip`
   (SHA-256 `b35d3e55163ed30fe7deee8e1df4ebd21181b85274a6b9eff4fe4e27439d96f7`).
 - **Structural release verify:**
   `verify_po000_release.py --no-python-gates` on the staging root — **pass**
@@ -1465,3 +1465,11 @@ compliance §5a under which claim-ID ownership was discharged by an in-paper ind
 ## v5.6 (June 2026)
 
 - Pre-print revision consolidating $C^2$ retraction non-degeneracy and short-time density lower bounds.
+
+## 6.9.19 — 2026-10-23
+
+Added residual uncertainty, explicit correction allowances and exact scalar budget witnesses. The new analytic statements retain their stated physical and enclosure assumptions. See `docs/residual_error_budget/claim.md` for the claim-to-evidence boundary.
+
+## 23 October 2026 — formal uncertainty and correction bounds
+
+Added 20 real/normed Lean theorems, a clean supplemental census replay, offline pinned Mathlib dependencies, and explicit physical-premise mappings. Updated manuscript, claim ledger and standalone verification. Existing proof roots and historical censuses remain separately identified.

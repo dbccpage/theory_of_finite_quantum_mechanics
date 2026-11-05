@@ -1,7 +1,7 @@
 paper_id: higher_cell_cochain_projection_and_retraction_dynamics
 title: Higher-Cell Product Retractions, Simplicial Cochains, and Finite Retraction Dynamics
-version: 0.1.0
-date: '2026-10-10'
+version: 0.3.0
+date: '2026-10-23'
 status: unpublished technical preprint; first publication review candidate; deposition unverified
 authority_effect: None
 evidence_policy: Analytic statements, numerical tests, conditional abstract Lean proofs, and protocol
@@ -369,3 +369,59 @@ claims:
   lean4_evidence:
     status: not_mechanized
     scope: Not mechanized in this deposit.
+- id: PO034-C8
+  name: Robust product defects and observed cochains
+  claim_type: Proposition
+  statement: Product-retraction residuals vary by at most (k+1) times the trace-norm state change; bounded
+    observations and quotient distances inherit the corresponding radius.
+  scope: Finite density states on a fixed factorization and a declared bounded linear observation; the
+    constant is not claimed optimal.
+  code_evidence:
+    module: none
+    note: The general norm inequality is a written proof. The separate residual_error_budget companion
+      tests only the supplied scalar intervals.
+    status: not_executed
+  lean4_evidence:
+    scope: Concrete density-matrix instantiation not mechanized. General normed bound is formalized in
+      supplemental_lean_evidence.
+    status: not_mechanized
+  written_evidence:
+    assumptions: Density operators on a common finite product carrier; validated trace-norm state and
+      evaluation-error radii; a declared bounded observation for the cochain consequence.
+    proof_location:
+      path: higher_cell_cochain_projection_and_retraction_dynamics.md
+      heading: '### 4.3 Robust product defects and observed cochains (PO034-C8)'
+    execution_status: not_executed
+  supplemental_lean_evidence:
+    module: ProjectionBounds
+    scope: General real/normed inequalities formalized; concrete continuous quantum instantiation remains
+      conditional
+    census: lean4/projection_axiom_census.json
+supplemental_formalization:
+  date: '2026-10-23'
+  module: ProjectionBounds
+  theorems:
+  - ProjectionBounds.lowerRate_le
+  - ProjectionBounds.uncertain_onset
+  - ProjectionBounds.half_slope_window
+  - ProjectionBounds.zero_curvature
+  - ProjectionBounds.uncertainty_explains_rate
+  - ProjectionBounds.correction_window_iff
+  - ProjectionBounds.zero_rate_window
+  - ProjectionBounds.safe_horizon
+  - ProjectionBounds.exhausted_budget
+  - ProjectionBounds.transported_jump_bound
+  - ProjectionBounds.corrected_step
+  - ProjectionBounds.path_bound
+  - ProjectionBounds.factor_replacement_bound
+  - ProjectionBounds.defect_difference
+  - ProjectionBounds.product_defect_uncertainty
+  - ProjectionBounds.observed_defect_interval
+  - ProjectionBounds.observed_residual_bound
+  - ProjectionBounds.accumulated_budget
+  - ProjectionBounds.residual_difference
+  - ProjectionBounds.product_residual_uncertainty
+  scope: Real/normed inequalities under explicit analytic and physical premises
+  census: lean4/projection_axiom_census.json
+  replay: python tools/replay_projection_bounds.py
+  no_custom_axioms: true

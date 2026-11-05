@@ -146,18 +146,18 @@ def replay_census(paper_dir: Path, timeout_seconds: int = 120) -> None:
     check_census(paper_dir)
     lean_root = paper_dir / "lean4"
     pin = (lean_root / "lean-toolchain").read_text(encoding="utf-8").strip()
-    if pin != "leanprover/lean4:v4.34.1":
+    if pin != "leanprover/lean4:v4.35.0":
         raise ValueError(f"unexpected compiler pin: {pin}")
     # A short, fresh root avoids Windows path limits and stale build artifacts.
     # Resolve a host compiler even when the review child has no PATH.
     homes = [Path(os.environ.get("ELAN_HOME", str(Path.home() / ".elan"))), Path.home() / ".elan"]
     suffix = "lake.exe" if os.name == "nt" else "lake"
-    tools = [home / "toolchains/leanprover--lean4---v4.34.1/bin" / suffix for home in homes]
+    tools = [home / "toolchains/leanprover--lean4---v4.35.0/bin" / suffix for home in homes]
     lake = next((tool.resolve() for tool in tools if tool.is_file()), None)
     if lake is None or lake.is_relative_to(paper_dir):
-        raise ValueError("the pinned host Lake 4.34.1 executable is unavailable")
+        raise ValueError("the pinned host Lake 4.35.0 executable is unavailable")
     version = subprocess.run([str(lake), "--version"], capture_output=True, text=True, check=True).stdout
-    if "Lean version 4.34.1" not in version:
+    if "Lean version 4.35.0" not in version:
         raise ValueError(f"compiler version disagrees with pin: {version}")
     sources = [p for p in lean_root.rglob("*") if p.is_file() and ".lake" not in p.parts and (p.suffix == ".lean" or p.name in {"lean-toolchain", "lake-manifest.json"})]
     snapshot = {p: hashlib.sha256(p.read_bytes()).hexdigest() for p in sources}

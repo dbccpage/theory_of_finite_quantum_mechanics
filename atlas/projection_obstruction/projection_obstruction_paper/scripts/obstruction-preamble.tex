@@ -13,12 +13,14 @@
 
 \usepackage{fontspec}
 \usepackage{unicode-math}
-\setmainfont{Latin Modern Roman}
+\setmainfont{lmroman10-regular.otf}[BoldFont=lmroman10-bold.otf,ItalicFont=lmroman10-italic.otf,BoldItalicFont=lmroman10-bolditalic.otf]
 % Latin Modern Mono, not DejaVu or Consolas: it ships with every
 % TeX distribution, so the archive builds on a machine that has
 % only TeX Live or MiKTeX and no extra fonts installed.
-\setmonofont{Latin Modern Mono}[Scale=0.85]
-\setmathfont{Latin Modern Math}
+\setmonofont{lmmono10-regular.otf}[Scale=0.85]
+\setmathfont{latinmodern-math.otf}
+% Use the available backslash glyph for set difference on older TeX bundles.
+\AtBeginDocument{\renewcommand{\setminus}{\mathbin{\backslash}}}
 
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage[margin=1in]{geometry}
