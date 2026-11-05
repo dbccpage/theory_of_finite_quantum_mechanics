@@ -8,6 +8,7 @@ AuthorityEffect: None. AI-assisted review and repairs of the two remaining paper
 |---|---|
 | The supplemental replay expected an absent dependency archive; a higher-cell build filename also disagreed with the runner. | Require an explicitly prepared Mathlib cache; verify compiler and eight clean dependency revisions. Remove the incomplete vendor scaffold. |
 | Replay evidence could advertise incomplete theorem/axiom results. | Require all 20 named theorems exactly once, allow only three standard axioms, and bind proof, census, runner, dependency pins and report. Add drift, missing/duplicate/unknown/truncated/forbidden-axiom tests. |
+| The saved axiom report included a platform-specific compiler banner, so a fresh Linux replay could disagree with a Windows receipt. | Compare the portable axiom output and retain the compiler banner as metadata; add a Windows-to-Linux banner regression. |
 | The witness checker used assertions, which disappear under optimized Python. | Use explicit schema/type/domain validation and nonzero refusal; test both normal and optimized subprocesses. |
 | The jump argument cited a nonexistent companion section. | Derive the finite correction-jump identity directly in PO-000 section 5.18 and point PO-034 to it, with contractivity and regularity premises explicit. |
 | NUM1 was missing from the main producer/verifier claim inventories. | Add it to both independent inventories and keep its general analytic claim outside Python theorem certification; add a regression. |

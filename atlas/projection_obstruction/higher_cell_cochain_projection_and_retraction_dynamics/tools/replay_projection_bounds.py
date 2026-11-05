@@ -122,12 +122,14 @@ def replay(mathlib: Path, *, record: bool = False, root: Path = ROOT) -> dict:
         declarations = parse_axioms(output, expected)
     if before != source_hashes(root) or paths != dependency_paths(mathlib.resolve(), pins):
         raise ValueError("source or dependency changed during replay")
-    report = version + output
+    # Compiler banners include OS/architecture; axiom evidence is portable.
+    report = output
     result = {"schema_version": 2, "toolchain": TOOLCHAIN, "sources": before,
               "dependencies": pins, "declarations": declarations, "count": len(declarations),
               "fresh_compilation": True, "scope": SCOPE,
               "report_sha256": hashlib.sha256(report.encode("utf-8")).hexdigest()}
     if record:
+        result["compiler_version"] = version.strip()
         result["recorded_at_utc"] = datetime.now(timezone.utc).isoformat()
         (root / "lean4/projection_axiom_report.txt").write_text(report, encoding="utf-8", newline="\n")
         (root / "lean4/projection_axiom_census.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8", newline="\n")

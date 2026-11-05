@@ -90,3 +90,30 @@ def test_fresh_replay_requires_prepared_cache():
                             capture_output=True, text=True, timeout=20)
     assert result.returncode == 1
     assert "prepare clean dependency" in result.stdout
+
+
+def test_fresh_replay_accepts_platform_banner_changes(tmp_path, monkeypatch):
+    for name in replay.SOURCES:
+        path = tmp_path / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / name, path)
+    report = "\n".join(
+        f"'{name}' depends on axioms: [propext, Classical.choice, Quot.sound]"
+        for name in replay.expected_names(ROOT)) + "\n"
+    versions = iter([
+        "Lean (version 4.35.0, x86_64-w64-windows-gnu, Release)\n",
+        "Lean (version 4.35.0, x86_64-unknown-linux-gnu, Release)\n",
+    ])
+
+    def compiler(command, **kwargs):
+        if command[-1] == "--version":
+            return next(versions)
+        return report if command[-1] == "ProjectionCensus.lean" else ""
+
+    monkeypatch.setattr(replay, "run", compiler)
+    monkeypatch.setattr(replay, "dependency_paths", lambda *args: [])
+    recorded = replay.replay(tmp_path, record=True, root=tmp_path)
+    fresh = replay.replay(tmp_path, root=tmp_path)
+    assert recorded["report_sha256"] == fresh["report_sha256"]
+    assert "windows" in recorded["compiler_version"]
+    assert (tmp_path / "lean4/projection_axiom_report.txt").read_text() == report
