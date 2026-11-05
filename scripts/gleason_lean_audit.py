@@ -58,6 +58,7 @@ MODULES = (
     "GleasonBornCompletion",
     "BornGaussianFiniteModel",
     "GleasonContinuumShadow",
+    "GleasonContinuumDevelopment",
 )
 DEPENDENCIES = (
     "BornGaussRat",

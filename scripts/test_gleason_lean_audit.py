@@ -77,6 +77,11 @@ MODULE_SOURCE = {
         "  theorem shadow_one : True := trivial\n"
         "end BornFinite.ContinuumShadow\n"
     ),
+    "GleasonContinuumDevelopment": (
+        "namespace BornFinite.ContinuumDevelopment\n"
+        "  theorem dev_one : True := trivial\n"
+        "end BornFinite.ContinuumDevelopment\n"
+    ),
 }
 
 # Independent ground-truth inventory for MODULE_SOURCE (never computed via audit.inventory).
@@ -116,6 +121,9 @@ EXPECTED_DECLARATIONS: dict[str, list[str]] = {
     ],
     "GleasonContinuumShadow": [
         "BornFinite.ContinuumShadow.shadow_one",
+    ],
+    "GleasonContinuumDevelopment": [
+        "BornFinite.ContinuumDevelopment.dev_one",
     ],
 }
 

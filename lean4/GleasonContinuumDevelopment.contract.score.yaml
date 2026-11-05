@@ -1,0 +1,328 @@
+{
+  "AuthorityEffect": "None",
+  "artifact": "lean4/GleasonContinuumDevelopment.lean",
+  "assurance": "Current score recorded by score_scope_contracts.py record; grades are the assessor's, checked against SCORING.md by review.",
+  "contract": {
+    "AuthorityEffect": "None",
+    "artifact": {
+      "language": "Lean 4",
+      "path": "lean4/GleasonContinuumDevelopment.lean",
+      "sha256": "f714b8277d6c5b1f9e2165357964b38beb82a167bbdfb904e689113bf411e2e1"
+    },
+    "boundaries": [
+      "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.",
+      "FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered."
+    ],
+    "claim": "Density-matrix completion of the Gleason hinge on Q(i)^3 (FQ-BORN-QI3-CONTINUUM-COMPLETION). toMatrix rho is the complex 3 x 3 matrix of a rational Hermitian form: Hermitian, trace rho.tr, acting on iota g as rho.applyVec g. born_density_matrix_of_uniformlyRayContinuous: for every nonnegative frame function f on Q(i)^3 that is uniformly continuous on rays (declared input IsUniformlyRayContinuous f) there is a positive semidefinite trace-one complex matrix rhoC with F f v = Re <v, rhoC v>/<v,v> on every nonzero v in C^3 and f g = Re <g, rhoC g>/<g,g> on every nonzero g in Q(i)^3, and rhoC is the only Hermitian matrix with the first property (polarization, eq_of_re_dotC_mulVec_self). F_eq_QcRay is the signed version without positivity (continuous scale-invariant extensions agreeing on rational points agree, eq_on_nonzero_of_eq_on_ι). isUniformlyRayContinuous_quadRay: the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays (compactness of the unit sphere of C^3 and phase alignment of unit representatives). uniformlyRayContinuous_frameFunction_iff: the frame functions on Q(i)^3 that are uniformly continuous on rays are exactly the Rayleigh quotients of trace-one rational Hermitian forms on nonzero vectors.",
+    "contract_id": "phase4-continuum-development-l4d-v1",
+    "contract_urn": "urn:tfqm:fq-born-qi3:gleasoncontinuumdevelopment",
+    "evidence": [
+      {
+        "path": "lean4/GleasonContinuumDevelopment.lean",
+        "role": "source",
+        "sha256": "f714b8277d6c5b1f9e2165357964b38beb82a167bbdfb904e689113bf411e2e1"
+      },
+      {
+        "path": "dag/research/gleason_lean_audit.json",
+        "role": "axiom_and_build_audit",
+        "sha256": "45563e262cadbc35da1966e1b7df8f82e20d38b046545f45b3298b2dbdb2dfc0"
+      },
+      {
+        "path": "dag/research/gleason_continuum_development_receipt.json",
+        "role": "phase4_continuum_development_receipt",
+        "sha256": "8bf6c3836640033f330d6776d32c2ea63242a19b58a4b07cb8728e202d18223f"
+      },
+      {
+        "path": "SCORING.md",
+        "role": "rubric",
+        "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+      }
+    ],
+    "owned_invariants": [
+      "Density-matrix completion of the Gleason hinge on Q(i)^3 (FQ-BORN-QI3-CONTINUUM-COMPLETION). toMatrix rho is the complex 3 x 3 matrix of a rational Hermitian form: Hermitian, trace rho.tr, acting on iota g as rho.applyVec g. born_density_matrix_of_uniformlyRayContinuous: for every nonnegative frame function f on Q(i)^3 that is uniformly continuous on rays (declared input IsUniformlyRayContinuous f) there is a positive semidefinite trace-one complex matrix rhoC with F f v = Re <v, rhoC v>/<v,v> on every nonzero v in C^3 and f g = Re <g, rhoC g>/<g,g> on every nonzero g in Q(i)^3, and rhoC is the only Hermitian matrix with the first property (polarization, eq_of_re_dotC_mulVec_self). F_eq_QcRay is the signed version without positivity (continuous scale-invariant extensions agreeing on rational points agree, eq_on_nonzero_of_eq_on_ι). isUniformlyRayContinuous_quadRay: the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays (compactness of the unit sphere of C^3 and phase alignment of unit representatives). uniformlyRayContinuous_frameFunction_iff: the frame functions on Q(i)^3 that are uniformly continuous on rays are exactly the Rayleigh quotients of trace-one rational Hermitian forms on nonzero vectors.",
+      "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays REFUTED, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL."
+    ],
+    "purpose": "Formalize the Phase 4 continuum Gleason development: arbitrary C^3 state approximation by factorized Gaussian-rational states B B^* / tr(B B^*), dimension-by-dimension treatment (d = 0, 1, 2, >= 3), Piron-Soler continuum frame-function step on C^3, and countably-infinite tightness versus finitely-additive tail escape.",
+    "schema_id": "tfqm.source-contract.v1",
+    "source_sha256": "f714b8277d6c5b1f9e2165357964b38beb82a167bbdfb904e689113bf411e2e1",
+    "subject": "lean4/GleasonContinuumDevelopment.lean",
+    "symbols": [
+      "BornFinite.ContinuumDevelopment.GaussMatrix3",
+      "BornFinite.ContinuumDevelopment.mulConjTransposeVec",
+      "BornFinite.ContinuumDevelopment.frobNormSq",
+      "BornFinite.ContinuumDevelopment.gramHermForm3",
+      "BornFinite.ContinuumDevelopment.scaleHermForm3",
+      "BornFinite.ContinuumDevelopment.factorizedState3",
+      "BornFinite.ContinuumDevelopment.scaleHermForm3_tr",
+      "BornFinite.ContinuumDevelopment.quadNum_scaleHermForm3",
+      "BornFinite.ContinuumDevelopment.quadRay_scaleHermForm3",
+      "BornFinite.ContinuumDevelopment.gramHermForm3_tr",
+      "BornFinite.ContinuumDevelopment.frobNormSq_nonneg",
+      "BornFinite.ContinuumDevelopment.frobNormSq_pos_of_entry_ne_zero",
+      "BornFinite.ContinuumDevelopment.frobNormSq_ne_zero_of_entry_ne_zero",
+      "BornFinite.ContinuumDevelopment.quadNum_gramHermForm3",
+      "BornFinite.ContinuumDevelopment.gramHermForm3_quadNum_nonneg",
+      "BornFinite.ContinuumDevelopment.factorizedState3_tr_eq_one",
+      "BornFinite.ContinuumDevelopment.factorizedState3_quadNum_nonneg",
+      "BornFinite.ContinuumDevelopment.toMatrix_factorizedState3_posSemidef_and_trace_one",
+      "BornFinite.ContinuumDevelopment.complexQuadForm",
+      "BornFinite.ContinuumDevelopment.complexRayleigh",
+      "BornFinite.ContinuumDevelopment.matEntryL1Norm",
+      "BornFinite.ContinuumDevelopment.matEntryL1Norm_nonneg",
+      "BornFinite.ContinuumDevelopment.complexQuadForm_toMatrix",
+      "BornFinite.ContinuumDevelopment.complexRayleigh_toMatrix",
+      "BornFinite.ContinuumDevelopment.complexQuadForm_sub",
+      "BornFinite.ContinuumDevelopment.complexRayleigh_sub",
+      "BornFinite.ContinuumDevelopment.abs_complexQuadForm_le",
+      "BornFinite.ContinuumDevelopment.abs_complexRayleigh_sub_le",
+      "BornFinite.ContinuumDevelopment.factorizedState3_born_prob_error_le",
+      "BornFinite.ContinuumDevelopment.complex_hermitian_unique_of_rayleigh_eq",
+      "BornFinite.ContinuumDevelopment.dim0_no_nonzero_vectors",
+      "BornFinite.ContinuumDevelopment.dim0_frameValuation_vacuously_unique",
+      "BornFinite.ContinuumDevelopment.IsDim1FrameValuation",
+      "BornFinite.ContinuumDevelopment.dim1_frameValuation_eq_one",
+      "BornFinite.ContinuumDevelopment.GVec2",
+      "BornFinite.ContinuumDevelopment.GVec2.NonZero",
+      "BornFinite.ContinuumDevelopment.GVec2.inner",
+      "BornFinite.ContinuumDevelopment.normSqVec2",
+      "BornFinite.ContinuumDevelopment.IsFrame2",
+      "BornFinite.ContinuumDevelopment.IsFrameFunction2",
+      "BornFinite.ContinuumDevelopment.IsNonnegFrameFunction2",
+      "BornFinite.ContinuumDevelopment.HermForm2",
+      "BornFinite.ContinuumDevelopment.quadRay2",
+      "BornFinite.ContinuumDevelopment.dim2AxisCounterexample",
+      "BornFinite.ContinuumDevelopment.dim2AxisCounterexample_isNonnegFrameFunction2",
+      "BornFinite.ContinuumDevelopment.dim2_projection_measure_obstruction",
+      "BornFinite.ContinuumDevelopment.dotCD",
+      "BornFinite.ContinuumDevelopment.complexQuadFormD",
+      "BornFinite.ContinuumDevelopment.submatrix3D",
+      "BornFinite.ContinuumDevelopment.submatrix3D_isHermitian",
+      "BornFinite.ContinuumDevelopment.submatrix3D_trace_eq_subspace_weight",
+      "BornFinite.ContinuumDevelopment.compat_submatrix3D_overlap",
+      "BornFinite.ContinuumDevelopment.dotCD_single_mulVec_single",
+      "BornFinite.ContinuumDevelopment.dotCD_conj_symm",
+      "BornFinite.ContinuumDevelopment.dotCD_mulVec_left",
+      "BornFinite.ContinuumDevelopment.im_dotCD_mulVec_self",
+      "BornFinite.ContinuumDevelopment.eq_of_complexQuadFormD_eq",
+      "BornFinite.ContinuumDevelopment.IsContinuumFrame3",
+      "BornFinite.ContinuumDevelopment.IsContinuumFrameFunction3",
+      "BornFinite.ContinuumDevelopment.IsNonnegContinuumFrameFunction3",
+      "BornFinite.ContinuumDevelopment.exists_continuumFrame3_completion",
+      "BornFinite.ContinuumDevelopment.nonneg_continuum_frameFunction_bounds",
+      "BornFinite.ContinuumDevelopment.continuum_piron_subadditivity",
+      "BornFinite.ContinuumDevelopment.continuum_eq_zero_on_perp_of_pole_one",
+      "BornFinite.ContinuumDevelopment.compressionTrace",
+      "BornFinite.ContinuumDevelopment.compressionTrace_mono",
+      "BornFinite.ContinuumDevelopment.IsTightState",
+      "BornFinite.ContinuumDevelopment.tail_weight_le_of_tight",
+      "BornFinite.ContinuumDevelopment.basisEscapeState",
+      "BornFinite.ContinuumDevelopment.basisEscapeState_nonneg",
+      "BornFinite.ContinuumDevelopment.basisEscapeState_normalized_at_stage",
+      "BornFinite.ContinuumDevelopment.basisEscapeState_compression_eq_zero_of_ge",
+      "BornFinite.ContinuumDevelopment.basisEscapeState_escapes_to_zero_without_tightness"
+    ]
+  },
+  "contract_history": [
+    {
+      "bytes": 10274,
+      "original_paths": [
+        "lean4/GleasonContinuumDevelopment.contract.score.yaml#phase4-continuum-development-l4d-v1"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/GleasonContinuumDevelopment.lean\",\n    \"sha256\": \"f714b8277d6c5b1f9e2165357964b38beb82a167bbdfb904e689113bf411e2e1\"\n  },\n  \"boundaries\": [\n    \"The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.\",\n    \"FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered.\"\n  ],\n  \"claim\": \"Density-matrix completion of the Gleason hinge on Q(i)^3 (FQ-BORN-QI3-CONTINUUM-COMPLETION). toMatrix rho is the complex 3 x 3 matrix of a rational Hermitian form: Hermitian, trace rho.tr, acting on iota g as rho.applyVec g. born_density_matrix_of_uniformlyRayContinuous: for every nonnegative frame function f on Q(i)^3 that is uniformly continuous on rays (declared input IsUniformlyRayContinuous f) there is a positive semidefinite trace-one complex matrix rhoC with F f v = Re <v, rhoC v>/<v,v> on every nonzero v in C^3 and f g = Re <g, rhoC g>/<g,g> on every nonzero g in Q(i)^3, and rhoC is the only Hermitian matrix with the first property (polarization, eq_of_re_dotC_mulVec_self). F_eq_QcRay is the signed version without positivity (continuous scale-invariant extensions agreeing on rational points agree, eq_on_nonzero_of_eq_on_ι). isUniformlyRayContinuous_quadRay: the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays (compactness of the unit sphere of C^3 and phase alignment of unit representatives). uniformlyRayContinuous_frameFunction_iff: the frame functions on Q(i)^3 that are uniformly continuous on rays are exactly the Rayleigh quotients of trace-one rational Hermitian forms on nonzero vectors.\",\n  \"contract_id\": \"phase4-continuum-development-l4d-v1\",\n  \"contract_urn\": \"urn:tfqm:fq-born-qi3:gleasoncontinuumdevelopment\",\n  \"evidence\": [\n    {\n      \"path\": \"lean4/GleasonContinuumDevelopment.lean\",\n      \"role\": \"source\",\n      \"sha256\": \"f714b8277d6c5b1f9e2165357964b38beb82a167bbdfb904e689113bf411e2e1\"\n    },\n    {\n      \"path\": \"dag/research/gleason_lean_audit.json\",\n      \"role\": \"axiom_and_build_audit\",\n      \"sha256\": \"45563e262cadbc35da1966e1b7df8f82e20d38b046545f45b3298b2dbdb2dfc0\"\n    },\n    {\n      \"path\": \"dag/research/gleason_continuum_development_receipt.json\",\n      \"role\": \"phase4_continuum_development_receipt\",\n      \"sha256\": \"8bf6c3836640033f330d6776d32c2ea63242a19b58a4b07cb8728e202d18223f\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"role\": \"rubric\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Density-matrix completion of the Gleason hinge on Q(i)^3 (FQ-BORN-QI3-CONTINUUM-COMPLETION). toMatrix rho is the complex 3 x 3 matrix of a rational Hermitian form: Hermitian, trace rho.tr, acting on iota g as rho.applyVec g. born_density_matrix_of_uniformlyRayContinuous: for every nonnegative frame function f on Q(i)^3 that is uniformly continuous on rays (declared input IsUniformlyRayContinuous f) there is a positive semidefinite trace-one complex matrix rhoC with F f v = Re <v, rhoC v>/<v,v> on every nonzero v in C^3 and f g = Re <g, rhoC g>/<g,g> on every nonzero g in Q(i)^3, and rhoC is the only Hermitian matrix with the first property (polarization, eq_of_re_dotC_mulVec_self). F_eq_QcRay is the signed version without positivity (continuous scale-invariant extensions agreeing on rational points agree, eq_on_nonzero_of_eq_on_ι). isUniformlyRayContinuous_quadRay: the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays (compactness of the unit sphere of C^3 and phase alignment of unit representatives). uniformlyRayContinuous_frameFunction_iff: the frame functions on Q(i)^3 that are uniformly continuous on rays are exactly the Rayleigh quotients of trace-one rational Hermitian forms on nonzero vectors.\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays REFUTED, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL.\"\n  ],\n  \"purpose\": \"Formalize the Phase 4 continuum Gleason development: arbitrary C^3 state approximation by factorized Gaussian-rational states B B^* / tr(B B^*), dimension-by-dimension treatment (d = 0, 1, 2, >= 3), Piron-Soler continuum frame-function step on C^3, and countably-infinite tightness versus finitely-additive tail escape.\",\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"f714b8277d6c5b1f9e2165357964b38beb82a167bbdfb904e689113bf411e2e1\",\n  \"subject\": \"lean4/GleasonContinuumDevelopment.lean\",\n  \"symbols\": [\n    \"BornFinite.ContinuumDevelopment.GaussMatrix3\",\n    \"BornFinite.ContinuumDevelopment.mulConjTransposeVec\",\n    \"BornFinite.ContinuumDevelopment.frobNormSq\",\n    \"BornFinite.ContinuumDevelopment.gramHermForm3\",\n    \"BornFinite.ContinuumDevelopment.scaleHermForm3\",\n    \"BornFinite.ContinuumDevelopment.factorizedState3\",\n    \"BornFinite.ContinuumDevelopment.scaleHermForm3_tr\",\n    \"BornFinite.ContinuumDevelopment.quadNum_scaleHermForm3\",\n    \"BornFinite.ContinuumDevelopment.quadRay_scaleHermForm3\",\n    \"BornFinite.ContinuumDevelopment.gramHermForm3_tr\",\n    \"BornFinite.ContinuumDevelopment.frobNormSq_nonneg\",\n    \"BornFinite.ContinuumDevelopment.frobNormSq_pos_of_entry_ne_zero\",\n    \"BornFinite.ContinuumDevelopment.frobNormSq_ne_zero_of_entry_ne_zero\",\n    \"BornFinite.ContinuumDevelopment.quadNum_gramHermForm3\",\n    \"BornFinite.ContinuumDevelopment.gramHermForm3_quadNum_nonneg\",\n    \"BornFinite.ContinuumDevelopment.factorizedState3_tr_eq_one\",\n    \"BornFinite.ContinuumDevelopment.factorizedState3_quadNum_nonneg\",\n    \"BornFinite.ContinuumDevelopment.toMatrix_factorizedState3_posSemidef_and_trace_one\",\n    \"BornFinite.ContinuumDevelopment.complexQuadForm\",\n    \"BornFinite.ContinuumDevelopment.complexRayleigh\",\n    \"BornFinite.ContinuumDevelopment.matEntryL1Norm\",\n    \"BornFinite.ContinuumDevelopment.matEntryL1Norm_nonneg\",\n    \"BornFinite.ContinuumDevelopment.complexQuadForm_toMatrix\",\n    \"BornFinite.ContinuumDevelopment.complexRayleigh_toMatrix\",\n    \"BornFinite.ContinuumDevelopment.complexQuadForm_sub\",\n    \"BornFinite.ContinuumDevelopment.complexRayleigh_sub\",\n    \"BornFinite.ContinuumDevelopment.abs_complexQuadForm_le\",\n    \"BornFinite.ContinuumDevelopment.abs_complexRayleigh_sub_le\",\n    \"BornFinite.ContinuumDevelopment.factorizedState3_born_prob_error_le\",\n    \"BornFinite.ContinuumDevelopment.complex_hermitian_unique_of_rayleigh_eq\",\n    \"BornFinite.ContinuumDevelopment.dim0_no_nonzero_vectors\",\n    \"BornFinite.ContinuumDevelopment.dim0_frameValuation_vacuously_unique\",\n    \"BornFinite.ContinuumDevelopment.IsDim1FrameValuation\",\n    \"BornFinite.ContinuumDevelopment.dim1_frameValuation_eq_one\",\n    \"BornFinite.ContinuumDevelopment.GVec2\",\n    \"BornFinite.ContinuumDevelopment.GVec2.NonZero\",\n    \"BornFinite.ContinuumDevelopment.GVec2.inner\",\n    \"BornFinite.ContinuumDevelopment.normSqVec2\",\n    \"BornFinite.ContinuumDevelopment.IsFrame2\",\n    \"BornFinite.ContinuumDevelopment.IsFrameFunction2\",\n    \"BornFinite.ContinuumDevelopment.IsNonnegFrameFunction2\",\n    \"BornFinite.ContinuumDevelopment.HermForm2\",\n    \"BornFinite.ContinuumDevelopment.quadRay2\",\n    \"BornFinite.ContinuumDevelopment.dim2AxisCounterexample\",\n    \"BornFinite.ContinuumDevelopment.dim2AxisCounterexample_isNonnegFrameFunction2\",\n    \"BornFinite.ContinuumDevelopment.dim2_projection_measure_obstruction\",\n    \"BornFinite.ContinuumDevelopment.dotCD\",\n    \"BornFinite.ContinuumDevelopment.complexQuadFormD\",\n    \"BornFinite.ContinuumDevelopment.submatrix3D\",\n    \"BornFinite.ContinuumDevelopment.submatrix3D_isHermitian\",\n    \"BornFinite.ContinuumDevelopment.submatrix3D_trace_eq_subspace_weight\",\n    \"BornFinite.ContinuumDevelopment.compat_submatrix3D_overlap\",\n    \"BornFinite.ContinuumDevelopment.dotCD_single_mulVec_single\",\n    \"BornFinite.ContinuumDevelopment.dotCD_conj_symm\",\n    \"BornFinite.ContinuumDevelopment.dotCD_mulVec_left\",\n    \"BornFinite.ContinuumDevelopment.im_dotCD_mulVec_self\",\n    \"BornFinite.ContinuumDevelopment.eq_of_complexQuadFormD_eq\",\n    \"BornFinite.ContinuumDevelopment.IsContinuumFrame3\",\n    \"BornFinite.ContinuumDevelopment.IsContinuumFrameFunction3\",\n    \"BornFinite.ContinuumDevelopment.IsNonnegContinuumFrameFunction3\",\n    \"BornFinite.ContinuumDevelopment.exists_continuumFrame3_completion\",\n    \"BornFinite.ContinuumDevelopment.nonneg_continuum_frameFunction_bounds\",\n    \"BornFinite.ContinuumDevelopment.continuum_piron_subadditivity\",\n    \"BornFinite.ContinuumDevelopment.continuum_eq_zero_on_perp_of_pole_one\",\n    \"BornFinite.ContinuumDevelopment.compressionTrace\",\n    \"BornFinite.ContinuumDevelopment.compressionTrace_mono\",\n    \"BornFinite.ContinuumDevelopment.IsTightState\",\n    \"BornFinite.ContinuumDevelopment.tail_weight_le_of_tight\",\n    \"BornFinite.ContinuumDevelopment.basisEscapeState\",\n    \"BornFinite.ContinuumDevelopment.basisEscapeState_nonneg\",\n    \"BornFinite.ContinuumDevelopment.basisEscapeState_normalized_at_stage\",\n    \"BornFinite.ContinuumDevelopment.basisEscapeState_compression_eq_zero_of_ge\",\n    \"BornFinite.ContinuumDevelopment.basisEscapeState_escapes_to_zero_without_tightness\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/GleasonContinuumDevelopment.lean",
+          "sha256": "f714b8277d6c5b1f9e2165357964b38beb82a167bbdfb904e689113bf411e2e1"
+        },
+        "boundaries": [
+          "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.",
+          "FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered."
+        ],
+        "claim": "Density-matrix completion of the Gleason hinge on Q(i)^3 (FQ-BORN-QI3-CONTINUUM-COMPLETION). toMatrix rho is the complex 3 x 3 matrix of a rational Hermitian form: Hermitian, trace rho.tr, acting on iota g as rho.applyVec g. born_density_matrix_of_uniformlyRayContinuous: for every nonnegative frame function f on Q(i)^3 that is uniformly continuous on rays (declared input IsUniformlyRayContinuous f) there is a positive semidefinite trace-one complex matrix rhoC with F f v = Re <v, rhoC v>/<v,v> on every nonzero v in C^3 and f g = Re <g, rhoC g>/<g,g> on every nonzero g in Q(i)^3, and rhoC is the only Hermitian matrix with the first property (polarization, eq_of_re_dotC_mulVec_self). F_eq_QcRay is the signed version without positivity (continuous scale-invariant extensions agreeing on rational points agree, eq_on_nonzero_of_eq_on_ι). isUniformlyRayContinuous_quadRay: the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays (compactness of the unit sphere of C^3 and phase alignment of unit representatives). uniformlyRayContinuous_frameFunction_iff: the frame functions on Q(i)^3 that are uniformly continuous on rays are exactly the Rayleigh quotients of trace-one rational Hermitian forms on nonzero vectors.",
+        "contract_id": "phase4-continuum-development-l4d-v1",
+        "contract_urn": "urn:tfqm:fq-born-qi3:gleasoncontinuumdevelopment",
+        "evidence": [
+          {
+            "path": "lean4/GleasonContinuumDevelopment.lean",
+            "role": "source",
+            "sha256": "f714b8277d6c5b1f9e2165357964b38beb82a167bbdfb904e689113bf411e2e1"
+          },
+          {
+            "path": "dag/research/gleason_lean_audit.json",
+            "role": "axiom_and_build_audit",
+            "sha256": "45563e262cadbc35da1966e1b7df8f82e20d38b046545f45b3298b2dbdb2dfc0"
+          },
+          {
+            "path": "dag/research/gleason_continuum_development_receipt.json",
+            "role": "phase4_continuum_development_receipt",
+            "sha256": "8bf6c3836640033f330d6776d32c2ea63242a19b58a4b07cb8728e202d18223f"
+          },
+          {
+            "path": "SCORING.md",
+            "role": "rubric",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "owned_invariants": [
+          "Density-matrix completion of the Gleason hinge on Q(i)^3 (FQ-BORN-QI3-CONTINUUM-COMPLETION). toMatrix rho is the complex 3 x 3 matrix of a rational Hermitian form: Hermitian, trace rho.tr, acting on iota g as rho.applyVec g. born_density_matrix_of_uniformlyRayContinuous: for every nonnegative frame function f on Q(i)^3 that is uniformly continuous on rays (declared input IsUniformlyRayContinuous f) there is a positive semidefinite trace-one complex matrix rhoC with F f v = Re <v, rhoC v>/<v,v> on every nonzero v in C^3 and f g = Re <g, rhoC g>/<g,g> on every nonzero g in Q(i)^3, and rhoC is the only Hermitian matrix with the first property (polarization, eq_of_re_dotC_mulVec_self). F_eq_QcRay is the signed version without positivity (continuous scale-invariant extensions agreeing on rational points agree, eq_on_nonzero_of_eq_on_ι). isUniformlyRayContinuous_quadRay: the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays (compactness of the unit sphere of C^3 and phase alignment of unit representatives). uniformlyRayContinuous_frameFunction_iff: the frame functions on Q(i)^3 that are uniformly continuous on rays are exactly the Rayleigh quotients of trace-one rational Hermitian forms on nonzero vectors.",
+          "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays REFUTED, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL."
+        ],
+        "purpose": "Formalize the Phase 4 continuum Gleason development: arbitrary C^3 state approximation by factorized Gaussian-rational states B B^* / tr(B B^*), dimension-by-dimension treatment (d = 0, 1, 2, >= 3), Piron-Soler continuum frame-function step on C^3, and countably-infinite tightness versus finitely-additive tail escape.",
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "f714b8277d6c5b1f9e2165357964b38beb82a167bbdfb904e689113bf411e2e1",
+        "subject": "lean4/GleasonContinuumDevelopment.lean",
+        "symbols": [
+          "BornFinite.ContinuumDevelopment.GaussMatrix3",
+          "BornFinite.ContinuumDevelopment.mulConjTransposeVec",
+          "BornFinite.ContinuumDevelopment.frobNormSq",
+          "BornFinite.ContinuumDevelopment.gramHermForm3",
+          "BornFinite.ContinuumDevelopment.scaleHermForm3",
+          "BornFinite.ContinuumDevelopment.factorizedState3",
+          "BornFinite.ContinuumDevelopment.scaleHermForm3_tr",
+          "BornFinite.ContinuumDevelopment.quadNum_scaleHermForm3",
+          "BornFinite.ContinuumDevelopment.quadRay_scaleHermForm3",
+          "BornFinite.ContinuumDevelopment.gramHermForm3_tr",
+          "BornFinite.ContinuumDevelopment.frobNormSq_nonneg",
+          "BornFinite.ContinuumDevelopment.frobNormSq_pos_of_entry_ne_zero",
+          "BornFinite.ContinuumDevelopment.frobNormSq_ne_zero_of_entry_ne_zero",
+          "BornFinite.ContinuumDevelopment.quadNum_gramHermForm3",
+          "BornFinite.ContinuumDevelopment.gramHermForm3_quadNum_nonneg",
+          "BornFinite.ContinuumDevelopment.factorizedState3_tr_eq_one",
+          "BornFinite.ContinuumDevelopment.factorizedState3_quadNum_nonneg",
+          "BornFinite.ContinuumDevelopment.toMatrix_factorizedState3_posSemidef_and_trace_one",
+          "BornFinite.ContinuumDevelopment.complexQuadForm",
+          "BornFinite.ContinuumDevelopment.complexRayleigh",
+          "BornFinite.ContinuumDevelopment.matEntryL1Norm",
+          "BornFinite.ContinuumDevelopment.matEntryL1Norm_nonneg",
+          "BornFinite.ContinuumDevelopment.complexQuadForm_toMatrix",
+          "BornFinite.ContinuumDevelopment.complexRayleigh_toMatrix",
+          "BornFinite.ContinuumDevelopment.complexQuadForm_sub",
+          "BornFinite.ContinuumDevelopment.complexRayleigh_sub",
+          "BornFinite.ContinuumDevelopment.abs_complexQuadForm_le",
+          "BornFinite.ContinuumDevelopment.abs_complexRayleigh_sub_le",
+          "BornFinite.ContinuumDevelopment.factorizedState3_born_prob_error_le",
+          "BornFinite.ContinuumDevelopment.complex_hermitian_unique_of_rayleigh_eq",
+          "BornFinite.ContinuumDevelopment.dim0_no_nonzero_vectors",
+          "BornFinite.ContinuumDevelopment.dim0_frameValuation_vacuously_unique",
+          "BornFinite.ContinuumDevelopment.IsDim1FrameValuation",
+          "BornFinite.ContinuumDevelopment.dim1_frameValuation_eq_one",
+          "BornFinite.ContinuumDevelopment.GVec2",
+          "BornFinite.ContinuumDevelopment.GVec2.NonZero",
+          "BornFinite.ContinuumDevelopment.GVec2.inner",
+          "BornFinite.ContinuumDevelopment.normSqVec2",
+          "BornFinite.ContinuumDevelopment.IsFrame2",
+          "BornFinite.ContinuumDevelopment.IsFrameFunction2",
+          "BornFinite.ContinuumDevelopment.IsNonnegFrameFunction2",
+          "BornFinite.ContinuumDevelopment.HermForm2",
+          "BornFinite.ContinuumDevelopment.quadRay2",
+          "BornFinite.ContinuumDevelopment.dim2AxisCounterexample",
+          "BornFinite.ContinuumDevelopment.dim2AxisCounterexample_isNonnegFrameFunction2",
+          "BornFinite.ContinuumDevelopment.dim2_projection_measure_obstruction",
+          "BornFinite.ContinuumDevelopment.dotCD",
+          "BornFinite.ContinuumDevelopment.complexQuadFormD",
+          "BornFinite.ContinuumDevelopment.submatrix3D",
+          "BornFinite.ContinuumDevelopment.submatrix3D_isHermitian",
+          "BornFinite.ContinuumDevelopment.submatrix3D_trace_eq_subspace_weight",
+          "BornFinite.ContinuumDevelopment.compat_submatrix3D_overlap",
+          "BornFinite.ContinuumDevelopment.dotCD_single_mulVec_single",
+          "BornFinite.ContinuumDevelopment.dotCD_conj_symm",
+          "BornFinite.ContinuumDevelopment.dotCD_mulVec_left",
+          "BornFinite.ContinuumDevelopment.im_dotCD_mulVec_self",
+          "BornFinite.ContinuumDevelopment.eq_of_complexQuadFormD_eq",
+          "BornFinite.ContinuumDevelopment.IsContinuumFrame3",
+          "BornFinite.ContinuumDevelopment.IsContinuumFrameFunction3",
+          "BornFinite.ContinuumDevelopment.IsNonnegContinuumFrameFunction3",
+          "BornFinite.ContinuumDevelopment.exists_continuumFrame3_completion",
+          "BornFinite.ContinuumDevelopment.nonneg_continuum_frameFunction_bounds",
+          "BornFinite.ContinuumDevelopment.continuum_piron_subadditivity",
+          "BornFinite.ContinuumDevelopment.continuum_eq_zero_on_perp_of_pole_one",
+          "BornFinite.ContinuumDevelopment.compressionTrace",
+          "BornFinite.ContinuumDevelopment.compressionTrace_mono",
+          "BornFinite.ContinuumDevelopment.IsTightState",
+          "BornFinite.ContinuumDevelopment.tail_weight_le_of_tight",
+          "BornFinite.ContinuumDevelopment.basisEscapeState",
+          "BornFinite.ContinuumDevelopment.basisEscapeState_nonneg",
+          "BornFinite.ContinuumDevelopment.basisEscapeState_normalized_at_stage",
+          "BornFinite.ContinuumDevelopment.basisEscapeState_compression_eq_zero_of_ge",
+          "BornFinite.ContinuumDevelopment.basisEscapeState_escapes_to_zero_without_tightness"
+        ]
+      },
+      "sha256": "62a67ac58b7ffd68724e11d1c20ad95349bcaa47cda861dfb986d7f669763e15"
+    }
+  ],
+  "current_contract": "62a67ac58b7ffd68724e11d1c20ad95349bcaa47cda861dfb986d7f669763e15",
+  "current_scoring": "c203050aff668e512b231de283d79113ff3bca9be1d23dca0461820546935771",
+  "history_order": "Import/append order; no missing assessment dates are invented.",
+  "legacy_paths": {},
+  "schema_version": "tfqm.contract-score.v1",
+  "scoring_history": [
+    {
+      "bytes": 3958,
+      "original_paths": [
+        "lean4/GleasonContinuumDevelopment.contract.score.yaml#phase4-continuum-development-l4d-v1"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/GleasonContinuumDevelopment.lean\",\n    \"sha256\": \"f714b8277d6c5b1f9e2165357964b38beb82a167bbdfb904e689113bf411e2e1\"\n  },\n  \"assessment_id\": \"phase4-continuum-development-l4d-v1\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and the complete Lean identifiers of every named declaration are bound to the stated claim and to DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY and FQ-BORN-QI3-CONTINUUM-COMPLETION (CONDITIONAL) with AuthorityEffect None; FQ-GLEASON-QI3-FRAME-FUNCTIONS (REFUTED), FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statuses.\",\n    \"G2\": \"Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and per-declaration axiom audit (dag/research/gleason_lean_audit.json) use only propext, Classical.choice and Quot.sound; 0 sorry.\",\n    \"G4\": \"Kernel-checked by lake build; every named declaration has a #print axioms report verified by scripts/gleason_lean_audit.py against the pinned expectation; the main theorems are listed by name in the replay receipt.\",\n    \"G5\": \"Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target and under the lean-gleason hosted workflow.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-04-20T00:00:00Z\",\n  \"evidence\": [\n    {\n      \"path\": \"lean4/GleasonContinuumDevelopment.lean\",\n      \"sha256\": \"f714b8277d6c5b1f9e2165357964b38beb82a167bbdfb904e689113bf411e2e1\"\n    },\n    {\n      \"path\": \"dag/research/gleason_lean_audit.json\",\n      \"sha256\": \"45563e262cadbc35da1966e1b7df8f82e20d38b046545f45b3298b2dbdb2dfc0\"\n    },\n    {\n      \"path\": \"dag/research/gleason_continuum_development_receipt.json\",\n      \"sha256\": \"8bf6c3836640033f330d6776d32c2ea63242a19b58a4b07cb8728e202d18223f\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and a fail-closed per-declaration axiom audit.\",\n  \"limitations\": [\n    \"The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.\",\n    \"FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered.\"\n  ],\n  \"profile\": \"Symbolic/Formal\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/GleasonContinuumDevelopment.lean",
+          "sha256": "f714b8277d6c5b1f9e2165357964b38beb82a167bbdfb904e689113bf411e2e1"
+        },
+        "assessment_id": "phase4-continuum-development-l4d-v1",
+        "basis": {
+          "G1": "Exact source identity and the complete Lean identifiers of every named declaration are bound to the stated claim and to DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY and FQ-BORN-QI3-CONTINUUM-COMPLETION (CONDITIONAL) with AuthorityEffect None; FQ-GLEASON-QI3-FRAME-FUNCTIONS (REFUTED), FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statuses.",
+          "G2": "Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.",
+          "G3": "Lean 4.35 kernel build and per-declaration axiom audit (dag/research/gleason_lean_audit.json) use only propext, Classical.choice and Quot.sound; 0 sorry.",
+          "G4": "Kernel-checked by lake build; every named declaration has a #print axioms report verified by scripts/gleason_lean_audit.py against the pinned expectation; the main theorems are listed by name in the replay receipt.",
+          "G5": "Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target and under the lean-gleason hosted workflow."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-04-20T00:00:00Z",
+        "evidence": [
+          {
+            "path": "lean4/GleasonContinuumDevelopment.lean",
+            "sha256": "f714b8277d6c5b1f9e2165357964b38beb82a167bbdfb904e689113bf411e2e1"
+          },
+          {
+            "path": "dag/research/gleason_lean_audit.json",
+            "sha256": "45563e262cadbc35da1966e1b7df8f82e20d38b046545f45b3298b2dbdb2dfc0"
+          },
+          {
+            "path": "dag/research/gleason_continuum_development_receipt.json",
+            "sha256": "8bf6c3836640033f330d6776d32c2ea63242a19b58a4b07cb8728e202d18223f"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and a fail-closed per-declaration axiom audit.",
+        "limitations": [
+          "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.",
+          "FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered."
+        ],
+        "profile": "Symbolic/Formal",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "c203050aff668e512b231de283d79113ff3bca9be1d23dca0461820546935771"
+    }
+  ]
+}
