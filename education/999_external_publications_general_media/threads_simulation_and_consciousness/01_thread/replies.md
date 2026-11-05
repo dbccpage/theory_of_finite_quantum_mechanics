@@ -34,7 +34,7 @@ Post 5, the bar
 
 ---
 
-Before posting, replace `[link]` in post 5 with the reconstruction's public address. The reconstruction is `03_critique/paper_dissection.md`, "The holographic brain paper, taken apart and put back together". Its GitHub address is 192 characters, longer than the budget below, so post 5 needs a short address for it. Post 5 is 378 characters with the placeholder, so the address may be up to 128 characters. The learning boards (`05_boards/learning_boards.html`) can be linked from the reconstruction.
+Before posting, replace `[link]` in post 5 with the reconstruction's public address. The reconstruction is `03_critique/paper_dissection.md`, "The holographic brain paper, taken apart and put back together". Its GitHub address is 191 characters, longer than the budget below, so post 5 needs a short address for it. Post 5 is 378 characters with the placeholder, so the address may be up to 128 characters. The learning boards (`05_boards/learning_boards.html`) can be linked from the reconstruction.
 
 Fact notes:
 - "render" occurs 0 times in the paper.
