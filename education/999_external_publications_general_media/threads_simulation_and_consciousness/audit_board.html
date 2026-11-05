@@ -1,0 +1,346 @@
+<title>Holographic Brain Audit</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<style>
+/* Layout: a markup board of picture cards, two columns wide, one column on phones; each card = picture, one equation, one line, what it rests on, verdict bar */
+:root{
+  --paper:#F5F8F7; --card:#FFFFFF; --ink:#18262E; --mute:#5B6B72; --rule:#D5DFDD;
+  --teal:#0F7C78; --teal-soft:#DCEFEC; --supplied:#B5651D; --supplied-soft:#F6E7D8;
+  --wit:#2F6FB0; --wit-soft:#DCE8F5; --no:#B23A3A; --no-soft:#F5DEDE; --ok:#2E7D4F; --ok-soft:#DDEFE3;
+  --display:"Literata",Georgia,serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0F1719; --card:#162125; --ink:#E4ECEA; --mute:#93A5A9; --rule:#2A3A3F;
+  --teal:#4FC2BB; --teal-soft:#173B3A; --supplied:#E39B5B; --supplied-soft:#3A2A1C;
+  --wit:#7FB2E8; --wit-soft:#1C2E42; --no:#E67C7C; --no-soft:#3E2223; --ok:#6CC594; --ok-soft:#1C3527; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0F1719; --card:#162125; --ink:#E4ECEA; --mute:#93A5A9; --rule:#2A3A3F;
+  --teal:#4FC2BB; --teal-soft:#173B3A; --supplied:#E39B5B; --supplied-soft:#3A2A1C;
+  --wit:#7FB2E8; --wit-soft:#1C2E42; --no:#E67C7C; --no-soft:#3E2223; --ok:#6CC594; --ok-soft:#1C3527; color-scheme:dark}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-block:28px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{display:grid;gap:10px;margin-bottom:22px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.4vw,44px);line-height:1.1;margin:0;text-wrap:balance}
+.lede{margin:0;max-width:68ch;color:var(--mute)}
+.legend{display:flex;flex-wrap:wrap;gap:8px;font-family:var(--mono);font-size:12px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;border:1px solid var(--rule);background:var(--card)}
+.dot{width:9px;height:9px;border-radius:50%}
+.status{font-family:var(--mono);font-size:12px;color:var(--mute)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,520px),1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:10px;display:grid;grid-template-rows:auto auto 1fr auto;min-width:0;overflow:hidden}
+.card.v-right{box-shadow:inset 4px 0 0 var(--ok)} .card.v-wrong{box-shadow:inset 4px 0 0 var(--no)} .card.v-unsure{box-shadow:inset 4px 0 0 var(--supplied)}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:14px 16px 4px}
+.head h2{font-family:var(--display);font-weight:500;font-size:20px;margin:0;text-wrap:balance}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+.pic{padding:6px 12px 0;overflow-x:auto}
+.pic svg{display:block;width:100%;height:auto;max-width:100%}
+.body{padding:4px 16px 12px;display:grid;gap:8px;min-width:0}
+.math{font-size:16px;overflow-x:auto;padding:6px 0;text-align:center}
+.math math{font-size:1.05em}
+.math code{font-family:var(--mono);font-size:13px;white-space:pre-wrap}
+.line{margin:0;color:var(--ink)}
+.line b{font-weight:600}
+.rests{font-family:var(--mono);font-size:11px;color:var(--mute)}
+.rests span{color:var(--teal)}
+.list{margin:0;padding-left:18px;display:grid;gap:4px}
+.bar{border-top:1px solid var(--rule);padding:10px 16px 12px;display:grid;gap:8px;background:var(--paper)}
+.btns{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.btns button{font:500 13px var(--body);padding:6px 12px;border-radius:6px;border:1px solid var(--rule);background:var(--card);color:var(--ink);cursor:pointer}
+.btns button:focus-visible,textarea:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.btns button[data-v="right"][aria-pressed="true"]{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+.btns button[data-v="wrong"][aria-pressed="true"]{background:var(--no-soft);border-color:var(--no);color:var(--no)}
+.btns button[data-v="unsure"][aria-pressed="true"]{background:var(--supplied-soft);border-color:var(--supplied);color:var(--supplied)}
+.saved{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--mute)}
+textarea{width:100%;box-sizing:border-box;min-height:54px;resize:vertical;font:14px var(--body);padding:8px 10px;border-radius:6px;border:1px solid var(--rule);background:var(--card);color:var(--ink)}
+svg text{font-family:var(--mono)}
+@media (prefers-reduced-motion:no-preference){.card{transition:box-shadow .2s}}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Holographic brain audit</h1>
+  <p class="lede">Nishiyama, Tanaka, Tuszynski, Tsenkova, IJMS 25:2399 (2024), one card per attack: a picture, the one equation, what it rests on. Mark each card right, wrong or unsure and add a note. Claude reads the marks back. Agreement between reviews is not evidence; the “rests on” line is.</p>
+  <div class="legend">
+    <span class="chip"><span class="dot" style="background:var(--wit)"></span>witnessed: the paper's text</span>
+    <span class="chip"><span class="dot" style="background:var(--supplied)"></span>supplied: put in by someone</span>
+    <span class="chip"><span class="dot" style="background:var(--teal)"></span>derived: replayed by a check</span>
+    <span class="chip"><span class="dot" style="background:var(--no)"></span>missing or broken</span>
+  </div>
+  <div class="status" id="status">Connecting to the shared marks…</div>
+</header>
+<main class="grid" id="grid"></main>
+</div>
+
+<script>
+const S = (body, vb="0 0 520 220") => `<svg viewBox="${vb}" role="img" xmlns="http://www.w3.org/2000/svg">${body}</svg>`;
+const W="var(--wit)",SU="var(--supplied)",T="var(--teal)",N="var(--no)",I="var(--ink)",M="var(--mute)",R="var(--rule)",OK="var(--ok)";
+const sechPath = (x0, y0, w, h, tau, t0) => {
+  let d = ""; for (let i = 0; i <= 60; i++) { const t = i / 60; const v = 1 / Math.cosh((t - t0) / tau); d += (i ? "L" : "M") + (x0 + t * w).toFixed(1) + " " + (y0 - v * h).toFixed(1) + " "; } return d; };
+
+const CARDS = [
+{ id:"mind0", tag:"the test", title:"Delete the word “mind”. Which equation changes?",
+  pic:S(`
+   ${[0,1,2,3,4,5].map(i=>`<rect x="24" y="${30+i*28}" width="150" height="20" rx="3" fill="var(--teal-soft)" stroke="${T}"/><text x="32" y="${44+i*28}" fill="${I}" font-size="11">${["(A1)…(A47) pulse","(3)–(5) capacity","(A48)–(A52) hologram","(A56)–(A87) control","(10)–(11) targets","Fig. 5, 6"][i]}</text>`).join("")}
+   <path d="M330 60 q 40 -40 90 -10 q 50 10 40 60 q -10 50 -60 50 q -70 10 -90 -30 q -20 -40 20 -70 z" fill="var(--supplied-soft)" stroke="${SU}" stroke-dasharray="5 4"/>
+   <text x="345" y="92" fill="${SU}" font-size="12">“quantum mind”</text><text x="345" y="110" fill="${SU}" font-size="12">“subjective experience”</text><text x="345" y="128" fill="${SU}" font-size="12">“one-to-one”</text>
+   <line x1="320" y1="110" x2="190" y2="110" stroke="${N}" stroke-width="2" stroke-dasharray="6 5"/>
+   <text x="225" y="100" fill="${N}" font-size="14">✗ no shared variable</text>
+   <text x="24" y="208" fill="${M}" font-size="11">Sections 1, 5, 6 are the only places the words occur</text>`),
+  tex:String.raw`\text{paper}\setminus\{\text{mind},\ \text{experience}\}\ \Longrightarrow\ \text{(A1)–(A91), Fig. 1–6 unchanged}`,
+  line:"<b>No result depends on the mind clauses.</b> The prose carries no authority over any equation, so the claim and the results share no variable.",
+  rests:"witnessed: Sections 1, 5, 6 · critique §0, §8.1" },
+
+{ id:"chain", tag:"the shape", title:"Five projections, one retraction promised, none paid.",
+  pic:S(`
+   ${[["state ρ",I],["mean field",T],["fluid |φ̄|, β",T],["density |φ̄|²",T],["binary cell",SU],["“experience”",N]].map((b,i)=>{const x=10+i*86;return `<rect x="${x}" y="80" width="78" height="44" rx="6" fill="none" stroke="${b[1]}" ${i===5?'stroke-dasharray="5 4"':''}/><text x="${x+6}" y="106" fill="${b[1]}" font-size="10">${b[0]}</text>`}).join("")}
+   ${[0,1,2,3,4].map(i=>{const x=88+i*86;return `<line x1="${x}" y1="102" x2="${x+8}" y2="102" stroke="${I}" stroke-width="2"/>`}).join("")}
+   ${[["Π_coh: drop Δ, D, Γ₂",N],["Madelung: exact",OK],["drop phase β",N],["threshold 21 %",N],["q = ?",N]].map((l,i)=>{const x=20+i*86;return `<text x="${x}" y="${i%2?60:46}" fill="${l[1]}" font-size="10">${l[0]}</text>`}).join("")}
+   ${[["δ₁ = D_e(t)",N],["δ = 0",OK],["δ₃: descent?",N],["δ₄: 0.21 vs 1",N],["δ₅: no map",N]].map((l,i)=>{const x=20+i*86;return `<text x="${x}" y="${i%2?166:150}" fill="${l[1]}" font-size="10">${l[0]}</text>`}).join("")}
+   <text x="10" y="205" fill="${M}" font-size="11">each arrow throws something away; the paper computes no defect δ and no way back</text>`),
+  tex:String.raw`\rho\ \xrightarrow{\ \Pi_{\rm coh}\ }\ (\bar\varphi,A)\ \xrightarrow{\ \text{Madelung}\ }\ (|\bar\varphi|,\beta)\ \xrightarrow{\ |\cdot|^2\ }\ |\bar\varphi|^2\ \xrightarrow{\ \theta\ }\ \{0,1\}\ \xrightarrow{\ ?\ }\ E`,
+  line:"<b>The first arrow is what Projection Obstruction prices; the last is what the Witnessed Difference Programme prices.</b> The middle three are where “quantum” and “hologram” are spent.",
+  rests:"derived: critique §1 · checks 3, 5, 10" },
+
+{ id:"gauge", tag:"appendix a", title:"The gauge pair freezes the charge and kills the pulse.",
+  pic:S(`
+   <text x="20" y="24" fill="${M}" font-size="12">A⁰ = 0 and ∇·A ≡ 0 (as written)</text>
+   <line x1="30" y1="150" x2="240" y2="150" stroke="${R}"/><line x1="30" y1="150" x2="30" y2="50" stroke="${R}"/>
+   <line x1="30" y1="130" x2="240" y2="130" stroke="${N}" stroke-width="3"/>
+   <text x="60" y="118" fill="${N}" font-size="12">𝒜 = const: R = 0, ∂₀ρ = 0</text>
+   <text x="30" y="170" fill="${M}" font-size="11">time</text>
+   <text x="290" y="24" fill="${M}" font-size="12">A⁰ = ∇⁻²J⁰ (Coulomb gauge proper)</text>
+   <line x1="300" y1="150" x2="510" y2="150" stroke="${R}"/><line x1="300" y1="150" x2="300" y2="50" stroke="${R}"/>
+   <path d="${sechPath(300,150,210,90,0.09,0.55)}" fill="none" stroke="${T}" stroke-width="3"/>
+   <text x="330" y="70" fill="${T}" font-size="12">sech pulse, plus the</text><text x="330" y="86" fill="${T}" font-size="12">dipole–dipole near field</text>
+   <text x="300" y="170" fill="${M}" font-size="11">time</text>
+   <text x="20" y="205" fill="${M}" font-size="11">(A7) with A⁰ = 0: ±∂₀(∇·A) = −e|φ|² + c(x). Keeping c(x) allows only a static density.</text>`),
+  tex:String.raw`\pm\,\partial_0(\nabla\!\cdot\!\mathbf A)=-e|\varphi|^2+c(\mathbf x),\quad \nabla\!\cdot\!\mathbf A\equiv0\ \Rightarrow\ \partial_0|\varphi|^2=0\ \Rightarrow\ R=2\chi_0^*\chi_1=0\ \Rightarrow\ \dot{\mathcal A}=0`,
+  line:"<b>With charge present, A⁰ = 0 and ∇·A = 0 is a constraint on the matter, not a gauge.</b> The two-level coherence R that drives (A38) must vanish. Appendix B's Proca mass makes it worse: it forces ∇·A = 0, then |φ|² = 0.",
+  rests:"check 1 · (A6)–(A8), (A12), (A38), (A48) · Proca identity cited" },
+
+{ id:"sech", tag:"appendix a", title:"The pulse is standard, and every input is blank.",
+  pic:S(`
+   <line x1="40" y1="170" x2="480" y2="170" stroke="${R}"/><line x1="40" y1="170" x2="40" y2="40" stroke="${R}"/>
+   <path d="${sechPath(40,170,440,120,0.08,0.5)}" fill="none" stroke="${T}" stroke-width="3"/>
+   <line x1="260" y1="50" x2="260" y2="170" stroke="${M}" stroke-dasharray="3 4"/>
+   <text x="266" y="62" fill="${M}" font-size="11">τ₀ = −τ_R ln tan(θ₀/2)</text>
+   <text x="60" y="60" fill="${SU}" font-size="12">peak gΩN/4π: g ? Ω ? N ?</text>
+   <text x="330" y="150" fill="${SU}" font-size="12">width τ_R: g ? Ω ? N ?</text>
+   <text x="60" y="150" fill="${SU}" font-size="12">θ₀ ?  L₃ ?  T₂ ?</text>
+   <text x="40" y="200" fill="${M}" font-size="11">the bad-cavity limit L₃ → 0 of mean-field Maxwell–Bloch; replayed to 1 %</text>`),
+  tex:String.raw`\mathcal A=\frac{g\Omega N}{4\pi}\,\mathrm{sech}\frac{x^0-\tau_0}{\tau_R},\qquad \tau_R=\frac{2\pi}{g^2\Omega N},\qquad \theta_0\approx\frac{2}{\sqrt N}\ \text{(cited, unused)}`,
+  line:"<b>Given θ₀, g, Ω, N, L₃ the algebra holds; none has a value, so no wavelength, intensity or time is predicted.</b> The one quantum part of super-radiance, the vacuum tipping angle, is left free. λ = 500 nm is chosen, not derived.",
+  rests:"check 2 · (A33)–(A47) · Gross–Haroche cited" },
+
+{ id:"direction", tag:"appendix a", title:"The light leaves sideways. Figure 1 draws it leaving the ends.",
+  pic:S(`
+   <rect x="110" y="95" width="300" height="34" rx="17" fill="var(--wit-soft)" stroke="${W}"/>
+   <text x="220" y="116" fill="${W}" font-size="12">microtubule, axis x³</text>
+   ${[150,230,310,390].map(x=>`<line x1="${x}" y1="90" x2="${x}" y2="40" stroke="${T}" stroke-width="2"/><polygon points="${x-5},44 ${x+5},44 ${x},34" fill="${T}"/><line x1="${x}" y1="134" x2="${x}" y2="184" stroke="${T}" stroke-width="2"/><polygon points="${x-5},180 ${x+5},180 ${x},190" fill="${T}"/>`).join("")}
+   <text x="420" y="60" fill="${T}" font-size="11">k ⊥ x³ (A13)</text><text x="420" y="76" fill="${T}" font-size="11">E ∥ x³ (A₁=A₂=0)</text>
+   <line x1="100" y1="112" x2="40" y2="112" stroke="${N}" stroke-width="2" stroke-dasharray="6 4"/><text x="18" y="100" fill="${N}" font-size="14">✗</text>
+   <line x1="420" y1="112" x2="480" y2="112" stroke="${N}" stroke-width="2" stroke-dasharray="6 4"/><text x="486" y="100" fill="${N}" font-size="14">✗</text>
+   <text x="20" y="210" fill="${M}" font-size="11">dipole along the axis: pattern ∝ sin²θ, zero along the axis; Figure 1's end rings are supplied</text>`),
+  tex:String.raw`\mathbf k=(k^1,k^2,0),\ \ A_1=A_2=0\ \ \Longrightarrow\ \ \frac{dP}{d\Omega}\propto\sin^2\theta,\qquad \theta=0:\ 0`,
+  line:"<b>Under the paper's own (A13) the emission is perpendicular to the axis and polarized along it.</b> The waveguide story of Section 5 needs axial light that (A13) does not produce.",
+  rests:"check 7 · (A10), (A13), (A27)" },
+
+{ id:"guide", tag:"section 5", title:"A 21 nm cutoff excludes 500 nm, it does not admit it.",
+  pic:S(`
+   <line x1="40" y1="120" x2="490" y2="120" stroke="${I}" stroke-width="2"/>
+   ${[[40,"1 nm"],[140,"10"],[240,"100"],[340,"1 µm"],[440,"10 µm"]].map(t=>`<line x1="${t[0]}" y1="114" x2="${t[0]}" y2="126" stroke="${I}"/><text x="${t[0]-10}" y="145" fill="${M}" font-size="11">${t[1]}</text>`).join("")}
+   <line x1="172" y1="70" x2="172" y2="120" stroke="${N}" stroke-width="2"/><text x="120" y="62" fill="${N}" font-size="12">λ_c = 21 nm (pipe, d ≈ 12 nm)</text>
+   <rect x="40" y="90" width="132" height="22" fill="var(--teal-soft)"/><text x="48" y="106" fill="${T}" font-size="11">propagates: λ &lt; λ_c</text>
+   <rect x="172" y="90" width="318" height="22" fill="var(--no-soft)"/><text x="200" y="106" fill="${N}" font-size="11">evanescent: UV … 500 nm … NIR 1500 nm</text>
+   <text x="40" y="185" fill="${M}" font-size="11">dielectric reading (protein in water): no cutoff, V = (πd/λ)√(n₁²−n₂²) ≈ 0.11 at 500 nm, mode unconfined</text>
+   <text x="40" y="205" fill="${M}" font-size="11">the paper's sentence: “guide light from strong ultra-violet to near-infrared”</text>`),
+  tex:String.raw`\lambda_c=1.706\,d=21\ \text{nm}\ \Rightarrow\ d\approx12\ \text{nm};\quad \text{propagates iff }\lambda<\lambda_c;\qquad V=\frac{\pi d}{\lambda}\sqrt{n_1^2-n_2^2}\approx0.11`,
+  line:"<b>Under the model that gives 21 nm, everything from UV to NIR is below cutoff.</b> Under the dielectric model there is no cutoff, and V ≈ 0.1 means the lumen does not hold the mode.",
+  rests:"check 6 · Section 5 text · Jackson, Snyder–Love cited" },
+
+{ id:"dropped", tag:"appendix c", title:"“Quantum” lives in the terms set to zero.",
+  pic:S(`
+   <rect x="20" y="30" width="300" height="160" rx="8" fill="none" stroke="${I}"/>
+   <text x="32" y="52" fill="${I}" font-size="12">Γ₂PI (A56) carries</text>
+   ${[["Δ   boson propagator (A60)","neglected"],["D¹¹ photon propagator (A59)","neglected"],["Γ₂  2PI vertices","higher order"]].map((r,i)=>`<text x="40" y="${80+i*26}" fill="${I}" font-size="12">${r[0]}</text><line x1="36" y1="${76+i*26}" x2="250" y2="${76+i*26}" stroke="${N}" stroke-width="2"/><text x="256" y="${80+i*26}" fill="${N}" font-size="10">${r[1]}</text>`).join("")}
+   <text x="40" y="166" fill="${T}" font-size="12">−ℏ²∇²|φ̄| / (2me|φ̄|)   the one survivor</text>
+   <path d="M330 160 L 400 160" stroke="${SU}" stroke-width="2"/><text x="408" y="164" fill="${SU}" font-size="12">“distortion”,</text><text x="408" y="180" fill="${SU}" font-size="12">damped away</text>
+   <text x="330" y="60" fill="${M}" font-size="11">what Section 5 talks about:</text><text x="330" y="78" fill="${M}" font-size="11">superposition, coherence,</text><text x="330" y="96" fill="${M}" font-size="11">entanglement = Δ, D, Γ₂</text>
+   <text x="20" y="212" fill="${M}" font-size="11">(A63) with Γ₂ = D¹¹ = 0 is exactly the Madelung pair (A69)–(A70); replayed symbolically</text>`),
+  tex:String.raw`A_0-\frac{\partial_0\beta}{e}=-\underbrace{\frac{\hbar^2\nabla^2|\bar\varphi|}{2me|\bar\varphi|}}_{\text{only }\hbar;\ \text{“distortion”}}+\frac{e}{2m}\Big(\mathbf A-\frac{\nabla\beta}{e}\Big)^2,\qquad \Gamma_2=D^{11}=\Delta^{11}=0`,
+  line:"<b>Appendix C computes the classical sector and Section 5 claims the quantum one.</b> Drop the Bohm term and nothing in Sections 3–4 changes in kind. Printed sign of (A70) differs from (A81)/(A87); the simulation has the derived sign.",
+  rests:"check 3 · (A56), (A63), (A69)–(A71), (A87) · Section 5 text" },
+
+{ id:"budget", tag:"projection obstruction", title:"A mean-field run leaves the product manifold at a rate it never computes.",
+  pic:S(`
+   <line x1="50" y1="180" x2="490" y2="180" stroke="${R}"/><line x1="50" y1="180" x2="50" y2="30" stroke="${R}"/>
+   <text x="470" y="200" fill="${M}" font-size="11">t</text><text x="20" y="40" fill="${M}" font-size="11">D_e</text>
+   <line x1="50" y1="180" x2="470" y2="50" stroke="${T}" stroke-width="3"/><text x="300" y="90" fill="${T}" font-size="12">true defect ≈ ν_e t</text>
+   <path d="M50 180 Q 200 60 300 180" fill="none" stroke="${T}" stroke-width="1.5" stroke-dasharray="5 4"/><text x="120" y="130" fill="${T}" font-size="11">bound ν_e t − 24g²t²</text>
+   <line x1="50" y1="180" x2="470" y2="180" stroke="${N}" stroke-width="3"/><text x="200" y="172" fill="${N}" font-size="12">paper: D_e ≡ 0 (product kept forever)</text>
+   <text x="330" y="150" fill="${SU}" font-size="12">ν_e = ?   g = ?   Λ* = ?</text>
+   <text x="50" y="212" fill="${M}" font-size="11">toy with the paper's coupling (b†b)(a+a†): ν = 2g|β|, numeric 0.150000 = formula; D(t) ≈ νt out to t ~ 1/g</text>`),
+  tex:String.raw`D_e(t)=\big\|\rho_e(t)-\rho_a(t)\!\otimes\!\rho_b(t)\big\|_1\ \ge\ \nu_e t-24g^2t^2,\qquad \nu_e=2\|\chi\|=\frac{2}{T_{\rm ent}}`,
+  line:"<b>Keeping (φ̄, A) and dropping Δ, D, Γ₂ is the product retraction; Theorem 5.1 prices it.</b> The paper owes ν_e, Λ* for the damped case, the window, and the Duhamel error on |φ̄|² in Figure 6. “Balance of decoherence and error corrections” is h_safe with none of its four inputs.",
+  rests:"check 10 · PO Thm 5.1, §5.3.1, §5.4.1, §5.10.A, §5.18 cited · (A69)–(A71)" },
+
+{ id:"scale", tag:"section 4", title:"No value of m, so no units: two readings, both fail.",
+  pic:S(`
+   <text x="20" y="26" fill="${M}" font-size="12">m = 4 meV (the paper's water scale)</text>
+   <line x1="30" y1="60" x2="250" y2="60" stroke="${I}" stroke-width="2"/>${[30,140,250].map(x=>`<line x1="${x}" y1="54" x2="${x}" y2="66" stroke="${I}"/>`).join("")}
+   <text x="30" y="84" fill="${I}" font-size="11">a_s = 49 µm</text><text x="150" y="84" fill="${I}" font-size="11">cell = 1.5 mm</text>
+   <line x1="30" y1="104" x2="31" y2="104" stroke="${N}" stroke-width="6"/><text x="40" y="108" fill="${N}" font-size="11">fringe λ/2 = 250 nm: 200× below one cell</text>
+   <text x="290" y="26" fill="${M}" font-size="12">a_s = 100 nm (resolves fringes)</text>
+   <text x="300" y="60" fill="${I}" font-size="11">m = 2 eV</text>
+   <text x="300" y="84" fill="${N}" font-size="11">M = √2 m = 2.8 eV</text>
+   <text x="300" y="108" fill="${N}" font-size="11">γ = 0.2 m = 0.4 eV = 6·10¹⁴ s⁻¹</text>
+   <text x="300" y="132" fill="${N}" font-size="11">in water, at 310 K</text>
+   <text x="20" y="175" fill="${M}" font-size="11">m a_s = 1 ties every number of Section 4 to one unknown mass.</text>
+   <text x="20" y="195" fill="${M}" font-size="11">Either Sections 3 and 4 describe different objects, or the parameters are not biological.</text>`),
+  tex:String.raw`a_s=\frac{\hbar c}{mc^2}:\quad m=4\ \text{meV}\Rightarrow a_s=49\ \mu\text{m};\qquad a_s=100\ \text{nm}\Rightarrow m=2\ \text{eV},\ M=2.8\ \text{eV},\ \gamma=0.4\ \text{eV}`,
+  line:"<b>The hologram of Section 3 is written at 500 nm; the lattice of Section 4 cannot both resolve it and keep meV physics.</b> Which reading is intended is open.",
+  rests:"check 9 · Section 4 parameters · Section 5 (4 meV)" },
+
+{ id:"memory", tag:"retention", title:"Written, never read: M and u, no r, no ≈.",
+  pic:S(`
+   ${[["M","store","|φ̄⁽ᴺ⁾|²",T],["u","write","(A82)–(A91)",T],["r","read","∅ (App. B only)",N],["≈","match","∅",N]].map((l,i)=>{const x=14+i*126;return `<rect x="${x}" y="22" width="116" height="78" rx="8" fill="${l[3]===T?'var(--teal-soft)':'var(--no-soft)'}" stroke="${l[3]}" ${l[3]===N?'stroke-dasharray="5 4"':''}/><text x="${x+10}" y="46" fill="${l[3]}" font-size="15" font-weight="600">${l[0]}</text><text x="${x+34}" y="46" fill="${M}" font-size="11">${l[1]}</text><text x="${x+10}" y="74" fill="${I}" font-size="11">${l[2]}</text>`}).join("")}
+   <line x1="40" y1="190" x2="490" y2="190" stroke="${R}"/><text x="440" y="208" fill="${M}" font-size="11">m x⁰</text>
+   <path d="M40 190 L 100 186 L 160 172 L 220 160 L 300 150 L 400 148 L 490 156" fill="none" stroke="${W}" stroke-width="2.5"/>
+   <text x="60" y="140" fill="${W}" font-size="11">Fig. 6 dip: 1.3 % → 21 %, then “slightly distorted”</text>
+   <path d="M40 120 Q 120 115 220 118 L 490 118" fill="none" stroke="${SU}" stroke-width="1.5" stroke-dasharray="4 4"/><text x="300" y="112" fill="${SU}" font-size="11">Fig. 5: A⁽ᴺ⁾ → 0 by m x⁰ = 200</text>`),
+  tex:String.raw`\mathcal R=(M,u,r,\approx):\quad M=|\bar\varphi^{(N)}|^2,\ \ u=\text{(A82)–(A91)},\ \ r=\varnothing,\ \ \approx\;=\varnothing`,
+  line:"<b>A row is inserted and no query ever runs.</b> The reconstruction (A52) is never applied to the Appendix C density, which is a step, not |r+o|². One year at 310 K needs about 1.2 eV; the paper's scale is 4 meV, about 1 ps.",
+  rests:"witnessed: Fig. 5, 6, Section 5 · PR #513 check 2, replayed here" },
+
+{ id:"hologram", tag:"appendix b", title:"The hologram is put in by hand and read at 4.5 %.",
+  pic:S(`
+   <rect x="20" y="40" width="220" height="60" rx="8" fill="var(--supplied-soft)" stroke="${SU}"/>
+   <text x="32" y="64" fill="${SU}" font-size="12">|φ|² ∝ |r + o|²  (A51)</text><text x="32" y="86" fill="${SU}" font-size="11">“consider the case”: supplied, not produced</text>
+   <rect x="20" y="120" width="220" height="40" rx="8" fill="var(--no-soft)" stroke="${N}" stroke-dasharray="5 4"/>
+   <text x="32" y="145" fill="${N}" font-size="12">object wave o: no source anywhere</text>
+   <line x1="290" y1="150" x2="500" y2="150" stroke="${R}"/><line x1="290" y1="150" x2="290" y2="40" stroke="${R}"/>
+   <rect x="300" y="45" width="190" height="100" fill="var(--teal-soft)"/><text x="310" y="100" fill="${T}" font-size="12">reference r (100 %)</text>
+   <rect x="300" y="140" width="190" height="5" fill="${T}"/><text x="310" y="132" fill="${T}" font-size="11">image |r|²o: 4.5 % amplitude</text>
+   <text x="20" y="200" fill="${M}" font-size="11">London screening writes the density into the field; (A49) is valid only when the 4.5 % is small</text>`),
+  tex:String.raw`A_i\approx\Big(1-\frac{e^2|\varphi|^2}{M^2m}\Big)r,\qquad |\varphi|^2\propto|r+o|^2\ \text{(put in)},\qquad \frac{e^2|\varphi|^2}{M^2m}=0.045`,
+  line:"<b>Classical amplitude holography: an intensity written into a transmittance and read by r; the phase of φ plays no part.</b> A strong reconstruction and a valid expansion exclude each other.",
+  rests:"check 5 · (A48)–(A52) · Section 4 parameters" },
+
+{ id:"control", tag:"section 4", title:"Open loop, no evaluator: it “approaches due to damping”.",
+  pic:S(`
+   <rect x="14" y="80" width="70" height="40" rx="6" fill="var(--supplied-soft)" stroke="${SU}"/><text x="22" y="104" fill="${SU}" font-size="11">u⁽⁰⁾ e^{−γ₂t}</text>
+   ${[0,1,2,3,4].map(i=>`<rect x="${100+i*70}" y="80" width="56" height="40" rx="6" fill="var(--wit-soft)" stroke="${W}"/><text x="${108+i*70}" y="98" fill="${W}" font-size="10">${["scalp","skull","dura","CSF","cortex"][i]}</text><text x="${108+i*70}" y="112" fill="${M}" font-size="9">same e,m,M²,γ</text>`).join("")}
+   ${[0,1,2,3,4].map(i=>`<line x1="${86+i*70}" y1="100" x2="${98+i*70}" y2="100" stroke="${I}" stroke-width="2"/><text x="${86+i*70}" y="94" fill="${M}" font-size="9">v</text>`).join("")}
+   <rect x="450" y="80" width="60" height="40" rx="6" fill="var(--teal-soft)" stroke="${T}"/><text x="458" y="104" fill="${T}" font-size="11">|φ̄⁽ᴺ⁾|²</text>
+   <path d="M480 130 L 480 170 L 50 170 L 50 130" fill="none" stroke="${N}" stroke-width="2" stroke-dasharray="6 4"/><text x="200" y="164" fill="${N}" font-size="13">✗ no error, no feedback, no readout</text>
+   <text x="14" y="40" fill="${M}" font-size="11">inputs by static inversion (A88)–(A89): drop ∂₀ and the matter term; gain (M²/m²)⁴/v⁴ × 0.1 = 3.9</text>
+   <text x="14" y="205" fill="${M}" font-size="11">number conserved to 10⁻⁶ %: the integrator's continuity check; Gauss's law broken by M², γ, v; energy (A74) never reported</text>`),
+  tex:String.raw`u^{(0)}=\mathcal S^{-1}u^{(N)},\quad 0.1\,\frac{(M^2/m^2)^4}{v^4}=3.9\ (\text{“}\approx3\text{”});\qquad \text{no }J,\ \text{no tolerance},\ A^{(N)}\to0`,
+  line:"<b>“Morphological computation” and “reservoir” are names here, not operations.</b> One dip, 1.3–21 % contrast, no convergence study: an approximation order, not an error bar.",
+  rests:"witnessed: Section 4, Fig. 5–6 · check 11 · PR #513 check 1a, replayed here" },
+
+{ id:"ladder", tag:"section 5", title:"The four operations are rungs 2–5. The model reaches rung 1.",
+  pic:S(`
+   ${["interaction","registration","typed witness","re-comparison","evaluator accepts"].map((s,i)=>{const y=190-i*36;return `<line x1="40" y1="${y}" x2="230" y2="${y}" stroke="${I}" stroke-width="2"/><text x="50" y="${y-8}" fill="${I}" font-size="12">${i+1} ${s}</text>`}).join("")}
+   <line x1="40" y1="200" x2="40" y2="30" stroke="${I}" stroke-width="2"/><line x1="230" y1="200" x2="230" y2="30" stroke="${I}" stroke-width="2"/>
+   ${[["field writes density: (A86)",T],["“register changes” — M, u supplied",T],["“decipher” — r = ∅",N],["“translate… concepts” — ≈ = ∅",N],["“decide” — J, tolerance = ∅",N]].map((l,i)=>{const y=186-i*36;return `<text x="250" y="${y}" fill="${l[1]}" font-size="11">${l[1]===T?'✓':'✗'} ${l[0]}</text>`}).join("")}
+   <text x="250" y="22" fill="${M}" font-size="11">policy: “encode back … macroscopic effect” — open loop</text>`),
+  tex:String.raw`H\leftrightarrow E\ \text{needs}\ q:H\to P,\ \approx\ \text{on }P;\qquad |P|<|H|\ \Rightarrow\ \exists\,h\neq h':\ q(h)=q(h')`,
+  line:"<b>“One-to-one correspondence” is a bijection with no map.</b> A finite report channel merges holograms (pigeonhole); unreported differences change no verdict (blind spot); a self-report does not certify the experience it reports (firewall). The headset experiment can measure q on reports, which is worth doing.",
+  rests:"witnessed: Section 5 · definitions, critique §8.2–8.3" },
+
+{ id:"hmind", tag:"the other review", title:"H_mind is the wrong shape of repair.",
+  pic:S(`
+   <rect x="20" y="40" width="220" height="50" rx="8" fill="none" stroke="${N}"/><text x="30" y="70" fill="${N}" font-size="13">H_brain + H_mind + H_int</text>
+   <line x1="30" y1="45" x2="230" y2="85" stroke="${N}" stroke-width="2"/>
+   <text x="20" y="120" fill="${M}" font-size="11">a Hamiltonian adds dynamics;</text><text x="20" y="136" fill="${M}" font-size="11">the paper already has dynamics</text>
+   <text x="20" y="160" fill="${M}" font-size="11">a sector cannot certify its own</text><text x="20" y="176" fill="${M}" font-size="11">evaluator from inside (blind spot)</text>
+   ${[["Presentation","q : X → P"],["Memory","(M,u,r,≈)"],["Evaluator","J, tolerance"],["Policy","status → act"]].map((l,i)=>{const x=270+(i%2)*120,y=40+Math.floor(i/2)*60;return `<rect x="${x}" y="${y}" width="110" height="48" rx="8" fill="var(--teal-soft)" stroke="${T}"/><text x="${x+8}" y="${y+20}" fill="${T}" font-size="12" font-weight="600">${l[0]}</text><text x="${x+8}" y="${y+38}" fill="${I}" font-size="10">${l[1]}</text>`}).join("")}
+   <rect x="270" y="166" width="230" height="30" rx="8" fill="none" stroke="${SU}" stroke-dasharray="5 4"/><text x="282" y="186" fill="${SU}" font-size="12">Authority: outside the observer</text>`),
+  tex:String.raw`H_{\rm brain}+H_{\rm mind}+H_{\rm int}\ \not\ni\ \mathcal O=(\mathsf{Pres},\mathsf{Mem},\mathsf{Eval},\mathsf{Policy}),\quad \text{authority outside}`,
+  line:"<b>ChatGPT's five points are right in their physics and each stops a step short.</b> Its proposed H_mind would reproduce the blind spot. Its question “which result requires a mind” has a sharp form: the delete-the-word test.",
+  rests:"critique §8.5 · ChatGPT review (claims to break, not support)" },
+
+{ id:"survives", tag:"credit", title:"What survives.",
+  list:["The sech pulse (A45)–(A47), given its five inputs and A⁰ ≠ 0.","The Madelung reduction (A69)–(A70), with the sign of (A81)/(A87).","The Gabor term |r|²o in (A52), given a supplied |r+o|².","The arithmetic of (3)–(5) and the integrator's number check.","“How a quantum mind could perceive the macro-world is yet another mystery altogether.”","The headset experiment, read as a test of input fields against reports with a declared q."],
+  tex:"", line:"", rests:"checks 2, 3, 5 · PR #513 check 3 · Section 5 text" },
+
+{ id:"owes", tag:"questions", title:"What the paper owes, each a computable quantity.",
+  list:["A⁰ = ∇⁻²J⁰ in Appendix A: the dipole–dipole shift and dephasing against τ_R.","Values of Ω, g, N, L₃ and the τ_R, τ₀, λ they give.","Which equation produces end emission, and which model guides 500 nm in a 12 nm lumen.","The value of m, hence a_s, M, γ in SI units.","ν_e, Λ*, the window and the Duhamel error on |φ̄|² for the Figure 6 run.","∇·E = J⁰ + e along the run and the Coulomb energy of the 21 % dip.","The barrier between record states and r(M) after m x⁰ = 200.","(A52) applied to the Appendix C density: what image comes back.","For the headset: P, q, ≈ and who evaluates. Which result changes if “mind” is deleted.","Figure 6 at two lattice spacings and two time steps, with the energy (A74)."],
+  tex:"", line:"", rests:"critique §10" }
+];
+
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function tex(t){
+  if(!t) return "";
+  try{ if(window.katex) return katex.renderToString(t,{output:"mathml",displayMode:true,throwOnError:false}); }catch(e){}
+  return `<code>${esc(t)}</code>`;
+}
+
+const grid=document.getElementById("grid");
+grid.innerHTML = CARDS.map(c=>`
+ <article class="card" id="c-${c.id}" data-id="${c.id}">
+  <div class="head"><h2>${c.title}</h2><span class="tag">${c.tag}</span></div>
+  ${c.list?"":`<div class="pic">${c.pic}</div>`}
+  <div class="body">
+   ${c.list?`<ol class="list">${c.list.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>`:`<div class="math">${tex(c.tex)}</div><p class="line">${c.line}</p>`}
+   <div class="rests">rests on <span>${esc(c.rests)}</span></div>
+  </div>
+  <div class="bar">
+   <div class="btns">
+    <button type="button" data-v="right" aria-pressed="false">✓ Right</button>
+    <button type="button" data-v="wrong" aria-pressed="false">✗ Wrong</button>
+    <button type="button" data-v="unsure" aria-pressed="false">? Unsure</button>
+    <span class="saved" id="saved-${c.id}"></span>
+   </div>
+   <label for="note-${c.id}" hidden>Note</label>
+   <textarea id="note-${c.id}" placeholder="What's right, what's wrong, what to change…"></textarea>
+  </div>
+ </article>`).join("");
+
+const statusEl=document.getElementById("status");
+const state={}; let db=null;
+function paint(id){
+  const card=document.getElementById("c-"+id); if(!card) return;
+  const s=state[id]||{};
+  card.classList.remove("v-right","v-wrong","v-unsure"); if(s.verdict) card.classList.add("v-"+s.verdict);
+  card.querySelectorAll(".btns button").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.v===s.verdict)));
+  const ta=document.getElementById("note-"+id); if(ta && document.activeElement!==ta) ta.value=s.note||"";
+}
+function localLoad(){ try{ const raw=localStorage.getItem("audit-marks"); if(raw) Object.assign(state,JSON.parse(raw)); }catch(e){} }
+function localSave(){ try{ localStorage.setItem("audit-marks",JSON.stringify(state)); }catch(e){} }
+async function save(id){
+  const s=state[id]||{}; const el=document.getElementById("saved-"+id);
+  if(db){ try{ await db.collection("marks").doc(id).set({verdict:s.verdict||"",note:s.note||"",updatedAt:new Date().toISOString()}); el.textContent="saved"; }
+          catch(e){ el.textContent="not saved: "+(e&&e.code||"error"); } }
+  else { localSave(); el.textContent="saved in this browser only"; }
+}
+const timers={};
+grid.addEventListener("click",e=>{
+  const b=e.target.closest(".btns button"); if(!b) return;
+  const id=b.closest(".card").dataset.id; state[id]=state[id]||{};
+  state[id].verdict = state[id].verdict===b.dataset.v ? "" : b.dataset.v;
+  paint(id); save(id);
+});
+grid.addEventListener("input",e=>{
+  if(e.target.tagName!=="TEXTAREA") return;
+  const id=e.target.closest(".card").dataset.id; state[id]=state[id]||{}; state[id].note=e.target.value;
+  document.getElementById("saved-"+id).textContent="typing…";
+  clearTimeout(timers[id]); timers[id]=setTimeout(()=>save(id),900);
+});
+localLoad(); CARDS.forEach(c=>paint(c.id));
+
+(async()=>{
+  let d=null; try{ d = window.claude && window.claude.use ? await window.claude.use("db") : null; }catch(e){ d=null; }
+  if(!d){ statusEl.textContent="Marks are saved in this browser only (shared marks unavailable here)."; return; }
+  db=d; statusEl.textContent="Loading shared marks…";
+  const t=setTimeout(()=>{statusEl.textContent="Shared marks are slow to load; your marks still save.";},10000);
+  db.collection("marks").onSnapshot(snap=>{
+    clearTimeout(t);
+    snap.docs.forEach(doc=>{ const v=doc.data()||{}; state[doc.id]={verdict:v.verdict||"",note:v.note||""}; paint(doc.id); });
+    const n=snap.docs.filter(x=>(x.data()||{}).verdict).length;
+    statusEl.textContent = `Shared marks: ${n} of ${CARDS.length} cards marked. Claude can read these.`;
+  }, err=>{ clearTimeout(t); statusEl.textContent="Could not load shared marks ("+(err&&err.code||"error")+"). Your marks save in this browser."; db=null; });
+})();
+</script>

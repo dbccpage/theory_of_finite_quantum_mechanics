@@ -5,7 +5,6 @@ The checks here use the paper's own equations: full calculus, with fields on the
 | Script | What it checks |
 |---|---|
 | `adversarial_review_checks.py` | 1a: Appendix C keeps Gauss's law in the pure Maxwell part, and M², γ and v break it. 1b: the e/m misprint in (A76)/(A78). 1c: the initial data and the uniform background. 1d: the targets (10)–(11) are curl-free. 2: Landauer numbers and the energy barrier needed for one-year retention. 3: capacity arithmetic. |
+| `critique_checks.py` | Replays [critique_wdp_po.md](../critique_wdp_po.md). 1: A⁰ = 0 with ∇·A = 0 freezes the charge density through (A7), so the two-level coherence R and the pulse of (A38) vanish; the Proca variant of Appendix B. 2: (A36)–(A38) with the loss term (A42) integrate to the sech pulse (A45) only as L₃ → 0. 3: (A63) with Γ₂ = D¹¹ = 0 is exactly the Madelung pair (A69)–(A70); the V² sign printed in (A70) differs from (A81)/(A87). 4: Bohm term against the A² term in A₀ at the Figure 6 edge. 5: hologram modulation depth e²\|φ\|²/(M²m) = 0.045. 6: the 21 nm waveguide cutoff read as a conducting pipe and as a dielectric rod (V ≈ 0.1). 7: emission is sideways and axially polarized under (A13). 8: photons per second from 10⁻¹³ W against 2.5 PB. 9: the lattice unit a_s = 1/m under two readings of m. 10: Projection Obstruction Theorem 5.1 on a two-mode toy with the paper's coupling structure (ν = 2g\|β\|Δx). 11: the 3.9 gain, water per λ³, 4 meV against k_BT. |
 
-Run with `python code/adversarial_review_checks.py` from the folder above. It needs sympy.
-
-The deeper continuum critique of the paper is being built in a separate thread, and its scripts will land here.
+Run with `python -I code/adversarial_review_checks.py` and `python -I code/critique_checks.py` from the folder above. Both need sympy; the second also needs numpy.
