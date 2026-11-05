@@ -13,7 +13,7 @@ academic_editors: "Nikolaj Sorgenfrei Blom, Pierre Madl, Livio Giuliani"
 ---
 
 <!--
-Markdown transcription of the published PDF (25 pages, file ijms-25-02399.pdf in this folder).
+Markdown transcription of the published PDF (25 pages, file 3_paper.pdf in this folder).
 The text is the authors' own, unchanged. Equations were re-typeset in LaTeX by reading each page image.
 The figures are not reproduced; each is described in one line, marked in italics.
 Places where the printed equation looks wrong are kept as printed and flagged with a note in brackets.

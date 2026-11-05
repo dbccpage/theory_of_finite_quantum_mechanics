@@ -56,11 +56,11 @@ The paper says as much in the sentence that opens the paragraph containing the l
 
 **The paper shows** (Section 4, Appendix C): on a 128 × 128 periodic grid, four identical copies of a damped, screened field equation, coupled in a chain, driven at one end by an input that was computed backwards from a chosen target, reach a field close to that target (Figure 5) and produce a dip in the field φ's density in the shape of the target, growing from 1.3 % to 21 % over the run (Figure 6).
 
-**The paper claims** that this is "affecting our memory and subjective experiences".
+**The paper claims** that by doing this to holograms "we might be able to affect our memory and subjective experiences".
 
 Three things are imported in that one step, none of them from the mathematics:
 
-1. that the density dip in φ is a memory. In the model it is the response of a charged fluid to the intensity of the field driving it: switch the coupling e to zero and the dip is gone, because the term that produces it is proportional to e²;
+1. that the density dip in φ is a memory. In the model it is the charged fluid carried along by the field that drives it: the fluid moves with velocity (e/m)A, so the dip grows in proportion to the coupling e, and at e = 0 it is gone;
 2. that a memory in the model would be a memory of something. The target was a shape the authors chose (three line segments, the paper's "3 polygonal lines", equations (10) and (11)). Nothing was learned, recognised, or recalled; a pattern was written by a drive designed to write it;
 3. that a memory is an experience. No variable in the paper stands for an experience, so nothing can be said to change one.
 
@@ -100,9 +100,9 @@ This does not follow. k_BT ln 2 is the least heat that must be released to *eras
 
 **The paper claims**: "Using damping input functions, density distributions of charged bosons for holograms stops evolving over time, and target binary holograms are achieved."
 
-Three points. First, the density does not stop evolving: the paper's own Figure 6 shows the dip deepening at every sampled time, 1.3 %, 4.5 %, 9.1 %, 16 %, 21 %, with the drive already gone. What stops is the driver, by construction (its decay rate γ₂ was put in by hand). Second, "binary" is a word, not a feature of the result: the dip is a continuous number between 1.3 % and 21 %, and nothing in the paper thresholds it. Third, the same paragraph says that because the velocity is still nonzero at late times, "charged bosons will collect into the peripheral regions": by the paper's own account the pattern keeps moving after the drive is gone, so whatever was written is not held.
+Three points. First, the density does not stop evolving: the paper's own Figure 6 shows the dip deepening at every sampled time, 1.3 %, 4.5 %, 9.1 %, 16 %, 21 %, because the drive is still on: it decays at the rate γ₂ = 0.01 put in by hand, so at mx⁰ = 100 it is still at 37 % of its start. What stops is the driver, by construction. Second, "binary" is a word, not a feature of the result: the dip is a continuous number between 1.3 % and 21 %, and nothing in the paper thresholds it. Third, the same paragraph says that because the velocity is still nonzero at late times, "charged bosons will collect into the peripheral regions": by the paper's own account the pattern keeps moving at late times, so whatever was written is not held.
 
-**The paper shows**, and this is worth quoting, that the "slight distortions" in Figure 6f "originate from the Laplacian of |φ| in A⁰" in equation (A87). That Laplacian term is the only term in Appendix C that is not classical: it is the quantum-pressure term, the one place where Planck's constant survives the paper's truncations. The paper calls it a distortion and reports that it "does not seriously affect" the result. So by the paper's own account, the simulation works despite its only quantum term, not because of it.
+**The paper shows**, and this is worth quoting, that the "slight distortions" in Figure 6f "originate from the Laplacian" of |φ| in A⁰, equation (A87). That Laplacian term is the only term in Appendix C that is not classical: it is the quantum-pressure term, the one place where Planck's constant survives the paper's truncations. The paper calls it a distortion and reports that the distortions "do not seriously affect the step functions". So by the paper's own account, the simulation works despite its only quantum term, not because of it.
 
 ### 1.8 The headset
 
@@ -130,11 +130,11 @@ This matters for how the paper has been cited. It has been offered as support fo
 
 ### 2.2 Sheldrake or Pribram: "Which of these ideas is closer to the truth?"
 
-**The paper claims** that "the holographic brain hypothesis has merits that have not yet been fully explored". It does not decide the question it poses, and it offers no observation that would decide it. "Merits not yet explored" is a research plan, not a finding.
+**The paper claims** that "the holographic brain hypothesis has merits that have not yet been fully explored". It does not decide the question it poses, and it offers no observation that would decide it. "Merits that have not yet been fully explored" is a research plan, not a finding.
 
 ### 2.3 Pribram, Bohm, ordered water, and the 2022 MRI result
 
-**The paper claims** that a 2022 MRI study "implies the involvement of nuclear proton spins of brain water molecules in an entangled quantum state" and is "a major step toward providing evidence that at least some brain functions have hallmarks of non-classical, quantum behavior and are involved in consciousness".
+**The paper claims** that 2022 MRI results "imply the involvement of nuclear proton spins of brain water molecules in an entangled quantum state" and is "a major step toward providing evidence that at least some brain functions have hallmarks of non-classical, quantum behavior and are involved in consciousness".
 
 Whatever that study shows, it cannot be evidence for this paper's model, because this paper's model has no spin variable at all. The field φ is a spinless charged scalar. A result about proton spins, if it stands, is about a different physical quantity than anything in (A1) to (A91).
 
@@ -201,7 +201,7 @@ Two misprints: (A31) has χ₁ where χ₀ is needed; the necessary condition af
 
 ### 4.2 The hologram (Appendix B)
 
-**The paper assumes** an added term M²A in (A48) ("Meissner effect by ionic bioplasma") and an external wave Ã. Note that the external wave enters (A48) only through M²Ã: set M² = 0 and the external wave does nothing at all. Set M² very large and the medium becomes transparent and no image is formed. So the image lives only in a window of M², and its strength is bounded by the screening number e²|φ|²/(M²m), which at the paper's Section 4 values is 0.045.
+**The paper assumes** an added term M²A in (A48) ("for the contribution to Meissner effect", attributed to "ionic bioplasma") and an external wave Ã. Note that the external wave enters (A48) only through M²Ã: set M² = 0 and the external wave does nothing at all. Set M² very large and the medium becomes transparent and no image is formed. So the image lives only in a window of M², and its strength is bounded by the screening number e²|φ|²/(M²m), which at the paper's Section 4 values is 0.045.
 
 **The paper assumes** (A51): that the medium's density is proportional to |r + o|², the interference of a reference wave r and an object wave o. This is the hologram. It is not produced by anything in the paper; it is written down. The object wave o has no source anywhere in the model.
 
@@ -223,7 +223,7 @@ Misprints that affect anyone trying to reproduce the figures: (A70) prints a min
 
 **The paper shows** (A82)–(A86), and from these it follows that the added constants break Gauss's law. The paper reports that the number of bosons is conserved on the lattice to better than 10⁻⁶ %, and that is right: the fluid's own continuity equation holds. But Maxwell's equations also require ∇·E − ρ to stay at zero, and from (A82)–(A86) its rate of change equals the divergence of the M², γ and v terms, which is not zero. A rerun of the simulation at the paper's parameters measures this drift at between 1.1 and 2.3 times the change in charge density that the simulation is reporting. The paper could absorb this by declaring a medium charge that compensates, but it declares none. Without the added terms Gauss's law holds and nothing relaxes to the target, which the paper itself notes ("due to damping").
 
-**The paper shows** the result: Figure 5, the field reaching the target; Figure 6, the density dip growing to 21 %. What produces the dip is the term e²A²/2m in the fluid's pressure balance: the fluid is pushed out of regions of high field intensity. Set e = 0 and there is no dip. This is a classical effect with a name (the ponderomotive force), and nothing in the paper distinguishes the simulated dip from it.
+**The paper shows** the result: Figure 5, the field reaching the target; Figure 6, the density dip growing to 21 %. What produces the dip is the drive itself. In (A86) the fluid moves with velocity (e/m)A, and the drive is longitudinal (the targets are curl-free), so inside the target box, where the drive's divergence is negative, the fluid is carried out. To first order the dip is (e/m) times the divergence times the time the drive has been on, which gives 1.2, 4.5, 8.2, 15.8 and 21.6 % at the five sampled times, close to the paper's figures. Its step shape is the shape of that divergence. Halving e in a rerun roughly halves the dip. Set e = 0 and there is no dip. Nothing in it is specific to holography or to quantum mechanics.
 
 ---
 
@@ -234,7 +234,7 @@ Stated so that each claim is checkable and none goes past its support.
 1. **A pulse.** A medium of identical two-level charged emitters, all within one wavelength of each other, coupled to light, with a seed coherence θ₀ ≠ 0, with a radiation loss added and the field adjusting instantly to it, emits a pulse of the hyperbolic-secant shape with time scale 2π/(g²ΩN). For this to hold, the condition A⁰ = 0 must be dropped in favor of Poisson's equation, at the cost of an electrostatic term that remains to be bounded. The values of g, Ω, N, L₃, θ₀ and the dephasing time are not given, so whether any of this happens in tissue is open.
 2. **A hologram.** If the density of a medium is proportional to |r + o|² and the medium screens an incoming wave r weakly (screening number 0.045 at the paper's values), the screened wave contains the object wave o at an amplitude bounded by that number, together with its twin. How the density would come to be |r + o|², where o comes from, and what reads the screened wave, are not given.
 3. **A count.** A 2 mm slab of refractive index 1.3 and area 2500 cm², resolved at 500 nm in all three dimensions, has 2.6 × 10¹⁶ distinguishable cells; a surface alone has 4 × 10¹². These are counts of cells, not of bits written and read.
-4. **A simulation.** A classical charged fluid with chosen screening and damping, on a periodic 128 × 128 grid, in four identical coupled copies, driven by an input computed from a chosen three-segment target, develops a density depression in the target's shape that reaches 21 % after the drive has decayed. The depression is proportional to the coupling and vanishes at e = 0. The field equations as written do not keep Gauss's law, although the boson number is conserved. The quantity "approximately 3" for the drive amplitude does not match the formula in the text once that formula is corrected.
+4. **A simulation.** A classical charged fluid with chosen screening and damping, on a periodic 128 × 128 grid, in four identical coupled copies, driven by an input computed from a chosen three-segment target, develops a density depression in the target's shape that reaches 21 % as the drive decays. The depression is proportional to the coupling and vanishes at e = 0. The field equations as written do not keep Gauss's law, although the boson number is conserved. The quantity "approximately 3" for the drive amplitude does not match the formula in the text once that formula is corrected.
 5. **No reader, no world-making.** None of 1 to 4 contains a sensory input, a read-out of the stored pattern, an action, an experience, or an observer. The one reader named in the paper is an external headset. The paper assumes an outside world throughout, and contains no claim that unobserved things are absent.
 
 What would turn the story into a result, in order:
@@ -264,8 +264,8 @@ Each of these is a statement about a specific line of the paper. Each can be ref
 8. (A70) prints the opposite sign of the squared-velocity term from (A81) and (A87); the free plane wave satisfies the latter and not the former.
 9. (A88) prints −∂₁²u₁ where the static form of (A82) gives −∂₂²u₁; for the targets (10)–(11) the corrected recursion gives 2.13, not 3.9.
 10. From (A82)–(A86), ∂₀(∇·E − ρ) equals the divergence of the M², γ and v terms, which is not zero.
-11. The density depression of Figure 6 is produced by the e²A²/2m term and vanishes at e = 0.
-12. Figure 6 reports 1.3, 4.5, 9.1, 16, 21 %: the pattern deepens after the drive is gone; it is not binary and it is not read.
+11. The density depression of Figure 6 is the fluid carried by the drive through (A86): it is first order in e, follows the divergence of the drive, and vanishes at e = 0.
+12. Figure 6 reports 1.3, 4.5, 9.1, 16, 21 %: the pattern deepens while the slowly decaying drive is on; it is not binary and it is not read.
 13. 4/λ² × 2500 cm² at 500 nm is 0.5 TB; the factor n_r d/λ = 5200 is what makes 2.6 PB.
 14. k_BT ln 2 bounds the cost of erasing a bit, not the lifetime of a pattern; no barrier for the pattern is given.
 15. No equation in the paper contains a sensory input, a read-out, an action, or an experience; the only reader named is the headset of Section 5.

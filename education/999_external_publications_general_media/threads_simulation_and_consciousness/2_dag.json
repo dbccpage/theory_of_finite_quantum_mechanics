@@ -1,0 +1,604 @@
+{
+ "title": "Holographic brain paper and the rendering post: goals, claims, checks",
+ "how_to_read": [
+  "goals: what we want to finish. A goal is met when every claim it needs holds and its done_when tests pass.",
+  "claims: what we think is true. Each names its kind and the check in 8_checks.py that tests it. A claim holds only if its check passes; agreement between reviewers counts for nothing.",
+  "kinds: quote (the paper's or her words, matched letter for letter), derived (exact algebra), number (arithmetic), rerun (floating-point simulation), cited (textbook physics), reading (a statement about what the paper contains, refuted by pointing at a line).",
+  "withdrawn: claims we made earlier and were wrong about, with what caught them.",
+  "files: every file the folder held at commit c3f17265a, and what became of it. Deleted files remain in git history at that commit."
+ ],
+ "goals": [
+  {
+   "id": "G1",
+   "want": "Five replies to her post, each showing one gap in the reasoning and what the claim owes, each with a picture.",
+   "output": "4_replies.md posts 1-5, pictures 4_1 to 4_5",
+   "needs": [
+    "H1",
+    "H2",
+    "H3",
+    "H4",
+    "H5",
+    "H6"
+   ],
+   "done_when": [
+    "each post at most 500 characters",
+    "no in-house or retired terms",
+    "every quote matches its source letter for letter",
+    "each post names a picture that exists at 1080 x 1080"
+   ]
+  },
+  {
+   "id": "G2",
+   "want": "Two posts on why the paper is weak, plain enough for her to follow.",
+   "output": "4_replies.md posts 6-7, pictures 4_6 and 4_7",
+   "needs": [
+    "P1",
+    "P2",
+    "P6",
+    "P11"
+   ],
+   "done_when": [
+    "the same four tests as G1",
+    "post 7 leaves room for the review link"
+   ]
+  },
+  {
+   "id": "G3",
+   "want": "A review the authors can check line by line, with a repair or a request for every point.",
+   "output": "6_review_for_the_authors.md",
+   "needs": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P5",
+    "P6",
+    "P7",
+    "P8",
+    "P9",
+    "P10",
+    "P11",
+    "P12",
+    "P13",
+    "P14"
+   ],
+   "done_when": [
+    "every number in it is recomputed by 8_checks.py",
+    "every equation label it cites occurs in 3_paper.md"
+   ]
+  },
+  {
+   "id": "G4",
+   "want": "A plain dissection for a general reader, Sections 5 and 6 first.",
+   "output": "5_dissection.md",
+   "needs": [
+    "P1",
+    "P2",
+    "P3",
+    "P4",
+    "P6",
+    "P8",
+    "P11",
+    "H5"
+   ],
+   "done_when": [
+    "no in-house terms",
+    "every quote matches the paper letter for letter"
+   ]
+  },
+  {
+   "id": "G5",
+   "want": "One command replays every claim.",
+   "output": "8_checks.py",
+   "done_when": [
+    "exit 0 only if every claim holds and every goal's tests pass",
+    "the self-test breaks a quote, a length and a term and sees each fail"
+   ]
+  }
+ ],
+ "claims": [
+  {
+   "id": "H1",
+   "kind": "derived",
+   "check": "which_path_record",
+   "says": "A record of which slit removes the stripes whether or not anyone reads it. Copying the record into a reader later leaves the screen pattern exactly as it was.",
+   "rests_on": "a finite two-path model; the same result is textbook quantum mechanics and is seen in many which-path experiments (cited)"
+  },
+  {
+   "id": "H2",
+   "kind": "derived",
+   "check": "equal_records_equal_odds",
+   "says": "'Does not render' read as 'rebuilt exactly whenever someone looks' gives every record the same chance as a world that was there all along, so under independent sampling the Bayes factor is 1 for any data.",
+   "rests_on": "the definition of likelihood; 8_proofs.lean same_weights_same_likelihood"
+  },
+  {
+   "id": "H3",
+   "kind": "quote",
+   "check": "her_words",
+   "says": "Her post removes the computer from the analogy: 'The simulation isn't a giant computer'. A game's skipping needs a program, a computer, a screen and a player."
+  },
+  {
+   "id": "H4",
+   "kind": "derived",
+   "check": "which_path_record",
+   "says": "When a record is read never changes what was recorded: any operation on the record and its reader leaves the screen statistics unchanged.",
+   "rests_on": "the same finite model, with a random unitary on record and reader"
+  },
+  {
+   "id": "H5",
+   "kind": "quote",
+   "check": "paper_quotes",
+   "says": "The paper never uses 'render'. Section 6 opens with the outside world as given. Section 5 calls how a quantum mind could perceive the macro-world 'yet another mystery altogether'."
+  },
+  {
+   "id": "H6",
+   "kind": "derived",
+   "check": "equal_records_equal_odds",
+   "says": "Equal reports alone do not give a Bayes factor of 1 (9 in 10 against 5 in 10 gives 1.8); equal chances for every record, sampled independently, do. Without independence the product rule fails (factor 2).",
+   "rests_on": "8_proofs.lean same_report_not_same_likelihood, same_weights_same_likelihood, same_marginals_not_same_joint"
+  },
+  {
+   "id": "P1",
+   "kind": "derived",
+   "check": "gauge_freezes_charge",
+   "says": "A^0 = 0 with div A = 0 makes the left side of (A7) vanish, so the charge density is zero or constant in time; a constant density forces the two-level coherence R that drives (A38) to zero. Repair: A^0 from Poisson's equation, at the price of an electrostatic term."
+  },
+  {
+   "id": "P2",
+   "kind": "derived",
+   "check": "gauss_residual",
+   "says": "From (A82)-(A86), d/dt(div E - J^0) = -M^2 div A - gamma div(E + grad A_0) + v div(A^(n-1) + A^(n+1)); the e^2 terms cancel. The boson number is conserved; Gauss's law is not."
+  },
+  {
+   "id": "P2r",
+   "kind": "rerun",
+   "check": "rerun_gauss",
+   "slow": true,
+   "says": "At the paper's parameters the Gauss residual is 1.1 to 2.3 times the charge change the run produces, while the density dips match the paper's to within about 10 %."
+  },
+  {
+   "id": "P3",
+   "kind": "derived",
+   "check": "drive_recursion",
+   "says": "The static inverse of (A82) carries d2^2 u1 where (A88) prints d1^2 u1; for targets (10)-(11) the corrected recursion u(n-1) = 2.5 u(n) - u(n+1) gives 2.13, not the 3.9 the text computes by dropping the backward term."
+  },
+  {
+   "id": "P4",
+   "kind": "derived",
+   "check": "hologram_terms",
+   "says": "(A51) assumes the pattern |r + o|^2; in (A48) the external wave enters only through M^2; the screening number is 0.045 at the Section 4 values; (A52) contains the image |r|^2 o and the twin r^2 o*."
+  },
+  {
+   "id": "P5",
+   "kind": "number",
+   "check": "thermal_numbers",
+   "says": "k_B T ln 2 = 18.5 meV at 310 K (the paper says 20), the 500 nm photon is 2.48 eV (2.4), the 60 um figure is hc/(k_B T ln 2); a one-year single-barrier record needs 1.20 eV for an attempt time of 1 ps, 0.46 eV for 1 s."
+  },
+  {
+   "id": "P6",
+   "kind": "number",
+   "check": "capacity_numbers",
+   "says": "8.32e10 bit/mm^2 and 2.6 PB (the paper says 2.5) against 31.25 TB; a surface hologram holds 0.5 TB and the thickness factor n_r d / lambda = 5200 makes the difference; at 4 meV the wavelength is 310 um and the capacity 11 MB; at 1500 nm about 0.1 PB."
+  },
+  {
+   "id": "P7",
+   "kind": "derived",
+   "check": "pulse_algebra",
+   "says": "(A36)-(A38) conserve the energy (A39) and Z^2 + R^2; (A44)-(A45) solve (A43) with tau_R = 2 pi/(g^2 Omega N); at theta_0 = 0 there is no pulse; the Section 3 slab is 4000 wavelengths deep and about 1e6 across, against an emitter-size condition of one wavelength."
+  },
+  {
+   "id": "P8",
+   "kind": "rerun",
+   "check": "dip_first_order",
+   "says": "The density dip of Figure 6 is first order in the charge e: in (A86) the fluid moves with velocity (e/m) A, so the dip is the fluid carried by the longitudinal drive. A first-order estimate, 0.25 (1 - exp(-0.01 t)), gives 1.2, 4.5, 8.2, 15.8 and 21.6 % at t = 5, 20, 40, 100, 200 against the paper's 1.3, 4.5, 9.1, 16 and 21 %. In a rerun, halving e from 0.3 to 0.15 reduces the dip at t = 20 by 1.7, and halving again by 1.9 (an e^2 mechanism would give 4).",
+   "rerun_record": {
+    "input": 2.13,
+    "t": 20,
+    "dip_percent": {
+     "e=0.3": 3.537,
+     "e=0.15": 2.067,
+     "e=0.075": 1.078
+    },
+    "t5_dip_percent": {
+     "e=0.3": 1.028,
+     "e=0.15": 0.559,
+     "e=0.075": 0.286
+    }
+   }
+  },
+  {
+   "id": "P9",
+   "kind": "quote",
+   "check": "paper_quotes",
+   "says": "The paper attributes the slight distortions of Figure 6f to the Laplacian of |phi| in A_0, the only term carrying Planck's constant; a run without it has not been reported."
+  },
+  {
+   "id": "P10",
+   "kind": "number",
+   "check": "waveguide_numbers",
+   "says": "A 21 nm cutoff in a hollow guide passes only shorter wavelengths; as a dielectric rod of radius 12.5 nm (indices 1.5 and 1.33) the guide has V = 0.11 at 500 nm."
+  },
+  {
+   "id": "P11",
+   "kind": "reading",
+   "check": "paper_quotes",
+   "says": "No equation in the paper takes a sense input, reads a stored pattern back, drives an action or stands for an experience; the only reader named is an external headset; the paper reports one simulation and no measurement of its own."
+  },
+  {
+   "id": "P12",
+   "kind": "derived",
+   "check": "misprints",
+   "says": "(A70) prints the wrong sign of the squared-velocity term (the free plane wave satisfies only the + form); (A76) and (A78) print e where (A82) has e^2, which leaves a remainder in the Gauss-law balance; the resonance threshold after (A47) is Omega^2 >= e^2 n/m."
+  },
+  {
+   "id": "P13",
+   "kind": "number",
+   "check": "energy_budget",
+   "says": "1e-13 W at 500 nm is about 2.5e5 photons per second; writing 2.5 PB at one photon per bit from one such source takes about 2500 years."
+  },
+  {
+   "id": "P14",
+   "kind": "derived",
+   "check": "madelung_pair",
+   "says": "Written as phi = R exp(i beta), (A63) is exactly the continuity equation (A69) and the balance (A70) with the + sign: a charged fluid. The Laplacian term in (A70), (A81) and (A87) is the only term that carries Planck's constant."
+  }
+ ],
+ "withdrawn": [
+  {
+   "id": "W1",
+   "said": "The density dip in Figure 6 is produced by the e^2 A^2/2m term and scales as e^2 (5_dissection.md before this rebuild, its statement 11).",
+   "why": "In (A86) the density moves with velocity (e/m) A, so the dip is first order in e. A rerun at e = 0.3, 0.15 and 0.075 gives dips at t = 20 of 3.54, 2.07 and 1.08 %: halving e divides the dip by 1.7 and 1.9, not by 4 (P8). That the dip vanishes at e = 0 still stands.",
+   "caught_by": "this rebuild, by trying to contradict the claim with reruns at three values of e"
+  },
+  {
+   "id": "W2",
+   "said": "The dip deepens after the drive is gone.",
+   "why": "The drive decays with gamma_2 = 0.01, so at t = 100 it is still at 37 %. The dip follows the time integral of the drive's divergence and stops growing only as the drive vanishes.",
+   "caught_by": "this rebuild (P8)"
+  },
+  {
+   "id": "W3",
+   "said": "The resonance threshold is Omega >= e^2 n/m, copied from the paper.",
+   "why": "The two sides have different units; the dispersion relation gives Omega^2 >= e^2 n/m.",
+   "caught_by": "an outside review, checked by derivation (P12)"
+  },
+  {
+   "id": "W4",
+   "said": "The lattice simulation fails to conserve the boson number.",
+   "why": "It conserves it to 1e-6 %, as the paper says; what drifts is div E - J^0 (P2).",
+   "caught_by": "an outside review, checked by rerun"
+  },
+  {
+   "id": "W5",
+   "said": "Corner second differences of the target spoil the drive formula.",
+   "why": "They enter only the misprinted (A88); the corrected inverse has no derivative terms for these targets (P3).",
+   "caught_by": "an outside review, checked by derivation"
+  },
+  {
+   "id": "W6",
+   "said": "A public reply quoted the vision sentence without the paper's 'perhaps'.",
+   "why": "A misquote, however small, hands the reader a reason to doubt the rest. Every quote is now matched letter for letter by the checks.",
+   "caught_by": "our own audit"
+  }
+ ],
+ "files": [
+  {
+   "old": "01_thread/exchange.md",
+   "now": "4_replies.md",
+   "decision": "merged",
+   "note": "her post kept verbatim at the top; the earlier exchange summarized in one line"
+  },
+  {
+   "old": "01_thread/replies.md",
+   "now": "4_replies.md",
+   "decision": "merged",
+   "note": "replaced: five replies on her reasoning plus two on the paper, each with a picture"
+  },
+  {
+   "old": "02_paper/ijms-25-02399.md",
+   "now": "3_paper.md",
+   "decision": "kept",
+   "note": "unchanged"
+  },
+  {
+   "old": "02_paper/ijms-25-02399.pdf",
+   "now": "3_paper.pdf",
+   "decision": "kept",
+   "note": "unchanged"
+  },
+  {
+   "old": "03_critique/adversarial_review.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/adversary_of_first_review.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/analysis.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/assumptions_ledger.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/assumptions_mutation_audit.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/claims_ledger.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/critique_wdp_po.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/holographic_brain_math_exam.pdf",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/math_exam_review.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/outside_review_revised/README.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/outside_review_revised/RECEIVED.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/outside_review_revised/assumption_counterexamples.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/outside_review_revised/claim_register.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/outside_review_revised/discussion_record.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/outside_review_revised/field_constraints_and_retention.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/outside_review_revised/holographic_brain_review.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/outside_review_revised/public_replies.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/outside_review_revised/public_reply_variants.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/outside_review_revised/research_plan.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/outside_review_revised/scope_analysis.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/outside_review_revised/verification/requirements.txt",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/outside_review_revised/verification/review_checks.py",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/outside_review_revised/verification/source_hashes.json",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/outside_review_revised/verification/test_results.json",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/paper_dissection.md",
+   "now": "5_dissection.md",
+   "decision": "merged",
+   "note": "kept; the density-dip mechanism corrected (W1, W2)"
+  },
+  {
+   "old": "03_critique/revised_review_check.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "03_critique/third_outside_review.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "a review record; what it established is carried by a claim below or by a withdrawn node"
+  },
+  {
+   "old": "04_self_audit/board_repair_log.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "self-audit log; the mistakes it caught are the withdrawn nodes"
+  },
+  {
+   "old": "04_self_audit/retest_log.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "self-audit log; the mistakes it caught are the withdrawn nodes"
+  },
+  {
+   "old": "04_self_audit/self_audit.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "self-audit log; the mistakes it caught are the withdrawn nodes"
+  },
+  {
+   "old": "04_self_audit/self_review.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "self-audit log; the mistakes it caught are the withdrawn nodes"
+  },
+  {
+   "old": "05_boards/audit_board.html",
+   "now": null,
+   "decision": "deleted",
+   "note": "earlier board format, replaced by the seven pictures"
+  },
+  {
+   "old": "05_boards/learning_boards.html",
+   "now": null,
+   "decision": "deleted",
+   "note": "earlier board format, replaced by the seven pictures"
+  },
+  {
+   "old": "05_boards/learning_boards_references.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "earlier board format, replaced by the seven pictures"
+  },
+  {
+   "old": "05_boards/markup_board.html",
+   "now": null,
+   "decision": "deleted",
+   "note": "earlier board format, replaced by the seven pictures"
+  },
+  {
+   "old": "06_reference/observer_article_2026-05-23.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "in-house reference, not used by any output"
+  },
+  {
+   "old": "06_reference/sources.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "in-house reference, not used by any output"
+  },
+  {
+   "old": "README.md",
+   "now": "1_README.md",
+   "decision": "merged",
+   "note": "rewritten for the flat layout"
+  },
+  {
+   "old": "code/README.md",
+   "now": null,
+   "decision": "deleted",
+   "note": "output log or index of the old scripts"
+  },
+  {
+   "old": "code/adversarial_review_checks.py",
+   "now": "8_checks.py",
+   "decision": "merged",
+   "note": "the checks still needed by a claim were ported; the rest were for deleted files"
+  },
+  {
+   "old": "code/critique_checks.py",
+   "now": "8_checks.py",
+   "decision": "merged",
+   "note": "the checks still needed by a claim were ported; the rest were for deleted files"
+  },
+  {
+   "old": "code/critique_checks_output.txt",
+   "now": null,
+   "decision": "deleted",
+   "note": "output log or index of the old scripts"
+  },
+  {
+   "old": "code/math_exam_checks.py",
+   "now": "8_checks.py",
+   "decision": "merged",
+   "note": "the checks still needed by a claim were ported; the rest were for deleted files"
+  },
+  {
+   "old": "code/retest_checks.py",
+   "now": "8_checks.py",
+   "decision": "merged",
+   "note": "the checks still needed by a claim were ported; the rest were for deleted files"
+  },
+  {
+   "old": "code/revised_review_checks.py",
+   "now": "8_checks.py",
+   "decision": "merged",
+   "note": "the checks still needed by a claim were ported; the rest were for deleted files"
+  },
+  {
+   "old": "code/self_audit_checks.py",
+   "now": "8_checks.py",
+   "decision": "merged",
+   "note": "the checks still needed by a claim were ported; the rest were for deleted files"
+  },
+  {
+   "old": "code/test_self_audit_checks.py",
+   "now": "8_checks.py",
+   "decision": "merged",
+   "note": "the checks still needed by a claim were ported; the rest were for deleted files"
+  },
+  {
+   "old": "lean4/README.md",
+   "now": "1_README.md",
+   "decision": "merged",
+   "note": "how to check the proofs, merged"
+  },
+  {
+   "old": "lean4/ThreadsReply.lean",
+   "now": "8_proofs.lean",
+   "decision": "merged",
+   "note": "unchanged except three comment lines that named the old boards"
+  }
+ ]
+}

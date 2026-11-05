@@ -2,7 +2,7 @@
 # Finite results behind the Threads replies
 
 Core Lean 4 only (no Mathlib). Every statement is about finite carriers:
-records, reports and verdicts. Each theorem matches one card of the markup board.
+records, reports and verdicts. 2_dag.json names the claims that use each theorem.
 
 * `records_do_not_fix_identity`: two records, standing/standing then standing/flat,
   allow two one-to-one matchings of the lines that imply different histories.
@@ -26,7 +26,7 @@ records, reports and verdicts. Each theorem matches one card of the markup board
 
 namespace ThreadsReply
 
-/-! ## Picture 1: the tree -/
+/-! ## Records and identity -/
 
 inductive Pose | up | flat
   deriving DecidableEq, Repr
@@ -51,7 +51,7 @@ theorem records_do_not_fix_identity :
       fallenUnder σ ≠ fallenUnder τ := by
   refine ⟨id, swap, fun _ _ h => h, by decide, by decide⟩
 
-/-! ## Picture 2: the rendering claim -/
+/-! ## Reports and likelihoods -/
 
 /-- Same report, same verdict, for any evaluator that reads only the report. -/
 theorem same_report_same_verdict {X P V : Type} (q : X → P) (E : P → V) {a b : X}
