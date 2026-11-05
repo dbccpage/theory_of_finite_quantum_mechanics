@@ -6,6 +6,12 @@ Projection Obstruction (PO) audit of Nishiyama, Tanaka, Tuszynski, Tsenkova,
 IJMS 25(4):2399 (2024). Equation numbers refer to ../ijms-25-02399.md.
 
 Run:  python -I critique_checks.py        (needs numpy and sympy; no scipy)
+      python -I critique_checks.py --demo-failure   (deliberately failing fixture)
+
+Exit status: 0 only if every expect() below holds; otherwise the failed
+expectations are listed at the end and the exit status is 1.  The flag
+--demo-failure adds one expectation that is false on purpose, so that the
+harness itself can be seen to fail.
 
 Every check prints one tag:
   DERIVED   follows from the paper's own equations, or from standard physics,
@@ -21,15 +27,26 @@ adversarial_review_checks.py (PR #513) and are not repeated here.
 from __future__ import annotations
 
 import math
+import sys
 
 import numpy as np
 import sympy as sp
 
 LINE = "-" * 78
+FAILURES: list[str] = []
 
 
 def banner(n: int, title: str) -> None:
     print(f"\n{LINE}\nCheck {n}: {title}\n{LINE}")
+
+
+def expect(cond: bool, msg: str) -> bool:
+    """Record a checked expectation.  A False value is printed at once, kept
+    in FAILURES, and turns the exit status to 1 at the end of the run."""
+    if not cond:
+        FAILURES.append(msg)
+        print(f"  FAILED EXPECTATION: {msg}")
+    return bool(cond)
 
 
 # ---------------------------------------------------------------------------
@@ -66,13 +83,41 @@ def check_1_gauge_pair() -> None:
     print("  TAG: DERIVED (A6, A7, A8, A12, A38).  The 'Coulomb gauge' of")
     print("  Appendix A is the radiation gauge; it is a gauge only when J_0 = 0.")
 
-    # Proca variant used in Appendix B: with M^2 != 0 and conserved current,
-    # d_mu A^mu = 0 is forced (take the divergence of the Proca equation).
-    # With A^0 = 0 that is div A = 0, and Gauss's law then forces |phi|^2 = 0.
-    print("  Appendix B (A48) adds M^2 A_i.  Divergence of the Proca equation")
-    print("  with a conserved current gives M^2 d_mu A^mu = 0, so A^0 = 0")
-    print("  forces div A = 0 at all times, and then (A7) forces |phi|^2 = 0.")
-    print("  TAG: DERIVED (standard Proca identity, CITED).")
+    expect(sp.simplify(drho_in_R.subs(R, 0)) == 0 and drho_in_R != 0,
+           "check 1: d rho/dt must vanish exactly when R = 0 and not otherwise")
+
+    # Appendix B.  (A48) is not the covariant Proca equation with a conserved
+    # current: it is the spatial equation written AFTER A^0 = 0 and div A = 0
+    # were imposed, and it carries an external source M^2 Atilde_i.  So the
+    # Proca divergence identity (d_mu A^mu = 0) does not apply.  Withdrawn:
+    # the earlier conclusion that the Appendix B medium must be empty.
+    # What (A48) itself implies: take the divergence of its special solution
+    # (A49), A_i = f Atilde_i with f = M^2 / (M^2 + e^2 |phi|^2 / m).
+    print("  Appendix B.  (A48) carries an external source M^2 Atilde_i and is the")
+    print("  spatial equation after the gauge pair was imposed, so the covariant")
+    print("  Proca identity d_mu A^mu = 0 does not apply to it (earlier claim withdrawn).")
+    M2, bpol, k0, k1, k2, k3 = sp.symbols("M2 b k0 k1 k2 k3", real=True)
+    e2, m2 = sp.symbols("e2 m2", positive=True)
+    x1, x2, x3 = sp.symbols("x1 x2 x3", real=True)
+    rho2d = sp.Function("rho")(x1, x2)                 # hologram density |phi|^2(x1, x2)
+    f = M2 / (M2 + e2 * rho2d / m2)
+    wave = bpol * sp.exp(sp.I * (k0 * t - k1 * x1 - k2 * x2 - k3 * x3))
+    for pol_name, pol, kpol in (("x3 (as in Appendix A)", (0, 0, wave), k3),
+                                ("x1 (in the hologram plane)", (wave, 0, 0), k1)):
+        A = [f * c for c in pol]
+        divA = sp.diff(A[0], x1) + sp.diff(A[1], x2) + sp.diff(A[2], x3)
+        divA = sp.simplify(divA.subs(kpol, 0))        # transverse wave: k . b = 0
+        print(f"  polarization along {pol_name}, transverse: div A = {divA}")
+    print("  So div A = 0 holds for the hologram special solution exactly when the")
+    print("  density gradient is perpendicular to the polarization (x3 polarization,")
+    print("  pattern in x1 x2, transverse wave k.b = 0): Appendix B is consistent with")
+    print("  the gauge pair as a STATIC medium.  Gauss's law (A7) then needs the")
+    print("  integration function c(x) = e |phi|^2 != 0; the paper sets c = 0.")
+    print("  TAG: DERIVED from (A48)-(A49); the Proca-identity argument is withdrawn.")
+    div_x3 = sp.simplify(sp.diff(f * wave, x3).subs(k3, 0))
+    div_x1 = sp.simplify(sp.diff(f * wave, x1).subs(k1, 0))
+    expect(div_x3 == 0, "check 1: x3-polarized transverse hologram solution must satisfy div A = 0")
+    expect(div_x1 != 0, "check 1: in-plane polarization must break div A = 0 through the density gradient")
 
 
 # ---------------------------------------------------------------------------
@@ -170,6 +215,8 @@ def check_3_madelung() -> None:
     print("  Re[(A63)/phi]/(eR) - (A70 as printed, minus sign) =", sp.factor(test70_printed))
     print("  Re[(A63)/phi]/(eR) - (A70 with the (A81)/(A87) plus sign) =", test70_plus)
     ok = (test69 == 0 or test69b == 0) and test70_plus == 0
+    expect(ok, "check 3: (A63) must reduce exactly to (A69) and to (A70) with the (A81)/(A87) sign")
+    expect(test70_printed != 0, "check 3: the printed sign of (A70) must differ from the derived one")
     print("  TAG: DERIVED" if ok else "  TAG: MISMATCH, inspect",
           "- (A69)/(A70) are the Madelung (charged-superfluid) form of (A63).")
     print("  Printed-sign finding: (A70) carries -(e/2m)(A - grad beta/e)^2; the derivation")
@@ -199,20 +246,28 @@ def check_4_bohm_term_size() -> None:
 
 
 # ---------------------------------------------------------------------------
-# Check 5. Appendix B reconstruction amplitude with the Section 4 parameters:
-# the hologram modulates the field by e^2 |phi|^2 / (M^2 m) (A49).
+# Check 5. Appendix B screening parameter with the Section 4 parameters:
+# (A49) screens the field by the factor 1 - e^2 |phi|^2 / (M^2 m).
 # Units: m a_s = 1, |phi|^2 = 1 means |phi|^2 = m^3.
+# A uniform density gives this screening and no image at all; the image
+# term is the spatially MODULATED part of the screening, so its amplitude
+# needs the normalization of |r+o|^2 in (A51), which the paper does not give.
 # ---------------------------------------------------------------------------
 def check_5_hologram_modulation() -> None:
-    banner(5, "Hologram modulation depth e^2 |phi|^2 / (M^2 m)  (A49), Section 4 numbers")
+    banner(5, "Screening parameter e^2 |phi|^2 / (M^2 m)  (A49), Section 4 numbers")
     e, phi2, M2 = 0.3, 1.0, 2.0                      # e, |phi|^2 (m^3), M^2 (m^2)
-    depth = e * e * phi2 / M2                        # dimensionless, m's cancel
-    print(f"  e^2 |phi|^2 / (M^2 m) = {depth:.4f}  -> reconstruction term |r|^2 o carries")
-    print(f"  {100*depth:.1f} % of the reference amplitude, diffraction efficiency ~ {depth**2:.1e}")
-    print("  (A49) expansion is valid only when this number is small, so a strong")
-    print("  reconstruction and a valid expansion exclude each other. TAG: DERIVED.")
+    s = e * e * phi2 / M2                            # dimensionless, m's cancel
+    print(f"  screening parameter s = e^2 |phi|^2 / (M^2 m) = {s:.4f}")
+    print("  (A49): A_i = (1 - s |phi|^2/|phi|^2_0 + ...) Atilde_i.  A uniform density is")
+    print("  a uniform 4.5 % screening with no image.  The image term is the modulated")
+    print("  part, s * (delta|phi|^2 / |phi|^2_0) * |r|^2 o up to the normalization of")
+    print("  (A51), which the paper never fixes: its amplitude is OPEN, bounded by s.")
+    print("  The expansion (A49) needs s << 1, so the image term can never exceed")
+    print("  order s of the reference. TAG: DERIVED for s and the bound; OPEN for the")
+    print("  amplitude; no diffraction efficiency is claimed.")
     print("  The object wave o has no source in (A48)-(A52): SUPPLIED by the paper.")
     print("  |phi|^2 ∝ |r+o|^2 (A51) is put in, not produced by (A80): SUPPLIED.")
+    expect(abs(s - 0.045) < 1e-12, "check 5: screening parameter must be 0.045")
 
 
 # ---------------------------------------------------------------------------
@@ -301,20 +356,24 @@ def check_9_scale_m() -> None:
 #   H = w a†a + W b†b + g (b†b) (a + a†)        (density times field quadrature)
 # Pure-state normal rate (PO §5.3.1): nu = 2 ||chi||, chi = centred h applied to
 # the product state.  For this H: nu = 2 g * Delta(b†b) * Delta(a+a†) = 2 g |beta| * 1.
+# Theorem 5.1 uses the FULL incident norm g_inc = max_v sum_{X ∋ v} ||h_X||,
+# which includes the on-site terms w a†a and W b†b at each vertex (PO-000 §5,
+# Lemma 5.3: on-site terms do not enter nu, they enter g).  An earlier version
+# of this check used only the two-local term; the regression test below keeps
+# the counterexample that exposed it (coupling 1e-7 at t = 2 pi).
 # The paper's Appendix C runs the product (mean-field) trajectory and never
-# computes nu, g or the window.  This check computes them for the toy.
+# computes nu, g or the window.  This check computes them for the toy, and
+# compares the coherent-state (TDVP) mean-field run with the exact state.
 # ---------------------------------------------------------------------------
 def check_10_po_theorem_5_1_toy() -> None:
     banner(10, "PO Theorem 5.1: entanglement budget of a mean-field (product) run, toy")
     nmax = 28                                        # SUPPLIED truncation
-    g, w, W = 0.05, 1.0, 1.0                         # SUPPLIED
+    w, W = 1.0, 1.0                                  # SUPPLIED on-site frequencies
     alpha, beta = 1.0, 1.5                           # SUPPLIED coherent amplitudes
     a = np.diag(np.sqrt(np.arange(1, nmax)), 1).astype(complex)
     n = a.conj().T @ a
     I = np.eye(nmax)
     x = a + a.conj().T
-    H = w * np.kron(n, I) + W * np.kron(I, n) + g * np.kron(x, n)   # a ⊗ b ordering
-    h_e = g * np.kron(x, n)
 
     def coh(z):
         v = np.array([z ** k / math.sqrt(math.factorial(k)) for k in range(nmax)], complex)
@@ -322,34 +381,113 @@ def check_10_po_theorem_5_1_toy() -> None:
 
     va, vb = coh(alpha), coh(beta)
     u = np.kron(va, vb)
-    # centred interaction applied to u: chi = (1-|a><a|) ⊗ (1-|b><b|) h u
+    rho0 = np.outer(u, u.conj())
     Pa = I - np.outer(va, va.conj())
     Pb = I - np.outer(vb, vb.conj())
-    chi = np.kron(Pa, Pb) @ (h_e @ u)
-    nu = 2 * np.linalg.norm(chi)
+    n_norm = np.linalg.norm(n, 2)                    # ||a†a||_inf = nmax - 1 on the truncation
+
+    def trace_norm(Z):
+        return float(np.sum(np.abs(np.linalg.eigvalsh((Z + Z.conj().T) / 2))))
+
+    def build(g):
+        h_e = g * np.kron(x, n)                      # the one two-local term
+        H = w * np.kron(n, I) + W * np.kron(I, n) + h_e
+        chi = np.kron(Pa, Pb) @ (h_e @ u)            # centred interaction on the product
+        nu = 2 * np.linalg.norm(chi)
+        g_2local = np.linalg.norm(h_e, 2)
+        g_full = max(w * n_norm + g_2local, W * n_norm + g_2local)   # PO-000 Theorem 5.1
+        E, V = np.linalg.eigh(H)
+
+        def state(t):
+            U = (V * np.exp(-1j * E * t)) @ V.conj().T
+            return U @ rho0 @ U.conj().T
+
+        def defect(t):
+            rho = state(t)
+            r4 = rho.reshape(nmax, nmax, nmax, nmax)
+            rho_a = np.einsum("ijkj->ik", r4)
+            rho_b = np.einsum("ijil->jl", r4)
+            return trace_norm(rho - np.kron(rho_a, rho_b)), rho
+
+        return nu, g_2local, g_full, state, defect
+
+    # (a) rate and norms for the toy at g = 0.05 ---------------------------
+    g = 0.05                                         # SUPPLIED coupling
+    nu, g_2local, g_full, state, defect = build(g)
     nu_formula = 2 * g * abs(beta) * 1.0             # Delta n_b = |beta|, Delta x_a = 1
-    g_inc = np.linalg.norm(h_e, 2)                   # incident interaction norm (2-local part)
     print(f"  nu (numeric, 2||chi||) = {nu:.6f};  nu (formula 2 g |beta| Delta x) = {nu_formula:.6f}")
-    print(f"  incident norm g_inc = ||h_e||_inf = {g_inc:.3f} (truncation {nmax} levels)")
-    E, V = np.linalg.eigh(H)
-    rho0 = np.outer(u, u.conj())
+    print(f"  two-local term only:  ||h_e||_inf = {g_2local:.3f}   (NOT the theorem's norm)")
+    print(f"  full incident norm g_inc = max_v sum_(X ∋ v) ||h_X|| = {g_full:.3f}"
+          f"  (= {w:.0f}*{n_norm:.0f} + {g_2local:.3f}; truncation {nmax} levels)")
+    t_half = nu / (48 * g_full ** 2)                 # half-slope window of Theorem 5.1
+    print(f"  half-slope window t <= nu/(48 g_inc^2) = {t_half:.3e}"
+          f"   (the two-local norm would give {nu/(48*g_2local**2):.3e}, ten times too wide)")
+    expect(abs(nu - nu_formula) < 1e-9, "check 10: nu must equal 2 g |beta|")
+    expect(abs(g_full - (w * n_norm + g_2local)) < 1e-9, "check 10: g_inc must include the on-site term")
 
-    def defect(t):
-        U = (V * np.exp(-1j * E * t)) @ V.conj().T
-        rho = U @ rho0 @ U.conj().T
-        r4 = rho.reshape(nmax, nmax, nmax, nmax)
-        rho_a = np.einsum("ijkj->ik", r4)
-        rho_b = np.einsum("ijil->jl", r4)
-        Dm = rho - np.kron(rho_a, rho_b)
-        return np.sum(np.abs(np.linalg.eigvalsh((Dm + Dm.conj().T) / 2)))
+    # (b) the certified window, with the full norm -------------------------
+    for t in (0.25 * t_half, t_half):
+        D, _ = defect(t)
+        lb = nu * t - 24 * g_full ** 2 * t * t
+        ok = expect(D >= lb - 1e-12, f"check 10: Theorem 5.1 bound violated at t = {t:.3e}")
+        print(f"  t = {t:9.3e}: D(t) = {D:.6e}   nu t = {nu*t:.6e}   bound = {max(lb,0):.6e}   {'ok' if ok else 'VIOLATED'}")
 
-    t_half = nu / (48 * g_inc ** 2)                  # half-slope window of Theorem 5.1
-    print(f"  half-slope window t <= nu/(48 g_inc^2) = {t_half:.3e}")
-    for t in (0.25 * t_half, t_half, 0.05, 0.2, 0.5, 1.0):
-        D = defect(t)
-        lb = nu * t - 24 * g_inc ** 2 * t * t
-        print(f"  t = {t:9.3e}: D(t) = {D:.6e}   nu t = {nu*t:.6e}   lower bound = {max(lb,0):.6e}"
-              f"   {'ok' if D >= lb - 1e-12 else 'VIOLATED'}")
+    # (c) short-time behaviour beyond the window: demonstrated, not certified
+    print("  Beyond the window (no theorem applies; exact numbers for this toy only):")
+    for t in (0.05, 0.2, 0.5, 1.0):
+        D, _ = defect(t)
+        print(f"  t = {t:5.2f}: D(t) = {D:.6e}   nu t = {nu*t:.6e}   D/(nu t) = {D/(nu*t):.3f}")
+        expect(0.9 <= D / (nu * t) <= 1.1, f"check 10: D(t) ~ nu t within 10 % expected at t = {t}")
+    print("  The linear behaviour does NOT persist to t ~ 1/g = 20 (w = W = 1 rotate the")
+    print("  state back; the first-order growth is periodic):")
+    D_2pi, _ = defect(2 * math.pi)
+    D_20, _ = defect(20.0)
+    print(f"  t = 2 pi: D = {D_2pi:.3e}  vs nu t = {nu*2*math.pi:.4f};   t = 20: D = {D_20:.4f}  vs nu t = {nu*20:.2f}")
+    expect(D_2pi < 1e-3 * nu * 2 * math.pi, "check 10: D(2 pi) must be far below nu t (linear growth not persistent)")
+    expect(D_20 < 0.5 * nu * 20, "check 10: D(20) must be far below nu t (linear growth not persistent)")
+    grid = [(t, defect(t)[0]) for t in np.arange(0.0, 20.01, 0.5)]
+    print("  D(t) on t = 0, 0.5, ..., 20 (used for the board picture):")
+    print("  " + " ".join(f"{D:.3f}" for _, D in grid))
+
+    # (d) regression test: the two-local norm is the wrong norm ------------
+    g_small = 1e-7                                   # reviewer's counterexample (2026-11-05)
+    nu_s, g2_s, gf_s, _, defect_s = build(g_small)
+    t = 2 * math.pi
+    D_s, _ = defect_s(t)
+    lb_2local = nu_s * t - 24 * g2_s ** 2 * t * t
+    lb_full = nu_s * t - 24 * gf_s ** 2 * t * t
+    print(f"  regression, coupling {g_small:.0e} at t = 2 pi: D = {D_s:.3e};")
+    print(f"    bound with the two-local norm only = {lb_2local:.3e}  (VIOLATED: the wrong norm)")
+    print(f"    bound with the full incident norm   = {lb_full:.3e}  (holds; trivially negative)")
+    expect(D_s < lb_2local, "check 10 regression: the two-local-only bound must be violated by the counterexample")
+    expect(D_s >= lb_full, "check 10 regression: the full-norm bound must hold")
+
+    # (e) the mean-field run itself: coherent-state TDVP vs the exact state -
+    # TDVP on the coherent product manifold for this H:
+    #   i d(alpha)/dt = w alpha + g |beta|^2,   i d(beta)/dt = W beta + g (alpha + alpha*) beta.
+    # The error of ANY product approximation is at least D_e / 3
+    # (PO-000 §5.6, Lipschitz transfer with K_Pi = 3).
+    def mf_rhs(y):
+        al, be = y
+        return np.array([-1j * (w * al + g * abs(be) ** 2), -1j * (W * be + g * 2 * al.real * be)])
+
+    def mf_state(t, h=1e-3):
+        y = np.array([alpha, beta], complex)
+        steps = max(1, int(round(t / h)))
+        hh = t / steps
+        for _ in range(steps):
+            k1 = mf_rhs(y); k2 = mf_rhs(y + hh / 2 * k1)
+            k3 = mf_rhs(y + hh / 2 * k2); k4 = mf_rhs(y + hh * k3)
+            y = y + hh / 6 * (k1 + 2 * k2 + 2 * k3 + k4)
+        v = np.kron(coh(y[0]), coh(y[1]))
+        return np.outer(v, v.conj())
+
+    print("  coherent-state (TDVP) mean-field run against the exact state:")
+    for t in (0.05, 0.2, 0.5, 1.0):
+        D, rho = defect(t)
+        err = trace_norm(rho - mf_state(t))
+        ok = expect(err >= D / 3 - 1e-12, f"check 10: mean-field error must be >= D/3 at t = {t}")
+        print(f"  t = {t:5.2f}: ||rho - rho_mf||_1 = {err:.6e}   D_e/3 = {D/3:.6e}   {'ok' if ok else 'VIOLATED'}")
     print("  TAG: DERIVED on a SUPPLIED toy. The quantity the paper owes for Appendix C is")
     print("  this nu (and Lambda_* for the damped case), with its e, m, N: OPEN.")
 
@@ -369,7 +507,7 @@ def check_11_small_arithmetic() -> None:
     print("  TAG: DERIVED.")
 
 
-if __name__ == "__main__":
+def main(argv: list[str]) -> int:
     check_1_gauge_pair()
     check_2_maxwell_bloch_sech()
     check_3_madelung()
@@ -381,4 +519,19 @@ if __name__ == "__main__":
     check_9_scale_m()
     check_10_po_theorem_5_1_toy()
     check_11_small_arithmetic()
-    print(f"\n{LINE}\nDone.\n")
+    if "--demo-failure" in argv:
+        banner(0, "Deliberate failing fixture (--demo-failure)")
+        expect(1 + 1 == 3, "demo: 1 + 1 == 3 is false on purpose, to show the harness fails")
+    print(f"\n{LINE}")
+    if FAILURES:
+        print(f"FAILED: {len(FAILURES)} expectation(s) did not hold:")
+        for msg in FAILURES:
+            print("  - " + msg)
+        print("Exit status 1.\n")
+        return 1
+    print("Done. Every expectation held. Exit status 0.\n")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

@@ -96,7 +96,7 @@ const CARDS = [
    ${[["state ρ",I],["mean field",T],["fluid |φ̄|, β",T],["density |φ̄|²",T],["binary cell",SU],["“experience”",N]].map((b,i)=>{const x=10+i*86;return `<rect x="${x}" y="80" width="78" height="44" rx="6" fill="none" stroke="${b[1]}" ${i===5?'stroke-dasharray="5 4"':''}/><text x="${x+6}" y="106" fill="${b[1]}" font-size="10">${b[0]}</text>`}).join("")}
    ${[0,1,2,3,4].map(i=>{const x=88+i*86;return `<line x1="${x}" y1="102" x2="${x+8}" y2="102" stroke="${I}" stroke-width="2"/>`}).join("")}
    ${[["Π_coh: drop Δ, D, Γ₂",N],["Madelung: exact",OK],["drop phase β",N],["threshold 21 %",N],["q = ?",N]].map((l,i)=>{const x=20+i*86;return `<text x="${x}" y="${i%2?60:46}" fill="${l[1]}" font-size="10">${l[0]}</text>`}).join("")}
-   ${[["δ₁ = D_e(t)",N],["δ = 0",OK],["δ₃: descent?",N],["δ₄: 0.21 vs 1",N],["δ₅: no map",N]].map((l,i)=>{const x=20+i*86;return `<text x="${x}" y="${i%2?166:150}" fill="${l[1]}" font-size="10">${l[0]}</text>`}).join("")}
+   ${[["δ₁ ≥ D_e(t)/3",N],["δ = 0",OK],["δ₃: descent?",N],["δ₄: 0.21 vs 1",N],["δ₅: no map",N]].map((l,i)=>{const x=20+i*86;return `<text x="${x}" y="${i%2?166:150}" fill="${l[1]}" font-size="10">${l[0]}</text>`}).join("")}
    <text x="10" y="205" fill="${M}" font-size="11">each arrow throws something away; the paper computes no defect δ and no way back</text>`),
   tex:String.raw`\rho\ \xrightarrow{\ \Pi_{\rm coh}\ }\ (\bar\varphi,A)\ \xrightarrow{\ \text{Madelung}\ }\ (|\bar\varphi|,\beta)\ \xrightarrow{\ |\cdot|^2\ }\ |\bar\varphi|^2\ \xrightarrow{\ \theta\ }\ \{0,1\}\ \xrightarrow{\ ?\ }\ E`,
   line:"<b>The first arrow is what Projection Obstruction prices; the last is what the Witnessed Difference Programme prices.</b> The middle three are where “quantum” and “hologram” are spent.",
@@ -116,8 +116,8 @@ const CARDS = [
    <text x="300" y="170" fill="${M}" font-size="11">time</text>
    <text x="20" y="205" fill="${M}" font-size="11">(A7) with A⁰ = 0: ±∂₀(∇·A) = −e|φ|² + c(x). Keeping c(x) allows only a static density.</text>`),
   tex:String.raw`\pm\,\partial_0(\nabla\!\cdot\!\mathbf A)=-e|\varphi|^2+c(\mathbf x),\quad \nabla\!\cdot\!\mathbf A\equiv0\ \Rightarrow\ \partial_0|\varphi|^2=0\ \Rightarrow\ R=2\chi_0^*\chi_1=0\ \Rightarrow\ \dot{\mathcal A}=0`,
-  line:"<b>With charge present, A⁰ = 0 and ∇·A = 0 is a constraint on the matter, not a gauge.</b> The two-level coherence R that drives (A38) must vanish. Appendix B's Proca mass makes it worse: it forces ∇·A = 0, then |φ|² = 0.",
-  rests:"check 1 · (A6)–(A8), (A12), (A38), (A48) · Proca identity cited" },
+  line:"<b>With charge present, A⁰ = 0 and ∇·A = 0 is a constraint on the matter, not a gauge.</b> The two-level coherence R that drives (A38) must vanish. Appendix B's hologram solution (A49) respects the pair only as a static medium, which needs c(x) ≠ 0 in (A7); the paper sets c = 0.",
+  rests:"check 1 · (A6)–(A8), (A12), (A38), (A48)–(A49)" },
 
 { id:"sech", tag:"appendix a", title:"The pulse is standard, and every input is blank.",
   pic:S(`
@@ -173,17 +173,23 @@ const CARDS = [
   rests:"check 3 · (A56), (A63), (A69)–(A71), (A87) · Section 5 text" },
 
 { id:"budget", tag:"projection obstruction", title:"A mean-field run leaves the product manifold at a rate it never computes.",
-  pic:S(`
+  pic:(()=>{const D=[0.000,0.077,0.153,0.221,0.277,0.314,0.331,0.326,0.300,0.255,0.193,0.120,0.043,0.033,0.110,0.184,0.247,0.295,0.324,0.331,0.317,0.283,0.230,0.162,0.087,0.010,0.067,0.143,0.213,0.270,0.310,0.330,0.328,0.305,0.262,0.202,0.130,0.053,0.023,0.100,0.175];
+   const X=t=>50+t*21, Y=d=>180-d/0.35*130;
+   const path=D.map((d,i)=>(i?"L":"M")+X(i*0.5).toFixed(1)+" "+Y(d).toFixed(1)).join(" ");
+   return S(`
    <line x1="50" y1="180" x2="490" y2="180" stroke="${R}"/><line x1="50" y1="180" x2="50" y2="30" stroke="${R}"/>
-   <text x="470" y="200" fill="${M}" font-size="11">t</text><text x="20" y="40" fill="${M}" font-size="11">D_e</text>
-   <line x1="50" y1="180" x2="470" y2="50" stroke="${T}" stroke-width="3"/><text x="300" y="90" fill="${T}" font-size="12">true defect ≈ ν_e t</text>
-   <path d="M50 180 Q 200 60 300 180" fill="none" stroke="${T}" stroke-width="1.5" stroke-dasharray="5 4"/><text x="120" y="130" fill="${T}" font-size="11">bound ν_e t − 24g²t²</text>
-   <line x1="50" y1="180" x2="470" y2="180" stroke="${N}" stroke-width="3"/><text x="200" y="172" fill="${N}" font-size="12">paper: D_e ≡ 0 (product kept forever)</text>
-   <text x="330" y="150" fill="${SU}" font-size="12">ν_e = ?   g = ?   Λ* = ?</text>
-   <text x="50" y="212" fill="${M}" font-size="11">toy with the paper's coupling (b†b)(a+a†): ν = 2g|β|, numeric 0.150000 = formula; D(t) ≈ νt out to t ~ 1/g</text>`),
-  tex:String.raw`D_e(t)=\big\|\rho_e(t)-\rho_a(t)\!\otimes\!\rho_b(t)\big\|_1\ \ge\ \nu_e t-24g^2t^2,\qquad \nu_e=2\|\chi\|=\frac{2}{T_{\rm ent}}`,
-  line:"<b>Keeping (φ̄, A) and dropping Δ, D, Γ₂ is the product retraction; Theorem 5.1 prices it.</b> The paper owes ν_e, Λ* for the damped case, the window, and the Duhamel error on |φ̄|² in Figure 6. “Balance of decoherence and error corrections” is h_safe with none of its four inputs.",
-  rests:"check 10 · PO Thm 5.1, §5.3.1, §5.4.1, §5.10.A, §5.18 cited · (A69)–(A71)" },
+   ${[0,5,10,15,20].map(t=>`<line x1="${X(t)}" y1="180" x2="${X(t)}" y2="185" stroke="${R}"/><text x="${X(t)-4}" y="198" fill="${M}" font-size="10">${t}</text>`).join("")}
+   <text x="440" y="212" fill="${M}" font-size="11">t (1/g = 20)</text><text x="14" y="40" fill="${M}" font-size="11">D_e</text>
+   <line x1="300" y1="34" x2="330" y2="34" stroke="${I}" stroke-width="3"/><text x="336" y="38" fill="${I}" font-size="11">νt for t ≲ 1 (not certified)</text>
+   <line x1="300" y1="50" x2="330" y2="50" stroke="${T}" stroke-width="2.5"/><text x="336" y="54" fill="${T}" font-size="11">exact D_e(t), toy: periodic</text>
+   <path d="${path}" fill="none" stroke="${T}" stroke-width="2.5"/>
+   <line x1="${X(0)}" y1="${Y(0)}" x2="${X(1.2)}" y2="${Y(0.18)}" stroke="${I}" stroke-width="3"/>
+   <circle cx="50" cy="180" r="4" fill="${OK}"/>
+   <line x1="50" y1="180" x2="490" y2="180" stroke="${N}" stroke-width="3" stroke-dasharray="8 5"/><text x="330" y="172" fill="${N}" font-size="11">paper: D_e ≡ 0 for all t</text>
+   <text x="50" y="238" fill="${OK}" font-size="11">● certified window t ≤ ν/48g² = 2·10⁻⁶</text><text x="340" y="238" fill="${SU}" font-size="11">paper's ν_e, g, Λ*: none given</text>`, "0 0 520 250")})(),
+  tex:String.raw`D_e(t)\ \ge\ \nu_e t-24g^2t^2,\quad g=\max_v\sum_{X\ni v}\|h_X\|;\qquad \|\rho(t)-\tilde\rho(t)\|_1\ \ge\ \tfrac13 D_e(t)\ \text{for any product }\tilde\rho`,
+  line:"<b>Keeping (φ̄, A) and dropping Δ, D, Γ₂ reconstructs a coherent product state at every instant; Theorem 5.1 floors the error of any such run at D_e/3.</b> Toy with the paper's coupling (b†b)(a+a†): ν = 2g|β| = 0.15, full incident norm 39.6 (on-site terms included), window 2·10⁻⁶; D ≈ νt only for t ≲ 1, then periodic. The paper owes ν_e, Λ*, the window and the Duhamel error on |φ̄|² in Figure 6.",
+  rests:"check 10 (a)–(e) · PO Thm 5.1, Lemma 5.3, §5.3.1, §5.4.1, §5.6 (K_Π = 3), §5.10.A, §5.18 cited · (A69)–(A71)" },
 
 { id:"scale", tag:"section 4", title:"No value of m, so no units: two readings, both fail.",
   pic:S(`
@@ -205,26 +211,27 @@ const CARDS = [
 { id:"memory", tag:"retention", title:"Written, never read: M and u, no r, no ≈.",
   pic:S(`
    ${[["M","store","|φ̄⁽ᴺ⁾|²",T],["u","write","(A82)–(A91)",T],["r","read","∅ (App. B only)",N],["≈","match","∅",N]].map((l,i)=>{const x=14+i*126;return `<rect x="${x}" y="22" width="116" height="78" rx="8" fill="${l[3]===T?'var(--teal-soft)':'var(--no-soft)'}" stroke="${l[3]}" ${l[3]===N?'stroke-dasharray="5 4"':''}/><text x="${x+10}" y="46" fill="${l[3]}" font-size="15" font-weight="600">${l[0]}</text><text x="${x+34}" y="46" fill="${M}" font-size="11">${l[1]}</text><text x="${x+10}" y="74" fill="${I}" font-size="11">${l[2]}</text>`}).join("")}
-   <line x1="40" y1="190" x2="490" y2="190" stroke="${R}"/><text x="440" y="208" fill="${M}" font-size="11">m x⁰</text>
-   <path d="M40 190 L 100 186 L 160 172 L 220 160 L 300 150 L 400 148 L 490 156" fill="none" stroke="${W}" stroke-width="2.5"/>
-   <text x="60" y="140" fill="${W}" font-size="11">Fig. 6 dip: 1.3 % → 21 %, then “slightly distorted”</text>
-   <path d="M40 120 Q 120 115 220 118 L 490 118" fill="none" stroke="${SU}" stroke-width="1.5" stroke-dasharray="4 4"/><text x="300" y="112" fill="${SU}" font-size="11">Fig. 5: A⁽ᴺ⁾ → 0 by m x⁰ = 200</text>`),
+   <line x1="40" y1="190" x2="490" y2="190" stroke="${R}"/><text x="446" y="208" fill="${M}" font-size="11">m x⁰ → 200</text>
+   ${[[0,0],[5,1.3],[20,4.5],[40,9.1],[100,16],[200,21]].map(p=>`<circle cx="${(40+p[0]*2.25).toFixed(1)}" cy="${(190-p[1]/21*60).toFixed(1)}" r="3" fill="${W}"/>`).join("")}
+   <path d="${[[0,0],[5,1.3],[20,4.5],[40,9.1],[100,16],[200,21]].map((p,i)=>(i?"L":"M")+(40+p[0]*2.25).toFixed(1)+" "+(190-p[1]/21*60).toFixed(1)).join(" ")}" fill="none" stroke="${W}" stroke-width="2.5"/>
+   <text x="150" y="178" fill="${W}" font-size="11">Fig. 6 record: 1.3 → 4.5 → 9.1 → 16 → 21 %, deepening</text>
+   <path d="M40 150 L51 112 L85 122 L130 130 L265 144 L490 150" fill="none" stroke="${SU}" stroke-width="1.5" stroke-dasharray="4 4"/><text x="160" y="118" fill="${SU}" font-size="11">Fig. 5: driving field A⁽ᴺ⁾ → 0 by m x⁰ = 200</text>`),
   tex:String.raw`\mathcal R=(M,u,r,\approx):\quad M=|\bar\varphi^{(N)}|^2,\ \ u=\text{(A82)–(A91)},\ \ r=\varnothing,\ \ \approx\;=\varnothing`,
-  line:"<b>A row is inserted and no query ever runs.</b> The reconstruction (A52) is never applied to the Appendix C density, which is a step, not |r+o|². One year at 310 K needs about 1.2 eV; the paper's scale is 4 meV, about 1 ps.",
-  rests:"witnessed: Fig. 5, 6, Section 5 · PR #513 check 2, replayed here" },
+  line:"<b>A row is inserted and no query ever runs.</b> The reconstruction (A52) is never applied to the Appendix C density, which is a step, not |r+o|². The figures show the record deepening, not decaying; its lifetime is open. Under two supplied assumptions (Arrhenius with a 1 ps attempt time; the 4 meV water scale read as the barrier, which the paper never says) one year at 310 K would need about 1.2 eV; drop either and no number follows.",
+  rests:"witnessed: Fig. 5, 6, Section 4–5 text · PR #513 check 2, replayed here, with its two assumptions named" },
 
-{ id:"hologram", tag:"appendix b", title:"The hologram is put in by hand and read at 4.5 %.",
+{ id:"hologram", tag:"appendix b", title:"The hologram is put in by hand; 0.045 is screening, not an image.",
   pic:S(`
    <rect x="20" y="40" width="220" height="60" rx="8" fill="var(--supplied-soft)" stroke="${SU}"/>
-   <text x="32" y="64" fill="${SU}" font-size="12">|φ|² ∝ |r + o|²  (A51)</text><text x="32" y="86" fill="${SU}" font-size="11">“consider the case”: supplied, not produced</text>
+   <text x="32" y="64" fill="${SU}" font-size="12">|φ|² ∝ |r + o|²  (A51)</text><text x="32" y="86" fill="${SU}" font-size="11">“consider the case”: supplied</text>
    <rect x="20" y="120" width="220" height="40" rx="8" fill="var(--no-soft)" stroke="${N}" stroke-dasharray="5 4"/>
-   <text x="32" y="145" fill="${N}" font-size="12">object wave o: no source anywhere</text>
+   <text x="32" y="145" fill="${N}" font-size="12">object wave o: no source</text>
    <line x1="290" y1="150" x2="500" y2="150" stroke="${R}"/><line x1="290" y1="150" x2="290" y2="40" stroke="${R}"/>
-   <rect x="300" y="45" width="190" height="100" fill="var(--teal-soft)"/><text x="310" y="100" fill="${T}" font-size="12">reference r (100 %)</text>
-   <rect x="300" y="140" width="190" height="5" fill="${T}"/><text x="310" y="132" fill="${T}" font-size="11">image |r|²o: 4.5 % amplitude</text>
-   <text x="20" y="200" fill="${M}" font-size="11">London screening writes the density into the field; (A49) is valid only when the 4.5 % is small</text>`),
-  tex:String.raw`A_i\approx\Big(1-\frac{e^2|\varphi|^2}{M^2m}\Big)r,\qquad |\varphi|^2\propto|r+o|^2\ \text{(put in)},\qquad \frac{e^2|\varphi|^2}{M^2m}=0.045`,
-  line:"<b>Classical amplitude holography: an intensity written into a transmittance and read by r; the phase of φ plays no part.</b> A strong reconstruction and a valid expansion exclude each other.",
+   <rect x="300" y="45" width="190" height="100" fill="var(--teal-soft)"/><text x="310" y="100" fill="${T}" font-size="12">reference r, screened 4.5 %</text>
+   <path d="M300 56 q 20 -8 40 0 t 40 0 t 40 0 t 40 0 t 30 0" fill="none" stroke="${T}" stroke-width="2"/><text x="310" y="132" fill="${T}" font-size="11">image: modulated part, open</text>
+   <text x="20" y="200" fill="${M}" font-size="11">uniform density: 4.5 % screening, no image; (A49) needs s ≪ 1</text>`),
+  tex:String.raw`A_i\approx\Big(1-s\,\frac{|\varphi|^2}{|\varphi|^2_0}\Big)\tilde A_i,\qquad s=\frac{e^2|\varphi|^2_0}{M^2m}=0.045,\qquad |\varphi|^2\propto|r+o|^2\ \text{(put in)}`,
+  line:"<b>Classical amplitude holography: an intensity written into a screening factor and read by r; the phase of φ plays no part.</b> The image term is the spatially modulated part of the screening; its amplitude needs the normalization of (A51), which the paper never fixes, and cannot exceed order s while (A49) holds.",
   rests:"check 5 · (A48)–(A52) · Section 4 parameters" },
 
 { id:"control", tag:"section 4", title:"Open loop, no evaluator: it “approaches due to damping”.",
@@ -301,6 +308,7 @@ grid.innerHTML = CARDS.map(c=>`
 
 const statusEl=document.getElementById("status");
 const state={}; let db=null;
+const dirty={};   // cards with a local edit not yet confirmed saved; a shared snapshot must not overwrite them
 function paint(id){
   const card=document.getElementById("c-"+id); if(!card) return;
   const s=state[id]||{};
@@ -312,21 +320,26 @@ function localLoad(){ try{ const raw=localStorage.getItem("audit-marks"); if(raw
 function localSave(){ try{ localStorage.setItem("audit-marks",JSON.stringify(state)); }catch(e){} }
 async function save(id){
   const s=state[id]||{}; const el=document.getElementById("saved-"+id);
-  if(db){ try{ await db.collection("marks").doc(id).set({verdict:s.verdict||"",note:s.note||"",updatedAt:new Date().toISOString()}); el.textContent="saved"; }
+  const verdict=s.verdict||"", note=s.note||"";          // the revision this call writes
+  if(db){ try{ await db.collection("marks").doc(id).set({verdict,note,updatedAt:new Date().toISOString()});
+               const now=state[id]||{};
+               if((now.verdict||"")===verdict && (now.note||"")===note){ dirty[id]=false; el.textContent="saved"; }
+               else { el.textContent="saving…"; }         // edited again meanwhile; the pending save will follow
+          }
           catch(e){ el.textContent="not saved: "+(e&&e.code||"error"); } }
-  else { localSave(); el.textContent="saved in this browser only"; }
+  else { localSave(); dirty[id]=false; el.textContent="saved in this browser only"; }
 }
 const timers={};
 grid.addEventListener("click",e=>{
   const b=e.target.closest(".btns button"); if(!b) return;
   const id=b.closest(".card").dataset.id; state[id]=state[id]||{};
   state[id].verdict = state[id].verdict===b.dataset.v ? "" : b.dataset.v;
-  paint(id); save(id);
+  dirty[id]=true; paint(id); save(id);
 });
 grid.addEventListener("input",e=>{
   if(e.target.tagName!=="TEXTAREA") return;
   const id=e.target.closest(".card").dataset.id; state[id]=state[id]||{}; state[id].note=e.target.value;
-  document.getElementById("saved-"+id).textContent="typing…";
+  dirty[id]=true; document.getElementById("saved-"+id).textContent="typing…";
   clearTimeout(timers[id]); timers[id]=setTimeout(()=>save(id),900);
 });
 localLoad(); CARDS.forEach(c=>paint(c.id));
@@ -338,7 +351,9 @@ localLoad(); CARDS.forEach(c=>paint(c.id));
   const t=setTimeout(()=>{statusEl.textContent="Shared marks are slow to load; your marks still save.";},10000);
   db.collection("marks").onSnapshot(snap=>{
     clearTimeout(t);
-    snap.docs.forEach(doc=>{ const v=doc.data()||{}; state[doc.id]={verdict:v.verdict||"",note:v.note||""}; paint(doc.id); });
+    snap.docs.forEach(doc=>{
+      if(dirty[doc.id]) return;                          // a local edit is pending: keep it, it will be saved
+      const v=doc.data()||{}; state[doc.id]={verdict:v.verdict||"",note:v.note||""}; paint(doc.id); });
     const n=snap.docs.filter(x=>(x.data()||{}).verdict).length;
     statusEl.textContent = `Shared marks: ${n} of ${CARDS.length} cards marked. Claude can read these.`;
   }, err=>{ clearTimeout(t); statusEl.textContent="Could not load shared marks ("+(err&&err.code||"error")+"). Your marks save in this browser."; db=null; });
