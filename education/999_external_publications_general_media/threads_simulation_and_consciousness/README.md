@@ -17,9 +17,10 @@ Two rules run through every file:
 4. `03_critique/adversarial_review.md` and `03_critique/critique_wdp_po.md`: the mathematical teardown.
 5. `03_critique/assumptions_ledger.md`, then `03_critique/assumptions_mutation_audit.md`: 78 assumptions, each checked against the paper, mutated, and the paper's claim tried for recovery.
 6. `03_critique/math_exam_review.md` and `03_critique/revised_review_check.md`: two outside reviews, checked line by line.
-7. `04_self_audit/self_review.md` and `04_self_audit/self_audit.md`: our own work, broken and repaired.
-8. `01_thread/replies.md`: the posts that survived all of the above.
-8. `05_boards/learning_boards.html`: six plain-logic boards for any reader, one reasoning move each. `05_boards/learning_boards_references.md` lists the check behind every line.
+7. `03_critique/paper_dissection.md`: the paper taken apart and put back together in plain language, Sections 5 and 6 first, no in-house terms. This is the one file to hand an outside reader or the authors.
+8. `04_self_audit/self_review.md` and `04_self_audit/self_audit.md`: our own work, broken and repaired.
+9. `01_thread/replies.md`: the posts that survived all of the above.
+10. `05_boards/learning_boards.html`: six plain-logic boards for any reader, one reasoning move each. `05_boards/learning_boards_references.md` lists the check behind every line.
 
 ## Layout
 
@@ -39,6 +40,7 @@ Two rules run through every file:
 | | `math_exam_review.md` | That examination checked section by section: agrees / adds / differs, with each new point re-derived | **live** |
 | | `outside_review_revised/` | A revised outside review package (ten documents and a 30-check script), kept as received (say-so) | record |
 | | `revised_review_check.md` | That package checked: agrees / adds / differs, with three corrections it forced on this folder (Ω² threshold, matter-charge Gauss law, the (A88)/(A89) index mismatch) | **live** |
+| | `paper_dissection.md` | The paper taken apart and put back together for an outside reader: Section 5 and Section 6 sentence by sentence, the list of what enters from nowhere, the mathematics in plain terms, what the paper establishes, sixteen refutable statements. Plain language only; backing is in the audits above | **live** |
 | | `assumptions_mutation_audit.md` | Every ledger row checked against the paper, mutated, and the claim tried for recovery: 29 unchanged, 24 recover with a price, 25 do not recover; the classical-comparator test | **live** |
 | `04_self_audit/` | `self_review.md` | The math critique, attacked and repaired | live |
 | | `self_audit.md` | Replies, boards, Lean and ledger, attacked and repaired. 80 entries, including Jeremy's review (§F) and the learning boards (§G) | **live** |
