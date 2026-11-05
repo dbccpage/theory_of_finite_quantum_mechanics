@@ -57,7 +57,7 @@ Agreement between the examination and this folder is two readings of the same eq
 6. **A plane-wave counterexample fixes the (A70) sign** in two lines. Rests on the substitution shown in the examination and redone here.
 7. **The energy balance of the damped sector** is written: Ḣ = −γ∫Ȧ² + ∫fȦ. Rests on the reduced equation.
 
-Items 1 to 7 are added to the claims ledger of this folder's critique as new rows (status: derived, from the examination, re-derived here).
+Items 1 to 7 stand here as derived rows (from the examination, re-derived in this folder); the critique's own ledger is not rewritten, it points to this file.
 
 ---
 
