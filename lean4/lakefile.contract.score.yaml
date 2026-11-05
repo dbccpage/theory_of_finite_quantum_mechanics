@@ -7,7 +7,7 @@
     "artifact": {
       "language": "Lean 4",
       "path": "lean4/lakefile.lean",
-      "sha256": "54743681876a61442a17e0fb723bd02d00095650e9a43fb0bf0e07d998517b85"
+      "sha256": "144dd807b900a772893a4304b2049e8c323eb849e0598605726662a6c516fefa"
     },
     "boundaries": [
       "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.",
@@ -19,12 +19,12 @@
       {
         "path": "lean4/lakefile.lean",
         "role": "source",
-        "sha256": "54743681876a61442a17e0fb723bd02d00095650e9a43fb0bf0e07d998517b85"
+        "sha256": "144dd807b900a772893a4304b2049e8c323eb849e0598605726662a6c516fefa"
       },
       {
         "path": "dag/research/gleason_lean_audit.json",
         "role": "build_and_axiom_audit_receipt",
-        "sha256": "e7c83f51e04b5acd899e8c9655d4b290f68c3718c3f709dc092bd150f287213d"
+        "sha256": "b0a35372ace7807305b95f4153f076058de9641124e8a729c792fad782e7cc2f"
       },
       {
         "path": "SCORING.md",
@@ -37,13 +37,14 @@
       "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays REFUTED, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL."
     ],
     "schema_id": "tfqm.source-contract.v1",
-    "source_sha256": "54743681876a61442a17e0fb723bd02d00095650e9a43fb0bf0e07d998517b85",
+    "source_sha256": "144dd807b900a772893a4304b2049e8c323eb849e0598605726662a6c516fefa",
     "symbols": [
       "BornGaussianParallelogramRigidity",
       "GleasonRealSphere",
       "GleasonComplexSphere",
       "GleasonGaussianBridge",
-      "GleasonBornCompletion"
+      "GleasonBornCompletion",
+      "GleasonContinuumShadow"
     ]
   },
   "contract_history": [
@@ -15382,10 +15383,63 @@
         ]
       },
       "sha256": "537c41025c8b0f5c07c3d0b2fe59a493a5ddbf04929adb1d70dd0237fd02b33d"
+    },
+    {
+      "bytes": 3386,
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#phase2-finite-gleason-model-l4d-v1"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"144dd807b900a772893a4304b2049e8c323eb849e0598605726662a6c516fefa\"\n  },\n  \"boundaries\": [\n    \"The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.\",\n    \"FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered.\"\n  ],\n  \"claim\": \"Register BornGaussianParallelogramRigidity, GleasonRealSphere, GleasonComplexSphere, GleasonGaussianBridge and GleasonBornCompletion as non-default Lake targets (whole lean_lib stanzas appended to the main lakefile, recorded as two chained replay-pin migrations in dag/research/lean_replay_pin_migrations.json so the FQCD/FSP receipts keep their original pins).\",\n  \"contract_urn\": \"urn:tfqm:fq-gleason-qi3:lakefile\",\n  \"evidence\": [\n    {\n      \"path\": \"lean4/lakefile.lean\",\n      \"role\": \"source\",\n      \"sha256\": \"144dd807b900a772893a4304b2049e8c323eb849e0598605726662a6c516fefa\"\n    },\n    {\n      \"path\": \"dag/research/gleason_lean_audit.json\",\n      \"role\": \"build_and_axiom_audit_receipt\",\n      \"sha256\": \"b0a35372ace7807305b95f4153f076058de9641124e8a729c792fad782e7cc2f\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"role\": \"rubric\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"owned_invariants\": [\n    \"Register BornGaussianParallelogramRigidity, GleasonRealSphere, GleasonComplexSphere, GleasonGaussianBridge and GleasonBornCompletion as non-default Lake targets (whole lean_lib stanzas appended to the main lakefile, recorded as two chained replay-pin migrations in dag/research/lean_replay_pin_migrations.json so the FQCD/FSP receipts keep their original pins).\",\n    \"AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays REFUTED, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL.\"\n  ],\n  \"schema_id\": \"tfqm.source-contract.v1\",\n  \"source_sha256\": \"144dd807b900a772893a4304b2049e8c323eb849e0598605726662a6c516fefa\",\n  \"symbols\": [\n    \"BornGaussianParallelogramRigidity\",\n    \"GleasonRealSphere\",\n    \"GleasonComplexSphere\",\n    \"GleasonGaussianBridge\",\n    \"GleasonBornCompletion\",\n    \"GleasonContinuumShadow\"\n  ]\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "144dd807b900a772893a4304b2049e8c323eb849e0598605726662a6c516fefa"
+        },
+        "boundaries": [
+          "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.",
+          "FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered."
+        ],
+        "claim": "Register BornGaussianParallelogramRigidity, GleasonRealSphere, GleasonComplexSphere, GleasonGaussianBridge and GleasonBornCompletion as non-default Lake targets (whole lean_lib stanzas appended to the main lakefile, recorded as two chained replay-pin migrations in dag/research/lean_replay_pin_migrations.json so the FQCD/FSP receipts keep their original pins).",
+        "contract_urn": "urn:tfqm:fq-gleason-qi3:lakefile",
+        "evidence": [
+          {
+            "path": "lean4/lakefile.lean",
+            "role": "source",
+            "sha256": "144dd807b900a772893a4304b2049e8c323eb849e0598605726662a6c516fefa"
+          },
+          {
+            "path": "dag/research/gleason_lean_audit.json",
+            "role": "build_and_axiom_audit_receipt",
+            "sha256": "b0a35372ace7807305b95f4153f076058de9641124e8a729c792fad782e7cc2f"
+          },
+          {
+            "path": "SCORING.md",
+            "role": "rubric",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "owned_invariants": [
+          "Register BornGaussianParallelogramRigidity, GleasonRealSphere, GleasonComplexSphere, GleasonGaussianBridge and GleasonBornCompletion as non-default Lake targets (whole lean_lib stanzas appended to the main lakefile, recorded as two chained replay-pin migrations in dag/research/lean_replay_pin_migrations.json so the FQCD/FSP receipts keep their original pins).",
+          "AuthorityEffect is None; FQ-GLEASON-QI3-FRAME-FUNCTIONS stays REFUTED, FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM stays OPEN and FQ-GAP-BORN-UNIQUENESS-GLEASON stays CONDITIONAL."
+        ],
+        "schema_id": "tfqm.source-contract.v1",
+        "source_sha256": "144dd807b900a772893a4304b2049e8c323eb849e0598605726662a6c516fefa",
+        "symbols": [
+          "BornGaussianParallelogramRigidity",
+          "GleasonRealSphere",
+          "GleasonComplexSphere",
+          "GleasonGaussianBridge",
+          "GleasonBornCompletion",
+          "GleasonContinuumShadow"
+        ]
+      },
+      "sha256": "12d7781c2aa584f59fe7fdc57a95b5d0fbeee166ae52f9f12fdb8f83ba13393d"
     }
   ],
-  "current_contract": "537c41025c8b0f5c07c3d0b2fe59a493a5ddbf04929adb1d70dd0237fd02b33d",
-  "current_scoring": "533362ceb82fee730b0a30f3811abbe074ee025313ef20646d84b9393c497957",
+  "current_contract": "12d7781c2aa584f59fe7fdc57a95b5d0fbeee166ae52f9f12fdb8f83ba13393d",
+  "current_scoring": "c7ac7f0538260c24fea2ac6e0df06f2d30e7a73ff486e91b54e4bdb22a649f5c",
   "history_order": "Import/append order; no missing assessment dates are invented.",
   "legacy_paths": {
     "#merge-ads-cft-registration": "c684dedc0291c59c6e13a95fbc502a5f1069995a4925787fd01d37ae575d6ad1",
@@ -28875,6 +28929,68 @@
         "score_token": "L4D"
       },
       "sha256": "533362ceb82fee730b0a30f3811abbe074ee025313ef20646d84b9393c497957"
+    },
+    {
+      "bytes": 3712,
+      "original_paths": [
+        "lean4/lakefile.contract.score.yaml#phase2-finite-gleason-model-l4d-v1"
+      ],
+      "raw_utf8": "{\n  \"AuthorityEffect\": \"None\",\n  \"artifact\": {\n    \"language\": \"Lean 4\",\n    \"path\": \"lean4/lakefile.lean\",\n    \"sha256\": \"144dd807b900a772893a4304b2049e8c323eb849e0598605726662a6c516fefa\"\n  },\n  \"assessment_id\": \"phase2-finite-gleason-model-l4d-v1\",\n  \"basis\": {\n    \"G1\": \"Exact source identity and the complete Lean identifiers of every named declaration are bound to the stated claim and to DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY and FQ-BORN-QI3-CONTINUUM-COMPLETION (CONDITIONAL) with AuthorityEffect None; FQ-GLEASON-QI3-FRAME-FUNCTIONS (REFUTED), FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statuses.\",\n    \"G2\": \"Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.\",\n    \"G3\": \"Lean 4.35 kernel build and per-declaration axiom audit (dag/research/gleason_lean_audit.json) use only propext, Classical.choice and Quot.sound; 0 sorry.\",\n    \"G4\": \"The five registered targets build successfully; recorded in the replay receipt, and the migration chain is accepted by scripts/replay_fqcd_lean.py and scripts/replay_pr492_lean.py.\",\n    \"G5\": \"Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target and under the lean-gleason hosted workflow.\"\n  },\n  \"composite_grade\": \"D\",\n  \"evaluation_timestamp\": \"2026-04-20T00:00:00Z\",\n  \"evidence\": [\n    {\n      \"path\": \"lean4/lakefile.lean\",\n      \"sha256\": \"144dd807b900a772893a4304b2049e8c323eb849e0598605726662a6c516fefa\"\n    },\n    {\n      \"path\": \"dag/research/gleason_lean_audit.json\",\n      \"sha256\": \"b0a35372ace7807305b95f4153f076058de9641124e8a729c792fad782e7cc2f\"\n    },\n    {\n      \"path\": \"SCORING.md\",\n      \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n    }\n  ],\n  \"gates\": {\n    \"G1\": \"D\",\n    \"G2\": \"D\",\n    \"G3\": \"D\",\n    \"G4\": \"D\",\n    \"G5\": \"D\"\n  },\n  \"grade_ceiling\": \"D\",\n  \"is_complete\": true,\n  \"level\": \"L4\",\n  \"level_basis\": \"Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and a fail-closed per-declaration axiom audit.\",\n  \"limitations\": [\n    \"The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.\",\n    \"FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered.\"\n  ],\n  \"profile\": \"Non-Numeric\",\n  \"rubric\": {\n    \"path\": \"SCORING.md\",\n    \"sha256\": \"16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a\"\n  },\n  \"schema_version\": \"2.0.0\",\n  \"score_token\": \"L4D\"\n}\n",
+      "record": {
+        "AuthorityEffect": "None",
+        "artifact": {
+          "language": "Lean 4",
+          "path": "lean4/lakefile.lean",
+          "sha256": "144dd807b900a772893a4304b2049e8c323eb849e0598605726662a6c516fefa"
+        },
+        "assessment_id": "phase2-finite-gleason-model-l4d-v1",
+        "basis": {
+          "G1": "Exact source identity and the complete Lean identifiers of every named declaration are bound to the stated claim and to DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY and FQ-BORN-QI3-CONTINUUM-COMPLETION (CONDITIONAL) with AuthorityEffect None; FQ-GLEASON-QI3-FRAME-FUNCTIONS (REFUTED), FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (OPEN) and FQ-GAP-BORN-UNIQUENESS-GLEASON (CONDITIONAL) keep their statuses.",
+          "G2": "Exact rational and Gaussian-rational arithmetic, and exact real and complex analysis in Mathlib; no floating-point approximation occurs.",
+          "G3": "Lean 4.35 kernel build and per-declaration axiom audit (dag/research/gleason_lean_audit.json) use only propext, Classical.choice and Quot.sound; 0 sorry.",
+          "G4": "The five registered targets build successfully; recorded in the replay receipt, and the migration chain is accepted by scripts/replay_fqcd_lean.py and scripts/replay_pr492_lean.py.",
+          "G5": "Declarative Lean development with zero custom axioms; builds as a registered non-default Lake target and under the lean-gleason hosted workflow."
+        },
+        "composite_grade": "D",
+        "evaluation_timestamp": "2026-04-20T00:00:00Z",
+        "evidence": [
+          {
+            "path": "lean4/lakefile.lean",
+            "sha256": "144dd807b900a772893a4304b2049e8c323eb849e0598605726662a6c516fefa"
+          },
+          {
+            "path": "dag/research/gleason_lean_audit.json",
+            "sha256": "b0a35372ace7807305b95f4153f076058de9641124e8a729c792fad782e7cc2f"
+          },
+          {
+            "path": "SCORING.md",
+            "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+          }
+        ],
+        "gates": {
+          "G1": "D",
+          "G2": "D",
+          "G3": "D",
+          "G4": "D",
+          "G5": "D"
+        },
+        "grade_ceiling": "D",
+        "is_complete": true,
+        "level": "L4",
+        "level_basis": "Exact kernel-checked Lean 4 development with a replay receipt binding the exact source bytes and a fail-closed per-declaration axiom audit.",
+        "limitations": [
+          "The results are conditional on the declared input IsUniformlyRayContinuous f (uniform continuity on rays in the squared ray distance raySinSq u v = 1 - |<u,v>|^2/(<u,u><v,v>), whose square root is the ray metric), a mathematical input that requires justification and is not derived here; recorded as DAG nodes FQ-GLEASON-QI3-UNIFORM-RAY-CONTINUITY (TFQ-1056, CONDITIONAL) and FQ-BORN-QI3-CONTINUUM-COMPLETION (TFQ-1060, CONDITIONAL). Whether pointwise Archimedean continuity at every nonzero vector implies it for frame functions is FQ-GLEASON-QI3-POINTWISE-TO-UNIFORM (TFQ-1057, OPEN); signed and nonnegative versions are distinguished there.",
+          "FQ-GLEASON-QI3-FRAME-FUNCTIONS (TFQ-1055) asks about unrestricted frame functions and its unrestricted rigidity assertion is REFUTED by the exotic Q(i)^3 frame function; nothing here changes that. FQ-GAP-BORN-UNIQUENESS-GLEASON (TFQ-0307) stays CONDITIONAL. The hypothesis class is not empty: isUniformlyRayContinuous_quadRay shows that the Rayleigh quotient of every rational Hermitian form is uniformly continuous on rays, with an existential modulus from compactness of the unit sphere of C^3 (no quantitative delta is computed). Rational-valued data determine Gaussian-rational coefficients only; arbitrary complex density matrices are not covered."
+        ],
+        "profile": "Non-Numeric",
+        "rubric": {
+          "path": "SCORING.md",
+          "sha256": "16f775f1135c3e8f6e72d05ef0249eb1b8dd7bdeec9b8dace15be4e6dbc4601a"
+        },
+        "schema_version": "2.0.0",
+        "score_token": "L4D"
+      },
+      "sha256": "c7ac7f0538260c24fea2ac6e0df06f2d30e7a73ff486e91b54e4bdb22a649f5c"
     }
   ]
 }
