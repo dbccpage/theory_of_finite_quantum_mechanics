@@ -1,11 +1,10 @@
-# Threads replies: simulation and consciousness
+# Threads replies to wisdomandlogos
 
-Post 1 (your kept reply, tightened)
+Post 1 (starts from the two records)
 
-A falling tree produces pressure waves whether anyone hears them or not, according to ordinary physics. Calling those waves "sound" is a matter of definition.
+Start with what you actually have: two records. In the first, two upright lines. In the second, one upright and one lying flat. That is all.
 
-But there's a deeper problem. You see a standing tree, then a fallen one. Where did you establish the history in between, the air, the sound, or the observer? You've supplied a whole model without accounting for what it assumes.
-
+To say "a tree fell" you must supply that the flat line is the same tree, that something happened between the records, and how upright was told from flat. Air, waves and sound are further things you would have to supply. Before we talk about sound: what did you supply, and why?
 ---
 
 Post 2
@@ -16,9 +15,9 @@ So what experiment tells your "offscreen rendering" apart from ordinary quantum 
 
 ---
 
-Post 3 (after reading the linked paper)
+Post 3 (after reading her link)
 
-I read the paper. It never says the universe doesn't render offscreen. Its carriers are water and light, and it measures bits and field density. Its own Discussion calls how a quantum mind could perceive the world "yet another mystery altogether."
+I read the paper. It never says the universe doesn't render offscreen. Its carriers are water and light, and it estimates capacity and simulates field density. Its own Discussion calls how a quantum mind could perceive the world "yet another mystery altogether."
 
 So the one part your claim needs, the observer, is the one part nobody supplied. In your version, what is the observer, and what does it measure?
 
@@ -26,4 +25,4 @@ So the one part your claim needs, the observer, is the one part nobody supplied.
 
 Post 4 (optional, one line)
 
-A hologram can't be read without a reference beam. In your version, who supplies it?
+Appendix B proposes a reference wave and reconstruction. What evidence connects that optical model to the claim that consciousness renders the universe?
