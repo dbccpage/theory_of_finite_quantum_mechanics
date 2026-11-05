@@ -76,7 +76,7 @@ In the basis that this detector writes and this student reads, each term pairs a
 What it buys: no extra deletion rule. What it costs, honestly:
 
 - **The weights are not a count of lines.** A one-third / two-thirds split is not "two lines", and some splits match no whole-number count at all: the weights $(5\pm\sqrt5)/10$ cannot be reproduced by any equal-weight subdivision (the arithmetic is kernel-checked in the repository; the last step is the standard rational root theorem). Everettians agree that weights are not counts. So "why these weights" has to be supplied or argued for separately: Deutsch and Wallace argue for it from rules of rational choice, and those rules then become the input.
-- **Which lines describe lasting records?** The balanced state also has perfectly correlated pairs when written in rotated bases. The apparatus picks which mark it writes, and the reader copies that mark. Repeated copying into the surroundings can stabilize particular records. Real records survive for finite times and can distinguish routes to varying degrees.
+- **Which lines describe lasting records?** Before the student reads the tag, the balanced route–detector state also has perfectly correlated pairs in matching rotated bases, for example when both systems are measured in their plus/minus bases. The apparatus picks which mark it writes, and the reader copies that mark. Repeated copying into the surroundings can stabilize particular records. Real records survive for finite times and can distinguish routes to varying degrees.
 
 The same ledger and measurement rule give the same pile heights under either reading. Naming the lines worlds adds an interpretation. A test that distinguishes two theories needs a prediction on which they differ.
 
