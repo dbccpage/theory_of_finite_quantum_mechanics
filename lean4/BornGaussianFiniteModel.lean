@@ -94,6 +94,40 @@ mathematical interfaces across the existing modules (`BornGaussianRationalNoColo
      defining polynomial `3 * |u.y|⁴ - ‖u‖⁴` never vanishes on `ℚ(i)³ \ {0}` yet jumps by `1`
      between arbitrarily close rational rays (`dedekindRayCut_isScaleInvariantOnRays`,
      `dedekindRayCut_gap_ne_zero`, `dedekindRayCut_jump_on_pell_pair`).
+
+7. **Track A (General-Value Rational Piron–Soler Chain & Polar–Equatorial Transfer) and Track B
+   (Irrational-Locus / Dedekind-Cut Frame-Function Stress Tests) on `ℚ(i)³` (`TFQ-1057`)**:
+   * Track A: General rational Piron orthogonal subadditivity (`rational_piron_subadditivity`,
+     `nonneg_frameFunction_ortho_le_one_sub`), equatorial pole-deficiency frame decomposition
+     (`isFrame_tomo_e1_eqOrtho`, `equatorial_pair_sum_eq_one_sub_pole`), general 2-frame
+     meridian–Kelvin polar–equatorial transfer identities without assuming `f tomo_e1 = 1`
+     (`meridian_kelvin_universal_bridge`, `meridian_kelvin_zeroWeight_bridge`), exact projective
+     ray-distance duality `raySinSq (e₁ + y) e₁ = raySinSq (meridianOrtho y) y`
+     (`meridianOrtho_raySinSq_eq`), and general-value 1-step, 2-step, 3-step Piron tangent chains
+     and Pythagorean equatorial sandwich bounds with explicit pole-deficiency slack `1 - f tomo_e1`
+     (`piron_general_one_step_le`, `piron_general_two_step_radial_le`,
+     `piron_general_three_step_chain_le`, `pythagEqRot_general_sandwich`).
+   * Track B: Local constancy and pointwise ray continuity of `dedekindRayCut` on explicit rational
+     neighborhoods of `tomo_e1` (`raySinSq < 1 / 2`) and `tomo_e2` (`raySinSq < 1 / 3`) and at
+     **every** nonzero vector `v₀ ∈ ℚ(i)³ \ {0}` (`dedekindRayCut_eq_zero_of_raySinSq_tomo_e1_lt`,
+     `dedekindRayCut_isPointwiseRayContinuousAt_tomo_e1`,
+     `dedekindRayCut_eq_one_of_raySinSq_tomo_e2_lt`,
+     `dedekindRayCut_isPointwiseRayContinuousAt_tomo_e2`,
+     `dedekindRayCut_eventually_const`,
+     `dedekindRayCut_isArchimedeanContinuousEverywhere`,
+     `dedekindRayCut_isPointwiseRayContinuous`), general and `tomo_e1`-anchored orthogonal
+     ray-distance Bessel bounds, `< 45°` polar-cap disjointness, and global vanishing of
+     polar-cap-supported zero-weight residuals (`quadRay_rayProj_eq_one_sub_raySinSq`,
+     `ortho_raySinSq_add_ge_one`, `not_both_raySinSq_lt_half_of_ortho`,
+     `zero_of_zeroWeight_supported_in_polar_cap`, `ortho_raySinSq_tomo_e1_add_ge_one`,
+     `not_both_raySinSq_tomo_e1_lt_half_of_ortho`),
+     refutation of 3-frame additivity for `dedekindRayCut` and any `{0, 1}`-valued 1D latitude
+     profile (`dedekindRayCut_not_isFrameFunction`, `yLatitudeFunction_std_and_bisector_constraints`,
+     `no_zero_one_latitude_frameFunction`), and the two-frame Gaussian-norm latitude-halving identity
+     `2 * f(a, b, a + b i) = f(a, b, 0) + f(0, 0, 1)` for coordinate-sign symmetric frame functions
+     (`isFrame_gaussianHalving_base`, `isFrame_gaussianHalving_rot`,
+     `coordSignSymmetric_gaussian_halving_identity`, `dedekindRayCut_isCoordSignSymmetric`,
+     `dedekindRayCut_fails_gaussian_halving_at_1_2`).
 -/
 
 namespace BornFinite.GaussianFiniteModel
@@ -1394,6 +1428,1084 @@ theorem dedekindRayCut_jump_on_pell_pair :
   · norm_num [pellHiRay, pellLoRay, raySinSq, normSqVec, GVec.inner, GaussRat.normSq]
   · norm_num [pellHiRay, pellLoRay, dedekindRayCut, normSqVec, GaussRat.normSq]
 
+/-! ### Section 7: Track A (Rational Piron–Soler Chain & Polar–Equatorial Transfer) and Track B (Irrational-Locus / Dedekind-Cut Frame Stress Tests) on `ℚ(i)³` (`TFQ-1057`) -/
+
+/-! #### 7A. Track A: General-Value Rational Piron–Soler Chain & Polar–Equatorial Transfer -/
+
+/-- **General Rational Piron Orthogonal Subadditivity (`rational_piron_subadditivity`)**:
+for any nonnegative frame function `f` on `ℚ(i)³` and any two nonzero orthogonal vectors
+`u, v ∈ ℚ(i)³` (`GVec.inner u v = 0`), completing `(u, v)` to the orthogonal 3-frame
+`(u, v, hermCross u v)` forces `0 ≤ f u + f v ≤ 1`. -/
+theorem rational_piron_subadditivity {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    {u v : GVec} (hu : u.NonZero) (hv : v.NonZero) (huv : GVec.inner u v = 0) :
+    0 ≤ f u + f v ∧ f u + f v ≤ 1 := by
+  have hfr := isFrame_hermCross hu hv huv
+  have hsum := hf.1 u v (hermCross u v) hfr
+  have hfu := hf.2 u hu
+  have hfv := hf.2 v hv
+  have hfw := hf.2 (hermCross u v) hfr.2.2.1
+  exact ⟨by linarith, by linarith⟩
+
+/-- **Orthogonal Pole-Deficiency Bound (`nonneg_frameFunction_ortho_le_one_sub`)**:
+for any nonnegative frame function `f` on `ℚ(i)³` and any nonzero `v` orthogonal to a nonzero
+pole `u`, `0 ≤ f v ≤ 1 - f u`. -/
+theorem nonneg_frameFunction_ortho_le_one_sub {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    {u v : GVec} (hu : u.NonZero) (hv : v.NonZero) (huv : GVec.inner u v = 0) :
+    0 ≤ f v ∧ f v ≤ 1 - f u := by
+  have hsub := rational_piron_subadditivity hf hu hv huv
+  exact ⟨hf.2 v hv, by linarith⟩
+
+/-- Every nonzero equatorial vector `y ∈ e₁⊥` (`y.x = 0`) and its canonical equatorial partner
+`eqOrtho y` complete `tomo_e1` to an exact orthogonal frame `(tomo_e1, y, eqOrtho y)` in `ℚ(i)³`. -/
+theorem isFrame_tomo_e1_eqOrtho {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) :
+    IsFrame tomo_e1 y (eqOrtho y) := by
+  have hy_pos := normSqVec_pos_of_nonZero hy
+  have heq_pos : 0 < normSqVec (eqOrtho y) := by
+    rw [normSqVec_eqOrtho_of_x_zero hyx]
+    exact hy_pos
+  exact ⟨tomo_e1_nonZero, hy, nonZero_of_normSqVec_pos heq_pos,
+    inner_tomo_e1_of_x_zero hyx,
+    inner_tomo_e1_of_x_zero rfl,
+    inner_eqOrtho_self y⟩
+
+/-- **Equatorial Pole-Deficiency Decomposition (`equatorial_pair_sum_eq_one_sub_pole`)**:
+for any nonnegative frame function `f` on `ℚ(i)³` and any nonzero `y ∈ e₁⊥`,
+`f y + f (eqOrtho y) = 1 - f tomo_e1`, so both `f y ≤ 1 - f tomo_e1` and
+`f (eqOrtho y) ≤ 1 - f tomo_e1`. -/
+theorem equatorial_pair_sum_eq_one_sub_pole {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) :
+    f y + f (eqOrtho y) = 1 - f tomo_e1 ∧
+    f y ≤ 1 - f tomo_e1 ∧
+    f (eqOrtho y) ≤ 1 - f tomo_e1 := by
+  have hfr := isFrame_tomo_e1_eqOrtho hyx hy
+  have hsum := hf.1 tomo_e1 y (eqOrtho y) hfr
+  have hfy := hf.2 y hy
+  have hfeq := hf.2 (eqOrtho y) hfr.2.2.1
+  exact ⟨by linarith, by linarith, by linarith⟩
+
+/-- **General Two-Frame Meridian–Kelvin Polar–Equatorial Bridge (`meridian_kelvin_universal_bridge`)**:
+for **every** frame function `f` on `ℚ(i)³` (without assuming `f tomo_e1 = 1` or nonnegativity)
+and every nonzero `y ∈ e₁⊥`, subtracting the equatorial frame `(tomo_e1, y, eqOrtho y)` from the
+meridian frame `(e₁ + y, eqOrtho y, meridianOrtho y)` eliminates `f (eqOrtho y)` and yields:
+1. `f (e₁ + y) + f (meridianOrtho y) = f tomo_e1 + f y`,
+2. `f (e₁ + y) + f (e₁ + kelvinEq y) = f tomo_e1 + f y`,
+3. `f (e₁ + y) - f tomo_e1 = f y - f (meridianOrtho y)` (polar variation equals equatorial variation). -/
+theorem meridian_kelvin_universal_bridge {f : GVec → ℚ} (hf : IsFrameFunction f)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) :
+    f (GVec.add tomo_e1 y) + f (meridianOrtho y) = f tomo_e1 + f y ∧
+    f (GVec.add tomo_e1 y) + f (GVec.add tomo_e1 (kelvinEq y)) = f tomo_e1 + f y ∧
+    f (GVec.add tomo_e1 y) - f tomo_e1 = f y - f (meridianOrtho y) := by
+  have hfr_eq := isFrame_tomo_e1_eqOrtho hyx hy
+  have hsum_eq := hf tomo_e1 y (eqOrtho y) hfr_eq
+  have hfr_mer := isFrame_piron_base hyx hy one_ne_zero
+  have hsmul1 : GVec.smul 1 (eqOrtho y) = eqOrtho y := by
+    ext <;> simp [GVec.smul]
+  have hsum_mer := hf (GVec.add tomo_e1 y) (GVec.smul 1 (eqOrtho y)) (meridianOrtho y) hfr_mer
+  rw [hsmul1] at hsum_mer
+  have hm_nz : (meridianOrtho y).NonZero := hfr_mer.2.2.1
+  have hy_pos := normSqVec_pos_of_nonZero hy
+  have hl_ne : (⟨-(1 / normSqVec y), 0⟩ : GaussRat) ≠ 0 := by
+    intro h
+    have hre := congrArg GaussRat.re h
+    dsimp at hre
+    have hpos : 0 < 1 / normSqVec y := div_pos one_pos hy_pos
+    linarith
+  have hsmul_kelvin := GaussianTomography.frameFunction_smul hf hm_nz hl_ne
+  rw [smul_meridianOrtho_eq_add_kelvinEq hy] at hsmul_kelvin
+  exact ⟨by linarith, by linarith, by linarith⟩
+
+/-- **Zero-Weight Meridian–Kelvin Polar–Equatorial Bridge (`meridian_kelvin_zeroWeight_bridge`)**:
+for every zero-weight frame residual `g` on `ℚ(i)³` and every nonzero `y ∈ e₁⊥`,
+`g (e₁ + y) + g (meridianOrtho y) = g tomo_e1 + g y` and
+`g (e₁ + y) - g tomo_e1 = g y - g (meridianOrtho y)`. -/
+theorem meridian_kelvin_zeroWeight_bridge {g : GVec → ℚ} (hg : IsZeroWeightFrameFunction g)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) :
+    g (GVec.add tomo_e1 y) + g (meridianOrtho y) = g tomo_e1 + g y ∧
+    g (GVec.add tomo_e1 y) - g tomo_e1 = g y - g (meridianOrtho y) := by
+  have hfr_eq := isFrame_tomo_e1_eqOrtho hyx hy
+  have hsum_eq := hg tomo_e1 y (eqOrtho y) hfr_eq
+  have hfr_mer := isFrame_piron_base hyx hy one_ne_zero
+  have hsmul1 : GVec.smul 1 (eqOrtho y) = eqOrtho y := by
+    ext <;> simp [GVec.smul]
+  have hsum_mer := hg (GVec.add tomo_e1 y) (GVec.smul 1 (eqOrtho y)) (meridianOrtho y) hfr_mer
+  rw [hsmul1] at hsum_mer
+  exact ⟨by linarith, by linarith⟩
+
+/-- **Exact Polar–Equatorial Projective Ray-Distance Duality (`meridianOrtho_raySinSq_eq`)**:
+for every nonzero `y ∈ e₁⊥`, the projective ray distance `raySinSq (e₁ + y) tomo_e1` near the pole
+`tomo_e1` and the projective ray distance `raySinSq (meridianOrtho y) y` near the equatorial ray `y`
+are both identically equal to `normSqVec y / (1 + normSqVec y)`. -/
+theorem meridianOrtho_raySinSq_eq {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) :
+    raySinSq (GVec.add tomo_e1 y) tomo_e1 = normSqVec y / (1 + normSqVec y) ∧
+    raySinSq (meridianOrtho y) y = normSqVec y / (1 + normSqVec y) := by
+  have hy_pos := normSqVec_pos_of_nonZero hy
+  have hy_ne : normSqVec y ≠ 0 := ne_of_gt hy_pos
+  have h1y_pos : 0 < 1 + normSqVec y := by linarith
+  have h1y_ne : 1 + normSqVec y ≠ 0 := ne_of_gt h1y_pos
+  have he1_norm : normSqVec tomo_e1 = 1 := by
+    simp [normSqVec, GaussRat.normSq, tomo_e1, gv]
+  have he1y_norm : normSqVec (GVec.add tomo_e1 y) = 1 + normSqVec y :=
+    normSqVec_add_tomo_e1_of_x_zero hyx
+  have he1y_inner : (GVec.inner (GVec.add tomo_e1 y) tomo_e1).normSq = 1 := by
+    simp [GVec.inner, GVec.add, tomo_e1, gv, hyx, GaussRat.normSq]
+  have h_ortho_mer : GVec.inner (GVec.smul ⟨-normSqVec y, 0⟩ tomo_e1) y = 0 := by
+    rw [inner_smul_left, inner_tomo_e1_of_x_zero hyx, mul_zero]
+  have hmer_norm : normSqVec (meridianOrtho y) = normSqVec y * (1 + normSqVec y) := by
+    rw [meridianOrtho, (normSqVec_add_eq_normSqVec_sub_of_ortho h_ortho_mer).1,
+        normSqVec_smul, he1_norm]
+    simp only [GaussRat.normSq]
+    ring
+  have hmer_inner : (GVec.inner (meridianOrtho y) y).normSq = (normSqVec y) ^ 2 := by
+    rw [meridianOrtho, inner_add_left, h_ortho_mer, zero_add, inner_self_eq_normSqVec y]
+    simp only [GaussRat.normSq]
+    ring
+  refine ⟨?_, ?_⟩
+  · unfold raySinSq
+    rw [he1y_inner, he1y_norm, he1_norm]
+    field_simp
+    ring
+  · unfold raySinSq
+    rw [hmer_inner, hmer_norm]
+    field_simp
+    ring
+
+/-- **Uniform Equatorial Meridian Continuity from Single-Pole Pointwise Continuity
+(`meridian_uniform_equatorial_continuity_of_pole_continuous`)**:
+if a frame function `f` on `ℚ(i)³` is pointwise ray-continuous at the single pole `tomo_e1`
+(`IsPointwiseRayContinuousAt f tomo_e1`), then for every `ε > 0` there exists a single modulus
+`δ > 0` (uniform across all equatorial directions `y ∈ e₁⊥ \ {0}`) such that whenever
+`raySinSq (meridianOrtho y) y < δ`, `|f (meridianOrtho y) - f y| < ε`. -/
+theorem meridian_uniform_equatorial_continuity_of_pole_continuous {f : GVec → ℚ}
+    (hf : IsFrameFunction f) (hcont : IsPointwiseRayContinuousAt f tomo_e1) :
+    ∀ ε : ℚ, 0 < ε → ∃ δ : ℚ, 0 < δ ∧
+      ∀ y : GVec, y.x = 0 → y.NonZero →
+        raySinSq (meridianOrtho y) y < δ → |f (meridianOrtho y) - f y| < ε := by
+  intro ε hε
+  obtain ⟨δ, hδ, hb⟩ := hcont ε hε
+  refine ⟨δ, hδ, ?_⟩
+  intro y hyx hy hsin
+  have h_e1y_nz : (GVec.add tomo_e1 y).NonZero :=
+    (isFrame_piron_base hyx hy one_ne_zero).1
+  have hsin_eq := meridianOrtho_raySinSq_eq hyx hy
+  have hsin_pole : raySinSq (GVec.add tomo_e1 y) tomo_e1 < δ := by
+    rw [hsin_eq.1, ← hsin_eq.2]
+    exact hsin
+  have h_pole_lt := hb (GVec.add tomo_e1 y) h_e1y_nz hsin_pole
+  have hbridge := (meridian_kelvin_universal_bridge hf hyx hy).2.2
+  have h_abs : |f (meridianOrtho y) - f y| = |f (GVec.add tomo_e1 y) - f tomo_e1| := by
+    rw [← abs_neg (f (meridianOrtho y) - f y)]
+    congr 1
+    linarith
+  rw [h_abs]
+  exact h_pole_lt
+
+/-- **Exact Zero-Slack Piron Step–Partner Bridge (`piron_zero_slack_step_partner_bridge`)**:
+for every frame function `f` on `ℚ(i)³` (without assuming `f tomo_e1 = 1` or nonnegativity),
+every nonzero `y ∈ e₁⊥`, and every `lam ≠ 0`,
+1. `f (pironStep y lam) + f (pironPartner y lam) = f (e₁ + y) + f (eqOrtho y)`,
+2. `f (pironStep y lam) - f (e₁ + y) = f (eqOrtho y) - f (pironPartner y lam)`,
+3. `|f (pironStep y lam) - f (e₁ + y)| = |f (pironPartner y lam) - f (eqOrtho y)|`. -/
+theorem piron_zero_slack_step_partner_bridge {f : GVec → ℚ} (hf : IsFrameFunction f)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {lam : GaussRat} (hlam : lam ≠ 0) :
+    f (pironStep y lam) + f (pironPartner y lam) =
+      f (GVec.add tomo_e1 y) + f (eqOrtho y) ∧
+    f (pironStep y lam) - f (GVec.add tomo_e1 y) =
+      f (eqOrtho y) - f (pironPartner y lam) ∧
+    |f (pironStep y lam) - f (GVec.add tomo_e1 y)| =
+      |f (pironPartner y lam) - f (eqOrtho y)| := by
+  have hsum := (piron_frame_sum_identity hf hyx hy hlam).2
+  have heq_nz : (eqOrtho y).NonZero := (isFrame_tomo_e1_eqOrtho hyx hy).2.2.1
+  have hsmul_eq := GaussianTomography.frameFunction_smul hf heq_nz hlam
+  have h1 : f (pironStep y lam) + f (pironPartner y lam) =
+      f (GVec.add tomo_e1 y) + f (eqOrtho y) := by linarith
+  have h2 : f (pironStep y lam) - f (GVec.add tomo_e1 y) =
+      f (eqOrtho y) - f (pironPartner y lam) := by linarith
+  refine ⟨h1, h2, ?_⟩
+  rw [h2, ← abs_neg (f (eqOrtho y) - f (pironPartner y lam))]
+  congr 1
+  ring
+
+/-- **Symmetric Opposite-Step Piron Partner Balance (`piron_symmetric_step_partner_balance`)**:
+for every frame function `f` on `ℚ(i)³`, every nonzero `y ∈ e₁⊥`, and every `lam ≠ 0`,
+subtracting the Piron rotated frames at `+lam` and `-lam` cancels `f (e₁ + y)`, `f (eqOrtho y)`,
+and `f (meridianOrtho y)` simultaneously with zero pole-deficiency slack:
+`f (pironStep y lam) + f (pironPartner y lam) = f (pironStep y (-lam)) + f (pironPartner y (-lam))`
+and `f (pironStep y lam) - f (pironStep y (-lam)) = f (pironPartner y (-lam)) - f (pironPartner y lam)`. -/
+theorem piron_symmetric_step_partner_balance {f : GVec → ℚ} (hf : IsFrameFunction f)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {lam : GaussRat} (hlam : lam ≠ 0) :
+    f (pironStep y lam) + f (pironPartner y lam) =
+      f (pironStep y (-lam)) + f (pironPartner y (-lam)) ∧
+    f (pironStep y lam) - f (pironStep y (-lam)) =
+      f (pironPartner y (-lam)) - f (pironPartner y lam) := by
+  have hlam_neg : -lam ≠ 0 := neg_ne_zero.mpr hlam
+  have hpos := (piron_zero_slack_step_partner_bridge hf hyx hy hlam).1
+  have hneg := (piron_zero_slack_step_partner_bridge hf hyx hy hlam_neg).1
+  exact ⟨by linarith, by linarith⟩
+
+/-- **Exact Piron Step–Partner Projective Ray-Distance Duality (`pironStep_pironPartner_raySinSq_eq`)**:
+for every nonzero `y ∈ e₁⊥` and every `lam ≠ 0`, the projective ray distance
+`raySinSq (pironStep y lam) (e₁ + y)` and the partner projective ray distance
+`raySinSq (pironPartner y lam) (eqOrtho y)` are both identically equal to
+`(lam.normSq * normSqVec y) / (1 + normSqVec y + lam.normSq * normSqVec y)`. -/
+theorem pironStep_pironPartner_raySinSq_eq {y : GVec} (hyx : y.x = 0) (hy : y.NonZero)
+    {lam : GaussRat} (hlam : lam ≠ 0) :
+    raySinSq (pironStep y lam) (GVec.add tomo_e1 y) =
+      (lam.normSq * normSqVec y) / (1 + normSqVec y + lam.normSq * normSqVec y) ∧
+    raySinSq (pironPartner y lam) (eqOrtho y) =
+      (lam.normSq * normSqVec y) / (1 + normSqVec y + lam.normSq * normSqVec y) := by
+  let u := GVec.add tomo_e1 y
+  let v := eqOrtho y
+  have hy_pos := normSqVec_pos_of_nonZero hy
+  have hy_ne : normSqVec y ≠ 0 := ne_of_gt hy_pos
+  have hlam_pos := gaussRat_normSq_pos_of_ne_zero hlam
+  have hlam_ne : lam.normSq ≠ 0 := ne_of_gt hlam_pos
+  have hu_norm : normSqVec u = 1 + normSqVec y := normSqVec_add_tomo_e1_of_x_zero hyx
+  have hv_norm : normSqVec v = normSqVec y := normSqVec_eqOrtho_of_x_zero hyx
+  have hu_pos : 0 < 1 + normSqVec y := by linarith
+  have hu_ne : 1 + normSqVec y ≠ 0 := ne_of_gt hu_pos
+  have htot_pos : 0 < 1 + normSqVec y + lam.normSq * normSqVec y := by
+    have : 0 < lam.normSq * normSqVec y := mul_pos hlam_pos hy_pos
+    linarith
+  have htot_ne : 1 + normSqVec y + lam.normSq * normSqVec y ≠ 0 := ne_of_gt htot_pos
+  have huv : GVec.inner u v = 0 := by
+    dsimp [u, v]
+    rw [inner_add_left, inner_tomo_e1_of_x_zero rfl, inner_eqOrtho_self, add_zero]
+  have hvu : GVec.inner v u = 0 := inner_eq_zero_symm huv
+  have huv_lam : GVec.inner u (GVec.smul lam v) = 0 := by
+    rw [GaussianTomography.inner_smul_right, huv, mul_zero]
+  have hstep_norm : normSqVec (pironStep y lam) = 1 + normSqVec y + lam.normSq * normSqVec y := by
+    change normSqVec (GVec.add u (GVec.smul lam v)) = _
+    rw [(normSqVec_add_eq_normSqVec_sub_of_ortho huv_lam).1,
+        hu_norm, normSqVec_smul, hv_norm]
+  have hstep_inner : (GVec.inner (pironStep y lam) u).normSq = (1 + normSqVec y) ^ 2 := by
+    change (GVec.inner (GVec.add u (GVec.smul lam v)) u).normSq = _
+    rw [inner_add_left, inner_smul_left, hvu, mul_zero, add_zero,
+        inner_self_eq_normSqVec u, hu_norm]
+    simp only [GaussRat.normSq]
+    ring
+  have hpart_norm :
+      normSqVec (pironPartner y lam) =
+        (1 + normSqVec y) * (lam.normSq * normSqVec y) *
+          (1 + normSqVec y + lam.normSq * normSqVec y) := by
+    rw [pironPartner_eq_rotPairV hyx lam,
+        normSqVec_rotPairV huv_lam 1 1,
+        ← pironStep_eq_rotPairU y lam,
+        hstep_norm, hu_norm, normSqVec_smul, hv_norm]
+  have hpart_inner :
+      (GVec.inner (pironPartner y lam) v).normSq =
+        (1 + normSqVec y) ^ 2 * lam.normSq * (normSqVec y) ^ 2 := by
+    change (GVec.inner
+      (GVec.add
+        (GVec.smul (-(star lam * lam * ⟨normSqVec y, 0⟩)) u)
+        (GVec.smul (⟨1 + normSqVec y, 0⟩ * lam) v)) v).normSq = _
+    rw [inner_add_left, inner_smul_left, huv, mul_zero, zero_add,
+        inner_smul_left, inner_self_eq_normSqVec v, hv_norm]
+    simp only [GaussRat.normSq, GaussRat.re_mul, GaussRat.im_mul,
+      GaussRat.re_star, GaussRat.im_star]
+    ring
+  refine ⟨?_, ?_⟩
+  · unfold raySinSq
+    change 1 - (GVec.inner (pironStep y lam) u).normSq /
+      (normSqVec (pironStep y lam) * normSqVec u) = _
+    rw [hstep_inner, hstep_norm, hu_norm]
+    field_simp
+    ring
+  · unfold raySinSq
+    change 1 - (GVec.inner (pironPartner y lam) v).normSq /
+      (normSqVec (pironPartner y lam) * normSqVec v) = _
+    rw [hpart_inner, hpart_norm, hv_norm]
+    field_simp
+    ring
+
+/-- **Zero-Slack Piron Tangent Continuity from Equatorial Partner Continuity
+(`piron_step_continuous_of_eqOrtho_continuous`)**:
+for any frame function `f` on `ℚ(i)³` (without assuming `f tomo_e1 = 1` or nonnegativity) and any
+nonzero `y ∈ e₁⊥`, if `f` is pointwise ray-continuous at `eqOrtho y`
+(`IsPointwiseRayContinuousAt f (eqOrtho y)`), then for every `ε > 0` there exists `δ > 0` such that
+every Piron tangent step `pironStep y lam` (`lam ≠ 0`) with
+`raySinSq (pironStep y lam) (e₁ + y) < δ` satisfies `|f (pironStep y lam) - f (e₁ + y)| < ε`
+with **zero pole-deficiency slack**. -/
+theorem piron_step_continuous_of_eqOrtho_continuous {f : GVec → ℚ}
+    (hf : IsFrameFunction f) {y : GVec} (hyx : y.x = 0) (hy : y.NonZero)
+    (hcont : IsPointwiseRayContinuousAt f (eqOrtho y)) :
+    ∀ ε : ℚ, 0 < ε → ∃ δ : ℚ, 0 < δ ∧
+      ∀ lam : GaussRat, lam ≠ 0 →
+        raySinSq (pironStep y lam) (GVec.add tomo_e1 y) < δ →
+          |f (pironStep y lam) - f (GVec.add tomo_e1 y)| < ε := by
+  intro ε hε
+  obtain ⟨δ, hδ, hb⟩ := hcont ε hε
+  refine ⟨δ, hδ, ?_⟩
+  intro lam hlam hsin
+  have hfr := isFrame_piron_base hyx hy hlam
+  have hpart_nz : (pironPartner y lam).NonZero := by
+    rw [pironPartner_eq_rotPairV hyx]
+    exact (isFrame_rotPair hfr (Or.inl one_ne_zero)).2.1
+  have hsin_eq := pironStep_pironPartner_raySinSq_eq hyx hy hlam
+  have hsin_part : raySinSq (pironPartner y lam) (eqOrtho y) < δ := by
+    rw [hsin_eq.2, ← hsin_eq.1]
+    exact hsin
+  have h_part_lt := hb (pironPartner y lam) hpart_nz hsin_part
+  rw [(piron_zero_slack_step_partner_bridge hf hyx hy hlam).2.2]
+  exact h_part_lt
+
+/-- **Zero-Slack 3-Step Rational Piron Chain Oscillation Bound
+(`piron_three_step_zero_slack_chain_abs_le`)**:
+along any three successive nonzero equatorial tangent steps `y₁ = eqTangentStep y t₁`,
+`y₂ = eqTangentStep y₁ t₂`, `y₃ = eqTangentStep y₂ t₃` from `y ∈ e₁⊥ \ {0}`, every frame function
+`f` on `ℚ(i)³` satisfies the exact identity and triangle-inequality bound with zero pole-deficiency
+slack:
+`f (e₁ + y₃) - f (e₁ + y) = (f (eqOrtho y) - f (pironPartner y t₁)) + (f (eqOrtho y₁) - f (pironPartner y₁ t₂)) + (f (eqOrtho y₂) - f (pironPartner y₂ t₃))`
+and
+`|f (e₁ + y₃) - f (e₁ + y)| ≤ |f (pironPartner y t₁) - f (eqOrtho y)| + |f (pironPartner y₁ t₂) - f (eqOrtho y₁)| + |f (pironPartner y₂ t₃) - f (eqOrtho y₂)|`. -/
+theorem piron_three_step_zero_slack_chain_abs_le {f : GVec → ℚ} (hf : IsFrameFunction f)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero)
+    {t₁ t₂ t₃ : ℚ} (ht₁ : t₁ ≠ 0) (ht₂ : t₂ ≠ 0) (ht₃ : t₃ ≠ 0) :
+    let y₁ := eqTangentStep y t₁
+    let y₂ := eqTangentStep y₁ t₂
+    let y₃ := eqTangentStep y₂ t₃
+    f (GVec.add tomo_e1 y₃) - f (GVec.add tomo_e1 y) =
+      (f (eqOrtho y) - f (pironPartner y ⟨t₁, 0⟩)) +
+      (f (eqOrtho y₁) - f (pironPartner y₁ ⟨t₂, 0⟩)) +
+      (f (eqOrtho y₂) - f (pironPartner y₂ ⟨t₃, 0⟩)) ∧
+    |f (GVec.add tomo_e1 y₃) - f (GVec.add tomo_e1 y)| ≤
+      |f (pironPartner y ⟨t₁, 0⟩) - f (eqOrtho y)| +
+      |f (pironPartner y₁ ⟨t₂, 0⟩) - f (eqOrtho y₁)| +
+      |f (pironPartner y₂ ⟨t₃, 0⟩) - f (eqOrtho y₂)| := by
+  dsimp only
+  let y₁ := eqTangentStep y t₁
+  let y₂ := eqTangentStep y₁ t₂
+  let y₃ := eqTangentStep y₂ t₃
+  have hy₁x : y₁.x = 0 := eqTangentStep_x_zero hyx t₁
+  have hy₁ : y₁.NonZero := eqTangentStep_nonZero_of_x_zero hyx hy t₁
+  have hy₂x : y₂.x = 0 := eqTangentStep_x_zero hy₁x t₂
+  have hy₂ : y₂.NonZero := eqTangentStep_nonZero_of_x_zero hy₁x hy₁ t₂
+  have hlam₁ : (⟨t₁, 0⟩ : GaussRat) ≠ 0 := fun h => ht₁ (congrArg GaussRat.re h)
+  have hlam₂ : (⟨t₂, 0⟩ : GaussRat) ≠ 0 := fun h => ht₂ (congrArg GaussRat.re h)
+  have hlam₃ : (⟨t₃, 0⟩ : GaussRat) ≠ 0 := fun h => ht₃ (congrArg GaussRat.re h)
+  obtain ⟨_, hd1, ha1⟩ := piron_zero_slack_step_partner_bridge hf hyx hy hlam₁
+  obtain ⟨_, hd2, ha2⟩ := piron_zero_slack_step_partner_bridge hf hy₁x hy₁ hlam₂
+  obtain ⟨_, hd3, ha3⟩ := piron_zero_slack_step_partner_bridge hf hy₂x hy₂ hlam₃
+  rw [pironStep_eq_add_eqTangentStep y t₁] at hd1 ha1
+  rw [pironStep_eq_add_eqTangentStep y₁ t₂] at hd2 ha2
+  rw [pironStep_eq_add_eqTangentStep y₂ t₃] at hd3 ha3
+  have htel :
+      f (GVec.add tomo_e1 y₃) - f (GVec.add tomo_e1 y) =
+        (f (GVec.add tomo_e1 y₁) - f (GVec.add tomo_e1 y)) +
+        (f (GVec.add tomo_e1 y₂) - f (GVec.add tomo_e1 y₁)) +
+        (f (GVec.add tomo_e1 y₃) - f (GVec.add tomo_e1 y₂)) := by ring
+  refine ⟨by linarith, ?_⟩
+  have htri1 := abs_add_le
+    ((f (GVec.add tomo_e1 y₁) - f (GVec.add tomo_e1 y)) +
+     (f (GVec.add tomo_e1 y₂) - f (GVec.add tomo_e1 y₁)))
+    (f (GVec.add tomo_e1 y₃) - f (GVec.add tomo_e1 y₂))
+  have htri2 := abs_add_le
+    (f (GVec.add tomo_e1 y₁) - f (GVec.add tomo_e1 y))
+    (f (GVec.add tomo_e1 y₂) - f (GVec.add tomo_e1 y₁))
+  rw [htel]
+  linarith
+
+/-- **General 1-Step Rational Piron Bound with Pole-Deficiency Slack (`piron_general_one_step_le`)**:
+for any nonnegative frame function `f` on `ℚ(i)³`, any nonzero `y ∈ e₁⊥`, and any `lam ≠ 0`,
+`f (pironStep y lam) ≤ f (e₁ + y) + f (eqOrtho y) ≤ f (e₁ + y) + (1 - f tomo_e1)`. -/
+theorem piron_general_one_step_le {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {lam : GaussRat} (hlam : lam ≠ 0) :
+    f (pironStep y lam) ≤ f (GVec.add tomo_e1 y) + f (eqOrtho y) ∧
+    f (pironStep y lam) ≤ f (GVec.add tomo_e1 y) + (1 - f tomo_e1) := by
+  have hfr := isFrame_piron_base hyx hy hlam
+  have hsum := (piron_frame_sum_identity hf.1 hyx hy hlam).2
+  have heq_nz : (eqOrtho y).NonZero := (isFrame_tomo_e1_eqOrtho hyx hy).2.2.1
+  have hsmul_eq := GaussianTomography.frameFunction_smul hf.1 heq_nz hlam
+  have hpart_nz : (pironPartner y lam).NonZero := by
+    rw [pironPartner_eq_rotPairV hyx]
+    exact (isFrame_rotPair hfr (Or.inl one_ne_zero)).2.1
+  have hpart_nn := hf.2 (pironPartner y lam) hpart_nz
+  have heq_le := (equatorial_pair_sum_eq_one_sub_pole hf hyx hy).2.2
+  exact ⟨by linarith, by linarith⟩
+
+/-- **General 2-Step Opposite-Tangent Rational Piron Radial Bound (`piron_general_two_step_radial_le`)**:
+for any nonnegative frame function `f` on `ℚ(i)³`, any nonzero `y ∈ e₁⊥`, and any `t ≠ 0`,
+`f (e₁ + (1 + t²) • y) ≤ f (pironStep y ⟨t, 0⟩) + (1 - f tomo_e1) ≤ f (e₁ + y) + 2 * (1 - f tomo_e1)`. -/
+theorem piron_general_two_step_radial_le {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {t : ℚ} (ht : t ≠ 0) :
+    f (GVec.add tomo_e1 (GVec.smul ⟨1 + t ^ 2, 0⟩ y)) ≤
+      f (pironStep y ⟨t, 0⟩) + (1 - f tomo_e1) ∧
+    f (GVec.add tomo_e1 (GVec.smul ⟨1 + t ^ 2, 0⟩ y)) ≤
+      f (GVec.add tomo_e1 y) + 2 * (1 - f tomo_e1) := by
+  have hlam : (⟨t, 0⟩ : GaussRat) ≠ 0 := fun h => ht (congrArg GaussRat.re h)
+  have hlam_neg : (⟨-t, 0⟩ : GaussRat) ≠ 0 :=
+    fun h => (neg_ne_zero.mpr ht) (congrArg GaussRat.re h)
+  have hstep1 := (piron_general_one_step_le hf hyx hy hlam).2
+  have hstep2 :=
+    (piron_general_one_step_le hf
+      (eqTangentStep_x_zero hyx t)
+      (eqTangentStep_nonZero_of_x_zero hyx hy t)
+      hlam_neg).2
+  rw [pironStep_eq_add_eqTangentStep (eqTangentStep y t) (-t),
+      eqTangentStep_cancel_of_x_zero hyx t,
+      ← pironStep_eq_add_eqTangentStep y t] at hstep2
+  exact ⟨hstep2, by linarith⟩
+
+/-- **General 3-Step Rational Piron Tangent Chain Bound (`piron_general_three_step_chain_le`)**:
+along any three successive nonzero equatorial tangent steps `y₁ = eqTangentStep y t₁`,
+`y₂ = eqTangentStep y₁ t₂`, `y₃ = eqTangentStep y₂ t₃` from `y ∈ e₁⊥ \ {0}`, every nonnegative
+frame function `f` satisfies:
+`f (e₁ + y₃) - f (e₁ + y) ≤ f (eqOrtho y) + f (eqOrtho y₁) + f (eqOrtho y₂) ≤ 3 * (1 - f tomo_e1)`. -/
+theorem piron_general_three_step_chain_le {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero)
+    {t₁ t₂ t₃ : ℚ} (ht₁ : t₁ ≠ 0) (ht₂ : t₂ ≠ 0) (ht₃ : t₃ ≠ 0) :
+    let y₁ := eqTangentStep y t₁
+    let y₂ := eqTangentStep y₁ t₂
+    let y₃ := eqTangentStep y₂ t₃
+    f (GVec.add tomo_e1 y₃) - f (GVec.add tomo_e1 y) ≤
+      f (eqOrtho y) + f (eqOrtho y₁) + f (eqOrtho y₂) ∧
+    f (GVec.add tomo_e1 y₃) - f (GVec.add tomo_e1 y) ≤ 3 * (1 - f tomo_e1) := by
+  dsimp only
+  let y₁ := eqTangentStep y t₁
+  let y₂ := eqTangentStep y₁ t₂
+  let y₃ := eqTangentStep y₂ t₃
+  have hy₁x : y₁.x = 0 := eqTangentStep_x_zero hyx t₁
+  have hy₁ : y₁.NonZero := eqTangentStep_nonZero_of_x_zero hyx hy t₁
+  have hy₂x : y₂.x = 0 := eqTangentStep_x_zero hy₁x t₂
+  have hy₂ : y₂.NonZero := eqTangentStep_nonZero_of_x_zero hy₁x hy₁ t₂
+  have hlam₁ : (⟨t₁, 0⟩ : GaussRat) ≠ 0 := fun h => ht₁ (congrArg GaussRat.re h)
+  have hlam₂ : (⟨t₂, 0⟩ : GaussRat) ≠ 0 := fun h => ht₂ (congrArg GaussRat.re h)
+  have hlam₃ : (⟨t₃, 0⟩ : GaussRat) ≠ 0 := fun h => ht₃ (congrArg GaussRat.re h)
+  obtain ⟨hs1_eq, hs1_pole⟩ := piron_general_one_step_le hf hyx hy hlam₁
+  obtain ⟨hs2_eq, hs2_pole⟩ := piron_general_one_step_le hf hy₁x hy₁ hlam₂
+  obtain ⟨hs3_eq, hs3_pole⟩ := piron_general_one_step_le hf hy₂x hy₂ hlam₃
+  rw [pironStep_eq_add_eqTangentStep y t₁] at hs1_eq hs1_pole
+  rw [pironStep_eq_add_eqTangentStep y₁ t₂] at hs2_eq hs2_pole
+  rw [pironStep_eq_add_eqTangentStep y₂ t₃] at hs3_eq hs3_pole
+  exact ⟨by linarith, by linarith⟩
+
+/-- **General Piron–Pythagorean Two-Sided Sandwich with Pole-Deficiency Slack (`pythagEqRot_general_sandwich`)**:
+for every nonnegative frame function `f` on `ℚ(i)³`, every nonzero `y ∈ e₁⊥`, and every `k ≥ 2`,
+the Pythagorean rotated value `f (e₁ + pythagEqRot y k)` is sandwiched between the two radial
+meridian perturbations up to the pole-deficiency slack `1 - f tomo_e1`:
+`f (e₁ + ((k²+1)/(k²-1)) y) - (1 - f tomo_e1) ≤ f (e₁ + pythagEqRot y k)` and
+`f (e₁ + pythagEqRot y k) ≤ f (e₁ + ((k²-1)/(k²+1)) y) + (1 - f tomo_e1)`. -/
+theorem pythagEqRot_general_sandwich {f : GVec → ℚ} (hf : IsNonnegFrameFunction f)
+    {y : GVec} (hyx : y.x = 0) (hy : y.NonZero) {k : ℕ} (hk : 2 ≤ k) :
+    f (GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1), 0⟩ y)) -
+      (1 - f tomo_e1) ≤ f (GVec.add tomo_e1 (pythagEqRot y k)) ∧
+    f (GVec.add tomo_e1 (pythagEqRot y k)) ≤
+      f (GVec.add tomo_e1 (GVec.smul ⟨((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1), 0⟩ y)) +
+        (1 - f tomo_e1) := by
+  let a : ℚ := ((k : ℚ) ^ 2 - 1) / ((k : ℚ) ^ 2 + 1)
+  let t : ℚ := (2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1)
+  let y_lo : GVec := GVec.smul ⟨a, 0⟩ y
+  have hk_q : (2 : ℚ) ≤ (k : ℚ) := by exact_mod_cast hk
+  have hkm1_pos : 0 < (k : ℚ) ^ 2 - 1 := by nlinarith
+  have hkp1_pos : 0 < (k : ℚ) ^ 2 + 1 := by positivity
+  have ha_pos : 0 < a := div_pos hkm1_pos hkp1_pos
+  have ht_pos : 0 < t := div_pos (by linarith) hkm1_pos
+  have ha_ne : (⟨a, 0⟩ : GaussRat) ≠ 0 := by
+    intro h
+    have hre := congrArg GaussRat.re h
+    dsimp at hre
+    linarith
+  have hy_lo_x : y_lo.x = 0 := by simp [y_lo, GVec.smul, hyx]
+  have hy_lo_nz : y_lo.NonZero := nonZero_smul ha_ne hy
+  obtain ⟨h1, _⟩ :=
+    piron_general_two_step_radial_le hf hy_lo_x hy_lo_nz (ne_of_gt ht_pos)
+  have hlam : (⟨t, 0⟩ : GaussRat) ≠ 0 :=
+    fun h => (ne_of_gt ht_pos) (congrArg GaussRat.re h)
+  have h2 := (piron_general_one_step_le hf hy_lo_x hy_lo_nz hlam).2
+  have hpiron_rot : pironStep y_lo ⟨t, 0⟩ = GVec.add tomo_e1 (pythagEqRot y k) := by
+    rw [pironStep_eq_add_eqTangentStep, ← pythagEqRot_eq_eqTangentStep_of_two_le hk]
+  have hneg_t : -t = -(2 * (k : ℚ)) / ((k : ℚ) ^ 2 - 1) := by dsimp [t]; ring
+  have hhi_eq :
+      GVec.smul ⟨1 + t ^ 2, 0⟩ y_lo =
+        GVec.smul ⟨((k : ℚ) ^ 2 + 1) / ((k : ℚ) ^ 2 - 1), 0⟩ y := by
+    rw [← eqTangentStep_cancel_of_x_zero hy_lo_x t,
+        ← pythagEqRot_eq_eqTangentStep_of_two_le hk,
+        hneg_t,
+        eqTangentStep_pythagEqRot_neg_of_x_zero hyx hk]
+  rw [hpiron_rot, hhi_eq] at h1
+  rw [hpiron_rot] at h2
+  exact ⟨by linarith, h2⟩
+
+/-! #### 7B. Track B: Irrational-Locus / Dedekind-Cut Frame-Function Stress Tests on `ℚ(i)³` -/
+
+/-- **Local Constancy of `dedekindRayCut` Near `tomo_e1` (`dedekindRayCut_eq_zero_of_raySinSq_tomo_e1_lt`)**:
+for every nonzero `u ∈ ℚ(i)³` with `raySinSq u tomo_e1 < 1 / 2`, `|u.y|² < (1 / 2) ‖u‖²`, so
+`3 |u.y|⁴ < (3 / 4) ‖u‖⁴ < ‖u‖⁴` and `dedekindRayCut u = 0`. -/
+theorem dedekindRayCut_eq_zero_of_raySinSq_tomo_e1_lt {u : GVec} (hu : u.NonZero)
+    (hsin : raySinSq u tomo_e1 < 1 / 2) :
+    dedekindRayCut u = 0 := by
+  have hnu_pos : 0 < normSqVec u := normSqVec_pos_of_nonZero hu
+  have hnu_ne : normSqVec u ≠ 0 := ne_of_gt hnu_pos
+  have he1_norm : normSqVec tomo_e1 = 1 := by
+    simp [normSqVec, GaussRat.normSq, tomo_e1, gv]
+  have hinner : (GVec.inner u tomo_e1).normSq = u.x.normSq := by
+    simp [GVec.inner, tomo_e1, gv, GaussRat.normSq]
+  have hsin_eq : normSqVec u * raySinSq u tomo_e1 = u.y.normSq + u.z.normSq := by
+    unfold raySinSq
+    rw [hinner, he1_norm, mul_one, mul_sub, mul_one, mul_div_cancel₀ _ hnu_ne]
+    simp only [normSqVec]
+    ring
+  have huz_nn : 0 ≤ u.z.normSq := GaussRat.normSq_nonneg u.z
+  have huy_nn : 0 ≤ u.y.normSq := GaussRat.normSq_nonneg u.y
+  have huy_lt : u.y.normSq < (1 / 2) * normSqVec u := by
+    have hmul : normSqVec u * raySinSq u tomo_e1 < normSqVec u * (1 / 2) :=
+      mul_lt_mul_of_pos_left hsin hnu_pos
+    linarith
+  have h3_lt : 3 * (u.y.normSq) ^ 2 < (normSqVec u) ^ 2 := by
+    nlinarith
+  unfold dedekindRayCut
+  exact ite_eq_right_iff.mpr (fun h => absurd h (not_lt.mpr (le_of_lt h3_lt)))
+
+/-- **Pointwise Ray Continuity of `dedekindRayCut` at `tomo_e1` (`dedekindRayCut_isPointwiseRayContinuousAt_tomo_e1`)**:
+despite jumping by `1` across the irrational cone `3 |u.y|⁴ = ‖u‖⁴`, `dedekindRayCut` is locally
+constant (and hence pointwise ray-continuous) on the rational ray neighborhood
+`raySinSq u tomo_e1 < 1 / 2` of `tomo_e1`. -/
+theorem dedekindRayCut_isPointwiseRayContinuousAt_tomo_e1 :
+    IsPointwiseRayContinuousAt dedekindRayCut tomo_e1 := by
+  intro ε hε
+  refine ⟨1 / 2, by norm_num, ?_⟩
+  intro u hu hsin
+  have hu0 := dedekindRayCut_eq_zero_of_raySinSq_tomo_e1_lt hu hsin
+  have he1 : dedekindRayCut tomo_e1 = 0 := by
+    norm_num [dedekindRayCut, tomo_e1, gv, normSqVec, GaussRat.normSq]
+  rw [hu0, he1, sub_self, abs_zero]
+  exact hε
+
+/-- **Local Constancy of `dedekindRayCut` Near `tomo_e2` (`dedekindRayCut_eq_one_of_raySinSq_tomo_e2_lt`)**:
+for every nonzero `u ∈ ℚ(i)³` with `raySinSq u tomo_e2 < 1 / 3`, `|u.y|² > (2 / 3) ‖u‖²`, so
+`3 |u.y|⁴ > (4 / 3) ‖u‖⁴ > ‖u‖⁴` and `dedekindRayCut u = 1`. -/
+theorem dedekindRayCut_eq_one_of_raySinSq_tomo_e2_lt {u : GVec} (hu : u.NonZero)
+    (hsin : raySinSq u tomo_e2 < 1 / 3) :
+    dedekindRayCut u = 1 := by
+  have hnu_pos : 0 < normSqVec u := normSqVec_pos_of_nonZero hu
+  have hnu_ne : normSqVec u ≠ 0 := ne_of_gt hnu_pos
+  have he2_norm : normSqVec tomo_e2 = 1 := by
+    simp [normSqVec, GaussRat.normSq, tomo_e2, gv]
+  have hinner : (GVec.inner u tomo_e2).normSq = u.y.normSq := by
+    simp [GVec.inner, tomo_e2, gv, GaussRat.normSq]
+  have hsin_eq : normSqVec u * raySinSq u tomo_e2 = normSqVec u - u.y.normSq := by
+    unfold raySinSq
+    rw [hinner, he2_norm, mul_one, mul_sub, mul_one, mul_div_cancel₀ _ hnu_ne]
+  have huy_gt : (2 / 3) * normSqVec u < u.y.normSq := by
+    have hmul : normSqVec u * raySinSq u tomo_e2 < normSqVec u * (1 / 3) :=
+      mul_lt_mul_of_pos_left hsin hnu_pos
+    linarith
+  have h3_gt : (normSqVec u) ^ 2 < 3 * (u.y.normSq) ^ 2 := by
+    nlinarith
+  unfold dedekindRayCut
+  exact ite_eq_left_iff.mpr (fun h => absurd h3_gt h)
+
+/-- **Pointwise Ray Continuity of `dedekindRayCut` at `tomo_e2` (`dedekindRayCut_isPointwiseRayContinuousAt_tomo_e2`)**:
+`dedekindRayCut` is locally constant (`= 1`) and hence pointwise ray-continuous on the rational ray
+neighborhood `raySinSq u tomo_e2 < 1 / 3` of `tomo_e2`. -/
+theorem dedekindRayCut_isPointwiseRayContinuousAt_tomo_e2 :
+    IsPointwiseRayContinuousAt dedekindRayCut tomo_e2 := by
+  intro ε hε
+  refine ⟨1 / 3, by norm_num, ?_⟩
+  intro u hu hsin
+  have hu1 := dedekindRayCut_eq_one_of_raySinSq_tomo_e2_lt hu hsin
+  have he2 : dedekindRayCut tomo_e2 = 1 := by
+    norm_num [dedekindRayCut, tomo_e2, gv, normSqVec, GaussRat.normSq]
+  rw [hu1, he2, sub_self, abs_zero]
+  exact hε
+
+/-- **Refutation of 3-Frame Additivity for `dedekindRayCut` (`dedekindRayCut_not_isFrameFunction`)**:
+on the rational anchor-bisector frame `(tomo_e3, tomo_e12, bisector_12_neg)`, the `y`-latitudes are
+`0, 1 / 2, 1 / 2` (all below `1 / √3`), so `dedekindRayCut` evaluates to `0 + 0 + 0 = 0 ≠ 1`. -/
+theorem dedekindRayCut_not_isFrameFunction : ¬ IsFrameFunction dedekindRayCut := by
+  intro hf
+  have hsum := hf tomo_e3 tomo_e12 bisector_12_neg isFrame_tomo_e3_e12_bisector
+  have h0 : dedekindRayCut tomo_e3 + dedekindRayCut tomo_e12 + dedekindRayCut bisector_12_neg = 0 := by
+    norm_num [dedekindRayCut, tomo_e3, tomo_e12, bisector_12_neg, gv, normSqVec, GaussRat.normSq]
+  linarith
+
+/-- Ray function `u ↦ h (|u.y|² / ‖u‖²)` depending only on the single coordinate latitude
+`u.y.normSq / normSqVec u`. -/
+def yLatitudeFunction (h : ℚ → ℚ) (u : GVec) : ℚ :=
+  h (u.y.normSq / normSqVec u)
+
+/-- **Two-Frame Latitude Constraints (`yLatitudeFunction_std_and_bisector_constraints`)**:
+if a single-coordinate latitude function `yLatitudeFunction h` is a frame function on `ℚ(i)³`,
+evaluating it on the standard basis frame `(tomo_e1, tomo_e2, tomo_e3)` and the bisector frame
+`(tomo_e3, tomo_e12, bisector_12_neg)` forces `2 * h 0 + h 1 = 1` and `h 0 + 2 * h (1 / 2) = 1`. -/
+theorem yLatitudeFunction_std_and_bisector_constraints {h : ℚ → ℚ}
+    (hf : IsFrameFunction (yLatitudeFunction h)) :
+    2 * h 0 + h 1 = 1 ∧ h 0 + 2 * h (1 / 2) = 1 := by
+  have hstd := hf tomo_e1 tomo_e2 tomo_e3 frame_tomo_std
+  have hbis := hf tomo_e3 tomo_e12 bisector_12_neg isFrame_tomo_e3_e12_bisector
+  have he1 : yLatitudeFunction h tomo_e1 = h 0 := by
+    norm_num [yLatitudeFunction, tomo_e1, gv, normSqVec, GaussRat.normSq]
+  have he2 : yLatitudeFunction h tomo_e2 = h 1 := by
+    norm_num [yLatitudeFunction, tomo_e2, gv, normSqVec, GaussRat.normSq]
+  have he3 : yLatitudeFunction h tomo_e3 = h 0 := by
+    norm_num [yLatitudeFunction, tomo_e3, gv, normSqVec, GaussRat.normSq]
+  have he12 : yLatitudeFunction h tomo_e12 = h (1 / 2) := by
+    norm_num [yLatitudeFunction, tomo_e12, gv, normSqVec, GaussRat.normSq]
+  have h12n : yLatitudeFunction h bisector_12_neg = h (1 / 2) := by
+    norm_num [yLatitudeFunction, bisector_12_neg, normSqVec, GaussRat.normSq]
+  rw [he1, he2, he3] at hstd
+  rw [he3, he12, h12n] at hbis
+  exact ⟨by linarith, by linarith⟩
+
+/-- **No `{0, 1}`-Valued 1D Latitude Cut Is a Frame Function (`no_zero_one_latitude_frameFunction`)**:
+no profile `h : ℚ → ℚ` taking values in `{0, 1}` at the three rational latitudes `{0, 1 / 2, 1}`
+(at any irrational or rational threshold) can satisfy `IsFrameFunction (yLatitudeFunction h)`. -/
+theorem no_zero_one_latitude_frameFunction (h : ℚ → ℚ)
+    (h0 : h 0 = 0 ∨ h 0 = 1)
+    (h12 : h (1 / 2) = 0 ∨ h (1 / 2) = 1)
+    (h1 : h 1 = 0 ∨ h 1 = 1) :
+    ¬ IsFrameFunction (yLatitudeFunction h) := by
+  intro hf
+  obtain ⟨hstd, hbis⟩ := yLatitudeFunction_std_and_bisector_constraints hf
+  rcases h0 with h0_0 | h0_1 <;> rcases h12 with h12_0 | h12_1 <;> rcases h1 with h1_0 | h1_1 <;>
+    linarith
+
+/-- Equatorial vector `(a, b, 0)` and its planar orthogonal partner `(-b, a, 0)` together with
+their Gaussian-norm `45°` polar lifts `(a, b, a + b i)` and `(a, b, -(a + b i))` in `ℚ(i)³`. -/
+def gaussianHalvingBase (a b : ℚ) : GVec := ⟨⟨a, 0⟩, ⟨b, 0⟩, 0⟩
+def gaussianHalvingOrtho (a b : ℚ) : GVec := ⟨⟨-b, 0⟩, ⟨a, 0⟩, 0⟩
+def gaussianHalvingPos (a b : ℚ) : GVec := ⟨⟨a, 0⟩, ⟨b, 0⟩, ⟨a, b⟩⟩
+def gaussianHalvingNeg (a b : ℚ) : GVec := ⟨⟨a, 0⟩, ⟨b, 0⟩, -⟨a, b⟩⟩
+
+/-- For any `(a, b) ∈ ℚ²` with `a² + b² ≠ 0`, `(gaussianHalvingBase a b, tomo_e3, gaussianHalvingOrtho a b)`
+is an orthogonal 3-frame in `ℚ(i)³`. -/
+theorem isFrame_gaussianHalving_base {a b : ℚ} (hab : a ^ 2 + b ^ 2 ≠ 0) :
+    IsFrame (gaussianHalvingBase a b) tomo_e3 (gaussianHalvingOrtho a b) := by
+  have hpos : 0 < a ^ 2 + b ^ 2 := by
+    rcases (add_nonneg (sq_nonneg a) (sq_nonneg b)).lt_or_eq with h | h
+    · exact h
+    · exact absurd h.symm hab
+  have hu_eq : normSqVec (gaussianHalvingBase a b) = a ^ 2 + b ^ 2 := by
+    simp [gaussianHalvingBase, normSqVec, GaussRat.normSq]
+  have hw_eq : normSqVec (gaussianHalvingOrtho a b) = a ^ 2 + b ^ 2 := by
+    simp [gaussianHalvingOrtho, normSqVec, GaussRat.normSq]
+    ring
+  have hu_pos : 0 < normSqVec (gaussianHalvingBase a b) := by linarith
+  have hw_pos : 0 < normSqVec (gaussianHalvingOrtho a b) := by linarith
+  refine ⟨nonZero_of_normSqVec_pos hu_pos, tomo_e3_nonZero, nonZero_of_normSqVec_pos hw_pos,
+    ?_, ?_, ?_⟩
+  · ext <;> simp [GVec.inner, gaussianHalvingBase, tomo_e3, gv]
+  · ext <;> (simp [GVec.inner, gaussianHalvingBase, gaussianHalvingOrtho]; try ring)
+  · ext <;> simp [GVec.inner, tomo_e3, gaussianHalvingOrtho, gv]
+
+/-- Because `|a + b i|² = a² + b² = ‖(a, b, 0)‖²`, the rotated pair
+`(gaussianHalvingPos a b, gaussianHalvingNeg a b, gaussianHalvingOrtho a b)` is also an exact
+orthogonal 3-frame in `ℚ(i)³` whenever `a² + b² ≠ 0`, and halves the `(x, y)` coordinate latitudes
+from `(a²/(a²+b²), b²/(a²+b²))` to `(a²/(2(a²+b²)), b²/(2(a²+b²)))`. -/
+theorem isFrame_gaussianHalving_rot {a b : ℚ} (hab : a ^ 2 + b ^ 2 ≠ 0) :
+    IsFrame (gaussianHalvingPos a b) (gaussianHalvingNeg a b) (gaussianHalvingOrtho a b) := by
+  have hpos : 0 < a ^ 2 + b ^ 2 := by
+    rcases (add_nonneg (sq_nonneg a) (sq_nonneg b)).lt_or_eq with h | h
+    · exact h
+    · exact absurd h.symm hab
+  have hu_eq : normSqVec (gaussianHalvingPos a b) = 2 * (a ^ 2 + b ^ 2) := by
+    simp [gaussianHalvingPos, normSqVec, GaussRat.normSq]
+    ring
+  have hv_eq : normSqVec (gaussianHalvingNeg a b) = 2 * (a ^ 2 + b ^ 2) := by
+    simp [gaussianHalvingNeg, normSqVec, GaussRat.normSq]
+    ring
+  have hw_eq : normSqVec (gaussianHalvingOrtho a b) = a ^ 2 + b ^ 2 := by
+    simp [gaussianHalvingOrtho, normSqVec, GaussRat.normSq]
+    ring
+  have hu_pos : 0 < normSqVec (gaussianHalvingPos a b) := by linarith
+  have hv_pos : 0 < normSqVec (gaussianHalvingNeg a b) := by linarith
+  have hw_pos : 0 < normSqVec (gaussianHalvingOrtho a b) := by linarith
+  refine ⟨nonZero_of_normSqVec_pos hu_pos, nonZero_of_normSqVec_pos hv_pos,
+    nonZero_of_normSqVec_pos hw_pos, ?_, ?_, ?_⟩
+  · ext <;> (simp [GVec.inner, gaussianHalvingPos, gaussianHalvingNeg]; try ring)
+  · ext <;> (simp [GVec.inner, gaussianHalvingPos, gaussianHalvingOrtho]; try ring)
+  · ext <;> (simp [GVec.inner, gaussianHalvingNeg, gaussianHalvingOrtho]; try ring)
+
+/-- **Two-Frame Gaussian-Norm Latitude-Halving Identity (`coordSignSymmetric_gaussian_halving_identity`)**:
+for any frame function `f` on `ℚ(i)³` that is coordinate-sign symmetric (`IsCoordSignSymmetric f`,
+satisfied by every function of the coordinate norms `(|x|², |y|², |z|²)`) and any `(a, b) ∈ ℚ²`
+with `a² + b² ≠ 0`, subtracting the two frames `(gaussianHalvingBase a b, tomo_e3, gaussianHalvingOrtho a b)`
+and `(gaussianHalvingPos a b, gaussianHalvingNeg a b, gaussianHalvingOrtho a b)` forces the exact
+latitude-halving equation `2 * f (gaussianHalvingPos a b) = f (gaussianHalvingBase a b) + f tomo_e3`. -/
+theorem coordSignSymmetric_gaussian_halving_identity {f : GVec → ℚ}
+    (hf : IsFrameFunction f) (hsym : IsCoordSignSymmetric f)
+    {a b : ℚ} (hab : a ^ 2 + b ^ 2 ≠ 0) :
+    2 * f (gaussianHalvingPos a b) = f (gaussianHalvingBase a b) + f tomo_e3 := by
+  have hbase := hf _ _ _ (isFrame_gaussianHalving_base hab)
+  have hrot := hf _ _ _ (isFrame_gaussianHalving_rot hab)
+  have hneg_eq : f (gaussianHalvingNeg a b) = f (gaussianHalvingPos a b) :=
+    (hsym ⟨a, 0⟩ ⟨b, 0⟩ ⟨a, b⟩).2
+  linarith
+
+/-- **Zero-Weight Gaussian-Norm Latitude-Halving Identity
+(`zeroWeight_coordSignSymmetric_gaussian_halving_identity`)**:
+for any coordinate-sign symmetric zero-weight frame residual `g` on `ℚ(i)³` and any `(a, b) ∈ ℚ²`
+with `a² + b² ≠ 0`, `2 * g (gaussianHalvingPos a b) = g (gaussianHalvingBase a b) + g tomo_e3`. -/
+theorem zeroWeight_coordSignSymmetric_gaussian_halving_identity {g : GVec → ℚ}
+    (hg : IsZeroWeightFrameFunction g) (hsym : IsCoordSignSymmetric g)
+    {a b : ℚ} (hab : a ^ 2 + b ^ 2 ≠ 0) :
+    2 * g (gaussianHalvingPos a b) = g (gaussianHalvingBase a b) + g tomo_e3 := by
+  have hbase := hg _ _ _ (isFrame_gaussianHalving_base hab)
+  have hrot := hg _ _ _ (isFrame_gaussianHalving_rot hab)
+  have hneg_eq : g (gaussianHalvingNeg a b) = g (gaussianHalvingPos a b) :=
+    (hsym ⟨a, 0⟩ ⟨b, 0⟩ ⟨a, b⟩).2
+  linarith
+
+/-- **General Gaussian-Halving Irrational-Cone Exit Theorem
+(`gaussianHalvingPos_exits_irrational_cone`)**:
+for **every** `(a, b) ∈ ℚ²` with `a² + b² ≠ 0`, the Gaussian-norm `45°` lift
+`gaussianHalvingPos a b = (a, b, a + b i)` has `y`-latitude `b² / (2(a² + b²)) ≤ 1 / 2 < 1 / √3`,
+so `3 |y|⁴ = 3 b⁴ < 4 (a² + b²)² = ‖gaussianHalvingPos a b‖⁴` and `gaussianHalvingPos a b` exits
+the irrational cone `3 |u.y|⁴ > ‖u‖⁴`. -/
+theorem gaussianHalvingPos_exits_irrational_cone {a b : ℚ} (hab : a ^ 2 + b ^ 2 ≠ 0) :
+    3 * ((gaussianHalvingPos a b).y.normSq) ^ 2 < (normSqVec (gaussianHalvingPos a b)) ^ 2 := by
+  have hpos : 0 < a ^ 2 + b ^ 2 := by
+    rcases (add_nonneg (sq_nonneg a) (sq_nonneg b)).lt_or_eq with h | h
+    · exact h
+    · exact absurd h.symm hab
+  have hy_eq : (gaussianHalvingPos a b).y.normSq = b ^ 2 := by
+    simp [gaussianHalvingPos, GaussRat.normSq]
+  have hn_eq : normSqVec (gaussianHalvingPos a b) = 2 * (a ^ 2 + b ^ 2) := by
+    simp [gaussianHalvingPos, normSqVec, GaussRat.normSq]
+    ring
+  rw [hy_eq, hn_eq]
+  have ha2 : 0 ≤ a ^ 2 := sq_nonneg a
+  have hb2 : 0 ≤ b ^ 2 := sq_nonneg b
+  have hsq_pos : 0 < (a ^ 2 + b ^ 2) ^ 2 := sq_pos_of_pos hpos
+  nlinarith
+
+/-- For **every** `a, b : ℚ`, `dedekindRayCut (gaussianHalvingPos a b) = 0`. -/
+theorem dedekindRayCut_gaussianHalvingPos_eq_zero (a b : ℚ) :
+    dedekindRayCut (gaussianHalvingPos a b) = 0 := by
+  by_cases hab : a ^ 2 + b ^ 2 = 0
+  · have ha0 : a = 0 := by nlinarith [sq_nonneg a, sq_nonneg b]
+    have hb0 : b = 0 := by nlinarith [sq_nonneg a, sq_nonneg b]
+    subst ha0 hb0
+    norm_num [dedekindRayCut, gaussianHalvingPos, normSqVec, GaussRat.normSq]
+  · have hexit := gaussianHalvingPos_exits_irrational_cone hab
+    unfold dedekindRayCut
+    exact ite_eq_right_iff.mpr (fun h => absurd h (not_lt.mpr (le_of_lt hexit)))
+
+/-- **General Vanishing of Irrational-Cone-Supported Symmetric Residuals on the `(x, y)`-Plane
+(`zero_on_xy_plane_of_subcone_zero_and_coordSignSymmetric`)**:
+if `g : GVec → ℚ` is any coordinate-sign symmetric zero-weight frame residual that vanishes on the
+sub-cone `3 |u.y|⁴ < ‖u‖⁴` (i.e., `g` is supported inside the irrational cone `3 |u.y|⁴ > ‖u‖⁴`
+around `tomo_e2`), then `g (gaussianHalvingBase a b) = 0` for **every** `(a, b) ∈ ℚ²` with
+`a² + b² ≠ 0` (including `tomo_e2 = gaussianHalvingBase 0 1` and every ray in the `(x, y)`-plane
+inside the irrational cone). -/
+theorem zero_on_xy_plane_of_subcone_zero_and_coordSignSymmetric {g : GVec → ℚ}
+    (hg : IsZeroWeightFrameFunction g) (hsym : IsCoordSignSymmetric g)
+    (hsub : ∀ u : GVec, u.NonZero → 3 * (u.y.normSq) ^ 2 < (normSqVec u) ^ 2 → g u = 0)
+    {a b : ℚ} (hab : a ^ 2 + b ^ 2 ≠ 0) :
+    g (gaussianHalvingBase a b) = 0 := by
+  have hhalve := zeroWeight_coordSignSymmetric_gaussian_halving_identity hg hsym hab
+  have hpos_nz : (gaussianHalvingPos a b).NonZero := (isFrame_gaussianHalving_rot hab).1
+  have hpos_zero : g (gaussianHalvingPos a b) = 0 :=
+    hsub (gaussianHalvingPos a b) hpos_nz (gaussianHalvingPos_exits_irrational_cone hab)
+  have he3_lt : 3 * (tomo_e3.y.normSq) ^ 2 < (normSqVec tomo_e3) ^ 2 := by
+    norm_num [tomo_e3, gv, normSqVec, GaussRat.normSq]
+  have he3_zero : g tomo_e3 = 0 := hsub tomo_e3 tomo_e3_nonZero he3_lt
+  linarith
+
+theorem dedekindRayCut_eq_of_normSq_eq {u v : GVec}
+    (hn : normSqVec u = normSqVec v) (hy : u.y.normSq = v.y.normSq) :
+    dedekindRayCut u = dedekindRayCut v := by
+  unfold dedekindRayCut
+  rw [hn, hy]
+
+theorem dedekindRayCut_isCoordSignSymmetric : IsCoordSignSymmetric dedekindRayCut :=
+  fun x y z =>
+    ⟨dedekindRayCut_eq_of_normSq_eq (by simp [normSqVec, gaussRat_normSq_neg]) (gaussRat_normSq_neg y),
+     dedekindRayCut_eq_of_normSq_eq (by simp [normSqVec, gaussRat_normSq_neg]) rfl⟩
+
+/-- **Explicit Gaussian-Halving Obstruction for `dedekindRayCut` at `(a, b) = (1, 2)`
+(`dedekindRayCut_fails_gaussian_halving_at_1_2`)**:
+at `(a, b) = (1, 2)`, the `y`-latitude of `gaussianHalvingBase 1 2 = (1, 2, 0)` is `4 / 5 > 1 / √3`
+(`dedekindRayCut = 1`), whereas the halved `y`-latitude of `gaussianHalvingPos 1 2 = (1, 2, 1 + 2i)`
+is `2 / 5 < 1 / √3` (`dedekindRayCut = 0`), violating the 2-frame Gaussian-halving identity
+`2 * f (gaussianHalvingPos 1 2) = f (gaussianHalvingBase 1 2) + f tomo_e3`. -/
+theorem dedekindRayCut_fails_gaussian_halving_at_1_2 :
+    dedekindRayCut (gaussianHalvingBase 1 2) = 1 ∧
+    dedekindRayCut tomo_e3 = 0 ∧
+    dedekindRayCut (gaussianHalvingPos 1 2) = 0 ∧
+    2 * dedekindRayCut (gaussianHalvingPos 1 2) ≠
+      dedekindRayCut (gaussianHalvingBase 1 2) + dedekindRayCut tomo_e3 := by
+  refine ⟨?_, ?_, dedekindRayCut_gaussianHalvingPos_eq_zero 1 2, ?_⟩
+  · norm_num [dedekindRayCut, gaussianHalvingBase, normSqVec, GaussRat.normSq]
+  · norm_num [dedekindRayCut, tomo_e3, gv, normSqVec, GaussRat.normSq]
+  · norm_num [dedekindRayCut, gaussianHalvingBase, gaussianHalvingPos, tomo_e3, gv,
+      normSqVec, GaussRat.normSq]
+
+/-- For any `a b : GaussRat` and any rational `0 < θ ≤ 1`, if `(a - b).normSq ≤ θ ^ 2`, then
+`|a.normSq - b.normSq| ≤ (2 * b.normSq + 2) * θ`. -/
+theorem abs_normSq_sub_le_of_normSq_sub_le {a b : GaussRat} {θ : ℚ}
+    (hθ_pos : 0 < θ) (hθ_le : θ ≤ 1) (hd : (a - b).normSq ≤ θ ^ 2) :
+    |a.normSq - b.normSq| ≤ (2 * b.normSq + 2) * θ := by
+  let d : GaussRat := a - b
+  have hd_nn : 0 ≤ d.normSq := GaussRat.normSq_nonneg d
+  have hb_nn : 0 ≤ b.normSq := GaussRat.normSq_nonneg b
+  have hid : a.normSq - b.normSq = d.normSq + 2 * (b.re * d.re + b.im * d.im) := by
+    simp only [d, GaussRat.normSq, GaussRat.re_sub, GaussRat.im_sub]
+    ring
+  have htri : |a.normSq - b.normSq| ≤ |d.normSq| + |2 * (b.re * d.re + b.im * d.im)| := by
+    rw [hid]
+    exact abs_add_le _ _
+  rw [abs_of_nonneg hd_nn] at htri
+  have hw := mul_abs_two_re_inner_le_weighted θ (le_of_lt hθ_pos) b d
+  have hθ2 : θ ^ 2 ≤ θ := by nlinarith
+  have hd_le : d.normSq ≤ θ ^ 2 := hd
+  nlinarith
+
+/-- For any `v v₀ : GVec` and `0 < θ ≤ 1` with `distSqVec v v₀ < θ ^ 2`, both
+`|normSqVec v - normSqVec v₀|` and `|v.y.normSq - v₀.y.normSq|` are at most
+`(2 * normSqVec v₀ + 6) * θ`. -/
+theorem abs_normSqVec_and_y_sub_le_of_distSqVec_lt {v v₀ : GVec} {θ : ℚ}
+    (hθ_pos : 0 < θ) (hθ_le : θ ≤ 1) (hdist : distSqVec v v₀ < θ ^ 2) :
+    |normSqVec v - normSqVec v₀| ≤ (2 * normSqVec v₀ + 6) * θ ∧
+    |v.y.normSq - v₀.y.normSq| ≤ (2 * normSqVec v₀ + 6) * θ := by
+  have hdx_nn : 0 ≤ (v.x - v₀.x).normSq := GaussRat.normSq_nonneg _
+  have hdy_nn : 0 ≤ (v.y - v₀.y).normSq := GaussRat.normSq_nonneg _
+  have hdz_nn : 0 ≤ (v.z - v₀.z).normSq := GaussRat.normSq_nonneg _
+  have hdist_eq :
+      distSqVec v v₀ = (v.x - v₀.x).normSq + (v.y - v₀.y).normSq + (v.z - v₀.z).normSq := rfl
+  have hdx : (v.x - v₀.x).normSq ≤ θ ^ 2 := by linarith
+  have hdy : (v.y - v₀.y).normSq ≤ θ ^ 2 := by linarith
+  have hdz : (v.z - v₀.z).normSq ≤ θ ^ 2 := by linarith
+  have hx := abs_normSq_sub_le_of_normSq_sub_le hθ_pos hθ_le hdx
+  have hy := abs_normSq_sub_le_of_normSq_sub_le hθ_pos hθ_le hdy
+  have hz := abs_normSq_sub_le_of_normSq_sub_le hθ_pos hθ_le hdz
+  have hdiff :
+      normSqVec v - normSqVec v₀ =
+        (v.x.normSq - v₀.x.normSq) + (v.y.normSq - v₀.y.normSq) + (v.z.normSq - v₀.z.normSq) := by
+    simp only [normSqVec]
+    ring
+  have htri1 := abs_add_le
+    ((v.x.normSq - v₀.x.normSq) + (v.y.normSq - v₀.y.normSq))
+    (v.z.normSq - v₀.z.normSq)
+  have htri2 := abs_add_le (v.x.normSq - v₀.x.normSq) (v.y.normSq - v₀.y.normSq)
+  have hv₀x_nn : 0 ≤ v₀.x.normSq := GaussRat.normSq_nonneg _
+  have hv₀z_nn : 0 ≤ v₀.z.normSq := GaussRat.normSq_nonneg _
+  have hnorm_sum : v₀.x.normSq + v₀.y.normSq + v₀.z.normSq = normSqVec v₀ := rfl
+  refine ⟨by rw [hdiff]; nlinarith, by nlinarith⟩
+
+/-- For nonnegative rationals `a, b ≥ 0` and `0 ≤ η ≤ 1`, `|a - b| ≤ η` implies
+`|a ^ 2 - b ^ 2| ≤ (2 * b + 1) * η`. -/
+theorem abs_sq_sub_sq_le_of_abs_sub_le {a b η : ℚ}
+    (ha : 0 ≤ a) (hb : 0 ≤ b) (hη_nn : 0 ≤ η) (hη_le : η ≤ 1) (hab : |a - b| ≤ η) :
+    |a ^ 2 - b ^ 2| ≤ (2 * b + 1) * η := by
+  obtain ⟨hl, hu⟩ := abs_le.mp hab
+  have hsum_nn : 0 ≤ a + b := by linarith
+  have hsum_le : a + b ≤ 2 * b + 1 := by linarith
+  have hfac : a ^ 2 - b ^ 2 = (a - b) * (a + b) := by ring
+  rw [hfac]
+  exact abs_le.mpr ⟨by nlinarith, by nlinarith⟩
+
+/-- **Local Constancy of `dedekindRayCut` at Every Nonzero Vector (`dedekindRayCut_eventually_const`)**:
+for every nonzero vector `v₀ ∈ ℚ(i)³ \ {0}`, the irrational cone `3 |u.y|⁴ = ‖u‖⁴` has a strictly
+positive rational gap `|3 (v₀.y.normSq)² - (normSqVec v₀)²| > 0`, so there exists a rational radius
+`δ > 0` on which `dedekindRayCut v = dedekindRayCut v₀` whenever `distSqVec v v₀ < δ`. -/
+theorem dedekindRayCut_eventually_const {v₀ : GVec} (hv₀ : v₀.NonZero) :
+    ∃ δ : ℚ, 0 < δ ∧ ∀ v : GVec, distSqVec v v₀ < δ → dedekindRayCut v = dedekindRayCut v₀ := by
+  let P : GVec → ℚ := fun u => 3 * (u.y.normSq) ^ 2 - (normSqVec u) ^ 2
+  have hP_ne : P v₀ ≠ 0 := sub_ne_zero.mpr (dedekindRayCut_gap_ne_zero hv₀)
+  let gap : ℚ := |P v₀|
+  have hgap_pos : 0 < gap := abs_pos.mpr hP_ne
+  have hnv₀_pos : 0 < normSqVec v₀ := normSqVec_pos_of_nonZero hv₀
+  have hnv₀_nn : 0 ≤ normSqVec v₀ := le_of_lt hnv₀_pos
+  let C : ℚ := 4 * (2 * normSqVec v₀ + 1) + 1
+  have hC_pos : 0 < C := by dsimp [C]; linarith
+  let η : ℚ := min 1 (gap / C)
+  have hη_pos : 0 < η := lt_min one_pos (div_pos hgap_pos hC_pos)
+  have hη_nn : 0 ≤ η := le_of_lt hη_pos
+  have hη_le_one : η ≤ 1 := min_le_left _ _
+  have hη_le_div : η ≤ gap / C := min_le_right _ _
+  have hC_η_le : C * η ≤ gap := by
+    have h1 := (le_div_iff₀ hC_pos).mp hη_le_div
+    linarith
+  have h4_η_lt : 4 * (2 * normSqVec v₀ + 1) * η < gap := by
+    have : 4 * (2 * normSqVec v₀ + 1) * η + η = C * η := by dsimp [C]; ring
+    linarith
+  let M : ℚ := 2 * normSqVec v₀ + 6
+  have hM_pos : 0 < M := by dsimp [M]; linarith
+  have hM_ne : M ≠ 0 := ne_of_gt hM_pos
+  let θ : ℚ := η / M
+  have hθ_pos : 0 < θ := div_pos hη_pos hM_pos
+  have hθ_le_one : θ ≤ 1 := by
+    have hη_le_M : η ≤ M := by dsimp [M]; linarith
+    exact (div_le_one hM_pos).mpr hη_le_M
+  have hM_θ : M * θ = η := mul_div_cancel₀ η hM_ne
+  refine ⟨θ ^ 2, sq_pos_of_pos hθ_pos, ?_⟩
+  intro v hdist
+  obtain ⟨hn_diff, hy_diff⟩ := abs_normSqVec_and_y_sub_le_of_distSqVec_lt hθ_pos hθ_le_one hdist
+  change |normSqVec v - normSqVec v₀| ≤ M * θ at hn_diff
+  change |v.y.normSq - v₀.y.normSq| ≤ M * θ at hy_diff
+  rw [hM_θ] at hn_diff hy_diff
+  have hnv_nn : 0 ≤ normSqVec v := normSqVec_nonneg v
+  have hvy_nn : 0 ≤ v.y.normSq := GaussRat.normSq_nonneg v.y
+  have hv₀y_nn : 0 ≤ v₀.y.normSq := GaussRat.normSq_nonneg v₀.y
+  have hv₀y_le_n : v₀.y.normSq ≤ normSqVec v₀ := by
+    have hx_nn := GaussRat.normSq_nonneg v₀.x
+    have hz_nn := GaussRat.normSq_nonneg v₀.z
+    unfold normSqVec
+    linarith
+  have hn_sq := abs_sq_sub_sq_le_of_abs_sub_le hnv_nn hnv₀_nn hη_nn hη_le_one hn_diff
+  have hy_sq := abs_sq_sub_sq_le_of_abs_sub_le hvy_nn hv₀y_nn hη_nn hη_le_one hy_diff
+  have hy_sq' : |(v.y.normSq) ^ 2 - (v₀.y.normSq) ^ 2| ≤ (2 * normSqVec v₀ + 1) * η := by
+    nlinarith
+  have hP_diff_eq :
+      P v - P v₀ =
+        3 * ((v.y.normSq) ^ 2 - (v₀.y.normSq) ^ 2) + (-((normSqVec v) ^ 2 - (normSqVec v₀) ^ 2)) := by
+    dsimp [P]
+    ring
+  have htriP := abs_add_le
+    (3 * ((v.y.normSq) ^ 2 - (v₀.y.normSq) ^ 2))
+    (-((normSqVec v) ^ 2 - (normSqVec v₀) ^ 2))
+  rw [abs_neg, abs_mul, abs_of_pos (by norm_num : (0 : ℚ) < 3)] at htriP
+  have hP_lt_gap : |P v - P v₀| < gap := by
+    rw [hP_diff_eq]
+    linarith
+  obtain ⟨hP_lo, hP_hi⟩ := abs_lt.mp hP_lt_gap
+  unfold dedekindRayCut
+  by_cases hlt₀ : (normSqVec v₀) ^ 2 < 3 * (v₀.y.normSq) ^ 2
+  · have hP₀_pos : 0 < P v₀ := by dsimp [P]; linarith
+    have hgap_eq : gap = P v₀ := abs_of_pos hP₀_pos
+    have hlt_v : (normSqVec v) ^ 2 < 3 * (v.y.normSq) ^ 2 := by
+      dsimp [P] at hP_lo hgap_eq
+      linarith
+    simp [hlt₀, hlt_v]
+  · have hP₀_neg : P v₀ < 0 := by
+      rcases lt_trichotomy (P v₀) 0 with hneg | hzero | hpos
+      · exact hneg
+      · exact absurd hzero hP_ne
+      · dsimp [P] at hpos; exact absurd (by linarith) hlt₀
+    have hgap_eq : gap = -P v₀ := abs_of_neg hP₀_neg
+    have hnot_v : ¬ ((normSqVec v) ^ 2 < 3 * (v.y.normSq) ^ 2) := by
+      dsimp [P] at hP_hi hgap_eq
+      linarith
+    simp [hlt₀, hnot_v]
+
+/-- **Global Vector-Level Archimedean Continuity of `dedekindRayCut` on `ℚ(i)³ \ {0}`
+(`dedekindRayCut_isArchimedeanContinuousEverywhere`)**:
+because the irrational cone `3 |u.y|⁴ = ‖u‖⁴` misses `ℚ(i)³ \ {0}` entirely, `dedekindRayCut` is
+locally constant—and therefore Archimedean-continuous—at **every** nonzero vector `v₀ ∈ ℚ(i)³ \ {0}`. -/
+theorem dedekindRayCut_isArchimedeanContinuousEverywhere :
+    IsArchimedeanContinuousEverywhere dedekindRayCut := by
+  intro v₀ hv₀ ε hε
+  obtain ⟨δ, hδ, hconst⟩ := dedekindRayCut_eventually_const hv₀
+  refine ⟨δ, hδ, ?_⟩
+  intro v _hv hdist
+  rw [hconst v hdist, sub_self, abs_zero]
+  exact hε
+
+/-- **Global Pointwise Ray Continuity of `dedekindRayCut` on `ℚ(i)³ \ {0}`
+(`dedekindRayCut_isPointwiseRayContinuous`)**:
+`dedekindRayCut` is pointwise ray-continuous (`IsPointwiseRayContinuous`) at **every** nonzero ray
+of `ℚ(i)³`, while failing both uniform ray continuity (`dedekindRayCut_jump_on_pell_pair`) and
+3-frame additivity (`dedekindRayCut_not_isFrameFunction`). -/
+theorem dedekindRayCut_isPointwiseRayContinuous :
+    IsPointwiseRayContinuous dedekindRayCut :=
+  (isPointwiseRayContinuous_iff_isArchimedeanContinuousEverywhere
+    dedekindRayCut_isScaleInvariantOnRays).mpr
+    dedekindRayCut_isArchimedeanContinuousEverywhere
+
+/-- For any vectors `u, w : GVec`, the rank-1 projector Rayleigh quotient `quadRay (rayProj w) u`
+equals `1 - raySinSq u w`. -/
+theorem quadRay_rayProj_eq_one_sub_raySinSq (u w : GVec) :
+    quadRay (rayProj w) u = 1 - raySinSq u w := by
+  simp only [quadRay, quadNum, rayProj, raySinSq, GVec.inner,
+    GaussRat.normSq, re_add, im_add, re_mul, im_mul, re_star, im_star]
+  ring
+
+/-- For every nonzero anchor `w ∈ ℚ(i)³ \ {0}`, `quadRay (rayProj w)` is a nonnegative frame
+function on `ℚ(i)³`. -/
+theorem quadRay_rayProj_isNonnegFrameFunction {w : GVec} (hw : w.NonZero) :
+    IsNonnegFrameFunction (quadRay (rayProj w)) := by
+  refine ⟨quadRay_isFrameFunction (rayProj w) (rayProj_tr hw), ?_⟩
+  intro u _hu
+  rw [quadRay_rayProj_eq_one_sub_raySinSq u w]
+  unfold raySinSq
+  have h1 :
+      1 - (1 - (GVec.inner u w).normSq / (normSqVec u * normSqVec w)) =
+        (GVec.inner u w).normSq / (normSqVec u * normSqVec w) := by ring
+  rw [h1]
+  exact div_nonneg (GaussRat.normSq_nonneg _)
+    (mul_nonneg (normSqVec_nonneg u) (normSqVec_nonneg w))
+
+/-- **General Orthogonal Ray-Distance Bessel Bound (`ortho_raySinSq_add_ge_one`)**:
+for any two nonzero orthogonal vectors `u, v ∈ ℚ(i)³` (`GVec.inner u v = 0`) and any nonzero
+anchor `w ∈ ℚ(i)³ \ {0}`, completing `(u, v)` with `hermCross u v` and applying
+`rational_piron_subadditivity` to `quadRay (rayProj w) = 1 - raySinSq · w` yields
+`1 ≤ raySinSq u w + raySinSq v w`. -/
+theorem ortho_raySinSq_add_ge_one {u v w : GVec}
+    (hu : u.NonZero) (hv : v.NonZero) (hw : w.NonZero) (huv : GVec.inner u v = 0) :
+    1 ≤ raySinSq u w + raySinSq v w := by
+  have hsub :=
+    (rational_piron_subadditivity (quadRay_rayProj_isNonnegFrameFunction hw) hu hv huv).2
+  rw [quadRay_rayProj_eq_one_sub_raySinSq u w,
+      quadRay_rayProj_eq_one_sub_raySinSq v w] at hsub
+  linarith
+
+/-- **General Orthogonal Polar-Cap Disjointness (`not_both_raySinSq_lt_half_of_ortho`)**:
+for any nonzero anchor `w ∈ ℚ(i)³ \ {0}`, no two nonzero orthogonal vectors `u, v ∈ ℚ(i)³`
+(`GVec.inner u v = 0`) can simultaneously lie inside the polar cap `raySinSq · w < 1 / 2`. -/
+theorem not_both_raySinSq_lt_half_of_ortho {u v w : GVec}
+    (hu : u.NonZero) (hv : v.NonZero) (hw : w.NonZero) (huv : GVec.inner u v = 0) :
+    ¬ (raySinSq u w < 1 / 2 ∧ raySinSq v w < 1 / 2) := by
+  rintro ⟨hu_lt, hv_lt⟩
+  have hge := ortho_raySinSq_add_ge_one hu hv hw huv
+  linarith
+
+/-- **Global Vanishing of Zero-Weight Residuals Supported in a `< 45°` Polar Cap
+(`zero_of_zeroWeight_supported_in_polar_cap`)**:
+if `g : GVec → ℚ` is a zero-weight frame function on `ℚ(i)³` supported inside the `< 45°` polar cap
+`raySinSq · w < 1 / 2` around any nonzero ray `w ∈ ℚ(i)³ \ {0}` (meaning `g u = 0` whenever
+`u.NonZero` and `1 / 2 ≤ raySinSq u w`), then `g x = 0` for every nonzero `x ∈ ℚ(i)³ \ {0}`:
+any ray `x` inside the cap completes to an orthogonal frame `(x, u, v)`, both orthogonal partners
+`u, v` are forced outside the cap by `not_both_raySinSq_lt_half_of_ortho`, and `g x + g u + g v = 0`
+forces `g x = 0`. -/
+theorem zero_of_zeroWeight_supported_in_polar_cap {g : GVec → ℚ}
+    (hg : IsZeroWeightFrameFunction g) {w : GVec} (hw : w.NonZero)
+    (hcap : ∀ u : GVec, u.NonZero → 1 / 2 ≤ raySinSq u w → g u = 0)
+    {x : GVec} (hx : x.NonZero) :
+    g x = 0 := by
+  by_cases hx_cap : 1 / 2 ≤ raySinSq x w
+  · exact hcap x hx hx_cap
+  · push_neg at hx_cap
+    obtain ⟨u, v, hfr, _⟩ := exists_frame_completion hx
+    have hu : u.NonZero := hfr.2.1
+    have hv : v.NonZero := hfr.2.2.1
+    have hxu : GVec.inner x u = 0 := hfr.2.2.2.1
+    have hxv : GVec.inner x v = 0 := hfr.2.2.2.2.1
+    have hu_out : 1 / 2 ≤ raySinSq u w := by
+      by_contra hu_in
+      push_neg at hu_in
+      exact not_both_raySinSq_lt_half_of_ortho hx hu hw hxu ⟨hx_cap, hu_in⟩
+    have hv_out : 1 / 2 ≤ raySinSq v w := by
+      by_contra hv_in
+      push_neg at hv_in
+      exact not_both_raySinSq_lt_half_of_ortho hx hv hw hxv ⟨hx_cap, hv_in⟩
+    have hgu : g u = 0 := hcap u hu hu_out
+    have hgv : g v = 0 := hcap v hv hv_out
+    have hsum := hg x u v hfr
+    linarith
+
+/-- For every vector `u : GVec`, the pure-pole Rayleigh quotient `quadRay (rayProj tomo_e1) u`
+equals `1 - raySinSq u tomo_e1`. -/
+theorem quadRay_rayProj_tomo_e1_eq_one_sub_raySinSq (u : GVec) :
+    quadRay (rayProj tomo_e1) u = 1 - raySinSq u tomo_e1 :=
+  quadRay_rayProj_eq_one_sub_raySinSq u tomo_e1
+
+/-- **Orthogonal Ray-Distance Bessel Bound Relative to `tomo_e1`
+(`ortho_raySinSq_tomo_e1_add_ge_one`)**:
+for any two nonzero orthogonal vectors `u, v ∈ ℚ(i)³` (`GVec.inner u v = 0`),
+`1 ≤ raySinSq u tomo_e1 + raySinSq v tomo_e1`. -/
+theorem ortho_raySinSq_tomo_e1_add_ge_one {u v : GVec}
+    (hu : u.NonZero) (hv : v.NonZero) (huv : GVec.inner u v = 0) :
+    1 ≤ raySinSq u tomo_e1 + raySinSq v tomo_e1 :=
+  ortho_raySinSq_add_ge_one hu hv tomo_e1_nonZero huv
+
+/-- **Orthogonal Polar-Cap Disjointness (`not_both_raySinSq_tomo_e1_lt_half_of_ortho`)**:
+no two nonzero orthogonal vectors `u, v ∈ ℚ(i)³` (`GVec.inner u v = 0`) can simultaneously lie
+inside the polar cap `raySinSq · tomo_e1 < 1 / 2`. -/
+theorem not_both_raySinSq_tomo_e1_lt_half_of_ortho {u v : GVec}
+    (hu : u.NonZero) (hv : v.NonZero) (huv : GVec.inner u v = 0) :
+    ¬ (raySinSq u tomo_e1 < 1 / 2 ∧ raySinSq v tomo_e1 < 1 / 2) :=
+  not_both_raySinSq_lt_half_of_ortho hu hv tomo_e1_nonZero huv
+
 end BornFinite.GaussianFiniteModel
 
 #print axioms BornFinite.GaussianFiniteModel.global_frameFunction_restricts_to_scenario
@@ -1444,3 +2556,51 @@ end BornFinite.GaussianFiniteModel
 #print axioms BornFinite.GaussianFiniteModel.dedekindRayCut_isScaleInvariantOnRays
 #print axioms BornFinite.GaussianFiniteModel.dedekindRayCut_gap_ne_zero
 #print axioms BornFinite.GaussianFiniteModel.dedekindRayCut_jump_on_pell_pair
+#print axioms BornFinite.GaussianFiniteModel.rational_piron_subadditivity
+#print axioms BornFinite.GaussianFiniteModel.nonneg_frameFunction_ortho_le_one_sub
+#print axioms BornFinite.GaussianFiniteModel.isFrame_tomo_e1_eqOrtho
+#print axioms BornFinite.GaussianFiniteModel.equatorial_pair_sum_eq_one_sub_pole
+#print axioms BornFinite.GaussianFiniteModel.meridian_kelvin_universal_bridge
+#print axioms BornFinite.GaussianFiniteModel.meridian_kelvin_zeroWeight_bridge
+#print axioms BornFinite.GaussianFiniteModel.meridianOrtho_raySinSq_eq
+#print axioms BornFinite.GaussianFiniteModel.meridian_uniform_equatorial_continuity_of_pole_continuous
+#print axioms BornFinite.GaussianFiniteModel.piron_zero_slack_step_partner_bridge
+#print axioms BornFinite.GaussianFiniteModel.piron_symmetric_step_partner_balance
+#print axioms BornFinite.GaussianFiniteModel.pironStep_pironPartner_raySinSq_eq
+#print axioms BornFinite.GaussianFiniteModel.piron_step_continuous_of_eqOrtho_continuous
+#print axioms BornFinite.GaussianFiniteModel.piron_three_step_zero_slack_chain_abs_le
+#print axioms BornFinite.GaussianFiniteModel.piron_general_one_step_le
+#print axioms BornFinite.GaussianFiniteModel.piron_general_two_step_radial_le
+#print axioms BornFinite.GaussianFiniteModel.piron_general_three_step_chain_le
+#print axioms BornFinite.GaussianFiniteModel.pythagEqRot_general_sandwich
+#print axioms BornFinite.GaussianFiniteModel.dedekindRayCut_eq_zero_of_raySinSq_tomo_e1_lt
+#print axioms BornFinite.GaussianFiniteModel.dedekindRayCut_isPointwiseRayContinuousAt_tomo_e1
+#print axioms BornFinite.GaussianFiniteModel.dedekindRayCut_eq_one_of_raySinSq_tomo_e2_lt
+#print axioms BornFinite.GaussianFiniteModel.dedekindRayCut_isPointwiseRayContinuousAt_tomo_e2
+#print axioms BornFinite.GaussianFiniteModel.dedekindRayCut_not_isFrameFunction
+#print axioms BornFinite.GaussianFiniteModel.yLatitudeFunction_std_and_bisector_constraints
+#print axioms BornFinite.GaussianFiniteModel.no_zero_one_latitude_frameFunction
+#print axioms BornFinite.GaussianFiniteModel.isFrame_gaussianHalving_base
+#print axioms BornFinite.GaussianFiniteModel.isFrame_gaussianHalving_rot
+#print axioms BornFinite.GaussianFiniteModel.coordSignSymmetric_gaussian_halving_identity
+#print axioms BornFinite.GaussianFiniteModel.zeroWeight_coordSignSymmetric_gaussian_halving_identity
+#print axioms BornFinite.GaussianFiniteModel.gaussianHalvingPos_exits_irrational_cone
+#print axioms BornFinite.GaussianFiniteModel.dedekindRayCut_gaussianHalvingPos_eq_zero
+#print axioms BornFinite.GaussianFiniteModel.zero_on_xy_plane_of_subcone_zero_and_coordSignSymmetric
+#print axioms BornFinite.GaussianFiniteModel.dedekindRayCut_isCoordSignSymmetric
+#print axioms BornFinite.GaussianFiniteModel.dedekindRayCut_fails_gaussian_halving_at_1_2
+#print axioms BornFinite.GaussianFiniteModel.abs_normSq_sub_le_of_normSq_sub_le
+#print axioms BornFinite.GaussianFiniteModel.abs_normSqVec_and_y_sub_le_of_distSqVec_lt
+#print axioms BornFinite.GaussianFiniteModel.abs_sq_sub_sq_le_of_abs_sub_le
+#print axioms BornFinite.GaussianFiniteModel.dedekindRayCut_eventually_const
+#print axioms BornFinite.GaussianFiniteModel.dedekindRayCut_isArchimedeanContinuousEverywhere
+#print axioms BornFinite.GaussianFiniteModel.dedekindRayCut_isPointwiseRayContinuous
+#print axioms BornFinite.GaussianFiniteModel.quadRay_rayProj_eq_one_sub_raySinSq
+#print axioms BornFinite.GaussianFiniteModel.quadRay_rayProj_isNonnegFrameFunction
+#print axioms BornFinite.GaussianFiniteModel.ortho_raySinSq_add_ge_one
+#print axioms BornFinite.GaussianFiniteModel.not_both_raySinSq_lt_half_of_ortho
+#print axioms BornFinite.GaussianFiniteModel.zero_of_zeroWeight_supported_in_polar_cap
+#print axioms BornFinite.GaussianFiniteModel.quadRay_rayProj_tomo_e1_eq_one_sub_raySinSq
+#print axioms BornFinite.GaussianFiniteModel.ortho_raySinSq_tomo_e1_add_ge_one
+#print axioms BornFinite.GaussianFiniteModel.not_both_raySinSq_tomo_e1_lt_half_of_ortho
+

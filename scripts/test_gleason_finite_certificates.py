@@ -98,6 +98,145 @@ class TestGleasonFiniteCertificates(unittest.TestCase):
             cert.ray_sin_sq(u_hi, u_lo), Fraction(1, 10000)
         )
 
+    def test_track_a_piron_soler_chain_and_universal_meridian_bridge(self) -> None:
+        y = cert.GVec.real(0, Fraction(1, 3), Fraction(1, 2))
+        self.assertTrue(cert.is_frame(cert.TOMO_E1, y, cert.eq_ortho(y)))
+        self.assertTrue(
+            cert.is_frame(
+                cert.TOMO_E1.add(y), cert.eq_ortho(y), cert.meridian_ortho(y)
+            )
+        )
+        self.assertEqual(
+            cert.ray_sin_sq(cert.TOMO_E1.add(y), cert.TOMO_E1),
+            cert.ray_sin_sq(cert.meridian_ortho(y), y),
+        )
+        lam = cert.GaussRat.of(Fraction(1, 2), Fraction(1, 3))
+        lam_neg = cert.GaussRat.of(-Fraction(1, 2), -Fraction(1, 3))
+        self.assertEqual(
+            cert.ray_sin_sq(cert.piron_step(y, lam), cert.TOMO_E1.add(y)),
+            cert.ray_sin_sq(cert.piron_partner(y, lam), cert.eq_ortho(y)),
+        )
+        f = cert.exotic_qi3
+        slack = Fraction(1) - f(cert.TOMO_E1)
+        self.assertEqual(
+            f(cert.TOMO_E1.add(y)) + f(cert.meridian_ortho(y)),
+            f(cert.TOMO_E1) + f(y),
+        )
+        self.assertEqual(
+            f(cert.TOMO_E1.add(y)) + f(cert.TOMO_E1.add(cert.kelvin_eq(y))),
+            f(cert.TOMO_E1) + f(y),
+        )
+        self.assertEqual(
+            f(cert.piron_step(y, lam)) - f(cert.TOMO_E1.add(y)),
+            f(cert.eq_ortho(y)) - f(cert.piron_partner(y, lam)),
+        )
+        self.assertEqual(
+            f(cert.piron_step(y, lam)) + f(cert.piron_partner(y, lam)),
+            f(cert.piron_step(y, lam_neg)) + f(cert.piron_partner(y, lam_neg)),
+        )
+        t1, t2, t3 = Fraction(1, 2), Fraction(1, 3), Fraction(1, 5)
+        y1 = cert.eq_tangent_step(y, t1)
+        y2 = cert.eq_tangent_step(y1, t2)
+        y3 = cert.eq_tangent_step(y2, t3)
+        self.assertLessEqual(
+            f(cert.TOMO_E1.add(y3)) - f(cert.TOMO_E1.add(y)),
+            f(cert.eq_ortho(y)) + f(cert.eq_ortho(y1)) + f(cert.eq_ortho(y2)),
+        )
+        self.assertLessEqual(
+            f(cert.eq_ortho(y)) + f(cert.eq_ortho(y1)) + f(cert.eq_ortho(y2)),
+            3 * slack,
+        )
+        self.assertEqual(
+            f(cert.TOMO_E1.add(y3)) - f(cert.TOMO_E1.add(y)),
+            (f(cert.eq_ortho(y)) - f(cert.piron_partner(y, cert.GaussRat.of(t1))))
+            + (f(cert.eq_ortho(y1)) - f(cert.piron_partner(y1, cert.GaussRat.of(t2))))
+            + (f(cert.eq_ortho(y2)) - f(cert.piron_partner(y2, cert.GaussRat.of(t3)))),
+        )
+
+    def test_track_b_irrational_locus_frame_stress_tests(self) -> None:
+        # 1. Local constancy of dedekind_ray_cut near tomo_e1 and tomo_e2
+        u_near_e1 = cert.crt_approach_e1(0)
+        self.assertLess(cert.ray_sin_sq(u_near_e1, cert.TOMO_E1), Fraction(1, 2))
+        self.assertEqual(cert.dedekind_ray_cut(u_near_e1), Fraction(0))
+        u_near_e2 = cert.GVec.real(Fraction(1, 4), 1, Fraction(1, 4))
+        self.assertLess(cert.ray_sin_sq(u_near_e2, cert.TOMO_E2), Fraction(1, 3))
+        self.assertEqual(cert.dedekind_ray_cut(u_near_e2), Fraction(1))
+        # 2. Failure of 3-frame additivity on (tomo_e3, tomo_e12, partner_e12_minus)
+        self.assertEqual(
+            cert.dedekind_ray_cut(cert.TOMO_E3)
+            + cert.dedekind_ray_cut(cert.TOMO_E12)
+            + cert.dedekind_ray_cut(cert.PARTNER_E12_MINUS),
+            Fraction(0),
+        )
+        # 3. General two-frame Gaussian-norm latitude-halving cone-exit across super-cone rays
+        for a_val, b_val in ((0, 1), (1, 2), (1, 3), (85, 100)):
+            u_base = cert.gaussian_halving_base(a_val, b_val)
+            u_pos = cert.gaussian_halving_pos(a_val, b_val)
+            self.assertLess(
+                3 * (u_pos.y.norm_sq() ** 2),
+                u_pos.norm_sq() ** 2,
+            )
+            self.assertEqual(cert.dedekind_ray_cut(u_base), Fraction(1))
+            self.assertEqual(cert.dedekind_ray_cut(cert.TOMO_E3), Fraction(0))
+            self.assertEqual(cert.dedekind_ray_cut(u_pos), Fraction(0))
+            self.assertNotEqual(
+                2 * cert.dedekind_ray_cut(u_pos),
+                cert.dedekind_ray_cut(u_base) + cert.dedekind_ray_cut(cert.TOMO_E3),
+            )
+        # 4. Global local-constancy radius certificate (dedekindRayCut_eventually_const)
+        with self.assertRaises(ValueError):
+            cert.dedekind_local_constancy_theta(cert.GVec.real(0, 0, 0))
+        with self.assertRaises(ValueError):
+            cert.dedekind_local_constancy_radius(cert.GVec.real(0, 0, 0))
+        for v0 in (
+            cert.GVec.real(85, 100, 0),
+            cert.GVec.real(86, 100, 0),
+            cert.WITNESS_111,
+            cert.gaussian_halving_pos(1, 2),
+        ):
+            theta = cert.dedekind_local_constancy_theta(v0)
+            delta = cert.dedekind_local_constancy_radius(v0)
+            self.assertGreater(theta, Fraction(0))
+            self.assertEqual(delta, theta * theta)
+            step = theta / Fraction(4)
+            for sx, sy, sz in ((1, -1, 1), (-1, 1, -1), (1, 1, 0)):
+                v_pert = cert.GVec(
+                    v0.x + cert.GaussRat.of(sx * step),
+                    v0.y + cert.GaussRat.of(sy * step),
+                    v0.z + cert.GaussRat.of(0, sz * step),
+                )
+                self.assertLess(cert.dist_sq_vec(v_pert, v0), delta)
+                self.assertEqual(
+                    cert.dedekind_ray_cut(v_pert), cert.dedekind_ray_cut(v0)
+                )
+        # 5. General-anchor orthogonal ray-distance Bessel bound & polar-cap disjointness
+        anchors = (
+            cert.TOMO_E1,
+            cert.TOMO_E2,
+            cert.TOMO_E12,
+            cert.WITNESS_111,
+            cert.WITNESS_P7,
+        )
+        for _, u, v, w in cert.build_test_frames():
+            for anchor in anchors:
+                in_cap = sum(
+                    1
+                    for vec in (u, v, w)
+                    if cert.ray_sin_sq(vec, anchor) < Fraction(1, 2)
+                )
+                self.assertLessEqual(in_cap, 1)
+                for p, q in ((u, v), (u, w), (v, w)):
+                    self.assertGreaterEqual(
+                        cert.ray_sin_sq(p, anchor)
+                        + cert.ray_sin_sq(q, anchor),
+                        Fraction(1),
+                    )
+                    self.assertFalse(
+                        cert.ray_sin_sq(p, anchor) < Fraction(1, 2)
+                        and cert.ray_sin_sq(q, anchor) < Fraction(1, 2)
+                    )
+
 
 if __name__ == "__main__":
     unittest.main()
+
